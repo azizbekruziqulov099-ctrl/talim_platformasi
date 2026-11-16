@@ -22,3 +22,12 @@ def test_noto_gri_yoshga_chiqmaydi():
     # 4-sinf yoshidagi bolaga PISA, kattaga TIMSS 4-sinf hech qachon chiqmaydi
     assert not set(yonalishlar(9)) & set(PISA) and not set(yonalishlar(13)) & set(TIMSS4) and not set(yonalishlar(16)) & set(TIMSS4 + TIMSS8)
     assert ruxsat_etilgan(9, ["P_M", "T11_G4_S", "T11_G8_M"]) == ["T11_G4_S"]
+
+
+def test_kirish_tartibi_osondan_qiyinga():
+    import importlib, sys
+    m = importlib.import_module("modules.xalqaro_baholash")
+    sv = [{"id": f"s{i}", "xalqaro_ortacha": p} for i, p in enumerate([20, 90, 55, 70, 35])]
+    out = [s["xalqaro_ortacha"] for s in m.kirish_tartibi(sv)]
+    assert out == sorted(out, reverse=True)   # to'g'ri yechilish foizi kamayadi = qiyinlik ortadi
+    assert m.IMTIHON_TURLARI["kirish"]["4"][0] == m.IMTIHON_TURLARI["kirish"]["P"][0] == 15

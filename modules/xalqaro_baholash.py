@@ -75,7 +75,7 @@ IMTIHON_TURLARI = {
     "choraklik": {"nom": "Choraklik imtihon (1-qism)", "4": (24, 36), "8": (30, 45), "P": (24, 60)},
     "yillik": {"nom": "Yillik imtihon (to‘liq daftar, 2 qism)", "4": (24, 36), "8": (30, 45), "P": (24, 60)},   # har qism
     # REV555: kirish testi — sinfga qo'shilgan o'quvchi darajasini aniqlash uchun (reyting → guruh). O'quv yilida bitta rasmiy urinish.
-    "kirish": {"nom": "Kirish testi", "4": (12, 20), "8": (14, 25), "P": (12, 30), "yashirin": True},
+    "kirish": {"nom": "Kirish testi", "4": (15, 25), "8": (15, 30), "P": (15, 35), "yashirin": True}   # 15 savol, osondan qiyinga,
 }
 SINF_ENG_KOP = 1000   # REV555: avval 60 edi — internetdan chaqirilgan o'quvchilar 30 tadan guruhlarga bo'linadi (10+ guruh)
 # TIMSS 2011 ramkasi: mazmun sohalari va fikrlash darajalari ulushi (imtihon savollari shu nisbatda tanlanadi)
@@ -642,6 +642,16 @@ def _variant_public(s, vi, javob_bilan=False, k=None):
                    xatolar=v.get("xatolar") or {}, maslahat=v.get("maslahat") or "",
                    kunikma=s.get("kunikma") or "", usul=s.get("usul") or "")
     return out
+
+
+def kirish_tartibi(savollar):
+    """Kirish testi: osondan qiyinga (umumiy stimulli PISA birliklari bo'linmaydi — birlik o'rtacha qiyinligi bilan joylashadi)."""
+    qiy = {s["id"]: savol_qiyinligi(s) for s in savollar}
+    birl = {}
+    for s in savollar:
+        birl.setdefault(s.get("birlik") or s["id"], []).append(qiy[s["id"]])
+    o = {k: sum(v) / len(v) for k, v in birl.items()}
+    return sorted(savollar, key=lambda s: (o[s.get("birlik") or s["id"]], qiy[s["id"]]))
 
 
 def reja_boyicha_tanla(savollar, soni, reja, rng, chetla=()):
@@ -1478,6 +1488,8 @@ def create_router(platform, kontent=None):
                 for q in bloklar(tk, body.tur, til):
                     pool = [s for s in k.savollar if s["toplam"] == q]
                     tanlangan = reja_boyicha_tanla(pool, soni, REJA.get(q, {}), rng, yaqin)
+                    if body.tur == "kirish":
+                        tanlangan = kirish_tartibi(tanlangan)
                     qismlar.append({"toplam": q, "savollar": savollar_jsonb(tanlangan, rng)})
                 tugash = now + timedelta(minutes=daqiqa)
                 cur.execute("""INSERT INTO xb_imtihon(user_id, til, tur, toplam, davr, rasmiy, sinf, maktab_id, sinf_nomi, savollar, qismlar, qism, tugash)
