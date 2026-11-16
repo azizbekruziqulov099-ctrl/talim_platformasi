@@ -174,6 +174,30 @@ def _migrate(cur):
         tugadi_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), togri INT, jami INT, PRIMARY KEY (user_id, kalit, topic_code))""")
 
 
+    # Repetitor kitobi: mashq natijasi (asosiy yoki zapas to'plam) — keyingi dars shu 70% dan o'tgandagina ochiladi
+    cur.execute("""CREATE TABLE IF NOT EXISTS kitob_mashq_natija (user_id BIGINT NOT NULL, topic_code TEXT NOT NULL, zapas BOOLEAN NOT NULL DEFAULT FALSE,
+        togri INT NOT NULL DEFAULT 0, jami INT NOT NULL DEFAULT 0, yechim_kordi INT NOT NULL DEFAULT 0, urinish INT NOT NULL DEFAULT 0,
+        vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (user_id, topic_code, zapas))""")
+
+
+MASHQ_CHEGARA = 0.70   # o'zi (yechimga qaramay) yechgan mashqlar ulushi
+
+
+def mashq_otdi(togri, jami):
+    return int(jami or 0) > 0 and int(togri or 0) / int(jami) >= MASHQ_CHEGARA
+
+
+def kitob_otganlar(cur, uid):
+    """Repetitor kitobida keyingi darsga o'tishga haqli darslar: mashq (asosiy yoki zapas) >= 70% VA test >= 70%."""
+    cur.execute("SELECT topic_code, togri, jami FROM kitob_mashq_natija WHERE user_id=%s", (uid,))
+    mashq = {}
+    for r in cur.fetchall():
+        mashq[r["topic_code"]] = mashq.get(r["topic_code"], False) or mashq_otdi(r["togri"], r["jami"])
+    cur.execute("SELECT topic_code, togri, jami FROM kurs_dars_holat WHERE user_id=%s AND kalit=%s", (uid, _rk.KALIT))
+    test = {r["topic_code"]: mashq_otdi(r["togri"], r["jami"]) for r in cur.fetchall()}
+    return {tc for tc, ok in mashq.items() if ok and test.get(tc)}
+
+
 def _narx_jadvali(cur):
     def ol():
         cur.execute("SELECT kalit, narx_uzs, bepul_dars, faol FROM kurs_narx")
@@ -637,6 +661,40 @@ def create_router(platform, click=None):
             return {"ok": True}
         return run(go)
 
+    class MashqNatija(BaseModel):
+        token: str
+        topic_code: str
+        togri: int
+        jami: int
+        yechim_kordi: int = 0
+        zapas: bool = False
+
+    @router.post("/api/kurslar/mashq_natija")
+    def mashq_natija(body: MashqNatija):
+        """Repetitor kitobi: mashq natijasi (eng yaxshisi saqlanadi). togri — o'zi (yechimsiz) to'g'ri yechganlar."""
+        uid = platform._jwt_tekshir(body.token)
+        def go(cur):
+            jami = max(0, min(int(body.jami), 100)); togri = max(0, min(int(body.togri), jami))
+            cur.execute("""INSERT INTO kitob_mashq_natija(user_id, topic_code, zapas, togri, jami, yechim_kordi, urinish) VALUES(%s,%s,%s,%s,%s,%s,1)
+                           ON CONFLICT (user_id, topic_code, zapas) DO UPDATE SET
+                             togri = GREATEST(kitob_mashq_natija.togri, EXCLUDED.togri), jami = EXCLUDED.jami,
+                             yechim_kordi = EXCLUDED.yechim_kordi, urinish = kitob_mashq_natija.urinish + 1, vaqt = NOW()""",
+                        (uid, body.topic_code[:120], bool(body.zapas), togri, jami, max(0, int(body.yechim_kordi))))
+            return {"ok": True, "otdi": mashq_otdi(togri, jami)}
+        return run(go)
+
+    @router.get("/api/kurslar/mashq_holat")
+    def mashq_holat(token: str, topic_code: str):
+        uid = platform._jwt_tekshir(token)
+        def go(cur):
+            cur.execute("SELECT zapas, togri, jami, yechim_kordi, urinish FROM kitob_mashq_natija WHERE user_id=%s AND topic_code=%s", (uid, topic_code))
+            q = {("zapas" if r["zapas"] else "asosiy"): dict(r) for r in cur.fetchall()}
+            otdi = any(mashq_otdi(v["togri"], v["jami"]) for v in q.values())
+            asosiy = q.get("asosiy")
+            return {"asosiy": asosiy, "zapas": q.get("zapas"), "otdi": otdi, "chegara": int(MASHQ_CHEGARA * 100),
+                    "zapas_kerak": bool(asosiy) and not mashq_otdi(asosiy["togri"], asosiy["jami"]) and not otdi}
+        return run(go)
+
     @router.get("/api/kurslar/kurs")
     def kurs(token: str, fan: str, grade: str = ""):
         uid = platform._jwt_tekshir(token)
@@ -666,6 +724,9 @@ def create_router(platform, click=None):
                             FROM kurs_dars_holat WHERE user_id=%s AND kalit=%s""", (uid, kalit))
             hol = cur.fetchall()
             tug = {r["topic_code"] for r in hol}; bugun_t = {r["topic_code"] for r in hol if r["bugun"]}
+            if kalit == _rk.KALIT:   # Repetitor kitobi: dars «tugadi» — mashq va test 70% dan o'tgandagina; o'tmasa o'sha dars navbatda qoladi
+                otgan = kitob_otganlar(cur, uid)
+                tug = {x for x in tug if x in otgan}; bugun_t = {x for x in bugun_t if x in otgan}
             cur.execute(f"SELECT {TOSHKENT_KUN} AS bugun"); bugun_kun = cur.fetchone()["bugun"]
             for k_, r_ in nz.items():   # o'tilgan nazorat — «tugadi» (o'sha kuni o'tilgan bo'lsa — keyingi dars ertaga)
                 if r_["otdi"]:

@@ -18,3 +18,8 @@ def test_kurs_sinfga_bogliq_emas():
 
 def test_sql_sharti_parametr_bilan_ishlaydi():
     assert "%%" in rk.nom_sql("d") and "(Repetitor)" in rk.nom_sql("d")
+
+
+def test_mashq_chegara_70_foiz():
+    from modules.kurslar import mashq_otdi
+    assert mashq_otdi(7, 10) and mashq_otdi(5, 6) and not mashq_otdi(4, 6) and not mashq_otdi(0, 0) and not mashq_otdi(None, None)
