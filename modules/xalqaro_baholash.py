@@ -2603,7 +2603,9 @@ def create_router(platform, kontent=None):
         reytingli = {u for u in azo if hisob[u]["reyting"] is not None}
         g_vaqt = sinf.get("guruhlangan")
         eskirdi = not g_vaqt or (datetime.now(TZ) - g_vaqt) >= timedelta(days=GURUH_AVTO_KUN)
-        kerak = qollash or eskirdi or bool(reytingli - set(eski)) or bool(set(eski) - reytingli)
+        # o'qituvchi «Guruhlarga ajratish»ni bosmaguncha guruh YO'Q: o'quvchilar ham, o'qituvchi ham guruhni ko'rmaydi
+        hali_emas = not g_vaqt and not qollash
+        kerak = False if hali_emas else (qollash or eskirdi or bool(reytingli - set(eski)) or bool(set(eski) - reytingli))
         ozgarishlar = []
         if kerak:
             royxat = [{"user_id": u, "reyting": hisob[u]["reyting"], "guruh": eski.get(u), "toza": hisob[u]["toza"],
@@ -2630,7 +2632,7 @@ def create_router(platform, kontent=None):
             guruhlar = {}
             for u, g in eski.items():
                 guruhlar.setdefault(g, []).append(u)
-            b = {"guruhlar": [], "kutayotgan": [u for u in azo if hisob[u]["reyting"] is None]}
+            b = {"guruhlar": [], "kutayotgan": list(azo) if hali_emas else [u for u in azo if hisob[u]["reyting"] is None]}
             for g in sorted(guruhlar):
                 az = sorted(guruhlar[g], key=lambda u: (-hisob[u]["reyting"], u))
                 rr = [hisob[u]["reyting"] for u in az]
@@ -2664,7 +2666,7 @@ def create_router(platform, kontent=None):
         for u in h["bolinish"]["kutayotgan"]:
             sh = shubha(u)
             kut.append({"user_id": u, "ism": ism.get(u, ""), "qoshildi": h["azo"][u].isoformat() if h["azo"].get(u) else None,
-                        "holat": "tekshiruvda" if sh else "kirish_testi_yoq", "tekshiruvda": sh})
+                        "holat": "tekshiruvda" if sh else ("guruh_kutmoqda" if hisob[u]["reyting"] is not None else "kirish_testi_yoq"), "tekshiruvda": sh})
         keyingi = (h["guruhlangan"] + timedelta(days=GURUH_AVTO_KUN)).isoformat() if h.get("guruhlangan") else None
         return {"sinf": _sinf_korinish(sinf), "toplam": tk, "jami": len(h["azo"]), "guruhlar": guruhlar, "kutayotgan": kut,
                 "guruhlangan": h["guruhlangan"].isoformat() if h.get("guruhlangan") else None, "keyingi": keyingi,
@@ -2695,6 +2697,46 @@ def create_router(platform, kontent=None):
             sinf = dict(_sinf_egasi(cur, sinf_id, user_id, til))
             h = _guruh_holati(conn, cur, sinf, qollash=True)
             out = _guruh_javobi(cur, sinf, h, til)
+            conn.commit()
+            return out
+        return run_db(run)
+
+    def _katta_xulosa(conn, cur, kod, user_id, til, qollash):
+        cur.execute("SELECT 1 FROM xb_katta WHERE kod=%s AND egasi=%s AND faol", (kod_norm(kod), user_id))
+        if not cur.fetchone():
+            raise HTTPException(404, matn("sinf_yoq", til))
+        cur.execute("SELECT * FROM xb_sinf WHERE ota_kod=%s AND egasi=%s AND faol", (kod_norm(kod), user_id))
+        sinflar = {r["toplam"]: dict(r) for r in cur.fetchall()}
+        out = []
+        for tk in xy.HAMMASI:           # tartib: matematika, tabiiy fan, o'qish, moliya
+            sinf = sinflar.get(tk)
+            if not sinf:
+                continue
+            h = _guruh_holati(conn, cur, sinf, qollash=qollash)
+            b = h["bolinish"]
+            out.append({"toplam": tk, "nomi": xy.NOMI[tk], "sinf_id": int(sinf["id"]), "jami": len(h["azo"]),
+                        "guruhlar": [{"raqam": g["raqam"], "soni": len(g["azolar"]), "ortacha": g["ortacha"]} for g in b["guruhlar"]],
+                        "kutayotgan": len(b["kutayotgan"])})
+        return {"toplamlar": out}
+
+    @router.get("/api/xalqaro/katta/{kod}/holat")
+    def katta_holat(kod: str, token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """O'qituvchi: katta sinfdagi har yo'nalish bo'yicha o'quvchilar, guruhlar va kirish testini kutayotganlar."""
+        user_id = uid_of(token, authorization)
+
+        def run(conn, cur):
+            out = _katta_xulosa(conn, cur, kod, user_id, til_kodi(til), False)
+            conn.commit()
+            return out
+        return run_db(run)
+
+    @router.post("/api/xalqaro/katta/{kod}/guruhla")
+    def katta_guruhla(kod: str, token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """«Guruhlarga ajratish»: katta sinfning HAMMA yo'nalishlari reyting bo'yicha 30 tadan guruhlarga bo'linadi (bitta tugma)."""
+        user_id = uid_of(token, authorization)
+
+        def run(conn, cur):
+            out = _katta_xulosa(conn, cur, kod, user_id, til_kodi(til), True)
             conn.commit()
             return out
         return run_db(run)
