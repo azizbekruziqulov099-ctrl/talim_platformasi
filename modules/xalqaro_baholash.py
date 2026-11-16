@@ -2037,6 +2037,8 @@ def create_router(platform, kontent=None):
             d.update(kod=r["kod"], azolar=azo)
         if egasi_ism:
             d["oqituvchi"] = egasi_ism
+        if r.get("ota_kod"):
+            d["ota_kod"] = r["ota_kod"]
         return d
 
     def _ism(cur, uid):
@@ -2087,8 +2089,12 @@ def create_router(platform, kontent=None):
                            LEFT JOIN users u ON u.user_id=s.egasi WHERE a.user_id=%s AND s.faol ORDER BY a.qoshildi DESC""", (user_id,))
             azolik = [_sinf_korinish(r, egasi_ism=_t(r["ustoz"])) for r in cur.fetchall()]
             ok = _ochishi_mumkin(cur, user_id)
+            cur.execute("""SELECT k.kod, k.nom, (SELECT COUNT(DISTINCT a.user_id) FROM xb_sinf s JOIN xb_sinf_azo a ON a.sinf_id=s.id
+                                                 WHERE s.ota_kod=k.kod AND s.faol) AS n
+                           FROM xb_katta k WHERE k.egasi=%s AND k.faol ORDER BY k.yaratildi DESC""", (user_id,))
+            katta = [{"kod": r["kod"], "nom": r["nom"], "oquvchilar": int(r["n"] or 0)} for r in cur.fetchall()]
             conn.commit()
-            return {"meniki": meniki, "azolik": azolik, "ochishi_mumkin": ok}
+            return {"meniki": meniki, "azolik": azolik, "ochishi_mumkin": ok, "katta": katta}
         return run_db(run)
 
     @router.post("/api/xalqaro/sinflar")
