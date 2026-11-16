@@ -371,7 +371,8 @@ def parse_sheets(wb, media_names=None, max_images=500):
                     # (bog'cha 4–7 yosh darsi to'liq o'rganilayotgan tilda; rus/ingliz izohli kitoblar ham shunday)
                     tashqi = re.sub(r"\[(\w\w)\][\s\S]*?\[/\1\]", "", text)
                     toliq_teg = bool(text.strip()) and text.strip() != tashqi.strip() and not re.search(r"[^\W\d_]", tashqi)
-                    add_step(row, "xulosa", board, (text if toliq_teg else "Esda tut: " + text)[:MAX_VOICE], title or "Esda tut")
+                    add_step(row, "xulosa", board, (text if toliq_teg else "Esda tut: " + text)[:MAX_VOICE], title or "Esda tut",
+                             picture(row, "rasm"))   # tarix kartochkasi rasmi
                 continue
             if kind == "tushuncha":
                 if not text and not c.get("doska"):
