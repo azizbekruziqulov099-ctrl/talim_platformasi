@@ -111,7 +111,17 @@ def savol(kalit, urug):
 # ───── REV517: «⚡ Kabu tezkor» — chizmali tezkor savollar (o'quvchi tugmani bosadi; chizmani frontend SVG qilib chizadi) ─────
 def _v(rr, togri, xatolar):
     vs = [str(togri)] + [str(x) for x in xatolar if str(x) != str(togri)]
-    vs = list(dict.fromkeys(vs))[:4]; rr.shuffle(vs)
+    vs = list(dict.fromkeys(vs))[:4]
+    try:   # har savolda kamida 4 variant (xato javoblar bir-biriga tushib qolsa — yaqin sonlar bilan to'ldiriladi)
+        t0 = int(str(togri)); k = 1
+        while len(vs) < 4 and k < 30:
+            for c in (t0 + k, t0 - k):
+                if len(vs) < 4 and c >= 0 and str(c) not in vs:
+                    vs.append(str(c))
+            k += 1
+    except (TypeError, ValueError):
+        pass
+    rr.shuffle(vs)
     return vs, vs.index(str(togri))
 
 
@@ -229,7 +239,7 @@ def ch_yaxlit(rr):   # son nurida nuqta qaysi o'nlikka yaqin
 
 
 def ch_tarozi(rr):   # tenglama — tarozi
-    x, a = rr.randint(2, 9), rr.randint(1, 9)
+    x, a = rr.randint(2, 9), rr.randint(1, 6)   # chizmada a ta tosh to'liq ko'rinadi (6 tagacha)
     vs, t = _v(rr, x, [x + a, a, x + 1])
     return {"chizma": {"tur": "tarozi", "a": a, "s": x + a}, "savol": "Tarozi muvozanatda. Qutichadagi x necha?", "variantlar": vs, "togri": t}
 
