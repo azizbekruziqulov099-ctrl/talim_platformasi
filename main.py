@@ -283,6 +283,16 @@ else:
 presentation_service = register_presentations(app, samtm_platform)
 app.router.add_event_handler("startup", presentation_service.migrate)
 
+# Taqdimot dvigateli: miya → uslub × blok × animatsiya → PPTX va saytda ko'rsatish (alohida papka, boshqa modullarga tegmaydi).
+try:
+    if __package__:
+        from .modules.taqdimot_dvigatel.api import register_taqdimot_dvigatel
+    else:
+        from modules.taqdimot_dvigatel.api import register_taqdimot_dvigatel
+    register_taqdimot_dvigatel(app, samtm_platform)
+except Exception as _taqdimot_dvigatel_xato:  # dvigatel ishlamasa ham sayt ochilaveradi
+    print("taqdimot_dvigatel ulanmadi:", _taqdimot_dvigatel_xato)
+
 # Curriculum audience migration runs after the legacy/runtime schema migrations.
 if __package__:
     from .modules.curriculum_api import create_router as create_curriculum_router

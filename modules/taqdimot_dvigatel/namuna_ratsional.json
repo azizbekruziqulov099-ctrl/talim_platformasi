@@ -1,0 +1,735 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 1,
+    "tur": "ma’ruza",
+    "mavzu": "Ratsional sonlar: ulushdan kasrgacha",
+    "qisqa": "Ratsional sonlar",
+    "maqsad": "Talaba ulush, kasr va ratsional son tushunchalarini ongli o‘zlashtiradi; butun va ratsional sonlar ustidagi amallarni asoslab bajaradi, ularning boshlang‘ich sinfdagi talqinini biladi.",
+    "tayanch": [
+      "Ulush va kasr",
+      "Butunning qismini va qismiga ko‘ra butunni topish",
+      "Butun sonlar ℤ",
+      "Ratsional sonlar ℚ: amallar, qonunlar va xossalar"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich ta’lim kafedrasi",
+    "muallif": "Ro‘ziqulov A.A.",
+    "davr": "3-semestr · 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "$\\frac{3}{8}$",
+    "rasm": "anor_8_bolak",
+    "chizma": {
+      "tur": "ulush",
+      "bolak": 8,
+      "boyalgan": 3,
+      "shakl": "doira"
+    }
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Стойлова Л.П.",
+        "nomi": "Математика: учебник",
+        "nashr": "М.: Академия, 2002"
+      },
+      {
+        "muallif": "Стойлова Л.П., Пышкало А.М.",
+        "nomi": "Основы начального курса математики",
+        "nashr": "М.: Просвещение, 1988"
+      },
+      {
+        "muallif": "Jumayev M.E., Tadjiyeva Z.G.",
+        "nomi": "Boshlang‘ich sinflarda matematika o‘qitish metodikasi",
+        "nashr": "T.: Fan va texnologiya, 2005"
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "ziyonet.uz",
+        "izoh": "ta’lim portali"
+      },
+      {
+        "nomi": "Kafedra ma’ruzalar to‘plami",
+        "izoh": "fanning o‘quv-uslubiy majmuasi"
+      }
+    ],
+    "mustaqil": "To‘liq ma’ruza matni har bir slaydning «Izohlar» (Notes) qismida. Taqdimot rejimida (F5) kartalar va tugmalar bosiladi."
+  },
+  "takrorlash": {
+    "mavzu": "Natural va butun sonlar (oldingi mashg‘ulot)",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Eng kichik natural son qaysi?",
+        "javob": "1 (0 natural son emas)"
+      },
+      {
+        "savol": "Qo‘shishning o‘rin almashtirish qonunini yozing.",
+        "javob": "a + b = b + a"
+      },
+      {
+        "savol": "Natural sonlar to‘plamida ayirish doim bajariladimi?",
+        "javob": "Yo‘q: 3 − 5 natural son emas"
+      },
+      {
+        "savol": "−7 ga qarama-qarshi son qaysi?",
+        "javob": "7"
+      },
+      {
+        "savol": "|−12| nimaga teng?",
+        "javob": "12"
+      },
+      {
+        "savol": "(−3)·(−4) = ?",
+        "javob": "12 («minus»ga «minus» — «plyus»)"
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Muammoli vaziyat: «Bu amalni bajarib bo‘lmaydi!»",
+    "masalalar": [
+      {
+        "sarlavha": "1-masala",
+        "matn": "Ertalab havo harorati 7 °C edi, kechqurun esa 9 °C ga pasaydi. Kechqurun harorat necha gradus bo‘ldi?"
+      },
+      {
+        "sarlavha": "2-masala",
+        "matn": "3 ta olmani 4 bola o‘rtasida teng bo‘lish kerak. Har bir bolaga qancha olma tegadi?"
+      }
+    ],
+    "goya": "Kengaytirishda eski sonlar, amallar va qonunlar saqlanadi — yangi sonlar faqat «bo‘shliq»ni to‘ldiradi.",
+    "zanjir": [
+      "ℕ — natural",
+      "ℤ — butun",
+      "ℚ — ratsional"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "Tarixdan: kasrlar va manfiy sonlar qanday paydo bo‘lgan?",
+    "voqealar": [
+      {
+        "davr": "mil. av. ~1650-y.",
+        "nom": "Rind papirusi",
+        "matn": "Qadimgi Misr: kasrlar birlik ulushlar (surati 1) yig‘indisi ko‘rinishida yozilgan.",
+        "belgi": "$\\frac{2}{5}=\\frac{1}{3}+\\frac{1}{15}$",
+        "rasm": "rind_papirusi"
+      },
+      {
+        "davr": "mil. av. II – milodiy I asr",
+        "nom": "«To‘qqiz bobli matematika»",
+        "matn": "Qadimgi Xitoy: musbat son qizil, manfiy son qora cho‘p bilan belgilangan.",
+        "belgi": "+3   −2"
+      },
+      {
+        "davr": "628-y.",
+        "nom": "Braxmagupta",
+        "matn": "Hindiston: musbat son — «mulk», manfiy son — «qarz»; ishoralar qoidalari bayon qilingan.",
+        "belgi": "(−)·(−) = (+)"
+      },
+      {
+        "davr": "IX asr",
+        "nom": "Muhammad al-Xorazmiy",
+        "matn": "Hind raqamlari va nol bilan hisoblash usullarini bayon qildi; uning risolasi lotin tilida Yevropaga tarqaldi.",
+        "belgi": "0 1 2 3 4 5 6 7 8 9",
+        "rasm": "al_xorazmiy"
+      }
+    ],
+    "xulosa": "Son tushunchasi amaliy ehtiyojdan kengaygan: avval ulushlar (o‘lchash, taqsimlash), keyin qarz va mulk (savdo, hisob-kitob)."
+  },
+  "bolimlar": [
+    {
+      "nom": "Kirish: son kengayadi",
+      "izoh": "Natural sonlardan ratsional sonlargacha",
+      "belgi": "ℕ→ℚ",
+      "slaydlar": []
+    },
+    {
+      "nom": "Butun sonlar ℤ",
+      "izoh": "Qarama-qarshi sonlar, modul, amallar",
+      "belgi": "ℤ",
+      "slaydlar": [
+        {
+          "sarlavha": "Butun sonlar ℤ va qarama-qarshi sonlar",
+          "izoh": "Natural sonlar, ularga qarama-qarshi sonlar va nol birgalikda butun sonlar to‘plamini tashkil qiladi. Son o‘qida 3 va −3 noldan bir xil — 3 birlik masofada joylashgan.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Natural sonlar, ularga **qarama-qarshi** sonlar va nol birgalikda ==butun sonlar== to‘plamini tashkil qiladi: ℤ = {…, −3, −2, −1, 0, 1, 2, 3, …}",
+              "formula": "a+(-a)=0",
+              "chizma": {
+                "tur": "son_oqi",
+                "dan": -5,
+                "gacha": 5,
+                "nuqtalar": [
+                  {
+                    "x": -3,
+                    "nom": "−3"
+                  },
+                  {
+                    "x": 3,
+                    "nom": "3",
+                    "rang": 1
+                  }
+                ],
+                "kesmalar": [
+                  {
+                    "dan": -3,
+                    "ga": 0,
+                    "nom": "3 birlik",
+                    "rang": 0
+                  },
+                  {
+                    "dan": 0,
+                    "ga": 3,
+                    "nom": "3 birlik",
+                    "rang": 1
+                  }
+                ]
+              }
+            },
+            {
+              "tur": "chizma",
+              "sarlavha": "Termometr — tik son o‘qi",
+              "matn": "Ertalab 7 °C, keyin 9 °C ga pasaydi: $7-9=-2$",
+              "chizma": {
+                "tur": "termometr",
+                "dan": -6,
+                "gacha": 10,
+                "qiymat": -2,
+                "belgilar": [
+                  {
+                    "t": 7,
+                    "nom": "ertalab: 7 °C"
+                  },
+                  {
+                    "t": -2,
+                    "nom": "kechqurun: −2 °C"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "sarlavha": "Modul — nolgacha bo‘lgan masofa; sonlarni taqqoslash",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "$a$ sonining **moduli** $|a|$ — son o‘qida $a$ sonini tasvirlovchi nuqtadan 0 gacha bo‘lgan **masofa**. Masofa manfiy emas: $|a|\\ge 0$.",
+              "formula": "|a|=a,\\ a\\ge 0;\\quad |a|=-a,\\ a<0"
+            },
+            {
+              "tur": "chizma",
+              "chizma": {
+                "tur": "son_oqi",
+                "dan": -6,
+                "gacha": 6,
+                "nuqtalar": [
+                  {
+                    "x": -4,
+                    "nom": "−4"
+                  },
+                  {
+                    "x": 3,
+                    "nom": "3",
+                    "rang": 1
+                  }
+                ],
+                "kesmalar": [
+                  {
+                    "dan": -4,
+                    "ga": 0,
+                    "nom": "|−4| = 4"
+                  },
+                  {
+                    "dan": 0,
+                    "ga": 3,
+                    "nom": "|3| = 3",
+                    "rang": 1
+                  }
+                ]
+              },
+              "izoh": "masofa: |3 − (−4)| = 7"
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Tipik xato",
+              "matn": "−4 > −1 deb yozish. Ikki manfiy sondan moduli kichigi katta: −1 > −4."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qo‘shish va ayirish: son o‘qida «sakrash»",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Son o‘qida",
+              "shart": "$(-3)+5$ ni son o‘qida toping.",
+              "qadamlar": [
+                "−3 nuqtadan boshlaymiz.",
+                "5 ta qadam o‘ngga sakraymiz (musbat son qo‘shilyapti).",
+                "2 nuqtaga tushamiz."
+              ],
+              "javob": "(−3) + 5 = 2",
+              "chizma": {
+                "tur": "son_oqi",
+                "dan": -6,
+                "gacha": 4,
+                "sakrashlar": [
+                  {
+                    "dan": -3,
+                    "ga": 2,
+                    "nom": "+5"
+                  }
+                ],
+                "nuqtalar": [
+                  {
+                    "x": -3
+                  },
+                  {
+                    "x": 2,
+                    "rang": 1
+                  }
+                ]
+              }
+            },
+            {
+              "tur": "xossalar",
+              "bandlar": [
+                {
+                  "nom": "Musbat son qo‘shilsa",
+                  "matn": "o‘ngga siljiymiz"
+                },
+                {
+                  "nom": "Manfiy son qo‘shilsa",
+                  "matn": "chapga siljiymiz: $2+(-6)=-4$"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Ulush va kasr",
+      "izoh": "Butunni teng bo‘laklarga bo‘lamiz",
+      "belgi": "$\\frac{1}{n}$",
+      "slaydlar": [
+        {
+          "sarlavha": "Ulush: butunni teng bo‘laklarga bo‘lamiz",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Butun (narsa, miqdor, kesma) **n ta teng** bo‘lakka bo‘linsa, har bir bo‘lak butunning ==ulushi== deyiladi va $\\frac{1}{n}$ ko‘rinishida yoziladi."
+            },
+            {
+              "tur": "chizma",
+              "chizma": {
+                "tur": "kasrlar",
+                "kasrlar": [
+                  "1/2",
+                  "1/3",
+                  "1/4",
+                  "1/8"
+                ]
+              },
+              "izoh": "Bo‘laklar soni ortgan sari ulush kichrayadi: 1/2 > 1/3 > 1/4 > 1/8"
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "bo‘laklar teng bo‘lmasa, ular ulush emas!"
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qismiga ko‘ra butunni topish",
+          "elementlar": [
+            {
+              "tur": "masala",
+              "shart": "Talaba kitobning $\\frac{2}{5}$ qismini o‘qidi — bu 60 bet. Kitob necha betdan iborat? Yana necha bet o‘qilmay qoldi?",
+              "qadamlar": [
+                "60 : 2 = 30 bet — $\\frac{1}{5}$ qism",
+                "30 · 5 = 150 bet — butun kitob",
+                "150 − 60 = 90 bet — o‘qilmay qolgan"
+              ],
+              "javob": "kitob 150 bet, 90 bet qoldi",
+              "chizma": {
+                "tur": "tasma",
+                "bolak": 5,
+                "boyalgan": 2,
+                "jami": "butun kitob: 150 bet",
+                "bolak_nomi": "30 bet",
+                "boyalgan_nomi": "60 bet = 2/5 qism"
+              }
+            },
+            {
+              "tur": "qoida",
+              "matn": "Butunning $\\frac{a}{b}$ qismi $c$ ga teng bo‘lsa: butun $= c : a \\cdot b$",
+              "formula": "\\text{butun}=c:a\\cdot b"
+            }
+          ]
+        },
+        {
+          "sarlavha": "Kasrning asosiy xossasi: 1/2 = 2/4 = 3/6",
+          "elementlar": [
+            {
+              "tur": "chizma",
+              "chizma": {
+                "tur": "kasrlar",
+                "kasrlar": [
+                  "1/2",
+                  "2/4",
+                  "3/6"
+                ]
+              }
+            },
+            {
+              "tur": "qoida",
+              "sarlavha": "Xossa",
+              "matn": "Kasrning surati va maxrajini bir xil **noldan farqli** songa ko‘paytirsak yoki bo‘lsak, unga teng kasr hosil bo‘ladi.",
+              "formula": "\\frac{a}{b}=\\frac{a\\cdot k}{b\\cdot k},\\quad k\\ne 0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Ratsional sonlar ℚ",
+      "izoh": "Amallar, qonunlar va xossalar",
+      "belgi": "ℚ",
+      "slaydlar": [
+        {
+          "sarlavha": "Ratsional son — teng kasrlar sinfi",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "O‘zaro **teng** barcha kasrlar bitta ==ratsional sonni== ifodalaydi. Odatda uni qisqarmas kasr bilan yozamiz.",
+              "formula": "\\mathbb{Q}=\\left\\{\\frac{m}{n}:\\ m\\in\\mathbb{Z},\\ n\\in\\mathbb{N}\\right\\}"
+            },
+            {
+              "tur": "chizma",
+              "chizma": {
+                "tur": "ichma_ich",
+                "qatlamlar": [
+                  {
+                    "nom": "ℕ — natural",
+                    "misol": [
+                      "1",
+                      "2",
+                      "3",
+                      "17"
+                    ]
+                  },
+                  {
+                    "nom": "ℤ — butun",
+                    "misol": [
+                      "−5",
+                      "0",
+                      "−1"
+                    ]
+                  },
+                  {
+                    "nom": "ℚ — ratsional",
+                    "misol": [
+                      "1/2",
+                      "−3/4",
+                      "0,75"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ratsional sonlar ustida amallar",
+          "elementlar": [
+            {
+              "tur": "taqqoslash",
+              "bandlar": [
+                {
+                  "nom": "Qo‘shish",
+                  "formula": "\\frac{a}{b}+\\frac{c}{d}=\\frac{ad+bc}{bd}",
+                  "misol": "$\\frac{5}{6}+\\frac{3}{4}=\\frac{19}{12}$"
+                },
+                {
+                  "nom": "Ayirish",
+                  "formula": "\\frac{a}{b}-\\frac{c}{d}=\\frac{ad-bc}{bd}",
+                  "misol": "$\\frac{5}{6}-\\frac{1}{4}=\\frac{7}{12}$"
+                },
+                {
+                  "nom": "Ko‘paytirish",
+                  "formula": "\\frac{a}{b}\\cdot\\frac{c}{d}=\\frac{ac}{bd}",
+                  "misol": "$\\frac{2}{3}\\cdot\\frac{9}{10}=\\frac{3}{5}$"
+                },
+                {
+                  "nom": "Bo‘lish",
+                  "formula": "\\frac{a}{b}:\\frac{c}{d}=\\frac{ad}{bc}",
+                  "misol": "$\\frac{2}{3}:\\frac{5}{6}=\\frac{4}{5}$"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Amallar qonunlari",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Qonun",
+                "Qo‘shish",
+                "Ko‘paytirish"
+              ],
+              "qatorlar": [
+                [
+                  "O‘rin almashtirish",
+                  "$a+b=b+a$",
+                  "$ab=ba$"
+                ],
+                [
+                  "Guruhlash",
+                  "$(a+b)+c=a+(b+c)$",
+                  "$(ab)c=a(bc)$"
+                ],
+                [
+                  "Neytral son",
+                  "$a+0=a$",
+                  "$a\\cdot 1=a$"
+                ],
+                [
+                  "Qarama-qarshi / teskari",
+                  "$a+(-a)=0$",
+                  "$a\\cdot\\frac{1}{a}=1,\\ a\\ne 0$"
+                ],
+                [
+                  "Taqsimot",
+                  "$a(b+c)=ab+ac$",
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "ℚ to‘plamining xossalari",
+          "elementlar": [
+            {
+              "tur": "xossalar",
+              "bandlar": [
+                {
+                  "nom": "To‘rt amal doim bajariladi",
+                  "matn": "Yig‘indi, ayirma, ko‘paytma va bo‘linma (bo‘luvchi ≠ 0) yana ratsional son."
+                },
+                {
+                  "nom": "Tartiblangan",
+                  "matn": "Istalgan ikki son taqqoslanadi.",
+                  "formula": "a<b\\Rightarrow a+c<b+c"
+                },
+                {
+                  "nom": "Cheksiz",
+                  "matn": "Eng kichik ham, eng katta ham ratsional son yo‘q."
+                },
+                {
+                  "nom": "Zich",
+                  "matn": "Istalgan ikki son orasida yana son bor.",
+                  "formula": "a<\\frac{a+b}{2}<b"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "$\\frac{1}{2}+\\frac{1}{3}=\\frac{2}{5}$",
+      "sabab": "suratlar va maxrajlar alohida qo‘shilgan",
+      "togri": "$\\frac{3}{6}+\\frac{2}{6}=\\frac{5}{6}$"
+    },
+    {
+      "xato": "$\\frac{1}{3}<\\frac{1}{4}$",
+      "sabab": "«chunki 3 < 4» deb o‘ylangan",
+      "togri": "maxraj katta — ulush kichik: $\\frac{1}{3}>\\frac{1}{4}$"
+    },
+    {
+      "xato": "$-4>-1$",
+      "sabab": "«chunki 4 > 1»",
+      "togri": "−4 son o‘qida chaproqda: −4 < −1"
+    },
+    {
+      "xato": "$\\frac{2}{3}$ ga teskari son: $-\\frac{2}{3}$",
+      "sabab": "teskari va qarama-qarshi aralashtirilgan",
+      "togri": "teskari: $\\frac{3}{2}$, qarama-qarshi: $-\\frac{2}{3}$"
+    },
+    {
+      "xato": "$\\frac{2+1}{3+1}=\\frac{2}{3}$",
+      "sabab": "surat va maxrajga 1 qo‘shilgan",
+      "togri": "faqat ko‘paytirish/bo‘lish mumkin"
+    },
+    {
+      "xato": "30 ning $\\frac{2}{5}$ qismi $=75$",
+      "sabab": "qism va butun topish aralashgan",
+      "togri": "30 : 5 · 2 = 12"
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Boshlang‘ich sinfda: ulush va kasrni qanday o‘rgatamiz?",
+    "bosqichlar": [
+      "Buyum: olma, non, qog‘oz — bo‘lamiz, buklaymiz",
+      "Model: doira, tasma, kesma, son nuri",
+      "Belgi: 1/2, 3/4 yozuvi va masalalar"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Qog‘oz buklash",
+        "matn": "Kvadratni ikki marta buklang: 4 ta teng bo‘lak — chorak.",
+        "chizma": {
+          "tur": "ulush",
+          "bolak": 4,
+          "boyalgan": 1,
+          "shakl": "kvadrat"
+        }
+      },
+      {
+        "sarlavha": "Qismini topish masalasi",
+        "matn": "Lenta 12 dm. Uning 1/3 qismi qirqildi. Necha dm qirqildi? 12 : 3 = 4 (dm)",
+        "chizma": {
+          "tur": "tasma",
+          "bolak": 3,
+          "boyalgan": 1,
+          "bolak_nomi": "4 dm"
+        }
+      },
+      {
+        "sarlavha": "Modellar bilan taqqoslash",
+        "matn": "Tasmalar bir xil uzunlikda bo‘lishi shart!",
+        "chizma": {
+          "tur": "kasrlar",
+          "kasrlar": [
+            "1/3",
+            "1/4"
+          ]
+        }
+      }
+    ],
+    "tavsiya": "doimo bo‘laklar soni va «Butun nechta teng bo‘lakka bo‘lindi?», «Nechtasi olindi?» savollarini birga so‘rang. Yangi yozuvni (1/4) buyum va model bilan tajribadan keyin kiriting."
+  },
+  "xulosa": {
+    "bilaman": [
+      "Natural sonlar va ular ustida amallar",
+      "«Yarim», «chorak» so‘zlari",
+      "Butunni teng bo‘laklarga bo‘lish",
+      "Kasrning yozilishi"
+    ],
+    "bilishni_xohlayman": [
+      "7 − 9 ni hisoblab bo‘ladimi?",
+      "3 : 4 qanday son?",
+      "Qismini va butunni qanday topamiz?",
+      "Nega 1/2 = 2/4 = 3/6?"
+    ],
+    "bilib_oldim": [
+      "Ha, ℤ da: 7 − 9 = −2",
+      "3 : 4 = 3/4. Umuman, m : n = m/n",
+      "Qismi: a : n · m; butun: b : m · n",
+      "Asosiy xossa: a/b = ak/bk (k ≠ 0)"
+    ]
+  },
+  "test": [
+    {
+      "savol": "24 ning 3/8 qismi nechaga teng?",
+      "variantlar": [
+        "9",
+        "8",
+        "64"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "Butunning 2/5 qismi 30 ga teng. Butun = ?",
+      "variantlar": [
+        "12",
+        "60",
+        "75"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Qaysi tenglik to‘g‘ri?",
+      "variantlar": [
+        "$\\frac{2}{3}=\\frac{10}{15}$",
+        "$\\frac{1}{2}+\\frac{1}{3}=\\frac{2}{5}$",
+        "$\\frac{3}{4}=\\frac{4}{5}$"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "$\\frac{5}{6}+\\frac{3}{4}=?$",
+      "variantlar": [
+        "$\\frac{8}{10}$",
+        "$\\frac{19}{12}$",
+        "$\\frac{15}{24}$"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "$-\\frac{2}{3}$ ga teskari son:",
+      "variantlar": [
+        "$\\frac{2}{3}$",
+        "$\\frac{3}{2}$",
+        "$-\\frac{3}{2}$"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "ℤ da qaysi amal har doim ham bajarilmaydi?",
+      "variantlar": [
+        "ayirish",
+        "bo‘lish",
+        "ko‘paytirish"
+      ],
+      "javob": 1
+    }
+  ],
+  "nazorat": [
+    "Ulush nima? Butunning 1/n ulushi qanday hosil qilinadi?",
+    "Butunning qismini va qismiga ko‘ra butunni topish qoidalarini misolda tushuntiring.",
+    "To‘g‘ri, noto‘g‘ri kasr va aralash son nima?",
+    "Kasrning asosiy xossasini ifodalang. Nega k ≠ 0 bo‘lishi shart?",
+    "Ratsional son nima? ℚ to‘plami qanday ta’riflanadi?",
+    "ℚ to‘plamining zichlik xossasini tushuntiring."
+  ],
+  "mustaqil_ish": [
+    "Hisoblang: 7/12 + 5/18 − 1/6.",
+    "Yo‘lning 3/7 qismi 42 km. Butun yo‘l necha km?",
+    "−3/4 va 2/3 orasida uchta ratsional sonni toping.",
+    "«Ulush» mavzusida 3 ta qog‘oz buklash topshirig‘ini tuzing."
+  ],
+  "keyingi": {
+    "mavzu": "2-ma’ruza. O‘nli kasrlar",
+    "izoh": "Oddiy kasrni 10, 100, 1000 maxrajli kasrga keltirishni takrorlang."
+  },
+  "rasmlar": [
+    {
+      "kalit": "anor_8_bolak",
+      "tavsif": "8 ta teng bo‘lakka kesilgan anor, 3 bo‘lagi ajratib qo‘yilgan (3/8)",
+      "prompt": "A pomegranate cut into 8 equal wedge slices seen from the top, 3 slices slightly pulled apart, flat vector illustration, soft colors, transparent background, no text, centered, educational"
+    },
+    {
+      "kalit": "rind_papirusi",
+      "tavsif": "Qadimgi Misr papirusi — Rind papirusi, ierogliflar va kasrlar",
+      "prompt": "Ancient Egyptian papyrus scroll (Rhind mathematical papyrus) with hieratic numerals, slightly unrolled, flat vector illustration, warm soft colors, transparent background, no readable text, centered"
+    },
+    {
+      "kalit": "al_xorazmiy",
+      "tavsif": "Muhammad al-Xorazmiy — Bag‘doddagi «Bayt ul-hikma»da qo‘lyozma ustida ishlayotgan olim (umumlashgan obraz)",
+      "prompt": "Medieval Central Asian scholar in traditional robe and turban writing numerals 0-9 in a manuscript at a wooden desk with an astrolabe, House of Wisdom style, flat vector illustration, soft colors, transparent background, no text"
+    }
+  ]
+}

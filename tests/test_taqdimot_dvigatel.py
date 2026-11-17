@@ -1,0 +1,106 @@
+"""Taqdimot dvigateli: miya → sahna → PPTX, Excel, chizmalar, formulalar, API (bazasiz)."""
+import io
+import json
+import os
+import zipfile
+
+import pytest
+
+from modules.taqdimot_dvigatel import api, chizma, excel, formula, sxema, uslub, yasash
+from modules.taqdimot_dvigatel.sahna import Slayd
+
+NAMUNA = json.load(open(os.path.join(os.path.dirname(yasash.__file__), "namuna_ratsional.json"), encoding="utf-8"))
+
+
+def test_namuna_yasaladi_va_sigadi():
+    sah = yasash.yasa(NAMUNA, seed=5, uslub_kod="anor.anor.0")
+    bloklar = [s["blok"] for s in sah["slaydlar"]]
+    assert bloklar[0] == "titul" and "reja" in bloklar and "test" in bloklar
+    for s in sah["slaydlar"]:
+        for el in s["els"]:
+            if el["k"] == "text":
+                assert el["fit"], el["pp"][0]["rs"][0]["t"]
+
+
+@pytest.mark.parametrize("kod", uslub.barcha_uslublar()[::7])
+def test_har_xil_uslub_pptx(kod):
+    sah = yasash.yasa(NAMUNA, seed=9, uslub_kod=kod + ".1")
+    data = yasash.pptx(sah)
+    z = zipfile.ZipFile(io.BytesIO(data))
+    slides = [n for n in z.namelist() if n.startswith("ppt/slides/slide") and n.endswith(".xml")]
+    assert len(slides) == len(sah["slaydlar"])
+    xml = z.read("ppt/slides/slide3.xml").decode()
+    assert "<p:timing>" in xml or "<p:timing " in xml
+    assert "hlinksldjump" in z.read("ppt/slides/slide4.xml").decode()
+
+
+def test_urug_har_xil_natija():
+    a = yasash.yasa(NAMUNA, seed=1)
+    b = yasash.yasa(NAMUNA, seed=2)
+    c = yasash.yasa(NAMUNA, seed=1)
+    assert a["uslub"] == c["uslub"]
+    assert len(uslub.barcha_uslublar()) * 3 * len(uslub.ANIMATSIYALAR) >= 100
+    assert (a["uslub"]["kod"], a["uslub"]["anim"]) != (b["uslub"]["kod"], b["uslub"]["anim"]) or a["slaydlar"] != b["slaydlar"]
+
+
+def test_buzuq_miya_buzmaydi():
+    m = sxema.normallashtir({"meta": {"mavzu": "Kasrlar"}, "bolimlar": [{"nom": "A", "elementlar": ["oddiy matn", {"tur": "noma'lum", "matn": "x"},
+                                                                                                    {"tur": "jadval", "ustunlar": [], "qatorlar": []},
+                                                                                                    {"tur": "chizma", "chizma": {"tur": "son_oqi", "dan": "abc"}}]}],
+                                 "test": [{"savol": "?", "variantlar": ["1", "2"], "javob": "B"}]})
+    assert m["test"][0]["javob"] == 1
+    sah = yasash.yasa(m, seed=3)
+    assert len(sah["slaydlar"]) >= 2
+    yasash.pptx(sah)
+
+
+def test_hamma_chizmalar():
+    u = uslub.Uslub("tun.olov.0")
+    for k, (fn, _nom, sp) in chizma.CHIZMALAR.items():
+        s = Slayd()
+        A = chizma._A(u, 1)
+        fn(s, sp, 0, 0, 400, 300, u, A)
+        assert s.els, k
+
+
+def test_formula():
+    w, a, d = formula.olcha(r"\frac{a}{b}+\sqrt{x^2}=\mathbb{Q}", 30)
+    assert w > 60 and a > 20
+    s = Slayd()
+    formula.chiz(s, r"C_n^k=\frac{n!}{k!(n-k)!}", 0, 0, 400, 100, a={"s": 1, "e": "zoom"})
+    assert all(el.get("a", {}).get("s") == 1 for el in s.els)
+    rs = formula.yugurik("son $\\frac{1}{2}$ va $x^2$")
+    assert any(r.get("bl") == "sup" for r in rs)
+
+
+def test_excel_aylanma():
+    data = excel.shablon(NAMUNA)
+    m2 = excel.oqi(data)[0]
+    n1 = sxema.normallashtir(NAMUNA)
+    assert m2["test"] == n1["test"] and m2["meta"] == n1["meta"]
+    assert sum(len(b["slaydlar"]) for b in m2["bolimlar"]) == sum(len(b["slaydlar"]) for b in n1["bolimlar"])
+    assert excel.oqi(excel.shablon(None))[0]["meta"]["mavzu"]
+
+
+def test_api_bazasiz(monkeypatch):
+    from fastapi import FastAPI
+    from fastapi.testclient import TestClient
+
+    class P:
+        pass
+    app = FastAPI()
+    D = api.register_taqdimot_dvigatel(app, P())
+    monkeypatch.setattr(D, "actor", lambda auth: 7)
+    c = TestClient(app)
+    r = c.post(api.PREFIX + "/yasash", json={"miya": NAMUNA, "seed": 4, "uslub": "daftar.dengiz.1"})
+    assert r.status_code == 200 and r.json()["uslub"]["kod"] == "daftar.dengiz.1"
+    r = c.post(api.PREFIX + "/pptx", json={"miya": NAMUNA, "seed": 4})
+    assert r.status_code == 200 and r.content[:2] == b"PK"
+    r = c.get(api.PREFIX + "/fon/anor.anor.0.jpg")
+    assert r.status_code == 200 and r.content[:2] == b"\xff\xd8"
+    r = c.get(api.PREFIX + "/fon/../x.jpg")
+    assert r.status_code == 404
+    r = c.post(api.PREFIX + "/import", content=excel.shablon(NAMUNA), headers={"x-fayl-nomi": "a.xlsx"})
+    assert r.status_code == 200 and r.json()["miyalar"][0]["meta"]["mavzu"]
+    r = c.post(api.PREFIX + "/yasash", json={"miya": NAMUNA, "uslub": "../../etc"})
+    assert r.status_code == 422
