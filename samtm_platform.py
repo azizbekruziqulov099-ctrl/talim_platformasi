@@ -2929,6 +2929,12 @@ def _son_soz(n: int) -> str:
     if n < 0:
         return "minus " + _son_soz(-n)
     q = []
+    if n >= 1000000000:
+        q.append(_son_soz(n // 1000000000) + " milliard")
+        n %= 1000000000
+    if n >= 1000000:
+        q.append(_son_soz(n // 1000000) + " million")
+        n %= 1000000
     if n >= 1000:
         m = n // 1000
         q.append("ming" if m == 1 else _son_soz(m) + " ming")
@@ -3103,6 +3109,9 @@ def _ovoz_uchun_tayyorla(matn: str) -> str:
     m = re.sub(r"(?<=[A-Za-zА-Яа-яʻ'’‘ʼ]{2})-(?=[A-Za-zА-Яа-яʻ'’‘ʼ]{2})", " ", m)
     m = re.sub(r"(?<=[A-Za-zА-Яа-яʻ'’‘ʼ.,!?])\s+[-–—]\s+(?=[A-Za-zА-Яа-яʻ'’‘ʼ])", ", ", m)
 
+    # «2 000», «1 200 000» — minglik bo'shliq bilan yozilgan son BITTA son (oldin «ikki» + «nol» deb o'qilardi)
+    m = re.sub(r"(?<![\d,.])\d{1,3}(?:[ \u00a0\u202f]\d{3})+(?![\d])", lambda x: re.sub(r"[ \u00a0\u202f]", "", x.group(0)), m)
+
     # Kasrlar: 1/2 -> ikkidan bir (matematikadan oldin)
     def _kasr(x):
         a, b = int(x.group(1)), int(x.group(2))
@@ -3128,8 +3137,8 @@ def _ovoz_uchun_tayyorla(matn: str) -> str:
     # Qolgan sonlar so'zga
     def _o(x):
         n = int(x.group(0))
-        return _son_soz(n) if n < 1000000 else x.group(0)
-    m = re.sub(r"\b\d{1,6}\b", _o, m)
+        return _son_soz(n)
+    m = re.sub(r"\b\d{1,12}\b", _o, m)
 
     # Tinish belgilarini pauzaga aylantirish
     m = m.replace(":", ",").replace(";", ",")
