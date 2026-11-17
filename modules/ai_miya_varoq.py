@@ -581,7 +581,7 @@ def template_workbook(prefill=None, book=None, blank_topics=3):
         "6. Doska: har yangi satr (Alt+Enter) — alohida qator. Tushuntirishda [1], [2] qo'ysangiz — o'qituvchi shu joyga yetganda o'sha qator yoziladi.",
         "7. Yechim: har satr — bitta qadam. «doskaga || o'qituvchi aytadi» deb yozish mumkin.",
         "8. Test: 2–4 ta variant (A–D; bog'chada 2–3 ta) va to'g'ri javob harfi. Testlar Test bo'limiga ham tushadi.",
-        "10. MATEMATIKA (REV269): doska va yechim kataklarida buyruqlar — USTUN: 347+258, BOLISH: 744:6, QISQART: 6/8 -> 3/4 (:2), SON_OQI: -3..5; nuqta 2 A, GRAFIK: y=x^2-4x+3; [-1;5], CHIZ: uchburchak A(0;0) B(4;0) C(0;3); balandlik CH, KASR_MODEL: 2/3 · 3/4, DOIRA_KASR: 3/8, BELGILA: <matn> aylana|tag|ramka, QOIDA: <formula> («Esda tut»da qoladi), DAVOM: <oldingi qatorga davomi>, OCHIR. Ustoz gapirayotganda doska qo'lda yozilgandek ochiladi.",
+        "10. MATEMATIKA (REV269): doska va yechim kataklarida buyruqlar — ISH: 72:(2+4)*3-5 (amallar tartibi: raqamlangan «ish»lar), KETMA: 21*18-19*18 | [18]*(21-19) | 36 (tenglik zanjiri), ELAK: 50 (Eratosfen g‘alviri), USTUN: 347+258, BOLISH: 744:6, QISQART: 6/8 -> 3/4 (:2), SON_OQI: -3..5; nuqta 2 A, GRAFIK: y=x^2-4x+3; [-1;5], CHIZ: uchburchak A(0;0) B(4;0) C(0;3); balandlik CH, KASR_MODEL: 2/3 · 3/4, DOIRA_KASR: 3/8, BELGILA: <matn> aylana|tag|ramka, QOIDA: <formula> («Esda tut»da qoladi), DAVOM: <oldingi qatorga davomi>, OCHIR. Ustoz gapirayotganda doska qo'lda yozilgandek ochiladi.",
         "11. Tekshiruv savoli (tushunchadan keyin): «Savol? => javob». Maslahat: har satr bitta. Xato izohi (test): «B => nega noto'g'ri».",
         "9. «NAMUNA» varag'i import qilinmaydi — ko'rib, xuddi shunday to'ldiring. Saytda: Tekshirish → Qoralama import → Nashr.",
     ]

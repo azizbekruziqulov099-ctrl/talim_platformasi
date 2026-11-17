@@ -768,7 +768,15 @@ def create_router(platform):
                 k = _t(q.get("savol"))
                 if k and k not in seen and len(pool) < soni:
                     seen.add(k); pool.append(q)
-        qosh(asosiy)
+        bank = list(asosiy.get("test_banki") or asosiy.get("savollar") or [])
+        if len(bank) > soni:   # banki katta mavzu: har urinishda yangi tasodifiy {soni} ta, oson → qiyin tartibda saqlanadi
+            import random as _r
+            tanla = sorted(_r.sample(range(len(bank)), soni))
+            bank = [bank[i] for i in tanla]
+        for q in bank:
+            k = _t(q.get("savol"))
+            if k and k not in seen and len(pool) < soni:
+                seen.add(k); pool.append(q)
         # REV298: har mavzuga o'zining kamida 20 savoli — kitobdagi testlar yetmasa, darsning o'z so'zlari va rasmlaridan
         # (rasm↔so'z, ma'no↔so'z, sanash). Faqat tuzilishidan to'g'riligi kafolatlangan savollar.
         from modules.test_yasash import yasash

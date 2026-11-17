@@ -258,7 +258,7 @@ def _guruhlash(slide, x0, y0, n, k):
     return guruhlar, f"C = A / {k}! = {A} / {len(tartiblar)} = {A // len(tartiblar)}"
 
 
-BUYRUQ = re.compile(r"^\s*(OYIN|ORIN_ALMASH|ORINLASHTIR|GURUHLASH|QOIDA|BELGILA|YOZ|DAVOM|USTUN|BOLISH|QISQART|SON_OQI|GRAFIK|CHIZ|KASR_MODEL|DOIRA_KASR|VENN|DARAXT|OCHIR)\s*:?\s*(.*)$", re.I)
+BUYRUQ = re.compile(r"^\s*(OYIN|ORIN_ALMASH|ORINLASHTIR|GURUHLASH|QOIDA|BELGILA|YOZ|DAVOM|USTUN|BOLISH|QISQART|SON_OQI|GRAFIK|CHIZ|KASR_MODEL|DOIRA_KASR|VENN|DARAXT|OCHIR|ISH|KETMA|ELAK)\s*:?\s*(.*)$", re.I)
 
 
 def doska_qatorlari(steps):
