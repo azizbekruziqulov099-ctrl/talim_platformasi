@@ -28,3 +28,4 @@ ortools>=9.15,<9.16
 cryptography>=43,<47
 psd-tools>=1.9
 python-pptx>=1.0,<2
+sympy>=1.12

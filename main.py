@@ -252,16 +252,18 @@ try:   # Milliy sertifikat uslubidagi kirish testi va to'liq sinov (Rasch, taxmi
 except ImportError:
     from modules.mat_sertifikat import create_router as create_mat_sertifikat_router
 app.include_router(create_mat_sertifikat_router(samtm_platform))
-try:   # MOCK imtihon: noyob (seed) generatsiya, yechimli, Rasch taxminiy ball
-    from .modules.mat_mock import create_router as create_mat_mock_router
-except ImportError:
-    from modules.mat_mock import create_router as create_mat_mock_router
-app.include_router(create_mat_mock_router(samtm_platform))
-try:   # Kirish imtihoni (30 talik: 10 oddiy + 20 ta 2,1 yoki 3,1)
-    from .modules.mat_kirish import create_router as create_mat_kirish_router
-except ImportError:
-    from modules.mat_kirish import create_router as create_mat_kirish_router
-app.include_router(create_mat_kirish_router(samtm_platform))
+try:   # MOCK imtihon va Kirish imtihoni: xato bo'lsa ham asosiy ilova ishga tushaveradi
+    try:
+        from .modules.mat_mock import create_router as create_mat_mock_router
+        from .modules.mat_kirish import create_router as create_mat_kirish_router
+    except ImportError:
+        from modules.mat_mock import create_router as create_mat_mock_router
+        from modules.mat_kirish import create_router as create_mat_kirish_router
+    app.include_router(create_mat_mock_router(samtm_platform))
+    app.include_router(create_mat_kirish_router(samtm_platform))
+except Exception as _e:   # noqa: BLE001
+    import logging as _lg
+    _lg.getLogger(__name__).error("MOCK/Kirish routerlari yuklanmadi: %r", _e)
 try:   # REV560: o'quvchi pasporti — haqiqiy ma'lumotdan (matematika banki, xalqaro, faollik, esdan chiqarish)
     from .modules.pasport import create_router as create_pasport_router
 except ImportError:
