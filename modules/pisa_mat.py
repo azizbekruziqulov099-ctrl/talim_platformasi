@@ -106,7 +106,7 @@ for _nom in ("xb_m4", "xb_m8", "xb_pf", "xb_s4", "xb_s8", "xb_ps", "xb_pr"):
     try:
         _m = __import__(f"modules.{_nom}", fromlist=["TEMA"])
         MAVZULAR.update(_m.TEMA)
-    except ImportError:
+    except Exception:
         pass
 
 

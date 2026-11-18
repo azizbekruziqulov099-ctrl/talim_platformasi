@@ -16,6 +16,25 @@ def _fakt(kod, banki):
             return _yopiq(rng, sv, tj, [iz], noto=list(no), tartib=False)
         f.__name__ = f"{kod}_f{i}"
         reg(kod, "yopiq")(f)
+    if len(banki) >= 5 and not kod.startswith("PR"):
+        _aralash(kod, banki)
+
+
+def _aralash(kod, banki):
+    """Bankdagi faktlardan har safar yangi kombinatsiya: to'g'ri juftlikni topish / noto'g'risini topish."""
+    def to_gri(rng):
+        s = rng.sample(banki, 4)
+        t = s[0]
+        yol = [f"«{x[0]}» — {x[2][rng.randrange(len(x[2]))]}" for x in s[1:]]
+        return _yopiq(rng, "Quyidagi «savol — javob» juftliklaridan qaysi biri TO‘G‘RI?", f"«{t[0]}» — {t[1]}", [f"To‘g‘ri juftlik: {t[1]}."], noto=yol, tartib=False)
+
+    def noto_gri(rng):
+        s = rng.sample(banki, 4)
+        t = s[0]
+        yol = [f"«{x[0]}» — {x[1]}" for x in s[1:]]
+        return _yopiq(rng, "Quyidagi «savol — javob» juftliklaridan qaysi biri NOTO‘G‘RI?", f"«{t[0]}» — {t[2][rng.randrange(len(t[2]))]}", [f"Noto‘g‘ri juftlik; to‘g‘risi: {t[1]}."], noto=yol, tartib=False)
+    to_gri.__name__ = f"{kod}_tg"; noto_gri.__name__ = f"{kod}_ng"
+    reg(kod, "yopiq")(to_gri); reg(kod, "yopiq")(noto_gri)
 
 # ───── PS-TUS: hodisalarni ilmiy tushuntirish ─────
 _fakt("PS-TUS", [
