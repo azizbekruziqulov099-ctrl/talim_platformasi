@@ -25,6 +25,8 @@ HARFLAR = "ABCDE"
 SONI_ENG_KOP = 40
 QIYINLIK = {"O": "oson", "R": "o'rta", "Q": "qiyin"}
 RASM_PAPKA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mat_bank_data", "rasm")
+REPETITOR_FAYL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mat_bank_data", "repetitor150.json")   # Repetitor kursining 150 mavzusi (har birida >=20 test); raqam = 1000 + mavzu raqami
+REPETITOR_BOSHI = 1000
 DARS_FAYL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mat_bank_data", "dars.json")   # Repetitor «miyasi»: tools/mat_bank/dars_qosh.py yasaydi
 # Milliy sertifikat darajalari (rasmiy shkala, ball bo'yicha): 70+ A+, 65–69,9 A, 60–64,9 B+, 55–59,9 B, 50–54,9 C+, 46–49,9 C; 46 dan past — sertifikat berilmaydi.
 # DIQQAT: rasmiy ball Rasch modeli bilan hisoblanadi; bizda test FOIZI bor — shuning uchun bu «taxminiy baho» (o'zini sinash), rasmiy natija emas.
@@ -47,12 +49,12 @@ def qiyinlik_xulosasi(savollar):
     o = sum({"O": 1, "R": 2, "Q": 3}[x] for x in b) / len(b)
     return {"daraja": "oson" if o < 1.5 else ("o'rta" if o < 2.34 else "qiyin"), "belgili": len(b), "jami": len(savollar), "taqsimot": {k: b.count(k) for k in "ORQ"}}
 
-_kesh = {"bank": None}
+_kesh = {"bank": None, "rep": None}
 _qulf = threading.Lock()
 
 
 class Bank:
-    def __init__(self, data):
+    def __init__(self, data, dars=True):
         self.manba = data.get("manba", "")
         self.mavzular = {int(m["raqam"]): m for m in data["mavzular"]}
         self.savol = {}          # o'quvchiga beriladiganlar (nuqsonli [TEKSHIR] testlar KIRMAYDI)
@@ -62,8 +64,9 @@ class Bank:
                 (self.tekshir if t.get("tekshir") else self.savol)[t["id"]] = dict(t, mavzu=int(m["raqam"]))
         self.darslar = {}
         try:
-            with open(DARS_FAYL, encoding="utf-8") as f:
-                self.darslar = json.load(f).get("darslar", {})
+            if dars:
+                with open(DARS_FAYL, encoding="utf-8") as f:
+                    self.darslar = json.load(f).get("darslar", {})
         except (OSError, ValueError):
             self.darslar = {}
 
@@ -103,6 +106,16 @@ def bank_ol():
                 with open(BANK_FAYL, encoding="utf-8") as f:
                     _kesh["bank"] = Bank(json.load(f))
     return _kesh["bank"]
+
+
+def rep_bank_ol():
+    """Repetitor kursi banki (150 mavzu). Tematika bankidan ALOHIDA: pasport va Kabu boti eski bankni o'qiydi, shuning uchun aralashtirmaymiz."""
+    if _kesh["rep"] is None:
+        with _qulf:
+            if _kesh["rep"] is None:
+                with open(REPETITOR_FAYL, encoding="utf-8") as f:
+                    _kesh["rep"] = Bank(json.load(f), dars=False)
+    return _kesh["rep"]
 
 
 def _norm(s):
@@ -276,6 +289,71 @@ def create_router(platform):
         run(f)
         return r
 
+    # ---------- Repetitor kursi banki: 150 mavzu, har mavzuda >=20 test (raqam 1..150) ----------
+    def rep_ml(mavzu):
+        try:
+            ml = [int(x) for x in re.split(r"[,\s]+", mavzu.strip()) if x]
+        except ValueError:
+            raise HTTPException(400, "Mavzu raqamlari noto'g'ri")
+        return [REPETITOR_BOSHI + x for x in ml]
+
+    @router.get("/api/matbank/repetitor/mavzular")
+    def rep_mavzular(token: str = None, authorization: Optional[str] = Header(None)):
+        uid(token, authorization)
+        b = rep_bank_ol()
+        return {"manba": b.manba, "mavzular": [{"raqam": r - REPETITOR_BOSHI, "nom": m["nom"], "testlar": b.soni(r)} for r, m in sorted(b.mavzular.items())]}
+
+    @router.get("/api/matbank/repetitor/test")
+    def rep_test(token: str = None, mavzu: str = Query("", max_length=200), soni: int = Query(10, ge=1, le=SONI_ENG_KOP),
+                 qiyinlik: str = Query("", max_length=1), authorization: Optional[str] = Header(None)):
+        u = uid(token, authorization)
+        b = rep_bank_ol()
+        ml = rep_ml(mavzu)
+        if any(x not in b.mavzular for x in ml):
+            raise HTTPException(404, "Mavzu topilmadi")
+        if qiyinlik and qiyinlik not in QIYINLIK:
+            raise HTTPException(400, "Qiyinlik: O, R yoki Q")
+        tarix = run(lambda cur: tarix_ol(cur, u, ml or None))
+        sav = tanla(b, ml, soni, tarix, random.Random(), qiyinlik or None)
+        if not sav:
+            raise HTTPException(404, "Bu mavzuda savol topilmadi")
+        return {"soni": len(sav), "savollar": [b.ommaviy(t) for t in sav]}
+
+    @router.post("/api/matbank/repetitor/tekshir")
+    def rep_tekshir(body: Tekshir, authorization: Optional[str] = Header(None)):
+        u = uid(body.token, authorization)
+        if not body.javoblar or len(body.javoblar) > 60:
+            raise HTTPException(400, "Javoblar soni 1–60 bo'lishi kerak")
+        b = rep_bank_ol()
+        try:
+            r = baholash(b, {str(k): v for k, v in body.javoblar.items()})
+        except ValueError as e:
+            raise HTTPException(400, str(e))
+
+        def f(cur):
+            for x in r["natija"]:
+                if not x["tanlandi"]:
+                    continue
+                cur.execute("""INSERT INTO mat_bank_javob(user_id, savol_id, mavzu, urinish, togri, oxirgi_togri, oxirgi_harf) VALUES(%s,%s,%s,1,%s,%s,%s)
+                               ON CONFLICT (user_id, savol_id) DO UPDATE SET urinish=mat_bank_javob.urinish+1, togri=mat_bank_javob.togri+EXCLUDED.togri,
+                                 oxirgi_togri=EXCLUDED.oxirgi_togri, oxirgi_harf=EXCLUDED.oxirgi_harf, yangilangan=NOW()""",
+                            (u, x["id"], b.savol[x["id"]]["mavzu"], int(x["togri"]), x["togri"], x["tanlandi"]))
+        run(f)
+        return r
+
+    @router.get("/api/matbank/repetitor/mening")
+    def rep_mening(token: str = None, authorization: Optional[str] = Header(None)):
+        u = uid(token, authorization)
+        b = rep_bank_ol()
+
+        def f(cur):
+            cur.execute("""SELECT mavzu, COUNT(*) AS ko, SUM(oxirgi_togri::int) AS ox, SUM(urinish) AS ur, SUM(togri) AS tg, MAX(yangilangan) AS oxirgi
+                           FROM mat_bank_javob WHERE user_id=%s AND mavzu>=%s GROUP BY mavzu ORDER BY mavzu""", (u, REPETITOR_BOSHI))
+            return [{"mavzu": int(r["mavzu"]) - REPETITOR_BOSHI, "nom": b.mavzular[int(r["mavzu"])]["nom"] if int(r["mavzu"]) in b.mavzular else "", "jami": b.soni(int(r["mavzu"])) if int(r["mavzu"]) in b.mavzular else 0,
+                     "ko_rilgan": int(r["ko"]), "oxirgi_togri": int(r["ox"] or 0), "urinish": int(r["ur"] or 0), "togri": int(r["tg"] or 0),
+                     "oxirgi": r["oxirgi"].isoformat() if r["oxirgi"] else None} for r in cur.fetchall()]
+        return {"mavzular": run(f)}
+
     @router.get("/api/matbank/rasm/{nom}")
     def rasm(nom: str, token: str = None, authorization: Optional[str] = Header(None)):
         """Chizma (masalan T100-1.png). Faqat kirgan foydalanuvchiga; fayl nomi qat'iy shablon bo'yicha."""
@@ -309,7 +387,7 @@ def create_router(platform):
 
         def f(cur):
             cur.execute("""SELECT mavzu, COUNT(*) AS ko, SUM(oxirgi_togri::int) AS ox, SUM(urinish) AS ur, SUM(togri) AS tg, MAX(yangilangan) AS oxirgi
-                           FROM mat_bank_javob WHERE user_id=%s GROUP BY mavzu ORDER BY mavzu""", (u,))
+                           FROM mat_bank_javob WHERE user_id=%s AND mavzu<1000 GROUP BY mavzu ORDER BY mavzu""", (u,))
             return [{"mavzu": int(r["mavzu"]), "nom": b.mavzular[int(r["mavzu"])]["nom"] if int(r["mavzu"]) in b.mavzular else "", "jami": len(b.mavzular[int(r["mavzu"])]["testlar"]) if int(r["mavzu"]) in b.mavzular else 0,
                      "ko_rilgan": int(r["ko"]), "oxirgi_togri": int(r["ox"] or 0), "urinish": int(r["ur"] or 0), "togri": int(r["tg"] or 0),
                      "oxirgi": r["oxirgi"].isoformat() if r["oxirgi"] else None} for r in cur.fetchall()]
