@@ -6,11 +6,47 @@ from fractions import Fraction
 SHABLON = {}   # slot -> [funksiya, ...]
 
 
+def _yechim_format(nom, q):
+    """Yechimni o'quvchiga tushunarli ko'rinishga keltiradi: Formula → qadamlar → Javob."""
+    from modules.mock_formula import F
+    qad = [x for x in q["yechim"].split("\n") if x.strip()]
+    chiq = []
+    if nom in F:
+        chiq.append("📐 Formula: " + F[nom])
+    ochiq = q.get("tur") == "ochiq"
+    k = 0
+    for x in qad:
+        if ochiq and x[:2] in ("a)", "b)"):
+            chiq.append(x)
+        else:
+            k += 1
+            chiq.append(f"{k}-qadam. {x}")
+    if ochiq:
+        chiq.append("✅ Javob: " + "; ".join(f"{z['h']}) ${z['javob']}$" for z in q["qismlar"]))
+    else:
+        j = q["javob"]
+        chiq.append(f"✅ Javob: {j}) " + q["variantlar"]["ABCD".index(j)])
+    return "\n".join(chiq)
+
+
 def shablon(slot, nom=""):
     def d(f):
-        f.slot, f.nom = slot, nom or f.__name__
-        SHABLON.setdefault(slot, []).append(f)
-        return f
+        import functools
+        from modules import mock_fig
+
+        @functools.wraps(f)
+        def w(rng):
+            mock_fig.olish()
+            q = f(rng)
+            r = mock_fig.olish()
+            q = dict(q)
+            if r:
+                q["rasm"] = r
+            q["yechim"] = _yechim_format(f.__name__, q)
+            return q
+        w.slot, w.nom = slot, nom or f.__name__
+        SHABLON.setdefault(slot, []).append(w)
+        return w
     return d
 
 

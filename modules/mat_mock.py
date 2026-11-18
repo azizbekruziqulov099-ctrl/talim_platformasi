@@ -75,12 +75,12 @@ def tekshir(savollar, javoblar):
                 ok = ochiq_son(kir) is not None and ochiq_son(kir) == Fraction(qq["son"])
                 band_ok[q["bandlar"][i]] = ok
                 qis.append({"h": qq["h"], "savol": qq["savol"], "javob": qq["javob"], "kiritildi": kir, "togri": ok})
-            tafsilot.append({"slot": s, "tur": "ochiq", "mavzu": q["mavzu"], "savol": q["savol"], "qismlar": qis, "yechim": q["yechim"], "togri": all(x["togri"] for x in qis)})
+            tafsilot.append({"slot": s, "tur": "ochiq", "mavzu": q["mavzu"], "savol": q["savol"], "rasm": q.get("rasm"), "qismlar": qis, "yechim": q["yechim"], "togri": all(x["togri"] for x in qis)})
         else:
             tanl = str(javoblar.get(str(s), "")).strip().upper()[:1]
             ok = tanl == q["javob"]
             band_ok[q["bandlar"][0]] = ok
-            tafsilot.append({"slot": s, "tur": "yopiq", "mavzu": q["mavzu"], "savol": q["savol"], "variantlar": q["variantlar"], "javob": q["javob"], "tanlandi": tanl,
+            tafsilot.append({"slot": s, "tur": "yopiq", "mavzu": q["mavzu"], "savol": q["savol"], "rasm": q.get("rasm"), "variantlar": q["variantlar"], "javob": q["javob"], "tanlandi": tanl,
                              "yechim": q["yechim"], "togri": ok})
     return band_ok, tafsilot
 
@@ -120,9 +120,9 @@ def ochiq_korinish(seed):
     out = []
     for q in imtihon_tuz(seed):
         if q["tur"] == "ochiq":
-            out.append({"slot": q["slot"], "tur": "ochiq", "savol": q["savol"], "qismlar": [{"h": x["h"], "savol": x["savol"]} for x in q["qismlar"]]})
+            out.append({"slot": q["slot"], "tur": "ochiq", "savol": q["savol"], "rasm": q.get("rasm"), "qismlar": [{"h": x["h"], "savol": x["savol"]} for x in q["qismlar"]]})
         else:
-            out.append({"slot": q["slot"], "tur": "yopiq", "savol": q["savol"], "variantlar": q["variantlar"]})
+            out.append({"slot": q["slot"], "tur": "yopiq", "savol": q["savol"], "rasm": q.get("rasm"), "variantlar": q["variantlar"]})
     return out
 
 

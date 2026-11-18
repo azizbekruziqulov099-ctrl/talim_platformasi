@@ -2,6 +2,8 @@
 import math
 from fractions import Fraction
 
+from modules import mock_fig as F
+from modules.mock_fig import FIG
 from modules.mock_lib import fx, ochiq, shablon, xa
 
 
@@ -86,6 +88,7 @@ def s41(rng):
         a, b = b, a
     if rng.random() < .5:
         p, q = q, p
+    FIG(F.aylana_tortburchak(c, a, p))
     return ochiq(f"$ABCD$ to‘rtburchak aylanaga ichki chizilgan, $AC$ — diametr, $AC={c}$, $AB={a}$, $AD={p}$.",
                  [("a) $BC$ ni toping.", b), (f"b) $ABCD$ to‘rtburchakning yuzini toping ($CD$ ni ham hisoblang).", Fraction(a * b + p * q, 2))],
                  [f"$AC$ diametr, shuning uchun $\\angle B=\\angle D=90^\\circ$.", f"a) $BC=\\sqrt{{{c}^2-{a}^2}}={b}$.", f"b) $CD=\\sqrt{{{c}^2-{p}^2}}={q}$. $S=\\frac{{{a}\\cdot {b}}}{{2}}+\\frac{{{p}\\cdot {q}}}{{2}}={fx(Fraction(a * b + p * q, 2))}$."])
@@ -102,6 +105,7 @@ def s42(rng):
     p2 = a + b + c
     S = math.isqrt(p2 * (-a + b + c) * (a - b + c) * (a + b - c)) // 4
     pp = Fraction(p2, 2)
+    FIG(F.tri_oddiy(a, b, c))
     return ochiq(f"Uchburchakning tomonlari {a}, {b} va {c}.",
                  [("a) Uchburchak yuzini toping.", S), ("b) Unga ichki chizilgan aylana radiusini toping.", Fraction(S) / pp)],
                  [f"a) Geron formulasi: $p={fx(pp)}$, $S=\\sqrt{{{fx(pp)}({fx(pp - a)})({fx(pp - b)})({fx(pp - c)})}}={S}$.", f"b) $r=\\frac{{S}}{{p}}=\\frac{{{S}}}{{{fx(pp)}}}={fx(Fraction(S) / pp)}$."])
@@ -112,6 +116,7 @@ def s43(rng):
     R = rng.randint(2, 40)
     b = rng.choice([("b) Diagonallari nechta?", 54, "$\\\\frac{12\\\\cdot 9}{2}=54$."), ("b) Bitta ichki burchagi necha gradus?", 150, "$\\\\frac{180(12-2)}{12}=150$."),
                     ("b) Ichki burchaklari yig‘indisi necha gradus?", 1800, "$180(12-2)=1800$.")])
+    FIG(F.kopburchak(12, R))
     return ochiq(f"Muntazam o‘n ikki burchakning tashqi chizilgan aylana radiusi {R}.",
                  [("a) Uning yuzini toping.", 3 * R * R), (b[0], b[1])],
                  [f"a) 12 ta teng uchburchakka bo‘lamiz, har birining yuzi $\\frac{{1}}{{2}}R^2\\sin30^\\circ=\\frac{{R^2}}{{4}}$. Yuz: $12\\cdot \\frac{{{R * R}}}{{4}}={3 * R * R}$.", "b) " + b[2]])
@@ -120,6 +125,7 @@ def s43(rng):
 @shablon(44, "silindr")
 def s44(rng):
     r, h = rng.randint(2, 9), rng.randint(2, 9)
+    FIG(F.silindr(r, h))
     return ochiq(f"Silindrning asos radiusi {r}, balandligi {h}.",
                  [("a) Yon sirti yuzining $\\pi$ ga nisbatini toping.", 2 * r * h), ("b) Hajmining $\\pi$ ga nisbatini toping.", r * r * h)],
                  [f"a) $S_{{yon}}=2\\pi rh$, $\\frac{{S}}{{\\pi}}=2\\cdot {r}\\cdot {h}={2 * r * h}$.", f"b) $V=\\pi r^2h$, $\\frac{{V}}{{\\pi}}={r}^2\\cdot {h}={r * r * h}$."])
@@ -132,5 +138,6 @@ def s45(rng):
         q = ("a) To‘liq sirtini (asosi bilan) $\\pi$ ga nisbatan toping ($S/\\pi$).", 3 * R * R, f"a) Egri sirt $2\\pi R^2$ va asos $\\pi R^2$: $3\\pi R^2$, $\\frac{{S}}{{\\pi}}=3\\cdot {R}^2={3 * R * R}$.")
     else:
         q = ("a) Egri sirtining yuzini $\\pi$ ga nisbatan toping ($S/\\pi$).", 2 * R * R, f"a) Yarim shar sirti $2\\pi R^2$, $\\frac{{S}}{{\\pi}}=2\\cdot {R}^2={2 * R * R}$.")
+    FIG(F.yarim_shar(R))
     return ochiq(f"Gumbaz yarim shar shaklida, radiusi {R}.", [(q[0], q[1]), ("b) Hajmini $\\pi$ ga nisbatan toping ($V/\\pi$).", Fraction(2 * R ** 3, 3))],
                  [q[2], f"b) $V=\\frac{{2}}{{3}}\\pi R^3$, $\\frac{{V}}{{\\pi}}=\\frac{{2\\cdot {R ** 3}}}{{3}}={fx(Fraction(2 * R ** 3, 3))}$."])

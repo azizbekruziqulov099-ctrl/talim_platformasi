@@ -3,6 +3,8 @@ import itertools
 import math
 from fractions import Fraction
 
+from modules import mock_fig as F
+from modules.mock_fig import FIG
 from modules.mock_lib import M, fx, shablon, tomon_pifagor, yopiq
 
 PI = "\\pi"
@@ -12,6 +14,7 @@ PI = "\\pi"
 @shablon(24, "balandlik")
 def s24a(rng):
     a, b, c = tomon_pifagor(rng)
+    FIG(F.tri_toqri(a, b, balandlik=True))
     return yopiq(rng, f"To‘g‘ri burchakli uchburchakning katetlari {a} va {b}. Gipotenuzaga tushirilgan balandlikni toping.", Fraction(a * b, c),
                  [f"Gipotenuza: $c=\\sqrt{{{a}^2+{b}^2}}={c}$.", f"Yuz ikki usulda: $\\frac{{ab}}{{2}}=\\frac{{ch}}{{2}}$.", f"$h=\\frac{{{a}\\cdot {b}}}{{{c}}}={fx(Fraction(a * b, c))}$."])
 
@@ -19,6 +22,7 @@ def s24a(rng):
 @shablon(24, "ichki chizilgan aylana")
 def s24b(rng):
     a, b, c = tomon_pifagor(rng)
+    FIG(F.tri_toqri(a, b, ichki=True))
     return yopiq(rng, f"Katetlari {a} va {b} bo‘lgan to‘g‘ri burchakli uchburchakka ichki chizilgan aylana radiusini toping.", Fraction(a + b - c, 2),
                  [f"Gipotenuza ${c}$.", f"To‘g‘ri burchakli uchburchakda $r=\\frac{{a+b-c}}{{2}}$.", f"$r=\\frac{{{a}+{b}-{c}}}{{2}}={fx(Fraction(a + b - c, 2))}$."])
 
@@ -26,6 +30,7 @@ def s24b(rng):
 @shablon(24, "proyeksiya")
 def s24c(rng):
     a, b, c = tomon_pifagor(rng)
+    FIG(F.tri_toqri(a, b))
     return yopiq(rng, f"To‘g‘ri burchakli uchburchakda gipotenuza {c}, bir katet {a}. Shu katetning gipotenuzadagi proyeksiyasini toping.", Fraction(a * a, c),
                  [f"Katet kvadrati gipotenuza bilan proyeksiya ko‘paytmasiga teng: $a^2=c\\cdot a_c$.", f"$a_c=\\frac{{{a}^2}}{{{c}}}={fx(Fraction(a * a, c))}$."])
 
@@ -38,6 +43,7 @@ def s25a(rng):
         v = Fraction(2 * a * b, a + b)
         if a != b and v.denominator <= 5:
             break
+    FIG(F.trapetsiya(a, b, diagonal=True))
     return yopiq(rng, f"Trapetsiyaning asoslari {a} va {b}. Diagonallar kesishgan nuqta orqali asoslarga parallel to‘g‘ri chiziq o‘tkazildi. Uning yon tomonlar orasidagi kesmasi uzunligini toping.", v,
                  ["Bu kesma asoslarning o‘rta garmonigi: $\\frac{2ab}{a+b}$.", f"$\\frac{{2\\cdot {a}\\cdot {b}}}{{{a}+{b}}}={fx(v)}$."])
 
@@ -45,6 +51,7 @@ def s25a(rng):
 @shablon(25, "o'rta chiziq")
 def s25b(rng):
     a, b = rng.randint(3, 12), rng.randint(13, 30)
+    FIG(F.trapetsiya(b, a, orta=True))
     return yopiq(rng, f"Trapetsiyaning o‘rta chizig‘i {Fraction(a + b, 2) if (a + b) % 2 == 0 else str(Fraction(a + b, 2))}, kichik asosi {a}. Katta asosini toping.".replace("/", ":"), b,
                  ["O‘rta chiziq asoslar yig‘indisining yarmiga teng.", f"$a+b=2\\cdot m={a + b}$, bundan $b={a + b}-{a}={b}$."]) if (a + b) % 2 == 0 else s25b(rng)
 
@@ -54,6 +61,7 @@ def s25c(rng):
     k, l = rng.choice([(1, 2), (2, 3), (1, 3), (2, 5), (3, 4)])
     S1 = rng.randint(2, 9) * k * k
     tot = Fraction(S1) * (k + l) ** 2 / (k * k)
+    FIG(F.trapetsiya(l * 4, k * 4, diagonal=True))
     return yopiq(rng, f"Trapetsiya asoslari {k}:{l} nisbatda. Diagonallar kesishganda kichik asos ustidagi uchburchakning yuzi {S1}. Trapetsiyaning yuzini toping.", tot,
                  [f"Diagonallar kesishgan nuqtada hosil bo‘lgan asoslar ustidagi uchburchaklar o‘xshash, o‘xshashlik koeffitsiyenti ${k}:{l}$.", f"Yuzlar nisbati ${k * k}:{l * l}$, katta asos ustidagi uchburchak yuzi ${fx(Fraction(S1 * l * l, k * k))}$.",
                   f"Yon uchburchaklar yuzlari o‘zaro teng, har biri ${fx(Fraction(S1 * l, k))}$. Jami: ${fx(tot)}$."])
@@ -63,6 +71,7 @@ def s25c(rng):
 @shablon(26, "gipotenuza medianasi")
 def s26a(rng):
     a, b, c = tomon_pifagor(rng)
+    FIG(F.tri_toqri(a, b, mediana=True))
     return yopiq(rng, f"To‘g‘ri burchakli uchburchakning katetlari {a} va {b}. To‘g‘ri burchak uchidan medianalar kesishgan nuqtagacha (og‘irlik markazigacha) bo‘lgan masofani toping.", Fraction(c, 3),
                  [f"Gipotenuza ${c}$, unga tushirilgan mediana ${fx(Fraction(c, 2))}$ (gipotenuzaning yarmi).", f"Og‘irlik markazi uchdan ikkini ajratadi: $\\frac{{2}}{{3}}\\cdot {fx(Fraction(c, 2))}={fx(Fraction(c, 3))}$."])
 
@@ -90,6 +99,7 @@ def s27a(rng):
         v = Fraction(S, 2) * Fraction(k, k + 1)
         if v.denominator <= 3:
             break
+    FIG(F.toqri_tortburchak(a, b, M=k))
     return yopiq(rng, f"$ABCD$ to‘g‘ri to‘rtburchakning tomonlari {a} va {b}. $AC$ diagonalda $AM:MC=1:{k}$ bo‘ladigan $M$ nuqta olindi. $BMC$ uchburchakning yuzini toping.", v,
                  [f"$S_{{ABC}}=\\frac{{{a}\\cdot {b}}}{{2}}={fx(Fraction(S, 2))}$.", f"$M$ nuqta $AC$ ni $1:{k}$ nisbatda bo‘ladi, $MC=\\frac{{{k}}}{{{k + 1}}}AC$.", f"$S_{{BMC}}=\\frac{{{k}}}{{{k + 1}}}\\cdot {fx(Fraction(S, 2))}={fx(v)}$."])
 
@@ -97,12 +107,14 @@ def s27a(rng):
 @shablon(27, "diagonal")
 def s27b(rng):
     a, b, c = tomon_pifagor(rng)
+    FIG(F.toqri_tortburchak(a, b))
     return yopiq(rng, f"To‘g‘ri to‘rtburchakning tomonlari {a} va {b}. Uning diagonali kvadratini toping.", c * c, [f"$d^2=a^2+b^2={a}^2+{b}^2={c * c}$."], noto=[a * a, b * b, a + b])
 
 
 @shablon(27, "perimetr va yuz")
 def s27c(rng):
     a, b = rng.randint(3, 15), rng.randint(3, 15)
+    FIG(F.toqri_tortburchak(a, b))
     return yopiq(rng, f"To‘g‘ri to‘rtburchakning perimetri {2 * (a + b)}, yuzi {a * b}. Uning diagonali kvadratini toping.", a * a + b * b,
                  [f"$a+b={a + b}$, $ab={a * b}$.", f"$d^2=a^2+b^2=(a+b)^2-2ab={(a + b) ** 2}-{2 * a * b}={a * a + b * b}$."])
 
@@ -112,6 +124,7 @@ def s27c(rng):
 def s28a(rng):
     n = rng.choice([8, 9, 10, 12, 15, 18, 20])
     ang = Fraction(180 * (n - 2), n)
+    FIG(F.kopburchak(n))
     return yopiq(rng, f"Muntazam ko‘pburchakning ichki burchagi {fx(ang)}° ga teng. Uning diagonallari nechta?", n * (n - 3) // 2,
                  [f"Ichki burchak $\\frac{{180(n-2)}}{{n}}={fx(ang)}$ dan $n={n}$.", f"Diagonallar soni $\\frac{{n(n-3)}}{{2}}=\\frac{{{n}\\cdot {n - 3}}}{{2}}={n * (n - 3) // 2}$."])
 
@@ -119,12 +132,14 @@ def s28a(rng):
 @shablon(28, "burchaklar yig'indisi")
 def s28b(rng):
     n = rng.randint(7, 20)
+    FIG(F.kopburchak(n))
     return yopiq(rng, f"Qavariq {n} burchakning barcha ichki burchaklari yig‘indisi necha gradus?", 180 * (n - 2), [f"$180^\\circ(n-2)=180\\cdot {n - 2}={180 * (n - 2)}$."])
 
 
 @shablon(28, "tashqi burchak")
 def s28c(rng):
     n = rng.choice([5, 6, 8, 9, 10, 12, 15, 18, 20, 24])
+    FIG(F.kopburchak(n))
     return yopiq(rng, f"Muntazam {n} burchakning bitta tashqi burchagi necha gradus?", Fraction(360, n), [f"Tashqi burchaklar yig‘indisi $360^\\circ$, ular teng: $\\frac{{360}}{{{n}}}={fx(Fraction(360, n))}$."])
 
 
@@ -136,6 +151,7 @@ def s29a(rng):
     p, q, r, s = rng.randint(1, 3), rng.randint(1, 3), rng.randint(1, 3), rng.randint(1, 3)
     ab = A * B * cs
     v = p * r * A * A + (p * s + q * r) * ab + q * s * B * B
+    FIG(F.vektorlar(A, B, th))
     return yopiq(rng, f"$|\\vec a|={A}$, $|\\vec b|={B}$, ular orasidagi burchak ${th}^\\circ$. $({p}\\vec a+{q}\\vec b)\\cdot({r}\\vec a+{s}\\vec b)$ ni toping.", v,
                  [f"$\\vec a\\cdot\\vec b=|\\vec a||\\vec b|\\cos{th}^\\circ={fx(ab)}$.", f"Qavslarni ochamiz: ${p * r}\\,\\vec a^2+{p * s + q * r}\\,\\vec a\\vec b+{q * s}\\,\\vec b^2$.", f"$={p * r}\\cdot {A * A}+{p * s + q * r}\\cdot ({fx(ab)})+{q * s}\\cdot {B * B}={fx(v)}$."])
 
@@ -156,6 +172,7 @@ def s29b(rng):
 @shablon(29, "yig'indi uzunligi")
 def s29c(rng):
     A, B, th, C = rng.choice([(3, 5, 60, 7), (5, 3, 60, 7), (3, 8, 120, 7), (8, 3, 120, 7), (5, 8, 120, 7), (7, 8, 60, 13), (5, 3, 120, 7)])
+    FIG(F.vektorlar(A, B, th, yig=True))
     return yopiq(rng, f"$|\\vec a|={A}$, $|\\vec b|={B}$, ular orasidagi burchak ${th}^\\circ$. $|\\vec a+\\vec b|$ ni toping.", C,
                  [f"$|\\vec a+\\vec b|^2=|\\vec a|^2+|\\vec b|^2+2|\\vec a||\\vec b|\\cos{th}^\\circ$.", f"$={A * A}+{B * B}+2\\cdot {A}\\cdot {B}\\cdot ({fx(Fraction(1, 2) if th == 60 else Fraction(-1, 2))})={C * C}$, demak ${C}$."])
 
@@ -165,6 +182,7 @@ def s29c(rng):
 def s30a(rng):
     a, b, c = tomon_pifagor(rng)
     h = rng.randint(3, 12)
+    FIG(F.prizma(a, b, h))
     return yopiq(rng, f"To‘g‘ri prizmaning asosi katetlari {a} va {b} bo‘lgan to‘g‘ri burchakli uchburchak, balandligi {h}. Prizmaning hajmini toping.", Fraction(a * b * h, 2),
                  [f"Asos yuzi: $\\frac{{{a}\\cdot {b}}}{{2}}={fx(Fraction(a * b, 2))}$.", f"$V=S\\cdot h={fx(Fraction(a * b, 2))}\\cdot {h}={fx(Fraction(a * b * h, 2))}$."])
 
@@ -173,6 +191,7 @@ def s30a(rng):
 def s30b(rng):
     a, h = rng.randint(2, 12), rng.randint(2, 12)
     v = Fraction(a * a * h, 3)
+    FIG(F.piramida(a, h))
     return yopiq(rng, f"Muntazam to‘rtburchakli piramida asosining tomoni {a}, balandligi {h}. Hajmini toping.", v, [f"$V=\\frac{{1}}{{3}}S_{{asos}}h=\\frac{{1}}{{3}}\\cdot {a}^2\\cdot {h}={fx(v)}$."])
 
 
@@ -181,8 +200,10 @@ def s30c(rng):
     r, h = rng.randint(2, 9), rng.randint(2, 9)
     if rng.random() < .5:
         v = Fraction(r * r * h, 3)
+        FIG(F.konus(r, h))
         return yopiq(rng, f"Konusning asos radiusi {r}, balandligi {h}. Hajmining $\\pi$ ga nisbatini ($V/\\pi$) toping.", v, [f"$V=\\frac{{1}}{{3}}\\pi r^2h$, $\\frac{{V}}{{\\pi}}=\\frac{{{r}^2\\cdot {h}}}{{3}}={fx(v)}$."])
     v = r * r * h
+    FIG(F.silindr(r, h))
     return yopiq(rng, f"Silindrning asos radiusi {r}, balandligi {h}. Hajmining $\\pi$ ga nisbatini ($V/\\pi$) toping.", v, [f"$V=\\pi r^2h$, $\\frac{{V}}{{\\pi}}={r}^2\\cdot {h}={v}$."])
 
 
@@ -192,6 +213,7 @@ def s31a(rng):
     n, a, b = rng.randint(30, 60), rng.randint(15, 30), rng.randint(12, 28)
     ab = max(0, a + b - n) + rng.randint(0, min(a, b) - max(0, a + b - n))
     only = a + b - ab
+    FIG(F.venn(n, a, b, ab))
     return yopiq(rng, f"Sinfdagi {n} o‘quvchidan {a} tasi matematikani, {b} tasi fizikani yaxshi ko‘radi, {ab} tasi ikkalasini. Ikkala fanni ham yoqtirmaydiganlar nechta?", n - only,
                  [f"Kamida bittasini yoqtiradiganlar: ${a}+{b}-{ab}={only}$.", f"Hech birini yoqtirmaydiganlar: ${n}-{only}={n - only}$."])
 
@@ -254,6 +276,7 @@ def s32c(rng):
 @shablon(33, "diagonallar")
 def s33a(rng):
     n = rng.randint(7, 20)
+    FIG(F.kopburchak(n))
     return yopiq(rng, f"Qavariq {n} burchakning diagonallari nechta?", n * (n - 3) // 2, [f"$\\frac{{n(n-3)}}{{2}}=\\frac{{{n}\\cdot {n - 3}}}{{2}}={n * (n - 3) // 2}$."])
 
 
