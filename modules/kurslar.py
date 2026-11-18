@@ -789,6 +789,8 @@ def create_router(platform, click=None):
             # kalitdan kategoriya (kurs_of bilan bir xil qoida)
             if parts[0] == "bolalar":
                 kat = "bolalar"
+            elif parts[0] == "bank" and len(parts) == 2:   # Test banki: fan bo'yicha obuna
+                kat = "bank"
             elif parts[0] in ("maktab", "erkin", "boshqa", "repetitor", "markaz", "oliy") and len(parts) >= 3:
                 k2, kat, _, _ = kurs_of(parts[1], parts[2])
                 if k2 != kalit:

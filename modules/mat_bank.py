@@ -211,6 +211,40 @@ def create_router(platform):
             cur.execute("SELECT savol_id, urinish, oxirgi_togri, yangilangan FROM mat_bank_javob WHERE user_id=%s", (user_id,))
         return {r["savol_id"]: (int(r["urinish"]), bool(r["oxirgi_togri"]), r["yangilangan"]) for r in cur.fetchall()}
 
+
+    BANK_KALIT = "bank|Matematika"
+    BANK_ODATIY_BEPUL = 3
+
+    def bank_kirish(cur, u):
+        """Narxli test banki: (narx, bepul, obuna_bor, xodim). Narx kurs_narx jadvalida (kalit bank|Matematika), admin belgilaydi."""
+        from modules import kurslar as _k
+        _k.migrate(cur)
+        cur.execute("SELECT narx_uzs, bepul_dars, faol FROM kurs_narx WHERE kalit=%s", (BANK_KALIT,))
+        r = cur.fetchone()
+        narx = int(r["narx_uzs"] or 0) if r and r["faol"] is not False else 0
+        bepul = int(r["bepul_dars"]) if r and r["bepul_dars"] is not None else BANK_ODATIY_BEPUL
+        rol = _k._rol(cur, u)
+        xodim = rol in ("admin", "oqituvchi", "teacher", "ustoz", "markaz")
+        cur.execute("SELECT 1 FROM kurs_obuna WHERE user_id=%s AND kalit=%s AND tugaydi >= CURRENT_DATE", (u, BANK_KALIT))
+        return narx, bepul, bool(cur.fetchone()), xodim
+
+    def _k_admin(cur, u):
+        from modules import kurslar as _k
+        return _k._rol(cur, u) == "admin"
+
+    def bepul_raqamlar(bepul):
+        return {r for r in sorted(bank_ol().mavzular)[:max(0, bepul)]}
+
+    @router.get("/api/matbank/kirish")
+    def kirish(token: str = None, authorization: Optional[str] = Header(None)):
+        u = uid(token, authorization)
+        def f(cur):
+            narx, bepul, ob, xodim = bank_kirish(cur, u)
+            ochiq_hammasi = xodim or narx <= 0 or ob
+            return {"kalit": BANK_KALIT, "nomi": "Matematika banki", "narx": narx, "bepul": bepul, "obuna": ob, "xodim": xodim,
+                    "hammasi": bool(ochiq_hammasi), "admin": _k_admin(cur, u), "bepul_mavzular": [] if ochiq_hammasi else sorted(bepul_raqamlar(bepul))}
+        return run(f)
+
     @router.get("/api/matbank/mavzular")
     def mavzular(token: str = None, authorization: Optional[str] = Header(None)):
         uid(token, authorization)
@@ -261,6 +295,13 @@ def create_router(platform):
             raise HTTPException(404, "Mavzu topilmadi")
         if qiyinlik and qiyinlik not in QIYINLIK:
             raise HTTPException(400, "Qiyinlik: O, R yoki Q")
+        def kir(cur):
+            narx, bepul, ob, xodim = bank_kirish(cur, u)
+            if xodim or narx <= 0 or ob:
+                return True
+            return bool(ml) and all(x in bepul_raqamlar(bepul) for x in ml)
+        if not run(kir):
+            raise HTTPException(402, "Bu mavzu pullik. Matematika bankini ochish uchun obuna kerak.")
         tarix = run(lambda cur: tarix_ol(cur, u, ml or None))
         sav = tanla(b, ml, soni, tarix, random.Random(), qiyinlik or None)
         if not sav:
