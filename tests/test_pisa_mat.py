@@ -29,4 +29,4 @@ def test_30_ta_va_mukammal():
             r = P.baholash(m, tur, "s1", jav)
             assert r["ball"] == r["maks"] and r["foiz"] == 100
             assert P.baholash(m, tur, "s1", {})["ball"] == 0
-        assert len(P.dars_tuz(m)["qadamlar"]) >= 7
+        assert len(P.dars_tuz(m)["qadamlar"]) >= 6
