@@ -319,6 +319,34 @@ def create_router(platform):
             raise HTTPException(404, "Bu mavzuda savol topilmadi")
         return {"soni": len(sav), "savollar": [b.ommaviy(t) for t in sav]}
 
+    @router.get("/api/matbank/oqituvchi/varaq")
+    def oqituvchi_varaq(token: str = None, manba: str = Query("tem", max_length=3), mavzu: str = Query("", max_length=400), soni: int = Query(20, ge=1, le=SONI_ENG_KOP),
+                        qiyinlik: str = Query("", max_length=1), authorization: Optional[str] = Header(None)):
+        """O'qituvchi uchun test varag'i: savollar + KALITLAR (javob va yechim). Faqat o'qituvchi va admin."""
+        u = uid(token, authorization)
+
+        def rol(cur):
+            cur.execute("SELECT role, EXISTS(SELECT 1 FROM admin_akkaunt WHERE uid=%s) AS admin FROM users WHERE user_id=%s", (u, u))
+            r = cur.fetchone()
+            return bool(r and (r["admin"] or r["role"] == "oqituvchi"))
+        if not run(rol):
+            raise HTTPException(403, "Faqat o'qituvchilar uchun")
+        if qiyinlik and qiyinlik not in QIYINLIK:
+            raise HTTPException(400, "Qiyinlik: O, R yoki Q")
+        rep = manba == "rep"
+        b = rep_bank_ol() if rep else bank_ol()
+        try:
+            ml = [int(x) + (REPETITOR_BOSHI if rep else 0) for x in re.split(r"[,\s]+", mavzu.strip()) if x]
+        except ValueError:
+            raise HTTPException(400, "Mavzu raqamlari noto'g'ri")
+        if not ml or any(x not in b.mavzular for x in ml):
+            raise HTTPException(404, "Mavzu topilmadi")
+        sav = tanla(b, ml, soni, {}, random.Random(), qiyinlik or None)
+        if not sav:
+            raise HTTPException(404, "Bu mavzuda savol topilmadi")
+        return {"soni": len(sav), "mavzular": [b.mavzular[x]["nom"] for x in ml],
+                "savollar": [dict(b.ommaviy(t), javob=t["javob"], yechim=t.get("yechim") or None) for t in sav]}
+
     @router.post("/api/matbank/repetitor/tekshir")
     def rep_tekshir(body: Tekshir, authorization: Optional[str] = Header(None)):
         u = uid(body.token, authorization)
