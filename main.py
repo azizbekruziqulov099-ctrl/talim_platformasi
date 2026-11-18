@@ -252,6 +252,11 @@ try:   # Milliy sertifikat uslubidagi kirish testi va to'liq sinov (Rasch, taxmi
 except ImportError:
     from modules.mat_sertifikat import create_router as create_mat_sertifikat_router
 app.include_router(create_mat_sertifikat_router(samtm_platform))
+try:   # MOCK imtihon: noyob (seed) generatsiya, yechimli, Rasch taxminiy ball
+    from .modules.mat_mock import create_router as create_mat_mock_router
+except ImportError:
+    from modules.mat_mock import create_router as create_mat_mock_router
+app.include_router(create_mat_mock_router(samtm_platform))
 try:   # REV560: o'quvchi pasporti — haqiqiy ma'lumotdan (matematika banki, xalqaro, faollik, esdan chiqarish)
     from .modules.pasport import create_router as create_pasport_router
 except ImportError:
