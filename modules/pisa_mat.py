@@ -58,6 +58,40 @@ MAVZULAR = {
                           "ovoz": "Diagrammani o‘qishda avval sarlavha va o‘qlarni ko‘ring. Ustun balandligi qiymatni bildiradi. Savolda so‘ralgan ustunlarni topib, qo‘shing yoki ayiring."},
                          {"sarlavha": "Ehtimol", "doska": "P = qulay hollar / barcha hollar\n0 ≤ P ≤ 1\nIkki zar: 36 ta teng imkoniyat",
                           "ovoz": "Ehtimol — qulay hollar sonining barcha mumkin bo‘lgan hollar soniga nisbati. U doim nol bilan bir orasida bo‘ladi. Ikkita zar tashlanganda jami o‘ttiz olti teng imkoniyat bor."}]},
+    "pisa_tezlik": {"nom": "Tezlik, masofa va vaqt", "soha": "O‘zgarish va bog‘liqlik", "belgi": "🚗", "maqsad": "Yo‘l, uchrashuv, o‘rtacha tezlik, yoqilg‘i sarfi va harakat grafigi",
+                    "dars": [
+                        {"sarlavha": "Asosiy formula", "doska": "S = v · t\nv = S / t\nt = S / v\n1 soat = 60 daqiqa",
+                         "ovoz": "Masofa tezlik ko‘paytirilgan vaqtga teng. Tezlikni topish uchun masofani vaqtga bo‘lamiz, vaqtni topish uchun masofani tezlikka bo‘lamiz. Soatni daqiqaga o‘tkazishda oltmishga ko‘paytiramiz."},
+                        {"sarlavha": "Uchrashuv va o‘rtacha tezlik", "doska": "Qarama-qarshi yurishda: v = v₁ + v₂\nO‘rtacha tezlik = jami yo‘l / jami vaqt\n(tezliklar o‘rtachasi emas!)",
+                         "ovoz": "Ikki mashina bir-biriga qarab yursa, tezliklar qo‘shiladi. O‘rtacha tezlik — jami yo‘lni jami vaqtga bo‘lish. Uni tezliklarning o‘rtacha arifmetigi deb o‘ylamang."}]},
+    "pisa_geometriya": {"nom": "Geometrik shakllar va o‘xshashlik", "soha": "Fazo va shakl", "belgi": "🔺", "maqsad": "Burchaklar, ko‘pburchaklar, o‘xshash shakllar, uchburchak va trapetsiya yuzi",
+                        "dars": [
+                            {"sarlavha": "Burchaklar", "doska": "Uchburchak: 180°\nn burchak: (n − 2) · 180°\nTo‘liq aylana: 360°",
+                             "ovoz": "Uchburchak burchaklari yig‘indisi yuz sakson gradus. N burchakli ko‘pburchakda — n minus ikki ko‘paytirilgan yuz sakson. To‘liq aylana — uch yuz oltmish gradus."},
+                            {"sarlavha": "Yuzalar", "doska": "Uchburchak: S = a · h / 2\nTrapetsiya: S = (a + b) · h / 2\nKattalashtirish k marta → yuz k² marta",
+                             "ovoz": "Uchburchak yuzi — asos ko‘paytirilgan balandlikka, ikkiga bo‘lingan. Trapetsiya yuzi — asoslar yig‘indisining yarmi ko‘paytirilgan balandlikka. Shakl k marta kattalashsa, yuzi k kvadrat marta ortadi."},
+                            {"sarlavha": "O‘xshashlik: soya masalasi", "doska": "Balandlik / soya = bir xil\nh / s = H / S",
+                             "ovoz": "Bir vaqtda tayoq va daraxt soyalari o‘xshash uchburchaklar hosil qiladi. Shuning uchun balandlikning soyaga nisbati ikkalasida bir xil."}]},
+    "pisa_ketma": {"nom": "Qonuniyat va ketma-ketlik", "soha": "O‘zgarish va bog‘liqlik", "belgi": "🔢", "maqsad": "Sonlar qonuniyati, har qadamda o‘sish, jamg‘arma va ko‘payish",
+                   "dars": [
+                       {"sarlavha": "Arifmetik qonuniyat", "doska": "Har qadamda d ga oshadi\nn-had: a + (n − 1) · d\nYig‘indi: n · (birinchi + oxirgi) / 2",
+                        "ovoz": "Agar har qadamda son bir xil miqdorga oshsa, n-chi had birinchi had plyus n minus bir ko‘paytirilgan o‘sishga teng. Yig‘indi — birinchi va oxirgi had yig‘indisining yarmi ko‘paytirilgan hadlar soniga."},
+                       {"sarlavha": "Ko‘payish (geometrik)", "doska": "Har qadamda k marta: a · kⁿ\n2, 6, 18, 54 …",
+                        "ovoz": "Agar har qadamda son bir necha marta ko‘paysa, n-chi qadamda boshlang‘ich son ko‘paytirilgan k ning n-chi darajasiga teng bo‘ladi."}]},
+    "pisa_pul": {"nom": "Pul, byudjet va xarid", "soha": "Miqdor", "belgi": "💰", "maqsad": "Qaytim, arzon variantni tanlash, oila byudjeti, muddatli to‘lov, valyuta va foyda",
+                 "dars": [
+                     {"sarlavha": "Qaysi biri arzon?", "doska": "Birlik narxi = narx / dona soni\nBirlik narxlarni solishtir",
+                      "ovoz": "Qaysi qadoq arzonligini bilish uchun har birining bitta donasi narxini topamiz: umumiy narxni dona soniga bo‘lamiz va natijalarni solishtiramiz."},
+                     {"sarlavha": "Byudjet va foyda", "doska": "Qism = jami · foiz / 100\nFoyda = sotilgan narx − olingan narx\nMuddatli to‘lov = (narx + ustama) / oylar",
+                      "ovoz": "Byudjetning qismi — jami summa ko‘paytirilgan foizga, yuzga bo‘lingan. Foyda — sotish narxi minus sotib olish narxi. Muddatli to‘lovda avval ustamali jami narxni topib, oylar soniga bo‘lamiz."}]},
+    "pisa_diagramma": {"nom": "Diagramma va jadvalni tahlil qilish", "soha": "Noaniqlik va ma’lumot", "belgi": "📉", "maqsad": "Doira va chiziqli diagramma, o‘sish, o‘rtacha, mediana va ehtimol",
+                       "dars": [
+                           {"sarlavha": "Doira diagramma", "doska": "Butun doira = 100%\nQism = jami · foiz / 100\nFoizlar yig‘indisi 100% bo‘ladi",
+                            "ovoz": "Doira diagrammada butun doira yuz foiz. Biror toifa nechtaligini topish uchun jami sonni shu toifa foiziga ko‘paytirib, yuzga bo‘lamiz."},
+                           {"sarlavha": "Chiziqli diagramma va o‘sish", "doska": "O‘sish = keyingi − oldingi\nEng katta o‘sish — eng tik ko‘tarilgan joy",
+                            "ovoz": "Chiziqli diagrammada o‘sishni topish uchun har ikki qo‘shni nuqta farqini hisoblaymiz. Eng tik ko‘tarilgan oraliq eng katta o‘sishni bildiradi."},
+                           {"sarlavha": "Ehtimol va qarama-qarshi hodisa", "doska": "P(A) = qulay / barcha\nP(A emas) = 1 − P(A)",
+                            "ovoz": "Ehtimol — qulay hollar sonining barcha hollar soniga nisbati. Hodisa yuz bermasligi ehtimoli — bir minus uning yuz berish ehtimoli."}]},
 }
 
 

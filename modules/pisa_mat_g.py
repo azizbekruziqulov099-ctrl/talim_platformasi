@@ -453,3 +453,252 @@ def mal_zar(rng):
     s = rng.choice([5, 6, 7, 8, 9]); t = rng.choice([10, 11, 12]); n_s = 6 - abs(s - 7); n_t = sum(1 for x in range(1, 7) for y in range(1, 7) if x + y >= t)
     return _o("Ikkita oddiy o‘yin kubigi (zar) bir vaqtda tashlanadi. Jami 36 ta teng imkoniyatli natija bor.", [(f"a) Tushgan ochkolar yig‘indisi {s} bo‘lish ehtimoli qancha? (kasr ko‘rinishida)", Fraction(n_s, 36)), (f"b) Yig‘indi kamida {t} bo‘lish ehtimoli qancha? (kasr ko‘rinishida)", Fraction(n_t, 36))],
               [f"a) Yig‘indi {s} bo‘ladigan juftliklar: {n_s} ta → {n_s}/36 = {num(Fraction(n_s, 36))}.", f"b) Yig‘indi ≥ {t} bo‘ladigan juftliklar: {n_t} ta → {n_t}/36 = {num(Fraction(n_t, 36))}."])
+
+
+# ───────────────────────── chizmalar (2-bosqich) ─────────────────────────
+def fig_pie(nomlar, qiymatlar, sarlavha=""):
+    cx, cy, r = 110, 105, 70; jami = sum(qiymatlar); a0 = -math.pi / 2; body = _t(150, 16, sarlavha, it=False, size=13); ranglar = ["#5b8def", "#f59e0b", "#10b981", "#ef4444", "#8b5cf6"]
+    for i, (n, v) in enumerate(zip(nomlar, qiymatlar)):
+        a1 = a0 + 2 * math.pi * v / jami; x0, y0, x1, y1 = cx + r * math.cos(a0), cy + r * math.sin(a0), cx + r * math.cos(a1), cy + r * math.sin(a1)
+        body += f'<path d="M{cx},{cy} L{x0:.1f},{y0:.1f} A{r},{r} 0 {1 if a1 - a0 > math.pi else 0} 1 {x1:.1f},{y1:.1f} Z" fill="{ranglar[i % 5]}" stroke="#fff" stroke-width="1.5"/>'
+        body += f'<rect x="205" y="{45 + i * 22}" width="12" height="12" fill="{ranglar[i % 5]}"/>' + _t(223, 56 + i * 22, f"{n}: {v}%", it=False, anchor="start", size=12)
+        a0 = a1
+    return _svg(body, 300, 200)
+
+
+def fig_poliliniya(nomlar, qiymatlar, sarlavha="", birlik=""):
+    W, x0, y0 = 320, 44, 175; top = math.ceil(max(qiymatlar) / 10) * 10 or 10; sx = (W - x0 - 20) / (len(qiymatlar) - 1); sy = 140 / top
+    body = _t(W / 2, 14, sarlavha, it=False, size=13) + _l((x0, y0), (W - 10, y0)) + _l((x0, y0), (x0, 30))
+    for k in range(5):
+        v = top * k / 4; body += _l((x0 - 3, y0 - v * sy), (W - 10, y0 - v * sy), w=.4, col="#ccc") + _t(x0 - 6, y0 - v * sy + 3, f"{v:g}", it=False, anchor="end", size=10)
+    pts = [(x0 + i * sx, y0 - v * sy) for i, v in enumerate(qiymatlar)]
+    body += _poly(pts, w=2) .replace('#111', '#2563eb')
+    for (px, py), n, v in zip(pts, nomlar, qiymatlar):
+        body += f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.5" fill="#2563eb"/>' + _t(px, y0 + 14, n, it=False, size=10) + _t(px, py - 7, f"{v:g}", it=False, size=10)
+    return _svg(body, W, 205)
+
+
+def fig_soya(h, s, H):
+    """Tayoq (h) soyasi s; daraxt soyasi S, balandligi ? """
+    body = _l((20, 170), (290, 170)) + _l((60, 170), (60, 170 - h * 8), w=3, col="#8a5a2b") + _l((60, 170 - h * 8), (60 + s * 8, 170), w=1, dash=True)
+    body += _t(40, 170 - h * 4, f"{num(h)} m", it=False, anchor="end", size=12) + _t(60 + s * 4, 186, f"{num(s)} m", it=False, size=12)
+    return _svg(body + _t(200, 40, "soyaning uchi", it=False, size=0), 300, 195)
+
+
+# ───────────────────────── 6) TEZLIK, MASOFA, VAQT ─────────────────────────
+@reg("pisa_tezlik", "yopiq")
+def tez_oddiy(rng):
+    v = rng.choice([40, 60, 75, 80, 90, 100]); t = rng.choice([2, 3, 4, 5]); return _y(rng, f"Avtobus o‘rtacha {v} km/soat tezlik bilan {t} soat yurdi. U necha km yo‘l bosdi?", v * t, [f"Masofa = tezlik · vaqt = {v} · {t} = {v * t} km."], noto=[v + t, Fraction(v, t), v * t + v])
+
+
+@reg("pisa_tezlik", "yopiq")
+def tez_vaqt(rng):
+    v = rng.choice([40, 50, 60, 80, 100]); t = rng.choice([2, 3, 4, 5, 6]); s = v * t; m = t * 60
+    return _y(rng, f"Samarqanddan shaharga {s} km. Siz soatiga {v} km tezlikda yursangiz, yo‘lga necha daqiqa ketadi?", m, [f"Vaqt = masofa / tezlik = {s} / {v} = {t} soat.", f"{t} soat = {t} · 60 = {m} daqiqa."], noto=[t, s // 60 if s % 60 == 0 else t * 100, m + 60])
+
+
+@reg("pisa_tezlik", "ochiq")
+def tez_uchrash(rng):
+    v1 = rng.choice([50, 60, 70]); v2 = rng.choice([40, 50, 80]); t = rng.choice([2, 3, 4]); S = (v1 + v2) * t
+    return _o(f"Ikki shahar orasi {S} km. Ularning birinchisidan {v1} km/soat, ikkinchisidan {v2} km/soat tezlik bilan bir vaqtda bir-biriga qarab ikkita mashina yo‘lga chiqdi.", [("Ular necha soatdan keyin uchrashadi?", t)],
+              [f"Yaqinlashish tezligi: {v1} + {v2} = {v1 + v2} km/soat.", f"Vaqt = {S} / {v1 + v2} = {t} soat."])
+
+
+@reg("pisa_tezlik", "ochiq")
+def tez_ortacha(rng):
+    a = rng.choice([60, 80, 90]); b = rng.choice([30, 40, 60]); ta = rng.choice([2, 3]); tb = rng.choice([1, 2]); S = a * ta + b * tb; T = ta + tb
+    return _o(f"Haydovchi {ta} soat davomida {a} km/soat, keyin {tb} soat davomida {b} km/soat tezlikda yurdi.", [("a) Jami necha km yurdi?", S), ("b) O‘rtacha tezligi necha km/soat? (jami yo‘l / jami vaqt)", Fraction(S, T))],
+              [f"a) {a}·{ta} + {b}·{tb} = {a * ta} + {b * tb} = {S} km.", f"b) Jami vaqt: {T} soat. O‘rtacha tezlik = {S} / {T} = {num(Fraction(S, T))} km/soat.", "Diqqat: o‘rtacha tezlik = tezliklar o‘rtachasi EMAS."])
+
+
+@reg("pisa_tezlik", "ochiq")
+def tez_yoqilgi(rng):
+    n = rng.choice([5, 6, 7, 8]); S = rng.choice([200, 300, 400, 500]); l = Fraction(S * n, 100); p = rng.choice([9000, 10000, 12000, 14000])
+    return _o(f"Avtomobil 100 km yo‘lga {n} litr benzin sarflaydi. Benzinning 1 litri {som(p)} so‘m.", [(f"a) {S} km uchun necha litr benzin kerak?", l), (f"b) {S} km yo‘lga benzin necha so‘m turadi?", l * p)],
+              [f"a) {S} / 100 = {num(Fraction(S, 100))} marta 100 km. {num(Fraction(S, 100))} · {n} = {num(l)} litr.", f"b) {num(l)} · {som(p)} = {som(l * p)} so‘m."])
+
+
+@reg("pisa_tezlik", "ochiq")
+def tez_grafik(rng):
+    v = rng.choice([20, 30, 40, 50]); t0 = rng.choice([1, 2]); s0 = rng.choice([10, 20]); xm = 5
+    q = _o(f"Grafikda velosipedchining yo‘lboshidan masofasi (km) vaqtga (soat) bog‘liq ko‘rsatilgan. U {s0} km masofadan boshlab, soatiga {v} km tezlikda yuradi.", [(f"a) 3 soatdan keyin yo‘lboshidan necha km uzoqlikda bo‘ladi?", s0 + 3 * v), ("b) Qaysi soatda u 3-soatdagidan 2 baravar uzoq bo‘ladi? (soat)", Fraction(2 * (s0 + 3 * v) - s0, v))],
+           [f"a) y = {v}·x + {s0}; x = 3: {v * 3} + {s0} = {s0 + 3 * v} km.", f"b) Masofa 2·{s0 + 3 * v} = {2 * (s0 + 3 * v)}: {v}·x + {s0} = {2 * (s0 + 3 * v)} → x = {num(Fraction(2 * (s0 + 3 * v) - s0, v))} soat."])
+    q["rasm"] = fig_chiziq(s0, v, xm, "x (soat)", "y (km)", sarlavha="Velosipedchi masofasi")
+    return q
+
+
+# ───────────────────────── 7) GEOMETRIK QONUNIYATLAR ─────────────────────────
+@reg("pisa_geometriya", "yopiq")
+def geo_soya(rng):
+    h = rng.choice([1, 2, Fraction(3, 2)]); s = rng.choice([2, 3, 4]); S = s * rng.choice([5, 6, 8, 10]); H = Fraction(h) * S / s
+    q = _y(rng, f"Bir vaqtda {num(h)} m uzunlikdagi tayoqning soyasi {s} m, daraxtning soyasi {S} m. Daraxt necha metr balandlikda?", H, [f"O‘xshash uchburchaklar: balandlik / soya bir xil.", f"{num(h)} / {s} = H / {S} → H = {num(h)} · {S} / {s} = {num(H)} m."], noto=[Fraction(S) - s + h, Fraction(S, s), H * 2])
+    return q
+
+
+@reg("pisa_geometriya", "yopiq")
+def geo_burchak(rng):
+    a = rng.choice([40, 50, 55, 60, 70]); b = rng.choice([30, 45, 50, 65]); c = 180 - a - b
+    return _y(rng, f"Uchburchak shaklidagi bog‘ning ikkita burchagi {a}° va {b}°. Uchinchi burchagi necha gradus?", c, [f"Uchburchak burchaklari yig‘indisi 180°.", f"180 − {a} − {b} = {c}°."], noto=[a + b, 360 - a - b, 90 - a])
+
+
+@reg("pisa_geometriya", "yopiq")
+def geo_kopburchak(rng):
+    n = rng.choice([5, 6, 8, 10]); S = (n - 2) * 180
+    return _y(rng, f"Xiva darvozasi yonidagi maydon {n} burchakli qavariq ko‘pburchak shaklida. Uning ichki burchaklari yig‘indisi necha gradus?", S, [f"Formula: (n − 2) · 180°.", f"({n} − 2) · 180 = {S}°."], noto=[n * 180, (n - 1) * 180, 360])
+
+
+@reg("pisa_geometriya", "ochiq")
+def geo_masshtab_shakl(rng):
+    k = rng.choice([2, 3, 4, 5]); a = rng.choice([4, 5, 6, 8]); b = rng.choice([3, 5, 7]); 
+    return _o(f"Reklama banneri tomonlari {a} dm va {b} dm bo‘lgan to‘rtburchak. Xuddi shu shaklning {k} marta kattalashtirilgan varianti chop etiladi.", [("a) Kattalashtirilgan tomonlardan kattasi necha dm?", max(a, b) * k), ("b) Yuzi necha marta ortadi?", k * k)],
+              [f"a) {max(a, b)} · {k} = {max(a, b) * k} dm.", f"b) Chiziqli o‘lchamlar {k} marta ortsa, yuz {k}² = {k * k} marta ortadi."])
+
+
+@reg("pisa_geometriya", "ochiq")
+def geo_tomonlar(rng):
+    a = rng.choice([6, 8, 10, 12]); h = rng.choice([4, 5, 6, 8]); b = rng.choice([7, 9, 10]); 
+    return _o(f"Uchburchak shaklidagi yer uchastkasi: asosi {a} m, shu asosga tushirilgan balandligi {h} m.", [("a) Uchastka yuzi necha m²?", Fraction(a * h, 2)), ("b) 1 m² yerga 2 kg urug‘ sarflansa, jami necha kg urug‘ kerak?", a * h)],
+              [f"a) S = asos · balandlik / 2 = {a} · {h} / 2 = {num(Fraction(a * h, 2))} m².", f"b) {num(Fraction(a * h, 2))} · 2 = {a * h} kg."])
+
+
+@reg("pisa_geometriya", "ochiq")
+def geo_trapetsiya(rng):
+    a = rng.choice([6, 8, 10]); b = rng.choice([12, 14, 16]); h = rng.choice([4, 6, 8, 10]); p = rng.choice([10, 12, 15]) * 1000
+    q = _o(f"Hovli trapetsiya shaklida: parallel tomonlari {a} m va {b} m, ular orasidagi masofa {h} m. 1 m² asfalt {som(p)} so‘m.", [("a) Hovli yuzi necha m²?", Fraction((a + b) * h, 2)), ("b) Asfaltlash necha so‘m turadi?", Fraction((a + b) * h, 2) * p)],
+           [f"a) S = (a + b) · h / 2 = ({a} + {b}) · {h} / 2 = {(a + b) * h // 2} m².", f"b) {(a + b) * h // 2} · {som(p)} = {som((a + b) * h // 2 * p)} so‘m."])
+    return q
+
+
+@reg("pisa_geometriya", "yopiq")
+def geo_aylana_pizza(rng):
+    d = rng.choice([20, 30, 40]); n = rng.choice([4, 6, 8, 10]); 
+    return _y(rng, f"Diametri {d} sm bo‘lgan doira shaklidagi pitsa {n} ta teng bo‘lakka kesildi. Bitta bo‘lakning markaziy burchagi necha gradus?", Fraction(360, n), [f"To‘liq aylana 360°.", f"360 / {n} = {num(Fraction(360, n))}°."], noto=[Fraction(180, n), Fraction(360, n) * 2, n * 10])
+
+
+# ───────────────────────── 8) QONUNIYAT VA KETMA-KETLIK ─────────────────────────
+@reg("pisa_ketma", "yopiq")
+def ket_arifm(rng):
+    a = rng.choice([3, 5, 7, 10]); d = rng.choice([2, 3, 4, 5]); n = rng.choice([8, 10, 12, 15]); x = a + (n - 1) * d
+    return _y(rng, f"Zina pog‘onalari soni qonuniyat bo‘yicha o‘sadi: {a}, {a + d}, {a + 2 * d}, {a + 3 * d}, … Shu qonuniyat bo‘yicha {n}-qadamda necha pog‘ona bo‘ladi?", x, [f"Har qadamda {d} taga oshadi.", f"{n}-had: {a} + ({n} − 1) · {d} = {a} + {(n - 1) * d} = {x}."], noto=[a + n * d, a * n, x - d])
+
+
+@reg("pisa_ketma", "yopiq")
+def ket_gugurt(rng):
+    k = rng.choice([3, 4, 5]); n = rng.choice([5, 6, 8, 10]); x = k * n + 1
+    return _y(rng, f"Gugurt cho‘plaridan zanjir yasaladi: 1 ta kvadrat uchun {k + 1} ta, har keyingisi uchun {k} tadan qo‘shimcha cho‘p kerak ({k + 1}, {2 * k + 1}, {3 * k + 1}, …). {n} ta shakl uchun nechta cho‘p kerak?", x, [f"Formula: {k}·n + 1.", f"n = {n}: {k} · {n} + 1 = {x}."], noto=[(k + 1) * n, k * n, x + k])
+
+
+@reg("pisa_ketma", "ochiq")
+def ket_jamgarma(rng):
+    a = rng.choice([20, 30, 50]); d = rng.choice([5, 10]); n = rng.choice([6, 8, 10]); x = a + (n - 1) * d; S = n * (a + x) // 2
+    return _o(f"Dilnoza birinchi haftada {a} ming so‘m yig‘di, har keyingi haftada oldingi haftadan {d} ming so‘m ortiq yig‘adi.", [(f"a) {n}-haftada necha ming so‘m yig‘adi?", x), (f"b) {n} hafta ichida jami necha ming so‘m yig‘adi?", S)],
+              [f"a) {a} + ({n} − 1) · {d} = {x}.", f"b) Yig‘indi = n · (birinchi + oxirgi) / 2 = {n} · ({a} + {x}) / 2 = {S}."])
+
+
+@reg("pisa_ketma", "ochiq")
+def ket_o_sish(rng):
+    a = rng.choice([100, 200, 500]); k = rng.choice([2, 3]); n = rng.choice([3, 4, 5]); x = a * k ** n
+    return _o(f"Hovuzdagi suv o‘tlari har kuni oldingi kundagidan {k} marta ko‘payadi. Birinchi kuni {a} dona bor edi.", [(f"{n} kun o‘tgach nechta bo‘ladi?", x)],
+              [f"Har kuni {k} ga ko‘paytiriladi: {a} · {k}^{n}.", f"{k}^{n} = {k ** n}, {a} · {k ** n} = {x}."])
+
+
+@reg("pisa_ketma", "ochiq")
+def ket_taqsimlash(rng):
+    n = rng.choice([4, 5, 6]); d = rng.choice([2, 3]); a = rng.choice([10, 15, 20]); S = n * (2 * a + (n - 1) * d) // 2
+    return _o(f"Stadionda 1-qatorda {a} ta o‘rindiq, har keyingi qatorda oldingisidan {d} tadan ko‘p. Jami {n} qator.", [("a) Oxirgi qatorda nechta o‘rindiq bor?", a + (n - 1) * d), ("b) Hammasi bo‘lib nechta o‘rindiq bor?", S)],
+              [f"a) {a} + ({n} − 1) · {d} = {a + (n - 1) * d}.", f"b) {n} · ({a} + {a + (n - 1) * d}) / 2 = {S}."])
+
+
+@reg("pisa_ketma", "yopiq")
+def ket_juft(rng):
+    a = rng.choice([2, 3, 4]); r = rng.choice([2, 3]); seq = [a * r ** i for i in range(5)]
+    return _y(rng, f"Qonuniyatni toping va keyingi sonni yozing: {', '.join(map(str, seq[:4]))}, ?", seq[4], [f"Har son oldingisidan {r} marta katta.", f"{seq[3]} · {r} = {seq[4]}."], noto=[seq[3] + seq[1], seq[3] + a, seq[3] * seq[1]])
+
+
+# ───────────────────────── 9) PUL VA BYUDJET ─────────────────────────
+@reg("pisa_pul", "yopiq")
+def pul_qaytim(rng):
+    n = rng.choice([3, 4, 5, 6]); p = rng.choice([4500, 6500, 7800, 12500, 3200]); pul = 100000 if n * p < 100000 else 200000
+    return _y(rng, f"Do‘konda {n} ta bir xil daftar sotib olindi, har biri {som(p)} so‘m. Kassirga {som(pul)} so‘m berildi. Qaytim necha so‘m?", pul - n * p, [f"Narx: {n} · {som(p)} = {som(n * p)} so‘m.", f"Qaytim: {som(pul)} − {som(n * p)} = {som(pul - n * p)} so‘m."], noto=[n * p, pul - p, pul + n * p])
+
+
+@reg("pisa_pul", "yopiq")
+def pul_arzon(rng):
+    k = rng.choice([4, 5, 6]); a = rng.choice([3000, 3500, 4000])
+    sm = rng.choice([500, 800, 1000]); big = rng.choice([6, 8, 10]); pk = a * k
+    pb = (a - sm) * big
+    t = "Katta qadoq" if pb / big < pk / k else "Kichik qadoq"
+    return _yopiq(rng, f"Suv: kichik qadoqda {k} ta shisha — {som(pk)} so‘m; katta qadoqda {big} ta shisha — {som(pb)} so‘m. Qaysi biri bitta shisha uchun arzonroq?", t,
+                  [f"Kichik qadoq: {som(pk)} / {k} = {num(Fraction(pk, k))} so‘m.", f"Katta qadoq: {som(pb)} / {big} = {num(Fraction(pb, big))} so‘m.", f"Arzonrog‘i: {t.lower()}."], noto=["Kichik qadoq" if t == "Katta qadoq" else "Katta qadoq", "Narxi bir xil", "Aniqlab bo‘lmaydi"], tartib=False)
+
+
+@reg("pisa_pul", "ochiq")
+def pul_byudjet(rng):
+    maosh = rng.choice([4, 5, 6, 8]) * 1000000; a, b, c = rng.choice([30, 25, 20]), rng.choice([20, 15, 25]), rng.choice([10, 15, 5])
+    return _o(f"Oilaning oylik daromadi {som(maosh)} so‘m. U shunday taqsimlanadi: oziq-ovqat {a}%, kommunal va transport {b}%, ta’lim {c}%.", [("a) Oziq-ovqatga necha so‘m ketadi?", maosh * a // 100), ("b) Qolgan qismi necha so‘m?", maosh * (100 - a - b - c) // 100)],
+              [f"a) {som(maosh)} · {a}/100 = {som(maosh * a // 100)} so‘m.", f"b) Qolgan foiz: 100 − {a} − {b} − {c} = {100 - a - b - c}%.", f"{som(maosh)} · {100 - a - b - c}/100 = {som(maosh * (100 - a - b - c) // 100)} so‘m."])
+
+
+@reg("pisa_pul", "ochiq")
+def pul_kredit(rng):
+    P = rng.choice([6, 8, 12, 18, 24]) * 1000000; oy = rng.choice([6, 12]); f = rng.choice([10, 20, 25]) if False else rng.choice([10, 20]); jami = P + P * f // 100; oylik = Fraction(jami, oy)
+    return _o(f"Muzlatgich muddatli to‘lovga sotilmoqda: narxi {som(P)} so‘m, ustama {f}%. To‘lov {oy} oyga teng bo‘lib to‘lanadi.", [("a) Jami necha so‘m to‘lanadi?", jami), ("b) Oylik to‘lov necha so‘m?", oylik)],
+              [f"a) Ustama: {som(P)} · {f}/100 = {som(P * f // 100)}. Jami: {som(jami)} so‘m.", f"b) {som(jami)} / {oy} = {num(oylik)} so‘m."])
+
+
+@reg("pisa_pul", "ochiq")
+def pul_valyuta2(rng):
+    kurs = rng.choice([2500, 2800, 3000, 3200]); a = rng.choice([80, 120, 150, 200]); b = rng.choice([30, 50, 60])
+    return _o(f"Turist Istanbuldagi bozorda {a} lirali sovg‘a oldi. 1 lira = {som(kurs)} so‘m.", [("a) Sovg‘a necha so‘m?", a * kurs), (f"b) {b} lira necha so‘m?", b * kurs)],
+              [f"a) {a} · {som(kurs)} = {som(a * kurs)} so‘m.", f"b) {b} · {som(kurs)} = {som(b * kurs)} so‘m."])
+
+
+@reg("pisa_pul", "yopiq")
+def pul_ulgurji(rng):
+    n = rng.choice([20, 25, 40, 50]); a = rng.choice([800, 1200, 1500]); sot = a * rng.choice([13, 14, 15]) // 10; f = (sot - a) * n
+    return _y(rng, f"Do‘konchi {n} ta qalamni dona narxi {som(a)} so‘mdan olib, donasini {som(sot)} so‘mdan sotdi. Hammasi sotilsa, foydasi necha so‘m?", f, [f"1 dona foyda: {som(sot)} − {som(a)} = {som(sot - a)}.", f"{n} dona: {som(sot - a)} · {n} = {som(f)} so‘m."], noto=[sot * n, a * n, (sot - a)])
+
+
+# ───────────────────────── 10) JADVAL VA DIAGRAMMA TAHLILI ─────────────────────────
+@reg("pisa_diagramma", "yopiq")
+def dia_pie(rng):
+    n = ["Matematika", "Fizika", "Tarix", "Til"]; v = rng.choice([[40, 25, 20, 15], [30, 30, 25, 15], [50, 20, 20, 10], [35, 25, 25, 15]]); T = rng.choice([200, 300, 400, 500]); i = rng.randrange(4)
+    q = _y(rng, f"Doira diagrammada {T} nafar o‘quvchining sevimli fani ko‘rsatilgan. «{n[i]}»ni sevimli deb tanlaganlar necha nafar?", T * v[i] // 100, [f"Diagrammada {n[i]} — {v[i]}%.", f"{T} · {v[i]}/100 = {T * v[i] // 100} nafar."], noto=[v[i], T - T * v[i] // 100, T * v[i] // 10])
+    q["rasm"] = fig_pie(n, v, "Sevimli fan"); return q
+
+
+@reg("pisa_diagramma", "yopiq")
+def dia_o_sish(rng):
+    n = ["2019", "2020", "2021", "2022", "2023"]; a = rng.choice([100, 120, 150]); d = rng.choice([20, 30, 40]); v = [a + d * i + rng.choice([0, 0, -10]) for i in range(5)]
+    i = max(range(1, 5), key=lambda k: v[k] - v[k - 1]); yil = n[i]
+    q = _yopiq(rng, f"Chiziqli diagrammada korxonaning yillik sotuvi (ming dona) ko‘rsatilgan. Qaysi yilda sotuv oldingi yilga nisbatan eng ko‘p oshgan?", yil, [f"Har yil oshishini hisoblaymiz: " + "; ".join(f"{n[k]}: {v[k] - v[k - 1]}" for k in range(1, 5)) + ".", f"Eng katta oshish — {yil}."], noto=[x for x in n if x != yil][:3], tartib=False)
+    q["rasm"] = fig_poliliniya(n, v, "Yillik sotuv, ming dona"); return q
+
+
+@reg("pisa_diagramma", "ochiq")
+def dia_pie2(rng):
+    n = ["Avtobus", "Piyoda", "Velosiped", "Mashina"]; v = rng.choice([[40, 30, 20, 10], [35, 25, 25, 15], [50, 20, 20, 10], [30, 40, 20, 10]]); T = rng.choice([200, 400, 600, 800])
+    q = _o(f"Doira diagrammada {T} nafar o‘quvchining maktabga qatnash usuli berilgan.", [("a) Avtobusda kelganlar necha nafar?", T * v[0] // 100), ("b) Piyoda va velosipedda kelganlar jami necha nafar?", T * (v[1] + v[2]) // 100)],
+           [f"a) {T} · {v[0]}/100 = {T * v[0] // 100}.", f"b) {v[1]}% + {v[2]}% = {v[1] + v[2]}%; {T} · {v[1] + v[2]}/100 = {T * (v[1] + v[2]) // 100}."])
+    q["rasm"] = fig_pie(n, v, "Maktabga qatnash"); return q
+
+
+@reg("pisa_diagramma", "ochiq")
+def dia_stolbik_farq(rng):
+    n = ["Yan", "Fev", "Mar", "Apr", "May"]; v = [rng.randint(8, 30) * 5 for _ in range(5)]
+    q = _o("Diagrammada do‘kon 5 oy davomida sotgan kitoblari soni ko‘rsatilgan.", [("a) 5 oyda jami nechta kitob sotilgan?", sum(v)), ("b) Oyiga o‘rtacha nechta kitob sotilgan?", Fraction(sum(v), 5))],
+           [f"a) {' + '.join(map(str, v))} = {sum(v)}.", f"b) {sum(v)} / 5 = {num(Fraction(sum(v), 5))}."])
+    q["rasm"] = fig_stolbik(n, v, "Sotilgan kitoblar"); return q
+
+
+@reg("pisa_diagramma", "yopiq")
+def dia_mediana(rng):
+    xs = [rng.randint(3, 9) for _ in range(9)]; xs.sort(); m = xs[4]; rng.shuffle(xs)
+    return _y(rng, f"9 ta o‘quvchining test balli: {', '.join(map(str, xs))}. Medianani toping.", m, [f"Tartiblaymiz: {', '.join(map(str, sorted(xs)))}.", f"9 ta son — 5-chi son mediana: {m}."], noto=[max(xs), min(xs), sum(xs) // 9 if sum(xs) // 9 != m else m + 1])
+
+
+@reg("pisa_diagramma", "ochiq")
+def dia_ehtimol2(rng):
+    q_, k = rng.choice([(3, 5), (4, 6), (2, 7), (5, 5)]); n = q_ + k; m = rng.choice([1, 2])
+    return _o(f"Qutida {q_} ta qizil va {k} ta ko‘k qalam bor. Ko‘rmasdan bitta qalam olinadi.", [("a) Ko‘k qalam olinish ehtimoli qancha? (kasr)", Fraction(k, n)), ("b) Qizil qalam olinish ehtimoli qancha? (kasr)", Fraction(q_, n))],
+              [f"a) {k}/{n}.", f"b) {q_}/{n}. Tekshirish: {q_}/{n} + {k}/{n} = 1."])
