@@ -1222,6 +1222,19 @@ def create_router(platform, kontent=None):
             user = user_info(cur, user_id)
             out = mavzu_tafsilot(cur, user, kalit[:20], til)
             out["maktab_darslari"] = maktab_darslari(cur, out["maktab"], til)   # REV303: faqat Miya'da darsi bor mavzular, o'quvchi tilida
+            try:   # o'quvchining shu maktab darslarini o'zlashtirishi (foiz) — kurs_dars_holat dan
+                kodlar = [x["topic_code"] for x in out["maktab_darslari"]]
+                if kodlar:
+                    cur.execute("SAVEPOINT xb_holat")
+                    cur.execute("SELECT topic_code, MAX(togri) AS tg, MAX(jami) AS jm FROM kurs_dars_holat WHERE user_id=%s AND topic_code = ANY(%s) GROUP BY topic_code", (user_id, kodlar))
+                    hol = {r["topic_code"]: r for r in cur.fetchall()}
+                    cur.execute("RELEASE SAVEPOINT xb_holat")
+                    for x in out["maktab_darslari"]:
+                        r = hol.get(x["topic_code"])
+                        x["otilgan"] = bool(r)
+                        x["foiz"] = (round(100 * int(r["tg"] or 0) / int(r["jm"])) if r and int(r["jm"] or 0) > 0 else (100 if r else None))
+            except Exception:
+                cur.execute("ROLLBACK TO SAVEPOINT xb_holat")
             out["reyting"] = mavzu_reytingi(cur, user, kalit[:20], til)
             conn.commit()
             return out
