@@ -1,6 +1,6 @@
 """Matematika: OLIY TA'LIMGA KIRISH uslubidagi 30 talik imtihon (o'z test bankimizdan).
 
-Tuzilma: 10 ta oddiy savol (har biri 1,1 ball) + 20 ta savol talaba tanlagan daraja bo'yicha: 2,1 yoki 3,1 ball.
+Tuzilma (rasmiy kirish imtihoni kabi): 1–10 savol — 1,1 ball; 11–20 — 2,1 ball; 21–30 — 3,1 ball. Maksimum 63,0.
 Qiyinlik darajasi (1,1 / 2,1 / 3,1): bankdagi O/R/Q belgisidan; belgisiz (R) savollar matn murakkabligi (uzunlik, formulalar) bo'yicha ajratiladi.
 """
 import random
@@ -13,6 +13,7 @@ from modules.mat_bank import HARFLAR
 from modules.mat_sertifikat import _norm, pool_ol, zaif_mavzular
 
 BALL = {1: 1.1, 2: 2.1, 3: 3.1}
+MAKS = round(10 * (1.1 + 2.1 + 3.1), 1)
 SONI = {1: 10, "tanlov": 20}
 _kesh = {"d": None}
 
@@ -42,7 +43,7 @@ def darajalar():
 def tuz(daraja, rng):
     pool, d = pool_ol(), darajalar()
     out, korildi = [], set()
-    for lv, n in ((1, 10), (daraja, 20)):
+    for lv, n in ((1, 10), (2, 10), (3, 10)):
         nomzod = [sid for sid, x in d.items() if x == lv]
         rng.shuffle(nomzod)
         k = 0
@@ -62,7 +63,6 @@ def tuz(daraja, rng):
 
 class Topshir(BaseModel):
     token: Optional[str] = None
-    daraja: int = Field(default=2, ge=2, le=3)
     idlar: list = Field(default_factory=list)
     javoblar: dict = Field(default_factory=dict)
     sekund: int = Field(default=0, ge=0, le=20000)
@@ -104,18 +104,18 @@ def create_router(platform):
         def f(cur):
             cur.execute("SELECT id, daraja, ball, maks, togri, yaratildi FROM mat_kirish_urinish WHERE user_id=%s ORDER BY yaratildi DESC LIMIT 20", (u,))
             return [{"id": int(r["id"]), "daraja": int(r["daraja"]), "ball": float(r["ball"]), "maks": float(r["maks"]), "togri": int(r["togri"]), "sana": r["yaratildi"].isoformat()} for r in cur.fetchall()]
-        return {"soni": 30, "daqiqa": 60, "ball": BALL, "bank": son, "tarix": run(f),
-                "izoh": "Birinchi 10 ta savol oddiy (1,1 ball). Qolgan 20 tasi uchun 2,1 yoki 3,1 darajani o‘zingiz tanlaysiz."}
+        return {"soni": 30, "daqiqa": 60, "ball": BALL, "maks": MAKS, "bank": son, "tarix": run(f),
+                "izoh": "Rasmiy kirish imtihoni kabi: 1–10-savol 1,1 ball, 11–20-savol 2,1 ball, 21–30-savol 3,1 ball. Jami 63,0 ball."}
 
     @router.get("/api/matkirish/test")
-    def test(token: str = None, daraja: int = Query(2, ge=2, le=3), authorization: Optional[str] = Header(None)):
+    def test(token: str = None, authorization: Optional[str] = Header(None)):
         uid(token, authorization)
         try:
-            sav = tuz(daraja, random.Random())
+            sav = tuz(0, random.Random())
         except ValueError as e:
             raise HTTPException(503, str(e))
         pool = pool_ol()
-        return {"daraja": daraja, "daqiqa": 60, "soni": len(sav), "maks": round(10 * BALL[1] + 20 * BALL[daraja], 1),
+        return {"daqiqa": 60, "soni": len(sav), "maks": MAKS,
                 "savollar": [{"id": sid, "ball": BALL[lv], "savol": pool[sid]["t"]["savol"], "variantlar": pool[sid]["t"]["variantlar"]} for sid, lv in sav]}
 
     @router.post("/api/matkirish/topshir")
@@ -124,7 +124,7 @@ def create_router(platform):
         pool, d = pool_ol(), darajalar()
         idlar = [str(x) for x in body.idlar]
         lv = [d.get(x) for x in idlar]
-        if len(idlar) != 30 or len(set(idlar)) != 30 or any(x not in pool for x in idlar) or lv[:10] != [1] * 10 or lv[10:] != [body.daraja] * 20:
+        if len(idlar) != 30 or len(set(idlar)) != 30 or any(x not in pool for x in idlar) or lv != [1] * 10 + [2] * 10 + [3] * 10:
             raise HTTPException(400, "Savollar ro'yxati noto'g'ri")
         natija, ball = [], 0.0
         for sid, l in zip(idlar, lv):
@@ -133,12 +133,12 @@ def create_router(platform):
             ok = h in HARFLAR and h == v["t"]["javob"]
             ball += BALL[l] if ok else 0
             natija.append({"id": sid, "ball": BALL[l], "togri": ok, "javob": v["t"]["javob"], "tanlandi": h if h in HARFLAR else "", "mavzu": v["mavzu"], "yechim": v["t"].get("yechim") or None})
-        maks = round(10 * BALL[1] + 20 * BALL[body.daraja], 1)
-        r = {"daraja": body.daraja, "ball": round(ball, 1), "maks": maks, "foiz": round(100 * ball / maks), "togri": sum(1 for x in natija if x["togri"]), "jami": 30,
-             "oddiy_togri": sum(1 for x in natija[:10] if x["togri"]), "tanlov_togri": sum(1 for x in natija[10:] if x["togri"]), "natija": natija, "tavsiya": zaif_mavzular(natija)}
+        maks = MAKS
+        r = {"ball": round(ball, 1), "maks": maks, "foiz": round(100 * ball / maks), "togri": sum(1 for x in natija if x["togri"]), "jami": 30,
+             "qismlar": [sum(1 for x in natija[a:a + 10] if x["togri"]) for a in (0, 10, 20)], "natija": natija, "tavsiya": zaif_mavzular(natija)}
 
         def f(cur):
-            cur.execute("INSERT INTO mat_kirish_urinish(user_id, daraja, ball, maks, togri, sekund) VALUES(%s,%s,%s,%s,%s,%s) RETURNING id", (u, body.daraja, r["ball"], maks, r["togri"], body.sekund))
+            cur.execute("INSERT INTO mat_kirish_urinish(user_id, daraja, ball, maks, togri, sekund) VALUES(%s,%s,%s,%s,%s,%s) RETURNING id", (u, 0, r["ball"], maks, r["togri"], body.sekund))
             r["id"] = int(cur.fetchone()["id"])
             for x in natija:
                 if not x["tanlandi"]:
