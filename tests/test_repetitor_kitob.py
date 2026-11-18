@@ -2,10 +2,10 @@ from modules import repetitor_kitob as rk
 from modules.kurslar import kurs_of, REPETITOR_FANLAR
 
 
-def test_148_dars_tartibi():
-    assert len(rk.NOMLAR) == 148 and len(set(rk.NOMLAR)) == 148
+def test_150_dars_tartibi():
+    assert len(rk.NOMLAR) == 150 and len(set(rk.NOMLAR)) == 150
     assert rk.tartib_raqam(rk.NOMLAR[0] + rk.QOSHIMCHA) == 1
-    assert rk.tartib_raqam(rk.NOMLAR[147]) == 148
+    assert rk.tartib_raqam(rk.NOMLAR[149]) == 150
     assert rk.korinadigan_nom(rk.NOMLAR[4] + rk.QOSHIMCHA).startswith("5-dars. ")
 
 

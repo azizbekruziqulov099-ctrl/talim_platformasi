@@ -1,13 +1,15 @@
-"""Repetitor kitobi (Matematikadan repetitorlik, 1–148 dars): AI miya orqali «Matematika · 11» ostida
+"""Repetitor kitobi (Matematikadan repetitorlik, 1–150 dars): AI miya orqali «Matematika · 11» ostida
 « (Repetitor)» qo'shimchali mavzular sifatida yuklangan. Kurslar katalogida ular alohida kurs bo'lib chiqadi
 (sinfga qaramasdan), tartibi — shu ro'yxat bo'yicha."""
-KALIT = "repetitor|Matematikadan repetitorlik|148"
-NOMI = "Matematikadan repetitorlik · 148 dars"
+KALIT = "repetitor|Matematikadan repetitorlik|148"   # ichki kalit o'zgarmaydi (obuna va narxlar shu kalitga bog'langan); dars soni — 150
+NOMI = "Matematikadan repetitorlik · 150 dars"
 FAN = "Matematika"
 SINF = "Repetitor"          # kurs ichidagi belgi (katalogda sinf o'rnida)
 QOSHIMCHA = " (Repetitor)"
 NOMLAR = [
-"Natural sonlar va to'rt amal",
+"Natural sonlar va ularning o'qilishi",
+"To'rt amal alohida",
+"To'rt amal birgalikda va qavslar",
 "Qulay hisoblash",
 "Bo'linish belgilari",
 "Tub ko'paytuvchilarga ajratish",
@@ -173,7 +175,7 @@ nom_sql = kitob_sql   # eski nom
 
 
 def tartib_raqam(nom):
-    """Dars nomidan (qo'shimchali yoki qo'shimchasiz) 1..148 raqam; topilmasa 0."""
+    """Dars nomidan (qo'shimchali yoki qo'shimchasiz) 1..150 raqam; topilmasa 0."""
     s = str(nom or "").strip()
     if s.endswith(QOSHIMCHA):
         s = s[: -len(QOSHIMCHA)].strip()
