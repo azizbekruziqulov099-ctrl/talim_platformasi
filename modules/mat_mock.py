@@ -151,6 +151,7 @@ def create_router(platform):
                 cur.execute("""CREATE TABLE IF NOT EXISTS mat_mock_urinish (
                     id BIGSERIAL PRIMARY KEY, user_id BIGINT NOT NULL, seed TEXT NOT NULL, ball REAL NOT NULL, xom INT NOT NULL, togri INT NOT NULL,
                     sekund INT NOT NULL DEFAULT 0, yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), UNIQUE(user_id, seed))""")
+                cur.execute("ALTER TABLE mat_mock_urinish ADD COLUMN IF NOT EXISTS javoblar TEXT")
                 cur.execute("CREATE INDEX IF NOT EXISTS mat_mock_urinish_u ON mat_mock_urinish(user_id, yaratildi DESC)")
                 holat["tayyor"] = True
             r = fn(cur)
@@ -186,12 +187,28 @@ def create_router(platform):
         r = baholash(body.seed, {str(k): v for k, v in body.javoblar.items()})
 
         def f(cur):
-            cur.execute("""INSERT INTO mat_mock_urinish(user_id, seed, ball, xom, togri, sekund) VALUES(%s,%s,%s,%s,%s,%s)
-                           ON CONFLICT (user_id, seed) DO NOTHING RETURNING id""", (u, body.seed, r["ball"], r["xom"], r["togri_topshiriq"], body.sekund))
+            cur.execute("""INSERT INTO mat_mock_urinish(user_id, seed, ball, xom, togri, sekund, javoblar) VALUES(%s,%s,%s,%s,%s,%s,%s)
+                           ON CONFLICT (user_id, seed) DO NOTHING RETURNING id""", (u, body.seed, r["ball"], r["xom"], r["togri_topshiriq"], body.sekund, json.dumps({str(k): v for k, v in body.javoblar.items()}, ensure_ascii=False)))
             x = cur.fetchone()
             r["id"] = int(x["id"]) if x else None
             r["qayta"] = x is None   # shu seed avval topshirilgan: yechimlar ko'rsatiladi, lekin tarixga qayta yozilmaydi
         run(f)
+        return r
+
+    @router.get("/api/matmock/natija")
+    def natija(id: int, token: str = None, authorization: Optional[str] = Header(None)):
+        """Oldin topshirilgan MOCK: xato va yechimlarni qayta ko'rish."""
+        u = uid(token, authorization)
+
+        def f(cur):
+            cur.execute("SELECT seed, javoblar FROM mat_mock_urinish WHERE id=%s AND user_id=%s", (id, u))
+            return cur.fetchone()
+        row = run(f)
+        if not row or row["javoblar"] is None:
+            raise HTTPException(404, "Natija topilmadi")
+        r = baholash(row["seed"], json.loads(row["javoblar"]))
+        r["id"] = id
+        r["qayta"] = True
         return r
 
     return router

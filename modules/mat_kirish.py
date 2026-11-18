@@ -10,6 +10,7 @@ from fastapi import APIRouter, Header, HTTPException, Query
 from pydantic import BaseModel, Field
 
 from modules.mat_bank import HARFLAR
+from modules import mock_oddiy
 from modules.mat_sertifikat import _norm, pool_ol, zaif_mavzular
 
 BALL = {1: 1.1, 2: 2.1, 3: 3.1}
@@ -42,24 +43,49 @@ def darajalar():
 
 
 def tuz(daraja, rng):
+    """40 ta: birinchi 10 ta — juda sodda (500 talik bankdan, 10 xil shablon); keyingi 30 ta — tanlangan daraja (2,1 yoki 3,1) bo'yicha."""
     pool, d = pool_ol(), darajalar()
-    out, korildi = [], set()
-    for lv, n in ((1, 10), (daraja, 30)):
-        nomzod = [sid for sid, x in d.items() if x == lv]
-        rng.shuffle(nomzod)
-        k = 0
-        for sid in nomzod:
-            t = pool[sid]["t"]
-            kal = _norm(t["savol"]) + "|" + "|".join(_norm(x) for x in t["variantlar"])
-            if kal in korildi:
-                continue
-            korildi.add(kal)
-            out.append((sid, lv)); k += 1
-            if k == n:
-                break
-        if k < n:
-            raise ValueError("savol yetmadi")
+    out = [(q["id"], 1) for q in mock_oddiy.oddiy_10(rng)]
+    korildi = set()
+    nomzod = [sid for sid, x in d.items() if x == daraja]
+    rng.shuffle(nomzod)
+    k = 0
+    for sid in nomzod:
+        t = pool[sid]["t"]
+        kal = _norm(t["savol"]) + "|" + "|".join(_norm(x) for x in t["variantlar"])
+        if kal in korildi:
+            continue
+        korildi.add(kal)
+        out.append((sid, daraja)); k += 1
+        if k == 30:
+            break
+    if len(out) != 40:
+        raise ValueError("savol yetmadi")
     return out
+
+
+def savol_ol(sid):
+    """id → {savol, variantlar, javob, yechim, mavzu}. S### — sodda bank; boshqalar — Tematika/Repetitor banki."""
+    if sid.startswith("S"):
+        q = mock_oddiy.ol(sid)
+        return None if not q else {"savol": q["savol"], "variantlar": q["variantlar"], "javob": q["javob"], "yechim": q["yechim"], "mavzu": None}
+    v = pool_ol().get(sid)
+    return None if not v else {"savol": v["t"]["savol"], "variantlar": v["t"]["variantlar"], "javob": v["t"]["javob"], "yechim": v["t"].get("yechim") or None, "mavzu": v["mavzu"]}
+
+
+def hisobla(idlar, javoblar, daraja):
+    natija, ball = [], 0.0
+    for i, sid in enumerate(idlar):
+        v = savol_ol(sid)
+        lv = 1 if i < 10 else daraja
+        h = str(javoblar.get(sid) or "").strip().upper()[:1]
+        ok = h in HARFLAR and h == v["javob"]
+        ball += BALL[lv] if ok else 0
+        natija.append({"id": sid, "ball": BALL[lv], "togri": ok, "javob": v["javob"], "tanlandi": h if h in HARFLAR else "", "mavzu": v["mavzu"], "yechim": v["yechim"], "savol": v["savol"], "variantlar": v["variantlar"]})
+    mk = maks(daraja)
+    return {"daraja": daraja, "ball": round(ball, 1), "maks": mk, "foiz": round(100 * ball / mk), "togri": sum(1 for x in natija if x["togri"]), "jami": 40,
+            "oddiy_togri": sum(1 for x in natija[:10] if x["togri"]), "tanlov_togri": sum(1 for x in natija[10:] if x["togri"]), "natija": natija,
+            "tavsiya": zaif_mavzular([x for x in natija if x["mavzu"] is not None])}
 
 
 class Topshir(BaseModel):
@@ -88,6 +114,7 @@ def create_router(platform):
                 cur.execute("""CREATE TABLE IF NOT EXISTS mat_kirish_urinish (
                     id BIGSERIAL PRIMARY KEY, user_id BIGINT NOT NULL, daraja INT NOT NULL, ball REAL NOT NULL, maks REAL NOT NULL, togri INT NOT NULL,
                     sekund INT NOT NULL DEFAULT 0, yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
+                cur.execute("ALTER TABLE mat_kirish_urinish ADD COLUMN IF NOT EXISTS tafsilot TEXT")
                 cur.execute("CREATE INDEX IF NOT EXISTS mat_kirish_urinish_u ON mat_kirish_urinish(user_id, yaratildi DESC)")
                 holat["tayyor"] = True
             r = fn(cur)
@@ -116,40 +143,50 @@ def create_router(platform):
             sav = tuz(daraja, random.Random())
         except ValueError as e:
             raise HTTPException(503, str(e))
-        pool = pool_ol()
         return {"daraja": daraja, "daqiqa": 90, "soni": len(sav), "maks": maks(daraja),
-                "savollar": [{"id": sid, "ball": BALL[lv], "savol": pool[sid]["t"]["savol"], "variantlar": pool[sid]["t"]["variantlar"]} for sid, lv in sav]}
+                "savollar": [{"id": sid, "ball": BALL[lv], "savol": savol_ol(sid)["savol"], "variantlar": savol_ol(sid)["variantlar"]} for sid, lv in sav]}
 
     @router.post("/api/matkirish/topshir")
     def topshir(body: Topshir, authorization: Optional[str] = Header(None)):
         u = uid(body.token, authorization)
         pool, d = pool_ol(), darajalar()
         idlar = [str(x) for x in body.idlar]
-        lv = [d.get(x) for x in idlar]
-        if len(idlar) != 40 or len(set(idlar)) != 40 or any(x not in pool for x in idlar) or lv != [1] * 10 + [body.daraja] * 30:
+        if len(idlar) != 40 or len(set(idlar)) != 40 or any(not x.startswith("S") or mock_oddiy.ol(x) is None for x in idlar[:10]) \
+                or any(x.startswith("S") or d.get(x) != body.daraja for x in idlar[10:]):
             raise HTTPException(400, "Savollar ro'yxati noto'g'ri")
-        natija, ball = [], 0.0
-        for sid, l in zip(idlar, lv):
-            v = pool[sid]
-            h = str(body.javoblar.get(sid) or "").strip().upper()[:1]
-            ok = h in HARFLAR and h == v["t"]["javob"]
-            ball += BALL[l] if ok else 0
-            natija.append({"id": sid, "ball": BALL[l], "togri": ok, "javob": v["t"]["javob"], "tanlandi": h if h in HARFLAR else "", "mavzu": v["mavzu"], "yechim": v["t"].get("yechim") or None})
-        mk = maks(body.daraja)
-        r = {"daraja": body.daraja, "ball": round(ball, 1), "maks": mk, "foiz": round(100 * ball / mk), "togri": sum(1 for x in natija if x["togri"]), "jami": 40,
-             "oddiy_togri": sum(1 for x in natija[:10] if x["togri"]), "tanlov_togri": sum(1 for x in natija[10:] if x["togri"]), "natija": natija, "tavsiya": zaif_mavzular(natija)}
+        javoblar = {str(k): v for k, v in body.javoblar.items()}
+        r = hisobla(idlar, javoblar, body.daraja)
 
         def f(cur):
-            cur.execute("INSERT INTO mat_kirish_urinish(user_id, daraja, ball, maks, togri, sekund) VALUES(%s,%s,%s,%s,%s,%s) RETURNING id", (u, body.daraja, r["ball"], mk, r["togri"], body.sekund))
+            import json as _j
+            cur.execute("INSERT INTO mat_kirish_urinish(user_id, daraja, ball, maks, togri, sekund, tafsilot) VALUES(%s,%s,%s,%s,%s,%s,%s) RETURNING id",
+                        (u, body.daraja, r["ball"], r["maks"], r["togri"], body.sekund, _j.dumps({"idlar": idlar, "javoblar": javoblar}, ensure_ascii=False)))
             r["id"] = int(cur.fetchone()["id"])
-            for x in natija:
-                if not x["tanlandi"]:
+            for x in r["natija"]:
+                if not x["tanlandi"] or x["mavzu"] is None:
                     continue
                 cur.execute("""INSERT INTO mat_bank_javob(user_id, savol_id, mavzu, urinish, togri, oxirgi_togri, oxirgi_harf) VALUES(%s,%s,%s,1,%s,%s,%s)
                                ON CONFLICT (user_id, savol_id) DO UPDATE SET urinish=mat_bank_javob.urinish+1, togri=mat_bank_javob.togri+EXCLUDED.togri,
                                  oxirgi_togri=EXCLUDED.oxirgi_togri, oxirgi_harf=EXCLUDED.oxirgi_harf, yangilangan=NOW()""",
                             (u, x["id"], x["mavzu"], int(x["togri"]), x["togri"], x["tanlandi"]))
         run(f)
+        return r
+
+    @router.get("/api/matkirish/natija")
+    def natija(id: int, token: str = None, authorization: Optional[str] = Header(None)):
+        """Oldin topshirilgan imtihon: xato va yechimlarni qayta ko'rish."""
+        u = uid(token, authorization)
+
+        def f(cur):
+            cur.execute("SELECT daraja, tafsilot FROM mat_kirish_urinish WHERE id=%s AND user_id=%s", (id, u))
+            return cur.fetchone()
+        row = run(f)
+        if not row or not row["tafsilot"]:
+            raise HTTPException(404, "Natija topilmadi")
+        import json as _j
+        t = _j.loads(row["tafsilot"])
+        r = hisobla(t["idlar"], t["javoblar"], int(row["daraja"]))
+        r["id"] = id
         return r
 
     return router

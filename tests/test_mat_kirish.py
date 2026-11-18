@@ -9,6 +9,9 @@ def test_tuzilma():
         t = k.tuz(dr, random.Random(5))
         assert len(t) == 40 and len({s for s, _ in t}) == 40
         assert [l for _, l in t] == [1] * 10 + [dr] * 30
+        assert all(s.startswith('S') for s, _ in t[:10]) and not any(s.startswith('S') for s, _ in t[10:])
+        r = k.hisobla([s for s, _ in t], {s: k.savol_ol(s)['javob'] for s, _ in t}, dr)
+        assert r['ball'] == k.maks(dr) and r['togri'] == 40
     assert k.maks(2) == 74.0 and k.maks(3) == 104.0
 
 
