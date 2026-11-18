@@ -256,11 +256,14 @@ try:   # MOCK imtihon va Kirish imtihoni: xato bo'lsa ham asosiy ilova ishga tus
     try:
         from .modules.mat_mock import create_router as create_mat_mock_router
         from .modules.mat_kirish import create_router as create_mat_kirish_router
+        from .modules.pisa_mat import create_router as create_pisa_mat_router
     except ImportError:
         from modules.mat_mock import create_router as create_mat_mock_router
         from modules.mat_kirish import create_router as create_mat_kirish_router
+        from modules.pisa_mat import create_router as create_pisa_mat_router
     app.include_router(create_mat_mock_router(samtm_platform))
     app.include_router(create_mat_kirish_router(samtm_platform))
+    app.include_router(create_pisa_mat_router(samtm_platform))
 except Exception as _e:   # noqa: BLE001
     import logging as _lg
     _lg.getLogger(__name__).error("MOCK/Kirish routerlari yuklanmadi: %r", _e)
