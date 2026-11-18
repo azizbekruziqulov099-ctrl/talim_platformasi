@@ -95,6 +95,21 @@ MAVZULAR = {
 }
 
 
+_PM_BOLIM = {"pisa_foiz": "PM-MIQ", "pisa_nisbat": "PM-MIQ", "pisa_pul": "PM-MIQ", "pisa_chiziqli": "PM-OZG", "pisa_tezlik": "PM-OZG", "pisa_ketma": "PM-OZG",
+              "pisa_yuza": "PM-FAZ", "pisa_geometriya": "PM-FAZ", "pisa_malumot": "PM-NOA", "pisa_diagramma": "PM-NOA"}
+for _k, _b in _PM_BOLIM.items():
+    MAVZULAR[_k]["bolim"] = _b
+    MAVZULAR[_k]["toplam"] = "P_M"
+
+# Qo'shimcha modullar: har biri TEMA = {kod: {...,"bolim","toplam"}} va G.reg bilan shablonlar beradi
+for _nom in ("xb_m4", "xb_m8", "xb_pf", "xb_s4", "xb_s8", "xb_ps", "xb_pr"):
+    try:
+        _m = __import__(f"modules.{_nom}", fromlist=["TEMA"])
+        MAVZULAR.update(_m.TEMA)
+    except ImportError:
+        pass
+
+
 def _rng(mavzu, tur, seed):
     return random.Random(f"{mavzu}|{tur}|{seed}")
 
@@ -229,7 +244,7 @@ def create_router(platform):
             raise HTTPException(400, "seed noto'g'ri")
 
     @router.get("/api/pisamat/mavzular")
-    def mavzular(token: str = None, authorization: Optional[str] = Header(None)):
+    def mavzular(token: str = None, bolim: str = Query("", max_length=20), authorization: Optional[str] = Header(None)):
         u = uid(token, authorization)
 
         def f(cur):
@@ -239,8 +254,12 @@ def create_router(platform):
             h = {(r["mavzu"], r["tur"]): r for r in cur.fetchall()}
             out = []
             for k, m in MAVZULAR.items():
+                if bolim and m.get("bolim") != bolim:
+                    continue
+                if k not in G.SH:
+                    continue
                 t, ms = h.get((k, "test")), h.get((k, "mashq"))
-                out.append({"kod": k, "nom": m["nom"], "soha": m["soha"], "belgi": m["belgi"], "maqsad": m["maqsad"],
+                out.append({"kod": k, "bolim": m.get("bolim", ""), "toplam": m.get("toplam", ""), "nom": m["nom"], "soha": m["soha"], "belgi": m["belgi"], "maqsad": m["maqsad"],
                             "test_eng": int(t["eng"]) if t else None, "test_oxirgi": int(t["oxirgi"]) if t else None, "test_soni": int(t["n"]) if t else 0,
                             "mashq_eng": int(ms["eng"]) if ms else None, "mashq_soni": int(ms["n"]) if ms else 0,
                             "ozlashtirish": int(t["eng"]) if t else (int(ms["eng"] * 0.5) if ms else 0)})
