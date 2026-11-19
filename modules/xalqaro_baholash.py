@@ -2221,7 +2221,10 @@ def create_router(platform, kontent=None):
                 out.append({"kalit": t["kalit"], "holat": holat, "mashq": mashq, "test": test,
                             "dars": bool(t["kalit"] in dars_tugadi or any((c, x) in h for c in kod for x in ("mashq", "test")))})
                 oldingi_otgan = otgan
-            return {"toplam": toplam, "otish_foiz": OTISH_FOIZ, "kirish_foiz": kf, "keyingi": keyingi, "mavzular": out}
+            # qayta o'rganish: urinib ko'rilgan, lekin 70% ga yetmagan ochiq mavzular (eng pasti birinchi)
+            zaif = sorted([x for x in out if x["holat"] == "ochiq" and (x["mashq"] or x["test"]) and min(x["mashq"], x["test"]) < OTISH_FOIZ],
+                          key=lambda x: min(x["mashq"], x["test"]))[:3]
+            return {"toplam": toplam, "otish_foiz": OTISH_FOIZ, "kirish_foiz": kf, "keyingi": keyingi, "zaif": [x["kalit"] for x in zaif], "mavzular": out}
         return run_db(run)
 
     @router.get("/api/xalqaro/sinflar")
