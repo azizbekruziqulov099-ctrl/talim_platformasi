@@ -2227,6 +2227,73 @@ def create_router(platform, kontent=None):
             return {"toplam": toplam, "otish_foiz": OTISH_FOIZ, "kirish_foiz": kf, "keyingi": keyingi, "zaif": [x["kalit"] for x in zaif], "mavzular": out}
         return run_db(run)
 
+    @router.get("/api/xalqaro/kurs")
+    def kurs(token: str = None, toplam: str = Query("", max_length=12), til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """Kurs tuzilmasi: bo'limlar → mavzular (har birida dars + mashq + test). Mavzu 'otilgan' (mashq va test >=70%), 'ochiq' yoki 'yopiq'.
+        Eskirgan: o'tilgan, lekin 10 kundan beri mashq qilinmagan — takrorlash vaqti."""
+        user_id = uid_of(token, authorization)
+        til = til_kodi(til)
+        try:
+            from modules import pisa_mat as _pm, xb_kurs as _xk
+        except ImportError:
+            from . import pisa_mat as _pm, xb_kurs as _xk
+        bolimlar = _xk.tuzilma(toplam, _pm.MAVZULAR, _pm.G.SH)
+        if not bolimlar:
+            raise HTTPException(404, matn("mavzu_yoq", til))
+
+        def run(conn, cur):
+            h, oxirgi = {}, {}
+            try:
+                cur.execute("SAVEPOINT xb_kurs")
+                cur.execute("""SELECT mavzu, tur, MAX(ROUND(100.0*ball/NULLIF(maks,0))) AS eng, MAX(yaratildi) AS oxirgi FROM pisa_mat_urinish WHERE user_id=%s GROUP BY mavzu, tur""", (user_id,))
+                for r in cur.fetchall():
+                    h[(r["mavzu"], r["tur"])] = int(r["eng"] or 0)
+                    if r["oxirgi"] and (r["mavzu"] not in oxirgi or r["oxirgi"] > oxirgi[r["mavzu"]]):
+                        oxirgi[r["mavzu"]] = r["oxirgi"]
+                cur.execute("RELEASE SAVEPOINT xb_kurs")
+            except Exception:
+                try:
+                    cur.execute("ROLLBACK TO SAVEPOINT xb_kurs")
+                except Exception:
+                    pass
+            cur.execute("""SELECT MAX(foiz) AS f FROM xb_imtihon WHERE user_id=%s AND til=%s AND tur='kirish' AND toplam=%s AND topshirilgan IS NOT NULL""", (user_id, til, toplam))
+            kf = (cur.fetchone() or {}).get("f")
+            yassi = [k for b in bolimlar for k in b["mavzular"]]
+            n = len(yassi)
+            ochiq_soni = min(n, 2 + int((kf or 0) / 100 * max(0, n - 2)))
+            import datetime as _dt
+            hozir = _dt.datetime.now(_dt.timezone.utc)
+            holat_of, keyingi, oldingi_otgan, tafsilot = {}, None, True, {}
+            for i, k in enumerate(yassi):
+                mashq, test = h.get((k, "mashq"), 0), h.get((k, "test"), 0)
+                otgan = mashq >= 70 and test >= 70
+                ochiq = i < ochiq_soni or oldingi_otgan or otgan
+                holat = "otilgan" if otgan else ("ochiq" if ochiq else "yopiq")
+                if holat == "ochiq" and keyingi is None:
+                    keyingi = k
+                eski = False
+                lt = oxirgi.get(k)
+                if otgan and lt is not None:
+                    try:
+                        eski = (hozir - (lt if lt.tzinfo else lt.replace(tzinfo=_dt.timezone.utc))).days >= 10
+                    except Exception:
+                        eski = False
+                tafsilot[k] = {"kod": k, "nom": _pm.MAVZULAR[k]["nom"], "belgi": _pm.MAVZULAR[k].get("belgi", ""), "maqsad": _pm.MAVZULAR[k].get("maqsad", ""),
+                               "holat": holat, "mashq": mashq, "test": test, "dars": bool((k, "mashq") in h or (k, "test") in h), "eskirgan": eski}
+                oldingi_otgan = otgan
+            out = []
+            for b in bolimlar:
+                ms = [tafsilot[k] for k in b["mavzular"]]
+                foiz = round(sum(min(m["mashq"], m["test"]) for m in ms) / len(ms)) if ms else 0
+                hb = "otilgan" if all(m["holat"] == "otilgan" for m in ms) else ("ochiq" if any(m["holat"] != "yopiq" for m in ms) else "yopiq")
+                out.append({**{x: b[x] for x in ("kalit", "nom", "belgi", "izoh")}, "holat": hb, "foiz": foiz, "mavzular": ms})
+            zaif = sorted([t for t in tafsilot.values() if t["holat"] == "ochiq" and (t["mashq"] or t["test"]) and min(t["mashq"], t["test"]) < 70], key=lambda t: min(t["mashq"], t["test"]))[:3]
+            takror = [t["kod"] for t in tafsilot.values() if t["eskirgan"]][:5]
+            umumiy = round(sum(min(t["mashq"], t["test"]) for t in tafsilot.values()) / n) if n else 0
+            return {"toplam": toplam, "otish_foiz": 70, "kirish_foiz": kf, "keyingi": keyingi, "zaif": [t["kod"] for t in zaif], "takror": takror,
+                    "umumiy_foiz": umumiy, "mavzu_soni": n, "bolimlar": out}
+        return run_db(run)
+
     @router.get("/api/xalqaro/sinflar")
     def sinflar(token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
         """O'qituvchi — o'zi ochgan sinflar (kod, a'zolar soni); o'quvchi — qo'shilgan sinflari."""

@@ -28,6 +28,16 @@ for k in sorted(P.MAVZULAR):
     except Exception as e:
         xato.append(f"tuz: {type(e).__name__} {e}")
     nm = len({(q) for q in kor})
+    if not xato:
+        for tur in ("mashq", "test"):
+            for sd in ("s1", "s2", "s3"):
+                sv = P.tuz(k, tur, sd); jav = {}
+                for i, q in enumerate(sv, 1):
+                    if q["tur"] == "yopiq": jav[str(i)] = q["javob"]
+                    else:
+                        for z in q["qismlar"]: jav[f"{i}{z['h']}"] = z["son"]
+                r = P.baholash(k, tur, sd, jav)
+                if r["ball"] != r["maks"]: xato.append(f"to'g'ri javoblar 100% bermadi ({tur},{sd}: {r['ball']}/{r['maks']})"); break
     yop = sum(1 for f, t in sh if t == "yopiq"); och = len(sh) - yop
     holat = "OK " if not xato and nm >= 60 else "XATO"
     if holat != "OK ": bad += 1

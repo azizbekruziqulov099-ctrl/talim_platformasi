@@ -196,7 +196,7 @@ def pm_tr_6(rng):
 @sh("pm_trig", "ochiq")
 def pm_tr_7(rng):
     a, b, c = rng.choice([(3, 4, 5), (6, 8, 10), (5, 12, 13), (8, 15, 17)])
-    return _o(f"To‘g‘ri burchakli uchburchakda katetlar {a} va {b}, gipotenuza {c}.", [(f"a) {a} li katet qarshisidagi burchak sinusi (o‘nli kasr, 2 xona):", round(a / c, 2)), (f"b) shu burchak tangensi (2 xona):", round(a / b, 2))], [f"a) {a}/{c} ≈ {num(Fraction(str(round(a / c, 2))))}.", f"b) {a}/{b} ≈ {num(Fraction(str(round(a / b, 2))))}."])
+    return _o(f"To‘g‘ri burchakli uchburchakda katetlar {a} va {b}, gipotenuza {c}.", [(f"a) {a} li katet qarshisidagi burchak sinusi (o‘nli kasr, 2 xona):", Fraction(str(round(a / c, 2)))), (f"b) shu burchak tangensi (2 xona):", Fraction(str(round(a / b, 2))))], [f"a) {a}/{c} ≈ {num(Fraction(str(round(a / c, 2))))}.", f"b) {a}/{b} ≈ {num(Fraction(str(round(a / b, 2))))}."])
 
 
 # ═════════ 11-BO'LIM · STATISTIKA ═════════
@@ -250,7 +250,7 @@ def pm_or_6(rng):
 
 @sh("pm_ortacha", "ochiq")
 def pm_or_7(rng):
-    v = sorted(rng.sample(range(10, 60), 6)); 
+    v = sorted(rng.sample(range(10, 56), 5)); v.append(v[-1] + 1 + (-(sum(v) + v[-1] + 1)) % 6)
     med = Fraction(v[2] + v[3], 2)
     return _o(f"Oltita o‘quvchining bo‘yi (sm): {', '.join(map(str, [x + 100 for x in v]))}.", [("a) O‘rtacha bo‘y (sm):", Fraction(sum(v), 6) + 100), ("b) Mediana (sm):", med + 100)], [f"a) {sum(x + 100 for x in v)} : 6 = {num(Fraction(sum(v), 6) + 100)}.", f"b) Ikki o‘rtadagi: ({v[2] + 100} + {v[3] + 100})/2 = {num(med + 100)}."])
 

@@ -145,7 +145,7 @@ def pm_kasr_7(rng):
     p = rng.choice([2, 3, 4, 5]); q = rng.choice([6, 8, 9, 10]); r = rng.choice([2, 3, 5]); s = rng.choice([7, 9, 12])
     a, b = Fraction(p, q), Fraction(r, s)
     kat = "birinchisi" if a > b else "ikkinchisi"
-    return _o(f"Ikki idishdagi sharbat: birinchisida {p}/{q} litr, ikkinchisida {r}/{s} litr.", [("a) Qaysi idishda ko‘p? (1 yoki 2 yozing)", 1 if a > b else 2), ("b) Farq necha litr? (o‘nli kasr, 2 xona aniqlikda yaxlitlang)", round(float(abs(a - b)), 2))],
+    return _o(f"Ikki idishdagi sharbat: birinchisida {p}/{q} litr, ikkinchisida {r}/{s} litr.", [("a) Qaysi idishda ko‘p? (1 yoki 2 yozing)", 1 if a > b else 2), ("b) Farq necha litr? (o‘nli kasr, 2 xona aniqlikda yaxlitlang)", Fraction(str(round(float(abs(a - b)), 2))))],
               [f"a) {p}/{q} = {num(round(float(a), 3))}; {r}/{s} = {num(round(float(b), 3))} → {kat} ko‘p.", f"b) Farq ≈ {num(round(float(abs(a - b)), 2))} litr."])
 
 
@@ -324,7 +324,7 @@ def pm_fq_6(rng):
 @sh("pm_foizqayta", "ochiq")
 def pm_fq_7(rng):
     a = rng.choice([40, 50, 60, 80]); b = rng.choice([a + 10, a + 20, a + 30])
-    return _o(f"Maktab kutubxonasida {a} ta kitob bor edi, keyin {b} ta bo‘ldi.", [("a) Necha foizga oshgan?", (b - a) * 100 // a if (b - a) * 100 % a == 0 else round((b - a) * 100 / a, 1)), ("b) Yana shuncha foiz oshsa (yangi sondan), nechta kitob bo‘ladi?", round(b * (100 + (b - a) * 100 / a) / 100, 1))],
+    return _o(f"Maktab kutubxonasida {a} ta kitob bor edi, keyin {b} ta bo‘ldi.", [("a) Necha foizga oshgan? (1 xona aniqlikda)", Fraction(str(round((b - a) * 100 / a, 1)))), ("b) Yana shuncha foiz oshsa (yangi sondan), nechta kitob bo‘ladi? (1 xona aniqlikda)", Fraction(str(round(b * (100 + (b - a) * 100 / a) / 100, 1))))],
               [f"a) ({b} − {a}) / {a} · 100 = {(b - a) * 100 / a:.1f}%.", f"b) {b} · {1 + (b - a) / a:.3f} ≈ {round(b * (1 + (b - a) / a), 1)}."])
 
 
