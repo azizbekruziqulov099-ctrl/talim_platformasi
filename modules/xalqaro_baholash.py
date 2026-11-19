@@ -2128,6 +2128,29 @@ def create_router(platform, kontent=None):
             urin = [bilim[x["id"]] for x in sv if x["id"] in bilim]
             mashq = round(100 * sum(1 for b in urin if b["oxirgi_togri"]) / max(1, len(sv)))
             test = round(100 * sum(b["togri"] for b in urin) / max(1, sum(b["urinish"] for b in urin))) if urin else 0
+            # chuqur dars / 30 mashq / 30 test (pisa_mat_urinish): mavzu bo'yicha eng yaxshi foizlar — bor bo'lsa, shu asos
+            try:
+                try:
+                    from modules import pisa_mat as _pm
+                except ImportError:
+                    from . import pisa_mat as _pm
+                pm = [c for c, m in _pm.MAVZULAR.items() if m.get("bolim") in set(mavzular) and c in _pm.G.SH]
+                if pm:
+                    cur.execute("SAVEPOINT xb_ub")
+                    cur.execute("""SELECT mavzu, tur, MAX(ROUND(100.0*ball/NULLIF(maks,0))) AS eng FROM pisa_mat_urinish
+                                   WHERE user_id=%s AND mavzu=ANY(%s) GROUP BY mavzu, tur""", (user_id, pm))
+                    h = {(r["mavzu"], r["tur"]): int(r["eng"] or 0) for r in cur.fetchall()}
+                    cur.execute("RELEASE SAVEPOINT xb_ub")
+                    mashq = round(sum(h.get((c, "mashq"), 0) for c in pm) / len(pm))
+                    test = round(sum(h.get((c, "test"), 0) for c in pm) / len(pm))
+                    for m_ in mavzular:   # mashq yoki test topshirgan mavzuning darsi o'tilgan hisoblanadi
+                        if any((c, t_) in h for c, mm in _pm.MAVZULAR.items() if mm.get("bolim") == m_ for t_ in ("mashq", "test")):
+                            tugagan = tugagan | {m_}
+            except Exception:
+                try:
+                    cur.execute("ROLLBACK TO SAVEPOINT xb_ub")
+                except Exception:
+                    pass
             cur.execute("""SELECT MAX(foiz) AS f FROM xb_imtihon WHERE user_id=%s AND til=%s AND toplam=%s AND topshirilgan IS NOT NULL""",
                         (user_id, til, toplam))
             imt = int((cur.fetchone() or {}).get("f") or 0)
