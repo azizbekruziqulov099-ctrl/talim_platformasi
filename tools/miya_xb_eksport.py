@@ -8,9 +8,10 @@ FAN = {"T11_G4_M": ("Matematika", "4-sinf (TIMSS)"), "T11_G8_M": ("Matematika", 
        "T11_G4_S": ("Tabiiy fan", "4-sinf (TIMSS)"), "T11_G8_S": ("Fan (fizika, kimyo, biologiya, geografiya)", "8-sinf (TIMSS)"),
        "P_M": ("Matematika", "PISA"), "P_S": ("Tabiiy fan", "PISA"), "P_R": ("O‘qish savodxonligi", "PISA"), "P_F": ("Moliyaviy savodxonlik", "PISA")}
 L = "ABCD"
+ETIKET = {"P_M": "PISA mat", "P_S": "PISA fan", "P_R": "PISA o‘qish", "P_F": "PISA moliya", "T11_G4_M": "TIMSS 4 mat", "T11_G8_M": "TIMSS 8 mat", "T11_G4_S": "TIMSS 4 fan", "T11_G8_S": "TIMSS 8 fan"}
 PREF = {"P_M": "XPM", "P_S": "XPS", "P_R": "XPR", "P_F": "XPF", "T11_G4_M": "X4M", "T11_G8_M": "X8M", "T11_G4_S": "X4S", "T11_G8_S": "X8S"}
 TASHLA = set()
-IKKI = {"M8-QON": ["4-kitob-01-02-01-01-11-001", "SIN0008174"]}   # bazada bir xil nomli ikki mavzu — ikkalasiga ham   # bazada bir xil nomli 2 ta mavzu bor — kod aniqlanmaguncha qo'shilmaydi
+IKKI = {}   # bazada bir xil nomli ikki mavzu — ikkalasiga ham   # bazada bir xil nomli 2 ta mavzu bor — kod aniqlanmaguncha qo'shilmaydi
 D = lambda s: re.sub(r"\$", "", s or "")
 
 
@@ -99,7 +100,7 @@ def main(out):
             d, rows = dars_qatorlari(k)
             rows += savol_qatorlari(k, "mashq", "", "S") + savol_qatorlari(k, "test", "", "S")
             for kod in IKKI.get(k, [""]):
-                pre.append({"mavzu_kodi": kod, "mavzu_nomi": P.MAVZULAR[k]["nom"], "mavzu_raqami": str(len(pre) + 1), "rows": rows})
+                pre.append({"mavzu_kodi": kod, "mavzu_nomi": f'{P.MAVZULAR[k]["nom"]} ({ETIKET[tp]})', "mavzu_raqami": str(len(pre) + 1), "rows": rows})
         wb = template_workbook(prefill=pre, book=book)
         path = os.path.join(out, f"miya_{tp}.xlsx"); wb.save(path); files.append(path)
         import openpyxl
