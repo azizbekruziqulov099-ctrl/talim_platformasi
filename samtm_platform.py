@@ -2884,6 +2884,31 @@ _TIL_OVOZLARI = {
 
 # Railway jarayoni ichidagi kichik LRU kesh. Bir xil savol qayta o'qilganda
 # edge-tts'ni yangidan kutmaymiz; hajm cheklovi servis xotirasini himoya qiladi.
+# Ovoz sinovi uchun: ruxsat etilgan diktorlar (edge-tts). Boshqa nom berilsa e'tiborga olinmaydi.
+OVOZ_DIKTORLAR = {
+    "uz-UZ-MadinaNeural": "O‘zbek · Madina (ayol)", "uz-UZ-SardorNeural": "O‘zbek · Sardor (erkak)",
+    "ru-RU-SvetlanaNeural": "Rus · Svetlana (ayol)", "ru-RU-DmitryNeural": "Rus · Dmitriy (erkak)",
+    "kk-KZ-AigulNeural": "Qozoq · Aygul (ayol)", "kk-KZ-DauletNeural": "Qozoq · Daulet (erkak)",
+    "az-AZ-BanuNeural": "Ozarbayjon · Banu (ayol)", "az-AZ-BabekNeural": "Ozarbayjon · Babek (erkak)",
+    "tr-TR-EmelNeural": "Turk · Emel (ayol)", "tr-TR-AhmetNeural": "Turk · Ahmet (erkak)",
+    "en-US-JennyNeural": "Ingliz (AQSH) · Jenny (ayol)", "en-US-AriaNeural": "Ingliz (AQSH) · Aria (ayol)", "en-US-AvaNeural": "Ingliz (AQSH) · Ava (ayol)",
+    "en-US-EmmaNeural": "Ingliz (AQSH) · Emma (ayol)", "en-US-MichelleNeural": "Ingliz (AQSH) · Michelle (ayol)",
+    "en-US-GuyNeural": "Ingliz (AQSH) · Guy (erkak)", "en-US-AndrewNeural": "Ingliz (AQSH) · Andrew (erkak)", "en-US-BrianNeural": "Ingliz (AQSH) · Brian (erkak)",
+    "en-US-ChristopherNeural": "Ingliz (AQSH) · Christopher (erkak)", "en-US-EricNeural": "Ingliz (AQSH) · Eric (erkak)", "en-US-RogerNeural": "Ingliz (AQSH) · Roger (erkak)",
+    "en-GB-SoniaNeural": "Ingliz (UK) · Sonia (ayol)", "en-GB-LibbyNeural": "Ingliz (UK) · Libby (ayol)", "en-GB-RyanNeural": "Ingliz (UK) · Ryan (erkak)",
+    "de-DE-KatjaNeural": "Nemis · Katja (ayol)", "de-DE-ConradNeural": "Nemis · Conrad (erkak)",
+    "fr-FR-DeniseNeural": "Fransuz · Denise (ayol)", "fr-FR-HenriNeural": "Fransuz · Henri (erkak)",
+    "es-ES-ElviraNeural": "Ispan · Elvira (ayol)", "es-ES-AlvaroNeural": "Ispan · Alvaro (erkak)",
+    "hi-IN-SwaraNeural": "Hind · Swara (ayol)", "hi-IN-MadhurNeural": "Hind · Madhur (erkak)",
+    "ar-EG-SalmaNeural": "Arab · Salma (ayol)", "ar-EG-ShakirNeural": "Arab · Shakir (erkak)",
+}
+
+
+@app.get("/api/ovoz/diktorlar")
+def ovoz_diktorlar():
+    return {"diktorlar": [{"kod": k, "nom": v} for k, v in OVOZ_DIKTORLAR.items()]}
+
+
 _OVOZ_KESH = OrderedDict()
 _OVOZ_KESH_JAMI_BAYT = 0
 _OVOZ_KESH_MAX_ELEMENT = int(os.environ.get("OVOZ_KESH_ELEMENT", "600") or 600)   # REV157: ko'p bola — kattaroq xotira keshi
@@ -3515,7 +3540,7 @@ def _ovoz_eski_alifbo(matn: str) -> str:
 
 
 @app.get("/api/ovoz")
-async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = "", takror: int = 0):
+async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = "", takror: int = 0, diktor: str = ""):
     """Berilgan matnni MP3 oqimi sifatida qaytaradi.
 
     Birinchi audio bo'lagi tayyor bo'lishi bilan javob brauzerga uzatiladi; to'liq MP3 tugashini kutmaydi.
@@ -3540,9 +3565,10 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     # REV236: Kabu robot ovozi TV dagi kabi +28Hz gacha
     ohang = ohang if re.fullmatch(r"[+-](?:[0-9]|[12][0-9]|30)Hz", str(ohang or "")) else "+0Hz"
     takror = 1 if takror else 0
+    diktor = diktor if diktor in OVOZ_DIKTORLAR else ""   # ovoz sinovi: tanlangan diktor hamma bo'lakni o'qiydi
     asosiy = asosiy_til if asosiy_til in ("en", "ru") else "auto"   # REV233
     kesh_kaliti = hashlib.sha256(
-        (f"v123\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}" + (f"\0{asosiy}" if asosiy != "auto" else "")).encode("utf-8")
+        (f"v123\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}" + (f"\0{asosiy}" if asosiy != "auto" else "") + (f"\0{diktor}" if diktor else "")).encode("utf-8")
     ).hexdigest()
     # REV157 (100 ming foydalanuvchi): ovoz faqat matn+sozlamaga bog'liq, foydalanuvchiga xos emas — brauzer va
     # CDN uni uzoq saqlaydi (bir xil dars ovozini 100 ming bola qayta so'rasa ham server qayta yaratmaydi).
@@ -3584,7 +3610,9 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     async def audio_bolaklari():
         for bolak in reja:
             til = bolak["til"]
-            if til in _TIL_OVOZLARI:
+            if diktor:
+                voice = diktor
+            elif til in _TIL_OVOZLARI:
                 voice = _TIL_OVOZLARI[til].get(jins, _TIL_OVOZLARI[til]["qiz"])
             else:
                 voice = EDGE_OVOZ.get(jins, EDGE_OVOZ["qiz"])
