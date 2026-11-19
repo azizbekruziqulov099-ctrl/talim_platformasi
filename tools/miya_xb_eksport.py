@@ -6,10 +6,10 @@ from modules.ai_miya_varoq import template_workbook, parse_sheets
 
 FAN = {"T11_G4_M": ("Matematika", "4-sinf (TIMSS)"), "T11_G8_M": ("Matematika", "8-sinf (TIMSS)"),
        "T11_G4_S": ("Tabiiy fan", "4-sinf (TIMSS)"), "T11_G8_S": ("Fan (fizika, kimyo, biologiya, geografiya)", "8-sinf (TIMSS)"),
-       "P_M": ("Matematika", "PISA"), "P_S": ("Tabiiy fan", "PISA"), "P_R": ("O‘qish savodxonligi", "PISA"), "P_F": ("Moliyaviy savodxonlik", "PISA")}
+       "PIRLS_4": ("O‘qish savodxonligi", "4-sinf (PIRLS)"), "P_M": ("Matematika", "PISA"), "P_S": ("Tabiiy fan", "PISA"), "P_R": ("O‘qish savodxonligi", "PISA"), "P_F": ("Moliyaviy savodxonlik", "PISA")}
 L = "ABCD"
-ETIKET = {"P_M": "PISA mat", "P_S": "PISA fan", "P_R": "PISA o‘qish", "P_F": "PISA moliya", "T11_G4_M": "TIMSS 4 mat", "T11_G8_M": "TIMSS 8 mat", "T11_G4_S": "TIMSS 4 fan", "T11_G8_S": "TIMSS 8 fan"}
-PREF = {"P_M": "XPM", "P_S": "XPS", "P_R": "XPR", "P_F": "XPF", "T11_G4_M": "X4M", "T11_G8_M": "X8M", "T11_G4_S": "X4S", "T11_G8_S": "X8S"}
+ETIKET = {"PIRLS_4": "PIRLS 4", "P_M": "PISA mat", "P_S": "PISA fan", "P_R": "PISA o‘qish", "P_F": "PISA moliya", "T11_G4_M": "TIMSS 4 mat", "T11_G8_M": "TIMSS 8 mat", "T11_G4_S": "TIMSS 4 fan", "T11_G8_S": "TIMSS 8 fan"}
+PREF = {"PIRLS_4": "XPL", "P_M": "XPM", "P_S": "XPS", "P_R": "XPR", "P_F": "XPF", "T11_G4_M": "X4M", "T11_G8_M": "X8M", "T11_G4_S": "X4S", "T11_G8_S": "X8S"}
 TASHLA = set()
 IKKI = {}   # bazada bir xil nomli ikki mavzu — ikkalasiga ham   # bazada bir xil nomli 2 ta mavzu bor — kod aniqlanmaguncha qo'shilmaydi
 D = lambda s: re.sub(r"\$", "", s or "")
