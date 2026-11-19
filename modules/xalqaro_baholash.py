@@ -2105,6 +2105,39 @@ def create_router(platform, kontent=None):
             return {"ok": True}
         return run_db(run)
 
+    # ─────────── umumiy 1–100 ball (har dastur alohida) ───────────
+    BALL_UL = {"dars": 20, "mashq": 30, "test": 20, "imtihon": 30}
+
+    @router.get("/api/xalqaro/umumiy_ball")
+    def umumiy_ball(token: str = None, toplam: str = Query("", max_length=12), til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """Bitta dastur (to'plam) bo'yicha 1–100 ball: dars 20 + mashq 30 + test 20 + imtihon 30.
+        dars — oxirigacha o'tilgan mavzular ulushi; mashq — to'g'ri o'zlashtirilgan savollar ulushi;
+        test — barcha urinishlar aniqligi; imtihon — shu dastur bo'yicha eng yaxshi rasmiy imtihon foizi."""
+        user_id = uid_of(token, authorization)
+        til = til_kodi(til)
+        k = KT(til)
+        if toplam not in k.ramka.get("toplamlar", {}):
+            raise HTTPException(404, matn("mavzu_yoq", til))
+
+        def run(conn, cur):
+            mavzular = [t["kalit"] for t in k.ramka["mavzular"].get(toplam, [])]
+            cur.execute("SELECT mavzu FROM xb_dars WHERE user_id=%s AND til=%s AND tugadi", (user_id, til))
+            tugagan = {r["mavzu"] for r in cur.fetchall()} & set(mavzular)
+            bilim = bilim_xaritasi(cur, user_id, til)
+            sv = [x for m in mavzular for x in k.by_mavzu.get(m, [])]
+            urin = [bilim[x["id"]] for x in sv if x["id"] in bilim]
+            mashq = round(100 * sum(1 for b in urin if b["oxirgi_togri"]) / max(1, len(sv)))
+            test = round(100 * sum(b["togri"] for b in urin) / max(1, sum(b["urinish"] for b in urin))) if urin else 0
+            cur.execute("""SELECT MAX(foiz) AS f FROM xb_imtihon WHERE user_id=%s AND til=%s AND toplam=%s AND topshirilgan IS NOT NULL""",
+                        (user_id, til, toplam))
+            imt = int((cur.fetchone() or {}).get("f") or 0)
+            dars = round(100 * len(tugagan) / max(1, len(mavzular)))
+            qism = {"dars": dars, "mashq": mashq, "test": test, "imtihon": imt}
+            ball = round(sum(qism[a] * BALL_UL[a] / 100 for a in BALL_UL))
+            return {"toplam": toplam, "ball": min(100, ball), "qismlar": {a: {"foiz": qism[a], "ball": round(qism[a] * BALL_UL[a] / 100, 1), "maks": BALL_UL[a]} for a in BALL_UL},
+                    "mavzular": {"jami": len(mavzular), "darsi_tugagan": len(tugagan)}}
+        return run_db(run)
+
     @router.get("/api/xalqaro/sinflar")
     def sinflar(token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
         """O'qituvchi — o'zi ochgan sinflar (kod, a'zolar soni); o'quvchi — qo'shilgan sinflari."""
