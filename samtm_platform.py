@@ -3539,8 +3539,39 @@ def _ovoz_eski_alifbo(matn: str) -> str:
     return "".join(natija)
 
 
+
+def _jonli_gaplar(matn: str, tezlik: str, ohang: str):
+    """Matnni gaplarga bo'lib, har biriga ohang beradi: savol — yuqoriga, undov — tezroq va balandroq,
+    ko'p nuqta — sekin va pauza bilan, ikki nuqtadan oldingi gap — ozgina sekin. [(gap, tezlik, ohang, pauza_soniya)]"""
+    def son(x):
+        try:
+            return int(re.sub(r"[^0-9+-]", "", x) or 0)
+        except ValueError:
+            return 0
+    t0, o0 = son(tezlik), son(ohang)
+    gaplar = [g.strip() for g in re.split(r"(?<=[.!?…:])\s+", matn) if g.strip()]
+    chiq = []
+    for g in gaplar[:40]:
+        dt, do, pz = 0, 0, 0.18
+        if g.endswith("?"):
+            dt, do, pz = -2, 6, 0.3
+        elif g.endswith("!"):
+            dt, do, pz = 6, 8, 0.25
+        elif g.endswith("…") or g.endswith("..."):
+            dt, do, pz = -8, -3, 0.45
+        elif g.endswith(":"):
+            dt, do, pz = -4, 2, 0.35
+        elif g.endswith(".") and len(g) < 28:
+            dt, do, pz = 2, 3, 0.22
+        elif g.endswith("."):
+            pz = 0.3
+        t = max(-30, min(30, t0 + dt)); o = max(-30, min(30, o0 + do))
+        chiq.append((g, f"{t:+d}%", f"{o:+d}Hz", pz))
+    return chiq or [(matn, tezlik, ohang, 0)]
+
+
 @app.get("/api/ovoz")
-async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = "", takror: int = 0, diktor: str = ""):
+async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = "", takror: int = 0, diktor: str = "", jonli: int = 0):
     """Berilgan matnni MP3 oqimi sifatida qaytaradi.
 
     Birinchi audio bo'lagi tayyor bo'lishi bilan javob brauzerga uzatiladi; to'liq MP3 tugashini kutmaydi.
@@ -3565,10 +3596,11 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     # REV236: Kabu robot ovozi TV dagi kabi +28Hz gacha
     ohang = ohang if re.fullmatch(r"[+-](?:[0-9]|[12][0-9]|30)Hz", str(ohang or "")) else "+0Hz"
     takror = 1 if takror else 0
+    jonli = 1 if jonli else 0   # jonli ohang: savol/undov/ko'p nuqta gaplari boshqacha ohang va pauza bilan
     diktor = diktor if diktor in OVOZ_DIKTORLAR else ""   # ovoz sinovi: tanlangan diktor hamma bo'lakni o'qiydi
     asosiy = asosiy_til if asosiy_til in ("en", "ru") else "auto"   # REV233
     kesh_kaliti = hashlib.sha256(
-        (f"v123\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}" + (f"\0{asosiy}" if asosiy != "auto" else "") + (f"\0{diktor}" if diktor else "")).encode("utf-8")
+        (f"v123\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}" + (f"\0{asosiy}" if asosiy != "auto" else "") + (f"\0{diktor}" if diktor else "") + ("\0jonli2" if jonli else "")).encode("utf-8")
     ).hexdigest()
     # REV157 (100 ming foydalanuvchi): ovoz faqat matn+sozlamaga bog'liq, foydalanuvchiga xos emas — brauzer va
     # CDN uni uzoq saqlaydi (bir xil dars ovozini 100 ming bola qayta so'rasa ham server qayta yaratmaydi).
@@ -3619,7 +3651,20 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
             tayyor = _ovoz_uchun_tayyorla_til(bolak["matn"], til)
             if not tayyor.strip():
                 continue
-            audio = await _edge_bolak(tayyor, voice, tezlik, ohang, pullik=_pullik)
+            if jonli:
+                audio = b""
+                for gap, t2, o2, pz in _jonli_gaplar(tayyor, tezlik, ohang):
+                    a1 = await _edge_bolak(gap, voice, t2, o2, pullik=_pullik)
+                    if not a1:
+                        holat["chala"] = True
+                        continue
+                    audio += a1
+                    if pz:
+                        jim1 = ovoz_reja.jimlik(a1, pz)
+                        if jim1:
+                            audio += jim1
+            else:
+                audio = await _edge_bolak(tayyor, voice, tezlik, ohang, pullik=_pullik)
             if not audio:
                 holat["chala"] = True   # bu bo'lak tashlab o'tiladi — qolgan gap baribir o'qiladi, lekin keshlanmaydi
                 continue
