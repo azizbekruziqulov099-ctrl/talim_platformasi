@@ -2161,6 +2161,69 @@ def create_router(platform, kontent=None):
                     "mavzular": {"jami": len(mavzular), "darsi_tugagan": len(tugagan)}}
         return run_db(run)
 
+    # ─────────── shaxsiy yo'l: 70% li qattiq qulf (boshidagi 2 mavzu ochiq; kirish testi natijasi ko'proq ochadi) ───────────
+    OTISH_FOIZ = 70
+    BOSHI_OCHIQ = 2
+
+    @router.get("/api/xalqaro/yol")
+    def yol(token: str = None, toplam: str = Query("", max_length=12), til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """Mavzu ketma-ketligi: mavzu 'otilgan' (mashq ham, test ham >=70%), 'ochiq' yoki 'yopiq'.
+        Kirish testida F% olgan o'quvchiga 2 + F% (qolgan mavzularning) ochiladi: 0–10% — eng boshidan, 40% — ancha oldinga."""
+        user_id = uid_of(token, authorization)
+        til = til_kodi(til)
+        k = KT(til)
+        if toplam not in k.ramka.get("toplamlar", {}):
+            raise HTTPException(404, matn("mavzu_yoq", til))
+
+        def run(conn, cur):
+            mavzular = [t for t in k.ramka["mavzular"].get(toplam, [])]
+            bilim = bilim_xaritasi(cur, user_id, til)
+            cur.execute("SELECT mavzu FROM xb_dars WHERE user_id=%s AND til=%s AND tugadi", (user_id, til))
+            dars_tugadi = {r["mavzu"] for r in cur.fetchall()}
+            h = {}
+            try:
+                try:
+                    from modules import pisa_mat as _pm
+                except ImportError:
+                    from . import pisa_mat as _pm
+                pm = {}
+                for c, m in _pm.MAVZULAR.items():
+                    if c in _pm.G.SH:
+                        pm.setdefault(m.get("bolim"), []).append(c)
+                if pm:
+                    cur.execute("SAVEPOINT xb_yol")
+                    cur.execute("""SELECT mavzu, tur, MAX(ROUND(100.0*ball/NULLIF(maks,0))) AS eng FROM pisa_mat_urinish WHERE user_id=%s GROUP BY mavzu, tur""", (user_id,))
+                    h = {(r["mavzu"], r["tur"]): int(r["eng"] or 0) for r in cur.fetchall()}
+                    cur.execute("RELEASE SAVEPOINT xb_yol")
+            except Exception:
+                pm = {}
+                try:
+                    cur.execute("ROLLBACK TO SAVEPOINT xb_yol")
+                except Exception:
+                    pass
+            cur.execute("""SELECT MAX(foiz) AS f FROM xb_imtihon WHERE user_id=%s AND til=%s AND tur='kirish' AND toplam=%s AND topshirilgan IS NOT NULL""",
+                        (user_id, til, toplam))
+            kf = (cur.fetchone() or {}).get("f")
+            n = len(mavzular)
+            ochiq_soni = min(n, BOSHI_OCHIQ + int((kf or 0) / 100 * max(0, n - BOSHI_OCHIQ)))
+            out, oldingi_otgan, keyingi = [], True, None
+            for i, t in enumerate(mavzular):
+                kod = pm.get(t["kalit"]) or []
+                if kod:
+                    mashq = round(sum(h.get((c, "mashq"), 0) for c in kod) / len(kod)); test = round(sum(h.get((c, "test"), 0) for c in kod) / len(kod))
+                else:
+                    f = mavzu_holati(bilim, k.by_mavzu.get(t["kalit"], []))["foiz"]; mashq = test = f
+                otgan = mashq >= OTISH_FOIZ and test >= OTISH_FOIZ
+                ochiq = i < ochiq_soni or oldingi_otgan or otgan
+                holat = "otilgan" if otgan else ("ochiq" if ochiq else "yopiq")
+                if holat == "ochiq" and keyingi is None:
+                    keyingi = t["kalit"]
+                out.append({"kalit": t["kalit"], "holat": holat, "mashq": mashq, "test": test,
+                            "dars": bool(t["kalit"] in dars_tugadi or any((c, x) in h for c in kod for x in ("mashq", "test")))})
+                oldingi_otgan = otgan
+            return {"toplam": toplam, "otish_foiz": OTISH_FOIZ, "kirish_foiz": kf, "keyingi": keyingi, "mavzular": out}
+        return run_db(run)
+
     @router.get("/api/xalqaro/sinflar")
     def sinflar(token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
         """O'qituvchi — o'zi ochgan sinflar (kod, a'zolar soni); o'quvchi — qo'shilgan sinflari."""
