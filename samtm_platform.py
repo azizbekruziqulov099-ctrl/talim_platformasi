@@ -2909,6 +2909,55 @@ def ovoz_diktorlar():
     return {"diktorlar": [{"kod": k, "nom": v} for k, v in OVOZ_DIKTORLAR.items()]}
 
 
+def _ovoz_saqlangan_jadval(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS ovoz_saqlangan(
+                     id SERIAL PRIMARY KEY, nom TEXT NOT NULL, diktor TEXT NOT NULL,
+                     tezlik INTEGER NOT NULL DEFAULT 0, ohang INTEGER NOT NULL DEFAULT 0, jonli BOOLEAN NOT NULL DEFAULT FALSE,
+                     yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
+
+
+@app.get("/api/ovoz/saqlangan")
+def ovoz_saqlangan_royxat():
+    """Admin saqlagan ovoz sozlamalari (nom + diktor + tezlik + ohang + jonli) — mamlakat/til bo'yicha guruhlash frontendda."""
+    conn = _db()
+    try:
+        cur = conn.cursor(); _ovoz_saqlangan_jadval(cur); conn.commit()
+        cur.execute("SELECT id, nom, diktor, tezlik, ohang, jonli FROM ovoz_saqlangan ORDER BY id")
+        return {"ovozlar": [dict(r) for r in cur.fetchall()]}
+    finally:
+        conn.close()
+
+
+@app.post("/api/ovoz/saqlash")
+def ovoz_saqlash(token: str = Form(...), nom: str = Form(...), diktor: str = Form(...), tezlik: int = Form(0), ohang: int = Form(0), jonli: bool = Form(False)):
+    _admin_tekshir(token)
+    nom = nom.strip()[:60]
+    if not nom or diktor not in OVOZ_DIKTORLAR:
+        raise HTTPException(status_code=400, detail="Nom yoki diktor noto'g'ri")
+    conn = _db()
+    try:
+        cur = conn.cursor(); _ovoz_saqlangan_jadval(cur)
+        cur.execute("INSERT INTO ovoz_saqlangan(nom, diktor, tezlik, ohang, jonli) VALUES (%s,%s,%s,%s,%s) RETURNING id",
+                    (nom, diktor, max(-30, min(30, tezlik)), max(-30, min(30, ohang)), bool(jonli)))
+        yangi = cur.fetchone()["id"]; conn.commit()
+        return {"ok": True, "id": yangi}
+    finally:
+        conn.close()
+
+
+@app.post("/api/ovoz/saqlangan_ochir")
+def ovoz_saqlangan_ochir(token: str = Form(...), id: int = Form(...)):
+    _admin_tekshir(token)
+    conn = _db()
+    try:
+        cur = conn.cursor(); _ovoz_saqlangan_jadval(cur)
+        cur.execute("DELETE FROM ovoz_saqlangan WHERE id=%s", (id,)); conn.commit()
+        return {"ok": True}
+    finally:
+        conn.close()
+
+
+
 _OVOZ_KESH = OrderedDict()
 _OVOZ_KESH_JAMI_BAYT = 0
 _OVOZ_KESH_MAX_ELEMENT = int(os.environ.get("OVOZ_KESH_ELEMENT", "600") or 600)   # REV157: ko'p bola — kattaroq xotira keshi
