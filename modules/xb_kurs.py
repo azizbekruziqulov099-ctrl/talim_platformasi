@@ -1,6 +1,14 @@
 """Xalqaro baholash kurs tuzilmasi: dastur → BO'LIMLAR (10–15) → MAVZULAR (har birida dars + 30 mashq + 30 test).
 Kodda berilgan bo'limlar (BOLIMLAR) ustun; berilmagan dasturlar uchun eski «bolim» maydoni bo'yicha avtomatik guruhlanadi."""
 
+ETIKET = {"PIRLS_4": "PIRLS 4", "P_M": "PISA mat", "P_S": "PISA fan", "P_R": "PISA o‘qish", "P_F": "PISA moliya", "T11_G4_M": "TIMSS 4 mat",
+          "T11_G8_M": "TIMSS 8 mat", "T11_G4_S": "TIMSS 4 fan", "T11_G8_S": "TIMSS 8 fan"}   # Miya Excel mavzu nomi: «<nom> (<etiket>)»
+
+
+def miya_nomi(nom, toplam):
+    return f"{nom} ({ETIKET[toplam]})" if toplam in ETIKET else nom
+
+
 BOLIMLAR = {
     "P_M": [
         {"kalit": "PM-1", "nom": "Sonlar va hisoblash", "belgi": "🔢", "izoh": "Manfiy sonlar, kasrlar, daraja, yaxlitlash",

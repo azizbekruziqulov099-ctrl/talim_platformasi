@@ -2259,6 +2259,22 @@ def create_router(platform, kontent=None):
             cur.execute("""SELECT MAX(foiz) AS f FROM xb_imtihon WHERE user_id=%s AND til=%s AND tur='kirish' AND toplam=%s AND topshirilgan IS NOT NULL""", (user_id, til, toplam))
             kf = (cur.fetchone() or {}).get("f")
             yassi = [k for b in bolimlar for k in b["mavzular"]]
+            # Miya Excel orqali yuklangan mavzu darslari (dars xonasi): mavzu nomi «<nom> (<dastur>)» bo'yicha topiladi
+            dars_kodlari = {}
+            try:
+                nomlar = {_xk.miya_nomi(_pm.MAVZULAR[k]["nom"], toplam): k for k in yassi}
+                cur.execute("SAVEPOINT xb_kurs2")
+                cur.execute("""SELECT MIN(topic_code) AS kod, COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),bob_name) AS nom FROM dts_tree
+                               WHERE is_deleted=FALSE AND COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),bob_name)=ANY(%s) GROUP BY 2""", (list(nomlar),))
+                for r in cur.fetchall():
+                    if r["nom"] in nomlar:
+                        dars_kodlari[nomlar[r["nom"]]] = r["kod"]
+                cur.execute("RELEASE SAVEPOINT xb_kurs2")
+            except Exception:
+                try:
+                    cur.execute("ROLLBACK TO SAVEPOINT xb_kurs2")
+                except Exception:
+                    pass
             n = len(yassi)
             ochiq_soni = min(n, 2 + int((kf or 0) / 100 * max(0, n - 2)))
             import datetime as _dt
@@ -2279,7 +2295,7 @@ def create_router(platform, kontent=None):
                     except Exception:
                         eski = False
                 tafsilot[k] = {"kod": k, "nom": _pm.MAVZULAR[k]["nom"], "belgi": _pm.MAVZULAR[k].get("belgi", ""), "maqsad": _pm.MAVZULAR[k].get("maqsad", ""),
-                               "holat": holat, "mashq": mashq, "test": test, "dars": bool((k, "mashq") in h or (k, "test") in h), "eskirgan": eski}
+                               "holat": holat, "mashq": mashq, "test": test, "dars": bool((k, "mashq") in h or (k, "test") in h), "eskirgan": eski, "dars_kodi": dars_kodlari.get(k, "")}
                 oldingi_otgan = otgan
             out = []
             for b in bolimlar:
