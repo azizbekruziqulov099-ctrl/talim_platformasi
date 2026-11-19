@@ -9,8 +9,11 @@ def _tema(kod, nom, soha, belgi, maqsad, dars, top):
 def _d(sar, doska, ovoz):
     return {"sarlavha": sar, "doska": doska, "ovoz": ovoz}
 
+BANK = {}
+
 def _fakt(kod, banki):
     """banki: [(savol, to'g'ri, [noto'g'rilar], izoh)] — har biri alohida shablon."""
+    BANK[kod] = banki
     for i, (sv, tj, no, iz) in enumerate(banki):
         def f(rng, sv=sv, tj=tj, no=no, iz=iz):
             return _yopiq(rng, sv, tj, [iz], noto=list(no), tartib=False)

@@ -108,6 +108,11 @@ for _nom in ("xb_m4", "xb_m8", "xb_pf", "xb_s4", "xb_s8", "xb_ps", "xb_pr"):
         MAVZULAR.update(_m.TEMA)
     except Exception:
         pass
+try:
+    from modules import xb_dars as _xd
+    _xd.boyit(MAVZULAR)
+except Exception:
+    pass
 
 
 def _rng(mavzu, tur, seed):
