@@ -2,6 +2,7 @@
 import os, re, sys, zipfile
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from modules import pisa_mat as P
+from modules import xb_kurs as XK
 from modules.ai_miya_varoq import template_workbook, parse_sheets
 
 FAN = {"T11_G4_M": ("Matematika", "4-sinf (TIMSS)"), "T11_G8_M": ("Matematika", "8-sinf (TIMSS)"),
@@ -34,6 +35,19 @@ def anim(line):
     return line
 
 
+# mavzuga mos jonli doska buyruqlari (grafik, son o'qi, shakl): birinchi tushunchaga qo'shiladi
+EXTRA = {"pm_butun": "SON_OQI: -5..5; nuqta -3 A, nuqta 2 B", "pisa_chiziqli": "GRAFIK: y=2x+1; [-2;4]", "pm_tarif": "GRAFIK: y=3x+5; [0;6]",
+         "pm_kvadrat": "GRAFIK: y=x^2-4x+3; [-1;5]", "pm_kasr": "DOIRA_KASR: 3/8", "pm_ulush": "DOIRA_KASR: 2/5", "pisa_foiz": "DOIRA_KASR: 1/4",
+         "pm_perimetr": "CHIZ: to'rtburchak A(0;0) B(5;0) C(5;3) D(0;3)", "pisa_yuza": "CHIZ: uchburchak A(0;0) B(4;0) C(0;3); balandlik CH"}
+
+
+def tekshiruv_of(k, rows):
+    for r in rows:
+        if r["turi"] == "misol" and r.get("matn") and re.fullmatch(r"-?\d+(?:[.,/]\d+)?", r.get("javob", "")):
+            return r["matn"].strip().rstrip("?.") + "? => " + r["javob"].replace(",", ".")
+    return ""
+
+
 def dars_qatorlari(k):
     d = P.dars_tuz(k); rows = []
     for q in d["qadamlar"]:
@@ -56,6 +70,13 @@ def dars_qatorlari(k):
                          "maslahat": "Avval shartdan kerakli sonlarni ajrating.\nHar qadamni doskadagidek yozib boring.", "qiyinlik": "oson", "rasm": ""})
         elif t == "xulosa":
             rows.append({"turi": "xulosa", "sarlavha": "Esda tut", "matn": ovoz, "doska": doska})
+    first = next((r for r in rows if r["turi"] == "tushuncha"), None)
+    if first and k in EXTRA:
+        first["doska"] = EXTRA[k] + "\n" + first["doska"]
+    if first:
+        t = tekshiruv_of(k, rows)
+        if t:
+            first["tekshiruv"] = t
     return d, rows
 
 
@@ -96,7 +117,10 @@ def main(out):
         book = {"kitob_nomi": f"Xalqaro baholash — {fan}, {sinf}", "fan": fan, "sinf": sinf, "kitob_kodi": f"XB-{tp}", "til": "uz",
                 "kod_prefiksi": PREF[tp], "mualliflar": "Kabutar Ta’lim"}
         pre = []
-        for i, k in enumerate([x for x in sorted(ks) if x not in TASHLA], 1):
+        tz = XK.BOLIMLAR.get(tp)
+        tartib = [m for b in tz for m in b["mavzular"] if m in ks] if tz else []
+        tartib += [x for x in sorted(ks) if x not in tartib]   # bo'limlar tartibi, qolganlari oxirida
+        for i, k in enumerate([x for x in tartib if x not in TASHLA], 1):
             d, rows = dars_qatorlari(k)
             rows += savol_qatorlari(k, "mashq", "", "S") + savol_qatorlari(k, "test", "", "S")
             for kod in IKKI.get(k, [""]):
