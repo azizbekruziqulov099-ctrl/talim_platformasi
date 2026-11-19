@@ -23,6 +23,18 @@ def _fakt(kod, banki):
         _aralash(kod, banki)
 
 
+def _qosh(kod, items):
+    """Mavjud bankka yangi faktlar qo'shadi (shablonlar va aralash savollar avtomatik kengayadi)."""
+    b = BANK.setdefault(kod, [])
+    n0 = len(b)
+    b.extend(items)
+    for i, (sv, tj, no, iz) in enumerate(items):
+        def f(rng, sv=sv, tj=tj, no=no, iz=iz):
+            return _yopiq(rng, sv, tj, [iz], noto=list(no), tartib=False)
+        f.__name__ = f"{kod}_x{n0 + i}"
+        reg(kod, "yopiq")(f)
+
+
 def _aralash(kod, banki):
     """Bankdagi faktlardan har safar yangi kombinatsiya: to'g'ri juftlikni topish / noto'g'risini topish."""
     def to_gri(rng):
