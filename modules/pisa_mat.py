@@ -102,7 +102,7 @@ for _k, _b in _PM_BOLIM.items():
     MAVZULAR[_k]["toplam"] = "P_M"
 
 # Qo'shimcha modullar: har biri TEMA = {kod: {...,"bolim","toplam"}} va G.reg bilan shablonlar beradi
-for _nom in ("xb_m4", "xb_m8", "xb_pf", "xb_s4", "xb_s8", "xb_ps", "xb_pr", "xb_s4b", "xb_s8b"):
+for _nom in ("xb_m4", "xb_m8", "xb_pf", "xb_s4", "xb_s8", "xb_ps", "xb_pr", "xb_s4b", "xb_s8b", "xb_psb"):
     try:
         _m = __import__(f"modules.{_nom}", fromlist=["TEMA"])
         MAVZULAR.update(_m.TEMA)
