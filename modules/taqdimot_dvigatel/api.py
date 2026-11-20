@@ -155,7 +155,12 @@ class Dvigatel:
         pal = body.get("palitra") if isinstance(body.get("palitra"), str) else None
         bt = body.get("bolim_titul") if isinstance(body.get("bolim_titul"), bool) else None
         ra = body.get("rasm_avto") if isinstance(body.get("rasm_avto"), bool) else True
-        return dict(seed=seed, uslub_kod=kod, anim=anim, oila=oila, palitra=pal, bolim_titul=bt, rasm_avto=ra)
+        a2 = body.get("anim2")
+        a2 = a2 if a2 == "" or a2 in uslub.ANIMATSIYALAR else None
+        dz = body.get("dizayn") if isinstance(body.get("dizayn"), dict) else None
+        if dz:
+            dz = {k: v for k, v in dz.items() if k in ("sarlavha", "kart", "titul", "bolim") and isinstance(v, (str, int)) and len(str(v)) <= 12}
+        return dict(seed=seed, uslub_kod=kod, anim=anim, oila=oila, palitra=pal, bolim_titul=bt, rasm_avto=ra, anim2=a2, dizayn=dz or None)
 
     def yasa(self, body):
         p = self.parametrlar(body)
@@ -311,7 +316,9 @@ def register_taqdimot_dvigatel(app, platform):
                 u = uslub.Uslub(f"{o}.{p}.0")
                 pals.append({"kod": p, "nom": (uslub.YORUG.get(p) or uslub.QORONGI.get(p) or uslub.DOSKA.get(p))["nom"], "acc": u.acc, "qorongi": u.qorongi})
             oilalar.append({"kod": o, "nom": od["nom"], "turi": od["turi"], "palitralar": pals})
+        from . import bloklar_joy
         return Response(json.dumps({"oilalar": oilalar, "animatsiyalar": [{"kod": k, "nom": v["nom"]} for k, v in uslub.ANIMATSIYALAR.items()],
+                                    "dizaynlar": bloklar_joy.dizayn_royxati(),
                                     "jami": uslub.uslublar_soni(), "ai": ai.mavjud()}, ensure_ascii=False),
                         media_type="application/json", headers=NO_STORE)
 

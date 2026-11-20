@@ -96,7 +96,8 @@ def reja_tuz(m: dict, rng: random.Random, bolim_titul=None):
 
 
 def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim: str | None = None, oila: str | None = None,
-         palitra: str | None = None, bolim_titul: bool | None = None, rasm_bor=None, rasm_avto: bool = True, dizayn: dict | None = None):
+         palitra: str | None = None, bolim_titul: bool | None = None, rasm_bor=None, rasm_avto: bool = True, dizayn: dict | None = None,
+         anim2: str | None = None):
     m = sxema.normallashtir(miya)
     from . import rasm_tanla
     try:
@@ -105,16 +106,21 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
         rasm_hisobot = {"ishlatilgan": [], "almashtirildi": [], "qoshildi": [], "yoq": []}
     if seed is None:
         seed = random.SystemRandom().randrange(1, 2 ** 31)
-    rng = random.Random(seed)
+    # alohida tasodif oqimlari: sayt ko'rinishi va PPTX (uslub kodi bilan) aynan bir xil chiqsin
+    rng = random.Random(seed)              # reja va fon bezagi
+    rng_u = random.Random(seed * 13 + 1)   # uslub tanlash
+    rng_a = random.Random(seed * 17 + 5)   # yordamchi animatsiya
     if uslub_kod:
-        u = uslub.Uslub(uslub_kod, anim or rng.choice(uslub.TINCH_ANIMATSIYALAR))
+        u = uslub.Uslub(uslub_kod, anim or rng_u.choice(uslub.TINCH_ANIMATSIYALAR))
     else:
         mt = m.get("meta") or {}
-        u = uslub.tanla(rng, oila, palitra, anim, fan=mt.get("fan") or "", daraja=mt.get("daraja") or "", sinf=mt.get("sinf") or "")
-    # animatsiya tanlanmagan bo'lsa — asosiy va yordamchi (slaydlarning bir qismi) aralash: chiqishlar xilma-xil
-    anim2 = None
-    if anim not in uslub.ANIMATSIYALAR:
-        anim2 = rng.choice([a for a in uslub.TINCH_ANIMATSIYALAR if a != u.anim_nom])
+        u = uslub.tanla(rng_u, oila, palitra, anim, fan=mt.get("fan") or "", daraja=mt.get("daraja") or "", sinf=mt.get("sinf") or "")
+    # animatsiya tanlanmagan bo'lsa — asosiy va yordamchi (slaydlarning bir qismi) aralash: chiqishlar xilma-xil.
+    # anim2: None — o'zi tanlaydi; "" — aralashtirmaslik; kod — aynan shu (sayt ko'rinishidagidek PPTX uchun)
+    if anim2 is None:
+        anim2 = rng_a.choice([a for a in uslub.TINCH_ANIMATSIYALAR if a != u.anim_nom]) if anim not in uslub.ANIMATSIYALAR else None
+    elif anim2 not in uslub.ANIMATSIYALAR or anim2 == u.anim_nom:
+        anim2 = None
     plan, sections, reja_i = reja_tuz(m, rng, bolim_titul)
     total = len(plan)
     # bo'limlarning birinchi/oxirgi slaydi
@@ -140,7 +146,7 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
         nav = {"total": total, "idx": i, "sections": secs_nav, "sec": p["sec"], "reja": reja_i if reja_i is not None else 0}
         srng = random.Random(seed * 1009 + i * 31)
         us = u
-        if anim2 and p["blok"] != "titul" and srng.random() < 0.35:
+        if anim2 and p["blok"] != "titul" and random.Random(seed * 2003 + i * 7).random() < 0.35:
             us = copy.copy(u)
             us.anim_nom, us.anim = anim2, uslub.ANIMATSIYALAR[anim2]
         k = B.K(s, us, srng, nav, rb)

@@ -35,6 +35,20 @@ SARLAVHA_TURLARI = ["chap", "chiziq", "tasma", "markaz", "raqam"]
 KART_TURLARI = ["oila", "yon", "chiziq", "soya"]
 TITUL_SONI = 6
 BOLIM_SONI = 5
+NOMLAR = {
+    "titul": ["Oddiy", "Panel", "Markaz", "Diagonal", "Katta rasm", "Ramka"],
+    "bolim": ["Oddiy", "Panel", "Markaz", "Katta raqam", "Rasmli"],
+    "sarlavha": {"chap": "Chapda", "chiziq": "Chiziqli", "tasma": "Tasma", "markaz": "Markazda", "raqam": "Raqamli"},
+    "kart": {"oila": "Uslubdagidek", "yon": "Yon chiziq", "chiziq": "Ramkali", "soya": "Soyali"},
+}
+
+
+def dizayn_royxati():
+    """Studiya uchun: qo'lda tanlash mumkin bo'lgan dizayn variantlari."""
+    return {"titul": [{"kod": i, "nom": n} for i, n in enumerate(NOMLAR["titul"])],
+            "bolim": [{"kod": i, "nom": n} for i, n in enumerate(NOMLAR["bolim"])],
+            "sarlavha": [{"kod": k, "nom": n} for k, n in NOMLAR["sarlavha"].items()],
+            "kart": [{"kod": k, "nom": n} for k, n in NOMLAR["kart"].items()]}
 
 SODDA = {"tarif", "qoida", "teorema", "matn", "savol", "formula"}
 _YON_MUMKIN = SODDA | {"misol", "masala", "xossalar", "hayotiy", "chizma", "rasm", "parcha", "iqtibos", "dialog", "tajriba", "raqamlar"}
