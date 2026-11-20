@@ -72,14 +72,36 @@ def gap(lines):
 
 
 # ───────────────────────── bo'lak fayli ─────────────────────────
+def yangi_bolak(kod, nom):
+    return {"kod": kod, "nom": nom, "kirish": {"doska": [], "matn": []}, "qadamlar": [], "misollar": [], "masalalar": [],
+            "esda": {"doska": [], "matn": []}, "testlar": [], "reja": [], "natija": [], "bbb": {"bilaman": [], "savol": [], "bildim": []},
+            "blits": [], "hujum": [], "klaster": [], "loyiha": [], "keys": [], "k4": [], "sinkveyn": []}
+
+
+def birlashtir(bolak, qism):
+    """«### U01 +» kengaytmasi asosiy bo'lakka qo'shiladi (interfaol metod bloklari)."""
+    for k, v in qism.items():
+        if k in ("kod", "nom", "kengaytma"):
+            continue
+        if isinstance(v, list):
+            bolak[k] += v
+        elif k == "bbb":
+            for kk in v:
+                bolak["bbb"][kk] += v[kk]
+        elif isinstance(v, dict):
+            for kk in v:
+                bolak[k][kk] += v[kk]
+
+
 def parse(path):
     out, u, blk, obj = {}, None, None, None
     for n, raw in enumerate(open(path, encoding="utf-8").read().splitlines(), 1):
         line = raw.rstrip()
-        m = re.match(r"^###\s+(\S+)\s*\|\s*(.+?)\s*$", line)
+        m = re.match(r"^###\s+(\S+)\s*(?:\|\s*(.+?)|(\+))\s*$", line)
         if m:
-            u = out[m.group(1)] = {"kod": m.group(1), "nom": m.group(2), "kirish": {"doska": [], "matn": []}, "qadamlar": [],
-                                   "misollar": [], "masalalar": [], "esda": {"doska": [], "matn": []}, "testlar": []}
+            kod = m.group(1) + ("+" if m.group(3) else "")
+            u = out[kod] = yangi_bolak(m.group(1), m.group(2) or "")
+            u["kengaytma"] = bool(m.group(3))
             blk = obj = None
             continue
         if u is None or (not line.strip() and blk is None):
@@ -87,7 +109,17 @@ def parse(path):
         m = re.match(r"^@(\w+)\s*(.*)$", line)
         if m:
             tur, arg = m.group(1), m.group(2).strip()
-            if tur == "kirish":
+            if tur in ("reja", "natija", "sinkveyn"):
+                blk, obj = "royxat", u[tur]
+            elif tur == "bbb":
+                blk, obj = "bbb", u["bbb"]
+            elif tur in ("blits", "hujum", "klaster", "loyiha"):
+                obj = {"sarlavha": arg, "doska": [], "matn": [], "sodda": [], "tekshiruv": ""}
+                u[tur].append(obj); blk = "dm"
+            elif tur in ("keys", "k4"):
+                obj = {"sarlavha": arg, "shart": [], "variantlar": [], "javob": "", "yechim": [], "maslahat": [], "qiyinlik": "o'rta"}
+                u[tur].append(obj); blk = "shart"
+            elif tur == "kirish":
                 blk, obj = "dm", u["kirish"]
             elif tur == "qadam":
                 obj = {"sarlavha": arg, "doska": [], "matn": [], "sodda": [], "tekshiruv": ""}
@@ -114,6 +146,15 @@ def parse(path):
         if blk is None or not line.strip():
             continue
         s = line.strip()
+        if blk == "royxat":
+            obj.append(s.lstrip("-•").strip())
+            continue
+        if blk == "bbb":
+            mb = re.match(r"^(bilaman|savol|bildim|знаю|хочу|узнал)\s*:\s*(.+)$", s, re.I)
+            if mb:
+                k = {"bilaman": "bilaman", "знаю": "bilaman", "savol": "savol", "хочу": "savol"}.get(mb.group(1).lower(), "bildim")
+                obj[k].append(mb.group(2).strip())
+            continue
         if blk == "dm":
             (obj["doska"] if line.startswith("|") else obj["matn"]).append(line.lstrip("|").strip())
         elif blk == "sodda":
@@ -145,7 +186,7 @@ def parse(path):
     return out
 
 
-def tekshir(u, test_kerak=10):
+def tekshir(u, test_kerak=10, interfaol=True, kurs_til="uz"):
     xs, k = [], u["kod"]
     if not u["kirish"]["matn"]:
         xs.append("kirish gapi yo'q")
@@ -181,7 +222,26 @@ def tekshir(u, test_kerak=10):
             xs.append(f"test {i}: savol yoki izoh yo'q")
         if any(x not in L[:n] or x == t["javob"] for x in t["xato"]):
             xs.append(f"test {i}: xato izohi noto'g'ri harfga")
-    darsda = {gap(m["shart"]).lower() for m in u["misollar"] + u["masalalar"]}
+    if interfaol:
+        for key, kerak in (("reja", 3), ("natija", 2), ("hujum", 1), ("klaster", 1), ("keys", 1), ("k4", 3), ("loyiha", 1)):
+            if len(u[key]) < kerak:
+                xs.append(f"interfaol: {key} {len(u[key])} ta (kamida {kerak})")
+        if any(not u["bbb"][k] for k in ("bilaman", "savol", "bildim")):
+            xs.append("interfaol: BBB to'liq emas")
+        if len(u["sinkveyn"]) != 5:
+            xs.append(f"interfaol: sinkveyn {len(u['sinkveyn'])} qator (5 kerak)")
+        if kurs_til == "ru" and not u["blits"]:
+            xs.append("interfaol: blits-razminka yo'q")
+        for q in u["hujum"] + u["klaster"] + u["loyiha"] + u["blits"]:
+            if not q["matn"] or not q["doska"] or not q["tekshiruv"]:
+                xs.append(f"interfaol qadam «{q['sarlavha']}»: matn/doska/tekshiruv yo'q")
+        for m in u["keys"] + u["k4"]:
+            n = len(m["variantlar"])
+            if not m["shart"] or n < 3 or not m["javob"] or ord(m["javob"]) - 65 >= n or not m["yechim"]:
+                xs.append(f"interfaol masala «{m['sarlavha']}»: shart/variant/javob/yechim xato")
+            if len({v.strip().lower() for v in m["variantlar"]}) != n:
+                xs.append(f"interfaol masala «{m['sarlavha']}»: bir xil variantlar")
+    darsda = {gap(m["shart"]).lower() for m in u["misollar"] + u["masalalar"] + u["keys"] + u["k4"]}
     for i, t in enumerate(u["testlar"], 1):
         if gap(t["savol"]).lower() in darsda:
             xs.append(f"test {i}: darsdagi misol bilan bir xil")
@@ -211,38 +271,115 @@ def aralashtir(variantlar, javob, xato, yangi):
 
 
 # ───────────────────────── dars qatorlari ─────────────────────────
+MET = {
+    "uz": {
+        "q1": "I qism · Interfaol ma'ruza: reja va o'quv natijalari",
+        "q1_matn": "Darsimiz ikki qismdan iborat: avval interfaol ma'ruza, keyin amaliy mashg'ulot. [1] Ma'ruza rejasi: {reja}. [2] Dars yakunida siz {natija}.",
+        "reja": "Ma'ruza rejasi", "natija": "O'quv natijalari",
+        "bbb": "BBB jadvali: Bilaman — Bilishni xohlayman — Bildim", "bbb_ust": "Bilaman | Bilishni xohlayman | Bildim",
+        "bbb_matn": "Interfaol usul — BBB jadvali. [1] Birinchi ustunda mavzu bo'yicha oldindan bilganlarimiz, ikkinchisida — bugun javob topmoqchi bo'lgan savollarimiz. Uchinchi ustun hozircha bo'sh: uni dars oxirida birga to'ldiramiz. Har bir savolga javobni hozirdan taxmin qilib turing.",
+        "q2": "II qism · Amaliy mashg'ulot",
+        "q2_matn": "Endi ikkinchi qism — amaliy mashg'ulot. [1] Avval namunaviy misollarni birga tahlil qilamiz, keyin mashqlarni o'zingiz bajarasiz. So'ng hayotiy STEAM keys, 4K topshiriqlari — tanqidiy fikrlash, kommunikatsiya va kreativlik — hamda jamoaviy mini-loyiha. Yakunda Kabu test.",
+        "q2_doska": "ZANJIR: Namuna :: birga tahlil | Mashq :: mustaqil | Keys :: STEAM | 4K :: fikrlash | Loyiha :: hamkorlik | Test :: Kabu",
+        "bbb2": "BBB jadvali: Bildim",
+        "bbb2_matn": "BBB jadvaliga qaytamiz. [1] Endi uchinchi ustun to'ldi — bugun nimani bildik. Dars boshidagi savollaringizga javob topildimi? Solishtiring: bu sizning bugungi o'sishingiz.",
+        "sink": "Refleksiya: sinkveyn", "sink_qator": ["Mavzu", "Ikki sifat", "Uch fe'l", "Fikr", "Mohiyat"],
+        "sink_matn": "Darsni sinkveyn bilan yakunlaymiz — besh qatorli qisqa she'r. [1] Birinchi qator — mavzu: {0}. [2] Ikkinchi — ikki sifat: {1}. [3] Uchinchi — uch fe'l: {2}. [4] To'rtinchi — mavzu haqida fikr: {3}. [5] Beshinchi — bir so'z bilan mohiyat: {4}. Endi daftaringizda o'z sinkveyningizni tuzing.",
+    },
+    "ru": {
+        "q1": "Практическое занятие: цель и план",
+        "q1_matn": "Сегодня практическое занятие: немного теории, вывод формулы и много практики. [1] План: {reja}. [2] Результат занятия: вы {natija}.",
+        "reja": "План занятия", "natija": "Результаты",
+        "bbb": "Таблица ЗХУ: Знаю — Хочу узнать — Узнал", "bbb_ust": "Знаю | Хочу узнать | Узнал",
+        "bbb_matn": "Интерактивный метод — таблица ЗХУ. [1] В первой колонке то, что мы уже знаем, во второй — вопросы, на которые сегодня ищем ответ. Третья колонка пока пуста: заполним её в конце занятия. Попробуйте заранее предположить ответы.",
+        "q2": "Практикум",
+        "q2_matn": "Переходим к практикуму. [1] Сначала разберём образцы решений, затем вы решите задачи сами. Потом — кейс STEAM, задания 4К на критическое мышление, коммуникацию и креативность, и мини-проект для команды. В конце — тест Kabu.",
+        "q2_doska": "ZANJIR: Образец :: разбор | Задачи :: сами | Кейс :: STEAM | 4К :: мышление | Проект :: команда | Тест :: Kabu",
+        "bbb2": "Таблица ЗХУ: Узнал",
+        "bbb2_matn": "Вернёмся к таблице ЗХУ. [1] Третья колонка заполнена — что мы узнали сегодня. Сравните с вопросами из начала занятия: на все ли нашёлся ответ?",
+        "sink": "Рефлексия: синквейн", "sink_qator": ["Тема", "Два прилагательных", "Три глагола", "Фраза", "Суть"],
+        "sink_matn": "Завершим занятие синквейном — пятистрочным стихотворением. [1] Первая строка — тема: {0}. [2] Вторая — два прилагательных: {1}. [3] Третья — три глагола: {2}. [4] Четвёртая — фраза о теме: {3}. [5] Пятая — одно слово-суть: {4}. Составьте свой синквейн в тетради.",
+    },
+}
+
+
+def _qadam_qator(q):
+    r = {"turi": "tushuncha", "sarlavha": uz(q["sarlavha"]), "matn": gap(q["matn"]), "doska": "\n".join(uz(x) for x in q["doska"])}
+    if q["sodda"]:
+        r["sodda"] = gap(q["sodda"])
+    if q["tekshiruv"]:
+        r["tekshiruv"] = uz(q["tekshiruv"])
+    return r
+
+
+def _tanlov_qator(m, kod, nishon):
+    v, j_, _ = aralashtir(m["variantlar"], m["javob"], {}, nishon.keyingi())
+    return {"turi": "masala", "kod": kod, "sarlavha": uz(m["sarlavha"]), "matn": gap(m["shart"]),
+            "variantlar": "\n".join(f"{L[k]}) {uz(x)}" for k, x in enumerate(v)), "javob": j_,
+            "yechim": "\n".join(uz(x) for x in m["yechim"]), "maslahat": "\n".join(uz(x) for x in m["maslahat"]),
+            "qiyinlik": m["qiyinlik"]}
+
+
+def _bbb_jadval(B, ust, toldirilgan):
+    n = min(9, max(len(B["bilaman"]), len(B["savol"]), len(B["bildim"])))
+    ol = lambda xs, i: uz(xs[i]) if i < len(xs) else ""
+    qator = [f"{ol(B['bilaman'], i)} | {ol(B['savol'], i)} | {ol(B['bildim'], i) if toldirilgan else ('?' if i < len(B['bildim']) else '')}"
+             for i in range(n)]
+    return "JADVAL: " + ust + " ;; " + " ;; ".join(qator)
+
+
 def dars_qatorlari(bolaklar, nom, raqam, kurs, nishon, test_soni):
     til = kurs["til"]
-    S = SOZ[til]
+    S, M = SOZ[til], MET[til]
     rows = []
-    bir = bolaklar[0]
+    bir, oxirgi = bolaklar[0], bolaklar[-1]
     kir_doska = [uz(x) for x in bir["kirish"]["doska"]]
     if len(bolaklar) > 1:
         kir_doska.append("Reja: " + " · ".join(f"[k]{i}[/k] {uz(b['nom'])}" for i, b in enumerate(bolaklar, 1)))
     rows.append({"turi": "kirish", "sarlavha": uz(nom), "matn": gap(bir["kirish"]["matn"]), "doska": "\n".join(kir_doska)})
-    mi = si = 0
+    # ── reja va o'quv natijalari; BBB (ZXU) jadvali ──
+    reja = [x for b in bolaklar for x in b["reja"]]
+    natija = [x for b in bolaklar for x in b["natija"]]
+    if reja:
+        doska = [f"[s]{uz(M['reja'])}[/s]"] + [f"[k]{i}[/k] {uz(x)}" for i, x in enumerate(reja, 1)]
+        doska += [f"[y]{uz(M['natija'])}[/y]"] + [f"• {uz(x)}" for x in natija]
+        rows.append({"turi": "tushuncha", "sarlavha": uz(M["q1"]), "doska": "\n".join(doska),
+                     "matn": uz(M["q1_matn"].format(reja="; ".join(reja), natija="; ".join(natija)))})
+    B = {k: [x for b in bolaklar for x in b["bbb"][k]] for k in ("bilaman", "savol", "bildim")}
+    if B["bilaman"]:
+        rows.append({"turi": "tushuncha", "sarlavha": uz(M["bbb"]), "doska": _bbb_jadval(B, M["bbb_ust"], False), "matn": uz(M["bbb_matn"])})
+    # ── I qism: nazariya (interfaol ma'ruza / qisqa nazariya) ──
     for j, b in enumerate(bolaklar):
         if j:   # ikkinchi mavzu — o'z kirishi bilan alohida qadam
             rows.append({"turi": "tushuncha", "sarlavha": uz(S["qism"].format(n=j + 1) + ": " + b["nom"]),
                          "matn": gap(b["kirish"]["matn"]), "doska": "\n".join(uz(x) for x in b["kirish"]["doska"])})
-        for q in b["qadamlar"]:
-            r = {"turi": "tushuncha", "sarlavha": uz(q["sarlavha"]), "matn": gap(q["matn"]), "doska": "\n".join(uz(x) for x in q["doska"])}
-            if q["sodda"]:
-                r["sodda"] = gap(q["sodda"])
-            if q["tekshiruv"]:
-                r["tekshiruv"] = uz(q["tekshiruv"])
-            rows.append(r)
+        for q in b["blits"] + b["hujum"] + b["qadamlar"] + b["klaster"]:
+            rows.append(_qadam_qator(q))
+    # ── II qism: amaliy mashg'ulot ──
+    if reja:
+        rows.append({"turi": "tushuncha", "sarlavha": uz(M["q2"]), "matn": uz(M["q2_matn"]), "doska": uz(M["q2_doska"])})
+    mi = si = 0
+    for b in bolaklar:
         for m in b["misollar"]:
             mi += 1
             rows.append({"turi": "misol", "kod": f"M{mi:02d}", "sarlavha": uz(m["sarlavha"]), "matn": gap(m["shart"]),
                          "yechim": "\n".join(uz(x) for x in m["yechim"]), "javob": "", "qiyinlik": m["qiyinlik"]})
+    for b in bolaklar:
         for m in b["masalalar"]:
             si += 1
-            v, j_, _ = aralashtir(m["variantlar"], m["javob"], {}, nishon.keyingi())
-            rows.append({"turi": "masala", "kod": f"S{si:02d}", "sarlavha": uz(m["sarlavha"]), "matn": gap(m["shart"]),
-                         "variantlar": "\n".join(f"{L[k]}) {uz(x)}" for k, x in enumerate(v)), "javob": j_,
-                         "yechim": "\n".join(uz(x) for x in m["yechim"]), "maslahat": "\n".join(uz(x) for x in m["maslahat"]),
-                         "qiyinlik": m["qiyinlik"]})
+            rows.append(_tanlov_qator(m, f"S{si:02d}", nishon))
+    k4 = bir["k4"] if len(bolaklar) == 1 else bir["k4"][:1] + oxirgi["k4"][1:]
+    for m in [x for b in bolaklar for x in b["keys"]] + k4:
+        si += 1
+        rows.append(_tanlov_qator(m, f"S{si:02d}", nishon))
+    for q in oxirgi["loyiha"]:
+        rows.append(_qadam_qator(q))
+    if B["bildim"]:
+        rows.append({"turi": "tushuncha", "sarlavha": uz(M["bbb2"]), "doska": _bbb_jadval(B, M["bbb_ust"], True), "matn": uz(M["bbb2_matn"])})
+    if len(oxirgi["sinkveyn"]) == 5:
+        sk = [uz(x) for x in oxirgi["sinkveyn"]]
+        rows.append({"turi": "tushuncha", "sarlavha": uz(M["sink"]), "matn": uz(M["sink_matn"].format(*sk)),
+                     "doska": "\n".join(f"[k]{i}[/k] [y]{uz(M['sink_qator'][i - 1])}:[/y] {x}" for i, x in enumerate(sk, 1))})
     esda_d = [uz(x) for b in bolaklar for x in b["esda"]["doska"]]
     rows.append({"turi": "xulosa", "sarlavha": S["esda"], "doska": "\n".join(esda_d),
                  "matn": gap([x for b in bolaklar for x in b["esda"]["matn"]])})
@@ -286,11 +423,19 @@ def main(kalitlar):
     for kalit in kalitlar:
         kurs = KURSLAR[kalit]
         bolak = {}
+        kengaytmalar = []
         for f in sorted(glob.glob(os.path.join(HERE, "bolaklar", kurs["guruh"], "*.txt"))):
             for k, v in parse(f).items():
+                if v.get("kengaytma"):
+                    kengaytmalar.append(v)
+                    continue
                 if k in bolak:
                     raise ValueError(f"{k} ikki marta")
                 bolak[k] = v
+        for v in kengaytmalar:
+            if v["kod"] not in bolak:
+                raise ValueError(f"{v['kod']} + : asosiy bo'lak yo'q")
+            birlashtir(bolak[v["kod"]], v)
         darslar = kurs["darslar"] or [(b["nom"], [k]) for k, b in sorted(bolak.items())]
         xatolar, pre, mavzular = [], [], []
         nishon = Nishon(kalit)
@@ -301,7 +446,7 @@ def main(kalitlar):
                 continue
             bs = [bolak[k] for k in kodlar]
             for b in bs:
-                xatolar += tekshir(b, 10 if len(bs) == 1 else 5)
+                xatolar += tekshir(b, 10 if len(bs) == 1 else 5, kurs_til=kurs["til"])
             dnom = SOZ[kurs["til"]]["dars"].format(n=i, nom=uz(nom))
             pre.append({"mavzu_kodi": "", "mavzu_nomi": dnom, "mavzu_raqami": str(i), "rows": dars_qatorlari(bs, dnom, i, kurs, nishon, 10)})
             mavzular.append((uz(kurs["fan"].split(" (izoh")[0]), dnom))

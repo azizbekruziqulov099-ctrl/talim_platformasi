@@ -1,0 +1,358 @@
+### U11 +
+@reja
+- Parallelogramm va uning xossalari
+- Yuz formulalarini kesib-surish usuli bilan chiqarish
+- Romb va trapetsiya; o'rta chiziq
+@natija
+- parallelogramm, romb va trapetsiya yuzlarini to'g'ri to'rtburchakka qaytarib asoslay olasiz
+- balandlikni yon tomondan farqlab, yuzni to'g'ri hisoblay olasiz
+@bbb
+bilaman: to'g'ri to'rtburchak yuzi S = ab ekanini
+bilaman: parallel to'g'ri chiziqlarni
+savol: Qiya parallelogramm yuzi qanday topiladi?
+savol: Romb yuzi nega diagonallar ko'paytmasining yarmi?
+bildim: kesib-surish: S = ah
+bildim: romb — diagonallar to'g'ri to'rtburchagining yarmi
+@hujum Aqliy hujum: qaysi tomorqa katta?
+| Ikki tomorqa: to'g'ri to'rtburchak $6 \times 4$ va qiya parallelogramm — asosi 6, yon tomoni 5, balandligi 4
+| Qaysi birida yer ko'p?
+Aqliy hujum. Ikki tomorqa: biri olti ga to'rt to'g'ri to'rtburchak, ikkinchisi qiya parallelogramm — asosi olti, yon tomoni besh, balandligi to'rt. [1] Qaysi birida yer ko'proq? [2] Sezgi bilan javob bering, keyin kesib-surish bilan tekshiramiz.
+@tekshiruv Qaysi tomorqa katta? => yuzlari teng | parallelogramm | to'g'ri to'rtburchak
+@klaster Klaster: to'rtburchaklar yuzi
+| SXEMA: Yuz formulalari > to'g'ri to'rtburchak ab | parallelogramm ah | romb d₁d₂/2 | trapetsiya (a+b)h/2 | o'rta chiziq | kesib-surish
+Klaster: markazda yuz formulalari. [1] Hammasi bitta g'oyadan — to'g'ri to'rtburchakka qaytarishdan kelib chiqadi. Har shoxga figurani qanday kesib-surish kerakligini chizing.
+@tekshiruv Trapetsiya yuzini qaysi g'oya bilan chiqardik? => ikki nusxasini qo'shib parallelogramm hosil qilish | o'lchash | yodlash
+@keys Keys · STEAM (san'at): Registon naqshi
+Usta naqsh uchun romb shaklidagi koshinlar tayyorlayapti: diagonallari 12 cm va 8 cm. 50 ta koshin qancha yuzni qoplaydi?
+A) $2400$ cm²
+B) $4800$ cm²
+C) $96$ cm²
+D) $1000$ cm²
+= A
+@yechim
+$S = \frac{1}{2}\cdot 12\cdot 8 = 48$ || Bitta koshin: qirq sakkiz kvadrat santimetr.
+$48\cdot 50 = 2400$ || Ellikta koshin: ikki ming to'rt yuz kvadrat santimetr.
+@k4 4K · Tanqidiy fikrlash: xatoni toping
+Talaba rombning yuzini $S = d_1 \cdot d_2$ deb topdi: $d_1 = 6$, $d_2 = 10$, $S = 60$. Xato qayerda?
+A) Yarmi olinmagan: $S = 30$
+B) Diagonallar qo'shilishi kerak
+C) Xato yo'q
+D) $S = 16$
+= A
+@yechim
+Romb — to'rtburchakning yarmi || Diagonallar ko'paytmasi rombni o'rab turgan to'g'ri to'rtburchak yuzi, romb uning yarmi.
+@k4 4K · Kommunikatsiya: tushuntirish
+O'quvchiga parallelogramm yuzi $S = ah$ ekanini qanday ko'rsatasiz?
+A) Qog'oz parallelogrammdan uchburchakni qaychi bilan kesib, narigi tomonga yopishtiramiz — to'g'ri to'rtburchak chiqadi
+B) Formulani yozdiramiz
+C) Yon tomonni o'lchaymiz
+D) Rasmini ko'rsatamiz
+= A
+@yechim
+Qo'l bilan bajarish || Kesib-surish — yuz o'zgarmasligini bolaning o'zi ko'radi.
+@k4 4K · Kreativlik: yangi formula
+Trapetsiyani diagonal bilan ikkita uchburchakka bo'lsak, qaysi formula chiqadi?
+A) $\frac{1}{2}ah + \frac{1}{2}bh = \frac{a + b}{2}h$
+B) $ah + bh$
+C) $\frac{1}{2}abh$
+D) $(a + b)h$
+= A
+@yechim
+Ikki uchburchak, bir xil balandlik || Yangi yo'l, eski natija — formula to'g'riligini tekshirdik.
+@loyiha 4K · Hamkorlik: mini-loyiha «Naqsh dizayneri»
+| ZANJIR: Eskiz :: romb va trapetsiyalardan naqsh | Hisob :: har bir bo'lak yuzi | Smeta :: kerakli koshin soni | Natija :: rangli plakat
+Guruh topshirig'i. [1] Jamoa sharqona naqsh eskizini chizadi: romb, parallelogramm va trapetsiyalardan. Bir kishi bo'laklar yuzini hisoblaydi, ikkinchisi devorni qoplash uchun kerakli koshin sonini topadi, uchinchisi ranglarini tanlaydi. Matematika va san'at birlashadi — bu STEAM.
+@tekshiruv Koshin sonini topish uchun nima kerak? => devor yuzi va bitta koshin yuzi | faqat koshin rangi | perimetr
+@sinkveyn
+Parallelogramm
+Qiya, muvozanatli
+Kesadi, suradi, qoplaydi
+Yuz shakl o'zgarsa ham saqlanadi
+Naqsh
+
+### U12 +
+@reja
+- Ko'pyoq, uning elementlari va Eyler formulasi
+- Prizma va parallelepiped: sirt va hajm
+- Piramida: hajmning uchdan biri
+@natija
+- sirt va hajmni farqlab, to'g'ri formulani tanlay olasiz
+- piramida hajmidagi uchdan bir koeffitsiyentni tajriba bilan asoslay olasiz
+@bbb
+bilaman: kub va qutini tanishni
+bilaman: to'g'ri to'rtburchak yuzini
+savol: Qutini qoplash va to'ldirish — bitta formula bilanmi?
+savol: Piramida hajmi qayerdan keladi?
+bildim: sirt — qoplash (yuz birligi), hajm — to'ldirish (kub birlik)
+bildim: piramida — prizmaning uchdan biri
+@hujum Aqliy hujum: sovg'a qutisi
+| Sovg'a qutisini o'rash uchun qog'oz va ichini to'ldirish uchun konfet kerak
+| Ikkalasi bir xil hisoblanadimi?
+Aqliy hujum. Sovg'a qutisi bor. [1] Uni o'rash uchun qancha qog'oz kerak va ichiga qancha konfet sig'adi? [2] Bu ikki savol bir xil hisob bilan javob topadimi? Taxminingizni tanlang.
+@tekshiruv Qog'oz miqdori qaysi kattalik bilan topiladi? => sirt yuzi | hajm | perimetr
+@klaster Klaster: ko'pyoqlar
+| SXEMA: Ko'pyoqlar > uch, qirra, yoq | Eyler formulasi | prizma | parallelepiped | kub | piramida | sirt | hajm
+Klaster: markazda ko'pyoqlar. [1] Har bir jism uchun sirt va hajm formulasini mos shoxga yozing. Eyler formulasini jadvaldagi har jism bilan tekshiring.
+@tekshiruv Eyler formulasi U − Q + Y nimaga teng? => 2 | 0 | 1 | 6
+@keys Keys · STEAM (muhandislik): suv minorasi
+Ferma uchun $2 \times 1{,}5 \times 1$ m o'lchamli suv idishi o'rnatildi. Unga necha litr suv sig'adi?
+A) $3000$ l
+B) $300$ l
+C) $4{,}5$ l
+D) $30\,000$ l
+= A
+@yechim
+$V = 2\cdot 1{,}5\cdot 1 = 3$ m³ || Hajm uch kub metr.
+$1$ m³ $= 1000$ l || Uch ming litr.
+@k4 4K · Tanqidiy fikrlash: xatoni toping
+Talaba: «Kub qirrasi 2 marta oshsa, hajmi ham 2 marta oshadi». To'g'rimi?
+A) Noto'g'ri: $2^3 = 8$ marta oshadi
+B) To'g'ri
+C) Noto'g'ri: 4 marta
+D) Noto'g'ri: 6 marta
+= A
+@yechim
+$(2a)^3 = 8a^3$ || Uch o'lchamning har biri ikki barobar — hajm sakkiz barobar.
+@k4 4K · Kommunikatsiya: tushuntirish
+O'quvchiga piramida hajmi prizmaning uchdan biri ekanini qanday ko'rsatasiz?
+A) Bir asosli, bir balandlikdagi piramida bilan qum tashib prizmani to'ldiramiz — uch marta kerak bo'ladi
+B) Formulani yodlatamiz
+C) Ikkalasini tortamiz
+D) Rasmiga qaraymiz
+= A
+@yechim
+Tajriba || Uch marta to'ldirish — uchdan bir koeffitsiyentni ko'rinadigan qiladi.
+@k4 4K · Kreativlik: yoyilma
+Qaysi yoyilmadan kub yig'iladi?
+A) xoch shaklidagi 6 ta kvadrat (bir qatorda 4 ta, ikkinchisining tepasida va pastida bittadan)
+B) bir qatorda 6 ta kvadrat
+C) $2 \times 3$ to'rtburchak shaklida 6 ta kvadrat
+D) 5 ta kvadrat
+= A
+@yechim
+Xoch yoyilma || To'rtta yon yoq zanjir hosil qiladi, ikkitasi — tag va qopqoq.
+@loyiha 4K · Hamkorlik: mini-loyiha «Eng tejamkor quti»
+| ZANJIR: Shart :: hajm 1 litr | Variantlar :: turli o'lchamli qutilar | Hisob :: sirt yuzi | Natija :: eng kam karton sarfi
+Guruh topshirig'i. [1] Sharbat zavodi uchun bir litrli quti loyihalaysiz. Jamoa turli o'lchamlarni taklif qiladi — o'n ga o'n ga o'n, yigirma ga besh ga o'n santimetr va boshqalar. Har birining sirtini hisoblab, eng kam karton ketadiganini tanlaysiz. Bu haqiqiy muhandislik masalasi.
+@tekshiruv Hajm bir xil bo'lsa, qaysi quti kam karton talab qiladi? => kubga yaqinrog'i | eng uzuni | eng yassisi
+@sinkveyn
+Ko'pyoq
+Fazoviy, qirrali
+Qoplaydi, to'ldiradi, yig'iladi
+Sirt va hajm — har xil savol
+Kub
+
+### U13 +
+@reja
+- Aylanish jismlari qanday hosil bo'ladi; o'q kesim
+- Silindr va konus: sirt va hajm
+- Shar va sfera: Arximed kashfiyoti
+@natija
+- aylanish jismlarini tekis figuralar aylanishi sifatida tasavvur qila olasiz
+- silindr, konus va shar formulalarini prizma va piramida bilan bog'lay olasiz
+@bbb
+bilaman: aylana uzunligi va doira yuzini
+bilaman: prizma va piramida hajmini
+savol: Silindr yon sirti yoyilsa nima chiqadi?
+savol: Shar hajmi silindr hajmiga qanday bog'liq?
+bildim: yoyilma — to'g'ri to'rtburchak 2πr × h
+bildim: shar — tashqi silindr hajmining 2/3 qismi
+@hujum Aqliy hujum: bayroqni aylantiring
+| To'g'ri to'rtburchak bayroqni dastasi atrofida tez aylantirsak — qanday jism ko'rinadi?
+| Uchburchak bayroqni-chi?
+Aqliy hujum. To'g'ri to'rtburchak bayroqni dastasi atrofida tez aylantiring. [1] Havoda qanday jism ko'rinadi? [2] Uchburchak bayroq-chi? Tasavvur qilib javob bering.
+@tekshiruv To'g'ri to'rtburchak tomoni atrofida aylansa? => silindr | konus | shar | kub
+@klaster Klaster: aylanish jismlari
+| SXEMA: Aylanish jismlari > silindr | konus | shar | o'q kesim | yasovchi | sirt | hajm | Arximed
+Klaster. [1] Har jism uchun: qaysi figura aylanadi, o'q kesimi qanday, hajm formulasi qaysi. Silindrni prizma bilan, konusni piramida bilan bog'lang.
+@tekshiruv Konusning o'q kesimi qanday figura? => teng yonli uchburchak | doira | kvadrat
+@keys Keys · STEAM (texnologiya): konserva bankasi
+Banka: radiusi 4 cm, balandligi 10 cm. Yorliq uchun qancha qog'oz kerak ($\pi \approx 3{,}14$)?
+A) $251{,}2$ cm²
+B) $125{,}6$ cm²
+C) $502{,}4$ cm²
+D) $50{,}24$ cm²
+= A
+@yechim
+$S_{yon} = 2\pi rh = 2\cdot 3{,}14\cdot 4\cdot 10$ || Yorliq — yon sirt.
+$= 251{,}2$ cm² || Ikki yuz ellik bir butun o'ndan ikki kvadrat santimetr.
+@k4 4K · Tanqidiy fikrlash: xatoni toping
+Talaba konus hajmini $V = \pi r^2 h$ deb hisobladi. Xato qayerda?
+A) $\frac{1}{3}$ ko'paytuvchi tushib qolgan
+B) $r$ o'rniga $d$ kerak
+C) Xato yo'q
+D) $h$ o'rniga $l$ kerak
+= A
+@yechim
+Konus — silindrning uchdan biri || Bu formula silindrniki.
+@k4 4K · Kommunikatsiya: tushuntirish
+Sfera va shar farqini o'quvchiga qanday tushuntirasiz?
+A) Futbol to'pining terisi — sfera, ichi bilan birga — shar
+B) Ikkalasi bir narsa
+C) Shar — tekis, sfera — hajmli
+D) Sfera kattaroq
+= A
+@yechim
+Sirt va jism || Aylana va doira farqining fazodagi o'xshashi.
+@k4 4K · Kreativlik: qaysi idish ko'p sig'adi?
+Radius 3, balandlik 6 bo'lgan silindr, konus va radiusi 3 bo'lgan shar. Hajmlar nisbati qanday?
+A) konus : shar : silindr $= 1 : 2 : 3$
+B) $1 : 1 : 1$
+C) $3 : 2 : 1$
+D) $1 : 3 : 2$
+= A
+@yechim
+$18\pi : 36\pi : 54\pi$ || Konus o'n sakkiz pi, shar o'ttiz olti pi, silindr ellik to'rt pi — Arximedning go'zal nisbati.
+@loyiha 4K · Hamkorlik: mini-loyiha «Arximed tajribasi»
+| ZANJIR: Jihoz :: silindr stakan va to'p | Tajriba :: to'pni suvga botirish | O'lchash :: toshgan suv | Natija :: shar = silindrning ⅔
+Guruh topshirig'i. [1] Diametri to'pga teng, balandligi ham shunday stakan topasiz. Stakanni suvga to'ldirib, to'pni botirasiz — toshgan suv to'p hajmi. Qolgan suv stakanning uchdan biri bo'ladi. Bir kishi o'lchaydi, biri hisoblaydi, biri xulosa yozadi.
+@tekshiruv To'p botirilgandan keyin stakanda qancha suv qoladi? => uchdan biri | yarmi | hech narsa | uchdan ikkisi
+@sinkveyn
+Aylanish jismi
+Dumaloq, silliq
+Aylanadi, yasaydi, sig'diradi
+Shar — silindrning uchdan ikkisi
+Arximed
+
+### U14 +
+@reja
+- Miqdor, son va o'lchov birligi
+- Uzunlik, massa, vaqt birliklari va almashtirish
+- Yuz va hajm birliklari; o'lchash xatoligi
+@natija
+- miqdorlarni bir birlikka keltirib taqqoslay olasiz
+- yuz va hajm birliklarini to'g'ri almashtira olasiz
+@bbb
+bilaman: metr, kilogramm, soatni
+bilaman: 1 m = 100 cm ekanini
+savol: 1 m² necha cm²?
+savol: Har qanday miqdorni qo'shib bo'ladimi?
+bildim: 1 m² = 10 000 cm², chunki 100 · 100
+bildim: harorat qo'shiluvchan emas
+@hujum Aqliy hujum: qaysi biri uzun?
+| $2$ m yoki $180$ cm? $\;0{,}5$ kg yoki $450$ g? $\;1{,}5$ soat yoki $100$ daqiqa?
+Aqliy hujum. Uch juftlik: ikki metr yoki bir yuz sakson santimetr, yarim kilogramm yoki to'rt yuz ellik gramm, bir yarim soat yoki yuz daqiqa. [1] Har juftlikda qaysi katta? Tez javob bering — bitta tuzoq bor!
+@tekshiruv 1,5 soat va 100 daqiqa — qaysi katta? => 100 daqiqa | 1,5 soat | teng
+@klaster Klaster: miqdorlar
+| SXEMA: Miqdorlar > uzunlik | massa | vaqt | yuz | hajm | birlik | o'lchash xatoligi | qo'shiluvchanlik
+Klaster. [1] Har shoxga birlik zinapoyasini yozing: uzunlik — o'nlik, yuz — yuzlik, hajm — minglik, vaqt — oltmishlik.
+@tekshiruv 1 dm³ necha litr? => 1 | 10 | 1000 | 100
+@keys Keys · STEAM (fan — biologiya): kunlik suv
+Kattalar kuniga taxminan 30 ml suvni har kilogramm vazniga ichishi tavsiya etiladi. 60 kg odamga necha litr?
+A) $1{,}8$ l
+B) $18$ l
+C) $0{,}18$ l
+D) $2$ l
+= A
+@yechim
+$30\cdot 60 = 1800$ ml || Bir ming sakkiz yuz millilitr.
+$1800 : 1000 = 1{,}8$ l || Bir butun o'ndan sakkiz litr.
+@k4 4K · Tanqidiy fikrlash: xatoni toping
+Talaba: «$1$ m² $= 100$ cm², chunki $1$ m $= 100$ cm». Xato qayerda?
+A) Yuz birligida $100\cdot 100 = 10\,000$
+B) Xato yo'q
+C) $1$ m² $= 1000$ cm²
+D) $1$ m² $= 10$ cm²
+= A
+@yechim
+Kvadrat metr — $100\times 100$ cm || Uzunlik ikki yo'nalishda — ko'paytuvchi kvadratga ko'tariladi.
+@k4 4K · Kommunikatsiya: tushuntirish
+1-sinf o'quvchisiga uzunlikni o'lchash nega standart birlik bilan bo'lishi kerakligini qanday tushuntirasiz?
+A) Partani qarich bilan o'lchab ko'ramiz: har kimda har xil son chiqadi — umumiy birlik kerak
+B) Metr — qoida
+C) Chizg'ich chiroyli
+D) O'qituvchi shunday dedi
+= A
+@yechim
+Muammoli vaziyat || Bola birlik kelishuviga o'zi ehtiyoj sezadi — tarixda ham shunday bo'lgan.
+@k4 4K · Kreativlik: o'z birligingiz
+Sinf xonasi yuzini «daftar» birligida o'lchash uchun nima qilish kerak?
+A) Polni daftarlar bilan qoplab, ularni sanash
+B) Xona perimetrini daftar bilan o'lchash
+C) Daftarni tortish
+D) Daftar qalinligini o'lchash
+= A
+@yechim
+Yuz — qoplash || Yuz birligi — qoplovchi figura. Nostandart birlik orqali standart birlik g'oyasi tug'iladi.
+@loyiha 4K · Hamkorlik: mini-loyiha «Maktab o'lchovlari»
+| ZANJIR: Uzunlik :: yo'lak, qadamda va metrda | Yuz :: sinf poli | Hajm :: suv idishi | Natija :: «Maktab pasporti» jadvali
+Guruh topshirig'i. [1] Jamoa maktabni o'lchaydi: yo'lak uzunligini avval qadamda, keyin metrda; sinf poli yuzini; suv idishi hajmini. Har kim o'z o'lchovini qiladi, natijalar solishtiriladi, farqlar muhokama qilinadi — o'lchash xatoligi qayerdan keladi?
+@tekshiruv Nega ikki kishining qadamdagi natijasi har xil chiqadi? => qadam uzunligi har xil — birlik standart emas | biri xato sanagan | yo'lak o'zgargan
+@sinkveyn
+Miqdor
+O'lchanadigan, taqqoslanadigan
+O'lchaydi, almashtiradi, tekshiradi
+Son birlikka bog'liq
+Metr
+
+### U15 +
+@reja
+- Matnli masala: matndan modelga
+- Harakat masalalari
+- Foiz va nostandart, mantiqiy masalalar
+@natija
+- masala shartini chizma, jadval yoki tenglama bilan modellashtira olasiz
+- foizning asosini aniqlab, ketma-ket foiz o'zgarishlarini to'g'ri hisoblay olasiz
+@bbb
+bilaman: «ko'p» — qo'shish, «kam» — ayirish degan qoidani
+bilaman: s = vt formulasini
+savol: Kalit so'z har doim amalni ko'rsatadimi?
+savol: 20% oshib, 20% tushsa — narx qaytadimi?
+bildim: avval vaziyat modellashtiriladi, keyin amal tanlanadi
+bildim: yo'q — ikkinchi foiz boshqa asosdan olinadi
+@hujum Aqliy hujum: chegirma tuzog'i
+| Telefon narxi $20\%$ oshdi, keyin $20\%$ chegirma bo'ldi
+| Avvalgi narxga qaytdimi?
+Aqliy hujum. Telefon narxi yigirma foiz oshdi, bir oydan keyin yigirma foiz chegirma e'lon qilindi. [1] Narx avvalgi holiga qaytdimi? [2] Tez javob bering — ko'pchilik shu yerda yanglishadi.
+@tekshiruv Narx qanday bo'ldi? => avvalgidan 4% arzon | avvalgidek | avvalgidan qimmat
+@klaster Klaster: matnli masala
+| SXEMA: Matnli masala > o'qish | model | yechish | tekshirish | harakat | foiz | mantiqiy jadval | kesmalar modeli
+Klaster. [1] Chap shoxlar — yechish bosqichlari, o'ng shoxlar — masala turlari. Har turga bittadan o'zingiz masala tuzing.
+@tekshiruv Masala yechishning oxirgi bosqichi? => tekshirish | model tuzish | o'qish
+@keys Keys · STEAM (texnologiya): mobil tarif
+Tarif A: oyiga 50 ming so'm, internet cheksiz. Tarif B: 20 ming so'm + har GB uchun 3 ming so'm. Oyiga 12 GB ishlatsangiz, qaysi arzon?
+A) A arzon: B 56 ming so'm
+B) B arzon: 32 ming so'm
+C) Teng
+D) B arzon: 36 ming so'm
+= A
+@yechim
+$20 + 3\cdot 12 = 56$ || B tarifi: yigirma ming qo'shuv o'ttiz olti ming.
+$56 > 50$ || A tarifi arzon. Necha GB dan boshlab A foydali? Yigirma qo'shuv uch x katta ellik — o'ndan ortiq.
+@k4 4K · Tanqidiy fikrlash: xatoni toping
+Masala: «Kitob daftardan 3 marta qimmat, kitob 12 ming». Talaba: $12\cdot 3 = 36$ ming — daftar narxi. Xato qayerda?
+A) Daftar arzon bo'lishi kerak: $12 : 3 = 4$ ming
+B) Xato yo'q
+C) $12 + 3 = 15$
+D) $12 - 3 = 9$
+= A
+@yechim
+Model bilan tekshirish || «Marta qimmat» so'zi ko'paytirishga undaydi, lekin noma'lum — kichik miqdor. Javob mantiqan tekshirildi: daftar kitobdan arzon.
+@k4 4K · Kommunikatsiya: tushuntirish
+O'quvchiga «Ali Validan 5 ta ko'p, Ali 12 ta» masalasini qanday tushuntirasiz?
+A) Ikki kesma chizamiz: Alining kesmasi uzun, ortiqcha 5 tasini kesib tashlasak — Valiniki: 7
+B) «Ko'p» — demak qo'shamiz: 17
+C) Javobni aytamiz
+D) Kalkulyator beramiz
+= A
+@yechim
+Kesmalar modeli || Chizma kalit so'z tuzog'idan qutqaradi.
+@k4 4K · Kreativlik: masala tuzing
+Qaysi masala $x + 2x + 3x = 60$ tenglamasiga mos?
+A) Uch qutida 60 ta olma; ikkinchisida birinchisidan 2 marta, uchinchisida 3 marta ko'p. Birinchisida nechta?
+B) 60 ta olma 3 qutiga teng bo'lindi
+C) Qutiga 2 ta, keyin 3 ta olma qo'shildi
+D) 60 ta olmaning 2/3 qismi yeyildi
+= A
+@yechim
+$6x = 60$, $x = 10$ || Birinchi qutida o'n, ikkinchisida yigirma, uchinchisida o'ttiz.
+@loyiha 4K · Hamkorlik: mini-loyiha «Sinf ekskursiyasi»
+| ZANJIR: Marshrut :: masofa va tezlik | Vaqt :: jo'nash va qaytish | Byudjet :: chipta, chegirma % | Natija :: reja-taqdimot
+Guruh topshirig'i. [1] Sinf uchun bir kunlik ekskursiya rejasini tuzasiz. Birinchi kishi marshrut va vaqtni harakat formulasi bilan hisoblaydi, ikkinchisi byudjetni chegirma foizlari bilan, uchinchisi kutilmagan holatlar uchun zaxira rejasini. Natijani sinfga taqdim etasiz.
+@tekshiruv Avtobus 60 km/soat tezlikda 150 km yursa, yo'lda qancha vaqt? => 2,5 soat | 2 soat | 90 daqiqa | 3 soat
+@sinkveyn
+Matnli masala
+Hayotiy, mantiqiy
+O'qiydi, modellaydi, tekshiradi
+Avval vaziyat, keyin amal
+Model

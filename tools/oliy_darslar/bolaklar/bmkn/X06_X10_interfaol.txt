@@ -1,0 +1,357 @@
+### U06 +
+@reja
+- Modul va argument: nuqtaning masofa va yo'nalishi
+- Trigonometrik shakl va chorakni aniqlash
+- Ko'paytirish, bo'lish va Muavr formulasi
+@natija
+- kompleks sonni trigonometrik shaklga keltira olasiz
+- ko'paytirish va darajaga ko'tarishni burish va cho'zish sifatida izohlay olasiz
+@bbb
+bilaman: kompleks son — tekislikdagi nuqta
+bilaman: sin va cos qiymatlarini: 30°, 45°, 60°
+savol: Nuqtani masofa va burchak bilan berish mumkinmi?
+savol: (1 + i)⁸ ni tez hisoblash yo'li bormi?
+bildim: z = r(cos φ + i sin φ)
+bildim: Muavr: modul darajaga ko'tariladi, argument n marta ortadi
+@hujum Aqliy hujum: navigator qanday gapiradi?
+| «Shimoli-sharqqa 3 km yuring» — bu qanday ma'lumot?
+| Koordinata $(x;\,y)$ o'rniga: masofa va burchak
+Aqliy hujum. Navigator «shimoli-sharqqa uch kilometr yuring» deydi. [1] Bu yerda koordinatalar yo'q — faqat masofa va yo'nalish. [2] Kompleks sonni ham shunday berish mumkinmi? Bunday yozuvning qanday afzalligi bo'lishi mumkin? Taxminingizni tanlang.
+@tekshiruv «Shimoli-sharq» qaysi burchakka mos (sharq — 0°)? => 45° | 90° | 135° | 30°
+@klaster Klaster: trigonometrik shakl
+| SXEMA: Trigonometrik shakl > modul r | argument φ | chorak | ko'paytirish | bo'lish | Muavr formulasi | burish
+Klaster: markazda trigonometrik shakl. [1] Shoxlar uning qismlari va amallari. Har shoxga i soni uchun qiymatni yozing: moduli bir, argumenti to'qson gradus, i ga ko'paytirish — to'qson gradusga burish.
+@tekshiruv Ko'paytirishda argumentlar bilan nima bo'ladi? => qo'shiladi | ko'paytiriladi | o'zgarmaydi
+@keys Keys · STEAM (muhandislik): robot qo'li
+Robot qo'li uchi $z = 2(\cos 30^\circ + i\sin 30^\circ)$ nuqtada. Uni $60^\circ$ ga buruvchi buyruq qaysi songa ko'paytirish?
+A) $\cos 60^\circ + i\sin 60^\circ$
+B) $60$
+C) $2(\cos 60^\circ + i\sin 60^\circ)$
+D) $i$
+= A
+@yechim
+Moduli 1, argumenti $60^\circ$ || Moduli bir bo'lgan son cho'zmaydi, faqat buradi.
+Natija: $2(\cos 90^\circ + i\sin 90^\circ) = 2i$ || Qo'l uchi ikki i nuqtaga keldi.
+@k4 4K · Tanqidiy fikrlash: xatoni toping
+Talaba $-1 - i$ ning argumentini $\operatorname{tg}\varphi = 1 \Rightarrow \varphi = 45^\circ$ deb topdi. To'g'rimi?
+A) Noto'g'ri: nuqta III chorakda, $\varphi = 225^\circ$
+B) To'g'ri
+C) Noto'g'ri: $\varphi = 135^\circ$
+D) Noto'g'ri: $\varphi = -90^\circ$
+= A
+@yechim
+CHIZ: nuqta O(0;0) Z(-1;-1); kesma OZ || Nuqtani chizsak — uchinchi chorak. Tangens bir xil, lekin chorak boshqa.
+@k4 4K · Kommunikatsiya: tushuntirish
+Nega $i^4 = 1$ ekanini eng tushunarli qanday tushuntirasiz?
+A) Har $i$ ga ko'paytirish $90^\circ$ burish; to'rt marta — to'liq aylana, joyiga qaytdik
+B) $4 \cdot i = 1$
+C) Shunday yodlanadi
+D) $i = 1$
+= A
+@yechim
+Geometrik tushuntirish || Burishlar tilida darajalar davriyligi o'z-o'zidan ko'rinadi.
+@k4 4K · Kreativlik: qaysi son?
+Kubi $-8$ ga teng, argumenti $60^\circ$ bo'lgan sonni toping.
+A) $2(\cos 60^\circ + i\sin 60^\circ)$
+B) $-2$
+C) $8(\cos 60^\circ + i\sin 60^\circ)$
+D) $2(\cos 20^\circ + i\sin 20^\circ)$
+= A
+@yechim
+$2^3 = 8$, $\;3\cdot 60^\circ = 180^\circ$ || Kubida modul sakkiz, argument bir yuz sakson gradus — minus sakkiz.
+@loyiha 4K · Hamkorlik: mini-loyiha «Kompleks naqsh»
+| ZANJIR: Boshlang'ich nuqta :: $z = 1$ | Qadam :: $\cdot(\cos 45^\circ + i\sin 45^\circ)$ | 8 qadam :: muntazam sakkizburchak | Natija :: naqsh eskizi
+Guruh topshirig'i. [1] Birni qayta-qayta moduli bir, argumenti qirq besh gradus bo'lgan songa ko'paytiramiz. Sakkiz qadamda nuqtalar muntazam sakkizburchak uchlarini hosil qiladi. Bir kishi hisoblaydi, biri chizadi, biri shu asosda sharqona naqsh eskizini yaratadi.
+@tekshiruv Nechta qadamdan keyin nuqta 1 ga qaytadi? => 8 | 4 | 45 | 360
+@sinkveyn
+Trigonometrik shakl
+Burchakli, ixcham
+Buradi, cho'zadi, ko'taradi
+Ko'paytirish — burilish bo'ldi
+Muavr
+
+### U07 +
+@reja
+- Ta'riflanmaydigan tushunchalar va aksiomalar
+- Burchaklar: qo'shni va vertikal burchaklar
+- Ta'rif, xossa va alomat; asoslash zanjiri
+@natija
+- ta'rif, xossa va alomatni farqlay olasiz
+- geometrik tasdiqni «chunki» bilan asoslay olasiz
+@bbb
+bilaman: nuqta, chiziq, burchakni chizishni
+bilaman: kvadrat va to'g'ri to'rtburchakni
+savol: Nuqtaga ta'rif berish mumkinmi?
+savol: Xossa bilan alomatning farqi nima?
+bildim: boshlang'ich tushunchalar ta'riflanmaydi, xossalari aksiomada
+bildim: xossa: figura ⇒ belgi; alomat: belgi ⇒ figura
+@hujum Aqliy hujum: lug'at zanjiri
+| «Nuqta» so'zini lug'atda qidiramiz: «…kichik belgi»
+| «Belgi»: «…nuqta yoki chiziq» — aylana!
+Aqliy hujum. Lug'atda «nuqta» so'zini qidirib ko'ring: kichik belgi deb yozilgan. [1] «Belgi» so'zini qidirsak — nuqta yoki chiziq. Aylanib, boshiga qaytdik! [2] Matematik bu muammoni qanday hal qiladi? Taxminingizni tanlang.
+@tekshiruv Geometriya bu zanjirni qanday to'xtatadi? => ba'zi tushunchalar ta'riflanmaydi | hammasini ta'riflaydi | rasm chizadi
+@klaster Klaster: geometriya qurilishi
+| SXEMA: Geometriya > ta'riflanmaydigan tushunchalar | aksioma | ta'rif | teorema | xossa | alomat | isbot
+Klaster: geometriya qanday qurilgan. [1] Poydevor — ta'riflanmaydigan tushunchalar va aksiomalar, ustida ta'rif va teoremalar. Har shoxga bittadan misol yozing.
+@tekshiruv «Ikki nuqtadan bitta to'g'ri chiziq o'tadi» — bu? => aksioma | teorema | alomat | ta'rif
+@keys Keys · STEAM (muhandislik): yo'l chorrahasi
+Ikki yo'l kesishadi, ular orasidagi bir burchak $72^\circ$. Muhandis to'rtta burchakni ham belgilashi kerak. To'g'ri javob:
+A) $72^\circ, 108^\circ, 72^\circ, 108^\circ$
+B) $72^\circ, 72^\circ, 72^\circ, 144^\circ$
+C) $72^\circ, 18^\circ, 72^\circ, 18^\circ$
+D) $90^\circ$ lik to'rtta burchak
+= A
+@yechim
+$180^\circ - 72^\circ = 108^\circ$ || Qo'shni burchak bir yuz sakkiz gradus.
+Vertikal burchaklar teng || Qarama-qarshi burchaklar juft-juft teng.
+@k4 4K · Tanqidiy fikrlash: xatoni toping
+Talaba: «Diagonallari teng to'rtburchak — kvadrat, chunki kvadratning diagonallari teng». Xato qayerda?
+A) Xossa teskarisiga aylantirilgan: teng diagonalli to'g'ri to'rtburchak ham bor
+B) Kvadratning diagonallari teng emas
+C) Xato yo'q
+D) To'rtburchakning diagonali bo'lmaydi
+= A
+@yechim
+Qarshi misol || Uzun to'g'ri to'rtburchakning diagonallari teng, lekin u kvadrat emas. Bitta qarshi misol umumiy tasdiqni yiqitadi.
+@k4 4K · Kommunikatsiya: tushuntirish
+3-sinf o'quvchisi: «Kvadrat to'g'ri to'rtburchak emas, u kvadrat». Eng yaxshi javob:
+A) Kvadratning hamma burchagi to'g'ri — demak u to'g'ri to'rtburchak, faqat tomonlari ham teng
+B) Ha, ular boshqa-boshqa figura
+C) Kvadrat — romb emas
+D) Kitobda shunday yozilgan
+= A
+@yechim
+Ta'rifga tayanish || To'g'ri to'rtburchak ta'rifini tekshirib, kvadratni xususiy hol sifatida ko'rsatamiz.
+@k4 4K · Kreativlik: qarshi misol
+«Teng perimetrli to'g'ri to'rtburchaklarning yuzlari teng» — bu tasdiqni qaysi juftlik rad etadi?
+A) $1 \times 5$ va $3 \times 3$
+B) $2 \times 3$ va $3 \times 2$
+C) $4 \times 4$ va $4 \times 4$
+D) $1 \times 2$ va $2 \times 4$
+= A
+@yechim
+$P = 12$ ikkalasida; $S = 5$ va $S = 9$ || Perimetrlar teng, yuzlar har xil — tasdiq yolg'on.
+@loyiha 4K · Hamkorlik: mini-loyiha «Shakllar detektivi»
+| ZANJIR: Topish :: maktabdagi 10 ta shakl | Tasnif :: ta'rif bo'yicha | Asoslash :: «chunki…» kartochkasi | Natija :: fotokollaj
+Guruh topshirig'i. [1] Jamoa binoda o'nta geometrik shakl topib suratga oladi: deraza, kafel, yo'l belgisi. Har bir shakl uchun kartochka: nomi, ta'rifi va «bu kvadrat, chunki…» degan asoslash. Bir kishi suratga oladi, biri tasniflaydi, biri asoslashni tekshiradi.
+@tekshiruv Asoslash kartochkasida nima bo'lishi shart? => ta'rifga tayangan «chunki» | shaklning rangi | o'lchami
+@sinkveyn
+Geometriya
+Mantiqiy, aniq
+Ta'riflaydi, isbotlaydi, asoslaydi
+Ko'rinish dalil emas
+Evklid
+
+### U08 +
+@reja
+- Uchburchak turlari va uchburchak tengsizligi
+- Burchaklar yig'indisi teoremasining isboti
+- Balandlik, mediana, bissektrisa; yuz formulasi
+@natija
+- uchburchak burchaklari yig'indisini isbotlab bera olasiz
+- balandlik, mediana va bissektrisani farqlab, chizmada yasay olasiz
+@bbb
+bilaman: uchburchakning uchta tomoni va burchagi borligini
+bilaman: burchaklar yig'indisi 180° ekanini
+savol: Nega aynan 180°?
+savol: Balandlik har doim uchburchak ichida bo'ladimi?
+bildim: parallel chiziq o'tkazib isbotlanadi
+bildim: o'tmas burchakli uchburchakda balandlik tashqariga tushadi
+@hujum Aqliy hujum: cho'plardan uchburchak
+| 3 ta cho'p: $3$ cm, $4$ cm, $9$ cm
+| Uchburchak yasab bo'ladimi?
+Aqliy hujum. Qo'lingizda uchta cho'p: uch, to'rt va to'qqiz santimetr. [1] Ulardan uchburchak yasab bo'ladimi? [2] Chizmasdan, tasavvur qilib javob bering. Keyin qoidasini chiqaramiz.
+@tekshiruv 3, 4, 9 cm cho'plardan uchburchak chiqadimi? => yo'q | ha | faqat to'g'ri burchakli
+@klaster Klaster: uchburchak
+| SXEMA: Uchburchak > turlari | tengsizlik | 180° | tashqi burchak | balandlik | mediana | bissektrisa | yuz
+Klaster: markazda uchburchak. [1] Shoxlarda bugungi barcha bilimlar. Har shox uchun bir jumla yozing: masalan, «mediana — qarshi tomon o'rtasiga».
+@tekshiruv Medianalar kesishgan nuqta qanday nomlanadi? => og'irlik markazi | ortomarkaz | aylananing markazi
+@keys Keys · STEAM (fan — fizika): muvozanat nuqtasi
+Uchburchak shaklidagi karton yorliqni ip bilan muvozanatda osish kerak. Ipni qaysi nuqtaga bog'lash kerak?
+A) medianalar kesishgan nuqtaga
+B) balandliklar kesishgan nuqtaga
+C) istalgan uchiga
+D) eng uzun tomon o'rtasiga
+= A
+@yechim
+Og'irlik markazi || Medianalar kesishgan nuqta — og'irlik markazi, Arximed buni bilgan.
+@k4 4K · Tanqidiy fikrlash: xatoni toping
+Talaba yuzni hisobladi: asos 10, yon tomon 6, $S = \frac{1}{2}\cdot 10\cdot 6 = 30$. Xato qayerda?
+A) Yon tomon balandlik emas — balandlik asosga perpendikulyar bo'lishi kerak
+B) Yarmi olinmasligi kerak
+C) Xato yo'q
+D) Asos noto'g'ri
+= A
+@yechim
+Balandlik $\perp$ asos || Yon tomon faqat to'g'ri burchakda balandlik bo'ladi.
+@k4 4K · Kommunikatsiya: tushuntirish
+4-sinf o'quvchisiga burchaklar yig'indisi $180^\circ$ ekanini qanday ko'rsatasiz?
+A) Qog'oz uchburchakning burchaklarini yirtib, yonma-yon qo'yamiz — tekis chiziq hosil bo'ladi
+B) Formulani doskaga yozamiz
+C) Transportir bilan bitta burchakni o'lchaymiz
+D) «Kattalar shunday deydi»
+= A
+@yechim
+Amaliy tajriba || Yoyiq burchak — bir yuz sakson gradus; bola o'zi kashf etadi.
+@k4 4K · Kreativlik: qaysi uchburchak?
+Burchaklari $1 : 2 : 3$ nisbatda bo'lgan uchburchak qanday?
+A) to'g'ri burchakli
+B) teng tomonli
+C) o'tmas burchakli
+D) teng yonli
+= A
+@yechim
+$x + 2x + 3x = 180^\circ \Rightarrow x = 30^\circ$ || Burchaklar o'ttiz, oltmish, to'qson gradus.
+@loyiha 4K · Hamkorlik: mini-loyiha «Falesning soyasi»
+| ZANJIR: O'lchash :: tayoq va soyasi | O'lchash :: bino soyasi | Hisob :: nisbat | Natija :: bino balandligi
+Guruh topshirig'i, quyoshli kunda. [1] Bir kishi tayoqni tik qo'yadi va uning soyasini o'lchaydi, ikkinchisi bino soyasini o'lchaydi, uchinchisi nisbatdan bino balandligini hisoblaydi. Masalan, bir metrlik tayoq soyasi bir yarim metr, bino soyasi o'n besh metr bo'lsa, bino o'n metr. Fales usuli — xuddi shu.
+@tekshiruv Tayoq 1 m, soyasi 2 m; bino soyasi 16 m. Bino balandligi? => 8 m | 32 m | 16 m | 4 m
+@sinkveyn
+Uchburchak
+Qattiq, mustahkam
+O'lchaydi, bog'laydi, tayanadi
+Uch burchak — yoyiq burchak
+Ferma
+
+### U09 +
+@reja
+- Teng uchburchaklar va mos elementlar
+- Uchta tenglik alomati: TBT, BTB, TTT
+- Yetarli bo'lmagan shartlar va alomatni isbotda qo'llash
+@natija
+- tenglik alomatini to'g'ri tanlab, mos elementlar tengligini isbotlay olasiz
+- yetarli bo'lmagan shartlarni qarshi misol bilan ko'rsata olasiz
+@bbb
+bilaman: ikki figura ustma-ust tushsa teng ekanini
+bilaman: uchburchakning 6 ta elementi borligini
+savol: Tenglik uchun nechta element yetarli?
+savol: Uchta burchak teng bo'lsa yetarlimi?
+bildim: to'g'ri tanlangan 3 ta element: TBT, BTB, TTT
+bildim: BBB — faqat o'xshashlik, tenglik emas
+@hujum Aqliy hujum: ko'prik nega uchburchakdan?
+| Temir yo'l ko'prigi, minora, kran — hammasida uchburchaklar
+| To'rtburchak rama bosilsa — qiyshayadi. Uchburchak-chi?
+Aqliy hujum. Ko'priklar, minoralar va kranlarga qarang — ularning ramasi uchburchaklardan iborat. [1] To'rtburchak ramani qiyalab bossangiz, u parallelogrammga aylanib qiyshayadi. [2] Uchburchak rama-chi? Nega u shaklini saqlaydi? Taxminingizni tanlang.
+@tekshiruv Nega uchburchak rama qiyshaymaydi? => uch tomon uchburchakni bir qiymatli belgilaydi | u yengil | burchaklari o'tkir
+@klaster Klaster: tenglik alomatlari
+| SXEMA: Uchburchaklar tengligi > TBT | BTB | TTT | mos elementlar | umumiy tomon | vertikal burchaklar | BBB — alomat emas
+Klaster: markazda uchburchaklar tengligi. [1] Uchta alomat va isbotda ko'p ishlatiladigan yordamchi faktlar — umumiy tomon, vertikal burchaklar. Har shoxga qisqa chizma chizing.
+@tekshiruv Isbotda «umumiy tomon» nimani beradi? => bir juft teng tomon | ikki teng burchak | tenglikni darhol
+@keys Keys · STEAM (muhandislik): daryo kengligi
+Muhandis daryo kengligini suvga tushmasdan o'lchadi: qirg'oqda $AB$ ga teng $AB_1$ yasadi, burchaklarni ham tenglashtirdi. Bu qaysi alomatga asoslangan?
+A) BTB
+B) TTT
+C) BBB
+D) TBT emas, faqat o'lchash
+= A
+@yechim
+Tomon va unga yopishgan ikki burchak || Ikkinchi alomat: Fales usuli. Keyin quruqlikdagi mos tomon o'lchanadi.
+@k4 4K · Tanqidiy fikrlash: xatoni toping
+Talaba: «$AB = DE$, $BC = EF$, $\angle A = \angle D$ — demak TBT bo'yicha teng». Xato qayerda?
+A) $\angle A$ berilgan tomonlar orasida emas — TBT qo'llanmaydi
+B) Xato yo'q
+C) Bu TTT alomati
+D) $\angle A$ ortiqcha
+= A
+@yechim
+Orasidagi burchak: $\angle B$ || AB va BC tomonlar orasidagi burchak — B burchak, A emas.
+@k4 4K · Kommunikatsiya: tushuntirish
+Kursdosh: «Uchta burchagi teng uchburchaklar teng». Eng ishonarli rad etish:
+A) Kichik va katta teng tomonli uchburchakni chizib ko'rsatish
+B) «Kitobda yo'q» deyish
+C) Transportir bilan o'lchash
+D) Rozi bo'lish
+= A
+@yechim
+Qarshi misol || Burchaklari bir xil, o'lchami har xil — tenglik yo'q.
+@k4 4K · Kreativlik: isbot rejasi
+Teng yonli $ABC$ da ($AC = BC$) $\angle A = \angle B$ ni isbotlash uchun qaysi yordamchi yasash eng qulay?
+A) C uchini AB ning o'rtasi M bilan tutashtirish
+B) AB ga parallel chiziq
+C) Aylana chizish
+D) Hech narsa yasamaslik
+= A
+@yechim
+$\triangle ACM = \triangle BCM$ (TTT) || Mos burchaklar teng: A burchak B burchakka teng.
+@loyiha 4K · Hamkorlik: mini-loyiha «Mustahkam ko'prik»
+| ZANJIR: Material :: cho'p va plastilin | Model 1 :: to'rtburchak ramalar | Model 2 :: uchburchak ramalar | Sinov :: kitob yuklash
+Guruh topshirig'i. [1] Ikki jamoa cho'p va plastilindan ko'prik yasaydi: biri to'rtburchak, ikkinchisi uchburchak ramalardan. Keyin ustiga kitob qo'yib sinaymiz. Natijani uchinchi alomat bilan tushuntiring: uch tomon uchburchakni bir qiymatli belgilaydi.
+@tekshiruv Qaysi ko'prik ko'proq yuk ko'taradi? => uchburchak ramali | to'rtburchak ramali | bir xil
+@sinkveyn
+Tenglik alomati
+Ixcham, ishonchli
+Taqqoslaydi, isbotlaydi, tejaydi
+Uchta element yetarli
+Kongruentlik
+
+### U10 +
+@reja
+- To'rtburchaklar oilasi va ularning munosabatlari
+- Perimetr va yuz: farqi va formulalar
+- Aylana va doira; π soni, aylana uzunligi va doira yuzi
+@natija
+- perimetr va yuzni farqlab, to'g'ri birlikda hisoblay olasiz
+- doira yuzi formulasini kesib-terish modeli bilan asoslay olasiz
+@bbb
+bilaman: kvadrat va to'g'ri to'rtburchak yuzini
+bilaman: π ≈ 3,14 ekanini
+savol: Perimetri teng figuralarning yuzlari ham tengmi?
+savol: Doira yuzi formulasi qayerdan keladi?
+bildim: perimetri teng bo'lsa ham yuzlar har xil bo'lishi mumkin
+bildim: doira bo'laklari to'g'ri to'rtburchakka teriladi: πr · r
+@hujum Aqliy hujum: tomorqa uchun devor
+| 20 m devor bor. Qaysi shakldagi tomorqa katta bo'ladi?
+| $2 \times 8$? $\;4 \times 6$? $\;5 \times 5$?
+Aqliy hujum. Dehqonda yigirma metrlik devor bor. [1] U to'g'ri to'rtburchak tomorqani o'raydi: ikki ga sakkiz, to'rt ga olti yoki besh ga besh. [2] Qaysi birida yer ko'proq? Hisoblamasdan, sezgi bilan javob bering.
+@tekshiruv Qaysi tomorqa eng katta? => 5 × 5 | 2 × 8 | 4 × 6 | hammasi teng
+@klaster Klaster: to'rtburchak va doira
+| SXEMA: Yassi figuralar > to'g'ri to'rtburchak | kvadrat | perimetr | yuz | aylana | doira | π
+Klaster. [1] Chap shoxlar — to'rtburchaklar, o'ng shoxlar — aylana va doira. Har biriga formulani va o'lchov birligini yozing: perimetr — metr, yuz — kvadrat metr.
+@tekshiruv Doira yuzi qaysi birlikda o'lchanadi? => cm² | cm | cm³ | gradus
+@keys Keys · STEAM (san'at va dizayn): dumaloq gilam
+Dizayner diametri 2 m bo'lgan dumaloq gilam to'qiydi. Unga qancha mato kerak va chetiga qancha jiyak tikiladi ($\pi \approx 3{,}14$)?
+A) $3{,}14$ m² va $6{,}28$ m
+B) $12{,}56$ m² va $6{,}28$ m
+C) $6{,}28$ m² va $3{,}14$ m
+D) $3{,}14$ m² va $3{,}14$ m
+= A
+@yechim
+$r = 1$: $S = \pi \cdot 1^2 = 3{,}14$ || Radius bir metr: yuz uch butun yuzdan o'n to'rt.
+$C = 2\pi r = 6{,}28$ || Jiyak — aylana uzunligi: olti butun yuzdan yigirma sakkiz metr.
+@k4 4K · Tanqidiy fikrlash: xatoni toping
+Talaba: diametr 10 cm, $S = \pi\cdot 10^2 = 314$ cm². Xato qayerda?
+A) Radius o'rniga diametr qo'yilgan: $S = \pi\cdot 5^2 = 78{,}5$
+B) $\pi$ noto'g'ri
+C) Xato yo'q
+D) Kvadratga ko'tarilmasligi kerak
+= A
+@yechim
+Avval radius || Diametrni ikkiga bo'lmaslik — eng ko'p uchraydigan xato. Natija to'rt barobar katta chiqadi.
+@k4 4K · Kommunikatsiya: tushuntirish
+O'quvchi: «Perimetr va yuz — bir narsa-ku». Eng yaxshi tushuntirish:
+A) Perimetr — tomorqa atrofidagi devor uzunligi, yuz — ichidagi yer
+B) Ikkalasi ham uzunlik
+C) Yuz — perimetrning yarmi
+D) Farqi yo'q
+= A
+@yechim
+Hayotiy obraz || Devor va yer — chegara va ichki soha farqini aniq ko'rsatadi.
+@k4 4K · Kreativlik: qaysi shakl?
+Bir xil perimetrda eng katta yuzga ega shakl qaysi?
+A) doira
+B) kvadrat
+C) uzun to'g'ri to'rtburchak
+D) uchburchak
+= A
+@yechim
+Izoperimetrik xossa || Doira bir xil chegara uzunligida eng katta sohani o'raydi — shuning uchun suv tomchisi va sovun pufagi dumaloq.
+@loyiha 4K · Hamkorlik: mini-loyiha «π ni o'zimiz topamiz»
+| ZANJIR: Narsalar :: piyola, tarelka, chelak | O'lchash :: ip bilan aylana, chizg'ich bilan diametr | Hisob :: C : d | Natija :: o'rtacha qiymat ≈ 3,14
+Guruh topshirig'i. [1] Har kim uchta dumaloq narsani o'lchaydi: ip bilan aylana uzunligini, chizg'ich bilan diametrni. Jadvalga yozib, aylana uzunligini diametrga bo'lasiz. Barcha natijalarning o'rtachasi pi ga juda yaqin chiqadi. Bu boshlang'ich sinfda ham ajoyib tajriba.
+@tekshiruv C = 31,4 cm, d = 10 cm. Nisbat? => 3,14 | 314 | 0,314 | 21,4
+@sinkveyn
+Doira
+Dumaloq, mukammal
+O'raydi, o'lchaydi, qoplaydi
+Aylananing diametrga nisbati — π
+Pi
