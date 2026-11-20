@@ -28,7 +28,7 @@ def _chizma_royxati():
     return "\n".join(qatorlar)
 
 
-def katalog_matni(mavzu: str = "", fan: str = "", n: int = 70) -> str:
+def katalog_matni(mavzu: str = "", fan: str = "", n: int = 90) -> str:
     """Kutubxona rasmlari ro'yxati (AI uchun): mavzuga yaqinlari, mavzu bo'lmasa — hammasi fan bo'yicha."""
     from . import rasm_tanla, rasmlar
     if mavzu or fan:
@@ -48,7 +48,8 @@ def korsatma(katalog: bool = False) -> str:
 
 def _korsatma_asos() -> str:
     return f"""Sen tajribali o‘qituvchi-metodistsan. Berilgan mavzu bo‘yicha TAQDIMOT MIYASINI yozasan — faqat mazmun,
-dizayn emas (ranglar, joylashuv, animatsiyani dastur o‘zi qiladi). Javob FAQAT bitta JSON obyekt bo‘lsin, izohsiz.
+dizayn emas (ranglar, shrift, animatsiyani dastur o‘zi qiladi; sen faqat har slayd uchun joylashuv kodini tanlaysan).
+Javob FAQAT bitta JSON obyekt bo‘lsin, izohsiz.
 
 TIL VA USLUB
 - O‘zbek lotin yozuvi: o‘, g‘, ’ belgilari bilan (masalan: «bo‘lak», «ta’rif»). Imlo xatosiz, ilmiy va tushunarli.
@@ -69,7 +70,7 @@ TUZILMA (kalitlar aynan shunday):
  "tarix": {{"sarlavha","voqealar":[{{"davr","nom","matn","belgi","rasm"}} × 3–4],"xulosa"}},
  "bolimlar": [  3–5 ta bo‘lim
    {{"nom","izoh","belgi","slaydlar":[  har bo‘limda 2–4 slayd
-      {{"sarlavha":"slayd sarlavhasi","izoh":"o‘qituvchi gapi (3–6 jumla)","elementlar":[ 1–3 element ]}}
+      {{"sarlavha":"slayd sarlavhasi","izoh":"o‘qituvchi gapi (3–6 jumla)","joylashuv":"kod (pastda)","elementlar":[ 1–3 element ]}}
    ]}}
  ],
  "xatolar": [{{"xato","sabab","togri"}} × 4–6],
@@ -115,12 +116,27 @@ Bitta slaydda: ko‘pi bilan 3 ta element; jadval/taqqoslash/xossalar va yuqorid
 Fanga mos turlarni tanla: matematika — formula/misol/chizma; tillar — lugat/dialog/bosh_joy; tarix — vaqt_chizigi/xarita;
 geografiya — xarita/jarayon; tabiiy fanlar — tajriba/jarayon/galereya; musiqa va san’at — galereya/guruhlash; har mavzuda 1–3 o‘yin.
 
+JOYLASHUV ("joylashuv" — slayd qanday joylashishi; mazmunga mos kelmasa dastur o‘zi to‘g‘rilaydi):
+- rasm_ong / rasm_chap — 1–2 qisqa matn va bitta "rasm" elementi: matn bir tomonda, rasm ikkinchi tomonda
+- rasm_panel — 1–2 matn + "rasm": rasm yarim slayd rangli panelda katta (eng ta’sirli; bo‘lim boshlarida yaxshi)
+- rasm_katta — bitta qisqa matn + "rasm": rasm juda katta, matn kartada (hayotiy vaziyat, kirish)
+- markaz — bitta qisqa ta’rif/qoida/teorema/savol (≤ 300 belgi), rasm va chizmasiz: o‘rtada katta harflar bilan
+- ustunlar — 2–3 ta qisqa tarif/qoida/matn yonma-yon (har biri ≤ 200 belgi, "sarlavha" bilan): taqqoslash, 3 xossa
+- qatorlar — 2–3 ta matn ketma-ket qatorlarda (bosqichlar, sabablar)
+- yon_sarlavha — sarlavha chapdagi ustunda, o‘ngda bitta element (xossalar, misol, jadval emas)
+- standart — boshqalari (jadval, taqqoslash, lugat, xarita va boshqa keng elementlar shu bilan)
+Bir xil joylashuvni ketma-ket ikki slaydda ishlatma; taqdimotda kamida 4 xil joylashuv bo‘lsin; rasmli slaydlarning
+yarmidan ko‘pida rasm_panel yoki rasm_katta bo‘lsin. Bilmasang — "avto".
+
 CHIZMALAR (kod chizadi, rasm kerak emas — iloji bo‘lsa chizma ishlat). Turlar va namunalar:
 {_chizma_royxati()}
 (ichma_ich: qatlamlar ICHKARIDAN tashqariga; son_oqi: dan < gacha, 20 tadan kam bo‘linma.)
 
 RASMLAR: chizma bilan ko‘rsatib bo‘lmaydigan joyda (tarixiy shaxs, buyum, jonzot, hayotiy vaziyat) "rasm" maydoniga
 kalit yoz. AVVAL pastdagi «KUTUBXONA RASMLARI» ro‘yxatidan aynan mos kalitni tanla — ular tayyor va slaydda darhol chiqadi.
+Saytda 6000 ga yaqin tayyor rasm bor: lugat so‘zlari, galereya, tajriba jihozlari, moslash juftlari va jarayon bosqichlarida
+aniq narsa nomini yozsang ("Olma", "Kolba", "Sigir", "apple") — "rasm" yozmasang ham dastur o‘zi mos rasmni qo‘yadi.
+Shuning uchun bunday bandlarda umumiy so‘z emas, aniq narsa nomini yoz.
 Rasm alohida "rasm" element bo‘lib slaydning ikkinchi elementi sifatida turadi (matn chapda, rasm o‘ngda) yoki
 "hayotiy" element ichida. Mavzuga mos 3–8 rasm ishlat; bitta rasmni ikki marta ishlatma; "meta.rasm" — titul rasmi.
 Ro‘yxatda mos rasm bo‘lmasa yangi kalit yoz (kichik lotin harflari, raqam va _), "rasmlar" ro‘yxatiga "tavsif"
@@ -335,10 +351,15 @@ def miya_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", 
     asos = _xabar(mavzu, fan, daraja, sinf, tur, qoshimcha, manba, z).replace("To‘liq JSON miyani yoz.", "")
     vazifalar = []
     for i, b in enumerate(reja["bolimlar"]):
-        vazifalar.append(("bolim", i, asos + f"\nUMUMIY REJA:\n{rmatn}\n\nFAQAT {i + 1}-BO‘LIMNI to‘liq yoz: "
+        try:
+            bk = katalog_matni(" ".join([b["nom"]] + [sl["sarlavha"] for sl in b["slaydlar"]]), fan, 40)
+            bk = f"\nBU BO‘LIMGA MOS RASMLAR (kalit — nima tasvirlangan):\n{bk}\n" if "topilmadi" not in bk else ""
+        except Exception:
+            bk = ""
+        vazifalar.append(("bolim", i, asos + bk + f"\nUMUMIY REJA:\n{rmatn}\n\nFAQAT {i + 1}-BO‘LIMNI to‘liq yoz: "
                           f"{{\"bolim\": {{\"nom\",\"izoh\",\"belgi\",\"slaydlar\":[...]}}, \"rasmlar\":[...]}}. "
                           f"Rejadagi slaydlar ({len(b['slaydlar'])} ta) aynan shu tartibda, shu sarlavhalar bilan; har slaydda \"izoh\" "
-                          f"(o‘qituvchi gapi) va 1–3 element. Boshqa bo‘limlarni yozma."))
+                          f"(o‘qituvchi gapi), \"joylashuv\" va 1–3 element. Boshqa bo‘limlarni yozma."))
     vazifalar.append(("yakun", -1, asos + f"\nUMUMIY REJA:\n{rmatn}\n\nBo‘limlarni YOZMA (ular alohida yoziladi). Faqat qolgan qismlarni "
                       "yoz: {\"meta\", \"adabiyotlar\", \"takrorlash\", \"muammo\", \"tarix\", \"xatolar\", \"metodika\", "
                       "\"xulosa\", \"test\" (6 ta, rejadagi mazmun bo‘yicha), \"nazorat\", \"mustaqil_ish\", \"keyingi\"}."))

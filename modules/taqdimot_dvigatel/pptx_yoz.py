@@ -255,6 +255,20 @@ def _effect_par(spid, a, node_type, nid):
         head = 'presetID="42" presetClass="entr" presetSubtype="0"'
         body = (_vis(spid, nid) + _effect(spid, nid, "fade", ms) + _anim(spid, nid, "ppt_x", "#ppt_x", "#ppt_x", ms)
                 + _anim(spid, nid, "ppt_y", "#ppt_y+.1", "#ppt_y", ms))
+    elif eff in ("circle", "box", "split"):
+        pid, sub, filt = {"circle": (6, 16, "circle(in)"), "box": (4, 16, "box(in)"), "split": (16, 21, "barn(inVertical)")}[eff]
+        head = f'presetID="{pid}" presetClass="entr" presetSubtype="{sub}"'
+        body = _vis(spid, nid) + _effect(spid, nid, filt, ms)
+    elif eff in ("slide", "drop"):
+        head = 'presetID="42" presetClass="entr" presetSubtype="0"'
+        x0 = "#ppt_x-.04" if eff == "slide" else "#ppt_x"
+        y0 = "#ppt_y-.06" if eff == "drop" else "#ppt_y"
+        body = (_vis(spid, nid) + _effect(spid, nid, "fade", ms) + _anim(spid, nid, "ppt_x", x0, "#ppt_x", ms)
+                + _anim(spid, nid, "ppt_y", y0, "#ppt_y", ms))
+    elif eff == "grow":
+        head = 'presetID="53" presetClass="entr" presetSubtype="16"'
+        body = (_vis(spid, nid) + _anim(spid, nid, "ppt_w", "#ppt_w*0.85", "#ppt_w", ms) + _anim(spid, nid, "ppt_h", "#ppt_h*0.85", "#ppt_h", ms)
+                + _effect(spid, nid, "fade", ms))
     elif eff == "wedge":
         head = 'presetID="20" presetClass="entr" presetSubtype="0"'
         body = _vis(spid, nid) + _effect(spid, nid, "wedge", ms)

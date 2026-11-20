@@ -98,11 +98,17 @@ ANIMATSIYALAR = {
     "sahna": dict(nom="Sahna", card=("rise", None, 700), item=("wipe", "l", 550), diagram=("wipe", "u", 800), accent=("zoom", None, 500), big=("wedge", None, 900), stagger=200),
     "tezkor": dict(nom="Tezkor", card=("zoom", None, 350), item=("fade", None, 300), diagram=("wipe", "l", 450), accent=("zoom", None, 300), big=("zoom", None, 450), stagger=80),
     "tolqin": dict(nom="To'lqin", card=("fly", "d", 650), item=("rise", None, 500), diagram=("wipe", "r", 750), accent=("zoom", None, 500), big=("rise", None, 750), stagger=170),
+    "parda": dict(nom="Parda", card=("split", None, 650), item=("slide", None, 500), diagram=("wipe", "l", 750), accent=("grow", None, 450), big=("box", None, 800), stagger=150),
+    "doira": dict(nom="Doira", card=("grow", None, 550), item=("fade", None, 450), diagram=("circle", None, 800), accent=("circle", None, 500), big=("circle", None, 900), stagger=140),
+    "ochilish": dict(nom="Ochilish", card=("box", None, 600), item=("slide", None, 480), diagram=("wipe", "u", 750), accent=("grow", None, 450), big=("box", None, 800), stagger=130),
+    "suzish": dict(nom="Suzib chiqish", card=("rise", None, 700), item=("slide", None, 520), diagram=("fade", None, 700), accent=("grow", None, 480), big=("rise", None, 850), stagger=160),
+    "tushish": dict(nom="Tepadan tushish", card=("drop", None, 600), item=("fade", None, 450), diagram=("wipe", "d", 750), accent=("grow", None, 450), big=("drop", None, 800), stagger=150),
+    "jurnal": dict(nom="Jurnal", card=("fade", None, 700), item=("slide", None, 600), diagram=("wipe", "l", 900), accent=("wipe", "l", 500), big=("fade", None, 1000), stagger=180),
 }
 
 
 # «Tasodifiy» tanlanganda faqat tinch animatsiyalar; uchib/sakrab kiradiganlari faqat qo'lda tanlansa
-TINCH_ANIMATSIYALAR = ["yumshoq", "sokin", "chizgich", "sahna"]
+TINCH_ANIMATSIYALAR = ["yumshoq", "sokin", "chizgich", "sahna", "parda", "doira", "ochilish", "suzish", "tushish", "jurnal"]
 
 
 def mos_palitralar(oila):

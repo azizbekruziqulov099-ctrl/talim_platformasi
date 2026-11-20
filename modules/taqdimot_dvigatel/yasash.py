@@ -6,6 +6,7 @@
 """
 from __future__ import annotations
 
+import copy
 import random
 
 from . import bloklar as B
@@ -109,6 +110,10 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
         u = uslub.Uslub(uslub_kod, anim or rng.choice(uslub.TINCH_ANIMATSIYALAR))
     else:
         u = uslub.tanla(rng, oila, palitra, anim)
+    # animatsiya tanlanmagan bo'lsa — asosiy va yordamchi (slaydlarning bir qismi) aralash: chiqishlar xilma-xil
+    anim2 = None
+    if anim not in uslub.ANIMATSIYALAR:
+        anim2 = rng.choice([a for a in uslub.TINCH_ANIMATSIYALAR if a != u.anim_nom])
     plan, sections, reja_i = reja_tuz(m, rng, bolim_titul)
     total = len(plan)
     # bo'limlarning birinchi/oxirgi slaydi
@@ -130,7 +135,12 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
         # Morph o'xshash shakllarni o'zi juftlab, yozuvlarni slayddan slaydga uchirib yuboradi (xunuk) — faqat yumshoq fade
         s = Slayd(fon=fon, otish="fade")
         nav = {"total": total, "idx": i, "sections": secs_nav, "sec": p["sec"], "reja": reja_i if reja_i is not None else 0}
-        k = B.K(s, u, random.Random(seed * 1009 + i * 31), nav, rb)
+        srng = random.Random(seed * 1009 + i * 31)
+        us = u
+        if anim2 and p["blok"] != "titul" and srng.random() < 0.35:
+            us = copy.copy(u)
+            us.anim_nom, us.anim = anim2, uslub.ANIMATSIYALAR[anim2]
+        k = B.K(s, us, srng, nav, rb)
         k.deck = deck
         d = dict(p["d"])
         si = p["sec"]
@@ -163,7 +173,7 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
         slides.append(sd)
     return {
         "sxema": "taqdimot-sahna/1", "w": 1280, "h": 720, "seed": seed, "uslub": u.json(), "meta": m["meta"],
-        "slaydlar": slides, "miya": m, "rasm_hisobot": rasm_hisobot, "dizayn": deck_json,
+        "slaydlar": slides, "miya": m, "rasm_hisobot": rasm_hisobot, "dizayn": dict(deck_json, anim2=anim2),
     }
 
 
