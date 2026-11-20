@@ -289,7 +289,13 @@ def main(faqat=None):
     files, xatolar, mavzular, jami = [], [], [], {"dars": 0, "test": 0, "savol": 0}
     for sec in sections:
         sid = sec["n"]
-        darslar = parse_darslar(os.path.join(HERE, "darslar", f"s{sid}.txt"))
+        darslar = {}
+        import glob
+        for f in sorted(glob.glob(os.path.join(HERE, "darslar", f"s{sid}.txt")) + glob.glob(os.path.join(HERE, "darslar", f"s{sid}_*.txt"))):
+            for k, d in parse_darslar(f).items():   # bo'lim bir necha faylda bo'lishi mumkin: s1.txt, s1_04-10.txt …
+                if k in darslar:
+                    raise ValueError(f"{k} ikki faylda bor")
+                darslar[k] = d
         itlar = {f"{sid}.{it['n']}": it for it in sec["items"]}
         for k, d in darslar.items():
             if d["savol"] not in itlar:
