@@ -42,6 +42,7 @@ def reja_tuz(m: dict, rng: random.Random, bolim_titul=None):
     if len(m["takrorlash"]["savollar"]) >= 2:
         plan.append({"blok": "takrorlash", "d": {"takrorlash": m["takrorlash"]}, "sec": -1})
     sections = []  # (nom, belgi, izoh, [slides])
+    bolim_rasm = {}
     bol = m["bolimlar"]
     for bi, b in enumerate(bol):
         items = []
@@ -51,8 +52,11 @@ def reja_tuz(m: dict, rng: random.Random, bolim_titul=None):
             if m["tarix"]["voqealar"]:
                 items.append(("tarix", {"tarix": m["tarix"]}))
         for sl in b["slaydlar"]:
-            items.append(("kontent", {"sarlavha": sl["sarlavha"], "elementlar": sl["elementlar"], "izoh": sl.get("izoh")}))
+            items.append(("kontent", {"sarlavha": sl["sarlavha"], "elementlar": sl["elementlar"], "izoh": sl.get("izoh"),
+                                      "joylashuv": sl.get("joylashuv") or ""}))
         sections.append([b["nom"], b.get("belgi"), b.get("izoh"), items])
+        if b.get("rasm"):
+            bolim_rasm[len(sections) - 1] = b["rasm"]
     yakun = []
     if m["xatolar"]:
         yakun.append(("xatolar", {"xatolar": m["xatolar"]}))
@@ -83,14 +87,15 @@ def reja_tuz(m: dict, rng: random.Random, bolim_titul=None):
         plan.append({"blok": "reja", "d": {}, "sec": -1})
     for si, (nom, belgi, izoh, items) in enumerate(sections):
         if bolim_titul:
-            plan.append({"blok": "bolim", "d": {"no": si, "nom": nom, "izoh": izoh, "belgi": belgi}, "sec": si})
+            rasm = bolim_rasm.get(si, "")
+            plan.append({"blok": "bolim", "d": {"no": si, "nom": nom, "izoh": izoh, "belgi": belgi, "rasm": rasm}, "sec": si})
         for blok, d in items:
             plan.append({"blok": blok, "d": d, "sec": si})
     return plan, sections, reja_i
 
 
 def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim: str | None = None, oila: str | None = None,
-         palitra: str | None = None, bolim_titul: bool | None = None, rasm_bor=None, rasm_avto: bool = True):
+         palitra: str | None = None, bolim_titul: bool | None = None, rasm_bor=None, rasm_avto: bool = True, dizayn: dict | None = None):
     m = sxema.normallashtir(miya)
     from . import rasm_tanla
     try:
@@ -115,6 +120,9 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
     secs_nav = [(sections[si][0], sec_rng[si][0]) for si in range(len(sections)) if si in sec_rng]
     reja_items = [(sections[si][0], sec_rng[si][0], sec_rng[si][1], sections[si][1]) for si in range(len(sections)) if si in sec_rng]
     rb = rasm_bor or rasmlar.bor
+    from . import bloklar_joy
+    deck = bloklar_joy.dnk(random.Random(seed * 7 + 3), u, dizayn)
+    deck_json = dict(deck)
     slides = []
     mot = uslub.motiflar(m["meta"].get("fan") or "")
     fon = {"src": "fon:" + u.kod + (("~" + rng.choice(mot)) if mot else "")}
@@ -123,6 +131,7 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
         s = Slayd(fon=fon, otish="fade")
         nav = {"total": total, "idx": i, "sections": secs_nav, "sec": p["sec"], "reja": reja_i if reja_i is not None else 0}
         k = B.K(s, u, random.Random(seed * 1009 + i * 31), nav, rb)
+        k.deck = deck
         d = dict(p["d"])
         si = p["sec"]
         if si >= 0:
@@ -154,7 +163,7 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
         slides.append(sd)
     return {
         "sxema": "taqdimot-sahna/1", "w": 1280, "h": 720, "seed": seed, "uslub": u.json(), "meta": m["meta"],
-        "slaydlar": slides, "miya": m, "rasm_hisobot": rasm_hisobot,
+        "slaydlar": slides, "miya": m, "rasm_hisobot": rasm_hisobot, "dizayn": deck_json,
     }
 
 

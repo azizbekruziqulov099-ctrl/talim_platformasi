@@ -38,7 +38,7 @@ PROFIL = {
                  "Har mashq: nechta marta, qancha vaqt."),
     "tarbiya": ("hayotiy, togri_notogri, guruhlash (yaxshi va yomon odat), rasmda_nima, savol, dialog",
                 "Hayotiy vaziyat va muhokama savoli."),
-    "pedagogika": ("tarif, taqqoslash, jadval, vaqt_chizigi (olimlar), parcha (iqtibos), jarayon, xossalar",
+    "pedagogika": ("tarif, taqqoslash, jadval, vaqt_chizigi (olimlar), iqtibos (olim portreti bilan), raqamlar (tadqiqot natijalari), jarayon, xossalar",
                    "Nazariya + boshlang‘ich sinfda qo‘llash metodikasi."),
     "umumiy": ("tarif, matn, misol, jadval, galereya, jarayon, togri_notogri", ""),
 }

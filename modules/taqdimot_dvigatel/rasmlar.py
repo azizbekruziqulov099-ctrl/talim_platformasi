@@ -39,19 +39,53 @@ def _papkadan(key):
     return None
 
 
-def _kutubxonadan(key):
+def _rk():
     try:
         from modules import rasm_kutubxona as rk
+        return rk
     except Exception:
         try:
             from .. import rasm_kutubxona as rk
+            return rk
         except Exception:
             return None
+
+
+@lru_cache(maxsize=1)
+def _rk_lugat():
+    """Saytning umumiy rasm kutubxonasi: id (va fayl nomi) → yozuv."""
+    rk = _rk()
+    out = {}
+    if not rk:
+        return out
     try:
         for r in rk.katalog():
-            if r.get("id") == key or os.path.splitext(r.get("fayl", ""))[0] == key:
-                p = os.path.join(rk.RASM_PAPKA, r["fayl"])
-                return p if os.path.isfile(p) else None
+            if r.get("id") and r.get("fayl"):
+                out.setdefault(r["id"], r)
+                out.setdefault(os.path.splitext(r["fayl"])[0], r)
+    except Exception:
+        return {}
+    return out
+
+
+def kutubxona_yozuvlari():
+    """rasm_kutubxona katalogi (ro'yxat), modul bo'lmasa — bo'sh."""
+    rk = _rk()
+    try:
+        return rk.katalog() if rk else []
+    except Exception:
+        return []
+
+
+def _kutubxonadan(key):
+    rk = _rk()
+    if not rk:
+        return None
+    try:
+        r = _rk_lugat().get(key)
+        if r:
+            p = os.path.join(rk.RASM_PAPKA, r["fayl"])
+            return p if os.path.isfile(p) else None
         hit = rk.rasm_top(key.replace("_", " "))
         if hit and os.path.isfile(hit["yol"]):
             return hit["yol"]
@@ -83,7 +117,42 @@ def _reestr_lugat(mtime: float):
 
 def malumot(key: str) -> dict:
     p = os.path.join(PAPKA, "reestr.json")
-    return _reestr_lugat(os.path.getmtime(p)).get(key) or {} if os.path.isfile(p) else {}
+    m = _reestr_lugat(os.path.getmtime(p)).get(key) if os.path.isfile(p) else None
+    if m:
+        return m
+    return _kutubxona_malumot(key) if key else {}
+
+
+@lru_cache(maxsize=4096)
+def _kutubxona_malumot(key: str) -> dict:
+    """Sayt kutubxonasi rasmi (shaffof fonli illyustratsiya) — taqdimotda «rasm» turi sifatida."""
+    if _papkadan(key):
+        return {}
+    r = _rk_lugat().get(key)
+    if not r:
+        rk = _rk()
+        pth = _kutubxonadan(key)
+        if not (rk and pth):
+            return {}
+        r = _rk_lugat().get(os.path.splitext(os.path.basename(pth))[0]) or {}
+        if not r:
+            return {"kalit": key, "tur": "rasm", "manba": "kutubxona"}
+    return {"kalit": r["id"], "tur": "rasm", "nom": kutubxona_nomi(r), "fan": r.get("turkum") or "", "manba": "kutubxona"}
+
+
+_LOTIN = re.compile(r"^[A-Za-z0-9'‘’ʻ`\-\s,;:.()!?]+$")
+
+
+def kutubxona_nomi(r: dict) -> str:
+    """Lotin yozuvidagi nomlar (o'zbekcha/inglizcha), takrorsiz, 2 tagacha."""
+    out = []
+    for s in r.get("sozlar") or []:
+        s = (s or "").strip()
+        if s and _LOTIN.match(s) and s.lower() not in [x.lower() for x in out]:
+            out.append(s)
+    if not out:
+        out = [re.sub(r"^(d_)?([a-z]+[0-9]*-)?(u[0-9]+-)?", "", r.get("id") or "").replace("-", " ")]
+    return " / ".join(out if len(out) < 3 else [out[0], out[-1]])
 
 
 def kredit(key: str):

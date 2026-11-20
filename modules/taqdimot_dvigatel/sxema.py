@@ -40,9 +40,13 @@ ELEMENT_TURLARI = {
     "togri_notogri": "O'yin: to'g'ri yoki noto'g'ri",
     "bosh_joy": "O'yin: bo'sh joyni to'ldir",
     "rasmda_nima": "O'yin: rasmda nima? (variantli)",
+    "raqamlar": "Katta raqamlar (statistika: 2–4 ta raqam va izoh)",
+    "iqtibos": "Iqtibos (katta matn, muallif, portret)",
 }
+JOYLASHUV_KODLARI = {"avto", "standart", "rasm_ong", "rasm_chap", "rasm_panel", "rasm_katta", "markaz", "ustunlar", "qatorlar",
+                     "yon_sarlavha"}
 YANGI_KENG = {"lugat", "dialog", "vaqt_chizigi", "xarita", "tajriba", "jarayon", "galereya", "guruhlash", "moslash",
-              "togri_notogri", "bosh_joy", "rasmda_nima"}
+              "togri_notogri", "bosh_joy", "rasmda_nima", "raqamlar", "iqtibos"}
 TUR_SINONIM = {
     "ta'rif": "tarif", "tarif": "tarif", "definition": "tarif", "taʼrif": "tarif", "ta’rif": "tarif",
     "qoida": "qoida", "rule": "qoida", "teorema": "teorema", "theorem": "teorema", "aksioma": "teorema",
@@ -60,6 +64,7 @@ TUR_SINONIM = {
     "moslash": "moslash", "match": "moslash", "juftlash": "moslash", "togri_notogri": "togri_notogri",
     "to'g'ri_noto'g'ri": "togri_notogri", "true_false": "togri_notogri", "bosh_joy": "bosh_joy", "bo'sh joy": "bosh_joy",
     "fill": "bosh_joy", "rasmda_nima": "rasmda_nima", "picture_quiz": "rasmda_nima",
+    "raqamlar": "raqamlar", "statistika": "raqamlar", "stats": "raqamlar", "iqtibos": "iqtibos", "quote": "iqtibos", "sitata": "iqtibos",
 }
 _BAD = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f]")
 
@@ -241,6 +246,16 @@ def _fan_elementi(tur, e):
         gs = [{"matn": t(x.get("matn"), 160), "javob": t(x.get("javob"), 40)} for x in _dl(e.get("gaplar"), 6)
               if isinstance(x, dict) and t(x.get("matn")) and t(x.get("javob"))]
         return {"gaplar": gs} if gs else None
+    if tur == "raqamlar":
+        bs = []
+        for x in _dl(e.get("bandlar") or e.get("raqamlar"), 4):
+            if isinstance(x, dict) and t(x.get("raqam") or x.get("qiymat")):
+                bs.append({"raqam": t(x.get("raqam") or x.get("qiymat"), 14), "nom": t(x.get("nom") or x.get("sarlavha"), 60),
+                           "matn": t(x.get("matn"), 140)})
+        return {"bandlar": bs} if bs else None
+    if tur == "iqtibos":
+        return {"matn": t(e.get("matn"), 500), "muallif": t(e.get("muallif"), 80), "manba": t(e.get("manba"), 120),
+                "rasm": t(e.get("rasm"), 100)} if t(e.get("matn")) else None
     if tur == "rasmda_nima":
         v = ls(e.get("variantlar"), 4, 60)
         if not t(e.get("rasm")) or len(v) < 2:
@@ -317,7 +332,9 @@ def normallashtir(m: dict) -> dict:
             els = sl["elementlar"] if sl.get("_tayyor") else [element(x) for x in (sl.get("elementlar") or [])]
             els = [x for x in els if x][:4]
             if els:
-                slaydlar.append({"sarlavha": t(sl.get("sarlavha"), 110) or t(b.get("nom"), 110), "izoh": t(sl.get("izoh"), 2000), "elementlar": els})
+                jl = t(sl.get("joylashuv"), 20).lower()
+                slaydlar.append({"sarlavha": t(sl.get("sarlavha"), 110) or t(b.get("nom"), 110), "izoh": t(sl.get("izoh"), 2000), "elementlar": els,
+                                 "joylashuv": jl if jl in JOYLASHUV_KODLARI else ""})
         if slaydlar or t(b.get("nom")):
             bol.append({"nom": t(b.get("nom"), 60) or f"{len(bol) + 1}-bo'lim", "izoh": t(b.get("izoh"), 160), "belgi": t(b.get("belgi"), 30),
                         "slaydlar": slaydlar})

@@ -66,7 +66,61 @@ def _fan_guruh(fan: str) -> set:
     t = tokenlar(fan)
     for x in list(t):
         t |= _FAN_GURUH.get(x, set())
+    if t & {"ingliz", "rus", "nemis", "fransu", "ispan", "koreys", "turk", "arab", "xitoy", "chet", "tili", "til"}:
+        t |= {"tillar"}
     return t - {"fanlar", "fanl", "masala"}
+
+
+def _na(t: set) -> frozenset:
+    return frozenset(x.replace("'", "") for x in t)
+
+
+_ARTIKL = re.compile(r"^(the|a|an|der|die|das|le|la|les|l'|el|los|las|un|une)\s", re.I)
+_RK_PREFIKS = re.compile(r"^(d_)?((m|mat|fiz|kim|bio|xb|y|v|i)-|(en|mt|am)[0-9]+-(u[0-9]+-|s[0-9]+-)?)")
+_RK_FAN = {"matematika": "matematika", "fizika": "fizika", "kimyo": "kimyo", "biologiya": "biologiya",
+           "xalqaro baholash": "matematika tabiiy", "tillar": "tillar", "bog'cha": "bog'cha"}
+_TIL_FANLAR = {"tillar", "ingliz", "rus", "nemis", "fransu", "ispan", "koreys", "turk", "arab", "xitoy", "ona", "o'qish",
+               "adabiy", "bog'cha", "tarbiy"}
+
+
+def _kutubxona_qatorlari():
+    """Saytning umumiy rasm kutubxonasi (≈6000 illyustratsiya) — tanlash indeksiga."""
+    out = []
+    for r in rasmlar.kutubxona_yozuvlari():
+        i = r.get("id") or ""
+        if not i or i.startswith("d_v-"):  # javob varianti rasmlari — faqat aniq kalit bilan
+            continue
+        sozlar = [_ARTIKL.sub("", s.strip()) for s in r.get("sozlar") or [] if isinstance(s, str)]
+        slug = _RK_PREFIKS.sub("", i).replace("-", " ").replace("_", " ")
+        asosiy = tokenlar(slug)
+        tok = set(asosiy)
+        ismlar = [_na(asosiy)] if asosiy else []
+        for s in sozlar:
+            t = tokenlar(s)
+            tok |= t
+            if t and len(s.split()) <= 3:
+                asosiy |= t
+                ismlar.append(_na(t))
+        if not asosiy:
+            continue
+        turkum = (r.get("turkum") or "").lower()
+        fanlar = " ".join(v for k2, v in _RK_FAN.items() if k2 in turkum)
+        ft = tokenlar(fanlar)
+        if "tillar" in ft or "bog'cha" in ft:
+            ft |= _TIL_FANLAR
+        ot = bool(any(_ARTIKL.match(s) for s in sozlar) or i.startswith(("d_mat", "d_fiz", "d_kim", "d_bio", "d_xb", "d_y-"))
+                  or not i.startswith("d_"))
+        out.append({"kalit": i, "tur": "rasm", "nom": rasmlar.kutubxona_nomi(r), "fan": fanlar, "asosiy": asosiy, "tok": tok,
+                    "fan_tok": ft, "rk": True, "ot": ot, "past": bool(r.get("past")), "ismlar": ismlar})
+    return out
+
+
+@lru_cache(maxsize=1)
+def _kutubxona_cache():
+    try:
+        return _kutubxona_qatorlari()
+    except Exception:
+        return []
 
 
 @lru_cache(maxsize=2)
@@ -82,7 +136,9 @@ def _indeks(_mt: float):
         asosiy = {t for t in nt if t.replace("'", "") in kt} | {t for t in kt if not any(x.replace("'", "") == t for x in nt)}
         hammasi = asosiy | nt | tokenlar(r.get("izoh") or "" if r.get("tur") == "rasm" else "")
         rows.append({"kalit": k, "tur": r.get("tur") or "rasm", "nom": r.get("nom") or "", "fan": r.get("fan") or "",
-                     "asosiy": asosiy, "tok": hammasi, "fan_tok": _fan_guruh(r.get("fan") or "")})
+                     "asosiy": asosiy, "tok": hammasi, "fan_tok": _fan_guruh(r.get("fan") or ""), "ismlar": [_na(asosiy)]})
+    ichki = {r["kalit"] for r in rows}
+    rows += [r for r in _kutubxona_cache() if r["kalit"] not in ichki]
     n = max(1, len(rows))
     df = {}
     for r in rows:
@@ -122,6 +178,7 @@ def buyum_rasmi(matn: str, band: set = frozenset()):
     q = tokenlar(matn)
     if not q:
         return None
+    qn = _na(q)
     eng, kal = 0.0, None
     for r in rows:
         if r["tur"] != "rasm" or r["kalit"] in band:
@@ -130,8 +187,10 @@ def buyum_rasmi(matn: str, band: set = frozenset()):
         if not mos:
             continue
         yagona = bool(mos & _YAGONA)
-        toliq = r["asosiy"] <= q  # kalitning hamma so'zi bor (baraban → baraban, tovush_baraban emas)
-        b = sum(idf.get(t, 1.0) for t in mos) + (2.0 if yagona else 0) + (3.0 if toliq else 0) - 0.15 * len(r["asosiy"])
+        # nomlaridan birining hamma so'zi bor (baraban → baraban, tovush_baraban emas; olma → apple/olma)
+        toliq = any(s and s <= qn for s in r["ismlar"])
+        b = (sum(idf.get(t, 1.0) for t in mos) + (2.0 if yagona else 0) + (3.0 if toliq else 0) - 0.15 * min(len(r["asosiy"]), 6)
+             - (0.3 if r.get("past") else 0))
         if (yagona or toliq or len(mos) >= 2) and b > eng:
             eng, kal = b, r["kalit"]
     return kal
@@ -175,8 +234,15 @@ def katalog(matn: str, fan: str = "", n: int = 60):
     for r in rows:
         if r["tur"] != "rasm":
             continue
-        b = sum(idf.get(t, 1.0) for t in q & r["tok"])
-        if ft and ft & r["fan_tok"]:
+        b = sum(idf.get(t, 1.0) * (1.3 if t in r["asosiy"] else 1.0) for t in q & r["tok"])
+        fan_mos = bool(ft and ft & r["fan_tok"])
+        if r.get("rk"):
+            # sayt kutubxonasi katta: faqat so'zi mos kelganlari (fan faqat ustunlik beradi)
+            if b <= 0:
+                continue
+            b += 2.0 if fan_mos else 0
+            b -= 0.4 if r.get("past") else 0
+        elif fan_mos:
             b += 2.5
         if b > 0:
             ballar.append((b, r["kalit"], r["nom"]))
@@ -255,7 +321,7 @@ def boyit(m: dict, avto: bool = True) -> dict:
                             continue
                         if it.get("rasm"):
                             it["rasm"] = tuzat(it["rasm"], matnf(it)) or ""
-                        elif avto:
+                        if not it.get("rasm") and avto:
                             if buyum:
                                 kal = buyum_rasmi(matnf(it), band)
                             else:
@@ -265,6 +331,15 @@ def boyit(m: dict, avto: bool = True) -> dict:
                                 hisobot["qoshildi"].append(kal)
                         if it.get("rasm"):
                             band.add(it["rasm"])
+                if e.get("tur") == "iqtibos":
+                    if e.get("rasm"):
+                        e["rasm"] = tuzat(e["rasm"], e.get("muallif") or "") or ""
+                    if not e.get("rasm") and avto and e.get("muallif"):
+                        e["rasm"] = buyum_rasmi(e["muallif"], band) or ""
+                    if e.get("rasm"):
+                        band.add(e["rasm"])
+                    yangi_els.append(e)
+                    continue
                 if e.get("tur") == "rasmda_nima" and e.get("rasm"):
                     e["rasm"] = tuzat(e["rasm"], f"{e.get('savol') or ''} {' '.join(e.get('variantlar') or [])}") or ""
                     if not e["rasm"]:
@@ -329,6 +404,16 @@ def boyit(m: dict, avto: bool = True) -> dict:
             band.add(kal)
             qoyildi += 1
             hisobot["qoshildi"].append(kal)
+        # 3b) bo'lim titullari uchun (slaydlarda ishlatilmagan) rasm
+        for b in m.get("bolimlar") or []:
+            if b.get("rasm") or not b.get("slaydlar"):
+                continue
+            matn = " ".join([b.get("nom") or ""] * 2 + [b.get("izoh") or ""] + [sl.get("sarlavha") or "" for sl in b["slaydlar"]])
+            kal, _b = eng_mos(matn, chegara=6.5, band=band, fan=fan)
+            if kal:
+                b["rasm"] = kal
+                band.add(kal)
+                hisobot["qoshildi"].append(kal)
         # 4) titul hali bo'sh bo'lsa — butun taqdimot matni bo'yicha (slaydlarda ishlatilmagan rasm)
         if titul_kerak:
             matn = " ".join([meta.get("mavzu") or ""] * 2 + [sl.get("sarlavha") or "" for sl in kontent])

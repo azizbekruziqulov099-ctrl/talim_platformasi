@@ -104,6 +104,8 @@ BARCHA FANLAR UCHUN (shu turlar slaydda YOLG‘IZ turadi, eslatma bilan bo‘lis
   (aylana — takrorlanuvchi jarayon; zanjir — ketma-ketlik, oziq zanjiri, algoritm; qadam — rasmli mashq/ish bosqichlari)
 - galereya: {{"tur":"galereya","rasmlar":[{{"rasm","izoh"}} × 2–4]}}
 - guruhlash: {{"tur":"guruhlash","guruhlar":[{{"nom","bandlar":["2–7 ta"]}} × 2–4]}}
+- raqamlar: {{"tur":"raqamlar","bandlar":[{{"raqam":"72%","nom":"qisqa nom","matn":"izoh"}} × 2–4]}}   — statistika, faqat aniq raqamlar
+- iqtibos: {{"tur":"iqtibos","matn":"iqtibos","muallif":"L.S. Vygotskiy","manba":"asar, yil","rasm":"portret kaliti (ixt.)"}}
 O‘YINLAR (javob bosganda chiqadi):
 - moslash: {{"tur":"moslash","juftlar":[{{"chap","ong","rasm"(ixt.)}} × 2–6]}}
 - togri_notogri: {{"tur":"togri_notogri","fikrlar":[{{"matn","javob":true|false,"izoh"}} × 2–6]}}

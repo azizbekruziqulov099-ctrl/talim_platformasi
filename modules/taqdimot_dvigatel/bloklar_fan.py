@@ -201,14 +201,22 @@ def komp_galereya(k, e, x, y, w, h, i=0):
         r_, c_ = divmod(j, cols)
         cx, cy = x + c_ * (cw + gap), y + r_ * (ch + gap)
         a = k.A("big", s, dl=j * k.st)
-        caph = 28 if r.get("izoh") else 0
+        caph = 28 if r.get("izoh") and _rasm(k, r.get("rasm")) else 0
         if _rasm(k, r.get("rasm")):
             _img(k, r["rasm"], cx + 10, cy + 6, cw - 20, ch - caph - 14, a, taglik=RS.malumot(r["rasm"]).get("tur") == "rasm")
             kr = RS.kredit(r["rasm"])
             if kr:
                 k.s.matn(cx, cy + ch - caph - 14, cw, 12, kr, size=8.5, color=u.muted, align="c", min_scale=0.6, a=a)
         else:
-            B.kart(k, cx, cy, cw, ch - caph - 8, j, a=a)
+            # rasm yo'q — bo'sh karta emas: rangli plitka, nomi katta
+            col = u.acc[j % 4]
+            th = ch - 8
+            k.s.rect(cx, cy, cw, th, fill=col, op=0.14 if not u.qorongi else 0.3, line=col, lw=1.4, r=min(22, cw / 8), a=a)
+            k.s.doira(cx + cw / 2, cy + th * 0.4, min(cw, th) * 0.18, fill=col, op=0.9, a=a)
+            k.s.matn(cx + cw / 2 - 40, cy + th * 0.4 - 40, 80, 80, str(j + 1), size=34, bold=True, color=u.matn_ustida(col), align="c", va="m", a=a)
+            k.s.matn(cx + 14, cy + th * 0.62, cw - 28, th * 0.32, r.get("izoh") or "", size=min(26, cw * 0.08), bold=True, color=u.ink,
+                     align="c", va="m", min_scale=0.5, a=a)
+            continue
         if r.get("izoh"):
             k.s.matn(cx, cy + ch - caph, cw, caph, r["izoh"], size=16, bold=True, color=u.ink, align="c", va="m", min_scale=0.6, a=a)
 
@@ -603,8 +611,67 @@ def komp_rasmda_nima(k, e, x, y, w, h, i=0):
         k.s.matn(rx + rw - 46, vy + vh / 2 - 14, 28, 28, "✓" if ok else "✗", size=15, bold=True, color="#FFFFFF", align="c", va="m", a=mark)
 
 
+# ------------------------------------------------------------------ katta raqamlar (statistika)
+def komp_raqamlar(k, e, x, y, w, h, i=0):
+    u, s = k.u, k.qadam
+    bs = e["bandlar"]
+    n = len(bs)
+    gap = 22
+    cw = (w - gap * (n - 1)) / n
+    rszs = [min(96, cw * 0.4, 1.9 * (cw - 44) / max(2, len(b["raqam"]))) for b in bs]
+    kerak = max(26 + r * 1.25 + (34 if b.get("nom") else 0) + (B.matn_balandligi(b["matn"], cw - 44, size=15) + 8 if b.get("matn") else 0) + 26
+                for r, b in zip(rszs, bs))
+    ch = min(h, max(200, kerak))
+    cy = y + (h - ch) / 2
+    for j, b in enumerate(bs):
+        st = k.qadam if j == 0 else k.keyingi()
+        col = u.acc[j % 4]
+        a = k.A("big", st)
+        cx = x + j * (cw + gap)
+        B.kart(k, cx, cy, cw, ch, j, a=a)
+        k.s.rect(cx, cy, 8, ch, fill=col, r=4, a=a)
+        rsz = rszs[j]
+        k.s.matn(cx + 24, cy + 26, cw - 44, rsz * 1.2, b["raqam"], size=rsz, bold=True, font=u.head, color=col if not u.qorongi else och(col, 0.25),
+                 min_scale=0.5, a=a)
+        ty = cy + 26 + rsz * 1.25
+        if b.get("nom"):
+            k.s.matn(cx + 24, ty, cw - 44, 30, b["nom"], size=19, bold=True, color=u.ink, min_scale=0.55, a=a)
+            ty += 34
+        if b.get("matn"):
+            k.s.matn(cx + 24, ty, cw - 44, cy + ch - ty - 18, b["matn"], size=15, color=u.ink, min_scale=0.55, a=k.A("item", st, dl=k.st))
+
+
+# ------------------------------------------------------------------ iqtibos
+def komp_iqtibos(k, e, x, y, w, h, i=0):
+    u, s = k.u, k.qadam
+    col = u.acc[i % 4]
+    portret = _rasm(k, e.get("rasm"))
+    pw = min(h * 0.82, w * 0.34) if portret else 0
+    if portret:
+        pcx, pcy = x + pw / 2 + 10, y + h / 2
+        r = pw * 0.5
+        k.s.doira(pcx, pcy, r, fill=col if not u.qorongi else "#FFFFFF", op=0.14 if not u.qorongi else 0.9, a=k.A("big", s))
+        _img(k, e["rasm"], pcx - r * 0.92, pcy - r * 0.92, r * 1.84, r * 1.84, k.A("big", s))
+        kr = RS.kredit(e["rasm"])
+        if kr:
+            k.s.matn(x, pcy + r + 4, pw + 20, 14, kr, size=8.5, color=u.muted, align="c", min_scale=0.6, a=k.A("big", s))
+    tx = x + pw + (50 if portret else 40)
+    tw = x + w - tx - 20
+    k.s.matn(tx - 30, y + 10, 90, 110, "“", size=120, font="serif", bold=True, color=col, a=k.A("accent", s))
+    qh = h - 110
+    sz, _ = B.mos_olcham(e["matn"], tw, qh, sizes=(40, 36, 34, 32, 30, 28, 26, 24, 22, 20, 18), lh=1.28)
+    k.s.matn(tx, y + 70, tw, qh, e["matn"], size=sz, font="serif", italic=True, color=u.ink, va="m", lh=1.28, min_scale=0.55,
+             a=k.A("item", s, dl=k.st))
+    if e.get("muallif"):
+        k.s.rect(tx, y + h - 34, 40, 3, fill=col, a=k.A("item", s, dl=2 * k.st))
+        k.s.matn(tx + 52, y + h - 46, tw - 52, 26, e["muallif"], size=18, bold=True, color=u.ink, va="m", min_scale=0.6, a=k.A("item", s, dl=2 * k.st))
+        if e.get("manba"):
+            k.s.matn(tx + 52, y + h - 22, tw - 52, 20, e["manba"], size=13, italic=True, color=u.muted, min_scale=0.6, a=k.A("item", s, dl=2 * k.st))
+
+
 KOMP_FAN = {
     "lugat": komp_lugat, "dialog": komp_dialog, "parcha": komp_parcha, "vaqt_chizigi": komp_vaqt_chizigi, "xarita": komp_xarita,
     "tajriba": komp_tajriba, "jarayon": komp_jarayon, "galereya": komp_galereya, "guruhlash": komp_guruhlash,
     "moslash": komp_moslash, "togri_notogri": komp_togri_notogri, "bosh_joy": komp_bosh_joy, "rasmda_nima": komp_rasmda_nima,
+    "raqamlar": komp_raqamlar, "iqtibos": komp_iqtibos,
 }

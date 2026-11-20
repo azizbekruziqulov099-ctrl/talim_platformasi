@@ -32,5 +32,7 @@ TEST = {"meta": {"mavzu": "Barcha slayd turlari sinovi", "fan": "Umumiy", "sinf"
   SL("Juftini toping", {"tur": "moslash", "juftlar": [{"chap": "apple", "ong": "olma"}, {"chap": "book", "ong": "kitob"}, {"chap": "cat", "ong": "mushuk"}, {"chap": "sun", "ong": "quyosh"}]}),
   SL("To‘g‘rimi?", {"tur": "togri_notogri", "fikrlar": [{"matn": "Yer Quyosh atrofida aylanadi.", "javob": True, "izoh": "Bir marta aylanishi — 1 yil."}, {"matn": "Suv 50 °C da qaynaydi.", "javob": False, "izoh": "Dengiz sathida 100 °C da."}, {"matn": "O‘simliklar fotosintezda kislorod chiqaradi.", "javob": True}, {"matn": "Kit — baliq.", "javob": False, "izoh": "Kit — sutemizuvchi."}]}),
   SL("Bo‘sh joyni to‘ldiring", {"tur": "bosh_joy", "gaplar": [{"matn": "I ___ a student.", "javob": "am"}, {"matn": "She ___ to school every day.", "javob": "goes"}, {"matn": "They ___ playing football.", "javob": "are"}]}),
+  SL("Raqamlarda", {"tur": "raqamlar", "bandlar": [{"raqam": "72%", "nom": "O‘quvchilar", "matn": "yordam bilan vazifani bajardi"}, {"raqam": "1934", "nom": "Yil", "matn": "«Tafakkur va nutq»"}, {"raqam": "3×", "nom": "Tezlik"}]}),
+  SL("Olim fikri", {"tur": "iqtibos", "matn": "Bola bugun hamkorlikda qila oladigan ishni ertaga mustaqil bajara oladi.", "muallif": "L.S. Vygotskiy", "manba": "Tafakkur va nutq, 1934"}),
   SL("Rasmda nima?", {"tur": "rasmda_nima", "rasm": "registon", "savol": "Bu qaysi obida?", "variantlar": ["Registon", "Ichan qal’a", "Ark", "Shohizinda"], "javob": 0}),
  ]}]}

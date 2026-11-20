@@ -29,6 +29,7 @@ class K:
         self.s, self.u, self.rng, self.nav = s, u, rng, nav
         self.rasm_bor = rasm_bor or (lambda key: False)
         self.qadam = 0  # birinchi komponent o'zi chiqadi
+        self.deck = {}  # taqdimot bo'yi umumiy: dizayn DNK, joylashuvlar hisobi
 
     def A(self, rol="card", s=None, dl=0, d=None, ms=None):
         e, dd, mss = self.u.anim.get(rol, self.u.anim["card"])
@@ -51,10 +52,18 @@ def kart(k: K, x, y, w, h, i=0, a=None, lnk=None, fill=None, op=None, line=None)
     u = k.u
     ks = u.kart_s
     ln, lop = u.kart_chiziq(i)
+    sh = ks["sh"]
+    tur = k.deck.get("kart", "oila") if not u.qorongi else "oila"
+    if tur == "chiziq" and line is None:
+        ln, lop, sh = u.acc[i % 4], 0.55, 0
+    elif tur == "soya" and line is None:
+        ln, sh = None, 1
     el = k.s.rect(x, y, w, h, fill=fill or u.kart_rang(i), op=ks["op"] if op is None else op, line=line if line is not None else ln,
-                  lw=1.4 if ks.get("dash") else 1.2, r=ks["r"], sh=ks["sh"], dash=1 if ks.get("dash") else 0, a=a, lnk=lnk)
+                  lw=1.4 if ks.get("dash") else 1.2, r=ks["r"], sh=sh, dash=1 if ks.get("dash") else 0, a=a, lnk=lnk)
     if ln:
         el["lop"] = lop
+    if tur == "yon" and w >= 220 and h >= 110 and fill is None:
+        k.s.rect(x, y + min(ks["r"], 12), 5, h - 2 * min(ks["r"], 12), fill=u.acc[i % 4], a=a, lnk=lnk)
     return el
 
 
@@ -79,12 +88,46 @@ def ikon(k: K, cx, cy, glyph, color, r=17, a=None, solid=False):
     k.s.matn(cx - r, cy - r, 2 * r, 2 * r, glyph, size=r * 1.05, bold=True, color=fg, align="c", va="m", a=a, min_scale=0.6)
 
 
-def bosh_qism(k: K, kicker, sarlavha, izoh=None):
+def bosh_qism(k: K, kicker, sarlavha, izoh=None, x=M, w=None, tur=None):
+    """Slayd sarlavhasi. Ko'rinishi taqdimot bo'yi bitta (k.deck["sarlavha"]): chap, chiziq, tasma, markaz, raqam."""
     u = k.u
-    k.s.matn(M, 26, W - 2 * M, 18, kicker.upper(), size=11.5, bold=True, color=u.acc[0], spc=110, nm="!!kicker", min_scale=0.7)
-    k.s.matn(M, 46, W - 2 * M, 50, sarlavha, size=31, font=u.head, bold=True, color=u.ink, nm="!!title", min_scale=0.62)
+    w = w or (W - x - M)
+    tur = tur or k.deck.get("sarlavha", "chap")
+    kicker = (kicker or "").upper()
+    if tur == "tasma":
+        bx = 0 if x <= M else x - 24
+        bw = (x + w + M) - bx if x + w + M < W - 1 else W - bx
+        if u.qorongi:
+            k.s.rect(bx, 0, bw, 106, fill=u.acc[0], op=0.14)
+        else:
+            k.s.rect(bx, 0, bw, 106, fill=u.tint(0, 0.9))
+        k.s.rect(bx, 104, bw, 3, fill=u.acc[0], op=0.8)
+        k.s.matn(x, 20, w, 18, kicker, size=11.5, bold=True, color=u.acc[0], spc=110, nm="!!kicker", min_scale=0.7)
+        k.s.matn(x, 40, w, 50, sarlavha, size=31, font=u.head, bold=True, color=u.ink, nm="!!title", min_scale=0.62)
+        return
+    if tur == "chiziq":
+        k.s.rect(x, 30, 6, 62, fill=u.acc[0], r=3)
+        k.s.matn(x + 22, 24, w - 22, 18, kicker, size=11.5, bold=True, color=u.acc[0], spc=110, nm="!!kicker", min_scale=0.7)
+        k.s.matn(x + 22, 44, w - 22, 50, sarlavha, size=30, font=u.head, bold=True, color=u.ink, nm="!!title", min_scale=0.62)
+        k.s.rect(x, 104, w, 1.2, fill=u.muted, op=0.35)
+        return
+    if tur == "markaz":
+        k.s.matn(x, 22, w, 18, kicker, size=11.5, bold=True, color=u.acc[0], spc=110, align="c", nm="!!kicker", min_scale=0.7)
+        k.s.matn(x, 42, w, 50, sarlavha, size=31, font=u.head, bold=True, color=u.ink, align="c", nm="!!title", min_scale=0.62)
+        k.s.rect(x + w / 2 - 30, 98, 60, 4, fill=u.acc[0], r=2)
+        return
+    if tur == "raqam":
+        no = f"{k.nav.get('idx', 0) + 1:02d}"
+        k.s.matn(x, 28, 84, 66, no, size=46, font=u.head, bold=True, color=och(u.acc[0], 0.45) if not u.qorongi else u.acc[0],
+                 va="m", min_scale=0.8)
+        k.s.rect(x + 86, 34, 1.5, 56, fill=u.muted, op=0.5)
+        k.s.matn(x + 102, 28, w - 102, 18, kicker, size=11.5, bold=True, color=u.acc[0], spc=110, nm="!!kicker", min_scale=0.7)
+        k.s.matn(x + 102, 46, w - 102, 50, sarlavha, size=30, font=u.head, bold=True, color=u.ink, nm="!!title", min_scale=0.62)
+        return
+    k.s.matn(x, 26, w, 18, kicker, size=11.5, bold=True, color=u.acc[0], spc=110, nm="!!kicker", min_scale=0.7)
+    k.s.matn(x, 46, w, 50, sarlavha, size=31, font=u.head, bold=True, color=u.ink, nm="!!title", min_scale=0.62)
     if izoh:
-        k.s.matn(M, 92, W - 2 * M, 20, izoh, size=13, italic=True, color=u.muted, min_scale=0.7)
+        k.s.matn(x, 92, w, 20, izoh, size=13, italic=True, color=u.muted, min_scale=0.7)
 
 
 def pastki(k: K):
@@ -300,7 +343,8 @@ def komp_matnli(k: K, e, x, y, w, h, i=0):
     if text and not has_vis and not e.get("formula") and len(text) < 420:
         # qisqa matn: katta shrift va karta matn balandligida, vertikal markazda (bo'sh karta qolmasin)
         lab_h = 48 if label else 16
-        sz, th = mos_olcham(text, w - 36, h - lab_h - 24, sizes=(30, 28, 26, 24, 22, 20, 19, 18, 17, 16, 15))
+        katta = (36, 34, 32) if w >= 640 and len(text) < 220 else ()
+        sz, th = mos_olcham(text, w - 36, h - lab_h - 24, sizes=katta + (30, 28, 26, 24, 22, 20, 19, 18, 17, 16, 15))
         kerak = th + lab_h + 30
         if kerak < h * 0.72:
             ch = max(kerak, min(h, 200))
@@ -551,7 +595,12 @@ KOMP = {"tarif": komp_matnli, "qoida": komp_matnli, "teorema": komp_matnli, "mat
 
 # ------------------------------------------------------------------ bloklar
 def blok_kontent(k: K, d):
-    """Bo'lim ichidagi oddiy slayd: elementlarni joylashtiradi."""
+    """Bo'lim ichidagi oddiy slayd: joylashuv (layout) bloklar_joy'da tanlanadi."""
+    return _BJ.kontent(k, d)
+
+
+def _kontent_standart(k: K, d):
+    """Elementlar soniga qarab katakchalar."""
     bosh_qism(k, d["kicker"], d["sarlavha"])
     els = list(d["elementlar"])
     bar = [e for e in els if e["tur"] == "eslatma"]
@@ -604,6 +653,9 @@ def blok_kontent(k: K, d):
 
 
 def blok_titul(k: K, d):
+    v = k.deck.get("titul", 0)
+    if v:
+        return _BJ.titul(k, d, v)
     u, m = k.u, d["meta"]
     s = k.s
     v = k.rng.randrange(2)
@@ -757,7 +809,8 @@ def blok_reja(k: K, d):
     top = CT + 8
     bottom = CB - (76 if d.get("maqsad") else 0)
     cw = (W - 2 * M - gap * (cols - 1)) / cols
-    ch = min(190, (bottom - top - gap * (rows - 1)) / rows)
+    ch = min(250 if rows == 1 else 200, (bottom - top - gap * (rows - 1)) / rows)
+    top += max(0, (bottom - top - (ch * rows + gap * (rows - 1))) / 2 - 6)
     glyphs = ["↗", "↔", "◔", "⇄", "★", "✓"]
     for j, (nom, first, last, belgi) in enumerate(secs):
         r_, c_ = divmod(j, cols)
@@ -780,6 +833,9 @@ def blok_reja(k: K, d):
 
 
 def blok_bolim(k: K, d):
+    v = k.deck.get("bolim", 0)
+    if v:
+        return _BJ.bolim(k, d, v)
     u = k.u
     i = d["no"]
     col = u.acc[i % 4]
@@ -1014,25 +1070,34 @@ def blok_test(k: K, d):
     top = CT + 4
     cw = (W - 2 * M - gap * (cols - 1)) / cols
     ch = (CB - top - gap * (rows - 1)) / rows
+    qsz = 22 if n == 1 else 18 if n <= 4 else 14.5
+    vmax = 78 if n == 1 else 64 if n <= 4 else 999
+    if n <= 4:
+        # kam savol: kartalar mazmun balandligida, vertikal markazda
+        kerak = max(min(qsz * 3.2, 90) + 24 + len(q["variantlar"]) * vmax for q in ts)
+        if kerak < ch:
+            top += (ch - kerak) * rows / 2
+            ch = kerak
     letters = "ABCD"
     for j, q in enumerate(ts):
         r_, c_ = divmod(j, cols)
         x, y = M + c_ * (cw + gap), top + r_ * (ch + gap)
         a = k.A("card", 0, dl=j * 80)
         kart(k, x, y, cw, ch, j, a=a)
-        qh = min(56, ch * 0.32)
+        qh = min(qsz * 3.2, 90, ch * 0.32)
         sv = q["savol"]
-        k.s.matn(x + 14, y + 10, cw - 28, qh, f"**{j + 1}.** " + sv, size=14.5, color=u.ink, a=a, min_scale=0.55)
+        k.s.matn(x + 14, y + 10, cw - 28, qh, f"**{j + 1}.** " + sv, size=qsz, color=u.ink, a=a, min_scale=0.55, va="m")
         vs = q["variantlar"]
-        vh = (ch - qh - 24) / len(vs)
+        vh = min(vmax, (ch - qh - 24) / len(vs))
         for vi, v in enumerate(vs):
             vy = y + 16 + qh + vi * vh
             k.s.rect(x + 12, vy, cw - 24, vh - 6, fill=u.acc[j % 4], op=0.08 if not u.qorongi else 0.16, line=u.muted, lw=0.6, r=8, a=a)
+            vsz = 19 if vh >= 62 else 16 if vh >= 46 else 13.5
             if FORMULA_FAQAT.match(v):
-                k.s.matn(x + 22, vy, 30, vh - 6, f"{letters[vi]})", size=13.5, color=u.ink, va="m", a=a)
-                FM.chiz(k.s, v, x + 50, vy + 2, cw - 110, vh - 10, size=17, color=u.ink, align="l", a=a)
+                k.s.matn(x + 22, vy, 30, vh - 6, f"{letters[vi]})", size=vsz, color=u.ink, va="m", a=a)
+                FM.chiz(k.s, v, x + 50, vy + 2, cw - 110, vh - 10, size=vsz * 1.25, color=u.ink, align="l", a=a)
             else:
-                k.s.matn(x + 22, vy, cw - 80, vh - 6, f"{letters[vi]})  {v}", size=13.5, color=u.ink, va="m", a=a, min_scale=0.55)
+                k.s.matn(x + 22, vy, cw - 80, vh - 6, f"{letters[vi]})  {v}", size=vsz, color=u.ink, va="m", a=a, min_scale=0.55)
             ok = vi == q["javob"]
             opt = tegish(k, x + 12, vy, cw - 24, vh - 6)
             mark = {"tr": opt["id"], "e": "zoom", "ms": 350}
@@ -1073,3 +1138,5 @@ BLOKLAR = {
 from . import bloklar_fan as _BF  # noqa: E402
 
 KOMP.update(_BF.KOMP_FAN)
+
+from . import bloklar_joy as _BJ  # noqa: E402
