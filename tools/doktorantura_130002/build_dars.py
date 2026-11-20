@@ -153,6 +153,27 @@ def qisqa(q, n=64):
     return q if len(q) <= n else q[:n - 1].rsplit(" ", 1)[0] + "…"
 
 
+_NISHON = []
+
+
+def aralashtir(t, j):
+    """To'g'ri javob harfini A–D bo'ylab teng taqsimlash: to'g'ri variant navbatdagi «nishon» o'ringa ko'chiriladi,
+    qolgan variantlar tartibi saqlanadi, xato izohlari yangi harflarga o'tkaziladi (deterministik)."""
+    import random
+    while len(_NISHON) <= j:
+        blok = [0, 1, 2, 3]
+        random.Random(len(_NISHON)).shuffle(blok)
+        _NISHON.extend(blok)
+    n = len(t["variantlar"])
+    eski = L.index(t["javob"])
+    yangi = _NISHON[j] % n
+    qolgan = [k for k in range(n) if k != eski]
+    tartib = qolgan[:yangi] + [eski] + qolgan[yangi:]          # yangi o'rin → eski indeks
+    harf = {L[old]: L[new] for new, old in enumerate(tartib)}
+    return {**t, "variantlar": [t["variantlar"][k] for k in tartib], "javob": L[yangi],
+            "xato": {harf[k]: v for k, v in t["xato"].items()}}
+
+
 def dars_nomi(sec, savollar):
     return f"{BM.bolim_nomi(sec)} — {len(savollar)} savol"
 
@@ -182,7 +203,7 @@ def qatorlar(sec, savollar, itlar):
                          "matn": uz(f"To‘xtab, {blok[0]['key']} dan {blok[-1]['key']} gacha bo‘lgan savollarning kodlarini bir marta "
                                     "ovoz chiqarib takrorlang. Har kod — bitta javobning rejasi.")})
             blok = []
-    testlar = [t for s in savollar for t in s["testlar"]]   # savol tartibida
+    testlar = [aralashtir(t, j) for j, t in enumerate([t for s in savollar for t in s["testlar"]])]   # savol tartibida
     for i, t in enumerate(testlar, 1):
         notog = [L[k] for k in range(len(t["variantlar"])) if L[k] != t["javob"]]
         rows.append({"turi": "test", "kod": f"T{i:03d}", "sarlavha": f"Test {i}", "matn": gap(t["savol"]),
@@ -219,7 +240,7 @@ def main(faqat=None):
         for s in savollar:
             xatolar += [f"{sid}-bo'lim: {x}" for x in tekshir_savol(sid, s, itlar)]
         savollar = [s for s in savollar if s["key"] in itlar]
-        jv = [t["javob"] for s in savollar for t in s["testlar"]]
+        jv = [aralashtir(t, j)["javob"] for j, t in enumerate([t for s in savollar for t in s["testlar"]])]
         if jv and max(jv.count(x) for x in set(jv)) > len(jv) * 0.4:
             xatolar.append(f"{sid}-bo'lim: to'g'ri javoblar bir harfga to'planib qolgan")
         pre = []
