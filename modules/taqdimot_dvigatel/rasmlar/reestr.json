@@ -751,6 +751,20 @@
   ]
  },
  {
+  "kalit": "dokon",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Do‘kon va xaridor",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Bitta kassir peshtaxta ortida, bitta xaridor oldida savdo xaltasi bilan turibdi. Kassa va bir nechta oziq-ovqat ko‘rinadi. Ikki kishining qo‘llari tabiiy, ortiqcha odam, narx yoki yozuv yo‘q.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "elektr_dvigatel",
   "tur": "rasm",
   "olcham": [
@@ -883,6 +897,20 @@
   ]
  },
  {
+  "kalit": "flesh_xotira",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Flesh xotira",
+  "fan": "Informatika",
+  "tekshiruv": "Yozuvsiz korpusli USB flesh xotira va ochiq metall USB-A ulagichi ko‘rinadi. Ichki kontakt qismi va orqa teshik bor; kabel, ajralgan qopqoq, sig‘im raqami yoki brend yo‘q. Kontaktlar umumiy tasvir, texnik pin sxemasi emas.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "fotoapparat",
   "tur": "rasm",
   "olcham": [
@@ -934,6 +962,21 @@
   "tekshiruv": "Past to‘q bosh kiyim, oq aralash soqol, och jigarrang chapon va mulohazali nigoh. S301 adabiy faoliyatga tayanch; kinoaktyor yoki tasdiqlangan hayotiy yuz nusxasi emas. Yozuv, qurol va qo‘shimcha buyumlar yo‘q.",
   "manbalar": [
    "S301"
+  ]
+ },
+ {
+  "kalit": "futbol_maydoni",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Futbol maydoni (yuqoridan)",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Tepadan ko‘rinishda markaziy chiziq va doira, ikki tomondagi jarima/darvoza maydonlari, tashqariga chiqqan jarima yoylari hamda burchak yoylari ko‘rinadi. Yakuniy maysa yuzasi yaxlit: markaziy ichki to‘rtburchakda shaffof bo‘shliq yo‘q, tashqi fon shaffof. Dastlabki nuqsonli variantlar olinmadi. S322 joylashuv uchun tayanch; rasm masshtabli loyiha emas.",
+  "manbalar": [
+   "S01",
+   "S322"
   ]
  },
  {
@@ -1392,6 +1435,20 @@
   ]
  },
  {
+  "kalit": "jamgarma_qutisi",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Jamg‘arma: tanga qutisi",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Tanga tashlash tirqishli quti, tirqishga qisman kirgan bitta tanga va tashqarida yana ikkita tanga bor. Tanga va quti yuzalarida nominal, haqiqiy pul belgisi yoki yozuv yo‘q. Qiymatlar masala matnida alohida beriladi.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "jayron",
   "tur": "rasm",
   "olcham": [
@@ -1594,6 +1651,20 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Bitta markazga birikkan qizil va ko‘k ikki uchli strelka, to‘rtta belgi va dumaloq korpus ko‘rildi. Qizil uchi rasmning yuqorisiga qaragan shartli holat; magnit shimol bilan haqiqiy geografik shimol doim aynan bir yo‘nalish deb olinmaydi.",
   "manbalar": null
+ },
+ {
+  "kalit": "kompyuter",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Kompyuter (tizim bloki, monitor, klaviatura, sichqoncha)",
+  "fan": "Informatika",
+  "tekshiruv": "To‘rtta asosiy qism alohida ko‘rsatilgan: tizim bloki, taglikli monitor, klaviatura va sichqoncha. Ekran va tugmalar yozuvsiz, sichqonchaning tugmalari va g‘ildiragi ko‘rinadi. Tizim bloki monitor bilan birlashmagan.",
+  "manbalar": [
+   "S01"
+  ]
  },
  {
   "kalit": "korroziya",
@@ -2210,6 +2281,20 @@
   ]
  },
  {
+  "kalit": "noutbuk",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Noutbuk",
+  "fan": "Informatika",
+  "tekshiruv": "Ekran, ilgaklar, korpusga biriktirilgan klaviatura va touchpadli ochiq noutbuk ko‘rsatilgan. Ekran va tugmalar yozuvsiz. Alohida klaviatura yoki sichqoncha qo‘shilmagan.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "nyuton",
   "tur": "rasm",
   "olcham": [
@@ -2308,6 +2393,20 @@
   ]
  },
  {
+  "kalit": "olma_savat",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Savatdagi olmalar",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Tutqichli to‘qima savat qizil olmalar bilan to‘ldirilgan. Savat cheti, tutqich va bir nechta yashil barg aniq ko‘rinadi; tutqich meva bilan birlashmagan. Berkingan olmalar sababli bu barcha mevalar soni uchun aniq sanoq modeli emas.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "olmos_grafit",
   "tur": "rasm",
   "olcham": [
@@ -2319,6 +2418,21 @@
   "tekshiruv": "Ajratilgan olmos va grafit tayoqchasi/qalam uchi. Kristall panjara yoki qalamning sof uglerod ekanligi da’vo qilinmagan.",
   "manbalar": [
    "S194"
+  ]
+ },
+ {
+  "kalit": "operativ_xotira",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Operativ xotira",
+  "fan": "Informatika",
+  "tekshiruv": "Uzun yashil RAM modulida sakkizta qora chip, pastki oltin kontaktlar va bitta moslash tirqishi bor. Bu umumiy DIMM tasviri; DDR avlodi, sig‘im, tezlik yoki kontaktlar soni mahsulot xususiyati deb berilmaydi. S323 operativ xotira va saqlash farqiga tayanch.",
+  "manbalar": [
+   "S01",
+   "S323"
   ]
  },
  {
@@ -2526,6 +2640,20 @@
   ]
  },
  {
+  "kalit": "planshet",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Planshet",
+  "fan": "Informatika",
+  "tekshiruv": "Yotiq holatdagi yupqa planshet, keng ekran, bir xil chet va kichik kamera nuqtasi ko‘rinadi. Klaviatura va taglik yo‘q; ekran yozuvsiz. Umumiy planshet shakli, aniq model yoki ekran o‘lchami emas.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "plastmassa_buyumlar",
   "tur": "rasm",
   "olcham": [
@@ -2554,6 +2682,20 @@
   ]
  },
  {
+  "kalit": "podium",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Sport podiumi (1, 2, 3-o‘rin)",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Uch supa va uch medal bor: markazdagi eng baland supada oltin, chapdagi o‘rtacha balandlikda kumush, o‘ngdagi past supada bronza medal. Yuzalar raqamsiz va yozuvsiz; o‘rinlar balandlik va rang bilan farqlangan.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "poyezd",
   "tur": "rasm",
   "olcham": [
@@ -2563,6 +2705,20 @@
   "nom": "Poyezd",
   "fan": "Matematika (hayotiy masalalar)",
   "tekshiruv": "Old kabinali zamonaviy yo‘lovchi poyezdi va ikkita ulangan vagon qisqa relsda turibdi. G‘ildiraklar relsga mos, butun poyezd ko‘rinadi; brend va yo‘nalish yozuvi yo‘q.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
+  "kalit": "printer",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Printer",
+  "fan": "Informatika",
+  "tekshiruv": "Printerda orqa qog‘oz tayanchi, old chiqish patnisi va oq bo‘sh varaqlar ko‘rinadi. Tugmalar va kichik ekran yozuvsiz. Ochiq skaner qopqog‘i yoki shisha ustidagi nusxa tasvirlanmagan.",
   "manbalar": [
    "S01"
   ]
@@ -2593,6 +2749,20 @@
   "tekshiruv": "Shtativda beshta ochiq probirka, yumaloq berk tub va turli rangli suyuqliklar ko‘rildi. Raqam va yozuv yo‘q. Suyuqliklar muayyan modda yoki reaksiya rangi sifatida belgilanmagan.",
   "manbalar": [
    "S183"
+  ]
+ },
+ {
+  "kalit": "protsessor",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Protsessor",
+  "fan": "Informatika",
+  "tekshiruv": "Kumush issiqlik tarqatuvchi qopqoq, yashil kvadrat asos va pastki oltin pinli umumiy protsessor korpusi ko‘rinadi. Model, ishlab chiqaruvchi va yozuv yo‘q. Bu barcha zamonaviy CPUlar pinli degani emas; aniq kontakt sxemasi berilmagan.",
+  "manbalar": [
+   "S01"
   ]
  },
  {
@@ -2776,6 +2946,20 @@
   ]
  },
  {
+  "kalit": "qum_soat",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Qum soat",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Ikki shisha qism tor bo‘yin bilan tutashgan, qum yuqoridan ingichka oqim bo‘lib pastga tushadi va pastki qismda uyum hosil qiladi. Tayanch va ikki yon ustun yaxlit; qum tashqarida suzmaydi. Aniq davomiylik yoki raqam yozilmagan.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "qurbaqa_rivojlanishi",
   "tur": "rasm",
   "olcham": [
@@ -2908,6 +3092,35 @@
   ]
  },
  {
+  "kalit": "robot_sanoat",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Sanoat roboti",
+  "fan": "Informatika",
+  "tekshiruv": "Tayanchdan yelka, tirsak va bilak orqali ikki jag‘li ushlagichgacha izchil mexanik qo‘l ko‘rinadi. Bo‘g‘imlar ajralmagan, odam yuzi yoki qo‘li yo‘q. S324 umumiy sanoat robotlari uchun tayanch; aniq model, o‘qlar soni yoki yuk ko‘tarishi tasdiqlanmagan.",
+  "manbalar": [
+   "S01",
+   "S324"
+  ]
+ },
+ {
+  "kalit": "router",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Router",
+  "fan": "Informatika",
+  "tekshiruv": "Past korpusga ulangan ikkita tashqi antenna, holat chiroqchalari va Ethernet portlari ko‘rinadi. Antennalar qutiga fizik ulangan; yozuv, radio ekrani yoki ortiqcha kabellar yo‘q. Portlar soni aniq model xususiyati deb berilmaydi.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "said_ahmad",
   "tur": "rasm",
   "olcham": [
@@ -2961,6 +3174,20 @@
   "tekshiruv": "Afrika savannasi misolida ochiq o‘tloq, siyrak akatsiyalar, jirafa va zebra. Har hayvonda to‘rtta oyoq ko‘rinadi; barcha qit’a savannalari uchun yagona fauna emas.",
   "manbalar": [
    "S220"
+  ]
+ },
+ {
+  "kalit": "server_xona",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Server xonasi",
+  "fan": "Informatika",
+  "tekshiruv": "Uchta baland server shkafida qator-qator o‘rnatilgan modullar, shamollatish teshiklari, tutqich va holat chiroqlari ko‘rinadi. Bular oddiy uchta tizim bloki emas. Atrof fon shaffof, pastda kichik tayanch pol bo‘lagi bor.",
+  "manbalar": [
+   "S01"
   ]
  },
  {
@@ -3072,6 +3299,20 @@
   ]
  },
  {
+  "kalit": "shokolad_plitka",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Shokolad plitkasi",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Tepadan ko‘rsatilgan kvadrat plitka to‘rt qator va to‘rt ustundagi 16 teng kvadrat bo‘lakka ajratilgan. Butun plitka saqlangan, o‘ram va yozuv yo‘q. Dastlabki kengroq katakli variant olinmadi; asl talab bo‘laklar sonini belgilamagan.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "shtativ",
   "tur": "rasm",
   "olcham": [
@@ -3096,6 +3337,34 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Bir butun sichqon, ikki yumaloq quloq, to‘rt mayda oyoq, bitta uzun dum ko‘rildi. Oziq to‘ri uchun umumiy belgi; muayyan sichqon turi yoki uning barcha ratsionini aniqlamaydi.",
   "manbalar": null
+ },
+ {
+  "kalit": "skaner",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Skaner",
+  "fan": "Informatika",
+  "tekshiruv": "Yassi skanerning shisha maydoni, uning ustidagi yozuvsiz varaq va orqa ilgaklarga ulangan ochiq qopqoq ko‘rinadi. Printerga xos old chiqarish patnisi yo‘q; qopqoq havoda ajralib turmaydi.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
+  "kalit": "smartfon",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Smartfon",
+  "fan": "Informatika",
+  "tekshiruv": "Tik holatdagi uzunchoq smartfon, yupqa korpus cheti va old kamera nuqtasi ko‘rinadi. Ekranda soat, harf, raqam, ilova yozuvi yoki logotip yo‘q. Qo‘l va zaryadlagich qo‘shilmagan.",
+  "manbalar": [
+   "S01"
+  ]
  },
  {
   "kalit": "soglom_likopcha",
@@ -3149,6 +3418,21 @@
   "tekshiruv": "Soch-soqolli erkak, oddiy tunika, yopinchiq va shartli yelka himoyasi. Zamonaviy forma va siyosiy belgi yo‘q. Spitamenning yuzi hamda libosi aniq arxeologik rekonstruksiya deb berilmaydi.",
   "manbalar": [
    "S260"
+  ]
+ },
+ {
+  "kalit": "ssd_disk",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Qattiq disk / SSD",
+  "fan": "Informatika",
+  "tekshiruv": "Ikki alohida qurilma bor: ochiq HDDda disk plastinasi, markaziy o‘q va aktuator yelkasi; yonidagi SSDda yopiq yassi korpus va ulagich ko‘rsatilgan. SSD ichiga aylanuvchi plastina chizilmagan. Sig‘im, brend yoki tezlik yozuvi yo‘q.",
+  "manbalar": [
+   "S01",
+   "S323"
   ]
  },
  {
