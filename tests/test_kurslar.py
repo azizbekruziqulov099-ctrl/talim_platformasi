@@ -89,3 +89,18 @@ def test_doktorantura_nazorat_zinapoyasi():   # REV470: bo'lim ichida har 5 dars
     assert [x["topic_code"] for x in out if not x.get("nazorat")] == [x["topic_code"] for x in items]
     # bitta bo'lim bo'lsa — yakuniy imtihon qo'shilmaydi
     assert not any(x.get("nazorat") == "dk_yakuniy" for x in nazorat_doktorantura(items[:4]))
+
+
+def test_doktorantura_bolim_darslari():   # REV470: bir bo'lim = bitta dars («1-bo'lim. …»), keyin bo'lim testi, oxirida yakuniy
+    from modules.kurslar import _dars_tartibi, nazorat_doktorantura
+    rows = [{"nom": "2-bo‘lim. Pedagogika tarixi", "topic_code": "b"}, {"nom": "10-bo‘lim. X", "topic_code": "c"},
+            {"nom": "1-bo‘lim. Pedagogika nazariyasi", "topic_code": "a"}]
+    assert [r["topic_code"] for r in _dars_tartibi(rows, savol_raqami=True)] == ["a", "b", "c"]
+    items = [{"topic_code": r["topic_code"], "nomi": r["nom"]} for r in _dars_tartibi(rows, savol_raqami=True)]
+    nz = [x["topic_code"] for x in nazorat_doktorantura(items) if x.get("nazorat")]
+    assert nz == ["NZ:B1", "NZ:B2", "NZ:B10", "NZ:YAKUNIY"]
+
+
+def test_doktorantura_dars_testi_toliq():   # REV470: doktorantura darsida oxirgi test — barcha testlar (5 ta emas)
+    from modules.dars_xonasi import savol_chegarasi, MAX_QUESTIONS
+    assert savol_chegarasi({"sinf": "Doktorantura"}) >= 150 and savol_chegarasi({"sinf": "5"}) == MAX_QUESTIONS

@@ -307,7 +307,7 @@ def nazorat_doktorantura(items):
     """REV470: doktorantura darslari («1.1-a. …», «2.15. …») → bo'lim ichida har 5 darsdan keyin mini-test, bo'lim oxirida
     bo'lim testi (bo'limning barcha darslari), oxirida — bir nechta bo'lim bo'lsa — yakuniy imtihon (barcha darslar)."""
     def bolim(x):
-        m = re.match(r"^\s*(\d{1,2})\.\d", str(x.get("nomi") or ""))
+        m = re.match(r"^\s*(\d{1,2})(?:\.\d|\s*-\s*bo)", str(x.get("nomi") or ""))
         return int(m.group(1)) if m else 0
     def nz(kod, tur, nomi, qamrov, oxirgi):
         return {"topic_code": kod, "nomi": nomi, "sinf": oxirgi.get("sinf"), "ochiq": oxirgi.get("ochiq"), "bepul": oxirgi.get("bepul"),
@@ -390,10 +390,13 @@ def _dars_tartibi(rows, savol_raqami=False):
     variantlari ketma-ket. Raqam bo'lmasa — DTS kodlari (chorak, bob, bo'lim, mavzu, kichik mavzu) bo'yicha."""
     def raqam(nom):
         n = str(nom or "").strip().lower()
-        if savol_raqami:   # REV470: 13.00.02 doktorantura — «1.15. …», «1.15-b. …» (bo'lim.savol-qism) tartibida
-            m = _re.match(r"^(\d{1,2})\.(\d{1,3})(?:-([a-z]))?\.", n)
+        if savol_raqami:   # REV470: 13.00.02 doktorantura — «1-bo'lim. …» yoki «1.15. …», «1.15-b. …» tartibida
+            m = _re.match(r"^(\d{1,2})\.(\d{1,3})(?:-([a-z]))?(?:-dars)?\.", n)
             if m:
                 return int(m.group(1)) * 1000 + int(m.group(2)) * 10 + (ord(m.group(3)) - 96 if m.group(3) else 0)
+            m = _re.match(r"^(\d{1,2})\s*-\s*bo", n)
+            if m:
+                return int(m.group(1)) * 1000
         m = _re.match(r"^(\d+)\s*-\s*dars", n)
         if m:
             return float(m.group(1))

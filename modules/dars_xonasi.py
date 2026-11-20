@@ -28,6 +28,12 @@ VARIANT_NAMES = {
 }
 MAX_STEPS = 220   # REV406: markaz kitoblaridagi uzun darslar (nazariya + namuna + mashq + test)
 MAX_QUESTIONS = 5
+KATTA_TEST = 200   # REV470: 13.00.02 doktorantura — bir bo'lim = bitta dars, oxirida bo'limning barcha testlari (100–150 ta)
+
+
+def savol_chegarasi(topic):
+    """Dars oxiridagi Kabu testida nechta savol: odatda 5; doktorantura darsida — barcha testlar."""
+    return KATTA_TEST if re.search(r"doktorantura", str((topic or {}).get("sinf") or ""), re.I) else MAX_QUESTIONS
 
 
 def _t(value):
@@ -298,9 +304,10 @@ def build_lesson(topic, units, media_url, extra_questions=()):
             questions.append({"id": u["unit_code"], "savol": _t(p.get("savol")), "variantlar": options,
                               "togri": "ABCDEF".index(letter), "izoh": _t(p.get("izoh")) or _t(p.get("javob_mezoni")),
                               "kod": _t(p.get("kitob_kodi")), "xatolar": xato_izohlari(p.get("xato_izohi"))})
+    chegara = savol_chegarasi(topic)
     seen = {q["savol"] for q in questions}
     for q in extra_questions:
-        if len(questions) >= MAX_QUESTIONS:
+        if len(questions) >= chegara:
             break
         if q["savol"] not in seen:
             questions.append(q)
@@ -317,7 +324,7 @@ def build_lesson(topic, units, media_url, extra_questions=()):
         "auto": auto,
         "steps": steps,
         "variants": variants,
-        "savollar": questions[:MAX_QUESTIONS],
+        "savollar": questions[:chegara],
         "test_banki": bank,
     }
 
