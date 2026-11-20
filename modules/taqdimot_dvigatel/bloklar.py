@@ -362,13 +362,28 @@ def komp_formula(k: K, e, x, y, w, h, i=0):
     u = k.u
     s = k.qadam
     col = u.acc[i % 4]
-    ix, iy, iw, ih = _yorliq_kartasi(k, x, y, w, h, e.get("sarlavha") or "Formula", col, i, a=k.A("card", s))
+    f = e.get("formula") or ""
     cap = e.get("matn") or e.get("izoh")
-    capt = 0
+    # joyga sig'adigan eng katta formula; karta mazmun balandligida, vertikal markazda (bo'sh karta qolmasin)
+    fsz = 34
+    for sz in (64, 58, 52, 46, 40, 34):
+        fw, fa, fd = FM.olcha(f, sz)
+        if fw <= w - 70 and fa + fd <= (h - 120) * 0.8:
+            fsz = sz
+            break
+    fw, fa, fd = FM.olcha(f, fsz)
+    fh = fa + fd + 36
+    capt = min(130, matn_balandligi(cap, w - 70, 17, lh=1.22) + 16) if cap else 0
+    kerak = 56 + fh + capt + 24
+    if kerak < h * 0.82:
+        ch = max(kerak, min(h, 220))
+        y = y + (h - ch) / 2
+        h = ch
+    ix, iy, iw, ih = _yorliq_kartasi(k, x, y, w, h, e.get("sarlavha") or "Formula", col, i, a=k.A("card", s))
+    capt = min(capt, ih * 0.4)
     if cap:
-        capt = min(90, ih * 0.35)
-        k.s.matn(ix, iy + ih - capt, iw, capt, cap, size=16, color=u.muted, align="c", va="m", a=k.A("item", s, dl=2 * k.st))
-    FM.chiz(k.s, e.get("formula") or "", ix, iy, iw, ih - capt, size=46, color=u.ink, a=k.A("big", s, dl=k.st))
+        k.s.matn(ix, iy + ih - capt, iw, capt, cap, size=17, color=u.muted, align="c", va="m", a=k.A("item", s, dl=2 * k.st))
+    FM.chiz(k.s, f, ix, iy, iw, ih - capt, size=fsz, color=u.ink, a=k.A("big", s, dl=k.st))
 
 
 def komp_xossalar(k: K, e, x, y, w, h, i=0):
@@ -434,6 +449,8 @@ def komp_misol(k: K, e, x, y, w, h, i=0):
     qs = e.get("qadamlar") or []
     jav = e.get("javob")
     shart = e.get("shart") or e.get("matn") or ""
+    if not has_vis and iw > 860 and qs and shart:
+        return _misol_ikki_ustun(k, e, ix, iy, iw, ih, col, s, shart, qs, jav)
     jh = 50 if jav else 0
     n = len(qs)
     row = 44
@@ -473,6 +490,33 @@ def komp_misol(k: K, e, x, y, w, h, i=0):
         dl = 0 if n else 2 * k.st
         k.s.rect(ix, iy + ih - jh + 4, iw, jh - 6, fill=u.ok, op=0.14 if not u.qorongi else 0.3, line=u.ok, lw=1.2, r=10, a=k.A("accent", st, dl=dl))
         k.s.matn(ix + 14, iy + ih - jh + 4, iw - 28, jh - 6, "**Javob:** " + jav, size=18, color=u.ink, va="m", a=k.A("accent", st, dl=dl), min_scale=0.6)
+
+
+def _misol_ikki_ustun(k: K, e, ix, iy, iw, ih, col, s, shart, qs, jav):
+    """Keng misol: chapda shart (katta), o'ngda qadamlar va javob."""
+    u = k.u
+    lw = iw * 0.42
+    sz, th = mos_olcham(shart, lw - 10, ih - 10, sizes=(28, 26, 24, 22, 20, 19, 18, 17, 16, 15))
+    k.s.matn(ix, iy + max(0, (ih - th) / 2 - 10), lw - 10, th + 6, shart, size=sz, color=u.ink, urg=col, lh=1.24, a=k.A("item", s, dl=k.st))
+    k.s.rect(ix + lw + 10, iy + 6, 1.5, ih - 12, fill=u.muted, op=0.35, a=k.A("item", s, dl=k.st))
+    rx = ix + lw + 34
+    rw = iw - lw - 34
+    n = len(qs)
+    jh = 54 if jav else 0
+    row = min(76, (ih - jh - (14 if jav else 0)) / max(n, 1))
+    ttop = iy + max(0, (ih - jh - 14 - row * n) / 2)
+    fs = 20 if row >= 64 else 18 if row >= 50 else 16 if row >= 40 else 14
+    for j, q in enumerate(qs):
+        st = k.keyingi()
+        ry = ttop + j * row
+        k.s.doira(rx + 15, ry + row / 2, 14, fill=col, a=k.A("accent", st))
+        k.s.matn(rx + 1, ry + row / 2 - 14, 28, 28, str(j + 1), size=13, bold=True, color=u.matn_ustida(col), align="c", va="m", a=k.A("accent", st))
+        k.s.matn(rx + 42, ry + 2, rw - 46, row - 4, q, size=fs, color=u.ink, va="m", a=k.A("item", st, dl=80), lh=1.15, min_scale=0.6)
+    if jav:
+        st = k.keyingi()
+        jy = ttop + n * row + 14
+        k.s.rect(rx, jy, rw, jh - 6, fill=u.ok, op=0.14 if not u.qorongi else 0.3, line=u.ok, lw=1.2, r=10, a=k.A("accent", st))
+        k.s.matn(rx + 14, jy, rw - 28, jh - 6, "**Javob:** " + jav, size=18, color=u.ink, va="m", a=k.A("accent", st), min_scale=0.6)
 
 
 def komp_jadval(k: K, e, x, y, w, h, i=0):
