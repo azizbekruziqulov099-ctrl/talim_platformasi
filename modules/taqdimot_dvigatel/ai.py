@@ -275,9 +275,10 @@ REJA_KORSATMA = """Sen tajribali metodistsan. Mavzu bo‘yicha taqdimot REJASINI
 Javob FAQAT JSON:
 {"meta":{"mavzu","qisqa":"2–4 so‘z","maqsad":"1–2 jumla","tayanch":["3–5 tushuncha"]},
  "bolimlar":[{"nom":"bo‘lim nomi","izoh":"1 jumla","slaydlar":[{"sarlavha":"slayd sarlavhasi","maqsad":"bu slaydda nima — 1 jumla",
-   "tur":"eng mos element turi: tarif|qoida|misol|masala|jadval|taqqoslash|xossalar|lugat|dialog|parcha|vaqt_chizigi|xarita|tajriba|jarayon|galereya|guruhlash|moslash|togri_notogri|bosh_joy|rasmda_nima|matn"}]}]}
+   "tur":"eng mos element turi: tarif|qoida|misol|masala|jadval|taqqoslash|xossalar|lugat|dialog|parcha|vaqt_chizigi|xarita|tajriba|jarayon|galereya|guruhlash|moslash|togri_notogri|bosh_joy|rasmda_nima|raqamlar|iqtibos|rasm|matn"}]}]}
 Bo‘limlar mantiqiy ketma-ket: kirish → asosiy tushunchalar → qo‘llash/misollar → mustahkamlash. Sarlavhalar aniq va qisqa (2–7 so‘z),
-takrorlanmasin. Fanga va yoshga mos turlarni tanla, har bo‘limda kamida bitta vizual yoki o‘yin turi bo‘lsin."""
+takrorlanmasin. Fanga va yoshga mos turlarni tanla, har bo‘limda kamida bitta vizual yoki o‘yin turi bo‘lsin.
+Bakalavr/magistr: olimlar fikri uchun iqtibos, tadqiqot natijalari uchun raqamlar, nazariyalar uchun taqqoslash ham bo‘lsin."""
 
 
 def reja_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", manba="", sozlama=None, deadline=120.0):

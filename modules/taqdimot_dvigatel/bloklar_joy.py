@@ -51,7 +51,7 @@ def dizayn_royxati():
             "kart": [{"kod": k, "nom": n} for k, n in NOMLAR["kart"].items()]}
 
 SODDA = {"tarif", "qoida", "teorema", "matn", "savol", "formula"}
-_YON_MUMKIN = SODDA | {"misol", "masala", "xossalar", "hayotiy", "chizma", "rasm", "parcha", "iqtibos", "dialog", "tajriba", "raqamlar"}
+_YON_MUMKIN = SODDA | {"misol", "masala", "xossalar", "hayotiy", "chizma", "rasm", "parcha", "iqtibos", "dialog", "raqamlar"}
 
 
 # ------------------------------------------------------------------ dizayn DNK
