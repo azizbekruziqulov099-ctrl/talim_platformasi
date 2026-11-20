@@ -10,6 +10,18 @@ def miya_nomi(nom, toplam):
 
 
 BOLIMLAR = {
+    "T11_G4_M": [
+        {"kalit": "T4-1", "nom": "Sonlar va xonalar", "belgi": "🔢", "izoh": "Ko‘p xonali sonlar, taqqoslash", "mavzular": ["M4-NAT", "t4_xona"]},
+        {"kalit": "T4-2", "nom": "Qo‘shish va ayirish", "belgi": "➕", "izoh": "Ustun usuli, tekshirish", "mavzular": ["t4_ustun"]},
+        {"kalit": "T4-3", "nom": "Ko‘paytirish va bo‘lish", "belgi": "✖️", "izoh": "Jadval, qoldiqli bo‘lish", "mavzular": ["t4_kopay", "t4_bolish"]},
+        {"kalit": "T4-4", "nom": "Matnli masalalar", "belgi": "📖", "izoh": "Tenglik, noma’lum son, ikki amalli masala", "mavzular": ["M4-TEN", "t4_masala"]},
+        {"kalit": "T4-5", "nom": "Kasrlar", "belgi": "🍕", "izoh": "Kasr tushunchasi, taqqoslash, qo‘shish", "mavzular": ["M4-KAS", "t4_kasr"]},
+        {"kalit": "T4-6", "nom": "O‘nli kasrlar va pul", "belgi": "💲", "izoh": "O‘ndan va yuzdan bir, pul, uzunlik", "mavzular": ["t4_onli"]},
+        {"kalit": "T4-7", "nom": "Qonuniyatlar", "belgi": "🔁", "izoh": "Ketma-ketlik qoidasi", "mavzular": ["M4-QON", "t4_qonun"]},
+        {"kalit": "T4-8", "nom": "Chiziq, burchak va shakllar", "belgi": "📐", "izoh": "Burchak turlari, tekis va fazoviy shakllar", "mavzular": ["M4-NUQ", "t4_burchak", "M4-SHA"]},
+        {"kalit": "T4-9", "nom": "O‘lchash: perimetr, yuza, vaqt", "belgi": "📏", "izoh": "To‘rtburchak, vaqt va birliklar", "mavzular": ["t4_perim", "t4_vaqt"]},
+        {"kalit": "T4-10", "nom": "Ma’lumotlar", "belgi": "📊", "izoh": "Jadval, diagramma, tartiblash", "mavzular": ["M4-OQI", "t4_jadval", "M4-TAS"]},
+    ],
     "P_M": [
         {"kalit": "PM-1", "nom": "Sonlar va hisoblash", "belgi": "🔢", "izoh": "Manfiy sonlar, kasrlar, daraja, yaxlitlash",
          "mavzular": ["pm_butun", "pm_kasr", "pm_daraja", "pm_taxmin"]},
