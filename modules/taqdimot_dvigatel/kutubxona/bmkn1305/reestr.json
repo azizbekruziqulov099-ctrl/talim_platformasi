@@ -17,6 +17,7 @@
     {
      "id": "K04-01",
      "nom": "Bir xil butunda teng kasrlar",
+     "talab": "Bir xil uzunlikdagi uch tasma 2,4,6 teng qismga bo‘linsin; mos ravishda 1,2,3 bo‘lagi ajratilsin. Ajratilgan uzunliklar teng: 1/2=2/4=3/6. To‘rtinchi tasma kitob uchun 5 teng bo‘lak: 2 bo‘lak60bet, 1bo‘lak30bet, jami150bet; boshqa butun bilan fizik uzunlik tengligi da’vo qilinmasin.",
      "kalitlar": [
       "bmkn_k04_01_teng_kasrlar"
      ]
@@ -24,6 +25,7 @@
     {
      "id": "K04-02",
      "nom": "Son o‘qida butun va kasrlar",
+     "talab": "Birlik masshtabi bir xil son o‘qida −3 va3, nolgacha3birlik masofalar; alohida panelda 1/3=4/12, 5/12, 1/2=6/12 shu tartibda. −3 dan2 ga +5 yo‘nalishli siljish boshqa qatorda. Nuqtalar va kesmalar koordinatalardan hisoblansin.",
      "kalitlar": [
       "bmkn_k04_02_son_oqi_kasrlar"
      ]
@@ -54,6 +56,7 @@
     {
      "id": "K02-01",
      "nom": "Ko‘phad ko‘paytmasining yuz modeli",
+     "talab": "Tomonlari a+b va c+d bo‘lgan to‘g‘ri to‘rtburchak 4 qismga ajratilsin; yuzlar ac, ad, bc, bd. Model uchun a,b,c,d musbat uzunliklar. Algebraik ayniyat esa barcha haqiqiy a,b,c,d uchun o‘rinli.",
      "kalitlar": [
       "bmkn_k02_01_kophad_yuz"
      ]
@@ -85,6 +88,7 @@
     {
      "id": "K02-02",
      "nom": "Kompleks tekislik: nuqta, qo‘shma, modul",
+     "talab": "Bir xil masshtabli Re va Im o‘qlari; z=3−4i nuqta (3,−4), qo‘shmasi (3,4), ikkala modul 5. Vertikal koordinata b bilan berilsin, bi bilan emas.",
      "kalitlar": [
       "bmkn_k02_02_kompleks_qoshma"
      ]
@@ -105,6 +109,7 @@
     {
      "id": "K02-03",
      "nom": "i ga ko‘paytirish — π/2 ga burilish",
+     "talab": "(2,−1) dan (1,2) ga koordinata boshiga nisbatan soat miliga qarama-qarshi π/2 burilish; ikkala radius √5. O‘qlar masshtabi bir xil.",
      "kalitlar": [
       "bmkn_k02_03_i_burilish"
      ]
@@ -112,6 +117,7 @@
     {
      "id": "K02-04",
      "nom": "w³=8 ning uchta ildizi",
+     "talab": "Radiusi 2 aylana; burchaklar 0, 2π/3, 4π/3; nuqtalar (2,0), (−1,√3), (−1,−√3). Uchala qiymat kubga oshirilganda 8 ga tengligi yozilsin.",
      "kalitlar": [
       "bmkn_k02_04_sakkiz_ildiz"
      ]
@@ -132,6 +138,7 @@
     {
      "id": "K03-01",
      "nom": "Kesma, nur va chiziqli burchaklar",
+     "talab": "Uch panel: A=(0,0), B=(4,0) kesma; shu A dan B orqali o‘ngga davom etgan nur; ikkala tomonga davom etgan chiziq. Alohida chiziqli juftlikda qarama-qarshi nurlar va umumiy nur belgilansin. 50° va 130° yig‘indisi 180°. Cheksizlik tasviri ikki/ bir o‘q bilan farqlansin.",
      "kalitlar": [
       "bmkn_k03_01_kesma_nur_chiziq"
      ]
@@ -152,6 +159,7 @@
     {
      "id": "K03-02",
      "nom": "Balandlik oyog‘i tashqarida",
+     "talab": "A=(0,0), B=(6,0), C=(−2,3), H=(−2,0). AB chizig‘i chapga davom ettirilsin; CH⊥AB, CH=3, AB=6, S=9. H kesma AB ustida deb ko‘rsatilmasin. Koordinata masshtabi ikkala o‘qda bir xil.",
      "kalitlar": [
       "bmkn_k03_02_tashqi_balandlik"
      ]
@@ -159,6 +167,7 @@
     {
      "id": "K03-03",
      "nom": "Mediana va balandlik turli kesmalar",
+     "talab": "A=(0,4), B=(0,0), C=(6,0). BC o‘rtasi M=(3,0). AM mediana; AH balandlik, H=B. Ranglar va belgilar ajratilsin. Mediana yoniga perpendikulyarlik belgisi qo‘yilmasin.",
      "kalitlar": [
       "bmkn_k03_03_mediana_balandlik"
      ]
@@ -179,6 +188,7 @@
     {
      "id": "K03-04",
      "nom": "TBTda aynan oradagi burchak",
+     "talab": "A=(0,0), B=(3,0), C=(0,4); D=(10,0), E=(10,3), F=(6,0). AB=DE=3, AC=DF=4, ∠A=∠D=90°. Mos uchlar A↔D, B↔E, C↔F. Bir va ikki chiziqchali tenglik belgilari aralashmasin. Uchinchi tomonlar 5.",
      "kalitlar": [
       "bmkn_k03_04_tbt_oradagi_burchak"
      ]
@@ -186,6 +196,7 @@
     {
      "id": "K03-05",
      "nom": "TTB uchun ikkita yechim",
+     "talab": "A=(0,0), C=(4√3,4), B₁=(4√3−3,0), B₂=(4√3+3,0). AC=8; CB₁=CB₂=5; ∠A=30°. AB₁ va AB₂ har xil va musbat. Ikkita uchburchak alohida yoki ustma-ust ikki rangda chizilsin. Chizmada 30° burchak A da bo‘lsin.",
      "kalitlar": [
       "bmkn_k03_05_ttb_ikki_yechim"
      ]
@@ -206,6 +217,7 @@
     {
      "id": "K03-06",
      "nom": "Aylana, yopiq doira va urinma",
+     "talab": "Markaz O=(0,0), radius 4. Bir panel faqat aylana chegarasi, ikkinchi panel yopiq doira bo‘yoqli sohasi. T=(4,0), urinma x=4; OT ga perpendikulyarlik belgisi T da. Radius4, diametr8; markaz aylanaga tegishli deb belgilanmasin.",
      "kalitlar": [
       "bmkn_k03_06_aylana_doira_urinma"
      ]
@@ -226,6 +238,7 @@
     {
      "id": "K03-07",
      "nom": "Parallelogramm va romb diagonallari",
+     "talab": "Birinchi: A=(0,0),B=(4,0),C=(5,2),D=(1,2),O=(2.5,1); AC²=29, BD²=13, diagonallar teng emas, lekin ikkiga bo‘linadi. Ikkinchi: romb (−3,0),(0,4),(3,0),(0,−4); diagonallar6 va8, tomon5, yuz24; markazda perpendikulyarlik belgisi. Birinchi panelda to‘g‘ri burchak belgisi bo‘lmasin.",
      "kalitlar": [
       "bmkn_k03_07_diagonallar"
      ]
@@ -233,6 +246,7 @@
     {
      "id": "K03-08",
      "nom": "Teng yonli trapetsiya balandligi",
+     "talab": "A=(0,0),B=(14,0),C=(11,4),D=(3,4). Asoslar14 va8, yon tomonlar5, balandlik4. D va C dan AB ga perpendikulyarlar; chet bo‘laklar3 va3. O‘rta chiziq uchlari (1.5,2),(12.5,2), uzunligi11. Faqat bitta qarama-qarshi tomonlar jufti parallel.",
      "kalitlar": [
       "bmkn_k03_08_teng_yonli_trapetsiya"
      ]
@@ -240,6 +254,7 @@
     {
      "id": "K03-09",
      "nom": "To‘g‘ri burchakli trapetsiya",
+     "talab": "A=(0,0),B=(10,0),C=(6,3),D=(0,3). Asoslar10 va6, balandlik AD=3, qiya tomon BC=5. S=24 kvadrat birlik, P=24 uzunlik birligi — birliklar saqlansin. A va D dagi to‘g‘ri burchaklar belgilansin.",
      "kalitlar": [
       "bmkn_k03_09_togri_trapetsiya"
      ]
@@ -260,6 +275,7 @@
     {
      "id": "K04-03",
      "nom": "Uchburchakli prizma yoyilmasi",
+     "talab": "Asos katetlari3 va4, gipotenuza5; ikkita teng asos. To‘g‘ri prizma balandligi10. Yon yoqlar3×10,4×10,5×10 to‘rtburchaklar bo‘lib tutashsin; asoslar chetga to‘g‘ri ulanib, yoyilmada ustma-ust tushmasin. B=6,P=12,Syon=120,Sto‘la=132,V=60; sm²/sm³ farqlansin.",
      "kalitlar": [
       "bmkn_k04_03_prizma_yoyilma_h10"
      ]
@@ -267,6 +283,7 @@
     {
      "id": "K04-04",
      "nom": "Piramidada h, apofema va yon qirra",
+     "talab": "Muntazam kvadrat piramida asos uchlari(−3,−3,0),(3,−3,0),(3,3,0),(−3,3,0); uch T=(0,0,4). O=(0,0,0), M=(0,−3,0). TO=4 balandlik, TM=5 apofema, yon qirra√34. TO asos tekisligiga, OM esa asos tomoniga perpendikulyar. Perspektiva va yashirin qirralar alohida, ma’lumotlar 3D koordinatalardan hisoblansin.",
      "kalitlar": [
       "bmkn_k04_04_piramida_h_apofema"
      ]
@@ -287,6 +304,7 @@
     {
      "id": "K04-05",
      "nom": "Silindr va konus yoyilmalari",
+     "talab": "Silindr r3h5: yon sirt to‘rtburchagi6π×5, ikkita radius3doira. Konus r3h4ℓ5: radius5sektor, burchagi216°, yoy6π; bitta radius3asosdoirasi. Konus sektorini radius3 yoki burchagi360° qilib ko‘rsatish mumkin emas.",
      "kalitlar": [
       "bmkn_k04_05_silindr_r3_h5",
       "bmkn_k04_05_konus_r3_l5"
@@ -295,6 +313,7 @@
     {
      "id": "K04-06",
      "nom": "Sfera, shar va yarim shar",
+     "talab": "Bir xil radiusli uch panel: faqat sfera sirt modeli; ichki soha bilan shar kesimi; markaziy tekislik bilan kesilgan yarim shar. Yarimsharda egri sirt2πR² va kesimdoirasiπR² turli ranglar bilan ajratilsin; to‘la sirt3πR². Kesimdoirasi sfera sirtining bir qismi deb ko‘rsatilmasin.",
      "kalitlar": [
       "bmkn_k04_06_sfera_shar_yarimshar"
      ]
@@ -315,6 +334,7 @@
     {
      "id": "K04-07",
      "nom": "Kvadrat va kub birliklarni o‘tkazish",
+     "talab": "1m tomon100cm ekanini ko‘rsating. Kvadrat100×100=10000cm², kub100³=1000000cm³. Mayda kataklar ko‘rinishini saqlash uchun guruhlash va kattalashtirilgan bo‘lakdan foydalaning; 10000ta yozuv joylashtirmang. Birlikdagi darajani barcha tengliklarda saqlang.",
      "kalitlar": [
       "bmkn_k04_07_kvadrat_kub_birlik"
      ]
@@ -335,6 +355,7 @@
     {
      "id": "K04-08",
      "nom": "Foizning o‘zgaruvchi asosi",
+     "talab": "Uch ustun yoki tasma: boshlang‘ich100; unga20%qo‘shilgach120; keyin120ning20%i=24ayrilib96. Birinchi foizning asosi100, ikkinchisiniki120deb ochiq belgilang. Yakuniy kamayish boshlang‘ichning4%i. Grafik o‘qi0dan, barcha tasmalar bir xil masshtabda.",
      "kalitlar": [
       "bmkn_k04_08_foiz_asosi"
      ]
@@ -355,6 +376,7 @@
     {
      "id": "K05-01",
      "nom": "Koordinata, ko‘chish va yo‘l",
+     "talab": "Son o‘qida−4dan10birlik o‘ngga6ga, keyin3birlik chapga3ga. Alohida yo‘nalishli o‘qlar+10va−3; umumiy ko‘chish+7, yo‘l13. Boshlang‘ich koordinata−4yo‘lga qo‘shilmasin. Har bir o‘q yo‘nalishi va masshtab koordinatadan hisoblansin.",
      "kalitlar": [
       "bmkn_k05_01_kochish_yol"
      ]
@@ -375,6 +397,7 @@
     {
      "id": "K05-02",
      "nom": "Ketma-ket ulushning o‘zgaruvchi butuni",
+     "talab": "180betli kitob tasmada5teng qismga; dastlab2/5=72bet ajratilsin. Qolgan3/5=108bet yana3teng qismga bo‘linib, shundan1/3=36bet ikkinchi bosqichda ajratilsin. Yakuniy o‘qilgan108bet=3/5, qolgan72bet=2/5. Ikkinchi1/3ni dastlabki180dan olmang.",
      "kalitlar": [
       "bmkn_k05_02_kitob_180_ulush"
      ]
@@ -395,6 +418,7 @@
     {
      "id": "K02-05",
      "nom": "0,3×0,2 uchun yuz modeli",
+     "talab": "Birlik kvadrat 10×10 teng katakka bo‘linsin. 3 ustun va 2 qatorning kesishgan aynan 6 katagi ajratilsin; butunning 6/100=0,06 qismi ekanligi ko‘rsatilsin.",
      "kalitlar": [
       "bmkn_k02_05_onli_yuz"
      ]
@@ -415,6 +439,7 @@
     {
      "id": "K05-03",
      "nom": "Haqiqiy sonlarni aniq tartiblash",
+     "talab": "Bir son o‘qida√3,7/4,√13/2 shu tartibda. Nuqta koordinatalari hisobdan olinsin; taqqoslash uchun kvadratlar48/16,49/16,52/16yozilsin. Taqribiy piksel joylashuv matematik isbot sifatida berilmasin.",
      "kalitlar": [
       "bmkn_k05_03_haqiqiy_tartib"
      ]
@@ -435,6 +460,7 @@
     {
      "id": "K05-04",
      "nom": "Qo‘shma va qarama-qarshi kompleks nuqtalar",
+     "talab": "Teng masshtabli Re,Imo‘qlarda z=−3+4i nuqta(−3,4), qo‘shmasi(−3,−4), qarama-qarshisi(3,−4). Qo‘shma haqiqiy o‘qqa, qarama-qarshi koordinata boshiga nisbatan akslangani ajratilsin. Uchala modul5; vertikal koordinatalar b, biemas.",
      "kalitlar": [
       "bmkn_k05_04_qoshma_qaramaqarshi"
      ]
@@ -455,6 +481,7 @@
     {
      "id": "K05-05",
      "nom": "i ga ko‘paytirish bilan burilish",
+     "talab": "z=3+2i nuqta(3,2) dan iz=−2+3i nuqta(−2,3) ga markaziy90°soatmiliga qarama-qarshi burilish. Ikkala radius√13. Burilish boshi koordinata boshi, o‘qlar teng masshtabda.",
      "kalitlar": [
       "bmkn_k05_05_i_burilish_3_2"
      ]
@@ -462,6 +489,7 @@
     {
      "id": "K05-06",
      "nom": "−8 ning uchta kub ildizi",
+     "talab": "Radius2aylana; burchaklarπ/3,π,5π/3. Nuqtalar(1,√3),(−2,0),(1,−√3). Uchta turli nomzodning har biri kubga oshirilganda−8chiqishi ko‘rsatilsin. k=0,1,2; musbat8ning ildizlari bilan aralashmasin.",
      "kalitlar": [
       "bmkn_k05_06_manfiy8_ildiz"
      ]
@@ -482,6 +510,7 @@
     {
      "id": "K06-01",
      "nom": "Burilgan kvadrat va teskari hukmga qarshi misol",
+     "talab": "Birinchi panel:A=(0,0),B=(2,1),C=(1,3),D=(−1,2); barcha tomonlar√5,qo‘shni tomonlar perpendikulyar. Ikkinchi panel:(0,0),(6,0),(5,2),(1,2) trapetsiya; diagonallar√29,teng,lekin A burchak90°emas. Ikki panelning xossalari aralashtirilmasin.",
      "kalitlar": [
       "bmkn_k06_01_kvadrat_qarshi_misol"
      ]
@@ -502,6 +531,7 @@
     {
      "id": "K06-02",
      "nom": "Kuboidning qiya parallel tasviri",
+     "talab": "3D kuboid uchlari x=0yoki3,y=0yoki4,z=0yoki5. Tekis tasvir X=x+y/2,Y=z+y/3. Ulanish faqat bitta koordinata farqli qo‘shni uchlar bo‘yicha;12qirra. Asl uzunliklar3,4,5deb yozilsin,proyeksiya o‘lchovi deb berilmasin. Yashirin qirralar ko‘rish yo‘nalishiga mos ajratilsin.",
      "kalitlar": [
       "bmkn_k06_02_kuboid_qiya_3_4_5"
      ]
@@ -522,6 +552,7 @@
     {
      "id": "K06-03",
      "nom": "O‘rta perpendikulyar yasashi",
+     "talab": "A=(−4,0),B=(4,0),teng radius5. Aylanalar kesishuvlari P=(0,3),Q=(0,−3),M=(0,0). PQ⊥AB,AM=MB=4. Yordamchi yoylar ko‘rinsin. Radius4faqat tegishish,radius4dan kichikda kesishmaslik chegaraviy holati alohida kichik panelda.",
      "kalitlar": [
       "bmkn_k06_03_orta_perpendikulyar"
      ]
@@ -529,6 +560,7 @@
     {
      "id": "K06-04",
      "nom": "90°burchak bissektrisasi yasashi",
+     "talab": "O=(0,0),A=(4,0),B=(0,4). O markazli radius4yoy A,Bni beradi. A va B markazli radius4aylanalar O vaP=(4,4)da kesishadi; P≠Otanlanadi. OP45°bissektrisa. OA=OB,AP=BP,OPumumiy tengliklari ko‘rsatilsin.",
      "kalitlar": [
       "bmkn_k06_04_bissektrisa_yasash"
      ]
@@ -536,6 +568,7 @@
     {
      "id": "K06-05",
      "nom": "Uch tomondan uchburchak yasash",
+     "talab": "A=(0,0),B=(5,0);Amarkazli radius3,Bmarkazli radius4. C=(9/5,12/5),C′=(9/5,−12/5). Asos5,yonlar3va4. Ikki akslangan joylashuv rang bilan ajratilsin; shakllar teng. 2,3,5holatda aynimagan uchburchak yo‘qligi bilan farqlansin.",
      "kalitlar": [
       "bmkn_k06_05_uch_tomon_yasash"
      ]
@@ -556,6 +589,7 @@
     {
      "id": "K06-06",
      "nom": "Ustma-ust sohalar yuzlari",
+     "talab": "Ato‘g‘ri to‘rtburchak[0,4]×[0,3],yuzi12;B=[3,5]×[0,5],yuzi10. Kesishma[3,4]×[0,3],yuzi3. Birlashma19. Shaffof ranglar va konturlar bilan umumiy qismning ikki marta hisoblanishi ajratilsin.",
      "kalitlar": [
       "bmkn_k06_06_ustmaust_yuza"
      ]
@@ -576,6 +610,7 @@
     {
      "id": "K06-03",
      "nom": "O‘rta perpendikulyar yasashi",
+     "talab": "A=(−4,0),B=(4,0),teng radius5. Aylanalar kesishuvlari P=(0,3),Q=(0,−3),M=(0,0). PQ⊥AB,AM=MB=4. Yordamchi yoylar ko‘rinsin. Radius4faqat tegishish,radius4dan kichikda kesishmaslik chegaraviy holati alohida kichik panelda.",
      "kalitlar": [
       "bmkn_k06_03_orta_perpendikulyar"
      ]
@@ -583,6 +618,7 @@
     {
      "id": "K06-07",
      "nom": "Parallel usulda besh teng qism",
+     "talab": "A=(0,0),B=(10,0),Aⱼ=(j,j),j=1,…,5. A₅B yo‘nalishi(5,−5);A₁…A₄dan parallel chiziqlar Pⱼ=(2j,0)ni beradi. Har bir bo‘lak2,ichki nuqtalar4ta. Teng yordamchi qadam va parallellik belgilarini saqlang; qo‘shimcha3Dperspektiva kiritmang.",
      "kalitlar": [
       "bmkn_k06_07_besh_teng_qism"
      ]

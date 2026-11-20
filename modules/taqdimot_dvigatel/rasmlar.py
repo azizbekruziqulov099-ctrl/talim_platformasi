@@ -76,12 +76,19 @@ def papka_reestri():
     return _papka_reestri(os.path.getmtime(p)) if os.path.isfile(p) else []
 
 
+@lru_cache(maxsize=4)
+def _reestr_lugat(mtime: float):
+    return {r.get("kalit"): r for r in _papka_reestri(mtime)}
+
+
+def malumot(key: str) -> dict:
+    p = os.path.join(PAPKA, "reestr.json")
+    return _reestr_lugat(os.path.getmtime(p)).get(key) or {} if os.path.isfile(p) else {}
+
+
 def kredit(key: str):
     """Litsenziya talab qiladigan rasm uchun manba qatori (masalan CC BY)."""
-    for r in papka_reestri():
-        if r.get("kalit") == key:
-            return r.get("kredit")
-    return None
+    return malumot(key).get("kredit")
 
 
 def papkadan_qidir(q: str = "", limit: int = 60):

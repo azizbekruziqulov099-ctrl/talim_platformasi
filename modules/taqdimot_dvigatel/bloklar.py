@@ -147,6 +147,13 @@ def _vizual(k: K, e, x, y, w, h, s, ichida_kart=True):
         if kr:
             k.s.matn(x, y + h - 14, w, 14, kr, size=9, color=u.muted, align="r", min_scale=0.6, a=k.A("item", s, dl=600))
             h -= 16
+        info = RS.malumot(key)
+        if u.qorongi and info.get("tur") == "chizma":
+            # chizmalar qora chiziqli, shaffof fonli — qorong'i uslubda oq taglik ostiga
+            iw_, ih_ = (info.get("olcham") or [w, h])[:2]
+            sc_ = min(w / iw_, h / ih_)
+            bw_, bh_ = iw_ * sc_, ih_ * sc_
+            k.s.rect(x + (w - bw_) / 2, y + (h - bh_) / 2, bw_, bh_, fill="#FFFFFF", r=10, a=k.A("big", s, dl=k.st))
         k.s.img(x, y, w, h, "rasm:" + key, a=k.A("big", s, dl=k.st))
         return s
     if ch:

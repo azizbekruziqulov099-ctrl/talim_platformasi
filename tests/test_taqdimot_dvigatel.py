@@ -148,3 +148,20 @@ def test_api_kutubxona(monkeypatch):
     assert c.get(f"{api.PREFIX}/kutubxona/{t['kod']}/{m['kod']}/javoblar").status_code == 403
     assert c.get(f"{api.PREFIX}/kutubxona/{t['kod']}/yoq").status_code == 404
     assert c.get(f"{api.PREFIX}/kutubxona/..%2F..%2Fetc/{m['kod']}").status_code == 404
+
+
+def test_kutubxona_chizmalar_joylanadi():
+    from modules.taqdimot_dvigatel import kutubxona, rasmlar
+    for t in kutubxona.toplamlar():
+        for m in kutubxona.reestr(t["kod"])["mavzular"]:
+            for ch in m.get("chizmalar") or []:
+                for k in ch["kalitlar"]:
+                    assert rasmlar.bor(k), k
+            if not m.get("chizmalar"):
+                continue
+            d = kutubxona.miya(t["kod"], m["kod"])
+            joy = {e["rasm"] for b in d["bolimlar"] for sl in b["slaydlar"] for e in sl["elementlar"] if e.get("tur") == "rasm"}
+            for ch in m["chizmalar"]:
+                assert set(ch["kalitlar"]) <= joy, (m["kod"], ch["id"])
+            toza = kutubxona.miya(t["kod"], m["kod"], chizmali=False)
+            assert not any(e.get("tur") == "rasm" for b in toza["bolimlar"] for sl in b["slaydlar"] for e in sl["elementlar"])
