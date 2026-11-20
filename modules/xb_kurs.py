@@ -10,6 +10,21 @@ def miya_nomi(nom, toplam):
 
 
 BOLIMLAR = {
+    "T11_G8_M": [
+        {"kalit": "T8-1", "nom": "Natural sonlar va daraja", "belgi": "🔢", "izoh": "Amallar, daraja, kvadrat ildiz", "mavzular": ["M8-NAT", "t8_daraja"]},
+        {"kalit": "T8-2", "nom": "Bo‘linish, EKUB va EKUK", "belgi": "🔗", "izoh": "Bo‘linish belgilari, umumiy bo‘luvchi va karrali", "mavzular": ["t8_bolinish"]},
+        {"kalit": "T8-3", "nom": "Kasrlar va o‘nli kasrlar", "belgi": "🍕", "izoh": "Kasrlar bilan amallar", "mavzular": ["M8-KAS"]},
+        {"kalit": "T8-4", "nom": "Butun sonlar", "belgi": "🌡️", "izoh": "Manfiy sonlar, amallar tartibi", "mavzular": ["M8-BUT", "t8_butun"]},
+        {"kalit": "T8-5", "nom": "Nisbat, proporsiya va foiz", "belgi": "💯", "izoh": "Foiz, chegirma, proporsionallik, masshtab", "mavzular": ["M8-NIS", "t8_foiz", "t8_prop"]},
+        {"kalit": "T8-6", "nom": "Qonuniyatlar va ketma-ketliklar", "belgi": "🔁", "izoh": "n-had formulasi", "mavzular": ["M8-QON", "t8_progressiya"]},
+        {"kalit": "T8-7", "nom": "Algebraik ifodalar", "belgi": "🔤", "izoh": "Ixchamlash, qavslarni ochish", "mavzular": ["M8-IFO", "t8_ifoda"]},
+        {"kalit": "T8-8", "nom": "Tenglamalar va funksiyalar", "belgi": "📈", "izoh": "Chiziqli tenglama, y = kx + b", "mavzular": ["M8-TEN", "t8_tenglama", "t8_funk"]},
+        {"kalit": "T8-9", "nom": "Geometrik shakllar", "belgi": "🔺", "izoh": "Burchaklar, uchburchak, Pifagor", "mavzular": ["M8-SHA", "t8_uchburchak"]},
+        {"kalit": "T8-10", "nom": "Geometrik o‘lchash", "belgi": "⭕", "izoh": "Perimetr, yuza, aylana va doira", "mavzular": ["M8-OLC", "t8_aylana"]},
+        {"kalit": "T8-11", "nom": "Koordinatalar", "belgi": "🧭", "izoh": "Koordinatalar tekisligi, almashtirishlar", "mavzular": ["M8-JOY", "t8_koord"]},
+        {"kalit": "T8-12", "nom": "Ma’lumotlar", "belgi": "📊", "izoh": "Tartiblash, o‘rtacha, mediana, moda", "mavzular": ["M8-TAS", "M8-TAH", "t8_stat"]},
+        {"kalit": "T8-13", "nom": "Ehtimollik", "belgi": "🎲", "izoh": "Oddiy hodisa ehtimoli", "mavzular": ["M8-EHT", "t8_ehtimol"]},
+    ],
     "T11_G4_M": [
         {"kalit": "T4-1", "nom": "Sonlar va xonalar", "belgi": "🔢", "izoh": "Ko‘p xonali sonlar, taqqoslash", "mavzular": ["M4-NAT", "t4_xona"]},
         {"kalit": "T4-2", "nom": "Qo‘shish va ayirish", "belgi": "➕", "izoh": "Ustun usuli, tekshirish", "mavzular": ["t4_ustun"]},
