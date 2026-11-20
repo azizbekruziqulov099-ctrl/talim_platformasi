@@ -101,6 +101,10 @@ ANIMATSIYALAR = {
 }
 
 
+# «Tasodifiy» tanlanganda faqat tinch animatsiyalar; uchib/sakrab kiradiganlari faqat qo'lda tanlansa
+TINCH_ANIMATSIYALAR = ["yumshoq", "sokin", "chizgich", "sahna"]
+
+
 def mos_palitralar(oila):
     t = OILALAR[oila]["turi"]
     return list(YORUG) if t == "yorug" else list(QORONGI) if t == "qorongi" else list(DOSKA)
@@ -189,7 +193,7 @@ def tanla(rng: random.Random, oila=None, palitra=None, anim=None):
     o = oila if oila in OILALAR else rng.choice(oilalar)
     pals = mos_palitralar(o)
     p = palitra if palitra in pals else rng.choice(pals)
-    a = anim if anim in ANIMATSIYALAR else rng.choice(list(ANIMATSIYALAR))
+    a = anim if anim in ANIMATSIYALAR else rng.choice(TINCH_ANIMATSIYALAR)
     return Uslub(f"{o}.{p}.{rng.randrange(3)}", a)
 
 

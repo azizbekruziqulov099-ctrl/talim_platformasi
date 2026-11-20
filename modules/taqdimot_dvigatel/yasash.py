@@ -101,7 +101,7 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
         seed = random.SystemRandom().randrange(1, 2 ** 31)
     rng = random.Random(seed)
     if uslub_kod:
-        u = uslub.Uslub(uslub_kod, anim or rng.choice(list(uslub.ANIMATSIYALAR)))
+        u = uslub.Uslub(uslub_kod, anim or rng.choice(uslub.TINCH_ANIMATSIYALAR))
     else:
         u = uslub.tanla(rng, oila, palitra, anim)
     plan, sections, reja_i = reja_tuz(m, rng, bolim_titul)
@@ -119,7 +119,8 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
     mot = uslub.motiflar(m["meta"].get("fan") or "")
     fon = {"src": "fon:" + u.kod + (("~" + rng.choice(mot)) if mot else "")}
     for i, p in enumerate(plan):
-        s = Slayd(fon=fon, otish="morph" if i > 0 else "fade")
+        # Morph o'xshash shakllarni o'zi juftlab, yozuvlarni slayddan slaydga uchirib yuboradi (xunuk) — faqat yumshoq fade
+        s = Slayd(fon=fon, otish="fade")
         nav = {"total": total, "idx": i, "sections": secs_nav, "sec": p["sec"], "reja": reja_i if reja_i is not None else 0}
         k = B.K(s, u, random.Random(seed * 1009 + i * 31), nav, rb)
         d = dict(p["d"])
