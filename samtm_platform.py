@@ -22310,7 +22310,8 @@ def _paket_markaz_scope(content, scope_id=0):
                     break
                 # REV409: markaz kitoblari («1-kitob») va hamma uchun ochiq oliy ta'lim kurslari («2 kurs») ham —
                 # tanlangan dastur aynan shu kursdagi institut dasturi bo'lmasa, o'quv markazi katalogiga tushadi
-                if re.fullmatch(r"\s*\d+-kitob\s*", qiymat, re.I) or re.fullmatch(r"\s*\d\s*kurs(\s+magistr)?\s*", qiymat, re.I):
+                if re.fullmatch(r"\s*\d+-kitob\s*", qiymat, re.I) or re.fullmatch(r"\s*\d\s*kurs(\s+magistr)?\s*", qiymat, re.I) \
+                        or re.fullmatch(r"\s*doktorantura\s*", qiymat, re.I):   # REV470: tayanch doktorantura (13.00.02) kursi
                     daraja = qiymat.strip()
                     break
             if daraja:

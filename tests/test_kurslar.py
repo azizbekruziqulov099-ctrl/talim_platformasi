@@ -44,3 +44,11 @@ def test_rev321_oz_tilida():
     from modules.kurslar import oz_tilida
     assert oz_tilida("Ingliz tili (izoh: ingliz)") and oz_tilida("Rus tili — Erkin til (izoh: rus)")
     assert not oz_tilida("Ingliz tili (izoh: rus)") and not oz_tilida("Ingliz tili") and not oz_tilida("Matematika (izoh: ingliz)")
+
+
+def test_doktorantura_oliy_kursi():   # REV470: 13.00.02 tayanch doktorantura kursi — «Oliy ta'lim kurslari»da
+    from modules.kurslar import kurs_of
+    fan = "13.00.02 – Ta’lim va tarbiya nazariyasi va metodikasi"
+    assert kurs_of(fan, "doktorantura") == (f"oliy|{fan}|doktorantura", "oliy", fan, "doktorantura")
+    assert kurs_of(fan, "Doktorantura")[1] == "oliy"
+    assert kurs_of("Matematika", "2 kurs")[1] == "oliy"          # eski qoida o'zgarmagan

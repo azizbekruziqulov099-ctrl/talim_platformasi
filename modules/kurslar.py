@@ -24,7 +24,7 @@ KATEGORIYALAR = [
     ("xalqaro", "🌍", "Xalqaro baholash", "TIMSS / PISA uslubidagi kurs va imtihonlar"),
     ("repetitor", "🎯", "Repetitor kurslari", "Maktab matematikasi sinflar bo‘yicha guruhlangan: matematika 1–4 va 5–7, algebra va geometriya 7–11"),   # REV419/REV421: faqat matematika
     ("markaz", "🏫", "O‘quv markazi", "Matematika kitoblari asosida: savol-javobli, chizmali darslar va testlar"),   # REV405
-    ("oliy", "🎓", "Oliy ta’lim kurslari", "Ma’ruza va amaliy mashg‘ulotlar: talabalar va qiziqqan o‘quvchilar uchun"),   # REV407
+    ("oliy", "🎓", "Oliy ta’lim kurslari", "Ma’ruza va amaliy mashg‘ulotlar, doktoranturaga tayyorlov: talabalar va qiziqqan o‘quvchilar uchun"),   # REV407, REV470
     ("bolalar", "🧒", "Bolalar uchun", "Til va fan kurslari — boshidan, o‘yin bilan"),
     ("boshqa", "📚", "Boshqa kurslar", "Boshqa darsli kurslar"),
 ]
@@ -97,7 +97,7 @@ def kurs_of(fan, grade):
         return f"erkin|{base}|{g}", "erkin", f"{base} · {g}", g
     if re.search(r"\bmarkaz\b|o.quv markazi", base, re.I):   # REV405: «Matematika — markaz · 1-kitob»
         return f"markaz|{base}|{g}", "markaz", f"{base} · {g}", g
-    if re.search(r"\bkurs\b|magistr", g, re.I):   # REV407: «2 kurs» — oliy ta'lim kursi (ma'ruza + amaliy)
+    if re.search(r"\bkurs\b|magistr|doktorantura", g, re.I):   # REV407: «2 kurs» — oliy ta'lim kursi; REV470: «Doktorantura» (13.00.02)
         return f"oliy|{base}|{g}", "oliy", base, g
     if re.fullmatch(r"\d{1,2}", g):
         kat = "tillar" if TIL_FANLAR.search(base) else "fanlar" if FAN_FANLAR.search(base) else "boshqa"
