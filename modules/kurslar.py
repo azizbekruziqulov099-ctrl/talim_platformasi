@@ -356,12 +356,16 @@ def _son(x):
         return 9999
 
 
-def _dars_tartibi(rows):
+def _dars_tartibi(rows, savol_raqami=False):
     """REV461: darslar darslik tartibida. Nomida raqam bo'lsa («80-dars. …», «nazorat testi: 16-18-darslar»,
     «oraliq nazorat: 13-24-darslar · 3-variant») — shu raqam bo'yicha: test o'z darslaridan keyin, oraliq nazorat
     variantlari ketma-ket. Raqam bo'lmasa — DTS kodlari (chorak, bob, bo'lim, mavzu, kichik mavzu) bo'yicha."""
     def raqam(nom):
         n = str(nom or "").strip().lower()
+        if savol_raqami:   # REV470: 13.00.02 doktorantura — «1.15. …», «1.15-b. …» (bo'lim.savol-qism) tartibida
+            m = _re.match(r"^(\d{1,2})\.(\d{1,3})(?:-([a-z]))?\.", n)
+            if m:
+                return int(m.group(1)) * 1000 + int(m.group(2)) * 10 + (ord(m.group(3)) - 96 if m.group(3) else 0)
         m = _re.match(r"^(\d+)\s*-\s*dars", n)
         if m:
             return float(m.group(1))
@@ -417,7 +421,7 @@ def _kurs_darslari(cur, fan, grade):
                        FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND TRIM(d.grade)=%s
                          AND EXISTS(SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code AND u.status='published')
                        GROUP BY d.topic_code, d.grade""", (fan, str(grade or "").strip()))
-        rows = _dars_tartibi([dict(r) for r in cur.fetchall()])   # REV461: darslik tartibi (avval topic_code bo'yicha — aralash chiqardi)
+        rows = _dars_tartibi([dict(r) for r in cur.fetchall()], savol_raqami=doktorantura_mi(grade))   # REV461: darslik tartibi; REV470: doktorantura — savol raqami
     return [{k: v for k, v in dict(r).items() if k not in ("q", "b", "bo", "m", "k")} for r in rows]
 
 

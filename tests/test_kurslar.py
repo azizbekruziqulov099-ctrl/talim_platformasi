@@ -67,3 +67,11 @@ def test_doktorantura_70_foiz():   # REV470: keyingi dars faqat dars testidan 70
     # B tugatilgan, lekin 70% emas — tugaganlar ro'yxatiga kirmaydi, B navbatda qoladi, C yopiq
     holat = tartib_qulf([("A", True), ("B", True), ("C", True)], {"A"}, set(), False)
     assert [h for _, h in holat] == ["tugadi", "navbat", "qulf"]
+
+
+def test_doktorantura_dars_tartibi():   # REV470: «1.2.», «1.1-b.», «1.10.» — savol raqami bo'yicha, DTS kodidan qat'i nazar
+    from modules.kurslar import _dars_tartibi
+    rows = [{"nom": "1.10. O'quvchi faoliyati", "topic_code": "a1"}, {"nom": "1.1-b. Vazifalar", "topic_code": "a9"},
+            {"nom": "2.1. Samarqand", "topic_code": "a2"}, {"nom": "1.1. Pedagogika fanining maqsad", "topic_code": "a5"},
+            {"nom": "1.2. Qonun", "topic_code": "a3"}]
+    assert [r["nom"][:5] for r in _dars_tartibi(rows, savol_raqami=True)] == ["1.1. ", "1.1-b", "1.2. ", "1.10.", "2.1. "]
