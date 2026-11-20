@@ -1,5 +1,19 @@
 [
  {
+  "kalit": "ampermetr_voltmetr",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Ampermetr va voltmetr",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Har birida bitta ko‘rsatkich, raqamsiz shkala va ikki klemma bor. Chap ko‘k korpus ampermetr, o‘ng yashil korpus voltmetr sifatida berilgan; rang ularning universal standarti emas.",
+  "manbalar": [
+   "S82"
+  ]
+ },
+ {
   "kalit": "amyoba",
   "tur": "rasm",
   "olcham": [
@@ -106,6 +120,48 @@
   ]
  },
  {
+  "kalit": "barometr",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Barometr",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Raqamsiz shkalali, bitta ko‘rsatkichli aneroid barometrning umumiy korpusi. Belgilarsiz yuzadan bosim qiymati yoki ob-havo prognozi olinmaydi.",
+  "manbalar": [
+   "S199"
+  ]
+ },
+ {
+  "kalit": "batareya_lampa",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Batareya va lampochka",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Batareyaning ikki alohida qutbi lampochka tutqichining ikki alohida klemmasiga ulangan, tashqarida simlar qisqa tutashmagan. Toki, kuchlanishi va quvvati belgilanmagan.",
+  "manbalar": [
+   "S200"
+  ]
+ },
+ {
+  "kalit": "blok_kotarish",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Blok yordamida yuk ko‘tarish",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Bitta o‘qqa mahkamlangan blok, g‘ildirak ustidan o‘tgan bitta uzluksiz arqon va chap uchda chelak. O‘ng uch erkin; qo‘zg‘almas blok kuch yo‘nalishini o‘zgartiradi.",
+  "manbalar": [
+   "S90"
+  ]
+ },
+ {
   "kalit": "bori",
   "tur": "rasm",
   "olcham": [
@@ -183,6 +239,20 @@
   "manbalar": null
  },
  {
+  "kalit": "chinni_kosacha",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Chinni kosacha (bug‘latish)",
+  "fan": "Kimyo",
+  "tekshiruv": "Sayoz chinni bug‘latish kosachasi, quyish tumshuqchasi va kichik oyoqcha ajraladi.",
+  "manbalar": [
+   "S183"
+  ]
+ },
+ {
   "kalit": "chiqindi_saralash",
   "tur": "rasm",
   "olcham": [
@@ -246,6 +316,34 @@
   ]
  },
  {
+  "kalit": "dinamometr",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Dinamometr",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Yassi uslubga tuzatildi. Yuqori tayanch, prujina, ko‘rsatkich, pastki ilmoq va osilgan yuk bir-biriga ulangan. Belgilar raqamsiz, aniq o‘lchov ko‘rsatkichi da’vo qilinmagan.",
+  "manbalar": [
+   "S83"
+  ]
+ },
+ {
+  "kalit": "distillash",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Haydash (distillash) qurilmasi",
+  "fan": "Kimyo",
+  "tekshiruv": "Kolba va sovitgich alohida shtativlarga mahkamlangan; termometr sharchasi yon tarmoq sathida. Ichki bug‘ yo‘li sovitgichdan ochiq qabul kolbasiga boradi, tashqi suv g‘ilofida ikki patrubok bor. Qabul naychasi suyuqlik sathidan yuqorida; yopiq tizim yo‘q.",
+  "manbalar": [
+   "S188"
+  ]
+ },
+ {
   "kalit": "dnk",
   "tur": "rasm",
   "olcham": [
@@ -257,6 +355,48 @@
   "tekshiruv": "Ikki uzluksiz tayanch zanjir va ularni bog‘lovchi juft rangli pog‘onalar ko‘rildi. 3D ko‘rinish yassi uslubga almashtirildi. Ranglar asos juftlarining shartli belgisi; aniq nukleotid ketma-ketligi yoki molekulyar o‘lcham/chirallik tahlili emas.",
   "manbalar": [
    "S174"
+  ]
+ },
+ {
+  "kalit": "elektr_dvigatel",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Elektr dvigatel",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Elektr dvigatelning tashqi korpusi, val, tayanch va ikki simi ko‘rildi. Ichki kommutator, yo‘nalish yoki quvvat sxemasi ko‘rsatilmagan.",
+  "manbalar": [
+   "S201"
+  ]
+ },
+ {
+  "kalit": "elektromagnit",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Elektromagnit",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Izolyatsiyali o‘ram mix atrofida; ikki uch batareyaning alohida qutblariga ketadi, mix uchiga qisqichlar tortilgan. Bu sifat tasviri; o‘ram sonidan aniq magnit kuchi chiqarilmaydi.",
+  "manbalar": [
+   "S203"
+  ]
+ },
+ {
+  "kalit": "fotoapparat",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Fotoapparat",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Korpus, katta obyektiv va boshqaruv tugmasi umumiy tashqi ko‘rinishda. Ichki optik yo‘l yoki aniq model sxemasi emas.",
+  "manbalar": [
+   "S206"
   ]
  },
  {
@@ -286,6 +426,34 @@
   "manbalar": null
  },
  {
+  "kalit": "galaktika",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Somon yo‘li galaktikasi",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Sariq cho‘zinchoq markaziy bar, undan egilgan spiral yenglar bilan umumiy model. Tashqaridan olingan haqiqiy Somon yo‘li fotosurati yoki yulduz xaritasi emas.",
+  "manbalar": [
+   "S212"
+  ]
+ },
+ {
+  "kalit": "generator",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Elektr generatori",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Magnit qutblarining noto‘g‘ri o‘q bo‘ylab joylashuvi tuzatildi: qutblar ramkadan yuqori/pastda, aylanish o‘qiga ko‘ndalang. Kontaktlar korpus ichida, ikki chiqish tashqarida; bu jihozning umumiy ko‘rinishi, to‘liq ichki ulanish sxemasi emas.",
+  "manbalar": [
+   "S201"
+  ]
+ },
+ {
   "kalit": "gidra",
   "tur": "rasm",
   "olcham": [
@@ -297,6 +465,20 @@
   "tekshiruv": "Bir og‘izli nay tana, yuqoridagi paypaslagichlar, yon kurtak va o‘simlikka yopishgan taglik ko‘rildi. Fototekstura soddalashtirildi; paypaslagich soni barcha gidralar uchun qat’iy son sifatida talqin qilinmaydi.",
   "manbalar": [
    "S150"
+  ]
+ },
+ {
+  "kalit": "gidroelektrostansiya",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Gidroelektrostansiya (to‘g‘on)",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Orqada yuqori suv ombori, oldinda past daryo, to‘g‘on tagida stansiya binosi va chiqish suvi bor. Quvvat/FIK yoki ichki turbina sxemasi emas.",
+  "manbalar": [
+   "S215"
   ]
  },
  {
@@ -338,6 +520,20 @@
   "manbalar": null
  },
  {
+  "kalit": "havoncha",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Chinni havoncha va dasta",
+  "fan": "Kimyo",
+  "tekshiruv": "Qalin devorli havoncha va idish ichidagi dastacha, oz miqdordagi kukun; matn yo‘q.",
+  "manbalar": [
+   "S183"
+  ]
+ },
+ {
   "kalit": "hayvon_guruhlari",
   "tur": "rasm",
   "olcham": [
@@ -375,6 +571,20 @@
   "tekshiruv": "Og‘iz, halqum/qizilo‘ngach, kuzatuvchi o‘ngidagi oshqozon, chapidagi jigar, o‘t pufagi, me’daosti bezi, ichaklar va oxirgi yo‘l ko‘rildi. Ichak burmalari soddalashtirilgan; haqiqiy uzunlik va qatlamlarni ifodalamaydi.",
   "manbalar": [
    "S160"
+  ]
+ },
+ {
+  "kalit": "himoya_kozoynak",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Himoya ko‘zoynagi va qo‘lqop",
+  "fan": "Kimyo",
+  "tekshiruv": "Yon himoyali ko‘zoynak, tasma va har birida beshta barmoq bo‘lgan ikki qo‘lqop ko‘rildi. Muayyan mahsulot sertifikati tasvirlanmagan.",
+  "manbalar": [
+   "S01"
   ]
  },
  {
@@ -442,6 +652,20 @@
   ]
  },
  {
+  "kalit": "kamalak",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Kamalak",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Birlamchi kamalakda tashqi chet qizil, ichki chet binafsha; ranglar shu tartibda. Yetti tasma uzluksiz spektrning soddalashtirilgan ko‘rinishi, aniq yoy burchagi emas.",
+  "manbalar": [
+   "S205"
+  ]
+ },
+ {
   "kalit": "kapalak_rivojlanishi",
   "tur": "rasm",
   "olcham": [
@@ -465,6 +689,20 @@
   "tekshiruv": "Keng ochiq tumshuqchali chet, pastroq silindrik gavda, tekis tub va raqamsiz chiziqlar ko‘rildi. Silindrdan ko‘ra keng va past. Suyuqlik modda identifikatsiyasi va belgilari aniq hajm o‘lchovi emas.",
   "manbalar": [
    "S183"
+  ]
+ },
+ {
+  "kalit": "kislotali_yomgir",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Kislotali yomg‘ir",
+  "fan": "Kimyo",
+  "tekshiruv": "Zavoddan bulutga tarqalish, yog‘in va siyrak bargli daraxtlar umumiy ekologik sxemada ko‘rildi. Ranglar ifloslanish miqdori yoki haqiqiy hudud ma’lumoti emas.",
+  "manbalar": [
+   "S195"
   ]
  },
  {
@@ -522,6 +760,20 @@
   ]
  },
  {
+  "kalit": "kometa",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Kometa",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Yadro koma ichida; ingichka to‘g‘riroq ko‘k ion dumi va kengroq egri chang dumi yuqori-chapga. Quyosh kadrdan tashqari past-o‘ngda deb olinadi; meteor alangasi emas.",
+  "manbalar": [
+   "S213"
+  ]
+ },
+ {
   "kalit": "kompas",
   "tur": "rasm",
   "olcham": [
@@ -532,6 +784,35 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Bitta markazga birikkan qizil va ko‘k ikki uchli strelka, to‘rtta belgi va dumaloq korpus ko‘rildi. Qizil uchi rasmning yuqorisiga qaragan shartli holat; magnit shimol bilan haqiqiy geografik shimol doim aynan bir yo‘nalish deb olinmaydi.",
   "manbalar": null
+ },
+ {
+  "kalit": "korroziya",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Korroziya — zanglagan temir",
+  "fan": "Kimyo",
+  "tekshiruv": "To‘rt halqali zanjir va mixning kulrang sirtidagi zang dog‘lari ko‘rildi. Rangli dog‘lar barcha korroziya turlarining umumiy rangi deb olinmaydi.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
+  "kalit": "kosmik_stansiya",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Xalqaro kosmik stansiya",
+  "fan": "Fizika va astronomiya",
+  "kredit": "Asos: NASA, STS-130, S130E006575",
+  "tekshiruv": "NASA 2010 suratiga ko‘ra asosiy truss, bog‘langan modullar va to‘rtta guruhda sakkiz eski quyosh qanoti (har birida juft uzun qism) saqlangan. To‘liq 2026 konfiguratsiyasi emas.",
+  "manbalar": [
+   "S207"
+  ]
  },
  {
   "kalit": "koz_tuzilishi",
@@ -548,6 +829,20 @@
   ]
  },
  {
+  "kalit": "kozoynak_linza",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Ko‘zoynak va linzalar",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Chap namuna markazda qalin qavariq, o‘ng namuna markazda yupqa botiq shaklda. Ko‘zoynak raqamsiz; dioptriya yoki fokus qiymati da’vo qilinmaydi.",
+  "manbalar": [
+   "S206"
+  ]
+ },
+ {
   "kalit": "kun_tun",
   "tur": "rasm",
   "olcham": [
@@ -558,6 +853,49 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Quyosh chapda,nurlar o‘ngga. Yerning chap yarmi yorug‘,o‘ng yarmi qorong‘i,chegara markazdan. O‘lcham va ko‘rinish soddalashtirilgan.",
   "manbalar": null
+ },
+ {
+  "kalit": "lab_tarozi",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Laboratoriya tarozisi",
+  "fan": "Kimyo",
+  "tekshiruv": "Tepada palla va bo‘sh tortish idishi, ikki tugma, raqamsiz bo‘sh ekran. Aniqlik/hajm ko‘rsatkichi berilmagan.",
+  "manbalar": [
+   "S183"
+  ]
+ },
+ {
+  "kalit": "lakmus",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Lakmus qog‘ozi: kislota va ishqor",
+  "fan": "Kimyo",
+  "tekshiruv": "Chapda ko‘k qog‘ozning ho‘l qismi qizil, o‘ngda qizil qog‘ozning ho‘l qismi ko‘k. Eritma rangsiz; pH soni berilmagan.",
+  "manbalar": [
+   "S186"
+  ]
+ },
+ {
+  "kalit": "lavuazye",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Antuan Lavuazye",
+  "fan": "Kimyo",
+  "kredit": "Asos: Wellcome Collection M0001317, Public Domain",
+  "tekshiruv": "Wellcome litografiya reproduksiyasi bilan solishtirildi: soqolsiz yuz, yuqoriga-chapga nigoh, yonlari jingalak oq soch, baland yoqa va oq ro‘mol. Qo‘llar, qalam va yozuvlar yo‘q; ranglar badiiy.",
+  "manbalar": [
+   "S197"
+  ]
  },
  {
   "kalit": "laylak",
@@ -584,6 +922,20 @@
   "manbalar": null
  },
  {
+  "kalit": "magnit_maydoni",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Magnit maydoni (temir qirindilari)",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Qirindilar yo‘nalishi magnit uchlari atrofida zichlashgan yoylar bilan soddalashtirilgan. Yo‘nalish o‘qlari yoki N/S yozuvi yo‘q; ranglar kuchlanganlik shkalasi emas.",
+  "manbalar": [
+   "S203"
+  ]
+ },
+ {
   "kalit": "magnit_qisqichlar",
   "tur": "rasm",
   "olcham": [
@@ -594,6 +946,49 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "3 po‘lat qisqich va 2 mix, taqasimon magnit va tortilish yo‘nalishi ko‘rildi.",
   "manbalar": null
+ },
+ {
+  "kalit": "mari_kyuri",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Mariya Skłodovska-Kyuri",
+  "fan": "Kimyo",
+  "kredit": "Asos: Library of Congress, Bain News Service, LC-DIG-ggbain-07682",
+  "tekshiruv": "Bain/LOC surati bilan solishtirildi: yig‘ilgan soch, yuz qiyofasi, baland yoqali ko‘ylak va kichik to‘g‘nog‘ich. Stol, kitob, qo‘llar va yozuvlar yo‘q; ranglar badiiy talqin.",
+  "manbalar": [
+   "S198"
+  ]
+ },
+ {
+  "kalit": "mars",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Mars",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Qizg‘ish globus, to‘qroq sirt sohalari, krater va kichik oq qutb sohasi. Ko‘k dengiz yoki o‘simlik yo‘q; aniq kuzatuv sanasi emas.",
+  "manbalar": [
+   "S210"
+  ]
+ },
+ {
+  "kalit": "mayatnik",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Mayatnik",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Bitta tayanch, bitta tarang ip va bitta erkin osilgan sharcha ko‘rildi. Bu bir lahzadagi holat; davr, burchak yoki uzunlik o‘lchovi berilmagan.",
+  "manbalar": [
+   "S88"
+  ]
  },
  {
   "kalit": "mendel",
@@ -625,6 +1020,21 @@
   ]
  },
  {
+  "kalit": "mendeleyev",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Dmitriy Mendeleyev",
+  "fan": "Kimyo",
+  "kredit": "Asos: Science History Institute (Williams Haynes Portrait Collection), Public Domain",
+  "tekshiruv": "Science History Institute tarixiy surati bilan solishtirildi: keng peshona, yonlarda uzun soch, uzun soqol va tarixiy kostyum saqlangan. Qo‘llar, sigaret va imzo olib tashlangan; ranglar badiiy talqin.",
+  "manbalar": [
+   "S196"
+  ]
+ },
+ {
   "kalit": "menzurka",
   "tur": "rasm",
   "olcham": [
@@ -636,6 +1046,34 @@
   "tekshiruv": "Baland tor silindr, quyish tumshuqchasi, keng olti burchakli oyoq, bo‘linma chiziqlari va botiq menisk ko‘rildi. Chiziqlar raqamsiz belgi; ulardan aniq millilitr o‘qish uchun kalibrlangan shkala deb foydalanilmaydi.",
   "manbalar": [
    "S183"
+  ]
+ },
+ {
+  "kalit": "merkuriy",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Merkuriy",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Kulrang-jigarrang kraterli globus, halqa, bulut va ko‘k suv yo‘q. Kraterlar tanish belgi, aniq xarita emas.",
+  "manbalar": [
+   "S210"
+  ]
+ },
+ {
+  "kalit": "metallar",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Metall namunalari: temir, mis, alyuminiy, oltin",
+  "fan": "Kimyo",
+  "tekshiruv": "Temir quymasi, mis sim o‘rami, alyuminiy varag‘i va oltin quymasi ajratilgan. Rang va yaltiroqlik badiiy; kimyoviy soflikni aniqlash usuli emas.",
+  "manbalar": [
+   "S01"
   ]
  },
  {
@@ -663,6 +1101,20 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Okulyar,3 obyektivli burama,preparat stoli,fokus tutqichlari va pastki yorug‘lik manbasi bir asbobda ko‘rildi.",
   "manbalar": null
+ },
+ {
+  "kalit": "mineral_ogit",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Mineral o‘g‘itlar",
+  "fan": "Kimyo",
+  "tekshiruv": "Ikki xaltada granulalar, oldida oz miqdor donalar va boshoqli o‘simlik. O‘g‘it tarkibi yoki qo‘llash me’yori berilmagan.",
+  "manbalar": [
+   "S192"
+  ]
  },
  {
   "kalit": "mitoz",
@@ -716,6 +1168,49 @@
   "tekshiruv": "Yashil bargchasimon novdalar, tagdagi ingichka rizoidlar va uchta uzun banddagi sporali kapsula ko‘rildi. Ular gul yoki meva deb belgilanmaydi; rizoid haqiqiy tomirli ildizga tenglashtirilmagan.",
   "manbalar": [
    "S138"
+  ]
+ },
+ {
+  "kalit": "neft_haydash",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Neftni haydash kolonnasi",
+  "fan": "Kimyo",
+  "tekshiruv": "Pechdan keluvchi quvur kolonnaning pastki qismiga ulanib tuzatildi; yuqorida alohida chiqish va yon fraksiya quvurlari bor. Bu umumiy jihoz tasviri, harorat/protsess hisob sxemasi emas.",
+  "manbalar": [
+   "S189"
+  ]
+ },
+ {
+  "kalit": "neft_quduqi",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Neft qudug‘i",
+  "fan": "Kimyo",
+  "tekshiruv": "Tayanch, tebranma nur, otbosh shakli, qarshi og‘irlik va quduqqa tushgan shtok ko‘rildi. Yer osti qatlamlari yoki unumdorlik ko‘rsatilmagan.",
+  "manbalar": [
+   "S189"
+  ]
+ },
+ {
+  "kalit": "neptun",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Neptun",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Uranga yaqin, biroz ko‘kroq pastel disk va sust bulut tasmalari. To‘q kobalt palitra yoki doimiy qora dog‘ kiritilmagan.",
+  "manbalar": [
+   "S210",
+   "S211"
   ]
  },
  {
@@ -784,6 +1279,20 @@
   "tekshiruv": "Bosh, umurtqa, ko‘krak qafasi, yelka/chanoq kamari va ikki juft qo‘l-oyoq suyaklari ko‘rildi. Bilak va boldirdagi ikki suyak ajraladi, kaftlar oldinga. Kichik suyaklar soddalashtirilgan; 206 suyakni sanash uchun emas.",
   "manbalar": [
    "S155"
+  ]
+ },
+ {
+  "kalit": "olmos_grafit",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Olmos va grafit",
+  "fan": "Kimyo",
+  "tekshiruv": "Ajratilgan olmos va grafit tayoqchasi/qalam uchi. Kristall panjara yoki qalamning sof uglerod ekanligi da’vo qilinmagan.",
+  "manbalar": [
+   "S194"
   ]
  },
  {
@@ -865,6 +1374,62 @@
   "manbalar": null
  },
  {
+  "kalit": "oy_yuzasi",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Oy yuzasi",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Kulrang disk, to‘qroq mare sohalari va kraterlar. Dengiz suvi, havo halosi yoki yuz shakli yo‘q; kraterlarning aniq topografiyasi da’vo qilinmaydi.",
+  "manbalar": [
+   "S209"
+  ]
+ },
+ {
+  "kalit": "pipetka",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Pipetka va tomizg‘ich",
+  "fan": "Kimyo",
+  "tekshiruv": "Bitta raqamsiz belgi bilan hajmiy pipetka, alohida rezina to‘ldirgich va tomizgich. Belgi kalibrlangan hajmni anglatmaydi.",
+  "manbalar": [
+   "S183"
+  ]
+ },
+ {
+  "kalit": "plastmassa_buyumlar",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Plastmassa buyumlar",
+  "fan": "Kimyo",
+  "tekshiruv": "Butilka, chelak, o‘yinchoq blok va ikkita tutqichli paket; brend yoki qayta ishlash raqami yo‘q. Polimer turi da’vo qilinmagan.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
+  "kalit": "prizma_kamalak",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Prizma oq nurni ranglarga ajratmoqda",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Ikki sirtda sinish hisoblangan; qizil kamroq, binafsha ko‘proq og‘adi. n=1,48…1,58 ko‘rgazmali model qiymatlari, muayyan shisha spetsifikatsiyasi emas. Rang va chiziq qalinligi shartli, intensivlik hisoblanmagan.",
+  "manbalar": [
+   "S204"
+  ]
+ },
+ {
   "kalit": "probirka",
   "tur": "rasm",
   "olcham": [
@@ -876,6 +1441,20 @@
   "tekshiruv": "Shtativda beshta ochiq probirka, yumaloq berk tub va turli rangli suyuqliklar ko‘rildi. Raqam va yozuv yo‘q. Suyuqliklar muayyan modda yoki reaksiya rangi sifatida belgilanmagan.",
   "manbalar": [
    "S183"
+  ]
+ },
+ {
+  "kalit": "prujina",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Prujina",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Qisilgan va cho‘zilgan holatlar yassi uslubda ajratildi; uchlarida halqa, o‘ram oralig‘i turlicha. Ranglar holatni ajratadi; material xossasi yoki kuch qiymatini bildirmaydi.",
+  "manbalar": [
+   "S87"
   ]
  },
  {
@@ -902,6 +1481,20 @@
   "tekshiruv": "Bo‘lingan bargli qirqquloq, o‘ralgan yosh barg, qisqa ildizpoya va ildizlar ko‘rildi. Yon detaldagi barg ostida ikki qator soruslar bor; ular urug‘ yoki meva emas, sporangiyalar to‘plamining shartli ko‘rinishi.",
   "manbalar": [
    "S139"
+  ]
+ },
+ {
+  "kalit": "qiya_tekislik",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Qiya tekislik",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Yassi uslubga tuzatildi. Bochka qiya yo‘lakka tayanadi, yo‘lakning yuqori uchi yuk mashinasi platformasi balandligiga ulangan; havoda suzuvchi buyum yo‘q.",
+  "manbalar": [
+   "S90"
   ]
  },
  {
@@ -999,6 +1592,20 @@
   "manbalar": null
  },
  {
+  "kalit": "quyosh",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Quyosh",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Dumaloq diskda dog‘lar va chetiga ikki uchda tutashgan yoylar ko‘rildi. To‘q sariq palitra va protuberanslar badiiy, kalibrlangan fotosurat emas.",
+  "manbalar": [
+   "S208"
+  ]
+ },
+ {
   "kalit": "quyosh_paneli",
   "tur": "rasm",
   "olcham": [
@@ -1023,6 +1630,48 @@
   "manbalar": null
  },
  {
+  "kalit": "raketa",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Raketa uchirilishi",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Bitta tik korpus, pastki soplodan pastga alanga va chiqindi buluti. Aniq uchirish apparati yoki texnik konstruksiya da’vo qilinmaydi.",
+  "manbalar": [
+   "S216"
+  ]
+ },
+ {
+  "kalit": "richag_tosh",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Richag bilan tosh ko‘tarish",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Odam uzun yelka tomonida, tayanch toshga yaqin, richag uchi tosh cheti ostida. Kuch yelkasi yuk yelkasidan uzun; bu holat tasviri, kuch miqdori yoki xavfsiz ish yo‘riqnomasi emas.",
+  "manbalar": [
+   "S90"
+  ]
+ },
+ {
+  "kalit": "saturn",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Saturn",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Bitta tekislikdagi halqalarning orqa qismi globus ortida, old qismi pastki disk ustida. Halqalar kesilmagan; fizik o‘lcham nisbati da’vo qilinmaydi.",
+  "manbalar": [
+   "S210"
+  ]
+ },
+ {
   "kalit": "sezgi_azolari",
   "tur": "rasm",
   "olcham": [
@@ -1035,6 +1684,20 @@
   "manbalar": null
  },
  {
+  "kalit": "sham_yonishi",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Shamning yonishi",
+  "fan": "Kimyo",
+  "tekshiruv": "Alanga qismlari tuzatildi: qisqa pilik atrofida kichik qoramtir ichki soha, keng sariq yorug‘ soha va juda ingichka och ko‘k tashqi qavat. Ranglar va chegara qalinligi shartli, harorat shkalasi emas.",
+  "manbalar": [
+   "S193"
+  ]
+ },
+ {
   "kalit": "shamol_energiyasi",
   "tur": "rasm",
   "olcham": [
@@ -1045,6 +1708,20 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Uchta alohida turbina ko‘rildi; har birida bitta markazga birikkan uchta parrak va bitta minora bor. Energiya yoki yillik ishlab chiqarish miqdori tasvirdan chiqarilmaydi.",
   "manbalar": null
+ },
+ {
+  "kalit": "shtativ",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Laboratoriya shtativi",
+  "fan": "Kimyo",
+  "tekshiruv": "Og‘ir taglik, vertikal shtanga, kolba bo‘ynidagi qisqich va alohida halqa ko‘rildi. Bu jihoz tasviri; yig‘ish yo‘riqnomasi emas.",
+  "manbalar": [
+   "S183"
+  ]
  },
  {
   "kalit": "sichqon",
@@ -1085,6 +1762,20 @@
   ]
  },
  {
+  "kalit": "suniy_yoldosh",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Sun’iy yo‘ldosh",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Ikki qarama-qarshi quyosh paneli markaziy korpusga tutashgan, antenna alohida; Yer kichik segment. Bu kattalashtirilgan sifat ko‘rinishi, masshtabli orbita emas.",
+  "manbalar": [
+   "S216"
+  ]
+ },
+ {
   "kalit": "suv_aylanishi",
   "tur": "rasm",
   "olcham": [
@@ -1095,6 +1786,20 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Bug‘lanish o‘qlari yuqoriga,bulut siljishi o‘ngga,yomg‘ir pastga,daryo tog‘dan suv havzasiga. Matn yo‘q.",
   "manbalar": null
+ },
+ {
+  "kalit": "suv_elektrolizi",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Suv elektrolizi qurilmasi",
+  "fan": "Kimyo",
+  "tekshiruv": "Ikki alohida elektrod suvli elektrolitga tushirilgan, har biri batareyaning alohida qutbiga ulangan. Sim ulanishlari suyuqlikdan yuqorida, elektrodlar tegishmaydi. Pufakchalar sifat belgisi; soni gaz hajmi yoki 2:1 o‘lchovi emas.",
+  "manbalar": [
+   "S187"
+  ]
  },
  {
   "kalit": "suvot",
@@ -1108,6 +1813,20 @@
   "tekshiruv": "Chapda to‘rtta alohida dumaloq xlorella modeli, o‘ngda ko‘ndalang to‘siqli olti hujayrali spirogira ipi va spiralsimon yashil tasmalar ko‘rildi. Xlorellada ko‘zcha yoki xivchin yo‘q. Kattalashtirish nisbati shartli, hujayralar haqiqiy o‘lcham taqqoslashi emas.",
   "manbalar": [
    "S137"
+  ]
+ },
+ {
+  "kalit": "teleskop",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Teleskop",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Katta obyektiv yuqori-o‘ngda, orqa okulyar past-chapda; naycha o‘rtadan uch oyoqli tayanchga ulangan. Quyoshga kuzatish sahnasi yoki kattalashtirish soni yo‘q.",
+  "manbalar": [
+   "S206"
   ]
  },
  {
@@ -1199,6 +1918,20 @@
   "manbalar": null
  },
  {
+  "kalit": "transformator",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Transformator",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Bitta yopiq o‘zak, uning ikki ustunida alohida ikki chulg‘am va jami to‘rtta erkin sim uchi ko‘rildi. Chulg‘amlar orasida bevosita sim yo‘q; aniq o‘ram yoki kuchlanish nisbati da’vo qilinmagan.",
+  "manbalar": [
+   "S202"
+  ]
+ },
+ {
   "kalit": "tufelka",
   "tur": "rasm",
   "olcham": [
@@ -1225,6 +1958,49 @@
   "manbalar": null
  },
  {
+  "kalit": "tuz_kristali",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Osh tuzi kristallari",
+  "fan": "Kimyo",
+  "tekshiruv": "Kub shaklli uchta yirik kristall va mayda kubsimon donalar; geksagonal uchlar yo‘q. Makroskopik shakl, atomlar panjarasi emas.",
+  "manbalar": [
+   "S191"
+  ]
+ },
+ {
+  "kalit": "ulugbek_rasadxonasi",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Ulug‘bek rasadxonasi (sekstant)",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Manba suratidagi ikki egri oq marmar rels, markaziy tirqish, tashqi ikki zinapoya va baland g‘isht devorlar saqlandi. Aniq radius yoki to‘liq tarixiy bino emas.",
+  "manbalar": [
+   "S214"
+  ]
+ },
+ {
+  "kalit": "uran",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Uran",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Och yashil-havorang, kam detallangan globus. Keskin to‘q ko‘k farq qilinmagan; fotometrik rang kalibrovkasi da’vo qilinmaydi.",
+  "manbalar": [
+   "S210",
+   "S211"
+  ]
+ },
+ {
   "kalit": "urug_unishi",
   "tur": "rasm",
   "olcham": [
@@ -1235,6 +2011,20 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "4ketma-ket bosqich;ildizlar pastga,kotiledonlar ko‘tariladi,oxirida2haqiqiy barg. Matn yo‘q.",
   "manbalar": null
+ },
+ {
+  "kalit": "venera",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Venera",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Sarg‘ish-och bulutlar butun diskni qoplaydi, sirt qit’alari yoki okean ko‘rsatilmagan. Radar sirt xaritasi emas.",
+  "manbalar": [
+   "S210"
+  ]
  },
  {
   "kalit": "virus",
@@ -1251,6 +2041,20 @@
   ]
  },
  {
+  "kalit": "voronka_filtr",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Voronka va filtr qog‘oz",
+  "fan": "Kimyo",
+  "tekshiruv": "Filtr qog‘ozi voronka chetidan past, qoldiq qog‘ozda; naycha uchi filtrat sathidan yuqorida idish devori yonida. Dastlab tubga tushgan naycha tuzatildi.",
+  "manbalar": [
+   "S183"
+  ]
+ },
+ {
   "kalit": "vulqon",
   "tur": "rasm",
   "olcham": [
@@ -1261,6 +2065,21 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Kesimda magma o‘chog‘i sirt krateri bilan uzluksiz kanal orqali bog‘langan; sirt lava oqimi va kul buluti bor. Soddalashtirilgan umumiy model, real vulqon o‘lchami yoki uning barcha ichki tarmoqlari emas.",
   "manbalar": null
+ },
+ {
+  "kalit": "xavf_belgilari",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Xavf belgilari: yonuvchan, yemiruvchi, zaharli",
+  "fan": "Kimyo",
+  "kredit": "GHS ramzlari: UNECE GHS (fayllar: Tübingen universiteti)",
+  "tekshiruv": "Uchta piktogramma: alanga, qo‘l/metallga tomayotgan modda, kalla va kesishgan suyaklar. Qizil romb, oq ichki fon va qora belgi saqlangan; tashqi fon shaffof. AI qayta chizishi qo‘llanmagan.",
+  "manbalar": [
+   "S185"
+  ]
  },
  {
   "kalit": "xongul",
@@ -1303,6 +2122,20 @@
   "manbalar": null
  },
  {
+  "kalit": "yer_sayyorasi",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Yer",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Afrika markazda, Yevropa tepada, Osiyo/Arabiston sharqda taniladi. Konturlar va qutb muzlari soddalashtirilgan; siyosiy yoki geodezik xarita emas.",
+  "manbalar": [
+   "S210"
+  ]
+ },
+ {
   "kalit": "yirtqich_otxor",
   "tur": "rasm",
   "olcham": [
@@ -1341,6 +2174,20 @@
   "manbalar": null
  },
  {
+  "kalit": "yupiter",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Yupiter",
+  "fan": "Fizika va astronomiya",
+  "tekshiruv": "Krem-jigarrang bulut tasmalari, pastki yarimsharda oval qizg‘ish dog‘ bor. Dog‘ hajmi yoki ayni sanadagi atmosfera holati o‘lchanmagan.",
+  "manbalar": [
+   "S210"
+  ]
+ },
+ {
   "kalit": "yurak",
   "tur": "rasm",
   "olcham": [
@@ -1366,6 +2213,316 @@
   "tekshiruv": "Qalpoq, ostidagi plastinkalar, band va tuproqdagi ingichka tarmoqlangan mitseliy ko‘rildi. Yer osti ipchalari o‘simlik ildizi deb belgilanmaydi. Zamburug‘ turi yoki yeyishga yaroqliligi aniqlanmagan.",
   "manbalar": [
    "S136"
+  ]
+ },
+ {
+  "kalit": "bmkn_k05_01_kochish_yol",
+  "tur": "chizma",
+  "nom": "Ko‘chish +7, yo‘l 13",
+  "izoh": "Uch nuqta bir xil masshtabli o‘qda. Birinchi yo‘l o‘ngga, ikkinchisi chapga; yashil o‘q boshlanishdan yakungacha bo‘lgan ko‘chish.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k05_02_kitob_180_ulush",
+  "tur": "chizma",
+  "nom": "Qolgan qismning uchdan biri",
+  "izoh": "Ko‘k — birinchi 72 bet, sariq — keyingi 36 bet. Ikkinchi 1/3 butun kitobdan emas, qolgan 108 betdan olingan. Yakuniy o‘qilgan ulush 3/5.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k05_03_haqiqiy_tartib",
+  "tur": "chizma",
+  "nom": "Ildizli sonlarni aniq taqqoslash",
+  "izoh": "Bir o‘qdagi masshtab o‘zgarmaydi; butun rasm yaqin oraliqni kattalashtiradi. Nuqta koordinatalari formulalardan hisoblangan.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k05_04_qoshma_qaramaqarshi",
+  "tur": "chizma",
+  "nom": "−3+4i ning qo‘shmasi va qarama-qarshisi",
+  "izoh": "Qo‘shma nuqta haqiqiy o‘qdan akslanadi; qarama-qarshi nuqta koordinata boshidan akslanadi. Ular o‘zaro adashtirilmaydi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k05_05_i_burilish_3_2",
+  "tur": "chizma",
+  "nom": "3+2i ni i ga ko‘paytirish",
+  "izoh": "Yangi nuqta (−2,3); radius √13 saqlanadi. Yoyning o‘qi soat miliga qarama-qarshi aylanishni ko‘rsatadi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k05_06_manfiy8_ildiz",
+  "tur": "chizma",
+  "nom": "−8 ning uchta kub ildizi",
+  "izoh": "Har bir nomzodning kubi −8. Uch nuqta teng masshtabli kompleks tekislikdagi radiusi 2 aylanada 120° qadam bilan joylashgan.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k06_01_kvadrat_qarshi_misol",
+  "tur": "chizma",
+  "nom": "Burilgan kvadrat va teng diagonalli trapetsiya",
+  "izoh": "Panellar mustaqil; masshtablari ko‘rinishga mos tanlangan. Trapetsiyaning A burchagiga tiklik belgisi qo‘yilmagan. Chapdagi qiya kvadratning tikliklari skalyar ko‘paytmadan tekshirilgan.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k06_02_kuboid_qiya_3_4_5",
+  "tur": "chizma",
+  "nom": "3×4×5 kuboid: aniq qiya proyeksiya",
+  "izoh": "Faqat bitta koordinatasi farqlanuvchi qo‘shni uchlar ulangan. Nuqta yozuvi 0/1 indekslari: masalan, 010=(0,4,0). Proyeksiya Y yuqoriga, ekran y pastga yo‘nalgan. Yashirin uch 010 ga tutash uch qirra uzlukli.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k06_03_orta_perpendikulyar",
+  "tur": "chizma",
+  "nom": "5 radius bilan o‘rta perpendikulyar",
+  "izoh": "Asosiy panelda radiusi 5 bo‘lgan ikki yordamchi aylana ko‘rinadi. Kichik panellarning masshtabi 15; AB=8 saqlanadi. Radius 4 da P,Q alohida ikkita nuqta bermaydi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k06_04_bissektrisa_yasash",
+  "tur": "chizma",
+  "nom": "90° burchakni ikkiga bo‘lish",
+  "izoh": "Boshlang‘ich O markazli yoy radiusi 4. Keyin A va B markazli radiusi 4 aylanalar. O — avvalgi uch, yangi P=(4,4) orqali ichki nur o‘tkaziladi. OA=OB, AP=BP va OP umumiyligi TTT orqali tenglik beradi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k06_05_uch_tomon_yasash",
+  "tur": "chizma",
+  "nom": "3–4–5 va 2–3–5 yasash farqi",
+  "izoh": "A va B markazli aylanalar ikki nuqtada kesishadi; shakllar AB dan akslangan va teng. 2,3,5 uchun faqat tegishish bor, yuza nol. Kichik paneldagi aylana yoylari asosiy paneldan mustaqil.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k06_06_ustmaust_yuza",
+  "tur": "chizma",
+  "nom": "Kesishma 3, birlashma 19",
+  "izoh": "Shaffof ko‘k va sariq sohalarning konturlari alohida. Kesishma [3,4]×[0,3], eni 1 va bo‘yi 3. Bir xil koordinata masshtabi saqlanadi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k06_07_besh_teng_qism",
+  "tur": "chizma",
+  "nom": "Parallel chiziqlar bilan besh teng bo‘lak",
+  "izoh": "A₁…A₅ yordamchi nurda teng oraliqda. Faqat P₁…P₄ ichki nuqtalar, P₅=B. Barcha yordamchi kesmalar (1,−1) yo‘nalishga parallel. Rasm tekis, perspektiva yo‘q.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k03_01_kesma_nur_chiziq",
+  "tur": "chizma",
+  "nom": "Kesma, nur va chiziqli burchaklar",
+  "izoh": "Barcha chap panellarda A va B orasida 4 birlik. Chiziq/rayning davom etishi o‘q bilan ko‘rsatilgan; chiziqli juftlikdagi umumiy nur va qarama-qarshi nurlar alohida.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k03_02_tashqi_balandlik",
+  "tur": "chizma",
+  "nom": "O‘tmas uchburchakning tashqi balandligi",
+  "izoh": "A(0,0),B(6,0),C(−2,3),H(−2,0). CH asos chizig‘iga tik; H ning x koordinatasi 0 dan kichik, shuning uchun AB kesmasida yotmaydi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k03_03_mediana_balandlik",
+  "tur": "chizma",
+  "nom": "To‘g‘ri uchburchakda mediana va balandlik",
+  "izoh": "M asos o‘rtasi, AM mediana. Balandlik AB tomoni bilan ustma-ust: H=B. Mediana umumiy holda balandlik bo‘lmasligi ayni koordinatalarda ko‘rinadi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k03_04_tbt_oradagi_burchak",
+  "tur": "chizma",
+  "nom": "TBT alomatida moslik va oradagi burchak",
+  "izoh": "Ikkinchi uchburchak burilgan/akslangan ko‘rinishda; moslik tartibi A↔D,B↔E,C↔F. Bir chiziqchali va ikki chiziqchali tomonlar aralashtirilmagan. Uchinchi tomonlar 5.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k03_05_ttb_ikki_yechim",
+  "tur": "chizma",
+  "nom": "Tomon-tomon-burchak uchun noaniq holat",
+  "izoh": "B₁ va B₂ bir nurda, ikkalasi ham A dan o‘ngda. AC=8 va CB=5 saqlanadi, lekin AB uzunliklari turlicha; shuning uchun TTB umumiy kongruentlik alomati bo‘la olmaydi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k03_06_aylana_doira_urinma",
+  "tur": "chizma",
+  "nom": "Radiusga tik urinma va doira farqi",
+  "izoh": "Aylana |X−O|=4, yopiq doira |X−O|≤4. Markaz chegara emas. T(4,0) da x=4 urinma OT radiusiga tik; ichki soha faqat ikkinchi panelda bo‘yalgan.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k03_07_diagonallar",
+  "tur": "chizma",
+  "nom": "Parallelogramm va rombdagi farqli xossalar",
+  "izoh": "Birinchi panelda perpendikulyarlik belgisi yo‘q: diagonallar skalyar ko‘paytmasi −11. Rombda diagonallar 6 va 8, tomonlar 5, yuz 24; markazdagi tiklik alohida belgilangan.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k03_08_teng_yonli_trapetsiya",
+  "tur": "chizma",
+  "nom": "14 va 8 asosli teng yonli trapetsiya",
+  "izoh": "D va C dan asosga balandliklar tushirilgan. M va N yon tomonlar o‘rtasi. AD va BC yo‘nalishlari turli, shuning uchun parallelogramm emas.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k03_09_togri_trapetsiya",
+  "tur": "chizma",
+  "nom": "Yuz va perimetr soni bir xil bo‘lgan trapetsiya",
+  "izoh": "Ikki to‘g‘ri burchak A va D da. Son qiymatlar 24 bo‘lsa ham yuza kvadrat birlikda, perimetr uzunlik birligida. Birliklar tenglashtirilmaydi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k04_01_teng_kasrlar",
+  "tur": "chizma",
+  "nom": "1/2 = 2/4 = 3/6 va kitob modeli",
+  "izoh": "Uchta yuqori tasmaning butuni aynan teng. Kitob uchun boshqa butun tanlangan: 2/5 qism 60 bet bo‘lsa 1/5 qism 30 bet va butun 150 bet.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k04_02_son_oqi_kasrlar",
+  "tur": "chizma",
+  "nom": "Teng masofa, kasrlar tartibi va siljish",
+  "izoh": "−3 va3 noldan teng 3 birlik uzoqda. Alohida kasr paneli o‘qilishi uchun 12 marta kattalashtirilgan; undagi o‘n ikkidan bir bo‘lak 70. Bu kattalashtirish umumiy masshtab sifatida yashirilmagan. 1/3<5/12<1/2; −3 dan2 ga ko‘chish +5.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k04_03_prizma_yoyilma_h10",
+  "tur": "chizma",
+  "nom": "Uchburchakli prizmaning aniq yoyilmasi",
+  "izoh": "3–4–5 asosli to‘g‘ri prizmaning balandligi aynan10. Ikki asos birinchi to‘rtburchakning qarama-qarshi 3 sm chetlariga to‘g‘ri tutashgan. Yon yoqlar tartibi asos uchburchagi chegarasi bo‘ylab 3,5,4; sm² va sm³ alohida saqlangan.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k04_04_piramida_h_apofema",
+  "tur": "chizma",
+  "nom": "Asos qirrasi6 bo‘lgan kvadrat piramida",
+  "izoh": "O asos markazi, M AB o‘rtasi. 3D koordinatalardan TO=4,TM=5,TA²=34. TO va OM asos tekisligi/AB ga haqiqatan tik. Yashirin qirralar va ichki yordamchi kesmalar uzlukli; ekrandagi uzunliklar haqiqiy qirralar emas.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k04_05_konus_r3_l5",
+  "tur": "chizma",
+  "nom": "216° sektorli konus yoyilmasi",
+  "izoh": "Yasovchiℓ5 sektor radiusi bo‘ladi. Sektor burchagi216°, yoyi6π asos aylanasiga teng; alohida doiraning radiusi3. h4 faqat 3D konus balandligi, yoyilmadagi sektor radiusi emas.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k04_05_silindr_r3_h5",
+  "tur": "chizma",
+  "nom": "r3 h5 silindr yoyilmasi",
+  "izoh": "Tasma uzunligi6π va balandligi5 haqiqiy nisbatda chizilgan. Har bir doira radiusi3. Asos doiralari tasmaning qarama-qarshi asos qirralariga sxematik tutashgan.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k04_06_sfera_shar_yarimshar",
+  "tur": "chizma",
+  "nom": "Sirt, ichki soha va kesimdoirasi",
+  "izoh": "Birinchi panel sirtni, ikkinchisi ichki sohani ko‘rsatish uchun sharning markaziy kesimini beradi. Uchinchisi pastki yarim shar: ko‘rinadigan kesimdoirasi sariq, egri sirt yashil. Ellips perspektiv ifoda; uning kichik yarim o‘qidan radius o‘lchanmaydi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k04_07_kvadrat_kub_birlik",
+  "tur": "chizma",
+  "nom": "cm, cm² va cm³ ga o‘tishda daraja",
+  "izoh": "Kvadratning kichik katagi1cm²; har yirik10×10katak guruh10cm×10cm. Kattalashtirilgan bo‘lak shu guruhning100katagini ko‘rsatadi. Kubning har qirrasida10yirikguruh, har guruh qirrasi10cm va hajmi1000cm³. Bu 10000 yoki1000000ta yozuv joylashtirish emas; darajali birliklar har tenglikda saqlangan.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k04_08_foiz_asosi",
+  "tur": "chizma",
+  "nom": "Ketma-ket foizlarda o‘zgaruvchi butun",
+  "izoh": "Har bir ustun bir xil nol asos va masshtabdan boshlanadi. Ikkinchi20%ning asosi120, shuning uchun 24 ayiriladi. +20% va−20% ayni boshlang‘ich butunga tegishli deb olib100natija chiqarilmaydi.",
+  "olcham": [
+   1600,
+   960
   ]
  },
  {
@@ -1693,6 +2850,216 @@
   "tur": "chizma",
   "nom": "Bo‘ri va tulkining asosiy tasnif darajalari",
   "izoh": "ITISdagi bo‘ri va qizil tulki tasnifidan yettita asosiy daraja tanlandi. Bir oilada bo‘lish bir urug‘ yoki bir tur bo‘lish emas. Domen darajasi yuqorida turadi; ko‘plab boshqa tarmoqlar va oraliq darajalar ko‘rsatilmagan. Chiziq tasnifga kirishni bildiradi, ajdoddan kelib chiqish sanasini emas.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k02_01_kophad_yuz",
+  "tur": "chizma",
+  "nom": "To‘rt to‘rtburchakli ko‘paytma modeli",
+  "izoh": "Tomonlar haqiqiy uzunlik sifatida musbat tanlangan. Tenglik faqat shu sonlar bilan cheklanmaydi: distributiv qonun barcha haqiqiy a,b,c,d uchun o‘rinli. Har bir kichik yuzning omillari o‘z tomonlariga mos.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k02_02_kompleks_qoshma",
+  "tur": "chizma",
+  "nom": "Kompleks nuqta, qo‘shma va modul",
+  "izoh": "Ikkala o‘qda bir xil 50 birlik masshtab. Qo‘shma Re o‘qiga nisbatan akslanadi; 3²+4²=25. O‘qlar kompleks sonning haqiqiy va mavhum qismlarini bildiradi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k02_03_i_burilish",
+  "tur": "chizma",
+  "nom": "i ko‘paytiruvchisining geometrik ma’nosi",
+  "izoh": "Vektorlar orasidagi skalyar ko‘paytma nol, yo‘naltirilgan determinant musbat. Ikkala radius √5. Nuqta (2,−1) dan (1,2) ga aynan 90° chapga aylanadi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k02_04_sakkiz_ildiz",
+  "tur": "chizma",
+  "nom": "8 ning uchta kub ildizi",
+  "izoh": "Uchala nuqta moduli 2 bo‘lgan aylanada. 2³=8; (−1±i√3)³=8. Nuqtalar haqiqiy o‘qning bir tomonida ketma-ket tizilmaydi; radiuslar orasida 120°.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "bmkn_k02_05_onli_yuz",
+  "tur": "chizma",
+  "nom": "O‘nli kasr ko‘paytmasining yuz modeli",
+  "izoh": "Birlik kvadratning eni bo‘yicha 3/10, bo‘yi bo‘yicha 2/10 qismi olindi. Ularning kesishmasi 6/100. Tasmalar birgalikdagi yig‘indi yuzi emas, aynan kesishma ajratilgan.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "ehtimol_daraxt_tanga_ikki",
+  "tur": "chizma",
+  "nom": "Ikki mustaqil tashlashning to‘rt natijasi",
+  "izoh": "Tartib muhim: GR va RG turli natijalar. Har bir yo‘lda 1/2×1/2=1/4; to‘rtta ehtimol yig‘indisi 1. Haqiqiy tanganing teng imkonli ekanligi bu rasm bilan isbotlanmaydi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "funksiya_parabola_x_kvadrat",
+  "tur": "chizma",
+  "nom": "y = x² parabolasining bir qismi",
+  "izoh": "Grafik uzluksiz egri chiziq bilan, beshta tayanch nuqta ajratib berilgan. Parabola ikki yo‘nalishda davom etadi; rasmda faqat [−2,2] qismi. X va y birliklarining ekran uzunligi turlicha, bu ma’lumotda ochiq yozilgan.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "geometrik_besh_shakl",
+  "tur": "chizma",
+  "nom": "Uchburchak, to‘rtburchaklar, aylana va burchak",
+  "izoh": "Kvadrat ham to‘g‘ri to‘rtburchakning maxsus turi. Aylana faqat chegaradir, doira esa ichki sohani ham oladi. Burchak nurlarining koordinatalaridan 60° hisoblanadi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "ichma_ich_toplamlar",
+  "tur": "chizma",
+  "nom": "A ning B ga qat’iy qism to‘plamligi",
+  "izoh": "A doirasining butuni B ichida. B da A ga tegishli bo‘lmagan elementlar bor, shuning uchun qat’iy qism to‘plam belgisi ishlatilgan. U universal to‘plam tanlangan misol uchungina.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "kasr_taqqoslash_ikki_uch_uch_tort",
+  "tur": "chizma",
+  "nom": "2/3 va 3/4 ni teng butunlarda taqqoslash",
+  "izoh": "Butunlarning o‘lchami teng bo‘lishi shart. Bo‘yalgan uzunliklar 320 va 360; kasrlar ko‘paytma bilan ham tekshiriladi: 2×4 < 3×3.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "kopaytirish_massiv_uch_tort",
+  "tur": "chizma",
+  "nom": "3 × 4 nuqtalar massivi",
+  "izoh": "Ushbu izohda 3×4 uchta guruhning har birida 4 tadan deb o‘qiladi. Massivni burib qarash kommutativlikni ko‘rsatadi; nuqtalar soni o‘zgarmaydi.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "sanoq_ikki_onlik_uch_birlik",
+  "tur": "chizma",
+  "nom": "23 ning o‘nlik va birlik modeli",
+  "izoh": "Ikki ustun o‘nlikni, uchta alohida dona birlikni bildiradi. Kichik donalar bir xil o‘lchamda; har bir o‘nlik o‘nta donadan tuzilgan.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "soat_on_on",
+  "tur": "chizma",
+  "nom": "10:10 da ikki milning aniq o‘rni",
+  "izoh": "Soat mili 10 raqamida qotib turmaydi: 10 daqiqa davomida yana 5° siljigan. Daqiqa mili 2 raqamida. Ikkala mil alohida uzunlik va qalinlikda.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "son_oqi_nuqta_kesma_sakrash",
+  "tur": "chizma",
+  "nom": "Son o‘qida uch xil tasvir",
+  "izoh": "Nuqta bitta sonni, yopiq kesma −1 dan 5 gacha qiymatlarni, sakrashlar esa 0 dan 6 gacha +2 qadamlarni bildiradi. Har uch o‘qda masshtab bir xil.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "tarozi_tenglama_x_uch_yetti",
+  "tur": "chizma",
+  "nom": "Tarozi orqali x + 3 = 7",
+  "izoh": "Tarozining ikki pallasi tenglikning ikki tomonini ifodalaydi. Har ikki tomondan uch dona olib tashlansa x=4. Buyumlar hajmi massaga proporsional chizilmagan; fizik tarozining texnik chizmasi emas.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "tasma_masala_on_yetti",
+  "tur": "chizma",
+  "nom": "Qo‘shish masalasining tasma modeli",
+  "izoh": "Bir qutida 12 ta, ikkinchisida 5 ta qalam bo‘lsa, jami 17 ta. Bir xil qalamlarni sanash modeli; tasmalar miqdorga proporsional.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "ulush_doira_uch_sakkiz",
+  "tur": "chizma",
+  "nom": "Doirada 3/8 ulush",
+  "izoh": "Butun doira 8 ta teng yuzli sektorga bo‘lindi; 3 tasi ajratildi. 3/8 butunning ulushi, radius ulushi emas.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "ulush_kvadrat_uch_tort",
+  "tur": "chizma",
+  "nom": "Kvadratning 3/4 qismi",
+  "izoh": "To‘rtta kichik kvadrat kongruent; ularning uchtasi bo‘yalgan. Perimetr ulushi haqidagi da’vo yo‘q.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "ulush_tasma_uch_besh",
+  "tur": "chizma",
+  "nom": "Tasmada 3/5 ulush",
+  "izoh": "Tasma butun sifatida olingan. Beshta bo‘lak teng: bir bo‘lak 1/5; uch bo‘lak 3/5.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "ustunli_kitoblar_shartli",
+  "tur": "chizma",
+  "nom": "To‘rtta guruhning ustunli diagrammasi",
+  "izoh": "Ma’lumotlar muallifning shartli misoli, kuzatilgan statistika emas. Ustunlar kengligi teng; balandliklar sonlarga proporsional. Ustunlar orasida bo‘shliq bor.",
+  "olcham": [
+   1600,
+   960
+  ]
+ },
+ {
+  "kalit": "venn_toplam_kesishma",
+  "tur": "chizma",
+  "nom": "Ikki to‘plam kesishmasining Venn modeli",
+  "izoh": "3 ikkala doira ichida, 1 va 2 faqat A da, 4 faqat B da. To‘plam aylana bilan emas, uning ichki sohasi bilan ifodalanadi; soha kattaligi elementlar soniga proporsional emas.",
   "olcham": [
    1600,
    960
@@ -2277,5 +3644,16 @@
    1600,
    960
   ]
+ },
+ {
+  "kalit": "iskandar_davlati_yurishlari_1833",
+  "tur": "chizma",
+  "nom": "Iskandar davlati va yurishlari: 1833-yilgi xarita",
+  "izoh": "Delamarche xaritasining asl rastri SVG ichiga joylandi; chegaralar va yurish yo‘llari taxminan qayta chizilmadi. Lotincha yozuvlar saqlangan. 1833 — xarita nashri, yurish sanasi emas. Paris boshlang‘ich meridiani; bugungi ma’muriy chegara yoki zamonaviy tarixiy GIS qatlami emas.",
+  "olcham": [
+   1600,
+   960
+  ],
+  "kredit": "F. Delamarche, 1833 — Library of Congress / World Digital Library"
  }
 ]

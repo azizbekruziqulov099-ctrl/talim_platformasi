@@ -1,7 +1,7 @@
 {
  "toplam": "bmkn1305",
  "nom": "Boshlang‘ich matematika kursi nazariyasi (BMKN 1305), 2-kurs, 3-semestr",
- "manba": "SamDPI BMKN 1305 fan dasturi 2026–2027 asosida tayyorlangan paket (14-bosqich)",
+ "manba": "SamDPI BMKN 1305 fan dasturi 2026–2027 asosida tayyorlangan paket (18-bosqich)",
  "mavzular": [
   {
    "id": "BMKN1305-3-M1",
@@ -12,7 +12,23 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M01_ratsional_sonlar_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M01_javoblar.json"
+   "javoblar": "BMKN1305_M01_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K04-01",
+     "nom": "Bir xil butunda teng kasrlar",
+     "kalitlar": [
+      "bmkn_k04_01_teng_kasrlar"
+     ]
+    },
+    {
+     "id": "K04-02",
+     "nom": "Son o‘qida butun va kasrlar",
+     "kalitlar": [
+      "bmkn_k04_02_son_oqi_kasrlar"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-M2",
@@ -33,7 +49,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M03_birhad_kophad_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M03_javoblar.json"
+   "javoblar": "BMKN1305_M03_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K02-01",
+     "nom": "Ko‘phad ko‘paytmasining yuz modeli",
+     "kalitlar": [
+      "bmkn_k02_01_kophad_yuz"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-M4",
@@ -55,7 +80,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M05_kompleks_sonlar_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M05_javoblar.json"
+   "javoblar": "BMKN1305_M05_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K02-02",
+     "nom": "Kompleks tekislik: nuqta, qo‘shma, modul",
+     "kalitlar": [
+      "bmkn_k02_02_kompleks_qoshma"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-M6",
@@ -66,7 +100,23 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M06_trigonometrik_shakl_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M06_javoblar.json"
+   "javoblar": "BMKN1305_M06_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K02-03",
+     "nom": "i ga ko‘paytirish — π/2 ga burilish",
+     "kalitlar": [
+      "bmkn_k02_03_i_burilish"
+     ]
+    },
+    {
+     "id": "K02-04",
+     "nom": "w³=8 ning uchta ildizi",
+     "kalitlar": [
+      "bmkn_k02_04_sakkiz_ildiz"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-M7",
@@ -77,7 +127,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M07_geometriya_elementlari_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M07_javoblar.json"
+   "javoblar": "BMKN1305_M07_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K03-01",
+     "nom": "Kesma, nur va chiziqli burchaklar",
+     "kalitlar": [
+      "bmkn_k03_01_kesma_nur_chiziq"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-M8",
@@ -88,7 +147,23 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M08_uchburchak_elementlari_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M08_javoblar.json"
+   "javoblar": "BMKN1305_M08_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K03-02",
+     "nom": "Balandlik oyog‘i tashqarida",
+     "kalitlar": [
+      "bmkn_k03_02_tashqi_balandlik"
+     ]
+    },
+    {
+     "id": "K03-03",
+     "nom": "Mediana va balandlik turli kesmalar",
+     "kalitlar": [
+      "bmkn_k03_03_mediana_balandlik"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-M9",
@@ -99,7 +174,23 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M09_uchburchak_tengligi_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M09_javoblar.json"
+   "javoblar": "BMKN1305_M09_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K03-04",
+     "nom": "TBTda aynan oradagi burchak",
+     "kalitlar": [
+      "bmkn_k03_04_tbt_oradagi_burchak"
+     ]
+    },
+    {
+     "id": "K03-05",
+     "nom": "TTB uchun ikkita yechim",
+     "kalitlar": [
+      "bmkn_k03_05_ttb_ikki_yechim"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-M10",
@@ -110,7 +201,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M10_tortburchak_aylana_doira_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M10_javoblar.json"
+   "javoblar": "BMKN1305_M10_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K03-06",
+     "nom": "Aylana, yopiq doira va urinma",
+     "kalitlar": [
+      "bmkn_k03_06_aylana_doira_urinma"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-M11",
@@ -121,7 +221,30 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M11_parallelogramm_romb_trapetsiya_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M11_javoblar.json"
+   "javoblar": "BMKN1305_M11_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K03-07",
+     "nom": "Parallelogramm va romb diagonallari",
+     "kalitlar": [
+      "bmkn_k03_07_diagonallar"
+     ]
+    },
+    {
+     "id": "K03-08",
+     "nom": "Teng yonli trapetsiya balandligi",
+     "kalitlar": [
+      "bmkn_k03_08_teng_yonli_trapetsiya"
+     ]
+    },
+    {
+     "id": "K03-09",
+     "nom": "To‘g‘ri burchakli trapetsiya",
+     "kalitlar": [
+      "bmkn_k03_09_togri_trapetsiya"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-M12",
@@ -132,7 +255,23 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M12_kopyoqlar_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M12_javoblar.json"
+   "javoblar": "BMKN1305_M12_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K04-03",
+     "nom": "Uchburchakli prizma yoyilmasi",
+     "kalitlar": [
+      "bmkn_k04_03_prizma_yoyilma_h10"
+     ]
+    },
+    {
+     "id": "K04-04",
+     "nom": "Piramidada h, apofema va yon qirra",
+     "kalitlar": [
+      "bmkn_k04_04_piramida_h_apofema"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-M13",
@@ -143,7 +282,24 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M13_aylanish_jismlari_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M13_javoblar.json"
+   "javoblar": "BMKN1305_M13_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K04-05",
+     "nom": "Silindr va konus yoyilmalari",
+     "kalitlar": [
+      "bmkn_k04_05_silindr_r3_h5",
+      "bmkn_k04_05_konus_r3_l5"
+     ]
+    },
+    {
+     "id": "K04-06",
+     "nom": "Sfera, shar va yarim shar",
+     "kalitlar": [
+      "bmkn_k04_06_sfera_shar_yarimshar"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-M14",
@@ -154,7 +310,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M14_miqdorlar_olchash_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M14_javoblar.json"
+   "javoblar": "BMKN1305_M14_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K04-07",
+     "nom": "Kvadrat va kub birliklarni o‘tkazish",
+     "kalitlar": [
+      "bmkn_k04_07_kvadrat_kub_birlik"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-M15",
@@ -165,7 +330,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_M15_matnli_masalalar_foiz_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_M15_javoblar.json"
+   "javoblar": "BMKN1305_M15_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K04-08",
+     "nom": "Foizning o‘zgaruvchi asosi",
+     "kalitlar": [
+      "bmkn_k04_08_foiz_asosi"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A1",
@@ -176,7 +350,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A01_butun_sonlar_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A01_javoblar.json"
+   "javoblar": "BMKN1305_A01_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K05-01",
+     "nom": "Koordinata, ko‘chish va yo‘l",
+     "kalitlar": [
+      "bmkn_k05_01_kochish_yol"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A2",
@@ -187,7 +370,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A02_ratsional_sonlar_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A02_javoblar.json"
+   "javoblar": "BMKN1305_A02_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K05-02",
+     "nom": "Ketma-ket ulushning o‘zgaruvchi butuni",
+     "kalitlar": [
+      "bmkn_k05_02_kitob_180_ulush"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A3",
@@ -198,7 +390,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A03_onli_kasrlar_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A03_javoblar.json"
+   "javoblar": "BMKN1305_A03_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K02-05",
+     "nom": "0,3×0,2 uchun yuz modeli",
+     "kalitlar": [
+      "bmkn_k02_05_onli_yuz"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A4",
@@ -209,7 +410,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A04_haqiqiy_sonlar_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A04_javoblar.json"
+   "javoblar": "BMKN1305_A04_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K05-03",
+     "nom": "Haqiqiy sonlarni aniq tartiblash",
+     "kalitlar": [
+      "bmkn_k05_03_haqiqiy_tartib"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A5",
@@ -220,7 +430,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A05_kompleks_sonlar_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A05_javoblar.json"
+   "javoblar": "BMKN1305_A05_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K05-04",
+     "nom": "Qo‘shma va qarama-qarshi kompleks nuqtalar",
+     "kalitlar": [
+      "bmkn_k05_04_qoshma_qaramaqarshi"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A6",
@@ -231,7 +450,23 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A06_trigonometrik_kompleks_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A06_javoblar.json"
+   "javoblar": "BMKN1305_A06_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K05-05",
+     "nom": "i ga ko‘paytirish bilan burilish",
+     "kalitlar": [
+      "bmkn_k05_05_i_burilish_3_2"
+     ]
+    },
+    {
+     "id": "K05-06",
+     "nom": "−8 ning uchta kub ildizi",
+     "kalitlar": [
+      "bmkn_k05_06_manfiy8_ildiz"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A7",
@@ -242,7 +477,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A07_geometriya_asoslash_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A07_javoblar.json"
+   "javoblar": "BMKN1305_A07_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K06-01",
+     "nom": "Burilgan kvadrat va teskari hukmga qarshi misol",
+     "kalitlar": [
+      "bmkn_k06_01_kvadrat_qarshi_misol"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A8",
@@ -253,7 +497,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A08_fazoviy_jismlar_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A08_javoblar.json"
+   "javoblar": "BMKN1305_A08_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K06-02",
+     "nom": "Kuboidning qiya parallel tasviri",
+     "kalitlar": [
+      "bmkn_k06_02_kuboid_qiya_3_4_5"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A9",
@@ -264,7 +517,30 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A09_geometrik_masalalar_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A09_javoblar.json"
+   "javoblar": "BMKN1305_A09_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K06-03",
+     "nom": "O‘rta perpendikulyar yasashi",
+     "kalitlar": [
+      "bmkn_k06_03_orta_perpendikulyar"
+     ]
+    },
+    {
+     "id": "K06-04",
+     "nom": "90°burchak bissektrisasi yasashi",
+     "kalitlar": [
+      "bmkn_k06_04_bissektrisa_yasash"
+     ]
+    },
+    {
+     "id": "K06-05",
+     "nom": "Uch tomondan uchburchak yasash",
+     "kalitlar": [
+      "bmkn_k06_05_uch_tomon_yasash"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A10",
@@ -275,7 +551,16 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A10_miqdorlar_olchash_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A10_javoblar.json"
+   "javoblar": "BMKN1305_A10_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K06-06",
+     "nom": "Ustma-ust sohalar yuzlari",
+     "kalitlar": [
+      "bmkn_k06_06_ustmaust_yuza"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A11",
@@ -286,7 +571,23 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A11_kesma_uzunligi_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A11_javoblar.json"
+   "javoblar": "BMKN1305_A11_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K06-03",
+     "nom": "O‘rta perpendikulyar yasashi",
+     "kalitlar": [
+      "bmkn_k06_03_orta_perpendikulyar"
+     ]
+    },
+    {
+     "id": "K06-07",
+     "nom": "Parallel usulda besh teng qism",
+     "kalitlar": [
+      "bmkn_k06_07_besh_teng_qism"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A12",

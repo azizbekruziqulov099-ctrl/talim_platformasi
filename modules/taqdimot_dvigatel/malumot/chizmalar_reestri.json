@@ -10041,5 +10041,5179 @@
     },
     "izoh": "Bir-biriga moslash uchun statik kartalar. To‘g‘ri juftliklar 1–C, 2–A, 3–D, 4–B; raqam/harf kaliti faqat izoh va ma’lumotda saqlanadi. Tasvir bosish yoki ball hisoblash mexanizmi emas.",
     "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "son_oqi_nuqta_kesma_sakrash",
+    "nom": "Son o‘qida uch xil tasvir",
+    "asl_qator": 1,
+    "svg": "boshlangich_matematika/svg/son_oqi_nuqta_kesma_sakrash.svg",
+    "png": "boshlangich_matematika/png/son_oqi_nuqta_kesma_sakrash.png",
+    "malumot": {
+      "origin_x": 260,
+      "scale": 60,
+      "ticks": [
+        [
+          0,
+          -2,
+          140,
+          150
+        ],
+        [
+          0,
+          -1,
+          200,
+          150
+        ],
+        [
+          0,
+          0,
+          260,
+          150
+        ],
+        [
+          0,
+          1,
+          320,
+          150
+        ],
+        [
+          0,
+          2,
+          380,
+          150
+        ],
+        [
+          0,
+          3,
+          440,
+          150
+        ],
+        [
+          0,
+          4,
+          500,
+          150
+        ],
+        [
+          0,
+          5,
+          560,
+          150
+        ],
+        [
+          0,
+          6,
+          620,
+          150
+        ],
+        [
+          0,
+          7,
+          680,
+          150
+        ],
+        [
+          0,
+          8,
+          740,
+          150
+        ],
+        [
+          1,
+          -2,
+          140,
+          300
+        ],
+        [
+          1,
+          -1,
+          200,
+          300
+        ],
+        [
+          1,
+          0,
+          260,
+          300
+        ],
+        [
+          1,
+          1,
+          320,
+          300
+        ],
+        [
+          1,
+          2,
+          380,
+          300
+        ],
+        [
+          1,
+          3,
+          440,
+          300
+        ],
+        [
+          1,
+          4,
+          500,
+          300
+        ],
+        [
+          1,
+          5,
+          560,
+          300
+        ],
+        [
+          1,
+          6,
+          620,
+          300
+        ],
+        [
+          1,
+          7,
+          680,
+          300
+        ],
+        [
+          1,
+          8,
+          740,
+          300
+        ],
+        [
+          2,
+          -2,
+          140,
+          470
+        ],
+        [
+          2,
+          -1,
+          200,
+          470
+        ],
+        [
+          2,
+          0,
+          260,
+          470
+        ],
+        [
+          2,
+          1,
+          320,
+          470
+        ],
+        [
+          2,
+          2,
+          380,
+          470
+        ],
+        [
+          2,
+          3,
+          440,
+          470
+        ],
+        [
+          2,
+          4,
+          500,
+          470
+        ],
+        [
+          2,
+          5,
+          560,
+          470
+        ],
+        [
+          2,
+          6,
+          620,
+          470
+        ],
+        [
+          2,
+          7,
+          680,
+          470
+        ],
+        [
+          2,
+          8,
+          740,
+          470
+        ]
+      ],
+      "point": 3,
+      "segment": [
+        -1,
+        5
+      ],
+      "jumps": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "sources": [
+        "S01",
+        "S12"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Nuqta bitta sonni, yopiq kesma −1 dan 5 gacha qiymatlarni, sakrashlar esa 0 dan 6 gacha +2 qadamlarni bildiradi. Har uch o‘qda masshtab bir xil.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "ulush_doira_uch_sakkiz",
+    "nom": "Doirada 3/8 ulush",
+    "asl_qator": 2,
+    "svg": "boshlangich_matematika/svg/ulush_doira_uch_sakkiz.svg",
+    "png": "boshlangich_matematika/png/ulush_doira_uch_sakkiz.png",
+    "malumot": {
+      "centre": [
+        350,
+        305
+      ],
+      "radius": 185,
+      "parts": 8,
+      "shaded": 3,
+      "sectors_deg": [
+        [
+          -90,
+          -45
+        ],
+        [
+          -45,
+          0
+        ],
+        [
+          0,
+          45
+        ],
+        [
+          45,
+          90
+        ],
+        [
+          90,
+          135
+        ],
+        [
+          135,
+          180
+        ],
+        [
+          180,
+          225
+        ],
+        [
+          225,
+          270
+        ]
+      ],
+      "sources": [
+        "S12"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Butun doira 8 ta teng yuzli sektorga bo‘lindi; 3 tasi ajratildi. 3/8 butunning ulushi, radius ulushi emas.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "ulush_tasma_uch_besh",
+    "nom": "Tasmada 3/5 ulush",
+    "asl_qator": 2,
+    "svg": "boshlangich_matematika/svg/ulush_tasma_uch_besh.svg",
+    "png": "boshlangich_matematika/png/ulush_tasma_uch_besh.png",
+    "malumot": {
+      "origin": [
+        100,
+        230
+      ],
+      "unit": [
+        160,
+        110
+      ],
+      "parts": 5,
+      "shaded": 3,
+      "sources": [
+        "S12"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Tasma butun sifatida olingan. Beshta bo‘lak teng: bir bo‘lak 1/5; uch bo‘lak 3/5.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "ulush_kvadrat_uch_tort",
+    "nom": "Kvadratning 3/4 qismi",
+    "asl_qator": 2,
+    "svg": "boshlangich_matematika/svg/ulush_kvadrat_uch_tort.svg",
+    "png": "boshlangich_matematika/png/ulush_kvadrat_uch_tort.png",
+    "malumot": {
+      "whole": [
+        170,
+        140,
+        300,
+        300
+      ],
+      "cells": [
+        [
+          170,
+          140,
+          150,
+          150,
+          true
+        ],
+        [
+          320,
+          140,
+          150,
+          150,
+          true
+        ],
+        [
+          170,
+          290,
+          150,
+          150,
+          true
+        ],
+        [
+          320,
+          290,
+          150,
+          150,
+          false
+        ]
+      ],
+      "parts": 4,
+      "shaded": 3,
+      "sources": [
+        "S12"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "To‘rtta kichik kvadrat kongruent; ularning uchtasi bo‘yalgan. Perimetr ulushi haqidagi da’vo yo‘q.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "tasma_masala_on_yetti",
+    "nom": "Qo‘shish masalasining tasma modeli",
+    "asl_qator": 3,
+    "svg": "boshlangich_matematika/svg/tasma_masala_on_yetti.svg",
+    "png": "boshlangich_matematika/png/tasma_masala_on_yetti.png",
+    "malumot": {
+      "parts": [
+        12,
+        5
+      ],
+      "sum": 17,
+      "scale": 40,
+      "rectangles": [
+        [
+          115,
+          220,
+          480,
+          100
+        ],
+        [
+          595,
+          220,
+          200,
+          100
+        ]
+      ],
+      "sources": [
+        "S01"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Bir qutida 12 ta, ikkinchisida 5 ta qalam bo‘lsa, jami 17 ta. Bir xil qalamlarni sanash modeli; tasmalar miqdorga proporsional.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "kasr_taqqoslash_ikki_uch_uch_tort",
+    "nom": "2/3 va 3/4 ni teng butunlarda taqqoslash",
+    "asl_qator": 4,
+    "svg": "boshlangich_matematika/svg/kasr_taqqoslash_ikki_uch_uch_tort.svg",
+    "png": "boshlangich_matematika/png/kasr_taqqoslash_ikki_uch_uch_tort.png",
+    "malumot": {
+      "whole_width": 480,
+      "twelfths": 12,
+      "fractions": [
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "shaded_twelfths": [
+        8,
+        9
+      ],
+      "sources": [
+        "S12"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Butunlarning o‘lchami teng bo‘lishi shart. Bo‘yalgan uzunliklar 320 va 360; kasrlar ko‘paytma bilan ham tekshiriladi: 2×4 < 3×3.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "kopaytirish_massiv_uch_tort",
+    "nom": "3 × 4 nuqtalar massivi",
+    "asl_qator": 5,
+    "svg": "boshlangich_matematika/svg/kopaytirish_massiv_uch_tort.svg",
+    "png": "boshlangich_matematika/png/kopaytirish_massiv_uch_tort.png",
+    "malumot": {
+      "rows": 3,
+      "columns": 4,
+      "dots": [
+        [
+          200,
+          195
+        ],
+        [
+          300,
+          195
+        ],
+        [
+          400,
+          195
+        ],
+        [
+          500,
+          195
+        ],
+        [
+          200,
+          295
+        ],
+        [
+          300,
+          295
+        ],
+        [
+          400,
+          295
+        ],
+        [
+          500,
+          295
+        ],
+        [
+          200,
+          395
+        ],
+        [
+          300,
+          395
+        ],
+        [
+          400,
+          395
+        ],
+        [
+          500,
+          395
+        ]
+      ],
+      "total": 12,
+      "sources": [
+        "S01"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Ushbu izohda 3×4 uchta guruhning har birida 4 tadan deb o‘qiladi. Massivni burib qarash kommutativlikni ko‘rsatadi; nuqtalar soni o‘zgarmaydi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "sanoq_ikki_onlik_uch_birlik",
+    "nom": "23 ning o‘nlik va birlik modeli",
+    "asl_qator": 6,
+    "svg": "boshlangich_matematika/svg/sanoq_ikki_onlik_uch_birlik.svg",
+    "png": "boshlangich_matematika/png/sanoq_ikki_onlik_uch_birlik.png",
+    "malumot": {
+      "tens": 2,
+      "ones": 3,
+      "units_in_rods": [
+        [
+          0,
+          0,
+          140,
+          110
+        ],
+        [
+          0,
+          1,
+          140,
+          147
+        ],
+        [
+          0,
+          2,
+          140,
+          184
+        ],
+        [
+          0,
+          3,
+          140,
+          221
+        ],
+        [
+          0,
+          4,
+          140,
+          258
+        ],
+        [
+          0,
+          5,
+          140,
+          295
+        ],
+        [
+          0,
+          6,
+          140,
+          332
+        ],
+        [
+          0,
+          7,
+          140,
+          369
+        ],
+        [
+          0,
+          8,
+          140,
+          406
+        ],
+        [
+          0,
+          9,
+          140,
+          443
+        ],
+        [
+          1,
+          0,
+          260,
+          110
+        ],
+        [
+          1,
+          1,
+          260,
+          147
+        ],
+        [
+          1,
+          2,
+          260,
+          184
+        ],
+        [
+          1,
+          3,
+          260,
+          221
+        ],
+        [
+          1,
+          4,
+          260,
+          258
+        ],
+        [
+          1,
+          5,
+          260,
+          295
+        ],
+        [
+          1,
+          6,
+          260,
+          332
+        ],
+        [
+          1,
+          7,
+          260,
+          369
+        ],
+        [
+          1,
+          8,
+          260,
+          406
+        ],
+        [
+          1,
+          9,
+          260,
+          443
+        ]
+      ],
+      "value": 23,
+      "sources": [
+        "S01"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Ikki ustun o‘nlikni, uchta alohida dona birlikni bildiradi. Kichik donalar bir xil o‘lchamda; har bir o‘nlik o‘nta donadan tuzilgan.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "tarozi_tenglama_x_uch_yetti",
+    "nom": "Tarozi orqali x + 3 = 7",
+    "asl_qator": 7,
+    "svg": "boshlangich_matematika/svg/tarozi_tenglama_x_uch_yetti.svg",
+    "png": "boshlangich_matematika/png/tarozi_tenglama_x_uch_yetti.png",
+    "malumot": {
+      "left_units": 3,
+      "right_units": 7,
+      "x": 4,
+      "arms": [
+        240,
+        240
+      ],
+      "beam_y": 230,
+      "sources": [
+        "S44"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Tarozining ikki pallasi tenglikning ikki tomonini ifodalaydi. Har ikki tomondan uch dona olib tashlansa x=4. Buyumlar hajmi massaga proporsional chizilmagan; fizik tarozining texnik chizmasi emas.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "funksiya_parabola_x_kvadrat",
+    "nom": "y = x² parabolasining bir qismi",
+    "asl_qator": 8,
+    "svg": "boshlangich_matematika/svg/funksiya_parabola_x_kvadrat.svg",
+    "png": "boshlangich_matematika/png/funksiya_parabola_x_kvadrat.png",
+    "malumot": {
+      "domain": [
+        -2,
+        2
+      ],
+      "origin": [
+        500,
+        475
+      ],
+      "x_scale": 100,
+      "y_scale": 85,
+      "points": [
+        [
+          -2,
+          4
+        ],
+        [
+          -1,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "samples": [
+        [
+          300.0,
+          135.0
+        ],
+        [
+          302.5,
+          143.44687499999998
+        ],
+        [
+          305.0,
+          151.78750000000002
+        ],
+        [
+          307.5,
+          160.02187499999997
+        ],
+        [
+          310.0,
+          168.15000000000003
+        ],
+        [
+          312.5,
+          176.171875
+        ],
+        [
+          315.0,
+          184.08749999999998
+        ],
+        [
+          317.5,
+          191.89687500000002
+        ],
+        [
+          320.0,
+          199.59999999999997
+        ],
+        [
+          322.5,
+          207.19687500000003
+        ],
+        [
+          325.0,
+          214.6875
+        ],
+        [
+          327.5,
+          222.07187499999998
+        ],
+        [
+          330.0,
+          229.35000000000002
+        ],
+        [
+          332.5,
+          236.521875
+        ],
+        [
+          335.0,
+          243.58750000000003
+        ],
+        [
+          337.5,
+          250.546875
+        ],
+        [
+          340.0,
+          257.4
+        ],
+        [
+          342.5,
+          264.146875
+        ],
+        [
+          345.0,
+          270.78749999999997
+        ],
+        [
+          347.5,
+          277.32187500000003
+        ],
+        [
+          350.0,
+          283.75
+        ],
+        [
+          352.5,
+          290.071875
+        ],
+        [
+          355.0,
+          296.2875
+        ],
+        [
+          357.5,
+          302.396875
+        ],
+        [
+          360.0,
+          308.40000000000003
+        ],
+        [
+          362.5,
+          314.296875
+        ],
+        [
+          365.0,
+          320.0875
+        ],
+        [
+          367.5,
+          325.771875
+        ],
+        [
+          370.0,
+          331.35
+        ],
+        [
+          372.5,
+          336.821875
+        ],
+        [
+          375.0,
+          342.1875
+        ],
+        [
+          377.5,
+          347.446875
+        ],
+        [
+          380.0,
+          352.6
+        ],
+        [
+          382.5,
+          357.64687499999997
+        ],
+        [
+          385.0,
+          362.58750000000003
+        ],
+        [
+          387.5,
+          367.421875
+        ],
+        [
+          390.0,
+          372.15
+        ],
+        [
+          392.5,
+          376.771875
+        ],
+        [
+          395.0,
+          381.2875
+        ],
+        [
+          397.5,
+          385.696875
+        ],
+        [
+          400.0,
+          390.0
+        ],
+        [
+          402.5,
+          394.196875
+        ],
+        [
+          405.0,
+          398.2875
+        ],
+        [
+          407.5,
+          402.271875
+        ],
+        [
+          410.0,
+          406.15000000000003
+        ],
+        [
+          412.5,
+          409.921875
+        ],
+        [
+          415.0,
+          413.5875
+        ],
+        [
+          417.5,
+          417.146875
+        ],
+        [
+          420.0,
+          420.59999999999997
+        ],
+        [
+          422.5,
+          423.94687500000003
+        ],
+        [
+          425.0,
+          427.1875
+        ],
+        [
+          427.5,
+          430.321875
+        ],
+        [
+          430.0,
+          433.35
+        ],
+        [
+          432.5,
+          436.271875
+        ],
+        [
+          435.0,
+          439.08750000000003
+        ],
+        [
+          437.5,
+          441.796875
+        ],
+        [
+          440.0,
+          444.4
+        ],
+        [
+          442.5,
+          446.896875
+        ],
+        [
+          445.0,
+          449.2875
+        ],
+        [
+          447.5,
+          451.57187500000003
+        ],
+        [
+          450.0,
+          453.75
+        ],
+        [
+          452.5,
+          455.821875
+        ],
+        [
+          455.0,
+          457.7875
+        ],
+        [
+          457.5,
+          459.646875
+        ],
+        [
+          460.0,
+          461.40000000000003
+        ],
+        [
+          462.5,
+          463.046875
+        ],
+        [
+          465.0,
+          464.5875
+        ],
+        [
+          467.5,
+          466.021875
+        ],
+        [
+          470.0,
+          467.35
+        ],
+        [
+          472.5,
+          468.571875
+        ],
+        [
+          475.0,
+          469.6875
+        ],
+        [
+          477.5,
+          470.696875
+        ],
+        [
+          480.0,
+          471.6
+        ],
+        [
+          482.5,
+          472.396875
+        ],
+        [
+          485.0,
+          473.0875
+        ],
+        [
+          487.5,
+          473.671875
+        ],
+        [
+          490.0,
+          474.15
+        ],
+        [
+          492.5,
+          474.521875
+        ],
+        [
+          495.0,
+          474.7875
+        ],
+        [
+          497.5,
+          474.946875
+        ],
+        [
+          500.0,
+          475.0
+        ],
+        [
+          502.5,
+          474.946875
+        ],
+        [
+          505.0,
+          474.7875
+        ],
+        [
+          507.5,
+          474.521875
+        ],
+        [
+          510.0,
+          474.15
+        ],
+        [
+          512.5,
+          473.671875
+        ],
+        [
+          515.0,
+          473.0875
+        ],
+        [
+          517.5,
+          472.396875
+        ],
+        [
+          520.0,
+          471.59999999999997
+        ],
+        [
+          522.5,
+          470.696875
+        ],
+        [
+          525.0,
+          469.6875
+        ],
+        [
+          527.5,
+          468.571875
+        ],
+        [
+          530.0,
+          467.35
+        ],
+        [
+          532.5,
+          466.02187499999997
+        ],
+        [
+          535.0,
+          464.5875
+        ],
+        [
+          537.5,
+          463.046875
+        ],
+        [
+          540.0,
+          461.40000000000003
+        ],
+        [
+          542.5,
+          459.646875
+        ],
+        [
+          545.0,
+          457.78749999999997
+        ],
+        [
+          547.5,
+          455.821875
+        ],
+        [
+          550.0,
+          453.75
+        ],
+        [
+          552.5,
+          451.57187500000003
+        ],
+        [
+          555.0,
+          449.2875
+        ],
+        [
+          557.5,
+          446.89687499999997
+        ],
+        [
+          560.0,
+          444.4
+        ],
+        [
+          562.5,
+          441.796875
+        ],
+        [
+          565.0,
+          439.08750000000003
+        ],
+        [
+          567.5,
+          436.271875
+        ],
+        [
+          570.0,
+          433.34999999999997
+        ],
+        [
+          572.5,
+          430.321875
+        ],
+        [
+          575.0,
+          427.1875
+        ],
+        [
+          577.5,
+          423.94687500000003
+        ],
+        [
+          580.0,
+          420.6
+        ],
+        [
+          582.5,
+          417.14687499999997
+        ],
+        [
+          585.0,
+          413.5875
+        ],
+        [
+          587.5,
+          409.921875
+        ],
+        [
+          590.0,
+          406.15000000000003
+        ],
+        [
+          592.5,
+          402.271875
+        ],
+        [
+          595.0,
+          398.28749999999997
+        ],
+        [
+          597.5,
+          394.196875
+        ],
+        [
+          600.0,
+          390.0
+        ],
+        [
+          602.5,
+          385.696875
+        ],
+        [
+          605.0,
+          381.2875
+        ],
+        [
+          607.5,
+          376.77187499999997
+        ],
+        [
+          610.0,
+          372.15
+        ],
+        [
+          612.5,
+          367.421875
+        ],
+        [
+          615.0,
+          362.58750000000003
+        ],
+        [
+          617.5,
+          357.646875
+        ],
+        [
+          620.0,
+          352.59999999999997
+        ],
+        [
+          622.5,
+          347.446875
+        ],
+        [
+          625.0,
+          342.1875
+        ],
+        [
+          627.5,
+          336.821875
+        ],
+        [
+          630.0,
+          331.35
+        ],
+        [
+          632.5,
+          325.77187499999997
+        ],
+        [
+          635.0,
+          320.0875
+        ],
+        [
+          637.5,
+          314.296875
+        ],
+        [
+          640.0,
+          308.40000000000003
+        ],
+        [
+          642.5,
+          302.396875
+        ],
+        [
+          645.0,
+          296.28749999999997
+        ],
+        [
+          647.5,
+          290.071875
+        ],
+        [
+          650.0,
+          283.75
+        ],
+        [
+          652.5,
+          277.32187500000003
+        ],
+        [
+          655.0,
+          270.7875
+        ],
+        [
+          657.5,
+          264.1468749999999
+        ],
+        [
+          660.0,
+          257.4
+        ],
+        [
+          662.5,
+          250.546875
+        ],
+        [
+          665.0,
+          243.58750000000003
+        ],
+        [
+          667.5,
+          236.52187500000002
+        ],
+        [
+          670.0,
+          229.34999999999997
+        ],
+        [
+          672.5,
+          222.07187499999998
+        ],
+        [
+          675.0,
+          214.6875
+        ],
+        [
+          677.5,
+          207.19687500000003
+        ],
+        [
+          680.0,
+          199.60000000000008
+        ],
+        [
+          682.5,
+          191.8968749999999
+        ],
+        [
+          685.0,
+          184.08749999999998
+        ],
+        [
+          687.5,
+          176.171875
+        ],
+        [
+          690.0,
+          168.15000000000003
+        ],
+        [
+          692.5,
+          160.02187500000002
+        ],
+        [
+          695.0,
+          151.78749999999997
+        ],
+        [
+          697.5,
+          143.44687499999998
+        ],
+        [
+          700.0,
+          135.0
+        ]
+      ],
+      "sources": [
+        "S19"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Grafik uzluksiz egri chiziq bilan, beshta tayanch nuqta ajratib berilgan. Parabola ikki yo‘nalishda davom etadi; rasmda faqat [−2,2] qismi. X va y birliklarining ekran uzunligi turlicha, bu ma’lumotda ochiq yozilgan.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "geometrik_besh_shakl",
+    "nom": "Uchburchak, to‘rtburchaklar, aylana va burchak",
+    "asl_qator": 9,
+    "svg": "boshlangich_matematika/svg/geometrik_besh_shakl.svg",
+    "png": "boshlangich_matematika/png/geometrik_besh_shakl.png",
+    "malumot": {
+      "triangle": [
+        [
+          115,
+          260
+        ],
+        [
+          285,
+          260
+        ],
+        [
+          200,
+          112.77568135664544
+        ]
+      ],
+      "rectangle": [
+        390,
+        140,
+        200,
+        120
+      ],
+      "square": [
+        735,
+        130,
+        130,
+        130
+      ],
+      "circle": {
+        "centre": [
+          270,
+          440
+        ],
+        "r": 80
+      },
+      "angle": {
+        "vertex": [
+          640,
+          495
+        ],
+        "rays": [
+          [
+            820,
+            495
+          ],
+          [
+            730,
+            339.11542731880104
+          ]
+        ],
+        "degrees": 60
+      },
+      "sources": [
+        "S21",
+        "S25"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Kvadrat ham to‘g‘ri to‘rtburchakning maxsus turi. Aylana faqat chegaradir, doira esa ichki sohani ham oladi. Burchak nurlarining koordinatalaridan 60° hisoblanadi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "venn_toplam_kesishma",
+    "nom": "Ikki to‘plam kesishmasining Venn modeli",
+    "asl_qator": 10,
+    "svg": "boshlangich_matematika/svg/venn_toplam_kesishma.svg",
+    "png": "boshlangich_matematika/png/venn_toplam_kesishma.png",
+    "malumot": {
+      "A": [
+        1,
+        2,
+        3
+      ],
+      "B": [
+        3,
+        4
+      ],
+      "U": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "circles": [
+        [
+          380,
+          310,
+          175
+        ],
+        [
+          620,
+          310,
+          175
+        ]
+      ],
+      "element_positions": {
+        "1": [
+          270,
+          280
+        ],
+        "2": [
+          280,
+          370
+        ],
+        "3": [
+          500,
+          315
+        ],
+        "4": [
+          730,
+          315
+        ],
+        "5": [
+          850,
+          455
+        ]
+      },
+      "sources": [
+        "S01"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "3 ikkala doira ichida, 1 va 2 faqat A da, 4 faqat B da. To‘plam aylana bilan emas, uning ichki sohasi bilan ifodalanadi; soha kattaligi elementlar soniga proporsional emas.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "ichma_ich_toplamlar",
+    "nom": "A ning B ga qat’iy qism to‘plamligi",
+    "asl_qator": 10,
+    "svg": "boshlangich_matematika/svg/ichma_ich_toplamlar.svg",
+    "png": "boshlangich_matematika/png/ichma_ich_toplamlar.png",
+    "malumot": {
+      "A": [
+        1,
+        2
+      ],
+      "B": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "U": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "circles": {
+        "A": [
+          340,
+          320,
+          85
+        ],
+        "B": [
+          390,
+          320,
+          180
+        ]
+      },
+      "element_positions": {
+        "1": [
+          315,
+          318
+        ],
+        "2": [
+          365,
+          345
+        ],
+        "3": [
+          505,
+          305
+        ],
+        "4": [
+          445,
+          435
+        ],
+        "5": [
+          800,
+          350
+        ]
+      },
+      "sources": [
+        "S01"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "A doirasining butuni B ichida. B da A ga tegishli bo‘lmagan elementlar bor, shuning uchun qat’iy qism to‘plam belgisi ishlatilgan. U universal to‘plam tanlangan misol uchungina.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "ehtimol_daraxt_tanga_ikki",
+    "nom": "Ikki mustaqil tashlashning to‘rt natijasi",
+    "asl_qator": 11,
+    "svg": "boshlangich_matematika/svg/ehtimol_daraxt_tanga_ikki.svg",
+    "png": "boshlangich_matematika/png/ehtimol_daraxt_tanga_ikki.png",
+    "malumot": {
+      "nodes": {
+        "root": [
+          120,
+          300
+        ],
+        "G": [
+          390,
+          180
+        ],
+        "R": [
+          390,
+          420
+        ],
+        "GG": [
+          700,
+          105
+        ],
+        "GR": [
+          700,
+          255
+        ],
+        "RG": [
+          700,
+          365
+        ],
+        "RR": [
+          700,
+          515
+        ]
+      },
+      "edges": [
+        [
+          "root",
+          "G"
+        ],
+        [
+          "root",
+          "R"
+        ],
+        [
+          "G",
+          "GG"
+        ],
+        [
+          "G",
+          "GR"
+        ],
+        [
+          "R",
+          "RG"
+        ],
+        [
+          "R",
+          "RR"
+        ]
+      ],
+      "branch_probability": [
+        1,
+        2
+      ],
+      "outcomes": [
+        "GG",
+        "GR",
+        "RG",
+        "RR"
+      ],
+      "leaf_probability": [
+        1,
+        4
+      ],
+      "sources": [
+        "S01"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Tartib muhim: GR va RG turli natijalar. Har bir yo‘lda 1/2×1/2=1/4; to‘rtta ehtimol yig‘indisi 1. Haqiqiy tanganing teng imkonli ekanligi bu rasm bilan isbotlanmaydi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "ustunli_kitoblar_shartli",
+    "nom": "To‘rtta guruhning ustunli diagrammasi",
+    "asl_qator": 12,
+    "svg": "boshlangich_matematika/svg/ustunli_kitoblar_shartli.svg",
+    "png": "boshlangich_matematika/png/ustunli_kitoblar_shartli.png",
+    "malumot": {
+      "categories": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "values": [
+        3,
+        5,
+        2,
+        4
+      ],
+      "bars": [
+        [
+          220,
+          315,
+          90,
+          165
+        ],
+        [
+          380,
+          205,
+          90,
+          275
+        ],
+        [
+          540,
+          370,
+          90,
+          110
+        ],
+        [
+          700,
+          260,
+          90,
+          220
+        ]
+      ],
+      "baseline": 480,
+      "unit_scale": 55,
+      "sources": [
+        "S01"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Ma’lumotlar muallifning shartli misoli, kuzatilgan statistika emas. Ustunlar kengligi teng; balandliklar sonlarga proporsional. Ustunlar orasida bo‘shliq bor.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "soat_on_on",
+    "nom": "10:10 da ikki milning aniq o‘rni",
+    "asl_qator": 13,
+    "svg": "boshlangich_matematika/svg/soat_on_on.svg",
+    "png": "boshlangich_matematika/png/soat_on_on.png",
+    "malumot": {
+      "hour": 10,
+      "minute": 10,
+      "centre": [
+        360,
+        305
+      ],
+      "radius": 210,
+      "hour_degrees": 305,
+      "minute_degrees": 60,
+      "hour_tip": [
+        265.79751490676597,
+        239.0387098196297
+      ],
+      "minute_tip": [
+        498.56406460551017,
+        225.0
+      ],
+      "ticks": [
+        [
+          [
+            360.0,
+            103.0
+          ],
+          [
+            360.0,
+            120.0
+          ]
+        ],
+        [
+          [
+            381.114749580066,
+            104.1065771356088
+          ],
+          [
+            380.3830503371924,
+            111.0682304031867
+          ]
+        ],
+        [
+          [
+            401.9981615451874,
+            107.41418465177125
+          ],
+          [
+            400.54277970946305,
+            114.26121785690788
+          ]
+        ],
+        [
+          [
+            422.42143286373937,
+            112.88658370837899
+          ],
+          [
+            420.25831390311475,
+            119.54397932244507
+          ]
+        ],
+        [
+          [
+            442.16080190131163,
+            120.46381755619461
+          ],
+          [
+            439.313645399781,
+            126.85863575969285
+          ]
+        ],
+        [
+          [
+            461.0,
+            130.06286843554338
+          ],
+          [
+            452.5,
+            144.78530029987883
+          ]
+        ],
+        [
+          [
+            478.73262096307957,
+            141.5785671362606
+          ],
+          [
+            474.6181241970323,
+            147.24168609688525
+          ]
+        ],
+        [
+          [
+            495.16438248448935,
+            154.88474525356636
+          ],
+          [
+            490.48046823997737,
+            160.08675903190812
+          ]
+        ],
+        [
+          [
+            510.1152547464336,
+            169.83561751551065
+          ],
+          [
+            504.9132409680919,
+            174.51953176002263
+          ]
+        ],
+        [
+          [
+            523.4214328637394,
+            186.26737903692043
+          ],
+          [
+            517.7583139031148,
+            190.38187580296773
+          ]
+        ],
+        [
+          [
+            534.9371315644566,
+            203.99999999999997
+          ],
+          [
+            520.2146997001212,
+            212.5
+          ]
+        ],
+        [
+          [
+            544.5361824438054,
+            222.83919809868837
+          ],
+          [
+            538.1413642403072,
+            225.68635460021898
+          ]
+        ],
+        [
+          [
+            552.113416291621,
+            242.57856713626063
+          ],
+          [
+            545.456020677555,
+            244.74168609688525
+          ]
+        ],
+        [
+          [
+            557.5858153482287,
+            263.00183845481257
+          ],
+          [
+            550.7387821430921,
+            264.4572202905369
+          ]
+        ],
+        [
+          [
+            560.8934228643911,
+            283.885250419934
+          ],
+          [
+            553.9317695968133,
+            284.6169496628076
+          ]
+        ],
+        [
+          [
+            562.0,
+            305.0
+          ],
+          [
+            545.0,
+            305.0
+          ]
+        ],
+        [
+          [
+            560.8934228643911,
+            326.114749580066
+          ],
+          [
+            553.9317695968133,
+            325.38305033719246
+          ]
+        ],
+        [
+          [
+            557.5858153482287,
+            346.9981615451874
+          ],
+          [
+            550.7387821430921,
+            345.54277970946305
+          ]
+        ],
+        [
+          [
+            552.113416291621,
+            367.42143286373937
+          ],
+          [
+            545.456020677555,
+            365.25831390311475
+          ]
+        ],
+        [
+          [
+            544.5361824438054,
+            387.16080190131163
+          ],
+          [
+            538.1413642403072,
+            384.3136453997811
+          ]
+        ],
+        [
+          [
+            534.9371315644566,
+            405.99999999999994
+          ],
+          [
+            520.2146997001212,
+            397.49999999999994
+          ]
+        ],
+        [
+          [
+            523.4214328637394,
+            423.73262096307957
+          ],
+          [
+            517.7583139031148,
+            419.6181241970322
+          ]
+        ],
+        [
+          [
+            510.1152547464336,
+            440.16438248448935
+          ],
+          [
+            504.9132409680919,
+            435.48046823997737
+          ]
+        ],
+        [
+          [
+            495.16438248448935,
+            455.1152547464336
+          ],
+          [
+            490.48046823997737,
+            449.9132409680918
+          ]
+        ],
+        [
+          [
+            478.7326209630796,
+            468.42143286373937
+          ],
+          [
+            474.6181241970323,
+            462.75831390311475
+          ]
+        ],
+        [
+          [
+            461.0,
+            479.93713156445665
+          ],
+          [
+            452.5,
+            465.2146997001212
+          ]
+        ],
+        [
+          [
+            442.1608019013117,
+            489.5361824438054
+          ],
+          [
+            439.3136453997811,
+            483.14136424030715
+          ]
+        ],
+        [
+          [
+            422.42143286373937,
+            497.113416291621
+          ],
+          [
+            420.25831390311475,
+            490.45602067755493
+          ]
+        ],
+        [
+          [
+            401.9981615451874,
+            502.5858153482287
+          ],
+          [
+            400.54277970946305,
+            495.7387821430921
+          ]
+        ],
+        [
+          [
+            381.1147495800661,
+            505.8934228643912
+          ],
+          [
+            380.38305033719246,
+            498.9317695968133
+          ]
+        ],
+        [
+          [
+            360.0,
+            507.0
+          ],
+          [
+            360.0,
+            490.0
+          ]
+        ],
+        [
+          [
+            338.885250419934,
+            505.8934228643912
+          ],
+          [
+            339.61694966280754,
+            498.9317695968133
+          ]
+        ],
+        [
+          [
+            318.00183845481257,
+            502.5858153482287
+          ],
+          [
+            319.4572202905369,
+            495.73878214309207
+          ]
+        ],
+        [
+          [
+            297.57856713626063,
+            497.11341629162104
+          ],
+          [
+            299.7416860968853,
+            490.456020677555
+          ]
+        ],
+        [
+          [
+            277.83919809868837,
+            489.5361824438054
+          ],
+          [
+            280.686354600219,
+            483.14136424030715
+          ]
+        ],
+        [
+          [
+            259.0,
+            479.9371315644566
+          ],
+          [
+            267.5,
+            465.2146997001212
+          ]
+        ],
+        [
+          [
+            241.26737903692043,
+            468.42143286373937
+          ],
+          [
+            245.38187580296776,
+            462.75831390311475
+          ]
+        ],
+        [
+          [
+            224.83561751551065,
+            455.1152547464336
+          ],
+          [
+            229.51953176002263,
+            449.9132409680919
+          ]
+        ],
+        [
+          [
+            209.88474525356634,
+            440.16438248448935
+          ],
+          [
+            215.0867590319081,
+            435.4804682399773
+          ]
+        ],
+        [
+          [
+            196.57856713626063,
+            423.7326209630796
+          ],
+          [
+            202.24168609688527,
+            419.6181241970323
+          ]
+        ],
+        [
+          [
+            185.06286843554344,
+            406.0000000000001
+          ],
+          [
+            199.78530029987888,
+            397.5000000000001
+          ]
+        ],
+        [
+          [
+            175.4638175561946,
+            387.16080190131163
+          ],
+          [
+            181.85863575969282,
+            384.313645399781
+          ]
+        ],
+        [
+          [
+            167.886583708379,
+            367.4214328637394
+          ],
+          [
+            174.54397932244507,
+            365.25831390311475
+          ]
+        ],
+        [
+          [
+            162.41418465177128,
+            346.9981615451875
+          ],
+          [
+            169.2612178569079,
+            345.54277970946316
+          ]
+        ],
+        [
+          [
+            159.10657713560877,
+            326.11474958006596
+          ],
+          [
+            166.06823040318667,
+            325.3830503371924
+          ]
+        ],
+        [
+          [
+            158.0,
+            305.00000000000006
+          ],
+          [
+            175.0,
+            305.00000000000006
+          ]
+        ],
+        [
+          [
+            159.10657713560877,
+            283.8852504199341
+          ],
+          [
+            166.06823040318667,
+            284.61694966280766
+          ]
+        ],
+        [
+          [
+            162.41418465177128,
+            263.0018384548126
+          ],
+          [
+            169.2612178569079,
+            264.4572202905369
+          ]
+        ],
+        [
+          [
+            167.88658370837896,
+            242.57856713626066
+          ],
+          [
+            174.54397932244504,
+            244.7416860968853
+          ]
+        ],
+        [
+          [
+            175.46381755619458,
+            222.83919809868843
+          ],
+          [
+            181.8586357596928,
+            225.68635460021903
+          ]
+        ],
+        [
+          [
+            185.0628684355434,
+            203.99999999999997
+          ],
+          [
+            199.78530029987886,
+            212.5
+          ]
+        ],
+        [
+          [
+            196.5785671362606,
+            186.2673790369205
+          ],
+          [
+            202.24168609688522,
+            190.38187580296778
+          ]
+        ],
+        [
+          [
+            209.8847452535663,
+            169.83561751551073
+          ],
+          [
+            215.08675903190806,
+            174.51953176002274
+          ]
+        ],
+        [
+          [
+            224.83561751551065,
+            154.88474525356636
+          ],
+          [
+            229.51953176002266,
+            160.08675903190812
+          ]
+        ],
+        [
+          [
+            241.26737903692037,
+            141.57856713626063
+          ],
+          [
+            245.3818758029677,
+            147.24168609688527
+          ]
+        ],
+        [
+          [
+            258.9999999999999,
+            130.06286843554344
+          ],
+          [
+            267.4999999999999,
+            144.7853002998789
+          ]
+        ],
+        [
+          [
+            277.83919809868837,
+            120.46381755619461
+          ],
+          [
+            280.686354600219,
+            126.85863575969282
+          ]
+        ],
+        [
+          [
+            297.5785671362606,
+            112.88658370837899
+          ],
+          [
+            299.7416860968852,
+            119.54397932244507
+          ]
+        ],
+        [
+          [
+            318.0018384548125,
+            107.41418465177128
+          ],
+          [
+            319.45722029053684,
+            114.2612178569079
+          ]
+        ],
+        [
+          [
+            338.885250419934,
+            104.1065771356088
+          ],
+          [
+            339.6169496628076,
+            111.0682304031867
+          ]
+        ]
+      ],
+      "sources": [
+        "S01"
+      ]
+    },
+    "tekshiruvlar": {},
+    "izoh": "Soat mili 10 raqamida qotib turmaydi: 10 daqiqa davomida yana 5° siljigan. Daqiqa mili 2 raqamida. Ikkala mil alohida uzunlik va qalinlikda.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k02_01_kophad_yuz",
+    "nom": "To‘rt to‘rtburchakli ko‘paytma modeli",
+    "asl_qator": 9,
+    "svg": "boshlangich_matematika/svg/bmkn_k02_01_kophad_yuz.svg",
+    "png": "boshlangich_matematika/png/bmkn_k02_01_kophad_yuz.png",
+    "malumot": {
+      "a": 3,
+      "b": 2,
+      "c": 2,
+      "d": 1,
+      "scale": 70,
+      "parts": [
+        {
+          "key": "ac",
+          "rect": [
+            200,
+            130,
+            210,
+            140
+          ],
+          "area": 6
+        },
+        {
+          "key": "bc",
+          "rect": [
+            410,
+            130,
+            140,
+            140
+          ],
+          "area": 4
+        },
+        {
+          "key": "ad",
+          "rect": [
+            200,
+            270,
+            210,
+            70
+          ],
+          "area": 3
+        },
+        {
+          "key": "bd",
+          "rect": [
+            410,
+            270,
+            140,
+            70
+          ],
+          "area": 2
+        }
+      ],
+      "sources": [
+        "S15"
+      ],
+      "bmkn_talab_id": "K02-01"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Tomonlar haqiqiy uzunlik sifatida musbat tanlangan. Tenglik faqat shu sonlar bilan cheklanmaydi: distributiv qonun barcha haqiqiy a,b,c,d uchun o‘rinli. Har bir kichik yuzning omillari o‘z tomonlariga mos.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k02_02_kompleks_qoshma",
+    "nom": "Kompleks nuqta, qo‘shma va modul",
+    "asl_qator": 18,
+    "svg": "boshlangich_matematika/svg/bmkn_k02_02_kompleks_qoshma.svg",
+    "png": "boshlangich_matematika/png/bmkn_k02_02_kompleks_qoshma.png",
+    "malumot": {
+      "z": [
+        3,
+        -4
+      ],
+      "conjugate": [
+        3,
+        4
+      ],
+      "modulus": 5,
+      "origin": [
+        420,
+        330
+      ],
+      "scale": 50,
+      "points": [
+        [
+          570,
+          530
+        ],
+        [
+          570,
+          130
+        ]
+      ],
+      "sources": [
+        "S19"
+      ],
+      "bmkn_talab_id": "K02-02"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Ikkala o‘qda bir xil 50 birlik masshtab. Qo‘shma Re o‘qiga nisbatan akslanadi; 3²+4²=25. O‘qlar kompleks sonning haqiqiy va mavhum qismlarini bildiradi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k02_03_i_burilish",
+    "nom": "i ko‘paytiruvchisining geometrik ma’nosi",
+    "asl_qator": 18,
+    "svg": "boshlangich_matematika/svg/bmkn_k02_03_i_burilish.svg",
+    "png": "boshlangich_matematika/png/bmkn_k02_03_i_burilish.png",
+    "malumot": {
+      "z": [
+        2,
+        -1
+      ],
+      "iz": [
+        1,
+        2
+      ],
+      "origin": [
+        420,
+        330
+      ],
+      "scale": 50,
+      "radius_squared": 5,
+      "angle_degrees": 90,
+      "arc": [
+        [
+          491.5541752799933,
+          365.77708763999664
+        ],
+        [
+          492.90361147316975,
+          362.94030106372907
+        ],
+        [
+          494.14063558161376,
+          360.0527229307819
+        ],
+        [
+          495.2633402038114,
+          357.1188056773403
+        ],
+        [
+          496.26999421061055,
+          354.14307319115443
+        ],
+        [
+          497.1590454144963,
+          351.1301138360327
+        ],
+        [
+          497.9291229629521,
+          348.084573376917
+        ],
+        [
+          498.57903945221454,
+          345.0111478164501
+        ],
+        [
+          499.107792758164,
+          341.9145761540799
+        ],
+        [
+          499.5145675815277,
+          338.7996330788659
+        ],
+        [
+          499.7987367050114,
+          335.67112160725435
+        ],
+        [
+          499.95986196042384,
+          332.5338656771755
+        ],
+        [
+          499.9976949042997,
+          329.3927027098807
+        ],
+        [
+          499.91217720098166,
+          326.25247615098954
+        ],
+        [
+          499.70344071256994,
+          323.11802800224757
+        ],
+        [
+          499.37180729560004,
+          319.99419135551085
+        ],
+        [
+          498.9177883047637,
+          316.88578294046846
+        ],
+        [
+          498.34208380443675,
+          313.7975956975945
+        ],
+        [
+          497.6455814892309,
+          310.73439138778105
+        ],
+        [
+          496.82935531523265,
+          307.7008932500486
+        ],
+        [
+          495.89466384404113,
+          304.701778718653
+        ],
+        [
+          494.842948302157,
+          301.74167221082155
+        ],
+        [
+          493.6758303587161,
+          298.8251379962366
+        ],
+        [
+          492.39510962499276,
+          295.9566731592624
+        ],
+        [
+          491.00276087952983,
+          293.140700664767
+        ],
+        [
+          489.5009310231735,
+          290.38156253823126
+        ],
+        [
+          487.8919357687074,
+          287.68351317066
+        ],
+        [
+          486.17825607019165,
+          285.05071275861934
+        ],
+        [
+          484.3625342975113,
+          282.4872208895156
+        ],
+        [
+          482.44757016203374,
+          279.9969902820053
+        ],
+        [
+          480.4363163996565,
+          277.58386069118967
+        ],
+        [
+          478.3318742179026,
+          275.25155298799075
+        ],
+        [
+          476.13748851408326,
+          273.00366342183764
+        ],
+        [
+          473.8565428719016,
+          270.8436580755112
+        ],
+        [
+          471.4925543442115,
+          268.7748675206952
+        ],
+        [
+          469.0491680299774,
+          266.80048168247606
+        ],
+        [
+          466.5301514537957,
+          264.9235449207101
+        ],
+        [
+          463.939388756645,
+          263.1469513358409
+        ],
+        [
+          461.2808747068219,
+          261.4734403064062
+        ],
+        [
+          458.55870854029837,
+          259.9055922651149
+        ],
+        [
+          455.77708763999664,
+          258.4458247200067
+        ]
+      ],
+      "sources": [
+        "S19"
+      ],
+      "bmkn_talab_id": "K02-03"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Vektorlar orasidagi skalyar ko‘paytma nol, yo‘naltirilgan determinant musbat. Ikkala radius √5. Nuqta (2,−1) dan (1,2) ga aynan 90° chapga aylanadi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k02_04_sakkiz_ildiz",
+    "nom": "8 ning uchta kub ildizi",
+    "asl_qator": 18,
+    "svg": "boshlangich_matematika/svg/bmkn_k02_04_sakkiz_ildiz.svg",
+    "png": "boshlangich_matematika/png/bmkn_k02_04_sakkiz_ildiz.png",
+    "malumot": {
+      "roots": [
+        [
+          2,
+          0
+        ],
+        [
+          -1,
+          1.7320508075688772
+        ],
+        [
+          -1,
+          -1.7320508075688772
+        ]
+      ],
+      "radius": 2,
+      "arguments": [
+        0,
+        2.0943951023931953,
+        4.1887902047863905
+      ],
+      "origin": [
+        420,
+        330
+      ],
+      "scale": 50,
+      "points": [
+        [
+          520,
+          330
+        ],
+        [
+          370,
+          243.39745962155615
+        ],
+        [
+          370,
+          416.60254037844385
+        ]
+      ],
+      "sources": [
+        "S20"
+      ],
+      "bmkn_talab_id": "K02-04"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Uchala nuqta moduli 2 bo‘lgan aylanada. 2³=8; (−1±i√3)³=8. Nuqtalar haqiqiy o‘qning bir tomonida ketma-ket tizilmaydi; radiuslar orasida 120°.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k02_05_onli_yuz",
+    "nom": "O‘nli kasr ko‘paytmasining yuz modeli",
+    "asl_qator": 5,
+    "svg": "boshlangich_matematika/svg/bmkn_k02_05_onli_yuz.svg",
+    "png": "boshlangich_matematika/png/bmkn_k02_05_onli_yuz.png",
+    "malumot": {
+      "grid": [
+        10,
+        10
+      ],
+      "selected_columns": 3,
+      "selected_rows": 2,
+      "cells": [
+        [
+          0,
+          0,
+          true
+        ],
+        [
+          1,
+          0,
+          true
+        ],
+        [
+          2,
+          0,
+          true
+        ],
+        [
+          3,
+          0,
+          false
+        ],
+        [
+          4,
+          0,
+          false
+        ],
+        [
+          5,
+          0,
+          false
+        ],
+        [
+          6,
+          0,
+          false
+        ],
+        [
+          7,
+          0,
+          false
+        ],
+        [
+          8,
+          0,
+          false
+        ],
+        [
+          9,
+          0,
+          false
+        ],
+        [
+          0,
+          1,
+          true
+        ],
+        [
+          1,
+          1,
+          true
+        ],
+        [
+          2,
+          1,
+          true
+        ],
+        [
+          3,
+          1,
+          false
+        ],
+        [
+          4,
+          1,
+          false
+        ],
+        [
+          5,
+          1,
+          false
+        ],
+        [
+          6,
+          1,
+          false
+        ],
+        [
+          7,
+          1,
+          false
+        ],
+        [
+          8,
+          1,
+          false
+        ],
+        [
+          9,
+          1,
+          false
+        ],
+        [
+          0,
+          2,
+          false
+        ],
+        [
+          1,
+          2,
+          false
+        ],
+        [
+          2,
+          2,
+          false
+        ],
+        [
+          3,
+          2,
+          false
+        ],
+        [
+          4,
+          2,
+          false
+        ],
+        [
+          5,
+          2,
+          false
+        ],
+        [
+          6,
+          2,
+          false
+        ],
+        [
+          7,
+          2,
+          false
+        ],
+        [
+          8,
+          2,
+          false
+        ],
+        [
+          9,
+          2,
+          false
+        ],
+        [
+          0,
+          3,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          3,
+          false
+        ],
+        [
+          3,
+          3,
+          false
+        ],
+        [
+          4,
+          3,
+          false
+        ],
+        [
+          5,
+          3,
+          false
+        ],
+        [
+          6,
+          3,
+          false
+        ],
+        [
+          7,
+          3,
+          false
+        ],
+        [
+          8,
+          3,
+          false
+        ],
+        [
+          9,
+          3,
+          false
+        ],
+        [
+          0,
+          4,
+          false
+        ],
+        [
+          1,
+          4,
+          false
+        ],
+        [
+          2,
+          4,
+          false
+        ],
+        [
+          3,
+          4,
+          false
+        ],
+        [
+          4,
+          4,
+          false
+        ],
+        [
+          5,
+          4,
+          false
+        ],
+        [
+          6,
+          4,
+          false
+        ],
+        [
+          7,
+          4,
+          false
+        ],
+        [
+          8,
+          4,
+          false
+        ],
+        [
+          9,
+          4,
+          false
+        ],
+        [
+          0,
+          5,
+          false
+        ],
+        [
+          1,
+          5,
+          false
+        ],
+        [
+          2,
+          5,
+          false
+        ],
+        [
+          3,
+          5,
+          false
+        ],
+        [
+          4,
+          5,
+          false
+        ],
+        [
+          5,
+          5,
+          false
+        ],
+        [
+          6,
+          5,
+          false
+        ],
+        [
+          7,
+          5,
+          false
+        ],
+        [
+          8,
+          5,
+          false
+        ],
+        [
+          9,
+          5,
+          false
+        ],
+        [
+          0,
+          6,
+          false
+        ],
+        [
+          1,
+          6,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          6,
+          false
+        ],
+        [
+          4,
+          6,
+          false
+        ],
+        [
+          5,
+          6,
+          false
+        ],
+        [
+          6,
+          6,
+          false
+        ],
+        [
+          7,
+          6,
+          false
+        ],
+        [
+          8,
+          6,
+          false
+        ],
+        [
+          9,
+          6,
+          false
+        ],
+        [
+          0,
+          7,
+          false
+        ],
+        [
+          1,
+          7,
+          false
+        ],
+        [
+          2,
+          7,
+          false
+        ],
+        [
+          3,
+          7,
+          false
+        ],
+        [
+          4,
+          7,
+          false
+        ],
+        [
+          5,
+          7,
+          false
+        ],
+        [
+          6,
+          7,
+          false
+        ],
+        [
+          7,
+          7,
+          false
+        ],
+        [
+          8,
+          7,
+          false
+        ],
+        [
+          9,
+          7,
+          false
+        ],
+        [
+          0,
+          8,
+          false
+        ],
+        [
+          1,
+          8,
+          false
+        ],
+        [
+          2,
+          8,
+          false
+        ],
+        [
+          3,
+          8,
+          false
+        ],
+        [
+          4,
+          8,
+          false
+        ],
+        [
+          5,
+          8,
+          false
+        ],
+        [
+          6,
+          8,
+          false
+        ],
+        [
+          7,
+          8,
+          false
+        ],
+        [
+          8,
+          8,
+          false
+        ],
+        [
+          9,
+          8,
+          false
+        ],
+        [
+          0,
+          9,
+          false
+        ],
+        [
+          1,
+          9,
+          false
+        ],
+        [
+          2,
+          9,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          9,
+          false
+        ],
+        [
+          5,
+          9,
+          false
+        ],
+        [
+          6,
+          9,
+          false
+        ],
+        [
+          7,
+          9,
+          false
+        ],
+        [
+          8,
+          9,
+          false
+        ],
+        [
+          9,
+          9,
+          false
+        ]
+      ],
+      "selected": 6,
+      "result": [
+        6,
+        100
+      ],
+      "sources": [
+        "S11"
+      ],
+      "bmkn_talab_id": "K02-05"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Birlik kvadratning eni bo‘yicha 3/10, bo‘yi bo‘yicha 2/10 qismi olindi. Ularning kesishmasi 6/100. Tasmalar birgalikdagi yig‘indi yuzi emas, aynan kesishma ajratilgan.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "iskandar_davlati_yurishlari_1833",
+    "nom": "Iskandar davlati va yurishlari: 1833-yilgi xarita",
+    "asl_qator": 42,
+    "svg": "tarixiy_xarita/svg/iskandar_davlati_yurishlari_1833.svg",
+    "png": "tarixiy_xarita/png/iskandar_davlati_yurishlari_1833.png",
+    "malumot": {
+      "sources": [
+        "S190"
+      ],
+      "asset_type": "historical_source_raster_in_svg",
+      "map_date": 1833,
+      "historical_period": "Iskandar yurishlari, miloddan avvalgi IV asr",
+      "source_image": {
+        "file": "alexander_delamarche_1833_large.jpg",
+        "url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd7:g7420:g7420:ct003741/full/pct:50/0/default.jpg",
+        "catalogue": "https://www.loc.gov/item/2013593011/",
+        "author": "Félix Delamarche",
+        "date": 1833,
+        "language": "Latin",
+        "prime_meridian": "Paris",
+        "rights": "Library of Congress / World Digital Library: no known copyright restrictions; free to use and reuse, source information should be retained.",
+        "bytes": 863384,
+        "sha256": "738084cc0fb939498be0d0047e603681e83ccd7ab73b29a385f90da6175c62ff",
+        "pixels": [
+          2706,
+          1905
+        ]
+      },
+      "georeferenced": false,
+      "boundary_vector_layer": false
+    },
+    "tekshiruvlar": {},
+    "izoh": "Delamarche xaritasining asl rastri SVG ichiga joylandi; chegaralar va yurish yo‘llari taxminan qayta chizilmadi. Lotincha yozuvlar saqlangan. 1833 — xarita nashri, yurish sanasi emas. Paris boshlang‘ich meridiani; bugungi ma’muriy chegara yoki zamonaviy tarixiy GIS qatlami emas.",
+    "holat": "Manbali tarixiy xarita fayli tayyor; rastrli SVG/PNG, saytga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k03_01_kesma_nur_chiziq",
+    "nom": "Kesma, nur va chiziqli burchaklar",
+    "asl_qator": 9,
+    "svg": "BMKN_geometriya/svg/bmkn_k03_01_kesma_nur_chiziq.svg",
+    "png": "BMKN_geometriya/png/bmkn_k03_01_kesma_nur_chiziq.png",
+    "malumot": {
+      "A": [
+        0,
+        0
+      ],
+      "B": [
+        4,
+        0
+      ],
+      "segment_svg": [
+        [
+          120,
+          150
+        ],
+        [
+          320,
+          150
+        ]
+      ],
+      "scale": 50,
+      "angle_vertex": [
+        710,
+        350
+      ],
+      "common_tip": [
+        816.059955598279,
+        223.60266688536865
+      ],
+      "angles": [
+        50,
+        130
+      ],
+      "sources": [
+        "S21",
+        "S25"
+      ],
+      "bmkn_talab_id": "K03-01"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Barcha chap panellarda A va B orasida 4 birlik. Chiziq/rayning davom etishi o‘q bilan ko‘rsatilgan; chiziqli juftlikdagi umumiy nur va qarama-qarshi nurlar alohida.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k03_02_tashqi_balandlik",
+    "nom": "O‘tmas uchburchakning tashqi balandligi",
+    "asl_qator": 9,
+    "svg": "BMKN_geometriya/svg/bmkn_k03_02_tashqi_balandlik.svg",
+    "png": "BMKN_geometriya/png/bmkn_k03_02_tashqi_balandlik.png",
+    "malumot": {
+      "vertices": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          6,
+          0
+        ],
+        "C": [
+          -2,
+          3
+        ],
+        "H": [
+          -2,
+          0
+        ]
+      },
+      "origin": [
+        300,
+        420
+      ],
+      "scale": 60,
+      "area": 9,
+      "sources": [
+        "S21"
+      ],
+      "bmkn_talab_id": "K03-02"
+    },
+    "tekshiruvlar": {},
+    "izoh": "A(0,0),B(6,0),C(−2,3),H(−2,0). CH asos chizig‘iga tik; H ning x koordinatasi 0 dan kichik, shuning uchun AB kesmasida yotmaydi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k03_03_mediana_balandlik",
+    "nom": "To‘g‘ri uchburchakda mediana va balandlik",
+    "asl_qator": 9,
+    "svg": "BMKN_geometriya/svg/bmkn_k03_03_mediana_balandlik.svg",
+    "png": "BMKN_geometriya/png/bmkn_k03_03_mediana_balandlik.png",
+    "malumot": {
+      "vertices": {
+        "A": [
+          0,
+          4
+        ],
+        "B": [
+          0,
+          0
+        ],
+        "C": [
+          6,
+          0
+        ],
+        "M": [
+          3,
+          0
+        ]
+      },
+      "H": [
+        0,
+        0
+      ],
+      "origin": [
+        180,
+        470
+      ],
+      "scale": 70,
+      "median": 5,
+      "altitude": 4,
+      "sources": [
+        "S32"
+      ],
+      "bmkn_talab_id": "K03-03"
+    },
+    "tekshiruvlar": {},
+    "izoh": "M asos o‘rtasi, AM mediana. Balandlik AB tomoni bilan ustma-ust: H=B. Mediana umumiy holda balandlik bo‘lmasligi ayni koordinatalarda ko‘rinadi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k03_04_tbt_oradagi_burchak",
+    "nom": "TBT alomatida moslik va oradagi burchak",
+    "asl_qator": 9,
+    "svg": "BMKN_geometriya/svg/bmkn_k03_04_tbt_oradagi_burchak.svg",
+    "png": "BMKN_geometriya/png/bmkn_k03_04_tbt_oradagi_burchak.png",
+    "malumot": {
+      "vertices": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          3,
+          0
+        ],
+        "C": [
+          0,
+          4
+        ],
+        "D": [
+          10,
+          0
+        ],
+        "E": [
+          10,
+          3
+        ],
+        "F": [
+          6,
+          0
+        ]
+      },
+      "origin": [
+        130,
+        430
+      ],
+      "scale": 50,
+      "correspondence": [
+        [
+          "A",
+          "D"
+        ],
+        [
+          "B",
+          "E"
+        ],
+        [
+          "C",
+          "F"
+        ]
+      ],
+      "single_ticks": [
+        "AB",
+        "DE"
+      ],
+      "double_ticks": [
+        "AC",
+        "DF"
+      ],
+      "sources": [
+        "S27"
+      ],
+      "bmkn_talab_id": "K03-04"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Ikkinchi uchburchak burilgan/akslangan ko‘rinishda; moslik tartibi A↔D,B↔E,C↔F. Bir chiziqchali va ikki chiziqchali tomonlar aralashtirilmagan. Uchinchi tomonlar 5.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k03_05_ttb_ikki_yechim",
+    "nom": "Tomon-tomon-burchak uchun noaniq holat",
+    "asl_qator": 9,
+    "svg": "BMKN_geometriya/svg/bmkn_k03_05_ttb_ikki_yechim.svg",
+    "png": "BMKN_geometriya/png/bmkn_k03_05_ttb_ikki_yechim.png",
+    "malumot": {
+      "vertices": {
+        "A": [
+          0,
+          0
+        ],
+        "C": [
+          6.928203230275509,
+          4
+        ],
+        "B1": [
+          3.9282032302755088,
+          0
+        ],
+        "B2": [
+          9.928203230275509,
+          0
+        ]
+      },
+      "origin": [
+        120,
+        470
+      ],
+      "scale": 60,
+      "angle_A": 30,
+      "AC": 8,
+      "CB": 5,
+      "sources": [
+        "S27"
+      ],
+      "bmkn_talab_id": "K03-05"
+    },
+    "tekshiruvlar": {},
+    "izoh": "B₁ va B₂ bir nurda, ikkalasi ham A dan o‘ngda. AC=8 va CB=5 saqlanadi, lekin AB uzunliklari turlicha; shuning uchun TTB umumiy kongruentlik alomati bo‘la olmaydi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k03_06_aylana_doira_urinma",
+    "nom": "Radiusga tik urinma va doira farqi",
+    "asl_qator": 9,
+    "svg": "BMKN_geometriya/svg/bmkn_k03_06_aylana_doira_urinma.svg",
+    "png": "BMKN_geometriya/png/bmkn_k03_06_aylana_doira_urinma.png",
+    "malumot": {
+      "O": [
+        0,
+        0
+      ],
+      "T": [
+        4,
+        0
+      ],
+      "radius": 4,
+      "diameter": 8,
+      "scale": 36,
+      "centres": [
+        [
+          260,
+          315
+        ],
+        [
+          720,
+          315
+        ]
+      ],
+      "tangent_svg": [
+        [
+          864,
+          145
+        ],
+        [
+          864,
+          510
+        ]
+      ],
+      "sources": [
+        "S31"
+      ],
+      "bmkn_talab_id": "K03-06"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Aylana |X−O|=4, yopiq doira |X−O|≤4. Markaz chegara emas. T(4,0) da x=4 urinma OT radiusiga tik; ichki soha faqat ikkinchi panelda bo‘yalgan.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k03_07_diagonallar",
+    "nom": "Parallelogramm va rombdagi farqli xossalar",
+    "asl_qator": 9,
+    "svg": "BMKN_geometriya/svg/bmkn_k03_07_diagonallar.svg",
+    "png": "BMKN_geometriya/png/bmkn_k03_07_diagonallar.png",
+    "malumot": {
+      "parallelogram": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          4,
+          0
+        ],
+        "C": [
+          5,
+          2
+        ],
+        "D": [
+          1,
+          2
+        ],
+        "O": [
+          2.5,
+          1
+        ]
+      },
+      "par_projection": {
+        "origin": [
+          110,
+          420
+        ],
+        "scale": 60
+      },
+      "rhombus": {
+        "A": [
+          -3,
+          0
+        ],
+        "B": [
+          0,
+          4
+        ],
+        "C": [
+          3,
+          0
+        ],
+        "D": [
+          0,
+          -4
+        ],
+        "O": [
+          0,
+          0
+        ]
+      },
+      "rh_projection": {
+        "origin": [
+          730,
+          320
+        ],
+        "scale": 40
+      },
+      "diagonal_squares": [
+        29,
+        13
+      ],
+      "rh_sides": 5,
+      "rh_area": 24,
+      "sources": [
+        "S30",
+        "S33"
+      ],
+      "bmkn_talab_id": "K03-07"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Birinchi panelda perpendikulyarlik belgisi yo‘q: diagonallar skalyar ko‘paytmasi −11. Rombda diagonallar 6 va 8, tomonlar 5, yuz 24; markazdagi tiklik alohida belgilangan.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k03_08_teng_yonli_trapetsiya",
+    "nom": "14 va 8 asosli teng yonli trapetsiya",
+    "asl_qator": 9,
+    "svg": "BMKN_geometriya/svg/bmkn_k03_08_teng_yonli_trapetsiya.svg",
+    "png": "BMKN_geometriya/png/bmkn_k03_08_teng_yonli_trapetsiya.png",
+    "malumot": {
+      "vertices": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          14,
+          0
+        ],
+        "C": [
+          11,
+          4
+        ],
+        "D": [
+          3,
+          4
+        ],
+        "H1": [
+          3,
+          0
+        ],
+        "H2": [
+          11,
+          0
+        ],
+        "M": [
+          1.5,
+          2
+        ],
+        "N": [
+          12.5,
+          2
+        ]
+      },
+      "origin": [
+        130,
+        440
+      ],
+      "scale": 40,
+      "bases": [
+        14,
+        8
+      ],
+      "legs": [
+        5,
+        5
+      ],
+      "height": 4,
+      "midline": 11,
+      "area": 44,
+      "sources": [
+        "S34",
+        "S35"
+      ],
+      "bmkn_talab_id": "K03-08"
+    },
+    "tekshiruvlar": {},
+    "izoh": "D va C dan asosga balandliklar tushirilgan. M va N yon tomonlar o‘rtasi. AD va BC yo‘nalishlari turli, shuning uchun parallelogramm emas.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k03_09_togri_trapetsiya",
+    "nom": "Yuz va perimetr soni bir xil bo‘lgan trapetsiya",
+    "asl_qator": 9,
+    "svg": "BMKN_geometriya/svg/bmkn_k03_09_togri_trapetsiya.svg",
+    "png": "BMKN_geometriya/png/bmkn_k03_09_togri_trapetsiya.png",
+    "malumot": {
+      "vertices": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          10,
+          0
+        ],
+        "C": [
+          6,
+          3
+        ],
+        "D": [
+          0,
+          3
+        ]
+      },
+      "origin": [
+        180,
+        440
+      ],
+      "scale": 50,
+      "bases": [
+        10,
+        6
+      ],
+      "height": 3,
+      "inclined_side": 5,
+      "area": 24,
+      "perimeter": 24,
+      "sources": [
+        "S34",
+        "S35"
+      ],
+      "bmkn_talab_id": "K03-09"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Ikki to‘g‘ri burchak A va D da. Son qiymatlar 24 bo‘lsa ham yuza kvadrat birlikda, perimetr uzunlik birligida. Birliklar tenglashtirilmaydi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k04_01_teng_kasrlar",
+    "nom": "1/2 = 2/4 = 3/6 va kitob modeli",
+    "asl_qator": 2,
+    "svg": "BMKN_geometriya/svg/bmkn_k04_01_teng_kasrlar.svg",
+    "png": "BMKN_geometriya/png/bmkn_k04_01_teng_kasrlar.png",
+    "malumot": {
+      "whole_width": 480,
+      "origin_x": 240,
+      "rows": [
+        [
+          2,
+          1,
+          110
+        ],
+        [
+          4,
+          2,
+          220
+        ],
+        [
+          6,
+          3,
+          330
+        ]
+      ],
+      "book": {
+        "parts": 5,
+        "part_pages": 30,
+        "known_parts": 2,
+        "known_pages": 60,
+        "total_pages": 150,
+        "origin": [
+          200,
+          445
+        ],
+        "cell_size": [
+          120,
+          55
+        ]
+      },
+      "sources": [
+        "S12"
+      ],
+      "bmkn_talab_id": "K04-01"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Uchta yuqori tasmaning butuni aynan teng. Kitob uchun boshqa butun tanlangan: 2/5 qism 60 bet bo‘lsa 1/5 qism 30 bet va butun 150 bet.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k04_02_son_oqi_kasrlar",
+    "nom": "Teng masofa, kasrlar tartibi va siljish",
+    "asl_qator": 1,
+    "svg": "BMKN_geometriya/svg/bmkn_k04_02_son_oqi_kasrlar.svg",
+    "png": "BMKN_geometriya/png/bmkn_k04_02_son_oqi_kasrlar.png",
+    "malumot": {
+      "integer_origin_x": 450,
+      "integer_scale": 70,
+      "integer_ticks": [
+        [
+          0,
+          -4,
+          170,
+          155
+        ],
+        [
+          0,
+          -3,
+          240,
+          155
+        ],
+        [
+          0,
+          -2,
+          310,
+          155
+        ],
+        [
+          0,
+          -1,
+          380,
+          155
+        ],
+        [
+          0,
+          0,
+          450,
+          155
+        ],
+        [
+          0,
+          1,
+          520,
+          155
+        ],
+        [
+          0,
+          2,
+          590,
+          155
+        ],
+        [
+          0,
+          3,
+          660,
+          155
+        ],
+        [
+          0,
+          4,
+          730,
+          155
+        ],
+        [
+          2,
+          -4,
+          170,
+          495
+        ],
+        [
+          2,
+          -3,
+          240,
+          495
+        ],
+        [
+          2,
+          -2,
+          310,
+          495
+        ],
+        [
+          2,
+          -1,
+          380,
+          495
+        ],
+        [
+          2,
+          0,
+          450,
+          495
+        ],
+        [
+          2,
+          1,
+          520,
+          495
+        ],
+        [
+          2,
+          2,
+          590,
+          495
+        ],
+        [
+          2,
+          3,
+          660,
+          495
+        ],
+        [
+          2,
+          4,
+          730,
+          495
+        ]
+      ],
+      "integer_points": [
+        -3,
+        0,
+        3
+      ],
+      "fraction_origin_x": 100,
+      "fraction_scale": 840,
+      "fraction_values": [
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "fraction_twelfths": [
+        4,
+        5,
+        6
+      ],
+      "shift": [
+        -3,
+        2,
+        5
+      ],
+      "sources": [
+        "S12"
+      ],
+      "bmkn_talab_id": "K04-02"
+    },
+    "tekshiruvlar": {},
+    "izoh": "−3 va3 noldan teng 3 birlik uzoqda. Alohida kasr paneli o‘qilishi uchun 12 marta kattalashtirilgan; undagi o‘n ikkidan bir bo‘lak 70. Bu kattalashtirish umumiy masshtab sifatida yashirilmagan. 1/3<5/12<1/2; −3 dan2 ga ko‘chish +5.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k04_03_prizma_yoyilma_h10",
+    "nom": "Uchburchakli prizmaning aniq yoyilmasi",
+    "asl_qator": 14,
+    "svg": "BMKN_geometriya/svg/bmkn_k04_03_prizma_yoyilma_h10.svg",
+    "png": "BMKN_geometriya/png/bmkn_k04_03_prizma_yoyilma_h10.png",
+    "malumot": {
+      "base_sides": [
+        3,
+        4,
+        5
+      ],
+      "height": 10,
+      "scale": 25,
+      "rectangles": [
+        [
+          120,
+          180,
+          75,
+          250
+        ],
+        [
+          195,
+          180,
+          125,
+          250
+        ],
+        [
+          320,
+          180,
+          100,
+          250
+        ]
+      ],
+      "triangles": [
+        [
+          [
+            120,
+            180
+          ],
+          [
+            195,
+            180
+          ],
+          [
+            120,
+            80
+          ]
+        ],
+        [
+          [
+            120,
+            430
+          ],
+          [
+            195,
+            430
+          ],
+          [
+            120,
+            530
+          ]
+        ]
+      ],
+      "B": 6,
+      "P": 12,
+      "lateral_area": 120,
+      "total_area": 132,
+      "volume": 60,
+      "sources": [
+        "S38",
+        "S39"
+      ],
+      "bmkn_talab_id": "K04-03"
+    },
+    "tekshiruvlar": {},
+    "izoh": "3–4–5 asosli to‘g‘ri prizmaning balandligi aynan10. Ikki asos birinchi to‘rtburchakning qarama-qarshi 3 sm chetlariga to‘g‘ri tutashgan. Yon yoqlar tartibi asos uchburchagi chegarasi bo‘ylab 3,5,4; sm² va sm³ alohida saqlangan.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k04_04_piramida_h_apofema",
+    "nom": "Asos qirrasi6 bo‘lgan kvadrat piramida",
+    "asl_qator": 14,
+    "svg": "BMKN_geometriya/svg/bmkn_k04_04_piramida_h_apofema.svg",
+    "png": "BMKN_geometriya/png/bmkn_k04_04_piramida_h_apofema.png",
+    "malumot": {
+      "vertices": {
+        "A": [
+          -3,
+          -3,
+          0
+        ],
+        "B": [
+          3,
+          -3,
+          0
+        ],
+        "C": [
+          3,
+          3,
+          0
+        ],
+        "D": [
+          -3,
+          3,
+          0
+        ],
+        "T": [
+          0,
+          0,
+          4
+        ],
+        "O": [
+          0,
+          0,
+          0
+        ],
+        "M": [
+          0,
+          -3,
+          0
+        ]
+      },
+      "base_edge": 6,
+      "projection": {
+        "origin": [
+          360,
+          340
+        ],
+        "x": [
+          44,
+          16
+        ],
+        "y": [
+          -26,
+          22
+        ],
+        "z": [
+          0,
+          -60
+        ]
+      },
+      "projected": {
+        "A": [
+          306,
+          226
+        ],
+        "B": [
+          570,
+          322
+        ],
+        "C": [
+          414,
+          454
+        ],
+        "D": [
+          150,
+          358
+        ],
+        "T": [
+          360,
+          100
+        ],
+        "O": [
+          360,
+          340
+        ],
+        "M": [
+          438,
+          274
+        ]
+      },
+      "edges": [
+        "AB",
+        "BC",
+        "CD",
+        "DA",
+        "TA",
+        "TB",
+        "TC",
+        "TD"
+      ],
+      "hidden_edges": [
+        "AB",
+        "DA",
+        "TA"
+      ],
+      "visible_faces": [
+        "TBC",
+        "TCD"
+      ],
+      "view_vector": [
+        1560,
+        2640,
+        1384
+      ],
+      "altitude": 4,
+      "apothem": 5,
+      "lateral_edge_squared": 34,
+      "sources": [
+        "S40",
+        "S41"
+      ],
+      "bmkn_talab_id": "K04-04"
+    },
+    "tekshiruvlar": {},
+    "izoh": "O asos markazi, M AB o‘rtasi. 3D koordinatalardan TO=4,TM=5,TA²=34. TO va OM asos tekisligi/AB ga haqiqatan tik. Yashirin qirralar va ichki yordamchi kesmalar uzlukli; ekrandagi uzunliklar haqiqiy qirralar emas.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k04_05_silindr_r3_h5",
+    "nom": "r3 h5 silindr yoyilmasi",
+    "asl_qator": 14,
+    "svg": "BMKN_geometriya/svg/bmkn_k04_05_silindr_r3_h5.svg",
+    "png": "BMKN_geometriya/png/bmkn_k04_05_silindr_r3_h5.png",
+    "malumot": {
+      "r": 3,
+      "h": 5,
+      "scale": 18,
+      "rectangle": [
+        120,
+        260,
+        339.29200658769764,
+        90
+      ],
+      "centres": [
+        [
+          289.6460032938488,
+          206
+        ],
+        [
+          289.6460032938488,
+          404
+        ]
+      ],
+      "lateral_area_pi": 30,
+      "total_area_pi": 48,
+      "volume_pi": 45,
+      "sources": [
+        "S38"
+      ],
+      "bmkn_talab_id": "K04-05"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Tasma uzunligi6π va balandligi5 haqiqiy nisbatda chizilgan. Har bir doira radiusi3. Asos doiralari tasmaning qarama-qarshi asos qirralariga sxematik tutashgan.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k04_05_konus_r3_l5",
+    "nom": "216° sektorli konus yoyilmasi",
+    "asl_qator": 14,
+    "svg": "BMKN_geometriya/svg/bmkn_k04_05_konus_r3_l5.svg",
+    "png": "BMKN_geometriya/png/bmkn_k04_05_konus_r3_l5.png",
+    "malumot": {
+      "r": 3,
+      "h": 4,
+      "l": 5,
+      "sector_angle": 216,
+      "scale": 28,
+      "sector_centre": [
+        285,
+        305
+      ],
+      "sector_start": -108,
+      "sector_end": 108,
+      "sector_radius": 140,
+      "base_centre": [
+        700,
+        315
+      ],
+      "arc_pi": 6,
+      "total_area_pi": 24,
+      "volume_pi": 12,
+      "sources": [
+        "S42"
+      ],
+      "bmkn_talab_id": "K04-05"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Yasovchiℓ5 sektor radiusi bo‘ladi. Sektor burchagi216°, yoyi6π asos aylanasiga teng; alohida doiraning radiusi3. h4 faqat 3D konus balandligi, yoyilmadagi sektor radiusi emas.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k04_06_sfera_shar_yarimshar",
+    "nom": "Sirt, ichki soha va kesimdoirasi",
+    "asl_qator": 14,
+    "svg": "BMKN_geometriya/svg/bmkn_k04_06_sfera_shar_yarimshar.svg",
+    "png": "BMKN_geometriya/png/bmkn_k04_06_sfera_shar_yarimshar.png",
+    "malumot": {
+      "R": 3,
+      "display_radius": 95,
+      "centres": [
+        [
+          180,
+          275
+        ],
+        [
+          500,
+          275
+        ],
+        [
+          820,
+          270
+        ]
+      ],
+      "hemisphere": {
+        "curved_area_pi": 18,
+        "cut_area_pi": 9,
+        "total_area_pi": 27,
+        "cut_projected_radii": [
+          95,
+          25
+        ]
+      },
+      "sources": [
+        "S38"
+      ],
+      "bmkn_talab_id": "K04-06"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Birinchi panel sirtni, ikkinchisi ichki sohani ko‘rsatish uchun sharning markaziy kesimini beradi. Uchinchisi pastki yarim shar: ko‘rinadigan kesimdoirasi sariq, egri sirt yashil. Ellips perspektiv ifoda; uning kichik yarim o‘qidan radius o‘lchanmaydi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k04_07_kvadrat_kub_birlik",
+    "nom": "cm, cm² va cm³ ga o‘tishda daraja",
+    "asl_qator": 9,
+    "svg": "BMKN_geometriya/svg/bmkn_k04_07_kvadrat_kub_birlik.svg",
+    "png": "BMKN_geometriya/png/bmkn_k04_07_kvadrat_kub_birlik.png",
+    "malumot": {
+      "length_cm": 100,
+      "area_cm2": 10000,
+      "volume_cm3": 1000000,
+      "square": [
+        70,
+        150,
+        250,
+        250
+      ],
+      "square_subdivisions": 100,
+      "inset": {
+        "origin": [
+          375,
+          160
+        ],
+        "cell": 17,
+        "rows": 10,
+        "columns": 10,
+        "physical_cell_cm": 1
+      },
+      "cube_vertices": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          1
+        ]
+      ],
+      "cube_projection": {
+        "origin": [
+          710,
+          370
+        ],
+        "x": [
+          130,
+          35
+        ],
+        "y": [
+          -65,
+          50
+        ],
+        "z": [
+          0,
+          -150
+        ]
+      },
+      "cube_groups_per_edge": 10,
+      "group_edge_cm": 10,
+      "groups": 1000,
+      "group_volume_cm3": 1000,
+      "sources": [
+        "S43"
+      ],
+      "bmkn_talab_id": "K04-07"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Kvadratning kichik katagi1cm²; har yirik10×10katak guruh10cm×10cm. Kattalashtirilgan bo‘lak shu guruhning100katagini ko‘rsatadi. Kubning har qirrasida10yirikguruh, har guruh qirrasi10cm va hajmi1000cm³. Bu 10000 yoki1000000ta yozuv joylashtirish emas; darajali birliklar har tenglikda saqlangan.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k04_08_foiz_asosi",
+    "nom": "Ketma-ket foizlarda o‘zgaruvchi butun",
+    "asl_qator": 12,
+    "svg": "BMKN_geometriya/svg/bmkn_k04_08_foiz_asosi.svg",
+    "png": "BMKN_geometriya/png/bmkn_k04_08_foiz_asosi.png",
+    "malumot": {
+      "values": [
+        100,
+        120,
+        96
+      ],
+      "bars": [
+        [
+          210,
+          190,
+          130,
+          300
+        ],
+        [
+          460,
+          130,
+          130,
+          360
+        ],
+        [
+          710,
+          202,
+          130,
+          288
+        ]
+      ],
+      "baseline": 490,
+      "scale": 3,
+      "increase_base": 100,
+      "increase": 20,
+      "decrease_base": 120,
+      "decrease": 24,
+      "net_change": -4,
+      "net_percent": -4,
+      "sources": [
+        "S44",
+        "S45"
+      ],
+      "bmkn_talab_id": "K04-08"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Har bir ustun bir xil nol asos va masshtabdan boshlanadi. Ikkinchi20%ning asosi120, shuning uchun 24 ayiriladi. +20% va−20% ayni boshlang‘ich butunga tegishli deb olib100natija chiqarilmaydi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k05_01_kochish_yol",
+    "nom": "Ko‘chish +7, yo‘l 13",
+    "asl_qator": 1,
+    "svg": "BMKN_amaliy18/svg/bmkn_k05_01_kochish_yol.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k05_01_kochish_yol.png",
+    "malumot": {
+      "coordinates": [
+        -4,
+        6,
+        3
+      ],
+      "scale": 50,
+      "axis_origin": [
+        350,
+        300
+      ],
+      "displacement": 7,
+      "path_length": 13,
+      "sources": [
+        "S46"
+      ],
+      "bmkn_talab_id": "K05-01"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Uch nuqta bir xil masshtabli o‘qda. Birinchi yo‘l o‘ngga, ikkinchisi chapga; yashil o‘q boshlanishdan yakungacha bo‘lgan ko‘chish.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k05_02_kitob_180_ulush",
+    "nom": "Qolgan qismning uchdan biri",
+    "asl_qator": 3,
+    "svg": "BMKN_amaliy18/svg/bmkn_k05_02_kitob_180_ulush.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k05_02_kitob_180_ulush.png",
+    "malumot": {
+      "book_pages": 180,
+      "first_fraction": [
+        2,
+        5
+      ],
+      "first_read": 72,
+      "remaining_after_first": 108,
+      "second_fraction_of_remaining": [
+        1,
+        3
+      ],
+      "second_read": 36,
+      "read_total": 108,
+      "unread": 72,
+      "bar_origin_x": 140,
+      "scale": 4,
+      "part_pages": 36,
+      "part_width": 144,
+      "sources": [
+        "S47",
+        "S48"
+      ],
+      "bmkn_talab_id": "K05-02"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Ko‘k — birinchi 72 bet, sariq — keyingi 36 bet. Ikkinchi 1/3 butun kitobdan emas, qolgan 108 betdan olingan. Yakuniy o‘qilgan ulush 3/5.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k05_03_haqiqiy_tartib",
+    "nom": "Ildizli sonlarni aniq taqqoslash",
+    "asl_qator": 1,
+    "svg": "BMKN_amaliy18/svg/bmkn_k05_03_haqiqiy_tartib.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k05_03_haqiqiy_tartib.png",
+    "malumot": {
+      "values": [
+        1.7320508075688772,
+        1.75,
+        1.8027756377319946
+      ],
+      "squares": [
+        3,
+        3.0625,
+        3.25
+      ],
+      "squares_numerators_over_16": [
+        48,
+        49,
+        52
+      ],
+      "axis_x0": 140,
+      "axis_value0": 1.7,
+      "scale": 5000,
+      "sources": [
+        "S17",
+        "S18"
+      ],
+      "bmkn_talab_id": "K05-03"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Bir o‘qdagi masshtab o‘zgarmaydi; butun rasm yaqin oraliqni kattalashtiradi. Nuqta koordinatalari formulalardan hisoblangan.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k05_04_qoshma_qaramaqarshi",
+    "nom": "−3+4i ning qo‘shmasi va qarama-qarshisi",
+    "asl_qator": 18,
+    "svg": "BMKN_amaliy18/svg/bmkn_k05_04_qoshma_qaramaqarshi.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k05_04_qoshma_qaramaqarshi.png",
+    "malumot": {
+      "vertices": {
+        "z": [
+          -3,
+          4
+        ],
+        "conj": [
+          -3,
+          -4
+        ],
+        "opposite": [
+          3,
+          -4
+        ]
+      },
+      "origin": [
+        300,
+        310
+      ],
+      "scale": 40,
+      "modulus": 5,
+      "sources": [
+        "S19"
+      ],
+      "bmkn_talab_id": "K05-04"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Qo‘shma nuqta haqiqiy o‘qdan akslanadi; qarama-qarshi nuqta koordinata boshidan akslanadi. Ular o‘zaro adashtirilmaydi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k05_05_i_burilish_3_2",
+    "nom": "3+2i ni i ga ko‘paytirish",
+    "asl_qator": 18,
+    "svg": "BMKN_amaliy18/svg/bmkn_k05_05_i_burilish_3_2.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k05_05_i_burilish_3_2.png",
+    "malumot": {
+      "vertices": {
+        "z": [
+          3,
+          2
+        ],
+        "iz": [
+          -2,
+          3
+        ]
+      },
+      "origin": [
+        300,
+        320
+      ],
+      "scale": 48,
+      "angles_degrees": [
+        33.690067525979785,
+        123.69006752597979
+      ],
+      "radius": 3.605551275463989,
+      "rotation_degrees": 90,
+      "sources": [
+        "S19",
+        "S20"
+      ],
+      "bmkn_talab_id": "K05-05"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Yangi nuqta (−2,3); radius √13 saqlanadi. Yoyning o‘qi soat miliga qarama-qarshi aylanishni ko‘rsatadi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k05_06_manfiy8_ildiz",
+    "nom": "−8 ning uchta kub ildizi",
+    "asl_qator": 18,
+    "svg": "BMKN_amaliy18/svg/bmkn_k05_06_manfiy8_ildiz.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k05_06_manfiy8_ildiz.png",
+    "malumot": {
+      "vertices": {
+        "w0": [
+          1,
+          1.7320508075688772
+        ],
+        "w1": [
+          -2,
+          0
+        ],
+        "w2": [
+          1,
+          -1.7320508075688772
+        ]
+      },
+      "origin": [
+        290,
+        315
+      ],
+      "scale": 82,
+      "radius": 2,
+      "angles_radians": [
+        1.0471975511965976,
+        3.141592653589793,
+        5.235987755982989
+      ],
+      "power": 3,
+      "target": -8,
+      "sources": [
+        "S20"
+      ],
+      "bmkn_talab_id": "K05-06"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Har bir nomzodning kubi −8. Uch nuqta teng masshtabli kompleks tekislikdagi radiusi 2 aylanada 120° qadam bilan joylashgan.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k06_01_kvadrat_qarshi_misol",
+    "nom": "Burilgan kvadrat va teng diagonalli trapetsiya",
+    "asl_qator": 9,
+    "svg": "BMKN_amaliy18/svg/bmkn_k06_01_kvadrat_qarshi_misol.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k06_01_kvadrat_qarshi_misol.png",
+    "malumot": {
+      "square": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          2,
+          1
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "D": [
+          -1,
+          2
+        ]
+      },
+      "square_origin": [
+        190,
+        400
+      ],
+      "square_scale": 64,
+      "trapezoid": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          6,
+          0
+        ],
+        "C": [
+          5,
+          2
+        ],
+        "D": [
+          1,
+          2
+        ]
+      },
+      "trapezoid_origin": [
+        540,
+        400
+      ],
+      "trapezoid_scale": 58,
+      "square_side_squared": 5,
+      "trapezoid_diagonal_squared": 29,
+      "sources": [
+        "S23",
+        "S35"
+      ],
+      "bmkn_talab_id": "K06-01"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Panellar mustaqil; masshtablari ko‘rinishga mos tanlangan. Trapetsiyaning A burchagiga tiklik belgisi qo‘yilmagan. Chapdagi qiya kvadratning tikliklari skalyar ko‘paytmadan tekshirilgan.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k06_02_kuboid_qiya_3_4_5",
+    "nom": "3×4×5 kuboid: aniq qiya proyeksiya",
+    "asl_qator": 14,
+    "svg": "BMKN_amaliy18/svg/bmkn_k06_02_kuboid_qiya_3_4_5.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k06_02_kuboid_qiya_3_4_5.png",
+    "malumot": {
+      "vertices": {
+        "000": [
+          0,
+          0,
+          0
+        ],
+        "001": [
+          0,
+          0,
+          5
+        ],
+        "010": [
+          0,
+          4,
+          0
+        ],
+        "011": [
+          0,
+          4,
+          5
+        ],
+        "100": [
+          3,
+          0,
+          0
+        ],
+        "101": [
+          3,
+          0,
+          5
+        ],
+        "110": [
+          3,
+          4,
+          0
+        ],
+        "111": [
+          3,
+          4,
+          5
+        ]
+      },
+      "edges": [
+        [
+          "000",
+          "001"
+        ],
+        [
+          "000",
+          "010"
+        ],
+        [
+          "000",
+          "100"
+        ],
+        [
+          "001",
+          "011"
+        ],
+        [
+          "001",
+          "101"
+        ],
+        [
+          "010",
+          "011"
+        ],
+        [
+          "010",
+          "110"
+        ],
+        [
+          "011",
+          "111"
+        ],
+        [
+          "100",
+          "101"
+        ],
+        [
+          "100",
+          "110"
+        ],
+        [
+          "101",
+          "111"
+        ],
+        [
+          "110",
+          "111"
+        ]
+      ],
+      "hidden_edges": [
+        [
+          "000",
+          "010"
+        ],
+        [
+          "010",
+          "011"
+        ],
+        [
+          "010",
+          "110"
+        ]
+      ],
+      "visible_faces": [
+        "x=3",
+        "y=0",
+        "z=5"
+      ],
+      "view_kernel": [
+        0.5,
+        -1,
+        0.3333333333333333
+      ],
+      "projection": [
+        "x+y/2",
+        "z+y/3"
+      ],
+      "origin": [
+        210,
+        490
+      ],
+      "screen_scales": [
+        75,
+        60
+      ],
+      "dimensions": [
+        3,
+        4,
+        5
+      ],
+      "sources": [
+        "S37",
+        "S39"
+      ],
+      "bmkn_talab_id": "K06-02"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Faqat bitta koordinatasi farqlanuvchi qo‘shni uchlar ulangan. Nuqta yozuvi 0/1 indekslari: masalan, 010=(0,4,0). Proyeksiya Y yuqoriga, ekran y pastga yo‘nalgan. Yashirin uch 010 ga tutash uch qirra uzlukli.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k06_03_orta_perpendikulyar",
+    "nom": "5 radius bilan o‘rta perpendikulyar",
+    "asl_qator": 9,
+    "svg": "BMKN_amaliy18/svg/bmkn_k06_03_orta_perpendikulyar.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k06_03_orta_perpendikulyar.png",
+    "malumot": {
+      "vertices": {
+        "A": [
+          -4,
+          0
+        ],
+        "B": [
+          4,
+          0
+        ],
+        "P": [
+          0,
+          3
+        ],
+        "Q": [
+          0,
+          -3
+        ],
+        "M": [
+          0,
+          0
+        ]
+      },
+      "origin": [
+        340,
+        315
+      ],
+      "scale": 25,
+      "radius": 5,
+      "boundary_centers": [
+        [
+          730,
+          215
+        ],
+        [
+          850,
+          215
+        ]
+      ],
+      "boundary_scale": 15,
+      "boundary_radii": [
+        4,
+        3
+      ],
+      "sources": [
+        "S25"
+      ],
+      "bmkn_talab_id": "K06-03"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Asosiy panelda radiusi 5 bo‘lgan ikki yordamchi aylana ko‘rinadi. Kichik panellarning masshtabi 15; AB=8 saqlanadi. Radius 4 da P,Q alohida ikkita nuqta bermaydi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k06_04_bissektrisa_yasash",
+    "nom": "90° burchakni ikkiga bo‘lish",
+    "asl_qator": 9,
+    "svg": "BMKN_amaliy18/svg/bmkn_k06_04_bissektrisa_yasash.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k06_04_bissektrisa_yasash.png",
+    "malumot": {
+      "vertices": {
+        "O": [
+          0,
+          0
+        ],
+        "A": [
+          4,
+          0
+        ],
+        "B": [
+          0,
+          4
+        ],
+        "P": [
+          4,
+          4
+        ]
+      },
+      "origin": [
+        290,
+        385
+      ],
+      "scale": 38,
+      "radius": 4,
+      "angles": [
+        45,
+        45
+      ],
+      "ray_tip_model": [
+        5,
+        5
+      ],
+      "sources": [
+        "S25",
+        "S28"
+      ],
+      "bmkn_talab_id": "K06-04"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Boshlang‘ich O markazli yoy radiusi 4. Keyin A va B markazli radiusi 4 aylanalar. O — avvalgi uch, yangi P=(4,4) orqali ichki nur o‘tkaziladi. OA=OB, AP=BP va OP umumiyligi TTT orqali tenglik beradi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k06_05_uch_tomon_yasash",
+    "nom": "3–4–5 va 2–3–5 yasash farqi",
+    "asl_qator": 9,
+    "svg": "BMKN_amaliy18/svg/bmkn_k06_05_uch_tomon_yasash.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k06_05_uch_tomon_yasash.png",
+    "malumot": {
+      "vertices": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          5,
+          0
+        ],
+        "C": [
+          1.8,
+          2.4
+        ],
+        "Cprime": [
+          1.8,
+          -2.4
+        ]
+      },
+      "origin": [
+        255,
+        320
+      ],
+      "scale": 38,
+      "radii": [
+        3,
+        4
+      ],
+      "base": 5,
+      "degenerate_radii": [
+        2,
+        3
+      ],
+      "degenerate_origin": [
+        715,
+        405
+      ],
+      "degenerate_scale": 30,
+      "sources": [
+        "S22",
+        "S25",
+        "S28"
+      ],
+      "bmkn_talab_id": "K06-05"
+    },
+    "tekshiruvlar": {},
+    "izoh": "A va B markazli aylanalar ikki nuqtada kesishadi; shakllar AB dan akslangan va teng. 2,3,5 uchun faqat tegishish bor, yuza nol. Kichik paneldagi aylana yoylari asosiy paneldan mustaqil.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k06_06_ustmaust_yuza",
+    "nom": "Kesishma 3, birlashma 19",
+    "asl_qator": 9,
+    "svg": "BMKN_amaliy18/svg/bmkn_k06_06_ustmaust_yuza.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k06_06_ustmaust_yuza.png",
+    "malumot": {
+      "rect_A": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "rect_B": [
+        [
+          3,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "intersection": [
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "origin": [
+        145,
+        475
+      ],
+      "scale": 65,
+      "areas": {
+        "A": 12,
+        "B": 10,
+        "intersection": 3,
+        "union": 19
+      },
+      "sources": [
+        "S24"
+      ],
+      "bmkn_talab_id": "K06-06"
+    },
+    "tekshiruvlar": {},
+    "izoh": "Shaffof ko‘k va sariq sohalarning konturlari alohida. Kesishma [3,4]×[0,3], eni 1 va bo‘yi 3. Bir xil koordinata masshtabi saqlanadi.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
+  },
+  {
+    "kalit": "bmkn_k06_07_besh_teng_qism",
+    "nom": "Parallel chiziqlar bilan besh teng bo‘lak",
+    "asl_qator": 9,
+    "svg": "BMKN_amaliy18/svg/bmkn_k06_07_besh_teng_qism.svg",
+    "png": "BMKN_amaliy18/png/bmkn_k06_07_besh_teng_qism.png",
+    "malumot": {
+      "vertices": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          10,
+          0
+        ],
+        "A1": [
+          1,
+          1
+        ],
+        "P1": [
+          2,
+          0
+        ],
+        "A2": [
+          2,
+          2
+        ],
+        "P2": [
+          4,
+          0
+        ],
+        "A3": [
+          3,
+          3
+        ],
+        "P3": [
+          6,
+          0
+        ],
+        "A4": [
+          4,
+          4
+        ],
+        "P4": [
+          8,
+          0
+        ],
+        "A5": [
+          5,
+          5
+        ],
+        "P5": [
+          10,
+          0
+        ]
+      },
+      "origin": [
+        140,
+        475
+      ],
+      "scale": 60,
+      "parallel_direction": [
+        5,
+        -5
+      ],
+      "segments": 5,
+      "inner_points": 4,
+      "length_each": 2,
+      "sources": [
+        "S25",
+        "S19"
+      ],
+      "bmkn_talab_id": "K06-07"
+    },
+    "tekshiruvlar": {},
+    "izoh": "A₁…A₅ yordamchi nurda teng oraliqda. Faqat P₁…P₄ ichki nuqtalar, P₅=B. Barcha yordamchi kesmalar (1,−1) yo‘nalishga parallel. Rasm tekis, perspektiva yo‘q.",
+    "holat": "Aniq misolning SVG/PNG aktivlari tayyor; sayt dvigateliga ulanmagan"
   }
 ]
