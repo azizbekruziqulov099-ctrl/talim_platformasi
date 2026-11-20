@@ -285,7 +285,7 @@ class QuickStart(BaseModel):
     name: Optional[str] = Field(default=None, max_length=80)
     age_group: Optional[str] = Field(default=None, max_length=20)
 
-QUICK_ROLE_NAMES = {'oquvchi': 'O‘quvchi', 'talaba': 'Talaba', 'oqituvchi': 'O‘qituvchi', 'ota-ona': 'Ota-ona', 'bogcha': 'Bog‘cha bolasi'}
+QUICK_ROLE_NAMES = {'oquvchi': 'O‘quvchi', 'talaba': 'Talaba', 'oqituvchi': 'O‘qituvchi', 'ota-ona': 'Ota-ona', 'bogcha': 'Bog‘cha bolasi', 'mehmon': 'Mehmon'}
 
 
 def preschool_group(value):
@@ -832,8 +832,10 @@ def register_auth(app, platform):
             raise HTTPException(422,'Rolni tanlang')
         service.rate('quick-ip',service.ip(request),60,3600)  # maktab sinfi bitta Wi-Fi dan kiradi
         name=re.sub(r'\s+',' ',str(body.name or '')).strip()[:80] or (QUICK_ROLE_NAMES[body.role]+' '+str(secrets.randbelow(9000)+1000))
-        base_role='oquvchi' if body.role in ('talaba','bogcha') else body.role
+        base_role='oquvchi' if body.role in ('talaba','bogcha','mehmon') else body.role
         learning={'role':body.role,'quick':True}
+        if body.role=='mehmon':
+            learning['mehmon']=True   # rol tanlanmaguncha bir xil menyu (Kurslar, Taqdimot, Bolalar uchun, Testlar)
         if body.role=='talaba':
             learning['standalone']=True
         group=preschool_group(body.age_group) if body.role=='bogcha' else ''
@@ -846,7 +848,7 @@ def register_auth(app, platform):
             new_id=(row['eng_kichik']-1) if row and row['eng_kichik'] is not None else -1
             # O'quvchi sinfini kirgandan keyin tanlaydi; talaba/o'qituvchi/ota-ona darhol ishlaydi.
             # O'quvchi sinfini, bog'cha bolasi yoshini kirgandan keyin tanlaydi (bog'chada yosh berilsa — darhol tayyor).
-            ready = body.role not in ('oquvchi','bogcha') or bool(group)
+            ready = body.role not in ('oquvchi','bogcha') or bool(group)  # mehmon ham darhol tayyor
             cur.execute("""INSERT INTO users(user_id,full_name,role,class,kabutar_learning_profile,kabutar_education_ready)
                 VALUES(%s,%s,%s,%s,%s::jsonb,%s)""",(new_id,name,base_role,group or None,json.dumps(learning),ready))
             give_id=getattr(platform,'_kabutar_id_ber',None)
