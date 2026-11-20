@@ -1,0 +1,200 @@
+@page {
+  size: A4;
+  margin: 10mm 9mm 12mm 9mm;
+  @bottom-left { content: "13.00.02 · Yodlash sxemasi"; font: 600 7pt Inter, sans-serif; color: #8a8a8a; }
+  @bottom-right { content: counter(page) " / " counter(pages); font: 600 7pt Inter, sans-serif; color: #8a8a8a; }
+}
+@page :first {
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0;
+  font-family: Inter, "DejaVu Sans", sans-serif;
+  font-size: 8.8pt;
+  line-height: 1.32;
+  color: #1c1c1c;
+}
+b { font-weight: 700; color: color-mix(in srgb, var(--c, #000) 88%, black); }
+ul, ol { margin: 0; }
+
+/* ---------- question rows ---------- */
+.row { display: grid; grid-template-columns: 15mm 1fr; break-inside: avoid; }
+.gut { position: relative; }
+.gut::before {
+  content: ""; position: absolute; left: 6.9mm; top: 0; bottom: 0; width: 0.8mm;
+  background: color-mix(in srgb, var(--c) 38%, white);
+}
+.gut::after {
+  content: ""; position: absolute; left: 13.6mm; right: 0; top: 5.3mm; height: 0.35mm;
+  background: var(--c);
+}
+.node {
+  position: absolute; left: 0.9mm; top: 2.5mm; width: 12.8mm; height: 5.6mm; z-index: 1;
+  border-radius: 2.8mm; background: var(--c); color: #fff; text-align: center;
+  font: 700 7.6pt/5.6mm Inter, sans-serif; letter-spacing: 0.01em;
+}
+.boxes { position: absolute; left: 3.2mm; top: 9.4mm; display: flex; gap: 0.7mm; z-index: 1; }
+.boxes i { display: block; width: 2.4mm; height: 2.4mm; border: 0.25mm solid #8f8f8f; background: #fff; border-radius: 0.3mm; }
+
+.card {
+  display: grid; grid-template-columns: 45mm 30mm 1fr;
+  margin: 0.9mm 0; min-height: 13.5mm;
+  border: 0.3mm solid #d6d6d6; border-left: 0.9mm solid var(--c); border-radius: 1.2mm;
+  background: #fff; overflow: hidden;
+}
+.c-q { padding: 1.4mm 2mm 1.5mm; border-right: 0.3mm dashed #d9d9d9; }
+.theme {
+  font-size: 5.9pt; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: #7c7c7c; margin-bottom: 0.5mm; line-height: 1.2;
+}
+.q { font-weight: 650; font-size: 8.5pt; line-height: 1.24; color: #141414; }
+.c-k {
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.4mm 1.6mm; background: var(--t); border-right: 0.3mm dashed #d9d9d9;
+}
+.kod {
+  font-family: "DejaVu Sans Mono", monospace; font-weight: 700; font-size: 8.2pt; line-height: 1.28;
+  color: color-mix(in srgb, var(--c) 82%, black); text-align: center; overflow-wrap: anywhere;
+}
+.kod b { color: inherit; }
+.c-m { padding: 1.4mm 2.2mm 1.2mm; }
+.links { margin-top: 0.4mm; text-align: right; font-size: 6.5pt; line-height: 1.2; color: #8a8a8a; }
+.lk { white-space: nowrap; font-weight: 600; }
+.chk {
+  float: left; font-size: 6pt; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase;
+  color: #8a5a00; background: #fff4d6; border: 0.25mm solid #e6c46a; border-radius: 0.8mm; padding: 0 1mm;
+}
+
+/* ---------- section head ---------- */
+.sec { break-before: page; }
+.sec-head { display: grid; grid-template-columns: 15mm 1fr; break-inside: avoid; break-after: avoid; }
+.sh-gut { position: relative; }
+.sh-gut::before {
+  content: ""; position: absolute; left: 6.9mm; top: 12mm; bottom: 0; width: 0.8mm;
+  background: color-mix(in srgb, var(--c) 38%, white);
+}
+.sh-node {
+  width: 13.6mm; height: 13.6mm; border-radius: 50%; margin-left: 0.5mm;
+  background: var(--c); color: #fff; text-align: center;
+  font: 800 19pt/13.6mm "Inter Display", Inter, sans-serif;
+}
+.sh-body {
+  background: var(--t); border-left: 1.2mm solid var(--c); border-radius: 1.6mm;
+  padding: 2.6mm 4mm 3mm; margin-bottom: 1.2mm;
+}
+.sh-kicker { font-size: 7pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c); }
+.sec h2 { font: 800 15pt/1.15 "Inter Display", Inter, sans-serif; margin: 0.6mm 0 0.8mm; color: #121212; }
+.flow { font-size: 8.3pt; color: #3f3f3f; margin-bottom: 2.2mm; }
+.chips { display: grid; grid-template-columns: 1fr 1fr; gap: 1mm 2.6mm; }
+.chip {
+  font-size: 7.4pt; line-height: 1.25; background: #fff; border-radius: 1mm; padding: 0.9mm 1.6mm;
+  border: 0.25mm solid color-mix(in srgb, var(--c) 30%, white);
+}
+.cn { font-weight: 700; color: color-mix(in srgb, var(--c) 88%, black); margin-right: 1mm; }
+.cq { color: #484848; }
+.thead { display: grid; grid-template-columns: 15mm 1fr; break-after: avoid; position: relative; }
+.thead > div:first-child { position: relative; }
+.thead > div:first-child::before {
+  content: ""; position: absolute; left: 6.9mm; top: 0; bottom: 0; width: 0.8mm;
+  background: color-mix(in srgb, var(--c) 38%, white);
+}
+.th {
+  display: grid; grid-template-columns: 45mm 30mm 1fr; padding-left: 0.9mm;
+  font-size: 6.4pt; font-weight: 700; letter-spacing: 0.1em; color: #6d6d6d;
+}
+.th span { padding: 0.6mm 2mm 0.2mm; }
+.th span:nth-child(2) { text-align: center; }
+
+/* ---------- generic pages ---------- */
+.page { break-after: page; }
+.pg-title { font: 800 18pt/1.1 "Inter Display", Inter, sans-serif; margin: 0 0 1.5mm; color: #121212; }
+.pg-lead { font-size: 9pt; color: #404040; margin: 0 0 5mm; max-width: 165mm; }
+
+/* ---------- cover ---------- */
+.cover .cv-top { font-size: 8pt; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #6a6a6a; margin-top: 2mm; }
+.cover h1 { font: 800 25pt/1.08 "Inter Display", Inter, sans-serif; margin: 2mm 0 2mm; color: #101010; }
+.cv-sub { font-size: 10pt; color: #333; margin-bottom: 5mm; }
+.cv-secs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4mm 3mm; margin-bottom: 5mm; }
+.cv-sec {
+  display: grid; grid-template-columns: 7mm 1fr 9mm; align-items: center;
+  background: var(--t); border-left: 1mm solid var(--c); border-radius: 1mm; padding: 1.1mm 2mm;
+}
+.cv-n {
+  width: 5.4mm; height: 5.4mm; border-radius: 50%; background: var(--c); color: #fff;
+  font: 800 7.6pt/5.4mm Inter, sans-serif; text-align: center;
+}
+.cv-t { font-size: 7.6pt; font-weight: 700; color: #1d1d1d; line-height: 1.2; }
+.cv-c { font: 800 10pt Inter, sans-serif; color: var(--c); text-align: right; }
+.cv-box { border: 0.3mm solid #d4d4d4; border-radius: 2mm; padding: 3mm 4mm; margin-bottom: 4mm; }
+.cv-box h3 { font: 800 10.5pt/1.2 "Inter Display", Inter, sans-serif; margin: 0 0 2mm; color: #151515; }
+.cv-box h3.mt { margin-top: 3mm; }
+.demo { margin: 0 0 2.5mm; }
+.legend { padding-left: 4mm; font-size: 8.4pt; }
+.legend li { margin-bottom: 0.8mm; }
+.legend b, .steps b, .formula b { color: #1D4E89; }
+.cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.cv-grid .cv-box { margin-bottom: 0; }
+.steps, .formula { padding-left: 4.5mm; font-size: 8.5pt; }
+.steps li, .formula li { margin-bottom: 1mm; }
+.fx { font-family: "DejaVu Sans Mono", monospace; color: #B3261E; letter-spacing: 0.05em; }
+.formula b { color: #B3261E; font-size: 9.5pt; }
+.note { font-size: 8pt; color: #4a4a4a; margin: 1.5mm 0 0; background: #f4f4f4; border-radius: 1mm; padding: 1.4mm 2mm; }
+.cv-foot { font-size: 7.6pt; color: #5c5c5c; margin-top: 4mm; border-top: 0.3mm solid #ddd; padding-top: 2mm; }
+
+/* ---------- tree ---------- */
+.trunk { position: relative; padding-left: 17mm; }
+.trunk::before {
+  content: ""; position: absolute; left: 6.6mm; top: 3mm; bottom: 6mm; width: 1.6mm;
+  background: #3a3a3a; border-radius: 0.8mm;
+}
+.trunk-top {
+  position: relative; margin-left: -17mm; width: 15mm; text-align: center; z-index: 1;
+  font: 800 7.4pt/5.6mm Inter, sans-serif; color: #fff; background: #3a3a3a; border-radius: 2.8mm; margin-bottom: 3mm;
+}
+.tb { position: relative; margin-bottom: 3mm; break-inside: avoid; }
+.tb-node {
+  position: absolute; left: -14.6mm; top: 0.6mm; width: 9mm; height: 9mm; border-radius: 50%; z-index: 1;
+  background: var(--c); color: #fff; text-align: center; font: 800 12pt/9mm "Inter Display", Inter, sans-serif;
+  box-shadow: 0 0 0 0.8mm #fff;
+}
+.tb-node::after { content: ""; position: absolute; left: 9mm; top: 4.3mm; width: 5.6mm; height: 0.5mm; background: var(--c); }
+.tb-box { background: var(--t); border-left: 1mm solid var(--c); border-radius: 1.5mm; padding: 1.8mm 3mm 2mm; }
+.tb-title { font: 800 9.6pt/1.2 "Inter Display", Inter, sans-serif; color: color-mix(in srgb, var(--c) 88%, black); margin-bottom: 1mm; }
+.tb-title span { font: 600 7.6pt Inter, sans-serif; color: #666; }
+.tb ul { list-style: none; padding: 0; columns: 2; column-gap: 5mm; font-size: 8pt; line-height: 1.3; }
+.tb li { break-inside: avoid; position: relative; padding-left: 3.4mm; margin-bottom: 0.5mm; }
+.tb li::before {
+  content: ""; position: absolute; left: 0.2mm; top: 0.4mm; width: 2.2mm; height: 1.6mm;
+  border-left: 0.35mm solid var(--c); border-bottom: 0.35mm solid var(--c);
+}
+.tn { font-weight: 700; }
+.tq { color: #4a4a4a; }
+
+/* ---------- history timeline ---------- */
+.tl { position: relative; }
+.tl::before {
+  content: ""; position: absolute; left: 33.4mm; top: 2mm; bottom: 2mm; width: 0.8mm;
+  background: color-mix(in srgb, var(--c) 40%, white);
+}
+.tl-row { display: grid; grid-template-columns: 30mm 8mm 1fr; align-items: start; padding: 1.15mm 0; break-inside: avoid; }
+.tl-date { text-align: right; font: 800 9.2pt/1.25 "Inter Display", Inter, sans-serif; color: color-mix(in srgb, var(--c) 90%, black); }
+.tl-dot { position: relative; }
+.tl-dot::before {
+  content: ""; position: absolute; left: 2.4mm; top: 0.9mm; width: 3.2mm; height: 3.2mm; border-radius: 50%;
+  background: #fff; border: 0.8mm solid var(--c); box-sizing: border-box;
+}
+.tl-ev { font-size: 9pt; line-height: 1.3; border-bottom: 0.25mm dotted #d4d4d4; padding-bottom: 1.1mm; }
+.tl-ref { font-size: 7pt; font-weight: 600; color: #8a8a8a; white-space: nowrap; }
+
+/* ---------- numbers ---------- */
+.nt { width: 100%; border-collapse: collapse; font-size: 8.8pt; }
+.nt th { text-align: left; font-size: 6.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #6d6d6d; padding: 1mm 2mm; border-bottom: 0.5mm solid #333; }
+.nt td { padding: 1.25mm 2mm; border-bottom: 0.25mm solid #e1e1e1; vertical-align: top; }
+.nt tr { break-inside: avoid; }
+.nt tr:nth-child(even) td { background: #f7f7f7; }
+.nb { font-family: "DejaVu Sans Mono", monospace; font-weight: 700; color: #B3261E; white-space: nowrap; width: 40mm; }
+.nr { white-space: nowrap; color: #8a8a8a; font-size: 7.2pt; font-weight: 600; text-align: right; width: 22mm; }
+.page:not(.cover) { break-before: page; }
