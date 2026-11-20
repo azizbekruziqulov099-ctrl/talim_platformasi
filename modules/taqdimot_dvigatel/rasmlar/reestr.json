@@ -126,6 +126,20 @@
   ]
  },
  {
+  "kalit": "andersen",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Hans Kristian Andersen",
+  "fan": "Ona tili va adabiyot",
+  "tekshiruv": "Hallager fotosuratidagi uzun burun, baland ochiq peshona, yonlardagi jingalak soch, soqolsiz yuz va chapga burilgan holat saqlandi. To‘q baxmal yoqa va kichik bo‘yinbog‘ ko‘rinadi; qo‘llar va foto foni yo‘q. S321 katalog137bandi1869deb berilgan, boshqa suratning aniq kuni unga ko‘chirilmagan.",
+  "manbalar": [
+   "S321"
+  ]
+ },
+ {
   "kalit": "argimchoq_richag",
   "tur": "rasm",
   "olcham": [
@@ -204,6 +218,20 @@
   "tekshiruv": "Marka portretidagi baland peshona, kalta soch, qalin qosh, mo‘ylov va uchli soqol, kostyum-yoqa bo‘yinbog‘i saqlandi. Bosh kiyim qo‘shilmadi; marka matni, sanasi, narxi va cheti yo‘q. S303 zamonaviy marka san’ati, arxiv fotosurati deb belgilanmaydi.",
   "manbalar": [
    "S303"
+  ]
+ },
+ {
+  "kalit": "avtomobil",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Avtomobil",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Ikki ko‘rinadigan g‘ildirakli oilaviy avtomobil qisqa yo‘l bo‘lagida tasvirlangan. Eshik, oynalar, chiroq va ko‘zgu o‘z joyida; davlat raqami yoki brend yozuvi yo‘q. Tashqi maydon shaffof.",
+  "manbalar": [
+   "S01"
   ]
  },
  {
@@ -425,6 +453,20 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Bir butun kulrang bo‘ri, to‘rt oyoq, ikki tik quloq va bitta pastga tushgan dum ko‘rildi. Tabiiy xotirjam holat; kulrang bo‘rining umumiy illyustratsiyasi.",
   "manbalar": null
+ },
+ {
+  "kalit": "bozor_rastasi",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Bozor rastasi (meva-sabzavot)",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Bitta sotuvchili rasta, soyabon va alohida olma, apelsin, sabzi, karam qutilari ko‘rinadi. Ikki qo‘l peshtaxtaga tabiiy qo‘yilgan, narx yoki yozuv yo‘q. Mahsulotlar soniga doir alohida masala sharti tasvirga qo‘shilmagan.",
+  "manbalar": [
+   "S01"
+  ]
  },
  {
   "kalit": "bug_mashinasi",
@@ -650,6 +692,20 @@
   "tekshiruv": "Bitta yuqori oqim pastga tarqaluvchi bir necha tarmoqqa bo‘linib dengizga tutashadi. Bu qo‘shiluvchi irmoqlar sxemasi yoki haqiqiy delta xaritasi emas.",
   "manbalar": [
    "S218"
+  ]
+ },
+ {
+  "kalit": "devor_boyash",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Ishchilar devor bo‘yamoqda (birgalikdagi ish)",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Aynan ikkita ishchi bitta uzun yog‘och panjarani birgalikda bo‘yamoqda. Birida valik, ikkinchisida cho‘tka, pastda bitta bo‘yoq idishi bor. Bo‘yalgan va hali bo‘yalmagan qismlar farqlanadi; ikki ishchining qo‘l-oyoqlari va panjara uchlari ko‘rinadi.",
+  "manbalar": [
+   "S01"
   ]
  },
  {
@@ -966,6 +1022,20 @@
   ]
  },
  {
+  "kalit": "gisht_terish",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "G‘isht terish",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Bitta g‘isht teruvchi past devorga g‘isht qo‘ymoqda; ikkinchi qo‘lida qorishma uchun kurakcha bor. G‘ishtlar qatorlari siljitib terilgan, chok va tugallanmagan ustki qism ko‘rinadi. Qo‘shimcha ishchi yoki havoda osilgan g‘isht yo‘q.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "globus",
   "tur": "rasm",
   "olcham": [
@@ -1017,6 +1087,24 @@
   "tekshiruv": "Gulbarglar, yashil kosachabarglar, oltita changchi, markaziy urug‘chining tumshuqcha/ustuncha/tugunchasi va tuguncha ichidagi urug‘kurtaklar ko‘rildi. Qismlar kesimda ochilgan; aniq gul turi yoki hamma gullarning organlar soni emas.",
   "manbalar": [
    "S141"
+  ]
+ },
+ {
+  "kalit": "gyote",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Iogann Volfgang Gyote",
+  "fan": "Ona tili va adabiyot",
+  "kredit": "Asos: Joseph Karl Stieler; Bayerische Staatsgemäldesammlungen – Neue Pinakothek München, CC BY-SA 4.0 (o‘zgartirilgan)",
+  "litsenziya": "CC BY-SA 4.0",
+  "litsenziya_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "manba_url": "https://www.sammlung.pinakothek.de/en/artwork/02LAY3QLyk",
+  "tekshiruv": "Stieler portretidagi oqish kulrang to‘lqinli soch, soqolsiz keksa yuz, yonaki nigoh, baland oq bo‘yinbog‘, kichik qizil toshli to‘g‘nag‘ich va to‘q kamzul saqlandi. Stol, qo‘l va xat yozuvi olinmadi. S318 muzey namunasi uchun kredit va CC BY-SA4.0qaydi yangi gyote.png bilan birga beriladi.",
+  "manbalar": [
+   "S318"
   ]
  },
  {
@@ -1123,6 +1211,20 @@
   "nom": "Himoya ko‘zoynagi va qo‘lqop",
   "fan": "Kimyo",
   "tekshiruv": "Yon himoyali ko‘zoynak, tasma va har birida beshta barmoq bo‘lgan ikki qo‘lqop ko‘rildi. Muayyan mahsulot sertifikati tasvirlanmagan.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
+  "kalit": "hovuz_quvurlar",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Hovuz va ikki quvur",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Bitta hovuzda ikkita quvur bor: yuqoridagi kirish quvuridan suv pastga hovuzga oqadi, suv sathidan pastda ulangan chiqish quvuri tashqariga va pastga oqizadi. Quvur yo‘llari uzilmagan; ortiqcha jo‘mrak, quvur yoki sonli sarf yozuvi yo‘q. Kesim soddalashtirilgan o‘quv tasviri.",
   "manbalar": [
    "S01"
   ]
@@ -1630,6 +1732,20 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Oq-qora qanotli bitta laylak; uzun qizil tumshuq, ikkita uzun oyoq va yig‘ilgan qanotlar ko‘rildi. Turga xos barcha pat belgilarini aniqlash fotosurati emas.",
   "manbalar": []
+ },
+ {
+  "kalit": "lev_tolstoy",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Lev Tolstoy",
+  "fan": "Ona tili va adabiyot",
+  "tekshiruv": "Baland ochiq peshona, oqish yon sochlar, qalin qosh va uzun oq soqolli keksa yuz ko‘rinadi. Oddiy kulrang ko‘ylakning yonlama taqilishi saqlandi; stul, qo‘l, oyoq va daraxtlar olinmadi. S320 tarixiy rangli fotobosma namunasi; yangi yuz tafsilotlari soddalashtirilgan.",
+  "manbalar": [
+   "S320"
+  ]
  },
  {
   "kalit": "lupa_barg",
@@ -2382,6 +2498,34 @@
   ]
  },
  {
+  "kalit": "pitsa_bolaklar",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Pitsa bo‘laklari (kasrlar)",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Dumaloq pitsa tepadan ko‘rsatilgan. Markazda kesishgan ikkita perpendikulyar kesish chizig‘i uni to‘rtta teng chorakka ajratadi; yo‘qolgan bo‘lak yoki qo‘shimcha radial kesik yo‘q. Bu kasrni tushuntiruvchi rasm, aniq o‘lchov chizmasi emas.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
+  "kalit": "piyoda",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Piyoda yo‘lovchi",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Ryukzak va uning tasmalari ko‘rinadigan piyoda tabiiy qadam holatida. Ikki qo‘l, ikki oyoq va ikkala poyabzal to‘liq ko‘rinadi; qo‘shimcha yo‘lovchi yoki transport yo‘q.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "plastmassa_buyumlar",
   "tur": "rasm",
   "olcham": [
@@ -2407,6 +2551,20 @@
   "tekshiruv": "Atrof pastlikdan baland, usti yassi va yonlari tik relyef ko‘rsatilgan. Chegaralangan belgi masshtabli tabiiy hudud yoki alohida mesa katalogi emas.",
   "manbalar": [
    "S218"
+  ]
+ },
+ {
+  "kalit": "poyezd",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Poyezd",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Old kabinali zamonaviy yo‘lovchi poyezdi va ikkita ulangan vagon qisqa relsda turibdi. G‘ildiraklar relsga mos, butun poyezd ko‘rinadi; brend va yo‘nalish yozuvi yo‘q.",
+  "manbalar": [
+   "S01"
   ]
  },
  {
@@ -2452,6 +2610,20 @@
   ]
  },
  {
+  "kalit": "pushkin",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Aleksandr Pushkin",
+  "fan": "Ona tili va adabiyot",
+  "tekshiruv": "Kiprenskiy portretidagi qalin jingalak soch, yonoqlardagi uzun chakka soqoli, ochiq iyak va ustki lab, oq yoqa, qora bo‘yinbog‘ va katakli yopinchiq saqlandi. Qo‘l, haykalcha, xona va yozuv yo‘q. S319 rangtasvirga asoslangan yangi portret, fotosurat emas.",
+  "manbalar": [
+   "S319"
+  ]
+ },
+ {
   "kalit": "qadimiy_qolyozma",
   "tur": "rasm",
   "olcham": [
@@ -2476,6 +2648,20 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Qaldirg‘ochning ikki qanoti, ikki mayda yig‘ilgan oyog‘i va ikkiga ayrilgan uzun dum patlari ko‘rildi. Bitta butun qush, yon ko‘rinishga yaqin parvoz holati.",
   "manbalar": []
+ },
+ {
+  "kalit": "qayiq_daryo",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Daryoda qayiq (oqim bo‘yicha va qarshi)",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Ikki alohida daryo tasvirida oqim o‘qlari o‘ngga qaragan. Yuqoridagi motorli qayiq o‘ngga, pastdagisi chapga qaragan; har birida to‘lqin izi ortida qolgan. Shu tariqa oqim bo‘yicha va unga qarshi harakat matnsiz ajratilgan; tezlik yoki masofa qiymati berilmagan.",
+  "manbalar": [
+   "S01"
+  ]
  },
  {
   "kalit": "qirqquloq",
@@ -2736,6 +2922,20 @@
   ]
  },
  {
+  "kalit": "samolyot",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Samolyot",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Ikki asosiy qanot va ikkita dvigatelli yo‘lovchi samolyoti, dum qismlari va kichik bulutlar bor. Shassi yig‘ilgan, aviakompaniya yozuvi yo‘q; bulutlar tashqarisidagi maydon shaffof.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "saturn",
   "tur": "rasm",
   "olcham": [
@@ -2827,6 +3027,20 @@
   "tekshiruv": "Yuqoridagi daryo tik pog‘onadan pastdagi hovuzga uzluksiz tushadi. Oqim yuqoriga ketmaydi; balandlik yoki suv sarfi o‘lchanmagan.",
   "manbalar": [
    "S218"
+  ]
+ },
+ {
+  "kalit": "shekspir",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Uilyam Shekspir",
+  "fan": "Ona tili va adabiyot",
+  "tekshiruv": "Droeshout gravürasidagi baland ochiq peshona, yonlardagi uzun to‘lqinli soch, ingichka mo‘ylov, kichik iyak soqoli, keng och yoqa va to‘q kamzul saqlandi. S317 First Folio gravürasi vafotidan keyingi asar; yangi ranglar talqin, Chandos rasmi yakuniy namuna emas.",
+  "manbalar": [
+   "S317"
   ]
  },
  {
@@ -2992,6 +3206,34 @@
   ]
  },
  {
+  "kalit": "tangalar_pul",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Tangalar va qog‘oz pullar (umumiy, haqiqiy pul emas)",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Uchta yozuvsiz tanga va ikkita mavhum qog‘oz pul tasviri bor. Haqiqiy pul dizayni, nominal, portret, seriya yoki valyuta belgisi yo‘q; qiymatlar o‘qituvchi tomonidan alohida beriladi.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
+  "kalit": "tarozi_toshlar",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Tarozi va toshlar",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Gorizontal yelkali, ikki pallasi bir balandlikdagi tarozi; chapda uchta olma, o‘ngda ikkita raqamsiz tosh bor. Bu muvozanatning umumiy tasviri; tosh massasi va bitta olmaning vazni berilmagan, sonli tenglama deb olinmaydi.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "tayga",
   "tur": "rasm",
   "olcham": [
@@ -3123,6 +3365,20 @@
   "tekshiruv": "Ko‘krakkacha kiyimdagi ayol, o‘rim soch va oddiy kigiz bosh kiyim. Yevropa toji, zamonaviy forma yoki jarohat yo‘q. To‘maris qiyofasi yangi badiiy talqin; ishonchli qadimgi portret emas.",
   "manbalar": [
    "S258"
+  ]
+ },
+ {
+  "kalit": "tort_bolaklar",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Tort bo‘laklari",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Dumaloq pushti tort tepadan ko‘rsatilgan. Markazda kesishuvchi ikki perpendikulyar chiziq to‘rtta teng chorakni ajratadi, butun doira saqlangan. Bezak tashqi chetda, markazni to‘smaydi; sham, yozuv, qiymat yoki yo‘qolgan bo‘lak yo‘q.",
+  "manbalar": [
+   "S01"
   ]
  },
  {
@@ -3357,6 +3613,20 @@
   ]
  },
  {
+  "kalit": "velosiped",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Velosipedchi",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Dubulg‘ali velosipedchi egarda, ikki qo‘li rulda va oyoqlari pedal atrofida tabiiy bukilgan. Ikki g‘ildirak, rama va zanjir ko‘rinadi; ortiqcha qo‘l, oyoq yoki g‘ildirak yo‘q.",
+  "manbalar": [
+   "S01"
+  ]
+ },
+ {
   "kalit": "venera",
   "tur": "rasm",
   "olcham": [
@@ -3506,6 +3776,20 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Po‘st,mantiya,tashqi va ichki yadro4rangli qatlam bilan ajratilgan. Gorizontal kesimda qatlam tutashishi tuzatildi. Rang/qalinlik sxematik,matn yo‘q.",
   "manbalar": null
+ },
+ {
+  "kalit": "yer_maydoni",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Yer maydoni (dala uchastkasi)",
+  "fan": "Matematika (hayotiy masalalar)",
+  "tekshiruv": "Tepadan ko‘rinishda to‘rtta to‘g‘ri to‘rtburchak dala uchastkasi ikki qator qilib joylangan. To‘g‘ri chegaralar va o‘zaro perpendikulyar yo‘laklar, tartibli ekin qatorlari ko‘rinadi. Masshtab, o‘lcham yoki har bir ekin soni masala sharti sifatida berilmagan.",
+  "manbalar": [
+   "S01"
+  ]
  },
  {
   "kalit": "yer_sayyorasi",
