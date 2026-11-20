@@ -414,6 +414,9 @@ def _dars_tartibi(rows, savol_raqami=False):
         m = _re.match(r"^(\d+)\s*-\s*dars", n)
         if m:
             return float(m.group(1))
+        m = _re.match(r"^(?:занятие|урок|практика)\s*№?\s*(\d+)", n)   # REV471: ruscha darslar — «Занятие 3. …»
+        if m:
+            return float(m.group(1))
         m = _re.search(r"nazorat testi\D*(\d+)\s*-\s*(\d+)", n)
         if m:
             return int(m.group(2)) + 0.5

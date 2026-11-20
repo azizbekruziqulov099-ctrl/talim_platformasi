@@ -115,3 +115,9 @@ def test_oliy_kurs_yakuniy_va_10_test():   # REV471
     assert yakuniy_qosh(items[:2]) == items[:2]
     assert savol_chegarasi({"sinf": "1 kurs"}) == 10 and savol_chegarasi({"sinf": "2 kurs magistr"}) == 10
     assert savol_chegarasi({"sinf": "7"}) == 5
+
+
+def test_ruscha_dars_tartibi():   # REV471
+    from modules.kurslar import _dars_tartibi
+    rows = [{"nom": f"Занятие {i}. Тема", "topic_code": f"t{i}"} for i in (10, 2, 1, 23)]
+    assert [r["nom"].split(".")[0] for r in _dars_tartibi(rows)] == ["Занятие 1", "Занятие 2", "Занятие 10", "Занятие 23"]
