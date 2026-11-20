@@ -242,3 +242,13 @@ def test_tarjima_va_joylashuv():
     matn = " ".join(r["t"] for sl in s["slaydlar"] for el in sl["els"] if el["k"] == "text" for p in el["pp"] for r in p["rs"])
     assert "Определение" in matn or "ОПРЕДЕЛЕНИЕ" in matn
     assert set(bloklar_joy.JOYLASHUVLAR) >= {"rasm_panel", "markaz", "ustunlar"}
+
+
+def test_kichik_sinf_royxat_rasmlari():
+    from modules.taqdimot_dvigatel import rasm_tanla
+    assert rasm_tanla._royxat_sozlari("Sabzi, piyoz, bodring va pomidor polizda o‘sadi.") == ["Sabzi", "piyoz", "bodring"]
+    m = sxema.normallashtir({"meta": {"mavzu": "Polizda", "sinf": "1-sinf"}, "bolimlar": [{"nom": "A", "slaydlar": [
+        {"sarlavha": "Sabzavotlar", "elementlar": [{"tur": "matn", "matn": "Sabzi, piyoz, bodring va pomidor polizda o‘sadi."}]}]}]})
+    rasm_tanla.boyit(m)
+    gal = [e for e in m["bolimlar"][0]["slaydlar"][0]["elementlar"] if e["tur"] == "galereya"]
+    assert gal and len(gal[0]["rasmlar"]) >= 2

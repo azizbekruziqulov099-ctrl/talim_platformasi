@@ -48,7 +48,8 @@ VARAQLAR = {
     "Tarix": ["davr", "nom", "matn", "belgi", "rasm kaliti"],
     "Slaydlar": ["bo‘lim №", "bo‘lim nomi", "bo‘lim izohi", "bo‘lim belgisi", "slayd sarlavhasi", "element turi", "sarlavha",
                  "matn / shart", "formula", "qadamlar (har biri yangi qatorda)", "javob", "bandlar (har biri yangi qatorda: nom: matn | formula | misol)",
-                 "jadval (1-qator ustunlar, keyin qatorlar; ustunlar | bilan)", "chizma (JSON)", "rasm kaliti", "chizma/rasm ostidagi izoh", "o‘qituvchi gapi (Notes)"],
+                 "jadval (1-qator ustunlar, keyin qatorlar; ustunlar | bilan)", "chizma (JSON)", "rasm kaliti", "chizma/rasm ostidagi izoh", "o‘qituvchi gapi (Notes)",
+                 "joylashuv (avto, rasm_ong, rasm_chap, rasm_panel, rasm_katta, markaz, ustunlar, qatorlar, yon_sarlavha)"],
     "Xatolar": ["xato", "sabab", "to‘g‘ri"],
     "Metodika": ["tur (bosqich / karta)", "sarlavha", "matn", "chizma (JSON)"],
     "Xulosa": ["bilaman", "bilishni xohlayman", "bilib oldim", "yoki: xulosa fikri"],
@@ -129,7 +130,7 @@ def oqi(data: bytes) -> list[dict]:
             cur_b = {"nom": "1-bo‘lim", "slaydlar": []}
             bolimlar.append(cur_b)
         if ssar or cur_s is None:
-            cur_s = {"sarlavha": ssar, "izoh": r[16], "elementlar": []}
+            cur_s = {"sarlavha": ssar, "izoh": r[16], "joylashuv": (r[17] or "").strip().lower(), "elementlar": []}
             cur_b["slaydlar"].append(cur_s)
         elif r[16]:
             cur_s["izoh"] = (cur_s.get("izoh", "") + "\n" + r[16]).strip()
@@ -223,6 +224,8 @@ def shablon(namuna: dict | None = None, korsatma_matn: str = "") -> bytes:
         "6. Belgilash: **qalin**, ==asosiy tushuncha (rangli)==.",
         "7. Chizma ustuniga JSON yoziladi. Turlar va namunalar «Chizmalar» varag‘ida.",
         "8. Rasm: «rasm kaliti» ustuniga kalit (masalan al_xorazmiy). Har bir kalit «Rasmlar» varag‘ida tavsif va prompt bilan.",
+        "   «joylashuv» (slaydning birinchi qatorida): bo‘sh yoki avto — dastur o‘zi tanlaydi; rasm_panel — rasm yarim slaydda,",
+        "   markaz — bitta qisqa g‘oya o‘rtada, ustunlar — 2–3 qisqa fikr yonma-yon va hokazo.",
         "   Chizilgan rasm fayli aynan shu kalit bilan nomlanadi: al_xorazmiy.png (shaffof fon, 1024×1024).",
         "9. To‘ldirilgan faylni saytdagi «Taqdimot → Kuchli taqdimot → Miya yuklash» orqali yuklang.",
         "",
@@ -287,10 +290,11 @@ def shablon(namuna: dict | None = None, korsatma_matn: str = "") -> bytes:
                     sl_rows.append([bi, b["nom"], b.get("izoh", ""), b.get("belgi", ""), sl["sarlavha"] if ei == 0 else "", e["tur"], e.get("sarlavha", ""),
                                     e.get("shart") or e.get("matn", ""), e.get("formula", ""), "\n".join(e.get("qadamlar") or []), e.get("javob", ""), bands, jad,
                                     json.dumps(e["chizma"], ensure_ascii=False) if e.get("chizma") else "", e.get("rasm", ""), e.get("izoh", ""),
-                                    sl.get("izoh", "") if ei == 0 else ""])
+                                    sl.get("izoh", "") if ei == 0 else "", sl.get("joylashuv", "") if ei == 0 else ""])
             if not b["slaydlar"]:
-                sl_rows.append([bi, b["nom"], b.get("izoh", ""), b.get("belgi", "")] + [""] * 13)
-    varaq("Slaydlar", sl_rows, {1: 8, 2: 22, 3: 22, 4: 10, 5: 30, 6: 12, 7: 18, 8: 50, 9: 30, 10: 40, 11: 22, 12: 44, 13: 40, 14: 40, 15: 16, 16: 30, 17: 50})
+                sl_rows.append([bi, b["nom"], b.get("izoh", ""), b.get("belgi", "")] + [""] * 14)
+    varaq("Slaydlar", sl_rows, {1: 8, 2: 22, 3: 22, 4: 10, 5: 30, 6: 12, 7: 18, 8: 50, 9: 30, 10: 40, 11: 22, 12: 44, 13: 40, 14: 40, 15: 16, 16: 30, 17: 50,
+                                18: 18})
     varaq("Xatolar", [[x["xato"], x["sabab"], x["togri"]] for x in m["xatolar"]] if m else [], {1: 40, 2: 50, 3: 50})
     varaq("Metodika", ([["bosqich", "", b, ""] for b in m["metodika"]["bosqichlar"]] +
                        [["karta", c["sarlavha"], c["matn"], json.dumps(c["chizma"], ensure_ascii=False) if c.get("chizma") else ""] for c in m["metodika"]["kartalar"]]) if m else [],

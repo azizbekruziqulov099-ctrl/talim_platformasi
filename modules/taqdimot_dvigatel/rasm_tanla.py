@@ -274,6 +274,26 @@ def _el_matni(e: dict) -> str:
     return " ".join(qism)
 
 
+def _kichik(meta: dict) -> bool:
+    d = (meta.get("daraja") or "").lower()
+    s = (meta.get("sinf") or "").lower()
+    return d == "bogcha" or "bog" in s or any(re.search(rf"(^|\D){n}\s*-?\s*sinf", s) for n in (1, 2, 3, 4))
+
+
+def _royxat_sozlari(matn: str) -> list:
+    """Matndagi sanab o'tilgan narsalar: «Sigir, qo‘y, ot va echki — ...» → [Sigir, qo‘y, ot, echki]."""
+    out = []
+    toza = (matn or "").replace("**", "").replace("==", "")
+    for bo in re.split(r"[.;:!?—–()\n]", toza):
+        parts = [p.strip(" ,") for p in re.split(r",|\bva\b|\band\b|\bи\b", bo) if p.strip(" ,")]
+        if len(parts) < 3:
+            continue
+        if any(len(p.split()) > 2 for p in parts[:-1]):
+            continue
+        out += parts if len(parts[-1].split()) <= 2 else parts[:-1]
+    return out[:6]
+
+
 def boyit(m: dict, avto: bool = True) -> dict:
     """Normallashtirilgan miyani joyida o'zgartiradi. Hisobot qaytaradi."""
     hisobot = {"ishlatilgan": [], "almashtirildi": [], "qoshildi": [], "yoq": []}
@@ -412,6 +432,27 @@ def boyit(m: dict, avto: bool = True) -> dict:
             band.add(kal)
             qoyildi += 1
             hisobot["qoshildi"].append(kal)
+        # 3a) kichik sinflar: matnda sanab o'tilgan narsalar rasmlari (rasmsiz matnli slaydga «galereya»)
+        if _kichik(meta):
+            for sl in kontent:
+                els = [e for e in sl.get("elementlar") or [] if e.get("tur") != "eslatma"]
+                if len(els) != 1 or els[0].get("tur") not in _MATNLI or els[0].get("rasm") or els[0].get("chizma"):
+                    continue
+                topildi = []
+                for soz in _royxat_sozlari(_el_matni(els[0])):
+                    # «Ular sut» → «sut», «shaftoli oldik» → «shaftoli»: rasm topilgan so'zning o'zi izoh bo'ladi
+                    for w in ([soz] if " " not in soz else soz.split()):
+                        kal = buyum_rasmi(w, band | {k for k, _ in topildi})
+                        if kal:
+                            topildi.append((kal, w[:1].upper() + w[1:]))
+                            break
+                    if len(topildi) >= 4:
+                        break
+                if len(topildi) >= 2:
+                    sl["elementlar"].append({"tur": "galereya", "rasmlar": [{"rasm": k, "izoh": s} for k, s in topildi]})
+                    for k, _ in topildi:
+                        band.add(k)
+                        hisobot["qoshildi"].append(k)
         # 3b) bo'lim titullari uchun (slaydlarda ishlatilmagan) rasm
         for b in m.get("bolimlar") or []:
             if b.get("rasm") or not b.get("slaydlar"):
