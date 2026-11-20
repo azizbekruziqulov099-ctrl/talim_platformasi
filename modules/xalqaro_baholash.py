@@ -2265,7 +2265,9 @@ def create_router(platform, kontent=None):
                 nomlar = {_xk.miya_nomi(_pm.MAVZULAR[k]["nom"], toplam): k for k in yassi}
                 cur.execute("SAVEPOINT xb_kurs2")
                 cur.execute("""SELECT MIN(topic_code) AS kod, COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),bob_name) AS nom FROM dts_tree
-                               WHERE is_deleted=FALSE AND COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),bob_name)=ANY(%s) GROUP BY 2""", (list(nomlar),))
+                               WHERE is_deleted=FALSE AND COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),bob_name)=ANY(%s)
+                                 AND EXISTS(SELECT 1 FROM ai_brain_published_units pu WHERE pu.topic_code=dts_tree.topic_code AND pu.unit_kind='lesson_step')
+                               GROUP BY 2""", (list(nomlar),))
                 for r in cur.fetchall():
                     if r["nom"] in nomlar:
                         dars_kodlari[nomlar[r["nom"]]] = r["kod"]
