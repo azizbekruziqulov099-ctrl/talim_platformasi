@@ -86,6 +86,9 @@ OILALAR = {
     "tun": dict(nom="Tun (yorqin)", turi="qorongi", head="serif", fon="glow", kart=dict(r=12, sh=0, line="#FFFFFF@0.16", fill="#FFFFFF", op=0.08), tab="pill"),
     "yulduz": dict(nom="Yulduzli", turi="qorongi", head="sans", fon="stars", kart=dict(r=16, sh=0, line="acc@0.45", fill="acc", op=0.12), tab="pill"),
     "doska": dict(nom="Sinf doskasi", turi="doska", head="sans", fon="chalk", kart=dict(r=8, sh=0, line="#FFFFFF@0.55", fill="#FFFFFF", op=0.05, dash=1), tab="bar"),
+    "akademik": dict(nom="Akademik", turi="yorug", head="serif", fon="qogoz", kart=dict(r=4, sh=0, line="tint", fill="#FFFFFF", op=1.0), tab="bar"),
+    "jurnal": dict(nom="Jurnal", turi="yorug", head="serif", fon="jurnal", kart=dict(r=0, sh=0, line=None, fill="tint", op=1.0), tab="bar"),
+    "kecha": dict(nom="Kecha (tekis)", turi="qorongi", head="sans", fon="tekis", kart=dict(r=18, sh=0, line=None, fill="#FFFFFF", op=0.07), tab="pill"),
 }
 
 ANIMATSIYALAR = {
@@ -194,9 +197,38 @@ class Uslub:
                 "ink": self.ink, "muted": self.muted, "anim": self.anim_nom, "head": self.head}
 
 
-def tanla(rng: random.Random, oila=None, palitra=None, anim=None):
+def _oila_vaznlari(fan: str = "", daraja: str = "", sinf: str = "") -> dict:
+    """Fan va darajaga mos oilalar ko'proq chiqadi (lekin har biri mumkin — taqdimotlar xilma-xil bo'lsin)."""
+    v = {o: 1.0 for o in OILALAR}
+    d = (daraja or "").lower()
+    s = (sinf or "").lower()
+    f = fan_kaliti(fan or "")
+    kichik = d == "bogcha" or any(f"{n}-sinf" in s for n in (1, 2, 3, 4)) or "bog" in s
+    if d in ("bakalavr", "magistr", "oliy") or "kurs" in s:
+        for o, w in {"akademik": 3.0, "jurnal": 2.6, "minimal": 2.0, "shisha": 1.4, "tun": 1.3, "kecha": 1.3, "doska": 0.4, "daftar": 0.5,
+                     "yulduz": 0.6}.items():
+            v[o] = w
+    elif kichik:
+        for o, w in {"anor": 2.0, "tabiat": 2.0, "shisha": 1.8, "daftar": 1.6, "doska": 1.2, "akademik": 0.2, "jurnal": 0.3, "kecha": 0.4,
+                     "minimal": 0.6}.items():
+            v[o] = w
+    fanga = {"matematika": {"daftar": 1.8, "doska": 1.6, "minimal": 1.3}, "biologiya": {"tabiat": 2.2}, "geografiya": {"tabiat": 1.8, "shisha": 1.3},
+             "fizika": {"yulduz": 1.6, "tun": 1.4, "doska": 1.3}, "astronomiya": {"yulduz": 2.5}, "kimyo": {"kecha": 1.5, "tun": 1.3},
+             "tarix": {"jurnal": 2.0, "akademik": 1.6, "anor": 1.3}, "adabiyot": {"jurnal": 2.0, "anor": 1.4}, "informatika": {"kecha": 1.8, "tun": 1.5},
+             "pedagogika": {"akademik": 1.6, "jurnal": 1.5}, "xorijiy_til": {"shisha": 1.5, "anor": 1.3}, "musiqa": {"yulduz": 1.4, "anor": 1.3},
+             "tabiiy": {"tabiat": 1.8, "shisha": 1.2}, "ona_tili": {"anor": 1.3, "daftar": 1.3}}
+    for o, w in (fanga.get(f) or {}).items():
+        v[o] = v.get(o, 1.0) * w
+    return v
+
+
+def tanla(rng: random.Random, oila=None, palitra=None, anim=None, fan="", daraja="", sinf=""):
     oilalar = list(OILALAR)
-    o = oila if oila in OILALAR else rng.choice(oilalar)
+    if oila in OILALAR:
+        o = oila
+    else:
+        vz = _oila_vaznlari(fan, daraja, sinf)
+        o = rng.choices(oilalar, weights=[vz.get(x, 1.0) for x in oilalar])[0]
     pals = mos_palitralar(o)
     p = palitra if palitra in pals else rng.choice(pals)
     a = anim if anim in ANIMATSIYALAR else rng.choice(TINCH_ANIMATSIYALAR)
@@ -360,6 +392,27 @@ def fon_rasm(kod: str) -> bytes:
             r = rng.choice([0.6, 0.8, 1.0, 1.4, 1.8])
             al = rng.randint(70, 220)
             d.ellipse([x - r, y - r, x + r, y + r], fill=(255, 255, 255, al))
+    elif t == "qogoz":
+        img = Image.new("RGBA", (W, H), (250, 248, 243, 255))
+        noise = Image.effect_noise((W, H), 10).convert("L")
+        tex = Image.new("RGBA", (W, H), (120, 100, 70, 0))
+        tex.putalpha(noise.point(lambda v: max(0, v - 128) // 10))
+        img.alpha_composite(tex)
+        d = ImageDraw.Draw(img)
+        d.rectangle([0, 0, W, 5], fill=hex2rgb(a0) + (255,))
+        d.line([(48, H - 54), (W - 48, H - 54)], fill=hex2rgb(och(a0, 0.6)) + (120,), width=1)
+    elif t == "jurnal":
+        img = Image.new("RGBA", (W, H), (255, 255, 255, 255))
+        d = ImageDraw.Draw(img)
+        side = rng.choice([0, 1])
+        x0 = W - 26 if side else 0
+        d.rectangle([x0, 0, x0 + 26, H], fill=hex2rgb(och(a0, 0.85)) + (255,))
+        d.rectangle([x0 + (0 if side else 23), 0, x0 + (3 if side else 26), H], fill=hex2rgb(a0) + (255,))
+        _blob(img, W * (0.1 if side else 0.9), H * 1.05, 300, 160, och(a1, 0.7), 0.12, 90)
+    elif t == "tekis":
+        img = _gradient(W, H, u.bg[0], toq(u.bg[1], 0.15), angle=110).convert("RGBA")
+        d = ImageDraw.Draw(img)
+        d.rectangle([0, H - 6, W, H], fill=hex2rgb(u.acc[0]) + (255,))
     else:  # chalk
         img = _gradient(W, H, u.bg[0], u.bg[1], angle=90).convert("RGBA")
         noise = Image.effect_noise((W, H), 18).convert("L")

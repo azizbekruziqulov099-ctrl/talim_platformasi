@@ -68,6 +68,8 @@ def kart(k: K, x, y, w, h, i=0, a=None, lnk=None, fill=None, op=None, line=None)
 
 
 def pill(k: K, x, y, matn, color, a=None, size=11, fg=None, h=None, lnk=None):
+    if k.s.tr:
+        matn = k.s.tr(matn)
     matn = matn.upper()
     tw = kenglik(matn, "sans", True, size) + size * 0.08 * len(matn)
     w = tw + 22

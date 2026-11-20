@@ -109,7 +109,8 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
     if uslub_kod:
         u = uslub.Uslub(uslub_kod, anim or rng.choice(uslub.TINCH_ANIMATSIYALAR))
     else:
-        u = uslub.tanla(rng, oila, palitra, anim)
+        mt = m.get("meta") or {}
+        u = uslub.tanla(rng, oila, palitra, anim, fan=mt.get("fan") or "", daraja=mt.get("daraja") or "", sinf=mt.get("sinf") or "")
     # animatsiya tanlanmagan bo'lsa — asosiy va yordamchi (slaydlarning bir qismi) aralash: chiqishlar xilma-xil
     anim2 = None
     if anim not in uslub.ANIMATSIYALAR:
@@ -125,7 +126,8 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
     secs_nav = [(sections[si][0], sec_rng[si][0]) for si in range(len(sections)) if si in sec_rng]
     reja_items = [(sections[si][0], sec_rng[si][0], sec_rng[si][1], sections[si][1]) for si in range(len(sections)) if si in sec_rng]
     rb = rasm_bor or rasmlar.bor
-    from . import bloklar_joy
+    from . import bloklar_joy, tarjima
+    tr = tarjima.tarjimon((m.get("meta") or {}).get("til"))
     deck = bloklar_joy.dnk(random.Random(seed * 7 + 3), u, dizayn)
     deck_json = dict(deck)
     slides = []
@@ -134,6 +136,7 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
     for i, p in enumerate(plan):
         # Morph o'xshash shakllarni o'zi juftlab, yozuvlarni slayddan slaydga uchirib yuboradi (xunuk) — faqat yumshoq fade
         s = Slayd(fon=fon, otish="fade")
+        s.tr = tr
         nav = {"total": total, "idx": i, "sections": secs_nav, "sec": p["sec"], "reja": reja_i if reja_i is not None else 0}
         srng = random.Random(seed * 1009 + i * 31)
         us = u

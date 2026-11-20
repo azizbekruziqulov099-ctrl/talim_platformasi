@@ -224,3 +224,21 @@ def test_ai_reja_va_bolimma_bolim(monkeypatch):
     assert m["meta"]["til"] == "ru" and m["test"]
     r = ai.reja_toza({"bolimlar": [{"nom": "A", "slaydlar": ["x", {"sarlavha": "y"}]}] * 9})
     assert len(r["bolimlar"]) == 6
+
+
+def test_tarjima_va_joylashuv():
+    from modules.taqdimot_dvigatel import tarjima, bloklar_joy, rasm_tanla
+    tr = tarjima.tarjimon("en")
+    assert tr("2-MA’RUZA") == "LECTURE 2" and tr("**Javob:** 5") == "**Answer:** 5" and tr("Javobgarlik") == "Javobgarlik"
+    assert tarjima.tarjimon("uz") is None
+    assert rasm_tanla.buyum_rasmi("Olma") and rasm_tanla.buyum_rasmi("Mototsikl")
+    m = {"meta": {"mavzu": "Test", "til": "ru"}, "bolimlar": [{"nom": "A", "slaydlar": [
+        {"sarlavha": "S1", "joylashuv": "markaz", "elementlar": [{"tur": "tarif", "matn": "Qisqa ta’rif."}]},
+        {"sarlavha": "S2", "elementlar": [{"tur": "matn", "matn": "a"}, {"tur": "matn", "matn": "b"}, {"tur": "matn", "matn": "c"}]},
+        {"sarlavha": "S3", "elementlar": [{"tur": "matn", "matn": "Fil katta."}, {"tur": "rasm", "rasm": "d_elephant"}]}]}]}
+    s = yasash.yasa(m, seed=2)
+    assert s["miya"]["bolimlar"][0]["slaydlar"][0]["joylashuv"] == "markaz"
+    assert set(s["dizayn"]) >= {"sarlavha", "kart", "titul", "bolim"}
+    matn = " ".join(r["t"] for sl in s["slaydlar"] for el in sl["els"] if el["k"] == "text" for p in el["pp"] for r in p["rs"])
+    assert "Определение" in matn or "ОПРЕДЕЛЕНИЕ" in matn
+    assert set(bloklar_joy.JOYLASHUVLAR) >= {"rasm_panel", "markaz", "ustunlar"}

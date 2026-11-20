@@ -53,6 +53,7 @@ class Slayd:
         self._id = 0
         self.qadam_soni = 0
         self.bolim = None
+        self.tr = None  # rus/ingliz taqdimotda tayyor yorliqlar tarjimasi (tarjima.py)
 
     # ------------------------------------------------------------- yordamchi
     def _qosh(self, el, a=None, lnk=None, nm=None):
@@ -104,6 +105,8 @@ class Slayd:
     def matn(self, x, y, w, h, matn, size=18, font="sans", color="#222222", bold=False, italic=False, align="l", va="t",
              lh=1.18, min_scale=0.55, a=None, lnk=None, nm=None, sp=None, urg=None, spc=0, bul=None):
         """matn: satr (\\n — yangi paragraf, '• ' — punkt) yoki tayyor paragraflar ro'yxati."""
+        if self.tr and isinstance(matn, str):
+            matn = self.tr(matn)
         pps = matn if isinstance(matn, list) else pps_qur(matn, size, font, color, bold, italic, align, urg, sp, bul)
         for pp in pps:
             pp.setdefault("al", align)
