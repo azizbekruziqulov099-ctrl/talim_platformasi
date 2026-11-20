@@ -52,3 +52,18 @@ def test_doktorantura_oliy_kursi():   # REV470: 13.00.02 tayanch doktorantura ku
     assert kurs_of(fan, "doktorantura") == (f"oliy|{fan}|doktorantura", "oliy", fan, "doktorantura")
     assert kurs_of(fan, "Doktorantura")[1] == "oliy"
     assert kurs_of("Matematika", "2 kurs")[1] == "oliy"          # eski qoida o'zgarmagan
+
+
+def test_doktorantura_70_foiz():   # REV470: keyingi dars faqat dars testidan 70% olinganda ochiladi
+    from modules.kurslar import doktorantura_mi, mashq_otdi, test_otganlar, tartib_qulf
+    assert doktorantura_mi("doktorantura") and doktorantura_mi("Doktorantura") and not doktorantura_mi("2 kurs")
+
+    class Cur:
+        def execute(self, *a): pass
+        def fetchall(self): return [{"topic_code": "A", "togri": 7, "jami": 10}, {"topic_code": "B", "togri": 6, "jami": 10},
+                                    {"topic_code": "C", "togri": 0, "jami": None}]
+    assert test_otganlar(Cur(), 1, "oliy|X|doktorantura") == {"A"}
+    assert mashq_otdi(7, 10) and not mashq_otdi(6, 10)
+    # B tugatilgan, lekin 70% emas — tugaganlar ro'yxatiga kirmaydi, B navbatda qoladi, C yopiq
+    holat = tartib_qulf([("A", True), ("B", True), ("C", True)], {"A"}, set(), False)
+    assert [h for _, h in holat] == ["tugadi", "navbat", "qulf"]

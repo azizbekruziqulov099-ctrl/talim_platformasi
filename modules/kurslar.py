@@ -187,6 +187,17 @@ def mashq_otdi(togri, jami):
     return int(jami or 0) > 0 and int(togri or 0) / int(jami) >= MASHQ_CHEGARA
 
 
+def doktorantura_mi(grade):
+    """REV470: 13.00.02 tayanch doktorantura kursi (sinf o'rnida «Doktorantura»)."""
+    return bool(re.search(r"doktorantura", str(grade or ""), re.I))
+
+
+def test_otganlar(cur, uid, kalit):
+    """Dars oxiridagi Kabu testidan 70% va undan ko'p olingan darslar (eng yaxshi urinish hisoblanadi)."""
+    cur.execute("SELECT topic_code, togri, jami FROM kurs_dars_holat WHERE user_id=%s AND kalit=%s", (uid, kalit))
+    return {r["topic_code"] for r in cur.fetchall() if mashq_otdi(r["togri"], r["jami"])}
+
+
 def kitob_otganlar(cur, uid):
     """Repetitor kitobida keyingi darsga o'tishga haqli darslar: mashq (asosiy yoki zapas) >= 70% VA test >= 70%."""
     cur.execute("SELECT topic_code, togri, jami FROM kitob_mashq_natija WHERE user_id=%s", (uid,))
@@ -726,6 +737,9 @@ def create_router(platform, click=None):
             tug = {r["topic_code"] for r in hol}; bugun_t = {r["topic_code"] for r in hol if r["bugun"]}
             if kalit == _rk.KALIT:   # Repetitor kitobi: dars «tugadi» — mashq va test 70% dan o'tgandagina; o'tmasa o'sha dars navbatda qoladi
                 otgan = kitob_otganlar(cur, uid)
+                tug = {x for x in tug if x in otgan}; bugun_t = {x for x in bugun_t if x in otgan}
+            elif doktorantura_mi(grade):   # REV470: 13.00.02 doktorantura — dars testidan 70% olinmaguncha keyingi dars yopiq
+                otgan = test_otganlar(cur, uid, kalit)
                 tug = {x for x in tug if x in otgan}; bugun_t = {x for x in bugun_t if x in otgan}
             cur.execute(f"SELECT {TOSHKENT_KUN} AS bugun"); bugun_kun = cur.fetchone()["bugun"]
             for k_, r_ in nz.items():   # o'tilgan nazorat — «tugadi» (o'sha kuni o'tilgan bo'lsa — keyingi dars ertaga)
