@@ -1,0 +1,597 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 2,
+    "tur": "ma’ruza",
+    "mavzu": "O‘nli kasrlar va ular ustida arifmetik amallar",
+    "qisqa": "O‘nli kasrlar",
+    "maqsad": "Talaba o‘nli yozuvni xona qiymati orqali tushuntiradi, o‘nli kasrlarni taqqoslaydi va ular ustidagi to‘rt amal algoritmini oddiy kasrlar yordamida asoslaydi. Hisoblashdagi xatolarni aniqlab, boshlang‘ich ta’lim uchun tushunarli model tanlaydi.",
+    "tayanch": [
+      "O‘nli yozuv va xona qiymati",
+      "O‘nli kasrlarni taqqoslash",
+      "Qo‘shish va ayirish",
+      "Ko‘paytirish",
+      "Bo‘lish va natijani tekshirish"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "$\\frac{37}{100}=0{,}37$",
+    "rasm": "",
+    "chizma": {
+      "tur": "ulush",
+      "bolak": 10,
+      "boyalgan": 3,
+      "shakl": "tasma"
+    }
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; M2, asl skanning 4-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Prealgebra 2e, 5.1 Decimals",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/5-1-decimals — o‘nli yozuv, xona qiymati va tartib."
+      },
+      {
+        "nomi": "OpenStax Prealgebra 2e, 5.2 Decimal Operations",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/5-2-decimal-operations — to‘rt amalning matematik asoslari."
+      },
+      {
+        "nomi": "OpenStax Prealgebra 2e, 5.3 Decimals and Fractions",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/5-3-decimals-and-fractions — oddiy kasr va o‘nli yozuv bog‘lanishi."
+      }
+    ],
+    "mustaqil": "Misollar ushbu mashg‘ulot uchun yangidan tuzildi. Slayd matni qisqa, batafsil tushuntirish o‘qituvchi izohlarida. O‘zbekcha matnda o‘nli ajratkich vergul bilan beriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Ratsional sonlar va kasrning asosiy xossasi",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "$\\frac{7}{10}$ kasrining maxraji nimani bildiradi?",
+        "javob": "Butun 10 ta teng qismga bo‘linganini."
+      },
+      {
+        "savol": "$\\frac{3}{4}$ ni maxraji 100 bo‘lgan kasrga keltiring.",
+        "javob": "$\\frac{3}{4}=\\frac{75}{100}$."
+      },
+      {
+        "savol": "Kasrning surat va maxrajini bir xil noldan farqli songa ko‘paytirsak, qiymati o‘zgaradimi?",
+        "javob": "Yo‘q, kasrning qiymati saqlanadi."
+      },
+      {
+        "savol": "$\\frac{27}{10}$ to‘g‘ri kasrmi yoki noto‘g‘ri kasrmi?",
+        "javob": "Noto‘g‘ri kasr: 27 > 10."
+      },
+      {
+        "savol": "$\\frac{4}{10}+\\frac{3}{100}$ ni hisoblang.",
+        "javob": "$\\frac{40}{100}+\\frac{3}{100}=\\frac{43}{100}$."
+      },
+      {
+        "savol": "Nolga bo‘lish mumkinmi?",
+        "javob": "Mumkin emas. Bo‘luvchi noldan farqli bo‘lishi shart."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Vergulning o‘rni nega muhim?",
+    "masalalar": [
+      {
+        "sarlavha": "Uzunliklarni qo‘shish",
+        "matn": "7,08 m va 2,7 m lenta birlashtirildi. Jami uzunlik qancha? 7,08 va 2,7 sonlarini ustun qilib qanday yozamiz?"
+      },
+      {
+        "sarlavha": "Lenta bo‘laklari soni",
+        "matn": "4,68 m lenta har biri 0,12 m bo‘lgan bo‘laklarga ajratildi. Nechta to‘liq bo‘lak hosil bo‘ladi?"
+      }
+    ],
+    "goya": "Har bir raqamning qiymati uning xonasiga bog‘liq. Algoritm shu qiymatlarni saqlashi kerak.",
+    "zanjir": [
+      "Xona qiymatini aniqlaymiz",
+      "Oddiy kasr yoki model bilan tushuntiramiz",
+      "Algoritmni bajaramiz",
+      "Teskari amal va taxmin bilan tekshiramiz"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "O‘nli yozuvning ma’nosi",
+      "izoh": "Xona qiymati, teng yozuvlar va nolning o‘rni",
+      "belgi": "0,37",
+      "slaydlar": [
+        {
+          "sarlavha": "O‘nli kasr nimani ifodalaydi?",
+          "izoh": "Butunni o‘nta teng qismga ajratib, uch qismini ajrating. Har bir qism bir o‘ndan bir bo‘lgani uchun ajratilgan miqdor uch o‘ndan birdir. So‘ng har bir o‘ndan birni yana o‘nta teng qismga bo‘lib, yuzdan bir tushunchasiga o‘ting. O‘nli yozuv oddiy kasrning qiymatini o‘zgartirmaydi.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Maxraji 10, 100, 1000 va hokazo bo‘lgan kasrlar o‘nli yozuvda ifodalanadi. Verguldan keyingi birinchi xona — o‘ndan birlar, ikkinchisi — yuzdan birlar.",
+              "formula": "\\frac{3}{10}=0{,}3,\\qquad \\frac{37}{100}=0{,}37"
+            },
+            {
+              "tur": "chizma",
+              "sarlavha": "O‘ndan uch qism",
+              "matn": "10 teng qismdan 3 tasi ajratilgan.",
+              "chizma": {
+                "tur": "ulush",
+                "bolak": 10,
+                "boyalgan": 3,
+                "shakl": "tasma"
+              },
+              "izoh": "Butun va bo‘laklarning tengligi saqlansin."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Har bir raqamning o‘z xonasi bor",
+          "izoh": "3,047 sonini o‘qishdan oldin xona jadvaliga joylashtiring. Noldan iborat o‘ndan birlar xonasi yuzdan birlarni noto‘g‘ri joyga surib yubormaslik uchun zarur. 4 raqami yuzdan to‘rtni, 7 raqami mingdan yettini bildiradi. Son uch butun mingdan qirq yetti deb o‘qiladi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Birlar",
+                "O‘ndan birlar",
+                "Yuzdan birlar",
+                "Mingdan birlar"
+              ],
+              "qatorlar": [
+                [
+                  "3",
+                  "0",
+                  "4",
+                  "7"
+                ],
+                [
+                  "2",
+                  "5",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "8",
+                  "0"
+                ]
+              ]
+            },
+            {
+              "tur": "formula",
+              "sarlavha": "3,047 sonining yoyilmasi",
+              "formula": "3{,}047=3+\\frac{0}{10}+\\frac{4}{100}+\\frac{7}{1000}",
+              "matn": "Raqamning qiymati uning o‘rniga bog‘liq."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qaysi nolni qo‘shish yoki olib tashlash mumkin?",
+          "izoh": "0,7 va 0,70 ni bir xil butunning bo‘laklari orqali taqqoslang. Yetti o‘ndan bir yetmish yuzdan birga teng. Shu sababli kasr qismining oxiridagi nollar qiymatni o‘zgartirmaydi. Ichkaridagi nol esa xona qiymatini saqlaydi, shuning uchun 3,05 va 3,5 boshqa-boshqa sonlardir.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "O‘nli yozuvning kasr qismi oxiriga nol qo‘shish yoki oxiridagi nolni olib tashlash sonning qiymatini o‘zgartirmaydi.",
+              "formula": "0{,}7=0{,}70=0{,}700"
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Nolning o‘rnini tekshiring",
+              "matn": "3,05 ≠ 3,5. Birinchisida 5 yuzdan bir, ikkinchisida 5 o‘ndan bir bor."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Taqqoslash, qo‘shish va ayirish",
+      "izoh": "Bir xil xona qiymatlari bilan ishlaymiz",
+      "belgi": "+ −",
+      "slaydlar": [
+        {
+          "sarlavha": "O‘nli kasrlarni qanday taqqoslaymiz?",
+          "izoh": "Avval butun qismlarni, ular teng bo‘lsa kasr xonalarini chapdan o‘ngga qarab taqqoslang. Kasr qismi oxiriga nol qo‘shib, yozuvlar uzunligini tenglashtirish mumkin. 0,570 va 0,507 sonlarida o‘ndan birlar bir xil, yuzdan birlar esa farqli. Manfiy sonlarda musbat modullarni taqqoslagandan keyin tartib teskari bo‘lishini alohida tushuntiring.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Musbat sonlar",
+              "shart": "0,57 va 0,507 ni taqqoslang.",
+              "qadamlar": [
+                "0,57 ni 0,570 ko‘rinishida yozamiz.",
+                "Butun va o‘ndan birlar xonalari teng.",
+                "Yuzdan birlar xonasida 7 > 0."
+              ],
+              "javob": "0,57 > 0,507"
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Manfiy sonlar",
+              "matn": "−0,8 < −0,75, chunki −0,8 son o‘qida chaproqda joylashadi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qo‘shish: vergullar bir ustunda",
+          "izoh": "Qo‘shishda yozuvning o‘ng chetini emas, bir xil xonalarni moslashtiring. 2,7 sonini 2,70 deb yozish uni yuzdan birlarda ifodalashga yordam beradi. 708 yuzdan birga 270 yuzdan bir qo‘shilganda 978 yuzdan bir hosil bo‘ladi. Natija 9 bilan 10 orasida bo‘lishi kerakligini oldindan taxmin qiling.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Vergullarni bir ustunga keltiramiz, zarur joylarga nol qo‘shamiz va bir xil xonalarni qo‘shamiz."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Lentalarning jami uzunligi",
+              "shart": "7,08 + 2,7 ni hisoblang.",
+              "qadamlar": [
+                "2,7 = 2,70.",
+                "7,08 + 2,70 = (708 + 270) / 100.",
+                "978 / 100 = 9,78."
+              ],
+              "javob": "9,78 m"
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ayirish: bo‘sh xonalarga nol yozamiz",
+          "izoh": "10 sonini 10,000 deb yozish uning qiymatini o‘zgartirmaydi. Endi mingdan birlarni mingdan birlardan ayirish mumkin. Xonadan qarz olishni oddiy butun sonlardagi kabi bajaramiz, lekin xona qiymatlarini saqlaymiz. Teskari amal bilan 6,525 va 3,475 yig‘indisi 10 ekanini tekshiring.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ayirish algoritmi",
+              "shart": "10 − 3,475 ni hisoblang.",
+              "qadamlar": [
+                "10 = 10,000.",
+                "(10000 − 3475) / 1000 = 6525 / 1000.",
+                "6525 / 1000 = 6,525."
+              ],
+              "javob": "6,525"
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Tekshirish",
+              "matn": "6,525 + 3,475 = 10,000 = 10."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "O‘nli kasrlarni ko‘paytirish",
+      "izoh": "Kasr xonalari sonining sababi",
+      "belgi": "×",
+      "slaydlar": [
+        {
+          "sarlavha": "Natural songa ko‘paytirish",
+          "izoh": "1,25 ni to‘rt marta qo‘shish ham shu natijani beradi. Oddiy kasr ko‘rinishida bu 125 yuzdan birni to‘rt marta olishdir. Ko‘paytma 500 yuzdan birga teng bo‘ladi. Natijadagi ortiqcha nollarni olib tashlab, 5 ni olamiz.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "To‘rtta teng uzunlik",
+              "shart": "Har biri 1,25 m bo‘lgan 4 ta tasmaning jami uzunligini toping.",
+              "qadamlar": [
+                "1,25 = 125 / 100.",
+                "125 × 4 = 500.",
+                "500 / 100 = 5."
+              ],
+              "javob": "5 m"
+            },
+            {
+              "tur": "qoida",
+              "matn": "Natural songa ko‘paytirishda butun sonlardagi algoritmni qo‘llaymiz va kasrning xona qiymatini saqlaymiz."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ikki o‘nli kasrni ko‘paytirish",
+          "izoh": "0,24 va 0,15 ning har biri yuzdan birlar orqali ifodalangan. Maxrajlar ko‘paytmasi 10000 bo‘lgani uchun ko‘paytmada to‘rtta kasr xonasi kerak bo‘ladi. 24 bilan 15 ko‘paytmasi 360 ga teng. 0,0360 va 0,036 bir xil sonni bildiradi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Algoritmning asosi",
+              "formula": "\\frac{a}{10^m}\\cdot\\frac{b}{10^n}=\\frac{ab}{10^{m+n}}",
+              "matn": "Ikki chekli o‘nli yozuvda kasr xonalari soni qo‘shiladi."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Ko‘paytma",
+              "shart": "0,24 × 0,15 ni hisoblang.",
+              "qadamlar": [
+                "24 × 15 = 360.",
+                "Ko‘paytuvchilarda jami 2 + 2 = 4 ta kasr xonasi bor.",
+                "360 / 10000 = 0,0360 = 0,036."
+              ],
+              "javob": "0,036"
+            }
+          ]
+        },
+        {
+          "sarlavha": "10, 100, 1000 ga ko‘paytirish va bo‘lish",
+          "izoh": "Vergulni mexanik ko‘chirishdan oldin raqamning xona qiymati qanday o‘zgarishini tushuntiring. 100 ga ko‘paytirishda har bir raqamning qiymati 100 marta ortadi. 100 ga bo‘lishda esa 100 marta kamayadi. Yetarli raqam bo‘lmasa, bo‘sh xonalarga nol qo‘yiladi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Amal",
+                "Natija",
+                "Mazmun"
+              ],
+              "qatorlar": [
+                [
+                  "0,375 × 10",
+                  "3,75",
+                  "10 marta katta"
+                ],
+                [
+                  "0,375 × 100",
+                  "37,5",
+                  "100 marta katta"
+                ],
+                [
+                  "0,375 : 100",
+                  "0,00375",
+                  "100 marta kichik"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Xona qiymati",
+              "matn": "Ko‘paytirish va bo‘lish yo‘nalishini aralashtirmang. Natijani oldindan taxmin qiling."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Bo‘lish va natijani asoslash",
+      "izoh": "Bo‘linma qiymatini saqlaymiz",
+      "belgi": "÷",
+      "slaydlar": [
+        {
+          "sarlavha": "Natural songa bo‘lish",
+          "izoh": "12,6 ni 126 o‘ndan bir deb o‘qing. 126 o‘ndan birni uchga teng taqsimlasak, har biriga 42 o‘ndan bir tegadi. Bu 4,2 ga teng. Teskari amal bo‘linmaning to‘g‘riligini tekshirish imkonini beradi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Teng taqsimlash",
+              "shart": "12,6 : 3 ni hisoblang.",
+              "qadamlar": [
+                "12,6 = 126 / 10.",
+                "126 : 3 = 42.",
+                "42 / 10 = 4,2."
+              ],
+              "javob": "4,2"
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Tekshirish",
+              "matn": "4,2 × 3 = 12,6."
+            }
+          ]
+        },
+        {
+          "sarlavha": "O‘nli kasrga bo‘lish",
+          "izoh": "Bo‘luvchini natural songa aylantirish uchun ikkala sonni bir xil 10 darajasiga ko‘paytiramiz. Faqat bo‘luvchini o‘zgartirish bo‘linmaning qiymatini buzadi. 0,12 ni 12 ga aylantirish uchun 100 ga ko‘paytirilgani sababli 4,68 ham 100 ga ko‘paytiriladi. Natijada 468 ni 12 ga bo‘lib, 39 ni olamiz.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Bo‘linuvchi va bo‘luvchini bir xil noldan farqli songa ko‘paytirish bo‘linmani o‘zgartirmaydi.",
+              "formula": "\\frac{a}{b}=\\frac{ac}{bc},\\qquad b\\ne0,\\ c\\ne0"
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Lenta necha bo‘lak bo‘ladi?",
+              "shart": "4,68 : 0,12 ni hisoblang.",
+              "qadamlar": [
+                "Ikkala sonni 100 ga ko‘paytiramiz.",
+                "4,68 : 0,12 = 468 : 12.",
+                "468 : 12 = 39; 39 × 0,12 = 4,68."
+              ],
+              "javob": "39 ta bo‘lak"
+            }
+          ]
+        },
+        {
+          "sarlavha": "Natijaning kattaligini tekshiramiz",
+          "izoh": "Musbat sonni birdan kichik musbat songa bo‘lganda bo‘linma bo‘linuvchidan katta bo‘ladi. Shu sababli bo‘lish har doim kichraytiradi degan fikr noto‘g‘ri. 6,4 metrda 0,8 metrlik bo‘laklar nechta ekanini model bilan ko‘rsating. Ikkinchi tekshiruv sifatida 8 bilan 0,8 ni ko‘paytiring.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Bo‘lish har doim kichraytiradimi?",
+              "shart": "6,4 : 0,8 ni hisoblang va natijani izohlang.",
+              "qadamlar": [
+                "Ikkala sonni 10 ga ko‘paytiramiz: 64 : 8.",
+                "64 : 8 = 8.",
+                "8 × 0,8 = 6,4; demak, natija to‘g‘ri."
+              ],
+              "javob": "8"
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Muhim shart",
+              "matn": "Nolga bo‘lish aniqlanmagan. Nolni noldan farqli songa bo‘lish natijasi esa nol."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "0,45 > 0,5, chunki 45 > 5.",
+      "sabab": "Kasr qismlari butun sonlar kabi solishtirilgan.",
+      "togri": "0,45 < 0,50 = 0,5; bir xil xonalarni taqqoslaymiz."
+    },
+    {
+      "xato": "3,05 = 3,5.",
+      "sabab": "Kasr qismi ichidagi nol olib tashlangan.",
+      "togri": "3,05 ≠ 3,5; 5 yuzdan bir bilan 5 o‘ndan bir teng emas."
+    },
+    {
+      "xato": "7,08 + 2,7 = 7,35.",
+      "sabab": "Bir xil xonalar moslashtirilmagan.",
+      "togri": "7,08 + 2,70 = 9,78."
+    },
+    {
+      "xato": "0,24 × 0,15 = 0,36.",
+      "sabab": "Ko‘paytmadagi kasr xonalari noto‘g‘ri sanalgan.",
+      "togri": "360 / 10000 = 0,036."
+    },
+    {
+      "xato": "4,68 : 0,12 = 4,68 : 12.",
+      "sabab": "Faqat bo‘luvchi 100 ga ko‘paytirilgan.",
+      "togri": "4,68 : 0,12 = 468 : 12 = 39."
+    },
+    {
+      "xato": "Bo‘lish natijasi har doim bo‘linuvchidan kichik bo‘ladi.",
+      "sabab": "Natural songa bo‘lish haqidagi tajriba barcha sonlarga tatbiq qilingan.",
+      "togri": "6,4 : 0,8 = 8. Musbat sonni 0 bilan 1 orasidagi songa bo‘lish uni kattalashtiradi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Buyumdan modelga, modeldan belgiga",
+    "bosqichlar": [
+      "O‘lchovli vaziyat: 1 metr lentani o‘nta teng qismga ajratamiz.",
+      "Model: xona jadvali va teng bo‘lakli tasma bilan ifodalaymiz.",
+      "Belgi: oddiy kasr va o‘nli yozuvni bog‘lab, algoritmni asoslaymiz."
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "O‘ndan uch",
+        "matn": "Bir butunning o‘nta teng qismidan uchtasini ajrating. Bir xil miqdorni 3/10 va 0,3 ko‘rinishida yozing.",
+        "chizma": {
+          "tur": "ulush",
+          "bolak": 10,
+          "boyalgan": 3,
+          "shakl": "tasma"
+        }
+      },
+      {
+        "sarlavha": "Bir xil butun",
+        "matn": "0,5 va 0,50 ni bir xil butun asosida ko‘rsating. Butunlar kattaligi har xil bo‘lsa, faqat bo‘yalgan maydonga qarab sonlarni taqqoslamang.",
+        "chizma": {
+          "tur": "ulush",
+          "bolak": 10,
+          "boyalgan": 5,
+          "shakl": "tasma"
+        }
+      },
+      {
+        "sarlavha": "Taqsimlash ma’nosi",
+        "matn": "6,4 m lentani 0,8 m li bo‘laklarga ajratish vaziyatini og‘zaki tushuntiring. 8 × 0,8 = 6,4 orqali tekshiring.",
+        "chizma": {
+          "tur": "tasma",
+          "bolak": 8,
+          "boyalgan": 1,
+          "jami": "6,4 m",
+          "bolak_nomi": "0,8 m"
+        }
+      }
+    ],
+    "tavsiya": "Boshlang‘ich sinfga mos parchani tanlashda aynan o‘sha sinf darsligi va tasdiqlangan dasturiga qarang. Ushbu bakalavr ma’ruzasidagi barcha amallarni bitta boshlang‘ich sinf darsiga joylamang."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "O‘nli yozuvda raqamning qiymati uning xonasiga bog‘liq.",
+      "Qo‘shish va ayirishda bir xil xonalar moslashtiriladi.",
+      "Ko‘paytirishda kasr xonalari soni oddiy kasrlar ko‘paytmasidan kelib chiqadi.",
+      "Bo‘lishda bo‘linuvchi va bo‘luvchi bir xil songa ko‘paytiriladi; bo‘luvchi nol bo‘lmaydi.",
+      "Natija teskari amal, birlik va kattalikni taxmin qilish bilan tekshiriladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "0,507 va 0,57 sonlari uchun qaysi munosabat to‘g‘ri?",
+      "variantlar": [
+        "0,507 > 0,57",
+        "0,507 = 0,57",
+        "0,507 < 0,57",
+        "Taqqoslab bo‘lmaydi"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "7,08 + 2,7 nechaga teng?",
+      "variantlar": [
+        "7,35",
+        "9,78",
+        "9,15",
+        "34,08"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "10 − 3,475 nechaga teng?",
+      "variantlar": [
+        "7,475",
+        "6,625",
+        "6,525",
+        "6,575"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "0,24 × 0,15 nechaga teng?",
+      "variantlar": [
+        "0,036",
+        "0,36",
+        "0,0036",
+        "3,6"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "4,68 : 0,12 nechaga teng?",
+      "variantlar": [
+        "0,39",
+        "3,9",
+        "390",
+        "39"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "6,4 : 0,8 nechaga teng?",
+      "variantlar": [
+        "0,8",
+        "8",
+        "80",
+        "5,6"
+      ],
+      "javob": 1
+    }
+  ],
+  "nazorat": [
+    "0,047 sonini xona qiymatlari orqali qanday tushuntirasiz?",
+    "Nega 0,7 va 0,70 teng, lekin 3,05 va 3,5 teng emas?",
+    "O‘nli kasrlarni qo‘shishda vergullarni bir ustunga keltirishning matematik sababi nima?",
+    "0,24 × 0,15 misolida to‘rtta kasr xonasi qayerdan kelib chiqadi?",
+    "O‘nli kasrga bo‘lishda nega ikkala son bir xil songa ko‘paytiriladi?",
+    "Bo‘lish natijasining bo‘linuvchidan katta bo‘lishiga misol keltiring."
+  ],
+  "mustaqil_ish": [
+    "Hisoblang va teskari amal bilan tekshiring: 8,406 + 0,79; 12 − 4,085.",
+    "Hisoblang va kasr orqali asoslang: 0,32 × 0,25; 7,56 : 0,18.",
+    "0,4; 0,04; 0,404; 0,44 sonlarini o‘sish tartibida joylashtiring. Javobingizni xona qiymatlari orqali izohlang.",
+    "Kichik guruhda 0,5 = 0,50 tengligini tushuntiradigan 3 bosqichli mini dars tuzing: buyum, model, belgi. Bitta mumkin bo‘lgan o‘quvchi xatosini aniqlang."
+  ],
+  "keyingi": {
+    "mavzu": "Birhadlar, ko‘phadlar va ular ustida amallar",
+    "izoh": "Sonli ifodalardagi amallarni harfli ifodalarga umumlashtiramiz. Ko‘paytirishning taqsimot qonunini takrorlang."
+  },
+  "rasmlar": []
+}

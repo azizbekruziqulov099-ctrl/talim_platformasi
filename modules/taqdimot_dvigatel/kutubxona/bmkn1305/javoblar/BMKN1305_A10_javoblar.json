@@ -1,0 +1,202 @@
+{
+  "mavzu_id": "BMKN1305-3-A10",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "0,125 m"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "19 sm²"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "3600"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "4,5 L"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "145"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "7,75≤x<7,85"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": [
+      "4,35 m",
+      "3,25 kg"
+    ],
+    "2": [
+      "8000 sm²",
+      "6000 sm³=6 L"
+    ],
+    "3": [
+      "9,3 sm",
+      "3 h 10 min=11400 s"
+    ],
+    "4": "9,15≤x<9,25 sm. Bu faqat belgilangan yaxlitlash qoidasi oralig‘i; asbob, usul va boshqa ta’sirlarning jami bahosi emas."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "A10 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "0.125 m",
+      "olingan": "0,125 m"
+    },
+    {
+      "tekshiruv": "A10 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "19 sm²",
+      "olingan": "19 sm²"
+    },
+    {
+      "tekshiruv": "A10 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "3600.00 ",
+      "olingan": "3600"
+    },
+    {
+      "tekshiruv": "A10 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "4.5000 L",
+      "olingan": "4,5 L"
+    },
+    {
+      "tekshiruv": "A10 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "145 ",
+      "olingan": "145"
+    },
+    {
+      "tekshiruv": "A10 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "7,75≤x<7,85",
+      "olingan": "7,75≤x<7,85"
+    },
+    {
+      "tekshiruv": "A10 uzunliklar yig‘indisi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 yuzlar koordinatali tekshiruvi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 birlik misoli",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 massa",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 vaqt",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 hajm va litr",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 ko‘rsatkichlar ayirmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 yaxlitlash chegarasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 o‘rtacha va yaxlitlash",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 mustaqil uzunlik va massa",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 mustaqil yuz va hajm",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 mustaqil kesma-vaqt",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 mustaqil yaxlitlash",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A10 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

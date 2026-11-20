@@ -1,0 +1,162 @@
+{
+  "mavzu_id": "BMKN1305-3-M9",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "TBT"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "BTB"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "TTT"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "Uch mos burchak teng"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "12"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "7 sm"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "TBT; moslik A↔P, B↔Q, C↔R; BC↔QR.",
+    "2": "BTB; ∠C=∠F=65°.",
+    "3": {
+      "asos": "ΔABD≅ΔACD, TTT; D dagi qo‘shni burchaklar teng va 90°.",
+      "AD": "8 sm",
+      "yuz": "48 sm²",
+      "perimetr": "32 sm"
+    },
+    "4": "Tomonlari 3,4,5 va 6,8,10: barcha mos burchaklar teng, tomonlar 2 marta farq qiladi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "M09 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M09 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M09 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M09 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M09 test 1 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "TBT",
+      "olingan": "TBT"
+    },
+    {
+      "tekshiruv": "M09 test 2 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "BTB",
+      "olingan": "BTB"
+    },
+    {
+      "tekshiruv": "M09 test 3 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "TTT",
+      "olingan": "TTT"
+    },
+    {
+      "tekshiruv": "M09 test 4 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Uch mos burchak teng",
+      "olingan": "Uch mos burchak teng"
+    },
+    {
+      "tekshiruv": "M09 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "12 ",
+      "olingan": "12"
+    },
+    {
+      "tekshiruv": "M09 test 6 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "7 sm",
+      "olingan": "7 sm"
+    },
+    {
+      "tekshiruv": "M09 TBT model koordinatalari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M09 BTB uchinchi burchak",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M09 TTT mavjudligi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M09 BBB qarshi misoli",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M09 TTB ikkita musbat yechim",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M09 TTB yozilgan uzunliklar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M09 mustaqil 3",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M09 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

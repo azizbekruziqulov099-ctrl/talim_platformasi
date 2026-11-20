@@ -1,0 +1,535 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 11,
+    "tur": "ma’ruza",
+    "mavzu": "Parallelogramm, romb va trapetsiya",
+    "qisqa": "Maxsus to‘rtburchaklar",
+    "maqsad": "Talaba parallelogramm, romb va trapetsiyani aniq shartlar bilan ajratadi; xossa va alomatlarni farqlaydi; diagonal, burchak, mos balandlik, perimetr va yuz masalalarini asoslab yechadi.",
+    "tayanch": [
+      "Parallel tomonlar",
+      "Parallelogramm diagonallari",
+      "Romb xossalari",
+      "Trapetsiya ta’rifi va turlari",
+      "O‘rta chiziq va yuz"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "S=(a+b)h/2",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; M11, asl skanning 5-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "Euclid Elements I.34 — parallelogramm xossalari",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/java/elements/bookI/propI34.html"
+      },
+      {
+        "nomi": "OpenStax Contemporary Mathematics, 10.6",
+        "izoh": "https://openstax.org/books/contemporary-mathematics/pages/10-6-area"
+      },
+      {
+        "nomi": "Math Open Reference: rhombus",
+        "izoh": "https://www.mathopenref.com/rhombus.html"
+      },
+      {
+        "nomi": "Math Open Reference: trapezoid median",
+        "izoh": "https://www.mathopenref.com/trapezoidmedian.html"
+      },
+      {
+        "nomi": "Math Open Reference: trapezoid",
+        "izoh": "https://www.mathopenref.com/trapezoid.html"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "To‘rtburchak, diagonal va balandlik",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Qavariq to‘rtburchak burchaklari yig‘indisi nechaga teng?",
+        "javob": "360°."
+      },
+      {
+        "savol": "Kvadrat rombmi?",
+        "javob": "Ushbu tasnifda ha."
+      },
+      {
+        "savol": "Diagonallar nimani tutashtiradi?",
+        "javob": "Qo‘shni bo‘lmagan uchlarni."
+      },
+      {
+        "savol": "Balandlik qanday masofa?",
+        "javob": "Tanlangan asos chizig‘iga perpendikulyar masofa."
+      },
+      {
+        "savol": "3²+4² nechaga teng?",
+        "javob": "25."
+      },
+      {
+        "savol": "Yuz va perimetr birliklari qaysi?",
+        "javob": "Masalan, sm² va sm."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Tasnif va formula shartlari saqlanadimi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Qiya parallelogrammda yon tomonni balandlik deb olish mumkinmi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Rombning diagonallari har doim tengmi?"
+      }
+    ],
+    "goya": "Maxsus xossani umumiy figura uchun shartsiz ishlatmaslik kerak.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Parallelogramm",
+      "izoh": "Ta’rif, xossa va alomat",
+      "belgi": "AB∥CD",
+      "slaydlar": [
+        {
+          "sarlavha": "Ikki juft qarama-qarshi tomon parallel",
+          "izoh": "Barcha figuralar ushbu darsda oddiy qavariq to‘rtburchaklardir. Parallelogrammda ikkala juft qarama-qarshi tomon parallel bo‘ladi. Kvadrat va to‘g‘ri to‘rtburchak ham shu ta’rifga mos keladi.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "ABCD parallelogrammda AB∥CD va BC∥AD."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Parallelogramm qiya chizilishi shart emas; to‘g‘ri burchakli xususiy holatlar ham mavjud."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Tomonlar va burchaklar",
+          "izoh": "Qarama-qarshi tomon va burchaklar teng. Yonma-yon ichki burchaklar parallel chiziqlar orasidagi bir tomonli burchaklar bo‘lib, yig‘indisi 180°. Burchaklarni shunchaki chizmadagi taxminiy ko‘rinishdan olmaymiz.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "AB=CD, BC=AD; ∠A=∠C, ∠B=∠D; ∠A+∠B=180°."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Burchaklar",
+              "shart": "∠A=65° bo‘lsa, qolgan burchaklarni toping.",
+              "qadamlar": [
+                "∠C=65°.",
+                "∠B=180°−65°=115°.",
+                "∠D=115°."
+              ],
+              "javob": "65°,115°,65°,115°."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Diagonallar va tanish alomatlari",
+          "izoh": "Parallelogramm diagonallari kesishish nuqtasida teng ikkiga bo‘linadi. Diagonallarning tengligi yoki perpendikulyarligi umumiy parallelogramm uchun shart emas. Aksincha, qavariq to‘rtburchak diagonallari bir-birini teng ikkiga bo‘lsa, u parallelogrammdir.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "O=AC∩BD bo‘lsa, AO=OC va BO=OD."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Diagonallarning yarmi",
+              "shart": "AC=18 sm, BD=14 sm. AO va BO ni toping.",
+              "qadamlar": [
+                "AO=18/2=9 sm.",
+                "BO=14/2=7 sm.",
+                "Bu ma’lumotdan AC⊥BD deb xulosa qilmaymiz."
+              ],
+              "javob": "AO=9 sm, BO=7 sm."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Romb",
+      "izoh": "Teng tomonlar va diagonallar",
+      "belgi": "d₁ ⟂ d₂",
+      "slaydlar": [
+        {
+          "sarlavha": "Romb va kvadrat",
+          "izoh": "Rombning barcha to‘rtta tomoni teng. Shu bilan u parallelogrammning xususiy turi bo‘ladi. Kvadrat esa to‘g‘ri burchakli romb bo‘lib, umumiy rombda burchaklar 90° bo‘lishi shart emas.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Romb — barcha tomonlari teng parallelogramm."
+            },
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Hukm",
+                "Holat"
+              ],
+              "qatorlar": [
+                [
+                  "Har kvadrat romb",
+                  "To‘g‘ri"
+                ],
+                [
+                  "Har romb kvadrat",
+                  "Noto‘g‘ri"
+                ],
+                [
+                  "Har romb parallelogramm",
+                  "To‘g‘ri"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Romb diagonallarining maxsus xossalari",
+          "izoh": "Romb parallelogramm bo‘lgani uchun diagonallari teng ikkiga bo‘linadi. Bundan tashqari, ular perpendikulyar va uchlardagi burchaklarni teng ikkiga ajratadi. Diagonallarning o‘zaro tengligi faqat kvadrat holatida kelib chiqadi.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Rombda AC⊥BD; AC va BD o‘z uchlaridagi burchaklarning bissektrisalari."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Diagonallari perpendikulyar bo‘lgan har qanday to‘rtburchak romb deb olinmaydi; qo‘shimcha shart zarur."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Romb yuzi va tomoni",
+          "izoh": "Perpendikulyar diagonallar figura ichini to‘rtta to‘g‘ri uchburchakka ajratadi. Har bir yon tomon shu uchburchakning gipotenuzasidir. Diagonallar uzunligini to‘liq emas, yarmini Pifagor formulasiga qo‘ying.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Yuz",
+              "formula": "S=\\frac{d_1d_2}{2}=ah",
+              "matn": "h tanlangan a tomonga mos balandlik."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Diagonallar berilgan",
+              "shart": "d₁=6 sm, d₂=8 sm. Yuz va perimetrni toping.",
+              "qadamlar": [
+                "S=6·8/2=24 sm².",
+                "a=√(3²+4²)=5 sm.",
+                "P=4·5=20 sm."
+              ],
+              "javob": "S=24 sm²; P=20 sm."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Trapetsiya",
+      "izoh": "Ta’rif kelishuvini ochiq saqlaymiz",
+      "belgi": "m=(a+b)/2",
+      "slaydlar": [
+        {
+          "sarlavha": "Aynan bitta juft parallel tomon",
+          "izoh": "Ushbu darsda trapetsiya aynan bitta juft qarama-qarshi tomoni parallel bo‘lgan qavariq to‘rtburchak sifatida olinadi. Parallel tomonlar asoslar, qolganlari yon tomonlar deyiladi. Ayrim manbalarda “kamida bitta juft” kelishuvi ishlatilishi mumkin; bu darsdagi tasnif bilan aralashtirmang.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Trapetsiya asoslari a,b; balandligi h — asoslarni tutuvchi parallel chiziqlar orasidagi perpendikulyar masofa."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Bu kelishuv bo‘yicha parallelogramm trapetsiyalar sinfiga kiritilmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Teng yonli va to‘g‘ri burchakli trapetsiya",
+          "izoh": "Teng yonli trapetsiyada yon tomonlar teng; bir asosga yopishgan burchaklar teng bo‘ladi. To‘g‘ri burchakli trapetsiyada bir yon tomon asoslarga perpendikulyar bo‘lib, ikkita burchak 90° bo‘ladi. Ikki turli maxsus shartni bir xil deb qabul qilmang.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Tur",
+                "Shart",
+                "Xossa"
+              ],
+              "qatorlar": [
+                [
+                  "Teng yonli",
+                  "Yon tomonlar teng",
+                  "Bir asosdagi burchaklar teng; diagonallar teng"
+                ],
+                [
+                  "To‘g‘ri burchakli",
+                  "Bir yon tomon asoslarga perpendikulyar",
+                  "Ikkita ichki burchak 90°"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Ushbu aynan bitta parallel juft kelishuvida teng yonli trapetsiyani to‘g‘ri burchakli deb umumlashtirib bo‘lmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "O‘rta chiziq va yuz",
+          "izoh": "O‘rta chiziq yon tomonlar o‘rtalarini tutashtiradi va asoslarga parallel bo‘ladi. Uning uzunligi asoslar yig‘indisining yarmi. Yuzni o‘rta chiziq bilan balandlik ko‘paytmasi sifatida ham yozish mumkin.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Ikki formula",
+              "formula": "m=\\frac{a+b}{2},\\qquad S=\\frac{a+b}{2}h=mh",
+              "matn": "a va b — parallel asoslar, h — ularga perpendikulyar balandlik."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "O‘rta chiziq",
+              "shart": "Asoslar 8 sm va 14 sm. O‘rta chiziqni toping.",
+              "qadamlar": [
+                "8+14=22 sm.",
+                "22/2=11 sm.",
+                "Bu asoslar ayirmasining yarmi emas."
+              ],
+              "javob": "11 sm."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Hisoblash va tekshirish",
+      "izoh": "Balandlikni yon tomondan ajratamiz",
+      "belgi": "S=ah",
+      "slaydlar": [
+        {
+          "sarlavha": "Parallelogramm yuzida mos balandlik",
+          "izoh": "Asosga mos balandlik uning yotgan chizig‘iga perpendikulyar masofadir. Qiya yon tomonni balandlik o‘rniga ishlatish umumiy holda noto‘g‘ri. Birliklar uzunlik va yuzda farq qiladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Asos va balandlik",
+              "shart": "Asos 12 sm, unga mos balandlik 5 sm, yon tomon 7 sm. Yuz va perimetrni toping.",
+              "qadamlar": [
+                "S=12·5=60 sm².",
+                "P=2(12+7)=38 sm.",
+                "S=12·7 emas: 7 sm yon tomon."
+              ],
+              "javob": "S=60 sm²; P=38 sm."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Teng yonli trapetsiyaning balandligi",
+          "izoh": "Katta va kichik asos ayirmasi ikki chetga teng bo‘linadi. Yon tomon, balandlik va shu yarim ayirma to‘g‘ri burchakli uchburchak beradi. Balandlik musbat ildiz sifatida olinadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Yon tomondan balandlikka",
+              "shart": "Asoslar 14 va 8 sm, yon tomonlar 5 sm. Balandlik va yuzni toping.",
+              "qadamlar": [
+                "Yarim ayirma (14−8)/2=3 sm.",
+                "h²=5²−3²=16; h=4 sm.",
+                "S=(14+8)·4/2=44 sm²."
+              ],
+              "javob": "h=4 sm; S=44 sm²."
+            }
+          ]
+        },
+        {
+          "sarlavha": "To‘g‘ri burchakli trapetsiyada birliklar",
+          "izoh": "Perpendikulyar yon tomon balandlik bo‘ladi. Qiya yon tomonni topish uchun asoslar ayirmasi va balandlikdan foydalanish mumkin. Perimetr bilan yuz son jihatdan tasodifan teng chiqsa ham, ular boshqa miqdorlardir.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki miqdorni farqlash",
+              "shart": "Asoslar 10 va 6 sm, perpendikulyar yon tomon 3 sm. Yuz va perimetrni toping.",
+              "qadamlar": [
+                "Asoslar ayirmasi 4 sm; qiya tomon √(4²+3²)=5 sm.",
+                "S=(10+6)·3/2=24 sm².",
+                "P=10+6+3+5=24 sm."
+              ],
+              "javob": "S=24 sm²; P=24 sm."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Parallelogramm doimo qiya va to‘g‘ri burchaksiz.",
+      "sabab": "Xususiy to‘g‘ri burchakli holatlar chiqarib tashlangan.",
+      "togri": "Kvadrat va to‘g‘ri to‘rtburchak ham parallelogrammdir."
+    },
+    {
+      "xato": "Parallelogramm diagonallari doimo teng.",
+      "sabab": "To‘g‘ri to‘rtburchak xossasi umumlashtirilgan.",
+      "togri": "Umumiy parallelogrammda diagonallar bir-birini teng ikkiga bo‘ladi, lekin teng bo‘lishi shart emas."
+    },
+    {
+      "xato": "Har romb kvadrat.",
+      "sabab": "To‘g‘ri burchak sharti yo‘q.",
+      "togri": "Kvadrat — rombning xususiy turi."
+    },
+    {
+      "xato": "Trapetsiya o‘rta chizig‘i (a−b)/2.",
+      "sabab": "Asoslar yig‘indisi ayirmaga almashtirilgan.",
+      "togri": "m=(a+b)/2."
+    },
+    {
+      "xato": "Yuzda qiya yon tomonni h olish.",
+      "sabab": "Perpendikulyar masofa sharti buzilgan.",
+      "togri": "Tanlangan asosga mos balandlik olinadi."
+    },
+    {
+      "xato": "Teng yonli trapetsiyada gorizontal chet bo‘lagi a−b.",
+      "sabab": "Asoslar ayirmasining ikkiga bo‘linishi unutilgan.",
+      "togri": "Har chetdagi bo‘lak (a−b)/2."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Sinflarni ta’rif bilan ajratish",
+    "bosqichlar": [
+      "Parallel va teng tomon belgilarini qo‘yish",
+      "Umumiy xossa va maxsus xossani ajratish",
+      "Mos balandlik bilan hisoblash"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Tasnif",
+        "matn": "Kvadratning parallelogramm va romb bo‘lishini ta’rifdan ko‘rsating."
+      },
+      {
+        "sarlavha": "Romb diagonallari",
+        "matn": "Yarim diagonallardan to‘g‘ri burchakli uchburchak tuzing."
+      },
+      {
+        "sarlavha": "Trapetsiya",
+        "matn": "Teng yonli trapetsiyada asoslar ayirmasini ikki chetga teng taqsimlang."
+      }
+    ],
+    "tavsiya": "Trapetsiya uchun qabul qilingan aynan bitta parallel juft ta’rifini mavzu davomida o‘zgartirmang. Boshqa manba kelishuvini oldindan tushuntiring."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Parallelogrammda ikki juft qarama-qarshi tomon parallel.",
+      "Umumiy parallelogramm diagonallari teng yoki perpendikulyar bo‘lishi shart emas.",
+      "Rombning barcha tomonlari teng va diagonallari perpendikulyar.",
+      "Trapetsiya ta’rifi kelishuvi ochiq yoziladi.",
+      "Yuzda asosga mos perpendikulyar balandlik olinadi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "Parallelogrammning bir burchagi 65°. Yonma-yon burchak qaysi?",
+      "variantlar": [
+        "65°",
+        "25°",
+        "115°",
+        "130°"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Parallelogramm diagonali AC=18 sm. Kesishish nuqtasi O uchun AO qaysi?",
+      "variantlar": [
+        "9 sm",
+        "18 sm",
+        "36 sm",
+        "7 sm"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "Romb diagonallari 6 va 8 sm. Yuz qaysi?",
+      "variantlar": [
+        "48 sm²",
+        "14 sm²",
+        "20 sm²",
+        "24 sm²"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "Trapetsiya asoslari 8 va 14 sm. O‘rta chiziq qaysi?",
+      "variantlar": [
+        "3 sm",
+        "11 sm",
+        "22 sm",
+        "6 sm"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Teng yonli trapetsiya asoslari 14 va 8 sm, yon tomonlari 5 sm. Balandlik qaysi?",
+      "variantlar": [
+        "5 sm",
+        "3 sm",
+        "4 sm",
+        "6 sm"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Trapetsiya asoslari 10 va 6 sm, balandlik 3 sm. Yuz qaysi?",
+      "variantlar": [
+        "48 sm²",
+        "30 sm²",
+        "18 sm²",
+        "24 sm²"
+      ],
+      "javob": 3
+    }
+  ],
+  "nazorat": [
+    "Parallelogramm va uning xususiy turlarini sanang.",
+    "Parallelogramm diagonallari qaysi xossaga ega?",
+    "Romb diagonallari yana qanday maxsus xossalarga ega?",
+    "Trapetsiya uchun qabul qilingan kelishuvni ayting.",
+    "Teng yonli trapetsiyada balandlik formulasini tushuntiring.",
+    "Perimetr bilan yuz birliklarini solishtiring."
+  ],
+  "mustaqil_ish": [
+    "Parallelogramm tomonlari 7 va 12 sm, 12 sm asosga mos balandlik 5 sm. P va S ni toping.",
+    "Romb diagonallari 10 va 24 sm. Tomoni, perimetri va yuzini toping.",
+    "Teng yonli trapetsiya asoslari 10 va 16 sm, yon tomonlari 5 sm. Balandlik, yuz va perimetrni toping.",
+    "Parallelogramm diagonallari o‘zaro teng bo‘lishi shart emasligini koordinatali misol bilan ko‘rsating."
+  ],
+  "keyingi": {
+    "mavzu": "Ko‘pyoqlar va ularning turlari",
+    "izoh": "Yassi figura bilan fazoviy jism, yuz bilan hajm farqini takrorlang."
+  },
+  "rasmlar": []
+}

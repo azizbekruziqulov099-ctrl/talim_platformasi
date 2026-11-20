@@ -1,0 +1,534 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 13,
+    "tur": "amaliy",
+    "mavzu": "Massa, hajm va fazoviy jismlar: amaliy mashg‘ulot",
+    "qisqa": "Massa va hajm amaliyoti",
+    "maqsad": "Talaba massa va hajmni farqlaydi; tarozi, tara va suyuqlik ko‘rsatkichi orqali o‘lchovlarni bajaradi; fazoviy jismlar hajmini formula shartlari va mos birliklarda hisoblaydi.",
+    "tayanch": [
+      "Massa va tara",
+      "Hajm birliklari",
+      "Siqib chiqarish",
+      "Ko‘pyoqlar hajmi",
+      "Aylanish jismlari hajmi"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "V=Bh",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; A13, asl skanning 6-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "BIPM:SI Brochure",
+        "izoh": "https://www.bipm.org/en/publications/si-brochure"
+      },
+      {
+        "nomi": "OpenStax Chemistry2e,1.4:Measurements",
+        "izoh": "https://openstax.org/books/chemistry-2e/pages/1-4-measurements"
+      },
+      {
+        "nomi": "OpenStax Contemporary Mathematics,10.7",
+        "izoh": "https://openstax.org/books/contemporary-mathematics/pages/10-7-volume-and-surface-area"
+      },
+      {
+        "nomi": "OpenStax Prealgebra2e,9.6",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/9-6-solve-geometry-applications-volume-and-surface-area"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "M12–M14 va A8",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Massa SI birligi qaysi?",
+        "javob": "kg."
+      },
+      {
+        "savol": "1 L necha dm³?",
+        "javob": "1."
+      },
+      {
+        "savol": "1 mL necha sm³?",
+        "javob": "1."
+      },
+      {
+        "savol": "Prizma hajmi qanday?",
+        "javob": "Bh."
+      },
+      {
+        "savol": "Piramida hajmi qanday?",
+        "javob": "Bh/3."
+      },
+      {
+        "savol": "Hajmdan massa doim yagona topiladimi?",
+        "javob": "Qo‘shimcha bog‘lanishsiz yo‘q."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Buyum kattaligi uning massasimi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Bir xil 12 sm³ hajmli ikki buyumning massasi har xil bo‘lishi mumkinmi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Qutining tashqi o‘lchamlari ichki sig‘imiga doim tengmi?"
+      }
+    ],
+    "goya": "Miqdor turi, modda va ichki-tashqi o‘lchamlar ajratiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Massa va uni o‘lchash",
+      "izoh": "Birlik, taqqoslash va tara",
+      "belgi": "Massa va tara",
+      "slaydlar": [
+        {
+          "sarlavha": "Massa va boshqa miqdorlar",
+          "izoh": "Massa kilogramm bilan ifodalanadi. U hajm ham, uzunlik ham emas. Kuch sifatidagi og‘irlik boshqa fizik miqdor. Maktabning oddiy tortish modelida saqlanayotgan jismlar massalari qo‘shiladi; buyumni qismlarga ajratishning o‘zi massa yo‘qolishi degani emas.",
+          "elementlar": [
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Tortish natijasi asbob sharoiti va birligi bilan yoziladi."
+            },
+            {
+              "tur": "matn",
+              "matn": "Bir xil hajmli buyumlar turli moddadan bo‘lsa, massalari turlicha bo‘lishi mumkin."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Teng yelkali tarozi",
+          "izoh": "Tarozi avval nolga keltirilgan, teng yelkali va muvozanatda deb olinadi. Bir palladagi buyum massasi ikkinchi palladagi toshlar yig‘indisiga teng. Palalarga bir xil massa qo‘shish ideal modeldagi muvozanatni saqlaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Toshlar bilan tortish",
+              "shart": "Muvozanatdagi tarozining boshqa pallasida 500 g,200 g,50 g bor. Buyum massasi?",
+              "qadamlar": [
+                "500+200+50=750 g.",
+                "750 g=0,75 kg.",
+                "Toshlar bir xil palla bo‘yicha yig‘ildi."
+              ],
+              "javob": "750 g."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Idish va sof massa",
+          "izoh": "Idish bilan birga massa brutto, idishning o‘zi tara, ichidagi mahsulot sof massa sifatida olinadi. Birliklar moslashtiriladi. Bu usul idish va mahsulot massalari oddiy qo‘shiladigan maktab modeliga tegishli.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Tara ayirish",
+              "shart": "Idish 180 g, ichidagisi bilan 1080 g. Sof massa qancha?",
+              "qadamlar": [
+                "1080−180=900 g.",
+                "900 g=0,9 kg.",
+                "900+180=1080 g."
+              ],
+              "javob": "900 g."
+            },
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Birlik",
+                "Bog‘lanish"
+              ],
+              "qatorlar": [
+                [
+                  "1 kg",
+                  "1000 g"
+                ],
+                [
+                  "1 g",
+                  "1000 mg"
+                ],
+                [
+                  "1t",
+                  "1000 kg"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Hajmni o‘lchash",
+      "izoh": "Kub birlik va idish sig‘imi",
+      "belgi": "m³, dm³, sm³",
+      "slaydlar": [
+        {
+          "sarlavha": "Kub birliklar",
+          "izoh": "Hajm fazoviy sohaning o‘lchovi. Birlik kub bo‘shliqsiz va ichki ustma-ust tushishsiz joylashtiriladi. Uzunlik koeffitsiyenti kubga oshadi. Litr kub detsimetrga teng, hajm birligi; massa birligi emas.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Tenglik",
+                "Natija"
+              ],
+              "qatorlar": [
+                [
+                  "1 dm³",
+                  "1000 sm³=1 L"
+                ],
+                [
+                  "1 m³",
+                  "1000000 sm³=1000 L"
+                ],
+                [
+                  "1 mL",
+                  "1 sm³"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "sm o‘zbekcha darslik qisqartmasi, xalqaro SI belgisi cm."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Suyuqlik siqib chiqarish usuli",
+          "izoh": "Jism to‘liq botirilgan, suvda erimaydigan, suvni shimimaydigan bo‘lsin; toshib ketish va havo pufaklari yo‘q deb olinadi. Shunda suyuqlik ko‘rsatkichi ortishi botirilgan jism hajmini beradi. Faqat suzib turgan qismdan to‘liq hajm bevosita olinmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "350 mL dan 425 mL ga",
+              "shart": "Jism hajmini toping.",
+              "qadamlar": [
+                "425−350=75 mL.",
+                "1 mL=1 sm³.",
+                "Jism hajmi 75 sm³."
+              ],
+              "javob": "75 sm³."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Tashqi o‘lcham va ichki sig‘im",
+          "izoh": "Idish devori bor bo‘lsa, tashqi o‘lchamlar ko‘paytmasi ichiga sig‘adigan hajmni avtomatik bermaydi. Masalada ichki o‘lchamlar berilganmi, shuni aniqlang. Kubchalar modeli hajm va qoplash uchun yuzning farqini ko‘rsatadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ichki o‘lchamlar",
+              "shart": "Idishning ichki uzunligi 4 sm, kengligi 5 sm, balandligi 10 sm. Sig‘imi?",
+              "qadamlar": [
+                "4·5·10=200 sm³.",
+                "200 sm³=200 mL=0,2 L.",
+                "Bu hisob aynan ichki o‘lchamlarga tayangan."
+              ],
+              "javob": "0,2 L."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Ko‘pyoqlar hajmi",
+      "izoh": "Balandlikning vazifasi",
+      "belgi": "V=Bh va Bh/3",
+      "slaydlar": [
+        {
+          "sarlavha": "Prizma, kuboid va kub",
+          "izoh": "Prizmada hajm asos yuzi B bilan perpendikulyar balandlik h ko‘paytmasi. Kuboidda o‘zaro perpendikulyar o‘lchamlar abc. Kubda barcha qirralar teng a³. Umumiy og‘ma jism qirrasini balandlik deb olmang.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Berilgan",
+                "Formula",
+                "Hajm"
+              ],
+              "qatorlar": [
+                [
+                  "Prizma: B=18 sm², h=7 sm",
+                  "Bh",
+                  "126 sm³"
+                ],
+                [
+                  "Kuboid:3,5,8 sm",
+                  "abc",
+                  "120 sm³"
+                ],
+                [
+                  "Kub: a=4 sm",
+                  "a³",
+                  "64 sm³"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Piramida hajmi",
+          "izoh": "Piramida asosining shakli va perpendikulyar balandlik asosiy ma’lumotdir. Yon qirra yoki apofema h o‘rniga qo‘yilmaydi. Formula bir xil asos va balandlikdagi prizma hajmining uchdan birini beradi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "B=30 sm², h=9 sm",
+              "shart": "Hajmni toping.",
+              "qadamlar": [
+                "V=Bh/3.",
+                "30·9/3=90 sm³.",
+                "Shu B, hdagi prizma 270 sm³ bo‘lardi."
+              ],
+              "javob": "90 sm³."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Hajm massani bir qiymatli beradimi?",
+          "izoh": "Ikki buyum hajmi 12 sm³, ammo massalari 24 g va 96 g deb berilishi mumkin. Bu ma’lumotning o‘zi ziddiyat emas: moddalar va sharoitlar turlicha bo‘lishi mumkin. Hajmdan massani topish uchun mos qo‘shimcha bog‘lanish kerak.",
+          "elementlar": [
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "“1 L har qanday modda 1 kg” umumiy qoida emas."
+            },
+            {
+              "tur": "matn",
+              "matn": "Vazifa: berilganlar qaysi biri massa, qaysi biri hajm ekanini ayting. Birliklarni almashtirish boshqa miqdor turiga aylantirish emas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Aylanish jismlari hajmi",
+      "izoh": "To‘g‘ri doiraviylik va radius",
+      "belgi": "V va S boshqa",
+      "slaydlar": [
+        {
+          "sarlavha": "Silindr hajmi",
+          "izoh": "To‘g‘ri doiraviy silindrda B=πr². Hajmga r radius va h balandlik qo‘yiladi. Diametr berilsa, avval ikkiga bo‘linadi. Yuza birligi bilan hajm birligi farqlanadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "r=3 sm, h=7 sm",
+              "shart": "Hajmni toping.",
+              "qadamlar": [
+                "V=πr²h.",
+                "π·9·7=63π sm³.",
+                "Diametr 6 sm, ammo formulada 3 ishlatildi."
+              ],
+              "javob": "63π sm³."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Konus hajmi",
+          "izoh": "Shu radius va balandlikdagi konus silindr hajmining uchdan biriga ega. Bunda h asosga perpendikulyar; yasovchi ishlatilmaydi. Ko‘rinishdagi qiya uzunlikning katta bo‘lishi formuladagi hni o‘zgartirmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "r=3 sm, h=7 sm",
+              "shart": "Konus hajmini silindr bilan solishtiring.",
+              "qadamlar": [
+                "V=π·9·7/3.",
+                "V=21π sm³.",
+                "63π:21π=3."
+              ],
+              "javob": "21π sm³."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Shar hajmi",
+          "izoh": "Shar radiusi R bo‘lsa, V=4πR³/3. Sfera sirti esa 4πR², boshqa miqdor. Sonli koeffitsiyentlar tasodifan teng bo‘lishi mumkin, biroq birliklar boshqacha.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "R=3 sm",
+              "shart": "Shar hajmini toping.",
+              "qadamlar": [
+                "R³=27 sm³.",
+                "V=4π·27/3=36π sm³.",
+                "Sfera sirti 36π sm²; hajm bilan bir miqdor emas."
+              ],
+              "javob": "36π sm³."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Bruttoni sof massa olish.",
+      "sabab": "Tara hisobga olinmagan.",
+      "togri": "Sof=brutto−tara."
+    },
+    {
+      "xato": "Har 1 Lni 1 kgga aylantirish.",
+      "sabab": "Hajm va massa aralashgan.",
+      "togri": "Moddaga oid bog‘lanish kerak."
+    },
+    {
+      "xato": "Suzuvchi jismning faqat botgan qismidan to‘liq hajm olish.",
+      "sabab": "To‘liq botish sharti yo‘q.",
+      "togri": "Usul shartlari tekshiriladi."
+    },
+    {
+      "xato": "Tashqi o‘lchamni ichki sig‘im deb olish.",
+      "sabab": "Devorlar e’tiborsiz.",
+      "togri": "Ichki o‘lchamlar kerak."
+    },
+    {
+      "xato": "Piramida yoki konus hajmida 1/3 ni tashlash.",
+      "sabab": "Prizma/silindr bilan aralashgan.",
+      "togri": "Shakl turi bo‘yicha formula tanlanadi."
+    },
+    {
+      "xato": "Sfera yuzi bilan shar hajmini tenglashtirish.",
+      "sabab": "Daraja va birliklar ajratilmagan.",
+      "togri": "Kvadrat va kub birlik farqi saqlanadi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Asbobdan matematik modelga",
+    "bosqichlar": [
+      "Miqdor va o‘lchov usulini tanlash",
+      "Tara, birlik va geometrik shartni tekshirish",
+      "Hisobni teskari amal va kattalik bilan nazorat qilish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Tarozi",
+        "matn": "Nol va teng yelka modeli yozilsin."
+      },
+      {
+        "sarlavha": "Suyuqlik",
+        "matn": "To‘liq botish va hajm farqini ko‘rsating."
+      },
+      {
+        "sarlavha": "Formula",
+        "matn": "B, h, r,ℓ vazifalarini almashtirmang."
+      }
+    ],
+    "tavsiya": "Maktabga mos modelda amaliy kuzatuv sodda bo‘ladi; bakalavr izohida uning shartlari va cheklovi ham yoziladi."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Massa va hajm boshqa miqdorlar.",
+      "O‘lchash usulining shartlari natijaga ta’sir qiladi.",
+      "Ichki sig‘im uchun ichki o‘lcham kerak.",
+      "Hajm formulasi jism turi va mos balandlikka tayanadi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "Idish 180 g, mahsulot bilan 1080 g. Sof massa qaysi?",
+      "variantlar": [
+        "1260 g",
+        "1080 g",
+        "900 g",
+        "180 g"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Muvozanatdagi tarozida 500+200+50 g toshlar bo‘lsa, buyum massasi?",
+      "variantlar": [
+        "750 g",
+        "250 g",
+        "700 g",
+        "800 g"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "To‘liq botgan jismda 350 mLdan 425 mLga ortdi. Hajm qaysi?",
+      "variantlar": [
+        "775 sm³",
+        "425 sm³",
+        "350 sm³",
+        "75 sm³"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "Kub qirrasi 4 sm. Hajm qaysi?",
+      "variantlar": [
+        "24 sm³",
+        "64 sm³",
+        "16 sm³",
+        "48 sm³"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Piramida B=30 sm², h=9 sm. Hajm qaysi?",
+      "variantlar": [
+        "270 sm³",
+        "30 sm³",
+        "90 sm³",
+        "810 sm³"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Silindr r=3 sm, h=7 sm. Hajm qaysi?",
+      "variantlar": [
+        "63π sm³",
+        "21π sm³",
+        "42π sm³",
+        "9π sm³"
+      ],
+      "javob": 0
+    }
+  ],
+  "nazorat": [
+    "Massa bilan kuch sifatidagi og‘irlikni farqlang.",
+    "Sof massani qanday topasiz?",
+    "Suyuqlik ko‘rsatkichlari farqi qachon jism hajmi?",
+    "Tashqi quti va ichki sig‘im farqini ayting.",
+    "Bir xil B, hdagi prizma-piramida nisbatini yozing.",
+    "Shar hajmi bilan sfera sirti birligini farqlang."
+  ],
+  "mustaqil_ish": [
+    "2 kg 350 g+875 g ni hisoblang. Tara 250 g, brutto 1675 g bo‘lsa, sof massani toping.",
+    "Ichki o‘lchamlari 4,6,9 sm idish hajmini sm³ va litrda toping.",
+    "Prizma B=24 sm², h=5 sm va shu B, hdagi piramida hajmlarini; r=6 sm, h=8 sm konus va silindr hajmlarini toping.",
+    "R=4 sm shar hajmini toping. Boshqa to‘liq botirilgan jismda 120 mLdan 168,5 mLga ortish bo‘lsa, hajmni yozib, usulning zarur shartlarini ayting."
+  ],
+  "keyingi": {
+    "mavzu": "Vaqt, narx va tezlik amaliyoti",
+    "izoh": "Miqdorlar orasidagi nisbat va birlik mosligini takrorlang."
+  },
+  "rasmlar": []
+}

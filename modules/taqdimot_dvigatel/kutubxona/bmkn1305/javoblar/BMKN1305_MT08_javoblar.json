@@ -1,0 +1,145 @@
+{
+  "mavzu_id": "BMKN1305-3-MT8",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "10:15"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "19000"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "2 soat"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "09:40"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "35 min"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "Jami yo‘l/jami vaqt"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "80 min=1 soat 20 min; 09:55.",
+    "2": "4·4500+3·2000=24000 so‘m; qaytim 6000 so‘m.",
+    "3": "2 soat 15 min; 11:15; 12/(9/4)=16/3≈5,33 km/soat.",
+    "4": "Yagona matn yo‘q. Yetarli shart, mos birlik, munosabat modeli, yechim va shartga qaytish tekshiriladi. Narx va safar shartli deb belgilanadi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "MT08 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT08 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT08 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT08 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT08 test 1 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "10:15",
+      "olingan": "10:15"
+    },
+    {
+      "tekshiruv": "MT08 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "19000 ",
+      "olingan": "19000"
+    },
+    {
+      "tekshiruv": "MT08 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "2 soat",
+      "olingan": "2 soat"
+    },
+    {
+      "tekshiruv": "MT08 test 4 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "09:40",
+      "olingan": "09:40"
+    },
+    {
+      "tekshiruv": "MT08 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "35 min",
+      "olingan": "35 min"
+    },
+    {
+      "tekshiruv": "MT08 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Jami yo‘l/jami vaqt",
+      "olingan": "Jami yo‘l/jami vaqt"
+    },
+    {
+      "tekshiruv": "MT08 vaqt bosqichlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT08 narx qaytim",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT08 teskari vaqt",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT08 mustaqil vaqt narx",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT08 mustaqil safar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT08 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

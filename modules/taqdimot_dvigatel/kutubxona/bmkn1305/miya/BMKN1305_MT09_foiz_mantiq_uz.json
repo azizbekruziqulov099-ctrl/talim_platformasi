@@ -1,0 +1,436 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 9,
+    "tur": "mustaqil ta’lim",
+    "mavzu": "Foizli, nostandart va mantiqiy masalalar loyihasi",
+    "qisqa": "Foizli, nostandart va mantiqiy masalalar loyihasi",
+    "maqsad": "Talaba ketma-ket foizning asosini saqlaydi, foiz va foiz punktini ajratadi; tarozi strategiyasi hamda rostlik jadvali orqali barcha holatni tekshiradi.",
+    "tayanch": [
+      "Foiz asosi",
+      "Foiz punkti",
+      "Qaror daraxti",
+      "Rostlik jadvali",
+      "Yagona yechim"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "Izlanish → dalil",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; MT9, asl skanning 6-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax: Percent Applications",
+        "izoh": "https://openstax.org/books/elementary-algebra-2e/pages/3-2-solve-percent-applications"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Mustaqil ishga tayyorgarlik",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Asosiy natija nimadan tekshiriladi?",
+        "javob": "Shart, manba, hisob va xulosadan."
+      },
+      {
+        "savol": "Manbada yo‘q gapni iqtibos deyish mumkinmi?",
+        "javob": "Yo‘q; o‘z tahlili alohida yoziladi."
+      },
+      {
+        "savol": "Rasm o‘zi isbot bo‘ladimi?",
+        "javob": "Faqat rasmga qarab umumiy isbot deb bo‘lmaydi."
+      },
+      {
+        "savol": "Birliklar qayerda ko‘rsatiladi?",
+        "javob": "Berilganlarda, hisobda va javobda."
+      },
+      {
+        "savol": "Tekshiruv qachon bajariladi?",
+        "javob": "Yakuniy topshirishdan oldin."
+      },
+      {
+        "savol": "Talabaning mustaqil hissasi qayerda?",
+        "javob": "Yangi misol, izoh, tekshiruv va metodik xulosada."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Qanday natija topshiriladi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Foiz asosi va foiz punkti izohli konspekti"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "To‘g‘ri/teskari foiz hisoblari va tekshiruv"
+      }
+    ],
+    "goya": "Har bir xulosa uchun manba yoki tekshiriladigan asos taqdim etiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Foizning asosi",
+      "izoh": "Ketma-ket o‘zgarish",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Ikki chegirma",
+          "izoh": "Avval 20%, keyin yangi narxdan 10%chegirma. Qolgan ulush 0,8·0,9=0,72. Jami chegirma 28%,30%emas. Narxlar faqat shartli o‘quv ma’lumoti.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Boshlang‘ich 300000 so‘m",
+              "shart": "Yakuniy narx?",
+              "qadamlar": [
+                "300000·0,8=240000.",
+                "240000·0,9=216000."
+              ],
+              "javob": "216000 so‘m; jami 28%chegirma."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Boshlang‘ich butunni topish",
+          "izoh": "Yakuniy 216000 boshlang‘ichning 72 foizi bo‘lsa 0,72B=216000. Chegirma ulushi 0,28 ga bo‘lish noto‘g‘ri.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Noma’lum butun",
+              "shart": "Boshlang‘ich narx?",
+              "qadamlar": [
+                "B=216000/0,72.",
+                "B=300000."
+              ],
+              "javob": "300000 so‘m."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Foiz punkti va nisbiy o‘sish",
+          "izoh": "Ko‘rsatkich 8%dan 10%ga o‘ssa, farq 2 foiz punkti. Eski qiymatga nisbatan o‘sish(10−8)/8=25%. Bu ikki ifoda turli savolga javob beradi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Savol",
+                "Natija"
+              ],
+              "qatorlar": [
+                [
+                  "Ikki foiz ko‘rsatkichi farqi",
+                  "2 foiz punkti"
+                ],
+                [
+                  "Eski ko‘rsatkichga nisbiy o‘sish",
+                  "25%"
+                ],
+                [
+                  "Asos",
+                  "8% boshlang‘ich qiymat"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "8 tanga, 2 tortish",
+      "izoh": "Og‘irroq ekani oldindan ma’lum",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Shartlar ro‘yxati",
+          "izoh": "8 tangadan aynan bittasi og‘irroq, qolganlari bir xil massali. Ideal teng yelkali tarozi. Og‘ir/yengilligi noma’lum bo‘lsa, bu boshqa masala.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Tangalar 1–8. Birinchi tortish{1,2,3}bilan{4,5,6}; 7,8 chetda qoladi. Uch natija mavjud: chap og‘ir, o‘ng og‘ir, teng."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Teng bo‘lmagan natija",
+          "izoh": "Chap og‘ir bo‘lsa shubhali 1,2,3; o‘ng og‘ir bo‘lsa 4,5,6. Shubhali uchlikdagi birinchi ikkisini torting. Og‘ir palla javob; teng bo‘lsa uchinchi tanga.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Masalan{1,2,3}:1 bilan 2. Chap og‘ir→1; o‘ng og‘ir→2; teng→3. Uchlikdan tashqaridagi tangalar normal ekanligi birinchi tortishdan keladi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Birinchi tortish teng",
+          "izoh": "Shubhali tangalar 7 va 8. Ikkinchi tortishda 7 bilan 8 solishtiriladi; og‘irrog‘i topiladi. Aynan bitta og‘ir tanga shartida bu ikki tanga teng chiqishi mumkin emas.",
+          "elementlar": [
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Algoritmning 8 ta mumkin bo‘lgan holatini jadval bilan tekshiring. 3²=9 natija chegarasi borligi yolg‘iz o‘zi konkret algoritm to‘g‘ri ekanini isbotlamaydi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Qutilar va rostlik jadvali",
+      "izoh": "Aynan bitta rost yozuv",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Aniq mantiqiy shart",
+          "izoh": "A, B, Cqutidan aynan bittasida sovg‘a. Ayozuvi:“Sovg‘aBda”. Byozuvi:“Sovg‘aBda emas”. Cyozuvi:“Sovg‘aCda emas”. Aynan bitta yozuv rost.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Qutilarni navbatma-navbat faraz qilib uchta yozuvning rostligini tekshiring. “Kamida bitta” va “aynan bitta” boshqa shartlardir."
+            }
+          ]
+        },
+        {
+          "sarlavha": "To‘liq uch holat",
+          "izoh": "AvaBdagi yozuvlar bir-birining inkori, shuning uchun ulardan aynan bittasi doim rost. Umumiy rostlar soni 1 bo‘lishi uchun Cyozuvi yolg‘on bo‘lishi kerak.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Sovg‘a",
+                "Ayozuv",
+                "Byozuv",
+                "Cyozuv",
+                "Rost soni"
+              ],
+              "qatorlar": [
+                [
+                  "A",
+                  "Yolg‘on",
+                  "Rost",
+                  "Rost",
+                  2
+                ],
+                [
+                  "B",
+                  "Rost",
+                  "Yolg‘on",
+                  "Rost",
+                  2
+                ],
+                [
+                  "C",
+                  "Yolg‘on",
+                  "Rost",
+                  "Yolg‘on",
+                  1
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yagona yechim",
+          "izoh": "Sovg‘aCda. Javob taxmin bilan topilgan bo‘lsa ham, yagonalik uchun boshqa ikki joy shartga mos emasligi ko‘rsatiladi.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Chekli variantlarda jadval to‘liq bo‘lsa, barcha holat tekshiruvi asos bo‘ladi. Variantlar sohasi yozilmasa, to‘liqlik kafolati yo‘q."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Loyiha va metodika",
+      "izoh": "Strategiyani dalil bilan topshirish",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Foiz xatosini tahlil qilish",
+          "izoh": "“20%+10%=30%” javobiga yangi asosni belgilab e’tiroz bildiring. Har bosqich uchun butun, multiplikator va natija yozilsin.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "O‘zingiz ikki boshqa chegirma tuzing, bevosita va teskari masalani yeching. Shartli narxning musbatligini va qolgan foizni tekshiring."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qaror daraxti",
+          "izoh": "Har tugunda qaysi tangalar tortilishi, har shoxda natija va qolgan shubhalilar yoziladi.8 ta yakuniy javobning har biriga ikki tortishda yetib borilishi tekshiriladi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Daraxtni ko‘rsatish bilan birga 8 qatorli nazorat jadvali bering. Og‘irroq sharti o‘zgarsa, ushbu kalitni avtomatik qo‘llamang."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yangi mantiq masalasi",
+          "izoh": "Uch variantli, aniq cheklovli masala yarating. Yechimi yagona bo‘lishi uchun barcha variantni tekshiring. Faqat to‘g‘ri javob emas, rad etilgan variantning sababi ham kalitga kiradi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Metodik parcha: taxmin → shartni tekshirish → jadval → yagona javob. O‘quvchi javobini aytishdan oldin “qaysi shart ishlatildi?” savoli beriladi."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Ketma-ket foizlarni qo‘shish",
+      "sabab": "Ikkinchi butun o‘zgargan",
+      "togri": "Multiplikatorlar ko‘paytiriladi."
+    },
+    {
+      "xato": "Foiz punktini nisbiy foiz deyish",
+      "sabab": "Farq va nisbat aralashgan",
+      "togri": "2 punkt va 25% alohida."
+    },
+    {
+      "xato": "Bitta mos variantdan yagonalik deyish",
+      "sabab": "Qolganlar tekshirilmagan",
+      "togri": "To‘liq jadval yoki umumiy dalil."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "10 soatlik izlanish va loyiha",
+    "bosqichlar": [
+      "Manbani belgilash va konspekt",
+      "Hisob yoki model yaratish",
+      "Natijani tekshirish va metodik izoh"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Dalil",
+        "matn": "Ko‘chirma va o‘z tahlilini farqlang."
+      },
+      {
+        "sarlavha": "Hisob",
+        "matn": "Qadam, birlik va shartlarni yozing."
+      },
+      {
+        "sarlavha": "Tekshiruv",
+        "matn": "Yechim kaliti bilan xato sababini tahlil qiling."
+      }
+    ],
+    "tavsiya": "Ilovadagi 10 soatlik reja va tavsiyaviy mezon o‘qituvchi tomonidan guruh sharoitiga moslashtiriladi. Bu tayyor talaba referati emas."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Qabul qilingan shartlar ochiq yoziladi.",
+      "Manba va yangi o‘quv misoli farqlanadi.",
+      "Hisob va xulosa mustaqil tekshiriladi.",
+      "Natija 10 soatlik ish rejasi bo‘yicha topshiriladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "20%va keyin 10%chegirma jami?",
+      "variantlar": [
+        "30%",
+        "28%",
+        "18%",
+        "72%"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Shu chegirmalardan so‘ng 216000; boshlang‘ich?",
+      "variantlar": [
+        "300000",
+        "270000",
+        "600000",
+        "216000"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "8%dan 10%ga o‘sishning farqi?",
+      "variantlar": [
+        "25 foiz punkti",
+        "10 foiz punkti",
+        "8 foiz punkti",
+        "2 foiz punkti"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "8%dan 10%ga nisbiy o‘sish?",
+      "variantlar": [
+        "2%",
+        "20%",
+        "25%",
+        "125%"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "8 tanga algoritmida muhim shart?",
+      "variantlar": [
+        "Og‘ir yoki yengilligi noma’lum",
+        "Bittasi og‘irroq ekani ma’lum",
+        "Ikkitasi turli",
+        "Hammasi teng"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Qutilar shartida sovg‘a qayerda?",
+      "variantlar": [
+        "A",
+        "B",
+        "Aniqlanmaydi",
+        "C"
+      ],
+      "javob": 3
+    }
+  ],
+  "nazorat": [
+    "Mavzudagi ikki asosiy tushunchani farqlang.",
+    "Bitta natijani boshqa usulda tekshiring.",
+    "Misolda qabul qilingan farazlarni ayting.",
+    "Manba bilan o‘z xulosangiz chegarasini ko‘rsating.",
+    "Bitta keng tarqalgan xatoni tahlil qiling.",
+    "Boshlang‘ich sinf uchun moslashtirishda nimalar o‘zgaradi?"
+  ],
+  "mustaqil_ish": [
+    "Avval 25%, keyin 20%chegirma. Jami chegirma va yakuniy 240000 dan boshlang‘ich narxni toping.",
+    "Ko‘rsatkich 12%dan 15%ga oshdi. Foiz punkti va nisbiy o‘sishni farqlang.",
+    "8 tangadan har biri navbat bilan yagona og‘ir tanga bo‘lganda ikki tortish strategiyasining natijalarini yozing.",
+    "Uch qutining yozuvlari bo‘yicha rostlik jadvalini qayta tuzing; keyin o‘zingiz uch variantli yagona yechimli masala va to‘liq kalit yarating."
+  ],
+  "keyingi": {
+    "mavzu": "Navbatdagi mustaqil ta’lim bandi",
+    "izoh": "Reja, mahsulot va tekshiruv mezonlari bilan ish davom etadi."
+  },
+  "rasmlar": []
+}

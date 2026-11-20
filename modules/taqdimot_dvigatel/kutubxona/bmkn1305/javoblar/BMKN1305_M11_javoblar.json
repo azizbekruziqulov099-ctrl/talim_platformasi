@@ -1,0 +1,192 @@
+{
+  "mavzu_id": "BMKN1305-3-M11",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "115°"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "9 sm"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "24 sm²"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "11 sm"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "4 sm"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "24 sm²"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": {
+      "P": "38 sm",
+      "S": "60 sm²"
+    },
+    "2": {
+      "a": "13 sm",
+      "P": "52 sm",
+      "S": "120 sm²"
+    },
+    "3": {
+      "h": "4 sm",
+      "S": "52 sm²",
+      "P": "36 sm"
+    },
+    "4": "Masalan, A=(0,0), B=(4,0), C=(5,2), D=(1,2): AC=√29, BD=√13. Qarama-qarshi tomonlar parallel; diagonallar teng emas."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "M11 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "115 °",
+      "olingan": "115°"
+    },
+    {
+      "tekshiruv": "M11 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "9 sm",
+      "olingan": "9 sm"
+    },
+    {
+      "tekshiruv": "M11 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "24 sm²",
+      "olingan": "24 sm²"
+    },
+    {
+      "tekshiruv": "M11 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "11 sm",
+      "olingan": "11 sm"
+    },
+    {
+      "tekshiruv": "M11 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "4 sm",
+      "olingan": "4 sm"
+    },
+    {
+      "tekshiruv": "M11 test 6 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "24 sm²",
+      "olingan": "24 sm²"
+    },
+    {
+      "tekshiruv": "M11 parallelogramm burchaklari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 diagonallarning yarmi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 romb 6-8",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 parallelogramm qarshi misoli",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 romb koordinata yuzi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 asos va balandlik",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 teng yonli trapetsiya koordinatalari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 trapetsiya o‘rta chizig‘i",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 to‘g‘ri trapetsiya yuzi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 mustaqil romb",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 mustaqil trapetsiya",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M11 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

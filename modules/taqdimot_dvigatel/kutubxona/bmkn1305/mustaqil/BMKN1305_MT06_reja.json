@@ -1,0 +1,90 @@
+{
+  "mavzu_id": "BMKN1305-3-MT6",
+  "hujjat_turi": "Mustaqil ta’lim topshiriq paketi",
+  "soat": 10,
+  "manba": "SamDPI BMKN 1305,2-kurs kunduzgi,2026–2027, asl dastur 6-beti",
+  "holat": "Topshiriq va tekshiruv paketi tayyor; talabaning ishi bajarildi degani emas",
+  "bosqichlar": [
+    {
+      "raqam": 1,
+      "soat": 2,
+      "ish": "Miqdor bog‘lanishlari va yuz xossalarini o‘rganish"
+    },
+    {
+      "raqam": 2,
+      "soat": 2,
+      "ish": "To‘g‘ri, teskari va affin jadvallar tuzish"
+    },
+    {
+      "raqam": 3,
+      "soat": 2,
+      "ish": "Tengdosh to‘rtburchak va parallelogrammni asoslash"
+    },
+    {
+      "raqam": 4,
+      "soat": 2,
+      "ish": "Qayta tuzish sxemasi va shartli masalalar yaratish"
+    },
+    {
+      "raqam": 5,
+      "soat": 1,
+      "ish": "Yuz, perimetr va koordinatalarni tekshirish"
+    },
+    {
+      "raqam": 6,
+      "soat": 1,
+      "ish": "Metodik namoyish va refleksiya"
+    }
+  ],
+  "topshiriladigan_natijalar": [
+    {
+      "id": "D1",
+      "talab": "3 bog‘lanish formulasi, sohasi va jadvallari"
+    },
+    {
+      "id": "D2",
+      "talab": "Ikki tengdosh figura hisobi va qayta tuzish"
+    },
+    {
+      "id": "D3",
+      "talab": "Parallelogramm koordinatali kesish-ko‘chirish dalili"
+    },
+    {
+      "id": "D4",
+      "talab": "Ikki yangi masala, kalit va metodik kartochka"
+    }
+  ],
+  "baholash": {
+    "tur": "Tavsiyaviy ichki mezon; muassasaning rasmiy baholash nizomi o‘rniga olinmaydi",
+    "maksimal_ball": 20,
+    "mezonlar": [
+      {
+        "nom": "Bog‘lanish",
+        "maksimal_ball": 5,
+        "talab": "Nisbat, ko‘paytma va affin model farqlangan."
+      },
+      {
+        "nom": "Geometrik dalil",
+        "maksimal_ball": 5,
+        "talab": "Bo‘lak, vektor va chegara mos."
+      },
+      {
+        "nom": "Hisob",
+        "maksimal_ball": 5,
+        "talab": "Yuz/perimetr/birliklar to‘g‘ri."
+      },
+      {
+        "nom": "Metodika",
+        "maksimal_ball": 5,
+        "talab": "Farazlar, yangi masala va tekshiruv savoli bor."
+      }
+    ],
+    "ball_tavsifi": {
+      "0": "Dalil yo‘q yoki vazifa bajarilmagan",
+      "1–2": "Qisman, asosiy xato yoki yetishmaydigan dalil bor",
+      "3–4": "Asosan to‘g‘ri, tekshiruv yoki izohda ayrim kamchiliklar",
+      "5": "Talab to‘liq, asosli va tekshirilgan"
+    }
+  },
+  "foydalanish": "Talabaga topshiriq va reja beriladi. Javoblar fayli o‘qituvchining tekshiruvi uchun alohida saqlanadi."
+}

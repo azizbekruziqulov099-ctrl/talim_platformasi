@@ -1,0 +1,213 @@
+{
+  "mavzu_id": "BMKN1305-3-M12",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "6"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "24 sm³"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "132 sm²"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "54 sm²"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "48 sm³"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "96 sm²"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": {
+      "S": "148 sm²",
+      "V": "120 sm³"
+    },
+    "2": {
+      "B": "30 sm²",
+      "P": "30 sm",
+      "Syon": "210 sm²",
+      "Stola": "270 sm²",
+      "V": "210 sm³"
+    },
+    "3": {
+      "apofema": "13 sm",
+      "Syon": "260 sm²",
+      "Stola": "360 sm²",
+      "V": "400 sm³"
+    },
+    "4": "V=54 sm³. To‘la sirt uchun yon yoqlarga oid qo‘shimcha o‘lchovlar kerak; B va hning o‘zi yetmaydi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "M12 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "6 ",
+      "olingan": "6"
+    },
+    {
+      "tekshiruv": "M12 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "24 sm³",
+      "olingan": "24 sm³"
+    },
+    {
+      "tekshiruv": "M12 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "132 sm²",
+      "olingan": "132 sm²"
+    },
+    {
+      "tekshiruv": "M12 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "54 sm²",
+      "olingan": "54 sm²"
+    },
+    {
+      "tekshiruv": "M12 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "48 sm³",
+      "olingan": "48 sm³"
+    },
+    {
+      "tekshiruv": "M12 test 6 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "96 sm²",
+      "olingan": "96 sm²"
+    },
+    {
+      "tekshiruv": "M12 kub elementlari va Euler",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 asos uchburchagi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 misol 3–4–5 asos",
+      "natija": "O‘tdi",
+      "kutilgan": "120 sm², 132 sm², 60 sm³",
+      "olingan": "Syon=120 sm²; Sto‘la=132 sm²; V=60 sm³."
+    },
+    {
+      "tekshiruv": "M12 to‘g‘ri burchakli quti",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 kub masshtabi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 kvadrat piramida apofema",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 misol Asos 6 sm, balandlik 4 sm",
+      "natija": "O‘tdi",
+      "kutilgan": "60 sm², 96 sm², 48 sm³",
+      "olingan": "Syon=60 sm²; Sto‘la=96 sm²; V=48 sm³."
+    },
+    {
+      "tekshiruv": "M12 piramida mustaqil 3D sirt hisobi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 h-apofema-qirra koordinatalari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 mustaqil quti",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 mustaqil prizma",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 mustaqil piramida",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 mustaqil 4 hajm",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 sirt uchun B,h yetarli emas",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M12 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

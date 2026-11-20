@@ -1,0 +1,530 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 15,
+    "tur": "amaliy",
+    "mavzu": "Matnli, foizli va mantiqiy masalalar: amaliy mashg‘ulot",
+    "qisqa": "Matnli masalalar amaliyoti",
+    "maqsad": "Talaba masalani arifmetik, algebraik va mantiqiy modellarda yechadi; foizning asosini saqlaydi; nostandart vazifalarda barcha holat va yagonalikni asoslaydi.",
+    "tayanch": [
+      "Masala modeli",
+      "Foiz",
+      "Nostandart masala",
+      "Mantiqiy cheklov",
+      "Tekshiruv va yagonalik"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "Model → yechim",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; A15, asl skanning 6-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Elementary Algebra2e,3.1",
+        "izoh": "https://openstax.org/books/elementary-algebra-2e/pages/3-1-use-a-problem-solving-strategy"
+      },
+      {
+        "nomi": "OpenStax Elementary Algebra2e,3.2",
+        "izoh": "https://openstax.org/books/elementary-algebra-2e/pages/3-2-solve-percent-applications"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "M15 va A14",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "25%qaysi kasr?",
+        "javob": "1/4."
+      },
+      {
+        "savol": "Yig‘indi va farq ikkalasi tekshiriladimi?",
+        "javob": "Ha."
+      },
+      {
+        "savol": "Bir xil foizda ortish-kamayish doim bekor bo‘ladimi?",
+        "javob": "Yo‘q."
+      },
+      {
+        "savol": "Toq son qanday yoziladi?",
+        "javob": "2k+1."
+      },
+      {
+        "savol": "Ikki xonali son x, y orqali qanday?",
+        "javob": "10x+y."
+      },
+      {
+        "savol": "Bir nechta sinov umumiy isbotmi?",
+        "javob": "Har doim emas."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Hisob to‘g‘ri bo‘lsa, model ham to‘g‘rimi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "270000 ni 0,25 ga bo‘lish chegirmadan oldingi narxni beradimi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Yengil yoki og‘irligi noma’lum tanga bilan faqat yengil tanga bir xil shartmi?"
+      }
+    ],
+    "goya": "Noma’lum, butun va variantlar sohasi modelda aniq yoziladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Masalani modelga o‘tkazish",
+      "izoh": "Noma’lum va munosabat",
+      "belgi": "Matn → munosabat",
+      "slaydlar": [
+        {
+          "sarlavha": "Yechimning tekshiriladigan qismlari",
+          "izoh": "Matndagi sonlarni to‘plab amal tanlash o‘rniga, miqdorlar va ularning munosabatini yozing. Arifmetik usul, tasma, jadval yoki tenglama ayni shartni ifodalaydi. Javob barcha shartlarga qayta qo‘yiladi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Bosqich",
+                "Topshiriladigan dalil"
+              ],
+              "qatorlar": [
+                [
+                  "Tushunish",
+                  "Berilgan, noma’lum, birlik"
+                ],
+                [
+                  "Model",
+                  "Tasma, jadval yoki tenglama"
+                ],
+                [
+                  "Hisob",
+                  "Bosqichlar"
+                ],
+                [
+                  "Tekshiruv",
+                  "Barcha shartlar va mumkinlik"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yig‘indi va farq",
+          "izoh": "Ikki miqdorning yig‘indisi va farqi berilsa, arifmetik yoki algebraik yo‘l tanlanadi. Katta-kichiklik ishorasi shartga mos bo‘lsin. Yig‘indi va farqning ikkalasi yakunda tekshiriladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Yig‘indi 84, farq 18",
+              "shart": "Ikkala sonni toping.",
+              "qadamlar": [
+                "Kichik x, kattasi x+18.",
+                "2x+18=84; x=33.",
+                "Kattasi 51; 51+33=84,51−33=18."
+              ],
+              "javob": "51 va 33."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Nechta ortiq va necha baravar",
+          "izoh": "“Birinchi ikkinchining 3 baravari” shu darsda a=3b degan aniq munosabatda olinadi. “3 ta ortiq” esa a=b+3. Noaniq iborani yechimga kiritishdan oldin tenglik bilan oching.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Jami 72",
+              "shart": "Birinchi miqdor ikkinchisining 3 baravari. Miqdorlar?",
+              "qadamlar": [
+                "Ikkinchi x, birinchi 3x.",
+                "4x=72; x=18.",
+                "Birinchi 54; 54+18=72."
+              ],
+              "javob": "54 va 18."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Foizli masalalar",
+      "izoh": "Butun har safar aniq",
+      "belgi": "Foizning asosi",
+      "slaydlar": [
+        {
+          "sarlavha": "Foiz qismini topish",
+          "izoh": "p%=p/100. Aynan qaysi butundan olinayotgani yoziladi. Foiz natijasini butunga bo‘lib qayta tekshirish mumkin. Bu yerda narxlar qatnashsa, ular shartli o‘quv ma’lumotidir.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "280 ning 15 foizi",
+              "shart": "Hisoblang.",
+              "qadamlar": [
+                "15/100·280.",
+                "280·0,15=42.",
+                "42/280=0,15."
+              ],
+              "javob": "42."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Chegirmadan oldingi qiymat",
+          "izoh": "Chegirmadan keyingi miqdor boshlang‘ichning qolgan foizidir. Uni chegirma foizining o‘ziga bo‘lish noto‘g‘ri. Noma’lum butun tenglama bilan yoziladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "25%chegirmadan keyin 270000",
+              "shart": "Boshlang‘ich shartli narxni toping.",
+              "qadamlar": [
+                "Qolgan 75%; 0,75B=270000.",
+                "B=270000/0,75=360000.",
+                "360000·0,75=270000."
+              ],
+              "javob": "360000 so‘m."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ketma-ket turli foizlar",
+          "izoh": "Foiz o‘zgarishlari bosqichma-bosqich ko‘paytuvchilar bilan olinadi. Turli foizlar bir-birini bekor qilishi mumkin, bir xil foizlar esa doim bekor qilmaydi. Har yangi foiz yangi asosdan olinadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "200 avval 25%ortdi, so‘ng 20%kamaydi",
+              "shart": "Yakuniy qiymat?",
+              "qadamlar": [
+                "200·1,25=250.",
+                "250·0,8=200.",
+                "1,25·0,8=1."
+              ],
+              "javob": "200."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Bir xil p ulushda ortish-kamayish(1+p)(1−p)=1−p²; 0<p<1 bo‘lsa,1 dan kichik."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Nostandart masalalar",
+      "izoh": "Sanash, invariant va faraz",
+      "belgi": "Barcha holatlar",
+      "slaydlar": [
+        {
+          "sarlavha": "Bosh va oyoqlar",
+          "izoh": "Faqat ikki va to‘rt oyoqli hayvonlar borligi aniq berilgan. Barcha hayvonni ikki oyoqli deb tasavvur qilish ortiqcha oyoqlarni ajratadi. Natijalar butun va manfiy bo‘lmasin.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "14 bosh,40 oyoq",
+              "shart": "Tovuq va quyonlar soni?",
+              "qadamlar": [
+                "Hammasi tovuq bo‘lsa 28 oyoq.",
+                "Ortiqcha 12 oyoq; har quyon 2 tadan qo‘shadi:6 quyon.",
+                "8 tovuq; 8+6=14,16+24=40."
+              ],
+              "javob": "6 quyon va 8 tovuq."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Juft-toqlik imkonsizlikni ko‘rsatadi",
+          "izoh": "To‘rtta toq butun son yig‘indisi juft bo‘ladi. Alohida ko‘p sonni sinash barcha holatni qamramaydi, algebraik ko‘rinish esa umumiy asos beradi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "To‘rtta toq son yig‘indisi 23 mi?",
+              "shart": "Mumkinlikni tekshiring.",
+              "qadamlar": [
+                "Har toq son 2k+1 ko‘rinishida.",
+                "Yig‘indi 2(a+b+c+d)+4, juft.",
+                "23 toq, shuning uchun mumkin emas."
+              ],
+              "javob": "Mumkin emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "9 tanga, ikkita tortish",
+          "izoh": "9 tangadan aynan bittasi yengilroq, og‘irroq emasligi ma’lum. Ideal teng yelkali tarozi va normal tangalar massasi teng deb olinadi. Uchga bo‘lish strategiyasi ikki tortishda aniqlaydi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Avval 3 tanga bilan 3 tasini solishtiring. Teng bo‘lsa, qolgan 3 tada; yengil palla bo‘lsa, o‘sha 3 tada. Shubhali 3 tadan bittasi bilan bittasini solishtiring: muvozanatda uchinchisi, aks holda yengilrog‘i."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Yengil yoki og‘irligi noma’lum degan boshqa shartda ayni algoritm kafolat bermaydi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Mantiqiy model va yakuniy tekshiruv",
+      "izoh": "Yagona yechimni asoslaymiz",
+      "belgi": "Model va yagonalik",
+      "slaydlar": [
+        {
+          "sarlavha": "Ikki xonali son",
+          "izoh": "Son ham, teskari yozuvi ham ikki xonali bo‘lsin. O‘nlik x, birlik y uchun son 10x+y, teskarisi 10y+x. x, y butun 1 dan 9 gacha. Matn tenglamaga aylantiriladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Yig‘indi 99, farq 27",
+              "shart": "Son teskarisidan 27 ta katta. Sonni toping.",
+              "qadamlar": [
+                "11(x+y)=99; x+y=9.",
+                "9(x−y)=27; x−y=3.",
+                "x=6, y=3; 63 va 36."
+              ],
+              "javob": "63."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Bir-biriga moslashtirish",
+          "izoh": "Ali, Vali, Salimning har biri bittadan: kitob o‘qish, rasm chizish, shaxmat. Ishlar takrorlanmaydi. Vali kitob ham o‘qimaydi, shaxmat ham o‘ynamaydi; Ali shaxmat o‘ynamaydi. Har bir xulosa cheklovdan keladi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Shaxs",
+                "Xulosa",
+                "Sabab"
+              ],
+              "qatorlar": [
+                [
+                  "Vali",
+                  "Rasm",
+                  "Boshqa ikki ish rad etilgan"
+                ],
+                [
+                  "Ali",
+                  "Kitob",
+                  "Rasm band, shaxmat emas"
+                ],
+                [
+                  "Salim",
+                  "Shaxmat",
+                  "Qolgan yagona ish"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Bir kishi bir nechta ish qilishi mumkin degan boshqa shartda yechim o‘zgaradi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qaysi usul nimani tekshiradi?",
+          "izoh": "Teskari amal hisobni, matnga qaytish modelni, to‘liq sanash cheklangan variantlarni, juft-toqlik esa umumiy mumkinlikni tekshiradi. Usulning nomini aytishdan tashqari uning qamrovi ko‘rsatiladi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Masala",
+                "Mos nazorat"
+              ],
+              "qatorlar": [
+                [
+                  "Foiz",
+                  "Boshlang‘ich asosga qayta hisob"
+                ],
+                [
+                  "Hayvonlar",
+                  "Bosh va oyoqlarni qayta sanash"
+                ],
+                [
+                  "Raqamlar",
+                  "Raqam sohasi, yig‘indi va farq"
+                ],
+                [
+                  "Mantiq",
+                  "Barcha cheklovlar va yagonalik"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Baravar va ortiq munosabatini aralashtirish.",
+      "sabab": "Til tenglamaga aniq o‘tmagan.",
+      "togri": "a=kb va a=b+k farqlanadi."
+    },
+    {
+      "xato": "Chegirmadan keyingi sonni chegirma foiziga bo‘lish.",
+      "sabab": "Qolgan ulush noto‘g‘ri olingan.",
+      "togri": "0,75B kabi tenglama."
+    },
+    {
+      "xato": "Ketma-ket foizlarni shunchaki ayirish.",
+      "sabab": "Ikkinchi asos o‘zgargan.",
+      "togri": "Ko‘paytuvchilar ketma-ket qo‘llanadi."
+    },
+    {
+      "xato": "Hayvonlar sonini kasr olish.",
+      "sabab": "Butun va manfiy bo‘lmaslik tekshirilmagan.",
+      "togri": "Soha va ikkala shart qayta tekshiriladi."
+    },
+    {
+      "xato": "Bir nechta misoldan imkonsizlik deyish.",
+      "sabab": "Barcha holatlar qamralmagan.",
+      "togri": "Umumiy invariant yoki to‘liq sanash."
+    },
+    {
+      "xato": "Tanga og‘irlik shartini o‘zgartirib algoritmni saqlash.",
+      "sabab": "Boshlang‘ich faraz yo‘qolgan.",
+      "togri": "Yengilroq ekanligi ma’lum shart saqlanadi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Bir masala, muqobil dalil",
+    "bosqichlar": [
+      "Matnni aniq munosabat va sohaga o‘tkazish",
+      "Mos arifmetik, algebraik yoki mantiqiy usul tanlash",
+      "Barcha shartlar va yagonalikni tekshirish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Foiz",
+        "matn": "Butun va qolgan ulushni belgilang."
+      },
+      {
+        "sarlavha": "Sanash",
+        "matn": "Variantlar ro‘yxati qachon to‘liq ekanini ayting."
+      },
+      {
+        "sarlavha": "Mantiq",
+        "matn": "Har cheklov qaysi variantni chiqarishini yozing."
+      }
+    ],
+    "tavsiya": "Ochiq vazifada o‘quvchi usulini emas, uning asoslanganligi va shartni qamrashini baholang. Narxlar faqat shartli matematik ma’lumotdir."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Model sonlardan oldin yoziladi.",
+      "Foizning asosi har bosqichda saqlanadi.",
+      "Nostandart masalada usulning qamrovi ko‘rsatiladi.",
+      "Yagona yechim barcha cheklovlar bilan asoslanadi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "Ikki son yig‘indisi 84, farqi 18. Sonlar qaysi?",
+      "variantlar": [
+        "42 va 42",
+        "51 va 33",
+        "50 va 34",
+        "66 va 18"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "280 ning 15 foizi qaysi?",
+      "variantlar": [
+        "15",
+        "28",
+        "42",
+        "295"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "25%chegirmadan keyin 270000. Boshlang‘ich shartli narx?",
+      "variantlar": [
+        "360000",
+        "337500",
+        "202500",
+        "1080000"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "200 avval 25%ortib, so‘ng 20%kamaydi. Natija?",
+      "variantlar": [
+        "190",
+        "210",
+        "250",
+        "200"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "14 bosh,40 oyoq, tovuq-quyon. Quyonlar qaysi?",
+      "variantlar": [
+        "8",
+        "6",
+        "12",
+        "4"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Ikki xonali son va teskarisi yig‘indisi 99; son 27 ta katta. Son qaysi?",
+      "variantlar": [
+        "36",
+        "72",
+        "63",
+        "54"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Arifmetik va algebraik usulni bitta misolda solishtiring.",
+    "Chegirmaga ko‘ra butunni topishni asoslang.",
+    "Turli foizlar qanday bekor qilishi mumkin?",
+    "Toq sonlar yig‘indisini umumiy asoslang.",
+    "Tanga algoritmi shartlarini ayting.",
+    "Raqam va mantiq masalalarida yagonalik qanday tekshiriladi?"
+  ],
+  "mustaqil_ish": [
+    "Ikki miqdor jami 96, birinchisi ikkinchisining 5 baravari. Ikkalasini toping.",
+    "320 ning 12,5 foizini toping. 15%chegirmadan keyin 255000 bo‘lsa, boshlang‘ich shartli narxni toping.",
+    "20 bosh,56 oyoq: faqat tovuq va quyonlar. Sonlarni topib ikkala shartda tekshiring.",
+    "Ikki xonali son va teskarisi yig‘indisi 121; son teskarisidan 45 ta katta. Sonni topib raqamlar sohasi va yagonalikni tekshiring."
+  ],
+  "keyingi": {
+    "mavzu": "Mustaqil ta’lim topshiriqlari",
+    "izoh": "Dasturdagi 9 mustaqil band bo‘yicha izlanish, hisob va metodik loyihalar davom etadi."
+  },
+  "rasmlar": []
+}

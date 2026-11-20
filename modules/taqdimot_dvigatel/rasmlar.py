@@ -60,6 +60,35 @@ def _kutubxonadan(key):
     return None
 
 
+@lru_cache(maxsize=4)
+def _papka_reestri(mtime: float):
+    import json
+    try:
+        with open(os.path.join(PAPKA, "reestr.json"), encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return []
+
+
+def papka_reestri():
+    """rasmlar/reestr.json — paketdan kelgan rasm va chizmalar ro'yxati (kalit, tur, nom, izoh)."""
+    p = os.path.join(PAPKA, "reestr.json")
+    return _papka_reestri(os.path.getmtime(p)) if os.path.isfile(p) else []
+
+
+def papkadan_qidir(q: str = "", limit: int = 60):
+    q = kalit_toza(q)
+    out = []
+    for r in papka_reestri():
+        k = r.get("kalit") or ""
+        matn = f"{k} {(r.get('nom') or '')} {(r.get('izoh') or '')}".lower()
+        if not q or q in k or q.replace("_", " ") in matn:
+            out.append({"kalit": k, "tavsif": r.get("nom") or r.get("izoh") or "", "tur": r.get("tur") or "rasm"})
+            if len(out) >= limit:
+                break
+    return out
+
+
 @lru_cache(maxsize=4096)
 def yol(key: str):
     if not key:

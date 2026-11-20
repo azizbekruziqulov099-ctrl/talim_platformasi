@@ -1,0 +1,547 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 4,
+    "tur": "ma’ruza",
+    "mavzu": "Haqiqiy sonlar va ularning xossalari",
+    "qisqa": "Haqiqiy sonlar",
+    "maqsad": "Talaba ratsional va irratsional sonlarni farqlaydi, haqiqiy sonlar ustida amallarni asoslaydi, aniq va taqribiy qiymatni ajratadi; zichlik, yuqori chegara va to‘liqlik tushunchalarini misolda tushuntiradi.",
+    "tayanch": [
+      "Ratsional va irratsional son",
+      "Davriy bo‘lmagan yozuv",
+      "Son o‘qi",
+      "Amallar qonunlari",
+      "Eng kichik yuqori chegara"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "$\\sqrt2\\in\\mathbb R$",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; M4, asl skanning 4-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax College Algebra 2e, 1.1",
+        "izoh": "https://openstax.org/books/college-algebra-2e/pages/1-1-real-numbers-algebra-essentials"
+      },
+      {
+        "nomi": "MIT OpenCourseWare 18.100A: Lecture 3–5, supremum, to‘liqlik va zichlik",
+        "izoh": "https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/pages/lecture-notes-and-readings/"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim kiritilmadi. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Ratsional sonlar va kasr yozuvi",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "7 ni ratsional kasr ko‘rinishida yozing.",
+        "javob": "7/1."
+      },
+      {
+        "savol": "0,375 qanday oddiy kasrga teng?",
+        "javob": "3/8."
+      },
+      {
+        "savol": "1/3 ning o‘nli yozuvi qanday?",
+        "javob": "0,(3)."
+      },
+      {
+        "savol": "a+(−a) nechaga teng?",
+        "javob": "0."
+      },
+      {
+        "savol": "a ning teskari soni qachon mavjud?",
+        "javob": "a ≠ 0 bo‘lganda."
+      },
+      {
+        "savol": "(a+b)² formulasi qanday?",
+        "javob": "a²+2ab+b²."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Kasrlar barcha uzunliklarga yetadimi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Tomoni 1 bo‘lgan kvadrat diagonalining uzunligi qanday ifodalanadi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "√2 ning barcha raqamlarini yozmasdan uni aniq belgilash mumkinmi?"
+      }
+    ],
+    "goya": "Aniq sonni uning chekli yaqinlashgan o‘nli yozuvi bilan aralashtirmaslik kerak.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Ratsional va irratsional sonlar",
+      "izoh": "Haqiqiy sonlar to‘plamini aniqlaymiz",
+      "belgi": "ℚ ⊂ ℝ",
+      "slaydlar": [
+        {
+          "sarlavha": "Sonlar to‘plamlarining bog‘lanishi",
+          "izoh": "To‘plamlar orasidagi kiritilish har bir oldingi turdagi son keyingi to‘plamga ham tegishli ekanini bildiradi. Bu darsda natural sonlar 1 dan boshlanadigan kelishuv qabul qilinadi. Irratsional sonlarni haqiqiy, ammo ratsional bo‘lmagan sonlar sifatida aniqlang.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Haqiqiy sonlar ratsional va irratsional sonlardan tashkil topadi.",
+              "formula": "\\mathbb R=\\mathbb Q\\cup(\\mathbb R\\setminus\\mathbb Q)"
+            },
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "To‘plam",
+                "Misol",
+                "Izoh"
+              ],
+              "qatorlar": [
+                [
+                  "ℕ",
+                  "1, 2, 3, …",
+                  "Ushbu darsda 0 kiritilmaydi"
+                ],
+                [
+                  "ℤ",
+                  "−3, 0, 5",
+                  "Butun sonlar"
+                ],
+                [
+                  "ℚ",
+                  "−2/3, 7, 0,25",
+                  "Butun sonlar nisbati"
+                ],
+                [
+                  "ℝ∖ℚ",
+                  "√2, √3, π",
+                  "Irratsional sonlar"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "O‘nli yozuv qanday belgi beradi?",
+          "izoh": "Ratsional sonning o‘nli yozuvi chekli yoki ma’lum bir joydan boshlab davriy bo‘ladi. Cheksiz yozuvning o‘zi irratsionallik uchun yetarli emas. 1/6 ning 0,1(6) yozuvida davr birinchi xonadan emas, ikkinchi xonadan boshlanishiga e’tibor bering.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Haqiqiy sonning cheksiz davriy bo‘lmagan o‘nli yozuvi irratsional sonni bildiradi. Cheksiz davriy yozuv esa ratsional sonni bildiradi."
+            },
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Son",
+                "O‘nli yozuv",
+                "Turi"
+              ],
+              "qatorlar": [
+                [
+                  "3/8",
+                  "0,375",
+                  "Ratsional"
+                ],
+                [
+                  "1/6",
+                  "0,1666… = 0,1(6)",
+                  "Ratsional"
+                ],
+                [
+                  "√2",
+                  "1,414213…; davriy emas",
+                  "Irratsional"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Nega √2 ratsional emas?",
+          "izoh": "Teskarisini faraz qilib, kasr qisqartirilmaydigan qilib tanlanadi. Tenglikdan avval suratning, keyin maxrajning juftligi kelib chiqadi. Bu ikkala sonning umumiy bo‘luvchisi 2 bo‘lishini bildiradi va tanlangan kasrning qisqartirilmaydiganligiga zid keladi.",
+          "elementlar": [
+            {
+              "tur": "teorema",
+              "matn": "√2 irratsional son.",
+              "formula": "\\sqrt2\\notin\\mathbb Q"
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Isbot g‘oyasi",
+              "shart": "√2 = p/q, q ≠ 0 va p,q o‘zaro tub butun sonlar deb faraz qilamiz.",
+              "qadamlar": [
+                "p² = 2q², demak p² juft, undan p ham juft.",
+                "p = 2k desak, 4k² = 2q², ya’ni q² = 2k².",
+                "q ham juft; p va q o‘zaro tub bo‘la olmaydi."
+              ],
+              "javob": "Faraz noto‘g‘ri; √2 ratsional emas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Son o‘qi va taqqoslash",
+      "izoh": "Aniq qiymat va yaqinlashishni farqlaymiz",
+      "belgi": "a < b",
+      "slaydlar": [
+        {
+          "sarlavha": "Haqiqiy son va son o‘qidagi nuqta",
+          "izoh": "Birlik kesma va musbat yo‘nalish tanlangach, son o‘qidagi har bir nuqtaga bitta haqiqiy son mos keladi. √2 ni yozishda uning cheksiz raqamlarini tugatish shart emas: √2 belgisi aniq sonni bildiradi. 1,414 esa shu sonning yaqinlashgan qiymatidir.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Haqiqiy sonlar son o‘qining nuqtalari bilan o‘zaro bir qiymatli moslikda tasvirlanadi."
+            },
+            {
+              "tur": "formula",
+              "sarlavha": "Aniq va taqribiy yozuv",
+              "formula": "\\sqrt2\\approx1{,}414",
+              "matn": "√2 = 1,414 deb yozilmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ildizni chegaralar bilan taqqoslash",
+          "izoh": "Musbat sonlarda kvadratga oshirish tartibni saqlaydi. 1,414 va 1,415 ning kvadratlarini hisoblab, 2 sonini ular orasiga joylashtiring. Bu usul noma’lum raqamlarni taxmin qilishga tayanmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "√2 ning ikki chegarasi",
+              "shart": "√2 ni 1,414 va 1,415 bilan taqqoslang.",
+              "qadamlar": [
+                "1,414² = 1,999396 < 2.",
+                "1,415² = 2,002225 > 2.",
+                "Barcha sonlar musbat bo‘lgani uchun ildizlarni taqqoslaymiz."
+              ],
+              "javob": "1,414 < √2 < 1,415"
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Manfiy sonlarni kvadratlashda tartibni shu ko‘rinishda qo‘llab bo‘lmaydi: −3 < −2, lekin 9 > 4."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ikki son orasida yana son bor",
+          "izoh": "a dan kichik yoki b dan katta bo‘lmagan son topish yetarli emas: qat’iy a < c < b talab qilinadi. O‘rta arifmetik bu shartni qanoatlantiradi. Bu xossa haqiqiy sonlarda ham, ratsional sonlarda ham mavjud; ularning zichligi to‘liqlik bilan bir xil tushuncha emas.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Oraliqdagi son",
+              "formula": "a<b\\ \\Longrightarrow\\ a<\\frac{a+b}{2}<b",
+              "matn": "Har qanday ikki turli haqiqiy son orasida yana haqiqiy son bor."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "O‘rta son",
+              "shart": "2 bilan 3 orasida bir son toping.",
+              "qadamlar": [
+                "(2+3)/2 = 5/2.",
+                "5/2 = 2,5.",
+                "2 < 2,5 < 3."
+              ],
+              "javob": "2,5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Amallar va qonunlar",
+      "izoh": "Haqiqiy sonlarda asoslangan hisoblash",
+      "belgi": "a(b+c)",
+      "slaydlar": [
+        {
+          "sarlavha": "Qo‘shish va ko‘paytirish qonunlari",
+          "izoh": "O‘rin almashtirishda sonlarning tartibi, guruhlashda esa qavslarning joyi o‘zgaradi. Ushbu qonunlar qo‘shish va ko‘paytirish uchun o‘rinli. Ayirish va bo‘lishga ularni umumiy holda ko‘chirish noto‘g‘ri.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "O‘rin almashtirish",
+              "formula": "a+b=b+a,\\qquad ab=ba",
+              "matn": "a,b haqiqiy sonlar."
+            },
+            {
+              "tur": "formula",
+              "sarlavha": "Guruhlash va taqsimot",
+              "formula": "(a+b)+c=a+(b+c),\\quad a(b+c)=ab+ac",
+              "matn": "Ko‘paytirish ham guruhlash qonuniga bo‘ysunadi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Nol, bir, qarama-qarshi va teskari son",
+          "izoh": "Qo‘shishdagi neytral element nol, ko‘paytirishdagisi birdir. Har bir haqiqiy sonning qarama-qarshisi bor. Teskari son faqat noldan farqli sonlar uchun mavjudligini shart bilan birga yozing.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Neytral va qarama-qarshi elementlar",
+              "formula": "a+0=a,\\quad a\\cdot1=a,\\quad a+(-a)=0",
+              "matn": "Nol ham haqiqiy son."
+            },
+            {
+              "tur": "formula",
+              "sarlavha": "Teskari son",
+              "formula": "a\\cdot\\frac1a=1,\\qquad a\\ne0",
+              "matn": "a/b yozuvi faqat b ≠ 0 bo‘lganda aniqlangan."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ildizlar bilan aniq hisoblash",
+          "izoh": "Ildiz ostidan to‘liq kvadrat ko‘paytuvchini ajrating. Bir xil ildizli hadlar koeffitsiyentlari orqali jamlanadi. Kvadrat ildizning ko‘paytma qoidasi haqiqiy sonlarda manfiy bo‘lmagan ko‘paytuvchilar uchun qo‘llanishini ayting.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Aniq javob",
+              "shart": "√8 + √2 ni soddalashtiring.",
+              "qadamlar": [
+                "√8 = √(4·2) = 2√2.",
+                "2√2 + √2 = 3√2.",
+                "Taqribiy o‘nli yozuv talab qilinmagan."
+              ],
+              "javob": "3√2"
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "√(a²) = |a|. Bu ifodani barcha haqiqiy a uchun a deb yozish mumkin emas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "To‘liqlik va tushunchalarning chegarasi",
+      "izoh": "Haqiqiy sonlar nega kerak?",
+      "belgi": "sup A",
+      "slaydlar": [
+        {
+          "sarlavha": "Yuqori chegara va eng kichik yuqori chegara",
+          "izoh": "To‘plamning yuqori chegarasi uning barcha elementlaridan katta yoki teng bo‘lgan sondir. Bunday chegaralar bir nechta bo‘lishi mumkin. Ularning eng kichigi supremum deyiladi; u to‘plamning o‘zida bo‘lishi shart emas.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Bo‘sh bo‘lmagan va yuqoridan chegaralangan haqiqiy sonlar to‘plamining eng kichik yuqori chegarasi mavjud. Bu ℝ ning to‘liqlik xossasidir."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Chegara va maksimum",
+              "shart": "A = [0,1) to‘plamining supremumi va maksimumini aniqlang.",
+              "qadamlar": [
+                "Har bir x∈A uchun x<1, demak 1 yuqori chegara.",
+                "1 dan kichik har qanday son yuqori chegara bo‘la olmaydi.",
+                "1 to‘plamga kirmaydi, har bir x<1 dan katta (x+1)/2 ham A ga kiradi."
+              ],
+              "javob": "sup A = 1; maksimum mavjud emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Zichlik to‘liqlikni anglatmaydi",
+          "izoh": "Ratsional sonlar orasida ham doimo boshqa ratsional son topiladi. Ammo ratsional sonlar bilan √2 ga mos kesimning chegarasini ratsional son sifatida ifodalab bo‘lmaydi. Bu izoh to‘liqlik va zichlikni bir-biridan ajratishga xizmat qiladi; haqiqiy sonlarni qat’iy qurish alohida nazariy mavzudir.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "ℚ zich to‘plam, lekin haqiqiy sonlardagi eng kichik yuqori chegara xossasiga to‘liq ega emas."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "“Sonlar orasida yana son bor” va “har bir chegaralangan to‘plamning supremumi bor” — ikki alohida xossa."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Haqiqiy sonlarda ham barcha tenglama yechilmaydi",
+          "izoh": "Har qanday haqiqiy sonning kvadrati manfiy emas. Shuning uchun x²+1 nol bo‘la olmaydi. Bu misol keyingi mavzuda sonlar sistemasini kompleks sonlargacha kengaytirish ehtiyojini ko‘rsatadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Keyingi kengayishga sabab",
+              "shart": "x² + 1 = 0 tenglamani ℝ da tekshiring.",
+              "qadamlar": [
+                "x² ≥ 0.",
+                "x² + 1 ≥ 1.",
+                "Demak, x²+1 hech qachon 0 ga teng emas."
+              ],
+              "javob": "ℝ da yechim yo‘q."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Har qanday cheksiz o‘nli kasr irratsional.",
+      "sabab": "Davriylik belgisi e’tibordan chetda qolgan.",
+      "togri": "0,(3)=1/3 ratsional; irratsional yozuv cheksiz va davriy emas."
+    },
+    {
+      "xato": "√((−5)²)=−5.",
+      "sabab": "Arifmetik kvadrat ildiz manfiy bo‘lmasligi unutilgan.",
+      "togri": "√((−5)²)=|−5|=5."
+    },
+    {
+      "xato": "√(a+b)=√a+√b.",
+      "sabab": "Ildizning mavjud bo‘lmagan qo‘shish qoidasi ishlatilgan.",
+      "togri": "Masalan, a=b=1: √2 ≠ 2."
+    },
+    {
+      "xato": "√2=1,414.",
+      "sabab": "Taqribiy qiymat tenglik sifatida yozilgan.",
+      "togri": "√2≈1,414; aniq tenglik emas."
+    },
+    {
+      "xato": "Supremum doimo maksimum.",
+      "sabab": "Chegara to‘plamga tegishli bo‘lishi shart deb o‘ylangan.",
+      "togri": "[0,1) ning supremumi 1, maksimumi yo‘q."
+    },
+    {
+      "xato": "ℚ zich bo‘lsa, u to‘liq ham.",
+      "sabab": "Ikki alohida xossa tenglashtirilgan.",
+      "togri": "Zichlik va to‘liqlik turli tushunchalar."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Misol, qarshi misol va isbotni ajratish",
+    "bosqichlar": [
+      "Sonlarni bir nechta yozuvda tanishtirish",
+      "Xossa uchun umumiy asos yoki isbot g‘oyasini berish",
+      "Noto‘g‘ri fikrga qarshi misol topish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Bir son, uch yozuv",
+        "matn": "1/2 = 0,5 = 0,50 ekanini bir xil uzunlik modelida ko‘rsating."
+      },
+      {
+        "sarlavha": "Aniq uzunlik",
+        "matn": "Birlik kvadrat diagonalini √2 bilan belgilang; chizg‘ichdagi taqribiy o‘lchovni aniq tenglik deb olmang."
+      },
+      {
+        "sarlavha": "Ochiq chegara",
+        "matn": "[0,1) dagi istalgan sondan kattaroq, ammo 1 dan kichik son toping."
+      }
+    ],
+    "tavsiya": "To‘liqlik tushunchasi bakalavr darajasiga tegishli. Boshlang‘ich sinfga faqat dasturida ko‘zda tutilgan o‘lchash, son va taxminiy qiymat misollarini moslang."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Ratsional sonning o‘nli yozuvi chekli yoki oxir-oqibat davriy bo‘ladi.",
+      "Irratsional son ham haqiqiy son va son o‘qida o‘z nuqtasiga ega.",
+      "Haqiqiy amallarda nolga bo‘lishga ruxsat yo‘q.",
+      "√(a²)=|a| va taqribiy tenglik belgisi shartlari saqlanadi.",
+      "Zichlik, supremum va maksimum bir xil tushunchalar emas."
+    ]
+  },
+  "test": [
+    {
+      "savol": "Qaysi son irratsional?",
+      "variantlar": [
+        "√16",
+        "0,(27)",
+        "−11/5",
+        "√18"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "0,1(6) soni qanday son?",
+      "variantlar": [
+        "Irratsional",
+        "Ratsional, 1/6 ga teng",
+        "Butun son",
+        "Haqiqiy emas"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "√((−5)²) nechaga teng?",
+      "variantlar": [
+        "−5",
+        "±5",
+        "5",
+        "25"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "√8 + √2 ni soddalashtiring.",
+      "variantlar": [
+        "3√2",
+        "√10",
+        "2√2",
+        "4"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "2 va 3 orasidagi o‘rta arifmetik qaysi?",
+      "variantlar": [
+        "5",
+        "1/2",
+        "3/2",
+        "5/2"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "A=[0,1) uchun qaysi fikr to‘g‘ri?",
+      "variantlar": [
+        "Maksimum 1",
+        "Supremum 1, maksimum yo‘q",
+        "Supremum yo‘q",
+        "Maksimum 0"
+      ],
+      "javob": 1
+    }
+  ],
+  "nazorat": [
+    "√2 ning irratsionalligini qanday zidlik orqali isbotlaysiz?",
+    "Davriy kasr nega irratsional emas?",
+    "Aniq va taqribiy qiymat orasidagi farq nima?",
+    "Qo‘shish va ko‘paytirishning qaysi qonunlari ayirishga ko‘chmaydi?",
+    "Zichlikni o‘rta arifmetik orqali ko‘rsating.",
+    "[0,1) ning supremumi va maksimumini farqlang."
+  ],
+  "mustaqil_ish": [
+    "√50 + √8 ni soddalashtiring.",
+    "√((−7)²) va |−3| + |2−5| ni hisoblang.",
+    "0,(27) ni oddiy kasrga keltiring; takrorlanish sababini tenglama orqali tushuntiring.",
+    "A=(−2,3) uchun yuqori chegara, supremum va maksimum haqida yozing."
+  ],
+  "keyingi": {
+    "mavzu": "Kompleks sonlar",
+    "izoh": "x²+1=0 tenglamaning haqiqiy sonlarda yechimi yo‘qligini asoslab keling."
+  },
+  "rasmlar": []
+}

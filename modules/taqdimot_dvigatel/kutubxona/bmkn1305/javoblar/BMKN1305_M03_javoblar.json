@@ -1,0 +1,190 @@
+{
+  "mavzu_id": "BMKN1305-3-M3",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "−5a²b"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "5"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "−6x⁵"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "9x²y⁴"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "3x²−5x+7"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "x²−3x−10"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "3a²b+ab²",
+    "2": [
+      "8x⁶y³",
+      "2x²+5x−12"
+    ],
+    "3": "2x²+3x−6",
+    "4": "ac, ad, bc, bd yuzlari ko‘rsatilgan; barcha hadlar hisobga olingan; noto‘g‘ri qisqartirishga qarshi misol bor."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "M03 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M03 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M03 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M03 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M03 standart",
+      "natija": "O‘tdi",
+      "kutilgan": "2x²+2x+5",
+      "olingan": "3x²+2x-x²+5"
+    },
+    {
+      "tekshiruv": "M03 birhad ko‘paytma",
+      "natija": "O‘tdi",
+      "kutilgan": "-6x³y⁴",
+      "olingan": "(-3x²y)(2xy³)"
+    },
+    {
+      "tekshiruv": "M03 birhad daraja",
+      "natija": "O‘tdi",
+      "kutilgan": "-8x⁶y³",
+      "olingan": "(-2x²y)**3"
+    },
+    {
+      "tekshiruv": "M03 yig‘indi",
+      "natija": "O‘tdi",
+      "kutilgan": "4x²+3x-3",
+      "olingan": "(3x²-2x+1)+(x²+5x-4)"
+    },
+    {
+      "tekshiruv": "M03 ayirma",
+      "natija": "O‘tdi",
+      "kutilgan": "3x²-5x+7",
+      "olingan": "(4x²-3x+2)-(x²+2x-5)"
+    },
+    {
+      "tekshiruv": "M03 taqsimot",
+      "natija": "O‘tdi",
+      "kutilgan": "6x³-2x²+8x",
+      "olingan": "2x(3x²-x+4)"
+    },
+    {
+      "tekshiruv": "M03 ikki qavs",
+      "natija": "O‘tdi",
+      "kutilgan": "2x²+5x-3",
+      "olingan": "(x+3)(2x-1)"
+    },
+    {
+      "tekshiruv": "M03 kvadrat",
+      "natija": "O‘tdi",
+      "kutilgan": "x²-8x+16",
+      "olingan": "(x-4)**2"
+    },
+    {
+      "tekshiruv": "M03 mustaqil 1",
+      "natija": "O‘tdi",
+      "kutilgan": "3a²b+ab²",
+      "olingan": "5a²b-2a²b+ab²"
+    },
+    {
+      "tekshiruv": "M03 mustaqil 2a",
+      "natija": "O‘tdi",
+      "kutilgan": "8x⁶y³",
+      "olingan": "(2x²y)**3"
+    },
+    {
+      "tekshiruv": "M03 mustaqil 2b",
+      "natija": "O‘tdi",
+      "kutilgan": "2x²+5x-12",
+      "olingan": "(2x-3)(x+4)"
+    },
+    {
+      "tekshiruv": "M03 mustaqil 3",
+      "natija": "O‘tdi",
+      "kutilgan": "2x²+3x-6",
+      "olingan": "(3x²+x-1)-(x²-2x+5)"
+    },
+    {
+      "tekshiruv": "M03 test 1 o‘xshash had",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M03 test 2 daraja",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M03 test 3",
+      "natija": "O‘tdi",
+      "kutilgan": "−6x⁵",
+      "olingan": "(-2x²)(3x³)"
+    },
+    {
+      "tekshiruv": "M03 test 4",
+      "natija": "O‘tdi",
+      "kutilgan": "9x²y⁴",
+      "olingan": "(-3xy²)**2"
+    },
+    {
+      "tekshiruv": "M03 test 5",
+      "natija": "O‘tdi",
+      "kutilgan": "3x²−5x+7",
+      "olingan": "(4x²-3x+2)-(x²+2x-5)"
+    },
+    {
+      "tekshiruv": "M03 test 6",
+      "natija": "O‘tdi",
+      "kutilgan": "x²−3x−10",
+      "olingan": "(x+2)(x-5)"
+    },
+    {
+      "tekshiruv": "M03 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

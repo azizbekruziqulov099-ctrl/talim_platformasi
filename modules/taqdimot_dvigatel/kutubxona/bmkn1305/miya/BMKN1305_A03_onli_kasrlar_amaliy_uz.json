@@ -1,0 +1,531 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 3,
+    "tur": "amaliy",
+    "mavzu": "O‘nli kasrlar ustidagi amallar: amaliy mashg‘ulot",
+    "qisqa": "O‘nli kasrlar amaliyoti",
+    "maqsad": "Talaba o‘nli kasrlar ustidagi amallarni yechim bosqichlari bilan bajaradi, natijani muqobil usulda tekshiradi va o‘quvchining xatosini xona qiymati hamda model orqali tushuntiradi.",
+    "tayanch": [
+      "Xona qiymati",
+      "Taqqoslash",
+      "To‘rt amal",
+      "Teskari tekshiruv",
+      "Xato diagnostikasi"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "0,16 × 0,25",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; A3, asl skanning 5-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Prealgebra 2e, 5.1",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/5-1-decimals"
+      },
+      {
+        "nomi": "OpenStax Prealgebra 2e, 5.2",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/5-2-decimal-operations"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim kiritilmadi. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "M02 nazariy ma’ruza",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "0,7 va 0,70 tengmi?",
+        "javob": "Ha, ikkalasi 7/10 ga teng."
+      },
+      {
+        "savol": "Qo‘shishda nimalar bir ustunga keltiriladi?",
+        "javob": "Vergullar va bir xil xona raqamlari."
+      },
+      {
+        "savol": "0,2×0,3 nechaga teng?",
+        "javob": "0,06."
+      },
+      {
+        "savol": "Bo‘linuvchi va bo‘luvchini bir xil songa ko‘paytirish nima beradi?",
+        "javob": "Noldan farqli ko‘paytuvchida bo‘linma qiymati saqlanadi."
+      },
+      {
+        "savol": "0,6 : 0,2 nechaga teng?",
+        "javob": "3."
+      },
+      {
+        "savol": "0,6 : 0 mumkinmi?",
+        "javob": "Yo‘q, nolga bo‘lish aniqlanmagan."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Natijani topishdan tashqari asoslash ham kerak",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Nega 0,3×0,2 natijasi 0,6 emas? Model bilan izohlang."
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "7,2 : 0,06 javobi 7,2 dan katta chiqsa, bu xatomi?"
+      }
+    ],
+    "goya": "Algoritm, kattalik taxmini va teskari tekshiruv bir-birini to‘ldiradi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Boshlang‘ich tekshiruv",
+      "izoh": "Xona qiymati va taqqoslash",
+      "belgi": "0,609",
+      "slaydlar": [
+        {
+          "sarlavha": "Mashg‘ulot qanday bajariladi?",
+          "izoh": "Har bir misolda faqat yakuniy natija emas, asosiy algoritm bosqichi ham yoziladi. Teskari amal yoki mustaqil boshqa usul bilan tekshirish talab qilinadi. Juftlikda tekshirishda sherikning natijasiga qarashdan oldin o‘z yechimingizni tugating.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Tartib: shartni o‘qing, natijani taxmin qiling, hisoblang, tekshiring va xatoni izohlang."
+            },
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Ish turi",
+                "Kutiladigan dalil"
+              ],
+              "qatorlar": [
+                [
+                  "Taqqoslash",
+                  "Xonalar yoki son o‘qi bo‘yicha izoh"
+                ],
+                [
+                  "Hisoblash",
+                  "Algoritm bosqichlari"
+                ],
+                [
+                  "Tekshirish",
+                  "Teskari amal yoki aniq kasr"
+                ],
+                [
+                  "Metodik topshiriq",
+                  "Xato sababi va tushuntirish"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Bir xil xonalarni taqqoslang",
+          "izoh": "0,609 va 0,69 yozuvlarining kasr xonalari soni har xil. Ikkinchi sonni 0,690 deb yozish bir xil xonalarni ko‘rishni osonlashtiradi. Yuzdan birlar xonasidagi 0 va 9 farqi tartibni aniqlaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Taqqoslash",
+              "shart": "0,609 va 0,69 ni taqqoslang.",
+              "qadamlar": [
+                "0,69 = 0,690.",
+                "O‘ndan birlar ikkala sonda ham 6.",
+                "Yuzdan birlarda 0 < 9."
+              ],
+              "javob": "0,609 < 0,69."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Yozuvdagi raqamlar sonining ko‘pligi sonning kattaligini bildirmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "O‘nli yozuvni oddiy kasrga qaytaring",
+          "izoh": "Maxraj kasr xonalari soniga mos 10 darajasidan olinadi. So‘ng surat va maxrajning umumiy bo‘luvchisi orqali qisqartiriladi. Bu usul keyingi amallarni mustaqil tekshirish uchun ham xizmat qiladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki yozuv — bir qiymat",
+              "shart": "0,125 va 0,08 ni qisqartirilgan oddiy kasrga keltiring.",
+              "qadamlar": [
+                "0,125 = 125/1000 = 1/8.",
+                "0,08 = 8/100 = 2/25.",
+                "Hosil bo‘lgan kasrlarni bo‘lish orqali qayta tekshiring."
+              ],
+              "javob": "1/8 va 2/25."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Qo‘shish va ayirish amaliyoti",
+      "izoh": "Birlik va xona qiymatini saqlaymiz",
+      "belgi": "+ −",
+      "slaydlar": [
+        {
+          "sarlavha": "Yig‘indini uch kasr xonasi bilan toping",
+          "izoh": "Dastlab 12,75 ni 12,750 deb yozing. Vergullarni bir ustunga keltirgach, bir xil xonalardagi raqamlar qo‘shiladi. Javob 13 bilan 14 orasida bo‘lishi kutiladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Aniq yig‘indi",
+              "shart": "12,75 + 0,608 ni hisoblang.",
+              "qadamlar": [
+                "12,750 + 0,608.",
+                "(12750 + 608)/1000 = 13358/1000.",
+                "Javobni o‘nli yozuvga qaytaramiz."
+              ],
+              "javob": "13,358."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Butun sondan o‘nli kasrni ayiring",
+          "izoh": "20 ni 20,000 deb yozish qiymatni o‘zgartirmaydi. Mingdan birlar orqali ayirish butun sonlar ayirishiga keladi. Natijani ayiriluvchi bilan qo‘shib tekshiring.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Aniq ayirma",
+              "shart": "20 − 7,085 ni hisoblang.",
+              "qadamlar": [
+                "20 = 20,000.",
+                "(20000 − 7085)/1000 = 12915/1000.",
+                "12,915 + 7,085 = 20."
+              ],
+              "javob": "12,915."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Xatoni toping va sababini ayting",
+          "izoh": "Javobni to‘g‘rilashning o‘zi metodik topshiriqni yakunlamaydi. O‘quvchi qaysi xonalarni aralashtirganini aniqlang. Bir xil o‘lchov birliklari bilan qayta yozish xatoni ko‘rsatadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Xato tahlili",
+              "shart": "O‘quvchi 0,5 + 0,25 = 0,30 deb yozdi. To‘g‘ri izoh bering.",
+              "qadamlar": [
+                "0,5 = 0,50.",
+                "50 yuzdan bir + 25 yuzdan bir = 75 yuzdan bir.",
+                "0,50 + 0,25 = 0,75."
+              ],
+              "javob": "To‘g‘ri javob 0,75; xonalar moslashtirilmagan."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "0,30 javobini faqat “vergul xato qo‘yilgan” deb izohlash yetarli emas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Ko‘paytirish amaliyoti",
+      "izoh": "Natijaning kattaligini oldindan baholaymiz",
+      "belgi": "×",
+      "slaydlar": [
+        {
+          "sarlavha": "Ikkala ko‘paytuvchi ham birdan kichik",
+          "izoh": "Musbat 0,16 ning chorak qismi olinayotganini tushuntiring. Natija 0,16 dan ham kichik bo‘lishi kutiladi. Kasr xonalari sonini hisoblashni shu ma’no bilan bog‘lang.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ko‘paytirish",
+              "shart": "0,16 × 0,25 ni hisoblang.",
+              "qadamlar": [
+                "16 × 25 = 400.",
+                "Jami 2 + 2 = 4 kasr xonasi: 400/10000.",
+                "0,0400 = 0,04."
+              ],
+              "javob": "0,04."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "0,4 javobi kattalik taxminiga ham mos kelmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Oddiy kasr bilan muqobil tekshirish",
+          "izoh": "1,25 ni 5/4 ga almashtirish hisobni qisqartiradi. 2,4 ni 12/5 ko‘rinishida yozsak, ko‘paytuvchilar qisqaradi. Ikki usulning bir xil natijaga kelishi algoritmni tekshirishga yordam beradi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki usul",
+              "shart": "2,4 × 1,25 ni hisoblang.",
+              "qadamlar": [
+                "12/5 × 5/4 = 12/4 = 3.",
+                "Muqobil: 24×125=3000; jami uch kasr xonasi.",
+                "3000/1000=3."
+              ],
+              "javob": "3."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yuzdan birlar modelini tavsiflang",
+          "izoh": "0,3 ning 0,2 qismini olishni birlik kvadrat yuzasi orqali ko‘rsatish mumkin. Kvadratning bir yo‘nalishidagi 3/10 va ikkinchi yo‘nalishidagi 2/10 uzunliklar ko‘paytiriladi. Kesishma 100 teng katakning 6 tasiga teng bo‘ladi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Modelning matematik asosi",
+              "formula": "\\frac3{10}\\cdot\\frac2{10}=\\frac6{100}=0{,}06",
+              "matn": "Birlik kvadrat 10×10 teng katakka bo‘linadi."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "0,3 × 0,2 = 0,6 emas. Chizmada aynan 3 ustun bilan 2 qator kesishmasi ko‘rsatilishi kerak."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Bo‘lish va yakuniy tekshiruv",
+      "izoh": "Bo‘linmani o‘zgartirmaslik",
+      "belgi": "÷",
+      "slaydlar": [
+        {
+          "sarlavha": "Bo‘luvchini butun songa aylantiring",
+          "izoh": "Bo‘luvchi 0,12 ni 12 qilish uchun yuzga ko‘paytiramiz. Bo‘linuvchi ham yuzga ko‘paytirilishi shart. Topilgan 42 ni 0,12 ga ko‘paytirib, dastlabki 5,04 ga qayting.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Bo‘lish",
+              "shart": "5,04 : 0,12 ni hisoblang.",
+              "qadamlar": [
+                "5,04 : 0,12 = 504 : 12.",
+                "504 : 12 = 42.",
+                "42 × 0,12 = 5,04."
+              ],
+              "javob": "42."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Bo‘lish natijasi kattaroq chiqishi mumkin",
+          "izoh": "0,06 ning 7,2 ichida nechta borligi so‘ralmoqda. Bo‘luvchi birdan kichik musbat son bo‘lgani uchun natija 7,2 dan katta chiqishi tabiiy. Birlikni bo‘lak o‘lchami va bo‘laklar soni orqali ajrating.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Teng bo‘laklar soni",
+              "shart": "7,2 m lentadan 0,06 m li nechta bo‘lak chiqadi?",
+              "qadamlar": [
+                "7,2 : 0,06 = 720 : 6.",
+                "720 : 6 = 120.",
+                "120 × 0,06 m = 7,2 m."
+              ],
+              "javob": "120 ta bo‘lak."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qaysi tekshiruv nimani isbotlaydi?",
+          "izoh": "Teskari amal javobni tekshiradi, kattalik taxmini esa ishora va vergul xatosini tez topadi. Nolga bo‘lish aniqlanmaganini alohida eslatib o‘ting. Mustaqil topshiriqni tekshiruvchi bir xil xato usulni takrorlashdan saqlanishi kerak.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Ifoda",
+                "Natija yoki holat",
+                "Sabab"
+              ],
+              "qatorlar": [
+                [
+                  "0 : 0,4",
+                  "0",
+                  "Bo‘luvchi noldan farqli"
+                ],
+                [
+                  "0,4 : 0",
+                  "Aniqlanmagan",
+                  "Nolga bo‘lish mumkin emas"
+                ],
+                [
+                  "0 : 0",
+                  "Aniqlanmagan",
+                  "Nolga bo‘lish mumkin emas"
+                ]
+              ]
+            },
+            {
+              "tur": "matn",
+              "matn": "Topshirishda: yechim bosqichlari, javob, kamida bitta mustaqil tekshiruv va xato bo‘lsa uning sababi berilsin."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "0,609 > 0,69.",
+      "sabab": "Raqamlar soni solishtirilgan.",
+      "togri": "0,609 < 0,690."
+    },
+    {
+      "xato": "12,75+0,608=12,1358.",
+      "sabab": "Bir xil xona qiymatlari moslashtirilmagan.",
+      "togri": "12,750+0,608=13,358."
+    },
+    {
+      "xato": "0,16×0,25=0,4.",
+      "sabab": "Kasr xonalari noto‘g‘ri hisoblangan.",
+      "togri": "400/10000=0,04."
+    },
+    {
+      "xato": "5,04:0,12=5,04:12.",
+      "sabab": "Faqat bo‘luvchi o‘zgartirilgan.",
+      "togri": "504:12=42."
+    },
+    {
+      "xato": "7,2:0,06 javobi 7,2 dan kichik bo‘lishi shart.",
+      "sabab": "Bo‘lish haqidagi noto‘g‘ri umumlashtirish.",
+      "togri": "120 ta 0,06 yig‘indisi 7,2 ga teng."
+    },
+    {
+      "xato": "0:0=0.",
+      "sabab": "Nolga bo‘lish cheklovi unutilgan.",
+      "togri": "0:0 aniqlanmagan."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Xatoni tashxislash va tuzatish",
+    "bosqichlar": [
+      "O‘quvchi yozuvini o‘zgartirmasdan qayd qilish",
+      "Qaysi xona yoki qoida buzilganini aniqlash",
+      "Model, to‘g‘ri yechim va muqobil tekshiruv berish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Ustun usuli",
+        "matn": "0,5+0,25 xatosini 0,50+0,25 orqali tushuntiring."
+      },
+      {
+        "sarlavha": "Yuza modeli",
+        "matn": "Birlik kvadratda 3/10 va 2/10 uzunliklar kesishmasini ko‘rsating."
+      },
+      {
+        "sarlavha": "Bo‘laklar soni",
+        "matn": "7,2 m ichida 0,06 m necha marta joylashishini teskari ko‘paytirish bilan tekshiring."
+      }
+    ],
+    "tavsiya": "Boshlang‘ich sinf uchun topshiriq tanlashdan oldin shu sinfning tasdiqlangan darslik va dasturini tekshiring; bu amaliy mashg‘ulotning barcha vazifalarini kichik yoshdagi o‘quvchiga birvarakay bermang."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Hisoblashda xona qiymatlari saqlanadi.",
+      "Ko‘paytirish natijasi kattalik taxmini bilan tekshiriladi.",
+      "Bo‘lishda ikkala son bir xil ko‘paytuvchiga ko‘paytiriladi.",
+      "Xato tahlilida noto‘g‘ri javob bilan birga uning sababi ham aytiladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "0,609 va 0,69 orasidagi to‘g‘ri munosabatni toping.",
+      "variantlar": [
+        "0,609 > 0,69",
+        "0,609 < 0,69",
+        "0,609 = 0,69",
+        "Taqqoslab bo‘lmaydi"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "12,75 + 0,608 ni hisoblang.",
+      "variantlar": [
+        "12,1358",
+        "13,815",
+        "13,358",
+        "12,758"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "20 − 7,085 nechaga teng?",
+      "variantlar": [
+        "12,915",
+        "13,085",
+        "12,985",
+        "12,015"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "0,16 × 0,25 nechaga teng?",
+      "variantlar": [
+        "0,4",
+        "0,004",
+        "4",
+        "0,04"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "5,04 : 0,12 nechaga teng?",
+      "variantlar": [
+        "4,2",
+        "42",
+        "0,42",
+        "420"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "7,2 : 0,06 nechaga teng?",
+      "variantlar": [
+        "1,2",
+        "12",
+        "120",
+        "0,12"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Vergullarni bir ustunga keltirishning ma’nosini ayting.",
+    "Nega 0,16×0,25 natijasi 0,16 dan kichik?",
+    "5,04:0,12 ni oddiy kasr orqali tekshiring.",
+    "Bo‘linmaning qiymati qachon saqlanadi?",
+    "Nolga bo‘lish bilan nolni bo‘lishni farqlang.",
+    "Bir xatoni tekshirishda bir xil noto‘g‘ri usulni takrorlamaslikka misol keltiring."
+  ],
+  "mustaqil_ish": [
+    "4,806 + 0,79 va 15 − 6,075 ni hisoblang.",
+    "0,28 × 0,15 va 1,44 : 0,12 ni hisoblang.",
+    "−0,4; −0,04; −0,404 sonlarini o‘sish tartibida joylashtiring.",
+    "O‘quvchining 0,3×0,2=0,6 yozuviga qisqa metodik izoh yozing: xato sababi, model va tekshiruv."
+  ],
+  "keyingi": {
+    "mavzu": "Haqiqiy sonlar bo‘yicha amaliy mashg‘ulot",
+    "izoh": "Irratsional son, modul va aniq qiymat tushunchalarini takrorlang."
+  },
+  "rasmlar": []
+}

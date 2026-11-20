@@ -104,3 +104,47 @@ def test_api_bazasiz(monkeypatch):
     assert r.status_code == 200 and r.json()["miyalar"][0]["meta"]["mavzu"]
     r = c.post(api.PREFIX + "/yasash", json={"miya": NAMUNA, "uslub": "../../etc"})
     assert r.status_code == 422
+
+
+def test_kutubxona_hammasi_yasaladi():
+    from modules.taqdimot_dvigatel import kutubxona
+    for t in kutubxona.toplamlar():
+        r = kutubxona.mavzular(t["kod"])
+        assert r["mavzular"]
+        for m in r["mavzular"]:
+            s = yasash.yasa(kutubxona.miya(t["kod"], m["kod"]), seed=11)
+            assert len(s["slaydlar"]) >= 8, m["kod"]
+            for sl in s["slaydlar"]:
+                for el in sl["els"]:
+                    if el["k"] == "text":
+                        assert el["sc"] >= 0.5, (m["kod"], sl["blok"])
+
+
+def test_formula_tex_qisqa_yozuv():
+    assert formula.parse(r"\frac13 Bh")[1][0] == ("frac", ("ch", "1", False), ("ch", "3", False))
+    w, a, d = formula.olcha(r"|a|=\begin{cases}a,&a\ge0,\\-a,&a<0.\end{cases}", 30)
+    assert a > 30 and d > 15 and a + d > 55
+
+
+def test_api_kutubxona(monkeypatch):
+    from fastapi import FastAPI
+    from fastapi.testclient import TestClient
+
+    class P:
+        pass
+    app = FastAPI()
+    D = api.register_taqdimot_dvigatel(app, P())
+    monkeypatch.setattr(D, "actor", lambda auth: 7)
+    monkeypatch.setattr(D, "admin", lambda uid: False)
+    c = TestClient(app)
+    r = c.get(api.PREFIX + "/kutubxona")
+    t = r.json()["toplamlar"][0]
+    m = t["mavzular"][0]
+    assert r.status_code == 200 and "fayl" not in m
+    r = c.get(f"{api.PREFIX}/kutubxona/{t['kod']}/{m['kod']}")
+    assert r.status_code == 200 and r.json()["bolimlar"]
+    r = c.get(f"{api.PREFIX}/kutubxona/{t['kod']}/{m['kod']}/oqituvchi")
+    assert r.status_code == 200 and len(r.content) > 100
+    assert c.get(f"{api.PREFIX}/kutubxona/{t['kod']}/{m['kod']}/javoblar").status_code == 403
+    assert c.get(f"{api.PREFIX}/kutubxona/{t['kod']}/yoq").status_code == 404
+    assert c.get(f"{api.PREFIX}/kutubxona/..%2F..%2Fetc/{m['kod']}").status_code == 404

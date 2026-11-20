@@ -25,11 +25,19 @@ AI faqat mazmunni yozadi; dizayn, chizmalar va animatsiyani shu dvigatel qiladi.
 ## API
 `GET /uslublar` · `POST /yasash` (sahna JSON) · `POST /pptx` · `POST /import` (.xlsx/.json) · `POST /ai` + `GET /ai/{ish}` ·
 `GET /shablon.xlsx?namuna=1` · `GET /korsatma` · `GET /namuna` · `GET /fon/{kod}.jpg` · `GET /rasm/{kalit}` ·
-`POST /rasm-yuklash` (admin: ZIP, fayl nomi = kalit) · `GET /rasmlar?q=`
+`POST /rasm-yuklash` (admin: ZIP, fayl nomi = kalit) · `GET /rasmlar?q=` ·
+`GET /kutubxona` · `GET /kutubxona/{toplam}/{kod}` (tayyor miya) · `GET /kutubxona/{toplam}/{kod}/{oqituvchi|topshiriq|reja|javoblar}` (javoblar — faqat admin)
+
+## Tayyor mavzular va rasmlar (paketlardan)
+- `kutubxona/<toplam>/` — `reestr.json` + `miya/` (taqdimot-miya JSON), `oqituvchi/` (.md), `javoblar/`, `mustaqil/`.
+  Hozir: `bmkn1305` — BMKN 1305, 39 mavzu (15 ma’ruza, 15 amaliy, 9 mustaqil ta’lim).
+- `rasmlar/` — `kalit.webp` (fayl nomi = kalit) + `reestr.json` (tur: rasm / chizma, nom, izoh, tekshiruv).
+- `malumot/` — chizmalar reestri, 118 element (IUPAC 2022) — keyingi chizma generatorlari uchun.
+- Yangi paket kelganda shu tuzilishda yangi papka qo‘shiladi, kod o‘zgarmaydi.
 
 ## Sozlamalar (env)
 `GEMINI_API_KEY` / `OPENAI_API_KEY` / `GROQ_API_KEY` — AI matn; `TAQDIMOT_AI_PROVIDERS=gemini,openai,groq`;
-`TAQDIMOT_AI_RASM=1` + `OPENAI_API_KEY` — AI rasm chizish (ixtiyoriy); `TAQDIMOT_RASM_PAPKA` — rasm papkasi.
+`TAQDIMOT_AI_RASM=1` + `OPENAI_API_KEY` — AI rasm chizish (ixtiyoriy); `TAQDIMOT_RASM_PAPKA` — rasm papkasi; `TAQDIMOT_KUTUBXONA` — tayyor mavzular papkasi.
 
 ## Kengaytirish
 - Yangi chizma: `chizma.py` da funksiya + `CHIZMALAR` ga qator (AI ko‘rsatmasiga avtomatik qo‘shiladi).

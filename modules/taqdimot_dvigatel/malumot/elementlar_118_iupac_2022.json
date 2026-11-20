@@ -1,0 +1,952 @@
+{
+  "source": "https://iupac.org/wp-content/uploads/2022/07/IUPAC_Periodic_Table-04May22_CRA.pdf",
+  "release": "2022-05-04",
+  "retrieved": "2026-11-18",
+  "note": "Faqat faktik ma’lumotlar ajratildi. Manba sahifasining dizayni ko‘chirilmagan. Qavsdagi qiymat standart atom og‘irligi emas. O‘zbekcha element nomlari taxmin qilinmagan.",
+  "elements": [
+    {
+      "Z": 1,
+      "symbol": "H",
+      "name_en": "hydrogen",
+      "value": "1.0080",
+      "uncertainty": "0.0002",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 2,
+      "symbol": "He",
+      "name_en": "helium",
+      "value": "4.0026",
+      "uncertainty": "0.0001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 3,
+      "symbol": "Li",
+      "name_en": "lithium",
+      "value": "6.94",
+      "uncertainty": "0.06",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 4,
+      "symbol": "Be",
+      "name_en": "beryllium",
+      "value": "9.0122",
+      "uncertainty": "0.0001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 5,
+      "symbol": "B",
+      "name_en": "boron",
+      "value": "10.81",
+      "uncertainty": "0.02",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 6,
+      "symbol": "C",
+      "name_en": "carbon",
+      "value": "12.011",
+      "uncertainty": "0.002",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 7,
+      "symbol": "N",
+      "name_en": "nitrogen",
+      "value": "14.007",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 8,
+      "symbol": "O",
+      "name_en": "oxygen",
+      "value": "15.999",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 9,
+      "symbol": "F",
+      "name_en": "fluorine",
+      "value": "18.998",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 10,
+      "symbol": "Ne",
+      "name_en": "neon",
+      "value": "20.180",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 11,
+      "symbol": "Na",
+      "name_en": "sodium",
+      "value": "22.990",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 12,
+      "symbol": "Mg",
+      "name_en": "magnesium",
+      "value": "24.305",
+      "uncertainty": "0.002",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 13,
+      "symbol": "Al",
+      "name_en": "aluminium",
+      "value": "26.982",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 14,
+      "symbol": "Si",
+      "name_en": "silicon",
+      "value": "28.085",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 15,
+      "symbol": "P",
+      "name_en": "phosphorus",
+      "value": "30.974",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 16,
+      "symbol": "S",
+      "name_en": "sulfur",
+      "value": "32.06",
+      "uncertainty": "0.02",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 17,
+      "symbol": "Cl",
+      "name_en": "chlorine",
+      "value": "35.45",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 18,
+      "symbol": "Ar",
+      "name_en": "argon",
+      "value": "39.95",
+      "uncertainty": "0.16",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 19,
+      "symbol": "K",
+      "name_en": "potassium",
+      "value": "39.098",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 20,
+      "symbol": "Ca",
+      "name_en": "calcium",
+      "value": "40.078",
+      "uncertainty": "0.004",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 21,
+      "symbol": "Sc",
+      "name_en": "scandium",
+      "value": "44.956",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 22,
+      "symbol": "Ti",
+      "name_en": "titanium",
+      "value": "47.867",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 23,
+      "symbol": "V",
+      "name_en": "vanadium",
+      "value": "50.942",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 24,
+      "symbol": "Cr",
+      "name_en": "chromium",
+      "value": "51.996",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 25,
+      "symbol": "Mn",
+      "name_en": "manganese",
+      "value": "54.938",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 26,
+      "symbol": "Fe",
+      "name_en": "iron",
+      "value": "55.845",
+      "uncertainty": "0.002",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 27,
+      "symbol": "Co",
+      "name_en": "cobalt",
+      "value": "58.933",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 28,
+      "symbol": "Ni",
+      "name_en": "nickel",
+      "value": "58.693",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 29,
+      "symbol": "Cu",
+      "name_en": "copper",
+      "value": "63.546",
+      "uncertainty": "0.003",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 30,
+      "symbol": "Zn",
+      "name_en": "zinc",
+      "value": "65.38",
+      "uncertainty": "0.02",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 31,
+      "symbol": "Ga",
+      "name_en": "gallium",
+      "value": "69.723",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 32,
+      "symbol": "Ge",
+      "name_en": "germanium",
+      "value": "72.630",
+      "uncertainty": "0.008",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 33,
+      "symbol": "As",
+      "name_en": "arsenic",
+      "value": "74.922",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 34,
+      "symbol": "Se",
+      "name_en": "selenium",
+      "value": "78.971",
+      "uncertainty": "0.008",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 35,
+      "symbol": "Br",
+      "name_en": "bromine",
+      "value": "79.904",
+      "uncertainty": "0.003",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 36,
+      "symbol": "Kr",
+      "name_en": "krypton",
+      "value": "83.798",
+      "uncertainty": "0.002",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 37,
+      "symbol": "Rb",
+      "name_en": "rubidium",
+      "value": "85.468",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 38,
+      "symbol": "Sr",
+      "name_en": "strontium",
+      "value": "87.62",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 39,
+      "symbol": "Y",
+      "name_en": "yttrium",
+      "value": "88.906",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 40,
+      "symbol": "Zr",
+      "name_en": "zirconium",
+      "value": "91.224",
+      "uncertainty": "0.002",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 41,
+      "symbol": "Nb",
+      "name_en": "niobium",
+      "value": "92.906",
+      "uncertainty": "0.001",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 42,
+      "symbol": "Mo",
+      "name_en": "molybdenum",
+      "value": "95.95",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 43,
+      "symbol": "Tc",
+      "name_en": "technetium",
+      "value": "[97]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 44,
+      "symbol": "Ru",
+      "name_en": "ruthenium",
+      "value": "101.07",
+      "uncertainty": "0.02",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 45,
+      "symbol": "Rh",
+      "name_en": "rhodium",
+      "value": "102.91",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 46,
+      "symbol": "Pd",
+      "name_en": "palladium",
+      "value": "106.42",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 47,
+      "symbol": "Ag",
+      "name_en": "silver",
+      "value": "107.87",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 48,
+      "symbol": "Cd",
+      "name_en": "cadmium",
+      "value": "112.41",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 49,
+      "symbol": "In",
+      "name_en": "indium",
+      "value": "114.82",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 50,
+      "symbol": "Sn",
+      "name_en": "tin",
+      "value": "118.71",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 51,
+      "symbol": "Sb",
+      "name_en": "antimony",
+      "value": "121.76",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 52,
+      "symbol": "Te",
+      "name_en": "tellurium",
+      "value": "127.60",
+      "uncertainty": "0.03",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 53,
+      "symbol": "I",
+      "name_en": "iodine",
+      "value": "126.90",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 54,
+      "symbol": "Xe",
+      "name_en": "xenon",
+      "value": "131.29",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 55,
+      "symbol": "Cs",
+      "name_en": "caesium",
+      "value": "132.91",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 56,
+      "symbol": "Ba",
+      "name_en": "barium",
+      "value": "137.33",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 57,
+      "symbol": "La",
+      "name_en": "lanthanum",
+      "value": "138.91",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 58,
+      "symbol": "Ce",
+      "name_en": "cerium",
+      "value": "140.12",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 59,
+      "symbol": "Pr",
+      "name_en": "praseodymium",
+      "value": "140.91",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 60,
+      "symbol": "Nd",
+      "name_en": "neodymium",
+      "value": "144.24",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 61,
+      "symbol": "Pm",
+      "name_en": "promethium",
+      "value": "[145]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 62,
+      "symbol": "Sm",
+      "name_en": "samarium",
+      "value": "150.36",
+      "uncertainty": "0.02",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 63,
+      "symbol": "Eu",
+      "name_en": "europium",
+      "value": "151.96",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 64,
+      "symbol": "Gd",
+      "name_en": "gadolinium",
+      "value": "157.25",
+      "uncertainty": "0.03",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 65,
+      "symbol": "Tb",
+      "name_en": "terbium",
+      "value": "158.93",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 66,
+      "symbol": "Dy",
+      "name_en": "dysprosium",
+      "value": "162.50",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 67,
+      "symbol": "Ho",
+      "name_en": "holmium",
+      "value": "164.93",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 68,
+      "symbol": "Er",
+      "name_en": "erbium",
+      "value": "167.26",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 69,
+      "symbol": "Tm",
+      "name_en": "thulium",
+      "value": "168.93",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 70,
+      "symbol": "Yb",
+      "name_en": "ytterbium",
+      "value": "173.05",
+      "uncertainty": "0.02",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 71,
+      "symbol": "Lu",
+      "name_en": "lutetium",
+      "value": "174.97",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 72,
+      "symbol": "Hf",
+      "name_en": "hafnium",
+      "value": "178.49",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 73,
+      "symbol": "Ta",
+      "name_en": "tantalum",
+      "value": "180.95",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 74,
+      "symbol": "W",
+      "name_en": "tungsten",
+      "value": "183.84",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 75,
+      "symbol": "Re",
+      "name_en": "rhenium",
+      "value": "186.21",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 76,
+      "symbol": "Os",
+      "name_en": "osmium",
+      "value": "190.23",
+      "uncertainty": "0.03",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 77,
+      "symbol": "Ir",
+      "name_en": "iridium",
+      "value": "192.22",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 78,
+      "symbol": "Pt",
+      "name_en": "platinum",
+      "value": "195.08",
+      "uncertainty": "0.02",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 79,
+      "symbol": "Au",
+      "name_en": "gold",
+      "value": "196.97",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 80,
+      "symbol": "Hg",
+      "name_en": "mercury",
+      "value": "200.59",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 81,
+      "symbol": "Tl",
+      "name_en": "thallium",
+      "value": "204.38",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 82,
+      "symbol": "Pb",
+      "name_en": "lead",
+      "value": "207.2",
+      "uncertainty": "1.1",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 83,
+      "symbol": "Bi",
+      "name_en": "bismuth",
+      "value": "208.98",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 84,
+      "symbol": "Po",
+      "name_en": "polonium",
+      "value": "[209]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 85,
+      "symbol": "At",
+      "name_en": "astatine",
+      "value": "[210]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 86,
+      "symbol": "Rn",
+      "name_en": "radon",
+      "value": "[222]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 87,
+      "symbol": "Fr",
+      "name_en": "francium",
+      "value": "[223]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 88,
+      "symbol": "Ra",
+      "name_en": "radium",
+      "value": "[226]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 89,
+      "symbol": "Ac",
+      "name_en": "actinium",
+      "value": "[227]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 90,
+      "symbol": "Th",
+      "name_en": "thorium",
+      "value": "232.04",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 91,
+      "symbol": "Pa",
+      "name_en": "protactinium",
+      "value": "231.04",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 92,
+      "symbol": "U",
+      "name_en": "uranium",
+      "value": "238.03",
+      "uncertainty": "0.01",
+      "kind": "qisqartirilgan_standart_atom_ogirligi"
+    },
+    {
+      "Z": 93,
+      "symbol": "Np",
+      "name_en": "neptunium",
+      "value": "[237]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 94,
+      "symbol": "Pu",
+      "name_en": "plutonium",
+      "value": "[244]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 95,
+      "symbol": "Am",
+      "name_en": "americium",
+      "value": "[243]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 96,
+      "symbol": "Cm",
+      "name_en": "curium",
+      "value": "[247]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 97,
+      "symbol": "Bk",
+      "name_en": "berkelium",
+      "value": "[247]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 98,
+      "symbol": "Cf",
+      "name_en": "californium",
+      "value": "[251]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 99,
+      "symbol": "Es",
+      "name_en": "einsteinium",
+      "value": "[252]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 100,
+      "symbol": "Fm",
+      "name_en": "fermium",
+      "value": "[257]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 101,
+      "symbol": "Md",
+      "name_en": "mendelevium",
+      "value": "[258]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 102,
+      "symbol": "No",
+      "name_en": "nobelium",
+      "value": "[259]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 103,
+      "symbol": "Lr",
+      "name_en": "lawrencium",
+      "value": "[262]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 104,
+      "symbol": "Rf",
+      "name_en": "rutherfordium",
+      "value": "[267]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 105,
+      "symbol": "Db",
+      "name_en": "dubnium",
+      "value": "[268]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 106,
+      "symbol": "Sg",
+      "name_en": "seaborgium",
+      "value": "[269]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 107,
+      "symbol": "Bh",
+      "name_en": "bohrium",
+      "value": "[270]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 108,
+      "symbol": "Hs",
+      "name_en": "hassium",
+      "value": "[269]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 109,
+      "symbol": "Mt",
+      "name_en": "meitnerium",
+      "value": "[277]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 110,
+      "symbol": "Ds",
+      "name_en": "darmstadtium",
+      "value": "[281]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 111,
+      "symbol": "Rg",
+      "name_en": "roentgenium",
+      "value": "[282]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 112,
+      "symbol": "Cn",
+      "name_en": "copernicium",
+      "value": "[285]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 113,
+      "symbol": "Nh",
+      "name_en": "nihonium",
+      "value": "[286]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 114,
+      "symbol": "Fl",
+      "name_en": "flerovium",
+      "value": "[290]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 115,
+      "symbol": "Mc",
+      "name_en": "moscovium",
+      "value": "[290]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 116,
+      "symbol": "Lv",
+      "name_en": "livermorium",
+      "value": "[293]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 117,
+      "symbol": "Ts",
+      "name_en": "tennessine",
+      "value": "[294]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    },
+    {
+      "Z": 118,
+      "symbol": "Og",
+      "name_en": "oganesson",
+      "value": "[294]",
+      "uncertainty": null,
+      "kind": "izotop_massasi_soni"
+    }
+  ]
+}

@@ -1,0 +1,564 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 1,
+    "tur": "amaliy",
+    "mavzu": "Son tushunchasini kengaytirish va butun sonlar: amaliy mashg‘ulot",
+    "qisqa": "Butun sonlar amaliyoti",
+    "maqsad": "Talaba son to‘plamini kengaytirish zaruratini misolda ko‘rsatadi; butun sonlar amallarini model va teskari tekshiruv bilan bajaradi; kasrlar va manfiy sonlarga oid tarixiy dalillarni ehtiyotkor talqin qiladi.",
+    "tayanch": [
+      "Sonlar kengayishi",
+      "Kasr va manfiy sonlar tarixi",
+      "Butun sonlar",
+      "Son o‘qi",
+      "Amallar tartibi"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "ℤ",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; A1, asl skanning 5-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Prealgebra 2e, 3.1",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/3-1-introduction-to-integers"
+      },
+      {
+        "nomi": "OpenStax Prealgebra 2e, 3 Key Concepts",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/3-key-concepts"
+      },
+      {
+        "nomi": "Open University: Egyptian calculation, asl manbalardan ko‘chirmalar va sharh",
+        "izoh": "https://www.open.edu/openlearn/science-maths-technology/mathematics-statistics/egyptian-mathematics/content-section-1.1.2"
+      },
+      {
+        "nomi": "MacTutor: Nine Chapters",
+        "izoh": "https://mathshistory.st-andrews.ac.uk/HistTopics/Nine_chapters/"
+      },
+      {
+        "nomi": "MacTutor: Brahmagupta, asl qoidalardan tarjima parchalari",
+        "izoh": "https://mathshistory.st-andrews.ac.uk/Biographies/Brahmagupta/"
+      },
+      {
+        "nomi": "British Museum: Rhind Mathematical Papyrus, muzey tavsifi",
+        "izoh": "https://artsandculture.google.com/asset/rhind-mathematical-papyrus/qAGwXnGhBxLKTg?hl=en"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "M1 ma’ruzasi",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Bu darsdagi ℕ qanday?",
+        "javob": "{1,2,3,…}."
+      },
+      {
+        "savol": "−5 ning qarama-qarshisi nima?",
+        "javob": "5."
+      },
+      {
+        "savol": "|−5| nechaga teng?",
+        "javob": "5."
+      },
+      {
+        "savol": "Nol butun sonmi?",
+        "javob": "Ha."
+      },
+      {
+        "savol": "3/4 butun sonmi?",
+        "javob": "Yo‘q, ratsional."
+      },
+      {
+        "savol": "0:0 aniqlanganmi?",
+        "javob": "Yo‘q."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Sonlar yetmay qolganda",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Nega 3−8 uchun faqat natural sonlar yetmaydi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Nega 3 ta buyumni 4 kishiga teng taqsimlashda butun sonli javob yetmaydi?"
+      }
+    ],
+    "goya": "Kengaytirish zarurati aniq vaziyatda ko‘rsatiladi, keyin amal qonunlari bilan bog‘lanadi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "Kasr va manfiy sonlarga oid uch tarixiy dalil",
+    "voqealar": [
+      {
+        "davr": "Qadimgi Misr, miloddan avvalgi II mingyillik",
+        "nom": "Rhind papirusi va ulushlar bilan hisob",
+        "matn": "Saqlangan papirus va uni tahlil qilgan manbalarda birlik ulushlar bilan hisoblash ko‘rinadi; 2/3 kabi maxsus yozuvlar ham mavjud bo‘lgan. Zamonaviy kasr tushunchasini qadimgi yozuv bilan to‘liq bir xil deb olmaymiz.",
+        "belgi": "Ulushlar orqali hisob",
+        "rasm": ""
+      },
+      {
+        "davr": "263-yil — sharh sanasi",
+        "nom": "Lyu Xueyning «To‘qqiz bob»ga sharhi",
+        "matn": "Oldin shakllangan asarning 8-bobida manfiy qiymatlar bilan hisob qoidalari bor. 263-yil Lyu Xuey sharhiga tegishli; uni matnning yoki manfiy sonlarning yagona yaratilish sanasi deb bo‘lmaydi.",
+        "belgi": "Manfiy qiymatlar bilan hisob",
+        "rasm": ""
+      },
+      {
+        "davr": "628-yil",
+        "nom": "Braxmaguptaning «Brahmasphutasiddhanta» asari",
+        "matn": "Musbat va manfiy qiymatlar mulk va qarz tili orqali tushuntirilgan. Masalan, ikki manfiy qiymat ko‘paytmasining musbatligi bayon qilingan. Asardagi nolga bo‘lishga oid tarixiy fikrlar zamonaviy qoida sifatida qabul qilinmaydi.",
+        "belgi": "Qarz va mulk",
+        "rasm": ""
+      }
+    ],
+    "xulosa": "Tarixiy manba yozuv va amalning rivojlanishini ko‘rsatadi. Sana aniqligi va dalilning qamrovi saqlanadi; hozirgi hisobda nolga bo‘lish aniqlanmagan."
+  },
+  "bolimlar": [
+    {
+      "nom": "Son tushunchasini kengaytirish",
+      "izoh": "Misol, sabab va manba",
+      "belgi": "ℕ⊂ℤ⊂ℚ",
+      "slaydlar": [
+        {
+          "sarlavha": "Amaliy ishni qanday topshiramiz?",
+          "izoh": "Bu mashg‘ulotda natijadan tashqari sonlar to‘plami, amalning sharti va tekshirish usuli ham yoziladi. Bir xil belgini turli vaziyatlarda ishlatganda uning vazifasini ayting: minus manfiy son belgisi, qarama-qarshi son amali yoki ayirish bo‘lishi mumkin.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Topshiriq",
+                "Kutiladigan yozuv"
+              ],
+              "qatorlar": [
+                [
+                  "Hisoblash",
+                  "Amallar tartibi va tekshiruv"
+                ],
+                [
+                  "Model",
+                  "Boshlang‘ich nuqta, yo‘nalish va birlik"
+                ],
+                [
+                  "Tarixiy izoh",
+                  "Manba, sana aniqligi va ehtiyotkor xulosa"
+                ],
+                [
+                  "Xato tahlili",
+                  "Xato sababini ko‘rsatish va tuzatish"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qaysi amal yangi sonni talab qiladi?",
+          "izoh": "Bu darsda ℕ={1,2,3,…}. Natural sonlarda 3−8 bajarilganda natija natural bo‘lmaydi; ℤ bu natijani ifodalaydi. Butun sonlarda 3:4 natijasi butun emas, ℚ esa uni ifodalaydi. Kengaytirish barcha keyingi sonlar aynan shu masalada kerak degani emas.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "To‘plamni tanlash",
+              "shart": "3−8 va 3:4 natijalarini eng tor mos to‘plamda ko‘rsating.",
+              "qadamlar": [
+                "3−8=−5; −5∈ℤ, lekin −5∉ℕ.",
+                "3:4=3/4; 3/4∈ℚ, lekin 3/4∉ℤ.",
+                "ℕ⊂ℤ⊂ℚ."
+              ],
+              "javob": "−5 uchun ℤ; 3/4 uchun ℚ."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Nol bu darsdagi ℕ ga kirmaydi, ammo ℤ va ℚ ga kiradi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Tarixiy dalilni qanday o‘qiymiz?",
+          "izoh": "Qadimgi Misrda ulushlar bilan hisoblash, «To‘qqiz bob»da manfiy qiymatlar va Braxmaguptada qarz-mulk qoidalari tarixiy manbalarda uchraydi. Bu ma’lumotlardan bir kishi barcha kasr yoki manfiy sonlarni birdan ixtiro qilgan degan xulosa chiqarilmaydi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Vazifa: tarixiy blokdagi uch dalildan birini tanlang. U qaysi asar yoki manbaga tayanganini va sananing nimaga tegishli ekanini ayting."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "263-yil «To‘qqiz bob»ning dastlab yaratilgan sanasi emas, Lyu Xuey sharhi sanasidir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Butun sonlarni tartiblash va qo‘shish",
+      "izoh": "Geometrik talqin",
+      "belgi": "d=|b−a|",
+      "slaydlar": [
+        {
+          "sarlavha": "Tartib bilan modul bir xil emas",
+          "izoh": "Son o‘qida o‘ngdagi nuqta kattaroq sonni ifodalaydi. Modul nolgacha masofa; u faqat manfiy sonlar orasidagi tartibni to‘g‘ridan ko‘chirmaydi. Ikki nuqta masofasi ularning koordinatalari ayirmasi modulidir.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "−8 va 3 nuqtalari",
+              "shart": "−8 bilan −3 ni taqqoslang; −8 dan 3 gacha masofani toping.",
+              "qadamlar": [
+                "−8 son o‘qida −3 dan chapda: −8<−3.",
+                "|−8|=8 va |−3|=3.",
+                "d=|3−(−8)|=11."
+              ],
+              "javob": "−8<−3; masofa 11 birlik."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Turli ishorali sonlarni qo‘shish",
+          "izoh": "Yig‘indini son o‘qida yo‘nalish bilan yoki qarama-qarshi birliklarni juftlab tekshirish mumkin. Ishorani eng katta yozilgan raqamdan emas, qolgan birliklarning yo‘nalishidan aniqlang.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki yig‘indi",
+              "shart": "−12+7 va 5+(−9) ni hisoblang.",
+              "qadamlar": [
+                "−12 dan 7 birlik o‘ngga: −5.",
+                "5 dan 9 birlik chapga: −4.",
+                "Tekshiruv: −5−7=−12; −4+9=5."
+              ],
+              "javob": "−5 va −4."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Manfiy sonni ayirish",
+          "izoh": "a−b=a+(−b). Shuning uchun manfiy b ni ayirish uning musbat qarama-qarshisini qo‘shishdir. «Ikki minus plyus» degan qisqa ibora o‘rniga qaysi amal o‘zgarganini yozing.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ayirishni qo‘shishga keltirish",
+              "shart": "−7−(−12) ni toping.",
+              "qadamlar": [
+                "−7−(−12)=−7+12.",
+                "−7 dan 12 birlik o‘ngga siljiymiz.",
+                "5+(−12)=−7 bilan tekshiramiz."
+              ],
+              "javob": "5."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "−7−12 esa −19; qavs va ishora shartni o‘zgartiradi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Ko‘paytirish, bo‘lish va qavs",
+      "izoh": "Qoidaning qo‘llanish joyi",
+      "belgi": "−a² va (−a)²",
+      "slaydlar": [
+        {
+          "sarlavha": "Ko‘paytirish ishorasini asoslash",
+          "izoh": "Musbat yoki manfiy ko‘paytuvchilar qoidasi arifmetik qonunlar bilan mos bo‘ladi. Masalan, (−6)(4+(−4))=0 dan (−6)·4+(−6)(−4)=0. Birinchi had −24 bo‘lgani uchun ikkinchisi 24.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ishora va qiymat",
+              "shart": "(−6)(−4) va (−6)·4 ni hisoblang.",
+              "qadamlar": [
+                "Bir xil ishoralar ko‘paytmasi musbat: 24.",
+                "Turli ishoralar ko‘paytmasi manfiy: −24.",
+                "Taqsimot bilan ularning yig‘indisi 0 ekanini tekshiring."
+              ],
+              "javob": "24 va −24."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Butun sonlarda bo‘lish natijasi",
+          "izoh": "Bo‘luvchi noldan farqli bo‘lsa ham, ikki butun son bo‘linmasi har doim butun chiqmaydi. «Amal ℤ da yopiq» deyish har bir ruxsat etilgan butun juftlik yana ℤ ni berishini anglatadi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Ifoda",
+                "Natija",
+                "Holat"
+              ],
+              "qatorlar": [
+                [
+                  "−42:6",
+                  "−7",
+                  "Butun"
+                ],
+                [
+                  "7:2",
+                  "7/2",
+                  "Ratsional, butun emas"
+                ],
+                [
+                  "0:5",
+                  "0",
+                  "Aniqlangan"
+                ],
+                [
+                  "5:0 va 0:0",
+                  "Aniqlanmagan",
+                  "Nolga bo‘lish mumkin emas"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Tarixiy manbadagi nolga bo‘lishga oid eski qoida zamonaviy qoida sifatida ko‘chirilmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Daraja va minusning tartibi",
+          "izoh": "Qavs asosning bir qismi ekanini belgilaydi. −3² yozuvida avval 3² olinadi, so‘ng qarama-qarshi son: −9. (−3)² da esa asos −3 bo‘lib, kvadrat 9.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Tartibni solishtirish",
+              "shart": "−3², (−3)² va 18−3(4−7) ni hisoblang.",
+              "qadamlar": [
+                "−3²=−(3²)=−9.",
+                "(−3)²=(−3)(−3)=9.",
+                "4−7=−3; 18−3·(−3)=18+9=27."
+              ],
+              "javob": "−9; 9; 27."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Model va metodik tahlil",
+      "izoh": "Hisob natijasini mazmunga qaytaramiz",
+      "belgi": "Model va tekshiruv",
+      "slaydlar": [
+        {
+          "sarlavha": "Ko‘chish bilan bosib o‘tilgan yo‘l",
+          "izoh": "Yo‘nalishli siljishlar ishorali, bosib o‘tilgan yo‘l esa har bir bosqich uzunliklarining yig‘indisi. Boshlang‘ich koordinata yakuniy koordinataga ta’sir qiladi, ammo yo‘lni hisoblashda boshlang‘ich koordinataning moduli qo‘shilmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Uch bosqichli harakat",
+              "shart": "Nuqta x=−4 dan 10 birlik o‘ngga, keyin 3 birlik chapga yurdi. Yakuniy koordinata, ko‘chish va yo‘lni toping.",
+              "qadamlar": [
+                "Yakuniy koordinata −4+10−3=3.",
+                "Ko‘chish 3−(−4)=7 birlik o‘ngga.",
+                "Yo‘l 10+3=13 birlik."
+              ],
+              "javob": "Koordinata 3; ko‘chish +7; yo‘l 13."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Temperatura o‘zgarishini model qilish",
+          "izoh": "Temperatura qiymati va temperatura o‘zgarishini farqlang. Musbat o‘zgarish qiymatga qo‘shiladi, pasayish ayiriladi. Bu ikki jism temperaturasini qo‘shish yoki aralashma temperaturasini hisoblash masalasi emas.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ko‘tarilish va pasayish",
+              "shart": "Ertalab −6 ° C. Kunduzi 9 ° C ko‘tarildi, kechqurun 4 ° C pasaydi.",
+              "qadamlar": [
+                "Kunduzi −6+9=3 ° C.",
+                "Kechqurun 3−4=−1 ° C.",
+                "Umumiy o‘zgarish +5 ° C."
+              ],
+              "javob": "Kunduzi 3 ° C; kechqurun −1 ° C."
+            }
+          ]
+        },
+        {
+          "sarlavha": "O‘quvchi xatosiga aniq javob",
+          "izoh": "Noto‘g‘ri javobning sababini aniqlamasdan faqat to‘g‘ri sonni aytish tushunishni tekshirmaydi. Ayirishni qarama-qarshi sonni qo‘shishga yozib, so‘ng son o‘qida tekshiring.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "−5−(−2)=−7 xatosi",
+              "shart": "Yozuvni tuzating va sababini ayting.",
+              "qadamlar": [
+                "Manfiy sonni ayirish musbat qarama-qarshini qo‘shishdir.",
+                "−5−(−2)=−5+2=−3.",
+                "−3+(−2)=−5 teskari tekshiruv."
+              ],
+              "javob": "−3; xato −(−2)=+2 almashtirishida."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "−8>−3, chunki 8>3.",
+      "sabab": "Modul tartibi son tartibi deb olingan.",
+      "togri": "−8 son o‘qida chaproqda."
+    },
+    {
+      "xato": "−7−(−12)=−19.",
+      "sabab": "Ayirishda qarama-qarshi olinmagan.",
+      "togri": "−7+12=5."
+    },
+    {
+      "xato": "−3²=(−3)².",
+      "sabab": "Qavsning vazifasi unutilgan.",
+      "togri": "Qiymatlar −9 va 9."
+    },
+    {
+      "xato": "7:2 butun, chunki ikkalasi butun.",
+      "sabab": "Bo‘lishga yopiqlik noto‘g‘ri umumlashtirilgan.",
+      "togri": "7/2∉ℤ."
+    },
+    {
+      "xato": "Koordinata bilan yo‘lni bir xil olish.",
+      "sabab": "Yo‘nalishli siljish va uzunlik aralashgan.",
+      "togri": "Yo‘l bosqich uzunliklari yig‘indisi."
+    },
+    {
+      "xato": "263-yilni barcha manfiy sonlarning ixtiro sanasi deyish.",
+      "sabab": "Sharh sanasi tarixiy jarayonga tenglashtirilgan.",
+      "togri": "263 — Lyu Xuey sharhi sanasi; dastlabki matn oldin shakllangan."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Hisob, model, manba",
+    "bosqichlar": [
+      "Misolni mustaqil yechish",
+      "Sherik bilan model va teskari tekshiruvni solishtirish",
+      "Xato hamda tarixiy fikrning dalilini muhokama qilish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Son o‘qi",
+        "matn": "Yo‘nalish va birlikni yozmasdan chizma tugallangan hisoblanmasin."
+      },
+      {
+        "sarlavha": "Qavs",
+        "matn": "−3² bilan(−3)² ni ikkita amal daraxti sifatida ajrating."
+      },
+      {
+        "sarlavha": "Tarixiy dalil",
+        "matn": "Asar, sharh, nusxa sanasi va ixtiro da’vosini farqlang."
+      }
+    ],
+    "tavsiya": "Baholashda natija, model, tekshiruv va izoh alohida kuzatiladi. Manfiy sonlarni boshlang‘ich sinfga moslashda ayni sinf dasturi qamrovi saqlanadi."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Kengaytirish aniq amal ehtiyojidan ko‘rsatiladi.",
+      "Ishora, qavs va amallar tartibi muhim.",
+      "Masofa va yo‘l manfiy bo‘lmaydi; ko‘chish yo‘nalishli.",
+      "Tarixiy dalil bir kishilik ixtiro da’vosi emas."
+    ]
+  },
+  "test": [
+    {
+      "savol": "Qaysi natija butun son emas?",
+      "variantlar": [
+        "3−8",
+        "−42:6",
+        "7:2",
+        "0:5"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Qaysi munosabat to‘g‘ri?",
+      "variantlar": [
+        "−8>−3",
+        "−8<−3",
+        "−8=−3",
+        "Taqqoslab bo‘lmaydi"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "−7−(−12) nechaga teng?",
+      "variantlar": [
+        "5",
+        "−19",
+        "19",
+        "−5"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "(−6)(−4) nechaga teng?",
+      "variantlar": [
+        "−24",
+        "−10",
+        "10",
+        "24"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "Son o‘qida −8 va 3 orasidagi masofa qaysi?",
+      "variantlar": [
+        "−5",
+        "11",
+        "5",
+        "−11"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "−3² yozuvining qiymati qaysi?",
+      "variantlar": [
+        "9",
+        "6",
+        "−9",
+        "−6"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "ℕ dan ℤ ga va ℤ dan ℚ ga ehtiyojni misolda ko‘rsating.",
+    "Qarama-qarshi son bilan modulni farqlang.",
+    "Manfiy sonni ayirishni izohlang.",
+    "−a² bilan(−a)² ni solishtiring.",
+    "Yo‘l, ko‘chish va koordinatani farqlang.",
+    "Tarixiy manbada sana nimaga tegishli ekanini qanday tekshirasiz?"
+  ],
+  "mustaqil_ish": [
+    "−18+7−(−6) ni ikki usulda tekshiring.",
+    "(−24):(−6)+(−3)·5 ni hisoblang.",
+    "Nuqta −5 dan 4 ga, so‘ng −2 ga bordi. Yakuniy koordinata, umumiy ko‘chish va yo‘lni toping.",
+    "Tarixiy blokdan bitta dalil tanlang: manbani ko‘rsating, sana nimaga tegishli ekanini yozing va bu dalildan chiqarib bo‘lmaydigan bitta asossiz xulosani ayting."
+  ],
+  "keyingi": {
+    "mavzu": "Ulush va ratsional sonlar amaliyoti",
+    "izoh": "Teng ulushlar, umumiy maxraj va teskari amalni takrorlang."
+  },
+  "rasmlar": []
+}

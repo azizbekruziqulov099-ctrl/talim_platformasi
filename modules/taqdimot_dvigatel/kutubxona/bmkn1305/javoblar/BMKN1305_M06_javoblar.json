@@ -1,0 +1,161 @@
+{
+  "mavzu_id": "BMKN1305-3-M6",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "3π/4"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "2√3+2i"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "6i"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "4i"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "−4"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "Aniqlanmagan"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "r=2, asosiy argument −2π/3; 2(cos(−2π/3)+i sin(−2π/3)).",
+    "2": "6cis(5π/12).",
+    "3": "−4.",
+    "4": [
+      "2",
+      "−1+√3i",
+      "−1−√3i"
+    ]
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "M06 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 asosiy argument",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 algebraik shakl",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 ko‘paytma",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 bo‘linma",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 daraja",
+      "natija": "O‘tdi",
+      "kutilgan": "−4",
+      "olingan": "-4+(0)i"
+    },
+    {
+      "tekshiruv": "M06 nol argumenti",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 trigonometrik misol",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 burilish",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 kvadrat ildizlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 mustaqil argument",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 mustaqil ko‘paytma",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 mustaqil daraja",
+      "natija": "O‘tdi",
+      "kutilgan": "-4",
+      "olingan": "-4+(0)i"
+    },
+    {
+      "tekshiruv": "M06 barcha kub ildizlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M06 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

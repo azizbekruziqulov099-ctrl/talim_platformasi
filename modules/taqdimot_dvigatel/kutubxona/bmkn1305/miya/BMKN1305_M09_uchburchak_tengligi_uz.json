@@ -1,0 +1,544 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 9,
+    "tur": "ma’ruza",
+    "mavzu": "Uchburchaklar tengligining alomatlari",
+    "qisqa": "TBT, BTB, TTT",
+    "maqsad": "Talaba mos uchlarni belgilaydi, TBT, BTB va TTT shartlarini ajratadi, ularni qisqa isbotda ishlatadi; BBB va umumiy TTBning yetarli emasligini qarshi misol bilan tushuntiradi.",
+    "tayanch": [
+      "Moslik",
+      "TBT = SAS",
+      "BTB = ASA",
+      "TTT = SSS",
+      "Yetarli va yetarli bo‘lmagan shart"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "TBT · BTB · TTT",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; M9, asl skanning 4-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "Euclid Elements I.4 — TBT",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/bookI/propI4.html"
+      },
+      {
+        "nomi": "Euclid Elements I.8 — TTT",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/bookI/propI8.html"
+      },
+      {
+        "nomi": "Euclid Elements I.26 — burchaklar va tomon",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/bookI/propI26.html"
+      },
+      {
+        "nomi": "OpenStax Contemporary Mathematics, 10.3",
+        "izoh": "https://openstax.org/books/contemporary-mathematics/pages/10-3-triangles"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Uchburchak elementlari",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Mediana qayerga boradi?",
+        "javob": "Qarshi tomonning o‘rtasiga."
+      },
+      {
+        "savol": "Uchburchak burchaklari yig‘indisi nechaga teng?",
+        "javob": "180°."
+      },
+      {
+        "savol": "AB va AC orasidagi burchak qaysi?",
+        "javob": "∠BAC yoki ∠A."
+      },
+      {
+        "savol": "3,4,5 uchburchak perimetri nechaga teng?",
+        "javob": "12."
+      },
+      {
+        "savol": "Gipotenuza qaysi tomondir?",
+        "javob": "To‘g‘ri burchak qarshisidagi tomon."
+      },
+      {
+        "savol": "Bir xil ko‘rinish teng o‘lchamni kafolatlaydimi?",
+        "javob": "Yo‘q."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Kamroq ma’lumot bilan tenglikni isbotlash",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Har bir mos tomon va burchakni alohida o‘lchamasdan uchburchaklar tengligini qanday aniqlaymiz?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Faqat uchta teng burchak nega yetarli emas?"
+      }
+    ],
+    "goya": "Tenglik alomati ma’lumotning soni bilan birga uning joylashuvi va mosligini talab qiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Uchburchaklar tengligi",
+      "izoh": "Moslikni avval aniqlaymiz",
+      "belgi": "ΔABC≅ΔDEF",
+      "slaydlar": [
+        {
+          "sarlavha": "Tenglikning ma’nosi",
+          "izoh": "Teng uchburchaklar mos tomonlari va mos burchaklari teng bo‘lgan figuralardir. Ularni siljitish, burish yoki akslantirish orqali ustma-ust keltirish mumkin. Ularning qog‘ozdagi yo‘nalishi yoki joyi bir xil bo‘lishi shart emas.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "ΔABC≅ΔDEF yozuvida moslik A↔D, B↔E, C↔F tartibida beriladi."
+            },
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Birinchi uchburchak",
+                "Mos element"
+              ],
+              "qatorlar": [
+                [
+                  "AB",
+                  "DE"
+                ],
+                [
+                  "BC",
+                  "EF"
+                ],
+                [
+                  "AC",
+                  "DF"
+                ],
+                [
+                  "∠B",
+                  "∠E"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Tenglik bilan o‘xshashlikni ajratamiz",
+          "izoh": "O‘xshash uchburchaklarda burchaklar teng, mos tomonlar bir xil koeffitsiyent bilan o‘zgaradi. Tenglikda ushbu koeffitsiyent 1 bo‘ladi. 3–4–5 va 6–8–10 uchburchaklar bir xil shaklda, ammo turli o‘lchamda.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Bir xil shakl, boshqa o‘lcham",
+              "shart": "Tomonlari 3,4,5 va 6,8,10 bo‘lgan uchburchaklar tengmi?",
+              "qadamlar": [
+                "Ikkinchi tomonlar birinchidan 2 marta katta.",
+                "Perimetrlar 12 va 24.",
+                "Mos tomonlar teng emas."
+              ],
+              "javob": "O‘xshash, lekin teng emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Moslik jadvali yechimni boshqaradi",
+          "izoh": "Yozuv tartibi keyingi xulosalarni belgilaydi. BC ga DF ni mos qo‘yish faqat boshqa moslik tartibi asoslanganida mumkin. Jadvaldagi har bir juftlik bir xil geometrik vazifani bajarishini tekshiring.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Mos tomon",
+              "shart": "ΔABC≅ΔDEF va BC=7 sm bo‘lsa, EF ni toping.",
+              "qadamlar": [
+                "B↔E va C↔F.",
+                "BC ga EF mos.",
+                "Teng uchburchaklarda mos tomonlar teng."
+              ],
+              "javob": "EF=7 sm."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Uchta asosiy tenglik alomati",
+      "izoh": "Qaysi uchta ma’lumot yetarli?",
+      "belgi": "TBT · BTB · TTT",
+      "slaydlar": [
+        {
+          "sarlavha": "Birinchi alomat: tomon–burchak–tomon",
+          "izoh": "TBTda burchak aynan berilgan ikkita tomon orasida bo‘lishi shart. Shunda ikkita tomonning yo‘nalishi va ularning chet nuqtalari aniqlanadi. Burchakni boshqa uchdan olish umumiy alomatni bermaydi.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Ikki mos tomon va ular orasidagi mos burchak teng bo‘lsa, uchburchaklar teng. TBT = SAS."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Oradagi burchak",
+              "shart": "AB=DE=3, AC=DF=4, ∠A=∠D=90°. Tenglikni aniqlang.",
+              "qadamlar": [
+                "AB va AC A uchida tutashadi.",
+                "DE va DF D uchida tutashadi.",
+                "Teng burchaklar aynan shu tomonlar orasida."
+              ],
+              "javob": "ΔABC≅ΔDEF, TBT alomati."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ikkinchi alomat: burchak–tomon–burchak",
+          "izoh": "BTBda berilgan tomonning ikkala uchidagi burchaklar olinadi. Tomon uzunligi o‘lchamni, ikkita burchak yo‘nalishlarni aniqlaydi. Qolgan burchak 180° yig‘indidan kelib chiqadi.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Bir mos tomon va unga yopishgan ikki mos burchak teng bo‘lsa, uchburchaklar teng. BTB = ASA."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Yopishgan burchaklar",
+              "shart": "AB=DE=6, ∠A=∠D=50°, ∠B=∠E=60°. Tenglikni aniqlang.",
+              "qadamlar": [
+                "AB va DE berilgan tomonlar.",
+                "Berilgan burchaklar shu tomonlarning uchlarida.",
+                "Uchinchi burchaklar 70°."
+              ],
+              "javob": "ΔABC≅ΔDEF, BTB alomati."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Uchinchi alomat: tomon–tomon–tomon",
+          "izoh": "Uchta mos tomon tengligi shakl va o‘lchamni aniqlaydi. Ko‘zgudagi aks boshqa joyda turgani uchun tenglik yo‘qolmaydi. Tomonlar uchburchak tengsizligini qanoatlantirishi ham kerak.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Uchta mos tomon teng bo‘lsa, uchburchaklar teng. TTT = SSS."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Uchta tomon",
+              "shart": "AB=DE=7, BC=EF=8, AC=DF=9 bo‘lsin.",
+              "qadamlar": [
+                "7+8>9; uchburchak mavjud.",
+                "Uchta mos tomon teng.",
+                "Tartib A↔D, B↔E, C↔F."
+              ],
+              "javob": "ΔABC≅ΔDEF, TTT alomati."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Alomatni isbotda ishlatish",
+      "izoh": "Berilganlardan yangi xulosaga",
+      "belgi": "Berilgan → alomat",
+      "slaydlar": [
+        {
+          "sarlavha": "Qisqa isbotning tuzilishi",
+          "izoh": "Avval solishtiriladigan ikkita uchburchak nomlanadi. So‘ng har bir tenglikning sababi yozilib, tegishli alomat tanlanadi. Faqat shundan keyin qolgan mos tomon yoki burchak tengligi xulosa qilinadi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Bosqich",
+                "Yoziladigan narsa"
+              ],
+              "qatorlar": [
+                [
+                  "1",
+                  "Uchburchaklar va moslik"
+                ],
+                [
+                  "2",
+                  "Uchta zarur tenglik va sababi"
+                ],
+                [
+                  "3",
+                  "TBT, BTB yoki TTT"
+                ],
+                [
+                  "4",
+                  "Kerakli mos elementlar haqidagi xulosa"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Isbotlanishi kerak bo‘lgan tenglikni oldindan berilgan deb ishlatish mumkin emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Teng yonli uchburchak medianasi",
+          "izoh": "AB=AC bo‘lsin va D BC ning o‘rtasi deb olinsin. ABD hamda ACD uchburchaklarning uchta mos tomoni teng. Tenglikdan A dagi ikkita burchak va D dagi ikkita burchak tengligi kelib chiqadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Mediana nega balandlik ham bo‘ladi?",
+              "shart": "AB=AC, BD=DC va AD umumiy. AD⊥BC ni asoslang.",
+              "qadamlar": [
+                "AB=AC, BD=DC, AD=AD.",
+                "ΔABD≅ΔACD, TTT.",
+                "∠ADB=∠ADC; ular qo‘shni va yig‘indisi 180°, demak har biri 90°."
+              ],
+              "javob": "AD⊥BC; AD bissektrisa ham."
+            }
+          ]
+        },
+        {
+          "sarlavha": "To‘g‘ri burchakli maxsus holat",
+          "izoh": "Ikkita to‘g‘ri burchakli uchburchakda gipotenuza va bittadan mos katet teng bo‘lsa, qolgan katet Pifagor teoremasidan teng chiqadi. So‘ng TTT qo‘llanishi mumkin. Bu maxsus shart umumiy TTBni har doim yetarli qilib qo‘ymaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Gipotenuza va katet",
+              "shart": "Ikkala to‘g‘ri burchakli uchburchakda gipotenuza 13, mos katet 5.",
+              "qadamlar": [
+                "Qolgan katetning kvadrati 13²−5²=144.",
+                "Qolgan katetlar 12 ga teng.",
+                "Endi uchta mos tomon teng."
+              ],
+              "javob": "Uchburchaklar teng."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Yetarli bo‘lmagan shartlar",
+      "izoh": "Umumlashtirishdan oldin tekshiramiz",
+      "belgi": "Yetarlilik",
+      "slaydlar": [
+        {
+          "sarlavha": "Uchta burchak o‘lchamni aniqlamaydi",
+          "izoh": "Barcha burchaklar tengligi shaklni aniqlaydi, lekin masshtabni aniqlamaydi. Har bir tomonni bir xil songa ko‘paytirish burchaklarni saqlaydi. Shuning uchun BBB umumiy tenglik alomati emas.",
+          "elementlar": [
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "BBB = AAA uchburchaklar o‘xshashligini beradi; tenglik uchun qo‘shimcha o‘lcham sharti kerak."
+            },
+            {
+              "tur": "matn",
+              "matn": "3–4–5 va 6–8–10 — qarshi misol."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ikki tomon va orada bo‘lmagan burchak",
+          "izoh": "TTB yoki SSA umumiy holda ikki xil uchburchak berishi mumkin. Bu uning har doim noto‘g‘ri yoki hech qachon yetarli emasligini anglatmaydi. Xulosa qilish uchun aynan qaysi burchak va qaysi tomonlar berilganini tekshiring.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "AC=8, BC=5 va ∠A=30° bo‘lsa, AB uchun 4√3−3 va 4√3+3 kabi ikkita musbat uzunlik chiqadi. Demak, shu ma’lumotlar umumiy holda tenglikni kafolatlamaydi."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "TBTdagi “ular orasidagi” so‘zlari alomatning zarur qismi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Xulosa oldidan uchta savol",
+          "izoh": "Alomat nomini topishdan oldin uning shartlari to‘liq yozilsin. Moslik saqlanmasa, to‘g‘ri alomat ham noto‘g‘ri elementlar tengligiga olib keladi. Yechim yakunida aynan talab qilingan tomon yoki burchakka qayting.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Savol",
+                "Nazorat"
+              ],
+              "qatorlar": [
+                [
+                  "Mos uchlar aniqmi?",
+                  "Tartibni yozing"
+                ],
+                [
+                  "Burchak joyi to‘g‘rimi?",
+                  "Oradagi yoki yopishganligini tekshiring"
+                ],
+                [
+                  "Ma’lumot yetarlimi?",
+                  "Alomat yoki qarshi misol keltiring"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "TBTda istalgan burchak yetarli.",
+      "sabab": "Burchakning joyi tekshirilmagan.",
+      "togri": "Burchak berilgan ikki tomon orasida bo‘lsin."
+    },
+    {
+      "xato": "BBB uchburchaklar tengligini beradi.",
+      "sabab": "Shakl bilan masshtab aralashtirilgan.",
+      "togri": "BBB o‘xshashlik beradi; masalan, 3–4–5 va 6–8–10 teng emas."
+    },
+    {
+      "xato": "Rasmdagi yo‘nalish boshqa bo‘lsa, uchburchaklar teng emas.",
+      "sabab": "Harakat va akslantirish e’tiborga olinmagan.",
+      "togri": "Tenglik joylashuvga bog‘liq emas."
+    },
+    {
+      "xato": "BC ni avtomatik DF ga moslash.",
+      "sabab": "Mos uchlar tartibi saqlanmagan.",
+      "togri": "ΔABC≅ΔDEF da BC↔EF."
+    },
+    {
+      "xato": "Isbotlanayotgan tomon tengligini alomat uchun oldindan ishlatish.",
+      "sabab": "Doiraviy asoslash yuz bergan.",
+      "togri": "Alomat faqat berilgan yoki oldin isbotlangan ma’lumotga tayanadi."
+    },
+    {
+      "xato": "TTB barcha holatda tenglik beradi.",
+      "sabab": "Umumiy vaziyatdagi ikki yechim inkor qilingan.",
+      "togri": "Orada bo‘lmagan burchakda qo‘shimcha shartlarni tekshirish kerak."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Belgi, moslik, alomat, xulosa",
+    "bosqichlar": [
+      "Tenglik belgilarini chizmada qo‘yish",
+      "Mos uchlar va zarur uchta shartni yozish",
+      "Alomatdan kerakli xulosani ajratish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "TBTni tanish",
+        "matn": "AB va AC tomonlariga belgi qo‘ysangiz, burchak belgisi A da bo‘lsin."
+      },
+      {
+        "sarlavha": "TTT bilan isbot",
+        "matn": "Teng yonli uchburchak medianasining ikki tomonidagi uchburchaklarni solishtiring."
+      },
+      {
+        "sarlavha": "Qarshi misol",
+        "matn": "Bir uchburchakni 2 marta kattalashtirib, burchaklar saqlansa ham tomonlar teng emasligini ayting."
+      }
+    ],
+    "tavsiya": "Boshlang‘ich sinfda ustma-ust qo‘yish va shaklni burish modeli ishlatiladi. Formal alomat va dalil zanjiri bakalavr darajasida alohida o‘rganiladi."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Moslik belgilar tartibida beriladi.",
+      "TBTda oradagi burchak zarur.",
+      "BTB va TTTning shartlari aniq yoziladi.",
+      "BBB va umumiy TTB yetarli emas.",
+      "Tenglikdan keyin qolgan mos elementlar tengligi olinadi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "Ikki tomon va aynan ular orasidagi burchak teng. Qaysi alomat?",
+      "variantlar": [
+        "TTT",
+        "TBT",
+        "BBB",
+        "Faqat o‘xshashlik"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Bir tomon va uning uchlaridagi ikki burchak teng. Qaysi alomat?",
+      "variantlar": [
+        "TBT",
+        "TTT",
+        "BTB",
+        "TTB"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Uchta mos tomon teng. Qaysi alomat?",
+      "variantlar": [
+        "TTT",
+        "BTB",
+        "BBB",
+        "Bitta tomon"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "Qaysi ma’lumot umumiy holda faqat o‘xshashlikni beradi?",
+      "variantlar": [
+        "Uch mos tomon teng",
+        "TBT shartlari",
+        "BTB shartlari",
+        "Uch mos burchak teng"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "Gipotenuza 13, katet 5 bo‘lgan to‘g‘ri uchburchakning boshqa kateti qaysi?",
+      "variantlar": [
+        "8",
+        "12",
+        "18",
+        "√194"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "ΔABC≅ΔDEF va BC=7 sm bo‘lsa, EF nechaga teng?",
+      "variantlar": [
+        "14 sm",
+        "3,5 sm",
+        "7 sm",
+        "Aniqlab bo‘lmaydi"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Tenglik bilan o‘xshashlikni farqlang.",
+    "TBTdagi burchak joylashuvini tushuntiring.",
+    "BTBda berilgan tomon qaysi burchaklarga yopishadi?",
+    "TTTdan keyin qanday xulosalar olinadi?",
+    "Teng yonli uchburchak medianasining balandlik bo‘lishini isbotlang.",
+    "TTB uchun qarshi misol yoki maxsus yetarli shart ayting."
+  ],
+  "mustaqil_ish": [
+    "AB=PQ=4, AC=PR=6 va ∠A=∠P=50°. Tenglikni asoslab, BC ga mos tomonni ayting.",
+    "AB=DE=7, ∠A=∠D=35°, ∠B=∠E=80°. Alomat va uchinchi burchaklarni toping.",
+    "AB=AC=10 sm, BC=12 sm va AD mediana. Uning balandlik bo‘lishini asoslab, AD, yuz va perimetrni toping.",
+    "BBB tenglik bermasligini ikkita uchburchak bilan ko‘rsating."
+  ],
+  "keyingi": {
+    "mavzu": "To‘rtburchaklar va kvadrat. Aylana va doira",
+    "izoh": "Ko‘pburchakning uchlari, diagonali, perimetri va yuzini takrorlang."
+  },
+  "rasmlar": []
+}

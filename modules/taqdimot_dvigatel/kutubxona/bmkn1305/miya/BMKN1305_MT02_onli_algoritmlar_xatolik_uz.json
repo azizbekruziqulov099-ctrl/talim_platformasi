@@ -1,0 +1,467 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 2,
+    "tur": "mustaqil ta’lim",
+    "mavzu": "O‘nli algoritmlar, taqribiy hisob va xatolik",
+    "qisqa": "O‘nli algoritmlar, taqribiy hisob va xatolik",
+    "maqsad": "Talaba o‘nli amallarni asoslaydi, yaxlitlash qoidasini belgilaydi, absolyut va nisbiy xatoni hisoblaydi, berilgan oraliqlardan natija chegarasini topadi.",
+    "tayanch": [
+      "O‘nli algoritm",
+      "Yaxlitlash",
+      "Absolyut xato",
+      "Nisbiy xato",
+      "Oraliq"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "Izlanish → dalil",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; MT2, asl skanning 6-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "Cornell, David Bindel: Notions of error",
+        "izoh": "https://www.cs.cornell.edu/courses/cs4220/2026sp/lec/2026-02-02.html"
+      },
+      {
+        "nomi": "NIST TN1297, terminology",
+        "izoh": "https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-appendix-d1-terminology"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Mustaqil ishga tayyorgarlik",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Asosiy natija nimadan tekshiriladi?",
+        "javob": "Shart, manba, hisob va xulosadan."
+      },
+      {
+        "savol": "Manbada yo‘q gapni iqtibos deyish mumkinmi?",
+        "javob": "Yo‘q; o‘z tahlili alohida yoziladi."
+      },
+      {
+        "savol": "Rasm o‘zi isbot bo‘ladimi?",
+        "javob": "Faqat rasmga qarab umumiy isbot deb bo‘lmaydi."
+      },
+      {
+        "savol": "Birliklar qayerda ko‘rsatiladi?",
+        "javob": "Berilganlarda, hisobda va javobda."
+      },
+      {
+        "savol": "Tekshiruv qachon bajariladi?",
+        "javob": "Yakuniy topshirishdan oldin."
+      },
+      {
+        "savol": "Talabaning mustaqil hissasi qayerda?",
+        "javob": "Yangi misol, izoh, tekshiruv va metodik xulosada."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Qanday natija topshiriladi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Algoritm sabablari va manbalar ko‘rsatilgan qisqa konspekt"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Kamida 6 misol va teskari tekshiruv"
+      }
+    ],
+    "goya": "Har bir xulosa uchun manba yoki tekshiriladigan asos taqdim etiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Algoritm va nazorat",
+      "izoh": "Razryad va teskari amal",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Qo‘shishda razryadlar",
+          "izoh": "Vergulni vergul ostiga qo‘yish razryadlarni tenglashtirishdir. Oxiriga nol yozish son qiymatini o‘zgartirmaydi. Hisobdan oldingi taxmin natijaning miqyosini nazorat qiladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "12,45+0,786",
+              "shart": "Hisoblang.",
+              "qadamlar": [
+                "12,450+0,786.",
+                "Mingdan bir ulushlar bo‘yicha qo‘shish.",
+                "13,236−0,786=12,450."
+              ],
+              "javob": "13,236."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ko‘paytirishda masshtab",
+          "izoh": "4,8=48/10 va 0,35=35/100. Butunlar ko‘paytmasi 1680, keyin 1000 ga bo‘linadi. Vergul qoidasining sababi kasr yozuvidan keladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "4,8·0,35",
+              "shart": "Hisoblang va baholang.",
+              "qadamlar": [
+                "48·35=1680.",
+                "1680/1000=1,68.",
+                "0,35<1, shuning uchun natija 4,8 dan kichik."
+              ],
+              "javob": "1,68."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Bo‘lishda bir xil masshtab",
+          "izoh": "Bo‘linuvchi va nol bo‘lmagan bo‘luvchini ayni 10 darajasiga ko‘paytirish nisbatni saqlaydi. Faqat bo‘luvchining vergulini siljitish mumkin emas.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "5,04:0,12",
+              "shart": "Hisoblang.",
+              "qadamlar": [
+                "Ikkalasini 100 ga ko‘paytiramiz: 504:12.",
+                "504:12=42.",
+                "42·0,12=5,04."
+              ],
+              "javob": "42."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Yaxlitlash",
+      "izoh": "Aniqlik va qoida ochiq",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Qadam va oraliq",
+          "izoh": "Eng yaqin 0,01 ga yaxlitlashda qo‘shni natijalar orasi 0,01. Ushbu paketda musbat son uchun aynan yarmida yuqoriga yaxlitlash olinadi. Boshqa dastur yarmida juft songa yaxlitlashi mumkin.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "18,245 ni yuzdan birgacha",
+              "shart": "Tanlangan qoida bilan yaxlitlang.",
+              "qadamlar": [
+                "18,24 va 18,25 dan teng uzoqlikda.",
+                "Musbat son, yarmida yuqoriga."
+              ],
+              "javob": "18,25."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Yaxlitlash qoidasini aytmasdan chegara holatni “dastur xatosi” demang."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Erta yaxlitlash",
+          "izoh": "Oraliq natijani kesish yakuniy javobni o‘zgartirishi mumkin. Hisobni yetarli aniqlikda saqlab, maqsad qilingan bosqichda yaxlitlang.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "1/3 ning uch baravari",
+              "shart": "Ikki usulni solishtiring.",
+              "qadamlar": [
+                "Aniq: (1/3)·3=1.",
+                "Avval 0,33 olsak: 0,33·3=0,99.",
+                "Farq 0,01."
+              ],
+              "javob": "Erta yaxlitlash ta’siri bor."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yaxlitlash xatosi chegarasi",
+          "izoh": "Eng yaqin h qadamga yaxlitlashda matematik son bilan natija orasidagi masofa h/2 dan oshmaydi. Bu o‘lchov asbobining barcha noaniqligini ifodalamaydi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Eng yaqin qiymatga yaxlitlash",
+              "formula": "|a-x|\\leq h/2",
+              "matn": "h=0,01 bo‘lsa, yuqori chegara 0,005. Qirqib tashlash boshqa qoida va boshqa chegaraga ega."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Ikki xil xato va berilgan chegara",
+      "izoh": "Haqiqiy qiymat ma’lummi?",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Absolyut xato",
+          "izoh": "Aniq matematik qiymat x va taqribiy a berilsa, absolyut xato |a−x|. Uning birligi x bilan bir xil. Ishorali farq a−x bilan aralashtirmang.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "x=12,5; a=12,4",
+              "shart": "Absolyut xato?",
+              "qadamlar": [
+                "a−x=−0,1.",
+                "|a−x|=0,1."
+              ],
+              "javob": "0,1."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Nisbiy xato",
+          "izoh": "Ushbu kursda nisbiy xato |a−x|/|x| deb olinadi va x≠0 talab qilinadi. Foiz ifodasi uchun 100 ga ko‘paytiriladi. Taqqoslash asosi x ekanini saqlang.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "x=12,5; a=12,4",
+              "shart": "Nisbiy xato?",
+              "qadamlar": [
+                "0,1/12,5=0,008.",
+                "0,008·100%=0,8%."
+              ],
+              "javob": "0,008 yoki 0,8%."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Noma’lum qiymat va o‘lchov noaniqligi",
+          "izoh": "Agar haqiqiy qiymat noma’lum bo‘lsa, haqiqiy xatoni aynan bilaman deyish mumkin emas. Berilgan ishonchli chegaradan matematik xato bahosi chiqarish mumkin; o‘lchov noaniqligi esa alohida metrologik tushuncha.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "x∈[9,95; 10,05], a=10",
+              "shart": "Eng katta mumkin bo‘lgan absolyut farq?",
+              "qadamlar": [
+                "Ikkala chetdan masofa 0,05.",
+                "Oraliqdagi barcha x uchun |10−x|≤0,05."
+              ],
+              "javob": "Yuqori chegara 0,05; haqiqiy xato aniq emas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Oraliq bilan hisob va loyiha",
+      "izoh": "Chegarani yo‘qotmaymiz",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Musbat oraliqlarning ko‘paytmasi",
+          "izoh": "Ikkala omil musbat bo‘lsa, eng kichik ko‘paytma chap chetlarda, eng kattasi o‘ng chetlarda olinadi. Manfiy qiymatlar qatnashsa, barcha to‘rtta chet ko‘paytma solishtiriladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "x∈[1,95; 2,05], y∈[2,95; 3,05]",
+              "shart": "xy chegarasi?",
+              "qadamlar": [
+                "1,95·2,95=5,7525.",
+                "2,05·3,05=6,2525."
+              ],
+              "javob": "xy∈[5,7525; 6,2525]."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Bitta ish varag‘i",
+          "izoh": "Har masalada aniq berilgan, amal, taqribiy natija, yaxlitlash qoidasini va nazoratni yozing. Kalkulyator natijasini teskari amal yoki kasrga aylantirish bilan tekshiring.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Masala",
+                "Tekshiruv"
+              ],
+              "qatorlar": [
+                [
+                  "Qo‘shish",
+                  "Ayirish"
+                ],
+                [
+                  "Ko‘paytirish",
+                  "Razryad va taxmin"
+                ],
+                [
+                  "Bo‘lish",
+                  "Bo‘luvchiga ko‘paytirish"
+                ],
+                [
+                  "Taqribiy hisob",
+                  "Aniq qiymat yoki asosli oraliq"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Xatoni tushuntirish",
+          "izoh": "Talaba 1,68 o‘rniga 16,8 desa, shunchaki “vergul xato” demang. 0,35<1 sababli musbat natija 4,8 dan kichik bo‘lishi kerakligini so‘rang.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Metodik parcha: taxmin → hisob → teskari tekshiruv → xato sababini aytish → yangi o‘xshash misol. “Aniqlik” so‘zini yaxlitlash qadami yoki berilgan oraliq bilan konkretlashtiring."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Faqat bo‘luvchini 100 ga ko‘paytirish",
+      "sabab": "Nisbat o‘zgargan",
+      "togri": "Ikkala son bir xil ko‘paytiriladi."
+    },
+    {
+      "xato": "Nisbiy xatoni a ga bo‘lib ayni ta’rif deyish",
+      "sabab": "Asos almashtirilgan",
+      "togri": "Bu paketda maxraj |x|, x≠0."
+    },
+    {
+      "xato": "Xato chegarasini haqiqiy xato deyish",
+      "sabab": "Oraliq va aniq qiymat aralashgan",
+      "togri": "≤ belgisi va qiymat noma’lumligi saqlanadi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "10 soatlik izlanish va loyiha",
+    "bosqichlar": [
+      "Manbani belgilash va konspekt",
+      "Hisob yoki model yaratish",
+      "Natijani tekshirish va metodik izoh"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Dalil",
+        "matn": "Ko‘chirma va o‘z tahlilini farqlang."
+      },
+      {
+        "sarlavha": "Hisob",
+        "matn": "Qadam, birlik va shartlarni yozing."
+      },
+      {
+        "sarlavha": "Tekshiruv",
+        "matn": "Yechim kaliti bilan xato sababini tahlil qiling."
+      }
+    ],
+    "tavsiya": "Ilovadagi 10 soatlik reja va tavsiyaviy mezon o‘qituvchi tomonidan guruh sharoitiga moslashtiriladi. Bu tayyor talaba referati emas."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Qabul qilingan shartlar ochiq yoziladi.",
+      "Manba va yangi o‘quv misoli farqlanadi.",
+      "Hisob va xulosa mustaqil tekshiriladi.",
+      "Natija 10 soatlik ish rejasi bo‘yicha topshiriladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "4,8·0,35 nechaga teng?",
+      "variantlar": [
+        "16,8",
+        "1,68",
+        "0,168",
+        "168"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "5,04:0,12 nechaga teng?",
+      "variantlar": [
+        "42",
+        "4,2",
+        "0,42",
+        "420"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "Musbat 18,245 yarmida yuqoriga 0,01 gacha?",
+      "variantlar": [
+        "18,24",
+        "18,2",
+        "18,3",
+        "18,25"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "x=12,5, a=12,4; nisbiy xato foizda?",
+      "variantlar": [
+        "8%",
+        "0,08%",
+        "0,8%",
+        "1%"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Eng yaqin 0,01 ga yaxlitlashning maksimal absolyut xatosi?",
+      "variantlar": [
+        "0,01",
+        "0,005",
+        "0,1",
+        "0,0005"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "x=0 bo‘lsa |a−x|/|x|?",
+      "variantlar": [
+        "Doim 0",
+        "Doim 1",
+        "a ga teng",
+        "Aniqlanmagan"
+      ],
+      "javob": 3
+    }
+  ],
+  "nazorat": [
+    "Mavzudagi ikki asosiy tushunchani farqlang.",
+    "Bitta natijani boshqa usulda tekshiring.",
+    "Misolda qabul qilingan farazlarni ayting.",
+    "Manba bilan o‘z xulosangiz chegarasini ko‘rsating.",
+    "Bitta keng tarqalgan xatoni tahlil qiling.",
+    "Boshlang‘ich sinf uchun moslashtirishda nimalar o‘zgaradi?"
+  ],
+  "mustaqil_ish": [
+    "7,25+0,608; 6,4·0,125; 3,78:0,09 ni teskari amal bilan tekshiring.",
+    "Musbat 4,765 va 9,994 ni yarmida yuqoriga yuzdan birgacha yaxlitlang; xato chegarasini ayting.",
+    "x=80, a=79,2 uchun absolyut va nisbiy xatoni toping. x noma’lum bo‘lsa, nima o‘zgaradi?",
+    "x∈[3,9; 4,1], y∈[1,9; 2,1] uchun ko‘paytma chegarasini toping; bitta xato javobni tuzatadigan metodik kartochka yozing."
+  ],
+  "keyingi": {
+    "mavzu": "Navbatdagi mustaqil ta’lim bandi",
+    "izoh": "Reja, mahsulot va tekshiruv mezonlari bilan ish davom etadi."
+  },
+  "rasmlar": []
+}

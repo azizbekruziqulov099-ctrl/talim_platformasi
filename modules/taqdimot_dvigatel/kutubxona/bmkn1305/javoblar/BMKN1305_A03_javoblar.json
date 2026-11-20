@@ -1,0 +1,199 @@
+{
+  "mavzu_id": "BMKN1305-3-A3",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "0,609 < 0,69"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "13,358"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "12,915"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "0,04"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "42"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "120"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": [
+      "5,596",
+      "8,925"
+    ],
+    "2": [
+      "0,042",
+      "12"
+    ],
+    "3": "−0,404 < −0,4 < −0,04.",
+    "4": "Kasr xonalari yoki yuzdan birlar ma’nosi buzilgani aniqlangan; 10×10 modelda 3 ustun va 2 qator kesishmasi 6 katak; 6/100=0,06. Tekshiruv: 0,06:0,2=0,3."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "A03 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A03 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A03 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A03 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A03 yig‘indi",
+      "natija": "O‘tdi",
+      "kutilgan": "13.358",
+      "olingan": "13.358"
+    },
+    {
+      "tekshiruv": "A03 ayirma",
+      "natija": "O‘tdi",
+      "kutilgan": "12.915",
+      "olingan": "12.915"
+    },
+    {
+      "tekshiruv": "A03 xato tuzatish",
+      "natija": "O‘tdi",
+      "kutilgan": ".75",
+      "olingan": "0.75"
+    },
+    {
+      "tekshiruv": "A03 ko‘paytma",
+      "natija": "O‘tdi",
+      "kutilgan": ".04",
+      "olingan": "0.0400"
+    },
+    {
+      "tekshiruv": "A03 muqobil ko‘paytma",
+      "natija": "O‘tdi",
+      "kutilgan": "3",
+      "olingan": "3.000"
+    },
+    {
+      "tekshiruv": "A03 yuz modeli",
+      "natija": "O‘tdi",
+      "kutilgan": ".06",
+      "olingan": "0.06"
+    },
+    {
+      "tekshiruv": "A03 bo‘linma",
+      "natija": "O‘tdi",
+      "kutilgan": "42",
+      "olingan": "42"
+    },
+    {
+      "tekshiruv": "A03 bo‘laklar",
+      "natija": "O‘tdi",
+      "kutilgan": "120",
+      "olingan": "1.2E+2"
+    },
+    {
+      "tekshiruv": "A03 mustaqil 1a",
+      "natija": "O‘tdi",
+      "kutilgan": "5.596",
+      "olingan": "5.596"
+    },
+    {
+      "tekshiruv": "A03 mustaqil 1b",
+      "natija": "O‘tdi",
+      "kutilgan": "8.925",
+      "olingan": "8.925"
+    },
+    {
+      "tekshiruv": "A03 mustaqil 2a",
+      "natija": "O‘tdi",
+      "kutilgan": ".042",
+      "olingan": "0.0420"
+    },
+    {
+      "tekshiruv": "A03 mustaqil 2b",
+      "natija": "O‘tdi",
+      "kutilgan": "12",
+      "olingan": "12"
+    },
+    {
+      "tekshiruv": "A03 test 1",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A03 test 2",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A03 test 3",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A03 test 4",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A03 test 5",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A03 test 6",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A03 manfiy sonlar tartibi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A03 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

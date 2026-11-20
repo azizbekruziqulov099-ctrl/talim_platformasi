@@ -1,0 +1,247 @@
+{
+  "mavzu_id": "BMKN1305-3-A8",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "8"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "120 sm³"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "64 sm³"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "24π sm³"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "10 sm"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "Yo‘q; tasvir usuli uzunlikni umumiy holda saqlamaydi"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "10 uch,15 qirra,7 yoq; 10−15+7=2.",
+    "2": {
+      "Stola": "208 sm²",
+      "V": "192 sm³"
+    },
+    "3": {
+      "apofema": "10 sm",
+      "Syon": "240 sm²",
+      "Stola": "384 sm²",
+      "V": "384 sm³"
+    },
+    "4": {
+      "konus": {
+        "yasovchi": "15 sm",
+        "Stola": "216π sm²",
+        "V": "324π sm³"
+      },
+      "shar": {
+        "S": "36π sm²",
+        "V": "36π sm³"
+      }
+    }
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "A08 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "8 ",
+      "olingan": "8"
+    },
+    {
+      "tekshiruv": "A08 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "120 sm³",
+      "olingan": "120 sm³"
+    },
+    {
+      "tekshiruv": "A08 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "64 sm³",
+      "olingan": "64 sm³"
+    },
+    {
+      "tekshiruv": "A08 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "24 π sm³",
+      "olingan": "24π sm³"
+    },
+    {
+      "tekshiruv": "A08 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "10 sm",
+      "olingan": "10 sm"
+    },
+    {
+      "tekshiruv": "A08 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Yo‘q; tasvir usuli uzunlikni umumiy holda saqlamaydi",
+      "olingan": "Yo‘q; tasvir usuli uzunlikni umumiy holda saqlamaydi"
+    },
+    {
+      "tekshiruv": "A08 prizma elementlari Eyler nazorati",
+      "natija": "O‘tdi",
+      "kutilgan": "2",
+      "olingan": "2x-3x+(x+2)"
+    },
+    {
+      "tekshiruv": "A08 piramida elementlari Eyler nazorati",
+      "natija": "O‘tdi",
+      "kutilgan": "2",
+      "olingan": "(x+1)-2x+(x+1)"
+    },
+    {
+      "tekshiruv": "A08 sanash jadvali",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 prizma asosi va sirtlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 misol 6–8–10 asos",
+      "natija": "O‘tdi",
+      "kutilgan": "120 sm², 168 sm², 120 sm³",
+      "olingan": "Syon=120 sm²; Sto‘la=168 sm²; V=120 sm³."
+    },
+    {
+      "tekshiruv": "A08 kuboid",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 piramida balandliklari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 piramida sirtlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 silindr",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 konus",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 shar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 proyeksiyada burchak saqlanmasligi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 proyeksiyada uzunlik saqlanmasligi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 kuboid tasviri uch-qirralari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 mustaqil prizma sanog‘i",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 mustaqil kuboid",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 mustaqil piramida",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 mustaqil konus",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 mustaqil shar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A08 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

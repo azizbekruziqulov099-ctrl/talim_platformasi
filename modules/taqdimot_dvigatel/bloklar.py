@@ -314,6 +314,12 @@ def komp_misol(k: K, e, x, y, w, h, i=0):
     steps_h = n * row
     gap = 12
     free = ih - jh - steps_h - (gap if n else 0)
+    eng_kam = matn_balandligi(shart, iw, 15, lh=1.22) if shart else 0
+    if n and free < eng_kam:
+        # joy tor: qadam qatorlarini siqamiz, shart sig'sin
+        row = max(26, (ih - jh - eng_kam - gap) / n)
+        steps_h = n * row
+        free = ih - jh - steps_h - gap
     if has_vis:
         sz, th = mos_olcham(shart, iw, free * 0.35, sizes=(20, 19, 18, 17, 16, 15)) if shart else (18, 0)
     else:
@@ -335,7 +341,7 @@ def komp_misol(k: K, e, x, y, w, h, i=0):
         ry = y0 + j * row
         k.s.doira(ix + 14, ry + 15, 13, fill=col, a=k.A("accent", st))
         k.s.matn(ix + 1, ry + 2, 26, 26, str(j + 1), size=12.5, bold=True, color=u.matn_ustida(col), align="c", va="m", a=k.A("accent", st))
-        k.s.matn(ix + 40, ry + 4, iw - 44, row - 6, q, size=18 if row >= 48 else 16.5, color=u.ink, a=k.A("item", st, dl=80), lh=1.15, min_scale=0.6)
+        k.s.matn(ix + 40, ry + 4, iw - 44, row - 6, q, size=18 if row >= 48 else 16.5 if row >= 38 else 14, color=u.ink, a=k.A("item", st, dl=80), lh=1.15, min_scale=0.6)
     if jav:
         st = k.keyingi() if n else s
         dl = 0 if n else 2 * k.st
@@ -669,7 +675,8 @@ def blok_reja(k: K, d):
         a = k.A("card", 0, dl=j * 100)
         kart(k, x, y, cw, ch, j, a=a, lnk=first)
         k.s.matn(x + 20, y + 14, 90, 46, f"{j + 1:02d}", size=34, font=u.head, bold=True, color=col, a=a, lnk=first)
-        k.s.matn(x + cw - 60, y + 18, 40, 36, belgi or glyphs[j % len(glyphs)], size=24, color=col, align="c", va="m", a=a, lnk=first, min_scale=0.5)
+        ikon_belgi = belgi if belgi and len(belgi) <= 3 else glyphs[j % len(glyphs)]
+        k.s.matn(x + cw - 60, y + 18, 40, 36, ikon_belgi, size=24, color=col, align="c", va="m", a=a, lnk=first, min_scale=0.5)
         k.s.matn(x + 20, y + 66, cw - 40, ch - 100, nom, size=17, bold=True, color=u.ink, a=a, lnk=first)
         k.s.matn(x + 20, y + ch - 30, cw - 40, 18, f"{first + 1}–{last + 1}-slaydlar" if last > first else f"{first + 1}-slayd", size=11.5, color=u.muted, a=a, lnk=first)
     if d.get("maqsad"):
@@ -696,6 +703,11 @@ def blok_bolim(k: K, d):
     s.doira(cx, cy, 150, fill=None, line=col, lw=1.2, op=0.6, a=k.A("big", 0, dl=120))
     s.doira(cx, cy, 118, fill=col, a=k.A("big", 0, dl=220), sh=0 if u.qorongi else 1)
     belgi = d.get("belgi") or f"{i + 1}"
+    if len(belgi) > 8 and "$" not in belgi:
+        # uzun belgi — doira ichiga emas, sarlavha ostiga
+        if not d.get("izoh"):
+            k.s.matn(M + 20, 470, 640, 40, belgi, size=17, color=u.muted, a=k.A("item", 0, dl=400))
+        belgi = f"{i + 1}"
     if "$" in belgi or "\\" in belgi:
         FM.chiz(s, belgi, cx - 100, cy - 70, 200, 140, size=60, color=u.matn_ustida(col), a=k.A("accent", 0, dl=400))
     else:

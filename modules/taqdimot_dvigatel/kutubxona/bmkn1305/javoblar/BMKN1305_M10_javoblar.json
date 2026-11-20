@@ -1,0 +1,162 @@
+{
+  "mavzu_id": "BMKN1305-3-M10",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "75°"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "10 sm"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "49 sm²"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "8 sm"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "6π sm"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "25π sm²"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": {
+      "P": "42 sm",
+      "S": "108 sm²",
+      "d": "15 sm"
+    },
+    "2": {
+      "a": "5 sm",
+      "S": "25 sm²",
+      "d": "5√2 sm"
+    },
+    "3": {
+      "S": "49π sm²",
+      "L": "14π sm"
+    },
+    "4": "32π sm²."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "M10 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M10 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M10 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M10 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M10 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "75 °",
+      "olingan": "75°"
+    },
+    {
+      "tekshiruv": "M10 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "10 sm",
+      "olingan": "10 sm"
+    },
+    {
+      "tekshiruv": "M10 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "49 sm²",
+      "olingan": "49 sm²"
+    },
+    {
+      "tekshiruv": "M10 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "8 sm",
+      "olingan": "8 sm"
+    },
+    {
+      "tekshiruv": "M10 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "6 π sm",
+      "olingan": "6π sm"
+    },
+    {
+      "tekshiruv": "M10 test 6 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "25 π sm²",
+      "olingan": "25π sm²"
+    },
+    {
+      "tekshiruv": "M10 bir perimetr ikki yuz",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M10 halqa va noto‘g‘ri radius farqi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M10 mustaqil to‘rtburchak",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M10 mustaqil kvadrat",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M10 mustaqil doira",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M10 urinma koordinatalari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M10 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

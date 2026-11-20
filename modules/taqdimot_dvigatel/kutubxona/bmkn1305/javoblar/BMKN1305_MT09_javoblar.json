@@ -1,0 +1,187 @@
+{
+  "mavzu_id": "BMKN1305-3-MT9",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "28%"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "300000"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "2 foiz punkti"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "25%"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "Bittasi og‘irroq ekani ma’lum"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "C"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "0,75·0,8=0,6; jami 40%chegirma; 240000/0,6=400000 so‘m.",
+    "2": "3 foiz punkti; (15−12)/12=0,25=25%.",
+    "3": "1,2,3: birinchi chap og‘ir, ikkinchi 1:2 natijalari chap/o‘ng/teng.4,5,6: birinchi o‘ng og‘ir, ikkinchi 4:5 chap/o‘ng/teng.7,8: birinchi teng, ikkinchi 7:8 chap/o‘ng. Har holat alohida ajraladi.",
+    "4": "Berilgan masalada rost soni A/B/Cuchun 2,2,1; demakC. Yangi masalada barcha 3 variant, aniq cheklov va aynan 1 yechim tekshiriladi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "MT09 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "28 %",
+      "olingan": "28%"
+    },
+    {
+      "tekshiruv": "MT09 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "300000 ",
+      "olingan": "300000"
+    },
+    {
+      "tekshiruv": "MT09 test 3 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "2 foiz punkti",
+      "olingan": "2 foiz punkti"
+    },
+    {
+      "tekshiruv": "MT09 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "25 %",
+      "olingan": "25%"
+    },
+    {
+      "tekshiruv": "MT09 test 5 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Bittasi og‘irroq ekani ma’lum",
+      "olingan": "Bittasi og‘irroq ekani ma’lum"
+    },
+    {
+      "tekshiruv": "MT09 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "C",
+      "olingan": "C"
+    },
+    {
+      "tekshiruv": "MT09 chegirma va teskari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 foiz punkti",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 og‘ir tanga holati 1",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 og‘ir tanga holati 2",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 og‘ir tanga holati 3",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 og‘ir tanga holati 4",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 og‘ir tanga holati 5",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 og‘ir tanga holati 6",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 og‘ir tanga holati 7",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 og‘ir tanga holati 8",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 sakkiz yo‘l yagona",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 qutilar to‘liq jadvali",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT09 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "mavzu_id": "BMKN1305-3-MT5",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "4"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "4√2"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "Teng tomonli uchburchak"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "3√3"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "0,3048"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "Aniq buyum haqida manbali ma’lumot"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "z=1:4; x=y:4√2; x+y+z=1:√3/2; x+y+z=3:3√3. Har uch tenglamani va kub chegaralarini bajaradi.",
+    "2": "9 va 9√2. Tomon koeffitsiyenti 3/2, yuz koeffitsiyenti 9/4. z=1 qatlamining balandligi yuza natijasini o‘zgartirmaydi.",
+    "3": "3,048 m aynan; 262 cm nusxa uchun hisob. Muzey buyumi uzunligi tarixiy barcha tirsaklarning universal ta’rifi emas.",
+    "4": "Ochiq mahsulot. Davr, hudud, manba, qiymat maqomi va amaldagi ta’rif ajratilishi; tajriba shaxsiy birlikning farqini ko‘rsatishi tekshiriladi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "MT05 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "4 ",
+      "olingan": "4"
+    },
+    {
+      "tekshiruv": "MT05 test 2 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "4√2",
+      "olingan": "4√2"
+    },
+    {
+      "tekshiruv": "MT05 test 3 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Teng tomonli uchburchak",
+      "olingan": "Teng tomonli uchburchak"
+    },
+    {
+      "tekshiruv": "MT05 test 4 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "3√3",
+      "olingan": "3√3"
+    },
+    {
+      "tekshiruv": "MT05 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "0.3048 ",
+      "olingan": "0,3048"
+    },
+    {
+      "tekshiruv": "MT05 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Aniq buyum haqida manbali ma’lumot",
+      "olingan": "Aniq buyum haqida manbali ma’lumot"
+    },
+    {
+      "tekshiruv": "MT05 kvadrat uch va tomon",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 kvadrat yuzi vektor usulida",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 to‘rtburchak uch va tomon",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 to‘rtburchak yuzi vektor usulida",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 uchburchak uch va tomon",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 uchburchak yuzi vektor usulida",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 oltiburchak uch va tomon",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 oltiburchak yuzi vektor usulida",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 markaziy radius",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 mustaqil masshtab",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 birlik hisoblari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 ikki fut farqi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT05 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

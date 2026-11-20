@@ -1,0 +1,151 @@
+{
+  "mavzu_id": "BMKN1305-3-MT6",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "3"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "4"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "y=2x+5"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "Tengdosh, kongruent emas"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "To‘rt baravar"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "Yo‘q"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "y=4x:4,8,12; xy=36:36,18,12; y=3x+2:5,8,11. Faqat birinchida nisbat, ikkinchida ko‘paytma o‘zgarmas; uchinchisi affin.",
+    "2": "Yuzlar 30; perimetrlar 22 va 26. Ikkalasi 30 birlik kvadratdan tuziladi, yuz tengligi kongruentlikni bermaydi.",
+    "3": "Uchburchak yangi uchlari(6,0),(8,0),(8,4). Yakuniy to‘rtburchak 6×4: P=20. Parallelogramm P=2(6+√20)=12+4√5, taxminan 20,944; teng emas.",
+    "4": "Ochiq mahsulot. O‘zgarmas narx/unum farazlari, mos birlik va yechim kaliti; katak, yuz va tashqi chegara farqi tekshiriladi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "MT06 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT06 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT06 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT06 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT06 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "3 ",
+      "olingan": "3"
+    },
+    {
+      "tekshiruv": "MT06 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "4 ",
+      "olingan": "4"
+    },
+    {
+      "tekshiruv": "MT06 test 3 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "y=2x+5",
+      "olingan": "y=2x+5"
+    },
+    {
+      "tekshiruv": "MT06 test 4 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Tengdosh, kongruent emas",
+      "olingan": "Tengdosh, kongruent emas"
+    },
+    {
+      "tekshiruv": "MT06 test 5 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "To‘rt baravar",
+      "olingan": "To‘rt baravar"
+    },
+    {
+      "tekshiruv": "MT06 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Yo‘q",
+      "olingan": "Yo‘q"
+    },
+    {
+      "tekshiruv": "MT06 bog‘lanish jadvallari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT06 tengdoshlik/perimetr",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT06 ajratish yuzlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT06 ko‘chgan uchlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT06 kesilgan bo‘laklar ichki ustma-ust emas",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT06 perimetrlar farqi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT06 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

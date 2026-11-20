@@ -1,0 +1,133 @@
+{
+  "mavzu_id": "BMKN1305-3-MT3",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "Atamaning ma’nosini belgilash"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "5 va 5"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "270°"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "Ochiq disk ichi"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "Yig‘indi<180°"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "Yo‘q, chegara bilan ortogonallik yoki diametr sharti kerak"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "Tanlov ochiq. Ta’rif atama, aksioma boshlang‘ich faraz, teorema isbotlanadigan natija, alomat yetarli aniqlash sharti sifatida to‘g‘ri farqlanishi tekshiriladi.",
+    "2": "90°,90°,60°; yig‘indi 240°. Tomonlar katta doiralarning mos qisqa yoylari.",
+    "3": "155°, burchak nuqsoni 25°. Hisob yig‘indi shartini tekshiradi; aniq chizma/geodezik qurilishi alohida tekshiriladi.",
+    "4": "Ochiq javob. Nuqta, tomon va model chegaralari ko‘rsatiladi; sfera va elliptik tekislik tenglashtirilmaydi; disk chegarasi ichki nuqta qilinmaydi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "MT03 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT03 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT03 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT03 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT03 test 1 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Atamaning ma’nosini belgilash",
+      "olingan": "Atamaning ma’nosini belgilash"
+    },
+    {
+      "tekshiruv": "MT03 test 2 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "5 va 5",
+      "olingan": "5 va 5"
+    },
+    {
+      "tekshiruv": "MT03 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "270 °",
+      "olingan": "270°"
+    },
+    {
+      "tekshiruv": "MT03 test 4 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Ochiq disk ichi",
+      "olingan": "Ochiq disk ichi"
+    },
+    {
+      "tekshiruv": "MT03 test 5 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Yig‘indi<180°",
+      "olingan": "Yig‘indi<180°"
+    },
+    {
+      "tekshiruv": "MT03 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Yo‘q, chegara bilan ortogonallik yoki diametr sharti kerak",
+      "olingan": "Yo‘q, chegara bilan ortogonallik yoki diametr sharti kerak"
+    },
+    {
+      "tekshiruv": "MT03 qarama-qarshi misol",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT03 sferik burchaklar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT03 giperbolik yig‘indi sharti",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT03 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

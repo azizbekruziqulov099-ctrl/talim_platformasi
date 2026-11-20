@@ -1,0 +1,205 @@
+{
+  "mavzu_id": "BMKN1305-3-A11",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "7"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "7,8 sm"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "2035 m"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "3 sm"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "4"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "Yordamchi nur AB bilan bir chiziqda yotmaydi va unda teng qadamlar olinadi"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "15,15 sm; 9,65+15,15=24,8.",
+    "2": "11,2 sm=112 mm.",
+    "3": "240 sm:8=30 sm; 7 ichki nuqta.",
+    "4": "Yordamchi nur AB bilan bir chiziqda emas; unda 5 teng qadam olinadi. A₅Bga parallel 4 chiziq ABda 2,4,6,8 nuqtalarni beradi. Qo‘shni bo‘laklar 2 birlik; o‘xshash uchburchaklar APⱼ/AB=j/5 ni beradi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "A11 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "7 ",
+      "olingan": "7"
+    },
+    {
+      "tekshiruv": "A11 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "7.8 sm",
+      "olingan": "7,8 sm"
+    },
+    {
+      "tekshiruv": "A11 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "2035 m",
+      "olingan": "2035 m"
+    },
+    {
+      "tekshiruv": "A11 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "3 sm",
+      "olingan": "3 sm"
+    },
+    {
+      "tekshiruv": "A11 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "4 ",
+      "olingan": "4"
+    },
+    {
+      "tekshiruv": "A11 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Yordamchi nur AB bilan bir chiziqda yotmaydi va unda teng qadamlar olinadi",
+      "olingan": "Yordamchi nur AB bilan bir chiziqda yotmaydi va unda teng qadamlar olinadi"
+    },
+    {
+      "tekshiruv": "A11 oradagi nuqta",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 birlikni takrorlash",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 singan chizg‘ich",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 uzunlik birliklari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 18smni 6ga bo‘lish",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 parallel yasash P1",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 parallel yasash P2",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 parallel yasash P3",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 parallel yasash P4",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 besh teng bo‘lak yakuni",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 aralash birlik bo‘laklar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 1mmga yaxlitlash",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 mustaqil kesma",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 mustaqil o‘lchov",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 mustaqil bo‘laklar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A11 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

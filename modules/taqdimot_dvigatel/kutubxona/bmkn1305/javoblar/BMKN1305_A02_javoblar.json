@@ -1,0 +1,217 @@
+{
+  "mavzu_id": "BMKN1305-3-A2",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "2/3"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "45"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "126"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "31/36"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "−3/8"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "1/5"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "1/5.",
+    "2": [
+      "−3/10",
+      "−3/10; (−3/10)·25/12=−5/8."
+    ],
+    "3": {
+      "butun": "84 km",
+      "qolgan": "49 km"
+    },
+    "4": "5/6. Bir xil butun 6 teng ulushga:1/2=3/6,1/3=2/6, yig‘indi 5/6. Mezonlar: bir xil butun, teng ulushlar, maxrajlarni qo‘shish xatosi izohi va to‘g‘ri hisob."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "A02 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 test 1 ratsional hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "2/3",
+      "olingan": "2/3"
+    },
+    {
+      "tekshiruv": "A02 test 2 ratsional hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "45",
+      "olingan": "45"
+    },
+    {
+      "tekshiruv": "A02 test 3 ratsional hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "126",
+      "olingan": "126"
+    },
+    {
+      "tekshiruv": "A02 test 4 ratsional hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "31/36",
+      "olingan": "31/36"
+    },
+    {
+      "tekshiruv": "A02 test 5 ratsional hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "-3/8",
+      "olingan": "−3/8"
+    },
+    {
+      "tekshiruv": "A02 test 6 ratsional hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "1/5",
+      "olingan": "1/5"
+    },
+    {
+      "tekshiruv": "A02 teng kasr va ishora",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 aralash son",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 qism va butun",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 ketma-ket ulush asoslari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 ayirma",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 ko‘paytma",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 bo‘linmaning teskari tekshiruvi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 taqsimot",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 qo‘shishda guruhlash",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 ko‘paytirishda guruhlash",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 oraliq ratsional",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 soxta qisqartirish qarshi misoli",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 mustaqil 1",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 mustaqil 2",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 mustaqil 3",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 mustaqil metodik hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A02 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

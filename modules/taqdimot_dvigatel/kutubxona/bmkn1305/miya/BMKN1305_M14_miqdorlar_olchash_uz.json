@@ -1,0 +1,520 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 14,
+    "tur": "ma’ruza",
+    "mavzu": "Miqdorlar va ularni o‘lchash",
+    "qisqa": "Miqdor va o‘lchov",
+    "maqsad": "Talaba miqdor, sonli qiymat va birlikni farqlaydi; qo‘shiluvchan skalyar miqdorlar xossalarini shartlari bilan qo‘llaydi; birliklarni o‘tkazadi va o‘lchash natijasini mazmunan tekshiradi.",
+    "tayanch": [
+      "Miqdor va birlik",
+      "Bir jinslilik",
+      "Skalyarlik va qo‘shiluvchanlik",
+      "Birliklarni o‘tkazish",
+      "O‘lchash va yaxlitlash"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "Q=nu",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; M14, asl skanning 5-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "BIPM: SI Brochure, 9-nashr, 2026-yilda yangilangan",
+        "izoh": "https://www.bipm.org/en/publications/si-brochure"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Geometrik o‘lchovlar",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Perimetr qanday miqdor?",
+        "javob": "Uzunlik."
+      },
+      {
+        "savol": "Sirt yuzi qanday birlikda?",
+        "javob": "Kvadrat birlikda."
+      },
+      {
+        "savol": "Hajm qanday birlikda?",
+        "javob": "Kub birlikda."
+      },
+      {
+        "savol": "1 metr necha santimetr?",
+        "javob": "100."
+      },
+      {
+        "savol": "1 soat necha minut?",
+        "javob": "60."
+      },
+      {
+        "savol": "2 m va 200 cm bir xil uzunlikmi?",
+        "javob": "Ha."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Son kattaligi miqdor kattaligimi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "2 m bilan 180 cm ni faqat 2 va 180 sonlari orqali solishtirish mumkinmi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Ikki suv temperaturasini qo‘shish aralashma temperaturasini beradimi?"
+      }
+    ],
+    "goya": "Avval miqdor turini, birlikni va bajarilayotgan amalning mazmunini aniqlang.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Miqdor, son va birlik",
+      "izoh": "Uchta tushunchani alohida yozamiz",
+      "belgi": "Miqdor = son × birlik",
+      "slaydlar": [
+        {
+          "sarlavha": "Miqdor va uning qiymati",
+          "izoh": "Buyumning uzunligi — xossa, 2 esa son, metr esa tanlangan birlik. 2 m birgalikda shu uzunlikning qiymatini ifodalaydi. Birlik o‘zgarsa, sonli qiymat o‘zgaradi, o‘lchanayotgan uzunlik esa saqlanadi.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "O‘lchashda miqdor qiymati sonli qiymat va mos birlik orqali ifodalanadi: masalan, ℓ=2 m=200 cm."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "“Uzunlik 2 ga teng” deyish o‘rniga birlikni ham ko‘rsating."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Bir jinsli miqdorlarni taqqoslash",
+          "izoh": "Bir turdagi miqdorlar bir xil birlikka keltirilib taqqoslanadi. Uzunlikni massa bilan katta-kichik tartibida solishtirish ma’nosiz. Yuz va uzunlik hatto bir buyumga tegishli bo‘lsa ham boshqa miqdorlardir.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Taqqoslash",
+                "Natija"
+              ],
+              "qatorlar": [
+                [
+                  "2 m va 180 cm",
+                  "200 cm > 180 cm"
+                ],
+                [
+                  "3 kg va 2500 g",
+                  "3000 g > 2500 g"
+                ],
+                [
+                  "2 m va 3 kg",
+                  "Bir jinsli emas; bu tarzda taqqoslanmaydi"
+                ]
+              ]
+            },
+            {
+              "tur": "matn",
+              "matn": "O‘lchov sonlarining o‘zini birliksiz solishtirish noto‘g‘ri xulosaga olib kelishi mumkin."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Skalyar miqdor va qo‘shiluvchanlik",
+          "izoh": "Massa, vaqt oralig‘i va temperatura skalyar misollar; tezlik vektori esa yo‘nalish ham talab qiladi. Skalyarlikning o‘zi “ikki buyumni birlashtirganda qiymatlar qo‘shiladi” degani emas. Keyingi xossalar uzunlik, yuz, hajm kabi mos shartli qo‘shiluvchan miqdorlar uchun o‘rganiladi.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Skalyar miqdor tanlangan birlik va sonli qiymat bilan, yo‘nalish kiritmasdan ifodalanadi."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "20 °C va 30 °C jismlar temperaturasidan aralashma temperaturasini 50 °C deb olish mumkin emas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Qo‘shiluvchan miqdorlarning xossalari",
+      "izoh": "Xossani qo‘llash shartlari",
+      "belgi": "Q=nu",
+      "slaydlar": [
+        {
+          "sarlavha": "Tenglik, tartib va musbatlik",
+          "izoh": "Bu bo‘limda bir jinsli, manfiy bo‘lmagan qo‘shiluvchan miqdorlarning modeli olinadi. Teng miqdorlar bir xil birlikda teng sonli qiymat beradi. Tartib tranzitiv: A<B va B<C bo‘lsa, A<C. Nol miqdor hech qanday musbat ulush yo‘qligini bildiradi.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Bir xil birlikda o‘lchangan A=au va B=bu uchun A<B aynan a<b bo‘lganda."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Temperaturaning manfiy sonli qiymati yoki boshqa turdagi skalyarlarni ushbu manfiy bo‘lmagan modelga shartsiz kiritmang."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qismlarni qo‘shish",
+          "izoh": "Qo‘shiladigan qismlarning tutashishi yoki ustma-ust kelmasligi tekshiriladi. A,C,B bir chiziqda shu tartibda bo‘lsa, AB=AC+CB. Yuzlarda umumiy chegaraning o‘zi yuz qo‘shishga xalaqit bermaydi, ammo ichki sohalar ustma-ust tushsa, takror sanash paydo bo‘ladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki kesmani ulash",
+              "shart": "Uzunliklar 1,2 m va 80 cm; ular ketma-ket ulanadi. Jami uzunlikni toping.",
+              "qadamlar": [
+                "80 cm=0,8 m.",
+                "1,2+0,8=2,0 m.",
+                "Natija 200 cm bilan ham ifodalanadi."
+              ],
+              "javob": "2 m."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Birlik tanlash va ulushlar",
+          "izoh": "u birlikdagi Q=nu qiymat uchun birlik k marta kattalashsa, sonli qiymat k marta kichrayadi. Birlik k marta kichraytirilsa, sonli qiymat k marta ortadi. Bu miqdorning o‘zi o‘zgardi degani emas.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Birlikni almashtirish",
+              "formula": "Q=nu=\\frac nk(ku),\\qquad k>0",
+              "matn": "Masalan, 250 cm=2,5 m."
+            },
+            {
+              "tur": "matn",
+              "matn": "Birlikning 1/10 qismini tanlash o‘lchovning o‘nli yozuvini hosil qilishga yordam beradi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "O‘lchov birliklari",
+      "izoh": "Uzunlik, massa, vaqt, yuz va hajm",
+      "belgi": "m, kg, s",
+      "slaydlar": [
+        {
+          "sarlavha": "Asosiy birliklar va oddiy o‘tkazish",
+          "izoh": "SI birliklaridan bu darsda metr m, kilogramm kg va sekund s ko‘p ishlatiladi. Ular uzunlik, massa va vaqt uchun qo‘llanadi. Minut va soatni o‘nlik asosda almashtirmang. Massa bilan kuch sifatidagi og‘irlik boshqa fizik miqdorlar: kg massa birligidir.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Bog‘lanish",
+                "Misol"
+              ],
+              "qatorlar": [
+                [
+                  "1 m=100 cm",
+                  "2,35 m=235 cm"
+                ],
+                [
+                  "1 kg=1000 g",
+                  "2 kg 350 g=2,35 kg"
+                ],
+                [
+                  "1 min=60 s; 1 h=60 min",
+                  "1 h 20 min=80 min=4800 s"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "SI belgilarining yozilishi saqlanadi: kg, m, s."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yuz va hajmda daraja ham o‘zgaradi",
+          "izoh": "Birlik uzunligi 100 marta kichraysa, bir kvadrat birlikda 100² ta, bir kub birlikda 100³ ta kichik birlik bo‘ladi. Shu sababli 1 m² ni 100 cm² deb yozish noto‘g‘ri.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Tenglik",
+                "Misol"
+              ],
+              "qatorlar": [
+                [
+                  "1 m²=10 000 cm²",
+                  "0,75 m²=7500 cm²"
+                ],
+                [
+                  "1 m³=1 000 000 cm³",
+                  "0,002 m³=2000 cm³"
+                ],
+                [
+                  "1 dm³=1000 cm³",
+                  "2 dm³=2000 cm³"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Birlikning ko‘rsatkichini o‘tkazish koeffitsiyentiga ham qo‘llang."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Hajm va sig‘im",
+          "izoh": "Idish sig‘imi odatda uning ichiga sig‘adigan hajm orqali ifodalanadi. Litr uchun L belgisi ishlatiladi. Litr SI asosiy birligi emas; bu darsda uning kub birliklar bilan aniq bog‘lanishidan foydalanamiz.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "1 L=1 dm³=1000 cm³; 1 mL=1 cm³; 1 m³=1000 L."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Kub birlikdan litrga",
+              "shart": "0,002 m³ necha litr?",
+              "qadamlar": [
+                "1 m³=1000 L.",
+                "0,002·1000=2 L.",
+                "Bu 2000 cm³ ga ham teng."
+              ],
+              "javob": "2 L."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "O‘lchash amaliyoti",
+      "izoh": "Asbob, yaxlitlash va natija mazmuni",
+      "belgi": "Tekshir: birlik va shart",
+      "slaydlar": [
+        {
+          "sarlavha": "O‘lchash tartibi",
+          "izoh": "O‘lchanadigan miqdor va mos asbob tanlanadi. Boshlang‘ich belgi, birlik va shkala bo‘linishi tekshiriladi. Chizg‘ichda kesma uchi 0 ga qo‘yilmagan bo‘lsa, oxirgi va boshlang‘ich ko‘rsatkich ayirmasi olinadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Noldan boshlanmagan kesma",
+              "shart": "Kesma uchlari chizg‘ichdagi 2,3 cm va 9,8 cm belgilariga tushdi. Uzunligini toping.",
+              "qadamlar": [
+                "Boshlang‘ich qiymat 2,3 cm.",
+                "9,8−2,3=7,5 cm.",
+                "9,8 cm kesma uzunligi emas, oxirgi ko‘rsatkich."
+              ],
+              "javob": "7,5 cm."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Aniq tenglik va taqribiy o‘lchov",
+          "izoh": "Birliklar orasidagi 1 m=100 cm tenglik aniq. Tajribada olingan uzunlik esa asbob va o‘lchash usuliga bog‘liq. Yaxlitlash oralig‘i o‘lchashdagi barcha noaniqliklarning to‘liq bahosi emas.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Musbat son eng yaqin 0,1 cm gacha yaxlitlanib 12,4 cm bo‘ldi. Yarim ulush yuqoriga yaxlitlansa, dastlabki son 12,35≤x<12,45 oraliqda."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Bu faqat yaxlitlash qoidasi bergan oraliq. Asbobning bo‘linish qiymatini avtomatik ravishda jami noaniqlik deb qabul qilmang."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Natijani mazmun orqali tekshirish",
+          "izoh": "Hisob yakunida birlik, tartib va taxminiy kattalik ko‘rib chiqiladi. Birlik almashtirish miqdorni kattalashtirmaydi. Masala shakli yoki o‘lchash sharoiti qo‘shishni talab qiladimi, degan savol ham beriladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Aralash birlikdagi yig‘indi",
+              "shart": "2 m va 30 cm uzunlikdagi ikki tasma ketma-ket ulandi.",
+              "qadamlar": [
+                "2 m=200 cm.",
+                "200+30=230 cm.",
+                "230 cm=2,30 m."
+              ],
+              "javob": "2,3 m."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "2 m+30 cm=32 m deb yozish sonlarni birliksiz qo‘shish xatosidir."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Birliksiz javob berish.",
+      "sabab": "Sonli qiymat butun natija deb olingan.",
+      "togri": "Son bilan mos birlik ham yoziladi."
+    },
+    {
+      "xato": "Har skalyarni birlashtirishda qo‘shish.",
+      "sabab": "Skalyarlik qo‘shiluvchanlikka tenglashtirilgan.",
+      "togri": "Qo‘shishning fizik va geometrik shartlari tekshiriladi."
+    },
+    {
+      "xato": "1 m² ni 100 cm² deyish.",
+      "sabab": "Daraja o‘tkazish koeffitsiyentiga qo‘llanmagan.",
+      "togri": "100²=10 000."
+    },
+    {
+      "xato": "Soat-minutni o‘nlik asosda o‘tkazish.",
+      "sabab": "60 lik bog‘lanish unutilgan.",
+      "togri": "1 h=60 min, 1 min=60 s."
+    },
+    {
+      "xato": "Chizg‘ich oxirgi ko‘rsatkichini uzunlik deb olish.",
+      "sabab": "Boshlang‘ich nuqta 0 emasligi e’tiborsiz.",
+      "togri": "Oxirgi va boshlang‘ich qiymat ayirmasi olinadi."
+    },
+    {
+      "xato": "Yaxlitlash oralig‘ini butun o‘lchov noaniqligi deb olish.",
+      "sabab": "Asbob va usul ta’siri tushib qolgan.",
+      "togri": "Yaxlitlash va tajriba noaniqligi alohida tushuntiriladi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Qiyoslashdan standart birlikka",
+    "bosqichlar": [
+      "Bir jinsli buyum xossalarini bevosita solishtirish",
+      "Birlikni tanlash va takror joylashtirish orqali o‘lchash",
+      "Standart birlikka o‘tib, natijani tekshirish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Bir tasma, ikki birlik",
+        "matn": "Bir tasmani turli birlikda o‘lchab, son o‘zgarishini ko‘rsating."
+      },
+      {
+        "sarlavha": "Kvadrat tarmoq",
+        "matn": "1 m² va cm² orasidagi 100×100 bog‘lanishni model qiling."
+      },
+      {
+        "sarlavha": "O‘lchov kundaligi",
+        "matn": "Asbob, birlik, natija va yaxlitlash qoidasi yozilgan kichik jadval tuzing."
+      }
+    ],
+    "tavsiya": "Boshlang‘ich sinfda amaliy o‘lchash tayanch bo‘ladi. Bakalavr mashg‘ulotida miqdor turi, amal sharti va taqribiy natijaning mazmuni ham asoslanadi."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Miqdor, sonli qiymat va birlik boshqa tushunchalar.",
+      "Bir jinsli miqdorlar bir birlikda taqqoslanadi.",
+      "Skalyarlikning o‘zi qo‘shiluvchanlik emas.",
+      "Yuz va hajm birliklarida koeffitsiyent darajaga ko‘tariladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "2,35 m necha cm?",
+      "variantlar": [
+        "23,5 cm",
+        "235 cm",
+        "2350 cm",
+        "0,0235 cm"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "0,75 m² necha cm²?",
+      "variantlar": [
+        "75 cm²",
+        "750 cm²",
+        "7500 cm²",
+        "0,0075 cm²"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "1 h 20 min necha sekund?",
+      "variantlar": [
+        "4800 s",
+        "120 s",
+        "7200 s",
+        "8000 s"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "0,002 m³ necha litr?",
+      "variantlar": [
+        "0,002 L",
+        "0,2 L",
+        "200 L",
+        "2 L"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "Chizg‘ichda uchlar 2,3 va 9,8 cm. Kesma uzunligi qaysi?",
+      "variantlar": [
+        "12,1 cm",
+        "7,5 cm",
+        "9,8 cm",
+        "2,3 cm"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Qaysi gap to‘g‘ri?",
+      "variantlar": [
+        "Har bir skalyar buyumlarni qo‘shishda doimo qo‘shiladi",
+        "1 m²=100 cm²",
+        "Birlik o‘zgarsa, sonli qiymat o‘zgarishi mumkin, miqdor saqlanadi",
+        "Massa va uzunlikni bevosita katta-kichik taqqoslash mumkin"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Miqdor bilan sonli qiymatni misolda farqlang.",
+    "Bir jinsli miqdor nima?",
+    "Skalyarlik va qo‘shiluvchanlik farqini ayting.",
+    "Birlik kattalashsa, sonli qiymat qanday o‘zgaradi?",
+    "Yuz va hajm birliklari nega kvadrat va kub koeffitsiyent bilan o‘tadi?",
+    "Yaxlitlash oralig‘i bilan o‘lchashning jami noaniqligi bir xilmi?"
+  ],
+  "mustaqil_ish": [
+    "Bir birlikda hisoblang: 2 m 35 cm+85 cm; 3 kg 250 g−750 g.",
+    "O‘tkazing: 1,2 m² ni cm² ga; 0,004 m³ ni cm³ va litrga.",
+    "2 h 15 min necha minut va sekund? Chizg‘ichdagi 1,7 cm va 8,2 cm uchlari orasidagi kesma uzunligini ham toping.",
+    "Musbat son eng yaqin 0,1 cm gacha, yarim ulush yuqoriga yaxlitlanib 8,6 cm bo‘ldi. Dastlabki son oralig‘ini yozing. Bu jami o‘lchash noaniqligimi?"
+  ],
+  "keyingi": {
+    "mavzu": "Matnli masalalar",
+    "izoh": "Birlik va miqdor munosabatini matndan modelga o‘tkazishga tayyorlaning."
+  },
+  "rasmlar": []
+}

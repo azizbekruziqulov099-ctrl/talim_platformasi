@@ -1,0 +1,503 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 4,
+    "tur": "mustaqil ta’lim",
+    "mavzu": "Hisoblash, isbot va muntazam ko‘pyoqlar",
+    "qisqa": "Hisoblash, isbot va muntazam ko‘pyoqlar",
+    "maqsad": "Talaba besh qavariq muntazam ko‘pyoqni farqlaydi, uch-yoq-qirra munosabatlarini asoslaydi, hisoblash hamda isbot masalalarini yechadi.",
+    "tayanch": [
+      "Qavariq muntazam ko‘pyoq",
+      "Euler tengligi",
+      "Ikki tomonlama sanash",
+      "Yuz",
+      "Hajm"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "Izlanish → dalil",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; MT4, asl skanning 6-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "Euclid XIII.18",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/bookXIII/propXIII18.html"
+      },
+      {
+        "nomi": "NRICH: Classifying Solids Using Angle Deficiency",
+        "izoh": "https://nrich.maths.org/problems/classifying-solids-using-angle-deficiency"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Mustaqil ishga tayyorgarlik",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Asosiy natija nimadan tekshiriladi?",
+        "javob": "Shart, manba, hisob va xulosadan."
+      },
+      {
+        "savol": "Manbada yo‘q gapni iqtibos deyish mumkinmi?",
+        "javob": "Yo‘q; o‘z tahlili alohida yoziladi."
+      },
+      {
+        "savol": "Rasm o‘zi isbot bo‘ladimi?",
+        "javob": "Faqat rasmga qarab umumiy isbot deb bo‘lmaydi."
+      },
+      {
+        "savol": "Birliklar qayerda ko‘rsatiladi?",
+        "javob": "Berilganlarda, hisobda va javobda."
+      },
+      {
+        "savol": "Tekshiruv qachon bajariladi?",
+        "javob": "Yakuniy topshirishdan oldin."
+      },
+      {
+        "savol": "Talabaning mustaqil hissasi qayerda?",
+        "javob": "Yangi misol, izoh, tekshiruv va metodik xulosada."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Qanday natija topshiriladi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Manbali besh jism jadvali"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Beshta juftni chiqarish va sanash isboti"
+      }
+    ],
+    "goya": "Har bir xulosa uchun manba yoki tekshiriladigan asos taqdim etiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Tasnif va sanash",
+      "izoh": "Har qirra ikki yoqqa tegishli",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Muntazamlik shartlari",
+          "izoh": "Bu paketda qavariq muntazam ko‘pyoqning barcha yoqlari bir xil muntazam ko‘pburchaklar, har uchdagi joylashuvi bir xil. Yulduzsimon va qavariq bo‘lmagan jismlar bu tasnifga kiritilmagan.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Belgi",
+                "Ma’no"
+              ],
+              "qatorlar": [
+                [
+                  "V",
+                  "Uchlar soni"
+                ],
+                [
+                  "E",
+                  "Qirralar soni"
+                ],
+                [
+                  "F",
+                  "Yoqlar soni"
+                ],
+                [
+                  "p va q",
+                  "Yoqning tomonlari va uchdagi yoqlar soni"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Besh jism jadvali",
+          "izoh": "Modelni aylantirib yashirin qirralarni ham sanang. Bitta qirrani ikki marta sanashning oldini olish uchun yoqlar bo‘yicha hisobni 2 ga bo‘lish kerak.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Jism",
+                "V",
+                "E",
+                "F",
+                "(p, q)"
+              ],
+              "qatorlar": [
+                [
+                  "Tetraedr",
+                  4,
+                  6,
+                  4,
+                  "(3,3)"
+                ],
+                [
+                  "Kub",
+                  8,
+                  12,
+                  6,
+                  "(4,3)"
+                ],
+                [
+                  "Oktaedr",
+                  6,
+                  12,
+                  8,
+                  "(3,4)"
+                ],
+                [
+                  "Dodekaedr",
+                  20,
+                  30,
+                  12,
+                  "(5,3)"
+                ],
+                [
+                  "Ikosaedr",
+                  12,
+                  30,
+                  20,
+                  "(3,5)"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ikki tomonlama sanash",
+          "izoh": "Har yoq p qirrani sanaydi, har qirra ikkita yoqda bor: pF=2E. Har uchda q qirra tutashadi: qV=2E. Bir xil belgilarni butun hisob davomida saqlang.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Dodekaedr",
+              "shart": "F=12, p=5, q=3. E va V?",
+              "qadamlar": [
+                "2E=5·12=60; E=30.",
+                "3V=60; V=20."
+              ],
+              "javob": "V=20, E=30."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Nega beshta?",
+      "izoh": "Zarur shart va mavjud model",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Uch atrofidagi burchak",
+          "izoh": "Muntazam p-burchakning ichki burchagi (p−2)180°/p. Qavariq ko‘pyoq uchida q ta bunday burchak yig‘indisi 360° dan kichik. p, q butun va kamida 3.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Qavariq uch sharti",
+              "formula": "\\frac1p+\\frac1q>\\frac12",
+              "matn": "q(p−2)180°/p<360° tengsizlikdan keladi. Tenglik tekis joylashuvga mos; qavariq uch hosil qilmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ruxsat etilgan juftlar",
+          "izoh": "p≥6 bo‘lsa 1/p+1/q≤1/6+1/3=1/2; mumkin emas. p=3 da q=3,4,5; p=4 va 5 da faqat q=3. Zarur shartdan beshta juft olinadi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "p",
+                "q"
+              ],
+              "qatorlar": [
+                [
+                  3,
+                  "3, 4, 5"
+                ],
+                [
+                  4,
+                  "3"
+                ],
+                [
+                  5,
+                  "3"
+                ],
+                [
+                  "6 va katta",
+                  "Yo‘q"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Tengsizlik yolg‘iz o‘zi har umumiy shaklning mavjudligini isbotlamaydi. Bu beshta holat uchun alohida muntazam modellar mavjud."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Euler tekshiruvi",
+          "izoh": "Har besh qavariq modelda V−E+F=2. Bu tenglik muntazam bo‘lmagan ko‘plab qavariq ko‘pyoqlarda ham to‘g‘ri; shuning uchun muntazamlikning yetarli alomati emas.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikosaedr",
+              "shart": "V=12, E=30, F=20.",
+              "qadamlar": [
+                "12−30+20=2.",
+                "3·20=2·30=5·12."
+              ],
+              "javob": "Ikki sanash nazorati mos."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Yuz va hajm",
+      "izoh": "Hisob qaysi modelga tegishli?",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Kub",
+          "izoh": "Kub qirrasi a bo‘lsa 6 ta kvadrat yoq bor, S=6a². Hajm a³. Birliklar mos ravishda kvadrat va kub; ikkalasini bitta o‘lcham bilan yozmang.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "a=5 sm",
+              "shart": "Yuz va hajm.",
+              "qadamlar": [
+                "S=6·25=150 sm².",
+                "V=125 sm³."
+              ],
+              "javob": "150 sm²; 125 sm³."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Oktaedr yuzi",
+          "izoh": "Muntazam oktaedr 8 ta teng tomonli uchburchakdan tuzilgan. Tomoni a bo‘lgan uchburchak yuzi a²√3/4.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "a=4 sm",
+              "shart": "To‘la yuz.",
+              "qadamlar": [
+                "Bitta yoq:16√3/4=4√3 sm².",
+                "8·4√3=32√3 sm²."
+              ],
+              "javob": "32√3 sm²."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Oktaedr hajmi",
+          "izoh": "Oktaedrni umumiy kvadrat asosli ikki piramidaga ajrating. Kvadrat markazidan uchigacha a/√2; yon qirra a bo‘lgani uchun balandlik a/√2.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "a=4 sm",
+              "shart": "Hajmni ajratish bilan hisoblang.",
+              "qadamlar": [
+                "Asos yuzi 16 sm²; har balandlik 2√2 sm.",
+                "2·(1/3)·16·2√2."
+              ],
+              "javob": "64√2/3 sm³."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Isbot va metodik model",
+      "izoh": "Sanashni ko‘rinadigan qilamiz",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Chizma bilan cheklanmaslik",
+          "izoh": "Jismning rasmida yashirin qirra ko‘rinmasligi mumkin. V, E, F ni faqat old tomondan sanamang. Karton model yoki izohli yoq jadvali hisobning to‘liqligini ko‘rsatadi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Hisobotda bir jism uchun sanash ro‘yxati, ikki tomonlama sanash tengliklari va Euler nazorati birga topshiriladi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Xato da’voni rad etish",
+          "izoh": "“V−E+F=2 bo‘lsa, jism kub” degan gap yolg‘on: tetraedr ham tenglikni bajaradi. Bitta shartdan ortiqcha xulosa chiqarilgan.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Qarama-qarshi misolni yozing: tetraedrda 4−6+4=2, lekin uning yoqlari 6 ta kvadrat emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Metodik parcha",
+          "izoh": "Boshlang‘ich bosqichda kubning yoq, qirra, uchini ushlab ajratish qulay. Talaba hisobotidagi beshlik isboti esa oliy ta’lim mazmuni bo‘lib qoladi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Mashg‘ulot parchasi: uchga belgi → qirrani izlab sanash → yoqlarni sanash → 8−12+6 ni tekshirish → qaysi son nimani sanashini aytish."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "pF ni E ga tenglash",
+      "sabab": "Har qirra ikki yoqda sanalgan",
+      "togri": "pF=2E."
+    },
+    {
+      "xato": "Euler tengligidan muntazamlik chiqarish",
+      "sabab": "Zarur/tekshiruv sharti yetarli deb olingan",
+      "togri": "Muntazam yoq va bir xil uch shartlari alohida."
+    },
+    {
+      "xato": "Burchak yig‘indisini 360° olish",
+      "sabab": "Qavariq uch tekislangan",
+      "togri": "Qavariq uchda qat’iy kichik."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "10 soatlik izlanish va loyiha",
+    "bosqichlar": [
+      "Manbani belgilash va konspekt",
+      "Hisob yoki model yaratish",
+      "Natijani tekshirish va metodik izoh"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Dalil",
+        "matn": "Ko‘chirma va o‘z tahlilini farqlang."
+      },
+      {
+        "sarlavha": "Hisob",
+        "matn": "Qadam, birlik va shartlarni yozing."
+      },
+      {
+        "sarlavha": "Tekshiruv",
+        "matn": "Yechim kaliti bilan xato sababini tahlil qiling."
+      }
+    ],
+    "tavsiya": "Ilovadagi 10 soatlik reja va tavsiyaviy mezon o‘qituvchi tomonidan guruh sharoitiga moslashtiriladi. Bu tayyor talaba referati emas."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Qabul qilingan shartlar ochiq yoziladi.",
+      "Manba va yangi o‘quv misoli farqlanadi.",
+      "Hisob va xulosa mustaqil tekshiriladi.",
+      "Natija 10 soatlik ish rejasi bo‘yicha topshiriladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "Kubning (V, E, F) uchligi?",
+      "variantlar": [
+        "(8,12,6)",
+        "(6,12,8)",
+        "(4,6,4)",
+        "(12,30,20)"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "Dodekaedr qirralari soni?",
+      "variantlar": [
+        "12",
+        "20",
+        "30",
+        "60"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Qavariq muntazam uch sharti?",
+      "variantlar": [
+        "1/p+1/q=0",
+        "1/p+1/q>1/2",
+        "p=q",
+        "p+q=360"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Kub a=5 sm; yuzi?",
+      "variantlar": [
+        "25 sm²",
+        "125 sm²",
+        "30 sm²",
+        "150 sm²"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "Oktaedr a=4 sm; to‘la yuzi?",
+      "variantlar": [
+        "16√3 sm²",
+        "32√3 sm²",
+        "64√2 sm²",
+        "8 sm²"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Euler tengligi muntazamlik uchun yetarlimi?",
+      "variantlar": [
+        "Ha",
+        "Faqat kubda",
+        "Yo‘q",
+        "Faqat rangli modelda"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Mavzudagi ikki asosiy tushunchani farqlang.",
+    "Bitta natijani boshqa usulda tekshiring.",
+    "Misolda qabul qilingan farazlarni ayting.",
+    "Manba bilan o‘z xulosangiz chegarasini ko‘rsating.",
+    "Bitta keng tarqalgan xatoni tahlil qiling.",
+    "Boshlang‘ich sinf uchun moslashtirishda nimalar o‘zgaradi?"
+  ],
+  "mustaqil_ish": [
+    "Besh qavariq muntazam jism uchun V−E+F, pF va qV ni hisoblab jadvalni tekshiring.",
+    "p, q≥3 butun bo‘lsa 1/p+1/q>1/2 tengsizlikning barcha juftlarini asoslang.",
+    "Kub qirrasi 3 sm; muntazam oktaedr qirrasi 2 sm. Har birining yuz va hajmini toping.",
+    "Bitta jismning modelini yoki izohli yoyilmasini tayyorlang; uch-qirra-yoq sanashga 5 daqiqalik parcha yozing."
+  ],
+  "keyingi": {
+    "mavzu": "Navbatdagi mustaqil ta’lim bandi",
+    "izoh": "Reja, mahsulot va tekshiruv mezonlari bilan ish davom etadi."
+  },
+  "rasmlar": []
+}

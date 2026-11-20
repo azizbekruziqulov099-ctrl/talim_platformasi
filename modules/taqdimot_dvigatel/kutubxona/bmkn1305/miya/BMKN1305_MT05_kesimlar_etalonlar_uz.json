@@ -1,0 +1,460 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 5,
+    "tur": "mustaqil ta’lim",
+    "mavzu": "Ko‘pyoq kesimlari, tarixiy birliklar va etalonlar",
+    "qisqa": "Ko‘pyoq kesimlari, tarixiy birliklar va etalonlar",
+    "maqsad": "Talaba kubning tekis kesimini koordinata bilan aniqlaydi, yuzini hisoblaydi; tarixiy o‘lchovlarni aniq manba va davr bilan zamonaviy SI ta’riflaridan ajratadi.",
+    "tayanch": [
+      "Tekis kesim",
+      "Koordinata",
+      "Tarixiy birlik",
+      "SI",
+      "Etalon va ta’rif"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "Izlanish → dalil",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; MT5, asl skanning 6-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "Museo Egizio, S_8647",
+        "izoh": "https://collezioni.museoegizio.it/en-GB/material/S_8647"
+      },
+      {
+        "nomi": "UCL Digital Egypt: Length",
+        "izoh": "https://www.ucl.ac.uk/museums-static/digitalegypt/weights/lenght.html"
+      },
+      {
+        "nomi": "NIST: U.S. Survey Foot",
+        "izoh": "https://www.nist.gov/pml/us-surveyfoot"
+      },
+      {
+        "nomi": "BIPM: SI Brochure",
+        "izoh": "https://www.bipm.org/en/publications/si-brochure"
+      },
+      {
+        "nomi": "BIPM: History of the metre",
+        "izoh": "https://www.bipm.org/en/history-si/metre"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Mustaqil ishga tayyorgarlik",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Asosiy natija nimadan tekshiriladi?",
+        "javob": "Shart, manba, hisob va xulosadan."
+      },
+      {
+        "savol": "Manbada yo‘q gapni iqtibos deyish mumkinmi?",
+        "javob": "Yo‘q; o‘z tahlili alohida yoziladi."
+      },
+      {
+        "savol": "Rasm o‘zi isbot bo‘ladimi?",
+        "javob": "Faqat rasmga qarab umumiy isbot deb bo‘lmaydi."
+      },
+      {
+        "savol": "Birliklar qayerda ko‘rsatiladi?",
+        "javob": "Berilganlarda, hisobda va javobda."
+      },
+      {
+        "savol": "Tekshiruv qachon bajariladi?",
+        "javob": "Yakuniy topshirishdan oldin."
+      },
+      {
+        "savol": "Talabaning mustaqil hissasi qayerda?",
+        "javob": "Yangi misol, izoh, tekshiruv va metodik xulosada."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Qanday natija topshiriladi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "4 kesimning koordinata jadvallari va izohli sxemasi"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Yuz va masshtab yechimlari"
+      }
+    ],
+    "goya": "Har bir xulosa uchun manba yoki tekshiriladigan asos taqdim etiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Kesim qanday topiladi?",
+      "izoh": "Tekislik va jismning umumiy qismi",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Kub koordinatalari",
+          "izoh": "Kub 0≤x, y, z≤2 deb olingan. Kesim tekisligi tenglamasi beriladi. Qirralar bilan kesishgan nuqtalar topilib, tekislik ichida chegara tartibida ulanadi.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Rasmda mos kelgandek ko‘ringan nuqtani tanlamang; u kubda ham, tekislikda ham yotishi tekshiriladi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Gorizontal kesim",
+          "izoh": "z=1 tekislik kub ichidan o‘tadi. To‘rtta uch (0,0,1),(2,0,1),(2,2,1),(0,2,1). Natija tomoni 2 bo‘lgan kvadrat.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "z=1",
+              "shart": "Kesim yuzi?",
+              "qadamlar": [
+                "Tomonlar x yoki y bo‘yicha 2.",
+                "S=2·2."
+              ],
+              "javob": "4 kvadrat birlik."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Diagonal to‘g‘ri to‘rtburchak",
+          "izoh": "x=y tekislik kesimi uchlari (0,0,0),(2,2,0),(2,2,2),(0,0,2). Qo‘shni tomonlar 2√2 va 2, o‘zaro tik.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "x=y",
+              "shart": "Kesim yuzi?",
+              "qadamlar": [
+                "Asosdagi diagonal √(2²+2²)=2√2.",
+                "S=2√2·2."
+              ],
+              "javob": "4√2 kvadrat birlik."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Uchburchak va oltiburchak",
+      "izoh": "Maxsus holatni umumlashtirmaymiz",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Burchakni kesuvchi tekislik",
+          "izoh": "x+y+z=1 uchta qirrada (1,0,0),(0,1,0),(0,0,1) ni beradi. Uchala masofa √2, demak teng tomonli uchburchak.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Uchburchak yuzi",
+              "shart": "Tomon √2.",
+              "qadamlar": [
+                "S=(√2)²√3/4.",
+                "S=√3/2."
+              ],
+              "javob": "√3/2 kvadrat birlik."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Markaziy oltiburchak",
+          "izoh": "x+y+z=3 kesim uchlari (0,1,2),(0,2,1),(1,2,0),(2,1,0),(2,0,1),(1,0,2). Ular shu tartibda chegara bo‘ylab joylashadi; markaz (1,1,1).",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Oltiburchak yuzi",
+              "shart": "Qo‘shni uchlar masofasi √2.",
+              "qadamlar": [
+                "Markazdan har uchgacha √2; oltita teng tomonli uchburchak.",
+                "S=6·(2√3/4)."
+              ],
+              "javob": "3√3 kvadrat birlik."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Har kesim muntazammikan?",
+          "izoh": "Yo‘q. Tekislik siljishi yoki og‘ishi shaklni o‘zgartiradi. Yuqoridagi teng tomonli va muntazam natijalar aynan berilgan koordinata va tekisliklar uchun asoslangan.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Har bir kesim uchun uchlarning kub chegaralari, tekislik tenglamasi, qo‘shni tomon va yuzi alohida tekshiriladi. Faqat perspektiv rasmga qarab muntazam demang."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Tarixiy uzunlik birliklari",
+      "izoh": "Nomi bir xil, qiymati davrga bog‘liq",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Tana bilan o‘lchash",
+          "izoh": "Qarich, qadam va tirsak tanaga bog‘langan tarixiy yoki kundalik usullar bo‘lishi mumkin. Ikki kishining qarichi bir xil chiqishi shart emas. Har biriga barcha xalq va davr uchun yagona santimetr qiymati bermang.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Tajriba: ikki ishtirokchi bir stolni o‘z qarichi bilan o‘lchaydi. Natijalar va shaxsiy birlik farqi yoziladi; stolning o‘zi o‘zgargan degan xulosa qilinmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Muzeydagi aniq tirsak tayoqchasi",
+          "izoh": "Museo Egizio S_8647 yozuvida Kha qabri bilan bog‘liq yog‘och royal cubit buyumi uzunligi 52,4 cm, davri miloddan avvalgi 1425–1353 deb ko‘rsatiladi. Bu aynan shu buyumning ma’lumoti.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Shartli nusxa bilan hisob",
+              "shart": "Aynan 52,4 cm deb olingan nusxaning 3 uzunligi?",
+              "qadamlar": [
+                "3·52,4=157,2 cm."
+              ],
+              "javob": "157,2 cm; tarixdagi barcha tirsaklar ta’rifi emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ikki futni farqlash",
+          "izoh": "Xalqaro fut aynan 0,3048 m. Tarixiy AQSH survey foot aynan 1200/3937 m. Ular juda yaqin, ammo aynan teng emas. NIST bu eski birlikni 2023-yildan tarixiy/meros ma’lumotlar kontekstida ajratadi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Birlik",
+                "Ta’rif va doira"
+              ],
+              "qatorlar": [
+                [
+                  "Xalqaro fut",
+                  "0,3048 m, aynan"
+                ],
+                [
+                  "AQSH survey foot",
+                  "1200/3937 m, tarixiy ma’lumot"
+                ],
+                [
+                  "Tana uzunligi",
+                  "Shaxs/davr/manba kerak"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Zamonaviy etalon va mahsulot",
+      "izoh": "SI ni eski buyum bilan tenglashtirmaymiz",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Etalon tarixi va saqlanishi",
+          "izoh": "Metr ta’rifi:1889-yilgi platina-iridiy prototip; 1960-yilda kripton nurlanishi; 1983-yilda yorug‘likning vakuumdagi tezligiga asoslangan ta’rif. 2019-yildan SI ta’riflari belgilangan doimiylar asosida yagona shaklda beriladi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "BIPM ma’lumotiga ko‘ra,1889-yilgi metr prototipi BIPMda saqlanadi. Kilogramm 2019-yildan Plank doimiysiga asoslangan; eski prototip amaldagi ta’rif emas. Birlik ta’rifi, saqlanadigan tarixiy buyum va laboratoriyada amalga oshirish usuli ajratiladi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Birlik pasporti",
+          "izoh": "Tarixiy va zamonaviy birlikka bittadan pasport yozing. Tarixiy pasportda davr, hudud, buyum yoki matn, qiymat maqomi; zamonaviyda rasmiy ta’rif va aynanlik bo‘lsin.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Maydon",
+                "Tekshiruv"
+              ],
+              "qatorlar": [
+                [
+                  "Nom va davr",
+                  "Qaysi tizim?"
+                ],
+                [
+                  "Manba",
+                  "Muzey yoki rasmiy metrologiya hujjati"
+                ],
+                [
+                  "Qiymat",
+                  "Aniq ta’rifmi, o‘lchovmi, taxminmi?"
+                ],
+                [
+                  "Ishlatish",
+                  "Qaysi hisobga ruxsat?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ikki mahsulotni bog‘lash",
+          "izoh": "Kesim koordinatalari matematik aniqlikni; birlik pasporti esa manba aniqligini ko‘rsatadi. Geometrik modeldagi “birlik”ni manbasiz tarixiy tirsak deb almashtirmang.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Metodik parcha: qadam bilan o‘lchashdagi farq → kelishilgan standart ehtiyoji → metr bilan qayta o‘lchash. Talaba hisobotida SI doimiylari va amalga oshirish farqi qisqa izohlanadi."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Har kub kesimini muntazam deyish",
+      "sabab": "Maxsus tekislik umumlashtirilgan",
+      "togri": "Uch va tomonlar tekshiriladi."
+    },
+    {
+      "xato": "Har tirsakni 52,4 cm deyish",
+      "sabab": "Aniq buyum universal birlik bo‘lgan",
+      "togri": "Davr/hudud/buyum qayd qilinadi."
+    },
+    {
+      "xato": "Eski kilogramm prototipini hozirgi ta’rif deyish",
+      "sabab": "Ta’rifning o‘zgarishi hisobga olinmagan",
+      "togri": "2019-yildan doimiyga asoslangan ta’rif ajratiladi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "10 soatlik izlanish va loyiha",
+    "bosqichlar": [
+      "Manbani belgilash va konspekt",
+      "Hisob yoki model yaratish",
+      "Natijani tekshirish va metodik izoh"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Dalil",
+        "matn": "Ko‘chirma va o‘z tahlilini farqlang."
+      },
+      {
+        "sarlavha": "Hisob",
+        "matn": "Qadam, birlik va shartlarni yozing."
+      },
+      {
+        "sarlavha": "Tekshiruv",
+        "matn": "Yechim kaliti bilan xato sababini tahlil qiling."
+      }
+    ],
+    "tavsiya": "Ilovadagi 10 soatlik reja va tavsiyaviy mezon o‘qituvchi tomonidan guruh sharoitiga moslashtiriladi. Bu tayyor talaba referati emas."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Qabul qilingan shartlar ochiq yoziladi.",
+      "Manba va yangi o‘quv misoli farqlanadi.",
+      "Hisob va xulosa mustaqil tekshiriladi.",
+      "Natija 10 soatlik ish rejasi bo‘yicha topshiriladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "0≤x, y, z≤2 kubda z=1 kesim yuzi?",
+      "variantlar": [
+        "2",
+        "4",
+        "8",
+        "4√2"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "x=y kesim yuzi?",
+      "variantlar": [
+        "4√2",
+        "4",
+        "2√2",
+        "8√3"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "x+y+z=1 kesim shakli?",
+      "variantlar": [
+        "Kvadrat",
+        "Beshburchak",
+        "Muntazam oltiburchak",
+        "Teng tomonli uchburchak"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "x+y+z=3 kesim yuzi?",
+      "variantlar": [
+        "√3/2",
+        "6",
+        "3√3",
+        "4√2"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Xalqaro fut aynan necha metr?",
+      "variantlar": [
+        "0,3",
+        "0,3048",
+        "1200",
+        "3937"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "52,4 cm muzey yozuvi nimani bildiradi?",
+      "variantlar": [
+        "Barcha tirsaklar universal shuncha",
+        "SI metr ta’rifi",
+        "Har inson bilagi uzunligi",
+        "Aniq buyum haqida manbali ma’lumot"
+      ],
+      "javob": 3
+    }
+  ],
+  "nazorat": [
+    "Mavzudagi ikki asosiy tushunchani farqlang.",
+    "Bitta natijani boshqa usulda tekshiring.",
+    "Misolda qabul qilingan farazlarni ayting.",
+    "Manba bilan o‘z xulosangiz chegarasini ko‘rsating.",
+    "Bitta keng tarqalgan xatoni tahlil qiling.",
+    "Boshlang‘ich sinf uchun moslashtirishda nimalar o‘zgaradi?"
+  ],
+  "mustaqil_ish": [
+    "To‘rtta kub kesimining uchlarini tekislik tenglamasi va 0≤x, y, z≤2 chegaralarida tekshirib, yuzlarini qayta chiqaring.",
+    "Kub 0≤x, y, z≤3 da z=1 va x=y kesimlari yuzini toping; oldingi kub bilan masshtab munosabatini tushuntiring.",
+    "Aynan xalqaro futda 10 ft ni metrga o‘tkazing. 52,4 cm shartli nusxaning 5 uzunligini hisoblang; ma’lumot maqomini yozing.",
+    "Bir tarixiy va bir zamonaviy birlik pasporti, qadam/qarich tajribasi va 5 daqiqalik standart birlik namoyishini tayyorlang."
+  ],
+  "keyingi": {
+    "mavzu": "Navbatdagi mustaqil ta’lim bandi",
+    "izoh": "Reja, mahsulot va tekshiruv mezonlari bilan ish davom etadi."
+  },
+  "rasmlar": []
+}

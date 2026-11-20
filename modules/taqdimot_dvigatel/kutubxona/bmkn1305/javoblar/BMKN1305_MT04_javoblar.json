@@ -1,0 +1,163 @@
+{
+  "mavzu_id": "BMKN1305-3-MT4",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "(8,12,6)"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "30"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "1/p+1/q>1/2"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "150 sm²"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "32√3 sm²"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "Yo‘q"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "Barchasida V−E+F=2. pF=qV=2E mos ravishda tetraedr 12, kub 24, oktaedr 24, dodekaedr 60, ikosaedr 60.",
+    "2": "(3,3),(3,4),(3,5),(4,3),(5,3); p≥6 va q≥3 da tengsizlik bajarilmaydi.",
+    "3": "Kub:54 sm²,27 sm³. Oktaedr:8√3 sm²,8√2/3 sm³.",
+    "4": "Ochiq mahsulot. Yoq shakli va tutashuv mos, sanash to‘liq, yashirin qismlar e’tiborga olingan; yoyilma bo‘lsa yopilganda mosligi tushuntiriladi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "MT04 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT04 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT04 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT04 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT04 test 1 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "(8,12,6)",
+      "olingan": "(8,12,6)"
+    },
+    {
+      "tekshiruv": "MT04 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "30 ",
+      "olingan": "30"
+    },
+    {
+      "tekshiruv": "MT04 test 3 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "1/p+1/q>1/2",
+      "olingan": "1/p+1/q>1/2"
+    },
+    {
+      "tekshiruv": "MT04 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "150 sm²",
+      "olingan": "150 sm²"
+    },
+    {
+      "tekshiruv": "MT04 test 5 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "32√3 sm²",
+      "olingan": "32√3 sm²"
+    },
+    {
+      "tekshiruv": "MT04 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Yo‘q",
+      "olingan": "Yo‘q"
+    },
+    {
+      "tekshiruv": "MT04 jism sanashi 1",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT04 jism sanashi 2",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT04 jism sanashi 3",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT04 jism sanashi 4",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT04 jism sanashi 5",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT04 besh juft",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT04 kub hisoblari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT04 oktaedr koeffitsiyentlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT04 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

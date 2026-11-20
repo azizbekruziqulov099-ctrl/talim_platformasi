@@ -1,0 +1,469 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 3,
+    "tur": "mustaqil ta’lim",
+    "mavzu": "Planimetriya aksiomalari va noevklid modellar",
+    "qisqa": "Planimetriya aksiomalari va noevklid modellar",
+    "maqsad": "Talaba ta’rif, aksioma va teoremani farqlaydi, parallel farazning rolini tushuntiradi, sferik va giperbolik modelni o‘z shartlari doirasida taqqoslaydi.",
+    "tayanch": [
+      "Aksioma",
+      "Ta’rif",
+      "Parallel farazi",
+      "Sferik geometriya",
+      "Puankare diski"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "Izlanish → dalil",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; MT3, asl skanning 6-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "Euclid, Elements I",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/bookI/bookI.html"
+      },
+      {
+        "nomi": "Cornell: Geometries of Surfaces",
+        "izoh": "https://pi.math.cornell.edu/~mec/Winter2009/Victor/part4.htm"
+      },
+      {
+        "nomi": "UCLA, Yan Tao: Hyperbolic Geometry II, 2023",
+        "izoh": "https://circles.math.ucla.edu/circles/lib/data/Handout-3851-3481.pdf"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Mustaqil ishga tayyorgarlik",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Asosiy natija nimadan tekshiriladi?",
+        "javob": "Shart, manba, hisob va xulosadan."
+      },
+      {
+        "savol": "Manbada yo‘q gapni iqtibos deyish mumkinmi?",
+        "javob": "Yo‘q; o‘z tahlili alohida yoziladi."
+      },
+      {
+        "savol": "Rasm o‘zi isbot bo‘ladimi?",
+        "javob": "Faqat rasmga qarab umumiy isbot deb bo‘lmaydi."
+      },
+      {
+        "savol": "Birliklar qayerda ko‘rsatiladi?",
+        "javob": "Berilganlarda, hisobda va javobda."
+      },
+      {
+        "savol": "Tekshiruv qachon bajariladi?",
+        "javob": "Yakuniy topshirishdan oldin."
+      },
+      {
+        "savol": "Talabaning mustaqil hissasi qayerda?",
+        "javob": "Yangi misol, izoh, tekshiruv va metodik xulosada."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Qanday natija topshiriladi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Ta’rif, aksioma, teorema, xossa va alomat jadvali"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Ikki sferik hisob va ikki burchak yig‘indisi tekshiruvi"
+      }
+    ],
+    "goya": "Har bir xulosa uchun manba yoki tekshiriladigan asos taqdim etiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Deduktiv tuzilma",
+      "izoh": "Qabul qilish va isbotlash",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Ta’rif va aksioma",
+          "izoh": "Ta’rif atamaning ma’nosini, aksioma qabul qilingan boshlang‘ich munosabatni belgilaydi. Teorema shu tizimda isbotlanadi. Misol ko‘rsatish universal teoremani isbotlamaydi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Tur",
+                "Misol vazifasi"
+              ],
+              "qatorlar": [
+                [
+                  "Ta’rif",
+                  "Parallelogramm qanday figura?"
+                ],
+                [
+                  "Aksioma",
+                  "Boshlang‘ich qabul qilingan qoida"
+                ],
+                [
+                  "Teorema",
+                  "Oldingi asoslardan chiqarilgan natija"
+                ],
+                [
+                  "Qarama-qarshi misol",
+                  "Universal da’voni rad etadi"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Xossa va alomat",
+          "izoh": "Xossa berilgan figura turidan natijaga boradi. Alomat yetarli shart orqali figura turini aniqlaydi. Bir yo‘nalishning teskarisi alohida asos talab qiladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "To‘rtburchak diagonallari",
+              "shart": "“Diagonallari teng bo‘lsa, kvadrat” da’vosini tekshiring.",
+              "qadamlar": [
+                "3×4 to‘g‘ri to‘rtburchak oling.",
+                "Diagonallari 5 va 5.",
+                "Tomonlari teng emas."
+              ],
+              "javob": "Da’vo yolg‘on; qarama-qarshi misol bor."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Parallel farazi",
+          "izoh": "Evklid tekisligi uchun tashqi nuqtadan berilgan chiziqqa parallel yagona chiziq mavjudligi bilan tanishiladi. Bu zamonaviy shakl tarixiy V postulat matnining so‘zma-so‘z nusxasi emas.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "I kitobdagi asl postulat bayoni va zamonaviy parallel shaklini alohida ustunda yozing. Ekvivalentlikni tegishli geometriya asoslari doirasida tushuntiring."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Sferik namuna",
+      "izoh": "“To‘g‘ri” tushunchasi modelga bog‘liq",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Sferada geodezik",
+          "izoh": "Sfera sirtida geodeziklar katta doiralar bo‘ylab boradi; yaqin nuqtalar uchun qisqa yoy tanlanadi. Tekislikdagi kesmani sfera ichidan o‘tkazish sirt bo‘ylab yo‘l emas.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Modelda nuqta sferada, tomon esa tanlangan katta doira yoyida. Antipodal nuqtalar orqali ko‘plab katta doira o‘tishi mumkin."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Sferani antipodal nuqtalar aynanlashtiriladigan elliptik tekislikning barcha global xossalariga tenglashtirmang."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Uchta to‘g‘ri burchak",
+          "izoh": "Shimoliy qutb N, ekvatorda uzunliklari 0° va 90° bo‘lgan A, B nuqtalarni oling. Tomonlar meridian va ekvatorning chorak yoylaridir. Burchaklar sirtga urinma yo‘nalishlar orasida o‘lchanadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "NAB sferik uchburchak",
+              "shart": "Burchaklar yig‘indisi?",
+              "qadamlar": [
+                "A da meridian ekvatorga 90°.",
+                "B da ham 90°.",
+                "N da meridianlar orasida 90°."
+              ],
+              "javob": "270°. Bu Evklid tekisligidagi uchburchak emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Model o‘zgarganda natija",
+          "izoh": "Evklid tekisligida uchburchak yig‘indisi 180°. Sferik misolda 270° chiqishi arifmetik ziddiyat emas: nuqta, tomon va fazo haqidagi farazlar boshqa.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Savol",
+                "Javob oldidan shart"
+              ],
+              "qatorlar": [
+                [
+                  "Qaysi sirt?",
+                  "Tekislik yoki sfera"
+                ],
+                [
+                  "Tomon nima?",
+                  "Kesma yoki katta doira yoyi"
+                ],
+                [
+                  "Burchak qanday?",
+                  "Tegishli yo‘nalishlar orasida"
+                ],
+                [
+                  "Xulosa qayerda amal qiladi?",
+                  "Aynan tanlangan modelda"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Puankare diski",
+      "izoh": "Giperbolik tekislik modeli",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Ochiq birlik disk",
+          "izoh": "Nuqtalar x²+y²<1 ichida. Chegara aylana modelning nuqtalari qatoriga kirmaydi. Rasmda chegara borligi uni masofasi oddiy chekli chiziq qiladi degani emas.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Diskdagi nuqta ichkarida; chegara ideal yo‘nalishlarni ko‘rsatadi. Diskning odatiy chizilgan radiusi giperbolik masofaga teng emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Geodeziklar",
+          "izoh": "Disk geodeziklari diametrlar yoki chegara aylanani tik kesuvchi doiralarning disk ichidagi yoylari. Ixtiyoriy egri yoy tanlash mumkin emas. Ushbu model burchakni saqlaydi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Bitta diametr va bitta ortogonal doira yoyini sxematik chizing. Ularning chegaradan tashqaridagi davomlarini model nuqtalari sifatida belgilang demang."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Uchburchak burchaklari",
+          "izoh": "Ichki uchlari diskda bo‘lgan aynimagan giperbolik uchburchakning burchaklar yig‘indisi 180° dan kichik. Chegaradagi ideal uchlarni odatiy ichki nuqta bilan aralashtirmang.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Burchaklar 40°, 50°, 60°",
+              "shart": "Yig‘indi va modelga moslik?",
+              "qadamlar": [
+                "40+50+60=150°.",
+                "150<180; giperbolik uchburchak burchak shartiga mos."
+              ],
+              "javob": "Yig‘indi 150°. Faqat sonlar tekshiruvi berilgan chizmani o‘zi tasdiqlamaydi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Taqqoslash loyihasi",
+      "izoh": "Chizma va dalil chegarasi",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Uchta ustun",
+          "izoh": "Evklid tekisligi, sfera va Puankare diskini taqqoslang. Har ustunda nuqta, tomon, burchak yig‘indisi misoli va chizma cheklovi bo‘lsin.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Model",
+                "Ushbu paketdagi uchburchak"
+              ],
+              "qatorlar": [
+                [
+                  "Evklid",
+                  "180°"
+                ],
+                [
+                  "Sfera, N-A-B misoli",
+                  "270°"
+                ],
+                [
+                  "Giperbolik, ichki uchlar",
+                  "180° dan kichik"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Nimani aytmaymiz?",
+          "izoh": "Oddiy chizg‘ich bilan disk rasmini o‘lchab giperbolik masofa deb yozmang. Sferadagi har qanday uchburchakni aynan 270° demang. Bir misoldan barcha geometriyalar uchun hukm chiqarmang.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Har rasm ostida model sharti va qaysi xulosa namoyish etilayotganini bir jumlada yozing. Sonli mashqdan umumiy teoremaga o‘tish uchun alohida asos kerak."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Boshlang‘ich ta’limga moslashtirish",
+          "izoh": "Noevklid nazariyasining murakkab isbotini bolaga majburan bermang. Globus ustida eng qisqa yo‘l va qog‘ozdagi kesma tushunchalarini savol bilan solishtirish mumkin.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Metodik mahsulot: 5 daqiqalik “qaysi sirt bo‘ylab yuramiz?” namoyishi; globusda ikki nuqta; ip bilan yoy; farazlar haqida yakuniy savol. Talaba hisobotida ilmiy cheklovlar to‘liq qoladi."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Sferik misolni Evklid teoremasiga qarshi dalil deyish",
+      "sabab": "Farazlar almashtirilgan",
+      "togri": "Xulosa o‘z modelida olinadi."
+    },
+    {
+      "xato": "Disk chegarasini oddiy nuqta deb olish",
+      "sabab": "Ochiq disk sharti yo‘qolgan",
+      "togri": "x²+y²<1."
+    },
+    {
+      "xato": "Ixtiyoriy yoyni geodezik deyish",
+      "sabab": "Ortogonal shart tekshirilmagan",
+      "togri": "Diametr yoki chegaraga tik doira yoyi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "10 soatlik izlanish va loyiha",
+    "bosqichlar": [
+      "Manbani belgilash va konspekt",
+      "Hisob yoki model yaratish",
+      "Natijani tekshirish va metodik izoh"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Dalil",
+        "matn": "Ko‘chirma va o‘z tahlilini farqlang."
+      },
+      {
+        "sarlavha": "Hisob",
+        "matn": "Qadam, birlik va shartlarni yozing."
+      },
+      {
+        "sarlavha": "Tekshiruv",
+        "matn": "Yechim kaliti bilan xato sababini tahlil qiling."
+      }
+    ],
+    "tavsiya": "Ilovadagi 10 soatlik reja va tavsiyaviy mezon o‘qituvchi tomonidan guruh sharoitiga moslashtiriladi. Bu tayyor talaba referati emas."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Qabul qilingan shartlar ochiq yoziladi.",
+      "Manba va yangi o‘quv misoli farqlanadi.",
+      "Hisob va xulosa mustaqil tekshiriladi.",
+      "Natija 10 soatlik ish rejasi bo‘yicha topshiriladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "Ta’rifning vazifasi?",
+      "variantlar": [
+        "Har qanday da’voni isbotlash",
+        "Atamaning ma’nosini belgilash",
+        "Rasmni o‘lchash",
+        "Natijani taxmin qilish"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "3×4 to‘rtburchak diagonallari?",
+      "variantlar": [
+        "5 va 5",
+        "3 va 4",
+        "7 va 7",
+        "12 va 12"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "N-A-B sferik misolda burchaklar yig‘indisi?",
+      "variantlar": [
+        "90°",
+        "150°",
+        "180°",
+        "270°"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "Puankare diskida qaysi nuqtalar olinadi?",
+      "variantlar": [
+        "Faqat chegara",
+        "Disk tashqarisi",
+        "Ochiq disk ichi",
+        "Butun rasm tekisligi"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Giperbolik aynimagan, ichki uchli uchburchak uchun?",
+      "variantlar": [
+        "Yig‘indi=270°",
+        "Yig‘indi<180°",
+        "Yig‘indi=360°",
+        "Yig‘indi>360°"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Diskdagi har qanday doira yoyi geodezikmi?",
+      "variantlar": [
+        "Ha",
+        "Faqat rangli bo‘lsa",
+        "Har doim diametr bo‘ladi",
+        "Yo‘q, chegara bilan ortogonallik yoki diametr sharti kerak"
+      ],
+      "javob": 3
+    }
+  ],
+  "nazorat": [
+    "Mavzudagi ikki asosiy tushunchani farqlang.",
+    "Bitta natijani boshqa usulda tekshiring.",
+    "Misolda qabul qilingan farazlarni ayting.",
+    "Manba bilan o‘z xulosangiz chegarasini ko‘rsating.",
+    "Bitta keng tarqalgan xatoni tahlil qiling.",
+    "Boshlang‘ich sinf uchun moslashtirishda nimalar o‘zgaradi?"
+  ],
+  "mustaqil_ish": [
+    "Bitta ta’rif, aksioma, teorema va alomatni tanlab ularning vazifasini yozing; da’vo va teskarisini farqlang.",
+    "Shimoliy qutb va ekvatordagi uzunliklari 60° farqli ikki nuqta bilan qisqa yoyli sferik uchburchak burchaklarini toping.",
+    "Burchaklari 35°, 55°, 65° bo‘lgan giperbolik uchburchak uchun yig‘indi va 180° dan farqni hisoblang. Bu hisob chizma qurilganini isbotlaydimi?",
+    "Uch modelning izohli taqqoslash jadvali va 5 daqiqalik globus namoyishini tayyorlang."
+  ],
+  "keyingi": {
+    "mavzu": "Navbatdagi mustaqil ta’lim bandi",
+    "izoh": "Reja, mahsulot va tekshiruv mezonlari bilan ish davom etadi."
+  },
+  "rasmlar": []
+}

@@ -1,0 +1,513 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 14,
+    "tur": "amaliy",
+    "mavzu": "Vaqt, narx, tezlik va yo‘l: amaliy mashg‘ulot",
+    "qisqa": "Bog‘liq miqdorlar amaliyoti",
+    "maqsad": "Talaba vaqt nuqtasi va oraliqni farqlaydi; birlik narx, miqdor, qiymat hamda tezlik-vaqt-yo‘l munosabatlarini model va mos birliklarda qo‘llaydi; o‘rtacha tezlikni to‘g‘ri hisoblaydi.",
+    "tayanch": [
+      "Vaqt oralig‘i",
+      "Narx va qiymat",
+      "Birlik tezlik",
+      "Yo‘l",
+      "O‘rtacha tezlik"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "s=vt",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; A14, asl skanning 6-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Prealgebra2e,5.6:Ratios and Rate",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/5-6-ratios-and-rate"
+      },
+      {
+        "nomi": "OpenStax Elementary Algebra2e,3.5:Uniform Motion",
+        "izoh": "https://openstax.org/books/elementary-algebra-2e/pages/3-5-solve-uniform-motion-applications"
+      },
+      {
+        "nomi": "BIPM:SI Brochure",
+        "izoh": "https://www.bipm.org/en/publications/si-brochure"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "M14–M15 va A10",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "1 h necha min?",
+        "javob": "60."
+      },
+      {
+        "savol": "1 min necha s?",
+        "javob": "60."
+      },
+      {
+        "savol": "0,5 h necha min?",
+        "javob": "30."
+      },
+      {
+        "savol": "Bir tekis yo‘l formulasi?",
+        "javob": "s=vt."
+      },
+      {
+        "savol": "Qiymat formulasi?",
+        "javob": "C=pq."
+      },
+      {
+        "savol": "Jami o‘rtacha tezlik qanday?",
+        "javob": "Jami yo‘l/jami vaqt."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Bir xil raqam, bir xil vaqtmi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "1,5 h va 1 h 50 min tengmi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Teng masofalar 60 va 40 km/h bo‘lsa, o‘rtacha tezlik 50 bo‘ladimi?"
+      }
+    ],
+    "goya": "Vaqt shkalasi va nisbatning asosiy miqdorlari yoziladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Vaqt nuqtasi va vaqt oralig‘i",
+      "izoh": "Soat yozuvini davomiylikdan ajratamiz",
+      "belgi": "Vaqt nuqtasi va oraliq",
+      "slaydlar": [
+        {
+          "sarlavha": "Qachon va qancha vaqt?",
+          "izoh": "09:30 vaqt nuqtasi,2 soat esa davomiylik. Tugash va boshlanish sanasi yoki kun ketma-ketligi kerak bo‘lishi mumkin. Bu mashg‘ulotda soatlar bir xil shkala bo‘yicha, oddiy 24 soatlik sutka modeli bilan beriladi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Yozuv",
+                "Mazmun"
+              ],
+              "qatorlar": [
+                [
+                  "09:30",
+                  "Kun ichidagi vaqt nuqtasi"
+                ],
+                [
+                  "2 h 15 min",
+                  "Davomiylik"
+                ],
+                [
+                  "Ertasi kuni 01:15",
+                  "Keyingi kun sharti bor vaqt nuqtasi"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Bir kunning 01:15 va oldingi kunning 23:40 yozuvini sanasiz oddiy ayirish mumkin emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "60 lik o‘tkazish va o‘nli soat",
+          "izoh": "1 h=60 min,1 min=60 s. O‘nli soat yozuvidagi kasr qism soatning ulushidir, minut raqami emas. Shu sabab 1,5 h 1 h 50 min degani emas.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki yozuv",
+              "shart": "1,5 h va 1 h 50 min ni minutda yozing.",
+              "qadamlar": [
+                "1,5·60=90 min.",
+                "1 h 50 min=60+50=110 min.",
+                "Ikkalasi teng emas."
+              ],
+              "javob": "90 min va 110 min."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yarim tundan o‘tgan oraliq",
+          "izoh": "Kun almashishi aniq berilganida, yarim tungacha va undan keyingi qismlar qo‘shiladi. Boshqa vaqt mintaqasi yoki soat o‘zgarishi bo‘lmagan maktab modeli olinadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "23:40 dan ertasi 01:15 gacha",
+              "shart": "Davomiylikni toping.",
+              "qadamlar": [
+                "23:40 dan 24:00 gacha 20 min.",
+                "00:00 dan 01:15 gacha 75 min.",
+                "20+75=95 min=1 h 35 min."
+              ],
+              "javob": "95 min."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Narx, miqdor va qiymat",
+      "izoh": "Masaladagi narxlar shartli",
+      "belgi": "C=pq",
+      "slaydlar": [
+        {
+          "sarlavha": "Birlik narxdan umumiy qiymatga",
+          "izoh": "Quyidagi barcha narxlar matematik mashq uchun shartli berilgan. Birlik narx p, olingan miqdor q bo‘lsa, C=pq. Birliklar mos bo‘lsin: so‘m/dona bilan dona yoki so‘m/kg bilan kg.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "7 ta daftar",
+              "shart": "Bitta daftar 3200 so‘m. Jami va 50000 so‘mdan qaytim?",
+              "qadamlar": [
+                "C=3200·7=22400 so‘m.",
+                "Qaytim 50000−22400=27600 so‘m.",
+                "22400+27600=50000."
+              ],
+              "javob": "22400 so‘m; qaytim 27600 so‘m."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Kasr miqdor bo‘yicha narx",
+          "izoh": "Mahsulot narxi kilogrammga berilgan bo‘lsa, gramm kilogrammga keltiriladi. Baho bilan umumiy qiymat farqlanadi. Olingan miqdor 0,75 kgbo‘lsa,1 kg narxidan kichik umumiy qiymat kutiladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "750 g mahsulot",
+              "shart": "Shartli narx 28000 so‘m/kg. Qiymat qancha?",
+              "qadamlar": [
+                "750 g=0,75 kg.",
+                "28000·0,75=21000 so‘m.",
+                "21000:28000=0,75 kg bilan tekshiring."
+              ],
+              "javob": "21000 so‘m."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Bir necha turdagi xarid",
+          "izoh": "Har bir tovarning qiymati alohida topiladi, so‘ng qo‘shiladi. Turli mahsulotlarning dona sonini bitta o‘rtacha narxga ko‘paytirish uchun mos shart bo‘lishi kerak.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Tovar",
+                "Shartli birlik narx",
+                "Miqdor",
+                "Qiymat"
+              ],
+              "qatorlar": [
+                [
+                  "Daftar",
+                  "3200 so‘m/dona",
+                  "3 dona",
+                  "9600 so‘m"
+                ],
+                [
+                  "Ruchka",
+                  "1800 so‘m/dona",
+                  "2 dona",
+                  "3600 so‘m"
+                ]
+              ]
+            },
+            {
+              "tur": "matn",
+              "matn": "Jami 9600+3600=13200 so‘m. Narxlar haqiqiy bozor ma’lumoti sifatida berilmagan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Tezlik, vaqt va yo‘l",
+      "izoh": "Birliklarni moslashtiramiz",
+      "belgi": "s=vt",
+      "slaydlar": [
+        {
+          "sarlavha": "Bir tekis harakat",
+          "izoh": "s=vt doimiy tezlikdagi harakat modeli uchun. Shu oraliqning mos o‘rtacha tezligi bilan ham umumiy masofa olinadi. Vaqtning birligi tezlik maxrajidagi vaqt birligiga mos keltiriladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "4,5 km/h bilan 1 h 20 min",
+              "shart": "Masofa qancha?",
+              "qadamlar": [
+                "1 h 20 min=4/3 h.",
+                "s=4,5·4/3=6 km.",
+                "6:4,5=4/3 h bilan tekshiring."
+              ],
+              "javob": "6 km."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Tezlik birliklari",
+          "izoh": "1m/s=3600m/h=3,6 km/h. Teskari o‘tkazishda 3,6 ga bo‘linadi. Faqat metrni kilometrga almashtirib, vaqt maxrajini o‘zgartirmaslik xato.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "5m/s",
+              "shart": "km/hga o‘tkazing.",
+              "qadamlar": [
+                "5·3600=18000m/h.",
+                "18000m/h=18 km/h.",
+                "18:3,6=5m/s."
+              ],
+              "javob": "18 km/h."
+            }
+          ]
+        },
+        {
+          "sarlavha": "O‘rtacha tezlik o‘rtacha son emas",
+          "izoh": "Umumiy o‘rtacha tezlik jami yo‘lning jami vaqtga nisbatidir. Bir xil masofalar turli tezlikda bosilsa, vaqtlar har xil bo‘ladi. Tezliklarning oddiy arifmetik o‘rtachasi umumiy holda mos kelmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "120 km dan ikki bosqich",
+              "shart": "To‘xtashsiz birinchi 120 km 60 km/h, ikkinchi 120 km 40 km/h. O‘rtacha tezlik?",
+              "qadamlar": [
+                "Vaqtlar 120/60=2 h va 120/40=3 h.",
+                "Jami 240 km,5 h.",
+                "vort=240/5=48 km/h; 50 emas."
+              ],
+              "javob": "48 km/h."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Miqdorlarni bitta modelda bog‘lash",
+      "izoh": "Natijani matnga qaytaramiz",
+      "belgi": "Birlik va bog‘lanish",
+      "slaydlar": [
+        {
+          "sarlavha": "Yo‘l va kutish vaqtini qo‘shish",
+          "izoh": "Umumiy davomiylikka faqat harakat emas, kutish yoki boshqa mashg‘ulot ham kirishi mumkin. O‘rtacha yo‘l tezligini tanlashda qaysi vaqt oralig‘i olinayotganini aniqlang.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "09:20 dan safar",
+              "shart": "Borish va qaytish:35 min yo‘l,25 min do‘kon,40 min qaytish. Tugash vaqti?",
+              "qadamlar": [
+                "35+25+40=100 min=1 h 40 min.",
+                "09:20+1 h 40 min=11:00.",
+                "Bosqichlar ketma-ket va bir kunda deb olingan."
+              ],
+              "javob": "11:00."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Masofa o‘zgarmasa",
+          "izoh": "s doimiy bo‘lsa, v ortganda t=s/v kamayadi; v nol bo‘lmasa. Bu teskari bog‘lanish yo‘l bir xil va model shartlari mos bo‘lganda ishlaydi. Bir xil vaqt shartida esa masofa tezlikka to‘g‘ri bog‘liq.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "12 km yo‘l",
+              "shart": "4 km/h va 6 km/h bilan qancha vaqt?",
+              "qadamlar": [
+                "12/4=3 h.",
+                "12/6=2 h.",
+                "Har ikkisi uchun vt=12 km."
+              ],
+              "javob": "3 h va 2 h."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Birlik bilan xatoni topish",
+          "izoh": "C=pq, s=vt, t=s/v munosabatlarida har bir harfning miqdori va birligi yozilsin. “0,5 soat 50 min” xatosi son yozuvini vaqt yozuviga tenglashtirishdan keladi. Teskari amal tekshiruv sifatida ishlatiladi.",
+          "elementlar": [
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "0,5 h=30 min. so‘m/kg·kg=so‘m; km/h·h=km."
+            },
+            {
+              "tur": "matn",
+              "matn": "Tekshiruvda: model sharti, birlik, hisob va javobning mantiqiy kattaligi alohida ko‘riladi."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Soat kasrini minut raqami sanash.",
+      "sabab": "60 lik bog‘lanish unutilgan.",
+      "togri": "1,5 h=90 min."
+    },
+    {
+      "xato": "Kun almashishini tashlab ayirish.",
+      "sabab": "Sanalar ketma-ketligi yo‘q.",
+      "togri": "Yarim tun qismlari hisoblanadi."
+    },
+    {
+      "xato": "gni kg narxiga o‘tkazmasdan ko‘paytirish.",
+      "sabab": "Birliklar mos emas.",
+      "togri": "gdan kgga o‘tiladi."
+    },
+    {
+      "xato": "m/sni faqat 1000 ga bo‘lish.",
+      "sabab": "Vaqt birligi unutilgan.",
+      "togri": "3600/1000 koeffitsiyent."
+    },
+    {
+      "xato": "O‘rtacha tezlikni har doim arifmetik o‘rtacha olish.",
+      "sabab": "Jami vaqt hisoblanmagan.",
+      "togri": "Jami yo‘l/jami vaqt."
+    },
+    {
+      "xato": "Kutish vaqtini izohsiz qo‘shish yoki tashlash.",
+      "sabab": "Qaysi vaqt oralig‘i so‘ralgani yo‘q.",
+      "togri": "Masala sharti bo‘yicha vaqt tanlanadi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Jadval va birliklar orqali model",
+    "bosqichlar": [
+      "Miqdorlarni birliklari bilan jadvalga joylash",
+      "Mos formula va vaqt oralig‘ini tanlash",
+      "Natijani teskari amal va matn bilan tekshirish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Vaqt",
+        "matn": "Nuqta va davomiylik boshqa yozuvda berilsin."
+      },
+      {
+        "sarlavha": "Narx",
+        "matn": "Shartli birlik narxi va umumiy qiymat ajratilsin."
+      },
+      {
+        "sarlavha": "Harakat",
+        "matn": "Har bosqich uchun s, v, t alohida yozilsin."
+      }
+    ],
+    "tavsiya": "Narxlar o‘quv masalasining shartli ma’lumoti. Natija real bozor narxi yoki xarid tavsiyasi sifatida berilmaydi."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Vaqt nuqtasi va davomiylik farqlanadi.",
+      "Birlik narx va umumiy qiymat boshqa miqdor.",
+      "Harakatda vaqt va tezlik birliklari mos.",
+      "O‘rtacha tezlik jami kattaliklar orqali topiladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "23:40 dan ertasi 01:15 gacha qancha minut?",
+      "variantlar": [
+        "75",
+        "95",
+        "135",
+        "155"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "1,5 h necha minut?",
+      "variantlar": [
+        "150",
+        "110",
+        "90",
+        "65"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "7 daftar, bittasi shartli 3200 so‘m. Jami?",
+      "variantlar": [
+        "22400 so‘m",
+        "3207 so‘m",
+        "27600 so‘m",
+        "9600 so‘m"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "5m/s necha km/h?",
+      "variantlar": [
+        "1,8",
+        "50",
+        "3,6",
+        "18"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "4,5 km/h bilan 1 h 20 min yurilsa, masofa?",
+      "variantlar": [
+        "4,5 km",
+        "6 km",
+        "90 km",
+        "5,7 km"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "120 km 60 km/h, keyingi 120 km 40 km/h. Umumiy o‘rtacha tezlik?",
+      "variantlar": [
+        "50 km/h",
+        "100 km/h",
+        "48 km/h",
+        "40 km/h"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Yarim tundan o‘tgan oraliqni izohlang.",
+    "O‘nli soat bilan soat-minut yozuvini farqlang.",
+    "Kasr massadagi narxni qanday hisoblash mumkin?",
+    "1m/s=3,6 km/hni asoslang.",
+    "Teng masofalarda o‘rtacha tezlik nega oddiy o‘rtacha emas?",
+    "Bir xil yo‘lda tezlik va vaqt qanday bog‘liq?"
+  ],
+  "mustaqil_ish": [
+    "22:50 dan ertasi 00:35 gacha davomiylikni toping.",
+    "Shartli narxlar:4 daftar 3500 so‘mdan,3 ruchka 2000 so‘mdan. Jami va 50000 so‘mdan qaytimni toping.",
+    "7,2 km/hni m/sga o‘tkazing; shu tezlikda 25 min yurilgan yo‘lni toping.",
+    "90 km 45 km/h, keyingi 90 km 30 km/h. Jami vaqt va umumiy o‘rtacha tezlikni toping."
+  ],
+  "keyingi": {
+    "mavzu": "Matnli masalalar va mantiqiy usullar",
+    "izoh": "Model, tenglama, foiz va barcha holatlarni tekshirishni takrorlang."
+  },
+  "rasmlar": []
+}

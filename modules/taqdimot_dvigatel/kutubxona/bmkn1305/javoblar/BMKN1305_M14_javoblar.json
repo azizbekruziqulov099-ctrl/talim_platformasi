@@ -1,0 +1,172 @@
+{
+  "mavzu_id": "BMKN1305-3-M14",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "235 cm"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "7500 cm²"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "4800 s"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "2 L"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "7,5 cm"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "Birlik o‘zgarsa, sonli qiymat o‘zgarishi mumkin, miqdor saqlanadi"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": [
+      "320 cm=3,2 m",
+      "2500 g=2,5 kg"
+    ],
+    "2": [
+      "12 000 cm²",
+      "4000 cm³=4 L"
+    ],
+    "3": [
+      "135 min=8100 s",
+      "6,5 cm"
+    ],
+    "4": "8,55≤x<8,65 cm. Bu faqat ko‘rsatilgan yaxlitlash qoidasi oralig‘i; asbob va usulga oid barcha noaniqliklarning jami bahosi emas."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "M14 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M14 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M14 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M14 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M14 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "235.00 cm",
+      "olingan": "235 cm"
+    },
+    {
+      "tekshiruv": "M14 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "7500.00 cm²",
+      "olingan": "7500 cm²"
+    },
+    {
+      "tekshiruv": "M14 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "4800 s",
+      "olingan": "4800 s"
+    },
+    {
+      "tekshiruv": "M14 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "2.000 L",
+      "olingan": "2 L"
+    },
+    {
+      "tekshiruv": "M14 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "7.5 cm",
+      "olingan": "7,5 cm"
+    },
+    {
+      "tekshiruv": "M14 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Birlik o‘zgarsa, sonli qiymat o‘zgarishi mumkin, miqdor saqlanadi",
+      "olingan": "Birlik o‘zgarsa, sonli qiymat o‘zgarishi mumkin, miqdor saqlanadi"
+    },
+    {
+      "tekshiruv": "M14 qo‘shilgan kesmalar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M14 birlikdagi kvadrat-kub koeffitsiyentlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M14 aralash birlik 2m30cm",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M14 yaxlitlash 12,4 chegaralari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M14 mustaqil uzunlik-massa",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M14 mustaqil yuz-hajm",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M14 mustaqil vaqt-kesma",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M14 mustaqil yaxlitlash",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M14 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

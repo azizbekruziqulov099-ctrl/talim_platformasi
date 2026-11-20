@@ -1,0 +1,521 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 12,
+    "tur": "amaliy",
+    "mavzu": "Figuralarning yuzi va perimetri: amaliy mashg‘ulot",
+    "qisqa": "Yuz amaliyoti",
+    "maqsad": "Talaba teng, kongruent va tengdosh figuralarni ajratadi; yuzni katak, bo‘lak va formula bilan hisoblaydi; perimetr hamda yuz birliklarini shartlari bilan qo‘llaydi.",
+    "tayanch": [
+      "Yuz birligi",
+      "Tengdoshlik",
+      "Katak sanash",
+      "Murakkab soha",
+      "Perimetr"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "S=ab",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; A12, asl skanning 6-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Contemporary Mathematics,10.6",
+        "izoh": "https://openstax.org/books/contemporary-mathematics/pages/10-6-area"
+      },
+      {
+        "nomi": "OpenStax Contemporary Mathematics,10.4",
+        "izoh": "https://openstax.org/books/contemporary-mathematics/pages/10-4-polygons-perimeter-and-circumference"
+      },
+      {
+        "nomi": "BIPM:SI Brochure",
+        "izoh": "https://www.bipm.org/en/publications/si-brochure"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "A11 va tekis figuralar",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "1 m² necha sm²?",
+        "javob": "10000."
+      },
+      {
+        "savol": "Yuz uzunlikmi?",
+        "javob": "Yo‘q."
+      },
+      {
+        "savol": "To‘g‘ri to‘rtburchak yuzi qanday?",
+        "javob": "ab."
+      },
+      {
+        "savol": "Uchburchak yuzi qanday?",
+        "javob": "ah/2."
+      },
+      {
+        "savol": "Har qisman katak yarimmi?",
+        "javob": "Yo‘q."
+      },
+      {
+        "savol": "Teng figuralar tengdoshmi?",
+        "javob": "Ha."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Bir xil yuz, bir xil shaklmi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "3×4 va 2×6 shakllar bir xil yuzga ega bo‘lsa, ular ustma-ust keladimi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Qisman kataklar ulushi noma’lum bo‘lsa, bitta aniq son berish mumkinmi?"
+      }
+    ],
+    "goya": "Shakl tengligi, yuz tengligi va o‘lchovning aniqligi ajratiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Yuz, tenglik va tengdoshlik",
+      "izoh": "Shakl bilan o‘lchovni ajratamiz",
+      "belgi": "Tenglik va tengdoshlik",
+      "slaydlar": [
+        {
+          "sarlavha": "Yuzni birlik kvadrat bilan tushunish",
+          "izoh": "Yuz tekis sohaning o‘lchovidir. Birlik kvadrat bo‘shliqsiz va ichki qismlari ustma-ust tushmasdan joylashtiriladi. Uzunlik birligi bilan yuz birligi boshqa:1 sm va 1 sm² bir xil miqdor emas.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "3×4 to‘g‘ri to‘rtburchakda 12 ta birlik kvadrat joylashadi. Boshqa birlik tanlansa, sonli qiymat o‘zgaradi, sohaning o‘zi o‘zgarmaydi."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Chegara chizig‘i perimetrga, ichki soha yuzga tegishli."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Teng va tengdosh figuralar",
+          "izoh": "Bu mashg‘ulotda teng figuralar ustma-ust keltiriladigan kongruent figuralar, tengdosh figuralar esa yuzlari teng figuralar deb olinadi. Teng figuralar tengdosh, ammo tengdoshlarning shakli bir xil bo‘lishi shart emas.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Figura",
+                "Yuz",
+                "Perimetr"
+              ],
+              "qatorlar": [
+                [
+                  "3×4 to‘g‘ri to‘rtburchak",
+                  "12",
+                  "14"
+                ],
+                [
+                  "2×6 to‘g‘ri to‘rtburchak",
+                  "12",
+                  "16"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Ikkalasi tengdosh, lekin kongruent emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Teng qismlardan qayta tuzish",
+          "izoh": "Ikki figura chekli sondagi mos kongruent bo‘laklardan ichki ustma-ust tushishsiz tuzilsa, yuzlar yig‘indisi bir xil bo‘ladi. Bo‘laklarning joyi va yo‘nalishi o‘zgarishi mumkin. Bu yerda aniq ko‘pburchak misollari bilan ishlaymiz.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "12 ta birlik kvadrat",
+              "shart": "3×4 va 2×6 to‘g‘ri to‘rtburchaklarni qanday taqqoslaymiz?",
+              "qadamlar": [
+                "Har biri 12 ta teng birlik kvadratga bo‘linadi.",
+                "Mos kvadratlarning yuzlari teng.",
+                "Yig‘indilar 12 va 12; shakllar har xil bo‘lsa ham yuz teng."
+              ],
+              "javob": "Tengdosh va teng bo‘laklardan qayta tuziladigan misol."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Yuzni o‘lchash usullari",
+      "izoh": "Sanash va chegaralash",
+      "belgi": "Katak va bo‘laklar",
+      "slaydlar": [
+        {
+          "sarlavha": "To‘liq va yarim kataklar",
+          "izoh": "Har bir katakning yuzi 1 sm² bo‘lsin. Chegaradagi qismlar aynan yarim ekanligi geometrik shart bilan berilganda, yarimlarni juftlash mumkin. Har qanday qiya chegara katakni teng ikkiga bo‘ladi deb olinmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Katak sanash",
+              "shart": "8 to‘liq va 4 ta aynan yarim katakdan tuzilgan soha yuzini toping.",
+              "qadamlar": [
+                "8·1=8 sm².",
+                "4·1/2=2 sm².",
+                "8+2=10 sm²."
+              ],
+              "javob": "10 sm²."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Chegara kataklari faqat taxmin beradi",
+          "izoh": "To‘liq ichki kataklar soni N, faqat qisman qoplangan chegara kataklari soni M bo‘lsin. Har birlik katak yuzi u bo‘lsa, Nu≤S≤(N+M)u. Qismlar ulushi noma’lum bo‘lsa, bu oraliq bitta aniq son bilan almashtirilmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Pastki va yuqori baho",
+              "shart": "12 to‘liq va 6 qisman birlik katak bor; u=1 sm².",
+              "qadamlar": [
+                "Pastki baho 12 sm².",
+                "Yuqori baho 18 sm².",
+                "15 sm² deb aniq aytish uchun qisman kataklar haqidagi qo‘shimcha asos kerak."
+              ],
+              "javob": "12≤S≤18 sm²."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Bo‘laklarga ajratish",
+          "izoh": "Murakkab soha tanish uchburchak yoki to‘rtburchaklarga ajratiladi. Ajratilgan qismlar ichlari ustma-ust tushmasin; umumiy chegaraning o‘zi yuzni ikki marta hisoblamaydi. Ba’zan katta sohadan kesilgan qismni ayirish qulay.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Ichki ustma-ust tushmaydigan qismlar uchun S=S₁+…+Sₙ. Kesib olingan qismda S=Skatta−Skesilgan."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Yuz qo‘shishdan oldin qamrov va bo‘shliq yo‘qligini tekshiring."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Formulalar bilan hisoblash",
+      "izoh": "Mos asos va balandlik",
+      "belgi": "S va P",
+      "slaydlar": [
+        {
+          "sarlavha": "To‘g‘ri to‘rtburchak yuzi va perimetri",
+          "izoh": "Yuz ab, perimetr 2(a+b). Birinchisi kvadrat, ikkinchisi uzunlik birligida. Tomonlar bir xil birlikda bo‘lishi kerak. Bir xil sonli natija chiqsa ham miqdorlar tenglashmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "7,5 sm va 4 sm",
+              "shart": "Yuz va perimetrni toping.",
+              "qadamlar": [
+                "S=7,5·4=30 sm².",
+                "P=2(7,5+4)=23 sm.",
+                "Uzunliklar musbat va birliklar mos."
+              ],
+              "javob": "S=30 sm²; P=23 sm."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Uchburchak, parallelogramm, trapetsiya",
+          "izoh": "Formulada asosga mos perpendikulyar balandlik ishlatiladi. Yon tomon balandlik bilan har doim bir xil emas. Trapetsiya formulasi parallel asoslar yig‘indisining yarmini balandlikka ko‘paytiradi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Berilgan",
+                "Hisob",
+                "Yuz"
+              ],
+              "qatorlar": [
+                [
+                  "Uchburchak: a=12, h=7",
+                  "12·7/2",
+                  "42"
+                ],
+                [
+                  "Parallelogramm: a=12, h=7",
+                  "12·7",
+                  "84"
+                ],
+                [
+                  "Trapetsiya: a=5, b=11, h=4",
+                  "(5+11)·4/2",
+                  "32"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Uzunliklar sm bo‘lsa, natijalar sm²."
+            }
+          ]
+        },
+        {
+          "sarlavha": "L shakldagi soha",
+          "izoh": "8×6 sm tashqi to‘rtburchakning yuqori o‘ng burchagidan 3×2 sm to‘rtburchak kesilsin. Yuz kamayadi. Perimetrda yo‘qolgan ikki chegara kesmasining uzunliklari yangi ikki chegara bilan qoplanadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Burchakdan kesish",
+              "shart": "Yuz va perimetrni toping.",
+              "qadamlar": [
+                "S=8·6−3·2=42 sm².",
+                "Chegara uzunliklari 8,4,3,2,5,6 sm.",
+                "P=8+4+3+2+5+6=28 sm."
+              ],
+              "javob": "S=42 sm²; P=28 sm."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Birlik, masshtab va metodika",
+      "izoh": "Tashqi ko‘rinishga aldanmaymiz",
+      "belgi": "Birlik va masshtab",
+      "slaydlar": [
+        {
+          "sarlavha": "Yuz birliklarini o‘tkazish",
+          "izoh": "Uzunlik koeffitsiyenti yuzda kvadratga oshadi. 1 m²=10000 sm²; 1 dm²=100 sm². Yuzni m dan sm ga o‘tkazishda faqat 100 ga ko‘paytirish yetmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki o‘tkazish",
+              "shart": "0,45 m² va 1,2 dm² ni sm²da yozing.",
+              "qadamlar": [
+                "0,45·10000=4500 sm².",
+                "1,2·100=120 sm².",
+                "sm matndagi o‘zbekcha qisqartma, xalqaro belgisi cm."
+              ],
+              "javob": "4500 sm² va 120 sm²."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Perimetr bilan yuzni bir-biridan topib bo‘ladimi?",
+          "izoh": "Bir xil perimetr har doim bir xil yuz bermaydi; oldingi burchak kesish misoli bunga dalil. O‘xshash figuralarda uzunlik k marta o‘zgarsa, yuz k² marta o‘zgaradi. Shartlar berilmasa, perimetrning o‘zi yuzni yagona aniqlamaydi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Tomoni 3 kvadrat: S=9, P=12. Tomoni 6 kvadrat: S=36, P=24. Uzunlik 2 marta, yuz 4 marta o‘zgardi."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Faqat ayni birlik va masshtabdagi ma’lumotlar taqqoslanadi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Katak modelidagi xatoni tushuntirish",
+          "izoh": "O‘quvchi qisman kataklarning barchasini to‘liq sanasa, yuzni oshirishi mumkin. Faqat to‘liqlarni olsa, pastki baho beradi. Metodik javob qisman katakning aniq ulushi ma’lummi yoki taxminmi, shuni ajratadi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Holat",
+                "To‘g‘ri yondashuv"
+              ],
+              "qatorlar": [
+                [
+                  "Aniq yarim kataklar",
+                  "Juftlash yoki 1/2 yuzi bilan hisob"
+                ],
+                [
+                  "Ulushi noma’lum qisman katak",
+                  "Pastki-yuqori baho"
+                ],
+                [
+                  "Tanish ko‘pburchak",
+                  "Mos formula yoki ajratish"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Yuzni uzunlik birligida yozish.",
+      "sabab": "Miqdor turi aralashgan.",
+      "togri": "sm² kabi kvadrat birlik."
+    },
+    {
+      "xato": "Tengdoshni kongruent bilan tenglashtirish.",
+      "sabab": "Shakl va o‘lchov ajratilmagan.",
+      "togri": "3×4 va 2×6 qarshi misol."
+    },
+    {
+      "xato": "Har chegara katakni yarim olish.",
+      "sabab": "Aniq bo‘linish sharti yo‘q.",
+      "togri": "Ulush ma’lum bo‘lsa aniq, aks holda baho."
+    },
+    {
+      "xato": "Yuz qismlarini ustma-ust sanash.",
+      "sabab": "Qamrov tekshirilmagan.",
+      "togri": "Ajratish yoki kesishma nazorati."
+    },
+    {
+      "xato": "Perimetrdan yuzni shartsiz aniqlash.",
+      "sabab": "Figura turi va tomonlar yetarli emas.",
+      "togri": "Qo‘shimcha shart kerak."
+    },
+    {
+      "xato": "m²dan sm²ga 100 koeffitsiyent olish.",
+      "sabab": "Daraja unutilgan.",
+      "togri": "100²=10000."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Modeldan formulaga",
+    "bosqichlar": [
+      "Birlik kvadrat va qamrovni ko‘rsatish",
+      "Aniq hisob bilan taxminni ajratish",
+      "Formula va boshqa ajratish bilan tekshirish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Tengdosh",
+        "matn": "Teng kvadratlarni qayta joylashtiring."
+      },
+      {
+        "sarlavha": "Katak",
+        "matn": "To‘liq, aniq yarim va noma’lum qismni farqlang."
+      },
+      {
+        "sarlavha": "Chegara",
+        "matn": "Perimetr uchun barcha chegara kesmalarini bir marta sanang."
+      }
+    ],
+    "tavsiya": "Yuz hisobida natija bilan birga birlik, qamrov va tanlangan usulning aniqligi ham baholanadi."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Kongruentlik yuz tengligidan kuchliroq shart.",
+      "Yuz birlik kvadrat yoki bo‘laklar yig‘indisida tushuntiriladi.",
+      "Formula sharti va perpendikulyar balandlik saqlanadi.",
+      "Perimetr va yuz boshqa miqdorlar."
+    ]
+  },
+  "test": [
+    {
+      "savol": "3×4 va 2×6 to‘g‘ri to‘rtburchaklar haqida to‘g‘ri gap qaysi?",
+      "variantlar": [
+        "Kongruent",
+        "Tengdosh, lekin kongruent emas",
+        "Perimetrlari ham teng",
+        "Yuzlari har xil"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "8 to‘liq va 4 yarim birlik katak yuzi qaysi?",
+      "variantlar": [
+        "12",
+        "8",
+        "10",
+        "6"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "7,5 sm va 4 sm to‘g‘ri to‘rtburchak yuzi qaysi?",
+      "variantlar": [
+        "30 sm²",
+        "23 sm²",
+        "15 sm²",
+        "11,5 sm²"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "Shu to‘rtburchak perimetri qaysi?",
+      "variantlar": [
+        "30 sm",
+        "11,5 sm",
+        "15 sm",
+        "23 sm"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "8×6 dan burchakdagi 3×2 qism kesilsa, yuz qaysi?",
+      "variantlar": [
+        "54 sm²",
+        "42 sm²",
+        "28 sm²",
+        "6 sm²"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "0,45 m² necha sm²?",
+      "variantlar": [
+        "45",
+        "450",
+        "4500",
+        "45000"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Teng, tengdosh va teng bo‘laklardan tuzilgan figuralarni izohlang.",
+    "Katak usulida qachon aniq natija olinadi?",
+    "Pastki-yuqori bahoni tushuntiring.",
+    "L shakl yuzini ikki yo‘l bilan toping.",
+    "Burchak kesilganda perimetr nima uchun saqlanishi mumkin?",
+    "Masshtabda yuz qanday o‘zgaradi?"
+  ],
+  "mustaqil_ish": [
+    "Tomonlari 8,4 sm va 2,5 sm to‘rtburchakning yuzi va perimetrini toping.",
+    "Uchburchak asosi 14 sm, balandligi 6 sm; trapetsiya asoslari 4 va 10 sm, balandligi 5 sm. Yuzlarni toping.",
+    "10×7 sm to‘rtburchakning yuqori o‘ng burchagidan 4×3 sm qism kesildi. Qolgan yuz va perimetrni toping.",
+    "3×4 va 2×6 figuralarni birlik kvadratlarga ajratib, tengdoshligini va kongruent emasligini tushuntiring."
+  ],
+  "keyingi": {
+    "mavzu": "Massa va hajm amaliyoti",
+    "izoh": "Kvadrat birlikdan kub birlikka o‘tish ma’nosini takrorlang."
+  },
+  "rasmlar": []
+}

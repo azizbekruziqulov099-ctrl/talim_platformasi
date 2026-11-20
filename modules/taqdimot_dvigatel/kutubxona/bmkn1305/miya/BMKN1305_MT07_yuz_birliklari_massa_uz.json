@@ -1,0 +1,435 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 7,
+    "tur": "mustaqil ta’lim",
+    "mavzu": "Nostandart yuz birliklari va massa tushunchasi",
+    "qisqa": "Nostandart yuz birliklari va massa tushunchasi",
+    "maqsad": "Talaba yuzni tanlangan birliklar bilan qoplaydi, birlik kattaligi va soni munosabatini asoslaydi; massani yuz hamda hajmdan ajratib modellashtiradi.",
+    "tayanch": [
+      "Yuz birligi",
+      "Aniq qoplash",
+      "Masshtab",
+      "Massa",
+      "Additivlik"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "Izlanish → dalil",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; MT7, asl skanning 6-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "BIPM: SI Brochure",
+        "izoh": "https://www.bipm.org/en/publications/si-brochure"
+      },
+      {
+        "nomi": "OpenStax Chemistry2e, Measurements",
+        "izoh": "https://openstax.org/books/chemistry-2e/pages/1-4-measurements"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Mustaqil ishga tayyorgarlik",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Asosiy natija nimadan tekshiriladi?",
+        "javob": "Shart, manba, hisob va xulosadan."
+      },
+      {
+        "savol": "Manbada yo‘q gapni iqtibos deyish mumkinmi?",
+        "javob": "Yo‘q; o‘z tahlili alohida yoziladi."
+      },
+      {
+        "savol": "Rasm o‘zi isbot bo‘ladimi?",
+        "javob": "Faqat rasmga qarab umumiy isbot deb bo‘lmaydi."
+      },
+      {
+        "savol": "Birliklar qayerda ko‘rsatiladi?",
+        "javob": "Berilganlarda, hisobda va javobda."
+      },
+      {
+        "savol": "Tekshiruv qachon bajariladi?",
+        "javob": "Yakuniy topshirishdan oldin."
+      },
+      {
+        "savol": "Talabaning mustaqil hissasi qayerda?",
+        "javob": "Yangi misol, izoh, tekshiruv va metodik xulosada."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Qanday natija topshiriladi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Birlik ta’rifi va qoplash protokoli"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Ikki birlikdagi son-yuz jadvali va hisob"
+      }
+    ],
+    "goya": "Har bir xulosa uchun manba yoki tekshiriladigan asos taqdim etiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Yuzni birlik bilan qoplash",
+      "izoh": "Bo‘shliq va ustma-ustlik bo‘lmasin",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Nostandart birlik",
+          "izoh": "Yuz birligi sifatida bir xil kartochka tanlash mumkin. Birliklar kongruent, qoplash aniq, ichki ustma-ustlik va tirqish yo‘q bo‘lsa, yuz ularning soni bilan ifodalanadi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Nostandart degani tartibsiz degani emas. Birlikning shakli va o‘lchami tajriba davomida bir xil qoladi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "To‘rtburchak kartochka",
+          "izoh": "Bir kartochka 3×2 sm, yuzi 6 sm². 12×6 sm to‘rtburchakda 4 ustun va 3 qator shu kartochka joylashadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Kartochkalar soni",
+              "shart": "Aniq qoplang.",
+              "qadamlar": [
+                "N=(12/3)(6/2)=4·3=12.",
+                "S=12·6=72 sm².",
+                "12 kartochka·6 sm²/kartochka=72 sm²."
+              ],
+              "javob": "12 kartochka; 72 sm²."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Uchburchak birlik",
+          "izoh": "Birlik 1 sm² kvadratning yarmi bo‘lgan to‘g‘ri burchakli uchburchak bo‘lsin. Har kvadrat ikkita bir xil uchburchakka bo‘linadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "72 sm² soha",
+              "shart": "Yarim kvadrat birliklar soni?",
+              "qadamlar": [
+                "Bir birlik yuzi 0,5 sm².",
+                "72/0,5=144."
+              ],
+              "javob": "144 birlik; mos bo‘lish va aniq qoplash sharti bilan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Birlik o‘zgarsa",
+      "izoh": "Son va yuza alohida",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Chiziqli o‘lcham ikki baravar",
+          "izoh": "Birlikning ikkala chiziqli o‘lchami 2 marta oshsa, yuzi 4 marta oshadi. Ayni soha uchun aniq qoplash mumkin bo‘lsa, kerakli birlik soni 4 marta kamayadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "3×2 o‘rniga 6×4",
+              "shart": "24×8 sm sohani qoplang.",
+              "qadamlar": [
+                "3×2 birlik:8·4=32 ta.",
+                "6×4 birlik:4·2=8 ta.",
+                "192 sm² ikkala holda bir xil."
+              ],
+              "javob": "32 va 8; son nisbati 4."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Faqat sonni solishtirish xatosi",
+          "izoh": "“12 ta birlik 8 tadan katta, demak birinchi soha katta” deyish uchun birliklarning bir xil ekanini bilish kerak. Katta birlik kamroq son berishi mumkin.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Ikki o‘quvchi bir sohani turli birliklar bilan qoplasin. Har biri birlik yuzi va sonini yozib N·u ni solishtirsin."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Chegara bo‘laklari",
+          "izoh": "Shakl butun birliklar bilan qoplanmasa, bo‘laklarni aniq hisoblash yoki pastki/yuqori baho berish kerak. Har kesilgan katak avtomatik yarim emas.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Noma’lum chegara ulushini aniqlanmagan holda “0,5” deb qo‘shmang. Aniq bo‘linish, o‘lchash yoki baho usulini yozing."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Massa va uning xossalari",
+      "izoh": "Tanlangan oddiy fizik model",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Massani taqqoslash",
+          "izoh": "Ushbu mashqda ideal teng yelkali tarozi, bir xil sharoit va bir xil o‘lchov birliklari olinadi. Massa jism xususiyati; tekis figura yuzi esa boshqa kattalik.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Bir xil ko‘rinishdagi ikki buyum turli materialdan bo‘lsa, massalari turli bo‘lishi mumkin. Bir xil yuz o‘z-o‘zidan teng massani bermaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Additivlik va birlik",
+          "izoh": "Alohida qismlar birlashtirilganda modda yo‘qolmaydi va qo‘shilmaydi degan klassik modelda jami massa qismlar yig‘indisi. Tara kerak bo‘lsa alohida hisoblanadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Bir xil yukchalar",
+              "shart": "8 ta 125 g yoki 25 ta 40 g.",
+              "qadamlar": [
+                "8·125=1000 g.",
+                "25·40=1000 g.",
+                "1000 g=1 kg."
+              ],
+              "javob": "Har ikkisi 1 kg."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Shakl o‘zgarsa",
+          "izoh": "Plastilin yo‘qolmay va qo‘shilmay qayta shakllansa, oddiy maktab modelida massa saqlanadi. Tashqi ko‘rinish yoki yoyilgan yuza o‘zgarishi massaning o‘zgargani uchun dalil emas.",
+          "elementlar": [
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Tajriba oldidan idish/qo‘lga yopishib qolish, qurish yoki modda yo‘qolishi kabi shartlar nazorat qilinadi. Bu model sharti hisobotga yoziladi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Birlashtirilgan izlanish",
+      "izoh": "Yuz va massani chalkashtirmaymiz",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Kartochkalarni tortish",
+          "izoh": "Faqat bir xil material, qalinlik va bir jinslilik farazida massa yuzga proporsional model qilinishi mumkin. Faraz bo‘lmasa, yuzdan massa topilmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Shartli bir jinsli karton",
+              "shart": "Har sm² massasi 0,2 g. 72 sm²?",
+              "qadamlar": [
+                "m=0,2·72."
+              ],
+              "javob": "14,4 g; qo‘shimcha material sharti bilan."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ma’lumot jadvali",
+          "izoh": "Har tajriba uchun birlik, son, yuz, massa va asbobni alohida ustunlarda saqlang. Bo‘sh ma’lumotni taxmin bilan to‘ldirmang.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Kattalik",
+                "Birlik/yo‘l"
+              ],
+              "qatorlar": [
+                [
+                  "Yuz",
+                  "sm² yoki belgilangan kartochka"
+                ],
+                [
+                  "Massa",
+                  "g yoki kg, tarozi"
+                ],
+                [
+                  "Hajm",
+                  "sm³ yoki L, alohida model"
+                ],
+                [
+                  "Bog‘lanish",
+                  "Qo‘shimcha fizik shart talab qiladi"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Metodik parcha",
+          "izoh": "Avval bir sohani katta va kichik kartochka bilan qoplash, keyin ikki plastilin shaklini tarozida solishtirish mumkin. Maqsad: birliklar soni, yuz, shakl va massani so‘z bilan ajratish.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "O‘quvchi taxmini, tajriba qaydi, kutilgan nazorat va shart buzilganda xulosa qanday o‘zgarishini yozing."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Katta birlikda kam sonni kichik yuz deyish",
+      "sabab": "Birliklar turli",
+      "togri": "N·u bilan solishtirish."
+    },
+    {
+      "xato": "Har chegara katagini yarim olish",
+      "sabab": "Ulush aniq emas",
+      "togri": "Aniq bo‘linish yoki baho."
+    },
+    {
+      "xato": "Yuz tengligi bilan massa tengligini chiqarish",
+      "sabab": "Material farazi yo‘q",
+      "togri": "Massa alohida o‘lchanadi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "10 soatlik izlanish va loyiha",
+    "bosqichlar": [
+      "Manbani belgilash va konspekt",
+      "Hisob yoki model yaratish",
+      "Natijani tekshirish va metodik izoh"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Dalil",
+        "matn": "Ko‘chirma va o‘z tahlilini farqlang."
+      },
+      {
+        "sarlavha": "Hisob",
+        "matn": "Qadam, birlik va shartlarni yozing."
+      },
+      {
+        "sarlavha": "Tekshiruv",
+        "matn": "Yechim kaliti bilan xato sababini tahlil qiling."
+      }
+    ],
+    "tavsiya": "Ilovadagi 10 soatlik reja va tavsiyaviy mezon o‘qituvchi tomonidan guruh sharoitiga moslashtiriladi. Bu tayyor talaba referati emas."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Qabul qilingan shartlar ochiq yoziladi.",
+      "Manba va yangi o‘quv misoli farqlanadi.",
+      "Hisob va xulosa mustaqil tekshiriladi.",
+      "Natija 10 soatlik ish rejasi bo‘yicha topshiriladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "3×2 sm kartochka yuzi?",
+      "variantlar": [
+        "5 sm²",
+        "6 sm²",
+        "12 sm²",
+        "3 sm²"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "12×6 sm sohada 3×2 sm kartochkalar?",
+      "variantlar": [
+        "12",
+        "6",
+        "18",
+        "72"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "72 sm² ni 0,5 sm² birlik bilan qoplash soni?",
+      "variantlar": [
+        "36",
+        "72",
+        "72,5",
+        "144"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "Birlikning ikkala o‘lchami 2 marta; birlik yuzi?",
+      "variantlar": [
+        "2 marta",
+        "Yarim",
+        "4 marta",
+        "8 marta"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "8 ta 125 g jami?",
+      "variantlar": [
+        "125 g",
+        "1 kg",
+        "8 kg",
+        "100 g"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Bir xil yuzdan teng massa kelib chiqadimi?",
+      "variantlar": [
+        "Har doim",
+        "Faqat shakl bir xil bo‘lsa",
+        "Birliksiz ham keladi",
+        "Qo‘shimcha material shartisiz yo‘q"
+      ],
+      "javob": 3
+    }
+  ],
+  "nazorat": [
+    "Mavzudagi ikki asosiy tushunchani farqlang.",
+    "Bitta natijani boshqa usulda tekshiring.",
+    "Misolda qabul qilingan farazlarni ayting.",
+    "Manba bilan o‘z xulosangiz chegarasini ko‘rsating.",
+    "Bitta keng tarqalgan xatoni tahlil qiling.",
+    "Boshlang‘ich sinf uchun moslashtirishda nimalar o‘zgaradi?"
+  ],
+  "mustaqil_ish": [
+    "18×8 sm sohani 3×2 sm kartochka bilan qoplang; son va yuzni toping.",
+    "24×8 sm sohani 3×2 hamda 6×4 sm kartochkalar bilan qoplab sonlar nisbatini asoslang.",
+    "16 ta 62,5 g yukcha massasini kgda toping. Idish 150 g, idish+mahsulot 1150 g bo‘lsa sof massani toping.",
+    "Ikki birlik bilan qoplash va plastilinni qayta shakllash tajribasi rejasini tuzing; yuz-massa orasidagi qo‘shimcha farazga misol yozing."
+  ],
+  "keyingi": {
+    "mavzu": "Navbatdagi mustaqil ta’lim bandi",
+    "izoh": "Reja, mahsulot va tekshiruv mezonlari bilan ish davom etadi."
+  },
+  "rasmlar": []
+}

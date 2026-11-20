@@ -1,0 +1,90 @@
+{
+  "mavzu_id": "BMKN1305-3-MT1",
+  "hujjat_turi": "Mustaqil ta’lim topshiriq paketi",
+  "soat": 10,
+  "manba": "SamDPI BMKN 1305,2-kurs kunduzgi,2026–2027, asl dastur 6-beti",
+  "holat": "Topshiriq va tekshiruv paketi tayyor; talabaning ishi bajarildi degani emas",
+  "bosqichlar": [
+    {
+      "raqam": 1,
+      "soat": 2,
+      "ish": "Evklid va Eratosfen manbalarini o‘qib kartochka uchun dalil ajratish"
+    },
+    {
+      "raqam": 2,
+      "soat": 2,
+      "ish": "G‘alvir va aylana modelini bajarish"
+    },
+    {
+      "raqam": 3,
+      "soat": 2,
+      "ish": "Kasr/manfiy sonlar tarixini solishtirish"
+    },
+    {
+      "raqam": 4,
+      "soat": 2,
+      "ish": "To‘rtta kartochka va metodik parcha tuzish"
+    },
+    {
+      "raqam": 5,
+      "soat": 1,
+      "ish": "Hisob va havolalarni tekshirish"
+    },
+    {
+      "raqam": 6,
+      "soat": 1,
+      "ish": "Qisqa taqdim va o‘z xatosi haqida refleksiya"
+    }
+  ],
+  "topshiriladigan_natijalar": [
+    {
+      "id": "D1",
+      "talab": "4 tarixiy kartochka, har birida manba va aniqlik chegarasi"
+    },
+    {
+      "id": "D2",
+      "talab": "G‘alvir va ikkita shartli aylana hisobining yechimlari"
+    },
+    {
+      "id": "D3",
+      "talab": "Kasr/manfiy sonlar tarixi taqqoslash jadvali va o‘z misollari"
+    },
+    {
+      "id": "D4",
+      "talab": "5 daqiqalik metodik parcha va tekshiruv xulosasi"
+    }
+  ],
+  "baholash": {
+    "tur": "Tavsiyaviy ichki mezon; muassasaning rasmiy baholash nizomi o‘rniga olinmaydi",
+    "maksimal_ball": 20,
+    "mezonlar": [
+      {
+        "nom": "Manba aniqligi",
+        "maksimal_ball": 5,
+        "talab": "Da’vo, havola va taxminiy sana mos."
+      },
+      {
+        "nom": "Matematik hisob",
+        "maksimal_ball": 5,
+        "talab": "G‘alvir, ulush va kasr tengliklari to‘g‘ri."
+      },
+      {
+        "nom": "Tarixiy farqlash",
+        "maksimal_ball": 5,
+        "talab": "Asl matn, sharh va yangi misol ajratilgan."
+      },
+      {
+        "nom": "Metodik mahsulot",
+        "maksimal_ball": 5,
+        "talab": "Bosqich, savol va tekshiruv bilan ishlatish mumkin."
+      }
+    ],
+    "ball_tavsifi": {
+      "0": "Dalil yo‘q yoki vazifa bajarilmagan",
+      "1–2": "Qisman, asosiy xato yoki yetishmaydigan dalil bor",
+      "3–4": "Asosan to‘g‘ri, tekshiruv yoki izohda ayrim kamchiliklar",
+      "5": "Talab to‘liq, asosli va tekshirilgan"
+    }
+  },
+  "foydalanish": "Talabaga topshiriq va reja beriladi. Javoblar fayli o‘qituvchining tekshiruvi uchun alohida saqlanadi."
+}

@@ -1,0 +1,558 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 10,
+    "tur": "ma’ruza",
+    "mavzu": "To‘rtburchaklar va kvadrat. Aylana va doira",
+    "qisqa": "To‘rtburchak va doira",
+    "maqsad": "Talaba qavariq to‘rtburchak elementlarini, kvadrat va to‘g‘ri to‘rtburchak tasnifini ajratadi; aylana bilan doirani farqlaydi; perimetr, diagonal, aylana uzunligi va yuzlarni mos birliklarda hisoblaydi.",
+    "tayanch": [
+      "Qavariq to‘rtburchak",
+      "Kvadrat va to‘g‘ri to‘rtburchak",
+      "Diagonal",
+      "Aylana elementlari",
+      "Uzunlik va yuz"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "πr²",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; M10, asl skanning 4-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Contemporary Mathematics, 10.4",
+        "izoh": "https://openstax.org/books/contemporary-mathematics/pages/10-4-polygons-perimeter-and-circumference"
+      },
+      {
+        "nomi": "OpenStax Contemporary Mathematics, 10.6",
+        "izoh": "https://openstax.org/books/contemporary-mathematics/pages/10-6-area"
+      },
+      {
+        "nomi": "Euclid Elements III.18 — radius va urinma",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/bookIII/propIII18.html"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Uchburchak, Pifagor teoremasi va birliklar",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Uchburchak burchaklari yig‘indisi nechaga teng?",
+        "javob": "180°."
+      },
+      {
+        "savol": "To‘g‘ri burchak nechta daraja?",
+        "javob": "90°."
+      },
+      {
+        "savol": "6²+8² nechaga teng?",
+        "javob": "100."
+      },
+      {
+        "savol": "Kvadratning tomonlari qanday?",
+        "javob": "Teng."
+      },
+      {
+        "savol": "1 sm² uzunlik birligimi?",
+        "javob": "Yo‘q, yuz birligi."
+      },
+      {
+        "savol": "Bir miqdorning ikki baravari qanday yoziladi?",
+        "javob": "2 ga ko‘paytiriladi."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Bir xil chegaraning ichki sohasi ham tengmi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Perimetri 20 bo‘lgan 2×8 to‘g‘ri to‘rtburchak va tomoni 5 kvadratning yuzlari tengmi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Diametr 10 bo‘lsa, yuz formulasiga qaysi radius qo‘yiladi?"
+      }
+    ],
+    "goya": "Figura turi, berilgan element va o‘lchanayotgan miqdor alohida aniqlanadi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "To‘rtburchak va maxsus turlar",
+      "izoh": "Qavariq figuralarda ishlaymiz",
+      "belgi": "ABCD",
+      "slaydlar": [
+        {
+          "sarlavha": "To‘rtburchakning elementlari",
+          "izoh": "Bu darsda o‘zini kesmaydigan qavariq to‘rtburchaklar qaraladi. Diagonal qo‘shni bo‘lmagan ikki uchni tutashtiradi. Bitta diagonal figura ichini ikki uchburchakka ajratgani uchun ichki burchaklar yig‘indisi 360° bo‘ladi.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "ABCD to‘rtburchakning tomonlari AB, BC, CD, DA; diagonallari AC va BD."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "To‘rtinchi burchak",
+              "shart": "Uch burchak 80°, 95°, 110°. To‘rtinchisini toping.",
+              "qadamlar": [
+                "80°+95°+110°=285°.",
+                "360°−285°=75°.",
+                "Barcha burchaklar musbat va 180° dan kichik."
+              ],
+              "javob": "75°."
+            }
+          ]
+        },
+        {
+          "sarlavha": "To‘g‘ri to‘rtburchak",
+          "izoh": "Barcha ichki burchaklarning to‘g‘ri bo‘lishi bu sinfni aniqlaydi. Qarama-qarshi tomonlari teng va parallel; diagonallari teng va kesishish nuqtasida teng ikkiga bo‘linadi. Yonma-yon tomonlar har doim teng bo‘lishi talab qilinmaydi.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "To‘g‘ri to‘rtburchak — barcha burchaklari 90° bo‘lgan to‘rtburchak."
+            },
+            {
+              "tur": "formula",
+              "sarlavha": "Perimetr va yuz",
+              "formula": "P=2(a+b),\\qquad S=ab",
+              "matn": "a,b > 0, yonma-yon tomonlar."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Kvadrat — xususiy to‘g‘ri to‘rtburchak",
+          "izoh": "Kvadrat uchun teng tomonlar va to‘g‘ri burchaklar birgalikda kerak. Faqat to‘rtta teng tomon rombni beradi, to‘g‘ri burchakni kafolatlamaydi. Faqat to‘g‘ri burchaklar esa umumiy to‘g‘ri to‘rtburchakni beradi.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Kvadrat — barcha tomonlari teng bo‘lgan to‘g‘ri to‘rtburchak."
+            },
+            {
+              "tur": "formula",
+              "sarlavha": "Kvadratning o‘lchovlari",
+              "formula": "P=4a,\\qquad S=a^2",
+              "matn": "a > 0."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Xossalarni qo‘llash",
+      "izoh": "Perimetr, yuz va diagonal",
+      "belgi": "P, S, d",
+      "slaydlar": [
+        {
+          "sarlavha": "Sinfga tegishlilikni to‘g‘ri ayting",
+          "izoh": "Bu darsdagi tasnifda kvadrat to‘g‘ri to‘rtburchak, romb va parallelogramm hamdir. Xususiy sinfning xossasini umumiy sinfga shartsiz ko‘chirish mumkin emas. Turli yo‘nalishda chizilgan figura ham o‘z ta’rifini saqlaydi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Hukm",
+                "Holat"
+              ],
+              "qatorlar": [
+                [
+                  "Har kvadrat to‘g‘ri to‘rtburchak",
+                  "To‘g‘ri"
+                ],
+                [
+                  "Har to‘g‘ri to‘rtburchak kvadrat",
+                  "Noto‘g‘ri"
+                ],
+                [
+                  "Har kvadrat romb",
+                  "To‘g‘ri"
+                ],
+                [
+                  "Har romb kvadrat",
+                  "Noto‘g‘ri"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Tasnif sinflarni bir-biridan mutlaqo ajratib qo‘ymaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Diagonalni Pifagor teoremasidan topamiz",
+          "izoh": "To‘g‘ri to‘rtburchak diagonali uning yonma-yon tomonlari bilan to‘g‘ri burchakli uchburchak hosil qiladi. Diagonal yuz yoki perimetr emas, uzunlikdir. Kvadratda ikkala katet a bo‘lgani uchun diagonal a√2 ga teng.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Diagonal",
+              "formula": "d=\\sqrt{a^2+b^2},\\qquad d_{\\text{kvadrat}}=a\\sqrt2",
+              "matn": "To‘g‘ri to‘rtburchak yoki kvadrat uchun."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "6×8 to‘g‘ri to‘rtburchak",
+              "shart": "Tomonlar 6 sm va 8 sm. Diagonalni toping.",
+              "qadamlar": [
+                "d²=6²+8²=100.",
+                "Uzunlik musbat: d=10.",
+                "Birlik sm."
+              ],
+              "javob": "10 sm."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Bir xil perimetr bir xil yuz emas",
+          "izoh": "Perimetr chegaraning uzunligini, yuz esa ichki sohaning o‘lchamini bildiradi. Bir miqdor teng bo‘lishidan ikkinchisining tengligi kelib chiqmaydi. Ikki sodda sonli model bu farqni ravshan qiladi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Figura",
+                "Perimetr",
+                "Yuz"
+              ],
+              "qatorlar": [
+                [
+                  "2×8 to‘g‘ri to‘rtburchak",
+                  "20 birlik",
+                  "16 kvadrat birlik"
+                ],
+                [
+                  "Tomoni 5 kvadrat",
+                  "20 birlik",
+                  "25 kvadrat birlik"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Uzunlik va kvadrat birliklarni aralashtirmang."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Aylana va doira",
+      "izoh": "Chegara bilan sohani farqlaymiz",
+      "belgi": "O, r",
+      "slaydlar": [
+        {
+          "sarlavha": "Aylana va yopiq doira",
+          "izoh": "Aylana markazdan bir xil musbat masofada joylashgan nuqtalar to‘plamidir. Ushbu darsda doira ichki soha va aylana chegarasi bilan birga, ya’ni yopiq doira sifatida olinadi. Markaz aylananing emas, doiraning nuqtasidir.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Markazi O, radiusi r>0 bo‘lgan aylana uchun OP=r; yopiq doira uchun OP≤r."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Aylana uzunligi bilan doira yuzi boshqa miqdorlar."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Radius, diametr, vatar va yoy",
+          "izoh": "Vatar ikki uchi aylanada yotgan kesmadir. Markazdan o‘tgan vatar diametr bo‘ladi va uzunligi ikki radiusga teng. Yoy esa to‘g‘ri kesma emas, aylananing bir qismidir.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Element",
+                "Mazmun"
+              ],
+              "qatorlar": [
+                [
+                  "Radius",
+                  "Markazdan aylana nuqtasigacha kesma"
+                ],
+                [
+                  "Diametr",
+                  "Markazdan o‘tuvchi vatar, d=2r"
+                ],
+                [
+                  "Vatar",
+                  "Aylananing ikki nuqtasini tutashtiruvchi kesma"
+                ],
+                [
+                  "Yoy",
+                  "Aylana chegarasining bir qismi"
+                ]
+              ]
+            },
+            {
+              "tur": "matn",
+              "matn": "Radius 4 sm bo‘lsa, diametr 8 sm. Barcha vatarlar diametr emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Kesuvchi va urinma",
+          "izoh": "To‘g‘ri chiziq aylana bilan ikkita nuqtada kesishsa, kesuvchi deb ataladi. Bitta umumiy nuqtali chiziq urinma bo‘ladi. Urinish nuqtasiga o‘tkazilgan radius urinmaga perpendikulyar.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Aylana urinmasi urinish nuqtasiga chizilgan radiusga perpendikulyar."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Aylanadan tashqarida yotgan va u bilan umumiy nuqtasi yo‘q chiziq urinma emas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Uzunlik, yuz va amaliy masala",
+      "izoh": "π bilan aniq javobni saqlaymiz",
+      "belgi": "πr²",
+      "slaydlar": [
+        {
+          "sarlavha": "Aylana uzunligi",
+          "izoh": "Radius bilan diametrning qaysi biri berilganini avval yozing. Ikkala formula bir-biriga d=2r orqali bog‘langan. π ning o‘nli yaqinlashishi faqat shart talab qilganda qo‘llanadi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Aylana uzunligi",
+              "formula": "L=2\\pi r=\\pi d",
+              "matn": "r,d bir xil uzunlik birligida."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Aniq uzunlik",
+              "shart": "r=3 sm bo‘lsa, L ni toping.",
+              "qadamlar": [
+                "L=2π·3.",
+                "2·3=6.",
+                "Aniq javobni π bilan saqlaymiz."
+              ],
+              "javob": "6π sm."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Doira yuzi",
+          "izoh": "Yuz formulasida radius kvadratga ko‘tariladi. Diametr berilgan bo‘lsa, avval ikkiga bo‘ling. Aks holda diametrni radius o‘rniga qo‘yish yuzni to‘rt marta kattalashtiradi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Doira yuzi",
+              "formula": "S=\\pi r^2=\\frac{\\pi d^2}{4}",
+              "matn": "Yuz kvadrat birliklarda."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Diametr berilgan",
+              "shart": "d=10 sm bo‘lsa, doira yuzini toping.",
+              "qadamlar": [
+                "r=10/2=5 sm.",
+                "S=π·5².",
+                "5²=25."
+              ],
+              "javob": "25π sm²."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Doiraviy halqa",
+          "izoh": "Markazlari bir xil bo‘lgan ikki doira orasidagi soha yuzasi kattasidan kichigi yuzini ayirish bilan topiladi. Radiuslar farqini kvadratlash bu ayirmaga teng emas. Chegara chiziqlarining o‘zi yuzni o‘zgartirmaydi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Halqa yuzi",
+              "formula": "S=\\pi(R^2-r^2),\\qquad R>r>0",
+              "matn": "Ikkala radius bir xil birlikda."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki radius",
+              "shart": "R=6 sm, r=2 sm bo‘lsa, halqa yuzini toping.",
+              "qadamlar": [
+                "R²−r²=36−4=32.",
+                "S=32π.",
+                "Birlik sm²."
+              ],
+              "javob": "32π sm²."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Har to‘g‘ri to‘rtburchak kvadrat.",
+      "sabab": "Teng tomon sharti yo‘q.",
+      "togri": "Kvadrat bo‘lish uchun yonma-yon tomonlar ham teng bo‘lsin."
+    },
+    {
+      "xato": "To‘rtta teng tomonning o‘zi kvadrat.",
+      "sabab": "To‘g‘ri burchaklar sharti tashlab ketilgan.",
+      "togri": "Umumiy romb kvadrat bo‘lavermaydi."
+    },
+    {
+      "xato": "Markaz aylananing nuqtasi.",
+      "sabab": "Chegara bilan ichki soha aralashtirilgan.",
+      "togri": "r>0 da markaz aylanada emas, doira ichida."
+    },
+    {
+      "xato": "Diametrni radius sifatida yuz formulasiga qo‘yish.",
+      "sabab": "d=2r hisobga olinmagan.",
+      "togri": "S=πd²/4."
+    },
+    {
+      "xato": "Halqa yuzi π(R−r)².",
+      "sabab": "Kvadratlar ayirmasi ayirmaning kvadratiga almashtirilgan.",
+      "togri": "S=π(R²−r²)."
+    },
+    {
+      "xato": "Perimetr va yuz birliklarini bir xil yozish.",
+      "sabab": "Uzunlik bilan yuz aralashtirilgan.",
+      "togri": "Masalan, P sm, S sm² da."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Chegara, soha va o‘lchov",
+    "bosqichlar": [
+      "Figuraning qaysi qismi o‘lchanayotganini ajratish",
+      "Berilgan radius yoki diametrni belgilash",
+      "Formula, birlik va muqobil tekshiruvni yozish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Tasnif",
+        "matn": "Kvadratni to‘g‘ri to‘rtburchaklar va romblar ichida ko‘rsating."
+      },
+      {
+        "sarlavha": "Chegara va soha",
+        "matn": "Ip bilan aylana chegarasini, qog‘oz bilan doira sohasini modellashtiring."
+      },
+      {
+        "sarlavha": "Diametrdan radiusga",
+        "matn": "Berilgan diametrni ikkiga bo‘lib, so‘ng yuz hisobini bajaring."
+      }
+    ],
+    "tavsiya": "Doira va aylana atamalarini boshidan ajrating. π bilan aniq natijani va o‘nli yaqinlashishni bir xil tenglik deb yozmang."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Kvadrat to‘g‘ri to‘rtburchak va rombning xususiy holi.",
+      "Perimetr, diagonal va yuz turli miqdorlar.",
+      "Aylana chegara, yopiq doira esa chegara va ichki soha.",
+      "Diametr ikki radiusga teng.",
+      "Uzunlik va yuz formulalarida birliklar va kvadratlar saqlanadi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "Qavariq to‘rtburchakning uch burchagi 80°,95°,110°. To‘rtinchisi qaysi?",
+      "variantlar": [
+        "65°",
+        "75°",
+        "85°",
+        "105°"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "6 sm va 8 sm tomonli to‘g‘ri to‘rtburchak diagonali qaysi?",
+      "variantlar": [
+        "14 sm",
+        "48 sm",
+        "10 sm",
+        "28 sm"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Tomoni 7 sm kvadratning yuzi qaysi?",
+      "variantlar": [
+        "49 sm²",
+        "28 sm²",
+        "14 sm²",
+        "7 sm²"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "Radius 4 sm bo‘lsa, diametr qaysi?",
+      "variantlar": [
+        "2 sm",
+        "4 sm",
+        "16 sm",
+        "8 sm"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "Radius 3 sm aylana uzunligi qaysi?",
+      "variantlar": [
+        "3π sm",
+        "9π sm",
+        "6π sm",
+        "12π sm"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Diametri 10 sm doira yuzi qaysi?",
+      "variantlar": [
+        "100π sm²",
+        "25π sm²",
+        "10π sm²",
+        "20π sm²"
+      ],
+      "javob": 1
+    }
+  ],
+  "nazorat": [
+    "Qavariq to‘rtburchak burchaklari yig‘indisini asoslang.",
+    "Kvadrat bilan umumiy to‘g‘ri to‘rtburchakni farqlang.",
+    "Bir xil perimetr turli yuz berishini misolda ko‘rsating.",
+    "Aylana bilan doirani ta’riflang.",
+    "Radius, diametr, vatar va yoyni farqlang.",
+    "Diametrdan doira yuzini topish formulasini chiqaring."
+  ],
+  "mustaqil_ish": [
+    "Tomonlari 9 sm va 12 sm to‘g‘ri to‘rtburchakning perimetri, yuzi va diagonalini toping.",
+    "Kvadrat perimetri 20 sm. Tomoni, yuzi va diagonalini toping.",
+    "Radiusi 7 sm doiraning yuzi va aylana uzunligini aniq ko‘rinishda yozing.",
+    "Markazlari umumiy, radiuslari 6 sm va 2 sm bo‘lgan ikki aylana orasidagi halqa yuzini toping."
+  ],
+  "keyingi": {
+    "mavzu": "Parallelogramm, romb va trapetsiya",
+    "izoh": "Qarama-qarshi tomon, parallel chiziq va perpendikulyar balandlikni takrorlang."
+  },
+  "rasmlar": []
+}

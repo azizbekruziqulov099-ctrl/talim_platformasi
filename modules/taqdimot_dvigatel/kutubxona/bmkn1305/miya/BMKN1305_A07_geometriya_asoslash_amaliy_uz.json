@@ -1,0 +1,568 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 7,
+    "tur": "amaliy",
+    "mavzu": "Geometriya elementlari va geometrik asoslash: amaliy mashg‘ulot",
+    "qisqa": "Geometriya elementlari amaliyoti",
+    "maqsad": "Talaba geometrik obyekt, ta’rif, xossa va alomatni ajratadi; kesma-burchak masalalarini shartlari bilan yechadi, qisqa isbot va qarshi misol keltiradi; tarixiy dalilni manbasi bilan talqin qiladi.",
+    "tayanch": [
+      "Geometrik obyekt",
+      "Tarixiy dalil",
+      "Ta’rif va alomat",
+      "Kesma va burchak",
+      "Isbot va qarshi misol"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "∠ABC",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; A7, asl skanning 5-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Contemporary Mathematics,10.1",
+        "izoh": "https://openstax.org/books/contemporary-mathematics/pages/10-1-points-lines-and-planes"
+      },
+      {
+        "nomi": "OpenStax Contemporary Mathematics,10.3",
+        "izoh": "https://openstax.org/books/contemporary-mathematics/pages/10-3-triangles"
+      },
+      {
+        "nomi": "Clark University: Euclid",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/Euclid.html"
+      },
+      {
+        "nomi": "MacTutor: Descartes La Géométrie",
+        "izoh": "https://mathshistory.st-andrews.ac.uk/Extras/Descartes_La_Geometrie/"
+      },
+      {
+        "nomi": "British Museum: Rhind Mathematical Papyrus",
+        "izoh": "https://artsandculture.google.com/asset/rhind-mathematical-papyrus/qAGwXnGhBxLKTg?hl=en"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "M7–M11 ma’ruzalari",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "AB nur qayerdan boshlanadi?",
+        "javob": "A dan."
+      },
+      {
+        "savol": "Vertikal burchaklar qanday?",
+        "javob": "Teng."
+      },
+      {
+        "savol": "Uchburchak ichki burchaklari yig‘indisi qanday?",
+        "javob": "Evklid tekisligida 180°."
+      },
+      {
+        "savol": "Kvadrat rombmi?",
+        "javob": "Ha."
+      },
+      {
+        "savol": "Har romb kvadratmi?",
+        "javob": "Yo‘q."
+      },
+      {
+        "savol": "Bitta o‘lchash umumiy teorema isbotimi?",
+        "javob": "Yo‘q."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Rasmga ishonish yetarlimi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Burilgan kvadratni ta’rif orqali taniy olamizmi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Diagonallari teng to‘rtburchak doim to‘g‘ri to‘rtburchakmi?"
+      }
+    ],
+    "goya": "Berilgan shart, ta’rif va alomat tashqi ko‘rinishdan ajratiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "Amaliy hisobdan tizimli geometriyaga: uch tarixiy misol",
+    "voqealar": [
+      {
+        "davr": "Miloddan avvalgi taxminan 1550-yil",
+        "nom": "Qadimgi Misrdagi Rhind matematik papirusi",
+        "matn": "British Museum saqlayotgan ushbu papirusda amaliy hisoblar va geometrik shakllarga oid masalalar bor. Bu qadimgi amaliy bilimning saqlangan dalillaridan biridir; geometriya aynan shu vaqtda yoki bir kishining o‘zi tomonidan yaratilgan degan xulosa qilinmaydi.",
+        "belgi": "Amaliy ehtiyoj → o‘lchash va hisob",
+        "rasm": ""
+      },
+      {
+        "davr": "Miloddan avvalgi taxminan 300-yillar",
+        "nom": "Evklidning «Negizlar» asari",
+        "matn": "Geometrik bilimlar ta’rif, postulat va isbotlar ketma-ketligida tizimlashtirilgan. Evklidning hayoti haqidagi ma’lumotlar kam; sana taxminiy.",
+        "belgi": "Ta’rif → asos → isbot",
+        "rasm": ""
+      },
+      {
+        "davr": "1637-yil",
+        "nom": "Dekartning «La Géométrie» asari",
+        "matn": "Geometrik masalalarni algebraik usullar bilan bog‘lash rivojlantirilgan. Asar «Discours de la méthode» ga ilova sifatida chop etilgan.",
+        "belgi": "Geometriya ↔ algebra",
+        "rasm": ""
+      }
+    ],
+    "xulosa": "Aksiomatik va algebraik yondashuvlar geometrik masalalarni turli usullarda asoslashga xizmat qiladi."
+  },
+  "bolimlar": [
+    {
+      "nom": "Geometrik tushunchalarni ajratish",
+      "izoh": "Model, shart va manba",
+      "belgi": "Shart va dalil",
+      "slaydlar": [
+        {
+          "sarlavha": "Amaliy ishning dalili",
+          "izoh": "Har topshiriqda berilgan shart, chizma yoki model, yechim va tekshiruv bo‘lsin. Qog‘ozdagi rasm matematik obyektning barcha xossalarini o‘z-o‘zicha tasdiqlamaydi. Faqat ko‘rinishga qarab parallel, teng yoki perpendikulyar deb qo‘shimcha shart kiritmang.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Ish",
+                "Kutiladigan natija"
+              ],
+              "qatorlar": [
+                [
+                  "Hisob",
+                  "Formula sharti va birlik"
+                ],
+                [
+                  "Ta’rif",
+                  "Umumiy tur va ajratuvchi belgi"
+                ],
+                [
+                  "Isbot",
+                  "Berilganlardan mantiqiy xulosa"
+                ],
+                [
+                  "Tarix",
+                  "Manba va sananing qamrovi"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Nuqta, kesma, nur va to‘g‘ri chiziq",
+          "izoh": "Bir xil A, B belgilaridan foydalanish obyektlarning bir xil ekanini bildirmaydi. Kesma ikki uchli, nur bitta boshlang‘ich nuqtali. Bir tekislikdagi ikki turli kesishmaydigan to‘g‘ri chiziq parallel; fazoda kesishmaslikning o‘zi yetmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Belgilash vazifasi",
+              "shart": "AB kesma, AB nur va AB to‘g‘ri chizig‘ini farqlang.",
+              "qadamlar": [
+                "Kesmada A va B uch nuqtalar.",
+                "AB nur A dan boshlanib, B orqali davom etadi.",
+                "To‘g‘ri chiziq A va B orqali ikki tomonga cheksiz."
+              ],
+              "javob": "Chegara va davom etish shartlari turlicha."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Ikki turli nuqta yagona to‘g‘ri chiziqni aniqlaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Geometriya tarixidan dalil tanlash",
+          "izoh": "Tarixiy blokdagi Rhind papirusi, Evklid va Dekart misollarini usuliga ko‘ra solishtiring. Amaliy hisob, aksiomatik bayon va algebraik yondashuv bitta jarayonning turli ko‘rinishlarini tushunishga yordam beradi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Vazifa: uch misoldan birini tanlab, manbasi, sananing aniqligi va matematik ish usulini yozing. “Geometriyani shu odam shu kuni yaratgan” kabi dalildan ortiq xulosa chiqarmang."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Evklid davri taxminiy; Dekartning «La Géométrie» nashri 1637-yil bilan bog‘langan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Kesma va burchak masalalari",
+      "izoh": "Joylashuv shartini saqlaymiz",
+      "belgi": "Joylashuv → tenglik",
+      "slaydlar": [
+        {
+          "sarlavha": "Nuqta qayerda yotadi?",
+          "izoh": "AB=AC+CB tenglik C nuqta A va B orasida yotganda ishlatiladi. Bir chiziqdagi uchta nuqtaning boshqa tartibi boshqa yig‘indini beradi. Uzunliklarning o‘zi joylashuv shartini almashtirmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Oradagi nuqta",
+              "shart": "C A va B orasida. AB=19 sm, AC=7,5 sm. CB ni toping.",
+              "qadamlar": [
+                "CB=AB−AC.",
+                "19−7,5=11,5 sm.",
+                "7,5+11,5=19 sm bilan tekshiring."
+              ],
+              "javob": "11,5 sm."
+            },
+            {
+              "tur": "matn",
+              "matn": "A=0, B=8, C=11 bo‘lsa, C tashqarida: AC=AB+BC=8+3."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Chiziqli qo‘shni burchaklar",
+          "izoh": "Umumiy tomonning qolgan ikki tomoni qarama-qarshi nurlar bo‘lsin. Shundagina qo‘shni chiziqli juftlik yig‘indisi 180° bo‘ladi. Tenglama yechilgach, ikkala burchak qayta hisoblanadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki noma’lum ifoda",
+              "shart": "Burchaklar 2x va 3x+20° bo‘lsa, ikkalasini toping.",
+              "qadamlar": [
+                "2x+(3x+20°)=180°.",
+                "5x=160°; x=32°.",
+                "Burchaklar 64° va 116°; yig‘indi 180°."
+              ],
+              "javob": "64° va 116°."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Uchburchakning ichki burchaklari",
+          "izoh": "Bu masala Evklid tekisligidagi uchburchak uchun. Har bir burchak musbat va 180° dan kichik bo‘lishi kerak. Yig‘indi sharti yechimni tekshiradi, lekin dastlabki ifodalarni ham hisobga olish zarur.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Uchta ifoda",
+              "shart": "Burchaklar x,2x+10°,3x−10° bo‘lsa, ularni toping.",
+              "qadamlar": [
+                "x+2x+10°+3x−10°=180°.",
+                "6x=180°; x=30°.",
+                "30°,70°,80°; barchasi musbat, yig‘indi 180°."
+              ],
+              "javob": "30°; 70°; 80°."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Ta’rif, xossa va alomat",
+      "izoh": "Shartlarni to‘liq yozamiz",
+      "belgi": "Ta’rif, xossa, alomat",
+      "slaydlar": [
+        {
+          "sarlavha": "Kvadratning yo‘nalishi muhimmi?",
+          "izoh": "Kvadratni burish uning kvadrat bo‘lishini yo‘qotmaydi. A=(0,0), B=(2,1), C=(1,3), D=(−1,2) misolida to‘rtta tomon teng, qo‘shni tomonlar perpendikulyar. Koordinatalar qog‘ozning chetiga parallel bo‘lishi shart emas.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Tekshiruv",
+                "Natija"
+              ],
+              "qatorlar": [
+                [
+                  "Har bir tomon uzunligi kvadrati",
+                  "5"
+                ],
+                [
+                  "AB·BC",
+                  "2·(−1)+1·2=0"
+                ],
+                [
+                  "Sinfga tegishlilik",
+                  "Kvadrat, to‘g‘ri to‘rtburchak, romb va parallelogramm"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Xususiy sinf umumiy sinfga kirishi mumkin."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Bir gapning mantiqiy vazifasi",
+          "izoh": "Ta’rif obyektni aniqlaydi. Xossa berilgan obyekt uchun natija beradi. Alomat esa qo‘shimcha shartlar orqali obyektni tanishga xizmat qiladi. Bir xil ibora atrofidagi shartlarga qarab boshqa vazifa bajarishi mumkin.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Gap",
+                "Vazifa"
+              ],
+              "qatorlar": [
+                [
+                  "Barcha burchaklari 90° bo‘lgan to‘rtburchak",
+                  "To‘g‘ri to‘rtburchak ta’rifi"
+                ],
+                [
+                  "To‘g‘ri to‘rtburchak diagonallari teng",
+                  "Xossa"
+                ],
+                [
+                  "Parallelogramm diagonallari teng bo‘lsa, u to‘g‘ri to‘rtburchak",
+                  "Alomat; parallelogramm sharti zarur"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Noto‘g‘ri teskari hukm",
+          "izoh": "“Diagonallari teng har qanday to‘rtburchak to‘g‘ri to‘rtburchak” hukmi noto‘g‘ri. A=(0,0), B=(6,0), C=(5,2), D=(1,2) teng yonli trapetsiyasi qarshi misol beradi. Bir qarshi misol umumiy da’voni rad etishga yetadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Koordinatali tekshiruv",
+              "shart": "Shu trapetsiyada diagonallar tengligini va to‘g‘ri burchak sharti yo‘qligini ko‘rsating.",
+              "qadamlar": [
+                "AC²=5²+2²=29.",
+                "BD²=(1−6)²+2²=29.",
+                "AB=(6,0), AD=(1,2); skalyar ko‘paytma 6≠0."
+              ],
+              "javob": "Diagonallar teng, ammo to‘g‘ri to‘rtburchak emas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Isbot va metodik izoh",
+      "izoh": "O‘lchovdan umumiy xulosaga",
+      "belgi": "Kuzatuv va isbot",
+      "slaydlar": [
+        {
+          "sarlavha": "Vertikal burchaklarni asoslash",
+          "izoh": "Ikki to‘g‘ri chiziq O da kesishsin. α va γ vertikal, β ularning har biriga chiziqli qo‘shni burchak bo‘lsin. Bir xil β ni ayirish umumiy tenglikni beradi; transportir bilan bitta rasmni tekshirish buning o‘rnini bosmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Qisqa isbot",
+              "shart": "α=γ ni asoslang.",
+              "qadamlar": [
+                "α+β=180°.",
+                "γ+β=180°.",
+                "Tengliklardan bir xil β ni ayirib, α=γ ni olamiz."
+              ],
+              "javob": "Vertikal burchaklar teng."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Tajriba va isbotni farqlash",
+          "izoh": "Rasmni chizish va o‘lchash faraz tug‘dirishi mumkin. Umumiy isbot tanlangan geometriya aksiomalari, ta’riflar va oldingi teoremalarga tayanadi. Masalada so‘ralgan narsa faqat o‘lchash bo‘lsa, natija o‘lchash sifatida aniq nomlanadi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Vazifa: “Uchta chizilgan uchburchak burchaklari yig‘indisi taxminan 180° chiqdi” kuzatuvini “har bir Evklid uchburchagida yig‘indi 180°” teoremasidan ajrating."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Shartda berilmagan tenglikni rasmga qarab ishlatish mumkin emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "O‘quvchi javobini tahlil qilish",
+          "izoh": "“Burilgan kvadrat kvadrat emas” javobida sinf belgisi tashqi yo‘nalishga almashtirilgan. To‘g‘ri metodik javob turli yo‘nalishdagi modellarni bir xil ta’rif shartlari bilan tekshiradi. Faqat “noto‘g‘ri” deyish yetarli emas.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Qadam",
+                "Izoh"
+              ],
+              "qatorlar": [
+                [
+                  "Xatoni nomlash",
+                  "Yo‘nalish ajratuvchi belgi deb olingan"
+                ],
+                [
+                  "Ta’rifga qaytish",
+                  "Teng tomonlar va to‘g‘ri burchaklar"
+                ],
+                [
+                  "Tekshirish",
+                  "Burish uzunlik va burchaklarni saqlaydi"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Kesma bo‘laklari yig‘indisini joylashuvsiz yozish.",
+      "sabab": "Orada yotish sharti yo‘q.",
+      "togri": "Nuqtalar tartibi belgilanadi."
+    },
+    {
+      "xato": "Har umumiy tomonli burchaklar yig‘indisi 180° deyish.",
+      "sabab": "Qarama-qarshi nurlar sharti yo‘q.",
+      "togri": "Chiziqli juftlik tekshiriladi."
+    },
+    {
+      "xato": "Burilgan kvadratni boshqa figura sanash.",
+      "sabab": "Yo‘nalish ta’rif o‘rniga olingan.",
+      "togri": "Tomon va burchak xossalari saqlanadi."
+    },
+    {
+      "xato": "Xossaning teskarisini shartsiz qo‘llash.",
+      "sabab": "Alomatning qo‘shimcha sharti yo‘q.",
+      "togri": "Teskari hukm isbotlanadi yoki qarshi misol topiladi."
+    },
+    {
+      "xato": "Tajriba natijasini umumiy isbot sanash.",
+      "sabab": "Kuzatuv va mantiqiy asos aralashgan.",
+      "togri": "Isbot barcha ruxsat etilgan holatlarni qamraydi."
+    },
+    {
+      "xato": "Tarixiy sanani yagona ixtiro sanasi deyish.",
+      "sabab": "Asar va tarixiy jarayon birlashtirilgan.",
+      "togri": "Manba va sananing nimaga tegishliligi yoziladi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Berilgan, model, asos, tekshiruv",
+    "bosqichlar": [
+      "Shartni rasm va belgilar bilan yozish",
+      "Mos formula yoki alomatni sharti bilan tanlash",
+      "Natijani hisob, isbot yoki qarshi misol bilan tekshirish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Ta’rif kartasi",
+        "matn": "Figura yo‘nalishi o‘zgarsa ham ta’rifni qo‘llang."
+      },
+      {
+        "sarlavha": "Alomat kartasi",
+        "matn": "Parallelogramm kabi qo‘shimcha shartni tashlab ketmang."
+      },
+      {
+        "sarlavha": "Tarix kartasi",
+        "matn": "Manba, taxminiylik va bayon usulini qayd qiling."
+      }
+    ],
+    "tavsiya": "Baholashda to‘g‘ri natijadan tashqari shartning to‘liqligi va asosning vazifasi ham ko‘riladi."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Matematik obyekt va chizma modeli farq qiladi.",
+      "Kesma va burchak tengliklari joylashuv shartiga tayanadi.",
+      "Ta’rif, xossa va alomat turli vazifa bajaradi.",
+      "Umumiy isbot va qarshi misol kuchi alohida tushuntiriladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "C A va B orasida, AB=19 sm, AC=7,5 sm. CB qaysi?",
+      "variantlar": [
+        "26,5 sm",
+        "11,5 sm",
+        "7,5 sm",
+        "12,5 sm"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Chiziqli juftlik burchaklari 2x va 3x+20°. Katta burchak qaysi?",
+      "variantlar": [
+        "64°",
+        "100°",
+        "116°",
+        "160°"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Uchburchak burchaklari x,2x+10°,3x−10°. Eng kattasi qaysi?",
+      "variantlar": [
+        "80°",
+        "70°",
+        "90°",
+        "30°"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "Qaysi hukm to‘g‘ri?",
+      "variantlar": [
+        "Har romb kvadrat",
+        "Har to‘g‘ri to‘rtburchak kvadrat",
+        "Har teng diagonalli to‘rtburchak kvadrat",
+        "Har kvadrat to‘g‘ri to‘rtburchak"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "Diagonallar tengligining o‘zi qavariq to‘rtburchakni to‘g‘ri to‘rtburchak qilishga yetarlimi?",
+      "variantlar": [
+        "Ha, doim",
+        "Yo‘q; teng yonli trapetsiya qarshi misol",
+        "Faqat rasm gorizontal bo‘lsa",
+        "Diagonallar bo‘lmasa ham yetadi"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Bir burchak 47° bo‘lsa, unga vertikal burchak qaysi?",
+      "variantlar": [
+        "133°",
+        "94°",
+        "47°",
+        "43°"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Geometrik modelni obyektning o‘zidan farqlang.",
+    "AB=AC+CB qachon ishlatiladi?",
+    "Xossa va alomatni bitta figura misolida ayting.",
+    "Qarshi misol qanday umumiy da’voni rad etadi?",
+    "Vertikal burchaklarni isbotlang.",
+    "Tarixiy dalilni ehtiyotkor talqin qilish mezonlari nima?"
+  ],
+  "mustaqil_ish": [
+    "C A va B orasida. AB=23,4 sm, AC=9,8 sm. CB ni topib tekshiring.",
+    "Chiziqli juftlik burchaklari 3x va 2x+25°. Ikkalasini toping.",
+    "Uchburchak burchaklari x, x+20°,2x+40°. Burchaklarni toping.",
+    "A=(0,0), B=(6,0), C=(5,2), D=(1,2) uchun diagonallar tengligini va figura to‘g‘ri to‘rtburchak emasligini asoslang."
+  ],
+  "keyingi": {
+    "mavzu": "Fazoviy jismlar amaliyoti",
+    "izoh": "Yoq, qirra, uch va fazoviy tasvirni takrorlang."
+  },
+  "rasmlar": []
+}

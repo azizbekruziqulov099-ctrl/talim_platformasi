@@ -1,0 +1,532 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 1,
+    "tur": "ma’ruza",
+    "mavzu": "Ratsional sonlar: ulush, kasr va amallar",
+    "qisqa": "Ratsional sonlar",
+    "maqsad": "Talaba ulush va kasr modelini tushuntiradi, butunning qismini va qismiga ko‘ra butunni topadi; butun hamda ratsional sonlarning amallari, qonunlari va geometrik talqinini shartlari bilan qo‘llaydi.",
+    "tayanch": [
+      "Butun sonlar va son o‘qi",
+      "Ulush va kasr",
+      "Butun va qism",
+      "Ratsional sonlar",
+      "Amallar qonunlari"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "a/b",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; M1, asl skanning 4-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Prealgebra 2e, 3.1",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/3-1-introduction-to-integers"
+      },
+      {
+        "nomi": "OpenStax Prealgebra 2e, 4.1",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/4-1-visualize-fractions"
+      },
+      {
+        "nomi": "OpenStax Prealgebra 2e, 4.2",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/4-2-multiply-and-divide-fractions"
+      },
+      {
+        "nomi": "OpenStax Prealgebra 2e, 4.5",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/4-5-add-and-subtract-fractions-with-different-denominators"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Natural sonlar va bo‘lish",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Bu darsdagi eng kichik natural son qaysi?",
+        "javob": "1; bu darsda ℕ={1,2,3,…} kelishuvi olingan."
+      },
+      {
+        "savol": "3−5 natural sonmi?",
+        "javob": "Yo‘q."
+      },
+      {
+        "savol": "−7 ning qarama-qarshisi nima?",
+        "javob": "7."
+      },
+      {
+        "savol": "|−12| nechaga teng?",
+        "javob": "12."
+      },
+      {
+        "savol": "3 ta buyumni 4 kishiga teng bo‘lishda har biriga qancha tegadi?",
+        "javob": "Bir buyumning 3/4 qismi."
+      },
+      {
+        "savol": "Nolga bo‘lish mumkinmi?",
+        "javob": "Yo‘q."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Yangi sonlarga ehtiyoj",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "7 °C harorat 9 °C ga pasaysa, yangi qiymatni qanday yozamiz?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "3 ta olmani 4 bolaga teng bo‘lish uchun qaysi sonlardan foydalanamiz?"
+      }
+    ],
+    "goya": "Natural sonlardan butun va ratsional sonlarga o‘tishda oldingi amallar va qonunlar bilan moslik saqlanadi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Butun sonlar va geometrik talqin",
+      "izoh": "Natural sonlardan kengayishga",
+      "belgi": "ℕ⊂ℤ",
+      "slaydlar": [
+        {
+          "sarlavha": "Sonlar to‘plamlari va kelishuv",
+          "izoh": "Bu darsda ℕ={1,2,3,…} kelishuvi olinadi. Ba’zi manbalarda 0 ham natural son deb kiritiladi; bu yozuv kelishuvi, barcha manbalar uchun yagona da’vo emas. Natural sonlar, ularning qarama-qarshilari va nol ℤ to‘plamini beradi.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "ℤ={…,−3,−2,−1,0,1,2,3,…}. ℕ⊂ℤ. Har bir butun k soni k/1 ko‘rinishida ham yoziladi."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "ℤ da qo‘shish, ayirish va ko‘paytirish yopiq; masalan, 1:2 butun son emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Son o‘qi, tartib va modul",
+          "izoh": "Son o‘qida boshlang‘ich 0, musbat yo‘nalish va birlik kesma tanlanadi. O‘ngdagi son kattaroq. Qarama-qarshi sonlar noldan teng masofada, turli yo‘nalishda joylashadi. Modul nolgacha masofa bo‘lgani uchun manfiy emas.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Qarama-qarshi son va modul",
+              "formula": "a+(-a)=0;\\qquad |a|=\\begin{cases}a,&a\\ge0,\\\\-a,&a<0.\\end{cases}",
+              "matn": "Masalan, −4<−1, |−4|=4."
+            },
+            {
+              "tur": "matn",
+              "matn": "−3 va 3 orasidagi masofa |3−(−3)|=6 birlik."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Butun sonlar ustida amallar",
+          "izoh": "Son o‘qida musbat son qo‘shish o‘ngga, manfiy son qo‘shish chapga siljishdir. Ayirish qarama-qarshi sonni qo‘shishga keltiriladi. Ko‘paytirish ishoralari taqsimot qonuni bilan mos bo‘lishi kerak.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ishoralarni tekshirish",
+              "shart": "(−3)+5, 2−6 va (−3)(−4) ni hisoblang.",
+              "qadamlar": [
+                "−3 dan 5 birlik o‘ngga: 2.",
+                "2−6=2+(−6)=−4.",
+                "(−3)(−4)=12."
+              ],
+              "javob": "2; −4; 12."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "7 °C harorat 9 °C ga pasaysa, yangi temperatura 7−9=−2 °C bo‘ladi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Ulush va kasr",
+      "izoh": "Butunni aniqlash va teng qismlar",
+      "belgi": "a/b",
+      "slaydlar": [
+        {
+          "sarlavha": "Ulushdan kasrga",
+          "izoh": "Avval qaysi obyekt yoki miqdor bitta butun ekanini belgilang. Butun n ta teng o‘lchovli qismga ajratilsa, har biri 1/n ulushdir. a ta shunday ulush a/n ni beradi. Dastlabki modelda a manfiy bo‘lmagan butun, n musbat butun olinadi.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Surat a olingan ulushlar sonini, maxraj n bitta butun nechta teng ulushga bo‘linganini ko‘rsatadi."
+            },
+            {
+              "tur": "matn",
+              "matn": "3/8 — sakkiz teng ulushdan uchtasi. 11/4=2 3/4 bo‘lib, kasr bir butundan katta ham bo‘lishi mumkin."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Butunning qismi va qismiga ko‘ra butun",
+          "izoh": "Berilgan ulushni butundan olish bilan ulushga qarab butunni topish teskari vazifalardir. Ikkinchi holatda berilgan ulush nol bo‘lmasligi kerak. Qism miqdori qaysi butunga tegishli ekani saqlanadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Kitobning 2/5 qismi",
+              "shart": "2/5 qism 60 bet bo‘lsa, kitob necha bet va qancha o‘qilmagan?",
+              "qadamlar": [
+                "1/5 qism: 60:2=30 bet.",
+                "Butun: 30·5=150 bet.",
+                "Qolgan: 150−60=90 bet."
+              ],
+              "javob": "150 bet; 90 bet qoldi."
+            },
+            {
+              "tur": "matn",
+              "matn": "24 ning 3/8 qismi 24·3/8=9. Umumiy holda qism=c·a/b; qism d bo‘lsa, butun=d·b/a, a≠0."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Teng kasr va qisqartirish",
+          "izoh": "Bir xil butundagi 1/2, 2/4 va 3/6 teng miqdorni ko‘rsatadi. Kasr surat va maxrajini bir xil noldan farqli butun songa ko‘paytirish qiymatni saqlaydi. Qisqartirishda surat va maxraj umumiy butun bo‘luvchiga bo‘linadi.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "b≠0, k∈ℤ, k≠0 uchun a/b=(ak)/(bk). Kasrni qisqartirganda surat va maxrajning ikkalasi bo‘linadi."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Qisqartirish",
+              "shart": "18/24 ni qisqartiring.",
+              "qadamlar": [
+                "18 va 24 ning eng katta umumiy bo‘luvchisi 6.",
+                "18:6=3; 24:6=4.",
+                "18/24=3/4."
+              ],
+              "javob": "3/4."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Ratsional sonlar va to‘rt amal",
+      "izoh": "Maxraj va bo‘luvchi shartlari",
+      "belgi": "ℚ",
+      "slaydlar": [
+        {
+          "sarlavha": "Ratsional sonning yozuvlari",
+          "izoh": "m butun, n musbat butun bo‘lganda m/n ko‘rinishida ifodalanadigan son ratsionaldir. Teng kasrlar bitta ratsional sonning turli yozuvlari. Manfiy sonlarda ham maxrajni musbat qilib yozish mumkin.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Ratsional sonlar",
+              "formula": "\\mathbb Q=\\left\\{\\frac mn:m\\in\\mathbb Z,\\ n\\in\\mathbb N\\right\\},\\qquad \\mathbb N=\\{1,2,3,\\ldots\\}",
+              "matn": "ℕ⊂ℤ⊂ℚ; 0=0/1. Nol maxrajga ruxsat yo‘q."
+            },
+            {
+              "tur": "matn",
+              "matn": "−2/3=2/(−3)=−4/6; 0/5=0. 3/0 sonni ifodalamaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qo‘shish va ayirish",
+          "izoh": "Kasrlarni qo‘shishdan oldin ulush o‘lchamlari bir xil qilinadi. Umumiy maxraj bd bo‘lishi mumkin, ammo eng kichik umumiy maxraj ko‘pincha hisobni soddalashtiradi. Maxrajlarni shunchaki qo‘shish qoida emas.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Umumiy maxraj",
+              "formula": "\\frac ab\\pm\\frac cd=\\frac{ad\\pm bc}{bd},\\qquad b,d\\ne0",
+              "matn": "Suratlar umumiy ulushdagi sonlarni bildiradi."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "5/6 va 3/4",
+              "shart": "Yig‘indini va 5/6−1/4 ni toping.",
+              "qadamlar": [
+                "5/6+3/4=10/12+9/12=19/12.",
+                "5/6−1/4=10/12−3/12=7/12.",
+                "Natijalar qisqarmas kasrda."
+              ],
+              "javob": "19/12 va 7/12."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ko‘paytirish, bo‘lish va teskari son",
+          "izoh": "Ko‘paytirishda suratlar va maxrajlar alohida ko‘paytiriladi. Bo‘lishda ikkinchi kasr noldan farqli bo‘lsin: uning teskarisiga ko‘paytiriladi. Qarama-qarshi va teskari son bir tushuncha emas.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Ikki amal",
+              "formula": "\\frac ab\\cdot\\frac cd=\\frac{ac}{bd};\\qquad \\frac ab:\\frac cd=\\frac{ad}{bc}",
+              "matn": "b,d≠0; bo‘lishda c≠0 ham talab qilinadi."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Amallar va teskari son",
+              "shart": "2/3·9/10 va 2/3:5/6 ni hisoblang. −2/3 ning teskarisini ayting.",
+              "qadamlar": [
+                "2/3·9/10=18/30=3/5.",
+                "2/3:5/6=2/3·6/5=4/5.",
+                "−2/3 ning teskarisi −3/2, qarama-qarshisi 2/3."
+              ],
+              "javob": "3/5; 4/5; teskari son −3/2."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Qonunlar, xossalar va model",
+      "izoh": "Amal ma’nosini saqlaymiz",
+      "belgi": "ℤ⊂ℚ",
+      "slaydlar": [
+        {
+          "sarlavha": "Qo‘shish va ko‘paytirish qonunlari",
+          "izoh": "Ratsional sonlarda qo‘shish va ko‘paytirish o‘rin almashtirish hamda guruhlash qonunlariga bo‘ysunadi. Nol qo‘shishning, bir ko‘paytirishning neytral elementi. Ayirish va bo‘lishga o‘rin almashtirish qonunini ko‘chirmang.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Qonun",
+                "Qo‘shish yoki ko‘paytirish"
+              ],
+              "qatorlar": [
+                [
+                  "O‘rin almashtirish",
+                  "a+b=b+a; ab=ba"
+                ],
+                [
+                  "Guruhlash",
+                  "(a+b)+c=a+(b+c); (ab)c=a(bc)"
+                ],
+                [
+                  "Neytral element",
+                  "a+0=a; a·1=a"
+                ],
+                [
+                  "Taqsimot",
+                  "a(b+c)=ab+ac"
+                ],
+                [
+                  "Qarama-qarshi va teskari",
+                  "a+(−a)=0; a·(1/a)=1, a≠0"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "1/2−1/3=1/6, ammo 1/3−1/2=−1/6."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yopiqlik, tartib va zichlik",
+          "izoh": "Ratsional sonlarning yig‘indisi, ayirmasi va ko‘paytmasi ratsional; bo‘lish ham noldan farqli bo‘luvchida ratsional natija beradi. Istalgan a<b ratsional orasida (a+b)/2 ratsional yotadi. Bu xossa eng yaqin keyingi ratsional son yo‘qligini ko‘rsatadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Oraliq son",
+              "shart": "1/3 bilan 1/2 orasidagi ratsional sonni toping.",
+              "qadamlar": [
+                "(1/3+1/2)/2=(5/6)/2=5/12.",
+                "1/3=4/12 va 1/2=6/12.",
+                "4/12<5/12<6/12."
+              ],
+              "javob": "5/12."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Zichlik barcha haqiqiy sonlar ratsional degani emas; haqiqiy sonlar mavzusida bu farq kengaytiriladi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Modeldagi butun va tenglik",
+          "izoh": "Kasr modeli uchun buyumning tashqi ko‘rinishi emas, tanlangan miqdor bo‘yicha teng ulushlar muhim. Bir xil butunda turli bo‘linishlar teng kasrlarni ko‘rsatadi. Turli kattalikdagi ikkita butunning yarmi bir xil fizik uzunlik yoki yuz bo‘lishi shart emas.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Bir xil uzunlikdagi ikki tasma: birinchisi 2 teng qismga, ikkinchisi 4 teng qismga bo‘linadi. 1 bo‘lak va 2 bo‘lak mos ravishda 1/2 va 2/4 bo‘lib teng uzunlik beradi."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Kasr surat va maxrajidagi umumiy ko‘paytuvchilar qisqaradi; yig‘indidagi istalgan hadlarni alohida o‘chirib bo‘lmaydi."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Butunni aytmasdan 1/2 modelini solishtirish.",
+      "sabab": "Kasr va fizik miqdor aralashtirilgan.",
+      "togri": "Bir xil butun yoki butunlar o‘lchami aniq berilsin."
+    },
+    {
+      "xato": "Teng bo‘lmagan bo‘laklarni bir xil ulush sanash.",
+      "sabab": "Ulushning teng o‘lchov sharti yo‘q.",
+      "togri": "Tanlangan miqdor bo‘yicha teng qismlar olinadi."
+    },
+    {
+      "xato": "a/b+c/d=(a+c)/(b+d) deyish.",
+      "sabab": "Har xil ulushlar to‘g‘ridan qo‘shilgan.",
+      "togri": "Umumiy maxraj topiladi."
+    },
+    {
+      "xato": "Nol maxraj yoki nolga teskari son kiritish.",
+      "sabab": "Ruxsat etilgan soha unutilgan.",
+      "togri": "Maxraj va bo‘luvchi noldan farqli bo‘lsin; 0 ning teskarisi yo‘q."
+    },
+    {
+      "xato": "Qarama-qarshi bilan teskari sonni almashtirish.",
+      "sabab": "Qo‘shish va ko‘paytirish vazifalari aralashgan.",
+      "togri": "−a qo‘shilganda 0, 1/a ko‘paytirilganda 1 beradi."
+    },
+    {
+      "xato": "Natural sonlarda 0 masalasini barcha manbalarda bir xil deb olish.",
+      "sabab": "Kelishuvlar borligi aytilmagan.",
+      "togri": "Darsdagi ℕ kelishuvi ochiq yoziladi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Buyumdan belgiga",
+    "bosqichlar": [
+      "Butun va teng ulushlarni buyum yoki tasmada ko‘rsatish",
+      "Modelni a/b yozuvi bilan bog‘lash",
+      "Hisobni muqobil model yoki teskari amal bilan tekshirish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Qog‘oz buklash",
+        "matn": "Bir xil tasmalarda 1/2 va 2/4 ni taqqoslang."
+      },
+      {
+        "sarlavha": "Qismdan butun",
+        "matn": "2 ta teng ulush 60 bet bo‘lsa, 5 ta ulushga o‘ting."
+      },
+      {
+        "sarlavha": "Son o‘qi",
+        "matn": "Manfiy va kasr sonlarni bitta birlik kesmada joylashtiring."
+      }
+    ],
+    "tavsiya": "Boshlang‘ich sinfga mos modelda butun va teng ulushlarni saqlang. Bakalavr darajasida to‘plam, qonun va amal shartlari ham tushuntiriladi."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Butun va teng ulush aniqlanmasdan kasr modeli qurilmaydi.",
+      "Har bir ratsional sonning turli teng kasr yozuvlari bor.",
+      "Nol maxraj va nolga bo‘lishga ruxsat yo‘q.",
+      "ℤ va ℚ ning yopiqlik xossalari bir xil emas."
+    ]
+  },
+  "test": [
+    {
+      "savol": "24 ning 3/8 qismi nechaga teng?",
+      "variantlar": [
+        "9",
+        "8",
+        "64",
+        "3"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "Butunning 2/5 qismi 30. Butun qaysi?",
+      "variantlar": [
+        "12",
+        "60",
+        "75",
+        "15"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Qaysi tenglik to‘g‘ri?",
+      "variantlar": [
+        "1/2+1/3=2/5",
+        "2/3=10/15",
+        "3/4=4/5",
+        "1/2=1/3"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "5/6+3/4 nechaga teng?",
+      "variantlar": [
+        "8/10",
+        "15/24",
+        "7/12",
+        "19/12"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "−2/3 ga teskari son qaysi?",
+      "variantlar": [
+        "2/3",
+        "3/2",
+        "−3/2",
+        "−2/3"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "ℤ da qaysi amal barcha ruxsat etilgan butun argumentlarda doim butun natija bermaydi?",
+      "variantlar": [
+        "Ayirish",
+        "Bo‘lish (bo‘luvchi noldan farqli)",
+        "Ko‘paytirish",
+        "Qo‘shish"
+      ],
+      "javob": 1
+    }
+  ],
+  "nazorat": [
+    "Ulush, kasr va ratsional sonni farqlang.",
+    "Butunning qismi va qismiga ko‘ra butunni topishni izohlang.",
+    "Kasrning asosiy xossasida k≠0 nima uchun kerak?",
+    "ℤ ning geometrik talqinini ko‘rsating.",
+    "Qo‘shish va ko‘paytirish qonunlarini yozing.",
+    "ℚ zichligini 1/3 va 1/2 misolida tushuntiring."
+  ],
+  "mustaqil_ish": [
+    "7/12+5/18−1/6 ni hisoblang.",
+    "Yo‘lning 3/7 qismi 42 km. Butun yo‘l va qolgan yo‘lni toping.",
+    "−3/4 va 2/3 orasida uchta ratsional son topib, ularning oraliqda yotishini ko‘rsating.",
+    "Ulush uchun 3 ta qog‘oz buklash topshirig‘i tuzing: 1/2, 1/4 va 2/4=1/2. Har birida butun, teng qismlar va tekshiruv mezonini ayting."
+  ],
+  "keyingi": {
+    "mavzu": "O‘nli kasrlar",
+    "izoh": "Oddiy kasrni 10,100,1000 maxrajli yozuvga keltirishni takrorlang."
+  },
+  "rasmlar": []
+}

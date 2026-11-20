@@ -1,0 +1,191 @@
+{
+  "mavzu_id": "BMKN1305-3-A1",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "7:2"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "−8<−3"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "5"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "24"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "11"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "−9"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "−5. Tekshiruv: −18+7+6=−5; −5−6−7=−18.",
+    "2": "−11: avval 4 va −15, so‘ng 4−15.",
+    "3": {
+      "yakuniy_koordinata": "−2",
+      "kochish": "+3 birlik",
+      "yol": "15 birlik: |4−(−5)|+|−2−4|=9+6"
+    },
+    "4": "Mezon: aniq manba; sana nusxa/asarning/sharhning qaysi biriga tegishliligi; fikr manbadan ortiq umumlashtirilmagan. Masalan, 263-yil sharh sanasi, barcha manfiy sonlar o‘sha yili yaratilgan degani emas."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "A01 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 test 1 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "7:2",
+      "olingan": "7:2"
+    },
+    {
+      "tekshiruv": "A01 test 1 butun emas",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 test 2 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "−8<−3",
+      "olingan": "−8<−3"
+    },
+    {
+      "tekshiruv": "A01 test 2 tartib",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "5 ",
+      "olingan": "5"
+    },
+    {
+      "tekshiruv": "A01 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "24 ",
+      "olingan": "24"
+    },
+    {
+      "tekshiruv": "A01 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "11 ",
+      "olingan": "11"
+    },
+    {
+      "tekshiruv": "A01 test 6 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "-9 ",
+      "olingan": "−9"
+    },
+    {
+      "tekshiruv": "A01 butun sonlarga ehtiyoj",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 qarama-qarshi birliklar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 qavs va tartib",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 asosiy harakat modeli",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 temperatura o‘zgarishi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 xato tuzatish",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 mustaqil 1",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 mustaqil 2",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 mustaqil 3",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 tarix sanalarining ochiq talqini",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A01 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "mavzu_id": "BMKN1305-3-MT4",
+  "hujjat_turi": "Mustaqil ta’lim topshiriq paketi",
+  "soat": 10,
+  "manba": "SamDPI BMKN 1305,2-kurs kunduzgi,2026–2027, asl dastur 6-beti",
+  "holat": "Topshiriq va tekshiruv paketi tayyor; talabaning ishi bajarildi degani emas",
+  "bosqichlar": [
+    {
+      "raqam": 1,
+      "soat": 2,
+      "ish": "Manbalar va besh jism ta’rifini o‘rganish"
+    },
+    {
+      "raqam": 2,
+      "soat": 2,
+      "ish": "V, E, F va ikki tomonlama sanash jadvalini tuzish"
+    },
+    {
+      "raqam": 3,
+      "soat": 2,
+      "ish": "Burchak tengsizligining besh juftini asoslash"
+    },
+    {
+      "raqam": 4,
+      "soat": 2,
+      "ish": "Yuz-hajm hisoblari va model tayyorlash"
+    },
+    {
+      "raqam": 5,
+      "soat": 1,
+      "ish": "Mustaqil sanash va birlik nazorati"
+    },
+    {
+      "raqam": 6,
+      "soat": 1,
+      "ish": "Modelni himoya qilish va refleksiya"
+    }
+  ],
+  "topshiriladigan_natijalar": [
+    {
+      "id": "D1",
+      "talab": "Manbali besh jism jadvali"
+    },
+    {
+      "id": "D2",
+      "talab": "Beshta juftni chiqarish va sanash isboti"
+    },
+    {
+      "id": "D3",
+      "talab": "Yuz-hajm masalalarining bosqichli yechimlari"
+    },
+    {
+      "id": "D4",
+      "talab": "Model/yoyilma va metodik parcha"
+    }
+  ],
+  "baholash": {
+    "tur": "Tavsiyaviy ichki mezon; muassasaning rasmiy baholash nizomi o‘rniga olinmaydi",
+    "maksimal_ball": 20,
+    "mezonlar": [
+      {
+        "nom": "Tasnif",
+        "maksimal_ball": 5,
+        "talab": "Qavariqlik va muntazamlik shartlari saqlangan."
+      },
+      {
+        "nom": "Isbot",
+        "maksimal_ball": 5,
+        "talab": "Sanash va tengsizlik asoslangan."
+      },
+      {
+        "nom": "Hisob",
+        "maksimal_ball": 5,
+        "talab": "Yuz-hajm va birliklar to‘g‘ri."
+      },
+      {
+        "nom": "Model",
+        "maksimal_ball": 5,
+        "talab": "Yoq-qirra-uch hamda namoyish mos."
+      }
+    ],
+    "ball_tavsifi": {
+      "0": "Dalil yo‘q yoki vazifa bajarilmagan",
+      "1–2": "Qisman, asosiy xato yoki yetishmaydigan dalil bor",
+      "3–4": "Asosan to‘g‘ri, tekshiruv yoki izohda ayrim kamchiliklar",
+      "5": "Talab to‘liq, asosli va tekshirilgan"
+    }
+  },
+  "foydalanish": "Talabaga topshiriq va reja beriladi. Javoblar fayli o‘qituvchining tekshiruvi uchun alohida saqlanadi."
+}

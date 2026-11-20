@@ -1,0 +1,139 @@
+{
+  "mavzu_id": "BMKN1305-3-MT7",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "6 sm²"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "12"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "144"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "4 marta"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "1 kg"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "Qo‘shimcha material shartisiz yo‘q"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "6·4=24 kartochka; 144 sm².",
+    "2": "32 va 8; yangi birlik yuzi 4 marta katta, birlik soni 4 marta kam; yuz 192 sm².",
+    "3": "1000 g=1 kg; 1150−150=1000 g=1 kg.",
+    "4": "Ochiq mahsulot. Birliklar bir xil va qoplash aniq; plastilin yo‘qolmasligi tekshiriladi. Massa-yuz modeli uchun bir jinsli material va qalinlik kabi shartlar yoziladi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "MT07 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT07 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT07 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT07 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT07 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "6 sm²",
+      "olingan": "6 sm²"
+    },
+    {
+      "tekshiruv": "MT07 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "12 ",
+      "olingan": "12"
+    },
+    {
+      "tekshiruv": "MT07 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "144 ",
+      "olingan": "144"
+    },
+    {
+      "tekshiruv": "MT07 test 4 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "4 marta",
+      "olingan": "4 marta"
+    },
+    {
+      "tekshiruv": "MT07 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "1 kg",
+      "olingan": "1 kg"
+    },
+    {
+      "tekshiruv": "MT07 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Qo‘shimcha material shartisiz yo‘q",
+      "olingan": "Qo‘shimcha material shartisiz yo‘q"
+    },
+    {
+      "tekshiruv": "MT07 qoplash va birlik",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT07 ikki birlik",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT07 massa va fizik shartli hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT07 mustaqil misollar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT07 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

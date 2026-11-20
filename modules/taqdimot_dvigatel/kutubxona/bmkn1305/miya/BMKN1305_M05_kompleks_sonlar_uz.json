@@ -1,0 +1,588 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 5,
+    "tur": "ma’ruza",
+    "mavzu": "Kompleks sonlar va ular ustida arifmetik amallar",
+    "qisqa": "Kompleks sonlar",
+    "maqsad": "Talaba a+bi yozuvining qismlarini aniqlaydi, kompleks sonni tekislikdagi nuqta bilan bog‘laydi, modul va qo‘shma sonni topadi; to‘rt amalni bajarib, nolga bo‘lish va ildiz belgisi cheklovlarini tushuntiradi.",
+    "tayanch": [
+      "Mavhum birlik",
+      "Haqiqiy va mavhum qism",
+      "Kompleks tekislik",
+      "Modul va qo‘shma son",
+      "Kompleks amallar"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "$i^2=-1$",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; M5, asl skanning 4-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax College Algebra 2e, 2.4",
+        "izoh": "https://openstax.org/books/college-algebra-2e/pages/2-4-complex-numbers"
+      },
+      {
+        "nomi": "OpenStax Precalculus 2e, 8.5",
+        "izoh": "https://openstax.org/books/precalculus-2e/pages/8-5-polar-form-of-complex-numbers"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim kiritilmadi. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Haqiqiy sonlar va ko‘phadlar",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Haqiqiy x uchun x² manfiy bo‘ladimi?",
+        "javob": "Yo‘q, x²≥0."
+      },
+      {
+        "savol": "(a+b)(a−b) ni oching.",
+        "javob": "a²−b²."
+      },
+      {
+        "savol": "Qavs oldidagi minus nimani o‘zgartiradi?",
+        "javob": "Qavsdagi barcha hadlarning ishorasini."
+      },
+      {
+        "savol": "Nolga bo‘lish mumkinmi?",
+        "javob": "Yo‘q."
+      },
+      {
+        "savol": "Nuqtaning koordinatalari nimani bildiradi?",
+        "javob": "Tanlangan o‘qlar bo‘yicha joylashuvini."
+      },
+      {
+        "savol": "3²+(−4)² nechaga teng?",
+        "javob": "25."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Kvadrati manfiy bo‘lgan son kerak",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "x²+1=0 tenglamani haqiqiy sonlarda nega yecha olmaymiz?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "i²=−1 deb olinsa, oddiy ko‘paytirish qoidalarini qanday saqlaymiz?"
+      }
+    ],
+    "goya": "Kompleks sonlar haqiqiy sonlar ustidagi amallarni saqlagan holda sistemani kengaytiradi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Kompleks sonning tuzilishi",
+      "izoh": "i² = −1 dan a+bi yozuviga",
+      "belgi": "a+bi",
+      "slaydlar": [
+        {
+          "sarlavha": "Haqiqiy sonlardan keyingi kengayish",
+          "izoh": "Haqiqiy sonlar ichida kvadrati −1 bo‘lgan son yo‘q. Kompleks sonlar sistemasida i belgisi i²=−1 shartini qanoatlantiradi. i ni noma’lum haqiqiy son deb emas, kengaytirilgan sonlar sistemasining elementi deb talqin qiling.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Mavhum birlik i uchun i² = −1. Kompleks son a+bi shaklida yoziladi, bunda a va b haqiqiy sonlar.",
+              "formula": "i^2=-1,\\qquad z=a+bi,\\quad a,b\\in\\mathbb R"
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Kengaytirilgan sistemada",
+              "shart": "z²+1=0 tenglamaning kompleks yechimlarini tekshiring.",
+              "qadamlar": [
+                "i²+1=−1+1=0.",
+                "(−i)²+1=i²+1=0.",
+                "z²+1=(z−i)(z+i)."
+              ],
+              "javob": "z=i yoki z=−i."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Haqiqiy va mavhum qismlar",
+          "izoh": "a+bi yozuvidagi ikki koeffitsiyent ham haqiqiy sondir. Mavhum qism deganda b sonining o‘zi olinadi, bi hadi emas. Sonning mavhum qismi nol bo‘lsa, kompleks yozuv oddiy haqiqiy sonni ifodalaydi. a=0 va b≠0 bo‘lsa, son sof mavhum deyiladi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "z",
+                "Re z",
+                "Im z"
+              ],
+              "qatorlar": [
+                [
+                  "2−3i",
+                  "2",
+                  "−3"
+                ],
+                [
+                  "−5",
+                  "−5",
+                  "0"
+                ],
+                [
+                  "4i",
+                  "0",
+                  "4"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Im(2−3i)=−3. −3i esa mavhum had."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Kompleks sonlarning tengligi",
+          "izoh": "Ikki kompleks son teng bo‘lishi uchun ularning ikkala qismi mos kelishi kerak. Bu bitta kompleks tenglikni ikkita haqiqiy tenglikka ajratadi. Noma’lumlar haqiqiy ekanini shartda saqlang.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Haqiqiy va mavhum qismlar alohida tenglashtiriladi.",
+              "formula": "a+bi=c+di\\ \\Longleftrightarrow\\ a=c,\\ b=d"
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki noma’lum",
+              "shart": "x+yi=3−2i, x,y∈ℝ bo‘lsa, x va y ni toping.",
+              "qadamlar": [
+                "Haqiqiy qismlar: x=3.",
+                "Mavhum qismlar: y=−2.",
+                "Qayta qo‘yib tenglikni tekshiramiz."
+              ],
+              "javob": "x=3, y=−2."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Geometrik ma’no",
+      "izoh": "Nuqta, masofa va qo‘shma son",
+      "belgi": "|z|",
+      "slaydlar": [
+        {
+          "sarlavha": "Kompleks tekislikdagi nuqta",
+          "izoh": "Son o‘qida ikkita mustaqil koeffitsiyentni joylashtirish yetarli emas. Kompleks tekislikda gorizontal o‘q haqiqiy qismni, vertikal o‘q mavhum qismning koeffitsiyentini ko‘rsatadi. Nuqtaning ikkinchi koordinatasi b, bi emas.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Kompleks son",
+                "Nuqta",
+                "Joylashuv"
+              ],
+              "qatorlar": [
+                [
+                  "2+3i",
+                  "(2,3)",
+                  "I chorak"
+                ],
+                [
+                  "−2+3i",
+                  "(−2,3)",
+                  "II chorak"
+                ],
+                [
+                  "−i",
+                  "(0,−1)",
+                  "Manfiy mavhum yarim o‘q"
+                ]
+              ]
+            },
+            {
+              "tur": "matn",
+              "matn": "Chizma talabi: Re va Im o‘qlari, birlik masshtab va tegishli (a,b) nuqta aniq ko‘rsatiladi. Maxsus tekislik chizmasi alohida talab faylida berilgan."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Modul — koordinatalar boshigacha masofa",
+          "izoh": "Masofa Pifagor teoremasi yordamida topiladi. Modul har doim manfiy bo‘lmagan haqiqiy sondir. |z|=0 tenglik faqat z=0 bo‘lganda bajariladi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Kompleks son moduli",
+              "formula": "|a+bi|=\\sqrt{a^2+b^2}",
+              "matn": "Modul kompleks sonning o‘zi emas, masofani bildiruvchi haqiqiy son."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Masofa",
+              "shart": "z=3−4i uchun |z| ni toping.",
+              "qadamlar": [
+                "a=3, b=−4.",
+                "a²+b²=9+16=25.",
+                "√25=5."
+              ],
+              "javob": "|z|=5."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qo‘shma kompleks son",
+          "izoh": "Qo‘shma sonning haqiqiy qismi o‘zgarmaydi, mavhum qismining ishorasi almashadi. Tekislikda bu haqiqiy o‘qqa nisbatan akslantirishga mos keladi. Qo‘shma sonni qarama-qarshi son bilan aralashtirmang.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Qo‘shma son va ko‘paytma",
+              "formula": "\\overline{a+bi}=a-bi,\\qquad z\\overline z=|z|^2",
+              "matn": "Ikkinchi tenglikda i²=−1 ishlatiladi."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Qo‘shma va qarama-qarshi",
+              "shart": "z=3−4i uchun qo‘shma va qarama-qarshi sonni yozing.",
+              "qadamlar": [
+                "Qo‘shmada faqat mavhum qism ishorasi o‘zgaradi.",
+                "Qarama-qarshida ikkala qism ishorasi o‘zgaradi.",
+                "(3−4i)(3+4i)=25."
+              ],
+              "javob": "Qo‘shma: 3+4i; qarama-qarshi: −3+4i."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Qo‘shish, ayirish va ko‘paytirish",
+      "izoh": "Oddiy algebra va i²=−1",
+      "belgi": "i²=−1",
+      "slaydlar": [
+        {
+          "sarlavha": "Qo‘shish va ayirish",
+          "izoh": "Haqiqiy qismlarni haqiqiy qismlar bilan, mavhum qismlarni mavhum qismlar bilan jamlang. Ayirishda ikkinchi qavsdagi ikkala ishora o‘zgaradi. Natijani a+bi standart ko‘rinishiga qaytaring.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Qo‘shish",
+              "formula": "(a+bi)+(c+di)=(a+c)+(b+d)i",
+              "matn": "a,b,c,d haqiqiy sonlar."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki amal",
+              "shart": "(3−2i)+(−1+5i) va (2+i)−(−3+4i) ni toping.",
+              "qadamlar": [
+                "Birinchi: (3−1)+(−2+5)i=2+3i.",
+                "Ikkinchi: 2+i+3−4i.",
+                "Ikkinchi natija: 5−3i."
+              ],
+              "javob": "2+3i; 5−3i."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ko‘paytirishda barcha hadlarni yozamiz",
+          "izoh": "Ikki qavs ko‘phadlar singari ochiladi. Faqat so‘ng i² o‘rniga −1 qo‘yiladi va haqiqiy hadlar jamlanadi. i² ni +1 deb olish ishorani buzadi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Umumiy ko‘paytma",
+              "formula": "(a+bi)(c+di)=(ac-bd)+(ad+bc)i",
+              "matn": "i²=−1 sharti hisobga olingan."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Qavslarni ochish",
+              "shart": "(2+3i)(1−2i) ni hisoblang.",
+              "qadamlar": [
+                "2−4i+3i−6i².",
+                "i²=−1 dan −6i²=+6.",
+                "2+6+(−4+3)i."
+              ],
+              "javob": "8−i."
+            }
+          ]
+        },
+        {
+          "sarlavha": "i ning darajalari takrorlanadi",
+          "izoh": "i ning ketma-ket darajalari to‘rtta qiymat bo‘yicha aylanadi. Darajani to‘rtga bo‘lgandagi qoldiqdan foydalaning. Bu darsdagi qoidani manfiy yoki kasr darajalarga izohsiz ko‘chirmang.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Daraja",
+                "Qiymat"
+              ],
+              "qatorlar": [
+                [
+                  "i¹",
+                  "i"
+                ],
+                [
+                  "i²",
+                  "−1"
+                ],
+                [
+                  "i³",
+                  "−i"
+                ],
+                [
+                  "i⁴",
+                  "1"
+                ]
+              ]
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Katta daraja",
+              "shart": "i²³ ni toping.",
+              "qadamlar": [
+                "23=4·5+3.",
+                "i²³=(i⁴)⁵·i³.",
+                "1⁵·(−i)=−i."
+              ],
+              "javob": "−i."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Bo‘lish va amal chegaralari",
+      "izoh": "Nol bo‘lmagan bo‘luvchi va asoslash",
+      "belgi": "z̄",
+      "slaydlar": [
+        {
+          "sarlavha": "Bo‘luvchini haqiqiy songa aylantirish",
+          "izoh": "Bo‘linmaning surat va maxrajini bo‘luvchining qo‘shmasiga ko‘paytiramiz. Maxraj c²+d² ga teng bo‘ladi. Bu son bo‘luvchi nol bo‘lmaganida musbat bo‘lishi sababli bo‘lish aniqlanadi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Bo‘lish formulasi",
+              "formula": "\\frac{a+bi}{c+di}=\\frac{(a+bi)(c-di)}{c^2+d^2},\\quad c+di\\ne0",
+              "matn": "Surat ham, maxraj ham bir xil songa ko‘paytiriladi."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Aniq bo‘linma",
+              "shart": "(5+i)/(1−2i) ni hisoblang.",
+              "qadamlar": [
+                "Surat va maxrajni 1+2i ga ko‘paytiramiz.",
+                "Surat: 5+10i+i+2i²=3+11i; maxraj: 1+4=5.",
+                "Haqiqiy va mavhum qismlarni alohida bo‘lamiz."
+              ],
+              "javob": "3/5 + (11/5)i."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qaysi qonunlar saqlanadi?",
+          "izoh": "Kompleks sonlarda qo‘shish va ko‘paytirishning o‘rin almashtirish, guruhlash hamda taqsimot qonunlari saqlanadi. Noldan farqli har bir kompleks sonning teskarisi mavjud. Moduliga qarab kompleks sonning o‘ziga katta-kichiklik belgisi qo‘yilmaydi: bir xil modulli turli sonlar bor.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Teskari kompleks son",
+              "formula": "\\frac1z=\\frac{\\overline z}{|z|^2},\\qquad z\\ne0",
+              "matn": "Nolga bo‘lish kompleks sonlarda ham aniqlanmagan."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "|i|=|1|=1, ammo i≠1. Modul sonni bir qiymatli aniqlamaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ildiz belgisi va tenglama yechimini ajratamiz",
+          "izoh": "√(−36) ning odatiy bosh kvadrat ildizi 6i deb olinadi. Ammo z²=−36 tenglamaning ikkita yechimi bor: 6i va −6i. Manfiy haqiqiy sonlar ustida ildizlarni ko‘paytirishning musbat sonlardagi qoidasini shartsiz qo‘llash mumkin emas.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Bosh ildiz va ikki yechim",
+              "shart": "√(−36) ni yozing va z²=−36 ni yeching.",
+              "qadamlar": [
+                "(6i)²=36i²=−36.",
+                "(−6i)² ham −36 ga teng.",
+                "Bosh ildiz belgisi bu juftlikdan 6i ni bildiradi."
+              ],
+              "javob": "√(−36)=6i; tenglama yechimlari ±6i."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "√(−1)·√(−1)=−1, lekin √((−1)(−1))=1. Ildizlarni ko‘paytirish qoidasi bu holatda amal qilmaydi."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "i²=1.",
+      "sabab": "Mavhum birlikning aniqlovchi sharti unutilgan.",
+      "togri": "i²=−1."
+    },
+    {
+      "xato": "Im(2−3i)=−3i.",
+      "sabab": "Mavhum koeffitsiyent bilan had aralashtirilgan.",
+      "togri": "Im(2−3i)=−3."
+    },
+    {
+      "xato": "z̄=−z har doim.",
+      "sabab": "Qo‘shma va qarama-qarshi son tenglashtirilgan.",
+      "togri": "z=3−4i uchun z̄=3+4i, −z=−3+4i."
+    },
+    {
+      "xato": "|3−4i|=3−4.",
+      "sabab": "Masofa formulasi o‘rniga qismlar ayirilgan.",
+      "togri": "|3−4i|=√(9+16)=5."
+    },
+    {
+      "xato": "Suratni qo‘shmaga ko‘paytirib, maxrajni o‘zgartirmaslik.",
+      "sabab": "Bo‘linma qiymati saqlanmagan.",
+      "togri": "Surat va maxraj bir xil qo‘shma songa ko‘paytiriladi."
+    },
+    {
+      "xato": "√(−1)√(−1)=√1=1.",
+      "sabab": "Haqiqiy manfiy bo‘lmagan sonlarga tegishli qoida kengaytirilgan.",
+      "togri": "i·i=−1; bu holda ildiz ko‘paytmasi qoidasi qo‘llanmaydi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Ikki yozuvni bir-biriga bog‘lash",
+    "bosqichlar": [
+      "a+bi yozuvini qismlarga ajratish",
+      "(a,b) nuqta va modulni talqin qilish",
+      "Algebraik amalni bajarib, qismlarni qayta tekshirish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Ikki qism",
+        "matn": "2−3i uchun Re=2 va Im=−3 kartalarini ajrating."
+      },
+      {
+        "sarlavha": "Qo‘shma va qarama-qarshi",
+        "matn": "3−4i, 3+4i va −3+4i ni taqqoslang; qaysi o‘zgarish qaysi ta’rifga mosligini ayting."
+      },
+      {
+        "sarlavha": "Bo‘linmani tekshirish",
+        "matn": "Topilgan bo‘linmani bo‘luvchiga ko‘paytirib, suratga qaytishini ko‘rsating."
+      }
+    ],
+    "tavsiya": "Kompleks sonlar boshlang‘ich sinf mavzusi sifatida berilmaydi. Bu mashg‘ulot bo‘lajak o‘qituvchining nazariy tayyorgarligi va tushunchalarni aniq farqlashi uchun."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Kompleks sonning ikkala koeffitsiyenti haqiqiy sondir.",
+      "Mavhum qism b, mavhum had esa bi.",
+      "Modul masofa; qo‘shma va qarama-qarshi sonlar farq qiladi.",
+      "Ko‘paytirishda i²=−1; bo‘lishda bo‘luvchi noldan farqli.",
+      "Bosh ildiz va tenglamaning barcha yechimlari bir xil narsa emas."
+    ]
+  },
+  "test": [
+    {
+      "savol": "i² nimaga teng?",
+      "variantlar": [
+        "1",
+        "−1",
+        "i",
+        "−i"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Im(2−3i) ni toping.",
+      "variantlar": [
+        "2",
+        "−3i",
+        "−3",
+        "3"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "3−4i ning moduli nechaga teng?",
+      "variantlar": [
+        "5",
+        "7",
+        "−1",
+        "25"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "(2+3i)(1−2i) ni toping.",
+      "variantlar": [
+        "−4−i",
+        "8+i",
+        "−4+i",
+        "8−i"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "i²³ nimaga teng?",
+      "variantlar": [
+        "i",
+        "−i",
+        "1",
+        "−1"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "(5+i)/(1−2i) ni toping.",
+      "variantlar": [
+        "(3−11i)/5",
+        "(7+11i)/5",
+        "(3+11i)/5",
+        "3+11i"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Kompleks son va sof mavhum sonni ta’riflang.",
+    "Nega Im(a+bi)=b deb olinadi?",
+    "Kompleks sonning geometrik ma’nosini tushuntiring.",
+    "z·z̄=|z|² tengligini asoslang.",
+    "Kompleks bo‘lish algoritmida bo‘luvchining noldan farqli bo‘lishi qayerda ishlatiladi?",
+    "√(−36) va z²=−36 javoblarini farqlang."
+  ],
+  "mustaqil_ish": [
+    "(1−2i)(3+i) va (4+2i)/(1−i) ni hisoblang.",
+    "i³⁷ va √(−81) ni toping; ikkinchi ifodani bosh ildiz ma’nosida oling.",
+    "z=−5+12i uchun Re z, Im z, z̄ va |z| ni toping.",
+    "2x+yi=6−4i, x,y∈ℝ tenglikdan x va y ni aniqlang."
+  ],
+  "keyingi": {
+    "mavzu": "Kompleks sonlarning trigonometrik shakli",
+    "izoh": "Modul va koordinata tushunchalarini takrorlang; burchak qaysi chorakka tegishli ekanini aniqlashga tayyorlaning."
+  },
+  "rasmlar": []
+}

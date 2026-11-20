@@ -1,0 +1,150 @@
+{
+  "mavzu_id": "BMKN1305-3-M2",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "0,507 < 0,57"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "9,78"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "6,525"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "0,036"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "39"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "8"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": [
+      "9,196",
+      "7,915"
+    ],
+    "2": [
+      "0,08",
+      "42"
+    ],
+    "3": [
+      "0,04",
+      "0,4",
+      "0,404",
+      "0,44"
+    ],
+    "4": "Bir xil butun va teng bo‘laklar; 0,5=0,50 tengligi; modeldan belgiga o‘tish; xato va tuzatish."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "M02 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M02 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M02 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M02 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M02 test 1",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M02 test 2",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M02 test 3",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M02 test 4",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M02 test 5",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M02 test 6",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M02 mustaqil 1a",
+      "natija": "O‘tdi",
+      "kutilgan": "9.196",
+      "olingan": "9.196"
+    },
+    {
+      "tekshiruv": "M02 mustaqil 1b",
+      "natija": "O‘tdi",
+      "kutilgan": "7.915",
+      "olingan": "7.915"
+    },
+    {
+      "tekshiruv": "M02 mustaqil 2a",
+      "natija": "O‘tdi",
+      "kutilgan": ".08",
+      "olingan": "0.0800"
+    },
+    {
+      "tekshiruv": "M02 mustaqil 2b",
+      "natija": "O‘tdi",
+      "kutilgan": "42",
+      "olingan": "42"
+    },
+    {
+      "tekshiruv": "M02 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

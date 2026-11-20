@@ -1,0 +1,178 @@
+{
+  "mavzu_id": "BMKN1305-3-A12",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "Tengdosh, lekin kongruent emas"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "10"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "30 sm²"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "23 sm"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "42 sm²"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "4500"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": {
+      "S": "21 sm²",
+      "P": "21,8 sm"
+    },
+    "2": [
+      "42 sm²",
+      "35 sm²"
+    ],
+    "3": {
+      "S": "58 sm²",
+      "P": "34 sm"
+    },
+    "4": "Har ikkisi 12 teng birlik kvadratdan tuzilgan, yuz 12. Tomonlar 3,4 va 2,6 bo‘lgani uchun kongruent emas; perimetrlar 14 va 16. Mezon: teng birliklar, bo‘shliqsiz va ustma-ust tushmasdan qamrov."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "A12 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 test 1 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Tengdosh, lekin kongruent emas",
+      "olingan": "Tengdosh, lekin kongruent emas"
+    },
+    {
+      "tekshiruv": "A12 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "10 ",
+      "olingan": "10"
+    },
+    {
+      "tekshiruv": "A12 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "30 sm²",
+      "olingan": "30 sm²"
+    },
+    {
+      "tekshiruv": "A12 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "23 sm",
+      "olingan": "23 sm"
+    },
+    {
+      "tekshiruv": "A12 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "42 sm²",
+      "olingan": "42 sm²"
+    },
+    {
+      "tekshiruv": "A12 test 6 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "4500.00 ",
+      "olingan": "4500"
+    },
+    {
+      "tekshiruv": "A12 tengdoshlik va kongruent emaslik",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 katak baholari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 tekis figuralar yuzlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 L shakl mustaqil koordinata hisobi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 yuz birliklari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 kvadrat masshtabi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 mustaqil to‘rtburchak",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 mustaqil uchburchak-trapetsiya",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 mustaqil L shakl",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A12 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

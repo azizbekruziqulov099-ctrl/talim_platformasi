@@ -1,0 +1,550 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 3,
+    "tur": "ma’ruza",
+    "mavzu": "Birhadlar, ko‘phadlar va ular ustida amallar",
+    "qisqa": "Birhad va ko‘phad",
+    "maqsad": "Talaba birhad va ko‘phadni aniqlaydi, o‘xshash hadlarni ajratadi, ko‘paytirish va daraja qoidalarini asoslab qo‘llaydi; ko‘phadlarni qo‘shish, ayirish va ko‘paytirishdagi xatolarni tushuntiradi.",
+    "tayanch": [
+      "Koeffitsiyent va harfiy qism",
+      "Birhad darajasi",
+      "O‘xshash hadlar",
+      "Daraja qoidalari",
+      "Taqsimot qonuni"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "$(a+b)^2$",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; M3, asl skanning 4-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Intermediate Algebra 2e, 5.1",
+        "izoh": "https://openstax.org/books/intermediate-algebra-2e/pages/5-1-add-and-subtract-polynomials"
+      },
+      {
+        "nomi": "OpenStax Elementary Algebra 2e, 6.2",
+        "izoh": "https://openstax.org/books/elementary-algebra-2e/pages/6-2-use-multiplication-properties-of-exponents"
+      },
+      {
+        "nomi": "OpenStax Algebra and Trigonometry, 1.4",
+        "izoh": "https://openstax.org/books/algebra-and-trigonometry/pages/1-4-polynomials"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim kiritilmadi. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Sonli ifodalar va darajalar",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "2³ nimani bildiradi?",
+        "javob": "2·2·2 = 8."
+      },
+      {
+        "savol": "3·(4+5) ni ikki usulda hisoblang.",
+        "javob": "3·9 = 27; 12+15 = 27."
+      },
+      {
+        "savol": "−2 ning kvadrati nechaga teng?",
+        "javob": "(−2)² = 4."
+      },
+      {
+        "savol": "−2² va (−2)² bir xilmi?",
+        "javob": "Yo‘q: −2² = −4, (−2)² = 4."
+      },
+      {
+        "savol": "x·x·x qanday yoziladi?",
+        "javob": "x³."
+      },
+      {
+        "savol": "2·7 + 3·7 ni guruhlang.",
+        "javob": "(2+3)·7 = 35."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Harflar qatnashganda qoidalar o‘zgaradimi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "2x² + 3x² ni 5x⁴ deb yozish mumkinmi? Nega?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "(x+2)(x−5) ni faqat x²−10 deb olishda qaysi hadlar yo‘qolgan?"
+      }
+    ],
+    "goya": "Sonlar uchun amal qilgan taqsimot qonuni harfli ifodalarda ham barcha hadlarni hisobga olishni talab qiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Birhad va ko‘phad",
+      "izoh": "Atamalarni aniq ajratamiz",
+      "belgi": "a·xⁿ",
+      "slaydlar": [
+        {
+          "sarlavha": "Birhad: koeffitsiyent va harfiy qism",
+          "izoh": "Birhadni sonli koeffitsiyent va o‘zgaruvchilarning ko‘paytmasi sifatida ajrating. Bu mashg‘ulotda o‘zgaruvchilarning daraja ko‘rsatkichlari manfiy bo‘lmagan butun sonlardir. Masalan, −4x²y birhad, 1/x esa shu ta’rif bo‘yicha birhad emas.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Birhad — son koeffitsiyenti va o‘zgaruvchilarning manfiy bo‘lmagan butun darajalari ko‘paytmasi.",
+              "formula": "ax_1^{m_1}\\cdots x_k^{m_k},\\quad m_j\\in\\{0,1,2,\\ldots\\}"
+            },
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Ifoda",
+                "Koeffitsiyent",
+                "Harfiy qism"
+              ],
+              "qatorlar": [
+                [
+                  "−4x²y",
+                  "−4",
+                  "x²y"
+                ],
+                [
+                  "xy³",
+                  "1",
+                  "xy³"
+                ],
+                [
+                  "−a",
+                  "−1",
+                  "a"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Birhad darajasi va o‘xshash hadlar",
+          "izoh": "Birhadning darajasi uning harfiy qismidagi darajalar yig‘indisidir. O‘xshashlikda esa faqat shu yig‘indi emas, har bir o‘zgaruvchi va uning darajasi mos kelishi kerak. X²y va xy² ning darajasi bir xil bo‘lsa ham ular o‘xshash hadlar emas.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Daraja",
+              "shart": "−7x³y² birhadining darajasini toping.",
+              "qadamlar": [
+                "x ning darajasi 3.",
+                "y ning darajasi 2.",
+                "Jami: 3 + 2 = 5."
+              ],
+              "javob": "5"
+            },
+            {
+              "tur": "qoida",
+              "matn": "O‘xshash hadlarning harfiy qismlari aynan bir xil bo‘ladi. 2x²y va −5x²y o‘xshash; x²y va xy² o‘xshash emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ko‘phad va standart ko‘rinish",
+          "izoh": "Ko‘phadni avval hadlarga ajrating, keyin o‘xshashlarini jamlang. Bir o‘zgaruvchili ko‘phad odatda darajalar kamayishi tartibida yoziladi. Noldan farqli o‘zgarmas ko‘phadning darajasi nol; nol ko‘phadning darajasi bu darsda aniqlanmagan deb olinadi.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Ko‘phad — birhadlarning chekli yig‘indisi. Standart ko‘rinishda o‘xshash hadlar jamlangan bo‘ladi."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Standart ko‘rinish",
+              "shart": "3x² + 2x − x² + 5 ni soddalashtiring.",
+              "qadamlar": [
+                "3x² − x² = 2x².",
+                "Qolgan hadlar 2x va 5.",
+                "Darajalar kamayishi tartibida yozamiz."
+              ],
+              "javob": "2x² + 2x + 5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Birhadlar ustida amallar",
+      "izoh": "Daraja qoidalarini farqlaymiz",
+      "belgi": "xᵐ·xⁿ",
+      "slaydlar": [
+        {
+          "sarlavha": "Qo‘shish va ko‘paytirish boshqa amallar",
+          "izoh": "O‘xshash hadlarni qo‘shishda koeffitsiyentlar qo‘shiladi, harfiy qism saqlanadi. Bir xil asosli darajalarni ko‘paytirishda esa daraja ko‘rsatkichlari qo‘shiladi. Shu ikki vaziyatni yonma-yon ko‘rsatish x² + x² va x² · x² ni aralashtirmaslikka yordam beradi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "O‘xshash hadlar yig‘indisi",
+              "formula": "3x^2+4x^2=7x^2",
+              "matn": "Koeffitsiyentlar qo‘shildi."
+            },
+            {
+              "tur": "formula",
+              "sarlavha": "Darajalar ko‘paytmasi",
+              "formula": "x^m x^n=x^{m+n}",
+              "matn": "Bu yozuvda m va n musbat butun; nol daraja uchun asos noldan farqli bo‘lishi kerak."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Birhadlarni ko‘paytirish",
+          "izoh": "Avval ishora va koeffitsiyentni hisoblang. Keyin har bir bir xil o‘zgaruvchining darajalarini alohida jamlang. Harflarni bitta tartibda yozish natijalarni solishtirishni osonlashtiradi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki o‘zgaruvchili ko‘paytma",
+              "shart": "(−3x²y)(2xy³) ni soddalashtiring.",
+              "qadamlar": [
+                "(−3) × 2 = −6.",
+                "x² · x = x³.",
+                "y · y³ = y⁴."
+              ],
+              "javob": "−6x³y⁴"
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Daraja ko‘rsatkichlarini faqat asoslar bir xil bo‘lganda qo‘shamiz. x²y³ ni bitta darajali x⁵ ga almashtirmaymiz."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Birhadni darajaga ko‘tarish",
+          "izoh": "Qavsdagi barcha ko‘paytuvchilar darajaga ko‘tariladi. Ko‘paytmaning darajasi qoidasini darajaning darajasi qoidasi bilan birgalikda qo‘llang. Toq darajada manfiy koeffitsiyentning ishorasi manfiy qolishini tekshiring.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Darajaning darajasi",
+              "formula": "(x^m)^n=x^{mn}",
+              "matn": "m va n musbat butun sonlar."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Qavsdagi barcha ko‘paytuvchilar",
+              "shart": "(−2x²y)³ ni soddalashtiring.",
+              "qadamlar": [
+                "(−2)³ = −8.",
+                "(x²)³ = x⁶.",
+                "y³ ni yozamiz."
+              ],
+              "javob": "−8x⁶y³"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Ko‘phadlarni qo‘shish va ayirish",
+      "izoh": "Qavslar va ishoralarni saqlaymiz",
+      "belgi": "+ −",
+      "slaydlar": [
+        {
+          "sarlavha": "Ko‘phadlarni qo‘shish",
+          "izoh": "Qavs oldida musbat ishora bo‘lsa, ichkaridagi hadlar ishorasi o‘zgarmaydi. Bir xil darajali hadlarni guruhlab, koeffitsiyentlarni jamlang. O‘zgaruvchiga bitta qiymat qo‘yib tekshirish xatoni topishga yordam beradi, lekin bu ayniyatning isboti emas.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Yig‘indi",
+              "shart": "(3x² − 2x + 1) + (x² + 5x − 4) ni toping.",
+              "qadamlar": [
+                "3x² + x² = 4x².",
+                "−2x + 5x = 3x.",
+                "1 − 4 = −3."
+              ],
+              "javob": "4x² + 3x − 3"
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ayirish: ikkinchi qavsning barcha ishoralari",
+          "izoh": "Ko‘phadni ayirish unga qarama-qarshi ko‘phadni qo‘shishdir. Minus ishorasi ikkinchi qavsdagi har bir hadga ta’sir qiladi. Qavsni ochish bosqichini yozib qoldirish −5 ning +5 ga aylanishini ko‘rinadigan qiladi.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Qavs oldidagi minus barcha hadlar ishorasini o‘zgartiradi.",
+              "formula": "A-(B+C-D)=A-B-C+D"
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Ayirma",
+              "shart": "(4x² − 3x + 2) − (x² + 2x − 5) ni toping.",
+              "qadamlar": [
+                "4x² − 3x + 2 − x² − 2x + 5.",
+                "Bir xil darajali hadlarni jamlaymiz.",
+                "(4−1)x² + (−3−2)x + (2+5)."
+              ],
+              "javob": "3x² − 5x + 7"
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qarshi misol bilan xatoni ochamiz",
+          "izoh": "Noto‘g‘ri umumiy tenglikni rad etish uchun bitta qarshi misol yetarli. x = 1 ni tanlash hisobni osonlashtiradi. Biroq bir nechta qiymatdagi moslik umumiy isbot o‘rnini bosa olmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Tenglik har doim rostmi?",
+              "shart": "2x² + 3x = 5x³ degan fikrni tekshiring.",
+              "qadamlar": [
+                "x = 2 deb olamiz.",
+                "Chap tomon: 2·4 + 3·2 = 14.",
+                "O‘ng tomon: 5·8 = 40."
+              ],
+              "javob": "14 ≠ 40; umumiy tenglik noto‘g‘ri."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Turli harfiy qismli hadlarni bitta had qilib jamlamaymiz."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Ko‘phadlarni ko‘paytirish",
+      "izoh": "Har bir hadni har bir hadga ko‘paytiramiz",
+      "belgi": "a(b+c)",
+      "slaydlar": [
+        {
+          "sarlavha": "Birhadni ko‘phadga ko‘paytirish",
+          "izoh": "Taqsimot qonuni ko‘paytuvchini qavsdagi barcha hadlarga tatbiq etadi. Hech bir had tushib qolmasligi uchun ko‘paytmalarni alohida yozing. Keyin hosil bo‘lgan birhadlarni standart tartibga keltiring.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Taqsimot qonuni",
+              "formula": "a(b+c)=ab+ac",
+              "matn": "Ayirish ham manfiy hadni qo‘shish sifatida qamrab olinadi."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Taqsimot",
+              "shart": "2x(3x² − x + 4) ni oching.",
+              "qadamlar": [
+                "2x · 3x² = 6x³.",
+                "2x · (−x) = −2x².",
+                "2x · 4 = 8x."
+              ],
+              "javob": "6x³ − 2x² + 8x"
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ikki ko‘phadning ko‘paytmasi",
+          "izoh": "Birinchi ko‘phadning har bir hadi ikkinchi ko‘phadning barcha hadlariga ko‘paytiriladi. Ikki hadli ko‘phadlar uchun dastlab to‘rtta ko‘paytma chiqadi. So‘ng o‘xshash hadlar jamlanadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki qavs",
+              "shart": "(x + 3)(2x − 1) ni oching.",
+              "qadamlar": [
+                "x·2x − x + 3·2x − 3.",
+                "2x² − x + 6x − 3.",
+                "−x + 6x = 5x."
+              ],
+              "javob": "2x² + 5x − 3"
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Ko‘paytma faqat birinchi va oxirgi hadlarning ko‘paytmalaridan iborat emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yig‘indining kvadrati: nima uchun o‘rta had bor?",
+          "izoh": "Kvadrat formulasini tayyor yodlashdan oldin ikki qavsning ko‘paytmasi sifatida oching. Ikkita aralash ko‘paytma bir xil bo‘lgani uchun 2ab hosil bo‘ladi. Boshlang‘ich ta’lim bilan bog‘lashda buni to‘g‘ri to‘rtburchaklar yuzlari orqali tushuntirish mumkin.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Kvadrat formula",
+              "formula": "(a+b)^2=a^2+2ab+b^2",
+              "matn": "Bu tenglik haqiqiy a va b uchun o‘rinli."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Ayirmaning kvadrati",
+              "shart": "(x − 4)² ni oching.",
+              "qadamlar": [
+                "(x−4)(x−4) ko‘rinishida yozamiz.",
+                "x² − 4x − 4x + 16.",
+                "O‘xshash hadlarni jamlaymiz."
+              ],
+              "javob": "x² − 8x + 16"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "2x²+3x²=5x⁴.",
+      "sabab": "Qo‘shish ko‘paytirish bilan aralashtirilgan.",
+      "togri": "2x²+3x²=5x²."
+    },
+    {
+      "xato": "(x²)³=x⁵.",
+      "sabab": "Darajaning darajasida ko‘rsatkichlar qo‘shilgan.",
+      "togri": "(x²)³=x⁶."
+    },
+    {
+      "xato": "(−3x)²=−9x².",
+      "sabab": "Manfiy koeffitsiyentning juft darajasi noto‘g‘ri olingan.",
+      "togri": "(−3x)²=9x²."
+    },
+    {
+      "xato": "A−(B−C)=A−B−C.",
+      "sabab": "Qavsdagi ikkinchi minus o‘zgartirilmagan.",
+      "togri": "A−(B−C)=A−B+C."
+    },
+    {
+      "xato": "(a+b)²=a²+b².",
+      "sabab": "Aralash ko‘paytmalar tushirib qoldirilgan.",
+      "togri": "(a+b)²=a²+2ab+b²."
+    },
+    {
+      "xato": "x²y va xy² o‘xshash.",
+      "sabab": "Faqat umumiy daraja solishtirilgan.",
+      "togri": "O‘xshashlik uchun har bir o‘zgaruvchining darajasi mos bo‘lsin."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Taqsimot qonunini model bilan asoslash",
+    "bosqichlar": [
+      "Sonli misolda guruhlashni ko‘rsatish",
+      "Yuz modeli yoki guruhlar bilan har bir ko‘paytmani ajratish",
+      "Harfli tenglikni yozish va chegaralarini tushuntirish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Guruhlar",
+        "matn": "2 ta 7 lik va 3 ta 7 likni 5 ta 7 lik sifatida ko‘rsating."
+      },
+      {
+        "sarlavha": "Yuz modeli",
+        "matn": "Tomonlari a+b va c+d bo‘lgan to‘rtburchakni to‘rt qismga ajratish talabini tushuntiring: ac, ad, bc, bd."
+      },
+      {
+        "sarlavha": "Qarshi misol",
+        "matn": "(a+b)²=a²+b² fikrini a=b=1 bilan rad eting."
+      }
+    ],
+    "tavsiya": "Boshlang‘ich sinfda modelni sonli miqdorlar bilan tanishtiring. Harfli ko‘phadlar ustidagi umumiy amallar ushbu bakalavr mashg‘ulotining mazmunidir."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "O‘xshashlikda o‘zgaruvchilar va ularning darajalari mos keladi.",
+      "Ko‘paytirish va qo‘shishda daraja qoidalari bir xil emas.",
+      "Qavs oldidagi minus har bir hadga ta’sir qiladi.",
+      "Ko‘phadlar ko‘paytmasida barcha hadlar juftligi hisobga olinadi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "2a²b ga qaysi had o‘xshash?",
+      "variantlar": [
+        "2ab²",
+        "−5a²b",
+        "a²b²",
+        "2a³b"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "−7x³y² birhadining darajasi nechaga teng?",
+      "variantlar": [
+        "−7",
+        "3",
+        "5",
+        "6"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "(−2x²)(3x³) ning qiymati qaysi?",
+      "variantlar": [
+        "−6x⁵",
+        "−6x⁶",
+        "6x⁵",
+        "x⁵"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "(−3xy²)² ni soddalashtiring.",
+      "variantlar": [
+        "−9x²y⁴",
+        "9xy⁴",
+        "6x²y⁴",
+        "9x²y⁴"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "(4x²−3x+2)−(x²+2x−5) ni toping.",
+      "variantlar": [
+        "3x²−x−3",
+        "3x²−5x+7",
+        "5x²−5x+7",
+        "3x²+5x−3"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "(x+2)(x−5) ni oching.",
+      "variantlar": [
+        "x²−10",
+        "x²+3x−10",
+        "x²−3x−10",
+        "x²−7x+10"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Birhadning standart ko‘rinishi va darajasi nima?",
+    "Nega x²y va xy² o‘xshash hadlar emas?",
+    "Birhadni darajaga ko‘tarish algoritmini asoslang.",
+    "Ko‘phadni ayirishda qavslar qanday ochiladi?",
+    "Ikki ko‘phad ko‘paytmasidagi hadlar soni nega jamlangandan keyin kamayishi mumkin?",
+    "Qarshi misol va ayniyat isboti orasidagi farqni tushuntiring."
+  ],
+  "mustaqil_ish": [
+    "5a²b − 2a²b + ab² ni soddalashtiring.",
+    "(2x²y)³ va (2x−3)(x+4) ni soddalashtiring.",
+    "(3x²+x−1)−(x²−2x+5) ni toping.",
+    "(a+b)(c+d) uchun yuz modeli asosida izoh va bitta tipik xato tayyorlang."
+  ],
+  "keyingi": {
+    "mavzu": "Haqiqiy sonlar",
+    "izoh": "Ratsional sonlar bilan ifodalanmaydigan uzunlikka misol toping."
+  },
+  "rasmlar": []
+}

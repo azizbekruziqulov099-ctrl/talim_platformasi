@@ -1,0 +1,145 @@
+{
+  "mavzu_id": "BMKN1305-3-MT1",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "10"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "Aynan ikkita musbat bo‘luvchisi yo‘q"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "40000 km"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "2/5=1/3+1/15"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "Sharh shu davr bilan bog‘liq; kelib chiqish sanasi alohida dalil talab qiladi"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "Aniqlanmagan"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "2,3,5,7,11,13,17,19,23,29,31,37; √40<7, kichik bo‘luvchisi bo‘lmagan kompozit qolmaydi.",
+    "2": "1000·360/9=40000 km; sfera, parallel nurlar, bir meridian va yoy ma’lum degan farazlar. Bu tarixiy real o‘lchov emas.",
+    "3": "Masalan 1/2+1/4 va 1/3+1/4+1/6; ikkalasi 3/4. Muqobil to‘g‘ri yozuv qabul qilinadi.",
+    "4": "Yagona matnli javob yo‘q. Har kartochkada da’vo, ishonchli manba, sana/noaniqlik va matematika; metodik parchada maqsad, g‘alvir qadamlari va 1 tub emasligi tekshiriladi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "MT01 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT01 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT01 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT01 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT01 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "10 ",
+      "olingan": "10"
+    },
+    {
+      "tekshiruv": "MT01 test 2 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Aynan ikkita musbat bo‘luvchisi yo‘q",
+      "olingan": "Aynan ikkita musbat bo‘luvchisi yo‘q"
+    },
+    {
+      "tekshiruv": "MT01 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "40000 km",
+      "olingan": "40000 km"
+    },
+    {
+      "tekshiruv": "MT01 test 4 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "2/5=1/3+1/15",
+      "olingan": "2/5=1/3+1/15"
+    },
+    {
+      "tekshiruv": "MT01 test 5 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Sharh shu davr bilan bog‘liq; kelib chiqish sanasi alohida dalil talab qiladi",
+      "olingan": "Sharh shu davr bilan bog‘liq; kelib chiqish sanasi alohida dalil talab qiladi"
+    },
+    {
+      "tekshiruv": "MT01 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Aniqlanmagan",
+      "olingan": "Aniqlanmagan"
+    },
+    {
+      "tekshiruv": "MT01 g‘alvir 30gacha",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT01 g‘alvir 40gacha",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT01 shartli aylana modellari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT01 birlik kasrlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT01 zamonaviy ishoralar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT01 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

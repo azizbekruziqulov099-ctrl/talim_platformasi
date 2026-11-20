@@ -1,0 +1,177 @@
+{
+  "mavzu_id": "BMKN1305-3-A13",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "900 g"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "750 g"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "75 sm³"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "64 sm³"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "90 sm³"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "63π sm³"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": [
+      "3,225 kg",
+      "1425 g"
+    ],
+    "2": "216 sm³=0,216 L.",
+    "3": {
+      "prizma": "120 sm³",
+      "piramida": "40 sm³",
+      "konus": "96π sm³",
+      "silindr": "288π sm³"
+    },
+    "4": "Shar 256π/3 sm³. Botirilgan jism 48,5 sm³. Shartlar: to‘liq botgan, suyuqlikda erimaydi, shimimaydi, pufak va toshib ketish yo‘q; ko‘rsatkichlar bir birlikda."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "A13 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "900 g",
+      "olingan": "900 g"
+    },
+    {
+      "tekshiruv": "A13 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "750 g",
+      "olingan": "750 g"
+    },
+    {
+      "tekshiruv": "A13 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "75 sm³",
+      "olingan": "75 sm³"
+    },
+    {
+      "tekshiruv": "A13 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "64 sm³",
+      "olingan": "64 sm³"
+    },
+    {
+      "tekshiruv": "A13 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "90 sm³",
+      "olingan": "90 sm³"
+    },
+    {
+      "tekshiruv": "A13 test 6 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "63 π sm³",
+      "olingan": "63π sm³"
+    },
+    {
+      "tekshiruv": "A13 massa birliklari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 ichki sig‘im",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 prizma-kuboid-kub",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 prizma-piramida nisbati",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 silindr-konus-shar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 mustaqil massa va tara",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 mustaqil sig‘im",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 mustaqil fazoviy jismlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 mustaqil shar va siqib chiqarish",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A13 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "mavzu_id": "BMKN1305-3-MT5",
+  "hujjat_turi": "Mustaqil ta’lim topshiriq paketi",
+  "soat": 10,
+  "manba": "SamDPI BMKN 1305,2-kurs kunduzgi,2026–2027, asl dastur 6-beti",
+  "holat": "Topshiriq va tekshiruv paketi tayyor; talabaning ishi bajarildi degani emas",
+  "bosqichlar": [
+    {
+      "raqam": 1,
+      "soat": 2,
+      "ish": "Kesim usuli va birlik manbalarini o‘rganish"
+    },
+    {
+      "raqam": 2,
+      "soat": 2,
+      "ish": "Kub qirralaridan kesim uchlarini topish"
+    },
+    {
+      "raqam": 3,
+      "soat": 2,
+      "ish": "Kesim yuzlarini va masshtabni hisoblash"
+    },
+    {
+      "raqam": 4,
+      "soat": 2,
+      "ish": "Birlik pasportlari va o‘lchash tajribasini tayyorlash"
+    },
+    {
+      "raqam": 5,
+      "soat": 1,
+      "ish": "Koordinata, birlik va manba nazorati"
+    },
+    {
+      "raqam": 6,
+      "soat": 1,
+      "ish": "Namoyish va refleksiya"
+    }
+  ],
+  "topshiriladigan_natijalar": [
+    {
+      "id": "D1",
+      "talab": "4 kesimning koordinata jadvallari va izohli sxemasi"
+    },
+    {
+      "id": "D2",
+      "talab": "Yuz va masshtab yechimlari"
+    },
+    {
+      "id": "D3",
+      "talab": "Tarixiy/zamonaviy ikki birlik pasporti"
+    },
+    {
+      "id": "D4",
+      "talab": "Shaxsiy birlik tajribasi va metodik namoyish"
+    }
+  ],
+  "baholash": {
+    "tur": "Tavsiyaviy ichki mezon; muassasaning rasmiy baholash nizomi o‘rniga olinmaydi",
+    "maksimal_ball": 20,
+    "mezonlar": [
+      {
+        "nom": "Kesim aniqligi",
+        "maksimal_ball": 5,
+        "talab": "Uchlar tekislik va kubda, tartib to‘g‘ri."
+      },
+      {
+        "nom": "Hisob",
+        "maksimal_ball": 5,
+        "talab": "Tomon, yuz va masshtab tekshirilgan."
+      },
+      {
+        "nom": "Manba va birlik",
+        "maksimal_ball": 5,
+        "talab": "Buyum o‘lchovi, tarixiy birlik va SI ajratilgan."
+      },
+      {
+        "nom": "Metodika",
+        "maksimal_ball": 5,
+        "talab": "Tajriba va standart ehtiyoji tushunarli."
+      }
+    ],
+    "ball_tavsifi": {
+      "0": "Dalil yo‘q yoki vazifa bajarilmagan",
+      "1–2": "Qisman, asosiy xato yoki yetishmaydigan dalil bor",
+      "3–4": "Asosan to‘g‘ri, tekshiruv yoki izohda ayrim kamchiliklar",
+      "5": "Talab to‘liq, asosli va tekshirilgan"
+    }
+  },
+  "foydalanish": "Talabaga topshiriq va reja beriladi. Javoblar fayli o‘qituvchining tekshiruvi uchun alohida saqlanadi."
+}

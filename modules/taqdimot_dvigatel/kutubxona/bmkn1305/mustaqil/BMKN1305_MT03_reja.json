@@ -1,0 +1,90 @@
+{
+  "mavzu_id": "BMKN1305-3-MT3",
+  "hujjat_turi": "Mustaqil ta’lim topshiriq paketi",
+  "soat": 10,
+  "manba": "SamDPI BMKN 1305,2-kurs kunduzgi,2026–2027, asl dastur 6-beti",
+  "holat": "Topshiriq va tekshiruv paketi tayyor; talabaning ishi bajarildi degani emas",
+  "bosqichlar": [
+    {
+      "raqam": 1,
+      "soat": 2,
+      "ish": "Evklid matnidan ta’rif va postulatlarni o‘rganish"
+    },
+    {
+      "raqam": 2,
+      "soat": 2,
+      "ish": "Xossa/alomat va qarama-qarshi misol jadvali"
+    },
+    {
+      "raqam": 3,
+      "soat": 2,
+      "ish": "Sferik va giperbolik modelni manba asosida tahlil qilish"
+    },
+    {
+      "raqam": 4,
+      "soat": 2,
+      "ish": "Uch model uchun izohli ko‘rgazma tuzish"
+    },
+    {
+      "raqam": 5,
+      "soat": 1,
+      "ish": "Burchaklar va shartlarni mustaqil tekshirish"
+    },
+    {
+      "raqam": 6,
+      "soat": 1,
+      "ish": "Metodik namoyish va refleksiya"
+    }
+  ],
+  "topshiriladigan_natijalar": [
+    {
+      "id": "D1",
+      "talab": "Ta’rif, aksioma, teorema, xossa va alomat jadvali"
+    },
+    {
+      "id": "D2",
+      "talab": "Ikki sferik hisob va ikki burchak yig‘indisi tekshiruvi"
+    },
+    {
+      "id": "D3",
+      "talab": "Uch modelning manbali va cheklovli ko‘rgazmasi"
+    },
+    {
+      "id": "D4",
+      "talab": "Globus bilan metodik parcha va tekshiruv xulosasi"
+    }
+  ],
+  "baholash": {
+    "tur": "Tavsiyaviy ichki mezon; muassasaning rasmiy baholash nizomi o‘rniga olinmaydi",
+    "maksimal_ball": 20,
+    "mezonlar": [
+      {
+        "nom": "Deduktiv tushunchalar",
+        "maksimal_ball": 5,
+        "talab": "Atamalar va yo‘nalishlar to‘g‘ri."
+      },
+      {
+        "nom": "Hisob va model",
+        "maksimal_ball": 5,
+        "talab": "Burchaklar tegishli shart bilan hisoblangan."
+      },
+      {
+        "nom": "Ilmiy chegara",
+        "maksimal_ball": 5,
+        "talab": "Ochiq disk, geodezik va sfera farqlari saqlangan."
+      },
+      {
+        "nom": "Metodik mahsulot",
+        "maksimal_ball": 5,
+        "talab": "Yoshga mos namoyish va savollar bor."
+      }
+    ],
+    "ball_tavsifi": {
+      "0": "Dalil yo‘q yoki vazifa bajarilmagan",
+      "1–2": "Qisman, asosiy xato yoki yetishmaydigan dalil bor",
+      "3–4": "Asosan to‘g‘ri, tekshiruv yoki izohda ayrim kamchiliklar",
+      "5": "Talab to‘liq, asosli va tekshirilgan"
+    }
+  },
+  "foydalanish": "Talabaga topshiriq va reja beriladi. Javoblar fayli o‘qituvchining tekshiruvi uchun alohida saqlanadi."
+}

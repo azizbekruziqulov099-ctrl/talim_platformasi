@@ -1,0 +1,199 @@
+{
+  "mavzu_id": "BMKN1305-3-A5",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "4"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "−2+11i"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "−1"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "−1/5+8/5i"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "2+3i"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "4i va −4i"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": [
+      "2+6i",
+      "5+5i"
+    ],
+    "2": "7/5−6/5i; (7/5−6/5i)(2+i)=4−i.",
+    "3": {
+      "x": 3,
+      "y": 7
+    },
+    "4": "Yechimlar 3i va −3i. Bosh√−9=3i; tenglamada ikkala ishora olinadi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "A05 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A05 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A05 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A05 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A05 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "4 ",
+      "olingan": "4"
+    },
+    {
+      "tekshiruv": "A05 test 2 ko‘paytma",
+      "natija": "O‘tdi",
+      "kutilgan": "−2+11i",
+      "olingan": "-2+(11)i"
+    },
+    {
+      "tekshiruv": "A05 test 3 daraja",
+      "natija": "O‘tdi",
+      "kutilgan": "−1",
+      "olingan": "-1+(0)i"
+    },
+    {
+      "tekshiruv": "A05 test 4 bo‘linma",
+      "natija": "O‘tdi",
+      "kutilgan": "−1/5+8/5i",
+      "olingan": "-1/5+(8/5)i"
+    },
+    {
+      "tekshiruv": "A05 test 5 qo‘shma",
+      "natija": "O‘tdi",
+      "kutilgan": "2+3i",
+      "olingan": "2+(3)i"
+    },
+    {
+      "tekshiruv": "A05 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "4i va −4i",
+      "olingan": "4i va −4i"
+    },
+    {
+      "tekshiruv": "A05 test 6 ikkala yechim",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A05 tenglik noma’lumlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A05 nuqta va modul",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A05 yig‘indi",
+      "natija": "O‘tdi",
+      "kutilgan": "2+2i",
+      "olingan": "2+(2)i"
+    },
+    {
+      "tekshiruv": "A05 ayirma",
+      "natija": "O‘tdi",
+      "kutilgan": "6-8i",
+      "olingan": "6+(-8)i"
+    },
+    {
+      "tekshiruv": "A05 teskari",
+      "natija": "O‘tdi",
+      "kutilgan": "2/13+3/13i",
+      "olingan": "2/13+(3/13)i"
+    },
+    {
+      "tekshiruv": "A05 teskari tekshiruv",
+      "natija": "O‘tdi",
+      "kutilgan": "3+2i",
+      "olingan": "3+(2)i"
+    },
+    {
+      "tekshiruv": "A05 chiziqli tenglama",
+      "natija": "O‘tdi",
+      "kutilgan": "4+2i",
+      "olingan": "4+(2)i"
+    },
+    {
+      "tekshiruv": "A05 mustaqil 1 ayirma",
+      "natija": "O‘tdi",
+      "kutilgan": "2+6i",
+      "olingan": "2+(6)i"
+    },
+    {
+      "tekshiruv": "A05 mustaqil 1 ko‘paytma",
+      "natija": "O‘tdi",
+      "kutilgan": "5+5i",
+      "olingan": "5+(5)i"
+    },
+    {
+      "tekshiruv": "A05 mustaqil 2 bo‘linma",
+      "natija": "O‘tdi",
+      "kutilgan": "7/5-6/5i",
+      "olingan": "7/5+(-6/5)i"
+    },
+    {
+      "tekshiruv": "A05 mustaqil 3",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A05 mustaqil 4 ikkala ildiz",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A05 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

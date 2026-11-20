@@ -1,0 +1,90 @@
+{
+  "mavzu_id": "BMKN1305-3-MT9",
+  "hujjat_turi": "Mustaqil ta’lim topshiriq paketi",
+  "soat": 10,
+  "manba": "SamDPI BMKN 1305,2-kurs kunduzgi,2026–2027, asl dastur 6-beti",
+  "holat": "Topshiriq va tekshiruv paketi tayyor; talabaning ishi bajarildi degani emas",
+  "bosqichlar": [
+    {
+      "raqam": 1,
+      "soat": 2,
+      "ish": "Foiz va mantiqiy shartlarni o‘rganish"
+    },
+    {
+      "raqam": 2,
+      "soat": 2,
+      "ish": "Bevosita/teskari foiz masalalarini hisoblash"
+    },
+    {
+      "raqam": 3,
+      "soat": 2,
+      "ish": "8 tanga strategiyasini barcha holatda tekshirish"
+    },
+    {
+      "raqam": 4,
+      "soat": 2,
+      "ish": "Rostlik jadvali va yangi mantiq masalasi yaratish"
+    },
+    {
+      "raqam": 5,
+      "soat": 1,
+      "ish": "Yagonalik, shart va kalitlarni tekshirish"
+    },
+    {
+      "raqam": 6,
+      "soat": 1,
+      "ish": "Strategiya himoyasi va refleksiya"
+    }
+  ],
+  "topshiriladigan_natijalar": [
+    {
+      "id": "D1",
+      "talab": "Foiz asosi va foiz punkti izohli konspekti"
+    },
+    {
+      "id": "D2",
+      "talab": "To‘g‘ri/teskari foiz hisoblari va tekshiruv"
+    },
+    {
+      "id": "D3",
+      "talab": "8 tanga qaror daraxti va 8 holat jadvali"
+    },
+    {
+      "id": "D4",
+      "talab": "Rostlik jadvali, yangi mantiq masalasi va metodik parcha"
+    }
+  ],
+  "baholash": {
+    "tur": "Tavsiyaviy ichki mezon; muassasaning rasmiy baholash nizomi o‘rniga olinmaydi",
+    "maksimal_ball": 20,
+    "mezonlar": [
+      {
+        "nom": "Foiz",
+        "maksimal_ball": 5,
+        "talab": "Asos, qolgan ulush va nisbiy o‘zgarish to‘g‘ri."
+      },
+      {
+        "nom": "Strategiya",
+        "maksimal_ball": 5,
+        "talab": "Og‘irroq sharti va barcha 8 holat qamralgan."
+      },
+      {
+        "nom": "Mantiq",
+        "maksimal_ball": 5,
+        "talab": "To‘liq jadval va yagonalik asoslangan."
+      },
+      {
+        "nom": "Metodika",
+        "maksimal_ball": 5,
+        "talab": "Yangi masala, kalit va tekshiruv savollari bor."
+      }
+    ],
+    "ball_tavsifi": {
+      "0": "Dalil yo‘q yoki vazifa bajarilmagan",
+      "1–2": "Qisman, asosiy xato yoki yetishmaydigan dalil bor",
+      "3–4": "Asosan to‘g‘ri, tekshiruv yoki izohda ayrim kamchiliklar",
+      "5": "Talab to‘liq, asosli va tekshirilgan"
+    }
+  },
+  "foydalanish": "Talabaga topshiriq va reja beriladi. Javoblar fayli o‘qituvchining tekshiruvi uchun alohida saqlanadi."
+}

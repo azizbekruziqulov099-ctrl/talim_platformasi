@@ -1,0 +1,175 @@
+{
+  "mavzu_id": "BMKN1305-3-M15",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "29 va 21"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "36"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "180"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "96"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "4"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "Yo‘q: yig‘indi toq bo‘ladi"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "45; 45/360·100%=12,5%.",
+    "2": "300 000 so‘m; 300 000·0,8=240 000.",
+    "3": "6 quyon va 9 tovuq. Arifmetik: (42−2·15)/2=6. Algebraik: q+t=15, 4q+2t=42. Tekshiruv: 6+9=15, 24+18=42.",
+    "4": "Mumkin emas. Uchta toq son yig‘indisi 2(a+b+c+1)+1 ko‘rinishida toq, 100 esa juft."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "M15 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 test 1 yig‘indi va farq",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "36 ",
+      "olingan": "36"
+    },
+    {
+      "tekshiruv": "M15 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "180 ",
+      "olingan": "180"
+    },
+    {
+      "tekshiruv": "M15 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "96 ",
+      "olingan": "96"
+    },
+    {
+      "tekshiruv": "M15 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "4 ",
+      "olingan": "4"
+    },
+    {
+      "tekshiruv": "M15 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Yo‘q: yig‘indi toq bo‘ladi",
+      "olingan": "Yo‘q: yig‘indi toq bo‘ladi"
+    },
+    {
+      "tekshiruv": "M15 kitob qismi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 masofa va birliklar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 foiz nisbati",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 ketma-ket foiz kamayishi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 hayvonlar yechimi yagona",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 toq yig‘indi ayniyati",
+      "natija": "O‘tdi",
+      "kutilgan": "2(a+b+c+1)+1",
+      "olingan": "(2a+1)+(2b+1)+(2c+1)"
+    },
+    {
+      "tekshiruv": "M15 yorliqlar yagona joylashuvi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 mustaqil foiz",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 mustaqil dastlabki narx",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 mustaqil hayvonlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M15 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

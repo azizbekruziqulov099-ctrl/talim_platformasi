@@ -1,0 +1,439 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 8,
+    "tur": "mustaqil ta’lim",
+    "mavzu": "Vaqt, narx, tezlik va matnli masalalarni modellashtirish",
+    "qisqa": "Vaqt, narx, tezlik va matnli masalalarni modellashtirish",
+    "maqsad": "Talaba vaqt nuqtasi va davomiylikni ajratadi, narx-miqdor va bir tekis harakat modellarini qo‘llaydi, bir nechta shartli vaziyatni jadval hamda tenglama bilan yechadi.",
+    "tayanch": [
+      "Vaqt nuqtasi",
+      "Davomiylik",
+      "Narx-miqdor",
+      "Bir tekis harakat",
+      "Masala modeli"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "Izlanish → dalil",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; MT8, asl skanning 6-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax: Uniform Motion",
+        "izoh": "https://openstax.org/books/elementary-algebra-2e/pages/3-5-solve-uniform-motion-applications"
+      },
+      {
+        "nomi": "OpenStax: Problem-Solving Strategy",
+        "izoh": "https://openstax.org/books/elementary-algebra-2e/pages/3-1-use-a-problem-solving-strategy"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Mustaqil ishga tayyorgarlik",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Asosiy natija nimadan tekshiriladi?",
+        "javob": "Shart, manba, hisob va xulosadan."
+      },
+      {
+        "savol": "Manbada yo‘q gapni iqtibos deyish mumkinmi?",
+        "javob": "Yo‘q; o‘z tahlili alohida yoziladi."
+      },
+      {
+        "savol": "Rasm o‘zi isbot bo‘ladimi?",
+        "javob": "Faqat rasmga qarab umumiy isbot deb bo‘lmaydi."
+      },
+      {
+        "savol": "Birliklar qayerda ko‘rsatiladi?",
+        "javob": "Berilganlarda, hisobda va javobda."
+      },
+      {
+        "savol": "Tekshiruv qachon bajariladi?",
+        "javob": "Yakuniy topshirishdan oldin."
+      },
+      {
+        "savol": "Talabaning mustaqil hissasi qayerda?",
+        "javob": "Yangi misol, izoh, tekshiruv va metodik xulosada."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Qanday natija topshiriladi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Vaqt nuqtasi-oraliq va birliklar konspekti"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "3 bosqichli vaqt, narx va safar yechimlari"
+      }
+    ],
+    "goya": "Har bir xulosa uchun manba yoki tekshiriladigan asos taqdim etiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Vaqt modeli",
+      "izoh": "Nuqta va oraliq",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Soat ko‘rsatkichi davomiylik emas",
+          "izoh": "09:10 — vaqt nuqtasi; 15 min — oraliq. Bu yerda bir kunlik oddiy maktab modeli, vaqt zonasi yoki soat o‘zgarishi yo‘q. Bir sutka 24 soat deb olinadi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Berilganlardan vaqt nuqtalarini va oraliqlarni ikki ustunga ajrating. Qo‘shishdan oldin min va soatni moslashtiring."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Bosqichli safar",
+          "izoh": "09:10 da yo‘lga chiqildi; 15 min piyoda,10 min kutish,40 min transport. Har bosqich ketma-ket, bir-birini qoplamaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Yetib borish vaqti",
+              "shart": "Jadval tuzing.",
+              "qadamlar": [
+                "09:10+15 min=09:25.",
+                "09:25+10 min=09:35.",
+                "09:35+40 min=10:15."
+              ],
+              "javob": "10:15; jami 65 min."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yarim tundan o‘tish",
+          "izoh": "Kun almashishini yozmasdan soatlarni ayirish noto‘g‘ri ishora berishi mumkin. 23:50 dan ertasi 00:25 gacha 10+25=35 min.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Vaqt chizig‘ida 00:00 va kun raqamini belgilang. Faqat soat raqami farqidan davomiylik chiqarmang."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Narx va miqdor",
+      "izoh": "Faqat shartli o‘quv summalari",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Bir xil dona narxi",
+          "izoh": "O‘zgarmas dona narxi p, miqdor n bo‘lsa C=pn. Qadoq, vazn yoki dona aralashsa, birlikni avval aniqlang. Bu paketdagi narxlar haqiqiy bozor ma’lumoti emas.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "5 daftar va 2 qalam",
+              "shart": "Daftar 3000 so‘m, qalam 2000 so‘m deb oling.",
+              "qadamlar": [
+                "5·3000=15000.",
+                "2·2000=4000.",
+                "15000+4000=19000."
+              ],
+              "javob": "19000 so‘m, shartli hisob."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Budjet va qaytim",
+          "izoh": "Jami qiymat budjetdan oshmasligi tekshiriladi. Qaytimni topish uchun to‘langan summa berilgan bo‘lishi kerak.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "25000 so‘m berildi",
+              "shart": "19000 so‘mlik xariddan qaytim?",
+              "qadamlar": [
+                "25000−19000=6000.",
+                "19000+6000=25000."
+              ],
+              "javob": "6000 so‘m."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Modelning chegarasi",
+          "izoh": "Chegirma, dona narxi o‘zgarishi yoki boshlang‘ich haq bor bo‘lsa, bitta C=pn modeli yetmaydi. Matnda aytilmagan qo‘shimcha to‘lovni o‘ylab topmang.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "O‘zingiz yaratgan masalada dona narxi, miqdor, to‘lov va noma’lumni ochiq yozing. Yechim kalitida birlik va mumkinlik tekshiruvi bo‘lsin."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Harakat va teskari rejalash",
+      "izoh": "Yo‘l, tezlik, vaqt",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Bir tekis harakat",
+          "izoh": "s=vt, t=s/v, v≠0. Birliklar km va km/soat bo‘lsa vaqt soatda chiqadi. To‘xtash alohida davomiylik sifatida qo‘shiladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "8 km,4 km/soat",
+              "shart": "Harakat vaqti?",
+              "qadamlar": [
+                "8/4=2 soat."
+              ],
+              "javob": "2 soat sof harakat."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Eng kech chiqish",
+          "izoh": "8 km yo‘l 4 km/soat tezlikda, yo‘lda 20 min tanaffus; 12:00 gacha yetish kerak. Xavfsizlik zaxirasi bu shartli matematik modelga kiritilmagan.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Orqaga hisob",
+              "shart": "Eng kech chiqish?",
+              "qadamlar": [
+                "Harakat 2 soat+tanaffus 20 min=2 soat 20 min.",
+                "12:00−2:20=09:40."
+              ],
+              "javob": "09:40; model shartlarida."
+            }
+          ]
+        },
+        {
+          "sarlavha": "O‘rtacha tezlik",
+          "izoh": "Tanaffus qo‘shilsa butun safarning o‘rtacha tezligi jami yo‘l/jami vaqt. Harakatdagi 4 km/soatni tanaffusli safarga aynan tenglashtirmang.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ayni safar",
+              "shart": "8 km,2 soat 20 min.",
+              "qadamlar": [
+                "2 soat 20 min=7/3 soat.",
+                "8:(7/3)=24/7 km/soat."
+              ],
+              "javob": "24/7≈3,43 km/soat."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Masala tuzish loyihasi",
+      "izoh": "Tushunish, model, hisob, tekshiruv",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Turini munosabatdan aniqlash",
+          "izoh": "Yig‘indi-farq, dona narxi-hajm, bir tekis harakat yoki ketma-ket vaqt masalasi bo‘lishi mumkin. Faqat uchragan sonlar qaysi amalni tanlashga yetmaydi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Savol",
+                "Yoziladigan narsa"
+              ],
+              "qatorlar": [
+                [
+                  "Nima ma’lum?",
+                  "Son va birlik"
+                ],
+                [
+                  "Nima noma’lum?",
+                  "Aniq kattalik"
+                ],
+                [
+                  "Qanday bog‘langan?",
+                  "Jadval, tasma yoki tenglama"
+                ],
+                [
+                  "Nima tekshiriladi?",
+                  "Shartga qaytish va mumkinlik"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ikkita yangi masala",
+          "izoh": "Biri vaqt-harakat, biri narx-miqdor bo‘lsin. Masalalar mustaqil yechimga yetarli ma’lumotli, ortiqcha noaniqliksiz tuziladi. Shartli summalar shunday belgilanadi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Har biriga diagramma yoki jadval, tenglama, bosqichli yechim, teskari tekshiruv va bitta odatiy xato yozing."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Metodik parcha",
+          "izoh": "O‘quvchi avval kelish vaqtini taxmin qiladi, keyin bosqichlarni vaqt chizig‘iga joylaydi. Raqamlarni shunchaki qo‘shish o‘rniga har oraliq qaysi ishga tegishli ekanini tushuntiradi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Tekshiruv savoli: “Kutish vaqtini olib tashlasak nima o‘zgaradi?” Narx masalasida esa “Bir dona narxi ikki marta oshsa, jami qanday o‘zgaradi?”"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "09:10 ni 9,1 soat deyish",
+      "sabab": "Oltmishlik yozuv o‘nli kasrga tenglashtirilgan",
+      "togri": "10 min=1/6 soat."
+    },
+    {
+      "xato": "Tanaffusni safar vaqtidan chiqarish",
+      "sabab": "Jami safar bilan harakat vaqti aralashgan",
+      "togri": "Talabga ko‘ra barcha oraliqlar olinadi."
+    },
+    {
+      "xato": "Shartli narxni haqiqiy narx sifatida berish",
+      "sabab": "O‘quv ma’lumoti maqomi yo‘qolgan",
+      "togri": "Shartli deb belgilang."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "10 soatlik izlanish va loyiha",
+    "bosqichlar": [
+      "Manbani belgilash va konspekt",
+      "Hisob yoki model yaratish",
+      "Natijani tekshirish va metodik izoh"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Dalil",
+        "matn": "Ko‘chirma va o‘z tahlilini farqlang."
+      },
+      {
+        "sarlavha": "Hisob",
+        "matn": "Qadam, birlik va shartlarni yozing."
+      },
+      {
+        "sarlavha": "Tekshiruv",
+        "matn": "Yechim kaliti bilan xato sababini tahlil qiling."
+      }
+    ],
+    "tavsiya": "Ilovadagi 10 soatlik reja va tavsiyaviy mezon o‘qituvchi tomonidan guruh sharoitiga moslashtiriladi. Bu tayyor talaba referati emas."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Qabul qilingan shartlar ochiq yoziladi.",
+      "Manba va yangi o‘quv misoli farqlanadi.",
+      "Hisob va xulosa mustaqil tekshiriladi.",
+      "Natija 10 soatlik ish rejasi bo‘yicha topshiriladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "09:10+15 min+10 min+40 min?",
+      "variantlar": [
+        "10:15",
+        "09:65",
+        "10:05",
+        "11:15"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "5·3000+2·2000?",
+      "variantlar": [
+        "17000",
+        "21000",
+        "19000",
+        "25000"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "8 km ni 4 km/soat bilan yurish vaqti?",
+      "variantlar": [
+        "4 soat",
+        "2 soat",
+        "32 soat",
+        "0,5 soat"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "2 soat 20 min safar,12:00 gacha; eng kech chiqish?",
+      "variantlar": [
+        "10:00",
+        "09:20",
+        "10:20",
+        "09:40"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "23:50 dan ertasi 00:25 gacha?",
+      "variantlar": [
+        "75 min",
+        "35 min",
+        "25 min",
+        "10 min"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Safar o‘rtacha tezligi?",
+      "variantlar": [
+        "Tezliklar yig‘indisi",
+        "Har doim eng katta tezlik",
+        "Jami yo‘l/jami vaqt",
+        "Vaqt/yo‘l"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Mavzudagi ikki asosiy tushunchani farqlang.",
+    "Bitta natijani boshqa usulda tekshiring.",
+    "Misolda qabul qilingan farazlarni ayting.",
+    "Manba bilan o‘z xulosangiz chegarasini ko‘rsating.",
+    "Bitta keng tarqalgan xatoni tahlil qiling.",
+    "Boshlang‘ich sinf uchun moslashtirishda nimalar o‘zgaradi?"
+  ],
+  "mustaqil_ish": [
+    "08:35 dan 20 min piyoda,15 min kutish,45 min transport: yetish vaqtini va jami davomiylikni toping.",
+    "4 ta daftar 4500 so‘mdan,3 ta qalam 2000 so‘mdan.30000 so‘m berilganda qaytim? Barcha narxlar shartli.",
+    "12 km yo‘l 6 km/soat, tanaffus 15 min,13:30 gacha yetish. Eng kech chiqish va butun safar o‘rtacha tezligi?",
+    "Ikkita yangi turli munosabatli matnli masala, yechim kaliti, jadval va 5 daqiqalik metodik parcha tayyorlang."
+  ],
+  "keyingi": {
+    "mavzu": "Navbatdagi mustaqil ta’lim bandi",
+    "izoh": "Reja, mahsulot va tekshiruv mezonlari bilan ish davom etadi."
+  },
+  "rasmlar": []
+}

@@ -1,0 +1,155 @@
+{
+  "mavzu_id": "BMKN1305-3-MT2",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "1,68"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "42"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "18,25"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "0,8%"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "0,005"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "Aniqlanmagan"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": [
+      "7,858",
+      "0,8",
+      "42; 42·0,09=3,78"
+    ],
+    "2": "4,77 va 9,99; har biri uchun absolyut yaxlitlash xatosi ≤0,005.",
+    "3": "0,8 va 0,8/80=0,01=1%. x noma’lum bo‘lsa haqiqiy xato aniq hisoblanmaydi; berilgan chegara bilan baholanishi mumkin.",
+    "4": "[3,9·1,9; 4,1·2,1]=[7,41; 8,61]. Kartochka shart, taxmin, xato sababi, to‘g‘ri hisob va teskari tekshiruvni o‘z ichiga oladi."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "MT02 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT02 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT02 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT02 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT02 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "1.680 ",
+      "olingan": "1,68"
+    },
+    {
+      "tekshiruv": "MT02 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "42 ",
+      "olingan": "42"
+    },
+    {
+      "tekshiruv": "MT02 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "18.25 ",
+      "olingan": "18,25"
+    },
+    {
+      "tekshiruv": "MT02 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "4/5 %",
+      "olingan": "0,8%"
+    },
+    {
+      "tekshiruv": "MT02 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "1/200 ",
+      "olingan": "0,005"
+    },
+    {
+      "tekshiruv": "MT02 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Aniqlanmagan",
+      "olingan": "Aniqlanmagan"
+    },
+    {
+      "tekshiruv": "MT02 o‘nli amallar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT02 erta yaxlitlash",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT02 xato maxraji",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT02 oraliq ko‘paytmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT02 mustaqil yaxlitlash",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT02 mustaqil xato va oraliq",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "MT02 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

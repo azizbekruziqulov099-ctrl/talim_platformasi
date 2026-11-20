@@ -1,0 +1,191 @@
+{
+  "mavzu_id": "BMKN1305-3-M13",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "45π sm³"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "48π sm²"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "5 sm"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "12π sm³"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "36π sm²"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "36π sm³"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": {
+      "Syon": "28π sm²",
+      "Stola": "36π sm²",
+      "V": "28π sm³"
+    },
+    "2": {
+      "yasovchi": "13 sm",
+      "Syon": "65π sm²",
+      "Stola": "90π sm²",
+      "V": "100π sm³"
+    },
+    "3": {
+      "S": "144π sm²",
+      "V": "288π sm³"
+    },
+    "4": {
+      "Segri": "32π sm²",
+      "Stola": "48π sm²",
+      "V": "128π/3 sm³"
+    }
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "M13 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M13 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M13 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M13 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M13 test 1 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "45 π sm³",
+      "olingan": "45π sm³"
+    },
+    {
+      "tekshiruv": "M13 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "48 π sm²",
+      "olingan": "48π sm²"
+    },
+    {
+      "tekshiruv": "M13 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "5 sm",
+      "olingan": "5 sm"
+    },
+    {
+      "tekshiruv": "M13 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "12 π sm³",
+      "olingan": "12π sm³"
+    },
+    {
+      "tekshiruv": "M13 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "36 π sm²",
+      "olingan": "36π sm²"
+    },
+    {
+      "tekshiruv": "M13 test 6 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "36 π sm³",
+      "olingan": "36π sm³"
+    },
+    {
+      "tekshiruv": "M13 konus sektor burchagi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M13 konus sektor yoyi va yuzi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M13 misol r=3 sm, h=5 sm",
+      "natija": "O‘tdi",
+      "kutilgan": "30π sm², 48π sm², 45π sm³",
+      "olingan": "30π sm²; 48π sm²; 45π sm³."
+    },
+    {
+      "tekshiruv": "M13 misol r=3 sm, h=4 sm",
+      "natija": "O‘tdi",
+      "kutilgan": "5 sm, 15π sm², 24π sm², 12π sm³",
+      "olingan": "ℓ=5 sm; Syon=15π sm²; Sto‘la=24π sm²; V=12π sm³."
+    },
+    {
+      "tekshiruv": "M13 sfera-shar bir son boshqa birlik",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M13 yarim shar R2",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M13 mustaqil silindr",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M13 mustaqil konus",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M13 mustaqil shar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M13 mustaqil yarim shar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "M13 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

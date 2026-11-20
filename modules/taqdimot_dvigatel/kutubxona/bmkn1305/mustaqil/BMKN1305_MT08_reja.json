@@ -1,0 +1,90 @@
+{
+  "mavzu_id": "BMKN1305-3-MT8",
+  "hujjat_turi": "Mustaqil ta’lim topshiriq paketi",
+  "soat": 10,
+  "manba": "SamDPI BMKN 1305,2-kurs kunduzgi,2026–2027, asl dastur 6-beti",
+  "holat": "Topshiriq va tekshiruv paketi tayyor; talabaning ishi bajarildi degani emas",
+  "bosqichlar": [
+    {
+      "raqam": 1,
+      "soat": 2,
+      "ish": "Vaqt, narx va harakat modellarini o‘rganish"
+    },
+    {
+      "raqam": 2,
+      "soat": 2,
+      "ish": "Bosqichli vaqt va xarid jadvallarini tuzish"
+    },
+    {
+      "raqam": 3,
+      "soat": 2,
+      "ish": "Teskari vaqt rejalash va o‘rtacha tezlikni hisoblash"
+    },
+    {
+      "raqam": 4,
+      "soat": 2,
+      "ish": "Ikkita yangi masala va metodik parcha yaratish"
+    },
+    {
+      "raqam": 5,
+      "soat": 1,
+      "ish": "Barcha shart, birlik va kalitlarni tekshirish"
+    },
+    {
+      "raqam": 6,
+      "soat": 1,
+      "ish": "Masalalarni himoya qilish va refleksiya"
+    }
+  ],
+  "topshiriladigan_natijalar": [
+    {
+      "id": "D1",
+      "talab": "Vaqt nuqtasi-oraliq va birliklar konspekti"
+    },
+    {
+      "id": "D2",
+      "talab": "3 bosqichli vaqt, narx va safar yechimlari"
+    },
+    {
+      "id": "D3",
+      "talab": "Ikki yangi masala, jadval va to‘liq kalit"
+    },
+    {
+      "id": "D4",
+      "talab": "Metodik parcha va xato tahlili"
+    }
+  ],
+  "baholash": {
+    "tur": "Tavsiyaviy ichki mezon; muassasaning rasmiy baholash nizomi o‘rniga olinmaydi",
+    "maksimal_ball": 20,
+    "mezonlar": [
+      {
+        "nom": "Model",
+        "maksimal_ball": 5,
+        "talab": "Berilgan, noma’lum va munosabat aniq."
+      },
+      {
+        "nom": "Hisob",
+        "maksimal_ball": 5,
+        "talab": "Vaqt, narx va tezliklar mos birlikda."
+      },
+      {
+        "nom": "Yangi masala",
+        "maksimal_ball": 5,
+        "talab": "Mustaqil, yetarli va tekshirilgan shart."
+      },
+      {
+        "nom": "Metodika",
+        "maksimal_ball": 5,
+        "talab": "Savol, bosqich va xato tahlili ishlatishga tayyor."
+      }
+    ],
+    "ball_tavsifi": {
+      "0": "Dalil yo‘q yoki vazifa bajarilmagan",
+      "1–2": "Qisman, asosiy xato yoki yetishmaydigan dalil bor",
+      "3–4": "Asosan to‘g‘ri, tekshiruv yoki izohda ayrim kamchiliklar",
+      "5": "Talab to‘liq, asosli va tekshirilgan"
+    }
+  },
+  "foydalanish": "Talabaga topshiriq va reja beriladi. Javoblar fayli o‘qituvchining tekshiruvi uchun alohida saqlanadi."
+}

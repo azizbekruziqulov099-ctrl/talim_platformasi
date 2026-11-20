@@ -1,0 +1,466 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 6,
+    "tur": "mustaqil ta’lim",
+    "mavzu": "Miqdor bog‘lanishlari va tengdosh figuralar",
+    "qisqa": "Miqdor bog‘lanishlari va tengdosh figuralar",
+    "maqsad": "Talaba to‘g‘ri va teskari proporsionallikni boshqa bog‘lanishlardan ajratadi; yuz tengligi va teng bo‘laklardan qayta tuzishni hisob hamda model bilan asoslaydi.",
+    "tayanch": [
+      "To‘g‘ri proporsionallik",
+      "Teskari proporsionallik",
+      "Tengdosh figura",
+      "Kongruent bo‘lak",
+      "Yuz additivligi"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "Izlanish → dalil",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; MT6, asl skanning 6-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "Euclid II: area propositions",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/bookII/bookII.html"
+      },
+      {
+        "nomi": "OpenStax Prealgebra 2e, Ratios and Rate",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/5-6-ratios-and-rate"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Mustaqil ishga tayyorgarlik",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Asosiy natija nimadan tekshiriladi?",
+        "javob": "Shart, manba, hisob va xulosadan."
+      },
+      {
+        "savol": "Manbada yo‘q gapni iqtibos deyish mumkinmi?",
+        "javob": "Yo‘q; o‘z tahlili alohida yoziladi."
+      },
+      {
+        "savol": "Rasm o‘zi isbot bo‘ladimi?",
+        "javob": "Faqat rasmga qarab umumiy isbot deb bo‘lmaydi."
+      },
+      {
+        "savol": "Birliklar qayerda ko‘rsatiladi?",
+        "javob": "Berilganlarda, hisobda va javobda."
+      },
+      {
+        "savol": "Tekshiruv qachon bajariladi?",
+        "javob": "Yakuniy topshirishdan oldin."
+      },
+      {
+        "savol": "Talabaning mustaqil hissasi qayerda?",
+        "javob": "Yangi misol, izoh, tekshiruv va metodik xulosada."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Qanday natija topshiriladi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "3 bog‘lanish formulasi, sohasi va jadvallari"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Ikki tengdosh figura hisobi va qayta tuzish"
+      }
+    ],
+    "goya": "Har bir xulosa uchun manba yoki tekshiriladigan asos taqdim etiladi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Bog‘lanish modeli",
+      "izoh": "Bir xil jadval turli sababga ega",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "To‘g‘ri proporsionallik",
+          "izoh": "y=kx, k o‘zgarmas. x≠0 uchun y/x=k. Ushbu modelda x ikki baravar bo‘lsa y ham ikki baravar bo‘ladi. Bitta juft son butun bog‘lanishni tasdiqlamaydi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "x",
+                "y=3x",
+                "y/x"
+              ],
+              "qatorlar": [
+                [
+                  1,
+                  3,
+                  3
+                ],
+                [
+                  2,
+                  6,
+                  3
+                ],
+                [
+                  4,
+                  12,
+                  3
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Teskari proporsionallik",
+          "izoh": "y=k/x, x≠0; xy=k. Masalan, bir ishni bir xil unumli x ishchi o‘zgarmas sharoitda bajarsa, teskari model ishlashi mumkin. Haqiqiy hamkorlikda shartlar buzilishi mumkinligini yozing.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "xy=24, x>0",
+              "shart": "x=2,3,6 da y?",
+              "qadamlar": [
+                "y=24/x.",
+                "24/2=12; 24/3=8; 24/6=4."
+              ],
+              "javob": "12,8,4."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Har chiziqli formula proporsional emas",
+          "izoh": "y=2x+5 da y/x o‘zgarmas emas va x=0 da y=5. Shuning uchun bu to‘g‘ri proporsionallik emas. Kvadrat yuzi a² va kub hajmi a³ ham a ga to‘g‘ri proporsional emas.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Model",
+                "x yoki a ikki baravar"
+              ],
+              "qatorlar": [
+                [
+                  "y=3x",
+                  "y ikki baravar"
+                ],
+                [
+                  "xy=24",
+                  "y yarim"
+                ],
+                [
+                  "y=2x+5",
+                  "Yangi qiymat formula bilan"
+                ],
+                [
+                  "S=a²",
+                  "S to‘rt baravar"
+                ],
+                [
+                  "V=a³",
+                  "V sakkiz baravar"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Yuz tengligi va kongruentlik",
+      "izoh": "Bir xil yuz shaklni aniqlamaydi",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Tengdosh figuralar",
+          "izoh": "Bu paketda tengdosh tekis figuralar yuzlari teng figuralar deb olinadi. Kongruent figuralar esa harakat yoki akslantirish orqali aynan ustma-ust tushadi; ularning yuzlari teng.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "6×4 va 8×3",
+              "shart": "Yuz va perimetrlar.",
+              "qadamlar": [
+                "6·4=24; 8·3=24.",
+                "P₁=20; P₂=22."
+              ],
+              "javob": "Tengdosh; kongruent emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Teng tuzilgan figuralar",
+          "izoh": "Bu yerda teng tuzilgan deganda chekli sondagi mos kongruent bo‘laklarga ajratiladigan figuralar olinadi. Har ikki to‘rtburchakni 24 ta birlik kvadratga bo‘lish mumkin. Qayta joylashda tirqish va ustma-ust ichki qism yo‘q.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Bu aniq misolda teng tuzilganlik yuz tengligini asoslaydi. Har katakka tartib raqami faqat tekshiruv izohida berilishi mumkin; matnsiz yakuniy rasmga yozuv qo‘shilmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yuz va perimetr alohida",
+          "izoh": "Bo‘laklarni kesib qayta joylash yuzni saqlaydi, ammo tashqi chegara o‘zgarishi mumkin. Shu sababli 6×4 ning perimetri 20, 8×3 niki 22 bo‘lishi ziddiyat emas.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Qayta tuzishda yuz additivligi va kongruent bo‘laklarning teng yuziga tayaniladi. Perimetrni esa yangi tashqi chegaradan hisoblang."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Parallelogrammni qayta tuzish",
+      "izoh": "Koordinatali nazorat",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Berilgan model",
+          "izoh": "Parallelogramm uchlari A(0,0), B(6,0), C(8,4), D(2,4). Asosi 6, balandligi 4; yon tomoni √20. Yon tomon bilan balandlik tenglashtirilmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Yuz",
+              "shart": "Asos va balandlikdan foydalaning.",
+              "qadamlar": [
+                "S=6·4."
+              ],
+              "javob": "24 kvadrat birlik."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Chap uchburchakni ko‘chirish",
+          "izoh": "(0,0),(2,0),(2,4) uchburchakni ajrating va (6,0) vektoriga ko‘chiring. Uning yangi uchlari (6,0),(8,0),(8,4). Qolgan qism bilan [2,8]×[0,4] to‘g‘ri to‘rtburchak hosil bo‘ladi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Bo‘laklar aynan bir xil; ko‘chish uzunlik va yuzni saqlaydi. Yangi sohada bo‘sh joy va ustma-ust ichki qism yo‘qligi chegara koordinatalari bilan tekshiriladi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Tekshiruv nimani qamraydi?",
+          "izoh": "Faqat 24=24 yozish aynan taklif qilingan kesish to‘g‘ri ekanini ko‘rsatmaydi. Kesiladigan uchburchak, ko‘chirish vektori va yakuniy chegara ham yozilishi kerak.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Nazorat",
+                "Natija"
+              ],
+              "qatorlar": [
+                [
+                  "Dastlabki yuz",
+                  "24"
+                ],
+                [
+                  "Uchburchak yuz",
+                  "2·4/2=4"
+                ],
+                [
+                  "Qolgan yuz",
+                  "20"
+                ],
+                [
+                  "Ko‘chgan bo‘lak bilan",
+                  "20+4=24"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Loyiha va metodika",
+      "izoh": "Jadvaldan dalilga",
+      "belgi": "",
+      "slaydlar": [
+        {
+          "sarlavha": "Bog‘lanishni tanlash",
+          "izoh": "To‘rt shartli vaziyat tuzing: dona narxi o‘zgarmas xarid; doimiy ish; boshlang‘ich haq bor xizmat; kvadratning yuzi. Har birida formula va qaysi faraz o‘zgarmasligini ayting.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Narx yoki xizmat summalari faqat o‘quv ma’lumoti. Formula tanlashdan oldin boshlang‘ich haq, unum va miqdor birligini yozing."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Tengdosh kartochka",
+          "izoh": "Ikki turli to‘rtburchakni birlik kvadratlar bilan tuzing. Har birida yuz va perimetrni alohida hisoblang. “Bir xil yuz → bir xil shakl” xatosiga qarama-qarshi misol keltiring.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "O‘quvchi avval shaklni taqqoslaydi, keyin kataklarni sanaydi, so‘ng tashqi chegarani o‘lchaydi. Savol: nima saqlandi, nima o‘zgardi?"
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yakuniy dalil",
+          "izoh": "Hisobot model, soha, birlik, hisob va qayta tuzish sxemasidan iborat. Rasm matematik shartlar bilan birga berilganda tekshiriladi.",
+          "elementlar": [
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Bu yerda tekis figuralarning aniq misollari ko‘riladi. Hajmi teng har qanday fazoviy jism uchun ayni kesish xulosasi avtomatik ko‘chirilmaydi."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "y=2x+5 ni proporsional deyish",
+      "sabab": "Boshlang‘ich qo‘shiluvchi e’tiborsiz",
+      "togri": "y/x o‘zgarmas emas."
+    },
+    {
+      "xato": "Yuz tengligidan kongruentlik chiqarish",
+      "sabab": "Shakl uchun yetarli emas",
+      "togri": "6×4 va 8×3 qarama-qarshi misol."
+    },
+    {
+      "xato": "Qayta tuzishda perimetrni o‘zgarmas olish",
+      "sabab": "Ichki va tashqi chegaralar aralashgan",
+      "togri": "Yangi chegaradan qayta hisob."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "10 soatlik izlanish va loyiha",
+    "bosqichlar": [
+      "Manbani belgilash va konspekt",
+      "Hisob yoki model yaratish",
+      "Natijani tekshirish va metodik izoh"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Dalil",
+        "matn": "Ko‘chirma va o‘z tahlilini farqlang."
+      },
+      {
+        "sarlavha": "Hisob",
+        "matn": "Qadam, birlik va shartlarni yozing."
+      },
+      {
+        "sarlavha": "Tekshiruv",
+        "matn": "Yechim kaliti bilan xato sababini tahlil qiling."
+      }
+    ],
+    "tavsiya": "Ilovadagi 10 soatlik reja va tavsiyaviy mezon o‘qituvchi tomonidan guruh sharoitiga moslashtiriladi. Bu tayyor talaba referati emas."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Qabul qilingan shartlar ochiq yoziladi.",
+      "Manba va yangi o‘quv misoli farqlanadi.",
+      "Hisob va xulosa mustaqil tekshiriladi.",
+      "Natija 10 soatlik ish rejasi bo‘yicha topshiriladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "y=3x da y/x?",
+      "variantlar": [
+        "x",
+        "3",
+        "0",
+        "5"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "xy=24, x=6; y?",
+      "variantlar": [
+        "4",
+        "6",
+        "18",
+        "144"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "Qaysi formula to‘g‘ri proporsionallik emas?",
+      "variantlar": [
+        "y=3x",
+        "y=x/2",
+        "y=7x",
+        "y=2x+5"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "6×4 va 8×3 to‘rtburchaklar?",
+      "variantlar": [
+        "Kongruent",
+        "Yuzlari har xil",
+        "Tengdosh, kongruent emas",
+        "Perimetrlari bir xil"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Kvadrat tomoni ikki baravar; yuzi?",
+      "variantlar": [
+        "Ikki baravar",
+        "To‘rt baravar",
+        "Yarim",
+        "O‘zgarmaydi"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Kesib qayta joylashda perimetr albatta saqlanadimi?",
+      "variantlar": [
+        "Ha",
+        "Faqat kvadrat bo‘lsa",
+        "Har doim ikki baravar",
+        "Yo‘q"
+      ],
+      "javob": 3
+    }
+  ],
+  "nazorat": [
+    "Mavzudagi ikki asosiy tushunchani farqlang.",
+    "Bitta natijani boshqa usulda tekshiring.",
+    "Misolda qabul qilingan farazlarni ayting.",
+    "Manba bilan o‘z xulosangiz chegarasini ko‘rsating.",
+    "Bitta keng tarqalgan xatoni tahlil qiling.",
+    "Boshlang‘ich sinf uchun moslashtirishda nimalar o‘zgaradi?"
+  ],
+  "mustaqil_ish": [
+    "y=4x, xy=36, y=3x+2 uchun x=1,2,3 da jadval tuzing; bog‘lanishlarni farqlang.",
+    "5×6 va 3×10 to‘rtburchaklar yuz va perimetrini toping, birlik kvadratlarga bo‘lib qayta joylashni izohlang.",
+    "Berilgan parallelogrammning chap uchburchagini (6,0) ga ko‘chirishni koordinata bilan tekshiring; dastlabki va yangi perimetrni taqqoslang.",
+    "To‘g‘ri/teskari proporsionallikka bittadan shartli masala va tengdosh figuralarga 5 daqiqalik metodik kartochka yarating."
+  ],
+  "keyingi": {
+    "mavzu": "Navbatdagi mustaqil ta’lim bandi",
+    "izoh": "Reja, mahsulot va tekshiruv mezonlari bilan ish davom etadi."
+  },
+  "rasmlar": []
+}

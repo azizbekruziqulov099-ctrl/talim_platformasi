@@ -1,0 +1,216 @@
+{
+  "mavzu_id": "BMKN1305-3-A6",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "−3π/4"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "−2√3−2i"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "−8"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "2i"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "8i"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "−2; 1±i√3"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": {
+      "modul": "2",
+      "asosiy_argument": "−2π/3"
+    },
+    "2": {
+      "kopaytma": "6 cis(2π/3)=−3+3√3i",
+      "bolinma": "(3/2)cis(−π/6)=3√3/4−3/4i"
+    },
+    "3": "−16√3+16i.",
+    "4": [
+      "2",
+      "2i",
+      "−2",
+      "−2i"
+    ]
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "A06 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 test 1 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "−3π/4",
+      "olingan": "−3π/4"
+    },
+    {
+      "tekshiruv": "A06 test 1 chorak",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 test 2 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "−2√3−2i",
+      "olingan": "−2√3−2i"
+    },
+    {
+      "tekshiruv": "A06 test 2 algebraik shakl",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "-8 ",
+      "olingan": "−8"
+    },
+    {
+      "tekshiruv": "A06 test 3 ko‘paytma",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 test 4 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "2i",
+      "olingan": "2i"
+    },
+    {
+      "tekshiruv": "A06 test 4 bo‘linma",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 test 5 daraja",
+      "natija": "O‘tdi",
+      "kutilgan": "8i",
+      "olingan": "0+(8)i"
+    },
+    {
+      "tekshiruv": "A06 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "−2; 1±i√3",
+      "olingan": "−2; 1±i√3"
+    },
+    {
+      "tekshiruv": "A06 test 6 barcha kub ildizlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 ikkinchi chorak misoli",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 i ga burilish",
+      "natija": "O‘tdi",
+      "kutilgan": "-2+3i",
+      "olingan": "-2+(3)i"
+    },
+    {
+      "tekshiruv": "A06 burilish modulni saqlaydi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 darajani muqobil tekshirish",
+      "natija": "O‘tdi",
+      "kutilgan": "8i",
+      "olingan": "0+(8)i"
+    },
+    {
+      "tekshiruv": "A06 yana bir kub",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 mustaqil 1 argument",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 mustaqil 2 ko‘paytma",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 mustaqil 2 bo‘linma",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 mustaqil 3 aniq daraja",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 mustaqil 4 barcha to‘rtinchi ildizlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A06 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

@@ -1,0 +1,543 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 12,
+    "tur": "ma’ruza",
+    "mavzu": "Ko‘pyoqlar: prizma, parallelepiped va piramida",
+    "qisqa": "Ko‘pyoqlar",
+    "maqsad": "Talaba ko‘pyoq elementlarini taniydi; prizma, parallelepiped va piramidani ajratadi; formula shartlarini saqlab, yon sirt, to‘la sirt va hajmni hisoblaydi.",
+    "tayanch": [
+      "Yoq, qirra, uch",
+      "To‘g‘ri va og‘ma prizma",
+      "Parallelepiped va kub",
+      "Piramida",
+      "Balandlik va apofema"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "V=Bh",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; M12, asl skanning 5-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Contemporary Mathematics, 10.7",
+        "izoh": "https://openstax.org/books/contemporary-mathematics/pages/10-7-volume-and-surface-area"
+      },
+      {
+        "nomi": "OpenStax Prealgebra 2e, 9.6",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/9-6-solve-geometry-applications-volume-and-surface-area"
+      },
+      {
+        "nomi": "Math Open Reference: Polyhedron",
+        "izoh": "https://www.mathopenref.com/polyhedron.html"
+      },
+      {
+        "nomi": "Math Open Reference: Pyramid volume",
+        "izoh": "https://www.mathopenref.com/pyramidvolume.html"
+      },
+      {
+        "nomi": "Math Open Reference: Pyramid surface area",
+        "izoh": "https://www.mathopenref.com/pyramidarea.html"
+      },
+      {
+        "nomi": "Alan Beardon, NRICH, University of Cambridge: Euler’s Formula and Topology",
+        "izoh": "https://nrich.maths.org/articles/eulers-formula-and-topology"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Tekis figuralarning yuzlari",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "To‘g‘ri to‘rtburchak yuzi qanday?",
+        "javob": "S=ab."
+      },
+      {
+        "savol": "Uchburchak yuzi qanday?",
+        "javob": "S=ah/2."
+      },
+      {
+        "savol": "Perimetr qanday birlikda?",
+        "javob": "Uzunlik birligida."
+      },
+      {
+        "savol": "Yuz qanday birlikda?",
+        "javob": "Kvadrat birlikda."
+      },
+      {
+        "savol": "3²+4² nechaga teng?",
+        "javob": "25."
+      },
+      {
+        "savol": "Parallel tekisliklar orasidagi masofa qanday olinadi?",
+        "javob": "Perpendikulyar kesma uzunligi sifatida."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Qutini qoplash va to‘ldirish",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Bir qutini qog‘oz bilan qoplash va ichini kubchalar bilan to‘ldirishda bir xil formula ishlaydimi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Og‘ma jismda qiya qirra balandlik o‘rniga o‘tadimi?"
+      }
+    ],
+    "goya": "Avval sirt yoki hajm so‘ralganini, so‘ng jism turi va perpendikulyar balandlikni aniqlang.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Ko‘pyoqning tuzilishi",
+      "izoh": "Yoqlar, qirralar va uchlar",
+      "belgi": "Nu−Nq+Ny",
+      "slaydlar": [
+        {
+          "sarlavha": "Ko‘pyoq va uning chegarasi",
+          "izoh": "Bu darsda chekli sondagi tekis ko‘pburchak yoqlar bilan chegaralangan oddiy qavariq ko‘pyoqlar qaraladi. Uning sirtini tashkil etgan ko‘pburchaklar bilan ichki fazoviy soha farqlanadi. Sharning egri sirtini ko‘pyoqning yog‘i deb olish mumkin emas.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Yoq — ko‘pburchak sirt qismi; qirra — qo‘shni yoqlarning umumiy tomoni; uch — qirralar uchrashadigan nuqta."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Tekislikdagi tomon va fazodagi qirra atamalarining vazifasini ajrating."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ko‘pyoqlarni asosiga ko‘ra tanish",
+          "izoh": "Prizmada ikkita o‘zaro parallel va teng asos bor. Piramidada bitta asos va undan tashqaridagi bitta umumiy uch mavjud. Asosning uchburchak yoki to‘rtburchak bo‘lishi jism nomini aniqlashtiradi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Jism",
+                "Asos",
+                "Yon yoqlar"
+              ],
+              "qatorlar": [
+                [
+                  "Uchburchakli prizma",
+                  "Ikkita teng uchburchak",
+                  "Uchta parallelogramm"
+                ],
+                [
+                  "To‘rtburchakli piramida",
+                  "Bitta to‘rtburchak",
+                  "To‘rtta uchburchak"
+                ],
+                [
+                  "Kub",
+                  "Istalgan qarama-qarshi kvadrat juftini asos olish mumkin",
+                  "Barcha yoqlari kvadrat"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Uch, qirra va yoqlarni sanash",
+          "izoh": "Qavariq ko‘pyoq uchun Euler tengligi yordamchi tekshiruv bo‘ladi. U jism turini yolg‘iz o‘zi aniqlamaydi. Teshikli yoki boshqa murakkab sirtlarga ushbu ko‘rinishni shartsiz tatbiq qilmang.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Euler tengligi",
+              "formula": "N_u-N_q+N_y=2",
+              "matn": "Nᵤ — uchlar, Nq — qirralar, Ny — yoqlar soni; qavariq ko‘pyoq uchun."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Kubni tekshirish",
+              "shart": "Kubda 8 uch, 12 qirra, 6 yoq bor.",
+              "qadamlar": [
+                "Har bir qirrani ikki marta sanamaslik uchun modelda belgilang.",
+                "8−12+6=2.",
+                "Tenglik bajariladi."
+              ],
+              "javob": "8 uch, 12 qirra, 6 yoq."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Prizma",
+      "izoh": "Balandlik va yon qirrani ajratamiz",
+      "belgi": "V=Bh",
+      "slaydlar": [
+        {
+          "sarlavha": "To‘g‘ri va og‘ma prizma",
+          "izoh": "Prizma teng asosning parallel ko‘chirilishi orqali tasavvur qilinadi. Uning yon yoqlari parallelogrammlardir. Balandlik asoslar yotgan parallel tekisliklar orasidagi perpendikulyar masofa bo‘lib, og‘ma prizmada yon qirra uzunligiga teng emas.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "To‘g‘ri prizmada yon qirralar asosga perpendikulyar; yon yoqlar to‘g‘ri to‘rtburchak. Og‘ma prizmada bu shart bajarilmaydi."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "h — balandlik. To‘g‘ri prizmada h yon qirraga teng."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Prizma sirti va hajmi",
+          "izoh": "Har qanday prizmada hajm asos yuzining balandlikka ko‘paytmasi bilan topiladi. Yon sirt uchun perimetrni balandlikka ko‘paytirish aynan to‘g‘ri prizmada ishlatiladi. Og‘ma holatda yon yoqlarning yuzlarini alohida yig‘ish kerak.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Hajm va sirt",
+              "formula": "V=Bh;\\qquad S_{yon}=Ph,\\quad S_{tola}=Ph+2B",
+              "matn": "V=Bh — prizma uchun; oxirgi ikki formula to‘g‘ri prizma uchun. B — asos yuzi, P — asos perimetri."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "B kvadrat, h uzunlik, V kub birlikda."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Uchburchakli to‘g‘ri prizma",
+          "izoh": "Asosning yuzi va perimetri ikki alohida hisobdir. To‘g‘ri burchakli asosda yuzi katetlar ko‘paytmasining yarmi bo‘ladi. Asosning uchala tomoni yon sirt hisobida qatnashadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "3–4–5 asos",
+              "shart": "Asos tomonlari 3,4,5 sm, prizma balandligi 10 sm. Sirt va hajmni toping.",
+              "qadamlar": [
+                "B=3·4/2=6 sm²; P=3+4+5=12 sm.",
+                "Syon=12·10=120 sm²; Sto‘la=120+2·6=132 sm².",
+                "V=6·10=60 sm³."
+              ],
+              "javob": "Syon=120 sm²; Sto‘la=132 sm²; V=60 sm³."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Parallelepiped va kub",
+      "izoh": "Xususiy holat formulasining sharti",
+      "belgi": "S=2(ab+ac+bc)",
+      "slaydlar": [
+        {
+          "sarlavha": "Parallelepiped — asosida parallelogramm bo‘lgan prizma",
+          "izoh": "Parallelepipedning barcha yoqlari parallelogrammlardir. Ularning burchaklari har doim to‘g‘ri bo‘lishi shart emas. To‘g‘ri burchakli parallelepipedda esa barcha yoqlar to‘g‘ri to‘rtburchak bo‘ladi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Tur",
+                "Shart",
+                "Hajm"
+              ],
+              "qatorlar": [
+                [
+                  "Umumiy parallelepiped",
+                  "Asos — parallelogramm",
+                  "V=Bh"
+                ],
+                [
+                  "To‘g‘ri burchakli parallelepiped",
+                  "Uch o‘lcham o‘zaro perpendikulyar",
+                  "V=abc"
+                ],
+                [
+                  "Kub",
+                  "To‘g‘ri burchakli va barcha qirralar teng",
+                  "V=a³"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Umumiy og‘ma parallelepiped uchun qirralarni shunchaki abc qilib ko‘paytirish yetmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "To‘g‘ri burchakli parallelepiped",
+          "izoh": "Bir uchdan chiqqan o‘zaro perpendikulyar qirralar uzunligi a,b,c bo‘lsin. Sirt uch juft teng to‘g‘ri to‘rtburchakdan yig‘iladi. Bitta yoq yuzini hajm bilan adashtirmang.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "O‘lchovlar",
+              "formula": "V=abc,\\qquad S_{tola}=2(ab+ac+bc)",
+              "matn": "a,b,c > 0; to‘g‘ri burchakli parallelepiped."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "2×3×4 quti",
+              "shart": "Qirralar 2,3,4 sm.",
+              "qadamlar": [
+                "V=2·3·4=24 sm³.",
+                "ab=6, ac=8, bc=12 sm².",
+                "Sto‘la=2(6+8+12)=52 sm²."
+              ],
+              "javob": "V=24 sm³; Sto‘la=52 sm²."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Kub va masshtab",
+          "izoh": "Kubda oltita teng kvadrat yoq bor. Qirra k marta ortsa, har bir yoq yuzi k², hajm esa k³ marta ortadi. Bu bir xil sonli uzunlik, yuz va hajmning turli o‘lchamga egaligini ko‘rsatadi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Kub",
+              "formula": "S_{tola}=6a^2,\\qquad V=a^3",
+              "matn": "a > 0."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "Qirrasi 3 sm",
+              "shart": "Kubning sirtini va hajmini toping.",
+              "qadamlar": [
+                "Sto‘la=6·3²=54 sm².",
+                "V=3³=27 sm³.",
+                "Qirra ikki baravar bo‘lsa, sirt 4, hajm 8 baravar bo‘ladi."
+              ],
+              "javob": "54 sm² va 27 sm³."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Piramida",
+      "izoh": "Balandlik, apofema va yon qirra",
+      "belgi": "V=Bh/3",
+      "slaydlar": [
+        {
+          "sarlavha": "Piramida hajmi",
+          "izoh": "Piramidaning asosi ko‘pburchak, yon yoqlari umumiy uchli uchburchaklardir. Balandlik uchdan asos tekisligiga perpendikulyar masofa. Hajm formulasida yon qirra yoki yon yoqning balandligi ishlatilmaydi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Piramida hajmi",
+              "formula": "V=\\frac13 Bh",
+              "matn": "B — asos yuzi, h — asos tekisligiga perpendikulyar balandlik; to‘g‘ri va og‘ma piramidalar uchun."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Bir xil asos va balandlikdagi prizma hajmining uchdan biri."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yon va to‘la sirt",
+          "izoh": "Umumiy piramidaning yon sirti barcha yon uchburchaklar yuzlari yig‘indisidir. Muntazam piramidada asos muntazam ko‘pburchak, uchning proyeksiyasi asos markazida; yon yoqlar balandligi bir xil bo‘ladi. Shu maxsus balandlik apofema ℓ deb olinadi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Muntazam piramida",
+              "formula": "S_{yon}=\\frac12 P\\ell,\\qquad S_{tola}=B+\\frac12 P\\ell",
+              "matn": "P — asos perimetri, ℓ — yon yoq balandligi; bu yerda h bilan ℓ boshqa kesmalar."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Nomuntazam piramidada barcha yon yoqlar uchun bitta ℓ bor deb olish mumkin emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Muntazam kvadrat piramida",
+          "izoh": "Asos tomoni a bo‘lsa, asos markazidan tomon o‘rtasigacha masofa a/2. Uch, asos markazi va shu o‘rta nuqta hosil qilgan to‘g‘ri uchburchakdan apofema topiladi. Yon qirra bu uchburchakning gipotenuzasi emas.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Asos 6 sm, balandlik 4 sm",
+              "shart": "Muntazam kvadrat piramidaning yon, to‘la sirti va hajmini toping.",
+              "qadamlar": [
+                "ℓ²=4²+3²=25; ℓ=5 sm. B=6²=36 sm²; P=24 sm.",
+                "Syon=24·5/2=60 sm²; Sto‘la=36+60=96 sm².",
+                "V=36·4/3=48 sm³."
+              ],
+              "javob": "Syon=60 sm²; Sto‘la=96 sm²; V=48 sm³."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Yuz va hajmni bir birlikda yozish.",
+      "sabab": "O‘lchamlar aralashtirilgan.",
+      "togri": "Sirt sm², hajm sm³ bilan beriladi."
+    },
+    {
+      "xato": "Har bir prizma uchun Syon=Ph deyish.",
+      "sabab": "To‘g‘rilik sharti unutilgan.",
+      "togri": "Bu formula to‘g‘ri prizmada; umumiy holatda yon yoqlar yig‘iladi."
+    },
+    {
+      "xato": "Har parallelepiped hajmini uch qirra ko‘paytmasi deb olish.",
+      "sabab": "O‘zaro perpendikulyarlik tekshirilmagan.",
+      "togri": "Umumiy formula V=Bh; abc to‘g‘ri burchakli holat uchun."
+    },
+    {
+      "xato": "Piramida hajmiga apofemani qo‘yish.",
+      "sabab": "Ikki balandlik farqlanmagan.",
+      "togri": "V da asos tekisligiga perpendikulyar h ishlatiladi."
+    },
+    {
+      "xato": "Muntazam piramidada ℓ ni yon qirra deb olish.",
+      "sabab": "Yoq balandligi bilan qirra boshqa.",
+      "togri": "ℓ uchdan asos tomonining o‘rtasiga yon yoq ichida chiziladi."
+    },
+    {
+      "xato": "Piramida hajmida 1/3 ni tashlab ketish.",
+      "sabab": "Prizma formulasi ko‘chirilgan.",
+      "togri": "V=Bh/3."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Yoyilmadan formulaga",
+    "bosqichlar": [
+      "Jism modelida asos, yoq va balandlikni ko‘rsatish",
+      "Yoyilma yoki yoqlar yig‘indisi orqali sirtni tuzish",
+      "Hisob va birliklar orqali natijani tekshirish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Bir quti, ikki vazifa",
+        "matn": "Qoplash va sig‘im uchun qaysi ma’lumot kerakligini ajrating."
+      },
+      {
+        "sarlavha": "Ikki balandlik",
+        "matn": "Kvadrat piramida modelida h va ℓ ni alohida belgilang."
+      },
+      {
+        "sarlavha": "Qarshi misol",
+        "matn": "Og‘ma prizma yon qirrasi balandlikka teng emasligini izohlang."
+      }
+    ],
+    "tavsiya": "Qog‘oz modeli va yoyilma kuzatuvni qo‘llab-quvvatlaydi. Hajm formulasini sirt yoyilmasining yuzi bilan tenglashtirmang."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Ko‘pyoq tekis ko‘pburchak yoqlar bilan chegaralangan.",
+      "Sirt — yuzlar yig‘indisi; hajm — ichki fazoviy o‘lchov.",
+      "Formula bilan birga jism turi va balandlik sharti yoziladi.",
+      "Piramidada h, ℓ va yon qirra farqlanadi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "Kubning nechta yog‘i bor?",
+      "variantlar": [
+        "4",
+        "6",
+        "8",
+        "12"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "To‘g‘ri burchakli parallelepiped qirralari 2,3,4 sm. Hajm qaysi?",
+      "variantlar": [
+        "52 sm³",
+        "9 sm³",
+        "24 sm³",
+        "12 sm³"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "To‘g‘ri prizma asosida 3–4–5 uchburchak, balandligi 10 sm. To‘la sirt qaysi?",
+      "variantlar": [
+        "132 sm²",
+        "120 sm²",
+        "60 sm²",
+        "66 sm²"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "Qirrasi 3 sm kubning to‘la sirti qaysi?",
+      "variantlar": [
+        "27 sm²",
+        "18 sm²",
+        "9 sm²",
+        "54 sm²"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "Piramida asos yuzi 36 sm², balandligi 4 sm. Hajm qaysi?",
+      "variantlar": [
+        "144 sm³",
+        "48 sm³",
+        "60 sm³",
+        "96 sm³"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Asos tomoni 6 sm, balandligi 4 sm muntazam kvadrat piramida to‘la sirti qaysi?",
+      "variantlar": [
+        "60 sm²",
+        "84 sm²",
+        "96 sm²",
+        "48 sm²"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Prizma va piramida qanday farqlanadi?",
+    "To‘g‘ri va og‘ma prizmada balandlikni ko‘rsating.",
+    "Syon=Ph qaysi holatga tegishli?",
+    "Umumiy parallelepiped bilan to‘g‘ri burchakli holatni farqlang.",
+    "Piramida apofemasi nimani anglatadi?",
+    "Birliklar yordamida noto‘g‘ri formulani qanday aniqlash mumkin?"
+  ],
+  "mustaqil_ish": [
+    "Qirralari 4,5,6 sm to‘g‘ri burchakli parallelepipedning to‘la sirti va hajmini toping.",
+    "To‘g‘ri prizma asosida katetlari 5 va 12 sm uchburchak; uchinchi tomon 13 sm, prizma balandligi 7 sm. Yon, to‘la sirt va hajmni toping.",
+    "Asos tomoni 10 sm, balandligi 12 sm muntazam kvadrat piramidaning apofemasi, yon, to‘la sirti va hajmini toping.",
+    "Piramida asos yuzi 18 sm², balandligi 9 sm. Hajmni toping. Faqat shu ikki ma’lumotdan to‘la sirtni aniqlash mumkinmi?"
+  ],
+  "keyingi": {
+    "mavzu": "Aylanish jismlari",
+    "izoh": "Doira yuzi, aylana uzunligi va perpendikulyar balandlikni takrorlang."
+  },
+  "rasmlar": []
+}

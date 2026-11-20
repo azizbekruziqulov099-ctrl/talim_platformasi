@@ -1,0 +1,540 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 9,
+    "tur": "amaliy",
+    "mavzu": "Geometrik masalalar: o‘lchash, hisoblash, isbotlash va yasash",
+    "qisqa": "Geometrik masalalar amaliyoti",
+    "maqsad": "Talaba geometrik masala turini aniqlaydi, hisob va o‘lchovni farqlaydi; qisqa isbot va qarshi misol beradi; sirkul-chizg‘ich yasashini bosqichlari, mavjudlik sharti va asosi bilan bajaradi.",
+    "tayanch": [
+      "O‘lchash",
+      "Hisoblash",
+      "Isbot",
+      "Yasash",
+      "Mavjudlik sharti"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "Yasash va isbot",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; A9, asl skanning 5-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "Euclid Elements I.8:TTT",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/bookI/propI8.html"
+      },
+      {
+        "nomi": "Euclid Elements I.9",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/bookI/propI9.html"
+      },
+      {
+        "nomi": "Euclid Elements I.10",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/bookI/propI10.html"
+      },
+      {
+        "nomi": "Euclid Elements I.22",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/bookI/propI22.html"
+      },
+      {
+        "nomi": "Euclid Elements I.32",
+        "izoh": "https://mathcs.clarku.edu/~djoyce/elements/bookI/propI32.html"
+      },
+      {
+        "nomi": "Math Open Reference:Bisect a segment",
+        "izoh": "https://www.mathopenref.com/constbisectline.html"
+      },
+      {
+        "nomi": "Math Open Reference:Bisect an angle",
+        "izoh": "https://www.mathopenref.com/constbisectangle.html"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "A7–A8",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "O‘lchov birligi kerakmi?",
+        "javob": "Ha, miqdorga mos."
+      },
+      {
+        "savol": "Pifagor qaysi uchburchakda?",
+        "javob": "To‘g‘ri burchakli."
+      },
+      {
+        "savol": "TTT nimani beradi?",
+        "javob": "Uchburchaklar tengligini."
+      },
+      {
+        "savol": "3+4>5 mi?",
+        "javob": "Ha."
+      },
+      {
+        "savol": "2+3=5 dan uchburchak yasash mumkinmi?",
+        "javob": "Aynimagan uchburchak emas."
+      },
+      {
+        "savol": "Bitta qarshi misol umumiy da’voni rad etadimi?",
+        "javob": "Ha."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Rasm va yechimning vazifasi",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Chizmada 5 sm ko‘ringan qirrani har doim asl 5 sm deb olamizmi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Yasashni tugatish bilan uning to‘g‘riligini asoslash bir xil bosqichmi?"
+      }
+    ],
+    "goya": "Natija masala turiga mos bo‘lsin; yasash asosi va shartlari ham talab qilinadi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Geometrik masala turini aniqlash",
+      "izoh": "Nima natija talab qilinyapti?",
+      "belgi": "O‘lchash, hisob, isbot, yasash",
+      "slaydlar": [
+        {
+          "sarlavha": "To‘rt xil vazifa",
+          "izoh": "O‘lchashda asbob ko‘rsatkichi, hisoblashda berilganlardan sonli natija, isbotlashda umumiy mantiqiy asos, yasashda esa shartni qanoatlantiruvchi figura olinadi. Bitta masala bir necha bosqichni birlashtirishi mumkin.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Tur",
+                "Misol",
+                "Natija"
+              ],
+              "qatorlar": [
+                [
+                  "O‘lchash",
+                  "Kesmani chizg‘ichda o‘lchang",
+                  "Birlikli o‘lchov"
+                ],
+                [
+                  "Hisoblash",
+                  "Ikki katetdan gipotenuzani toping",
+                  "Asoslangan son"
+                ],
+                [
+                  "Isbotlash",
+                  "Teng yonli uchburchak medianasi balandlik ekanini ko‘rsating",
+                  "Mantiqiy dalil"
+                ],
+                [
+                  "Yasash",
+                  "Berilgan kesmani teng ikkiga bo‘ling",
+                  "Yasash va uning asosi"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Asbob shartini yozish",
+          "izoh": "Bu darsdagi klassik yasashlarda sirkul va belgisiz chizg‘ich olinadi. Berilgan uzunliklar kesmalar sifatida mavjud deb qaraladi; sirkul uzunlikni ko‘chiradi. O‘lchash topshirig‘ida esa darajali chizg‘ich yoki transportir alohida ishlatiladi.",
+          "elementlar": [
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Klassik yasashni “chizg‘ichdan kerakli sonni belgilash” bilan almashtirmang."
+            },
+            {
+              "tur": "matn",
+              "matn": "Har yasashning topshirilishi: berilgan, qadamlar, hosil bo‘lgan figura, to‘g‘rilik asosi va mavjudlik sharti."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Xulosa turini adashtirmang",
+          "izoh": "Rasmda taxminan teng chiqqan ikki kesma umumiy teoremani isbotlamaydi. Ammo vazifa aynan o‘lchash bo‘lsa, taxminiy qiymat va asbob haqida ma’lumot berish to‘g‘ri natijadir. Javob so‘ralgan vazifaga mos nomlanadi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Vazifa: “Ushbu rasmda AB≈5 sm” bilan “shu shartdagi barcha figuralarda AB=CD” gaplari nimasi bilan farqlanishini yozing."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Taxminiy o‘lchovga aniq tenglik belgisi asossiz qo‘yilmasin."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "O‘lchash va hisoblash",
+      "izoh": "Formula sharti va birlik",
+      "belgi": "Berilgan → hisob",
+      "slaydlar": [
+        {
+          "sarlavha": "Noldan boshlanmagan chizg‘ich",
+          "izoh": "Kesma uchlari chizg‘ichning turli ko‘rsatkichlariga tushsa, uzunlik oxirgi va boshlang‘ich ko‘rsatkich ayirmasi. O‘lchov birligi bir xil bo‘lishi, shkala tekis va o‘qish tartibi to‘g‘ri bo‘lishi kerak.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki ko‘rsatkich",
+              "shart": "Kesma uchlari 1,8 sm va 8,6 sm belgilarida. Uzunligini toping.",
+              "qadamlar": [
+                "Boshlang‘ich 1,8 sm.",
+                "8,6−1,8=6,8 sm.",
+                "1,8+6,8=8,6 bilan tekshiring."
+              ],
+              "javob": "6,8 sm."
+            }
+          ]
+        },
+        {
+          "sarlavha": "To‘g‘ri uchburchakni hisoblash",
+          "izoh": "To‘g‘ri burchak aniq berilganidan keyin Pifagor teoremasi qo‘llanadi. Gipotenuza eng uzun tomon bo‘lishi tekshiriladi. Yuz va perimetr alohida birlikda yoziladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Katetlar 9 sm va 12 sm",
+              "shart": "Gipotenuza, yuz va perimetrni toping.",
+              "qadamlar": [
+                "c²=9²+12²=225; c=15 sm.",
+                "S=9·12/2=54 sm².",
+                "P=9+12+15=36 sm."
+              ],
+              "javob": "c=15 sm; S=54 sm²; P=36 sm."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Teskari masala",
+          "izoh": "To‘g‘ri to‘rtburchak diagonali va bitta tomoni ma’lum bo‘lsa, ikkinchi tomon Pifagor orqali topiladi. Kvadrat ildizdan musbat uzunlik olinadi. Yakunda diagonal qayta tekshiriladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Diagonal 13 sm, tomon 5 sm",
+              "shart": "Ikkinchi tomon, yuz va perimetrni toping.",
+              "qadamlar": [
+                "b²=13²−5²=144; b=12 sm.",
+                "S=5·12=60 sm²; P=2(5+12)=34 sm.",
+                "5²+12²=13²."
+              ],
+              "javob": "b=12 sm; S=60 sm²; P=34 sm."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Isbotlash va qarshi misol",
+      "izoh": "Chizmaga yashirin shart qo‘shmaymiz",
+      "belgi": "Asos yoki qarshi misol",
+      "slaydlar": [
+        {
+          "sarlavha": "Teng yonli uchburchak medianasi",
+          "izoh": "AB=AC, D esa BC ning o‘rtasi bo‘lsin. ABD va ACD uchburchaklari TTT bo‘yicha teng. D dagi qo‘shni burchaklar teng va yig‘indisi 180° bo‘lgani uchun har biri 90°.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "AD⊥BC ni asoslang",
+              "shart": "AB=AC va BD=DC berilgan.",
+              "qadamlar": [
+                "AB=AC; BD=DC; AD umumiy.",
+                "ΔABD≅ΔACD, TTT.",
+                "∠ADB=∠ADC=90°; AD⊥BC."
+              ],
+              "javob": "Mediana balandlik ham bo‘ladi."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "D ning o‘rta nuqta ekanini rasmga qarab emas, berilgandan olamiz."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Uchburchak burchaklari yig‘indisi",
+          "izoh": "Evklid tekisligida A uchdan BC ga parallel chiziq o‘tkazing. B va C dagi burchaklar mos ichki almashinuvchi burchaklar sifatida A atrofidagi yoyiq burchakning qismlari bo‘ladi. Natija har bir ruxsat etilgan uchburchakka tegishli.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Ichki burchaklar yig‘indisi 180°. Asos: parallel chiziqlar burchaklari va yoyiq burchak."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Sferadagi uchburchaklarga bu Evklid tekisligi xulosasi shartsiz ko‘chirilmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Bir qarshi misol yetadi",
+          "izoh": "Umumiy “perimetrlari teng figuralarning yuzlari teng” da’vosini rad etish uchun ikkita teng perimetrli, har xil yuzli figura kifoya. Bu bitta shaklning sirtqi ko‘rinishiga emas, aniq hisobga tayanadi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Figura",
+                "Perimetr",
+                "Yuz"
+              ],
+              "qatorlar": [
+                [
+                  "1×7 to‘g‘ri to‘rtburchak",
+                  "16",
+                  "7"
+                ],
+                [
+                  "Tomoni 4 kvadrat",
+                  "16",
+                  "16"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Birliklar perimetrda uzunlik, yuzda kvadrat birlikdir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Yasash va uning to‘g‘riligi",
+      "izoh": "Sirkul va belgisiz chizg‘ich",
+      "belgi": "Yasash + asos",
+      "slaydlar": [
+        {
+          "sarlavha": "Kesmaning o‘rta perpendikulyari",
+          "izoh": "A va B markazlardan bir xil r>AB/2 radius bilan yuqori va pastki kesishuvlar P, Q olinsin. PQ chizig‘i AB ni teng ikkiga bo‘lib perpendikulyar kesadi. Radius AB/2 ga teng bo‘lsa, ikki turli kesishuv hosil bo‘lmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Koordinatali tekshiruv",
+              "shart": "A=(−4,0), B=(4,0), r=5.",
+              "qadamlar": [
+                "P=(0,3), Q=(0,−3); har biri ikkala markazdan 5 masofada.",
+                "PQ vertikal, AB gorizontal.",
+                "Kesishuv M=(0,0); AM=MB=4."
+              ],
+              "javob": "O‘rta nuqta M; PQ⊥AB."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Geometrik asos: teng radiuslar teng uchburchaklar va o‘rta perpendikulyar xossasini beradi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Burchakni teng ikkiga bo‘lish",
+          "izoh": "0°<∠ROS<180° bo‘lsin. O markazli yoy OR va OS nurlarni A va B da kessin, OA=OB. A va B markazlardan shu radiusda chizilgan yoylarning O dan boshqa ichki kesishuvini P deb oling. OP bissektrisa bo‘ladi.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "OA=OB; AP=BP; OP umumiy. ΔOAP≅ΔOBP, TTT; shuning uchun ∠AOP=∠POB."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "P=O tanlanmaydi; P burchak ichidagi boshqa kesishuv. O‘lchab taxminan bo‘lish klassik yasashning asosi emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Uch tomondan uchburchak yasash",
+          "izoh": "AB=5, AC=3, BC=4 berilgan kesmalar bo‘lsin. A markazli radius 3 va B markazli radius 4 aylanalar kesishuvini C deb olib tutashtiriladi. Uchburchak tengsizliklari qat’iy bajarilishi kerak.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "3–4–5 yasash",
+              "shart": "Mavjudlik va ikkita kesishuv ma’nosini tushuntiring.",
+              "qadamlar": [
+                "3+4>5,3+5>4,4+5>3.",
+                "C va AB ga nisbatan akslangan C′ ikkita tanlov.",
+                "Hosil bo‘lgan uchburchaklar TTT bo‘yicha teng."
+              ],
+              "javob": "Ikki akslangan joylashuv; bitta tenglik sinfi."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "2,3,5 uzunliklarida tenglik bor: odatiy aynimagan uchburchak yasalmaydi."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "O‘lchovni umumiy isbot deb olish.",
+      "sabab": "Vazifa turi aralashgan.",
+      "togri": "Kuzatuv va mantiqiy asos farqlanadi."
+    },
+    {
+      "xato": "Pifagorni to‘g‘ri burchaksiz ishlatish.",
+      "sabab": "Teorema sharti yo‘q.",
+      "togri": "To‘g‘ri burchak berilgan yoki isbotlangan bo‘lsin."
+    },
+    {
+      "xato": "Rasmga qarab D o‘rta nuqta deyish.",
+      "sabab": "Berilgan shart yo‘q.",
+      "togri": "Tenglik beriladi yoki isbotlanadi."
+    },
+    {
+      "xato": "r=AB/2 bilan ikki kesishuv kutish.",
+      "sabab": "Tegishish holati e’tiborsiz.",
+      "togri": "r>AB/2."
+    },
+    {
+      "xato": "Bissektrisa yasashda O ning o‘zini P olish.",
+      "sabab": "Yangi ichki nuqta olinmagan.",
+      "togri": "O dan boshqa ichki kesishuv tanlanadi."
+    },
+    {
+      "xato": "2,3,5 dan uchburchak yasash.",
+      "sabab": "Qat’iy tengsizlik o‘rniga tenglik olingan.",
+      "togri": "Eng uzun tomon qolganlar yig‘indisidan kichik bo‘lsin."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Yasashni dalil bilan topshirish",
+    "bosqichlar": [
+      "Asboblar va berilganlarni yozish",
+      "Bosqichlarni tartib bilan bajarish",
+      "Mavjudlik, to‘g‘rilik va zarur bo‘lsa boshqa joylashuvni tekshirish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "O‘lchash",
+        "matn": "Ko‘rsatkichlar ayirmasi va birlikni yozing."
+      },
+      {
+        "sarlavha": "Isbot",
+        "matn": "Har bir tenglikning sababini ayting."
+      },
+      {
+        "sarlavha": "Yasash",
+        "matn": "Yordamchi yoylar va tanlangan kesishuvni saqlang."
+      }
+    ],
+    "tavsiya": "Mustaqil ishda qadamlar bilan birga geometrik asos talab qilinadi. Chiroyli rasmning o‘zi to‘liq yechim emas."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Masala turi yakuniy natijani belgilaydi.",
+      "O‘lchov va hisob aniqligi nomlanadi.",
+      "Isbot berilganlardan xulosa chiqaradi.",
+      "Yasash mavjudlik va to‘g‘rilik bilan yakunlanadi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "Bitta rasmni transportirda o‘lchash umumiy teorema isbotimi?",
+      "variantlar": [
+        "Ha, har doim",
+        "Yo‘q; u kuzatuv yoki o‘lchov bo‘ladi",
+        "Faqat katta qog‘ozda",
+        "Faqat butun burchaklarda"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Chizg‘ichda uchlar 1,8 sm va 8,6 sm. Uzunlik qaysi?",
+      "variantlar": [
+        "10,4 sm",
+        "8,6 sm",
+        "6,8 sm",
+        "1,8 sm"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Katetlar 9 sm va 12 sm. Gipotenuza qaysi?",
+      "variantlar": [
+        "15 sm",
+        "21 sm",
+        "3 sm",
+        "225 sm"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "AB=8 bo‘lsa, o‘rta perpendikulyar uchun teng radiusli ikki yoy ikki nuqtada kesishishi uchun r qanday?",
+      "variantlar": [
+        "r<4",
+        "r=4",
+        "r=0",
+        "r>4"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "AB=AC va D BC o‘rtasi. AD haqida qaysi gap to‘g‘ri?",
+      "variantlar": [
+        "AD doim yon qirra",
+        "AD⊥BC",
+        "AD=BC doim",
+        "AD parallel BC"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Qaysi tomonlar aynimagan uchburchak bermaydi?",
+      "variantlar": [
+        "3,4,5",
+        "5,5,6",
+        "2,3,5",
+        "6,8,10"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "To‘rt xil geometrik vazifani farqlang.",
+    "Klassik yasashdagi asboblar qaysi?",
+    "O‘rta perpendikulyar uchun radius shartini ayting.",
+    "Bissektrisa yasashini TTT bilan asoslang.",
+    "Uch tomonli yasashda nega ikki akslangan joylashuv chiqadi?",
+    "Mavjudlik sharti nima uchun yechimning bir qismi?"
+  ],
+  "mustaqil_ish": [
+    "Chizg‘ichda uchlar 2,4 sm va 10,1 sm. Kesma uzunligini toping.",
+    "Katetlar 8 sm va 15 sm. Gipotenuza, yuz, perimetrni toping.",
+    "Teng yonli uchburchak yon tomonlari 13 sm, asosi 10 sm. Asos medianasi balandlik ekanini asoslab, uzunligi va yuzni toping.",
+    "Berilgan 6,8,10 uzunlik kesmalaridan uchburchak yasash qadamlarini yozing; mavjudlik va ikki akslangan joylashuvni tushuntiring."
+  ],
+  "keyingi": {
+    "mavzu": "Miqdor va o‘lchash amaliyoti",
+    "izoh": "Bir jinsli miqdorlar, birliklar va o‘lchov natijasining mazmunini takrorlang."
+  },
+  "rasmlar": []
+}

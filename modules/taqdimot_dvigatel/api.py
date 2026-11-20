@@ -19,7 +19,7 @@ from fastapi import Header, HTTPException, Request
 from fastapi.responses import Response
 from starlette.concurrency import run_in_threadpool
 
-from . import ai, excel, rasmlar, sxema, uslub, yasash
+from . import ai, excel, kutubxona, rasmlar, sxema, uslub, yasash
 
 PREFIX = "/api/taqdimot-dvigatel"
 NO_STORE = {"Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff"}
@@ -399,7 +399,37 @@ def register_taqdimot_dvigatel(app, platform):
         q = rasmlar.kalit_toza(q)
         with D.ps.db() as cur:
             cur.execute("SELECT kalit, tavsif FROM taqdimot_rasmlar WHERE kalit LIKE %s ORDER BY vaqt DESC LIMIT 60", (f"%{q}%",))
-            rows = [{"kalit": r["kalit"], "tavsif": r["tavsif"]} for r in cur.fetchall()]
+            rows = [{"kalit": r["kalit"], "tavsif": r["tavsif"], "tur": "yuklangan"} for r in cur.fetchall()]
+        bor = {r["kalit"] for r in rows}
+        rows += [r for r in rasmlar.papkadan_qidir(q, 120 - len(rows)) if r["kalit"] not in bor]
         return {"rasmlar": rows}
+
+    # --- Tayyor mavzular kutubxonasi ---
+    @app.get(PREFIX + "/kutubxona")
+    def kutubxona_royxat(authorization: str | None = Header(None)):
+        D.actor(authorization)
+        return Response(json.dumps({"toplamlar": [kutubxona.mavzular(t["kod"]) for t in kutubxona.toplamlar()]}, ensure_ascii=False),
+                        media_type="application/json", headers=NO_STORE)
+
+    @app.get(PREFIX + "/kutubxona/{toplam}/{kod}")
+    def kutubxona_miya(toplam: str, kod: str, authorization: str | None = Header(None)):
+        D.actor(authorization)
+        m = kutubxona.miya(toplam, kod)
+        if not m:
+            fail("Mavzu topilmadi", 404)
+        return Response(json.dumps(m, ensure_ascii=False), media_type="application/json", headers=NO_STORE)
+
+    @app.get(PREFIX + "/kutubxona/{toplam}/{kod}/{tur}")
+    def kutubxona_hujjat(toplam: str, kod: str, tur: str, authorization: str | None = Header(None)):
+        uid = D.actor(authorization)
+        if tur not in ("oqituvchi", "topshiriq", "reja", "javoblar"):
+            fail("Topilmadi", 404)
+        if tur == "javoblar" and not D.admin(uid):
+            fail("Javoblar faqat administrator uchun", 403)
+        h = kutubxona.hujjat(toplam, kod, tur)
+        if not h:
+            fail("Hujjat topilmadi", 404)
+        nom, data, mime = h
+        return Response(data, media_type=mime, headers={**NO_STORE, "Content-Disposition": f'attachment; filename="{nom}"'})
 
     return D

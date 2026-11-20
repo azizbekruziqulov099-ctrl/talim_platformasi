@@ -1,0 +1,235 @@
+{
+  "mavzu_id": "BMKN1305-3-A15",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "51 va 33"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "42"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "360000"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "200"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "6"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "63"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": [
+      "80",
+      "16"
+    ],
+    "2": [
+      "40",
+      "300000 so‘m"
+    ],
+    "3": "8 quyon,12 tovuq; 8+12=20,4·8+2·12=56.",
+    "4": "83; teskarisi 38; 83+38=121,83−38=45. x+y=11, x−y=5 danx=8, y=3, yagona ruxsat etilgan raqamlar."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "A15 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 test 1 yig‘indi va farq",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "42 ",
+      "olingan": "42"
+    },
+    {
+      "tekshiruv": "A15 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "360000 ",
+      "olingan": "360000"
+    },
+    {
+      "tekshiruv": "A15 test 4 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "200 ",
+      "olingan": "200"
+    },
+    {
+      "tekshiruv": "A15 test 5 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "6 ",
+      "olingan": "6"
+    },
+    {
+      "tekshiruv": "A15 test 6 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "63 ",
+      "olingan": "63"
+    },
+    {
+      "tekshiruv": "A15 baravar modeli",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 bir xil foiz ayniyati",
+      "natija": "O‘tdi",
+      "kutilgan": "1-x**2",
+      "olingan": "(1+x)(1-x)"
+    },
+    {
+      "tekshiruv": "A15 hayvonlar yagona yechim",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 to‘rtta toq yig‘indi",
+      "natija": "O‘tdi",
+      "kutilgan": "2(a+b+c+d)+4",
+      "olingan": "(2a+1)+(2b+1)+(2c+1)+(2d+1)"
+    },
+    {
+      "tekshiruv": "A15 tanga holati 1",
+      "natija": "O‘tdi",
+      "kutilgan": "1",
+      "olingan": "{'topilgan': 1, 'birinchi_farq': -1, 'ikkinchi_farq': -1}"
+    },
+    {
+      "tekshiruv": "A15 tanga holati 2",
+      "natija": "O‘tdi",
+      "kutilgan": "2",
+      "olingan": "{'topilgan': 2, 'birinchi_farq': -1, 'ikkinchi_farq': 1}"
+    },
+    {
+      "tekshiruv": "A15 tanga holati 3",
+      "natija": "O‘tdi",
+      "kutilgan": "3",
+      "olingan": "{'topilgan': 3, 'birinchi_farq': -1, 'ikkinchi_farq': 0}"
+    },
+    {
+      "tekshiruv": "A15 tanga holati 4",
+      "natija": "O‘tdi",
+      "kutilgan": "4",
+      "olingan": "{'topilgan': 4, 'birinchi_farq': 1, 'ikkinchi_farq': -1}"
+    },
+    {
+      "tekshiruv": "A15 tanga holati 5",
+      "natija": "O‘tdi",
+      "kutilgan": "5",
+      "olingan": "{'topilgan': 5, 'birinchi_farq': 1, 'ikkinchi_farq': 1}"
+    },
+    {
+      "tekshiruv": "A15 tanga holati 6",
+      "natija": "O‘tdi",
+      "kutilgan": "6",
+      "olingan": "{'topilgan': 6, 'birinchi_farq': 1, 'ikkinchi_farq': 0}"
+    },
+    {
+      "tekshiruv": "A15 tanga holati 7",
+      "natija": "O‘tdi",
+      "kutilgan": "7",
+      "olingan": "{'topilgan': 7, 'birinchi_farq': 0, 'ikkinchi_farq': -1}"
+    },
+    {
+      "tekshiruv": "A15 tanga holati 8",
+      "natija": "O‘tdi",
+      "kutilgan": "8",
+      "olingan": "{'topilgan': 8, 'birinchi_farq': 0, 'ikkinchi_farq': 1}"
+    },
+    {
+      "tekshiruv": "A15 tanga holati 9",
+      "natija": "O‘tdi",
+      "kutilgan": "9",
+      "olingan": "{'topilgan': 9, 'birinchi_farq': 0, 'ikkinchi_farq': 0}"
+    },
+    {
+      "tekshiruv": "A15 raqamlar yechimi yagona",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 mantiqiy moslik yagona",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 mustaqil baravar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 mustaqil foiz",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 mustaqil hayvonlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 mustaqil raqamlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A15 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

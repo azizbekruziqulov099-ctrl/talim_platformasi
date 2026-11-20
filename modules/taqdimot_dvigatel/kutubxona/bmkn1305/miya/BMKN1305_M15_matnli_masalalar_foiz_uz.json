@@ -1,0 +1,521 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 15,
+    "tur": "ma’ruza",
+    "mavzu": "Matnli masalalar, foizlar va mantiqiy yechimlar",
+    "qisqa": "Matnli masalalar",
+    "maqsad": "Talaba matndagi miqdorlar munosabatini modelga o‘tkazadi, arifmetik va algebraik usullarni solishtiradi; foiz masalalarida butunni to‘g‘ri tanlaydi; nostandart masalalarda yechim yoki imkonsizlikni asoslaydi.",
+    "tayanch": [
+      "Masala modeli",
+      "Yechish usullari",
+      "Foizning asosi",
+      "Ketma-ket o‘zgarishlar",
+      "Tartibli sinash va mantiq"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "p/100",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; M15, asl skanning 5-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Elementary Algebra 2e, 3.1",
+        "izoh": "https://openstax.org/books/elementary-algebra-2e/pages/3-1-use-a-problem-solving-strategy"
+      },
+      {
+        "nomi": "OpenStax Elementary Algebra 2e, 3.2",
+        "izoh": "https://openstax.org/books/elementary-algebra-2e/pages/3-2-solve-percent-applications"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Ulush, tenglama va birlik",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "20% oddiy kasrda qanday?",
+        "javob": "1/5."
+      },
+      {
+        "savol": "2x+8=50 bo‘lsa x nechaga teng?",
+        "javob": "21."
+      },
+      {
+        "savol": "Bir soat necha minut?",
+        "javob": "60."
+      },
+      {
+        "savol": "Butunning 1/4 qismi 10 bo‘lsa, butun qancha?",
+        "javob": "40."
+      },
+      {
+        "savol": "Toq va juft son yig‘indisi qanday?",
+        "javob": "Toq."
+      },
+      {
+        "savol": "Masala javobida birlik kerakmi?",
+        "javob": "Miqdor birlikli bo‘lsa, ha."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Kalit so‘z har doim amalni belgilaydimi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "“Ali Validan 8 ta ko‘p yig‘di” gapida Ali miqdori ma’lum bo‘lsa, Valinikini topish uchun qo‘shiladimi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "20% ortish va 20% kamayish har doim bir-birini yo‘qotadimi?"
+      }
+    ],
+    "goya": "Sonlardan oldin munosabat va qaysi miqdor noma’lumligini aniqlash kerak.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Matndan matematik modelga",
+      "izoh": "Berilgan, noma’lum va munosabat",
+      "belgi": "Matn → model",
+      "slaydlar": [
+        {
+          "sarlavha": "Matnli masalaning tuzilishi",
+          "izoh": "Matnli masala sonlar ro‘yxati emas: miqdorlar orasidagi munosabat va izlanayotgan savol bor. Faqat kalit so‘zga qarab amal tanlash xatoga olib keladi. Masalan, “ko‘p” so‘zi doim qo‘shish degani emas; qaysi miqdor noma’lumligiga qarang.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Qism",
+                "Yoziladigan narsa"
+              ],
+              "qatorlar": [
+                [
+                  "Berilgan",
+                  "Son, birlik va shart"
+                ],
+                [
+                  "Noma’lum",
+                  "Aynan nimani topish kerak"
+                ],
+                [
+                  "Munosabat",
+                  "Tenglik, farq, ulush yoki tezlik kabi bog‘lanish"
+                ],
+                [
+                  "Tekshiruv",
+                  "Natija matndagi barcha shartlarga mosmi?"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yechish jarayoni",
+          "izoh": "Avval vaziyatni o‘z so‘zingiz bilan qayta ifodalang. Keyin tasma, jadval, sxema yoki tenglama tanlang. Hisobdan keyin javobning birligi, mumkinligi va barcha shartlarni qanoatlantirishi tekshiriladi.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "Mazmunni tushunish → model tuzish → yechish → matnga qaytib tekshirish."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "To‘g‘ri hisob noto‘g‘ri modelni to‘g‘rilab qo‘ymaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yechish usullari",
+          "izoh": "Arifmetik usul miqdorlar munosabatini amallar zanjiri bilan ochadi. Algebraik usul noma’lum va tenglama kiritadi. Jadval yoki chizma murakkab bog‘lanishni ko‘rishga yordam beradi. Har biri yakuniy tekshiruvni talab qiladi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Usul",
+                "Qachon foydali"
+              ],
+              "qatorlar": [
+                [
+                  "Arifmetik",
+                  "Ulush, yig‘indi va farqdan ketma-ket topish"
+                ],
+                [
+                  "Algebraik",
+                  "Noma’lumlar o‘zaro bog‘langanida"
+                ],
+                [
+                  "Jadval yoki tasma",
+                  "Munosabatlarni ko‘rish va usullarni solishtirish"
+                ],
+                [
+                  "Tartibli sinash",
+                  "Variantlar cheklanganida, hammasi qamralishini asoslab"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Asosiy masala munosabatlari",
+      "izoh": "Turini ko‘r-ko‘rona yodlamaymiz",
+      "belgi": "x+(x+8)=50",
+      "slaydlar": [
+        {
+          "sarlavha": "Yig‘indi va farq",
+          "izoh": "Ikki miqdorning yig‘indisi va farqi ma’lum bo‘lsa, kichigiga farqni qo‘shish kattasini beradi. Tasmali model ham, tenglama ham bir xil munosabatni ifodalaydi. Tekshiruvda yig‘indi va farqning ikkalasi qayta olinadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki to‘plamdagi kitoblar",
+              "shart": "Ikki tokchada jami 50 kitob; birinchisida ikkinchisidan 8 ta ko‘p. Har birida nechta?",
+              "qadamlar": [
+                "Kichigini x desak, kattasi x+8.",
+                "x+(x+8)=50; 2x=42; x=21.",
+                "Kattasi 29; 21+29=50 va 29−21=8."
+              ],
+              "javob": "Birinchi tokchada 29, ikkinchisida 21 kitob."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qism va butun",
+          "izoh": "Qaysi miqdor butun deb olinganini belgilang. Butunning berilgan ulushi topilganida shu ulushga bo‘lib butun aniqlanadi. Qolgan qism alohida so‘ralsa, ayirish bilan topiladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "O‘qilgan sahifalar",
+              "shart": "Kitobning 2/5 qismi 60 bet. Kitob va o‘qilmagan qismi nechta bet?",
+              "qadamlar": [
+                "Butun x: (2/5)x=60.",
+                "x=60·5/2=150.",
+                "150−60=90."
+              ],
+              "javob": "150 bet; o‘qilmagan 90 bet."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Tezlik, vaqt va masofa",
+          "izoh": "Bir tekis harakat modelida s=vt. Tezlik va vaqt birliklari o‘zaro mos bo‘lishi kerak. Ushbu formula doimiy tezlik yoki shu oraliqdagi mos o‘rtacha tezlik bilan ishlatiladi; o‘zgaruvchan tezlikning istalgan qiymati qo‘yilmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Birliklarni moslash",
+              "shart": "Yo‘lovchi bir tekis 6 km/h tezlik bilan 40 min yurdi. Masofa qancha?",
+              "qadamlar": [
+                "40 min=2/3 h.",
+                "s=6·2/3=4 km.",
+                "40 ni soat deb olish mumkin emas."
+              ],
+              "javob": "4 km."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Foiz bilan hisoblash",
+      "izoh": "Har safar asosiy miqdorni belgilang",
+      "belgi": "p%=p/100",
+      "slaydlar": [
+        {
+          "sarlavha": "Miqdorning foizini topish",
+          "izoh": "p foiz butunning p/100 ulushidir. Foizning o‘zi berilganda, aynan qaysi miqdordan olinayotganini yozing. “15 foiz” bilan “15 ta” boshqa ifodalardir.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Foiz qismi",
+              "formula": "A=\\frac p{100}B",
+              "matn": "B — boshlang‘ich butun, A — uning p foizi."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "240 ning 15 foizi",
+              "shart": "Hisoblang.",
+              "qadamlar": [
+                "15%=15/100=0,15.",
+                "240·0,15=36.",
+                "36/240=0,15 bilan tekshiriladi."
+              ],
+              "javob": "36."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Foiziga ko‘ra butun va foiz nisbatini topish",
+          "izoh": "Qism A va foiz p ma’lum bo‘lsa, p≠0 shartida B=100A/p. Butun B≠0 bo‘lsa, qismning necha foizligi p=100A/B. Har bir vazifada noma’lum boshqa bo‘lgani uchun amal ham farq qiladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "25 foizi 45",
+              "shart": "Qaysi sonning 25 foizi 45?",
+              "qadamlar": [
+                "0,25B=45.",
+                "B=45/0,25=180.",
+                "180·0,25=45."
+              ],
+              "javob": "180."
+            },
+            {
+              "tur": "matn",
+              "matn": "30 ta buyum 120 taning 25 foizidir: 100·30/120=25."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ketma-ket foizlar",
+          "izoh": "Har bir yangi foiz o‘sha bosqichdagi miqdordan olinadi. Bir xil foizga ortish va kamayish boshlang‘ich qiymatni har doim qaytarmaydi. O‘zgarishlar ko‘paytuvchilar orqali yoziladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "20 foiz ortish, 20 foiz kamayish",
+              "shart": "100 birlik avval 20% oshdi, keyin yangi qiymat 20% kamaydi.",
+              "qadamlar": [
+                "100·1,20=120.",
+                "120·0,80=96.",
+                "Boshlang‘ichdan 4 birlik, ya’ni 4% kam."
+              ],
+              "javob": "96 birlik; sof kamayish 4%."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Nostandart va mantiqiy masalalar",
+      "izoh": "Tartibli tekshiruv va asoslash",
+      "belgi": "Model → dalil",
+      "slaydlar": [
+        {
+          "sarlavha": "Ortiqcha oyoqlar usuli",
+          "izoh": "Tovuq ikki, quyon to‘rt oyoqli deb olinadi. Barcha hayvonni avval ikki oyoqli deb tasavvur qilish farqni ochadi. Har bir quyon hisobga yana ikki oyoq qo‘shadi. Barcha sonlar butun va manfiy bo‘lmasligi kerak.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "10 bosh, 28 oyoq",
+              "shart": "Faqat tovuq va quyonlar bor. Har biridan nechta?",
+              "qadamlar": [
+                "Hammasi tovuq bo‘lsa, 10·2=20 oyoq.",
+                "Ortiqcha 8 oyoq; har quyon 2 tadan qo‘shadi: 8/2=4 quyon.",
+                "6 tovuq; 6+4=10 va 2·6+4·4=28."
+              ],
+              "javob": "4 quyon va 6 tovuq."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Juft-toqlik orqali imkonsizlik",
+          "izoh": "Ba’zan javobni izlashdan oldin yechim bo‘lishi mumkinmi, degan savol hal qilinadi. Toq son 2k+1 ko‘rinishida yoziladi. Uchta toq son yig‘indisi yana toq bo‘ladi; bu alohida sonlarni sinashdan kuchliroq asos.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Uchta toq son",
+              "shart": "Uchta toq butun sonning yig‘indisi 20 bo‘lishi mumkinmi?",
+              "qadamlar": [
+                "(2a+1)+(2b+1)+(2c+1)=2(a+b+c+1)+1.",
+                "Yig‘indi toq, 20 esa juft.",
+                "Shart bajarilmaydi."
+              ],
+              "javob": "Mumkin emas."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Noto‘g‘ri yorliqlardan xulosa chiqarish",
+          "izoh": "Uch qutida faqat olma, faqat nok va olma-nok aralashmasi bor. Ularning “olma”, “nok”, “aralash” yorliqlarining hammasi noto‘g‘ri. “Aralash” yozilgan qutidan olingan bitta meva olma bo‘lsa, qutining haqiqiy turini va qolganlarini mantiqan aniqlash mumkin.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Bitta kuzatuvdan keyin",
+              "shart": "“Aralash” yorliqli qutidan olma olindi; barcha yorliqlar xato.",
+              "qadamlar": [
+                "Bu quti aralash bo‘la olmaydi, ichidan olma chiqqani uchun faqat olma.",
+                "“Nok” yorliqli quti nok emas, faqat olma qutisi ham allaqachon topildi; demak u aralash.",
+                "Qolgan “olma” yorliqli quti faqat nok."
+              ],
+              "javob": "“Aralash” → olma; “nok” → aralash; “olma” → nok."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Faqat bitta yorliq xato deyilganida ayni xulosa majburiy bo‘lmaydi; “hammasi xato” sharti zarur."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "“Ko‘p” so‘zini ko‘rib doim qo‘shish.",
+      "sabab": "Noma’lumning roli aniqlanmagan.",
+      "togri": "Ikkala miqdor munosabati sxema yoki tenglama bilan yoziladi."
+    },
+    {
+      "xato": "Foiz asosini aytmaslik.",
+      "sabab": "Qaysi butundan olinishi yo‘q.",
+      "togri": "Bosh miqdorni har bosqichda belgilang."
+    },
+    {
+      "xato": "20% oshish va 20% kamayish nol o‘zgarish deyish.",
+      "sabab": "Ikkinchi foiz yangi qiymatdan olinishi unutilgan.",
+      "togri": "1,2·0,8=0,96."
+    },
+    {
+      "xato": "Tezlik km/h bo‘lganda vaqtni minutligicha qo‘yish.",
+      "sabab": "Birliklar mos emas.",
+      "togri": "Vaqtni soatga yoki tezlikni km/min ga o‘tkazing."
+    },
+    {
+      "xato": "Bir nechta sinovdan umumiy imkonsizlik chiqarish.",
+      "sabab": "Barcha holatlar qamralmagan.",
+      "togri": "To‘liq sanash yoki juft-toqlik kabi umumiy dalil ishlating."
+    },
+    {
+      "xato": "Hisobdan so‘ng shartga qaytmaslik.",
+      "sabab": "Model xatosi yashirin qoladi.",
+      "togri": "Yig‘indi, farq, bosh-oyoq va birliklar qayta tekshiriladi."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Bir masala, ikki model",
+    "bosqichlar": [
+      "Matnni o‘z so‘zi bilan qayta ifodalash",
+      "Tasma yoki jadvalni tenglama bilan solishtirish",
+      "Javobni matnga qaytarib, muqobil tekshiruv qilish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Yig‘indi va farq",
+        "matn": "Tokcha masalasini tasma va tenglama bilan yeching."
+      },
+      {
+        "sarlavha": "Foizning boshlang‘ich qiymati",
+        "matn": "Ketma-ket ikki o‘zgarishda asoslarni yonma-yon yozing."
+      },
+      {
+        "sarlavha": "Nostandart dalil",
+        "matn": "Sinash usuli qachon to‘liq, qachon yetarli emasligini ayting."
+      }
+    ],
+    "tavsiya": "Boshlang‘ich sinfda mos arifmetik modeldan boshlang. Bakalavrda algebraik va mantiqiy asosni shu model bilan bog‘lang; faqat tayyor amal andozalarini yodlatmang."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Masala yechimi to‘g‘ri modeldan boshlanadi.",
+      "Yechish usuli munosabat va noma’lumga mos tanlanadi.",
+      "Foizning butuni har bosqichda aniqlanadi.",
+      "Natija hisob bilan birga barcha shartlar orqali tekshiriladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "Ikki son yig‘indisi 50, kattasi kichigidan 8 ta ortiq. Sonlar qaysi?",
+      "variantlar": [
+        "29 va 21",
+        "30 va 20",
+        "28 va 22",
+        "42 va 8"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "240 ning 15 foizi nechaga teng?",
+      "variantlar": [
+        "24",
+        "15",
+        "36",
+        "255"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "Bir sonning 25 foizi 45. Son qaysi?",
+      "variantlar": [
+        "1125",
+        "180",
+        "20",
+        "11,25"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "100 qiymat avval 20% oshib, keyin yangi qiymat 20% kamaydi. Natija qaysi?",
+      "variantlar": [
+        "100",
+        "104",
+        "80",
+        "96"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "10 bosh va 28 oyoq: faqat tovuq va quyonlar. Quyonlar nechta?",
+      "variantlar": [
+        "6",
+        "4",
+        "8",
+        "2"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Uchta toq butun son yig‘indisi 20 bo‘la oladimi?",
+      "variantlar": [
+        "Yo‘q: yig‘indi toq bo‘ladi",
+        "Ha: har doim",
+        "Faqat musbat sonlarda",
+        "Faqat uchala son teng bo‘lsa"
+      ],
+      "javob": 0
+    }
+  ],
+  "nazorat": [
+    "Matnli masalaning asosiy qismlari nima?",
+    "Arifmetik va algebraik usulni bitta misolda solishtiring.",
+    "Foiz qismi, foiz nisbati va butunni topish formulalarini ajrating.",
+    "Nega ketma-ket foizlar oddiy qo‘shib-ayirib olinmaydi?",
+    "Tartibli sinashning to‘liqligi nimani anglatadi?",
+    "Mantiqiy masalada shartning har bir so‘zi nega muhim?"
+  ],
+  "mustaqil_ish": [
+    "360 ning 12,5 foizini toping; so‘ng 45 soni 360 ning necha foizi ekanini tekshiring.",
+    "20% chegirmadan keyin narx 240 000 so‘m bo‘ldi. Dastlabki narxni topib, teskari hisob bilan tekshiring.",
+    "Faqat tovuq va quyonlar: 15 bosh, 42 oyoq. Har biridan nechtaligini arifmetik va algebraik usulda yeching.",
+    "Uchta toq butun son yig‘indisi 100 bo‘lishi mumkinmi? Umumiy asos keltiring; alohida sonlarni sinash bilan cheklanmang."
+  ],
+  "keyingi": {
+    "mavzu": "Amaliy mashg‘ulotlarda mustahkamlash",
+    "izoh": "Fan dasturidagi amaliy mavzular bo‘yicha mustaqil yechim va metodik tahlilga o‘tiladi."
+  },
+  "rasmlar": []
+}

@@ -1,0 +1,90 @@
+{
+  "mavzu_id": "BMKN1305-3-MT2",
+  "hujjat_turi": "Mustaqil ta’lim topshiriq paketi",
+  "soat": 10,
+  "manba": "SamDPI BMKN 1305,2-kurs kunduzgi,2026–2027, asl dastur 6-beti",
+  "holat": "Topshiriq va tekshiruv paketi tayyor; talabaning ishi bajarildi degani emas",
+  "bosqichlar": [
+    {
+      "raqam": 1,
+      "soat": 2,
+      "ish": "O‘nli algoritmlar va manbalarni o‘rganish"
+    },
+    {
+      "raqam": 2,
+      "soat": 2,
+      "ish": "Amallarni ikki usulda bajarish"
+    },
+    {
+      "raqam": 3,
+      "soat": 2,
+      "ish": "Yaxlitlash, xato va oraliq masalalarini yechish"
+    },
+    {
+      "raqam": 4,
+      "soat": 2,
+      "ish": "Xato tahlilli ish varag‘i va metodik parcha tayyorlash"
+    },
+    {
+      "raqam": 5,
+      "soat": 1,
+      "ish": "Teskari amal va chegaralar bilan tekshirish"
+    },
+    {
+      "raqam": 6,
+      "soat": 1,
+      "ish": "Natijani himoya qilish va tuzatish qaydi"
+    }
+  ],
+  "topshiriladigan_natijalar": [
+    {
+      "id": "D1",
+      "talab": "Algoritm sabablari va manbalar ko‘rsatilgan qisqa konspekt"
+    },
+    {
+      "id": "D2",
+      "talab": "Kamida 6 misol va teskari tekshiruv"
+    },
+    {
+      "id": "D3",
+      "talab": "Yaxlitlash hamda xato/oraliq hisoblari jadvali"
+    },
+    {
+      "id": "D4",
+      "talab": "Xato tahlilli metodik kartochka va refleksiya"
+    }
+  ],
+  "baholash": {
+    "tur": "Tavsiyaviy ichki mezon; muassasaning rasmiy baholash nizomi o‘rniga olinmaydi",
+    "maksimal_ball": 20,
+    "mezonlar": [
+      {
+        "nom": "Algoritm asosi",
+        "maksimal_ball": 5,
+        "talab": "Razryad va teng masshtab izohlangan."
+      },
+      {
+        "nom": "Aniq hisob",
+        "maksimal_ball": 5,
+        "talab": "Amallar va teskari tekshiruvlar mos."
+      },
+      {
+        "nom": "Xato tushunchasi",
+        "maksimal_ball": 5,
+        "talab": "Ta’rif, maxraj, qoida va chegaralar saqlangan."
+      },
+      {
+        "nom": "Metodik izoh",
+        "maksimal_ball": 5,
+        "talab": "Xato sababi va tuzatish savoli aniq."
+      }
+    ],
+    "ball_tavsifi": {
+      "0": "Dalil yo‘q yoki vazifa bajarilmagan",
+      "1–2": "Qisman, asosiy xato yoki yetishmaydigan dalil bor",
+      "3–4": "Asosan to‘g‘ri, tekshiruv yoki izohda ayrim kamchiliklar",
+      "5": "Talab to‘liq, asosli va tekshirilgan"
+    }
+  },
+  "foydalanish": "Talabaga topshiriq va reja beriladi. Javoblar fayli o‘qituvchining tekshiruvi uchun alohida saqlanadi."
+}

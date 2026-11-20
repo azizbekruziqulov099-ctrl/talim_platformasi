@@ -1,0 +1,203 @@
+{
+  "mavzu_id": "BMKN1305-3-A9",
+  "test": [
+    {
+      "raqam": 1,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "Yo‘q; u kuzatuv yoki o‘lchov bo‘ladi"
+    },
+    {
+      "raqam": 2,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "6,8 sm"
+    },
+    {
+      "raqam": 3,
+      "javob_indeksi": 0,
+      "javob_harfi": "A",
+      "javob_matni": "15 sm"
+    },
+    {
+      "raqam": 4,
+      "javob_indeksi": 3,
+      "javob_harfi": "D",
+      "javob_matni": "r>4"
+    },
+    {
+      "raqam": 5,
+      "javob_indeksi": 1,
+      "javob_harfi": "B",
+      "javob_matni": "AD⊥BC"
+    },
+    {
+      "raqam": 6,
+      "javob_indeksi": 2,
+      "javob_harfi": "C",
+      "javob_matni": "2,3,5"
+    }
+  ],
+  "mustaqil_ish_javoblari": {
+    "1": "7,7 sm.",
+    "2": {
+      "gipotenuza": "17 sm",
+      "yuz": "60 sm²",
+      "perimetr": "40 sm"
+    },
+    "3": "TTT: ABD≅ACD, D dagi qo‘shni burchaklar 90°. h²=13²−5²=144, h=12 sm; S=10·12/2=60 sm².",
+    "4": "AB=10 olinadi; A markazdan 6, B markazdan 8 radiusli aylanalar kesishuvlari C, C′; tutashtiriladi. 6+8>10 va boshqa tengsizliklar bajariladi. Masalan A=(0,0), B=(10,0), C=(18/5,24/5); C′ pastki aks. Ikkalasi TTT bo‘yicha teng."
+  },
+  "hisob_tekshiruvlari": [
+    {
+      "tekshiruv": "A09 tuzilmasi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 bo‘lim/slayd me’yorlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 izoh va elementlar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 6 test va indekslar",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 test 1 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "Yo‘q; u kuzatuv yoki o‘lchov bo‘ladi",
+      "olingan": "Yo‘q; u kuzatuv yoki o‘lchov bo‘ladi"
+    },
+    {
+      "tekshiruv": "A09 test 2 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "6.8 sm",
+      "olingan": "6,8 sm"
+    },
+    {
+      "tekshiruv": "A09 test 3 hisob",
+      "natija": "O‘tdi",
+      "kutilgan": "15 sm",
+      "olingan": "15 sm"
+    },
+    {
+      "tekshiruv": "A09 test 4 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "r>4",
+      "olingan": "r>4"
+    },
+    {
+      "tekshiruv": "A09 test 5 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "AD⊥BC",
+      "olingan": "AD⊥BC"
+    },
+    {
+      "tekshiruv": "A09 test 6 mazmun",
+      "natija": "O‘tdi",
+      "kutilgan": "2,3,5",
+      "olingan": "2,3,5"
+    },
+    {
+      "tekshiruv": "A09 test 6 yagona yaroqsiz uchlik",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 asosiy to‘g‘ri uchburchak",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 teskari to‘rtburchak",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 teng perimetrli qarshi misol",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 ikki yoy kesishuvlari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 o‘rta perpendikulyar koordinatalari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 radius chegaralari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 bissektrisa teng uchburchaklari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 bissektrisa ikkala burchagi",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 uch tomonli yasash koordinatalari",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 mustaqil o‘lchov",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 mustaqil to‘g‘ri uchburchak",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 mustaqil teng yonli",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 mustaqil yasash",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    },
+    {
+      "tekshiruv": "A09 javob fayli to‘liq mos",
+      "natija": "O‘tdi",
+      "kutilgan": "",
+      "olingan": ""
+    }
+  ]
+}

@@ -1,0 +1,505 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 13,
+    "tur": "ma’ruza",
+    "mavzu": "Aylanish jismlari: silindr, konus va shar",
+    "qisqa": "Aylanish jismlari",
+    "maqsad": "Talaba silindr, konus, sfera va sharni ajratadi; radius, balandlik va yasovchiga mos formulalarni tanlab, sirt va hajm masalalarini yechadi.",
+    "tayanch": [
+      "Aylanish o‘qi",
+      "Silindr",
+      "To‘g‘ri doiraviy konus",
+      "Sfera va shar",
+      "Yon sirt, to‘la sirt va hajm"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "πr²h",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; M13, asl skanning 5-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Contemporary Mathematics, 10.7",
+        "izoh": "https://openstax.org/books/contemporary-mathematics/pages/10-7-volume-and-surface-area"
+      },
+      {
+        "nomi": "OpenStax Prealgebra 2e, 9.6",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/9-6-solve-geometry-applications-volume-and-surface-area"
+      },
+      {
+        "nomi": "Math Open Reference: Cone surface area",
+        "izoh": "https://www.mathopenref.com/conearea.html"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "Ko‘pyoqlar va doira",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Doira yuzi qanday?",
+        "javob": "πr²."
+      },
+      {
+        "savol": "Aylana uzunligi qanday?",
+        "javob": "2πr."
+      },
+      {
+        "savol": "Prizma hajmi qanday?",
+        "javob": "Bh."
+      },
+      {
+        "savol": "Yuz bilan hajm birliklari qanday farqlanadi?",
+        "javob": "Kvadrat va kub birliklar."
+      },
+      {
+        "savol": "3²+4² nechaga teng?",
+        "javob": "25."
+      },
+      {
+        "savol": "Radius va diametr orasidagi bog‘lanish nima?",
+        "javob": "d=2r."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Bir jism, turli sirtlar",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "Qopqoqsiz silindr idish bilan ikkala tomoni yopiq silindrning qoplanadigan sirti tengmi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Konus yasovchisi balandligiga teng bo‘ladimi?"
+      }
+    ],
+    "goya": "Jism turi, qaysi sirtlar kiritilishi va har bir uzunlikning vazifasi aniqlanadi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Aylanish jismini tasavvur qilish",
+      "izoh": "O‘q, kesim va o‘lchamlar",
+      "belgi": "r, h, ℓ",
+      "slaydlar": [
+        {
+          "sarlavha": "Tekis figuradan fazoviy jismga",
+          "izoh": "Bu darsda to‘g‘ri doiraviy silindr va konus hamda shar qaraladi. Tekis soha o‘z tekisligidagi berilgan o‘q atrofida aylantirilganda fazoviy soha hosil bo‘ladi. Faqat chegara chizig‘ini aylantirish bilan butun sohani aylantirish bir xil tavsif emas.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Aylantiriladigan soha",
+                "Aylanish o‘qi",
+                "Hosil bo‘ladigan jism"
+              ],
+              "qatorlar": [
+                [
+                  "To‘g‘ri to‘rtburchak",
+                  "Bir tomoni yotgan chiziq",
+                  "To‘g‘ri doiraviy silindr"
+                ],
+                [
+                  "To‘g‘ri burchakli uchburchak",
+                  "Bir kateti yotgan chiziq",
+                  "To‘g‘ri doiraviy konus"
+                ],
+                [
+                  "Yarim doira",
+                  "Diametri yotgan chiziq",
+                  "Shar"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Radius, balandlik va yasovchi",
+          "izoh": "Silindrda r asos radiusi, h asoslar orasidagi perpendikulyar masofa. To‘g‘ri konusda h uchdan asos markaziga, ℓ esa uchdan aylana nuqtasiga boradi. Shar uchun radius markazdan sirtgacha masofadir.",
+          "elementlar": [
+            {
+              "tur": "qoida",
+              "matn": "To‘g‘ri doiraviy konusda ℓ²=r²+h². r,h>0; demak ℓ>r."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Qiya yasovchini h o‘rniga qo‘yish hajmni noto‘g‘ri hisoblashga olib keladi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Sirt va hajmning o‘lchami",
+          "izoh": "Sirtni qoplash kvadrat birliklarni, jism ichini to‘ldirish kub birliklarni talab qiladi. Bir xil sonli javoblar ham turli birlikdagi miqdorlar bo‘lishi mumkin. Barcha uzunliklar hisobdan oldin bir birlikka keltiriladi.",
+          "elementlar": [
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Miqdor",
+                "Birlik",
+                "Masshtab k>0 bo‘lsa"
+              ],
+              "qatorlar": [
+                [
+                  "Uzunlik",
+                  "sm",
+                  "k marta"
+                ],
+                [
+                  "Sirt yuzi",
+                  "sm²",
+                  "k² marta"
+                ],
+                [
+                  "Hajm",
+                  "sm³",
+                  "k³ marta"
+                ]
+              ]
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "π li aniq javob shart talab qilmaguncha o‘nli songa almashtirilmaydi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Silindr",
+      "izoh": "Yon sirt yoyilmasidan hajmgacha",
+      "belgi": "V=πr²h",
+      "slaydlar": [
+        {
+          "sarlavha": "Silindrning sirt yoyilmasi",
+          "izoh": "Yon sirt asos aylanasining bir yasovchisi bo‘ylab ochilsa, tomonlari 2πr va h bo‘lgan to‘g‘ri to‘rtburchak olinadi. Unga ikkita doiraviy asos qo‘shilsa, yopiq silindrning to‘la sirti hosil bo‘ladi.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "Bu formulalarda ikkala asosi ham yopiq bo‘lgan to‘g‘ri doiraviy silindr qaraladi."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Qopqoqsiz idishda qoplanadigan sirt shartiga qarab bitta asos olinishi mumkin."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Silindr formulalari",
+          "izoh": "Yon sirtga asoslar kirmaydi. Hajm esa asos doirasi yuzining balandlikka ko‘paytmasidir. Formulalarning har birida r radius ekanligini tekshiring.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "To‘g‘ri doiraviy silindr",
+              "formula": "S_{yon}=2\\pi rh,\\qquad S_{tola}=2\\pi rh+2\\pi r^2,\\qquad V=\\pi r^2h",
+              "matn": "r,h > 0. To‘la sirt ikkita asosni o‘z ichiga oladi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Silindrni hisoblash",
+          "izoh": "Bir masalada uch xil o‘lchov so‘ralganda har birini alohida yozing. 2πrh yon sirt, πr²h hajm. Sirtga h ni yana ko‘paytirish hajm formulasi bo‘lib qolmaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "r=3 sm, h=5 sm",
+              "shart": "Yon sirt, to‘la sirt va hajmni toping.",
+              "qadamlar": [
+                "Syon=2π·3·5=30π sm².",
+                "Sto‘la=30π+2π·9=48π sm².",
+                "V=π·9·5=45π sm³."
+              ],
+              "javob": "30π sm²; 48π sm²; 45π sm³."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Konus",
+      "izoh": "Yasovchi yon sirtga, balandlik hajmga",
+      "belgi": "ℓ²=r²+h²",
+      "slaydlar": [
+        {
+          "sarlavha": "Konus va uning yon sirt yoyilmasi",
+          "izoh": "To‘g‘ri konusning yon sirti radiusi ℓ bo‘lgan doira sektoriga yoyiladi. Sektor yoyining uzunligi konus asosi aylanasining 2πr uzunligiga teng. Shu sababli sektor butun doira deb olinmaydi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Sektor burchagi",
+              "formula": "\\theta=360^\\circ\\frac r\\ell",
+              "matn": "r<ℓ; burchak darajalarda. Asos radiusi sektor radiusi emas."
+            },
+            {
+              "tur": "matn",
+              "matn": "r=3, ℓ=5 bo‘lsa, sektor burchagi 216°."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Konus formulalarini sharti bilan yozamiz",
+          "izoh": "Konus hajmi shu radius va balandlikdagi silindr hajmining uchdan biridir. Yon sirt πrℓ bilan topiladi; unga faqat bitta asos doirasi qo‘shiladi. Bular to‘g‘ri doiraviy konus formulalari.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Sirt va hajm",
+              "formula": "S_{yon}=\\pi r\\ell,\\quad S_{tola}=\\pi r\\ell+\\pi r^2,\\quad V=\\frac13\\pi r^2h",
+              "matn": "ℓ=√(r²+h²); h asosga perpendikulyar."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Konusni hisoblash",
+          "izoh": "Asos radiusi va balandlikdan avval yasovchi topiladi. Musbat uzunlik tanlanadi. So‘ng hajmda h, yon sirt hisobida ℓ ishlatiladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "r=3 sm, h=4 sm",
+              "shart": "Yasovchi, yon sirt, to‘la sirt va hajmni toping.",
+              "qadamlar": [
+                "ℓ=√(3²+4²)=5 sm.",
+                "Syon=π·3·5=15π sm²; Sto‘la=15π+9π=24π sm².",
+                "V=π·9·4/3=12π sm³."
+              ],
+              "javob": "ℓ=5 sm; Syon=15π sm²; Sto‘la=24π sm²; V=12π sm³."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Sfera, shar va yarim shar",
+      "izoh": "Sirt bilan fazoviy sohani ajratamiz",
+      "belgi": "S=4πR²",
+      "slaydlar": [
+        {
+          "sarlavha": "Sfera va shar",
+          "izoh": "Sfera markazdan R masofadagi fazo nuqtalari to‘plami. Ushbu darsda shar shu sfera va uning ichki sohasi bilan birga olinadi. Sirt yuzini sfera uchun, hajmni shar uchun hisoblaymiz.",
+          "elementlar": [
+            {
+              "tur": "tarif",
+              "matn": "R>0; sfera: OP=R, shar: OP≤R."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Sharning silindrdagidek ajratilgan asoslari yo‘q; uning “yon sirti” alohida asoslar ayirilgan sirt sifatida kiritilmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Sfera sirti va shar hajmi",
+          "izoh": "Sfera sirti markaziy doira yuzidan to‘rt marta katta. Shar hajmi kub o‘lchamga ega. Bu formulalar ushbu mashg‘ulotda tayyor teorema sifatida qo‘llanadi; tekis yoyilma bilan isbotlandi deb ko‘rsatilmaydi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Radius R orqali",
+              "formula": "S=4\\pi R^2,\\qquad V=\\frac43\\pi R^3",
+              "matn": "S — sfera sirti yuzi; V — shar hajmi."
+            },
+            {
+              "tur": "misol",
+              "sarlavha": "R=3 sm",
+              "shart": "Sirt va hajmni toping.",
+              "qadamlar": [
+                "S=4π·9=36π sm².",
+                "V=4π·27/3=36π sm³.",
+                "Sonli koeffitsiyentlar bir xil, birliklar esa boshqa."
+              ],
+              "javob": "S=36π sm²; V=36π sm³."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Yarim sharda kesim doirasini unutmang",
+          "izoh": "Markazdan tekis kesilganda shar ikki teng yarim sharga bo‘linadi. Egri sirt sferaning yarmi, yopiq yarim sharning to‘la sirti esa unga kesim doirasi yuzi qo‘shilganidir. Hajm shar hajmining yarmi bo‘ladi.",
+          "elementlar": [
+            {
+              "tur": "formula",
+              "sarlavha": "Yarim shar",
+              "formula": "S_{egri}=2\\pi R^2,\\quad S_{tola}=3\\pi R^2,\\quad V=\\frac23\\pi R^3",
+              "matn": "To‘la sirt kesimdagi bitta doirani ham o‘z ichiga oladi."
+            },
+            {
+              "tur": "matn",
+              "matn": "R=2 sm bo‘lsa, Segri=8π sm²; Sto‘la=12π sm²; V=16π/3 sm³."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Diametrni radius deb olish.",
+      "sabab": "Berilgan belgi tekshirilmagan.",
+      "togri": "Avval r=d/2 deb yozing."
+    },
+    {
+      "xato": "Konus hajmiga ℓ ni qo‘yish.",
+      "sabab": "Yasovchi bilan balandlik aralashgan.",
+      "togri": "Hajmda h, yon sirt uchun ℓ."
+    },
+    {
+      "xato": "Konus to‘la sirtiga ikkita asos qo‘shish.",
+      "sabab": "Silindr tuzilishi ko‘chirilgan.",
+      "togri": "Konusda bitta asos doirasi bor."
+    },
+    {
+      "xato": "Sfera va sharni bir ma’noda ishlatish.",
+      "sabab": "Sirt va ichki soha ajratilmagan.",
+      "togri": "OP=R — sfera; OP≤R — shar."
+    },
+    {
+      "xato": "Yarim shar to‘la sirtini 2πR² deyish.",
+      "sabab": "Kesimdagi doira tushib qolgan.",
+      "togri": "Egri sirt 2πR², yopiq yarim shar to‘la sirti 3πR²."
+    },
+    {
+      "xato": "π li aniq javobni keraksiz yaxlitlash.",
+      "sabab": "Aniq va taqribiy natija aralashgan.",
+      "togri": "Shartga qarab aniq π li yoki belgilangan aniqlikdagi qiymat bering."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Kesim va yoyilma bilan tushuntirish",
+    "bosqichlar": [
+      "Aylantirilayotgan soha va o‘qni belgilash",
+      "Kesimda r,h,ℓ kesmalarini ajratish",
+      "Sirtlarni sanab, hajmni alohida hisoblash"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Silindr yoyilmasi",
+        "matn": "To‘g‘ri to‘rtburchakning eni 2πr, bo‘yi h ekanligini bog‘lang."
+      },
+      {
+        "sarlavha": "Konus sektori",
+        "matn": "Sektor radiusi ℓ, yoy uzunligi 2πr bo‘lishini saqlang."
+      },
+      {
+        "sarlavha": "Kesilgan shar",
+        "matn": "Egri sirt va kesim doirasini ikki rangda ko‘rsating."
+      }
+    ],
+    "tavsiya": "Fazoviy model shaklni tasavvur qilishga yordam beradi. O‘lchov yoki yoyilma kuzatuvi barcha formulalarning umumiy isboti deb atalmasin."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Aylanish jismi bilan uning sirti farqlanadi.",
+      "Silindr va konus formulalarining to‘g‘ri doiraviylik sharti saqlanadi.",
+      "Konusda yasovchi va perpendikulyar balandlik boshqa.",
+      "Yarim shar sirtida kesim doirasi shartga qarab qo‘shiladi."
+    ]
+  },
+  "test": [
+    {
+      "savol": "r=3 sm, h=5 sm silindr hajmi qaysi?",
+      "variantlar": [
+        "30π sm³",
+        "45π sm³",
+        "48π sm³",
+        "15π sm³"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "r=3 sm, h=5 sm yopiq silindr to‘la sirti qaysi?",
+      "variantlar": [
+        "30π sm²",
+        "39π sm²",
+        "48π sm²",
+        "45π sm²"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "To‘g‘ri konus r=3 sm, h=4 sm. Yasovchi qaysi?",
+      "variantlar": [
+        "5 sm",
+        "7 sm",
+        "1 sm",
+        "√7 sm"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "To‘g‘ri konus r=3 sm, h=4 sm. Hajm qaysi?",
+      "variantlar": [
+        "36π sm³",
+        "15π sm³",
+        "24π sm³",
+        "12π sm³"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "Radiusi 3 sm sfera sirti qaysi?",
+      "variantlar": [
+        "9π sm²",
+        "36π sm²",
+        "27π sm²",
+        "12π sm²"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "Radiusi 3 sm shar hajmi qaysi?",
+      "variantlar": [
+        "12π sm³",
+        "27π sm³",
+        "36π sm³",
+        "108π sm³"
+      ],
+      "javob": 2
+    }
+  ],
+  "nazorat": [
+    "Qaysi sohani qaysi o‘q atrofida aylantirsak silindr, konus va shar hosil bo‘ladi?",
+    "Silindr yon sirt yoyilmasi qanday?",
+    "Konusdagi h va ℓ ni farqlang.",
+    "Konus yon sirt sektori burchagi qanday topiladi?",
+    "Sfera va sharni ta’rif orqali ajrating.",
+    "Yarim shar to‘la sirti egri sirtidan nima bilan farq qiladi?"
+  ],
+  "mustaqil_ish": [
+    "Silindr r=2 sm, h=7 sm. Yon sirt, to‘la sirt va hajmni toping.",
+    "To‘g‘ri konus r=5 sm, h=12 sm. Yasovchi, yon sirt, to‘la sirt va hajmni toping.",
+    "Radiusi 6 sm sharning hajmi va sfera sirti yuzini toping.",
+    "Radiusi 4 sm yarim sharning egri sirti, kesim doirasi bilan to‘la sirti va hajmini toping."
+  ],
+  "keyingi": {
+    "mavzu": "Miqdorlar va ularni o‘lchash",
+    "izoh": "Uzunlik, yuz va hajm birliklarini almashtirishni takrorlang."
+  },
+  "rasmlar": []
+}

@@ -1,0 +1,502 @@
+{
+  "sxema": "taqdimot-miya/1",
+  "meta": {
+    "fan": "Boshlang‘ich matematika kursi nazariyasi",
+    "daraja": "bakalavr",
+    "sinf": "2-kurs",
+    "raqam": 2,
+    "tur": "amaliy",
+    "mavzu": "Ulush va ratsional sonlar ustida amallar: amaliy mashg‘ulot",
+    "qisqa": "Ratsional sonlar amaliyoti",
+    "maqsad": "Talaba kasr modelida butun va tenglikni saqlaydi; qism-butun hamda ketma-ket ulush masalalarini yechadi; ratsional amallar, qonunlar va xatolarni asosli tekshiradi.",
+    "tayanch": [
+      "Butun va ulush",
+      "Teng kasrlar",
+      "Qismiga ko‘ra butun",
+      "Ratsional amallar",
+      "Qisqartirish sharti"
+    ],
+    "muassasa": "Samarqand davlat pedagogika instituti",
+    "kafedra": "Boshlang‘ich va maktabgacha ta’lim metodikasi",
+    "muallif": "",
+    "davr": "3-semestr, 2026–2027 o‘quv yili",
+    "til": "uz",
+    "belgi": "a/b",
+    "rasm": ""
+  },
+  "adabiyotlar": {
+    "asosiy": [
+      {
+        "muallif": "Samarqand davlat pedagogika instituti",
+        "nomi": "Boshlang‘ich matematika kursi nazariyasi fanining o‘quv dasturi, BMKN 1305",
+        "nashr": "2-kurs kunduzgi, 2026–2027; A2, asl skanning 5-beti. Mavzu qamrovi uchun."
+      }
+    ],
+    "elektron": [
+      {
+        "nomi": "OpenStax Prealgebra 2e, 4.1",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/4-1-visualize-fractions"
+      },
+      {
+        "nomi": "OpenStax Prealgebra 2e, 4.2",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/4-2-multiply-and-divide-fractions"
+      },
+      {
+        "nomi": "OpenStax Prealgebra 2e, 4.5",
+        "izoh": "https://openstax.org/books/prealgebra-2e/pages/4-5-add-and-subtract-fractions-with-different-denominators"
+      }
+    ],
+    "mustaqil": "O‘zbekcha mazmun va misollar ushbu paket uchun yangidan tayyorlangan. Tarixiy bo‘lim bo‘lsa, uning manbalari alohida berilgan. Sayt ko‘rinishi va tarjimalar alohida tekshiriladi."
+  },
+  "takrorlash": {
+    "mavzu": "M1 va A1",
+    "oyin": "blits",
+    "savollar": [
+      {
+        "savol": "Kasrda maxraj 0 bo‘ladimi?",
+        "javob": "Yo‘q."
+      },
+      {
+        "savol": "1/2 bilan 2/4 tengmi?",
+        "javob": "Ha."
+      },
+      {
+        "savol": "−2/3 ning teskarisi nima?",
+        "javob": "−3/2."
+      },
+      {
+        "savol": "Kasr qo‘shishda maxrajlar ham qo‘shiladimi?",
+        "javob": "Yo‘q, umumiy maxraj olinadi."
+      },
+      {
+        "savol": "Qolganining yarmi dastlabki butunning yarmimi?",
+        "javob": "Umumiy holda yo‘q."
+      },
+      {
+        "savol": "0 ning ko‘paytirishga nisbatan teskarisi bormi?",
+        "javob": "Yo‘q."
+      }
+    ]
+  },
+  "muammo": {
+    "sarlavha": "Bir xil kasr, bir xil miqdormi?",
+    "masalalar": [
+      {
+        "sarlavha": "1-vaziyat",
+        "matn": "12 cm va 20 cm tasmalarning yarmi teng uzunlikmi?"
+      },
+      {
+        "sarlavha": "2-vaziyat",
+        "matn": "Qolganining 1/3 qismi qaysi butundan olinadi?"
+      }
+    ],
+    "goya": "Kasr va fizik miqdor, dastlabki butun va qolgan qism farqlanadi.",
+    "zanjir": [
+      "Tushunchani aniqlash",
+      "Shart va cheklovlarni belgilash",
+      "Hisoblash yoki asoslash",
+      "Natijani mustaqil tekshirish"
+    ]
+  },
+  "tarix": {
+    "sarlavha": "",
+    "voqealar": [],
+    "xulosa": ""
+  },
+  "bolimlar": [
+    {
+      "nom": "Kasr modelini tekshirish",
+      "izoh": "Butun va teng ulushlar",
+      "belgi": "Bir xil butun",
+      "slaydlar": [
+        {
+          "sarlavha": "Bitta butun nimani bildiradi?",
+          "izoh": "Bir xil kasr turli kattalikdagi butunlarda turli fizik miqdor beradi. Modelning birinchi sharti butunni belgilash, ikkinchisi esa tanlangan miqdor bo‘yicha teng qismlarga ajratishdir. Bir xil ko‘rinishning o‘zi teng yuz yoki uzunlikni kafolatlamaydi.",
+          "elementlar": [
+            {
+              "tur": "matn",
+              "matn": "Vazifa: uzunligi 12 cm va 20 cm ikki tasmaning yarmiga teng qismlarni toping: 6 cm va 10 cm. Ikkala kasr 1/2, ammo fizik uzunliklar boshqa."
+            },
+            {
+              "tur": "eslatma",
+              "sarlavha": "Diqqat",
+              "matn": "Kasr sonining tengligi butunlari turli bo‘lsa, fizik qismlar tengligini bildirmaydi."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Kasrni qisqartirish va ishorani tartiblash",
+          "izoh": "Surat va maxraj bir xil umumiy butun bo‘luvchiga bo‘linadi. Maxrajni musbat qilish ratsional sonlarni solishtirishni qulaylashtiradi. Bir tomonni o‘zgartirish kasrning qiymatini saqlamaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki qisqartirish",
+              "shart": "84/126 va (−18)/(−24) ni qisqartiring.",
+              "qadamlar": [
+                "EKUB(84,126)=42; 84/126=2/3.",
+                "Ikkala ishora manfiy: (−18)/(−24)=18/24.",
+                "EKUB(18,24)=6; natija 3/4."
+              ],
+              "javob": "2/3 va 3/4."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Noto‘g‘ri kasr va aralash son",
+          "izoh": "Birlikdan katta kasr ham ratsional sonni ifodalaydi. Bo‘lishdagi butun qism va qoldiq aralash yozuvni beradi. So‘ng suratni qayta hosil qilib tekshiring.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "13/5 yozuvi",
+              "shart": "13/5 ni aralash songa keltiring.",
+              "qadamlar": [
+                "13=2·5+3.",
+                "13/5=2+3/5=2 3/5.",
+                "2·5+3=13 bilan tekshiramiz."
+              ],
+              "javob": "2 3/5."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Qism, butun va ketma-ket ulush",
+      "izoh": "Har safar asosni aniqlaymiz",
+      "belgi": "Qaysi butunning ulushi?",
+      "slaydlar": [
+        {
+          "sarlavha": "Butunning berilgan qismini topish",
+          "izoh": "Ulushning maxraji butun nechta teng ulushga bo‘linishini, surati ulardan nechtasi olinayotganini bildiradi. Natija butundan kichik chiqishi ulush 0 bilan 1 orasida bo‘lganida kutiladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "72 ning 5/8 qismi",
+              "shart": "Hisoblang va teskari tekshiring.",
+              "qadamlar": [
+                "72:8=9.",
+                "9·5=45.",
+                "45:72=5/8."
+              ],
+              "javob": "45."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qismiga ko‘ra butun",
+          "izoh": "Berilgan qism a/b bo‘lsa, butun qism miqdorini a/b ga bo‘lish orqali topiladi; a nol bo‘lmasin. Tasmada a ta ulushdan bittasiga, so‘ng b ta ulushga o‘tish shu amalni ochadi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "3/7 qismi 54",
+              "shart": "Butun va qolgan qismni toping.",
+              "qadamlar": [
+                "1/7 qism 54:3=18.",
+                "Butun 18·7=126.",
+                "Qolgan 126−54=72."
+              ],
+              "javob": "Butun 126; qolgan 72."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qolgan qismning ulushi",
+          "izoh": "Keyingi ulush dastlabki butundanmi yoki qolgan qismdanmi, albatta yoziladi. «Qolganining 1/3 qismi» dastlabki butunning 1/3 qismi degani emas. Teskari tekshiruvda o‘qilgan va qolgan qismlar yig‘indisi butunni beradi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "180 betli kitob",
+              "shart": "Avval 2/5 qismi, so‘ng qolganining 1/3 qismi o‘qildi. Jami o‘qilgan va qolgan betlar?",
+              "qadamlar": [
+                "Birinchi 72 bet; qolgan 108 bet.",
+                "Ikkinchi 108:3=36 bet.",
+                "O‘qilgan 72+36=108 bet; qolgan 72 bet."
+              ],
+              "javob": "O‘qilgan 108 bet, qolgan 72 bet; jami o‘qilgan 3/5."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Ratsional sonlar ustida amallar",
+      "izoh": "Yechimni boshqa usulda tekshiramiz",
+      "belgi": "+ − × ÷",
+      "slaydlar": [
+        {
+          "sarlavha": "Umumiy maxraj bilan qo‘shish va ayirish",
+          "izoh": "Umumiy maxraj kichik tanlansa, hisob va qisqartirish osonlashadi. Har bir surat qancha marta ortgan bo‘lsa, maxraj ham shuncha marta ortganini yozing. Javobning kattaligini oldindan taxmin qiling.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ikki ifoda",
+              "shart": "7/12+5/18 va 5/6−7/9 ni hisoblang.",
+              "qadamlar": [
+                "Birinchida umumiy maxraj 36:21/36+10/36=31/36.",
+                "Ikkinchida maxraj 18:15/18−14/18=1/18.",
+                "Ikkala natija ham musbat va 1 dan kichik."
+              ],
+              "javob": "31/36 va 1/18."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Ko‘paytirish va bo‘lish",
+          "izoh": "Ko‘paytirishdan oldin surat va maxrajdagi umumiy ko‘paytuvchilarni qisqartirish mumkin. Bo‘lishda ikkinchi kasr noldan farqli bo‘lishi shart; u teskarisiga almashtirilib ko‘paytiriladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ishora va qisqartirish",
+              "shart": "(−14/15)·(25/21) va (−7/12):(14/9) ni toping.",
+              "qadamlar": [
+                "Birinchi ifoda −350/315=−10/9.",
+                "Ikkinchi −7/12·9/14=−63/168=−3/8.",
+                "Tekshiruv:(−3/8)·14/9=−7/12."
+              ],
+              "javob": "−10/9 va −3/8."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qavsli ifoda",
+          "izoh": "Avval qavs ichidagi kasrlar umumiy maxrajga keltiriladi. So‘ng ko‘paytirish bajariladi. Oxirgi ishora ikkita manfiy ko‘paytuvchi sababli musbat bo‘ladi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Ketma-ket hisob",
+              "shart": "(3/4−5/6)·(−12/5) ni hisoblang.",
+              "qadamlar": [
+                "3/4−5/6=9/12−10/12=−1/12.",
+                "(−1/12)·(−12/5)=1/5.",
+                "0,2 natija ham ayni ratsional sonni bildiradi."
+              ],
+              "javob": "1/5."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Qonunlar va xato tahlili",
+      "izoh": "Amal shartini yo‘qotmaymiz",
+      "belgi": "Qonun va cheklov",
+      "slaydlar": [
+        {
+          "sarlavha": "Taqsimot qonuni hisobni qisqartiradi",
+          "izoh": "Umumiy ko‘paytuvchini qavsdan tashqariga chiqarish taqsimot qonunining teskari qo‘llanishidir. Qonun qaysi butun yoki ratsional sonlar qo‘yilganidan qat’i nazar, ruxsat etilgan amallarda ishlaydi.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Qulay usul",
+              "shart": "3/5·7/8+3/5·1/8 ni toping.",
+              "qadamlar": [
+                "3/5 ni umumiy ko‘paytuvchi sifatida ajrating.",
+                "(3/5)(7/8+1/8)=(3/5)·1.",
+                "Natija 3/5."
+              ],
+              "javob": "3/5."
+            },
+            {
+              "tur": "jadval",
+              "ustunlar": [
+                "Qonun",
+                "Qayta tartiblash va guruhlash",
+                "Natija"
+              ],
+              "qatorlar": [
+                [
+                  "Qo‘shishda o‘rin almashtirish va guruhlash",
+                  "(7/12+5/8)+5/12=(7/12+5/12)+5/8",
+                  "13/8"
+                ],
+                [
+                  "Ko‘paytirishda o‘rin almashtirish va guruhlash",
+                  "(4/9·7/5)·9/4=(4/9·9/4)·7/5",
+                  "7/5"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sarlavha": "Oraliq ratsional va nolga cheklov",
+          "izoh": "Ratsional a<b orasida ularning o‘rtachasi yana ratsional yotadi. Yopiqlikni aytganda bo‘lishdagi noldan farqli bo‘luvchi sharti saqlanadi. Nol qo‘shishning neytral elementi, lekin uning ko‘paytirishga nisbatan teskarisi yo‘q.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Oraliq son",
+              "shart": "−1/2 bilan 1/3 orasidagi ratsional sonni toping.",
+              "qadamlar": [
+                "Yig‘indi −1/6.",
+                "O‘rtachasi −1/12.",
+                "−6/12<−1/12<4/12."
+              ],
+              "javob": "−1/12."
+            }
+          ]
+        },
+        {
+          "sarlavha": "Qisqartirishda ko‘paytuvchi kerak",
+          "izoh": "Qisqartirish bir xil noldan farqli ko‘paytuvchini surat va maxrajdan ajratishga tayanadi. Yig‘indida bir xil ko‘ringan hadni o‘chirib tashlash umumiy qoida emas.",
+          "elementlar": [
+            {
+              "tur": "misol",
+              "sarlavha": "Soxta qisqartirish",
+              "shart": "(2+3)/(2+6) dan 2 larni o‘chirib 3/6 olish mumkinmi?",
+              "qadamlar": [
+                "Asl qiymat 5/8.",
+                "Taklif qilingan qiymat 3/6=1/2.",
+                "5/8≠1/2; surat va maxrajda umumiy ko‘paytuvchi ajratilmagan."
+              ],
+              "javob": "Mumkin emas; to‘g‘ri qiymat 5/8."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xatolar": [
+    {
+      "xato": "Turli butunlarning 1/2 qismini teng uzunlik olish.",
+      "sabab": "Butunning o‘lchami tashlab ketilgan.",
+      "togri": "Butunlar bir xil yoki ularning o‘lchami hisobga olinadi."
+    },
+    {
+      "xato": "Umumiy maxrajga keltirganda faqat maxrajni o‘zgartirish.",
+      "sabab": "Teng kasr xossasi buzilgan.",
+      "togri": "Surat ham bir xil ko‘paytuvchiga ko‘paytiriladi."
+    },
+    {
+      "xato": "Qolganining ulushini dastlabki butundan olish.",
+      "sabab": "Ulushning asosi almashgani unutilgan.",
+      "togri": "Har bosqichdagi butun belgilanadi."
+    },
+    {
+      "xato": "Bo‘lishda birinchi kasrni teskari qilish.",
+      "sabab": "Algoritm noto‘g‘ri qo‘llangan.",
+      "togri": "Ikkinchi noldan farqli kasr teskarilanadi."
+    },
+    {
+      "xato": "Yig‘indidagi hadlarni qisqartirish.",
+      "sabab": "Ko‘paytuvchi bilan had aralashgan.",
+      "togri": "Faqat umumiy ko‘paytuvchilar ajratiladi."
+    },
+    {
+      "xato": "ℚ da nolga bo‘lish ham yopiq deyish.",
+      "sabab": "Amalning ruxsat etilgan sohasi yo‘q.",
+      "togri": "Bo‘luvchi≠0 sharti zarur."
+    }
+  ],
+  "metodika": {
+    "sarlavha": "Bir masalani ikki tekshiruvda yechish",
+    "bosqichlar": [
+      "Butun va ulushni tasma bilan ko‘rsatish",
+      "Kasr hisobini aniq bajarish",
+      "Teskari amal, o‘nli yozuv yoki kattalik taxmini bilan tekshirish"
+    ],
+    "kartalar": [
+      {
+        "sarlavha": "Qisqartirish",
+        "matn": "Qisqarayotgan ko‘paytuvchini alohida yozing."
+      },
+      {
+        "sarlavha": "Ketma-ket ulush",
+        "matn": "Har bosqichning butunini yangi qatorda belgilang."
+      },
+      {
+        "sarlavha": "Metodik izoh",
+        "matn": "O‘quvchi xatosini umumiy ulush va teng model orqali tushuntiring."
+      }
+    ],
+    "tavsiya": "Javob bilan birga kamida bitta mustaqil tekshiruv talab qilinadi. Ochiq metodik topshiriqlarda modelning teng ulushlari va butun mosligi mezon bo‘ladi."
+  },
+  "xulosa": {
+    "fikrlar": [
+      "Kasr modeli butun va teng ulushdan boshlanadi.",
+      "Qismga ko‘ra butun teskari amal bilan topiladi.",
+      "Amal qonunlari shartlari bilan ishlatiladi.",
+      "Qisqartirish hadlarga emas, ko‘paytuvchilarga tegishli."
+    ]
+  },
+  "test": [
+    {
+      "savol": "84/126 ning qisqarmas ko‘rinishi qaysi?",
+      "variantlar": [
+        "4/6",
+        "3/2",
+        "2/3",
+        "7/9"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "72 ning 5/8 qismi qaysi?",
+      "variantlar": [
+        "45",
+        "9",
+        "40",
+        "115,2"
+      ],
+      "javob": 0
+    },
+    {
+      "savol": "Butunning 3/7 qismi 54. Butun qaysi?",
+      "variantlar": [
+        "18",
+        "72",
+        "162",
+        "126"
+      ],
+      "javob": 3
+    },
+    {
+      "savol": "7/12+5/18 nechaga teng?",
+      "variantlar": [
+        "12/30",
+        "31/36",
+        "1/36",
+        "35/216"
+      ],
+      "javob": 1
+    },
+    {
+      "savol": "(−7/12):(14/9) nechaga teng?",
+      "variantlar": [
+        "−7/8",
+        "3/8",
+        "−3/8",
+        "−49/54"
+      ],
+      "javob": 2
+    },
+    {
+      "savol": "(3/4−5/6)·(−12/5) nechaga teng?",
+      "variantlar": [
+        "−1/5",
+        "1/12",
+        "−12/5",
+        "1/5"
+      ],
+      "javob": 3
+    }
+  ],
+  "nazorat": [
+    "Kasr tengligi fizik qismlar tengligini qachon bildiradi?",
+    "Qisqartirishni teng kasr xossasi orqali asoslang.",
+    "Ketma-ket ulushlarda butunni qanday aniqlaysiz?",
+    "Bo‘lishda qaysi kasr teskarilanadi?",
+    "Ratsional sonlar orasiga yana ratsional son qo‘ying.",
+    "Hadlarni soxta qisqartirishga qarshi misol keltiring."
+  ],
+  "mustaqil_ish": [
+    "11/15−7/10+1/6 ni hisoblang.",
+    "(−9/14)·7/15 va (−5/8):(25/12) ni hisoblab, ikkinchisini teskari ko‘paytirish bilan tekshiring.",
+    "Yo‘lning 5/12 qismi 35 km. Butun va qolgan yo‘lni toping.",
+    "O‘quvchi 1/2+1/3=2/5 deb yozdi. To‘g‘ri qiymat, teng ulush modeli va xato sababi bilan metodik javob yozing."
+  ],
+  "keyingi": {
+    "mavzu": "O‘nli kasrlar amaliyoti",
+    "izoh": "A3 tayyor mazmunidagi xona qiymati va teskari tekshiruv bilan bog‘lang."
+  },
+  "rasmlar": []
+}

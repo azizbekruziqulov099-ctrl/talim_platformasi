@@ -24,13 +24,15 @@ SYM = {
     "land": "∧", "wedge": "∧", "lor": "∨", "vee": "∨", "setminus": "∖", "angle": "∠", "triangle": "△",
     "perp": "⊥", "parallel": "∥", "circ": "∘", "degree": "°", "ldots": "…", "dots": "…", "cdots": "⋯",
     "prime": "′", "partial": "∂", "nabla": "∇", "sum": "∑", "prod": "∏", "int": "∫", "cong": "≅", "propto": "∝",
+    "ell": "ℓ", "Longrightarrow": "⇒", "Longleftrightarrow": "⇔", "longrightarrow": "→", "longleftrightarrow": "↔",
+    "Leftrightarrows": "⇄", "hbar": "ħ", "deg": "°", "lnot": "¬", "nexists": "∄", "subsetneq": "⊊", "nsubseteq": "⊈",
     "lt": "<", "gt": ">", "mid": "|", "vert": "|", "langle": "⟨", "rangle": "⟩", "lfloor": "⌊", "rfloor": "⌋",
     "%": "%", "{": "{", "}": "}", "#": "#", "&": "&", "_": "_",
 }
 BB = {"N": "ℕ", "Z": "ℤ", "Q": "ℚ", "R": "ℝ", "C": "ℂ", "P": "ℙ"}
 FUNCS = {"sin", "cos", "tan", "tg", "ctg", "cot", "log", "ln", "lg", "exp", "max", "min", "lim", "EKUB", "EKUK", "arcsin",
          "arccos", "arctg", "sign", "mod", "gcd", "lcm", "det"}
-REL = set("=<>≤≥≠≈≡∈∉⊂⊆⊃⊇→←⇒⇐⇔∼≅∝∋⊥∥:")
+REL = set("=<>≤≥≠≈≡∈∉⊂⊆⊃⊇→←⇒⇐⇔∼≅∝∋⊥∥:⟹⟺⟶⟷⊊⊈")
 BIN = set("+−·×÷±∓∪∩∧∨∖∘")
 SPACES = {",": 0.17, ":": 0.22, ";": 0.28, " ": 0.25, "quad": 1.0, "qquad": 2.0, "!": -0.1}
 
@@ -57,8 +59,8 @@ class _P:
         self.i = j
         return name
 
-    def group(self):
-        """{...} yoki bitta atom."""
+    def group(self, bir=False):
+        """{...} yoki bitta atom. bir=True: TeX'dagidek bitta belgi (\\frac13 → 1/3)."""
         while self.peek() == " ":
             self.i += 1
         if self.peek() == "{":
@@ -67,6 +69,10 @@ class _P:
             if self.peek() == "}":
                 self.i += 1
             return node
+        if bir and self.peek() and (self.peek().isdigit() or self.peek().isalpha()):
+            c = self.peek()
+            self.i += 1
+            return ("ch", c, c.isalpha() and c.isascii())
         return self.atom()
 
     def seq(self, end=""):
@@ -102,7 +108,24 @@ class _P:
         if c == "\\":
             name = self.cmd()
             if name in ("frac", "dfrac", "tfrac"):
-                return ("frac", self.group(), self.group())
+                return ("frac", self.group(True), self.group(True))
+            if name == "begin":
+                env = _flat(self.group(), raw=True).strip()
+                end = "\\end{" + env + "}"
+                j = self.s.find(end, self.i)
+                body = self.s[self.i:j if j >= 0 else len(self.s)]
+                self.i = (j + len(end)) if j >= 0 else len(self.s)
+                rows = [r for r in re.split(r"\\\\", body) if r.strip()]
+                parsed = []
+                for r in rows:
+                    cols = [c for c in r.split("&")]
+                    items = []
+                    for ci, c in enumerate(cols):
+                        if ci:
+                            items.append(("sp", 1.0))
+                        items.append(_P(c).seq())
+                    parsed.append(("seq", items))
+                return ("rows", env, parsed)
             if name == "sqrt":
                 idx = None
                 if self.peek() == "[":
@@ -342,6 +365,30 @@ def _lay(node, S, depth=0, bold=False):
         y = -body.asc - S * 0.06
         lw = max(1.0, S * 0.05)
         return Box(body.w, body.asc + S * 0.1, body.desc, body.items + [("l", 0, y, body.w, y, lw)])
+    if k == "rows":
+        env, rows = node[1], node[2]
+        boxes = [_lay(r, S, depth, bold) for r in rows]
+        if not boxes:
+            return Box()
+        gap = S * 0.22
+        total = sum(b.asc + b.desc for b in boxes) + gap * (len(boxes) - 1)
+        axis = S * 0.27
+        top = -axis - total / 2
+        items = []
+        bx = 0.0
+        if env == "cases":
+            ps = max(S, total * 0.92)
+            brace = _txt_box("{", ps)
+            items += _shift(brace.items, 0, top + total / 2 + ps * 0.36 - ps * 0.12)
+            bx = brace.w + S * 0.1
+        y = top
+        w = 0.0
+        for b in boxes:
+            y += b.asc
+            items += _shift(b.items, bx, y)
+            y += b.desc + gap
+            w = max(w, b.w)
+        return Box(bx + w, -top, total / 2 - axis, items)
     if k == "paren":
         body = _lay(node[2], S, depth, bold)
         h = body.asc + body.desc
