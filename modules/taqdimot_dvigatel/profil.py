@@ -49,7 +49,9 @@ def yosh_bandi(sinf: str, daraja: str = "") -> str:
     s = (sinf or "").lower()
     if "bog" in d or "bog" in s or "yosh" in s:
         return "bogcha"
-    if any(x in d for x in ("bakalavr", "magistr", "oliy")) or "kurs" in s:
+    if "magistr" in d or "magistr" in s:
+        return "magistr"
+    if any(x in d for x in ("bakalavr", "oliy")) or "kurs" in s:
         return "oliy"
     m = re.search(r"\d+", s)
     if m:
@@ -63,7 +65,15 @@ YOSH = {
     "1-4": "1–4-SINF: har slaydda rasm yoki chizma; matn ko‘pi bilan 12 so‘z; har bo‘limda bitta o‘yin (moslash, bosh_joy, rasmda_nima, togri_notogri); test 5–6 ta, qisqa variantlar.",
     "5-9": "5–9-SINF: qoida + misol; 2–3 o‘yin slaydi; jadval va taqqoslash; test 6 ta.",
     "10-11": "10–11-SINF: tahlil, sabab-natija, taqqoslash; manbalar; test 6 ta.",
-    "oliy": "OLIY TA’LIM: ta’rif, nazariya, metodika (boshlang‘ich sinfda qo‘llash), manbalar va mustaqil ish.",
+    "oliy": ("OLIY TA’LIM (bakalavr): har bo‘limda ilmiy ta’rif (muallif va yili bilan, masalan: «L.S. Vygotskiy (1934) bo‘yicha…»), "
+             "nazariya yoki yondashuvlarni taqqoslash (taqqoslash/jadval), iqtibos (parcha + muallif), amaliyotda qo‘llash "
+             "(boshlang‘ich sinf yoki ish joyida misol), munozara savoli. Oxirida: 6–8 nazorat savoli, 3–4 mustaqil ish, "
+             "seminar savollari (\"metodika\" ichida). ADABIYOTLAR: faqat haqiqatda mavjud kitob va maqolalar — muallif, nomi, yili, "
+             "nashriyot; aniq bilmasang yozma (to‘qima manba qat’iyan taqiqlanadi). Ilmiy atama birinchi marta qalin."),
+    "magistr": ("MAGISTRATURA: bakalavrdagidek ilmiy chuqurlik, qo‘shimcha: zamonaviy tadqiqotlar va yo‘nalishlar, ilmiy muammo va "
+                "gipoteza, tadqiqot metodlari (kuzatish, eksperiment, so‘rovnoma, statistik tahlil), xalqaro tajriba (PISA, PIRLS, TIMSS "
+                "kabi — mavzuga aloqador bo‘lsa), munozarali masalalar. Adabiyotlar: haqiqiy monografiya va maqolalar, aniq "
+                "bilmasang yozma."),
 }
 
 

@@ -188,10 +188,18 @@ class Dvigatel:
         sorov["mavzu"] = mavzu
         sorov["qoshimcha"] = sxema.t(body.get("qoshimcha"), 1500)
         sorov["manba"] = sxema.t(body.get("manba"), 12000)
+        sorov["sozlama"] = ai.sozlama_toza(body.get("sozlama"))
+        sorov["faqat_reja"] = bool(body.get("faqat_reja"))
+        if isinstance(body.get("reja"), dict):
+            try:
+                sorov["reja"] = ai.reja_toza(body["reja"], mavzu)
+            except RuntimeError as exc:
+                fail(str(exc))
         admin = self.admin(uid)
         with self.ps.db() as cur:
-            if not admin:
-                cur.execute("SELECT count(*) AS n FROM taqdimot_dvigatel_ishlar WHERE owner_id=%s AND yaratildi > now() - interval '1 day'", (uid,))
+            if not admin and not sorov["faqat_reja"]:  # reja tuzish limitga kirmaydi
+                cur.execute("SELECT count(*) AS n FROM taqdimot_dvigatel_ishlar WHERE owner_id=%s AND yaratildi > now() - interval '1 day' "
+                            "AND COALESCE(sorov->>'faqat_reja', 'false') <> 'true'", (uid,))
                 if cur.fetchone()["n"] >= AI_KUNLIK:
                     fail(f"Bugungi AI limiti tugadi ({AI_KUNLIK} ta). Ertaga yoki Excel shablon orqali davom eting.", 429)
             ish = uuid.uuid4().hex
@@ -203,8 +211,14 @@ class Dvigatel:
         try:
             with self.ps.db() as cur:
                 cur.execute("UPDATE taqdimot_dvigatel_ishlar SET holat='yozilmoqda' WHERE id=%s", (ish,))
-            m = ai.miya_yoz(sorov["mavzu"], sorov.get("fan", ""), sorov.get("daraja") or "maktab", sorov.get("sinf", ""), sorov.get("tur") or "dars",
-                            sorov.get("qoshimcha", ""), sorov.get("manba", ""))
+            args = (sorov["mavzu"], sorov.get("fan", ""), sorov.get("daraja") or "maktab", sorov.get("sinf", ""), sorov.get("tur") or "dars",
+                    sorov.get("qoshimcha", ""), sorov.get("manba", ""))
+            if sorov.get("faqat_reja"):
+                r = ai.reja_yoz(*args, sozlama=sorov.get("sozlama"))
+                with self.ps.db() as cur:
+                    cur.execute("UPDATE taqdimot_dvigatel_ishlar SET holat='tayyor', natija=%s, tugadi=now() WHERE id=%s", (json.dumps(r, ensure_ascii=False), ish))
+                return
+            m = ai.miya_yoz(*args, sozlama=sorov.get("sozlama"), reja=sorov.get("reja"))
             # AI rasm (yoqilgan bo'lsa): yo'q kalitlar uchun 4 tagacha
             for r in (m.get("rasmlar") or [])[:4]:
                 k = rasmlar.kalit_toza(r["kalit"])

@@ -202,3 +202,25 @@ def test_barcha_fan_turlari():
                 if el["k"] == "text":
                     assert el["sc"] >= 0.45, (kod, sl["blok"])
         assert yasash.pptx(s)[:2] == b"PK"
+
+
+def test_ai_reja_va_bolimma_bolim(monkeypatch):
+    import json as _j
+    from modules.taqdimot_dvigatel import ai
+    monkeypatch.setattr(ai, "provayderlar", lambda: [("gemini", "k", "m")])
+
+    def fake(nom, kalit, model, system, user, timeout=0):
+        if "REJASINI" in system:
+            return _j.dumps({"meta": {"mavzu": "T"}, "bolimlar": [{"nom": f"B{i}", "slaydlar": [{"sarlavha": f"S{i}{j}"} for j in range(4)]} for i in range(5)]})
+        if "FAQAT 3-BO" in user:
+            raise TimeoutError()
+        if "FAQAT" in user:
+            n = int(user.split("FAQAT ")[1].split("-")[0])
+            return _j.dumps({"bolim": {"nom": f"B{n - 1}", "slaydlar": [{"sarlavha": f"S{j}", "elementlar": [{"tur": "matn", "matn": "x"}]} for j in range(4)]}})
+        return _j.dumps({"meta": {"mavzu": "T"}, "test": [{"savol": "?", "variantlar": ["a", "b"], "javob": 1}]})
+    monkeypatch.setattr(ai, "_chaqir", fake)
+    m = ai.miya_yoz("T", "Pedagogika", "magistr", sozlama={"slayd_soni": 20, "til": "ru"})
+    assert len(m["bolimlar"]) == 5 and sum(len(b["slaydlar"]) for b in m["bolimlar"]) == 20
+    assert m["meta"]["til"] == "ru" and m["test"]
+    r = ai.reja_toza({"bolimlar": [{"nom": "A", "slaydlar": ["x", {"sarlavha": "y"}]}] * 9})
+    assert len(r["bolimlar"]) == 6
