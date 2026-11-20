@@ -1,0 +1,357 @@
+### U12 | Ko'pyoqlar: prizma, parallelepiped va piramida
+@kirish
+| [s]~1850 m.a.[/s] — Moskva papirusi: kesik piramida hajmi to'g'ri hisoblangan
+| [s]Platon[/s]: 5 ta muntazam ko'pyoq; [s]Evklid, XIII kitob[/s]: boshqasi yo'qligi isboti
+| [k]1750–1752[/k] — Eyler: $U - Q + Y = 2$
+To'rt ming yil oldin misrlik kotib kesik piramida hajmini mutlaqo to'g'ri hisoblagan — bu Moskva papirusida saqlangan. [1] Yunonlar esa beshta muntazam ko'pyoqni bilishgan: tetraedr, kub, oktaedr, dodekaedr va ikosaedr. Evklid «Negizlar»ning so'nggi kitobida aynan beshta bo'lishi, oltinchisi yo'qligini isbotladi. [2] O'n sakkizinchi asrda Eyler ajoyib qonuniyat topdi: har qanday qavariq ko'pyoqda uchlar sonidan qirralar sonini ayirib, yoqlar sonini qo'shsangiz, doim ikki chiqadi. Bugun qutini qoplash bilan uni to'ldirish — sirt bilan hajm — farqini o'rganamiz.
+
+@qadam Ko'pyoq va uning elementlari
+| CHIZ: kvadrat A(0;0) B(4;0) C(4;4) D(0;4); kvadrat E(2;2) F(6;2) G(6;6) H(2;6); kesma AE; kesma BF; kesma CG; kesma DH
+| JADVAL: Ko'pyoq | Uchlar $U$ | Qirralar $Q$ | Yoqlar $Y$ ;; kub | 8 | 12 | 6 ;; uchburchakli piramida | 4 | 6 | 4 ;; uchburchakli prizma | 6 | 9 | 5
+| QOIDA: Eyler: $U - Q + Y = 2$
+Ko'pyoq — sirti ko'pburchaklardan iborat jism. [1] Chizmada kub: yoqlari — kvadratlar, qirralari — kesmalar, uchlari — nuqtalar. [2] Jadvalga qarang. Kubda sakkiz uch, o'n ikki qirra, olti yoq: sakkiz minus o'n ikki qo'shuv olti — ikki. Piramidada to'rt minus olti qo'shuv to'rt — yana ikki. Prizmada olti minus to'qqiz qo'shuv besh — yana ikki! [3] Bu Eyler formulasi. Talabalar bilan qog'oz modellar yasab, uchlar, qirralar va yoqlarni sanash — boshlang'ich sinfda ham juda yaxshi mashg'ulot.
+@tekshiruv Kubning nechta qirrasi bor? => 12 | 8 | 6 | 24
+
+@qadam Prizma va parallelepiped
+| CHIZ: to'g'ri to'rtburchak A(0;0) B(5;0) C(5;3) D(0;3); to'g'ri to'rtburchak E(2;2) F(7;2) G(7;5) H(2;5); kesma AE; kesma BF; kesma CG; kesma DH
+| QOIDA: $S_{yon} = P_{asos}\cdot h$; $\;S_{to'la} = S_{yon} + 2S_{asos}$
+| QOIDA: $V = S_{asos}\cdot h$; parallelepiped: $V = abc$
+Prizmaning ikki asosi — teng ko'pburchaklar, yon yoqlari — parallelogrammlar; to'g'ri prizmada — to'g'ri to'rtburchaklar. [1] Yon sirtni yoyib qo'ysak, bitta uzun to'g'ri to'rtburchak chiqadi: bo'yi — asos perimetri, eni — balandlik. Shuning uchun yon sirt perimetr ko'paytirilgan balandlik. To'la sirtga ikki asos qo'shiladi. [2] Hajm esa boshqa savol: qutiga nechta birlik kubcha sig'adi? Asosga a ko'paytirilgan b ta kubcha yotadi, c qavat — jami a b c. [3] Sirt — qoplash uchun qog'oz, hajm — to'ldirish uchun kubchalar.
+@tekshiruv O'lchamlari 2, 3, 4 bo'lgan parallelepiped hajmi? => 24 | 9 | 52 | 26
+
+@qadam Kub
+| QOIDA: $S_{to'la} = 6a^2$, $\;V = a^3$
+| JADVAL: $a$ | $S = 6a^2$ | $V = a^3$ ;; 1 | 6 | 1 ;; 2 | 24 | 8 ;; 3 | 54 | 27
+| Qirra 2 marta oshsa: sirt 4 marta, hajm 8 marta oshadi
+Kubning oltita teng kvadrat yog'i bor: to'la sirt olti a kvadrat, hajm a kub. [1] Jadvalga qarang: qirra ikki barobar oshsa, sirt to'rt barobar, hajm esa sakkiz barobar oshadi. [2] Bu tabiatda muhim qonun: katta hayvon o'z hajmiga nisbatan kichik sirtga ega, shuning uchun issiqlikni kamroq yo'qotadi. Fil quloqlari katta bo'lishi bejiz emas — sirtni oshirib, salqinlaydi.
+@tekshiruv Qirrasi 3 bo'lgan kub hajmi? => 27 | 9 | 54 | 18
+
+@qadam Piramida: hajmning uchdan biri
+| CHIZ: parallelogramm A(0;0) B(6;0) C(8;2) D(2;2); nuqta S(4;6); kesma SA; kesma SB; kesma SC; kesma SD
+| QOIDA: $V = \frac{1}{3}S_{asos}\cdot h$
+| Bir asosli, bir balandlikdagi piramida suv bilan 3 marta to'lsa — prizma to'ladi
+| QOIDA: $S_{yon}$ — yon uchburchaklar yuzlari yig'indisi
+Piramida — asosi ko'pburchak, yon yoqlari umumiy uchga ega uchburchaklar. [1] Piramida hajmi asosi va balandligi bir xil bo'lgan prizma hajmining roppa-rosa uchdan biri. [2] Buni tajribada ko'rsatish mumkin: plastik piramida bilan suv tashib, prizmani to'ldiring — aynan uch marta kerak bo'ladi. Kubni markazidan uchlariga tutashtirsak, oltita bir xil piramida chiqadi — bu ham uchdan bir koeffitsiyentni tushuntiradi. [3] Yon sirt esa barcha yon uchburchaklar yuzlarining yig'indisi.
+@tekshiruv Asos yuzi 12, balandligi 5 bo'lgan piramida hajmi? => 20 | 60 | 30 | 17
+
+@misol Akvarium
+Akvarium o'lchamlari 50 cm, 30 cm, 40 cm. Unga necha litr suv sig'adi?
+@yechim
+$V = 50 \cdot 30 \cdot 40 = 60\,000$ cm³ || Hajm — uch o'lcham ko'paytmasi: oltmish ming kub santimetr.
+$1$ l $= 1000$ cm³ || Bir litr — ming kub santimetr.
+$60\,000 : 1000 = 60$ l || Oltmish litr.
+
+@misol Qutini qoplash
+Qopqoqli quti o'lchamlari 10, 6, 4 dm. Uni qoplash uchun qancha qog'oz kerak?
+@yechim
+$2(10\cdot 6 + 10\cdot 4 + 6\cdot 4)$ || Uch juft teng yoq bor: ikki ko'paytirilgan uch yuzlar yig'indisi.
+$2(60 + 40 + 24) = 248$ dm² || Ikki yuz qirq sakkiz kvadrat detsimetr.
+
+@masala Hajm
+Qirrasi 5 cm bo'lgan kub hajmi:
+A) $125$ cm³
+B) $150$ cm³
+C) $25$ cm³
+D) $75$ cm³
+= A
+@yechim
+$V = 5^3 = 125$ || Besh kub — bir yuz yigirma besh.
+
+@masala Eyler formulasi
+Ko'pyoqda 6 ta uch va 12 ta qirra bor. Yoqlari nechta?
+A) $8$
+B) $6$
+C) $4$
+D) $18$
+= A
+@yechim
+$Y = 2 - U + Q = 2 - 6 + 12 = 8$ || Eyler formulasidan: sakkiz yoq. Bu oktaedr.
+
+@masala Piramida
+Asosi kvadrat (tomoni 6), balandligi 10 bo'lgan piramida hajmi:
+A) $120$
+B) $360$
+C) $60$
+D) $180$
+= A
+@yechim
+$S_{asos} = 36$ || Asos yuzi o'ttiz olti.
+$V = \frac{1}{3}\cdot 36 \cdot 10 = 120$ || Uchdan biri: bir yuz yigirma.
+
+@esda
+| QOIDA: $U - Q + Y = 2$
+| QOIDA: prizma: $S_{yon} = P\,h$, $V = S_{asos}h$; kub: $S = 6a^2$, $V = a^3$
+| QOIDA: piramida: $V = \frac{1}{3}S_{asos}h$
+Sirt — qoplash, hajm — to'ldirish. Prizma hajmi asos yuzi ko'paytirilgan balandlik, piramida esa uning uchdan biri.
+
+@test oson
+O'lchamlari 3, 4, 5 bo'lgan parallelepiped hajmi:
+A) $60$
+B) $12$
+C) $94$
+D) $47$
+= A
+? V = abc.
+
+@test oson
+Kubning yoqlari soni:
+A) $6$
+B) $8$
+C) $12$
+D) $4$
+= A
+? Olti kvadrat yoq.
+
+@test oson
+Qirrasi 2 bo'lgan kubning to'la sirti:
+A) $24$
+B) $8$
+C) $12$
+D) $16$
+= A
+B: Bu hajm.
+? 6 · 2² = 24.
+
+@test oson
+Piramida hajmi bir asosli, bir balandlikdagi prizma hajmining:
+A) uchdan biri
+B) yarmi
+C) teng
+D) uch barobari
+= A
+? V = ⅓·S·h.
+
+@test oson
+1 litr necha cm³?
+A) $1000$
+B) $100$
+C) $10$
+D) $10\,000$
+= A
+? 1 l = 1 dm³ = 1000 cm³.
+
+@test o'rta
+Uchburchakli prizmaning uchlari soni:
+A) $6$
+B) $5$
+C) $9$
+D) $3$
+= A
+? Har asosda 3 tadan.
+
+@test o'rta
+To'g'ri prizma asosi perimetri 20, balandligi 7. Yon sirti:
+A) $140$
+B) $27$
+C) $70$
+D) $280$
+= A
+? P · h.
+
+@test o'rta
+Kub qirrasi 3 marta oshsa, hajmi necha marta oshadi?
+A) $27$
+B) $9$
+C) $3$
+D) $6$
+= A
+B: 9 marta — sirt oshadi.
+? 3³ = 27.
+
+@test o'rta
+Asos yuzi 15, balandligi 6 bo'lgan piramida hajmi:
+A) $30$
+B) $90$
+C) $45$
+D) $21$
+= A
+? ⅓ · 15 · 6.
+
+@test o'rta
+Ko'pyoqda $U = 5$, $Y = 5$. Qirralar soni:
+A) $8$
+B) $10$
+C) $12$
+D) $2$
+= A
+? Q = U + Y − 2. Bu to'rtburchakli piramida.
+
+### U13 | Aylanish jismlari: silindr, konus va shar
+@kirish
+| [s]Arximed[/s] (m.a. 287–212): sharning hajmi tashqi silindr hajmining $\frac{2}{3}$ qismi
+| Qabr toshiga silindr ichidagi shar chizilishini vasiyat qilgan
+| [k]m.a. 75[/k] — Tsitseron Sirakuzada shu belgi bo'yicha qabrni topgan
+| [s]Evdoks[/s]: konus — silindrning uchdan biri
+Arximed ko'p kashfiyot qilgan, lekin eng faxrlangani bittasi edi: silindr ichiga joylashgan sharning hajmi silindr hajmining aynan uchdan ikki qismi, sirti ham silindr to'la sirtining uchdan ikki qismi. [1] U qabr toshiga aynan shu chizmani — silindr ichidagi sharni — chizishni vasiyat qilgan. [2] Oradan bir yuz o'ttiz yildan ortiq vaqt o'tib, Rim notig'i Tsitseron Sirakuzada butalar orasidan shu belgili toshni topib, buyuk olimning qabrini tiklagan. Bugun silindr, konus va shar — aylanish natijasida hosil bo'ladigan jismlarni o'rganamiz.
+
+@qadam Aylanish jismi qanday hosil bo'ladi?
+| CHIZ: to'g'ri to'rtburchak A(0;0) B(3;0) C(3;5) D(0;5)
+| to'g'ri to'rtburchak tomoni atrofida aylansa — silindr
+| CHIZ: uchburchak A(0;0) B(3;0) D(0;5)
+| to'g'ri burchakli uchburchak katet atrofida — konus; yarim doira diametr atrofida — shar
+Bayroqni dastasi atrofida tez aylantirsangiz, havoda silindr ko'rinadi. [1] To'g'ri to'rtburchak bir tomoni atrofida aylansa — silindr hosil bo'ladi. [2] To'g'ri burchakli uchburchak katet atrofida aylansa — konus. [3] Yarim doira diametri atrofida aylansa — shar. Chizmalar aslida o'q kesimlar: silindrni o'qi bo'ylab kessak — to'g'ri to'rtburchak, konusni kessak — teng yonli uchburchak, sharni kessak — doira chiqadi.
+@tekshiruv To'g'ri burchakli uchburchak katet atrofida aylansa? => konus | silindr | shar | piramida
+
+@qadam Silindr
+| QOIDA: $S_{yon} = 2\pi r h$ — yoyilmasi to'g'ri to'rtburchak: $2\pi r \times h$
+| QOIDA: $S_{to'la} = 2\pi r h + 2\pi r^2$
+| QOIDA: $V = \pi r^2 h$
+Konserva bankasining yorlig'ini kesib yoysangiz, to'g'ri to'rtburchak chiqadi. [1] Uning bo'yi — asos aylanasi uzunligi, ikki pi r; eni — balandlik. Shuning uchun yon sirt ikki pi r h. [2] To'la sirtga ikki doira — tag va qopqoq qo'shiladi. Qopqoqsiz chelak uchun esa faqat bitta doira! Masala shartini diqqat bilan o'qing. [3] Hajm — prizma kabi: asos yuzi ko'paytirilgan balandlik, pi r kvadrat h.
+@tekshiruv r = 2, h = 5 bo'lgan silindr hajmi (π qoldirilsin)? => 20π | 10π | 40π | 14π
+
+@qadam Konus
+| CHIZ: uchburchak A(-3;0) B(3;0) S(0;4); nuqta O(0;0); kesma SO
+| $l^2 = r^2 + h^2$ — yasovchi
+| QOIDA: $V = \frac{1}{3}\pi r^2 h$; $\;S_{yon} = \pi r l$
+Konusning o'q kesimi — teng yonli uchburchak. [1] Balandlik — uchdan asos markazigacha, yasovchi — uchdan asos aylanasigacha. Yasovchi har doim balandlikdan uzun: ular radius bilan birga to'g'ri burchakli uchburchak hosil qiladi. Chizmada radius uch, balandlik to'rt, yasovchi besh. [2] Konus hajmi xuddi piramida kabi: silindr hajmining uchdan biri. Yon sirt pi r l — bu yerda balandlik emas, yasovchi qatnashadi.
+@tekshiruv r = 6, h = 8 bo'lgan konus yasovchisi? => 10 | 14 | 7 | 100
+
+@qadam Shar va sfera
+| CHIZ: kvadrat A(-3;-3) B(3;-3) C(3;3) D(-3;3); aylana O(0;0) r=3
+| QOIDA: $V_{shar} = \frac{4}{3}\pi R^3$; $\;S_{sfera} = 4\pi R^2$
+| $V_{silindr} = \pi R^2 \cdot 2R = 2\pi R^3 \;\Rightarrow\; \frac{V_{shar}}{V_{silindr}} = \frac{2}{3}$
+Sfera — sirt, shar — u bilan chegaralangan jism. Futbol to'pining terisi — sfera, ichi bilan birga — shar. [1] Chizmada Arximedning mashhur chizmasi: shar silindr ichida, radiusi R, silindr balandligi ikki R. [2] Silindr hajmi ikki pi R kub. Shar hajmi to'rt uchdan pi R kub — aynan uchdan ikki qismi! Arximed shunga faxrlangan edi. Sfera yuzi esa to'rt pi R kvadrat — xuddi shu radiusli to'rtta doira yuziga teng.
+@tekshiruv R = 3 bo'lgan sfera yuzi (π qoldirilsin)? => 36π | 12π | 9π | 108π
+
+@misol Silindr idish
+Radiusi 10 cm, balandligi 30 cm bo'lgan silindr idishga necha litr suv sig'adi ($\pi \approx 3{,}14$)?
+@yechim
+$V = \pi r^2 h = 3{,}14 \cdot 100 \cdot 30$ || Hajm: pi r kvadrat h.
+$= 9420$ cm³ || To'qqiz ming to'rt yuz yigirma kub santimetr.
+$\approx 9{,}42$ l || Mingga bo'lamiz: to'qqiz butun yuzdan qirq ikki litr.
+
+@misol Konus hajmi
+Radiusi 3, balandligi 4 bo'lgan konus hajmi va yon sirti (π qoldirilsin).
+@yechim
+$V = \frac{1}{3}\pi \cdot 9 \cdot 4 = 12\pi$ || Hajm: o'n ikki pi.
+$l = \sqrt{9 + 16} = 5$ || Yasovchi: besh.
+$S_{yon} = \pi \cdot 3 \cdot 5 = 15\pi$ || Yon sirt: o'n besh pi.
+
+@masala Shar hajmi
+$R = 3$ bo'lgan shar hajmi:
+A) $36\pi$
+B) $27\pi$
+C) $12\pi$
+D) $108\pi$
+= A
+@yechim
+$\frac{4}{3}\pi \cdot 27 = 36\pi$ || To'rt uchdan pi ko'paytirilgan yigirma yetti — o'ttiz olti pi.
+
+@masala Silindr yon sirti
+$r = 4$, $h = 10$. Silindr yon sirti:
+A) $80\pi$
+B) $160\pi$
+C) $40\pi$
+D) $112\pi$
+= A
+@yechim
+$2\pi \cdot 4 \cdot 10 = 80\pi$ || Ikki pi r h: sakson pi.
+
+@masala Konus
+Konus va silindrning asosi va balandligi bir xil. Konus hajmi silindrning:
+A) $\frac{1}{3}$ qismi
+B) $\frac{1}{2}$ qismi
+C) $\frac{2}{3}$ qismi
+D) teng
+= A
+@yechim
+$\frac{1}{3}\pi r^2 h : \pi r^2 h = \frac{1}{3}$ || Konus — silindrning uchdan biri.
+
+@esda
+| QOIDA: silindr: $V = \pi r^2h$, $S_{yon} = 2\pi rh$
+| QOIDA: konus: $V = \frac{1}{3}\pi r^2h$, $S_{yon} = \pi rl$, $l^2 = r^2 + h^2$
+| QOIDA: shar: $V = \frac{4}{3}\pi R^3$; sfera: $S = 4\pi R^2$
+Silindr — prizmaga, konus — piramidaga o'xshaydi: hajmda uchdan bir koeffitsiyent shu yerdan. Shar silindrning uchdan ikki qismi — Arximed kashfiyoti.
+
+@test oson
+To'g'ri to'rtburchak tomoni atrofida aylansa:
+A) silindr
+B) konus
+C) shar
+D) kub
+= A
+? O'q kesimi to'g'ri to'rtburchak bo'lgan jism.
+
+@test oson
+$r = 1$, $h = 3$ bo'lgan silindr hajmi:
+A) $3\pi$
+B) $\pi$
+C) $6\pi$
+D) $9\pi$
+= A
+? πr²h.
+
+@test oson
+$r = 3$, $h = 5$ bo'lgan konus hajmi:
+A) $15\pi$
+B) $45\pi$
+C) $5\pi$
+D) $30\pi$
+= A
+B: Uchdan biri olinmagan.
+? ⅓ · π · 9 · 5.
+
+@test oson
+$R = 1$ bo'lgan sfera yuzi:
+A) $4\pi$
+B) $\pi$
+C) $2\pi$
+D) $\frac{4}{3}\pi$
+= A
+D: Bu shar hajmi.
+? 4πR².
+
+@test oson
+Futbol to'pining terisi qanday sirt?
+A) sfera
+B) silindr
+C) konus
+D) doira
+= A
+? Shar sirti — sfera.
+
+@test o'rta
+Konus radiusi 5, balandligi 12. Yasovchi:
+A) $13$
+B) $17$
+C) $7$
+D) $\sqrt{17}$
+= A
+? √(25 + 144) = 13.
+
+@test o'rta
+Qopqoqsiz silindr chelak ($r = 2$, $h = 6$) qoplanadigan sirti:
+A) $28\pi$
+B) $32\pi$
+C) $24\pi$
+D) $48\pi$
+= A
+B: Qopqoq yo'q — faqat bitta doira.
+? 2π·2·6 + π·4 = 24π + 4π.
+
+@test o'rta
+Shar radiusi 2 marta oshsa, hajmi:
+A) 8 marta oshadi
+B) 4 marta oshadi
+C) 2 marta oshadi
+D) o'zgarmaydi
+= A
+? (2R)³ = 8R³.
+
+@test o'rta
+Shar va unga tashqi chizilgan silindr hajmlari nisbati:
+A) $2 : 3$
+B) $1 : 3$
+C) $1 : 2$
+D) $3 : 4$
+= A
+? Arximed teoremasi.
+
+@test o'rta
+$r = 3$, $l = 5$ bo'lgan konus yon sirti:
+A) $15\pi$
+B) $9\pi$
+C) $30\pi$
+D) $24\pi$
+= A
+? πrl.

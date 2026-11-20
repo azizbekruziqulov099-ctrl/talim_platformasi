@@ -1,0 +1,243 @@
+### U01 | Ratsional sonlar: ulush, kasr va amallar
+@kirish
+| [s]Miloddan avvalgi ~1550-yil[/s] — Misr, Rhind papirusi (kotib Ahmes)
+| $\frac{2}{5} = \frac{1}{3} + \frac{1}{15}$ — misrliklar faqat «birlik ulush»lar bilan yozgan
+| [k]Xitoy[/k], «To'qqiz bob»: qizil cho'p — «bor», qora cho'p — «qarz»
+Tasavvur qiling: miloddan avvalgi bir ming besh yuz ellikinchi yillar, Misr. Kotib Ahmes papirusga non va pivoni ishchilarga teng bo'lish masalalarini yozyapti. [1] Misrliklar ikki beshdan birni ham bir uchdan bir qo'shuv bir o'n beshdan bir deb yozishgan — ular faqat suratida bir turgan ulushlarni tan olishgan. [2] Bu bizga bitta narsani aytadi: kasr kundalik hayotdan, bo'lishdan tug'ilgan. [3] Xitoyda esa hisobchilar qizil cho'p bilan «bor»ni, qora cho'p bilan «qarz»ni belgilashgan — manfiy son ana shu qarzdan kelib chiqqan. Bugun natural sondan butun songa, undan ratsional songa qanday o'tilganini ko'ramiz va har bir qoida nega aynan shunday ekanini tushunamiz.
+
+@qadam Natural sonlar yetmay qolganda
+| Harorat $7^{\circ}$ edi, $9^{\circ}$ ga pasaydi: $7 - 9 = \;?$
+| SON_OQI: -4..8; nuqta 7 boshi; nuqta -2 oxiri
+| QOIDA: $\mathbb{Z} = \{\dots,-2,-1,0,1,2,\dots\}$ — butun sonlar
+Natural sonlarda yetti minus to'qqiz bajarilmaydi — javob yo'q. [1] Lekin hayotda harorat yetti darajadan to'qqiz darajaga pasaya oladi. [2] Son o'qida yettidan chapga to'qqiz qadam yuramiz va minus ikkiga tushamiz. [3] Shunday qilib natural sonlarga nol va qarama-qarshi sonlarni qo'shib, butun sonlar to'plamini olamiz. Butun sonlarda ayirish har doim bajariladi.
+@sodda
+Son o'qida o'ngga yurish — qo'shish, chapga yurish — ayirish. Nolning chap tomoni ham bor.
+@tekshiruv 3 − 8 nechaga teng? => −5 | 5 | 11 | −11
+
+@qadam Ishoralar qoidasi qayerdan keladi?
+| $(-3)\cdot 2 = -6$ — qarz ikki marta: $-3 + (-3)$
+| KETMA: $(-3)\cdot 0$ | $(-3)\cdot(2 + (-2))$ | $-6 + (-3)\cdot(-2)$ | $0$
+| QOIDA: $(-a)\cdot(-b) = ab$ — taqsimot qonuni saqlansin desak, boshqacha bo'lishi mumkin emas
+Minus uchni ikkiga ko'paytirish — uch so'm qarzni ikki marta olish, ya'ni minus olti. [1] Endi eng qiziq savol: nega minusni minusga ko'paytirsak plyus chiqadi? [2] Minus uchni nolga ko'paytirsak nol chiqadi. Nolni esa ikki qo'shuv minus ikki deb yozamiz va qavsni ochamiz: minus olti qo'shuv minus uch ko'paytirilgan minus ikki. Bu nolga teng bo'lishi uchun minus uch ko'paytirilgan minus ikki aynan plyus olti bo'lishi shart. [3] Demak qoida o'ylab topilmagan — u taqsimot qonunini saqlash uchun majburiy.
+@tekshiruv (−4)·(−5) nechaga teng? => 20 | −20 | −9 | 9
+
+@qadam Ulush va kasr: butunni teng bo'lish
+| 3 ta olma, 4 bola: har biriga qancha?
+| DOIRA_KASR: 3/4
+| $3 : 4 = \frac{3}{4}$ — surat: olingan bo'laklar, maxraj: butun nechaga bo'lingan
+| QOIDA: $\frac{m}{n}$ — butunni $n$ ta teng bo'lakka bo'lib, $m$ tasini olish ($n \ne 0$)
+Uchta olmani to'rt bolaga teng bo'lamiz. [1] Har bir olmani to'rtga bo'lamiz, har bola har olmadan bittadan bo'lak oladi — jami uchta chorak. [2] Doirada uch to'rtdan birni ko'ryapsiz. Kasr — bo'lishning javobi: uch bo'lingan to'rt. [3] Maxraj butunni nechta teng bo'lakka bo'lganimizni, surat esa nechtasini olganimizni bildiradi. Maxraj nol bo'lishi mumkin emas — butunni nolta bo'lakka bo'lib bo'lmaydi.
+@sodda
+Maxraj — pastdagi son: necha bo'lakka bo'lindi. Surat — tepadagi son: nechta bo'lak olindi.
+@tekshiruv 5 ta bo'lakka bo'lingan pirogdan 2 tasi yeyildi. Yeyilgan qismi? => 2/5 | 5/2 | 3/5 | 2/3
+
+@qadam Teng kasrlar va qisqartirish
+| $\frac{6}{8}$: 8 bo'lakdan 6 tasi
+| QISQART: 6/8 -> 3/4 (:2)
+| QOIDA: $\frac{a}{b} = \frac{ak}{bk}$, $k \ne 0$ — kasrning asosiy xossasi
+Olti sakkizdan bir va uch to'rtdan bir — bir xil miqdor. [1] Pitsani sakkizga bo'lib olti bo'lak olsangiz ham, to'rtga bo'lib uch bo'lak olsangiz ham, yeyilgan qism bir xil. [2] Surat va maxrajni ikkiga bo'ldik — qiymat o'zgarmadi. [3] Bu kasrning asosiy xossasi: surat va maxrajni noldan farqli bir xil songa ko'paytirsak yoki bo'lsak, kasr o'zgarmaydi. Qisqartirish ham, umumiy maxrajga keltirish ham shu xossadan chiqadi.
+@tekshiruv 10/15 ni qisqartiring => 2/3 | 1/5 | 5/10 | 3/2
+
+@qadam Kasrlarni qo'shish: umumiy maxraj nega kerak?
+| $\frac{1}{2} + \frac{1}{3}$: bo'laklar har xil o'lchamda
+| KETMA: $\frac{1}{2} + \frac{1}{3}$ | $\frac{3}{6} + \frac{2}{6}$ | $\frac{5}{6}$
+| QOIDA: $\frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}$
+Yarimga uchdan birni qo'shmoqchimiz. [1] Bo'laklar har xil o'lchamda: yarim katta, uchdan bir kichik. Olma bilan nokni qo'shgandek. [2] Ikkalasini bir xil bo'laklarga — oltidan birlarga aylantiramiz: yarim — uch oltidan bir, uchdan bir — ikki oltidan bir. Endi bir xil bo'laklarni qo'shamiz: besh oltidan bir. [3] Umumiy formula shundan kelib chiqadi. Eng ko'p uchraydigan xato — suratni suratga, maxrajni maxrajga qo'shish: bir ikkidan bir qo'shuv bir uchdan bir ikki beshdan bir emas!
+@tekshiruv 1/4 + 1/2 = ? => 3/4 | 2/6 | 1/6 | 2/4
+
+@qadam Ko'paytirish: kasrdan kasr olish
+| $\frac{2}{3}$ ning $\frac{3}{4}$ qismi
+| KASR_MODEL: 2/3 · 3/4
+| QOIDA: $\frac{a}{b}\cdot\frac{c}{d} = \frac{ac}{bd}$; $\;\frac{a}{b} : \frac{c}{d} = \frac{a}{b}\cdot\frac{d}{c}$
+Kasrni kasrga ko'paytirish — kasrdan kasr olish. [1] Kvadratni ustunlarga uchga bo'lib, ikkitasini bo'yaymiz. Keyin qatorlarga to'rtga bo'lib, uchtasini olamiz. [2] Kvadrat o'n ikki kichik katakka bo'lindi, ikki marta bo'yalgani oltita. Olti o'n ikkidan bir — ya'ni yarim. Surat suratga, maxraj maxrajga ko'paytiriladi — model buni ko'rsatib turibdi. [3] Bo'lish esa teskari songa ko'paytirish: uch to'rtdan birga bo'lish — to'rt uchdan birga ko'paytirish.
+@tekshiruv 2/5 · 1/3 = ? => 2/15 | 3/8 | 2/8 | 6/5
+
+@qadam Ratsional son va son o'qi
+| QOIDA: $\mathbb{Q} = \{\frac{m}{n} : m \in \mathbb{Z},\ n \in \mathbb{N}\}$
+| SON_OQI: -2..2; nuqta -3/2 -1,5; nuqta 1/2 0,5; nuqta 3/4
+| JADVAL: To'plam | Bajariladigan amal ;; $\mathbb{N}$ | $+$, $\times$ ;; $\mathbb{Z}$ | $+$, $-$, $\times$ ;; $\mathbb{Q}$ | $+$, $-$, $\times$, $:$ (nolga emas)
+Ko'rinishi butun sonni natural songa bo'lish bo'lgan har bir son — ratsional son. [1] Butun sonlar ham ratsional: besh — besh birdan bir. [2] Har bir ratsional sonning son o'qida o'z nuqtasi bor: minus bir yarim, yarim, uch chorak. [3] Har bir yangi to'plam eski amallarga yangisini qo'shdi: natural sonlarda qo'shish va ko'paytirish, butun sonlarda ayirish ham, ratsional sonlarda esa nolga bo'lishdan tashqari bo'lish ham har doim bajariladi.
+@tekshiruv −7 ratsional sonmi? => Ha, −7 = −7/1 | Yo'q, u butun son | Yo'q, kasr emas
+
+@misol Qarz va to'lov
+Hisobda −1200 so'm bor edi. Unga 3 marta 500 so'mdan to'landi. Hisob qancha bo'ldi?
+@yechim
+$3 \cdot 500 = 1500$ || Avval to'lovlarni jamlaymiz: uch marta besh yuz — bir ming besh yuz.
+$-1200 + 1500 = 300$ || Minus bir ming ikki yuzga bir ming besh yuzni qo'shamiz.
+SON_OQI: -2..2; nuqta -1,2; nuqta 0,3 || Son o'qida ming so'mlarda ko'ramiz: minus bir butun ikki o'ndan nol butun uch o'ngacha yurdik.
+Javob: $300$ so'm || Javob: hisobda uch yuz so'm bor.
+
+@misol Kasrlarni ayirish
+$\frac{5}{6} - \frac{3}{8}$ ni hisoblang.
+@yechim
+EKUK$(6; 8) = 24$ || Umumiy maxraj — olti va sakkizning eng kichik umumiy karralisi, yigirma to'rt.
+$\frac{5}{6} = \frac{20}{24}$, $\;\frac{3}{8} = \frac{9}{24}$ || Beshni to'rtga, uchni uchga ko'paytiramiz.
+$\frac{20}{24} - \frac{9}{24} = \frac{11}{24}$ || Bir xil bo'laklarni ayiramiz: o'n bir yigirma to'rtdan bir.
+
+@masala Ishora
+$(-6) \cdot (-2) + (-5)$ = ?
+A) 7
+B) −17
+C) 17
+D) −7
+= A
+@yechim
+$(-6)\cdot(-2) = 12$ || Avval ko'paytirish: minus ko'paytirilgan minus — plyus o'n ikki.
+$12 + (-5) = 7$ || Keyin qo'shamiz: yetti.
+
+@masala Qisqartirish
+$\frac{18}{24}$ ni qisqartiring.
+A) $\frac{3}{4}$
+B) $\frac{9}{12}$
+C) $\frac{2}{3}$
+D) $\frac{6}{8}$
+= A
+@yechim
+QISQART: 18/24 -> 3/4 (:6) || Eng katta umumiy bo'luvchi — olti. Ikkalasini oltiga bo'lamiz: uch to'rtdan bir.
+@maslahat
+To'liq qisqartirish uchun EKUB ga bo'ling. 9/12 va 6/8 hali qisqaradi.
+
+@masala Kasrdan kasr
+$\frac{3}{4}$ ning $\frac{2}{3}$ qismi nechaga teng?
+A) $\frac{1}{2}$
+B) $\frac{5}{7}$
+C) $\frac{9}{8}$
+D) $\frac{6}{7}$
+= A
+@yechim
+KASR_MODEL: 3/4 · 2/3 || Kasrdan kasr olish — ko'paytirish: uch ko'paytirilgan ikki — olti, to'rt ko'paytirilgan uch — o'n ikki.
+$\frac{6}{12} = \frac{1}{2}$ || Qisqartiramiz: yarim.
+
+@masala Bo'lish
+$\frac{2}{3} : \frac{4}{9}$ = ?
+A) $\frac{3}{2}$
+B) $\frac{8}{27}$
+C) $\frac{2}{3}$
+D) $\frac{1}{6}$
+= A
+@yechim
+$\frac{2}{3}\cdot\frac{9}{4} = \frac{18}{12}$ || Bo'lish — teskari songa ko'paytirish.
+$\frac{18}{12} = \frac{3}{2}$ || Qisqartiramiz: uch ikkidan bir.
+
+@esda
+| QOIDA: $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q}$ — har bir kengaytma yangi amalni har doim bajariladigan qildi
+| QOIDA: $(-a)(-b) = ab$ — taqsimot qonunidan kelib chiqadi
+| QOIDA: $\frac{a}{b} = \frac{ak}{bk}$; qo'shishda — umumiy maxraj, ko'paytirishda — surat·surat, maxraj·maxraj
+Esda tuting: butun sonlar ayirishni, ratsional sonlar bo'lishni har doim bajariladigan qildi. Ishoralar qoidasi taqsimot qonunidan kelib chiqadi. Kasrni qo'shishda avval bir xil bo'laklarga keltiramiz, ko'paytirishda esa surat suratga, maxraj maxrajga ko'paytiriladi.
+
+@test oson
+$-8 + 3$ = ?
+A) $-5$
+B) $5$
+C) $-11$
+D) $11$
+= A
+B: Ishora katta modulli qo'shiluvchidan olinadi — sakkiz katta, demak minus.
+? Son o'qida −8 dan o'ngga 3 qadam: −5.
+
+@test oson
+$(-2) \cdot (-7)$ = ?
+A) $14$
+B) $-14$
+C) $-9$
+D) $9$
+= A
+B: Ikki manfiy sonning ko'paytmasi musbat.
+? Minus ko'paytirilgan minus — plyus: 14.
+
+@test oson
+$\frac{12}{16}$ qisqartirilsa:
+A) $\frac{3}{4}$
+B) $\frac{6}{8}$
+C) $\frac{4}{3}$
+D) $\frac{2}{3}$
+= A
+B: 6/8 hali ham qisqaradi — oxirigacha qisqartiring.
+? EKUB(12;16) = 4: 12:4 = 3, 16:4 = 4.
+
+@test oson
+$\frac{1}{3} + \frac{1}{6}$ = ?
+A) $\frac{1}{2}$
+B) $\frac{2}{9}$
+C) $\frac{2}{6}$
+D) $\frac{1}{9}$
+= A
+B: Surat suratga, maxraj maxrajga qo'shilmaydi.
+? 1/3 = 2/6; 2/6 + 1/6 = 3/6 = 1/2.
+
+@test oson
+$\frac{3}{5} \cdot \frac{5}{6}$ = ?
+A) $\frac{1}{2}$
+B) $\frac{8}{11}$
+C) $\frac{15}{11}$
+D) $\frac{3}{11}$
+= A
+? 15/30 = 1/2.
+
+@test oson
+Qaysi son butun emas, lekin ratsional?
+A) $-\frac{3}{4}$
+B) $-3$
+C) $0$
+D) $\sqrt{2}$
+= A
+D: √2 ratsional emas — uni kasr ko'rinishida yozib bo'lmaydi.
+? −3/4 butun son emas, lekin ikki butun son nisbati.
+
+@test o'rta
+$\frac{3}{4} : \frac{3}{8}$ = ?
+A) $2$
+B) $\frac{9}{32}$
+C) $\frac{1}{2}$
+D) $\frac{3}{8}$
+= A
+B: Bu ko'paytma; bo'lishda teskari songa ko'paytiriladi.
+? 3/4 · 8/3 = 2.
+
+@test o'rta
+Qaysi tenglik to'g'ri?
+A) $\frac{4}{6} = \frac{10}{15}$
+B) $\frac{2}{3} = \frac{4}{9}$
+C) $\frac{1}{2} = \frac{2}{3}$
+D) $\frac{3}{5} = \frac{5}{3}$
+= A
+B: Surat 2 ga, maxraj 3 ga ko'paytirilgan — bir xil songa emas.
+? Ikkalasi ham 2/3 ga teng.
+
+@test o'rta
+Son o'qida $-\frac{1}{2}$ qaysi sonlar orasida?
+A) $-1$ va $0$
+B) $0$ va $1$
+C) $-2$ va $-1$
+D) $1$ va $2$
+= A
+? −1 < −0,5 < 0.
+
+@test o'rta
+Hisobda −500 so'm bor. 2 marta 400 so'mdan to'landi. Hisob:
+A) $300$
+B) $-100$
+C) $1300$
+D) $-900$
+= A
+B: Faqat bitta to'lov hisoblangan.
+? −500 + 800 = 300.
+
+@test o'rta
+$1 - \frac{2}{7}$ = ?
+A) $\frac{5}{7}$
+B) $\frac{1}{7}$
+C) $\frac{-1}{7}$
+D) $\frac{2}{7}$
+= A
+? 1 = 7/7; 7/7 − 2/7 = 5/7.
+
+@test qiyin
+Qaysi to'plamda $5 - 9$ ayirish bajarilmaydi?
+A) natural sonlar
+B) butun sonlar
+C) ratsional sonlar
+D) hammasida bajariladi
+= A
+D: Natural sonlarda −4 yo'q.
+? −4 natural son emas; butun va ratsional sonlarda bor.

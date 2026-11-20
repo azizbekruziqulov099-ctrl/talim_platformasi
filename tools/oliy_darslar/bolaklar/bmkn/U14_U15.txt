@@ -1,0 +1,357 @@
+### U14 | Miqdorlar va ularni o'lchash
+@kirish
+| [s]Qadimda[/s]: tirsak, qarich, qadam, oyoq — har kimniki har xil
+| [s]1795, Fransiya[/s]: metr — Yer meridiani chorak qismining o'n milliondan biri
+| [k]1983[/k]: metr yorug'lik tezligi orqali; [k]2019[/k]: kilogramm Plank doimiysi orqali
+Qadimda uzunlik tirsak, qarich va qadam bilan o'lchangan. [1] Muammo shundaki, bozordagi sotuvchining qarichi bilan xaridorning qarichi har xil — janjal tayyor. [2] Bir ming yetti yuz to'qson beshinchi yili Fransiyada metr kiritildi: Yer meridiani choragining o'n milliondan bir qismi. [3] Bugun metr yorug'lik bir soniyaning ma'lum ulushida bosib o'tadigan masofa orqali, kilogramm esa ikki ming o'n to'qqizinchi yildan boshlab fundamental fizik doimiy orqali aniqlanadi. Bu darsda miqdor, son va o'lchov birligi orasidagi farqni va boshlang'ich sinfda o'lchashni qanday o'rgatishni ko'ramiz.
+
+@qadam Miqdor, son va birlik
+| $2$ m va $180$ cm: $2 < 180$, lekin $2$ m $> 180$ cm!
+| QOIDA: miqdor qiymati $=$ son $\times$ birlik: $a = n \cdot e$
+| KETMA: $2$ m | $200$ cm | $> 180$ cm
+Ikki metr va bir yuz sakson santimetr — qaysi biri uzun? [1] Faqat sonlarga qarasak, ikki kichik. Lekin ikki metr — ikki yuz santimetr, demak u uzunroq. [2] Miqdorning son qiymati tanlangan birlikka bog'liq: miqdor teng son ko'paytirilgan birlik. Birlik kichraysa, son kattalashadi. [3] Taqqoslashdan oldin miqdorlarni bir xil birlikka keltiring. Boshlang'ich sinfda bola aynan shu yerda adashadi: «ikki kichik bir yuz saksondan» deydi.
+@tekshiruv 3 kg va 2900 g — qaysi biri og'ir? => 3 kg | 2900 g | teng
+
+@qadam Birliklar zinapoyasi
+| JADVAL: Miqdor | Birliklar ;; uzunlik | 1 km = 1000 m; 1 m = 100 cm; 1 cm = 10 mm ;; massa | 1 t = 1000 kg; 1 kg = 1000 g ;; vaqt | 1 sut = 24 soat; 1 soat = 60 min; 1 min = 60 s
+| QOIDA: kattadan kichikka — ko'paytiramiz; kichikdan kattaga — bo'lamiz
+| BELGILA: vaqt o'nlik emas — 1 soat $\ne$ 100 min!
+Metrik birliklar o'nlik tizimga asoslangan: har bosqich o'n, yuz yoki ming barobar. [1] Kilometrdan metrga o'tganda mingga ko'paytiramiz, grammdan kilogrammga o'tganda mingga bo'lamiz. [2] Qoida mantiqan tushunarli: birlik kichik bo'lsa, ular ko'proq kerak bo'ladi. [3] Diqqat: vaqt o'nlik emas! Bir soat — oltmish daqiqa. Ikki butun besh o'ndan soat — ikki soat ellik daqiqa emas, ikki soat o'ttiz daqiqa.
+@tekshiruv 3,5 km = ? m => 3500 | 350 | 35 | 35000
+
+@qadam Yuz va hajm birliklari
+| CHIZ: kvadrat A(0;0) B(10;0) C(10;10) D(0;10); kvadrat E(0;0) F(1;0) G(1;1) H(0;1)
+| $1$ m² $= 100$ cm $\times$ $100$ cm $= 10\,000$ cm²
+| QOIDA: uzunlik birligi 10 marta $\Rightarrow$ yuz 100 marta, hajm 1000 marta
+| $1$ m³ $= 1\,000\,000$ cm³; $\;1$ dm³ $= 1$ l
+Bir kvadrat metrda nechta kvadrat santimetr bor? Ko'pchilik yuz deydi — bu xato. [1] Kvadrat metr — tomoni yuz santimetr bo'lgan kvadrat. Unga yuzta qatorda yuztadan, ya'ni o'n ming kvadrat santimetr sig'adi. [2] Uzunlik birligi o'n marta kichraysa, yuz birligi yuz marta, hajm birligi ming marta kichrayadi. [3] Bir kub detsimetr — bir litr: bu juda qulay bog'lanish.
+@tekshiruv 1 dm² = ? cm² => 100 | 10 | 1000 | 10000
+
+@qadam O'lchash va xatolik
+| SON_OQI: 0..10; nuqta 7,3 o'lchandi
+| QOIDA: o'lchash har doim taqribiy: $l = 7{,}3 \pm 0{,}1$ cm
+| QOIDA: qo'shiluvchan miqdorlar: uzunlik, massa, yuz, hajm, vaqt; harorat — qo'shiluvchan emas!
+Har qanday o'lchash taqribiy. Chizg'ich millimetrgacha o'lchaydi — natija yetti butun o'ndan uch santimetr, lekin aslida bir oz kam yoki ko'p bo'lishi mumkin. [1] Shuning uchun o'lchov natijasini xatolik bilan yozamiz. [2] Yana bir muhim fakt: ikki kesmani ulasak, uzunliklar qo'shiladi; ikki qopni tarozida birga tortsak, massalar qo'shiladi. Lekin yigirma darajali suvga o'ttiz darajali suvni quysak, ellik daraja bo'lmaydi! Harorat qo'shiluvchan miqdor emas.
+@tekshiruv 20 °C va 30 °C suv aralashsa, harorat? => 20 va 30 orasida | 50 °C | 10 °C
+
+@misol Birliklarni almashtirish
+2 km 350 m + 1 km 800 m = ?
+@yechim
+$2350$ m $+ 1800$ m || Hammasini metrga aylantiramiz.
+$= 4150$ m || To'rt ming bir yuz ellik metr.
+$= 4$ km $150$ m || Javob: to'rt kilometr bir yuz ellik metr.
+
+@misol Vaqt
+Poyezd 8:45 da jo'nab, 2 soat 30 daqiqa yurdi. Qachon yetib keldi?
+@yechim
+$8{:}45 + 2{:}00 = 10{:}45$ || Avval ikki soat: o'n qirq besh.
+$10{:}45 + 0{:}30 = 11{:}15$ || Keyin o'ttiz daqiqa: qirq besh qo'shuv o'ttiz — yetmish besh daqiqa, ya'ni bir soat o'n besh daqiqa. Javob: o'n bir o'n besh.
+
+@masala Massa
+4 kg 200 g — necha gramm?
+A) $4200$ g
+B) $420$ g
+C) $4020$ g
+D) $42\,000$ g
+= A
+@yechim
+$4 \cdot 1000 + 200 = 4200$ || To'rt ming gramm qo'shuv ikki yuz.
+
+@masala Yuz birligi
+$3$ m² = ? dm²
+A) $300$
+B) $30$
+C) $3000$
+D) $30\,000$
+= A
+@yechim
+$1$ m² $= 100$ dm² || Bir metr — o'n detsimetr, kvadrat metr — yuz kvadrat detsimetr.
+$3 \cdot 100 = 300$ || Uch yuz.
+
+@masala Vaqt
+2,5 soat necha daqiqa?
+A) $150$
+B) $250$
+C) $130$
+D) $205$
+= A
+@yechim
+$2{,}5 \cdot 60 = 150$ || Ikki butun besh o'ndan oltmishga ko'paytiramiz: bir yuz ellik.
+
+@esda
+| QOIDA: miqdor $=$ son $\times$ birlik; taqqoslashdan oldin bir birlikka keltiring
+| QOIDA: uzunlik ×10 ⇒ yuz ×100, hajm ×1000; $1$ dm³ $= 1$ l
+| QOIDA: vaqt — 60 lik; harorat — qo'shiluvchan emas
+Son miqdorning o'zi emas — u birlikka bog'liq. Birliklarni almashtirishda mantiqni tekshiring: birlik kichik bo'lsa, son katta bo'ladi.
+
+@test oson
+$5$ m = ? cm
+A) $500$
+B) $50$
+C) $5000$
+D) $0{,}05$
+= A
+? 1 m = 100 cm.
+
+@test oson
+$7000$ g = ? kg
+A) $7$
+B) $70$
+C) $700$
+D) $0{,}7$
+= A
+? 7000 : 1000.
+
+@test oson
+$3$ soat = ? daqiqa
+A) $180$
+B) $300$
+C) $30$
+D) $360$
+= A
+? 3 · 60.
+
+@test oson
+$1$ dm³ necha litr?
+A) $1$
+B) $10$
+C) $100$
+D) $1000$
+= A
+? 1 dm³ = 1 l.
+
+@test oson
+Qaysi biri uzun: 1 m 5 cm yoki 150 cm?
+A) 150 cm
+B) 1 m 5 cm
+C) teng
+D) taqqoslab bo'lmaydi
+= A
+? 1 m 5 cm = 105 cm < 150 cm.
+
+@test o'rta
+$1$ m² = ? cm²
+A) $10\,000$
+B) $100$
+C) $1000$
+D) $1\,000\,000$
+= A
+B: Yuz birligida 100 · 100.
+? 100 cm · 100 cm.
+
+@test o'rta
+Dars 13:50 da boshlanib, 80 daqiqa davom etdi. Tugash vaqti:
+A) 15:10
+B) 14:30
+C) 14:70
+D) 15:30
+= A
+? 13:50 + 1:20 = 15:10.
+
+@test o'rta
+Qaysi miqdor qo'shiluvchan emas?
+A) harorat
+B) massa
+C) uzunlik
+D) hajm
+= A
+? Suvlar aralashganda haroratlar qo'shilmaydi.
+
+@test o'rta
+$2{,}4$ t = ? kg
+A) $2400$
+B) $240$
+C) $24\,000$
+D) $24$
+= A
+? 2,4 · 1000.
+
+@test o'rta
+$1$ m³ = ? dm³
+A) $1000$
+B) $100$
+C) $10$
+D) $10\,000$
+= A
+? 10 · 10 · 10.
+
+### U15 | Matnli masalalar, foizlar va mantiqiy masalalar
+@kirish
+| [s]Rhind papirusi, 79-masala[/s]: 7 uy, har uyda 7 mushuk, har mushuk 7 sichqon yeydi…
+| [s]Diofant epitafiyasi[/s]: «umrining $\frac{1}{6}$ qismi bolalik…» — u necha yil yashagan?
+| [k]Al-Xorazmiy[/k]: meros taqsimlash masalalari — algebraning hayotiy ildizi
+To'rt ming yillik Rhind papirusida shunday masala bor: yetti uy, har bir uyda yetti mushuk, har bir mushuk yetti sichqon yeydi, har bir sichqon yetti boshoq yeydi… [1] Qadimgi Yunonistonda Diofantning qabr toshiga topishmoq yozilgan: umrining oltidan biri bolalik, o'n ikkidan biri yigitlik… Javobni topsangiz, uning necha yil yashaganini bilasiz. [2] Al-Xorazmiy esa algebrasining katta qismini meros taqsimlash masalalariga bag'ishlagan. Matnli masala — matematikaning hayot bilan uchrashadigan joyi. Bugun masala matnidan model tuzishni, foiz va mantiqiy masalalarni ko'ramiz.
+
+@qadam Matndan modelga
+| ZANJIR: O'qish :: nima ma'lum, nima so'raladi | Model :: chizma, jadval, tenglama | Yechish :: amallar | Tekshirish :: javob shartga mosmi?
+| BELGILA: «ko'p» so'zi har doim qo'shish emas!
+| «Ali Validan 8 ta ko'p yig'di. Ali 20 ta yig'di. Vali?» $\Rightarrow 20 - 8 = 12$
+Matnli masala yechishning to'rt bosqichi bor: o'qish, model tuzish, yechish va tekshirish. [1] Eng katta xato — kalit so'zga qarab amal tanlash. «Ali Validan sakkiz ta ko'p yig'di, Ali yigirma ta yig'di. Vali nechta yig'di?» Bu yerda «ko'p» so'zi bor, lekin javob ayirish bilan topiladi: yigirma minus sakkiz. [2] Shuning uchun avval vaziyatni chizma yoki kesmalar bilan tasvirlang. Kesmalar modeli boshlang'ich sinfda eng kuchli qurol.
+@tekshiruv «Kitob daftardan 5000 so'm qimmat, kitob 12000 so'm». Daftar? => 7000 | 17000 | 60000
+
+@qadam Harakat masalalari
+| QOIDA: $s = v \cdot t$
+| JADVAL: Holat | Tezlik ;; qarama-qarshi | $v_1 + v_2$ (yaqinlashish) ;; bir tomonga | $v_1 - v_2$ (quvib yetish) ;; oqim bo'ylab | $v + v_{oqim}$
+| KETMA: $s = 300$ km | $v_1 + v_2 = 60 + 90 = 150$ | $t = 300 : 150 = 2$ soat
+Harakat masalalarida uchta miqdor: masofa, tezlik va vaqt. Masofa — tezlik ko'paytirilgan vaqt. [1] Ikki mashina bir-biriga qarab harakatlansa, oradagi masofa har soatda ikkala tezlik yig'indisicha qisqaradi. Bir tomonga harakatlansa — tezliklar ayirmasicha. [2] Masalan, oralig'i uch yuz kilometr bo'lgan ikki shahardan oltmish va to'qson kilometr tezlikdagi mashinalar bir-biriga qarab chiqdi. Yaqinlashish tezligi bir yuz ellik, uchrashish vaqti — ikki soat.
+@tekshiruv 4 soatda 240 km yurgan mashina tezligi? => 60 km/soat | 960 km/soat | 236 km/soat
+
+@qadam Foiz: yuzdan bir
+| QOIDA: $1\% = \frac{1}{100}$; $\;p\%$ dan $a$: $a \cdot \frac{p}{100}$
+| JADVAL: Topish | Formula ;; sonning foizi | $a \cdot \frac{p}{100}$ ;; foizi bo'yicha son | $b : \frac{p}{100}$ ;; nechi foiz | $\frac{b}{a}\cdot 100\%$
+| KETMA: $100 \xrightarrow{+20\%} 120$ | $120 \xrightarrow{-20\%} 96$
+Foiz — lotincha «yuzdan» degani. Bir foiz — yuzdan bir. [1] Uchta asosiy masala bor: sonning foizini topish, foizi bo'yicha sonni topish va bir son ikkinchisining necha foizi ekanini topish. [2] Eng qiziq tuzoq: narx yigirma foiz oshib, keyin yigirma foiz tushsa, avvalgi narx qaytmaydi! Yuz so'm bir yuz yigirmaga oshdi, keyin bir yuz yigirmaning yigirma foizi — yigirma to'rt so'm tushdi: to'qson olti. Chunki ikkinchi foiz boshqa asosdan olinadi. Har doim so'rang: foiz nimadan?
+@tekshiruv 250 ning 20 foizi? => 50 | 20 | 125 | 230
+
+@qadam Nostandart va mantiqiy masalalar
+| JADVAL: | Ali | Vali | Gul ;; olma | + | − | − ;; nok | − | + | − ;; uzum | − | − | +
+| QOIDA: mantiqiy masalada jadval — har bir shart $\Rightarrow$ «+» yoki «−»
+| 8 tanga, bittasi yengil: tarozida 2 marta tortish yetarli (3 + 3 + 2)
+Mantiqiy masalalarda jadval eng yaxshi yordamchi. [1] Masalan: Ali, Vali va Gul olma, nok va uzum olishdi. Vali olma ham, uzum ham olmadi, Gul olma olmadi. Har bir shartdan jadvalga plyus yoki minus qo'yamiz va javob o'zi ko'rinadi. [2] Yana bir mashhur masala: sakkiz tangadan bittasi yengil. Tarozida necha marta tortib topish mumkin? Uchta va uchta tangani tortamiz, ikkitasini chetga qo'yamiz. Ikkinchi tortishda yengil tanga albatta topiladi. Bunday masalalar fikrlashni rivojlantiradi.
+@tekshiruv 9 tangadan bittasi yengil. Kamida necha tortish kerak? => 2 | 3 | 4 | 8
+
+@misol Diofant topishmog'i
+Diofant umrining $\frac{1}{6}$ qismi bolalik, $\frac{1}{12}$ qismi yigitlik, $\frac{1}{7}$ qismidan keyin uylandi, 5 yildan keyin o'g'il ko'rdi. O'g'li otasining yarim umricha yashadi, otasi o'g'lidan 4 yil keyin vafot etdi. Diofant necha yil yashagan?
+@yechim
+$\frac{x}{6} + \frac{x}{12} + \frac{x}{7} + 5 + \frac{x}{2} + 4 = x$ || Umrini x deb, barcha qismlarini qo'shamiz.
+$\frac{14x + 7x + 12x + 42x}{84} + 9 = x$ || Umumiy maxraj — sakson to'rt.
+$\frac{75x}{84} + 9 = x \Rightarrow \frac{9x}{84} = 9$ || Yetmish besh sakson to'rtdan bir x qo'shuv to'qqiz teng x.
+$x = 84$ || Diofant sakson to'rt yil yashagan.
+
+@misol Chegirma
+Ko'ylak 80 000 so'm turardi. 15% chegirma bilan qancha turadi?
+@yechim
+$80\,000 \cdot 0{,}15 = 12\,000$ || Chegirma: sakson mingning o'n besh foizi — o'n ikki ming.
+$80\,000 - 12\,000 = 68\,000$ || Yangi narx: oltmish sakkiz ming so'm.
+$80\,000 \cdot 0{,}85 = 68\,000$ || Tekshiruv: sakson besh foizi — xuddi shu.
+
+@masala Foiz
+40 ta o'quvchidan 30 tasi a'lochi. A'lochilar necha foiz?
+A) $75\%$
+B) $30\%$
+C) $70\%$
+D) $133\%$
+= A
+@yechim
+$\frac{30}{40}\cdot 100\% = 75\%$ || O'ttizni qirqqa bo'lib, yuzga ko'paytiramiz.
+
+@masala Harakat
+Ikki velosipedchi bir-biriga qarab 12 va 15 km/soat tezlikda chiqdi. Oralig'i 54 km. Necha soatda uchrashadi?
+A) $2$
+B) $3$
+C) $4{,}5$
+D) $18$
+= A
+@yechim
+$12 + 15 = 27$ km/soat || Yaqinlashish tezligi: yigirma yetti.
+$54 : 27 = 2$ || Ikki soatda uchrashadi.
+
+@masala Foizi bo'yicha son
+Sonning 30% i 45 ga teng. Son:
+A) $150$
+B) $13{,}5$
+C) $75$
+D) $135$
+= A
+@yechim
+$45 : 0{,}3 = 150$ || Foizi bo'yicha sonni topish — bo'lish.
+@maslahat
+Tekshiring: 150 ning 30% i — 45.
+
+@esda
+| QOIDA: o'qish → model → yechish → tekshirish; kalit so'zga ishonmang
+| QOIDA: $s = vt$; qarama-qarshi — $v_1 + v_2$, quvish — $v_1 - v_2$
+| QOIDA: $p\%$ — $\frac{p}{100}$; «foiz nimadan?» — asosni aniqlang
+Matnli masalada avval vaziyatni chizing yoki jadvalga soling. Foizda asos muhim: ketma-ket foiz o'zgarishlari bir-birini yo'q qilmaydi.
+
+@test oson
+200 ning 10% i:
+A) $20$
+B) $10$
+C) $2$
+D) $190$
+= A
+? 200 · 0,1.
+
+@test oson
+Mashina 3 soatda 180 km yurdi. Tezligi:
+A) $60$ km/soat
+B) $540$ km/soat
+C) $177$ km/soat
+D) $183$ km/soat
+= A
+? v = s : t.
+
+@test oson
+«Olma nokdan 6 ta ko'p, olma 15 ta». Nok:
+A) $9$
+B) $21$
+C) $90$
+D) $15$
+= A
+B: «Ko'p» so'zi bor, lekin nok kam.
+? 15 − 6 = 9.
+
+@test oson
+$50\%$ — bu:
+A) yarmi
+B) choragi
+C) 50 dan bir
+D) ikki barobari
+= A
+? 50/100 = 1/2.
+
+@test oson
+Velosipedchi 15 km/soat tezlikda 2 soat yurdi. Masofa:
+A) $30$ km
+B) $17$ km
+C) $7{,}5$ km
+D) $13$ km
+= A
+? s = vt.
+
+@test o'rta
+Narx 25% oshib, 2500 so'm bo'ldi. Avvalgi narx:
+A) $2000$
+B) $1875$
+C) $3125$
+D) $2475$
+= A
+B: 2500 ning 25% i ayirildi — asos noto'g'ri.
+? 2500 : 1,25 = 2000.
+
+@test o'rta
+Narx 10% oshib, keyin 10% tushdi. Natija:
+A) 1% ga kamaydi
+B) o'zgarmadi
+C) 1% ga oshdi
+D) 20% ga o'zgardi
+= A
+? 1,1 · 0,9 = 0,99.
+
+@test o'rta
+Ikki piyoda bir nuqtadan qarama-qarshi tomonga 4 va 5 km/soat tezlikda chiqdi. 2 soatdan keyin oradagi masofa:
+A) $18$ km
+B) $2$ km
+C) $9$ km
+D) $10$ km
+= A
+? (4 + 5) · 2.
+
+@test o'rta
+Sonning $\frac{2}{5}$ qismi 18. Son:
+A) $45$
+B) $7{,}2$
+C) $36$
+D) $90$
+= A
+? 18 : 2 · 5.
+
+@test o'rta
+Ota 40 yoshda, o'g'li 10 yoshda. Necha yildan keyin ota o'g'lidan 3 marta katta bo'ladi?
+A) $5$
+B) $10$
+C) $3$
+D) $20$
+= A
+? 40 + x = 3(10 + x) ⇒ x = 5.

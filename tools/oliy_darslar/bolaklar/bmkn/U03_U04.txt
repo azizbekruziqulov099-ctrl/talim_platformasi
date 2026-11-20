@@ -1,0 +1,383 @@
+### U03 | Birhadlar, ko'phadlar va ular ustida amallar
+@kirish
+| [s]~820-yil, Bag'dod[/s] — Muhammad al-Xorazmiy, «Al-jabr va al-muqobala»
+| al-jabr — «to'ldirish»: manfiy hadni tenglikning narigi tomoniga o'tkazish
+| [k]1591[/k] — Fransua Viet: noma'lum va berilganlarni harflar bilan yozdi
+| [k]1637[/k] — Rene Dekart: $x$, $y$, $z$ va $x^2$, $x^3$ yozuvi
+Algebra so'zi qayerdan kelganini bilasizmi? [1] To'qqizinchi asrda bizning yurtdoshimiz Muhammad al-Xorazmiy Bag'dodda «Al-jabr va al-muqobala» kitobini yozdi. Al-jabr — «to'ldirish», ya'ni ayirilgan hadni tenglikning narigi tomoniga o'tkazish. Kitob nomidagi shu so'z butun bir fanning nomiga aylandi. [2] Lekin al-Xorazmiy masalalarni so'z bilan yozgan. Harflar bilan yozishni oradan yetti yuz yil o'tib Fransua Viet boshladi. [3] Bugungi x kvadrat, x kub yozuvi esa Dekartdan qolgan. Bu darsda harfli ifodalar ham oddiy sonlar qonunlariga bo'ysunishini ko'ramiz.
+
+@qadam Birhad: son va harflar ko'paytmasi
+| $-3a^2b$: koeffitsiyent $-3$, harfli qism $a^2b$
+| $\deg(-3a^2b) = 2 + 1 = 3$
+| QOIDA: birhad — sonlar, o'zgaruvchilar va ularning natural darajalari ko'paytmasi
+Birhad — son va harflarning ko'paytmasi. [1] Minus uch a kvadrat b birhadida minus uch — koeffitsiyent, a kvadrat b — harfli qism. [2] Birhadning darajasi — barcha harflar darajalari yig'indisi: ikki qo'shuv bir, uch. [3] Harflar qo'shilgan yoki bo'lingan ifoda birhad emas: a qo'shuv b — bu ikki birhadning yig'indisi, ya'ni ko'phad.
+@tekshiruv 5x³y² birhadning darajasi? => 5 | 3 | 6 | 2
+
+@qadam O'xshash hadlar: nega $2x^2 + 3x^2 \ne 5x^4$?
+| KETMA: $2x^2 + 3x^2$ | $(2 + 3)\,x^2$ | $5x^2$
+| $2$ ta kvadrat $+$ $3$ ta kvadrat $= 5$ ta kvadrat, kvadrat o'zgarmaydi
+| QOIDA: o'xshash hadlarda koeffitsiyentlar qo'shiladi, harfli qism o'zgarmaydi
+Ikki x kvadrat qo'shuv uch x kvadrat — besh x kvadrat, besh x to'rtinchi daraja emas. [1] Taqsimot qonuni bo'yicha x kvadratni qavsdan chiqaramiz: ikki qo'shuv uch, ko'paytirilgan x kvadrat. [2] Buni kundalik tilda aytsak: ikkita kvadrat qo'shuv uchta kvadrat — beshta kvadrat. Kvadratlar soni o'zgardi, kvadratning o'zi emas. [3] Shuning uchun faqat harfli qismi bir xil hadlar qo'shiladi. x kvadrat va x — o'xshash emas.
+@tekshiruv 7ab − 2ab = ? => 5ab | 5 | 9ab | 5a²b²
+
+@qadam Birhadlarni ko'paytirish: darajalar qo'shiladi
+| $x^2 \cdot x^3 = (x\cdot x)\cdot(x\cdot x\cdot x) = x^5$
+| $(3a^2b)\cdot(-2ab^3) = -6a^3b^4$
+| QOIDA: $a^m \cdot a^n = a^{m+n}$; $\;(a^m)^n = a^{mn}$
+x kvadratni x kubga ko'paytiramiz. [1] Ko'paytuvchilarni yoyib yozsak: ikkita x va uchta x — jami beshta x. Shuning uchun darajalar qo'shiladi, ko'paytirilmaydi. [2] Birhadlarni ko'paytirishda koeffitsiyentlar ko'paytiriladi, bir xil harflarning darajalari qo'shiladi: uch ko'paytirilgan minus ikki — minus olti, a kub, b to'rtinchi daraja. [3] Darajani darajaga ko'tarishda esa ko'rsatkichlar ko'paytiriladi.
+@tekshiruv a³ · a⁴ = ? => a⁷ | a¹² | 2a⁷ | a¹
+
+@qadam Ko'phadni ko'phadga ko'paytirish: yuzlar modeli
+| $(x + 2)(x - 5)$
+| JADVAL: × | $x$ | $-5$ ;; $x$ | $x^2$ | $-5x$ ;; $2$ | $2x$ | $-10$
+| KETMA: $x^2 - 5x + 2x - 10$ | $x^2 - 3x - 10$
+| QOIDA: har bir hadni har bir hadga ko'paytiramiz: $2\cdot 2 = 4$ ta ko'paytma
+Ikkita ikki hadlini ko'paytirsak, nechta ko'paytma chiqadi? [1] Jadvalga qarang: chap tomonda birinchi qavs hadlari, tepada ikkinchi qavs hadlari. Har bir katakda ikkalasining ko'paytmasi. Bu to'g'ri to'rtburchak yuzini bo'laklarga bo'lishning o'zi. [2] To'rtta katak — to'rtta had: x kvadrat, minus besh x, ikki x va minus o'n. O'xshashlarini birlashtirsak, x kvadrat minus uch x minus o'n. [3] Ko'p uchraydigan xato — faqat birinchi va oxirgi hadlarni ko'paytirish: x kvadrat minus o'n. O'rtadagi ikki had yo'qolib qoladi.
+@tekshiruv (x + 1)(x + 3) = ? => x² + 4x + 3 | x² + 3 | x² + 3x + 3 | 2x + 4
+
+@qadam Qisqa ko'paytirish formulalari
+| CHIZ: kvadrat A(0;0) B(5;0) C(5;5) D(0;5); kesma EF E(3;0) F(3;5); kesma GH G(0;3) H(5;3)
+| $(a + b)^2 = a^2 + 2ab + b^2$ — bitta $a^2$, bitta $b^2$, ikkita $ab$
+| $(a - b)(a + b) = a^2 - b^2$
+| QOIDA: $(a \pm b)^2 = a^2 \pm 2ab + b^2$; $\;a^2 - b^2 = (a - b)(a + b)$
+Tomoni a qo'shuv b bo'lgan kvadratni chizamiz va uni ikki chiziq bilan bo'lamiz. [1] Ichida to'rt bo'lak: tomoni a bo'lgan kvadrat, tomoni b bo'lgan kvadrat va tomonlari a va b bo'lgan ikkita to'g'ri to'rtburchak. [2] Shuning uchun a qo'shuv b ning kvadrati a kvadrat, ikki ab va b kvadratdan iborat. Ikki ab ni unutib qo'yish — eng mashhur xato. [3] Kvadratlar ayirmasi esa yig'indi bilan ayirma ko'paytmasiga teng.
+@tekshiruv (x + 3)² = ? => x² + 6x + 9 | x² + 9 | x² + 3x + 9 | x² + 6x + 6
+
+@misol Ifodani soddalashtiring
+$(2x - 3)(x + 4) - 2x^2$
+@yechim
+$2x\cdot x + 2x\cdot 4 - 3x - 12$ || Har bir hadni har bir hadga ko'paytiramiz: ikki x kvadrat, sakkiz x, minus uch x, minus o'n ikki.
+$2x^2 + 5x - 12$ || O'xshash hadlar: sakkiz x minus uch x — besh x.
+$2x^2 + 5x - 12 - 2x^2 = 5x - 12$ || Ikki x kvadratni ayiramiz. Javob: besh x minus o'n ikki.
+
+@misol Og'zaki hisob
+$51^2$ ni og'zaki hisoblang.
+@yechim
+$51^2 = (50 + 1)^2$ || Ellik birni ellik qo'shuv bir deb yozamiz.
+$2500 + 100 + 1 = 2601$ || Ellik kvadrat — ikki ming besh yuz, ikki ko'paytirilgan ellik — yuz, bir kvadrat — bir. Ikki ming olti yuz bir.
+
+@masala O'xshash hadlar
+$4a - 7b + 2a + 3b$ ni soddalashtiring.
+A) $6a - 4b$
+B) $2a - 4b$
+C) $6a - 10b$
+D) $2ab$
+= A
+@yechim
+$(4a + 2a) + (-7b + 3b)$ || a li hadlarni va b li hadlarni alohida yig'amiz.
+$6a - 4b$ || Javob: olti a minus to'rt b.
+
+@masala Birhadlar ko'paytmasi
+$(-2x^2y)\cdot(5xy^3)$ = ?
+A) $-10x^3y^4$
+B) $10x^3y^4$
+C) $-10x^2y^3$
+D) $3x^3y^4$
+= A
+@yechim
+$-2 \cdot 5 = -10$ || Koeffitsiyentlar: minus o'n.
+$x^{2+1}y^{1+3} = x^3y^4$ || Darajalar qo'shiladi.
+
+@masala Kvadratlar ayirmasi
+$52 \cdot 48$ ni og'zaki hisoblang.
+A) $2496$
+B) $2500$
+C) $2504$
+D) $2400$
+= A
+@yechim
+$(50 + 2)(50 - 2) = 50^2 - 2^2$ || Kvadratlar ayirmasi formulasi.
+$2500 - 4 = 2496$ || Ikki ming to'rt yuz to'qson olti.
+
+@esda
+| QOIDA: o'xshash hadlar — faqat koeffitsiyentlar qo'shiladi
+| QOIDA: $a^m a^n = a^{m+n}$ — darajalar qo'shiladi
+| QOIDA: ko'phad·ko'phad — har had har hadga; $(a+b)^2 = a^2 + 2ab + b^2$
+Harfli ifodalar sonlarning o'sha qonunlariga — o'rin almashtirish, guruhlash va taqsimot qonuniga bo'ysunadi. Barcha qoidalar shu qonunlardan kelib chiqadi.
+
+@test oson
+$5x + 3x$ = ?
+A) $8x$
+B) $8x^2$
+C) $15x$
+D) $15x^2$
+= A
+B: Qo'shishda daraja o'zgarmaydi.
+? Koeffitsiyentlar qo'shiladi: 5 + 3 = 8.
+
+@test oson
+$x^4 \cdot x^2$ = ?
+A) $x^6$
+B) $x^8$
+C) $2x^6$
+D) $x^2$
+= A
+B: Ko'paytirishda darajalar qo'shiladi, ko'paytirilmaydi.
+? 4 + 2 = 6.
+
+@test oson
+$-4a^3b$ birhadning koeffitsiyenti:
+A) $-4$
+B) $4$
+C) $3$
+D) $a^3b$
+= A
+? Koeffitsiyent — sonli ko'paytuvchi.
+
+@test oson
+$3(x - 2)$ = ?
+A) $3x - 6$
+B) $3x - 2$
+C) $3x + 6$
+D) $x - 6$
+= A
+B: Qavs ichidagi har bir had 3 ga ko'paytiriladi.
+? 3·x − 3·2 = 3x − 6.
+
+@test oson
+$(x + 5)^2$ = ?
+A) $x^2 + 10x + 25$
+B) $x^2 + 25$
+C) $x^2 + 5x + 25$
+D) $2x + 10$
+= A
+B: 2ab hadi yo'qolgan.
+? a² + 2ab + b² = x² + 10x + 25.
+
+@test o'rta
+$(x - 4)(x + 4)$ = ?
+A) $x^2 - 16$
+B) $x^2 + 16$
+C) $x^2 - 8x - 16$
+D) $x^2 - 8$
+= A
+? Kvadratlar ayirmasi: x² − 4².
+
+@test o'rta
+$(2a^2)^3$ = ?
+A) $8a^6$
+B) $6a^6$
+C) $8a^5$
+D) $2a^6$
+= A
+B: Koeffitsiyent ham kubga ko'tariladi: 2³ = 8.
+? 2³ = 8, (a²)³ = a⁶.
+
+@test o'rta
+$(x + 2)(x - 3)$ = ?
+A) $x^2 - x - 6$
+B) $x^2 - 6$
+C) $x^2 + x - 6$
+D) $x^2 - 5x - 6$
+= A
+C: −3x + 2x = −x, +x emas.
+? x² − 3x + 2x − 6 = x² − x − 6.
+
+@test o'rta
+$x^2y - 3x^2y + 5x^2y$ = ?
+A) $3x^2y$
+B) $9x^2y$
+C) $-3x^2y$
+D) $3x^6y^3$
+= A
+? 1 − 3 + 5 = 3.
+
+@test o'rta
+$99^2$ = ?
+A) $9801$
+B) $9810$
+C) $9901$
+D) $9800$
+= A
+? (100 − 1)² = 10000 − 200 + 1 = 9801.
+
+### U04 | Haqiqiy sonlar va ularning xossalari
+@kirish
+| [s]Miloddan avvalgi ~1800-yil[/s] — Bobil, YBC 7289 loy taxtachasi
+| kvadrat diagonali: $\sqrt{2} \approx 1{,}414213$ — olti xona to'g'ri!
+| [k]Pifagorchilar[/k]: diagonal va tomonning umumiy o'lchovi yo'q
+| [k]1872[/k] — Rixard Dedekind: haqiqiy sonning qat'iy ta'rifi
+Yel universitetida kaftdek loy taxtacha saqlanadi. Unda kvadrat va uning diagonali chizilgan. [1] Bobilliklar to'rt ming yil oldin ikkining ildizini oltmishlik kasrlarda yozishgan, va bu qiymat bugungi o'nli yozuvda olti xona aniqlikda to'g'ri! [2] Qadimgi Yunonistonda pifagorchilar esa hayratlanarli kashfiyot qildi: kvadratning diagonali bilan tomonining umumiy o'lchovi yo'q — diagonalni hech qanday kasr bilan aniq yozib bo'lmaydi. [3] Bu sonlarning to'liq nazariyasi esa faqat o'n to'qqizinchi asrda, Dedekind tomonidan qurildi. Bugun kasrlar nega hamma uzunlikka yetmasligini ko'ramiz.
+
+@qadam Kvadratning diagonali qancha?
+| CHIZ: kvadrat A(0;0) B(1;0) C(1;1) D(0;1); kesma AC
+| $AC^2 = 1^2 + 1^2 = 2 \;\Rightarrow\; AC = \sqrt{2}$
+| $1{,}4^2 = 1{,}96 < 2 < 2{,}25 = 1{,}5^2$
+Tomoni bir bo'lgan kvadratning diagonalini chizamiz. [1] Pifagor teoremasiga ko'ra diagonal kvadrati ikkiga teng, ya'ni diagonal ikkining kvadrat ildizi. [2] Bu qanday son? Bir butun to'rt o'ndan kvadrati bir butun to'qson olti — ikkidan kichik. Bir butun besh o'ndan kvadrati esa ikki butun yigirma besh — ikkidan katta. Ildiz shu ikki son orasida.
+@tekshiruv √2 qaysi sonlar orasida? => 1,4 va 1,5 | 1,5 va 1,6 | 1 va 1,2 | 2 va 3
+
+@qadam Nega $\sqrt{2}$ kasr emas?
+| Faraz: $\sqrt{2} = \frac{p}{q}$, kasr qisqarmaydigan
+| KETMA: $p^2 = 2q^2$ | $p$ — juft, $p = 2k$ | $4k^2 = 2q^2$ | $q^2 = 2k^2$ | $q$ — juft
+| BELGILA: $p$ ham, $q$ ham juft — kasr qisqarardi! Ziddiyat
+| QOIDA: $\sqrt{2} \notin \mathbb{Q}$ — irratsional son
+Teskarisini faraz qilamiz: ikkining ildizi qisqarmaydigan p bo'lingan q kasrga teng bo'lsin. [1] Kvadratga ko'tarsak, p kvadrat ikki q kvadratga teng — demak p kvadrat juft, p ning o'zi ham juft. p ni ikki k deb yozamiz, unda q kvadrat ham ikki k kvadratga teng, demak q ham juft. [2] Ikkalasi juft bo'lsa, kasr ikkiga qisqarardi — bu farazimizga zid. [3] Demak ikkining ildizi hech qanday kasrga teng emas. Bunday sonlar irratsional sonlar deyiladi. Bu matematikadagi eng go'zal isbotlardan biri.
+@tekshiruv Bu isbot qaysi usulda? => Teskarisini faraz qilish | Misol keltirish | O'lchash
+
+@qadam O'nli yozuvda farq qanday ko'rinadi?
+| KETMA: $\frac{1}{3} = 0{,}333\ldots = 0{,}(3)$ | $\frac{5}{11} = 0{,}4545\ldots = 0{,}(45)$
+| $\sqrt{2} = 1{,}41421356\ldots$ — davr yo'q
+| $\pi = 3{,}14159265\ldots$ — davr yo'q
+| QOIDA: ratsional — chekli yoki cheksiz davriy; irratsional — cheksiz davriy bo'lmagan o'nli kasr
+Bir uchdan birni o'nli kasrga aylantirsak, uchlar cheksiz takrorlanadi. [1] Har bir oddiy kasr bo'lishda qoldiqlar takrorlangani uchun albatta chekli yoki davriy bo'ladi. [2] Ikkining ildizi va pi esa cheksiz davom etadi va hech qachon takrorlanmaydi. [3] Shunday qilib haqiqiy son — istalgan cheksiz o'nli kasr. Ratsional va irratsional sonlar birgalikda haqiqiy sonlar to'plamini tashkil etadi.
+@tekshiruv 0,121212… qanday son? => ratsional | irratsional | butun
+
+@qadam Son o'qi to'ldi
+| SON_OQI: -1..4; nuqta 1/2 0,5; nuqta 1.414 √2; nuqta 3.1416 π
+| QOIDA: $\mathbb{R} = \mathbb{Q} \cup \mathbb{I}$; son o'qining har nuqtasiga bitta haqiqiy son mos
+| JADVAL: Son | To'plam ;; $-7$ | $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$ ;; $0{,}(6)$ | $\mathbb{Q}$, $\mathbb{R}$ ;; $\sqrt{3}$ | $\mathbb{I}$, $\mathbb{R}$
+Ratsional sonlar son o'qida juda zich: istalgan ikkitasi orasida yana cheksiz ko'p ratsional son bor. [1] Shunga qaramay ular orasida «teshiklar» qoladi — ikkining ildizi, pi kabi nuqtalar. [2] Haqiqiy sonlar bu teshiklarni yopadi: endi son o'qining har bir nuqtasiga bitta haqiqiy son, har bir haqiqiy songa bitta nuqta mos keladi. [3] Bitta son bir nechta to'plamga tegishli bo'lishi mumkin: minus yetti — butun ham, ratsional ham, haqiqiy ham.
+@tekshiruv √9 qaysi to'plamga tegishli? => natural, butun, ratsional | faqat irratsional | hech qaysiga
+
+@qadam Ildizli sonlarni taqqoslash va taxminiy qiymat
+| $\sqrt{10}$ va $3{,}2$: $3{,}2^2 = 10{,}24 > 10 \Rightarrow \sqrt{10} < 3{,}2$
+| GRAFIK: y=x^2-2; [0;2]
+| QOIDA: $0 \le a < b \Rightarrow \sqrt{a} < \sqrt{b}$; taqqoslash uchun kvadratga ko'taramiz
+Ildizli sonlarni taqqoslashning eng oson yo'li — kvadratga ko'tarish. [1] O'nning ildizi va uch butun o'ndan ikki: uch butun o'ndan ikkining kvadrati o'n butun yuzdan yigirma to'rt — o'ndan katta. Demak o'nning ildizi kichik. [2] Grafikda y teng x kvadrat minus ikki egri chizig'i x o'qini bir butun to'rt o'ndan bir atrofida kesib o'tadi — aynan ikkining ildizi. Grafik bizga irratsional sonni «ko'rsatib» turibdi.
+@tekshiruv Qaysi biri katta: √20 yoki 4,5? => √20 | 4,5 | teng
+
+@misol Davriy kasrni oddiy kasrga aylantirish
+$0{,}(27)$ ni oddiy kasr ko'rinishida yozing.
+@yechim
+$x = 0{,}2727\ldots$ || Sonni x deb belgilaymiz.
+$100x = 27{,}2727\ldots$ || Davrda ikki raqam — yuzga ko'paytiramiz.
+$100x - x = 27 \Rightarrow 99x = 27$ || Ayiramiz: cheksiz dumlar yo'qoladi.
+$x = \frac{27}{99} = \frac{3}{11}$ || Qisqartiramiz: uch o'n birdan bir.
+
+@misol Ildizni baholash
+$\sqrt{50}$ qaysi ikki butun son orasida?
+@yechim
+$7^2 = 49$, $\;8^2 = 64$ || Ellikka eng yaqin kvadratlar: qirq to'qqiz va oltmish to'rt.
+$49 < 50 < 64 \Rightarrow 7 < \sqrt{50} < 8$ || Ellikning ildizi yetti bilan sakkiz orasida, yettiga juda yaqin.
+
+@masala Irratsional son
+Qaysi son irratsional?
+A) $\sqrt{7}$
+B) $\sqrt{16}$
+C) $0{,}(3)$
+D) $\frac{22}{7}$
+= A
+@yechim
+$\sqrt{16} = 4$, $\;0{,}(3) = \frac{1}{3}$ || O'n oltining ildizi — to'rt, davriy kasr — ratsional.
+$\sqrt{7}$ — butun son emas || Yetti to'liq kvadrat emas, shuning uchun uning ildizi irratsional.
+
+@masala Taqqoslash
+$\sqrt{30}$ va $5{,}5$ ni taqqoslang.
+A) $\sqrt{30} < 5{,}5$
+B) $\sqrt{30} > 5{,}5$
+C) teng
+D) taqqoslab bo'lmaydi
+= A
+@yechim
+$5{,}5^2 = 30{,}25$ || Besh butun o'ndan beshning kvadrati — o'ttiz butun yuzdan yigirma besh.
+$30 < 30{,}25$ || O'ttiz kichik, demak o'ttizning ildizi ham kichik.
+
+@masala Davriy kasr
+$0{,}(4)$ = ?
+A) $\frac{4}{9}$
+B) $\frac{4}{10}$
+C) $\frac{1}{4}$
+D) $\frac{4}{99}$
+= A
+@yechim
+$10x - x = 4$ || O'nga ko'paytirib ayiramiz: to'qqiz x teng to'rt.
+$x = \frac{4}{9}$ || Javob: to'rt to'qqizdan bir.
+
+@esda
+| QOIDA: $\sqrt{2}$ — irratsional: teskarisini faraz qilish bilan isbotlanadi
+| QOIDA: ratsional — chekli yoki davriy; irratsional — davriy bo'lmagan cheksiz o'nli kasr
+| QOIDA: $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$
+Kasrlar son o'qini to'liq qoplay olmaydi — ikkining ildizi, pi kabi nuqtalar qoladi. Haqiqiy sonlar son o'qining har bir nuqtasini «nomlaydi». Ildizlarni taqqoslashda kvadratga ko'taring.
+
+@test oson
+Qaysi son ratsional?
+A) $0{,}(5)$
+B) $\sqrt{3}$
+C) $\pi$
+D) $\sqrt{5}$
+= A
+? Davriy kasr — ratsional: 5/9.
+
+@test oson
+$\sqrt{81}$ = ?
+A) $9$
+B) $40{,}5$
+C) $18$
+D) $-81$
+= A
+? 9² = 81.
+
+@test oson
+$\sqrt{20}$ qaysi butun sonlar orasida?
+A) 4 va 5
+B) 5 va 6
+C) 3 va 4
+D) 10 va 11
+= A
+? 16 < 20 < 25.
+
+@test oson
+$\frac{2}{3}$ o'nli kasr ko'rinishida:
+A) $0{,}(6)$
+B) $0{,}23$
+C) $0{,}6$
+D) $1{,}5$
+= A
+C: 0,6 = 3/5, 2/3 emas.
+? 2 : 3 = 0,666…
+
+@test oson
+Qaysi tasdiq to'g'ri?
+A) har bir butun son — haqiqiy son
+B) har bir haqiqiy son — ratsional
+C) $\sqrt{2}$ — ratsional
+D) $\pi = 3{,}14$ aniq
+= A
+D: 3,14 — π ning taqribiy qiymati.
+? Z ⊂ Q ⊂ R.
+
+@test o'rta
+$0{,}(18)$ = ?
+A) $\frac{2}{11}$
+B) $\frac{18}{100}$
+C) $\frac{9}{50}$
+D) $\frac{1}{18}$
+= A
+B: Bu chekli 0,18; davriy kasrda maxraj 99.
+? 18/99 = 2/11.
+
+@test o'rta
+Qaysi biri katta: $2\sqrt{3}$ yoki $3\sqrt{2}$?
+A) $3\sqrt{2}$
+B) $2\sqrt{3}$
+C) teng
+D) taqqoslab bo'lmaydi
+= A
+? (2√3)² = 12, (3√2)² = 18.
+
+@test o'rta
+Tomoni 3 bo'lgan kvadratning diagonali:
+A) $3\sqrt{2}$
+B) $6$
+C) $9$
+D) $\sqrt{6}$
+= A
+? d² = 9 + 9 = 18, d = √18 = 3√2.
+
+@test o'rta
+$\sqrt{2}$ ning irratsionalligi isbotida qanday ziddiyat chiqadi?
+A) $p$ va $q$ ikkalasi juft — kasr qisqaradi
+B) $p = q$
+C) $q = 0$
+D) $p$ — toq
+= A
+? Qisqarmaydigan kasr faraz qilingan edi, lekin ikkalasi juft chiqdi.
+
+@test o'rta
+$\sqrt{12} \cdot \sqrt{3}$ = ?
+A) $6$
+B) $\sqrt{15}$
+C) $36$
+D) $15$
+= A
+? √36 = 6.

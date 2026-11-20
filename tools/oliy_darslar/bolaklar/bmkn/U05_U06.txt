@@ -1,0 +1,389 @@
+### U05 | Kompleks sonlar va ular ustida amallar
+@kirish
+| [s]1545-yil[/s] — Jerolamo Kardano, «Buyuk san'at»
+| 10 ni ikkiga shunday bo'lingki, ko'paytma 40 bo'lsin: $5 + \sqrt{-15}$ va $5 - \sqrt{-15}$
+| [k]1572[/k] — Rafael Bombelli: bu «sonlar» bilan hisoblash qoidalari
+| [k]1777[/k] — Eyler: $i$ belgisi; [k]1799–1806[/k] — Vessel va Argan: tekislikdagi nuqta
+Bir ming besh yuz qirq beshinchi yili italiyalik Kardano g'alati masala yozdi: o'nni shunday ikki bo'lakka bo'lingki, ularning ko'paytmasi qirqqa teng bo'lsin. [1] Javob besh qo'shuv minus o'n beshning ildizi va besh minus minus o'n beshning ildizi chiqdi. Kardano bu sonlarni «foydasiz» deb atadi, lekin ko'paytirib tekshirganda haqiqatan qirq chiqqan! [2] Bombelli bunday sonlar bilan hisoblash qoidalarini tuzdi, Eyler minus birning ildizini i harfi bilan belgiladi. [3] Ikki yuz yil o'tib, Vessel va Argan bu sonlarni tekislikdagi nuqta deb tasvirladi — va «xayoliy» sonlar ko'z oldimizda paydo bo'ldi. Bugun ana shu sonlarni o'rganamiz.
+
+@qadam Kvadrati manfiy son kerak
+| $x^2 + 1 = 0 \Rightarrow x^2 = -1$ — haqiqiy sonlarda yechim yo'q
+| QOIDA: $i^2 = -1$ — mavhum birlik
+| QOIDA: $z = a + bi$; $a = \operatorname{Re} z$ — haqiqiy qism, $b = \operatorname{Im} z$ — mavhum qism
+x kvadrat qo'shuv bir teng nol tenglamasini haqiqiy sonlarda yechib bo'lmaydi: har qanday haqiqiy sonning kvadrati manfiy emas. [1] Shuning uchun kvadrati minus birga teng yangi son kiritamiz va uni i deb belgilaymiz. [2] a qo'shuv b i ko'rinishidagi son kompleks son deyiladi: a — haqiqiy qism, b — mavhum qism. b nol bo'lsa, oddiy haqiqiy son hosil bo'ladi. Demak haqiqiy sonlar kompleks sonlarning bir qismi.
+@tekshiruv z = 3 − 7i ning mavhum qismi? => −7 | 7 | 3 | −7i
+
+@qadam Kompleks son — tekislikdagi nuqta
+| CHIZ: nuqta O(0;0) Z(3;4) A(3;0); kesma OZ; kesma ZA
+| $z = 3 + 4i \;\leftrightarrow\; Z(3;\,4)$
+| QOIDA: $|z| = \sqrt{a^2 + b^2}$ — nuqtadan koordinatalar boshigacha masofa
+| $|3 + 4i| = \sqrt{9 + 16} = 5$
+Har bir kompleks songa tekislikda bitta nuqta mos keladi: haqiqiy qism — abssissa, mavhum qism — ordinata. [1] Uch qo'shuv to'rt i — koordinatalari uch va to'rt bo'lgan nuqta. [2] Kompleks sonning moduli — shu nuqtadan koordinatalar boshigacha bo'lgan masofa. Chizmadagi to'g'ri burchakli uchburchakdan Pifagor teoremasi bilan topamiz: [3] to'qqiz qo'shuv o'n oltining ildizi — besh. Ko'rib turibsizki, kompleks son «xayoliy» emas — u tekislikdagi aniq nuqta.
+@tekshiruv |6 − 8i| = ? => 10 | 14 | 2 | 100
+
+@qadam Qo'shish va ayirish — vektorlar kabi
+| $(2 + 3i) + (4 - i) = (2 + 4) + (3 - 1)i = 6 + 2i$
+| $(5 + 2i) - (1 + 6i) = 4 - 4i$
+| QOIDA: haqiqiy qismlar alohida, mavhum qismlar alohida qo'shiladi
+Kompleks sonlarni qo'shish ko'phadlarni qo'shishga o'xshaydi: o'xshash hadlar birlashtiriladi. [1] Haqiqiy qismlar — ikki qo'shuv to'rt, olti; mavhum qismlar — uch minus bir, ikki. Javob olti qo'shuv ikki i. [2] Ayirish ham xuddi shunday. Geometrik ma'nosi: tekislikda ikki strelkani ketma-ket qo'yish, xuddi fizikadagi kuchlarni qo'shish kabi.
+@tekshiruv (1 + 2i) + (3 − 5i) = ? => 4 − 3i | 4 + 7i | 3 − 10i | −2 + 7i
+
+@qadam Ko'paytirish: $i^2$ ni almashtiramiz
+| KETMA: $(2 + 3i)(1 - 2i)$ | $2 - 4i + 3i - 6i^2$ | $2 - i - 6\cdot(-1)$ | $8 - i$
+| QOIDA: qavslarni ko'phad kabi ochamiz, $i^2$ o'rniga $-1$ qo'yamiz
+| $i^1 = i,\; i^2 = -1,\; i^3 = -i,\; i^4 = 1$ — har 4 qadamda takrorlanadi
+Ko'paytirishda qavslarni ko'phadlardagidek ochamiz: har bir hadni har bir hadga. [1] Ikki, minus to'rt i, uch i va minus olti i kvadrat. i kvadrat o'rniga minus birni qo'yamiz: minus olti i kvadrat plyus oltiga aylanadi. Javob sakkiz minus i. [2] i ning darajalari to'rtta qadamda takrorlanadi: i, minus bir, minus i, bir. Shuning uchun i ning yuzinchi darajasi bir — yuz to'rtga qoldiqsiz bo'linadi.
+@tekshiruv i² · i = ? => −i | i | −1 | 1
+
+@qadam Qo'shma son va bo'lish
+| $z = a + bi \;\Rightarrow\; \bar{z} = a - bi$
+| $z\cdot\bar{z} = a^2 + b^2$ — haqiqiy son!
+| KETMA: $\frac{5}{1 + 2i}$ | $\frac{5(1 - 2i)}{(1 + 2i)(1 - 2i)}$ | $\frac{5(1 - 2i)}{5}$ | $1 - 2i$
+| QOIDA: bo'lishda surat va maxrajni maxrajning qo'shmasiga ko'paytiramiz
+a qo'shuv b i ning qo'shmasi — a minus b i: tekislikda abssissa o'qiga nisbatan simmetrik nuqta. [1] Son va uning qo'shmasining ko'paytmasi har doim haqiqiy son: a kvadrat qo'shuv b kvadrat. [2] Bo'lishning siri shu: maxrajdagi i dan qutulish uchun surat va maxrajni qo'shmaga ko'paytiramiz. Besh bo'lingan bir qo'shuv ikki i: maxraj beshga aylanadi va javob bir minus ikki i.
+@tekshiruv 3 + 4i ning qo'shmasi? => 3 − 4i | −3 + 4i | −3 − 4i | 4 + 3i
+
+@misol Ko'paytirish
+$(3 - 2i)(4 + i)$ ni hisoblang.
+@yechim
+$12 + 3i - 8i - 2i^2$ || Har bir hadni har bir hadga ko'paytiramiz.
+$12 - 5i + 2$ || i kvadrat minus bir: minus ikki i kvadrat plyus ikkiga aylanadi.
+$14 - 5i$ || Javob: o'n to'rt minus besh i.
+
+@misol Kardano masalasini tekshiramiz
+$(5 + i\sqrt{15})(5 - i\sqrt{15})$ = ?
+@yechim
+$z\cdot\bar{z} = a^2 + b^2$ || Bu son va uning qo'shmasining ko'paytmasi.
+$25 + 15 = 40$ || Yigirma besh qo'shuv o'n besh — qirq. Kardano haq edi!
+
+@masala Qo'shish
+$(7 - 3i) - (2 - 5i)$ = ?
+A) $5 + 2i$
+B) $5 - 8i$
+C) $9 - 8i$
+D) $5 - 2i$
+= A
+@yechim
+$(7 - 2) + (-3 + 5)i$ || Haqiqiy qismlar: besh; mavhum qismlar: minus uch qo'shuv besh, ikki.
+$5 + 2i$ || Javob: besh qo'shuv ikki i.
+
+@masala Modul
+$|-5 + 12i|$ = ?
+A) $13$
+B) $17$
+C) $7$
+D) $\sqrt{7}$
+= A
+@yechim
+$\sqrt{25 + 144} = \sqrt{169}$ || Yigirma besh qo'shuv bir yuz qirq to'rt.
+$13$ || O'n uch.
+
+@masala i ning darajasi
+$i^{10}$ = ?
+A) $-1$
+B) $1$
+C) $i$
+D) $-i$
+= A
+@yechim
+$10 = 4\cdot 2 + 2$ || O'nni to'rtga bo'lsak, qoldiq ikki.
+$i^{10} = i^2 = -1$ || Demak i ning o'ninchi darajasi minus bir.
+
+@esda
+| QOIDA: $i^2 = -1$; $z = a + bi \leftrightarrow (a;\,b)$
+| QOIDA: $|z| = \sqrt{a^2 + b^2}$; $z\bar{z} = a^2 + b^2$
+| QOIDA: ko'paytirish — qavs ochib $i^2 = -1$; bo'lish — qo'shmaga ko'paytirib
+Kompleks sonlar haqiqiy sonlarni kengaytiradi: kvadrati manfiy son ham mavjud bo'ladi. Har bir kompleks son — tekislikdagi nuqta. Amallar ko'phadlar qoidalari bilan bajariladi, faqat i kvadrat o'rniga minus bir qo'yiladi.
+
+@test oson
+$i^2$ = ?
+A) $-1$
+B) $1$
+C) $i$
+D) $0$
+= A
+? Ta'rif bo'yicha i² = −1.
+
+@test oson
+$z = 4 + 9i$ ning haqiqiy qismi:
+A) $4$
+B) $9$
+C) $9i$
+D) $13$
+= A
+? Re z = 4.
+
+@test oson
+$(3 + i) + (2 + 4i)$ = ?
+A) $5 + 5i$
+B) $6 + 4i$
+C) $5 + 4i$
+D) $10i$
+= A
+? 3 + 2 = 5; 1 + 4 = 5.
+
+@test oson
+$|3 - 4i|$ = ?
+A) $5$
+B) $7$
+C) $1$
+D) $25$
+= A
+D: Bu modul kvadrati; ildiz olish kerak.
+? √(9 + 16) = 5.
+
+@test oson
+$2 - 7i$ ning qo'shmasi:
+A) $2 + 7i$
+B) $-2 + 7i$
+C) $-2 - 7i$
+D) $7 - 2i$
+= A
+? Mavhum qism ishorasi almashadi.
+
+@test o'rta
+$(1 + i)^2$ = ?
+A) $2i$
+B) $2$
+C) $1 + i^2$
+D) $2 + 2i$
+= A
+? 1 + 2i + i² = 1 + 2i − 1 = 2i.
+
+@test o'rta
+$(2 + i)(2 - i)$ = ?
+A) $5$
+B) $3$
+C) $4 - i$
+D) $3 + 2i$
+= A
+? 4 − i² = 4 + 1 = 5.
+
+@test o'rta
+$i^{7}$ = ?
+A) $-i$
+B) $i$
+C) $-1$
+D) $1$
+= A
+? 7 = 4 + 3; i³ = −i.
+
+@test o'rta
+$z = -2 + 3i$ nuqtasi qaysi chorakda?
+A) II
+B) I
+C) III
+D) IV
+= A
+? x = −2 < 0, y = 3 > 0.
+
+@test o'rta
+$\frac{10}{3 + i}$ = ?
+A) $3 - i$
+B) $3 + i$
+C) $\frac{10}{3} + 10i$
+D) $1$
+= A
+? 10(3 − i)/(9 + 1) = 3 − i.
+
+@test qiyin
+$x^2 + 9 = 0$ tenglamaning ildizlari:
+A) $\pm 3i$
+B) $\pm 3$
+C) $\pm 9i$
+D) ildizi yo'q
+= A
+D: Haqiqiy ildizi yo'q, lekin kompleks ildizlari bor.
+? x² = −9 = 9i², x = ±3i.
+
+### U06 | Kompleks sonlarning trigonometrik shakli
+@kirish
+| [s]1707–1722[/s] — Abraham de Muavr: $(\cos\varphi + i\sin\varphi)^n$
+| [s]1748[/s] — Leonard Eyler: $e^{i\varphi} = \cos\varphi + i\sin\varphi$
+| $e^{i\pi} + 1 = 0$ — beshta eng muhim son bitta tenglikda
+Matematiklar orasida eng go'zal formula qaysi deb so'rov o'tkazilganda, ko'pincha bitta tenglik g'olib chiqadi: e ning i pi darajasi qo'shuv bir teng nol. [1] Unda matematikadagi beshta eng muhim son — nol, bir, pi, e va i — bitta qatorda uchrashadi. [2] Bu formula de Muavr va Eyler ishlaridan kelib chiqqan, va uning asosida bugungi mavzu turadi: kompleks sonni masofa va burchak orqali yozish. [3] Shunday yozilganda ko'paytirish shunchaki burish va cho'zishga aylanadi. Qanday qilib — hozir ko'ramiz.
+
+@qadam Modul va argument: masofa va yo'nalish
+| CHIZ: nuqta O(0;0) Z(2;2) X(3;0); kesma OZ; burchak XOZ
+| $z = 2 + 2i$: $r = |z| = \sqrt{8} = 2\sqrt{2}$, $\;\varphi = 45^\circ$
+| QOIDA: $\cos\varphi = \frac{a}{r}$, $\;\sin\varphi = \frac{b}{r}$ — $\varphi$ — argument
+Tekislikdagi nuqtani ikki xil berish mumkin: koordinatalar bilan yoki masofa va burchak bilan — xuddi «shimoli-sharqqa uch kilometr yuring» degandek. [1] Chizmada ikki qo'shuv ikki i nuqtasi: koordinatalar boshidan masofasi ikki ildiz ikki, musbat yo'nalish bilan burchagi qirq besh gradus. [2] Masofa — modul, burchak — argument deyiladi. Kosinus haqiqiy qismni modulga, sinus mavhum qismni modulga bo'lish bilan topiladi.
+@tekshiruv z = 3i ning argumenti? => 90° | 0° | 180° | 45°
+
+@qadam Trigonometrik shakl
+| $a = r\cos\varphi$, $\;b = r\sin\varphi$
+| QOIDA: $z = r(\cos\varphi + i\sin\varphi)$
+| $1 + i = \sqrt{2}\,(\cos 45^\circ + i\sin 45^\circ)$
+| $-1 + i$: $r = \sqrt{2}$, $\varphi = 135^\circ$ — II chorak!
+Haqiqiy qism r kosinus fi, mavhum qism r sinus fi ga teng. [1] Ularni joyiga qo'yib, trigonometrik shaklni olamiz: r ko'paytirilgan kosinus fi qo'shuv i sinus fi. [2] Bir qo'shuv i: moduli ikkining ildizi, argumenti qirq besh gradus. [3] Ehtiyot bo'ling: minus bir qo'shuv i ikkinchi chorakda yotadi, uning argumenti bir yuz o'ttiz besh gradus. Faqat tangensga qarab burchak topsangiz, noto'g'ri chorakka tushib qolasiz — har doim nuqtani chizib tekshiring.
+@tekshiruv −2 sonining argumenti? => 180° | 0° | −90° | 90°
+
+@qadam Ko'paytirish — burish va cho'zish
+| $z_1 z_2 = r_1 r_2\,(\cos(\varphi_1 + \varphi_2) + i\sin(\varphi_1 + \varphi_2))$
+| QOIDA: ko'paytirishda modullar ko'paytiriladi, argumentlar qo'shiladi
+| $i \cdot z$ — $z$ ni $90^\circ$ ga burish
+| CHIZ: nuqta O(0;0) Z(3;1) W(-1;3); kesma OZ; kesma OW
+Trigonometrik shaklning eng katta foydasi — ko'paytirish. [1] Ikki kompleks sonni ko'paytirsak, modullar ko'payadi, argumentlar esa qo'shiladi. Bu kosinus va sinusning yig'indi formulalaridan chiqadi. [2] Eng chiroyli holat: i ga ko'paytirish — nuqtani to'qson gradusga burish, chunki i ning moduli bir, argumenti to'qson gradus. [3] Chizmada uch qo'shuv i nuqtasi i ga ko'paytirilib, minus bir qo'shuv uch i ga aylandi — strelka chorak aylana burildi.
+@tekshiruv Moduli 2 va 3, argumentlari 20° va 40° bo'lgan sonlar ko'paytmasi? => modul 6, argument 60° | modul 5, argument 60° | modul 6, argument 800°
+
+@qadam Muavr formulasi: darajaga ko'tarish
+| QOIDA: $\big(r(\cos\varphi + i\sin\varphi)\big)^n = r^n(\cos n\varphi + i\sin n\varphi)$
+| KETMA: $(1 + i)^8$ | $(\sqrt{2})^8(\cos 360^\circ + i\sin 360^\circ)$ | $16 \cdot 1$ | $16$
+Bir xil sonni n marta ko'paytirsak, modul n marta ko'payadi, argument n marta qo'shiladi. [1] Bu de Muavr formulasi. [2] Bir qo'shuv i ning sakkizinchi darajasini qavs ochib hisoblash juda uzoq. Muavr bilan esa: ikkining ildizi sakkizinchi darajada — o'n olti, qirq besh gradus sakkiz marta — uch yuz oltmish gradus, ya'ni to'liq aylana. Javob o'n olti. Bir qatorda!
+@tekshiruv (cos 30° + i sin 30°)³ = ? => i | −1 | 1 | −i
+
+@misol Trigonometrik shaklga keltiring
+$z = \sqrt{3} + i$
+@yechim
+$r = \sqrt{3 + 1} = 2$ || Modul: uch qo'shuv birning ildizi — ikki.
+$\cos\varphi = \frac{\sqrt{3}}{2}$, $\;\sin\varphi = \frac{1}{2}$ || Kosinus va sinusni topamiz; nuqta birinchi chorakda.
+$\varphi = 30^\circ$ || Bu o'ttiz gradus.
+$z = 2(\cos 30^\circ + i\sin 30^\circ)$ || Javob.
+
+@misol Ko'paytma
+$2(\cos 50^\circ + i\sin 50^\circ) \cdot 3(\cos 40^\circ + i\sin 40^\circ)$
+@yechim
+$r = 2 \cdot 3 = 6$ || Modullar ko'paytiriladi: olti.
+$\varphi = 50^\circ + 40^\circ = 90^\circ$ || Argumentlar qo'shiladi: to'qson gradus.
+$6(\cos 90^\circ + i\sin 90^\circ) = 6i$ || Kosinus to'qson nol, sinus bir: javob olti i.
+
+@masala Argument
+$z = -3$ ning argumenti:
+A) $180^\circ$
+B) $0^\circ$
+C) $90^\circ$
+D) $270^\circ$
+= A
+@yechim
+SON_OQI: -4..4; nuqta -3 z || Minus uch haqiqiy o'qning manfiy qismida yotadi.
+$\varphi = 180^\circ$ || Bu yo'nalish bir yuz sakson gradus.
+
+@masala Modul
+$z = 1 - i\sqrt{3}$ ning moduli:
+A) $2$
+B) $4$
+C) $1 + \sqrt{3}$
+D) $\sqrt{2}$
+= A
+@yechim
+$\sqrt{1 + 3} = 2$ || Bir qo'shuv uchning ildizi — ikki.
+
+@masala Muavr
+$\big(\sqrt{2}(\cos 45^\circ + i\sin 45^\circ)\big)^2$ = ?
+A) $2i$
+B) $2$
+C) $4i$
+D) $-2$
+= A
+@yechim
+$r^2 = 2$, $\;2\varphi = 90^\circ$ || Modul kvadrati ikki, argument ikki barobar — to'qson gradus.
+$2(\cos 90^\circ + i\sin 90^\circ) = 2i$ || Javob ikki i.
+
+@esda
+| QOIDA: $z = r(\cos\varphi + i\sin\varphi)$, $r = \sqrt{a^2 + b^2}$
+| QOIDA: ko'paytirish — modullar ko'payadi, argumentlar qo'shiladi
+| QOIDA: Muavr: $z^n = r^n(\cos n\varphi + i\sin n\varphi)$
+Trigonometrik shakl ko'paytirish va darajaga ko'tarishni burish va cho'zishga aylantiradi. Argumentni topishda nuqtani chizib, chorakni tekshiring.
+
+@test oson
+$z = 5i$ ning moduli:
+A) $5$
+B) $25$
+C) $\sqrt{5}$
+D) $0$
+= A
+? √(0 + 25) = 5.
+
+@test oson
+$z = 4$ ning argumenti:
+A) $0^\circ$
+B) $90^\circ$
+C) $180^\circ$
+D) $45^\circ$
+= A
+? Musbat haqiqiy o'q yo'nalishi.
+
+@test oson
+$1 + i$ ning argumenti:
+A) $45^\circ$
+B) $90^\circ$
+C) $30^\circ$
+D) $135^\circ$
+= A
+? cos φ = sin φ = 1/√2.
+
+@test oson
+Ko'paytirishda argumentlar:
+A) qo'shiladi
+B) ko'paytiriladi
+C) ayiriladi
+D) o'zgarmaydi
+= A
+B: Modullar ko'paytiriladi, argumentlar qo'shiladi.
+? r₁r₂, φ₁ + φ₂.
+
+@test oson
+$i$ ga ko'paytirish nuqtani necha gradusga buradi?
+A) $90^\circ$
+B) $180^\circ$
+C) $45^\circ$
+D) $360^\circ$
+= A
+? |i| = 1, arg i = 90°.
+
+@test o'rta
+$2(\cos 60^\circ + i\sin 60^\circ)$ algebraik shaklda:
+A) $1 + i\sqrt{3}$
+B) $\sqrt{3} + i$
+C) $2 + 2i$
+D) $1 + i$
+= A
+B: cos 60° = 1/2, sin 60° = √3/2 — o'rni almashgan.
+? 2·½ + 2·(√3/2)i.
+
+@test o'rta
+$-1 + i$ ning argumenti:
+A) $135^\circ$
+B) $45^\circ$
+C) $-45^\circ$
+D) $225^\circ$
+= A
+C: Bu tangens bo'yicha olingan noto'g'ri chorak.
+? Nuqta II chorakda: 180° − 45°.
+
+@test o'rta
+$\big(2(\cos 20^\circ + i\sin 20^\circ)\big)^3$ ning moduli va argumenti:
+A) $8$ va $60^\circ$
+B) $6$ va $60^\circ$
+C) $8$ va $20^\circ$
+D) $6$ va $23^\circ$
+= A
+? 2³ = 8; 3·20° = 60°.
+
+@test o'rta
+$\frac{6(\cos 80^\circ + i\sin 80^\circ)}{2(\cos 20^\circ + i\sin 20^\circ)}$ ning argumenti:
+A) $60^\circ$
+B) $100^\circ$
+C) $4^\circ$
+D) $160^\circ$
+= A
+? Bo'lishda argumentlar ayiriladi.
+
+@test o'rta
+$(\cos 45^\circ + i\sin 45^\circ)^4$ = ?
+A) $-1$
+B) $1$
+C) $i$
+D) $-i$
+= A
+? 4·45° = 180°: cos 180° = −1.
+
+@test qiyin
+$z = -\sqrt{3} - i$ ning argumenti:
+A) $210^\circ$
+B) $30^\circ$
+C) $150^\circ$
+D) $330^\circ$
+= A
+B: Nuqta III chorakda.
+? 180° + 30° = 210°.

@@ -1,0 +1,221 @@
+### U02 | O'nli kasrlar va ular ustida amallar
+@kirish
+| [s]1427-yil, Samarqand[/s] — Jamshid al-Koshiy, «Miftoh al-hisob» («Hisob kaliti»)
+| Ulug'bek rasadxonasi: o'nli kasrlar bilan tizimli hisob
+| $2\pi$ — 16 ta o'nli xona aniqligida (1424)
+| [k]1585[/k] — Simon Stevin, «O'ndan bir» kitobi Yevropada
+Bu dars bevosita bizning shahrimiz bilan bog'liq. [1] Bir ming to'rt yuz yigirma yettinchi yili Samarqandda, Ulug'bek rasadxonasida ishlagan Jamshid al-Koshiy «Hisob kaliti» kitobini yozdi. [2] U o'nli kasrlar bilan tizimli hisoblagan va yulduzlar jadvali uchun juda aniq hisoblar qilgan. [3] Al-Koshiy ikki pi sonini o'n olti o'nli xona aniqligida hisoblagan — bu natija qariyb ikki yuz yil davomida dunyoda eng aniq bo'lib qolgan. [4] Yevropada o'nli kasrlarni Simon Stevin bir ming besh yuz sakson beshinchi yili ommalashtirgan. Bugun vergul nega aynan o'sha joyda turishini va har bir amal qoidasi nimaga asoslanganini ko'ramiz.
+
+@qadam O'nli kasr — maxraji 10, 100, 1000 bo'lgan kasr
+| DOIRA_KASR: 3/10
+| $\frac{3}{10} = 0{,}3$, $\;\frac{37}{100} = 0{,}37$, $\;\frac{5}{1000} = 0{,}005$
+| JADVAL: Birlar | o'ndan birlar | yuzdan birlar | mingdan birlar ;; 3 | 0 | 4 | 7
+| QOIDA: $3{,}047 = 3 + \frac{0}{10} + \frac{4}{100} + \frac{7}{1000}$
+Butunni o'nta teng bo'lakka bo'lib, uchtasini olsak — uch o'ndan bir, ya'ni nol butun uch. [1] Doirada o'ndan uch qismni ko'ryapsiz. [2] Maxraji o'n, yuz, ming bo'lgan kasrlarni vergul bilan qisqa yozamiz. [3] Har bir raqamning o'z xonasi bor: vergul ortidagi birinchi xona — o'ndan birlar, ikkinchisi — yuzdan birlar. [4] Uch butun mingdan qirq yettida nol muhim: u o'ndan birlar xonasini band qilib turadi. Usiz to'rt raqami noto'g'ri xonaga surilib ketadi.
+@tekshiruv 0,07 qanday o'qiladi? => yetti yuzdan bir | yetti o'ndan bir | yetti mingdan bir
+
+@qadam Qaysi nol muhim, qaysi biri yo'q?
+| $0{,}7 = 0{,}70 = 0{,}700$
+| $3{,}05 \ne 3{,}5$
+| BELGILA: oxiridagi nol — qiymatni o'zgartirmaydi
+Yetti o'ndan bir va yetmish yuzdan bir — bir xil miqdor. [1] Shuning uchun kasr qismining oxiriga nol qo'shish yoki oxiridagi nolni olib tashlash sonni o'zgartirmaydi. [2] Lekin ichkaridagi nol boshqa gap: uch butun yuzdan besh va uch butun o'ndan besh — har xil sonlar. Birinchisida besh yuzdan bir, ikkinchisida esa besh o'ndan bir. [3] Taqqoslashda oxiriga nol qo'shib, kasr qismlarini bir xil uzunlikka keltirish — eng ishonchli usul.
+@tekshiruv Qaysi son katta: 0,57 yoki 0,507? => 0,57 | 0,507 | teng
+
+@qadam Qo'shish va ayirish: vergul tagida vergul
+| $7{,}08 + 2{,}7 = 7{,}08 + 2{,}70$
+| USTUN: 708+270
+| $978$ yuzdan bir $= 9{,}78$
+| QOIDA: vergullar bir ustunda; yetmagan xonaga nol yoziladi
+Yetti butun yuzdan sakkiz metr lentaga ikki butun o'ndan yetti metr lenta qo'shildi. [1] Ikki butun o'ndan yettini ikki butun yetmish yuzdan bir deb yozamiz — endi ikkalasi ham yuzdan birlarda. [2] Aslida biz yetti yuz sakkiz yuzdan birga ikki yuz yetmish yuzdan birni qo'shyapmiz, xuddi butun sonlardagidek. [3] Natija to'qqiz yuz yetmish sakkiz yuzdan bir, ya'ni to'qqiz butun yuzdan yetmish sakkiz. [4] Qoida shunday tug'iladi: vergul tagida vergul, bir xil xonalar bir ustunda. Oldindan taxmin qiling: yetti va uch atrofida — javob o'nga yaqin bo'lishi kerak.
+@tekshiruv 3,5 + 1,25 = ? => 4,75 | 4,30 | 1,60 | 47,5
+
+@qadam Ko'paytirish: kasr xonalari qo'shiladi
+| $0{,}24 \cdot 0{,}15 = \frac{24}{100}\cdot\frac{15}{100} = \frac{360}{10000}$
+| USTUN: 24×15
+| QOIDA: $\frac{a}{10^m}\cdot\frac{b}{10^n} = \frac{ab}{10^{m+n}}$ — xonalar soni qo'shiladi
+Nol butun yigirma to'rtni nol butun o'n beshga ko'paytiramiz. [1] Ikkalasini oddiy kasr qilib yozsak, maxrajlar yuz va yuz, ko'paytmada esa o'n ming. [2] Vergulni unutib, yigirma to'rtni o'n beshga ko'paytiramiz: uch yuz oltmish. [3] Maxraj o'n ming bo'lgani uchun natijada to'rtta kasr xonasi bo'ladi: nol butun nol uch yuz oltmish, ya'ni nol butun mingdan o'ttiz olti. Qoida o'ylab topilmagan — u maxrajlarni ko'paytirishdan chiqadi.
+@tekshiruv 0,3 · 0,2 = ? => 0,06 | 0,6 | 0,006 | 6
+
+@qadam Bo'lish: bo'luvchini butun songa aylantiramiz
+| $4{,}68 : 0{,}12 = 468 : 12$
+| BOLISH: 468:12
+| QOIDA: $\frac{a}{b} = \frac{ak}{bk}$ — bo'linuvchi va bo'luvchini bir xil songa ko'paytiramiz
+| $6{,}4 : 0{,}8 = 8$ — bo'lish har doim kamaytirmaydi!
+To'rt butun yuzdan oltmish sakkiz metr lentadan nol butun yuzdan o'n ikki metrlik bo'laklar nechta chiqadi? [1] Ikkala sonni yuzga ko'paytiramiz: to'rt yuz oltmish sakkizni o'n ikkiga bo'lamiz. Bo'linma o'zgarmaydi — bu kasrning asosiy xossasi. [2] Burchak usulida bo'lamiz: o'ttiz to'qqiz. [3] Qoida: bo'luvchini butunga aylantirish uchun ikkala sondagi vergulni bir xil xonaga suramiz. [4] Ajablanarli fakt: birdan kichik songa bo'lsak, natija katta chiqadi. Olti butun o'ndan to'rtda nol butun o'ndan sakkiz sakkiz marta bor.
+@tekshiruv 2,4 : 0,6 = ? => 4 | 0,4 | 40 | 1,44
+
+@qadam 10, 100, 1000 ga ko'paytirish va bo'lish
+| JADVAL: Amal | Natija | Mazmun ;; $0{,}375 \cdot 10$ | $3{,}75$ | 10 marta katta ;; $0{,}375 \cdot 100$ | $37{,}5$ | 100 marta katta ;; $0{,}375 : 100$ | $0{,}00375$ | 100 marta kichik
+| QOIDA: $\cdot 10^k$ — vergul $k$ xona o'ngga; $: 10^k$ — $k$ xona chapga
+O'nga ko'paytirganda har bir raqamning qiymati o'n marta ortadi — shuning uchun raqamlar bir xona chapga suriladi, ya'ni vergul o'ngga o'tadi. [1] Jadvalni ko'ring: yuzga ko'paytirganda vergul ikki xona o'ngga, yuzga bo'lganda ikki xona chapga. Raqam yetmasa, bo'sh xonalarga nol yoziladi. [2] Bu qoidani yodlash emas, tushunish kerak: natija kattalashadimi yoki kichrayadimi — avval shuni taxmin qiling.
+@tekshiruv 2,5 · 100 = ? => 250 | 0,025 | 25 | 2500
+
+@misol Do'konda
+Daftar 2,35 ming so'm, ruchka 1,8 ming so'm. 3 ta daftar va 1 ta ruchka qancha turadi?
+@yechim
+$3 \cdot 2{,}35 = 7{,}05$ || Uchta daftar: uch ko'paytirilgan ikki butun yuzdan o'ttiz besh — yetti butun yuzdan besh.
+$7{,}05 + 1{,}80 = 8{,}85$ || Ruchkani qo'shamiz: bir butun o'ndan sakkizni bir butun sakson deb yozamiz.
+Javob: $8{,}85$ ming so'm || Jami sakkiz ming sakkiz yuz ellik so'm.
+
+@misol Lentani bo'lish
+3,6 m lentadan 0,45 m li bo'laklar nechta chiqadi?
+@yechim
+$3{,}6 : 0{,}45 = 360 : 45$ || Ikkala sonni yuzga ko'paytiramiz.
+BOLISH: 360:45 || Uch yuz oltmishni qirq beshga bo'lamiz: sakkiz.
+$8 \cdot 0{,}45 = 3{,}6$ || Tekshiramiz: sakkiz ko'paytirilgan nol butun qirq besh — uch butun olti. To'g'ri.
+
+@masala Taqqoslash
+Eng katta sonni toping.
+A) $0{,}6$
+B) $0{,}599$
+C) $0{,}59$
+D) $0{,}06$
+= A
+@yechim
+$0{,}600$; $0{,}599$; $0{,}590$; $0{,}060$ || Hammasini uch xonali qilamiz va taqqoslaymiz: nol butun olti yuz eng katta.
+
+@masala Qo'shish
+$4{,}7 + 0{,}38$ = ?
+A) $5{,}08$
+B) $4{,}45$
+C) $0{,}85$
+D) $5{,}8$
+= A
+@yechim
+$4{,}70 + 0{,}38$ || Vergul tagida vergul: to'rt butun yetmish.
+USTUN: 470+38 || To'rt yuz yetmish qo'shuv o'ttiz sakkiz — besh yuz sakkiz yuzdan bir.
+$5{,}08$ || Javob: besh butun yuzdan sakkiz.
+
+@masala Ko'paytirish
+$1{,}2 \cdot 0{,}5$ = ?
+A) $0{,}6$
+B) $6$
+C) $0{,}06$
+D) $1{,}7$
+= A
+@yechim
+$12 \cdot 5 = 60$ || Vergulsiz ko'paytiramiz: oltmish.
+$2$ ta xona: $0{,}60$ || Ko'paytuvchilarda jami ikkita kasr xonasi bor: nol butun oltmish, ya'ni nol butun olti.
+
+@masala Bo'lish
+$1{,}5 : 0{,}3$ = ?
+A) $5$
+B) $0{,}5$
+C) $50$
+D) $0{,}45$
+= A
+@yechim
+$15 : 3 = 5$ || Ikkalasini o'nga ko'paytiramiz: o'n besh bo'lingan uch — besh.
+@maslahat
+Birdan kichik songa bo'lganda javob bo'linuvchidan katta chiqadi.
+
+@esda
+| QOIDA: oxirgi nol qiymatni o'zgartirmaydi: $0{,}7 = 0{,}70$; ichkaridagi nol — o'zgartiradi
+| QOIDA: qo'shish/ayirishda vergul tagida vergul
+| QOIDA: ko'paytmada kasr xonalari qo'shiladi; bo'lishda bo'luvchi butun songa aylantiriladi
+O'nli kasr — maxraji o'nning darajasi bo'lgan oddiy kasrning qisqa yozuvi. Barcha qoidalar oddiy kasr qoidalaridan kelib chiqadi. Har doim javobni oldindan taxmin qiling va teskari amal bilan tekshiring.
+
+@test oson
+$0{,}4 + 0{,}25$ = ?
+A) $0{,}65$
+B) $0{,}29$
+C) $0{,}425$
+D) $6{,}5$
+= A
+B: Xonalar aralashgan: 0,4 = 0,40.
+? 0,40 + 0,25 = 0,65.
+
+@test oson
+$5 - 1{,}3$ = ?
+A) $3{,}7$
+B) $4{,}3$
+C) $3{,}3$
+D) $6{,}3$
+= A
+? 5,0 − 1,3 = 3,7.
+
+@test oson
+$0{,}8 \cdot 10$ = ?
+A) $8$
+B) $0{,}08$
+C) $80$
+D) $0{,}8$
+= A
+B: 10 ga bo'lishda shunday bo'lardi.
+? Vergul bir xona o'ngga: 8.
+
+@test oson
+$2{,}5 \cdot 0{,}4$ = ?
+A) $1$
+B) $10$
+C) $0{,}1$
+D) $2{,}9$
+= A
+? 25 · 4 = 100; ikki xona: 1,00 = 1.
+
+@test oson
+$3{,}6 : 0{,}6$ = ?
+A) $6$
+B) $0{,}6$
+C) $60$
+D) $2{,}16$
+= A
+B: Bo'luvchi birdan kichik — bo'linma bo'linuvchidan katta bo'ladi.
+? 36 : 6 = 6.
+
+@test oson
+$\frac{9}{100}$ o'nli kasr ko'rinishida:
+A) $0{,}09$
+B) $0{,}9$
+C) $9{,}00$
+D) $0{,}009$
+= A
+B: 0,9 — to'qqiz o'ndan bir.
+? Yuzdan birlar xonasi — verguldan keyin ikkinchi xona.
+
+@test o'rta
+Qaysi tenglik noto'g'ri?
+A) $3{,}05 = 3{,}5$
+B) $0{,}5 = 0{,}50$
+C) $1{,}2 = 1{,}200$
+D) $4 = 4{,}0$
+= A
+? 3,05 da 5 yuzdan bir, 3,5 da 5 o'ndan bir — sonlar har xil.
+
+@test o'rta
+$0{,}03 \cdot 0{,}2$ = ?
+A) $0{,}006$
+B) $0{,}06$
+C) $0{,}6$
+D) $0{,}0006$
+= A
+B: Kasr xonalari soni 2 + 1 = 3 bo'lishi kerak.
+? 3 · 2 = 6; uch xona: 0,006.
+
+@test o'rta
+$7{,}2 : 100$ = ?
+A) $0{,}072$
+B) $720$
+C) $0{,}72$
+D) $7{,}02$
+= A
+B: Bu 100 ga ko'paytirish natijasi.
+? Vergul ikki xona chapga.
+
+@test o'rta
+2,4 kg olma 3 ta xaltaga teng solindi. Har birida:
+A) $0{,}8$ kg
+B) $8$ kg
+C) $7{,}2$ kg
+D) $0{,}08$ kg
+= A
+? 24 : 3 = 8 o'ndan bir, ya'ni 0,8.
+
+@test qiyin
+Al-Koshiy «Hisob kaliti»ni qayerda yozgan?
+A) Samarqandda
+B) Bag'dodda
+C) Buxoroda
+D) Xivada
+= A
+? 1427-yil, Samarqand, Ulug'bek rasadxonasi.

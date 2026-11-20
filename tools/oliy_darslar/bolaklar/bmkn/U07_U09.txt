@@ -1,0 +1,541 @@
+### U07 | Geometriya elementlari: tushunchalar, xossalar va asoslash
+@kirish
+| [s]~1550 m.a.[/s] — Misr: Nil toshqinidan keyin yerni qayta o'lchash
+| «geo» — yer, «metreo» — o'lchayman
+| [s]~300 m.a.[/s] — Evklid, «Negizlar»: 13 kitob, 5 postulat — 2000 yil darslik
+| [k]~1020[/k] — Abu Rayhon Beruniy: Yer radiusini tog' cho'qqisidan o'lchadi
+Har yili Nil daryosi toshib, dalalar chegarasini yuvib ketardi. [1] Misrliklar yerni qayta-qayta o'lchashga majbur bo'lishgan — geometriya so'zining o'zi «yerni o'lchash» degani. [2] Lekin geometriyani fan qilgan Evklid bo'ldi: u «Negizlar» kitobida bir nechta oddiy postulatdan yuzlab teoremani mantiqiy isbotlab chiqardi. Bu kitob ikki ming yil davomida darslik bo'lib keldi. [3] Bizning bobokalonimiz Abu Rayhon Beruniy esa geometriya yordamida tog' cho'qqisidan ufqqa qarab, butun Yer radiusini hisoblagan. Bugun geometriya qanday tuzilganini — tushuncha, ta'rif, xossa va alomat nima ekanini ko'ramiz.
+
+@qadam Ta'riflanmaydigan tushunchalar
+| SXEMA: Asosiy tushunchalar > nuqta | to'g'ri chiziq | tekislik | «orasida yotadi» | «tegishli»
+| CHIZ: nuqta A(0;0) B(4;0) C(6;0); kesma AC
+| QOIDA: har bir ta'rif oldingi tushunchalarga tayanadi — boshlang'ichlari ta'riflanmaydi
+Har qanday so'zni boshqa so'zlar bilan izohlaymiz. Lekin bu zanjir cheksiz davom eta olmaydi — qayerdadir to'xtash kerak. [1] Geometriyada nuqta, to'g'ri chiziq, tekislik ta'riflanmaydi: ular boshlang'ich tushunchalar. Ularning xossalari aksiomalarda beriladi. [2] Masalan: ikki nuqtadan bitta va faqat bitta to'g'ri chiziq o'tadi. Uch nuqtadan biri qolgan ikkitasining orasida yotadi. [3] Qolgan barcha tushunchalar shulardan ta'riflanadi: kesma — ikki nuqta va ular orasidagi barcha nuqtalar.
+@tekshiruv Qaysi tushuncha ta'riflanmaydi? => nuqta | kesma | uchburchak | burchak
+
+@qadam Burchaklar va ularning turlari
+| CHIZ: nuqta O(0;0) A(5;0) B(3;4); kesma OA; kesma OB; burchak AOB
+| JADVAL: Burchak | Kattaligi ;; o'tkir | $0^\circ < \alpha < 90^\circ$ ;; to'g'ri | $90^\circ$ ;; o'tmas | $90^\circ < \alpha < 180^\circ$ ;; yoyiq | $180^\circ$
+| QOIDA: qo'shni burchaklar yig'indisi $180^\circ$; vertikal burchaklar teng
+Bir nuqtadan chiqqan ikki nur burchak hosil qiladi. [1] Chizmada AOB burchagi — uchi O nuqtada. [2] Kattaligiga qarab burchaklar o'tkir, to'g'ri, o'tmas va yoyiq bo'ladi. [3] Ikki to'g'ri chiziq kesishganda to'rtta burchak chiqadi: qo'shnilari yig'indisi bir yuz sakson gradus, qarama-qarshi — vertikal burchaklar esa teng. Nega teng? Ikkalasi ham bitta burchakka qo'shni — bir yuz saksondan bir xil son ayirilgan.
+@tekshiruv Qo'shni burchaklardan biri 70°. Ikkinchisi? => 110° | 70° | 20° | 290°
+
+@qadam Ta'rif, xossa va alomat — farqi nima?
+| JADVAL: Tur | Savol | Misol ;; ta'rif | nima deyiladi? | to'rt tomoni teng to'g'ri to'rtburchak — kvadrat ;; xossa | figura bo'lsa, nima bajariladi? | kvadratning diagonallari teng ;; alomat | nima bajarilsa, figura shu? | diagonallari teng parallelogramm — to'g'ri to'rtburchak
+| QOIDA: xossa: «figura $\Rightarrow$ belgi»; alomat: «belgi $\Rightarrow$ figura»
+Bu uch so'zni aralashtirish talabalar orasida eng ko'p uchraydigan xato. [1] Ta'rif yangi tushunchani nomlaydi. Xossa — figura berilgan bo'lsa, unda nima albatta bajarilishini aytadi. Alomat esa teskari yo'nalishda: qaysi belgilar bajarilsa, figura aynan shu ekanini aytadi. [2] Masalan, kvadratning diagonallari teng — bu xossa. Lekin diagonallari teng to'rtburchak har doim kvadrat emas — to'g'ri to'rtburchakning diagonallari ham teng! Demak xossani teskarisiga aylantirib, alomat qilib bo'lmaydi.
+@tekshiruv «Agar uchburchakda ikki burchak teng bo'lsa, u teng yonli» — bu? => alomat | xossa | ta'rif
+
+@qadam Ko'rinish dalil emas: asoslash tartibi
+| ZANJIR: Berilgan :: shartlar | Chizma :: belgilash | Tasdiq :: asos bilan | Xulosa :: isbotlandi
+| BELGILA: «chizmada teng ko'rinyapti» — asos emas!
+| QOIDA: har bir qadam ta'rif, aksioma yoki isbotlangan teorema bilan asoslanadi
+Chizmada ikki kesma teng ko'rinishi mumkin, lekin bu dalil emas — chizma noaniq bo'ladi. [1] Geometrik asoslash zanjir kabi tuziladi: berilganlar, chizma, har bir tasdiq va uning asosi, oxirida xulosa. [2] Har bir qadamga «nega?» degan savolga javob bo'lishi shart: bu ta'rif bo'yicha, bu vertikal burchaklar xossasi, bu teorema bo'yicha. [3] Boshlang'ich sinf o'qituvchisi uchun ham bu muhim: bola «ko'rinib turibdi» demasdan, «chunki» deb gapirishga o'rgansin.
+@tekshiruv Qaysi biri asoslash bo'la oladi? => vertikal burchaklar teng bo'lgani uchun | chizmada teng ko'ringani uchun | o'lchaganimda shunday chiqdi
+
+@misol Burchaklarni toping
+Ikki to'g'ri chiziq kesishganda hosil bo'lgan burchaklardan biri ikkinchisidan 40° katta. Barcha burchaklarni toping.
+@yechim
+$x + (x + 40^\circ) = 180^\circ$ || Bu ikki burchak qo'shni — yig'indisi bir yuz sakson gradus.
+$2x = 140^\circ \Rightarrow x = 70^\circ$ || Bir burchak yetmish gradus, ikkinchisi bir yuz o'n.
+$70^\circ, 110^\circ, 70^\circ, 110^\circ$ || Vertikal burchaklar teng — javob: yetmish va bir yuz o'n, har biri ikki martadan.
+
+@misol Xossa yoki alomat?
+«To'g'ri to'rtburchakning diagonallari teng» jumlasining teskarisi to'g'rimi?
+@yechim
+Teskarisi: «diagonallari teng to'rtburchak — to'g'ri to'rtburchak» || Shart va xulosaning o'rnini almashtiramiz.
+CHIZ: trapetsiya A(0;0) B(6;0) C(4;3) D(2;3); kesma AC; kesma BD || Teng yonli trapetsiyaning diagonallari ham teng, lekin u to'g'ri to'rtburchak emas.
+Teskarisi noto'g'ri || Demak bu jumla faqat xossa; alomat bo'lishi uchun qo'shimcha shart kerak — parallelogramm bo'lishi.
+
+@masala Vertikal burchak
+Ikki to'g'ri chiziq kesishganda bir burchak $35^\circ$. Unga vertikal burchak:
+A) $35^\circ$
+B) $145^\circ$
+C) $55^\circ$
+D) $325^\circ$
+= A
+@yechim
+Vertikal burchaklar teng || Vertikal burchaklar teng — o'ttiz besh gradus.
+
+@masala Burchak turi
+$120^\circ$ li burchak qanday burchak?
+A) o'tmas
+B) o'tkir
+C) to'g'ri
+D) yoyiq
+= A
+@yechim
+$90^\circ < 120^\circ < 180^\circ$ || To'qson va bir yuz sakson orasida — o'tmas burchak.
+
+@masala Qo'shni burchaklar
+Qo'shni burchaklar nisbati $1 : 2$. Kichigi:
+A) $60^\circ$
+B) $90^\circ$
+C) $45^\circ$
+D) $120^\circ$
+= A
+@yechim
+$x + 2x = 180^\circ$ || Yig'indi bir yuz sakson gradus.
+$x = 60^\circ$ || Kichigi oltmish, kattasi bir yuz yigirma.
+
+@esda
+| QOIDA: nuqta, to'g'ri chiziq, tekislik — ta'riflanmaydi; xossalari aksiomalarda
+| QOIDA: xossa: figura ⇒ belgi; alomat: belgi ⇒ figura
+| QOIDA: qo'shni burchaklar — $180^\circ$; vertikal burchaklar teng
+Geometriya — boshlang'ich tushunchalar va aksiomalardan mantiqiy chiqarilgan tizim. Chizma faqat yordamchi; har bir tasdiq asoslanishi kerak.
+
+@test oson
+Ikki nuqtadan nechta to'g'ri chiziq o'tadi?
+A) bitta
+B) ikkita
+C) cheksiz ko'p
+D) birorta ham
+= A
+? Bu aksioma: bitta va faqat bitta.
+
+@test oson
+$89^\circ$ li burchak:
+A) o'tkir
+B) to'g'ri
+C) o'tmas
+D) yoyiq
+= A
+? 89° < 90°.
+
+@test oson
+Qo'shni burchaklardan biri $130^\circ$. Ikkinchisi:
+A) $50^\circ$
+B) $130^\circ$
+C) $40^\circ$
+D) $230^\circ$
+= A
+? 180° − 130° = 50°.
+
+@test oson
+Vertikal burchaklar:
+A) teng
+B) yig'indisi $180^\circ$
+C) yig'indisi $90^\circ$
+D) doim to'g'ri
+= A
+B: Bu qo'shni burchaklar xossasi.
+? Ikkalasi ham bitta burchakka qo'shni.
+
+@test oson
+«Kvadratning hamma tomonlari teng» — bu:
+A) xossa
+B) alomat
+C) aksioma
+D) ta'riflanmaydigan tushuncha
+= A
+? Figura berilgan, unda nima bajarilishi aytilgan.
+
+@test o'rta
+Ikki to'g'ri chiziq kesishganda burchaklardan biri qolgan uchtasi yig'indisining yarmiga teng. U:
+A) $120^\circ$
+B) $90^\circ$
+C) $60^\circ$
+D) $180^\circ$
+= A
+? x = (360° − x)/2 ⇒ 3x = 360°.
+
+@test o'rta
+Qaysi jumla alomat?
+A) Ikki tomoni teng uchburchak — teng yonli
+B) Teng yonli uchburchakda asosdagi burchaklar teng
+C) Kvadratning diagonallari teng
+D) Rombning tomonlari teng
+= A
+? Belgi berilgan ⇒ figura turi aniqlanadi.
+
+@test o'rta
+Qaysi biri asoslash bo'la olmaydi?
+A) chizmada teng ko'rinadi
+B) ta'rif bo'yicha
+C) aksioma bo'yicha
+D) isbotlangan teorema bo'yicha
+= A
+? Chizma — dalil emas.
+
+@test o'rta
+Burchak bissektrisasi $32^\circ$ li ikki burchak hosil qildi. Burchak:
+A) $64^\circ$
+B) $16^\circ$
+C) $32^\circ$
+D) $148^\circ$
+= A
+? Bissektrisa burchakni teng ikkiga bo'ladi.
+
+@test o'rta
+«Geometriya» so'zining ma'nosi:
+A) yerni o'lchash
+B) sonlar ilmi
+C) shakllar rasmi
+D) osmon ilmi
+= A
+? geo — yer, metreo — o'lchayman.
+
+### U08 | Uchburchak va uning elementlari
+@kirish
+| [s]~600 m.a.[/s] — Fales piramidaning balandligini soya bilan o'lchadi
+| soya = bo'y bo'lgan payt: piramida soyasi = piramida balandligi
+| [s]Arximed[/s]: medianalar kesishgan nuqta — og'irlik markazi
+| [k]1765[/k] — Eyler: uchburchakning ajoyib nuqtalari bitta to'g'ri chiziqda
+Rivoyat qilishlaricha, yunon olimi Fales Misrga borganida, kohinlar undan piramidaning balandligini so'rashgan. [1] Fales tayoqni yerga qadab, uning soyasi bo'yiga teng bo'ladigan paytni kutdi. Aynan shu payt piramida soyasi ham uning balandligiga teng bo'ladi. U shunchaki soyani o'lchadi! [2] Bu o'xshash uchburchaklar g'oyasi. [3] Arximed esa uchburchak medianalari kesishgan nuqtada uchburchak muvozanatda turishini ko'rsatgan. Bugun uchburchakning ana shu «sirli» kesmalari — balandlik, mediana va bissektrisani o'rganamiz.
+
+@qadam Uchburchak va uning turlari
+| CHIZ: uchburchak A(0;0) B(6;0) C(2;4)
+| JADVAL: Tomonlari bo'yicha | Burchaklari bo'yicha ;; turli tomonli | o'tkir burchakli ;; teng yonli | to'g'ri burchakli ;; teng tomonli | o'tmas burchakli
+| QOIDA: $a < b + c$ — uchburchak tengsizligi
+Bir to'g'ri chiziqda yotmagan uch nuqta va ularni tutashtiruvchi kesmalar uchburchak hosil qiladi. [1] Uchburchaklar tomonlariga qarab turli tomonli, teng yonli va teng tomonli bo'ladi; burchaklariga qarab o'tkir, to'g'ri va o'tmas burchakli. [2] Har qanday uch kesmadan uchburchak yasab bo'lmaydi: har bir tomon qolgan ikkitasining yig'indisidan kichik bo'lishi shart. Bir, ikki va besh santimetrlik cho'plardan uchburchak chiqmaydi — kalta ikkitasi bir-biriga yetmaydi.
+@tekshiruv 3, 4, 8 tomonli uchburchak bormi? => yo'q, 8 > 3 + 4 | ha | faqat to'g'ri burchakli
+
+@qadam Burchaklar yig'indisi nega $180^\circ$?
+| CHIZ: uchburchak A(0;0) B(6;0) C(2;4); kesma DE D(-1;4) E(6;4)
+| C uchidan $AB$ ga parallel to'g'ri chiziq: ichki almashinuvchi burchaklar teng
+| QOIDA: $\angle A + \angle B + \angle C = 180^\circ$
+| QOIDA: tashqi burchak $=$ unga qo'shni bo'lmagan ikki ichki burchak yig'indisi
+Uchburchak burchaklari yig'indisi har doim bir yuz sakson gradus. Nega? [1] C uchidan AB ga parallel to'g'ri chiziq o'tkazamiz. [2] C uchida uchta burchak yonma-yon turadi: o'rtadagisi C burchakning o'zi, chetdagilari esa parallel to'g'ri chiziqlar xossasiga ko'ra A va B burchaklarga teng. Uchtasi birgalikda yoyiq burchak — bir yuz sakson gradus. [3] Bundan tashqi burchak xossasi ham chiqadi. Qog'oz uchburchakning burchaklarini yirtib, yonma-yon qo'ysangiz, tekis chiziq hosil bo'ladi — buni darsda bolalar bilan albatta qiling.
+@tekshiruv Uchburchakda ikki burchak 50° va 60°. Uchinchisi? => 70° | 110° | 80° | 90°
+
+@qadam Balandlik
+| CHIZ: uchburchak A(0;0) B(6;0) C(2;4); nuqta H(2;0); balandlik CH
+| QOIDA: balandlik — uchdan qarshi tomon (yoki uning davomi)ga tushirilgan perpendikulyar
+| O'tmas burchakli uchburchakda balandlik asosi tomonning davomiga tushadi
+Balandlik — uchdan qarama-qarshi tomonga tushirilgan perpendikulyar. [1] Chizmada C uchidan AB ga balandlik tushirilgan, uning asosi H nuqta. [2] O'tmas burchakli uchburchakda ehtiyot bo'ling: o'tkir burchak uchidan tushirilgan balandlik uchburchak tashqarisiga, tomonning davomiga tushadi. To'g'ri burchakli uchburchakda esa ikki katet bir-biriga balandlik. [3] Balandlik yuz formulasida kerak: yuz — asos ko'paytirilgan balandlikning yarmi.
+@tekshiruv To'g'ri burchakli uchburchakda katet — boshqa katetga tushirilgan …? => balandlik | mediana | bissektrisa
+
+@qadam Mediana va bissektrisa
+| CHIZ: uchburchak A(0;0) B(6;0) C(2;4); nuqta M(3;0); mediana CM
+| QOIDA: mediana — uchni qarshi tomon o'rtasi bilan tutashtiradi; medianalar $2:1$ nisbatda bo'linadi
+| QOIDA: bissektrisa — burchakni teng ikkiga bo'ladi
+| Teng yonli uchburchakda asosga tushirilgan balandlik = mediana = bissektrisa
+Mediana uchni qarama-qarshi tomonning o'rtasi bilan tutashtiradi. [1] Chizmada M — AB ning o'rtasi, CM — mediana. Uchala mediana bitta nuqtada kesishadi va bu nuqta har bir medianani uchidan hisoblaganda ikki ga bir nisbatda bo'ladi. Bu — og'irlik markazi: karton uchburchakni shu nuqtadan igna uchiga qo'ysangiz, muvozanatda turadi. [2] Bissektrisa burchakni teng ikkiga bo'ladi. [3] Umumiy uchburchakda bu uch kesma har xil. Faqat teng yonli uchburchakda asosga tushirilgan balandlik bir vaqtda mediana ham, bissektrisa ham bo'ladi.
+@tekshiruv Mediana uzunligi 9. Og'irlik markazi uchidan qancha masofada? => 6 | 3 | 4,5 | 9
+
+@qadam Perimetr va yuz
+| QOIDA: $P = a + b + c$; $\;S = \frac{1}{2}a\,h_a$
+| CHIZ: uchburchak A(0;0) B(6;0) C(2;4); nuqta H(2;0); balandlik CH
+| $S = \frac{1}{2}\cdot 6 \cdot 4 = 12$
+| To'g'ri burchakli: $S = \frac{1}{2}ab$ (katetlar)
+Uchburchak yuzi — asos va unga tushirilgan balandlik ko'paytmasining yarmi. [1] Nega yarmi? Uchburchakni xuddi shunday ikkinchisi bilan to'ldirsak, parallelogramm hosil bo'ladi, uning yuzi esa asos ko'paytirilgan balandlik. [2] Chizmadagi uchburchakda asos olti, balandlik to'rt — yuz o'n ikki. [3] Eng ko'p xato: asosni ixtiyoriy yon tomonga ko'paytirish. Balandlik aynan shu asosga perpendikulyar bo'lishi kerak.
+@tekshiruv Katetlari 6 va 8 bo'lgan to'g'ri burchakli uchburchak yuzi? => 24 | 48 | 14 | 10
+
+@misol Teng yonli uchburchak
+Teng yonli uchburchakda uchidagi burchak $40^\circ$. Asosdagi burchaklarni toping.
+@yechim
+$180^\circ - 40^\circ = 140^\circ$ || Asosdagi ikki burchak yig'indisi: bir yuz qirq gradus.
+$140^\circ : 2 = 70^\circ$ || Ular teng — har biri yetmish gradus.
+
+@misol Yuz va balandlik
+Uchburchak yuzi 30 cm², asosi 12 cm. Shu asosga tushirilgan balandlikni toping.
+@yechim
+$S = \frac{1}{2}a h \Rightarrow h = \frac{2S}{a}$ || Formuladan balandlikni ifodalaymiz.
+$h = \frac{60}{12} = 5$ cm || Ikki ko'paytirilgan o'ttiz — oltmish, o'n ikkiga bo'lsak, besh santimetr.
+
+@masala Burchaklar yig'indisi
+To'g'ri burchakli uchburchakda o'tkir burchaklardan biri $35^\circ$. Ikkinchisi:
+A) $55^\circ$
+B) $145^\circ$
+C) $65^\circ$
+D) $45^\circ$
+= A
+@yechim
+$90^\circ - 35^\circ = 55^\circ$ || O'tkir burchaklar yig'indisi to'qson gradus.
+
+@masala Uchburchak tengsizligi
+Qaysi uchlikdan uchburchak yasash mumkin?
+A) 4, 5, 8
+B) 2, 3, 6
+C) 1, 1, 3
+D) 3, 4, 7
+= A
+@yechim
+$8 < 4 + 5$ || Eng uzun tomon qolgan ikkitasining yig'indisidan kichik: sakkiz kichik to'qqiz.
+$7 = 3 + 4$ || Uch, to'rt, yetti — tekis kesmaga aylanadi, uchburchak chiqmaydi.
+
+@masala Yuz
+Asosi 10, balandligi 7 bo'lgan uchburchak yuzi:
+A) $35$
+B) $70$
+C) $17$
+D) $140$
+= A
+@yechim
+$\frac{1}{2}\cdot 10 \cdot 7 = 35$ || Asos ko'paytirilgan balandlikning yarmi: o'ttiz besh.
+
+@esda
+| QOIDA: $\angle A + \angle B + \angle C = 180^\circ$; har tomon $<$ qolgan ikkisi yig'indisi
+| QOIDA: balandlik ⊥; mediana — o'rtaga; bissektrisa — burchak yarmi; medianalar $2:1$
+| QOIDA: $S = \frac{1}{2}a h_a$
+Uchburchakning har bir kesmasi o'z vazifasini bajaradi: balandlik — perpendikulyar, mediana — o'rtaga, bissektrisa — burchakni teng ikkiga. Ular faqat teng yonli uchburchakda asosga nisbatan ustma-ust tushadi.
+
+@test oson
+Uchburchakda ikki burchak $70^\circ$ va $80^\circ$. Uchinchisi:
+A) $30^\circ$
+B) $150^\circ$
+C) $10^\circ$
+D) $40^\circ$
+= A
+? 180° − 150° = 30°.
+
+@test oson
+Uchburchak medianasi:
+A) uchni qarshi tomon o'rtasi bilan tutashtiradi
+B) burchakni teng ikkiga bo'ladi
+C) qarshi tomonga perpendikulyar
+D) ikki tomon o'rtasini tutashtiradi
+= A
+B: Bu bissektrisa.
+? Mediana — «o'rta»ga boradi.
+
+@test oson
+Katetlari 3 va 4 bo'lgan uchburchak yuzi:
+A) $6$
+B) $12$
+C) $7$
+D) $5$
+= A
+? ½·3·4 = 6.
+
+@test oson
+Teng tomonli uchburchakning har bir burchagi:
+A) $60^\circ$
+B) $90^\circ$
+C) $45^\circ$
+D) $180^\circ$
+= A
+? 180° : 3.
+
+@test oson
+Qaysi uchlikdan uchburchak chiqmaydi?
+A) 2, 3, 5
+B) 3, 4, 5
+C) 5, 5, 5
+D) 4, 6, 7
+= A
+? 5 = 2 + 3 — tengsizlik buzilgan.
+
+@test o'rta
+Tashqi burchak $120^\circ$, unga qo'shni bo'lmagan ichki burchaklardan biri $50^\circ$. Ikkinchisi:
+A) $70^\circ$
+B) $60^\circ$
+C) $10^\circ$
+D) $130^\circ$
+= A
+? Tashqi burchak = ikki ichki burchak yig'indisi: 120° − 50°.
+
+@test o'rta
+Mediana 12 ga teng. Og'irlik markazidan tomon o'rtasigacha masofa:
+A) $4$
+B) $8$
+C) $6$
+D) $3$
+= A
+B: 8 — uchidan og'irlik markazigacha.
+? 2 : 1 nisbat: 12 = 8 + 4.
+
+@test o'rta
+Teng yonli uchburchakning asosdagi burchagi $65^\circ$. Uchidagi burchak:
+A) $50^\circ$
+B) $65^\circ$
+C) $115^\circ$
+D) $25^\circ$
+= A
+? 180° − 2·65°.
+
+@test o'rta
+Yuzi 24, asosi 8 bo'lgan uchburchak balandligi:
+A) $6$
+B) $3$
+C) $12$
+D) $16$
+= A
+B: Yarim olishni unutmang: h = 2S/a.
+? 48 : 8 = 6.
+
+@test o'rta
+O'tmas burchakli uchburchakda o'tkir burchak uchidan tushirilgan balandlik asosi qayerda?
+A) tomonning davomida
+B) tomon o'rtasida
+C) uchburchak ichida
+D) uchida
+= A
+? O'tmas burchak tomoni tashqariga «ochilgan».
+
+### U09 | Uchburchaklar tengligining alomatlari
+@kirish
+| [s]Evklid, I kitob[/s]: 4-taklif (TBT), 8-taklif (TTT), 26-taklif (BTB)
+| [k]Fales[/k]: qirg'oqdan kemagacha masofani teng uchburchak bilan topgan (Prokl rivoyati)
+| QOIDA: 6 ta elementni emas, 3 tasini tekshirish yetarli
+Ikki uchburchak teng ekanini bilish uchun uchta tomon va uchta burchakni — oltita narsani tekshirish kerakmi? [1] Yo'q! Evklid «Negizlar»ning birinchi kitobida isbotlagan: ma'lum uchta element mos ravishda teng bo'lsa, qolganlari ham albatta teng. [2] Qadimgi rivoyatga ko'ra, Fales dengizdagi kemagacha bo'lgan masofani shunday topgan: qirg'oqda teng uchburchak yasab, dengizga borolmaydigan tomonni quruqlikdagi tomon bilan o'lchagan. Bugun shu uchta alomatni va ularni isbotda qanday ishlatishni ko'ramiz.
+
+@qadam Teng uchburchaklar nima?
+| CHIZ: uchburchak A(0;0) B(4;0) C(1;3); uchburchak D(6;0) E(10;0) F(7;3)
+| $\triangle ABC = \triangle DEF$: $AB = DE$, $BC = EF$, $AC = DF$, $\angle A = \angle D$, …
+| QOIDA: ustma-ust qo'yganda to'liq ustma-ust tushadigan uchburchaklar teng
+Ikki uchburchak teng, agar ularni ustma-ust qo'yganda to'liq ustma-ust tushsa. [1] Chizmadagi ikki uchburchakni surib ustma-ust qo'yish mumkin. [2] Teng uchburchaklarda mos tomonlar ham, mos burchaklar ham teng. Yozuvda tartib muhim: ABC uchburchak DEF ga teng desak, A — D ga, B — E ga, C — F ga mos keladi. Tartibni buzsak, noto'g'ri tomonlarni tenglashtirib qo'yamiz.
+@tekshiruv △ABC = △KLM bo'lsa, BC qaysi tomonga teng? => LM | KL | KM
+
+@qadam Uchta alomat
+| JADVAL: Alomat | Nima teng bo'lishi kerak ;; 1. TBT | ikki tomon va ular orasidagi burchak ;; 2. BTB | bir tomon va unga yopishgan ikki burchak ;; 3. TTT | uchta tomon
+| QOIDA: burchak tomonlar ORASIDA (TBT), tomon burchaklar ORASIDA (BTB) bo'lishi shart
+Birinchi alomat: ikki tomon va ular orasidagi burchak. Ikki tayoqni bir xil burchak ostida biriktirsangiz, ularning uchlarini tutashtiruvchi uchinchi tomon bir xil chiqadi — boshqacha bo'lishi mumkin emas. [1] Ikkinchi alomat: bir tomon va unga yopishgan ikki burchak. Uchinchi alomat: uchta tomon — uchta cho'pdan faqat bitta uchburchak yig'iladi. Shuning uchun uchburchak qattiq shakl, ko'priklar va minoralar uchburchaklardan quriladi. [2] Muhim so'z — «orasida». Burchak tomonlar orasida bo'lmasa, birinchi alomat ishlamaydi.
+@tekshiruv Uchta tomoni mos teng uchburchaklar teng — qaysi alomat? => TTT | TBT | BTB
+
+@qadam Yetarli bo'lmagan shartlar
+| CHIZ: uchburchak A(0;0) B(2;0) C(1;2); uchburchak D(4;0) E(8;0) F(6;4)
+| Uch burchak teng, lekin o'lchami har xil — teng emas!
+| BELGILA: BBB alomat emas; «ikki tomon va tashqaridagi burchak» ham alomat emas
+| QOIDA: kamida bitta tomon teng bo'lishi shart
+Uchta burchagi teng ikki uchburchakni chizdik — ular bir xil shaklda, lekin biri kattaroq. [1] Bu uchburchaklar o'xshash, lekin teng emas. Shuning uchun uchta burchakning tengligi alomat bo'la olmaydi — kamida bitta tomon kerak. [2] Ikki tomon va ulardan biriga qarshi yotgan burchak ham har doim yetarli emas: bunday ma'lumot bilan ikki xil uchburchak yasash mumkin. Bu xatoni talabalar juda ko'p qiladi.
+@tekshiruv Uchta burchagi mos teng uchburchaklar har doim tengmi? => yo'q | ha | faqat to'g'ri burchakli bo'lsa
+
+@qadam Alomatni isbotda ishlatish
+| CHIZ: uchburchak A(0;0) B(6;0) C(3;4); nuqta M(3;0); kesma CM
+| ZANJIR: $AC = BC$ :: berilgan | $AM = BM$ :: M — o'rta | $CM$ — umumiy :: | $\triangle ACM = \triangle BCM$ :: TTT
+| QOIDA: teng uchburchaklardan mos elementlar tengligi kelib chiqadi
+Teng yonli uchburchakda asosdagi burchaklar teng ekanini isbotlaymiz. [1] Uchni asos o'rtasi bilan tutashtiramiz. Ikki uchburchak hosil bo'ldi. [2] Ularda yon tomonlar teng — berilgan; asos yarmlari teng — M o'rta nuqta; CM — umumiy tomon. Uchinchi alomat bo'yicha uchburchaklar teng. [3] Demak mos burchaklar ham teng: A burchak B burchakka teng. Qo'shimcha natija: CM to'g'ri chiziq asosga perpendikulyar va C burchakni teng ikkiga bo'ladi. Isbot doimo shunday: teng uchburchak topiladi, keyin undan kerakli tenglik olinadi.
+@tekshiruv Ikki uchburchakda umumiy tomon bo'lsa, u tenglikda nima beradi? => bitta teng tomon | ikki teng burchak | hech narsa
+
+@misol Qaysi alomat?
+$AB = DE = 5$, $\angle B = \angle E = 60^\circ$, $BC = EF = 7$. Uchburchaklar tengmi?
+@yechim
+$\angle B$ — $AB$ va $BC$ orasida || B burchak AB va BC tomonlar orasida yotadi. E burchak ham DE va EF orasida.
+TBT || Ikki tomon va ular orasidagi burchak teng — birinchi alomat.
+$\triangle ABC = \triangle DEF$ || Uchburchaklar teng, demak AC ham DF ga teng.
+
+@misol Fales usuli
+Daryo kengligini o'lchash uchun qirg'oqda $AB = 40$ m, $\angle A = \angle A_1$, $\angle B = \angle B_1$ bo'lgan teng uchburchak yasaldi. Narigi qirg'oqdagi masofaga mos quruqlikdagi kesma 65 m. Daryo kengligi?
+@yechim
+BTB || Bir tomon va unga yopishgan ikki burchak teng — ikkinchi alomat.
+Mos tomonlar teng || Teng uchburchaklarda mos tomonlar teng.
+$65$ m || Daryo kengligi oltmish besh metr — suvga tushmasdan o'lchadik.
+
+@masala Alomatni toping
+$AB = KL$, $\angle A = \angle K$, $\angle B = \angle L$. Uchburchaklar tengligi qaysi alomat bo'yicha?
+A) BTB
+B) TBT
+C) TTT
+D) teng emas
+= A
+@yechim
+$AB$ — $\angle A$ va $\angle B$ ga yopishgan || Tomon va unga yopishgan ikki burchak — ikkinchi alomat.
+
+@masala Yetarlimi?
+Ikki uchburchakda uchta burchak mos teng. Ular:
+A) teng bo'lmasligi mumkin
+B) albatta teng
+C) albatta teng emas
+D) teng yonli
+= A
+@yechim
+Bir xil shakl, har xil o'lcham || Burchaklar shaklni belgilaydi, o'lchamni emas. Kamida bitta tomon kerak.
+
+@masala Perimetr
+$\triangle ABC = \triangle MNK$, $AB = 4$, $BC = 6$, $AC = 5$. $\triangle MNK$ perimetri:
+A) $15$
+B) $10$
+C) $30$
+D) aniqlab bo'lmaydi
+= A
+@yechim
+Mos tomonlar teng || Teng uchburchaklarda tomonlar bir xil: to'rt, olti, besh.
+$4 + 6 + 5 = 15$ || Perimetr o'n besh.
+
+@esda
+| QOIDA: TBT — ikki tomon va ORASIDAGI burchak
+| QOIDA: BTB — tomon va unga YOPISHGAN ikki burchak; TTT — uch tomon
+| QOIDA: BBB — alomat emas (o'xshashlik)
+Uchburchaklar tengligi uchun oltita elementdan to'g'ri tanlangan uchtasi yetarli. Isbotda avval teng uchburchaklar topiladi, so'ng mos elementlarning tengligi xulosa qilinadi.
+
+@test oson
+Ikki tomon va ular orasidagi burchak teng — bu:
+A) TBT
+B) BTB
+C) TTT
+D) BBB
+= A
+? Tomon–Burchak–Tomon.
+
+@test oson
+Qaysi biri tenglik alomati emas?
+A) uchta burchak teng
+B) uchta tomon teng
+C) TBT
+D) BTB
+= A
+? Uchta burchak — faqat o'xshashlik.
+
+@test oson
+$\triangle ABC = \triangle DEF$ bo'lsa, $\angle C$ qaysi burchakka teng?
+A) $\angle F$
+B) $\angle D$
+C) $\angle E$
+D) $\angle A$
+= A
+? Tartib bo'yicha: C ↔ F.
+
+@test oson
+Uchta cho'pdan nechta har xil uchburchak yasash mumkin?
+A) bitta
+B) ikkita
+C) cheksiz ko'p
+D) uchta
+= A
+? TTT alomati: uchburchak bir qiymatli aniqlanadi.
+
+@test oson
+Teng uchburchaklarda mos tomonlar:
+A) teng
+B) proporsional, lekin har xil
+C) har doim har xil
+D) faqat bittasi teng
+= A
+? Ta'rif bo'yicha ustma-ust tushadi.
+
+@test o'rta
+$AB = DE$, $AC = DF$, $\angle B = \angle E$. Bu ma'lumot tenglik uchun:
+A) har doim yetarli emas
+B) TBT bo'yicha yetarli
+C) TTT bo'yicha yetarli
+D) BTB bo'yicha yetarli
+= A
+B: B burchak AB va AC orasida emas.
+? Burchak berilgan tomonlar orasida emas.
+
+@test o'rta
+Teng yonli uchburchakda asos o'rtasiga tushirilgan mediana:
+A) balandlik ham, bissektrisa ham
+B) faqat mediana
+C) faqat balandlik
+D) yon tomonga teng
+= A
+? Teng uchburchaklar (TTT)dan kelib chiqadi.
+
+@test o'rta
+$\triangle ABC = \triangle MNK$, $\angle A = 50^\circ$, $\angle N = 70^\circ$. $\angle K$ = ?
+A) $60^\circ$
+B) $50^\circ$
+C) $70^\circ$
+D) $120^\circ$
+= A
+? ∠M = 50°, ∠N = 70°, ∠K = 180° − 120°.
+
+@test o'rta
+Kvadratning diagonali uni qanday uchburchaklarga bo'ladi?
+A) ikki teng uchburchakka
+B) teng bo'lmagan uchburchaklarga
+C) to'rtta uchburchakka
+D) teng tomonli uchburchaklarga
+= A
+? TTT: tomonlar teng, diagonal umumiy.
+
+@test o'rta
+Isbotda «umumiy tomon» nimani beradi?
+A) bitta teng tomon juftligini
+B) ikkita teng burchakni
+C) uchburchaklar tengligini darhol
+D) hech narsani
+= A
+? Umumiy tomon ikkala uchburchakda bir xil.

@@ -1,0 +1,357 @@
+### U10 | To'rtburchaklar va kvadrat. Aylana va doira
+@kirish
+| [s]Arximed[/s], ~250 m.a.: 96 burchakli ko'pburchak bilan $3\frac{10}{71} < \pi < 3\frac{1}{7}$
+| [s]1424, Samarqand[/s] — al-Koshiy: $\pi$ ni 16 o'nli xona aniq hisobladi
+| $\pi = 3{,}1415926535897932\ldots$
+Har qanday aylananing uzunligini diametriga bo'lsangiz, bir xil son chiqadi — pi. [1] Arximed aylanaga to'qson olti burchakli ko'pburchakni ichki va tashqi chizib, pi uch butun yetmish birdan o'n bilan uch butun yettidan bir orasida ekanini isbotladi. [2] Samarqandlik al-Koshiy esa sakkiz yuz milliondan ortiq tomonli ko'pburchak bilan hisoblab, pi ni o'n olti o'nli xona aniqlikda topdi — bu rekord yuz yetmish yildan ko'proq davom etdi. [3] Bugun to'rtburchaklar va doirani o'rganamiz: perimetr bilan yuz nega har xil narsa ekanini va pi qayerdan kelishini ko'ramiz.
+
+@qadam To'rtburchaklar oilasi
+| SXEMA: To'rtburchak > parallelogramm | trapetsiya | to'g'ri to'rtburchak | romb | kvadrat
+| CHIZ: to'g'ri to'rtburchak A(0;0) B(6;0) C(6;3) D(0;3); kesma AC; kesma BD
+| QOIDA: kvadrat — ham to'g'ri to'rtburchak, ham romb
+| QOIDA: to'rtburchak ichki burchaklari yig'indisi $360^\circ$
+To'rtburchaklar katta oila. [1] Qarama-qarshi tomonlari juft-juft parallel bo'lsa — parallelogramm. Uning burchaklari to'g'ri bo'lsa — to'g'ri to'rtburchak, tomonlari teng bo'lsa — romb. Ikkalasi ham bajarilsa — kvadrat. [2] To'g'ri to'rtburchakning diagonallari teng va kesishish nuqtasida teng ikkiga bo'linadi. [3] Har qanday to'rtburchakni diagonal ikki uchburchakka bo'ladi, shuning uchun ichki burchaklar yig'indisi uch yuz oltmish gradus. Kvadrat — to'g'ri to'rtburchakning xususiy holi. «Kvadrat to'g'ri to'rtburchak emas» deyish xato.
+@tekshiruv Kvadrat to'g'ri to'rtburchakmi? => ha, xususiy holi | yo'q | faqat ba'zan
+
+@qadam Perimetr va yuz — har xil narsa
+| CHIZ: to'g'ri to'rtburchak A(0;0) B(8;0) C(8;2) D(0;2); kvadrat E(10;0) F(15;0) G(15;5) H(10;5)
+| $2\times 8$: $P = 20$, $S = 16$ $\qquad 5\times 5$: $P = 20$, $S = 25$
+| QOIDA: $P = 2(a + b)$, $S = ab$; kvadrat: $P = 4a$, $S = a^2$
+Ikki figura: ikki ga sakkiz to'g'ri to'rtburchak va tomoni besh bo'lgan kvadrat. [1] Ikkalasining perimetri yigirma — bir xil uzunlikdagi to'siq bilan o'ralgan. Lekin yuzlari har xil: o'n olti va yigirma besh. [2] Perimetr — chegara uzunligi, chiziqli birlikda o'lchanadi. Yuz — ichki soha, kvadrat birlikda o'lchanadi. [3] Qiziq fakt: bir xil perimetrli to'g'ri to'rtburchaklar ichida eng katta yuz kvadratda bo'ladi. Shuning uchun dehqon bir xil uzunlikdagi devor bilan eng katta tomorqani kvadrat shaklida o'raydi.
+@tekshiruv Tomoni 7 bo'lgan kvadrat yuzi? => 49 | 28 | 14 | 21
+
+@qadam Aylana va doira
+| CHIZ: aylana O(0;0) r=3; nuqta A(3;0); kesma OA
+| QOIDA: aylana — markazdan bir xil masofadagi nuqtalar; doira — aylana va uning ichi
+| $d = 2r$ — diametr
+| QOIDA: $\pi = \frac{C}{d} \approx 3{,}14$
+Aylana — tekislikda bir nuqtadan, markazdan bir xil masofada yotgan barcha nuqtalar. Bu masofa radius. [1] Aylana — chiziq, doira esa aylana bilan chegaralangan butun soha. Tarelkaning cheti — aylana, tarelkaning o'zi — doira. [2] Diametr — ikki radius. [3] Har qanday aylana uzunligining diametrga nisbati bir xil — pi soni, taxminan uch butun yuzdan o'n to'rt. Buni o'zingiz tekshiring: piyolani ip bilan o'rang, ipni chizg'ich bilan o'lchab, diametrga bo'ling.
+@tekshiruv Diametr 10 bo'lsa, radius? => 5 | 20 | 10 | 3,14
+
+@qadam Aylana uzunligi va doira yuzi
+| QOIDA: $C = 2\pi r$
+| DOIRA_KASR: 16/16
+| Doirani 16 bo'lakka bo'lib, «arra» qilib teramiz: bo'yi $\pi r$, eni $r$
+| QOIDA: $S = \pi r^2$
+Aylana uzunligi pi ko'paytirilgan diametr, ya'ni ikki pi r. [1] Doira yuzini qanday topamiz? [2] Doirani o'n olti bo'lakka kesamiz va bo'laklarni bir yuqoriga, bir pastga qarab yonma-yon teramiz. [3] Deyarli to'g'ri to'rtburchak chiqadi: bo'yi aylananing yarmi — pi r, eni — radius. Bo'laklar qancha mayda bo'lsa, shakl shuncha to'g'ri to'rtburchakka yaqin. [4] Yuz — pi r ko'paytirilgan r, ya'ni pi r kvadrat. Eng ko'p xato: diametr berilganda uni radius o'rniga qo'yish.
+@tekshiruv r = 10 bo'lsa, doira yuzi (π ≈ 3,14)? => 314 | 62,8 | 31,4 | 628
+
+@misol Bog' yo'lkasi
+Radiusi 5 m bo'lgan doira shaklidagi gulzor atrofiga to'siq qo'yiladi. To'siq uzunligi va gulzor yuzi ($\pi \approx 3{,}14$)?
+@yechim
+$C = 2\pi r = 2 \cdot 3{,}14 \cdot 5 = 31{,}4$ m || To'siq — aylana uzunligi: o'ttiz bir butun o'ndan to'rt metr.
+$S = \pi r^2 = 3{,}14 \cdot 25 = 78{,}5$ m² || Gulzor yuzi — doira yuzi: yetmish sakkiz butun o'ndan besh kvadrat metr.
+
+@misol Diametr berilgan
+Diametri 8 cm bo'lgan doira yuzini toping ($\pi \approx 3{,}14$).
+@yechim
+$r = 8 : 2 = 4$ cm || Avval radius: to'rt santimetr.
+$S = 3{,}14 \cdot 16 = 50{,}24$ cm² || Pi ko'paytirilgan o'n olti: ellik butun yuzdan yigirma to'rt.
+
+@masala Kvadrat
+Perimetri 36 cm bo'lgan kvadrat yuzi:
+A) $81$ cm²
+B) $36$ cm²
+C) $144$ cm²
+D) $9$ cm²
+= A
+@yechim
+$a = 36 : 4 = 9$ || Tomon — to'qqiz santimetr.
+$S = 9^2 = 81$ || Yuz sakson bir kvadrat santimetr.
+
+@masala Aylana uzunligi
+$r = 3$ cm, $\pi \approx 3{,}14$. Aylana uzunligi:
+A) $18{,}84$ cm
+B) $28{,}26$ cm
+C) $9{,}42$ cm
+D) $6{,}28$ cm
+= A
+@yechim
+$2 \cdot 3{,}14 \cdot 3 = 18{,}84$ || Ikki pi r: o'n sakkiz butun yuzdan sakson to'rt.
+
+@masala To'rtburchak burchagi
+To'rtburchakning uch burchagi $80^\circ$, $90^\circ$, $100^\circ$. To'rtinchisi:
+A) $90^\circ$
+B) $80^\circ$
+C) $110^\circ$
+D) $270^\circ$
+= A
+@yechim
+$360^\circ - 270^\circ = 90^\circ$ || Uch yuz oltmishdan uchta burchak yig'indisini ayiramiz.
+
+@esda
+| QOIDA: to'g'ri to'rtburchak: $P = 2(a + b)$, $S = ab$; kvadrat: $S = a^2$
+| QOIDA: $C = 2\pi r = \pi d$; $\;S = \pi r^2$
+| QOIDA: perimetr — chiziqli birlik; yuz — kvadrat birlik
+Perimetr va yuzni aralashtirmang: biri chegara, ikkinchisi ichki soha. Doira formulalarida doim avval radiusni toping.
+
+@test oson
+Tomonlari 4 va 6 bo'lgan to'g'ri to'rtburchak yuzi:
+A) $24$
+B) $20$
+C) $10$
+D) $48$
+= A
+B: Bu perimetr.
+? S = 4 · 6.
+
+@test oson
+Tomonlari 4 va 6 bo'lgan to'g'ri to'rtburchak perimetri:
+A) $20$
+B) $24$
+C) $10$
+D) $12$
+= A
+? 2(4 + 6) = 20.
+
+@test oson
+Radius 6 bo'lsa, diametr:
+A) $12$
+B) $3$
+C) $36$
+D) $18{,}84$
+= A
+? d = 2r.
+
+@test oson
+To'rtburchak ichki burchaklari yig'indisi:
+A) $360^\circ$
+B) $180^\circ$
+C) $540^\circ$
+D) $90^\circ$
+= A
+? Diagonal uni ikki uchburchakka bo'ladi: 2 · 180°.
+
+@test oson
+Doira yuzi formulasi:
+A) $\pi r^2$
+B) $2\pi r$
+C) $\pi d^2$
+D) $2r^2$
+= A
+B: Bu aylana uzunligi.
+? S = πr².
+
+@test o'rta
+$r = 2$, $\pi \approx 3{,}14$. Doira yuzi:
+A) $12{,}56$
+B) $6{,}28$
+C) $3{,}14$
+D) $25{,}12$
+= A
+? 3,14 · 4.
+
+@test o'rta
+Kvadrat yuzi 64 cm². Perimetri:
+A) $32$ cm
+B) $16$ cm
+C) $64$ cm
+D) $8$ cm
+= A
+? a = 8, P = 4 · 8.
+
+@test o'rta
+Diametri 20 cm g'ildirak bir aylanishda qancha yuradi ($\pi \approx 3{,}14$)?
+A) $62{,}8$ cm
+B) $31{,}4$ cm
+C) $314$ cm
+D) $125{,}6$ cm
+= A
+D: Radius o'rniga diametr qo'yilgan.
+? C = πd = 3,14 · 20.
+
+@test o'rta
+Qaysi tasdiq to'g'ri?
+A) har bir kvadrat — romb
+B) har bir romb — kvadrat
+C) har bir to'g'ri to'rtburchak — kvadrat
+D) kvadrat parallelogramm emas
+= A
+? Kvadratning tomonlari teng — demak romb.
+
+@test o'rta
+Perimetri 20 bo'lgan to'g'ri to'rtburchaklardan eng katta yuzlisi:
+A) $5 \times 5$
+B) $1 \times 9$
+C) $2 \times 8$
+D) $3 \times 7$
+= A
+? 25 > 21 > 16 > 9.
+
+### U11 | Parallelogramm, romb va trapetsiya
+@kirish
+| [s]Bobil, ~1800 m.a.[/s] — trapetsiya shaklidagi yer uchastkalari yuzi
+| [s]Evklid, I kitob, 35-taklif[/s]: bir asosli, bir xil balandlikdagi parallelogrammlar tengdosh
+| «trapezion» — yunoncha «kichik stol»
+Bobil loy taxtachalarida dala uchastkalarining yuzlari hisoblangan — ko'pchiligi trapetsiya shaklida edi, chunki daryo bo'yidagi yerlar hech qachon to'g'ri to'rtburchak bo'lmaydi. [1] Evklid esa ajoyib fakt isbotladi: asosi bir xil va balandligi bir xil parallelogrammlar shakli har xil bo'lsa ham, yuzi teng. [2] Trapetsiya nomi yunoncha «kichik stol»dan keladi. Bugun bu figuralarning xossalarini va yuz formulalari qayerdan kelishini ko'ramiz — barchasi to'g'ri to'rtburchakka qaytariladi.
+
+@qadam Parallelogramm va uning xossalari
+| CHIZ: parallelogramm A(0;0) B(5;0) C(7;3) D(2;3); kesma AC; kesma BD
+| QOIDA: qarama-qarshi tomonlar va burchaklar teng; diagonallar kesishish nuqtasida teng ikkiga bo'linadi
+| QOIDA: bir tomonga yopishgan burchaklar yig'indisi $180^\circ$
+Qarama-qarshi tomonlari juft-juft parallel bo'lgan to'rtburchak parallelogramm deyiladi. [1] Chizmaga qarang: qarama-qarshi tomonlar teng, qarama-qarshi burchaklar teng. Diagonallar esa umumiy o'rtaga ega — kesishish nuqtasida teng ikkiga bo'linadi. [2] Bir tomonga yopishgan ikki burchak yig'indisi bir yuz sakson gradus: ular parallel to'g'ri chiziqlar va kesuvchida ichki bir tomonli burchaklar. Bitta burchakni bilsak, to'rttasini ham bilamiz.
+@tekshiruv Parallelogrammning bir burchagi 65°. Qo'shni burchagi? => 115° | 65° | 25° | 295°
+
+@qadam Parallelogramm yuzi: kesib, surib qo'yamiz
+| CHIZ: parallelogramm A(0;0) B(5;0) C(7;3) D(2;3); nuqta H(2;0); balandlik DH
+| Chapdagi uchburchakni kesib, o'ng tomonga suramiz — to'g'ri to'rtburchak!
+| QOIDA: $S = a\,h$ — asos ko'paytirilgan balandlik
+| BELGILA: yon tomon balandlik emas!
+Parallelogrammdan D uchidan balandlik tushiramiz. [1] Chapda hosil bo'lgan uchburchakni qaychi bilan kesib, o'ng tomonga — qarama-qarshi tomonga surib qo'ysak, to'g'ri to'rtburchak hosil bo'ladi. [2] Uning bo'yi — parallelogramm asosi, eni — balandlik. Yuz o'zgarmadi, faqat shakl o'zgardi. Demak parallelogramm yuzi asos ko'paytirilgan balandlik. [3] Diqqat: qiya yon tomonni balandlik o'rniga olish — eng ko'p uchraydigan xato. Yon tomon har doim balandlikdan uzun.
+@tekshiruv Asos 8, balandlik 5, yon tomon 6. Yuz? => 40 | 48 | 30 | 26
+
+@qadam Romb
+| CHIZ: romb A(0;3) B(4;0) C(8;3) D(4;6); kesma AC; kesma BD
+| QOIDA: romb — tomonlari teng parallelogramm; diagonallari perpendikulyar va burchaklarni teng ikkiga bo'ladi
+| QOIDA: $S = \frac{1}{2}d_1 d_2$
+Hamma tomonlari teng parallelogramm — romb. [1] Uning diagonallari perpendikulyar va burchaklarini teng ikkiga bo'ladi. [2] Yuz formulasi: rombni diagonallar uzunligidagi to'g'ri to'rtburchak ichiga joylashtiring. Romb bu to'g'ri to'rtburchakning aynan yarmini egallaydi — to'rtta burchakdagi uchburchaklar rombning to'rt bo'lagiga teng. Shuning uchun yuz — diagonallar ko'paytmasining yarmi. [3] Diqqat: rombning diagonallari teng emas. Diagonallari teng romb — kvadrat.
+@tekshiruv Diagonallari 6 va 10 bo'lgan romb yuzi? => 30 | 60 | 16 | 15
+
+@qadam Trapetsiya
+| CHIZ: trapetsiya A(0;0) B(9;0) C(6;3) D(2;3); nuqta H(2;0); balandlik DH
+| QOIDA: $S = \frac{a + b}{2}\,h$ — asoslar yarim yig'indisi × balandlik
+| QOIDA: o'rta chiziq $m = \frac{a + b}{2}$, asoslarga parallel
+Faqat bir juft tomoni parallel bo'lgan to'rtburchak — trapetsiya. Parallel tomonlar asoslar deyiladi. [1] Yuzni topish uchun trapetsiyaning xuddi o'zini to'nkarib, yoniga qo'yamiz — parallelogramm hosil bo'ladi. Uning asosi a qo'shuv b, balandligi o'sha. [2] Bizning trapetsiya buning yarmi: asoslar yig'indisining yarmi ko'paytirilgan balandlik. [3] Asoslar yig'indisining yarmi — trapetsiyaning o'rta chizig'i. U yon tomonlar o'rtalarini tutashtiradi va asoslarga parallel.
+@tekshiruv Asoslari 4 va 10, balandligi 6 bo'lgan trapetsiya yuzi? => 42 | 84 | 60 | 20
+
+@misol Romb perimetri va yuzi
+Rombning diagonallari 12 va 16. Uning yuzi va tomonini toping.
+@yechim
+$S = \frac{1}{2}\cdot 12 \cdot 16 = 96$ || Yuz — diagonallar ko'paytmasining yarmi: to'qson olti.
+$6$ va $8$ — diagonallar yarmi || Diagonallar perpendikulyar va teng ikkiga bo'linadi: olti va sakkiz.
+$a = \sqrt{36 + 64} = 10$ || To'g'ri burchakli uchburchakdan tomon: o'n.
+
+@misol Trapetsiya o'rta chizig'i
+Trapetsiyaning o'rta chizig'i 7, balandligi 4. Yuzi?
+@yechim
+$S = m \cdot h$ || Yuz — o'rta chiziq ko'paytirilgan balandlik.
+$7 \cdot 4 = 28$ || Yigirma sakkiz.
+
+@masala Parallelogramm yuzi
+Asosi 12, unga tushirilgan balandligi 5 bo'lgan parallelogramm yuzi:
+A) $60$
+B) $30$
+C) $17$
+D) $34$
+= A
+@yechim
+$S = a h = 12 \cdot 5 = 60$ || Asos ko'paytirilgan balandlik.
+
+@masala Trapetsiya yuzi
+Asoslari 3 va 7, balandligi 4:
+A) $20$
+B) $40$
+C) $84$
+D) $14$
+= A
+@yechim
+$\frac{3 + 7}{2}\cdot 4 = 5 \cdot 4 = 20$ || O'rta chiziq besh, ko'paytirilgan to'rt — yigirma.
+
+@masala Burchaklar
+Parallelogrammning bir burchagi ikkinchisidan $40^\circ$ katta. Kattasi:
+A) $110^\circ$
+B) $70^\circ$
+C) $140^\circ$
+D) $220^\circ$
+= A
+@yechim
+$x + x + 40^\circ = 180^\circ$ || Qo'shni burchaklar yig'indisi bir yuz sakson.
+$x = 70^\circ$, kattasi $110^\circ$ || Kichigi yetmish, kattasi bir yuz o'n.
+
+@esda
+| QOIDA: parallelogramm: $S = ah$; diagonallar teng ikkiga bo'linadi
+| QOIDA: romb: $S = \frac{1}{2}d_1d_2$; diagonallar perpendikulyar
+| QOIDA: trapetsiya: $S = \frac{a + b}{2}h$; o'rta chiziq $\frac{a + b}{2}$
+Barcha yuz formulalari to'g'ri to'rtburchakka qaytarish orqali chiqariladi: kesib-surish yoki ikki nusxani qo'shish. Balandlik doim asosga perpendikulyar.
+
+@test oson
+Parallelogrammning qarama-qarshi burchaklari:
+A) teng
+B) yig'indisi $180^\circ$
+C) yig'indisi $90^\circ$
+D) har doim to'g'ri
+= A
+B: Bu qo'shni burchaklar.
+? Xossa: qarama-qarshi burchaklar teng.
+
+@test oson
+Asosi 6, balandligi 4 bo'lgan parallelogramm yuzi:
+A) $24$
+B) $12$
+C) $20$
+D) $10$
+= A
+? S = ah.
+
+@test oson
+Diagonallari 4 va 8 bo'lgan romb yuzi:
+A) $16$
+B) $32$
+C) $12$
+D) $24$
+= A
+B: Yarmini olish unutilgan.
+? ½ · 4 · 8.
+
+@test oson
+Asoslari 5 va 9, balandligi 2 bo'lgan trapetsiya yuzi:
+A) $14$
+B) $28$
+C) $90$
+D) $7$
+= A
+? (5 + 9)/2 · 2.
+
+@test oson
+Rombning diagonallari:
+A) perpendikulyar
+B) doim teng
+C) parallel
+D) tomonga teng
+= A
+? Romb xossasi.
+
+@test o'rta
+Trapetsiya asoslari 6 va 14. O'rta chizig'i:
+A) $10$
+B) $20$
+C) $8$
+D) $4$
+= A
+? (6 + 14)/2.
+
+@test o'rta
+Parallelogramm diagonallari kesishish nuqtasida:
+A) teng ikkiga bo'linadi
+B) teng
+C) perpendikulyar
+D) 2:1 nisbatda bo'linadi
+= A
+? Umumiy o'rta nuqta.
+
+@test o'rta
+Rombning tomoni 5, bir diagonali 6. Ikkinchi diagonali:
+A) $8$
+B) $4$
+C) $10$
+D) $7$
+= A
+? Yarim diagonallar: 3 va √(25 − 9) = 4, demak 8.
+
+@test o'rta
+Asos 10, yon tomon 6, burchak $30^\circ$ bo'lgan parallelogramm balandligi:
+A) $3$
+B) $6$
+C) $5$
+D) $10$
+= A
+? 30° qarshisidagi katet gipotenuzaning yarmi: 6 : 2.
+
+@test o'rta
+Diagonallari teng romb — bu:
+A) kvadrat
+B) trapetsiya
+C) har qanday romb
+D) mavjud emas
+= A
+? Teng va perpendikulyar diagonallar — kvadrat.
