@@ -104,3 +104,14 @@ def test_doktorantura_bolim_darslari():   # REV470: bir bo'lim = bitta dars («1
 def test_doktorantura_dars_testi_toliq():   # REV470: doktorantura darsida oxirgi test — barcha testlar (5 ta emas)
     from modules.dars_xonasi import savol_chegarasi, MAX_QUESTIONS
     assert savol_chegarasi({"sinf": "Doktorantura"}) >= 150 and savol_chegarasi({"sinf": "5"}) == MAX_QUESTIONS
+
+
+def test_oliy_kurs_yakuniy_va_10_test():   # REV471
+    from modules.kurslar import yakuniy_qosh, nazorat_qosh
+    from modules.dars_xonasi import savol_chegarasi
+    items = nazorat_qosh([{"topic_code": f"t{i}", "nomi": f"{i}-dars. X", "ochiq": True} for i in range(1, 11)])
+    out = yakuniy_qosh(items)
+    assert out[-1]["nazorat"] == "oliy_yakuniy" and out[-1]["savollar"] == 50 and len(out[-1]["darslar"]) == 10
+    assert yakuniy_qosh(items[:2]) == items[:2]
+    assert savol_chegarasi({"sinf": "1 kurs"}) == 10 and savol_chegarasi({"sinf": "2 kurs magistr"}) == 10
+    assert savol_chegarasi({"sinf": "7"}) == 5

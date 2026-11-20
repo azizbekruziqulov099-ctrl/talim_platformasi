@@ -285,6 +285,20 @@ _KITOB_NAZORAT = re.compile(r"nazorat|oraliq|imtihon|test sinov", re.I)
 # REV470: 13.00.02 doktorantura — har 5 darsda mini-test, har bo'lim oxirida 30 savollik bo'lim testi, kurs oxirida yakuniy imtihon (hammasi 70%)
 NAZORAT.update({"dk_mini": (5, "🟢 Mini-test", 10, 70), "dk_bolim": (0, "🟠 Bo‘lim testi", 30, 70), "dk_yakuniy": (0, "🔴 Yakuniy imtihon", 50, 70)})
 DK_FOIZ = 70
+# REV471: oliy ta'lim kurslari — oxirida 50 savollik yakuniy test (dasturdagi yakuniy test kabi, o'tish — 60%)
+NAZORAT["oliy_yakuniy"] = (0, "🔴 Yakuniy test", 50, 60)
+
+
+def yakuniy_qosh(items):
+    """REV471: oliy ta'lim kursi oxiriga barcha darslar bo'yicha 50 savollik yakuniy test (kamida 3 ta dars bo'lsa)."""
+    darslar = [x for x in items if not x.get("nazorat")]
+    if len(darslar) < 3:
+        return items
+    oxirgi = darslar[-1]
+    return items + [{"topic_code": "NZ:YAKUNIY", "nomi": f"{NAZORAT['oliy_yakuniy'][1]}: {NAZORAT['oliy_yakuniy'][2]} savol",
+                     "sinf": oxirgi.get("sinf"), "ochiq": oxirgi.get("ochiq"), "bepul": oxirgi.get("bepul"), "nazorat": "oliy_yakuniy",
+                     "darslar": [d["topic_code"] for d in darslar], "savollar": NAZORAT["oliy_yakuniy"][2],
+                     "otish_foiz": NAZORAT["oliy_yakuniy"][3], "kamera": False}]
 
 
 def nazorat_qosh(items):
@@ -767,6 +781,8 @@ def create_router(platform, click=None):
                 items.append({"topic_code": d["topic_code"], "nomi": d["nom"], "sinf": d["grade"], "ochiq": ok, "bepul": sabab in ("bepul_dars", "bepul_kurs")})
             dk = doktorantura_mi(grade)
             items = nazorat_doktorantura(items) if dk else nazorat_qosh(items)   # REV479; REV470: doktorantura — o'z zinapoyasi
+            if kat == "oliy" and not dk:
+                items = yakuniy_qosh(items)   # REV471: oliy kurs oxirida 50 savollik yakuniy test
             cur.execute("SELECT kod, otdi, togri, jami, (oxirgi_urinish AT TIME ZONE 'Asia/Tashkent')::date AS kun FROM kurs_nazorat WHERE user_id=%s AND kalit=%s", (uid, kalit))
             nz = {r["kod"]: r for r in cur.fetchall()}
             # REV477: kurs tartibi — tugatilgan darslar, keyingisi ertaga (admin/o'qituvchi uchun qulfsiz)

@@ -31,9 +31,17 @@ MAX_QUESTIONS = 5
 KATTA_TEST = 200   # REV470: 13.00.02 doktorantura — bir bo'lim = bitta dars, oxirida bo'limning barcha testlari (100–150 ta)
 
 
+OLIY_TEST = 10   # REV471: oliy ta'lim kurslari («1 kurs», «2 kurs magistr») — dars oxirida 10 ta tezkor test
+
+
 def savol_chegarasi(topic):
-    """Dars oxiridagi Kabu testida nechta savol: odatda 5; doktorantura darsida — barcha testlar."""
-    return KATTA_TEST if re.search(r"doktorantura", str((topic or {}).get("sinf") or ""), re.I) else MAX_QUESTIONS
+    """Dars oxiridagi Kabu testida nechta savol: odatda 5; oliy ta'lim kursida — 10; doktorantura darsida — barcha testlar."""
+    sinf = str((topic or {}).get("sinf") or "")
+    if re.search(r"doktorantura", sinf, re.I):
+        return KATTA_TEST
+    if re.fullmatch(r"\s*\d\s*kurs(\s+magistr)?\s*", sinf, re.I):
+        return OLIY_TEST
+    return MAX_QUESTIONS
 
 
 def _t(value):
