@@ -135,6 +135,10 @@ def _vizual(k: K, e, x, y, w, h, s, ichida_kart=True):
     u = k.u
     ch = e.get("chizma")
     key = e.get("rasm")
+    bor = bool(key and k.rasm_bor(key))
+    info = RS.malumot(key) if bor else {}
+    if bor and info.get("tur") == "rasm":
+        return _illyustratsiya(k, e, key, info, x, y, w, h, s)
     if ichida_kart:
         kart(k, x, y, w, h, 1, a=k.A("card", s))
         x, y, w, h = x + 14, y + 14, w - 28, h - 28
@@ -142,7 +146,7 @@ def _vizual(k: K, e, x, y, w, h, s, ichida_kart=True):
     if cap:
         k.s.matn(x, y + h - 22, w, 22, cap, size=13, italic=True, color=u.muted, align="c", min_scale=0.7, a=k.A("item", s, dl=600))
         h -= 28
-    if key and k.rasm_bor(key):
+    if bor:
         kr = RS.kredit(key)
         if kr:
             k.s.matn(x, y + h - 14, w, 14, kr, size=9, color=u.muted, align="r", min_scale=0.6, a=k.A("item", s, dl=600))
@@ -171,6 +175,49 @@ def _vizual(k: K, e, x, y, w, h, s, ichida_kart=True):
         # rasm hali chizilmagan: joy ushlab turuvchi
         k.s.rect(x + w * 0.2, y + h * 0.2, w * 0.6, h * 0.6, fill=None, line=u.muted, lw=1.2, dash=1, r=12, a=k.A("item", s))
         k.s.matn(x + w * 0.2, y + h * 0.2, w * 0.6, h * 0.6, f"rasm: {key}", size=13, color=u.muted, align="c", va="m", a=k.A("item", s))
+    return s
+
+
+def taglik(k: K, cx, cy, r, s, dl=0, v=None):
+    """Illyustratsiya orqasidagi yumshoq shakl (ramka o'rniga). Qorong'i uslubda — oq doira (rasm aniq ko'rinsin)."""
+    u = k.u
+    v = k.rng.randrange(3) if v is None else v
+    a = k.A("big", s, dl=dl)
+    if u.qorongi:
+        k.s.doira(cx, cy, r, fill="#FFFFFF", op=0.92, a=a)
+        k.s.doira(cx, cy, r + 10, fill=None, line=u.acc[0], lw=2, op=0.7, a=a)
+        return
+    if v == 0:
+        k.s.doira(cx, cy, r, fill=u.acc[0], op=0.12, a=a)
+        k.s.doira(cx, cy, r * 0.82, fill=None, line=u.acc[0], lw=1.2, op=0.35, a=a)
+    elif v == 1:
+        k.s.rect(cx - r, cy - r * 0.92, 2 * r, 1.84 * r, fill=u.acc[1], op=0.1, r=r * 0.32, a=a)
+        k.s.doira(cx + r * 0.78, cy - r * 0.7, r * 0.16, fill=u.acc[2], op=0.5, a=a)
+    else:
+        k.s.doira(cx - r * 0.12, cy + r * 0.05, r * 0.95, fill=u.acc[0], op=0.1, a=a)
+        k.s.doira(cx + r * 0.42, cy - r * 0.38, r * 0.48, fill=u.acc[2], op=0.16, a=a)
+
+
+def _illyustratsiya(k: K, e, key, info, x, y, w, h, s):
+    """Shaffof fonli rasm: ramkasiz, orqasida yumshoq shakl, ostida izoh va (kerak bo'lsa) manba qatori."""
+    u = k.u
+    cap = e.get("izoh") if e.get("tur") in ("rasm", "hayotiy", "chizma") else None
+    kr = RS.kredit(key)
+    pastki_h = (26 if cap else 0) + (16 if kr else 0)
+    ih = h - pastki_h - 8
+    iw_, ihh = (info.get("olcham") or [1024, 1024])[:2]
+    sc = min(w * 0.9 / iw_, ih * 0.92 / ihh)
+    bw, bh = iw_ * sc, ihh * sc
+    cx, cy = x + w / 2, y + 4 + ih / 2
+    r = min(max(bw, bh) * 0.56, min(w, ih) * 0.5)
+    taglik(k, cx, cy, r, s)
+    k.s.img(cx - bw / 2, cy - bh / 2, bw, bh, "rasm:" + key, a=k.A("big", s, dl=k.st))
+    yy = y + ih + 10
+    if cap:
+        k.s.matn(x, yy, w, 22, cap, size=13.5, italic=True, color=u.muted, align="c", min_scale=0.7, a=k.A("item", s, dl=600))
+        yy += 24
+    if kr:
+        k.s.matn(x, yy, w, 14, kr, size=9, color=u.muted, align="c", min_scale=0.6, a=k.A("item", s, dl=600))
     return s
 
 
@@ -246,10 +293,21 @@ def komp_matnli(k: K, e, x, y, w, h, i=0):
         komp_matnli(k, dict(e, chizma=None, rasm=""), x, y, tw - 10, h, i)
         _vizual(k, e, x + tw + 10, y, w - tw - 10, h, s)
         return
-    ix, iy, iw, ih = _yorliq_kartasi(k, x, y, w, h, label, col, i, a=k.A("card", s))
     text = e.get("matn") or ""
     if e.get("bandlar"):
         text = "\n".join("• " + b["matn"] for b in e["bandlar"] if b.get("matn"))
+    if text and not has_vis and not e.get("formula") and len(text) < 420:
+        # qisqa matn: katta shrift va karta matn balandligida, vertikal markazda (bo'sh karta qolmasin)
+        lab_h = 48 if label else 16
+        sz, th = mos_olcham(text, w - 36, h - lab_h - 24, sizes=(30, 28, 26, 24, 22, 20, 19, 18, 17, 16, 15))
+        kerak = th + lab_h + 30
+        if kerak < h * 0.72:
+            ch = max(kerak, min(h, 200))
+            y2 = y + (h - ch) / 2
+            ix, iy, iw, ih = _yorliq_kartasi(k, x, y2, w, ch, label, col, i, a=k.A("card", s))
+            k.s.matn(ix, iy, iw, ih, text, size=sz, color=u.ink, urg=col, va="m", lh=1.22, a=k.A("item", s, dl=k.st))
+            return
+    ix, iy, iw, ih = _yorliq_kartasi(k, x, y, w, h, label, col, i, a=k.A("card", s))
     ustun_joyla(k, e, ix, iy, iw, ih, col, s, text)
 
 
@@ -519,8 +577,10 @@ def blok_kontent(k: K, d):
             r = 0.56 if a["tur"] in wide or (a.get("chizma") and not b.get("chizma")) else 0.44 if b["tur"] in wide else 0.5
             wa = w0 * r - gap / 2
             regions = [(x0, y0, wa, h0), (x0 + wa + gap, y0, w0 - wa - gap, h0)]
-            if flip and a["tur"] not in ("misol", "masala") and b["tur"] in ("chizma", "rasm"):
-                regions = regions  # chizma doim o'ngda qoladi — o'qish tartibi
+            # illyustratsiya (shaffof rasm) ba'zan chapda — slaydlar bir xil ko'rinmasin; chizma doim o'ngda
+            if (b["tur"] == "rasm" and b.get("rasm") and RS.malumot(b["rasm"]).get("tur") == "rasm"
+                    and a["tur"] not in ("misol", "masala") and k.rng.random() < 0.45):
+                regions = [regions[1], regions[0]]
     elif n == 3:
         wa = w0 * 0.5 - gap / 2
         hb = (h0 - gap) / 2
@@ -574,7 +634,16 @@ def blok_titul(k: K, d):
     # o'ng tomon: rasm / chizma / belgi
     hx, hy, hw, hh = 760, 110, 460, 480
     if m.get("rasm") and k.rasm_bor(m["rasm"]):
-        s.img(hx, hy, hw, hh, "rasm:" + m["rasm"], a=k.A("big", 0, dl=200))
+        info = RS.malumot(m["rasm"])
+        if info.get("tur") == "rasm":
+            cx, cy = hx + hw / 2, hy + hh / 2
+            taglik(k, cx, cy, 228, 0, v=0)
+            k.s.img(cx - 190, cy - 190, 380, 380, "rasm:" + m["rasm"], a=k.A("big", 0, dl=200))
+            kr = RS.kredit(m["rasm"])
+            if kr:
+                k.s.matn(hx, hy + hh + 6, hw, 14, kr, size=9, color=u.muted, align="c", min_scale=0.6)
+        else:
+            s.img(hx, hy, hw, hh, "rasm:" + m["rasm"], a=k.A("big", 0, dl=200))
     elif m.get("chizma"):
         k.s.doira(hx + hw / 2, hy + hh / 2, 232, fill=u.acc[0], op=0.06 if not u.qorongi else 0.12, a=k.A("big", 0))
         CH.chiz(s, m["chizma"], hx + 40, hy + 40, hw - 80, hh - 80, u, qadam=0, kechikish=300)
@@ -583,7 +652,7 @@ def blok_titul(k: K, d):
         s.doira(cx, cy, 210, fill=u.acc[0], op=0.08 if not u.qorongi else 0.14, a=k.A("big", 0))
         s.doira(cx, cy, 160, fill=None, line=u.acc[0], lw=1.2, op=0.6, a=k.A("big", 0, dl=120))
         s.doira(cx, cy, 128, fill=u.acc[0], a=k.A("big", 0, dl=200), sh=0 if u.qorongi else 1)
-        belgi = m.get("belgi") or (m.get("qisqa") or m["mavzu"])[:2]
+        belgi = m.get("belgi") or next((c.upper() for c in (m.get("qisqa") or m["mavzu"]) if c.isalnum()), "•")
         if "$" in belgi or "\\" in belgi:
             FM.chiz(s, belgi, cx - 110, cy - 80, 220, 160, size=72, color=u.matn_ustida(u.acc[0]), a=k.A("accent", 0, dl=400))
         else:

@@ -7,6 +7,7 @@ Uslub kodi: "oila.palitra.v" (masalan "anor.anor.0").
 from __future__ import annotations
 
 import io
+import os
 import math
 import random
 from functools import lru_cache
@@ -228,10 +229,72 @@ def _gradient(w, h, c1, c2, angle=90):
     return img
 
 
+# --- Fan bezaklari (motiflar): rasmlar/fonlar/<fan>_<n>.png — shaffof fonli, bir rangli chiziqli bezak,
+# o'rtasi bo'sh. Dastur uni uslub rangiga bo'yab, past shaffoflikda fon chetlariga qo'yadi (har palitraga mos).
+FAN_KALIT = [
+    ("matematika", ("matemat", "algebra", "geometr", "arifmet", "hisob")), ("fizika", ("fizika", "astronom")),
+    ("kimyo", ("kimyo",)), ("biologiya", ("biolog", "botanik", "zoolog", "odam va uning")), ("geografiya", ("geograf",)),
+    ("tabiiy", ("tabiiy", "tabiatshunos", "atrofimiz")), ("tarix", ("tarix",)), ("adabiyot", ("adabiyot", "o‘qish", "o'qish")),
+    ("ona_tili", ("ona tili", "alifbe", "yozuv", "savod")), ("xorijiy_til", ("ingliz", "rus tili", "nemis", "fransuz", "xorijiy")),
+    ("informatika", ("informat", "axborot", "dastur")), ("musiqa", ("musiqa",)), ("tasviriy", ("tasviriy", "rasm chiz")),
+    ("texnologiya", ("texnolog", "mehnat", "chizmachi")), ("jismoniy", ("jismoniy", "sport")),
+    ("tarbiya", ("tarbiya", "huquq", "iqtisod", "ma’naviy", "ma'naviy", "odobnoma")),
+    ("pedagogika", ("pedagog", "psixolog", "metodika", "maktabgacha", "boshlang‘ich ta’lim", "boshlang'ich ta'lim")),
+]
+
+
+def fan_kaliti(fan: str) -> str:
+    f = (fan or "").lower()
+    for kalit, sozlar in FAN_KALIT:
+        if any(s in f for s in sozlar):
+            return kalit
+    return "umumiy"
+
+
+def motif_papka():
+    from . import rasmlar
+    return os.path.join(rasmlar.PAPKA, "fonlar")
+
+
+def motiflar(fan: str) -> list:
+    """Fan uchun mavjud bezak kalitlari (yo'q bo'lsa — umumiy bezaklar)."""
+    p = motif_papka()
+    if not os.path.isdir(p):
+        return []
+    fayllar = sorted(f.rsplit(".", 1)[0] for f in os.listdir(p) if f.lower().endswith((".png", ".webp")))
+    k = fan_kaliti(fan)
+    mos = [f for f in fayllar if f.rsplit("_", 1)[0] == k]
+    return mos or [f for f in fayllar if f.rsplit("_", 1)[0] == "umumiy"]
+
+
+def _motif_qosh(img, u, motif: str):
+    from PIL import Image, ImageChops, ImageOps
+    p = motif_papka()
+    yol = next((os.path.join(p, motif + e) for e in (".png", ".webp") if os.path.exists(os.path.join(p, motif + e))), None)
+    if not yol:
+        return img
+    m = Image.open(yol).convert("RGBA")
+    W, H = img.size
+    sc = max(W / m.width, H / m.height)
+    m = m.resize((int(m.width * sc + 0.5), int(m.height * sc + 0.5)), Image.LANCZOS)
+    m = m.crop(((m.width - W) // 2, (m.height - H) // 2, (m.width - W) // 2 + W, (m.height - H) // 2 + H))
+    # chiziq qanchalik to'q bo'lsa — shuncha ko'rinadi; rangini uslubdan olamiz
+    lum = ImageOps.invert(m.convert("L"))
+    alpha = ImageChops.darker(lum, m.split()[3])
+    kuch = 0.16 if not u.qorongi else 0.13
+    alpha = alpha.point(lambda v: int(v * kuch))
+    rang = hex2rgb(u.acc[0] if not u.qorongi else "#FFFFFF")
+    qatlam = Image.new("RGBA", (W, H), rang + (0,))
+    qatlam.putalpha(alpha)
+    img.alpha_composite(qatlam)
+    return img
+
+
 @lru_cache(maxsize=256)
 def fon_rasm(kod: str) -> bytes:
-    """Uslub kodi bo'yicha 1280×720 JPEG fon."""
+    """Uslub kodi bo'yicha 1280×720 JPEG fon. kod = "oila.palitra.v" yoki "oila.palitra.v~motif" (fan bezagi bilan)."""
     from PIL import Image, ImageDraw, ImageFilter
+    kod, _, motif = kod.partition("~")
     u = Uslub(kod)
     W, H = 1280, 720
     rng = random.Random(kod)
@@ -297,6 +360,8 @@ def fon_rasm(kod: str) -> bytes:
             _blob(img, rng.randint(0, W), rng.randint(0, H), rng.randint(200, 380), rng.randint(60, 120), "#FFFFFF", 0.05, 40)
         d = ImageDraw.Draw(img)
         d.rectangle([0, H - 14, W, H], fill=hex2rgb(toq(u.bg[0], 0.25)) + (255,))
+    if motif:
+        img = _motif_qosh(img.convert("RGBA"), u, motif)
     buf = io.BytesIO()
     img.convert("RGB").save(buf, "JPEG", quality=86, optimize=True, progressive=True)
     return buf.getvalue()

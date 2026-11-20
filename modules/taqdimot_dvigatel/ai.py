@@ -28,8 +28,25 @@ def _chizma_royxati():
     return "\n".join(qatorlar)
 
 
-def korsatma() -> str:
-    """AI (yoki ChatGPT) uchun to'liq ko'rsatma."""
+def katalog_matni(mavzu: str = "", fan: str = "", n: int = 70) -> str:
+    """Kutubxona rasmlari ro'yxati (AI uchun): mavzuga yaqinlari, mavzu bo'lmasa — hammasi fan bo'yicha."""
+    from . import rasm_tanla, rasmlar
+    if mavzu or fan:
+        rows = rasm_tanla.katalog(f"{mavzu} {fan}", fan, n)
+        return "\n".join(f"- {k} — {nom}" for k, nom in rows) or "(mos rasm topilmadi)"
+    guruh = {}
+    for r in rasmlar.papka_reestri():
+        if r.get("tur") == "rasm":
+            guruh.setdefault(r.get("fan") or "Boshqa", []).append(f"{r['kalit']} — {r.get('nom') or ''}")
+    return "\n".join(f"[{f}]\n" + "\n".join("- " + x for x in sorted(v)) for f, v in sorted(guruh.items()))
+
+
+def korsatma(katalog: bool = False) -> str:
+    """AI (yoki ChatGPT) uchun to'liq ko'rsatma. katalog=True — oxiriga barcha kutubxona rasmlari."""
+    return _korsatma_asos() + (("\nKUTUBXONA RASMLARI (kalit — nima tasvirlangan):\n" + katalog_matni()) if katalog else "")
+
+
+def _korsatma_asos() -> str:
     return f"""Sen tajribali o‘qituvchi-metodistsan. Berilgan mavzu bo‘yicha TAQDIMOT MIYASINI yozasan — faqat mazmun,
 dizayn emas (ranglar, joylashuv, animatsiyani dastur o‘zi qiladi). Javob FAQAT bitta JSON obyekt bo‘lsin, izohsiz.
 
@@ -80,10 +97,13 @@ CHIZMALAR (kod chizadi, rasm kerak emas — iloji bo‘lsa chizma ishlat). Turla
 {_chizma_royxati()}
 (ichma_ich: qatlamlar ICHKARIDAN tashqariga; son_oqi: dan < gacha, 20 tadan kam bo‘linma.)
 
-RASMLAR: chizma bilan ko‘rsatib bo‘lmaydigan joyda (tarixiy olim, buyum, hayotiy vaziyat) "rasm" maydoniga
-kalit yoz: kichik lotin harflari, raqam va _ (masalan: al_xorazmiy, anor_8_bolak, bozor_tarozi). "rasmlar" ro‘yxatida
-har bir kalit uchun: "tavsif" (o‘zbekcha) va "prompt" (inglizcha, rasm chizdirish uchun: flat vector illustration,
-transparent background, soft colors, no text, centered, educational). Bir mavzuda 0–4 rasm yetarli.
+RASMLAR: chizma bilan ko‘rsatib bo‘lmaydigan joyda (tarixiy shaxs, buyum, jonzot, hayotiy vaziyat) "rasm" maydoniga
+kalit yoz. AVVAL pastdagi «KUTUBXONA RASMLARI» ro‘yxatidan aynan mos kalitni tanla — ular tayyor va slaydda darhol chiqadi.
+Rasm alohida "rasm" element bo‘lib slaydning ikkinchi elementi sifatida turadi (matn chapda, rasm o‘ngda) yoki
+"hayotiy" element ichida. Mavzuga mos 3–8 rasm ishlat; bitta rasmni ikki marta ishlatma; "meta.rasm" — titul rasmi.
+Ro‘yxatda mos rasm bo‘lmasa yangi kalit yoz (kichik lotin harflari, raqam va _), "rasmlar" ro‘yxatiga "tavsif"
+(o‘zbekcha) va "prompt" (inglizcha: flat vector illustration, transparent background, soft colors, no text, centered,
+educational) bilan qo‘sh — u hozircha chiqmaydi, chizish uchun ro‘yxatga tushadi.
 
 YOSHGA MOSLASH: maktab 1–4-sinf — oddiy so‘zlar, ko‘p chizma va hayotiy misol; 5–11-sinf — qoida, misol, mashq;
 bakalavr — ta’rif, isbot g‘oyasi, metodika (boshlang‘ich sinfda qanday o‘rgatiladi).
@@ -92,6 +112,10 @@ bakalavr — ta’rif, isbot g‘oyasi, metodika (boshlang‘ich sinfda qanday o
 
 def _xabar(mavzu, fan, daraja, sinf, tur, qoshimcha, manba):
     s = f"MAVZU: {mavzu}\nFAN: {fan}\nDARAJA: {daraja}\nSINF/KURS: {sinf}\nTUR: {tur}\n"
+    try:
+        s += f"\nKUTUBXONA RASMLARI (kalit — nima tasvirlangan; avval shulardan tanla):\n{katalog_matni(f'{mavzu} {qoshimcha}', fan)}\n\n"
+    except Exception:
+        pass
     if qoshimcha:
         s += f"QO‘SHIMCHA TALAB: {qoshimcha}\n"
     if manba:

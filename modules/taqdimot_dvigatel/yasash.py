@@ -90,8 +90,13 @@ def reja_tuz(m: dict, rng: random.Random, bolim_titul=None):
 
 
 def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim: str | None = None, oila: str | None = None,
-         palitra: str | None = None, bolim_titul: bool | None = None, rasm_bor=None):
+         palitra: str | None = None, bolim_titul: bool | None = None, rasm_bor=None, rasm_avto: bool = True):
     m = sxema.normallashtir(miya)
+    from . import rasm_tanla
+    try:
+        rasm_hisobot = rasm_tanla.boyit(m, avto=rasm_avto)
+    except Exception:  # rasm moslash xatosi taqdimotni to'xtatmasin
+        rasm_hisobot = {"ishlatilgan": [], "almashtirildi": [], "qoshildi": [], "yoq": []}
     if seed is None:
         seed = random.SystemRandom().randrange(1, 2 ** 31)
     rng = random.Random(seed)
@@ -111,7 +116,8 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
     reja_items = [(sections[si][0], sec_rng[si][0], sec_rng[si][1], sections[si][1]) for si in range(len(sections)) if si in sec_rng]
     rb = rasm_bor or rasmlar.bor
     slides = []
-    fon = {"src": "fon:" + u.kod}
+    mot = uslub.motiflar(m["meta"].get("fan") or "")
+    fon = {"src": "fon:" + u.kod + (("~" + rng.choice(mot)) if mot else "")}
     for i, p in enumerate(plan):
         s = Slayd(fon=fon, otish="morph" if i > 0 else "fade")
         nav = {"total": total, "idx": i, "sections": secs_nav, "sec": p["sec"], "reja": reja_i if reja_i is not None else 0}
@@ -147,7 +153,7 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
         slides.append(sd)
     return {
         "sxema": "taqdimot-sahna/1", "w": 1280, "h": 720, "seed": seed, "uslub": u.json(), "meta": m["meta"],
-        "slaydlar": slides, "miya": m,
+        "slaydlar": slides, "miya": m, "rasm_hisobot": rasm_hisobot,
     }
 
 

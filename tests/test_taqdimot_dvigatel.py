@@ -165,3 +165,25 @@ def test_kutubxona_chizmalar_joylanadi():
                 assert set(ch["kalitlar"]) <= joy, (m["kod"], ch["id"])
             toza = kutubxona.miya(t["kod"], m["kod"], chizmali=False)
             assert not any(e.get("tur") == "rasm" for b in toza["bolimlar"] for sl in b["slaydlar"] for e in sl["elementlar"])
+
+
+def test_rasm_tanla_kutubxona():
+    from modules.taqdimot_dvigatel import rasm_tanla, rasmlar
+    if not rasmlar.papka_reestri():
+        return
+    m = sxema.normallashtir({
+        "meta": {"mavzu": "Amir Temur davri", "fan": "Tarix"},
+        "rasmlar": [{"kalit": "uchar_ajdar_xyz", "tavsif": "Uchar ajdar", "prompt": "dragon"}],
+        "bolimlar": [{"nom": "A", "slaydlar": [
+            {"sarlavha": "Me’moriy obidalar", "elementlar": [{"tur": "matn", "matn": "Go‘ri Amir maqbarasi va Registon maydoni Samarqandda."}]},
+            {"sarlavha": "Ertak", "elementlar": [{"tur": "matn", "matn": "Ertak"}, {"tur": "rasm", "rasm": "uchar_ajdar_xyz"}]},
+            {"sarlavha": "Faqat rasm", "elementlar": [{"tur": "rasm", "rasm": "uchar_ajdar_xyz"}]}]}]})
+    h = rasm_tanla.boyit(m)
+    assert h["yoq"] and h["yoq"][0]["kalit"] == "uchar_ajdar_xyz" and h["yoq"][0]["prompt"] == "dragon"
+    hammasi = [e for b in m["bolimlar"] for sl in b["slaydlar"] for e in sl["elementlar"]]
+    assert all(not e.get("rasm") or rasmlar.bor(e["rasm"]) for e in hammasi)  # bo'sh ramka qolmaydi
+    assert len(m["bolimlar"][0]["slaydlar"]) == 2  # faqat yo'q rasmdan iborat slayd olib tashlandi
+    assert h["qoshildi"]
+    s = yasash.yasa(m, seed=3)
+    assert not any("rasm:" in (el.get("pp") and "".join(r["t"] for p in el["pp"] for r in p["rs"]) or "")
+                   for sl in s["slaydlar"] for el in sl["els"] if el["k"] == "text")

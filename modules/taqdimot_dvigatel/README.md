@@ -35,6 +35,19 @@ AI faqat mazmunni yozadi; dizayn, chizmalar va animatsiyani shu dvigatel qiladi.
 - `malumot/` — chizmalar reestri, 118 element (IUPAC 2022) — keyingi chizma generatorlari uchun.
 - Yangi paket kelganda shu tuzilishda yangi papka qo‘shiladi, kod o‘zgarmaydi.
 
+## Rasmlarni moslash (`rasm_tanla.py`)
+- Har yasashda: miyadagi noma’lum rasm kaliti kutubxonadagi eng yaqin rasmga almashtiriladi; topilmasa slaydda
+  bo‘sh ramka chiqmaydi, `rasm_hisobot.yoq` ro‘yxatiga (tavsif + prompt) tushadi.
+- Rasmsiz slaydga, matni rasm mavzusiga aniq mos kelsa (kamida 2 so‘z yoki shu rasmga xos so‘z, fan mos), kutubxonadan rasm qo‘yiladi;
+  titulga mavzu rasmi. O‘chirish: `"rasm_avto": false`.
+- AI ko‘rsatmasiga mavzuga yaqin kutubxona rasmlari ro‘yxati qo‘shiladi; `GET /korsatma` — to‘liq katalog bilan.
+- Illyustratsiya (tur "rasm") ramkasiz, orqasida yumshoq shakl; chizma — oq kartada.
+
+## Fan bezaklari (fon motiflari)
+`rasmlar/fonlar/<fan>_<n>.png` — shaffof fonli, qora chiziqli bezak, o‘rtasi bo‘sh (1920×1080). Dastur uni uslub rangiga
+bo‘yab, past shaffoflikda fonga qo‘shadi. Fan kalitlari: `uslub.FAN_KALIT` (matematika, fizika, kimyo, biologiya, geografiya,
+tabiiy, tarix, adabiyot, ona_tili, xorijiy_til, informatika, musiqa, tasviriy, texnologiya, jismoniy, tarbiya, pedagogika, umumiy).
+
 ## Sozlamalar (env)
 `GEMINI_API_KEY` / `OPENAI_API_KEY` / `GROQ_API_KEY` — AI matn; `TAQDIMOT_AI_PROVIDERS=gemini,openai,groq`;
 `TAQDIMOT_AI_RASM=1` + `OPENAI_API_KEY` — AI rasm chizish (ixtiyoriy); `TAQDIMOT_RASM_PAPKA` — rasm papkasi; `TAQDIMOT_KUTUBXONA` — tayyor mavzular papkasi.

@@ -154,7 +154,8 @@ class Dvigatel:
         oila = body.get("oila") if body.get("oila") in uslub.OILALAR else None
         pal = body.get("palitra") if isinstance(body.get("palitra"), str) else None
         bt = body.get("bolim_titul") if isinstance(body.get("bolim_titul"), bool) else None
-        return dict(seed=seed, uslub_kod=kod, anim=anim, oila=oila, palitra=pal, bolim_titul=bt)
+        ra = body.get("rasm_avto") if isinstance(body.get("rasm_avto"), bool) else True
+        return dict(seed=seed, uslub_kod=kod, anim=anim, oila=oila, palitra=pal, bolim_titul=bt, rasm_avto=ra)
 
     def yasa(self, body):
         p = self.parametrlar(body)
@@ -302,7 +303,8 @@ def register_taqdimot_dvigatel(app, platform):
 
     @app.get(PREFIX + "/fon/{kod}.jpg")
     def fon(kod: str):
-        if not UVKOD.match(kod):
+        asos, _, motif = kod.partition("~")
+        if not UVKOD.match(asos) or (motif and not re.match(r"^[a-z0-9_]{2,40}$", motif)):
             fail("Topilmadi", 404)
         return Response(uslub.fon_rasm(kod), media_type="image/jpeg", headers={"Cache-Control": "public, max-age=604800, immutable"})
 
@@ -322,7 +324,7 @@ def register_taqdimot_dvigatel(app, platform):
     @app.get(PREFIX + "/korsatma")
     def korsatma(authorization: str | None = Header(None)):
         D.actor(authorization)
-        return Response(ai.korsatma(), media_type="text/plain; charset=utf-8", headers=NO_STORE)
+        return Response(ai.korsatma(katalog=True), media_type="text/plain; charset=utf-8", headers=NO_STORE)
 
     @app.get(PREFIX + "/shablon.xlsx")
     def shablon(namuna: int = 0, authorization: str | None = Header(None)):
