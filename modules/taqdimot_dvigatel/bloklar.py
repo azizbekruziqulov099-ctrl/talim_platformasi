@@ -11,6 +11,7 @@ import re
 
 from . import chizma as CH
 from . import formula as FM
+from . import rasmlar as RS
 from .olchov import kenglik
 from .sahna import H, W, Slayd, matn_balandligi
 from .uslub import Uslub, och
@@ -142,6 +143,10 @@ def _vizual(k: K, e, x, y, w, h, s, ichida_kart=True):
         k.s.matn(x, y + h - 22, w, 22, cap, size=13, italic=True, color=u.muted, align="c", min_scale=0.7, a=k.A("item", s, dl=600))
         h -= 28
     if key and k.rasm_bor(key):
+        kr = RS.kredit(key)
+        if kr:
+            k.s.matn(x, y + h - 14, w, 14, kr, size=9, color=u.muted, align="r", min_scale=0.6, a=k.A("item", s, dl=600))
+            h -= 16
         k.s.img(x, y, w, h, "rasm:" + key, a=k.A("big", s, dl=k.st))
         return s
     if ch:

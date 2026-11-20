@@ -76,12 +76,20 @@ def papka_reestri():
     return _papka_reestri(os.path.getmtime(p)) if os.path.isfile(p) else []
 
 
+def kredit(key: str):
+    """Litsenziya talab qiladigan rasm uchun manba qatori (masalan CC BY)."""
+    for r in papka_reestri():
+        if r.get("kalit") == key:
+            return r.get("kredit")
+    return None
+
+
 def papkadan_qidir(q: str = "", limit: int = 60):
     q = kalit_toza(q)
     out = []
     for r in papka_reestri():
         k = r.get("kalit") or ""
-        matn = f"{k} {(r.get('nom') or '')} {(r.get('izoh') or '')}".lower()
+        matn = f"{k} {(r.get('nom') or '')} {(r.get('izoh') or '')} {(r.get('fan') or '')}".lower()
         if not q or q in k or q.replace("_", " ") in matn:
             out.append({"kalit": k, "tavsif": r.get("nom") or r.get("izoh") or "", "tur": r.get("tur") or "rasm"})
             if len(out) >= limit:
