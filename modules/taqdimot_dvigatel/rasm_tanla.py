@@ -171,13 +171,27 @@ def _ball(q: set, r: dict, idf: dict):
     return b, len(umumiy), len(asos)
 
 
+@lru_cache(maxsize=1)
+def _qisqa_sozlar():
+    """2 harfli so'zlar (ot, it, uy, oy) — tokenlarga kirmaydi; sayt kutubxonasida aynan shu nomli rasm."""
+    out = {}
+    for r in _kutubxona_cache():
+        for s in rasmlar.kutubxona_yozuvlari_lugat().get(r["kalit"], []):
+            w = s.strip().lower().translate(_APO)
+            if len(w) == 2 and w.isalpha():
+                out.setdefault(w, []).append(r)
+    return {w: sorted(v, key=lambda r: (r.get("past", False), len(r["asosiy"])))[0]["kalit"] for w, v in out.items()}
+
+
 def buyum_rasmi(matn: str, band: set = frozenset()):
     """Aniq narsa nomi (lug'at so'zi, jihoz, cholg'u) uchun rasm: nomdagi so'z rasmning asosiy so'zi bo'lsa va
     faqat shu rasmga xos bo'lsa (olma → olma_savat, kolba → kolba_konus). Fan tekshirilmaydi."""
     rows, idf = indeks()
     q = tokenlar(matn)
     if not q:
-        return None
+        w = (matn or "").strip().lower().translate(_APO).strip(".,!?")
+        k = _qisqa_sozlar().get(w) if len(w) == 2 else None
+        return k if k and k not in band else None
     qn = _na(q)
     eng, kal = 0.0, None
     for r in rows:
@@ -441,7 +455,7 @@ def boyit(m: dict, avto: bool = True) -> dict:
                 topildi = []
                 for soz in _royxat_sozlari(_el_matni(els[0])):
                     # «Ular sut» → «sut», «shaftoli oldik» → «shaftoli»: rasm topilgan so'zning o'zi izoh bo'ladi
-                    for w in ([soz] if " " not in soz else soz.split()):
+                    for w in ([soz] if " " not in soz else [x for x in soz.split() if len(x) >= 3]):
                         kal = buyum_rasmi(w, band | {k for k, _ in topildi})
                         if kal:
                             topildi.append((kal, w[:1].upper() + w[1:]))

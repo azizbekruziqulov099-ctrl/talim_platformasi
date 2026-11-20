@@ -77,6 +77,12 @@ def kutubxona_yozuvlari():
         return []
 
 
+@lru_cache(maxsize=1)
+def kutubxona_yozuvlari_lugat():
+    """id → sozlar ro'yxati."""
+    return {r["id"]: [x for x in r.get("sozlar") or [] if isinstance(x, str)] for r in kutubxona_yozuvlari() if r.get("id")}
+
+
 def _kutubxonadan(key):
     rk = _rk()
     if not rk:
