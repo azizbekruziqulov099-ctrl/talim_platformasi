@@ -155,6 +155,15 @@ def _vizual(k: K, e, x, y, w, h, s, ichida_kart=True):
             bw_, bh_ = iw_ * sc_, ih_ * sc_
             k.s.rect(x + (w - bw_) / 2, y + (h - bh_) / 2, bw_, bh_, fill="#FFFFFF", r=10, a=k.A("big", s, dl=k.st))
         k.s.img(x, y, w, h, "rasm:" + key, a=k.A("big", s, dl=k.st))
+        if info.get("yozuvlar") and info.get("vb"):
+            # rastrda yozuvi yo'q chizma: raqamlarni ustiga matn qilib qo'yamiz (tahrirlanadi, tarjima qilinadi)
+            vw, vh = info["vb"]
+            sc_ = min(w / vw, h / vh)
+            ox, oy = x + (w - vw * sc_) / 2, y + (h - vh * sc_) / 2
+            for yz in info["yozuvlar"]:
+                k.s.matn(ox + yz["x"] * sc_, oy + yz["y"] * sc_, yz["w"] * sc_, yz["h"] * sc_, yz["t"],
+                         size=max(7, yz["h"] * sc_ * 0.42), bold=True, color="#1F2937", align="c", va="m", min_scale=0.5,
+                         a=k.A("big", s, dl=k.st))
         return s
     if ch:
         return CH.chiz(k.s, ch, x, y, w, h, u, qadam=s, kechikish=k.st, bosqichli=bool(ch.get("bosqichli")))

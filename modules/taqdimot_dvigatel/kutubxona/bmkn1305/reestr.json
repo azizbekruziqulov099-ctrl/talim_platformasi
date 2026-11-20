@@ -1,7 +1,7 @@
 {
  "toplam": "bmkn1305",
  "nom": "Boshlang‘ich matematika kursi nazariyasi (BMKN 1305), 2-kurs, 3-semestr",
- "manba": "SamDPI BMKN 1305 fan dasturi 2026–2027 asosida tayyorlangan paket (18-bosqich)",
+ "manba": "SamDPI BMKN 1305 fan dasturi 2026–2027 asosida tayyorlangan paket (20-bosqich)",
  "mavzular": [
   {
    "id": "BMKN1305-3-M1",
@@ -634,7 +634,25 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A12_yuz_perimetr_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A12_javoblar.json"
+   "javoblar": "BMKN1305_A12_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K07-01",
+     "nom": "Tengdosh,ammo kongruent bo‘lmagan to‘rtburchaklar",
+     "talab": "Bir xil masshtabdagi3×4 va2×6 to‘rtburchaklar; har biri12ta birlik kvadrat. Mos kvadratlarni rang bilan juftlang. Yuz12,perimetrlar14va16; shakllar kongruent deb belgilanmasin.",
+     "kalitlar": [
+      "bmkn_k07_01_tengdosh_tortburchak"
+     ]
+    },
+    {
+     "id": "K07-02",
+     "nom": "L shakl yuzi va perimetri",
+     "talab": "Tashqi8×6 to‘rtburchakning yuqori o‘ng3×2qismi kesilgan. Qolgan ko‘pburchak uchlari(0,0),(8,0),(8,4),(5,4),(5,6),(0,6). Yuz42,chegara kesmalari8,4,3,2,5,6,perimetr28. Kesilgan qismning ichki joylashuvi emas,burchakka tegishi saqlansin.",
+     "kalitlar": [
+      "bmkn_k07_02_l_shakl"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A13",
@@ -645,7 +663,25 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A13_massa_hajm_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A13_javoblar.json"
+   "javoblar": "BMKN1305_A13_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K07-03",
+     "nom": "Tara,brutto va sof massa",
+     "talab": "Uch ko‘rsatkich:bo‘sh idish180g,idish+mahsulot1080g,sof mahsulot900g. 1080−180=900. Tarozi massani ko‘rsatadi; litr yoki hajm bilan almashtirilmasin.",
+     "kalitlar": [
+      "bmkn_k07_03_tara_brutto"
+     ]
+    },
+    {
+     "id": "K07-04",
+     "nom": "Suyuqlik siqib chiqarish modeli",
+     "talab": "Bir xil shkalali ikki panel:350mL va jism to‘liq botgach425mL. Farq75mL=75sm³. Jism suvda erimaydi,shimimaydi,pufak va toshish yo‘q. Suzib turgan,faqat qisman botgan jism bilan to‘liq hajm da’vo qilinmasin.",
+     "kalitlar": [
+      "bmkn_k07_04_siqib_chiqarish"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A14",
@@ -656,7 +692,17 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A14_vaqt_narx_tezlik_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A14_javoblar.json"
+   "javoblar": "BMKN1305_A14_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K07-05",
+     "nom": "Yarim tundan o‘tgan vaqt chizig‘i",
+     "talab": "23:40(1-kun)→24:00/00:00→01:15(2-kun). Davomiyliklar20min va75min,jami95min. Gorizontal o‘q vaqt bo‘yicha bir xil masshtabda,kun almashishi aniq belgilansin.",
+     "kalitlar": [
+      "bmkn_k07_05_yarim_tun"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-A15",
@@ -667,7 +713,17 @@
    "slaydlar": 12,
    "testlar": 6,
    "oqituvchi": "BMKN1305_A15_matnli_masalalar_amaliy_oqituvchi_matni.md",
-   "javoblar": "BMKN1305_A15_javoblar.json"
+   "javoblar": "BMKN1305_A15_javoblar.json",
+   "chizmalar": [
+    {
+     "id": "K07-06",
+     "nom": "9yengil tanga masalasining qaror daraxti",
+     "talab": "9tangadan aynan1tasi yengilroq. Birinchi tortish{1,2,3}va{4,5,6}. Chap yengil→1,2,3;o‘ng yengil→4,5,6;teng→7,8,9. Har shubhali guruhda birinchi va ikkinchi tangani solishtiring;tengda uchinchi,aks holda yengil palla. 9barg va2tortish; og‘ir yoki yengilligi noma’lum shartga qo‘llanmang.",
+     "kalitlar": [
+      "bmkn_k07_06_toqqiz_yengil_tanga"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-MT1",
@@ -680,7 +736,17 @@
    "oqituvchi": "BMKN1305_MT01_tarix_va_sonlar_oqituvchi_matni.md",
    "javoblar": "BMKN1305_MT01_javoblar.json",
    "topshiriq": "BMKN1305_MT01_talaba_topshirigi.md",
-   "reja": "BMKN1305_MT01_reja.json"
+   "reja": "BMKN1305_MT01_reja.json",
+   "chizmalar": [
+    {
+     "id": "K08-01",
+     "nom": "Eratosfen g‘alviri",
+     "talab": "2–30sonli jadval;1alohida tub emas.2,3,5karralilari belgilanib qolgan10tub ajratiladi. Yozuvlar alohida HTML qatlam;rastr aktivga matn kiritilmaydi.",
+     "kalitlar": [
+      "bmkn_k08_01_eratosfen_matnsiz"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-MT2",
@@ -706,7 +772,25 @@
    "oqituvchi": "BMKN1305_MT03_aksiomalar_noevklid_oqituvchi_matni.md",
    "javoblar": "BMKN1305_MT03_javoblar.json",
    "topshiriq": "BMKN1305_MT03_talaba_topshirigi.md",
-   "reja": "BMKN1305_MT03_reja.json"
+   "reja": "BMKN1305_MT03_reja.json",
+   "chizmalar": [
+    {
+     "id": "K08-02",
+     "nom": "Sferik uchburchak",
+     "talab": "Birlik sfera:shimoliy qutbN va ekvatorda uzunlik0°,90° A,B. Tomonlar mos chorak katta doira yoylari;uch burchak90°. Perspektiv rasm burchakni o‘lchash o‘rniga model bo‘yicha belgi qo‘yiladi.",
+     "kalitlar": [
+      "bmkn_k08_02_sferik_uchburchak"
+     ]
+    },
+    {
+     "id": "K08-03",
+     "nom": "Puankare diski geodeziklari",
+     "talab": "Ochiq birlik disk chegarasi uzluksiz nuqtalar qatori emas. Diametr va chegaraga ortogonal doira yoyini aniq koordinata bilan chizish;diskdan tashqari qismlar ko‘rsatilmasin. Masofa oddiy chizg‘ich qiymati deyilmasin.",
+     "kalitlar": [
+      "bmkn_k08_03_puankare_disk"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-MT4",
@@ -732,7 +816,20 @@
    "oqituvchi": "BMKN1305_MT05_kesimlar_etalonlar_oqituvchi_matni.md",
    "javoblar": "BMKN1305_MT05_javoblar.json",
    "topshiriq": "BMKN1305_MT05_talaba_topshirigi.md",
-   "reja": "BMKN1305_MT05_reja.json"
+   "reja": "BMKN1305_MT05_reja.json",
+   "chizmalar": [
+    {
+     "id": "K08-04",
+     "nom": "Kubning to‘rtta kesimi",
+     "talab": "[0,2]^3 kub uchun z=1,x=y,x+y+z=1,x+y+z=3. Uchlar MT5dagi koordinatalarda. Kesim yuzlari4,4√2,√3/2,3√3. Yashirin qirralar va tekislik soyasi ajratiladi.",
+     "kalitlar": [
+      "bmkn_k08_04a_kub_kesim",
+      "bmkn_k08_04b_kub_kesim",
+      "bmkn_k08_04c_kub_kesim",
+      "bmkn_k08_04d_kub_kesim"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-MT6",
@@ -745,7 +842,17 @@
    "oqituvchi": "BMKN1305_MT06_boglanish_tengdoshlik_oqituvchi_matni.md",
    "javoblar": "BMKN1305_MT06_javoblar.json",
    "topshiriq": "BMKN1305_MT06_talaba_topshirigi.md",
-   "reja": "BMKN1305_MT06_reja.json"
+   "reja": "BMKN1305_MT06_reja.json",
+   "chizmalar": [
+    {
+     "id": "K08-05",
+     "nom": "Parallelogrammni teng bo‘lakdan tuzish",
+     "talab": "(0,0),(6,0),(8,4),(2,4);chap uchburchak(0,0),(2,0),(2,4) (6,0)vektoriga ko‘chadi. Yakuniy[2,8]×[0,4]to‘rtburchak,yuz24. Bo‘laklar bir xil rang;ustma-ustlik/tirqish yo‘q.",
+     "kalitlar": [
+      "bmkn_k08_05_parallelogramm_bolak"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-MT7",
@@ -758,7 +865,17 @@
    "oqituvchi": "BMKN1305_MT07_yuz_birliklari_massa_oqituvchi_matni.md",
    "javoblar": "BMKN1305_MT07_javoblar.json",
    "topshiriq": "BMKN1305_MT07_talaba_topshirigi.md",
-   "reja": "BMKN1305_MT07_reja.json"
+   "reja": "BMKN1305_MT07_reja.json",
+   "chizmalar": [
+    {
+     "id": "K08-06",
+     "nom": "Nostandart yuz birligi",
+     "talab": "12×6sm sohada3×2sm kartochkalar4ustun3qator,jami12. Ikkinchi panel1sm²kvadratlar yarmiga bo‘linib144uchburchak beradi. Bir xil masshtab,yuz72sm².",
+     "kalitlar": [
+      "bmkn_k08_06_nostandart_yuz"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-MT8",
@@ -771,7 +888,17 @@
    "oqituvchi": "BMKN1305_MT08_vaqt_narx_masalalar_oqituvchi_matni.md",
    "javoblar": "BMKN1305_MT08_javoblar.json",
    "topshiriq": "BMKN1305_MT08_talaba_topshirigi.md",
-   "reja": "BMKN1305_MT08_reja.json"
+   "reja": "BMKN1305_MT08_reja.json",
+   "chizmalar": [
+    {
+     "id": "K08-07",
+     "nom": "Bosqichli vaqt va teskari reja",
+     "talab": "09:10→09:25→09:35→10:15;oraliqlar15,10,40min. Ikkinchi chiziq09:40→12:00,2soat harakat+20min tanaffus. Barcha segmentlar vaqtga mutanosib.",
+     "kalitlar": [
+      "bmkn_k08_07_bosqichli_vaqt"
+     ]
+    }
+   ]
   },
   {
    "id": "BMKN1305-3-MT9",
@@ -784,7 +911,17 @@
    "oqituvchi": "BMKN1305_MT09_foiz_mantiq_oqituvchi_matni.md",
    "javoblar": "BMKN1305_MT09_javoblar.json",
    "topshiriq": "BMKN1305_MT09_talaba_topshirigi.md",
-   "reja": "BMKN1305_MT09_reja.json"
+   "reja": "BMKN1305_MT09_reja.json",
+   "chizmalar": [
+    {
+     "id": "K08-08",
+     "nom": "8og‘ir tanga strategiyasi",
+     "talab": "Aynan1tanga og‘irroq.1,2,3vs4,5,6;chap/o‘ngda shubhaliuchlikdan1vs1;tengda7vs8.8holat va2tortish;og‘ir/yengilligi noma’lum shartga tatbiq qilinmaydi.",
+     "kalitlar": [
+      "bmkn_k08_08_sakkiz_ogir_tanga"
+     ]
+    }
+   ]
   }
  ]
 }

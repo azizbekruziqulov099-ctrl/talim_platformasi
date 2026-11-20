@@ -215,9 +215,12 @@ def chizmalarni_joyla(d: dict, chizmalar: list, joylash: dict | None = None):
             yaqin = [i for i, b in enumerate(ballar) if eng > 0 and b >= 0.75 * eng and joylar[i][0] == bi]
             if yaqin:
                 bi, si = joylar[max(yaqin)]
-            yangi = {"sarlavha": ch.get("nom") or "Chizma",
-                     "elementlar": [{"tur": "rasm", "rasm": k, "izoh": ""} for k in kalitlar[:2]]}
-            qoshimcha.setdefault((bi, si), []).append(yangi)
+            boo = [kalitlar[j:j + 4] for j in range(0, len(kalitlar), 4)]  # slaydga 4 tagacha (2×2)
+            for j, guruh in enumerate(boo):
+                nom = ch.get("nom") or "Chizma"
+                yangi = {"sarlavha": nom if len(boo) == 1 else f"{nom} ({j + 1}/{len(boo)})",
+                         "elementlar": [{"tur": "rasm", "rasm": k, "izoh": ""} for k in guruh]}
+                qoshimcha.setdefault((bi, si), []).append(yangi)
     for (bi, si) in sorted(qoshimcha, reverse=True):
         d["bolimlar"][bi]["slaydlar"][si + 1:si + 1] = qoshimcha[(bi, si)]
     return d
