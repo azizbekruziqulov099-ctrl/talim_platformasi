@@ -75,3 +75,17 @@ def test_doktorantura_dars_tartibi():   # REV470: «1.2.», «1.1-b.», «1.10.�
             {"nom": "2.1. Samarqand", "topic_code": "a2"}, {"nom": "1.1. Pedagogika fanining maqsad", "topic_code": "a5"},
             {"nom": "1.2. Qonun", "topic_code": "a3"}]
     assert [r["nom"][:5] for r in _dars_tartibi(rows, savol_raqami=True)] == ["1.1. ", "1.1-b", "1.2. ", "1.10.", "2.1. "]
+
+
+def test_doktorantura_nazorat_zinapoyasi():   # REV470: bo'lim ichida har 5 darsda mini-test, bo'lim oxirida bo'lim testi, oxirida yakuniy
+    from modules.kurslar import nazorat_doktorantura, NAZORAT
+    nomlar = [f"1.{i}. Savol" for i in range(1, 13)] + ["2.1-a. A", "2.1-b. B", "2.2. C"]
+    items = [{"topic_code": f"t{k}", "nomi": n, "ochiq": True} for k, n in enumerate(nomlar)]
+    out = nazorat_doktorantura(items)
+    nz = [(x["topic_code"], x["nazorat"], len(x["darslar"])) for x in out if x.get("nazorat")]
+    assert nz == [("NZ:B1M5", "dk_mini", 5), ("NZ:B1M10", "dk_mini", 5), ("NZ:B1", "dk_bolim", 12), ("NZ:B2", "dk_bolim", 3),
+                  ("NZ:YAKUNIY", "dk_yakuniy", 15)]
+    assert out[5]["nomi"].endswith("1.1 – 1.5") and NAZORAT["dk_bolim"][2] == 30 and NAZORAT["dk_bolim"][3] == 70
+    assert [x["topic_code"] for x in out if not x.get("nazorat")] == [x["topic_code"] for x in items]
+    # bitta bo'lim bo'lsa — yakuniy imtihon qo'shilmaydi
+    assert not any(x.get("nazorat") == "dk_yakuniy" for x in nazorat_doktorantura(items[:4]))

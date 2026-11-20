@@ -282,6 +282,9 @@ TOSHKENT_KUN = "(NOW() AT TIME ZONE 'Asia/Tashkent')::date"
 NAZORAT = {"mini": (3, "🟢 Mini-test", 10, 60), "oraliq": (6, "🟡 Oraliq nazorat", 18, 65), "oylik": (12, "🟠 Oylik minimum", 24, 70),
            "maksimum": (24, "🔴 Maksimum imtihon", 30, 70)}
 _KITOB_NAZORAT = re.compile(r"nazorat|oraliq|imtihon|test sinov", re.I)
+# REV470: 13.00.02 doktorantura — har 5 darsda mini-test, har bo'lim oxirida 30 savollik bo'lim testi, kurs oxirida yakuniy imtihon (hammasi 70%)
+NAZORAT.update({"dk_mini": (5, "🟢 Mini-test", 10, 70), "dk_bolim": (0, "🟠 Bo‘lim testi", 30, 70), "dk_yakuniy": (0, "🔴 Yakuniy imtihon", 50, 70)})
+DK_FOIZ = 70
 
 
 def nazorat_qosh(items):
@@ -297,6 +300,31 @@ def nazorat_qosh(items):
             out.append({"topic_code": f"NZ:{n}", "nomi": f"{NAZORAT[tur][1]}: {n - len(qamrov) + 1}–{n}-darslar", "sinf": x.get("sinf"),
                         "ochiq": x.get("ochiq"), "bepul": x.get("bepul"), "nazorat": tur, "darslar": [d["topic_code"] for d in qamrov],
                         "savollar": NAZORAT[tur][2], "otish_foiz": NAZORAT[tur][3], "kamera": tur in ("oylik", "maksimum")})
+    return out
+
+
+def nazorat_doktorantura(items):
+    """REV470: doktorantura darslari («1.1-a. …», «2.15. …») → bo'lim ichida har 5 darsdan keyin mini-test, bo'lim oxirida
+    bo'lim testi (bo'limning barcha darslari), oxirida — bir nechta bo'lim bo'lsa — yakuniy imtihon (barcha darslar)."""
+    def bolim(x):
+        m = re.match(r"^\s*(\d{1,2})\.\d", str(x.get("nomi") or ""))
+        return int(m.group(1)) if m else 0
+    def nz(kod, tur, nomi, qamrov, oxirgi):
+        return {"topic_code": kod, "nomi": nomi, "sinf": oxirgi.get("sinf"), "ochiq": oxirgi.get("ochiq"), "bepul": oxirgi.get("bepul"),
+                "nazorat": tur, "darslar": [d["topic_code"] for d in qamrov], "savollar": NAZORAT[tur][2], "otish_foiz": NAZORAT[tur][3], "kamera": False}
+    out, guruh = [], {}
+    for x in items:
+        guruh.setdefault(bolim(x), []).append(x)
+    for b, ds in guruh.items():
+        for i, x in enumerate(ds, 1):
+            out.append(x)
+            if i == len(ds):
+                out.append(nz(f"NZ:B{b}", "dk_bolim", f"{NAZORAT['dk_bolim'][1]}: {b}-bo‘lim" if b else NAZORAT["dk_bolim"][1], ds, x))
+            elif i % NAZORAT["dk_mini"][0] == 0:
+                q = ds[i - NAZORAT["dk_mini"][0]:i]
+                out.append(nz(f"NZ:B{b}M{i}", "dk_mini", f"{NAZORAT['dk_mini'][1]}: {q[0].get('nomi', '').split(' ')[0].rstrip('.')} – {x.get('nomi', '').split(' ')[0].rstrip('.')}", q, x))
+    if len(guruh) > 1 and items:
+        out.append(nz("NZ:YAKUNIY", "dk_yakuniy", NAZORAT["dk_yakuniy"][1] + ": barcha bo‘limlar", items, items[-1]))
     return out
 
 
@@ -559,17 +587,20 @@ def create_router(platform, click=None):
         if not yukla:
             raise HTTPException(503, "Dars moduli tayyor emas")
         bank = {}
-        for tc in it["darslar"]:
+        rnd = _r.Random(f"{uid}:{kod}:{date.today().isoformat()}")
+        darslar_ = list(it["darslar"])
+        if len(darslar_) > int(it["savollar"]) + 10:   # REV470: yakuniy imtihon (yuzlab dars) — savol sonicha tasodifiy dars (+zaxira)
+            darslar_ = rnd.sample(darslar_, int(it["savollar"]) + 10)
+        for tc in darslar_:
             try:
                 bank[tc] = [{**q, "_dars": tc} for q in (yukla(tc, til).get("savollar") or []) if q.get("variantlar")]
             except Exception:   # noqa: BLE001 — birorta dars ochilmasa ham nazorat bo'laveradi
                 bank[tc] = []
-        rnd = _r.Random(f"{uid}:{kod}:{date.today().isoformat()}")
         for v in bank.values():
             rnd.shuffle(v)
         kerak, tanlangan = int(it["savollar"]), []
         while len(tanlangan) < kerak and any(bank.values()):   # darslardan navbat bilan — har darsdan teng
-            for tc in it["darslar"]:
+            for tc in darslar_:
                 if bank.get(tc) and len(tanlangan) < kerak:
                     tanlangan.append(bank[tc].pop())
         rnd.shuffle(tanlangan)
@@ -731,7 +762,8 @@ def create_router(platform, click=None):
                 if not ok and kat == "repetitor" and kurs_of(fan, d["grade"])[0] in sinf_obuna:
                     ok, sabab = True, "obuna"
                 items.append({"topic_code": d["topic_code"], "nomi": d["nom"], "sinf": d["grade"], "ochiq": ok, "bepul": sabab in ("bepul_dars", "bepul_kurs")})
-            items = nazorat_qosh(items)   # REV479
+            dk = doktorantura_mi(grade)
+            items = nazorat_doktorantura(items) if dk else nazorat_qosh(items)   # REV479; REV470: doktorantura — o'z zinapoyasi
             cur.execute("SELECT kod, otdi, togri, jami, (oxirgi_urinish AT TIME ZONE 'Asia/Tashkent')::date AS kun FROM kurs_nazorat WHERE user_id=%s AND kalit=%s", (uid, kalit))
             nz = {r["kod"]: r for r in cur.fetchall()}
             # REV477: kurs tartibi — tugatilgan darslar, keyingisi ertaga (admin/o'qituvchi uchun qulfsiz)
@@ -742,14 +774,13 @@ def create_router(platform, click=None):
             if kalit == _rk.KALIT:   # Repetitor kitobi: dars «tugadi» — mashq va test 70% dan o'tgandagina; o'tmasa o'sha dars navbatda qoladi
                 otgan = kitob_otganlar(cur, uid)
                 tug = {x for x in tug if x in otgan}; bugun_t = {x for x in bugun_t if x in otgan}
-            elif doktorantura_mi(grade):   # REV470: 13.00.02 doktorantura — dars testidan 70% olinmaguncha keyingi dars yopiq
-                otgan = test_otganlar(cur, uid, kalit)
-                tug = {x for x in tug if x in otgan}; bugun_t = {x for x in bugun_t if x in otgan}
+            elif dk:   # REV470: 13.00.02 doktorantura — dars testidan 70% olinmaguncha keyingi dars yopiq; o'tsa — keyingisi DARHOL (ertagacha kutmaydi)
+                tug = tug & test_otganlar(cur, uid, kalit); bugun_t = set()
             cur.execute(f"SELECT {TOSHKENT_KUN} AS bugun"); bugun_kun = cur.fetchone()["bugun"]
             for k_, r_ in nz.items():   # o'tilgan nazorat — «tugadi» (o'sha kuni o'tilgan bo'lsa — keyingi dars ertaga)
                 if r_["otdi"]:
                     tug.add(k_)
-                    if r_["kun"] == bugun_kun:
+                    if r_["kun"] == bugun_kun and not dk:
                         bugun_t.add(k_)
             # hali birorta darsni tugatmagan (yoki tartib joriy qilinishidan oldin o'qiyotgan) o'quvchi — birinchi tugatgunicha cheklanmaydi
             erkin = rol in ("admin", "teacher", "oqituvchi", "ustoz", "markaz") or not hol
@@ -770,7 +801,7 @@ def create_router(platform, click=None):
                     r_ = nz.get(it["topic_code"])
                     if r_:
                         it["natija"] = {"togri": r_["togri"], "jami": r_["jami"], "otdi": r_["otdi"]}
-                        if not r_["otdi"] and r_["kun"] == bugun_kun and not erkin:
+                        if not r_["otdi"] and r_["kun"] == bugun_kun and not erkin and not dk:   # REV470: doktorantura — darhol qayta topshirsa bo'ladi
                             it["ochiq"] = False; it["holat"] = "qayta_ertaga"
             for it in items:
                 if not it.get("yakshanba"):
@@ -793,7 +824,8 @@ def create_router(platform, click=None):
                     it["holat"] = "navbat"
             return {"kalit": kalit, "kategoriya": kat, "nomi": nomi, "narx": narx, "bepul": bepul,
                     "obuna_tugaydi": ob["tugaydi"].isoformat() if ob else None, "darslar": items,
-                    "tartib_erkin": bool(erkin) and rol in ("admin", "teacher", "oqituvchi", "ustoz", "markaz")}
+                    "tartib_erkin": bool(erkin) and rol in ("admin", "teacher", "oqituvchi", "ustoz", "markaz"),
+                    **({"otish_foiz": DK_FOIZ} if dk else {})}   # REV470: keyingi dars — dars testidan shu foiz olinganda
         return run(go)
 
     @router.post("/api/kurslar/buyurtma")
