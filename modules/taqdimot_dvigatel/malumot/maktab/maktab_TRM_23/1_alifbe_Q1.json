@@ -1,0 +1,673 @@
+{
+  "sinf": 1,
+  "fan": "Alifbe",
+  "school_id": "MK-01-002",
+  "manba": "S269",
+  "oquv_yili": "2026–2027",
+  "chorak": 1,
+  "davr": "1-chorak",
+  "dars_soni": 36,
+  "jami_soat": 36,
+  "raqamli_soat_yigindisi": 36,
+  "soat_katagi_bosh_darslar": [],
+  "soat_manbasi": "davr sarlavhasi; har bir qator alohida tekshirilgan",
+  "turli_sarlavhalar_soni": 36,
+  "turli_sarlavhalar": [
+    "Darslik bilan tanishtirish. Mustaqillik darsi.",
+    "Men – birinchi sinf o‘quvchisiman. So‘z va gap haqida tushuncha.",
+    "Mening oilam. Alifbe qahramonlari bilan tanishuv",
+    "Unli va undosh tovushlar. Men va atrofimizdagi olam",
+    "O tovushi va O o harflari",
+    "T tovushi va T t harflari",
+    "A tovushi va A a harflari",
+    "A tovushi va A a harflari. STO‘ – 20 min.",
+    "N tovushi va N n harflari.",
+    "N tovushi va N n harflarini mustahkamlash",
+    "I tovushi va I i harflari.",
+    "I tovushi va I i harflarini mustahkamlash. STO‘ – 20 min.",
+    "L tovushi va L l harflari",
+    "L tovushi va L l harflarini mustahkamlash",
+    "M tovushi va M m harflari. STO‘ – 20 min.",
+    "M tovushi va M m harflarini mustahkamlash",
+    "U tovushi va U u harflari",
+    "U tovushi va U u harflarini mustahkamlash.",
+    "D tovushi va D d harflari.",
+    "D tovushi va D d harflarini mustahkamlash. STO‘ – 20 min.",
+    "K tovushi va K k harflari",
+    "K tovushi va K k harflarini mustahkamlash",
+    "O‘ tovushi va O‘ o‘ harflari",
+    "O‘ tovushi va O‘ o‘ harflarini mustahkamlash.",
+    "B tovushi va B b harflari",
+    "B tovushi va B b harflarini mustahkamlash. STO‘ – 20 min.",
+    "E tovushi va E e harflari. STO‘ – 20 min.",
+    "E tovushi va E e harflarini mustahkamlash.",
+    "Y tovushi va Y y harflari.",
+    "Y tovushi va Y y harflarini mustahkamlash.",
+    "R tovushi va R r harflari.",
+    "R tovushi va R r harflarini mustahkamlash. STO‘ – 20 min.",
+    "Q tovushi va Q q harflari",
+    "Q tovushi va Q q harflarini mustahkamlash.",
+    "S tovushi va S s harflari",
+    "S tovushi va S s harflarini mustahkamlash. STO‘ – 20 min."
+  ],
+  "butun_yillik_reja_tayyor": false,
+  "RTM_tasdiq_varagi_tekshirildi": false,
+  "darslik_nashri_aniqmi": false,
+  "dars_mazmunlari_tayyor": false,
+  "til": "uz",
+  "darslar": [
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L01",
+      "dars": 1,
+      "mavzu": "Darslik bilan tanishtirish. Mustaqillik darsi.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Darslik bilan tanishtirish. Mustaqillik darsi."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L02",
+      "dars": 2,
+      "mavzu": "Men – birinchi sinf o‘quvchisiman. So‘z va gap haqida tushuncha.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Men – birinchi sinf o‘quvchisiman. So‘z va gap haqida tushuncha."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L03",
+      "dars": 3,
+      "mavzu": "Mening oilam. Alifbe qahramonlari bilan tanishuv",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Mening oilam. Alifbe qahramonlari bilan tanishuv"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L04",
+      "dars": 4,
+      "mavzu": "Unli va undosh tovushlar. Men va atrofimizdagi olam",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Unli va undosh tovushlar. Men va atrofimizdagi olam"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L05",
+      "dars": 5,
+      "mavzu": "O tovushi va O o harflari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "O tovushi va O o harflari"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L06",
+      "dars": 6,
+      "mavzu": "T tovushi va T t harflari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "T tovushi va T t harflari"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L07",
+      "dars": 7,
+      "mavzu": "A tovushi va A a harflari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "A tovushi va A a harflari"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L08",
+      "dars": 8,
+      "mavzu": "A tovushi va A a harflari. STO‘ – 20 min.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "A tovushi va A a harflari. STO‘ – 20 min."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L09",
+      "dars": 9,
+      "mavzu": "N tovushi va N n harflari.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "N tovushi va N n harflari."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L10",
+      "dars": 10,
+      "mavzu": "N tovushi va N n harflarini mustahkamlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "N tovushi va N n harflarini mustahkamlash"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L11",
+      "dars": 11,
+      "mavzu": "I tovushi va I i harflari.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "I tovushi va I i harflari."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L12",
+      "dars": 12,
+      "mavzu": "I tovushi va I i harflarini mustahkamlash. STO‘ – 20 min.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "I tovushi va I i harflarini mustahkamlash. STO‘ – 20 min."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L13",
+      "dars": 13,
+      "mavzu": "L tovushi va L l harflari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "L tovushi va L l harflari"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L14",
+      "dars": 14,
+      "mavzu": "L tovushi va L l harflarini mustahkamlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "L tovushi va L l harflarini mustahkamlash"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L15",
+      "dars": 15,
+      "mavzu": "M tovushi va M m harflari. STO‘ – 20 min.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "M tovushi va M m harflari. STO‘ – 20 min."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L16",
+      "dars": 16,
+      "mavzu": "M tovushi va M m harflarini mustahkamlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "M tovushi va M m harflarini mustahkamlash"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L17",
+      "dars": 17,
+      "mavzu": "U tovushi va U u harflari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "U tovushi va U u harflari"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L18",
+      "dars": 18,
+      "mavzu": "U tovushi va U u harflarini mustahkamlash.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "U tovushi va U u harflarini mustahkamlash."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L19",
+      "dars": 19,
+      "mavzu": "D tovushi va D d harflari.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "D tovushi va D d harflari."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L20",
+      "dars": 20,
+      "mavzu": "D tovushi va D d harflarini mustahkamlash. STO‘ – 20 min.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "D tovushi va D d harflarini mustahkamlash. STO‘ – 20 min."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L21",
+      "dars": 21,
+      "mavzu": "K tovushi va K k harflari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "K tovushi va K k harflari"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L22",
+      "dars": 22,
+      "mavzu": "K tovushi va K k harflarini mustahkamlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "K tovushi va K k harflarini mustahkamlash"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L23",
+      "dars": 23,
+      "mavzu": "O‘ tovushi va O‘ o‘ harflari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "O‘ tovushi va O‘ o‘ harflari"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L24",
+      "dars": 24,
+      "mavzu": "O‘ tovushi va O‘ o‘ harflarini mustahkamlash.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "O‘ tovushi va O‘ o‘ harflarini mustahkamlash."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L25",
+      "dars": 25,
+      "mavzu": "B tovushi va B b harflari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "B tovushi va B b harflari"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L26",
+      "dars": 26,
+      "mavzu": "B tovushi va B b harflarini mustahkamlash. STO‘ – 20 min.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "B tovushi va B b harflarini mustahkamlash. STO‘ – 20 min."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L27",
+      "dars": 27,
+      "mavzu": "E tovushi va E e harflari. STO‘ – 20 min.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "E tovushi va E e harflari. STO‘ – 20 min."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L28",
+      "dars": 28,
+      "mavzu": "E tovushi va E e harflarini mustahkamlash.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "E tovushi va E e harflarini mustahkamlash."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L29",
+      "dars": 29,
+      "mavzu": "Y tovushi va Y y harflari.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Y tovushi va Y y harflari."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L30",
+      "dars": 30,
+      "mavzu": "Y tovushi va Y y harflarini mustahkamlash.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Y tovushi va Y y harflarini mustahkamlash."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L31",
+      "dars": 31,
+      "mavzu": "R tovushi va R r harflari.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "R tovushi va R r harflari."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L32",
+      "dars": 32,
+      "mavzu": "R tovushi va R r harflarini mustahkamlash. STO‘ – 20 min.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "R tovushi va R r harflarini mustahkamlash. STO‘ – 20 min."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L33",
+      "dars": 33,
+      "mavzu": "Q tovushi va Q q harflari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Q tovushi va Q q harflari"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L34",
+      "dars": 34,
+      "mavzu": "Q tovushi va Q q harflarini mustahkamlash.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Q tovushi va Q q harflarini mustahkamlash."
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L35",
+      "dars": 35,
+      "mavzu": "S tovushi va S s harflari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "S tovushi va S s harflari"
+    },
+    {
+      "id": "MK-01-002-ALIFBE-Q1-L36",
+      "dars": 36,
+      "mavzu": "S tovushi va S s harflarini mustahkamlash. STO‘ – 20 min.",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S269",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "S tovushi va S s harflarini mustahkamlash. STO‘ – 20 min."
+    }
+  ],
+  "manba_izohi": "Alifbe: I chorak 36 dars, 1–2-betlar; II chorak 28 dars, 3-bet. Word faqat I chorak. Ikkinchi chorakning 25–28 qatorlari ham bor; raw table faqat birinchi katakni tekshirsa yo‘qotiladi. S02 nusxasining 6-beti, 1-band ko‘rildi: Alifbe O‘qish savodxonligi negizida; MK-01-002 qatoriga moslandi. Asl vazirlik/ERI tasdig‘i hali yo‘q."
+}

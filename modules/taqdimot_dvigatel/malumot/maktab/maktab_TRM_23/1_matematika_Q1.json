@@ -1,0 +1,832 @@
+{
+  "sinf": 1,
+  "fan": "Matematika",
+  "school_id": "MK-01-005",
+  "manba": "S270",
+  "oquv_yili": "2026–2027",
+  "chorak": 1,
+  "davr": "1-chorak",
+  "dars_soni": 45,
+  "jami_soat": 45,
+  "raqamli_soat_yigindisi": 45,
+  "soat_katagi_bosh_darslar": [],
+  "soat_manbasi": "davr sarlavhasi; har bir qator alohida tekshirilgan",
+  "turli_sarlavhalar_soni": 42,
+  "turli_sarlavhalar": [
+    "Predmetlarning xossalari",
+    "O‘xshashlik va farq",
+    "Predmetlarning joylashishi",
+    "Predmetlar sanog‘i",
+    "Yassi va hajmli shakllar",
+    "Vaqt bo‘yicha ketma-ketlik",
+    "Predmetlar guruhi",
+    "Predmetlar guruhlarini taqqoslash",
+    "O‘yin-dars",
+    "1 dan 10 gacha bo‘lgan sonlar",
+    "Qo‘shish",
+    "Ayirish",
+    "Sonlarni taqqoslash",
+    "1 soni va raqami",
+    "2 soni va raqami",
+    "3 soni va raqami",
+    "4 soni va raqami",
+    "5 soni va raqami",
+    "1 dan 5 gacha bo‘lgan sonlar",
+    "1 dan 5 gacha bo‘lgan sonlar bilan amallar bajarish",
+    "6 soni va raqami",
+    "7 soni va raqami",
+    "8 soni va raqami",
+    "9 soni va raqami",
+    "0 soni va raqami",
+    "10 soni",
+    "1 dan 10 gacha bo‘lgan sonlar. Sonlarni taqqoslash",
+    "Natural sonlar",
+    "Juft va toq sonlar",
+    "Nuqta. To‘g‘ri va egri chiziq",
+    "To‘g‘ri chiziq kesmasi. Siniq chiziq",
+    "Qo‘shish komponentlari",
+    "Ayirish komponentlari",
+    "Ifodalar",
+    "Noma’lum qo‘shiluvchini topish",
+    "Noma’lum kamayuvchini topish",
+    "Noma’lum ayriluvchini topish",
+    "Qo‘shish bilan ayirish orasidagi o‘zaro bog‘liqlik",
+    "Qo‘shishning o‘rin almashtirish xossasi",
+    "Qo‘shish jadvali",
+    "Taqqoslash xossasi",
+    "O‘tilganlarni takrorlash"
+  ],
+  "butun_yillik_reja_tayyor": false,
+  "RTM_tasdiq_varagi_tekshirildi": false,
+  "darslik_nashri_aniqmi": false,
+  "dars_mazmunlari_tayyor": false,
+  "til": "uz",
+  "darslar": [
+    {
+      "id": "MK-01-005-Q1-L01",
+      "dars": 1,
+      "mavzu": "Predmetlarning xossalari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Predmetlarning xossalari"
+    },
+    {
+      "id": "MK-01-005-Q1-L02",
+      "dars": 2,
+      "mavzu": "O‘xshashlik va farq",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "O‘xshashlik va farq"
+    },
+    {
+      "id": "MK-01-005-Q1-L03",
+      "dars": 3,
+      "mavzu": "Predmetlarning joylashishi",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Predmetlarning joylashishi"
+    },
+    {
+      "id": "MK-01-005-Q1-L04",
+      "dars": 4,
+      "mavzu": "Predmetlar sanog‘i",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Predmetlar sanog‘i"
+    },
+    {
+      "id": "MK-01-005-Q1-L05",
+      "dars": 5,
+      "mavzu": "Yassi va hajmli shakllar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Yassi va hajmli shakllar"
+    },
+    {
+      "id": "MK-01-005-Q1-L06",
+      "dars": 6,
+      "mavzu": "Vaqt bo‘yicha ketma-ketlik",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Vaqt bo‘yicha ketma-ketlik"
+    },
+    {
+      "id": "MK-01-005-Q1-L07",
+      "dars": 7,
+      "mavzu": "Predmetlar guruhi",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Predmetlar guruhi"
+    },
+    {
+      "id": "MK-01-005-Q1-L08",
+      "dars": 8,
+      "mavzu": "Predmetlar guruhlarini taqqoslash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Predmetlar guruhlarini taqqoslash"
+    },
+    {
+      "id": "MK-01-005-Q1-L09",
+      "dars": 9,
+      "mavzu": "O‘yin-dars",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "O‘yin-dars"
+    },
+    {
+      "id": "MK-01-005-Q1-L10",
+      "dars": 10,
+      "mavzu": "1 dan 10 gacha bo‘lgan sonlar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "1 dan 10 gacha bo‘lgan sonlar"
+    },
+    {
+      "id": "MK-01-005-Q1-L11",
+      "dars": 11,
+      "mavzu": "Predmetlar sanog‘i",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Predmetlar sanog‘i"
+    },
+    {
+      "id": "MK-01-005-Q1-L12",
+      "dars": 12,
+      "mavzu": "Qo‘shish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Qo‘shish"
+    },
+    {
+      "id": "MK-01-005-Q1-L13",
+      "dars": 13,
+      "mavzu": "Ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Ayirish"
+    },
+    {
+      "id": "MK-01-005-Q1-L14",
+      "dars": 14,
+      "mavzu": "Sonlarni taqqoslash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Sonlarni taqqoslash"
+    },
+    {
+      "id": "MK-01-005-Q1-L15",
+      "dars": 15,
+      "mavzu": "1 soni va raqami",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "1 soni va raqami"
+    },
+    {
+      "id": "MK-01-005-Q1-L16",
+      "dars": 16,
+      "mavzu": "2 soni va raqami",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "2 soni va raqami"
+    },
+    {
+      "id": "MK-01-005-Q1-L17",
+      "dars": 17,
+      "mavzu": "3 soni va raqami",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "3 soni va raqami"
+    },
+    {
+      "id": "MK-01-005-Q1-L18",
+      "dars": 18,
+      "mavzu": "4 soni va raqami",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "4 soni va raqami"
+    },
+    {
+      "id": "MK-01-005-Q1-L19",
+      "dars": 19,
+      "mavzu": "5 soni va raqami",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "5 soni va raqami"
+    },
+    {
+      "id": "MK-01-005-Q1-L20",
+      "dars": 20,
+      "mavzu": "1 dan 5 gacha bo‘lgan sonlar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "1 dan 5 gacha bo‘lgan sonlar"
+    },
+    {
+      "id": "MK-01-005-Q1-L21",
+      "dars": 21,
+      "mavzu": "1 dan 5 gacha bo‘lgan sonlar bilan amallar bajarish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "1 dan 5 gacha bo‘lgan sonlar bilan amallar bajarish"
+    },
+    {
+      "id": "MK-01-005-Q1-L22",
+      "dars": 22,
+      "mavzu": "6 soni va raqami",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "6 soni va raqami"
+    },
+    {
+      "id": "MK-01-005-Q1-L23",
+      "dars": 23,
+      "mavzu": "7 soni va raqami",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "7 soni va raqami"
+    },
+    {
+      "id": "MK-01-005-Q1-L24",
+      "dars": 24,
+      "mavzu": "8 soni va raqami",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "8 soni va raqami"
+    },
+    {
+      "id": "MK-01-005-Q1-L25",
+      "dars": 25,
+      "mavzu": "9 soni va raqami",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "9 soni va raqami"
+    },
+    {
+      "id": "MK-01-005-Q1-L26",
+      "dars": 26,
+      "mavzu": "0 soni va raqami",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "0 soni va raqami"
+    },
+    {
+      "id": "MK-01-005-Q1-L27",
+      "dars": 27,
+      "mavzu": "10 soni",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "10 soni"
+    },
+    {
+      "id": "MK-01-005-Q1-L28",
+      "dars": 28,
+      "mavzu": "1 dan 10 gacha bo‘lgan sonlar. Sonlarni taqqoslash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "1 dan 10 gacha bo‘lgan sonlar. Sonlarni taqqoslash"
+    },
+    {
+      "id": "MK-01-005-Q1-L29",
+      "dars": 29,
+      "mavzu": "Natural sonlar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Natural sonlar"
+    },
+    {
+      "id": "MK-01-005-Q1-L30",
+      "dars": 30,
+      "mavzu": "Juft va toq sonlar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Juft va toq sonlar"
+    },
+    {
+      "id": "MK-01-005-Q1-L31",
+      "dars": 31,
+      "mavzu": "Nuqta. To‘g‘ri va egri chiziq",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Nuqta. To‘g‘ri va egri chiziq"
+    },
+    {
+      "id": "MK-01-005-Q1-L32",
+      "dars": 32,
+      "mavzu": "To‘g‘ri chiziq kesmasi. Siniq chiziq",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "To‘g‘ri chiziq kesmasi. Siniq chiziq"
+    },
+    {
+      "id": "MK-01-005-Q1-L33",
+      "dars": 33,
+      "mavzu": "Qo‘shish komponentlari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Qo‘shish komponentlari"
+    },
+    {
+      "id": "MK-01-005-Q1-L34",
+      "dars": 34,
+      "mavzu": "Ayirish komponentlari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Ayirish komponentlari"
+    },
+    {
+      "id": "MK-01-005-Q1-L35",
+      "dars": 35,
+      "mavzu": "Ifodalar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Ifodalar"
+    },
+    {
+      "id": "MK-01-005-Q1-L36",
+      "dars": 36,
+      "mavzu": "Noma’lum qo‘shiluvchini topish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Noma’lum qo‘shiluvchini topish"
+    },
+    {
+      "id": "MK-01-005-Q1-L37",
+      "dars": 37,
+      "mavzu": "Noma’lum kamayuvchini topish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Noma’lum kamayuvchini topish"
+    },
+    {
+      "id": "MK-01-005-Q1-L38",
+      "dars": 38,
+      "mavzu": "Noma’lum ayriluvchini topish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Noma’lum ayriluvchini topish"
+    },
+    {
+      "id": "MK-01-005-Q1-L39",
+      "dars": 39,
+      "mavzu": "Qo‘shish bilan ayirish orasidagi o‘zaro bog‘liqlik",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Qo‘shish bilan ayirish orasidagi o‘zaro bog‘liqlik"
+    },
+    {
+      "id": "MK-01-005-Q1-L40",
+      "dars": 40,
+      "mavzu": "Qo‘shishning o‘rin almashtirish xossasi",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Qo‘shishning o‘rin almashtirish xossasi"
+    },
+    {
+      "id": "MK-01-005-Q1-L41",
+      "dars": 41,
+      "mavzu": "Qo‘shish jadvali",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Qo‘shish jadvali"
+    },
+    {
+      "id": "MK-01-005-Q1-L42",
+      "dars": 42,
+      "mavzu": "Taqqoslash xossasi",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Taqqoslash xossasi"
+    },
+    {
+      "id": "MK-01-005-Q1-L43",
+      "dars": 43,
+      "mavzu": "O‘yin-dars",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "O‘yin-dars"
+    },
+    {
+      "id": "MK-01-005-Q1-L44",
+      "dars": 44,
+      "mavzu": "O‘tilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "O‘tilganlarni takrorlash"
+    },
+    {
+      "id": "MK-01-005-Q1-L45",
+      "dars": 45,
+      "mavzu": "O‘tilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S270",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "O‘tilganlarni takrorlash"
+    }
+  ],
+  "manba_izohi": "1-sinf Matematika I chorak: o‘zbekcha 45 dars 1–3-betlarda, ruscha variant 4–6-betlarda. PDFning davom betlarida ayrim soat/sarlavhalar ko‘rinmaydi, lekin matn va Word kataklari bilan tekshirish mumkin. Ruscha variant qo‘shimcha dars emas."
+}

@@ -1,5 +1,19 @@
 [
  {
+  "kalit": "afrosiyob_elchilar",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Afrosiyob devoriy suratlari uslubida elchilar",
+  "fan": "Tarix",
+  "tekshiruv": "Uch kiyimdagi elchi o‘ngga qarab yurmoqda; mato o‘rami, kosa va yopiq sovg‘a idishi bor. Yangi kompozitsiya Afrosiyob freskasi rang/chiziqlaridan ilhomlangan; aniq fragment nusxasi, millat identifikatsiyasi yoki ilmiy rekonstruksiya emas.",
+  "manbalar": [
+   "S253"
+  ]
+ },
+ {
   "kalit": "ampermetr_voltmetr",
   "tur": "rasm",
   "olcham": [
@@ -38,6 +52,20 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Ikki bola bitta markaziy tayanchning ikki tomonida, taxta gorizontal. Birinchi tur richagning shartli illyustratsiyasi; bolalar massasi yoki momentlar o‘lchov bilan aniqlanmagan.",
   "manbalar": null
+ },
+ {
+  "kalit": "ark_buxoro",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Buxoro Arki",
+  "fan": "Tarix",
+  "tekshiruv": "Qalin nishab devor, kungirali tepa, kirish rampasi, ikki qisqa burchak elementi va yog‘och ayvon ko‘rildi. Ko‘k koshinli masjid yoki Yevropa qasri qilib berilmagan.",
+  "manbalar": [
+   "S249"
+  ]
  },
  {
   "kalit": "arktika",
@@ -191,6 +219,34 @@
   ]
  },
  {
+  "kalit": "bibixonim",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Bibixonim masjidi",
+  "fan": "Tarix",
+  "tekshiruv": "Baland kirish peshtoqi, katta yon tayanchlar, past devor, tashqi minoralar va orqaroq o‘ngdagi qovurg‘ali ko‘k gumbaz ko‘rildi. Asosiy belgilar reference bilan solishtirildi.",
+  "manbalar": [
+   "S247"
+  ]
+ },
+ {
+  "kalit": "birinchi_samolyot",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Birinchi samolyot",
+  "fan": "Tarix",
+  "tekshiruv": "1903 Flyerning ikki asosiy qanoti, olddagi ikkita kichik gorizontal elevator yuzasi, orqadagi ikki propeller va juft tik rul, g‘ildiraksiz chang‘isimon tayanchlar ko‘rildi. Old burun propellerli zamonaviy biplan qilib berilmagan.",
+  "manbalar": [
+   "S257"
+  ]
+ },
+ {
   "kalit": "blok_kotarish",
   "tur": "rasm",
   "olcham": [
@@ -215,6 +271,20 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Bir butun kulrang bo‘ri, to‘rt oyoq, ikki tik quloq va bitta pastga tushgan dum ko‘rildi. Tabiiy xotirjam holat; kulrang bo‘rining umumiy illyustratsiyasi.",
   "manbalar": null
+ },
+ {
+  "kalit": "bug_mashinasi",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Bug‘ mashinasi va paravoz",
+  "fan": "Tarix",
+  "tekshiruv": "Yuqorida qozon, gorizontal silindr va tirsak-maxovikli mashina; pastda alohida paravoz, tender va rels bor. Ikki mashina bir gibridga qo‘shilmagan. Bu umumiy tashqi belgi, o‘lchovli texnik loyiha emas.",
+  "manbalar": [
+   "S256"
+  ]
  },
  {
   "kalit": "bugdoy_dalasi",
@@ -515,6 +585,20 @@
   ]
  },
  {
+  "kalit": "fayoztepa",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Fayoztepa (Termiz)",
+  "fan": "Tarix",
+  "tekshiruv": "Past xonalar/hovlilar va alohida platformadagi kichik yarimshar himoya qoplamasi ko‘rildi. Qoplama zamonaviy; uning o‘zi qadimgi stupa deb izohlanmaydi.",
+  "manbalar": [
+   "S252"
+  ]
+ },
+ {
   "kalit": "fotoapparat",
   "tur": "rasm",
   "olcham": [
@@ -652,6 +736,20 @@
   ]
  },
  {
+  "kalit": "gori_amir",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Go‘ri Amir maqbarasi",
+  "fan": "Tarix",
+  "tekshiruv": "Bitta yirik qovurg‘ali turkuaz gumbaz, baraban, ikkita minora va alohida old peshtoq ko‘rildi. Bu soddalashtirilgan maqbara ko‘rinishi, to‘liq me’moriy chizma emas.",
+  "manbalar": [
+   "S248"
+  ]
+ },
+ {
   "kalit": "gul_tuzilishi",
   "tur": "rasm",
   "olcham": [
@@ -760,6 +858,20 @@
   ]
  },
  {
+  "kalit": "ichan_qala",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Ichan qal’a (Xiva)",
+  "fan": "Tarix",
+  "tekshiruv": "Oldinda kungirali tuproq rang devor va yumaloq burjlar, orqada qisqa/keng/tepasi tekis turkuaz Kalta Minor hamda madrasa bor. Rang kun yorug‘idagi koshin sifatida berildi; bu shahar o‘lchovli plani emas.",
+  "manbalar": [
+   "S250"
+  ]
+ },
+ {
   "kalit": "ifloslanish",
   "tur": "rasm",
   "olcham": [
@@ -796,6 +908,20 @@
   "fan": "Tabiiy fanlar",
   "tekshiruv": "Bitta uzluksiz S-shaklli tana, bitta bosh va bitta ingichkalashgan dum ko‘rildi. Oyoq yo‘q. Bu illyustratsiya; rasmga qarab haqiqiy ilonning turi yoki zaharliligi haqida xulosa qilinmaydi.",
   "manbalar": null
+ },
+ {
+  "kalit": "ipak_yoli_karvon",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Buyuk Ipak yo‘li: tuya karvoni",
+  "fan": "Tarix",
+  "tekshiruv": "To‘rtta ikki o‘rkachli tuya, yuklar va ikkita savdogar ko‘rildi. Dastlabki xira nur/fon olib tashlandi; yakuniy obyektlar aniq rangli va tashqi fon shaffof. Kiyimlar shartli, muayyan yilga biriktirilmagan.",
+  "manbalar": [
+   "S244"
+  ]
  },
  {
   "kalit": "issiqlik_elektrostansiya",
@@ -971,6 +1097,20 @@
   "tekshiruv": "Saqlangan baland qismida uch qator ravoq, ustida to‘rtburchak derazali attik ko‘rildi; siniq ellips devori va ichki arena bor. To‘rt qator ravoq qilib chizilmagan.",
   "manbalar": [
    "S239"
+  ]
+ },
+ {
+  "kalit": "kolumb_kemalari",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Kolumb kemalari",
+  "fan": "Tarix",
+  "tekshiruv": "Uchta alohida yog‘och yelkanli kema, bittasi kattaroq baland orqa qismli; kvadrat va uchburchak yelkanlar ko‘rildi. Tutun mo‘risi, zamonaviy motor va yozuvli bayroq yo‘q. Santa Maria/Niña/Pintaning aniq saqlangan chizmalari deb olinmaydi.",
+  "manbalar": [
+   "S255"
   ]
  },
  {
@@ -1342,6 +1482,20 @@
   "tekshiruv": "Ikki xaltada granulalar, oldida oz miqdor donalar va boshoqli o‘simlik. O‘g‘it tarkibi yoki qo‘llash me’yori berilmagan.",
   "manbalar": [
    "S192"
+  ]
+ },
+ {
+  "kalit": "minorai_kalon",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Minorai Kalon",
+  "fan": "Tarix",
+  "tekshiruv": "Pastdan yuqoriga torayuvchi baland g‘isht tana, geometrik belbog‘lar va ravoqli fonus qismi ko‘rildi. Qisqa ko‘k Kalta Minor bilan aralashtirilmagan; yonidagi portal rasmga olinmagan.",
+  "manbalar": [
+   "S249"
   ]
  },
  {
@@ -2013,6 +2167,20 @@
   ]
  },
  {
+  "kalit": "registon",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Registon maydoni",
+  "fan": "Tarix",
+  "tekshiruv": "Uchta alohida madrasa, ularning uch yirik kirish peshtoqi va ochiq markaziy maydon ko‘rildi. Chap Ulug‘bek, orqa Tillakori, o‘ng Sherdor tartibi reference bilan solishtirildi. Bezaklar soddalashtirilgan; o‘lchovli plan emas.",
+  "manbalar": [
+   "S245"
+  ]
+ },
+ {
   "kalit": "richag_tosh",
   "tur": "rasm",
   "olcham": [
@@ -2024,6 +2192,20 @@
   "tekshiruv": "Odam uzun yelka tomonida, tayanch toshga yaqin, richag uchi tosh cheti ostida. Kuch yelkasi yuk yelkasidan uzun; bu holat tasviri, kuch miqdori yoki xavfsiz ish yo‘riqnomasi emas.",
   "manbalar": [
    "S90"
+  ]
+ },
+ {
+  "kalit": "ritsar_qasr",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "O‘rta asr qasri va ritsar",
+  "fan": "Tarix",
+  "tekshiruv": "Kungirali qasr yonida to‘rt oyoqli bitta ot va bitta zirhli ritsar ko‘rildi. Oddiy qalqon, pastga qaratilgan nayza va jilov bor. Aniq bino, ritsar yoki sulola deb belgilangan emas.",
+  "manbalar": [
+   "S254"
   ]
  },
  {
@@ -2121,6 +2303,34 @@
   ]
  },
  {
+  "kalit": "shiroq",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Shiroq",
+  "fan": "Tarix",
+  "tekshiruv": "Oddiy bosh kiyim va yopinchiqli, jarohatsiz yuzli pastoral obraz. Shiroq haqidagi adabiy an’ana asosida yangi badiiy talqin; haqiqiy yuz yoki kiyimni tasdiqlovchi portret emas.",
+  "manbalar": [
+   "S259"
+  ]
+ },
+ {
+  "kalit": "shohizinda",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Shohizinda majmuasi",
+  "fan": "Tarix",
+  "tekshiruv": "Past kirish peshtoqidan tepaga ko‘tariluvchi yo‘l, bir necha alohida maqbara va turli gumbazlar bor. Bitta to‘rt minorali simmetrik masjidga almashtirilmagan.",
+  "manbalar": [
+   "S246"
+  ]
+ },
+ {
   "kalit": "shtativ",
   "tur": "rasm",
   "olcham": [
@@ -2159,6 +2369,20 @@
   "manbalar": null
  },
  {
+  "kalit": "somoniylar_maqbarasi",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Ismoil Somoniy maqbarasi",
+  "fan": "Tarix",
+  "tekshiruv": "G‘ishtli kub tana, katta past yarimshar gumbaz, burchak elementlari va tepadagi mayda ravoqlar ko‘rildi. Ko‘k gumbaz/minora yo‘q; bezaklar soddalashtirilgan.",
+  "manbalar": [
+   "S249"
+  ]
+ },
+ {
   "kalit": "spirtovka",
   "tur": "rasm",
   "olcham": [
@@ -2170,6 +2394,20 @@
   "tekshiruv": "Tekis tayanchli shisha rezervuar, metal qopqoq, suyuqlikka yetgan pilik, kichik shartli alanga va chetdagi o‘chirish qalpoqchasi ko‘rildi. Tuzilish rasmi; pilik uzunligi, yoqilg‘i hajmi yoki alangani boshqarish yo‘riqnomasi emas.",
   "manbalar": [
    "S184"
+  ]
+ },
+ {
+  "kalit": "spitamen",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Spitamen",
+  "fan": "Tarix",
+  "tekshiruv": "Soch-soqolli erkak, oddiy tunika, yopinchiq va shartli yelka himoyasi. Zamonaviy forma va siyosiy belgi yo‘q. Spitamenning yuzi hamda libosi aniq arxeologik rekonstruksiya deb berilmaydi.",
+  "manbalar": [
+   "S260"
   ]
  },
  {
@@ -2347,6 +2585,20 @@
   ]
  },
  {
+  "kalit": "tomaris",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "To‘maris",
+  "fan": "Tarix",
+  "tekshiruv": "Ko‘krakkacha kiyimdagi ayol, o‘rim soch va oddiy kigiz bosh kiyim. Yevropa toji, zamonaviy forma yoki jarohat yo‘q. To‘maris qiyofasi yangi badiiy talqin; ishonchli qadimgi portret emas.",
+  "manbalar": [
+   "S258"
+  ]
+ },
+ {
   "kalit": "tosh_qurollar",
   "tur": "rasm",
   "olcham": [
@@ -2464,6 +2716,20 @@
   "tekshiruv": "Daraxtsiz past o‘simliklar, mox/lishaynik, kichik qor bo‘laklari va to‘rt oyoqli bug‘u ko‘rildi. Ramziy tundra; yil bo‘yi bir xil fasl deb olinmaydi.",
   "manbalar": [
    "S229"
+  ]
+ },
+ {
+  "kalit": "tuproqqala",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Tuproqqal’a (qadimgi Xorazm)",
+  "fan": "Tarix",
+  "tekshiruv": "Yemirilgan tuproq rang devor va tayanch qoldiqlari, past to‘rtburchak xonalar poydevori ko‘rildi. To‘liq tiklangan Islomiy darvoza yoki ko‘k gumbazli bino emas.",
+  "manbalar": [
+   "S251"
   ]
  },
  {
@@ -2630,6 +2896,20 @@
   "tekshiruv": "Uchta piktogramma: alanga, qo‘l/metallga tomayotgan modda, kalla va kesishgan suyaklar. Qizil romb, oq ichki fon va qora belgi saqlangan; tashqi fon shaffof. AI qayta chizishi qo‘llanmagan.",
   "manbalar": [
    "S185"
+  ]
+ },
+ {
+  "kalit": "xitoy_devori",
+  "tur": "rasm",
+  "olcham": [
+   1024,
+   1024
+  ],
+  "nom": "Buyuk Xitoy devori",
+  "fan": "Tarix",
+  "tekshiruv": "Tog‘ bo‘ylab bitta davomiy devor, tepasidagi yo‘l/zinapoya, ikki tomonidagi kungiralar va ikkita kuzatuv minorasi ko‘rildi. Ramziy bo‘lak, butun devor yoki aniq bir davr xaritasi emas.",
+  "manbalar": [
+   "S243"
   ]
  },
  {

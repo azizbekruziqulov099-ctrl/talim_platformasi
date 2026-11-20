@@ -1,0 +1,24 @@
+{
+  "manba": "S02",
+  "pdf": "manbalar/tayanch_2026_2027_133_nusxa.pdf",
+  "sha256": "3bf7f24def44650d68d6234277e22a3b5547af9242f6c3b78175feede5cc1924",
+  "pdf_bet": 6,
+  "band": 1,
+  "bet_korildi": true,
+  "mapping": [
+    {
+      "school_id": "MK-01-001",
+      "fan": "Ona tili",
+      "I_II_chorak": "Yozuv",
+      "source": "S271"
+    },
+    {
+      "school_id": "MK-01-002",
+      "fan": "O‘qish savodxonligi",
+      "I_II_chorak": "Alifbe",
+      "source": "S269"
+    }
+  ],
+  "oldingi_22_audit_tuzatishi": "Oldingi havola auditida Alifbe ham Ona tili qatoriga nomzod sifatida qo‘yilgan edi. Izohning aniq bandi bilan O‘qish savodxonligi qatoriga ko‘chirildi; havolali qatorlar 17 dan 18 ga chiqdi.",
+  "vazirlik_asl_ERI_tasdiq": false
+}

@@ -1,0 +1,405 @@
+{
+  "sinf": 2,
+  "fan": "O‘qish savodxonligi",
+  "school_id": "MK-02-013",
+  "manba": "S274",
+  "oquv_yili": "2026–2027",
+  "chorak": 2,
+  "davr": "2-chorak",
+  "dars_soni": 21,
+  "jami_soat": 21,
+  "raqamli_soat_yigindisi": 20,
+  "soat_katagi_bosh_darslar": [
+    6
+  ],
+  "soat_manbasi": "davr sarlavhasi; har bir qator alohida tekshirilgan",
+  "turli_sarlavhalar_soni": 21,
+  "turli_sarlavhalar": [
+    "Do‘stlik kuchi. R. Bolqiyev",
+    "Do‘stlikning boshlanishi. N. G‘anixo‘jayev",
+    "Do‘stlikning boshlanishi. N. G‘anixo‘jayev (davomi)",
+    "Zamin farzandlari. D. Rajab",
+    "Saboq bo‘lgan do‘stlik hikoyasi. М. Plyatskovskiy",
+    "Kuch – birlikda. О. Usmonova",
+    "1-nazorat ishi",
+    "Duymchaxon. H. K. Andersen",
+    "Duymchaxon. H. K. Andersen (davomi)",
+    "Mitti odamchalar. Aka-uka Grimmlar",
+    "Mitti odamchalar. Aka-uka Grimmlar (davomi)",
+    "2-nazorat ishi",
+    "Oq tovus haqida ertak. Т. Markinova",
+    "Bo‘ron xonim. Aka-uka Grimmlar",
+    "Bo‘ron xonim. Aka-uka Grimmlar (davomi)",
+    "Yanvar. V. Bianki",
+    "Yanvar. V. Bianki (davomi)",
+    "“Qishda qushlarga yordam bering” loyihasi",
+    "Yangi yilim. R. Bolqiyev",
+    "3-nazorat ishi",
+    "Qish manzaralari. K. Turdiyeva"
+  ],
+  "butun_yillik_reja_tayyor": false,
+  "RTM_tasdiq_varagi_tekshirildi": false,
+  "darslik_nashri_aniqmi": false,
+  "dars_mazmunlari_tayyor": false,
+  "til": "uz",
+  "darslar": [
+    {
+      "id": "MK-02-013-Q2-L01",
+      "dars": 1,
+      "mavzu": "Do‘stlik kuchi. R. Bolqiyev",
+      "soat": 1,
+      "uy_vazifasi_manbada": "73 bet ifodali o’qish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Do‘stlik kuchi. R. Bolqiyev"
+    },
+    {
+      "id": "MK-02-013-Q2-L02",
+      "dars": 2,
+      "mavzu": "Do‘stlikning boshlanishi. N. G‘anixo‘jayev",
+      "soat": 1,
+      "uy_vazifasi_manbada": "77 bet ifodali o’qish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Do‘stlikning boshlanishi. N. G‘anixo‘jayev"
+    },
+    {
+      "id": "MK-02-013-Q2-L03",
+      "dars": 3,
+      "mavzu": "Do‘stlikning boshlanishi. N. G‘anixo‘jayev (davomi)",
+      "soat": 1,
+      "uy_vazifasi_manbada": "80 bet so‘zlab berish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Do‘stlikning boshlanishi. N. G‘anixo‘jayev (davomi)"
+    },
+    {
+      "id": "MK-02-013-Q2-L04",
+      "dars": 4,
+      "mavzu": "Zamin farzandlari. D. Rajab",
+      "soat": 1,
+      "uy_vazifasi_manbada": "82 bet she’rni yod olish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Zamin farzandlari. D. Rajab"
+    },
+    {
+      "id": "MK-02-013-Q2-L05",
+      "dars": 5,
+      "mavzu": "Saboq bo‘lgan do‘stlik hikoyasi. М. Plyatskovskiy",
+      "soat": 1,
+      "uy_vazifasi_manbada": "85 bet ertakni gapirib berish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Saboq bo‘lgan do‘stlik hikoyasi. М. Plyatskovskiy"
+    },
+    {
+      "id": "MK-02-013-Q2-L06",
+      "dars": 6,
+      "mavzu": "Kuch – birlikda. О. Usmonova",
+      "soat": null,
+      "uy_vazifasi_manbada": "85 bet hikoyani gapirib berish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Kuch – birlikda. О. Usmonova"
+    },
+    {
+      "id": "MK-02-013-Q2-L07",
+      "dars": 7,
+      "mavzu": "1-nazorat ishi",
+      "soat": 1,
+      "uy_vazifasi_manbada": "takrorlash",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "1-nazorat ishi"
+    },
+    {
+      "id": "MK-02-013-Q2-L08",
+      "dars": 8,
+      "mavzu": "Duymchaxon. H. K. Andersen",
+      "soat": 1,
+      "uy_vazifasi_manbada": "88- 93 bet ifodali o’qish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Duymchaxon. H. K. Andersen"
+    },
+    {
+      "id": "MK-02-013-Q2-L09",
+      "dars": 9,
+      "mavzu": "Duymchaxon. H. K. Andersen (davomi)",
+      "soat": 1,
+      "uy_vazifasi_manbada": "94 –101 bet gapirib berish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Duymchaxon. H. K. Andersen (davomi)"
+    },
+    {
+      "id": "MK-02-013-Q2-L10",
+      "dars": 10,
+      "mavzu": "Mitti odamchalar. Aka-uka Grimmlar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "102-105 bet gapirib berish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Mitti odamchalar. Aka-uka Grimmlar"
+    },
+    {
+      "id": "MK-02-013-Q2-L11",
+      "dars": 11,
+      "mavzu": "Mitti odamchalar. Aka-uka Grimmlar (davomi)",
+      "soat": 1,
+      "uy_vazifasi_manbada": "106 – 109 bet gapirib berish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Mitti odamchalar. Aka-uka Grimmlar (davomi)"
+    },
+    {
+      "id": "MK-02-013-Q2-L12",
+      "dars": 12,
+      "mavzu": "2-nazorat ishi",
+      "soat": 1,
+      "uy_vazifasi_manbada": "takrorlash",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "2-nazorat ishi"
+    },
+    {
+      "id": "MK-02-013-Q2-L13",
+      "dars": 13,
+      "mavzu": "Oq tovus haqida ertak. Т. Markinova",
+      "soat": 1,
+      "uy_vazifasi_manbada": "110 – 115 bet ertakni gapirib berish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Oq tovus haqida ertak. Т. Markinova"
+    },
+    {
+      "id": "MK-02-013-Q2-L14",
+      "dars": 14,
+      "mavzu": "Bo‘ron xonim. Aka-uka Grimmlar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "116 – 122 bet ertakni gapirib berish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Bo‘ron xonim. Aka-uka Grimmlar"
+    },
+    {
+      "id": "MK-02-013-Q2-L15",
+      "dars": 15,
+      "mavzu": "Bo‘ron xonim. Aka-uka Grimmlar (davomi)",
+      "soat": 1,
+      "uy_vazifasi_manbada": "123 – 126 bet ertakni gapirib berish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 4,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        4
+      ],
+      "mavzu_matn_qatlamida": "Bo‘ron xonim. Aka-uka Grimmlar (davomi)"
+    },
+    {
+      "id": "MK-02-013-Q2-L16",
+      "dars": 16,
+      "mavzu": "Yanvar. V. Bianki",
+      "soat": 1,
+      "uy_vazifasi_manbada": "127 – 129 bet ertakni gapirib berish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 4,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        4
+      ],
+      "mavzu_matn_qatlamida": "Yanvar. V. Bianki"
+    },
+    {
+      "id": "MK-02-013-Q2-L17",
+      "dars": 17,
+      "mavzu": "Yanvar. V. Bianki (davomi)",
+      "soat": 1,
+      "uy_vazifasi_manbada": "130 – 133 bet Ertakni rollarga bo’lib o’qish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 4,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        4
+      ],
+      "mavzu_matn_qatlamida": "Yanvar. V. Bianki (davomi)"
+    },
+    {
+      "id": "MK-02-013-Q2-L18",
+      "dars": 18,
+      "mavzu": "“Qishda qushlarga yordam bering” loyihasi",
+      "soat": 1,
+      "uy_vazifasi_manbada": "134 – 135 bet ota-ona bilan birgalikda donxo‘rak yasash",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 4,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        4
+      ],
+      "mavzu_matn_qatlamida": "“Qishda qushlarga yordam bering” loyihasi"
+    },
+    {
+      "id": "MK-02-013-Q2-L19",
+      "dars": 19,
+      "mavzu": "Yangi yilim. R. Bolqiyev",
+      "soat": 1,
+      "uy_vazifasi_manbada": "136 bet she’rni yod olish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 4,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        4
+      ],
+      "mavzu_matn_qatlamida": "Yangi yilim. R. Bolqiyev"
+    },
+    {
+      "id": "MK-02-013-Q2-L20",
+      "dars": 20,
+      "mavzu": "3-nazorat ishi",
+      "soat": 1,
+      "uy_vazifasi_manbada": "",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 4,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        4
+      ],
+      "mavzu_matn_qatlamida": "3-nazorat ishi"
+    },
+    {
+      "id": "MK-02-013-Q2-L21",
+      "dars": 21,
+      "mavzu": "Qish manzaralari. K. Turdiyeva",
+      "soat": 1,
+      "uy_vazifasi_manbada": "140 bet she’rni ifodali o’qish",
+      "dars_sanasi": null,
+      "manba": "S274",
+      "pdf_bet": 4,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        4
+      ],
+      "mavzu_matn_qatlamida": "Qish manzaralari. K. Turdiyeva"
+    }
+  ],
+  "manba_izohi": "2-sinf O‘qish savodxonligi I chorak 27 dars 1–2-betlar; II chorak 21 dars 3–4-betlar. Jami 48. Ayrim satrlar ko‘p qatorli, 4-bet oxirgi chiziq yetishmaydi, lekin 21-dars matni bor. I chorak 8-dars va II chorak 6-darsning soat katagi bo‘sh; null sifatida saqlandi."
+}

@@ -1,0 +1,816 @@
+{
+  "sinf": 2,
+  "fan": "Matematika",
+  "school_id": "MK-02-017",
+  "manba": "S272",
+  "oquv_yili": "2026–2027",
+  "chorak": 1,
+  "davr": "1-chorak",
+  "dars_soni": 45,
+  "jami_soat": 45,
+  "raqamli_soat_yigindisi": 45,
+  "soat_katagi_bosh_darslar": [],
+  "soat_manbasi": "davr sarlavhasi; har bir qator alohida tekshirilgan",
+  "turli_sarlavhalar_soni": 26,
+  "turli_sarlavhalar": [
+    "Takrorlash. 1 dan 10 gacha bo‘lgan sonlar",
+    "Takrorlash. 1 dan 100 gacha bo‘lgan sonlar",
+    "Takrorlash. To‘g‘ri va egri chiziqlar",
+    "Takrorlash. To‘g‘ri to‘rtburchak va kvadrat",
+    "Takrorlash. Sonli va harfiy ifodalar",
+    "Takrorlash. Tenglamalar",
+    "Takrorlash. O‘zaro teskari masalalar",
+    "Sonlarni qo‘shish va ayirish",
+    "Sonlarni (31 + 9) ko‘rinishda qo‘shish",
+    "O‘rganilganlarni takrorlash",
+    "Sonlarni (40 - 2) ko‘rinishda ayirish",
+    "Sonlarni (12 + 28) ko‘rinishda qo‘shish",
+    "Sonlarni (50 - 32) ko‘rinishda ayirish",
+    "1-nazorat ishi",
+    "Xatolar ustida ishlash",
+    "Sonlarni (25 + 6) ko‘rinishda qo‘shish",
+    "Sonlarni (33 - 7) ko‘rinishda ayirish",
+    "Ustun ko‘rinishida qo‘shish va ayirish",
+    "O‘nlikdan o‘tish bilan ustun ko‘rinishida qo‘shish",
+    "Ustun ko‘rinishida qo‘shish",
+    "Ustun ko‘rinishida ayirish",
+    "Qo‘shish xossalari",
+    "Yig‘indidan sonni ayirish",
+    "Sondan yig‘indini ayirish",
+    "2-nazorat ishi",
+    "Yakuniy dars"
+  ],
+  "butun_yillik_reja_tayyor": false,
+  "RTM_tasdiq_varagi_tekshirildi": false,
+  "darslik_nashri_aniqmi": false,
+  "dars_mazmunlari_tayyor": false,
+  "til": "uz",
+  "darslar": [
+    {
+      "id": "MK-02-017-Q1-L01",
+      "dars": 1,
+      "mavzu": "Takrorlash. 1 dan 10 gacha bo‘lgan sonlar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "5-bet, 7–8-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Takrorlash. 1 dan 10 gacha bo‘lgan sonlar"
+    },
+    {
+      "id": "MK-02-017-Q1-L02",
+      "dars": 2,
+      "mavzu": "Takrorlash. 1 dan 100 gacha bo‘lgan sonlar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "7-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Takrorlash. 1 dan 100 gacha bo‘lgan sonlar"
+    },
+    {
+      "id": "MK-02-017-Q1-L03",
+      "dars": 3,
+      "mavzu": "Takrorlash. To‘g‘ri va egri chiziqlar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "9-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Takrorlash. To‘g‘ri va egri chiziqlar"
+    },
+    {
+      "id": "MK-02-017-Q1-L04",
+      "dars": 4,
+      "mavzu": "Takrorlash. To‘g‘ri to‘rtburchak va kvadrat",
+      "soat": 1,
+      "uy_vazifasi_manbada": "11-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Takrorlash. To‘g‘ri to‘rtburchak va kvadrat"
+    },
+    {
+      "id": "MK-02-017-Q1-L05",
+      "dars": 5,
+      "mavzu": "Takrorlash. Sonli va harfiy ifodalar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "13-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Takrorlash. Sonli va harfiy ifodalar"
+    },
+    {
+      "id": "MK-02-017-Q1-L06",
+      "dars": 6,
+      "mavzu": "Takrorlash. Tenglamalar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "15-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Takrorlash. Tenglamalar"
+    },
+    {
+      "id": "MK-02-017-Q1-L07",
+      "dars": 7,
+      "mavzu": "Takrorlash. O‘zaro teskari masalalar",
+      "soat": 1,
+      "uy_vazifasi_manbada": "17-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Takrorlash. O‘zaro teskari masalalar"
+    },
+    {
+      "id": "MK-02-017-Q1-L08",
+      "dars": 8,
+      "mavzu": "Sonlarni qo‘shish va ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "19-bet, 7–8-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Sonlarni qo‘shish va ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L09",
+      "dars": 9,
+      "mavzu": "Sonlarni (31 + 9) ko‘rinishda qo‘shish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "21-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Sonlarni (31 + 9) ko‘rinishda qo‘shish"
+    },
+    {
+      "id": "MK-02-017-Q1-L10",
+      "dars": 10,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "23-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L11",
+      "dars": 11,
+      "mavzu": "Sonlarni (40 - 2) ko‘rinishda ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "25-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Sonlarni (40 - 2) ko‘rinishda ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L12",
+      "dars": 12,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "27-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L13",
+      "dars": 13,
+      "mavzu": "Sonlarni (12 + 28) ko‘rinishda qo‘shish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "29-bet, 7–8-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Sonlarni (12 + 28) ko‘rinishda qo‘shish"
+    },
+    {
+      "id": "MK-02-017-Q1-L14",
+      "dars": 14,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "31-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L15",
+      "dars": 15,
+      "mavzu": "Sonlarni (50 - 32) ko‘rinishda ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "33-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "Sonlarni (50 - 32) ko‘rinishda ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L16",
+      "dars": 16,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "35-bet, 6–7-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 1,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        1
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L17",
+      "dars": 17,
+      "mavzu": "Sonlarni (50 - 32) ko‘rinishda ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "37-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Sonlarni (50 - 32) ko‘rinishda ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L18",
+      "dars": 18,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "39-bet, 7–8-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L19",
+      "dars": 19,
+      "mavzu": "1-nazorat ishi",
+      "soat": 1,
+      "uy_vazifasi_manbada": "takrorlash",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "1-nazorat ishi"
+    },
+    {
+      "id": "MK-02-017-Q1-L20",
+      "dars": 20,
+      "mavzu": "Xatolar ustida ishlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "takrorlash",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Xatolar ustida ishlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L21",
+      "dars": 21,
+      "mavzu": "Sonlarni (25 + 6) ko‘rinishda qo‘shish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "41-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Sonlarni (25 + 6) ko‘rinishda qo‘shish"
+    },
+    {
+      "id": "MK-02-017-Q1-L22",
+      "dars": 22,
+      "mavzu": "Sonlarni (25 + 6) ko‘rinishda qo‘shish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "43-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Sonlarni (25 + 6) ko‘rinishda qo‘shish"
+    },
+    {
+      "id": "MK-02-017-Q1-L23",
+      "dars": 23,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "45-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L24",
+      "dars": 24,
+      "mavzu": "Sonlarni (33 - 7) ko‘rinishda ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "47-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Sonlarni (33 - 7) ko‘rinishda ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L25",
+      "dars": 25,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "49-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L26",
+      "dars": 26,
+      "mavzu": "Sonlarni (33 - 7) ko‘rinishda ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "51-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Sonlarni (33 - 7) ko‘rinishda ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L27",
+      "dars": 27,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "53-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L28",
+      "dars": 28,
+      "mavzu": "Ustun ko‘rinishida qo‘shish va ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "55-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Ustun ko‘rinishida qo‘shish va ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L29",
+      "dars": 29,
+      "mavzu": "O‘nlikdan o‘tish bilan ustun ko‘rinishida qo‘shish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "57-bet, 7–8-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "O‘nlikdan o‘tish bilan ustun ko‘rinishida qo‘shish"
+    },
+    {
+      "id": "MK-02-017-Q1-L30",
+      "dars": 30,
+      "mavzu": "Ustun ko‘rinishida qo‘shish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "59-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Ustun ko‘rinishida qo‘shish"
+    },
+    {
+      "id": "MK-02-017-Q1-L31",
+      "dars": 31,
+      "mavzu": "Ustun ko‘rinishida ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "61-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Ustun ko‘rinishida ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L32",
+      "dars": 32,
+      "mavzu": "Ustun ko‘rinishida ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "63-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Ustun ko‘rinishida ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L33",
+      "dars": 33,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "65-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L34",
+      "dars": 34,
+      "mavzu": "Qo‘shish xossalari",
+      "soat": 1,
+      "uy_vazifasi_manbada": "67-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Qo‘shish xossalari"
+    },
+    {
+      "id": "MK-02-017-Q1-L35",
+      "dars": 35,
+      "mavzu": "Yig‘indidan sonni ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "69-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Yig‘indidan sonni ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L36",
+      "dars": 36,
+      "mavzu": "Yig‘indidan sonni ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "71-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 2,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        2
+      ],
+      "mavzu_matn_qatlamida": "Yig‘indidan sonni ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L37",
+      "dars": 37,
+      "mavzu": "Sondan yig‘indini ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "73-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Sondan yig‘indini ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L38",
+      "dars": 38,
+      "mavzu": "Sondan yig‘indini ayirish",
+      "soat": 1,
+      "uy_vazifasi_manbada": "75-bet, 8–9-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Sondan yig‘indini ayirish"
+    },
+    {
+      "id": "MK-02-017-Q1-L39",
+      "dars": 39,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "77-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L40",
+      "dars": 40,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "79-bet, 7–8-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L41",
+      "dars": 41,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "81-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L42",
+      "dars": 42,
+      "mavzu": "O‘rganilganlarni takrorlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "83-bet, 9–10-mashqlar",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "O‘rganilganlarni takrorlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L43",
+      "dars": 43,
+      "mavzu": "2-nazorat ishi",
+      "soat": 1,
+      "uy_vazifasi_manbada": "takrorlash",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "2-nazorat ishi"
+    },
+    {
+      "id": "MK-02-017-Q1-L44",
+      "dars": 44,
+      "mavzu": "Xatolar ustida ishlash",
+      "soat": 1,
+      "uy_vazifasi_manbada": "takrorlash",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Xatolar ustida ishlash"
+    },
+    {
+      "id": "MK-02-017-Q1-L45",
+      "dars": 45,
+      "mavzu": "Yakuniy dars",
+      "soat": 1,
+      "uy_vazifasi_manbada": "takrorlash",
+      "dars_sanasi": null,
+      "manba": "S272",
+      "pdf_bet": 3,
+      "mazmun_tayyor": false,
+      "sana_ustunidagi_matn": "",
+      "izoh_manbada": "",
+      "pdf_betlar": [
+        3
+      ],
+      "mavzu_matn_qatlamida": "Yakuniy dars"
+    }
+  ],
+  "manba_izohi": "2-sinf Matematika I chorak o‘zbekcha 45 dars, 1–3-betlar; ruscha variant 4–6-betlar. Ruscha 1-dars 1–20 sonlar, o‘zbekchasi 1–10; ayrim boshqa mavzu/uy vazifalari farqlanadi. Aniq tarjima deb belgilanmaydi."
+}
