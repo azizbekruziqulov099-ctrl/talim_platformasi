@@ -68,6 +68,10 @@ app.add_middleware(
 app.add_middleware(GZipMiddleware, minimum_size=1024, compresslevel=5)
 
 
+import collections as _coll_dbx
+_DB_XATOLAR = _coll_dbx.deque(maxlen=60)
+
+
 @app.exception_handler(psycopg2.Error)
 async def postgres_xavfsiz_xato_javobi(request: Request, exc: psycopg2.Error):
     """Expired V17 workspaces are readable but every mutation is DB-guarded.
@@ -90,12 +94,23 @@ async def postgres_xavfsiz_xato_javobi(request: Request, exc: psycopg2.Error):
             },
         )
     error_id = secrets.token_hex(4)
+    pgcode = str(getattr(exc, "pgcode", None) or "")
     print(
         f"[DB-ERROR {error_id}] path={request.url.path} "
-        f"pgcode={getattr(exc, 'pgcode', None)} "
+        f"pgcode={pgcode} "
         f"type={type(exc).__name__} detail={str(exc).strip()}",
         flush=True,
     )
+    try:   # admin uchun: oxirgi 60 ta baza xatosi (/api/admin/db_xatolar)
+        _DB_XATOLAR.append({"vaqt": datetime.now().isoformat(timespec="seconds"), "id": error_id, "yol": request.url.path, "pgcode": pgcode,
+                            "tur": type(exc).__name__, "matn": str(exc).strip()[:300]})
+    except Exception:
+        pass
+    # Vaqtinchalik (band/uzilgan/kutish vaqti tugagan) xatolar — 503 + «qayta urining»: sayt qayta urinadi, odam xato ko'rmaydi
+    vaqtincha = pgcode in ("53300", "57014", "55P03", "40001", "40P01", "57P01", "53200", "53400") or pgcode.startswith("08") or isinstance(exc, (psycopg2.OperationalError, psycopg2.InterfaceError))
+    if vaqtincha:
+        return JSONResponse(status_code=503, headers={"Retry-After": "2"},
+                            content={"detail": {"code": "DATABASE_BUSY", "message": "Server band, bir necha soniyadan keyin qayta urinib ko‘ring.", "error_id": error_id, "pgcode": pgcode}})
     return JSONResponse(
         status_code=500,
         content={
@@ -104,9 +119,19 @@ async def postgres_xavfsiz_xato_javobi(request: Request, exc: psycopg2.Error):
                 "message": "Baza so'rovida xato yuz berdi. Maktab sahifasi xavfsiz rejimda davom etadi.",
                 "error_id": error_id,
                 "path": request.url.path,
+                "pgcode": pgcode,
             }
         },
     )
+
+
+@app.get("/api/admin/db_xatolar")
+def db_xatolar(request: Request, token: str = ""):
+    """Oxirgi baza xatolari (xotirada, worker qayta ishga tushsa tozalanadi). Admin yoki DIAG_KALIT."""
+    diag = os.getenv("DIAG_KALIT", "")
+    if not (len(diag) >= 24 and secrets.compare_digest(request.headers.get("x-diag-kalit", ""), diag)):
+        _admin_tekshir(token)
+    return {"worker": os.getpid(), "soni": len(_DB_XATOLAR), "xatolar": list(_DB_XATOLAR)[::-1]}
 
 
 @app.get("/api/versiya")
@@ -463,7 +488,7 @@ def _havza_hajmi(standart=10):
     except (TypeError, ValueError):
         return 4
 _DB_POOL_MAX = _havza_hajmi()
-_DB_POOL_WAIT_SECONDS = max(1.0, float(os.getenv("DB_POOL_WAIT_SECONDS", "2")))
+_DB_POOL_WAIT_SECONDS = max(1.0, float(os.getenv("DB_POOL_WAIT_SECONDS", "4")))
 _DB_POOL_SLOTS = threading.BoundedSemaphore(_DB_POOL_MAX)
 # REV309: band paytda obunachilar (kurs / bog'cha obunasi) va adminlar uchun zaxira ulanishlar.
 # Oddiy foydalanuvchi havuzning (1 - 1/5) qismidan foydalanadi; qolgan 1/5 — faqat obunachilarga.
