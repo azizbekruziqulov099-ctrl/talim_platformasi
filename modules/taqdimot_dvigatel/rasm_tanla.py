@@ -196,7 +196,8 @@ def buyum_rasmi(matn: str, band: set = frozenset()):
     return kal
 
 
-def eng_mos(matn: str, tur: str = "rasm", chegara: float = 6.5, band: set = frozenset(), fan: str = "", kamida: int = 2):
+def eng_mos(matn: str, tur: str = "rasm", chegara: float = 6.5, band: set = frozenset(), fan: str = "", kamida: int = 2,
+            rk: bool = True):
     """Matnga eng mos kutubxona rasmi: (kalit, ball) yoki (None, 0).
 
     Bitta so'z mos kelishi yetmaydi (balandlik ≠ balandlikka sakrash): kamida `kamida` ta so'z, ulardan biri
@@ -209,7 +210,7 @@ def eng_mos(matn: str, tur: str = "rasm", chegara: float = 6.5, band: set = froz
     ft = _fan_guruh(fan)
     eng, kal = 0.0, None
     for r in rows:
-        if tur and r["tur"] != tur or r["kalit"] in band:
+        if tur and r["tur"] != tur or r["kalit"] in band or (r.get("rk") and not rk):
             continue
         b, n, na = _ball(q, r, idf)
         if not b:
@@ -217,7 +218,11 @@ def eng_mos(matn: str, tur: str = "rasm", chegara: float = 6.5, band: set = froz
         fan_mos = bool(ft and ft & r["fan_tok"])
         if fan_mos:
             # ikki so'z, yoki faqat shu rasmga xos bitta asosiy so'z (dutor, mitoz)
-            ok = (n >= kamida and b >= chegara) or bool(q & r["asosiy"] & _YAGONA)
+            yagona = q & r["asosiy"] & _YAGONA
+            if yagona and r.get("rk"):
+                # sayt kutubxonasida bitta so'z yetadi faqat rasm nomining o'zi shu so'z bo'lsa (son o'qi → o'qi; «tanlash» emas)
+                yagona = {t for t in yagona if any(s == _na({t}) for s in r["ismlar"])}
+            ok = (n >= kamida and b >= chegara) or bool(yagona)
         else:
             ok = n >= kamida + 1 and na >= 1 and b >= chegara * 1.4
         if ok and b > eng:
@@ -368,8 +373,11 @@ def boyit(m: dict, avto: bool = True) -> dict:
         # 2) titul rasmi — avval mavzu nomidan (eng mavzuviy rasm titulga)
         titul_kerak = not meta.get("rasm") and not meta.get("chizma")
         if titul_kerak:
-            matn = " ".join([meta.get("mavzu") or ""] * 2 + list(meta.get("tayanch") or []) + [meta.get("qisqa") or ""])
-            kal, _b = eng_mos(matn, chegara=6.0, band=band, fan=fan)
+            # sayt kutubxonasidan faqat mavzu nomining o'zi mos kelsa; tayanch so'zlar bilan — faqat taqdimot rasmlari
+            kal, _b = eng_mos(" ".join([meta.get("mavzu") or ""] * 2), chegara=6.0, band=band, fan=fan)
+            if not kal:
+                matn = " ".join([meta.get("mavzu") or ""] * 2 + list(meta.get("tayanch") or []) + [meta.get("qisqa") or ""])
+                kal, _b = eng_mos(matn, chegara=6.0, band=band, fan=fan, rk=False)
             if kal:
                 meta["rasm"] = kal
                 band.add(kal)
@@ -417,9 +425,9 @@ def boyit(m: dict, avto: bool = True) -> dict:
         # 4) titul hali bo'sh bo'lsa — butun taqdimot matni bo'yicha (slaydlarda ishlatilmagan rasm)
         if titul_kerak:
             matn = " ".join([meta.get("mavzu") or ""] * 2 + [sl.get("sarlavha") or "" for sl in kontent])
-            kal, _b = eng_mos(matn, chegara=7.0, band=band, fan=fan)
+            kal, _b = eng_mos(matn, chegara=7.0, band=band, fan=fan, rk=False)
             if not kal:  # yangisi bo'lmasa — taqdimotdagi eng mavzuviy rasm titulda ham turadi
-                kal, _b = eng_mos(matn, chegara=7.0, fan=fan)
+                kal, _b = eng_mos(matn, chegara=7.0, fan=fan, rk=False)
             if not kal and nomzod and qoyildi:  # eng yuqori ballli slayd rasmi
                 kal = next((x[4] for x in nomzod if x[4] in band), None)
             if kal:

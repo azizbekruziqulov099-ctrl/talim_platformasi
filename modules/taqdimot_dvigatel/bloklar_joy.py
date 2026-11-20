@@ -311,7 +311,7 @@ def _j_markaz(k, d, vis, matnlar, bar):
     y = CT + (h0 - blok_h) / 2
     # orqa fonda katta yumshoq shakl
     k.s.rect(M + 60, y - 18, W - 2 * M - 120, blok_h + 36, fill=col, op=0.07 if not u.qorongi else 0.14, r=36, a=k.A("card", s))
-    k.s.matn(M + 74, y - 34, 90, 100, "“", size=110, font="serif", bold=True, color=col, a=k.A("accent", s), min_scale=1)
+    k.s.matn(M + 70, y - 40, 120, 150, "“", size=110, font="serif", bold=True, color=col, a=k.A("accent", s), min_scale=1)
     if lab:
         B.pill(k, (W - B.kenglik(lab.upper(), "sans", True, 11) - 30) / 2, y + 4, lab, col, a=k.A("accent", s), size=11)
         y += 54

@@ -657,7 +657,7 @@ def komp_iqtibos(k, e, x, y, w, h, i=0):
             k.s.matn(x, pcy + r + 4, pw + 20, 14, kr, size=8.5, color=u.muted, align="c", min_scale=0.6, a=k.A("big", s))
     tx = x + pw + (50 if portret else 40)
     tw = x + w - tx - 20
-    k.s.matn(tx - 30, y + 10, 90, 110, "“", size=120, font="serif", bold=True, color=col, a=k.A("accent", s))
+    k.s.matn(tx - 34, y + 2, 130, 150, "“", size=120, font="serif", bold=True, color=col, a=k.A("accent", s), min_scale=1)
     qh = h - 110
     sz, _ = B.mos_olcham(e["matn"], tw, qh, sizes=(40, 36, 34, 32, 30, 28, 26, 24, 22, 20, 18), lh=1.28)
     k.s.matn(tx, y + 70, tw, qh, e["matn"], size=sz, font="serif", italic=True, color=u.ink, va="m", lh=1.28, min_scale=0.55,

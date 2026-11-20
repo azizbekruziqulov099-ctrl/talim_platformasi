@@ -9,7 +9,9 @@ AI faqat mazmunni yozadi; dizayn, chizmalar va animatsiyani shu dvigatel qiladi.
 |---|---|
 | `sxema.py` | Miya tuzilmasi (`taqdimot-miya/1`) va normallashtirish (AI xatolariga chidamli) |
 | `namuna_ratsional.json` | To‘liq namuna: «Ratsional sonlar» ma’ruzasi |
-| `uslub.py` | 8 oila × palitralar × 3 fon varianti × 8 animatsiya to‘plami (1 560 kombinatsiya) |
+| `uslub.py` | 11 oila × palitralar × 3 fon varianti × 14 animatsiya to‘plami; oila fan va darajaga qarab tanlanadi |
+| `bloklar_joy.py` | Joylashuvlar (layout) va dizayn DNK: sarlavha qatori, karta, titul va bo‘lim slaydi variantlari |
+| `tarjima.py` | Rus/ingliz taqdimotda dvigatelning tayyor yorliqlari («Ta’rif», «Javob:», «1-savol» ...) |
 | `bloklar.py` | Slayd-bloklar: titul, adabiyot, o‘yin, reja, bo‘lim, muammo, tarix, mazmun, xatolar, metodika, xulosa, test, yakun |
 | `chizma.py` | Kod bilan chiziladigan 19 xil chizma (son o‘qi, ulush, tasma, daraxt, Venn, tarozi, grafik...) |
 | `formula.py` | TeX formulalar (kasr, daraja, ildiz...) — PowerPoint va saytda bir xil |
@@ -42,6 +44,16 @@ AI faqat mazmunni yozadi; dizayn, chizmalar va animatsiyani shu dvigatel qiladi.
   titulga mavzu rasmi. O‘chirish: `"rasm_avto": false`.
 - AI ko‘rsatmasiga mavzuga yaqin kutubxona rasmlari ro‘yxati qo‘shiladi; `GET /korsatma` — to‘liq katalog bilan.
 - Illyustratsiya (tur "rasm") ramkasiz, orqasida yumshoq shakl; chizma — oq kartada.
+
+- Saytning umumiy rasm kutubxonasi (`modules/rasm_kutubxona`, ≈6000 shaffof illyustratsiya, o‘zbek/ingliz/rus/nemis nomlari)
+  ham indeksda: lug‘at, galereya, jihoz, moslash bandlari nomi bo‘yicha rasm oladi; slaydga — faqat kuchli moslikda.
+
+## Joylashuv va dizayn DNK (`bloklar_joy.py`)
+- Slaydda `"joylashuv"`: `rasm_ong`, `rasm_chap`, `rasm_panel`, `rasm_katta`, `markaz`, `ustunlar`, `qatorlar`, `yon_sarlavha`,
+  `standart`, `avto`. Mazmunga to‘g‘ri kelmasa yoki yozilmasa — dvigatel nomzodlardan tanlaydi, ketma-ket takrorlamaydi.
+- Har taqdimotga urug‘dan: sarlavha qatori (chap, chiziq, tasma, markaz, raqam), karta (oila, yon, chiziq, soya),
+  titul (6 xil), bo‘lim slaydi (5 xil). `yasa(..., dizayn={"titul": 2})` bilan qo‘lda berish mumkin; natijada `sahna["dizayn"]`.
+- Animatsiya tanlanmasa slaydlarning bir qismi ikkinchi tinch to‘plam bilan chiqadi (`dizayn.anim2`).
 
 ## Fan bezaklari (fon motiflari)
 `rasmlar/fonlar/<fan>_<n>.png` — shaffof fonli, qora chiziqli bezak, o‘rtasi bo‘sh (1920×1080). Dastur uni uslub rangiga
