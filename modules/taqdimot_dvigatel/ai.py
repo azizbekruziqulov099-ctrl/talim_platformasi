@@ -91,7 +91,27 @@ ELEMENT TURLARI ("elementlar" ichida, "tur" maydoni):
 - rasm / hayotiy: {{"tur","matn","rasm":"kalit","izoh"}}
 - eslatma: {{"tur":"eslatma","sarlavha":"Muhim|Diqqat|Tipik xato","matn"}} (slayd pastida chiziq bo‘lib chiqadi)
 - matn: {{"tur":"matn","sarlavha","matn"}}
-Bitta slaydda: ko‘pi bilan 3 ta element; jadval/taqqoslash/xossalar odatda yolg‘iz yoki eslatma bilan.
+BARCHA FANLAR UCHUN (shu turlar slaydda YOLG‘IZ turadi, eslatma bilan bo‘lishi mumkin):
+- lugat: {{"tur":"lugat","sozlar":[{{"soz","oqilishi","tarjima","misol","rasm"}} × 1–6]}}   — tillar, 1–4-sinf; tarjima bosganda chiqadi
+- dialog: {{"tur":"dialog","qatorlar":[{{"kim","matn","tarjima"}} × 2–8]}}   — 2 suhbatdosh, har gap bosish bilan
+- parcha: {{"tur":"parcha","sarlavha","matn":"qatorlar \n bilan","muallif","belgilar":["muhim so‘zlar"]}}   — she’r/matn
+- vaqt_chizigi: {{"tur":"vaqt_chizigi","voqealar":[{{"sana","nom","matn","rasm"}} × 2–6]}}
+- xarita: {{"tur":"xarita","hudud":"ozbekiston|dunyo","belgilash":["Samarqand","Buxoro" yoki davlatlar: "Misr"],
+           "joylar":[{{"nom":"Xiva","matn":"qisqa izoh"}} yoki {{"nom":"Qohira","lat":30.04,"lon":31.24}} × 1–8]}}
+  (O‘zbekiston shaharlari nomi bilan topiladi; dunyo shaharlari uchun lat/lon yoz)
+- tajriba: {{"tur":"tajriba","maqsad","jihozlar":["Probirka","Spirtovka"],"bosqichlar":["2–6 qadam"],"natija","xavfsizlik"}}
+- jarayon: {{"tur":"jarayon","shakl":"aylana|zanjir|qadam","sarlavha","bosqichlar":[{{"nom","matn","rasm"}} × 2–6]}}
+  (aylana — takrorlanuvchi jarayon; zanjir — ketma-ketlik, oziq zanjiri, algoritm; qadam — rasmli mashq/ish bosqichlari)
+- galereya: {{"tur":"galereya","rasmlar":[{{"rasm","izoh"}} × 2–4]}}
+- guruhlash: {{"tur":"guruhlash","guruhlar":[{{"nom","bandlar":["2–7 ta"]}} × 2–4]}}
+O‘YINLAR (javob bosganda chiqadi):
+- moslash: {{"tur":"moslash","juftlar":[{{"chap","ong","rasm"(ixt.)}} × 2–6]}}
+- togri_notogri: {{"tur":"togri_notogri","fikrlar":[{{"matn","javob":true|false,"izoh"}} × 2–6]}}
+- bosh_joy: {{"tur":"bosh_joy","gaplar":[{{"matn":"I ___ a student.","javob":"am"}} × 2–6]}}
+- rasmda_nima: {{"tur":"rasmda_nima","rasm":"kutubxona kaliti","savol","variantlar":["2–4"],"javob":0}}
+Bitta slaydda: ko‘pi bilan 3 ta element; jadval/taqqoslash/xossalar va yuqoridagi turlar odatda yolg‘iz yoki eslatma bilan.
+Fanga mos turlarni tanla: matematika — formula/misol/chizma; tillar — lugat/dialog/bosh_joy; tarix — vaqt_chizigi/xarita;
+geografiya — xarita/jarayon; tabiiy fanlar — tajriba/jarayon/galereya; musiqa va san’at — galereya/guruhlash; har mavzuda 1–3 o‘yin.
 
 CHIZMALAR (kod chizadi, rasm kerak emas — iloji bo‘lsa chizma ishlat). Turlar va namunalar:
 {_chizma_royxati()}
@@ -112,6 +132,11 @@ bakalavr — ta’rif, isbot g‘oyasi, metodika (boshlang‘ich sinfda qanday o
 
 def _xabar(mavzu, fan, daraja, sinf, tur, qoshimcha, manba):
     s = f"MAVZU: {mavzu}\nFAN: {fan}\nDARAJA: {daraja}\nSINF/KURS: {sinf}\nTUR: {tur}\n"
+    try:
+        from .profil import profil_matni
+        s += profil_matni(fan, sinf, daraja) + "\n"
+    except Exception:
+        pass
     try:
         s += f"\nKUTUBXONA RASMLARI (kalit — nima tasvirlangan; avval shulardan tanla):\n{katalog_matni(f'{mavzu} {qoshimcha}', fan)}\n\n"
     except Exception:

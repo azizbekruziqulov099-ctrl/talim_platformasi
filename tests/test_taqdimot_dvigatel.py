@@ -187,3 +187,18 @@ def test_rasm_tanla_kutubxona():
     s = yasash.yasa(m, seed=3)
     assert not any("rasm:" in (el.get("pp") and "".join(r["t"] for p in el["pp"] for r in p["rs"]) or "")
                    for sl in s["slaydlar"] for el in sl["els"] if el["k"] == "text")
+
+
+def test_barcha_fan_turlari():
+    from tests.taqdimot_fan_namuna import TEST
+    from modules.taqdimot_dvigatel import sxema as SX
+    m = sxema.normallashtir(TEST)
+    turlar = {e["tur"] for b in m["bolimlar"] for sl in b["slaydlar"] for e in sl["elementlar"]}
+    assert SX.YANGI_KENG | {"parcha"} <= turlar
+    for kod in ("anor.anor.0", "tun.okean.0", "daftar.dengiz.1"):
+        s = yasash.yasa(TEST, seed=5, uslub_kod=kod)
+        for sl in s["slaydlar"]:
+            for el in sl["els"]:
+                if el["k"] == "text":
+                    assert el["sc"] >= 0.45, (kod, sl["blok"])
+        assert yasash.pptx(s)[:2] == b"PK"

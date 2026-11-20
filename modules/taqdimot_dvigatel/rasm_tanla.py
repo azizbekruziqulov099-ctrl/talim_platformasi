@@ -115,6 +115,28 @@ def _ball(q: set, r: dict, idf: dict):
     return b, len(umumiy), len(asos)
 
 
+def buyum_rasmi(matn: str, band: set = frozenset()):
+    """Aniq narsa nomi (lug'at so'zi, jihoz, cholg'u) uchun rasm: nomdagi so'z rasmning asosiy so'zi bo'lsa va
+    faqat shu rasmga xos bo'lsa (olma → olma_savat, kolba → kolba_konus). Fan tekshirilmaydi."""
+    rows, idf = indeks()
+    q = tokenlar(matn)
+    if not q:
+        return None
+    eng, kal = 0.0, None
+    for r in rows:
+        if r["tur"] != "rasm" or r["kalit"] in band:
+            continue
+        mos = q & r["asosiy"]
+        if not mos:
+            continue
+        yagona = bool(mos & _YAGONA)
+        toliq = r["asosiy"] <= q  # kalitning hamma so'zi bor (baraban → baraban, tovush_baraban emas)
+        b = sum(idf.get(t, 1.0) for t in mos) + (2.0 if yagona else 0) + (3.0 if toliq else 0) - 0.15 * len(r["asosiy"])
+        if (yagona or toliq or len(mos) >= 2) and b > eng:
+            eng, kal = b, r["kalit"]
+    return kal
+
+
 def eng_mos(matn: str, tur: str = "rasm", chegara: float = 6.5, band: set = frozenset(), fan: str = "", kamida: int = 2):
     """Matnga eng mos kutubxona rasmi: (kalit, ball) yoki (None, 0).
 
@@ -216,10 +238,40 @@ def boyit(m: dict, avto: bool = True) -> dict:
             if isinstance(v, dict) and v.get("rasm"):
                 v["rasm"] = tuzat(v["rasm"], f"{v.get('nom') or ''} {v.get('matn') or ''}") or ""
     kontent = []
+    ICHKI = {"lugat": ("sozlar", lambda x: f"{x.get('tarjima') or ''} {x.get('soz') or ''}", True),
+             "vaqt_chizigi": ("voqealar", lambda x: f"{x.get('nom') or ''} {x.get('matn') or ''}", False),
+             "galereya": ("rasmlar", lambda x: x.get("izoh") or "", True),
+             "jarayon": ("bosqichlar", lambda x: f"{x.get('nom') or ''} {x.get('matn') or ''}", False),
+             "tajriba": ("jihozlar", lambda x: x.get("nom") or "", True),
+             "moslash": ("juftlar", lambda x: f"{x.get('ong') or ''} {x.get('chap') or ''}", False)}
     for b in m.get("bolimlar") or []:
         for sl in b.get("slaydlar") or []:
             yangi_els = []
             for e in sl.get("elementlar") or []:
+                if e.get("tur") in ICHKI:
+                    maydon, matnf, buyum = ICHKI[e["tur"]]
+                    for it in e.get(maydon) or []:
+                        if not isinstance(it, dict):
+                            continue
+                        if it.get("rasm"):
+                            it["rasm"] = tuzat(it["rasm"], matnf(it)) or ""
+                        elif avto:
+                            if buyum:
+                                kal = buyum_rasmi(matnf(it), band)
+                            else:
+                                kal, _b = eng_mos(matnf(it), chegara=5.0, band=band, fan=fan)
+                            if kal:
+                                it["rasm"] = kal
+                                hisobot["qoshildi"].append(kal)
+                        if it.get("rasm"):
+                            band.add(it["rasm"])
+                if e.get("tur") == "rasmda_nima" and e.get("rasm"):
+                    e["rasm"] = tuzat(e["rasm"], f"{e.get('savol') or ''} {' '.join(e.get('variantlar') or [])}") or ""
+                    if not e["rasm"]:
+                        continue
+                    band.add(e["rasm"])
+                    yangi_els.append(e)
+                    continue
                 if e.get("rasm"):
                     k2 = tuzat(e["rasm"], f"{sl.get('sarlavha') or ''} {_el_matni(e)}")
                     if k2:

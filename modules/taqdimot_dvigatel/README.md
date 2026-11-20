@@ -57,3 +57,10 @@ tabiiy, tarix, adabiyot, ona_tili, xorijiy_til, informatika, musiqa, tasviriy, t
 - Yangi palitra: `uslub.py` dagi `YORUG` / `QORONGI` / `DOSKA` ga qator.
 - Yangi blok: `bloklar.py` da `blok_*` + `BLOKLAR`, `yasash.reja_tuz` da o‘rni.
 - Testlar: `tests/test_taqdimot_dvigatel.py`.
+
+## Barcha fanlar uchun slayd turlari (`bloklar_fan.py`, `profil.py`)
+lugat (so'z kartalari, tarjima bosganda), dialog, parcha (she'r/matn), vaqt_chizigi, xarita (O'zbekiston viloyatlari va
+shaharlari / dunyo davlatlari — `malumot/xarita_*.json`, geoBoundaries ODbL va Natural Earth), tajriba, jarayon
+(aylana / zanjir / qadam), galereya, guruhlash; o'yinlar: moslash, togri_notogri, bosh_joy, rasmda_nima.
+Ichki rasmlar (lug'at so'zi, jihoz, voqea, bosqich) kutubxonadan o'zi topiladi. `profil.py` — fan va yosh bo'yicha AI ga
+qaysi turlarni ishlatishni aytadi. Slaydlar orasida faqat fade (Morph yo'q).

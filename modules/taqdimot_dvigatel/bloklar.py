@@ -15,6 +15,7 @@ from . import rasmlar as RS
 from .olchov import kenglik
 from .sahna import H, W, Slayd, matn_balandligi
 from .uslub import Uslub, och
+from .sxema import YANGI_KENG
 
 M = 48
 CT = 118
@@ -570,7 +571,7 @@ def blok_kontent(k: K, d):
         regions = [(x0, y0, w0, h0)]
     elif n == 2:
         a, b = els
-        wide = {"jadval", "taqqoslash", "xossalar"}
+        wide = {"jadval", "taqqoslash", "xossalar"} | YANGI_KENG
         if a["tur"] in wide and b["tur"] in wide:
             regions = [(x0, y0, w0, h0 * 0.5 - gap / 2), (x0, y0 + h0 * 0.5 + gap / 2, w0, h0 * 0.5 - gap / 2)]
         else:
@@ -1066,3 +1067,9 @@ BLOKLAR = {
     "muammo": blok_muammo, "tarix": blok_tarix, "kontent": blok_kontent, "xatolar": blok_xatolar, "metodika": blok_metodika,
     "xulosa": blok_xulosa, "test": blok_test, "yakun": blok_yakun,
 }
+
+
+# barcha fanlar uchun komponentlar (lug'at, dialog, vaqt chizig'i, xarita, tajriba, o'yinlar…)
+from . import bloklar_fan as _BF  # noqa: E402
+
+KOMP.update(_BF.KOMP_FAN)

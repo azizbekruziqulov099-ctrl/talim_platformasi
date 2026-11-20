@@ -26,7 +26,23 @@ ELEMENT_TURLARI = {
     "eslatma": "Muhim / diqqat",
     "savol": "Muhokama savoli",
     "matn": "Oddiy matn / ro'yxat",
+    # barcha fanlar uchun
+    "lugat": "Lug'at kartalari (so'z, o'qilishi, tarjima, rasm, misol gap) — tillar, 1–4-sinf",
+    "dialog": "Dialog (ikki suhbatdosh, navbat bilan) — tillar",
+    "parcha": "Matn yoki she'r parchasi (muhim so'zlar belgilangan) — adabiyot, o'qish",
+    "vaqt_chizigi": "Vaqt chizig'i (sana, voqea, rasm) — tarix",
+    "xarita": "Xarita (O'zbekiston yoki dunyo; viloyat/davlat va shaharlar belgilanadi) — geografiya, tarix",
+    "tajriba": "Tajriba (maqsad, jihozlar, bosqichlar, natija) — tabiiy fanlar, fizika, kimyo",
+    "jarayon": "Jarayon sxemasi (aylana / zanjir / rasmli qadamlar) — biologiya, texnologiya, jismoniy tarbiya",
+    "galereya": "Galereya (2–4 rasm, imzo bilan) — san'at, obidalar, cholg'ular",
+    "guruhlash": "Guruhlarga ajratish (2–4 ustun) — barcha fanlar",
+    "moslash": "O'yin: juftini top (so'z ↔ tarjima/rasm)",
+    "togri_notogri": "O'yin: to'g'ri yoki noto'g'ri",
+    "bosh_joy": "O'yin: bo'sh joyni to'ldir",
+    "rasmda_nima": "O'yin: rasmda nima? (variantli)",
 }
+YANGI_KENG = {"lugat", "dialog", "vaqt_chizigi", "xarita", "tajriba", "jarayon", "galereya", "guruhlash", "moslash",
+              "togri_notogri", "bosh_joy", "rasmda_nima"}
 TUR_SINONIM = {
     "ta'rif": "tarif", "tarif": "tarif", "definition": "tarif", "taʼrif": "tarif", "ta’rif": "tarif",
     "qoida": "qoida", "rule": "qoida", "teorema": "teorema", "theorem": "teorema", "aksioma": "teorema",
@@ -35,6 +51,15 @@ TUR_SINONIM = {
     "taqqoslash": "taqqoslash", "compare": "taqqoslash", "chizma": "chizma", "diagram": "chizma", "rasm": "rasm",
     "image": "rasm", "hayotiy": "hayotiy", "hayotiy misol": "hayotiy", "eslatma": "eslatma", "muhim": "eslatma",
     "diqqat": "eslatma", "note": "eslatma", "savol": "savol", "question": "savol", "matn": "matn", "text": "matn",
+    "lugat": "lugat", "lug'at": "lugat", "lug‘at": "lugat", "vocabulary": "lugat", "sozlar": "lugat",
+    "dialog": "dialog", "suhbat": "dialog", "parcha": "parcha", "sher": "parcha", "she'r": "parcha", "she’r": "parcha",
+    "poem": "parcha", "matn_parcha": "parcha", "vaqt_chizigi": "vaqt_chizigi", "vaqt chizig'i": "vaqt_chizigi",
+    "timeline": "vaqt_chizigi", "xronologiya": "vaqt_chizigi", "xarita": "xarita", "map": "xarita", "tajriba": "tajriba",
+    "experiment": "tajriba", "jarayon": "jarayon", "process": "jarayon", "aylanish": "jarayon", "mashq": "jarayon",
+    "galereya": "galereya", "gallery": "galereya", "guruhlash": "guruhlash", "klassifikatsiya": "guruhlash",
+    "moslash": "moslash", "match": "moslash", "juftlash": "moslash", "togri_notogri": "togri_notogri",
+    "to'g'ri_noto'g'ri": "togri_notogri", "true_false": "togri_notogri", "bosh_joy": "bosh_joy", "bo'sh joy": "bosh_joy",
+    "fill": "bosh_joy", "rasmda_nima": "rasmda_nima", "picture_quiz": "rasmda_nima",
 }
 _BAD = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f]")
 
@@ -121,7 +146,108 @@ def element(e):
             out["tur"] = "matn"
     if tur == "matn" and isinstance(e.get("bandlar"), list):
         out["bandlar"] = [{"matn": t(b, 300)} for b in e["bandlar"][:8]]
+    if tur in YANGI_KENG or tur == "parcha":
+        yangi = _fan_elementi(tur, e)
+        if yangi is None:
+            out["tur"] = "matn"
+        else:
+            out.update(yangi)
     return out
+
+
+def _dl(v, n):
+    return [x for x in (v or [])[:n] if isinstance(x, (dict, str))] if isinstance(v, list) else []
+
+
+def _fan_elementi(tur, e):
+    """Barcha fanlar uchun yangi element turlari. Bo'sh/buzuq bo'lsa None (oddiy matnga aylanadi)."""
+    if tur == "lugat":
+        sz = []
+        for x in _dl(e.get("sozlar") or e.get("bandlar"), 6):
+            x = {"soz": x} if isinstance(x, str) else x
+            if t(x.get("soz")):
+                sz.append({"soz": t(x.get("soz"), 40), "oqilishi": t(x.get("oqilishi") or x.get("transkripsiya"), 40),
+                           "tarjima": t(x.get("tarjima"), 60), "misol": t(x.get("misol"), 140), "rasm": t(x.get("rasm"), 100)})
+        return {"sozlar": sz} if sz else None
+    if tur == "dialog":
+        qs = []
+        for x in _dl(e.get("qatorlar"), 8):
+            if isinstance(x, dict) and t(x.get("matn")):
+                qs.append({"kim": t(x.get("kim"), 30) or "?", "matn": t(x.get("matn"), 200), "tarjima": t(x.get("tarjima"), 200)})
+        return {"qatorlar": qs} if len(qs) >= 2 else None
+    if tur == "parcha":
+        return {"matn": t(e.get("matn"), 1400), "muallif": t(e.get("muallif"), 80), "belgilar": ls(e.get("belgilar"), 8, 40)} if t(e.get("matn")) else None
+    if tur == "vaqt_chizigi":
+        vs = [{"sana": t(x.get("sana") or x.get("davr"), 30), "nom": t(x.get("nom"), 70), "matn": t(x.get("matn"), 200), "rasm": t(x.get("rasm"), 100)}
+              for x in _dl(e.get("voqealar"), 6) if isinstance(x, dict) and (t(x.get("nom")) or t(x.get("matn")))]
+        return {"voqealar": vs} if len(vs) >= 2 else None
+    if tur == "xarita":
+        hd = "dunyo" if "dun" in t(e.get("hudud"), 20).lower() or "world" in t(e.get("hudud"), 20).lower() else "ozbekiston"
+        jy = []
+        for x in _dl(e.get("joylar"), 10):
+            x = {"nom": x} if isinstance(x, str) else x
+            try:
+                lat = float(x.get("lat")) if x.get("lat") not in (None, "") else None
+                lon = float(x.get("lon")) if x.get("lon") not in (None, "") else None
+            except (TypeError, ValueError):
+                lat = lon = None
+            if t(x.get("nom")):
+                jy.append({"nom": t(x.get("nom"), 40), "matn": t(x.get("matn"), 100), "lat": lat, "lon": lon})
+        return {"hudud": hd, "joylar": jy, "belgilash": ls(e.get("belgilash") or e.get("hududlar"), 8, 40)}
+    if tur == "tajriba":
+        jh = []
+        for x in _dl(e.get("jihozlar"), 6):
+            x = {"nom": x} if isinstance(x, str) else x
+            if t(x.get("nom")):
+                jh.append({"nom": t(x.get("nom"), 50), "rasm": t(x.get("rasm"), 100)})
+        bq = ls(e.get("bosqichlar"), 6, 160)
+        return {"maqsad": t(e.get("maqsad"), 200), "jihozlar": jh, "bosqichlar": bq, "natija": t(e.get("natija"), 260),
+                "xavfsizlik": t(e.get("xavfsizlik"), 160)} if bq else None
+    if tur == "jarayon":
+        sh = t(e.get("shakl"), 20).lower()
+        sh = "aylana" if sh.startswith("ayl") or sh == "cycle" else "qadam" if sh.startswith("qad") or e.get("tur") == "mashq" else "zanjir"
+        bs = []
+        for x in _dl(e.get("bosqichlar"), 6):
+            x = {"nom": x} if isinstance(x, str) else x
+            if t(x.get("nom")) or t(x.get("matn")):
+                bs.append({"nom": t(x.get("nom"), 50), "matn": t(x.get("matn"), 140), "rasm": t(x.get("rasm"), 100)})
+        return {"shakl": sh, "bosqichlar": bs} if len(bs) >= 2 else None
+    if tur == "galereya":
+        rs = []
+        for x in _dl(e.get("rasmlar"), 4):
+            x = {"rasm": x} if isinstance(x, str) else x
+            if t(x.get("rasm")) or t(x.get("izoh")):
+                rs.append({"rasm": t(x.get("rasm"), 100), "izoh": t(x.get("izoh"), 80)})
+        return {"rasmlar": rs} if rs else None
+    if tur == "guruhlash":
+        gs = []
+        for x in _dl(e.get("guruhlar"), 4):
+            if isinstance(x, dict) and t(x.get("nom")):
+                gs.append({"nom": t(x.get("nom"), 40), "bandlar": ls(x.get("bandlar"), 7, 60)})
+        return {"guruhlar": gs} if len(gs) >= 2 else None
+    if tur == "moslash":
+        js = [{"chap": t(x.get("chap"), 60), "ong": t(x.get("ong"), 60), "rasm": t(x.get("rasm"), 100)}
+              for x in _dl(e.get("juftlar"), 6) if isinstance(x, dict) and t(x.get("chap")) and (t(x.get("ong")) or t(x.get("rasm")))]
+        return {"juftlar": js} if len(js) >= 2 else None
+    if tur == "togri_notogri":
+        fs = []
+        for x in _dl(e.get("fikrlar"), 6):
+            if isinstance(x, dict) and t(x.get("matn")):
+                j = x.get("javob")
+                ok = j is True or t(j, 10).lower() in ("true", "to'g'ri", "to‘g‘ri", "togri", "ha", "1", "t")
+                fs.append({"matn": t(x.get("matn"), 160), "javob": ok, "izoh": t(x.get("izoh"), 140)})
+        return {"fikrlar": fs} if fs else None
+    if tur == "bosh_joy":
+        gs = [{"matn": t(x.get("matn"), 160), "javob": t(x.get("javob"), 40)} for x in _dl(e.get("gaplar"), 6)
+              if isinstance(x, dict) and t(x.get("matn")) and t(x.get("javob"))]
+        return {"gaplar": gs} if gs else None
+    if tur == "rasmda_nima":
+        v = ls(e.get("variantlar"), 4, 60)
+        if not t(e.get("rasm")) or len(v) < 2:
+            return None
+        return {"rasm": t(e.get("rasm"), 100), "savol": t(e.get("savol") or e.get("matn"), 140) or "Rasmda nima tasvirlangan?",
+                "variantlar": v, "javob": _javob_index(e.get("javob", 0), len(v))}
+    return None
 
 
 def normallashtir(m: dict) -> dict:
@@ -182,7 +308,7 @@ def normallashtir(m: dict) -> dict:
             raw_sl = []
             i = 0
             while i < len(els):
-                take = 1 if els[i]["tur"] in ("jadval", "taqqoslash", "xossalar") else 2
+                take = 1 if els[i]["tur"] in ("jadval", "taqqoslash", "xossalar") or els[i]["tur"] in YANGI_KENG else 2
                 raw_sl.append({"sarlavha": els[i].get("sarlavha") or t(b.get("nom")), "elementlar": els[i:i + take], "_tayyor": True})
                 i += take
         for sl in (raw_sl or [])[:8]:
