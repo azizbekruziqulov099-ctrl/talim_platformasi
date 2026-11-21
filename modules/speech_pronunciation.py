@@ -123,6 +123,16 @@ def _emoji_sozga(text,language='uz'):
     return _EMOJI_QOLGAN.sub('',text)
 
 
+def _minus_sozga(value,language='uz'):
+    """Raqamli ifodadagi minus belgisi (U+2212 yoki «-») so'z bo'ladi: «−5», «7 − 2», «4 - (−6)». Harfli ifodalarga (2x − 3) tegilmaydi."""
+    w=WORDS.get(language,{}).get('minus') or 'minus'
+    t=re.sub(r'(?<![\w)\]])[\u2212]\s*(?=[\d(])',f' {w} ',value)       # boshida/oldida belgi: −5, −(…)
+    t=re.sub(r'(?<=[\d)])\s*[\u2212]\s*(?=[\d(])',f' {w} ',t)          # raqamlar orasida: 7 − 2
+    t=re.sub(r'(?<![\w)\]\-–—.,])-(?=\d)',f' {w} ',t)                  # -5 (so'z oldidan emas)
+    t=re.sub(r'(?<=[\d)])\s+-\s+(?=[\d(])',f' {w} ',t)                 # 7 - 2
+    return t
+
+
 def prepare_speech(value,language='uz'):
     if language in PLAIN_LANGUAGES and language not in WORDS:
         # REV88: chet tilidagi bo'lak o'z ovozida o'qiladi — o'zbekcha qoidalar (tutuq belgisi, tartib sonlar) qo'llanmaydi.
@@ -134,6 +144,7 @@ def prepare_speech(value,language='uz'):
     value=_emoji_sozga(str(value or ''),language)   # REV476: «🐘 va 🐭» → «fil va sichqon»
     if language=='uz':   # REV476: «16-18-darslar» → «o'n oltidan o'n sakkizinchi darslar» (oraliq, minus emas)
         value=re.sub(r'(?<![\d.,])(\d{1,4})\s*[-–]\s*(\d{1,4})\s*-\s*(?=[^\W\d_])', lambda m: f"{m.group(1)}dan {m.group(2)}-", value)
+    value=_minus_sozga(str(value or ''),language)   # REV678: «−2 + 4» — minus belgisi TTS'da tushib qolmasin («ikki plyus to'rt» emas)
     value=tag_raw_math(str(value or ''))
     # Expand formulas separately so mathematical minus/cases cannot be mistaken
     # for an ordinal, and formula letter names are not rewritten as prose.
