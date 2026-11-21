@@ -393,15 +393,18 @@ def parse_sheets(wb, media_names=None, max_images=500):
                                   pic if i == 0 else "", first["sahna"] if first else None)
                     first = first or st
                 if c.get("tekshiruv"):
-                    savol, javob = tekshiruv_ajrat(c["tekshiruv"])
-                    if not javob:
-                        err(name, row, label_of["tekshiruv"], "Tekshiruv savolini «Savol? => javob» ko'rinishida yozing", "warning")
-                    else:
-                        til = (_t(book.get("til")) or "uz").lower()
-                        togri, vlar = tekshiruv_variantlari(javob)
-                        add_step(row, "birga", savol, savol[:MAX_VOICE], TEKSHIRUV_NOMI.get(til, TEKSHIRUV_NOMI["uz"]),
-                                 scene=first["sahna"], answer=togri,
-                                 extra={"oquvchi_savoli": JAVOB_JOYI.get(til, JAVOB_JOYI["uz"]), "variantlar": "||".join(vlar)})
+                    # bir nechta tekshiruv: har satr — alohida savol («Savol? => javob»); yaqin (o'rgatilganga o'xshash, aynan o'zi emas) savollar
+                    teksh_satrlar = [x for x in str(c["tekshiruv"]).split("\n") if " => " in x] or [c["tekshiruv"]]
+                    for teksh in teksh_satrlar[:4]:
+                        savol, javob = tekshiruv_ajrat(teksh)
+                        if not javob:
+                            err(name, row, label_of["tekshiruv"], "Tekshiruv savolini «Savol? => javob» ko'rinishida yozing", "warning")
+                        else:
+                            til = (_t(book.get("til")) or "uz").lower()
+                            togri, vlar = tekshiruv_variantlari(javob)
+                            add_step(row, "birga", savol, savol[:MAX_VOICE], TEKSHIRUV_NOMI.get(til, TEKSHIRUV_NOMI["uz"]),
+                                     scene=first["sahna"], answer=togri,
+                                     extra={"oquvchi_savoli": JAVOB_JOYI.get(til, JAVOB_JOYI["uz"]), "variantlar": "||".join(vlar)})
                 for key, vkind in (("sodda", "sodda"), ("boshqa_usul", "boshqa_usul")):
                     if c.get(key):
                         variants.append({

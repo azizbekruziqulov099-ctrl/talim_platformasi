@@ -3614,6 +3614,22 @@ def _ovoz_eski_alifbo(matn: str) -> str:
 
 
 
+# Ustoz ovozi belgilari (dars matnida): {sekin} {tez} {past} {baland} {urgu} {pauza} — shundan keyingi gap shunday o'qiladi.
+_OVOZ_BELGILAR = {"sekin": ("\ue001", -14, 0, 0.0), "tez": ("\ue002", 10, 0, 0.0), "past": ("\ue003", -4, -7, 0.0),
+                  "baland": ("\ue004", 3, 8, 0.0), "urgu": ("\ue005", -10, 5, 0.1), "pauza": ("\ue006", 0, 0, 0.7)}
+_OVOZ_BELGI_RE = re.compile(r"\{(sekin|tez|past|baland|urgu|pauza)\}", re.I)
+_OVOZ_BELGI_TESKARI = {v[0]: v[1:] for v in _OVOZ_BELGILAR.values()}
+_OVOZ_BELGI_BELGILAR = "".join(v[0] for v in _OVOZ_BELGILAR.values())
+
+
+def _ovoz_belgilarini_kirit(matn: str) -> str:
+    return _OVOZ_BELGI_RE.sub(lambda m: _OVOZ_BELGILAR[m.group(1).lower()][0], matn)
+
+
+def _ovoz_belgisiz(matn: str) -> str:
+    return re.sub("[" + _OVOZ_BELGI_BELGILAR + "]", "", matn)
+
+
 def _jonli_gaplar(matn: str, tezlik: str, ohang: str):
     """Matnni gaplarga bo'lib, har biriga ohang beradi: savol — yuqoriga, undov — tezroq va balandroq,
     ko'p nuqta — sekin va pauza bilan, ikki nuqtadan oldingi gap — ozgina sekin. [(gap, tezlik, ohang, pauza_soniya)]"""
@@ -3627,6 +3643,13 @@ def _jonli_gaplar(matn: str, tezlik: str, ohang: str):
     chiq = []
     for g in gaplar[:40]:
         dt, do, pz = 0, 0, 0.18
+        qo = [ch for ch in g if ch in _OVOZ_BELGI_TESKARI]
+        if qo:
+            g = _ovoz_belgisiz(g).strip()
+            if not re.search(r"\w", g):
+                if chiq:
+                    chiq[-1] = (chiq[-1][0], chiq[-1][1], chiq[-1][2], chiq[-1][3] + sum(_OVOZ_BELGI_TESKARI[c][2] for c in qo))
+                continue
         if g.endswith("?"):
             dt, do, pz = -2, 6, 0.3
         elif g.endswith("!"):
@@ -3639,6 +3662,13 @@ def _jonli_gaplar(matn: str, tezlik: str, ohang: str):
             dt, do, pz = 2, 3, 0.22
         elif g.endswith("."):
             pz = 0.3
+        for c in qo:
+            mt, mo, mp = _OVOZ_BELGI_TESKARI[c]
+            dt += mt; do += mo
+            if mp >= 0.5 and chiq:
+                chiq[-1] = (chiq[-1][0], chiq[-1][1], chiq[-1][2], chiq[-1][3] + mp)   # {pauza} — oldingi gapdan keyin
+            else:
+                pz += mp
         t = max(-30, min(30, t0 + dt)); o = max(-30, min(30, o0 + do))
         chiq.append((g, f"{t:+d}%", f"{o:+d}Hz", pz))
     return chiq or [(matn, tezlik, ohang, 0)]
@@ -3662,6 +3692,7 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     from starlette.concurrency import run_in_threadpool
     from modules import ovoz_reja
 
+    belgili = bool(_OVOZ_BELGI_RE.search(matn))
     matn = _ovoz_eski_alifbo(matn[:1500])
     jins = _ovoz_jinsini_tuzat(jins)
     # REV93: bog'cha darsi biroz sekinroq o'qiydi (aniq va tabiiyroq). Faqat -30%…+30% oralig'i.
@@ -3710,7 +3741,10 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     _kunlik = await run_in_threadpool(limitlar.hisobla, "ovoz:pullik:kun", "hammasi", len(matn), 86400)
     _pullik = _kunlik <= limitlar.son("OVOZ_KUNLIK_PULLIK_BELGI", 150000)
 
-    reja = ovoz_reja.reja(matn, takror=bool(takror), asosiy=asosiy)
+    if belgili:
+        jonli = 1   # belgi bor — gap-gap ohang bilan o'qiladi
+    matn_reja = _ovoz_belgilarini_kirit(matn) if belgili else matn
+    reja = ovoz_reja.reja(matn_reja, takror=bool(takror), asosiy=asosiy)
     holat = {"chala": False}
 
     async def audio_bolaklari():
@@ -3723,8 +3757,10 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
             else:
                 voice = EDGE_OVOZ.get(jins, EDGE_OVOZ["qiz"])
             tayyor = _ovoz_uchun_tayyorla_til(bolak["matn"], til)
-            if not tayyor.strip():
+            if not _ovoz_belgisiz(tayyor).strip():
                 continue
+            if not jonli:
+                tayyor = _ovoz_belgisiz(tayyor)
             if jonli:
                 audio = b""
                 for gap, t2, o2, pz in _jonli_gaplar(tayyor, tezlik, ohang):
