@@ -44,7 +44,7 @@ ELEMENT_TURLARI = {
     "iqtibos": "Iqtibos (katta matn, muallif, portret)",
 }
 JOYLASHUV_KODLARI = {"avto", "standart", "rasm_ong", "rasm_chap", "rasm_panel", "rasm_katta", "markaz", "ustunlar", "qatorlar",
-                     "yon_sarlavha"}
+                     "yon_sarlavha", "ustma", "asosiy_yon", "chizma_chap", "qadam_qator"}
 YANGI_KENG = {"lugat", "dialog", "vaqt_chizigi", "xarita", "tajriba", "jarayon", "galereya", "guruhlash", "moslash",
               "togri_notogri", "bosh_joy", "rasmda_nima", "raqamlar", "iqtibos"}
 TUR_SINONIM = {

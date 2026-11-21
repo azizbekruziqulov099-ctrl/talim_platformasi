@@ -441,6 +441,10 @@ def komp_misol(k: K, e, x, y, w, h, i=0):
     has_vis = bool(e.get("chizma") or e.get("rasm"))
     if has_vis and w > 760:
         vw = w * 0.44
+        if e.get("_vis_chap"):  # joylashuv «chizma_chap»: chizma chapda, shart va qadamlar o'ngda
+            _vizual(k, e, x, y, vw, h, s)
+            komp_misol(k, dict(e, chizma=None, rasm="", _vis_chap=False), x + vw + 16, y, w - vw - 16, h, i)
+            return
         komp_misol(k, dict(e, chizma=None, rasm=""), x, y, w - vw - 16, h, i)
         _vizual(k, e, x + w - vw, y, vw, h, s)
         return

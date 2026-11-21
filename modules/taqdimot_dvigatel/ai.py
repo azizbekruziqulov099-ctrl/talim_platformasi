@@ -124,6 +124,10 @@ JOYLASHUV ("joylashuv" — slayd qanday joylashishi; mazmunga mos kelmasa dastur
 - ustunlar — 2–3 ta qisqa tarif/qoida/matn yonma-yon (har biri ≤ 200 belgi, "sarlavha" bilan): taqqoslash, 3 xossa
 - qatorlar — 2–3 ta matn ketma-ket qatorlarda (bosqichlar, sabablar)
 - yon_sarlavha — sarlavha chapdagi ustunda, o‘ngda bitta element (xossalar, misol, jadval emas)
+- ustma — qisqa qoida/ta’rif/formula tepada keng tasmada, asosiy element (misol, jadval) ostida
+- asosiy_yon — asosiy element (misol, jadval, xossalar) keng, qisqa qoida yoki ta’rif yonida tor ustunda
+- qadam_qator — bitta misol/masala, 2–5 qisqa qadam: qadamlar chapdan o‘ngga kartalarda
+- chizma_chap — chizmali misol/masala: chizma chapda katta
 - standart — boshqalari (jadval, taqqoslash, lugat, xarita va boshqa keng elementlar shu bilan)
 Bir xil joylashuvni ketma-ket ikki slaydda ishlatma; taqdimotda kamida 4 xil joylashuv bo‘lsin; rasmli slaydlarning
 yarmidan ko‘pida rasm_panel yoki rasm_katta bo‘lsin. Bilmasang — "avto".

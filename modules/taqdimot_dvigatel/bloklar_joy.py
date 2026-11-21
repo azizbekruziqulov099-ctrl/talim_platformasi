@@ -30,6 +30,10 @@ JOYLASHUVLAR = {
     "ustunlar": "2–3 ta qisqa element yonma-yon raqamli ustunlarda",
     "qatorlar": "2–3 ta element ketma-ket qatorlarda",
     "yon_sarlavha": "sarlavha chapdagi ustunda, mazmun o'ngda",
+    "ustma": "2–3 element ustma-ust: qisqasi (qoida, ta'rif, formula) tepada keng tasmada, asosiysi ostida",
+    "asosiy_yon": "asosiy element (misol, jadval) keng, qisqa element yonida tor ustunda",
+    "chizma_chap": "misol/masala: chizma chapda katta, shart va qadamlar o'ngda",
+    "qadam_qator": "misol/masala: shart tepada, yechim qadamlari chapdan o'ngga kartalarda, javob oxirida",
 }
 SARLAVHA_TURLARI = ["chap", "chiziq", "tasma", "markaz", "raqam"]
 KART_TURLARI = ["oila", "yon", "chiziq", "soya"]
@@ -96,6 +100,19 @@ def _vizual_el(k, els):
     return None
 
 
+_QISQA = SODDA | {"formula"}
+_KENG_FAQAT = {"taqqoslash", "lugat", "xarita", "vaqt_chizigi", "galereya", "guruhlash", "moslash", "togri_notogri", "bosh_joy",
+               "tajriba", "jarayon", "rasmda_nima"}
+
+
+def _qisqami(e) -> bool:
+    return e["tur"] in _QISQA and not e.get("chizma") and not e.get("rasm") and not e.get("bandlar") and _matn_uzunligi(e) <= 240
+
+
+def _jadval_ixcham(e) -> bool:
+    return e["tur"] == "jadval" and len(e.get("ustunlar") or []) <= 4 and len(e.get("qatorlar") or []) <= 7
+
+
 def nomzodlar(k, els):
     matnlar = [e for e in els if e["tur"] != "eslatma"]
     vis = _vizual_el(k, matnlar)
@@ -117,13 +134,29 @@ def nomzodlar(k, els):
         e = matnlar[0]
         if e["tur"] in SODDA and not e.get("chizma") and not e.get("rasm") and not e.get("bandlar") and 0 < _matn_uzunligi(e) <= 300:
             return ["markaz", "yon_sarlavha", "standart"], None, matnlar
-        if e["tur"] in _YON_MUMKIN and not (e.get("chizma") and e["tur"] in ("misol", "masala")):
+        if e["tur"] in ("misol", "masala") and (e.get("chizma") or e.get("rasm")):
+            return ["chizma_chap", "yon_sarlavha", "standart"], None, matnlar
+        qs = e.get("qadamlar") or []
+        if e["tur"] in ("misol", "masala") and 2 <= len(qs) <= 5 and all(len(q) <= 110 for q in qs) and len(e.get("shart") or e.get("matn") or "") <= 360:
+            return ["qadam_qator", "yon_sarlavha", "standart"], None, matnlar
+        if e["tur"] in _YON_MUMKIN or _jadval_ixcham(e):
             return ["yon_sarlavha", "standart"], None, matnlar
         return ["standart"], None, matnlar
     if 2 <= n <= 3 and all(e["tur"] in SODDA and not e.get("chizma") and not e.get("rasm") and not e.get("bandlar") for e in matnlar):
         if all(_matn_uzunligi(e) <= 260 for e in matnlar):
             return ["ustunlar", "qatorlar", "standart"], None, matnlar
         return ["qatorlar", "standart"], None, matnlar
+    qisqalar = [e for e in matnlar if _qisqami(e)]
+    if n == 2 and len(qisqalar) == 1:
+        asosiy = next(e for e in matnlar if e is not qisqalar[0])
+        if asosiy["tur"] in _KENG_FAQAT:
+            return ["ustma", "standart"], None, matnlar
+        c = ["ustma", "asosiy_yon", "standart"]
+        if asosiy["tur"] in _YON_MUMKIN | {"jadval"} and not (asosiy.get("chizma") and asosiy["tur"] in ("misol", "masala")):
+            c.append("yon_sarlavha")
+        return c, None, matnlar
+    if n == 3 and len(qisqalar) >= 1 and not any(e["tur"] in _KENG_FAQAT for e in matnlar):
+        return ["ustma", "standart"], None, matnlar
     return ["standart"], None, matnlar
 
 
@@ -424,6 +457,117 @@ def _j_yon_sarlavha(k, d, vis, matnlar, bar):
     if bar:
         k.keyingi()
         B.komp_eslatma(k, bar[0], x, CB - 60, w, 56)
+
+
+# --- ustma-ust: qisqa element tepada tasma, asosiysi ostida
+def _qisqa_balandlik(e, w):
+    if e["tur"] == "formula":
+        return 150 + (40 if e.get("matn") else 0)
+    t = e.get("matn") or ""
+    return min(250, B.matn_balandligi(t, w - 60, 21, lh=1.22) + (84 if (e.get("sarlavha") or B.LABEL.get(e["tur"])) else 50))
+
+
+def _j_ustma(k, d, vis, matnlar, bar):
+    B.bosh_qism(k, d["kicker"], d["sarlavha"])
+    gap = 18
+    h0 = CB - CT - (72 if bar else 0)
+    w0 = W - 2 * M
+    if len(matnlar) == 3:
+        # birinchi qisqa tepada keng, qolgan ikkitasi ostida yonma-yon
+        q = next((e for e in matnlar if _qisqami(e)), matnlar[0])
+        qolgan = [e for e in matnlar if e is not q]
+        th = min(h0 * 0.4, _qisqa_balandlik(q, w0))
+        tartib = [q] + qolgan
+        regions = [(M, CT, w0, th)]
+        bw = (w0 - gap) / 2
+        regions += [(M, CT + th + gap, bw, h0 - th - gap), (M + bw + gap, CT + th + gap, bw, h0 - th - gap)]
+    else:
+        a, b = matnlar
+        tartib = [a, b]
+        qa = _qisqami(a)
+        qh = min(h0 * 0.42, _qisqa_balandlik(a if qa else b, w0))
+        ha = qh if qa else h0 - qh - gap
+        regions = [(M, CT, w0, ha), (M, CT + ha + gap, w0, h0 - ha - gap)]
+    for idx, (e, (x, y, w, h)) in enumerate(zip(tartib, regions)):
+        if idx:
+            k.keyingi()
+        B.KOMP.get(e["tur"], B.komp_matnli)(k, e, x, y, w, h, idx)
+    _eslatma(k, bar, M, w0)
+
+
+# --- asosiy element keng, qisqasi yon ustunda (urg'u kartasi)
+def _j_asosiy_yon(k, d, vis, matnlar, bar):
+    B.bosh_qism(k, d["kicker"], d["sarlavha"])
+    gap = 22
+    h0 = CB - CT - (72 if bar else 0)
+    w0 = W - 2 * M
+    q = next(e for e in matnlar if _qisqami(e))
+    asosiy = next(e for e in matnlar if e is not q)
+    qw = w0 * 0.36
+    aw = w0 - qw - gap
+    qisqa_chapda = k.rng.random() < 0.35
+    ax = M + qw + gap if qisqa_chapda else M
+    qx = M if qisqa_chapda else M + aw + gap
+    tartib = [(e, (ax, CT, aw, h0) if e is asosiy else (qx, CT, qw, h0)) for e in matnlar]
+    for idx, (e, (x, y, w, h)) in enumerate(tartib):
+        if idx:
+            k.keyingi()
+        B.KOMP.get(e["tur"], B.komp_matnli)(k, e, x, y, w, h, idx if e is asosiy else 3)
+    _eslatma(k, bar, M, w0)
+
+
+# --- misol/masala: qadamlar chapdan o'ngga
+def _j_qadam_qator(k, d, vis, matnlar, bar):
+    u = k.u
+    B.bosh_qism(k, d["kicker"], d["sarlavha"])
+    e = matnlar[0]
+    s = k.qadam
+    col = u.acc[2] if e["tur"] == "masala" else u.acc[0]
+    w0 = W - 2 * M
+    h0 = CB - CT - (72 if bar else 0)
+    shart = e.get("shart") or e.get("matn") or ""
+    qs = e.get("qadamlar") or []
+    jav = e.get("javob")
+    lab = e.get("sarlavha") or B.LABEL.get(e["tur"], "")
+    sz, th = B.mos_olcham(shart, w0 - 60, h0 * 0.32, sizes=(26, 24, 22, 21, 20, 19, 18, 17, 16))
+    sh = th + 70
+    ix, iy, iw, ih = B._yorliq_kartasi(k, M, CT, w0, sh, lab, col, 0, a=k.A("card", s))
+    k.s.matn(ix, iy, iw, ih, shart, size=sz, color=u.ink, urg=col, lh=1.22, va="m", a=k.A("item", s, dl=k.st))
+    n = len(qs)
+    gap = 34
+    jh = 56 if jav else 0
+    cw = (w0 - gap * (n - 1)) / n
+    tsz = min(22, max(15, 24 - n))
+    mavjud = h0 - sh - 26 - (jh + 18 if jav else 0)
+    kerak = max(B.matn_balandligi(q, cw - 32, tsz, lh=1.2) for q in qs) + 76
+    ch = max(110, min(mavjud, kerak, 260))
+    top = CT + sh + 26 + max(0, (mavjud - ch) / 2 - 10)
+    for i, q in enumerate(qs):
+        st = k.keyingi()
+        x = M + i * (cw + gap)
+        a = k.A("card", st)
+        B.kart(k, x, top, cw, ch, i, a=a)
+        k.s.doira(x + 30, top + 30, 17, fill=col, a=k.A("accent", st))
+        k.s.matn(x + 13, top + 13, 34, 34, str(i + 1), size=15, bold=True, color=u.matn_ustida(col), align="c", va="m", a=k.A("accent", st))
+        k.s.matn(x + 16, top + 58, cw - 32, ch - 70, q, size=tsz, color=u.ink, lh=1.2, min_scale=0.55, a=k.A("item", st, dl=80))
+        if i < n - 1:
+            ax = x + cw + 6
+            k.s.matn(ax, top + ch / 2 - 16, gap - 12, 32, "›", size=28, bold=True, color=col, align="c", va="m", a=k.A("accent", st, dl=120))
+    if jav:
+        st = k.keyingi()
+        jy = top + ch + 18
+        k.s.rect(M, jy, w0, jh, fill=u.ok, op=0.14 if not u.qorongi else 0.3, line=u.ok, lw=1.2, r=12, a=k.A("accent", st))
+        k.s.matn(M + 20, jy, w0 - 40, jh, "**Javob:** " + jav, size=20, color=u.ink, va="m", min_scale=0.6, a=k.A("accent", st))
+    _eslatma(k, bar, M, w0)
+
+
+# --- misol/masala: chizma chapda
+def _j_chizma_chap(k, d, vis, matnlar, bar):
+    B.bosh_qism(k, d["kicker"], d["sarlavha"])
+    h0 = CB - CT - (72 if bar else 0)
+    e = dict(matnlar[0], _vis_chap=True)
+    B.KOMP.get(e["tur"], B.komp_matnli)(k, e, M, CT, W - 2 * M, h0, 0)
+    _eslatma(k, bar, M, W - 2 * M)
 
 
 # ------------------------------------------------------------------ titul variantlari

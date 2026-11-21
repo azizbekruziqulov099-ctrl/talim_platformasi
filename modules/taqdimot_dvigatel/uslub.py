@@ -205,11 +205,11 @@ def _oila_vaznlari(fan: str = "", daraja: str = "", sinf: str = "") -> dict:
     f = fan_kaliti(fan or "")
     kichik = d == "bogcha" or any(f"{n}-sinf" in s for n in (1, 2, 3, 4)) or "bog" in s
     if d in ("bakalavr", "magistr", "oliy") or "kurs" in s:
-        for o, w in {"akademik": 3.0, "jurnal": 2.6, "minimal": 2.0, "shisha": 1.4, "tun": 1.3, "kecha": 1.3, "doska": 0.4, "daftar": 0.5,
-                     "yulduz": 0.6}.items():
+        for o, w in {"akademik": 1.7, "jurnal": 1.6, "minimal": 1.2, "shisha": 1.3, "tun": 1.2, "kecha": 1.2, "doska": 0.7, "daftar": 0.7,
+                     "yulduz": 0.8}.items():
             v[o] = w
     elif kichik:
-        for o, w in {"anor": 2.0, "tabiat": 2.0, "shisha": 1.8, "daftar": 1.6, "doska": 1.2, "akademik": 0.2, "jurnal": 0.3, "kecha": 0.4,
+        for o, w in {"anor": 1.6, "tabiat": 1.6, "shisha": 1.5, "daftar": 1.4, "doska": 1.2, "akademik": 0.3, "jurnal": 0.4, "kecha": 0.5,
                      "minimal": 0.6}.items():
             v[o] = w
     fanga = {"matematika": {"daftar": 1.8, "doska": 1.6, "minimal": 1.3}, "biologiya": {"tabiat": 2.2}, "geografiya": {"tabiat": 1.8, "shisha": 1.3},
