@@ -327,8 +327,8 @@ class Dvigatel:
             v = k.get(x)
             if isinstance(v, str) and re.fullmatch(r"[a-z_]{0,20}", v):
                 out[x] = v
-        if k.get("bolim_titul") in (True, False, None):
-            out["bolim_titul"] = k.get("bolim_titul")
+        if "bolim_titul" in k and k["bolim_titul"] in (True, False, None):
+            out["bolim_titul"] = k["bolim_titul"]
         if isinstance(k.get("rasm_avto"), bool):
             out["rasm_avto"] = k["rasm_avto"]
         if isinstance(k.get("dizayn"), dict):
