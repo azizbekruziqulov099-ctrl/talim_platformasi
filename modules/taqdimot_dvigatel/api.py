@@ -295,6 +295,20 @@ async def _body(request: Request, limit: int) -> bytes:
     return bytes(buf)
 
 
+def _biriktirma(nom: str) -> str:
+    """Content-Disposition: HTTP sarlavhasi faqat latin-1 bo'ladi. Oʻzbekcha «ʻ», kirill harflari bilan nom
+    sarlavhani buzib, yuklab olishni 500 xatoga olib kelardi — ASCII nom va filename* (UTF-8) birga beriladi."""
+    import unicodedata
+    from urllib.parse import quote
+    nom = nom or "fayl"
+    stem, ext = (nom.rsplit(".", 1) + [""])[:2] if "." in nom else (nom, "")
+    asc = unicodedata.normalize("NFKD", stem).encode("ascii", "ignore").decode("ascii")
+    asc = re.sub(r"[^A-Za-z0-9_\-]+", "_", asc).strip("_") or "taqdimot"
+    if ext:
+        asc += "." + re.sub(r"[^A-Za-z0-9]+", "", ext)
+    return f"attachment; filename=\"{asc}\"; filename*=UTF-8''{quote(nom, safe='')}"
+
+
 async def _json(request: Request, limit=MAX_JSON):
     raw = await _body(request, limit)
     try:
@@ -354,7 +368,7 @@ def register_taqdimot_dvigatel(app, platform):
         data = excel.shablon(m, ai.korsatma())
         nom = "Taqdimot_miya_namuna.xlsx" if namuna else "Taqdimot_miya_shablon.xlsx"
         return Response(data, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                        headers={**NO_STORE, "Content-Disposition": f'attachment; filename="{nom}"'})
+                        headers={**NO_STORE, "Content-Disposition": _biriktirma(nom)})
 
     @app.post(PREFIX + "/yasash")
     async def yasa(request: Request, authorization: str | None = Header(None)):
@@ -369,7 +383,7 @@ def register_taqdimot_dvigatel(app, platform):
         body = await _json(request)
         data, nom = await run_in_threadpool(D.pptx, body)
         return Response(data, media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation",
-                        headers={**NO_STORE, "Content-Disposition": f'attachment; filename="{nom}.pptx"'})
+                        headers={**NO_STORE, "Content-Disposition": _biriktirma(f"{nom}.pptx")})
 
     @app.post(PREFIX + "/import")
     async def importla(request: Request, authorization: str | None = Header(None)):
@@ -453,6 +467,6 @@ def register_taqdimot_dvigatel(app, platform):
         if not h:
             fail("Hujjat topilmadi", 404)
         nom, data, mime = h
-        return Response(data, media_type=mime, headers={**NO_STORE, "Content-Disposition": f'attachment; filename="{nom}"'})
+        return Response(data, media_type=mime, headers={**NO_STORE, "Content-Disposition": _biriktirma(nom)})
 
     return D
