@@ -12,14 +12,23 @@ DOSKA: QOIDA: O‘ngda turgan son doim kattaroq
 SODDA: Termometrni tasavvur qiling: qancha past tushsa, harorat shuncha kichik.
 TEKSH: Qaysi biri kichik: −6 yoki −1? => −6 | −1 | ikkalasi teng
 TEKSH: −2, 0, −5, 3 sonlarini kichikdan kattasiga joylang. Birinchisi qaysi? => −5 | −2 | 0 | 3
-@tushuncha Qo‘shish va ayirish — o‘qda sayr
-OVOZ: [1] Endi son o‘qida yuramiz. Qo‘shish — o‘ngga qadam. Ayirish — chapga qadam. [2] Masalan, minus to‘rtdan boshlaymiz. Yettita qadam o‘ngga — {sekin}minus to‘rt plyus yetti. [3] Nolni kesib o‘tdik, va uchga yetdik. Javob — uch. [4] Endi teskarisi: bir nuqtadan olti qadam chapga. Ikkidan olti ayirsak — minus to‘rt.
+@tushuncha Qo‘shish — o‘ngga, ayirish — chapga
+OVOZ: [1] Endi son o‘qida yuramiz. Qo‘shish — o‘ngga qadam tashlash. Ayirish — chapga qadam tashlash. [2] Birinchi misol: minus to‘rtga yetti qo‘shamiz. Minus to‘rtdan boshlaymiz va yettita qadam o‘ngga yuramiz. [3] {sekin}To‘rt qadamda nolga yetamiz. Yana uch qadam qoldi — demak, uchga keldik. Minus to‘rt plyus yetti — uch. [4] Ikkinchi misol: ikkidan olti ayiramiz. Ikkidan boshlab olti qadam chapga. Ikki qadamda nolga yetamiz, yana to‘rt qadam — minus to‘rt.
 DOSKA: SON_OQI: -6..8; nuqta -4 A; nuqta 3 B; sakrash -4 3 +7
-DOSKA: KETMA: −4 + 7 | −4 + 4 + 3 | 0 + 3 | 3
-DOSKA: 2 − 6 = −4
+DOSKA: −4 + 7 = −4 + 4 + 3 = 0 + 3 = 3
+DOSKA: SON_OQI: -5..3; nuqta 2 A; nuqta -4 B; sakrash 2 -4 −6
+DOSKA: 2 − 6 = 2 − 2 − 4 = 0 − 4 = −4
 DOSKA: QOIDA: Qo‘shish → o‘ngga, ayirish → chapga
+TEKSH: −5 + 8 nechaga teng? => 3 | −13 | 13 | −3
+TEKSH: 1 − 4 nechaga teng? => −3 | 3 | −5 | 5
+@tushuncha Manfiy son hayotda: harorat va qarz
+OVOZ: [1] Manfiy sonlar hayotda ikki joyda ko‘p uchraydi. Birinchisi — harorat. Noldan past harorat manfiy bo‘ladi. [2] Misol: harorat uch daraja edi, besh daraja pasaydi. Uchdan besh ayiramiz. Uch qadamda nolga yetamiz, yana ikki qadam — minus ikki daraja. [3] {sekin}Ikkinchisi — hisobdagi qarz. Hisobda minus yigirma ming so‘m degani — hisobda pul yo‘q, aksincha, yigirma ming so‘m qarz bor degani. [4] Unga ellik ming so‘m kirdi. Avval qarz yopiladi: yigirma ming ketadi, qolgan o‘ttiz ming so‘m hisobda qoladi. Minus yigirma plyus ellik — o‘ttiz.
+DOSKA: harorat: 3 − 5 = −2 °C
+DOSKA: −20 ming = 20 ming qarz
+DOSKA: −20 + 50 = 30 ming so‘m
+DOSKA: QOIDA: manfiy hisob = qarz; kirim avval qarzni yopadi
 TEKSH: Harorat −1 edi, 5 daraja pasaydi. Necha bo‘ldi? => −6 | 4 | −4 | 6
-TEKSH: Hisobda −30 ming so‘m bor. 50 ming kirdi. Hisob qancha? => 20 ming | −20 ming | 80 ming | −80 ming
+TEKSH: Hisobda −30 ming so‘m, ya’ni 30 ming so‘m qarz bor. 50 ming kirdi. Hisobda qancha pul qoladi? => 20 ming | −20 ming | 80 ming | −80 ming
 @tushuncha Ikki son orasidagi masofa
 OVOZ: [1] Endi asosiy savolimizga qaytaylik. Ikki nuqta orasidagi masofa — katta sondan kichigini ayirib topiladi. [2] Yettidan minus ikkini ayiramiz. {urgu}Diqqat: minus ikkini ayirish — plyus ikkini qo‘shish bilan bir xil! [3] Yetti plyus ikki — to‘qqiz. [4] Demak, lift to‘qqiz qavat tushgan. Taxminingiz to‘g‘ri chiqdimi? [5] Sababi — nol qavatdan o‘tishda bitta qavat «yo‘qolmaydi»: yettitasi nolgacha, ikkitasi nolidan pastga.
 DOSKA: Masofa = katta − kichik
