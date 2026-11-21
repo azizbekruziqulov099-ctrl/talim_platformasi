@@ -78,8 +78,16 @@ TUZILMA (kalitlar aynan shunday):
  "xulosa": {{"bilaman":[4],"bilishni_xohlayman":[4],"bilib_oldim":[4]}}  yoki  {{"fikrlar":[4–6]}},
  "test": [{{"savol","variantlar":["3 yoki 4 variant"],"javob":0}} × 6],   javob — to‘g‘ri variant tartib raqami (0 dan)
  "nazorat": ["5–8 savol"], "mustaqil_ish": ["3–4 topshiriq"], "keyingi": {{"mavzu","izoh"}},
- "rasmlar": [{{"kalit","tavsif","prompt"}}]   — miyada ishlatilgan har bir rasm kaliti uchun
+ "rasmlar": [{{"kalit","tavsif","prompt"}}],   — miyada ishlatilgan har bir rasm kaliti uchun
+ "dars": {{"turi":"yangi bilim berish|mustahkamlash|aralash|amaliy|ma’ruza|seminar","davomiylik":45,
+          "maqsadlar":{{"talimiy","tarbiyaviy","rivojlantiruvchi"}},"kompetensiyalar":["2–4 ta"],"natijalar":["o‘quvchi … biladi/qila oladi × 3–4"],
+          "metodlar":[{{"nom":"metod nomi (masalan Klaster, Aqliy hujum)","bosqich":"qaysi bosqichda","izoh":"qanday o‘tkaziladi — 1–2 jumla"}} × 2–4],
+          "jihozlar":["darslik, tarqatma, proyektor …"],
+          "bosqichlar":[{{"nom":"Tashkiliy qism","vaqt":2,"oqituvchi":"o‘qituvchi faoliyati","oquvchi":"o‘quvchi faoliyati","metod"}} × 5–7],
+          "fanlararo":["bog‘liq fanlar"],"baholash":"qanday baholanadi","uy_vazifasi":"…"}}
 }}
+"dars" — DARS REJASI: slaydlarda chiqmaydi, o‘qituvchi va ochiq dars uchun. Bosqichlar vaqti yig‘indisi maktabda 45, OTMda 80 daqiqa;
+slaydlardagi faoliyatlar (muammo, test, o‘yin) bosqichlarda aks etsin.
 
 ELEMENT TURLARI ("elementlar" ichida, "tur" maydoni):
 - tarif / qoida / teorema: {{"tur","matn","formula"(ixtiyoriy),"chizma"(ixtiyoriy)}}
@@ -505,7 +513,8 @@ def miya_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", 
                           f"(o‘qituvchi gapi), \"joylashuv\" va 1–3 element. Boshqa bo‘limlarni yozma."))
     vazifalar.append(("yakun", -1, asos + f"\nUMUMIY REJA:\n{rmatn}\n\nBo‘limlarni YOZMA (ular alohida yoziladi). Faqat qolgan qismlarni "
                       "yoz: {\"meta\", \"adabiyotlar\", \"takrorlash\", \"muammo\", \"tarix\", \"xatolar\", \"metodika\", "
-                      "\"xulosa\", \"test\" (6 ta, rejadagi mazmun bo‘yicha), \"nazorat\", \"mustaqil_ish\", \"keyingi\"}."))
+                      "\"xulosa\", \"test\" (6 ta, rejadagi mazmun bo‘yicha), \"nazorat\", \"mustaqil_ish\", \"keyingi\", "
+                      "\"dars\" (dars rejasi: maqsadlar, kompetensiyalar, natijalar, metodlar, jihozlar, bosqichlar vaqti bilan, baholash, uy vazifasi)}."))
     from concurrent.futures import ThreadPoolExecutor
     natija = {}
     with ThreadPoolExecutor(max_workers=min(7, len(vazifalar))) as pool:

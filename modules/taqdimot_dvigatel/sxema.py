@@ -377,7 +377,39 @@ def normallashtir(m: dict) -> dict:
     out["keyingi"] = {"mavzu": t(k.get("mavzu"), 120), "izoh": t(k.get("izoh"), 200)}
     out["rasmlar"] = [{"kalit": t(r.get("kalit"), 100), "tavsif": t(r.get("tavsif"), 300), "prompt": t(r.get("prompt"), 600)}
                       for r in _royxat(m.get("rasmlar"))[:12] if isinstance(r, dict) and t(r.get("kalit"))]
+    out["dars"] = dars_toza(m.get("dars"))
     return out
+
+
+def _daqiqa(v) -> int:
+    try:
+        return max(0, min(240, int(float(str(v).split()[0].replace(",", ".")))))
+    except (TypeError, ValueError, IndexError):
+        return 0
+
+
+def dars_toza(d) -> dict:
+    """Dars rejasi (taqdimotda chiqmaydi — o'qituvchi uchun va keyingi «ochiq dars» qismi uchun asos):
+    maqsadlar, kompetensiyalar, kutilgan natijalar, metodlar, jihozlar, bosqichlar (vaqt, o'qituvchi va o'quvchi faoliyati)."""
+    d = d if isinstance(d, dict) else {}
+    mq = d.get("maqsadlar") if isinstance(d.get("maqsadlar"), dict) else {}
+    metodlar = []
+    for x in _royxat(d.get("metodlar"))[:10]:
+        if isinstance(x, str):
+            x = {"nom": x}
+        if isinstance(x, dict) and t(x.get("nom")):
+            metodlar.append({"nom": t(x.get("nom"), 80), "bosqich": t(x.get("bosqich"), 80), "izoh": t(x.get("izoh"), 300)})
+    bosq = []
+    for x in _royxat(d.get("bosqichlar"))[:10]:
+        if isinstance(x, dict) and t(x.get("nom")):
+            bosq.append({"nom": t(x.get("nom"), 100), "vaqt": _daqiqa(x.get("vaqt")), "oqituvchi": t(x.get("oqituvchi"), 400),
+                         "oquvchi": t(x.get("oquvchi"), 400), "metod": t(x.get("metod"), 100)})
+    return {"turi": t(d.get("turi"), 80), "davomiylik": _daqiqa(d.get("davomiylik")) or sum(b["vaqt"] for b in bosq),
+            "maqsadlar": {"talimiy": t(mq.get("talimiy") or mq.get("ta’limiy"), 400), "tarbiyaviy": t(mq.get("tarbiyaviy"), 400),
+                          "rivojlantiruvchi": t(mq.get("rivojlantiruvchi"), 400)},
+            "kompetensiyalar": ls(d.get("kompetensiyalar"), 8, 160), "natijalar": ls(d.get("natijalar"), 8, 200),
+            "metodlar": metodlar, "jihozlar": ls(d.get("jihozlar"), 12, 100), "bosqichlar": bosq,
+            "fanlararo": ls(d.get("fanlararo"), 6, 160), "baholash": t(d.get("baholash"), 400), "uy_vazifasi": t(d.get("uy_vazifasi"), 400)}
 
 
 def rasm_kalitlari(m: dict) -> list[str]:

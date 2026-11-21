@@ -20,6 +20,14 @@ MAX_BYTES = 3 * 1024 * 1024
 # API o'rnatadi: ma'lumotlar bazasidagi yuklangan rasmlar (kalit -> (bayt, mime) / bor-yo'q)
 TASHQI = None
 TASHQI_BOR = None
+TASHQI_KALITLAR = None  # () -> DB'ga yuklangan rasm kalitlari to'plami (api o'rnatadi)
+
+
+def yuklangan_kalitlar() -> set:
+    try:
+        return set(TASHQI_KALITLAR()) if TASHQI_KALITLAR else set()
+    except Exception:
+        return set()
 
 
 def kalit_toza(key: str) -> str:

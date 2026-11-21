@@ -78,6 +78,23 @@ AI faqat mazmunni yozadi; dizayn, chizmalar va animatsiyani shu dvigatel qiladi.
 bo‘yab, past shaffoflikda fonga qo‘shadi. Fan kalitlari: `uslub.FAN_KALIT` (matematika, fizika, kimyo, biologiya, geografiya,
 tabiiy, tarix, adabiyot, ona_tili, xorijiy_til, informatika, musiqa, tasviriy, texnologiya, jismoniy, tarbiya, pedagogika, umumiy).
 
+## Mavzular kutubxonasi (`kutubxona_ai.py`)
+1–11-sinf, bakalavr (1–4-kurs) va magistratura (1–2-kurs) mavzulari uchun miyalar oldindan yoziladi; o‘qituvchi
+«Tayyor mavzular»dan sinf → fan → mavzuni tanlab, darhol dizayn qadamiga o‘tadi.
+- Reestr: `taqdimot_mavzular` (daraja, sinf, fan, bob, raqam, mavzu, manba, holat, miya, ochiq_dars). Birinchi ishga tushishda
+  `malumot/mavzular_reja.json` (2090 mavzu: rasmiy TRM, darsliklar, OTM fanlari) urug‘ sifatida qo‘shiladi.
+- Manbalar: infoedu.uz darslik mundarijalari (server o‘zi yig‘adi, aniq mundarija taxminiy mavzular o‘rnini bosadi),
+  admin yuklagan fan dasturi (xlsx, docx, pdf, csv, txt).
+- Yozuvchi: fon ipi, bir vaqtda bitta worker (ijara), kunlik chegara, 3 urinish. **Admin «Boshlash»ni bosmaguncha yozmaydi.**
+  `TAQDIMOT_KUTUBXONA_YOZUVCHI=0` — butunlay o‘chiradi.
+- Har bir miyada `dars` — dars rejasi (maqsadlar, kompetensiyalar, natijalar, metodlar, jihozlar, bosqichlar vaqti va
+  o‘qituvchi/o‘quvchi faoliyati, baholash, uy vazifasi). Slaydlarda chiqmaydi; «ochiq dars» qismi shu asosda
+  (fan metodlari bilan) `ochiq_dars` ustuniga yoziladi.
+- Rasmlar: `malumot/rasm_buyurtma_2.json.gz` dagi rejadagi kalitlar AI katalogida «(rejada)» bo‘lib chiqadi —
+  rasm yuklanganda taqdimotga o‘zi tushadi.
+- API: `GET /kutubxona-ai` (daraxt + mavzular), `GET /kutubxona-ai/{id}` (miya); admin: `GET /admin/kutubxona`,
+  `POST /admin/kutubxona/{sozlama|yigish|navbat|sinov|dastur}`.
+
 ## Sozlamalar (env)
 `GEMINI_API_KEY` / `OPENAI_API_KEY` / `GROQ_API_KEY` — AI matn; `TAQDIMOT_AI_PROVIDERS=gemini,openai,groq`;
 `TAQDIMOT_AI_RASM=1` + `OPENAI_API_KEY` — AI rasm chizish (ixtiyoriy); `TAQDIMOT_RASM_PAPKA` — rasm papkasi; `TAQDIMOT_KUTUBXONA` — tayyor mavzular papkasi.

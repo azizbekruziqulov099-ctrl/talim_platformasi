@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import io
 import json
+import os
 import re
 import threading
 import time
@@ -76,6 +77,10 @@ class Dvigatel:
         self._kalit_vaqt = 0.0
         rasmlar.TASHQI = self.rasm_db
         rasmlar.TASHQI_BOR = self.rasm_bormi
+        rasmlar.TASHQI_KALITLAR = self.rasm_kalitlari
+        from .kutubxona_ai import Kutubxona
+        self.kutub = Kutubxona(self)
+        self._yozuvchi_tekshirildi = False
 
     # ------------------------------------------------------------ umumiy
     def migrate(self):
@@ -91,6 +96,13 @@ class Dvigatel:
     def actor(self, auth):
         uid = self.ps.actor(auth)
         self.migrate()
+        if not self._yozuvchi_tekshirildi:   # kutubxona yozuvchisi: DB ishlayotgani aniq bo'lgach (yoqilmagan bo'lsa — kutib turadi)
+            self._yozuvchi_tekshirildi = True
+            if os.getenv("TAQDIMOT_KUTUBXONA_YOZUVCHI", "1") != "0" and not os.getenv("PYTEST_CURRENT_TEST"):
+                try:
+                    self.kutub.ishga_tushir()
+                except Exception:
+                    pass
         return uid
 
     def admin(self, uid):
@@ -110,6 +122,10 @@ class Dvigatel:
             except Exception:
                 self._kalit_vaqt = time.time()
         return key in self._kalitlar
+
+    def rasm_kalitlari(self):
+        self.rasm_bormi("")
+        return self._kalitlar
 
     def rasm_db(self, key):
         if not self.rasm_bormi(key):
@@ -478,7 +494,7 @@ def register_taqdimot_dvigatel(app, platform):
 
     @app.get(PREFIX + "/uslublar")
     def uslublar(authorization: str | None = Header(None)):
-        D.actor(authorization)
+        uid = D.actor(authorization)
         oilalar = []
         for o, od in uslub.OILALAR.items():
             pals = []
@@ -489,7 +505,7 @@ def register_taqdimot_dvigatel(app, platform):
         from . import bloklar_joy
         return Response(json.dumps({"oilalar": oilalar, "animatsiyalar": [{"kod": k, "nom": v["nom"]} for k, v in uslub.ANIMATSIYALAR.items()],
                                     "dizaynlar": bloklar_joy.dizayn_royxati(), "sozlamalar": sozlamalar.KATALOG,
-                                    "jami": uslub.uslublar_soni(), "ai": ai.mavjud()}, ensure_ascii=False),
+                                    "jami": uslub.uslublar_soni(), "ai": ai.mavjud(), "admin": D.admin(uid)}, ensure_ascii=False),
                         media_type="application/json", headers=NO_STORE)
 
     @app.get(PREFIX + "/fon/{kod}.jpg")
@@ -632,6 +648,77 @@ def register_taqdimot_dvigatel(app, platform):
         bor = {r["kalit"] for r in rows}
         rows += [r for r in rasmlar.papkadan_qidir(q, 120 - len(rows)) if r["kalit"] not in bor]
         return {"rasmlar": rows}
+
+    # --- AI kutubxonasi: 1–11-sinf, bakalavr, magistratura mavzulari ---
+    @app.get(PREFIX + "/kutubxona-ai")
+    def kutubxona_ai_royxat(daraja: str = "", sinf: str = "", fan: str = "", q: str = "", hammasi: int = 0, limit: int = 400,
+                            authorization: str | None = Header(None)):
+        uid = D.actor(authorization)
+        barchasi = bool(hammasi) and D.admin(uid)   # admin: yozilmaganlari ham (sinab ko'rish, navbat boshqaruvi)
+        out = D.kutub.royxat(daraja[:20], sinf[:20], fan[:120], q[:60], faqat_tayyor=not barchasi, limit=max(0, min(limit, 2000)))
+        return Response(json.dumps(out, ensure_ascii=False), media_type="application/json", headers=NO_STORE)
+
+    @app.get(PREFIX + "/kutubxona-ai/{mid}")
+    def kutubxona_ai_miya(mid: int, authorization: str | None = Header(None)):
+        D.actor(authorization)
+        m = D.kutub.miya(mid)
+        if not m:
+            fail("Mavzu hali yozilmagan", 404)
+        return Response(json.dumps(m, ensure_ascii=False), media_type="application/json", headers=NO_STORE)
+
+    def _admin(authorization):
+        uid = D.actor(authorization)
+        if not D.admin(uid):
+            fail("Faqat administrator uchun", 403)
+        return uid
+
+    @app.get(PREFIX + "/admin/kutubxona")
+    def kutubxona_admin_holat(authorization: str | None = Header(None)):
+        _admin(authorization)
+        return Response(json.dumps(D.kutub.holat(), ensure_ascii=False), media_type="application/json", headers=NO_STORE)
+
+    @app.post(PREFIX + "/admin/kutubxona/sozlama")
+    async def kutubxona_admin_sozlama(request: Request, authorization: str | None = Header(None)):
+        await run_in_threadpool(_admin, authorization)
+        body = json.loads(await _body(request, MAX_JSON) or b"{}")
+        return await run_in_threadpool(D.kutub.sozlama_saqla, body if isinstance(body, dict) else {})
+
+    @app.post(PREFIX + "/admin/kutubxona/yigish")
+    async def kutubxona_admin_yigish(request: Request, authorization: str | None = Header(None)):
+        await run_in_threadpool(_admin, authorization)
+        body = json.loads(await _body(request, MAX_JSON) or b"{}")
+        return await run_in_threadpool(D.kutub.yigish_boshla, (body or {}).get("sinflar") or [])
+
+    @app.post(PREFIX + "/admin/kutubxona/navbat")
+    async def kutubxona_admin_navbat(request: Request, authorization: str | None = Header(None)):
+        await run_in_threadpool(_admin, authorization)
+        body = json.loads(await _body(request, MAX_JSON) or b"{}")
+        return {"ozgardi": await run_in_threadpool(D.kutub.navbat, body if isinstance(body, dict) else {})}
+
+    @app.post(PREFIX + "/admin/kutubxona/sinov")
+    async def kutubxona_admin_sinov(request: Request, authorization: str | None = Header(None)):
+        """Bitta mavzuni hozir yozib ko'rish (sifatni tekshirish uchun; yozuvchi yoqilmagan bo'lsa ham)."""
+        await run_in_threadpool(_admin, authorization)
+        body = json.loads(await _body(request, MAX_JSON) or b"{}")
+        mid = (body or {}).get("id")
+        if not isinstance(mid, int):
+            fail("Mavzu tanlanmagan")
+        if not ai.mavjud():
+            fail("AI kaliti serverda sozlanmagan", 503)
+        return await run_in_threadpool(D.kutub.bittasini, mid, D.pool)
+
+    @app.post(PREFIX + "/admin/kutubxona/dastur")
+    async def kutubxona_admin_dastur(request: Request, authorization: str | None = Header(None)):
+        """Fan dasturi (xlsx, docx, pdf, csv, txt) → mavzular reestriga."""
+        await run_in_threadpool(_admin, authorization)
+        data = await _body(request, MAX_FILE * 3)
+        from urllib.parse import unquote
+        meta = {k: unquote(request.headers.get(f"x-{k}", "")) for k in ("daraja", "sinf", "fan", "yonalish")}
+        nom = unquote(request.headers.get("x-fayl-nomi", "dastur.txt"))
+        try:
+            return await run_in_threadpool(D.kutub.dastur_yukla, nom, data, meta)
+        except ValueError as exc:
+            fail(str(exc))
 
     # --- Tayyor mavzular kutubxonasi ---
     @app.get(PREFIX + "/kutubxona")

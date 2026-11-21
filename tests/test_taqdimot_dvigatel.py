@@ -357,3 +357,41 @@ def test_ai_mazmun_sozlamalari():
     assert "110–160 so‘z" in t and "MISOLLAR: ko‘p" in t and "TEST: 8 ta" in t and "tarixiy ma’lumot" in t
     assert "TEST: yozma" in ai._sozlama_matni({"test_soni": 0})
     assert ai.sozlama_toza({})["test_soni"] is None and "TEST" not in ai._sozlama_matni({})
+
+
+def test_kutubxona_mundarija_va_dastur():
+    from modules.taqdimot_dvigatel import kutubxona_ai as ka
+    html = ("<ul><li>I BOB. MEXANIKA</li><li>1-mavzu. Mexanik harakat</li><li>2-mavzu. Tezlik &amp; yo‘l</li>"
+            "<li>1-mavzu. Mexanik harakat</li><li>3-mavzu. Механическое движение</li><li>II BOB. ISSIQLIK</li>"
+            "<li>§ 4. Temperatura</li></ul><script>1-mavzu. yo'q</script>")
+    m = ka.mundarija(ka.html_matn(html))
+    assert [x["mavzu"] for x in m] == ["Mexanik harakat", "Tezlik & yo‘l", "Temperatura"]
+    assert m[0]["bob"].startswith("I-bob") and m[-1]["bob"].startswith("II-bob") and m[-1]["raqam"] == 4
+    d = ka.dastur_qatorlari("Fan dasturi\n1. To‘plamlar nazariyasi asoslari\n2) Natural sonlar va amallar\nMavzu 3: Kasr sonlar haqida\n4. X")
+    assert [x["raqam"] for x in d] == [1, 2, 3] and d[2]["mavzu"] == "Kasr sonlar haqida"
+    matn, jadval = ka.fayl_matni("d.txt", "1-mavzu. Kasrlar\n2-mavzu. O‘nli kasrlar".encode())
+    assert "Kasrlar" in matn
+
+
+def test_kutubxona_yozish_argumentlari_va_dars_rejasi():
+    from modules.taqdimot_dvigatel import kutubxona_ai as ka
+    r = {"id": 1, "daraja": "maktab", "sinf": "7", "fan": "Fizika", "raqam": 5, "bob": "I-bob. Mexanika", "mavzu": "Tezlik",
+         "en": "speed", "yonalish": ""}
+    assert ka.yozish_sozlamasi(r)["slayd_soni"] == 10 and ka.yozish_sozlamasi({**r, "sinf": "2"})["hajm"] == "orta"
+    assert ka.yozish_sozlamasi({**r, "daraja": "bakalavr", "sinf": "2"})["slayd_soni"] == 14
+    mavzu, fan, daraja, sinf, tur, qosh, manba = ka.yozish_argumentlari(r, ["Yo‘l"], ["Tezlanish"])
+    assert (mavzu, fan, tur) == ("Tezlik", "Fizika", "dars") and "Tezlanish" in qosh and "5-mavzu" in qosh and "speed" in manba
+    # dars rejasi (ochiq dars uchun asos) normallashadi, noma'lum maydonlar tashlanadi
+    m = sxema.normallashtir({"meta": {"mavzu": "Tezlik"}, "dars": {
+        "maqsadlar": {"talimiy": "a", "tarbiyaviy": "b", "rivojlantiruvchi": "c"}, "metodlar": ["Klaster", {"nom": "Aqliy hujum"}],
+        "bosqichlar": [{"nom": "Tashkiliy qism", "vaqt": "2 daqiqa"}, {"nom": "Yangi mavzu", "vaqt": 25}, {"vaqt": 3}], "x": 1}})
+    d = m["dars"]
+    assert d["davomiylik"] == 27 and [b["nom"] for b in d["bosqichlar"]] == ["Tashkiliy qism", "Yangi mavzu"]
+    assert [x["nom"] for x in d["metodlar"]] == ["Klaster", "Aqliy hujum"] and "x" not in d
+    assert sxema.normallashtir({"meta": {"mavzu": "A"}})["dars"]["bosqichlar"] == []
+
+
+def test_rejadagi_rasmlar_katalogda():
+    from modules.taqdimot_dvigatel import rasm_tanla
+    k = rasm_tanla.katalog("Tezlik va mexanik harakat", "Fizika")
+    assert any("rejada" in nom for _, nom in k)

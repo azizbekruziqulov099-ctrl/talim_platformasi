@@ -123,8 +123,37 @@ def _kutubxona_cache():
         return []
 
 
+_VARIANT = re.compile(r"_v[23]$")
+
+
+@lru_cache(maxsize=1)
+def _buyurtma_qatorlari():
+    """2-qism rasm buyurtmasi (malumot/rasm_buyurtma_2.json.gz): chiziladigan rasmlar nomi, fani va sinfi.
+    Yuklangan kalitlar tanlash indeksiga qo'shiladi, yuklanmaganlari AI ro'yxatida «(rejada)» bo'lib chiqadi."""
+    import gzip
+    import json
+    import os
+    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "malumot", "rasm_buyurtma_2.json.gz")
+    try:
+        with gzip.open(p, "rt", encoding="utf-8") as f:
+            d = json.load(f)
+    except (OSError, ValueError):
+        return []
+    out = []
+    for kalit, nom, fan, sinflar, turi, uslub, navbat in d.get("rasmlar") or []:
+        toza = re.split(r" — | \(", nom)[0].strip()
+        asosiy = tokenlar(toza)
+        if not asosiy:
+            continue
+        fg = _fan_guruh("Biologiya Kimyo Fizika Geografiya Tabiiy fanlar") if fan.startswith("Murakkab") else _fan_guruh(fan)
+        out.append({"kalit": kalit, "tur": "rasm", "nom": toza, "fan": fan, "asosiy": asosiy, "tok": asosiy | tokenlar(fan),
+                    "fan_tok": fg, "ismlar": [_na(asosiy)], "bz": True, "turi": turi, "sinflar": sinflar,
+                    "variant": bool(_VARIANT.search(kalit)), "navbat": navbat})
+    return out
+
+
 @lru_cache(maxsize=2)
-def _indeks(_mt: float):
+def _indeks(_mt: float, _yuklangan: frozenset = frozenset()):
     rows = []
     for r in rasmlar.papka_reestri():
         k = r.get("kalit") or ""
@@ -139,6 +168,9 @@ def _indeks(_mt: float):
                      "asosiy": asosiy, "tok": hammasi, "fan_tok": _fan_guruh(r.get("fan") or ""), "ismlar": [_na(asosiy)]})
     ichki = {r["kalit"] for r in rows}
     rows += [r for r in _kutubxona_cache() if r["kalit"] not in ichki]
+    if _yuklangan:  # buyurtma bo'yicha chizilib, saytga yuklangan rasmlar
+        ichki = {r["kalit"] for r in rows}
+        rows += [r for r in _buyurtma_qatorlari() if r["kalit"] in _yuklangan and r["kalit"] not in ichki]
     n = max(1, len(rows))
     df = {}
     for r in rows:
@@ -158,7 +190,9 @@ def _indeks(_mt: float):
 def indeks():
     import os
     p = os.path.join(rasmlar.PAPKA, "reestr.json")
-    return _indeks(os.path.getmtime(p) if os.path.isfile(p) else 0.0)
+    yuk = rasmlar.yuklangan_kalitlar()
+    bz = frozenset(r["kalit"] for r in _buyurtma_qatorlari() if r["kalit"] in yuk) if yuk else frozenset()
+    return _indeks(os.path.getmtime(p) if os.path.isfile(p) else 0.0, bz)
 
 
 def _ball(q: set, r: dict, idf: dict):
@@ -266,7 +300,21 @@ def katalog(matn: str, fan: str = "", n: int = 60):
         if b > 0:
             ballar.append((b, r["kalit"], r["nom"]))
     ballar.sort(reverse=True)
-    return [(k, nom) for _, k, nom in ballar[:n]]
+    out = [(k, nom) for _, k, nom in ballar[:n]]
+    # rejadagi (hali chizilmagan) rasmlar: AI kalitini yozadi — rasm yuklanganda taqdimotga o'zi tushadi
+    bor_ = {k for k, _ in out} | {r["kalit"] for r in rows}
+    reja = []
+    for r in _buyurtma_qatorlari():
+        if r["variant"] or r["kalit"] in bor_:
+            continue
+        mos = q & r["asosiy"]
+        if not mos:
+            continue
+        b = sum(idf.get(t, 1.0) for t in mos) * 1.2 + (2.0 if ft and ft & r["fan_tok"] else 0) - 0.4 * (r["navbat"] - 1)
+        if len(mos) >= 2 or (ft and ft & r["fan_tok"]):
+            reja.append((b, r["kalit"], f"{r['nom']} ({r['turi']}, rejada)"))
+    reja.sort(reverse=True)
+    return out + [(k, nom) for _, k, nom in reja[:max(10, n // 2)]]
 
 
 # ------------------------------------------------------------------ miyaga qo'llash
