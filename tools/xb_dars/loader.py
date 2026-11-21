@@ -84,6 +84,7 @@ def tekshir(kod, qadamlar):
         for s in q["teksh"]:
             if " => " not in s: x.append(f"tekshiruv «{s[:30]}» => yo'q")
             else:
+                if s.rstrip().endswith("|") or any(not o.strip() for o in s.split(" => ", 1)[1].split(" | ")): x.append(f"tekshiruv variantlarida bo'sh joy: {s[:30]}")
                 savol = s.split(" => ")[0].strip().lower()
                 if savol in mats: x.append(f"tekshiruv savoli darsdagi misolning aynan o'zi: {savol[:40]}")
         m = re.findall(r"\[(\d+)\]", q["ovoz"])
