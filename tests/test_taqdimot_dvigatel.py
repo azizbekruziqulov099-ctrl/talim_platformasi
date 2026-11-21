@@ -395,3 +395,23 @@ def test_rejadagi_rasmlar_katalogda():
     from modules.taqdimot_dvigatel import rasm_tanla
     k = rasm_tanla.katalog("Tezlik va mexanik harakat", "Fizika")
     assert any("rejada" in nom for _, nom in k)
+
+
+def test_ochiq_dars_metodlar_bazasi():
+    from modules.taqdimot_dvigatel import ochiq_metodlar as om
+    d = om.miya()
+    assert om.tekshir(d) == []
+    assert len(d["metodlar"]) >= 80 and len(d["andozalar"]) == 15
+    for a in d["andozalar"]:
+        assert sum(b["daq"] for b in a["bosqichlar"]) == a["daqiqa"] in (45, 80)
+    kodlar = {m["kod"] for m in d["metodlar"]}
+    # har fan × yosh × andoza bosqichi uchun kamida bitta mos metod bor
+    for f in d["fanlar"]:
+        for a in (x for x in d["andozalar"] if x["kod"] in f["andozalar"]):
+            for y in set(f["yosh"]) & set(a["yosh"]):
+                for b in a["bosqichlar"]:
+                    t = set(b["metod_turi"]) - {"guruhlash", "birlashtirish"}
+                    if t:
+                        assert any(t & set(m["tur"]) and y in m["yosh"] and (m["fan"] == "*" or f["kod"] in m["fan"])
+                                   and m["vaqt"][0] <= b["daq"] for m in d["metodlar"]), (f["kod"], a["kod"], y, b["nom"])
+                    assert set(b["afzal"]) <= kodlar
