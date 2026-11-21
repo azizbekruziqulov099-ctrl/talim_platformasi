@@ -27,6 +27,8 @@ MAX_JSON = 1024 * 1024
 MAX_FILE = 8 * 1024 * 1024
 MAX_ZIP = 120 * 1024 * 1024
 AI_KUNLIK = 15
+SAQLASH_MAX = 300   # bitta foydalanuvchining saqlangan taqdimotlari (o'chirilmaganlari)
+UZILDI_DAQ = 20     # shuncha daqiqadan beri «yozilmoqda» turgan ish — server qayta ishga tushganda uzilgan
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS taqdimot_dvigatel_ishlar (
     id TEXT PRIMARY KEY,
@@ -39,6 +41,11 @@ CREATE TABLE IF NOT EXISTS taqdimot_dvigatel_ishlar (
     tugadi TIMESTAMPTZ
 );
 CREATE INDEX IF NOT EXISTS taqdimot_dvigatel_ishlar_owner ON taqdimot_dvigatel_ishlar(owner_id, yaratildi DESC);
+-- «Mening taqdimotlarim»: tanlangan dizayn, nom, o'chirilgan belgisi (qatorlar o'chmaydi — AI limiti hisobi to'g'ri qolsin)
+ALTER TABLE taqdimot_dvigatel_ishlar ADD COLUMN IF NOT EXISTS korinish JSONB;
+ALTER TABLE taqdimot_dvigatel_ishlar ADD COLUMN IF NOT EXISTS nom TEXT;
+ALTER TABLE taqdimot_dvigatel_ishlar ADD COLUMN IF NOT EXISTS ochirildi BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE taqdimot_dvigatel_ishlar ADD COLUMN IF NOT EXISTS yangilandi TIMESTAMPTZ;
 CREATE TABLE IF NOT EXISTS taqdimot_rasmlar (
     kalit TEXT PRIMARY KEY,
     mime TEXT NOT NULL,
@@ -204,7 +211,7 @@ class Dvigatel:
         with self.ps.db() as cur:
             if not admin and not sorov["faqat_reja"]:  # reja tuzish limitga kirmaydi
                 cur.execute("SELECT count(*) AS n FROM taqdimot_dvigatel_ishlar WHERE owner_id=%s AND yaratildi > now() - interval '1 day' "
-                            "AND COALESCE(sorov->>'faqat_reja', 'false') <> 'true'", (uid,))
+                            "AND COALESCE(sorov->>'faqat_reja', 'false') <> 'true' AND COALESCE(sorov->>'qolda', 'false') <> 'true'", (uid,))
                 if cur.fetchone()["n"] >= AI_KUNLIK:
                     fail(f"Bugungi AI limiti tugadi ({AI_KUNLIK} ta). Ertaga yoki Excel shablon orqali davom eting.", 429)
             ish = uuid.uuid4().hex
@@ -257,6 +264,119 @@ class Dvigatel:
         elif r["holat"] == "xato":
             out["xato"] = r["xato"]
         return out
+
+    # ------------------------------------------------------------ «Mening taqdimotlarim»
+    @staticmethod
+    def _iso(v):
+        return v.isoformat() if v else None
+
+    def royxat(self, uid, limit=80):
+        """AI yozgan (va qo'lda saqlangan) taqdimotlar — eng yangisi birinchi."""
+        limit = max(1, min(int(limit or 80), 200))
+        with self.ps.db() as cur:
+            cur.execute(
+                "SELECT id, holat, sorov, nom, xato, yaratildi, tugadi, yangilandi, natija->'meta' AS meta, "
+                "(SELECT COALESCE(sum(CASE WHEN jsonb_typeof(b->'slaydlar')='array' THEN jsonb_array_length(b->'slaydlar') ELSE 0 END),0) "
+                "   FROM jsonb_array_elements(CASE WHEN jsonb_typeof(natija->'bolimlar')='array' THEN natija->'bolimlar' ELSE '[]'::jsonb END) b) AS slaydlar, "
+                "(korinish IS NOT NULL) AS dizaynli, (yaratildi < now() - make_interval(mins => %s)) AS eski "
+                "FROM taqdimot_dvigatel_ishlar WHERE owner_id=%s AND NOT ochirildi ORDER BY COALESCE(yangilandi, yaratildi) DESC LIMIT %s",
+                (UZILDI_DAQ, uid, limit))
+            rows = cur.fetchall()
+        out = []
+        for r in rows:
+            so = r["sorov"] if isinstance(r["sorov"], dict) else json.loads(r["sorov"] or "{}")
+            meta = r["meta"] if isinstance(r["meta"], dict) else json.loads(r["meta"] or "{}") if r["meta"] else {}
+            holat = r["holat"]
+            if holat in ("navbatda", "yozilmoqda") and r["eski"]:
+                holat = "uzildi"
+            tur = "reja" if so.get("faqat_reja") else "saqlangan" if so.get("qolda") else "ai"
+            out.append({"id": r["id"], "holat": holat, "tur": tur, "nom": r["nom"] or meta.get("mavzu") or so.get("mavzu") or "Taqdimot",
+                        "fan": meta.get("fan") or so.get("fan") or "", "sinf": meta.get("sinf") or so.get("sinf") or "",
+                        "daraja": so.get("daraja") or meta.get("daraja") or "", "slaydlar": int(r["slaydlar"] or 0),
+                        "yaratildi": self._iso(r["yaratildi"]), "yangilandi": self._iso(r["yangilandi"] or r["tugadi"]),
+                        "xato": (r["xato"] or "")[:160] if holat == "xato" else ("Server qayta ishga tushganda to‘xtab qoldi — qayta yozdiring"
+                                                                               if holat == "uzildi" else "")})
+        return out
+
+    def ochish(self, uid, ish):
+        if not re.fullmatch(r"[0-9a-f]{32}", ish or ""):
+            fail("Taqdimot topilmadi", 404)
+        with self.ps.db() as cur:
+            cur.execute("SELECT holat, sorov, natija, korinish, nom, xato, owner_id, ochirildi FROM taqdimot_dvigatel_ishlar WHERE id=%s", (ish,))
+            r = cur.fetchone()
+        if not r or r["owner_id"] != uid or r["ochirildi"]:
+            fail("Taqdimot topilmadi", 404)
+        so = r["sorov"] if isinstance(r["sorov"], dict) else json.loads(r["sorov"] or "{}")
+        out = {"id": ish, "holat": r["holat"], "tur": "reja" if so.get("faqat_reja") else "saqlangan" if so.get("qolda") else "ai",
+               "nom": r["nom"] or "", "xato": r["xato"] or "",
+               "sorov": {k: so.get(k) for k in ("mavzu", "fan", "daraja", "sinf", "tur", "qoshimcha", "sozlama") if so.get(k) is not None},
+               "korinish": r["korinish"] if isinstance(r["korinish"], dict) else json.loads(r["korinish"]) if r["korinish"] else None}
+        if r["holat"] == "tayyor":
+            n = r["natija"] if isinstance(r["natija"], dict) else json.loads(r["natija"] or "{}")
+            out["reja" if out["tur"] == "reja" else "miya"] = n
+        return out
+
+    @staticmethod
+    def _korinish_toza(k):
+        if not isinstance(k, dict):
+            return None
+        out = {}
+        if isinstance(k.get("seed"), int):
+            out["seed"] = max(1, min(int(k["seed"]), 2_147_483_647))
+        for x in ("oila", "palitra", "anim"):
+            v = k.get(x)
+            if isinstance(v, str) and re.fullmatch(r"[a-z_]{0,20}", v):
+                out[x] = v
+        if k.get("bolim_titul") in (True, False, None):
+            out["bolim_titul"] = k.get("bolim_titul")
+        if isinstance(k.get("rasm_avto"), bool):
+            out["rasm_avto"] = k["rasm_avto"]
+        if isinstance(k.get("dizayn"), dict):
+            out["dizayn"] = {a: v for a, v in k["dizayn"].items() if a in ("sarlavha", "kart", "titul", "bolim")
+                             and isinstance(v, (str, int)) and len(str(v)) <= 12}
+        return out
+
+    def korinish_saqla(self, uid, ish, body):
+        if not re.fullmatch(r"[0-9a-f]{32}", ish or "") or not isinstance(body, dict):
+            fail("Taqdimot topilmadi", 404)
+        k = self._korinish_toza(body.get("korinish"))
+        nom = sxema.t(body.get("nom"), 160) if body.get("nom") is not None else None
+        with self.ps.db() as cur:
+            cur.execute("UPDATE taqdimot_dvigatel_ishlar SET korinish=COALESCE(%s::jsonb, korinish), nom=COALESCE(%s, nom), yangilandi=now() "
+                        "WHERE id=%s AND owner_id=%s AND NOT ochirildi",
+                        (json.dumps(k, ensure_ascii=False) if k is not None else None, nom or None, ish, uid))
+            if cur.rowcount == 0:
+                fail("Taqdimot topilmadi", 404)
+        return {"ok": True}
+
+    def saqla(self, uid, body):
+        """Tayyor mavzu, Excel/JSON yoki namuna — «Mening taqdimotlarim»ga (AI limitiga kirmaydi)."""
+        if not isinstance(body, dict) or not isinstance(body.get("miya"), dict):
+            fail("Saqlanadigan taqdimot yo‘q")
+        try:
+            m = sxema.normallashtir(body["miya"])
+        except ValueError as exc:
+            fail(str(exc))
+        k = self._korinish_toza(body.get("korinish"))
+        ish = uuid.uuid4().hex
+        with self.ps.db() as cur:
+            cur.execute("SELECT count(*) AS n FROM taqdimot_dvigatel_ishlar WHERE owner_id=%s AND NOT ochirildi", (uid,))
+            if cur.fetchone()["n"] >= SAQLASH_MAX:
+                fail(f"Saqlangan taqdimotlar {SAQLASH_MAX} taga yetdi — keraksizlarini o‘chiring.", 429)
+            cur.execute("INSERT INTO taqdimot_dvigatel_ishlar(id, owner_id, holat, sorov, natija, korinish, nom, tugadi, yangilandi) "
+                        "VALUES(%s,%s,'tayyor',%s,%s,%s,%s,now(),now())",
+                        (ish, uid, json.dumps({"mavzu": m["meta"]["mavzu"], "fan": m["meta"].get("fan", ""), "qolda": True}, ensure_ascii=False),
+                         json.dumps(m, ensure_ascii=False), json.dumps(k, ensure_ascii=False) if k else None, m["meta"]["mavzu"]))
+        return {"id": ish}
+
+    def ochir(self, uid, ish):
+        if not re.fullmatch(r"[0-9a-f]{32}", ish or ""):
+            fail("Taqdimot topilmadi", 404)
+        with self.ps.db() as cur:
+            cur.execute("UPDATE taqdimot_dvigatel_ishlar SET ochirildi=true, yangilandi=now() WHERE id=%s AND owner_id=%s", (ish, uid))
+            if cur.rowcount == 0:
+                fail("Taqdimot topilmadi", 404)
+        return {"ok": True}
 
     # ------------------------------------------------------------ import
     @staticmethod
@@ -402,6 +522,33 @@ def register_taqdimot_dvigatel(app, platform):
     def ai_holat(ish: str, authorization: str | None = Header(None)):
         uid = D.actor(authorization)
         return Response(json.dumps(D.ai_holat(uid, ish), ensure_ascii=False), media_type="application/json", headers=NO_STORE)
+
+    @app.get(PREFIX + "/saqlangan")
+    def saqlanganlar(limit: int = 80, authorization: str | None = Header(None)):
+        uid = D.actor(authorization)
+        return Response(json.dumps({"taqdimotlar": D.royxat(uid, limit)}, ensure_ascii=False), media_type="application/json", headers=NO_STORE)
+
+    @app.get(PREFIX + "/saqlangan/{ish}")
+    def saqlangan_och(ish: str, authorization: str | None = Header(None)):
+        uid = D.actor(authorization)
+        return Response(json.dumps(D.ochish(uid, ish), ensure_ascii=False), media_type="application/json", headers=NO_STORE)
+
+    @app.post(PREFIX + "/saqlangan")
+    async def saqlangan_yangi(request: Request, authorization: str | None = Header(None)):
+        uid = await run_in_threadpool(D.actor, authorization)
+        body = await _json(request)
+        return await run_in_threadpool(D.saqla, uid, body)
+
+    @app.post(PREFIX + "/saqlangan/{ish}/korinish")
+    async def saqlangan_korinish(ish: str, request: Request, authorization: str | None = Header(None)):
+        uid = await run_in_threadpool(D.actor, authorization)
+        body = await _json(request, 16 * 1024)
+        return await run_in_threadpool(D.korinish_saqla, uid, ish, body)
+
+    @app.delete(PREFIX + "/saqlangan/{ish}")
+    def saqlangan_ochir(ish: str, authorization: str | None = Header(None)):
+        uid = D.actor(authorization)
+        return D.ochir(uid, ish)
 
     @app.post(PREFIX + "/rasm-yuklash")
     async def rasm_yuklash(request: Request, authorization: str | None = Header(None)):

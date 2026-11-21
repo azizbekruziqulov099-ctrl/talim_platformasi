@@ -261,3 +261,12 @@ def test_ai_bolimlari_royxat_yoki_matn_bolsa_ham():
     assert m["takrorlash"]["savollar"][0]["savol"] == "?" and m["metodika"]["bosqichlar"] == ["a", "b"]
     assert m["xatolar"] == [] and m["test"] == [] and m["rasmlar"] == []
     assert yasash.pptx(yasash.yasa(m, seed=1))[:2] == b"PK"
+
+
+def test_saqlangan_korinish_va_fayl_nomi():
+    from modules.taqdimot_dvigatel import api
+    k = api.Dvigatel._korinish_toza({"seed": 5, "oila": "akademik", "palitra": "<x>", "dizayn": {"titul": 2, "yomon": 1}, "rasm_avto": False})
+    assert k == {"seed": 5, "oila": "akademik", "dizayn": {"titul": 2}, "rasm_avto": False}
+    d = api._biriktirma("Oʻzbekiston.pptx")
+    d.encode("latin-1")
+    assert 'filename="Ozbekiston.pptx"' in d and "filename*=UTF-8''" in d
