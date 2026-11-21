@@ -1,0 +1,253 @@
+## pisa_malumot
+@kirish Tasodifiy o‘quvchi kim?
+OVOZ: Sinfda yigirma o‘quvchi bor. So‘rov natijasi: sakkiztasi futbolni yaxshi ko‘radi, oltitasi — shaxmatni, to‘rttasi — kitob o‘qishni, ikkitasi — boshqa narsani. {pauza} Ro‘yxatdan ko‘zni yumib bitta o‘quvchini tanlaymiz. U futbolchi bo‘lish ehtimoli qancha? {sekin}Ma’lumotni tartibga solib, jadval va ehtimol orqali javob topamiz. Taxmin qiling.
+DOSKA: Futbol: 8 | Shaxmat: 6
+DOSKA: Kitob: 4 | Boshqa: 2
+DOSKA: Jami: 20
+DOSKA: P(futbol) = ? ✋
+@tushuncha Chastota jadvali
+OVOZ: [1] Ma’lumotlar xom holda tartibsiz. Ularni sanab, jadvalga joylashtiramiz — chastota jadvali. [2] Har bir variant yonida necha marta uchrashi yoziladi. [3] {sekin}Chastotalar yig‘indisi — jami kuzatuvlar soni. Bizda sakkiz plyus olti plyus to‘rt plyus ikki — yigirma. [4] Yig‘indi mos kelmasa — sanashda xato bor.
+DOSKA: JADVAL: Sevimli mashg‘ulot ;; Chastota | Futbol ;; 8 | Shaxmat ;; 6 | Kitob ;; 4 | Boshqa ;; 2
+DOSKA: 8 + 6 + 4 + 2 = 20
+DOSKA: Jami 20 ✔ — sanash to‘g‘ri
+DOSKA: QOIDA: chastotalar yig‘indisi = jami
+TEKSH: Jadval: 5, 9, 7 va noma’lum chastota. Jami 30 bo‘lsa, noma’lum chastota? => 9 | 7 | 11 | 21
+@tushuncha Nisbiy chastota va foiz
+OVOZ: [1] Chastotani jamiga bo‘lsak — nisbiy chastota. Futbol: sakkiz bo‘lingan yigirma — nol butun to‘rt. [2] Foizga o‘tkazish uchun yuzga ko‘paytiramiz: qirq foiz. [3] {sekin}Shaxmat — o‘ttiz foiz, kitob — yigirma foiz, boshqa — o‘n foiz. Yig‘indi — yuz foiz. [4] Nisbiy chastota — ehtimolning kichik tajribadagi baholovchisi.
+DOSKA: 8 : 20 = 0,4 = 40%
+DOSKA: 6 : 20 = 30%
+DOSKA: 4 : 20 = 20%; 2 : 20 = 10%
+DOSKA: 40% + 30% + 20% + 10% = 100%
+TEKSH: 25 kishidan 10 tasi ko‘k rangni tanladi. Nisbiy chastota? => 0,4 | 0,25 | 2,5 | 10
+@tushuncha Ehtimol — qulay holatlar nisbati
+OVOZ: [1] Ehtimol — qulay holatlar sonini barcha teng imkoniyatli holatlarga bo‘lish. [2] Futbolchini tanlash: qulay — sakkiz, jami — yigirma. Ehtimol — nol butun to‘rt. [3] {sekin}Ehtimol doim nol bilan bir orasida. Nol — mumkin emas, bir — albatta. [4] Taxminingiz qirq foiz bo‘lsa — to‘g‘ri topdingiz.
+DOSKA: P = qulay : jami
+DOSKA: P(futbol) = 8/20 = 0,4
+DOSKA: 0 ≤ P ≤ 1
+DOSKA: P = 0 — mumkin emas; P = 1 — albatta
+TEKSH: Sumkada 4 qizil, 6 ko‘k, 10 sariq qalam. Tasodifiy qalam qizil bo‘lish ehtimoli? => 1/5 | 4/6 | 2/5 | 1/4
+TEKSH: Ehtimol 1,3 bo‘la oladimi? => Yo‘q | Ha | Faqat foizda | Faqat kasrda
+@tushuncha Xato tuzog‘i: kichik tanlama
+OVOZ: [1] Besh kishidan so‘rov o‘tkazildi: to‘rttasi «ha» dedi. Gazeta yozdi: «Aholining sakson foizi qo‘llaydi». [2] {urgu}Besh kishi — juda kam! Xulosa chiqarish uchun tanlama katta va tasodifiy bo‘lishi kerak. [3] Yana bir tuzoq: faqat bir mahallada so‘rov — butun shahar fikri emas. [4] Ma’lumotni o‘qiganda doim so‘rang: nechta kishi, qanday tanlangan?
+DOSKA: 4 / 5 = 80% ← 5 kishi!
+DOSKA: ❌ kichik tanlama → ishonchsiz
+DOSKA: ❌ bir mahalla ≠ butun shahar
+DOSKA: ✅ katta, tasodifiy tanlama
+TEKSH: Qaysi so‘rovga ko‘proq ishonish mumkin? => 1 000 ta tasodifiy kishi | 10 ta do‘st | 50 ta bir sinf o‘quvchisi | 5 ta qo‘shni
+@xulosa Esda tut
+OVOZ: Birinchi: ma’lumotni chastota jadvaliga joylang, yig‘indini tekshiring. Ikkinchi: nisbiy chastota — chastotani jamiga bo‘lish. Uchinchi: ehtimol — qulay bo‘lingan jami, nol bilan bir orasida. To‘rtinchi: kichik va tasodifiy bo‘lmagan tanlamaga ishonmang.
+DOSKA: 1. Chastotalar yig‘indisi = jami
+DOSKA: 2. Nisbiy chastota = f : jami
+DOSKA: 3. P = qulay : jami; 0 ≤ P ≤ 1
+DOSKA: 4. Katta, tasodifiy tanlama
+
+## pisa_diagramma
+@kirish Savdo keskin oshdimi?
+OVOZ: Ikki do‘kon egasi bir xil natijani ko‘rsatmoqda. Birinchisining diagrammasida savdo to‘qson sakkizdan to‘qson to‘qqizga o‘tgan, lekin o‘q yuzga yaqin joydan boshlanadi — ustun ikki baravar baland ko‘rinadi. {pauza} Savdo haqiqatan «keskin» o‘sdimi? {sekin}Diagramma ba’zan aldaydi. Uni to‘g‘ri o‘qishni va o‘zingizni aldanishdan saqlashni o‘rganamiz.
+DOSKA: Savdo: 98 → 99
+DOSKA: O‘q 97 dan boshlanadi...
+DOSKA: Keskin o‘sishmi? ✋
+@tushuncha Diagrammani o‘qish: nimaga qaraymiz
+OVOZ: [1] Diagrammani ko‘rganda uchta narsaga qarang: sarlavha, o‘qlar va birliklar, shkala. [2] Sarlavha — nima o‘lchanayapti. O‘qlar — qaysi birlikda. [3] {sekin}Shkala nol dan boshlanadimi? Bu — eng muhim savol. [4] Ustunli diagrammada ustunning balandligi ma’lumotga mutanosib bo‘lishi uchun o‘q noldan boshlanishi shart.
+DOSKA: 1. Sarlavha — nima?
+DOSKA: 2. O‘qlar — birlik?
+DOSKA: 3. Shkala nol dan boshlanadimi?
+DOSKA: QOIDA: ustunli diagramma → o‘q noldan
+TEKSH: Diagrammada ustun balandligi 100 dan boshlanadi. Bu nimaga olib keladi? => Farq bo‘rttirib ko‘rinadi | Farq kamayib ko‘rinadi | Hech qanday ta’sir qilmaydi | Ustunlar yo‘qoladi
+@tushuncha Chiziqli diagramma: o‘sish tendensiyasi
+OVOZ: [1] Vaqt bo‘yicha o‘zgarishni chiziqli diagramma yaxshi ko‘rsatadi. Nuqtalarni tutashtirgan chiziq yuqoriga ketsa — o‘sish, pastga ketsa — kamayish. [2] Tiklik o‘zgarish tezligini ko‘rsatadi. [3] {sekin}Mart oyida savdo yuz, aprelda yuz o‘n, mayda yuz yigirma. Har oy o‘n qo‘shilmoqda — chiziq to‘g‘ri, yuqoriga. [4] Iyunda ham shu davom etadi, deb taxmin qilish — bashorat. Lekin ehtiyot bo‘ling: bashorat kafolat emas.
+DOSKA: GRAFIK: y=10x+100; [0;4]
+DOSKA: Har oy +10 → to‘g‘ri chiziq
+DOSKA: Tiklik = o‘zgarish tezligi
+DOSKA: Bashorat ≠ kafolat
+TEKSH: Grafikda 2020 yil — 40, 2021 — 50, 2022 — 60. 2023 uchun taxminiy qiymat? => 70 | 80 | 60 | 100
+@tushuncha Foiz o‘zgarishini diagrammadan topish
+OVOZ: [1] Diagrammada savdo to‘qson sakkizdan to‘qson to‘qqizga o‘tgan. O‘zgarish — bir. [2] Bir bo‘lingan to‘qson sakkiz — taxminan bir foiz. [3] {sekin}«Keskin o‘sish» emas, yaxshi holda — yengil o‘sish. [4] Foizni diagramma ko‘rinishiga emas, sonlarga qarab hisoblang. Rasm aldashi mumkin, hisob aldamaydi.
+DOSKA: 99 − 98 = 1
+DOSKA: 1 : 98 ≈ 0,01 = 1%
+DOSKA: ❌ «ustun ikki baravar baland»
+DOSKA: ✅ Haqiqiy o‘sish — 1%
+TEKSH: 80 dan 100 ga o‘sish foizi? => 25% | 20% | 100% | 80%
+@tushuncha Xato tuzog‘i: bog‘liqlik ≠ sabab
+OVOZ: [1] Yozda muzqaymoq sotuvi ham, cho‘milishdagi baxtsiz hodisalar ham ko‘payadi. Diagramma ikkalasining birga o‘sishini ko‘rsatadi. [2] {urgu}Muzqaymoq baxtsiz hodisaga sababmi? Yo‘q! Ikkalasining sababi — issiq ob-havo. [3] Ikki narsa birga o‘zgarsa, bu hali biri ikkinchisining sababi ekanini bildirmaydi. [4] Sabab haqida gapirishdan oldin boshqa omillarni ham o‘ylang.
+DOSKA: Muzqaymoq ↑  ← issiq →  Cho‘milish ↑
+DOSKA: ❌ Muzqaymoq → hodisa
+DOSKA: ✅ Umumiy sabab: issiq ob-havo
+DOSKA: Bog‘liqlik ≠ sabab
+TEKSH: Yong‘in sonining ko‘pligi o‘chirish xizmatchilari soniga bog‘liq. Xizmatchilar yong‘inni keltirib chiqaradimi? => Yo‘q, katta yong‘inlarga ko‘proq xizmatchi keladi | Ha | Faqat qishda | Aniq emas
+@xulosa Esda tut
+OVOZ: Birinchi: diagrammada sarlavha, o‘qlar va shkalaga qarang. Ikkinchi: ustunli diagramma o‘qi noldan boshlanishi kerak. Uchinchi: foizni rasmdan emas, sonlardan hisoblang. To‘rtinchi: bog‘liqlik sababni isbotlamaydi.
+DOSKA: 1. Sarlavha · o‘q · shkala
+DOSKA: 2. Ustun → nol dan
+DOSKA: 3. % ni sonlardan hisobla
+DOSKA: 4. Bog‘liqlik ≠ sabab
+
+## pm_ortacha
+@kirish «O‘rtacha maosh» aldamasmi?
+OVOZ: Kichik firmada besh xodim bor. To‘rttasining oyligi — uch million so‘mdan, direktorniki — o‘ttiz million. E’londa yozilgan: «O‘rtacha maosh — sakkiz butun to‘rt million so‘m». {pauza} Yangi xodim shuni ko‘rib ishga kirsa, qancha maosh kutishi kerak? {sekin}Bitta son butun haqiqatni aytmaydi. O‘rtacha, mediana va moda — har biri boshqacha hikoya qiladi.
+DOSKA: 3, 3, 3, 3, 30 (mln so‘m)
+DOSKA: «O‘rtacha 8,4 mln»
+DOSKA: Bu halol raqammi? ✋
+@tushuncha O‘rtacha arifmetik
+OVOZ: [1] O‘rtacha — hamma sonlarni qo‘shib, soniga bo‘lish. [2] Uch plyus uch plyus uch plyus uch plyus o‘ttiz — qirq ikki. [3] {sekin}Qirq ikkini beshga bo‘lamiz — sakkiz butun to‘rt o‘ndan. Demak, o‘rtacha — sakkiz butun to‘rt million. [4] Bitta juda katta son o‘rtachani yuqoriga tortib ketadi.
+DOSKA: (3 + 3 + 3 + 3 + 30) : 5
+DOSKA: = 42 : 5 = 8,4
+DOSKA: Bitta katta son o‘rtachani tortadi
+DOSKA: QOIDA: o‘rtacha = yig‘indi : soni
+TEKSH: 4, 6, 8, 10, 12 sonlarining o‘rtachasi? => 8 | 10 | 7 | 40
+TEKSH: 5 ta sonning o‘rtachasi 12. Yig‘indisi? => 60 | 17 | 2,4 | 12
+@tushuncha Mediana va moda
+OVOZ: [1] Mediana — sonlarni o‘sish tartibida joylashtirgandagi o‘rtadagi son. [2] Tartib: uch, uch, uch, uch, o‘ttiz. O‘rtadagisi — uch. [3] {sekin}Agar sonlar juft bo‘lsa, ikki o‘rtadagining o‘rtachasi olinadi. [4] Moda — eng ko‘p uchraydigan qiymat. Bizda — uch. [5] {urgu}Demak, odatiy maosh — uch million, sakkiz butun to‘rt emas!
+DOSKA: Tartib: 3, 3, 3, 3, 30
+DOSKA: Mediana = 3 (o‘rtadagi)
+DOSKA: Moda = 3 (eng ko‘p uchragan)
+DOSKA: Juft son: 2, 4, 6, 10 → (4 + 6) : 2 = 5
+DOSKA: QOIDA: tartibla → o‘rtadagisi
+TEKSH: 7, 2, 9, 4, 5 sonlarining medianasi? => 5 | 9 | 4 | 5,4
+TEKSH: 2, 3, 3, 5, 7, 3, 8. Moda? => 3 | 5 | 2 | 8
+@tushuncha Qaysi birini qachon?
+OVOZ: [1] Agar ma’lumotlar bir tekis bo‘lsa — o‘rtacha yaxshi ishlaydi. [2] Agar juda katta yoki juda kichik qiymat bo‘lsa — mediana ishonchliroq. [3] {sekin}Eng ko‘p kiyiladigan poyabzal o‘lchamini bilish uchun — moda. [4] Uy narxlari, maoshlar — odatda mediana bilan aytiladi, chunki bir-ikkita juda qimmat uy o‘rtachani buzadi.
+DOSKA: Tekis ma’lumot → o‘rtacha
+DOSKA: Chetki qiymat bor → mediana
+DOSKA: Eng ko‘p kerak → moda
+DOSKA: Maosh, uy narxi → mediana
+TEKSH: Do‘kon qaysi o‘lchamdagi krossovkani ko‘proq buyurtma qilishi kerak? => Moda | O‘rtacha | Mediana | Diapazon
+@tushuncha Tarqoqlik: bir xil o‘rtacha, boshqa haqiqat
+OVOZ: [1] Ikki jamoa. Birinchisida o‘yinchilar ballari: ellik, ellik, ellik, ellik. Ikkinchisida: nol, nol, yuz, yuz. [2] Ikkalasining o‘rtachasi — ellik! [3] {urgu}Lekin birinchi jamoa barqaror, ikkinchisi — har xil. [4] Tarqoqlik — diapazon: eng katta minus eng kichik. Birinchisida nol, ikkinchisida — yuz. O‘rtacha bilan birga tarqoqlikni ham ko‘ring.
+DOSKA: 50, 50, 50, 50: o‘rtacha 50; diapazon 0
+DOSKA: 0, 0, 100, 100: o‘rtacha 50; diapazon 100
+DOSKA: Diapazon = maks − min
+DOSKA: Bir xil o‘rtacha ≠ bir xil natijalar
+TEKSH: 12, 15, 20, 30, 28 sonlari diapazoni? => 18 | 30 | 12 | 105
+@xulosa Esda tut
+OVOZ: Birinchi: o‘rtacha — yig‘indi bo‘lingan soni, chetki qiymat uni buzadi. Ikkinchi: mediana — tartiblangandagi o‘rtadagi son. Uchinchi: moda — eng ko‘p uchraydigan. To‘rtinchi: tarqoqlikni ham ko‘ring.
+DOSKA: 1. o‘rtacha = Σ : n
+DOSKA: 2. mediana = o‘rtadagi
+DOSKA: 3. moda = eng ko‘p
+DOSKA: 4. diapazon = maks − min
+
+## pm_ehtimol
+@kirish Qutidan qizil shar
+OVOZ: Qutida uchta qizil va beshta ko‘k shar bor. Ko‘zingizni yumib bitta shar olasiz. {pauza} Qizil shar chiqish ehtimoli qancha? Va agar birinchi sharni qaytarmasdan ikkinchisini olsangiz — ikkalasi ham qizil chiqishi? {sekin}Ehtimol — hayotdagi qarorlarning asosi: ob-havo, sug‘urta, tibbiyot. Taxmin qiling.
+DOSKA: 3 qizil + 5 ko‘k = 8 shar
+DOSKA: P(qizil) = ?
+DOSKA: Ikkalasi qizil (qaytarmasdan)? ✋
+@tushuncha Ehtimol formulasi
+OVOZ: [1] Ehtimol — qulay holatlar bo‘lingan barcha teng imkoniyatli holatlarga. [2] Qizil shar: uch qulay, sakkiz jami — uch bo‘lib sakkiz. [3] {sekin}Oddiy kub: juft son chiqish ehtimoli — uchta qulay, oltita jami — yarim. [4] Tanga: gerb chiqishi — bir bo‘lib ikki.
+DOSKA: P = qulay : jami
+DOSKA: P(qizil) = 3/8
+DOSKA: Kub, juft: 3/6 = 1/2
+DOSKA: Tanga, gerb: 1/2
+TEKSH: Oddiy kub tashlandi. 4 dan katta son chiqish ehtimoli? => 1/3 | 1/6 | 1/2 | 2/3
+TEKSH: 10 ta chiptadan 2 tasi yutuqli. Bitta chipta yutuqli bo‘lish ehtimoli? => 1/5 | 1/10 | 2/5 | 1/2
+@tushuncha Qarama-qarshi hodisa va «yoki»
+OVOZ: [1] Hodisa bo‘lmasligi ehtimoli — bir minus hodisa ehtimoli. Qizil bo‘lmasligi: bir minus uch bo‘lib sakkiz — besh bo‘lib sakkiz. [2] «Yoki» — ikki hodisadan biri bo‘lsa. Bir vaqtda bo‘la olmasa, ehtimollar qo‘shiladi. [3] {sekin}Kubda bir yoki olti chiqishi: bir bo‘lib olti plyus bir bo‘lib olti — ikki bo‘lib olti, ya’ni uchdan bir. [4] «Kamida bittasi» savollarida qarama-qarshi hodisa foydali: avval «birorta ham bo‘lmasligi»ni topib, birdan ayiramiz.
+DOSKA: P(emas) = 1 − P
+DOSKA: 1 − 3/8 = 5/8
+DOSKA: P(1 yoki 6) = 1/6 + 1/6 = 1/3
+DOSKA: Kamida bitta → 1 − P(birorta ham yo‘q)
+TEKSH: Yomg‘ir yog‘ish ehtimoli 0,3. Yog‘masligi ehtimoli? => 0,7 | 0,3 | 0,03 | 1,3
+@tushuncha Ko‘paytirish: ketma-ket hodisalar
+OVOZ: [1] Ikki hodisa ketma-ket bo‘lsa — ehtimollar ko‘paytiriladi. [2] Tanga uch marta tashlandi, uchalasida ham gerb: yarim karra yarim karra yarim — sakkizdan bir. [3] {sekin}Qutidagi sharlarda birinchi qizil — uch bo‘lib sakkiz. Qaytarmasak, qutida yetti shar, ikki qizil qoladi. [4] Ikkinchisi ham qizil — ikki bo‘lib yetti. Ko‘paytirsak: uch bo‘lib sakkiz karra ikki bo‘lib yetti — olti bo‘lib ellik olti, uch bo‘lib yigirma sakkiz.
+DOSKA: Tanga ×3: 1/2 · 1/2 · 1/2 = 1/8
+DOSKA: 1-qizil: 3/8
+DOSKA: 2-qizil (qaytarmasdan): 2/7
+DOSKA: 3/8 · 2/7 = 6/56 = 3/28
+TEKSH: Tanga ikki marta tashlanadi. Ikkalasida ham tamg‘a chiqishi? => 1/4 | 1/2 | 1/3 | 2
+@tushuncha Xato tuzog‘i: tasodifning xotirasi yo‘q
+OVOZ: [1] Tanga besh marta ketma-ket gerb bo‘lib tushdi. Ko‘pchilik: «Endi albatta tamg‘a tushadi!» [2] {urgu}Yo‘q! Tanga oldingi natijani «eslamaydi». Keyingi otishda gerb ham, tamg‘a ham yarim ehtimol bilan chiqadi. [3] Besh marta ketma-ket gerb chiqishi — kam ehtimolli: bir bo‘lib o‘ttiz ikki. Lekin u allaqachon bo‘lib o‘tgan, keyingi otish uni o‘zgartirmaydi.
+DOSKA: 5 × gerb: 1/2⁵ = 1/32
+DOSKA: Keyingi otish: P(gerb) = 1/2
+DOSKA: ❌ «endi tamg‘a chiqishi kerak»
+DOSKA: Mustaqil hodisalar — xotira yo‘q
+TEKSH: Kub 4 marta «6» tushdi. Beshinchi urinishda «6» tushish ehtimoli? => 1/6 | 0 | 1 | 1/2
+@xulosa Esda tut
+OVOZ: Birinchi: ehtimol — qulay bo‘lingan jami. Ikkinchi: qarama-qarshi hodisa — bir minus ehtimol. Uchinchi: ketma-ket hodisalarda ehtimollar ko‘paytiriladi. To‘rtinchi: tasodifning xotirasi yo‘q.
+DOSKA: 1. P = qulay : jami
+DOSKA: 2. P(emas) = 1 − P
+DOSKA: 3. ketma-ket → ×
+DOSKA: 4. Mustaqil hodisa — xotirasiz
+
+## pm_sanash
+@kirish Necha xil kiyinish mumkin?
+OVOZ: Sizda uchta ko‘ylak va to‘rtta shim bor. Har kuni boshqa kombinatsiyada kiyinmoqchisiz. {pauza} Necha kun takrorlamasdan kiyinasiz? O‘n ikki kun? Yetti? {sekin}Hammasini birma-bir yozib chiqish mumkin, lekin mingta variant bo‘lsa-chi? Sanash qoidalari bizga yordam beradi. Taxmin qiling.
+DOSKA: Ko‘ylak: 3
+DOSKA: Shim: 4
+DOSKA: Kombinatsiya? ✋
+@tushuncha Ko‘paytirish qoidasi
+OVOZ: [1] Ikki mustaqil tanlov bo‘lsa, variantlar soni ko‘paytiriladi. [2] Har bir ko‘ylak bilan to‘rtta shim — jami uch karra to‘rt, o‘n ikki. [3] {sekin}Uchinchi tanlov qo‘shilsa — yana ko‘paytiramiz. Ikki xil poyabzal bo‘lsa — o‘n ikki karra ikki, yigirma to‘rt. [4] Daraxt chizmasi bunga yordam beradi: har shox yangi tanlov.
+DOSKA: 3 · 4 = 12
+DOSKA: + 2 poyabzal: 12 · 2 = 24
+DOSKA: DARAXT: 0,5 | 0,5 / 0,5 | 0,5
+DOSKA: QOIDA: tanlovlar → ko‘paytir
+TEKSH: 5 xil sho‘rva, 4 xil asosiy ovqat, 3 xil shirinlik. Necha xil tushlik? => 60 | 12 | 24 | 20
+TEKSH: To‘rt xonali PIN-kod (raqamlar takrorlanishi mumkin) necha xil? => 10 000 | 5 040 | 40 | 9 999
+@tushuncha Tartib muhim: qatorga turish
+OVOZ: [1] Beshta o‘quvchi qatorga turadi. Birinchi o‘ringa — besh kishidan istalgan. Ikkinchisiga — to‘rttasi qoladi. [2] Uchinchiga — uch, keyin — ikki, oxirgisiga — bir. [3] {sekin}Besh karra to‘rt karra uch karra ikki karra bir — bir yuz yigirma. Bu — besh faktorial. [4] Tartib muhim bo‘lganda faktorial ishlatamiz.
+DOSKA: 5 · 4 · 3 · 2 · 1 = 5! = 120
+DOSKA: 3 kishi: 3! = 6
+DOSKA: 1-o‘rin: 5 variant; 2-o‘rin: 4 variant ...
+DOSKA: Tartib muhim → faktorial
+TEKSH: 4 kishi qatorga necha usulda turadi? => 24 | 16 | 12 | 4
+@tushuncha Tartib muhim emas: guruh tanlash
+OVOZ: [1] Beshta o‘quvchidan ikkitasini tanlash kerak, tartib muhim emas. [2] Avval tartibli: besh karra to‘rt — yigirma. Lekin Ali bilan Vali — Vali bilan Ali ham bir xil juft. [3] {sekin}Har juft ikki marta sanaldi. Yigirmani ikkiga bo‘lamiz — o‘n. [4] Besh kishi bir-biri bilan qo‘l siqishsa — o‘nta qo‘l siqish.
+DOSKA: 5 · 4 = 20 (tartibli)
+DOSKA: 20 : 2 = 10 (tartibsiz)
+DOSKA: 5 kishi → 10 ta qo‘l siqish
+DOSKA: QOIDA: tartib muhim emas → takrorni bo‘l
+TEKSH: 6 kishi bir-biri bilan bir martadan salomlashdi. Necha salom? => 15 | 30 | 12 | 36
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Birinchi xato: qutidan tanlashda tartib muhim emasligini unutish — yigirmani ikkiga bo‘lmaslik. [2] {urgu}Ikkinchi xato: «yoki» va «va» ni aralashtirish: «yoki» — qo‘shish, «va» — ko‘paytirish. [3] Uchinchi: takrorlanishga ruxsat bor-yo‘qligini o‘qimaslik. Raqamlar takrorlanmasa — PIN-kod o‘n ming emas, besh ming qirq.
+DOSKA: ❌ 5 · 4 = 20 juft
+DOSKA: ✅ 5 · 4 : 2 = 10 juft
+DOSKA: PIN takrorsiz: 10 · 9 · 8 · 7 = 5 040
+DOSKA: «va» → ×; «yoki» → +
+TEKSH: 4 kishidan 2 tasini tanlash necha usul? => 6 | 12 | 8 | 4
+@xulosa Esda tut
+OVOZ: Birinchi: tanlovlar ketma-ket bo‘lsa ko‘paytiring. Ikkinchi: tartib muhim bo‘lsa — faktorial. Uchinchi: tartib muhim bo‘lmasa — takrorlarga bo‘ling. To‘rtinchi: takrorlanish mumkinligini o‘qing.
+DOSKA: 1. tanlovlar → ×
+DOSKA: 2. tartib bor → n!
+DOSKA: 3. tartib yo‘q → ÷ takror
+DOSKA: 4. Takror bor-yo‘qligini o‘qi
+
+## pm_tavakkal
+@kirish Sug‘urta foydalimi?
+OVOZ: Telefon sug‘urtasi — yiliga ellik ming so‘m. Telefon sinib qolish ehtimoli — besh foiz, ta’miri esa olti yuz ming so‘m. {pauza} Sug‘urta qilish foydalimi? Ba’zilar «hech qachon sinmaydi» deydi, ba’zilari — «sinsa nima bo‘ladi?». {sekin}Qaror ehtimol va narxni birga ko‘rishni talab qiladi. Taxmin qiling.
+DOSKA: Sug‘urta: 50 000 so‘m / yil
+DOSKA: Sinish ehtimoli: 5%
+DOSKA: Ta’mir: 600 000 so‘m
+DOSKA: Foydalimi? ✋
+@tushuncha Kutilgan qiymat
+OVOZ: [1] Kutilgan qiymat — har natija qiymatini uning ehtimoliga ko‘paytirib, hammasini qo‘shish. [2] Sug‘urtasiz kutilgan yo‘qotish: olti yuz ming karra nol butun nol besh — o‘ttiz ming so‘m yiliga. [3] {sekin}Sug‘urta narxi — ellik ming. Demak, o‘rtacha hisobda sug‘urta biroz qimmat: ellik ming — o‘ttiz mingdan ko‘p. [4] Bu — «o‘rtacha» natija. Har yili o‘ttiz ming yo‘qotmaysiz — yo nol, yo olti yuz ming.
+DOSKA: E = 0,05 · 600 000 + 0,95 · 0
+DOSKA: E = 30 000 so‘m
+DOSKA: Sug‘urta: 50 000 > 30 000
+DOSKA: QOIDA: E = Σ (qiymat · ehtimol)
+TEKSH: 10% ehtimol bilan 200 000 so‘m yo‘qotish, 90% — 0. Kutilgan yo‘qotish? => 20 000 | 200 000 | 2 000 | 180 000
+@tushuncha Xavf va qaror: faqat o‘rtacha emas
+OVOZ: [1] O‘rtacha qiymat qarorning faqat bir qismi. Ikkinchi qism — xavfni ko‘tara olish. [2] Agar olti yuz ming so‘m yo‘qotish sizga og‘ir tuyulsa, sug‘urta foydali bo‘lishi mumkin — garchi o‘rtacha qimmat bo‘lsa ham. [3] {sekin}Bu — tinchlik uchun to‘lov. [4] Agar yo‘qotish kichik bo‘lsa — sug‘urta qilmaslik oqilona.
+DOSKA: Kutilgan qiymat: 30 000
+DOSKA: Narx: 50 000
+DOSKA: Yo‘qotish katta → sug‘urta ma’qul
+DOSKA: Yo‘qotish kichik → o‘zingiz ko‘taring
+TEKSH: Ta’mir narxi 40 000, ehtimol 10%, sug‘urta 8 000. Kutilgan yo‘qotish? => 4 000 | 40 000 | 8 000 | 400 000
+@tushuncha Ob-havo va soyabon qarori
+OVOZ: [1] Ertaga yomg‘ir ehtimoli — qirq foiz. Soyabon olasizmi? [2] Soyabon ko‘tarish — bir oz noqulaylik. Ho‘l bo‘lib qolish — ko‘proq noqulaylik. [3] {sekin}Ehtimol qirq foiz — yarmidan kam, lekin yomg‘irga tushib qolsangiz, narx katta. [4] Narx kichik bo‘lsa — ehtiyot choralarini ko‘ring. Qaror — ehtimol plyus oqibatning birgalikdagi bahosi.
+DOSKA: P(yomg‘ir) = 40%
+DOSKA: Ho‘l bo‘lish — noqulay
+DOSKA: Soyabon — kichik noqulaylik
+DOSKA: Ehtimol + oqibat birga
+TEKSH: Yomg‘ir ehtimoli 5%. Qaror nimaga bog‘liq? => Yomg‘irning oqibati qanchalik jiddiy ekaniga | Faqat 5% ga | Faqat soyabon narxiga | Hech narsaga
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Ba’zi odamlar katta mukofotga qarab ehtimolni unutadi: «Yutsam katta pul — albatta qatnashaman». [2] {urgu}Kutilgan qiymatni hisoblamasdan qaror qilmang. [3] Ikkinchi xato: kichik ehtimolni nolga tenglashtirish. Yuz mingdan bir ehtimol — nol emas, lekin ko‘p marta takrorlansa, yig‘ilib boradi.
+DOSKA: ❌ Katta mukofot = foydali
+DOSKA: ✅ Kutilgan qiymat = P · qiymat
+DOSKA: ❌ Kichik P = 0
+DOSKA: Takror bo‘lsa — yig‘iladi
+TEKSH: Qaror qilishda nimaga qarash kerak? => Ehtimol va oqibatning ikkalasiga | Faqat yutuqqa | Faqat ehtimolga | Faqat boshqalar nima qilganiga
+@xulosa Esda tut
+OVOZ: Birinchi: kutilgan qiymat — qiymat karra ehtimolning yig‘indisi. Ikkinchi: o‘rtacha natijaga qo‘shimcha ravishda xavfni ko‘tara olishni ham o‘ylang. Uchinchi: ehtimol va oqibatni birga baholang. To‘rtinchi: kichik ehtimolni nolga tenglashtirmang.
+DOSKA: 1. E = Σ qiymat · P
+DOSKA: 2. Xavfni ko‘tara olasanmi?
+DOSKA: 3. Ehtimol + oqibat
+DOSKA: 4. Kichik P ≠ 0

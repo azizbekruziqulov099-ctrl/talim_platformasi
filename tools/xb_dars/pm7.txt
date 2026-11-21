@@ -1,0 +1,175 @@
+## pisa_geometriya
+@kirish Daraxtning balandligini qanday topamiz?
+OVOZ: Bog‘da baland daraxt bor. Uning balandligini o‘lchash uchun narvon ham, arqon ham yo‘q. Lekin quyosh chiqqan va siz yoningizda turibsiz. {pauza} Bo‘yingiz bir yarim metr, soyangiz — ikki metr. Daraxtning soyasi — o‘n ikki metr. Daraxt necha metr? {sekin}Asbobsiz, faqat soya va o‘xshashlik bilan topamiz. Taxmin qiling.
+DOSKA: Odam: 1,5 m; soyasi 2 m
+DOSKA: Daraxt: ? m; soyasi 12 m
+DOSKA: Balandligi? ✋
+@tushuncha O‘xshash shakllar
+OVOZ: [1] Ikki shakl o‘xshash — agar bittasi ikkinchisining kattalashtirilgan yoki kichraytirilgan nusxasi bo‘lsa. [2] Burchaklari aynan teng bo‘ladi. [3] {sekin}Mos tomonlari esa bir xil songa — o‘xshashlik koeffitsiyentiga ko‘paytirilgan. [4] Rasmni telefoningizda kattalashtirsangiz, shakl o‘zgarmaydi, faqat o‘lcham o‘zgaradi — bu o‘xshashlik.
+DOSKA: Burchaklar teng
+DOSKA: Tomonlar proporsional: a₂ = k · a₁
+DOSKA: k — o‘xshashlik koeffitsiyenti
+DOSKA: QOIDA: o‘xshash ≠ teng; shakl bir, o‘lcham boshqa
+TEKSH: Ikki o‘xshash uchburchakning mos tomonlari 4 va 12. k nechaga teng? => 3 | 4 | 8 | 12
+TEKSH: O‘xshash shakllarning mos burchaklari haqida nima deyish mumkin? => Teng | Har xil | Proporsional | Ikki baravar farq qiladi
+@tushuncha Yuza va hajm qanday o‘zgaradi?
+OVOZ: [1] Agar tomonlar k marta kattalashsa, yuza k kvadrat marta, hajm esa k kub marta kattalashadi. [2] Masalan, kvadrat tomoni ikki marta oshdi. Yuzi to‘rt marta oshadi. [3] {sekin}Ikki marta kengroq kub — sakkiz marta ko‘p suv sig‘adi. [4] {urgu}Ko‘pchilik «ikki marta oshdi — hamma narsa ikki marta oshadi» deb xato qiladi.
+DOSKA: Tomon ×k
+DOSKA: Yuza ×k²
+DOSKA: Hajm ×k³
+DOSKA: k = 2: ×2; ×4; ×8
+TEKSH: O‘xshashlik koeffitsiyenti 3. Kichik shakl yuzi 5 sm². Katta shakl yuzi? => 45 sm² | 15 sm² | 135 sm² | 8 sm²
+@tushuncha Soya masalasining yechimi
+OVOZ: [1] Quyosh nurlari bir xil burchak ostida tushadi. Odam bilan soyasi, daraxt bilan soyasi — ikkita o‘xshash uchburchak. [2] Mos tomonlar nisbati teng: odamning bo‘yi bo‘lingan soyasi — daraxt balandligi bo‘lingan soyasi. [3] {sekin}Bir yarim bo‘lingan ikki — nol butun yetmish besh. Daraxt balandligi bo‘lingan o‘n ikki ham nol butun yetmish besh bo‘lishi kerak. [4] Nol butun yetmish besh karra o‘n ikki — to‘qqiz metr. Daraxt to‘qqiz metr.
+DOSKA: CHIZ: uchburchak A(0;0) B(4;0) C(4;3)
+DOSKA: 1,5 : 2 = h : 12
+DOSKA: h = 1,5 · 12 : 2
+DOSKA: h = 9 m
+TEKSH: 2 m ustun soyasi 3 m. Shu paytda minora soyasi 45 m. Minora balandligi? => 30 m | 67,5 m | 22,5 m | 90 m
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Birinchi xato: ikki shakl «o‘xshash» deb faqat tomonlarning nisbatiga qarash — burchaklar ham teng bo‘lishi shart. Romb va kvadrat ikkalasining tomonlari teng, lekin o‘xshash emas! [2] {urgu}Ikkinchi xato: yuza ham tomon kabi k marta oshadi deb hisoblash. [3] Uchinchi xato: nisbatni teskari qo‘yish. Doim bir shakl ichidagi nisbatni yoki mos tomonlar nisbatini oling.
+DOSKA: ❌ romb ~ kvadrat (tomonlar teng)
+DOSKA: ❌ k = 2 → yuza × 2
+DOSKA: ✅ k = 2 → yuza × 4
+DOSKA: Mos tomonlarni mos tomonlarga ber
+TEKSH: Ikki to‘rtburchakning mos tomonlari proporsional, lekin burchaklari har xil. Ular o‘xshashmi? => Yo‘q | Ha | Faqat kvadrat bo‘lsa | Aniq emas
+@xulosa Esda tut
+OVOZ: Birinchi: o‘xshash shakllarda burchaklar teng, mos tomonlar proporsional. Ikkinchi: koeffitsiyent k bo‘lsa, yuza k kvadrat, hajm k kub marta oshadi. Uchinchi: soya va baland narsalar o‘xshash uchburchaklar beradi. To‘rtinchi: nisbatni mos tomonlarga qo‘ying.
+DOSKA: 1. Burchak =; tomon ~ proporsional
+DOSKA: 2. ×k → S ×k²; V ×k³
+DOSKA: 3. Soya → o‘xshash uchburchak
+DOSKA: 4. Mos tomonlar nisbati
+
+## pm_burchak
+@kirish Soat nechchi gradus?
+OVOZ: Soat ikki o‘ttizni ko‘rsatyapti. Soat va daqiqa millari orasidagi burchak qancha? To‘qson gradusmi? Yuz yigirmami? {pauza} Ko‘pchilik soat milini «ikkida turibdi» deb hisoblab, burchakni noto‘g‘ri topadi. {sekin}Buning uchun burchak o‘lchovini va soatning «gradus tili»ni bilish kerak. Taxmin qiling.
+DOSKA: 2:30
+DOSKA: Millar orasidagi burchak? ✋
+DOSKA: 90°? 105°? 120°?
+@tushuncha Burchak o‘lchovi va soat
+OVOZ: [1] Burchak gradusda o‘lchanadi. To‘g‘ri burchak — to‘qson, yoyiq burchak — bir yuz sakson, to‘liq aylana — uch yuz oltmish. [2] Soat ciferblati — to‘liq aylana, o‘n ikki bo‘lak. Har bir soat belgisi orasi — o‘ttiz gradus. [3] {sekin}Daqiqa mili esa oltmish bo‘lak: bir daqiqa — olti gradus. [4] {urgu}Muhim: soat mili ham asta-sekin yuradi. Soat ikki o‘ttizda u ikki bilan uch orasida, yarim yo‘lda.
+DOSKA: 360° : 12 = 30° (1 soat)
+DOSKA: 360° : 60 = 6° (1 daqiqa)
+DOSKA: 30 daq → daqiqa mili: 30 · 6 = 180°
+DOSKA: Soat mili: 2 · 30 + 15 = 75°
+TEKSH: Soat 4:00 da millari orasidagi burchak? => 120° | 90° | 60° | 150°
+TEKSH: Daqiqa mili 20 daqiqada necha gradus buriladi? => 120° | 20° | 60° | 180°
+@tushuncha Soat masalasining yechimi
+OVOZ: [1] Soat ikki o‘ttizda daqiqa mili o‘n ikkidan, ya’ni nol gradusdan, yuz sakson gradusga burilgan. [2] Soat mili ikkidan yarim yo‘l: ikki karra o‘ttiz — oltmish, plyus yarim soat — o‘n besh. Jami — yetmish besh gradus. [3] {sekin}Farqi: yuz sakson minus yetmish besh — yuz besh gradus. [4] To‘qson ham emas, yuz yigirma ham emas — yuz besh!
+DOSKA: Daqiqa mili: 180°
+DOSKA: Soat mili: 60° + 15° = 75°
+DOSKA: 180° − 75° = 105°
+DOSKA: ❌ 90° (soat mili o‘rnida turadi deb)
+TEKSH: Soat 3:30 da burchak? => 75° | 90° | 60° | 105°
+@tushuncha Uchburchak burchaklari
+OVOZ: [1] Har qanday uchburchakning uch burchagi yig‘indisi — yuz sakson gradus. [2] Ikkita burchak ma’lum bo‘lsa, uchinchisi — yuz sakson minus ularning yig‘indisi. [3] {sekin}Ellik va oltmish besh gradus. Yig‘indisi — bir yuz o‘n besh. Uchinchi burchak — oltmish besh. [4] Tashqi burchak esa o‘ziga qo‘shni bo‘lmagan ikki ichki burchakning yig‘indisiga teng.
+DOSKA: ∠A + ∠B + ∠C = 180°
+DOSKA: 180° − (50° + 65°) = 65°
+DOSKA: Tashqi burchak = ikki ichki yig‘indisi
+DOSKA: QOIDA: uchburchak: 180°
+TEKSH: Uchburchakning ikki burchagi 35° va 85°. Uchinchisi? => 60° | 120° | 50° | 40°
+@tushuncha Parallel chiziqlar va kesuvchi
+OVOZ: [1] Ikki parallel chiziqni uchinchi to‘g‘ri chiziq kesadi. Mos burchaklar teng. Ichki almashinuvchi burchaklar ham teng. [2] {sekin}Bir tomonli ichki burchaklar yig‘indisi — yuz sakson. [3] Ko‘chada parallel yo‘llarni kesib o‘tuvchi ko‘cha misol: burchaklar bir xil takrorlanadi. [4] Bitta burchakni bilsangiz — sakkiztasini ham topasiz.
+DOSKA: Mos burchaklar: teng
+DOSKA: Ichki almashinuvchi: teng
+DOSKA: Bir tomonli ichki: yig‘indi 180°
+DOSKA: Birini bilsang — hammasini topasan
+TEKSH: Parallel chiziqlarni kesuvchi hosil qilgan burchaklardan biri 70°. Unga bir tomonli ichki burchak? => 110° | 70° | 20° | 290°
+@tushuncha Ko‘pburchak burchaklari
+OVOZ: [1] Ko‘pburchakni uchburchaklarga bo‘lamiz. Beshburchak uchta uchburchakka bo‘linadi. [2] Har uchburchak — yuz sakson gradus. Uch karra yuz sakson — besh yuz qirq. [3] {sekin}Umumiy formula: ichki burchaklar yig‘indisi — n minus ikki karra yuz sakson. [4] Muntazam oltiburchak: to‘rt karra yuz sakson — yetti yuz yigirma, olti bo‘lak — har biri yuz yigirma gradus.
+DOSKA: n-burchak: (n − 2) · 180°
+DOSKA: 5-burchak: 3 · 180° = 540°
+DOSKA: Muntazam 6-burchak: 720° : 6 = 120°
+DOSKA: ❌ n · 180°
+TEKSH: Muntazam sakkizburchakning bitta ichki burchagi? => 135° | 120° | 150° | 108°
+@xulosa Esda tut
+OVOZ: Birinchi: soatda bir soat — o‘ttiz gradus, bir daqiqa — olti gradus. Ikkinchi: uchburchak burchaklari yig‘indisi yuz sakson. Uchinchi: parallel chiziqlarda mos va almashinuvchi burchaklar teng. To‘rtinchi: ko‘pburchak — n minus ikki karra yuz sakson.
+DOSKA: 1. 1 soat = 30°; 1 daq = 6°
+DOSKA: 2. △: 180°
+DOSKA: 3. Parallel: mos = teng
+DOSKA: 4. (n − 2) · 180°
+
+## pm_pifagor
+@kirish Narvon devorga qancha yetadi?
+OVOZ: Besh metrlik narvon devorga tiralgan. Narvonning pastki uchi devordan bir butun to‘rt metr uzoqlikda. {pauza} Narvonning yuqori uchi devorning qancha balandligiga yetadi? Besh metrdan kammi? To‘rt metrdanmi? {sekin}Bu yerda to‘g‘ri burchakli uchburchak yashiringan. Pifagor teoremasi shu holat uchun yaratilgan. Taxmin qiling.
+DOSKA: Narvon: 5 m
+DOSKA: Devordan: 1,4 m
+DOSKA: Balandlik? ✋
+@tushuncha To‘g‘ri burchakli uchburchak
+OVOZ: [1] To‘g‘ri burchakli uchburchakda to‘qson gradusli burchak bor. [2] To‘g‘ri burchakka tutashgan ikki tomon — katetlar. Qarshisidagi eng uzun tomon — gipotenuza. [3] {sekin}Pifagor teoremasi: katetlar kvadratlarining yig‘indisi gipotenuza kvadratiga teng. [4] Eng mashhur misol — uch, to‘rt, besh: to‘qqiz plyus o‘n olti — yigirma besh.
+DOSKA: CHIZ: uchburchak A(0;0) B(4;0) C(0;3)
+DOSKA: a² + b² = c²
+DOSKA: 3² + 4² = 9 + 16 = 25 = 5²
+DOSKA: c — gipotenuza (eng uzun)
+TEKSH: Katetlari 6 va 8. Gipotenuza? => 10 | 14 | 48 | 100
+TEKSH: Gipotenuza 13, bir kateti 5. Ikkinchi kateti? => 12 | 8 | 18 | 144
+@tushuncha Narvon masalasining yechimi
+OVOZ: [1] Narvon — gipotenuza, besh metr. Devordan masofa — bir kateti, bir butun to‘rt. Balandlik — ikkinchi kateti. [2] Besh kvadrat — yigirma besh. Bir butun to‘rt kvadrat — bir butun to‘qson olti. [3] {sekin}Ikkinchi katet kvadrati: yigirma besh minus bir butun to‘qson olti — yigirma uch butun nol to‘rt. [4] Ildiz chiqaramiz — to‘rt butun sakkiz metr. Beshdan kam, to‘rtdan ko‘p.
+DOSKA: c = 5; a = 1,4; b = ?
+DOSKA: b² = c² − a² = 25 − 1,96
+DOSKA: b² = 23,04
+DOSKA: b = √23,04 = 4,8 m
+TEKSH: 10 m narvon devordan 6 m uzoqda. Devorda qancha balandlikka yetadi? => 8 m | 4 m | 12 m | 16 m
+@tushuncha Diagonal va masofa
+OVOZ: [1] Xonaning o‘lchami olti ga sakkiz metr. Burchakdan burchakka diagonal qancha? [2] Diagonal — to‘rtburchakni ikki to‘g‘ri burchakli uchburchakka bo‘ladi. Olti kvadrat plyus sakkiz kvadrat — yuz. [3] {sekin}Ildiz yuz — o‘n metr. [4] Xaritada ikki nuqta orasidagi masofa ham shunday topiladi: koordinatalar farqi — katetlar.
+DOSKA: d² = 6² + 8² = 100
+DOSKA: d = 10 m
+DOSKA: A(1;2), B(7;10): Δx = 6, Δy = 8
+DOSKA: AB = √(36 + 64) = 10
+TEKSH: A(0;0) va B(5;12) nuqtalar orasidagi masofa? => 13 | 17 | 7 | 60
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Mashhur xato: uch plyus to‘rt teng besh — katetlarni oddiy qo‘shish. [2] {urgu}Yo‘q! Kvadratlar yig‘indisi: to‘qqiz plyus o‘n olti — yigirma besh, ildizi — besh. Uch plyus to‘rt — yetti — noto‘g‘ri. [3] Ikkinchi xato: ildiz olishni unutish — javob yigirma besh deb qolish. Uchinchi — gipotenuzani eng uzun emas, boshqa tomon deb olish.
+DOSKA: ❌ 3 + 4 = 5?? (7 ≠ 5)
+DOSKA: ✅ 3² + 4² = 25 → √25 = 5
+DOSKA: ❌ javob 25 (ildiz olinmadi)
+DOSKA: Gipotenuza eng uzun tomon
+TEKSH: Tomonlari 5, 12, 13 bo‘lgan uchburchak to‘g‘ri burchaklimi? => Ha | Yo‘q | Faqat 5, 12 bo‘lsa | Aniq emas
+@xulosa Esda tut
+OVOZ: Birinchi: Pifagor teoremasi faqat to‘g‘ri burchakli uchburchakda ishlaydi. Ikkinchi: katetlar kvadratlari yig‘indisi gipotenuza kvadratiga teng. Uchinchi: oxirida ildiz oling. To‘rtinchi: diagonal va masofa uchun ham shu formula.
+DOSKA: 1. Faqat to‘g‘ri burchakli △
+DOSKA: 2. a² + b² = c²
+DOSKA: 3. Oxirida √
+DOSKA: 4. Diagonal, masofa — Pifagor
+
+## pm_trig
+@kirish Balandlikni o‘lchamasdan topish
+OVOZ: Daraxtning tagiga bora olmaysiz, lekin undan yigirma metr narida turibsiz. Daraxtning uchiga qarasangiz, ko‘rish chizig‘i yerga nisbatan o‘ttiz besh gradus burchak hosil qiladi. {pauza} Daraxt qancha baland? Bu — trigonometriyaning asosiy savoli: burchak va masofadan balandlikni topish. {sekin}Taxmin qiling.
+DOSKA: Masofa: 20 m
+DOSKA: Burchak: 35°
+DOSKA: Balandlik? ✋
+@tushuncha Uchta nisbat
+OVOZ: [1] To‘g‘ri burchakli uchburchakda o‘tkir burchak tanlaymiz. Uning qarshisidagi katet — qarshi, yonidagi — yondosh. [2] Sinus — qarshi bo‘lingan gipotenuza. Kosinus — yondosh bo‘lingan gipotenuza. [3] {sekin}Tangens — qarshi bo‘lingan yondosh. [4] Uch, to‘rt, besh uchburchakda: kichik burchak qarshisida uch, yonida to‘rt. Sinus — uch bo‘lib besh, tangens — uch bo‘lib to‘rt.
+DOSKA: CHIZ: uchburchak A(0;0) B(4;0) C(4;3)
+DOSKA: sin α = qarshi : gipotenuza
+DOSKA: cos α = yondosh : gipotenuza
+DOSKA: tg α = qarshi : yondosh
+DOSKA: 3-4-5: sin = 3/5; cos = 4/5; tg = 3/4
+TEKSH: Katetlari 5 va 12, gipotenuza 13. Katta burchakning qarshisi 12. sin ning qiymati? => 12/13 | 5/13 | 12/5 | 13/12
+TEKSH: Qaysi nisbat «qarshi / yondosh» ga teng? => tangens | sinus | kosinus | hech biri
+@tushuncha Muhim burchaklar jadvali
+OVOZ: [1] Uchta burchakning qiymatini yodda saqlash foydali: o‘ttiz, qirq besh, oltmish gradus. [2] O‘ttiz gradusda sinus — yarim. Qirq beshda sinus va kosinus teng — nol butun yetti. [3] {sekin}Oltmish gradusda sinus — nol butun sakson yetti, kosinus — yarim. Tangens oltmishda — bir butun yetmish uch. [4] Kalkulyatordan foydalansangiz — rejim «daraja» ekanini tekshiring.
+DOSKA: 30°: sin = 0,5; cos ≈ 0,87; tg ≈ 0,58
+DOSKA: 45°: sin ≈ cos ≈ 0,71; tg = 1
+DOSKA: 60°: sin ≈ 0,87; cos = 0,5; tg ≈ 1,73
+DOSKA: Kalkulyator: DEG rejimi
+TEKSH: Qaysi burchakda tangens 1 ga teng? => 45° | 30° | 60° | 90°
+@tushuncha Daraxt balandligi
+OVOZ: [1] Yondosh katet — yigirma metr masofa. Qarshi katet — daraxt balandligi. Bizga qarshi va yondosh kerak — demak, tangens. [2] Tangens o‘ttiz besh gradus — taxminan nol butun yetmish. [3] {sekin}Qarshi teng yondosh karra tangens. Yigirma karra nol butun yetmish — o‘n to‘rt metr. [4] {urgu}Lekin siz ko‘zingiz bilan qaragansiz! Ko‘z balandligi — bir butun olti metr. Qo‘shamiz: o‘n besh butun olti metr.
+DOSKA: tg 35° ≈ 0,70
+DOSKA: qarshi = yondosh · tg α
+DOSKA: h = 20 · 0,70 = 14 m
+DOSKA: + ko‘z balandligi 1,6 → 15,6 m
+TEKSH: 30 m narida minora uchiga burchak 45°. Balandlik (ko‘z balandligisiz)? => 30 m | 15 m | 60 m | 21,2 m
+@tushuncha Narvon burchagi va xato tuzog‘i
+OVOZ: [1] Besh metrlik narvon to‘rt metr balandlikka yetadi. Narvon yer bilan qanday burchak hosil qiladi? [2] Qarshi — to‘rt, gipotenuza — besh. Sinus teng to‘rt bo‘lingan besh — nol butun sakson. [3] {sekin}Teskari sinus bilan — taxminan ellik uch gradus. [4] {urgu}Xatolar: tangens o‘rniga sinusni olish, nisbatni teskari yozish, yoki ko‘z balandligini unutish. Har safar chizma chizib, qaysi katet qarshi ekanini belgilang.
+DOSKA: sin α = 4 : 5 = 0,8
+DOSKA: α ≈ 53°
+DOSKA: ❌ tg o‘rniga sin
+DOSKA: Chizma chiz — qarshi/yondoshni belgila
+TEKSH: Narvon 10 m, devorga tegib turgan nuqta 6 m balandlikda. sin α =? => 0,6 | 0,8 | 1,67 | 0,5
+@xulosa Esda tut
+OVOZ: Birinchi: sinus — qarshi bo‘lingan gipotenuza, kosinus — yondosh bo‘lingan gipotenuza, tangens — qarshi bo‘lingan yondosh. Ikkinchi: o‘ttiz, qirq besh va oltmish gradusni yodda saqlang. Uchinchi: balandlik — masofa karra tangens, ko‘z balandligini qo‘shing. To‘rtinchi: avval chizma chizing.
+DOSKA: 1. sin = qarshi/gip; cos = yondosh/gip; tg = qarshi/yondosh
+DOSKA: 2. 30°, 45°, 60° qiymatlari
+DOSKA: 3. h = d · tg α (+ ko‘z balandligi)
+DOSKA: 4. Avval chizma

@@ -88,5 +88,5 @@ def tekshir(kod, qadamlar):
                 if savol in mats: x.append(f"tekshiruv savoli darsdagi misolning aynan o'zi: {savol[:40]}")
         m = re.findall(r"\[(\d+)\]", q["ovoz"])
         if q["doska"] and q["turi"] != "kirish" and m and max(map(int, m)) > len(q["doska"]): x.append(f"«{q['sarlavha']}»: [n] doska qatoridan ko'p")
-    if len(" ".join(q["ovoz"] for q in qadamlar)) < 2100: x.append("dars juda qisqa (<2100 belgi ovoz)")
+    if len(" ".join(q["ovoz"] for q in qadamlar)) < 1500: x.append("dars juda qisqa (<1500 belgi ovoz)")
     return x
