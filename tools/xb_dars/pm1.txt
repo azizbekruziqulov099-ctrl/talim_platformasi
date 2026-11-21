@@ -53,50 +53,58 @@ DOSKA: 3. Masofa = katta − kichik
 DOSKA: 4. a − (−b) = a + b
 
 ## pm_kasr
-@kirish Qaysi ulush kattaroq?
-OVOZ: Ikki do‘st bir xil pitsa buyurdi. Birinchisi pitsaning uchdan ikki qismini yedi. Ikkinchisi — to‘rtdan uch qismini. {pauza} Kim ko‘proq yedi? Kasrlarni solishtirish — hayotda tez-tez kerak bo‘ladi: chegirmada, retseptda, o‘lchovda. {sekin}Avval ko‘z bilan taxmin qiling.
-DOSKA: Birinchi: 2/3 pitsa
-DOSKA: Ikkinchi: 3/4 pitsa
+@kirish Pitsa janjali: kim ko‘p yedi?
+OVOZ: {baland}Ikki do‘st pitsa buyurtma qildi! {pauza} Aziz pitsaning uchdan ikki qismini yedi. Bobur esa to‘rtdan uch qismini. {sekin}Savol oddiy: kim ko‘proq yedi? Jim turmang — ko‘zingiz bilan taxmin qiling! Pitsalar hozir doskada chiziladi. Taxmin qilib oling, dars oxirida tekshiramiz.
+DOSKA: DOIRA_KASR: 2/3
+DOSKA: DOIRA_KASR: 3/4
 DOSKA: Kim ko‘proq yedi? ✋
-@tushuncha Kasr — butunning teng bo‘lagi
-OVOZ: [1] Kasrda ikki son bor. Pastdagisi — butun nechta teng bo‘lakka bo‘lingan. Yuqoridagisi — shundan nechtasi olingan. [2] {sekin}Pitsa sakkiz bo‘lak, uchtasi olindi — uch bo‘lib sakkiz. [3] {urgu}Muhim so‘z: teng bo‘laklar! Bo‘laklar teng bo‘lmasa, kasr aniq emas.
+@tushuncha Kasr nima? Pitsani bo‘lib ko‘ramiz
+OVOZ: [1] Pitsani teng bo‘laklarga bo‘laman. {sekin}Qarang, sakkiz bo‘lak! [2] Ulardan uchtasini bo‘yayman — mana, uchta bo‘lak olindi. [3] {urgu}Bu — uch bo‘lib sakkiz: sakkizdan uchi. [4] Pastdagi son — maxraj: jami nechta teng bo‘lak. Tepadagi — surat: nechtasini oldik. [5] Muhim so‘z: {baland}teng bo‘laklar! Bo‘laklar har xil bo‘lsa, kasr chiqmaydi.
 DOSKA: DOIRA_KASR: 3/8
-DOSKA: Maxraj — jami teng bo‘laklar
-DOSKA: Surat — olingan bo‘laklar
+DOSKA: 3 — surat: olingan bo‘laklar
+DOSKA: 8 — maxraj: jami teng bo‘laklar
+DOSKA: QOIDA: kasr = olingan / jami
+DOSKA: ❌ bo‘laklar teng emas → kasr emas
 SODDA: Maxraj — nechaga bo‘ldik, surat — nechtasini oldik.
-TEKSH: Shokolad 6 teng bo‘lakka bo‘lindi, 5 tasi yeyildi. Kasrni yozing. => 5/6
+TEKSH: Shokolad 6 teng bo‘lakka bo‘lindi, 5 tasi yeyildi. Kasrni yozing. => 5/6 | 6/5 | 1/6 | 5
 TEKSH: 7/9 kasrida maxraj nima? => 9 | 7 | 16 | 2
-@tushuncha Solishtirish: umumiy maxraj
-OVOZ: [1] Endi savolimizga qaytamiz: ikkidan uch yoki uchdan to‘rt? [2] Maxrajlar har xil — bo‘laklar har xil kattalikda. Ularni solishtirib bo‘lmaydi. [3] {sekin}Shuning uchun ikkalasini bir xil maxrajga keltiramiz. Uch va to‘rtning umumiy maxraji — o‘n ikki. [4] Birinchi kasrni to‘rtga, ikkinchisini uchga ko‘paytiramiz: sakkiz o‘n ikkidan va to‘qqiz o‘n ikkidan. [5] To‘qqiz katta. Demak, ikkinchi do‘st ko‘proq yegan!
-DOSKA: Umumiy maxraj: 12
-DOSKA: 2/3 = 8/12
-DOSKA: 3/4 = 9/12
+@tushuncha Har xil bo‘laklarni solishtirib bo‘ladimi?
+OVOZ: [1] Endi janjalimizga qaytamiz: uchdan ikki, to‘rtdan uch. [2] {sekin}Ikkala pitsa chizilgan. Bo‘laklar bir xil kattalikdami? Yo‘q! Uchdan bir — katta bo‘lak, to‘rtdan bir — kichikroq. [3] Katta bo‘lakdan ikkita, kichikdan uchta — qaysi ko‘p? Ko‘z bilan aytish qiyin. [4] Hal qilishning yo‘li: ikkala pitsani {urgu}bir xil maydalikdagi bo‘laklarga bo‘lamiz!
+DOSKA: DOIRA_KASR: 1/3
+DOSKA: DOIRA_KASR: 1/4
+DOSKA: 1/3 > 1/4 — bo‘laklar har xil!
+DOSKA: Yechim: bir xil maydalik → umumiy maxraj
+@tushuncha Umumiy maxraj: 12 bo‘lak
+OVOZ: [1] Uch va to‘rtga ham bo‘linadigan son kerak. Mana — o‘n ikki! [2] {sekin}Birinchi pitsani o‘n ikki bo‘lakka bo‘lamiz. Uchdan ikki — sakkiz bo‘lak bo‘ladi: sakkiz bo‘lib o‘n ikki. [3] Ikkinchi pitsa ham o‘n ikki bo‘lak: to‘rtdan uch — to‘qqiz bo‘lib o‘n ikki. [4] Endi bo‘laklar bir xil! {baland}Sakkiz va to‘qqiz — qaysi katta? To‘qqiz! [5] {urgu}Demak, Bobur ko‘proq yegan. Taxmin to‘g‘ri chiqdimi?
+DOSKA: DOIRA_KASR: 8/12
+DOSKA: DOIRA_KASR: 9/12
+DOSKA: 2/3 = 8/12;  3/4 = 9/12
 DOSKA: BELGILA: 9/12 > 8/12 | aylana
-DOSKA: QOIDA: Maxrajni tenglab — suratni solishtir
+DOSKA: QOIDA: maxrajni tenglab — suratni solishtir
 SODDA: Bir xil o‘lchamdagi bo‘laklarni sanash osonroq.
-BOSHQA: Kasrni o‘nli kasrga aylantiring: 2/3 ≈ 0,67, 3/4 = 0,75.
-TEKSH: Qaysi biri katta: 3/5 yoki 2/3? => 2/3 | 3/5 | teng
-TEKSH: 1/2 va 3/8 ni solishtiring. Kattasi qaysi? => 1/2 | 3/8 | teng
-@tushuncha O‘nli kasr va foiz bilan do‘stlik
-OVOZ: [1] Kasr, o‘nli kasr va foiz — bitta sonning uch xil libosi. [2] Maxrajni yuzga keltirsak, suratning o‘zi foiz bo‘ladi. [3] Bir bo‘lib to‘rt — yigirma besh bo‘lib yuz. Demak, yigirma besh foiz. [4] O‘nli kasr esa suratni maxrajga bo‘lishdan chiqadi: uch bo‘lib sakkiz — nol butun uch yuz yetmish besh mingdan.
+TEKSH: Qaysi biri katta: 3/5 yoki 2/3? => 2/3 | 3/5 | teng | aniqlab bo‘lmaydi
+TEKSH: 1/2 va 3/8 ni solishtiring. Kattasi qaysi? => 1/2 | 3/8 | teng | aniqlab bo‘lmaydi
+@tushuncha Kasr, o‘nli kasr va foiz — bitta son
+OVOZ: [1] Bir xil son uch xil kiyim kiyadi! {sekin}Pitsaning to‘rtdan biri. [2] Maxrajni yuzga keltiramiz: yigirma besh bo‘lib yuz. Yuz bo‘lak ichida yigirma beshtasi — yigirma besh foiz! [3] O‘nli kasr bilan ham shunday: yigirma besh bo‘lib yuz — nol butun yigirma besh. [4] Kasr chizig‘i — bu bo‘lish belgisi. {urgu}Suratni maxrajga bo‘lsangiz — o‘nli kasr chiqadi. Uchni sakkizga bo‘lamiz: nol butun uch yuz yetmish besh.
+DOSKA: DOIRA_KASR: 1/4
 DOSKA: 1/4 = 25/100 = 25% = 0,25
-DOSKA: 3/8 = 3 : 8 = 0,375
 DOSKA: BOLISH: 3:8
 DOSKA: QOIDA: kasr = surat : maxraj
 TEKSH: 4/5 ni foizda yozing. => 80% | 45% | 20% | 4,5%
 TEKSH: 0,6 qaysi kasrga teng? => 3/5 | 6/100 | 1/6 | 2/3
-@tushuncha Xato tuzog‘i: qo‘shilmaydigan kasrlar
-OVOZ: [1] Mashhur xato: bir bo‘lib ikki plyus bir bo‘lib uch — suratlarni qo‘shib, maxrajlarni qo‘shib, ikki bo‘lib besh deb yozish. [2] {urgu}Tekshirib ko‘ramiz: yarim plyus uchdan bir — yarimdan ham kam bo‘lishi mumkinmi? Ikki bo‘lib besh — nol butun to‘rt. Yarimdan kam! Demak, noto‘g‘ri. [3] To‘g‘risi: umumiy maxraj olti. Uch bo‘lib olti plyus ikki bo‘lib olti — besh bo‘lib olti.
-DOSKA: ❌ 1/2 + 1/3 = 2/5
-DOSKA: ✅ 1/2 + 1/3 = 3/6 + 2/6 = 5/6
-DOSKA: Tekshiruv: 5/6 > 1/2 ✔
+@tushuncha Xato tuzog‘i: yuqorini yuqoriga, pastni pastga?
+OVOZ: [1] Sizga yarim va uchdan bir berildi. Ularni qo‘shsak? {pauza} Ko‘pchilik shoshib yozadi: bir plyus bir — ikki, ikki plyus uch — besh. Ikki bo‘lib besh! [2] {urgu}Bir daqiqa to‘xtang! Yarimning o‘zi kamida yarim. Ikki bo‘lib besh esa — yarimdan kam! Qo‘shsak, kamayib qoldimi?! Bo‘lishi mumkin emas. [3] To‘g‘risi: umumiy maxraj — olti. Uch bo‘lib olti va ikki bo‘lib olti. {sekin}Jami — besh bo‘lib olti. Yarimdan katta, hammasi joyida!
+DOSKA: ❌ 1/2 + 1/3 = 2/5  (yarimdan kam!)
+DOSKA: DOIRA_KASR: 3/6
+DOSKA: DOIRA_KASR: 2/6
+DOSKA: ✅ 3/6 + 2/6 = 5/6   (> 1/2 ✔)
 TEKSH: 1/4 + 1/2 nechaga teng? => 3/4 | 2/6 | 1/6 | 2/4
 @xulosa Esda tut
-OVOZ: Birinchi: kasrda maxraj — teng bo‘laklar soni, surat — olinganlari. Ikkinchi: solishtirish uchun maxrajni tenglang. Uchinchi: kasr, o‘nli kasr va foiz — bitta sonning uch libosi. To‘rtinchi: qo‘shishda faqat suratlar qo‘shiladi, maxraj umumiy bo‘lsa.
-DOSKA: 1. Maxraj — jami, surat — olingan
-DOSKA: 2. Maxrajni tenglab solishtir
+OVOZ: Kasr — butunning teng bo‘laklari: maxraj jami, surat olingani. Solishtirish uchun {baland}bir xil maxrajga keltiramiz. Kasr, o‘nli kasr, foiz — bitta sonning uch libosi. Qo‘shishda esa maxraj bir xil bo‘lsa, faqat suratlar qo‘shiladi. Endi mashqda kuchingizni sinab ko‘ring!
+DOSKA: 1. maxraj = jami, surat = olingan
+DOSKA: 2. maxrajni tenglab solishtir
 DOSKA: 3. kasr = o‘nli kasr = foiz
-DOSKA: 4. Qo‘shishda maxraj umumiy
+DOSKA: 4. 1/2 + 1/3 = 3/6 + 2/6
 
 ## pm_daraja
 @kirish Qog‘oz necha marta buklansa?
