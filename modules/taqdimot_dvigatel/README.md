@@ -95,6 +95,17 @@ tabiiy, tarix, adabiyot, ona_tili, xorijiy_til, informatika, musiqa, tasviriy, t
 - API: `GET /kutubxona-ai` (daraxt + mavzular), `GET /kutubxona-ai/{id}` (miya); admin: `GET /admin/kutubxona`,
   `POST /admin/kutubxona/{sozlama|yigish|navbat|sinov|dastur}`.
 
+## Ochiq dars (`ochiq_metodlar.py`, `ochiq_dars.py`, `ochiq_ai.py`, `ishlanma.py`, `ochiq_api.py`)
+- Metodlar bazasi (`ochiq-dars-miya/1`): yosh guruhlari (1–2, 3–4, 5–6, 7–9, 10–11; bakalavr 1–2, 3–4; magistratura),
+  formatlar (kundalik / ochiq / namunaviy), 45 va 80 daqiqalik dars andozalari, ~80 metod, guruhlash va birlashtirish usullari, ilovalar.
+- «Masalliq» (`miya.masalliq`): mavzu kutubxonasi yozilganda AI alohida yozadi (atamalar, bayonotlar, savollar, mavzu qismlari,
+  keys, taqqoslash, klaster, tajriba, A/B/C vazifalar…). Yo‘q bo‘lsa — miyaning o‘zidan (bo‘limlar, test, xatolar) olinadi.
+- Rejimlar: `qolda` (o‘qituvchi har bosqich metodini tanlaydi), `tezkor` (generator mosini tanlaydi), `ai` (AI faqat ruxsat etilgan
+  kodlardan tanlaydi, nutq va rasm joylaydi; ishlamasa — tezkor). Sinf/kurs majburiy.
+- Chiqishlar: Word ishlanma (titul, texnologik xarita, darsning borishi, ilovalar) va PPTX (`ochiq_miya` → oddiy dvigatel).
+- API: `GET /ochiq-dars/katalog`, `POST /ochiq-dars/tuz`, `POST /ochiq-dars/ai` + `GET /ochiq-dars/ai/{ish}`, `POST /ochiq-dars/docx`, `POST /ochiq-dars/pptx`.
+- Universal rasmlar: `rasm_tanla.UNIVERSAL` — mos rasm topilmasa titul va bo‘lim titullariga fanning chiroyli illyustratsiyasi.
+
 ## Sozlamalar (env)
 `GEMINI_API_KEY` / `OPENAI_API_KEY` / `GROQ_API_KEY` — AI matn; `TAQDIMOT_AI_PROVIDERS=gemini,openai,groq`;
 `TAQDIMOT_AI_RASM=1` + `OPENAI_API_KEY` — AI rasm chizish (ixtiyoriy); `TAQDIMOT_RASM_PAPKA` — rasm papkasi; `TAQDIMOT_KUTUBXONA` — tayyor mavzular papkasi.

@@ -473,7 +473,49 @@ def til_tekshir(m: dict, til: str, deadline: float = 60.0, t0: float | None = No
     return soni
 
 
-def miya_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", manba="", deadline=170.0, sozlama=None, reja=None):
+MASALLIQ_KORSATMA = """Sen tajribali metodistsan. Mavzu bo‘yicha OCHIQ DARS MASALLIQLARINI tayyorlaysan — o‘qituvchi ulardan turli
+interfaol metodlar (domino, blits, mozaika, «ha-yo‘q», keys, debat, klaster, Venn, o‘yinlar) uchun foydalanadi. Faktlar aniq,
+sinf yoshiga mos, o‘zbek tilida (lotin), imlo xatosiz. Javob FAQAT JSON:
+{"atamalar":[{"atama","tarif":"1 jumla"}] × 6–8,
+ "bayonotlar":[{"matn","togri":true|false,"izoh":"nega"}] × 8 (yarmi noto‘g‘ri — tipik xato tasavvurlar),
+ "savollar":[{"savol","javob":"qisqa, 1–5 so‘z"}] × 10 (blits va o‘yinlar uchun, oddiydan murakkabga),
+ "qismlar":[{"nom","matn":"4–6 jumla — mavzuning shu qismi","savol":"qism bo‘yicha tekshiruv savoli"}] × 4 (mavzu 4 teng qismga; mozaika va stansiyalar uchun),
+ "muammoli_savol":"darsni boshlaydigan hayotiy, qiziqarli muammo",
+ "keys":{"vaziyat":"real hayotiy vaziyat 3–5 jumla","savollar":["2–3 savol"]},
+ "tezis":"munozarali tezis (debat uchun; bahsli bo‘lsin)",
+ "taqqoslash":{"a","b","umumiy":[2–3],"a_farq":[2–3],"b_farq":[2–3]} (mavzudagi ikki tushuncha),
+ "klaster":{"markaz","shoxlar":[{"nom","bandlar":[2–3]}] × 4},
+ "topishmoq":{"matn","javob"} (kichik sinflar uchun ayniqsa),
+ "hikmat":"mavzuga yoki bilimga oid maqol yoki hikmat (aniq mavjud bo‘lgan)",
+ "kalit_soz":"mavzuning bitta kalit so‘zi (5–10 harf, o‘yin uchun)",
+ "xato_yechim":{"shart","xato":"atayin xato yechim yoki gap","togri","sabab"},
+ "guruh_nomlari":["mavzu tushunchalaridan 4 ta guruh nomi"],
+ "hayotiy_topshiriq":{"nom","topshiriq":"STEAM yoki amaliy, 10–15 daqiqalik guruh ishi"},
+ "tajriba":{"nom","jihozlar":[],"bosqichlar":[],"kuzatish","xavfsizlik"} (faqat tajriba qilish mumkin bo‘lgan mavzuda, aks holda bo‘sh),
+ "vazifalar":{"A":"asosiy daraja uy vazifasi","B":"qo‘llash darajasi","C":"ijodiy daraja"},
+ "sinkveyn":["5 qator: ot; 2 sifat; 3 fe’l; 4 so‘zli gap; 1 so‘z"],
+ "jamoaviy_masala":{"shart":"bitta katta masala","qismlar":["4 qism — har guruhga bittadan"],"yakun":"qismlar natijasidan yakuniy javob"} (aniq fanlarda; boshqa fanlarda umumiy loyiha qismlari)}"""
+
+
+def masalliq_yoz(mavzu, fan="", daraja="maktab", sinf="", qoshimcha="", deadline=120.0, t0=None) -> dict:
+    t0 = time.monotonic() if t0 is None else t0
+    xabar = f"MAVZU: {mavzu}\nFAN: {fan}\nDARAJA: {daraja}\nSINF/KURS: {sinf}\n" + (f"QO‘SHIMCHA: {qoshimcha}\n" if qoshimcha else "")
+    return sxema.masalliq_toza(_bir_chaqiruv(MASALLIQ_KORSATMA, xabar + "Masalliqlarni JSON qilib yoz.", deadline, t0))
+
+
+def miya_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", manba="", deadline=170.0, sozlama=None, reja=None,
+             masalliq=False):
+    """masalliq=True — ochiq dars masalliqlari ham alohida (parallel) chaqiruv bilan yoziladi (mavzular kutubxonasi uchun)."""
+    if masalliq:
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=1) as pool:
+            f = pool.submit(masalliq_yoz, mavzu, fan, daraja, sinf, qoshimcha, deadline)
+            out = miya_yoz(mavzu, fan, daraja, sinf, tur, qoshimcha, manba, deadline, sozlama, reja)
+            try:
+                out["masalliq"] = f.result()
+            except Exception:
+                pass
+        return out
     """AI'dan miya oladi va normallashtiradi.
 
     Kichik taqdimot — bitta chaqiruv. Katta taqdimot (yoki tayyor reja bilan) — avval reja, so'ng har bo'lim alohida

@@ -649,6 +649,10 @@ def register_taqdimot_dvigatel(app, platform):
         rows += [r for r in rasmlar.papkadan_qidir(q, 120 - len(rows)) if r["kalit"] not in bor]
         return {"rasmlar": rows}
 
+    # --- Ochiq dars: metodlar bazasi + mavzu masalliqlari → reja, Word ishlanma, PPTX ---
+    from . import ochiq_api
+    ochiq_api.register(app, D, PREFIX, fail, _json, _biriktirma, NO_STORE)
+
     # --- AI kutubxonasi: 1–11-sinf, bakalavr, magistratura mavzulari ---
     @app.get(PREFIX + "/kutubxona-ai")
     def kutubxona_ai_royxat(daraja: str = "", sinf: str = "", fan: str = "", q: str = "", hammasi: int = 0, limit: int = 400,

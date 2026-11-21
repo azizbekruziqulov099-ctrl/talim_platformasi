@@ -356,6 +356,81 @@ def _royxat_sozlari(matn: str) -> list:
     return out[:6]
 
 
+# Mos rasm topilmaganda titul va bo'lim titullari uchun — har fanga chiroyli, universal illyustratsiyalar (chizmalar emas).
+UNIVERSAL = {
+    "matematika": "al_xorazmiy ulugbek pitsa_bolaklar olma_savat tort_bolaklar tarozi_toshlar qum_soat shokolad_plitka tangalar_pul "
+                  "ulugbek_rasadxonasi yer_maydoni",
+    "matematika_kichik": "olma_savat pitsa_bolaklar tort_bolaklar tangalar_pul dokon shokolad_plitka tarozi_toshlar qum_soat",
+    "fizika": "nyuton eynshteyn galiley arximed faradey magnit_maydoni prizma_kamalak elektromagnit mayatnik quyosh_tizimi raketa teleskop "
+              "kosmik_stansiya galaktika saturn quyosh gidroelektrostansiya",
+    "kimyo": "kolba_konus probirka kimyoviy_stakan mendeleyev spirtovka lakmus tuz_kristali mari_kyuri lavuazye menzurka distillash metallar "
+             "olmos_grafit himoya_kozoynak",
+    "biologiya": "osimlik_hujayrasi hayvon_hujayrasi mikroskop dnk fotosintez gul_tuzilishi darvin mendel ormon_ekotizimi yurak hayvon_guruhlari "
+                 "savanna",
+    "tabiiy_fanlar": "ormon_ekotizimi kapalak_rivojlanishi quyosh_tizimi suv_aylanishi osimlik_qismlari hayvon_guruhlari kamalak daraxt_fasllar "
+                     "lupa_barg globus meva_turlari urug_unishi",
+    "geografiya": "globus tog_tizmasi vulqon sharshara xarita_kompas yer_sayyorasi savanna tundra okean_tolqin daryo_deltasi kompas barxanlar "
+                  "chorvoq marjon_rifi muzlik tayga tropik_ormon vodiy",
+    "tarix": "registon amir_temur ipak_yoli_karvon qadimiy_qolyozma afrosiyob_elchilar ichan_qala ark_buxoro misr_piramidalari kolizey shohizinda "
+             "bibixonim minorai_kalon ulugbek_rasadxonasi tosh_qurollar spitamen tomaris",
+    "ona_tili": "kutubxona kitob_oqiyotgan_bola alisher_navoiy qadimiy_qolyozma ertak_sahna avloniy fitrat",
+    "oqish": "kitob_oqiyotgan_bola ertak_sahna kutubxona sinf_dars bogcha_oyin",
+    "adabiyot": "alisher_navoiy abdulla_qahhor qodiriy cholpon gafur_gulom erkin_vohidov zulfiya oybek fitrat furqat hamid_olimjon "
+                "abdulla_oripov said_ahmad otkir_hoshimov kutubxona qadimiy_qolyozma",
+    "ingliz_tili": "kitob_oqiyotgan_bola shekspir kutubxona globus sinf_dars andersen",
+    "rus_tili": "kitob_oqiyotgan_bola pushkin lev_tolstoy kutubxona globus sinf_dars",
+    "informatika": "kompyuter noutbuk robot_talim suniy_intellekt internet_tarmoq protsessor dasturchi server_xona bulut_texnologiya smartfon printer_3d",
+    "texnologiya": "tikuv_mashinasi randa drel hunarmand_kulol ganch_oymakorlik naqqoshlik igna_ip printer_3d suzana rishton_sopol",
+    "tasviriy": "palitra_moyqalam molbert akvarel behzod naqqoshlik haykaltaroshlik chizmachilik_asboblari suzana rishton_sopol",
+    "musiqa": "dutor rubob tanbur karnay_surnay nay gijjak orkestr fortepiano skripka motsart betxoven baxshi xor doira",
+    "jismoniy": "futbol basketbol voleybol yugurish gimnastika kurash suzish uzunlikka_sakrash turnik ertalabki_badantarbiya shaxmat",
+    "huquq": "oila_dasturxon kattalarga_hurmat mahalla_hashar navroz qonun_tarozi saylov_qutisi sud_zali yol_harakati dostlik daraxt_ekish",
+    "iqtisod": "bank oilaviy_byudjet tadbirkor_novvoy bozor_rastasi jamgarma_qutisi tangalar_pul dokon",
+    "otm_pedagogika": "sinf_dars oqituvchi_doska guruh_ishi komenskiy vygotskiy pestalossi ushinskiy montessori psixolog_suhbat inklyuziv_talim "
+                      "onlayn_dars loyiha_ishi avloniy bola_rivojlanishi bogcha_oyin emotsiyalar",
+    "otm_metodika": "sinf_dars oqituvchi_doska guruh_ishi loyiha_ishi tajriba_dars onlayn_dars kutubxona",
+    "otm_aniq": "al_xorazmiy ulugbek nyuton eynshteyn galiley arximed ulugbek_rasadxonasi",
+    "otm_tabiiy": "dnk mikroskop globus ormon_ekotizimi kolba_konus fotosintez mendeleyev darvin",
+    "otm_gumanitar": "registon qadimiy_qolyozma kutubxona ipak_yoli_karvon imom_buxoriy ibn_sino beruniy alisher_navoiy",
+    "otm_til": "kutubxona shekspir alisher_navoiy kitob_oqiyotgan_bola qadimiy_qolyozma pushkin",
+    "otm_it": "kompyuter server_xona suniy_intellekt internet_tarmoq kiberxavfsizlik bulut_texnologiya dasturchi",
+    "umumiy": "kutubxona sinf_dars globus kitob_oqiyotgan_bola oqituvchi_doska",
+}
+
+
+def _universal_guruh(meta: dict) -> str:
+    from . import ochiq_dars
+    try:
+        yosh = ochiq_dars.yosh_kodi(meta.get("daraja") or "maktab", meta.get("sinf"))
+    except Exception:
+        d = (meta.get("daraja") or "").lower()
+        yosh = "magistr" if d.startswith("magistr") else "bakalavr_1_2" if d.startswith("bakalavr") else "5-6"
+    try:
+        fk = ochiq_dars.fan_kodi(meta.get("fan") or "", yosh)
+    except Exception:
+        fk = "umumiy"
+    if fk == "matematika" and yosh in ("1-2", "3-4"):
+        return "matematika_kichik"
+    return fk if fk in UNIVERSAL else "umumiy"
+
+
+def universal(meta: dict, band=frozenset(), urug: str = "") -> str:
+    """Fanga mos chiroyli universal rasm (mavzu bo'yicha barqaror tanlanadi, ishlatilganlari chetlanadi)."""
+    import hashlib
+    guruh = _universal_guruh(meta or {})
+    kodlar = [k for k in UNIVERSAL[guruh].split() if k not in band and rasmlar.bor(k)]
+    if not kodlar:
+        kodlar = [k for k in UNIVERSAL["umumiy"].split() if k not in band and rasmlar.bor(k)]
+    if not kodlar:
+        return ""
+    q = tokenlar((meta or {}).get("mavzu") or "")
+    mos = [k for k in kodlar if q & tokenlar(k.replace("_", " "))]   # «Vulqonlar» → vulqon, «Dutor» → dutor
+    if mos:
+        kodlar = mos
+    h = int(hashlib.md5(f"{(meta or {}).get('mavzu') or ''}|{urug}".encode("utf-8")).hexdigest(), 16)
+    return kodlar[h % len(kodlar)]
+
+
 def boyit(m: dict, avto: bool = True) -> dict:
     """Normallashtirilgan miyani joyida o'zgartiradi. Hisobot qaytaradi."""
     hisobot = {"ishlatilgan": [], "almashtirildi": [], "qoshildi": [], "yoq": []}
@@ -521,6 +596,8 @@ def boyit(m: dict, avto: bool = True) -> dict:
                 continue
             matn = " ".join([b.get("nom") or ""] * 2 + [b.get("izoh") or ""] + [sl.get("sarlavha") or "" for sl in b["slaydlar"]])
             kal, _b = eng_mos(matn, chegara=6.5, band=band, fan=fan)
+            if not kal:   # mos rasm yo'q — fanning chiroyli universal rasmi
+                kal = universal(meta, band, b.get("nom") or "")
             if kal:
                 b["rasm"] = kal
                 band.add(kal)
@@ -533,6 +610,8 @@ def boyit(m: dict, avto: bool = True) -> dict:
                 kal, _b = eng_mos(matn, chegara=7.0, fan=fan, rk=False)
             if not kal and nomzod and qoyildi:  # eng yuqori ballli slayd rasmi
                 kal = next((x[4] for x in nomzod if x[4] in band), None)
+            if not kal:   # hech narsa topilmadi — fanning chiroyli universal rasmi
+                kal = universal(meta, band)
             if kal:
                 meta["rasm"] = kal
                 band.add(kal)

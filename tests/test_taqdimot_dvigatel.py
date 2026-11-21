@@ -415,3 +415,76 @@ def test_ochiq_dars_metodlar_bazasi():
                         assert any(t & set(m["tur"]) and y in m["yosh"] and (m["fan"] == "*" or f["kod"] in m["fan"])
                                    and m["vaqt"][0] <= b["daq"] for m in d["metodlar"]), (f["kod"], a["kod"], y, b["nom"])
                     assert set(b["afzal"]) <= kodlar
+
+
+@pytest.mark.parametrize("daraja,sinf,fan,fmt,andoza", [
+    ("maktab", "1", "O‘qish savodxonligi", "ochiq", ""), ("maktab", "2", "Matematika", "ochiq", ""), ("maktab", "7", "Fizika", "namunaviy", ""),
+    ("maktab", "9", "Kimyo", "ochiq", "laboratoriya"), ("maktab", "10", "Tarix", "oddiy", ""), ("maktab", "5", "Jismoniy tarbiya", "ochiq", ""),
+    ("bakalavr", "2", "Pedagogika", "ochiq", ""), ("bakalavr", "4", "Boshlang‘ich ta’limda matematika o‘qitish metodikasi", "namunaviy", ""),
+    ("magistr", "1", "Psixologiya", "oddiy", "")])
+def test_ochiq_dars_generator_word_va_pptx(daraja, sinf, fan, fmt, andoza):
+    from docx import Document
+    from modules.taqdimot_dvigatel import ishlanma, ochiq_dars as od
+    for rejim in ("tezkor", "qolda"):
+        d = od.tuz({"daraja": daraja, "sinf": sinf, "fan": fan, "mavzu": "Sinov mavzusi", "format": fmt, "andoza": andoza,
+                    "rejim": rejim, "urug": 7}, NAMUNA if rejim == "qolda" else None)
+        assert d["meta"]["rasm"], "titulga universal rasm qo'yilmadi"
+        assert sum(b["daq"] for b in d["bosqichlar"]) == d["meta"]["daqiqa"]
+        metodlar = [b["metod"]["kod"] for b in d["bosqichlar"] if b["metod"] and b["metod"]["tur"] == "metod"]
+        assert len(metodlar) == len(set(metodlar)), "bir metod ikki marta tanlangan"
+        assert len(d["kompetensiyalar"]) == len(set(d["kompetensiyalar"]))
+        if andoza:
+            assert d["meta"]["andoza"].startswith(andoza)
+        doc = Document(io.BytesIO(ishlanma.docx_yoz(d, NAMUNA)))
+        matn = "\n".join(p.text for p in doc.paragraphs)
+        assert "Darsning borishi" in matn and "1-ilova" in matn and "**" not in matn and "«mavzu»" not in matn
+        sah = yasash.yasa(od.ochiq_miya(d, NAMUNA), seed=3, bolim_titul=True)
+        assert sah["slaydlar"][0]["blok"] == "titul" and len(sah["slaydlar"]) >= 8
+
+
+def test_ochiq_dars_sinf_majburiy_va_fan_yoshga_mos():
+    from modules.taqdimot_dvigatel import ochiq_dars as od
+    with pytest.raises(ValueError):
+        od.tuz({"daraja": "maktab", "fan": "Matematika", "mavzu": "Kasrlar"})
+    assert od.fan_kodi("Ona tili", "5-6") == "ona_tili" and od.fan_kodi("Ona tili", "1-2") == "oqish"
+    assert od.fan_kodi("Algebra", "7-9") == "matematika" and od.fan_kodi("Oliy matematika", "b1-2") == "otm_aniq"
+
+
+def test_universal_rasmlar_bor_va_chiroyli():
+    from modules.taqdimot_dvigatel import rasm_tanla, rasmlar
+    reestr = {r["kalit"]: r for r in rasmlar.papka_reestri()}
+    for guruh, kodlar in rasm_tanla.UNIVERSAL.items():
+        for k in kodlar.split():
+            assert rasmlar.bor(k) and reestr.get(k, {}).get("tur") == "rasm", (guruh, k)
+    assert rasm_tanla.universal({"fan": "Geografiya", "sinf": "6", "mavzu": "Vulqonlar"}) == "vulqon"
+    assert rasm_tanla.universal({"fan": "Musiqa", "sinf": "3", "mavzu": "Dutor"}) == "dutor"
+    # mos rasm topilmagan taqdimot ham titulsiz qolmaydi
+    m = {"meta": {"mavzu": "Qwxyz mavzusi", "fan": "Kimyo", "sinf": "8"}, "bolimlar": [{"nom": "Qwxyz", "slaydlar": [
+        {"sarlavha": "Qwxyz", "elementlar": [{"tur": "matn", "matn": "Qwxyz zyxwq"}]}]}]}
+    m = sxema.normallashtir(m)
+    rasm_tanla.boyit(m)
+    assert m["meta"]["rasm"] in rasm_tanla.UNIVERSAL["kimyo"].split() and m["bolimlar"][0].get("rasm")
+
+
+def test_ochiq_dars_ai_rejimi(monkeypatch):
+    from modules.taqdimot_dvigatel import ai, ochiq_ai, ochiq_dars as od
+    chaqirildi = []
+
+    def soxta(system, user, deadline, t0):
+        chaqirildi.append(user)
+        return {"tanlov": {"1": "yoq_metod"}, "guruhlash": "oldindan_tuzilgan", "birlashtirish": "nomalum",
+                "maqsadlar": {"talimiy": "Kvadrat tenglamani yechish usullarini guruhda o‘rganish"},
+                "guruh_nomlari": ["Diskriminant", "Viyet", "Ildiz", "Koeffitsiyent"],
+                "nutq": {"0": "Assalomu alaykum, aziz o‘quvchilar!"}, "rasm": {"2": "al_xorazmiy", "3": "yoq_rasm"}, "titul_rasm": "al_xorazmiy"}
+    monkeypatch.setattr(ai, "_bir_chaqiruv", soxta)
+    monkeypatch.setattr(ai, "masalliq_yoz", lambda *a, **k: sxema.masalliq_toza({"tezis": "Har tenglamaning ildizi bor", "vazifalar": {"A": "1-misol"}}))
+    d = ochiq_ai.tuz({"daraja": "maktab", "sinf": "8", "fan": "Algebra", "mavzu": "Kvadrat tenglamalar", "oquvchilar": 24}, None)
+    assert d["meta"]["rejim"] == "ai" and d["meta"]["rasm"] == "al_xorazmiy" and d["meta"]["masalliq_bor"]
+    assert [g["nom"] for g in d["guruhlash"]["guruhlar"]][:2] == ["Diskriminant", "Viyet"]
+    assert d["bosqichlar"][0]["nutq"].startswith("Assalomu") and d["bosqichlar"][2]["rasm"] == "al_xorazmiy" and not d["bosqichlar"][3]["rasm"]
+    assert d["maqsadlar"]["talimiy"].startswith("Kvadrat") and d["masalliq"]["tezis"]
+    nz = {i: [n["kod"] for n in b["nomzodlar"]] for i, b in enumerate(d["bosqichlar"])}
+    assert all(b["metod"]["kod"] in nz[i] for i, b in enumerate(d["bosqichlar"]) if b["metod"] and b["metod"]["tur"] == "metod")
+    assert "RASMLAR" in chaqirildi[0] and "Kvadrat tenglamalar" in chaqirildi[0]
+    assert od.tuz({"daraja": "maktab", "sinf": "8", "fan": "Algebra", "mavzu": "Kvadrat tenglamalar", "rejim": "qolda",
+                   "urug": d["meta"]["urug"]}, None, mas=d["masalliq"])["guruhlash"]["guruhlar"][0]["nom"] == "Diskriminant"

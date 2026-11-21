@@ -151,6 +151,10 @@ AF_TAKROR = ["blits", "ha_yoq", "zanjir", "domino", "matematik_diktant", "xatoni
 AF_IZLANISH = ["mozaika", "tadqiqot_mini", "yonaltiruvchi_matn", "insert", "modellashtirish", "bashorat_kuzatish", "manba_tahlili", "venn",
                "klaster", "xronologik_lenta", "evristik_suhbat", "keys"]
 AF_TAQDIMOT = ["galereya", "charxpalak", "bumerang", "juft_tekshirish", "kubik", "mezonli_baholash"]
+AF_MOTIV = ["muammoli_vaziyat", "aqliy_hujum", "bashorat_kuzatish", "video_lavha", "topishmoq", "sirli_quti", "bbb", "warm_up"]
+AF_MARUZA = ["kichik_maruza", "insert", "evristik_suhbat", "sokratik", "klaster", "venn"]
+AF_LAB = ["tadqiqot_mini", "bashorat_kuzatish", "tajriba_namoyish"]
+AF_YAKUN = ["chiqish_chiptasi", "test_interaktiv", "blits", "uch_ikki_bir", "pmi", "fsmu", "tugallanmagan_gap"]
 AF_REFLEKSIYA = ["uch_ikki_bir", "svetofor", "chiqish_chiptasi", "tugallanmagan_gap", "besh_barmoq", "bbb", "smayliklar", "bilim_daraxti", "pmi", "sinkveyn"]
 
 
@@ -160,7 +164,8 @@ ANDOZALAR = [
          B("Tashkiliy qism", 2, "salomlashadi, davomatni aniqlaydi, kun hikmati yoki dars shiorini e’lon qiladi", "darsga tayyorlanadi", ["motivatsiya"]),
          B("Uy vazifasini tekshirish va takrorlash", 6, "o‘tgan mavzu bo‘yicha savol, topshiriq beradi", "javob beradi, uy vazifasini tahlil qiladi", ["takrorlash"],
            afzal=AF_TAKROR),
-         B("Motivatsiya va maqsad", 4, "muammoli savol yoki hayotiy vaziyat bilan mavzuga olib kiradi, maqsadni o‘quvchilar bilan aniqlaydi", "taxmin qiladi, maqsadni aytadi", ["motivatsiya"]),
+         B("Motivatsiya va maqsad", 4, "muammoli savol yoki hayotiy vaziyat bilan mavzuga olib kiradi, maqsadni o‘quvchilar bilan aniqlaydi", "taxmin qiladi, maqsadni aytadi", ["motivatsiya"],
+           afzal=AF_MOTIV),
          B("Yangi mavzu", 15, "yangi bilimni tashkil etadi: kichik bayon, ko‘rgazma, izlanish topshirig‘i", "o‘rganadi, yozib boradi, savol beradi", ["yangi_bilim"]),
          B("Mustahkamlash", 11, "mashq, juftlik yoki guruh topshirig‘ini beradi, yordam beradi", "bajaradi, tekshiradi", ["mustahkamlash"], guruh=True),
          B("Baholash va refleksiya", 4, "mezonlar asosida baholaydi, refleksiya o‘tkazadi", "o‘zini baholaydi, fikr bildiradi", ["refleksiya"], afzal=AF_REFLEKSIYA),
@@ -169,7 +174,8 @@ ANDOZALAR = [
      "bosqichlar": [
          B("Tashkiliy qism (salomlashish o‘yini)", 2, "quvnoq salomlashish, kayfiyat yaratadi", "darsga tayyorlanadi"),
          B("Takrorlash o‘yini", 6, "o‘tgan mavzuni o‘yin shaklida takrorlaydi", "o‘ynab javob beradi", ["takrorlash", "oyin"]),
-         B("Motivatsiya", 3, "sirli quti, topishmoq yoki ertak qahramoni bilan mavzuni ochadi", "taxmin qiladi", ["motivatsiya"]),
+         B("Motivatsiya", 3, "sirli quti, topishmoq yoki ertak qahramoni bilan mavzuni ochadi", "taxmin qiladi", ["motivatsiya"],
+           afzal=["sirli_quti", "topishmoq", "video_lavha"]),
          B("Yangi bilim (1-qism)", 8, "ko‘rgazma, predmet, rasm bilan tushuntiradi", "kuzatadi, takrorlaydi", ["yangi_bilim"]),
          B("Dinamik pauza", 2, "mavzuga oid harakatli she’r yoki sanoq", "harakat bajaradi", ["energizer"]),
          B("Yangi bilim (2-qism, amaliy)", 7, "predmetlar, kartochkalar bilan amaliy ish beradi", "qo‘l bilan bajaradi", ["yangi_bilim", "amaliy"]),
@@ -182,7 +188,8 @@ ANDOZALAR = [
            "guruhga bo‘linadi, sardor va rollarni tanlaydi", ["guruhlash"], guruh=True, ilova=["guruh_qoidalari", "baholash_varagi", "guruh_nomlari"]),
          B("Takrorlash: guruhlar bellashuvi", 6, "o‘tgan mavzu bo‘yicha guruhlarga savol beradi, ball qo‘yadi", "guruh bo‘lib javob beradi",
            ["takrorlash", "oyin"], guruh=True, ilova=["oyin_kartochkalari"], afzal=AF_TAKROR),
-         B("Motivatsiya, muammo va maqsad", 4, "muammoli vaziyat yaratadi, maqsadni o‘quvchilar bilan aniqlaydi", "taxmin va savollarini aytadi", ["motivatsiya"]),
+         B("Motivatsiya, muammo va maqsad", 4, "muammoli vaziyat yaratadi, maqsadni o‘quvchilar bilan aniqlaydi", "taxmin va savollarini aytadi", ["motivatsiya"],
+           afzal=AF_MOTIV),
          B("Yangi bilim: kirish va guruhlarda izlanish", 13, "5 daqiqa qisqa kirish beradi, so‘ng har guruhga mavzuning bir qismini yoki topshirig‘ini beradi, yo‘naltiradi",
            "guruhda o‘rganadi, natijani tayyorlaydi", ["yangi_bilim", "guruh_ishi"], guruh=True, ilova=["tarqatma", "tayanch_konspekt"], afzal=AF_IZLANISH),
          B("Guruh taqdimotlari va o‘zaro baholash", 8, "taqdimotlarni tartibga soladi, aniqlik kiritadi", "taqdim etadi, boshqa guruhni mezon bilan baholaydi",
@@ -197,7 +204,8 @@ ANDOZALAR = [
          B("Tashkiliy qism, guruhlarga ajratish", 4, "rangli kartochka yoki rasm bo‘laklari bilan 2 yoki 4 guruhga ajratadi; guruh belgisi va qoidalar",
            "guruh belgisini oladi, joylashadi", ["guruhlash"], guruh=True, ilova=["guruh_nomlari", "guruh_qoidalari"]),
          B("Takrorlash o‘yini (jamoalar bellashuvi)", 6, "o‘yin savollari, rag‘bat belgisi beradi", "jamoa bo‘lib javob beradi", ["takrorlash", "oyin"], guruh=True),
-         B("Motivatsiya: «sirli mehmon»", 3, "ertak qahramoni, sirli quti yoki topishmoq bilan mavzuni ochadi", "topadi, taxmin qiladi", ["motivatsiya"]),
+         B("Motivatsiya: «sirli mehmon»", 3, "ertak qahramoni, sirli quti yoki topishmoq bilan mavzuni ochadi", "topadi, taxmin qiladi", ["motivatsiya"],
+           afzal=["sirli_quti", "topishmoq", "video_lavha"]),
          B("Yangi bilim (ko‘rgazmali)", 8, "predmet, rasm, harakat bilan tushuntiradi", "kuzatadi, takrorlaydi", ["yangi_bilim"]),
          B("Dinamik pauza", 2, "mavzuga oid harakatli she’r", "harakat bajaradi", ["energizer"]),
          B("Guruhlarda o‘yin-topshiriq", 10, "stansiya yoki estafeta topshiriqlarini boshqaradi", "guruhda bajaradi", ["oyin", "mustahkamlash"], guruh=True,
@@ -220,12 +228,13 @@ ANDOZALAR = [
          B("Tashkiliy qism, xavfsizlik yo‘riqnomasi", 5, "juftlik yoki guruhlarga ajratadi, xavfsizlik qoidalarini tushuntiradi", "qoidalarni takrorlaydi",
            ["guruhlash"], guruh=True, ilova=["xavfsizlik"]),
          B("Nazariy tayyorgarlik va gipoteza", 5, "ish maqsadini aytadi, kirish savollari beradi, natijani bashorat qildiradi", "javob beradi, gipoteza yozadi",
-           ["takrorlash", "motivatsiya"]),
+           ["takrorlash", "motivatsiya"], afzal=["blits", "ha_yoq", "muammoli_vaziyat", "matematik_diktant"]),
          B("Ish tartibi bilan tanishish", 5, "yo‘riqnoma kartasi va jihozlarni ko‘rsatadi", "jihozlarni tekshiradi", [], ilova=["yoriqnoma_kartasi"]),
-         B("Tajribani bajarish va o‘lchash", 18, "kuzatadi, maslahat beradi, xavfsizlikni nazorat qiladi", "tajriba qiladi, natijani jadvalga yozadi", ["tadqiqot"], guruh=True),
+         B("Tajribani bajarish va o‘lchash", 18, "kuzatadi, maslahat beradi, xavfsizlikni nazorat qiladi", "tajriba qiladi, natijani jadvalga yozadi", ["tadqiqot"], guruh=True,
+           afzal=AF_LAB),
          B("Hisoblash, grafik, xulosa", 7, "hisoblash va xulosa yozishga yo‘naltiradi", "hisoblaydi, xulosa yozadi"),
          B("Natijalarni taqqoslash, baholash", 3, "guruhlar natijasini taqqoslaydi, mezon bo‘yicha baholaydi; ish joyi tartibga keltiriladi", "natijani aytadi",
-           ["nazorat"], ilova=["baholash_varagi"]),
+           ["nazorat"], ilova=["baholash_varagi"], afzal=["juft_tekshirish", "mezonli_baholash", "svetofor", "chiqish_chiptasi"]),
          B("Uy vazifasi", 2, "hisobotni yakunlash yoki uyda takrorlash mumkin bo‘lgan tajriba", "yozib oladi", [], ilova=["uy_vazifasi"])]},
     {"kod": "takrorlash_45", "nom": "Takrorlash-umumlashtirish darsi (o‘yinli)", "daqiqa": 45, "yosh": oraliq("3-4", "10-11"),
      "bosqichlar": [
@@ -289,7 +298,7 @@ ANDOZALAR = [
      "bosqichlar": [
          B("Kirish: xavfsizlik va kirish nazorati", 15, "xavfsizlik yo‘riqnomasi, ishga ruxsat savollari, maqsad", "javob beradi, ish rejasini tuzadi", ["takrorlash"],
            ilova=["xavfsizlik", "yoriqnoma_kartasi"]),
-         B("Tajribani bajarish", 35, "kuzatadi, maslahat beradi", "tajriba qiladi, o‘lchaydi", ["tadqiqot"], guruh=True),
+         B("Tajribani bajarish", 35, "kuzatadi, maslahat beradi", "tajriba qiladi, o‘lchaydi", ["tadqiqot"], guruh=True, afzal=AF_LAB),
          B("Hisoblash va grafik", 15, "xatoliklar tahliliga yo‘naltiradi", "hisoblaydi, grafik chizadi"),
          B("Xulosa va hisobot", 5, "xulosa talablarini eslatadi", "xulosa yozadi", []),
          B("Yakuniy: hisobot himoyasi, baholash", 10, "savollar beradi, baholaydi", "himoya qiladi", ["nazorat"], ilova=["baholash_varagi"])]},
@@ -297,13 +306,16 @@ ANDOZALAR = [
      "bosqichlar": [
          B("Kirish bosqichi, guruhlarga ajratish", 10, "3–4 guruhga ajratadi, qoidalar, baholash mezonlari, maqsad va kutilgan natijalar", "guruhlarga bo‘linadi, rollarni taqsimlaydi",
            ["guruhlash"], guruh=True, ilova=["guruh_qoidalari", "baholash_varagi"]),
-         B("Faollashtirish", 8, "blits yoki BBB", "javob beradi", ["takrorlash", "motivatsiya"]),
-         B("Nazariy asos: kichik ma’ruza", 12, "asosiy tushunchalarni bayon qiladi, Insert bilan ishlatadi", "belgilab o‘qiydi", ["yangi_bilim"], ilova=["tayanch_konspekt"]),
+         B("Faollashtirish", 8, "blits yoki BBB", "javob beradi", ["takrorlash", "motivatsiya"], afzal=["blits", "bbb", "aqliy_hujum", "muammoli_vaziyat"]),
+         B("Nazariy asos: kichik ma’ruza", 12, "asosiy tushunchalarni bayon qiladi, Insert bilan ishlatadi", "belgilab o‘qiydi", ["yangi_bilim"], ilova=["tayanch_konspekt"],
+           afzal=AF_MARUZA),
          B("Guruhlarda ishlash", 20, "keys, mozaika yoki loyiha topshirig‘ini beradi", "tahlil qiladi, natija tayyorlaydi", ["guruh_ishi", "tadqiqot"], guruh=True,
-           ilova=["tarqatma"]),
-         B("Taqdimot va o‘zaro baholash", 15, "tartibni boshqaradi, aniqlik kiritadi", "taqdim etadi, baholaydi", ["mustahkamlash"], guruh=True),
+           ilova=["tarqatma"], afzal=["keys", "mozaika", "tadqiqot_mini", "yonaltiruvchi_matn", "jurnal_klubi", "mikrodars"]),
+         B("Taqdimot va o‘zaro baholash", 15, "tartibni boshqaradi, aniqlik kiritadi", "taqdim etadi, baholaydi", ["mustahkamlash"], guruh=True,
+           afzal=AF_TAQDIMOT + ["akvarium"]),
          B("Guruhlarni birlashtirish", 7, "guruh natijalaridan umumiy model, klaster yoki qaror yig‘diradi", "birgalikda yakunlaydi", ["birlashtirish"], guruh=True),
-         B("Yakuniy bosqich", 8, "baholaydi, refleksiya, mustaqil ish", "refleksiya qiladi", ["refleksiya", "nazorat"], ilova=["refleksiya_varagi", "uy_vazifasi"])]},
+         B("Yakuniy bosqich", 8, "baholaydi, refleksiya, mustaqil ish", "refleksiya qiladi", ["refleksiya", "nazorat"], ilova=["refleksiya_varagi", "uy_vazifasi"],
+           afzal=AF_YAKUN)]},
     {"kod": "magistr_seminar_80", "nom": "Tadqiqot seminari (magistratura)", "daqiqa": 80, "yosh": ["m"],
      "bosqichlar": [
          B("Kirish", 10, "maqsad, kun tartibi, baholash mezonlari", "tayyorlanadi", ["motivatsiya"]),
@@ -389,7 +401,7 @@ METODLAR = [
     M("klaster", "Klaster", ["yangi_bilim", "mustahkamlash", "birlashtirish"], HAMMA, "*", [5, 10], "guruh",
       ["markazga asosiy tushuncha yoziladi", "undan shoxlar — bog‘liq tushunchalar", "shoxlar orasidagi bog‘lanishlar ko‘rsatiladi",
        "guruh klasterini taqdim etadi"], "tushunchalar tizimi ko‘rinadi", "1–2-sinfda rasmli klaster", "plakat, flomaster"),
-    M("mozaika", "«Mozaika» (Jigsaw, arra)", ["yangi_bilim", "guruh_ishi"], oraliq("5-6", "m"), "*", [15, 20], "guruh",
+    M("mozaika", "«Mozaika» (Jigsaw, arra)", ["yangi_bilim", "guruh_ishi"], oraliq("5-6", "m"), "*", [12, 20], "guruh",
       ["mavzu 3–4 teng qismga bo‘linadi", "«uy» guruhlarida har a’zo bitta qismni oladi",
        "bir xil qism olganlar «ekspert» guruhida o‘rganadi", "ekspertlar uy guruhiga qaytib o‘rgatadi", "umumiy topshiriq yoki test"],
       "har bir o‘quvchi ham o‘rganuvchi, ham o‘rgatuvchi", "qismlar hajmi teng bo‘lsin, vaqt qat’iy", "4 xil matn"),

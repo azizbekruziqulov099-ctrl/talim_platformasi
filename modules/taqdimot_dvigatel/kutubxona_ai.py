@@ -630,7 +630,7 @@ class Kutubxona:
     def yoz(self, r) -> dict:
         from . import ai
         oldin, keyin = self.qoshnilar(r)
-        return ai.miya_yoz(*yozish_argumentlari(r, oldin, keyin), deadline=240.0, sozlama=yozish_sozlamasi(r))
+        return ai.miya_yoz(*yozish_argumentlari(r, oldin, keyin), deadline=240.0, sozlama=yozish_sozlamasi(r), masalliq=True)
 
 
 def yozish_sozlamasi(r) -> dict:

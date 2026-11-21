@@ -378,7 +378,70 @@ def normallashtir(m: dict) -> dict:
     out["rasmlar"] = [{"kalit": t(r.get("kalit"), 100), "tavsif": t(r.get("tavsif"), 300), "prompt": t(r.get("prompt"), 600)}
                       for r in _royxat(m.get("rasmlar"))[:12] if isinstance(r, dict) and t(r.get("kalit"))]
     out["dars"] = dars_toza(m.get("dars"))
+    out["masalliq"] = masalliq_toza(m.get("masalliq"))
     return out
+
+
+def _juftlar(v, a, b, n, la=80, lb=300):
+    out = []
+    for x in _royxat(v)[:n]:
+        if isinstance(x, dict) and t(x.get(a)) and t(x.get(b)):
+            out.append({a: t(x.get(a), la), b: t(x.get(b), lb)})
+    return out
+
+
+def masalliq_toza(d) -> dict:
+    """Ochiq dars «masalliqlari» — mavzuning tayyorlab qo'yilgan xomashyosi. Generator (o'qituvchi tanlagan yoki tezkor
+    rejimda) metodlarni shu masalliqlardan to'ldiradi: atamalar — domino, lug'at, krossvord; savollar — blits, zanjir,
+    breyn-ring; qismlar — mozaika, stansiyalar; bayonotlar — «ha-yo'q»; keys, taqqoslash, klaster va h.k."""
+    d = d if isinstance(d, dict) else {}
+    bay = []
+    for x in _royxat(d.get("bayonotlar"))[:10]:
+        if isinstance(x, dict) and t(x.get("matn")):
+            j = x.get("togri", x.get("javob"))
+            ok = j is True or t(j, 10).lower() in ("true", "to'g'ri", "to‘g‘ri", "togri", "ha", "1")
+            bay.append({"matn": t(x.get("matn"), 200), "togri": ok, "izoh": t(x.get("izoh"), 200)})
+    qism = []
+    for x in _royxat(d.get("qismlar"))[:4]:
+        if isinstance(x, dict) and t(x.get("nom")) and t(x.get("matn")):
+            qism.append({"nom": t(x.get("nom"), 80), "matn": t(x.get("matn"), 900), "savol": t(x.get("savol"), 200)})
+    k = d.get("keys") if isinstance(d.get("keys"), dict) else {}
+    tq = d.get("taqqoslash") if isinstance(d.get("taqqoslash"), dict) else {}
+    kl = d.get("klaster") if isinstance(d.get("klaster"), dict) else {}
+    tp = d.get("topishmoq") if isinstance(d.get("topishmoq"), dict) else {}
+    xy = d.get("xato_yechim") if isinstance(d.get("xato_yechim"), dict) else {}
+    ht = d.get("hayotiy_topshiriq") if isinstance(d.get("hayotiy_topshiriq"), dict) else {}
+    tj = d.get("tajriba") if isinstance(d.get("tajriba"), dict) else {}
+    vz = d.get("vazifalar") if isinstance(d.get("vazifalar"), dict) else {}
+    jm = d.get("jamoaviy_masala") if isinstance(d.get("jamoaviy_masala"), dict) else {}
+    shox = []
+    for x in _royxat(kl.get("shoxlar"))[:6]:
+        x = {"nom": x} if isinstance(x, str) else x
+        if isinstance(x, dict) and t(x.get("nom")):
+            shox.append({"nom": t(x.get("nom"), 60), "bandlar": ls(x.get("bandlar"), 5, 80)})
+    return {
+        "atamalar": _juftlar(d.get("atamalar"), "atama", "tarif", 10, 60, 240),
+        "bayonotlar": bay,
+        "savollar": _juftlar(d.get("savollar"), "savol", "javob", 12, 200, 160),
+        "qismlar": qism,
+        "muammoli_savol": t(d.get("muammoli_savol"), 400),
+        "keys": {"vaziyat": t(k.get("vaziyat"), 900), "savollar": ls(k.get("savollar"), 4, 200)},
+        "tezis": t(d.get("tezis"), 200),
+        "taqqoslash": {"a": t(tq.get("a"), 60), "b": t(tq.get("b"), 60), "umumiy": ls(tq.get("umumiy"), 5, 120),
+                       "a_farq": ls(tq.get("a_farq"), 5, 120), "b_farq": ls(tq.get("b_farq"), 5, 120)},
+        "klaster": {"markaz": t(kl.get("markaz"), 60), "shoxlar": shox},
+        "topishmoq": {"matn": t(tp.get("matn"), 300), "javob": t(tp.get("javob"), 60)},
+        "hikmat": t(d.get("hikmat"), 200),
+        "kalit_soz": t(d.get("kalit_soz"), 30),
+        "xato_yechim": {"shart": t(xy.get("shart"), 300), "xato": t(xy.get("xato"), 400), "togri": t(xy.get("togri"), 400), "sabab": t(xy.get("sabab"), 300)},
+        "guruh_nomlari": ls(d.get("guruh_nomlari"), 6, 40),
+        "hayotiy_topshiriq": {"nom": t(ht.get("nom"), 80), "topshiriq": t(ht.get("topshiriq"), 600)},
+        "tajriba": {"nom": t(tj.get("nom"), 100), "jihozlar": ls(tj.get("jihozlar"), 8, 60), "bosqichlar": ls(tj.get("bosqichlar"), 8, 200),
+                    "kuzatish": t(tj.get("kuzatish"), 300), "xavfsizlik": t(tj.get("xavfsizlik"), 200)},
+        "vazifalar": {"A": t(vz.get("A") or vz.get("a"), 300), "B": t(vz.get("B") or vz.get("b"), 300), "C": t(vz.get("C") or vz.get("c"), 300)},
+        "sinkveyn": ls(d.get("sinkveyn"), 5, 80),
+        "jamoaviy_masala": {"shart": t(jm.get("shart"), 500), "qismlar": ls(jm.get("qismlar"), 4, 300), "yakun": t(jm.get("yakun"), 300)},
+    }
 
 
 def _daqiqa(v) -> int:
