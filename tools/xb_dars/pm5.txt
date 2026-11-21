@@ -1,89 +1,108 @@
 ## pisa_ketma
-@kirish Zinapoya uchun g‘isht
-OVOZ: Usta zinapoya terayapti. Birinchi qatorda uchta g‘isht, ikkinchisida beshta, uchinchisida yettita. {pauza} Qatorlar shu tartibda davom etsa, o‘ninchi qatorda nechta g‘isht bo‘ladi? Va butun zinapoyaga jami nechta kerak? {sekin}Hammasini birma-bir sanamasdan, qonuniyat orqali topamiz. Avval taxmin qiling.
-DOSKA: 1-qator: 3 ta
-DOSKA: 2-qator: 5 ta
-DOSKA: 3-qator: 7 ta
-DOSKA: 10-qator? Jami? ✋
-@tushuncha Qonuniyatni topish
-OVOZ: [1] Ketma-ketlik — tartib bilan joylashgan sonlar. Birinchi savol doim bitta: har keyingi hadga nima bo‘lyapti? [2] Uchdan beshga — ikki qo‘shildi. Beshdan yettiga — yana ikki. [3] {sekin}Farq har safar bir xil — ikki. Bunday ketma-ketlik arifmetik deyiladi, farqi — d harfi bilan belgilanadi. [4] Qonuniyatni topgach, keyingi hadlarni oldindan ayta olamiz: to‘qqiz, o‘n bir, o‘n uch.
-DOSKA: 3, 5, 7, 9, ...
-DOSKA: +2  +2  +2
-DOSKA: d = 2 (farq)
-DOSKA: QOIDA: qo‘shni hadlar farqi doimiy → arifmetik
+@kirish Usta devor teryapti: nechta g‘isht kerak?
+OVOZ: {baland}Eshiting, usta g‘isht devor teryapti! {pauza} Eng yuqori qatorda — uchta g‘isht. Undan pastda — beshta. Yana pastda — yettita. {sekin}Qatorlar pastga qarab shunday kengayib boradi, har safar bir xil. {urgu}Savol: o‘ninchi qatorda nechta g‘isht bo‘ladi? Butun devorga jami nechta kerak? Birma-bir sanab o‘tirmaymiz — sirini topamiz! Avval taxmin qiling: yuztami? ikki yuztami? Dars oxirida o‘zingiz tekshirasiz.
+DOSKA: RASM: usta | zinapoya:kel
+DOSKA: CHIZ: ko‘pburchak A(0;0) B(7;0) C(7;1) D(6;1) E(6;2) F(5;2) G(5;3) H(2;3) I(2;2) J(1;2) K(1;1) L(0;1)
+DOSKA: 1-qator: 3 ta · 2-qator: 5 ta · 3-qator: 7 ta
+DOSKA: 10-qatorda nechta? Jami nechta? ✋
+@tushuncha Qonuniyat: har safar nima o‘zgaryapti?
+OVOZ: [1] Qarang: uch, besh, yetti. Bu sonlar — ketma-ketlik, har bir sonini «had» deymiz. Birinchi had — uch, ikkinchisi — besh. Uchdan beshga o‘tdik — {baland}ikkita qo‘shildi! [2] Beshdan yettiga — yana ikkita! Keyingisi — to‘qqiz, so‘ng o‘n bir. [3] {sekin}Har safar aynan bir xil son qo‘shilyapti. Bu son — «farq», uni d harfi bilan yozamiz. Bizda d teng ikki. [4] {urgu}Qo‘shni hadlar farqi doim bir xil bo‘lsa — bu arifmetik ketma-ketlik! Qonuniyatni topdik — endi keyingilarini oldindan ayta olamiz.
+DOSKA: SON_OQI: 3..11 qadam 2; nuqta 3 a₁; nuqta 5 a₂; nuqta 7 a₃; nuqta 9 a₄; sakrash 3 5 +2; sakrash 5 7 +2; sakrash 7 9 +2
+DOSKA: 3, 5, 7, 9, 11, ... (had = ketma-ketlikning har bir soni)
+DOSKA: d = 2 — har safar bir xil farq
+DOSKA: QOIDA: qo‘shni hadlar farqi doimiy → arifmetik ketma-ketlik
 TEKSH: 4, 9, 14, 19, ... ketma-ketlikning farqi nechaga teng? => 5 | 4 | 9 | 14
-TEKSH: 20, 17, 14, ... ketma-ketlikning keyingi hadi? => 11 | 17 | 13 | 8
-@tushuncha n-chi had formulasi
-OVOZ: [1] O‘ninchi qatorgacha hammasini yozib o‘tirmaymiz. Formula: birinchi had plyus qadamlar soni karra farq. [2] O‘ninchi qatorga o‘ninchi emas, to‘qqiz qadam bor — chunki birinchi qator allaqachon turibdi! [3] {urgu}Mana shu yerda ko‘pchilik adashadi. [4] Uch plyus to‘qqiz karra ikki — yigirma bir g‘isht. Umumiy formula: ikki n plyus bir.
-DOSKA: aₙ = a₁ + (n − 1) · d
-DOSKA: a₁₀ = 3 + 9 · 2 = 21
-DOSKA: ❌ 3 + 10 · 2 = 23
-DOSKA: aₙ = 2n + 1
-TEKSH: 7, 10, 13, ... Ketma-ketlikning 8-hadi? => 28 | 31 | 24 | 21
+TEKSH: 20, 17, 14, ... ketma-ketlikning keyingi hadi qaysi? => 11 | 17 | 13 | 8
+@tushuncha n-chi had: o‘ninchi qatorni sanamasdan topamiz
+OVOZ: [1] Endi o‘ninchi qator. Jadvalga qarang: qator raqami va g‘isht soni. O‘ninchisini topish kerak. [2] {sekin}Birinchi qatordan o‘ninchi qatorgacha nechta qadam yuramiz? {baland}Diqqat bilan, qadamlarni sanang! Ketma-ket to‘qqiz qadam! [3] Har qadamda ikkitadan qo‘shamiz: uch plyus to‘qqiz karra ikki — yigirma bir g‘isht. [4] Hamma uchun formula: n-chi had teng birinchi had plyus n minus bir karra d. [5] {urgu}Mana shu «n minus bir» — eng ko‘p xato qilinadigan joy! O‘ninchi qatorga o‘nta emas, to‘qqizta qadam — chunki birinchi qatorda allaqachon turibmiz. [6] Grafikda bu — to‘g‘ri chiziq: nuqtalar bir tekis yuqoriga ko‘tariladi.
+DOSKA: JADVAL: Qator | G‘isht ;; 1 | 3 ;; 2 | 5 ;; 3 | 7 ;; 10 | ?
+DOSKA: SON_OQI: 1..10; nuqta 1 1-qator; nuqta 10 10-qator; yur 1 10
+DOSKA: KETMA: a₁₀ | 3 + 9 · 2 | 3 + 18 | 21
+DOSKA: QOIDA: aₙ = a₁ + (n − 1) · d
+DOSKA: ❌ 3 + 10 · 2 = 23 — bitta qadam ortiqcha!
+DOSKA: GRAFIK: y=2x+1; [1;10]
+TEKSH: 7, 10, 13, ... Ketma-ketlikning 8-hadini toping. => 28 | 31 | 24 | 21
 TEKSH: aₙ = 5n − 2 bo‘lsa, a₆ nechaga teng? => 28 | 30 | 32 | 26
-@tushuncha Jami g‘isht: Gauss usuli
-OVOZ: [1] Endi jami g‘isht: uch, besh, yetti... yigirma birgacha. Buni ming yil oldin ham, katta matematik Gauss maktabda ham ixtiro qilgan usul bilan topamiz. [2] Birinchi va oxirgini qo‘shamiz: uch plyus yigirma bir — yigirma to‘rt. [3] {sekin}Ikkinchi va oxirgidan oldingisi: besh plyus o‘n to‘qqiz — yana yigirma to‘rt! Har juft bir xil. [4] O‘nta had — beshta juft. Besh karra yigirma to‘rt — yuz yigirma g‘isht.
-DOSKA: 3 + 21 = 24
-DOSKA: 5 + 19 = 24 ...
-DOSKA: 10 had → 5 juft
-DOSKA: S = 5 · 24 = 120
+TEKSH: Zinapoyaning birinchi pog‘onasi 4 ta g‘ishtdan, har keyingisi 3 tadan ko‘p. 6-pog‘onada nechta g‘isht bor? => 19 | 22 | 16 | 18
+@tushuncha Jami g‘isht: yosh Gaussning usuli
+OVOZ: [1] Endi jami g‘isht: uch, besh, yetti... yigirma birgacha, hammasi o‘nta qator. Aytishadi: kichkina Gauss maktabda bir dan yuzgacha sonlarni qo‘shishni topshiriq qilib berishganda, hammadan oldin javob topgan. {baland}Qanday qilib? Juftlab! [2] Birinchi had bilan oxirgisini qo‘shamiz: uch plyus yigirma bir — yigirma to‘rt. Ikkinchi bilan oxiridan oldingisi: besh plyus o‘n to‘qqiz — yana yigirma to‘rt! {urgu}Qarang, hamma juft bir xil yig‘indi beradi! [3] O‘nta had — beshta juft. [4] Besh karra yigirma to‘rt — yuz yigirma g‘isht! Birma-bir qo‘shib o‘tirmadik. [5] Formula: yig‘indi teng hadlar soni karra birinchi plyus oxirgi, ikkiga bo‘lingan.
+DOSKA: 3 + 5 + 7 + 9 + 11 + 13 + 15 + 17 + 19 + 21 = ?
+DOSKA: ZANJIR: 3 + 21 = 24 | 5 + 19 = 24 | 7 + 17 = 24 | 9 + 15 = 24 | 11 + 13 = 24
+DOSKA: 10 ta had → 5 ta juft
+DOSKA: KETMA: S | 5 · 24 | 120 | 120 g‘isht
 DOSKA: QOIDA: S = n · (a₁ + aₙ) : 2
-TEKSH: 1 + 2 + 3 + ... + 20 nechaga teng? => 210 | 200 | 420 | 190
-TEKSH: 2, 4, 6, ..., 30 yig‘indisi? => 240 | 450 | 480 | 120
-@tushuncha Geometrik ketma-ketlik — ko‘paytirish
-OVOZ: [1] Boshqa ketma-ketlik: uch, olti, o‘n ikki, yigirma to‘rt. Farq har safar boshqa: uch, oltita, o‘n ikki. [2] Lekin nisbat bir xil — har safar ikki marta! [3] {sekin}Bunday ketma-ketlik geometrik: har hadni bir xil songa ko‘paytiramiz. Bu son — maxraj, q. [4] Sakkizinchi had: uchga ikkining yettinchi darajasini ko‘paytiramiz — uch yuz sakson to‘rt. [5] Farq doimiymi yoki nisbat doimiymi — shuni tekshiring.
-DOSKA: 3, 6, 12, 24, ...
-DOSKA: ×2  ×2  ×2
-DOSKA: aₙ = a₁ · qⁿ⁻¹
-DOSKA: a₈ = 3 · 2⁷ = 384
-DOSKA: QOIDA: farq doimiy → arifmetik; nisbat doimiy → geometrik
-TEKSH: 2, 6, 18, 54, ... keyingi had? => 162 | 108 | 72 | 216
-TEKSH: 5, 10, 15, 20 — qaysi tur? => Arifmetik | Geometrik | Ikkalasi ham | Hech biri
+TEKSH: 1 + 2 + 3 + ... + 20 yig‘indisi nechaga teng? => 210 | 200 | 420 | 190
+TEKSH: 2, 4, 6, ..., 30 sonlari yig‘indisi nechaga teng? => 240 | 450 | 480 | 120
+TEKSH: Zalning birinchi qatorida 10 ta o‘rin, har keyingi qatorda 2 tadan ko‘p. 8 qatorda jami nechta o‘rin bor? => 136 | 272 | 192 | 112
+@tushuncha Geometrik ketma-ketlik: har safar ko‘paytiramiz
+OVOZ: [1] Mana boshqa ketma-ketlik: uch, olti, o‘n ikki, yigirma to‘rt, qirq sakkiz. Qonuniyatni topamiz! [2] Qo‘shni hadlar farqi: uch, oltita, o‘n ikkita — har safar boshqa. Demak, bu arifmetik emas. {baland}Lekin boshqa narsaga qarang: har had oldingisidan aynan ikki marta katta! [3] Har safar ikkiga ko‘paytiryapmiz. {sekin}Bunday ketma-ketlik — geometrik. Ko‘paytiriladigan son — maxraj, uni q harfi bilan yozamiz. [4] Formula: n-chi had teng birinchi had karra q ning n minus birinchi darajasi. Sakkizinchi had: uch karra ikkining yettinchi darajasi — uch yuz sakson to‘rt! [5] Qarang, grafik to‘g‘ri chiziq emas: avval sekin, keyin tez va tikka ko‘tariladi. [6] Demak, doim so‘rang: farq doimiymi yoki nisbat doimiymi?
+DOSKA: ZANJIR: 3 | 6 | 12 | 24 | 48
+DOSKA: ×2 → ×2 → ×2 → ×2 (q = 2)
+DOSKA: ❌ farq: +3, +6, +12 — bir xil emas
+DOSKA: QOIDA: aₙ = a₁ · qⁿ⁻¹; a₈ = 3 · 2⁷ = 384
+DOSKA: GRAFIK: y=3*2^x; [0;4]
+DOSKA: JADVAL: Tur | Doimiy ;; Arifmetik | farq (+d) ;; Geometrik | nisbat (×q)
+TEKSH: 2, 6, 18, 54, ... ketma-ketlikning keyingi hadi qaysi? => 162 | 108 | 72 | 216
+TEKSH: 5, 10, 15, 20, ... ketma-ketlik qaysi turga kiradi? => Arifmetik | Geometrik | Ikkalasi ham | Hech biri
+TEKSH: 5, 15, 45, ... ketma-ketlikning keyingi hadi qaysi? => 135 | 60 | 90 | 75
+@tushuncha Xato tuzog‘i: farqmi yoki nisbatmi?
+OVOZ: [1] Bir o‘quvchi ketma-ketlikni ko‘rdi: ikki, to‘rt, sakkiz. Ikkidan to‘rtga — ikki qo‘shildi, deb o‘yladi va dedi: «Keyingisi — o‘n!» [2] {urgu}Tekshiring! To‘rtdan sakkizga — to‘rt qo‘shildi, ikki emas! Farq bir xil emas — demak, bu arifmetik ketma-ketlik emas. [3] Nisbatga qarang: ikki karra ikki — to‘rt, to‘rt karra ikki — sakkiz. Nisbat doim ikki! [4] Demak, keyingisi — sakkiz karra ikki, o‘n olti. {sekin}Bitta juftga qarab shoshib xulosa qilmang: kamida uchta hadni tekshiring.
+DOSKA: ZANJIR: 2 | 4 | 8 | ?
+DOSKA: +2, +4 → farq o‘zgaryapti ❌
+DOSKA: ×2, ×2 → nisbat doimiy ✔
+DOSKA: ? = 8 · 2 = 16
+TEKSH: 1, 4, 7, 10, ... Bu ketma-ketlikning umumiy qoidasi qaysi? => Har safar 3 qo‘shiladi | Har safar 3 ga ko‘paytiriladi | Har safar 4 qo‘shiladi | Har safar 2 ga ko‘paytiriladi
 @xulosa Esda tut
-OVOZ: Birinchi: avval qo‘shni hadlarning farqi yoki nisbatiga qarang. Ikkinchi: arifmetikada n-chi had — birinchi had plyus n minus bir karra farq. Uchinchi: yig‘indi — juftlab, birinchi plyus oxirgi karra juftlar soni. To‘rtinchi: geometrikda har safar ko‘paytiriladi.
+OVOZ: Birinchi: ketma-ketlikka qarab, avval qo‘shni hadlarning farqini yoki nisbatini tekshiring. Ikkinchi: arifmetikda n-chi had — birinchi had plyus n minus bir karra d. «N minus bir» ni unutmang! Uchinchi: yig‘indini juftlab topamiz — hadlar soni karra birinchi plyus oxirgi, ikkiga bo‘lingan. To‘rtinchi: geometrikda har safar bir xil songa ko‘paytiramiz. Endi mashqda kuchingizni sinab ko‘ring!
 DOSKA: 1. Farq yoki nisbatni top
 DOSKA: 2. aₙ = a₁ + (n − 1)d
 DOSKA: 3. S = n(a₁ + aₙ) : 2
-DOSKA: 4. Geometrik: × q
+DOSKA: 4. Geometrik: aₙ = a₁ · qⁿ⁻¹
 
 ## pm_kvadrat
 @kirish To‘p qancha balandga ko‘tariladi?
-OVOZ: Futbolchi to‘pni yuqoriga uradi. To‘pning balandligi vaqtga bog‘liq: h teng minus besh t kvadrat plyus yigirma t. {pauza} To‘p qaysi soniyada eng baland nuqtaga chiqadi? Va qancha balandga? Yerga qachon qaytadi? {sekin}Savollarning hammasiga bitta grafik — parabola — javob beradi.
-DOSKA: h = −5t² + 20t
-DOSKA: Eng baland nuqta? ✋
-DOSKA: Yerga qachon tushadi? ✋
-@tushuncha Parabola — kvadratik bog‘lanish grafigi
-OVOZ: [1] Formulada t kvadrat bor — bu kvadratik bog‘lanish. Uning grafigi — parabola, egri chiziq. [2] {sekin}Birinchi koeffitsiyent — a. Agar a musbat bo‘lsa, parabola yuqoriga ochiq — «chuqurcha» shaklida. [3] A manfiy bo‘lsa — pastga ochiq, «tepalik» shaklida. Bizning to‘pda a minus besh — shuning uchun tepalik, eng baland nuqta bor. [4] Parabolaning eng chekka nuqtasi — uchi, cho‘qqisi.
+OVOZ: {baland}Futbolchi to‘pni tepdi — to‘p yuqoriga uchdi! {pauza} Uning balandligi vaqtga bog‘liq: h teng minus besh t kvadrat plyus yigirma t. Bu yerda h — metrda, t — soniyada. {sekin}Qiziq savollar: to‘p qaysi soniyada eng baland nuqtaga chiqadi? Qancha balandga? Yerga qachon qaytib tushadi? {urgu}Hammasiga bitta egri chiziq javob beradi — uni hozir chizamiz. Taxmin qiling: eng baland nuqta qancha?
+DOSKA: RASM: to'p:sakra
+DOSKA: GRAFIK: y=-5x^2+20x; [0;4]
+DOSKA: h = −5t² + 20t  (h — metr, t — soniya)
+DOSKA: Eng baland nuqta? Yerga qachon tushadi? ✋
+@tushuncha Parabola: ikki xil shakl
+OVOZ: [1] Formulada t kvadrat bor — bunday bog‘lanish kvadratik deyiladi. Uning grafigi — {baland}parabola, tekis chiziq emas, egri chiziq! [2] {sekin}Kvadrat oldidagi son — a koeffitsiyent. Agar a musbat bo‘lsa, parabola yuqoriga ochiladi — xuddi tabassum shaklida, chuqurcha. [3] A manfiy bo‘lsa — pastga ochiladi: xuddi tepalik, tepaga qarab o‘sgan. [4] Bizning to‘pda a teng minus besh — manfiy! Demak, tepalik: eng baland nuqta bor. [5] Parabolaning eng chekka nuqtasi — uning uchi, ya’ni cho‘qqisi.
 DOSKA: GRAFIK: y=x^2-4x+3; [-1;5]
-DOSKA: a > 0 → ∪ (pastki uchi)
-DOSKA: a < 0 → ∩ (yuqori uchi)
-DOSKA: Uch nuqta — parabolaning eng chetki nuqtasi
-TEKSH: y = −2x² + 8x. Parabola qayoqqa ochiq? => Pastga | Yuqoriga | O‘ngga | Chapga
+DOSKA: a > 0 → yuqoriga ochiq: chuqurcha, eng past nuqta (minimum)
+DOSKA: GRAFIK: y=-x^2+4x; [0;4]
+DOSKA: a < 0 → pastga ochiq: tepalik, eng baland nuqta (maksimum)
+DOSKA: Uchi (cho‘qqisi) — parabolaning eng chekka nuqtasi
+TEKSH: y = −2x² + 8x. Bu parabola qayoqqa ochiq? => Pastga | Yuqoriga | O‘ngga | Chapga
 TEKSH: y = 3x² − 12x + 1. Uning uchi minimummi yoki maksimummi? => Minimum | Maksimum | Ikkalasi ham | Uchi yo‘q
-@tushuncha Cho‘qqini topish
-OVOZ: [1] Cho‘qqining vaqtini topish formulasi: t teng minus b bo‘lingan ikki a. [2] Bizda b — yigirma, a — minus besh. Minus yigirma bo‘lingan minus o‘n — ikki. [3] {sekin}Ikkinchi soniyada to‘p eng baland nuqtada! [4] Balandlikni topish uchun ikkini formulaga qo‘yamiz: minus besh karra to‘rt plyus yigirma karra ikki — yigirma metr.
-DOSKA: t = −b : (2a) = −20 : (−10) = 2
-DOSKA: h(2) = −5 · 4 + 20 · 2
-DOSKA: = −20 + 40 = 20 m
+TEKSH: y = 0,5x² − 3 parabolasi qayoqqa ochiladi? => Yuqoriga | Pastga | O‘ngga | Ochilmaydi
+@tushuncha Cho‘qqini topish: qaysi soniya, qancha balandlik?
+OVOZ: [1] Mana to‘pimiz grafigi. Cho‘qqini ko‘z bilan emas, formula bilan aniq topamiz. [2] Cho‘qqining vaqti: t teng minus b bo‘lingan ikki a. Bizda b — yigirma, a — minus besh. Minus yigirma bo‘lingan minus o‘n — {baland}ikki! [3] {sekin}Ikkinchi soniyada to‘p eng baland nuqtada. Endi balandlik: ikkini formulaga qo‘yamiz. Minus besh karra to‘rt plyus yigirma karra ikki. [4] Minus yigirma plyus qirq — yigirma metr! Taxmin qilgan edingiz — mos keldimi? [5] Qoida: uchi — x teng minus b bo‘lingan ikki a.
+DOSKA: GRAFIK: y=-5x^2+20x; [0;4]
+DOSKA: KETMA: t | −b : 2a | −20 : (−10) | 2
+DOSKA: KETMA: h(2) | −5 · 4 + 20 · 2 | −20 + 40 | 20 m
+DOSKA: Ikkinchi soniyada — 20 metr balandlikda!
 DOSKA: QOIDA: uchi: x = −b / 2a
 TEKSH: h = −5t² + 30t. Eng baland nuqtaga qachon chiqadi? => 3 s | 6 s | 30 s | 1,5 s
-TEKSH: y = x² − 6x uchining y koordinatasi? => −9 | 9 | −6 | 3
+TEKSH: y = x² − 6x parabolasi uchining y koordinatasi nechaga teng? => −9 | 9 | −6 | 3
+TEKSH: y = −x² + 8x funksiyaning eng katta qiymati nechaga teng? => 16 | 32 | 8 | 4
 @tushuncha Yerga qaytish va simmetriya
-OVOZ: [1] To‘p yerga qaytganda balandlik nol. Minus besh t kvadrat plyus yigirma t teng nol. [2] Umumiy ko‘paytuvchi t ni qavsdan chiqaramiz: t karra, minus besh t plyus yigirma. [3] {sekin}Ikki ildiz: t teng nol — to‘p urildi; va t teng to‘rt — yerga tushdi. [4] {urgu}Qarang: nol va to‘rtning o‘rtasi — ikki. Cho‘qqi doim ildizlar o‘rtasida, parabola simmetrik. Demak, tepaga chiqish ham, tushish ham ikki soniyadan.
-DOSKA: −5t² + 20t = 0
-DOSKA: t(−5t + 20) = 0
-DOSKA: t = 0 yoki t = 4
-DOSKA: (0 + 4) : 2 = 2 → cho‘qqi
+OVOZ: [1] To‘p yerga qaytganda balandlik — nol. Demak, minus besh t kvadrat plyus yigirma t teng nol. [2] {sekin}Umumiy ko‘paytuvchi t ni qavsdan chiqaramiz: t karra, minus besh t plyus yigirma. Ko‘paytma nol bo‘lsa — yoki birinchisi nol, yoki ikkinchisi nol. [3] Ikki javob: t teng nol — to‘p endi tepildi; t teng to‘rt — yerga tushdi. Doskada, vaqt o‘qida kuzating: nuqta noldan to‘rtga yuradi! [4] {urgu}Diqqat: nol bilan to‘rtning aynan o‘rtasi — ikki! Cho‘qqi doim ildizlar o‘rtasida — parabola simmetrik. Tepaga chiqish ham, pastga tushish ham ikki soniyadan.
+DOSKA: KETMA: −5t² + 20t = 0 | t(−5t + 20) = 0 | t = 0 yoki t = 4
+DOSKA: SON_OQI: 0..4; nuqta 0 tepildi; nuqta 2 cho‘qqi; nuqta 4 tushdi; yur 0 4
+DOSKA: (0 + 4) : 2 = 2 → cho‘qqi o‘rtada
+DOSKA: QOIDA: parabola simmetrik: chiqish vaqti = tushish vaqti
 TEKSH: h = −t² + 10t. To‘p yerga qaysi soniyada tushadi? => 10 | 5 | 20 | 25
+TEKSH: h = −5t² + 10t. To‘p yerga qaysi soniyada qaytadi? => 2 | 1 | 10 | 5
 @tushuncha Xato tuzog‘i: bu chiziqli emas
-OVOZ: [1] Ko‘pchilik o‘ylaydi: bir soniyada o‘n besh metrga ko‘tarilgan bo‘lsa, ikki soniyada o‘ttiz metrga ko‘tariladi. [2] {urgu}Yo‘q! Bu to‘g‘ri proporsionallik emas. Jadvalga qarang: bir soniyada o‘n besh, ikkinchida yigirma, uchinchida yana o‘n besh. [3] To‘p tepaga chiqadi, keyin tushadi. Kvadratik bog‘lanishda o‘zgarish tezligi doim o‘zgarib turadi.
-DOSKA: t = 1: h = −5 + 20 = 15
-DOSKA: t = 2: h = −20 + 40 = 20
-DOSKA: t = 3: h = −45 + 60 = 15
-DOSKA: ❌ t ×2 → h ×2 (chiziqli emas!)
-TEKSH: h = −5t² + 20t. t = 3 da balandlik? => 15 m | 45 m | 60 m | 5 m
+OVOZ: [1] Ko‘pchilik shunday o‘ylaydi: bir soniyada o‘n besh metrga ko‘tarilgan bo‘lsa, ikki soniyada o‘ttiz metrga ko‘tariladi. To‘g‘ri proporsionallikmi? [2] {urgu}Yo‘q! Jadvalga qarang: bir soniyada — o‘n besh, ikkinchisida — yigirma, uchinchisida — yana o‘n besh! [3] Grafikda ko‘rinib turibdi: to‘p tepaga chiqadi, keyin pastga tushadi — to‘g‘ri chiziq emas. [4] {sekin}Kvadratik bog‘lanishda o‘zgarish tezligi doim o‘zgarib turadi: oldin tez ko‘tariladi, keyin sekinlashadi, to‘xtaydi, so‘ng pastga tushadi.
+DOSKA: JADVAL: t (s) | h (m) ;; 1 | 15 ;; 2 | 20 ;; 3 | 15 ;; 4 | 0
+DOSKA: ❌ t ×2 → h ×2 — kvadratikda bunday emas
+DOSKA: GRAFIK: y=-5x^2+20x; [0;4]
+DOSKA: o‘zgarish tezligi doim o‘zgaradi
+TEKSH: h = −5t² + 10t. Birinchi soniyada to‘p qanday balandlikda bo‘ladi? => 5 m | 15 m | 10 m | 0 m
 @xulosa Esda tut
-OVOZ: Birinchi: t kvadrat bo‘lsa — grafik parabola. Ikkinchi: a manfiy bo‘lsa — cho‘qqi eng yuqori nuqta. Uchinchi: cho‘qqining vaqti — minus b bo‘lingan ikki a. To‘rtinchi: ildizlar o‘rtasi — cho‘qqi, parabola simmetrik.
+OVOZ: Birinchi: formulada t kvadrat bo‘lsa — grafik parabola. Ikkinchi: a manfiy bo‘lsa — cho‘qqi eng baland nuqta, a musbat bo‘lsa — eng past nuqta. Uchinchi: cho‘qqi vaqti — minus b bo‘lingan ikki a. To‘rtinchi: ildizlar o‘rtasi — cho‘qqi, parabola simmetrik. Endi mashqda sinab ko‘ring!
 DOSKA: 1. t² → parabola
 DOSKA: 2. a < 0 → maksimum
 DOSKA: 3. t = −b / 2a
@@ -91,41 +110,48 @@ DOSKA: 4. Cho‘qqi = ildizlar o‘rtasi
 
 ## pm_eksp
 @kirish Bakteriya yoki oddiy qo‘shish?
-OVOZ: Bitta bakteriya har soatda ikkiga bo‘linadi. Boshqa bir idishda esa har soatda ikkita yangi bakteriya paydo bo‘ladi. Ikkalasida ham dastlab bittadan. {pauza} O‘n soatdan keyin qaysi idishda ko‘proq bo‘ladi va necha marta ko‘p? Yuztagami, mingtami? {sekin}Taxmin qiling. Javob juda hayratlanarli.
-DOSKA: 1-idish: har soat ×2
-DOSKA: 2-idish: har soat +2
-DOSKA: 10 soatdan keyin? ✋
-@tushuncha Qo‘shish va ko‘paytirish — ikki xil o‘sish
-OVOZ: [1] Ikkinchi idishda har soatda ikkita qo‘shiladi. Bu chiziqli o‘sish: bir, uch, besh, yetti... o‘n soatdan keyin yigirma bir. [2] Birinchi idishda har soatda ikki marta ko‘payadi. Bu — ko‘rsatkichli o‘sish: bir, ikki, to‘rt, sakkiz... [3] {sekin}O‘n soatdan keyin ikkining o‘ninchi darajasi — ming yigirma to‘rt! Yigirma bir bilan ming yigirma to‘rt — qirq to‘qqiz marta farq. [4] Ko‘rsatkichli o‘sish avvaliga sekin, keyin portlaydi.
-DOSKA: Chiziqli: y = 2t + 1 → t = 10: 21
-DOSKA: Ko‘rsatkichli: y = 2ᵗ → t = 10: 1 024
-DOSKA: 1 024 : 21 ≈ 49 marta ko‘p
-DOSKA: QOIDA: chiziqli: + d; ko‘rsatkichli: × q
-TEKSH: Idish A: +3 har soat, boshida 1. Idish B: ×3 har soat, boshida 1. 4 soatdan keyin B nechta? => 81 | 13 | 12 | 27
-TEKSH: Ko‘rsatkichli o‘sish formulasi qaysi? => y = 5 · 2ᵗ | y = 5t + 2 | y = 2t + 5 | y = 5 : t
-@tushuncha Yarim yemirilish — kamayish
-OVOZ: [1] Endi teskarisi: kamayish. Dori qonda har olti soatda ikki marta kamayadi — yarim yemirilish davri olti soat. [2] Sakson milligramm dori ichildi. Olti soatdan keyin — qirq. O‘n ikki soatdan keyin — yigirma. [3] {sekin}O‘n sakkiz soatdan keyin — o‘n milligramm. Har bosqichda ikkiga bo‘lamiz. [4] Formula: boshlang‘ich miqdor karra bir yarim ning t darajasi, bunda t — davrlar soni.
-DOSKA: 80 → 40 → 20 → 10
-DOSKA: 0 s → 6 s → 12 s → 18 s
-DOSKA: 18 : 6 = 3 davr
-DOSKA: M = 80 · (1/2)³ = 10 mg
-TEKSH: Yarim yemirilish davri 5 soat. 40 g dan 15 soat o‘tgach qoladi? => 5 g | 20 g | 10 g | 2,5 g
-TEKSH: 200 mg, yarim yemirilish 4 soat. 12 soatdan keyin? => 25 mg | 50 mg | 100 mg | 12,5 mg
-@tushuncha Foizli o‘sish — ko‘paytiruvchi
-OVOZ: [1] Aholi har yili besh foizga ko‘payadi. Bu ham ko‘rsatkichli o‘sish: ko‘paytiruvchi bir butun nol besh. [2] Hozir yuz ming kishi. Bir yildan keyin yuz besh ming. [3] {sekin}Ikki yildan keyin — yuz o‘n ming ikki yuz ellik. Har yili o‘tgan yilgi sondan besh foiz qo‘shiladi. [4] O‘n yilda — yuz ming karra bir butun nol besh ning o‘ninchi darajasi — taxminan bir yuz oltmish uch ming.
-DOSKA: +5% → ×1,05
-DOSKA: 1 yil: 100 000 · 1,05 = 105 000
-DOSKA: 2 yil: 105 000 · 1,05 = 110 250
-DOSKA: 10 yil: 100 000 · 1,05¹⁰ ≈ 162 900
-TEKSH: Aholi 200 000, yiliga 10%. 2 yildan keyin? => 242 000 | 240 000 | 220 000 | 260 000
+OVOZ: {baland}Ikkita idish bor, ikkalasida ham dastlab bittadan bakteriya! {pauza} Birinchi idishda har soatda bakteriyalar ikki marta ko‘payadi. Ikkinchi idishda esa har soatda ikkitadan yangi bakteriya qo‘shiladi. {sekin}O‘n soatdan keyin qaysi idishda ko‘proq bo‘ladi? Necha marta ko‘p? Yuz martami? Ming martami? {urgu}Taxmin qiling — javob sizni hayratda qoldiradi!
+DOSKA: RASM: bakteriya:katta | idish
+DOSKA: 1-idish: har soatda ×2 (ko‘payadi)
+DOSKA: 2-idish: har soatda +2 (qo‘shiladi)
+DOSKA: 10 soatdan keyin? Necha marta farq? ✋
+@tushuncha Qo‘shish va ko‘paytirish: ikki xil o‘sish
+OVOZ: [1] Jadvalni to‘ldiramiz. Nol soatda ikkalasida ham bitta. [2] {sekin}Birinchi soatda: qo‘shiladigan idishda uchta, ko‘paytiriladiganda — ikkita. Ikkinchi soatda: beshta va to‘rtta. Uchinchida: yettita va sakkizta! [3] Qarang, ko‘paytiriladigani oldiga o‘tib ketdi. To‘rtinchi soatda: to‘qqiz va o‘n oltita! [4] Qo‘shiladigani — chiziqli o‘sish: grafigi to‘g‘ri chiziq. [5] Ko‘paytiriladigani — ko‘rsatkichli o‘sish: avvaliga sekin, keyin {baland}portlaydi! O‘n soatdan keyin ikkining o‘ninchi darajasi — ming yigirma to‘rt! Ikkinchi idishda esa yigirma bir. [6] Ming yigirma to‘rt bilan yigirma bir — qirq to‘qqiz marta farq!
+DOSKA: JADVAL: Soat | +2 | ×2 ;; 0 | 1 | 1 ;; 1 | 3 | 2 ;; 2 | 5 | 4 ;; 3 | 7 | 8 ;; 4 | 9 | 16
+DOSKA: Chiziqli: y = 2t + 1 → to‘g‘ri chiziq
+DOSKA: Ko‘rsatkichli: y = 2ᵗ → egri chiziq
+DOSKA: GRAFIK: y=2x+1; [0;10]
+DOSKA: GRAFIK: y=2^x; [0;10]
+DOSKA: t = 10: 21 va 1 024 → 1 024 : 21 ≈ 49 marta farq!
+TEKSH: Idish A: har soatda +3, boshida 1 ta. Idish B: har soatda ×3, boshida 1 ta. 4 soatdan keyin B idishda nechta bor? => 81 | 13 | 12 | 27
+TEKSH: Idishda dastlab 2 ta bakteriya bor, har soatda ikki marta ko‘payadi. 5 soatdan keyin nechta bo‘ladi? => 64 | 12 | 32 | 10
+TEKSH: Quyidagilardan qaysi biri ko‘rsatkichli o‘sish formulasi? => y = 5 · 2ᵗ | y = 5t + 2 | y = 2t + 5 | y = 5 : t
+@tushuncha Yarim yemirilish: kamayish
+OVOZ: [1] Endi teskarisi — kamayish! Dori qonda har olti soatda ikki marta kamayadi. Shu olti soat — «yarim yemirilish davri». Sakson milligramm dori ichildi. [2] Olti soatdan keyin — qirq. Yana olti soatdan — yigirma. Yana olti soatdan — o‘n. {sekin}Har davrda ikkiga bo‘lamiz. [3] Qarang: o‘n sakkiz soat — bu uchta davr. Formula: boshlang‘ich miqdor karra bir yarimning davrlar soni darajasi. Sakson karra sakkizdan bir — o‘n. [4] Grafik pastga tushadi — lekin nolga yetmaydi, faqat yaqinlashadi.
+DOSKA: RASM: dori:kel | soat:aylan
+DOSKA: ZANJIR: 80 mg | 40 mg | 20 mg | 10 mg
+DOSKA: 0 s → 6 s → 12 s → 18 s (3 davr)
+DOSKA: KETMA: M | 80 · (1/2)³ | 80 · 1/8 | 10 mg
+DOSKA: GRAFIK: y=80*0.5^(x/6); [0;24]
+TEKSH: Yarim yemirilish davri 5 soat. 40 g modda 15 soatdan keyin qancha qoladi? => 5 g | 20 g | 10 g | 2,5 g
+TEKSH: 200 mg dori bor, yarim yemirilish davri 4 soat. 12 soatdan keyin qancha qoladi? => 25 mg | 50 mg | 100 mg | 12,5 mg
+@tushuncha Foizli o‘sish: ko‘paytiruvchi
+OVOZ: [1] Shaharda aholi har yili besh foizga ko‘payadi. Bu ham ko‘rsatkichli o‘sish! Ko‘paytiruvchi — bir butun nol besh. [2] {sekin}Hozir yuz ming kishi. Bir yildan keyin — yuz besh ming. Ikki yildan keyin — yuz o‘n ming ikki yuz ellik: chunki besh foiz endi yangi sondan olinadi. [3] O‘n yilda — yuz ming karra bir butun nol beshning o‘ninchi darajasi: taxminan bir yuz oltmish ikki ming to‘qqiz yuz kishi. [4] {urgu}Qarang: oddiy qo‘shish bilan o‘n yilda atigi yuz ellik ming bo‘lardi. Ko‘paytirish — kuchliroq!
+DOSKA: JADVAL: Yil | Aholi (kishi) ;; 0 | 100 000 ;; 1 | 105 000 ;; 2 | 110 250 ;; 10 | ≈ 162 900
+DOSKA: +5% → ×1,05 (har yili)
+DOSKA: GRAFIK: y=100*1.05^x; [0;10]
+DOSKA: Oddiy qo‘shish: 150 000; ko‘paytirish: ≈ 162 900
+TEKSH: Shahar aholisi 200 000, har yili 10% ga ko‘payadi. 2 yildan keyin necha kishi bo‘ladi? => 242 000 | 240 000 | 220 000 | 260 000
 @tushuncha Xato tuzog‘i: yarim yemirilishda nolga yetmaymiz
-OVOZ: [1] Ko‘pchilik o‘ylaydi: yarim yemirilishda ikki davrdan keyin hammasi tugaydi, chunki ikki yarim — bitta butun. [2] {urgu}Yo‘q! Har davrda qolganning yarmi ketadi, butunning yarmi emas. Birinchi davrda yarmi, ikkinchida — qolgan yarmining yarmi. [3] Shuning uchun hech qachon aniq nolga yetmaydi — faqat nolga yaqinlashadi.
-DOSKA: ❌ 2 davr: ½ + ½ = hammasi
-DOSKA: ✅ 80 → 40 → 20 (qolganning yarmi)
-DOSKA: Qolgan: 80 · ¼ = 20
-TEKSH: 100 mg dori, 2 yarim yemirilish davridan keyin necha foizi qoladi? => 25% | 0% | 50% | 75%
+OVOZ: [1] Ko‘pchilik shunday o‘ylaydi: ikki davrdan keyin hammasi tugaydi, chunki ikkita yarim — bitta butun. [2] {urgu}Yo‘q! Har davrda qolgan miqdorning yarmi ketadi, butunning yarmi emas! [3] Birinchi davrda yarmi qoladi. Ikkinchi davrda — shu yarmining yarmi, ya’ni choragi. [4] {sekin}Shuning uchun hech qachon aniq nolga yetmaydi — faqat nolga yaqinlashadi.
+DOSKA: ❌ ½ + ½ = hammasi ketdi
+DOSKA: DOIRA_KASR: 1/2
+DOSKA: DOIRA_KASR: 1/4
+DOSKA: KETMA: 100 | 50 | 25 | 12,5
+TEKSH: 100 mg dori bor. Ikki yarim yemirilish davridan keyin dastlabki miqdorning necha foizi qoladi? => 25% | 0% | 50% | 75%
+TEKSH: Dastlab 64 g modda bor, har davrda yarmi yemiriladi. 3 davrdan keyin qancha qoladi? => 8 g | 16 g | 32 g | 0 g
 @xulosa Esda tut
-OVOZ: Birinchi: qo‘shish — chiziqli, ko‘paytirish — ko‘rsatkichli o‘sish. Ikkinchi: ko‘rsatkichli o‘sish avval sekin, keyin portlaydi. Uchinchi: yarim yemirilishda har davrda qolganning yarmi ketadi. To‘rtinchi: foizli o‘sish — bir plyus foiz ga ko‘paytirish.
+OVOZ: Birinchi: qo‘shish — chiziqli o‘sish, ko‘paytirish — ko‘rsatkichli o‘sish. Ikkinchi: ko‘rsatkichli o‘sish avval sekin, keyin portlaydi. Uchinchi: yarim yemirilishda har davrda qolganning yarmi ketadi, hech qachon nolga yetmaydi. To‘rtinchi: foizli o‘sish — bir plyus foizga ko‘paytirish. Endi mashqda sinab ko‘ring!
 DOSKA: 1. + d chiziqli; × q ko‘rsatkichli
 DOSKA: 2. qⁿ juda tez o‘sadi
 DOSKA: 3. Yarim yemirilish: qolgan : 2
@@ -133,42 +159,45 @@ DOSKA: 4. +p% → × (1 + p)
 
 ## pm_perimetr
 @kirish Bog‘ uchun to‘siq
-OVOZ: Dehqon to‘rtburchak bog‘ni to‘siqlamoqchi: uzunligi yigirma metr, kengligi o‘n ikki metr. Bir tomonida uch metrlik darvoza bor — u yerga to‘siq kerak emas. {pauza} Necha metr to‘siq kerak? Bu masalada diqqat bilan o‘ylamasangiz, osongina xato qilasiz. {sekin}Avval taxmin qiling.
-DOSKA: Bog‘: 20 m × 12 m
-DOSKA: Darvoza: 3 m
-DOSKA: To‘siq necha metr? ✋
-@tushuncha Perimetr — yopiq chiziq uzunligi
-OVOZ: [1] Perimetr — shaklning chegarasi bo‘ylab bir marta aylanib chiqqandagi yo‘l uzunligi. [2] To‘rtburchakda ikkita uzun va ikkita qisqa tomon bor: ikki karra qavs uzunlik plyus kenglik. [3] {sekin}Bizning bog‘: yigirma plyus o‘n ikki — o‘ttiz ikki. Ikki karra — oltmish to‘rt metr. [4] Darvoza uch metr — to‘siq kerak emas: oltmish to‘rt minus uch — oltmish bir metr.
-DOSKA: CHIZ: to‘rtburchak A(0;0) B(5;0) C(5;3) D(0;3)
-DOSKA: P = 2 · (a + b)
-DOSKA: P = 2 · (20 + 12) = 64 m
-DOSKA: 64 − 3 = 61 m to‘siq
-TEKSH: Kvadrat bog‘ning tomoni 15 m. Perimetri? => 60 m | 30 m | 225 m | 45 m
-TEKSH: To‘rtburchak perimetri 48 m, kengligi 10 m. Uzunligi? => 14 m | 38 m | 24 m | 28 m
-@tushuncha Murakkab shakl: L-shakl
-OVOZ: [1] Endi bog‘ning bir burchagidan kvadrat shaklida bo‘lak kesib olingan, L harfiga o‘xshash shakl. [2] Katta to‘rtburchak o‘n ga sakkiz, kesilgan burchak to‘rt ga uch. [3] {sekin}Sirli xususiyat: burchakni kesish perimetrni o‘zgartirmaydi! [4] Chunki kesilgan chiziqlarning gorizontal qismlari yig‘indisi eskisiga teng, vertikal qismlari ham. [5] Perimetr — yana ikki karra qavs o‘n plyus sakkiz, o‘ttiz olti metr.
-DOSKA: Katta: 10 × 8; kesik: 4 × 3
-DOSKA: Burchak kesilganda perimetr o‘zgarmaydi
-DOSKA: P = 2 · (10 + 8) = 36 m
-DOSKA: ❗ Faqat burchakdan kesilganda
+OVOZ: {baland}Dehqon bog‘ini to‘siqlamoqchi! {pauza} Bog‘ to‘rtburchak shaklida: uzunligi yigirma metr, kengligi o‘n ikki metr. Bir tomonida uch metrlik darvoza bor — o‘sha yerga to‘siq kerak emas. {sekin}Necha metr to‘siq kerak? Bu masalada darvozani unutib qo‘ysangiz yoki ikki marta sanab yuborsangiz — xato qilasiz. Avval taxmin qiling!
+DOSKA: RASM: bog' | eshik:tebran
+DOSKA: CHIZ: to‘rtburchak A(0;0) B(20;0) C(20;12) D(0;12)
+DOSKA: Bog‘: 20 m × 12 m; darvoza: 3 m
+DOSKA: To‘siq necha metr kerak? ✋
+@tushuncha Perimetr: bir marta aylanib chiqamiz
+OVOZ: [1] Mana bog‘imiz. Perimetr — shaklning chegarasi bo‘ylab bir marta aylanib chiqqanda bosib o‘tilgan yo‘l. [2] {sekin}To‘rtburchakda ikkita uzun tomon va ikkita qisqa tomon bor. Demak, perimetr: ikki karra, uzunlik plyus kenglik. [3] Bizning bog‘: yigirma plyus o‘n ikki — o‘ttiz ikki. Ikki karra — oltmish to‘rt metr. [4] {urgu}Lekin darvoza uch metr — u yerga to‘siq kerak emas! Oltmish to‘rt minus uch — oltmish bir metr to‘siq.
+DOSKA: QOIDA: P = 2 · (a + b)
+DOSKA: CHIZ: to‘rtburchak A(0;0) B(20;0) C(20;12) D(0;12)
+DOSKA: KETMA: P | 2 · (20 + 12) | 2 · 32 | 64 m
+DOSKA: KETMA: to‘siq | 64 − 3 | 61 m | 61 m
+TEKSH: Kvadrat shaklidagi bog‘ning tomoni 15 m. Uning perimetri qancha? => 60 m | 30 m | 225 m | 45 m
+TEKSH: To‘rtburchakning perimetri 48 m, kengligi 10 m. Uzunligi qancha? => 14 m | 38 m | 24 m | 28 m
+@tushuncha Burchagi kesilgan bog‘: L-shakl
+OVOZ: [1] Endi murakkabroq: bog‘ning bir burchagidan to‘rtburchak bo‘lak kesib olingan — L harfiga o‘xshab qolgan. Katta to‘rtburchak o‘n ga sakkiz, kesilgan burchak — to‘rt ga uch. [2] Chegarani yurib chiqamiz: o‘n, besh, to‘rt, uch, olti, sakkiz. [3] {sekin}Hammasini qo‘shamiz: o‘ttiz olti metr. [4] {baland}Sirli xususiyat! Katta to‘rtburchakning perimetri — ikki karra o‘n plyus sakkiz — ham o‘ttiz olti. Burchakni kesish perimetrni o‘zgartirmaydi! [5] Sababi: kesilgan gorizontal chiziqlar yig‘indisi eskisiga teng, vertikallar ham. [6] {urgu}Lekin faqat burchakdan kesilganda!
+DOSKA: CHIZ: ko‘pburchak A(0;0) B(10;0) C(10;5) D(6;5) E(6;8) F(0;8)
+DOSKA: Chegara: 10 + 5 + 4 + 3 + 6 + 8
+DOSKA: KETMA: P | 10 + 5 + 4 + 3 + 6 + 8 | 36 | = 2 · (10 + 8)
+DOSKA: Burchakni kesish perimetrni o‘zgartirmaydi
 DOSKA: QOIDA: murakkab shakl → chegarani yurib chiq
-TEKSH: 12 × 9 to‘rtburchakdan burchagidan 3 × 2 bo‘lak kesildi. Perimetri? => 42 | 36 | 30 | 48
+DOSKA: ❗ faqat burchakdan kesilganda
+TEKSH: 12 × 9 to‘rtburchakning burchagidan 3 × 2 bo‘lak kesib olindi. Hosil bo‘lgan shaklning perimetri qancha? => 42 | 36 | 30 | 48
+TEKSH: 10 × 6 to‘rtburchakning uzun tomoni o‘rtasidan 2 × 2 kvadrat kesib olindi. Perimetr qancha bo‘ladi? => 36 | 32 | 28 | 40
 @tushuncha Yo‘lak: ichki va tashqi perimetr
-OVOZ: [1] Bog‘ning atrofida bir metr kenglikdagi yo‘lak ishlanadi. Ichki — yigirma ga o‘n ikki; tashqi — yigirma ikki ga o‘n to‘rt. [2] Tashqi perimetr: ikki karra, yigirma ikki plyus o‘n to‘rt — yetmish ikki metr. [3] {sekin}Ichki esa oltmish to‘rt. Farq — sakkiz metr. [4] {urgu}Sakkiz — to‘rt burchakda ikki marta bir metrdan: to‘rt karra ikki karra bir. Har safar yo‘lak kengligi ortsa, perimetr sakkizga ko‘paymaydi — sakkiz karra kenglikka.
-DOSKA: Ichki: 20 × 12 → P = 64
-DOSKA: Tashqi: 22 × 14 → P = 72
+OVOZ: [1] Bog‘ atrofida bir metr kenglikdagi yo‘lak ishlanadi. Ichki to‘rtburchak — yigirma ga o‘n ikki. Tashqisi — har tomonga bir metrdan kattaroq: yigirma ikki ga o‘n to‘rt. [2] Tashqi perimetr: ikki karra, yigirma ikki plyus o‘n to‘rt — yetmish ikki metr. [3] {sekin}Ichkisi — oltmish to‘rt. Farq — sakkiz metr. [4] {urgu}Nega aynan sakkiz? To‘rtta burchakda ikki tomondan bir metrdan qo‘shiladi: to‘rt karra ikki karra bir. Yo‘lak kengligi ikki metr bo‘lsa, farq o‘n olti bo‘ladi — sakkiz karra kenglik!
+DOSKA: CHIZ: to‘rtburchak A(1;1) B(21;1) C(21;13) D(1;13); to‘rtburchak E(0;0) F(22;0) G(22;14) H(0;14)
+DOSKA: Ichki: 20 × 12 → P = 64; tashqi: 22 × 14 → P = 72
 DOSKA: 72 − 64 = 8 = 8 · 1
 DOSKA: Yo‘lak 2 m bo‘lsa: farq 8 · 2 = 16
-TEKSH: Ichki 10 × 6, yo‘lak 2 m. Tashqi perimetr? => 48 m | 32 m | 40 m | 36 m
+TEKSH: Ichki to‘rtburchak 10 × 6, atrofida 2 m kenglikdagi yo‘lak. Tashqi perimetr qancha? => 48 m | 32 m | 40 m | 36 m
 @tushuncha Xato tuzog‘i: perimetr va yuza bir narsa emas
-OVOZ: [1] Ikkita to‘rtburchak olamiz: yigirma ga o‘n ikki va yigirma ikki ga o‘n. [2] Ikkalasining perimetri — oltmish to‘rt metr. Bir xil to‘siq sarfi! [3] {urgu}Lekin yuzi turlicha: ikki yuz qirq va ikki yuz yigirma kvadrat metr. [4] Demak, perimetr bir xil bo‘lsa, yuza bir xil emas. To‘siq uchun perimetr kerak, ekin uchun — yuza.
-DOSKA: 20 × 12: P = 64, S = 240
-DOSKA: 22 × 10: P = 64, S = 220
+OVOZ: [1] Ikkita bog‘ olamiz: yigirma ga o‘n ikki va yigirma ikki ga o‘n. [2] Ikkalasining perimetri — oltmish to‘rt metr: to‘siq sarfi bir xil! [3] {urgu}Lekin yuzi turlicha: ikki yuz qirq va ikki yuz yigirma kvadrat metr. [4] Demak, perimetr bir xil bo‘lsa, yuza bir xil bo‘lishi shart emas. {sekin}To‘siq uchun perimetr kerak — metrda. Ekin uchun yuza kerak — kvadrat metrda.
+DOSKA: JADVAL: Shakl | P (m) | S (m²) ;; 20 × 12 | 64 | 240 ;; 22 × 10 | 64 | 220
 DOSKA: ❌ P bir xil → S bir xil
-DOSKA: To‘siq → P (m); ekin → S (m²)
-TEKSH: Qaysi biri uchun yuza kerak? => Poldagi plitka | Bog‘ to‘sig‘i | Rasm ramkasi | Chiroq ipi
+DOSKA: To‘siq → P (m)
+DOSKA: Ekin, plitka → S (m²)
+TEKSH: Quyidagilardan qaysi biri uchun yuzani hisoblash kerak? => Xonaning polini laminat bilan qoplash | Rasm ramkasiga bagetga | Hovli to‘sig‘iga | Bayram chiroqlari ipiga
 @xulosa Esda tut
-OVOZ: Birinchi: perimetr — chegara uzunligi, metrda. Ikkinchi: to‘rtburchakda ikki karra uzunlik plyus kenglik. Uchinchi: murakkab shaklda chegarani yurib chiqing. To‘rtinchi: perimetr va yuzani aralashtirmang — birliklari ham har xil.
+OVOZ: Birinchi: perimetr — chegara uzunligi, metrda o‘lchanadi. Ikkinchi: to‘rtburchakda ikki karra uzunlik plyus kenglik. Uchinchi: murakkab shaklda chegarani yurib chiqing, ortiqcha yo‘l yo‘q. To‘rtinchi: perimetr bilan yuzani aralashtirmang — birliklari ham boshqa. Endi mashqda sinab ko‘ring!
 DOSKA: 1. P — uzunlik (m)
 DOSKA: 2. P = 2(a + b)
 DOSKA: 3. Chegara bo‘ylab yur

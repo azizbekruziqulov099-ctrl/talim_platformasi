@@ -1,59 +1,127 @@
 ## +pm_ifoda
-@tushuncha Hayotiy masala: telefon tarifi formulasi
-OVOZ: [1] Mobil operator ikki tarif taklif qiladi. Birinchisi: oyiga o‘n besh ming so‘m abonent to‘lovi va har daqiqa uchun ikki yuz so‘m. [2] Daqiqalar sonini d deymiz. Formula: o‘n besh ming plyus ikki yuz d. [3] {sekin}Bir oyda yuz ellik daqiqa gaplashsangiz: ikki yuz karra yuz ellik — o‘ttiz ming, plyus o‘n besh ming — qirq besh ming so‘m. [4] Endi teskari savol: qirq besh ming so‘m to‘lov chiqdi. Necha daqiqa gaplashgansiz? Qirq besh ming minus o‘n besh ming — o‘ttiz ming. O‘ttiz ming bo‘lingan ikki yuz — yuz ellik daqiqa. [5] Ya’ni formulani ham to‘g‘ri, ham teskari yo‘nalishda ishlata olamiz.
-DOSKA: T = 15 000 + 200d
-DOSKA: d = 150: T = 15 000 + 30 000 = 45 000
-DOSKA: Teskari: 45 000 − 15 000 = 30 000
-DOSKA: 30 000 : 200 = 150 daqiqa
+@tushuncha Telefon tarifi: formula va grafik
+OVOZ: [1] Mobil operator ikki tarif taklif qiladi. Birinchisi: oyiga o‘n besh ming so‘m abonent to‘lovi va har daqiqa uchun ikki yuz so‘m. {pauza} Daqiqa ko‘p gaplashsangiz, to‘lov qanday o‘zgaradi? [2] Jadvalga qarang: nol daqiqa — o‘n besh ming. Ellik daqiqa — yigirma besh ming. Yuz daqiqa — o‘ttiz besh ming. Yuz ellik daqiqa — qirq besh ming. {sekin}Har ellik daqiqaga o‘n ming oshyapti — bir tekis! [3] Daqiqalar sonini d deymiz. Formula: to‘lov teng o‘n besh ming plyus ikki yuz d. Grafik — tekis ko‘tarilib boruvchi to‘g‘ri chiziq. [4] {baland}Yuz ellik daqiqada: ikki yuz karra yuz ellik — o‘ttiz ming, plyus o‘n besh ming — qirq besh ming so‘m. [5] Endi teskari savol: to‘lov qirq besh ming chiqdi. Necha daqiqa gaplashgansiz? Qirq besh minus o‘n besh — o‘ttiz ming. {urgu}O‘ttiz ming bo‘lingan ikki yuz — yuz ellik daqiqa! [6] Formulani ham oldinga, ham orqaga ishlata olamiz.
+DOSKA: JADVAL: Daqiqa | To‘lov ;; 0 | 15 000 ;; 50 | 25 000 ;; 100 | 35 000 ;; 150 | 45 000
+DOSKA: KETMA: to‘lov | 15 000 + 200 · d | d — daqiqalar soni
+DOSKA: GRAFIK: y=200x+15000; [0;150]
+DOSKA: KETMA: d = 150 | 200 · 150 + 15 000 | 45 000 so‘m
+DOSKA: KETMA: 45 000 − 15 000 | 30 000 : 200 | 150 daqiqa
 DOSKA: QOIDA: formulani oldinga va orqaga ishlat
-TEKSH: T = 10 000 + 300d. T = 37 000 bo‘lsa, d qancha? => 90 | 123 | 9 | 111 000
+TEKSH: T = 10 000 + 300d formulada T = 37 000 bo‘lsa, d qancha? => 90 | 123 | 9 | 111 000
+TEKSH: Taksi: 8 000 so‘m qo‘nish va har km uchun 2 500 so‘m. 14 km yo‘l necha so‘m? => 43 000 | 22 500 | 35 000 | 28 000
+@tushuncha Ikki tarifni solishtirish
+OVOZ: [1] Ikkinchi tarif boshqacha: abonent to‘lovi yo‘q, lekin har daqiqa uchun uch yuz so‘m. {pauza} Qaysi biri foydali? Birinchi: o‘n besh ming plyus ikki yuz d. Ikkinchi: uch yuz d. [2] Qachon ikkalasi bir xil bo‘ladi? Tenglashtiramiz: o‘n besh ming plyus ikki yuz d teng uch yuz d. [3] {sekin}Ikki yuz d ni ikki tomondan ayiramiz: o‘n besh ming teng yuz d. d teng yuz ellik daqiqa. [4] Jadvalga qarang: yuz daqiqada birinchi — o‘ttiz besh ming, ikkinchi — o‘ttiz ming. Yuz ellikda — ikkalasi qirq besh ming. Ikki yuzda birinchi — ellik besh ming, ikkinchi — oltmish ming. [5] {urgu}Yuz ellik daqiqadan kam gaplashsangiz — ikkinchi tarif arzon. Ko‘p gaplashsangiz — birinchi tarif.
+DOSKA: JADVAL: Tarif | Formula ;; Birinchi | 15 000 + 200d ;; Ikkinchi | 300d
+DOSKA: KETMA: 15 000 + 200d | = 300d | 15 000 = 100d
+DOSKA: KETMA: d = 15 000 : 100 | 150 | daqiqada teng
+DOSKA: JADVAL: Daqiqa | Birinchi | Ikkinchi ;; 100 | 35 000 | 30 000 ;; 150 | 45 000 | 45 000 ;; 200 | 55 000 | 60 000
+DOSKA: BELGILA: 150 dan kam → ikkinchi; ko‘p → birinchi | ramka
+TEKSH: Formula: y = 5x − 7. x = −2 bo‘lsa, y nechaga teng? => −17 | −3 | 3 | 17
+TEKSH: Taksi 58 000 so‘m to‘lov chiqdi (8 000 qo‘nish + 2 500 har km). Necha km yurildi? => 20 | 23,2 | 25 | 16
 
 ## +pm_tenglama
-@tushuncha Hayotiy masala: ikki do‘st va pul
-OVOZ: [1] Aziz va Bobur pul yig‘ishyapti. Azizda ikki yuz ming so‘m, Boburda — bir yuz o‘n ming. Aziz haftasiga o‘n ming, Bobur esa o‘ttiz ming yig‘adi. [2] Necha haftadan keyin ularning pullari teng bo‘ladi? [3] {sekin}Haftalar soni — x. Aziz: ikki yuz ming plyus o‘n ming x. Bobur: bir yuz o‘n ming plyus o‘ttiz ming x. [4] Tenglashtiramiz. Ikki yuz ming minus bir yuz o‘n ming — to‘qson ming. O‘ttiz ming minus o‘n ming — yigirma ming. [5] To‘qson ming bo‘lingan yigirma ming — to‘rt yarim hafta. Ya’ni besh haftadan keyin Bobur Azizdan o‘zib ketadi.
-DOSKA: Aziz: 200 000 + 10 000x
-DOSKA: Bobur: 110 000 + 30 000x
-DOSKA: 200 000 + 10 000x = 110 000 + 30 000x
-DOSKA: 90 000 = 20 000x  →  x = 4,5
-DOSKA: 5-haftadan Bobur ko‘proq yig‘gan bo‘ladi
-TEKSH: Tenglama: 7x − 3 = 4x + 12. x nechaga teng? => 5 | 3 | 15 | 1,5
+@tushuncha Ikki do‘st pul yig‘ishadi
+OVOZ: [1] Aziz va Bobur velosiped uchun pul yig‘ishyapti. Azizda ikki yuz ming so‘m, Boburda — bir yuz o‘n ming. Aziz haftasiga o‘n ming, Bobur esa o‘ttiz ming yig‘adi. {pauza} Necha haftadan keyin ularning pullari teng bo‘ladi? [2] Haftalar sonini x deymiz. Azizning puli: ikki yuz ming plyus o‘n ming x. Boburniki: bir yuz o‘n ming plyus o‘ttiz ming x. [3] {sekin}Pullar teng bo‘ladi, demak ikkala ifodani tenglashtiramiz. [4] Ikki yuz ming minus bir yuz o‘n ming — to‘qson ming. O‘ttiz ming minus o‘n ming — yigirma ming. To‘qson ming teng yigirma ming x. {urgu}x teng to‘rt yarim hafta! [5] Besh haftadan keyin tekshiramiz: Azizda ikki yuz ellik ming, Boburda — ikki yuz oltmish ming. Bobur o‘zib ketdi! [6] Demak, beshinchi haftadan Bobur ko‘proq yig‘gan bo‘ladi.
+DOSKA: JADVAL: Do‘st | Hozir | Haftasiga ;; Aziz | 200 000 | +10 000 ;; Bobur | 110 000 | +30 000
+DOSKA: JADVAL: Do‘st | Formula ;; Aziz | 200 000 + 10 000x ;; Bobur | 110 000 + 30 000x
+DOSKA: KETMA: 200 000 + 10 000x | = | 110 000 + 30 000x
+DOSKA: KETMA: 200 000 − 110 000 | 90 000 = 20 000x | x = 4,5
+DOSKA: KETMA: x = 5 | Aziz 250 000 | Bobur 260 000
+DOSKA: BELGILA: 5-haftadan Bobur oldinda | aylana
+TEKSH: 6x − 4 = 2x + 16 tenglamada x nechaga teng? => 5 | 3 | 10 | 2,5
+TEKSH: Birinchi do‘stda 80 000 so‘m, haftasiga 10 000 sarflaydi. Ikkinchisida 20 000 so‘m, haftasiga 5 000 yig‘adi. Necha haftadan keyin pullari teng bo‘ladi? => 4 | 6 | 3 | 5
+@tushuncha Tenglama — tarozi
+OVOZ: [1] Tenglamani tarozi deb tasavvur qiling! Chap pallada uchta noma’lum sandiq va beshta tosh. O‘ng pallada — o‘n ikkita tosh va yana beshta tosh. Tarozi muvozanatda. [2] {sekin}Ikkala palladan beshta toshni olamiz — muvozanat buzilmaydi! Uch sandiq teng o‘n ikki tosh. [3] Uch sandiq o‘n ikki bo‘lsa, bitta sandiq — o‘n ikkini uchga bo‘lamiz — to‘rt! {urgu}Tekshiramiz: uch karra to‘rt plyus besh — o‘n yetti. [4] Qoida: tenglamada nima qilsangiz, ikkala tomonda ham qiling.
+DOSKA: TAROZI: chap: □ □ □ 5 | ong: 5 12 | olib: 5
+DOSKA: KETMA: 3x + 5 = 17 | 3x = 12 | x = 4
+DOSKA: BELGILA: 3 · 4 + 5 = 17 ✔ | aylana
+DOSKA: QOIDA: ikkala tomonga bir xil amal
+TEKSH: 4x − 6 = 18 tenglamani yeching. => 6 | 3 | 12 | 24
+TEKSH: 2x + 9 = 4x − 5 tenglamani yeching. => 7 | 2 | 14 | 3,5
 
 ## +pm_tengsizlik
-@tushuncha Hayotiy masala: telefon xarajati chegarasi
-OVOZ: [1] Oylik byudjetingiz — olti yuz ming so‘m. Ijara — to‘rt yuz ming. Qolgan puldan telefon uchun ko‘pi bilan yigirma foiz sarflamoqchisiz. [2] Qolgan pul: olti yuz ming minus to‘rt yuz ming — ikki yuz ming. [3] {sekin}Yigirma foizi — qirq ming. Telefon xarajati qirq mingdan oshmasligi kerak. [4] Tarif — o‘n besh ming plyus ikki yuz so‘m har daqiqa. Tengsizlik: o‘n besh ming plyus ikki yuz d kichik yoki teng qirq ming. [5] Ikki yuz d kichik yoki teng yigirma besh ming. d kichik yoki teng yuz yigirma besh. Oyiga ko‘pi bilan yuz yigirma besh daqiqa.
-DOSKA: 600 000 − 400 000 = 200 000
-DOSKA: 20% · 200 000 = 40 000
-DOSKA: 15 000 + 200d ≤ 40 000
-DOSKA: 200d ≤ 25 000  →  d ≤ 125
-DOSKA: Ko‘pi bilan 125 daqiqa
-TEKSH: 3x − 8 ≤ 13 ni yeching. => x ≤ 7 | x ≤ 5 | x ≥ 7 | x ≤ 21
+@tushuncha Oylik byudjet va telefon
+OVOZ: [1] Oylik byudjetingiz — olti yuz ming so‘m. Ijara — to‘rt yuz ming. Qolgan puldan telefon uchun ko‘pi bilan yigirma foiz sarflamoqchisiz. {pauza} Oyiga necha daqiqa gaplashsa bo‘ladi? [2] Avval qolgan pul: olti yuz ming minus to‘rt yuz ming — ikki yuz ming. Uning yigirma foizi — qirq ming so‘m. [3] {sekin}Tarif: o‘n besh ming plyus ikki yuz so‘m har daqiqa. Tengsizlik: o‘n besh ming plyus ikki yuz d kichik yoki teng qirq ming. [4] O‘n besh mingni ayiramiz: ikki yuz d kichik yoki teng yigirma besh ming. d kichik yoki teng yuz yigirma besh. [5] {urgu}Son o‘qida ko‘ring: yuz yigirma beshdan chapdagi hamma sonlar mos keladi. Demak, oyiga ko‘pi bilan yuz yigirma besh daqiqa.
+DOSKA: KETMA: 600 000 − 400 000 | 200 000 | 20% = 40 000
+DOSKA: KETMA: 15 000 + 200d | ≤ 40 000 | 200d ≤ 25 000
+DOSKA: KETMA: 200d ≤ 25 000 | d ≤ 125 | ko‘pi bilan 125 daqiqa
+DOSKA: SON_OQI: 100..140 qadam 5; nuqta 125 d = 125
+DOSKA: BELGILA: ko‘pi bilan 125 daqiqa | ramka
+TEKSH: 3x − 8 ≤ 13 tengsizlikni yeching. => x ≤ 7 | x ≤ 5 | x ≥ 7 | x ≤ 21
+TEKSH: 4x + 5 > 21 tengsizlikni yeching. => x > 4 | x > 6,5 | x < 4 | x > 16
+@tushuncha Sumka va kitoblar: tengsizlik va manfiy son
+OVOZ: [1] Sumkangiz o‘zi uch kilogramm. Har bir kitob ikki kilogramm. Sumka ko‘pi bilan o‘n besh kilogrammgacha chidaydi. {pauza} Nechta kitob solish mumkin? [2] Kitoblar soni k. Tengsizlik: ikki k plyus uch kichik yoki teng o‘n besh. {sekin}Uchni ayiramiz: ikki k kichik yoki teng o‘n ikki. Ikkiga bo‘lamiz: k kichik yoki teng olti. [3] Son o‘qida nolga qarang: nol, bir, ikki… oltigacha yuramiz — oltigacha mos. [4] Ko‘pi bilan oltita kitob! [5] {urgu}Muhim tuzoq: manfiy songa bo‘lganda tengsizlik belgisi aylanadi! Minus ikki x katta yoki teng olti — x kichik yoki teng minus uch.
+DOSKA: JADVAL: Qiymat | Og‘irlik ;; Sumka | 3 kg ;; 1 kitob | 2 kg ;; Chegara | 15 kg
+DOSKA: KETMA: 2k + 3 ≤ 15 | 2k ≤ 12 | k ≤ 6
+DOSKA: SON_OQI: 0..10; nuqta 6 k=6; yur 0 6
+DOSKA: BELGILA: ko‘pi bilan 6 ta kitob | aylana
+DOSKA: KETMA: −2x ≥ 6 | x ≤ −3 | belgi teskari!
+TEKSH: −3x ≤ 12 tengsizlikni yeching. => x ≥ −4 | x ≤ −4 | x ≥ 4 | x ≤ 4
+TEKSH: Lift ko‘pi bilan 400 kg ko‘taradi. Har bir odam 80 kg. Ko‘pi bilan necha kishi minadi? => 5 | 4 | 6 | 320
 
 ## +pisa_chiziqli
-@tushuncha Hayotiy masala: sham yonishi
-OVOZ: [1] Sham yoqilganda uning uzunligi o‘ttiz santimetr. Har soatda ikki yarim santimetr yonib, qisqaradi. [2] Formula: y teng o‘ttiz minus ikki yarim x. Bu yerda k manfiy — chunki kamayish. [3] {sekin}Besh soatdan keyin: ikki yarim karra besh — o‘n ikki yarim. O‘ttiz minus o‘n ikki yarim — o‘n yetti yarim santimetr. [4] Sham qachon butunlay yonib tugaydi? y nolga teng: o‘ttiz teng ikki yarim x. x teng o‘n ikki soat. [5] Grafik: pastga tushuvchi chiziq — u x o‘qini o‘n ikkida kesadi.
-DOSKA: y = 30 − 2,5x
-DOSKA: x = 5: y = 30 − 12,5 = 17,5 sm
-DOSKA: y = 0: 30 = 2,5x
-DOSKA: x = 12 soat
+@tushuncha Sham yonishi
+OVOZ: [1] Sham yoqilganda uning uzunligi o‘ttiz santimetr. Har soatda ikki yarim santimetr yonib, qisqaradi. {pauza} Sham qachon tugaydi? [2] Jadvalga qarang: nol soat — o‘ttiz. Ikki soat — yigirma besh. To‘rt soat — yigirma. {sekin}Har soatda ikki yarim santimetr kamayyapti. [3] Formula: y teng o‘ttiz minus ikki yarim x. Bu yerda ikki yarim oldida minus — kamayish. O‘ttiz — boshlang‘ich uzunlik. [4] Grafik — pastga tushuvchi to‘g‘ri chiziq! [5] Besh soatdan keyin: ikki yarim karra besh — o‘n ikki yarim. O‘ttiz minus o‘n ikki yarim — o‘n yetti yarim santimetr. [6] Sham qachon butunlay yonib tugaydi? y nolga teng: o‘ttiz teng ikki yarim x. {urgu}x teng o‘n ikki soat — grafik x o‘qini aynan shu yerda kesadi!
+DOSKA: JADVAL: Soat | Uzunlik ;; 0 | 30 sm ;; 2 | 25 sm ;; 4 | 20 sm
+DOSKA: KETMA: y = 30 − 2,5x | 2,5 — kamayish tezligi | 30 — boshlang‘ich uzunlik
 DOSKA: GRAFIK: y=-2.5x+30; [0;12]
+DOSKA: KETMA: x = 5 | 30 − 12,5 | 17,5 sm
+DOSKA: KETMA: y = 0 | 30 = 2,5x | x = 12 soat
+DOSKA: QOIDA: k manfiy → kamayish; b — boshlang‘ich qiymat
 TEKSH: Quduqdagi suv: y = 100 − 4x (x — daqiqa). Suv qachon tugaydi? => 25 daqiqada | 4 daqiqada | 100 daqiqada | 96 daqiqada
+TEKSH: y = 8 + 3x formulada x = 4 bo‘lsa, y nechaga teng? => 20 | 12 | 15 | 44
+@tushuncha Suv to‘lib ketyapti: o‘sish grafigi
+OVOZ: [1] Hovuzda yigirma litr suv bor. Nasos daqiqasiga olti litr suv quymoqda. {pauza} Qachon yuz qirq litr bo‘ladi? [2] Grafikka qarang: tepaga ko‘tarilyapti — chunki qiyalik musbat. [3] {sekin}Formula: y teng yigirma plyus olti x. Yigirma — boshlang‘ich suv. Olti — har daqiqada qancha qo‘shilishi. [4] O‘n daqiqada: olti karra o‘n — oltmish, plyus yigirma — sakson litr. [5] Yuz qirq litr uchun: yuz qirq teng yigirma plyus olti x. Yuz yigirma teng olti x. {urgu}x teng yigirma daqiqa!
+DOSKA: JADVAL: Daqiqa | Suv ;; 0 | 20 l ;; 5 | 50 l ;; 10 | 80 l
+DOSKA: GRAFIK: y=6x+20; [0;20]
+DOSKA: KETMA: x = 10 | 20 + 60 | 80 l
+DOSKA: KETMA: 140 = 20 + 6x | 120 = 6x | x = 20 daqiqa
+DOSKA: QOIDA: k > 0 → o‘sish; k < 0 → kamayish
+TEKSH: Telefon zaryadi 80% edi, har soatda 16% kamayadi. Necha soatdan keyin tugaydi? => 5 | 4 | 6,4 | 16
+TEKSH: Qaysi formula pastga tushuvchi chiziqni beradi? => y = 5 − 2x | y = 2x + 5 | y = 5x | y = x + 1
 
 ## +pisa_tezlik
-@tushuncha Hayotiy masala: velosipedchi va avtobus
-OVOZ: [1] Velosipedchi soat sakkizda chiqdi, tezligi — soatiga o‘n besh kilometr. Bir soatdan keyin shu yo‘ldan avtobus chiqdi — soatiga qirq besh kilometr. [2] Avtobus velosipedchini qachon quvib yetadi? [3] {sekin}Avtobus chiqqanda velosipedchi o‘n besh kilometr oldinda. Avtobus har soatda o‘ttiz kilometr yaqinlashadi — qirq besh minus o‘n besh. [4] O‘n besh bo‘lingan o‘ttiz — yarim soat. Ya’ni soat to‘qqiz o‘ttizda quvib yetadi. [5] Joyi: qirq besh karra yarim soat — yigirma ikki yarim kilometrda.
-DOSKA: Avtobus chiqqanda oldinda: 15 km
-DOSKA: Yaqinlashish: 45 − 15 = 30 km/soat
-DOSKA: t = 15 : 30 = 0,5 soat
-DOSKA: Vaqt: 09:30
-DOSKA: Joyi: 45 · 0,5 = 22,5 km
+@tushuncha Velosipedchi va avtobus
+OVOZ: [1] {baland}Yo‘lga qarang — velosiped va avtobus poygaga tayyor! [2] Velosipedchi soat sakkizda chiqdi, tezligi — soatiga o‘n besh kilometr. Bir soatdan keyin shu yo‘ldan avtobus chiqdi — soatiga qirq besh kilometr. {pauza} Avtobus velosipedchini qachon quvib yetadi? [3] Avtobus chiqqanda velosipedchi o‘n besh kilometr oldinda. {sekin}Bir soatda u shuncha yurgan! [4] Avtobus har soatda o‘ttiz kilometr yaqinlashadi — qirq besh minus o‘n besh. [5] {urgu}O‘n besh kilometrni o‘ttizga bo‘lamiz — yarim soat! Soat to‘qqiz o‘ttizda quvib yetadi. [6] Qayerda? Qirq besh karra yarim soat — yigirma ikki yarim kilometrda. [7] Qoida: bir tomonga yursa — tezliklar ayiriladi.
+DOSKA: RASM: velosiped:kel | avtobus:kel
+DOSKA: JADVAL: Transport | Tezlik | Chiqish ;; Velosiped | 15 | 8:00 ;; Avtobus | 45 | 9:00
+DOSKA: KETMA: 15 km/soat · 1 soat | 15 km | oldinda
+DOSKA: KETMA: 45 − 15 | 30 km/soat | yaqinlashish tezligi
+DOSKA: KETMA: 15 : 30 | 0,5 soat | 9:00 + 30 daq = 9:30
+DOSKA: KETMA: 45 · 0,5 | 22,5 km | yetib olgan joy
+DOSKA: QOIDA: bir tomonga: ayir; qarama-qarshi: qo‘sh
 TEKSH: Piyoda 5 km/soat da chiqdi. 2 soatdan keyin velosiped 15 km/soat da chiqdi. Necha soatda yetib oladi? => 1 soat | 2 soat | 0,5 soat | 3 soat
+TEKSH: Avtobus 50 km/soat da chiqdi, 1 soatdan keyin yengil mashina 75 km/soat da chiqdi. Necha soatda yetib oladi? => 2 soat | 1 soat | 4 soat | 0,5 soat
+@tushuncha Qarama-qarshi harakat
+OVOZ: [1] Ikkita mashina — bir-biriga qarab yo‘lga chiqdi! [2] Samarqand va Toshkent orasi uch yuz kilometr. Ikki mashina bir vaqtda bir-biriga qarab chiqdi: biri soatiga sakson, ikkinchisi — yetmish kilometr. {pauza} Qachon uchrashadi? [3] Bu safar ular bir-biriga qarab yurayapti — tezliklar qo‘shiladi: sakson plyus yetmish — bir yuz ellik kilometr soatiga. [4] {sekin}Uch yuz kilometrni bir yuz ellikka bo‘lamiz — ikki soat! [5] Tekshiramiz: birinchi — sakson karra ikki, bir yuz oltmish. Ikkinchi — yetmish karra ikki, bir yuz qirq. [6] Bir yuz oltmish plyus bir yuz qirq — uch yuz. Aynan butun yo‘l! [7] {urgu}Esda tuting: bir tomonga — ayiramiz, qarama-qarshi — qo‘shamiz.
+DOSKA: RASM: mashina:kel | mashina:kel
+DOSKA: JADVAL: Mashina | Tezlik ;; Birinchi | 80 km/soat ;; Ikkinchi | 70 km/soat
+DOSKA: KETMA: 80 + 70 | 150 km/soat | yaqinlashish tezligi
+DOSKA: KETMA: 300 : 150 | 2 soat | uchrashish vaqti
+DOSKA: KETMA: 80 · 2 = 160 | 70 · 2 = 140 | kilometr
+DOSKA: BELGILA: 160 + 140 = 300 ✔ | aylana
+DOSKA: QOIDA: qarama-qarshi harakatda tezliklar qo‘shiladi
+TEKSH: Ikki poyezd 400 km masofada qarama-qarshi yo‘lda, tezliklari 90 va 110 km/soat. Necha soatdan keyin uchrashadi? => 2 soat | 4 soat | 20 soat | 1 soat
+TEKSH: Mashina 60 km/soat tezlikda 2,5 soatda necha km yuradi? => 150 km | 24 km | 62,5 km | 120 km
 
 ## +pm_tarif
-@tushuncha Hayotiy masala: ijara va sotib olish
-OVOZ: [1] Velosiped ijaraga olinadi: har kun uchun o‘n ming so‘m. Yoki sotib olish — yuz ellik ming so‘m, sotib olinsa har kuni ikki ming so‘m ta’mir. [2] Birinchi formula: y teng o‘n ming x. Ikkinchi: y teng yuz ellik ming plyus ikki ming x. [3] {sekin}Kesishish: o‘n ming x teng yuz ellik ming plyus ikki ming x. Sakkiz ming x teng yuz ellik ming. x — o‘n sakkiz butun yetmish besh yuzdan, ya’ni taxminan o‘n to‘qqiz kun. [4] O‘n to‘qqiz kundan kam foydalansangiz — ijara arzon. Undan ko‘p bo‘lsa — sotib olish foydali. [5] Qaror: sizga necha kun kerak?
-DOSKA: Ijara: y = 10 000x
-DOSKA: Sotib olish: y = 150 000 + 2 000x
-DOSKA: 8 000x = 150 000  →  x ≈ 18,75
-DOSKA: ≤ 18 kun → ijara; ≥ 19 kun → sotib olish
-DOSKA: Ehtiyojga qarab tanla
+@tushuncha Velosiped: ijara yoki sotib olish
+OVOZ: [1] Velosiped va pul — qaror qilish vaqti keldi! [2] Velosiped ijaraga olinadi: har kun uchun o‘n ming so‘m. Yoki sotib olish — bir yuz ellik ming so‘m, lekin har kuni ikki ming so‘m ta’mir. {pauza} Qaysi biri foydali? [3] Jadvalga qarang: o‘n kunda ijara — yuz ming, sotib olish — yuz yetmish ming. O‘n besh kunda — yuz ellik ming va yuz seksen ming. {urgu}Yigirma kunda ijara — ikki yuz ming, sotib olish — yuz to‘qson ming. Almashdi! [4] Birinchi formula: y teng o‘n ming x. Ikkinchi: y teng yuz ellik ming plyus ikki ming x. [5] {sekin}Tenglashtiramiz: o‘n ming x teng yuz ellik ming plyus ikki ming x. Sakkiz ming x teng yuz ellik ming. x — taxminan o‘n sakkiz butun yetmish besh yuzdan. [6] Son o‘qiga qarang: o‘n sakkiz yarim atrofida narxlar teng. [7] O‘n sakkiz kundan kam — ijara arzon. O‘n to‘qqiz kundan ko‘p — sotib olish.
+DOSKA: RASM: velosiped:sakra | pul
+DOSKA: JADVAL: Variant | Formula ;; Ijara | y = 10 000x ;; Sotib olish | y = 150 000 + 2 000x
+DOSKA: JADVAL: Kun | Ijara | Sotib olish ;; 10 | 100 000 | 170 000 ;; 15 | 150 000 | 180 000 ;; 20 | 200 000 | 190 000
+DOSKA: KETMA: 10 000x = 150 000 + 2 000x | 8 000x = 150 000 | x = 18,75
+DOSKA: SON_OQI: 14..24; nuqta 18.75 teng
+DOSKA: BELGILA: ≤ 18 kun → ijara; ≥ 19 kun → sotib olish | ramka
+DOSKA: QOIDA: narxlar teng bo‘lgan nuqta — qaror chegarasi
 TEKSH: Ijara 12 000/kun; sotib olish 120 000 + 4 000/kun. 20 kun uchun qaysi arzon? => Sotib olish (200 000 < 240 000) | Ijara | Teng | Aniq aytib bo‘lmaydi
+TEKSH: Xuddi shu tariflarda (ijara 12 000/kun; sotib olish 120 000 + 4 000/kun) 5 kun uchun qaysi arzon? => Ijara (60 000 < 140 000) | Sotib olish | Teng | Aniq aytib bo‘lmaydi
+@tushuncha Sport zali: kunlik chipta yoki abonement?
+OVOZ: [1] Sport zalida kunlik chipta — yigirma besh ming so‘m. Oylik abonement — uch yuz ming so‘m, cheksiz. {pauza} Oyiga necha marta borsangiz abonement foydali? [2] Chipta narxi: yigirma besh ming x. Abonement — doim uch yuz ming. Tenglashtiramiz. [3] {sekin}Uch yuz mingni yigirma besh mingga bo‘lamiz — o‘n ikki. [4] {urgu}O‘n ikki marta borsangiz — narx teng. O‘n ikkidan kam — kunlik chipta arzon. O‘n ikkidan ko‘p — abonement. [5] Qaror sizga bog‘liq: oyiga necha marta borasiz?
+DOSKA: JADVAL: Variant | Narxi ;; Kunlik | 25 000 x ;; Abonement | 300 000
+DOSKA: KETMA: 25 000x | = 300 000 | x = 12
+DOSKA: SON_OQI: 8..16; nuqta 12 teng; yur 8 12
+DOSKA: BELGILA: 12 dan kam → chipta; ko‘p → abonement | ramka
+DOSKA: QOIDA: o‘z ehtiyojingga qarab tanla
+TEKSH: Zalda kunlik chipta 30 000, abonement 240 000. Necha martadan ko‘p borganda abonement foydali bo‘ladi? => 8 martadan ko‘p | 8 martadan kam | 4 martadan ko‘p | 270 martadan ko‘p
+TEKSH: Internet A: 50 000 + 1 000 har GB. B: 80 000 + 500 har GB. Necha GB da narxlar teng? => 60 | 30 | 130 | 6

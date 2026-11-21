@@ -1,52 +1,60 @@
 ## pm_butun
 @kirish Lift qayerga tushdi?
-OVOZ: Tasavvur qiling... siz 7-qavatdasiz. Lift tugmasini bosdingiz — va u yerto‘laga, minus ikkinchi qavatga tushdi. {pauza} Savol: lift jami nechta qavat pastga tushdi? {sekin}Hali hisoblamang. Avval taxmin qiling: besh? to‘qqiz? yetti? Dars oxirida taxmin to‘g‘ri chiqdimi — o‘zingiz tekshirasiz.
-DOSKA: BELGILA: 7-qavat → −2-qavat | ramka
+OVOZ: {baland}Tasavvur qiling! Siz yettinchi qavatdasiz. Liftga kirdingiz, tugmani bosdingiz... {pauza} va lift yerto‘laga, minus ikkinchi qavatga tushib ketdi! {sekin}Savol: lift jami nechta qavat pastga tushdi? Shoshilmang, hisoblamang. Avval ko‘zingiz bilan taxmin qiling: besh? yetti? to‘qqiz? Ikkala qavat doskada belgilandi. Dars oxirida taxminingiz to‘g‘ri chiqdimi, birga tekshiramiz!
+DOSKA: RASM: bino | lift:sakra
+DOSKA: SON_OQI: -2..7; nuqta 7 7-qavat; nuqta -2 −2-qavat
 DOSKA: Necha qavat tushdi? ✋ taxmin qiling
 @tushuncha Son o‘qi: nol — markaz
-OVOZ: [1] Barcha butun sonlarni bitta to‘g‘ri chiziqqa joylaymiz. Bu — son o‘qi. [2] {sekin}Nol — markaz. Nolning o‘ng tomonida musbat sonlar, chap tomonida — manfiy sonlar. [3] Qarang: minus uch — nolning chapida, uch qadam narida. Ikki — o‘ngda. [4] {urgu}Muhim qoida: o‘ngga borgan sari son kattalashadi. Demak, minus uch minus ikkidan kichik. Ha, minus uch kichik!
-DOSKA: SON_OQI: -5..5; nuqta -3 A; nuqta 2 B; yur -3 2
-DOSKA: Nol — markaz; o‘ng → musbat, chap → manfiy
+OVOZ: [1] Mana, son o‘qi! Barcha butun sonlarni bitta to‘g‘ri chiziqqa tizamiz. {sekin}Qarang, chiziq chizildi, belgilar tushdi. [2] Nolni ko‘ryapsizmi? Nol {urgu}markaz! O‘ng tomonda musbat sonlar, chap tomonda manfiy sonlar turadi. [3] Endi minus uchni toping: nolning chap tomonida, uch qadam narida. Ikki esa o‘ng tomonda, ikki qadam. [4] {baland}Muhim sir: o‘ngga borgan sari son kattalashadi! Demak, minus uch ikkidan kichik. Ha, minus uch kichik! [5] Termometrni eslang: qancha past tushsa, harorat shuncha kichik. Qoida oddiy: o‘ngda turgan son doim kattaroq!
+DOSKA: SON_OQI: -5..5; nuqta 0 nol
+DOSKA: Nol — markaz: o‘ng → musbat, chap → manfiy
+DOSKA: SON_OQI: -5..5; nuqta -3 A; nuqta 2 B
 DOSKA: −3 < 2 (2 o‘ngda turibdi)
 DOSKA: QOIDA: O‘ngda turgan son doim kattaroq
 SODDA: Termometrni tasavvur qiling: qancha past tushsa, harorat shuncha kichik.
-TEKSH: Qaysi biri kichik: −6 yoki −1? => −6 | −1 | ikkalasi teng
+TEKSH: Qaysi biri kichik: −6 yoki −1? => −6 | −1 | ikkalasi teng | aniqlab bo‘lmaydi
 TEKSH: −2, 0, −5, 3 sonlarini kichikdan kattasiga joylang. Birinchisi qaysi? => −5 | −2 | 0 | 3
 @tushuncha Qo‘shish — o‘ngga, ayirish — chapga
-OVOZ: [1] Endi son o‘qida yuramiz. Qo‘shish — o‘ngga qadam tashlash. Ayirish — chapga qadam tashlash. [2] Birinchi misol: minus to‘rtga yetti qo‘shamiz. Minus to‘rtdan boshlaymiz va yettita qadam o‘ngga yuramiz. [3] {sekin}To‘rt qadamda nolga yetamiz. Yana uch qadam qoldi — demak, uchga keldik. Minus to‘rt plyus yetti — uch. [4] Ikkinchi misol: ikkidan olti ayiramiz. Ikkidan boshlab olti qadam chapga. Ikki qadamda nolga yetamiz, yana to‘rt qadam — minus to‘rt.
+OVOZ: [1] Endi son o‘qida sayr qilamiz! Qoida oddiy: qo‘shish — o‘ngga qadam, ayirish — chapga qadam. [2] Birinchi misol: minus to‘rtga yetti qo‘shamiz. Nuqta minus to‘rtdan yo‘lga chiqdi va har qadamda sanayapti: bir, ikki, uch, to‘rt... {urgu}nolga yetdik! [3] Yettitadan to‘rttasi ketdi, uchtasi qoldi. Nolga uchni qo‘shsak, javob uch. Minus to‘rt plyus yetti — uch! [4] {sekin}Ikkinchi misol: ikkidan olti ayiramiz. Endi chapga yuramiz. Ikki qadamda nolga yetdik, yana to‘rt qadam, nolning chap tomoniga o‘tdik. [5] Javob minus to‘rt. Nolni kesib o‘tsak, hisobni ikkiga bo‘lib olamiz: avval nolgacha, keyin qolganini.
+DOSKA: QOIDA: Qo‘shish → o‘ngga, ayirish → chapga
 DOSKA: SON_OQI: -6..8; nuqta -4 A; nuqta 3 B; yur -4 3
 DOSKA: −4 + 7 = −4 + 4 + 3 = 0 + 3 = 3
-DOSKA: SON_OQI: -5..3; nuqta 2 A; nuqta -4 B; sakrash 2 -4 −6
+DOSKA: SON_OQI: -5..3; nuqta 2 A; nuqta -4 B; yur 2 -4
 DOSKA: 2 − 6 = 2 − 2 − 4 = 0 − 4 = −4
-DOSKA: QOIDA: Qo‘shish → o‘ngga, ayirish → chapga
 TEKSH: −5 + 8 nechaga teng? => 3 | −13 | 13 | −3
 TEKSH: 1 − 4 nechaga teng? => −3 | 3 | −5 | 5
-@tushuncha Manfiy son hayotda: harorat va qarz
-OVOZ: [1] Manfiy sonlar hayotda ikki joyda ko‘p uchraydi. Birinchisi — harorat. Noldan past harorat manfiy bo‘ladi. [2] Misol: harorat uch daraja edi, besh daraja pasaydi. Uchdan besh ayiramiz. Uch qadamda nolga yetamiz, yana ikki qadam — minus ikki daraja. [3] {sekin}Ikkinchisi — hisobdagi qarz. Hisobda minus yigirma ming so‘m degani — hisobda pul yo‘q, aksincha, yigirma ming so‘m qarz bor degani. [4] Unga ellik ming so‘m kirdi. Avval qarz yopiladi: yigirma ming ketadi, qolgan o‘ttiz ming so‘m hisobda qoladi. Minus yigirma plyus ellik — o‘ttiz.
+@tushuncha Harorat va qarz: manfiy sonlar hayotda
+OVOZ: [1] Mana termometr va pul: manfiy sonlar ayniqsa shu ikki joyda uchraydi. [2] Manfiy sonlar hayotda ikki joyda ko‘p uchraydi. Birinchisi: harorat. Bugun uch daraja issiq, ertaga besh daraja pasaydi. Kuzating: uch, ikki, bir, nol... {urgu}nolni kesdik! Minus bir, minus ikki. [3] Uch minus besh — minus ikki daraja. Ya’ni, sovuq! [4] {sekin}Ikkinchisi: hisobdagi qarz. Endi bir qadam o‘n ming so‘m deylik. Hisobda minus yigirma ming so‘m turibdi. [5] Minus yigirma ming degani, hisobda pul yo‘q, aksincha yigirma ming so‘m qarz bor! Unga ellik ming so‘m kirdi. Nuqta yuradi: avval qarz yopiladi, nolga yetdik, qolgani hisobda qoladi. [6] Qarz ketdi, o‘ttiz ming so‘m qoldi. Qoida: manfiy hisob — qarz, kirim esa avval qarzni yopadi.
+DOSKA: RASM: termometr:tebran | pul:kel
+DOSKA: SON_OQI: -4..4; nuqta 3 bugun; yur 3 -2
 DOSKA: harorat: 3 − 5 = −2 °C
-DOSKA: −20 ming = 20 ming qarz
-DOSKA: −20 + 50 = 30 ming so‘m
+DOSKA: SON_OQI: -3..4; nuqta -2 −20 ming; yur -2 3
+DOSKA: −20 ming = 20 ming qarz; −20 + 50 = 30 ming so‘m
 DOSKA: QOIDA: manfiy hisob = qarz; kirim avval qarzni yopadi
 TEKSH: Harorat −1 edi, 5 daraja pasaydi. Necha bo‘ldi? => −6 | 4 | −4 | 6
-TEKSH: Hisobda −30 ming so‘m, ya’ni 30 ming so‘m qarz bor. 50 ming kirdi. Hisobda qancha pul qoladi? => 20 ming | −20 ming | 80 ming | −80 ming
-@tushuncha Ikki son orasidagi masofa
-OVOZ: [1] Endi asosiy savolimizga qaytaylik. Ikki nuqta orasidagi masofa — katta sondan kichigini ayirib topiladi. [2] Yettidan minus ikkini ayiramiz. {urgu}Diqqat: minus ikkini ayirish — plyus ikkini qo‘shish bilan bir xil! [3] Yetti plyus ikki — to‘qqiz. [4] Demak, lift to‘qqiz qavat tushgan. Taxminingiz to‘g‘ri chiqdimi? [5] Sababi — nol qavatdan o‘tishda bitta qavat «yo‘qolmaydi»: yettitasi nolgacha, ikkitasi nolidan pastga.
+TEKSH: Hisobda −30 ming so‘m, ya’ni 30 ming so‘m qarz bor. 50 ming so‘m kirdi. Hisobda qancha pul qoladi? => 20 ming | −20 ming | 80 ming | −80 ming
+TEKSH: Ertalab −3 daraja edi, tushgacha 7 daraja isidi. Harorat necha daraja bo‘ldi? => 4 | −10 | 10 | −4
+@tushuncha Ikki son orasidagi masofa: lift topishmog‘i
+OVOZ: [1] Endi liftimizga qaytamiz! Nuqta yettinchi qavatdan tushyapti. Sanang: bir, ikki, uch... nolga, ya’ni birinchi qavat darajasiga yetdik. {urgu}Davom etamiz: yerto‘laga, minus birga, minus ikkiga! [2] Jami to‘qqiz qadam! Taxmin to‘g‘ri chiqdimi? Masofani topish uchun kattadan kichikni ayiramiz. [3] Yetti minus, minus ikki. Ayirish belgisi va minus ikki yonma-yon turibdi, ammo bu {baland}yetti plyus ikki degani! [4] Sababi aniq: yetti qavat nolgacha va yana ikki qavat nolning pastida. Yetti plyus ikki, to‘qqiz! [5] Qoida: minus sonni ayirish, shu sonning musbatini qo‘shish bilan bir xil.
+DOSKA: SON_OQI: -2..7; nuqta 7 7-qavat; nuqta -2 −2-qavat; yur 7 -2
 DOSKA: Masofa = katta − kichik
 DOSKA: KETMA: 7 − (−2) | 7 + 2 | 9
-DOSKA: SON_OQI: -2..7; nuqta -2 A; nuqta 7 B; yur -2 7
 DOSKA: 7 qavat nolgacha + 2 qavat nolidan pastga = 9
 DOSKA: QOIDA: a − (−b) = a + b
 TEKSH: Dengiz sathidan 120 m balandlikdagi tog‘ va 30 m chuqurlikdagi cho‘kma orasidagi balandlik farqi nechta? => 150 m | 90 m | 120 m | 30 m
 TEKSH: 4 − (−6) nimaga teng? => 10 | −2 | 2 | −10
-@tushuncha Xato tuzog‘i
-OVOZ: [1] Ko‘pchilik shunday xato qiladi: besh minus minus uch... va javob qilib ikki deb yozadi. [2] {urgu}Yo‘q! Ikki minus belgisi yonma-yon kelsa — bir-birini yo‘qotadi. [3] Besh minus minus uch — besh plyus uch. Sakkiz. [4] Tekshirish usuli oddiy: ayirish — masofani topish. Besh va minus uch orasidagi masofa — sakkiz qadam.
+@tushuncha Minus minus — nega plyus? Qarz kechildi!
+OVOZ: [1] Sizda o‘ttiz ming so‘m qarz bor: bu minus uch, o‘n ming so‘mlik bir qadam. Do‘stingiz o‘n ming so‘mlik qarzingizni kechdi! Qarzni olib tashlash degani, qarz kamaydi: nuqta o‘ngga bir qadam yurdi. [2] Minus o‘ttiz, minus, minus o‘n. {urgu}Qarzni ayirish, pul qo‘shish bilan bir xil! Shuning uchun minus o‘ttiz plyus o‘n, minus yigirma. [3] Endi mashhur xato: besh minus, minus uch. Ko‘pchilik ikkita minus bir-birini yo‘qotdi deb ikki yozadi. Shoshilmang! [4] Tekshiramiz: besh va minus uch orasidagi masofa nuqta yurib sanasak, sakkiz qadam. [5] Demak, besh minus minus uch, besh plyus uch, sakkiz! [6] Esda tuting: ikki minus yonma-yon kelsa, plyusga aylanadi.
+DOSKA: SON_OQI: -4..1; nuqta -3 qarz 30; yur -3 -2
+DOSKA: −30 − (−10) = −30 + 10 = −20
 DOSKA: ❌ 5 − (−3) = 2
-DOSKA: ✅ 5 − (−3) = 5 + 3 = 8
 DOSKA: SON_OQI: -3..5; nuqta -3 A; nuqta 5 B; yur -3 5
+DOSKA: ✅ 5 − (−3) = 5 + 3 = 8
 DOSKA: QOIDA: ikki minus yonma-yon → plyus
 TEKSH: −2 − (−5) nechaga teng? => 3 | −7 | 7 | −3
+TEKSH: Hisobda −40 ming so‘m. Bank 15 ming so‘mlik qarzni kechdi, ya’ni −40 − (−15) hisoblanadi. Natija? => −25 ming | −55 ming | 25 ming | 55 ming
 @xulosa Esda tut
-OVOZ: Birinchi: nol markaz, o‘ngdagi son kattaroq. Ikkinchi: qo‘shish — o‘ngga, ayirish — chapga. Uchinchi: masofa — katta minus kichik. To‘rtinchi: minus minus — plyus. Endi mashqda sinab ko‘ring!
+OVOZ: Birinchi: nol — markaz, o‘ngdagi son doim kattaroq. Ikkinchi: qo‘shish — o‘ngga, ayirish — chapga qadam. Uchinchi: minus hisob — qarz, kirim avval qarzni yopadi. To‘rtinchi: masofa — kattadan kichikni ayirish, minus minus esa plyus. Endi mashqda kuchingizni sinab ko‘ring!
 DOSKA: 1. O‘ngdagi son kattaroq
 DOSKA: 2. + o‘ngga, − chapga
 DOSKA: 3. Masofa = katta − kichik
@@ -54,12 +62,13 @@ DOSKA: 4. a − (−b) = a + b
 
 ## pm_kasr
 @kirish Pitsa janjali: kim ko‘p yedi?
-OVOZ: {baland}Ikki do‘st pitsa buyurtma qildi! {pauza} Aziz pitsaning uchdan ikki qismini yedi. Bobur esa to‘rtdan uch qismini. {sekin}Savol oddiy: kim ko‘proq yedi? Jim turmang — ko‘zingiz bilan taxmin qiling! Pitsalar hozir doskada chiziladi. Taxmin qilib oling, dars oxirida tekshiramiz.
+OVOZ: {baland}Ikki do‘st pitsa buyurtma qildi! {pauza} Aziz pitsaning uchdan ikki qismini yedi. Bobur esa to‘rtdan uch qismini. {sekin}Savol oddiy: kim ko‘proq yedi? Jim turmang, ko‘zingiz bilan taxmin qiling! Pitsalar hozir doskada chiziladi. Dars oxirida taxminingiz to‘g‘ri chiqdimi, birga tekshiramiz.
+DOSKA: RASM: pitsa:kel | shokolad
 DOSKA: DOIRA_KASR: 2/3
 DOSKA: DOIRA_KASR: 3/4
 DOSKA: Kim ko‘proq yedi? ✋
 @tushuncha Kasr nima? Pitsani bo‘lib ko‘ramiz
-OVOZ: [1] Pitsani teng bo‘laklarga bo‘laman. {sekin}Qarang, sakkiz bo‘lak! [2] Ulardan uchtasini bo‘yayman — mana, uchta bo‘lak olindi. [3] {urgu}Bu — uch bo‘lib sakkiz: sakkizdan uchi. [4] Pastdagi son — maxraj: jami nechta teng bo‘lak. Tepadagi — surat: nechtasini oldik. [5] Muhim so‘z: {baland}teng bo‘laklar! Bo‘laklar har xil bo‘lsa, kasr chiqmaydi.
+OVOZ: [1] Pitsani teng bo‘laklarga bo‘laman. {sekin}Qarang, sakkiz bo‘lak! [2] Ulardan uchtasini bo‘yayman, mana, uchta bo‘lak olindi. [3] {urgu}Bu uch bo‘lib sakkiz: sakkizdan uchi. [4] Pastdagi son maxraj: jami nechta teng bo‘lak. Tepadagi surat: nechtasini oldik. [5] Muhim so‘z: {baland}teng bo‘laklar! Bo‘laklar teng bo‘lmasa, kasr chiqmaydi.
 DOSKA: DOIRA_KASR: 3/8
 DOSKA: 3 — surat: olingan bo‘laklar
 DOSKA: 8 — maxraj: jami teng bo‘laklar
@@ -69,38 +78,42 @@ SODDA: Maxraj — nechaga bo‘ldik, surat — nechtasini oldik.
 TEKSH: Shokolad 6 teng bo‘lakka bo‘lindi, 5 tasi yeyildi. Kasrni yozing. => 5/6 | 6/5 | 1/6 | 5
 TEKSH: 7/9 kasrida maxraj nima? => 9 | 7 | 16 | 2
 @tushuncha Har xil bo‘laklarni solishtirib bo‘ladimi?
-OVOZ: [1] Endi janjalimizga qaytamiz: uchdan ikki, to‘rtdan uch. [2] {sekin}Ikkala pitsa chizilgan. Bo‘laklar bir xil kattalikdami? Yo‘q! Uchdan bir — katta bo‘lak, to‘rtdan bir — kichikroq. [3] Katta bo‘lakdan ikkita, kichikdan uchta — qaysi ko‘p? Ko‘z bilan aytish qiyin. [4] Hal qilishning yo‘li: ikkala pitsani {urgu}bir xil maydalikdagi bo‘laklarga bo‘lamiz!
+OVOZ: [1] Endi janjalimizga qaytamiz: uchdan ikki, to‘rtdan uch. [2] {sekin}Birinchi pitsada bitta bo‘lak, uchdan bir, juda katta. Ikkinchisida to‘rtdan bir, ancha kichik. [3] Katta bo‘lakdan ikkita, kichikdan uchta: qaysi ko‘p? Ko‘z bilan aytish qiyin! [4] Yo‘li bor: ikkala pitsani {urgu}bir xil maydalikdagi bo‘laklarga bo‘lamiz!
 DOSKA: DOIRA_KASR: 1/3
 DOSKA: DOIRA_KASR: 1/4
 DOSKA: 1/3 > 1/4 — bo‘laklar har xil!
 DOSKA: Yechim: bir xil maydalik → umumiy maxraj
-@tushuncha Umumiy maxraj: 12 bo‘lak
-OVOZ: [1] Uch va to‘rtga ham bo‘linadigan son kerak. Mana — o‘n ikki! [2] {sekin}Birinchi pitsani o‘n ikki bo‘lakka bo‘lamiz. Uchdan ikki — sakkiz bo‘lak bo‘ladi: sakkiz bo‘lib o‘n ikki. [3] Ikkinchi pitsa ham o‘n ikki bo‘lak: to‘rtdan uch — to‘qqiz bo‘lib o‘n ikki. [4] Endi bo‘laklar bir xil! {baland}Sakkiz va to‘qqiz — qaysi katta? To‘qqiz! [5] {urgu}Demak, Bobur ko‘proq yegan. Taxmin to‘g‘ri chiqdimi?
+@tushuncha Umumiy maxraj: o‘n ikki bo‘lak
+OVOZ: [1] Uchga ham, to‘rtga ham bo‘linadigan son kerak. Mana, o‘n ikki! [2] {sekin}Birinchi pitsani o‘n ikki bo‘lakka bo‘lamiz. Uchdan ikki: sakkiz bo‘lak bo‘ladi, sakkiz bo‘lib o‘n ikki. [3] Ikkinchi pitsa ham o‘n ikki bo‘lak. To‘rtdan uch: to‘qqiz bo‘lib o‘n ikki. [4] Endi bo‘laklar bir xil! {baland}Sakkiz va to‘qqiz: qaysi katta? To‘qqiz! [5] {urgu}Demak, Bobur ko‘proq yegan. Taxmin to‘g‘ri chiqdimi? [6] Qoida: maxrajni tenglab, suratni solishtiramiz.
 DOSKA: DOIRA_KASR: 8/12
 DOSKA: DOIRA_KASR: 9/12
 DOSKA: 2/3 = 8/12;  3/4 = 9/12
-DOSKA: BELGILA: 9/12 > 8/12 | aylana
+DOSKA: 9/12 > 8/12
+DOSKA: BELGILA: Bobur ko‘proq yegan | aylana
 DOSKA: QOIDA: maxrajni tenglab — suratni solishtir
 SODDA: Bir xil o‘lchamdagi bo‘laklarni sanash osonroq.
+BOSHQA: Kasrni o‘nli kasrga aylantiring: 2/3 ≈ 0,67, 3/4 = 0,75.
 TEKSH: Qaysi biri katta: 3/5 yoki 2/3? => 2/3 | 3/5 | teng | aniqlab bo‘lmaydi
 TEKSH: 1/2 va 3/8 ni solishtiring. Kattasi qaysi? => 1/2 | 3/8 | teng | aniqlab bo‘lmaydi
-@tushuncha Kasr, o‘nli kasr va foiz — bitta son
-OVOZ: [1] Bir xil son uch xil kiyim kiyadi! {sekin}Pitsaning to‘rtdan biri. [2] Maxrajni yuzga keltiramiz: yigirma besh bo‘lib yuz. Yuz bo‘lak ichida yigirma beshtasi — yigirma besh foiz! [3] O‘nli kasr bilan ham shunday: yigirma besh bo‘lib yuz — nol butun yigirma besh. [4] Kasr chizig‘i — bu bo‘lish belgisi. {urgu}Suratni maxrajga bo‘lsangiz — o‘nli kasr chiqadi. Uchni sakkizga bo‘lamiz: nol butun uch yuz yetmish besh.
+@tushuncha Kasr, o‘nli kasr va foiz: bitta son
+OVOZ: [1] Bir xil son uch xil kiyim kiyadi! {sekin}Mana, pitsaning to‘rtdan biri. [2] Maxrajni yuzga keltiramiz: yigirma besh bo‘lib yuz. Yuz bo‘lakning yigirma beshtasi: yigirma besh foiz! O‘nli kasrda esa nol butun yigirma besh. [3] Kasr chizig‘i bu bo‘lish belgisi. {urgu}Suratni maxrajga bo‘lsak, o‘nli kasr chiqadi. [4] Uchni sakkizga bo‘lamiz: nol butun uch yuz yetmish besh. [5] Qoida: kasr, surat bo‘linadi maxraj.
 DOSKA: DOIRA_KASR: 1/4
 DOSKA: 1/4 = 25/100 = 25% = 0,25
+DOSKA: 3 : 8 — kasr chizig‘i bo‘lish belgisi
 DOSKA: BOLISH: 3:8
 DOSKA: QOIDA: kasr = surat : maxraj
 TEKSH: 4/5 ni foizda yozing. => 80% | 45% | 20% | 4,5%
 TEKSH: 0,6 qaysi kasrga teng? => 3/5 | 6/100 | 1/6 | 2/3
 @tushuncha Xato tuzog‘i: yuqorini yuqoriga, pastni pastga?
-OVOZ: [1] Sizga yarim va uchdan bir berildi. Ularni qo‘shsak? {pauza} Ko‘pchilik shoshib yozadi: bir plyus bir — ikki, ikki plyus uch — besh. Ikki bo‘lib besh! [2] {urgu}Bir daqiqa to‘xtang! Yarimning o‘zi kamida yarim. Ikki bo‘lib besh esa — yarimdan kam! Qo‘shsak, kamayib qoldimi?! Bo‘lishi mumkin emas. [3] To‘g‘risi: umumiy maxraj — olti. Uch bo‘lib olti va ikki bo‘lib olti. {sekin}Jami — besh bo‘lib olti. Yarimdan katta, hammasi joyida!
-DOSKA: ❌ 1/2 + 1/3 = 2/5  (yarimdan kam!)
+OVOZ: [1] Sizga yarim va uchdan bir berildi. Ularni qo‘shsak? {pauza} Ko‘pchilik shoshib yozadi: bir plyus bir, ikki. Ikki plyus uch, besh. Ikki bo‘lib besh! [2] {urgu}Bir daqiqa to‘xtang! Rasmga qarang: ikki bo‘lib besh, yarimdan kam. Yarimning o‘zi bor edi, ustiga qo‘shdik, kamayib qoldimi?! Bo‘lishi mumkin emas. [3] To‘g‘risi: umumiy maxraj olti. Yarim, bu uch bo‘lib olti. [4] Uchdan bir, ikki bo‘lib olti. [5] {sekin}Jami: besh bo‘lib olti. Yarimdan katta, hammasi joyida!
+DOSKA: ❌ 1/2 + 1/3 = 2/5
+DOSKA: DOIRA_KASR: 2/5
 DOSKA: DOIRA_KASR: 3/6
 DOSKA: DOIRA_KASR: 2/6
 DOSKA: ✅ 3/6 + 2/6 = 5/6   (> 1/2 ✔)
 TEKSH: 1/4 + 1/2 nechaga teng? => 3/4 | 2/6 | 1/6 | 2/4
 @xulosa Esda tut
-OVOZ: Kasr — butunning teng bo‘laklari: maxraj jami, surat olingani. Solishtirish uchun {baland}bir xil maxrajga keltiramiz. Kasr, o‘nli kasr, foiz — bitta sonning uch libosi. Qo‘shishda esa maxraj bir xil bo‘lsa, faqat suratlar qo‘shiladi. Endi mashqda kuchingizni sinab ko‘ring!
+OVOZ: Kasr, butunning teng bo‘laklari: maxraj jami, surat olingani. Solishtirish uchun {baland}bir xil maxrajga keltiramiz. Kasr, o‘nli kasr, foiz, bitta sonning uch libosi. Qo‘shishda esa maxraj bir xil bo‘lsa, faqat suratlar qo‘shiladi. Endi mashqda kuchingizni sinab ko‘ring!
 DOSKA: 1. maxraj = jami, surat = olingan
 DOSKA: 2. maxrajni tenglab solishtir
 DOSKA: 3. kasr = o‘nli kasr = foiz
@@ -108,42 +121,49 @@ DOSKA: 4. 1/2 + 1/3 = 3/6 + 2/6
 
 ## pm_daraja
 @kirish Qog‘oz necha marta buklansa?
-OVOZ: Katta qog‘ozni ikkiga buklaymiz. Yana ikkiga. Yana. {pauza} Atigi o‘ttiz marta buklasak — qalinligi qancha bo‘lishi mumkin? Metr? Kilometr? {sekin}Javob sizni hayratda qoldiradi. Buning kaliti — daraja.
-DOSKA: Qalinlik: 0,1 mm
-DOSKA: Har buklashda ×2
-DOSKA: 30 buklashdan keyin? ✋
-@tushuncha Daraja — takror ko‘paytirish
-OVOZ: [1] Ikkini ikki marta ko‘paytirsak — to‘rt. Uch marta — sakkiz. [2] Bunday uzun ko‘paytmani qisqa yozamiz: ikkining uchinchi darajasi. [3] {sekin}Pastki katta son — asos. Yuqoridagi kichik son — daraja ko‘rsatkichi: asosni necha marta ko‘paytirish kerakligini bildiradi. [4] {urgu}Diqqat: ikkining uchinchi darajasi — ikki marta uch emas! Ikki karra ikki karra ikki.
-DOSKA: 2³ = 2 · 2 · 2 = 8
-DOSKA: Asos = 2; ko‘rsatkich = 3
-DOSKA: ❌ 2³ ≠ 2 · 3
+OVOZ: {baland}Mana, oddiy qog‘oz varag‘i! Uni ikkiga buklaymiz. Yana ikkiga. Yana! {pauza} Bitta varaqning qalinligi atigi nol butun bir millimetr. Endi savol: o‘ttiz marta buklay olsak, qalinlik qancha bo‘ladi? Barmoqdek? Bir metrmi? Yoki... kilometrlarmi? {sekin}Javobingizni o‘zingizga aytib qo‘ying. Dars oxirida sizni hayratda qoldiraman!
+DOSKA: RASM: qog'oz:tebran
+DOSKA: ZANJIR: 1 varaq :: 0,1 mm | 30 marta buklasak :: ?
+DOSKA: Qalinlik qancha bo‘ladi? ✋
+@tushuncha Buklash: 2, 4, 8, 16...
+OVOZ: [1] Birinchi buklash, ikki qavat. Ikkinchi, to‘rt qavat! Uchinchi, sakkiz! To‘rtinchi, o‘n olti! {urgu}Har safar qavatlar soni ikki baravar oshyapti. [2] Qarang: ikkini ikki marta, uch marta, to‘rt marta ko‘paytiryapmiz. Bunday uzun yozuvdan charchamaymizmi? [3] Mana grafik: avval sekin ko‘tariladi, keyin... {baland}otilib chiqadi! Bu darajaning kuchi. Oldinda yana ko‘p hayratlar bor!
+DOSKA: ZANJIR: 1 buklash :: 2 qavat | 2 buklash :: 4 qavat | 3 buklash :: 8 qavat | 4 buklash :: 16 qavat
+DOSKA: KETMA: 2 | 2 · 2 | 2 · 2 · 2 | 2 · 2 · 2 · 2
+DOSKA: GRAFIK: y=2^x; [0;5]
+@tushuncha Daraja yozuvi: asos va ko‘rsatkich
+OVOZ: [1] Uzun ko‘paytmani qisqa yozamiz: ikki karra ikki karra ikki, bu ikkining uchinchi darajasi. Javob sakkiz. [2] Pastdagi katta son: asos, kimni ko‘paytiryapmiz. Tepadagi kichik son: ko‘rsatkich, necha marta. [3] {urgu}Diqqat! Eng ko‘p xato: ikkining uchinchi darajasi, ikki karra uch, ya’ni olti emas! Olti chiqsa, qog‘ozimiz sakkiz qavat o‘rniga olti qavat bo‘lib qolardi. [4] Qoida: a ning n-darajasi, a ni n marta o‘ziga ko‘paytirish.
+DOSKA: KETMA: 2 · 2 · 2 | 2³ | 8
+DOSKA: Asos = 2;  ko‘rsatkich = 3
+DOSKA: ❌ 2³ ≠ 2 · 3 = 6
 DOSKA: QOIDA: aⁿ = a · a · … · a (n marta)
 TEKSH: 3⁴ nechaga teng? => 81 | 12 | 64 | 7
-TEKSH: 5² ni hisoblang. => 25 | 10 | 7 | 52
-@tushuncha Kvadrat va kub — hayotdagi daraja
-OVOZ: [1] Ikkinchi daraja — kvadrat. Nega? Chunki tomoni a bo‘lgan kvadratning yuzi — a karra a. [2] Uchinchi daraja — kub. Tomoni a bo‘lgan kubning hajmi — a karra a karra a. [3] Tomoni besh santimetr kvadrat — yigirma besh kvadrat santimetr. Tomoni uch bo‘lgan kub — yigirma yetti kub santimetr. [4] Yuza kvadrat birlikda, hajm kub birlikda o‘lchanishini unutmang.
-DOSKA: CHIZ: kvadrat A(0;0) B(3;0) C(3;3) D(0;3)
-DOSKA: Yuza = a² (kv. birlik)
-DOSKA: Hajm = a³ (kub birlik)
-DOSKA: 5² = 25 sm²; 3³ = 27 sm³
+TEKSH: 2⁶ nechaga teng? => 64 | 12 | 32 | 128
+@tushuncha Kvadrat va kub: hayotdagi daraja
+OVOZ: [1] Kvadrat chizamiz, tomoni besh santimetr. [2] Yuzasi: tomon karra tomon, besh karra besh. Ya’ni besh ning ikkinchi darajasi, yigirma besh kvadrat santimetr. Mana nega ikkinchi darajani «kvadrat» deyishadi! [3] Kub: uch o‘lchov, uzunlik, kenglik, balandlik. Tomoni uch bo‘lgan kub: uch karra uch karra uch, yigirma yetti kub santimetr. Uchinchi daraja, «kub»! [4] Yuza kvadrat birlikda, hajm kub birlikda o‘lchanadi. Unutmang!
+DOSKA: CHIZ: kvadrat A(0;0) B(5;0) C(5;5) D(0;5)
+DOSKA: Yuza = 5 · 5 = 5² = 25 sm²
+DOSKA: Kub: 3 · 3 · 3 = 3³ = 27 sm³
+DOSKA: QOIDA: a² — yuza (kv. birlik); a³ — hajm (kub birlik)
 TEKSH: Tomoni 4 sm bo‘lgan kubning hajmi? => 64 sm³ | 16 sm³ | 12 sm³ | 48 sm³
+TEKSH: Tomoni 7 sm bo‘lgan kvadratning yuzi? => 49 sm² | 14 sm² | 28 sm² | 343 sm²
 @tushuncha Standart shakl: juda katta va juda kichik sonlar
-OVOZ: [1] Quyoshgacha masofa — yuz ellik million kilometr. Bunday sonni nol bilan yozish noqulay. [2] {sekin}Standart shakl: bir dan o‘ngacha son, karra o‘n ning darajasi. [3] Yuz ellik million — bir butun besh, karra o‘nning sakkizinchi darajasi. [4] Kichik sonlarda daraja manfiy bo‘ladi: nol butun nol nol uch — uch karra o‘nning minus ikkinchi darajasi.
-DOSKA: 150 000 000 = 1,5 · 10⁸
-DOSKA: 0,003 = 3 · 10⁻³
-DOSKA: Nechta nolni o‘tdik — daraja shuncha
+OVOZ: [1] Yerdan Quyoshgacha yuz ellik million kilometr! Bunday sonni nollar bilan yozish qiyin. Qarang, qanday qisqartiramiz. [2] Vergulni sakkiz xona suramiz: bir butun besh karra o‘nning sakkizinchi darajasi. {urgu}Daraja surilgan xonalar soni! [3] Juda kichik sonlarda daraja manfiy bo‘ladi: nol butun nol nol uch, uchni mingga bo‘lish, ya’ni uch karra o‘nning minus uchinchi darajasi. [4] Qoida: birdan o‘ngacha son karra o‘nning darajasi.
+DOSKA: KETMA: 150 000 000 | 15 · 10 000 000 | 1,5 · 100 000 000 | 1,5 · 10⁸
+DOSKA: vergul 8 xona surildi → daraja 8
+DOSKA: KETMA: 0,003 | 3 : 1 000 | 3 · 10⁻³
 DOSKA: QOIDA: a · 10ⁿ, 1 ≤ a < 10
 TEKSH: 4 500 000 ni standart shaklda yozing. => 4,5 · 10⁶ | 45 · 10⁵ | 4,5 · 10⁵ | 0,45 · 10⁷
 TEKSH: 6 · 10⁻² nechaga teng? => 0,06 | 0,6 | 600 | 0,006
 @tushuncha Qog‘oz topishmog‘ining yechimi
-OVOZ: [1] Endi boshlang‘ich savolga qaytamiz. Har buklashda qalinlik ikki baravar oshadi. O‘ttiz marta — ikkining o‘ttizinchi darajasi. [2] Bu — bir milliard yetmish uch million atrofida. [3] Nol butun bir millimetrga ko‘paytirsak — yuz yetti million millimetr, ya’ni yuz yetti kilometr! [4] Daraja o‘sishi dastlab sekin, keyin portlovchi bo‘ladi.
-DOSKA: 2³⁰ ≈ 1,07 · 10⁹
-DOSKA: 0,1 mm · 1,07 · 10⁹ ≈ 1,07 · 10⁸ mm
-DOSKA: ≈ 107 km!
-DOSKA: Daraja: avval sekin, keyin portlovchi
+OVOZ: [1] Endi hisoblaymiz! O‘n marta buklasak, ming yigirma to‘rt qavat, qalinlik taxminan o‘n santimetr, kaftdek. Yigirma marta, yuz besh metr, baland bino! O‘ttiz marta... {baland}yuz yetti kilometr! [2] Grafikka qarang: avval deyarli sezilmaydi, keyin otilib chiqadi. [3] Hisob: ikkining o‘ttizinchi darajasi, bir milliard yetmish million atrofida. Nol butun bir millimetrga ko‘paytirsak, yuz yetti kilometr. [4] {urgu}Qoida: daraja avval sekin, keyin portlovchi o‘sadi!
+DOSKA: ZANJIR: 10 buklash :: ≈ 10 sm | 20 buklash :: ≈ 105 m | 30 buklash :: ≈ 107 km
+DOSKA: GRAFIK: y=2^x; [0;10]
+DOSKA: KETMA: 2³⁰ | ≈ 1,07 · 10⁹ | 0,1 mm · 1,07 · 10⁹ | ≈ 107 km
+DOSKA: QOIDA: daraja: avval sekin, keyin portlovchi
 TEKSH: Bakteriya har soatda ikki marta ko‘payadi. 5 soatda necha baravar ko‘payadi? => 32 | 10 | 25 | 16
+TEKSH: Suv o‘tlari har kuni ikki baravar ko‘payadi va ko‘lni 30-kuni to‘liq qoplaydi. Ko‘l yarmi qoplangan kun? => 29-kun | 15-kun | 28-kun | 20-kun
 @xulosa Esda tut
-OVOZ: Birinchi: daraja — bir sonni takror ko‘paytirish, ikki marta uch emas. Ikkinchi: kvadrat — yuza, kub — hajm. Uchinchi: katta va kichik sonlar standart shaklda yoziladi. To‘rtinchi: daraja o‘sishi tez, shuning uchun ehtiyot bo‘ling.
+OVOZ: Birinchi: daraja, bir sonni takror ko‘paytirish, ikki karra uch emas. Ikkinchi: kvadrat, yuza; kub, hajm. Uchinchi: katta va kichik sonlar standart shaklda yoziladi. To‘rtinchi: daraja o‘sishi tez, shuning uchun hayratda qolmang, hisoblang!
 DOSKA: 1. aⁿ — a ni n marta ko‘paytirish
 DOSKA: 2. a² — yuza, a³ — hajm
 DOSKA: 3. a · 10ⁿ — standart shakl
@@ -151,45 +171,47 @@ DOSKA: 4. 2ⁿ juda tez o‘sadi
 
 ## pm_taxmin
 @kirish Do‘konda tez hisoblash
-OVOZ: Siz do‘konda uchta mahsulot oldingiz: ikki ming to‘qqiz yuz, to‘rt ming bir yuz va yetti ming yigirma so‘m. Qo‘lingizda — o‘n to‘rt ming so‘m. {pauza} Pul yetadimi? Kassadan oldin, hisoblamasdan javob bera olasizmi? Ana shu — taxminiy hisob san’ati.
+OVOZ: {baland}Siz do‘konda uchta mahsulot oldingiz: ikki ming to‘qqiz yuz, to‘rt ming bir yuz va yetti ming yigirma so‘m. Qo‘lingizda o‘n to‘rt ming so‘m. {pauza} Pul yetadimi? Kassaga borishdan oldin, hisoblamasdan javob bera olasizmi? {sekin}Ana shu, taxminiy hisob san’ati. Avval o‘zingiz taxmin qiling!
+DOSKA: RASM: savat | pul | non
 DOSKA: 2 900 + 4 100 + 7 020
 DOSKA: Qo‘limda: 14 000
 DOSKA: Yetadimi? ✋
-@tushuncha Yaxlitlash qoidasi
-OVOZ: [1] Yaxlitlash — sonni eng yaqin qulay songa almashtirish. Masalan, yuzliklarga. [2] {sekin}Qoida: o‘chiriladigan raqamga qaraymiz. Besh yoki undan katta bo‘lsa — oldingi raqam bittaga oshadi. To‘rt yoki kichik bo‘lsa — o‘zgarmaydi. [3] Ikki ming to‘qqiz yuz — ming xonasiga yaxlitlasak, uch ming. To‘rt ming bir yuz — to‘rt ming. [4] Yetti ming yigirma — yetti ming.
-DOSKA: 2 900 ≈ 3 000 (9 ≥ 5 → oshdi)
-DOSKA: 4 100 ≈ 4 000 (1 < 5 → qoldi)
-DOSKA: 7 020 ≈ 7 000
+@tushuncha Yaxlitlash: qaysi songa yaqin?
+OVOZ: [1] Yigirma olti, yigirma bilan o‘ttizning qaysi biriga yaqin? Nuqta o‘ttizga yuradi: bir, ikki, uch, to‘rt qadam. Yigirmaga esa olti qadam bo‘lardi. [2] Demak, yigirma olti taxminan o‘ttiz. Bu yaxlitlash! [3] {sekin}Qoida: o‘chiriladigan raqamga qaraymiz. Besh yoki undan katta bo‘lsa, oldingi raqam bittaga oshadi. To‘rt yoki kichik bo‘lsa, o‘zgarmaydi. [4] Narxlarimizni yaxlitlaymiz. Ikki ming to‘qqiz yuz, to‘qqiz yuz katta, uch ming. To‘rt ming bir yuz, to‘rt ming. Yetti ming yigirma, yetti ming.
+DOSKA: SON_OQI: 20..30; nuqta 20 20; nuqta 26 26; nuqta 30 30; yur 26 30
+DOSKA: 26 ≈ 30   (4 qadam < 6 qadam)
 DOSKA: QOIDA: 5 va undan katta → oshir; 4 va undan kichik → qoldir
+DOSKA: 2 900 ≈ 3 000;  4 100 ≈ 4 000;  7 020 ≈ 7 000
 TEKSH: 3 480 ni minglikka yaxlitlang. => 3 000 | 4 000 | 3 500 | 3 400
 TEKSH: 6 750 ni yuzlikka yaxlitlang. => 6 800 | 6 700 | 7 000 | 6 750
-@tushuncha Do‘kondagi savolning yechimi
-OVOZ: [1] Yaxlitlangan sonlarni qo‘shamiz: uch ming, plyus to‘rt ming, plyus yetti ming — jami o‘n to‘rt ming. Taxminiy yig‘indi aynan qo‘limizdagi pulga teng. [2] {urgu}Ehtiyot bo‘ling! Ikkita sonni yuqoriga, bittasini pastga yaxlitladik — xato ikki tomonga ketishi mumkin. Shuning uchun aniq hisoblaymiz. Avval ikkitasi: ikki ming to‘qqiz yuz plyus to‘rt ming bir yuz — yetti ming. [3] Keyin yetti ming plyus yetti ming yigirma — o‘n to‘rt ming yigirma. [4] {pauza}Pul yetmaydi — atigi yigirma so‘mga! [5] Xulosa: natija chegaraga juda yaqin bo‘lsa, taxmin yetarli emas — aniq hisoblash kerak.
-DOSKA: 3 000 + 4 000 + 7 000 = 14 000 (taxmin)
-DOSKA: 2 900 + 4 100 = 7 000
-DOSKA: 7 000 + 7 020 = 14 020
+TEKSH: 47 ni o‘nlikka yaxlitlang. => 50 | 40 | 45 | 70
+@tushuncha Kassadagi sinov: taxmin yetadimi?
+OVOZ: [1] Yaxlitlangan sonlarni qo‘shamiz: uch ming, plyus to‘rt ming, plyus yetti ming, jami o‘n to‘rt ming. Aynan qo‘limizdagi pulga teng! [2] {urgu}Ehtiyot bo‘ling! Ikkitasini yuqoriga, bittasini pastga yaxlitladik, xato ikki tomonga ketishi mumkin. Shuning uchun aniq hisoblaymiz. Avval ikkitasi: ikki ming to‘qqiz yuz plyus to‘rt ming bir yuz, yetti ming. [3] Keyin yetti ming plyus yetti ming yigirma. [4] {pauza} O‘n to‘rt ming yigirma! Pul yetmaydi, atigi yigirma so‘mga! [5] Xulosa: natija chegaraga juda yaqin bo‘lsa, taxmin yetarli emas, aniq hisoblash kerak.
+DOSKA: KETMA: 3 000 + 4 000 + 7 000 | 14 000 (taxmin)
+DOSKA: USTUN: 2900+4100
+DOSKA: USTUN: 7000+7020
 DOSKA: BELGILA: 14 020 > 14 000 | aylana
 DOSKA: QOIDA: Chegaraga yaqin bo‘lsa — aniq hisoblang
 TEKSH: Narxlar 1 950, 2 040 va 3 990 so‘m (jami 7 980). 8 000 so‘m yetadimi? => Yetadi, 20 so‘m qoladi | Yetmaydi | Aniq aytib bo‘lmaydi | Yetadi, 200 so‘m qoladi
-@tushuncha Qachon yuqoriga, qachon pastga?
-OVOZ: [1] Taxmin maqsadga bog‘liq. [2] Pulga yetadimi, deb so‘rasangiz — {sekin}yuqoriga yaxlitlang. Agar yuqoriga yaxlitlangan summa ham yetsa — aniq yetadi. [3] Yetarlimi, deb so‘rasangiz, masalan, necha qop un kerak — yana yuqoriga: kam bo‘lib qolmasin. [4] Faqat ma’lumot sifatida taxminiy javob kerak bo‘lsa — oddiy qoida bilan.
-DOSKA: Pul yetadimi? → yuqoriga yaxlitla
-DOSKA: Yuqoridan ham yetsa → aniq yetadi
-DOSKA: Aniq javob kerak → aniq hisobla
-DOSKA: Xavfli joyda hech qachon taxminga ishonmang
+@tushuncha Qachon yuqoriga, qachon pastga yaxlitlaymiz?
+OVOZ: [1] Mehmonlar kelyapti, stollar esa tayyor! [2] Taxmin maqsadga bog‘liq. Pul yetadimi? Stol yetadimi? Qop yetadimi? Bunday savollarda doim {sekin}yuqoriga yaxlitlaymiz, kam bo‘lib qolmasin. [3] Misol: yigirma besh mehmon, stollar to‘rt kishilik. Yigirma besh bo‘lib to‘rt, olti, qoldiq bir. [4] Bir mehmon tik turadimi? Yo‘q! Yettinchi stol ham kerak. [5] Qoida: kerakli miqdorni hisoblasak, qoldiq chiqsa, doim yuqoriga yaxlitlaymiz.
+DOSKA: RASM: mehmon | stol:kel
+DOSKA: JADVAL: Savol | Yaxlitlash ;; Pul yetadimi? | yuqoriga ;; Necha stol, qop kerak? | yuqoriga ;; Faqat tasavvur kerak | oddiy qoida
+DOSKA: BOLISH: 25:4
+DOSKA: 6 stol + 1 mehmon → 7 stol (yuqoriga!)
+DOSKA: QOIDA: kerakli miqdor, qoldiq bo‘lsa → yuqoriga yaxlitla
 TEKSH: 38 o‘quvchiga 6 kishilik stollar. Kamida nechta stol kerak? => 7 | 6 | 8 | 5
-@tushuncha Natija mantiqqa to‘g‘ri keladimi?
-OVOZ: [1] Taxmin faqat pulga emas — o‘z javobingizni tekshirishga ham kerak. [2] Aytaylik, siz qirq sakkizni ellik ikkiga ko‘paytirdingiz va ikki ming to‘rt yuz to‘qson olti oldingiz. [3] {sekin}Tez tekshirish: qirq sakkiz — taxminan ellik. Ellik ikki — taxminan ellik. Ellik karra ellik — ikki ming besh yuz. [4] Javobingiz shunga yaqin — demak, katta xato yo‘q. [5] Agar ikki ming emas, yigirma besh ming chiqqanda edi — darhol xato borligini sezardingiz.
-DOSKA: 48 · 52 = ?
-DOSKA: 48 ≈ 50; 52 ≈ 50
-DOSKA: 50 · 50 = 2 500
-DOSKA: Javob 2 496 — yaqin ✔
-DOSKA: Agar 24 960 chiqsa — ❌ (taxmindan 10 marta katta)
+@tushuncha Javobim mantiqqa to‘g‘ri keladimi?
+OVOZ: [1] Taxmin faqat pul uchun emas, o‘z javobingizni tekshirish uchun ham kerak. Siz qirq sakkizni ellik ikkiga ko‘paytirmoqchisiz. Avval tez taxmin: qirq sakkiz, taxminan ellik. [2] Ellik ikki, ham taxminan ellik. Ellik karra ellik, ikki ming besh yuz. [3] Endi aniq hisob, ustun bilan: ikki ming to‘rt yuz to‘qson olti. [4] Taxminga juda yaqin, demak katta xato yo‘q. Agar yigirma to‘rt ming to‘qqiz yuz oltmish chiqqanda edi, darhol xato borligini sezar edingiz!
+DOSKA: KETMA: 48 · 52 | ≈ 50 · 50 | 2 500
+DOSKA: USTUN: 48×52
+DOSKA: Javob 2 496 ≈ 2 500 ✔
+DOSKA: ❌ 24 960 chiqsa — taxmindan 10 marta katta!
 TEKSH: 19 · 21 ni taxmin qiling. Javob taxminan nechaga yaqin? => 400 | 40 | 4 000 | 4
 TEKSH: 7,9 · 3,1 hisoblab 2 449 chiqdi. Bu taxminga mosmi? => Yo‘q, taxminan 24 bo‘lishi kerak | Ha | Faqat o‘nli kasr bo‘lgani uchun | Aniqlab bo‘lmaydi
 @xulosa Esda tut
-OVOZ: Birinchi: yaxlitlashda keyingi raqamga qarang — besh va undan katta bo‘lsa oshiring. Ikkinchi: taxminiy hisob — tez tekshiruv usuli. Uchinchi: chegaraga yaqin bo‘lsa, aniq hisoblang. To‘rtinchi: maqsadga qarab yuqoriga yoki pastga yaxlitlang.
+OVOZ: Birinchi: yaxlitlashda o‘chiriladigan raqamga qarang, besh va undan katta bo‘lsa oshiring. Ikkinchi: taxminiy hisob, o‘z javobingizni tez tekshirish usuli. Uchinchi: chegaraga yaqin bo‘lsa, aniq hisoblang. To‘rtinchi: kerakli miqdorda doim yuqoriga yaxlitlang.
 DOSKA: 1. ≥5 oshir, ≤4 qoldir
 DOSKA: 2. Taxmin — tez tekshiruv
 DOSKA: 3. Chegarada — aniq hisobla
-DOSKA: 4. Maqsadga qarab yaxlitla
+DOSKA: 4. Kerak miqdor → yuqoriga

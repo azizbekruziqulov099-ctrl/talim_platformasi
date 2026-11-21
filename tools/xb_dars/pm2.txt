@@ -1,67 +1,81 @@
 ## pisa_foiz
 @kirish Qaysi chegirma yaxshi?
-OVOZ: {baland}Do‘konga kirdingiz — ikkita e’lon! {pauza} Birinchisi: «Yigirma foiz chegirma, ustiga yana o‘n foiz!» Ikkinchisi: «O‘ttiz foiz chegirma!» {sekin}Qaysi biri foydali? Hali hisoblamang — avval o‘zingiz taxmin qiling. Hozir ikkala e’lon doskada chiziladi, dars oxirida birga tekshiramiz!
+OVOZ: {baland}Do‘konga kirdingiz, ikkita e’lon! {pauza} Birinchisi: «Yigirma foiz chegirma, ustiga yana o‘n foiz!» Ikkinchisi: «O‘ttiz foiz chegirma!» {sekin}Qaysi biri foydali? Hali hisoblamang, avval o‘zingiz taxmin qiling. Dars oxirida birga tekshiramiz!
+DOSKA: RASM: savat:kel | pul:sakra
 DOSKA: BELGILA: 20% + yana 10% | aylana
 DOSKA: BELGILA: 30% | ramka
 DOSKA: Qaysi biri arzonroq? ✋ taxmin qiling
 @tushuncha Foiz — yuzdan bir bo‘lak
-OVOZ: [1] «Foiz» — «yuzdan» degani! Butun narsani yuzta teng bo‘lakka bo‘lamiz. Bitta bo‘lak — bir foiz. [2] Yigirma besh bo‘lakni bo‘yaymiz — {baland}qarang, butunning aynan to‘rtdan biri chiqdi! [3] {sekin}Ya’ni yigirma besh foiz va to‘rtdan bir — ikkalasi bitta son. [4] Ellik foiz — yarim, o‘n foiz — o‘ndan bir. Yodda tuting, tez-tez kerak bo‘ladi!
-DOSKA: QOIDA: 1% = 1/100 butun
+OVOZ: [1] «Foiz» yuzdan degani! Butun narsani yuzta teng bo‘lakka bo‘lamiz. Bitta bo‘lak, bir foiz. [2] Yigirma besh bo‘lakni bo‘yaymiz, {baland}qarang, butunning aynan to‘rtdan biri chiqdi! [3] Ya’ni yigirma besh foiz va to‘rtdan bir, ikkalasi bitta son. [4] Ellik foiz, yarim. Pitsaning yarmi! [5] O‘n foiz, o‘ndan bir. Yodda tuting, tez-tez kerak bo‘ladi! [6] Qoida: bir foiz, butunning yuzdan biri.
+DOSKA: RASM: pitsa:kel
 DOSKA: DOIRA_KASR: 1/4
 DOSKA: 25% = 25/100 = 1/4
 DOSKA: DOIRA_KASR: 1/2
+DOSKA: DOIRA_KASR: 1/10
+DOSKA: QOIDA: 1% = 1/100 butun
 SODDA: Foiz — butunni 100 ga bo‘lib, kerakli bo‘lagini olish.
 BOSHQA: Foizni kasr yoki o‘nli kasr deb o‘qing: 25% = 1/4 = 0,25.
 TEKSH: 75% butunning nechadan nechasi? => 3/4 | 1/4 | 7/5 | 3/5
 TEKSH: 10% butunning nechadan bir qismi? => 1/10 | 1/100 | 1/5 | 1/2
-@tushuncha Hisoblashning uchta oson yo‘li
-OVOZ: [1] Kalkulyator yo‘q! Hech gap emas — foizni boshda hisoblaymiz. Birinchi sir: o‘n foiz — shunchaki o‘nga bo‘lish! Ikki yuz so‘mni o‘nga bo‘lamiz — yigirma. [2] Ikkinchi sir: ellik foiz — ikkiga bo‘lish. [3] {sekin}Uchinchisi: boshqa foizlarni bo‘laklab yig‘amiz. Mana, yigirma besh foiz — ikkita o‘n foiz va bitta besh foiz. Ellikka yetdik! [4] {urgu}Hammasi bitta mantiq: kichik bo‘lakni topamiz, keyin ko‘paytiramiz.
+@tushuncha Hisoblashning uch oson yo‘li
+OVOZ: [1] Kalkulyator yo‘q! Hech gap emas, foizni boshda hisoblaymiz. Birinchi sir: o‘n foiz, shunchaki o‘nga bo‘lish! Ikki yuz so‘mni o‘nga bo‘lamiz: yigirma. [2] Ikkinchi sir: ellik foiz, ikkiga bo‘lish. Ikki yuzning yarmi, yuz. [3] {sekin}Uchinchisi: boshqa foizlarni bo‘laklab yig‘amiz. Mana, yigirma besh foiz, ikkita o‘n foiz va bitta besh foiz. Yigirma, yigirma, o‘n, jami ellik. [4] {urgu}Hammasi bitta mantiq: kichik bo‘lakni topamiz, keyin ko‘paytiramiz.
 DOSKA: BOLISH: 200:10
-DOSKA: 50% → 2 ga bo‘l
+DOSKA: 50% → 2 ga bo‘l:  200 : 2 = 100
 DOSKA: KETMA: 25% | 10% + 10% + 5% | 20 + 20 + 10 | 50  (200 dan)
 DOSKA: QOIDA: kichik bo‘lak → keyin ko‘paytir
 TEKSH: 480 ning 10% i nechaga teng? => 48 | 4,8 | 480 | 96
 TEKSH: 60 ning 50% i nechaga teng? => 30 | 6 | 120 | 3
 TEKSH: 300 ning 15% ini toping. => 45 | 30 | 15 | 450
-@tushuncha Chegirma — kamayish
-OVOZ: [1] Ko‘ylak — sakson ming so‘m, chegirma yigirma besh foiz. Avval chegirma qancha ekanini topamiz: seksonning to‘rtdan biri — yigirma ming. [2] Endi narxdan ayiramiz — ustun qilib, qarang: sakson minus yigirma — oltmish ming! [3] {sekin}Lekin tezroq yo‘l bor: yigirma besh foiz arzon — demak, yetmish besh foizini to‘laymiz! [4] {baland}Sakson mingni nol butun yetmish beshga ko‘paytirsak — yana oltmish ming. Ikkala yo‘l bir xil chiqdi!
+@tushuncha Chegirma: arzonlashish
+OVOZ: [1] Ko‘ylak sakson ming so‘m, chegirma yigirma besh foiz. [2] Avval chegirma qancha ekanini topamiz: seksonning to‘rtdan biri, yigirma ming. Narxdan ayiramiz, ustun bilan: sakson minus yigirma, oltmish ming! [3] {sekin}Rasmga qarang: yigirma besh foiz arzon, demak to‘rtdan uch qismini to‘laymiz. [4] Tezroq yo‘l: sakson mingni nol butun yetmish beshga ko‘paytiramiz. [5] {baland}Yana oltmish ming! Ikkala yo‘l bir xil chiqdi. Qoida: to‘lov, yuz foizdan chegirmani ayirib topiladi.
 DOSKA: Narx: 80 000; chegirma 25%
 DOSKA: USTUN: 80000-20000
+DOSKA: DOIRA_KASR: 3/4
+DOSKA: KETMA: 25% arzon | 75% to‘laymiz | 80 000 · 0,75 | 60 000
 DOSKA: QOIDA: To‘lov = 100% − chegirma%
-DOSKA: 80 000 · 0,75 = 60 000
 TEKSH: Narx 200 000, chegirma 15%. Necha to‘laymiz? => 170 000 | 30 000 | 185 000 | 230 000
+@tushuncha Teskari masala: dastlabki narx nechaga teng edi?
+OVOZ: [1] Endi teskarisi! Chegirmadan keyin yigirma to‘rt ming so‘m to‘landi, chegirma yigirma foiz edi. Dastlabki narx qancha? [2] To‘langani, yuz foizning sakson foizi. Bir foizni topamiz: yigirma to‘rt mingni saksonga bo‘lamiz, uch yuz so‘m. Yuz foiz, uch yuz karra yuz, o‘ttiz ming! [3] {baland}Dastlabki narx o‘ttiz ming so‘m. [4] Tekshiramiz: o‘ttiz mingning sakson foizi, yigirma to‘rt ming. To‘g‘ri! [5] {urgu}Ko‘pchilik xato qiladi: yigirma to‘rt mingga yigirma foizni qo‘shadi. Lekin yigirma foiz dastlabki narxdan olingan, to‘lovdan emas!
+DOSKA: 80% = 24 000 (to‘langan)
+DOSKA: KETMA: 80% | 24 000 | 1% = 24 000 : 80 | 300 | 100% = 300 · 100 | 30 000
+DOSKA: BELGILA: dastlabki narx 30 000 | aylana
+DOSKA: Tekshiruv: 30 000 · 0,8 = 24 000 ✔
+DOSKA: ❌ 24 000 + 20% = 28 800
+DOSKA: QOIDA: avval 1% ni top, keyin 100% ga ko‘paytir
 TEKSH: Chegirmadan keyin 45 000 to‘landi. Chegirma 10% edi. Dastlabki narx nechaga teng? => 50 000 | 49 500 | 40 500 | 55 000
 @tushuncha Xato tuzog‘i: 20% + 10% ≠ 30%
-OVOZ: [1] Endi boshidagi savolga qaytamiz! Narx yuz ming so‘m. Birinchi chegirma — yigirma foiz: yigirma ming ketdi, qoldi sakson ming. [2] Ikkinchi chegirma — o‘n foiz. {urgu}Lekin nimaning o‘n foizi? Yangi narxning! Sakson mingning o‘n foizi — atigi sakkiz ming. Qoldi yetmish ikki ming. [3] {baland}Ikkinchi e’londa o‘ttiz foiz — yetmish ming! Ikkinchisi foydaliroq chiqdi. Taxmin to‘g‘ri keldimi? [4] Sababi: ikkinchi foiz allaqachon kichraygan narxdan olinadi.
-DOSKA: 100 000 → −20% → 80 000
-DOSKA: 80 000 → −10% → 72 000
-DOSKA: 30% chegirma → 70 000
+OVOZ: [1] Endi boshidagi savolga qaytamiz! Narx yuz ming so‘m. Birinchi chegirma yigirma foiz: yigirma ming ketdi, qoldi sakson ming. Ikkinchi chegirma o‘n foiz. {urgu}Lekin nimaning o‘n foizi? Yangi narxning! Sakson mingning o‘n foizi, atigi sakkiz ming. Qoldi yetmish ikki ming. [2] Jadvalda ko‘ring: yigirma plyus o‘n foiz, yetmish ikki ming. O‘ttiz foiz esa yetmish ming. [3] {baland}O‘ttiz foiz foydaliroq! Taxmin to‘g‘ri keldimi? [4] Sababi: ikkinchi foiz kichraygan narxdan olinadi. Foizlar qo‘shilmaydi, ko‘paytiriladi.
+DOSKA: KETMA: 100 000 | −20% → 80 000 | −10% → 72 000
+DOSKA: JADVAL: E’lon | To‘lov ;; 20% + 10% | 72 000 ;; 30% | 70 000
+DOSKA: BELGILA: 30% foydaliroq | ramka
 DOSKA: QOIDA: Foizlar qo‘shilmaydi — ko‘paytiriladi: 0,8 · 0,9 = 0,72
 TEKSH: Narxni 10% oshirib, keyin 10% pasaytirsak, narx qanday o‘zgaradi? 100 dan boshlang. => 99 ga tushadi | 100 bo‘lib qoladi | 101 bo‘ladi | 90 bo‘ladi
 @xulosa Esda tut
-OVOZ: Birinchi: foiz — yuzdan bo‘lak. Ikkinchi: o‘n foizdan boshlang — qolganini bo‘laklab yig‘ing. Uchinchi: chegirmada to‘lov — yuz foizdan chegirmani ayirib topiladi. To‘rtinchi: ketma-ket foizlar qo‘shilmaydi, ko‘paytiriladi.
+OVOZ: Birinchi: foiz, yuzdan bo‘lak. Ikkinchi: o‘n foizdan boshlang, qolganini bo‘laklab yig‘ing. Uchinchi: chegirmada to‘lov, yuz foizdan chegirmani ayirib topiladi; teskari masalada esa avval bir foizni toping. To‘rtinchi: ketma-ket foizlar qo‘shilmaydi, ko‘paytiriladi.
 DOSKA: 1. 1% = 1/100
 DOSKA: 2. 10% → 10 ga bo‘l
 DOSKA: 3. To‘lov = (100 − chegirma)%
-DOSKA: 4. Ketma-ket foiz → ko‘paytir
+DOSKA: 4. Ketma-ket → ko‘paytir
 
 ## pm_ulush
 @kirish Diagramma yolg‘on gapirishi mumkinmi?
-OVOZ: Gazetada doira diagramma: «Sevimli fan — matematika, qirq foiz!» {pauza} Lekin rasmga qarang — sektor chorak doiraga o‘xshaydi! {baland}Kim yolg‘on gapiryapti — raqammi yoki rasmmi? {sekin}Ulush va foizni o‘rganib, buni o‘zimiz aniqlaymiz.
+OVOZ: Gazetada doira diagramma: «Sevimli fan, matematika, qirq foiz!» {pauza} Lekin rasmga qarang, sektor chorak doiraga o‘xshaydi! {baland}Kim yolg‘on gapiryapti, raqammi yoki rasmmi? {sekin}Ulush va foizni o‘rganib, buni o‘zimiz aniqlaymiz.
+DOSKA: RASM: kitob:kel | qalam
 DOSKA: DOIRA_KASR: 1/4
 DOSKA: «Matematika — 40%» deyilgan
 DOSKA: Kim to‘g‘ri? ✋
-@tushuncha Ulush — qism bo‘lib butun
-OVOZ: [1] Ulush — qism va butunning nisbati. Qism bo‘linadi butunga. [2] Sinfda o‘ttiz o‘quvchi, o‘n ikkitasi matematikani yaxshi ko‘radi. O‘n ikki bo‘lib o‘ttiz — ikki bo‘lib besh. [3] {sekin}Foizga aylantirish uchun suratni maxrajga bo‘lib, yuzga ko‘paytiramiz. [4] Nol butun to‘rt — qirq foiz.
+@tushuncha Ulush: qism bo‘linadi butunga
+OVOZ: [1] Mana, sinfimiz! O‘ttiz o‘quvchi, o‘n ikkitasi matematikani yaxshi ko‘radi. Ulush ayni shu: o‘n ikki bo‘lib o‘ttiz. [2] Qisqartiramiz: ikki bo‘lib besh. Pitsaga o‘xshatib ko‘ring, beshdan ikki! [3] {sekin}Foizga aylantirish uchun suratni maxrajga bo‘lamiz: o‘n ikkini o‘ttizga, nol butun to‘rt. [4] Yuzga ko‘paytiramiz: qirq foiz. Hammasi mos! [5] Qoida: ulush, qism bo‘linadi butunga.
+DOSKA: RASM: bolalar:kel
 DOSKA: DOIRA_KASR: 2/5
-DOSKA: 12/30 = 2/5
-DOSKA: 12 : 30 = 0,4
+DOSKA: 12/30 = 2/5;  12 : 30 = 0,4
 DOSKA: 0,4 · 100 = 40%
+DOSKA: QOIDA: ulush = qism : butun
 SODDA: Qism ÷ butun × 100 = foiz.
 TEKSH: 15 o‘quvchidan 6 tasi kitob o‘qiydi. Bu necha foiz? => 40% | 60% | 25% | 9%
 TEKSH: Sinfning 35% i qiz bola. Sinfda 40 o‘quvchi bor. Nechta qiz? => 14 | 35 | 12 | 20
 @tushuncha Doira diagramma: 100% — 360°
-OVOZ: [1] Doira diagrammada butun doira — yuz foiz — uch yuz oltmish gradus. [2] Bir foiz — uch butun olti o‘ndan gradus. [3] {sekin}Demak, qirq foiz uchun burchak — uch yuz oltmishning qirq foizi: yuz qirq to‘rt gradus. [4] Chorak doira esa to‘qson gradus — yigirma besh foiz.
+OVOZ: [1] Mana, butun doira! Bu yuz foiz, ya’ni uch yuz oltmish gradus. Eslab qoling, hozir juda kerak bo‘ladi. [2] Bir foiz qancha gradus? Uch yuz oltmishni yuzga bo‘lamiz: uch butun olti o‘ndan gradus. [3] {sekin}Qirq foiz uchun burchak: uch yuz oltmishning qirq foizi, yuz qirq to‘rt gradus. [4] Chorak doira esa to‘qson gradus, yigirma besh foiz. Ya’ni pitsaning to‘rtdan biri!
 DOSKA: DOIRA_KASR: 1/1
 DOSKA: 1% = 3,6°
 DOSKA: 40% → 360 · 0,4 = 144°
@@ -69,21 +83,23 @@ DOSKA: DOIRA_KASR: 1/4
 TEKSH: Doira diagrammada sektor burchagi 72°. Bu necha foiz? => 20% | 72% | 25% | 36%
 TEKSH: 15% ga qancha burchak to‘g‘ri keladi? => 54° | 15° | 90° | 36°
 @tushuncha Gazeta xatosi ochildi
-OVOZ: [1] Endi gazeta diagrammasini tekshiramiz. Qirq foiz — yuz qirq to‘rt gradus bo‘lishi kerak, chorak doiradan sezilarli katta. [2] Agar sektor atigi to‘qson gradus bo‘lsa — u yigirma besh foiz. [3] {urgu}Demak, rasm yoki raqamning biri noto‘g‘ri — chizmani ham tekshiring! [4] Yana bir tuzoq: doira diagrammada foizlar yig‘indisi yuz bo‘lishi shart.
+OVOZ: [1] Endi gazeta diagrammasini sinovdan o‘tkazamiz! Jadvalga qarang: qirq foiz yuz qirq to‘rt gradus bo‘lishi kerak. [2] Gazetadagi sektor esa atigi to‘qson gradus. Bir daqiqa, to‘qson gradus, bu qancha foiz? [3] To‘qson gradus yigirma besh foiz, qirq foiz emas! [4] {urgu}Demak, rasm va raqam mos emas. Chizmani ham tekshiring! [5] Yana bir tuzoq: diagrammada barcha ulushlar yig‘indisi yuz foiz bo‘lishi shart.
+DOSKA: JADVAL: Foiz | Burchak ;; 25% | 90° ;; 40% | 144° ;; 100% | 360°
 DOSKA: Kerak: 144°; chizilgan: 90°
 DOSKA: 90° → 25% ≠ 40%
 DOSKA: ❌ Rasm va raqam mos emas
 DOSKA: QOIDA: Barcha ulushlar yig‘indisi = 100%
 TEKSH: Diagramma: 30% + 45% + 35%. Nima xato? => Yig‘indi 110% — 100% bo‘lishi kerak | Hech qanday xato yo‘q | Ulushlar juda katta | Faqat 45% xato
-@tushuncha Qismi katta — ulushi katta degani emas
-OVOZ: [1] Ikki sinf bor. A sinfda o‘n ikki o‘quvchi sport bilan shug‘ullanadi, B sinfda — o‘n besh o‘quvchi. B sinf «sportchiroq»mi? [2] {urgu}Shoshilmang! A sinfda hammasi o‘ttiz kishi, B sinfda — ellik. [3] A sinfda ulush — qirq foiz. B sinfda — o‘n besh bo‘lib ellik, ya’ni o‘ttiz foiz. [4] Demak, A sinfda sportchilar ulushi KATTA, garchi soni kam bo‘lsa ham. Adolatli solishtirish uchun doim ulushga qarang.
+@tushuncha Qismi katta, ulushi katta degani emas
+OVOZ: [1] Ikki sinf bor. A sinfda o‘n ikki o‘quvchi sport bilan shug‘ullanadi, B sinfda o‘n besh o‘quvchi. B sinf «sportchiroq»mi? [2] {urgu}Shoshilmang! A sinfda hammasi o‘ttiz kishi, B sinfda ellik. [3] A sinfda ulush: o‘n ikki bo‘lib o‘ttiz, qirq foiz. [4] B sinfda o‘n besh bo‘lib ellik, o‘ttiz foiz. [5] {baland}Demak, A sinfda sportchilar ulushi katta, garchi soni kam bo‘lsa ham! Adolatli solishtirish uchun doim ulushga qarang.
+DOSKA: RASM: velosiped:tebran | maktab
 DOSKA: A: 12 ta / 30 ta → 40%
 DOSKA: B: 15 ta / 50 ta → 30%
-DOSKA: 15 > 12, lekin 30% < 40%
+DOSKA: DOIRA_KASR: 2/5
 DOSKA: QOIDA: Solishtirganda soni emas — ULUSHNI solishtir
 TEKSH: Maktab 1: 90 ta kitobxon, 300 o‘quvchi. Maktab 2: 70 ta, 200 o‘quvchi. Qaysi birida ulush katta? => 2-maktabda (35% > 30%) | 1-maktabda (30% > 35%) | Teng | Aniqlab bo‘lmaydi
 @xulosa Esda tut
-OVOZ: Birinchi: ulush — qism bo‘linadi butunga. Ikkinchi: foiz — ulushni yuzga ko‘paytirish. Uchinchi: doira diagrammada yuz foiz — uch yuz oltmish gradus. To‘rtinchi: diagrammada foizlar yig‘indisi yuz bo‘lsin, burchak ham mos kelsin.
+OVOZ: Birinchi: ulush, qism bo‘linadi butunga. Ikkinchi: foiz, ulushni yuzga ko‘paytirish. Uchinchi: doira diagrammada yuz foiz, uch yuz oltmish gradus. To‘rtinchi: diagrammada foizlar yig‘indisi yuz bo‘lsin, burchak ham mos kelsin.
 DOSKA: 1. ulush = qism : butun
 DOSKA: 2. foiz = ulush · 100
 DOSKA: 3. 1% = 3,6°
@@ -91,43 +107,46 @@ DOSKA: 4. Yig‘indi = 100%
 
 ## pm_foizqayta
 @kirish Narx ko‘tarilib-tushsa
-OVOZ: Telefon narxi yuz mingdan boshlandi. Avval yigirma foiz oshdi, keyin yigirma foiz tushdi. {pauza} Yana yuz mingga qaytdimi? Ko‘pchilik «ha» deydi. {sekin}Bu darsda foiz o‘zgarishi hamda murakkab foiz sirini ochamiz — bank, kredit, o‘sish hammasi shunga bog‘liq.
+OVOZ: {baland}Telefon narxi yuz ming so‘mdan boshlandi! Avval yigirma foiz oshdi. Keyin yigirma foiz tushdi. {pauza} Yana yuz mingga qaytdimi? Ko‘pchilik «ha» deydi. {sekin}Bu darsda foiz o‘zgarishi va murakkab foiz sirini ochamiz. Bank, kredit, o‘sish, hammasi shunga bog‘liq. Avval o‘zingiz taxmin qiling!
+DOSKA: RASM: telefon:kel | pul
 DOSKA: 100 000 → +20% → ?
 DOSKA: ? → −20% → ?
 DOSKA: Yana 100 000 bo‘ladimi? ✋
 @tushuncha O‘zgarish foizi: eski narxga nisbatan
-OVOZ: [1] O‘zgarish foizi — o‘zgarish miqdorini eski qiymatga bo‘lib topiladi. [2] Narx yetmishdan sakson to‘rtga ko‘tarildi. O‘zgarish — o‘n to‘rt. [3] {sekin}O‘n to‘rtni yetmishga bo‘lamiz — nol butun ikki. Ya’ni yigirma foiz oshgan. [4] {urgu}Muhim: bo‘lish doim ESKI qiymatga!
-DOSKA: Δ = yangi − eski = 84 − 70 = 14
-DOSKA: Δ : eski = 14 : 70 = 0,2
+OVOZ: [1] Narx yetmishdan sakson to‘rtga ko‘tarildi. O‘zgarish qancha? [2] Yangisidan eskisini ayiramiz: o‘n to‘rt. [3] {sekin}O‘n to‘rtni yetmishga bo‘lamiz: nol butun ikki. [4] Ya’ni yigirma foiz oshgan. [5] {urgu}Muhim: bo‘lish doim eski qiymatga! Qoida: yangi minus eski, bo‘linadi eski.
+DOSKA: KETMA: 70 → 84 | Δ = 84 − 70 = 14
+DOSKA: 14 : 70 = 0,2
 DOSKA: 0,2 = 20% ↑
+DOSKA: BELGILA: eski qiymatga bo‘l | aylana
 DOSKA: QOIDA: o‘zgarish % = (yangi − eski) : eski · 100
 TEKSH: 50 dan 40 ga tushdi. Necha foiz kamaydi? => 20% | 10% | 25% | 80%
 TEKSH: Maosh 200 dan 230 ga oshdi. Necha foiz oshdi? => 15% | 30% | 13% | 23%
-@tushuncha Ko‘paytiruvchi usul
-OVOZ: [1] Yigirma foiz oshsa — yangi narx eskining bir yuz yigirma foizi, ya’ni bir butun ikki ga ko‘paytiriladi. [2] Yigirma foiz tushsa — sakson foiz, nol butun sakkizga ko‘paytiriladi. [3] {sekin}Ikkalasi ketma-ket: bir butun ikki karra nol butun sakkiz — nol butun to‘qson olti. [4] Demak, yuz mingdan to‘qson olti ming bo‘ladi — qaytmadi!
-DOSKA: +20% → ×1,2
-DOSKA: −20% → ×0,8
+@tushuncha Ko‘paytiruvchi usul: telefon topishmog‘i
+OVOZ: [1] Yigirma foiz oshsa, yangi narx eskining yuz yigirma foizi, ya’ni bir butun ikkiga ko‘paytiramiz. Yuz mingdan bir yuz yigirma ming. [2] Keyin yigirma foiz tushsa, sakson foiz qoladi, nol butun sakkizga ko‘paytiramiz. [3] {sekin}Ikkalasi ketma-ket: bir butun ikki karra nol butun sakkiz, nol butun to‘qson olti. [4] {baland}Yuz mingdan to‘qson olti ming bo‘ladi, qaytmadi! To‘rt foiz kam!
+DOSKA: ZANJIR: 100 000 :: boshida | 120 000 :: +20% (×1,2) | 96 000 :: −20% (×0,8)
+DOSKA: +20% → ×1,2;  −20% → ×0,8
 DOSKA: 1,2 · 0,8 = 0,96
-DOSKA: 100 000 · 0,96 = 96 000 (−4%)
+DOSKA: 100 000 · 0,96 = 96 000  (−4%)
 TEKSH: Narx 50% oshib, keyin 50% tushdi. Dastlabki 100 dan nechaga keladi? => 75 | 100 | 50 | 125
 TEKSH: +10% va yana +10% ketma-ket. Jami necha foiz oshdi? => 21% | 20% | 11% | 10%
-@tushuncha Murakkab foiz — foizning foizi
-OVOZ: [1] Bank omonati: yuz ming so‘m, yiliga o‘n foiz. Bir yildan keyin — bir yuz o‘n ming. [2] Ikkinchi yili o‘n foiz endi bir yuz o‘n mingdan hisoblanadi — foizning ustiga foiz! [3] {sekin}Bir yuz o‘n ming karra bir butun bir — bir yuz yigirma bir ming. [4] Har yil — yana bir butun birga ko‘paytiramiz. n yildan keyin — bir butun birning n-darajasi.
-DOSKA: 1-yil: 100 000 · 1,1 = 110 000
-DOSKA: 2-yil: 110 000 · 1,1 = 121 000
-DOSKA: Oddiy foiz bo‘lsa: 120 000
+@tushuncha Murakkab foiz: foizning ustiga foiz
+OVOZ: [1] Bank omonati! Yuz ming so‘m qo‘ydingiz, bank yiliga o‘n foiz qo‘shadi. [2] Bir yildan keyin yuz o‘n ming. Ikkinchi yili o‘n foiz endi yuz o‘n mingdan hisoblanadi, {urgu}foizning ustiga foiz! Yuz yigirma bir ming. Uchinchi yili yana: yuz o‘ttiz uch ming bir yuz. [3] {sekin}Jadvalga qarang: oddiy foizda har yili bir xil o‘n ming qo‘shiladi. Murakkab foizda esa har yili ko‘proq, farq tobora ortadi! [4] Grafik egilib, tobora tikroq ko‘tarilyapti. Vaqt, pul uchun ishlayapti! [5] Qoida: har yil bir butun birga ko‘paytiramiz, n yildan keyin bir butun birning n-darajasi.
+DOSKA: RASM: bank:kel | pul:sakra
+DOSKA: ZANJIR: 100 000 :: boshida | 110 000 :: 1-yil | 121 000 :: 2-yil | 133 100 :: 3-yil
+DOSKA: JADVAL: Yil | Oddiy | Murakkab ;; 1 | 110 000 | 110 000 ;; 2 | 120 000 | 121 000 ;; 3 | 130 000 | 133 100
+DOSKA: GRAFIK: y=100*1.1^x; [0;10]
 DOSKA: QOIDA: S = S₀ · (1 + p)ⁿ
 TEKSH: 200 000 so‘m, yiliga 5%, 2 yildan keyin necha so‘m bo‘ladi (murakkab foiz)? => 220 500 | 220 000 | 210 000 | 225 000
-@tushuncha Foiz va foiz punkti — ikki xil narsa
-OVOZ: [1] Yangiliklarda eshitasiz: «Ishsizlik besh foizdan sakkiz foizga ko‘tarildi». [2] Bu uch foiz punktiga o‘sish. Lekin o‘zgarish foizi boshqacha: uchni beshga bo‘lamiz — oltmish foiz oshgan! [3] {urgu}Ikkalasi ham to‘g‘ri, lekin turli narsani bildiradi. Gazetalar ba’zan buni ataylab aralashtiradi. [4] Doim so‘rang: «nimaga nisbatan?»
-DOSKA: 5% → 8%
+@tushuncha Foiz va foiz punkti: ikki xil narsa
+OVOZ: [1] Yangiliklarda eshitasiz: «Ishsizlik besh foizdan sakkiz foizga ko‘tarildi». Nuqta besh dan sakkizga yuradi: bir, ikki, uch qadam. [2] Bu uch foiz punktiga o‘sish. [3] Lekin o‘zgarish foizi boshqacha: uchni beshga bo‘lamiz, nol butun olti, oltmish foiz oshgan! [4] {urgu}Ikkalasi ham to‘g‘ri, lekin turli narsani bildiradi. Gazetalar ba’zan buni ataylab aralashtiradi. Doim so‘rang: nimaga nisbatan?
+DOSKA: SON_OQI: 5..8; nuqta 5 5%; nuqta 8 8%; yur 5 8
 DOSKA: Farq = 3 foiz punkti
-DOSKA: 3 : 5 = 0,6 = 60% oshish
+DOSKA: KETMA: 3 : 5 | 0,6 | 60% oshish
 DOSKA: QOIDA: foiz punkti — oddiy ayirma; foiz — eski qiymatga nisbat
 TEKSH: Soliq 12% dan 15% ga o‘tdi. Qancha foiz punktiga oshdi? => 3 | 25 | 15 | 12
 TEKSH: Xuddi shu o‘zgarish (12% → 15%) necha foizga oshish? => 25% | 3% | 15% | 12%
 @xulosa Esda tut
-OVOZ: Birinchi: o‘zgarish foizi — eski qiymatga nisbatan topiladi. Ikkinchi: oshish — bir plyus foiz ga, kamayish — bir minus foiz ga ko‘paytirish. Uchinchi: ketma-ket foizlar qo‘shilmaydi. To‘rtinchi: murakkab foizda — foizning ustiga foiz hisoblanadi.
+OVOZ: Birinchi: o‘zgarish foizi, eski qiymatga nisbatan topiladi. Ikkinchi: oshish, bir plyus foizga; kamayish, bir minus foizga ko‘paytirish. Uchinchi: ketma-ket foizlar qo‘shilmaydi. To‘rtinchi: murakkab foizda foizning ustiga foiz hisoblanadi.
 DOSKA: 1. (yangi − eski) : eski
 DOSKA: 2. ↑ ×(1+p); ↓ ×(1−p)
 DOSKA: 3. Ketma-ket → ko‘paytir

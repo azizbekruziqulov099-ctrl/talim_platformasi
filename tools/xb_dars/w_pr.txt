@@ -1,85 +1,116 @@
 ## PR-TOP
-@kirish Savolga javob matnning qayerida?
-OVOZ: Sizga bir sahifalik e’lon berildi: «Botanika bog‘i yozgi ish tartibi». Tezda aniqlash kerak: chipta narxi qancha, soat nechadan nechagacha ochiq, dushanba kuni ochiqmi? {pauza} Hammasini boshdan oxirigacha o‘qib chiqish kerakmi? Yoki aqlliroq yo‘l bormi? {sekin}Ma’lumotni topish — matnda kerakli joyni tez va aniq topish mahorati. Taxmin qiling.
-DOSKA: 📄 Botanika bog‘i
-DOSKA: narx? vaqt? dushanba? ✋
-@tushuncha Kalit so‘z va skanerlash
-OVOZ: [1] Avval savoldan kalit so‘zni ajratamiz: «chipta», «narx», «dushanba», «soat». [2] Keyin matnni ko‘z bilan skanerlaymiz — o‘qimay, shu so‘zlarni qidiramiz. [3] {sekin}Jadval, sarlavha, raqam, qalin yozuv — ko‘z uchun yo‘l ko‘rsatkichlari. [4] Topgan joyda to‘xtab, atrofini diqqat bilan o‘qiymiz — javob odatda shu yerda.
-DOSKA: savol → kalit so‘z
-DOSKA: matn → skaner
-DOSKA: raqam, jadval → belgi
-DOSKA: topildi → diqqat bilan o‘qi
-TEKSH: Matn: «Kutubxona dushanbadan juma kunigacha soat 9 dan 18 gacha ochiq». Shanba kuni ochiqmi? => Yo‘q | Ha | Faqat ertalab | Matnda yo‘q
-TEKSH: Savol: «Chipta narxi qancha?» Kalit so‘z qaysi? => Narx | Savol | Qancha | Matn
-@tushuncha Bir nechta matn va jadval
-OVOZ: [1] Ba’zan javob ikki joyda. «Yoz uchun ish tartibi» va «Bayram kunlari». [2] Birinchisi: har kuni soat 9 dan 18 gacha. Ikkinchisi: bayram kunlari 10 dan 14 gacha. [3] {sekin}Savol: bayram kuni soat nechada yopiladi? Ikkinchi matn aniqroq — bayram kunlari uchun. [4] Qaysi ma’lumot umumiy, qaysi biri istisno — shuni ajrating. Istisno umumiy qoidadan ustun.
-DOSKA: umumiy: 9–18
-DOSKA: bayram: 10–14
-DOSKA: istisno > umumiy
-DOSKA: bayramda yopiladi: 14:00
-TEKSH: Doimiy narx 5 000, talabalar uchun 3 000. Talaba narxi? => 3 000 | 5 000 | 8 000 | 2 000
-TEKSH: Jadvalda: Chorshanba 9–17, juma 9–15. Juma kuni qachon yopiladi? => 15:00 | 17:00 | 9:00 | 12:00
-@tushuncha Moslikni tekshirish
-OVOZ: [1] Topilgan javob savolga aynan mosmi? Savol «necha yoshdan», javob «necha yoshgacha» bo‘lmasin. [2] Savolning so‘zlarini matndagi so‘zlar bilan solishtiring: «bepul» va «to‘lovsiz» — bir ma’no. [3] {sekin}Sinonimlarga e’tibor bering. Savolda «bola», matnda «o‘quvchi» yoki «yosh mehmon» bo‘lishi mumkin. [4] Raqamni tanlayotganda birligini ham tekshiring: so‘m yoki ming so‘m.
-DOSKA: savol: «bepul»
-DOSKA: matn: «to‘lovsiz»
-DOSKA: sinonim → bir ma’no
-DOSKA: raqam + birlik
-TEKSH: Matnda «yosh mehmonlar uchun kirish bepul». Savol: bolalar to‘lov qiladimi? => Yo‘q | Ha | Faqat dushanba | Aniq emas
-TEKSH: Narx «5 ming so‘m», to‘lov 5 000 so‘m. Bir xilmi? => Ha | Yo‘q | Faqat bayramda | Aniq emas
+@kirish Yigirma soniyada javob topasizmi?
+OVOZ: {baland}Tasavvur qiling: Botanika bog‘iga ketayapsiz! {pauza} Eshik oldida bir sahifalik e’lon osilgan. Do‘stingiz so‘raydi: «Dushanba kuni ochiqmi? Chipta qancha? Bolalar pulli?» {sekin}Siz esa yigirma soniyada javob berishingiz kerak. {urgu}Hammasini boshidan oxirigacha o‘qib chiqasizmi? Yo‘q — buning aqlli yo‘li bor! Hozir e’lon doskada chiziladi. Taxmin qiling: javobni qanday tez topamiz?
+DOSKA: RASM: bog' | chipta:sakra | soat:aylan
+DOSKA: JADVAL: Kun | Ish vaqti | Chipta ;; Dushanba | yopiq | — ;; Chorshanba–Juma | 9–17 | 5 000 so‘m ;; Shanba–Yakshanba | 10–18 | 7 000 so‘m ;; Bayram | 10–14 | 3 000 so‘m
+DOSKA: Dushanba? Chipta? Bolalar?
+DOSKA: Qanday tez topamiz? ✋
+@tushuncha Birinchi sir: savoldan kalit so‘z ajrat
+OVOZ: [1] Birinchi sir: matnni emas, {baland}avval savolni o‘qing! [2] Savol: «Dushanba kuni ochiqmi?» Unda eng muhim so‘z qaysi? {sekin}«Dushanba» va «ochiqmi». Mana — kalit so‘zlar! [3] Kalit so‘z — ko‘zimizga «nimani qidirish kerak» deb aytadi. [4] Boshqa savol: «Chipta qancha?» Kalit so‘z — «chipta» va «qancha». Har bir savolning o‘z kaliti bor!
+DOSKA: SXEMA: Savol > kalit so‘z 1: Dushanba | kalit so‘z 2: ochiqmi | qidiraman
+DOSKA: ZANJIR: Savolni o‘qi | Kalit so‘z | Matnda qidir | Topdim
+DOSKA: [s]Dushanba[/s] kuni [y]ochiqmi[/y]?
+DOSKA: [s]Chipta[/s] [y]qancha[/y]?
+TEKSH: Savol: «Kutubxonada Wi-Fi bormi?» Kalit so‘z qaysi? => Wi-Fi | Kutubxona | Bormi | Savol
+TEKSH: Savol: «Konsert soat nechada boshlanadi?» Qaysi so‘zlarni qidiramiz? => Konsert, soat, boshlanadi | Nechada, savol | Qidiramiz | Hech qaysi
+@tushuncha Ikkinchi sir: skanerlang, o‘qimang
+OVOZ: [1] Endi e’londa kalit so‘zni qidiramiz — {sekin}o‘qimay, shunchaki ko‘z yugurtirib! Bu — skanerlash. [2] Ko‘zimiz jadval ustunlaridan sirpanadi: «Dushanba»... mana! Ro‘parasida — «yopiq». [3] Javob topildi! Dushanba kuni bog‘ yopiq. {urgu}Hammasini o‘qimadik, bir soniyada topdik! [4] Raqam, jadval, qalin yozuv, sarlavha — bular ko‘zga yo‘l ko‘rsatuvchi chiroqlar.
+DOSKA: BELGILA: Dushanba — yopiq | aylana
+DOSKA: ZANJIR: Ko‘z yugurdi :: jadval | Kalit topildi :: Dushanba | Javob :: yopiq
+DOSKA: raqam, jadval, sarlavha — yo‘l ko‘rsatkich
+DOSKA: topdim → atrofini diqqat bilan o‘qi
+TEKSH: Matn: «Kutubxona dushanbadan juma kunigacha 9 dan 18 gacha ochiq». Shanba kuni ochiqmi? => Yo‘q, ochiq emas | Ha, ochiq | Faqat ertalab | Matnda javob yo‘q
+TEKSH: Jadvalda: Chorshanba 9–17, Juma 9–15. Juma kuni soat nechada yopiladi? => 15:00 | 17:00 | 9:00 | 12:00
+@tushuncha Uchinchi sir: istisno umumiy qoidadan kuchli
+OVOZ: [1] Endi ehtiyot bo‘ling! Bog‘ning yana bir qatori bor: «Bayram kunlari». [2] Do‘stingiz so‘raydi: «Hayit kuni soat nechagacha ochiq?» Siz birinchi topgan «9 dan 17 gacha»ni aytsangiz — xato! [3] {urgu}Bayram kuni uchun alohida qoida: 10 dan 14 gacha! [4] Istisno — umumiy qoidadan farq qiladigan alohida holat. {baland}Istisno har doim umumiy qoidadan ustun turadi! [5] Savolda «bayram», «faqat», «lekin» so‘zlari bo‘lsa — shu istisnoni qidiring.
+DOSKA: JADVAL: Qoida | Vaqt ;; umumiy | 9–17 ;; istisno: bayram | 10–14
+DOSKA: ❌ umumiy: 17:00 da yopiladi
+DOSKA: ✅ bayramda: 14:00 da yopiladi
+DOSKA: istisno > umumiy qoida
+DOSKA: «bayram», «faqat», «lekin» — istisno belgisi
+TEKSH: Doimiy chipta 6 000 so‘m, talabalarga esa 4 000 so‘m. Talaba qancha to‘laydi? => 4 000 so‘m | 6 000 so‘m | 10 000 so‘m | 2 000 so‘m
+TEKSH: Matn: «Basseyn har kuni 8–20 da ishlaydi. Shanba kuni esa faqat 8–12 da». Shanba kuni qachon yopiladi? => 12:00 | 20:00 | 8:00 | 18:00
+@tushuncha To‘rtinchi sir: sinonim va birlikni tekshir
+OVOZ: [1] Muallif savoldagi so‘zni aynan yozmasligi mumkin! {sekin}Savolda — «bepul», matnda esa — «to‘lovsiz». [2] So‘zlar boshqa, ma’nosi bir xil — bu sinonim. Savolda «bola» deyilsa, matnda «yosh mehmon» yozilgan bo‘ladi. [3] Raqam topsangiz — birligiga ham qarang! «Besh ming so‘m» bilan «besh so‘m» — osmon bilan yer. [4] {baland}Topgan javobingiz savolga aynan mos kelyaptimi? Har doim so‘rang: «necha yoshdan» yoki «necha yoshgacha»?
+DOSKA: ZANJIR: Savol :: bepul | Matn :: to‘lovsiz | Ma’no :: bir xil
+DOSKA: SXEMA: Sinonim > bola — yosh mehmon | arzon — tejamkor | tez — shoshilinch
+DOSKA: raqam + birlik: 5 000 so‘m
+DOSKA: «dan» yoki «gacha»?
+TEKSH: Matnda: «Yosh mehmonlar uchun kirish to‘lovsiz». Savol: bolalar pul to‘laydimi? => Yo‘q, to‘lamaydi | Ha, to‘laydi | Faqat dushanba | Aniq emas
+TEKSH: Matnda «narxi — 12 ming so‘m». Savolda «12 000 so‘m». Bular bir xilmi? => Ha, bir xil | Yo‘q, boshqa | Faqat bayramda | Aniq emas
+@tushuncha Matnda yo‘q bo‘lsa-chi?
+OVOZ: [1] Ba’zan savol shunday: matnda o‘sha ma’lumot umuman yo‘q! [2] Misol: e’londa ish vaqti yozilgan, lekin to‘xtash joyi haqida bir so‘z ham yo‘q. {sekin}Savol: «Mashina qo‘yish joyi bormi?» [3] {urgu}O‘z bilimingiz bilan to‘ldirmang! Bu savol matn bo‘yicha javob so‘raydi. Matnda yo‘q bo‘lsa — «matnda ko‘rsatilmagan». [4] Bu — oddiy javobdan qiyinroq: «yo‘q» va «ko‘rsatilmagan» boshqa-boshqa narsa!
+DOSKA: SXEMA: «Bormi?» savoli > matnda yozilgan: javob | matnda yo‘q: «ko‘rsatilmagan»
+DOSKA: ❌ o‘z bilimim bilan javob
+DOSKA: ✅ faqat matnda yozilgani
+DOSKA: «yo‘q» ≠ «ko‘rsatilmagan»
+TEKSH: Matn faqat ish kunlarini beradi, narxni aytmaydi. Savol: kirish qancha turadi? => Matnda ko‘rsatilmagan | 5 000 so‘m | Bepul | Aniq 10 000 so‘m
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: matnda birinchi uchragan raqamni javob deb yozish. [2] {urgu}Savolga javob beradigan raqamni toping — har bir raqam kerakli emas. [3] Ikkinchi xato: matnda yo‘q narsani o‘z bilimingiz bilan to‘ldirish. Ma’lumotni topish savoli matn bo‘yicha javob so‘raydi.
-DOSKA: ❌ birinchi raqam
+OVOZ: [1] Tuzoq birinchi: {baland}matndagi birinchi raqamni javob deb yozish! Raqam ko‘p — kerakli raqam bitta. [2] Tuzoq ikkinchi: umumiy qoidani topib to‘xtash — istisno qolib ketadi. [3] Tuzoq uchinchi: savolni oxirigacha o‘qimay, matnga shoshilish. {urgu}«Faqat», «hech», «kamida» kabi so‘zlar javobni butunlay o‘zgartiradi!
+DOSKA: ❌ birinchi raqamni oldim
 DOSKA: ✅ savolga mos raqam
-DOSKA: ❌ o‘z bilimim
-DOSKA: ✅ matnda yozilgan
-TEKSH: Matnda ish vaqti yozilmagan. Savol: soat nechada ochiladi? => Matnda ko‘rsatilmagan | 9:00 | 10:00 | Ertalab
+DOSKA: ❌ istisno qolib ketdi
+DOSKA: ✅ «faqat», «kamida», «hech» — e’tibor
+TEKSH: Matn: «Kutubxonadan kamida 3 ta kitob olish mumkin». Savol: eng ko‘pi bilan nechta kitob olish mumkin? => Matnda ko‘rsatilmagan | 3 ta | 1 ta | 10 ta
 @xulosa Esda tut
-OVOZ: Birinchi: savoldan kalit so‘zni ajrating. Ikkinchi: matnni skanerlang. Uchinchi: istisno umumiy qoidadan ustun. To‘rtinchi: sinonim, raqam va birlikni tekshiring.
+OVOZ: Birinchi: savoldan kalit so‘zni ajrating. Ikkinchi: matnni o‘qimang — skanerlang. Uchinchi: istisno umumiy qoidadan ustun. To‘rtinchi: sinonim, raqam va birlikni tekshiring, matnda yo‘q bo‘lsa — «ko‘rsatilmagan».
 DOSKA: 1. kalit so‘z
 DOSKA: 2. skanerlash
 DOSKA: 3. istisno > umumiy
-DOSKA: 4. sinonim + birlik
+DOSKA: 4. sinonim + birlik + «ko‘rsatilmagan»
 
 ## PR-TUS
-@kirish Muallif nima demoqchi?
-OVOZ: Qisqa matn: «Samarqandning eski bog‘ida bitta chinor o‘ttiz yildan beri hosil bermaydi. Hammasi kesmoqchi bo‘ldi. Lekin uning soyasida har yozda bolalar o‘ynaydi, keksalar choy ichadi». {pauza} Matn nimaga qaratilgan? Chinor haqidami yoki biror boshqa fikrmi? {sekin}Tushunish va talqin qilish — satr ustida ham, satr ortida ham o‘qish. Taxmin qiling.
-DOSKA: «30 yil hosil bermaydi»
-DOSKA: «soyasida bolalar, keksalar»
-DOSKA: Asosiy fikr? ✋
-@tushuncha Asosiy fikr
-OVOZ: [1] Asosiy fikr — matn nima haqida va muallif nimani aytmoqchi. Bu mavzu bilan bir xil emas. [2] Mavzu: chinor. Asosiy fikr: foyda faqat hosil bilan o‘lchanmaydi, soya va jamoat uchun ham qadrli. [3] {sekin}Asosiy fikrni topish uchun savol bering: «Muallif nimani ta’kidlayapti? Qaysi detallarga urg‘u beryapti?» [4] Sarlavha, birinchi va oxirgi jumla ko‘pincha yordam beradi.
-DOSKA: mavzu → chinor
-DOSKA: asosiy fikr → qadr: hosildan tashqari
-DOSKA: detallar → soya, bolalar
-DOSKA: sarlavha, birinchi/oxirgi jumla
-TEKSH: Matn: «Kichkina mushuk kuniga ikki marta ovqat ichadi, lekin bir kuni qaytib kelmadi. Egasi hamma yerda qidirdi». Mavzu? => Yo‘qolgan mushuk | Ovqatlanish | Bog‘ | Shahar
-TEKSH: Asosiy fikr nima bilan mavzudan farq qiladi? => Muallif aytmoqchi bo‘lgan xulosa | Matn uzunligi | Muallif ismi | Sarlavha
-@tushuncha Xulosa chiqarish
-OVOZ: [1] Matnda aytilmagan, lekin dalillardan kelib chiqadigan narsani xulosa deymiz. [2] «Bola yomg‘irda ho‘l bo‘lib kirdi, soyabon yo‘q edi». Xulosa: u soyabonni unutgan yoki yo‘qotgan. [3] {sekin}Xulosa matndagi belgilarga tayanadi, tasavvurga emas. «U baxtsiz edi» deb yozish uchun dalil kerak. [4] Savol: «Matnda qaysi gap buni ko‘rsatadi?»
-DOSKA: «ho‘l, soyabon yo‘q» → unutgan
-DOSKA: xulosa ← belgilar
-DOSKA: ❌ tasavvur
-DOSKA: ✅ matndan dalil
-TEKSH: «Ali eshikni sekin yopdi va oyoq uchida yurdi». Xulosa? => U kimnidir uyg‘otmaslikka harakat qilmoqda | U qo‘rqmaydi | U jahldor | U yugurmoqda
-TEKSH: «Qop og‘ir edi. Chol to‘xtab, nafas rostladi». Xulosa? => Chol charchagan | Chol sakraydi | Chol xursand | Qop yengil
+@kirish Muallif bizga nima demoqchi?
+OVOZ: {baland}Bitta qisqa hikoya o‘qing! {pauza} Samarqandning eski bog‘ida bitta chinor o‘ttiz yildan beri hosil bermaydi. Hamma uni kesmoqchi bo‘ldi. Lekin yozda uning soyasida bolalar o‘ynaydi, keksalar choy ichadi. {sekin}Hikoya chinor haqidami? Yoki yana boshqa gap ham bor? {urgu}Muallif bizga nima demoqchi? Taxmin qiling — hozir hikoya doskada alohida chiziladi, dars oxirida bu yerdagi sirni tushunamiz!
+DOSKA: RASM: daraxt:katta | quyosh:aylan | qush:sakra
+DOSKA: Chinor — 30 yil [s]hosil bermaydi[/s]
+DOSKA: Hamma — [p]kesmoqchi[/p]
+DOSKA: Yozda soyasida — [y]bolalar, keksalar[/y]
+DOSKA: Muallif nima demoqchi? ✋
+@tushuncha Mavzu va asosiy fikr — ikki xil narsa
+OVOZ: [1] Avval farqni bilib oling. Mavzu — matn {baland}nima haqida. Bu hikoyada mavzu — chinor. [2] Asosiy fikr esa — muallif bu hikoya orqali {urgu}nimani aytmoqchi. [3] Uni topish uchun muallif qaysi tafsilotlarga urg‘u berayotganini kuzating. {sekin}Hosil bermaydi — bir tafsilot. Soya, bolalar, keksalar — boshqa tafsilotlar. [4] Ular birgalikda nimani ko‘rsatadi? Foyda faqat hosil bilan o‘lchanmaydi — soya va jamoat uchun qadrli bo‘lish ham foyda! [5] Sarlavha, birinchi va oxirgi gap ko‘pincha asosiy fikrga yo‘l ko‘rsatadi.
+DOSKA: SXEMA: Hikoya > mavzu: chinor | asosiy fikr: foyda faqat hosildan emas
+DOSKA: ZANJIR: Tafsilot 1 :: hosil yo‘q | Tafsilot 2 :: soya | Tafsilot 3 :: bolalar, keksalar | Fikr :: qadri bor
+DOSKA: mavzu → nima haqida
+DOSKA: asosiy fikr → muallif nima demoqchi
+DOSKA: sarlavha, birinchi va oxirgi gap — yo‘l ko‘rsatkich
+TEKSH: Matn: «Kichkina mushuk uydan chiqib ketdi. Egasi kuni bilan qidirdi, kechqurun esa mushuk o‘zi qaytib keldi». Mavzu nima? => Yo‘qolgan va topilgan mushuk | Kechqurun | Ovqatlanish | Maktab
+TEKSH: Asosiy fikr mavzudan nimasi bilan farq qiladi? => Muallif aytmoqchi bo‘lgan xulosa | Matn uzunligi | Muallif ismi | Sarlavha uzunligi
+@tushuncha Satr ortida o‘qish: xulosa chiqarish
+OVOZ: [1] Yaxshi o‘quvchi — {baland}detektiv! U yozilmagan narsani izlaydi. [2] Matn: «Bola yomg‘irda ho‘l bo‘lib kirdi. Soyabon yo‘q edi». Yozilmagan xulosa — u soyabonni uyda unutgan. [3] Xulosa — matndagi belgilardan kelib chiqadigan fikr. {sekin}Dalil: «ho‘l bo‘lib kirdi», «soyabon yo‘q». [4] {urgu}Xulosa tasavvurga emas, matndagi belgiga tayanadi! «U baxtsiz edi» deyish uchun matndan dalil topishingiz kerak. [5] O‘zingizdan so‘rang: «Qaysi gap meni shu xulosaga olib keldi?»
+DOSKA: ZANJIR: Belgi 1 :: ho‘l bo‘lib kirdi | Belgi 2 :: soyabon yo‘q | Xulosa :: uyda unutgan
+DOSKA: BELGILA: «soyabon yo‘q edi» | ramka
+DOSKA: xulosa ← matndagi belgi
+DOSKA: ❌ tasavvur  ✅ dalil
+DOSKA: «Qaysi gap meni shunga olib keldi?»
+TEKSH: «Ali eshikni sekin yopdi va oyoq uchida yurdi». Xulosa qaysi? => U kimnidir uyg‘otmaslikka harakat qilmoqda | U qo‘rqmaydi | U jahldor | U yugurmoqda
+TEKSH: «Qop og‘ir edi. Chol bir necha qadamdan keyin to‘xtab, nafas rostladi». Xulosa? => Chol charchagan | Chol sakraydi | Chol xursand | Qop yengil
 @tushuncha Muallif maqsadi va ohangi
-OVOZ: [1] Har bir matn maqsad bilan yoziladi: xabar berish, ishontirish, ko‘ngil ochish, o‘rgatish. [2] Reklama — ishontirish. Yangilik — xabar berish. Ertak — ko‘ngil ochish va o‘rgatish. [3] {sekin}Ohang — muallifning munosabati: jiddiy, hazil, g‘amgin, tanqidiy. Ohang so‘zlar tanlovidan seziladi. [4] «Ajoyib» va «arzimas» so‘zlari bir xil hodisaga turlicha baho beradi.
-DOSKA: SXEMA: Maqsad > xabar | ishontirish | ko‘ngil ochish | o‘rgatish
-DOSKA: reklama → ishontiradi
-DOSKA: yangilik → xabar beradi
-DOSKA: ohang → so‘zlardan
-TEKSH: «Faqat bugun! Ushbu mahsulot sizning hayotingizni o‘zgartiradi!» Maqsad? => Ishontirish | Xabar berish | O‘rgatish | Ma’lumot
-TEKSH: «U arzimas sovg‘ani oldi» va «U qimmatli sovg‘ani oldi» — nimasi bilan farq qiladi? => Ohang va munosabat | Faktlar | Sanalar | Joy
+OVOZ: [1] Har bir matn nimadir uchun yoziladi. {sekin}Ba’zan xabar berish uchun — yangilik. Ba’zan ishontirish uchun — reklama. [2] Ba’zan o‘rgatish uchun — qoidalar, ba’zan ko‘ngil ochish uchun — ertak. [3] «Faqat bugun! Hayotingizni o‘zgartiradi!» — bu aniq ishontirish. Muallif sizni sotib olishga undayapti. [4] Ohang — muallifning munosabati: jiddiy, hazil, g‘amgin, tanqidiy. Ohang so‘zlar tanlovidan seziladi. {baland}«Arzimas sovg‘a» bilan «qimmatli sovg‘a» — voqea bir, ohang boshqa!
+DOSKA: SXEMA: Maqsad > xabar berish | ishontirish | o‘rgatish | ko‘ngil ochish
+DOSKA: reklama → ishontirish
+DOSKA: yangilik → xabar berish
+DOSKA: JADVAL: So‘z | Ohang ;; arzimas sovg‘a | beparvo ;; qimmatli sovg‘a | iliq
+DOSKA: ohang → so‘z tanlovidan seziladi
+TEKSH: «Sinab ko‘ring! Bu sharbat sizni darrov quvvatlantiradi!» Muallif maqsadi? => Ishontirish | Xabar berish | O‘rgatish | Ma’lumot berish
+TEKSH: «Qiziq-ku, yana bir yangi qoida! Haftasiga uchinchi marta!» Ohang qanday? => Tanqidiy, norozi | Quvonchli | G‘amgin | Befarq
+@tushuncha Detallarni asosiy fikrga yig‘ish
+OVOZ: [1] Endi hammasini birga qo‘llaymiz. Boshqa hikoya: «Gulnora har kuni qushlarga don sepadi. Qish keldi. Qushlar daraxtiga uya qurdi». [2] Mavzu — Gulnora va qushlar. {sekin}Detallar: don sepdi, har kuni, qish keldi, uya qurdi. [3] Xulosa: qushlar unga ishondi. [4] Asosiy fikr: {urgu}yaxshilik izsiz ketmaydi, vaqt o‘tib qaytadi. [5] Bu — butun matndan chiqarilgan fikr. Bitta detal emas — hammasi birgalikda!
+DOSKA: ZANJIR: Don sepdi :: har kuni | Qish keldi | Uya qurdi | Fikr :: yaxshilik qaytadi
+DOSKA: Mavzu: Gulnora va qushlar
+DOSKA: Xulosa: qushlar ishondi
+DOSKA: Asosiy fikr: [s]yaxshilik qaytadi[/s]
+DOSKA: ❌ bitta detal = fikr
+TEKSH: Matn: «Karim har kuni yarim soat kitob o‘qiydi. Yil oxirida u bir necha o‘nlab kitobni tugatdi». Asosiy fikr qaysi? => Kichik, lekin doimiy mehnat katta natija beradi | Karim yarim soat o‘qiydi | Kitoblar qimmat | Yil uzun
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: matnda yo‘q narsani qo‘shish. «Chol yolg‘iz edi» — buni matn aytmagan. [2] {urgu}Xulosa mantiqiy, lekin dalilga asoslangan bo‘lsin! [3] Ikkinchi xato: asosiy fikrni bitta detalga qisqartirish. «Chinor hosil bermaydi» — faqat bir detal.
-DOSKA: ❌ matnda yo‘q
-DOSKA: ✅ dalilga asoslangan
-DOSKA: ❌ detal = asosiy fikr
-DOSKA: ✅ butun matn → fikr
-TEKSH: Matn: «Dilnoza maktabdan yugurib keldi, sumkasini tashladi va xursand baqirdi: ‹Besh oldim!›» Qaysi xulosa to‘g‘ri? => Dilnoza yaxshi baho olgan | Dilnoza ukasini yo‘qotgan | U kasal | U kechikkan
+OVOZ: [1] Tuzoq birinchi: {baland}matnda yo‘q narsani qo‘shish! «Chol yolg‘iz edi» — buni muallif aytmagan. [2] Xulosa mantiqiy bo‘lishi mumkin, lekin dalilga tayansin. [3] Tuzoq ikkinchi: asosiy fikrni bitta detalga qisqartirish. «Chinor hosil bermaydi» — bu faqat bir tafsilot, fikr emas. [4] {urgu}Tuzoq uchinchi: o‘z fikringni muallifnikidek ko‘rsatish. Mening fikrim ham, muallifniki ham — ikki xil bo‘lishi mumkin!
+DOSKA: ❌ matnda yo‘q narsa
+DOSKA: ✅ dalilga tayangan xulosa
+DOSKA: ❌ bitta detal = fikr
+DOSKA: ❌ mening fikrim = muallif fikri
+TEKSH: Matn: «Dilnoza maktabdan yugurib keldi, sumkasini tashladi va xursand baqirdi: ‹Besh oldim!›» Qaysi xulosa to‘g‘ri? => Dilnoza yaxshi baho olgan | Dilnoza ukasini yo‘qotgan | Dilnoza kasal | Dilnoza kechikkan
 @xulosa Esda tut
-OVOZ: Birinchi: mavzu bilan asosiy fikr boshqa. Ikkinchi: xulosa matndagi belgilarga tayanadi. Uchinchi: muallif maqsadi va ohangiga e’tibor bering. To‘rtinchi: matnda yo‘qni qo‘shmang.
+OVOZ: Birinchi: mavzu bilan asosiy fikr boshqa narsa. Ikkinchi: xulosa matndagi belgiga tayanadi. Uchinchi: muallif maqsadi va ohangiga e’tibor bering. To‘rtinchi: matnda yo‘q narsani qo‘shmang.
 DOSKA: 1. mavzu ≠ fikr
 DOSKA: 2. xulosa ← dalil
 DOSKA: 3. maqsad + ohang
@@ -87,51 +118,57 @@ DOSKA: 4. yo‘qni qo‘shma
 
 ## PR-BAH
 @kirish Hamma narsaga ishonish kerakmi?
-OVOZ: Ijtimoiy tarmoqda post: «Bu yangi choy bir haftada kasallikni davolaydi! Mashhur shifokor tavsiya etadi!» Postni choy sotuvchi yozgan. {pauza} Ishonamizmi? Kim yozgan, nima uchun yozgan — bu qanchalik muhim? {sekin}Baholash va mulohaza — matnning ishonchliligi, maqsadi va shakli haqida fikr yuritish. Taxmin qiling.
+OVOZ: {baland}Ijtimoiy tarmoqda post chiqdi! {pauza} «Bu yangi choy bir haftada har qanday kasallikni davolaydi! Mashhur shifokor tavsiya etadi!» Hamma ulashmoqda. {sekin}Lekin postni kim yozgan? Choy sotuvchisi! {urgu}Ishonasizmi? Matn kim tomonidan, nima uchun yozilgani — bu muhimmi? Bugun matnga detektiv ko‘zi bilan qarashni o‘rganamiz. Avval taxmin qiling!
+DOSKA: RASM: choy:kel | kasal | telefon:tebran
 DOSKA: «Bir haftada davolaydi!»
-DOSKA: yozgan: sotuvchi
+DOSKA: yozgan: [p]choy sotuvchisi[/p]
 DOSKA: Ishonamizmi? ✋
-@tushuncha Manba va maqsad
-OVOZ: [1] Matnni baholashda birinchi savol: kim yozgan va nima uchun? [2] Sotuvchi o‘z mahsulotini maqtaydi — manfaati bor. Shifokor, mutaxassis, olim — bilimga tayanadi, lekin ularni ham tekshirish kerak. [3] {sekin}Matn qachon yozilgan? Eski ma’lumot eskirgan bo‘lishi mumkin. [4] Manba ko‘rsatilganmi? Dalil bormi? Bir nechta mustaqil manba bir narsani aytyaptimi?
-DOSKA: kim yozgan?
-DOSKA: nima uchun?
-DOSKA: qachon?
-DOSKA: dalil / manba bormi?
-TEKSH: Telefon reklamasi uni ishlab chiqaruvchi tomonidan yozilgan. Ishonchlilik darajasi? => Manfaatdor — ehtiyot bo‘lish kerak | Mutlaq ishonchli | Fan maqolasi | Betaraf
-TEKSH: Eng ishonchli manba qaysi? => Mustaqil tadqiqot ma’lumoti | Do‘stning gapi | Reklama | Tasodifiy sharh
+@tushuncha Birinchi qadam: kim, nega, qachon yozgan?
+OVOZ: [1] Matnni baholashni uchta savoldan boshlaymiz. Birinchi savol: {baland}kim yozgan? [2] Sotuvchi o‘z mahsulotini maqtaydi — uning manfaati bor. Olim yoki mutaxassis — bilimga tayanadi, lekin ularni ham tekshirish kerak. [3] Ikkinchi savol: nima uchun yozgan? {sekin}Sotish uchunmi? Xabar berish uchunmi? [4] Uchinchi savol: qachon yozilgan? O‘n besh yil oldingi ma’lumot eskirgan bo‘lishi mumkin. [5] Yana: manba ko‘rsatilganmi? Dalil bormi?
+DOSKA: SXEMA: Matnga savol > kim yozgan? | nima uchun? | qachon? | dalil bormi?
+DOSKA: ZANJIR: Yozuvchi :: sotuvchi | Maqsad :: sotish | Manfaat :: bor | Xulosa :: ehtiyot bo‘l
+DOSKA: qachon → eski ma’lumot eskirishi mumkin
+DOSKA: manba + dalil → ishonch ↑
+DOSKA: manfaat bor → ehtiyot bo‘l
+TEKSH: Telefon reklamasini uni ishlab chiqargan kompaniya yozgan. Ishonchlilik darajasi? => Manfaatdor, ehtiyot bo‘lish kerak | Mutlaqo ishonchli | Fan maqolasi kabi | Betaraf
+TEKSH: Eng ishonchli manba qaysi? => Mustaqil tadqiqot natijalari | Do‘stning gapi | Reklama | Tasodifiy sharh
 @tushuncha Fakt va fikr
-OVOZ: [1] Fakt — tekshirib bo‘ladigan ma’lumot: «Samarqand — Zarafshon vodiysida». [2] Fikr — shaxsiy baho: «Samarqand eng chiroyli shahar». [3] {sekin}Fikr dalil bilan qo‘llab-quvvatlansa, kuchliroq bo‘ladi. «Eng yaxshi», «hech qachon», «hamma» — bahoning belgilari. [4] Tekshirib bo‘ladigan har bir gapni «Qanday tekshiramiz?» savoli bilan sinab ko‘ring.
-DOSKA: fakt → tekshiriladi
-DOSKA: fikr → baho
-DOSKA: «eng», «hamma» → fikr belgisi
+OVOZ: [1] Matndagi har bir gap ikki xil bo‘ladi: fakt yoki fikr. [2] Fakt — tekshirib bo‘ladigan ma’lumot: «Samarqand — Zarafshon vodiysida joylashgan». Xaritadan qarab tasdiqlaysiz. [3] Fikr — shaxsiy baho: «Samarqand — eng chiroyli shahar». Kim chiroyli deydi, kim yo‘q. [4] {sekin}«Eng», «hech qachon», «hamma», «ajoyib» — fikr belgilari! [5] Gapni sinash uchun: «Buni qanday tekshiramiz?» — deb so‘rang. {urgu}Tekshirib bo‘lsa — fakt, bo‘lmasa — fikr!
+DOSKA: JADVAL: Gap | Tur | Sinash ;; Samarqand Zarafshon vodiysida | fakt | xarita ;; Samarqand eng chiroyli | fikr | tekshirib bo‘lmaydi
+DOSKA: fakt → tekshirib bo‘ladi
+DOSKA: fikr → shaxsiy baho
+DOSKA: «eng», «hamma», «ajoyib» — fikr belgisi
 DOSKA: «Qanday tekshiramiz?»
-TEKSH: «Suv 100 °C da qaynaydi» — bu? => Fakt | Fikr | Reklama | Taxmin
-TEKSH: «Bu kitob eng qiziqarli» — bu? => Fikr | Fakt | Raqam | Sana
-@tushuncha Ikki matnni solishtirish
-OVOZ: [1] Ikkita maqola bir mavzuda turlicha xulosa beradi. Biri: «Telefon bolaga zarar». Ikkinchisi: «Telefon o‘rgatadi». [2] Har biri qanday dalil keltirgan? Qaysi tadqiqotga tayangan? [3] {sekin}Ehtimol, ikkalasi ham to‘g‘ri — turli sharoit haqida: ko‘p vaqt o‘yin zarar, o‘quv ilovalar foyda. [4] Aniq xulosa: dalil, sharoit va o‘lchamga qarab baholanadi.
-DOSKA: matn A: zarar (ko‘p vaqt)
-DOSKA: matn B: foyda (o‘quv ilova)
-DOSKA: dalil + sharoit
-DOSKA: ikkala qism to‘g‘ri bo‘lishi mumkin
-TEKSH: Ikki matn bir-biriga zid. Birinchi qadam? => Dalil va sharoitni solishtirish | Yaxshisini tanlash | Ikkalasini tashlash | Tasodifiy tanlash
-TEKSH: Matnning ma’lumoti 15 yillik. Nimani hisobga olish kerak? => Eskirgan bo‘lishi mumkin | Hamma narsa to‘g‘ri | Yangi | Ahamiyatsiz
-@tushuncha Shakl va til: matn nima uchun shunday yozilgan
-OVOZ: [1] Muallif shakl tanlaydi: sarlavha, ro‘yxat, rasm, hazil. Ularning vazifasi bor. [2] Qo‘rqituvchi sarlavha diqqatni tortadi, lekin xulosa asoslanmagan bo‘lishi mumkin. [3] {sekin}Rasm his-tuyg‘uni oshiradi: kuchli rasm — kuchli ta’sir. Ta’sirga berilmang — dalilni toping. [4] Mulohazada: matn maqsadiga erishganmi? Qaysi qismlar ishontiradi? Qaysi biri yetishmaydi?
-DOSKA: sarlavha → diqqat
-DOSKA: rasm → his-tuyg‘u
+DOSKA: [y]tekshirib bo‘lsa — fakt[/y]
+TEKSH: «Suv 100 °C da qaynaydi» — bu nima? => Fakt | Fikr | Reklama | Taxmin
+TEKSH: «Bu kitob eng qiziqarli» — bu nima? => Fikr | Fakt | Raqam | Sana
+@tushuncha Ikki matn bir-biriga zid bo‘lsa
+OVOZ: [1] Ba’zan ikkita maqola bir mavzuda turlicha gapiradi! Biri: «Telefon bolaga zarar». Ikkinchisi: «Telefon bolani o‘rgatadi». [2] Qaysi biri to‘g‘ri? {baland}Shoshilmang — ikkalasiga ham savol bering: qanday dalil keltirgan? [3] Birinchisi — «kuniga olti soat o‘yin» haqida. Ikkinchisi — «o‘quv ilova» haqida. {sekin}Ular turli sharoitni tavsiflayapti! [4] Demak, ikkalasi ham o‘z doirasida to‘g‘ri bo‘lishi mumkin. [5] {urgu}Aniq xulosa — dalil, sharoit va miqdorni solishtirgandan keyin chiqadi.
+DOSKA: SXEMA: Ikki matn > matn A: zarar (olti soat o‘yin) | matn B: foyda (o‘quv ilova)
+DOSKA: ZANJIR: Dalil :: qanday? | Sharoit :: qaysi? | Miqdor :: qancha? | Xulosa :: ehtiyotkor
+DOSKA: ikkalasi to‘g‘ri bo‘lishi mumkin — sharoit boshqa
+DOSKA: tezkor tanlov ❌ → dalil bilan solishtir ✅
+DOSKA: dalil + sharoit + miqdor
+TEKSH: Ikki matn bir-biriga zid. Birinchi qadam nima? => Dalil va sharoitni solishtirish | Yoqqanini tanlash | Ikkalasini tashlash | Tasodifiy tanlash
+TEKSH: Maqola ma’lumotlari 15 yil oldin yig‘ilgan. Nimani hisobga olish kerak? => Ma’lumot eskirgan bo‘lishi mumkin | Hamma narsa to‘g‘ri | Yangi hisoblanadi | Ahamiyatsiz
+@tushuncha Shakl va til: matn nima uchun shunday yozilgan?
+OVOZ: [1] Muallif nafaqat nima yozishni, balki {baland}qanday yozishni ham tanlaydi: sarlavha, rasm, ro‘yxat, hazil. [2] Qo‘rqituvchi sarlavha diqqatni tortadi: «Dahshat! Xavf ostidamiz!» Ammo xulosa asoslanmagan bo‘lishi mumkin. [3] {sekin}Kuchli rasm his-tuyg‘uni oshiradi: yig‘layotgan bola — yurak titraydi. [4] {urgu}Lekin ta’sir — dalil emas! His-tuyg‘uga berilmasdan, dalilni qidiring. [5] Baholaganda so‘rang: matn maqsadiga erishdimi? Qaysi qism ishontiradi, qaysi biri yetishmaydi?
+DOSKA: ZANJIR: Sarlavha :: diqqat | Rasm :: his-tuyg‘u | Dalil :: yetarlimi? | Baho :: ?
+DOSKA: SXEMA: Qaysi qism ishontiradi? > sarlavha | rasm | raqam | manba
 DOSKA: ta’sir ≠ dalil
+DOSKA: his-tuyg‘u kuchli, dalil kam → ehtiyot
 DOSKA: maqsadga erishdimi?
-TEKSH: «Dahshat! Bu mahsulotni hamma sotib olmoqda!» sarlavhasi nimaga urg‘u beradi? => His-tuyg‘uga | Dalilga | Faktga | Statistikaga
-TEKSH: Yaxshi matn qaysi belgi bilan ajraladi? => Dalil va aniq manba | Katta rasm | Baland ohang | Uzun sarlavha
+TEKSH: «Dahshat! Bu mahsulotni hamma sotib olmoqda!» sarlavhasi asosan nimaga tayanadi? => His-tuyg‘u va ommaviylikka | Dalilga | Statistikaga | Tajribaga
+TEKSH: Quyidagilardan qaysi matn kuchliroq baholanadi? => Aniq manba va dalil keltirgan | Katta rasmli | Baqirib yozilgan | Uzun sarlavhali
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: «Gazetada yozilgan, demak to‘g‘ri». [2] {urgu}Gazeta ham xato qiladi, faktni tekshiring! [3] Ikkinchi xato: «Menga yoqmaydi, demak xato». Baholash didga emas, dalilga asoslanadi.
+OVOZ: [1] Tuzoq birinchi: {baland}«Gazetada chiqqan — demak, to‘g‘ri!» Gazeta ham xato qiladi. Faktni tekshiring. [2] Tuzoq ikkinchi: «Menga yoqmadi — demak, xato!» Baholash didga emas, dalilga tayanadi. [3] {urgu}Tuzoq uchinchi: faqat o‘z fikringizga mos manbani izlash. Qarama-qarshi fikrlarni ham o‘qing — shunda haqiqatga yaqinlashasiz.
 DOSKA: ❌ yozilgan = to‘g‘ri
-DOSKA: ✅ tekshir
+DOSKA: ✅ faktni tekshir
 DOSKA: ❌ yoqmadi = xato
-DOSKA: ✅ dalil bilan
-TEKSH: Matnning fikri sizga yoqmaydi. Uning xatoligini isbotlash uchun nima kerak? => Dalil | Jahl | Ko‘p odam | Hech narsa
+DOSKA: ✅ dalil bilan baholash
+TEKSH: Matnning g‘oyasi sizga yoqmaydi. Uning xato ekanini isbotlash uchun nima kerak? => Dalil | Jahl | Ko‘p odamning fikri | Hech narsa
 @xulosa Esda tut
-OVOZ: Birinchi: kim, nima uchun, qachon yozgan — so‘rang. Ikkinchi: fakt va fikrni ajrating. Uchinchi: ikki matnni dalil va sharoit bilan solishtiring. To‘rtinchi: ta’sirga emas, dalilga tayaning.
+OVOZ: Birinchi: kim yozgan, nima uchun, qachon — avval shuni so‘rang. Ikkinchi: fakt va fikrni ajrating. Uchinchi: zid ikki matnni dalil va sharoit bilan solishtiring. To‘rtinchi: ta’sirga emas, dalilga tayaning.
 DOSKA: 1. kim · nega · qachon
 DOSKA: 2. fakt ≠ fikr
 DOSKA: 3. dalil + sharoit

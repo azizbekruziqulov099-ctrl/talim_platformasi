@@ -1,0 +1,240 @@
+## PF-PUL
+@kirish Bozorda kim yutdi?
+OVOZ: {baland}Bozorga bordingiz! {pauza} Birinchi rastada olma — besh kilogrammi qirq ming so‘m. Ikkinchi rastada esa uch kilogrammi yigirma yetti ming. Sotuvchi qichqiradi: «Bizniki arzon!» {sekin}Qaysi rasta haqiqatan arzon? Narxning o‘ziga emas — {urgu}bir kilogrammiga qarash kerak. Hozir hisoblamang, taxmin qiling. Dars oxirida o‘zingiz tekshirasiz!
+DOSKA: RASM: olma:kel | tarozi:tebran | pul:sakra
+DOSKA: 5 kg — 40 000 so‘m;  3 kg — 27 000 so‘m
+DOSKA: Qaysi rasta arzon? ✋ taxmin qiling
+@tushuncha Chek va qaytim
+OVOZ: [1] Avval oddiy narsadan boshlaymiz: chek. Do‘kondan uchta non oldingiz, har biri to‘rt ming so‘m. Bitta sut — to‘qqiz ming so‘m. [2] Nonlarning puli: uch karra to‘rt ming — o‘n ikki ming. {sekin}Unga sutni qo‘shamiz: o‘n ikki ming plyus to‘qqiz ming — yigirma bir ming so‘m. [3] Kassirga ellik ming so‘m berdingiz. Qaytim — {urgu}berilgan pul minus chekdagi summa. Ellik minus yigirma bir — yigirma to‘qqiz ming. [4] Qaytimni doim sanab oling. Kassir ham odam, adashishi mumkin!
+DOSKA: KETMA: 3 · 4 000 | 12 000 | 12 000 + 9 000 | 21 000
+DOSKA: Chek: 21 000 so‘m
+DOSKA: USTUN: 50000-21000
+DOSKA: Qaytim = berilgan − chek = 29 000
+SODDA: Qaytim — kassirga bergan pulingiz bilan chek summasi orasidagi farq.
+TEKSH: Siz 4 ta daftar (har biri 6 000 so‘m) va 1 ta ruchka (3 000 so‘m) oldingiz. Kassirga 30 000 so‘m berdingiz. Qaytim necha so‘m? => 3 000 | 27 000 | 30 000 | 9 000
+TEKSH: Chekda 17 500 so‘m yozilgan. Siz 20 000 so‘m berdingiz. Qaytim qancha? => 2 500 | 3 500 | 37 500 | 1 500
+@tushuncha Birlik narx — adolatli solishtirish
+OVOZ: [1] Endi bozordagi savolimizga qaytamiz! Birinchi rasta: besh kilogramm — qirq ming so‘m. Bir kilogramm qancha? Qirq mingni beshga bo‘lamiz. [2] {sekin}Qirq ming bo‘lingan besh — sakkiz ming. Birinchi rastada bir kilogramm — sakkiz ming so‘m. [3] Ikkinchi rasta: uch kilogramm — yigirma yetti ming. Yigirma yetti ming bo‘lingan uch — to‘qqiz ming so‘m. [4] {baland}Sakkiz ming to‘qqiz mingdan arzon! Demak, birinchi rasta yutdi. Taxmin to‘g‘ri chiqdimi? [5] Qoida: har xil miqdorni solishtirganda — {urgu}birlik narxni toping: jami narx bo‘lingan miqdor.
+DOSKA: BOLISH: 40000:5
+DOSKA: BOLISH: 27000:3
+DOSKA: JADVAL: Rasta | Narx | 1 kg ;; Birinchi | 40 000 | 8 000 ;; Ikkinchi | 27 000 | 9 000
+DOSKA: BELGILA: 8 000 < 9 000 | aylana
+DOSKA: QOIDA: birlik narx = jami narx : miqdor
+TEKSH: Sharbat: 6 litr — 42 000 so‘m yoki 4 litr — 30 000 so‘m. Qaysi biri arzonroq? => 6 litrlisi (litri 7 000) | 4 litrlisi (litri 7 500) | Narxi bir xil | Aniqlab bo‘lmaydi
+TEKSH: 12 ta tuxum 24 000 so‘m turadi. Bitta tuxum qancha? => 2 000 | 12 000 | 288 000 | 200
+@tushuncha Chegirma: arzon bo‘ldimi?
+OVOZ: [1] Vitrinada telefon: besh yuz ming so‘m, ustida katta yozuv — yigirma foiz chegirma! [2] Chegirma qancha? Besh yuz mingning yigirma foizi. Yigirma foiz — beshdan bir. {sekin}Besh yuz ming bo‘lingan besh — yuz ming so‘m. [3] Endi narxdan ayiramiz: besh yuz minus yuz — to‘rt yuz ming so‘m to‘laymiz. [4] {urgu}Shoshilmang! Chegirma — to‘lov emas, tejagan pulingiz. Siz to‘rt yuz ming to‘laysiz, yuz ming tejaysiz.
+DOSKA: DOIRA_KASR: 1/5
+DOSKA: 20% = 1/5;  500 000 : 5 = 100 000
+DOSKA: USTUN: 500000-100000
+DOSKA: RASM: telefon:kel
+DOSKA: QOIDA: to‘lov = narx − chegirma
+TEKSH: Poyabzal 300 000 so‘m, chegirma 15%. Necha so‘m to‘laysiz? => 255 000 | 45 000 | 285 000 | 345 000
+TEKSH: Kiyim 80 000 so‘m, chegirma 25%. Qancha pul tejaysiz? => 20 000 | 60 000 | 25 000 | 55 000
+@tushuncha Valyuta kursi: pulni ayirboshlash
+OVOZ: [1] Sayohatga chiqmoqchisiz — dollar kerak. Bankda kurs: bir dollar o‘n ikki ming besh yuz so‘m. [2] Qirq dollar olmoqchisiz. Qirq karra o‘n ikki ming besh yuz — besh yuz ming so‘m. [3] {sekin}Teskarisi: yetti yuz ellik ming so‘mga necha dollar? Endi bo‘lamiz: yetti yuz ellik ming bo‘lingan o‘n ikki ming besh yuz — oltmish dollar. [4] {urgu}Esda tuting: dollarga so‘m ko‘paytiriladi, so‘mdan dollarga o‘tish uchun bo‘linadi!
+DOSKA: 1 $ = 12 500 so‘m
+DOSKA: KETMA: 40 $ | 40 · 12 500 | 500 000 so‘m
+DOSKA: KETMA: 750 000 so‘m | 750 000 : 12 500 | 60 $
+DOSKA: QOIDA: valyuta → so‘m: ×kurs; so‘m → valyuta: ÷kurs
+TEKSH: 1 dollar = 12 800 so‘m. 50 dollar necha so‘m bo‘ladi? => 640 000 | 12 850 | 256 | 62 500
+TEKSH: 1 yevro = 14 000 so‘m. 280 000 so‘mga necha yevro olasiz? => 20 | 3 920 000 | 280 | 2
+@tushuncha Karta va komissiya
+OVOZ: [1] Kartadan pul o‘tkazyapsiz. Bank «komissiya» oladi — xizmat haqi. Ko‘pincha foizda belgilanadi. [2] Ikki million so‘m o‘tkazdingiz, komissiya bir foiz. Bir foiz — yuzdan bir. {sekin}Ikki million bo‘lingan yuz — yigirma ming so‘m. [3] Demak, qabul qiluvchiga ikki million, sizning hisobingizdan esa — ikki million yigirma ming ketadi. [4] Kichik foiz ham katta summada ko‘rinadigan pulga aylanadi!
+DOSKA: KETMA: 1% | 1/100 | 2 000 000 : 100 | 20 000
+DOSKA: BOLISH: 2000000:100
+DOSKA: 2 000 000 + 20 000 = 2 020 000
+DOSKA: QOIDA: komissiya = summa · foiz : 100
+TEKSH: 3 000 000 so‘mni o‘tkazishda komissiya 2%. Komissiya necha so‘m? => 60 000 | 6 000 | 30 000 | 600 000
+@tushuncha Xato tuzog‘i: katta narx — yaxshi tovar?
+OVOZ: [1] Mashhur xato: «Qaysi tovar qimmat — o‘sha yaxshi, qaysi biri arzon — o‘sha yomon». [2] {urgu}Yo‘q! Narx sifatni kafolatlamaydi. Narxni birlikka — kilogramm, litr, dona, oyga — keltirib solishtiring. [3] Ikkinchi xato: «Chegirma yozilgan — demak, foydali». Avval eski narx rostmi, birlik narx arzonlashdimi — tekshiring.
+DOSKA: ❌ qimmat = yaxshi
+DOSKA: ✅ birlik narxni solishtir
+DOSKA: ❌ chegirma = foyda
+DOSKA: ✅ avval eski narxni tekshir
+TEKSH: Sovun: 3 dona — 9 000 so‘m, 5 dona — 14 000 so‘m. Qaysi paket arzonroq? => 5 tasi (donasi 2 800) | 3 tasi (donasi 3 000) | Bir xil | Aniqlab bo‘lmaydi
+@xulosa Esda tut
+OVOZ: Birinchi: qaytim — berilgan pul minus chek. Ikkinchi: adolatli solishtirish uchun birlik narxni toping. Uchinchi: chegirma — tejagan pulingiz, to‘lov esa narxdan ayiriladi. To‘rtinchi: valyutaga o‘tkazishda ko‘paytiring yoki bo‘ling — kursga qarab. Beshinchi: komissiya ham foiz — doim hisoblab qarang.
+DOSKA: 1. qaytim = berilgan − chek
+DOSKA: 2. birlik narx = narx : miqdor
+DOSKA: 3. to‘lov = narx − chegirma
+DOSKA: 4. $ → so‘m: ×kurs; so‘m → $: ÷kurs
+
+## PF-REJ
+@kirish Maosh qayerga ketdi?
+OVOZ: {baland}Oyning oxiri! {pauza} Maoshingizni olgansiz, lekin hamyonda deyarli pul yo‘q. Nega? «Hech narsa qilmadim-ku», deysiz. {sekin}Mana shu savolga byudjet javob beradi. Byudjet — pulingizni oldindan taqsimlash rejasi. Ikki odam bir xil maosh oladi: biri oy oxirida pulsiz, ikkinchisi jamg‘armali. Farq nimada? Taxmin qiling!
+DOSKA: RASM: pul:kel | hamyon:tebran
+DOSKA: Maosh: 4 000 000 so‘m — oy oxirida: 0?!
+DOSKA: Pul qayerga ketdi? ✋
+@tushuncha Daromad — xarajat — jamg‘arma
+OVOZ: [1] Uchta asosiy so‘z: daromad — kirayotgan pul. Xarajat — ketayotgan pul. Jamg‘arma — saqlab qo‘yilgan pul. [2] Oddiy tenglama: daromad minus xarajat teng jamg‘arma. {sekin}Maosh to‘rt million, xarajat uch million yetti yuz ming bo‘lsa — jamg‘arma uch yuz ming. [3] Xarajat daromaddan oshsa — jamg‘arma manfiy bo‘ladi, ya’ni qarz paydo bo‘ladi. [4] {urgu}Byudjetning birinchi qoidasi: xarajat daromaddan oshmasin.
+DOSKA: JADVAL: Nom | Summa ;; Daromad | 4 000 000 ;; Xarajat | 3 700 000 ;; Jamg‘arma | 300 000
+DOSKA: USTUN: 4000000-3700000
+DOSKA: Xarajat > daromad → qarz!
+DOSKA: QOIDA: jamg‘arma = daromad − xarajat
+TEKSH: Daromad 2 500 000, xarajat 2 200 000. Jamg‘arma necha so‘m? => 300 000 | 4 700 000 | 200 000 | 2 200 000
+TEKSH: Daromad 1 800 000, xarajat 2 000 000. Natija qanday? => 200 000 so‘m taqchillik (qarz) | 200 000 so‘m jamg‘arma | 3 800 000 jamg‘arma | Hech narsa o‘zgarmaydi
+@tushuncha 50 · 30 · 20 qoidasi
+OVOZ: [1] Pulni qanday taqsimlash kerak? Mashhur qoida: ellik, o‘ttiz, yigirma. [2] Ellik foiz — ehtiyojlarga: uy-joy, oziq-ovqat, yo‘l kira. O‘ttiz foiz — xohishlarga: kino, kafe, yangi kiyim. {sekin}Yigirma foiz — jamg‘armaga. [3] Maosh to‘rt million: ellik foizi — ikki million, o‘ttiz foizi — bir million ikki yuz ming, yigirma foizi — sakkiz yuz ming. [4] Yig‘indisini tekshiring: yuz foiz, to‘rt million! {baland}Eng muhimi: jamg‘armani avval ajrating, qolganini sarflang.
+DOSKA: JADVAL: Guruh | Ulush | Summa ;; Ehtiyoj | 50% | 2 000 000 ;; Xohish | 30% | 1 200 000 ;; Jamg‘arma | 20% | 800 000
+DOSKA: DOIRA_KASR: 1/2
+DOSKA: DOIRA_KASR: 1/5
+DOSKA: QOIDA: avval jamg‘ar, keyin sarfla
+SODDA: Pul kelishi bilan — oldin o‘zingizga to‘lang (jamg‘arma), keyin boshqalarga.
+TEKSH: Maosh 3 000 000 so‘m. Qoidaga ko‘ra jamg‘armaga necha so‘m ajratiladi (20%)? => 600 000 | 300 000 | 1 500 000 | 900 000
+TEKSH: Shu maoshning ehtiyojlarga ajratiladigan qismi (50%) necha so‘m? => 1 500 000 | 600 000 | 900 000 | 150 000
+@tushuncha Maqsad uchun jamg‘arish
+OVOZ: [1] Endi katta orzu: yangi telefon, uch million olti yuz ming so‘m. Pulni bir kunda topolmaysiz. [2] Reja: har oy uch yuz ming so‘m jamg‘aramiz. Necha oy kerak? Uch million olti yuz mingni uch yuz mingga bo‘lamiz. [3] {sekin}O‘n ikki oy! To‘liq bir yil. [4] Har oy jamg‘arma yuqoriga chiziladi — qarang, qadamma-qadam o‘sib boradi. {urgu}Maqsad aniq bo‘lsa, jamg‘arish osonroq.
+DOSKA: KETMA: 3 600 000 | : 300 000 | 12 oy
+DOSKA: GRAFIK: y=300x; [0;12]
+DOSKA: 12 oy · 300 000 = 3 600 000
+DOSKA: QOIDA: oylar = maqsad : oyiga jamg‘arma
+TEKSH: Noutbuk 6 000 000 so‘m. Oyiga 400 000 so‘m jamg‘arilsa, necha oy kerak? => 15 | 12 | 24 | 20
+TEKSH: Oyiga 250 000 so‘m jamg‘arsangiz, 8 oyda qancha yig‘iladi? => 2 000 000 | 1 000 000 | 258 000 | 3 200 000
+@tushuncha Omonat: foiz va foizning foizi
+OVOZ: [1] Pulni yostiq tagida emas, bankda saqlash foydali: bank sizga foiz to‘laydi. [2] Bir million so‘m, yiliga o‘n foiz. Oddiy foizda har yili o‘n foiz — yuz ming so‘m qo‘shiladi. Uch yilda — uch yuz ming. Jami bir million uch yuz ming. [3] {sekin}Murakkab foizda esa har yil foiz yangi summadan hisoblanadi. Birinchi yil: bir million bir yuz ming. [4] Ikkinchi yil: bir million bir yuz mingning o‘n foizi — yuz o‘n ming. Bir million ikki yuz o‘n ming. {urgu}Uchinchi yil — bir million uch yuz o‘ttiz bir ming! [5] Murakkab foiz ko‘proq, chunki foizning ustiga ham foiz tushadi.
+DOSKA: JADVAL: Yil | Oddiy | Murakkab ;; 1 | 1 100 000 | 1 100 000 ;; 2 | 1 200 000 | 1 210 000 ;; 3 | 1 300 000 | 1 331 000
+DOSKA: oddiy: har yil +100 000
+DOSKA: murakkab: har yil ×1,1
+DOSKA: 1 100 000 · 1,1 = 1 210 000
+DOSKA: QOIDA: murakkab foiz — foizning ustiga foiz
+TEKSH: 2 000 000 so‘m yiliga 5% murakkab foizda 2 yilga qo‘yildi. Oxirida qancha bo‘ladi? => 2 205 000 | 2 200 000 | 2 100 000 | 2 250 000
+TEKSH: Shu 2 000 000 so‘m 2 yil, yiliga 5% oddiy foizda. Oxirida? => 2 200 000 | 2 205 000 | 2 100 000 | 2 010 000
+@tushuncha Kredit: oylik to‘lov va umumiy to‘lov
+OVOZ: [1] Endi teskari tomon — qarz olish, ya’ni kredit. Bank pulni beradi, lekin foiz bilan qaytarasiz. [2] Olti million so‘m, bir yilga, yiliga yigirma foiz. Yigirma foiz — beshdan bir: bir million ikki yuz ming so‘m foiz. [3] {sekin}Jami qaytariladigan: olti million plyus bir million ikki yuz ming — yetti million ikki yuz ming. [4] O‘n ikki oyga bo‘lamiz: oyiga olti yuz ming so‘m. {urgu}Muhim: oylik to‘lovga emas, umumiy to‘lovga qarang!
+DOSKA: 6 000 000 · 20% = 1 200 000 (foiz)
+DOSKA: KETMA: 6 000 000 + 1 200 000 | 7 200 000 | 7 200 000 : 12 | 600 000
+DOSKA: BOLISH: 7200000:12
+DOSKA: QOIDA: umumiy to‘lov = qarz + foiz
+TEKSH: 4 800 000 so‘m, 1 yilga, yiliga 25% kredit. Oyiga necha so‘m to‘lanadi? => 500 000 | 400 000 | 600 000 | 6 000 000
+@tushuncha Xato tuzog‘i: oylik to‘lov kichik — kredit arzon?
+OVOZ: [1] Reklamada: «Oyiga atigi yuz ming!» Ko‘pchilik shu yerda to‘xtaydi. [2] {urgu}Lekin necha oy? Yuz ming karra o‘ttiz olti oy — uch million olti yuz ming! Boshida esa ikki million olgan bo‘lishingiz mumkin. [3] Ikkinchi xato: «Jamg‘arma — qolgan pul». Qolmaydi! Avval jamg‘armani ajrating.
+DOSKA: ❌ oyiga kam = arzon
+DOSKA: ✅ oylar · oylik = umumiy to‘lov
+DOSKA: ❌ jamg‘arma = qolgani
+DOSKA: ✅ avval jamg‘arma
+TEKSH: Mebel kreditida oyiga 150 000 so‘m, 24 oy. Umumiy to‘lov necha so‘m? => 3 600 000 | 150 000 | 3 000 000 | 624 000
+@xulosa Esda tut
+OVOZ: Birinchi: jamg‘arma teng daromad minus xarajat. Ikkinchi: ellik, o‘ttiz, yigirma — pulni taqsimlash qoidasi. Uchinchi: maqsad uchun oylarni hisoblang — maqsadni oyiga jamg‘armaga bo‘ling. To‘rtinchi: murakkab foiz — foizning ustiga foiz. Beshinchi: kreditda doim umumiy to‘lovga qarang.
+DOSKA: 1. jamg‘arma = daromad − xarajat
+DOSKA: 2. 50 · 30 · 20
+DOSKA: 3. oylar = maqsad : oylik jamg‘arma
+DOSKA: 4. kredit → umumiy to‘lov
+
+## PF-XAV
+@kirish Lotereya chiptasini olasizmi?
+OVOZ: {baland}Do‘kon oldida lotereya sotilyapti! {pauza} Chipta — bir ming so‘m. Yutuq — ellik ming so‘m! Yutish ehtimoli — yuzdan bir. {sekin}Qiziq-a? Olasizmi? Do‘stingiz: «Ehtimol bor-ku, olamiz!» — dedi. {urgu}Qaror qilishdan oldin xavf va daromadni solishtirish kerak. Taxmin qiling: o‘rtacha hisobda yutasizmi yoki yutqazasizmi?
+DOSKA: RASM: yulduz:aylan | pul:sakra
+DOSKA: Chipta: 1 000 so‘m → yutuq: 50 000 so‘m
+DOSKA: Ehtimol: 1/100 ✋
+@tushuncha Ehtimol — imkoniyat o‘lchovi
+OVOZ: [1] Ehtimol — biror hodisa ro‘y berish imkoniyati. Sondan nolga yaqin — deyarli bo‘lmaydi, birga yaqin — deyarli albatta bo‘ladi. [2] Zar tashlasak, oltita yuz bor. Oltilik tushishi ehtimoli — oltidan bir. {sekin}Doiradagi bitta bo‘lak. [3] Kasr ko‘rinishida: bir bo‘lib olti. O‘nli kasrda — taxminan nol butun o‘n yetti. Foizda — o‘n yetti foiz atrofida. [4] {urgu}Ehtimol qancha kichik bo‘lsa, hodisa shuncha kamdan-kam ro‘y beradi.
+DOSKA: DOIRA_KASR: 1/6
+DOSKA: Zar: 6 yoq, 1 ta «oltilik»
+DOSKA: P = 1/6 ≈ 0,17 ≈ 17%
+DOSKA: QOIDA: ehtimol = qulay holat : barcha holat
+TEKSH: Qutida 3 ta qizil va 7 ta ko‘k sharcha bor. Ko‘zni yumib bitta olamiz. Qizil chiqish ehtimoli? => 3/10 | 3/7 | 7/10 | 1/3
+TEKSH: Tanga tashlanganda gerb tushish ehtimoli necha foiz? => 50% | 100% | 25% | 10%
+@tushuncha Kutilgan qiymat: lotereya sirini ochamiz
+OVOZ: [1] Endi boshidagi savol! Chipta bir ming so‘m. Yutuq ellik ming. Ehtimol — yuzdan bir. [2] Yuzta chipta olsak nima bo‘ladi? {sekin}Yuz ming so‘m to‘laymiz — va o‘rtacha bittasi yutadi: ellik ming so‘m. [3] Yuz ming to‘ladik, ellik ming oldik. Har bir chiptaga o‘rtacha besh yuz so‘m yutamiz, ming so‘m to‘laymiz. [4] {urgu}Demak, har chiptada o‘rtacha besh yuz so‘m yo‘qotamiz! Lotereya tashkilotchining foydasi shundan.
+DOSKA: 100 chipta · 1 000 = 100 000 so‘m (to‘lov)
+DOSKA: 1 yutuq · 50 000 = 50 000 so‘m (olingan)
+DOSKA: KETMA: 50 000 : 100 | 500 | 1 000 − 500 | −500
+DOSKA: QOIDA: kutilgan yutuq = ehtimol · yutuq summasi
+TEKSH: Chipta 2 000 so‘m. Yutuq 40 000 so‘m, ehtimoli 2/100. Bitta chiptaning kutilgan yutug‘i necha so‘m? => 800 | 40 000 | 2 000 | 400
+TEKSH: Shu chiptani sotib olish o‘rtacha hisobda qanday natija beradi? => O‘rtacha 1 200 so‘m yo‘qotish | O‘rtacha foyda | Foyda ham, zarar ham yo‘q | Doim yutish
+@tushuncha Sug‘urta: xavfni ulashish
+OVOZ: [1] Mashinangiz avariyaga uchrashi mumkin. Ta’mir — o‘n million so‘m. Kimdir bunday pulni darhol topolmaydi. [2] Sug‘urta shu yerda yordam beradi: yiliga ikki yuz ming so‘m to‘laysiz, avariya bo‘lsa — kompaniya qoplaydi. [3] {sekin}Kompaniya hisobi: ming mijoz, har biri ikki yuz ming — ikki yuz million so‘m. Ulardan o‘ntasi avariyaga uchradi: o‘n karra o‘n million — yuz million. [4] Qolgan yuz million — kompaniya xarajati va foydasi. {urgu}Ko‘pchilik oz-ozdan to‘laydi, bir-ikkitasiga katta yordam beriladi.
+DOSKA: 1 000 mijoz · 200 000 = 200 000 000
+DOSKA: 10 avariya · 10 000 000 = 100 000 000
+DOSKA: USTUN: 200000000-100000000
+DOSKA: QOIDA: sug‘urta — xavfni ko‘pchilikka taqsimlash
+TEKSH: Kompaniyaga 500 mijoz yiliga 100 000 so‘mdan to‘ladi. 4 ta hodisaga 5 000 000 so‘mdan qoplandi. Qolgan summa qancha? => 30 000 000 | 50 000 000 | 20 000 000 | 70 000 000
+@tushuncha Xavf va daromad: qo‘shiq bir xil
+OVOZ: [1] Pulni qayerga qo‘ysak? Omonat, obligatsiya, aksiya — hammasining o‘z xavfi va daromadi bor. [2] Omonat — bank to‘laydi: daromad kichik, xavf juda kichik. Aksiya — kompaniya ulushi: daromad katta bo‘lishi mumkin, lekin narxi tushsa, yo‘qotasiz. [3] {sekin}Qoida: {urgu}yuqori daromad kutsangiz — yuqori xavfni ham qabul qilasiz. [4] Kim «kafolatli yuqori daromad» desa — ehtiyot bo‘ling, bunday narsa yo‘q.
+DOSKA: JADVAL: Vosita | Daromad | Xavf ;; Omonat | kichik | juda kichik ;; Obligatsiya | o‘rtacha | o‘rtacha ;; Aksiya | katta | yuqori
+DOSKA: SXEMA: Xavf va daromad > xavf ↑ | daromad ↑
+DOSKA: «kafolatli 50% daromad» → firibgarlik belgisi
+DOSKA: QOIDA: yuqori daromad = yuqori xavf
+TEKSH: Kimdir «oyiga 30% kafolatli foyda» va'da qildi. Eng to‘g‘ri xulosa? => Ehtiyot bo‘lish kerak — firibgarlik bo‘lishi mumkin | Bank kabi ishonchli | Albatta foydali | Xavfi yo‘q
+@tushuncha Bitta savatga hammasini solmang
+OVOZ: [1] Ota-bobolarimiz aytgan: tuxumni bitta savatga solma. Savat tushsa — hammasi sinadi. [2] Pulni uch qismga bo‘lamiz: bir qismi omonatda, bir qismi oltinda, bir qismi biznesda. [3] {sekin}Biri yo‘qotsa — qolgan ikkitasi saqlab qoladi. Bu diversifikatsiya — xavfni tarqatish. [4] Million so‘mni uch joyga: uchtadan bir — taxminan uch yuz o‘n ming. Tarqatilgan pulda bir joyning yo‘qotishi umumiy zararni kamaytiradi.
+DOSKA: SXEMA: Pul > omonat | oltin | biznes
+DOSKA: 1 savat tushdi → 2 ta saqlanadi
+DOSKA: 3 000 000 : 3 = 1 000 000
+DOSKA: QOIDA: diversifikatsiya = xavfni tarqatish
+TEKSH: Siz 9 000 000 so‘mni 3 teng qismga bo‘lib, uch joyga qo‘ydingiz. Birida butun summa yo‘qoldi. Qancha saqlanadi? => 6 000 000 | 3 000 000 | 9 000 000 | 0
+@tushuncha Xato tuzog‘i: «navbat men uchun»
+OVOZ: [1] Tanga tashlayapsiz. Ketma-ket besh marta gerb tushdi. «Endi albatta raqam tushadi!» — deysiz. [2] {urgu}Yo‘q! Tanga eslamaydi. Har tashlashda ehtimol — baribir yarim, ellik foiz. [3] Qimorda «endi yutaman» degan umid ko‘p odamni qarzga botirgan. Ikkinchi xato: katta yutuq ehtimolini bo‘rttirish.
+DOSKA: Gerb Gerb Gerb Gerb Gerb ...
+DOSKA: ❌ «endi raqam albatta tushadi»
+DOSKA: ✅ har safar P = 1/2
+DOSKA: ✅ avvalgi natija keyingisiga ta’sir qilmaydi
+TEKSH: Zar 3 marta ketma-ket oltilik tashladi. To‘rtinchi tashlashda oltilik tushish ehtimoli? => Baribir 1/6 | 0 | 1/2 | 1/36
+@xulosa Esda tut
+OVOZ: Birinchi: ehtimol — qulay holat bo‘lingan barcha holat. Ikkinchi: kutilgan yutuq — ehtimol karra yutuq summasi, chipta narxi bilan solishtiring. Uchinchi: sug‘urta xavfni ko‘pchilikka taqsimlaydi. To‘rtinchi: yuqori daromad — yuqori xavf; kafolatli katta foydadan ehtiyot bo‘ling. Beshinchi: tuxumni bitta savatga solmang.
+DOSKA: 1. P = qulay : barcha
+DOSKA: 2. kutilgan yutuq = P · yutuq
+DOSKA: 3. daromad ↑ = xavf ↑
+DOSKA: 4. xavfni tarqat
+
+## PF-MUH
+@kirish Maosh nega kamroq tushdi?
+OVOZ: {baland}Birinchi maoshingiz! {pauza} Shartnomada besh million so‘m yozilgan. Kartaga esa — to‘rt million to‘rt yuz ming tushdi. Ish beruvchi aldadimi? Kimdir pulni «o‘g‘irladimi»? {sekin}Yo‘q! Ikki xil maosh bor: qo‘lga tegishi va shartnomada yozilgani. Farqi nimada? Taxmin qiling! Bu darsda soliq, inflyatsiya, firibgarlik va pulni himoya qilishni o‘rganamiz.
+DOSKA: RASM: pul:kel | telefon:tebran
+DOSKA: Shartnoma: 5 000 000 → kartaga: 4 400 000
+DOSKA: Farq — qayerga ketdi? ✋
+@tushuncha Brutto va netto maosh
+OVOZ: [1] Brutto — soliqlar ushlanmagan maosh. Netto — soliqlar ushlangandan keyin qo‘lingizga tegadigan maosh. [2] Daromad solig‘i — davlat byudjetiga to‘lanadigan pul: yo‘llar, maktab, kasalxona shundan quriladi. Misol uchun o‘n ikki foiz deylik. [3] {sekin}Besh million bo‘lingan yuz karra o‘n ikki — olti yuz ming so‘m soliq. [4] Besh million minus olti yuz ming — to‘rt million to‘rt yuz ming. {urgu}Mana, boshidagi farq topildi!
+DOSKA: JADVAL: Nom | Summa ;; Brutto | 5 000 000 ;; Soliq 12% | 600 000 ;; Netto | 4 400 000
+DOSKA: 5 000 000 : 100 · 12 = 600 000
+DOSKA: USTUN: 5000000-600000
+DOSKA: QOIDA: netto = brutto − soliq
+SODDA: Brutto — «qog‘ozdagi» maosh, netto — qo‘lingizga tegadigani.
+TEKSH: Brutto maosh 3 000 000 so‘m, soliq 12% (misol uchun). Netto maosh necha so‘m? => 2 640 000 | 360 000 | 3 360 000 | 2 988 000
+TEKSH: Netto 2 200 000 so‘m, soliq 400 000 so‘m ushlangan. Brutto maosh qancha? => 2 600 000 | 1 800 000 | 400 000 | 2 200 000
+@tushuncha Inflyatsiya: pul arzonlashadi
+OVOZ: [1] O‘tgan yili bir savat mahsulot o‘n ming so‘m edi. Bu yil — o‘n bir ming. Narxlar umumiy o‘sdi — bu inflyatsiya. [2] O‘n mingdan o‘n bir mingga: ming so‘m qo‘shildi. Ming bo‘lingan o‘n ming — o‘n foiz. Inflyatsiya o‘n foiz. [3] {sekin}Bir million so‘mga o‘tgan yili yuz savat olardingiz. Endi — bir million bo‘lingan o‘n bir ming — to‘qson bir savat atrofida. [4] {urgu}Demak, pulning o‘zi o‘zgarmadi, lekin sotib olish kuchi kamaydi!
+DOSKA: 10 000 → 11 000: +10%
+DOSKA: KETMA: 1 000 000 | : 10 000 | 100 savat
+DOSKA: GRAFIK: y=x+10; [0;5]
+DOSKA: 1 000 000 : 11 000 ≈ 91 savat
+DOSKA: QOIDA: inflyatsiya — narxlar umumiy o‘sishi, pul kuchi kamayishi
+TEKSH: Inflyatsiya 6%, omonat foizi 4%. Pulning sotib olish kuchi qanday o‘zgaradi? => Kamayadi | Oshadi | O‘zgarmaydi | 10% ga oshadi
+TEKSH: Bir hafta oldin nonning narxi 4 000 so‘m, endi 4 400 so‘m. Narx necha foizga oshgan? => 10% | 4% | 400% | 44%
+@tushuncha Firibgarlikdan himoya
+OVOZ: [1] Telefonga qo‘ng‘iroq: «Assalomu alaykum, bankdanman. Kartangiz bloklandi. SMS-kodni ayting!» {pauza} [2] {urgu}To‘xtang! Bank hech qachon kartangizning parolini yoki SMS-kodini so‘ramaydi. Hech kimga aytmang — yaqin qarindoshingizga ham. [3] Firibgar uch narsani ishlatadi: shoshiltirish, qo‘rqitish, katta va’da. {sekin}Shoshilgan odam o‘ylamaydi. [4] Nima qilish kerak? Qo‘ng‘iroqni to‘xtating, bankning rasmiy raqamiga o‘zingiz qo‘ng‘iroq qiling.
+DOSKA: SXEMA: Firibgar belgilari > shoshiltiradi | qo‘rqitadi | katta va’da qiladi
+DOSKA: 📞 «SMS-kodni ayting!» → ❌
+DOSKA: ZANJIR: To‘xta | O‘yla | Bank raqamiga o‘zing qo‘ng‘iroq qil
+DOSKA: QOIDA: kod, parol, CVV — hech kimga aytilmaydi
+TEKSH: Noma’lum odam «yutuq oldingiz, buning uchun karta kodini ayting» dedi. Nima qilasiz? => Aloqani uzaman, kodni aytmayman | Kodni aytaman | Pul o‘tkazaman | Do‘stlarimga yuboraman
+TEKSH: Quyidagilardan qaysi biri firibgarlik belgisi? => «Faqat bugun, hoziroq pul o‘tkaz!» | Narxning aniq yozilgani | Shartnomaning mavjudligi | Rasmiy sayt manzili
+@tushuncha Mikroqarz tuzog‘i
+OVOZ: [1] Reklama: «Pul — bir daqiqada! Atigi besh foiz!» Yaxshi eshitiladi. [2] Lekin yoziladi: oyiga besh foiz. Bir million so‘mning besh foizi — ellik ming. Oyiga! [3] {sekin}O‘n ikki oy — ellik ming karra o‘n ikki — olti yuz ming so‘m. Bu yiliga oltmish foiz! [4] {urgu}Hamma narsa foizning davriga bog‘liq: oyiga yoki yiliga? Yillik foizni topish uchun oyligini o‘n ikkiga ko‘paytiring.
+DOSKA: 1 000 000 · 5% = 50 000 (oyiga)
+DOSKA: KETMA: 50 000 | · 12 oy | 600 000
+DOSKA: 5% oyiga = 60% yiliga!
+DOSKA: QOIDA: yillik foiz = oylik foiz · 12 (oddiy hisobda)
+TEKSH: Mikroqarz oyiga 3% deyilgan. Yiliga necha foiz (oddiy hisobda)? => 36% | 3% | 15% | 12%
+TEKSH: 2 000 000 so‘mga oyiga 4% foiz olinadi. Bir oy uchun foiz necha so‘m? => 80 000 | 8 000 | 40 000 | 480 000
+@tushuncha To‘liq narx: muddatli to‘lov
+OVOZ: [1] Do‘konda: «Muddatli to‘lov — foizsiz!» Telefon naqd — uch million so‘m. [2] Muddatli: o‘n ikki oy, oyiga uch yuz ming. Uch yuz ming karra o‘n ikki — uch million olti yuz ming. [3] {sekin}Farq: uch million olti yuz minus uch million — olti yuz ming so‘m. Bu — yashirin ustama. [4] Olti yuz ming bo‘lingan uch million — yigirma foiz. {urgu}«Foizsiz» degan yozuvga emas, umumiy summaga qarang!
+DOSKA: JADVAL: To‘lov | Summa ;; Naqd | 3 000 000 ;; Muddatli | 3 600 000 ;; Ustama | 600 000
+DOSKA: 300 000 · 12 = 3 600 000
+DOSKA: 600 000 : 3 000 000 = 0,2 = 20%
+DOSKA: QOIDA: ustama = muddatli narx − naqd narx
+TEKSH: Naqd narx 2 000 000 so‘m. Muddatli: 10 oy × 240 000 so‘m. Ustama necha so‘m? => 400 000 | 2 400 000 | 240 000 | 40 000
+@tushuncha Xato tuzog‘i va iste’molchi huquqi
+OVOZ: [1] Xato: «Hammaga ishonaman — chek olmayman». [2] {urgu}Chek — sizning isbotingiz! Tovar nuqsonli chiqsa, chek bilan almashtirishingiz yoki pulni qaytarib olishingiz mumkin. [3] Ikkinchi xato: shartnomani o‘qimay imzo chekish. Mayda harflar ichida ko‘pincha jarima va ustamalar yashirin bo‘ladi. [4] Savol bering: umumiy summa qancha? Kechiksam nima bo‘ladi? Bekor qilsam-chi?
+DOSKA: ❌ chek kerak emas
+DOSKA: ✅ chek = isbot va huquq
+DOSKA: ❌ o‘qimay imzo
+DOSKA: ✅ summa, jarima, bekor qilish
+TEKSH: Yangi eshitgich 2 kundan keyin ishlamay qoldi. Pulni qaytarish uchun nima eng zarur? => Xarid cheki | Sotuvchining ismi | Reklama | Do‘stning maslahati
+@xulosa Esda tut
+OVOZ: Birinchi: netto teng brutto minus soliq. Ikkinchi: inflyatsiya — narxlar o‘sishi, pulning sotib olish kuchi kamayadi. Uchinchi: kod va parolni hech kimga aytmang, bank so‘ramaydi. To‘rtinchi: oylik foizni o‘n ikkiga ko‘paytirib, yillikni toping. Beshinchi: foizsiz va’daga emas, umumiy to‘lovga qarang. Oltinchi: chekni saqlang, shartnomani o‘qing.
+DOSKA: 1. netto = brutto − soliq
+DOSKA: 2. inflyatsiya → pul kuchi ↓
+DOSKA: 3. kod, parol — sir
+DOSKA: 4. yillik % = oylik % · 12

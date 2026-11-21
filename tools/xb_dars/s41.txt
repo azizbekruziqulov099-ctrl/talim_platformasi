@@ -1,170 +1,188 @@
 ## S4-TIR
 @kirish Olov tirikmi?
-OVOZ: Gulxanda olov yonib turibdi. U o‘sadi, havodan kislorodni «yeydi», harakatlanadi, yoqilg‘i bo‘lmasa o‘ladi. {pauza} Olov tirik narsami? Bir xil javob bermang — avval o‘ylab ko‘ring. {sekin}Bugun tirik narsani notirikdan farqlaydigan belgilarni topamiz. Olov bu sinovdan o‘tadimi, ko‘ramiz. Taxmin qiling.
-DOSKA: 🔥 olov: o‘sadi, harakat qiladi...
-DOSKA: Tirikmi? ✋
+OVOZ: {baland}Gulxanni ko‘ryapsizmi? {pauza} Olov o‘sadi — kattalashadi! Havodan kislorodni «yeydi»! Harakat qiladi, yoqilg‘i bo‘lmasa «o‘ladi». {sekin}Qiziq-ku: olov tirikmi? Hozir javob bermang — avval o‘ylab ko‘ring. Bugun tirik narsani notirikdan farqlaydigan sirli belgilarni topamiz, olov esa sinovdan o‘ta oladimi, o‘zimiz ko‘ramiz. Taxmin qiling!
+DOSKA: 🔥 o‘sadi · 💨 kislorod yeydi
+DOSKA: RASM: olov:tebran | mushuk:sakra | tosh
+DOSKA: 🔥 harakat qiladi · o‘chadi
+DOSKA: Olov tirikmi? ✋
 @tushuncha Tirik narsaning belgilari
-OVOZ: [1] Tirik organizmlar oziqlanadi, nafas oladi, o‘sadi, ko‘payadi, tashqi ta’sirga javob beradi va keraksiz moddalarni chiqaradi. [2] Mushuk sut ichadi, nafas oladi, o‘sadi, bolalaydi, shovqindan cho‘chiydi. [3] {sekin}Bu belgilarning hammasi bo‘lishi kerak. Faqat bittasi yoki ikkitasi bo‘lishi yetmaydi. [4] Tosh o‘smaydi, oziqlanmaydi — notirik. Olov esa o‘sadi va kislorodni sarflaydi, lekin ko‘paymaydi, ta’sirga javob bermaydi — shuning uchun tirik emas.
+OVOZ: [1] Mushukchani tasavvur qiling. {sekin}U sut ichadi — oziqlanadi. Nafas oladi. O‘sadi: bugun kichkina, bir yildan keyin katta. [2] Yana: u bolalaydi — ko‘payadi! Shovqin bo‘lsa cho‘chiydi — tashqi ta’sirga javob beradi. [3] {urgu}Mana, tirik organizmning belgilari: oziqlanish, nafas, o‘sish, ko‘payish va ta’sirga javob. [4] Muhim: hammasi birga bo‘lishi kerak! Bittasi yoki ikkitasi yetmaydi.
 DOSKA: SXEMA: Tirik organizm > oziqlanadi | nafas oladi | o‘sadi | ko‘payadi | ta’sirga javob beradi
-DOSKA: mushuk — hammasi bor ✔
-DOSKA: tosh — hech biri yo‘q ✖
-DOSKA: olov — ba’zilari bor, hammasi emas ✖
-TEKSH: Quyidagilardan qaysi biri tirik? => Qo‘ziqorin | Bulut | Daryo | Mashina
-TEKSH: Soat harakat qiladi. U tirikmi? => Yo‘q, boshqa belgilari yo‘q | Ha, harakat qiladi | Ha, tik-tik qiladi | Faqat kechasi
+DOSKA: 🐱 sut ichadi, nafas oladi
+DOSKA: 🐱 o‘sadi, bolalaydi
+DOSKA: ✔ hammasi birga → tirik
+TEKSH: Qaysi biri tirik? => Qo‘ziqorin | Bulut | Daryo | Mashina
+TEKSH: Soat tik-tik qiladi, strelkasi yuradi. U tirikmi? => Yo‘q, boshqa belgilari yo‘q | Ha, harakat qiladi | Ha, ovoz chiqaradi | Faqat kechasi
+@tushuncha Olov va mushuk: sinov o‘tkazamiz
+OVOZ: [1] Endi olovni sinaymiz. Jadvalga qarang: har bir belgi uchun galochka yoki xoch qo‘yamiz. [2] Oziqlanadimi? Yoqilg‘ini yeydi, deymiz, lekin u yeb, hazm qilib, o‘ziga aylantirmaydi — shunchaki yonadi. [3] {sekin}Ko‘payadimi? Yo‘q — olov bolalamaydi. Ta’sirga javob beradimi? Yo‘q — uni quvlasangiz, qochmaydi. [4] {urgu}Demak, olov ba’zi belgilarni «o‘ynaydi», lekin tirik emas!
+DOSKA: JADVAL: Belgi | Mushuk | Olov ;; oziqlanish | ✔ | ✖ ;; o‘sish | ✔ | ✔ (yonib) ;; ko‘payish | ✔ | ✖ ;; ta’sirga javob | ✔ | ✖
+DOSKA: RASM: olov | mushuk
+DOSKA: olov: yonadi, hazm qilmaydi
+DOSKA: olov: bolalamaydi
+DOSKA: BELGILA: olov — tirik emas | ramka
+TEKSH: Tosh yillar o‘tsa ham o‘smaydi, ovqat yemaydi. U qanday? => Notirik | Tirik | Yarim tirik | Uyquda
+TEKSH: Chumoli ovqat topadi, ko‘payadi, ta’sirga javob beradi. U qanday? => Tirik | Notirik | Mashina | Bulut
 @tushuncha O‘simlik o‘ziga ovqat tayyorlaydi
-OVOZ: [1] Hayvon ovqatni tayyor holda yeydi. O‘simlik esa ovqatni o‘zi tayyorlaydi. [2] Barg quyosh nuri, suv va havodagi karbonat angidridni olib, shakar hosil qiladi. Bu jarayon — fotosintez. [3] {sekin}Suvni ildiz tortadi, havoni barg qabul qiladi, nur esa quvvat beradi. [4] Fotosintez natijasida havoga kislorod chiqadi. Biz shu kislorod bilan nafas olamiz.
-DOSKA: ZANJIR: Quyosh nuri | Suv + CO₂ | Barg | Shakar + kislorod
-DOSKA: ildiz → suv
-DOSKA: barg → havo, nur
-DOSKA: natija: ovqat va kislorod
-TEKSH: Yorug‘siz joyda o‘sgan o‘simlik nega sarg‘ayadi? => Fotosintez bo‘lmaydi | Suv ko‘p | Havo ko‘p | Issiq bo‘ladi
-TEKSH: O‘simlik barglari nima qabul qiladi? => Karbonat angidrid va nur | Faqat suv | Faqat tuproq | Kislorod
-@tushuncha Organlar va ularning vazifasi
-OVOZ: [1] Tirik organizmning har bir qismi o‘z ishini bajaradi. [2] O‘simlikda ildiz suvni so‘radi va mustahkam tutadi. Poya suv va ozuqani tashiydi. Barg ovqat tayyorlaydi. [3] {sekin}Odamda yurak qonni haydaydi, o‘pka nafas oldiradi, oshqozon ovqatni hazm qiladi. [4] Organ — ma’lum vazifa bajaruvchi qism. Hammasi birgalikda organizmni tirik saqlaydi.
+OVOZ: [1] Hayvon tayyor ovqatni yeydi. O‘simlik-chi? {baland}U ovqatni o‘zi tayyorlaydi! [2] Qanday? Ildiz tuproqdan suvni so‘radi. Barg havodan karbonat angidrid gazini qabul qiladi. [3] {sekin}Quyosh nuri esa — «pech»: u quvvat beradi. Barg shu uchtasidan shakar — ya’ni ovqat — tayyorlaydi. Bu jarayon — fotosintez. [4] {urgu}Yana bir sovg‘a: fotosintezda kislorod chiqadi! Biz aynan shu kislorod bilan nafas olamiz.
+DOSKA: ZANJIR: Quyosh nuri | Suv + CO₂ | Barg tayyorlaydi | Shakar + kislorod
+DOSKA: RASM: quyosh:aylan | barg | ildiz | suv
+DOSKA: ildiz → suvni tortadi
+DOSKA: barg → havo va nur
+DOSKA: kislorod → bizga nafas uchun
+TEKSH: Bargi hammasi kesib tashlangan o‘simlikda qaysi jarayon deyarli to‘xtaydi? => Ovqat tayyorlash | Suv ichish | Ildiz o‘sishi | Soya hosil qilish
+TEKSH: Fotosintezda havoga qaysi gaz chiqadi? => Kislorod | Karbonat angidrid | Azot | Is gazi
+@tushuncha Organlar: har birining ishi bor
+OVOZ: [1] Tirik organizm — bitta katta jamoa. Har bir qismi — o‘z kasbi bor. Ularni organ deymiz. [2] O‘simlikda: ildiz — suv so‘radi va mahkam ushlaydi. Poya — suv va ozuqani tashiydi, quvur kabi. Barg — oshxona! [3] {sekin}Odamda yurak qonni haydaydi. O‘pka nafas oldiradi. Oshqozon ovqatni hazm qiladi. [4] Birortasi ishlamasa, butun jamoa qiynaladi.
 DOSKA: JADVAL: Qism | Vazifa ;; Ildiz | suv so‘radi ;; Poya | tashiydi ;; Barg | ovqat tayyorlaydi
-DOSKA: yurak → qonni haydaydi
-DOSKA: o‘pka → nafas
-DOSKA: oshqozon → hazm
-TEKSH: O‘pka qanday vazifa bajaradi? => Nafas olish | Qonni haydash | Hazm qilish | Ko‘rish
-TEKSH: O‘simlikda suvni tuproqdan nima so‘radi? => Ildiz | Barg | Gul | Meva
+DOSKA: ❤ yurak → qonni haydaydi
+DOSKA: 🫁 o‘pka → nafas
+DOSKA: SXEMA: Organizm > yurak | o‘pka | oshqozon | miya
+TEKSH: Qaysi organ tanamizda ovqatni hazm qiladi? => Oshqozon | O‘pka | Yurak | Ko‘z
+TEKSH: Qalampir o‘simligi poyasi kesilsa, suv ildizdan bargga yetib bormaydi. Poya vazifasi nima edi? => Suvni tashish | Ovqat tayyorlash | Urug‘ berish | Rangni o‘zgartirish
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Bola aytadi: «O‘simlik harakat qilmaydi, demak tirik emas». [2] {urgu}Bu — xato! O‘simlik ham o‘sadi, nafas oladi, nurga qarab buriladi. Harakat tirik narsaning yagona belgisi emas. [3] Ikkinchi xato: «Harakat qilgan hamma narsa tirik». Soat strelkasi harakat qiladi, lekin tirik emas.
+OVOZ: [1] Bir bola aytdi: «O‘simlik harakat qilmaydi, demak tirik emas». [2] {urgu}Yo‘q! O‘simlik o‘sadi, nafas oladi, ko‘payadi, hatto nurga qarab buriladi. Harakat — tirikning yagona belgisi emas! [3] Teskarisi ham xato: «Harakat qilgan hamma narsa tirik». Soat strelkasi, shamolda dumalagan sharcha — harakat qiladi, lekin tirik emas.
 DOSKA: ❌ harakat = tirik
-DOSKA: ✅ barcha belgilar kerak
 DOSKA: 🌻 nurga buriladi → tirik
-DOSKA: ⏱ soat — notirik
-TEKSH: Cho‘l o‘simligi kaktus kam harakat qiladi. U tirikmi? => Ha, o‘sadi va nafas oladi | Yo‘q, harakatsiz | Yo‘q, tosh kabi | Faqat suv bo‘lsa
+DOSKA: ⏱ soat harakatda → notirik
+DOSKA: ✅ hamma belgilar birga
+TEKSH: Kaktus deyarli qimirlamaydi. U tirikmi? => Ha, o‘sadi va nafas oladi | Yo‘q, harakatsiz | Yo‘q, tosh kabi | Faqat yomg‘ir yog‘sa
 @xulosa Esda tut
-OVOZ: Birinchi: tirik organizm oziqlanadi, nafas oladi, o‘sadi, ko‘payadi. Ikkinchi: o‘simlik ovqatini fotosintez bilan o‘zi tayyorlaydi. Uchinchi: har bir organning o‘z vazifasi bor. To‘rtinchi: harakat yagona belgi emas.
-DOSKA: 1. tirik: oziq, nafas, o‘sish, ko‘payish
-DOSKA: 2. fotosintez
-DOSKA: 3. organ — vazifa
+OVOZ: Birinchi: tirik organizm oziqlanadi, nafas oladi, o‘sadi, ko‘payadi, ta’sirga javob beradi — hammasi birga. Ikkinchi: olov bu sinovdan o‘tmadi. Uchinchi: o‘simlik ovqatini fotosintez bilan o‘zi tayyorlaydi va kislorod beradi. To‘rtinchi: harakat — tirikning yagona belgisi emas!
+DOSKA: 1. oziq · nafas · o‘sish · ko‘payish · javob
+DOSKA: 2. olov — tirik emas
+DOSKA: 3. fotosintez → ovqat + kislorod
 DOSKA: 4. harakat ≠ tirik
 
 ## S4-KOP
 @kirish Kapalak qayerdan paydo bo‘ladi?
-OVOZ: Bog‘da karam bargida mayda sariq tuxumlar bor. Bir hafta o‘tib ulardan yashil qurtchalar chiqdi. Ular ovqat yeb, kattalashdi. Keyin qurt qo‘ng‘ir qobiq ichiga yashirindi. Bir necha kundan so‘ng undan rang-barang kapalak chiqdi. {pauza} Qurtcha va kapalak — bir jonzotmi? {sekin}Bu hikoyaning nomi — hayot sikli. Taxmin qiling: nechta bosqich bor?
-DOSKA: tuxum → ? → ? → kapalak
+OVOZ: Bog‘da karam bargini ko‘ryapsizmi? {pauza} Unda mayda sariq tuxumlar. Bir haftadan keyin — yashil qurtchalar! Ular to‘xtovsiz yeydi, kattalashadi. Keyin qurtcha qobiq ichiga o‘ralib, qimirlamay qoladi. {sekin}Va bir kuni undan rang-barang kapalak chiqadi! {baland}Qurtcha va kapalak — bitta jonzotmi? Bu hikoyaning nomi — hayot sikli. Taxmin qiling: nechta bosqich bor?
+DOSKA: 🥚 → 🐛 → ? → 🦋
+DOSKA: RASM: tuxum | kapalak:kel | barg
 DOSKA: Nechta bosqich? ✋
 @tushuncha Kapalakning hayot sikli
-OVOZ: [1] Kapalak to‘rt bosqichdan o‘tadi: tuxum, lichinka, g‘umbak va voyaga yetgan kapalak. [2] Lichinka — qurtcha. U faqat ovqat yeydi va o‘sadi. [3] {sekin}G‘umbak ichida tanasi butunlay o‘zgaradi. Keyin kapalak chiqadi va yana tuxum qo‘yadi. [4] Sikl yopiq doira kabi takrorlanadi.
+OVOZ: [1] Kapalak to‘rt bosqichdan o‘tadi. Birinchisi — tuxum. Ikkinchisi — lichinka, ya’ni qurtcha. [2] Lichinka faqat ovqat yeydi va o‘sadi, o‘sadi, o‘sadi! [3] {sekin}Uchinchisi — g‘umbak. Tashqaridan qimirlamaydi, ichida esa tana butunlay o‘zgaradi. [4] To‘rtinchisi — voyaga yetgan kapalak. U yana tuxum qo‘yadi — va hammasi boshidan boshlanadi. {urgu}Shuning uchun «sikl» — aylana!
 DOSKA: ZANJIR: Tuxum | Lichinka | G‘umbak | Kapalak
 DOSKA: lichinka → yeydi, o‘sadi
-DOSKA: g‘umbak → o‘zgaradi
-DOSKA: kapalak → tuxum qo‘yadi
-TEKSH: Qaysi bosqichda tana butunlay o‘zgaradi? => G‘umbak | Tuxum | Voyaga yetgan | Lichinka
-TEKSH: Chivin ham tuxumdan lichinka, g‘umbak va voyaga yetgan chivinga aylanadi. Bosqichlar soni? => 4 | 2 | 3 | 5
-@tushuncha Qurbaqa va tovuq: boshqa sikllar
-OVOZ: [1] Qurbaqa tuxumni suvga qo‘yadi. Undan itbaliq chiqadi — suvda yashaydi, jabra bilan nafas oladi. [2] Keyin oyoqlari o‘sadi, dumi yo‘qoladi, o‘pka paydo bo‘ladi. Qurbaqa quruqlikka chiqadi. [3] {sekin}Tovuqning tuxumidan esa darhol kichik jo‘ja chiqadi. U kattalashgan tovuqqa o‘xshaydi. [4] Demak, hamma hayvonlar ham kapalak kabi o‘zgarmaydi: bir xil nuqtadan boshlab, turlicha yo‘llar bor.
-DOSKA: JADVAL: Hayvon | Bosqichlar ;; Kapalak | tuxum, lichinka, g‘umbak, kapalak ;; Qurbaqa | tuxum, itbaliq, qurbaqa ;; Tovuq | tuxum, jo‘ja, tovuq
-DOSKA: itbaliq — suvda; qurbaqa — quruqlikda
-DOSKA: jo‘ja ≈ kichik tovuq
-DOSKA: Hamma tirik ko‘payadi
+DOSKA: g‘umbak → ichida o‘zgaradi
+DOSKA: kapalak → yana tuxum qo‘yadi
+TEKSH: Qaysi bosqichda hayvon faqat ovqat yeb o‘sadi? => Lichinka | Tuxum | G‘umbak | Kapalak
+TEKSH: Pashsha ham tuxum, lichinka, g‘umbak, voyaga yetgan pashsha bo‘lib o‘zgaradi. Bosqichlar soni? => 4 | 2 | 3 | 5
+@tushuncha Qurbaqa va tovuq: boshqa yo‘llar
+OVOZ: [1] Qurbaqa tuxumni suvga qo‘yadi. Undan chiqqan — qurbaqa emas, itbaliq! Dumi bor, suvda yashaydi, jabra bilan nafas oladi. [2] Keyin oyoqlari o‘sadi, dumi qisqaradi, o‘pka paydo bo‘ladi — va u quruqlikka chiqadi. [3] {sekin}Tovuq esa boshqacha. Tuxumdan darhol kichkina jo‘ja chiqadi — u katta tovuqqa o‘xshaydi, faqat kichikroq. [4] Demak, hamma hayvon kapalakday o‘zgarmaydi. {urgu}Lekin hammasi tuxumdan yoki tug‘ilishdan boshlanadi va ko‘payadi.
+DOSKA: ZANJIR: Tuxum | Itbaliq | Oyoqli itbaliq | Qurbaqa
+DOSKA: RASM: qurbaqa:sakra | tovuq
+DOSKA: ZANJIR: Tuxum | Jo‘ja | Tovuq
+DOSKA: JADVAL: Hayvon | Kichigida ;; Kapalak | qurtcha ;; Qurbaqa | itbaliq ;; Tovuq | jo‘ja
+DOSKA: itbaliq — suvda; qurbaqa — quruqlikda ham
 TEKSH: Itbaliq qaysi hayvonning bolasi? => Qurbaqa | Baliq | Ilon | Kaltakesak
-TEKSH: Mushukning bolasi tug‘ilganda kattalarga o‘xshaydimi? => Ha, kichik mushukcha | Yo‘q, qurtcha | Yo‘q, g‘umbak | Yo‘q, itbaliq
+TEKSH: Mushukcha tug‘ilganda qanday bo‘ladi? => Kichik mushukka o‘xshaydi | Qurtchaga o‘xshaydi | G‘umbak bo‘ladi | Itbaliqqa o‘xshaydi
 @tushuncha O‘simlikning hayot sikli
-OVOZ: [1] O‘simlik urug‘dan boshlanadi. Urug‘ namlikni olib, o‘sib chiqadi — unib chiqadi. [2] Nihol kattalashadi, barg chiqaradi, gullaydi. [3] {sekin}Gulda changlanish bo‘ladi. Undan meva va ichida yangi urug‘lar hosil bo‘ladi. [4] Urug‘ yana tuproqqa tushsa, yangi o‘simlik paydo bo‘ladi. Sikl yopiladi.
-DOSKA: ZANJIR: Urug‘ | Nihol | Gullaydi | Meva va urug‘
-DOSKA: urug‘ + suv + issiq → undi
-DOSKA: gul → meva
-DOSKA: meva ichida → urug‘
-TEKSH: O‘simlikda urug‘ nimadan hosil bo‘ladi? => Gul changlangandan keyin | Ildizdan | Barg yirtilganda | Tuproqdan
-TEKSH: Olma urug‘i nima uchun mevaning ichida? => Yangi olma daraxti o‘sishi uchun | Yeyish uchun | Yumshoq bo‘lishi uchun | Bezak uchun
+OVOZ: [1] O‘simlikning hikoyasi urug‘dan boshlanadi. Urug‘ni tuproqqa ekamiz, suv beramiz — u shishadi va unib chiqadi. [2] Nihol kattalashadi, barg chiqaradi — va gullaydi. [3] {sekin}Gulga hasharot qo‘nadi, chang olib o‘tadi — bu changlanish. Keyin gul o‘rnida meva paydo bo‘ladi. [4] {urgu}Meva ichida yangi urug‘lar! Ular tuproqqa tushsa, yangi o‘simlik o‘sadi. Sikl yopildi.
+DOSKA: ZANJIR: Urug‘ | Nihol | Gul | Meva va urug‘
+DOSKA: RASM: urug' | o'simlik:katta | gul | meva
+DOSKA: urug‘ + suv + issiq → unadi
+DOSKA: 🐝 changlanish → meva
+DOSKA: meva ichida → yangi urug‘lar
+TEKSH: Qovun urug‘i qovunning qayerida hosil bo‘ladi? => Meva ichida | Ildizida | Bargida | Tuproqda
+TEKSH: Gulda changlanishdan keyin nima paydo bo‘ladi? => Meva | Ildiz | Yangi tuxum | Soya
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Ko‘pchilik «Qurtcha kapalakka aylanadi» deydi. Bu to‘g‘ri, lekin qurtcha — kapalakning bolasi emas, balki hayot sikli bosqichi. [2] {urgu}Qurtcha va kapalak — bitta organizm! [3] Ikkinchi xato: sikl tuxumdan boshlanadi, tugaydi deb o‘ylash. Aslida u aylana: kapalak yana tuxum qo‘yadi.
+OVOZ: [1] Ko‘pchilik: «Qurtcha — kapalakning bolasi, boshqa hayvon». [2] {urgu}Yo‘q! Qurtcha va kapalak — bitta jonzot, faqat turli bosqichda. [3] Ikkinchi xato: sikl tuxumda tugaydi deb o‘ylash. Aslida sikl aylana: kapalak yana tuxum qo‘yadi.
 DOSKA: ❌ qurtcha — boshqa hayvon
-DOSKA: ✅ bitta organizm, turli bosqich
+DOSKA: ✅ bitta jonzot, turli bosqich
 DOSKA: ❌ sikl tugaydi
 DOSKA: ✅ sikl aylanadi
-TEKSH: Hayot sikli nega «sikl» deyiladi? => Oxirgi bosqichdan yana boshiga qaytadi | Bir marta bo‘ladi | Faqat kapalakda bor | Kattalashmaydi
+TEKSH: Hayot sikli nega «sikl» deyiladi? => Oxiridan yana boshiga qaytadi | Bir marta bo‘ladi | Faqat kapalakda bor | Kattalashmaydi
 @xulosa Esda tut
-OVOZ: Birinchi: kapalakda to‘rt bosqich bor: tuxum, lichinka, g‘umbak, kapalak. Ikkinchi: qurbaqa tuxumdan itbaliq orqali o‘zgaradi. Uchinchi: o‘simlik urug‘dan boshlanib, gul va mevadan yana urug‘ beradi. To‘rtinchi: sikl doira kabi qaytariladi.
-DOSKA: 1. 🦋 4 bosqich
-DOSKA: 2. 🐸 itbaliq
+OVOZ: Birinchi: kapalakning to‘rt bosqichi — tuxum, lichinka, g‘umbak, kapalak. Ikkinchi: qurbaqa itbaliq orqali o‘zgaradi, tovuq esa jo‘jadan kattalashadi. Uchinchi: o‘simlik urug‘dan boshlanib, mevada yana urug‘ beradi. To‘rtinchi: sikl — doira, u qaytadi.
+DOSKA: 1. 🥚 → 🐛 → ⚪ → 🦋
+DOSKA: 2. 🐸 itbaliq orqali
 DOSKA: 3. 🌱 urug‘ → meva → urug‘
 DOSKA: 4. sikl — doira
 
 ## S4-MUH
 @kirish Oq ayiq cho‘lda yashay oladimi?
-OVOZ: Oq ayiq muz ustida yashaydi. Tuya esa issiq qumli cho‘lda. {pauza} Oq ayiqni cho‘lga olib kelsak, nima bo‘ladi? Tuyani Shimoliy qutbga olib borsak-chi? {sekin}Har bir tirik jonzot o‘z muhitiga moslashgan. Qanday moslashgan — shuni o‘rganamiz. Taxmin qiling.
-DOSKA: 🐻‍❄️ oq ayiq — muz
-DOSKA: 🐪 tuya — cho‘l
-DOSKA: Almashtirsak? ✋
-@tushuncha Yashash muhiti va moslashish
-OVOZ: [1] Muhit — tirik organizm yashaydigan joy. Unda suv, havo, harorat, ovqat va boshpana bor. [2] Moslashish — organizmning muhitda yashashga yordam beradigan belgisi. [3] {sekin}Oq ayiqning qalin juni va yog‘ qatlami sovuqdan saqlaydi. Tuyaning o‘rkachi yog‘ zaxirasi, uzun kirpiklari qumdan himoya qiladi. [4] Demak, har bir moslashish — shu muhit uchun foydali.
+OVOZ: Oq ayiq muz ustida yashaydi. Tuya esa — jazirama cho‘lda. {pauza} Endi tasavvur qiling: oq ayiqni cho‘lga olib bordik! {baland}Nima bo‘ladi? Tuyani esa Shimoliy qutbga olib borsak-chi? {sekin}Har bir tirik jonzot o‘z uyiga — o‘z muhitiga moslashgan. Qanday moslashgan? Taxmin qiling, keyin birga topamiz.
+DOSKA: 🐻‍❄️ muz · ❄
+DOSKA: RASM: ayiq:kel | tuya:kel
+DOSKA: 🐪 cho‘l · ☀
+DOSKA: Almashtirsak nima bo‘ladi? ✋
+@tushuncha Muhit va moslashish
+OVOZ: [1] Muhit — tirik organizm yashaydigan joy: suv, havo, harorat, ovqat va boshpana. [2] Moslashish — organizmning shu muhitda yashashga yordam beradigan belgisi. [3] {sekin}Oq ayiqning qalin juni va yog‘ qatlami uni sovuqdan saqlaydi. Tuyaning o‘rkachi — yog‘ zaxirasi, uzun kirpiklari — qumdan himoya. [4] {urgu}Har bir moslashish aynan o‘z muhiti uchun foydali. Muhit almashsa — foydasi yo‘qoladi!
 DOSKA: JADVAL: Hayvon | Muhit | Moslashish ;; Oq ayiq | muz | qalin jun, yog‘ ;; Tuya | cho‘l | o‘rkach, uzun kirpik
-DOSKA: moslashish → yashashga yordam
-DOSKA: muhit: suv, havo, harorat
-DOSKA: almashtirsak → nobud bo‘ladi
-TEKSH: Baliqning suzgich va jabrasi qaysi muhitga mos? => Suvga | Cho‘lga | Havoga | Muzga
-TEKSH: Kaktusning qalin etli poyasi nima uchun kerak? => Suvni saqlash | Sovuqdan saqlanish | Uchish | Suzish
-@tushuncha O‘simliklarga nima kerak?
-OVOZ: [1] O‘simlikka to‘rt narsa kerak: suv, havo, yorug‘lik va mos harorat. [2] Agar biror narsa yetishmasa, o‘simlik zaif bo‘ladi. [3] {sekin}Sinab ko‘ramiz: ikkita bir xil loviya. Birini derazaga, ikkinchisini qorong‘i shkafga qo‘yamiz. Ikkalasiga baravar suv beramiz. [4] Bir haftadan keyin: derazadagisi yashil va baquvvat, shkafdagisi oq, cho‘zilgan va zaif. Faqat bitta narsa farq qildi — yorug‘lik.
+DOSKA: ❄ qalin jun → sovuqdan saqlaydi
+DOSKA: 🐪 o‘rkach → zaxira
+DOSKA: ❌ muhit almashdi → nobud bo‘ladi
+TEKSH: Baliqning suzgichi va jabrasi qaysi muhitga mos? => Suvga | Cho‘lga | Havoga | Muzlikka
+TEKSH: Kaktusning etli, yo‘g‘on poyasi nima uchun kerak? => Suvni saqlash | Sovuqdan saqlanish | Uchish | Suzish
+@tushuncha O‘simlikka nima kerak?
+OVOZ: [1] O‘simlik to‘rt narsa so‘raydi: suv, havo, yorug‘lik va mos issiqlik. [2] Qaysi biri muhimroq? Keling, tajriba qilaylik! Ikkita bir xil loviya olamiz. [3] {sekin}Birini derazaga, ikkinchisini qorong‘i shkafga qo‘yamiz. Ikkalasiga baravar suv beramiz. [4] Bir haftadan keyin: derazadagi — yashil va baquvvat. Shkafdagi — oq, cho‘zilgan, zaif. {urgu}Faqat bitta narsa farq qildi — yorug‘lik! Shuning uchun xulosa ishonchli.
 DOSKA: JADVAL: Loviya | Yorug‘lik | Natija ;; A | bor | yashil, baquvvat ;; B | yo‘q | oq, zaif
 DOSKA: bitta narsani o‘zgartir
 DOSKA: qolganlari bir xil
 DOSKA: xulosa: yorug‘lik kerak
-TEKSH: Tajribada ikkita o‘simlikka bir xil suv berildi, birini yorug‘ joyga qo‘ydik. Qaysi omil o‘rganilyapti? => Yorug‘lik | Suv | Tuproq | Harorat
-TEKSH: Adolatli sinov uchun nechta narsani o‘zgartirish kerak? => Faqat bittasini | Hammasini | Ikkitasini | Birortasini ham emas
+TEKSH: Ikkita gul tuvagi: birini kuniga ikki marta, ikkinchisini haftada bir marta sug‘ordik, boshqa narsa bir xil. Qaysi omil sinalyapti? => Suv miqdori | Yorug‘lik | Tuproq | Harorat
+TEKSH: Adolatli sinov uchun nechta narsani o‘zgartiramiz? => Faqat bittasini | Hammasini | Ikkitasini | Birortasini ham emas
 @tushuncha Muhit o‘zgarganda
-OVOZ: [1] Qish kelganda ba’zi hayvonlar uzoq uyquga ketadi, boshqalari issiq o‘lkalarga uchib ketadi. [2] Ayiq uyquda yog‘ zaxirasidan foydalanadi. Turna esa janubga uchadi. [3] {sekin}Daraxtlar bargini to‘kadi, chunki qishda suv kam, yorug‘lik ham kam. [4] Moslashish faqat tana belgisi emas, xulq-atvor ham: uchib ketish, uyquga ketish, yashirinish.
-DOSKA: SXEMA: Qish > uyquga ketadi | uchib ketadi | jun qalinlashadi | bargini to‘kadi
-DOSKA: ayiq → uyqu
-DOSKA: turna → janubga
-DOSKA: daraxt → bargsiz
-TEKSH: Turna nega qishda janubga uchadi? => Ovqat va issiqlik izlab | Uyquga ketib | Bola ko‘rish uchun | Suzish uchun
+OVOZ: [1] Qish keldi — sovuq, ovqat kam. Nima qilish kerak? Hayvonlar turlicha yo‘l tutadi. [2] Ayiq uzoq uyquga ketadi va yog‘ zaxirasini sarflaydi. Turna esa janubga uchib ketadi — issiq o‘lkaga. [3] {sekin}Tulki juni qalinlashadi. Daraxtlar bargini to‘kadi, chunki qishda suv ham, yorug‘lik ham kam. [4] Demak, moslashish faqat tana belgisi emas, xulq-atvor ham: uyquga ketish, uchib ketish, yashirinish.
+DOSKA: SXEMA: Qish > uyquga ketadi | uchib ketadi | juni qalinlashadi | bargini to‘kadi
+DOSKA: 🐻 ayiq → uyqu
+DOSKA: 🐦 turna → janubga
+DOSKA: 🌳 daraxt → bargsiz
+TEKSH: Turna nega qishda janubga uchib ketadi? => Ovqat va issiqlik izlab | Uyquga ketish uchun | Suzish uchun | Bola ko‘rish uchun
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: «Hayvon xohlaganida moslashadi». Yo‘q! Moslashish — ko‘p avlod davomida yuzaga kelgan belgi. [2] {urgu}Bitta hayvon yangi muhitga tushib, bir kunda jun o‘stira olmaydi. [3] Ikkinchi xato: hamma hayvon bir xil muhitda yashay oladi, deb o‘ylash.
+OVOZ: [1] Xato: «Hayvon xohlasa, yangi muhitga moslashadi». [2] {urgu}Yo‘q! Moslashish — ko‘p avlod davomida paydo bo‘lgan belgi. Bitta hayvon yangi joyga tushib, bir kunda qalin jun o‘stira olmaydi. [3] Ikkinchi xato: hamma hayvon hamma joyda yashay oladi, deb o‘ylash.
 DOSKA: ❌ xohlasa moslashadi
 DOSKA: ✅ uzoq vaqt davomida
 DOSKA: ❌ hamma hamma joyda
 DOSKA: ✅ har biri o‘z muhitida
-TEKSH: Chuchuk suv baliqi sho‘r dengizga tashlansa? => Nobud bo‘lishi mumkin | Darhol moslashadi | Yashashi aniq | Kattalashadi
+TEKSH: Daryo baliqi sho‘r dengizga tashlansa nima bo‘lishi mumkin? => Nobud bo‘lishi mumkin | Darhol moslashadi | Kattalashadi | Hech narsa
 @xulosa Esda tut
-OVOZ: Birinchi: har bir organizm o‘z muhitiga moslashgan. Ikkinchi: o‘simlikka suv, havo, yorug‘lik, issiqlik kerak. Uchinchi: adolatli sinovda faqat bitta omil o‘zgartiriladi. To‘rtinchi: moslashish — uzoq jarayon, xohish emas.
+OVOZ: Birinchi: har bir organizm o‘z muhitiga moslashgan. Ikkinchi: o‘simlikka suv, havo, yorug‘lik va issiqlik kerak. Uchinchi: adolatli sinovda faqat bitta omil o‘zgartiriladi. To‘rtinchi: moslashish — uzoq jarayon, xohish emas.
 DOSKA: 1. muhit → moslashish
 DOSKA: 2. suv · havo · nur · issiq
-DOSKA: 3. bitta omil
+DOSKA: 3. bitta omil o‘zgaradi
 DOSKA: 4. moslashish — uzoq jarayon
 
 ## S4-EKO
 @kirish Tulkilar yo‘qolsa nima bo‘ladi?
-OVOZ: O‘tloqda quyonlar o‘tni yeydi. Tulkilar esa quyonlarni ovlaydi. Ovchilar hamma tulkilarni otib tashladi. {pauza} Quyonlar xursand bo‘ladimi? O‘t nima bo‘ladi? {sekin}Tabiatda hamma narsa zanjir kabi bog‘langan. Bitta halqa yo‘qolsa, boshqalar ham o‘zgaradi. Taxmin qiling.
+OVOZ: O‘tloqni ko‘z oldingizga keltiring. Quyonlar o‘t yeydi. Tulkilar esa quyonlarni ovlaydi. {pauza} Bir kuni ovchilar hamma tulkini ovlab tashladi. {baland}Quyonlar xursand bo‘ladimi? O‘tloqdagi o‘t-chi? {sekin}Tabiatda hamma narsa zanjir kabi bog‘langan. Bitta halqa yo‘qolsa — boshqalar ham o‘zgaradi. Taxmin qiling!
 DOSKA: 🌿 → 🐇 → 🦊
+DOSKA: RASM: tulki | quyon:sakra | o'simlik
 DOSKA: Tulki yo‘q bo‘lsa? ✋
 @tushuncha Oziq zanjiri
-OVOZ: [1] Oziq zanjiri — kim kimni yeyishini ko‘rsatuvchi qator. Strelka energiya yo‘nalishini ko‘rsatadi. [2] O‘t — quyonga. Quyon — tulkiga. [3] {sekin}Zanjir doim o‘simlikdan boshlanadi. Chunki faqat o‘simlik quyoshdan energiyani olib ovqat hosil qiladi. [4] O‘t — ishlab chiqaruvchi, quyon — o‘txo‘r iste’molchi, tulki — yirtqich.
+OVOZ: [1] Oziq zanjiri — kim kimni yeyishini ko‘rsatuvchi qator. Strelkaga qarang: u energiya qayoqqa ketayotganini ko‘rsatadi. [2] O‘t — quyonga ovqat. Quyon — tulkiga ovqat. [3] {sekin}Zanjir doim o‘simlikdan boshlanadi! Chunki faqat o‘simlik quyosh nurini ovqatga aylantira oladi. [4] O‘t — ishlab chiqaruvchi. Quyon — o‘txo‘r. Tulki — yirtqich.
 DOSKA: ZANJIR: O‘t | Quyon | Tulki
+DOSKA: RASM: o'simlik | quyon:sakra | tulki
 DOSKA: strelka → energiya yo‘nalishi
 DOSKA: o‘t — ishlab chiqaruvchi
 DOSKA: tulki — yirtqich
-TEKSH: Don → sichqon → ilon → burgut. Zanjirning boshida nima turadi? => Don (o‘simlik) | Sichqon | Ilon | Burgut
-TEKSH: Sichqonni ilon yeydi. Strelka qaysi tomonga yo‘naladi? => Sichqondan ilonga | Ilondan sichqonga | Ikki tomonga | Strelka kerak emas
+TEKSH: Don → sichqon → ilon → burgut. Zanjir boshida nima turadi? => Don (o‘simlik) | Sichqon | Ilon | Burgut
+TEKSH: Qurbaqa chivinni yeydi. Strelka qaysi tomonga yo‘naladi? => Chivindan qurbaqaga | Qurbaqadan chivinga | Ikki tomonga | Strelka kerak emas
 @tushuncha Oziq to‘ri
-OVOZ: [1] Tabiatda hayvon bir xil ovqatni emas, turli ovqat yeydi. Shuning uchun zanjirlar bir-biriga qo‘shilib, to‘r hosil qiladi. [2] Tulki quyonni ham, sichqonni ham yeydi. [3] {sekin}To‘r zanjirdan mustahkamroq. Bitta ovqat yo‘qolsa, tulki boshqasini topa oladi. [4] Lekin to‘rning ham bir qismi yo‘qolsa, o‘zgarishlar boshlanadi.
+OVOZ: [1] Haqiqiy tabiatda hayvon bitta narsani yemaydi. Tulki quyonni ham yeydi, sichqonni ham, qush tuxumini ham. [2] Shuning uchun zanjirlar bir-biriga ulanib, to‘r hosil qiladi. [3] {sekin}To‘r zanjirdan mustahkamroq: bitta ovqat tugasa, tulki boshqasini topadi. [4] {urgu}Lekin to‘rning ham katta bir qismi yo‘qolsa, o‘zgarish boshlanadi.
 DOSKA: SXEMA: Tulki > quyon | sichqon | qush tuxumi
 DOSKA: ko‘p zanjir → to‘r
 DOSKA: to‘r — mustahkamroq
-DOSKA: bitta halqa kam → o‘zgarish
+DOSKA: katta halqa kam → o‘zgarish
 TEKSH: Burgut ilonni ham, quyonni ham ovlaydi. Bu nimaga misol? => Oziq to‘ri | Moslashish | Hayot sikli | Fotosintez
-TEKSH: Tulki ham, burgut ham sichqonni yeydi. Sichqon ko‘paysa nima bo‘ladi? => Yirtqichlar ko‘payishi mumkin | Hech narsa | O‘t ko‘payadi | Hammasi yo‘qoladi
+TEKSH: Tulki ham, burgut ham sichqonni yeydi. Sichqonlar ko‘paysa, nima bo‘lishi mumkin? => Yirtqichlar ko‘payishi mumkin | Hech narsa | O‘t ko‘payadi | Hammasi yo‘qoladi
 @tushuncha Parchalovchilar va muvozanat
-OVOZ: [1] Hayvon o‘ldi, barg to‘kildi — ular qayerga ketadi? Qo‘ziqorinlar va bakteriyalar ularni parchalaydi. [2] Ular — parchalovchilar. Parchalanganda tuproqqa ozuqa qaytadi. [3] {sekin}Shu ozuqani o‘simlik yana oladi. Aylana yopiladi. [4] Muvozanat — hamma halqalar o‘z o‘rnida bo‘lganda. Tulki ham, quyon ham, o‘t ham kerak.
+OVOZ: [1] Barg to‘kildi, hayvon o‘ldi — ular qayerga ketadi? Ularni qo‘ziqorinlar va bakteriyalar parchalaydi. [2] Bular — parchalovchilar. Parchalanganda tuproqqa ozuqa qaytadi. [3] {sekin}O‘sha ozuqani o‘simlik yana oladi — va aylana yopiladi! [4] Muvozanat — hamma halqa o‘z o‘rnida bo‘lganda. Tulki ham, quyon ham, o‘t ham, qo‘ziqorin ham kerak.
 DOSKA: ZANJIR: Barg to‘kiladi | Qo‘ziqorin parchalaydi | Tuproq boyiydi | O‘simlik o‘sadi
 DOSKA: parchalovchi — qo‘ziqorin, bakteriya
 DOSKA: ozuqa tuproqqa qaytadi
-DOSKA: muvozanat
-TEKSH: Qo‘ziqorin o‘lik daraxtni parchalaydi. U nimaga aylanadi? => Tuproq uchun ozuqa | Yangi hayvon | Suv | Havo
-TEKSH: Tulki yo‘qolsa, quyon soni dastlab...? => Ko‘payadi | Kamayadi | O‘zgarmaydi | Nolga tushadi
+DOSKA: BELGILA: muvozanat | ramka
+TEKSH: Qo‘ziqorin o‘lik daraxtni parchalaydi. Daraxt nimaga aylanadi? => Tuproq uchun ozuqa | Yangi hayvon | Suv | Havo
+TEKSH: Tulki yo‘qolsa, quyonlar soni dastlab...? => Ko‘payadi | Kamayadi | O‘zgarmaydi | Nolga tushadi
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: strelkani «kim kimni yeydi»ga qarama-qarshi chizish — quyondan o‘tga. [2] {urgu}Strelka energiya qayoqqa ketayotganini ko‘rsatadi: o‘tdan quyonga! [3] Ikkinchi xato: yirtqichlar yomon, ularni yo‘q qilish kerak. Aslida ular muvozanatni saqlaydi.
+OVOZ: [1] Xato: strelkani teskari chizish — quyondan o‘tga. [2] {urgu}Strelka energiya qayoqqa ketayotganini ko‘rsatadi: o‘tdan quyonga! [3] Ikkinchi xato: «Yirtqichlar yomon, ularni yo‘q qilish kerak». Aslida ular muvozanatni saqlaydi.
 DOSKA: ❌ quyon → o‘t
 DOSKA: ✅ o‘t → quyon
 DOSKA: ❌ yirtqich — zararli
 DOSKA: ✅ yirtqich — muvozanat
-TEKSH: Chigirtkani qurbaqa, qurbaqani qush yeydi. To‘g‘ri strelkalar? => Chigirtka → qurbaqa → qush | Qush → qurbaqa → chigirtka | Qurbaqa → chigirtka | Qush → chigirtka
+TEKSH: Chigirtkani baqa, baqani qush yeydi. To‘g‘ri zanjir qaysi? => Chigirtka → baqa → qush | Qush → baqa → chigirtka | Baqa → chigirtka | Qush → chigirtka
 @xulosa Esda tut
-OVOZ: Birinchi: oziq zanjiri o‘simlikdan boshlanadi, strelka energiyani ko‘rsatadi. Ikkinchi: zanjirlar to‘r hosil qiladi. Uchinchi: parchalovchilar ozuqani tuproqqa qaytaradi. To‘rtinchi: bitta halqa yo‘qolsa, butun ekotizim o‘zgaradi.
+OVOZ: Birinchi: oziq zanjiri o‘simlikdan boshlanadi, strelka energiyani ko‘rsatadi. Ikkinchi: zanjirlar to‘rga aylanadi. Uchinchi: parchalovchilar ozuqani tuproqqa qaytaradi. To‘rtinchi: bitta halqa yo‘qolsa — butun ekotizim o‘zgaradi.
 DOSKA: 1. o‘simlik → o‘txo‘r → yirtqich
 DOSKA: 2. zanjirlar → to‘r
 DOSKA: 3. parchalovchilar

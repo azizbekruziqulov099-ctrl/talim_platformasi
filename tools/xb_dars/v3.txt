@@ -1,283 +1,364 @@
 ## S8-ELE
-@kirish Nega chiroq bir lahzada yonadi?
-OVOZ: Kalitni bosasiz — chiroq darhol yonadi. Elektr stansiyasi esa o‘n kilometr uzoqda. {pauza} Elektronlar shuncha masofani bir lahzada bosib o‘tdimi? Yoki boshqa narsa bo‘lyaptimi? {sekin}Elektr toki — zaryadlangan zarralarning tartibli harakati. Uning qoidalarini o‘rganamiz. Taxmin qiling.
-DOSKA: kalit ⇢ chiroq
-DOSKA: Elektronlar bir lahzada? ✋
-@tushuncha Tok, kuchlanish, qarshilik
-OVOZ: [1] Tok kuchi — o‘tuvchi zaryad miqdori, ampermetr bilan o‘lchanadi, birligi — amper. [2] Kuchlanish — zaryadni harakatga keltiruvchi «bosim», birligi — volt. Batareya shu bosimni beradi. [3] {sekin}Qarshilik — zanjirning tokka to‘sqinligi, birligi — om. [4] Kuchlanish qancha katta bo‘lsa, tok shuncha kuchli, qarshilik qancha katta bo‘lsa, tok shuncha kuchsiz.
-DOSKA: SXEMA: Elektr zanjiri > tok (A) | kuchlanish (V) | qarshilik (Ω)
-DOSKA: batareya → kuchlanish beradi
-DOSKA: lampa → qarshilik
-DOSKA: simlar → tok yo‘li
-TEKSH: Tok kuchi qaysi asbob bilan o‘lchanadi? => Ampermetr | Voltmetr | Termometr | Tarozi
-TEKSH: Qarshilik birligi qaysi? => Om | Volt | Amper | Joul
-@tushuncha Om qonuni
-OVOZ: [1] Kuchlanish teng tok karra qarshilik: U teng I karra R. [2] Tok — kuchlanish bo‘lingan qarshilik: I teng U bo‘lingan R. [3] {sekin}12 voltli batareya, 4 omli qarshilik: tok — 12 bo‘lingan 4 — 3 amper. [4] Qarshilik ikki baravar oshsa, tok ikki baravar kamayadi.
-DOSKA: U = I · R
-DOSKA: I = U : R
-DOSKA: 12 : 4 = 3 A
-DOSKA: R ×2 → I ÷2
+@kirish Chiroq nega darrov yonadi?
+OVOZ: {baland}Kalitni bosdingiz — chiroq darhol yondi! {pauza} Lekin elektr stansiyasi shahardan o‘nlab kilometr uzoqda. {sekin}Hayron bo‘lmayapsizmi? Elektronlar shuncha yo‘lni bir lahzada yugurib keldimi? {pauza} Mana uchta taxmin. Birinchisi: elektronlar stansiyadan yorug‘lik tezligida uchib keladi. Ikkinchisi: simda elektronlar avvaldan bor, kalit ularni birdan harakatga keltiradi. Uchinchisi: elektr chiroqning o‘zida tayyor turadi. {urgu}Qaysi biri to‘g‘ri? Taxmin qiling — dars oxirida birga ochamiz!
+DOSKA: ZANJIR: Kalit | Sim (10 km) | Lampa | Yorug‘lik
+DOSKA: ❓ Elektronlar stansiyadan yugurib keladimi?
+DOSKA: RASM: batareya:kel | kalit:tebran
+DOSKA: Taxmin: 1 · 2 · 3 ✋
+@tushuncha Elektr zanjiri — suv quvuri kabi
+OVOZ: [1] Elektr zanjirini suv quvuriga o‘xshatamiz — shunda hammasi tushunarli bo‘ladi! Nasos suvni itaradi, batareya esa elektronlarni itaradi. [2] Nasosning «bosimi» — {baland}kuchlanish. Birligi — volt, belgisi — U. [3] Quvurdan oqayotgan suv miqdori — {baland}tok kuchi. Uni ampermetr o‘lchaydi, birligi — amper, belgisi — I. [4] {sekin}Quvurdagi torayish — to‘siq. Elektrda bu — qarshilik. Lampaning ingichka simi katta qarshilik beradi. Birligi — om, belgisi — R. [5] {urgu}Muhim: tok faqat berk zanjirda yuradi. Kalitni uzsak — quvur yopilgandek, oqim to‘xtaydi.
+DOSKA: SXEMA: Zanjir > batareya: bosim (V) | sim: yo‘l | lampa: to‘siq (Ω) | kalit: ochadi / yopadi
+DOSKA: ZANJIR: Batareya | Kuchlanish U | Sim | Tok I | Lampa R
+DOSKA: JADVAL: Kattalik | Belgi | Birlik | Asbob ;; Tok | I | amper (A) | ampermetr ;; Kuchlanish | U | volt (V) | voltmetr ;; Qarshilik | R | om (Ω) | —
+DOSKA: Nasos = batareya
+DOSKA: BELGILA: berk zanjir → tok bor | ramka
+TEKSH: Voltmetr nimani o‘lchaydi? => Kuchlanishni | Tok kuchini | Qarshilikni | Massani
+TEKSH: Kalit uzilsa, zanjirda nima bo‘ladi? => Tok to‘xtaydi | Tok kuchayadi | Kuchlanish oshadi | Hech narsa o‘zgarmaydi
+@tushuncha Om qonuni — uch kattalik bitta formulada
+OVOZ: [1] Tasavvur qiling: batareya — o‘n ikki volt, lampaning qarshiligi — to‘rt om. Tok qancha bo‘ladi? [2] Jonli sir: tok — {baland}kuchlanishni qarshilikka bo‘lish. Om qonuni: I teng U bo‘lingan R. [3] {sekin}O‘n ikkini to‘rtga bo‘lamiz — uch amper! [4] Grafikka qarang: kuchlanish oshgan sari tok to‘g‘ri chiziq bo‘yicha o‘sadi. {urgu}Kuchlanish ikki baravar — tok ham ikki baravar. [5] Qarshilik ikki baravar oshsa-chi? Tok ikki baravar kamayadi: bir yarim amper. [6] Teskarisini ham bilib oling: kuchlanish — tok karra qarshilik. Uch amper, to‘rt om — yana o‘n ikki volt.
+DOSKA: KETMA: I = U : R | 12 : 4 | 3 A
+DOSKA: GRAFIK: y=x/4; [0;12]
+DOSKA: U ×2 → I ×2
+DOSKA: GRAFIK: y=x/8; [0;12]
+DOSKA: R ×2 → I ÷2 (1,5 A)
+DOSKA: KETMA: U = I · R | 3 · 4 | 12 V
 TEKSH: U = 9 V, R = 3 Ω. Tok kuchi? => 3 A | 27 A | 12 A | 0,33 A
 TEKSH: Tok 2 A, qarshilik 5 Ω. Kuchlanish? => 10 V | 2,5 V | 7 V | 3 V
 @tushuncha Ketma-ket va parallel ulanish
-OVOZ: [1] Ketma-ket ulanishda tok bitta yo‘ldan yuradi. Bitta lampa kuyisa, hammasi o‘chadi. [2] Parallel ulanishda tok bir necha yo‘ldan yuradi. Bitta lampa kuyisa, qolganlari yonib turadi. [3] {sekin}Uylardagi rozetkalar parallel ulangan — shuning uchun bitta asbob o‘chsa, boshqalari ishlayveradi. [4] Ketma-ket ulangan qarshiliklar yig‘indisi qo‘shiladi.
-DOSKA: JADVAL: Ulanish | Yo‘l | Bitta kuyganda ;; Ketma-ket | bitta | hammasi o‘chadi ;; Parallel | ko‘p | qolganlari yonadi
-DOSKA: ketma-ket: R = R₁ + R₂
-DOSKA: uy rozetkalari — parallel
-DOSKA: bayram girlyandasi — ketma-ket
-TEKSH: Ikkita 5 Ω qarshilik ketma-ket ulansa, umumiy? => 10 Ω | 2,5 Ω | 5 Ω | 25 Ω
+OVOZ: [1] Bayram girlyandasini bilasizmi? Bitta lampochka kuyadi — hamma o‘chadi! Nega? [2] Chunki ular {baland}ketma-ket ulangan: tok faqat bitta yo‘ldan yuradi. Yo‘l uzilsa — hammasi to‘xtaydi. [3] Ketma-ket ulangan qarshiliklar qo‘shiladi: to‘rt om plyus olti om — o‘n om. [4] Uydagi rozetkalar esa {baland}parallel ulangan: tok bir necha yo‘ldan oqadi. Bitta asbob o‘chirilsa, qolganlari ishlayveradi. [5] {sekin}Parallelda tok «yo‘l tanlaydi» — yo‘llar ko‘p, umumiy qarshilik kamayadi. Ikkita olti omli qarshilik parallel bo‘lsa — uch om bo‘ladi, ya’ni har birining yarmi.
+DOSKA: ZANJIR: Batareya | Lampa 1 | Lampa 2 | Lampa 3 | Batareya
+DOSKA: SXEMA: Parallel > lampa 1 | lampa 2 | lampa 3
+DOSKA: JADVAL: Ulanish | Tok yo‘li | Bittasi kuysa ;; Ketma-ket | bitta | hammasi o‘chadi ;; Parallel | ko‘p | qolganlari yonadi
+DOSKA: KETMA: ketma-ket: R = R₁ + R₂ | 4 + 6 | 10 Ω
+DOSKA: KETMA: parallel (teng): R = 6 : 2 | 3 Ω
+TEKSH: Ketma-ket ulangan 3 Ω va 9 Ω qarshilikning umumiy qarshiligi? => 12 Ω | 6 Ω | 27 Ω | 3 Ω
 TEKSH: Bitta chiroq kuyganda boshqalari yonib tursa, ular qanday ulangan? => Parallel | Ketma-ket | Aralash emas | Ulanmagan
-@tushuncha Magnit va elektr
-OVOZ: [1] Magnitning ikki qutbi bor: shimol va janub. Bir xil qutblar itaradi, har xil qutblar tortadi. [2] Elektr toki atrofida ham magnit maydon hosil bo‘ladi. Simni o‘ramga o‘rab, ichiga temir qo‘ysak — elektromagnit. [3] {sekin}Tok o‘chsa, elektromagnit magnitligini yo‘qotadi. Shuning uchun u kranda, qo‘ng‘iroqda ishlatiladi. [4] Kompas — Yerning magnit maydonini ko‘rsatadi.
-DOSKA: N ←→ S tortadi
-DOSKA: N ←→ N itaradi
-DOSKA: tok + o‘ram + temir = elektromagnit
-DOSKA: tok yo‘q → magnit yo‘q
-TEKSH: Ikkita shimol qutb bir-biriga yaqinlashtirilsa? => Itaradi | Tortadi | Ta’sir qilmaydi | Eriydi
-TEKSH: Elektromagnitni o‘chirish uchun nima qilish kerak? => Tokni uzish | Temirni olish | Simni qizdirish | Hech qachon o‘chmaydi
-@tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: «Elektronlar simda yorug‘lik tezligida yuguradi». [2] {urgu}Yo‘q! Elektronlar juda sekin siljiydi — soniyasiga millimetrlar. Lekin zanjirda elektr maydon bir zumda hamma elektronni harakatga keltiradi. [3] Ikkinchi xato: tok lampada «sarflanadi». Tok sarflanmaydi — energiya sarflanadi, zaryad aylanib yuradi.
-DOSKA: ❌ elektron tez yuguradi
-DOSKA: ✅ maydon tez, elektron sekin
-DOSKA: ❌ tok sarflanadi
-DOSKA: ✅ energiya sarflanadi
-TEKSH: Lampa orqali o‘tgach, tok kuchi qanday o‘zgaradi? => O‘zgarmaydi | Kamayadi | Nolga tushadi | Ikki baravar oshadi
+TEKSH: Ikkita 8 Ω qarshilik parallel ulandi. Umumiy qarshilik? => 4 Ω | 16 Ω | 8 Ω | 2 Ω
+@tushuncha Magnit va elektr — qo‘shni qarindoshlar
+OVOZ: [1] Har bir magnitning ikkita qutbi bor: shimol va janub. Sinab ko‘rgansiz: bir xil qutblar itaradi, har xil qutblar tortadi! [2] Magnit hamma narsani tortmaydi. Temir, nikel, kobaltni tortadi. Mis yoki alyuminiyni — yo‘q. [3] {urgu}Endi eng qiziq joyi! Tok o‘tayotgan sim atrofida ham magnit maydon hosil bo‘ladi. Buni 1820-yilda daniyalik olim Ersted tasodifan payqagan. [4] Simni o‘ramga o‘rab, ichiga temir o‘zak qo‘ysak — {baland}elektromagnit chiqadi! Tok kuchaysa yoki o‘ram ko‘paysa — u kuchliroq tortadi. [5] {sekin}Eng zo‘ri — uni o‘chirish mumkin: tokni uzamiz — magnit yo‘qoladi. Shuning uchun elektromagnit metall qirindi yig‘uvchi kranda, elektr qo‘ng‘iroqda ishlaydi.
+DOSKA: JADVAL: Qutblar | Natija ;; N — S | tortadi ;; N — N | itaradi ;; S — S | itaradi
+DOSKA: SXEMA: Magnit tortadi > temir | nikel | kobalt
+DOSKA: ZANJIR: Tok | Sim atrofida magnit maydon
+DOSKA: ZANJIR: Tok + o‘ram + temir o‘zak | Elektromagnit
+DOSKA: SXEMA: Elektromagnit > kran | qo‘ng‘iroq | dinamik
+DOSKA: RASM: magnit:tebran
+TEKSH: Ikkita janub qutb bir-biriga yaqinlashtirilsa nima bo‘ladi? => Bir-birini itaradi | Bir-birini tortadi | Hech narsa bo‘lmaydi | Birdan qiziydi
+TEKSH: Mis simni magnit tortadimi? => Yo‘q, mis tortilmaydi | Ha, kuchli | Faqat qizdirilsa | Faqat shimol qutb bilan
+@tushuncha Magnitdan tok: generator
+OVOZ: [1] Endi teskarisi! Agar tok magnit hosil qilsa, magnit ham tok hosil qila oladimi? Ha! [2] Magnitni sim o‘rami ichida aylantirsak — simda tok paydo bo‘ladi. Buni Faradey 1831-yilda ochgan. [3] {sekin}Shu usulda butun shaharni yoritadigan elektr olinadi. Daryo suvi turbinani aylantiradi, turbina magnitni aylantiradi, simda esa tok hosil bo‘ladi. [4] Ko‘mir, gaz yoki shamol — ularning hammasi turbinani aylantirib, bir xil usulda tok beradi. [5] {urgu}Demak, uydagi chiroqni yoqayotgan energiya — aylanayotgan magnitdan keladi!
+DOSKA: ZANJIR: Magnit harakati | Simda tok
+DOSKA: ZANJIR: Suv oqimi | Turbina | Magnit aylanadi | Simda tok | Shahar elektri
+DOSKA: Faradey, 1831
+DOSKA: SXEMA: Turbinani aylantiradi > suv | bug‘ | shamol
+DOSKA: Energiya: aylanish → elektr
+DOSKA: RASM: daryo | suv:kel | batareya
+TEKSH: Generatorda simda tok qanday hosil bo‘ladi? => Magnit sim o‘rami ichida harakatlanganda | Sim qizdirilganda | Sim muzlatilganda | Magnit tinch turganda
+@tushuncha Xato tuzog‘i: elektron «yuguradimi»?
+OVOZ: [1] Endi boshidagi savolga qaytamiz! Ko‘pchilik: «Elektronlar stansiyadan yorug‘lik tezligida yugurib keladi», deydi. [2] {urgu}Yo‘q! Simdagi elektronlar juda sekin siljiydi — soniyasiga millimetrlar. [3] Lekin sim elektronlarga {baland}to‘la, xuddi sharchalar bilan to‘ldirilgan quvurdek. Bir uchini itarsangiz, ikkinchi uchidagi sharcha darhol chiqadi. [4] Kalit bosilganda esa elektr maydon simda deyarli yorug‘lik tezligida tarqaladi va hamma elektronni birdan harakatga keltiradi. To‘g‘ri javob — ikkinchi taxmin! [5] Ikkinchi xato: «Tok lampada sarflanadi». {sekin}Tok sarflanmaydi — zaryad aylanib yuradi. Sarflanadigan — energiya, u yorug‘lik va issiqlikka aylanadi.
+DOSKA: ZANJIR: Kalit bosildi | Maydon tez tarqaladi | Hamma elektron harakatda | Lampa yonadi
+DOSKA: ❌ elektron yorug‘lik tezligida yuguradi
+DOSKA: ✅ maydon tez, elektronlar sekin
+DOSKA: ❌ tok lampada sarflanadi
+DOSKA: ✅ energiya sarflanadi, tok aylanib yuradi
+TEKSH: Tok lampadan o‘tgach, tok kuchi qanday o‘zgaradi (oddiy zanjirda)? => O‘zgarmaydi | Kamayadi | Nolga tushadi | Ikki baravar oshadi
 @xulosa Esda tut
-OVOZ: Birinchi: tok kuchi amperda, kuchlanish voltda, qarshilik omda. Ikkinchi: Om qonuni — tok kuchlanish bo‘lingan qarshilik. Uchinchi: parallel ulanishda bittasi o‘chsa, qolganlari ishlaydi. To‘rtinchi: bir xil qutblar itaradi, har xili tortadi.
+OVOZ: Birinchi: tok amperda, kuchlanish voltda, qarshilik omda o‘lchanadi. Ikkinchi: Om qonuni — tok teng kuchlanish bo‘lingan qarshilik. Uchinchi: ketma-ket ulanishda qarshiliklar qo‘shiladi, parallelda bittasi o‘chsa qolganlari ishlaydi. To‘rtinchi: bir xil qutblar itaradi, har xili tortadi; tok magnit beradi, magnit tok beradi.
 DOSKA: 1. A · V · Ω
-DOSKA: 2. I = U / R
-DOSKA: 3. parallel — mustaqil
-DOSKA: 4. N–S tortadi
+DOSKA: 2. I = U : R
+DOSKA: 3. ketma-ket / parallel
+DOSKA: 4. tok ⇄ magnit
 
 ## S8-KUC
-@kirish Tormozda yo‘lovchi nega oldinga engashadi?
-OVOZ: Avtobus keskin tormoz bosdi. Yo‘lovchilar oldinga engashib ketdi. Hech kim ularni turtmadi. {pauza} Nega bunday bo‘ldi? Nima ularni oldinga yuborgan? {sekin}Bu — inersiya. Nyuton qonunlari harakat va kuchning aloqasini tushuntiradi. Taxmin qiling.
-DOSKA: 🚌 tormoz!
-DOSKA: Yo‘lovchi → oldinga ✋
-@tushuncha Nyutonning birinchi qonuni: inersiya
-OVOZ: [1] Jism tinch yoki bir xil tezlikda harakatlanadi, agar unga kuch ta’sir qilmasa yoki kuchlar muvozanatlashgan bo‘lsa. [2] Jism holatini saqlashga intiladi — bu inersiya. [3] {sekin}Avtobus to‘xtadi, lekin yo‘lovchi harakatini davom ettirdi. Shuning uchun xavfsizlik kamari kerak. [4] Massa qancha katta bo‘lsa, inersiya shuncha katta.
-DOSKA: kuch yo‘q → holat saqlanadi
-DOSKA: tinch → tinch
-DOSKA: harakat → bir xil tezlik
-DOSKA: massa ↑ → inersiya ↑
+@kirish Tormozda nega oldinga engashamiz?
+OVOZ: {baland}Avtobus to‘satdan tormoz berdi! {pauza} Hamma yo‘lovchi bir yoqlama oldinga engashdi. Hech kim ularni turtmadi. {sekin}Nima ularni oldinga itardi? Mana uch taxmin. Birinchisi: orqadan kuch itaradi. Ikkinchisi: tananing o‘zi oldingi harakatini davom ettirmoqchi bo‘ladi. Uchinchisi: tormoz tanani tortadi. {urgu}Qaysi biri to‘g‘ri? Taxmin qiling!
+DOSKA: ZANJIR: Avtobus yuradi | Tormoz | Avtobus to‘xtadi | Yo‘lovchi?
+DOSKA: ❓ Yo‘lovchi nega oldinga engashadi?
+DOSKA: RASM: avtobus:kel
+DOSKA: Taxmin: 1 · 2 · 3 ✋
+@tushuncha Birinchi qonun: inersiya
+OVOZ: [1] Stol ustidagi qog‘ozga choynak qo‘ying. Qog‘ozni tez tortib oling — choynak joyida qoladi! [2] Sir shuki: {baland}jism o‘z holatini saqlashga intiladi. Tinch bo‘lsa — tinch qoladi. Harakatda bo‘lsa — bir xil tezlikda yuraveradi. [3] Faqat kuch ta’sir qilsagina holat o‘zgaradi. Bu — Nyutonning birinchi qonuni, uning nomi — {urgu}inersiya. [4] Endi avtobusga qaytamiz: avtobus to‘xtadi, lekin tanangiz hali harakatda edi — oldinga engashdingiz. Shuning uchun xavfsizlik kamari kerak! [5] {sekin}Massa qancha katta bo‘lsa, inersiya shuncha kuchli: yuk mashinasini to‘xtatish velosipeddan ancha qiyin.
+DOSKA: ZANJIR: Avtobus to‘xtadi | Oyoq to‘xtadi | Tana davom etadi | Oldinga engashasiz
+DOSKA: SXEMA: Kuch ta’sir qilmasa > tinch → tinch | harakat → bir xil tezlik
+DOSKA: JADVAL: Jism | Massa | Inersiya ;; Velosiped | kichik | kichik ;; Yuk mashinasi | katta | katta
+DOSKA: Qog‘oz tez tortilsa — choynak joyida
+DOSKA: BELGILA: kamar = xavfsizlik | ramka
 TEKSH: Avtobus keskin yurib ketganda yo‘lovchi qayoqqa og‘adi? => Orqaga | Oldinga | Yon tomonga | Joyida qoladi
-TEKSH: Qaysi biri kuchliroq inersiyaga ega? => Katta yuk mashinasi | Velosiped | Mushuk | To‘p
-@tushuncha Nyutonning ikkinchi qonuni
-OVOZ: [1] Kuch katta bo‘lsa, tezlanish katta bo‘ladi. Massa katta bo‘lsa, tezlanish kam bo‘ladi. [2] Formula: kuch teng massa karra tezlanish. F teng m karra a. [3] {sekin}Massa ikki kilogramm, tezlanish uch metr soniya kvadratiga. Kuch — 2 karra 3 — 6 nyuton. [4] Bir xil kuch bilan bo‘sh aravani tezroq, to‘la aravani sekinroq harakatga keltiramiz.
-DOSKA: F = m · a
-DOSKA: 2 · 3 = 6 N
-DOSKA: F ↑ → a ↑
-DOSKA: m ↑ → a ↓
+TEKSH: Qaysi jismning inersiyasi eng katta? => Yuk ortilgan avtobus | Futbol to‘pi | Qush | Qog‘oz varag‘i
+@tushuncha Ikkinchi qonun: F = m · a
+OVOZ: [1] Do‘kon aravachasini itaryapsiz. Bo‘sh aravacha tez yuguradi, to‘la — sekin. Nega? [2] Chunki tezlanish kuchga bog‘liq va massaga ham: {baland}kuch qancha katta — tezlanish katta, massa qancha katta — tezlanish kichik. [3] Formula: F teng m karra a. Kuch — nyutonda, massa — kilogrammda, tezlanish — metr bo‘lingan soniya kvadratda. [4] {sekin}Misol: massa ikki kilogramm, tezlanish uch metr bo‘lingan soniya kvadrat. Kuch: ikki karra uch — oltita nyuton. [5] Grafikka qarang: massa o‘zgarmasa, kuch oshgan sari tezlanish o‘sadi — to‘g‘ri chiziq! [6] Bir xil kuch bilan massa ikki baravar katta bo‘lsa — tezlanish ikki baravar kam.
+DOSKA: ZANJIR: Kuch ↑ | Tezlanish ↑
+DOSKA: ZANJIR: Massa ↑ | Tezlanish ↓
+DOSKA: KETMA: F = m · a | 2 · 3 | 6 N
+DOSKA: GRAFIK: y=2x; [0;5]
+DOSKA: QOIDA: F = m · a  (N = kg · m/s²)
+DOSKA: Bir xil F: m ×2 → a ÷2
 TEKSH: m = 5 kg, a = 4 m/s². Kuch? => 20 N | 9 N | 1,25 N | 0,8 N
 TEKSH: F = 30 N, m = 6 kg. Tezlanish? => 5 m/s² | 24 m/s² | 180 m/s² | 0,2 m/s²
-@tushuncha Nyutonning uchinchi qonuni va og‘irlik
-OVOZ: [1] Har bir ta’sirga teng va qarama-qarshi aks ta’sir bor. Devorni itarsangiz, devor ham sizni itaradi. [2] Qayiqdan sakrasangiz, qayiq orqaga suriladi. [3] {sekin}Og‘irlik kuchi — jismni Yer tortish kuchi. U massaga ko‘paytma: taxminan 10 nyuton har kilogrammga. [4] Massa va og‘irlik boshqa: massa — jism miqdori, og‘irlik — kuch.
+@tushuncha Uchinchi qonun va og‘irlik kuchi
+OVOZ: [1] Devorni itaring. Devor ham sizni itaryapti! Nyutonning uchinchi qonuni: {baland}har bir ta’sirga teng va qarama-qarshi aks ta’sir bor. [2] Qayiqdan qirg‘oqqa sakrasangiz — qayiq orqaga suriladi. Siz qayiqni itardingiz, qayiq sizni itardi. [3] {sekin}Raketa ham shunday uchadi: gazni orqaga otadi, gaz raketani oldinga itaradi. Havo kerak emas! [4] Endi og‘irlik: Yer har bir jismni o‘ziga tortadi. Bu kuch — massa karra o‘n. P teng m karra g, g taxminan o‘n nyuton har kilogrammga. [5] Besh kilogramm — ellik nyuton og‘irlik. [6] {urgu}Massa va og‘irlik boshqa narsa! Massa — jismdagi modda miqdori, kilogrammda. Og‘irlik — kuch, nyutonda.
+DOSKA: ZANJIR: Siz qayiqni itarasiz | Qayiq sizni itaradi | Qayiq orqaga | Siz oldinga
 DOSKA: ta’sir = −aks ta’sir
-DOSKA: qayiqdan sakrash → qayiq orqaga
-DOSKA: P = m · g, g ≈ 10 N/kg
-DOSKA: m — kg; P — N
-TEKSH: 3 kg yukning og‘irligi (g = 10)? => 30 N | 3 N | 13 N | 0,3 N
-TEKSH: Raketa gazni orqaga chiqarib, oldinga uchadi. Bu qaysi qonun? => Uchinchi qonun | Birinchi qonun | Ikkinchi qonun | Hech qaysi
-@tushuncha Tezlik, yo‘l, vaqt
-OVOZ: [1] Tezlik — yo‘lni vaqtga bo‘lish: v teng s bo‘lingan t. [2] Avtomobil bir yuz yigirma kilometrni ikki soatda bosdi. Tezlik — oltmish kilometr soatiga. [3] {sekin}Yo‘l teng tezlik karra vaqt. Vaqt teng yo‘l bo‘lingan tezlik. [4] Grafikda yo‘l-vaqt chizig‘i tik bo‘lsa — tezlik katta.
-DOSKA: v = s : t
-DOSKA: 120 : 2 = 60 km/soat
-DOSKA: GRAFIK: y=60x; [0;3]
-DOSKA: tik chiziq → tez
+DOSKA: Raketa: gaz orqaga → raketa oldinga
+DOSKA: RASM: raketa:sakra | kema:kel
+DOSKA: KETMA: P = m · g | 5 · 10 | 50 N
+DOSKA: JADVAL: Kattalik | Birlik ;; Massa m | kg ;; Og‘irlik P | N
+DOSKA: Massa ≠ og‘irlik
+TEKSH: 3 kg yukning og‘irligi (g = 10 N/kg)? => 30 N | 3 N | 13 N | 0,3 N
+TEKSH: Suzuvchi suvni orqaga itarib, oldinga suzadi. Bu qaysi qonun? => Uchinchi qonun | Birinchi qonun | Ikkinchi qonun | Hech qaysi
+@tushuncha Tezlik, yo‘l, vaqt — grafikda
+OVOZ: [1] Mashinada ketyapsiz. Yuz kilometrni ikki soatda bosdingiz. Tezligingiz qancha? [2] Tezlik — yo‘lni vaqtga bo‘lish. Yuzni ikkiga bo‘lamiz — soatiga ellik kilometr. [3] {sekin}Yo‘l — tezlik karra vaqt. Vaqt — yo‘l bo‘lingan tezlik. Uchta kattalik — bitta uchburchakdek. [4] Grafikka qarang: yo‘l-vaqt chizig‘i qancha tik bo‘lsa — tezlik shuncha katta! [5] Velosiped va mashina bir xil vaqtda: mashinaning chizig‘i tikroq, chunki tezroq.
+DOSKA: KETMA: v = s : t | 100 : 2 | 50 km/soat
+DOSKA: GRAFIK: y=50x; [0;4]
+DOSKA: s = v · t;  t = s : v
+DOSKA: GRAFIK: y=15x; [0;4]
+DOSKA: tik chiziq → katta tezlik
+DOSKA: RASM: velosiped:kel | mashina:kel | samolyot:kel
 TEKSH: 90 km yo‘lni 1,5 soatda bosdi. Tezlik? => 60 km/soat | 135 km/soat | 1,5 km/soat | 0,6 km/soat
 TEKSH: Tezlik 40 km/soat. 3 soatda qancha yo‘l? => 120 km | 13 km | 43 km | 0,08 km
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: «Massa va og‘irlik bir narsa». [2] {urgu}Oyda massangiz o‘zgarmaydi, og‘irligingiz esa taxminan olti marta kam bo‘ladi! [3] Ikkinchi xato: «Harakat uchun doim kuch kerak». Kuch tezlikni o‘zgartiradi, bir xil tezlikni saqlash uchun emas.
-DOSKA: Oyda: m = const
-DOSKA: Oyda: P ≈ ⅙
-DOSKA: ❌ harakat = kuch kerak
-DOSKA: ✅ kuch → tezlik o‘zgaradi
-TEKSH: Kosmonavt Oyda og‘irligi kamayadi. Massasi? => O‘zgarmaydi | Kamayadi | Oshadi | Nolga tushadi
+OVOZ: [1] Birinchi xato: «Harakat qilish uchun doim kuch kerak». [2] {urgu}Yo‘q! Muz ustidagi shaybani bir marta turtsangiz — u uzoq sirpanadi. Kuch tezlikni {baland}o‘zgartirish uchun kerak, saqlash uchun emas. Shayba to‘xtashi — ishqalanish kuchi tufayli. [3] Ikkinchi xato: «Massa va og‘irlik bir xil». Kosmonavtni Oyga olib boring: massasi o‘zgarmaydi, og‘irligi esa taxminan olti marta kamayadi. [4] {sekin}Endi boshidagi savol: yo‘lovchini oldinga hech kim itarmagan — uning tanasi oldingi tezligini {baland}saqlab qolgan. To‘g‘ri javob — ikkinchi taxmin!
+DOSKA: ❌ harakat uchun doim kuch kerak
+DOSKA: ✅ kuch tezlikni o‘zgartiradi
+DOSKA: ZANJIR: Shayba turtildi | Sirpanadi | Ishqalanish | To‘xtaydi
+DOSKA: JADVAL: Qiymat | Yerda | Oyda ;; Massa | 60 kg | 60 kg ;; Og‘irlik | 600 N | ≈ 100 N
+TEKSH: Kosmonavt Oyga uchdi. Uning massasi qanday o‘zgaradi? => O‘zgarmaydi | Kamayadi | Oshadi | Nolga tushadi
 @xulosa Esda tut
-OVOZ: Birinchi: inersiya — jism holatini saqlaydi. Ikkinchi: F teng m karra a. Uchinchi: har ta’sirga teng aks ta’sir bor. To‘rtinchi: massa va og‘irlik — turli narsa.
+OVOZ: Birinchi: kuch ta’sir qilmasa, jism holatini saqlaydi — bu inersiya. Ikkinchi: F teng m karra a. Uchinchi: har ta’sirga teng aks ta’sir bor. To‘rtinchi: massa va og‘irlik — turli narsalar.
 DOSKA: 1. inersiya
-DOSKA: 2. F = m·a
+DOSKA: 2. F = m · a
 DOSKA: 3. ta’sir = aks ta’sir
 DOSKA: 4. m ≠ P
 
 ## S8-YER
 @kirish Yer ichida nima bor?
-OVOZ: Eng chuqur quduq o‘n ikki kilometr chuqurlikka ishlangan. Yer markazigacha esa olti ming kilometrdan ko‘p. {pauza} Nima uchun bizda zilzila bo‘ladi? Yer ostida nima sodir bo‘layotganini qanday bilamiz? {sekin}Olimlar seysmik to‘lqinlar yordamida Yer ichini «ko‘radi». Yer tuzilishi va harakatlarini o‘rganamiz. Taxmin qiling.
-DOSKA: 🌍 quduq: 12 km
-DOSKA: markazgacha: > 6 000 km
-DOSKA: Ichida nima? ✋
-@tushuncha Yerning qatlamlari
-OVOZ: [1] Yer to‘rt asosiy qatlamdan iborat: po‘st, mantiya, tashqi yadro va ichki yadro. [2] Po‘st — yupqa tashqi qatlam, biz ustida yashaymiz. [3] {sekin}Mantiya — eng qalin qatlam, qizigan, quyuq massa. Tashqi yadro suyuq, ichki yadro esa juda katta bosimda qattiq. [4] Harorat chuqurlik bilan ortadi, markazda — olti ming darajaga yaqin.
-DOSKA: SXEMA: Yer > po‘st | mantiya | tashqi yadro | ichki yadro
-DOSKA: po‘st — yupqa, qattiq
-DOSKA: mantiya — eng qalin
-DOSKA: ichki yadro — qattiq (bosim)
-TEKSH: Yer qatlamlarining eng qalini qaysi? => Mantiya | Po‘st | Tashqi yadro | Ichki yadro
-TEKSH: Biz qaysi qatlamda yashaymiz? => Po‘st | Mantiya | Yadro | Atmosfera
-@tushuncha Litosfera plitalari
-OVOZ: [1] Po‘st va mantiyaning yuqori qismi — litosfera, katta plitalarga bo‘lingan. [2] Plitalar mantiya ustida yiliga bir necha santimetr siljiydi. [3] {sekin}Plitalar to‘qnashsa — tog‘lar ko‘tariladi. Bir-biridan uzoqlashsa — yoriq paydo bo‘ladi. Sirpansa — zilzila bo‘ladi. [4] Himolay tog‘lari Hindiston plitasi Osiyo plitasiga bosgani uchun hosil bo‘lgan.
-DOSKA: JADVAL: Harakat | Natija ;; to‘qnashadi | tog‘lar ;; uzoqlashadi | yoriq ;; sirpanadi | zilzila
-DOSKA: plita: ~ 2–10 sm/yil
-DOSKA: Himolay — to‘qnashuv
-DOSKA: vulqon — plita chegarasi
-TEKSH: Zilzilalar ko‘pincha qayerda sodir bo‘ladi? => Plitalar chegarasida | Dengiz o‘rtasida | Cho‘lda | Qutbda doim
-TEKSH: Tog‘lar qanday hosil bo‘ladi? => Plitalar to‘qnashishi bilan | Yomg‘ir bilan | Shamol bilan | Quyosh bilan
-@tushuncha Tog‘ jinslari
-OVOZ: [1] Tog‘ jinslari uch xil: magmatik, cho‘kindi, metamorfik. [2] Magmatik — erigan magma sovib qotganidan, masalan granit, bazalt. [3] {sekin}Cho‘kindi — qatlamlanib yotqizilgan zarralardan: qumtosh, ohaktosh. Ularda ko‘pincha qoldiqlar topiladi. [4] Metamorfik — issiqlik va bosim ostida o‘zgargan jinslar: marmar — ohaktoshdan.
-DOSKA: JADVAL: Tur | Hosil bo‘lishi | Misol ;; Magmatik | sovigan magma | granit ;; Cho‘kindi | cho‘kib qotgan | ohaktosh ;; Metamorfik | issiq + bosim | marmar
-DOSKA: qoldiq → cho‘kindi jinsda
+OVOZ: {baland}Odam kosmosga chiqdi, Oyga qadam qo‘ydi! {pauza} Lekin eng chuqur qazilgan quduq atigi o‘n ikki kilometr. Yer markazigacha esa olti ming kilometrdan ko‘p! {sekin}Demak, Yer ichini hech kim ko‘rmagan. Shunda olimlar uning ichida nima borligini qanday bilishgan? {pauza} Taxmin: birinchisi — Yer ichi to‘la suyuq lava. Ikkinchisi — qatlamlardan iborat. Uchinchisi — hammasi bir xil tosh. {urgu}Qaysi biri to‘g‘ri? Taxmin qiling!
+DOSKA: CHIZ: aylana O(0;0) r=6
+DOSKA: Quduq: 12 km · Markazgacha: > 6 000 km
+DOSKA: RASM: yer:aylan | vulqon:tebran
+DOSKA: Ichi qanday? 1 · 2 · 3 ✋
+@tushuncha Yerning qatlamlari: yong‘oq va uning mag‘zi
+OVOZ: [1] Yerni piyozdek kesamiz — {baland}to‘rtta qatlam chiqadi! Eng ustida po‘st — yupqa tosh qobiq, biz shu yerda yashaymiz. U yong‘oqning po‘chog‘idek yupqa: okean tagida atigi besh-o‘n kilometr, quruqlikda — o‘ttiz-yetmish kilometr. [2] {sekin}Uning tagida mantiya — eng qalin qatlam, taxminan ikki ming to‘qqiz yuz kilometr. U juda qizigan, lekin asosan qattiq tosh, juda sekin oqadi. [3] Undan pastda tashqi yadro — {urgu}suyuq temir va nikel. [4] Eng markazda ichki yadro — haroratda besh-olti ming daraja, lekin ulkan bosimdan {baland}qattiq! [5] Demak, birinchi taxmin ham, uchinchisi ham noto‘g‘ri; ikkinchisi to‘g‘ri — qatlamlar.
+DOSKA: CHIZ: aylana O(0;0) r=6; aylana O(0;0) r=3.3; aylana O(0;0) r=1.2
+DOSKA: SXEMA: Yer > po‘st | mantiya | tashqi yadro (suyuq) | ichki yadro (qattiq)
+DOSKA: JADVAL: Qatlam | Qalinligi | Holati ;; Po‘st | 5–70 km | qattiq ;; Mantiya | ≈ 2 900 km | qattiq, sekin oqadi ;; Tashqi yadro | ≈ 2 200 km | suyuq ;; Ichki yadro | ≈ 1 200 km radius | qattiq
+DOSKA: Harorat markazga qarab ortadi: ≈ 5 000–6 000 °C
+DOSKA: Piyoz kabi: tashqarisi → ichi
+TEKSH: Yerning eng qalin qatlami qaysi? => Mantiya | Po‘st | Tashqi yadro | Ichki yadro
+TEKSH: Tashqi yadro qanday holatda? => Suyuq | Qattiq | Gaz | Muz
+@tushuncha Seysmik to‘lqinlar: Yer ichini «tinglash»
+OVOZ: [1] Quduq qazmasdan Yer ichini qanday bilamiz? Zilzila to‘lqinlari yordamida! [2] Zilzila bo‘lganda to‘lqinlar butun Yer ichidan o‘tadi, ularni seysmograf asboblari butun dunyoda yozib oladi. [3] {sekin}Ikki xil to‘lqin bor. Birinchisi — bo‘ylama, u hamma narsadan o‘tadi. Ikkinchisi — ko‘ndalang, u {urgu}faqat qattiq jismdan o‘tadi, suyuqlikdan o‘tmaydi! [4] Olimlar ko‘ndalang to‘lqin Yerning markaziy qismidan o‘tmayotganini payqadi. Demak, u yerda suyuq qatlam bor — tashqi yadro! [5] Xuddi shifokor rentgen bilan ichkarini ko‘rgandek.
+DOSKA: ZANJIR: Zilzila | To‘lqinlar tarqaladi | Seysmograf yozadi | Ichki tuzilish aniqlanadi
+DOSKA: JADVAL: To‘lqin | Qattiqdan | Suyuqdan ;; Bo‘ylama | o‘tadi | o‘tadi ;; Ko‘ndalang | o‘tadi | o‘tmaydi
+DOSKA: Ko‘ndalang to‘lqin o‘tmadi → suyuq qatlam
+DOSKA: Seysmograf = Yer «stetoskopi»
+DOSKA: BELGILA: tashqi yadro — suyuq | ramka
+TEKSH: Ko‘ndalang seysmik to‘lqin qaysi muhitdan o‘tmaydi? => Suyuqlikdan | Qattiq toshdan | Po‘stdan | Mantiyaning qattiq qismidan
+@tushuncha Litosfera plitalari: Yer yuzi — jumboq
+OVOZ: [1] Po‘st va mantiyaning ustki qismi birga litosfera deyiladi. U butun emas — {baland}jumboqdek katta plitalarga bo‘lingan! [2] Plitalar issiq mantiya ustida yiliga bir necha santimetr siljiydi — tirnoqlaringiz o‘sishidek. [3] {sekin}Plitalar to‘qnashsa — tog‘lar ko‘tariladi. Hindiston plitasi Osiyo plitasiga yiliga taxminan besh santimetr bosyapti — shuning uchun Himolay hamon o‘syapti. [4] Plitalar uzoqlashsa — yoriq paydo bo‘lib, yangi po‘st hosil bo‘ladi. Sirpansa — zilzila! [5] Toshkentdagi 1966-yilgi zilzila ham shunday kuchlarning natijasi.
+DOSKA: CHIZ: A(0;0) B(4;0); C(0;0) D(0;3)
+DOSKA: JADVAL: Harakat | Natija ;; to‘qnashadi | tog‘ ;; uzoqlashadi | yoriq ;; sirpanadi | zilzila
+DOSKA: ZANJIR: Hindiston plitasi | Osiyo plitasi | Himolay ko‘tariladi
+DOSKA: ≈ 5 sm/yil
+DOSKA: Toshkent, 1966 — zilzila
+DOSKA: RASM: vulqon:tebran
+TEKSH: Plitalar bir-biriga to‘qnashganda ko‘pincha nima hosil bo‘ladi? => Tog‘lar | Cho‘l | Daryo | Okean
+TEKSH: Plitalar bir-biriga nisbatan sirpansa, nima yuz berishi mumkin? => Zilzila | Yomg‘ir | Yorug‘lik | Muzlik
+@tushuncha Tog‘ jinslari va ularning aylanishi
+OVOZ: [1] Tosh ham «yashaydi» — shakli o‘zgaradi! Tog‘ jinslari uch xil. Birinchisi — magmatik: erigan magma sovib qotadi. Granit, bazalt — shular. [2] Ikkinchisi — cho‘kindi: zarralar qatlam-qatlam cho‘kib, toshga aylanadi. Ohaktosh, qumtosh — shular. [3] {sekin}Uchinchisi — metamorfik: issiqlik va bosim ostida o‘zgargan jins. Ohaktosh marmarga aylanadi. [4] {urgu}Hammasi doira bo‘ylab aylanadi: magma qotadi, nuraydi, cho‘kadi, bosim bilan o‘zgaradi, yana eriydi — million yillar davomida. [5] Dengiz organizmlari qoldig‘i odatda cho‘kindi jinslarda uchraydi.
+DOSKA: JADVAL: Tur | Hosil bo‘lishi | Misol ;; Magmatik | magma qotadi | granit ;; Cho‘kindi | cho‘kib qotadi | ohaktosh ;; Metamorfik | issiqlik + bosim | marmar
+DOSKA: ZANJIR: Magma | Magmatik jins | Nurash | Cho‘kindi jins | Issiqlik + bosim | Metamorfik jins
 DOSKA: ohaktosh → marmar
-DOSKA: magma → granit
-TEKSH: Dengiz organizmlari qoldig‘i qaysi jinsda ko‘p uchraydi? => Cho‘kindi | Magmatik | Metamorfik | Hech qaysida
-TEKSH: Marmar qanday jins? => Metamorfik | Magmatik | Cho‘kindi | Tirik
+DOSKA: Qoldiqlar: cho‘kindi jinslarda
+DOSKA: Jinslar aylanadi: million yillar
+TEKSH: Magma sovib qotganda qaysi jins hosil bo‘ladi? => Magmatik | Cho‘kindi | Metamorfik | Tirik
+TEKSH: Ohaktosh issiqlik va bosim ostida nimaga aylanadi? => Marmarga | Granitga | Qumga | Ko‘mirga
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: «Yer yadrosi suyuq lava». [2] {urgu}Lava — yer yuziga chiqqan magma. Ichki yadro juda katta bosimdan qattiq! [3] Ikkinchi xato: «Zilzilani aniq bashorat qilish mumkin». Hozircha — yo‘q: hudud xavfini bilamiz, aniq kunni emas.
+OVOZ: [1] Birinchi xato: «Yer yadrosi — suyuq lava». [2] {urgu}Yo‘q! Lava — yer yuziga chiqqan magma. Yadro esa temir va nikeldan iborat, ichki yadro — ulkan bosimdan qattiq. [3] Ikkinchi xato: «Zilzila vaqtini oldindan aniq aytish mumkin». {baland}Hozircha — yo‘q! Biz qaysi hudud xavfli ekanini bilamiz, lekin aniq kuni-soatini emas. Shuning uchun uylar zilzilabardosh qurilishi kerak. [4] {sekin}Boshidagi savolga qaytsak: to‘g‘ri javob — ikkinchi taxmin, ya’ni Yer qatlamlardan iborat.
 DOSKA: ❌ yadro — lava
-DOSKA: ✅ ichki yadro — qattiq
-DOSKA: ❌ zilzila sanasi
-DOSKA: ✅ xavfli hudud
-TEKSH: Zilzila haqida nima aniq bilinadi? => Qaysi joylar xavfli | Aniq soat | Aniq daqiqa | Hech nima
+DOSKA: ✅ yadro — temir va nikel; ichki yadro qattiq
+DOSKA: ❌ zilzila sanasi aniq
+DOSKA: ✅ xavfli hudud ma’lum; zilzilabardosh uy
+TEKSH: Zilzila haqida nima aniq bilinadi? => Qaysi joylar xavfli ekani | Aniq soati | Aniq daqiqasi | Hech nima
 @xulosa Esda tut
-OVOZ: Birinchi: Yer — po‘st, mantiya, ikki yadro. Ikkinchi: litosfera plitalari siljiydi. Uchinchi: to‘qnashuv — tog‘, sirpanish — zilzila. To‘rtinchi: jinslar uch xil.
+OVOZ: Birinchi: Yer — po‘st, mantiya, suyuq tashqi yadro va qattiq ichki yadro. Ikkinchi: seysmik to‘lqinlar Yer ichini ko‘rsatadi. Uchinchi: litosfera plitalari siljiydi — to‘qnashuv tog‘ beradi, sirpanish zilzila beradi. To‘rtinchi: tog‘ jinslari uch xil va doira bo‘ylab aylanadi.
 DOSKA: 1. po‘st · mantiya · yadro
-DOSKA: 2. plitalar siljiydi
-DOSKA: 3. to‘qnashuv → tog‘
+DOSKA: 2. seysmik to‘lqinlar
+DOSKA: 3. plitalar harakati
 DOSKA: 4. 3 xil jins
 
 ## S8-JAR
-@kirish Tog‘da dengiz chig‘anog‘i qayerdan?
-OVOZ: Tog‘ bag‘rida ohaktosh qatlamida dengiz chig‘anoqlari topildi — garchi dengiz juda uzoqda. Yer qanchalik qadimiy? Qanday qilib olimlar miliyon yillar oldin nima bo‘lganini biladi? {pauza} Tosh va qoldiqlar o‘tmish haqida hikoya qiladi. {sekin}Bugun Yerda davom etayotgan jarayonlar va Yer tarixini o‘qishni o‘rganamiz. Taxmin qiling.
-DOSKA: tog‘da dengiz chig‘anog‘i
-DOSKA: Nega? ✋
-@tushuncha Nurash, tashish va cho‘kish
-OVOZ: [1] Shamol, suv, muz va harorat o‘zgarishi tog‘ jinslarini asta-sekin maydalaydi — nurash. [2] Daryo maydalangan zarralarni tashiydi — eroziya. [3] {sekin}Tinch joyda zarralar cho‘kadi — cho‘kish. Yuzlab million yilda qatlamlar to‘planib, tosh bo‘lib qotadi. [4] Qadimiy dengiz tubi ko‘tarilib, tog‘ bo‘lgan joylarda chig‘anoq topiladi.
-DOSKA: ZANJIR: Nurash | Eroziya | Cho‘kish | Qotish
-DOSKA: shamol, suv, muz → maydalaydi
-DOSKA: daryo → tashiydi
-DOSKA: tubga cho‘kadi → qatlam
-TEKSH: Daryo qirg‘oqni yuvib ketishi nima? => Eroziya | Nurash | Cho‘kish | Qotish
-TEKSH: Tog‘ jinsining sovuq-issiq farqidan yorilishi nima? => Nurash | Eroziya | Zilzila | Cho‘kish
-@tushuncha Qatlamlar va yosh
-OVOZ: [1] Cho‘kindi qatlamlar tagidan tepaga qarab yotadi. Eng pastki qatlam eng qadimiy. [2] Agar qatlamlar tekis yotgan bo‘lsa, ularda qoldiq turini o‘rganib, yoshini aniqlaymiz. [3] {sekin}Qoldiq — qadimgi organizmning toshga aylangan izi yoki qismi. Trilobit qoldig‘i ikki yuz ellik million yildan ham eski qatlamlarda topiladi. [4] Shu usul bilan Yer tarixi «kitob sahifalari» kabi o‘qiladi.
-DOSKA: pastki qatlam → qadimiy
-DOSKA: yuqori qatlam → yosh
-DOSKA: qoldiq → vaqt belgisi
-DOSKA: Yer ~ 4,5 mlrd yil
-TEKSH: Tekis yotgan qatlamlarda qaysi qatlam eng yosh? => Eng yuqoridagi | Eng pastdagi | O‘rtadagi | Aniqlab bo‘lmaydi
-TEKSH: Qoldiqlar nimani ko‘rsatadi? => O‘sha davrda yashagan organizmlarni | Faqat tosh rangini | Daryo yo‘nalishini | Hech nimani
-@tushuncha Vulqon va zilzila
-OVOZ: [1] Vulqon — mantiyadan magma yer yuzasiga chiqadigan joy. Magma yer yuzasida lava deyiladi. [2] Vulqon asosan plitalar chegarasida bo‘ladi. [3] {sekin}Zilzilada plitalar to‘satdan siljiydi, to‘lqinlar tarqaladi. Seysmograf ularni qayd qiladi. [4] Qurilishda zilzilabardosh qoidalar hayotni saqlaydi.
+@kirish Tog‘ cho‘qqisida dengiz chig‘anog‘i?
+OVOZ: {baland}Tog‘ cho‘qqisiga chiqdingiz — va toshda dengiz chig‘anog‘ining izini topdingiz! {pauza} Dengiz esa minglab kilometr uzoqda! {sekin}Bu qanday bo‘lishi mumkin? Taxmin: birinchisi — tog‘ga chig‘anoqni kimdir olib chiqqan. Ikkinchisi — bu yerda qadim zamonda dengiz bo‘lgan. Uchinchisi — chig‘anoq toshda o‘z-o‘zidan paydo bo‘lgan. {urgu}Qaysi biri to‘g‘ri? Taxmin qiling!
+DOSKA: ⛰ Tog‘ cho‘qqisi
+DOSKA: 🐚 Toshda chig‘anoq izi
+DOSKA: RASM: dengiz:tebran | chig'anoq | tosh
+DOSKA: Nega? 1 · 2 · 3 ✋
+@tushuncha Nurash, tashish, cho‘kish
+OVOZ: [1] Tog‘ abadiy turgandek tuyuladi. Aslida u {baland}asta-sekin buzilib boradi! Shamol, yomg‘ir, muz va issiq-sovuq farqi toshni yorib, maydalaydi — bu nurash. [2] Daryo maydalangan zarralarni oqizib ketadi — bu eroziya. [3] {sekin}Daryo sekinlashgan joyda zarralar tubiga cho‘kadi — bu cho‘kish. Qatlam ustiga qatlam yig‘iladi. [4] Million yillar o‘tadi — qatlamlar bosilib, yangi toshga aylanadi. [5] {urgu}Ana shunday cho‘kindi jins paydo bo‘ladi — va ichida o‘sha davr organizmlarining izlari qoladi.
+DOSKA: ZANJIR: Nurash | Eroziya | Cho‘kish | Toshga aylanish
+DOSKA: Shamol · yomg‘ir · muz → toshni yoradi
+DOSKA: Daryo zarralarni oqizadi
+DOSKA: JADVAL: Jarayon | Nima qiladi ;; Nurash | maydalaydi ;; Eroziya | tashiydi ;; Cho‘kish | yotqizadi
+DOSKA: Qatlamlar → tosh
+TEKSH: Daryoning qirg‘oqni yuvib, zarralarni oqizib ketishi nima deyiladi? => Eroziya | Nurash | Cho‘kish | Qotish
+TEKSH: Harorat farqidan tosh yorilib maydalanishi nima deyiladi? => Nurash | Eroziya | Zilzila | Cho‘kish
+@tushuncha Qatlamlar — Yer tarixining kitobi
+OVOZ: [1] Cho‘kindi qatlamlar kitob sahifalaridek yotadi. Birinchi bo‘lib pastki qatlam hosil bo‘lgan, ustiga keyingisi yotgan. Demak, {baland}pastki qatlam eng qadimiy! [2] Qatlamlarda organizmlarning izlari saqlanadi — bu qoldiqlar. Masalan, chig‘anoq yoki suyak izi. [3] {sekin}Har bir davr o‘z organizmlari bilan tanilgan. Qoldiq qaysi qatlamda topilsa, qatlamning yoshini o‘shandan bilamiz. [4] Trilobit degan qadimiy jonivorning izi bor qatlam — yuz millionlab yillik juda qadimiy qatlam. [5] {urgu}Endi savolimizga javob: tog‘ cho‘qqisidagi chig‘anoq — ikkinchi taxmin! Qadim zamonda bu yer dengiz tubi bo‘lgan, keyin plitalar harakati uni tog‘ qilib ko‘targan.
+DOSKA: CHIZ: kesma AB; A(0;0); B(6;0)
+DOSKA: Qatlam 3 — eng yosh (tepada)
+DOSKA: Qatlam 2
+DOSKA: Qatlam 1 — eng qadimiy (pastda)
+DOSKA: ZANJIR: Qadimiy dengiz | Cho‘kindi qatlam | Plitalar ko‘taradi | Tog‘da chig‘anoq
+TEKSH: Tekis yotgan qatlamlarda qaysi biri eng yosh? => Eng yuqoridagisi | Eng pastdagisi | O‘rtadagisi | Aniqlab bo‘lmaydi
+TEKSH: Qoldiqlar bizga nimani ko‘rsatadi? => Qadimda yashagan organizmlarni | Faqat tosh rangini | Daryo yo‘nalishini | Hech nimani
+@tushuncha Geologik vaqt: Yer tarixi — bir sutka
+OVOZ: [1] Yer tarixi o‘n milliardlab emas — taxminan to‘rt yarim milliard yil. Bu raqamni tasavvur qilish qiyin. Keling, uni bir sutkaga siqamiz! [2] Soat nol-nolda Yer hosil bo‘ldi. Dinozavrlar kechqurun, taxminan yigirma ikki qirq yettida paydo bo‘ladi. [3] {sekin}Ular yigirma uch o‘ttiz to‘qqizda yo‘qoladi. Yo‘qolganiga — sutkaning oxirgi yigirma bir daqiqasi. [4] {urgu}Odam esa? Faqat sutkaning oxirgi taxminan oltita soniyasida paydo bo‘lgan! [5] Demak, dinozavrlar odamlardan oldin, oltmish olti million yil avval yo‘qolgan — ular bilan hech qachon uchrashmagan.
+DOSKA: 24 soat = 4,5 mlrd yil
+DOSKA: JADVAL: Voqea | Sutka vaqti ;; Yer hosil bo‘ldi | 00:00 ;; Dinozavrlar paydo bo‘ldi | ≈ 22:47 ;; Dinozavrlar yo‘qoldi | ≈ 23:39 ;; Odam paydo bo‘ldi | oxirgi ≈ 6 soniya
+DOSKA: SON_OQI: 0..24; nuqta 22 D; nuqta 23 E
+DOSKA: Dinozavr — odamdan 66 mln yil oldin
+DOSKA: BELGILA: odam — sutkaning oxirgi soniyalari | ramka
+TEKSH: Dinozavrlar odamlar paydo bo‘lishidan qancha oldin yo‘qolgan? => Million yillar oldin | Bir necha yil oldin | Yuz yil oldin | Bir vaqtda yashagan
+@tushuncha Vulqon va zilzila: Yer «nafas oladi»
+OVOZ: [1] Vulqon — mantiyadan erigan magma yer yuziga chiqadigan joy. Yer yuziga chiqqan magma — {baland}lava deyiladi. [2] Vulqonlar ko‘pincha plitalar chegarasida joylashgan, chunki u yerda po‘st yoriq bo‘ladi. [3] {sekin}Zilzilada esa plitalar to‘satdan siljiydi, to‘plangan energiya to‘lqin bo‘lib tarqaladi. Seysmograf uni yozib oladi. [4] Zilzilani to‘xtatib bo‘lmaydi, lekin zilzilabardosh uy qurib, hayotni asrab qolish mumkin. [5] {urgu}Bu jarayonlar bir lahzada yuz beradi, ammo tog‘ hosil bo‘lishi million yillar oladi.
 DOSKA: SXEMA: Yer jarayonlari > vulqon | zilzila | tog‘ hosil bo‘lishi | nurash
-DOSKA: magma → lava
-DOSKA: seysmograf → zilzila
-DOSKA: zilzilabardosh uy
-TEKSH: Zilzila to‘lqinlarini nima qayd qiladi? => Seysmograf | Barometr | Termometr | Kompas
-TEKSH: Yer yuzasiga chiqqan magma nima deyiladi? => Lava | Mantiya | Kul | Granit
+DOSKA: ZANJIR: Magma | Lava | Sovib qotadi | Yangi tosh
+DOSKA: ZANJIR: Plita siljiydi | Energiya to‘planadi | To‘satdan bo‘shaladi | Zilzila
+DOSKA: Seysmograf yozib oladi
+DOSKA: zilzilabardosh uy = xavfsizlik
+DOSKA: RASM: vulqon:tebran | uy
+TEKSH: Zilzila to‘lqinlarini qaysi asbob qayd qiladi? => Seysmograf | Barometr | Termometr | Kompas
+TEKSH: Yer yuziga chiqqan magma nima deyiladi? => Lava | Mantiya | Kul | Granit
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: «Yer tez o‘zgaradi». Ko‘p jarayonlar juda sekin: bir yilda millimetrlar. [2] {urgu}Katta o‘zgarish uchun millionlab yil kerak. Zilzila va vulqon esa qisqa muddatli hodisalar. [3] Ikkinchi xato: «Dinozavrlar odamlar bilan birga yashagan». Ular odamdan oltmish besh million yil oldin yo‘qolgan.
+OVOZ: [1] Birinchi xato: «Yer tez o‘zgaradi». [2] {urgu}Yo‘q! Tog‘lar yiliga atigi bir necha millimetr o‘sadi. Katta o‘zgarish uchun millionlab yil kerak. Zilzila va vulqon esa qisqa hodisalar — lekin ular uzoq yillar yig‘ilgan kuchning bo‘shalishi. [3] Ikkinchi xato: «Dinozavrlar odamlar bilan birga yashagan». {baland}Yo‘q — oraliqda oltmish olti million yil bor! [4] {sekin}Uchinchi xato: «Qoldiq bor — tosh doim eng qadimiy». Yoshni faqat qatlam o‘rniga va qoldiq turiga qarab aniqlaymiz.
 DOSKA: ❌ Yer tez o‘zgaradi
 DOSKA: ✅ millionlab yil
-DOSKA: ❌ dinozavr + odam
-DOSKA: ✅ 65 mln yil oldin
+DOSKA: ❌ dinozavr + odam birga
+DOSKA: ✅ 66 mln yil oraliq
 TEKSH: Tog‘lar qanchalik tez o‘sadi? => Yiliga millimetrlar | Kuniga metrlar | Soatiga santimetr | Bir lahzada
 @xulosa Esda tut
-OVOZ: Birinchi: nurash, eroziya va cho‘kish tog‘ jinsini yaratadi. Ikkinchi: pastki qatlam qadimiy. Uchinchi: qoldiq — o‘tmish dalili. To‘rtinchi: Yerdagi jarayonlar juda sekin va uzoq davom etadi.
+OVOZ: Birinchi: nurash, eroziya va cho‘kish cho‘kindi jinsni yaratadi. Ikkinchi: pastki qatlam qadimiy, yuqorisi yosh. Uchinchi: qoldiq — o‘tmishdan qolgan dalil. To‘rtinchi: Yerdagi jarayonlar juda sekin va uzoq davom etadi.
 DOSKA: 1. nurash → eroziya → cho‘kish
 DOSKA: 2. pastki = qadimiy
 DOSKA: 3. qoldiq — dalil
 DOSKA: 4. millionlab yil
 
 ## S8-RES
-@kirish Qaysi energiya manbai toza?
-OVOZ: Shahar uchun elektr kerak. Variantlar: ko‘mirli stansiya, gaz, quyosh paneli yoki shamol turbinasi. {pauza} Qaysi biri eng arzon? Eng toza? Eng ishonchli? Bitta javob yo‘q. {sekin}Resurslarni tanlash — afzallik va kamchiliklarni solishtirish. Bugun tabiiy resurslar va ularni asrashni o‘rganamiz. Taxmin qiling.
-DOSKA: ⛏ ko‘mir · ⛽ gaz
-DOSKA: ☀ quyosh · 🌬 shamol
-DOSKA: Qaysi yaxshi? ✋
-@tushuncha Qayta tiklanadigan va tiklanmaydigan
-OVOZ: [1] Tiklanmaydigan resurslar sarflanadi va tugaydi: ko‘mir, neft, gaz, rudalar. Ular millionlab yilda hosil bo‘lgan. [2] Qayta tiklanadigan: quyosh, shamol, suv oqimi, o‘rmon — to‘g‘ri foydalansak, qayta tiklanadi. [3] {sekin}Yoqilg‘ini yoqsak, karbonat angidrid chiqadi. U havoda to‘planib, issiqxona effektini kuchaytiradi. [4] Qayta tiklanadigan manbalar kam ifloslantiradi.
-DOSKA: JADVAL: Turi | Misol | Ta’siri ;; Tiklanmaydigan | ko‘mir, gaz | CO₂ chiqadi ;; Tiklanadigan | quyosh, shamol | kam ifloslaydi
-DOSKA: yoqilg‘i → CO₂
-DOSKA: CO₂ ↑ → issiqxona ↑
-DOSKA: quyosh/shamol → toza
-TEKSH: Qaysi manba qayta tiklanadi? => Shamol | Neft | Ko‘mir | Tabiiy gaz
+@kirish Qaysi elektr manbai eng yaxshi?
+OVOZ: {baland}Shahar uchun yangi elektr stansiya qurish kerak! {pauza} Variantlar: ko‘mir, tabiiy gaz, quyosh paneli yoki shamol turbinasi. {sekin}Qaysi biri eng arzon? Eng toza? Eng ishonchli? {pauza} Taxmin: birinchisi — ko‘mir, chunki arzon. Ikkinchisi — quyosh, chunki toza. Uchinchisi — bitta ideal manba yo‘q, hammasining o‘z afzalligi va kamchiligi bor. {urgu}Qaysi biri to‘g‘ri? Taxmin qiling!
+DOSKA: SXEMA: Yangi stansiya > ko‘mir | gaz | quyosh | shamol
+DOSKA: ❓ Qaysi biri eng yaxshi?
+DOSKA: RASM: quyosh:aylan | shamol:kel | suv:kel
+DOSKA: Taxmin: 1 · 2 · 3 ✋
+@tushuncha Tiklanadigan va tiklanmaydigan resurslar
+OVOZ: [1] Resurslar ikki guruhga bo‘linadi. Birinchisi — {baland}tiklanmaydigan: ko‘mir, neft, gaz. Ular millionlab yilda hosil bo‘lgan, biz esa ularni o‘nlab yilda sarflayapmiz. [2] Bir marta tugasa — qayta paydo bo‘lmaydi. [3] {sekin}Ikkinchisi — {baland}tiklanadigan: quyosh nuri, shamol, oqar suv. Ular tugamaydi, chunki tabiat ularni doim yangilab turadi. [4] Ko‘mir va gaz yoqilganda karbonat angidrid chiqadi. Quyosh paneli va shamol turbinasi ishlaganda esa havoga deyarli hech narsa chiqarmaydi. [5] {urgu}Lekin ularning ham kamchiligi bor — buni keyingi qadamda ko‘ramiz.
+DOSKA: JADVAL: Turi | Misol | Xususiyati ;; Tiklanmaydigan | ko‘mir, neft, gaz | tugaydi, CO₂ chiqadi ;; Tiklanadigan | quyosh, shamol, suv | tugamaydi, kam ifloslaydi
+DOSKA: ZANJIR: Yoqilg‘i yonadi | CO₂ chiqadi | Havoda to‘planadi
+DOSKA: ZANJIR: Quyosh nuri | Panel | Elektr
+DOSKA: Ko‘mir: millionlab yilda hosil bo‘lgan
+DOSKA: ♻ tiklanadigan = tugamaydi
+TEKSH: Qaysi manba tiklanadigan? => Shamol | Neft | Ko‘mir | Tabiiy gaz
 TEKSH: Yoqilg‘i yoqilganda atmosferaga qaysi gaz ko‘p chiqadi? => Karbonat angidrid | Azot | Argon | Geliy
-@tushuncha Iqlim o‘zgarishi
-OVOZ: [1] Karbonat angidrid Yer chiqargan issiqlikning bir qismini ushlab qoladi. Shu sababli Yer iliq. [2] Ammo gaz ko‘payganda ushlangan issiqlik ham ko‘payadi — o‘rtacha harorat oshadi. [3] {sekin}Oqibatlari: muzliklar erishi, dengiz sathi ko‘tarilishi, qurg‘oqchilik va to‘fonlar. [4] Orol dengizining qurishi ham inson tomonidan suv resurslarini noto‘g‘ri ishlatishning oqibati.
+@tushuncha Iqlim o‘zgarishi: issiqxona effekti
+OVOZ: [1] Yer ustida havo qatlami — {baland}ko‘rpa kabi! Karbonat angidrid kabi gazlar Yer chiqargan issiqlikning bir qismini ushlab qoladi. Shu sabab Yer sovuq emas, iliq. [2] Bu — issiqxona effekti, hayot uchun kerak. [3] {sekin}Lekin gaz ko‘paysa, ko‘rpa qalinlashadi — Yerning o‘rtacha harorati ko‘tariladi. XIX asrdan beri u taxminan bir darajaga oshgan. [4] Oqibatlari: muzliklar erishi, dengiz sathining ko‘tarilishi, qurg‘oqchilik va kuchli bo‘ronlar. [5] {urgu}Orol dengizining qurishi ham inson ta’siri: Amudaryo va Sirdaryo suvi dalalarni sug‘orishga ko‘p olindi, dengizga yetib bormadi.
 DOSKA: ZANJIR: CO₂ ko‘payadi | Issiqlik ushlanadi | Harorat oshadi | Muzlik eriydi
-DOSKA: dengiz sathi ↑
-DOSKA: qurg‘oqchilik
-DOSKA: Orol — suv xatosi
-TEKSH: Karbonat angidrid ko‘payishi Yer haroratiga qanday ta’sir qiladi? => Oshiradi | Pasaytiradi | Ta’sir qilmaydi | Qutbni sovitadi
-TEKSH: Orol dengizining qurishiga asosiy sabab? => Suvning dalalarga ko‘p olinishi | Yomg‘ir | Zilzila | Quyosh
-@tushuncha Asrash yo‘llari: 3R
-OVOZ: [1] Uch qoida: kamaytir, qayta ishlat, qayta ishla. [2] Kamaytirish — keraksiz sotib olmaslik, suv va elektrni tejash. [3] {sekin}Qayta ishlatish — idishni takror ishlatish. Qayta ishlash — qog‘oz, shisha, metallni yangi mahsulotga aylantirish. [4] Bir tonna qog‘ozni qayta ishlash taxminan 17 ta daraxtni saqlab qoladi.
-DOSKA: 1. kamaytir
-DOSKA: 2. qayta ishlat
-DOSKA: 3. qayta ishla
+DOSKA: SXEMA: Oqibatlari > dengiz sathi ↑ | qurg‘oqchilik | bo‘ronlar | muzliklar eriydi
+DOSKA: Yer + gaz qatlami = «ko‘rpa»
+DOSKA: ZANJIR: Daryo suvi dalalarga | Orolga suv yetmadi | Orol qurdi
+DOSKA: BELGILA: ko‘p suv olish → Orol | ramka
+DOSKA: RASM: suv:kel | termometr:tebran | muz
+TEKSH: Atmosferada karbonat angidrid ko‘payishi Yer haroratiga qanday ta’sir qiladi? => Oshiradi | Pasaytiradi | Ta’sir qilmaydi | Qutbni sovitadi
+TEKSH: Orol dengizining qurishiga asosiy sabab nima? => Daryo suvining dalalarga ko‘p olinishi | Yomg‘irning ko‘pligi | Zilzila | Quyoshning sovishi
+@tushuncha Quvvat va energiya: tejashning hisobi
+OVOZ: [1] Uyda lampa yonib turibdi. U qancha energiya sarflaydi? Buni hisoblash mumkin! [2] Lampaning quvvati — vattda. Eski cho‘g‘lanma lampa — oltmish vatt, zamonaviy LED — o‘n vatt, lekin ikkalasi ham xuddi shunday yoritadi. [3] {sekin}Energiya — quvvat karra vaqt. Sakkiz soatda eski lampa: oltmish karra sakkiz — to‘rt yuz sakson vatt-soat, ya’ni nol butun to‘rt yuz sakson kilovatt-soat. [4] LED esa: o‘n karra sakkiz — sakson vatt-soat, ya’ni nol butun sakson kilovatt-soat. [5] {urgu}Farqi — olti baravar kam! Shuning uchun lampani almashtirish va keraksiz joyda o‘chirish — eng oson tejash.
+DOSKA: KETMA: E = P · t | 60 · 8 | 480 Vt·soat
+DOSKA: KETMA: LED: 10 · 8 | 80 Vt·soat
+DOSKA: 1 kVt·soat = 1 000 Vt·soat
+DOSKA: 480 : 1000 = 0,48 kVt·soat
+DOSKA: LED 6 baravar tejaydi
+TEKSH: 40 W lampa 5 soat yondi. Energiya (Vt·soat)? => 200 | 45 | 8 | 35
+TEKSH: Quvvati 20 W LED qancha vaqt yonsa, 100 Vt·soat sarflaydi? => 5 soat | 2 soat | 80 soat | 120 soat
+@tushuncha Asrash yo‘llari: 3R qoidasi
+OVOZ: [1] Resurslarni asrash uchun uchta oddiy qoida: kamaytir, qayta ishlat, qayta ishla. [2] {baland}Kamaytir — keraksiz sotib olma, suv va elektrni tejash. Eng yaxshi chiqindi — chiqmagan chiqindi! [3] Qayta ishlat — idishni, shishani, xaltani takror ishlat. [4] {sekin}Qayta ishla — qog‘oz, shisha, metallni yangi mahsulotga aylantir. Bir tonna qog‘ozni qayta ishlash taxminan o‘n yetti daraxtni saqlab qoladi. [5] {urgu}Hammasi kichik odatdan boshlanadi — ming kishi bir xil qilsa, natija katta bo‘ladi!
+DOSKA: ZANJIR: Kamaytir | Qayta ishlat | Qayta ishla
+DOSKA: Suv va elektr tejash = kamaytirish
+DOSKA: Shishani to‘ldirib ishlatish = qayta ishlatish
 DOSKA: 1 t qog‘oz ≈ 17 daraxt
-TEKSH: Shisha butilkani to‘ldirib yana ishlatish nimaga misol? => Qayta ishlatish | Kamaytirish | Qayta ishlash | Ifloslanish
-TEKSH: Lampani o‘chirib qo‘yish qaysi qoidaga mos? => Kamaytirish | Qayta ishlash | Qayta ishlatish | Hech qaysi
-@tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: «Quyosh va shamol hech narsaga ta’sir qilmaydi». [2] {urgu}Ularning ham kamchiligi bor: ob-havoga bog‘liq, yer kerak, uskuna ishlab chiqarish resurs sarflaydi. [3] Ikkinchi xato: «Mening ishim hech narsani o‘zgartirmaydi, men bittaman». Ming kishining kichik ishi esa katta natija beradi.
-DOSKA: ❌ quyosh = mukammal
-DOSKA: ✅ afzallik + kamchilik
-DOSKA: ❌ men bitta, foyda yo‘q
-DOSKA: ✅ ko‘pchilik → natija
-TEKSH: Quyosh panelining kamchiligi? => Bulutli kunda kam ishlaydi | CO₂ chiqaradi | Tez tugaydi | Zaharli gaz beradi
+DOSKA: 1 kishi + 1 000 kishi = katta natija
+DOSKA: RASM: daraxt:katta | shisha
+TEKSH: Eski daftarni yig‘ib, qayta ishlashga topshirish qaysi qoidaga mos? => Qayta ishlash | Kamaytirish | Qayta ishlatish | Ifloslantirish
+TEKSH: Sovun ishlatgach suv jo‘mragini yopib qo‘yish qaysi qoidaga mos? => Kamaytirish | Qayta ishlash | Qayta ishlatish | Hech qaysi
+@tushuncha Xato tuzog‘i va boshidagi savolga javob
+OVOZ: [1] Birinchi xato: «Quyosh va shamol mukammal». {urgu}Yo‘q! Quyosh paneli kechasi va bulutli kunda kam beradi, shamol turbinasi shamolsiz kunda to‘xtaydi. Uskunani ishlab chiqarishga ham resurs sarflanadi. [2] Ko‘mir va gaz esa har doim ishlaydi, lekin havoni ifloslantiradi va tugaydi. [3] {sekin}Shuning uchun to‘g‘ri javob — uchinchi taxmin: bitta ideal manba yo‘q. Har birining afzalligi va kamchiligi bor, ko‘pincha aralash ishlatiladi. [4] Ikkinchi xato: «Men bitta odamman, mening qilganim hech narsani o‘zgartirmaydi». {baland}Ming kishining kichik odati katta natija beradi!
+DOSKA: JADVAL: Manba | Afzalligi | Kamchiligi ;; Ko‘mir | doim ishlaydi | CO₂, tugaydi ;; Quyosh | toza | bulutda kam ;; Shamol | toza | shamolsiz kun to‘xtaydi
+DOSKA: ❌ bitta mukammal manba bor
+DOSKA: ✅ afzallik + kamchilik, aralash foydalanish
+DOSKA: ❌ men bittaman, foydasi yo‘q
+DOSKA: ✅ ko‘pchilik odati → katta natija
+TEKSH: Quyosh paneli elektrining asosiy kamchiligi nima? => Bulutli kun va kechasi kam beradi | CO₂ ko‘p chiqaradi | Tez tugaydi | Zaharli gaz beradi
 @xulosa Esda tut
-OVOZ: Birinchi: resurslar tiklanadigan va tiklanmaydigan. Ikkinchi: yoqilg‘i karbonat angidrid chiqaradi. Uchinchi: kamaytir, qayta ishlat, qayta ishla. To‘rtinchi: har bir manbaning afzalligi va kamchiligi bor.
+OVOZ: Birinchi: resurslar tiklanadigan va tiklanmaydigan. Ikkinchi: yoqilg‘i karbonat angidrid chiqaradi — u issiqxona effektini kuchaytiradi. Uchinchi: energiya — quvvat karra vaqt, tejash hisob bilan boshlanadi. To‘rtinchi: kamaytir, qayta ishlat, qayta ishla — hamda har bir manbaning afzalligi va kamchiligi bor.
 DOSKA: 1. tiklanadi / tiklanmaydi
 DOSKA: 2. yoqilg‘i → CO₂
-DOSKA: 3. 3R
-DOSKA: 4. afzallik + kamchilik
+DOSKA: 3. E = P · t
+DOSKA: 4. 3R
 
 ## S8-KOI
-@kirish Nega Oy shakli o‘zgaradi?
-OVOZ: Bir oy davomida Oyni kuzatsak: yupqa o‘roqdan to‘la doiragacha, keyin yana o‘roqqa. Oy hajmi o‘zgaryaptimi? Yo‘q. {pauza} U holda nima bo‘lyapti? Quyosh va Oy qanday o‘zaro joylashgan? {sekin}Bugun Quyosh tizimi, Oy fazalari, tutilishlar va koinotdagi masofalarni o‘rganamiz. Taxmin qiling.
-DOSKA: 🌑 🌒 🌓 🌔 🌕
-DOSKA: Nega? ✋
-@tushuncha Oy fazalari
-OVOZ: [1] Oy o‘zi yorug‘lik chiqarmaydi. U Quyosh nurini qaytaradi. Quyosh har doim Oyning yarmini yoritadi. [2] Oy Yer atrofida taxminan yigirma to‘qqiz kunda aylanadi. [3] {sekin}Biz Oyning yoritilgan qismini turli burchakdan ko‘ramiz. Yangi oyda yoritilgan tomon bizga qaramaydi. To‘lin oyda — to‘liq qaragan. [4] Demak, Oyning o‘zi o‘zgarmaydi: o‘zgaradigan — biz ko‘radigan yoritilgan qismi.
-DOSKA: ZANJIR: Yangi oy | Birinchi chorak | To‘lin oy | Oxirgi chorak
+@kirish Oy nega shaklini o‘zgartiradi?
+OVOZ: {baland}Kechasi osmonga qarang! {pauza} Bir hafta ingichka o‘roq, keyin yarim doira, so‘ng to‘lin oy — va yana o‘roq. {sekin}Oyning o‘zi kichrayib-kattalashadimi? Mana uch taxmin. Birinchisi — Yerning soyasi Oyni asta-sekin yopadi. Ikkinchisi — Oy har kecha haqiqatan shakl o‘zgartiradi. Uchinchisi — Oy har doim yarmi yoritilgan, biz uni turli tomondan ko‘ramiz. {urgu}Qaysi biri to‘g‘ri? Taxmin qiling!
+DOSKA: ZANJIR: 🌑 | 🌒 | 🌓 | 🌔 | 🌕
+DOSKA: ❓ Oyning o‘zi o‘zgaradimi?
+DOSKA: RASM: oy:aylan | yulduz:tebran
+DOSKA: Taxmin: 1 · 2 · 3 ✋
+@tushuncha Oy fazalari: yoritilgan yarim
+OVOZ: [1] Oy o‘zidan yorug‘lik chiqarmaydi! U Quyosh nurini qaytaradi — xuddi qorong‘i xonada devorga tushgan chiroq nuridek. [2] Quyosh Oyning har doim {baland}faqat bir yarmini yoritadi. Hech qachon butunini emas. [3] Oy Yer atrofida taxminan yigirma to‘qqiz yarim kunda aylanadi. [4] {sekin}Aylanganda biz yoritilgan yarmini turli burchakdan ko‘ramiz. Yangi oyda yoritilgan tomon bizga teskari — Oy ko‘rinmaydi. To‘lin oyda esa yoritilgan tomon bizga qaragan. [5] {urgu}Demak, uchinchi taxmin to‘g‘ri! Oyning o‘zi o‘zgarmaydi — biz ko‘radigan yoritilgan qism o‘zgaradi.
+DOSKA: ZANJIR: Yangi oy | O‘sayotgan o‘roq | Birinchi chorak | To‘lin oy | Oxirgi chorak | Kamayayotgan o‘roq
+DOSKA: DOIRA_KASR: 1/2
 DOSKA: Oy ~ 29,5 kunda aylanadi
-DOSKA: Oy yorug‘ligi — qaytgan
-DOSKA: yarmi doim yoritilgan
-TEKSH: Yangi oy paytida Oy qanday ko‘rinadi? => Deyarli ko‘rinmaydi | To‘la yorug‘ | Yarim | Qizil
-TEKSH: Oy fazalari qaysi sababdan o‘zgaradi? => Oy va Quyosh joylashuvi o‘zgargani uchun | Yer soyasi tushgani uchun | Oy kichrayganligi uchun | Bulutlar uchun
-@tushuncha Tutilishlar
-OVOZ: [1] Quyosh tutilishida Oy Yer bilan Quyosh o‘rtasidan o‘tadi va Quyoshni to‘sadi. Bu faqat yangi oyda bo‘ladi. [2] Oy tutilishida Yer Quyosh bilan Oy o‘rtasiga tushadi, Oyga Yerning soyasi tushadi. Bu faqat to‘lin oyda. [3] {sekin}Tutilish har oy bo‘lmaydi, chunki Oy orbitasi Yer orbitasiga nisbatan biroz og‘gan. [4] Quyosh tutilishiga ko‘zga to‘g‘ridan-to‘g‘ri qaramang — maxsus ko‘zoynak kerak.
-DOSKA: Quyosh — Oy — Yer → Quyosh tutilishi
-DOSKA: Quyosh — Yer — Oy → Oy tutilishi
-DOSKA: Quyosh tutilishi: yangi oy
-DOSKA: Oy tutilishi: to‘lin oy
+DOSKA: Yangi oy: yoritilgan tomon bizga teskari
+DOSKA: To‘lin oy: yoritilgan tomon bizga qaragan
+TEKSH: Yangi oy paytida Oy qanday ko‘rinadi? => Deyarli ko‘rinmaydi | To‘la yorug‘ | Yarim doira | Qizil
+TEKSH: Oy fazalari qaysi sababdan o‘zgaradi? => Biz yoritilgan qismni turli burchakdan ko‘ramiz | Yer soyasi tushgani uchun | Oy kichrayganligi uchun | Bulutlar tufayli
+@tushuncha Quyosh va Oy tutilishi
+OVOZ: [1] Ba’zan Quyosh kunduzi qorayib qoladi! Bu — Quyosh tutilishi. Oy Yer bilan Quyosh o‘rtasidan o‘tadi va Quyoshni to‘sadi. [2] U faqat {baland}yangi oyda bo‘ladi. [3] {sekin}Oy tutilishida esa Yer Quyosh va Oy o‘rtasida turadi va Oyga Yerning soyasi tushadi. Bu faqat to‘lin oyda. [4] Nega tutilish har oy bo‘lmaydi? Chunki Oyning orbitasi Yer orbitasiga nisbatan taxminan besh daraja og‘gan — soya ko‘pincha chetdan o‘tib ketadi. [5] {urgu}Muhim xavfsizlik qoidasi: Quyosh tutilishiga yalang ko‘z bilan qarash mumkin emas — maxsus ko‘zoynak kerak.
+DOSKA: CHIZ: kesma SY; S(0;0); Y(10;0); nuqta O(7;0)
+DOSKA: Quyosh — Oy — Yer → Quyosh tutilishi (yangi oy)
+DOSKA: Quyosh — Yer — Oy → Oy tutilishi (to‘lin oy)
+DOSKA: Orbita ≈ 5° og‘gan → har oy tutilmaydi
+DOSKA: BELGILA: Quyoshga yalang ko‘z bilan qarama! | ramka
 TEKSH: Oy tutilishi qachon bo‘ladi? => To‘lin oyda | Yangi oyda | Birinchi chorakda | Har kuni
 TEKSH: Quyosh tutilishida kim kimni to‘sadi? => Oy Quyoshni | Yer Oyni | Yer Quyoshni | Quyosh Oyni
-@tushuncha Koinotdagi masofalar
-OVOZ: [1] Yerdan Quyoshgacha — taxminan 150 million kilometr. Yorug‘lik bu masofani sakkiz daqiqada o‘tadi. [2] Yerdan Oygacha — taxminan 384 ming kilometr, yorug‘lik uchun — bir soniyadan sal ko‘proq. [3] {sekin}Eng yaqin yulduz Quyoshdan keyin — to‘rt yorug‘lik yili narida. Yorug‘lik yili — yorug‘lik bir yilda o‘tgan masofa. [4] Yorug‘lik yili — vaqt emas, masofa birligi.
-DOSKA: Yer–Quyosh: 150 mln km
-DOSKA: yorug‘lik: 8 daqiqa
-DOSKA: Yer–Oy: 384 000 km
-DOSKA: yorug‘lik yili = masofa
-TEKSH: Quyosh nuri Yerga necha daqiqada yetadi? => Taxminan 8 | 1 | 60 | 24
-TEKSH: Yorug‘lik yili nima o‘lchaydi? => Masofa | Vaqt | Tezlik | Massa
-@tushuncha Quyosh tizimi sayyoralari
-OVOZ: [1] Ichki sayyoralar toshli: Merkuriy, Venera, Yer, Mars. Tashqisi ulkan gaz yoki muzli: Yupiter, Saturn, Uran, Neptun. [2] Yupiter — eng katta, ichiga bir ming uch yuzdan ko‘p Yer sig‘adi. [3] {sekin}Venera eng issiq, garchi Merkuriy Quyoshga yaqinroq: qalin atmosfera issiqni ushlab qoladi. [4] Sayyoralar orbitasi Quyosh atrofida deyarli aylana.
+@tushuncha Koinotdagi masofalar: yorug‘lik bilan o‘lchaymiz
+OVOZ: [1] Koinotda kilometr ham yetmaydi! Shuning uchun yorug‘lik tezligidan foydalanamiz. Yorug‘lik soniyasiga taxminan uch yuz ming kilometr yuradi. [2] Yerdan Oygacha — taxminan uch yuz sakson to‘rt ming kilometr. Yorug‘lik bu yo‘lni bir soniyadan bir oz ko‘proq vaqtda o‘tadi. [3] {sekin}Yerdan Quyoshgacha — taxminan bir yuz ellik million kilometr. Quyosh nuri bizgacha sakkiz daqiqada yetib keladi. [4] Eng yaqin boshqa yulduz — to‘rt yorug‘lik yili narida. {urgu}Yorug‘lik yili — vaqt emas, yorug‘lik bir yilda o‘tgan masofa! [5] {baland}Bu taxminan to‘qqiz yarim trillion kilometr.
+DOSKA: ZANJIR: Yer | 1 soniya | Oy
+DOSKA: ZANJIR: Yer | 8 daqiqa | Quyosh
+DOSKA: Yer–Oy: ≈ 384 000 km
+DOSKA: Yer–Quyosh: ≈ 150 mln km
+DOSKA: 1 yorug‘lik yili — masofa (≈ 9,5 trln km)
+DOSKA: RASM: yer:aylan | oy:kel | quyosh:aylan
+TEKSH: Quyosh nuri Yerga taxminan necha daqiqada yetib keladi? => 8 | 1 | 60 | 24
+TEKSH: Yorug‘lik yili nimani o‘lchaydi? => Masofani | Vaqtni | Tezlikni | Massani
+@tushuncha Quyosh tizimi va fasllar
+OVOZ: [1] Quyosh tizimida sakkizta sayyora bor. Ichkarida toshli sayyoralar: Merkuriy, Venera, Yer, Mars. Tashqarida ulkan sayyoralar: Yupiter, Saturn — gaz; Uran, Neptun — muzli. [2] Yupiter — eng katta: ichiga bir ming uch yuzdan ko‘p Yer sig‘adi! [3] {sekin}Eng issiq sayyora Merkuriy emas — Venera. Uning qalin atmosferasi issiqni ushlab qoladi, harorat to‘rt yuz oltmish besh daraja atrofida. [4] Fasllar ham qiziq! Ko‘pchilik «yozda Yer Quyoshga yaqin» deb o‘ylaydi. {urgu}Aslida Yer Quyoshga yanvarda eng yaqin! [5] Fasl almashishining sababi — Yer o‘qining yigirma uch yarim daraja og‘ganligi: yarim shar yozda quyosh nurini tik oladi.
 DOSKA: JADVAL: Guruh | Sayyoralar ;; Toshli | Merkuriy, Venera, Yer, Mars ;; Gaz ulkan | Yupiter, Saturn ;; Muzli ulkan | Uran, Neptun
-DOSKA: Yupiter — eng katta
-DOSKA: Venera — eng issiq
-DOSKA: CO₂ atmosfera → issiq
-TEKSH: Qaysi sayyora eng katta? => Yupiter | Yer | Mars | Merkuriy
-TEKSH: Eng issiq sayyora qaysi? => Venera | Merkuriy | Mars | Yupiter
+DOSKA: Yupiter: ≈ 1 300 Yer sig‘adi
+DOSKA: Venera: ≈ 465 °C — eng issiq
+DOSKA: Yanvarda Yer Quyoshga eng yaqin
+DOSKA: ZANJIR: O‘q og‘gan 23,5° | Nur tik tushadi | Yoz
+DOSKA: RASM: sayyora:aylan | yer
+TEKSH: Quyosh tizimidagi eng katta sayyora qaysi? => Yupiter | Yer | Mars | Merkuriy
+TEKSH: Quyosh tizimidagi eng issiq sayyora qaysi? => Venera | Merkuriy | Mars | Yupiter
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: «Oy fazalari Yer soyasidan». [2] {urgu}Yer soyasi — faqat Oy tutilishida. Fazalar — Oyning yoritilgan qismini turli burchakdan ko‘rishimiz. [3] Ikkinchi xato: «Eng issiq sayyora — Quyoshga eng yaqini». Venera atmosferasi issiqni ushlaydi.
+OVOZ: [1] Birinchi xato: «Oy fazalari Yerning soyasidan». [2] {urgu}Yo‘q! Yer soyasi faqat Oy tutilishida tushadi. Fazalar esa — Oyning yoritilgan yarmini biz turli burchakdan ko‘rishimiz. [3] Ikkinchi xato: «Eng issiq sayyora — Quyoshga eng yaqini». {baland}Yo‘q — Venera Merkuriydan uzoqroq, lekin issiqroq: atmosfera sababli. [4] Uchinchi xato: «Yozda Yer Quyoshga yaqinroq». Yaqinlik emas — o‘qning og‘ishi fasl beradi. [5] {sekin}Boshidagi savolga javob: uchinchi taxmin — Oy har doim yarmi yoritilgan.
 DOSKA: ❌ faza = Yer soyasi
-DOSKA: ✅ faza = ko‘rish burchagi
+DOSKA: ✅ faza = ko‘rinish burchagi
 DOSKA: ❌ yaqin = issiq
-DOSKA: ✅ atmosfera muhim
-TEKSH: Oy fazalari Yer soyasi bilan bog‘liqmi? => Yo‘q, faqat tutilishda | Ha | Doim | Faqat qishda
+DOSKA: ✅ Venera: atmosfera tufayli issiq
+DOSKA: ✅ fasl = o‘qning og‘ishi
+TEKSH: Yerda fasllar almashishining asosiy sababi nima? => Yer o‘qining og‘ganligi | Quyoshdan uzoqligi | Oyning tortishi | Bulutlar
 @xulosa Esda tut
-OVOZ: Birinchi: Oy fazalari — yoritilgan qismning ko‘rinishi. Ikkinchi: Quyosh tutilishi — yangi oyda, Oy tutilishi — to‘lin oyda. Uchinchi: yorug‘lik yili — masofa. To‘rtinchi: Venera atmosferasi tufayli eng issiq.
+OVOZ: Birinchi: Oy fazalari — Oyning yoritilgan yarmini turli burchakdan ko‘rishimiz. Ikkinchi: Quyosh tutilishi yangi oyda, Oy tutilishi to‘lin oyda bo‘ladi. Uchinchi: yorug‘lik yili — masofa. To‘rtinchi: Venera atmosferasi tufayli eng issiq; fasllar esa Yer o‘qining og‘ishidan.
 DOSKA: 1. faza = ko‘rinish
 DOSKA: 2. tutilishlar
 DOSKA: 3. yorug‘lik yili — masofa
-DOSKA: 4. Venera — eng issiq
+DOSKA: 4. Venera, fasllar

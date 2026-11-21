@@ -1,40 +1,44 @@
 ## M4-TEN
 @kirish Tarozidagi sir
-OVOZ: Tarozining bir pallasida noma’lum og‘irlikdagi qop va 3 kilogrammlik tosh bor. Ikkinchi pallada 10 kilogramm. Tarozi muvozanatda. {pauza} Qopning og‘irligi qancha? {sekin}Tenglik — muvozanatdagi tarozi. Noma’lum sonni shu yo‘l bilan topamiz. Taxmin qiling.
+OVOZ: Qarang, tarozi! Bir pallasida qop va uchta kilogrammlik tosh turibdi. Ikkinchi pallada — o‘n kilogramm. {pauza} Tarozi tebranmayapti — muvozanatda! {baland}Qopning ichida nima bor, bilmaymiz. Lekin og‘irligini topa olamizmi? {sekin}Hozirgi sir — «noma’lum son». Taxmin qiling: qop necha kilogramm?
+DOSKA: RASM: tarozi:tebran | tosh
 DOSKA: ? + 3 = 10
 DOSKA: Qop necha kg? ✋
 @tushuncha Tenglik — muvozanat
-OVOZ: [1] Tenglik belgisi «=» ikki tomon bir xil ekanini bildiradi. Tarozining ikki pallasi kabi. [2] Agar bir pallaga biror narsa qo‘shsak yoki olib tashlasak, ikkinchisida ham shuni qilishimiz kerak. [3] {sekin}Bizda: noma’lum plyus 3 — 10. Chap pallada 3 ni olib tashlaymiz — o‘ngda ham 3 ni olib tashlaymiz. [4] Chapda faqat noma’lum qoldi, o‘ngda 10 minus 3 — 7. Qop — 7 kilogramm.
-DOSKA: ? + 3 = 10
-DOSKA: − 3 chapdan va o‘ngdan
-DOSKA: ? = 10 − 3 = 7
+OVOZ: [1] Qarang, tarozi doskada: chap pallada noma’lum qop va uchta tosh. O‘ng pallada — uchta tosh va yana yettita. Bu o‘n kilogramm. [2] Tenglik belgisi «teng» ikkala pallaning bir xil ekanini bildiradi. [3] {urgu}Endi eng muhimi: ikkala pallaning ham uchta toshini birdan olib tashlaymiz! Muvozanat buzilmadi — chunki ikki tomondan bir xil narsani oldik. [4] Chap pallada faqat qop qoldi, o‘ngda — yetti. Demak, qop — yetti kilogramm! [5] {sekin}Qoida: tenglikning ikki tomoniga bir xil amalni qilsak, tenglik saqlanadi.
+DOSKA: TAROZI: chap: □ 3 | ong: 3 7 | olib: 3
+DOSKA: □ + 3 = 10
+DOSKA: ikki tomondan 3 ni ol
+DOSKA: □ = 10 − 3 = 7
 DOSKA: QOIDA: ikki tomonga bir xil amal
 TEKSH: ? + 8 = 15. Noma’lum son? => 7 | 23 | 8 | 15
-TEKSH: ? − 4 = 9. Noma’lum son? => 13 | 5 | 9 | 4
+TEKSH: ? + 6 = 14. Noma’lum son? => 8 | 20 | 6 | 14
 @tushuncha Noma’lum son — to‘rt xil holat
-OVOZ: [1] Qo‘shishda noma’lum qo‘shiluvchi: yig‘indidan ma’lum qo‘shiluvchini ayiramiz. [2] Ayirishda noma’lum kamayuvchi: ayirmaga ayriluvchini qo‘shamiz. [3] {sekin}Noma’lum ayriluvchi: kamayuvchidan ayirmani ayiramiz. Misol: 12 minus ? — 5. Noma’lum — 12 minus 5, ya’ni 7. [4] Ko‘paytirishda noma’lum ko‘paytuvchi — ko‘paytmani ma’lum ko‘paytuvchiga bo‘lamiz.
-DOSKA: ? + a = b → ? = b − a
-DOSKA: ? − a = b → ? = b + a
-DOSKA: a − ? = b → ? = a − b
-DOSKA: ? · a = b → ? = b : a
+OVOZ: [1] Birinchi hikoya: bolada nechadir konfet bor edi, unga beshta berishdi — o‘n ikkita bo‘ldi. Noma’lum — qo‘shiluvchi. Yig‘indidan ma’lum qo‘shiluvchini ayiramiz: o‘n ikki minus besh — yetti. [2] Ikkinchi hikoya: likopchada nechadir olma bor edi, oltitasi yeyildi — sakkizta qoldi. Noma’lum — kamayuvchi. {urgu}Uni qo‘shib topamiz: sakkiz plyus olti — o‘n to‘rt. [3] Uchinchi: o‘n beshta qalam bor edi, nechtasini berdik — to‘qqizta qoldi. Noma’lum — ayriluvchi. Kamayuvchidan ayirmani ayiramiz: o‘n besh minus to‘qqiz — olti. [4] To‘rtinchi: ko‘paytiruvchi noma’lum — to‘rt karra nechadir yigirma. Ko‘paytmani bo‘lamiz: yigirma bo‘lingan to‘rt — besh. [5] {sekin}Xulosa: har bir holatda teskari amalni tanlaymiz.
+DOSKA: ? + 5 = 12   →   ? = 12 − 5 = 7
+DOSKA: ? − 6 = 8   →   ? = 8 + 6 = 14
+DOSKA: 15 − ? = 9   →   ? = 15 − 9 = 6
+DOSKA: 4 · ? = 20   →   ? = 20 : 4 = 5
+DOSKA: SXEMA: Noma’lum > qo‘shiluvchi: ayir | kamayuvchi: qo‘sh | ayriluvchi: ayir | ko‘paytuvchi: bo‘l
 TEKSH: 14 − ? = 6. Noma’lum son? => 8 | 20 | 6 | 14
 TEKSH: ? · 5 = 40. Noma’lum son? => 8 | 35 | 45 | 200
 @tushuncha Tekshirish — o‘rniga qo‘yamiz
-OVOZ: [1] Noma’lum sonni topgach, uni o‘rniga qo‘yib tekshiramiz. [2] ? plyus 3 — 10 edi, topdik 7. 7 plyus 3 — 10. To‘g‘ri! [3] {sekin}Tekshirish — o‘zingizga ishonish. Xato bo‘lsa, darhol ko‘rinadi.
-DOSKA: ? = 7
-DOSKA: 7 + 3 = 10 ✔
-DOSKA: 6 + 3 = 9 ≠ 10 ❌
+OVOZ: [1] Mana yangi tenglama: noma’lum plyus to‘rt — o‘n bir. [2] Hisoblaymiz: o‘n bir minus to‘rt — yetti. [3] Tekshiramiz: yettini o‘rniga qo‘yamiz. {sekin}Yetti plyus to‘rt — o‘n bir. {baland}To‘g‘ri, tenglik bajarildi! [4] Agar oltini qo‘ysak: olti plyus to‘rt — o‘n, o‘n bir emas! Darhol xato ko‘rinadi. [5] Tekshirish — o‘zingizga ishonch.
+DOSKA: ? + 4 = 11
+DOSKA: ? = 11 − 4 = 7
+DOSKA: 7 + 4 = 11 ✔
+DOSKA: 6 + 4 = 10 ≠ 11 ❌
 DOSKA: QOIDA: topganingni o‘rniga qo‘y
 TEKSH: ? + 9 = 20 tenglikda ? = 12 deb topildi. To‘g‘rimi? => Yo‘q, 11 bo‘lishi kerak | Ha | Yo‘q, 29 | Yo‘q, 8
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Ko‘pchilik «? minus 4 — 9» da 9 dan 4 ni ayiradi va 5 deydi. [2] {urgu}Yo‘q! Noma’lum kamayuvchi bo‘lsa — qo‘shamiz: 9 plyus 4 — 13. [3] Tekshiring: 13 minus 4 — 9. To‘g‘ri.
-DOSKA: ❌ ? − 4 = 9 → 9 − 4 = 5
-DOSKA: ✅ ? = 9 + 4 = 13
-DOSKA: 13 − 4 = 9 ✔
-DOSKA: Kamayuvchi → qo‘sh
+OVOZ: [1] Ko‘pchilik «noma’lum minus besh — yetti» ga qarab, yetti minus beshni hisoblaydi va ikki deydi. [2] {urgu}Yo‘q! Noma’lum — kamayuvchi. Kamayuvchini qo‘shib topamiz: yetti plyus besh — o‘n ikki. [3] Tekshiring: o‘n ikki minus besh — yetti. To‘g‘ri! [4] Shuning uchun avval so‘rang: noma’lum qayerda turibdi?
+DOSKA: ❌ ? − 5 = 7  →  7 − 5 = 2
+DOSKA: ✅ ? = 7 + 5 = 12
+DOSKA: 12 − 5 = 7 ✔
+DOSKA: kamayuvchi → qo‘sh
 TEKSH: ? − 7 = 20. Noma’lum son? => 27 | 13 | 20 | 7
 @xulosa Esda tut
-OVOZ: Birinchi: tenglik — muvozanat. Ikkinchi: noma’lum qo‘shiluvchi — ayirib topiladi. Uchinchi: noma’lum kamayuvchi — qo‘shib topiladi. To‘rtinchi: topgan sonni o‘rniga qo‘yib tekshiring.
+OVOZ: Birinchi: tenglik — muvozanatdagi tarozi, ikki tomonga bir xil amal. Ikkinchi: noma’lum qo‘shiluvchi — ayirib topiladi. Uchinchi: noma’lum kamayuvchi — qo‘shib topiladi. To‘rtinchi: topgan sonni o‘rniga qo‘yib tekshiring. {baland}Qop yetti kilogramm chiqdi — taxmin to‘g‘ri keldimi?
 DOSKA: 1. = muvozanat
 DOSKA: 2. ? + a = b → ayir
 DOSKA: 3. ? − a = b → qo‘sh
@@ -42,41 +46,51 @@ DOSKA: 4. o‘rniga qo‘yib tekshir
 
 ## t4_masala
 @kirish Masala — hikoya
-OVOZ: Bobur 25 ta marka yig‘di. Dadasi unga 18 ta marka berdi. Keyin Bobur 12 tasini do‘stiga sovg‘a qildi. {pauza} Boburda nechta marka qoldi? {sekin}Matnli masalada hikoya ichida yashiringan savol bor. Uni topishni va yechishni o‘rganamiz. Taxmin qiling.
+OVOZ: Bobur marka yig‘adi. Kolleksiyasida yigirma beshta marka bor edi. Dadasi unga yana o‘n sakkizta berdi! {pauza} Bobur xursand. Keyin do‘stiga o‘n ikkitasini sovg‘a qildi. {sekin}Hikoya tugadi — endi savol: Boburda nechta marka qoldi? Matnli masalada yashirin savol bor. Taxmin qiling.
+DOSKA: RASM: marka:kel | marka:sakra
 DOSKA: 25 + 18 − 12 = ?
 DOSKA: Nechta qoldi? ✋
 @tushuncha Masalani to‘rt qadamda yechamiz
-OVOZ: [1] Birinchi qadam: masalani diqqat bilan o‘qing. Nima ma’lum? Nima topish kerak? [2] Ikkinchi qadam: reja tuzing — qaysi amal kerak? [3] {sekin}Uchinchi qadam: hisoblang. To‘rtinchi qadam: javobni tekshiring va to‘liq jumla bilan yozing. [4] Bobur: 25 plyus 18 — 43. 43 minus 12 — 31. Javob: Boburda 31 ta marka qoldi.
-DOSKA: 1. Ma’lum / Topish kerak
-DOSKA: 2. Reja: qaysi amal?
-DOSKA: 3. Hisobla: 25 + 18 = 43; 43 − 12 = 31
-DOSKA: 4. Javob: 31 ta marka
+OVOZ: [1] Birinchi qadam: masalani diqqat bilan o‘qing. Nima ma’lum? Yigirma besh marka bor edi, o‘n sakkizta qo‘shildi, o‘n ikkitasi ketdi. Nima topish kerak? Qoldi. [2] Ikkinchi qadam: reja. Avval qo‘shamiz, keyin ayiramiz. [3] {sekin}Uchinchi qadam: hisoblaymiz. Yigirma besh plyus o‘n sakkiz — qarang, doskada xona-xona. Ellik uch emas, qirq uch! [4] Endi qirq uch minus o‘n ikki — o‘ttiz bir. [5] To‘rtinchi qadam: javob. {urgu}To‘liq jumla bilan: Boburda o‘ttiz bir ta marka qoldi.
+DOSKA: 1. Ma’lum: 25, +18, −12.  Topish: qoldi?
+DOSKA: 2. Reja: 25 + 18 − 12
+DOSKA: AMAL: 25+18
+DOSKA: AMAL: 43-12
+DOSKA: 4. Javob: Boburda 31 ta marka qoldi
 TEKSH: Sinfda 24 ta o‘quvchi bor edi, 5 ta kelib qo‘shildi, 8 ta chiqib ketdi. Nechta qoldi? => 21 | 29 | 37 | 19
 TEKSH: Masalaning birinchi qadami nima? => Diqqat bilan o‘qish | Hisoblash | Javob yozish | Tekshirish
 @tushuncha Kalit so‘zlar
-OVOZ: [1] «Hammasi», «jami» — odatda qo‘shamiz. [2] «Qoldi», «necha taga kam» — ayiramiz. [3] {sekin}«Har birida», «necha marta ko‘p» — ko‘paytiramiz. «Teng bo‘lib», «necha marta kam» — bo‘lamiz. [4] {urgu}Lekin kalit so‘zga ko‘r-ko‘rona ishonmang! Avval hikoyani tasavvur qiling.
-DOSKA: jami → +
+OVOZ: [1] Masaladagi so‘zlar sizga maslahat beradi! «Jami», «hammasi» — odatda qo‘shamiz. Uchta kitob va ikkita kitob — jami besh. [2] «Qoldi», «necha taga kam» — ayiramiz. [3] {sekin}«Har birida», «necha marta ko‘p» — ko‘paytiramiz. [4] «Teng bo‘lib», «necha marta kam» — bo‘lamiz. [5] {urgu}Lekin kalit so‘zga ko‘r-ko‘rona ishonmang! Avval hikoyani tasavvur qiling: nima bo‘lyapti?
+DOSKA: jami → +        (3 + 2 = 5)
 DOSKA: qoldi → −
 DOSKA: har birida → ·
 DOSKA: teng bo‘lib → :
+DOSKA: SXEMA: Avval hikoyani tasavvur qil > kalit so‘z — maslahat | ko‘r-ko‘rona ishonma
 TEKSH: 4 ta qutida 12 tadan qalam bor. Jami nechta? => 48 | 16 | 8 | 3
 TEKSH: 36 ta konfet 4 bolaga teng bo‘lib berildi. Har biriga nechtadan? => 9 | 32 | 40 | 144
 @tushuncha Ikki amalli masala
-OVOZ: [1] Do‘konda 3 ta daftar sotib oldik, har biri 4 000 so‘m. 20 000 so‘m bersak, qancha qaytim olamiz? [2] Birinchi savol: daftarlar qancha turadi? 3 karra 4 000 — 12 000. [3] {sekin}Ikkinchi savol: qaytim. 20 000 minus 12 000 — 8 000. [4] Ikki amalli masalada yashirin birinchi savolni topish kerak.
+OVOZ: [1] Do‘konda uchta daftar sotib oldik, har biri to‘rt ming so‘m. Sotuvchiga yigirma ming so‘m berdik. Qancha qaytim olamiz? [2] Bu yerda savol yashirin: avval daftarlar qancha turishini topish kerak. Uch karra to‘rt ming — o‘n ikki ming. [3] {sekin}Endi qaytim: yigirma ming minus o‘n ikki ming — sakkiz ming. [4] {urgu}Ikki amalli masalada yashirin savolni topish — asosiy qadam!
+DOSKA: RASM: daftar | daftar | daftar | pul
 DOSKA: 1) 3 · 4 000 = 12 000
 DOSKA: 2) 20 000 − 12 000 = 8 000
 DOSKA: Javob: 8 000 so‘m qaytim
-DOSKA: Yashirin savol topildi
 TEKSH: 2 ta kitob 7 000 so‘mdan. 20 000 so‘m berildi. Qaytim? => 6 000 | 14 000 | 13 000 | 27 000
+@tushuncha «Ko‘p» va «kam» so‘zlari
+OVOZ: [1] Alida o‘ttiz beshta marka bor. Valida esa Alidan o‘n ikkitaga kam. Ko‘pchilik shoshib «o‘ttiz besh plyus o‘n ikki» deydi — {urgu}yo‘q! «Kam» degani — ayiramiz. [2] O‘ttiz besh minus o‘n ikki — yigirma uch. Valida yigirma uchta marka. [3] {sekin}Endi ikkalasida birgalikda nechta? Alining o‘ttiz beshtasi va Valining yigirma uchtasi: jami ellik sakkiz. [4] Ko‘rdingizmi, bitta masalada ikkita savol yashirin edi: avval Valida nechta, keyin jami. Doim «yashirin savol» qidiring!
+DOSKA: RASM: marka | marka:sakra
+DOSKA: Vali: 35 − 12 = 23   («kam» → ayir)
+DOSKA: AMAL: 35+23
+DOSKA: Jami: 58 ta marka
+TEKSH: Anvarda 40 ta kitob bor. Dilnozada Anvardan 15 ta ko‘p. Dilnozada nechta? => 55 | 25 | 65 | 45
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Ko‘pchilik savolga javob bermaydi — raqamni yozib qo‘yadi, xolos. [2] {urgu}Javob nomsiz son emas! «31» emas, «31 ta marka». [3] Ikkinchi xato: savolni o‘qimay, topilgan birinchi sonni javob deb yozish.
-DOSKA: ❌ Javob: 31
-DOSKA: ✅ Javob: 31 ta marka
+OVOZ: [1] Ko‘pchilik savolga javob bermaydi — oxirgi raqamni yozib qo‘yadi, xolos. [2] {urgu}Javob nomsiz son emas! Ikki yuz emas, ikki yuz so‘m. O‘ttiz bir emas, o‘ttiz bir ta marka! [3] Ikkinchi xato: savolni o‘qimay, topilgan birinchi sonni javob deb yozish. [4] Tekshiring: javob savolga mosmi?
+DOSKA: ❌ Javob: 8 000
+DOSKA: ✅ Javob: 8 000 so‘m
 DOSKA: Savolni qayta o‘qi
 DOSKA: Birlikni yoz
 TEKSH: Masala «necha so‘m qoldi?» deb so‘raydi. Javobda nima bo‘lishi kerak? => Son va «so‘m» | Faqat son | Faqat «so‘m» | Amal belgisi
 @xulosa Esda tut
-OVOZ: Birinchi: masalani o‘qing, ma’lum va noma’lumni ajrating. Ikkinchi: reja tuzing. Uchinchi: hisoblang va tekshiring. To‘rtinchi: javobni birlik bilan to‘liq yozing.
+OVOZ: Birinchi: masalani o‘qing, ma’lum va noma’lumni ajrating. Ikkinchi: reja tuzing — qaysi amal? Uchinchi: hisoblang va tekshiring. To‘rtinchi: javobni birlik bilan to‘liq yozing. {baland}Boburda nechta marka qoldi? Taxmin to‘g‘ri chiqdimi — o‘ttiz bir ta!
 DOSKA: 1. Ma’lum / topish kerak
 DOSKA: 2. Reja
 DOSKA: 3. Hisobla + tekshir
@@ -84,42 +98,50 @@ DOSKA: 4. Javob — birlik bilan
 
 ## M4-KAS
 @kirish Pitsani adolatli bo‘lish
-OVOZ: Uch do‘st bitta pitsa buyurtma qildi. Ular uni teng bo‘lib yemoqchi. {pauza} Pitsani nechta bo‘lakka kesish kerak? Har biriga qancha tegadi? {sekin}Bu kasr deb ataladi. Kasr — butunning teng bo‘lagi. Taxmin qiling.
+OVOZ: Uch do‘st bitta katta pitsa buyurtma qildi. Hidi anqib turibdi! {pauza} Hammasi teng bo‘lib yemoqchi — hech kim ko‘p, hech kim kam olmasin. {baland}Pitsani nechta bo‘lakka kesamiz? Har biriga qancha tegadi? {sekin}Ana shu savol — kasrning boshlanishi. Taxmin qiling.
+DOSKA: RASM: pitsa:kel
 DOSKA: 1 pitsa, 3 do‘st
 DOSKA: Har biriga? ✋
 @tushuncha Kasr nima?
-OVOZ: [1] Butun narsani teng bo‘laklarga bo‘lamiz. Pitsani 3 ta teng bo‘lakka bo‘ldik. Bitta bo‘lak — uchdan bir. [2] Yozuvi: tepada 1, pastda 3, o‘rtasida chiziq. [3] {sekin}Pastdagi son — butun nechta teng bo‘lakka bo‘linganini bildiradi: maxraj. Tepadagi son — nechtasi olinganini bildiradi: surat. [4] Bo‘laklar teng bo‘lishi shart!
+OVOZ: [1] Pitsani uchta teng bo‘lakka kesamiz. Bitta bo‘lak — uchdan bir. Qarang, doskada bir bo‘lak bo‘yaldi! [2] Yozuvi: tepada bir, pastda uch, o‘rtasida chiziq. [3] {sekin}Pastdagi son — butun nechta teng bo‘lakka bo‘lingani: maxraj. Tepadagi — nechtasi olingani: surat. [4] Boshqa misol: pitsa to‘rt bo‘lak, uchtasini oldik — to‘rtdan uch. {urgu}Bo‘laklar teng bo‘lishi shart!
 DOSKA: DOIRA_KASR: 1/3
 DOSKA: 1/3 — surat 1, maxraj 3
-DOSKA: surat — olingan bo‘lak
-DOSKA: maxraj — butun nechta teng bo‘lak
+DOSKA: surat — olingan, maxraj — jami teng bo‘lak
+DOSKA: DOIRA_KASR: 3/4
 TEKSH: Pitsa 8 bo‘lakka bo‘lindi, 3 tasi yeyildi. Yeyilgan qismi? => 3/8 | 8/3 | 5/8 | 3/5
 TEKSH: 2/5 kasrida maxraj nechta? => 5 | 2 | 7 | 3
 @tushuncha Kasrlarni taqqoslash
-OVOZ: [1] Qaysi kasr katta: 1/2 yoki 1/4? Pitsa chizamiz. Yarmi katta bo‘lakmi yoki chorak? [2] Yarmi katta! [3] {sekin}Suratlari bir xil bo‘lsa, maxraji kichik kasr katta. Chunki butun kam bo‘lakka bo‘linsa, bo‘laklar katta bo‘ladi. [4] Maxrajlari bir xil bo‘lsa — surati katta kasr katta. 3/8 katta 2/8 dan.
-DOSKA: 1/2 > 1/4
-DOSKA: 1/3 > 1/5
-DOSKA: 3/8 > 2/8
-DOSKA: QOIDA: maxraj bir xil → surat katta; surat bir xil → maxraj kichik katta
+OVOZ: [1] Qaysi kasr katta: yarim yoki chorak? Ikkita pitsa — chizamiz. [2] Birinchisi: yarim. Ikkinchisi — chorak. {sekin}Qarang, yarim katta bo‘lak! [3] Demak, suratlari bir xil bo‘lsa, maxraji kichik kasr katta. Butun kam bo‘lakka bo‘linsa, bo‘laklar katta. [4] Endi maxrajlari bir xil: sakkizdan besh va sakkizdan uch. [5] Besh bo‘lak — uch bo‘lakdan ko‘p. {urgu}Maxraj bir xil bo‘lsa — surati katta kasr katta!
+DOSKA: DOIRA_KASR: 1/2
+DOSKA: DOIRA_KASR: 1/4
+DOSKA: 1/2 > 1/4  (maxraj kichik → bo‘lak katta)
+DOSKA: DOIRA_KASR: 5/8
+DOSKA: 5/8 > 3/8  (maxraj bir xil → surat katta)
 TEKSH: Qaysi kasr katta: 1/6 yoki 1/9? => 1/6 | 1/9 | Teng | Bilib bo‘lmaydi
 TEKSH: Qaysi katta: 5/7 yoki 3/7? => 5/7 | 3/7 | Teng | Bilib bo‘lmaydi
 @tushuncha Kasrni sonlar o‘qida ko‘rish
-OVOZ: [1] Kasr ham son. U 0 va 1 orasida yashaydi. [2] 0 dan 1 gacha kesmani 4 ta teng bo‘lakka bo‘lamiz. [3] {sekin}Birinchi chiziq — 1/4, ikkinchisi — 2/4, ya’ni 1/2, uchinchisi — 3/4. To‘rtinchisi — 4/4 — bu butun, 1. [4] Maxraji bilan surati teng kasr — bitta butun.
+OVOZ: [1] Kasr ham son! U nol bilan bir orasida yashaydi. Doskada son o‘qi chizilmoqda. [2] Nol dan birgacha kesmani to‘rtta teng bo‘lakka bo‘lamiz. [3] {sekin}Birinchi chiziq — to‘rtdan bir. Ikkinchisi — to‘rtdan ikki, ya’ni yarim. Uchinchisi — to‘rtdan uch. [4] {urgu}To‘rtinchisi — to‘rtdan to‘rt: bu butun, bir! Maxraji bilan surati teng kasr — bitta butun.
 DOSKA: SON_OQI: 0..1 qadam 0,25; nuqta 0,25 1/4; nuqta 0,5 2/4; nuqta 0,75 3/4
 DOSKA: 2/4 = 1/2
 DOSKA: 4/4 = 1
 DOSKA: Kasr — 0 va 1 orasida
 TEKSH: 3/3 nechaga teng? => 1 | 3 | 0 | 6
 TEKSH: 6/8 va 3/4 kasrlari qanday? => Teng | 6/8 katta | 3/4 katta | Taqqoslab bo‘lmaydi
+@tushuncha Tortning qolgan qismi
+OVOZ: [1] Tug‘ilgan kun! Katta tort o‘nta teng bo‘lakka kesildi. Mehmonlar tortning o‘ndan uch qismini yedi. Qarang, uch bo‘lak yo‘q bo‘ldi! [2] Tortning qolgan qismi qancha? Butun tort — o‘ndan o‘n. {sekin}O‘ndan o‘n minus o‘ndan uch — o‘ndan yetti. [3] {urgu}Yeyilgan va qolgan qism qo‘shilsa — yana butun tort: o‘ndan uch plyus o‘ndan yetti — o‘ndan o‘n, ya’ni bir. [4] Shu usulda har qanday «qolgan qism» savoliga javob topasiz: butundan olinganni ayiring.
+DOSKA: RASM: tort:kel
+DOSKA: DOIRA_KASR: 3/10
+DOSKA: 10/10 − 3/10 = 7/10   (qolgan)
+DOSKA: 3/10 + 7/10 = 10/10 = 1
+TEKSH: Tortning 4/9 qismi yeyildi. Qolgan qismi qancha? => 5/9 | 4/9 | 9/4 | 1/9
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Ko‘pchilik «1/5 katta, chunki 5 katta son» deydi. [2] {urgu}Yo‘q! Butun 5 ta bo‘lakka bo‘linsa, har bir bo‘lak kichik. 1/2 yarim, 1/5 — kichik bo‘lak. [3] Ikkinchi xato: bo‘laklar teng bo‘lmasa ham kasr deyish.
+OVOZ: [1] Ko‘pchilik: «birdan beshga — besh katta son, demak 1/5 katta» deydi. [2] {urgu}Yo‘q! Butunni beshta bo‘lakka bo‘lsak, har bir bo‘lak kichik! Yarimning ustiga tushmaydi. [3] Ikkinchi xato: bo‘laklar teng bo‘lmasa ham kasr deyish. Kasr — faqat teng bo‘laklar.
 DOSKA: ❌ 1/5 > 1/2
 DOSKA: ✅ 1/5 < 1/2
-DOSKA: Maxraj katta → bo‘lak kichik
-DOSKA: Teng bo‘laklar!
+DOSKA: maxraj katta → bo‘lak kichik
 TEKSH: Qaysi katta: 1/8 yoki 1/3? => 1/3 | 1/8 | Teng | Bilib bo‘lmaydi
 @xulosa Esda tut
-OVOZ: Birinchi: kasr — butunning teng bo‘lagi. Ikkinchi: maxraj — nechta bo‘lak, surat — nechtasi olindi. Uchinchi: maxraj katta bo‘lsa, bo‘lak kichik. To‘rtinchi: maxraj va surat teng bo‘lsa — butun.
+OVOZ: Birinchi: kasr — butunning teng bo‘lagi. Ikkinchi: maxraj — nechta bo‘lak, surat — nechtasi olindi. Uchinchi: maxraj katta bo‘lsa, bo‘lak kichik. To‘rtinchi: maxraj va surat teng bo‘lsa — butun. {baland}Uch do‘stga — har biriga uchdan bir tegdi!
 DOSKA: 1. kasr = teng bo‘lak
 DOSKA: 2. surat / maxraj
 DOSKA: 3. maxraj ↑ → bo‘lak ↓
@@ -127,43 +149,45 @@ DOSKA: 4. 4/4 = 1
 
 ## t4_kasr
 @kirish Shokolad plitkasi
-OVOZ: Shokolad plitkasi 12 ta kvadratdan iborat. Sizga 1/4 qismi tegdi, do‘stingizga — 3/12. {pauza} Kimga ko‘proq tegdi? {sekin}Kasrlar boshqa ko‘rinishda bir xil bo‘lishi mumkin. Qo‘shish va ayirishni ham o‘rganamiz. Taxmin qiling.
-DOSKA: 12 kvadrat
+OVOZ: Shokolad plitkasi — o‘n ikkita kvadratdan iborat! Sizga to‘rtdan bir qismi tegdi. Do‘stingizga esa o‘n ikkidan uch qismi. {pauza} Do‘stingiz: «Menga ko‘proq tegdi, men o‘n ikkini ko‘ryapman, sen faqat to‘rtni!» {baland}Rostmi? Kimga ko‘proq tegdi? {sekin}Taxmin qiling.
+DOSKA: RASM: shokolad | shokolad:kel
 DOSKA: 1/4 va 3/12
 DOSKA: Kimga ko‘p? ✋
 @tushuncha Teng kasrlar
-OVOZ: [1] 12 kvadratning to‘rtdan biri — 3 kvadrat. Demak, 1/4 va 3/12 — bir xil miqdor. [2] Suratini va maxrajini bir xil songa ko‘paytirsak, kasr o‘zgarmaydi. [3] {sekin}1/4: ikkalasini 3 ga ko‘paytiramiz — 3/12. Aksincha, ikkalasini bir xil songa bo‘lish ham mumkin. [4] Demak, ikkingizga teng tegdi! {sekin}Shokoladni chizib ko‘ring: 12 ta kvadratni 4 qatorga bo‘lsangiz, har qatorda 3 kvadrat bo‘ladi. Bitta qator — 1/4, ya’ni 3/12.
-DOSKA: 1/4 = 3/12
-DOSKA: 1 · 3 = 3;  4 · 3 = 12
-DOSKA: 6/8 = 3/4 (: 2)
+OVOZ: [1] Plitka o‘n ikki kvadrat. To‘rtta qatorga bo‘lsak — har qatorda uchta kvadrat. Qarang, bitta qator — chorak, ya’ni to‘rtdan bir. [2] Endi uchta kvadratni sanaymiz: o‘n ikkidan uch. {urgu}Ikkalasi bir xil miqdor! [3] Suratni va maxrajni bir xil songa ko‘paytirsak — kasr o‘zgarmaydi: bir karra uch — uch, to‘rt karra uch — o‘n ikki. [4] {sekin}Aksincha ham: ikkalasini bir xil songa bo‘lsak, kasr qisqaradi: sakkizdan olti — ikkalasini ikkiga bo‘lamiz — to‘rtdan uch. [5] Demak, ikkingizga teng tegdi!
+DOSKA: DOIRA_KASR: 1/4
+DOSKA: DOIRA_KASR: 3/12
+DOSKA: 1/4 = 3/12   (1 · 3 = 3;  4 · 3 = 12)
+DOSKA: QISQART: 6/8 -> 3/4 (:2)
 DOSKA: QOIDA: surat va maxrajga bir xil amal
 TEKSH: 1/2 = ?/10. Noma’lum son? => 5 | 2 | 10 | 20
 TEKSH: 4/8 kasr qaysi kasrga teng? => 1/2 | 1/4 | 2/3 | 4/4
 @tushuncha Bir xil maxrajli kasrlarni qo‘shish
-OVOZ: [1] Pitsaning 2/8 qismini yedik, yana 3/8 qismini yedik. Jami? [2] Maxrajlar bir xil, bo‘laklar bir xil kattalikda. Faqat suratlarni qo‘shamiz: 2 plyus 3 — 5. [3] {sekin}Maxraj o‘zgarmaydi: 5/8. [4] Ayirishda ham shunday: 7/8 minus 2/8 — 5/8.
-DOSKA: 2/8 + 3/8 = 5/8
+OVOZ: [1] Pitsaning sakkizdan ikki qismini yedik. [2] Keyin yana sakkizdan uchini. {sekin}Jami qancha yedik? [3] Bo‘laklar bir xil kattalikda. Faqat suratlarni qo‘shamiz: ikki plyus uch — besh. [4] Maxraj o‘zgarmaydi: sakkizdan besh. [5] Ayirish ham shunday: sakkizdan yetti minus sakkizdan ikki — sakkizdan besh.
+DOSKA: DOIRA_KASR: 2/8
+DOSKA: DOIRA_KASR: 3/8
+DOSKA: 2/8 + 3/8 = 5/8   (maxraj o‘zgarmaydi)
+DOSKA: DOIRA_KASR: 5/8
 DOSKA: 7/8 − 2/8 = 5/8
-DOSKA: maxraj o‘zgarmaydi
-DOSKA: QOIDA: faqat suratlarni qo‘sh/ayir
 TEKSH: 3/10 + 4/10 = ? => 7/10 | 7/20 | 12/10 | 1/10
 TEKSH: 9/12 − 4/12 = ? => 5/12 | 5/24 | 13/12 | 4/12
 @tushuncha Kasrdan butun topish
-OVOZ: [1] 24 ta olmaning 1/4 qismi nechta? Butunni 4 ga bo‘lamiz — 6. [2] 3/4 qismi — 6 karra 3, ya’ni 18. [3] {sekin}Avval maxrajga bo‘lamiz, keyin suratga ko‘paytiramiz. [4] Bu usul pul, uzunlik, vaqt masalalarida juda ko‘p ishlatiladi. Masalan, 1 000 so‘mning to‘rtdan biri — 250 so‘m: 1 000 ni 4 ga bo‘lamiz.
-DOSKA: 24 : 4 = 6
+OVOZ: [1] Yigirma to‘rtta olmaning to‘rtdan biri nechta? Butunni to‘rtga bo‘lamiz — olti. Doskada bo‘lish chizilmoqda. [2] Uchdan to‘rt qismi-chi? Oltini uchga ko‘paytiramiz — o‘n sakkiz. [3] {sekin}Avval maxrajga bo‘lamiz, keyin suratga ko‘paytiramiz. [4] Pulda ham shunday: bir ming so‘mning to‘rtdan biri — to‘rt yuz emas, ikki yuz ellik so‘m. [5] Vaqtda: bir soatning yarmi — o‘ttiz daqiqa.
+DOSKA: BOLISH: 24:4
 DOSKA: 3/4 → 6 · 3 = 18
-DOSKA: maxrajga bo‘l, suratga ko‘paytir
-DOSKA: 1 soat = 60 daq; 1/2 = 30 daq
+DOSKA: 1 000 : 4 = 250 so‘m   (1/4 qism)
+DOSKA: RASM: soat
+DOSKA: 1 soat = 60 daq;  1/2 → 30 daq
 TEKSH: 30 ta qalamning 2/5 qismi nechta? => 12 | 6 | 15 | 20
 TEKSH: 1 soatning 1/4 qismi necha daqiqa? => 15 | 20 | 30 | 4
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Eng mashhur xato: 1/4 plyus 2/4 ni 3/8 deb yozish. [2] {urgu}Maxrajlar ham qo‘shilmaydi! Bo‘laklar kattaligi o‘zgarmagan, ularning soni o‘zgarmoqda. [3] To‘g‘risi: 3/4.
+OVOZ: [1] Eng mashhur xato: to‘rtdan bir plyus to‘rtdan ikkini sakkizdan uch deb yozish. [2] {urgu}Maxrajlar ham qo‘shilmaydi! Bo‘laklar kattaligi o‘zgarmagan, ularning soni o‘zgaryapti. [3] Chizmaga qarang: pitsa hamon to‘rt bo‘lakka bo‘lingan, faqat olingan bo‘laklar soni oshdi — bitta va ikkita, jami uchta. To‘g‘risi: to‘rtdan uch.
 DOSKA: ❌ 1/4 + 2/4 = 3/8
 DOSKA: ✅ 1/4 + 2/4 = 3/4
-DOSKA: Maxraj — bo‘lak nomi
-DOSKA: Faqat suratlar qo‘shiladi
+DOSKA: DOIRA_KASR: 3/4
 TEKSH: 2/9 + 5/9 = ? => 7/9 | 7/18 | 10/9 | 3/9
 @xulosa Esda tut
-OVOZ: Birinchi: surat va maxrajga bir xil amal qilsak, kasr o‘zgarmaydi. Ikkinchi: bir xil maxrajda faqat suratlar qo‘shiladi. Uchinchi: kasrdan butun topish — maxrajga bo‘l, suratga ko‘paytir. To‘rtinchi: maxrajni qo‘shmang.
+OVOZ: Birinchi: surat va maxrajga bir xil amal qilsak, kasr o‘zgarmaydi. Ikkinchi: bir xil maxrajda faqat suratlar qo‘shiladi. Uchinchi: kasrdan butun topish — maxrajga bo‘l, suratga ko‘paytir. To‘rtinchi: maxrajni qo‘shmang. {baland}Shokoladda ikkalangizga teng tegdi — to‘rtdan bir va o‘n ikkidan uch bir xil!
 DOSKA: 1. teng kasrlar
 DOSKA: 2. faqat suratlar
 DOSKA: 3. : maxraj, · surat
@@ -171,43 +195,44 @@ DOSKA: 4. maxraj o‘zgarmaydi
 
 ## t4_onli
 @kirish Pul va o‘nli kasr
-OVOZ: Chizg‘ichda qalam uzunligi — 12 santimetr 5 millimetr. Uni «12,5 santimetr» deb yozish mumkin. {pauza} Bu «vergul» nimani bildiradi? Nega pulni ham shunday yozamiz? {sekin}O‘nli kasr — maxraji 10, 100 bo‘lgan kasrning qisqa yozuvi. Taxmin qiling.
+OVOZ: Qalam uzunligi — o‘n ikki santimetr besh millimetr. Biz uni «o‘n ikki butun besh o‘ndan» deb, qisqa qilib «12,5 santimetr» yozamiz. {pauza} Mana bu kichkina vergul nimani bildiradi? {baland}Pulni ham shunday yozamiz: bir so‘m yigirma besh tiyin! {sekin}Nega? Taxmin qiling.
+DOSKA: RASM: qalam | tanga:kel
 DOSKA: 12 sm 5 mm = 12,5 sm
 DOSKA: Vergul nima? ✋
 @tushuncha O‘ndan bir va yuzdan bir
-OVOZ: [1] Butunni 10 ta teng bo‘lakka bo‘lsak — bitta bo‘lak o‘ndan bir, 0,1. [2] Yana har birini 10 ta bo‘lakka bo‘lsak — yuzdan bir, 0,01. [3] {sekin}Vergul butun va kasr qismni ajratadi. Verguldan keyingi birinchi raqam — o‘ndan bir, ikkinchisi — yuzdan bir. [4] 3,47 — uch butun, to‘rt o‘ndan bir, yetti yuzdan bir.
-DOSKA: 1/10 = 0,1
+OVOZ: [1] Butunni o‘nta teng bo‘lakka bo‘lsak — bitta bo‘lak o‘ndan bir. Nol butun bir. Qarang, son o‘qida o‘n bo‘lakka bo‘lingan kesma! [2] Yana har bir bo‘lakni o‘nta bo‘lakka bo‘lsak — yuzdan bir: nol butun nol bir. [3] {sekin}Vergul butun va kasr qismni ajratadi. Verguldan keyingi birinchi raqam — o‘ndan bir, ikkinchisi — yuzdan bir. [4] Uch butun qirq yetti yuzdan: uch butun, to‘rt o‘ndan bir, yetti yuzdan bir.
+DOSKA: SON_OQI: 0..1 qadam 0,1; nuqta 0,1 0,1; nuqta 0,5 0,5
 DOSKA: 1/100 = 0,01
 DOSKA: 3,47 = 3 + 0,4 + 0,07
-DOSKA: SON_OQI: 0..1 qadam 0,1; nuqta 0,5 0,5
+DOSKA: JADVAL: Butun | O‘ndan bir | Yuzdan bir ;; 3 | 4 | 7
 TEKSH: 0,7 kasr ko‘rinishida? => 7/10 | 7/100 | 1/7 | 70/10
 TEKSH: 5,06 sonida 6 raqami qaysi xonada? => Yuzdan bir | O‘ndan bir | Birlik | Yuzlik
 @tushuncha Pul — o‘nli kasr
-OVOZ: [1] 1 so‘m — 100 tiyin deb tasavvur qiling. 25 tiyin — 0,25 so‘m. [2] Yoki dollar: 1 dollar — 100 sent. 3 dollar 40 sent — 3,40 dollar. [3] {sekin}Oxiridagi nol qiymatni o‘zgartirmaydi: 3,40 va 3,4 — bir xil. Lekin pulda ikki raqam yozamiz. [4] Pulni qo‘shishda vergulni vergul tagiga qo‘yib, tagma-tag yozing.
-DOSKA: 25 tiyin = 0,25 so‘m
-DOSKA: 3 $ 40 s = 3,40 $
-DOSKA: 3,40 = 3,4
-DOSKA: Vergul tagida vergul
+OVOZ: [1] Bir so‘m — yuz tiyin. Yigirma besh tiyin — yuzdan yigirma besh, ya’ni nol butun yigirma besh so‘m. [2] Dollar bilan ham shunday: uch dollar qirq sent — uch butun qirq yuzdan. {sekin}Oxiridagi nol qiymatni o‘zgartirmaydi: 3,40 va 3,4 — bir xil. Lekin pulda ikki raqam yozamiz. [3] Pulni qo‘shamiz: bir butun yigirma besh yuzdan plyus uch butun qirq yuzdan. Butunlar: bir plyus uch — to‘rt. Kasrlar: yigirma besh plyus qirq — oltmish besh. Jami — 4,65. [4] {urgu}Qoida: vergulni vergul tagiga qo‘yib, tagma-tag yozing.
+DOSKA: RASM: tanga | pul | tanga
+DOSKA: 25 tiyin = 0,25 so‘m;   3 $ 40 s = 3,40 $
+DOSKA: KETMA: 1,25 + 3,40 | 1 + 3 = 4 ;  0,25 + 0,40 = 0,65 | 4,65
+DOSKA: QOIDA: vergul tagida vergul
 TEKSH: 1,50 + 2,25 = ? => 3,75 | 3,25 | 3,70 | 4,75
 TEKSH: 4,00 − 1,35 = ? => 2,65 | 3,65 | 2,75 | 3,35
 @tushuncha O‘nli kasrlarni taqqoslash
-OVOZ: [1] Qaysi son katta: 0,5 yoki 0,35? Ko‘pchilik «35 katta» deydi. [2] Pul bilan o‘ylaymiz: 0,50 yoki 0,35 — ellik tiyin ko‘proq. [3] {sekin}Taqqoslashda raqamlarni chapdan, vergul tagida solishtiring. Oldin butun, keyin o‘ndan biri, keyin yuzdan biri. [4] 0,5 — o‘ndan bir xonasida 5, 0,35 da — 3. Besh katta.
-DOSKA: 0,50 > 0,35
-DOSKA: butun → o‘ndan bir → yuzdan bir
+OVOZ: [1] Qaysi son katta: nol butun besh yoki nol butun o‘ttiz besh? Ko‘pchilik «o‘ttiz besh katta» deydi. [2] Son o‘qida ikkalasini joylashtiramiz. {sekin}O‘ttiz besh — yarimdan chapda, besh o‘nlik — o‘ngroqda! [3] Pul bilan o‘ylaymiz: nol butun ellik so‘m — ellik tiyin. Nol butun o‘ttiz besh — o‘ttiz besh tiyin. Ellik ko‘proq. [4] {urgu}Taqqoslashda raqamlarni chapdan, vergul tagida solishtiring: avval butun, keyin o‘ndan bir, keyin yuzdan bir. O‘ndan birlarda besh uchdan katta.
+DOSKA: SON_OQI: 0..1 qadam 0,05; nuqta 0,35 A; nuqta 0,5 B; sakrash 0,35 0,5 +0,15
 DOSKA: 0,5 = 0,50
-DOSKA: ❌ 35 > 5 deb o‘ylash
+DOSKA: 0,50 > 0,35  (50 tiyin > 35 tiyin)
+DOSKA: butun → o‘ndan bir → yuzdan bir
 TEKSH: Qaysi katta: 0,8 yoki 0,75? => 0,8 | 0,75 | Teng | Bilib bo‘lmaydi
 TEKSH: 2,3 va 2,03 ni taqqoslang. => 2,3 > 2,03 | 2,3 < 2,03 | 2,3 = 2,03 | Taqqoslab bo‘lmaydi
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: «0,25 — bu 25 ta, demak katta». [2] {urgu}Vergul chap tomonda qancha raqam borligiga qarang! 0,25 — bir butundan kichik. [3] Ikkinchi xato: 3,4 ni 3,04 bilan adashtirish.
+OVOZ: [1] Xato: «nol butun yigirma besh — yigirma beshta, demak katta». [2] {urgu}Vergulning chap tomoniga qarang! Chapda nol — butun yo‘q! Bu bir butundan kichik. [3] Ikkinchi xato: to‘rt butun bir ni to‘rt butun nol bir bilan adashtirish. To‘rt butun bir — o‘ndan bir, to‘rt butun nol bir — yuzdan bir. [4] Verguldan keyingi birinchi raqam muhim!
 DOSKA: 0,25 < 1
-DOSKA: 3,4 ≠ 3,04
-DOSKA: 3,4 = 3,40
-DOSKA: Vergul — chegara
+DOSKA: 4,1 ≠ 4,01
+DOSKA: 4,1 = 4,10
+DOSKA: verguldan keyingi 1-raqam — o‘ndan bir
 TEKSH: Qaysi son kichik: 1,09 yoki 1,9? => 1,09 | 1,9 | Teng | Bilib bo‘lmaydi
 @xulosa Esda tut
-OVOZ: Birinchi: o‘nli kasr — maxraji 10, 100 bo‘lgan kasr. Ikkinchi: verguldan keyingi xonalar — o‘ndan bir, yuzdan bir. Uchinchi: oxirgi nol qiymatni o‘zgartirmaydi. To‘rtinchi: taqqoslashda chapdan, vergul tagida solishtiring.
-DOSKA: 1. 0,1 = 1/10; 0,01 = 1/100
-DOSKA: 2. vergul → butun | kasr
+OVOZ: Birinchi: o‘nli kasr — maxraji o‘n, yuz bo‘lgan kasr. Ikkinchi: verguldan keyingi xonalar — o‘ndan bir, yuzdan bir. Uchinchi: oxirgi nol qiymatni o‘zgartirmaydi. To‘rtinchi: taqqoslashda chapdan, vergul tagida solishtiring. {baland}Qalam uzunligi 12,5 sm — o‘n ikki butun besh o‘ndan!
+DOSKA: 1. 0,1 = 1/10;  0,01 = 1/100
+DOSKA: 2. vergul: butun | kasr
 DOSKA: 3. 3,4 = 3,40
 DOSKA: 4. chapdan solishtir

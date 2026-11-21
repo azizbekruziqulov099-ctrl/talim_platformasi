@@ -1,82 +1,95 @@
 ## M4-QON
-@kirish Navbatdagi son qaysi?
-OVOZ: Doskada sonlar yozilgan: 3, 6, 9, 12 va keyingisi so‘roq belgisi. {pauza} Keyingi son nima? Buni qanday bildingiz? {sekin}Sonlar qatorida yashirin qoida bor. Uni topish — haqiqiy aql mashqi. Taxmin qiling.
-DOSKA: 3, 6, 9, 12, ?
-DOSKA: Qoida qanday? ✋
-@tushuncha Qoidani topamiz
-OVOZ: [1] Qo‘shni sonlar orasidagi farqni topamiz. 6 minus 3 — 3. 9 minus 6 — 3. 12 minus 9 — 3. [2] Har safar uch qo‘shilmoqda. Qoida: «har gal 3 qo‘sh». [3] {sekin}Demak, 12 dan keyin 12 plyus 3 — 15. Buni sonlar o‘qida ham ko‘rish mumkin: har gal uch qadam oldinga yuramiz. [4] Qoidani topdingiz — keyingi sonlarni istagancha topa olasiz: 15, 18, 21. Qoida — bu sirli kalit: u istalgan qadamni ochadi.
-DOSKA: 3 → 6 → 9 → 12 (+3)
-DOSKA: farq: 3, 3, 3
-DOSKA: 12 + 3 = 15
-DOSKA: QOIDA: qo‘shni sonlar farqini top
+@kirish Sehrli sonlar qatori
+OVOZ: {baland}Salom, yosh matematik! Bugun sehrgarlik qilamiz. {pauza} Men doskaga sonlarni yozaman: uch, olti, to‘qqiz, o‘n ikki... va to‘xtayman. {sekin}Keyingi son qaysi bo‘ladi? Qanday bildingiz? Sonlar ichida yashirin qoida yashiringan. Uni topgan odam istagancha sonni oldindan aytib beradi! Hozir o‘zingiz taxmin qiling, keyin birga isbotlaymiz.
+DOSKA: SON_OQI: 0..15 qadam 3; nuqta 3; nuqta 6; nuqta 9; nuqta 12
+DOSKA: 3, 6, 9, 12, ?  ✋ taxmin qiling
+@tushuncha Qoidani topamiz: qadamlarni o‘lchaymiz
+OVOZ: [1] {sekin}Avval qo‘shni sonlar orasini o‘lchaymiz — xuddi ko‘lmak ustidan sakrayotgandek. Uchdan oltigacha qancha? Uch qadam! [2] Oltidan to‘qqizgacha — yana uch! To‘qqizdan o‘n ikkigacha — yana uch! {baland}Qarang, har safar aynan bir xil! [3] Demak, qoida shunday: {urgu}har gal uch qo‘shiladi. Mana, sirli kalit topildi! [4] Endi o‘n ikkidan keyingi son. O‘n ikkidan boshlaymiz va uch qadam yuramiz — birga sanaymiz: bir, ikki, uch — o‘n besh! [5] Qoidani bilsak, to‘xtamay davom ettiramiz: o‘n besh, o‘n sakkiz, yigirma bir...
+DOSKA: SON_OQI: 0..18 qadam 3; nuqta 3; nuqta 6; nuqta 9; nuqta 12; sakrash 3 6 +3; sakrash 6 9 +3; sakrash 9 12 +3
+DOSKA: Farqlar: 3, 3, 3 — hammasi bir xil!
+DOSKA: QOIDA: har gal +3
+DOSKA: SON_OQI: 9..18; nuqta 12; nuqta 15; yur 12 15
+DOSKA: KETMA: 12 | 12 + 3 = 15 | 15 + 3 = 18 | 18 + 3 = 21
 TEKSH: 5, 10, 15, 20, ? => 25 | 30 | 24 | 35
-TEKSH: 2, 4, 6, 8 ketma-ketlikning qoidasi? => Har gal 2 qo‘shiladi | Har gal 4 qo‘shiladi | Har gal 2 ga ko‘paytiriladi | Qoida yo‘q
-@tushuncha Kamayuvchi va ko‘payuvchi
-OVOZ: [1] Ba’zi ketma-ketliklar kamayadi. 50, 45, 40, 35 — har safar besh kam. [2] Keyingisi — 30. [3] {sekin}Ba’zilari ko‘paytirish bilan o‘sadi. 2, 4, 8, 16 — har gal ikki baravar. [4] Farq doim bir xil bo‘lmasa, ko‘paytirishni tekshiring.
-DOSKA: 50, 45, 40, 35 (−5)
-DOSKA: 2, 4, 8, 16 (·2)
-DOSKA: farq: 2, 4, 8 — bir xil emas
-DOSKA: ko‘paytirish bilan tekshir
+TEKSH: 2, 4, 6, 8 sonlar qatorining qoidasi qaysi? => Har gal 2 qo‘shiladi | Har gal 4 qo‘shiladi | Har gal 2 ga ko‘paytiriladi | Qoida yo‘q
+@tushuncha Qator kamayishi ham mumkin
+OVOZ: [1] Hamma qatorlar o‘savermaydi — ba’zilari pastga tushadi, xuddi zinapoyadan tushayotgandek. Mana: ellik, qirq besh, qirq, o‘ttiz besh. {sekin}Har safar nechta kamaydi? Besh! [2] Qoida: har gal besh ayiriladi. Keyingi son — o‘ttiz besh minus besh — o‘ttiz. [3] {baland}Yana bir sehr: ikki, to‘rt, sakkiz, o‘n olti! Farqlarni topamiz: ikki, to‘rt, sakkiz — bir xil emas! [4] {urgu}Farq o‘zgarib tursa — to‘xtang, boshqacha o‘ylaymiz: har gal ikkiga ko‘paymoqda. Ikki karra ikki — to‘rt, to‘rt karra ikki — sakkiz. [5] Demak, ikki xil qoida bor: yoki bir xil qo‘shamiz-ayiramiz, yoki bir xil songa ko‘paytiramiz.
+DOSKA: SON_OQI: 30..50 qadam 5; nuqta 50; nuqta 45; nuqta 40; nuqta 35; sakrash 50 45 −5; sakrash 45 40 −5; sakrash 40 35 −5
+DOSKA: 35 − 5 = 30 — keyingi son
+DOSKA: ZANJIR: 2 :: ×2 | 4 :: ×2 | 8 :: ×2 | 16
+DOSKA: JADVAL: Qator | Farqlar ;; 50, 45, 40, 35 | 5, 5, 5 ;; 2, 4, 8, 16 | 2, 4, 8
+DOSKA: QOIDA: farq o‘zgarsa — ko‘paytirishni tekshir
 TEKSH: 100, 90, 80, 70, ? => 60 | 50 | 80 | 110
 TEKSH: 1, 3, 9, 27, ? => 81 | 54 | 30 | 36
-@tushuncha Qoida yordamida uzoqni topish
-OVOZ: [1] 3, 6, 9... ketma-ketlikning 10-hadi nechaga teng? Hammasini yozib o‘tirmaymiz. [2] Hadlar 3 ning ko‘paytirgichlari: birinchi — 3 karra 1, ikkinchi — 3 karra 2. [3] {sekin}O‘ninchisi — 3 karra 10, ya’ni 30. [4] O‘rnini bilsak, qiymatini darhol topamiz: o‘rin karra 3.
-DOSKA: 1-had: 3 · 1 = 3
-DOSKA: 2-had: 3 · 2 = 6
-DOSKA: 10-had: 3 · 10 = 30
-DOSKA: QOIDA: had = 3 · o‘rni
-TEKSH: 4, 8, 12, ... ketma-ketlikning 7-hadi? => 28 | 24 | 32 | 11
+TEKSH: 48, 44, 40, 36, ? => 32 | 28 | 40 | 34
+@tushuncha Uzoqdagi sonni qanday topamiz
+OVOZ: [1] {baland}Endi qiyin savol: uch, olti, to‘qqiz... qatorning yuzinchi soni nechaga teng? {pauza} Nahotki yuzta sonni birin-ketin yozib chiqamiz? Yo‘q! Aqlliroq yo‘l bor. [2] {sekin}Jadval tuzamiz. Birinchi o‘rinda — uch. Ikkinchi o‘rinda — olti. Uchinchisida — to‘qqiz. Nimani sezdingiz? [3] Har bir son — uchni o‘z o‘rniga ko‘paytirganga teng! Birinchi: uch karra bir. Ikkinchi: uch karra ikki. [4] Demak, o‘ninchi son — uch karra o‘n, ya’ni o‘ttiz. [5] {urgu}Yuzinchi son — uch karra yuz, uch yuz! Hech bir sonni yozmasdan topdik.
+DOSKA: Yuzinchi son nechta? 🤔
+DOSKA: JADVAL: O‘rin | Son ;; 1 | 3 ;; 2 | 6 ;; 3 | 9 ;; 10 | 30
+DOSKA: QOIDA: son = 3 · o‘rin
+DOSKA: 10-son: 3 · 10 = 30
+DOSKA: USTUN: 3×100
+TEKSH: 4, 8, 12, ... qatorning 7-soni nechaga teng? => 28 | 24 | 32 | 11
+TEKSH: 7, 14, 21, ... qatorning 5-soni nechaga teng? => 35 | 28 | 42 | 12
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Faqat ikkita songa qarab qoida o‘ylab topish — xavfli. 2, 4, ... ketma-ketlik 6, 8 bo‘lishi mumkin, 8, 16 ham. [2] {urgu}Kamida uchta-to‘rtta sonni tekshiring! [3] Ikkinchi xato: farqlar bir xil bo‘lmasa, qoida yo‘q deb o‘ylash. 1, 2, 4, 7, 11 da farqlar o‘zi qoida bo‘yicha o‘sadi: 1, 2, 3, 4.
-DOSKA: 2, 4, ? → 6 yoki 8 yoki...
-DOSKA: 2, 4, 6, 8 → +2
-DOSKA: 2, 4, 8, 16 → ·2
-DOSKA: Kamida 3–4 son tekshir
-TEKSH: 1, 2, 4, 7, 11, ? sonlarida farqlar qanday? => 1, 2, 3, 4 — keyingi farq 5, javob 16 | Hammasi 1 | Hammasi 2 | Qoida yo‘q
+OVOZ: [1] Ko‘pchilik shoshiladi: ikki va to‘rtni ko‘rdi — «qoida topildi!» deydi. {pauza} Lekin ikki, to‘rt, keyin nima? Olti ham bo‘lishi mumkin, sakkiz ham! [2] {urgu}Faqat ikkita songa qarab qoida o‘ylab topmang! Kamida uchta-to‘rtta sonni tekshiring. [3] Ikkinchi xato: farqlar bir xil bo‘lmasa, «qoida yo‘q» deb tashlab yuborish. Bir, ikki, to‘rt, yetti, o‘n bir. Farqlar: bir, ikki, uch, to‘rt — ular o‘zi tartib bilan o‘syapti! [4] Keyingi farq — besh, demak, keyingi son — o‘n olti.
+DOSKA: JADVAL: Qoida | Keyingi son ;; +2 | 6 ;; ×2 | 8
+DOSKA: ❌ ikki songa qarab qoida o‘ylama
+DOSKA: ZANJIR: 1 :: +1 | 2 :: +2 | 4 :: +3 | 7 :: +4 | 11 :: +5 | 16
+DOSKA: QOIDA: farqlarning o‘zi ham qoidali bo‘lishi mumkin
+TEKSH: 1, 3, 6, 10, ? sonlarida farqlar 2, 3, 4 bo‘ldi. Keyingi son? => 15 | 14 | 16 | 13
+TEKSH: 20, 17, 14, 11, ? qatorning qoidasi va keyingi soni? => Har gal 3 ayiriladi; 8 | Har gal 3 qo‘shiladi; 14 | Har gal 2 ayiriladi; 9 | Qoida yo‘q
 @xulosa Esda tut
-OVOZ: Birinchi: qo‘shni sonlar orasidagi farqni toping. Ikkinchi: farq bir xil bo‘lmasa, ko‘paytirishni tekshiring. Uchinchi: qoida topilsa, uzoq hadni o‘rniga qarab toping. To‘rtinchi: kamida uchta-to‘rtta sonni tekshiring.
+OVOZ: Birinchi: qatorda qo‘shni sonlar orasidagi farqni toping. Ikkinchi: farq bir xil bo‘lmasa, ko‘paytirishni tekshiring. Uchinchi: uzoqdagi sonni topish uchun o‘rinni qoidaga qo‘ying. To‘rtinchi: qoidani kamida uchta-to‘rtta son bilan tekshirib ko‘ring. Endi mashqda kuchingizni sinab ko‘ring!
 DOSKA: 1. farqni top
-DOSKA: 2. · ni ham tekshir
-DOSKA: 3. had = qoida · o‘rni
+DOSKA: 2. ko‘paytirishni ham tekshir
+DOSKA: 3. son = qoida · o‘rin
 DOSKA: 4. 3–4 son bilan tekshir
 
 ## t4_qonun
 @kirish Gilamdagi naqsh
-OVOZ: Gilamda naqsh takrorlanadi: qizil gul, ko‘k gul, sariq gul, keyin yana qizil, ko‘k, sariq. {pauza} Naqshning 20-guli qaysi rangda? Hammasini sanamasdan topa olamizmi? {sekin}Takrorlanuvchi qonuniyatlar — kundalik hayotda ham, tabiatda ham bor. Taxmin qiling.
-DOSKA: 🔴 🔵 🟡 🔴 🔵 🟡 ...
+OVOZ: {baland}Buvimning gilamiga qarang! {pauza} Unda naqsh takrorlanadi: qizil gul, ko‘k gul, sariq gul — keyin yana qizil, ko‘k, sariq... {sekin}Savol: naqshning yigirmanchi guli qaysi rangda? Gilamni boshidan sanab chiqasizmi? Yo‘q, yaxshiroq usul bor! Takrorlanuvchi qonuniyatlar tabiatda ham, bizning atrofimizda ham juda ko‘p. Taxmin qiling.
+DOSKA: RASM: gilam:kel | gul:tebran
+DOSKA: ZANJIR: 🔴 | 🔵 | 🟡 | 🔴 | 🔵 | 🟡 | 🔴 | 🔵
 DOSKA: 20-gul qaysi rangda? ✋
-@tushuncha Takrorlanuvchi qismni topamiz
-OVOZ: [1] Naqshda qizil, ko‘k, sariq takrorlanadi. Bu — 3 tali guruh. [2] Har uchinchi gul sariq. 3-, 6-, 9- gullar sariq. [3] {sekin}20-gul qaysi? 20 ni 3 ga bo‘lamiz: 6 marta to‘liq guruh, 2 qoldiq. [4] Qoldiq 2 — guruhning ikkinchisi, ko‘k. Demak, 20-gul ko‘k.
-DOSKA: guruh: 🔴 🔵 🟡 (3 ta)
-DOSKA: 20 : 3 = 6 (2 qoldi)
-DOSKA: qoldiq 1 → 🔴; 2 → 🔵; 0 → 🟡
-DOSKA: QOIDA: o‘rinni guruh uzunligiga bo‘l, qoldiqqa qara
+@tushuncha Takrorlanuvchi guruhni topamiz
+OVOZ: [1] {sekin}Diqqat bilan qarang: qizil, ko‘k, sariq — shu uchtasi qayta-qayta takrorlanadi. Bu bitta guruh. Guruhda uchta gul. [2] Har uchinchi gul — sariq! Uchinchi, oltinchi, to‘qqizinchi... hammasi sariq. [3] Yigirmanchi gulga kelsak, nechta to‘liq guruh o‘tdi? Yigirmani uchga bo‘lamiz. [4] Oltita to‘liq guruh o‘tdi, ikkita gul ortib qoldi. {urgu}Qoldiq — ikki! [5] Qoldiq ikki degani: yangi guruhning ikkinchi guli. Ikkinchisi — ko‘k. Demak, yigirmanchi gul — ko‘k!
+DOSKA: ZANJIR: 🔴 :: 1 | 🔵 :: 2 | 🟡 :: 3
+DOSKA: JADVAL: O‘rin | Rang ;; 3 | 🟡 ;; 6 | 🟡 ;; 9 | 🟡
+DOSKA: BOLISH: 20:3
+DOSKA: JADVAL: Qoldiq | Gul ;; 1 | 🔴 ;; 2 | 🔵 ;; 0 | 🟡
+DOSKA: BELGILA: 20-gul = 🔵 | aylana
 TEKSH: Naqsh: A B A B A B ... 15-element qaysi? => A | B | C | Aniq emas
-TEKSH: Naqsh: ★ ● ▲ ★ ● ▲ ... 25-element? => ★ | ● | ▲ | ■
-@tushuncha O‘sib boruvchi naqsh
-OVOZ: [1] Chiblar bilan uchburchaklar yasaymiz. 1-shakl — 3 chib, 2-shakl — 5 chib. 3-shakl — 7 chib. [2] Har gal 2 ta chib qo‘shilmoqda. [3] {sekin}Demak, 4-shakl — 9 chib, 5-shakl — 11 chib. [4] Bu — qo‘shish bilan o‘suvchi qonuniyat. Jadval tuzsak, ko‘rish osonlashadi.
+TEKSH: Naqsh: ★ ● ▲ ★ ● ▲ ... 25-element qaysi? => ★ | ● | ▲ | ■
+TEKSH: Naqsh: 🔴 🔵 🟡 🟢 🔴 🔵 🟡 🟢 ... 18-element? => 🔵 | 🔴 | 🟡 | 🟢
+@tushuncha O‘sib boruvchi naqsh: chiblardan uchburchaklar
+OVOZ: [1] Endi naqsh takrorlanmaydi, balki o‘sadi! Chiblardan uchburchak yasaymiz. Birinchi shakl — bitta uchburchak, uchta chib. [2] {sekin}Ikkinchi shaklda yana bitta uchburchak yopishtirdik — endi beshta chib! [3] Uchinchisida yana bittasi qo‘shildi — yettita chib. {baland}Har gal nechta chib qo‘shilyapti? [4] Jadvalga yozamiz: uch, besh, yetti, to‘qqiz. Farq doim ikki! [5] Qoida: har gal ikkita chib qo‘shiladi. To‘rtinchi shakl — to‘qqiz, beshinchi — o‘n bir chib.
+DOSKA: CHIZ: uchburchak A(0;0) B(2;0) C(1;2)
+DOSKA: CHIZ: uchburchak A(0;0) B(2;0) C(1;2); uchburchak B(2;0) C(1;2) D(3;2)
+DOSKA: CHIZ: uchburchak A(0;0) B(2;0) C(1;2); uchburchak B(2;0) C(1;2) D(3;2); uchburchak B(2;0) D(3;2) E(4;0)
 DOSKA: JADVAL: Shakl | Chib ;; 1 | 3 ;; 2 | 5 ;; 3 | 7 ;; 4 | 9
-DOSKA: farq: +2
-DOSKA: 5-shakl: 9 + 2 = 11
-DOSKA: Jadval — ko‘rish oson
-TEKSH: Shakllarda chiblar: 4, 7, 10, 13. 5-shaklda nechta? => 16 | 15 | 17 | 14
-TEKSH: Har kuni 3 sahifa o‘qilsa, 6 kunda nechta sahifa? => 18 | 9 | 12 | 24
-@tushuncha Jadvaldan qoidani topish
-OVOZ: [1] Dehqon har kuni 4 ta tuxum yig‘adi. 1 kunda — 4, 2 kunda — 8. [2] Kunlar soni va tuxumlar jadvalini tuzamiz. [3] {sekin}Qoida: tuxum soni — 4 karra kunlar soni. 7 kunda — 4 karra 7, 28 ta. [4] Jadvaldagi qoidani topsangiz, istagan kun uchun javob olasiz.
+DOSKA: QOIDA: har gal +2 chib; 5-shakl: 9 + 2 = 11
+TEKSH: Shakllarda chiblar soni: 4, 7, 10, 13. 5-shaklda nechta chib bo‘ladi? => 16 | 15 | 17 | 14
+TEKSH: Har kuni 3 sahifa o‘qilsa, 6 kunda nechta sahifa o‘qiladi? => 18 | 9 | 12 | 24
+@tushuncha Jadvaldan qoidani topamiz
+OVOZ: [1] Dehqon har kuni to‘rtta tuxum yig‘adi. Birinchi kuni — to‘rtta. Ikkinchi kuni jami nechta? [2] {sekin}Sakkizta! Uchinchi kuni — o‘n ikkita. Jadvalga yozib boramiz. [3] Farq har gal to‘rt. Demak, tuxumlar soni — to‘rtni kunlar soniga ko‘paytirishdan chiqadi. [4] {baland}Yetti kunda nechta bo‘ladi? To‘rt karra yetti — yigirma sakkizta! [5] Qoidani topsak, istalgan kun uchun javobni bir zumda topamiz: o‘n kunda ham, oltmish kunda ham.
+DOSKA: RASM: tovuq:tebran | tuxum:sakra
 DOSKA: JADVAL: Kun | Tuxum ;; 1 | 4 ;; 2 | 8 ;; 3 | 12
-DOSKA: tuxum = 4 · kun
-DOSKA: 7 kun → 4 · 7 = 28
-DOSKA: Qoida → istalgan javob
-TEKSH: Har soatda 5 km yurildi. 6 soatda necha km? => 30 | 11 | 25 | 56
-@tushuncha Xato tuzog‘i
-OVOZ: [1] Takrorlanuvchi naqshda ko‘pchilik qoldiqni noto‘g‘ri o‘qiydi. [2] {urgu}Qoldiq nol bo‘lsa — guruhning oxirgisi! Masalan, 21 ni 3 ga bo‘lsak, qoldiq yo‘q: 21-element — sariq. [3] Ikkinchi xato: boshidan hammasini sanashga urinish — vaqt ketadi va adashasiz.
-DOSKA: 21 : 3 = 7 (qoldiq 0)
-DOSKA: qoldiq 0 → oxirgisi
+DOSKA: QOIDA: tuxum = 4 · kun
+DOSKA: USTUN: 4×7
+DOSKA: 7 kunda — 28 ta ✔
+TEKSH: Har soatda 5 km yurildi. 6 soatda necha km yuriladi? => 30 | 11 | 25 | 56
+TEKSH: Har kuni 6 bet o‘qiladi. 9 kunda necha bet o‘qiladi? => 54 | 15 | 45 | 63
+@tushuncha Xato tuzog‘i: nol qoldiq
+OVOZ: [1] Takrorlanuvchi naqshda ko‘pchilik qoldiqni noto‘g‘ri o‘qiydi. {pauza} Yigirma birinchi gulni topamiz. Yigirma birni uchga bo‘lamiz. [2] Yetti marta bo‘lindi, qoldiq yo‘q — nol! {urgu}Qoldiq nol bo‘lsa, javob guruhning oxirgisi! [3] Guruhning oxirgisi — sariq. Demak, yigirma birinchi gul — sariq. [4] Ikkinchi xato: hammasini boshidan sanashga urinish. Vaqt ketadi va adashasiz. Bo‘lish — tezkor yo‘l!
+DOSKA: BOLISH: 21:3
+DOSKA: qoldiq 0 → guruhning OXIRGISI
 DOSKA: 21-gul → 🟡
-DOSKA: Sanama, bo‘l
-TEKSH: Naqsh: 🔴 🔵 🔴 🔵 ... 30-element? => 🔵 | 🔴 | 🟡 | Aniq emas
+DOSKA: ❌ boshidan sanama — ✅ bo‘l!
+TEKSH: Naqsh: 🔴 🔵 🔴 🔵 ... 30-element qaysi? => 🔵 | 🔴 | 🟡 | Aniq emas
+TEKSH: Naqsh: A B C A B C ... 12-element qaysi? => C | A | B | Aniq emas
 @xulosa Esda tut
-OVOZ: Birinchi: takrorlanuvchi guruhni toping. Ikkinchi: o‘rinni guruh uzunligiga bo‘lib, qoldiqqa qarang. Uchinchi: qoldiq nol bo‘lsa — guruhning oxirgisi. To‘rtinchi: o‘suvchi naqshni jadvalga yozing.
+OVOZ: Birinchi: takrorlanuvchi guruhni toping. Ikkinchi: o‘rinni guruh uzunligiga bo‘ling va qoldiqqa qarang. Uchinchi: qoldiq nol bo‘lsa — guruhning oxirgisi. To‘rtinchi: o‘suvchi naqshni jadvalga yozib, qoidani toping. Mashqda sinab ko‘ring!
 DOSKA: 1. guruhni top
 DOSKA: 2. o‘rin : guruh → qoldiq
 DOSKA: 3. qoldiq 0 → oxirgisi
@@ -84,84 +97,93 @@ DOSKA: 4. jadval tuz
 
 ## M4-NUQ
 @kirish Chiziq, nuqta, kesma
-OVOZ: Daftarga qalam bilan ikki nuqta qo‘ydingiz. Ularni chizg‘ich bilan tutashtirdingiz. {pauza} Bu qanday chiziq bo‘ldi? Agar chiziqni ikki tomonga cheksiz davom ettirsak-chi? {sekin}Geometriyada to‘g‘ri chiziq, kesma va nur — turli narsa. Farqini bilsak, shakllarni to‘g‘ri tasvirlaymiz. Taxmin qiling.
-DOSKA: A •—————• B
-DOSKA: Bu nima? ✋
-@tushuncha Kesma, nur, to‘g‘ri chiziq
-OVOZ: [1] Kesma — ikki nuqta orasidagi to‘g‘ri chiziq bo‘lagi. Uning boshi ham, oxiri ham bor, uzunligini o‘lchay olamiz. [2] Nur — bir nuqtadan boshlanib, bir tomonga cheksiz davom etadi. [3] {sekin}To‘g‘ri chiziq — ikki tomonga ham cheksiz. Uni to‘liq chizib bo‘lmaydi. [4] Qalam bilan faqat kesma chiza olamiz, qolganini tasavvur qilamiz.
+OVOZ: {baland}Qalam va chizg‘ichni qo‘lga oling! {pauza} Daftarga ikkita nuqta qo‘ydingiz va ularni chizg‘ich bilan tutashtirdingiz. Bu qanday chiziq bo‘ldi? {sekin}Endi tasavvur qiling: chiziqni ikki tomonga to‘xtamay davom ettirdik, cheksizlikkacha! Bu — boshqa chiziq. Geometriyada ularning nomi ham, xususiyati ham turlicha. Taxmin qiling.
+DOSKA: RASM: qalam:kel
 DOSKA: CHIZ: kesma AB; A(0;0); B(6;0)
-DOSKA: kesma — ikki chetli, o‘lchanadi
-DOSKA: nur — bir chetli, cheksiz
-DOSKA: to‘g‘ri chiziq — chetsiz
-TEKSH: Quyoshning nuri qaysi chiziqqa o‘xshaydi? => Nur | Kesma | To‘g‘ri chiziq | Nuqta
+DOSKA: Bu qanday chiziq? ✋
+@tushuncha Kesma, nur, to‘g‘ri chiziq
+OVOZ: [1] Mana, ikkita nuqta orasidagi chiziq — kesma! {sekin}Uning boshi ham, oxiri ham bor. Shuning uchun uzunligini o‘lchay olamiz. [2] Endi bir chetini qoldirib, ikkinchi tomonga cheksiz cho‘zamiz — bu nur. Quyosh nuri kabi: quyoshdan boshlanadi, keyin uzoqqa ketadi. [3] Ikki tomonga ham cheksiz cho‘zilsa — to‘g‘ri chiziq. {urgu}Boshi ham yo‘q, oxiri ham yo‘q! [4] To‘g‘ri chiziqni qog‘ozga to‘liq chizib bo‘lmaydi. Qalam bilan faqat bir bo‘lagini chizamiz, qolganini tasavvur qilamiz. [5] Jadvalga qarang: kesmada ikkala chet bor, nurda bitta, to‘g‘ri chiziqda — bitta ham yo‘q.
+DOSKA: CHIZ: kesma AB; A(0;0); B(6;0)
+DOSKA: A • ———————————→  (nur)
+DOSKA: ←———————————→  (to‘g‘ri chiziq)
+DOSKA: Cheksiz — tugamaydi! ∞
+DOSKA: JADVAL: Nomi | Chetlari ;; kesma | 2 ta ;; nur | 1 ta ;; to‘g‘ri chiziq | yo‘q
+TEKSH: Chiroq nuri bir tomonga cheksiz tarqaladi. U qaysi chiziqqa o‘xshaydi? => Nur | Kesma | To‘g‘ri chiziq | Nuqta
 TEKSH: Uzunligini o‘lchab bo‘ladigan chiziq qaysi? => Kesma | Nur | To‘g‘ri chiziq | Hech qaysi
 @tushuncha Parallel va kesishuvchi chiziqlar
-OVOZ: [1] Temir yo‘l relslari yonma-yon yotadi, hech qachon uchrashmaydi. Ular parallel. [2] Ikki ko‘cha chorrahada kesishadi. Ular kesishuvchi chiziqlar. [3] {sekin}Parallel chiziqlar orasidagi masofa hamma joyda bir xil. [4] Agar kesishganda to‘g‘ri burchak hosil qilsa — perpendikulyar.
-DOSKA: ║ parallel — uchrashmaydi
-DOSKA: ✕ kesishuvchi — chorraha
-DOSKA: ⊥ perpendikulyar — to‘g‘ri burchak
-DOSKA: Masofa bir xil
+OVOZ: [1] Temir yo‘l relslariga qarang. Ular yonma-yon yotadi va hech qachon uchrashmaydi — hatto cheksiz davom ettirsak ham. Bunday chiziqlar — parallel! [2] {sekin}Parallel chiziqlar orasidagi masofa hamma joyda bir xil. Relslar na torayadi, na kengayadi. [3] Endi chorrahani ko‘ring. Ikki ko‘cha bir joyda kesishadi — ular kesishuvchi chiziqlar. [4] Agar chiziqlar kesishganda to‘g‘ri burchak hosil qilsa — ular perpendikulyar. Xuddi daftar to‘rt burchagidek!
+DOSKA: CHIZ: kesma AB; kesma CD; A(0;0) B(6;0); C(0;2) D(6;2)
+DOSKA: ║ masofa hamma joyda bir xil
+DOSKA: CHIZ: kesma AB; kesma CD; A(0;0) B(4;4); C(0;4) D(4;0)
+DOSKA: CHIZ: kesma AB; kesma CD; A(0;2) B(6;2); C(3;0) D(3;4)
 TEKSH: Daftardagi to‘g‘ri chiziqlar bir-biriga qanday? => Parallel | Kesishuvchi | Perpendikulyar | Nur
 TEKSH: Stolning qo‘shni qirralari qanday joylashgan? => Perpendikulyar | Parallel | Nur | Doira
-@tushuncha Uzunlikni o‘lchash
-OVOZ: [1] Kesmaning uzunligi chizg‘ich bilan o‘lchanadi. Chizg‘ichning nol belgisini kesma boshiga qo‘yamiz. [2] Kesma oxiri qaysi raqamga to‘g‘ri kelsa — o‘sha uzunlik. [3] {sekin}Uzunlik birliklari: millimetr, santimetr, detsimetr, metr. 10 mm — 1 sm. 10 sm — 1 dm. 10 dm — 1 m. [4] Chizg‘ichning chetidan emas, nol belgisidan boshlang!
-DOSKA: 0 | 1 | 2 | 3 | 4 sm
-DOSKA: 10 mm = 1 sm
-DOSKA: 10 sm = 1 dm; 10 dm = 1 m
-DOSKA: nol belgisidan boshla
+TEKSH: Ikki ko‘cha chorrahada kesishadi. Ular qanday chiziqlar? => Kesishuvchi | Parallel | Hech qanday | Nur
+@tushuncha Uzunlikni o‘lchash: chizg‘ich bilan
+OVOZ: [1] Kesmaning uzunligi chizg‘ich bilan o‘lchanadi. Eng muhim qoida: chizg‘ichning nol belgisini kesmaning boshiga qo‘yamiz. [2] {baland}Mana, sanaymiz! Bir, ikki, uch, to‘rt, besh, olti. Kesma — olti santimetr! [3] Uzunlik birliklari ham bor. {sekin}O‘n millimetr — bir santimetr. O‘n santimetr — bir detsimetr. O‘n detsimetr — bir metr. [4] Yana bir narsa: kesma chizg‘ich boshidan emas, masalan ikkinchi belgidan boshlangan bo‘lsa, oxirgi belgidan boshlang‘ichini ayiramiz.
+DOSKA: SON_OQI: 0..8; nuqta 0 boshi; nuqta 6 oxiri; yur 0 6
+DOSKA: Uzunlik: 6 sm
+DOSKA: KETMA: 1 m | 10 dm | 100 sm | 1 000 mm
+DOSKA: SON_OQI: 0..9; nuqta 2 boshi; nuqta 7 oxiri; yur 2 7
 TEKSH: 3 dm necha santimetr? => 30 | 3 | 300 | 13
 TEKSH: 2 m 5 dm necha detsimetr? => 25 | 7 | 205 | 250
+TEKSH: 4 sm necha millimetr? => 40 | 4 | 400 | 14
+TEKSH: Kesma chizg‘ichning 3 sm belgisidan boshlanib, 9 sm belgisida tugadi. Uzunligi? => 6 sm | 9 sm | 12 sm | 3 sm
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: ikki nuqta orasidagi kesmani «to‘g‘ri chiziq» deb atash. [2] {urgu}To‘g‘ri chiziq — chetsiz; kesma — chekli! [3] Ikkinchi xato: chizg‘ichni noldan emas, chetidan boshlab o‘lchash — javob bir necha millimetrga o‘zgaradi.
+OVOZ: [1] Birinchi xato: ikki nuqta orasidagi chiziqni «to‘g‘ri chiziq» deb atash. {urgu}To‘g‘ri chiziq tugamaydi, kesma esa tugaydi! [2] Ikkinchi xato: kesma qaysi belgidan boshlansa ham, oxirgi raqamni uzunlik deb yozish. Mana, kesma ikkinchi belgidan boshlandi va yettinchida tugadi. {sekin}«Yetti» deb yozish — xato! [3] To‘g‘ri: yetti minus ikki — besh santimetr. Yana bir qaraymiz: ikkidan yettigacha beshta qadam.
 DOSKA: ❌ kesma = to‘g‘ri chiziq
-DOSKA: ✅ kesma — chekli
-DOSKA: Nol belgisidan o‘lcha
-DOSKA: Chetidan — xato
-TEKSH: Ikki nuqtani tutashtiruvchi chiziq nima deyiladi? => Kesma | Nur | To‘g‘ri chiziq | Burchak
+DOSKA: ✅ kesma — chekli, to‘g‘ri chiziq — cheksiz
+DOSKA: SON_OQI: 0..9; nuqta 2 boshi; nuqta 7 oxiri; yur 2 7
 @xulosa Esda tut
-OVOZ: Birinchi: kesma — chekli, o‘lchanadi. Ikkinchi: nur — bir tomonga cheksiz. Uchinchi: to‘g‘ri chiziq — ikki tomonga cheksiz. To‘rtinchi: parallel uchrashmaydi, perpendikulyar to‘g‘ri burchak hosil qiladi.
+OVOZ: Birinchi: kesma chekli, o‘lchanadi. Ikkinchi: nur bir tomonga cheksiz. Uchinchi: to‘g‘ri chiziq ikki tomonga cheksiz. To‘rtinchi: parallel chiziqlar uchrashmaydi, perpendikulyar chiziqlar to‘g‘ri burchak hosil qiladi. Mashqda sinab ko‘ring!
 DOSKA: 1. kesma — chekli
-DOSKA: 2. nur — 1 tomon ∞
-DOSKA: 3. to‘g‘ri chiziq — 2 tomon ∞
-DOSKA: 4. ║ va ⊥
+DOSKA: 2. nur — 1 tomonga ∞
+DOSKA: 3. to‘g‘ri chiziq — 2 tomonga ∞
+DOSKA: 4. ║ uchrashmaydi, ⊥ to‘g‘ri burchak
 
 ## t4_burchak
 @kirish Eshik qancha ochilgan?
-OVOZ: Eshik biroz ochilganda burchak hosil bo‘ladi. Ko‘proq ochilsa — burchak kattalashadi. {pauza} Burchaklarni qanday turlarga ajratamiz? To‘g‘ri burchakni qanday topamiz? {sekin}Soat milining holati, stol burchagi, kitob, qaychi — hammasida burchaklar bor. Burchak — ikki chiziq bir nuqtadan chiqib, bir-biridan ochilishi. Ochilish qancha katta bo‘lsa, burchak shuncha katta. Taxmin qiling.
-DOSKA: Eshik: yopiq → ochiq
-DOSKA: Burchak qanday? ✋
-@tushuncha To‘g‘ri, o‘tkir, o‘tmas burchak
-OVOZ: [1] To‘g‘ri burchak — daftar yoki stol burchagidek. U 90 gradus. [2] O‘tkir burchak — to‘g‘ri burchakdan kichik. Qalamning uchi kabi. [3] {sekin}O‘tmas burchak — to‘g‘ri burchakdan katta, lekin yoyiq emas. [4] Yoyiq burchak — to‘g‘ri chiziqqa o‘xshaydi, 180 gradus.
-DOSKA: ∟ to‘g‘ri = 90°
-DOSKA: ∠ o‘tkir < 90°
-DOSKA: ∠ o‘tmas: 90° < burchak < 180°
-DOSKA: yoyiq = 180°
-TEKSH: 45° li burchak qanday? => O‘tkir | To‘g‘ri | O‘tmas | Yoyiq
-TEKSH: 120° li burchak qanday? => O‘tmas | O‘tkir | To‘g‘ri | Yoyiq
+OVOZ: {baland}Eshikka qarang! {pauza} Biroz ochilsa — kichkina burchak hosil bo‘ladi. Ko‘proq ochilsa — burchak kattalashadi. Keng ochilsa — butunlay katta! {sekin}Burchaklarni qanday turlarga ajratamiz? To‘g‘ri burchakni qanday tanib olamiz? Soat mili, kitob burchagi, qaychi — hammasida burchak bor. Burchak — bir nuqtadan chiqqan ikki chiziqning ochilishi. Taxmin qiling.
+DOSKA: RASM: eshik:tebran
+DOSKA: CHIZ: burchak ABC; A(4;0) B(0;0) C(4;1)
+DOSKA: Eshik ochila boshladi... Burchak qanday? ✋
+@tushuncha To‘g‘ri, o‘tkir, o‘tmas va yoyiq burchak
+OVOZ: [1] Daftarning burchagini ko‘ring. Bu to‘g‘ri burchak, kattaligi to‘qson gradus. [2] {sekin}Qalam uchini tasavvur qiling: u to‘g‘ri burchakdan kichikroq, o‘tkir. O‘tkir burchak — to‘qsondan kichik. [3] Eshikni keng ochsak — to‘g‘ri burchakdan katta, lekin yoyiq emas. Bu — o‘tmas burchak. [4] Va nihoyat, eshik tekis ochilsa, ikki chiziq bir to‘g‘ri chiziqqa aylanadi — yoyiq burchak, yuz sakson gradus. [5] Mana jadval: o‘tkir, to‘g‘ri, o‘tmas, yoyiq. Shu to‘rttasini yodda tuting!
+DOSKA: CHIZ: burchak ABC; A(4;0) B(0;0) C(0;4)
+DOSKA: CHIZ: burchak ABC; A(4;0) B(0;0) C(3;2)
+DOSKA: CHIZ: burchak ABC; A(4;0) B(0;0) C(-2;2)
+DOSKA: CHIZ: burchak ABC; A(4;0) B(0;0) C(-4;0)
+DOSKA: JADVAL: Turi | Gradus ;; o‘tkir | 0–90 dan kichik ;; to‘g‘ri | 90 ;; o‘tmas | 90–180 orasida ;; yoyiq | 180
+TEKSH: 35° li burchak qanday burchak? => O‘tkir | To‘g‘ri | O‘tmas | Yoyiq
+TEKSH: 135° li burchak qanday burchak? => O‘tmas | O‘tkir | To‘g‘ri | Yoyiq
+TEKSH: 90° li burchak qanday ataladi? => To‘g‘ri | O‘tkir | O‘tmas | Yoyiq
 @tushuncha Burchakni transportir bilan o‘lchash
-OVOZ: [1] Transportirning markazini burchak uchiga qo‘yamiz. Nol chizig‘ini burchakning bir tomoniga to‘g‘rilaymiz. [2] Ikkinchi tomon qaysi raqamga to‘g‘ri kelsa — o‘sha gradus. [3] {sekin}Transportirda ikki shkala bor. Qaysi shkalani olishni nol chizig‘i bilan bilamiz. [4] Burchak o‘tkirmi yoki o‘tmasmi — avval ko‘z bilan baholang, keyin o‘lchang.
-DOSKA: markaz — burchak uchida
-DOSKA: nol chizig‘i bir tomonda
-DOSKA: ikkinchi tomon → gradus
-DOSKA: Avval baholang, keyin o‘lchang
-TEKSH: Burchak o‘tkir ko‘rindi, transportir 130° ko‘rsatdi. Nima qilish kerak? => Boshqa shkalani tekshirish, 50° bo‘lishi mumkin | Javobni o‘zgartirmaslik | 130 ni 2 ga bo‘lish | Burchakni o‘tmas deyish
-TEKSH: Soat 3:00 da mil orasidagi burchak nechaga teng? => 90° | 30° | 60° | 180°
+OVOZ: [1] Mana burchak. Uni o‘lchaymiz. Transportirning markazini burchakning uchiga qo‘yamiz — aynan o‘sha nuqtaga! [2] {sekin}Transportirning nol chizig‘ini burchakning bir tomoniga to‘g‘rilaymiz. [3] Ikkinchi tomon qaysi raqamga to‘g‘ri kelsa — o‘sha son burchakning gradusi. Mana, oltmish gradus! [4] Transportirda ikki qator raqam bor. Qaysisini o‘qishni nol chizig‘i bilan bilamiz: nol qaysi tomonda bo‘lsa, o‘sha qatorni o‘qiymiz. [5] {urgu}Maslahat: avval ko‘z bilan baholang — o‘tkirmi yoki o‘tmasmi — keyin o‘lchang!
+DOSKA: CHIZ: burchak ABC; A(4;0) B(0;0) C(2;3.5)
+DOSKA: B — transportir markazi
+DOSKA: KETMA: nol chizig‘i: 0° | ikkinchi tomon | 60°
+DOSKA: Nol qaysi tomonda — o‘sha qatorni o‘qi
+DOSKA: Avval baholang, keyin o‘lchang!
+TEKSH: Burchak o‘tkir ko‘rinyapti, transportir 150° ko‘rsatdi. Nima qilish kerak? => Boshqa qatorni o‘qish, 30° bo‘lishi mumkin | Javobni o‘zgartirmaslik | 150 ni 2 ga bo‘lish | Burchakni o‘tmas deyish
+TEKSH: Transportirda nol chizig‘i chap tomonda, ikkinchi chiziq 40 raqamiga to‘g‘ri keldi. Burchak? => 40° | 140° | 90° | 4°
 @tushuncha Soat mili — burchak mashinasi
-OVOZ: [1] Soat 3:00 da mil to‘g‘ri burchak hosil qiladi — 90 gradus. [2] Soat 6:00 da mil bir to‘g‘ri chiziq bo‘ladi — 180 gradus. [3] {sekin}Soat 12:00 da ikkala mil ustma-ust, burchak — nol. Har bir soat oralig‘i — 30 gradus. [4] Shuning uchun 1:00 da burchak 30 gradus, 2:00 da — 60 gradus.
-DOSKA: 3:00 → 90°
-DOSKA: 6:00 → 180°
-DOSKA: 1 soat = 30°
-DOSKA: 2:00 → 2 · 30 = 60°
-TEKSH: Soat 4:00 da mil orasidagi burchak? => 120° | 90° | 60° | 150°
+OVOZ: [1] Soat mili — eng yaxshi burchak o‘lchagich! Soat uchda ikkala mil to‘g‘ri burchak hosil qiladi — to‘qson gradus. [2] {baland}Soat oltida mil bir to‘g‘ri chiziqqa tizildi — yuz sakson gradus! [3] {sekin}Aylana — uch yuz oltmish gradus, soat esa o‘n ikkita bo‘lak. Demak, bitta soat oralig‘i — o‘ttiz gradus. [4] Soat birda — o‘ttiz gradus, soat ikkida — ikki karra o‘ttiz, ya’ni oltmish gradus. [5] Siz ham tez topasiz: soat necha bo‘lsa, shuncha karra o‘ttiz!
+DOSKA: CHIZ: burchak ABC; A(0;3) B(0;0) C(3;0)
+DOSKA: CHIZ: burchak ABC; A(0;3) B(0;0) C(0;-3)
+DOSKA: KETMA: 360° | 360 : 12 | 30° (1 soat)
+DOSKA: CHIZ: burchak ABC; A(0;3) B(0;0) C(2.6;1.5)
+DOSKA: QOIDA: burchak = soat · 30°
+TEKSH: Soat 4:00 da mil orasidagi burchak qancha? => 120° | 90° | 60° | 150°
+TEKSH: Soat 5:00 da mil orasidagi burchak qancha? => 150° | 120° | 180° | 90°
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Burchakning kattaligi tomonlarining uzunligiga bog‘liq emas. [2] {urgu}Tomonlari uzun chizilgan burchak, kalta chizilganidan «katta» bo‘lmaydi! [3] Burchak — ikki nur orasidagi ochilish. Ikkinchi xato: soat 3:00 va 9:00 ni bir xil deb o‘ylash. Mil o‘rni boshqa, lekin burchak ikkalasida ham 90.
+OVOZ: [1] Mana ikkita burchak. Birining tomonlari kalta, ikkinchisining — uzun. {pauza} Qaysi biri katta? Ko‘pchilik «uzunrog‘i!» deydi. [2] {urgu}Yo‘q! Burchakning kattaligi tomonlarining uzunligiga bog‘liq emas! Faqat ochilishiga bog‘liq. [3] {sekin}Ikkalasi ham bir xil oltmish gradus. Tomonlarni uzaytirish yoki qisqartirish burchakni o‘zgartirmaydi. [4] Ikkinchi xato: soat uchni va soat to‘qqizni bir xil deb o‘ylash. Millar o‘rni boshqa, lekin ikkalasida ham burchak to‘qson gradus.
+DOSKA: CHIZ: burchak ABC; A(2;0) B(0;0) C(1;1.7); burchak DEF; D(7;0) E(3;0) F(5;3.5)
 DOSKA: ❌ uzun tomon → katta burchak
 DOSKA: ✅ ochilish kattaligi — burchak
-DOSKA: 60° burchak uzun ham, kalta ham bo‘ladi
-DOSKA: Burchak = ochilish
-TEKSH: Ikki burchakning tomonlari har xil uzunlikda, lekin ochilishi bir xil. Burchaklar? => Teng | Uzunrog‘i katta | Kaltarog‘i katta | Aniq emas
+DOSKA: 60° = 60° — tomon uzun bo‘lsa ham
+TEKSH: Ikki burchakning tomonlari har xil uzunlikda, lekin ochilishi bir xil. Burchaklar qanday? => Teng | Uzunrog‘i katta | Kaltarog‘i katta | Aniq emas
 @xulosa Esda tut
-OVOZ: Birinchi: to‘g‘ri burchak 90 gradus. Ikkinchi: o‘tkir — 90 dan kichik, o‘tmas — 90 dan katta. Uchinchi: burchakni transportir bilan o‘lchang. To‘rtinchi: tomon uzunligi burchakni o‘zgartirmaydi.
+OVOZ: Birinchi: to‘g‘ri burchak — to‘qson gradus. Ikkinchi: o‘tkir burchak to‘qsondan kichik, o‘tmas — to‘qsondan katta. Uchinchi: burchakni transportir bilan o‘lchang, markazni uchiga qo‘ying. To‘rtinchi: tomon uzunligi burchakni o‘zgartirmaydi, faqat ochilishi muhim.
 DOSKA: 1. ∟ = 90°
 DOSKA: 2. o‘tkir < 90° < o‘tmas
 DOSKA: 3. transportir: nol tomonda
@@ -169,43 +191,47 @@ DOSKA: 4. burchak = ochilish
 
 ## M4-SHA
 @kirish Uyda qanday shakllar bor?
-OVOZ: Atrofingizga qarang. Deraza — to‘rtburchak. Taqsimcha — aylana. Tom — uchburchak. Quti — fazoviy shakl. {pauza} Nima uchun ba’zilari tekis, ba’zilari hajmli? Qanday farqlaymiz? {sekin}Bugun tekis va fazoviy shakllarning belgilarini o‘rganamiz. Taxmin qiling.
-DOSKA: ▭ ○ △ ▢
+OVOZ: {baland}Atrofingizga qarang! {pauza} Deraza — to‘rtburchak. Taqsimcha — aylana. Tom — uchburchak. Quti — hajmli shakl. {sekin}Nima uchun ba’zilari qog‘ozga chizib qo‘yilgan, ba’zilarini esa qo‘lga ushlab ko‘rsa bo‘ladi? Bugun tekis va fazoviy shakllarni farqlashni o‘rganamiz. Taxmin qiling.
+DOSKA: RASM: uy | quti | soat:aylan | tarvuz:sakra
+DOSKA: CHIZ: kvadrat A(0;0) B(3;0) C(3;3) D(0;3)
 DOSKA: Tekis yoki fazoviy? ✋
-@tushuncha Tekis shakllar va ularning tomonlari
-OVOZ: [1] Uchburchakda 3 ta tomon va 3 ta burchak bor. [2] To‘rtburchakda 4 ta tomon, 4 ta burchak. [3] {sekin}To‘g‘ri to‘rtburchakda qarama-qarshi tomonlar teng va to‘rtta burchagi to‘g‘ri. Kvadratda hamma tomon teng. [4] Aylananing tomoni ham, burchagi ham yo‘q — egri chiziq.
-DOSKA: △ 3 tomon, 3 burchak
-DOSKA: ▭ to‘g‘ri to‘rtburchak: qarama-qarshi tomonlar teng
-DOSKA: ▢ kvadrat: 4 teng tomon
-DOSKA: ○ aylana: burchaksiz
+@tushuncha Tekis shakllar: tomon va burchaklar
+OVOZ: [1] Mana uchburchak. Unda uchta tomon va uchta burchak bor. Nomidan ham bilinadi — «uch burchak»! [2] {sekin}To‘g‘ri to‘rtburchakda to‘rtta tomon, to‘rtta burchak, ularning hammasi to‘g‘ri. Qarama-qarshi tomonlari teng. [3] Kvadrat — alohida to‘g‘ri to‘rtburchak: hamma to‘rt tomoni teng! [4] Aylanani ko‘ring: tomoni ham yo‘q, burchagi ham yo‘q — silliq egri chiziq. {baland}Tekis shakllar qog‘ozga chiziladi.
+DOSKA: CHIZ: uchburchak A(0;0) B(4;0) C(2;3)
+DOSKA: CHIZ: to‘g‘ri to‘rtburchak A(0;0) B(5;0) C(5;3) D(0;3)
+DOSKA: CHIZ: kvadrat A(0;0) B(3;0) C(3;3) D(0;3)
+DOSKA: CHIZ: aylana O(0;0) r=2
 TEKSH: Kvadratning nechta teng tomoni bor? => 4 | 2 | 3 | 1
 TEKSH: Besh burchakli shaklning nechta tomoni bor? => 5 | 4 | 6 | 3
+TEKSH: Qaysi tekis shaklning burchagi yo‘q? => Aylana | Kvadrat | Uchburchak | To‘g‘ri to‘rtburchak
 @tushuncha Fazoviy shakllar
-OVOZ: [1] Quti — to‘g‘ri burchakli parallelepiped. Uning 6 ta yog‘i, 12 ta qirrasi, 8 ta uchi bor. [2] Kub — hamma yog‘i kvadrat. [3] {sekin}Shar — to‘p kabi, yassi yog‘i yo‘q. Silindr — stakan kabi. Konus — muzqaymoq stakanchasi kabi. [4] Fazoviy shakllar hajmga ega, ularni qo‘lga ushlab ko‘rish mumkin.
-DOSKA: kub: 6 yoq, 12 qirra, 8 uch
-DOSKA: shar — yassi yog‘i yo‘q
-DOSKA: silindr — 2 doira + yon sirt
-DOSKA: konus — 1 doira + uchi
+OVOZ: [1] Endi hajmli shakllar. Quti — to‘g‘ri burchakli parallelepiped. Uning oltita yog‘i, o‘n ikkita qirrasi va sakkizta uchi bor. [2] Kub — hamma yog‘i kvadrat bo‘lgan quti. Yog‘lari oltita, hammasi bir xil. [3] {sekin}Shar — to‘p kabi: yassi yog‘i yo‘q, hamma tomoni dumaloq. Silindr — stakan kabi: pastda va tepada doira. Konus — muzqaymoq stakanchasi kabi. [4] {urgu}Fazoviy shakllar hajmga ega — ularni qo‘lga ushlab ko‘rish mumkin!
+DOSKA: JADVAL: Shakl | Yoq | Qirra | Uch ;; kub | 6 | 12 | 8
+DOSKA: 🎲 kub — hamma yog‘i kvadrat
+DOSKA: RASM: shar:sakra | silindr | konus:katta | kub:aylan
+DOSKA: QOIDA: fazoviy shakl — hajmga ega
 TEKSH: Kubning nechta yog‘i bor? => 6 | 4 | 8 | 12
 TEKSH: Futbol to‘pi qaysi shaklga o‘xshaydi? => Shar | Kub | Silindr | Konus
-@tushuncha Simmetriya
-OVOZ: [1] Kapalakning qanotlari — ikki bir xil yarim. O‘rtasidan buklasak, yarmi yarmiga ustma-ust tushadi. [2] Bu — simmetriya. Buklash chizig‘i — simmetriya o‘qi. [3] {sekin}Kvadratda 4 ta simmetriya o‘qi bor. To‘g‘ri to‘rtburchakda — 2 ta. Aylanada — cheksiz ko‘p. [4] Harflar ham simmetrik: A, H, M, T.
-DOSKA: kapalak — 1 o‘q
-DOSKA: kvadrat — 4 o‘q
-DOSKA: to‘g‘ri to‘rtburchak — 2 o‘q
-DOSKA: Buklasang ustma-ust tushadi
+TEKSH: Konservaning yon tomoni va ikki doirasi qaysi shaklni beradi? => Silindr | Konus | Shar | Kub
+@tushuncha Simmetriya — ikki teng yarim
+OVOZ: [1] Kapalakning qanotlariga qarang: chap va o‘ng yarmi bir xil! O‘rtasidan buklasak, ular bir-biriga ustma-ust tushadi. [2] Bu — simmetriya. Buklash chizig‘ini simmetriya o‘qi deymiz. [3] {sekin}Kvadratni qanday buklasak ustma-ust tushadi? Ikki usulda to‘g‘ri, ikki usulda — burchakdan burchakka. Jami to‘rtta o‘q! [4] To‘g‘ri to‘rtburchakda esa faqat ikkita o‘q bor. Aylanada — cheksiz ko‘p. [5] Harflar ham simmetrik bo‘ladi: A, H, M, T.
+DOSKA: RASM: kapalak:tebran
+DOSKA: CHIZ: kvadrat A(0;0) B(4;0) C(4;4) D(0;4); kesma MN; M(2;-1) N(2;5)
+DOSKA: CHIZ: kvadrat A(0;0) B(4;0) C(4;4) D(0;4); kesma MN; kesma PQ; M(2;-1) N(2;5); P(-1;2) Q(5;2)
+DOSKA: CHIZ: to‘g‘ri to‘rtburchak A(0;0) B(6;0) C(6;4) D(0;4); kesma MN; kesma PQ; M(3;-1) N(3;5); P(-1;2) Q(7;2)
+DOSKA: Harflar: A  H  M  T
 TEKSH: Kvadratning nechta simmetriya o‘qi bor? => 4 | 2 | 1 | 8
-TEKSH: Qaysi harf simmetrik: H yoki F? => H | F | Ikkalasi | Hech biri
+TEKSH: To‘g‘ri to‘rtburchakning nechta simmetriya o‘qi bor? => 2 | 4 | 1 | 8
+TEKSH: Qaysi harf simmetriyaga ega: H yoki F? => H | F | Ikkalasi | Hech biri
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Kvadrat ham to‘g‘ri to‘rtburchak. Chunki to‘g‘ri to‘rtburchakning barcha belgilari kvadratda bor. [2] {urgu}Lekin hamma to‘g‘ri to‘rtburchak kvadrat emas! [3] Ikkinchi xato: tekis va fazoviy shaklni aralashtirish — kvadrat tekis, kub fazoviy.
-DOSKA: kvadrat ⊂ to‘g‘ri to‘rtburchak
-DOSKA: to‘g‘ri to‘rtburchak ≠ har doim kvadrat
-DOSKA: kvadrat — tekis; kub — fazoviy
-DOSKA: ❌ aralashtirish
-TEKSH: Qaysi gap to‘g‘ri? => Har bir kvadrat — to‘g‘ri to‘rtburchak | Har bir to‘g‘ri to‘rtburchak — kvadrat | Kvadrat — fazoviy shakl | Kub tekis shakl
+OVOZ: [1] Kvadrat ham to‘g‘ri to‘rtburchak! Chunki to‘g‘ri to‘rtburchakning hamma belgisi kvadratda bor. [2] {urgu}Lekin hamma to‘g‘ri to‘rtburchak kvadrat emas! Ikki xil tomonli to‘g‘ri to‘rtburchak kvadrat bo‘lmaydi. [3] Ikkinchi xato: tekis va fazoviy shaklni aralashtirish. Kvadrat — tekis, qog‘ozga chiziladi. Kub — fazoviy, uni qo‘lga ushlaymiz.
+DOSKA: CHIZ: to‘g‘ri to‘rtburchak A(0;0) B(6;0) C(6;3) D(0;3)
+DOSKA: Har bir kvadrat — to‘g‘ri to‘rtburchak ✔
+DOSKA: Har bir to‘g‘ri to‘rtburchak — kvadrat? ❌
+TEKSH: Qaysi gap to‘g‘ri? => Har bir kvadrat — to‘g‘ri to‘rtburchak | Har bir to‘g‘ri to‘rtburchak — kvadrat | Kvadrat — fazoviy shakl | Kub — tekis shakl
 @xulosa Esda tut
-OVOZ: Birinchi: tekis shakllar — uchburchak, to‘rtburchak, aylana. Ikkinchi: fazoviy shakllar — kub, shar, silindr, konus. Uchinchi: kubda 6 yoq, 12 qirra, 8 uch. To‘rtinchi: simmetriya — buklasang ustma-ust tushadi.
+OVOZ: Birinchi: tekis shakllar — uchburchak, to‘rtburchak, aylana. Ikkinchi: fazoviy shakllar — kub, shar, silindr, konus. Uchinchi: kubda oltita yoq, o‘n ikkita qirra, sakkizta uch. To‘rtinchi: simmetriya — buklasak, ustma-ust tushadi. Endi mashqda sinab ko‘ring!
 DOSKA: 1. △ ▭ ○ — tekis
-DOSKA: 2. kub shar silindr konus
+DOSKA: 2. kub · shar · silindr · konus
 DOSKA: 3. kub: 6 / 12 / 8
 DOSKA: 4. simmetriya = buklash

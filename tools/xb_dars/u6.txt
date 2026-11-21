@@ -1,130 +1,153 @@
 ## t8_stat
 @kirish Ikki sinf — bir xil o‘rtacha
-OVOZ: Ikki sinfda matematika imtihoni natijalari. Birinchi sinf: hamma bola yetmish ball oldi. Ikkinchi sinfda ba’zilari yuz, ba’zilari qirq ball oldi. {pauza} Ikkalasining o‘rtachasi — yetmish. Sinflar bir xilmi? {sekin}O‘rtacha, mediana va moda — uch xil «markaz». Tarqoqlik esa ma’lumotning ikkinchi yuzi. Taxmin qiling.
-DOSKA: 1-sinf: 70, 70, 70, 70
-DOSKA: 2-sinf: 100, 40, 100, 40
-DOSKA: Bir xilmi? ✋
+OVOZ: {baland}Imtihon natijalari chiqdi! {pauza} Birinchi sinfda to‘rt o‘quvchining hammasi yetmish ball oldi. Ikkinchi sinfda esa ikkitasi to‘qson, ikkitasi — atigi ellik ball oldi. Hisoblab ko‘ring: ikkala sinfning o‘rtachasi — roppa-rosa yetmish! {sekin}Direktor aytadi: «Ikkala sinf bir xil». Siz rozimisiz? O‘rtacha ba‘zan haqiqatni yashiradi. Bugun ma‘lumotning uchta «markazi»ni va uning tarqoqligini o‘rganamiz. Avval taxmin qiling!
+DOSKA: RASM: maktab:kel | kitob:sakra | qalam
+DOSKA: SON_OQI: 50..90 qadam 10; nuqta 70 1-sinf: hamma 70
+DOSKA: SON_OQI: 50..90 qadam 10; nuqta 50 50; nuqta 90 90
+DOSKA: Ikkala sinfda o‘rtacha 70. Bir xilmi? ✋
 @tushuncha O‘rtacha, mediana, moda
-OVOZ: [1] O‘rtacha — yig‘indi bo‘lingan soni. Ikkinchi sinf: 100 plyus 40 plyus 100 plyus 40 — 280. To‘rtga bo‘lsak — 70. [2] Mediana — tartiblangandagi o‘rtadagi son. Juft son bo‘lsa — ikki o‘rtadagining o‘rtachasi. [3] {sekin}40, 40, 100, 100: o‘rtadagilar 40 va 100 — mediana 70. [4] Moda — eng ko‘p uchraydigan: bu yerda ikkita moda bor — 40 va 100.
-DOSKA: (100 + 40 + 100 + 40) : 4 = 70
-DOSKA: tartib: 40, 40, 100, 100
-DOSKA: mediana = (40 + 100) : 2 = 70
-DOSKA: moda: 40 va 100
-TEKSH: 3, 5, 5, 7, 10 sonlarining o‘rtachasi? => 6 | 5 | 7 | 30
-TEKSH: 4, 9, 2, 7, 8 sonlarining medianasi? => 7 | 2 | 8 | 6
-@tushuncha Tarqoqlik: diapazon va og‘ish
-OVOZ: [1] Diapazon — eng katta minus eng kichik. Birinchi sinf — nol. Ikkinchi sinf — 100 minus 40 — 60. [2] Diapazon kattaroq — ma’lumot tarqoqroq. [3] {sekin}Bir xil o‘rtacha bo‘lsa ham, birinchi sinf barqaror, ikkinchisi har xil. [4] O‘qituvchi uchun muhim: ikkinchi sinfga qo‘shimcha ish kerak.
-DOSKA: diapazon = maks − min
-DOSKA: 1-sinf: 70 − 70 = 0
-DOSKA: 2-sinf: 100 − 40 = 60
+OVOZ: [1] Birinchi «markaz» — o‘rtacha. Hamma ballni qo‘shamiz va o‘quvchilar soniga bo‘lamiz: to‘qson plyus ellik plyus to‘qson plyus ellik — ikki yuz sakson. To‘rtga bo‘lsak — yetmish. Ya‘ni, hamma bir xil olganida har kimga shuncha tegardi! [2] Ikkinchi «markaz» — mediana. Ballarni kichigidan kattasiga tartiblaymiz: ellik, ellik, to‘qson, to‘qson. {sekin}Mediana — aynan o‘rtadagi son. [3] Bu yerda o‘rtada ikkita son turibdi — ellik va to‘qson. Ularning o‘rtachasi — yetmish. [4] Uchinchi — moda: eng ko‘p uchraydigan ball. Bu yerda ikkita moda bor — ellik va to‘qson, ikkalasi ikki martadan uchragan. {urgu}Uch ko‘rsatkich yetmishni yoki yetmishga yaqinni ko‘rsatdi, lekin sinf hali ham o‘ziga xos!
+DOSKA: KETMA: (90 + 50 + 90 + 50) : 4 | 280 : 4 | 70
+DOSKA: ZANJIR: 50 | 50 | 90 | 90
+DOSKA: KETMA: (50 + 90) : 2 | 140 : 2 | 70
+DOSKA: JADVAL: Ko‘rsatkich | Qiymat ;; O‘rtacha | 70 ;; Mediana | 70 ;; Moda | 50 va 90
+TEKSH: 3, 5, 5, 7, 10 sonlarining o‘rtachasi nechaga teng? => 6 | 5 | 7 | 30
+TEKSH: 4, 9, 2, 7, 8 sonlarining medianasi nechaga teng? => 7 | 2 | 8 | 6
+TEKSH: 2, 3, 3, 3, 5, 8 sonlarining modasi qaysi? => 3 | 2 | 8 | 5
+@tushuncha Tarqoqlik: diapazon
+OVOZ: [1] Endi ikkita sinfni qanday ajratamiz? Tarqoqlik bilan! Sonlar o‘qiga qarang: eng past ball — ellik, eng yuqori — to‘qson. Bu ikki chekka orasidagi masofani o‘lchaymiz. [2] Bu masofa — diapazon: eng katta minus eng kichik. To‘qson minus ellik — qirq. [3] {sekin}Birinchi sinfda esa hamma yetmish oldi: yetmish minus yetmish — nol. [4] {urgu}Diapazon qancha katta bo‘lsa, ma‘lumot shuncha tarqoq. Bir xil o‘rtachaga qaramay, birinchi sinf barqaror, ikkinchisi — har xil. O‘qituvchi uchun bu juda muhim: ikkinchi sinfda ba‘zi bolalarga qo‘shimcha yordam kerak, ba‘zilariga esa murakkabroq topshiriq.
+DOSKA: SON_OQI: 50..90 qadam 10; nuqta 50 min; nuqta 90 maks; sakrash 50 90 40
+DOSKA: KETMA: 2-sinf: 90 − 50 | 40
+DOSKA: KETMA: 1-sinf: 70 − 70 | 0
 DOSKA: bir xil o‘rtacha ≠ bir xil sinf
-TEKSH: 12, 15, 9, 21, 18 sonlarining diapazoni? => 12 | 21 | 9 | 75
-TEKSH: Ikki jamoa o‘rtachasi 50. Birida diapazon 5, ikkinchisida 40. Qaysi barqaror? => Diapazoni 5 bo‘lgani | Diapazoni 40 bo‘lgani | Teng | Aniqlab bo‘lmaydi
+TEKSH: 12, 15, 9, 21, 18 sonlarining diapazoni qancha? => 12 | 21 | 9 | 75
+TEKSH: Ikki jamoaning o‘rtachasi 50. Birida diapazon 5, ikkinchisida 40. Qaysi jamoa barqarorroq? => Diapazoni 5 bo‘lgan | Diapazoni 40 bo‘lgan | Teng | Aniqlab bo‘lmaydi
+@tushuncha Moda — do‘konchining do‘sti
+OVOZ: [1] Poyabzal do‘konida egasi savol beradi: «Qaysi o‘lchamdagi poyabzalni ko‘proq olib kelay?» [2] Mana, o‘tgan oyda sotilganlar: o‘ttiz oltinchi o‘lcham — ikki juft, o‘ttiz yettinchi — besh, o‘ttiz sakkizinchi — to‘qqiz, o‘ttiz to‘qqizinchi — to‘rt juft. [3] {sekin}Eng ko‘p sotilgan o‘lcham — moda: o‘ttiz sakkizinchi! [4] O‘rtachani hisoblasak: yetti yuz ellik besh bo‘lingan yigirma — o‘ttiz yetti butun yetmish besh yuzdan. {urgu}Bunday o‘lchamli poyabzal umuman yo‘q! Demak, o‘rtacha bu yerda foydasiz, moda esa aynan kerakli javobni beradi.
+DOSKA: RASM: poyabzal:kel
+DOSKA: JADVAL: O‘lcham | Juft soni ;; 36 | ██ 2 ;; 37 | █████ 5 ;; 38 | █████████ 9 ;; 39 | ████ 4
+DOSKA: BELGILA: moda = 38 | ramka
+DOSKA: KETMA: 755 : 20 | 37,75 | bunday o‘lcham yo‘q!
+TEKSH: Sotilgan o‘lchamlar: 40, 41, 41, 41, 42, 43. Qaysi o‘lchamdan ko‘proq olib kelish kerak? => 41 | 40 | 42 | 43
 @tushuncha Chetki qiymatning ta’siri
-OVOZ: [1] Besh kishining oyligi: 4, 4, 5, 5, 82 million. O‘rtacha — 20 million. [2] Lekin hech kim 20 million olmaydi! Mediana — 5 million. [3] {sekin}Bitta juda katta son o‘rtachani ko‘taradi. Mediana chetki qiymatga bardoshli. [4] Maosh, uy narxi uchun mediana ishonchliroq.
-DOSKA: 4, 4, 5, 5, 82 mln
-DOSKA: o‘rtacha = 100 : 5 = 20
-DOSKA: mediana = 5
-DOSKA: chetki → mediana
-TEKSH: 2, 3, 3, 4, 38 uchun qaysi ko‘rsatkich odatiy qiymatni yaxshiroq beradi? => Mediana | O‘rtacha | Diapazon | Yig‘indi
-TEKSH: 1, 2, 3, 4, 40 ning o‘rtachasi? => 10 | 5 | 8 | 3
+OVOZ: [1] Kichik kompaniya: to‘rt xodim va direktor. Xodimlar oyiga uch, to‘rt, to‘rt va besh million so‘m oladi. Direktor esa o‘ttiz to‘rt million! [2] Sonlar o‘qida ko‘ring: to‘rtta nuqta yaqin turibdi, bitta nuqta — uzoqda. [3] {sekin}O‘rtachani hisoblaymiz: jami ellik million, beshga bo‘lsak — o‘n million! [4] Mediana esa: tartiblaymiz — uch, to‘rt, to‘rt, besh, o‘ttiz to‘rt. O‘rtadagisi — to‘rt million. [5] {urgu}Qarang, o‘rtacha o‘n million, lekin hech bir xodim o‘n million olmaydi! Bitta juda katta son o‘rtachani tortib ketdi. Mediana esa chetki qiymatga bardoshli. Shuning uchun maosh yoki uy narxini aytganda mediana ishonchliroq.
+DOSKA: RASM: pul:sakra | uy:kel
+DOSKA: SON_OQI: 0..35 qadam 5; nuqta 3 3; nuqta 4 4, 4; nuqta 5 5; nuqta 34 direktor
+DOSKA: KETMA: (3 + 4 + 4 + 5 + 34) : 5 | 50 : 5 | 10
+DOSKA: ZANJIR: 3 | 4 | 4 | 5 | 34
+DOSKA: o‘rtacha 10 mln, mediana 4 mln — chetki qiymat bor → mediana
+TEKSH: 2, 3, 3, 4, 38 sonlar uchun qaysi ko‘rsatkich odatiy qiymatni yaxshiroq beradi? => Mediana | O‘rtacha | Diapazon | Yig‘indi
+TEKSH: 1, 2, 3, 4, 40 sonlarining o‘rtachasi nechaga teng? => 10 | 5 | 8 | 3
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: medianani topishda sonlarni tartiblamasdan o‘rtadagisini olish. [2] {urgu}Avval tartiblang! 7, 2, 9, 4, 5 — o‘rtadagisi 9 emas. [3] Ikkinchi xato: modani «eng katta son» deb o‘ylash.
-DOSKA: ❌ 7, 2, 9, 4, 5 → 9
-DOSKA: ✅ 2, 4, 5, 7, 9 → 5
+OVOZ: [1] Birinchi xato: medianani topishda sonlarni tartiblamasdan o‘rtadagisini olish. Mana: yetti, ikki, to‘qqiz, to‘rt, besh. O‘rtadagisi to‘qqiz — to‘g‘rimi? [2] {urgu}Yo‘q! Avval tartiblang: ikki, to‘rt, besh, yetti, to‘qqiz. Endi o‘rtadagisi — besh. [3] Ikkinchi xato: modani «eng katta son» deb o‘ylash. [4] Moda — eng ko‘p takrorlanadigan son. Ikki, ikki, yetti, uch, ikki: eng katta — yetti, lekin eng ko‘p uchragani — ikki.
+DOSKA: ZANJIR: 7 | 2 | 9 | 4 | 5 ❌ tartibsiz
+DOSKA: ZANJIR: 2 | 4 | 5 | 7 | 9 ✅ mediana = 5
 DOSKA: moda ≠ maksimum
-DOSKA: moda — eng ko‘p uchraydigan
-TEKSH: 6, 1, 8, 3, 9 medianasi? => 6 | 8 | 3 | 5,4
+DOSKA: JADVAL: Ma‘lumot | Moda | Maks ;; 2, 2, 7, 3, 2 | 2 | 7
+TEKSH: 6, 1, 8, 3, 9 sonlarining medianasi nechaga teng? => 6 | 8 | 3 | 5,4
+TEKSH: 5, 5, 5, 9 sonlarining modasi qaysi? => 5 | 9 | 7 | 6
 @xulosa Esda tut
-OVOZ: Birinchi: o‘rtacha — yig‘indi bo‘lingan soni. Ikkinchi: medianadan oldin tartiblang. Uchinchi: chetki qiymat bor bo‘lsa — mediana. To‘rtinchi: o‘rtacha bilan birga tarqoqlikni ko‘ring.
-DOSKA: 1. x̄ = Σ : n
+OVOZ: Birinchi: o‘rtacha — yig‘indi bo‘lingan soniga. Ikkinchi: medianadan oldin sonlarni tartiblang. Uchinchi: chetki qiymat bor bo‘lsa — mediana ishonchliroq. To‘rtinchi: o‘rtacha bilan birga tarqoqlikni, ya‘ni diapazonni ham ko‘ring.
+DOSKA: 1. o‘rtacha = yig‘indi : soni
 DOSKA: 2. tartibla → mediana
 DOSKA: 3. chetki → mediana
 DOSKA: 4. diapazon
 
 ## M8-EHT
 @kirish Qaysi o‘yinda yutish osonroq?
-OVOZ: Ikki o‘yin. Birinchisi: oddiy kubni tashlaysiz, olti chiqsa yutasiz. Ikkinchisi: tanga tashlaysiz, gerb chiqsa yutasiz. {pauza} Qaysi birida yutish ehtimoli katta? {sekin}Ehtimol — hodisaning ro‘y berish imkoniyatini songa aylantirish. Taxmin qiling.
-DOSKA: Kub: 6 chiqsa
-DOSKA: Tanga: gerb chiqsa
+OVOZ: {baland}Bahs bo‘ldi! {pauza} Birinchi o‘yin: oddiy kubni tashlaysiz, olti chiqsa yutasiz. Ikkinchi o‘yin: tanga tashlaysiz, gerb chiqsa yutasiz. Yutuq bir xil. {sekin}Qaysi birini tanlaysiz? Ehtimol — hodisaning ro‘y berish imkoniyatini songa aylantirish. Bugun imkoniyatni o‘lchashni o‘rganamiz. Avval ko‘nglingiz nima deydi? Taxmin qiling!
+DOSKA: RASM: kub:sakra | tanga:aylan
+DOSKA: Kub: olti chiqsa yutasiz
+DOSKA: Tanga: gerb chiqsa yutasiz
 DOSKA: Qaysi osonroq? ✋
-@tushuncha Ehtimol — qulay holatlar nisbati
-OVOZ: [1] Ehtimol — qulay holatlar sonini barcha teng imkoniyatli holatlarga bo‘lish. [2] Kubda 6 ta holat, qulayi — bittasi. Ehtimol — bir bo‘lingan olti. [3] {sekin}Tangada 2 holat, qulayi — gerb. Ehtimol — bir bo‘lingan ikki. [4] Yarim bir bo‘lib olti dan katta. Tanga o‘yinida yutish osonroq.
-DOSKA: P = qulay : jami
-DOSKA: kub: P(6) = 1/6
-DOSKA: tanga: P(gerb) = 1/2
-DOSKA: 1/2 > 1/6
-TEKSH: Kubda juft son chiqish ehtimoli? => 1/2 | 1/6 | 1/3 | 2/3
+@tushuncha Ehtimol — qulay holatlar ulushi
+OVOZ: [1] Ehtimolni topish juda oddiy. Kubda oltita teng imkoniyat bor: bir, ikki, uch, to‘rt, besh, olti. Yutuq uchun bizga faqat bittasi qulay — olti. Mana, doira oltiga bo‘lingan, bitta bo‘lak bo‘yalgan: bir bo‘lib olti. [2] Tangada ikkita teng imkoniyat: gerb yoki raqam. Qulayi — bittasi: bir bo‘lib ikki, ya‘ni yarim. [3] {sekin}Qoida: ehtimol — qulay holatlar soni, bo‘lingan barcha teng imkoniyatli holatlar soniga. [4] Jadvalga qarang. [5] {urgu}Yarim bir bo‘lib olti dan ancha katta. Demak, tangada yutish osonroq! Taxmin to‘g‘ri chiqdimi?
+DOSKA: DOIRA_KASR: 1/6
+DOSKA: DOIRA_KASR: 1/2
+DOSKA: KETMA: P | qulay : jami | 1 : 6 | 1/6
+DOSKA: JADVAL: O‘yin | Qulay | Jami | P ;; Kub: 6 chiqsa | 1 | 6 | 1/6 ;; Tanga: gerb | 1 | 2 | 1/2
+DOSKA: BELGILA: 1/2 > 1/6 | ramka
+TEKSH: Kubda juft son chiqish ehtimoli qancha? => 1/2 | 1/6 | 1/3 | 2/3
 TEKSH: 12 ta shardan 3 tasi qizil. Qizil shar chiqish ehtimoli? => 1/4 | 1/9 | 1/3 | 3
+TEKSH: Qutida 5 ta ko‘k va 15 ta sariq shar bor. Sariq shar chiqish ehtimoli? => 3/4 | 1/4 | 3/5 | 15
 @tushuncha Ehtimol chegaralari
-OVOZ: [1] Ehtimol doim noldan birgacha. Nol — mumkin emas. Bir — albatta. [2] Kubda 7 chiqishi — nol. Kubda 1 dan 6 gacha biror son chiqishi — bir. [3] {sekin}Ehtimolni foiz ko‘rinishida ham yozish mumkin: yarim — 50 foiz. [4] Yomg‘ir ehtimoli 30 foiz — o‘n marta shunday kunning uchtasida yomg‘ir yog‘adi.
-DOSKA: 0 ≤ P ≤ 1
-DOSKA: 7 chiqishi: P = 0
-DOSKA: 1 dan 6 gacha: P = 1
-DOSKA: 1/2 = 50%
-TEKSH: Ehtimol −0,2 bo‘la oladimi? => Yo‘q | Ha | Faqat foizda | Faqat kasrda
-TEKSH: Qutida faqat ko‘k sharlar. Ko‘k shar olish ehtimoli? => 1 | 0 | 1/2 | Aniqlab bo‘lmaydi
+OVOZ: [1] Ehtimolni sonlar o‘qiga qo‘ysak, u doim noldan birgacha oraliqda bo‘ladi. Nol — mutlaqo mumkin emas. Bir — albatta bo‘ladi. [2] Kubda yetti chiqishi mumkinmi? Yo‘q: qulay holat nol, ehtimol nol. [3] {sekin}Kubda bir dan oltigacha biror son chiqishi-chi? Albatta! Qulay holatlar — oltita, jami — oltita: olti bo‘lib olti — bir. [4] Ehtimolni kasr, o‘nli kasr yoki foiz ko‘rinishida yozish mumkin: yarim — nol butun besh — ellik foiz. [5] Ob-havo xabarida «yomg‘ir ehtimoli o‘ttiz foiz» desa, bu o‘nta shunday kunning uchtasida yomg‘ir yog‘adi, degani.
+DOSKA: SON_OQI: 0..1 qadam 0,25; nuqta 0 mumkin emas; nuqta 0,5 yarim; nuqta 1 albatta
+DOSKA: KETMA: kubda 7 chiqishi | 0 : 6 | P = 0
+DOSKA: KETMA: kubda 1…6 dan biri | 6 : 6 | P = 1
+DOSKA: JADVAL: Kasr | O‘nli | Foiz ;; 1/2 | 0,5 | 50% ;; 1/4 | 0,25 | 25%
+DOSKA: RASM: bulut:kel | quyosh:aylan
+TEKSH: Ehtimol −0,2 ga teng bo‘la oladimi? => Yo‘q | Ha | Faqat foizda | Faqat kasrda
+TEKSH: Qutida faqat ko‘k sharlar bor. Ko‘k shar olish ehtimoli qancha? => 1 | 0 | 1/2 | Aniqlab bo‘lmaydi
 @tushuncha Qarama-qarshi hodisa
-OVOZ: [1] Hodisa bo‘lmaslik ehtimoli — bir minus hodisa ehtimoli. [2] Kubda 6 chiqmasligi: 1 minus 1/6 — 5/6. [3] {sekin}Kubda 4 dan katta son chiqish ehtimoli — 2/6, ya’ni 1/3. Chiqmasligi — 2/3. [4] «Kamida bitta» savollarida avval «bitta ham yo‘q»ni topib, birdan ayirish qulay.
-DOSKA: P(emas) = 1 − P
-DOSKA: 1 − 1/6 = 5/6
-DOSKA: 4 dan katta: 5, 6 → 2/6
-DOSKA: kamida bitta = 1 − yo‘q
-TEKSH: Yutish ehtimoli 0,35. Yutmaslik ehtimoli? => 0,65 | 0,35 | 0,7 | 1,35
-TEKSH: Tanga 2 marta tashlanadi. Kamida bitta gerb ehtimoli? => 3/4 | 1/4 | 1/2 | 1
+OVOZ: [1] Ba‘zan hodisaning o‘zini emas, uning «teskarisini» topish oson. Kubda olti chiqmasligi — nechta qulay holat? Beshta! Doiraga qarang: bo‘yalmagan qism katta. [2] Boshqacha ayta olamiz: hamma ehtimol bir. Olti chiqish ehtimolini bir dan ayiramiz: bir minus bir bo‘lib olti — besh bo‘lib olti. [3] {sekin}Endi ikkita tanga tashlaymiz. Gerb — G, raqam — R. To‘rtta teng imkoniyat: GG, GR, RG, RR. Hozircha rasm shu. [4] «Kamida bitta gerb chiqsin» — buni sanash noqulay. Lekin teskarisi oson: bitta ham gerb yo‘q — faqat RR, ya‘ni bir bo‘lib to‘rt. Demak, kamida bitta gerb: bir minus bir bo‘lib to‘rt — uch bo‘lib to‘rt. [5] {urgu}«Kamida bitta» so‘zini ko‘rsangiz — darrov teskarisini o‘ylang: bir minus «bitta ham yo‘q».
+DOSKA: DOIRA_KASR: 5/6
+DOSKA: KETMA: P(emas) | 1 − 1/6 | 6/6 − 1/6 | 5/6
+DOSKA: DARAXT: 0,5 | 0,5 / 0,5 | 0,5
+DOSKA: KETMA: kamida bitta gerb | 1 − P(RR) | 1 − 1/4 | 3/4
+DOSKA: BELGILA: kamida bitta = 1 − «bitta ham yo‘q» | ramka
+TEKSH: Yutish ehtimoli 0,35 bo‘lsa, yutmaslik ehtimoli qancha? => 0,65 | 0,35 | 0,7 | 1,35
+TEKSH: Uchta tanga tashlanadi (8 teng imkoniyat). Kamida bitta gerb chiqish ehtimoli? => 7/8 | 1/8 | 3/8 | 1/2
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: ehtimolni «yo chiqadi, yo chiqmaydi — demak yarim» deb o‘ylash. [2] {urgu}Natijalar teng imkoniyatli bo‘lsagina yarim! Lotereyada yutish yoki yutmaslik teng emas. [3] Ikkinchi xato: ehtimolni foiz bilan sonda adashtirish: 0,3 — 30 foiz, 3 foiz emas.
-DOSKA: ❌ yo yutadi, yo yutmaydi → 1/2
-DOSKA: ✅ P = qulay : jami
-DOSKA: 0,3 = 30%
-DOSKA: ≠ 3%
-TEKSH: Lotereya: 100 chiptadan 2 tasi yutuqli. Yutish ehtimoli? => 2% | 50% | 1% | 20%
+OVOZ: [1] Mana, bulutli kun. Bir do‘stingiz aytadi: «Yomg‘ir yo yog‘adi, yo yog‘maydi — demak, ehtimoli yarim!» [2] {urgu}Bu xato! Yarim bo‘lishi uchun ikkala natija teng imkoniyatli bo‘lishi shart. Qulay holat va barcha holatlarni to‘g‘ri sanash kerak. [3] Ikkinchi xato: foiz bilan sonni adashtirish. Nol butun uch — o‘ttiz foiz. Uch foiz emas! Nol butun uch — o‘ttiz foiz, uch foiz — nol butun nol uch. [4] Nol butun nol uch esa — uch foiz. Kasrni yuzga ko‘paytiring — foiz chiqadi.
+DOSKA: RASM: bulut:kel | quyosh
+DOSKA: ❌ «yo yog‘adi, yo yo‘q» → 1/2   ✅ P = qulay : jami
+DOSKA: KETMA: 0,3 | × 100 | 30%  (3% emas!)
+DOSKA: KETMA: 0,03 | × 100 | 3%
+TEKSH: Lotereya: 100 ta chiptadan 2 tasi yutuqli. Bitta chiptaning yutish ehtimoli? => 2% | 50% | 1% | 20%
+TEKSH: Ehtimol 0,07 bo‘lsa, bu necha foiz? => 7% | 70% | 0,7% | 0,07%
 @xulosa Esda tut
-OVOZ: Birinchi: ehtimol — qulay bo‘lingan jami. Ikkinchi: ehtimol noldan birgacha. Uchinchi: qarama-qarshi hodisa — bir minus ehtimol. To‘rtinchi: teng imkoniyatni tekshiring.
-DOSKA: 1. P = m / n
+OVOZ: Birinchi: ehtimol — qulay holatlar soni, bo‘lingan barcha teng imkoniyatli holatlar soniga. Ikkinchi: ehtimol doim noldan birgacha. Uchinchi: qarama-qarshi hodisaning ehtimoli — bir minus ehtimol. To‘rtinchi: avval imkoniyatlar teng ekanini tekshiring.
+DOSKA: 1. P = qulay : jami
 DOSKA: 2. 0 ≤ P ≤ 1
-DOSKA: 3. 1 − P
+DOSKA: 3. P(emas) = 1 − P
 DOSKA: 4. teng imkoniyatli?
 
 ## t8_ehtimol
 @kirish Ikki kubning yig‘indisi
-OVOZ: Ikkita kubni birga tashlaymiz va chiqqan ochkolarni qo‘shamiz. {pauza} Qaysi yig‘indi eng ko‘p chiqadi — ikkimi, yettimi yoki o‘n ikkimi? Hammasi teng ehtimollimi? {sekin}Yo‘q! Bunda jadval va daraxt yordam beradi. Taxmin qiling.
-DOSKA: ⚀ + ⚀ = 2
-DOSKA: ⚅ + ⚅ = 12
-DOSKA: Qaysi ko‘p? ✋
+OVOZ: {baland}Stol o‘yini! Ikkita kubni birga tashlaymiz va ochkolarni qo‘shamiz. {pauza} Qaysi yig‘indi eng ko‘p chiqadi — ikki, yetti yoki o‘n ikki? Hammasi teng imkoniyatlimi? {sekin}Yo‘q! Bunda jadval, ko‘paytirish qoidasi va daraxt yordam beradi. Avval o‘zingizning taxminingiz qanday?
+DOSKA: RASM: kub:sakra | kub:aylan
+DOSKA: 2 = 1 + 1;   12 = 6 + 6
+DOSKA: Qaysi yig‘indi ko‘p? ✋
 @tushuncha Natijalar jadvali
-OVOZ: [1] Birinchi kub — 6 natija, ikkinchisi — 6. Jami 36 juft. [2] Yig‘indi 2 — faqat bitta juft: bir va bir. Yig‘indi 12 — faqat olti va olti. [3] {sekin}Yig‘indi 7: bir va olti, ikki va besh, uch va to‘rt va ularning teskarisi — 6 juft. [4] Ehtimol — 6 bo‘lingan 36 — 1/6. Yetti — eng ko‘p chiqadigan yig‘indi.
-DOSKA: JADVAL: Yig‘indi | Juftlar ;; 2 | 1 ;; 7 | 6 ;; 12 | 1
-DOSKA: jami 6 · 6 = 36
-DOSKA: P(7) = 6/36 = 1/6
-DOSKA: P(2) = 1/36
-TEKSH: Yig‘indi 3 chiqish ehtimoli? => 2/36 | 1/36 | 3/36 | 6/36
-TEKSH: Yig‘indi 4 chiqish ehtimoli? => 3/36 | 2/36 | 4/36 | 1/36
+OVOZ: [1] Tasavvur qiling: bitta kub qizil, ikkinchisi ko‘k. Qizilda — oltita natija, ko‘kda ham oltita. Birgalikda olti karra olti — o‘ttiz olti teng imkoniyatli juft! [2] Yig‘indi ikki chiqishi uchun faqat bitta yo‘l bor: bir va bir. Ehtimol — bir bo‘lib o‘ttiz olti. [3] {sekin}Yig‘indi yetti-chi? Bir va olti, ikki va besh, uch va to‘rt, to‘rt va uch, besh va ikki, olti va bir. Hammasi olti juft! [4] Yetti uchun ehtimol — olti bo‘lib o‘ttiz olti, ya‘ni bir bo‘lib olti. [5] Yig‘indi o‘n ikki uchun yana faqat bitta juft: olti va olti. Demak, yetti eng ko‘p chiqadigan yig‘indi, ikki va o‘n ikki — eng kam!
+DOSKA: KETMA: 6 · 6 | 36 teng juft
+DOSKA: KETMA: yig‘indi 2 | faqat 1 + 1 | 1/36
+DOSKA: ZANJIR: 1 + 6 | 2 + 5 | 3 + 4 | 4 + 3 | 5 + 2 | 6 + 1
+DOSKA: KETMA: P(7) | 6 : 36 | 1/6
+DOSKA: KETMA: yig‘indi 12 | faqat 6 + 6 | 1/36
+TEKSH: Yig‘indi 3 chiqish ehtimoli qancha? => 2/36 | 1/36 | 3/36 | 6/36
+TEKSH: Yig‘indi 4 chiqish ehtimoli qancha? => 3/36 | 2/36 | 4/36 | 1/36
+TEKSH: Yig‘indi 5 chiqish ehtimoli qancha? => 4/36 | 5/36 | 3/36 | 6/36
 @tushuncha Ko‘paytirish qoidasi: mustaqil hodisalar
-OVOZ: [1] Ikki mustaqil hodisaning ikkalasi ro‘y berish ehtimoli — ehtimollar ko‘paytmasi. [2] Ikki marta tanga tashlaymiz, ikkalasida ham gerb: yarim karra yarim — chorak. [3] {sekin}Kub ikki marta: ikkalasida ham 6: bir bo‘lingan olti karra bir bo‘lingan olti — 1/36. [4] Mustaqil — birinchi natija ikkinchisiga ta’sir qilmaydi.
-DOSKA: P(A va B) = P(A) · P(B)
-DOSKA: 1/2 · 1/2 = 1/4
-DOSKA: 1/6 · 1/6 = 1/36
-DOSKA: mustaqil
-TEKSH: Tanga 3 marta tashlanadi. Hammasida gerb? => 1/8 | 1/6 | 3/8 | 1/3
-TEKSH: Kub va tanga: 5 chiqsa va gerb chiqsa ehtimol? => 1/12 | 1/8 | 1/2 | 1/7
-@tushuncha Daraxt diagrammasi
-OVOZ: [1] Qutida 2 qizil va 3 ko‘k shar. Qaytarmasdan ikkita shar olamiz. [2] Birinchi qizil — 2/5. Keyin qutida 4 shar, 1 qizil: 1/4. [3] {sekin}Ikkalasi qizil: 2/5 karra 1/4 — 2/20 — 1/10. [4] Daraxt har bir shoxda ehtimollarni yozishga yordam beradi. Shoxlar bo‘ylab ko‘paytiramiz, oxirida qo‘shamiz.
-DOSKA: DARAXT: 0,4 | 0,6 / 0,25 | 0,75
-DOSKA: Q: 2/5; K: 3/5
-DOSKA: 2/5 · 1/4 = 1/10
-DOSKA: shoxlar bo‘ylab ×
-TEKSH: Qutida 3 qizil, 2 ko‘k. Qaytarmasdan ikkita ko‘k olish ehtimoli? => 1/10 | 4/25 | 1/5 | 2/5
-TEKSH: Qutida 4 qizil, 4 ko‘k. Qaytarib solib ikki marta qizil olish ehtimoli? => 1/4 | 1/2 | 1/8 | 3/7
+OVOZ: [1] Tanga ikki marta tashlanadi. Birinchi tashlash ikkinchisiga ta‘sir qiladimi? Yo‘q! Bunday hodisalar mustaqil. Kub bilan ham xuddi shunday. [2] Daraxtga qarang: birinchi tashlashda ikkita shox — gerb va raqam. Har biridan yana ikkitadan. Jami to‘rt yo‘l, har birining ehtimoli — yarim karra yarim. [3] {sekin}Ikkalasida ham gerb: yarim karra yarim — chorak. [4] Kub ikki marta tashlansa, ikkalasida ham olti: bir bo‘lib olti karra bir bo‘lib olti — bir bo‘lib o‘ttiz olti. Jadvaldagi natija bilan bir xil! [5] {urgu}Qoida: mustaqil hodisalarning ikkalasi ham ro‘y berish ehtimoli — ehtimollar ko‘paytmasi.
+DOSKA: RASM: tanga:aylan | kub:sakra
+DOSKA: DARAXT: 0,5 | 0,5 / 0,5 | 0,5
+DOSKA: KETMA: gerb va gerb | 1/2 · 1/2 | 1/4
+DOSKA: KETMA: ikkalasi 6 | 1/6 · 1/6 | 1/36
+DOSKA: QOIDA: P(A va B) = P(A) · P(B)
+TEKSH: Tanga 3 marta tashlanadi. Hammasida gerb chiqish ehtimoli? => 1/8 | 1/6 | 3/8 | 1/3
+TEKSH: Kub va tanga birga tashlanadi: kubda 5 va tangada gerb chiqish ehtimoli? => 1/12 | 1/8 | 1/2 | 1/7
+TEKSH: Kub ikki marta tashlanadi. Ikkalasida ham juft son chiqish ehtimoli? => 1/4 | 1/2 | 1/6 | 1/36
+@tushuncha Daraxt diagrammasi: qutidagi sharlar
+OVOZ: [1] Qutida ikkita qizil va uchta ko‘k shar bor. Shar olamiz, ranggini yozamiz va qaytarib solamiz. Keyin yana olamiz. [2] Birinchi shox: qizil — nol butun to‘rt, ko‘k — nol butun olti. Har biridan yana shunday ikkita shox chiqadi: shar qaytarib solindi, qutidagi sharlar o‘zgarmadi. [3] {sekin}Ikkalasi qizil: nol butun to‘rt karra nol butun to‘rt — nol butun o‘n olti. [4] Bitta qizil va bitta ko‘k: ikki yo‘l bor — qizil-ko‘k va ko‘k-qizil. Ularni qo‘shamiz: nol butun yigirma to‘rt plus nol butun yigirma to‘rt — nol butun qirq sakkiz. [5] {urgu}Endi shar qaytarib solinmasin! Birinchisi qizil — ikki bo‘lib besh. Qutida to‘rtta shar, bitta qizil qoldi: ikkinchisi qizil — bir bo‘lib to‘rt. Ikki bo‘lib besh karra bir bo‘lib to‘rt — bir bo‘lib o‘n. [6] Qoida: shoxlar bo‘ylab ko‘paytiramiz, oxirida yo‘llarni qo‘shamiz.
+DOSKA: RASM: quti:kel | shar:sakra
+DOSKA: DARAXT: 0,4 | 0,6 / 0,4 | 0,6
+DOSKA: KETMA: qizil, qizil | 0,4 · 0,4 | 0,16
+DOSKA: KETMA: bitta qizil, bitta ko‘k | 0,4 · 0,6 + 0,6 · 0,4 | 0,48
+DOSKA: ZANJIR: 1-shar qizil: 2/5 | 2-shar qizil: 1/4 | 2/5 · 1/4 = 1/10
+DOSKA: BELGILA: shoxlar bo‘ylab ×, yo‘llar bo‘yicha + | ramka
+TEKSH: Qutida 4 qizil va 2 ko‘k shar bor. Qaytarmasdan ikkita qizil shar olish ehtimoli? => 2/5 | 4/9 | 1/3 | 2/3
+TEKSH: Qutida 4 qizil va 4 ko‘k shar bor. Qaytarib solib, ikki marta qizil shar olish ehtimoli? => 1/4 | 1/2 | 1/8 | 3/7
 @tushuncha Xato tuzog‘i
-OVOZ: [1] Xato: ikki kubning yig‘indilarini teng imkoniyatli deb o‘ylash: 2 dan 12 gacha 11 ta natija, demak 1/11. [2] {urgu}Yig‘indilar teng ehtimolli emas! Teng imkoniyatli — juftlar. [3] Ikkinchi xato: qaytarmasdan olganda maxrajni o‘zgartirmaslik.
-DOSKA: ❌ yig‘indi 2..12 → 11 natija → 1/11
-DOSKA: ✅ 36 teng juft
-DOSKA: qaytarmasdan: maxraj kamayadi
-DOSKA: 2/5 · 1/4, 2/5 · 2/5 emas
-TEKSH: Qutida 1 qizil, 4 ko‘k. Qaytarmasdan 2 ta olinganda ikkalasi ko‘k: to‘g‘ri hisob? => 4/5 · 3/4 = 3/5 | 4/5 · 4/5 = 16/25 | 4/5 · 1/4 | 4/5 + 3/4
+OVOZ: [1] Birinchi xato: ikki kubning yig‘indilari teng imkoniyatli deb o‘ylash. Yig‘indilar ikkidan o‘n ikkigacha — o‘n bitta, demak, har biri bir bo‘lib o‘n bir, deb. [2] {urgu}Yo‘q! Yig‘indilar teng ehtimolli emas: ikki bitta yo‘l bilan chiqadi, yetti — oltita yo‘l bilan. Teng imkoniyatli — o‘ttiz olti juftning har biri. [3] Ikkinchi xato: shar qaytarilmasa, maxrajni o‘zgartirmaslik. Birinchi shardan keyin qutida bitta shar kam qoladi! [4] Bir bo‘lib to‘rt, ikki bo‘lib besh karra ikki bo‘lib besh emas — chunki qutida endi besh emas, to‘rtta shar.
+DOSKA: ❌ yig‘indi 2…12 → 11 ta → 1/11
+DOSKA: ✅ teng imkoniyatli — 36 ta juft
+DOSKA: qaytarmasdan: maxraj bittaga kamayadi
+DOSKA: ❌ 2/5 · 2/5   ✅ 2/5 · 1/4
+TEKSH: Qutida 1 qizil va 4 ko‘k shar bor. Qaytarmasdan olingan ikkita sharning ikkalasi ko‘k bo‘lishi uchun to‘g‘ri hisob qaysi? => 4/5 · 3/4 = 3/5 | 4/5 · 4/5 = 16/25 | 4/5 · 1/4 | 4/5 + 3/4
 @xulosa Esda tut
-OVOZ: Birinchi: teng imkoniyatli natijalarni toping. Ikkinchi: mustaqil hodisalarda ehtimollar ko‘paytiriladi. Uchinchi: qaytarmasdan olishda maxraj kamayadi. To‘rtinchi: daraxt diagrammasi shoxlarni tartibga soladi.
+OVOZ: Birinchi: teng imkoniyatli natijalarni toping — ikki kubda o‘ttiz olti juft. Ikkinchi: mustaqil hodisalarda ehtimollar ko‘paytiriladi. Uchinchi: qaytarmasdan olishda maxraj bittaga kamayadi. To‘rtinchi: daraxt diagrammasi yo‘llarni tartibga soladi.
 DOSKA: 1. teng imkoniyat
 DOSKA: 2. P(A va B) = P(A)·P(B)
 DOSKA: 3. qaytarmasdan: maxraj −1
