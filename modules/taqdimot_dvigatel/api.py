@@ -19,7 +19,7 @@ from fastapi import Header, HTTPException, Request
 from fastapi.responses import Response
 from starlette.concurrency import run_in_threadpool
 
-from . import ai, excel, kutubxona, rasmlar, sxema, uslub, yasash
+from . import ai, excel, kutubxona, rasmlar, sozlamalar, sxema, uslub, yasash
 
 PREFIX = "/api/taqdimot-dvigatel"
 NO_STORE = {"Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff"}
@@ -168,7 +168,8 @@ class Dvigatel:
         dz = body.get("dizayn") if isinstance(body.get("dizayn"), dict) else None
         if dz:
             dz = {k: v for k, v in dz.items() if k in ("sarlavha", "kart", "titul", "bolim") and isinstance(v, (str, int)) and len(str(v)) <= 12}
-        return dict(seed=seed, uslub_kod=kod, anim=anim, oila=oila, palitra=pal, bolim_titul=bt, rasm_avto=ra, anim2=a2, dizayn=dz or None)
+        return dict(seed=seed, uslub_kod=kod, anim=anim, oila=oila, palitra=pal, bolim_titul=bt, rasm_avto=ra, anim2=a2, dizayn=dz or None,
+                    sozlama=sozlamalar.toza(body.get("sozlama")) or None)
 
     def yasa(self, body):
         p = self.parametrlar(body)
@@ -335,6 +336,9 @@ class Dvigatel:
         if isinstance(k.get("dizayn"), dict):
             out["dizayn"] = {a: v for a, v in k["dizayn"].items() if a in ("sarlavha", "kart", "titul", "bolim")
                              and isinstance(v, (str, int)) and len(str(v)) <= 12}
+        z = sozlamalar.toza(k.get("sozlama"))
+        if z:
+            out["sozlama"] = z
         return out
 
     def korinish_saqla(self, uid, ish, body):
@@ -484,14 +488,16 @@ def register_taqdimot_dvigatel(app, platform):
             oilalar.append({"kod": o, "nom": od["nom"], "turi": od["turi"], "palitralar": pals})
         from . import bloklar_joy
         return Response(json.dumps({"oilalar": oilalar, "animatsiyalar": [{"kod": k, "nom": v["nom"]} for k, v in uslub.ANIMATSIYALAR.items()],
-                                    "dizaynlar": bloklar_joy.dizayn_royxati(),
+                                    "dizaynlar": bloklar_joy.dizayn_royxati(), "sozlamalar": sozlamalar.KATALOG,
                                     "jami": uslub.uslublar_soni(), "ai": ai.mavjud()}, ensure_ascii=False),
                         media_type="application/json", headers=NO_STORE)
 
     @app.get(PREFIX + "/fon/{kod}.jpg")
     def fon(kod: str):
         asos, _, motif = kod.partition("~")
-        if not UVKOD.match(asos) or (motif and not re.match(r"^[a-z0-9_]{2,40}$", motif)):
+        asos, *qism = asos.split("!")
+        if not UVKOD.match(asos) or len(qism) > 2 or any(not re.fullmatch(r"[a-z]{3,10}|r[0-9a-f]{6}", q) for q in qism) \
+                or (motif and not re.match(r"^[a-z0-9_]{2,40}$", motif)):
             fail("Topilmadi", 404)
         return Response(uslub.fon_rasm(kod), media_type="image/jpeg", headers={"Cache-Control": "public, max-age=604800, immutable"})
 

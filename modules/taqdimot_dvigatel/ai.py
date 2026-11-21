@@ -156,9 +156,17 @@ bakalavr — ta’rif, isbot g‘oyasi, metodika (boshlang‘ich sinfda qanday o
 """
 
 
-HAJM = {"qisqa": "QISQA: slaydda 1–2 jumla yoki 3–4 punkt; izoh 2–3 jumla.",
-        "orta": "O‘RTA: slaydda 2–3 jumla yoki 4–5 punkt; izoh 3–5 jumla.",
-        "batafsil": "BATAFSIL: slaydda 3–4 jumla yoki 5–6 punkt; izoh 5–8 jumla; har tushunchaga misol."}
+HAJM = {"qisqa": "QISQA: slaydda 1–2 jumla yoki 3–4 punkt (taxminan 20–40 so‘z); izoh 2–3 jumla.",
+        "orta": "O‘RTA: slaydda 2–3 jumla yoki 4–5 punkt (taxminan 40–70 so‘z); izoh 3–5 jumla.",
+        "batafsil": "BATAFSIL: slaydda 3–4 jumla yoki 5–6 punkt (taxminan 70–110 so‘z); izoh 5–8 jumla; har tushunchaga misol.",
+        "toliq": "TO‘LIQ: slayd mazmunga to‘la — har slaydda 2–3 element (ta’rif + izoh + misol yoki jadval), taxminan 110–160 so‘z; "
+                 "nazariya, dalil va misol birga; izoh 6–10 jumla."}
+MISOLLAR = {"kam": "MISOLLAR: kam — faqat eng muhim tushunchalarga bittadan misol.",
+            "orta": "",
+            "kop": "MISOLLAR: ko‘p — har tushunchaga kamida bitta yechimli misol, qo‘shimcha hayotiy misollar va mashqlar."}
+QISM_NOMI = {"takrorlash": "takrorlash (o‘tgan mavzu savollari)", "muammo": "muammoli vaziyat", "tarix": "tarixiy ma’lumot",
+             "xatolar": "ko‘p uchraydigan xatolar", "metodika": "metodika", "xulosa": "xulosa", "test": "test",
+             "yakun": "nazorat savollari, mustaqil ish va keyingi mavzu", "adabiyot": "adabiyotlar"}
 TIL = {"uz": "O‘zbek tili (lotin yozuvi)", "ru": "Rus tili (barcha matnlar ruscha; kalitlar o‘zgarmaydi)",
        "en": "Ingliz tili (barcha matnlar inglizcha; kalitlar o‘zgarmaydi)"}
 OHANG = {"ilmiy": "ILMIY: aniq atamalar, ta’rif manbasi (muallif, yil), mantiqiy dalil.",
@@ -172,10 +180,18 @@ def sozlama_toza(z: dict | None) -> dict:
         n = int(z.get("slayd_soni") or 0)
     except (TypeError, ValueError):
         n = 0
-    return {"slayd_soni": max(6, min(40, n)) if n else 0,
+    try:
+        ts = int(z.get("test_soni")) if z.get("test_soni") not in (None, "") else None
+    except (TypeError, ValueError):
+        ts = None
+    q = z.get("qismlar") if isinstance(z.get("qismlar"), dict) else {}
+    return {"slayd_soni": max(5, min(40, n)) if n else 0,
             "hajm": z.get("hajm") if z.get("hajm") in HAJM else "orta",
             "til": z.get("til") if z.get("til") in TIL else "uz",
-            "ohang": z.get("ohang") if z.get("ohang") in OHANG else ""}
+            "ohang": z.get("ohang") if z.get("ohang") in OHANG else "",
+            "misollar": z.get("misollar") if z.get("misollar") in MISOLLAR else "orta",
+            "test_soni": max(0, min(20, ts)) if ts is not None else None,
+            "qismlar": {k: False for k in sorted(q) if k in QISM_NOMI and q[k] is False}}
 
 
 def _sozlama_matni(z: dict, daraja: str = "") -> str:
@@ -184,6 +200,12 @@ def _sozlama_matni(z: dict, daraja: str = "") -> str:
     s = f"TIL: {TIL[z['til']]}.\nMATN HAJMI: {HAJM[z['hajm']]}\nOHANG: {OHANG[ohang]}\n"
     if z["til"] != "uz":
         s += _til_buyrugi(z["til"]) + "\n"
+    if MISOLLAR[z["misollar"]]:
+        s += MISOLLAR[z["misollar"]] + "\n"
+    if z["test_soni"] is not None:
+        s += (f"TEST: {z['test_soni']} ta savol (har birida 4 variant).\n" if z["test_soni"] else "TEST: yozma (test bo‘sh ro‘yxat).\n")
+    if z["qismlar"]:
+        s += "YOZMA (foydalanuvchi o‘chirgan qismlar — bo‘sh qoldir): " + ", ".join(QISM_NOMI[k] for k in z["qismlar"]) + ".\n"
     if z["slayd_soni"]:
         b = max(2, min(6, round(z["slayd_soni"] / 5)))
         s += (f"SLAYDLAR SONI: bo‘limlardagi mazmun slaydlari jami {z['slayd_soni']} ta (± 1) — {b} ta bo‘lim, har bo‘limda "

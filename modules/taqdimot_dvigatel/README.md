@@ -58,6 +58,16 @@ AI faqat mazmunni yozadi; dizayn, chizmalar va animatsiyani shu dvigatel qiladi.
 - Yorug‘ uslublarda taqdimotlarning bir qismida slayd mazmuni oq «sahifa-karta» ichida turadi (`dizayn.sahifa`).
 - Ta’rif/qoida kartalari har slaydda boshqacha: karta, chap chiziqli, rangli blok, yopishqoq qog‘oz (`k.karta_v`).
 
+## Foydalanuvchi sozlamalari (`sozlamalar.py`)
+- `yasa(..., sozlama={...})` va API'da `/yasash`, `/pptx` so‘rovida `"sozlama"`: asosiy rang, matn rangi, fon, fon bezagi,
+  sarlavha/matn shrifti (12 ta PowerPoint shrifti, kenglik koeffitsiyenti bilan), sarlavha/matn o‘lchami, ramka (6 xil),
+  sahifa-karta, karta va ro‘yxat ko‘rinishi, pastki panel, muallif yozuvi, animatsiya tezligi, chiqish tartibi,
+  slayd almashishi, qaysi qismlar bo‘lsin. `GET /uslublar` → `sozlamalar` (sayt oynasi shu katalogdan chiziladi).
+- Shrift/o‘lcham almashtirish `olchov.sozlama_qoy()` orqali faqat o‘sha yasash oqimida amal qiladi; sozlamasiz natija o‘zgarmaydi.
+- Fon kodi almashtirishlarni o‘zida tashiydi: `anor.anor.1!qogoz!rc2185b~motif`.
+- AI uchun (`/ai` → `sozlama`): slayd soni 5–40, matn hajmi (qisqa / o‘rta / batafsil / to‘liq, so‘z oralig‘i bilan),
+  misollar miqdori, test savollari soni, o‘chirilgan qismlar.
+
 ## Aqlli ro‘yxatlar (`bloklar_royxat.py`)
 - `xossalar` (va punktli `matn`) 8 xil tuzilishda chiziladi: `kartalar`, `ikonli`, `raqamli`, `zinapoya`, `piramida`,
   `vaqt`, `sikl`, `strelka`. AI elementga `"korinish"` yozishi mumkin; sig‘masa yoki yozilmasa — mos nomzodlardan

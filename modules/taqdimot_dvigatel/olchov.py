@@ -6,6 +6,7 @@ chiqadi. Server shrift fayllarini yuklamaydi: faqat kichik kengliklar jadvali (m
 """
 from __future__ import annotations
 
+import contextvars
 import json
 import os
 import re
@@ -18,7 +19,58 @@ SHRIFTLAR = {
     "sans": ("Calibri", "sans"),
     "serif": ("Cambria", "serif"),
     "math": ("Cambria Math", "serif"),
+    "head": ("Calibri", "sans"),
 }
+
+# Foydalanuvchi tanlay oladigan shriftlar: kod → (nom, PowerPoint shrifti, metrika, kenglik koeffitsiyenti, CSS).
+# Koeffitsiyent — Calibri/Cambria metrikasiga nisbatan o'rtacha kenglik (Liberation/DejaVu bilan o'lchangan, biroz zaxira bilan):
+# kengroq shriftda matn joyga sig'ishi uchun dvigatel oldindan kichikroq o'lcham tanlaydi.
+SHRIFT_KATALOG = {
+    "calibri": ("Calibri", "Calibri", "sans", 1.0, "Calibri, Carlito, 'Segoe UI', Arial, sans-serif"),
+    "arial": ("Arial", "Arial", "sans", 1.12, "Arial, 'Liberation Sans', Helvetica, sans-serif"),
+    "segoe": ("Segoe UI", "Segoe UI", "sans", 1.09, "'Segoe UI', 'Noto Sans', 'Helvetica Neue', Arial, sans-serif"),
+    "tahoma": ("Tahoma", "Tahoma", "sans", 1.09, "Tahoma, 'DejaVu Sans', Verdana, sans-serif"),
+    "trebuchet": ("Trebuchet MS", "Trebuchet MS", "sans", 1.09, "'Trebuchet MS', 'Lucida Grande', Arial, sans-serif"),
+    "verdana": ("Verdana", "Verdana", "sans", 1.31, "Verdana, 'DejaVu Sans', sans-serif"),
+    "century": ("Century Gothic", "Century Gothic", "sans", 1.27, "'Century Gothic', 'URW Gothic', 'Avant Garde', sans-serif"),
+    "cambria": ("Cambria", "Cambria", "serif", 1.0, "Cambria, Caladea, Georgia, 'Times New Roman', serif"),
+    "times": ("Times New Roman", "Times New Roman", "serif", 1.0, "'Times New Roman', 'Liberation Serif', Times, serif"),
+    "georgia": ("Georgia", "Georgia", "serif", 1.13, "Georgia, 'DejaVu Serif', serif"),
+    "palatino": ("Palatino Linotype", "Palatino Linotype", "serif", 1.05, "'Palatino Linotype', Palatino, 'Book Antiqua', serif"),
+    "garamond": ("Garamond", "Garamond", "serif", 0.97, "Garamond, 'EB Garamond', 'Times New Roman', serif"),
+}
+
+# Bitta taqdimot yasalayotganda amal qiladigan almashtirishlar (har oqimda alohida — bir vaqtda bir nechta so'rov aralashmaydi)
+_XARITA = contextvars.ContextVar("taqdimot_shrift_xaritasi", default=None)   # {"sans": "arial", "head": "georgia", ...}
+_OLCHAM = contextvars.ContextVar("taqdimot_olcham", default=None)            # {"head": 1.12, "matn": 0.9}
+
+
+def sozlama_qoy(xarita=None, olcham=None):
+    """Shrift va o'lcham almashtirishini yoqadi; qaytgan belgini sozlama_qaytar() ga bering."""
+    return _XARITA.set(xarita or None), _OLCHAM.set(olcham or None)
+
+
+def sozlama_qaytar(belgi):
+    _XARITA.reset(belgi[0])
+    _OLCHAM.reset(belgi[1])
+
+
+def shrift(font: str):
+    """Mantiqiy shrift → (PowerPoint shrifti, metrika kaliti, kenglik koeffitsiyenti)."""
+    x = _XARITA.get()
+    if x and x.get(font) in SHRIFT_KATALOG:
+        k = SHRIFT_KATALOG[x[font]]
+        return k[1], k[2], k[3]
+    face, met = SHRIFTLAR.get(font, SHRIFTLAR["sans"])
+    return face, met, 1.0
+
+
+def olcham_k(font: str, size: float) -> float:
+    """Sarlavha/matn o'lchami koeffitsiyenti (pastki panel kabi mayda yozuvlar o'zgarmaydi)."""
+    o = _OLCHAM.get()
+    if not o or size < 13 or size >= 56:  # mayda yozuvlar va bezak belgilar (katta qo'shtirnoq, raqam) o'zgarmaydi
+        return 1.0
+    return o.get("head" if font == "head" else "matn", 1.0)
 
 
 @lru_cache(maxsize=1)
@@ -45,13 +97,14 @@ def _zaxira(cp):
 
 def kenglik(matn: str, font: str = "sans", bold: bool = False, size: float = 16.0) -> float:
     """Matn kengligi (px)."""
-    kalit = SHRIFTLAR.get(font, SHRIFTLAR["sans"])[1] + ("_b" if bold else "")
+    _face, met, kf = shrift(font)
+    kalit = met + ("_b" if bold else "")
     w, _avg, _a, _d = _jadval()[kalit]
     jami = 0
     for ch in matn:
         cp = ord(ch)
         jami += w.get(cp) or _zaxira(cp)
-    return jami * size / 1000.0
+    return jami * size * kf / 1000.0
 
 
 # ---------------------------------------------------------------- run (yugurik) belgilash

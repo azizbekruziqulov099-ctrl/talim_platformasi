@@ -24,7 +24,8 @@ def pps_qur(matn, size=18, font="sans", color="#222222", bold=False, italic=Fals
         q = qator
         if q.startswith("• "):
             b, q = "•", q[2:]
-        asos = {"sz": size, "f": font, "c": color}
+        kf = olchov.olcham_k(font, size)
+        asos = {"sz": size if kf == 1.0 else round(size * kf, 2), "f": font, "c": color}
         if bold:
             asos["b"] = 1
         if italic:
@@ -143,7 +144,7 @@ class Slayd:
         return self._qosh(el, a, lnk, nm)
 
     def olcham(self, matn, size=18, font="sans", bold=False):
-        return olchov.kenglik(matn, font, bold, size)
+        return olchov.kenglik(matn, font, bold, size * olchov.olcham_k(font, size))
 
     def json(self):
         return {"fon": self.fon, "els": self.els, "otish": self.otish, "izoh": self.izoh, "qadam": self.qadam_soni, "bolim": self.bolim}

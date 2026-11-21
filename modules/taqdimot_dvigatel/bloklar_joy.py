@@ -202,6 +202,9 @@ def sahifa_kartasi(k):
 
 def karta_korinishi(k, els):
     """Slayddagi yorliqli kartalar ko'rinishi: karta, chiziq, blok, qog'oz — taqdimot bo'yi aylanib turadi."""
+    fix = ((k.deck.get("_soz") or {}).get("karta"))
+    if fix and not (fix == "qogoz" and k.u.qorongi):
+        return fix
     c = ["karta", "karta", "chiziq", "blok"]
     if not k.u.qorongi and all(e["tur"] in SODDA | {"eslatma"} for e in els) and len(els) <= 2:
         c.append("qogoz")

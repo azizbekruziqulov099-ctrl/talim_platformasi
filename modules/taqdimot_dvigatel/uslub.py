@@ -337,9 +337,17 @@ def fon_rasm(kod: str) -> bytes:
     """Uslub kodi bo'yicha 1280×720 JPEG fon. kod = "oila.palitra.v" yoki "oila.palitra.v~motif" (fan bezagi bilan)."""
     from PIL import Image, ImageDraw, ImageFilter
     kod, _, motif = kod.partition("~")
-    u = Uslub(kod)
+    from .sozlamalar import fon_kodini_och
+    asos, fon, rang = fon_kodini_och(kod)   # foydalanuvchi sozlamasi: !fonturi, !rRRGGBB
+    u = Uslub(asos)
+    if fon:
+        u.fon_turi = fon
+    if rang:
+        if u.glow == u.acc[0]:
+            u.glow = rang
+        u.acc[0] = rang
     W, H = 1280, 720
-    rng = random.Random(kod)
+    rng = random.Random(asos)
     t = u.fon_turi
     a0, a1, a2 = u.acc[0], u.acc[1], u.acc[2]
     if t == "aurora":

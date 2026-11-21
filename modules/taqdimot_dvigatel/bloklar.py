@@ -136,9 +136,16 @@ def pastki(k: K):
     """Pastki navigatsiya: bo'lim nuqtalari, bo'lim nomi, menyu, oldingi/keyingi, sanoq."""
     u, nav = k.u, k.nav
     y = 672
-    secs = nav.get("sections") or []
+    soz = (getattr(k, "deck", None) or {}).get("_soz") or {}
+    rejim = soz.get("pastki", "")
+    if rejim == "yoq":
+        return
+    muallif = soz.get("muallif") or ""
+    secs = (nav.get("sections") or []) if rejim != "raqam" else []
     cur = nav.get("sec", -1)
     x = M
+    if muallif:
+        k.s.matn(W - M - 168 - 16 - 380, y + 2, 380, 18, muallif, size=11.5, color=u.muted, align="r", min_scale=0.6)
     for i, (nom, first) in enumerate(secs):
         on = i == cur
         k.s.doira(x + 11, y + 11, 11, fill=u.acc[0] if on else None, line=u.acc[0] if on else u.muted, lw=1.2, lnk=first, nm=f"!!dot{i}",
@@ -146,7 +153,7 @@ def pastki(k: K):
         k.s.matn(x, y, 22, 22, str(i + 1), size=10.5, bold=True, color=u.matn_ustida(u.acc[0]) if on else u.muted, align="c", va="m", lnk=first)
         x += 28
     if 0 <= cur < len(secs):
-        k.s.matn(x + 6, y + 2, 360, 18, secs[cur][0], size=11.5, color=u.muted, min_scale=0.7)
+        k.s.matn(x + 6, y + 2, 360 if not muallif else 300, 18, secs[cur][0], size=11.5, color=u.muted, min_scale=0.7)
     bx = W - M - 168
     fill, op = ("#FFFFFF", 0.75) if not u.qorongi else ("#FFFFFF", 0.1)
     k.s.rect(bx, y - 2, 168, 26, fill=fill, op=op, line=u.muted if not u.qorongi else None, lw=0.6, r=13, nm="!!navbar")

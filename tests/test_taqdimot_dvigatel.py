@@ -315,3 +315,45 @@ def test_aqlli_royxat_korinishlari():
         el["k"] == "text" and any(r["t"] == "piramida" for p in el["pp"] for r in p["rs"]) for el in x["els"])]
     assert pir and sum(el["k"] == "path" for el in pir[0]["els"]) >= 4
     assert yasash.pptx(s)[:2] == b"PK"
+
+
+def test_foydalanuvchi_sozlamalari():
+    from modules.taqdimot_dvigatel import sozlamalar, olchov
+    z = sozlamalar.toza({"ramka": "burchak", "fon": "qogoz", "asosiy_rang": "#c2185b", "matn_rangi": "#zzzzzz", "shrift_sarlavha": "georgia",
+                         "shrift_matn": "segoe", "olcham_matn": "katta", "chiqish": "birga", "otish": "push", "muallif": "  A.  R. ",
+                         "qismlar": {"reja": False, "test": False, "nomalum": False}, "royxat": "zinapoya", "xato": "x", "pastki": "raqam"})
+    assert z["asosiy_rang"] == "#C2185B" and "matn_rangi" not in z and "xato" not in z and z["muallif"] == "A. R."
+    assert z["qismlar"] == {"reja": False, "test": False}
+    m = json.load(open(os.path.join(os.path.dirname(yasash.__file__), "namuna_ratsional.json")))
+    oddiy = yasash.yasa(m, seed=5)
+    s = yasash.yasa(m, seed=5, sozlama=z)
+    assert [x["blok"] for x in oddiy["slaydlar"]].count("reja") == 1 and "reja" not in [x["blok"] for x in s["slaydlar"]]
+    assert "test" not in [x["blok"] for x in s["slaydlar"]] and s["meta"]["muallif"] == "A. R."
+    assert all(any(el.get("nm") == "!!ramka" for el in x["els"]) for x in s["slaydlar"])
+    assert all(x["qadam"] == 0 and x["otish"] == "push" for x in s["slaydlar"])
+    assert s["shriftlar"]["head"]["face"] == "Georgia" and s["shriftlar"]["sans"]["face"] == "Segoe UI"
+    assert "!qogoz" in s["slaydlar"][0]["fon"]["src"] and "!rc2185b" in s["slaydlar"][0]["fon"]["src"]
+    assert uslub.fon_rasm(s["slaydlar"][0]["fon"]["src"][4:])[:2] == b"\xff\xd8"
+    for x in s["slaydlar"]:
+        for el in x["els"]:
+            if el["k"] == "text":
+                assert el["fit"]
+    data = yasash.pptx(s)
+    xml = b"".join(zipfile.ZipFile(io.BytesIO(data)).read(n) for n in zipfile.ZipFile(io.BytesIO(data)).namelist() if n.startswith("ppt/slides/slide"))
+    assert b'typeface="Georgia"' in xml and b'typeface="Segoe UI"' in xml and b"<p:push" in xml
+    # o'qilmaydigan rang (sariq yorug' fonda) to'qlashtiriladi va ogohlantiriladi
+    s2 = yasash.yasa(m, seed=5, uslub_kod="anor.anor.0", sozlama={"asosiy_rang": "#FFF200", "matn_rangi": "#FAFAFA", "fon": "stars"})
+    assert s2["uslub"]["acc"][0] != "#FFF200" and len(s2["ogohlantirish"]) == 3
+    # sozlamasiz natija avvalgidek: shrift almashtirish oqimdan tashqariga chiqmaydi
+    assert olchov.shrift("sans") == ("Calibri", "sans", 1.0) and olchov.olcham_k("sans", 20) == 1.0
+    assert api.Dvigatel._korinish_toza({"seed": 3, "sozlama": {"ramka": "qalin", "x": 1}})["sozlama"] == {"ramka": "qalin"}
+
+
+def test_ai_mazmun_sozlamalari():
+    from modules.taqdimot_dvigatel import ai
+    z = ai.sozlama_toza({"slayd_soni": 5, "hajm": "toliq", "misollar": "kop", "test_soni": "8", "qismlar": {"tarix": False, "reja": False}})
+    assert z["slayd_soni"] == 5 and z["test_soni"] == 8 and z["qismlar"] == {"tarix": False}
+    t = ai._sozlama_matni(z, "bakalavr")
+    assert "110–160 so‘z" in t and "MISOLLAR: ko‘p" in t and "TEST: 8 ta" in t and "tarixiy ma’lumot" in t
+    assert "TEST: yozma" in ai._sozlama_matni({"test_soni": 0})
+    assert ai.sozlama_toza({})["test_soni"] is None and "TEST" not in ai._sozlama_matni({})

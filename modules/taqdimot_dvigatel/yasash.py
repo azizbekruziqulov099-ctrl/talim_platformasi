@@ -10,7 +10,7 @@ import copy
 import random
 
 from . import bloklar as B
-from . import rasmlar, sxema, uslub
+from . import olchov, rasmlar, sozlamalar, sxema, uslub
 from .sahna import Slayd
 
 
@@ -32,7 +32,7 @@ def _notes_el(e):
     return "\n".join(parts).replace("**", "").replace("==", "")
 
 
-def reja_tuz(m: dict, rng: random.Random, bolim_titul=None):
+def reja_tuz(m: dict, rng: random.Random, bolim_titul=None, reja_bor=True):
     """Slaydlar ro'yxati: [{"blok", "d", "sec"}]."""
     meta = m["meta"]
     plan = []
@@ -83,7 +83,7 @@ def reja_tuz(m: dict, rng: random.Random, bolim_titul=None):
         total = sum(len(s[3]) for s in sections)
         bolim_titul = len(sections) <= 5 and total <= 22 and rng.random() < 0.55
     reja_i = None
-    if len(sections) >= 2:
+    if len(sections) >= 2 and reja_bor:
         reja_i = len(plan)
         plan.append({"blok": "reja", "d": {}, "sec": -1})
     for si, (nom, belgi, izoh, items) in enumerate(sections):
@@ -97,8 +97,17 @@ def reja_tuz(m: dict, rng: random.Random, bolim_titul=None):
 
 def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim: str | None = None, oila: str | None = None,
          palitra: str | None = None, bolim_titul: bool | None = None, rasm_bor=None, rasm_avto: bool = True, dizayn: dict | None = None,
-         anim2: str | None = None):
+         anim2: str | None = None, sozlama: dict | None = None):
+    """sozlama — foydalanuvchi sozlamalari (sozlamalar.KATALOG): rang, fon, shrift, o'lcham, ramka, animatsiya, qismlar."""
+    z = sozlamalar.toza(sozlama)
     m = sxema.normallashtir(miya)
+    sozlamalar.miyadan_olib_tashla(m, z)
+    if z.get("muallif"):
+        m["meta"]["muallif"] = z["muallif"]
+    return _yasa(m, seed, uslub_kod, anim, oila, palitra, bolim_titul, rasm_bor, rasm_avto, dizayn, anim2, z)
+
+
+def _yasa(m, seed, uslub_kod, anim, oila, palitra, bolim_titul, rasm_bor, rasm_avto, dizayn, anim2, z):
     from . import rasm_tanla
     try:
         rasm_hisobot = rasm_tanla.boyit(m, avto=rasm_avto)
@@ -121,7 +130,17 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
         anim2 = rng_a.choice([a for a in uslub.TINCH_ANIMATSIYALAR if a != u.anim_nom]) if anim not in uslub.ANIMATSIYALAR else None
     elif anim2 not in uslub.ANIMATSIYALAR or anim2 == u.anim_nom:
         anim2 = None
-    plan, sections, reja_i = reja_tuz(m, rng, bolim_titul)
+    ogohlantirish = sozlamalar.uslubga(u, z)
+    xarita, olcham, shriftlar = sozlamalar.shrift_sozlamasi(u, z)
+    belgi = olchov.sozlama_qoy(xarita, olcham)
+    try:
+        return _qur(m, seed, u, rng, rng_a, anim, anim2, bolim_titul, rasm_bor, dizayn, z, rasm_hisobot, ogohlantirish, shriftlar)
+    finally:
+        olchov.sozlama_qaytar(belgi)
+
+
+def _qur(m, seed, u, rng, rng_a, anim, anim2, bolim_titul, rasm_bor, dizayn, z, rasm_hisobot, ogohlantirish, shriftlar):
+    plan, sections, reja_i = reja_tuz(m, rng, bolim_titul, reja_bor=sozlamalar.qism_bormi(z, "reja"))
     total = len(plan)
     # bo'limlarning birinchi/oxirgi slaydi
     sec_rng = {}
@@ -134,11 +153,16 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
     rb = rasm_bor or rasmlar.bor
     from . import bloklar_joy, tarjima
     tr = tarjima.tarjimon((m.get("meta") or {}).get("til"))
-    deck = bloklar_joy.dnk(random.Random(seed * 7 + 3), u, dizayn)
+    dz = dict(dizayn or {})
+    if z.get("sahifa"):
+        dz["sahifa"] = z["sahifa"]
+    deck = bloklar_joy.dnk(random.Random(seed * 7 + 3), u, dz)
     deck_json = dict(deck)
+    deck["_soz"] = z
     slides = []
     mot = uslub.motiflar(m["meta"].get("fan") or "")
-    fon = {"src": "fon:" + u.kod + (("~" + rng.choice(mot)) if mot else "")}
+    motif = rng.choice(mot) if mot else ""   # tasodif oqimi bezak o'chirilganda ham bir xil qolsin
+    fon = {"src": "fon:" + sozlamalar.fon_kodi(u, z) + (("~" + motif) if motif and z.get("bezak") != "yoq" else "")}
     for i, p in enumerate(plan):
         # Morph o'xshash shakllarni o'zi juftlab, yozuvlarni slayddan slaydga uchirib yuboradi (xunuk) — faqat yumshoq fade
         s = Slayd(fon=fon, otish="fade")
@@ -164,6 +188,8 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
             from . import bloklar_joy as _bj
             _bj.sahifa_kartasi(k)
         B.BLOKLAR[blok](k, d)
+        if z.get("ramka"):
+            sozlamalar.ramka_chiz(s, u, z["ramka"])
         s.bolim = si
         # o'qituvchi izohi (Notes)
         izoh = ""
@@ -182,11 +208,16 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
         sd = s.json()
         sd["qorongi"] = u.qorongi
         sd["blok"] = blok
+        sozlamalar.slaydga(sd, z)
         slides.append(sd)
-    return {
+    out = {
         "sxema": "taqdimot-sahna/1", "w": 1280, "h": 720, "seed": seed, "uslub": u.json(), "meta": m["meta"],
         "slaydlar": slides, "miya": m, "rasm_hisobot": rasm_hisobot, "dizayn": dict(deck_json, anim2=anim2),
+        "sozlama": z, "ogohlantirish": ogohlantirish,
     }
+    if shriftlar:
+        out["shriftlar"] = shriftlar
+    return out
 
 
 def pptx(sahna: dict) -> bytes:

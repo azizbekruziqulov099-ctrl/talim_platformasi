@@ -83,6 +83,9 @@ def punktlar(matn: str):
 def tanla(k, e, w, h) -> str:
     c = nomzodlar(e, w, h)
     xohish = (e.get("korinish") or "").strip().lower()
+    fix = (k.deck.get("_soz") or {}).get("royxat")
+    if fix in c:  # foydalanuvchi sozlamasi — sig'adigan joyda hamma ro'yxat shu ko'rinishda
+        return fix
     if xohish in c:
         return xohish
     holat = k.deck.setdefault("_royxat", {"oxirgi": None, "sanoq": {}})

@@ -6,6 +6,7 @@ chiqadi), reja kartalari va pastki nuqtalar giperhavola, sarlavhalar slayddan sl
 """
 from __future__ import annotations
 
+import contextvars
 import io
 from xml.sax.saxutils import escape
 
@@ -75,9 +76,12 @@ def _nv(sid, name, link_xml=""):
 
 
 # ------------------------------------------------------------------ matn
+_YUZLAR = contextvars.ContextVar("pptx_shrift_yuzlari", default=None)  # sahna["shriftlar"]: mantiqiy → PowerPoint shrifti
+
+
 def _run_xml(r, sc):
     font_key = r.get("f", "sans")
-    face = SHRIFTLAR.get(font_key, SHRIFTLAR["sans"])[0]
+    face = (_YUZLAR.get() or {}).get(font_key) or SHRIFTLAR.get(font_key, SHRIFTLAR["sans"])[0]
     sz = int(round(r.get("sz", 16) * sc * 0.75 * 100))
     if r.get("bl"):
         sz = int(sz)  # PowerPoint o'zi kichraytiradi (baseline bilan)
@@ -354,6 +358,14 @@ def _transition(kind):
 # ------------------------------------------------------------------ asosiy
 def yoz(sahna: dict, rasm_ol) -> bytes:
     """sahna: {"slaydlar": [...]} ; rasm_ol(src) -> (bytes, w, h) yoki None."""
+    belgi = _YUZLAR.set({k: v.get("face") for k, v in (sahna.get("shriftlar") or {}).items() if isinstance(v, dict) and v.get("face")})
+    try:
+        return _yoz(sahna, rasm_ol)
+    finally:
+        _YUZLAR.reset(belgi)
+
+
+def _yoz(sahna: dict, rasm_ol) -> bytes:
     from PIL import Image
 
     prs = Presentation()
