@@ -65,6 +65,7 @@ def fail(msg, status=422):
 
 class Dvigatel:
     def __init__(self, platform):
+        self._til_vaqt = {}
         from ..presentations import PresentationService  # mavjud kirish tekshiruvi va DB ulanishi
         self.ps = PresentationService(platform)
         self._ready = False
@@ -378,6 +379,37 @@ class Dvigatel:
                 fail("Taqdimot topilmadi", 404)
         return {"ok": True}
 
+    # ------------------------------------------------------------ tilni to'g'rilash
+    def til_togrila(self, uid, body):
+        """Taqdimotda tanlangan tildan boshqa tilda qolgan matnlarni AI bilan tarjima qiladi (saqlangan bo'lsa — bazada ham)."""
+        if not ai.mavjud():
+            fail("AI kaliti serverda sozlanmagan", 503)
+        if not isinstance(body, dict) or not isinstance(body.get("miya"), dict):
+            fail("Taqdimot yo‘q")
+        til = body.get("til") or (body["miya"].get("meta") or {}).get("til") or "uz"
+        if til not in ("uz", "ru", "en"):
+            fail("Til noto‘g‘ri")
+        oxirgi = self._til_vaqt.get(uid, 0)
+        if time.time() - oxirgi < 20:
+            fail("Biroz kuting — oldingi tarjima endi tugadi", 429)
+        self._til_vaqt[uid] = time.time()
+        try:
+            m = sxema.normallashtir(body["miya"])
+        except ValueError as exc:
+            fail(str(exc))
+        m["meta"]["til"] = til
+        try:
+            soni = ai.til_tekshir(m, til, deadline=120.0)
+        except Exception as exc:
+            fail(f"Tarjima bo‘lmadi: {str(exc)[:120]}", 502)
+        ish = body.get("ish")
+        if soni and isinstance(ish, str) and re.fullmatch(r"[0-9a-f]{32}", ish):
+            with self.ps.db() as cur:
+                cur.execute("UPDATE taqdimot_dvigatel_ishlar SET natija=%s, yangilandi=now() WHERE id=%s AND owner_id=%s AND NOT ochirildi "
+                            "AND holat='tayyor' AND COALESCE(sorov->>'faqat_reja','false') <> 'true'",
+                            (json.dumps(m, ensure_ascii=False), ish, uid))
+        return {"miya": m, "soni": soni}
+
     # ------------------------------------------------------------ import
     @staticmethod
     def importla(nom, data):
@@ -549,6 +581,13 @@ def register_taqdimot_dvigatel(app, platform):
     def saqlangan_ochir(ish: str, authorization: str | None = Header(None)):
         uid = D.actor(authorization)
         return D.ochir(uid, ish)
+
+    @app.post(PREFIX + "/til-togrila")
+    async def til_togrila(request: Request, authorization: str | None = Header(None)):
+        uid = await run_in_threadpool(D.actor, authorization)
+        body = await _json(request)
+        out = await run_in_threadpool(D.til_togrila, uid, body)
+        return Response(json.dumps(out, ensure_ascii=False), media_type="application/json", headers=NO_STORE)
 
     @app.post(PREFIX + "/rasm-yuklash")
     async def rasm_yuklash(request: Request, authorization: str | None = Header(None)):

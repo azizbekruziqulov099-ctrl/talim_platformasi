@@ -174,11 +174,23 @@ def _sozlama_matni(z: dict, daraja: str = "") -> str:
     z = sozlama_toza(z)
     ohang = z["ohang"] or ("ilmiy" if daraja in ("bakalavr", "magistr") else "oyinli" if daraja == "bogcha" else "oddiy")
     s = f"TIL: {TIL[z['til']]}.\nMATN HAJMI: {HAJM[z['hajm']]}\nOHANG: {OHANG[ohang]}\n"
+    if z["til"] != "uz":
+        s += _til_buyrugi(z["til"]) + "\n"
     if z["slayd_soni"]:
         b = max(2, min(6, round(z["slayd_soni"] / 5)))
         s += (f"SLAYDLAR SONI: bo‘limlardagi mazmun slaydlari jami {z['slayd_soni']} ta (± 1) — {b} ta bo‘lim, har bo‘limda "
               f"{max(1, min(8, round(z['slayd_soni'] / b)))} tadan ko‘pi bilan 8 ta slayd.\n")
     return s
+
+
+TIL_NOMI = {"uz": "O‘ZBEK tili (lotin yozuvi)", "ru": "RUS tili", "en": "INGLIZ tili"}
+
+
+def _til_buyrugi(til: str) -> str:
+    return (f"MUHIM — TIL: taqdimotdagi BARCHA matn — meta.mavzu, qisqa, maqsad, tayanch, bo‘lim nomlari, slayd sarlavhalari, "
+            f"elementlar matni, izoh (o‘qituvchi gapi), test, xulosa, adabiyot izohlari — faqat {TIL_NOMI[til]}da bo‘lsin. "
+            f"Mavzu, fan, reja yoki manba o‘zbekcha berilgan bo‘lsa ham ularni {TIL_NOMI[til]}ga tarjima qilib yoz; "
+            f"o‘zbekcha so‘z qoldirma. Faqat JSON kalitlari (\"tur\", \"matn\", ...) va rasm kalitlari o‘zgarmaydi.")
 
 
 def _xabar(mavzu, fan, daraja, sinf, tur, qoshimcha, manba, sozlama=None):
@@ -197,6 +209,9 @@ def _xabar(mavzu, fan, daraja, sinf, tur, qoshimcha, manba, sozlama=None):
         s += f"QO‘SHIMCHA TALAB: {qoshimcha}\n"
     if manba:
         s += f"MANBA MATN (shunga tayan, ko‘chirma emas):\n{manba[:12000]}\n"
+    z_ = sozlama_toza(sozlama or {})
+    if z_["til"] != "uz":
+        s += "\n" + _til_buyrugi(z_["til"])
     s += "\nTo‘liq JSON miyani yoz."
     return s
 
@@ -289,8 +304,11 @@ def reja_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", 
         z["slayd_soni"] = 14
     from .profil import profil_matni
     user = _xabar(mavzu, fan, daraja, sinf, tur, qoshimcha, manba, z).replace("To‘liq JSON miyani yoz.", "Faqat REJA JSON'ini yoz.")
-    out = _bir_chaqiruv(REJA_KORSATMA + "\n" + profil_matni(fan, sinf, daraja), user, deadline, time.monotonic())
-    return reja_toza(out, mavzu)
+    t0 = time.monotonic()
+    out = reja_toza(_bir_chaqiruv(REJA_KORSATMA + "\n" + profil_matni(fan, sinf, daraja), user, deadline, t0), mavzu)
+    if z["til"] != "uz":
+        til_tekshir(out, z["til"], deadline + 30, t0)
+    return out
 
 
 def reja_toza(r: dict, mavzu: str = "") -> dict:
@@ -325,6 +343,98 @@ def _reja_matni(reja: dict) -> str:
     return "\n".join(q)
 
 
+_UZ_BELGI = re.compile(r"[oOgG][‘’'ʻʼ`][a-z]|\b(va|bilan|uchun|haqida|hamda|yoki|qanday|nima|emas|lekin|kerak|bo['‘’ʻ]?(l|yicha)\w*|"
+                       r"\w+(lari|larni|larga|larda|lardan|larning|dagi|imiz|ingiz|sining))\b", re.I)
+_KIRILL = re.compile(r"[А-Яа-яЁё]")
+_LOTIN = re.compile(r"[A-Za-z]")
+_MATN_KALITLAR = {"mavzu", "qisqa", "maqsad", "nom", "izoh", "sarlavha", "matn", "shart", "javob", "savol", "goya", "tavsiya", "xato",
+                  "sabab", "togri", "nomi", "davr", "natija", "xavfsizlik"}
+_ROYXAT_KALITLAR = {"variantlar", "qadamlar", "tayanch", "bandlar", "fikrlar", "bilaman", "bilishni_xohlayman", "bilib_oldim",
+                    "nazorat", "mustaqil_ish", "zanjir", "bosqichlar", "jihozlar", "ustunlar", "qatorlar", "gaplar"}
+_TIL_OTKAZ_TUR = {"lugat", "dialog", "bosh_joy"}      # til darslari: so'z va tarjima ataylab ikki tilda
+_TIL_OTKAZ_KALIT = {"rasm", "rasmlar", "tur", "kalit", "formula", "joylashuv", "belgi", "chizma", "_ai", "prompt", "muallif", "manba",
+                    "raqam", "nashr", "til", "daraja", "sinf", "fan", "reja"}
+
+
+def _boshqa_tilda(s: str, til: str) -> bool:
+    toza = re.sub(r"\$[^$]*\$", " ", s or "")
+    lat, cyr = len(_LOTIN.findall(toza)), len(_KIRILL.findall(toza))
+    if til == "ru":
+        sozlar = [w for w in re.findall(r"[A-Za-z‘’'ʻ]{3,}", toza) if not w.isupper()]
+        return lat >= 5 and lat > cyr * 2 and len(sozlar) >= 1
+    if til == "en":
+        return cyr >= 4 or bool(_UZ_BELGI.search(toza))
+    return cyr >= 6 and cyr > lat  # o'zbekcha taqdimotda ruscha qolgan gap
+
+
+def _matnlar(obj, til, yol=(), out=None):
+    """Tarjima kerak bo'lgan satrlar: (yo'l, matn)."""
+    out = [] if out is None else out
+    if isinstance(obj, dict):
+        if obj.get("tur") in _TIL_OTKAZ_TUR:
+            return out
+        if isinstance(obj.get("chap"), str) and isinstance(obj.get("ong"), str):
+            # moslash jufti: ikkala tomoni ham boshqa tilda bo'lsagina (til darsidagi «apple — olma» juftiga tegilmaydi)
+            if _boshqa_tilda(obj["chap"], til) and _boshqa_tilda(obj["ong"], til):
+                out += [(yol + ("chap",), obj["chap"]), (yol + ("ong",), obj["ong"])]
+        for k, v in obj.items():
+            if k in _TIL_OTKAZ_KALIT:
+                continue
+            if isinstance(v, str):
+                if k in _MATN_KALITLAR and _boshqa_tilda(v, til):
+                    out.append((yol + (k,), v))
+            elif isinstance(v, list) and k in _ROYXAT_KALITLAR:
+                for i, x in enumerate(v):
+                    if isinstance(x, str):
+                        if _boshqa_tilda(x, til):
+                            out.append((yol + (k, i), x))
+                    elif isinstance(x, list):
+                        for j, y in enumerate(x):
+                            if isinstance(y, str) and _boshqa_tilda(y, til):
+                                out.append((yol + (k, i, j), y))
+                    else:
+                        _matnlar(x, til, yol + (k, i), out)
+            elif isinstance(v, (dict, list)):
+                _matnlar(v, til, yol + (k,), out)
+    elif isinstance(obj, list):
+        for i, x in enumerate(obj):
+            _matnlar(x, til, yol + (i,), out)
+    return out
+
+
+def til_tekshir(m: dict, til: str, deadline: float = 60.0, t0: float | None = None) -> int:
+    """Natijada tanlangan tildan boshqa tilda qolgan matnlarni (masalan, ruscha taqdimotdagi o'zbekcha sarlavhalar)
+    bitta-ikkita qo'shimcha AI chaqiruvi bilan tarjima qiladi. Qaytaradi: tarjima qilingan satrlar soni."""
+    if til not in TIL_NOMI:
+        return 0
+    t0 = time.monotonic() if t0 is None else t0
+    royxat = _matnlar(m, til)
+    if not royxat:
+        return 0
+    system = (f"Sen tarjimonsan. Berilgan JSON obyektidagi har bir qiymatni {TIL_NOMI[til]}GA tarjima qil. Ma’noni, **qalin** va "
+              f"==ajratilgan== belgilarini, $...$ formulalarni, raqamlar va xususiy nomlarni saqla. Javob — xuddi shu kalitlar bilan "
+              f"FAQAT JSON obyekt.")
+    soni = 0
+    for bosh in range(0, min(len(royxat), 240), 80):
+        qism = royxat[bosh:bosh + 80]
+        if deadline - (time.monotonic() - t0) < 20:
+            break
+        try:
+            javob = _bir_chaqiruv(system, json.dumps({str(i): s for i, (_, s) in enumerate(qism)}, ensure_ascii=False), deadline, t0)
+        except Exception:
+            break
+        for i, (yol, _) in enumerate(qism):
+            yangi = javob.get(str(i))
+            if not isinstance(yangi, str) or not yangi.strip():
+                continue
+            o = m
+            for p in yol[:-1]:
+                o = o[p]
+            o[yol[-1]] = yangi.strip()
+            soni += 1
+    return soni
+
+
 def miya_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", manba="", deadline=170.0, sozlama=None, reja=None):
     """AI'dan miya oladi va normallashtiradi.
 
@@ -343,6 +453,7 @@ def miya_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", 
         out["meta"]["mavzu"] = out["meta"]["mavzu"] if out["meta"]["mavzu"] != "Mavzu" else mavzu
         out["meta"]["til"] = z["til"]
         out["_ai"] = m.get("_ai")
+        out["_tarjima"] = til_tekshir(out, z["til"], deadline + 40, t0)
         return out
     if reja is None:
         reja = reja_yoz(mavzu, fan, daraja, sinf, tur, qoshimcha, manba, z, deadline=min(70.0, deadline * 0.4))
@@ -359,7 +470,8 @@ def miya_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", 
             bk = ""
         vazifalar.append(("bolim", i, asos + bk + f"\nUMUMIY REJA:\n{rmatn}\n\nFAQAT {i + 1}-BO‘LIMNI to‘liq yoz: "
                           f"{{\"bolim\": {{\"nom\",\"izoh\",\"belgi\",\"slaydlar\":[...]}}, \"rasmlar\":[...]}}. "
-                          f"Rejadagi slaydlar ({len(b['slaydlar'])} ta) aynan shu tartibda, shu sarlavhalar bilan; har slaydda \"izoh\" "
+                          f"Rejadagi slaydlar ({len(b['slaydlar'])} ta) aynan shu tartibda, shu sarlavhalar bilan"
+                          f"{'' if z['til'] == 'uz' else ' (sarlavha va bo‘lim nomini ' + TIL_NOMI[z['til']] + 'ga tarjima qilib)'}; har slaydda \"izoh\" "
                           f"(o‘qituvchi gapi), \"joylashuv\" va 1–3 element. Boshqa bo‘limlarni yozma."))
     vazifalar.append(("yakun", -1, asos + f"\nUMUMIY REJA:\n{rmatn}\n\nBo‘limlarni YOZMA (ular alohida yoziladi). Faqat qolgan qismlarni "
                       "yoz: {\"meta\", \"adabiyotlar\", \"takrorlash\", \"muammo\", \"tarix\", \"xatolar\", \"metodika\", "
@@ -397,4 +509,5 @@ def miya_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", 
     out = sxema.normallashtir(m)
     out["meta"]["til"] = z["til"]
     out["_ai"] = yakun.get("_ai")
+    out["_tarjima"] = til_tekshir(out, z["til"], deadline + 40, t0)
     return out

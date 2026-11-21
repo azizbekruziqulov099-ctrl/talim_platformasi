@@ -270,3 +270,28 @@ def test_saqlangan_korinish_va_fayl_nomi():
     d = api._biriktirma("Oʻzbekiston.pptx")
     d.encode("latin-1")
     assert 'filename="Ozbekiston.pptx"' in d and "filename*=UTF-8''" in d
+
+
+def test_rus_tili_tanlansa_ozbekcha_qolgan_matn_tarjima_qilinadi(monkeypatch):
+    import json as _j
+    from modules.taqdimot_dvigatel import ai
+    monkeypatch.setattr(ai, "provayderlar", lambda: [("gemini", "k", "m")])
+    chaqiruvlar = []
+
+    def fake(nom, kalit, model, system, user, timeout=0):
+        chaqiruvlar.append(system[:30])
+        if "tarjimonsan" in system:
+            return _j.dumps({k: "Перевод: " + v[:20] for k, v in _j.loads(user).items()})
+        assert "RUS tili" in user  # til buyrug'i xabarda bor
+        return _j.dumps({"meta": {"mavzu": "Uy hayvonlari va ularning foydasi"}, "bolimlar": [{"nom": "Uy hayvonlari", "slaydlar": [
+            {"sarlavha": "Sigir va qo‘y", "elementlar": [{"tur": "matn", "matn": "Млекопитающие кормят детёнышей молоком."},
+                                                          {"tur": "lugat", "sozlar": [{"soz": "olma", "tarjima": "яблоко"}]}]}]}],
+            "test": [{"savol": "Qaysi biri uy hayvoni?", "variantlar": ["Sigir", "Ayiq"], "javob": 0}]})
+    monkeypatch.setattr(ai, "_chaqir", fake)
+    m = ai.miya_yoz("Uy hayvonlari", "Biologiya", "maktab", "5-sinf", sozlama={"slayd_soni": 8, "til": "ru"})
+    assert m["meta"]["mavzu"].startswith("Перевод") and m["bolimlar"][0]["nom"].startswith("Перевод")
+    sl = m["bolimlar"][0]["slaydlar"][0]
+    assert sl["sarlavha"].startswith("Перевод") and sl["elementlar"][0]["matn"].startswith("Млекопитающие")
+    assert sl["elementlar"][1]["sozlar"][0]["soz"] == "olma"  # lug'at so'ziga tegilmaydi
+    assert m["test"][0]["savol"].startswith("Перевод") and m["_tarjima"] >= 4
+    assert sum(1 for c in chaqiruvlar if c.startswith("Sen tarjimonsan")) == 1
