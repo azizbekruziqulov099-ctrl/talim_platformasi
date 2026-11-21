@@ -1,0 +1,119 @@
+## +pm_butun
+@tushuncha Hayotiy masala: yerto‘ladan tomgacha
+OVOZ: [1] Endi PISA uslubidagi vaziyat. Ko‘p qavatli binoda ikki yerto‘la, to‘qqizta yer ustidagi qavat bor. Avtoturargoh — minus ikkinchi qavatda, ofis — yettinchi qavatda. [2] Birinchi savol: avtoturargohdan ofisgacha necha qavat ko‘tariladi? Yettidan minus ikkini ayiramiz — to‘qqiz. [3] Ikkinchi savol: lift avval minus ikkidan yuqoriga olti qavat ko‘tarildi, keyin uch qavat tushdi. Qaysi qavatda to‘xtadi? [4] {sekin}Minus ikki plyus olti — to‘rt. To‘rt minus uch — bir. Birinchi qavatda. [5] {urgu}Muhim odat: har bir harakatni son o‘qida bosqichma-bosqich yozing — xato kamayadi.
+DOSKA: SON_OQI: -2..9; nuqta -2 A, nuqta 7 B
+DOSKA: 7 − (−2) = 9 qavat
+DOSKA: −2 + 6 = 4
+DOSKA: 4 − 3 = 1 → 1-qavat
+DOSKA: QOIDA: harakatni bosqichma-bosqich yoz
+TEKSH: Lift 5-qavatdan 8 qavat pastga tushdi. Qaysi qavatda to‘xtadi? => −3 | 3 | 13 | −13
+TEKSH: Hisobda −120 000 so‘m. Avval 200 000 kirdi, keyin 90 000 yechildi. Hisob? => −10 000 | 10 000 | −290 000 | 170 000
+
+## +pm_kasr
+@tushuncha Hayotiy masala: retsept va ulush
+OVOZ: [1] Pirog retsepti to‘rt kishiga mo‘ljallangan: bir yarim stakan un va uchdan bir stakan shakar. [2] Siz olti kishiga pishirmoqchisiz. Olti to‘rtdan — bir yarim marta ko‘p. [3] {sekin}Un: bir yarim karra bir yarim — ikki butun to‘rtdan bir stakan. Shakar: uchdan bir karra bir yarim — yarim stakan. [4] Ikkinchi savol: sizda atigi ikki stakan un bor. Yetadimi? Ikki butun to‘rtdan bir — ikkidan katta. Yetmaydi — chorak stakan yetishmaydi. [5] Kasr bilan ishlashda doim savol: javob mantiqqa to‘g‘ri keladimi?
+DOSKA: 6 : 4 = 1,5 marta ko‘p
+DOSKA: Un: 1,5 · 1,5 = 2,25 stakan
+DOSKA: Shakar: 1/3 · 3/2 = 1/2 stakan
+DOSKA: 2,25 > 2 → yetmaydi (0,25 kam)
+DOSKA: QOIDA: kasr · kasr = suratlar / maxrajlar
+TEKSH: Retsept 2 kishiga: 3/4 stakan sut. 5 kishiga necha stakan? => 1 7/8 | 3 3/4 | 2 1/2 | 1 1/2
+TEKSH: 2/5 ni 3/4 ga ko‘paytiring. => 3/10 | 6/9 | 5/9 | 8/15
+
+## +pm_daraja
+@tushuncha Hayotiy masala: virus va hujayra
+OVOZ: [1] Laboratoriyada hujayra har yarim soatda ikkiga bo‘linadi. Boshida — bitta hujayra. [2] Uch soatda — olti marta bo‘linish. Ikkining oltinchi darajasi — oltmish to‘rt hujayra. [3] {sekin}Besh soatda — o‘n marta bo‘linish: ikkining o‘ninchi darajasi, ming yigirma to‘rt. [4] Endi savol: bu hujayralarning har biri bir pikogramm — o‘n ning minus o‘n ikkinchi darajasi gramm. Ming yigirma to‘rt hujayraning massasi? [5] Taxminan ming karra o‘nning minus o‘n ikkinchi — o‘nning minus to‘qqizinchi darajasi gramm. {urgu}Standart shakl kichik sonni o‘qishni osonlashtiradi.
+DOSKA: Har 0,5 soatda ×2
+DOSKA: 3 soat = 6 bo‘linish → 2⁶ = 64
+DOSKA: 5 soat = 10 bo‘linish → 2¹⁰ = 1 024
+DOSKA: 1 024 · 10⁻¹² ≈ 10³ · 10⁻¹² = 10⁻⁹ g
+DOSKA: QOIDA: 10ᵃ · 10ᵇ = 10ᵃ⁺ᵇ
+TEKSH: Bakteriya har soatda 3 marta ko‘payadi. 4 soatdan keyin necha baravar? => 81 | 12 | 64 | 243
+TEKSH: 10³ · 10² nimaga teng? => 10⁵ | 10⁶ | 100⁵ | 10¹
+
+## +pm_taxmin
+@tushuncha Hayotiy masala: bog‘ uchun to‘siq
+OVOZ: [1] Dehqon to‘rtburchak bog‘ni to‘siqlamoqchi: uzunligi ikki yuz o‘n sakkiz metr, kengligi yetmish uch metr. Bir metr to‘siq — ming sakkiz yuz so‘m. Taxminan qancha pul kerak? [2] Yaxlitlaymiz: ikki yuz o‘n sakkizni ikki yuz yigirmaga, yetmish uchni yetmishga. [3] {sekin}Perimetr: ikki karra, ikki yuz yigirma plyus yetmish — ikki karra ikki yuz to‘qson, besh yuz sakson metr. [4] Ming sakkiz yuzni ikki mingga yaxlitlaymiz. Besh yuz sakson karra ikki ming — bir million bir yuz oltmish ming so‘m. [5] Aniq hisob bunga yaqin bo‘lishi kerak. Agar o‘n million chiqsa — xato bor.
+DOSKA: 218 ≈ 220; 73 ≈ 70
+DOSKA: P ≈ 2 · (220 + 70) = 580 m
+DOSKA: 1 800 ≈ 2 000 so‘m
+DOSKA: 580 · 2 000 ≈ 1 160 000 so‘m
+DOSKA: QOIDA: avval taxmin — keyin aniq hisob
+TEKSH: Maydon 98 m × 52 m. Yuzi taxminan qancha? => 5 000 m² | 500 m² | 50 000 m² | 150 m²
+
+## +pisa_foiz
+@tushuncha Hayotiy masala: chegirma, soliq va chek
+OVOZ: [1] Noutbuk narxi bir million ikki yuz ming so‘m. Do‘konda o‘n besh foiz chegirma. Chekka qo‘shimcha qiymat solig‘i — o‘n ikki foiz qo‘shiladi. Yakuniy narx qancha? [2] Avval chegirma: bir million ikki yuz mingning sakson besh foizi — bir million yigirma ming. [3] {sekin}Keyin soliq: bir million yigirma ming karra bir butun o‘n ikki — bir million bir yuz qirq ikki ming to‘rt yuz so‘m. [4] Bitta ifoda bilan ham yozish mumkin: bir million ikki yuz ming karra nol butun sakson besh karra bir butun o‘n ikki. [5] {urgu}Ikkala foizni qo‘shib yubormang: o‘n besh minus o‘n ikki emas! Har biri ko‘paytiruvchi bo‘ladi.
+DOSKA: 1 200 000 · 0,85 = 1 020 000
+DOSKA: 1 020 000 · 1,12 = 1 142 400
+DOSKA: Yoki: 1 200 000 · 0,85 · 1,12 = 1 142 400
+DOSKA: QOIDA: ketma-ket foiz → ko‘paytmalar
+DOSKA: ❌ 15% − 12% emas — har biri ko‘paytiruvchi
+TEKSH: Narx 500 000. 20% chegirma, so‘ng 10% soliq. Yakuniy narx? => 440 000 | 450 000 | 400 000 | 530 000
+
+## +pm_ulush
+@tushuncha Hayotiy masala: so‘rovnoma natijasi
+OVOZ: [1] Maktabda ikki yuz o‘quvchidan so‘rov o‘tkazildi: sevimli fan qaysi? Matematika — yetmish kishi, ona tili — oltmish, tarix — ellik, qolganlari — boshqa fanlar. [2] Matematikaning ulushi: yetmish bo‘lingan ikki yuz — o‘ttiz besh foiz. [3] {sekin}Ona tili — o‘ttiz foiz, tarix — yigirma besh foiz. Uchalasining yig‘indisi: o‘ttiz besh plyus o‘ttiz plyus yigirma besh — to‘qson foiz. [4] Demak, boshqa fanlar — o‘n foiz, ya’ni yigirma o‘quvchi. [5] Doira diagrammada matematika uchun burchak: uch yuz oltmishning o‘ttiz besh foizi — yuz yigirma olti gradus.
+DOSKA: 70 : 200 = 35%
+DOSKA: 60 : 200 = 30%; 50 : 200 = 25%
+DOSKA: Qolgan: 100% − 90% = 10% → 20 kishi
+DOSKA: Matematika sektori: 360 · 0,35 = 126°
+DOSKA: Tekshiruv: 35% + 30% + 25% + 10% = 100% ✔
+TEKSH: 250 o‘quvchidan 40% futbolni yaxshi ko‘radi. Doira diagrammada burchak? => 144° | 100° | 90° | 160°
+
+## +pm_foizqayta
+@tushuncha Hayotiy masala: omonat yoki kredit?
+OVOZ: [1] Siz bankka besh million so‘m qo‘ydingiz: yiliga o‘n foiz, murakkab foiz. Uch yildan keyin qancha bo‘ladi? [2] Besh million karra bir butun bir ning uchinchi darajasi. Bir butun bir uch marta ko‘paytirilsa — bir butun uch yuz o‘ttiz bir mingdan. [3] {sekin}Besh million karra bir butun uch yuz o‘ttiz bir — olti million olti yuz ellik besh ming so‘m. [4] Oddiy foiz bo‘lsa, har yili bir xil — besh yuz ming. Uch yilda bir million besh yuz ming: jami olti million besh yuz ming. [5] Murakkab foiz yuz ellik besh ming ko‘p beradi. Muddat uzaygan sari farq tez kattalashadi.
+DOSKA: 5 000 000 · 1,1³
+DOSKA: 1,1³ = 1,331
+DOSKA: 5 000 000 · 1,331 = 6 655 000
+DOSKA: Oddiy foiz: 5 000 000 + 3 · 500 000 = 6 500 000
+DOSKA: Farq: 155 000 so‘m
+TEKSH: 1 000 000 so‘m, yiliga 20%, 2 yil murakkab foiz. Natija? => 1 440 000 | 1 400 000 | 1 200 000 | 1 240 000
+
+## +pisa_nisbat
+@tushuncha Hayotiy masala: model va haqiqiy bino
+OVOZ: [1] Arxitektor binoning maketini bir ga ikki yuz ellik masshtabda yasadi. Maketning balandligi — qirq santimetr. [2] Haqiqiy bino balandligi: qirq karra ikki yuz ellik — o‘n ming santimetr, ya’ni yuz metr. [3] {sekin}Endi savol: maketni bo‘yash uchun sakson millilitr bo‘yoq ketdi. Haqiqiy binoga qancha ketadi? [4] {urgu}Diqqat! Bo‘yaladigan sirt — yuza, u masshtabning KVADRATIGA ko‘payadi. Ikki yuz ellikning kvadrati — oltmish ikki ming besh yuz. [5] Sakson millilitr karra oltmish ikki ming besh yuz — besh million millilitr, ya’ni besh ming litr.
+DOSKA: 1 : 250 → 40 sm · 250 = 10 000 sm = 100 m
+DOSKA: Yuza: × 250² = × 62 500
+DOSKA: 80 ml · 62 500 = 5 000 000 ml
+DOSKA: 5 000 000 ml = 5 000 l
+DOSKA: QOIDA: uzunlik ×k; yuza ×k²; hajm ×k³
+TEKSH: Masshtab 1 : 10. Maketning yuzi 6 sm². Haqiqiy yuzi? => 600 sm² | 60 sm² | 6 000 sm² | 36 sm²
+
+## +pm_proporsiya
+@tushuncha Hayotiy masala: ikki bosqichli bog‘lanish
+OVOZ: [1] Maktab oshxonasida to‘qson o‘quvchiga bir kunga o‘n ikki kilogramm guruch ketadi. Yuz ellik o‘quvchi uchun necha kilogramm kerak? [2] Bu to‘g‘ri proporsionallik: o‘quvchi ko‘p bo‘lsa, guruch ham ko‘p. [3] {sekin}Eng qulay yo‘l: o‘n ikkini yuz ellikka ko‘paytiramiz — bir ming sakkiz yuz. Uni to‘qsonga bo‘lamiz — yigirma kilogramm. [4] Ikkinchi savol: omborda yuz yigirma kilogramm guruch bor. Yigirma kilogrammdan necha kunga yetadi? Yuz yigirma bo‘lingan yigirma — olti kun.
+DOSKA: 12 kg : 90 o‘q. = 0,1333… kg
+DOSKA: 150 o‘q. → 12 · 150 : 90 = 20 kg/kun
+DOSKA: 120 kg : 20 kg/kun = 6 kun
+DOSKA: QOIDA: avval bir birlik, keyin kerakli son
+TEKSH: 6 o‘quvchiga 9 ta olma. 20 o‘quvchiga necha olma? => 30 | 13,3 | 20 | 180
+
+## +pm_aralashma
+@tushuncha Hayotiy masala: sharbat tayyorlash
+OVOZ: [1] Sharbat konsentrati — qirq foizli. Siz uni besh foizli ichimlik qilib suyultirmoqchisiz. Konsentratdan yarim litr bor. [2] Yarim litrning qirq foizi — nol butun ikki litr sof sharbat. [3] {sekin}Suyultirganda sof sharbat o‘zgarmaydi — nol butun ikki litr. Ichimlikda u besh foiz bo‘lishi kerak. Butun hajm: nol butun ikki bo‘lingan nol butun nol besh — to‘rt litr. [4] Demak, jami to‘rt litr ichimlik: yarim litr konsentrat va uch yarim litr suv. [5] Tekshirish: nol butun ikki bo‘lingan to‘rt — nol butun nol besh, ya’ni besh foiz.
+DOSKA: 0,5 l · 40% = 0,2 l sof sharbat
+DOSKA: 0,2 : 0,05 = 4 l jami
+DOSKA: Suv: 4 − 0,5 = 3,5 l
+DOSKA: Tekshiruv: 0,2 : 4 = 0,05 = 5% ✔
+DOSKA: QOIDA: moddaning miqdori suyultirishda o‘zgarmaydi
+TEKSH: 2 l 30% li konsentrat. 10% li qilish uchun necha litr suv qo‘shiladi? => 4 | 6 | 3 | 8
+
+## +pm_birlik
+@tushuncha Hayotiy masala: boq va suv sarfi
+OVOZ: [1] Hovlidagi suv idishi: uzunligi ikki metr, kengligi bir yarim metr, balandligi bir metr. Suv sathi esa yetmish santimetr — ya’ni nol butun yetti metr. [2] Suv hajmi: ikki karra bir yarim — uch. Uch karra nol butun yetti — ikki butun bir kub metr. [3] {sekin}Bir kub metr — ming litr. Demak, ikki ming bir yuz litr suv bor. [4] Oila kuniga uch yuz ellik litr sarflasa, ikki ming bir yuz bo‘lingan uch yuz ellik — olti kunga yetadi.
+DOSKA: V = 2 · 1,5 · 0,7 = 2,1 m³
+DOSKA: 2,1 m³ = 2 100 l
+DOSKA: 2 100 : 350 = 6 kun
+DOSKA: QOIDA: m³ → l: × 1 000
+TEKSH: Ichki o‘lchami 80 sm × 50 sm × 40 sm quti. Necha litr? => 160 | 16 | 1 600 | 200
+
+## +pm_vaqt
+@tushuncha Hayotiy masala: parvoz jadvali
+OVOZ: [1] Toshkentdan Istanbulga parvoz: Toshkent vaqti bilan o‘n to‘qqiz o‘ttizda uchadi. Parvoz — to‘rt soat qirq daqiqa. Istanbul vaqti Toshkentdan ikki soat orqada. [2] Avval hammasini bitta — Toshkent vaqtida hisoblaymiz. O‘n to‘qqiz o‘ttiz plyus to‘rt qirq — yigirma to‘rt o‘n. Bu — ertasi kuni nol nol o‘n. [3] {sekin}Endi Istanbul vaqtiga o‘tamiz: ikki soat ayiramiz — yigirma ikki o‘n, o‘sha kuni. [4] {urgu}Doim shunday qiling: avval bir xil vaqt mintaqasida hisoblang, keyin farqni qo‘ying.
+DOSKA: 19:30 + 4:40 = 24:10
+DOSKA: 24:10 = 00:10 (ertasi kuni, Toshkent)
+DOSKA: Istanbul: 00:10 − 2 soat = 22:10
+DOSKA: QOIDA: avval bir vaqtda hisobla, keyin mintaqa farqini qo‘y
+TEKSH: Samolyot 08:15 da uchdi, 3 soat 50 daqiqa uchdi. Qo‘nish vaqti (xuddi shu vaqt mintaqasida)? => 12:05 | 11:65 | 12:15 | 11:55

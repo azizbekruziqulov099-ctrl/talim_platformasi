@@ -1,0 +1,59 @@
+## +pm_ifoda
+@tushuncha Hayotiy masala: telefon tarifi formulasi
+OVOZ: [1] Mobil operator ikki tarif taklif qiladi. Birinchisi: oyiga o‘n besh ming so‘m abonent to‘lovi va har daqiqa uchun ikki yuz so‘m. [2] Daqiqalar sonini d deymiz. Formula: o‘n besh ming plyus ikki yuz d. [3] {sekin}Bir oyda yuz ellik daqiqa gaplashsangiz: ikki yuz karra yuz ellik — o‘ttiz ming, plyus o‘n besh ming — qirq besh ming so‘m. [4] Endi teskari savol: qirq besh ming so‘m to‘lov chiqdi. Necha daqiqa gaplashgansiz? Qirq besh ming minus o‘n besh ming — o‘ttiz ming. O‘ttiz ming bo‘lingan ikki yuz — yuz ellik daqiqa. [5] Ya’ni formulani ham to‘g‘ri, ham teskari yo‘nalishda ishlata olamiz.
+DOSKA: T = 15 000 + 200d
+DOSKA: d = 150: T = 15 000 + 30 000 = 45 000
+DOSKA: Teskari: 45 000 − 15 000 = 30 000
+DOSKA: 30 000 : 200 = 150 daqiqa
+DOSKA: QOIDA: formulani oldinga va orqaga ishlat
+TEKSH: T = 10 000 + 300d. T = 37 000 bo‘lsa, d qancha? => 90 | 123 | 9 | 111 000
+
+## +pm_tenglama
+@tushuncha Hayotiy masala: ikki do‘st va pul
+OVOZ: [1] Aziz va Bobur pul yig‘ishyapti. Azizda ikki yuz ming so‘m, Boburda — bir yuz o‘n ming. Aziz haftasiga o‘n ming, Bobur esa o‘ttiz ming yig‘adi. [2] Necha haftadan keyin ularning pullari teng bo‘ladi? [3] {sekin}Haftalar soni — x. Aziz: ikki yuz ming plyus o‘n ming x. Bobur: bir yuz o‘n ming plyus o‘ttiz ming x. [4] Tenglashtiramiz. Ikki yuz ming minus bir yuz o‘n ming — to‘qson ming. O‘ttiz ming minus o‘n ming — yigirma ming. [5] To‘qson ming bo‘lingan yigirma ming — to‘rt yarim hafta. Ya’ni besh haftadan keyin Bobur Azizdan o‘zib ketadi.
+DOSKA: Aziz: 200 000 + 10 000x
+DOSKA: Bobur: 110 000 + 30 000x
+DOSKA: 200 000 + 10 000x = 110 000 + 30 000x
+DOSKA: 90 000 = 20 000x  →  x = 4,5
+DOSKA: 5-haftadan Bobur ko‘proq yig‘gan bo‘ladi
+TEKSH: Tenglama: 7x − 3 = 4x + 12. x nechaga teng? => 5 | 3 | 15 | 1,5
+
+## +pm_tengsizlik
+@tushuncha Hayotiy masala: telefon xarajati chegarasi
+OVOZ: [1] Oylik byudjetingiz — olti yuz ming so‘m. Ijara — to‘rt yuz ming. Qolgan puldan telefon uchun ko‘pi bilan yigirma foiz sarflamoqchisiz. [2] Qolgan pul: olti yuz ming minus to‘rt yuz ming — ikki yuz ming. [3] {sekin}Yigirma foizi — qirq ming. Telefon xarajati qirq mingdan oshmasligi kerak. [4] Tarif — o‘n besh ming plyus ikki yuz so‘m har daqiqa. Tengsizlik: o‘n besh ming plyus ikki yuz d kichik yoki teng qirq ming. [5] Ikki yuz d kichik yoki teng yigirma besh ming. d kichik yoki teng yuz yigirma besh. Oyiga ko‘pi bilan yuz yigirma besh daqiqa.
+DOSKA: 600 000 − 400 000 = 200 000
+DOSKA: 20% · 200 000 = 40 000
+DOSKA: 15 000 + 200d ≤ 40 000
+DOSKA: 200d ≤ 25 000  →  d ≤ 125
+DOSKA: Ko‘pi bilan 125 daqiqa
+TEKSH: 3x − 8 ≤ 13 ni yeching. => x ≤ 7 | x ≤ 5 | x ≥ 7 | x ≤ 21
+
+## +pisa_chiziqli
+@tushuncha Hayotiy masala: sham yonishi
+OVOZ: [1] Sham yoqilganda uning uzunligi o‘ttiz santimetr. Har soatda ikki yarim santimetr yonib, qisqaradi. [2] Formula: y teng o‘ttiz minus ikki yarim x. Bu yerda k manfiy — chunki kamayish. [3] {sekin}Besh soatdan keyin: ikki yarim karra besh — o‘n ikki yarim. O‘ttiz minus o‘n ikki yarim — o‘n yetti yarim santimetr. [4] Sham qachon butunlay yonib tugaydi? y nolga teng: o‘ttiz teng ikki yarim x. x teng o‘n ikki soat. [5] Grafik: pastga tushuvchi chiziq — u x o‘qini o‘n ikkida kesadi.
+DOSKA: y = 30 − 2,5x
+DOSKA: x = 5: y = 30 − 12,5 = 17,5 sm
+DOSKA: y = 0: 30 = 2,5x
+DOSKA: x = 12 soat
+DOSKA: GRAFIK: y=-2.5x+30; [0;12]
+TEKSH: Quduqdagi suv: y = 100 − 4x (x — daqiqa). Suv qachon tugaydi? => 25 daqiqada | 4 daqiqada | 100 daqiqada | 96 daqiqada
+
+## +pisa_tezlik
+@tushuncha Hayotiy masala: velosipedchi va avtobus
+OVOZ: [1] Velosipedchi soat sakkizda chiqdi, tezligi — soatiga o‘n besh kilometr. Bir soatdan keyin shu yo‘ldan avtobus chiqdi — soatiga qirq besh kilometr. [2] Avtobus velosipedchini qachon quvib yetadi? [3] {sekin}Avtobus chiqqanda velosipedchi o‘n besh kilometr oldinda. Avtobus har soatda o‘ttiz kilometr yaqinlashadi — qirq besh minus o‘n besh. [4] O‘n besh bo‘lingan o‘ttiz — yarim soat. Ya’ni soat to‘qqiz o‘ttizda quvib yetadi. [5] Joyi: qirq besh karra yarim soat — yigirma ikki yarim kilometrda.
+DOSKA: Avtobus chiqqanda oldinda: 15 km
+DOSKA: Yaqinlashish: 45 − 15 = 30 km/soat
+DOSKA: t = 15 : 30 = 0,5 soat
+DOSKA: Vaqt: 09:30
+DOSKA: Joyi: 45 · 0,5 = 22,5 km
+TEKSH: Piyoda 5 km/soat da chiqdi. 2 soatdan keyin velosiped 15 km/soat da chiqdi. Necha soatda yetib oladi? => 1 soat | 2 soat | 0,5 soat | 3 soat
+
+## +pm_tarif
+@tushuncha Hayotiy masala: ijara va sotib olish
+OVOZ: [1] Velosiped ijaraga olinadi: har kun uchun o‘n ming so‘m. Yoki sotib olish — yuz ellik ming so‘m, sotib olinsa har kuni ikki ming so‘m ta’mir. [2] Birinchi formula: y teng o‘n ming x. Ikkinchi: y teng yuz ellik ming plyus ikki ming x. [3] {sekin}Kesishish: o‘n ming x teng yuz ellik ming plyus ikki ming x. Sakkiz ming x teng yuz ellik ming. x — o‘n sakkiz butun yetmish besh yuzdan, ya’ni taxminan o‘n to‘qqiz kun. [4] O‘n to‘qqiz kundan kam foydalansangiz — ijara arzon. Undan ko‘p bo‘lsa — sotib olish foydali. [5] Qaror: sizga necha kun kerak?
+DOSKA: Ijara: y = 10 000x
+DOSKA: Sotib olish: y = 150 000 + 2 000x
+DOSKA: 8 000x = 150 000  →  x ≈ 18,75
+DOSKA: ≤ 18 kun → ijara; ≥ 19 kun → sotib olish
+DOSKA: Ehtiyojga qarab tanla
+TEKSH: Ijara 12 000/kun; sotib olish 120 000 + 4 000/kun. 20 kun uchun qaysi arzon? => Sotib olish (200 000 < 240 000) | Ijara | Teng | Aniq aytib bo‘lmaydi
