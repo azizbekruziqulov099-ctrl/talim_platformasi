@@ -1,0 +1,215 @@
+## t8_progressiya
+@kirish Gauss va yuz son
+OVOZ: Maktabda o‘qituvchi bolalarni band qilmoqchi bo‘ldi: «Bir dan yuzgacha hamma sonlarni qo‘shing». Kichkina Gauss bir necha soniyada javob berdi. {pauza} Qanday qildi? Yuzta sonni birin-ketin qo‘shib o‘tirdimi? {sekin}Yo‘q. U qonuniyatni ko‘rdi. Bugun arifmetik progressiya va uning yig‘indisini o‘rganamiz. Taxmin qiling.
+DOSKA: 1 + 2 + 3 + ... + 100 = ?
+DOSKA: Gauss qanday topdi? ✋
+@tushuncha Arifmetik progressiya
+OVOZ: [1] Har bir had oldingisiga bir xil son qo‘shilsa — arifmetik progressiya. Shu son — farq. [2] 4, 7, 10, 13: farq — 3. [3] {sekin}n-had formulasi: birinchi had plyus farq karra n minus bir. 4 plyus 3 karra (n minus 1). [4] O‘ninchi had: 4 plyus 3 karra 9 — 31.
+DOSKA: 4, 7, 10, 13 (d = 3)
+DOSKA: aₙ = a₁ + d(n − 1)
+DOSKA: a₁₀ = 4 + 3 · 9 = 31
+DOSKA: d < 0 → kamayuvchi
+TEKSH: 2, 6, 10, 14 ketma-ketlikning 8-hadi? => 30 | 32 | 26 | 34
+TEKSH: 50, 45, 40, ... farqi? => −5 | 5 | 45 | −50
+@tushuncha Gauss usuli: yig‘indi
+OVOZ: [1] Gauss sonlarni juft-juft qilib yozdi: birinchi bilan oxirgisi — bir plyus yuz — 101. Ikkinchi bilan oxirgidan oldingisi — ikki plyus to‘qson to‘qqiz — yana 101. [2] Bunday juftlar 50 ta. [3] {sekin}Yig‘indi — 50 karra 101 — 5 050. [4] Umumiy formula: n karra birinchi va oxirgi had yig‘indisining yarmi.
+DOSKA: 1 + 100 = 101
+DOSKA: 2 + 99 = 101
+DOSKA: 50 juft · 101 = 5 050
+DOSKA: Sₙ = n · (a₁ + aₙ) : 2
+TEKSH: 2 + 4 + 6 + ... + 20 yig‘indisi? => 110 | 220 | 100 | 55
+TEKSH: 5 + 8 + 11 + 14 + 17 yig‘indisi? => 55 | 45 | 65 | 110
+@tushuncha Hayotiy masala: amfiteatr
+OVOZ: [1] Amfiteatrda birinchi qatorda 20 o‘rin, har keyingi qatorda 4 tadan ko‘p. 15 qator bor. [2] Oxirgi qatorda: 20 plyus 4 karra 14 — 76 o‘rin. [3] {sekin}Jami: 15 karra (20 plyus 76) bo‘lingan 2. 15 karra 96 — 1 440, yarmi — 720. [4] Demak, amfiteatrda 720 ta o‘rin bor.
+DOSKA: a₁ = 20; d = 4; n = 15
+DOSKA: a₁₅ = 20 + 4 · 14 = 76
+DOSKA: S₁₅ = 15 · (20 + 76) : 2
+DOSKA: = 720 o‘rin
+TEKSH: Birinchi kuni 10 sahifa, har kuni 2 sahifadan ko‘p o‘qildi. 8 kunda jami? => 136 | 160 | 80 | 100
+TEKSH: Narx 100 dan boshlanib, har oy 10 ga oshdi. 6 oyda narx (oltinchi oy)? => 150 | 160 | 110 | 100
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: n-had formulasida n minus birni unutish. [2] {urgu}Birinchi had — n bir bo‘lsa, farq hali qo‘shilmagan. Demak, n minus bir marta qo‘shamiz! [3] Ikkinchi xato: yig‘indi formulasida ikkiga bo‘lishni unutish.
+DOSKA: ❌ a₁₀ = 4 + 3 · 10 = 34
+DOSKA: ✅ a₁₀ = 4 + 3 · 9 = 31
+DOSKA: ❌ S = n(a₁ + aₙ)
+DOSKA: ✅ S = n(a₁ + aₙ) : 2
+TEKSH: 3, 5, 7, ... 6-had? => 13 | 15 | 17 | 11
+@xulosa Esda tut
+OVOZ: Birinchi: arifmetik progressiyada farq doimiy. Ikkinchi: n-had — a bir plyus d karra n minus bir. Uchinchi: yig‘indi — n karra chetki hadlar yig‘indisi bo‘lingan ikki. To‘rtinchi: n minus bir va ikkiga bo‘lishni unutmang.
+DOSKA: 1. d = const
+DOSKA: 2. aₙ = a₁ + d(n − 1)
+DOSKA: 3. Sₙ = n(a₁ + aₙ)/2
+DOSKA: 4. (n − 1) va : 2
+
+## M8-IFO
+@kirish Taksi hisob-kitobi
+OVOZ: Taksi chaqirsangiz, shaxsiy sayohat uchun besh ming so‘m boshlang‘ich to‘lov, keyin har kilometr uchun uch ming so‘m to‘laysiz. {pauza} Yetti kilometr uchun qancha? O‘n ikki kilometr uchunchi? Har safar qaytadan hisoblash shartmi? {sekin}Yo‘q! Bitta ifoda yozamiz: besh ming plyus uch ming karra kilometr. Bu — algebraik ifoda. Taxmin qiling.
+DOSKA: 5 000 + 3 000 · k
+DOSKA: k = 7? k = 12? ✋
+@tushuncha O‘zgaruvchi va ifoda
+OVOZ: [1] Harf bilan yozilgan, qiymati o‘zgaradigan miqdor — o‘zgaruvchi. [2] Ifoda: 5 000 plyus 3 000 karra k. k ning o‘rniga son qo‘yamiz. [3] {sekin}k yetti bo‘lsa: 5 000 plyus 21 000 — 26 000 so‘m. k o‘n ikki bo‘lsa: 5 000 plyus 36 000 — 41 000. [4] Bitta ifoda — cheksiz ko‘p savolga javob.
+DOSKA: 5 000 + 3 000 · k
+DOSKA: k = 7 → 26 000
+DOSKA: k = 12 → 41 000
+DOSKA: o‘zgaruvchi → son
+TEKSH: 2a + 5 ifodada a = 4 bo‘lsa qiymati? => 13 | 11 | 9 | 20
+TEKSH: 3 · (x − 2) ifodada x = 6 bo‘lsa? => 12 | 16 | 9 | 18
+@tushuncha Matndan ifoda tuzish
+OVOZ: [1] «Sonning ikki baravari» — 2 karra n. «Sonning 3 ga ortig‘i» — n plyus 3. [2] «Ikki sonning ayirmasi» — a minus b. «Sonning yarmi» — n bo‘lingan 2. [3] {sekin}«Sonning kvadratidan 5 ga kam» — n kvadrat minus 5. [4] Hikoyani harflar tiliga tarjima qilish — algebraning asosi.
+DOSKA: ikki baravari → 2n
+DOSKA: 3 ga ortig‘i → n + 3
+DOSKA: yarmi → n : 2
+DOSKA: kvadratidan 5 ga kam → n² − 5
+TEKSH: «Sonning 4 baravari 7 ga ortig‘i» ifodasi? => 4n + 7 | 4(n + 7) | n + 28 | 7n + 4
+TEKSH: Eni b, uzunligi enining 3 baravari. Perimetri? => 8b | 4b | 6b | 3b
+@tushuncha Ifodani soddalashtirish: o‘xshash hadlar
+OVOZ: [1] O‘xshash hadlar — bir xil harf qismi bor hadlar. 3a plyus 5a — 8a. [2] Olma va nok qo‘shilmaydi: 3a plyus 2b — shunday qoladi. [3] {sekin}4x plyus 3 minus x plyus 7: x lar: 4x minus x — 3x. Sonlar: 3 plyus 7 — 10. Javob: 3x plyus 10. [4] Hadlarni o‘z ishorasi bilan guruhlang.
+DOSKA: 3a + 5a = 8a
+DOSKA: 3a + 2b — ixcham
+DOSKA: 4x + 3 − x + 7 = 3x + 10
+DOSKA: o‘xshash hadlarni birlashtir
+TEKSH: 6m − 2m + 9 = ? => 4m + 9 | 8m + 9 | 4m − 9 | 13m
+TEKSH: 5a + 3b − 2a + b = ? => 3a + 4b | 7a + 4b | 3a + 2b | 10ab
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: farqli hadlarni qo‘shish: 3a plyus 2b — 5ab. [2] {urgu}Bu — noto‘g‘ri! Olma va nokni qo‘shib «olma-nok» hosil qilmaysiz. [3] Ikkinchi xato: a ko‘paytirilsa a kvadrat, a plyus a — 2a. A karra a — kvadrat, a plyus a — ikki a.
+DOSKA: ❌ 3a + 2b = 5ab
+DOSKA: ✅ 3a + 2b
+DOSKA: a + a = 2a
+DOSKA: a · a = a²
+TEKSH: x + x + x = ? => 3x | x³ | 3x² | x + 3
+@xulosa Esda tut
+OVOZ: Birinchi: o‘zgaruvchi — harf bilan yozilgan qiymati o‘zgaradigan miqdor. Ikkinchi: matnni ifodaga tarjima qiling. Uchinchi: o‘xshash hadlarni birlashtiring. To‘rtinchi: a plyus a — ikki a, a karra a — a kvadrat.
+DOSKA: 1. o‘zgaruvchi
+DOSKA: 2. matn → ifoda
+DOSKA: 3. o‘xshash hadlar
+DOSKA: 4. a + a = 2a; a · a = a²
+
+## t8_ifoda
+@kirish Qavsni ochish — nima uchun?
+OVOZ: Bir to‘g‘ri to‘rtburchak maydon eni o‘n metr, uzunligi — x plyus 4. Yuzasi — o‘n karra (x plyus 4). {pauza} Bu ifodani qavssiz yozsak, nima bo‘ladi? Har ikkala hadga o‘n ni ko‘paytirishimiz kerakmi? {sekin}Taqsimot qonuni aynan shu haqida. Taxmin qiling.
+DOSKA: 10 · (x + 4)
+DOSKA: Qavssiz? ✋
+@tushuncha Taqsimot qonuni
+OVOZ: [1] Son qavs oldida bo‘lsa, qavs ichidagi har bir hadga ko‘paytiriladi. [2] 10 karra x — 10x. 10 karra 4 — 40. [3] {sekin}Demak, 10 karra (x plyus 4) — 10x plyus 40. [4] Maydon: eni 10, uzunligi x va yana 4 ga bo‘linadi. Ikki to‘rtburchak yuzalarini qo‘shsak, bir xil chiqadi.
+DOSKA: 10 · (x + 4)
+DOSKA: = 10 · x + 10 · 4
+DOSKA: = 10x + 40
+DOSKA: QOIDA: a(b + c) = ab + ac
+TEKSH: 3(a + 5) = ? => 3a + 15 | 3a + 5 | a + 15 | 3a + 8
+TEKSH: 4(2x − 3) = ? => 8x − 12 | 8x − 3 | 6x − 12 | 2x − 12
+@tushuncha Minus oldidagi qavs
+OVOZ: [1] Qavs oldida minus bo‘lsa, ichidagi hamma ishoralar o‘zgaradi. [2] 7 minus (x minus 3) — 7 minus x plyus 3 — 10 minus x. [3] {sekin}Qavs oldida minus ikki bo‘lsa: minus 2 karra (a plyus 4) — minus 2a minus 8. [4] Minus bilan minus — plyus. Minus bilan plyus — minus.
+DOSKA: 7 − (x − 3) = 7 − x + 3 = 10 − x
+DOSKA: −2(a + 4) = −2a − 8
+DOSKA: − · − = +
+DOSKA: − · + = −
+TEKSH: 9 − (a + 2) = ? => 7 − a | 11 + a | 7 + a | 11 − a
+TEKSH: −3(x − 4) = ? => −3x + 12 | −3x − 12 | 3x − 12 | −3x + 4
+@tushuncha Ixchamlash va ko‘paytirish formulalari
+OVOZ: [1] Ikki qavsni ko‘paytiramiz: (a plyus 2) karra (a plyus 3). Har birini har biriga: a karra a, a karra 3, 2 karra a, 2 karra 3. [2] a kvadrat plyus 3a plyus 2a plyus 6 — a kvadrat plyus 5a plyus 6. [3] {sekin}Qisqa ko‘paytirish: (a plyus b) kvadrat — a kvadrat plyus 2ab plyus b kvadrat. [4] 5 plyus x kvadrat — 25 plyus 10x plyus x kvadrat. O‘rtadagi 2ab ni unutmang!
+DOSKA: (a + 2)(a + 3) = a² + 3a + 2a + 6
+DOSKA: = a² + 5a + 6
+DOSKA: (a + b)² = a² + 2ab + b²
+DOSKA: (5 + x)² = 25 + 10x + x²
+TEKSH: (x + 1)(x + 4) = ? => x² + 5x + 4 | x² + 4 | x² + 4x + 1 | 2x + 5
+TEKSH: (x + 3)² = ? => x² + 6x + 9 | x² + 9 | x² + 3x + 9 | x² + 6x + 6
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Eng mashhur xato: (a plyus b) kvadratni a kvadrat plyus b kvadrat deb yozish. [2] {urgu}O‘rtadagi 2ab yo‘qolib qoladi! Tekshirish: a bir, b bir. (1 plyus 1) kvadrat — 4, lekin 1 plyus 1 — 2. [3] Ikkinchi xato: qavsni ochganda faqat birinchi hadga ko‘paytirish: 3(a plyus 2) — 3a plyus 2.
+DOSKA: ❌ (a + b)² = a² + b²
+DOSKA: ✅ (a + b)² = a² + 2ab + b²
+DOSKA: (1 + 1)² = 4, 1² + 1² = 2
+DOSKA: ❌ 3(a + 2) = 3a + 2
+TEKSH: (2 + y)² = ? => 4 + 4y + y² | 4 + y² | 2 + 4y + y² | 4 + 2y + y²
+@xulosa Esda tut
+OVOZ: Birinchi: qavs oldidagi son har bir hadga ko‘paytiriladi. Ikkinchi: minus oldidagi qavsda ishoralar o‘zgaradi. Uchinchi: ikki qavsni ko‘paytirishda har bir had har biriga. To‘rtinchi: a plyus b kvadrat o‘rtada ikkilangan ko‘paytmaga ega.
+DOSKA: 1. a(b + c) = ab + ac
+DOSKA: 2. −( ) → ishoralar ↔
+DOSKA: 3. (a+b)(c+d) — 4 ta ko‘paytma
+DOSKA: 4. (a+b)² = a² + 2ab + b²
+
+## M8-TEN
+@kirish Qaysi son yashirinib olgan?
+OVOZ: Men bir son o‘yladim. Uni ikkiga ko‘paytirdim, ustiga yetti qo‘shdim — o‘n besh chiqdi. {pauza} Men o‘ylagan son nima? {sekin}Siz buni orqaga qarab — teskari amallar bilan topa olasiz: avval qo‘shishni bekor qilasiz, keyin ko‘paytirishni. Bu — tenglama yechishning asosi, va u maktabdan keyingi barcha hisoblarda ham ishlaydi. Taxmin qiling.
+DOSKA: ? · 2 + 7 = 15
+DOSKA: ? nechchi? ✋
+@tushuncha Tenglama — muvozanat
+OVOZ: [1] Tenglama — ikki tomoni teng, noma’lum bor tenglik. Tarozi kabi. [2] Qoida: bir tomonga nima qilsak, ikkinchisiga ham shuni qilamiz. [3] {sekin}2x plyus 7 — 15. Ikkala tomondan 7 ayiramiz: 2x — 8. Ikkala tomonni 2 ga bo‘lamiz: x — 4. [4] Tekshirish: 2 karra 4 plyus 7 — 15. To‘g‘ri. {sekin}Ko‘rdingizmi: noma’lumni topish uchun amallarni teskari tartibda bajardik. Avval qo‘shishni bekor qildik, keyin ko‘paytirishni.
+DOSKA: 2x + 7 = 15
+DOSKA: 2x = 15 − 7 = 8
+DOSKA: x = 8 : 2 = 4
+DOSKA: tekshir: 2 · 4 + 7 = 15 ✔
+TEKSH: 3x + 4 = 19. x = ? => 5 | 7 | 23 | 15
+TEKSH: 5x − 8 = 12. x = ? => 4 | 20 | 0,8 | 2,5
+@tushuncha O‘tkazish qoidasi
+OVOZ: [1] Hadni tenglikning bir tomonidan ikkinchisiga ishorasini o‘zgartirib o‘tkazish mumkin. [2] x plyus 9 — 20. 9 ni o‘ngga minus qilib o‘tkazamiz: x — 20 minus 9, 11. [3] {sekin}Aslida bu ikkala tomondan 9 ayirishdir. [4] Noma’lumlar bir tomonda, sonlar boshqa tomonda: 5x minus 3 — 2x plyus 12 — shunda 3x — 15, x — 5.
+DOSKA: x + 9 = 20 → x = 20 − 9 = 11
+DOSKA: 5x − 3 = 2x + 12
+DOSKA: 5x − 2x = 12 + 3
+DOSKA: 3x = 15; x = 5
+TEKSH: 7x − 5 = 3x + 11. x = ? => 4 | 1,5 | 6 | 16
+TEKSH: 4x + 9 = x + 24. x = ? => 5 | 3 | 11 | 6
+@tushuncha Matnli masalani tenglama bilan
+OVOZ: [1] Bir sonning uch baravaridan 5 ayirilsa, 22 bo‘ladi. Son qaysi? [2] Noma’lum son — x. 3x minus 5 — 22. [3] {sekin}3x — 27, x — 9. [4] Tekshirish: 9 ning uch baravari — 27, minus 5 — 22. Ha.
+DOSKA: 3x − 5 = 22
+DOSKA: 3x = 27
+DOSKA: x = 9
+DOSKA: tekshir: 27 − 5 = 22 ✔
+TEKSH: Sonning 4 baravariga 6 qo‘shilsa 30. Son? => 6 | 9 | 24 | 36
+TEKSH: Ikki ketma-ket sonning yig‘indisi 41. Kichigi? => 20 | 21 | 19 | 40
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: ikkala tomonda bir xil amal qilmaslik: 2x plyus 7 — 15, 2x — 15 plyus 7. [2] {urgu}Plyus 7 ni o‘tkazsak, minus 7 bo‘ladi! [3] Ikkinchi xato: javobni tekshirmaslik. Tekshirish — bir daqiqa, ishonch — butun hayot.
+DOSKA: ❌ 2x + 7 = 15 → 2x = 15 + 7
+DOSKA: ✅ 2x = 15 − 7
+DOSKA: ishora o‘zgaradi
+DOSKA: Doim tekshir
+TEKSH: x − 6 = 10. x = ? => 16 | 4 | −4 | 60
+@xulosa Esda tut
+OVOZ: Birinchi: tenglama — tarozi. Ikkinchi: ikkala tomonga bir xil amal. Uchinchi: hadni o‘tkazsangiz ishorasi o‘zgaradi. To‘rtinchi: javobni qo‘yib tekshiring.
+DOSKA: 1. tenglik = tarozi
+DOSKA: 2. ikki tomonga bir xil
+DOSKA: 3. o‘tkazsang ishora ↔
+DOSKA: 4. tekshir
+
+## t8_tenglama
+@kirish Qaysi tarif arzon?
+OVOZ: Ikki internet tarifi: birinchisida oyiga yigirma ming so‘m va har gigabayt uchun ikki ming. Ikkinchisida oyiga o‘n ming so‘m, lekin har gigabayt uchun uch ming. {pauza} Qaysi tarif arzon? Hammasi sarflangan gigabaytga bog‘liq. {sekin}Ikki ifodani tenglashtirsak, tariflar teng bo‘ladigan nuqtani topamiz. Taxmin qiling.
+DOSKA: 20 + 2x
+DOSKA: 10 + 3x
+DOSKA: Qachon teng? ✋
+@tushuncha Qavsli tenglamalar
+OVOZ: [1] Avval qavsni ochamiz. 3(x minus 2) plyus 5 — 17. [2] Qavsni ochamiz: 3x minus 6 plyus 5 — 17. O‘xshash hadlar: 3x minus 1 — 17. [3] {sekin}3x — 18, x — 6. [4] Tekshirish: 3 karra 4, 12, plyus 5 — 17. To‘g‘ri.
+DOSKA: 3(x − 2) + 5 = 17
+DOSKA: 3x − 6 + 5 = 17
+DOSKA: 3x = 18; x = 6
+DOSKA: tekshir: 3 · 4 + 5 = 17 ✔
+TEKSH: 2(x + 3) = 18. x = ? => 6 | 9 | 7,5 | 3
+TEKSH: 4(x − 1) + 3 = 19. x = ? => 5 | 4,5 | 3,5 | 4
+@tushuncha Tariflarni solishtirish
+OVOZ: [1] 20 plyus 2x — 10 plyus 3x. Noma’lumlarni bir tomonga yig‘amiz. [2] 20 minus 10 — 3x minus 2x. 10 — x. [3] {sekin}10 gigabaytda ikkala tarif bir xil. Undan kam bo‘lsa — ikkinchisi arzon, ko‘p bo‘lsa — birinchisi. [4] 10 gigabaytda tekshiring: 20 plyus 20 — 40; 10 plyus 30 — 40.
+DOSKA: 20 + 2x = 10 + 3x
+DOSKA: 10 = x
+DOSKA: x < 10 → 2-tarif arzon
+DOSKA: x > 10 → 1-tarif arzon
+TEKSH: 15 + 4x = 35 + 2x. x = ? => 10 | 25 | 5 | 50
+TEKSH: Tarif A: 5 + 2x, tarif B: 11 + x. Qaysi gigabaytda teng? => 6 | 16 | 3 | 0
+@tushuncha Kasrli tenglamalar
+OVOZ: [1] x bo‘lingan 3 plyus 2 — 6. Ikkala tomondan 2 ayiramiz: x bo‘lingan 3 — 4. [2] Ikkala tomonni 3 ga ko‘paytiramiz: x — 12. [3] {sekin}Boshqacha: maxrajdan qutulish uchun hamma hadni umumiy maxrajga ko‘paytiramiz. [4] x bo‘lingan 2 plyus x bo‘lingan 3 — 10 da umumiy maxraj 6: 3x plyus 2x — 60, x — 12.
+DOSKA: x/3 + 2 = 6 → x/3 = 4 → x = 12
+DOSKA: x/2 + x/3 = 10
+DOSKA: · 6: 3x + 2x = 60
+DOSKA: 5x = 60; x = 12
+TEKSH: x/4 − 1 = 5. x = ? => 24 | 16 | 20 | 6
+TEKSH: x/5 + x/2 = 14. x = ? => 20 | 10 | 14 | 7
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: kasrli tenglamada faqat bitta hadga umumiy maxrajni ko‘paytirish. [2] {urgu}Umumiy maxrajga hamma hadni ko‘paytiring, jumladan, sonni ham! [3] Ikkinchi xato: tenglama yechimi yo‘q yoki cheksiz ko‘p bo‘lishi mumkinligini bilmaslik. 2x plyus 3 — 2x plyus 5: yechim yo‘q.
+DOSKA: x/3 + 2 = 6 → (·3): x + 2 = 18 ❌
+DOSKA: ✅ x + 6 = 18
+DOSKA: 2x + 3 = 2x + 5 → 3 = 5 ✖
+DOSKA: yechim yo‘q
+TEKSH: 3x + 7 = 3x + 7 tenglamaning yechimi? => Cheksiz ko‘p | Yo‘q | x = 0 | x = 7
+@xulosa Esda tut
+OVOZ: Birinchi: avval qavsni oching. Ikkinchi: noma’lumlarni bir tomonga yig‘ing. Uchinchi: kasrdan umumiy maxrajga ko‘paytirib qutuling. To‘rtinchi: har doim tekshiring, yechim yo‘q yoki cheksiz bo‘lishi mumkin.
+DOSKA: 1. qavsni och
+DOSKA: 2. x bir tomonda
+DOSKA: 3. kasr → umumiy maxrajga ko‘paytir
+DOSKA: 4. tekshir

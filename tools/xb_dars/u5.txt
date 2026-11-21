@@ -1,0 +1,172 @@
+## M8-JOY
+@kirish Xazina qayerda?
+OVOZ: Xaritada xazina belgisi bor: ikki qadam o‘ngga, uch qadam yuqoriga. Boshlanish nuqtasi — daraxt. {pauza} Xazinani topish uchun ikkita sonni aytish kifoya: ikki va uch. {sekin}Koordinatalar tekisligi ana shunday ishlaydi: har bir nuqtani ikki son bilan aniq aytamiz. Taxmin qiling.
+DOSKA: ikki o‘ngga
+DOSKA: uch yuqoriga
+DOSKA: Xazina (2; 3) ✋
+@tushuncha Koordinatalar tekisligi
+OVOZ: [1] Ikki son o‘qi bir-biriga perpendikulyar. Gorizontal — x o‘qi. Vertikal — y o‘qi. Kesishgan joyi — koordinatalar boshi. [2] Nuqta ikkita son bilan beriladi: avval x, keyin y. [3] {sekin}Nuqta (2; 3): x — ikki o‘ngga, y — uch yuqoriga. [4] Manfiy x — chapga, manfiy y — pastga.
+DOSKA: CHIZ: koordinatalar tekisligi
+DOSKA: nuqta (2; 3)
+DOSKA: x → gorizontal, y → vertikal
+DOSKA: (−2; −3) — chap, pastda
+TEKSH: (4; −1) nuqta qaysi tomonda? => O‘ng-pastda | Chap-yuqorida | O‘ng-yuqorida | Chap-pastda
+TEKSH: (0; 5) nuqta qayerda? => y o‘qida | x o‘qida | Koordinatalar boshida | Chap pastda
+@tushuncha To‘rt chorak
+OVOZ: [1] Tekislik to‘rt qismga bo‘linadi. Birinchi chorak — ikkala koordinata musbat. [2] Ikkinchi — x manfiy, y musbat. Uchinchi — ikkalasi manfiy. To‘rtinchi — x musbat, y manfiy. [3] {sekin}Soat miliga teskari yo‘nalishda sanaymiz. [4] Nuqta o‘qda bo‘lsa, u hech qaysi chorakka tegishli emas.
+DOSKA: I: (+; +)
+DOSKA: II: (−; +)
+DOSKA: III: (−; −)
+DOSKA: IV: (+; −)
+TEKSH: (−5; 7) nuqta qaysi chorakda? => II | I | III | IV
+TEKSH: (3; −8) nuqta qaysi chorakda? => IV | I | II | III
+@tushuncha Masofa va o‘rta nuqta
+OVOZ: [1] Bir gorizontal chiziqda yotgan ikki nuqta orasidagi masofa — x lar farqining moduli. (1; 4) va (7; 4): 7 minus 1 — 6. [2] Kesma o‘rtasi: koordinatalarning o‘rtachasi. [3] {sekin}(2; 6) va (8; 2) ning o‘rtasi: x — (2 plyus 8) bo‘lingan 2 — 5. y — (6 plyus 2) bo‘lingan 2 — 4. O‘rta nuqta (5; 4). [4] Qiyshiq kesmaning uzunligini Pifagor bilan topamiz.
+DOSKA: (1; 4) va (7; 4): |7 − 1| = 6
+DOSKA: o‘rta: ((2+8)/2; (6+2)/2)
+DOSKA: = (5; 4)
+DOSKA: qiyshiq → Pifagor
+TEKSH: (−3; 2) va (5; 2) orasidagi masofa? => 8 | 2 | 5 | 3
+TEKSH: (0; 0) va (6; 10) ning o‘rta nuqtasi? => (3; 5) | (6; 10) | (3; 10) | (5; 3)
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Mashhur xato: (x; y) tartibini almashtirish. (2; 3) bilan (3; 2) — turli nuqtalar. [2] {urgu}Avval x — ko‘cha bo‘ylab, keyin y — ko‘tarilish. «Eshikdan kiring, keyin zinadan chiqing!» [3] Ikkinchi xato: manfiy sondan masofani manfiy deb olish. Masofa — doim musbat.
+DOSKA: (2; 3) ≠ (3; 2)
+DOSKA: avval x, keyin y
+DOSKA: masofa ≥ 0
+DOSKA: |−4 − 2| = 6
+TEKSH: (−4; 1) va (2; 1) orasidagi masofa? => 6 | −6 | 2 | 3
+@xulosa Esda tut
+OVOZ: Birinchi: nuqta — ikkita son, avval x, keyin y. Ikkinchi: to‘rt chorak ishoralar bilan aniqlanadi. Uchinchi: gorizontal masofa — x lar farqining moduli. To‘rtinchi: o‘rta nuqta — koordinatalar o‘rtachasi.
+DOSKA: 1. (x; y)
+DOSKA: 2. I II III IV
+DOSKA: 3. |x₂ − x₁|
+DOSKA: 4. o‘rtacha koordinatalar
+
+## t8_koord
+@kirish Shakl harakatlanmoqda
+OVOZ: Kompyuter o‘yinida kema ekranda harakat qiladi: o‘ngga suriladi, ba’zan aylanadi, ba’zan oyna aksini hosil qiladi. {pauza} Bu harakatlarni raqamlar bilan qanday yozamiz? Har bir nuqta qaysi yangi koordinataga o‘tadi? {sekin}Almashtirishlar — ko‘chirish, akslantirish, burilish. Ularni koordinatalar bilan tavsiflaymiz. Taxmin qiling.
+DOSKA: A(2; 3)
+DOSKA: Suriladi → ?
+DOSKA: Aks → ? ✋
+@tushuncha Parallel ko‘chirish
+OVOZ: [1] Nuqtani 4 o‘ngga va 2 pastga surish. x ga 4 qo‘shamiz, y dan 2 ayiramiz. [2] A (2; 3) → (6; 1). [3] {sekin}Butun shakl uchun har bir uchini shunday suramiz. Shakl o‘zgarmaydi — faqat joyi. [4] Qoida: (x; y) → (x plyus a; y plyus b).
+DOSKA: (x; y) → (x + 4; y − 2)
+DOSKA: (2; 3) → (6; 1)
+DOSKA: shakl o‘zgarmaydi
+DOSKA: faqat joyi
+TEKSH: (1; 5) nuqta 3 chapga, 4 yuqoriga surildi. Yangi nuqta? => (−2; 9) | (4; 1) | (−2; 1) | (4; 9)
+TEKSH: (0; 0) nuqta (5; −3) ga ko‘chdi. Qoida? => (x + 5; y − 3) | (x − 5; y + 3) | (x + 3; y − 5) | (5x; −3y)
+@tushuncha Akslantirish
+OVOZ: [1] x o‘qiga nisbatan akslantirishda y ning ishorasi o‘zgaradi: (2; 3) → (2; −3). [2] y o‘qiga nisbatan akslantirishda x ning ishorasi o‘zgaradi: (2; 3) → (−2; 3). [3] {sekin}Bu — oyna aksi. Shakl bir xil, lekin teskari yo‘nalishda. [4] O‘qdan masofa o‘zgarmaydi — aks ham xuddi shuncha narida.
+DOSKA: x o‘qi: (x; y) → (x; −y)
+DOSKA: y o‘qi: (x; y) → (−x; y)
+DOSKA: (2; 3) → (2; −3)
+DOSKA: (2; 3) → (−2; 3)
+TEKSH: (−4; 6) nuqtaning x o‘qiga nisbatan aksi? => (−4; −6) | (4; 6) | (4; −6) | (6; −4)
+TEKSH: (5; −2) nuqtaning y o‘qiga nisbatan aksi? => (−5; −2) | (5; 2) | (−5; 2) | (2; 5)
+@tushuncha Burilish
+OVOZ: [1] Koordinatalar boshi atrofida 180 gradusga burishda ikkala ishora o‘zgaradi: (2; 3) → (−2; −3). [2] 90 gradusga soat miliga teskari burishda: (x; y) → (−y; x). [3] {sekin}(2; 3) → (−3; 2). [4] Burilishda shakl va uning o‘lchamlari o‘zgarmaydi.
+DOSKA: 180°: (x; y) → (−x; −y)
+DOSKA: 90°: (x; y) → (−y; x)
+DOSKA: (2; 3) → (−3; 2)
+DOSKA: o‘lcham o‘zgarmaydi
+TEKSH: (3; 4) nuqtani 180° ga burish? => (−3; −4) | (4; 3) | (−4; 3) | (3; −4)
+TEKSH: (1; 5) nuqtani 90° ga (soat miliga teskari) burish? => (−5; 1) | (5; −1) | (−1; −5) | (5; 1)
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: akslantirishda ikkala koordinataning ishorasini o‘zgartirish. [2] {urgu}Bu — 180 gradusga burilish, aks emas! [3] Aks — faqat bitta koordinata ishorasi o‘zgaradi. Qaysi o‘q? Qaysi koordinata o‘zgarmaydi — o‘sha o‘qqa nisbatan aks.
+DOSKA: aks x o‘qi: faqat y ishorasi
+DOSKA: ❌ (x; y) → (−x; −y) aks emas
+DOSKA: ✅ bu 180° burilish
+DOSKA: x o‘qida yotgan nuqta o‘zgarmaydi
+TEKSH: (6; 0) nuqtaning x o‘qiga nisbatan aksi? => (6; 0) | (−6; 0) | (0; 6) | (0; −6)
+@xulosa Esda tut
+OVOZ: Birinchi: ko‘chirishda koordinatalarga son qo‘shamiz. Ikkinchi: x o‘qiga aks — y ishorasi o‘zgaradi. Uchinchi: y o‘qiga aks — x ishorasi o‘zgaradi. To‘rtinchi: 180 gradusga burilishda ikkala ishora o‘zgaradi.
+DOSKA: 1. (x+a; y+b)
+DOSKA: 2. x-aks: (x; −y)
+DOSKA: 3. y-aks: (−x; y)
+DOSKA: 4. 180°: (−x; −y)
+
+## M8-TAS
+@kirish Qaysi diagramma haqiqatni aytadi?
+OVOZ: Maktab so‘rovi: sevimli fan. Natijalar: matematika — qirq foiz, tarix — yigirma, biologiya — o‘n besh, boshqalar — yigirma besh. {pauza} Buni qanday chizsak yaxshi ko‘rinadi? Ustunlik diagrammami, doirami, yoki jadvalmi? {sekin}Har bir diagramma o‘z vazifasiga ega. To‘g‘risini tanlash — ma’lumotni halol ko‘rsatishning yarmi. Taxmin qiling.
+DOSKA: Mat. 40% | Tarix 20%
+DOSKA: Bio 15% | Boshqa 25%
+DOSKA: Qaysi diagramma? ✋
+@tushuncha Qaysi diagramma qachon?
+OVOZ: [1] Ustunli diagramma — turli toifalarni taqqoslash. [2] Chiziqli diagramma — vaqt bo‘yicha o‘zgarishni ko‘rsatish. [3] {sekin}Doira diagramma — butunning qismlarini ko‘rsatish. Yig‘indi yuz foiz bo‘lishi kerak. [4] Gistogramma — oraliqlar bo‘yicha taqsimlanishni ko‘rsatadi: masalan, bo‘y.
+DOSKA: ustun → taqqoslash
+DOSKA: chiziq → vaqt bo‘yicha
+DOSKA: doira → qismlar / butun
+DOSKA: gistogramma → oraliqlar
+TEKSH: Yil davomida haftalik haroratni ko‘rsatish uchun? => Chiziqli diagramma | Doira diagramma | Piktogramma | Jadval
+TEKSH: Byudjetning qismlari (ijara, oziq-ovqat...) uchun? => Doira diagramma | Chiziqli diagramma | Gistogramma | Ustun
+@tushuncha Doira diagrammani chizish
+OVOZ: [1] Doira — 360 gradus. 1 foiz — 3,6 gradus. [2] Matematika — 40 foiz: 0,4 karra 360 — 144 gradus. [3] {sekin}Tarix — 20 foiz — 72 gradus. Biologiya — 15 — 54. Boshqa — 25 — 90. [4] Yig‘indi: 144 plyus 72 plyus 54 plyus 90 — 360. To‘g‘ri.
+DOSKA: 40% → 0,4 · 360° = 144°
+DOSKA: 20% → 72°
+DOSKA: 15% → 54°; 25% → 90°
+DOSKA: 144 + 72 + 54 + 90 = 360 ✔
+TEKSH: 30% uchun doira diagramma sektori necha gradus? => 108° | 30° | 90° | 120°
+TEKSH: Sektor 45° bo‘lsa, necha foiz? => 12,5% | 45% | 25% | 8%
+@tushuncha Ma’lumotni halol ko‘rsatish
+OVOZ: [1] Shkala noldan boshlanmasa, ustunlar farqni bo‘rttiradi. [2] Doira diagrammada juda ko‘p kichik bo‘lak bo‘lsa — o‘qish qiyin. [3] {sekin}Sarlavha, birliklar, manba — hammasi yozilgan bo‘lishi shart. [4] Rangni haddan oshirmang: ma’lumot muhim, bezak emas.
+DOSKA: shkala noldan
+DOSKA: ≤ 6 bo‘lak doirada
+DOSKA: sarlavha + birlik + manba
+DOSKA: ma’lumot > bezak
+TEKSH: Ustun balandligi 95 dan boshlanadi. Bu nimaga olib keladi? => Farq bo‘rttirib ko‘rinadi | Farq kamayadi | Hech nima | Ustunlar teng bo‘ladi
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: doira diagrammada foizlar yig‘indisi yuzdan oshib ketishi. [2] {urgu}Foiz — butunning qismi: yig‘indi doim yuz! [3] Ikkinchi xato: vaqt bo‘yicha o‘zgarishni doira bilan ko‘rsatish.
+DOSKA: ❌ 40 + 30 + 40 = 110%
+DOSKA: ✅ yig‘indi = 100%
+DOSKA: vaqt → chiziqli
+DOSKA: qismlar → doira
+TEKSH: So‘rov: 35%, 25%, 30%. To‘ldirish uchun qolgan «boshqa»? => 10% | 15% | 5% | 90%
+@xulosa Esda tut
+OVOZ: Birinchi: ustun — taqqoslash, chiziq — vaqt, doira — qismlar. Ikkinchi: foizni gradusga o‘tkazish: foiz karra 3,6. Uchinchi: shkala noldan boshlanishi kerak. To‘rtinchi: doira diagrammada yig‘indi yuz foiz.
+DOSKA: 1. ustun · chiziq · doira
+DOSKA: 2. % · 3,6 = °
+DOSKA: 3. shkala noldan
+DOSKA: 4. Σ = 100%
+
+## M8-TAH
+@kirish Reklamaga ishonish mumkinmi?
+OVOZ: Reklama aytadi: «Yetti stomatologdan oltitasi shu xamirtishni tavsiya qiladi». {pauza} Yetti stomatolog necha minglab stomatologdan bittasi? Ularni kim tanladi? {sekin}Ma’lumotlarni tahlil qilish — raqamga ko‘r-ko‘rona ishonmaslikni o‘rganish. Qaysi ma’lumot bizni aldashi mumkin — shuni bilamiz. Taxmin qiling.
+DOSKA: 6 / 7 tavsiya
+DOSKA: Ishonamizmi? ✋
+@tushuncha Tanlama va umumiy to‘plam
+OVOZ: [1] Umumiy to‘plam — hamma o‘rganilayotgan ob’ektlar. Tanlama — undan olingan kichik qism. [2] Yaxshi tanlama — katta va tasodifiy. [3] {sekin}Yetti stomatologdan olti — kichik tanlama, uni kim tanlagan noma’lum. Shuning uchun xulosa ishonchsiz. [4] Mingta tasodifiy kishi — butun mamlakatni yaxshi aks ettirishi mumkin.
+DOSKA: umumiy to‘plam ⊃ tanlama
+DOSKA: katta + tasodifiy → yaxshi
+DOSKA: 7 stomatolog → kichik
+DOSKA: 1 000 tasodifiy → ishonchli
+TEKSH: Shahar aholisi fikrini bilish uchun qaysi tanlama yaxshi? => 2 000 tasodifiy kishi | Faqat do‘stlar | Bitta mahalla | 10 ta tanish
+TEKSH: Faqat bitta sinfdan so‘rab, butun maktab haqida xulosa chiqarish... => Noto‘g‘ri, tanlama kichik | To‘g‘ri | Aniq | Doim ishonchli
+@tushuncha Tendensiya va og‘ishlar
+OVOZ: [1] Chiziqli diagrammada umumiy yo‘nalish — tendensiya. [2] Ba’zi nuqtalar tendensiyadan chetga chiqadi — bular og‘ishlar. [3] {sekin}Bir oyning savdosi past bo‘lsa, savdo tushdi deb xulosa chiqarmang. Bir nechta nuqtaga qarang. [4] Tendensiya bashorat qilishga yordam beradi. Lekin bashorat — kafolat emas.
+DOSKA: GRAFIK: y=2x+10; [0;6]
+DOSKA: umumiy yo‘nalish — tendensiya
+DOSKA: bitta nuqta — og‘ish
+DOSKA: bashorat ≠ kafolat
+TEKSH: Savdo oylar bo‘yicha: 50, 54, 58, 62. Taxminan keyingi oy? => 66 | 70 | 62 | 58
+TEKSH: Tendensiyadan chetga chiqqan bitta nuqta nima? => Og‘ish | Tendensiya | O‘rtacha | Moda
+@tushuncha Bog‘liqlik va sabab
+OVOZ: [1] Yozda muzqaymoq ko‘p sotiladi, cho‘milishda baxtsiz hodisalar ham ko‘p. Ikkalasi birga o‘sadi. [2] Lekin muzqaymoq baxtsiz hodisaga sabab emas. [3] {sekin}Umumiy sabab — issiq ob-havo. Bog‘liqlik — sabab degani emas. [4] Sabab haqida gapirishdan oldin boshqa omillarni qidiring.
+DOSKA: muzqaymoq ↑  cho‘milish ↑
+DOSKA: umumiy sabab: issiq
+DOSKA: bog‘liqlik ≠ sabab
+DOSKA: boshqa omillarni qidir
+TEKSH: Maktabga kech qolganlar soni va yomg‘ir kunlari birga ko‘paydi. Sabab? => Yomg‘ir transportni sekinlashtirgan bo‘lishi mumkin, lekin tekshirish kerak | Kech qolish yomg‘ir yog‘dirgan | Aniq sabab | Bog‘liqlik yo‘q
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: foizni sonlarning o‘zidan ajratib ko‘rsatish. «Savdo 200 foizga oshdi» — qanchadan qanchaga? [2] {urgu}Foiz bilan birga haqiqiy sonlarni so‘rang! Bitta mijozdan uchtaga — ham 200 foiz. [3] Ikkinchi xato: faqat o‘rtachaga qarash, tarqoqlikni ko‘rmaslik.
+DOSKA: 1 → 3 mijoz = +200%
+DOSKA: 1000 → 3000 = +200%
+DOSKA: foiz + haqiqiy son
+DOSKA: o‘rtacha + tarqoqlik
+TEKSH: «Zarar 100% ga oshdi» — nimani so‘rash kerak? => Qanchadan qanchaga | Hech nimani | Faqat sanani | Faqat foizga ishonish kerak
+@xulosa Esda tut
+OVOZ: Birinchi: tanlama katta va tasodifiy bo‘lsin. Ikkinchi: tendensiyaga qarang, bitta nuqtaga emas. Uchinchi: bog‘liqlik sabab emas. To‘rtinchi: foiz bilan birga haqiqiy sonlarni so‘rang.
+DOSKA: 1. katta + tasodifiy
+DOSKA: 2. tendensiya
+DOSKA: 3. bog‘liqlik ≠ sabab
+DOSKA: 4. foiz + son

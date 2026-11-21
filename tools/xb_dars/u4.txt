@@ -1,0 +1,218 @@
+## t8_funk
+@kirish Suv idishi to‘lmoqda
+OVOZ: Idishda dastlab ikki litr suv bor. Kran har daqiqada uch litr quyadi. {pauza} Besh daqiqadan keyin idishda qancha suv bo‘ladi? Vaqt o‘tishi bilan suv miqdori qanday o‘zgaradi? {sekin}Bir kattalik boshqasiga bog‘liq bo‘lsa, funksiya hosil bo‘ladi. Bugun chiziqli funksiyani chizib o‘rganamiz. Taxmin qiling.
+DOSKA: Boshida 2 l
+DOSKA: Har daqiqada +3 l
+DOSKA: 5 daqiqadan keyin? ✋
+@tushuncha Funksiya — qoida
+OVOZ: [1] Funksiya — har bir kirish qiymatiga bitta chiqish qiymatini beradigan qoida. [2] Vaqt x, suv y. Qoida: y — 3x plyus 2. [3] {sekin}x besh bo‘lsa: 3 karra 5 plyus 2 — 17 litr. x nol bo‘lsa — 2 litr, boshlang‘ich holat. [4] Har bir x ga faqat bitta y mos keladi.
+DOSKA: y = 3x + 2
+DOSKA: x = 5 → y = 17
+DOSKA: x = 0 → y = 2
+DOSKA: kirish → qoida → chiqish
+TEKSH: y = 2x − 1. x = 6 bo‘lsa, y? => 11 | 13 | 12 | 5
+TEKSH: y = 5x + 4. y = 24 bo‘lsa, x? => 4 | 5 | 20 | 28
+@tushuncha Grafik — to‘g‘ri chiziq
+OVOZ: [1] Jadval tuzamiz: x nol — y ikki, x bir — y besh, x ikki — y sakkiz. [2] Nuqtalarni koordinatalar tekisligiga qo‘yamiz. [3] {sekin}Ular bitta to‘g‘ri chiziqda yotadi. Shuning uchun u chiziqli funksiya. [4] To‘g‘ri chiziq chizish uchun ikkita nuqta yetarli. Uchinchisi — tekshirish uchun.
+DOSKA: GRAFIK: y=3x+2; [-1;3]
+DOSKA: (0; 2), (1; 5), (2; 8)
+DOSKA: 2 nuqta → chiziq
+DOSKA: 3-nuqta — tekshirish
+TEKSH: y = x + 3. x = 2 bo‘lganda grafikdagi nuqta? => (2; 5) | (5; 2) | (2; 3) | (3; 2)
+TEKSH: Grafik (0; 4) va (1; 6) nuqtalardan o‘tadi. Qoida? => y = 2x + 4 | y = 4x + 2 | y = x + 4 | y = 6x
+@tushuncha Qiyalik va boshlang‘ich qiymat
+OVOZ: [1] y — kx plyus b. Bu yerda k — qiyalik: x bir birlik oshganda y qancha o‘zgaradi. b — x nol bo‘lgandagi y, ya’ni boshlang‘ich qiymat. [2] Bizda k — 3, b — 2. [3] {sekin}k musbat bo‘lsa, chiziq yuqoriga ko‘tariladi. k manfiy bo‘lsa — pastga tushadi. [4] Agar k nol bo‘lsa, chiziq gorizontal.
+DOSKA: GRAFIK: y=-x+4; [-1;5]
+DOSKA: k > 0 → ↗
+DOSKA: k < 0 → ↘
+DOSKA: b — y o‘qini kesish nuqtasi
+TEKSH: y = −2x + 7 grafigi qanday yo‘nalgan? => Pastga tushadi | Yuqoriga ko‘tariladi | Gorizontal | Vertikal
+TEKSH: y = 4x − 3 grafigi y o‘qini qaysi nuqtada kesadi? => (0; −3) | (0; 4) | (−3; 0) | (4; 0)
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: b ni qiyalik bilan adashtirish. [2] {urgu}Qiyalik — x oldidagi son, boshlang‘ich qiymat — alohida turgan son! [3] Ikkinchi xato: x ni y bilan almashtirish — nuqtani (y; x) deb qo‘yish.
+DOSKA: y = 3x + 2: k = 3, b = 2
+DOSKA: ❌ k = 2
+DOSKA: nuqta: (x; y), x — birinchi
+DOSKA: (1; 5) ≠ (5; 1)
+TEKSH: y = 7 − 2x funksiyada k va b? => k = −2, b = 7 | k = 7, b = −2 | k = 2, b = 7 | k = −2, b = −7
+@xulosa Esda tut
+OVOZ: Birinchi: funksiya — qoida: har bir x ga bitta y. Ikkinchi: chiziqli funksiya grafigi — to‘g‘ri chiziq. Uchinchi: k — qiyalik, b — boshlang‘ich qiymat. To‘rtinchi: nuqta — avval x, keyin y.
+DOSKA: 1. x → y qoida
+DOSKA: 2. y = kx + b — to‘g‘ri chiziq
+DOSKA: 3. k — qiyalik; b — boshlang‘ich
+DOSKA: 4. (x; y)
+
+## M8-SHA
+@kirish Qaychi va burchaklar
+OVOZ: Qaychini ochdingiz. Pichoqlari orasida burchak hosil bo‘ldi. Pichoqlar ikki to‘g‘ri chiziq kabi kesishadi va to‘rtta burchak paydo bo‘ladi. {pauza} Agar bitta burchak yetmish gradus bo‘lsa, qolgan uchtasi qancha? {sekin}Burchaklar o‘rtasida hayratlanarli bog‘lanish bor. Bugun shuni o‘rganamiz. Taxmin qiling.
+DOSKA: ∠1 = 70°
+DOSKA: ∠2, ∠3, ∠4 = ? ✋
+@tushuncha Qo‘shni va vertikal burchaklar
+OVOZ: [1] Qo‘shni burchaklar — bitta tomoni umumiy, qolganlari to‘g‘ri chiziqni hosil qiladi. Ularning yig‘indisi 180 gradus. [2] Yetmish gradusli burchakka qo‘shni burchak — 180 minus 70 — 110. [3] {sekin}Vertikal burchaklar — qarama-qarshi turgan burchaklar. Ular doim teng! [4] Demak, qaychida ikkita 70 va ikkita 110 gradusli burchak bor.
+DOSKA: CHIZ: kesishgan to‘g‘ri chiziqlar
+DOSKA: qo‘shni: 70° + 110° = 180°
+DOSKA: vertikal: 70° = 70°
+DOSKA: 70° + 110° + 70° + 110° = 360°
+TEKSH: Qo‘shni burchaklardan biri 125°. Ikkinchisi? => 55° | 65° | 125° | 235°
+TEKSH: Vertikal burchaklardan biri 48°. Qarama-qarshisi? => 48° | 132° | 42° | 96°
+@tushuncha Parallel chiziqlar va kesuvchi
+OVOZ: [1] Ikki parallel chiziqni uchinchi to‘g‘ri chiziq kesadi. Sakkizta burchak hosil bo‘ladi. [2] Mos burchaklar teng. Ichki almashinuvchi burchaklar ham teng. [3] {sekin}Bir tomonli ichki burchaklar yig‘indisi 180. [4] Bu xossalar teskarisi ham to‘g‘ri: burchaklar teng bo‘lsa, chiziqlar parallel.
+DOSKA: mos burchaklar: =
+DOSKA: ichki almashinuvchi: =
+DOSKA: bir tomonli: + = 180°
+DOSKA: teskarisi ham to‘g‘ri
+TEKSH: Parallel chiziqlarda mos burchaklardan biri 65°. Ikkinchisi? => 65° | 115° | 25° | 90°
+TEKSH: Bir tomonli ichki burchaklardan biri 100°. Ikkinchisi? => 80° | 100° | 260° | 90°
+@tushuncha Burchaklar bilan masala
+OVOZ: [1] Ikki qo‘shni burchakning nisbati 2 ga 3. Ular necha gradus? [2] Yig‘indi — 180. Qismlar — 2 plyus 3, 5. Bir qism — 36. [3] {sekin}Birinchi — 72, ikkinchisi — 108. Tekshiruv: 72 plyus 108 — 180. [4] Burchak va nisbat mavzularini birlashtirdik.
+DOSKA: 2x + 3x = 180°
+DOSKA: x = 36°
+DOSKA: 72° va 108°
+DOSKA: 72 + 108 = 180 ✔
+TEKSH: Qo‘shni burchaklar nisbati 1 : 5. Kichigi? => 30° | 36° | 150° | 20°
+TEKSH: Vertikal burchaklar yig‘indisi 140°. Har biri? => 70° | 140° | 40° | 110°
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: vertikal burchaklarni qo‘shni deb o‘ylab, yig‘indisini 180 deb olish. [2] {urgu}Vertikal burchaklar teng! Qo‘shni burchaklar yig‘indisi 180. [3] Ikkinchi xato: parallel bo‘lmagan chiziqlarda mos burchaklarni teng deb olish.
+DOSKA: ❌ vertikal: 70 + 70 = 180
+DOSKA: ✅ vertikal: 70 = 70
+DOSKA: qo‘shni: 70 + 110 = 180
+DOSKA: parallel shart
+TEKSH: Ikki burchak vertikal. Biri 3x, ikkinchisi 60°. x = ? => 20° | 180° | 60° | 30°
+@xulosa Esda tut
+OVOZ: Birinchi: qo‘shni burchaklar yig‘indisi 180. Ikkinchi: vertikal burchaklar teng. Uchinchi: parallel chiziqlarda mos va ichki almashinuvchi burchaklar teng. To‘rtinchi: bir tomonli ichki burchaklar yig‘indisi 180.
+DOSKA: 1. qo‘shni: Σ = 180°
+DOSKA: 2. vertikal: =
+DOSKA: 3. mos, almashinuvchi: =
+DOSKA: 4. bir tomonli: Σ = 180°
+
+## t8_uchburchak
+@kirish Narvonni qayerga qo‘yamiz?
+OVOZ: Besh metrli narvonni devorga tirab qo‘ymoqchisiz. Narvonning pastki uchi devordan uch metr uzoqda. {pauza} Narvon devorning qancha balandligiga yetadi? Rulet bilan o‘lchamasdan topa olamizmi? {sekin}To‘g‘ri burchakli uchburchakda Pifagor teoremasi aynan shu uchun. Taxmin qiling.
+DOSKA: narvon 5 m
+DOSKA: devordan 3 m
+DOSKA: balandlik? ✋
+@tushuncha Uchburchak burchaklari yig‘indisi
+OVOZ: [1] Har qanday uchburchakning uchta burchagi yig‘indisi 180 gradus. [2] Ikki burchagi 50 va 60 bo‘lsa, uchinchisi — 180 minus 110 — 70. [3] {sekin}Teng yonli uchburchakda ikkita tomon va ikkita burchak teng. Teng tomonli uchburchakda hamma burchak 60. [4] Uchburchak qanday bo‘lmasin, burchaklar yig‘indisi o‘zgarmaydi.
+DOSKA: ∠A + ∠B + ∠C = 180°
+DOSKA: 50° + 60° + ∠C = 180° → ∠C = 70°
+DOSKA: teng tomonli: 60° · 3
+DOSKA: teng yonli: 2 ta teng burchak
+TEKSH: Burchaklar 35° va 85°. Uchinchisi? => 60° | 120° | 50° | 90°
+TEKSH: Teng yonli uchburchakda uchidagi burchak 40°. Asosidagi burchak? => 70° | 140° | 40° | 35°
+@tushuncha Pifagor teoremasi
+OVOZ: [1] To‘g‘ri burchakli uchburchakda to‘g‘ri burchak qarshisidagi tomon — gipotenuza. Qolganlari — katetlar. [2] Katetlar kvadratlari yig‘indisi gipotenuza kvadratiga teng. [3] {sekin}Narvon — gipotenuza, 5. Bitta katet — 3. Ikkinchisi x: 3 kvadrat plyus x kvadrat — 5 kvadrat. 9 plyus x kvadrat — 25. [4] x kvadrat — 16, x — 4. Narvon devorning 4 metr balandligiga yetadi.
+DOSKA: a² + b² = c²
+DOSKA: 3² + x² = 5²
+DOSKA: 9 + x² = 25; x² = 16
+DOSKA: x = 4 m
+TEKSH: Katetlar 6 va 8. Gipotenuza? => 10 | 14 | 12 | 100
+TEKSH: Gipotenuza 13, katet 5. Ikkinchi katet? => 12 | 8 | 18 | 144
+@tushuncha Teskari teorema: to‘g‘ri burchakmi?
+OVOZ: [1] Agar uch tomon uchun a kvadrat plyus b kvadrat teng c kvadrat bo‘lsa, uchburchak to‘g‘ri burchakli. [2] 7, 24, 25: 49 plyus 576 — 625 — 25 kvadrat. Ha! [3] {sekin}5, 6, 8 uchun: 25 plyus 36 — 61, 8 kvadrat — 64. Teng emas — to‘g‘ri burchakli emas. [4] Quruvchilar 3, 4, 5 dan to‘g‘ri burchak yasashda foydalanadi.
+DOSKA: 7² + 24² = 49 + 576 = 625 = 25² ✔
+DOSKA: 5² + 6² = 61 ≠ 64
+DOSKA: eng katta tomon — gipotenuza
+DOSKA: 3, 4, 5 — qurilishda
+TEKSH: 8, 15, 17 to‘g‘ri burchakli uchburchakmi? => Ha | Yo‘q | Faqat teng yonli | Aniqlab bo‘lmaydi
+TEKSH: 4, 5, 6 to‘g‘ri burchakli uchburchakmi? => Yo‘q | Ha | Faqat 4 va 6 | Aniqlab bo‘lmaydi
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: Pifagor teoremasida gipotenuzani katet deb olish: 3 plyus 4 — 7. [2] {urgu}Kvadratlarni qo‘shamiz, tomonlarning o‘zini emas! 9 plyus 16 — 25, ildizi — 5. [3] Ikkinchi xato: kateti topilayotganda qo‘shish: 5 kvadrat plyus 3 kvadrat. Katetni topishda ayiramiz.
+DOSKA: ❌ c = 3 + 4 = 7
+DOSKA: ✅ c² = 9 + 16 = 25; c = 5
+DOSKA: katet: b² = c² − a²
+DOSKA: 25 − 9 = 16 ✔
+TEKSH: Gipotenuza 10, katet 6. Ikkinchi katet? => 8 | 16 | 4 | 64
+@xulosa Esda tut
+OVOZ: Birinchi: uchburchak burchaklari yig‘indisi 180. Ikkinchi: Pifagor — katetlar kvadratlari yig‘indisi gipotenuza kvadratiga teng. Uchinchi: katetni topishda ayiramiz. To‘rtinchi: teskari teorema to‘g‘ri burchakni tekshiradi.
+DOSKA: 1. Σ burchak = 180°
+DOSKA: 2. a² + b² = c²
+DOSKA: 3. katet: c² − a²
+DOSKA: 4. teskari teorema
+
+## M8-OLC
+@kirish Xonaga nechta plitka?
+OVOZ: Xona to‘g‘ri to‘rtburchak: uzunligi besh metr, eni to‘rt metr. Plitka kvadrat shaklida, tomoni yarim metr. {pauza} Xonaga nechta plitka kerak? Atrofiga plintus necha metr? {sekin}Yuza va perimetr kundalik hayotda doim kerak. Murakkab shakllar uchun ham formulalarni ko‘rib chiqamiz: uchburchak, parallelogramm, trapetsiya va L shakllar. Taxmin qiling.
+DOSKA: 5 m × 4 m
+DOSKA: plitka 0,5 m × 0,5 m
+DOSKA: Nechta? ✋
+@tushuncha Yuza formulalari
+OVOZ: [1] To‘g‘ri to‘rtburchak yuzasi: uzunlik karra en. Xona yuzasi — 5 karra 4 — 20 kvadrat metr. [2] Bitta plitka yuzasi — nol butun yigirma besh kvadrat metr. [3] {sekin}20 bo‘lingan 0,25 — 80 ta plitka. [4] Perimetr — 2 karra (5 plyus 4) — 18 metr. {sekin}Plintus esa perimetr bo‘yicha olinadi, plitka esa yuza bo‘yicha. Savolga qarab formulani tanlaymiz.
+DOSKA: S = a · b = 5 · 4 = 20 m²
+DOSKA: 0,5 · 0,5 = 0,25 m²
+DOSKA: 20 : 0,25 = 80 ta
+DOSKA: P = 2(a + b) = 18 m
+TEKSH: Xona 6 m va 3 m. Perimetri? => 18 m | 9 m | 18 m² | 36 m
+TEKSH: 12 m² yuzali xonaga 0,5 m² li taxta. Nechta? => 24 | 6 | 12 | 2
+@tushuncha Uchburchak, parallelogramm, trapetsiya
+OVOZ: [1] Uchburchak yuzasi: asos karra balandlik bo‘lingan 2. [2] Parallelogramm yuzasi: asos karra balandlik — uchburchakning ikki baravari. [3] {sekin}Trapetsiya: asoslar yig‘indisining yarmi karra balandlik. [4] Balandlik — asosga perpendikulyar, yon tomon emas! {sekin}Nega uchburchakda ikkiga bo‘lamiz? Chunki ikki bir xil uchburchak yig‘ilib, parallelogramm hosil qiladi. Shuning uchun uchburchak yuzasi uning yarmi.
+DOSKA: S△ = a · h : 2
+DOSKA: Sparallelogramm = a · h
+DOSKA: Strap = (a + b) · h : 2
+DOSKA: h ⊥ asos
+TEKSH: Asos 8, balandlik 5 bo‘lgan uchburchak yuzasi? => 20 | 40 | 13 | 80
+TEKSH: Trapetsiya asoslari 6 va 10, balandligi 4. Yuza? => 32 | 64 | 16 | 24
+@tushuncha Murakkab shakl — bo‘laklarga bo‘lish
+OVOZ: [1] L shaklidagi maydon. Uni ikkita to‘g‘ri to‘rtburchakka bo‘lamiz. [2] Birinchisi 6 ga 3 — 18, ikkinchisi 4 ga 2 — 8. [3] {sekin}Jami — 26. [4] Yoki katta to‘g‘ri to‘rtburchak chizib, ortiqcha qismini ayirish mumkin. Ikkala usul bir xil javob beradi.
+DOSKA: S = S₁ + S₂
+DOSKA: 6 · 3 = 18
+DOSKA: 4 · 2 = 8
+DOSKA: 18 + 8 = 26
+TEKSH: L shakl: 5 × 2 va 3 × 2 to‘rtburchaklardan. Yuza? => 16 | 10 | 13 | 30
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: perimetr va yuzani aralashtirish; birligini yozmaslik. [2] {urgu}Perimetr — metr, yuza — kvadrat metr! [3] Ikkinchi xato: trapetsiya yoki uchburchakda yon tomonni balandlik deb olish.
+DOSKA: P — m; S — m²
+DOSKA: ❌ yon tomon = balandlik
+DOSKA: ✅ h ⊥ asos
+DOSKA: ❌ 1 m² = 100 sm²
+DOSKA: ✅ 1 m² = 10 000 sm²
+TEKSH: 2 m² necha sm²? => 20 000 | 200 | 2 000 | 200 000
+@xulosa Esda tut
+OVOZ: Birinchi: to‘g‘ri to‘rtburchak — uzunlik karra en. Ikkinchi: uchburchak — asos karra balandlik bo‘lingan ikki. Uchinchi: murakkab shaklni oddiy bo‘laklarga ajrating. To‘rtinchi: birliklarni to‘g‘ri yozing.
+DOSKA: 1. S = a · b
+DOSKA: 2. S△ = a·h/2
+DOSKA: 3. bo‘laklarga bo‘l
+DOSKA: 4. m va m²
+
+## t8_aylana
+@kirish G‘ildirak necha marta aylanadi?
+OVOZ: Velosiped g‘ildiragining diametri yetmish santimetr. Velosipedchi ikki yuz yigirma metr yo‘l yurdi. {pauza} G‘ildirak necha marta aylandi? {sekin}Buning uchun aylana uzunligini bilishimiz kerak. Va u doira yuzasi bilan bog‘liq. Taxmin qiling.
+DOSKA: d = 70 sm
+DOSKA: Yo‘l: 220 m
+DOSKA: Necha aylanish? ✋
+@tushuncha Aylana va doira elementlari
+OVOZ: [1] Aylana — markazdan bir xil masofada turgan nuqtalar to‘plami. Markazdan aylanagacha masofa — radius. [2] Diametr — aylananing markazidan o‘tuvchi vatar. U radiusning ikki baravari. [3] {sekin}Aylananing o‘zi — chiziq, ichi — doira. [4] Aylana uzunligining diametrga nisbati doim bir xil — bu pi soni, taxminan 3,14.
+DOSKA: d = 2r
+DOSKA: aylana — chiziq; doira — ichi
+DOSKA: π ≈ 3,14
+DOSKA: C : d = π
+TEKSH: Radius 9 sm. Diametr? => 18 sm | 4,5 sm | 9 sm | 81 sm
+TEKSH: Diametr 14 m. Radius? => 7 m | 28 m | 14 m | 3,5 m
+@tushuncha Aylana uzunligi
+OVOZ: [1] Aylana uzunligi — pi karra diametr, yoki ikki pi karra radius. [2] Diametr 70 santimetr. Uzunlik — 3,14 karra 70 — taxminan 220 santimetr. [3] {sekin}Bitta aylanishda g‘ildirak 2,2 metr yurar ekan. [4] Yo‘l 220 metr bo‘lsa, aylanishlar — 220 bo‘lingan 2,2 — 100. {sekin}Shunday qilib, aylana uzunligi formulasi yo‘lni aylanishlar soniga aylantiradi. Velosiped hisoblagichi ham aynan shunday ishlaydi: aylanishlarni sanaydi va uzunlikka ko‘paytiradi.
+DOSKA: C = π · d = 2πr
+DOSKA: C = 3,14 · 70 ≈ 220 sm
+DOSKA: 220 m : 2,2 m = 100
+DOSKA: 100 marta aylandi
+TEKSH: Radius 10 sm. Aylana uzunligi (π ≈ 3,14)? => 62,8 sm | 31,4 sm | 314 sm | 6,28 sm
+TEKSH: Diametr 50 sm, necha marta aylansa 157 m yo‘l bosadi? => 100 | 314 | 50 | 157
+@tushuncha Doira yuzi
+OVOZ: [1] Doira yuzi — pi karra radius kvadrat. [2] Radius 5 sm. Yuzi: 3,14 karra 25 — 78,5 kvadrat santimetr. [3] {sekin}Diametr beriladi, avval radiusni topamiz — yarmini. [4] Doira yuzi radius ikki baravar oshsa — to‘rt baravar oshadi.
+DOSKA: S = πr²
+DOSKA: r = 5: S = 3,14 · 25 = 78,5 sm²
+DOSKA: d = 8 → r = 4
+DOSKA: r · 2 → S · 4
+TEKSH: Radius 10 sm. Doira yuzi? => 314 sm² | 62,8 sm² | 31,4 sm² | 100 sm²
+TEKSH: Diametri 6 m bo‘lgan doira yuzi? => 28,26 m² | 18,84 m² | 113,04 m² | 37,68 m²
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Mashhur xato: uzunlik va yuza formulalarini aralashtirish. [2] {urgu}2πr — uzunlik, πr kvadrat — yuza. Yuzada kvadrat bor! [3] Ikkinchi xato: diametrni radius deb olish. Radiusning kvadratini olishdan oldin diametrni ikkiga bo‘ling.
+DOSKA: C = 2πr  (m)
+DOSKA: S = πr²  (m²)
+DOSKA: ❌ r = d
+DOSKA: ✅ r = d : 2
+TEKSH: Diametr 10 sm. Yuzi? => 78,5 sm² | 314 sm² | 31,4 sm² | 157 sm²
+@xulosa Esda tut
+OVOZ: Birinchi: diametr — radiusning ikki baravari. Ikkinchi: aylana uzunligi — ikki pi er. Uchinchi: doira yuzi — pi er kvadrat. To‘rtinchi: diametr berilsa, avval radiusni toping.
+DOSKA: 1. d = 2r
+DOSKA: 2. C = 2πr
+DOSKA: 3. S = πr²
+DOSKA: 4. r = d : 2

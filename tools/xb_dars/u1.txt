@@ -1,0 +1,216 @@
+## M8-NAT
+@kirish Kalkulyator ham adashadi
+OVOZ: Ikki do‘st bir xil ifodani hisoblashdi: ikki plyus uch karra to‘rt. Biri o‘n to‘rt chiqardi, ikkinchisi — yigirma. {pauza} Ikkalasi ham kalkulyatordan foydalangan. Kim haq? {sekin}Hisoblash tartibi bo‘lmasa, bir xil ifodadan har xil javob chiqadi. Bugun amallar tartibini o‘rganamiz. Taxmin qiling.
+DOSKA: 2 + 3 · 4 = ?
+DOSKA: 14 yoki 20? ✋
+@tushuncha Amallar tartibi
+OVOZ: [1] Avval qavs ichidagi amal bajariladi. [2] Keyin daraja va ildiz. Keyin ko‘paytirish va bo‘lish — chapdan o‘ngga. Eng oxirida qo‘shish va ayirish — chapdan o‘ngga. [3] {sekin}Bizning ifodada ko‘paytirish qo‘shishdan oldin: uch karra to‘rt — 12. Keyin ikki plyus 12 — 14. [4] Demak, birinchi do‘st haq. Ikkinchisi chapdan o‘ngga ketma-ket hisoblab xato qilgan.
+DOSKA: 2 + 3 · 4
+DOSKA: 3 · 4 = 12
+DOSKA: 2 + 12 = 14
+DOSKA: QOIDA: ( ) → daraja → · : → + −
+TEKSH: 5 + 2 · 6 = ? => 17 | 42 | 23 | 13
+TEKSH: 20 − 12 : 4 = ? => 17 | 2 | 8 | 5
+@tushuncha Qavslar tartibni o‘zgartiradi
+OVOZ: [1] Agar qo‘shishni birinchi bajarmoqchi bo‘lsak, qavs qo‘yamiz. [2] Ikki plyus uch qavsda, keyin to‘rtga ko‘paytiramiz: besh karra to‘rt — yigirma. [3] {sekin}Qavs — «bu amalni avval bajar» degan buyruq. [4] Qavs ichida ham o‘sha tartib: avval ko‘paytirish, keyin qo‘shish.
+DOSKA: (2 + 3) · 4
+DOSKA: 5 · 4 = 20
+DOSKA: 2 + 3 · 4 = 14
+DOSKA: Qavs — buyruq
+TEKSH: (7 − 3) · 5 = ? => 20 | 22 | 8 | 35
+TEKSH: 36 : (4 + 2) = ? => 6 | 11 | 9 | 18
+@tushuncha Ko‘p amalli ifoda
+OVOZ: [1] Murakkab ifoda: 3 plyus 2 karra (10 minus 4) minus 8 bo‘lingan 2. [2] Avval qavs: 10 minus 4 — 6. [3] {sekin}Keyin ko‘paytirish va bo‘lish: 2 karra 6 — 12; 8 bo‘lingan 2 — 4. [4] Oxirida qo‘shish va ayirish: 3 plyus 12 minus 4 — 11.
+DOSKA: 3 + 2 · (10 − 4) − 8 : 2
+DOSKA: = 3 + 2 · 6 − 4
+DOSKA: = 3 + 12 − 4
+DOSKA: = 11
+TEKSH: 4 + 3 · (9 − 5) − 6 : 3 = ? => 14 | 28 | 10 | 12
+TEKSH: 48 : 6 · 2 = ? => 16 | 4 | 1 | 8
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Eng mashhur xato: ko‘paytirish bo‘lishdan «muhimroq» deb o‘ylash. [2] {urgu}48 bo‘lingan 6 karra 2 — chapdan o‘ngga! Avval 48 bo‘lingan 6 — 8, keyin karra 2 — 16. [3] Ikkinchi xato: minusdan oldin plyusni bajarish. 10 minus 3 plyus 2 — 9, 5 emas.
+DOSKA: ❌ 48 : 6 · 2 = 48 : 12 = 4
+DOSKA: ✅ 48 : 6 · 2 = 8 · 2 = 16
+DOSKA: 10 − 3 + 2 = 9
+DOSKA: teng darajada → chapdan o‘ngga
+TEKSH: 24 : 4 · 3 = ? => 18 | 2 | 72 | 8
+@xulosa Esda tut
+OVOZ: Birinchi: avval qavs. Ikkinchi: keyin daraja, ko‘paytirish, bo‘lish. Uchinchi: bir xil darajali amallar chapdan o‘ngga. To‘rtinchi: shubha bo‘lsa, qavs qo‘ying.
+DOSKA: 1. ( ) birinchi
+DOSKA: 2. daraja, · , :
+DOSKA: 3. teng bo‘lsa → chapdan o‘ngga
+DOSKA: 4. shubha → qavs
+
+## t8_daraja
+@kirish Shaxmat taxtasidagi bug‘doy
+OVOZ: Afsonaga ko‘ra, shaxmat ixtirochisi shohdan mukofot so‘radi: birinchi katakka bitta bug‘doy donasi, ikkinchisiga ikkita, uchinchisiga to‘rtta — har gal ikki baravar. {pauza} Oltmish to‘rtinchi katakda nechta don bo‘ladi? {sekin}Javob butun mamlakatning bug‘doyidan ham ko‘p. Bunday tez o‘sishni daraja bilan qisqa yozamiz. Taxmin qiling.
+DOSKA: 1, 2, 4, 8, 16 ...
+DOSKA: 64-katak? ✋
+@tushuncha Daraja nima?
+OVOZ: [1] Bir xil sonni o‘ziga bir necha marta ko‘paytirish — daraja. Ikki karra ikki karra ikki — ikkining uchinchi darajasi. [2] Yozuvi: ikkining tepasida kichik uch. [3] {sekin}Pastdagi son — asos, tepadagi — daraja ko‘rsatkichi. Asos — nimani ko‘paytirayapmiz, ko‘rsatkich — necha marta. [4] 2 ning 3-darajasi — 8. Bu 2 karra 3 — 6 emas!
+DOSKA: 2 · 2 · 2 = 2³ = 8
+DOSKA: asos 2, ko‘rsatkich 3
+DOSKA: 2³ ≠ 2 · 3
+DOSKA: QOIDA: aⁿ = a · a · ... · a (n ta)
+TEKSH: 3⁴ = ? => 81 | 12 | 64 | 34
+TEKSH: 10³ = ? => 1 000 | 30 | 100 | 10 000
+@tushuncha Kvadrat va kub
+OVOZ: [1] Ikkinchi daraja — kvadrat. Kvadratning yuzasi tomon kvadratiga teng. Uchinchi daraja — kub: kubning hajmi. [2] 5 kvadrat — 25. 4 kub — 64. [3] {sekin}Birinchi o‘nta kvadratni yodlash foydali: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100. [4] Har qanday sonning birinchi darajasi — o‘zi. Nolinchi darajasi — bir.
+DOSKA: a² — kvadrat; a³ — kub
+DOSKA: 5² = 25; 4³ = 64
+DOSKA: 1 4 9 16 25 36 49 64 81 100
+DOSKA: a¹ = a; a⁰ = 1
+TEKSH: 12² = ? => 144 | 24 | 122 | 14
+TEKSH: 6³ = ? => 216 | 18 | 36 | 63
+@tushuncha Kvadrat ildiz
+OVOZ: [1] Kvadrat ildiz — kvadrati berilgan songa teng bo‘lgan manfiy bo‘lmagan son. [2] Ildiz 49 — 7, chunki 7 kvadrat — 49. [3] {sekin}Ildiz — darajaning teskari amali. Ildiz 50 butun son emas: 7 va 8 orasida. [4] Chunki 7 kvadrat — 49, 8 kvadrat — 64, 50 shu orada.
+DOSKA: √49 = 7, chunki 7² = 49
+DOSKA: √50 ≈ 7,07
+DOSKA: 7² = 49 < 50 < 64 = 8²
+DOSKA: ildiz ↔ daraja
+TEKSH: √121 = ? => 11 | 12 | 61 | 21
+TEKSH: √30 qaysi ikki butun son orasida? => 5 va 6 | 4 va 5 | 6 va 7 | 3 va 4
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: manfiy sonning kvadratini manfiy deb o‘ylash. [2] {urgu}Minus ikkining kvadrati — to‘rt, minus to‘rt emas! Ikki minus ko‘paytirilsa — plyus. [3] Ikkinchi xato: minus ikkining kvadrati bilan minus ikki kvadratini adashtirish. Qavs bilan farq qiladi.
+DOSKA: (−2)² = 4
+DOSKA: −2² = −4
+DOSKA: qavs bor → qavs ichi kvadratga ko‘tariladi
+DOSKA: √16 = 4 (−4 emas)
+TEKSH: (−3)² = ? => 9 | −9 | 6 | −6
+@xulosa Esda tut
+OVOZ: Birinchi: daraja — bir xil sonni takror ko‘paytirish. Ikkinchi: kvadrat va kublarni yodlang. Uchinchi: ildiz — darajaning teskari amali. To‘rtinchi: qavs bilan manfiy sonning kvadratini ehtiyot bo‘lib hisoblang.
+DOSKA: 1. aⁿ = a · a · ... · a
+DOSKA: 2. a², a³ jadval
+DOSKA: 3. √a ↔ a²
+DOSKA: 4. (−a)² ≠ −a²
+
+## t8_bolinish
+@kirish Necha kunda uchrashamiz?
+OVOZ: Ikki avtobus bekatdan bir vaqtda chiqdi. Birinchisi har 12 daqiqada qaytadi, ikkinchisi — har 18 daqiqada. {pauza} Ular yana qachon bekatda uchrashadi? {sekin}Bunday savollarga EKUK javob beradi. Uning singlisi — EKUB — ham kerak. Taxmin qiling.
+DOSKA: 12 daqiqa
+DOSKA: 18 daqiqa
+DOSKA: Qachon bir vaqtda? ✋
+@tushuncha Bo‘linish belgilari
+OVOZ: [1] Son 2 ga bo‘linadi, agar oxirgi raqami juft bo‘lsa. 5 ga — oxirgi raqami 0 yoki 5. [2] 3 ga — raqamlar yig‘indisi 3 ga bo‘linsa. 9 ga — raqamlar yig‘indisi 9 ga bo‘linsa. [3] {sekin}Masalan 4 725. Raqamlar yig‘indisi: 4 plyus 7 plyus 2 plyus 5 — 18. 18 ham 3 ga, ham 9 ga bo‘linadi. Demak, 4 725 ham. [4] Oxirgi raqami 5 — 5 ga ham bo‘linadi.
+DOSKA: 2 ← oxirgi raqam juft
+DOSKA: 5 ← oxirgi 0 yoki 5
+DOSKA: 3, 9 ← raqamlar yig‘indisi
+DOSKA: 4+7+2+5 = 18 → 3 va 9 ga ✔
+TEKSH: 2 346 soni 9 ga bo‘linadimi? => Ha | Yo‘q | Faqat 3 ga | Faqat 2 ga
+TEKSH: 7 205 soni 5 ga bo‘linadimi? => Ha | Yo‘q | Faqat 2 ga | Faqat 9 ga
+@tushuncha Tub va murakkab sonlar, ko‘paytuvchilarga ajratish
+OVOZ: [1] Tub son — faqat ikkita bo‘luvchisi bor: bir va o‘zi. 2, 3, 5, 7, 11, 13. [2] Murakkab son — ikkitadan ko‘p bo‘luvchisi bor. [3] {sekin}Murakkab sonni tub ko‘paytuvchilarga ajratamiz: 12 — ikki karra ikki karra uch. 18 — ikki karra uch karra uch. [4] Bu ajratish EKUB va EKUKni topishning kaliti.
+DOSKA: 12 = 2 · 2 · 3 = 2² · 3
+DOSKA: 18 = 2 · 3 · 3 = 2 · 3²
+DOSKA: tub: 2 3 5 7 11 13
+DOSKA: 1 — tub ham emas, murakkab ham emas
+TEKSH: 20 ni tub ko‘paytuvchilarga ajrating. => 2 · 2 · 5 | 4 · 5 | 2 · 10 | 2 · 2 · 2 · 5
+TEKSH: Qaysi son tub? => 17 | 15 | 21 | 27
+@tushuncha EKUB va EKUK
+OVOZ: [1] EKUB — eng katta umumiy bo‘luvchi. 12 va 18 uchun: umumiy tub ko‘paytuvchilar — 2 va 3, ya’ni 6. [2] EKUK — eng kichik umumiy karrali. Hamma ko‘paytuvchini eng katta darajasi bilan olamiz: 2 kvadrat karra 3 kvadrat — 36. [3] {sekin}Avtobuslar har 36 daqiqada qayta uchrashadi. [4] Tekshirish: EKUB karra EKUK — sonlar ko‘paytmasiga teng: 6 karra 36 — 216, 12 karra 18 — 216.
+DOSKA: EKUB(12; 18) = 2 · 3 = 6
+DOSKA: EKUK(12; 18) = 2² · 3² = 36
+DOSKA: 6 · 36 = 216 = 12 · 18
+DOSKA: EKUB — umumiy, kichik daraja; EKUK — hammasi, katta daraja
+TEKSH: EKUB(8; 12) = ? => 4 | 24 | 2 | 8
+TEKSH: EKUK(4; 6) = ? => 12 | 24 | 2 | 6
+@tushuncha Xato tuzog‘i: qaysi biri qaysi masalada
+OVOZ: [1] Mashhur xato: EKUB va EKUK ni aralashtirish. [2] {urgu}«Qayta uchrashadi», «bir vaqtda» — EKUK! «Teng bo‘laklarga bo‘lish», «eng katta o‘lcham» — EKUB! [3] Ikkinchi xato: EKUKni sonlar ko‘paytmasi deb olish. 4 va 6 da ko‘paytma 24, lekin EKUK — 12.
+DOSKA: «uchrashadi» → EKUK
+DOSKA: «teng bo‘lak» → EKUB
+DOSKA: EKUK(4; 6) = 12, 4·6 = 24
+DOSKA: ❌ EKUK = a · b
+TEKSH: 24 va 36 m uzunlikdagi arqonlarni eng katta teng bo‘laklarga kesish kerak. Bo‘lak uzunligi? => 12 m | 72 m | 6 m | 4 m
+@xulosa Esda tut
+OVOZ: Birinchi: bo‘linish belgilarini biling. Ikkinchi: sonni tub ko‘paytuvchilarga ajrating. Uchinchi: EKUB — umumiylarning eng kichik darajalari, EKUK — hammasining eng katta darajalari. To‘rtinchi: «uchrashadi» — EKUK, «teng bo‘lak» — EKUB.
+DOSKA: 1. 2, 3, 5, 9 belgilari
+DOSKA: 2. tub ko‘paytuvchilar
+DOSKA: 3. EKUB: umumiy; EKUK: hammasi
+DOSKA: 4. uchrashadi → EKUK
+
+## M8-KAS
+@kirish Retsept 3/4 ga o‘zgardi
+OVOZ: Pirog retseptida bir yarim stakan un kerak. Siz retseptni uchdan ikki qismga kichraytirmoqchisiz. {pauza} Qancha un kerak bo‘ladi? Kasrni kasrga ko‘paytirish nimani anglatadi? {sekin}Bugun oddiy va o‘nli kasrlar bilan amallarni, ularning ma’nosi bilan o‘rganamiz. Taxmin qiling.
+DOSKA: 1 1/2 stakan
+DOSKA: 2/3 qismi
+DOSKA: Qancha? ✋
+@tushuncha Umumiy maxraj va qo‘shish
+OVOZ: [1] Maxrajlari har xil kasrlarni qo‘shish uchun ularni umumiy maxrajga keltiramiz. 1/4 plyus 1/6. [2] Umumiy maxraj — 4 va 6 ning EKUKi — 12. [3] {sekin}1/4 — 3/12, 1/6 — 2/12. Qo‘shamiz: 5/12. [4] Maxrajlarni qo‘shmaymiz — faqat suratlarni.
+DOSKA: 1/4 + 1/6
+DOSKA: EKUK(4; 6) = 12
+DOSKA: 3/12 + 2/12 = 5/12
+DOSKA: QOIDA: umumiy maxraj → suratlarni qo‘sh
+TEKSH: 1/3 + 1/5 = ? => 8/15 | 2/8 | 1/8 | 5/15
+TEKSH: 3/4 − 1/6 = ? => 7/12 | 2/2 | 2/10 | 5/12
+@tushuncha Kasrlarni ko‘paytirish va bo‘lish
+OVOZ: [1] Kasrlarni ko‘paytirishda suratni suratga, maxrajni maxrajga ko‘paytiramiz. 3/2 karra 2/3 — 6/6, ya’ni 1. [2] Demak, bir yarim stakanning uchdan ikki qismi — 1 stakan. [3] {sekin}Bo‘lishda ikkinchi kasrni to‘ntaramiz va ko‘paytiramiz. 1/2 bo‘lingan 1/4 — 1/2 karra 4/1 — 2. [4] Ma’nosi: yarimda nechta chorak bor? Ikkita.
+DOSKA: 3/2 · 2/3 = 6/6 = 1
+DOSKA: 1/2 : 1/4 = 1/2 · 4/1 = 2
+DOSKA: bo‘lish → to‘nkar
+DOSKA: Yarimda 2 ta chorak
+TEKSH: 2/5 · 3/4 = ? => 3/10 | 5/9 | 6/9 | 8/15
+TEKSH: 3/4 : 1/8 = ? => 6 | 3/32 | 3/2 | 1/6
+@tushuncha O‘nli kasrlar
+OVOZ: [1] O‘nli kasrni qo‘shishda vergulni vergul tagiga yozamiz. 2,35 plyus 1,6 — 3,95. [2] Ko‘paytirishda vergulni e’tiborsiz ko‘paytiramiz, keyin verguldan keyingi raqamlar sonini sanaymiz. [3] {sekin}0,3 karra 0,4. 3 karra 4 — 12. Ikki joy verguldan keyin: 0,12. [4] Bo‘lishda bo‘luvchini butun qilish uchun ikkala sonni 10 ga ko‘paytiramiz.
+DOSKA: 2,35 + 1,60 = 3,95
+DOSKA: 0,3 · 0,4 → 3 · 4 = 12 → 0,12
+DOSKA: 1,2 : 0,4 → 12 : 4 = 3
+DOSKA: vergul: raqamlar sonini sana
+TEKSH: 0,5 · 0,6 = ? => 0,30 | 3,0 | 0,03 | 30
+TEKSH: 4,8 : 0,6 = ? => 8 | 0,8 | 80 | 28
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: «bo‘lish kichraytiradi, ko‘paytirish kattalashtiradi». [2] {urgu}Kasrga bo‘lsak, son oshadi! Yarimda ikkita chorak, ya’ni 1/2 bo‘lingan 1/4 — 2. Kasrga ko‘paytirsak, kamayadi. [3] Ikkinchi xato: maxrajlarni ham qo‘shish: 1/3 plyus 1/3 — 2/6 emas, 2/3.
+DOSKA: ❌ 1/3 + 1/3 = 2/6
+DOSKA: ✅ 1/3 + 1/3 = 2/3
+DOSKA: 1 : 1/2 = 2 (oshdi)
+DOSKA: 10 · 1/2 = 5 (kamaydi)
+TEKSH: 6 : 1/3 = ? => 18 | 2 | 1/2 | 6/3
+@xulosa Esda tut
+OVOZ: Birinchi: qo‘shishda umumiy maxraj. Ikkinchi: ko‘paytirishda surat suratga, maxraj maxrajga. Uchinchi: bo‘lishda ikkinchi kasrni to‘nkaring. To‘rtinchi: o‘nli kasrda vergul tagiga vergul.
+DOSKA: 1. umumiy maxraj
+DOSKA: 2. a/b · c/d = ac/bd
+DOSKA: 3. : → to‘nkar
+DOSKA: 4. vergul tagiga vergul
+
+## M8-BUT
+@kirish Termometr minusda
+OVOZ: Qishda Samarqandda ertalab termometr minus ikki ko‘rsatdi. Tushga borib o‘n besh gradusga ko‘tarildi. {pauza} Harorat necha gradusga o‘zgardi? Minus ikkidan keyin qancha qo‘shdik? {sekin}Manfiy sonlar hayotda hamma joyda: harorat, qarz, dengiz ostidagi chuqurlik. Ular bilan ishlashni o‘rganamiz. Taxmin qiling.
+DOSKA: −2° → 15°
+DOSKA: O‘zgarish? ✋
+@tushuncha Sonlar o‘qi
+OVOZ: [1] Sonlar o‘qida nol markazda. O‘ngda musbat sonlar, chapda manfiy sonlar. [2] O‘ngga yurganimiz sari son kattalashadi. [3] {sekin}Minus beshdan minus ikki katta, chunki u o‘ngda turibdi. [4] Noldan masofa — modul. Minus beshning moduli — besh.
+DOSKA: SON_OQI: -5 | -2 | 0 | 3
+DOSKA: −5 < −2 < 0 < 3
+DOSKA: |−5| = 5
+DOSKA: o‘ngda — katta
+TEKSH: Qaysi son katta: −7 yoki −3? => −3 | −7 | Teng | Bilib bo‘lmaydi
+TEKSH: |−12| = ? => 12 | −12 | 0 | 1
+@tushuncha Qo‘shish va ayirish
+OVOZ: [1] Musbat sonni qo‘shsak — o‘ngga yuramiz. Manfiy sonni qo‘shsak — chapga. [2] Minus ikkiga 17 qo‘shsak, o‘n besh. Haroratning o‘zgarishi: 17 gradus. [3] {sekin}Ayirishni qo‘shishga aylantiramiz: a minus b — a plyus (minus b). 3 minus 7 — 3 plyus minus 7 — minus 4. [4] Minusni minusga ayirsak — plyus. 5 minus minus 2 — 7.
+DOSKA: −2 + 17 = 15
+DOSKA: 3 − 7 = 3 + (−7) = −4
+DOSKA: 5 − (−2) = 5 + 2 = 7
+DOSKA: − (−a) = + a
+TEKSH: −8 + 5 = ? => −3 | 3 | −13 | 13
+TEKSH: 4 − (−6) = ? => 10 | −2 | 2 | −10
+@tushuncha Ko‘paytirish va bo‘lish
+OVOZ: [1] Ishoralari bir xil sonlarni ko‘paytirsak — natija musbat. Ishoralari har xil — manfiy. [2] Minus uch karra minus to‘rt — 12. Minus uch karra to‘rt — minus 12. [3] {sekin}Bo‘lishda ham xuddi shunday. Minus 20 bo‘lingan 5 — minus 4. [4] Eslab qolish: «dushmanning dushmani — do‘st». Ikki minus — plyus.
+DOSKA: (−3)(−4) = 12
+DOSKA: (−3) · 4 = −12
+DOSKA: −20 : 5 = −4
+DOSKA: −20 : (−5) = 4
+TEKSH: (−6) · 3 = ? => −18 | 18 | −9 | 9
+TEKSH: (−24) : (−8) = ? => 3 | −3 | 32 | −32
+@tushuncha Xato tuzog‘i
+OVOZ: [1] Xato: minus ikki va minus uchni qo‘shganda minus besh o‘rniga plyus besh yozish. [2] {urgu}Manfiy sonlar yig‘indisi hamma vaqt yanada manfiy! Qarzingiz yana qarz qo‘shilsa — qarz oshadi. [3] Ikkinchi xato: 5 minus minus 2 ni 3 deb hisoblash.
+DOSKA: −2 + (−3) = −5
+DOSKA: ❌ −2 − 3 = 1
+DOSKA: ✅ −2 − 3 = −5
+DOSKA: qarz + qarz = katta qarz
+TEKSH: −9 + (−4) = ? => −13 | −5 | 13 | 5
+@xulosa Esda tut
+OVOZ: Birinchi: sonlar o‘qida o‘ngdagi son katta. Ikkinchi: ayirishni qo‘shishga aylantiring. Uchinchi: bir xil ishora — plyus, har xil ishora — minus. To‘rtinchi: modul — noldan masofa.
+DOSKA: 1. o‘ngda — katta
+DOSKA: 2. a − b = a + (−b)
+DOSKA: 3. (−)(−) = +; (−)(+) = −
+DOSKA: 4. |a| — masofa
