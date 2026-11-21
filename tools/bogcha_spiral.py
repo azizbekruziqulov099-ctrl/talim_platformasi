@@ -729,7 +729,8 @@ class Builder:
                 out["matn"] = self.E(f"{self.C['play']} {said} {self.good()}".strip())
             rows.append(out)
         # O'yin: yangi so'zlar + bitta eski — «top-chi»
-        game_items = items + ([self.rng.choice(self.pool)] if self.pool else [])
+        # REV680: o'yinda faqat shu darsning yangi so'zlari — eski so'z ovozda aytilsa-yu, bosiladigan nishon bo'lmasdi
+        game_items = list(items)
         rows.append(self.game_row(game_items))
         self.add_pool(items)
         self.lesson_items.append(items)
