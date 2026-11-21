@@ -252,3 +252,12 @@ def test_kichik_sinf_royxat_rasmlari():
     rasm_tanla.boyit(m)
     gal = [e for e in m["bolimlar"][0]["slaydlar"][0]["elementlar"] if e["tur"] == "galereya"]
     assert gal and len(gal[0]["rasmlar"]) >= 2
+
+
+def test_ai_bolimlari_royxat_yoki_matn_bolsa_ham():
+    m = sxema.normallashtir({"meta": {"mavzu": "T"}, "bolimlar": [{"nom": "A", "slaydlar": [{"sarlavha": "S", "elementlar": [{"tur": "matn", "matn": "x"}]}]}],
+                             "takrorlash": [{"savol": "?", "javob": "!"}], "muammo": "matn", "metodika": ["a", "b"], "xatolar": {"x": 1},
+                             "test": {"savol": "?"}, "keyingi": ["x"], "rasmlar": "yo'q", "meta2": 1})
+    assert m["takrorlash"]["savollar"][0]["savol"] == "?" and m["metodika"]["bosqichlar"] == ["a", "b"]
+    assert m["xatolar"] == [] and m["test"] == [] and m["rasmlar"] == []
+    assert yasash.pptx(yasash.yasa(m, seed=1))[:2] == b"PK"

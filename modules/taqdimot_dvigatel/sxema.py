@@ -265,10 +265,23 @@ def _fan_elementi(tur, e):
     return None
 
 
+def _obj(v, kalit: str) -> dict:
+    """AI ba'zan bo'limni ro'yxat yoki matn qilib yozadi: {"takrorlash": [...]} → {"savollar": [...]}."""
+    if isinstance(v, dict):
+        return v
+    if isinstance(v, list):
+        return {kalit: v}
+    return {}
+
+
+def _royxat(v) -> list:
+    return v if isinstance(v, list) else []
+
+
 def normallashtir(m: dict) -> dict:
     if not isinstance(m, dict):
         raise ValueError("Miya JSON obyekt bo'lishi kerak")
-    meta = m.get("meta") or {}
+    meta = m.get("meta") if isinstance(m.get("meta"), dict) else {}
     out = {"sxema": SXEMA}
     out["meta"] = {
         "fan": t(meta.get("fan"), 120), "daraja": t(meta.get("daraja"), 30).lower() or "maktab", "sinf": t(meta.get("sinf"), 40),
@@ -280,44 +293,40 @@ def normallashtir(m: dict) -> dict:
     }
     if _chizma(meta.get("chizma")):
         out["meta"]["chizma"] = meta["chizma"]
-    a = m.get("adabiyotlar") or {}
-    if isinstance(a, list):
-        a = {"asosiy": a}
+    a = _obj(m.get("adabiyotlar"), "asosiy")
     asosiy = []
-    for b in (a.get("asosiy") or [])[:6]:
+    for b in _royxat(a.get("asosiy"))[:6]:
         if isinstance(b, str):
             b = {"nomi": b}
         if isinstance(b, dict):
             asosiy.append({"muallif": t(b.get("muallif"), 80), "nomi": t(b.get("nomi"), 160), "nashr": t(b.get("nashr"), 80)})
     elektron = []
-    for b in (a.get("elektron") or [])[:4]:
+    for b in _royxat(a.get("elektron"))[:4]:
         if isinstance(b, str):
             b = {"nomi": b}
         if isinstance(b, dict):
             elektron.append({"nomi": t(b.get("nomi"), 80), "izoh": t(b.get("izoh"), 120)})
     out["adabiyotlar"] = {"asosiy": asosiy, "elektron": elektron, "mustaqil": t(a.get("mustaqil"), 300)}
-    tk = m.get("takrorlash") or {}
+    tk = _obj(m.get("takrorlash"), "savollar")
     sv = []
-    for q in (tk.get("savollar") or [])[:6]:
+    for q in _royxat(tk.get("savollar"))[:6]:
         if isinstance(q, dict) and t(q.get("savol")):
             sv.append({"savol": t(q.get("savol"), 160), "javob": t(q.get("javob"), 120)})
     out["takrorlash"] = {"mavzu": t(tk.get("mavzu"), 120), "oyin": t(tk.get("oyin"), 20) or "blits", "savollar": sv}
-    mu = m.get("muammo") or {}
-    out["muammo"] = {"masalalar": [{"sarlavha": t(x.get("sarlavha"), 60), "matn": t(x.get("matn"), 300)} for x in (mu.get("masalalar") or [])[:3] if isinstance(x, dict)],
+    mu = _obj(m.get("muammo"), "masalalar")
+    out["muammo"] = {"masalalar": [{"sarlavha": t(x.get("sarlavha"), 60), "matn": t(x.get("matn"), 300)} for x in _royxat(mu.get("masalalar"))[:3] if isinstance(x, dict)],
                      "goya": t(mu.get("goya"), 200), "zanjir": ls(mu.get("zanjir"), 4, 40), "sarlavha": t(mu.get("sarlavha"), 120)}
-    tr = m.get("tarix") or {}
-    if isinstance(tr, list):
-        tr = {"voqealar": tr}
+    tr = _obj(m.get("tarix"), "voqealar")
     out["tarix"] = {"sarlavha": t(tr.get("sarlavha"), 120), "xulosa": t(tr.get("xulosa"), 220),
                     "voqealar": [{"davr": t(v.get("davr"), 40), "nom": t(v.get("nom"), 60), "matn": t(v.get("matn"), 260),
-                                  "belgi": t(v.get("belgi"), 40), "rasm": t(v.get("rasm"), 120)} for v in (tr.get("voqealar") or [])[:4] if isinstance(v, dict)]}
+                                  "belgi": t(v.get("belgi"), 40), "rasm": t(v.get("rasm"), 120)} for v in _royxat(tr.get("voqealar"))[:4] if isinstance(v, dict)]}
     bol = []
-    for b in (m.get("bolimlar") or [])[:6]:
+    for b in _royxat(m.get("bolimlar"))[:6]:
         if not isinstance(b, dict):
             continue
         slaydlar = []
         raw_sl = b.get("slaydlar")
-        if not raw_sl and b.get("elementlar"):
+        if not raw_sl and isinstance(b.get("elementlar"), list):
             els = [element(x) for x in b["elementlar"]]
             els = [x for x in els if x]
             raw_sl = []
@@ -326,10 +335,10 @@ def normallashtir(m: dict) -> dict:
                 take = 1 if els[i]["tur"] in ("jadval", "taqqoslash", "xossalar") or els[i]["tur"] in YANGI_KENG else 2
                 raw_sl.append({"sarlavha": els[i].get("sarlavha") or t(b.get("nom")), "elementlar": els[i:i + take], "_tayyor": True})
                 i += take
-        for sl in (raw_sl or [])[:8]:
+        for sl in _royxat(raw_sl)[:8]:
             if not isinstance(sl, dict):
                 continue
-            els = sl["elementlar"] if sl.get("_tayyor") else [element(x) for x in (sl.get("elementlar") or [])]
+            els = sl["elementlar"] if sl.get("_tayyor") else [element(x) for x in _royxat(sl.get("elementlar"))]
             els = [x for x in els if x][:4]
             if els:
                 jl = t(sl.get("joylashuv"), 20).lower()
@@ -340,19 +349,17 @@ def normallashtir(m: dict) -> dict:
                         "slaydlar": slaydlar})
     out["bolimlar"] = bol
     out["xatolar"] = [{"xato": t(x.get("xato"), 120), "sabab": t(x.get("sabab"), 160), "togri": t(x.get("togri"), 120)}
-                      for x in (m.get("xatolar") or [])[:6] if isinstance(x, dict) and t(x.get("xato"))]
-    me = m.get("metodika") or {}
+                      for x in _royxat(m.get("xatolar"))[:6] if isinstance(x, dict) and t(x.get("xato"))]
+    me = _obj(m.get("metodika"), "bosqichlar")
     out["metodika"] = {"sarlavha": t(me.get("sarlavha"), 110), "bosqichlar": ls(me.get("bosqichlar"), 4, 90),
                        "kartalar": [{"sarlavha": t(k.get("sarlavha"), 60), "matn": t(k.get("matn"), 240), "chizma": _chizma(k.get("chizma"))}
-                                    for k in (me.get("kartalar") or [])[:3] if isinstance(k, dict)],
+                                    for k in _royxat(me.get("kartalar"))[:3] if isinstance(k, dict)],
                        "tavsiya": t(me.get("tavsiya"), 260)}
-    xu = m.get("xulosa") or {}
-    if isinstance(xu, list):
-        xu = {"fikrlar": xu}
+    xu = _obj(m.get("xulosa"), "fikrlar")
     out["xulosa"] = {"bilaman": ls(xu.get("bilaman"), 6, 120), "bilishni_xohlayman": ls(xu.get("bilishni_xohlayman"), 6, 120),
                      "bilib_oldim": ls(xu.get("bilib_oldim"), 6, 120), "fikrlar": ls(xu.get("fikrlar"), 6, 200)}
     tests = []
-    for q in (m.get("test") or [])[:6]:
+    for q in _royxat(m.get("test"))[:6]:
         if not isinstance(q, dict):
             continue
         v = ls(q.get("variantlar"), 4, 80)
@@ -361,12 +368,11 @@ def normallashtir(m: dict) -> dict:
     out["test"] = tests
     out["nazorat"] = ls(m.get("nazorat"), 8, 200)
     out["mustaqil_ish"] = ls(m.get("mustaqil_ish"), 5, 200)
-    k = m.get("keyingi") or {}
-    if isinstance(k, str):
-        k = {"mavzu": k}
+    k = m.get("keyingi")
+    k = {"mavzu": k} if isinstance(k, str) else _obj(k, "_")
     out["keyingi"] = {"mavzu": t(k.get("mavzu"), 120), "izoh": t(k.get("izoh"), 200)}
     out["rasmlar"] = [{"kalit": t(r.get("kalit"), 100), "tavsif": t(r.get("tavsif"), 300), "prompt": t(r.get("prompt"), 600)}
-                      for r in (m.get("rasmlar") or [])[:12] if isinstance(r, dict) and t(r.get("kalit"))]
+                      for r in _royxat(m.get("rasmlar"))[:12] if isinstance(r, dict) and t(r.get("kalit"))]
     return out
 
 
