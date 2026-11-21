@@ -5,7 +5,7 @@ DOSKA: BELGILA: 7-qavat → −2-qavat | ramka
 DOSKA: Necha qavat tushdi? ✋ taxmin qiling
 @tushuncha Son o‘qi: nol — markaz
 OVOZ: [1] Barcha butun sonlarni bitta to‘g‘ri chiziqqa joylaymiz. Bu — son o‘qi. [2] {sekin}Nol — markaz. Nolning o‘ng tomonida musbat sonlar, chap tomonida — manfiy sonlar. [3] Qarang: minus uch — nolning chapida, uch qadam narida. Ikki — o‘ngda. [4] {urgu}Muhim qoida: o‘ngga borgan sari son kattalashadi. Demak, minus uch minus ikkidan kichik. Ha, minus uch kichik!
-DOSKA: SON_OQI: -5..5; nuqta -3 A; nuqta 2 B; sakrash -3 2 +5
+DOSKA: SON_OQI: -5..5; nuqta -3 A; nuqta 2 B; yur -3 2
 DOSKA: Nol — markaz; o‘ng → musbat, chap → manfiy
 DOSKA: −3 < 2 (2 o‘ngda turibdi)
 DOSKA: QOIDA: O‘ngda turgan son doim kattaroq
@@ -14,7 +14,7 @@ TEKSH: Qaysi biri kichik: −6 yoki −1? => −6 | −1 | ikkalasi teng
 TEKSH: −2, 0, −5, 3 sonlarini kichikdan kattasiga joylang. Birinchisi qaysi? => −5 | −2 | 0 | 3
 @tushuncha Qo‘shish — o‘ngga, ayirish — chapga
 OVOZ: [1] Endi son o‘qida yuramiz. Qo‘shish — o‘ngga qadam tashlash. Ayirish — chapga qadam tashlash. [2] Birinchi misol: minus to‘rtga yetti qo‘shamiz. Minus to‘rtdan boshlaymiz va yettita qadam o‘ngga yuramiz. [3] {sekin}To‘rt qadamda nolga yetamiz. Yana uch qadam qoldi — demak, uchga keldik. Minus to‘rt plyus yetti — uch. [4] Ikkinchi misol: ikkidan olti ayiramiz. Ikkidan boshlab olti qadam chapga. Ikki qadamda nolga yetamiz, yana to‘rt qadam — minus to‘rt.
-DOSKA: SON_OQI: -6..8; nuqta -4 A; nuqta 3 B; sakrash -4 3 +7
+DOSKA: SON_OQI: -6..8; nuqta -4 A; nuqta 3 B; yur -4 3
 DOSKA: −4 + 7 = −4 + 4 + 3 = 0 + 3 = 3
 DOSKA: SON_OQI: -5..3; nuqta 2 A; nuqta -4 B; sakrash 2 -4 −6
 DOSKA: 2 − 6 = 2 − 2 − 4 = 0 − 4 = −4
@@ -33,7 +33,7 @@ TEKSH: Hisobda −30 ming so‘m, ya’ni 30 ming so‘m qarz bor. 50 ming kirdi
 OVOZ: [1] Endi asosiy savolimizga qaytaylik. Ikki nuqta orasidagi masofa — katta sondan kichigini ayirib topiladi. [2] Yettidan minus ikkini ayiramiz. {urgu}Diqqat: minus ikkini ayirish — plyus ikkini qo‘shish bilan bir xil! [3] Yetti plyus ikki — to‘qqiz. [4] Demak, lift to‘qqiz qavat tushgan. Taxminingiz to‘g‘ri chiqdimi? [5] Sababi — nol qavatdan o‘tishda bitta qavat «yo‘qolmaydi»: yettitasi nolgacha, ikkitasi nolidan pastga.
 DOSKA: Masofa = katta − kichik
 DOSKA: KETMA: 7 − (−2) | 7 + 2 | 9
-DOSKA: SON_OQI: -2..7; nuqta -2 A; nuqta 7 B; sakrash -2 7 +9
+DOSKA: SON_OQI: -2..7; nuqta -2 A; nuqta 7 B; yur -2 7
 DOSKA: 7 qavat nolgacha + 2 qavat nolidan pastga = 9
 DOSKA: QOIDA: a − (−b) = a + b
 TEKSH: Dengiz sathidan 120 m balandlikdagi tog‘ va 30 m chuqurlikdagi cho‘kma orasidagi balandlik farqi nechta? => 150 m | 90 m | 120 m | 30 m
@@ -42,7 +42,7 @@ TEKSH: 4 − (−6) nimaga teng? => 10 | −2 | 2 | −10
 OVOZ: [1] Ko‘pchilik shunday xato qiladi: besh minus minus uch... va javob qilib ikki deb yozadi. [2] {urgu}Yo‘q! Ikki minus belgisi yonma-yon kelsa — bir-birini yo‘qotadi. [3] Besh minus minus uch — besh plyus uch. Sakkiz. [4] Tekshirish usuli oddiy: ayirish — masofani topish. Besh va minus uch orasidagi masofa — sakkiz qadam.
 DOSKA: ❌ 5 − (−3) = 2
 DOSKA: ✅ 5 − (−3) = 5 + 3 = 8
-DOSKA: SON_OQI: -3..5; nuqta -3 A; nuqta 5 B; sakrash -3 5 +8
+DOSKA: SON_OQI: -3..5; nuqta -3 A; nuqta 5 B; yur -3 5
 DOSKA: QOIDA: ikki minus yonma-yon → plyus
 TEKSH: −2 − (−5) nechaga teng? => 3 | −7 | 7 | −3
 @xulosa Esda tut
