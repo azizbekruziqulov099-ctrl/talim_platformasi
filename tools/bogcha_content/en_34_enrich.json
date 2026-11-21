@@ -111,9 +111,9 @@
         {"q": "Mushukchaga salom bering!", "q_en": "Say hello to the cat!",
          "options": ["🐱 Hi, cat!", "🐶 Hi, dog!"], "answer": 0,
          "why": "To'g'ri! [en]Cat[/en] — mushuk. [en]Hi, cat![/en]", "why_en": "Yes! Hi, cat!"},
-        {"q": "Mushuk qanday ovoz chiqaradi?", "q_en": "What does the cat say?",
-         "options": ["🐮 Moo!", "🐱 Meow!"], "answer": 1,
-         "why": "Barakalla! Mushuk [en]Meow![/en] deydi.", "why_en": "Good job! The cat says: Meow!"}
+        {"q": "Mushukchaga ovqat berdingiz. Nima deysiz?", "q_en": "You give the cat some food. What do you say?",
+         "options": ["🫴 Here you are!", "👋 Bye!"], "answer": 0,
+         "why": "To'g'ri! Ovqat berganda [en]Here you are![/en] deymiz — mana, ol.", "why_en": "Yes! We say: Here you are!"}
       ]
     },
     {
@@ -140,9 +140,9 @@
         {"q": "Do'stingizning tug'ilgan kuni. Nima deysiz?", "q_en": "It is your friend's birthday. What do you say?",
          "options": ["🎉 Happy birthday!", "🌙 Good night!"], "answer": 0,
          "why": "To'g'ri! [en]Happy birthday![/en] — tug'ilgan kuning bilan!", "why_en": "Yes! Happy birthday!"},
-        {"q": "Uchta shamni sanang!", "q_en": "Count three candles!",
-         "options": ["🕯️ One, two!", "🕯️ One, two, three!"], "answer": 1,
-         "why": "Barakalla! [en]One, two, three![/en] — uchta!", "why_en": "Good job! One, two, three!"}
+        {"q": "Sanang: 🕯️🕯️🕯️ Nechta sham?", "q_en": "Count the candles!",
+         "options": ["3️⃣ Three!", "2️⃣ Two!"], "answer": 0,
+         "why": "Barakalla! [en]One, two, three![/en] — uchta sham.", "why_en": "Good job! One, two, three!"}
       ]
     },
     {

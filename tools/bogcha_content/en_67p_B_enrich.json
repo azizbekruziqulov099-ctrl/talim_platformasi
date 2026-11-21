@@ -260,7 +260,7 @@
      "action_en": "Wave and call for help!"
     },
     "Thank you, little mouse!": {
-     "sentence": "The lion says, Thank you, little mouse!",
+     "sentence": "The lion says, \"Thank you, little mouse!\"",
      "action_en": "Bow and say thank you!"
     }
    },
@@ -309,7 +309,7 @@
  },
  "scenarios": [
   {
-   "unit": 5,
+   "unit": 1,
    "name": "Telefonda: hozir nima qilyapsan?",
    "name_en": "On the phone: What are you doing?",
    "emoji": "📱",
@@ -418,7 +418,7 @@
    ]
   },
   {
-   "unit": 6,
+   "unit": 2,
    "name": "Dushanba ertalab bog'chada",
    "name_en": "Monday morning at kindergarten",
    "emoji": "🌞",
@@ -527,7 +527,7 @@
    ]
   },
   {
-   "unit": 7,
+   "unit": 3,
    "name": "Yangi ustoz bilan tanishuv",
    "name_en": "Meeting my new teacher",
    "emoji": "🏫",
@@ -613,7 +613,7 @@
      "q": "Ali qaysi ertakni gapirib berdi?",
      "q_en": "Which fairy tale did Ali tell?",
      "options": [
-      "🥬 The Giant Turnip",
+      "🥬 The Big Turnip",
       "📦 Zumrad and Qimmat",
       "🦁🐭 The Lion and the Mouse"
      ],

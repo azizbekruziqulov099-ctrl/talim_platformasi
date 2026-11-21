@@ -53,10 +53,10 @@
        "why": "Barakalla! It «vov-vov» deydi."
       },
       {
-       "q": "Mushuk nima ichadi?",
+       "q": "Kim sut ichishni yaxshi ko'radi?",
        "options": [
-        "🥛 sut",
-        "🍬 konfet"
+        "🐈 mushuk",
+        "🐕 it"
        ],
        "answer": 0,
        "why": "Ofarin! Mushuk sut ichadi."
@@ -123,6 +123,14 @@
        "answer": 0,
        "why": "Ofarin! Sutni sigir beradi."
       }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🥛 Sut qayerdan keladi?",
+       "matn": "Hikoya! Sigir yashil o'tni yeydi — nam-nam-nam. Keyin bizga sut beradi. Biz sutni ichamiz — glug-glug! Qo'yning yungi esa yumshoq: silab ko'ramiz — yumshoq, yumshoq!",
+       "doska": "🌿 ➡️ 🐄 ➡️ 🥛"
+      }
      ]
     },
     {
@@ -182,8 +190,8 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🏃 Hayvon bo'lamiz",
-       "matn": "O'yin! Men hayvon nomini aytaman, siz o'sha hayvondek harakat qilasiz. Ot — chopamiz! Mushuk — sekin yuramiz! Qo'y — «ba-a» deymiz!",
-       "doska": "🐎 🐈 🐑"
+       "matn": "O'yin! Men hayvon nomini aytaman, siz o'sha hayvondek harakat qilasiz. Ot — chopamiz! Mushuk — sekin yuramiz! Echki — «me-e» deymiz!",
+       "doska": "🐎 🐈 🐐"
       }
      ]
     },
@@ -231,13 +239,13 @@
        "why": "Barakalla! Baliqcha suvda suzadi."
       },
       {
-       "q": "Quyon nima yeydi?",
+       "q": "Kim «hop-hop» sakraydi?",
        "options": [
-        "🥕 sabzi",
-        "🥛 sut"
+        "🐠 baliqcha",
+        "🐇 quyon"
        ],
-       "answer": 0,
-       "why": "Ofarin! Quyon sabzi yeydi."
+       "answer": 1,
+       "why": "Ofarin! Quyon «hop-hop» sakraydi."
       }
      ],
      "extra": [
@@ -312,7 +320,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎵 Xo'roz qo'shig'i",
-       "matn": "Xo'rozim, xo'rozim, boshida toji bor! Qu-qu-quu deydi, hammani uyg'otar! Keling, birga kuylaymiz va qanot qoqamiz!",
+       "matn": "Xo'rozim, xo'rozim, qip-qizil toji bor! Qu-qu-quu deydi, hammani uyg'otar! Keling, birga kuylaymiz va qanot qoqamiz!",
        "doska": "🐓 qu-qu-quu!"
       }
      ]
@@ -372,6 +380,12 @@
      "extra": [
       {
        "turi": "topshiriq",
+       "sarlavha": "🔢 Tuxumlarni sanaymiz",
+       "matn": "Uyada tuxumlar yotibdi. Sanaymiz: har bir tuxumga barmog'ingizni tegizing. Nechta tuxum bor?",
+       "doska": "🥚🥚"
+      },
+      {
+       "turi": "topshiriq",
        "sarlavha": "🐣 Jo'ja bo'lamiz",
        "matn": "O'yin! Cho'nqayib, tizzangizni quchoqlang — siz tuxumsiz. Men «chiq!» desam, sekin turib, «chiy-chiy» deysiz. Siz jo'jasiz!",
        "doska": "🥚 ➡️ 🐤"
@@ -421,20 +435,20 @@
        "why": "Barakalla! Kurkaning dumi katta."
       },
       {
-       "q": "Parrandani toping!",
+       "q": "Hovuzda 🦆🦆🦆 suzyapti. Nechta o'rdak?",
        "options": [
-        "🦆 o'rdak",
-        "🐎 ot"
+        "3️⃣ uch",
+        "2️⃣ ikki"
        ],
        "answer": 0,
-       "why": "Ofarin! O'rdak — parranda."
+       "why": "To'g'ri! Bir, ikki, uch — uchta o'rdak."
       }
      ],
      "extra": [
       {
-       "turi": "tushuncha",
-       "sarlavha": "🔢 Sanaymiz",
-       "matn": "Hovuzda o'rdaklar suzyapti: bitta, ikkita, uchta! Keling, barmoqlarimiz bilan sanaymiz: bir, ikki, uch! Uchta o'rdak — g'aq-g'aq-g'aq!",
+       "turi": "topshiriq",
+       "sarlavha": "🔢 O'rdaklarni sanaymiz",
+       "matn": "Hovuzda o'rdaklar suzyapti. Sanaymiz: har bir o'rdakka barmog'ingizni tegizing. Nechta o'rdak?",
        "doska": "🦆🦆🦆"
       }
      ]
@@ -488,13 +502,13 @@
        "why": "Barakalla! Bu — nok."
       },
       {
-       "q": "Olma qayerda o'sadi?",
+       "q": "Qaysi meva tishlasak «qirs» etadi?",
        "options": [
-        "🌳 daraxtda",
-        "🌊 suvda"
+        "🍎 olma",
+        "🍐 nok"
        ],
        "answer": 0,
-       "why": "Ofarin! Olma daraxtda o'sadi."
+       "why": "Ofarin! Olma «qirs» etadi."
       }
      ],
      "extra": [
@@ -549,13 +563,21 @@
        "why": "Barakalla! Uzumning donachalari ko'p."
       },
       {
-       "q": "Qaysi mevaning po'stini archamiz?",
+       "q": "Savatda 🍌🍌🍌 bor. Nechta banan?",
        "options": [
-        "🍌 banan",
-        "🍇 uzum"
+        "2️⃣ ikki",
+        "3️⃣ uch"
        ],
-       "answer": 0,
-       "why": "Ofarin! Bananning po'stini archamiz."
+       "answer": 1,
+       "why": "To'g'ri! Bir, ikki, uch — uchta banan."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🔢 Bananlarni sanaymiz",
+       "matn": "Savatda bananlar turibdi. Sanaymiz: har bir bananga barmog'ingizni tegizing. Nechta banan bor?",
+       "doska": "🍌🍌🍌"
       }
      ]
     },
@@ -602,18 +624,18 @@
        "why": "Barakalla! Qovun xushbo'y."
       },
       {
-       "q": "Tarvuzning urug'i qanday rangda?",
+       "q": "Qaysi biri katta?",
        "options": [
-        "⚫ qora",
-        "🟢 yashil"
+        "🍇 uzum donasi",
+        "🍉 tarvuz"
        ],
-       "answer": 0,
-       "why": "Ofarin! Tarvuzning urug'i qora."
+       "answer": 1,
+       "why": "Ofarin! Tarvuz katta, uzum donasi kichkina."
       }
      ],
      "extra": [
       {
-       "turi": "tushuncha",
+       "turi": "topshiriq",
        "sarlavha": "⚖️ Katta va kichik",
        "matn": "Tarvuz katta, uzum donachasi esa kichkina. Katta — qo'llarimizni keng ochamiz! Kichik — barmoqlarimizni yaqinlashtiramiz. Qani, ko'rsating!",
        "doska": "🍉 katta\n🍇 kichik"
@@ -684,6 +706,12 @@
      "extra": [
       {
        "turi": "topshiriq",
+       "sarlavha": "🔢 Gilosni sanaymiz",
+       "matn": "Shoxda gilos osilib turibdi. Sanaymiz: har bir gilosga barmog'ingizni tegizing. Nechta gilos bor?",
+       "doska": "🍒🍒"
+      },
+      {
+       "turi": "topshiriq",
        "sarlavha": "🧼 Mevani yuvamiz",
        "matn": "Esda tuting: mevani yeyishdan oldin albatta suvda yuvamiz! Shildir-shildir, meva toza bo'ldi. Endi yesak bo'ladi!",
        "doska": "💧🍑 ➡️ 😋"
@@ -751,7 +779,7 @@
      "extra": [
       {
        "turi": "topshiriq",
-       "sarlavha": "🎵 Sholg'om o'yini",
+       "sarlavha": "🥕 Sabzini tortamiz",
        "matn": "O'yin! Katta sabzi yerga yopishib qolibdi. Hammamiz birga tortamiz: bir, ikki, uch — uh! Chiqdi! Qarsak chalamiz!",
        "doska": "🥕 bir, ikki, uch — uh!"
       }
@@ -800,13 +828,13 @@
        "why": "Barakalla! Bodring yashil."
       },
       {
-       "q": "Salatga nima solamiz?",
+       "q": "Tishlasak «qirs-qirs» etadigan sabzavot qaysi?",
        "options": [
         "🍅 pomidor",
-        "🍬 konfet"
+        "🥒 bodring"
        ],
-       "answer": 0,
-       "why": "Ofarin! Salatga pomidor solamiz."
+       "answer": 1,
+       "why": "Ofarin! Bodring «qirs-qirs» etadi."
       }
      ],
      "extra": [
@@ -868,6 +896,14 @@
        ],
        "answer": 0,
        "why": "Ofarin! Sabzi — sabzavot."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧅 Piyoz va karam o'yini",
+       "matn": "O'yin! Men piyozni to'g'rayman — voy, ko'zimiz achishdi, ko'zni yumamiz! Endi karam: barglarini birin-ketin ochamiz — qat-qat, qat-qat!",
+       "doska": "🧅 🥬"
       }
      ]
     }
@@ -934,15 +970,15 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🔍 Rang ovi",
-       "matn": "O'yin! Xonadan bitta qizil narsa topib keling. Endi bitta sariq narsa! Topdingizmi? Kabutar qushchaga ko'rsating — gu-gu, barakalla!",
-       "doska": "🔴 ? 🟡 ?"
+       "matn": "O'yin! Xonadan bitta qizil narsani izlang. Endi bitta sariq narsani! Kabutar qushchaga ko'rsating — gu-gu, barakalla!",
+       "doska": "🔴 🟡"
       }
      ]
     },
     {
      "name": "Yashil va ko'k",
      "goal": "Bola yashil va ko'k rangni taniydi",
-     "intro": "Gu-gu! Men osmonda uchaman — osmon qanday rangda? Pastda o'tlar bor — ular qanday rangda? Keling, bilib olamiz!",
+     "intro": "Gu-gu! Tepaga qarang — osmon qanday rangda? Pastga qarang — o'tlar qanday rangda? Keling, bilib olamiz!",
      "items": [
       {
        "say": "Yashil",
@@ -959,7 +995,7 @@
        "emoji": "🔵",
        "image": "am23-u5-kok.png",
        "image_prompt": "A blue circle with blue sky and sea, cute cartoon, soft flat colors, white background, no text, square",
-       "explain": "Bu — ko'k rang. Musaffo osmon ko'k, dengiz ham ko'k. Men ko'k osmonda uchishni yaxshi ko'raman, gu-gu!",
+       "explain": "Bu — ko'k rang. Musaffo osmon ko'k, dengiz ham ko'k. Ko'k osmonga qarasak, ko'zimiz quvnaydi!",
        "action": "Tepaga — osmonga qarang!"
       }
      ],
@@ -1052,6 +1088,14 @@
        ],
        "answer": 0,
        "why": "Ofarin! Tuxum oq."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "⚫ Oq va qora o'yini",
+       "matn": "O'yin! Men «oq!» desam — qo'llarni baland ko'taring, qor kabi. «Qora!» desam — cho'kkalab, tunda uxlagandek yashirining. Tayyormisiz? Oq! … Qora!",
+       "doska": "⚪ ⚫"
       }
      ]
     },
@@ -1318,7 +1362,7 @@
     {
      "name": "Shamol",
      "goal": "Bola shamolni sezadi, varrak shamolda uchishini biladi",
-     "intro": "Gu-gu! Daraxtlarning barglari shitirlayapti, men esa uchib ketay deyapman! Kimdir esyapti, lekin ko'rinmaydi. Kim?",
+     "intro": "Gu-gu! Daraxtlarning barglari shitirlayapti, sochimiz hilpirayapti! Kimdir esyapti, lekin ko'rinmaydi. Kim ekan?",
      "items": [
       {
        "say": "Shamol",
@@ -1385,7 +1429,7 @@
     {
      "name": "Mening uyim",
      "goal": "Bola uy, eshik va derazani taniydi",
-     "intro": "Gu-gu! Mening uyam daraxtda. Sizning uyingiz-chi? Uyning ichiga qayerdan kiramiz? Keling, bilamiz!",
+     "intro": "Gu-gu! Qarang, mana uy! Uyning ichiga qayerdan kiramiz? Keling, bilib olamiz!",
      "items": [
       {
        "say": "Uy",
@@ -1446,7 +1490,7 @@
      "extra": [
       {
        "turi": "topshiriq",
-       "sarlavha": "🎵 Taq-taq o'yini",
+       "sarlavha": "🚪 Taq-taq o'yini",
        "matn": "Rolli o'yin: taq-taq! — Kim u? — Men, Kabutar qushcha! — Kiring, marhamat! Endi siz eshik qoqing, men ochaman!",
        "doska": "🚪 taq-taq!"
       }
@@ -1472,7 +1516,7 @@
        "emoji": "🪑",
        "image": "am23-u7-stul.png",
        "image_prompt": "A small wooden chair, cute cartoon, soft flat colors, white background, no text, square",
-       "explain": "Bu — stul. Unga o'tiramiz. Stulning to'rtta oyog'i bor, lekin u yurmaydi! Ovqatlanganda stulda tinch o'tiramiz."
+       "explain": "Bu — stul. Unga o'tiramiz. Stulning oyoqlari bor, lekin u yurmaydi! Ovqatlanganda stulda tinch o'tiramiz."
       }
      ],
      "tests": [
@@ -1503,6 +1547,14 @@
        "answer": 0,
        "why": "Ofarin! Kechasi oy chiqadi, uxlaymiz."
       }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧸 Uyquga yotqizamiz",
+       "matn": "Rolli o'yin: qo'g'irchoq charchabdi. Uni karavotga yotqizamiz — sh-sh-sh, uxla! Ertalab uyg'ondi. Endi stulga o'tqazamiz — ovqat vaqti!",
+       "doska": "🛏️ ➡️ 🪑"
+      }
      ]
     },
     {
@@ -1516,7 +1568,7 @@
        "emoji": "🥄",
        "image": "am23-u7-qoshiq.png",
        "image_prompt": "A shiny spoon, cute cartoon, soft flat colors, white background, no text, square",
-       "explain": "Bu — qoshiq. Qoshiq bilan sho'rva va bo'tqa yeymiz. Qoshiqni o'ng qo'limizda ushlaymiz.",
+       "explain": "Bu — qoshiq. Qoshiq bilan sho'rva va bo'tqa yeymiz. Qoshiqni qo'limizda mahkam ushlaymiz.",
        "action": "Qoshiq bilan yegandek qiling!"
       },
       {
@@ -1569,7 +1621,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🍵 Choy ichamiz",
-       "matn": "Rolli o'yin: qo'g'irchoq mehmonga keldi! Choynakdan piyolaga choy quyamiz — shildir! Ikki qo'llab uzatamiz: «Marhamat!» Barakalla!",
+       "matn": "Rolli o'yin: qo'g'irchoq mehmonga keldi! O'yinchoq choynakdan piyolaga choy quyamiz — shildir! Ikki qo'llab uzatamiz: «Marhamat!» Barakalla!",
        "doska": "🫖 ➡️ 🍵"
       }
      ]
@@ -1581,9 +1633,9 @@
    "emoji": "🧼",
    "lessons": [
     {
-     "name": "Mening tanam",
-     "goal": "Bola qo'l, oyoq, ko'z, quloqni ko'rsatadi",
-     "intro": "Gu-gu! Mening qanotlarim va panjalarim bor. Sizda-chi? Keling, tanamizni tanishamiz!",
+     "name": "Qo'l va oyoq",
+     "goal": "Bola qo'l va oyog'ini ko'rsatadi, ular nima uchun kerakligini biladi",
+     "intro": "Gu-gu! Mening qanotlarim va panjalarim bor. Sizda-chi? Keling, qo'l va oyoqlarimizni tanishamiz!",
      "items": [
       {
        "say": "Qo'l",
@@ -1591,7 +1643,7 @@
        "emoji": "✋",
        "image": "am23-u8-qol.png",
        "image_prompt": "A small child's open hand, cute cartoon, soft flat colors, white background, no text, square",
-       "explain": "Bu — qo'l. Qo'limiz bilan ushlaymiz, chizamiz va qarsak chalamiz. Qo'limizda beshta barmoq bor!",
+       "explain": "Bu — qo'l. Qo'limiz bilan ushlaymiz, chizamiz va qarsak chalamiz. Qo'limizda barmoqlar bor!",
        "action": "Qarsak chaling!"
       },
       {
@@ -1600,9 +1652,53 @@
        "emoji": "🦶",
        "image": "am23-u8-oyoq.png",
        "image_prompt": "A child's foot, cute cartoon, soft flat colors, white background, no text, square",
-       "explain": "Bu — oyoq. Oyoqlarimiz bilan yuramiz, chopamiz va sakraymiz. Oyoqda ham beshta barmoq bor!",
+       "explain": "Bu — oyoq. Oyoqlarimiz bilan yuramiz, chopamiz va sakraymiz. Oyoqda ham barmoqlar bor!",
        "action": "Oyog'ingizni do'pillating!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Nima bilan qarsak chalamiz?",
+       "options": [
+        "✋ qo'l",
+        "🦶 oyoq"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Qo'l bilan qarsak chalamiz."
       },
+      {
+       "q": "Nima bilan sakraymiz?",
+       "options": [
+        "✋ qo'l",
+        "🦶 oyoq"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Oyoq bilan sakraymiz."
+      },
+      {
+       "q": "Nima bilan yuramiz?",
+       "options": [
+        "🦶 oyoq",
+        "✋ qo'l"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Oyoq bilan yuramiz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Qo'l-oyoq qo'shig'i",
+       "matn": "Qo'shiq va harakat! Qo'llarim — chapak-chapak! Oyoqlarim — do'p-do'p! Qo'llar yuqoriga, oyoqlar pastga! Yana bir marta, tezroq!",
+       "doska": "✋ 🦶"
+      }
+     ]
+    },
+    {
+     "name": "Ko'z va quloq",
+     "goal": "Bola ko'z va quloqni ko'rsatadi, ular nima uchun kerakligini biladi",
+     "intro": "Gu-gu! Biz dunyoni nima bilan ko'ramiz? Nima bilan eshitamiz? Yuzimizdagi ikkita yordamchi bilan tanishamiz!",
+     "items": [
       {
        "say": "Ko'z",
        "uz": "ko'ramiz",
@@ -1635,28 +1731,28 @@
       {
        "q": "Nima bilan eshitamiz?",
        "options": [
-        "✋ qo'l",
+        "👀 ko'z",
         "👂 quloq"
        ],
        "answer": 1,
        "why": "Barakalla! Quloq bilan eshitamiz."
       },
       {
-       "q": "Nima bilan sakraymiz?",
+       "q": "Mushukning «miyov»ini nima bilan eshitamiz?",
        "options": [
-        "🦶 oyoq",
+        "👂 quloq",
         "👀 ko'z"
        ],
        "answer": 0,
-       "why": "Ofarin! Oyoq bilan sakraymiz."
+       "why": "Ofarin! Quloq bilan eshitamiz."
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
-       "sarlavha": "🎵 Bosh, yelka qo'shig'i",
-       "matn": "Qo'shiq va harakat! Ko'zim — mana, qulog'im — mana! Qo'llarim — chapak-chapak! Oyoqlarim — do'p-do'p! Yana bir marta, tezroq!",
-       "doska": "👀 👂 ✋ 🦶"
+       "sarlavha": "🎵 Ko'zim — mana!",
+       "matn": "Qo'shiq va harakat! Ko'zim — mana! Qulog'im — mana! Ko'zni yumamiz — qorong'i. Ochamiz — yorug'! Qulog'imizni ushlab eshitamiz: tip-tip, miyov!",
+       "doska": "👀 👂"
       }
      ]
     },
@@ -1671,7 +1767,7 @@
        "emoji": "🧼",
        "image": "am23-u8-sovun.png",
        "image_prompt": "A bar of soap with bubbles, cute cartoon, soft flat colors, white background, no text, square",
-       "explain": "Bu — sovun. Qo'limizni sovun bilan ishqalasak, oppoq ko'pik chiqadi. Ko'pik kir va mikroblarni ketkazadi.",
+       "explain": "Bu — sovun. Qo'limizni sovun bilan ishqalasak, oppoq ko'pik chiqadi. Ko'pik kirni ketkazadi, qo'llar toza bo'ladi.",
        "action": "Qo'llarni ishqalang: ishq-ishq!"
       },
       {
@@ -1697,7 +1793,7 @@
        "q": "Qo'lni nima bilan yuvamiz?",
        "options": [
         "🧼 sovun",
-        "🍬 konfet"
+        "🥄 qoshiq"
        ],
        "answer": 0,
        "why": "To'g'ri! Sovun bilan yuvamiz."

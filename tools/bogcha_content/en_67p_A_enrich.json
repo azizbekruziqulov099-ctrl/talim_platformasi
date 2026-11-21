@@ -601,7 +601,7 @@
      "options": [
       "❓ What's the matter?",
       "❓ What time is it?",
-      "❓ Where is the park?"
+      "❓🔢 How many?"
      ],
      "answer": 0,
      "why": "Barakalla! [en]What's the matter?[/en] — nima bo'ldi?",
@@ -612,7 +612,7 @@
      "q_en": "Laylo's head hurts. What does she say?",
      "options": [
       "🤢 I have a stomachache.",
-      "😋 It's delicious!",
+      "🤒 I'm sick.",
       "🤕 I have a headache."
      ],
      "answer": 2,
@@ -623,9 +623,9 @@
      "q": "Hamshira oxirida nima dedi?",
      "q_en": "What does the nurse say at the end?",
      "options": [
-      "✋ Wait!",
+      "🛑 Stop!",
       "💌 Get well soon!",
-      "⬅️ Turn left!"
+      "🙏 Thank you!"
      ],
      "answer": 1,
      "why": "Zo'r! [en]Get well soon![/en] — tezroq tuzal!",
@@ -710,7 +710,7 @@
      "options": [
       "❓ What's the matter?",
       "🗺️ Excuse me! Where is the zoo?",
-      "🫖 Would you like some tea?"
+      "🕰️❓ What time is it?"
      ],
      "answer": 1,
      "why": "Barakalla! [en]Excuse me! Where is the zoo?[/en] — kechirasiz, hayvonot bog'i qayerda?",
@@ -801,14 +801,14 @@
     },
     {
      "who": 1,
-     "say": "Ali and I made it with Mum!",
-     "uz": "uni Ali ikkalamiz oyim bilan tayyorladik!",
+     "say": "We cut and mix the salad with Mum!",
+     "uz": "salatni oyim bilan to'g'rab, aralashtiramiz!",
      "emoji": "👫🥗"
     },
     {
      "who": 0,
-     "say": "Well done, children! You are good helpers!",
-     "uz": "barakalla, bolalar! yaxshi yordamchisizlar!",
+     "say": "Well done! You are good helpers!",
+     "uz": "barakalla! yaxshi yordamchisizlar!",
      "emoji": "🤗"
     }
    ],

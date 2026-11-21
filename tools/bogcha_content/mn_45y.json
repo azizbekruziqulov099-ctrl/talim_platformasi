@@ -1,1464 +1,1560 @@
 {
- "subject": "Mantiq",
- "lang": null,
- "age": "4-5 yosh",
- "prefix": "MN",
- "book_title": "Aqlli o'yinlar 4–5 yosh",
- "units": [
-  {
-   "name": "Naqshlar",
-   "emoji": "🎨",
-   "lessons": [
+  "subject": "Mantiq",
+  "lang": null,
+  "age": "4-5 yosh",
+  "book_title": "Aqlli o'yinlar 4–5 yosh",
+  "prefix": "MN",
+  "units": [
     {
-     "name": "Ikki rasmli naqsh",
-     "goal": "Bola naqshning takrorlanadigan bo'lagini topadi va naqshni davom ettiradi",
-     "intro": "Bip-bip! Naqsh — bu sirli qator. Qara: 🍎🍌🍎🍌. Sirini topsang, keyingisini ham bilasan!",
-     "items": [
-      {
-       "say": "AB naqsh",
-       "uz": "biri, keyin boshqasi",
-       "emoji": "🍎🍌🍎🍌",
-       "explain": "Bu naqshda ikki rasm navbatlashadi. Qara: 🍎🍌🍎🍌. Bo'lak: olma, banan — keyin yana boshidan!",
-       "action": "Naqshni men bilan ayt: olma, banan... yana: olma, banan!"
-      },
-      {
-       "say": "Naqsh bo'lagi",
-       "uz": "takrorlanadigan qism",
-       "emoji": "🍎🍌🔁",
-       "explain": "Naqshning sirli bo'lagi — 🍎🍌. U qayta-qayta takrorlanadi. Bo'lakni topsang — naqshni davom ettira olasan!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🍎🍌🍎🍌❓ Keyingisi qaysi?",
-       "options": [
-        "🍌 banan",
-        "🍎 olma"
-       ],
-       "answer": 1,
-       "why": "Barakalla! Keyingisi — olma."
-      },
-      {
-       "q": "🍎🍌🍎🍌🍎❓ Keyingisi qaysi?",
-       "options": [
-        "🍌 banan",
-        "🍎 olma"
-       ],
-       "answer": 0,
-       "why": "Qoyil! Keyingisi — banan."
-      },
-      {
-       "q": "🍎🍌🍎🍌🍎🍌🍎❓ Keyingisi qaysi?",
-       "options": [
-        "🍌 banan",
-        "🍎 olma"
-       ],
-       "answer": 0,
-       "why": "Zo'r! Keyingisi — banan."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "👏 Harakatli naqsh",
-       "matn": "O'yin! Qarsak, qarsak, dupur! Qarsak, qarsak, dupur! Endi sen davom ettir! Keyin o'zing yangi naqsh o'ylab top.",
-       "doska": "👏👏🦶 👏👏🦶 ❓"
-      }
-     ]
+      "name": "Naqshlar",
+      "emoji": "🎨",
+      "lessons": [
+        {
+          "name": "Ikki rasmli naqsh",
+          "goal": "Bola naqshning takrorlanadigan bo'lagini topadi va naqshni davom ettiradi",
+          "intro": "Bip-bip, naqsh — bu sirli qator: olma, banan, olma, banan. Keyingisi nima ekan?",
+          "items": [
+            {
+              "say": "Ikki rasmli naqsh",
+              "uz": "takrorlanadigan qator",
+              "emoji": "🍎🍌🍎🍌",
+              "explain": "Bu naqshda ikki rasm navbatlashadi: olma, banan, olma, banan. Bo'lagi — olma va banan. Keyin yana boshidan!",
+              "action": "Men bilan ayt: olma, banan, olma, banan!"
+            },
+            {
+              "say": "Naqsh bo'lagi",
+              "uz": "naqshning takrorlanadigan qismi",
+              "emoji": "🍎🍌🔁",
+              "explain": "Naqshning sirli bo'lagi — olma va banan. U qayta-qayta takrorlanadi. Bo'lakni bilsang, naqshni davom ettira olasan!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "🍎🍌🍎🍌❓ Keyingisi qaysi?",
+              "options": [
+                "🍌 banan",
+                "🍎 olma"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Keyingisi — olma."
+            },
+            {
+              "q": "🍎🍌🍎🍌🍎❓ Keyingisi qaysi?",
+              "options": [
+                "🍎 olma",
+                "🍌 banan"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Keyingisi — banan."
+            },
+            {
+              "q": "🍎🍌🍎🍌🍎🍌🍎❓ Keyingisi qaysi?",
+              "options": [
+                "🍎 olma",
+                "🍌 banan"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Keyingisi — banan."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "👏 Harakatli naqsh",
+              "matn": "Qarsak, dupur, qarsak, dupur! Qarsak, dupur, qarsak, dupur! Endi sen davom ettir! Keyin o'zing yangi naqsh o'ylab ko'r.",
+              "doska": "🍎🍌🍎🍌  👏🦶👏🦶❓"
+            }
+          ]
+        },
+        {
+          "name": "Bitta va ikkita naqsh",
+          "goal": "Bola naqshning takrorlanadigan bo'lagini topadi va naqshni davom ettiradi",
+          "intro": "Bip-bip, bu safar naqsh boshqacha: bitta qizil, keyin ikkita ko'k. Qara va davom ettir!",
+          "items": [
+            {
+              "say": "Bitta, ikkita naqsh",
+              "uz": "takrorlanadigan qator",
+              "emoji": "🔴🔵🔵🔴🔵🔵",
+              "explain": "Bu naqshda bitta qizil doira, keyin ikkita ko'k doira keladi: qizil, ko'k, ko'k, qizil, ko'k, ko'k. Bo'lagi — qizil, ko'k, ko'k.",
+              "action": "Men bilan ayt: qizil, ko'k, ko'k, qizil, ko'k, ko'k!"
+            },
+            {
+              "say": "Naqsh bo'lagi",
+              "uz": "naqshning takrorlanadigan qismi",
+              "emoji": "🔴🔵🔵🔁",
+              "explain": "Naqshning sirli bo'lagi — qizil, ko'k, ko'k. U qayta-qayta takrorlanadi. Bo'lakni bilsang, naqshni davom ettira olasan!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "🔴🔵🔵🔴❓ Keyingisi qaysi?",
+              "options": [
+                "🔴 qizil doira",
+                "🔵 ko'k doira"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Keyingisi — ko'k doira."
+            },
+            {
+              "q": "🔴🔵🔵🔴🔵❓ Keyingisi qaysi?",
+              "options": [
+                "🔴 qizil doira",
+                "🔵 ko'k doira"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Keyingisi — ko'k doira."
+            },
+            {
+              "q": "🔴🔵🔵🔴🔵🔵❓ Keyingisi qaysi?",
+              "options": [
+                "🔵 ko'k doira",
+                "🔴 qizil doira"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Keyingisi — qizil doira."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "👏 Harakatli naqsh",
+              "matn": "Qarsak, dupur, dupur! Qarsak, dupur, dupur! Endi sen davom ettir: qarsak, keyin nima? Dupur! Ofarin!",
+              "doska": "🔴🔵🔵🔴🔵🔵  👏🦶🦶👏🦶🦶❓"
+            }
+          ]
+        },
+        {
+          "name": "Ikkita va bitta naqsh",
+          "goal": "Bola naqshning takrorlanadigan bo'lagini topadi va naqshni davom ettiradi",
+          "intro": "Bip-bip, endi ikkita yulduz va bitta oy: yulduz, yulduz, oy. Davomi qanday bo'ladi?",
+          "items": [
+            {
+              "say": "Ikkita, bitta naqsh",
+              "uz": "takrorlanadigan qator",
+              "emoji": "🌟🌟🌙🌟🌟🌙",
+              "explain": "Bu naqshda ikkita yulduz, keyin bitta oy keladi: yulduz, yulduz, oy, yulduz, yulduz, oy. Bo'lagi — yulduz, yulduz, oy.",
+              "action": "Men bilan ayt: yulduz, yulduz, oy, yulduz, yulduz, oy!"
+            },
+            {
+              "say": "Naqsh bo'lagi",
+              "uz": "naqshning takrorlanadigan qismi",
+              "emoji": "🌟🌟🌙🔁",
+              "explain": "Naqshning sirli bo'lagi — yulduz, yulduz, oy. U qayta-qayta takrorlanadi. Bo'lakni bilsang, naqshni davom ettira olasan!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "🌟🌟🌙🌟❓ Keyingisi qaysi?",
+              "options": [
+                "🌙 oy",
+                "🌟 yulduz"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Keyingisi — yulduz."
+            },
+            {
+              "q": "🌟🌟🌙🌟🌟❓ Keyingisi qaysi?",
+              "options": [
+                "🌟 yulduz",
+                "🌙 oy"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Keyingisi — oy."
+            },
+            {
+              "q": "🌟🌟🌙🌟🌟🌙🌟🌟❓ Keyingisi qaysi?",
+              "options": [
+                "🌟 yulduz",
+                "🌙 oy"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Keyingisi — oy."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "👏 Harakatli naqsh",
+              "matn": "Qarsak, qarsak, dupur! Qarsak, qarsak, dupur! Endi sen davom ettir: qarsak, qarsak, keyin nima? Dupur! Zo'r!",
+              "doska": "🌟🌟🌙🌟🌟🌙  👏👏🦶👏👏🦶❓"
+            }
+          ]
+        },
+        {
+          "name": "Uch rasmli naqsh",
+          "goal": "Bola naqshning takrorlanadigan bo'lagini topadi va naqshni davom ettiradi",
+          "intro": "Bip-bip, bu naqshda uchta hayvoncha navbat bilan turibdi: mushuk, kuchuk, quyon. Keyingisi kim?",
+          "items": [
+            {
+              "say": "Uch rasmli naqsh",
+              "uz": "takrorlanadigan qator",
+              "emoji": "🐱🐶🐰🐱🐶🐰",
+              "explain": "Bu naqshda uchta hayvoncha navbat bilan turadi: mushuk, kuchuk, quyon, yana mushuk, kuchuk, quyon. Bo'lagi — uchta hayvon.",
+              "action": "Men bilan ayt: mushuk, kuchuk, quyon, mushuk, kuchuk, quyon!"
+            },
+            {
+              "say": "Naqsh bo'lagi",
+              "uz": "naqshning takrorlanadigan qismi",
+              "emoji": "🐱🐶🐰🔁",
+              "explain": "Naqshning sirli bo'lagi — mushuk, kuchuk, quyon. U qayta-qayta takrorlanadi. Bo'lakni bilsang, naqshni davom ettira olasan!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "🐱🐶🐰🐱❓ Keyingisi qaysi?",
+              "options": [
+                "🐱 mushuk",
+                "🐶 kuchuk"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Keyingisi — kuchuk."
+            },
+            {
+              "q": "🐱🐶🐰🐱🐶❓ Keyingisi qaysi?",
+              "options": [
+                "🐶 kuchuk",
+                "🐰 quyon"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Keyingisi — quyon."
+            },
+            {
+              "q": "🐱🐶🐰🐱🐶🐰🐱❓ Keyingisi qaysi?",
+              "options": [
+                "🐱 mushuk",
+                "🐶 kuchuk"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Keyingisi — kuchuk."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "👏 Harakatli naqsh",
+              "matn": "Qarsak, dupur, sakra! Qarsak, dupur, sakra! Endi sen davom ettir: qarsak, dupur, keyin nima? Sakra! Barakalla!",
+              "doska": "🐱🐶🐰🐱🐶🐰  👏🦶🤸👏🦶🤸❓"
+            }
+          ]
+        },
+        {
+          "name": "Rangli shakllar naqshi",
+          "goal": "Bola naqshdagi yashirin shaklni topadi",
+          "intro": "Bip-bip, naqshda bitta shakl yashirinib qolibdi! Qaysi biri yo'q?",
+          "items": [
+            {
+              "say": "Rangli shakllar naqshi",
+              "uz": "rangli shakllar qatori",
+              "emoji": "🔺🟡🟦🔺🟡🟦",
+              "explain": "Bu naqshda uchburchak, sariq doira va ko'k kvadrat navbatlashadi. Bo'lagi — uchburchak, doira, kvadrat. Yana boshidan!",
+              "action": "Men bilan ayt: uchburchak, doira, kvadrat!"
+            },
+            {
+              "say": "Yashirin shakl",
+              "uz": "naqshdagi yashirin shakl",
+              "emoji": "🔺❓🟦🔺🟡🟦",
+              "explain": "Qara: bitta shakl yashirinib qolgan! Bo'lakni eslaymiz: uchburchak, doira, kvadrat. Demak, yashirini — sariq doira!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "🔺🟡❓🔺🟡🟦 Yashirin rasm qaysi?",
+              "options": [
+                "🔺 uchburchak",
+                "🟦 ko'k kvadrat"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Yashirin rasm — ko'k kvadrat."
+            },
+            {
+              "q": "❓🟡🟦🔺🟡🟦 Yashirin rasm qaysi?",
+              "options": [
+                "🟡 sariq doira",
+                "🔺 uchburchak"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Yashirin rasm — uchburchak."
+            },
+            {
+              "q": "🔺🟡🟦🔺❓🟦 Yashirin rasm qaysi?",
+              "options": [
+                "🔺 uchburchak",
+                "🟡 sariq doira"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Yashirin rasm — sariq doira."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🎭 Shakllar raqsi",
+              "matn": "Uchburchak — qo'llaring tepaga! Doira — aylanib ol! Kvadrat — to'rt marta qarsak! Naqsh bo'yicha raqsga tush!",
+              "doska": "🔺🟡🟦🔺🟡🟦  🔺❓🟦🔺🟡🟦"
+            }
+          ]
+        }
+      ]
     },
     {
-     "name": "Bitta va ikkita naqsh",
-     "goal": "Bola naqshning takrorlanadigan bo'lagini topadi va naqshni davom ettiradi",
-     "intro": "Bip-bip! Naqsh — bu sirli qator. Qara: 🔴🔵🔵🔴🔵🔵. Sirini topsang, keyingisini ham bilasan!",
-     "items": [
-      {
-       "say": "ABB naqsh",
-       "uz": "bitta, keyin ikkita",
-       "emoji": "🔴🔵🔵🔴🔵🔵",
-       "explain": "Bu naqshda bitta qizil, keyin ikkita ko'k keladi. Qara: 🔴🔵🔵🔴🔵🔵. Bo'lak: qizil doira, ko'k doira, ko'k doira — keyin yana boshidan!",
-       "action": "Naqshni men bilan ayt: qizil doira, ko'k doira, ko'k doira... yana: qizil doira, ko'k doira, ko'k doira!"
-      },
-      {
-       "say": "Naqsh bo'lagi",
-       "uz": "takrorlanadigan qism",
-       "emoji": "🔴🔵🔵🔁",
-       "explain": "Naqshning sirli bo'lagi — 🔴🔵🔵. U qayta-qayta takrorlanadi. Bo'lakni topsang — naqshni davom ettira olasan!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🔴🔵🔵❓ Keyingisi qaysi?",
-       "options": [
-        "🔵 ko'k doira",
-        "🔴 qizil doira"
-       ],
-       "answer": 1,
-       "why": "Barakalla! Keyingisi — qizil doira."
-      },
-      {
-       "q": "🔴🔵🔵🔴❓ Keyingisi qaysi?",
-       "options": [
-        "🔵 ko'k doira",
-        "🔴 qizil doira"
-       ],
-       "answer": 0,
-       "why": "Barakalla! Keyingisi — ko'k doira."
-      },
-      {
-       "q": "🔴🔵🔵🔴🔵❓ Keyingisi qaysi?",
-       "options": [
-        "🔵 ko'k doira",
-        "🔴 qizil doira"
-       ],
-       "answer": 0,
-       "why": "Zo'r! Keyingisi — ko'k doira."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "👏 Harakatli naqsh",
-       "matn": "O'yin! Qarsak, qarsak, dupur! Qarsak, qarsak, dupur! Endi sen davom ettir! Keyin o'zing yangi naqsh o'ylab top.",
-       "doska": "👏👏🦶 👏👏🦶 ❓"
-      }
-     ]
+      "name": "Ortiqchasi qaysi?",
+      "emoji": "🙅",
+      "lessons": [
+        {
+          "name": "Meva va sabzavot",
+          "goal": "Bola to'rtta rasm ichidan belgisi boshqacha bo'lganini topadi va sababini aytadi",
+          "intro": "Bip-bip, men to'rtta rasm qo'ydim: olma, banan, uzum, sabzi. Qaysi biri boshqacha?",
+          "items": [
+            {
+              "say": "Mevalar",
+              "uz": "olma, banan va uzum",
+              "emoji": "🍎🍌🍇",
+              "explain": "Olma, banan, uzum, nok, gilos — hammasi meva. Mevalar shirin, ko'pincha daraxtda o'sadi.",
+              "action": "Barmog'ing bilan sana: bir, ikki, uch!"
+            },
+            {
+              "say": "Sabzavotlar",
+              "uz": "sabzi, bodring va kartoshka",
+              "emoji": "🥕",
+              "explain": "Sabzi, bodring, kartoshka — sabzavot, meva emas. Sabzavotlar yerda, polizda o'sadi. Shuning uchun ular mevalar orasida ortiqcha!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "🍎🍌🥕🍇 Qaysi biri ortiqcha?",
+              "options": [
+                "🍎 olma",
+                "🥕 sabzi"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Sabzi — sabzavot, qolganlari — meva."
+            },
+            {
+              "q": "🍐🍒🥒🍇 Qaysi biri ortiqcha?",
+              "options": [
+                "🍒 gilos",
+                "🥒 bodring"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Bodring — sabzavot, qolganlari — meva."
+            },
+            {
+              "q": "🍌🥔🍎🍐 Qaysi biri ortiqcha?",
+              "options": [
+                "🍐 nok",
+                "🥔 kartoshka"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Kartoshka — sabzavot, qolganlari — meva."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🔎 Uydan top",
+              "matn": "O'yin! Uydan uchta bir xil turdagi narsa va bitta boshqacha narsa yig'. Kattalarga «Qaysi biri ortiqcha?» deb topishmoq qil!",
+              "doska": "🍎🍌🍇  🥕"
+            }
+          ]
+        },
+        {
+          "name": "Uchadi — uchmaydi",
+          "goal": "Bola to'rtta rasm ichidan belgisi boshqacha bo'lganini topadi va sababini aytadi",
+          "intro": "Bip-bip, to'rtta rasm: qush, kapalak, baliq, ari. Qaysi biri boshqacha?",
+          "items": [
+            {
+              "say": "Uchadiganlar",
+              "uz": "qush, kapalak va ari",
+              "emoji": "🐦🦋🐝",
+              "explain": "Qush, kapalak, ari — qanoti bor, ular uchadi. Samolyot ham uchadi!",
+              "action": "Qo'llaringni qanotdek qoq!"
+            },
+            {
+              "say": "Uchmaydiganlar",
+              "uz": "baliq",
+              "emoji": "🐟",
+              "explain": "Baliq uchmaydi — u suvda suzadi. Mashina va fil ham uchmaydi. Ular uchadiganlar orasida ortiqcha!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "🐦🦋🐟🐝 Qaysi biri ortiqcha?",
+              "options": [
+                "🐦 qushcha",
+                "🐟 baliq"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Baliq ucha olmaydi, qolganlari uchadi."
+            },
+            {
+              "q": "✈️🐦🚗🦋 Qaysi biri ortiqcha?",
+              "options": [
+                "🐦 qushcha",
+                "🚗 mashina"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Mashina ucha olmaydi, qolganlari uchadi."
+            },
+            {
+              "q": "🐝🐘🦋🐦 Qaysi biri ortiqcha?",
+              "options": [
+                "🐦 qushcha",
+                "🐘 fil"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Fil ucha olmaydi, qolganlari uchadi."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🔎 Uchadimi?",
+              "matn": "O'yin! Men aytaman, sen javob ber: qush — uchadi, qo'llaringni qoq! Baliq — uchmaydi, cho'kkalab o'tir!",
+              "doska": "🐦🦋🐝  🐟"
+            }
+          ]
+        },
+        {
+          "name": "Suvda yashaydi",
+          "goal": "Bola to'rtta rasm ichidan belgisi boshqacha bo'lganini topadi va sababini aytadi",
+          "intro": "Bip-bip, to'rtta rasm: baliq, delfin, mushuk, sakkizoyoq. Qaysi biri boshqacha?",
+          "items": [
+            {
+              "say": "Suvda yashaydiganlar",
+              "uz": "baliq, delfin va sakkizoyoq",
+              "emoji": "🐟🐬🐙",
+              "explain": "Baliq, delfin, sakkizoyoq suvda yashaydi. Ular suvda suzadi!",
+              "action": "Suzgandek qil!"
+            },
+            {
+              "say": "Quruqlikda yashaydiganlar",
+              "uz": "mushuk",
+              "emoji": "🐱",
+              "explain": "Mushuk, ot, quyon suvda yashamaydi — ular quruqlikda yashaydi. Ular suv hayvonlari orasida ortiqcha!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "🐟🐬🐱🐙 Qaysi biri ortiqcha?",
+              "options": [
+                "🐟 baliq",
+                "🐱 mushuk"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Mushuk suvda yashamaydi, qolganlari suvda yashaydi."
+            },
+            {
+              "q": "🐬🐟🐴🐙 Qaysi biri ortiqcha?",
+              "options": [
+                "🐟 baliq",
+                "🐴 ot"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Ot suvda yashamaydi, qolganlari suvda yashaydi."
+            },
+            {
+              "q": "🐙🐰🐟🐬 Qaysi biri ortiqcha?",
+              "options": [
+                "🐬 delfin",
+                "🐰 quyon"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Quyon suvda yashamaydi, qolganlari suvda yashaydi."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🌊 Suv va quruqlik",
+              "matn": "O'yin! Men hayvon aytaman. Suvda yashasa — suzgandek qil, quruqlikda yashasa — yugurgandek qil! Baliq! Mushuk! Delfin!",
+              "doska": "🐟🐬🐙  🐱"
+            }
+          ]
+        },
+        {
+          "name": "Yeyiladi — yeyilmaydi",
+          "goal": "Bola to'rtta rasm ichidan belgisi boshqacha bo'lganini topadi va sababini aytadi",
+          "intro": "Bip-bip, to'rtta rasm: non, pishloq, ayiqcha, olma. Qaysi biri boshqacha?",
+          "items": [
+            {
+              "say": "Ovqat",
+              "uz": "non, pishloq va olma",
+              "emoji": "🍞🧀🍎",
+              "explain": "Non, pishloq, olma, banan, sut, tuxum, asal, uzum — bu ovqat. Ularni yeymiz yoki ichamiz!",
+              "action": "Yegandek qil: mmm, shirin!"
+            },
+            {
+              "say": "Ovqat emas",
+              "uz": "ayiqcha",
+              "emoji": "🧸",
+              "explain": "Ayiqcha, qalam, to'p — ovqat emas. Ularni yeb bo'lmaydi! Ular ovqatlar orasida ortiqcha."
+            }
+          ],
+          "tests": [
+            {
+              "q": "🍞🧀🧸🍎 Qaysi biri ortiqcha?",
+              "options": [
+                "🍞 non",
+                "🧸 ayiqcha"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Ayiqchani yeb bo'lmaydi, qolganlarini yeymiz."
+            },
+            {
+              "q": "🥛🍌✏️🍞 Qaysi biri ortiqcha?",
+              "options": [
+                "🍌 banan",
+                "✏️ qalam"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Qalamni yeb bo'lmaydi, qolganlari ovqat."
+            },
+            {
+              "q": "🥚🍯⚽🍇 Qaysi biri ortiqcha?",
+              "options": [
+                "🍇 uzum",
+                "⚽ to'p"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! To'pni yeb bo'lmaydi, qolganlari ovqat."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🍽️ Dasturxon",
+              "matn": "O'yin! Dasturxonga faqat ovqat qo'yamiz. Non — ha! Olma — ha! Ayiqcha — yo'q, uni dasturxonga qo'ymaymiz!",
+              "doska": "🍞🧀🍎  🧸"
+            }
+          ]
+        },
+        {
+          "name": "Shakli boshqa",
+          "goal": "Bola to'rtta rasm ichidan belgisi boshqacha bo'lganini topadi va sababini aytadi",
+          "intro": "Bip-bip, to'rtta rasm: uchta doira va bitta boshqa shakl. Qaysi biri doira emas?",
+          "items": [
+            {
+              "say": "Doiralar",
+              "uz": "qizil, sariq va yashil doira",
+              "emoji": "🔴🟡🟢",
+              "explain": "Doira yumaloq — uning burchagi yo'q. Qizil, sariq, yashil, ko'k doira — hammasi doira.",
+              "action": "Havoda doira chiz!"
+            },
+            {
+              "say": "Burchakli shakllar",
+              "uz": "qizil kvadrat",
+              "emoji": "🟥",
+              "explain": "Kvadratning to'rtta burchagi bor, uchburchakning — uchta. Ular doira emas, shuning uchun doiralar orasida ortiqcha!",
+              "action": "Burchaklarni barmog'ing bilan ko'rsat!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "🔴🟡🟥🟢 Qaysi biri ortiqcha?",
+              "options": [
+                "🔴 qizil doira",
+                "🟥 qizil kvadrat"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Qizil kvadrat — doira emas, qolganlari doira."
+            },
+            {
+              "q": "🔵🔴🔺🟡 Qaysi biri ortiqcha?",
+              "options": [
+                "🔴 qizil doira",
+                "🔺 uchburchak"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Uchburchak — doira emas, qolganlari doira."
+            },
+            {
+              "q": "🟢🔵🟦🔴 Qaysi biri ortiqcha?",
+              "options": [
+                "🔴 qizil doira",
+                "🟦 ko'k kvadrat"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Ko'k kvadrat — doira emas, qolganlari doira."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🔷 Shakl o'yini",
+              "matn": "O'yin! Men «doira» desam — qo'llaringni aylantir. «Burchak» desam — qo'llaringni qirrali qil! Doira! Burchak!",
+              "doska": "🔴🟡🟢  🟥"
+            }
+          ]
+        }
+      ]
     },
     {
-     "name": "Ikkita va bitta naqsh",
-     "goal": "Bola naqshning takrorlanadigan bo'lagini topadi va naqshni davom ettiradi",
-     "intro": "Bip-bip! Naqsh — bu sirli qator. Qara: ⭐⭐🌙⭐⭐🌙. Sirini topsang, keyingisini ham bilasan!",
-     "items": [
-      {
-       "say": "AAB naqsh",
-       "uz": "ikkita, keyin bitta",
-       "emoji": "⭐⭐🌙⭐⭐🌙",
-       "explain": "Bu naqshda ikkita yulduz, keyin bitta oy keladi. Qara: ⭐⭐🌙⭐⭐🌙. Bo'lak: yulduz, yulduz, oy — keyin yana boshidan!",
-       "action": "Naqshni men bilan ayt: yulduz, yulduz, oy... yana: yulduz, yulduz, oy!"
-      },
-      {
-       "say": "Naqsh bo'lagi",
-       "uz": "takrorlanadigan qism",
-       "emoji": "⭐⭐🌙🔁",
-       "explain": "Naqshning sirli bo'lagi — ⭐⭐🌙. U qayta-qayta takrorlanadi. Bo'lakni topsang — naqshni davom ettira olasan!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "⭐⭐❓ Keyingisi qaysi?",
-       "options": [
-        "🌙 oy",
-        "⭐ yulduz"
-       ],
-       "answer": 0,
-       "why": "Ofarin! Keyingisi — oy."
-      },
-      {
-       "q": "⭐⭐🌙⭐⭐❓ Keyingisi qaysi?",
-       "options": [
-        "🌙 oy",
-        "⭐ yulduz"
-       ],
-       "answer": 0,
-       "why": "Zo'r! Keyingisi — oy."
-      },
-      {
-       "q": "⭐⭐🌙⭐⭐🌙❓ Keyingisi qaysi?",
-       "options": [
-        "⭐ yulduz",
-        "🌙 oy"
-       ],
-       "answer": 0,
-       "why": "Qoyil! Keyingisi — yulduz."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "👏 Harakatli naqsh",
-       "matn": "O'yin! Qarsak, qarsak, dupur! Qarsak, qarsak, dupur! Endi sen davom ettir! Keyin o'zing yangi naqsh o'ylab top.",
-       "doska": "👏👏🦶 👏👏🦶 ❓"
-      }
-     ]
+      "name": "Nima bilan bog'liq?",
+      "emoji": "🔗",
+      "lessons": [
+        {
+          "name": "Kim qayerda yashaydi?",
+          "goal": "Bola narsalar orasidagi bog'liqlikni topadi va tushuntiradi",
+          "intro": "Bip-bip, hamma narsa bir-biri bilan bog'liq. Baliq va suv — nega birga?",
+          "items": [
+            {
+              "say": "Baliq — suv",
+              "uz": "baliq yashaydigan suv",
+              "emoji": "🐟🌊",
+              "explain": "Baliq suvda yashaydi. Shuning uchun baliq va suv birga!"
+            },
+            {
+              "say": "Tuya — cho'l",
+              "uz": "tuya yashaydigan cho'l",
+              "emoji": "🐫🏜️",
+              "explain": "Tuya cho'lda yashaydi. Ular ham bog'liq!"
+            },
+            {
+              "say": "Pingvin — muz",
+              "uz": "pingvin yashaydigan muzlik",
+              "emoji": "🐧🧊",
+              "explain": "Pingvin sovuq muzlikda yashaydi. Har hayvonning o'z uyi bor!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "🐫 Tuya qayerda yashaydi?",
+              "options": [
+                "🌊 suv",
+                "🏜️ cho'l"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Tuya cho'lda yashaydi."
+            },
+            {
+              "q": "🐧 Pingvin qayerda yashaydi?",
+              "options": [
+                "🏜️ cho'l",
+                "🧊 muz"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Pingvin muzlikda yashaydi."
+            },
+            {
+              "q": "🌊 Suvda kim yashaydi?",
+              "options": [
+                "🐫 tuya",
+                "🐟 baliq"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Suvda baliq yashaydi."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🎤 Gapni davom ettir",
+              "matn": "O'yin! Men gapni boshlayman, sen tugat: baliq — qayerda yashaydi? Suvda! Endi o'zing yangi juftlik o'ylab ko'r!",
+              "doska": "🐟🌊  🐫🏜️  🐧🧊"
+            }
+          ]
+        },
+        {
+          "name": "Kasb va asbob",
+          "goal": "Bola narsalar orasidagi bog'liqlikni topadi va tushuntiradi",
+          "intro": "Bip-bip, har kasbning o'z asbobi bor. Oshpaz va tova — nega birga?",
+          "items": [
+            {
+              "say": "Oshpaz — tova",
+              "uz": "oshpaz ishlatadigan tova",
+              "emoji": "🧑‍🍳🍳",
+              "explain": "Oshpaz tovada ovqat pishiradi. Shuning uchun ular birga!"
+            },
+            {
+              "say": "Shifokor — stetoskop",
+              "uz": "shifokor ishlatadigan stetoskop",
+              "emoji": "🧑‍⚕️🩺",
+              "explain": "Shifokor stetoskop bilan yurakni eshitadi. Ular ham bog'liq!"
+            },
+            {
+              "say": "Rassom — mo'yqalam",
+              "uz": "rassom ishlatadigan mo'yqalam",
+              "emoji": "🧑‍🎨🖌️",
+              "explain": "Rassom mo'yqalam bilan rasm chizadi. Har kasbning o'z asbobi bor!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "🧑‍⚕️ Shifokorga nima kerak?",
+              "options": [
+                "🍳 tova",
+                "🩺 stetoskop"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Shifokor stetoskop bilan eshitadi."
+            },
+            {
+              "q": "🧑‍🎨 Rassom nima bilan chizadi?",
+              "options": [
+                "🩺 stetoskop",
+                "🖌️ mo'yqalam"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Rassom mo'yqalam bilan chizadi."
+            },
+            {
+              "q": "🍳 Tovani kim ishlatadi?",
+              "options": [
+                "🧑‍🎨 rassom",
+                "🧑‍🍳 oshpaz"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Tovani oshpaz ishlatadi."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🎤 Kasb o'yini",
+              "matn": "O'yin! Men kasb aytaman, sen ishini ko'rsat: oshpaz — ovqat pishir! Rassom — rasm chiz! Shifokor — quloq sol!",
+              "doska": "🧑‍🍳🍳  🧑‍⚕️🩺  🧑‍🎨🖌️"
+            }
+          ]
+        },
+        {
+          "name": "Hayvon nima beradi?",
+          "goal": "Bola narsalar orasidagi bog'liqlikni topadi va tushuntiradi",
+          "intro": "Bip-bip, hayvonlar bizga nimadir beradi. Sigir va sut — nega birga?",
+          "items": [
+            {
+              "say": "Sigir — sut",
+              "uz": "sigir beradigan sut",
+              "emoji": "🐄🥛",
+              "explain": "Sigir sut beradi. Shuning uchun ular birga!"
+            },
+            {
+              "say": "Tovuq — tuxum",
+              "uz": "tovuq qo'yadigan tuxum",
+              "emoji": "🐔🥚",
+              "explain": "Tovuq tuxum qo'yadi. Ular ham bog'liq!"
+            },
+            {
+              "say": "Ari — asal",
+              "uz": "ari yig'adigan asal",
+              "emoji": "🐝🍯",
+              "explain": "Ari gullardan asal yig'adi. Hayvonlar bizga ko'p foyda beradi!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "🐄 Sigir nima beradi?",
+              "options": [
+                "🥚 tuxum",
+                "🥛 sut"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Sigir sut beradi."
+            },
+            {
+              "q": "🥚 Tuxumni kim qo'yadi?",
+              "options": [
+                "🐝 ari",
+                "🐔 tovuq"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Tuxumni tovuq qo'yadi."
+            },
+            {
+              "q": "🍯 Asalni kim yig'adi?",
+              "options": [
+                "🐄 sigir",
+                "🐝 ari"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Asalni ari yig'adi."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🎤 Ovoz o'yini",
+              "matn": "O'yin! Men hayvon aytaman, sen ovozini chiqar: sigir — mu-u! Tovuq — ko'-ko-ko! Ari — z-z-z! Keyin nima berishini ayt!",
+              "doska": "🐄🥛  🐔🥚  🐝🍯"
+            }
+          ]
+        },
+        {
+          "name": "Ob-havo va kiyim",
+          "goal": "Bola narsalar orasidagi bog'liqlikni topadi va tushuntiradi",
+          "intro": "Bip-bip, ob-havoga qarab kiyinamiz. Quyosh va shortik — nega birga?",
+          "items": [
+            {
+              "say": "Issiq — shortik",
+              "uz": "issiq kunda kiyiladigan shortik",
+              "emoji": "☀️🩳",
+              "explain": "Issiq kunda shortik kiyamiz. Shuning uchun ular birga!"
+            },
+            {
+              "say": "Qor — qo'lqop",
+              "uz": "qorli kunda kiyiladigan qo'lqop",
+              "emoji": "❄️🧤",
+              "explain": "Qorli kunda qo'lqop kiyamiz. Ular ham bog'liq!"
+            },
+            {
+              "say": "Yomg'ir — soyabon",
+              "uz": "yomg'irda ochiladigan soyabon",
+              "emoji": "🌧️☂️",
+              "explain": "Yomg'irda soyabon ochamiz. Ob-havoga qarab kiyinamiz!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "❄️ Qorli kunda nima kiyamiz?",
+              "options": [
+                "🩳 shortik",
+                "🧤 qo'lqop"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Qorli kunda qo'lqop kiyamiz."
+            },
+            {
+              "q": "🌧️ Yomg'ir yog'yapti. Nima olamiz?",
+              "options": [
+                "🩳 shortik",
+                "☂️ soyabon"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Yomg'irda soyabon olamiz."
+            },
+            {
+              "q": "☀️ Issiq kunda nima kiyamiz?",
+              "options": [
+                "🧤 qo'lqop",
+                "🩳 shortik"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Issiq kunda shortik kiyamiz."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🎤 Ob-havo o'yini",
+              "matn": "O'yin! Men ob-havo aytaman, sen kiyinib ko'rsat: issiq — shortik! Qor — qo'lqop! Yomg'ir — soyabon ochamiz!",
+              "doska": "☀️🩳  ❄️🧤  🌧️☂️"
+            }
+          ]
+        },
+        {
+          "name": "Narsa va uning ishi",
+          "goal": "Bola narsalar orasidagi bog'liqlikni topadi va tushuntiradi",
+          "intro": "Bip-bip, har narsaning o'z ishi bor. Kalit va eshik — nega birga?",
+          "items": [
+            {
+              "say": "Kalit — eshik",
+              "uz": "eshikni ochadigan kalit",
+              "emoji": "🔑🚪",
+              "explain": "Kalit eshikni ochadi. Shuning uchun ular birga!"
+            },
+            {
+              "say": "Qaychi — qog'oz",
+              "uz": "qog'ozni qirqadigan qaychi",
+              "emoji": "✂️📄",
+              "explain": "Qaychi qog'ozni qirqadi. Ular ham bog'liq!"
+            },
+            {
+              "say": "Cho'tka — tish",
+              "uz": "tishni tozalaydigan cho'tka",
+              "emoji": "🪥🦷",
+              "explain": "Cho'tka bilan tishni tozalaymiz. Har narsaning o'z ishi bor!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "✂️ Qaychi nimani qirqadi?",
+              "options": [
+                "🚪 eshik",
+                "📄 qog'oz"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Qaychi qog'ozni qirqadi."
+            },
+            {
+              "q": "🔑 Kalit nimani ochadi?",
+              "options": [
+                "📄 qog'oz",
+                "🚪 eshik"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Kalit eshikni ochadi."
+            },
+            {
+              "q": "🦷 Tishni nima bilan tozalaymiz?",
+              "options": [
+                "✂️ qaychi",
+                "🪥 cho'tka"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Tishni cho'tka bilan tozalaymiz."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🎤 Ishini ko'rsat",
+              "matn": "O'yin! Men narsa aytaman, sen ishini ko'rsat: kalit — eshikni och! Qaychi — qirq! Cho'tka — tish yuv!",
+              "doska": "🔑🚪  ✂️📄  🪥🦷"
+            }
+          ]
+        }
+      ]
     },
     {
-     "name": "Uch rasmli naqsh",
-     "goal": "Bola naqshning takrorlanadigan bo'lagini topadi va naqshni davom ettiradi",
-     "intro": "Bip-bip! Naqsh — bu sirli qator. Qara: 🐱🐶🐰🐱🐶🐰. Sirini topsang, keyingisini ham bilasan!",
-     "items": [
-      {
-       "say": "ABC naqsh",
-       "uz": "uchtasi navbat bilan",
-       "emoji": "🐱🐶🐰🐱🐶🐰",
-       "explain": "Bu naqshda uchta hayvoncha navbat bilan turadi. Qara: 🐱🐶🐰🐱🐶🐰. Bo'lak: mushuk, kuchuk, quyon — keyin yana boshidan!",
-       "action": "Naqshni men bilan ayt: mushuk, kuchuk, quyon... yana: mushuk, kuchuk, quyon!"
-      },
-      {
-       "say": "Naqsh bo'lagi",
-       "uz": "takrorlanadigan qism",
-       "emoji": "🐱🐶🐰🔁",
-       "explain": "Naqshning sirli bo'lagi — 🐱🐶🐰. U qayta-qayta takrorlanadi. Bo'lakni topsang — naqshni davom ettira olasan!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🐱🐶🐰❓ Keyingisi qaysi?",
-       "options": [
-        "🐱 mushuk",
-        "🐶 kuchuk"
-       ],
-       "answer": 0,
-       "why": "Ofarin! Keyingisi — mushuk."
-      },
-      {
-       "q": "🐱🐶🐰🐱❓ Keyingisi qaysi?",
-       "options": [
-        "🐶 kuchuk",
-        "🐱 mushuk"
-       ],
-       "answer": 0,
-       "why": "To'g'ri! Keyingisi — kuchuk."
-      },
-      {
-       "q": "🐱🐶🐰🐱🐶❓ Keyingisi qaysi?",
-       "options": [
-        "🐱 mushuk",
-        "🐰 quyon"
-       ],
-       "answer": 1,
-       "why": "Qoyil! Keyingisi — quyon."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "👏 Harakatli naqsh",
-       "matn": "O'yin! Qarsak, qarsak, dupur! Qarsak, qarsak, dupur! Endi sen davom ettir! Keyin o'zing yangi naqsh o'ylab top.",
-       "doska": "👏👏🦶 👏👏🦶 ❓"
-      }
-     ]
+      "name": "Avval nima, keyin nima?",
+      "emoji": "⏳",
+      "lessons": [
+        {
+          "name": "Tuxumdan jo'ja",
+          "goal": "Bola voqealar ketma-ketligini tushunadi: avval, keyin, oxirida",
+          "intro": "Bip-bip, har narsaning o'z navbati bor. Tuxum, jo'ja, tovuq — qaysi biri birinchi?",
+          "items": [
+            {
+              "say": "Avval — tuxum",
+              "uz": "avval bo'ladigan tuxum",
+              "emoji": "🥚",
+              "explain": "Avval tuxum bo'ladi. Tuxum — hammadan oldin.",
+              "action": "Bitta barmog'ingni ko'rsat: avval!"
+            },
+            {
+              "say": "Keyin — jo'ja",
+              "uz": "tuxumdan chiqqan jo'ja",
+              "emoji": "🐥",
+              "explain": "Keyin tuxumdan jo'ja chiqadi. Sap-sariq, momiq jo'ja!",
+              "action": "Ikkita barmog'ingni ko'rsat: keyin!"
+            },
+            {
+              "say": "Oxirida — tovuq",
+              "uz": "katta bo'lgan tovuq",
+              "emoji": "🐔",
+              "explain": "Oxirida jo'ja katta bo'ladi va tovuq bo'ladi.",
+              "action": "Uchta barmog'ingni ko'rsat: oxirida!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "❓ ➡️ 🐥 ➡️ 🐔 Eng birinchi nima?",
+              "options": [
+                "🐔 tovuq",
+                "🥚 tuxum"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Eng birinchi — tuxum."
+            },
+            {
+              "q": "🥚 ➡️ ❓ ➡️ 🐔 O'rtada nima?",
+              "options": [
+                "🥚 tuxum",
+                "🐥 jo'ja"
+              ],
+              "answer": 1,
+              "why": "Qoyil! O'rtada — jo'ja."
+            },
+            {
+              "q": "🥚 ➡️ 🐥 ➡️ ❓ Oxirida nima?",
+              "options": [
+                "🐥 jo'ja",
+                "🐔 tovuq"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Oxirida — tovuq."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🎭 Ko'rsatib ber",
+              "matn": "Bu hikoyani harakat bilan ko'rsat: avval tuxum, keyin jo'ja, oxirida tovuq! Endi teskarisini ko'rsatib ko'r — kulgili bo'ladi!",
+              "doska": "🥚  🐥  🐔"
+            }
+          ]
+        },
+        {
+          "name": "Urug'dan gul",
+          "goal": "Bola voqealar ketma-ketligini tushunadi: avval, keyin, oxirida",
+          "intro": "Bip-bip, gul qanday o'sadi? Urug', nihol, gul — qaysi biri birinchi?",
+          "items": [
+            {
+              "say": "Avval — urug'",
+              "uz": "yerga ekiladigan urug'",
+              "emoji": "🌰",
+              "explain": "Avval urug'ni yerga ekamiz va suv quyamiz.",
+              "action": "Bitta barmog'ingni ko'rsat: avval!"
+            },
+            {
+              "say": "Keyin — nihol",
+              "uz": "urug'dan chiqqan nihol",
+              "emoji": "🌱",
+              "explain": "Keyin urug'dan yashil nihol chiqadi.",
+              "action": "Ikkita barmog'ingni ko'rsat: keyin!"
+            },
+            {
+              "say": "Oxirida — gul",
+              "uz": "ochilgan gul",
+              "emoji": "🌷",
+              "explain": "Oxirida nihol o'sadi va chiroyli gul ochiladi!",
+              "action": "Uchta barmog'ingni ko'rsat: oxirida!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "❓ ➡️ 🌱 ➡️ 🌷 Eng birinchi nima?",
+              "options": [
+                "🌷 gul",
+                "🌰 urug'"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Eng birinchi — urug'."
+            },
+            {
+              "q": "🌰 ➡️ ❓ ➡️ 🌷 O'rtada nima?",
+              "options": [
+                "🌰 urug'",
+                "🌱 nihol"
+              ],
+              "answer": 1,
+              "why": "Qoyil! O'rtada — nihol."
+            },
+            {
+              "q": "🌰 ➡️ 🌱 ➡️ ❓ Oxirida nima?",
+              "options": [
+                "🌱 nihol",
+                "🌷 gul"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Oxirida — gul."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🎭 Gulga aylan",
+              "matn": "Cho'kkalab o'tir — sen urug'san. Sekin boshingni ko'tar — sen nihol bo'lding. Endi qo'llaringni och — sen gul bo'lding!",
+              "doska": "🌰  🌱  🌷"
+            }
+          ]
+        },
+        {
+          "name": "Ertalabdan kechgacha",
+          "goal": "Bola voqealar ketma-ketligini tushunadi: avval, keyin, oxirida",
+          "intro": "Bip-bip, kunimiz ham navbat bilan keladi. Ertalab, kunduz, kecha — qaysi biri birinchi?",
+          "items": [
+            {
+              "say": "Avval — ertalab",
+              "uz": "quyosh chiqadigan payt",
+              "emoji": "🌅",
+              "explain": "Avval ertalab bo'ladi. Quyosh chiqadi, biz uyg'onamiz.",
+              "action": "Bitta barmog'ingni ko'rsat: avval!"
+            },
+            {
+              "say": "Keyin — kunduz",
+              "uz": "quyosh yuqorida turgan payt",
+              "emoji": "☀️",
+              "explain": "Keyin kunduz bo'ladi. Quyosh charaqlaydi, o'ynaymiz.",
+              "action": "Ikkita barmog'ingni ko'rsat: keyin!"
+            },
+            {
+              "say": "Oxirida — kecha",
+              "uz": "oy chiqadigan payt",
+              "emoji": "🌙",
+              "explain": "Oxirida kecha bo'ladi. Oy chiqadi, biz uxlaymiz.",
+              "action": "Uchta barmog'ingni ko'rsat: oxirida!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "❓ ➡️ ☀️ ➡️ 🌙 Eng birinchi nima?",
+              "options": [
+                "🌙 kecha",
+                "🌅 ertalab"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Eng birinchi — ertalab."
+            },
+            {
+              "q": "🌅 ➡️ ❓ ➡️ 🌙 O'rtada nima?",
+              "options": [
+                "🌅 ertalab",
+                "☀️ kunduz"
+              ],
+              "answer": 1,
+              "why": "Qoyil! O'rtada — kunduz."
+            },
+            {
+              "q": "🌅 ➡️ ☀️ ➡️ ❓ Oxirida nima?",
+              "options": [
+                "☀️ kunduz",
+                "🌙 kecha"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Oxirida — kecha."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🎭 Kun harakati",
+              "matn": "Ertalab — cho'zilib, uyg'on! Kunduz — sakrab o'yna! Kechasi — ko'zingni yumib, uxla! Tartib bilan ko'rsat!",
+              "doska": "🌅  ☀️  🌙"
+            }
+          ]
+        },
+        {
+          "name": "Qurtchadan kapalak",
+          "goal": "Bola voqealar ketma-ketligini tushunadi: avval, keyin, oxirida",
+          "intro": "Bip-bip, kapalak qanday paydo bo'ladi? Tuxum, qurtcha, kapalak — qaysi biri birinchi?",
+          "items": [
+            {
+              "say": "Avval — tuxum",
+              "uz": "bargdagi kichkina tuxum",
+              "emoji": "🥚",
+              "explain": "Avval bargda kichkina tuxum bo'ladi.",
+              "action": "Bitta barmog'ingni ko'rsat: avval!"
+            },
+            {
+              "say": "Keyin — qurtcha",
+              "uz": "tuxumdan chiqqan qurtcha",
+              "emoji": "🐛",
+              "explain": "Keyin tuxumdan qurtcha chiqadi. U ko'p barg yeydi.",
+              "action": "Ikkita barmog'ingni ko'rsat: keyin!"
+            },
+            {
+              "say": "Oxirida — kapalak",
+              "uz": "qanotli kapalak",
+              "emoji": "🦋",
+              "explain": "Oxirida qurtcha chiroyli kapalakka aylanadi va uchadi!",
+              "action": "Uchta barmog'ingni ko'rsat: oxirida!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "❓ ➡️ 🐛 ➡️ 🦋 Eng birinchi nima?",
+              "options": [
+                "🦋 kapalak",
+                "🥚 tuxum"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Eng birinchi — tuxum."
+            },
+            {
+              "q": "🥚 ➡️ ❓ ➡️ 🦋 O'rtada nima?",
+              "options": [
+                "🥚 tuxum",
+                "🐛 qurtcha"
+              ],
+              "answer": 1,
+              "why": "Qoyil! O'rtada — qurtcha."
+            },
+            {
+              "q": "🥚 ➡️ 🐛 ➡️ ❓ Oxirida nima?",
+              "options": [
+                "🐛 qurtcha",
+                "🦋 kapalak"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Oxirida — kapalak."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🎭 Kapalakka aylan",
+              "matn": "Kichkina tuxum bo'l — to'p bo'lib o'tir. Qurtcha bo'l — emaklab yur. Kapalak bo'l — qo'llaring qanot, uch!",
+              "doska": "🥚  🐛  🦋"
+            }
+          ]
+        },
+        {
+          "name": "Kiyinamiz",
+          "goal": "Bola voqealar ketma-ketligini tushunadi: avval, keyin, oxirida",
+          "intro": "Bip-bip, sayrga chiqmoqchimiz! Avval nima kiyamiz, keyin nima?",
+          "items": [
+            {
+              "say": "Avval — paypoq",
+              "uz": "oyoqqa kiyiladigan paypoq",
+              "emoji": "🧦",
+              "explain": "Avval paypoq kiyamiz. Paypoq oyog'imizni issiq tutadi.",
+              "action": "Bitta barmog'ingni ko'rsat: avval!"
+            },
+            {
+              "say": "Keyin — krossovka",
+              "uz": "paypoq ustidan kiyiladigan krossovka",
+              "emoji": "👟",
+              "explain": "Keyin paypoq ustidan krossovka kiyamiz.",
+              "action": "Ikkita barmog'ingni ko'rsat: keyin!"
+            },
+            {
+              "say": "Oxirida — sayr",
+              "uz": "ko'chada sayr qilish",
+              "emoji": "🚶",
+              "explain": "Oxirida tayyormiz! Sayrga chiqamiz.",
+              "action": "Uchta barmog'ingni ko'rsat: oxirida!"
+            }
+          ],
+          "tests": [
+            {
+              "q": "❓ ➡️ 👟 ➡️ 🚶 Eng birinchi nima?",
+              "options": [
+                "🚶 sayr",
+                "🧦 paypoq"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Eng birinchi — paypoq."
+            },
+            {
+              "q": "🧦 ➡️ ❓ ➡️ 🚶 O'rtada nima?",
+              "options": [
+                "🧦 paypoq",
+                "👟 krossovka"
+              ],
+              "answer": 1,
+              "why": "Qoyil! O'rtada — krossovka."
+            },
+            {
+              "q": "🧦 ➡️ 👟 ➡️ ❓ Oxirida nima?",
+              "options": [
+                "👟 krossovka",
+                "🚶 sayr"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Oxirida — sayr."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🎭 Kiyinish o'yini",
+              "matn": "Kiyinib ko'rsat: avval paypoq kiy, keyin krossovka kiy, oxirida sayrga chiq! Qadam tashla: bir, ikki, uch!",
+              "doska": "🧦  👟  🚶"
+            }
+          ]
+        }
+      ]
     },
     {
-     "name": "Rangli shakllar naqshi",
-     "goal": "Bola naqshning takrorlanadigan bo'lagini topadi va naqshni davom ettiradi",
-     "intro": "Bip-bip! Naqsh — bu sirli qator. Qara: 🔺🟡🟦🔺🟡🟦. Sirini topsang, keyingisini ham bilasan!",
-     "items": [
-      {
-       "say": "Shakl naqshi",
-       "uz": "shakllar navbatlashadi",
-       "emoji": "🔺🟡🟦🔺🟡🟦",
-       "explain": "Bu naqshda uchburchak, doira va kvadrat navbatlashadi. Qara: 🔺🟡🟦🔺🟡🟦. Bo'lak: uchburchak, sariq doira, ko'k kvadrat — keyin yana boshidan!",
-       "action": "Naqshni men bilan ayt: uchburchak, sariq doira, ko'k kvadrat... yana: uchburchak, sariq doira, ko'k kvadrat!"
-      },
-      {
-       "say": "Naqsh bo'lagi",
-       "uz": "takrorlanadigan qism",
-       "emoji": "🔺🟡🟦🔁",
-       "explain": "Naqshning sirli bo'lagi — 🔺🟡🟦. U qayta-qayta takrorlanadi. Bo'lakni topsang — naqshni davom ettira olasan!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🔺🟡🟦❓ Keyingisi qaysi?",
-       "options": [
-        "🔺 uchburchak",
-        "🟡 sariq doira"
-       ],
-       "answer": 0,
-       "why": "Zo'r! Keyingisi — uchburchak."
-      },
-      {
-       "q": "🔺🟡🟦🔺❓ Keyingisi qaysi?",
-       "options": [
-        "🔺 uchburchak",
-        "🟡 sariq doira"
-       ],
-       "answer": 1,
-       "why": "Ofarin! Keyingisi — sariq doira."
-      },
-      {
-       "q": "🔺🟡🟦🔺🟡🟦🔺❓ Keyingisi qaysi?",
-       "options": [
-        "🔺 uchburchak",
-        "🟡 sariq doira"
-       ],
-       "answer": 1,
-       "why": "Barakalla! Keyingisi — sariq doira."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "👏 Harakatli naqsh",
-       "matn": "O'yin! Qarsak, qarsak, dupur! Qarsak, qarsak, dupur! Endi sen davom ettir! Keyin o'zing yangi naqsh o'ylab top.",
-       "doska": "👏👏🦶 👏👏🦶 ❓"
-      }
-     ]
+      "name": "Diqqat o'yini",
+      "emoji": "👀",
+      "lessons": [
+        {
+          "name": "Qaysi meva yo'qoldi?",
+          "goal": "Bola rasmlarni eslab qoladi va qaysi biri yo'qolganini topadi (diqqat va xotira)",
+          "intro": "Bip-bip, ko'zlaringni katta och va eslab qol: olma, banan, uzum. Bittasi yashirinadi — qaysi biri?",
+          "items": [
+            {
+              "say": "Olma",
+              "uz": "qizil olma",
+              "emoji": "🍎",
+              "explain": "Qara va eslab qol: olma qizil va yumaloq.",
+              "action": "Ko'zingni yum va ayt: nima bor edi?"
+            },
+            {
+              "say": "Banan",
+              "uz": "sariq banan",
+              "emoji": "🍌",
+              "explain": "Banan sariq va uzun."
+            },
+            {
+              "say": "Uzum",
+              "uz": "shirin uzum",
+              "emoji": "🍇",
+              "explain": "Uzum mayda va shirin, bir shingil bo'ladi."
+            }
+          ],
+          "tests": [
+            {
+              "q": "Avval: 🍎🍌🍇. Endi: 🍎🍇. Qaysi meva yo'qoldi?",
+              "options": [
+                "🍇 uzum",
+                "🍌 banan"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Banan yo'qoldi."
+            },
+            {
+              "q": "Avval: 🍎🍌🍇. Endi: 🍌🍇. Qaysi meva yo'qoldi?",
+              "options": [
+                "🍌 banan",
+                "🍎 olma"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Olma yo'qoldi."
+            },
+            {
+              "q": "Avval: 🍎🍌🍇. Endi: 🍎🍌. Qaysi meva yo'qoldi?",
+              "options": [
+                "🍎 olma",
+                "🍇 uzum"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Uzum yo'qoldi."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🙈 Yashirinmachoq",
+              "matn": "Kattalar stolga uchta meva qo'ysin. Sen ko'zingni yum — ular bittasini yashiradi. Ko'zingni och: qaysi biri yo'q? Aytib ber!",
+              "doska": "🍎  🍌  🍇"
+            }
+          ]
+        },
+        {
+          "name": "Qaysi hayvon yashirindi?",
+          "goal": "Bola rasmlarni eslab qoladi va qaysi biri yo'qolganini topadi (diqqat va xotira)",
+          "intro": "Bip-bip, ko'zlaringni katta och va eslab qol: mushuk, kuchuk, quyon. Bittasi yashirinadi — qaysi biri?",
+          "items": [
+            {
+              "say": "Mushuk",
+              "uz": "mo'ylovli mushuk",
+              "emoji": "🐱",
+              "explain": "Qara va eslab qol: mushuk miyov deydi.",
+              "action": "Ko'zingni yum va ayt: nima bor edi?"
+            },
+            {
+              "say": "Kuchuk",
+              "uz": "vov-vov kuchuk",
+              "emoji": "🐶",
+              "explain": "Kuchuk vov-vov deydi."
+            },
+            {
+              "say": "Quyon",
+              "uz": "uzun quloqli quyon",
+              "emoji": "🐰",
+              "explain": "Quyon uzun quloqli, sakrab yuradi."
+            }
+          ],
+          "tests": [
+            {
+              "q": "Avval: 🐱🐶🐰. Endi: 🐱🐰. Qaysi hayvon yo'qoldi?",
+              "options": [
+                "🐰 quyon",
+                "🐶 kuchuk"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Kuchuk yo'qoldi."
+            },
+            {
+              "q": "Avval: 🐱🐶🐰. Endi: 🐶🐰. Qaysi hayvon yo'qoldi?",
+              "options": [
+                "🐶 kuchuk",
+                "🐱 mushuk"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Mushuk yo'qoldi."
+            },
+            {
+              "q": "Avval: 🐱🐶🐰. Endi: 🐱🐶. Qaysi hayvon yo'qoldi?",
+              "options": [
+                "🐱 mushuk",
+                "🐰 quyon"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Quyon yo'qoldi."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🙈 Yashirinmachoq",
+              "matn": "Kattalar uchta hayvon o'yinchoq qo'ysin. Sen ko'zingni yum — ular bittasini yashiradi. Ko'zingni och: qaysi hayvon yo'q? Ovozini chiqar!",
+              "doska": "🐱  🐶  🐰"
+            }
+          ]
+        },
+        {
+          "name": "Qaysi o'yinchoq yo'q?",
+          "goal": "Bola rasmlarni eslab qoladi va qaysi biri yo'qolganini topadi (diqqat va xotira)",
+          "intro": "Bip-bip, ko'zlaringni katta och va eslab qol: to'p, ayiqcha, shar. Bittasi yashirinadi — qaysi biri?",
+          "items": [
+            {
+              "say": "To'p",
+              "uz": "dumaloq to'p",
+              "emoji": "⚽",
+              "explain": "Qara va eslab qol: to'p dumaloq, dumalaydi.",
+              "action": "Ko'zingni yum va ayt: nima bor edi?"
+            },
+            {
+              "say": "Ayiqcha",
+              "uz": "momiq ayiqcha",
+              "emoji": "🧸",
+              "explain": "Ayiqcha momiq, uni quchoqlaymiz."
+            },
+            {
+              "say": "Shar",
+              "uz": "uchadigan shar",
+              "emoji": "🎈",
+              "explain": "Shar yengil, havoda uchadi."
+            }
+          ],
+          "tests": [
+            {
+              "q": "Avval: ⚽🧸🎈. Endi: ⚽🎈. Qaysi o'yinchoq yo'qoldi?",
+              "options": [
+                "🎈 shar",
+                "🧸 ayiqcha"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Ayiqcha yo'qoldi."
+            },
+            {
+              "q": "Avval: ⚽🧸🎈. Endi: 🧸🎈. Qaysi o'yinchoq yo'qoldi?",
+              "options": [
+                "🧸 ayiqcha",
+                "⚽ to'p"
+              ],
+              "answer": 1,
+              "why": "Qoyil! To'p yo'qoldi."
+            },
+            {
+              "q": "Avval: ⚽🧸🎈. Endi: ⚽🧸. Qaysi o'yinchoq yo'qoldi?",
+              "options": [
+                "⚽ to'p",
+                "🎈 shar"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Shar yo'qoldi."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🙈 Yashirinmachoq",
+              "matn": "Kattalar stolga uchta o'yinchoq qo'ysin. Sen ko'zingni yum — ular bittasini yashiradi. Ko'zingni och: qaysi o'yinchoq yo'q? Aytib ber!",
+              "doska": "⚽  🧸  🎈"
+            }
+          ]
+        },
+        {
+          "name": "Qaysi transport ketdi?",
+          "goal": "Bola rasmlarni eslab qoladi va qaysi biri yo'qolganini topadi (diqqat va xotira)",
+          "intro": "Bip-bip, ko'zlaringni katta och va eslab qol: mashina, avtobus, poyezd. Bittasi ketib qoladi — qaysi biri?",
+          "items": [
+            {
+              "say": "Mashina",
+              "uz": "kichkina mashina",
+              "emoji": "🚗",
+              "explain": "Qara va eslab qol: mashina bizni uyga olib boradi.",
+              "action": "Ko'zingni yum va ayt: nima bor edi?"
+            },
+            {
+              "say": "Avtobus",
+              "uz": "katta avtobus",
+              "emoji": "🚌",
+              "explain": "Avtobus katta, ichida ko'p odam o'tiradi."
+            },
+            {
+              "say": "Poyezd",
+              "uz": "uzun poyezd",
+              "emoji": "🚂",
+              "explain": "Poyezd uzun, relslar ustida yuradi."
+            }
+          ],
+          "tests": [
+            {
+              "q": "Avval: 🚗🚌🚂. Endi: 🚗🚂. Qaysi transport yo'qoldi?",
+              "options": [
+                "🚂 poyezd",
+                "🚌 avtobus"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Avtobus yo'qoldi."
+            },
+            {
+              "q": "Avval: 🚗🚌🚂. Endi: 🚌🚂. Qaysi transport yo'qoldi?",
+              "options": [
+                "🚌 avtobus",
+                "🚗 mashina"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Mashina yo'qoldi."
+            },
+            {
+              "q": "Avval: 🚗🚌🚂. Endi: 🚗🚌. Qaysi transport yo'qoldi?",
+              "options": [
+                "🚗 mashina",
+                "🚂 poyezd"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Poyezd yo'qoldi."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🙈 Yashirinmachoq",
+              "matn": "Kattalar uchta o'yinchoq transport qo'ysin. Sen ko'zingni yum — ular bittasini yashiradi. Ko'zingni och: qaysi transport yo'q? Ovozini chiqar!",
+              "doska": "🚗  🚌  🚂"
+            }
+          ]
+        },
+        {
+          "name": "Qaysi shakl yo'qoldi?",
+          "goal": "Bola rasmlarni eslab qoladi va qaysi biri yo'qolganini topadi (diqqat va xotira)",
+          "intro": "Bip-bip, ko'zlaringni katta och va eslab qol: qizil doira, ko'k kvadrat, uchburchak. Bittasi yashirinadi — qaysi biri?",
+          "items": [
+            {
+              "say": "Qizil doira",
+              "uz": "yumaloq doira",
+              "emoji": "🔴",
+              "explain": "Qara va eslab qol: qizil doira yumaloq.",
+              "action": "Ko'zingni yum va ayt: nima bor edi?"
+            },
+            {
+              "say": "Ko'k kvadrat",
+              "uz": "to'rt burchakli kvadrat",
+              "emoji": "🟦",
+              "explain": "Ko'k kvadratning to'rtta burchagi bor."
+            },
+            {
+              "say": "Uchburchak",
+              "uz": "uch burchakli uchburchak",
+              "emoji": "🔺",
+              "explain": "Uchburchakning uchta burchagi bor."
+            }
+          ],
+          "tests": [
+            {
+              "q": "Avval: 🔴🟦🔺. Endi: 🔴🔺. Qaysi shakl yo'qoldi?",
+              "options": [
+                "🔺 uchburchak",
+                "🟦 ko'k kvadrat"
+              ],
+              "answer": 1,
+              "why": "Zo'r! Ko'k kvadrat yo'qoldi."
+            },
+            {
+              "q": "Avval: 🔴🟦🔺. Endi: 🟦🔺. Qaysi shakl yo'qoldi?",
+              "options": [
+                "🟦 ko'k kvadrat",
+                "🔴 qizil doira"
+              ],
+              "answer": 1,
+              "why": "Qoyil! Qizil doira yo'qoldi."
+            },
+            {
+              "q": "Avval: 🔴🟦🔺. Endi: 🔴🟦. Qaysi shakl yo'qoldi?",
+              "options": [
+                "🔴 qizil doira",
+                "🔺 uchburchak"
+              ],
+              "answer": 1,
+              "why": "Ajoyib! Uchburchak yo'qoldi."
+            }
+          ],
+          "extra": [
+            {
+              "turi": "topshiriq",
+              "sarlavha": "🙈 Yashirinmachoq",
+              "matn": "Kattalar qog'ozdan uchta shakl qirqsin. Sen ko'zingni yum — ular bittasini yashiradi. Ko'zingni och: qaysi shakl yo'q? Aytib ber!",
+              "doska": "🔴  🟦  🔺"
+            }
+          ]
+        }
+      ]
     }
-   ]
-  },
-  {
-   "name": "Ortiqchasi qaysi?",
-   "emoji": "🙅",
-   "lessons": [
-    {
-     "name": "Meva va sabzavot",
-     "goal": "Bola to'rtta rasm ichidan belgisi boshqacha bo'lganini topadi va sababini aytadi",
-     "intro": "Bip-bip! Men to'rtta rasm qo'ydim: 🍎🍌🥕🍇. Bittasi boshqacha. Kim ekan? Diqqat bilan o'ylab ko'r!",
-     "items": [
-      {
-       "say": "Umumiy belgi",
-       "uz": "hammasida bor narsa",
-       "emoji": "🍎🍌🍇",
-       "explain": "Mevalar shirin, daraxtda o'sadi. Sabzavotlar esa ko'pincha yerda, polizda o'sadi.",
-       "action": "Barmog'ing bilan hammasini sanab chiq: bir, ikki, uch!"
-      },
-      {
-       "say": "Ortiqcha",
-       "uz": "belgisi boshqacha",
-       "emoji": "🥕",
-       "explain": "🥕 — ortiqcha, chunki sabzi — sabzavot, qolganlari — meva."
-      }
-     ],
-     "tests": [
-      {
-       "q": "🍎🍌🥕🍇 Qaysi biri ortiqcha?",
-       "options": [
-        "🥕 sabzi",
-        "🍎 olma"
-       ],
-       "answer": 0,
-       "why": "Zo'r! Sabzi — sabzavot, qolganlari — meva."
-      },
-      {
-       "q": "🍐🍒🥒🍓 Qaysi biri ortiqcha?",
-       "options": [
-        "🍐 nok",
-        "🥒 bodring"
-       ],
-       "answer": 1,
-       "why": "Barakalla! Bodring — sabzavot, qolganlari — meva."
-      },
-      {
-       "q": "🍉🍎🍅🍌 Qaysi biri ortiqcha?",
-       "options": [
-        "🍉 tarvuz",
-        "🍅 pomidor"
-       ],
-       "answer": 1,
-       "why": "To'g'ri! Pomidor — sabzavot, qolganlari — meva."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🔎 Uydan top",
-       "matn": "O'yin! Uydan uchta bir xil turdagi narsa va bitta boshqacha narsani yig'. Kattalarga «Qaysi biri ortiqcha?» deb topishmoq qil!",
-       "doska": "🍎🍌🍇 + 🥕"
-      }
-     ]
-    },
-    {
-     "name": "Uchadi — uchmaydi",
-     "goal": "Bola to'rtta rasm ichidan belgisi boshqacha bo'lganini topadi va sababini aytadi",
-     "intro": "Bip-bip! Men to'rtta rasm qo'ydim: 🐦🦋🐟🐝. Bittasi boshqacha. Kim ekan? Diqqat bilan o'ylab ko'r!",
-     "items": [
-      {
-       "say": "Umumiy belgi",
-       "uz": "hammasida bor narsa",
-       "emoji": "🐦🦋🐝",
-       "explain": "Qanoti borlar uchadi: qush, kapalak, ari. Qanoti yo'qlar — uchmaydi.",
-       "action": "Barmog'ing bilan hammasini sanab chiq: bir, ikki, uch!"
-      },
-      {
-       "say": "Ortiqcha",
-       "uz": "belgisi boshqacha",
-       "emoji": "🐟",
-       "explain": "🐟 — ortiqcha, chunki baliq ucha olmaydi, qolganlari uchadi."
-      }
-     ],
-     "tests": [
-      {
-       "q": "🐦🦋🐟🐝 Qaysi biri ortiqcha?",
-       "options": [
-        "🐦 qushcha",
-        "🐟 baliq"
-       ],
-       "answer": 1,
-       "why": "To'g'ri! Baliq ucha olmaydi, qolganlari uchadi."
-      },
-      {
-       "q": "✈️🐦🚗🦉 Qaysi biri ortiqcha?",
-       "options": [
-        "✈️ samolyot",
-        "🚗 mashina"
-       ],
-       "answer": 1,
-       "why": "Zo'r! Mashina ucha olmaydi, qolganlari uchadi."
-      },
-      {
-       "q": "🐝🦆🐘🦋 Qaysi biri ortiqcha?",
-       "options": [
-        "🐝 ari",
-        "🐘 fil"
-       ],
-       "answer": 1,
-       "why": "Zo'r! Fil ucha olmaydi, qolganlari uchadi."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🔎 Uydan top",
-       "matn": "O'yin! Uydan uchta bir xil turdagi narsa va bitta boshqacha narsani yig'. Kattalarga «Qaysi biri ortiqcha?» deb topishmoq qil!",
-       "doska": "🐦🦋🐝 + 🐟"
-      }
-     ]
-    },
-    {
-     "name": "Suvda yashaydi",
-     "goal": "Bola to'rtta rasm ichidan belgisi boshqacha bo'lganini topadi va sababini aytadi",
-     "intro": "Bip-bip! Men to'rtta rasm qo'ydim: 🐟🐬🐱🐙. Bittasi boshqacha. Kim ekan? Diqqat bilan o'ylab ko'r!",
-     "items": [
-      {
-       "say": "Umumiy belgi",
-       "uz": "hammasida bor narsa",
-       "emoji": "🐟🐬🐙",
-       "explain": "Baliq, delfin, sakkizoyoq suvda yashaydi. Mushuk, ot, quyon esa quruqlikda yashaydi.",
-       "action": "Barmog'ing bilan hammasini sanab chiq: bir, ikki, uch!"
-      },
-      {
-       "say": "Ortiqcha",
-       "uz": "belgisi boshqacha",
-       "emoji": "🐱",
-       "explain": "🐱 — ortiqcha, chunki mushuk suvda yashamaydi, qolganlari suvda yashaydi."
-      }
-     ],
-     "tests": [
-      {
-       "q": "🐟🐬🐱🐙 Qaysi biri ortiqcha?",
-       "options": [
-        "🐱 mushuk",
-        "🐟 baliq"
-       ],
-       "answer": 0,
-       "why": "Ofarin! Mushuk suvda yashamaydi, qolganlari suvda yashaydi."
-      },
-      {
-       "q": "🐬🐟🐴🐢 Qaysi biri ortiqcha?",
-       "options": [
-        "🐴 ot",
-        "🐬 delfin"
-       ],
-       "answer": 0,
-       "why": "Barakalla! Ot suvda yashamaydi, qolganlari suvda yashaydi."
-      },
-      {
-       "q": "🐙🐟🐰🐬 Qaysi biri ortiqcha?",
-       "options": [
-        "🐰 quyon",
-        "🐙 sakkizoyoq"
-       ],
-       "answer": 0,
-       "why": "To'g'ri! Quyon suvda yashamaydi, qolganlari suvda yashaydi."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🔎 Uydan top",
-       "matn": "O'yin! Uydan uchta bir xil turdagi narsa va bitta boshqacha narsani yig'. Kattalarga «Qaysi biri ortiqcha?» deb topishmoq qil!",
-       "doska": "🐟🐬🐙 + 🐱"
-      }
-     ]
-    },
-    {
-     "name": "Yeyiladi — yeyilmaydi",
-     "goal": "Bola to'rtta rasm ichidan belgisi boshqacha bo'lganini topadi va sababini aytadi",
-     "intro": "Bip-bip! Men to'rtta rasm qo'ydim: 🍞🧀🧸🍎. Bittasi boshqacha. Kim ekan? Diqqat bilan o'ylab ko'r!",
-     "items": [
-      {
-       "say": "Umumiy belgi",
-       "uz": "hammasida bor narsa",
-       "emoji": "🍞🧀🍎",
-       "explain": "Non, pishloq, olmani yeymiz — ular ovqat. O'yinchoq va qalam esa ovqat emas!",
-       "action": "Barmog'ing bilan hammasini sanab chiq: bir, ikki, uch!"
-      },
-      {
-       "say": "Ortiqcha",
-       "uz": "belgisi boshqacha",
-       "emoji": "🧸",
-       "explain": "🧸 — ortiqcha, chunki ayiqchani yeb bo'lmaydi, qolganlarini yeymiz."
-      }
-     ],
-     "tests": [
-      {
-       "q": "🍞🧀🧸🍎 Qaysi biri ortiqcha?",
-       "options": [
-        "🧸 ayiqcha",
-        "🍞 non"
-       ],
-       "answer": 0,
-       "why": "Barakalla! Ayiqchani yeb bo'lmaydi, qolganlarini yeymiz."
-      },
-      {
-       "q": "🥛🍌✏️🍞 Qaysi biri ortiqcha?",
-       "options": [
-        "✏️ qalam",
-        "🥛 sut"
-       ],
-       "answer": 0,
-       "why": "To'g'ri! Qalamni yeb bo'lmaydi, qolganlarini yeymiz."
-      },
-      {
-       "q": "🥚🍯⚽🍇 Qaysi biri ortiqcha?",
-       "options": [
-        "🥚 tuxum",
-        "⚽ to'p"
-       ],
-       "answer": 1,
-       "why": "Zo'r! To'pni yeb bo'lmaydi, qolganlarini yeymiz."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🔎 Uydan top",
-       "matn": "O'yin! Uydan uchta bir xil turdagi narsa va bitta boshqacha narsani yig'. Kattalarga «Qaysi biri ortiqcha?» deb topishmoq qil!",
-       "doska": "🍞🧀🍎 + 🧸"
-      }
-     ]
-    },
-    {
-     "name": "Shakli boshqa",
-     "goal": "Bola to'rtta rasm ichidan belgisi boshqacha bo'lganini topadi va sababini aytadi",
-     "intro": "Bip-bip! Men to'rtta rasm qo'ydim: 🔴🟡🟥🟢. Bittasi boshqacha. Kim ekan? Diqqat bilan o'ylab ko'r!",
-     "items": [
-      {
-       "say": "Umumiy belgi",
-       "uz": "hammasida bor narsa",
-       "emoji": "🔴🟡🟢",
-       "explain": "Doiraning burchagi yo'q, u yumaloq. Kvadrat va uchburchakning esa burchaklari bor.",
-       "action": "Barmog'ing bilan hammasini sanab chiq: bir, ikki, uch!"
-      },
-      {
-       "say": "Ortiqcha",
-       "uz": "belgisi boshqacha",
-       "emoji": "🟥",
-       "explain": "🟥 — ortiqcha, chunki qizil kvadrat — doira emas, qolganlari doira."
-      }
-     ],
-     "tests": [
-      {
-       "q": "🔴🟡🟥🟢 Qaysi biri ortiqcha?",
-       "options": [
-        "🔴 qizil doira",
-        "🟥 qizil kvadrat"
-       ],
-       "answer": 1,
-       "why": "Zo'r! Qizil kvadrat — doira emas, qolganlari doira."
-      },
-      {
-       "q": "🔵🔴🔺🟡 Qaysi biri ortiqcha?",
-       "options": [
-        "🔵 ko'k doira",
-        "🔺 uchburchak"
-       ],
-       "answer": 1,
-       "why": "Qoyil! Uchburchak — doira emas, qolganlari doira."
-      },
-      {
-       "q": "🟢🔵🟦🔴 Qaysi biri ortiqcha?",
-       "options": [
-        "🟢 yashil doira",
-        "🟦 ko'k kvadrat"
-       ],
-       "answer": 1,
-       "why": "Qoyil! Ko'k kvadrat — doira emas, qolganlari doira."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🔎 Uydan top",
-       "matn": "O'yin! Uydan uchta bir xil turdagi narsa va bitta boshqacha narsani yig'. Kattalarga «Qaysi biri ortiqcha?» deb topishmoq qil!",
-       "doska": "🔴🟡🟢 + 🟥"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "name": "Nima bilan bog'liq?",
-   "emoji": "🔗",
-   "lessons": [
-    {
-     "name": "Kim qayerda yashaydi?",
-     "goal": "Bola narsalar orasidagi bog'liqlikni topadi va tushuntiradi",
-     "intro": "Bip-bip! Dunyoda hamma narsa bir-biri bilan bog'liq. 🐟 va 🌊 — nega birga? Qani, o'ylaymiz!",
-     "items": [
-      {
-       "say": "Baliq va dengiz",
-       "uz": "baliq dengizda yashaydi",
-       "emoji": "🐟🌊",
-       "explain": "Qara: 🐟 va 🌊. Baliq dengizda yashaydi. Shuning uchun ular birga!"
-      },
-      {
-       "say": "Tuya va cho'l",
-       "uz": "tuya cho'lda yashaydi",
-       "emoji": "🐫🏜️",
-       "explain": "Endi qara: 🐫 va 🏜️. Tuya cho'lda yashaydi. Ular ham bog'liq!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🐫 ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🏜️ cho'l",
-        "🌊 dengiz"
-       ],
-       "answer": 0,
-       "why": "Qoyil! Tuya cho'lda yashaydi."
-      },
-      {
-       "q": "🐻 ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🧊 muz",
-        "🌲 o'rmon"
-       ],
-       "answer": 1,
-       "why": "Ofarin! Ayiq o'rmonda yashaydi."
-      },
-      {
-       "q": "🐧 ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🏜️ cho'l",
-        "🧊 muz"
-       ],
-       "answer": 1,
-       "why": "Barakalla! Pingvin muzliklarda yashaydi."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🎤 Gapni davom ettir",
-       "matn": "O'yin! Men gapni boshlayman, sen tugat: 🐟 ... ? To'g'ri! Endi o'zing yangi juftlik o'ylab top va kattalarga ayt!",
-       "doska": "🐟 ➡️ 🌊\n🐫 ➡️ 🏜️\n🐻 ➡️ 🌲\n🐧 ➡️ 🧊"
-      }
-     ]
-    },
-    {
-     "name": "Kasb va asbob",
-     "goal": "Bola narsalar orasidagi bog'liqlikni topadi va tushuntiradi",
-     "intro": "Bip-bip! Dunyoda hamma narsa bir-biri bilan bog'liq. 🧑‍🍳 va 🍳 — nega birga? Qani, o'ylaymiz!",
-     "items": [
-      {
-       "say": "Oshpaz va tova",
-       "uz": "oshpaz tovada ovqat pishiradi",
-       "emoji": "🧑‍🍳🍳",
-       "explain": "Qara: 🧑‍🍳 va 🍳. Oshpaz tovada ovqat pishiradi. Shuning uchun ular birga!"
-      },
-      {
-       "say": "Shifokor va stetoskop",
-       "uz": "shifokor stetoskop bilan yurakni eshitadi",
-       "emoji": "🧑‍⚕️🩺",
-       "explain": "Endi qara: 🧑‍⚕️ va 🩺. Shifokor stetoskop bilan yurakni eshitadi. Ular ham bog'liq!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🧑‍⚕️ ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🍳 tova",
-        "🩺 stetoskop"
-       ],
-       "answer": 1,
-       "why": "Qoyil! Shifokor stetoskop bilan yurakni eshitadi."
-      },
-      {
-       "q": "🧑‍🚒 ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🖌️ mo'yqalam",
-        "🧯 o't o'chirgich"
-       ],
-       "answer": 1,
-       "why": "Zo'r! O't o'chiruvchi olovni o'chiradi."
-      },
-      {
-       "q": "🧑‍🎨 ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🖌️ mo'yqalam",
-        "🚜 traktor"
-       ],
-       "answer": 0,
-       "why": "Qoyil! Rassom mo'yqalam bilan rasm chizadi."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🎤 Gapni davom ettir",
-       "matn": "O'yin! Men gapni boshlayman, sen tugat: 🧑‍🍳 ... ? To'g'ri! Endi o'zing yangi juftlik o'ylab top va kattalarga ayt!",
-       "doska": "🧑‍🍳 ➡️ 🍳\n🧑‍⚕️ ➡️ 🩺\n🧑‍🚒 ➡️ 🧯\n🧑‍🎨 ➡️ 🖌️"
-      }
-     ]
-    },
-    {
-     "name": "Hayvon nima beradi?",
-     "goal": "Bola narsalar orasidagi bog'liqlikni topadi va tushuntiradi",
-     "intro": "Bip-bip! Dunyoda hamma narsa bir-biri bilan bog'liq. 🐄 va 🥛 — nega birga? Qani, o'ylaymiz!",
-     "items": [
-      {
-       "say": "Sigir va sut",
-       "uz": "sigir sut beradi",
-       "emoji": "🐄🥛",
-       "explain": "Qara: 🐄 va 🥛. Sigir sut beradi. Shuning uchun ular birga!"
-      },
-      {
-       "say": "Tovuq va tuxum",
-       "uz": "tovuq tuxum qo'yadi",
-       "emoji": "🐔🥚",
-       "explain": "Endi qara: 🐔 va 🥚. Tovuq tuxum qo'yadi. Ular ham bog'liq!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🐔 ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🥛 sut",
-        "🥚 tuxum"
-       ],
-       "answer": 1,
-       "why": "Zo'r! Tovuq tuxum qo'yadi."
-      },
-      {
-       "q": "🐝 ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🍯 asal",
-        "🧶 jun"
-       ],
-       "answer": 0,
-       "why": "Barakalla! Ari asal yig'adi."
-      },
-      {
-       "q": "🐑 ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🥚 tuxum",
-        "🧶 jun"
-       ],
-       "answer": 1,
-       "why": "Qoyil! Qo'ydan jun olinadi."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🎤 Gapni davom ettir",
-       "matn": "O'yin! Men gapni boshlayman, sen tugat: 🐄 ... ? To'g'ri! Endi o'zing yangi juftlik o'ylab top va kattalarga ayt!",
-       "doska": "🐄 ➡️ 🥛\n🐔 ➡️ 🥚\n🐝 ➡️ 🍯\n🐑 ➡️ 🧶"
-      }
-     ]
-    },
-    {
-     "name": "Ob-havo va kiyim",
-     "goal": "Bola narsalar orasidagi bog'liqlikni topadi va tushuntiradi",
-     "intro": "Bip-bip! Dunyoda hamma narsa bir-biri bilan bog'liq. ☀️ va 🩳 — nega birga? Qani, o'ylaymiz!",
-     "items": [
-      {
-       "say": "Quyosh va shortik",
-       "uz": "issiq kunda shortik kiyamiz",
-       "emoji": "☀️🩳",
-       "explain": "Qara: ☀️ va 🩳. Issiq kunda shortik kiyamiz. Shuning uchun ular birga!"
-      },
-      {
-       "say": "Qor va qo'lqop",
-       "uz": "qorli kunda qo'lqop kiyamiz",
-       "emoji": "❄️🧤",
-       "explain": "Endi qara: ❄️ va 🧤. Qorli kunda qo'lqop kiyamiz. Ular ham bog'liq!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "❄️ ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🧤 qo'lqop",
-        "🩳 shortik"
-       ],
-       "answer": 0,
-       "why": "Zo'r! Qorli kunda qo'lqop kiyamiz."
-      },
-      {
-       "q": "🌧️ ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🕶️ ko'zoynak",
-        "☂️ soyabon"
-       ],
-       "answer": 1,
-       "why": "Qoyil! Yomg'irda soyabon olamiz."
-      },
-      {
-       "q": "❄️ ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🕶️ ko'zoynak",
-        "🧣 sharf"
-       ],
-       "answer": 1,
-       "why": "To'g'ri! Sovuqda sharf o'raymiz."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🎤 Gapni davom ettir",
-       "matn": "O'yin! Men gapni boshlayman, sen tugat: ☀️ ... ? To'g'ri! Endi o'zing yangi juftlik o'ylab top va kattalarga ayt!",
-       "doska": "☀️ ➡️ 🩳\n❄️ ➡️ 🧤\n🌧️ ➡️ ☂️\n❄️ ➡️ 🧣"
-      }
-     ]
-    },
-    {
-     "name": "Narsa va uning ishi",
-     "goal": "Bola narsalar orasidagi bog'liqlikni topadi va tushuntiradi",
-     "intro": "Bip-bip! Dunyoda hamma narsa bir-biri bilan bog'liq. 🔑 va 🚪 — nega birga? Qani, o'ylaymiz!",
-     "items": [
-      {
-       "say": "Kalit va eshik",
-       "uz": "kalit eshikni ochadi",
-       "emoji": "🔑🚪",
-       "explain": "Qara: 🔑 va 🚪. Kalit eshikni ochadi. Shuning uchun ular birga!"
-      },
-      {
-       "say": "Qaychi va qog'oz",
-       "uz": "qaychi qog'ozni qirqadi",
-       "emoji": "✂️📄",
-       "explain": "Endi qara: ✂️ va 📄. Qaychi qog'ozni qirqadi. Ular ham bog'liq!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "✂️ ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🥛 sut",
-        "📄 qog'oz"
-       ],
-       "answer": 1,
-       "why": "Ofarin! Qaychi qog'ozni qirqadi."
-      },
-      {
-       "q": "🪥 ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🦷 tish",
-        "🚪 eshik"
-       ],
-       "answer": 0,
-       "why": "To'g'ri! Cho'tka tishni tozalaydi."
-      },
-      {
-       "q": "🥄 ➡️ ❓ Nima mos keladi?",
-       "options": [
-        "🥣 kosa",
-        "📄 qog'oz"
-       ],
-       "answer": 0,
-       "why": "Barakalla! Qoshiq bilan kosadan sho'rva ichamiz."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🎤 Gapni davom ettir",
-       "matn": "O'yin! Men gapni boshlayman, sen tugat: 🔑 ... ? To'g'ri! Endi o'zing yangi juftlik o'ylab top va kattalarga ayt!",
-       "doska": "🔑 ➡️ 🚪\n✂️ ➡️ 📄\n🪥 ➡️ 🦷\n🥄 ➡️ 🥣"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "name": "Avval nima, keyin nima?",
-   "emoji": "⏳",
-   "lessons": [
-    {
-     "name": "Tuxumdan jo'ja",
-     "goal": "Bola voqealar ketma-ketligini tushunadi: avval, keyin, oxirida",
-     "intro": "Bip-bip! Har narsaning o'z navbati bor. 🐥🥚🐣 — qaysi biri birinchi? Qani, tartibga solamiz!",
-     "items": [
-      {
-       "say": "Avval",
-       "uz": "eng birinchi",
-       "emoji": "🥚",
-       "explain": "Avval tuxum bo'ladi. Keyin jo'ja tuxumni cho'qib chiqadi. Oxirida u momiq jo'jaga aylanadi.",
-       "action": "Bitta barmog'ingni ko'rsat: «avval!»"
-      },
-      {
-       "say": "Keyin",
-       "uz": "undan keyin",
-       "emoji": "🥚➡️🐣➡️🐥",
-       "explain": "🥚 ➡️ 🐣 ➡️ 🐥. Avval — tuxum, keyin — tuxumdan chiqqan jo'ja, oxirida — jo'ja.",
-       "action": "Barmoqlaringda sana: avval, keyin, oxirida!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🥚 ➡️ ❓ Keyin nima bo'ladi?",
-       "options": [
-        "🐥 jo'ja",
-        "🐣 tuxumdan chiqqan jo'ja"
-       ],
-       "answer": 1,
-       "why": "Zo'r! Avval tuxum, keyin tuxumdan chiqqan jo'ja."
-      },
-      {
-       "q": "❓ ➡️ 🐣 ➡️ 🐥 Eng birinchi nima?",
-       "options": [
-        "🐥 jo'ja",
-        "🥚 tuxum"
-       ],
-       "answer": 1,
-       "why": "Barakalla! Eng birinchi — tuxum."
-      },
-      {
-       "q": "🥚 ➡️ 🐣 ➡️ ❓ Oxirida nima?",
-       "options": [
-        "🐥 jo'ja",
-        "🥚 tuxum"
-       ],
-       "answer": 0,
-       "why": "Zo'r! Oxirida — jo'ja."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🎭 Ko'rsatib ber",
-       "matn": "O'yin! Bu hikoyani harakat bilan ko'rsat: avval 🥚, keyin 🐣, oxirida 🐥. Endi teskarisini ko'rsatib ko'r — kulgili bo'ladi!",
-       "doska": "1 🥚  2 🐣  3 🐥"
-      }
-     ]
-    },
-    {
-     "name": "Urug'dan gul",
-     "goal": "Bola voqealar ketma-ketligini tushunadi: avval, keyin, oxirida",
-     "intro": "Bip-bip! Har narsaning o'z navbati bor. 🌷🌰🌱 — qaysi biri birinchi? Qani, tartibga solamiz!",
-     "items": [
-      {
-       "say": "Avval",
-       "uz": "eng birinchi",
-       "emoji": "🌰",
-       "explain": "Avval urug'ni yerga ekamiz. Keyin undan nihol chiqadi. Oxirida chiroyli gul ochiladi.",
-       "action": "Bitta barmog'ingni ko'rsat: «avval!»"
-      },
-      {
-       "say": "Keyin",
-       "uz": "undan keyin",
-       "emoji": "🌰➡️🌱➡️🌷",
-       "explain": "🌰 ➡️ 🌱 ➡️ 🌷. Avval — urug', keyin — nihol, oxirida — lola.",
-       "action": "Barmoqlaringda sana: avval, keyin, oxirida!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🌰 ➡️ ❓ Keyin nima bo'ladi?",
-       "options": [
-        "🌷 lola",
-        "🌱 nihol"
-       ],
-       "answer": 1,
-       "why": "Ofarin! Avval urug', keyin nihol."
-      },
-      {
-       "q": "❓ ➡️ 🌱 ➡️ 🌷 Eng birinchi nima?",
-       "options": [
-        "🌷 lola",
-        "🌰 urug'"
-       ],
-       "answer": 1,
-       "why": "To'g'ri! Eng birinchi — urug'."
-      },
-      {
-       "q": "🌰 ➡️ 🌱 ➡️ ❓ Oxirida nima?",
-       "options": [
-        "🌷 lola",
-        "🌰 urug'"
-       ],
-       "answer": 0,
-       "why": "Zo'r! Oxirida — lola."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🎭 Ko'rsatib ber",
-       "matn": "O'yin! Bu hikoyani harakat bilan ko'rsat: avval 🌰, keyin 🌱, oxirida 🌷. Endi teskarisini ko'rsatib ko'r — kulgili bo'ladi!",
-       "doska": "1 🌰  2 🌱  3 🌷"
-      }
-     ]
-    },
-    {
-     "name": "Ertalabdan kechgacha",
-     "goal": "Bola voqealar ketma-ketligini tushunadi: avval, keyin, oxirida",
-     "intro": "Bip-bip! Har narsaning o'z navbati bor. 🌙🌅☀️ — qaysi biri birinchi? Qani, tartibga solamiz!",
-     "items": [
-      {
-       "say": "Avval",
-       "uz": "eng birinchi",
-       "emoji": "🌅",
-       "explain": "Avval tong otadi. Keyin kun bo'ladi, quyosh charaqlaydi. Oxirida tun keladi, oy chiqadi.",
-       "action": "Bitta barmog'ingni ko'rsat: «avval!»"
-      },
-      {
-       "say": "Keyin",
-       "uz": "undan keyin",
-       "emoji": "🌅➡️☀️➡️🌙",
-       "explain": "🌅 ➡️ ☀️ ➡️ 🌙. Avval — tong, keyin — quyosh, oxirida — oy.",
-       "action": "Barmoqlaringda sana: avval, keyin, oxirida!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🌅 ➡️ ❓ Keyin nima bo'ladi?",
-       "options": [
-        "☀️ quyosh",
-        "🌙 oy"
-       ],
-       "answer": 0,
-       "why": "Qoyil! Avval tong, keyin quyosh."
-      },
-      {
-       "q": "❓ ➡️ ☀️ ➡️ 🌙 Eng birinchi nima?",
-       "options": [
-        "🌙 oy",
-        "🌅 tong"
-       ],
-       "answer": 1,
-       "why": "Qoyil! Eng birinchi — tong."
-      },
-      {
-       "q": "🌅 ➡️ ☀️ ➡️ ❓ Oxirida nima?",
-       "options": [
-        "🌙 oy",
-        "🌅 tong"
-       ],
-       "answer": 0,
-       "why": "Zo'r! Oxirida — oy."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🎭 Ko'rsatib ber",
-       "matn": "O'yin! Bu hikoyani harakat bilan ko'rsat: avval 🌅, keyin ☀️, oxirida 🌙. Endi teskarisini ko'rsatib ko'r — kulgili bo'ladi!",
-       "doska": "1 🌅  2 ☀️  3 🌙"
-      }
-     ]
-    },
-    {
-     "name": "Qurtchadan kapalak",
-     "goal": "Bola voqealar ketma-ketligini tushunadi: avval, keyin, oxirida",
-     "intro": "Bip-bip! Har narsaning o'z navbati bor. 🦋🥚🐛 — qaysi biri birinchi? Qani, tartibga solamiz!",
-     "items": [
-      {
-       "say": "Avval",
-       "uz": "eng birinchi",
-       "emoji": "🥚",
-       "explain": "Avval bargda kichkina tuxum bo'ladi. Undan qurtcha chiqadi. Qurtcha ko'p yeydi, keyin chiroyli kapalakka aylanadi!",
-       "action": "Bitta barmog'ingni ko'rsat: «avval!»"
-      },
-      {
-       "say": "Keyin",
-       "uz": "undan keyin",
-       "emoji": "🥚➡️🐛➡️🦋",
-       "explain": "🥚 ➡️ 🐛 ➡️ 🦋. Avval — tuxum, keyin — qurtcha, oxirida — kapalak.",
-       "action": "Barmoqlaringda sana: avval, keyin, oxirida!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🥚 ➡️ ❓ Keyin nima bo'ladi?",
-       "options": [
-        "🦋 kapalak",
-        "🐛 qurtcha"
-       ],
-       "answer": 1,
-       "why": "Qoyil! Avval tuxum, keyin qurtcha."
-      },
-      {
-       "q": "❓ ➡️ 🐛 ➡️ 🦋 Eng birinchi nima?",
-       "options": [
-        "🦋 kapalak",
-        "🥚 tuxum"
-       ],
-       "answer": 1,
-       "why": "Qoyil! Eng birinchi — tuxum."
-      },
-      {
-       "q": "🥚 ➡️ 🐛 ➡️ ❓ Oxirida nima?",
-       "options": [
-        "🥚 tuxum",
-        "🦋 kapalak"
-       ],
-       "answer": 1,
-       "why": "Qoyil! Oxirida — kapalak."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🎭 Ko'rsatib ber",
-       "matn": "O'yin! Bu hikoyani harakat bilan ko'rsat: avval 🥚, keyin 🐛, oxirida 🦋. Endi teskarisini ko'rsatib ko'r — kulgili bo'ladi!",
-       "doska": "1 🥚  2 🐛  3 🦋"
-      }
-     ]
-    },
-    {
-     "name": "Kiyinamiz",
-     "goal": "Bola voqealar ketma-ketligini tushunadi: avval, keyin, oxirida",
-     "intro": "Bip-bip! Har narsaning o'z navbati bor. 🧢🧦👟 — qaysi biri birinchi? Qani, tartibga solamiz!",
-     "items": [
-      {
-       "say": "Avval",
-       "uz": "eng birinchi",
-       "emoji": "🧦",
-       "explain": "Avval paypoq kiyamiz. Keyin krossovka. Tashqariga chiqishdan oldin esa — kepka!",
-       "action": "Bitta barmog'ingni ko'rsat: «avval!»"
-      },
-      {
-       "say": "Keyin",
-       "uz": "undan keyin",
-       "emoji": "🧦➡️👟➡️🧢",
-       "explain": "🧦 ➡️ 👟 ➡️ 🧢. Avval — paypoq, keyin — krossovka, oxirida — kepka.",
-       "action": "Barmoqlaringda sana: avval, keyin, oxirida!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🧦 ➡️ ❓ Keyin nima bo'ladi?",
-       "options": [
-        "🧢 kepka",
-        "👟 krossovka"
-       ],
-       "answer": 1,
-       "why": "Ofarin! Avval paypoq, keyin krossovka."
-      },
-      {
-       "q": "❓ ➡️ 👟 ➡️ 🧢 Eng birinchi nima?",
-       "options": [
-        "🧦 paypoq",
-        "🧢 kepka"
-       ],
-       "answer": 0,
-       "why": "Ofarin! Eng birinchi — paypoq."
-      },
-      {
-       "q": "🧦 ➡️ 👟 ➡️ ❓ Oxirida nima?",
-       "options": [
-        "🧦 paypoq",
-        "🧢 kepka"
-       ],
-       "answer": 1,
-       "why": "Barakalla! Oxirida — kepka."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🎭 Ko'rsatib ber",
-       "matn": "O'yin! Bu hikoyani harakat bilan ko'rsat: avval 🧦, keyin 👟, oxirida 🧢. Endi teskarisini ko'rsatib ko'r — kulgili bo'ladi!",
-       "doska": "1 🧦  2 👟  3 🧢"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "name": "Diqqat o'yini",
-   "emoji": "👀",
-   "lessons": [
-    {
-     "name": "Qaysi meva yo'qoldi?",
-     "goal": "Bola rasmlarni eslab qoladi va qaysi biri yo'qolganini topadi (diqqat va xotira)",
-     "intro": "Bip-bip! Ko'zlaringni katta och va eslab qol: 🍎🍌🍇. Endi bittasi yashirinadi. Qaysi biri ekan?",
-     "items": [
-      {
-       "say": "Eslab qol",
-       "uz": "diqqat bilan qarab, yodda saqla",
-       "emoji": "🍎🍌🍇",
-       "explain": "Qara va eslab qol: 🍎🍌🍇. Olma, banan, uzum. Ko'zingni yumib, ichingda takrorla!",
-       "action": "Ko'zingni yum va ayt: nima bor edi?"
-      },
-      {
-       "say": "Yo'qoldi",
-       "uz": "oldin bor edi, endi yo'q",
-       "emoji": "🍎🍇❓",
-       "explain": "Endi qara: 🍎🍇. banan qayerda? U yashirindi! Biz uni esladik — demak, diqqatimiz kuchli!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🍎🍌🍇 ➡️ 🍎🍇 Nima yo'qoldi?",
-       "options": [
-        "🍌 banan",
-        "🍎 olma"
-       ],
-       "answer": 0,
-       "why": "Qoyil! Banan yo'qoldi."
-      },
-      {
-       "q": "🍎🍇🍐 ➡️ 🍎🍇 Nima yo'qoldi?",
-       "options": [
-        "🍇 uzum",
-        "🍐 nok"
-       ],
-       "answer": 1,
-       "why": "Zo'r! Nok yo'qoldi."
-      },
-      {
-       "q": "🍌🍐🍒🍎 ➡️ 🍌🍐🍎 Nima yo'qoldi?",
-       "options": [
-        "🍌 banan",
-        "🍒 gilos"
-       ],
-       "answer": 1,
-       "why": "To'g'ri! Gilos yo'qoldi."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🙈 Yashirinmachoq",
-       "matn": "O'yin! Kattalar stolga 4 ta o'yinchoq qo'ysin. Sen ko'zingni yum — ular bittasini yashiradi. Ko'zingni och: qaysi biri yo'q?",
-       "doska": "🧸⚽🎈🚗 ➡️ 🙈 ➡️ ❓"
-      }
-     ]
-    },
-    {
-     "name": "Qaysi hayvon yashirindi?",
-     "goal": "Bola rasmlarni eslab qoladi va qaysi biri yo'qolganini topadi (diqqat va xotira)",
-     "intro": "Bip-bip! Ko'zlaringni katta och va eslab qol: 🐱🐶🐰. Endi bittasi yashirinadi. Qaysi biri ekan?",
-     "items": [
-      {
-       "say": "Eslab qol",
-       "uz": "diqqat bilan qarab, yodda saqla",
-       "emoji": "🐱🐶🐰",
-       "explain": "Qara va eslab qol: 🐱🐶🐰. Mushuk, kuchuk, quyon. Ko'zingni yumib, ichingda takrorla!",
-       "action": "Ko'zingni yum va ayt: nima bor edi?"
-      },
-      {
-       "say": "Yo'qoldi",
-       "uz": "oldin bor edi, endi yo'q",
-       "emoji": "🐱🐰❓",
-       "explain": "Endi qara: 🐱🐰. kuchuk qayerda? U yashirindi! Biz uni esladik — demak, diqqatimiz kuchli!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🐱🐶🐰 ➡️ 🐱🐰 Nima yo'qoldi?",
-       "options": [
-        "🐱 mushuk",
-        "🐶 kuchuk"
-       ],
-       "answer": 1,
-       "why": "Barakalla! Kuchuk yo'qoldi."
-      },
-      {
-       "q": "🐱🐰🐻 ➡️ 🐱🐰 Nima yo'qoldi?",
-       "options": [
-        "🐻 ayiq",
-        "🐰 quyon"
-       ],
-       "answer": 0,
-       "why": "Qoyil! Ayiq yo'qoldi."
-      },
-      {
-       "q": "🐶🐻🐘🐱 ➡️ 🐶🐻🐱 Nima yo'qoldi?",
-       "options": [
-        "🐶 kuchuk",
-        "🐘 fil"
-       ],
-       "answer": 1,
-       "why": "To'g'ri! Fil yo'qoldi."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🙈 Yashirinmachoq",
-       "matn": "O'yin! Kattalar stolga 4 ta o'yinchoq qo'ysin. Sen ko'zingni yum — ular bittasini yashiradi. Ko'zingni och: qaysi biri yo'q?",
-       "doska": "🧸⚽🎈🚗 ➡️ 🙈 ➡️ ❓"
-      }
-     ]
-    },
-    {
-     "name": "Qaysi o'yinchoq yo'q?",
-     "goal": "Bola rasmlarni eslab qoladi va qaysi biri yo'qolganini topadi (diqqat va xotira)",
-     "intro": "Bip-bip! Ko'zlaringni katta och va eslab qol: ⚽🧸🎈. Endi bittasi yashirinadi. Qaysi biri ekan?",
-     "items": [
-      {
-       "say": "Eslab qol",
-       "uz": "diqqat bilan qarab, yodda saqla",
-       "emoji": "⚽🧸🎈",
-       "explain": "Qara va eslab qol: ⚽🧸🎈. To'p, ayiqcha, shar. Ko'zingni yumib, ichingda takrorla!",
-       "action": "Ko'zingni yum va ayt: nima bor edi?"
-      },
-      {
-       "say": "Yo'qoldi",
-       "uz": "oldin bor edi, endi yo'q",
-       "emoji": "⚽🎈❓",
-       "explain": "Endi qara: ⚽🎈. ayiqcha qayerda? U yashirindi! Biz uni esladik — demak, diqqatimiz kuchli!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "⚽🧸🎈 ➡️ ⚽🎈 Nima yo'qoldi?",
-       "options": [
-        "⚽ to'p",
-        "🧸 ayiqcha"
-       ],
-       "answer": 1,
-       "why": "Barakalla! Ayiqcha yo'qoldi."
-      },
-      {
-       "q": "⚽🎈🚗 ➡️ ⚽🎈 Nima yo'qoldi?",
-       "options": [
-        "🎈 shar",
-        "🚗 mashina"
-       ],
-       "answer": 1,
-       "why": "Barakalla! Mashina yo'qoldi."
-      },
-      {
-       "q": "🧸🚗🚲⚽ ➡️ 🧸🚗⚽ Nima yo'qoldi?",
-       "options": [
-        "🚲 velosiped",
-        "🧸 ayiqcha"
-       ],
-       "answer": 0,
-       "why": "Zo'r! Velosiped yo'qoldi."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🙈 Yashirinmachoq",
-       "matn": "O'yin! Kattalar stolga 4 ta o'yinchoq qo'ysin. Sen ko'zingni yum — ular bittasini yashiradi. Ko'zingni och: qaysi biri yo'q?",
-       "doska": "🧸⚽🎈🚗 ➡️ 🙈 ➡️ ❓"
-      }
-     ]
-    },
-    {
-     "name": "Qaysi transport ketdi?",
-     "goal": "Bola rasmlarni eslab qoladi va qaysi biri yo'qolganini topadi (diqqat va xotira)",
-     "intro": "Bip-bip! Ko'zlaringni katta och va eslab qol: 🚗🚌🚂. Endi bittasi yashirinadi. Qaysi biri ekan?",
-     "items": [
-      {
-       "say": "Eslab qol",
-       "uz": "diqqat bilan qarab, yodda saqla",
-       "emoji": "🚗🚌🚂",
-       "explain": "Qara va eslab qol: 🚗🚌🚂. Mashina, avtobus, poyezd. Ko'zingni yumib, ichingda takrorla!",
-       "action": "Ko'zingni yum va ayt: nima bor edi?"
-      },
-      {
-       "say": "Yo'qoldi",
-       "uz": "oldin bor edi, endi yo'q",
-       "emoji": "🚗🚂❓",
-       "explain": "Endi qara: 🚗🚂. avtobus qayerda? U yashirindi! Biz uni esladik — demak, diqqatimiz kuchli!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🚗🚌🚂 ➡️ 🚗🚂 Nima yo'qoldi?",
-       "options": [
-        "🚌 avtobus",
-        "🚗 mashina"
-       ],
-       "answer": 0,
-       "why": "Ofarin! Avtobus yo'qoldi."
-      },
-      {
-       "q": "🚗🚂✈️ ➡️ 🚗🚂 Nima yo'qoldi?",
-       "options": [
-        "✈️ samolyot",
-        "🚂 poyezd"
-       ],
-       "answer": 0,
-       "why": "Ofarin! Samolyot yo'qoldi."
-      },
-      {
-       "q": "🚌✈️⛵🚗 ➡️ 🚌✈️🚗 Nima yo'qoldi?",
-       "options": [
-        "⛵ qayiq",
-        "🚌 avtobus"
-       ],
-       "answer": 0,
-       "why": "To'g'ri! Qayiq yo'qoldi."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🙈 Yashirinmachoq",
-       "matn": "O'yin! Kattalar stolga 4 ta o'yinchoq qo'ysin. Sen ko'zingni yum — ular bittasini yashiradi. Ko'zingni och: qaysi biri yo'q?",
-       "doska": "🧸⚽🎈🚗 ➡️ 🙈 ➡️ ❓"
-      }
-     ]
-    },
-    {
-     "name": "Qaysi shakl yo'qoldi?",
-     "goal": "Bola rasmlarni eslab qoladi va qaysi biri yo'qolganini topadi (diqqat va xotira)",
-     "intro": "Bip-bip! Ko'zlaringni katta och va eslab qol: 🔴🟦🔺. Endi bittasi yashirinadi. Qaysi biri ekan?",
-     "items": [
-      {
-       "say": "Eslab qol",
-       "uz": "diqqat bilan qarab, yodda saqla",
-       "emoji": "🔴🟦🔺",
-       "explain": "Qara va eslab qol: 🔴🟦🔺. Qizil doira, ko'k kvadrat, uchburchak. Ko'zingni yumib, ichingda takrorla!",
-       "action": "Ko'zingni yum va ayt: nima bor edi?"
-      },
-      {
-       "say": "Yo'qoldi",
-       "uz": "oldin bor edi, endi yo'q",
-       "emoji": "🔴🔺❓",
-       "explain": "Endi qara: 🔴🔺. ko'k kvadrat qayerda? U yashirindi! Biz uni esladik — demak, diqqatimiz kuchli!"
-      }
-     ],
-     "tests": [
-      {
-       "q": "🔴🟦🔺 ➡️ 🔴🔺 Nima yo'qoldi?",
-       "options": [
-        "🔴 qizil doira",
-        "🟦 ko'k kvadrat"
-       ],
-       "answer": 1,
-       "why": "Qoyil! Ko'k kvadrat yo'qoldi."
-      },
-      {
-       "q": "🔴🔺⭐ ➡️ 🔴🔺 Nima yo'qoldi?",
-       "options": [
-        "⭐ yulduz",
-        "🔺 uchburchak"
-       ],
-       "answer": 0,
-       "why": "Barakalla! Yulduz yo'qoldi."
-      },
-      {
-       "q": "🟦⭐❤️🔴 ➡️ 🟦⭐🔴 Nima yo'qoldi?",
-       "options": [
-        "🟦 ko'k kvadrat",
-        "❤️ yurakcha"
-       ],
-       "answer": 1,
-       "why": "Qoyil! Yurakcha yo'qoldi."
-      }
-     ],
-     "extra": [
-      {
-       "turi": "topshiriq",
-       "sarlavha": "🙈 Yashirinmachoq",
-       "matn": "O'yin! Kattalar stolga 4 ta o'yinchoq qo'ysin. Sen ko'zingni yum — ular bittasini yashiradi. Ko'zingni och: qaysi biri yo'q?",
-       "doska": "🧸⚽🎈🚗 ➡️ 🙈 ➡️ ❓"
-      }
-     ]
-    }
-   ]
-  }
- ]
+  ]
 }

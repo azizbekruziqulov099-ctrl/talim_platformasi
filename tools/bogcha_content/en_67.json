@@ -164,7 +164,7 @@
        "turi": "topshiriq",
        "sarlavha": "🎵 Yigirma qo'shig'i",
        "matn": "Qo'shiq bilan sanaymiz: [en]eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty![/en] Oxirida baland sakrang — [en]Hooray![/en]",
-       "doska": "11 12 13 14 15\n16 17 18 19 20 🎉",
+       "doska": "11 eleven  12 twelve  13 thirteen  14 fourteen  15 fifteen\n16 sixteen  17 seventeen  18 eighteen  19 nineteen  20 twenty 🎉",
        "sodda": "Uchta yangi son: [en]eighteen, nineteen, twenty[/en].",
        "boshqa_usul": "Qo'l va oyoq barmoqlarini birga sanang — yigirmata chiqadi: [en]twenty![/en]"
       }
@@ -220,11 +220,11 @@
      "extra": [
       {
        "turi": "topshiriq",
-       "sarlavha": "🎭 Dialog: nechta?",
-       "matn": "Kabutar: [en]How many apples?[/en] Siz sanang: [en]one, two, three… twelve![/en] Javob: [en]Twelve apples![/en] Endi siz so'rang: [en]How many pencils?[/en]",
-       "doska": "— How many apples? 🍎\n— Let's count! One, two, three…\n— Twelve apples!",
-       "sodda": "Faqat son bilan javob bering: [en]twelve![/en]",
-       "boshqa_usul": "Uyingizdagi qoshiqlarni yoki qalamlarni sanab, inglizcha ayting."
+       "sarlavha": "🧮 Birga sanaymiz",
+       "matn": "Savatda olmalar bor! [en]Let's count![/en] Har olmaga bitta barmoq ko'rsating: [en]one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve![/en] Nechta olma? [en]Twelve apples![/en] Endi o'zingiz so'rang: [en]How many apples?[/en]",
+       "doska": "🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎\n🧮 Let's count!\n❓ How many apples?\n1️⃣2️⃣ twelve apples",
+       "sodda": "Faqat oxirgi sonni ayting: [en]twelve![/en]",
+       "boshqa_usul": "Uyingizdagi qoshiqlarni yoki yong'oqlarni sanab, inglizcha ayting."
       }
      ],
      "tests": [
@@ -631,7 +631,7 @@
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: orzularim",
        "matn": "Kabutar: [en]What do you want to be?[/en] Siz: [en]I want to be a doctor.[/en] yoki [en]a teacher[/en], [en]a pilot[/en], [en]a cook[/en]. Endi do'stingizdan so'rang!",
-       "doska": "— What do you want to be?\n— I want to be a …\n🧑‍⚕️ 🧑‍🏫 🧑‍✈️ 🧑‍🍳 👷",
+       "doska": "— What do you want to be?\n— I want to be a …\n🧑‍⚕️ doctor  🧑‍🏫 teacher  🧑‍✈️ pilot  🧑‍🍳 cook  👷 builder",
        "sodda": "Faqat kasb nomi: [en]doctor![/en] [en]pilot![/en]",
        "boshqa_usul": "Orzuingizdagi kasb rasmini chizing va ostiga ayting: [en]I want to be a…[/en]"
       }
@@ -871,7 +871,7 @@
         "🚑 ambulance",
         "🚒 fire engine",
         "🚕 taxi",
-        "🚜 farm"
+        "🚌 bus"
        ],
        "answer": 0,
        "why": "To'g'ri! Tez yordam — [en]ambulance[/en]."
@@ -918,8 +918,8 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🚦 Svetofor o'yini",
-       "matn": "Qizil chiroq — [en]Stop![/en] — qotib qoling! Yashil chiroq — [en]Go![/en] — joyingizda yuring! Men aytaman: [en]Go! Go! Stop![/en] Kim adashmaydi?",
-       "doska": "🔴 Stop!\n🟢 Go!",
+       "matn": "Svetofor o'yini! Qizil chiroq — [en]Stop![/en] — qotib qoling! Yashil chiroq — [en]Go![/en] — [en]I walk.[/en] deb joyingizda yuring! Men chiroq rangini aytaman, siz ayting va harakat qiling!",
+       "doska": "🛑 Stop! — qizil chiroq 🔴\n🚶 I walk. — yashil chiroq 🟢",
        "sodda": "Faqat [en]Stop![/en] eshitsangiz — to'xtang.",
        "boshqa_usul": "Ko'chada kattalar bilan yurganda svetoforni ko'rib ayting: [en]Stop![/en] yoki [en]Go![/en]"
       }
@@ -1029,8 +1029,8 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🔍 Portfelda nima bor?",
-       "matn": "Kabutar so'raydi: [en]What's in your bag?[/en] Siz ko'rsatib ayting: [en]a book, a pencil, a ruler, crayons, scissors, a notebook![/en] Hammasini topdingizmi?",
-       "doska": "What's in your bag? 🎒\n📖 ✏️ 🖊️ 📏 🖍️ ✂️ 📓",
+       "matn": "Kabutar so'raydi: [en]What's in your bag?[/en] Siz ko'rsatib ayting: [en]a ruler, crayons, scissors, a notebook![/en] Hammasini ko'rsatdingizmi?",
+       "doska": "🎒 What's in your bag?\n📏 ruler\n🖍️ crayons\n✂️ scissors\n📓 notebook",
        "sodda": "Uchtasi: [en]ruler, crayons, notebook[/en].",
        "boshqa_usul": "Ko'zingizni yumib portfeldan bitta narsani oling — ushlab, nomini ayting!"
       }
@@ -1353,7 +1353,7 @@
        "turi": "topshiriq",
        "sarlavha": "🐾 Hayvonlar paradi",
        "matn": "Siz hayvonga aylanasiz! [en]A frog can jump![/en] — sakrang! [en]A bird can fly![/en] — qanot qoqing! [en]A fish can swim![/en] — suzing! [en]A snake can't walk![/en] — sudralib yuring!",
-       "doska": "🐸 jump  🐦 fly\n🐟 swim  🐍 can't walk",
+       "doska": "🐸 A frog can jump.\n🐦 A bird can fly.\n🐟 A fish can swim.\n🐍 A snake can't walk.",
        "sodda": "Ikkita: [en]A bird can fly.[/en] [en]A fish can swim.[/en]",
        "boshqa_usul": "Hayvon rasmini chizing va ostiga ayting: u nima qila oladi?"
       }
@@ -1594,7 +1594,7 @@
        "turi": "topshiriq",
        "sarlavha": "📝 Xarid ro'yxati",
        "matn": "Onamning ro'yxati: [en]three carrots, two tomatoes, four potatoes, ten eggs[/en]. Sotuvchidan so'rang: [en]Three carrots, please![/en] Hammasini oldik!",
-       "doska": "🥕🥕🥕 three carrots\n🍅🍅 two tomatoes\n🥔🥔🥔🥔 four potatoes\n🥚 ten eggs",
+       "doska": "🥕🥕🥕 three carrots\n🍅🍅 two tomatoes\n🥔🥔🥔🥔 four potatoes\n🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚 ten eggs",
        "sodda": "Bittadan so'rang: [en]Carrots, please![/en]",
        "boshqa_usul": "Oshxonada kattalar bilan sabzavotlarni sanang va inglizcha nomlang."
       }
@@ -1652,7 +1652,7 @@
        "turi": "topshiriq",
        "sarlavha": "🛍️ Katta do'kon o'yini",
        "matn": "[en]Hello! Can I help you?[/en] — [en]Two tomatoes, please.[/en] — [en]Here you are.[/en] — [en]Thank you! Here is the money.[/en] — [en]Goodbye, see you![/en] Endi siz sotuvchisiz!",
-       "doska": "— Hello! Can I help you?\n— Two tomatoes, please. 🍅🍅\n— Here you are.\n— Thank you! 🪙\n— Goodbye, see you! 👋",
+       "doska": "— Hello! Can I help you?\n— Two tomatoes, please. 🍅🍅\n— Here you are.\n— Thank you! 🪙\n— Goodbye, see you! 👋\n🪙 money",
        "sodda": "Uch ibora: [en]please[/en], [en]Thank you[/en], [en]Goodbye[/en].",
        "boshqa_usul": "Qog'ozdan pul yasab, oila bilan bozor o'ynang!"
       }
@@ -1774,7 +1774,7 @@
        "turi": "topshiriq",
        "sarlavha": "🗺️ Mening shahrim",
        "matn": "Kabutar so'raydi: [en]Where do you live?[/en] Siz shahringizni ayting: [en]I live in Samarkand.[/en] yoki [en]I live in Tashkent.[/en] Keyin: [en]I am from Uzbekistan![/en]",
-       "doska": "— Where do you live?\n— I live in …\n— I am from Uzbekistan! 🇺🇿",
+       "doska": "— Where do you live?\n— I live in … 🕌 Samarkand\n— I am from Uzbekistan! 🇺🇿",
        "sodda": "Faqat shahar nomi: [en]Samarkand![/en]",
        "boshqa_usul": "Shahringizning chiroyli joyini chizing va ostiga ayting: [en]I live in…[/en]"
       }
@@ -1819,7 +1819,7 @@
        "turi": "topshiriq",
        "sarlavha": "❤️ So'rovnoma",
        "matn": "Do'stlaringizdan so'rang: [en]What do you like?[/en] Ular javob bersin: [en]I like football.[/en] [en]I like cake.[/en] Keyin: [en]My favourite colour is…[/en] Kim nimani yaxshi ko'rar ekan?",
-       "doska": "— What do you like?\n— I like … ❤️\n— My favourite colour is … 🎨\n— My favourite food is … 🍛",
+       "doska": "— What do you like?\n— I like … ❤️ ⚽ football\n— My favourite colour is … 🎨\n— My favourite food is … 🍛",
        "sodda": "Faqat bitta gap: [en]I like…[/en]",
        "boshqa_usul": "Oilangizdagi har kishining sevimli ovqatini so'rang va rasmini chizing."
       }
@@ -1877,7 +1877,7 @@
        "turi": "topshiriq",
        "sarlavha": "🎤 Katta chiqish: All about me",
        "matn": "Sahnaga chiqing va ayting: [en]Hello! This is me! My name is… I am six. I live in Samarkand. I have a sister. I can swim. I like football. Nice to meet you![/en]",
-       "doska": "Hello! This is me!\nMy name is … I am six.\nI live in … I have a …\nI can … I like …\nNice to meet you!",
+       "doska": "Hello! This is me!\nMy name is … I am six.\nI live in … I have a … 👧 sister\nI can … I like …\nNice to meet you!",
        "sodda": "Uch gap yetarli: [en]My name is… I am six. I like…[/en]",
        "boshqa_usul": "O'zingiz haqingizda kitobcha chizing: har sahifada bitta gap — rasm bilan!"
       }

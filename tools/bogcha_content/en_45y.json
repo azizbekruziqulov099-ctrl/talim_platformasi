@@ -139,7 +139,7 @@
        "turi": "topshiriq",
        "sarlavha": "💬 Kichik dialog",
        "matn": "robot Kabu: [en]Good morning! How are you?[/en] Sen: [en]I'm fine! Thank you![/en] Endi o'rtog'ing bilan navbatma-navbat ayt!",
-       "doska": "🕊️ How are you?\n👍 I'm fine! Thank you!"
+       "doska": "🤗 How are you?\n👍 I'm fine!\n🌅 Good morning!"
       }
      ],
      "tests": [
@@ -375,8 +375,8 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🐼 Panda topishmoq",
-       "matn": "Topishmoq: men oq va qoraman, bambuk yeyman. Men kimman? Panda! Pandaning ranglari: [en]black and white![/en] Ayiqcha esa — [en]brown![/en]",
-       "doska": "🐼 black and white\n🧸 brown"
+       "matn": "Topishmoq: men oq va qoraman, bambuk yeyman. Men kimman? Panda! Pandaning ranglari: [en]black and white![/en] Endi rangni top va bos: qor qanday? [en]White![/en] Tun qanday? [en]Black![/en] Ayiq qanday? [en]Brown![/en]",
+       "doska": "⚫ black\n⚪ white\n🟤 brown"
       }
      ],
      "tests": [
@@ -598,19 +598,28 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🐸 Qurbaqa sakrashi",
-       "matn": "Qurbaqaday sakrab sanaymiz: [en]One, two, three, four, five, six![/en] Endi orqaga: [en]six, five, four, three, two, one![/en] Ofarin!",
-       "doska": "🐸 1 2 3 4 5 6"
+       "matn": "Qurbaqaday sakrab sanaymiz, har sakrashda bitta qurbaqa: [en]One, two, three, four, five, six![/en] Oxirgi son — [en]six![/en] Oltita qurbaqa! Endi orqaga: [en]six, five, four, three, two, one![/en] Ofarin!",
+       "doska": "🐸🐸🐸🐸🐸🐸"
       }
      ],
      "tests": [
       {
-       "q": "Qo'limda nechta barmoq? 🖐",
+       "q": "Nechta olma? 🍎🍎🍎🍎🍎",
        "options": [
         "5️⃣ five",
         "6️⃣ six"
        ],
        "answer": 0,
-       "why": "Barakalla! [en]Five[/en] — beshta barmoq."
+       "why": "Barakalla! [en]One, two, three, four, five[/en] — beshta olma."
+      },
+      {
+       "q": "Nechta qurbaqa? 🐸🐸🐸🐸🐸🐸",
+       "options": [
+        "6️⃣ six",
+        "4️⃣ four"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [en]One, two, three, four, five, six[/en] — oltita qurbaqa."
       }
      ]
     },
@@ -644,9 +653,15 @@
      "extra": [
       {
        "turi": "topshiriq",
-       "sarlavha": "🐙 Sakkizoyoq",
-       "matn": "Sakkizoyoqning oyoqlarini sanaymiz: [en]One, two, three, four, five, six, seven, eight![/en] [en]Eight![/en] Qo'llaringni to'lqinday silkit!",
-       "doska": "🐙 8 — eight"
+       "sarlavha": "🌈 Kamalak sanash",
+       "matn": "Kamalakda yettita rang bor! Barmog'ing bilan sana: [en]One, two, three, four, five, six, seven![/en] Oxirgi son — [en]seven![/en] Yettita rang!",
+       "doska": "🔴🟠🟡🟢🔵🟣🟤"
+      },
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🌟 Yulduz sanash",
+       "matn": "Osmonda yulduzlar chiqdi! Sakrab sanaymiz: [en]One, two, three, four, five, six, seven, eight![/en] Oxirgi son — [en]eight![/en] Sakkizta yulduz! Qo'llaringni yulduzday yoy!",
+       "doska": "🌟🌟🌟🌟🌟🌟🌟🌟"
       }
      ],
      "tests": [
@@ -658,6 +673,15 @@
        ],
        "answer": 0,
        "why": "Ofarin! [en]Seven[/en] — yetti."
+      },
+      {
+       "q": "Nechta yulduz? 🌟🌟🌟🌟🌟🌟🌟🌟",
+       "options": [
+        "8️⃣ eight",
+        "7️⃣ seven"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [en]One, two, three, four, five, six, seven, eight[/en] — sakkizta yulduz."
       }
      ]
     },
@@ -699,13 +723,22 @@
      ],
      "tests": [
       {
-       "q": "[en]How many?[/en] 🍎🍎🍎🍎",
+       "q": "[en]How many?[/en] 🍎🍎🍎🍎🍎🍎🍎🍎🍎",
        "options": [
-        "4️⃣ four",
+        "9️⃣ nine",
         "🔟 ten"
        ],
        "answer": 0,
-       "why": "To'g'ri! [en]One, two, three, four[/en] — to'rtta olma."
+       "why": "To'g'ri! [en]One, two, three, four, five, six, seven, eight, nine[/en] — to'qqizta olma."
+      },
+      {
+       "q": "[en]How many?[/en] 🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈",
+       "options": [
+        "🔟 ten",
+        "9️⃣ nine"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [en]One, two, three … ten[/en] — o'nta sharcha."
       }
      ]
     }
@@ -887,6 +920,14 @@
        "answer": 0,
        "why": "Ofarin! [en]Giraffe[/en] — jirafaning bo'yni uzun."
       }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐒 Hayvon ko'rsat",
+       "matn": "Men hayvon aytaman, sen ko'rsatasan! [en]Monkey![/en] — qashin va sakra. [en]Elephant![/en] — qo'ling xartum, og'ir-og'ir yur. [en]Giraffe![/en] — bo'yningni cho'z. Zo'r!",
+       "doska": "🐵 monkey\n🐘 elephant\n🦒 giraffe"
+      }
      ]
     },
     {
@@ -922,8 +963,8 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🐊 Timsoh o'yini",
-       "matn": "Qo'llaring — timsoh og'zi! Men so'z aytaman: agar hayvon bo'lsa — «qars!» qilib yum. [en]Zebra![/en] … [en]Red![/en] … [en]Snake![/en] …",
-       "doska": "🐊 qars!"
+       "matn": "Qo'llaring — timsoh og'zi! Men hayvon aytaman, sen «qars!» qilib yum: [en]Zebra![/en] qars! [en]Snake![/en] qars! [en]Crocodile![/en] qars! Endi sekin: ilon sudralyapti — ssss!",
+       "doska": "🦓 zebra\n🐍 snake\n🐊 crocodile"
       }
      ],
      "tests": [
@@ -1149,6 +1190,14 @@
        ],
        "answer": 0,
        "why": "Ofarin! [en]Brother[/en] — aka yoki uka."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👨‍👩‍👧 Oila o'yini",
+       "matn": "Men aytaman, sen ko'rsatasan! [en]Sister![/en] — qo'lingni silkit. [en]Brother![/en] — joyingda sakra. [en]Baby![/en] — chaqaloqni allala. Barakalla!",
+       "doska": "👧 sister\n👦 brother\n👶 baby"
       }
      ]
     },
@@ -1580,7 +1629,7 @@
    "lessons": [
     {
      "name": "Olma, banan, apelsin",
-     "goal": "Bola apple, banana, orange so'zlarini aytadi",
+     "goal": "Bola apple, banana, orange so'zlarini va Apple, please! iborasini aytadi",
      "intro": "Bozorga boramiz! Savatchamizga qizil, sariq va to'q sariq mevalar solamiz.",
      "items": [
       {
@@ -1603,14 +1652,22 @@
        "emoji": "🍊",
        "image": "en45-u7-orange-fruit.png",
        "image_prompt": "A juicy orange fruit with a leaf, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Apple, please!",
+       "uz": "olma bering, iltimos",
+       "emoji": "🛒",
+       "image": "en67-u7-apple-please.png",
+       "image_prompt": "A cute cartoon child at a fruit stall politely asking for a red apple with both hands out, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringni oldinga uzat!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🧺 Bozor o'yini",
-       "matn": "Sotuvchi bo'lamiz! Xaridor: [en]Apple, please![/en] Sotuvchi olma beradi. Xaridor: [en]Thank you![/en] Endi apelsin va banan so'ra!",
-       "doska": "🍎 Apple, please!\n🙏 Thank you!"
+       "matn": "Sotuvchi bo'lamiz! Xaridor: [en]Apple, please![/en] Sotuvchi olma beradi. Xaridor: [en]Thank you![/en] Endi banan va apelsin so'ra: [en]Banana, please![/en] [en]Orange, please![/en]",
+       "doska": "🍎 apple\n🍌 banana\n🍊 orange\n🛒 Apple, please!"
       }
      ],
      "tests": [
@@ -1658,7 +1715,7 @@
        "turi": "topshiriq",
        "sarlavha": "😝 Nordon-shirin",
        "matn": "Men meva aytaman: nordon bo'lsa — yuzingni burishtir, shirin bo'lsa — jilmay! [en]Lemon![/en] … [en]Strawberry![/en] … [en]Grapes![/en]",
-       "doska": "🍋 nordon\n🍓 shirin"
+       "doska": "🍋 nordon\n🍓 shirin\n🍇 shirin"
       }
      ],
      "tests": [
@@ -1888,7 +1945,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "👕 Kiyinamiz",
-       "matn": "Kiyinganday qil: futbolka — [en]T-shirt![/en] Shim — [en]trousers![/en] Qizlar ko'ylak — [en]dress![/en] Qanday rangda? [en]Red? Blue?[/en]",
+       "matn": "Kiyinganday qil: futbolka — [en]T-shirt![/en] Shim — [en]trousers![/en] Ko'ylak — [en]dress![/en] Qanday rangda? [en]Red? Blue?[/en]",
        "doska": "👕 T-shirt\n👖 trousers\n👗 dress"
       }
      ],
@@ -2037,19 +2094,19 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎁 Sehrli qopcha",
-       "matn": "Qopchadan chiqaramiz. [en]What is it?[/en] — [en]It's a car![/en] [en]What is it?[/en] — [en]It's a hat![/en] Endi eng sevimli o'yinchog'ingni ayt: [en]I like my…[/en]",
-       "doska": "🎁 What is it?\n🚗 It's a car!"
+       "matn": "Qopchadan o'yinchoq chiqaramiz. [en]What is it?[/en] — [en]It's a ball![/en] [en]What is it?[/en] — [en]It's a doll![/en] Endi eng sevimli o'yinchog'ingni ayt: [en]I like my…[/en]",
+       "doska": "🎁 What is it?\n⚽ It's a ball!\n🪆 It's a doll!"
       }
      ],
      "tests": [
       {
-       "q": "[en]What is it?[/en] 🧦",
+       "q": "[en]What is it?[/en] 🪁",
        "options": [
-        "🧦 It's a sock.",
-        "🍎 It's an apple."
+        "🪁 It's a kite.",
+        "⚽ It's a ball."
        ],
        "answer": 0,
-       "why": "Barakalla! Bu — paypoq: [en]It's a sock.[/en]"
+       "why": "Barakalla! Bu — varrak: [en]It's a kite.[/en]"
       }
      ]
     }
@@ -2238,14 +2295,14 @@
      ],
      "tests": [
       {
-       "q": "Buvimiz ertalab piyolada nima ichadi?",
+       "q": "Piyolada issiq ichimlik bor. Bu nima? 🍵",
        "options": [
         "🍵 tea",
         "🧀 cheese"
        ],
        "answer": 0,
        "why": "Barakalla! Choy — [en]tea[/en].",
-       "q_en": "What does grandma drink in the morning?"
+       "q_en": "It is a hot drink in a cup. What is it?"
       }
      ],
      "intro_en": "Hi, friends! I'm thirsty. Water, juice or tea?"
@@ -2261,7 +2318,7 @@
        "emoji": "🍲",
        "image": "en56-u4-soup.png",
        "image_prompt": "A bowl of warm soup, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "sentence": "Mum makes hot soup."
+       "sentence": "Dad makes hot soup."
       },
       {
        "say": "rice",
@@ -2360,8 +2417,8 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎂 Tug'ilgan kun o'yini",
-       "matn": "Tortdagi shamlarni sanaymiz: [en]one, two, three, four, five![/en] Puflaganday qil! Endi tortdan tatib ko'ramiz — [en]Yummy![/en]",
-       "doska": "🎂 one two three four five\nYummy! 😋",
+       "matn": "Tortga shamlarni qo'yamiz va sanaymiz: [en]one, two, three, four, five![/en] Besh sham! Puflaganday qil! Endi tortdan tatib ko'ramiz — [en]Yummy![/en]",
+       "doska": "🕯️🕯️🕯️🕯️🕯️\n🎂 cake\n😋 Yummy!",
        "sodda": "Birgina so'z: [en]cake[/en]… [en]Yummy![/en]",
        "boshqa_usul": "Loy yoki plastilindan tort yasa va unga sham qo'yib, inglizcha sana!",
        "matn_en": "Put candles on the cake and count: one, two, three, four, five! Blow! Now eat the cake — Yummy!",
@@ -2539,7 +2596,7 @@
        "emoji": "🍳",
        "image": "en56-u5-kitchen.png",
        "image_prompt": "A bright kitchen with a stove and a frying pan, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "sentence": "Mum is in the kitchen."
+       "sentence": "Dad is in the kitchen."
       },
       {
        "say": "bedroom",
@@ -2853,11 +2910,11 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎵 Ob-havo qo'shig'i",
-       "matn": "Kuylaymiz: [en]What's the weather like today? It's sunny, it's sunny, hooray![/en] Keyin [en]rainy[/en] va [en]windy[/en] bilan ham kuyla!",
+       "matn": "Kuylaymiz: [en]What's the weather like? It's sunny, it's sunny, hooray![/en] Keyin [en]rainy[/en] va [en]windy[/en] bilan ham kuyla!",
        "doska": "What's the weather like?\nIt's sunny! ☀️ It's rainy! 🌧️ It's windy! 🌬️",
        "sodda": "Faqat javob: [en]sunny![/en] [en]rainy![/en]",
        "boshqa_usul": "Har tong derazadan qarab, havoni inglizcha ayt va taqvimga rasm chiz.",
-       "matn_en": "Let's sing: What's the weather like today? It's sunny, it's sunny, hooray! Now sing it with rainy and windy!",
+       "matn_en": "Let's sing: What's the weather like? It's sunny, it's sunny, hooray! Now sing it with rainy and windy!",
        "sarlavha_en": "🎵 Weather song"
       }
      ],
@@ -3058,11 +3115,11 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: sayrga chiqamiz",
-       "matn": "Kabu so'raydi: [en]What's the weather like?[/en] Sen: [en]It's rainy.[/en] Kabu: [en]Take your umbrella![/en] Keyin: [en]Look! A rainbow![/en]",
-       "doska": "— What's the weather like?\n— It's rainy. 🌧️\n— Take your umbrella! ☂️\n— Look! A rainbow! 🌈",
+       "matn": "Kabu so'raydi: [en]What's the weather like?[/en] Sen: [en]It's rainy.[/en] Kabu soyabonni ochadi: [en]Umbrella![/en] Keyin sen ko'rib qolasan: [en]Look! A rainbow![/en]",
+       "doska": "— What's the weather like?\n— It's rainy. 🌧️\n— Umbrella! ☂️\n— Look! A rainbow! 🌈",
        "sodda": "Qisqa: [en]rainy[/en] — [en]umbrella[/en].",
        "boshqa_usul": "Rostdan soyabonni oching (xonada ehtiyot bo'l!) va ayt: [en]umbrella![/en]",
-       "matn_en": "Kabutar: What's the weather like? Child: It's rainy. Kabutar: Take your umbrella! Child: Look! A rainbow!",
+       "matn_en": "Kabutar: What's the weather like? Child: It's rainy. Kabutar: Umbrella! Child: Look! A rainbow!",
        "sarlavha_en": "🎭 Dialog: Let's go out"
       }
      ],
@@ -3075,7 +3132,7 @@
        ],
        "answer": 0,
        "why": "Barakalla! Soyabon — [en]umbrella[/en].",
-       "q_en": "It's rainy. What do we take with us?"
+       "q_en": "It's rainy. What do we need?"
       }
      ],
      "intro_en": "It's rainy today, so I have an umbrella. Look! After the rain, I see a rainbow!"

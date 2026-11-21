@@ -74,7 +74,7 @@
        "q_en": "There are 12 eggs in the box. How many eggs?"
       }
      ],
-     "intro_en": "Hello, friends! I am Kabutar the bird. Today we count after ten: eleven, twelve, thirteen, fourteen!"
+     "intro_en": "Hello, friends! I am Kabu the robot. Today we count after ten: eleven, twelve, thirteen, fourteen!"
     },
     {
      "name": "O'n beshdan o'n yettigacha",
@@ -95,7 +95,7 @@
        "emoji": "1️⃣5️⃣",
        "image": "en67-u1-fifteen.png",
        "image_prompt": "Fifteen tulips in a row, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "sentence": "Fifteen apples are on the table."
+       "sentence": "There are fifteen apples on the table."
       },
       {
        "say": "sixteen",
@@ -141,7 +141,7 @@
        "q_en": "Sixteen. Which number is it?"
       }
      ],
-     "intro_en": "Hi, children! Kabutar is here again. Let's learn three new numbers: fifteen, sixteen and seventeen!"
+     "intro_en": "Hi, children! Kabu is here again. Let's learn three new numbers: fifteen, sixteen and seventeen!"
     },
     {
      "name": "Yigirmagacha sanaymiz",
@@ -171,7 +171,7 @@
        "emoji": "1️⃣9️⃣",
        "image": "en67-u1-nineteen.png",
        "image_prompt": "Nineteen colorful leaves, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "sentence": "Nineteen stars are in the sky."
+       "sentence": "There are nineteen stars in the sky."
       },
       {
        "say": "twenty",
@@ -188,7 +188,7 @@
        "turi": "topshiriq",
        "sarlavha": "🎵 Yigirma qo'shig'i",
        "matn": "Qo'shiq bilan sanaymiz: [en]eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty![/en] Oxirida baland sakra — [en]Hooray![/en]",
-       "doska": "11 12 13 14 15\n16 17 18 19 20 🎉",
+       "doska": "11 eleven  12 twelve  13 thirteen  14 fourteen  15 fifteen\n16 sixteen  17 seventeen  18 eighteen  19 nineteen  20 twenty 🎉",
        "sodda": "Uchta yangi son: [en]eighteen, nineteen, twenty[/en].",
        "boshqa_usul": "Qo'l va oyoq barmoqlarini birga sana — yigirmata chiqadi: [en]twenty![/en]",
        "matn_en": "Let's sing and count: eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty! Now jump up high — Hooray!",
@@ -254,13 +254,13 @@
      "extra": [
       {
        "turi": "topshiriq",
-       "sarlavha": "🎭 Dialog: nechta?",
-       "matn": "Kabu: [en]How many apples?[/en] Sen sana: [en]one, two, three… twelve![/en] Javob: [en]Twelve apples![/en] Endi sen so'ra: [en]How many pencils?[/en]",
-       "doska": "— How many apples? 🍎\n— Let's count! One, two, three…\n— Twelve apples!",
-       "sodda": "Faqat son bilan javob ber: [en]twelve![/en]",
-       "boshqa_usul": "Uyingdagi qoshiqlarni yoki qalamlarni sanab, inglizcha ayt.",
-       "matn_en": "Kabutar: How many apples? Child: One, two, three… twelve! Twelve apples! Now you ask: How many pencils?",
-       "sarlavha_en": "🎭 Dialog: How many?"
+       "sarlavha": "🧮 Birga sanaymiz",
+       "matn": "Savatda olmalar bor! [en]Let's count![/en] Har olmaga bitta barmoq ko'rsat: [en]one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve![/en] Nechta olma? [en]Twelve apples![/en] Endi o'zing so'ra: [en]How many apples?[/en]",
+       "doska": "🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎\n🧮 Let's count!\n❓ How many apples?\n1️⃣2️⃣ twelve apples",
+       "sodda": "Faqat oxirgi sonni ayt: [en]twelve![/en]",
+       "boshqa_usul": "Uyingdagi qoshiqlarni yoki yong'oqlarni sanab, inglizcha ayt.",
+       "matn_en": "Look, apples in the basket! Let's count, one finger for each apple: one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve! How many apples? Twelve apples! Now you ask: How many apples?",
+       "sarlavha_en": "🧮 Let's count together"
       }
      ],
      "tests": [
@@ -277,7 +277,7 @@
        "q_en": "How many stars can you see?"
       }
      ],
-     "intro_en": "Hi, friends! Kabutar loves counting. Let's count cats and stars together!"
+     "intro_en": "Hi, friends! Kabu loves counting. Let's count cats and stars together!"
     }
    ],
    "scenarios": [
@@ -322,7 +322,7 @@
       {
        "who": 0,
        "say": "Let's count! One, two, three… twelve!",
-       "uz": "keling, sanaymiz! bir, ikki, uch… o'n ikki!",
+       "uz": "qani, sanaymiz! bir, ikki, uch… o'n ikki!",
        "emoji": "🔢"
       },
       {
@@ -359,12 +359,12 @@
        "why_en": "Yes! Twelve eggs."
       },
       {
-       "q": "Sotuvchi nechta degan savolni qanday beradi?",
+       "q": "Sotuvchi sonni qanday so'raydi?",
        "q_en": "The seller asks about the number. What does the seller say?",
        "options": [
         "❓🔢 How many eggs?",
-        "📆❓ What day is it today?",
-        "🎂❓ How old are you?"
+        "🙏 Thank you!",
+        "👋 Goodbye!"
        ],
        "answer": 0,
        "why": "Barakalla! [en]How many eggs?[/en]",
@@ -497,7 +497,7 @@
        "q_en": "Which day is the last day of the week?"
       }
      ],
-     "intro_en": "Hello again! Kabutar knows four more days. Thursday, Friday, Saturday and Sunday. Let's say them together!"
+     "intro_en": "Hello again! Kabu knows four more days. Thursday, Friday, Saturday and Sunday. Let's say them together!"
     },
     {
      "name": "Bugun qaysi kun?",
@@ -546,7 +546,7 @@
        "doska": "— What day is it today?\n— Today is Friday.\n— And tomorrow?\n— Saturday!",
        "sodda": "Faqat kun nomi bilan javob ber: [en]Friday![/en]",
        "boshqa_usul": "Uyda taqvim qil: har kuni bitta katakka yulduz qo'yib, ayt: [en]Today is…[/en]",
-       "matn_en": "Kabutar: What day is it today? Child: Today is Friday. Kabutar: And tomorrow? Child: Saturday! Now you ask!",
+       "matn_en": "Kabu: What day is it today? Child: Today is Friday. Kabu: And tomorrow? Child: Saturday! Now you ask!",
        "sarlavha_en": "🎭 Dialog: At the calendar"
       }
      ],
@@ -564,12 +564,12 @@
        "q_en": "What day is it today? What does it mean?"
       }
      ],
-     "intro_en": "Hi, children! Every morning Kabutar asks: what day is it today? Let's learn to ask and answer!"
+     "intro_en": "Hi, children! Every morning Kabu asks: what day is it today? Let's learn to ask and answer!"
     },
     {
      "name": "Tong, kech va tun",
      "goal": "Bola morning, evening, night, weekend so'zlarini biladi",
-     "intro": "Tongda men uyg'onaman, kechqurun uyga qaytaman, tunda uxlayman, dam olish kunlari esa o'ynayman! Sening kuning qanday o'tadi?",
+     "intro": "Tongda men batareykamni zaryadlayman, kechqurun dam olaman, tunda uxlayman, dam olish kunlari esa o'ynayman! Sening kuning qanday o'tadi?",
      "items": [
       {
        "say": "morning",
@@ -677,9 +677,9 @@
       },
       {
        "who": 0,
-       "say": "On Monday you go to school by bus.",
-       "uz": "dushanbada avtobusda maktabga borasan",
-       "emoji": "🚌🏫"
+       "say": "On Monday you play with your friends.",
+       "uz": "dushanbada do'stlaring bilan o'ynaysan",
+       "emoji": "👫"
       },
       {
        "who": 1,
@@ -689,14 +689,14 @@
       },
       {
        "who": 0,
-       "say": "On Saturday we visit Granny.",
+       "say": "On Saturday we go to Granny.",
        "uz": "shanbada buvinikiga boramiz",
        "emoji": "👵"
       },
       {
        "who": 1,
-       "say": "Hooray! And on Sunday we play at the weekend!",
-       "uz": "hurra! yakshanba dam olish kunida o'ynaymiz!",
+       "say": "Hooray! On Sunday we play!",
+       "uz": "hurra! yakshanbada o'ynaymiz!",
        "emoji": "🎉"
       }
      ],
@@ -717,14 +717,13 @@
        "q": "Shanba kuni ular nima qiladi?",
        "q_en": "What do they do on Saturday?",
        "options": [
-        "👵 They visit Granny.",
-        "🏫 They go to school.",
-        "🌙 They sleep all day.",
-        "🚢 They go by ship."
+        "👵 They go to Granny.",
+        "🛏️ They sleep.",
+        "🎨 They draw."
        ],
        "answer": 0,
-       "why": "Barakalla! [en]They visit Granny.[/en]",
-       "why_en": "Well done! They visit Granny."
+       "why": "Barakalla! [en]They go to Granny.[/en]",
+       "why_en": "Well done! They go to Granny."
       }
      ]
     }
@@ -870,12 +869,12 @@
        "q_en": "Who flies a plane in the sky?"
       }
      ],
-     "intro_en": "Hi, children! Some jobs are very brave. Let's meet the hero jobs with Kabutar!"
+     "intro_en": "Hi, children! Some jobs are very brave. Let's meet the hero jobs with Kabu!"
     },
     {
      "name": "Kim bo'lmoqchisan?",
      "goal": "Bola «He is / She is a…» deydi va orzusidagi kasbni aytadi",
-     "intro": "Katta bo'lsam, pochtachi bo'lmoqchiman — xat tashiyman! Sen kim bo'lmoqchisan? Qani, orzularimizni inglizcha aytamiz.",
+     "intro": "Katta bo'lsam, pochtachi robot bo'lmoqchiman — xat tashiyman! Sen kim bo'lmoqchisan? Qani, orzularimizni inglizcha aytamiz.",
      "items": [
       {
        "say": "He is a doctor.",
@@ -916,10 +915,10 @@
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: orzularim",
        "matn": "Kabu: [en]What do you want to be?[/en] Sen: [en]I want to be a doctor.[/en] yoki [en]a teacher[/en], [en]a pilot[/en], [en]a cook[/en]. Endi do'stingdan so'ra!",
-       "doska": "— What do you want to be?\n— I want to be a …\n🧑‍⚕️ 🧑‍🏫 🧑‍✈️ 🧑‍🍳 👷",
+       "doska": "— What do you want to be?\n— I want to be a …\n🧑‍⚕️ doctor  🧑‍🏫 teacher  🧑‍✈️ pilot  🧑‍🍳 cook  👷 builder",
        "sodda": "Faqat kasb nomi: [en]doctor![/en] [en]pilot![/en]",
        "boshqa_usul": "Orzuingdagi kasb rasmini chiz va ostiga ayt: [en]I want to be a…[/en]",
-       "matn_en": "Kabutar: What do you want to be? Child: I want to be a doctor. Or a teacher, a pilot, a cook. Now ask your friend!",
+       "matn_en": "Kabu: What do you want to be? Child: I want to be a doctor. Or a teacher, a pilot, a cook. Now ask your friend!",
        "sarlavha_en": "🎭 Dialog: My dream"
       }
      ],
@@ -937,7 +936,7 @@
        "q_en": "What do you want to be? What is a good answer?"
       }
      ],
-     "intro_en": "Hello, friends! Kabutar wants to be a pilot. What do you want to be? Let's talk about it!"
+     "intro_en": "Hello, friends! Kabu wants to be a pilot. What do you want to be? Let's talk about it!"
     },
     {
      "name": "Kim qayerda ishlaydi?",
@@ -1003,7 +1002,7 @@
        "q_en": "Where does a teacher work?"
       }
      ],
-     "intro_en": "Hi, friends! Where do people work? Let's find out with Kabutar!"
+     "intro_en": "Hi, friends! Where do people work? Let's find out with Kabu!"
     }
    ],
    "scenarios": [
@@ -1041,15 +1040,15 @@
       },
       {
        "who": 0,
-       "say": "How old are you, Anvar?",
-       "uz": "necha yoshdasan, Anvar?",
-       "emoji": "🎂❓"
+       "say": "How are you, Anvar?",
+       "uz": "qalaysan, Anvar?",
+       "emoji": "🙂❓"
       },
       {
        "who": 1,
-       "say": "I am six.",
-       "uz": "men olti yoshdaman",
-       "emoji": "6️⃣"
+       "say": "I'm fine, thank you.",
+       "uz": "yaxshiman, rahmat.",
+       "emoji": "😊"
       },
       {
        "who": 0,
@@ -1065,8 +1064,8 @@
       },
       {
        "who": 0,
-       "say": "Well done! Goodbye, see you!",
-       "uz": "barakalla! xayr, ko'rishguncha!",
+       "say": "Very good! Goodbye, Anvar!",
+       "uz": "juda yaxshi! xayr, Anvar!",
        "emoji": "👋"
       }
      ],
@@ -1287,7 +1286,7 @@
         "🚑 ambulance",
         "🚒 fire engine",
         "🚕 taxi",
-        "🚜 farm"
+        "🚌 bus"
        ],
        "answer": 0,
        "why": "To'g'ri! Tez yordam — [en]ambulance[/en].",
@@ -1342,11 +1341,11 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🚦 Svetofor o'yini",
-       "matn": "Qizil chiroq — [en]Stop![/en] — qotib qol! Yashil chiroq — [en]Go![/en] — joyingda yur! Men aytaman: [en]Go! Go! Stop![/en] Kim adashmaydi?",
-       "doska": "🔴 Stop!\n🟢 Go!",
+       "matn": "Svetofor o'yini! Qizil chiroq — [en]Stop![/en] — qotib qol! Yashil chiroq — [en]Go![/en] — [en]I walk.[/en] deb joyingda yur! Men chiroq rangini aytaman, sen ayt va harakat qil!",
+       "doska": "🛑 Stop! — qizil chiroq 🔴\n🚶 I walk. — yashil chiroq 🟢",
        "sodda": "Faqat [en]Stop![/en] eshitsang — to'xta.",
        "boshqa_usul": "Ko'chada kattalar bilan yurganda svetoforni ko'rib ayt: [en]Stop![/en] yoki [en]Go![/en]",
-       "matn_en": "Red light — Stop! Don't move! Green light — Go! Walk on the spot! Listen: Go! Go! Stop! Who is right every time?",
+       "matn_en": "Traffic light game! Red light — Stop! Don't move! Green light — Go! Say: I walk, and walk on the spot! I say the colour, you say it and act!",
        "sarlavha_en": "🚦 Traffic light game"
       }
      ],
@@ -1372,9 +1371,9 @@
      "name": "Avtobusda sayohat",
      "name_en": "A bus ride",
      "emoji": "🚌",
-     "goal": "Bola avtobusda odob bilan salomlashadi, yo'nalishni so'raydi va xavfsizlik qoidasini aytadi",
-     "intro": "Buvimiz bilan avtobusda parkka boramiz.",
-     "intro_en": "We go to the park by bus with Granny. Let's get on the bus!",
+     "goal": "Bola avtobusda odob bilan salomlashadi, qayerga ketayotganini so'raydi va rahmat aytadi",
+     "intro": "Buvimiz bilan avtobusda do'konga boramiz.",
+     "intro_en": "We go to the shop by bus with Granny. Let's get on the bus!",
      "roles": [
       "Haydovchi",
       "Bola"
@@ -1385,13 +1384,13 @@
      ],
      "scene": {
       "image": "en67-s4-bus-ride.png",
-      "image_prompt": "A child and grandmother getting on a colorful city bus at a bus stop, a friendly bus driver waving, cute cartoon scene for kids, soft flat colors, no text, square"
+      "image_prompt": "A child and grandmother getting on a colorful city bus, a friendly bus driver waving, a shop and a fire engine in the street, cute cartoon scene for kids, soft flat colors, no text, square"
      },
      "dialog": [
       {
        "who": 1,
-       "say": "Hello! Is this bus to the park?",
-       "uz": "salom! bu avtobus parkka boradimi?",
+       "say": "Hello! Is this bus to the shop?",
+       "uz": "salom! bu avtobus do'konga boradimi?",
        "emoji": "🚌❓"
       },
       {
@@ -1408,26 +1407,26 @@
       },
       {
        "who": 0,
-       "say": "Sit down, please. We go now.",
-       "uz": "o'tir, iltimos. hozir yuramiz",
-       "emoji": "🪑"
+       "say": "We go now. Look! A police car!",
+       "uz": "hozir yuramiz. qarang! politsiya mashinasi!",
+       "emoji": "🚓"
       },
       {
        "who": 1,
-       "say": "How many stops to the park?",
-       "uz": "parkkacha nechta bekat?",
-       "emoji": "❓🔢"
+       "say": "A taxi and a bike too!",
+       "uz": "taksi va velosiped ham bor!",
+       "emoji": "🚕🚲"
       },
       {
        "who": 0,
-       "say": "Three stops. Here is the park. Stop!",
-       "uz": "uchta bekat. mana, park. to'xtadik!",
-       "emoji": "🛑🌳"
+       "say": "Here is the shop. Get off, please!",
+       "uz": "mana, do'kon. tushing, iltimos!",
+       "emoji": "🏪"
       },
       {
        "who": 1,
-       "say": "Thank you! Goodbye, see you!",
-       "uz": "rahmat! xayr, ko'rishguncha!",
+       "say": "Thank you! Goodbye!",
+       "uz": "rahmat! xayr!",
        "emoji": "👋"
       }
      ],
@@ -1436,30 +1435,17 @@
        "q": "Bola qayerga boryapti?",
        "q_en": "Where does the child go?",
        "options": [
-        "🌳 to the park",
+        "🏪 to the shop",
         "🏥 to the hospital",
         "🏫 to school"
        ],
        "answer": 0,
-       "why": "To'g'ri! [en]to the park[/en]",
-       "why_en": "Yes! To the park."
+       "why": "To'g'ri! [en]to the shop[/en]",
+       "why_en": "Yes! To the shop."
       },
       {
-       "q": "Haydovchi o'tirishni qanday aytadi?",
-       "q_en": "The driver wants you to sit. What does he say?",
-       "options": [
-        "🪑 Sit down, please.",
-        "🧍 Stand up!",
-        "📖 Open your book!",
-        "🙋 Raise your hand!"
-       ],
-       "answer": 0,
-       "why": "Barakalla! [en]Sit down, please.[/en]",
-       "why_en": "Well done! Sit down, please."
-      },
-      {
-       "q": "Bola nimani ko'rdi?",
-       "q_en": "What does the child see?",
+       "q": "Bola avval nimani ko'rdi?",
+       "q_en": "What does the child see first?",
        "options": [
         "🚒 a fire engine",
         "🚁 a helicopter",
@@ -1468,6 +1454,18 @@
        "answer": 0,
        "why": "Ofarin! [en]a fire engine[/en]",
        "why_en": "Great! A fire engine."
+      },
+      {
+       "q": "Haydovchi qaysi mashinani ko'rsatdi?",
+       "q_en": "Which car does the driver show?",
+       "options": [
+        "🚓 a police car",
+        "🚑 an ambulance",
+        "🚕 a taxi"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [en]a police car[/en]",
+       "why_en": "Well done! A police car."
       }
      ]
     }
@@ -1575,11 +1573,11 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🔍 Portfelda nima bor?",
-       "matn": "Kabu so'raydi: [en]What's in your bag?[/en] Sen ko'rsatib ayt: [en]a book, a pencil, a ruler, crayons, scissors, a notebook![/en] Hammasini topdingmi?",
-       "doska": "What's in your bag? 🎒\n📖 ✏️ 🖊️ 📏 🖍️ ✂️ 📓",
+       "matn": "Kabu so'raydi: [en]What's in your bag?[/en] Sen ko'rsatib ayt: [en]a ruler, crayons, scissors, a notebook![/en] Hammasini ko'rsatdingmi?",
+       "doska": "🎒 What's in your bag?\n📏 ruler\n🖍️ crayons\n✂️ scissors\n📓 notebook",
        "sodda": "Uchtasi: [en]ruler, crayons, notebook[/en].",
        "boshqa_usul": "Ko'zingni yumib portfeldan bitta narsani ol — ushlab, nomini ayt!",
-       "matn_en": "Kabutar: What's in your bag? Child: A book, a pencil, a ruler, crayons, scissors, a notebook! Did you find them all?",
+       "matn_en": "Kabu: What's in your bag? Child: A book, a pencil, a ruler, crayons, scissors, a notebook! Did you find them all?",
        "sarlavha_en": "🔍 What's in the bag?"
       }
      ],
@@ -1597,7 +1595,7 @@
        "q_en": "What do we cut paper with?"
       }
      ],
-     "intro_en": "Hi, children! Kabutar has a ruler, crayons, scissors and a notebook. Let's learn these words!"
+     "intro_en": "Hi, children! Kabu has a ruler, crayons, scissors and a notebook. Let's learn these words!"
     },
     {
      "name": "O'rningdan tur!",
@@ -1671,7 +1669,7 @@
        "q_en": "The teacher says: Sit down! What do we do?"
       }
      ],
-     "intro_en": "Hello, class! Kabutar is your teacher today. Listen and do what I say!"
+     "intro_en": "Hello, class! Kabu is your teacher today. Listen and do what I say!"
     },
     {
      "name": "Tingla va qara!",
@@ -1745,7 +1743,7 @@
        "q_en": "You want to answer. What does the teacher say?"
       }
      ],
-     "intro_en": "Hi, friends! Good pupils listen and look. Let's learn more class words with Kabutar!"
+     "intro_en": "Hi, friends! Good pupils listen and look. Let's learn more class words with Kabu!"
     }
    ],
    "scenarios": [
@@ -1801,20 +1799,20 @@
       },
       {
        "who": 0,
-       "say": "Who knows the answer? Raise your hand!",
-       "uz": "javobni kim biladi? qo'lingni ko'tar!",
-       "emoji": "🙋"
+       "say": "Look! What is this? Raise your hand!",
+       "uz": "qara! bu nima? qo'lingni ko'tar!",
+       "emoji": "🙋❓"
       },
       {
        "who": 1,
-       "say": "Me! I know!",
-       "uz": "men! men bilaman!",
-       "emoji": "✋"
+       "say": "Me! It's a ruler!",
+       "uz": "men! bu chizg'ich!",
+       "emoji": "📏"
       },
       {
        "who": 0,
-       "say": "Well done, Malika!",
-       "uz": "barakalla, Malika!",
+       "say": "Very good, Malika!",
+       "uz": "juda yaxshi, Malika!",
        "emoji": "🌟"
       }
      ],
@@ -1904,7 +1902,7 @@
        "doska": "— Can you swim? 🏊\n— Yes, I can. ✅\n— Can you fly? 🐦\n— No, I can't. ❌",
        "sodda": "Faqat [en]Yes[/en] ✅ yoki [en]No[/en] ❌ deng.",
        "boshqa_usul": "Oila a'zolaringdan so'ra: [en]Can you dance?[/en] [en]Can you sing?[/en]",
-       "matn_en": "Kabutar: Can you swim? Child: Yes, I can. Kabutar: Can you fly? Child: No, I can't! Now you ask Kabutar: Can you jump?",
+       "matn_en": "Kabu: Can you swim? Child: Yes, I can. Kabu: Can you fly? Child: No, I can't! Now you ask Kabu: Can you jump?",
        "sarlavha_en": "🎭 Dialog: Can you?"
       }
      ],
@@ -1933,7 +1931,7 @@
        "q_en": "Can you swim? You can swim. What do you say?"
       }
      ],
-     "intro_en": "Hello, friends! Can you swim? Can you fly? Let's ask and answer with Kabutar!"
+     "intro_en": "Hello, friends! Can you swim? Can you fly? Let's ask and answer with Kabu!"
     },
     {
      "name": "Velosiped va futbol",
@@ -2007,7 +2005,7 @@
        "q_en": "Ride a bike. Which picture is it?"
       }
      ],
-     "intro_en": "Hi, children! Kabutar loves sports. Let's learn to climb, ride a bike, play football and skate!"
+     "intro_en": "Hi, children! Kabu loves sports. Let's learn to climb, ride a bike, play football and skate!"
     },
     {
      "name": "Hayvonlar nima qila oladi?",
@@ -2057,7 +2055,7 @@
        "turi": "topshiriq",
        "sarlavha": "🐾 Hayvonlar paradi",
        "matn": "Sen hayvonga aylanasan! [en]A frog can jump![/en] — sakra! [en]A bird can fly![/en] — qanot qoq! [en]A fish can swim![/en] — suz! [en]A snake can't walk![/en] — sudralib yur!",
-       "doska": "🐸 jump  🐦 fly\n🐟 swim  🐍 can't walk",
+       "doska": "🐸 A frog can jump.\n🐦 A bird can fly.\n🐟 A fish can swim.\n🐍 A snake can't walk.",
        "sodda": "Ikkita: [en]A bird can fly.[/en] [en]A fish can swim.[/en]",
        "boshqa_usul": "Hayvon rasmini chiz va ostiga ayt: u nima qila oladi?",
        "matn_en": "Be an animal! A frog can jump — jump! A bird can fly — flap your arms! A fish can swim — swim! A snake can't walk — crawl!",
@@ -2130,7 +2128,7 @@
        "doska": "— Can you help me? 🤲\n— Of course! 👌\n— Thank you! Let's play! 🎲\n— Well done! 🏅",
        "sodda": "Ikki ibora: [en]Can you help me?[/en] — [en]Of course![/en]",
        "boshqa_usul": "Uyda kattalarga yordam taklif qil va ayt: [en]Of course![/en]",
-       "matn_en": "Kabutar: Can you help me? Child: Of course! We carry the seeds together. Kabutar: Thank you! Let's play! At the end: Well done!",
+       "matn_en": "Kabu: Can you help me? Child: Of course! We carry the box together. Kabu: Thank you! Let's play! At the end: Well done!",
        "sarlavha_en": "🎭 Dialog: Friends"
       }
      ],
@@ -2193,7 +2191,7 @@
       {
        "who": 1,
        "say": "Let's play football!",
-       "uz": "keling, futbol o'ynaymiz!",
+       "uz": "qani, futbol o'ynaymiz!",
        "emoji": "⚽"
       },
       {
@@ -2235,7 +2233,7 @@
        "why_en": "Yes! He can't skate."
       },
       {
-       "q": "Do'sting Can you help me? desa, nima deysan?",
+       "q": "Do'sting [en]Can you help me?[/en] desa, nima deysan?",
        "q_en": "Your friend says: Can you help me? What do you say?",
        "options": [
         "👌 Of course!",
@@ -2321,7 +2319,7 @@
        "q_en": "The seller gives you an apple and says: Here you are. What do you say?"
       }
      ],
-     "intro_en": "Hello, friends! Let's play shop! Kabutar is the seller. What do you want?"
+     "intro_en": "Hello, friends! Let's play shop! Kabu is the seller. What do you want?"
     },
     {
      "name": "Nechta kerak?",
@@ -2388,7 +2386,7 @@
        "q_en": "Someone says Thank you! What is the answer?"
       }
      ],
-     "intro_en": "Hi, friends! In the shop we say how many we want. Let's buy bananas with Kabutar!"
+     "intro_en": "Hi, friends! In the shop we say how many we want. Let's buy bananas with Kabu!"
     },
     {
      "name": "Sabzavot rastasi",
@@ -2433,7 +2431,7 @@
        "turi": "topshiriq",
        "sarlavha": "📝 Xarid ro'yxati",
        "matn": "Onamning ro'yxati: [en]three carrots, two tomatoes, four potatoes, ten eggs[/en]. Sotuvchidan so'ra: [en]Three carrots, please![/en] Hammasini oldik!",
-       "doska": "🥕🥕🥕 three carrots\n🍅🍅 two tomatoes\n🥔🥔🥔🥔 four potatoes\n🥚 ten eggs",
+       "doska": "🥕🥕🥕 three carrots\n🍅🍅 two tomatoes\n🥔🥔🥔🥔 four potatoes\n🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚 ten eggs",
        "sodda": "Bittadan so'ra: [en]Carrots, please![/en]",
        "boshqa_usul": "Oshxonada kattalar bilan sabzavotlarni sana va inglizcha nomla.",
        "matn_en": "Mum's list: three carrots, two tomatoes, four potatoes, ten eggs. Ask the seller: Three carrots, please! We have it all!",
@@ -2501,7 +2499,7 @@
        "turi": "topshiriq",
        "sarlavha": "🛍️ Katta do'kon o'yini",
        "matn": "[en]Hello! Can I help you?[/en] — [en]Two tomatoes, please.[/en] — [en]Here you are.[/en] — [en]Thank you! Here is the money.[/en] — [en]Goodbye, see you![/en] Endi sen sotuvchisan!",
-       "doska": "— Hello! Can I help you?\n— Two tomatoes, please. 🍅🍅\n— Here you are.\n— Thank you! 🪙\n— Goodbye, see you! 👋",
+       "doska": "— Hello! Can I help you?\n— Two tomatoes, please. 🍅🍅\n— Here you are.\n— Thank you! 🪙\n— Goodbye, see you! 👋\n🪙 money",
        "sodda": "Uch ibora: [en]please[/en], [en]Thank you[/en], [en]Goodbye[/en].",
        "boshqa_usul": "Qog'ozdan pul yasab, oila bilan bozor o'yna!",
        "matn_en": "Seller: Hello! Can I help you? Child: Two tomatoes, please. Seller: Here you are. Child: Thank you! Here is the money. Seller: Goodbye, see you! Now you are the seller!",
@@ -2549,7 +2547,7 @@
       {
        "who": 0,
        "say": "Hello! Can I help you?",
-       "uz": "salom! sizga nima kerak?",
+       "uz": "salom! senga nima kerak?",
        "emoji": "🧑‍💼"
       },
       {
@@ -2616,7 +2614,7 @@
        "why_en": "Well done! In the basket."
       },
       {
-       "q": "Rahmat!ga sotuvchi nima deb javob berdi?",
+       "q": "Bola [en]Thank you![/en] dedi. Sotuvchi nima deb javob berdi?",
        "q_en": "The child says Thank you! What does the seller say?",
        "options": [
         "😊 You're welcome.",
@@ -2638,7 +2636,7 @@
     {
      "name": "Ismim va yoshim",
      "goal": "Bola ismini va yoshini aytadi, «How old are you?» deb so'raydi",
-     "intro": "Bip-bip! Men bir yoshdaman — kabutarlar uchun bu katta yosh! Sen necha yoshdasan? Qani, o'zimiz haqimizda inglizcha gapirishni boshlaymiz.",
+     "intro": "Bip-bip! Men bir yoshdaman — robotlar uchun bu hali kichkina yosh! Sen necha yoshdasan? Qani, o'zimiz haqimizda inglizcha gapirishni boshlaymiz.",
      "items": [
       {
        "say": "My name is Malika.",
@@ -2683,7 +2681,7 @@
        "doska": "— What's your name?\n— My name is …\n— How old are you?\n— I am six. / I am seven.",
        "sodda": "Faqat ikki javob: isming va [en]I am six[/en].",
        "boshqa_usul": "Do'stlaring bilan tanishib, ularning ismi va yoshini inglizcha so'ra.",
-       "matn_en": "Kabutar: Hello! What's your name? Child: My name is… Kabutar: How old are you? Child: I am six. Or: I am seven.",
+       "matn_en": "Kabu: Hello! What's your name? Child: My name is… Kabu: How old are you? Child: I am six. Or: I am seven.",
        "sarlavha_en": "🎭 Dialog: Nice to meet you"
       }
      ],
@@ -2701,12 +2699,12 @@
        "q_en": "How old are you? What does it mean?"
       }
      ],
-     "intro_en": "Hello, friends! My name is Kabutar. What is your name? How old are you?"
+     "intro_en": "Hello, friends! My name is Kabu. What is your name? How old are you?"
     },
     {
      "name": "Qayerda yashayman",
      "goal": "Bola qayerda yashashini va qayerdan ekanini aytadi",
-     "intro": "Bip-bip! Men Samarqandda, Registon yonidagi daraxtda yashayman! Sen qayerda yashaysan? Qani, shahrimiz va vatanimiz haqida inglizcha gapiramiz.",
+     "intro": "Bip-bip! Men Samarqandda, Registon yonida yashayman! Sen qayerda yashaysan? Qani, shahrimiz va vatanimiz haqida inglizcha gapiramiz.",
      "items": [
       {
        "say": "house",
@@ -2747,14 +2745,14 @@
        "turi": "topshiriq",
        "sarlavha": "🗺️ Mening shahrim",
        "matn": "Kabu so'raydi: [en]Where do you live?[/en] Sen shahringni ayt: [en]I live in Samarkand.[/en] yoki [en]I live in Tashkent.[/en] Keyin: [en]I am from Uzbekistan![/en]",
-       "doska": "— Where do you live?\n— I live in …\n— I am from Uzbekistan! 🇺🇿",
+       "doska": "— Where do you live?\n— I live in … 🕌 Samarkand\n— I am from Uzbekistan! 🇺🇿",
        "sodda": "Faqat shahar nomi: [en]Samarkand![/en]",
        "boshqa_usul": "Shahringning chiroyli joyini chiz va ostiga ayt: [en]I live in…[/en]",
-       "matn_en": "Kabutar: Where do you live? Child: I live in Samarkand. Or: I live in Tashkent. Then say: I am from Uzbekistan!",
+       "matn_en": "Kabu: Where do you live? Child: I live in Samarkand. Or: I live in Tashkent. Then say: I am from Uzbekistan!",
        "sarlavha_en": "🗺️ My city"
       }
      ],
-     "intro_en": "Hi, children! Kabutar lives in a big tree. Where do you live? Let's learn to say it!"
+     "intro_en": "Hi, children! Kabu lives in Samarkand, near the Registan. Where do you live? Let's learn to say it!"
     },
     {
      "name": "Men yaxshi ko'raman",
@@ -2800,7 +2798,7 @@
        "turi": "topshiriq",
        "sarlavha": "❤️ So'rovnoma",
        "matn": "Do'stlaringdan so'ra: [en]What do you like?[/en] Ular javob bersin: [en]I like football.[/en] [en]I like cake.[/en] Keyin: [en]My favourite colour is…[/en] Kim nimani yaxshi ko'rar ekan?",
-       "doska": "— What do you like?\n— I like … ❤️\n— My favourite colour is … 🎨\n— My favourite food is … 🍛",
+       "doska": "— What do you like?\n— I like … ❤️ ⚽ football\n— My favourite colour is … 🎨\n— My favourite food is … 🍛",
        "sodda": "Faqat bitta gap: [en]I like…[/en]",
        "boshqa_usul": "Oilangdagi har kishining sevimli ovqatini so'ra va rasmini chiz.",
        "matn_en": "Ask your friends: What do you like? Friend: I like football. I like cake. Then say: My favourite colour is… Who likes what?",
@@ -2821,7 +2819,7 @@
        "q_en": "My favourite food is plov. Which picture is it?"
       }
      ],
-     "intro_en": "Hello, friends! Kabutar likes seeds and songs. What do you like? Let's tell each other!"
+     "intro_en": "Hello, friends! Kabu likes batteries and songs. What do you like? Let's tell each other!"
     },
     {
      "name": "Bu — men!",
@@ -2868,7 +2866,7 @@
        "turi": "topshiriq",
        "sarlavha": "🎤 Katta chiqish: All about me",
        "matn": "Sahnaga chiq va ayt: [en]Hello! This is me! My name is… I am six. I live in Samarkand. I have a sister. I can swim. I like football. Nice to meet you![/en]",
-       "doska": "Hello! This is me!\nMy name is … I am six.\nI live in … I have a …\nI can … I like …\nNice to meet you!",
+       "doska": "Hello! This is me!\nMy name is … I am six.\nI live in … I have a … 👧 sister\nI can … I like …\nNice to meet you!",
        "sodda": "Uch gap yetarli: [en]My name is… I am six. I like…[/en]",
        "boshqa_usul": "O'zing haqingda kitobcha chiz: har sahifada bitta gap — rasm bilan!",
        "matn_en": "Go on stage and say: Hello! This is me! My name is… I am six. I live in Samarkand. I have a sister. I can swim. I like football. Nice to meet you!",
@@ -3104,7 +3102,7 @@
        "emoji": "🕷️👎",
        "image": "en56-u7-dislike-spiders.png",
        "image_prompt": "A child hiding from a small cartoon spider, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "sentence": "I don't like spiders. They are scary!"
+       "sentence": "I don't like spiders. They have eight legs!"
       },
       {
        "say": "I don't like the cold.",
@@ -3193,7 +3191,7 @@
        "doska": "— Do you like milk?\n— Yes, I do. 👍\n— Do you like spiders?\n— No, I don't. 👎",
        "sodda": "Faqat [en]Yes[/en] 👍 yoki [en]No[/en] 👎 deb javob ber.",
        "boshqa_usul": "Oila a'zolaringdan so'ra: [en]Do you like tea?[/en] Javoblarini sana!",
-       "matn_en": "Kabutar: Do you like milk? Child: Yes, I do. Kabutar: Do you like spiders? Child: No, I don't! Now you ask Kabutar!",
+       "matn_en": "Kabu: Do you like milk? Child: Yes, I do. Kabu: Do you like spiders? Child: No, I don't! Now you ask Kabu!",
        "sarlavha_en": "🎭 Dialog: Ask your friend"
       }
      ],
@@ -3203,7 +3201,7 @@
        "options": [
         "👍 Yes, I do.",
         "👎 No, I don't.",
-        "🙋 Goodbye!"
+        "👋 Goodbye!"
        ],
        "answer": 0,
        "why": "Ajoyib! Yoqsa — [en]Yes, I do.[/en]",
@@ -3215,7 +3213,7 @@
     {
      "name": "Eng sevimli narsam",
      "goal": "Bola sevimli rangi va o'yinchog'ini aytadi, oilasiga mehrini bildiradi",
-     "intro": "Bip-bip! Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun eng sevimli narsalarimiz haqida inglizcha gapiramiz.",
+     "intro": "Bip-bip! Mening eng sevimli rangim — ko'k, xuddi osmonday! Seniki qaysi? Bugun eng sevimli narsalarimiz haqida inglizcha gapiramiz.",
      "items": [
       {
        "say": "My favourite colour is blue.",
@@ -3334,7 +3332,7 @@
        "options": [
         "👍 Yes, I do.",
         "👎 No, I don't.",
-        "🙋 Goodbye!"
+        "👋 Goodbye!"
        ],
        "answer": 0,
        "why": "To'g'ri! [en]Yes, I do.[/en]",
@@ -3424,7 +3422,7 @@
        "q_en": "A girl shows her dog. What does she say?"
       }
      ],
-     "intro_en": "I have a nest and a little friend. What do you have? Let's tell!"
+     "intro_en": "I have a red ball. What do you have? Let's tell!"
     },
     {
      "name": "Men qila olaman",
@@ -3578,13 +3576,13 @@
      "intro": "Bip-bip! Sen shuncha ko'p so'z o'rganding! Endi sen kattasan! Qani, o'zing haqingda inglizcha gapirib, do'stlarga xayrlashishni o'rganamiz.",
      "items": [
       {
-       "say": "I am five.",
-       "uz": "men besh yoshdaman",
-       "emoji": "🖐️🎂",
-       "image": "en56-u8-i-am-five.png",
-       "image_prompt": "A child next to a birthday cake with five candles, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Besh barmoq ko'rsat!",
-       "sentence": "My name is Ali. I am five.",
+       "say": "I am six.",
+       "uz": "men olti yoshdaman",
+       "emoji": "6️⃣🎂",
+       "image": "en67-u8-i-am-six.png",
+       "image_prompt": "A happy child holding up six fingers next to a birthday cake with six candles, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Olti barmoq ko'rsat!",
+       "sentence": "My name is Ali. I am six.",
        "action_en": "Show five fingers!"
       },
       {
@@ -3612,7 +3610,7 @@
        "emoji": "🤝",
        "image": "en56-u8-see-you-soon.png",
        "image_prompt": "Two friends shaking hands goodbye, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "sentence": "Goodbye, Kabutar! See you soon!",
+       "sentence": "Goodbye, Kabu! See you soon!",
        "action_en": "Wave goodbye!"
       }
      ],
@@ -3620,28 +3618,28 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎤 Men haqimda",
-       "matn": "Mikrofon ol va sahnaga chiq! Ayt: [en]Hello! My name is…[/en] [en]I am five.[/en] [en]I have a cat.[/en] [en]I can dance.[/en] [en]I like apples.[/en] Oxirida: [en]See you soon![/en]",
-       "doska": "Hello! My name is …\nI am five. I have a …\nI can … I like …\nSee you soon!",
-       "sodda": "Faqat ikki gap: [en]My name is…[/en] va [en]I am five.[/en]",
+       "matn": "Mikrofon ol va sahnaga chiq! Ayt: [en]Hello! My name is…[/en] [en]I am six.[/en] [en]I have a cat.[/en] [en]I can dance.[/en] [en]I like apples.[/en] Oxirida: [en]See you soon![/en]",
+       "doska": "Hello! My name is …\nI am six. I have a …\nI can … I like …\nSee you soon!",
+       "sodda": "Faqat ikki gap: [en]My name is…[/en] va [en]I am six.[/en]",
        "boshqa_usul": "Hikoyangni telefonga yozib ol va oilangga ko'rsat!",
-       "matn_en": "Take the microphone and go on stage! Say: Hello! My name is… I am five. I have a cat. I can dance. I like apples. See you soon!",
+       "matn_en": "Take the microphone and go on stage! Say: Hello! My name is… I am six. I have a cat. I can dance. I like apples. See you soon!",
        "sarlavha_en": "🎤 All about me"
       }
      ],
      "tests": [
       {
-       "q": "Nechi yoshdasan? Besh yosh bo'lsa, nima deysan?",
+       "q": "Nechi yoshdasan? Olti yosh bo'lsa, nima deysan?",
        "options": [
-        "🖐️🎂 I am five.",
+        "6️⃣🎂 I am six.",
         "💪 I am big.",
-        "🔟 ten"
+        "7️⃣ I am seven."
        ],
        "answer": 0,
-       "why": "Barakalla! [en]I am five.[/en] — men besh yoshdaman.",
-       "q_en": "How old are you? You are five. What do you say?"
+       "why": "Barakalla! [en]I am six.[/en] — men olti yoshdaman.",
+       "q_en": "How old are you? You are six. What do you say?"
       }
      ],
-     "intro_en": "Hello, my big friends! You are five, and you know many English words. I am so happy!"
+     "intro_en": "Hello, my big friends! You are six, and you know many English words. I am so happy!"
     }
    ],
    "scenarios": [
@@ -3673,9 +3671,9 @@
       },
       {
        "who": 0,
-       "say": "I am five! Thank you!",
-       "uz": "besh yoshdaman! rahmat!",
-       "emoji": "🖐️"
+       "say": "I am six! Thank you!",
+       "uz": "olti yoshdaman! rahmat!",
+       "emoji": "6️⃣"
       },
       {
        "who": 1,
@@ -3686,7 +3684,7 @@
       {
        "who": 0,
        "say": "Thank you! I can dance. Let's dance!",
-       "uz": "rahmat! men raqs tusha olaman. keling, raqs tushamiz!",
+       "uz": "rahmat! men raqs tusha olaman. qani, raqs tushamiz!",
        "emoji": "💃"
       },
       {
@@ -3704,15 +3702,15 @@
      ],
      "questions": [
       {
-       "q": "Do'sting besh yoshda. U nima deydi?",
+       "q": "Do'sting olti yoshda. U nima deydi?",
        "q_en": "Your friend is five. What does he say?",
        "options": [
-        "🖐️🎂 I am five.",
-        "🔟 ten",
+        "6️⃣🎂 I am six.",
+        "7️⃣ I am seven.",
         "💪 I am big."
        ],
        "answer": 0,
-       "why": "To'g'ri! [en]I am five.[/en]",
+       "why": "To'g'ri! [en]I am six.[/en]",
        "why_en": "Yes! I am five."
       },
       {
@@ -4511,7 +4509,7 @@
        "options": [
         "❓ What's the matter?",
         "❓ What time is it?",
-        "❓ Where is the park?"
+        "❓🔢 How many?"
        ],
        "answer": 0,
        "why": "Barakalla! [en]What's the matter?[/en] — nima bo'ldi?",
@@ -4522,7 +4520,7 @@
        "q_en": "Laylo's head hurts. What does she say?",
        "options": [
         "🤢 I have a stomachache.",
-        "😋 It's delicious!",
+        "🤒 I'm sick.",
         "🤕 I have a headache."
        ],
        "answer": 2,
@@ -4533,9 +4531,9 @@
        "q": "Hamshira oxirida nima dedi?",
        "q_en": "What does the nurse say at the end?",
        "options": [
-        "✋ Wait!",
+        "🛑 Stop!",
         "💌 Get well soon!",
-        "⬅️ Turn left!"
+        "🙏 Thank you!"
        ],
        "answer": 1,
        "why": "Zo'r! [en]Get well soon![/en] — tezroq tuzal!",
@@ -4819,7 +4817,7 @@
       {
        "say": "Look left and right!",
        "uz": "chapga va o'ngga qara",
-       "emoji": "👀↔️",
+       "emoji": "👀👈👉",
        "image": "en67-u13-look-left-and-right.png",
        "image_prompt": "LAYLO looking left and right before crossing, soft 3D cartoon for kids, white background, no text, square",
        "action": "Chapga, keyin o'ngga qara!",
@@ -4840,7 +4838,7 @@
        "turi": "topshiriq",
        "sarlavha": "🎲 Svetofor o'yini",
        "matn": "O'yin! Men rang aytaman. Qizil — [en]Wait![/en] deb joyingda tur. Yashil — avval [en]Look left and right![/en] deb qara, keyin joyingda yur! Qizil! Yashil! Endi sen ayt: chiroq qizil bo'lsa, nima deymiz?",
-       "doska": "🚦 traffic light\n🔴 Wait!\n👀 Look left and right!\n🚏 bus stop",
+       "doska": "🚦 traffic light\n✋ Wait!\n👀👈👉 Look left and right!\n🚏 bus stop",
        "sodda": "Bitta so'z: [en]Wait![/en]",
        "boshqa_usul": "Ko'chada ota-onang bilan svetofor oldida to'xtab, [en]Wait! Look left and right![/en] deb ayt.",
        "matn_en": "Game! I say a colour. Red: say Wait! and stand still. Green: say Look left and right! and then walk on the spot! Red! Green! Now you tell me: the light is red. What do we say?",
@@ -4951,7 +4949,7 @@
        "options": [
         "❓ What's the matter?",
         "🗺️ Excuse me! Where is the zoo?",
-        "🫖 Would you like some tea?"
+        "🕰️❓ What time is it?"
        ],
        "answer": 1,
        "why": "Barakalla! [en]Excuse me! Where is the zoo?[/en] — kechirasiz, hayvonot bog'i qayerda?",
@@ -5139,9 +5137,9 @@
       {
        "q": "Ali palov yeyapti. U qo'liga nima oladi?",
        "options": [
-        "🔪 cut",
+        "🥣 bowl",
         "🥄 spoon",
-        "🚦 traffic light"
+        "🍵 cup"
        ],
        "answer": 1,
        "why": "To'g'ri! [en]spoon[/en] — qoshiq. Palovni qoshiq bilan yeymiz!",
@@ -5294,14 +5292,14 @@
       },
       {
        "who": 1,
-       "say": "Ali and I made it with Mum!",
-       "uz": "uni Ali ikkalamiz oyim bilan tayyorladik!",
+       "say": "We cut and mix the salad with Mum!",
+       "uz": "salatni oyim bilan to'g'rab, aralashtiramiz!",
        "emoji": "👫🥗"
       },
       {
        "who": 0,
-       "say": "Well done, children! You are good helpers!",
-       "uz": "barakalla, bolalar! yaxshi yordamchisizlar!",
+       "say": "Well done! You are good helpers!",
+       "uz": "barakalla! yaxshi yordamchisizlar!",
        "emoji": "🤗"
       }
      ],
@@ -6385,7 +6383,7 @@
        "turi": "topshiriq",
        "sarlavha": "🎤 Bitiruv sahnasi",
        "matn": "Sahnaga chiq va hammaga o'zingni tanishtir: [en]Hello! My name is…[/en] [en]I am six.[/en] [en]I live in…[/en] [en]I like…[/en] Oxirida baland ovozda ayt: [en]I'm ready for school![/en] Hamma qarsak chalib qichqiradi: [en]We did it![/en]",
-       "doska": "👋 Hello! My name is …\n🎂 I am six.\n🏠 I live in …\n❤️ I like …\n🎒 I'm ready for school!",
+       "doska": "👋 Hello! My name is …\n🎂 I am six.\n🏠 I live in …\n❤️ I like …\n🎒 I'm ready for school!\n🙌 We did it!",
        "sodda": "Faqat ikki gap ayt: [en]My name is…[/en] va [en]I'm ready for school![/en]",
        "boshqa_usul": "Oilang oldida kichik bitiruv konserti qil: o'zingni inglizcha tanishtir va diplom rasmini chiz.",
        "matn_en": "Go on the stage and tell everyone about you: Hello! My name is… I am six. I live in… I like… At the end say loudly: I'm ready for school! Everyone claps and shouts: We did it!",
@@ -6506,7 +6504,7 @@
        "q": "Ali qaysi ertakni gapirib berdi?",
        "q_en": "Which fairy tale did Ali tell?",
        "options": [
-        "🥬 The Giant Turnip",
+        "🥬 The Big Turnip",
         "📦 Zumrad and Qimmat",
         "🦁🐭 The Lion and the Mouse"
        ],

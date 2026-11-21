@@ -35,7 +35,7 @@ def check(paths):
                 groups = [g.strip().replace('️', '') for g in re.split(r'\s{2,}|\n+', r.get('doska', '')) if g.strip()]
                 keys = [PIC.match(g).group(1) if PIC.match(g) else g for g in groups]
                 keys = [k.replace('️', '') for k in keys]
-                pics = [k for k in keys if re.search(r'[\U0001F000-\U0001FFFF☀-➿]', k)]
+                pics = [k for k in keys if re.search(r'[\U0001F000-\U0001FFFF☀-➿\u20E3]', k)]
                 bad = [k for k in pics if k not in new]
                 if bad: errs.append(f"{where}: o'yin doskasida shu darsda o'tilmagan rasm {bad}")
                 if len(pics) - len(bad) < 2: errs.append(f"{where}: o'yinda 2 tadan kam nishon")

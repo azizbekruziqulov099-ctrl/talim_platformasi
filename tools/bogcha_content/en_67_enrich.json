@@ -31,7 +31,7 @@
    "intro_en": "Hi, children! Kabutar is here again. Let's learn three new numbers: fifteen, sixteen and seventeen!",
    "items": {
     "fifteen": {
-     "sentence": "Fifteen apples are on the table."
+     "sentence": "There are fifteen apples on the table."
     },
     "sixteen": {
      "sentence": "My brother is sixteen."
@@ -61,7 +61,7 @@
      "sentence": "There are eighteen children in my class."
     },
     "nineteen": {
-     "sentence": "Nineteen stars are in the sky."
+     "sentence": "There are nineteen stars in the sky."
     },
     "twenty": {
      "sentence": "I have twenty fingers and toes.",
@@ -104,8 +104,8 @@
    ],
    "extras_en": [
     {
-     "sarlavha_en": "🎭 Dialog: How many?",
-     "matn_en": "Kabutar: How many apples? Child: One, two, three… twelve! Twelve apples! Now you ask: How many pencils?"
+     "sarlavha_en": "🧮 Let's count together",
+     "matn_en": "Look, apples in the basket! Let's count, one finger for each apple: one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve! How many apples? Twelve apples! Now you ask: How many apples?"
     }
    ]
   },
@@ -430,7 +430,7 @@
    "extras_en": [
     {
      "sarlavha_en": "🚦 Traffic light game",
-     "matn_en": "Red light — Stop! Don't move! Green light — Go! Walk on the spot! Listen: Go! Go! Stop! Who is right every time?"
+     "matn_en": "Traffic light game! Red light — Stop! Don't move! Green light — Go! Say: I walk, and walk on the spot! I say the colour, you say it and act!"
     }
    ]
   },
@@ -958,12 +958,12 @@
      "why_en": "Yes! Twelve eggs."
     },
     {
-     "q": "Sotuvchi nechta degan savolni qanday beradi?",
+     "q": "Sotuvchi sonni qanday so'raydi?",
      "q_en": "The seller asks about the number. What does the seller say?",
      "options": [
       "❓🔢 How many eggs?",
-      "📆❓ What day is it today?",
-      "🎂❓ How old are you?"
+      "🙏 Thank you!",
+      "👋 Goodbye!"
      ],
      "answer": 0,
      "why": "Barakalla! [en]How many eggs?[/en]",
@@ -1012,9 +1012,9 @@
     },
     {
      "who": 0,
-     "say": "On Monday you go to school by bus.",
-     "uz": "dushanbada avtobusda maktabga borasan",
-     "emoji": "🚌🏫"
+     "say": "On Monday you play with your friends.",
+     "uz": "dushanbada do'stlaring bilan o'ynaysan",
+     "emoji": "👫"
     },
     {
      "who": 1,
@@ -1024,14 +1024,14 @@
     },
     {
      "who": 0,
-     "say": "On Saturday we visit Granny.",
+     "say": "On Saturday we go to Granny.",
      "uz": "shanbada buvinikiga boramiz",
      "emoji": "👵"
     },
     {
      "who": 1,
-     "say": "Hooray! And on Sunday we play at the weekend!",
-     "uz": "hurra! yakshanba dam olish kunida o'ynaymiz!",
+     "say": "Hooray! On Sunday we play!",
+     "uz": "hurra! yakshanbada o'ynaymiz!",
      "emoji": "🎉"
     }
    ],
@@ -1052,14 +1052,13 @@
      "q": "Shanba kuni ular nima qiladi?",
      "q_en": "What do they do on Saturday?",
      "options": [
-      "👵 They visit Granny.",
-      "🏫 They go to school.",
-      "🌙 They sleep all day.",
-      "🚢 They go by ship."
+      "👵 They go to Granny.",
+      "🛏️ They sleep.",
+      "🎨 They draw."
      ],
      "answer": 0,
-     "why": "Barakalla! [en]They visit Granny.[/en]",
-     "why_en": "Well done! They visit Granny."
+     "why": "Barakalla! [en]They go to Granny.[/en]",
+     "why_en": "Well done! They go to Granny."
     }
    ]
   },
@@ -1098,15 +1097,15 @@
     },
     {
      "who": 0,
-     "say": "How old are you, Anvar?",
-     "uz": "necha yoshdasan, Anvar?",
-     "emoji": "🎂❓"
+     "say": "How are you, Anvar?",
+     "uz": "qalaysan, Anvar?",
+     "emoji": "🙂❓"
     },
     {
      "who": 1,
-     "say": "I am six.",
-     "uz": "men olti yoshdaman",
-     "emoji": "6️⃣"
+     "say": "I'm fine, thank you.",
+     "uz": "yaxshiman, rahmat.",
+     "emoji": "😊"
     },
     {
      "who": 0,
@@ -1122,8 +1121,8 @@
     },
     {
      "who": 0,
-     "say": "Well done! Goodbye, see you!",
-     "uz": "barakalla! xayr, ko'rishguncha!",
+     "say": "Very good! Goodbye, Anvar!",
+     "uz": "juda yaxshi! xayr, Anvar!",
      "emoji": "👋"
     }
    ],
@@ -1160,9 +1159,9 @@
    "name": "Avtobusda sayohat",
    "name_en": "A bus ride",
    "emoji": "🚌",
-   "goal": "Bola avtobusda odob bilan salomlashadi, yo'nalishni so'raydi va xavfsizlik qoidasini aytadi",
-   "intro": "Buvimiz bilan avtobusda parkka boramiz.",
-   "intro_en": "We go to the park by bus with Granny. Let's get on the bus!",
+   "goal": "Bola avtobusda odob bilan salomlashadi, qayerga ketayotganini so'raydi va rahmat aytadi",
+   "intro": "Buvimiz bilan avtobusda do'konga boramiz.",
+   "intro_en": "We go to the shop by bus with Granny. Let's get on the bus!",
    "roles": [
     "Haydovchi",
     "Bola"
@@ -1173,13 +1172,13 @@
    ],
    "scene": {
     "image": "en67-s4-bus-ride.png",
-    "image_prompt": "A child and grandmother getting on a colorful city bus at a bus stop, a friendly bus driver waving, cute cartoon scene for kids, soft flat colors, no text, square"
+    "image_prompt": "A child and grandmother getting on a colorful city bus, a friendly bus driver waving, a shop and a fire engine in the street, cute cartoon scene for kids, soft flat colors, no text, square"
    },
    "dialog": [
     {
      "who": 1,
-     "say": "Hello! Is this bus to the park?",
-     "uz": "salom! bu avtobus parkka boradimi?",
+     "say": "Hello! Is this bus to the shop?",
+     "uz": "salom! bu avtobus do'konga boradimi?",
      "emoji": "🚌❓"
     },
     {
@@ -1196,26 +1195,26 @@
     },
     {
      "who": 0,
-     "say": "Sit down, please. We go now.",
-     "uz": "o'tir, iltimos. hozir yuramiz",
-     "emoji": "🪑"
+     "say": "We go now. Look! A police car!",
+     "uz": "hozir yuramiz. qarang! politsiya mashinasi!",
+     "emoji": "🚓"
     },
     {
      "who": 1,
-     "say": "How many stops to the park?",
-     "uz": "parkkacha nechta bekat?",
-     "emoji": "❓🔢"
+     "say": "A taxi and a bike too!",
+     "uz": "taksi va velosiped ham bor!",
+     "emoji": "🚕🚲"
     },
     {
      "who": 0,
-     "say": "Three stops. Here is the park. Stop!",
-     "uz": "uchta bekat. mana, park. to'xtadik!",
-     "emoji": "🛑🌳"
+     "say": "Here is the shop. Get off, please!",
+     "uz": "mana, do'kon. tushing, iltimos!",
+     "emoji": "🏪"
     },
     {
      "who": 1,
-     "say": "Thank you! Goodbye, see you!",
-     "uz": "rahmat! xayr, ko'rishguncha!",
+     "say": "Thank you! Goodbye!",
+     "uz": "rahmat! xayr!",
      "emoji": "👋"
     }
    ],
@@ -1224,30 +1223,17 @@
      "q": "Bola qayerga boryapti?",
      "q_en": "Where does the child go?",
      "options": [
-      "🌳 to the park",
+      "🏪 to the shop",
       "🏥 to the hospital",
       "🏫 to school"
      ],
      "answer": 0,
-     "why": "To'g'ri! [en]to the park[/en]",
-     "why_en": "Yes! To the park."
+     "why": "To'g'ri! [en]to the shop[/en]",
+     "why_en": "Yes! To the shop."
     },
     {
-     "q": "Haydovchi o'tirishni qanday aytadi?",
-     "q_en": "The driver wants you to sit. What does he say?",
-     "options": [
-      "🪑 Sit down, please.",
-      "🧍 Stand up!",
-      "📖 Open your book!",
-      "🙋 Raise your hand!"
-     ],
-     "answer": 0,
-     "why": "Barakalla! [en]Sit down, please.[/en]",
-     "why_en": "Well done! Sit down, please."
-    },
-    {
-     "q": "Bola nimani ko'rdi?",
-     "q_en": "What does the child see?",
+     "q": "Bola avval nimani ko'rdi?",
+     "q_en": "What does the child see first?",
      "options": [
       "🚒 a fire engine",
       "🚁 a helicopter",
@@ -1256,6 +1242,18 @@
      "answer": 0,
      "why": "Ofarin! [en]a fire engine[/en]",
      "why_en": "Great! A fire engine."
+    },
+    {
+     "q": "Haydovchi qaysi mashinani ko'rsatdi?",
+     "q_en": "Which car does the driver show?",
+     "options": [
+      "🚓 a police car",
+      "🚑 an ambulance",
+      "🚕 a taxi"
+     ],
+     "answer": 0,
+     "why": "Barakalla! [en]a police car[/en]",
+     "why_en": "Well done! A police car."
     }
    ]
   },
@@ -1312,20 +1310,20 @@
     },
     {
      "who": 0,
-     "say": "Who knows the answer? Raise your hand!",
-     "uz": "javobni kim biladi? qo'lingni ko'tar!",
-     "emoji": "🙋"
+     "say": "Look! What is this? Raise your hand!",
+     "uz": "qara! bu nima? qo'lingni ko'tar!",
+     "emoji": "🙋❓"
     },
     {
      "who": 1,
-     "say": "Me! I know!",
-     "uz": "men! men bilaman!",
-     "emoji": "✋"
+     "say": "Me! It's a ruler!",
+     "uz": "men! bu chizg'ich!",
+     "emoji": "📏"
     },
     {
      "who": 0,
-     "say": "Well done, Malika!",
-     "uz": "barakalla, Malika!",
+     "say": "Very good, Malika!",
+     "uz": "juda yaxshi, Malika!",
      "emoji": "🌟"
     }
    ],
@@ -1441,7 +1439,7 @@
      "why_en": "Yes! He can't skate."
     },
     {
-     "q": "Do'stingiz Can you help me? desa, nima deysiz?",
+     "q": "Do'stingiz [en]Can you help me?[/en] desa, nima deysiz?",
      "q_en": "Your friend says: Can you help me? What do you say?",
      "options": [
       "👌 Of course!",
@@ -1546,7 +1544,7 @@
      "why_en": "Well done! In the basket."
     },
     {
-     "q": "Rahmat!ga sotuvchi nima deb javob berdi?",
+     "q": "Bola [en]Thank you![/en] dedi. Sotuvchi nima deb javob berdi?",
      "q_en": "The child says Thank you! What does the seller say?",
      "options": [
       "😊 You're welcome.",

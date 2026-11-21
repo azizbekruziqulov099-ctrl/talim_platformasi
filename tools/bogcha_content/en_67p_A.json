@@ -743,7 +743,7 @@
       {
        "say": "Look left and right!",
        "uz": "chapga va o'ngga qara",
-       "emoji": "👀↔️",
+       "emoji": "👀👈👉",
        "image": "en67-u13-look-left-and-right.png",
        "image_prompt": "LAYLO looking left and right before crossing, soft 3D cartoon for kids, white background, no text, square",
        "action": "Chapga, keyin o'ngga qara!"
@@ -761,7 +761,7 @@
        "turi": "topshiriq",
        "sarlavha": "🎲 Svetofor o'yini",
        "matn": "O'yin! Men rang aytaman. Qizil — [en]Wait![/en] deb joyingda tur. Yashil — avval [en]Look left and right![/en] deb qara, keyin joyingda yur! Qizil! Yashil! Endi sen ayt: chiroq qizil bo'lsa, nima deymiz?",
-       "doska": "🚦 traffic light\n🔴 Wait!\n👀 Look left and right!\n🚏 bus stop",
+       "doska": "🚦 traffic light\n✋ Wait!\n👀👈👉 Look left and right!\n🚏 bus stop",
        "sodda": "Bitta so'z: [en]Wait![/en]",
        "boshqa_usul": "Ko'chada ota-onang bilan svetofor oldida to'xtab, [en]Wait! Look left and right![/en] deb ayt."
       }
@@ -925,9 +925,9 @@
       {
        "q": "Ali palov yeyapti. U qo'liga nima oladi?",
        "options": [
-        "🔪 cut",
+        "🥣 bowl",
         "🥄 spoon",
-        "🚦 traffic light"
+        "🍵 cup"
        ],
        "answer": 1,
        "why": "To'g'ri! [en]spoon[/en] — qoshiq. Palovni qoshiq bilan yeymiz!"
