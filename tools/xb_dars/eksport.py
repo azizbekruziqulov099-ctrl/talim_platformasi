@@ -12,12 +12,18 @@ def main(dastur, fayllar, out):
     mav = loader.oqi("\n".join(open(f, encoding="utf-8").read() for f in fayllar))
     fan, sinf = E.FAN.get(dastur, (dastur, "kurs"))
     tz = XK.BOLIMLAR.get(dastur)
-    tartib = [m for b in tz for m in b["mavzular"]] if tz else []
+    tartib = [m for b in tz for m in b["mavzular"]] if tz else list(mav)
+    nomlar = {}
+    for mn in ("xb_s4", "xb_s8", "xb_pirls", "xb_ps", "xb_pf"):
+        try:
+            mod = __import__("modules." + mn, fromlist=["TEMA"])
+            for k, v in getattr(mod, "TEMA", {}).items(): nomlar.setdefault(k, v.get("nom", k))
+        except Exception: pass
     pre, xato = [], 0
     for k in tartib:
         if k not in mav: continue
         for e in loader.tekshir(k, mav[k]): print("XATO", k, e); xato += 1
-        nom = P.MAVZULAR[k]["nom"] if k in P.MAVZULAR else k
+        nom = P.MAVZULAR[k]["nom"] if k in P.MAVZULAR else nomlar.get(k, k)
         pre.append({"mavzu_kodi": "", "mavzu_nomi": f"{nom} ({E.ETIKET.get(dastur, dastur)})", "mavzu_raqami": str(len(pre) + 1), "rows": loader.qatorlar(mav[k])})
     book = {"kitob_nomi": f"Xalqaro baholash — {fan}, {sinf} (darslar)", "fan": fan, "sinf": sinf, "kitob_kodi": f"XB-{dastur}", "til": "uz",
             "kod_prefiksi": E.PREF[dastur], "mualliflar": "Kabutar Ta’lim"}

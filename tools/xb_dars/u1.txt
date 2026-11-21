@@ -179,7 +179,7 @@ DOSKA: −2° → 15°
 DOSKA: O‘zgarish? ✋
 @tushuncha Sonlar o‘qi
 OVOZ: [1] Sonlar o‘qida nol markazda. O‘ngda musbat sonlar, chapda manfiy sonlar. [2] O‘ngga yurganimiz sari son kattalashadi. [3] {sekin}Minus beshdan minus ikki katta, chunki u o‘ngda turibdi. [4] Noldan masofa — modul. Minus beshning moduli — besh.
-DOSKA: SON_OQI: -5 | -2 | 0 | 3
+DOSKA: SON_OQI: -5..3; nuqta -5 -5; nuqta -2 -2; nuqta 0 0; nuqta 3 3
 DOSKA: −5 < −2 < 0 < 3
 DOSKA: |−5| = 5
 DOSKA: o‘ngda — katta

@@ -59,7 +59,7 @@ TEKSH: 2 380 sonini xona qo‘shiluvchilariga ajrating. => 2 000 + 300 + 80 | 2 
 OVOZ: [1] Ba’zan aniq son kerak emas, yaxlit son yetadi. 3 724 ni yuzlikkacha yaxlitlaymiz. [2] Yuzlikdan keyingi raqamga qaraymiz: 2. U beshdan kichik — tashlab yuboramiz: 3 700. [3] {sekin}Agar raqam besh yoki undan katta bo‘lsa — yuzlikka bitta qo‘shamiz. 3 760 — 3 800 ga yaxlitlanadi. [4] Yaxlitlash — «qaysi yaxlit songa yaqin?» degan savol.
 DOSKA: 3 724 → 3 700 (2 < 5)
 DOSKA: 3 760 → 3 800 (6 ≥ 5)
-DOSKA: SON_OQI: 3700 | 3750 | 3800
+DOSKA: 3 700 ← 3 750 → 3 800
 DOSKA: QOIDA: 5 va undan katta → bitta oshir
 TEKSH: 4 568 ni yuzlikkacha yaxlitlang. => 4 600 | 4 500 | 4 570 | 5 000
 TEKSH: 2 431 ni mingligacha yaxlitlang. => 2 000 | 3 000 | 2 400 | 2 500

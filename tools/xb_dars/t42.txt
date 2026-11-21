@@ -105,7 +105,7 @@ TEKSH: Qaysi kasr katta: 1/6 yoki 1/9? => 1/6 | 1/9 | Teng | Bilib bo‘lmaydi
 TEKSH: Qaysi katta: 5/7 yoki 3/7? => 5/7 | 3/7 | Teng | Bilib bo‘lmaydi
 @tushuncha Kasrni sonlar o‘qida ko‘rish
 OVOZ: [1] Kasr ham son. U 0 va 1 orasida yashaydi. [2] 0 dan 1 gacha kesmani 4 ta teng bo‘lakka bo‘lamiz. [3] {sekin}Birinchi chiziq — 1/4, ikkinchisi — 2/4, ya’ni 1/2, uchinchisi — 3/4. To‘rtinchisi — 4/4 — bu butun, 1. [4] Maxraji bilan surati teng kasr — bitta butun.
-DOSKA: SON_OQI: 0 | 1/4 | 2/4 | 3/4 | 1
+DOSKA: SON_OQI: 0..1 qadam 0,25; nuqta 0,25 1/4; nuqta 0,5 2/4; nuqta 0,75 3/4
 DOSKA: 2/4 = 1/2
 DOSKA: 4/4 = 1
 DOSKA: Kasr — 0 va 1 orasida
@@ -179,7 +179,7 @@ OVOZ: [1] Butunni 10 ta teng bo‘lakka bo‘lsak — bitta bo‘lak o‘ndan bi
 DOSKA: 1/10 = 0,1
 DOSKA: 1/100 = 0,01
 DOSKA: 3,47 = 3 + 0,4 + 0,07
-DOSKA: SON_OQI: 0 | 0,5 | 1
+DOSKA: SON_OQI: 0..1 qadam 0,1; nuqta 0,5 0,5
 TEKSH: 0,7 kasr ko‘rinishida? => 7/10 | 7/100 | 1/7 | 70/10
 TEKSH: 5,06 sonida 6 raqami qaysi xonada? => Yuzdan bir | O‘ndan bir | Birlik | Yuzlik
 @tushuncha Pul — o‘nli kasr

@@ -55,7 +55,7 @@ TEKSH: Naqsh: A B A B A B ... 15-element qaysi? => A | B | C | Aniq emas
 TEKSH: Naqsh: ★ ● ▲ ★ ● ▲ ... 25-element? => ★ | ● | ▲ | ■
 @tushuncha O‘sib boruvchi naqsh
 OVOZ: [1] Chiblar bilan uchburchaklar yasaymiz. 1-shakl — 3 chib, 2-shakl — 5 chib. 3-shakl — 7 chib. [2] Har gal 2 ta chib qo‘shilmoqda. [3] {sekin}Demak, 4-shakl — 9 chib, 5-shakl — 11 chib. [4] Bu — qo‘shish bilan o‘suvchi qonuniyat. Jadval tuzsak, ko‘rish osonlashadi.
-DOSKA: JADVAL: Shakl ;; Chib | 1 ;; 3 | 2 ;; 5 | 3 ;; 7 | 4 ;; 9
+DOSKA: JADVAL: Shakl | Chib ;; 1 | 3 ;; 2 | 5 ;; 3 | 7 ;; 4 | 9
 DOSKA: farq: +2
 DOSKA: 5-shakl: 9 + 2 = 11
 DOSKA: Jadval — ko‘rish oson
@@ -63,7 +63,7 @@ TEKSH: Shakllarda chiblar: 4, 7, 10, 13. 5-shaklda nechta? => 16 | 15 | 17 | 14
 TEKSH: Har kuni 3 sahifa o‘qilsa, 6 kunda nechta sahifa? => 18 | 9 | 12 | 24
 @tushuncha Jadvaldan qoidani topish
 OVOZ: [1] Dehqon har kuni 4 ta tuxum yig‘adi. 1 kunda — 4, 2 kunda — 8. [2] Kunlar soni va tuxumlar jadvalini tuzamiz. [3] {sekin}Qoida: tuxum soni — 4 karra kunlar soni. 7 kunda — 4 karra 7, 28 ta. [4] Jadvaldagi qoidani topsangiz, istagan kun uchun javob olasiz.
-DOSKA: JADVAL: Kun ;; Tuxum | 1 ;; 4 | 2 ;; 8 | 3 ;; 12
+DOSKA: JADVAL: Kun | Tuxum ;; 1 | 4 ;; 2 | 8 ;; 3 | 12
 DOSKA: tuxum = 4 · kun
 DOSKA: 7 kun → 4 · 7 = 28
 DOSKA: Qoida → istalgan javob
@@ -89,7 +89,7 @@ DOSKA: A •—————• B
 DOSKA: Bu nima? ✋
 @tushuncha Kesma, nur, to‘g‘ri chiziq
 OVOZ: [1] Kesma — ikki nuqta orasidagi to‘g‘ri chiziq bo‘lagi. Uning boshi ham, oxiri ham bor, uzunligini o‘lchay olamiz. [2] Nur — bir nuqtadan boshlanib, bir tomonga cheksiz davom etadi. [3] {sekin}To‘g‘ri chiziq — ikki tomonga ham cheksiz. Uni to‘liq chizib bo‘lmaydi. [4] Qalam bilan faqat kesma chiza olamiz, qolganini tasavvur qilamiz.
-DOSKA: CHIZ: kesma A B
+DOSKA: CHIZ: kesma AB; A(0;0); B(6;0)
 DOSKA: kesma — ikki chetli, o‘lchanadi
 DOSKA: nur — bir chetli, cheksiz
 DOSKA: to‘g‘ri chiziq — chetsiz
