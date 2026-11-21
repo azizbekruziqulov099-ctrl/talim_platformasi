@@ -43,8 +43,9 @@ ELEMENT_TURLARI = {
     "raqamlar": "Katta raqamlar (statistika: 2–4 ta raqam va izoh)",
     "iqtibos": "Iqtibos (katta matn, muallif, portret)",
 }
+ROYXAT_KORINISHLARI = {"kartalar", "ikonli", "raqamli", "zinapoya", "piramida", "vaqt", "sikl", "strelka"}
 JOYLASHUV_KODLARI = {"avto", "standart", "rasm_ong", "rasm_chap", "rasm_panel", "rasm_katta", "markaz", "ustunlar", "qatorlar",
-                     "yon_sarlavha", "ustma", "asosiy_yon", "chizma_chap", "qadam_qator"}
+                     "yon_sarlavha", "ustma", "asosiy_yon", "chizma_chap", "qadam_qator", "rasm_tepa"}
 YANGI_KENG = {"lugat", "dialog", "vaqt_chizigi", "xarita", "tajriba", "jarayon", "galereya", "guruhlash", "moslash",
               "togri_notogri", "bosh_joy", "rasmda_nima", "raqamlar", "iqtibos"}
 TUR_SINONIM = {
@@ -134,6 +135,9 @@ def element(e):
                 bs.append({"nom": t(b.get("nom") or b.get("sarlavha"), 80), "matn": t(b.get("matn"), 300),
                            "formula": t(b.get("formula"), 160), "misol": t(b.get("misol"), 160)})
         out["bandlar"] = [b for b in bs if b["nom"] or b["matn"] or b["formula"]]
+        kor = t(e.get("korinish"), 20).lower()
+        if tur == "xossalar" and kor in ROYXAT_KORINISHLARI:
+            out["korinish"] = kor
         if not out["bandlar"]:
             out["tur"] = "matn"
     if tur in ("misol", "masala"):

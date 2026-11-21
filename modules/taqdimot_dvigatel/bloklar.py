@@ -14,7 +14,7 @@ from . import formula as FM
 from . import rasmlar as RS
 from .olchov import kenglik
 from .sahna import H, W, Slayd, matn_balandligi
-from .uslub import Uslub, och
+from .uslub import Uslub, och, toq
 from .sxema import YANGI_KENG
 
 M = 48
@@ -162,8 +162,32 @@ def tegish(k: K, x, y, w, h):
 
 
 def _yorliq_kartasi(k: K, x, y, w, h, label, color, i=0, a=None, ichki=None):
-    """Sarlavhali karta: oila uslubiga ko'ra yorliq (pill) yoki rangli tasma. Ichki joy (x, y, w, h) qaytaradi."""
+    """Sarlavhali karta: oila uslubiga ko'ra yorliq (pill) yoki rangli tasma. Ichki joy (x, y, w, h) qaytaradi.
+    Slayd bo'yicha ko'rinish (k.karta_v): karta — odatdagi; chiziq — kartasiz, chapda qalin chiziq; blok — rangli fon;
+    qogoz — eslatma qog'ozi."""
     u = k.u
+    v = getattr(k, "karta_v", "karta")
+    if v == "chiziq":
+        k.s.rect(x, y, 6, h, fill=color, r=3, a=a)
+        if label:
+            k.s.matn(x + 24, y + 2, w - 30, 22, label.upper(), size=12, bold=True, color=color if not u.qorongi else och(color, 0.25), spc=100,
+                     min_scale=0.6, a=a)
+            return x + 24, y + 32, w - 30, h - 36
+        return x + 24, y + 4, w - 30, h - 8
+    if v == "blok":
+        k.s.rect(x, y, w, h, fill=color, op=0.12 if not u.qorongi else 0.24, r=min(u.kart_s["r"] + 4, 22), a=a)
+        if label:
+            k.s.matn(x + 22, y + 16, w - 44, 22, label.upper(), size=12, bold=True, color=toq(color, 0.15) if not u.qorongi else och(color, 0.3),
+                     spc=100, min_scale=0.6, a=a)
+            return x + 22, y + 46, w - 44, h - 60
+        return x + 22, y + 18, w - 44, h - 36
+    if v == "qogoz" and not u.qorongi:
+        k.s.rect(x, y, w, h, fill="#FFF4B8", r=6, sh=1, a=a)
+        k.s.rect(x + w / 2 - 50, y - 8, 100, 18, fill="#FFFFFF", op=0.55, r=3, a=a)
+        if label:
+            k.s.matn(x + 22, y + 18, w - 44, 22, label.upper(), size=12, bold=True, color="#7A5A00", spc=100, min_scale=0.6, a=a)
+            return x + 22, y + 48, w - 44, h - 62
+        return x + 22, y + 20, w - 44, h - 40
     kart(k, x, y, w, h, i, a=a)
     if u.tab == "bar" and label:
         k.s.rect(x, y, w, 34, fill=color, r=min(u.kart_s["r"], 10), a=a)
@@ -342,6 +366,10 @@ def komp_matnli(k: K, e, x, y, w, h, i=0):
     text = e.get("matn") or ""
     if e.get("bandlar"):
         text = "\n".join("• " + b["matn"] for b in e["bandlar"] if b.get("matn"))
+    if e["tur"] == "matn" and w >= 640 and not has_vis and not e.get("formula"):
+        bs = _BR.punktlar(text)
+        if bs:  # punktli matn → aqlli ro'yxat (belgili, raqamli, zinapoya, vaqt chizig'i...)
+            return _BR.komp_royxat(k, {"tur": "xossalar", "sarlavha": label or "", "bandlar": bs}, x, y, w, h, i)
     if text and not has_vis and not e.get("formula") and len(text) < 420:
         # qisqa matn: katta shrift va karta matn balandligida, vertikal markazda (bo'sh karta qolmasin)
         lab_h = 48 if label else 16
@@ -387,6 +415,11 @@ def komp_formula(k: K, e, x, y, w, h, i=0):
 
 
 def komp_xossalar(k: K, e, x, y, w, h, i=0):
+    """Xossalar — aqlli ro'yxat (bloklar_royxat): kartalar, belgili, raqamli, zinapoya, piramida, vaqt, sikl, strelka."""
+    return _BR.komp_royxat(k, e, x, y, w, h, i)
+
+
+def _komp_xossalar_kartalar(k: K, e, x, y, w, h, i=0):
     u = k.u
     bs = e.get("bandlar") or []
     n = len(bs)
@@ -403,6 +436,12 @@ def komp_xossalar(k: K, e, x, y, w, h, i=0):
     gap = 16
     cw = (w - gap * (cols - 1)) / cols
     ch = (h - gap * (rows - 1)) / rows
+    # qisqa matnli kartalar bo'yi mazmunga mos (bo'm-bo'sh baland kartalar bo'lmasin), blok o'rtada
+    kerak = max(78 + (matn_balandligi(b.get("matn") or "", cw - 36, 22) if b.get("matn") else 0) + (70 if b.get("formula") else 0) + 24 for b in bs)
+    if kerak < ch * 0.8:
+        ch2 = max(kerak, min(ch, 150))
+        y += (h - (ch2 * rows + gap * (rows - 1))) / 2
+        ch = ch2
     glyphs = ["✓", "↔", "∞", "≈", "+", "×"]
     variant = k.rng.randrange(2)
     for j, b in enumerate(bs):
@@ -1190,3 +1229,4 @@ from . import bloklar_fan as _BF  # noqa: E402
 KOMP.update(_BF.KOMP_FAN)
 
 from . import bloklar_joy as _BJ  # noqa: E402
+from . import bloklar_royxat as _BR  # noqa: E402

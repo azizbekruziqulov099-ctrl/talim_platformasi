@@ -128,7 +128,11 @@ JOYLASHUV ("joylashuv" — slayd qanday joylashishi; mazmunga mos kelmasa dastur
 - asosiy_yon — asosiy element (misol, jadval, xossalar) keng, qisqa qoida yoki ta’rif yonida tor ustunda
 - qadam_qator — bitta misol/masala, 2–5 qisqa qadam: qadamlar chapdan o‘ngga kartalarda
 - chizma_chap — chizmali misol/masala: chizma chapda katta
+- rasm_tepa — bitta qisqa matn + "rasm": rasm tepadagi keng rangli tasmada sarlavha bilan
 - standart — boshqalari (jadval, taqqoslash, lugat, xarita va boshqa keng elementlar shu bilan)
+XOSSALAR ko‘rinishi ("korinish" — ixtiyoriy, mazmunga mosini tanla): kartalar | ikonli (ro‘yxat) | raqamli (2–4 band) |
+zinapoya (o‘sish, bosqichlar) | piramida (darajalar, ierarxiya) | vaqt (ketma-ketlik, tarix) | sikl (takrorlanuvchi jarayon) |
+strelka (bosqichma-bosqich jarayon). Bilmasang — yozma, dastur o‘zi xilma-xil qiladi.
 Bir xil joylashuvni ketma-ket ikki slaydda ishlatma; taqdimotda kamida 4 xil joylashuv bo‘lsin; rasmli slaydlarning
 yarmidan ko‘pida rasm_panel yoki rasm_katta bo‘lsin. Bilmasang — "avto".
 

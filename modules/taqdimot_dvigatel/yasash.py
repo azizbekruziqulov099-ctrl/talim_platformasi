@@ -160,6 +160,9 @@ def yasa(miya: dict, seed: int | None = None, uslub_kod: str | None = None, anim
             d["reja"] = reja_i if reja_i is not None else 1
         elif blok == "reja":
             d.update({"sections": reja_items, "maqsad": m["meta"].get("maqsad"), "tur": (m["meta"].get("tur") or "").lower()})
+        if blok not in ("titul", "bolim", "kontent"):
+            from . import bloklar_joy as _bj
+            _bj.sahifa_kartasi(k)
         B.BLOKLAR[blok](k, d)
         s.bolim = si
         # o'qituvchi izohi (Notes)

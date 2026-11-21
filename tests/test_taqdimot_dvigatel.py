@@ -295,3 +295,23 @@ def test_rus_tili_tanlansa_ozbekcha_qolgan_matn_tarjima_qilinadi(monkeypatch):
     assert sl["elementlar"][1]["sozlar"][0]["soz"] == "olma"  # lug'at so'ziga tegilmaydi
     assert m["test"][0]["savol"].startswith("Перевод") and m["_tarjima"] >= 4
     assert sum(1 for c in chaqiruvlar if c.startswith("Sen tarjimonsan")) == 1
+
+
+def test_aqlli_royxat_korinishlari():
+    from modules.taqdimot_dvigatel import bloklar_royxat as BR
+    assert set(BR.KORINISHLAR) >= {"kartalar", "ikonli", "raqamli", "zinapoya", "piramida", "vaqt", "sikl", "strelka"}
+    assert BR.punktlar("• Kuzatish: bola ko‘radi\n• Hamkorlik — birga\n• Mustaqillik: o‘zi")[1] == {"nom": "Hamkorlik", "matn": "birga"}
+    assert BR.punktlar("Oddiy matn.") is None
+    bs = [{"nom": n, "matn": "Qisqa izoh matni"} for n in ("Bilim", "Tushunish", "Qo‘llash", "Tahlil")]
+    sl = [{"sarlavha": kor, "elementlar": [{"tur": "xossalar", "bandlar": bs, "korinish": kor}]} for kor in BR.KORINISHLAR]
+    m = sxema.normallashtir({"meta": {"mavzu": "Ro‘yxatlar"}, "bolimlar": [{"nom": "A", "slaydlar": sl}]})
+    assert m["bolimlar"][0]["slaydlar"][3]["elementlar"][0]["korinish"] == "zinapoya"
+    s = yasash.yasa(m, seed=3)
+    for x in s["slaydlar"]:
+        for el in x["els"]:
+            if el["k"] == "text":
+                assert el["fit"] and el["sc"] >= 0.7
+    pir = [x for x in s["slaydlar"] if x.get("sarlavha") == "piramida" or any(
+        el["k"] == "text" and any(r["t"] == "piramida" for p in el["pp"] for r in p["rs"]) for el in x["els"])]
+    assert pir and sum(el["k"] == "path" for el in pir[0]["els"]) >= 4
+    assert yasash.pptx(s)[:2] == b"PK"

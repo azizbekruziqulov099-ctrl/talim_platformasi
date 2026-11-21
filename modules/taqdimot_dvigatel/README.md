@@ -54,6 +54,14 @@ AI faqat mazmunni yozadi; dizayn, chizmalar va animatsiyani shu dvigatel qiladi.
 - Har taqdimotga urug‘dan: sarlavha qatori (chap, chiziq, tasma, markaz, raqam), karta (oila, yon, chiziq, soya),
   titul (6 xil), bo‘lim slaydi (5 xil). `yasa(..., dizayn={"titul": 2})` bilan qo‘lda berish mumkin; natijada `sahna["dizayn"]`.
 - Animatsiya tanlanmasa slaydlarning bir qismi ikkinchi tinch to‘plam bilan chiqadi (`dizayn.anim2`).
+- Qo‘shimcha joylashuvlar: `ustma`, `asosiy_yon`, `chizma_chap`, `qadam_qator`, `rasm_tepa` (rangli tasma + rasm tepada).
+- Yorug‘ uslublarda taqdimotlarning bir qismida slayd mazmuni oq «sahifa-karta» ichida turadi (`dizayn.sahifa`).
+- Ta’rif/qoida kartalari har slaydda boshqacha: karta, chap chiziqli, rangli blok, yopishqoq qog‘oz (`k.karta_v`).
+
+## Aqlli ro‘yxatlar (`bloklar_royxat.py`)
+- `xossalar` (va punktli `matn`) 8 xil tuzilishda chiziladi: `kartalar`, `ikonli`, `raqamli`, `zinapoya`, `piramida`,
+  `vaqt`, `sikl`, `strelka`. AI elementga `"korinish"` yozishi mumkin; sig‘masa yoki yozilmasa — mos nomzodlardan
+  eng kam ishlatilgani tanlanadi (taqdimot ichida ketma-ket takrorlanmaydi).
 
 ## Fan bezaklari (fon motiflari)
 `rasmlar/fonlar/<fan>_<n>.png` — shaffof fonli, qora chiziqli bezak, o‘rtasi bo‘sh (1920×1080). Dastur uni uslub rangiga

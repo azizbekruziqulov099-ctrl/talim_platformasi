@@ -34,6 +34,7 @@ JOYLASHUVLAR = {
     "asosiy_yon": "asosiy element (misol, jadval) keng, qisqa element yonida tor ustunda",
     "chizma_chap": "misol/masala: chizma chapda katta, shart va qadamlar o'ngda",
     "qadam_qator": "misol/masala: shart tepada, yechim qadamlari chapdan o'ngga kartalarda, javob oxirida",
+    "rasm_tepa": "rasm slayd tepasida keng rangli tasmada sarlavha bilan, matn ostida",
 }
 SARLAVHA_TURLARI = ["chap", "chiziq", "tasma", "markaz", "raqam"]
 KART_TURLARI = ["oila", "yon", "chiziq", "soya"]
@@ -66,6 +67,8 @@ def dnk(rng, u, berilgan=None) -> dict:
              "shisha": ["markaz", "chap", "tasma"], "tun": ["chap", "markaz", "raqam"], "yulduz": ["markaz", "chap", "raqam"],
              "akademik": ["chiziq", "raqam", "chap"], "jurnal": ["raqam", "chiziq", "chap"]}.get(u.oila, SARLAVHA_TURLARI)
     out = {
+        # Gamma'dagidek: mazmun fon ustidagi bitta katta karta ichida (yorug' uslublarning bir qismida)
+        "sahifa": b.get("sahifa") if b.get("sahifa") in ("oddiy", "karta") else ("karta" if not u.qorongi and rng.random() < 0.35 else "oddiy"),
         "sarlavha": b.get("sarlavha") if b.get("sarlavha") in SARLAVHA_TURLARI else rng.choice(afzal + [rng.choice(SARLAVHA_TURLARI)]),
         "kart": b.get("kart") if b.get("kart") in KART_TURLARI else ("oila" if u.qorongi or u.oila == "shisha" else rng.choice(KART_TURLARI)),
         "titul": int(b["titul"]) % TITUL_SONI if str(b.get("titul", "")).isdigit() else rng.randrange(TITUL_SONI),
@@ -128,6 +131,8 @@ def nomzodlar(k, els):
             c = ["rasm_ong", "rasm_chap"]
             if ill:
                 c += ["rasm_panel"] + (["rasm_katta"] if n == 1 and _matn_uzunligi(matnlar[0]) < 420 else [])
+                if sum(_matn_uzunligi(e) for e in matnlar) <= 420:
+                    c.append("rasm_tepa")
             return c, vis, matnlar
         return ["standart"], vis, matnlar
     if n == 1:
@@ -139,6 +144,10 @@ def nomzodlar(k, els):
         qs = e.get("qadamlar") or []
         if e["tur"] in ("misol", "masala") and 2 <= len(qs) <= 5 and all(len(q) <= 110 for q in qs) and len(e.get("shart") or e.get("matn") or "") <= 360:
             return ["qadam_qator", "yon_sarlavha", "standart"], None, matnlar
+        if e["tur"] == "xossalar":
+            # aqlli ro'yxat to'liq kenglikda 8 xil bo'ladi; chap sarlavha bilan — kartalar, belgili, raqamli, zinapoya...
+            from .bloklar_royxat import KENG_KERAK
+            return (["keng"] if e.get("korinish") in KENG_KERAK else ["keng", "yon_sarlavha"]), None, matnlar
         if e["tur"] in _YON_MUMKIN or _jadval_ixcham(e):
             return ["yon_sarlavha", "standart"], None, matnlar
         return ["standart"], None, matnlar
@@ -181,12 +190,39 @@ def tanla(k, d, els):
 
 
 # ------------------------------------------------------------------ kontent slayd
+TOLIQ_JOY = {"rasm_panel", "yon_sarlavha", "rasm_katta", "rasm_tepa"}  # slayd chetigacha chiziladi — sahifa kartasi kerak emas
+
+
+def sahifa_kartasi(k):
+    """Gamma uslubi: mazmun ostida slaydning katta oq kartasi."""
+    if k.deck.get("sahifa") != "karta" or k.u.qorongi:
+        return
+    k.s.rect(22, 14, W - 44, H - 28, fill="#FFFFFF", op=0.9, r=28, sh=1)
+
+
+def karta_korinishi(k, els):
+    """Slayddagi yorliqli kartalar ko'rinishi: karta, chiziq, blok, qog'oz — taqdimot bo'yi aylanib turadi."""
+    c = ["karta", "karta", "chiziq", "blok"]
+    if not k.u.qorongi and all(e["tur"] in SODDA | {"eslatma"} for e in els) and len(els) <= 2:
+        c.append("qogoz")
+    if k.u.oila == "doska":
+        c = ["karta", "chiziq"]
+    holat = k.deck.setdefault("_karta", {"oxirgi": None})
+    tanlov = [x for x in c if x != holat["oxirgi"] or x == "karta"]
+    v = k.rng.choice(tanlov)
+    holat["oxirgi"] = v
+    return v
+
+
 def kontent(k, d):
     els = list(d["elementlar"])
     joy, vis, matnlar = tanla(k, d, els)
+    k.karta_v = karta_korinishi(k, els)
+    if joy not in TOLIQ_JOY:
+        sahifa_kartasi(k)
     bar = [e for e in els if e["tur"] == "eslatma"]
     fn = globals().get("_j_" + joy)
-    if joy == "standart" or fn is None:
+    if joy in ("standart", "keng") or fn is None:
         return B._kontent_standart(k, d)
     fn(k, d, vis, matnlar, bar[:1])
     B.pastki(k)
@@ -457,6 +493,35 @@ def _j_yon_sarlavha(k, d, vis, matnlar, bar):
     if bar:
         k.keyingi()
         B.komp_eslatma(k, bar[0], x, CB - 60, w, 56)
+
+
+# --- rasm tepada: keng rangli tasma (sarlavha + rasm), matn ostida
+def _j_rasm_tepa(k, d, vis, matnlar, bar):
+    u = k.u
+    s = k.qadam
+    col = u.acc[k.rng.randrange(2)]
+    th = 300
+    a = k.A("card", s)
+    if u.qorongi:
+        k.s.rect(0, 0, W, th, fill=col, op=0.22, a=a)
+    else:
+        k.s.rect(0, 0, W, th, fill=col, a=a)
+        k.s.doira(W - 160, th - 10, 230, fill="#FFFFFF", op=0.12, a=a)
+    fg = u.matn_ustida(col) if not u.qorongi else u.ink
+    k.s.matn(M, 64, 640, 20, (d.get("kicker") or "").upper(), size=12, bold=True, color=fg, spc=110, nm="!!kicker", min_scale=0.6, a=a)
+    sz, tth = B.mos_olcham(d["sarlavha"], 660, 150, sizes=(44, 40, 36, 32, 30, 28))
+    k.s.matn(M, 92, 660, tth + 10, d["sarlavha"], size=sz, font=u.head, bold=True, color=fg, lh=1.1, nm="!!title", a=k.A("item", s, dl=80))
+    _rasm(k, vis, 760, 22, 460, th - 44, s, oq=True)
+    h0 = CB - th - 24 - (72 if bar else 0)
+    n = len(matnlar)
+    if n:
+        gap = 22
+        cw = (W - 2 * M - gap * (n - 1)) / n
+        for j, e in enumerate(matnlar):
+            if j:
+                k.keyingi()
+            B.KOMP.get(e["tur"], B.komp_matnli)(k, e, M + j * (cw + gap), th + 24, cw, h0, j)
+    _eslatma(k, bar, M, W - 2 * M)
 
 
 # --- ustma-ust: qisqa element tepada tasma, asosiysi ostida
