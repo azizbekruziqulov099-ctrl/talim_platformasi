@@ -34,6 +34,7 @@ DOSKA: JADVAL: Kim | Bo‘lak | So‘m ;; Anvar | 2 | 24 000 ;; Bahrom | 3 | 36 
 DOSKA: KETMA: 24 000 + 36 000 | 60 000 ✔
 TEKSH: 90 ming so‘mni 4 : 5 nisbatda bo‘ling. Kichik ulush nechaga teng? => 40 000 | 50 000 | 36 000 | 45 000
 TEKSH: 120 g qatiq va un 1 : 3 nisbatda aralashtiriladi, jami 120 g. Unning massasi? => 90 g | 30 g | 40 g | 60 g
+TEKSH: Uchburchak burchaklari 2 : 3 : 4 nisbatda, yig‘indisi 180°. Eng katta burchak necha gradus? => 80° | 60° | 40° | 90°
 @tushuncha Xato tuzog‘i: birliklar aralashmasin
 OVOZ: [1] Savol: bir metr va ellik santimetr — nisbati qancha? Ko‘pchilik shoshilib «bir ga ellik» deydi. [2] {urgu}To‘xtang! Bu xato. Metr bilan santimetr — turli o‘lchov. Avval ikkalasini bir xil birlikka keltiramiz: bir metr — yuz santimetr. [3] Endi nisbat: yuz ga ellik. Ikkalasini ellikka bo‘lamiz — ikkiga bir. [4] {sekin}Masshtabda ham shunday: xarita va haqiqat bir xil birlikda bo‘lsagina nisbat to‘g‘ri chiqadi.
 DOSKA: ❌ 1 m : 50 sm = 1 : 50
@@ -64,6 +65,7 @@ DOSKA: GRAFIK: y=8x; [0;5]
 DOSKA: QOIDA: y = k · x  (y : x = const)
 TEKSH: 4 daftar 18 000 so‘m. 10 daftar necha so‘m? => 45 000 | 72 000 | 40 000 | 7 200
 TEKSH: Avtomobil 2 soatda 150 km yurdi. Bir xil tezlikda 5 soatda necha km yuradi? => 375 | 300 | 750 | 225
+TEKSH: 5 m mato 35 000 so‘m turadi. 8 m mato necha so‘m? => 56 000 | 280 000 | 40 000 | 7 000
 @tushuncha Teskari proporsionallik — biri oshsa, ikkinchisi kamayadi
 OVOZ: [1] Endi ishchilar masalasiga qaytamiz. Ishchi ko‘p bo‘lsa, ish tezroq bitadi — demak kun kamayadi. Bu — teskari bog‘lanish. [2] Butun ishni «ishchi-kun» bilan o‘lchaymiz: uch ishchi karra o‘n ikki kun — o‘ttiz olti ishchi-kun. {sekin}Bu butun devorning «hajmi»! [3] Olti ishchi bo‘lsa: o‘ttiz oltini oltiga bo‘lamiz — {urgu}olti kun! O‘n ikki ham, yigirma to‘rt ham emas. [4] Grafigi — egri chiziq: x oshsa, y tushadi. [5] Qoida: ikki miqdorning ko‘paytmasi o‘zgarmaydi.
 DOSKA: KETMA: 3 · 12 | 36 ishchi-kun
@@ -81,6 +83,7 @@ DOSKA: JADVAL: Misol | Turi ;; olma: kg va narx | to‘g‘ri ;; ishchi va kun |
 DOSKA: Masofa o‘zgarmas: tezlik ↑ → vaqt ↓
 DOSKA: Yosh va bo‘y — hech biri emas
 TEKSH: Kitob sahifalari soni o‘zgarmas. Kuniga o‘qiladigan sahifa ko‘paysa, kitobni tugatish kunlari qanday o‘zgaradi? => Kamayadi (teskari) | Oshadi (to‘g‘ri) | O‘zgarmaydi | Aniqlab bo‘lmaydi
+TEKSH: Quyidagilardan qaysi biri to‘g‘ri proporsionallik? => Bir xil narxli daftarlar soni va ularning narxi | Bir yo‘lda tezlik va vaqt | Bolaning yoshi va bo‘yi | Ishchilar soni va ishning tugash kuni
 @tushuncha Xato tuzog‘i: «ikki marta kam — to‘rt kun»
 OVOZ: [1] To‘rt ishchi ishni sakkiz kunda tugatadi. Ikki ishchi-chi? Ko‘pchilik shoshilib: «ikki marta kam — kun ham ikki marta kam, to‘rt kun!» deydi. [2] {urgu}Bu — to‘g‘ri proporsionallikni noto‘g‘ri joyga qo‘llash! Ishchi kam bo‘lsa, ish sekin bitadi — kun KO‘P bo‘ladi. [3] To‘g‘risi: to‘rt karra sakkiz — o‘ttiz ikki ishchi-kun. {sekin}O‘ttiz ikkini ikkiga bo‘lamiz — o‘n olti kun. [4] Tekshirish: ishchi kam — kun ko‘p, mantiqqa to‘g‘ri keladi.
 DOSKA: ❌ 2 ishchi → 4 kun
@@ -88,6 +91,7 @@ DOSKA: KETMA: 4 · 8 | 32 ishchi-kun
 DOSKA: KETMA: 32 : 2 | ✅ 16 kun
 DOSKA: Ishchi kam → kun ko‘p ✔
 TEKSH: 6 kishi ishni 10 kunda bajaradi. 3 kishi necha kunda bajaradi? => 20 | 5 | 30 | 15
+TEKSH: 12 ishchi ishni 5 kunda tugatadi. 4 ishchi necha kunda tugatadi? => 15 | 60 | 20 | 1,7
 @xulosa Esda tut
 OVOZ: Birinchi: to‘g‘ri proporsionallikda y bo‘lingan x doim bir xil son. Ikkinchi: teskarisida ko‘paytma doimiy. Uchinchi: avval o‘zingizdan so‘rang — ikkala miqdor birga oshadimi? To‘rtinchi: ishchi ko‘paysa kun kamayadi — buni to‘g‘ri deb xato qilmang.
 DOSKA: 1. To‘g‘ri: y : x = k
@@ -117,6 +121,7 @@ DOSKA: KETMA: 200 + 50 | 250 g aralashma
 DOSKA: BOLISH: 70:250
 DOSKA: BELGILA: 28% | aylana
 TEKSH: 100 g 20% eritmaga 25 g tuz qo‘shildi. Yangi konsentratsiya necha foiz? => 36% | 45% | 25% | 20%
+TEKSH: 150 g 20% li eritmaga 50 g tuz qo‘shildi. Yangi konsentratsiya necha foiz? => 40% | 25% | 50% | 30%
 @tushuncha Suv qo‘shsak — suyulish
 OVOZ: [1] Endi teskarisi. Ikki yuz gramm o‘n foizli eritmaga ikki yuz gramm toza suv qo‘shamiz. [2] {urgu}Tuz o‘zgarmaydi — hamon yigirma gramm! Faqat aralashma kattalashadi. [3] Aralashma — to‘rt yuz gramm. Yigirma bo‘lingan to‘rt yuz — nol butun nol besh. {baland}Besh foiz! [4] Suv ikki marta ko‘paydi — konsentratsiya ikki marta kamaydi. Choyga suv quysangiz, nega achchiqligi kamayishini endi tushunasiz.
 DOSKA: Tuz: 20 g (o‘zgarmadi!)
@@ -124,6 +129,7 @@ DOSKA: KETMA: 200 + 200 | 400 g aralashma
 DOSKA: KETMA: 20 : 400 | 0,05 | 5%
 DOSKA: Suv ×2 → konsentratsiya ÷2
 TEKSH: 300 g 12% eritmaga 100 g suv qo‘shildi. Yangi konsentratsiya necha foiz? => 9% | 12% | 8% | 6%
+TEKSH: 240 g 25% li eritmaga 60 g toza suv qo‘shildi. Yangi konsentratsiya necha foiz? => 20% | 25% | 30% | 15%
 @tushuncha Ikki eritma aralashtirilsa
 OVOZ: [1] Yuz gramm o‘n foizli va uch yuz gramm yigirma foizli eritmani aralashtirdik. [2] {urgu}Xato qilmang: «o‘nga yigirma — o‘rtachasi o‘n besh» deb! Massalar har xil. [3] Birinchida tuz: o‘n gramm. Ikkinchida: uch yuzning yigirma foizi — oltmish gramm. [4] {sekin}Jami tuz — yetmish gramm, jami aralashma — to‘rt yuz gramm. Yetmish bo‘lingan to‘rt yuz — o‘n yetti butun besh o‘ndan foiz. [5] Yigirmaga yaqin chiqdi, chunki yigirma foizli eritma ko‘proq edi.
 DOSKA: ❌ (10 + 20) : 2 = 15%
@@ -141,6 +147,7 @@ DOSKA: 0,8x = 30
 DOSKA: x = 37,5 g
 DOSKA: KETMA: 67,5 : 337,5 | 0,2 | ✔ 20%
 TEKSH: 100 g 10% li eritmaga 25 g tuz qo‘shsak, taxminan necha foiz bo‘ladi? => 28% | 35% | 25% | 10%
+TEKSH: 400 g 20% li eritmaga qancha toza suv qo‘shsak, u 10% li bo‘ladi? => 400 g | 200 g | 800 g | 80 g
 @xulosa Esda tut
 OVOZ: Birinchi: konsentratsiya — modda bo‘lingan butun aralashma. Ikkinchi: modda qo‘shsangiz, ham modda, ham aralashma ortadi. Uchinchi: suv qo‘shsangiz — modda o‘zgarmaydi, aralashma oshadi. To‘rtinchi: ikki eritmani aralashtirsangiz, foizlarning oddiy o‘rtachasini emas, massaga qarab hisoblang.
 DOSKA: 1. C = modda : aralashma
@@ -171,6 +178,7 @@ DOSKA: KETMA: 1 m³ | 100 · 100 · 100 | 1 000 000 sm³
 DOSKA: QOIDA: yuzda ², hajmda ³
 TEKSH: 2 m² necha kvadrat santimetr? => 20 000 | 200 | 2 000 | 200 000
 TEKSH: 5 000 000 sm³ necha kub metr? => 5 | 50 | 0,5 | 500
+TEKSH: 3 000 sm² necha kvadrat detsimetr? => 30 | 300 | 3 | 0,3
 @tushuncha Hajm va litr: akvarium savolining yechimi
 OVOZ: [1] Bir litr — bir kub detsimetr. Ya’ni ming kub santimetr. [2] Akvariumning hajmi: ellik karra qirq karra o‘ttiz — oltmish ming kub santimetr. [3] {sekin}Mingga bo‘lamiz — oltmish litr! [4] {baland}Taxmin qanday chiqdi? Agar oltmish ming desangiz — birliklarni aralashtirgansiz. [5] Bir kub metrga ming litr sig‘adi. Katta basseyn — shuning uchun tonnalab suv.
 DOSKA: KETMA: 1 l | 1 dm³ | 1 000 sm³
@@ -180,6 +188,7 @@ DOSKA: BELGILA: 60 litr | aylana
 DOSKA: 1 m³ = 1 000 l
 TEKSH: Ichki o‘lchami 2 m × 1 m × 0,5 m bo‘lgan bak necha litr suv sig‘diradi? => 1 000 | 100 | 10 000 | 1
 TEKSH: 750 ml necha litr? => 0,75 | 7,5 | 0,075 | 75
+TEKSH: Idishning ichki o‘lchami 20 sm × 10 sm × 15 sm. Unga necha litr suv sig‘adi? => 3 | 30 | 300 | 0,3
 @tushuncha Tezlik birliklari: km/soat va m/s
 OVOZ: [1] Spidometr soatiga yetmish ikki kilometrni ko‘rsatdi. Soniyasiga necha metr? [2] Bir kilometr — ming metr. Bir soat — uch ming olti yuz soniya. [3] {sekin}Yetmish ikki ming metrni uch ming olti yuz soniyaga bo‘lamiz — yigirma metr soniyasiga. [4] Tez yo‘l: soatiga kilometrdan soniyasiga metrga o‘tish uchun uch butun oltiga bo‘ling. Teskarisiga — ko‘paytiring.
 DOSKA: KETMA: 72 km/s | 72 000 m : 3 600 s
@@ -210,6 +219,7 @@ DOSKA: BOLISH: 45:60
 DOSKA: ✅ 2 s 45 daq = 2,75 soat
 TEKSH: 1 soat 30 daqiqa necha soat? => 1,5 | 1,3 | 1,30 | 90
 TEKSH: 3,2 soat necha soat va necha daqiqa? => 3 soat 12 daqiqa | 3 soat 20 daqiqa | 3 soat 2 daqiqa | 3 soat 32 daqiqa
+TEKSH: 2 soat 15 daqiqa necha soat? => 2,25 | 2,15 | 2,5 | 135
 @tushuncha Vaqt qo‘shish: bosqichlab
 OVOZ: [1] Yigirma ikki qirqqa olti soat o‘ttiz besh daqiqa qo‘shamiz. Avval daqiqalar: qirq plyus o‘ttiz besh — yetmish besh. [2] {sekin}Yetmish besh daqiqa — bu bir soat o‘n besh daqiqa. Daqiqalarda o‘n besh qoldi, bir soatni soatlarga qo‘shamiz. [3] Yigirma ikki plyus olti plyus bir — yigirma to‘qqiz soat. [4] {urgu}Yigirma to‘rtdan oshdi — sutka o‘tib ketdi! Yigirma to‘qqiz minus yigirma to‘rt — besh. [5] Javob: ertasi kuni, besh o‘n besh!
 DOSKA: KETMA: 40 + 35 | 75 daq | 1 s 15 daq
@@ -227,6 +237,8 @@ DOSKA: KETMA: 13 − 11 | 2 soat
 DOSKA: BELGILA: 2 soat 15 daq | aylana
 DOSKA: Daqiqa yetmasa: 1 soat = 60 daq «qarz»
 TEKSH: 09:50 dan 12:20 gacha qancha vaqt o‘tdi? => 2 soat 30 daqiqa | 3 soat 30 daqiqa | 2 soat 70 daqiqa | 3 soat 10 daqiqa
+TEKSH: Poyezd 14:50 da jo‘nab, 17:15 da yetib keldi. Yo‘lda qancha vaqt bo‘ldi? => 2 soat 25 daqiqa | 3 soat 35 daqiqa | 2 soat 35 daqiqa | 3 soat 25 daqiqa
+TEKSH: Bola 21:30 da yotib, ertasi kuni 06:10 da turdi. Necha soat uxladi? => 8 soat 40 daqiqa | 9 soat 20 daqiqa | 8 soat 20 daqiqa | 15 soat 20 daqiqa
 @tushuncha Kalendar: hafta kuni
 OVOZ: [1] Hafta — yetti kun. Kunni topishda yettiga bo‘lib, qoldiqqa qaraymiz. [2] Savol: bugun dushanba. O‘n sakkiz kundan keyin qaysi kun? [3] O‘n sakkizni yettiga bo‘lamiz: ikki marta, qoldiq to‘rt. Ikki marta butun haftalar o‘tib ketdi — ular hisobga kirmaydi. {urgu}Faqat qoldiq muhim! [4] Dushanbadan to‘rt kun keyin: seshanba, chorshanba, payshanba, juma. Javob — juma.
 DOSKA: BOLISH: 18:7
@@ -234,6 +246,7 @@ DOSKA: SXEMA: Dushanba > Sesh | Chor | Pay | Juma
 DOSKA: KETMA: 4 kun keyin | JUMA
 DOSKA: QOIDA: kun soni : 7 → faqat qoldiq muhim
 TEKSH: Bugun chorshanba. 10 kundan keyin qaysi kun bo‘ladi? => Shanba | Payshanba | Juma | Yakshanba
+TEKSH: Bugun payshanba. 20 kundan keyin qaysi kun bo‘ladi? => Chorshanba | Payshanba | Juma | Seshanba
 @xulosa Esda tut
 OVOZ: Birinchi: vaqt oltmishlik sanoqda — yuzlikka aylantirishda oltmishga bo‘ling. Ikkinchi: qo‘shishda avval daqiqalar, keyin soatlar, kerak bo‘lsa sutka. Uchinchi: farqni topishda kelishdan jo‘nashni ayiring. To‘rtinchi: hafta kunini yettiga bo‘lib, qoldiq orqali toping.
 DOSKA: 1. 45 daq = 0,75 soat

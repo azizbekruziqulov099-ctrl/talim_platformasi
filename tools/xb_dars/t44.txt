@@ -66,6 +66,7 @@ DOSKA: Vaqt — 60 lik hisob!
 DOSKA: KETMA: 1 soat | yarim: 30 daqiqa | chorak: 15 daqiqa
 TEKSH: 2 soat necha daqiqa? => 120 | 100 | 60 | 200
 TEKSH: 3 daqiqa necha soniya? => 180 | 30 | 60 | 300
+TEKSH: 2 daqiqa 30 soniya necha soniya? => 150 | 230 | 90 | 130
 @tushuncha Vaqtni qo‘shish
 OVOZ: [1] Poyezd o‘n to‘rt o‘ttiz beshda jo‘nadi. Yo‘lda — ikki soat. Soatlarni qo‘shamiz: o‘n olti o‘ttiz besh. [2] Yana yigirma daqiqa. {sekin}O‘ttiz besh plyus yigirma — ellik besh daqiqa. [3] Poyezd o‘n olti ellik beshda yetib keladi! Taxmin to‘g‘ri chiqdimi? [4] Agar daqiqalar oltmishdan oshib ketsa-chi? Qirq besh plyus o‘ttiz — yetmish besh daqiqa. Oltmishni soatga aylantiramiz. [5] Yetmish beshni oltmishga bo‘lamiz: bir soat, o‘n besh daqiqa qoldi.
 DOSKA: ZANJIR: 14:35 :: jo‘nadi | 16:35 :: +2 soat | 16:55 :: +20 daqiqa
@@ -75,6 +76,7 @@ DOSKA: 45 + 30 = 75 daqiqa
 DOSKA: BOLISH: 75:60
 TEKSH: 9:40 ga 1 soat 30 daqiqa qo‘shilsa, soat necha bo‘ladi? => 11:10 | 10:70 | 11:70 | 10:10
 TEKSH: Avtobus 7:50 da jo‘nadi va yo‘lda 40 daqiqa bo‘ldi. Qachon yetib keladi? => 8:30 | 7:90 | 8:10 | 8:40
+TEKSH: Dars 13:50 da boshlanib, 1 soat 25 daqiqa davom etdi. Qachon tugaydi? => 15:15 | 14:75 | 15:05 | 14:15
 @tushuncha Vaqt oralig‘i: bosqichma-bosqich
 OVOZ: [1] Dars soat to‘qqiz o‘n beshda boshlanib, o‘nda tugadi. Qancha davom etdi? {pauza} Yurib ko‘ramiz. [2] {sekin}To‘qqiz o‘n besh — o‘nga qancha qoldi? Qirq besh daqiqa. Hammasi shu! [3] Endi qiyinroq: o‘n to‘rt o‘ndan o‘n olti qirqqacha. Bir yo‘la hisoblamaymiz — bosqichma-bosqich. [4] Avval to‘la soatlar: o‘n to‘rt o‘ndan o‘n olti o‘ngacha — ikki soat. Keyin o‘n olti o‘ndan o‘n olti qirqqacha — o‘ttiz daqiqa. [5] Jami: ikki soat o‘ttiz daqiqa.
 DOSKA: ZANJIR: 9:15 :: boshlanadi | 10:00 :: +45 daqiqa
@@ -91,6 +93,7 @@ DOSKA: ❌ 1:75
 DOSKA: ✅ 1 soat 15 daqiqa
 DOSKA: 60 daqiqa = 1 soat!
 TEKSH: 50 daqiqa va 40 daqiqani qo‘shsak, qancha bo‘ladi? => 1 soat 30 daqiqa | 90 soat | 1 soat 40 daqiqa | 2 soat
+TEKSH: 1 soat 20 daqiqa necha daqiqa? => 80 | 120 | 70 | 100
 @xulosa Esda tut
 OVOZ: Birinchi: bir soat — oltmish daqiqa, bir sutka — yigirma to‘rt soat. Ikkinchi: vaqtni qo‘shishda soat va daqiqani alohida qo‘shing. Uchinchi: daqiqa oltmishdan oshsa — soatga aylantiring. To‘rtinchi: vaqt oralig‘ini bosqichma-bosqich toping. Mashqda sinab ko‘ring!
 DOSKA: 1. 1 soat = 60 daqiqa
@@ -113,6 +116,7 @@ DOSKA: KETMA: 12 − 5 | 7 bola farq
 DOSKA: KETMA: 12 + 8 + 5 | 20 + 5 | 25 bola
 TEKSH: Diagrammada: shaftoli 9, nok 14, olxo‘ri 6. Eng ko‘p ovoz olgani? => Nok | Shaftoli | Olxo‘ri | Hammasi teng
 TEKSH: Diagrammada: banan 15, shaftoli 9. Banan shaftolidan nechta ko‘p? => 6 | 24 | 9 | 15
+TEKSH: Diagrammada: matematika 11, tarix 7, rasm 9 ovoz. Hammasi bo‘lib nechta ovoz? => 27 | 18 | 20 | 11
 @tushuncha Shkalaga e’tibor: har bir chiziq nechani bildiradi?
 OVOZ: [1] Diagrammaning chap tomonidagi sonlarga qarang: birdan, ikkidan yoki beshdan o‘sib boradi. Bu — shkala qadami. [2] {sekin}Agar har bir chiziq bitta bolani bildirsa, ustun uchta chiziqqa chiqsa — uchta bola. [3] Agar har bir chiziq beshta bolani bildirsa, xuddi shu uchta chiziq — o‘n besh bola! {baland}Ustun bir xil, qiymati boshqa! [4] Shkala qadamini bilmasdan o‘qisak, xato qilamiz. [5] Doim so‘rang: «bu chiziq nechani bildiradi?»
 DOSKA: KETMA: qadam 1 | 3 chiziq · 1 | 3
@@ -122,6 +126,7 @@ DOSKA: ❓ bu chiziq nechani bildiradi?
 DOSKA: QOIDA: qiymat = chiziq soni · qadam
 TEKSH: Shkala qadami 5, ustun 4 chiziqqa yetdi. Qiymati qancha? => 20 | 9 | 4 | 45
 TEKSH: Shkala qadami 10, ustun 7 chiziqqa yetdi. Qiymati qancha? => 70 | 17 | 7 | 710
+TEKSH: Shkala qadami 4. Birinchi ustun 5 chiziqqa, ikkinchisi 3 chiziqqa yetdi. Ular orasidagi farq? => 8 | 2 | 12 | 32
 @tushuncha Piktogramma — rasmli diagramma
 OVOZ: [1] Piktogrammada sonlar rasmlar bilan ko‘rsatiladi. Masalan, bitta olma rasmi ikkita bolani bildiradi. [2] {sekin}To‘rtta olma chizilgan. To‘rt karra ikki — sakkiz bola! [3] Yarim rasm ham bo‘ladi. Yarim olma — yarim qiymat, ya’ni bitta bola. [4] Uchta olma va yarim olma — olti, yana bir — yetti bola. [5] {urgu}Doim avval so‘rang: bitta rasm nechtaga teng?
 DOSKA: RASM: olma:sakra
@@ -131,6 +136,7 @@ DOSKA: 3 ta 🍎 + yarim 🍎 = 6 + 1 = 7 bola
 DOSKA: QOIDA: bitta rasm qiymati — kalit
 TEKSH: Bitta rasm 5 ta narsani bildiradi. 4 ta rasm necha narsa? => 20 | 9 | 4 | 45
 TEKSH: Bitta rasm 10 ta narsani bildiradi. 2,5 ta rasm necha narsa? => 25 | 12 | 20 | 250
+TEKSH: Bitta rasm 4 ta kitobni bildiradi. 3 ta rasm va yarim rasm chizilgan. Nechta kitob? => 14 | 12 | 7 | 16
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Xato: eng baland ustunga qarab, kattaligini hukm qilish. {pauza} Shkala qadamini ko‘rmaslik! [2] {urgu}Qadam har xil bo‘lsa, baland ustun kichik son bo‘lishi mumkin! [3] Mana: birinchi diagrammada ustun uchta chiziq, qadam beshta — o‘n besh. [4] Ikkinchisida ustun to‘rtta chiziq, qadam bitta — atigi to‘rt. {baland}Past ustun — katta son!
 DOSKA: KETMA: ustun 3 chiziq, qadam 5 | 15
@@ -159,6 +165,7 @@ DOSKA: KETMA: 3 + 1 + 1 | 5 kun
 DOSKA: Jami = kuzatuvlar soni ✔
 TEKSH: Chiziqchalar: |||, ||, ||||. Jami kuzatuvlar soni? => 9 | 3 | 7 | 12
 TEKSH: Jadvalda jami 20, ikkitasi 8 va 5. Uchinchisi nechta? => 7 | 13 | 15 | 33
+TEKSH: Sanash jadvalida har bir to‘da 5 ta kuzatuvni bildiradi. 3 ta to‘da va yana 2 ta chiziqcha bor. Jami nechta? => 17 | 5 | 32 | 15
 @tushuncha Jadvaldan savolga javob topish
 OVOZ: [1] Mana kitob o‘qish jadvali. Ali — o‘n ikkita kitob, Vali — to‘qqizta, Sardor — o‘n beshta. [2] Kim eng ko‘p o‘qigan? Eng katta son — Sardor, o‘n besh. [3] {sekin}Sardor Alidan nechta ko‘p? Farq: o‘n besh minus o‘n ikki — uchta. [4] Hammasi birga nechta kitob? Qo‘shamiz: o‘n ikki, to‘qqiz, o‘n besh — o‘ttiz olti. [5] {urgu}Avval savolga qarang: nimani so‘rayapti? Eng ko‘pni, farqni yoki jamini?
 DOSKA: RASM: kitob:sakra
@@ -168,6 +175,7 @@ DOSKA: KETMA: 12 + 9 + 15 | 21 + 15 | 36 ta jami
 DOSKA: QOIDA: savol: eng ko‘p? farq? jami?
 TEKSH: Jadvalda: Dilnoza — 7 ta, Madina — 13 ta. Madina Dilnozadan nechta ko‘p? => 6 | 20 | 13 | 7
 TEKSH: Jadvalda uchta son: 4, 8, 11. Jami nechta? => 23 | 15 | 12 | 33
+TEKSH: Jadvalda: Anvar — 14, Zilola — 9, Bobur — 17 ta kitob. Zilola va Bobur birga Anvardan nechta ko‘p o‘qigan? => 12 | 40 | 3 | 8
 @tushuncha Jadvaldan diagramma chizamiz
 OVOZ: [1] Jadvalni diagrammaga aylantiramiz. Avval shkalani tanlaymiz. Eng katta son — o‘n besh. Qadam — besh qulay: nol, besh, o‘n, o‘n besh. [2] {sekin}Ali — o‘n ikki: o‘ndan oshdi, o‘n beshga yetmadi. [3] Vali — to‘qqiz: beshdan oshdi, o‘ndan oshmadi. [4] Sardor — aynan o‘n besh. [5] {baland}Diagrammaning sarlavhasini va nomlarini yozishni unutmang!
 DOSKA: SON_OQI: 0..15 qadam 5; nuqta 0 nol; nuqta 5; nuqta 10; nuqta 15
@@ -177,6 +185,7 @@ DOSKA: Sardor [p]███████████████[/p] 15
 DOSKA: Sarlavha + nomlar + shkala ✔
 TEKSH: Eng katta son 40. Diagramma uchun qulay shkala qadami qaysi? => 10 | 1 | 3 | 7
 TEKSH: Jadvalda 8, 24 va 16 bor. Shkala 0 dan boshlansa, qulay qadam qaysi? => 4 | 24 | 1 | 15
+TEKSH: Shkala qadami 5. Ustun 35 ga yetishi uchun nechta chiziq kerak? => 7 | 30 | 40 | 175
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Xato: sanashda bitta narsani ikki marta sanash yoki o‘tkazib yuborish. {pauza} Natija: jami kuzatuvga teng chiqmaydi. [2] {urgu}Har bir kuzatuvni sanab bo‘lgach belgilab qo‘ying! Jami kuzatuvlar soniga tengligini tekshiring. [3] Ikkinchi xato: jadval nomini va birligini yozmaslik. «25» deb yozsak, nima haqida? Odamlarmi, kitoblarmi, kunlarmi?
 DOSKA: ❌ jami ≠ kuzatuvlar
@@ -204,6 +213,7 @@ DOSKA: Belgi: tur (meva / sabzavot)
 DOSKA: Belgi: rang → boshqa guruhlar!
 TEKSH: Quyidagilar qaysi guruhga kiradi: tovuq, ot, sigir, qo‘y? => Uy hayvonlari | Mevalar | Transport | Asboblar
 TEKSH: «Qizil» belgisi bo‘yicha guruhlasak, nimalar birga bo‘ladi? => Qizil olma va qizil pomidor | Olma va nok | Sabzi va piyoz | Mashina va velosiped
+TEKSH: Qaysi biri boshqalardan farq qiladi: olma, nok, sabzi, uzum? => Sabzi | Olma | Nok | Uzum
 @tushuncha O‘sish va kamayish tartibi
 OVOZ: [1] Sonlarni o‘sish tartibida joylaymiz: eng kichigi birinchi. Uch, yetti, to‘qqiz — son o‘qida chapdan o‘ngga. [2] {sekin}Kamayish tartibida — eng kattasi birinchi: to‘qqiz, yetti, uch. O‘ngdan chapga. [3] Ko‘p xonali sonlarda xonalar soniga qarang. To‘qson sakkiz, to‘rt yuz ellik, bir ming ikki yuz. Qaysi biri eng kichik? [4] {baland}Xonasi eng kam — to‘qson sakkiz. Keyin to‘rt yuz ellik. Keyin — bir ming ikki yuz. [5] Esda tuting: xona ko‘p bo‘lsa — son katta.
 DOSKA: SON_OQI: 0..10; nuqta 3; nuqta 7; nuqta 9
@@ -213,6 +223,7 @@ DOSKA: 98 < 450 < 1 200
 DOSKA: QOIDA: xona ko‘p → son katta
 TEKSH: 45, 4, 450 sonlarini o‘sish tartibida yozing. => 4, 45, 450 | 450, 45, 4 | 45, 4, 450 | 4, 450, 45
 TEKSH: 12, 7, 20, 3 sonlarini kamayish tartibida yozing. => 20, 12, 7, 3 | 3, 7, 12, 20 | 7, 3, 12, 20 | 20, 3, 7, 12
+TEKSH: 305, 35, 3 050, 53 sonlarini o‘sish tartibida yozing. => 35, 53, 305, 3 050 | 53, 35, 305, 3 050 | 3 050, 305, 53, 35 | 35, 53, 3 050, 305
 @tushuncha Eng katta, eng kichik va o‘rtadagi
 OVOZ: [1] Sonlar: sakkiz, o‘n besh, uch, o‘n bir, olti. Avval ularni tartiblaymiz: uch, olti, sakkiz, o‘n bir, o‘n besh. [2] {sekin}Chetdagilarga qarang: eng kichigi — uch, eng kattasi — o‘n besh. [3] O‘rtadagi son — sakkiz: ikki tomonida ikkitadan son bor. [4] Eng katta bilan eng kichik orasidagi farq: o‘n besh minus uch — o‘n ikki.
 DOSKA: ZANJIR: 3 | 6 | 8 | 11 | 15
@@ -221,6 +232,7 @@ DOSKA: o‘rtadagisi: 8
 DOSKA: KETMA: 15 − 3 | 12 farq
 TEKSH: 9, 2, 14, 6, 11 sonlarida eng katta va eng kichik son farqi? => 12 | 14 | 9 | 7
 TEKSH: 4, 10, 7, 1, 12 sonlarida o‘rtadagi son qaysi? => 7 | 10 | 4 | 12
+TEKSH: 17, 5, 23, 9, 12 sonlarida eng katta va eng kichik son yig‘indisi? => 28 | 18 | 40 | 26
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Xato: raqamni solishtirish, sonni emas. To‘qqiz va o‘n ikkini ko‘ring: «to‘qqiz katta, chunki to‘qqiz — katta raqam!» [2] {urgu}Yo‘q! O‘n ikki — ikki xonali, to‘qqiz — bir xonali. O‘n ikki katta! [3] Ikkinchi xato: tartiblab bo‘lgach, qatordagi birorta sonni tushirib ketish. [4] Tekshirish oddiy: boshida nechta son bo‘lsa, oxirida ham shuncha bo‘lsin.
 DOSKA: ❌ 9 > 12

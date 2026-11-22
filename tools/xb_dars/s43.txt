@@ -13,6 +13,7 @@ DOSKA: ⛰ baland · 🌾 tekis · 🏞 vodiy
 DOSKA: vodiy — tog‘lar orasi
 TEKSH: Qaysi biri baland yer shakli? => Tog‘ | Tekislik | Vodiy | Cho‘l
 TEKSH: Daryolar asosan nimadan to‘yinadi? => Tog‘dagi qor va muzliklar | Faqat yomg‘irdan | Tuproqdan | Shamoldan
+TEKSH: Tog‘lar orasidagi pastlik nima deyiladi? => Vodiy | Tekislik | Cho‘l | Tepalik
 @tushuncha Tuproq va suv
 OVOZ: [1] Tuproq — o‘simlik o‘sadigan yupqa unumdor qatlam. U juda sekin, yuzlab yillar davomida hosil bo‘ladi. [2] Tosh mayda bo‘laklarga parchalanadi, unga o‘lgan barg va qoldiqlar qo‘shiladi — tuproq tayyor. [3] {sekin}Suv hayot uchun kerak. Yerdagi suvning katta qismi sho‘r dengizda. Chuchuk suv oz — uni tejash kerak. [4] {urgu}Tuproq ham, suv ham ifloslanishi mumkin. Asrang!
 DOSKA: ZANJIR: Tosh parchalanadi | + o‘lik qoldiq | Tuproq hosil bo‘ladi | Unumdor qatlam
@@ -22,6 +23,7 @@ DOSKA: 💧 chuchuk suv — oz
 DOSKA: ❌ ifloslanish → xavf
 TEKSH: Tuproq nimalardan tarkib topgan? => Mineral, o‘lik qoldiq, suv, havo | Faqat tosh | Faqat suv | Faqat qum
 TEKSH: Nima uchun suvni tejash kerak? => Chuchuk suv kam | U hech qachon tugamaydi | U juda ko‘p | Kerak emas
+TEKSH: Unumdor tuproq qatlami yomg‘irda yuvilib ketdi. Nega bu jiddiy yo‘qotish? => Tuproq juda sekin hosil bo‘ladi | U bir kunda tiklanadi | Tuproq hech kimga kerak emas | Suv ko‘payadi
 @tushuncha Tiklanadigan va tiklanmaydigan resurslar
 OVOZ: [1] Quyosh nuri va shamol tugamaydi. Daraxt kesilsa, yangisini ekib o‘stirish mumkin. [2] Ko‘mir, neft, gaz esa millionlab yil ichida hosil bo‘lgan. Ular tez tiklanmaydi. [3] {sekin}Sarflayversak, tugab qoladi! Shuning uchun energiyani tejash va quyosh energiyasidan foydalanish muhim. [4] Chiqindini qayta ishlash ham resursni tejaydi.
 DOSKA: JADVAL: Tiklanadi | Tugaydi ;; quyosh, shamol | neft, gaz ;; daraxt ekish | ko‘mir ;; suv aylanishi | metall rudasi
@@ -30,6 +32,7 @@ DOSKA: ♻ qayta ishlash
 DOSKA: ☀ quyosh energiyasi
 TEKSH: Qaysi resurs tiklanmaydi? => Neft | Shamol | Quyosh nuri | Yomg‘ir
 TEKSH: Qog‘ozni qayta ishlash nima beradi? => Daraxt kamroq kesiladi | Ko‘proq chiqindi | Neft ko‘payadi | Hech narsa
+TEKSH: Maktab tomiga quyosh batareyasi o‘rnatildi. Bu nima uchun yaxshi? => Tugamaydigan energiyadan foydalaniladi | Neft ko‘proq sarflanadi | Quyosh so‘nadi | Shamol to‘xtaydi
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Xato: «Suv hech qachon tugamaydi, dengiz katta-ku!» [2] {urgu}Dengiz suvi sho‘r — uni ichib bo‘lmaydi. Chuchuk suv juda oz va notekis tarqalgan. [3] Ikkinchi xato: tuproqni oddiy kir deb o‘ylash. Tuproq — bizning ovqatimiz manbai!
 DOSKA: ❌ dengiz → ichiladi
@@ -60,6 +63,7 @@ DOSKA: ❄ sovuydi → bulut
 DOSKA: ⬇ og‘irlashdi → yog‘in
 TEKSH: Ho‘l kiyim quyoshda nega quriydi? => Suv bug‘lanadi | Suv yo‘qoladi | Suv kiyimga singadi | Suv muzlaydi
 TEKSH: Bulut nimadan tarkib topgan? => Mayda suv tomchilaridan | Tutundan | Changdan | Gazdan
+TEKSH: Qaynayotgan choynak qopqog‘ida suv tomchilari hosil bo‘ldi. Bu suv aylanishining qaysi jarayoniga o‘xshaydi? => Kondensatsiya | Bug‘lanish | Erish | Muzlash
 @tushuncha Ob-havo elementlari
 OVOZ: [1] Ob-havo — hozirgi paytdagi harorat, yog‘in, shamol va bulutning holati. [2] Termometr haroratni o‘lchaydi. Yomg‘ir o‘lchagich yog‘in miqdorini. [3] {sekin}Shamol — havoning harakati; uning yo‘nalishi va kuchi bor. [4] {urgu}Ob-havo har kuni o‘zgaradi. Iqlim esa uzoq yillar davomidagi odatiy ob-havo.
 DOSKA: JADVAL: Element | Asbob | Nimani o‘lchaydi ;; Harorat | termometr | issiq/sovuq ;; Yog‘in | yomg‘ir o‘lchagich | millimetr ;; Shamol | flyuger | yo‘nalish
@@ -68,6 +72,7 @@ DOSKA: iqlim → uzoq yillar
 DOSKA: 🌬 shamol — havo harakati
 TEKSH: Haroratni nima bilan o‘lchaymiz? => Termometr | Tarozi | Chizg‘ich | Soat
 TEKSH: Toshkentda yozi issiq, qishi sovuq bo‘lishi — nimaga misol? => Iqlim | Bir kunlik ob-havo | Shamol | Bulut
+TEKSH: Shamol qaysi tomondan esayotganini qaysi asbob ko‘rsatadi? => Flyuger | Termometr | Yomg‘ir o‘lchagich | Chizg‘ich
 @tushuncha Kuzatuv va jadval
 OVOZ: [1] Bir hafta har kuni harorat va holatni yozib boramiz: quyoshli, bulutli, yomg‘irli. [2] Jadval tuzsak, qaysi kun issiq, qaysi sovuq — bir qarashda ko‘ramiz. [3] {sekin}Dushanba — o‘n sakkiz daraja, seshanba — yigirma, chorshanba — o‘n yetti, payshanba — yigirma ikki. Eng issiq kun — payshanba. [4] Kuzatuv ob-havoni oldindan taxmin qilishga yordam beradi, lekin kafolat emas.
 DOSKA: JADVAL: Kun | Harorat | Holat ;; Du | 18° | bulutli ;; Se | 20° | quyoshli ;; Ch | 17° | yomg‘ir ;; Pa | 22° | quyoshli
@@ -76,6 +81,7 @@ DOSKA: farq: 22 − 17 = 5°
 DOSKA: bashorat ≠ kafolat
 TEKSH: Kunlar harorati: 12°, 15°, 14°, 19°. Eng sovuq kun harorati nechchi? => 12° | 19° | 14° | 15°
 TEKSH: Jadvalda yomg‘irli kunlar ko‘p. Bu nimani anglatishi mumkin? => Shu mavsum nam bo‘lishi mumkin | Quyosh yo‘q | Yomg‘ir hech qachon tugamaydi | Hech nima
+TEKSH: Haftalik harorat: 16°, 19°, 21°, 18°. Eng issiq va eng sovuq kun farqi necha daraja? => 5° | 3° | 2° | 21°
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Xato: «Bulut — tutun» yoki «bulut — paxta». [2] {urgu}Bulut — mayda suv tomchilari yoki muz kristallaridan iborat! [3] Ikkinchi xato: bir kunlik sovuqni «iqlim o‘zgardi» deb hisoblash. Iqlim — uzoq yillar kuzatuvi.
 DOSKA: ❌ bulut — tutun
@@ -106,6 +112,7 @@ DOSKA: 🌙 Oy — yo‘ldosh
 DOSKA: ☀ Quyosh — yulduz
 TEKSH: Quyoshdan sanaganda Yer nechanchi sayyora? => 3 | 1 | 4 | 5
 TEKSH: Quyidagilardan qaysi biri yulduz? => Quyosh | Oy | Mars | Yer
+TEKSH: Qaysi sayyora Quyoshga eng yaqin? => Merkuriy | Venera | Yer | Neptun
 @tushuncha Yerning aylanishi: kun va tun
 OVOZ: [1] Yer o‘z o‘qi atrofida aylanadi. Bir marta to‘liq aylanishi — bir sutka, ya’ni yigirma to‘rt soat. [2] Yerning Quyoshga qaragan tomonida kunduz, orqa tomonida tun. [3] {sekin}Aslida Quyosh joyida turibdi, Yer aylanyapti. Biz tezlikni sezmaymiz, shuning uchun Quyosh siljiyotgandek tuyuladi. [4] Poyezdda o‘tirsangiz, daraxtlar orqaga o‘tib ketayotgandek ko‘rinadi — bu ham xuddi shunday.
 DOSKA: 🌍 o‘q atrofida: 24 soat
@@ -114,6 +121,7 @@ DOSKA: teskari tomon — tun
 DOSKA: ko‘rinish ≠ haqiqat
 TEKSH: Bir sutka necha soat? => 24 | 12 | 365 | 30
 TEKSH: Yerning o‘z o‘qi atrofida bir marta aylanishi nimani hosil qiladi? => Kun va tunni | Fasllarni | Oy fazalarini | Yilni
+TEKSH: Yer o‘z o‘qi atrofida 24 soatda bir marta aylanadi. Ikki sutkada necha marta aylanadi? => 2 | 1 | 4 | 24
 @tushuncha Quyosh atrofida va fasllar
 OVOZ: [1] Yer Quyosh atrofida bir marta aylanishi uchun 365 kun kerak — bu bir yil. [2] Yer o‘qi qiya. Shuning uchun yil davomida Quyosh nuri turli burchakda tushadi. [3] {sekin}Shimoliy yarim sharga nur tik tushsa — yoz, qiya tushsa — qish. [4] {urgu}Fasllar Yer Quyoshga yaqin-uzoq bo‘lgani uchun emas, o‘qning qiyaligi tufayli almashadi!
 DOSKA: 🌍 Quyosh atrofida: 365 kun
@@ -122,6 +130,7 @@ DOSKA: nur tik → yoz
 DOSKA: nur qiya → qish
 TEKSH: Fasllar nima uchun almashadi? => Yer o‘qi qiya bo‘lgani uchun | Quyosh yaqinlashgani uchun | Oy uchun | Shamol uchun
 TEKSH: Yer Quyosh atrofida necha kunda bir marta aylanadi? => 365 | 24 | 30 | 7
+TEKSH: Yer Quyosh atrofida 365 kunda aylanadi. Shu vaqtda o‘z o‘qi atrofida taxminan necha marta aylanadi? => 365 | 24 | 12 | 30
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Xato: «Yoz — Yer Quyoshga yaqinroq bo‘lgani uchun». [2] {urgu}Yo‘q! Shimoliy yarim sharda yoz — Yer Quyoshdan eng uzoq turgan paytga to‘g‘ri keladi. Hammasi nur tushish burchagida! [3] Ikkinchi xato: Oy o‘zi nur chiqaradi deb o‘ylash. Oy Quyosh nurini qaytaradi.
 DOSKA: ❌ yoz — yaqin

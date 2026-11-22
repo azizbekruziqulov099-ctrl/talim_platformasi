@@ -5,6 +5,7 @@ DOSKA: RASM: pul:sakra | telefon
 DOSKA: SON_OQI: -4..6; nuqta 5 boshlanish
 DOSKA: 5 − 7 + 2 − 1 = ?
 DOSKA: Oxirida qancha? ✋
+TEKSH: Hisobda 4 ming so‘m bor edi. 9 ming so‘mlik xarid qilindi, 3 ming so‘m to‘ldirildi, 2 ming so‘m komissiya yechildi. Hisob holati (ming so‘m)? => −4 | 4 | −2 | 18
 @tushuncha Ketma-ket qo‘shish va ayirish: pul o‘qda yuradi
 OVOZ: [1] Boshlaymiz: hisobda besh. Yetti ming xarid — chapga yetti qadam. {sekin}Qarang: nuqta nolni kesib o‘tdi — hisob minusga tushdi! Minus ikki. [2] Keyin ikki ming to‘ldirdik — o‘ngga ikki qadam. Aynan nolga keldik! [3] {urgu}Va oxirgi obuna: bir ming chapga. Nolning chap tomoniga — minus bir. [4] Demak, hisobda minus bir ming — ya’ni bir ming so‘m qarz bor! Yoki boshqacha: plyuslarni alohida yig‘amiz: besh plyus ikki — yetti. Minuslarni: yetti plyus bir — sakkiz. Yetti minus sakkiz — minus bir. Ikki yo‘l — bir javob!
 DOSKA: SON_OQI: -4..6; nuqta 5 A; nuqta -2 B; yur 5 -2
@@ -13,6 +14,7 @@ DOSKA: SON_OQI: -4..6; nuqta 0 A; nuqta -1 B; yur 0 -1
 DOSKA: (5 + 2) − (7 + 1) = 7 − 8 = −1
 TEKSH: 6 − 9 + 4 − 3 nechaga teng? => −2 | 2 | 12 | −12
 TEKSH: −8 + 12 − 9 nechaga teng? => −5 | 5 | −29 | 13
+TEKSH: 15 − (4 − 10) nechaga teng? => 21 | 9 | −21 | 1
 @tushuncha Qavs oldida minus: ishoralar teskari bo‘ladi
 OVOZ: [1] Endi qiziq voqea: o‘n minus qavsda uch minus sakkiz. Avval qavsning ichi: uch minus sakkiz — minus besh. Mana, o‘qda: uchdan sakkiz qadam chapga. [2] {sekin}Endi o‘ndan minus besh ni ayiramiz. Manfiy sonni ayirish — qarzni qaytarib olish: boylik oshadi! O‘ndan o‘n besh gacha — besh qadam o‘ngga. [3] Boshqa yo‘l — qavsni ochamiz: qavs oldida minus bo‘lsa, ichidagi {urgu}hamma ishora teskari bo‘ladi! O‘n minus uch plyus sakkiz. [4] O‘n yetti, ushbu olti-yetti… yo‘q, to‘g‘risi: o‘n minus uch — yetti, yetti plyus sakkiz — o‘n besh. Ikkala yo‘l bir xil: o‘n besh!
 DOSKA: SON_OQI: -6..6; nuqta 3 A; nuqta -5 B; yur 3 -5
@@ -29,6 +31,7 @@ DOSKA: (−3)(−3) = 9;  (−12) : 4 = −3
 DOSKA: BELGILA: 9 − 3 = 6 | ramka
 TEKSH: −2 · (3 − 8) + 15 : (−3) nechaga teng? => 5 | 15 | −5 | −15
 TEKSH: (−4)² − 20 : 5 nechaga teng? => 12 | −20 | 4 | 28
+TEKSH: −(a − 3) ifodada qavsni ochgandan keyin nima hosil bo‘ladi? => −a + 3 | −a − 3 | a + 3 | a − 3
 @tushuncha Xato tuzog‘i: qavsni ochishda yarmi unutiladi
 OVOZ: [1] Eng ko‘p uchraydigan xato: qavs oldida minus bo‘lsa, faqat birinchi sonning ishorasini almashtirish. [2] {urgu}Yo‘q! Qavs ichidagi hamma ishora almashadi! To‘qqiz minus qavsda to‘rt minus olti. Noto‘g‘ri yo‘l: to‘qqiz minus to‘rt minus olti — bu uch o‘rniga minus bir. [3] To‘g‘risi: to‘qqiz minus to‘rt plyus olti — o‘n bir. Tekshiring: qavs ichi — minus ikki, to‘qqiz minus minus ikki — o‘n bir. [4] Ikkinchi xato: manfiy sonni qavsga olmaslik. Uch minus minus besh yozilmaydi — uch minus qavsda minus besh yoziladi.
 DOSKA: ❌ 9 − (4 − 6) = 9 − 4 − 6 = −1
@@ -50,6 +53,7 @@ DOSKA: RASM: limon:sakra | stakan | suv
 DOSKA: 1-stakan:  2 qoshiq limon : 6 qoshiq suv
 DOSKA: 2-stakan:  3 qoshiq limon : 12 qoshiq suv
 DOSKA: Qaysi achchiqroq? ✋
+TEKSH: 18 : 24 nisbatni eng sodda ko‘rinishga keltiring. => 3 : 4 | 4 : 3 | 1 : 6 | 2 : 3
 @tushuncha Nisbat: ikki sonni solishtirish
 OVOZ: [1] Nisbat — ikki sonning bo‘linmasi. «Ikki ga olti» deymiz. Uni qisqartiramiz: ikkitaga bo‘lamiz — bir ga uch. [2] {sekin}Ya’ni har bir qism limonga uch qism suv. Ikkinchi stakan: uch ga o‘n ikki — bir ga to‘rt. [3] Rasmda ko‘ring: birinchi stakanda limon — to‘rtdan bir qism. Ikkinchida — beshdan bir. {urgu}To‘rtdan bir kattaroq! [4] Demak, birinchi stakan achchiqroq — suv kamroq. Ikkinchida limon ko‘p, lekin suv undan ham ko‘p!
 DOSKA: 2 : 6 = 1 : 3
@@ -58,6 +62,7 @@ DOSKA: 3 : 12 = 1 : 4
 DOSKA: DOIRA_KASR: 1/5
 TEKSH: 4 : 12 nisbatni qisqartiring. => 1 : 3 | 2 : 3 | 1 : 4 | 3 : 1
 TEKSH: Sinfda 12 qiz va 18 o‘g‘il. Qizlar va o‘g‘illar nisbati? => 2 : 3 | 3 : 2 | 12 : 30 | 1 : 6
+TEKSH: 3 kg uzum 24 000 so‘m turadi. 5 kg uzum necha so‘m turadi? => 40 000 | 14 400 | 8 000 | 120 000
 @tushuncha Proporsiya: ikki teng nisbat
 OVOZ: [1] Ikki nisbat teng bo‘lsa — proporsiya! Masalan, ikki ga olti teng uch ga to‘qqiz. Ikkalasi ham bir ga uchga teng. [2] {sekin}Asosiy xossa: chetki hadlar ko‘paytmasi o‘rtadagilar ko‘paytmasiga teng. Ikki karra to‘qqiz — o‘n sakkiz. Olti karra uch — o‘n sakkiz. Mos! [3] Endi noma’lum had: x ga to‘rt teng o‘n besh ga yigirma. Xoch usuli: x karra yigirma — to‘rt karra o‘n besh. [4] To‘rt karra o‘n besh — oltmish. Oltmish bo‘lingan yigirma — uch. X teng uch!
 DOSKA: 2 : 6 = 3 : 9
@@ -66,6 +71,7 @@ DOSKA: x : 4 = 15 : 20
 DOSKA: KETMA: x · 20 = 4 · 15 | x · 20 = 60 | x = 3
 TEKSH: x : 5 = 6 : 15. x nechaga teng? => 2 | 18 | 12,5 | 5
 TEKSH: 8 : 12 = 6 : x. x nechaga teng? => 9 | 4 | 12 | 16
+TEKSH: 560 ming so‘m foydani ikki hamkor 3 : 4 nisbatda bo‘ldi. Kattasi qancha oladi (ming so‘m)? => 320 | 240 | 420 | 280
 @tushuncha Nisbatda bo‘lish: konfetlarni adolatli ulashish
 OVOZ: [1] O‘ttizta konfetni ikki bolaga ikki ga uch nisbatda bo‘lamiz. Birinchiga ikki qism, ikkinchiga uch qism. Hammasi — besh qism. [2] {sekin}Bir qism qancha? O‘ttiz bo‘lingan besh — olti konfet. [3] Birinchi bola — ikki karra olti: o‘n ikkita. Ikkinchi — uch karra olti: o‘n sakkizta. [4] {baland}Tekshiramiz: o‘n ikki plyus o‘n sakkiz — o‘ttiz! Qoida oddiy: avval qismlar soni, keyin bir qismning qiymati, keyin ko‘paytirish.
 DOSKA: SXEMA: 30 konfet > 2 qism: 12 ta | 3 qism: 18 ta
@@ -94,6 +100,7 @@ OVOZ: {baland}Telefon narxi yuz ming so‘m edi! {pauza} Avval yigirma foizga qi
 DOSKA: RASM: telefon:sakra | pul
 DOSKA: ZANJIR: 100 000 | +20% | ? | −20% | ?
 DOSKA: Yana 100 000 bo‘ladimi? ✋
+TEKSH: Sinfdagi 30 o‘quvchining 20 foizi a’lochi. A’lochilar soni? => 6 | 10 | 20 | 24
 @tushuncha Foiz: yuzdan bir bo‘lak
 OVOZ: [1] Foiz — sonning yuzdan bir qismi. Yigirma foiz — beshdan bir. Rasmda ko‘ring: butunning beshdan bir qismi bo‘yaldi. [2] Yuz ming so‘mning yigirma foizi — yigirma ming. Narx yigirma ming oshdi: yuz yigirma ming. [3] {sekin}Endi yigirma foizga arzonlashdi. Lekin nimaning yigirma foizi? {urgu}Yangi narxning — yuz yigirma mingning! Uning yigirma foizi — yigirma to‘rt ming. [4] Yuz yigirma ming minus yigirma to‘rt ming — to‘qson olti ming. Narx yuz mingga qaytmadi — to‘rt ming kam!
 DOSKA: DOIRA_KASR: 1/5
@@ -102,6 +109,7 @@ DOSKA: USTUN: 120000-24000
 DOSKA: BELGILA: 96 000 ≠ 100 000 | aylana
 TEKSH: 250 ning 40 foizi nechaga teng? => 100 | 10 | 40 | 62,5
 TEKSH: 60 soni 80 ning necha foizi? => 75% | 60% | 133% | 25%
+TEKSH: Narx 25 foizga arzonlashdi. Koeffitsiyent nechaga teng? => 0,75 | 0,25 | 1,25 | 25
 @tushuncha Koeffitsiyent: tez va oson usul
 OVOZ: [1] Har gal ayirib-qo‘shib o‘tirmaymiz — koeffitsiyent bor! Yigirma foizga oshsa — bir butun ikkiga ko‘paytiramiz. [2] {sekin}Yigirma foizga kamaysa — nol butun sakkizga. Chunki yuz foizdan yigirmani olsak — sakson foiz qoladi. [3] Ketma-ket o‘zgarishlarda koeffitsiyentlarni ko‘paytiramiz. Bir butun ikki karra nol butun sakkiz — nol butun to‘qson olti. [4] {urgu}Demak, yuz ming karra nol butun to‘qson olti — to‘qson olti ming. Umumiy o‘zgarish — to‘rt foiz kamayish! Tez va aniq.
 DOSKA: JADVAL: O‘zgarish | Koeffitsiyent ;; +20% | ×1,2 ;; −20% | ×0,8 ;; +15% | ×1,15 ;; −15% | ×0,85
@@ -118,6 +126,7 @@ DOSKA: ❌ 72 000 · 1,1 = 79 200
 DOSKA: ✅ tekshir: 80 000 · 0,9 = 72 000
 TEKSH: 15% chegirmadan keyin narx 85 so‘m. Dastlabki narx? => 100 | 97,75 | 72,25 | 99,75
 TEKSH: 30% oshgandan keyin narx 91 so‘m. Dastlabki narx? => 70 | 118,3 | 63,7 | 61
+TEKSH: Mahsulot narxi 200 000 so‘m edi. U 10 foizga oshdi, keyin 10 foizga kamaydi. Oxirgi narx? => 198 000 | 200 000 | 202 000 | 180 000
 @tushuncha Xato tuzog‘i: foiz va foiz punkti
 OVOZ: [1] Eng katta xato: foizlarni qo‘shish. Yigirma foiz oshish va yigirma foiz kamayish — nolga teng emas. [2] {urgu}Foiz har gal yangi sondan hisoblanadi! [3] Ikkinchi xato: foiz va foiz punktini adashtirish. Soliq stavkasi o‘nddan o‘n ikkiga o‘tdi: bu ikki foiz punktiga oshish. Lekin o‘nga nisbatan — yigirma foizga oshgan! [4] Yangilikda «foizga» yoki «foiz punktiga» so‘zi bo‘lsa — diqqat qiling.
 DOSKA: ❌ +20% − 20% = 0
@@ -139,6 +148,7 @@ DOSKA: RASM: xarita | ishchi:kel
 DOSKA: 15 sm xaritada · 1 sm = 10 km
 DOSKA: 4 ishchi → 6 kun
 DOSKA: 8 ishchi → ? kun ✋
+TEKSH: Mashina bir xil tezlikda 3 soatda 240 km yuradi. 5 soatda necha km yuradi? => 400 | 144 | 80 | 720
 @tushuncha To‘g‘ri proporsionallik: bir oshsa, ikkinchi ham oshadi
 OVOZ: [1] Santimetr oshsa — kilometr ham oshadi. Bir santimetr — o‘n kilometr. O‘n besh santimetr — o‘n besh karra o‘n: bir yuz ellik kilometr. [2] {sekin}Nisbat har doim bir xil: kilometr bo‘lingan santimetr — o‘n. Bu — to‘g‘ri proporsionallik. [3] {urgu}Grafigi — koordinata boshidan o‘tuvchi to‘g‘ri chiziq. Qarang: xaritadagi masofa oshgan sari haqiqiy masofa ham tekis ko‘tarilyapti. [4] Formulasi: y teng k karra x. Bu yerda k — o‘n.
 DOSKA: 15 sm · 10 = 150 km
@@ -147,6 +157,7 @@ DOSKA: GRAFIK: y=10x; [0;6]
 DOSKA: y = k · x
 TEKSH: 1 kg olma 8 000 so‘m. 3,5 kg necha so‘m? => 28 000 | 11 500 | 24 000 | 8 000
 TEKSH: 2 sm xaritada 50 km bo‘lsa, 7 sm necha km? => 175 | 57 | 100 | 14
+TEKSH: 6 ta quvur basseynni 10 soatda to‘ldiradi. 4 ta quvur necha soatda to‘ldiradi? => 15 | 6,7 | 24 | 4
 @tushuncha Teskari proporsionallik: bir oshsa, ikkinchi kamayadi
 OVOZ: [1] Ishchilar masalasi: to‘rt ishchi — olti kun. Sakkiz ishchi — ikki marta ko‘p. Ish tezroq bitadi: uch kun! [2] {sekin}Bu yerda ko‘paytma o‘zgarmaydi: ishchi karra kun — to‘rt karra olti — yigirma to‘rt ishchi-kun. Butun devor uchun yigirma to‘rt ishchi-kun kerak. [3] O‘n ikki ishchi: yigirma to‘rt bo‘lingan o‘n ikki — ikki kun. [4] {urgu}Grafigi — egri chiziq: ishchi oshgan sari kun kamayadi, lekin hech qachon nolga tushmaydi.
 DOSKA: 4 · 6 = 24 ishchi-kun
@@ -155,6 +166,7 @@ DOSKA: GRAFIK: y=24/x; [1;12]
 DOSKA: y = k : x
 TEKSH: 3 mashina yukni 12 soatda tashiydi. 9 mashina necha soatda tashiydi? => 4 | 36 | 6 | 3
 TEKSH: Tezlik 60 km/soat bo‘lsa vaqt 4 soat. Tezlik 80 km/soat bo‘lsa, vaqt necha soat? => 3 | 5 | 2,5 | 4
+TEKSH: Qaysi holatda kattaliklar teskari proporsional? => Masofa o‘zgarmasa, tezlik va vaqt | Daftarlar soni va ularning umumiy narxi | Odam yoshi va ish tajribasi | Aylana radiusi va uzunligi
 @tushuncha Qaysi biri? Tekshirish usuli
 OVOZ: [1] Savol: bir kattalik oshsa, ikkinchisi ham oshadimi? Ha — to‘g‘ri proporsional. Yo‘q, kamayadimi — teskari. [2] Yoki hisob bilan tekshiring: nisbat doimiymi — to‘g‘ri. Ko‘paytma doimiymi — teskari. [3] {sekin}Narx va miqdor — to‘g‘ri. Tezlik va vaqt, masofa o‘zgarmasa — teskari. [4] {urgu}Lekin hamma narsa proporsional emas! Bolaning yoshi va bo‘yi proporsional emas: o‘n yoshda bir yuz qirq santimetr bo‘lsa, yigirma yoshda ikki yuz sakson emas!
 DOSKA: SXEMA: Bog‘liqlik > ↑ va ↑ → to‘g‘ri | ↑ va ↓ → teskari | boshqa → proporsional emas
@@ -162,6 +174,7 @@ DOSKA: y : x doimiy → to‘g‘ri
 DOSKA: x · y doimiy → teskari
 DOSKA: yosh va bo‘y — proporsional emas
 TEKSH: Idish hajmi o‘zgarmaydi. Quyish tezligi oshsa, to‘lish vaqti qanday o‘zgaradi? => Kamayadi (teskari) | Oshadi (to‘g‘ri) | O‘zgarmaydi | Aniqlab bo‘lmaydi
+TEKSH: Jadval berilgan: x = 2, 3, 4 bo‘lganda y = 12, 18, 24. Bog‘liqlik turi qaysi? => To‘g‘ri proporsional, y = 6x | Teskari proporsional | Proporsional emas | y = x + 10
 @tushuncha Xato tuzog‘i: hammasini to‘g‘ri deb olish
 OVOZ: [1] Eng ko‘p uchraydigan xato: hamma narsani to‘g‘ri proporsional deb hisoblash. [2] {urgu}To‘rt ishchi olti kunda, demak sakkiz ishchi o‘n ikki kunda?! Yo‘q! Ko‘proq ishchi — kamroq kun. Sakkiz ishchi — uch kun! [3] Ikkinchi xato: bog‘liqlik turini aniqlamay, bir xil formulani qo‘llash. [4] Avval so‘rang: bir kattalik oshsa, ikkinchisi oshadimi yoki kamayadimi? Keyin formulani tanlang.
 DOSKA: ❌ 8 ishchi → 12 kun
@@ -183,6 +196,7 @@ DOSKA: RASM: uchburchak:aylan
 DOSKA: CHIZ: uchburchak A(0;0) B(2;0) C(1;2)
 DOSKA: 1 ta — 3 cho‘p;  2 ta — 5;  3 ta — 7
 DOSKA: 100 ta uchun? ✋
+TEKSH: 5, 9, 13, 17, … ketma-ketlikning n-hadi formulasi qaysi? => 4n + 1 | 5n | 4n | n + 4
 @tushuncha Qonuniyatni topamiz
 OVOZ: [1] Uch, besh, yetti, to‘qqiz. Qo‘shnilar orasidagi farq nechta? Har gal ikkita! [2] {sekin}Nega ikkita? Chunki yangi uchburchakni qo‘shganimizda bitta cho‘p qo‘shni bilan {urgu}umumiy bo‘ladi. Faqat ikkita yangi cho‘p kerak. [3] Birinchi had — uch. Keyin har gal ikkitadan qo‘shamiz. n-uchburchak uchun: uch plyus ikki karra n minus bir. [4] Ixchamlasak: ikki n plyus bir. {baland}Tekshiring: n bir bo‘lsa — uch, n uch bo‘lsa — yetti. Formula ishlayapti!
 DOSKA: JADVAL: n | cho‘plar ;; 1 | 3 ;; 2 | 5 ;; 3 | 7 ;; 4 | 9
@@ -191,6 +205,7 @@ DOSKA: aₙ = 3 + 2(n − 1) = 2n + 1
 DOSKA: tekshir: n = 3 → 7 ✔
 TEKSH: 4, 7, 10, 13 ketma-ketlikning n-hadi? => 3n + 1 | 3n | 4n | n + 3
 TEKSH: aₙ = 5n − 2. a₄ nechaga teng? => 18 | 20 | 22 | 10
+TEKSH: aₙ = 6n − 4 bo‘lsa, a₂₅ nechaga teng? => 146 | 150 | 154 | 26
 @tushuncha Yuzinchi uchburchak: formula kuchi
 OVOZ: [1] Formula tayyor: a n teng ikki n plyus bir. [2] {sekin}n o‘rniga yuzni qo‘yamiz: ikki karra yuz plyus bir — ikki yuz bir. [3] {baland}Yuzta uchburchak uchun ikki yuz bir cho‘p kerak! Yasab o‘tirmadik. [4] Qarang, grafikda hamma nuqtalar bir chiziqda: har bir qadamda ikkitadan ko‘tariladi. Formula bilan istagan hadni darhol topamiz!
 DOSKA: aₙ = 2n + 1
@@ -199,6 +214,7 @@ DOSKA: GRAFIK: y=2x+1; [0;6]
 DOSKA: a₅₀ = 2 · 50 + 1 = 101
 TEKSH: aₙ = 3n + 1. a₂₀ nechaga teng? => 61 | 60 | 23 | 81
 TEKSH: Ketma-ketlik 5, 8, 11, … Uning 30-hadi nechaga teng? => 92 | 90 | 95 | 33
+TEKSH: aₙ = 7n − 3. 60 soni ketma-ketlikka tegishlimi? => Ha, n = 9 | Yo‘q | Ha, n = 8 | Ha, n = 10
 @tushuncha Bu son ketma-ketlikka tegishlimi?
 OVOZ: [1] Boshqa savol: a n — uch n plyus bir. Yuz soni ketma-ketlikda bormi? [2] {sekin}Tenglama tuzamiz: uch n plyus bir teng yuz. Uch n — to‘qson to‘qqiz. n — o‘ttiz uch. Butun son! Demak, yuz — o‘ttiz uchinchi had. [3] Yuz beshchi? Uch n — yuz to‘rt. n — o‘ttiz to‘rt butun uchdan ikki. {urgu}Butun emas! Demak, yuz besh ketma-ketlikda yo‘q. [4] n doim butun va musbat bo‘lishi shart. Kasr bo‘lsa — tegishli emas.
 DOSKA: 3n + 1 = 100 → n = 33 ✔

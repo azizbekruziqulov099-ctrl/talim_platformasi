@@ -43,6 +43,7 @@ DOSKA: ❌ k = 2
 DOSKA: CHIZ: nuqta A(1;5) B(5;1)
 DOSKA: (1; 5) ≠ (5; 1)
 TEKSH: Quyidagilardan qaysi nuqta y = 2x + 1 grafigida yotadi? => (3; 7) | (3; 5) | (7; 3) | (1; 4)
+TEKSH: Talaba y = 2x + 5 funksiyada k = 5 va b = 2 deb yozdi. Xato nimada? => k va b o‘rni almashgan | x va y o‘rni almashgan | Xato yo‘q | Funksiya chiziqli emas
 @xulosa Esda tut
 OVOZ: Birinchi: funksiya — har bir x ga bitta y beradigan qoida. Ikkinchi: chiziqli funksiya grafigi — to‘g‘ri chiziq. Uchinchi: k — qiyalik, b — boshlang‘ich qiymat. To‘rtinchi: nuqta doim — avval x, keyin y.
 DOSKA: 1. x → y qoida
@@ -89,6 +90,7 @@ DOSKA: 2 · 36 = 72°;  3 · 36 = 108°
 DOSKA: 72° + 108° = 180° ✔
 TEKSH: Qo‘shni burchaklar nisbati 1 : 5. Kichigi necha gradus? => 30° | 36° | 150° | 20°
 TEKSH: Ikki vertikal burchakning yig‘indisi 140°. Har biri necha gradus? => 70° | 140° | 40° | 110°
+TEKSH: Ikki qo‘shni burchakning ayirmasi 40°. Kattasi necha gradus? => 110° | 70° | 140° | 90°
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Xato: vertikal burchaklarni qo‘shni deb o‘ylab, yig‘indisini bir yuz sakson deb olish. [2] {urgu}Vertikal burchaklar teng! Qo‘shni burchaklarning yig‘indisi bir yuz sakson. Rasmga qarang: qaysi biri yonma-yon, qaysi biri qarama-qarshi? [3] Ikkinchi xato: chiziqlar parallel bo‘lmasa ham mos burchaklarni teng deb olish. [4] {sekin}Mos burchaklar teng bo‘lishi uchun chiziqlar albatta parallel bo‘lishi shart!
 DOSKA: ❌ vertikal: 70 + 70 = 180
@@ -149,6 +151,7 @@ DOSKA: ✅ c² = 9 + 16 = 25; c = 5
 DOSKA: katet: b² = c² − a²
 DOSKA: gipotenuza — eng uzun tomon
 TEKSH: Gipotenuza 10, bitta katet 6. Ikkinchi katet necha? => 8 | 16 | 4 | 64
+TEKSH: Talaba katetlari 5 va 12 bo‘lgan uchburchakda c = 5 + 12 = 17 deb yozdi. Gipotenuzaning to‘g‘ri qiymati? => 13 | 17 | 7 | 169
 @xulosa Esda tut
 OVOZ: Birinchi: uchburchakning uchta burchagi yig‘indisi bir yuz sakson. Ikkinchi: Pifagor — katetlar kvadratlarining yig‘indisi gipotenuza kvadratiga teng. Uchinchi: katetni topishda ayiramiz, gipotenuzani topishda qo‘shamiz. To‘rtinchi: teskari teorema to‘g‘ri burchakni tekshiradi.
 DOSKA: 1. burchaklar yig‘indisi = 180°
@@ -267,6 +270,7 @@ DOSKA: S = πr²   (m²)
 DOSKA: ❌ r = d
 DOSKA: ✅ r = d : 2
 TEKSH: Diametri 12 sm bo‘lgan doiraning yuzi? (π ≈ 3,14) => 113,04 sm² | 452,16 sm² | 37,68 sm² | 226,08 sm²
+TEKSH: Talaba diametri 10 sm bo‘lgan doira yuzini 3,14 · 10² = 314 sm² deb hisobladi. To‘g‘ri javob? (π ≈ 3,14) => 78,5 sm² | 314 sm² | 31,4 sm² | 157 sm²
 @xulosa Esda tut
 OVOZ: Birinchi: diametr — radiusning ikki baravari. Ikkinchi: aylana uzunligi — ikki pi er. Uchinchi: doira yuzi — pi er kvadrat. To‘rtinchi: diametr berilsa, avval radiusni toping — ikkiga bo‘ling.
 DOSKA: 1. d = 2r

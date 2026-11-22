@@ -41,12 +41,14 @@ DOSKA: ✅ r = 15: S = π · 15²
 DOSKA: CHIZ: uchburchak A(0;0) B(6;0) C(1;4); balandlik CH; H(1;0)
 DOSKA: Yuza → m², sm²; uzunlik → m, sm
 TEKSH: Quyidagilardan qaysi biri yuza birligi hisoblanadi? => m² | m | m³ | kg
+TEKSH: Uchburchakning asosi 9 sm, yon tomoni 8 sm, asosiga tushirilgan balandligi 6 sm. Yuzi qancha? => 27 sm² | 36 sm² | 24 sm² | 54 sm²
 @xulosa Esda tut
 OVOZ: Birinchi: to‘rtburchak — a karra b, uchburchak — asos karra balandlik, ikkiga bo‘lingan. Ikkinchi: doira — pi r kvadrat, radius — diametrning yarmi. Uchinchi: o‘lcham k marta oshsa, yuza k kvadrat marta oshadi. To‘rtinchi: javobda birlikka qarang. Endi mashqda sinab ko‘ring!
 DOSKA: 1. S = ab; S = ah : 2
 DOSKA: 2. S = πr²; r = d : 2
 DOSKA: 3. o‘lcham ×k → yuza ×k²
 DOSKA: 4. Yuza — kvadrat birlik
+TEKSH: Doira radiusi 3 marta oshsa, uning yuzi necha marta oshadi? => 9 marta | 3 marta | 6 marta | 27 marta
 
 ## pm_yuza2
 @kirish Burchagi kesib olingan xona
@@ -70,6 +72,7 @@ DOSKA: KETMA: S | 30 + 12 | 42 | 42 m² ✔
 DOSKA: Ikki usul — bir natija!
 DOSKA: QOIDA: ikki usulda hisobla — tekshir
 TEKSH: Burchagi kesilgan L-shakl 9 × 5 to‘rtburchakdan 4 × 2 kesish bilan olingan. Yuzi qancha? => 37 | 45 | 53 | 8
+TEKSH: L-shakl chap bo‘lagi 4 × 7 m, o‘ng bo‘lagi 3 × 2 m. Umumiy yuzi qancha? => 34 m² | 13 m² | 42 m² | 28 m²
 @tushuncha Trapetsiya yuzi
 OVOZ: [1] Trapetsiya — ikkita parallel asosi bor. Misol: katta asos — o‘n, kichik asos — olti, balandlik — besh. [2] {sekin}Formula: asoslar yig‘indisi karra balandlik, ikkiga bo‘lingan. [3] O‘n plyus olti — o‘n olti. O‘n olti karra besh — sakson. Ikkiga bo‘lamiz — qirq kvadrat metr. [4] Nega bunday? {baland}Ikkita bir xil trapetsiyani yonma-yon qo‘ysak — parallelogramm hosil bo‘ladi! Uning asosi — o‘n olti, balandligi — besh: yuzi sakson. Trapetsiya — uning yarmi.
 DOSKA: CHIZ: trapetsiya A(0;0) B(10;0) C(8;5) D(4;5); balandlik CH; H(8;0)
@@ -88,12 +91,15 @@ DOSKA: ❌ π · (7 − 5)² = 4π
 DOSKA: QOIDA: avval har doira yuzi, keyin ayirma
 TEKSH: Radiuslari 10 va 6 bo‘lgan halqaning yuzi qancha (π ≈ 3,14)? => 201 | 50,2 | 100,5 | 351,7
 TEKSH: Uchburchak shaklidagi bog‘ning asosi 12 m, balandligi 7 m. Yuzi qancha? => 42 m² | 84 m² | 19 m² | 21 m²
+TEKSH: Hovuz radiusi 3 m, yo‘lak bilan birga radiusi 5 m (π ≈ 3,14). Yo‘lak yuzi qancha? => 50,24 m² | 12,56 m² | 25,12 m² | 78,5 m²
 @xulosa Esda tut
 OVOZ: Birinchi: murakkab shaklni sodda shakllarga bo‘ling yoki to‘ldirib, ortig‘ini ayiring. Ikkinchi: ikki usulda hisoblab tekshiring. Uchinchi: trapetsiya — asoslar yig‘indisi karra balandlik, ikkiga bo‘lingan. To‘rtinchi: halqa — katta doira minus kichik doira. Endi mashqda sinab ko‘ring!
 DOSKA: 1. Bo‘l yoki to‘ldir
 DOSKA: 2. Ikki usul — tekshiruv
 DOSKA: 3. S = (a + b)h : 2
 DOSKA: 4. Halqa = katta − kichik
+TEKSH: Trapetsiyaning yuzi 60 sm², asoslari 8 sm va 12 sm. Balandligi qancha? => 6 sm | 3 sm | 12 sm | 10 sm
+TEKSH: Xonaning o‘lchami 7 × 5 m, o‘rtasida 2 × 2 m li ustun bor (ustun joyiga pol yotqizilmaydi). Pol yuzi qancha? => 31 m² | 39 m² | 35 m² | 33 m²
 
 ## pm_qoplash
 @kirish Necha plitka kerak?
@@ -111,6 +117,7 @@ DOSKA: KETMA: soni | 20 : 0,25 | 80 | 80 dona
 DOSKA: QOIDA: birliklarni tenglab, yuzani yuzaga bo‘l
 TEKSH: Xona 3 m × 6 m, plitka 30 sm × 30 sm. Zaxirasiz nechta plitka kerak? => 200 | 600 | 20 | 18
 TEKSH: Xona 6 m × 5 m, plitka 50 sm × 40 sm. Zaxirasiz nechta plitka kerak? => 150 | 15 | 1 500 | 120
+TEKSH: Hovli 8 m × 6 m, trotuar plitkasi 40 sm × 20 sm. Zaxirasiz nechta plitka kerak? => 600 | 60 | 6 000 | 120
 @tushuncha Zaxira va qadoq
 OVOZ: [1] Amalda plitka kesilganda ba’zilari sinadi. Shuning uchun odatda o‘n foiz zaxira olinadi. [2] Sakson plitkaning o‘n foizi — sakkiz dona. Jami — sakson sakkiz dona. [3] {sekin}Do‘konda plitka qadoqda — o‘ntadan. Sakson sakkizni o‘nga bo‘lamiz — sakkiz butun sakkiz o‘ndan qadoq. [4] {urgu}Yarim qadoq sotilmaydi! Doim yuqoriga yaxlitlaymiz: to‘qqiz qadoq. [5] Zaxirani qo‘shmasak, ta’mir o‘rtasida plitka yetmay qolishi mumkin.
 DOSKA: KETMA: zaxira | 80 · 10% | 8 | 8 dona
@@ -119,6 +126,7 @@ DOSKA: KETMA: qadoq | 88 : 10 | 8,8 | 9 qadoq
 DOSKA: Yarim qadoq yo‘q — yuqoriga yaxlitla!
 DOSKA: Zaxirasiz — ta’mir o‘rtasida yetmay qoladi
 TEKSH: Kerakli plitka 135 dona, qadoqda 12 dona. Zaxirasiz nechta qadoq olish kerak? => 12 | 11 | 11,25 | 10
+TEKSH: Kerakli plitka 250 dona, 10% zaxira qo‘shiladi, qadoqda 20 dona. Nechta qadoq olish kerak? => 14 | 13 | 13,75 | 12
 @tushuncha Birliklar adashmasin
 OVOZ: [1] Eng ko‘p xato — metr va santimetrni aralashtirish. [2] Birov xonaning yuzini yigirma kvadrat metr, plitkaning yuzini ikki ming besh yuz kvadrat santimetr deb olib, to‘g‘ridan-to‘g‘ri bo‘lib yuboradi. [3] {urgu}Natija — nol butun nol nol sakkiz. Plitka sonmi bu?! [4] Kvadrat metrda: bir kvadrat metr — o‘n ming kvadrat santimetr! Yigirma kvadrat metr — ikki yuz ming kvadrat santimetr. [5] Ikki yuz ming bo‘lingan ikki ming besh yuz — sakson. Birlik bir xil bo‘lsa — natija to‘g‘ri chiqadi.
 DOSKA: ❌ 20 : 2 500 = 0,008 — birliklar har xil!
@@ -127,6 +135,7 @@ DOSKA: 20 m² = 200 000 sm²
 DOSKA: ✅ 200 000 : 2 500 = 80
 DOSKA: QOIDA: avval birlikni tenglab ol
 TEKSH: Xonaning yuzi 12 m², plitkaning yuzi 400 sm². Nechta plitka kerak? => 300 | 30 | 3 000 | 48 000
+TEKSH: Xona 6 m × 4 m, plitka 20 sm × 30 sm. Zaxirasiz nechta plitka kerak? => 400 | 40 | 4 000 | 120
 @tushuncha Devor bo‘yash: xarajat
 OVOZ: [1] Endi devor bo‘yaymiz. Devorlarning yuzi — yetmish ikki kvadrat metr. Eshik va deraza — jami sakkiz kvadrat metr, ularni bo‘yamaymiz. [2] Bo‘yaladigan yuza: yetmish ikki minus sakkiz — oltmish to‘rt. [3] {sekin}Ikki qatlam kerak: oltmish to‘rt karra ikki — bir yuz yigirma sakkiz kvadrat metr. [4] Bir litr bo‘yoq — sakkiz kvadrat metrga yetadi. Yuz yigirma sakkiz bo‘lingan sakkiz — o‘n olti litr. [5] {baland}Litri qirq besh ming so‘m: o‘n olti karra qirq besh — yetti yuz yigirma ming so‘m!
 DOSKA: RASM: eshik | deraza
@@ -135,12 +144,14 @@ DOSKA: 64 · 2 qatlam = 128 m²
 DOSKA: 128 : 8 = 16 l
 DOSKA: 16 · 45 000 = 720 000 so‘m
 TEKSH: Bo‘yaladigan yuza 40 m², 1 litr bo‘yoq 10 m² ga yetadi (1 qatlam), 3 qatlam bo‘yaladi. Necha litr kerak? => 12 | 4 | 40 | 30
+TEKSH: Devor yuzasi 90 m², eshik-deraza 6 m². 1 l bo‘yoq 12 m² ga yetadi (1 qatlam), 2 qatlam bo‘yaladi, 1 l — 30 000 so‘m. Bo‘yoq necha so‘m turadi? => 420 000 | 210 000 | 450 000 | 360 000
 @xulosa Esda tut
 OVOZ: Birinchi: xona yuzini bitta plitka yuziga bo‘lamiz — birliklar bir xil bo‘lsin. Ikkinchi: kesish uchun o‘n foiz zaxira olamiz. Uchinchi: qadoq soni doim yuqoriga yaxlitlanadi. To‘rtinchi: bo‘yashda eshik va derazani ayiring, qatlam sonini hisobga oling. Endi mashqda sinab ko‘ring!
 DOSKA: 1. S xona : S plitka
 DOSKA: 2. + 10% zaxira
 DOSKA: 3. Qadoq → yuqoriga yaxlitla
 DOSKA: 4. Bo‘yoq: yuza · qatlam : sarf
+TEKSH: Xona 5 m × 3 m, plitka 50 sm × 50 sm. 10% zaxira bilan jami nechta plitka kerak? => 66 | 60 | 54 | 70
 
 ## pm_hajm
 @kirish Qaysi idishga ko‘p sig‘adi?
@@ -158,6 +169,7 @@ DOSKA: KETMA: V | 100 · 15 | 1 500 sm³ | 1,5 l
 DOSKA: 1 l = 1 000 sm³
 DOSKA: QOIDA: V = S asos · h
 TEKSH: Eni 5 sm, bo‘yi 8 sm, balandligi 10 sm bo‘lgan qutining hajmi qancha? => 400 sm³ | 80 sm³ | 23 sm³ | 800 sm³
+TEKSH: Idishning o‘lchami 20 × 15 × 10 sm. Unga necha litr suv sig‘adi? => 3 l | 30 l | 300 l | 0,3 l
 @tushuncha Silindr: asosi doira
 OVOZ: [1] Silindrda asos — doira. Diametri o‘n bo‘lsa, radiusi — besh. [2] Asos yuzi: pi karra besh kvadrat — yetmish sakkiz butun besh o‘ndan kvadrat santimetr. [3] {sekin}Qoida o‘sha-o‘sha: asos yuzi karra balandlik. Yetmish sakkiz butun besh karra o‘n besh — bir ming yuz yetmish yetti butun besh o‘ndan kub santimetr. [4] {baland}Qutidagi bir ming besh yuzdan kam! Silindr kichikroq chiqdi — chunki burchaklari yo‘q. Taxmin to‘g‘ri keldimi?
 DOSKA: CHIZ: aylana O(0;0) r=5
@@ -166,6 +178,7 @@ DOSKA: KETMA: V | 78,5 · 15 | 1 177,5 | 1 177,5 sm³
 DOSKA: JADVAL: Idish | Hajm ;; Quti | 1 500 sm³ ;; Silindr | 1 177,5 sm³
 TEKSH: Silindrning asosi radiusi 3 sm, balandligi 10 sm. Hajmi qancha (π ≈ 3,14)? => 282,6 sm³ | 94,2 sm³ | 90 sm³ | 188,4 sm³
 TEKSH: Silindr radiusi 2 marta oshdi, balandligi o‘zgarmadi. Hajm necha marta oshadi? => 4 marta | 2 marta | 8 marta | O‘zgarmaydi
+TEKSH: Bochkaning radiusi 0,5 m, balandligi 2 m. Hajmi necha m³ (π ≈ 3,14)? => 1,57 | 6,28 | 3,14 | 0,785
 @tushuncha Suv sathi: toshni tashlaymiz
 OVOZ: [1] Akvarium: tubi — qirq ga o‘ttiz santimetr. Ichida suv bor. Unga hajmi ikki ming to‘rt yuz kub santimetr tosh tashladik. [2] Suv sathi qancha ko‘tariladi? {sekin}Tosh qancha joy egallasa, shuncha suv siqib chiqariladi — suv tepaga ko‘tariladi. [3] Tubning yuzi: qirq karra o‘ttiz — bir ming ikki yuz. [4] {baland}Ikki ming to‘rt yuz bo‘lingan bir ming ikki yuz — ikki santimetr! [5] Qoida: sath ko‘tarilishi teng hajm bo‘lingan tub yuzi.
 DOSKA: RASM: akvarium | baliq:tebran
@@ -174,6 +187,7 @@ DOSKA: V tosh = 2 400 sm³
 DOSKA: KETMA: sath | 2 400 : 1 200 | 2 | 2 sm
 DOSKA: QOIDA: Δh = V : S tub
 TEKSH: Akvariumning tubi 20 × 25 sm, tosh hajmi 1 500 sm³. Suv sathi necha santimetr ko‘tariladi? => 3 | 0,3 | 75 | 30
+TEKSH: Akvariumning tubi 50 × 40 sm. Tosh tashlanganda suv sathi 3 sm ko‘tarildi. Tosh hajmi qancha? => 6 000 sm³ | 600 sm³ | 2 000 sm³ | 150 sm³
 @tushuncha Xato tuzog‘i: o‘lcham ikki baravar — hajm sakkiz baravar
 OVOZ: [1] Ko‘pchilik o‘ylaydi: kubning tomonini ikki baravar oshirsak, hajm ham ikki baravar oshadi. [2] {urgu}Yo‘q! Hajm uchta o‘lchamga bog‘liq: uzunlik, kenglik, balandlik. Uchalasi ham ikki baravar oshadi! [3] Jadvalga qarang: tomoni bir — hajmi bir; tomoni ikki — hajmi sakkiz; tomoni uch — yigirma yetti. [4] {sekin}Grafik avval sekin, keyin tez ko‘tariladi. Ikkining uchinchi darajasi — sakkiz baravar.
 DOSKA: JADVAL: Tomon | Hajm ;; 1 | 1 ;; 2 | 8 ;; 3 | 27 ;; 4 | 64
@@ -181,12 +195,14 @@ DOSKA: GRAFIK: y=x^3; [0;4]
 DOSKA: ❌ ×2 → ×2
 DOSKA: ✅ o‘lcham ×k → hajm ×k³
 TEKSH: Kub tomoni 3 marta oshsa, hajm necha marta oshadi? => 27 | 9 | 3 | 6
+TEKSH: Silindrning radiusi o‘zgarmasdan balandligi 2 marta oshsa, hajmi necha marta oshadi? => 2 marta | 4 marta | 8 marta | O‘zgarmaydi
 @xulosa Esda tut
 OVOZ: Birinchi: hajm — asos yuzi karra balandlik. Ikkinchi: silindrda asos — doira, uning yuzi pi r kvadrat. Uchinchi: litr — bir ming kub santimetr. To‘rtinchi: o‘lcham k marta oshsa, hajm k kub marta oshadi. Endi mashqda sinab ko‘ring!
 DOSKA: 1. V = S asos · h
 DOSKA: 2. Silindr: S = πr²
 DOSKA: 3. 1 l = 1 000 sm³
 DOSKA: 4. ×k → hajm ×k³
+TEKSH: Silindrik idishning radiusi 10 sm, balandligi 20 sm (π ≈ 3,14). Unga necha litr suv sig‘adi? => 6,28 l | 62,8 l | 0,628 l | 12,56 l
 
 ## pm_sirt
 @kirish Sovg‘a qutisini o‘rash
@@ -202,6 +218,7 @@ DOSKA: KETMA: S | 400 + 200 + 100 | 700 | 700 sm²
 DOSKA: QOIDA: S = 2(ab + ac + bc)
 TEKSH: Kub tomoni 6 sm. Uning sirt yuzi qancha? => 216 sm² | 36 sm² | 144 sm² | 72 sm²
 TEKSH: O‘lchamlari 8 × 5 × 3 sm bo‘lgan qutining sirt yuzi qancha? => 158 sm² | 120 sm² | 79 sm² | 316 sm²
+TEKSH: O‘lchamlari 4 × 3 × 2 sm bo‘lgan qutining sirt yuzi qancha? => 52 sm² | 24 sm² | 26 sm² | 36 sm²
 @tushuncha Silindr: yon sirt va ikki asos
 OVOZ: [1] Konserva bankasi: radiusi — to‘rt, balandligi — o‘n santimetr. Uning yoni va ikkita doira qopqog‘i bor. Yoyamiz! [2] Yon sirtni yoyib yuborsak — to‘rtburchak chiqadi. {sekin}Uning eni — aylana uzunligi, ikki pi karra radius. Bo‘yi — balandlik. [3] Yon sirt: ikki karra uch butun o‘n to‘rt karra to‘rt karra o‘n — ikki yuz ellik bir butun ikki o‘ndan kvadrat santimetr. [4] Ikkita doira: ikki karra pi karra o‘n olti — taxminan yuz bir. [5] {baland}Jami — taxminan uch yuz ellik ikki kvadrat santimetr! [6] Qoida: ikki pi r karra, balandlik plyus radius.
 DOSKA: RASM: konserva
@@ -220,6 +237,7 @@ DOSKA: 1 200 + 1 600 + 1 200 = 4 000 sm²
 DOSKA: 4 000 · 200 = 800 000 so‘m
 DOSKA: Tepa qopqoq yo‘q — 5 ta yoq
 TEKSH: Ochiq quti 6 × 6 × 6 sm. Uning sirt yuzi qancha? => 180 sm² | 216 sm² | 144 sm² | 36 sm²
+TEKSH: Ochiq quti o‘lchamlari 10 × 8 × 5 sm. Uning sirt yuzi qancha? => 260 sm² | 340 sm² | 300 sm² | 130 sm²
 @tushuncha Xato tuzog‘i: o‘lcham ikki baravar — sirt to‘rt baravar
 OVOZ: [1] Kubning tomoni ikki baravar katta bo‘lsa, sirt yuzi ham ikki baravar oshadi, deb o‘ylashadi. [2] {urgu}Yo‘q! Yuza ikki o‘lchamga bog‘liq: uzunlikka va kenglikka. Tomon ikki baravar — yuza to‘rt baravar. [3] {sekin}Jadvalga qarang: tomoni bir — sirt olti; tomoni ikki — yigirma to‘rt; tomoni uch — ellik to‘rt. [4] Yigirma to‘rt bo‘lingan olti — aynan to‘rt marta. Hajm esa sakkiz marta oshadi. Farqni eslab qoling!
 DOSKA: JADVAL: Tomon a | Sirt 6a² | Hajm a³ ;; 1 | 6 | 1 ;; 2 | 24 | 8 ;; 3 | 54 | 27
@@ -227,9 +245,11 @@ DOSKA: GRAFIK: y=6*x^2; [0;4]
 DOSKA: 24 : 6 = 4 → sirt ×4
 DOSKA: ×k → sirt ×k², hajm ×k³
 TEKSH: Qutining barcha o‘lchamlari 3 marta oshirildi. Sirt yuzi necha marta oshadi? => 9 | 3 | 27 | 6
+TEKSH: Kubning tomoni 2 marta oshirilsa, sirt yuzi va hajm mos ravishda necha marta oshadi? => 4 va 8 | 2 va 2 | 4 va 4 | 8 va 4
 @xulosa Esda tut
 OVOZ: Birinchi: sirt yuzi — barcha yoqlar yuzalari yig‘indisi. Ikkinchi: silindr — yon sirt va ikkita asos. Uchinchi: ochiq idishda qopqoqni hisobga olmang. To‘rtinchi: o‘lcham k marta oshsa, sirt k kvadrat marta oshadi. Endi mashqda sinab ko‘ring!
 DOSKA: 1. S = 2(ab + ac + bc)
 DOSKA: 2. Silindr: 2πrh + 2πr²
 DOSKA: 3. Ochiq → qopqoqsiz
 DOSKA: 4. ×k → sirt ×k²
+TEKSH: Qopqog‘i yo‘q silindrik chelakning radiusi 3 sm, balandligi 5 sm. Bo‘yaladigan sirt yuzi qancha (π ≈ 3,14)? => 122,46 sm² | 150,72 sm² | 94,2 sm² | 28,26 sm²

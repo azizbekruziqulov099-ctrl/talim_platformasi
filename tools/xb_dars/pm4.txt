@@ -14,6 +14,7 @@ DOSKA: JADVAL: n | Jami (so‘m) ;; 10 | 600 000 ;; 20 | 800 000 ;; 30 | 1 000 0
 DOSKA: QOIDA: o‘zgaruvchi harf → bitta ifoda, ko‘p holat
 TEKSH: Daftar narxi a so‘m. 7 ta daftar necha so‘m turadi? => 7a | a + 7 | a / 7 | 7 − a
 TEKSH: Kitob narxi k, qalam narxi q. 3 ta kitob va 2 ta qalam narxi? => 3k + 2q | 5kq | 3q + 2k | 5(k + q)
+TEKSH: Qalam narxi 2 000 so‘m, daftar narxi d so‘m. 4 ta qalam va 1 ta daftar necha so‘m turadi? => 8 000 + d | 6 000d | 8 000d | 4(2 000 + d)
 @tushuncha Qiymat qo‘yish
 OVOZ: [1] Endi aniq holat: yigirma besh o‘quvchi. n o‘rniga yigirma besh qo‘yamiz. [2] Yigirma ming karra yigirma besh — besh yuz ming. [3] {sekin}To‘rt yuz ming plyus besh yuz ming — to‘qqiz yuz ming so‘m. [4] {urgu}Tartib muhim: avval ko‘paytirish, keyin qo‘shish! Agar avval qo‘shib yuborsangiz, noto‘g‘ri chiqadi.
 DOSKA: n = 25
@@ -37,12 +38,14 @@ DOSKA: KETMA: 2(x + 3) | 2x + 6
 DOSKA: ❌ 2(x + 3) = 2x + 3
 TEKSH: 4a + 7a − 3a nimaga teng? => 8a | 14a | 8 | 11a
 TEKSH: 5(y − 2) ifodani oching. => 5y − 10 | 5y − 2 | 5y + 10 | y − 10
+TEKSH: Vali 6(a − 3) ifodani 6a − 3 deb oldi. To‘g‘ri ochilishi qaysi? => 6a − 18 | 6a + 18 | 6a − 3 | 2a
 @xulosa Esda tut
 OVOZ: Birinchi: harf — o‘zgaruvchi son, bitta formula ko‘p holat uchun ishlaydi. Ikkinchi: qiymat qo‘yishda avval ko‘paytirish. Uchinchi: formulani kerakli harf uchun o‘zgartirish mumkin. To‘rtinchi: faqat o‘xshash hadlar qo‘shiladi, qavs ochganda hammasiga ko‘paytiriladi.
 DOSKA: 1. harf — o‘zgaruvchi
 DOSKA: 2. qiymat qo‘y → avval ×
 DOSKA: 3. formula: harfni yolg‘iz qoldir
 DOSKA: 4. 2(x + 3) = 2x + 6
+TEKSH: P = 2(a + b) formulada P = 30 va a = 9 bo‘lsa, b nechaga teng? => 6 | 15 | 21 | 3
 
 ## pm_tenglama
 @kirish Men o‘ylagan son
@@ -58,6 +61,7 @@ DOSKA: 3x + 7 = 31
 DOSKA: Ikki pallaga ham bir xil amal
 DOSKA: QOIDA: chapga nima qilsang — o‘ngga ham
 TEKSH: x + 5 = 12 tenglamada tarozini muvozanatda ushlash uchun ikkala tomondan nimani ayiramiz? => 5 | 12 | 7 | x
+TEKSH: x + 8 = 20 tenglamada x nechaga teng? => 12 | 28 | 11 | 160
 @tushuncha Yechish qadamlari
 OVOZ: [1] Tarozidan yettita yong‘oqni ikkala pallada ham olamiz: chapdan ham, o‘ngdan ham. [2] Chapda uchta quti qoldi, o‘ngda yigirma to‘rt. Uch x teng yigirma to‘rt. [3] {sekin}Uchta qutining og‘irligi yigirma to‘rt bo‘lsa, bittasi — ikki tomonni uchga bo‘lamiz. [4] {baland}x teng sakkiz! [5] {urgu}Tekshirish — shart! Sakkizni joyiga qo‘yamiz: uch karra sakkiz — yigirma to‘rt, plyus yetti — o‘ttiz bir. To‘g‘ri!
 DOSKA: TAROZI: chap: □ □ □ 7 | ong: 24 7 | olib: 7
@@ -76,6 +80,7 @@ DOSKA: KETMA: 2x + 5 = 29 | 2x = 24 | x = 12
 DOSKA: JADVAL: Kim | Yosh ;; Vali | 12 ;; Ali | 17
 DOSKA: KETMA: 12 + 17 | 29 ✔
 TEKSH: Ota o‘g‘lidan 25 yosh katta, ikkalasining yoshi jami 65. O‘g‘li necha yoshda? => 20 | 45 | 40 | 25
+TEKSH: Daftar qalamdan 3 000 so‘m qimmat, ikkalasi birgalikda 11 000 so‘m. Qalam necha so‘m? => 4 000 | 7 000 | 8 000 | 5 500
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Mashhur xato: x plyus yetti teng o‘ttiz bir. Yettini «o‘tkazib» yana qo‘shib yuboradi: x teng o‘ttiz sakkiz. [2] {urgu}Yo‘q! Chapda yetti qo‘shilgan — uni ayirish kerak. [3] Tekshirib ko‘ring: o‘ttiz sakkizga yetti qo‘shsak, o‘ttiz bir chiqmaydi. [4] {sekin}Har doim javobni joyiga qo‘yib tekshiring — xato bir lahzada ko‘rinadi.
 DOSKA: ❌ x + 7 = 31 → x = 31 + 7 = 38
@@ -83,12 +88,14 @@ DOSKA: ✅ x + 7 = 31 → x = 31 − 7 = 24
 DOSKA: KETMA: 24 + 7 | 31 ✔
 DOSKA: Chapda + bo‘lsa — ayiramiz
 TEKSH: x − 9 = 15 tenglamani yeching. => 24 | 6 | 15 | 135
+TEKSH: 4x − 5 = 27 tenglamani yeching. => 8 | 5,5 | 22 | 7
 @xulosa Esda tut
 OVOZ: Birinchi: tenglama — muvozanatdagi tarozi. Ikkinchi: ikki tomonga bir xil amal qo‘llang. Uchinchi: avval qo‘shish va ayirishni, keyin ko‘paytirish va bo‘lishni bajaring. To‘rtinchi: javobni doim joyiga qo‘yib tekshiring.
 DOSKA: 1. ikki pallaga bir xil amal
 DOSKA: 2. teskari amal bilan yech
 DOSKA: 3. matn → x → tenglama
 DOSKA: 4. joyiga qo‘yib tekshir
+TEKSH: 3(x − 2) = 21 tenglamani yeching. => 9 | 5 | 7 | 23
 
 ## pm_tengsizlik
 @kirish Liftga nechta quti sig‘adi?
@@ -105,6 +112,7 @@ DOSKA: «ko‘pi bilan» → ≤;  «kamida» → ≥
 DOSKA: SON_OQI: 0..8; nuqta 5 5; yur 0 5
 TEKSH: «Kamida 18 yosh» tengsizligi qaysi? => x ≥ 18 | x > 18 | x ≤ 18 | x < 18
 TEKSH: Sumka og‘irligi 8 kg dan oshmasin. Qaysi tengsizlik to‘g‘ri? => m ≤ 8 | m < 8 | m ≥ 8 | m > 8
+TEKSH: 5x − 3 ≤ 22 ni yeching. => x ≤ 5 | x ≥ 5 | x ≤ 3,8 | x ≤ 25
 @tushuncha Tengsizlikni yechish
 OVOZ: [1] Savolimiz: yetmish sakkiz plyus o‘n besh n kichik yoki teng to‘rt yuz. [2] Yetmish sakkizni ikki tomondan ayiramiz: o‘n besh n kichik yoki teng uch yuz yigirma ikki. [3] {sekin}O‘n beshga bo‘lamiz: n kichik yoki teng yigirma bir butun qirq yetti yuzdan — yigirma bir yarimga yaqin. [4] {urgu}Quti butun bo‘ladi! Yigirma ikkita sig‘maydi. Chegaradan oshib bo‘lmaydi — demak, ko‘pi bilan yigirma bir quti.
 DOSKA: KETMA: 78 + 15n ≤ 400 | 15n ≤ 322
@@ -122,6 +130,7 @@ DOSKA: SON_OQI: -6..6; nuqta -5 -5; nuqta -2 -2
 DOSKA: KETMA: −2x > 6 | ÷ (−2) | x < −3
 DOSKA: QOIDA: manfiyga ko‘paytir/bo‘l → belgi teskari
 TEKSH: −3x ≥ 12 ni yeching. => x ≤ −4 | x ≥ −4 | x ≤ 4 | x ≥ 4
+TEKSH: −4x < 20 ni yeching. => x > −5 | x < −5 | x > 5 | x < 5
 @tushuncha Butun javob va chegara tuzog‘i
 OVOZ: [1] Quti masalasida yigirma bir butun qirq yetti yuzdan chiqdi. Oddiy yaxlitlash bo‘yicha — yigirma bir. [2] {urgu}Lekin bu yerda yaxlitlash qoidasi emas, chegara qoidasi ishlaydi! Chegaradan oshib bo‘lmaydi — doim pastga olamiz. [3] Boshqa holat: «kamida nechta avtobus kerak?» — bunda yuqoriga olamiz, aks holda odam sig‘maydi. [4] Savolga qarang: ruxsat etilgan chegarami yoki zarur minimummi?
 DOSKA: Chegaradan oshmasin → pastga
@@ -135,6 +144,7 @@ DOSKA: 1. ko‘pi bilan → ≤; kamida → ≥
 DOSKA: 2. teng kabi yechiladi
 DOSKA: 3. ÷ (−): belgi teskari
 DOSKA: 4. chegara → pastga; zarurat → yuqoriga
+TEKSH: Liftga ko‘pi bilan 300 kg ruxsat. Ichida 4 kishi (har biri 65 kg), qolgani 12 kg lik qutilar. Ko‘pi bilan nechta quti olish mumkin? => 3 | 4 | 3,3 | 2
 
 ## pisa_chiziqli
 @kirish Bassein to‘lib borayapti
@@ -152,6 +162,7 @@ DOSKA: KETMA: 5 · 12 + 20 | 60 + 20 | 80 l
 DOSKA: GRAFIK: y=5x+20; [0;12]
 TEKSH: Telefon zaryadi 15% dan boshlab, har soatda 20% oshadi. Formulani yozing. => y = 20x + 15 | y = 15x + 20 | y = 35x | y = 20x − 15
 TEKSH: Yo‘l: y = 60x + 10. 3 soatdan keyin y qancha bo‘ladi? => 190 | 70 | 180 | 13
+TEKSH: Yo‘l: y = 40x + 25. x = 0 bo‘lganda y nimani bildiradi? => Boshlang‘ich qiymatni | Har soatdagi o‘sishni | Eng katta qiymatni | Grafikning qiyaligini
 @tushuncha Grafik — to‘g‘ri chiziq
 OVOZ: [1] Formulaning grafigi — doim to‘g‘ri chiziq. [2] U y o‘qini b nuqtasida kesadi — boshlang‘ich qiymatda. [3] {sekin}Qiyaligi — k: bir qadam o‘ngga yursak, y qancha ko‘tariladi. [4] k katta bo‘lsa, chiziq tik. {urgu}k manfiy bo‘lsa — chiziq pastga tushadi, ya’ni kamayish.
 DOSKA: GRAFIK: y=2x+1; [-2;4]
@@ -159,6 +170,7 @@ DOSKA: b = 1 → y o‘qini 1 da kesadi
 DOSKA: k = 2 → bir qadam o‘ngga, 2 ga yuqoriga
 DOSKA: GRAFIK: y=-3x+10; [0;4]
 TEKSH: y = −3x + 10 grafigi qanday yo‘nalgan? => Pastga tushadi | Yuqoriga ko‘tariladi | Gorizontal | Vertikal
+TEKSH: Qaysi formulaning grafigi y o‘qini 7 nuqtada kesadi va o‘sib boradi? => y = 2x + 7 | y = 7x + 2 | y = −2x + 7 | y = −7x + 2
 @tushuncha Grafikdan k va b ni topish
 OVOZ: [1] Grafikda ikki nuqta ko‘rinyapti: boshida, nol daqiqada — yigirma litr. O‘ninchi daqiqada — yetmish litr. [2] {sekin}k ni topamiz: y qanchaga o‘zgardi — yetmish minus yigirma, x qanchaga o‘zgardi — o‘n minus nol. [3] Ellikni o‘nga bo‘lamiz — besh. [4] b esa x nolga teng bo‘lgandagi y: yigirma. Formula: y teng besh x plyus yigirma. [5] {baland}Ikki nuqtadan butun formula chiqdi!
 DOSKA: CHIZ: nuqta A(0;2) B(10;7)
@@ -167,6 +179,7 @@ DOSKA: b = 20  (x = 0 da)
 DOSKA: y = 5x + 20
 DOSKA: GRAFIK: y=5x+20; [0;10]
 TEKSH: Grafik (0; 4) va (2; 10) nuqtalardan o‘tadi. Formulani toping. => y = 3x + 4 | y = 2x + 4 | y = 3x + 10 | y = 5x + 4
+TEKSH: Grafik (1; 8) va (4; 17) nuqtalardan o‘tadi. Formulani toping. => y = 3x + 5 | y = 3x + 8 | y = 5x + 3 | y = 9x − 1
 @tushuncha Xato tuzog‘i: k va b ni almashtirmang
 OVOZ: [1] Ko‘pchilik «dastlab besh, har soatda yigirma» deganda y teng besh x plyus yigirma deb yozadi. [2] {urgu}Tartibga ehtiyot bo‘ling! x ning oldidagi — o‘sish tezligi, yolg‘iz turgani — boshlang‘ich qiymat. [3] So‘zlarga qarang: «dastlab» — b. «Har soatda», «har kilometrda» — k. [4] {sekin}Tekshirish usuli: x nolga teng bo‘lsa, javob boshlang‘ich qiymat bo‘lishi kerak.
 DOSKA: Dastlab 5, har soatda +20
@@ -174,12 +187,14 @@ DOSKA: ❌ y = 5x + 20
 DOSKA: ✅ y = 20x + 5
 DOSKA: KETMA: x = 0 | y = 5 | ✔ dastlabki qiymat
 TEKSH: Taksi: kirish 3 000 so‘m, har kilometr uchun 1 500 so‘m. Formula qaysi? => y = 1500x + 3000 | y = 3000x + 1500 | y = 4500x | y = 1500x − 3000
+TEKSH: Basseyndan suv har daqiqada 4 litrdan chiqadi, dastlab 90 litr bor edi. Formula qaysi? => y = −4x + 90 | y = 4x + 90 | y = 90x − 4 | y = −90x + 4
 @xulosa Esda tut
 OVOZ: Birinchi: chiziqli bog‘lanish — y teng k x plyus b. Ikkinchi: b — dastlabki qiymat, k — har qadamdagi o‘sish. Uchinchi: grafik — to‘g‘ri chiziq, y o‘qini b da kesadi. To‘rtinchi: ikki nuqtadan k va b ni topish mumkin.
 DOSKA: 1. y = kx + b
 DOSKA: 2. b — dastlab; k — har qadamda
 DOSKA: 3. grafik: to‘g‘ri chiziq
 DOSKA: 4. k = Δy : Δx
+TEKSH: Suv sathi y = −2x + 36 (sm) formula bo‘yicha pasaymoqda. Necha daqiqadan keyin suv butunlay tugaydi? => 18 | 36 | 72 | 34
 
 ## pisa_tezlik
 @kirish O‘rtacha tezlik tuzog‘i
@@ -196,6 +211,7 @@ DOSKA: t = s : v
 DOSKA: QOIDA: s tepada; v va t pastda
 TEKSH: 150 km ni 2,5 soatda bosib o‘tdi. Tezligi? => 60 km/soat | 375 km/soat | 75 km/soat | 0,6 km/soat
 TEKSH: 90 km/soat tezlikda 270 km yo‘lga qancha vaqt ketadi? => 3 soat | 30 soat | 24 300 soat | 0,3 soat
+TEKSH: Velosipedchi 12 km/soat tezlikda 3 soat yurdi. U qancha masofa bosdi? => 36 km | 4 km | 15 km | 0,25 km
 @tushuncha O‘rtacha tezlik — butun yo‘l bo‘lingan butun vaqt
 OVOZ: [1] O‘rtacha tezlik tezliklarning o‘rtachasi emas! Butun yo‘lni butun vaqtga bo‘lamiz. [2] Yo‘lning har yarmi d kilometr bo‘lsin. Birinchi yarmiga d bo‘lingan oltmish soat ketadi, ikkinchisiga d bo‘lingan qirq soat. [3] {sekin}Jami vaqt — d bo‘lingan yigirma to‘rt. Butun yo‘l — ikki d. [4] Ikki d ni d bo‘lingan yigirma to‘rtga bo‘lsak — qirq sakkiz kilometr soatiga. {baland}Ellik emas! [5] Sababi: sekin tezlikda ko‘proq vaqt o‘tadi, shuning uchun o‘rtacha past chiqadi.
 DOSKA: KETMA: d + d | 2d | butun yo‘l
@@ -204,6 +220,7 @@ DOSKA: KETMA: 2d : (d/24) | 48 km/soat
 DOSKA: ❌ (60 + 40) : 2 = 50
 DOSKA: QOIDA: v o‘rt = butun yo‘l : butun vaqt
 TEKSH: 2 soat 40 km/soat, 3 soat 60 km/soat bilan yurildi. O‘rtacha tezlik? => 52 km/soat | 50 km/soat | 100 km/soat | 260 km/soat
+TEKSH: Yo‘lning yarmi 30 km/soat, qolgan yarmi 60 km/soat tezlikda bosildi. O‘rtacha tezlik qancha? => 40 km/soat | 45 km/soat | 90 km/soat | 30 km/soat
 @tushuncha Uchrashuv va quvish
 OVOZ: [1] Ikki shahar orasi ikki yuz kilometr. Ikki avtomobil bir-biriga qarab yo‘lga chiqdi: tezliklari oltmish va qirq. [2] Har soatda ular masofani oltmish plyus qirq — yuz kilometrga qisqartiradi. [3] {sekin}Ikki yuzni yuzga bo‘lamiz — ikki soatdan keyin uchrashadi! [4] Quvishda aksincha: tezliklar ayiriladi. Oltmish minus qirq — yigirma. Farq har soatda yigirma kilometrga kamayadi. [5] Agar orada oltmish kilometr bo‘lsa — oltmish bo‘lingan yigirma, uch soatda yetib oladi.
 DOSKA: CHIZ: kesma AB; A(0;0); B(10;0)
@@ -213,12 +230,15 @@ DOSKA: KETMA: 60 : 20 | 3 soat | yetib oladi
 DOSKA: QOIDA: qarshi — qo‘sh; quvish — ayir
 TEKSH: Ikki piyoda 12 km oraliqdan bir-biriga qarab yurdi: 4 va 2 km/soat. Qachon uchrashadi? => 2 soatdan keyin | 6 soatdan keyin | 3 soatdan keyin | 1 soatdan keyin
 TEKSH: Velosipedchi 15 km/soat, orqasidan motosiklchi 45 km/soat bilan, oraliq 30 km. Necha soatda yetib oladi? => 1 soat | 2 soat | 0,5 soat | 0,5 soat dan kam
+TEKSH: Ikki shahar orasi 360 km. Ikki mashina bir vaqtda bir-biriga qarab 70 va 50 km/soat tezlikda yo‘lga chiqdi. 2 soatdan keyin ular orasida necha km qoladi? => 120 km | 240 km | 0 km | 180 km
 @xulosa Esda tut
 OVOZ: Birinchi: yo‘l teng tezlik karra vaqt. Ikkinchi: o‘rtacha tezlik — butun yo‘l bo‘lingan butun vaqt, tezliklarning o‘rtachasi emas. Uchinchi: bir-biriga qarab harakatda tezliklar qo‘shiladi, quvishda — ayiriladi. To‘rtinchi: birliklarni tenglashtiring.
 DOSKA: 1. s = v · t
 DOSKA: 2. v o‘rt = jami yo‘l : jami vaqt
 DOSKA: 3. qarshi: +; quvish: −
 DOSKA: 4. km/soat ↔ m/s: × yoki ÷ 3,6
+TEKSH: 36 km/soat tezlik necha m/s ga teng? => 10 m/s | 129,6 m/s | 36 000 m/s | 3,6 m/s
+TEKSH: Mashina 80 km/soat tezlikda 2 soat 30 daqiqa yurdi. Bosib o‘tgan yo‘li qancha? => 200 km | 184 km | 160 km | 240 km
 
 ## pm_tarif
 @kirish Qaysi tarif yaxshi?
@@ -234,6 +254,8 @@ DOSKA: B: y = 3000x
 DOSKA: GRAFIK: y=2x+5; [0;8]
 DOSKA: GRAFIK: y=3x; [0;8]
 TEKSH: Tarif C: 4 000 + 1 000 · km. 10 km uchun narx? => 14 000 | 5 000 | 40 000 | 41 000
+TEKSH: Tarif D: 6 000 + 1 500 · km. 8 km uchun narx qancha? => 18 000 | 60 000 | 13 500 | 12 000
+TEKSH: Kirish 2 000 so‘m, har kilometr uchun 1 000 so‘m bo‘lgan tarifni qaysi formula ifodalaydi? => y = 1000x + 2000 | y = 2000x + 1000 | y = 3000x | y = 1000x − 2000
 @tushuncha Kesishish nuqtasi — tenglama
 OVOZ: [1] Ikki tarif qayerda baravar bo‘ladi? Ikkala formulani tenglaymiz. [2] Ikki ming x plyus besh ming teng uch ming x. [3] {sekin}Ikki ming x ni ikki tomondan ayiramiz: besh ming teng bir ming x. [4] {baland}x teng besh! Besh kilometrda ikkalasi baravar — o‘n besh ming so‘m. [5] Grafikda esa bu aynan chiziqlar kesishgan nuqta.
 DOSKA: KETMA: 2000x + 5000 = 3000x | 5000 = 1000x
@@ -242,6 +264,7 @@ DOSKA: KETMA: 3000 · 5 | 15 000 so‘m
 DOSKA: SON_OQI: 0..8; nuqta 5 5; yur 0 5
 DOSKA: BELGILA: 5 km | aylana
 TEKSH: Tarif P: 10 + 2x, tarif Q: 4x. Qaysi masofada narxlari baravar? => 5 | 10 | 2 | 6
+TEKSH: Tarif M: 9 000 + 1 000x, tarif N: 2 500x. Qaysi masofada narxlari baravar? => 6 km | 9 km | 3 km | 3,6 km
 @tushuncha Qaror — masofaga qarab tanlash
 OVOZ: [1] Endi javobni to‘liq aytamiz. Besh kilometrgacha B arzon. Besh kilometrdan keyin A arzon. [2] Tekshiramiz: uch kilometr — A: o‘n bir ming, B: to‘qqiz ming. B arzon. [3] {sekin}Yetti kilometr — A: o‘n to‘qqiz ming, B: yigirma bir ming. Bu safar A arzon. [4] {urgu}Demak, eng yaxshi tarif — sizning odatiy yo‘lingizga bog‘liq. Odatda necha kilometr yurasiz?
 DOSKA: JADVAL: Masofa | A | B ;; 3 km | 11 000 | 9 000 ;; 5 km | 15 000 | 15 000 ;; 7 km | 19 000 | 21 000
@@ -249,15 +272,18 @@ DOSKA: x < 5 → B arzon
 DOSKA: x > 5 → A arzon
 DOSKA: Ehtiyojga qarab tanla
 TEKSH: Kesishish nuqtasi 8 km, uzoq masofada A arzon. 12 km yursangiz, qaysi tarif arzon? => A | B | Farqi yo‘q | Aniqlab bo‘lmaydi
+TEKSH: A tarif: 5 000 + 2 000x, B tarif: 3 000x. Har kuni 4 km yursangiz, 5 kunda qaysi tarif qancha arzon? => B tarif 5 000 so‘m arzon | A tarif 5 000 so‘m arzon | B tarif 1 000 so‘m arzon | Farqi yo‘q
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Ko‘pchilik faqat boshlang‘ich narxga qaraydi: «A da kirish puli bor — qimmat!» [2] {urgu}Bu faqat qisman to‘g‘ri. Uzoq masofada kirish puli deyarli sezilmay qoladi. [3] Boshqa xato — bitta nuqtada solishtirib qaror qilish. Kamida ikki nuqtada, yaxshisi kesishish nuqtasi orqali tekshiring.
 DOSKA: ❌ faqat kirish pulini ko‘rish
 DOSKA: ❌ faqat bitta nuqta (masalan, 2 km)
 DOSKA: ✅ kesishishni topib, ikki tomonni tekshir
 TEKSH: 1-tarif: 8 000 + 1 000x; 2-tarif: 2 000x. 10 km uchun qaysi arzon? => 1-tarif | 2-tarif | Teng | Aniqlab bo‘lmaydi
+TEKSH: Ali tariflarni faqat 1 km da solishtirdi: A — 7 000, B — 3 000. «B doim arzon» dedi. Uning xatosi nimada? => Faqat bitta nuqtaga qarab xulosa qilgan | Kilometrni noto‘g‘ri hisoblagan | B haqiqatan ham har doim arzon | Tariflarni solishtirib bo‘lmaydi
 @xulosa Esda tut
 OVOZ: Birinchi: tariflarni y teng k x plyus b ko‘rinishida yozing. Ikkinchi: kesishish nuqtasi ikkala formulani tenglashtirib topiladi. Uchinchi: kesishishdan oldin va keyin qaysi tarif arzon ekanini tekshiring. To‘rtinchi: ehtiyojga qarab qaror qiling.
 DOSKA: 1. y = kx + b — har tarif
 DOSKA: 2. tenglama: A = B
 DOSKA: 3. ikki tomonda tekshir
 DOSKA: 4. ehtiyojga qarab tanla
+TEKSH: R tarif: 4 000 + 1 000x, T tarif: 2 000 + 2 000x. R qaysi masofalarda arzon bo‘ladi? => 2 km dan uzoqroq | 2 km dan qisqaroq | 6 km dan uzoqroq | 1 km dan uzoqroq

@@ -79,6 +79,7 @@ DOSKA: KETMA: 140 = 20 + 6x | 120 = 6x | x = 20 daqiqa
 DOSKA: QOIDA: k > 0 → o‘sish; k < 0 → kamayish
 TEKSH: Telefon zaryadi 80% edi, har soatda 16% kamayadi. Necha soatdan keyin tugaydi? => 5 | 4 | 6,4 | 16
 TEKSH: Qaysi formula pastga tushuvchi chiziqni beradi? => y = 5 − 2x | y = 2x + 5 | y = 5x | y = x + 1
+TEKSH: Hovuzdagi suv y = 50 + 8x (x — daqiqa). Hovuzda 130 litr suv bo‘lishi uchun necha daqiqa kerak? => 10 | 16,25 | 8 | 22,5
 
 ## +pisa_tezlik
 @tushuncha Velosipedchi va avtobus
@@ -103,6 +104,7 @@ DOSKA: BELGILA: 160 + 140 = 300 ✔ | aylana
 DOSKA: QOIDA: qarama-qarshi harakatda tezliklar qo‘shiladi
 TEKSH: Ikki poyezd 400 km masofada qarama-qarshi yo‘lda, tezliklari 90 va 110 km/soat. Necha soatdan keyin uchrashadi? => 2 soat | 4 soat | 20 soat | 1 soat
 TEKSH: Mashina 60 km/soat tezlikda 2,5 soatda necha km yuradi? => 150 km | 24 km | 62,5 km | 120 km
+TEKSH: Ikki velosipedchi 36 km oraliqdan bir-biriga qarab yo‘lga chiqdi: tezliklari 10 va 8 km/soat. Uchrashguncha birinchisi necha km yuradi? => 20 km | 18 km | 16 km | 36 km
 
 ## +pm_tarif
 @tushuncha Velosiped: ijara yoki sotib olish
@@ -116,6 +118,7 @@ DOSKA: BELGILA: ≤ 18 kun → ijara; ≥ 19 kun → sotib olish | ramka
 DOSKA: QOIDA: narxlar teng bo‘lgan nuqta — qaror chegarasi
 TEKSH: Ijara 12 000/kun; sotib olish 120 000 + 4 000/kun. 20 kun uchun qaysi arzon? => Sotib olish (200 000 < 240 000) | Ijara | Teng | Aniq aytib bo‘lmaydi
 TEKSH: Xuddi shu tariflarda (ijara 12 000/kun; sotib olish 120 000 + 4 000/kun) 5 kun uchun qaysi arzon? => Ijara (60 000 < 140 000) | Sotib olish | Teng | Aniq aytib bo‘lmaydi
+TEKSH: Ijara 15 000 so‘m/kun; sotib olish 100 000 + 5 000 so‘m/kun. Necha kunda narxlar teng bo‘ladi? => 10 kun | 5 kun | 20 kun | 6,7 kun
 @tushuncha Sport zali: kunlik chipta yoki abonement?
 OVOZ: [1] Sport zalida kunlik chipta — yigirma besh ming so‘m. Oylik abonement — uch yuz ming so‘m, cheksiz. {pauza} Oyiga necha marta borsangiz abonement foydali? [2] Chipta narxi: yigirma besh ming x. Abonement — doim uch yuz ming. Tenglashtiramiz. [3] {sekin}Uch yuz mingni yigirma besh mingga bo‘lamiz — o‘n ikki. [4] {urgu}O‘n ikki marta borsangiz — narx teng. O‘n ikkidan kam — kunlik chipta arzon. O‘n ikkidan ko‘p — abonement. [5] Qaror sizga bog‘liq: oyiga necha marta borasiz?
 DOSKA: JADVAL: Variant | Narxi ;; Kunlik | 25 000 x ;; Abonement | 300 000
@@ -125,3 +128,4 @@ DOSKA: BELGILA: 12 dan kam → chipta; ko‘p → abonement | ramka
 DOSKA: QOIDA: o‘z ehtiyojingga qarab tanla
 TEKSH: Zalda kunlik chipta 30 000, abonement 240 000. Necha martadan ko‘p borganda abonement foydali bo‘ladi? => 8 martadan ko‘p | 8 martadan kam | 4 martadan ko‘p | 270 martadan ko‘p
 TEKSH: Internet A: 50 000 + 1 000 har GB. B: 80 000 + 500 har GB. Necha GB da narxlar teng? => 60 | 30 | 130 | 6
+TEKSH: Mobil tarif: oyiga 40 000 so‘m + har daqiqa uchun 200 so‘m. 150 daqiqa gaplashsangiz, oylik hisob necha so‘m? => 70 000 | 30 000 | 190 000 | 70 200

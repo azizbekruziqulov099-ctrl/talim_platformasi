@@ -128,6 +128,7 @@ DOSKA: 1. inersiya
 DOSKA: 2. F = m · a
 DOSKA: 3. ta’sir = aks ta’sir
 DOSKA: 4. m ≠ P
+TEKSH: Avtobus tekis yo‘lda 60 km/soat o‘zgarmas tezlikda ketyapti. Unga ta’sir etuvchi kuchlar teng ta’sir etuvchisi qanday? => Nolga teng | Harakat yo‘nalishida katta | Harakatga qarama-qarshi | Aniqlab bo‘lmaydi
 
 ## S8-YER
 @kirish Yer ichida nima bor?
@@ -145,6 +146,7 @@ DOSKA: Harorat markazga qarab ortadi: ≈ 5 000–6 000 °C
 DOSKA: Piyoz kabi: tashqarisi → ichi
 TEKSH: Yerning eng qalin qatlami qaysi? => Mantiya | Po‘st | Tashqi yadro | Ichki yadro
 TEKSH: Tashqi yadro qanday holatda? => Suyuq | Qattiq | Gaz | Muz
+TEKSH: Yerning markaziga qarab qatlamlar qaysi tartibda joylashgan? => Po‘st, mantiya, tashqi yadro, ichki yadro | Mantiya, po‘st, ichki yadro, tashqi yadro | Po‘st, tashqi yadro, mantiya, ichki yadro | Ichki yadro, tashqi yadro, mantiya, po‘st
 @tushuncha Seysmik to‘lqinlar: Yer ichini «tinglash»
 OVOZ: [1] Quduq qazmasdan Yer ichini qanday bilamiz? Zilzila to‘lqinlari yordamida! [2] Zilzila bo‘lganda to‘lqinlar butun Yer ichidan o‘tadi, ularni seysmograf asboblari butun dunyoda yozib oladi. [3] {sekin}Ikki xil to‘lqin bor. Birinchisi — bo‘ylama, u hamma narsadan o‘tadi. Ikkinchisi — ko‘ndalang, u {urgu}faqat qattiq jismdan o‘tadi, suyuqlikdan o‘tmaydi! [4] Olimlar ko‘ndalang to‘lqin Yerning markaziy qismidan o‘tmayotganini payqadi. Demak, u yerda suyuq qatlam bor — tashqi yadro! [5] Xuddi shifokor rentgen bilan ichkarini ko‘rgandek.
 DOSKA: ZANJIR: Zilzila | To‘lqinlar tarqaladi | Seysmograf yozadi | Ichki tuzilish aniqlanadi
@@ -163,6 +165,7 @@ DOSKA: Toshkent, 1966 — zilzila
 DOSKA: RASM: vulqon:tebran
 TEKSH: Plitalar bir-biriga to‘qnashganda ko‘pincha nima hosil bo‘ladi? => Tog‘lar | Cho‘l | Daryo | Okean
 TEKSH: Plitalar bir-biriga nisbatan sirpansa, nima yuz berishi mumkin? => Zilzila | Yomg‘ir | Yorug‘lik | Muzlik
+TEKSH: Plita yiliga 5 sm siljisa, 100 yilda necha metr siljiydi? => 5 m | 50 m | 0,5 m | 500 m
 @tushuncha Tog‘ jinslari va ularning aylanishi
 OVOZ: [1] Tosh ham «yashaydi» — shakli o‘zgaradi! Tog‘ jinslari uch xil. Birinchisi — magmatik: erigan magma sovib qotadi. Granit, bazalt — shular. [2] Ikkinchisi — cho‘kindi: zarralar qatlam-qatlam cho‘kib, toshga aylanadi. Ohaktosh, qumtosh — shular. [3] {sekin}Uchinchisi — metamorfik: issiqlik va bosim ostida o‘zgargan jins. Ohaktosh marmarga aylanadi. [4] {urgu}Hammasi doira bo‘ylab aylanadi: magma qotadi, nuraydi, cho‘kadi, bosim bilan o‘zgaradi, yana eriydi — million yillar davomida. [5] Dengiz organizmlari qoldig‘i odatda cho‘kindi jinslarda uchraydi.
 DOSKA: JADVAL: Tur | Hosil bo‘lishi | Misol ;; Magmatik | magma qotadi | granit ;; Cho‘kindi | cho‘kib qotadi | ohaktosh ;; Metamorfik | issiqlik + bosim | marmar
@@ -211,6 +214,7 @@ DOSKA: Qatlam 1 — eng qadimiy (pastda)
 DOSKA: ZANJIR: Qadimiy dengiz | Cho‘kindi qatlam | Plitalar ko‘taradi | Tog‘da chig‘anoq
 TEKSH: Tekis yotgan qatlamlarda qaysi biri eng yosh? => Eng yuqoridagisi | Eng pastdagisi | O‘rtadagisi | Aniqlab bo‘lmaydi
 TEKSH: Qoldiqlar bizga nimani ko‘rsatadi? => Qadimda yashagan organizmlarni | Faqat tosh rangini | Daryo yo‘nalishini | Hech nimani
+TEKSH: Buzilmagan qatlamlarda eng pastida baliq izi, eng tepasida sutemizuvchi izi topildi. Qaysi biri qadimiyroq? => Baliq | Sutemizuvchi | Ikkalasi bir yoshda | Aniqlab bo‘lmaydi
 @tushuncha Geologik vaqt: Yer tarixi — bir sutka
 OVOZ: [1] Yer tarixi o‘n milliardlab emas — taxminan to‘rt yarim milliard yil. Bu raqamni tasavvur qilish qiyin. Keling, uni bir sutkaga siqamiz! [2] Soat nol-nolda Yer hosil bo‘ldi. Dinozavrlar kechqurun, taxminan yigirma ikki qirq yettida paydo bo‘ladi. [3] {sekin}Ular yigirma uch o‘ttiz to‘qqizda yo‘qoladi. Yo‘qolganiga — sutkaning oxirgi yigirma bir daqiqasi. [4] {urgu}Odam esa? Faqat sutkaning oxirgi taxminan oltita soniyasida paydo bo‘lgan! [5] Demak, dinozavrlar odamlardan oldin, oltmish olti million yil avval yo‘qolgan — ular bilan hech qachon uchrashmagan.
 DOSKA: 24 soat = 4,5 mlrd yil
@@ -219,6 +223,7 @@ DOSKA: SON_OQI: 0..24; nuqta 22 D; nuqta 23 E
 DOSKA: Dinozavr — odamdan 66 mln yil oldin
 DOSKA: BELGILA: odam — sutkaning oxirgi soniyalari | ramka
 TEKSH: Dinozavrlar odamlar paydo bo‘lishidan qancha oldin yo‘qolgan? => Million yillar oldin | Bir necha yil oldin | Yuz yil oldin | Bir vaqtda yashagan
+TEKSH: Yer tarixi 4,5 mlrd yil. Uni 24 soatga siqsak, 1 soat taxminan necha yilga to‘g‘ri keladi? => 190 mln yil | 4,5 mlrd yil | 19 mln yil | 1,9 mlrd yil
 @tushuncha Vulqon va zilzila: Yer «nafas oladi»
 OVOZ: [1] Vulqon — mantiyadan erigan magma yer yuziga chiqadigan joy. Yer yuziga chiqqan magma — {baland}lava deyiladi. [2] Vulqonlar ko‘pincha plitalar chegarasida joylashgan, chunki u yerda po‘st yoriq bo‘ladi. [3] {sekin}Zilzilada esa plitalar to‘satdan siljiydi, to‘plangan energiya to‘lqin bo‘lib tarqaladi. Seysmograf uni yozib oladi. [4] Zilzilani to‘xtatib bo‘lmaydi, lekin zilzilabardosh uy qurib, hayotni asrab qolish mumkin. [5] {urgu}Bu jarayonlar bir lahzada yuz beradi, ammo tog‘ hosil bo‘lishi million yillar oladi.
 DOSKA: SXEMA: Yer jarayonlari > vulqon | zilzila | tog‘ hosil bo‘lishi | nurash
@@ -302,6 +307,7 @@ DOSKA: 1. tiklanadi / tiklanmaydi
 DOSKA: 2. yoqilg‘i → CO₂
 DOSKA: 3. E = P · t
 DOSKA: 4. 3R
+TEKSH: Uchta bir xil 60 vattli lampa 5 soat yondi. Jami energiya qancha? => 900 Vt·soat | 300 Vt·soat | 180 Vt·soat | 65 Vt·soat
 
 ## S8-KOI
 @kirish Oy nega shaklini o‘zgartiradi?
@@ -362,3 +368,4 @@ DOSKA: 1. faza = ko‘rinish
 DOSKA: 2. tutilishlar
 DOSKA: 3. yorug‘lik yili — masofa
 DOSKA: 4. Venera, fasllar
+TEKSH: Bugun to‘lin oy bo‘lsa, taxminan necha kundan keyin yana to‘lin oy bo‘ladi? => 29,5 kun | 7 kun | 15 kun | 365 kun

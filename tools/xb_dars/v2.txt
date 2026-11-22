@@ -54,6 +54,7 @@ DOSKA: 1. element — bir xil atom
 DOSKA: 2. birikma — aniq tarkib
 DOSKA: 3. aralashma — fizik ajratish
 DOSKA: 4. kimyoviy «toza» ≠ iflos emas
+TEKSH: Quyidagi qatorlarning qaysi birida faqat aralashmalar berilgan? => Havo, sharbat, tuproq | Suv, osh tuzi, havo | Temir, kislorod, suv | Oltin, sharbat, karbonat angidrid
 
 ## S8-XOS
 @kirish Uchta oq kukunni qanday farqlaymiz?
@@ -205,6 +206,7 @@ DOSKA: sublimatsiya: qattiq → gaz
 DOSKA: qirov: gaz → qattiq
 TEKSH: Sovuq kunda deraza oynasi ichki tomonida suv tomchilari paydo bo‘ldi. Bu qaysi jarayon? => Kondensatsiya | Erish | Qotish | Sublimatsiya
 TEKSH: Nam kiyim sovuqda qotib qolishi qaysi jarayon? => Qotish | Erish | Bug‘lanish | Sublimatsiya
+TEKSH: Naftalin sharchasi vaqt o‘tishi bilan suyuqqa aylanmay, kichrayib yo‘qoladi. Bu qaysi jarayon? => Sublimatsiya | Kondensatsiya | Qotish | Erish
 @tushuncha Isitish chizig‘i: sirli tekis joylar
 OVOZ: [1] Endi muz tajribasining grafigini chizamiz. Boshida muz minus yigirma gradusda. Isitamiz — harorat ko‘tariladi, nolgacha. [2] {urgu}Mana birinchi sir: nolga yetgach, chiziq tekis bo‘lib qoladi! Muz eriyapti, harorat o‘zgarmayapti. [3] Hamma muz erib bo‘lgach, suv isiy boshlaydi — chiziq yana ko‘tariladi, yuz darajagacha. [4] {sekin}Yuz darajada — yana tekis joy: suv qaynayapti. Bug‘ hosil bo‘lyapti, lekin harorat ko‘tarilmayapti. [5] Javob topildi: bu paytda issiqlik zarralarning tezligini oshirmaydi — zarralar orasidagi bog‘larni uzishga sarflanadi! Shuning uchun harorat «to‘xtaydi».
 DOSKA: CHIZ: A(0;-20) B(2;0) C(8;0) D(10;100) E(20;100)
@@ -222,6 +224,7 @@ DOSKA: tez zarralar ketadi → qolganlar sekin
 DOSKA: nam havo → sekin bug‘lanish
 DOSKA: RASM: suv:kel | quyosh:aylan
 TEKSH: Ho‘l kiyim shamolda nega tezroq quriydi? => Bug‘lanish tezlashadi | Suv yo‘qoladi | Kiyim yengillashadi | Shamol uni isitadi
+TEKSH: Issiq choyni keng likopchaga quysak, tez soviydi. Nega? => Sirt katta, bug‘lanish tezroq bo‘ladi | Choy qaynay boshlaydi | Zarralar kattalashadi | Choy massasi ortadi
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Birinchi xato: «Qaynayotgan suvni ko‘proq qizdirsak, harorati oshadi». {urgu}Yo‘q! Olovni kuchaytirsak, suv tezroq bug‘lanadi — lekin harorati yuz darajada qoladi. [2] Ikkinchi xato: «Qizdirilganda zarralarning o‘zi kattalashadi». Yo‘q — zarralar o‘z o‘lchamini saqlaydi, ular orasidagi masofa ortadi. [3] Shuning uchun gaz va suyuqlik qizdirilganda kengayadi.
 DOSKA: qaynash: olov ↑, T = 100 °C
@@ -295,6 +298,7 @@ DOSKA: 1. T ≠ Q
 DOSKA: 2. o‘tkaz · konv · nur
 DOSKA: 3. Q = c·m·ΔT
 DOSKA: 4. sovuqlik yo‘q
+TEKSH: 1 kg suv 20 °C dan 25 °C gacha isitildi (c = 4 200 J/(kg·°C)). Qancha issiqlik kerak bo‘ldi? => 21 000 J | 4 200 J | 105 000 J | 84 000 J
 
 ## S8-YOR
 @kirish Avval chaqmoq, keyin gumburlash — nega?

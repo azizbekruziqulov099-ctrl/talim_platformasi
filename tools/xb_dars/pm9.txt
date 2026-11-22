@@ -20,6 +20,7 @@ DOSKA: 2 · 12 000 = 24 000
 DOSKA: jami: 7 500 + 24 000 = 31 500
 DOSKA: qaytim: 50 000 − 31 500 = 18 500
 TEKSH: 4 ta 3 200 so‘mlik va 2 ta 7 500 so‘mlik mahsulot olindi. 50 000 so‘m berildi. Qaytim necha so‘m? => 22 200 | 27 800 | 29 800 | 12 800
+TEKSH: 2,5 kg kartoshka (kilogrammi 6 000 so‘m) va 3 ta 4 500 so‘mlik mahsulot olindi. 50 000 so‘m berildi. Qaytim necha so‘m? => 21 500 | 28 500 | 11 500 | 36 500
 @tushuncha Aksiyalar: haqiqatan foydalimi?
 OVOZ: [1] Aksiya A: «ikkinchisi yarim narxda». Mahsulot — o‘n ming. Ikkitasi: o‘n ming plyus besh ming — o‘n besh ming. [2] Aksiya B: «ikkala mahsulotga yigirma foiz chegirma». Ikkitasi yigirma ming, yigirma foiz chegirma — to‘rt ming. {sekin}Qoldi — o‘n olti ming. [3] {baland}A aksiya mingga arzonroq! Lekin faqat ikkala mahsulot ham kerak bo‘lsa. [4] Bitta mahsulot kerak bo‘lsa, ikkinchisini «arzon» deb olish — ortiqcha xarajat.
 DOSKA: A: 10 000 + 5 000 = 15 000
@@ -27,6 +28,7 @@ DOSKA: B: 20 000 · 0,8 = 16 000
 DOSKA: A foydaliroq (1 000 so‘m)
 DOSKA: ikkala mahsulot kerakmi? — birinchi savol
 TEKSH: Narx 6 000 so‘m. «3 tasini 2 tasining narxiga» aksiyasi. 3 ta mahsulot necha so‘m turadi? => 12 000 | 18 000 | 6 000 | 9 000
+TEKSH: Mahsulot narxi 50 000 so‘m. Avval 20%, keyin yana 10% chegirma qilindi. Yakuniy narx necha so‘m? => 36 000 | 35 000 | 30 000 | 40 000
 @tushuncha Xato tuzog‘i: kerak bo‘lmagan arzon narsa
 OVOZ: [1] Ko‘pchilik «arzon» ga qarab ortiqcha oladi. [2] {urgu}Agar yarmi buzilib ketsa va uni tashlab yuborsangiz — arzonlik yo‘qoldi! [3] Katta qadoq faqat uni ishlatib bo‘lsangiz foydali. [4] Har safar so‘rang: menga kerakmi? Ishlata olamanmi? Muddati yetadimi? Samarali narx — siz haqiqatan ishlatgan miqdor uchun to‘lagan narx.
 DOSKA: 1 kg — 25 000 so‘m
@@ -34,12 +36,15 @@ DOSKA: faqat 500 g ishlatsangiz: 25 000 : 0,5 = 50 000 so‘m/kg
 DOSKA: ❌ arzon = foydali
 DOSKA: ✅ ishlatiladigan miqdor uchun narx
 TEKSH: 2 kg yong‘oq 40 000 so‘m, lekin siz atigi 500 g ishlatasiz. Samarali narx necha so‘m/kg? => 80 000 | 20 000 | 40 000 | 10 000
+TEKSH: Do‘konda 4 kg shakar 40 000 so‘m, 1 kg esa 11 000 so‘m. Sizga atigi 1 kg kerak. Qaysi variantda kam pul to‘laysiz? => 1 kg — 11 000 so‘m | 4 kg — 40 000 so‘m | Farqi yo‘q | Aniqlab bo‘lmaydi
 @xulosa Esda tut
 OVOZ: Birinchi: taqqoslash uchun birlik narxini hisoblang. Ikkinchi: chekni tekshiring — jami va qaytim. Uchinchi: aksiyani har doim hisoblab ko‘ring. To‘rtinchi: kerakli miqdorni hisobga oling. Endi mashqda sinab ko‘ring!
 DOSKA: 1. birlik narxi = narx : miqdor
 DOSKA: 2. chek: miqdor · narx → jami
 DOSKA: 3. aksiyani hisobla
 DOSKA: 4. faqat kerakli miqdor
+TEKSH: 6 dona tuxum — 9 000 so‘m, 10 dona tuxum — 14 000 so‘m. Qaysi qadoqda bitta tuxum arzonroq? => 10 talikda (1 400 so‘m) | 6 talikda (1 500 so‘m) | Teng | Aniqlab bo‘lmaydi
+TEKSH: Mahsulot narxi 8 000 so‘m edi, narxi 25% ga oshdi. Yangi narx necha so‘m? => 10 000 | 8 200 | 6 000 | 8 025
 
 ## pm_byudjet2
 @kirish Oylik qayerga ketdi?
@@ -63,6 +68,7 @@ DOSKA: 6 000 000 · 30% = 1 800 000
 DOSKA: 6 000 000 · 20% = 1 200 000
 DOSKA: 50% + 30% + 20% = 100% ✔
 TEKSH: Oylik daromad 4 000 000 so‘m. 20% jamg‘arma necha so‘m bo‘ladi? => 800 000 | 200 000 | 1 000 000 | 80 000
+TEKSH: Oylik daromad 5 500 000 so‘m. 50% majburiy xarajatga necha so‘m ketadi? => 2 750 000 | 1 650 000 | 1 100 000 | 275 000
 @tushuncha Maqsad uchun jamg‘arma: necha oy kerak?
 OVOZ: [1] Noutbuk — to‘qqiz million so‘m. Oyiga bir million ikki yuz ming jamg‘arasiz. Necha oyda yig‘iladi? [2] To‘qqiz millionni bir million ikki yuz mingga bo‘lamiz — yetti butun besh o‘ndan. [3] {sekin}Yetti oyda — sakkiz million to‘rt yuz ming. Yetmaydi! Sakkiz oyda — to‘qqiz million olti yuz ming, yetadi. [4] {urgu}Demak, bu yerda yuqoriga yaxlitlaymiz: yetti butun beshni — sakkiz oy. Pul yetishi uchun!
 DOSKA: 9 000 000 : 1 200 000 = 7,5
@@ -70,6 +76,7 @@ DOSKA: 7 oy → 8 400 000  ✘ yetmaydi
 DOSKA: 8 oy → 9 600 000  ✔
 DOSKA: QOIDA: maqsad : oylik jamg‘arma → yuqoriga yaxlitla
 TEKSH: Telefon 3 500 000 so‘m. Oyiga 600 000 jamg‘arilsa, necha oy kerak? => 6 | 5 | 5,8 | 7
+TEKSH: Velosiped 2 000 000 so‘m. Oyiga 450 000 so‘m jamg‘arilsa, necha oyda yetadi? => 5 | 4 | 4,4 | 6
 @tushuncha Kichik xarajatlar yashirin teshik
 OVOZ: [1] Kuniga bitta stakan qahva — o‘n besh ming so‘m. Bu kichik pul! [2] Oyiga o‘ttiz kun: to‘rt yuz ellik ming. Yiliga o‘n ikki oy — besh million to‘rt yuz ming so‘m. [3] {baland}Bu noutbukning yarmidan ham ko‘p! [4] {urgu}Kichik takrorlanuvchi xarajatlar — byudjetning yashirin teshigi. Ularni bir oy yozib boring — hayratda qolasiz.
 DOSKA: 15 000 · 30 = 450 000 / oy
@@ -77,12 +84,15 @@ DOSKA: 450 000 · 12 = 5 400 000 / yil
 DOSKA: noutbuk: 9 000 000
 DOSKA: kichik xarajat = yashirin teshik
 TEKSH: Kuniga 8 000 so‘m sarflansa, bir yilda (365 kun) necha so‘m ketadi? => 2 920 000 | 240 000 | 2 400 000 | 29 200
+TEKSH: Kuniga 12 000 so‘mlik ichimlik, oyiga 20 kun. Bir oyda necha so‘m ketadi? => 240 000 | 60 000 | 48 000 | 144 000
 @xulosa Esda tut
 OVOZ: Birinchi: byudjet — daromad, xarajat va balans. Ikkinchi: ellik, o‘ttiz, yigirma qoidasi — boshlang‘ich nuqta. Uchinchi: jamg‘arma uchun yuqoriga yaxlitlang. To‘rtinchi: kichik xarajatlarni ham yozib boring. Endi mashqda sinab ko‘ring!
 DOSKA: 1. balans = daromad − xarajat
 DOSKA: 2. 50 / 30 / 20
 DOSKA: 3. maqsad : oylik → yuqoriga
 DOSKA: 4. kichik xarajatni yoz
+TEKSH: Daromad 8 000 000, xarajat 7 200 000 so‘m. Balans daromadning necha foizi? => 10% | 90% | 8% | 1%
+TEKSH: Daromad 6 000 000 so‘m. 50/30/20 qoidasida istaklarga 1 800 000 ajratilgan, ammo 2 400 000 sarflandi. Reja necha so‘mga oshib ketdi? => 600 000 | 1 800 000 | 2 400 000 | 4 200 000
 
 ## pm_kredit
 @kirish Qarz pul arzonmi?
@@ -106,6 +116,7 @@ DOSKA: foizlar: 24 + 20 + 16 + 12 + 8 + 4 = 84 (ming)
 DOSKA: jami: 1 200 000 + 84 000 = 1 284 000
 DOSKA: kreditning narxi: 84 000 so‘m
 TEKSH: Kredit bo‘yicha jami 5 400 000 so‘m qaytarildi, olingan pul 5 000 000 so‘m edi. Kreditning narxi (ortiqcha to‘lov) necha so‘m? => 400 000 | 5 000 000 | 10 400 000 | 40 000
+TEKSH: Kredit 900 000 so‘m, 3 oyga teng asosiy qarz bilan, oyiga 2%. Uchala oy foizlari yig‘indisi necha so‘m? => 36 000 | 54 000 | 18 000 | 900 000
 @tushuncha Oylik foiz va yillik foiz
 OVOZ: [1] Oyiga ikki foiz — bu yiliga yigirma to‘rt foiz demakdir! Ikki karra o‘n ikki. [2] {urgu}Ko‘pchilik «ikki foiz» ni ko‘rib «arzon» deb o‘ylaydi. Davrga qarang — oylikmi yoki yillikmi? [3] {sekin}Muddat uzaysa — jami foiz ham oshadi. Oylik to‘lov kichik bo‘lishi — kredit arzon ekanini bildirmaydi. [4] Muddat uzoq bo‘lsa, oylik to‘lov kichik, lekin ortiqcha to‘lov katta bo‘lishi mumkin.
 DOSKA: 2% / oy = 2% · 12 = 24% / yil
@@ -113,6 +124,7 @@ DOSKA: muddat uzayadi → jami foiz oshadi
 DOSKA: ❌ oylik to‘lov kichik = arzon
 DOSKA: ✅ jami to‘lov − olingan pul = narx
 TEKSH: Kredit oyiga 1,5% (oddiy hisob). Bu yiliga necha foiz? => 18% | 1,5% | 12% | 15%
+TEKSH: Bank «yiliga 36%» deydi (oddiy hisob). Bu oyiga necha foiz? => 3% | 36% | 12% | 0,36%
 @tushuncha Xato tuzog‘i va to‘g‘ri qaror
 OVOZ: [1] Mashhur xato — jami to‘lovni emas, faqat oylik to‘lovni solishtirish. [2] Yana bir xato: kreditni ehtiyoj bo‘lmasa olish. [3] {sekin}To‘g‘ri qaror: avval kerakmi? Keyin boshqa banklarning jami to‘lovini solishtiring. Oxirida to‘lay olamanmi — kredit to‘lovi oylik daromadning uchdan biridan oshmasin. [4] Kredit — qurol: to‘g‘ri ishlatsangiz yordam beradi, noto‘g‘ri — og‘irlashtiradi.
 DOSKA: jami to‘lov − olingan = kreditning narxi
@@ -120,9 +132,12 @@ DOSKA: banklarni solishtir
 DOSKA: oylik to‘lov ≤ daromadning 1/3
 DOSKA: avval: menga kerakmi?
 TEKSH: Oylik daromad 6 000 000 so‘m. Kredit to‘lovi ko‘pi bilan necha so‘m bo‘lishi kerak (uchdan bir qoidasi)? => 2 000 000 | 3 000 000 | 1 200 000 | 600 000
+TEKSH: A kredit: olingan 3 000 000, jami to‘langan 3 450 000. B kredit: olingan 2 000 000, jami to‘langan 2 400 000. Qaysi biri olingan pulga nisbatan arzonroq? => A (15% ortiqcha) | B (20% ortiqcha) | Teng | B, chunki 400 000 < 450 000
 @xulosa Esda tut
 OVOZ: Birinchi: kredit — asosiy qarz va foiz. Ikkinchi: foiz qoldiq qarzdan hisoblanadi. Uchinchi: jami to‘lov minus olingan pul — kreditning narxi. To‘rtinchi: davrga qarang — oylik yoki yillik foiz. Endi mashqda sinab ko‘ring!
 DOSKA: 1. asosiy qarz + foiz
 DOSKA: 2. foiz = qoldiq · %
 DOSKA: 3. narx = jami − olingan
 DOSKA: 4. oylik ≠ yillik
+TEKSH: Kredit 1 500 000 so‘m, 3 oyga teng asosiy qarz bilan, oyiga 2%. Birinchi oy to‘lovi necha so‘m? => 530 000 | 500 000 | 30 000 | 1 530 000
+TEKSH: Daromad 2 400 000 so‘m. Kredit to‘lovi oyiga 1 000 000. Uchdan bir qoidasiga ko‘ra bu mumkinmi? => Yo‘q, chegara 800 000 | Ha | Ha, chunki daromaddan kam | Aniqlab bo‘lmaydi

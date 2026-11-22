@@ -83,6 +83,7 @@ DOSKA: DOIRA_KASR: 1/3
 DOSKA: DOIRA_KASR: 1/4
 DOSKA: 1/3 > 1/4 — bo‘laklar har xil!
 DOSKA: Yechim: bir xil maydalik → umumiy maxraj
+TEKSH: Shokoladning 1/6 bo‘lagi va xuddi shunday shokoladning 1/9 bo‘lagi. Qaysi bo‘lak katta? => 1/6 | 1/9 | teng | aniqlab bo‘lmaydi
 @tushuncha Umumiy maxraj: o‘n ikki bo‘lak
 OVOZ: [1] Uchga ham, to‘rtga ham bo‘linadigan son kerak. Mana, o‘n ikki! [2] {sekin}Birinchi pitsani o‘n ikki bo‘lakka bo‘lamiz. Uchdan ikki: sakkiz bo‘lak bo‘ladi, sakkiz bo‘lib o‘n ikki. [3] Ikkinchi pitsa ham o‘n ikki bo‘lak. To‘rtdan uch: to‘qqiz bo‘lib o‘n ikki. [4] Endi bo‘laklar bir xil! {baland}Sakkiz va to‘qqiz: qaysi katta? To‘qqiz! [5] {urgu}Demak, Bobur ko‘proq yegan. Taxmin to‘g‘ri chiqdimi? [6] Qoida: maxrajni tenglab, suratni solishtiramiz.
 DOSKA: DOIRA_KASR: 8/12
@@ -95,6 +96,7 @@ SODDA: Bir xil o‘lchamdagi bo‘laklarni sanash osonroq.
 BOSHQA: Kasrni o‘nli kasrga aylantiring: 2/3 ≈ 0,67, 3/4 = 0,75.
 TEKSH: Qaysi biri katta: 3/5 yoki 2/3? => 2/3 | 3/5 | teng | aniqlab bo‘lmaydi
 TEKSH: 1/2 va 3/8 ni solishtiring. Kattasi qaysi? => 1/2 | 3/8 | teng | aniqlab bo‘lmaydi
+TEKSH: 5/6 va 7/9 ni solishtiring. Kattasi qaysi? => 5/6 | 7/9 | teng | aniqlab bo‘lmaydi
 @tushuncha Kasr, o‘nli kasr va foiz: bitta son
 OVOZ: [1] Bir xil son uch xil kiyim kiyadi! {sekin}Mana, pitsaning to‘rtdan biri. [2] Maxrajni yuzga keltiramiz: yigirma besh bo‘lib yuz. Yuz bo‘lakning yigirma beshtasi: yigirma besh foiz! O‘nli kasrda esa nol butun yigirma besh. [3] Kasr chizig‘i bu bo‘lish belgisi. {urgu}Suratni maxrajga bo‘lsak, o‘nli kasr chiqadi. [4] Uchni sakkizga bo‘lamiz: nol butun uch yuz yetmish besh. [5] Qoida: kasr, surat bo‘linadi maxraj.
 DOSKA: DOIRA_KASR: 1/4
@@ -112,6 +114,7 @@ DOSKA: DOIRA_KASR: 3/6
 DOSKA: DOIRA_KASR: 2/6
 DOSKA: ✅ 3/6 + 2/6 = 5/6   (> 1/2 ✔)
 TEKSH: 1/4 + 1/2 nechaga teng? => 3/4 | 2/6 | 1/6 | 2/4
+TEKSH: 2/3 + 1/6 nechaga teng? => 5/6 | 3/9 | 2/18 | 3/6
 @xulosa Esda tut
 OVOZ: Kasr, butunning teng bo‘laklari: maxraj jami, surat olingani. Solishtirish uchun {baland}bir xil maxrajga keltiramiz. Kasr, o‘nli kasr, foiz, bitta sonning uch libosi. Qo‘shishda esa maxraj bir xil bo‘lsa, faqat suratlar qo‘shiladi. Endi mashqda kuchingizni sinab ko‘ring!
 DOSKA: 1. maxraj = jami, surat = olingan
@@ -130,6 +133,7 @@ OVOZ: [1] Birinchi buklash, ikki qavat. Ikkinchi, to‘rt qavat! Uchinchi, sakki
 DOSKA: ZANJIR: 1 buklash :: 2 qavat | 2 buklash :: 4 qavat | 3 buklash :: 8 qavat | 4 buklash :: 16 qavat
 DOSKA: KETMA: 2 | 2 · 2 | 2 · 2 · 2 | 2 · 2 · 2 · 2
 DOSKA: GRAFIK: y=2^x; [0;5]
+TEKSH: Qog‘oz 7 marta buklansa, necha qavat bo‘ladi? => 128 | 14 | 49 | 64
 @tushuncha Daraja yozuvi: asos va ko‘rsatkich
 OVOZ: [1] Uzun ko‘paytmani qisqa yozamiz: ikki karra ikki karra ikki, bu ikkining uchinchi darajasi. Javob sakkiz. [2] Pastdagi katta son: asos, kimni ko‘paytiryapmiz. Tepadagi kichik son: ko‘rsatkich, necha marta. [3] {urgu}Diqqat! Eng ko‘p xato: ikkining uchinchi darajasi, ikki karra uch, ya’ni olti emas! Olti chiqsa, qog‘ozimiz sakkiz qavat o‘rniga olti qavat bo‘lib qolardi. [4] Qoida: a ning n-darajasi, a ni n marta o‘ziga ko‘paytirish.
 DOSKA: KETMA: 2 · 2 · 2 | 2³ | 8
@@ -154,6 +158,7 @@ DOSKA: KETMA: 0,003 | 3 : 1 000 | 3 · 10⁻³
 DOSKA: QOIDA: a · 10ⁿ, 1 ≤ a < 10
 TEKSH: 4 500 000 ni standart shaklda yozing. => 4,5 · 10⁶ | 45 · 10⁵ | 4,5 · 10⁵ | 0,45 · 10⁷
 TEKSH: 6 · 10⁻² nechaga teng? => 0,06 | 0,6 | 600 | 0,006
+TEKSH: 0,00072 ni standart shaklda yozing. => 7,2 · 10⁻⁴ | 7,2 · 10⁻³ | 7,2 · 10⁴ | 7,2 · 10⁻⁵
 @tushuncha Qog‘oz topishmog‘ining yechimi
 OVOZ: [1] Endi hisoblaymiz! O‘n marta buklasak, ming yigirma to‘rt qavat, qalinlik taxminan o‘n santimetr, kaftdek. Yigirma marta, yuz besh metr, baland bino! O‘ttiz marta... {baland}yuz yetti kilometr! [2] Grafikka qarang: avval deyarli sezilmaydi, keyin otilib chiqadi. [3] Hisob: ikkining o‘ttizinchi darajasi, bir milliard yetmish million atrofida. Nol butun bir millimetrga ko‘paytirsak, yuz yetti kilometr. [4] {urgu}Qoida: daraja avval sekin, keyin portlovchi o‘sadi!
 DOSKA: ZANJIR: 10 buklash :: ≈ 10 sm | 20 buklash :: ≈ 105 m | 30 buklash :: ≈ 107 km
@@ -193,6 +198,7 @@ DOSKA: USTUN: 7000+7020
 DOSKA: BELGILA: 14 020 > 14 000 | aylana
 DOSKA: QOIDA: Chegaraga yaqin bo‘lsa — aniq hisoblang
 TEKSH: Narxlar 1 950, 2 040 va 3 990 so‘m (jami 7 980). 8 000 so‘m yetadimi? => Yetadi, 20 so‘m qoladi | Yetmaydi | Aniq aytib bo‘lmaydi | Yetadi, 200 so‘m qoladi
+TEKSH: Daftar 1 980, qalam 3 020, o‘chirg‘ich 1 010 so‘m. Qo‘limda 6 000 so‘m. Yetadimi? => Yetmaydi, 10 so‘m yetishmaydi | Yetadi | Yetadi, 10 so‘m qoladi | Aniq aytib bo‘lmaydi
 @tushuncha Qachon yuqoriga, qachon pastga yaxlitlaymiz?
 OVOZ: [1] Mehmonlar kelyapti, stollar esa tayyor! [2] Taxmin maqsadga bog‘liq. Pul yetadimi? Stol yetadimi? Qop yetadimi? Bunday savollarda doim {sekin}yuqoriga yaxlitlaymiz, kam bo‘lib qolmasin. [3] Misol: yigirma besh mehmon, stollar to‘rt kishilik. Yigirma besh bo‘lib to‘rt, olti, qoldiq bir. [4] Bir mehmon tik turadimi? Yo‘q! Yettinchi stol ham kerak. [5] Qoida: kerakli miqdorni hisoblasak, qoldiq chiqsa, doim yuqoriga yaxlitlaymiz.
 DOSKA: RASM: mehmon | stol:kel
@@ -201,6 +207,7 @@ DOSKA: BOLISH: 25:4
 DOSKA: 6 stol + 1 mehmon → 7 stol (yuqoriga!)
 DOSKA: QOIDA: kerakli miqdor, qoldiq bo‘lsa → yuqoriga yaxlitla
 TEKSH: 38 o‘quvchiga 6 kishilik stollar. Kamida nechta stol kerak? => 7 | 6 | 8 | 5
+TEKSH: Bitta avtobusga 45 kishi sig‘adi. 100 kishi uchun kamida nechta avtobus kerak? => 3 | 2 | 4 | 5
 @tushuncha Javobim mantiqqa to‘g‘ri keladimi?
 OVOZ: [1] Taxmin faqat pul uchun emas, o‘z javobingizni tekshirish uchun ham kerak. Siz qirq sakkizni ellik ikkiga ko‘paytirmoqchisiz. Avval tez taxmin: qirq sakkiz, taxminan ellik. [2] Ellik ikki, ham taxminan ellik. Ellik karra ellik, ikki ming besh yuz. [3] Endi aniq hisob, ustun bilan: ikki ming to‘rt yuz to‘qson olti. [4] Taxminga juda yaqin, demak katta xato yo‘q. Agar yigirma to‘rt ming to‘qqiz yuz oltmish chiqqanda edi, darhol xato borligini sezar edingiz!
 DOSKA: KETMA: 48 · 52 | ≈ 50 · 50 | 2 500
@@ -209,6 +216,7 @@ DOSKA: Javob 2 496 ≈ 2 500 ✔
 DOSKA: ❌ 24 960 chiqsa — taxmindan 10 marta katta!
 TEKSH: 19 · 21 ni taxmin qiling. Javob taxminan nechaga yaqin? => 400 | 40 | 4 000 | 4
 TEKSH: 7,9 · 3,1 hisoblab 2 449 chiqdi. Bu taxminga mosmi? => Yo‘q, taxminan 24 bo‘lishi kerak | Ha | Faqat o‘nli kasr bo‘lgani uchun | Aniqlab bo‘lmaydi
+TEKSH: 98 · 52 ni taxmin qiling. Javob taxminan nechaga yaqin? => 5 000 | 500 | 50 000 | 150
 @xulosa Esda tut
 OVOZ: Birinchi: yaxlitlashda o‘chiriladigan raqamga qarang, besh va undan katta bo‘lsa oshiring. Ikkinchi: taxminiy hisob, o‘z javobingizni tez tekshirish usuli. Uchinchi: chegaraga yaqin bo‘lsa, aniq hisoblang. To‘rtinchi: kerakli miqdorda doim yuqoriga yaxlitlang.
 DOSKA: 1. ≥5 oshir, ≤4 qoldir

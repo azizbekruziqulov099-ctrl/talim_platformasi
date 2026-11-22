@@ -107,6 +107,7 @@ DOSKA: 1. t² → parabola
 DOSKA: 2. a < 0 → maksimum
 DOSKA: 3. t = −b / 2a
 DOSKA: 4. Cho‘qqi = ildizlar o‘rtasi
+TEKSH: To‘p balandligi h = −t² + 6t + 4 (m). Eng katta balandlik qancha? => 13 m | 9 m | 3 m | 4 m
 
 ## pm_eksp
 @kirish Bakteriya yoki oddiy qo‘shish?
@@ -142,6 +143,7 @@ DOSKA: +5% → ×1,05 (har yili)
 DOSKA: GRAFIK: y=100*1.05^x; [0;10]
 DOSKA: Oddiy qo‘shish: 150 000; ko‘paytirish: ≈ 162 900
 TEKSH: Shahar aholisi 200 000, har yili 10% ga ko‘payadi. 2 yildan keyin necha kishi bo‘ladi? => 242 000 | 240 000 | 220 000 | 260 000
+TEKSH: Mahsulot narxi har yili 20% oshadi. Hozir 5 000 so‘m bo‘lsa, 2 yildan keyin narxi qancha? => 7 200 so‘m | 7 000 so‘m | 6 000 so‘m | 10 000 so‘m
 @tushuncha Xato tuzog‘i: yarim yemirilishda nolga yetmaymiz
 OVOZ: [1] Ko‘pchilik shunday o‘ylaydi: ikki davrdan keyin hammasi tugaydi, chunki ikkita yarim — bitta butun. [2] {urgu}Yo‘q! Har davrda qolgan miqdorning yarmi ketadi, butunning yarmi emas! [3] Birinchi davrda yarmi qoladi. Ikkinchi davrda — shu yarmining yarmi, ya’ni choragi. [4] {sekin}Shuning uchun hech qachon aniq nolga yetmaydi — faqat nolga yaqinlashadi.
 DOSKA: ❌ ½ + ½ = hammasi ketdi
@@ -156,6 +158,7 @@ DOSKA: 1. + d chiziqli; × q ko‘rsatkichli
 DOSKA: 2. qⁿ juda tez o‘sadi
 DOSKA: 3. Yarim yemirilish: qolgan : 2
 DOSKA: 4. +p% → × (1 + p)
+TEKSH: Qaysi ketma-ketlik har bosqichda bir xil songa ko‘paytirilib o‘sadi? => 3, 6, 12, 24 | 3, 6, 9, 12 | 3, 5, 7, 9 | 20, 15, 10, 5
 
 ## pm_perimetr
 @kirish Bog‘ uchun to‘siq
@@ -182,6 +185,7 @@ DOSKA: QOIDA: murakkab shakl → chegarani yurib chiq
 DOSKA: ❗ faqat burchakdan kesilganda
 TEKSH: 12 × 9 to‘rtburchakning burchagidan 3 × 2 bo‘lak kesib olindi. Hosil bo‘lgan shaklning perimetri qancha? => 42 | 36 | 30 | 48
 TEKSH: 10 × 6 to‘rtburchakning uzun tomoni o‘rtasidan 2 × 2 kvadrat kesib olindi. Perimetr qancha bo‘ladi? => 36 | 32 | 28 | 40
+TEKSH: L-shaklning tomonlari ketma-ket 9, 3, 4, 5, 5, 8 m. Uning perimetri qancha? => 34 m | 17 m | 30 m | 38 m
 @tushuncha Yo‘lak: ichki va tashqi perimetr
 OVOZ: [1] Bog‘ atrofida bir metr kenglikdagi yo‘lak ishlanadi. Ichki to‘rtburchak — yigirma ga o‘n ikki. Tashqisi — har tomonga bir metrdan kattaroq: yigirma ikki ga o‘n to‘rt. [2] Tashqi perimetr: ikki karra, yigirma ikki plyus o‘n to‘rt — yetmish ikki metr. [3] {sekin}Ichkisi — oltmish to‘rt. Farq — sakkiz metr. [4] {urgu}Nega aynan sakkiz? To‘rtta burchakda ikki tomondan bir metrdan qo‘shiladi: to‘rt karra ikki karra bir. Yo‘lak kengligi ikki metr bo‘lsa, farq o‘n olti bo‘ladi — sakkiz karra kenglik!
 DOSKA: CHIZ: to‘rtburchak A(1;1) B(21;1) C(21;13) D(1;13); to‘rtburchak E(0;0) F(22;0) G(22;14) H(0;14)
@@ -189,6 +193,7 @@ DOSKA: Ichki: 20 × 12 → P = 64; tashqi: 22 × 14 → P = 72
 DOSKA: 72 − 64 = 8 = 8 · 1
 DOSKA: Yo‘lak 2 m bo‘lsa: farq 8 · 2 = 16
 TEKSH: Ichki to‘rtburchak 10 × 6, atrofida 2 m kenglikdagi yo‘lak. Tashqi perimetr qancha? => 48 m | 32 m | 40 m | 36 m
+TEKSH: Ichki to‘rtburchak 15 × 9 m, atrofida 1 m kenglikdagi yo‘lak. Tashqi perimetr qancha? => 56 m | 48 m | 52 m | 60 m
 @tushuncha Xato tuzog‘i: perimetr va yuza bir narsa emas
 OVOZ: [1] Ikkita bog‘ olamiz: yigirma ga o‘n ikki va yigirma ikki ga o‘n. [2] Ikkalasining perimetri — oltmish to‘rt metr: to‘siq sarfi bir xil! [3] {urgu}Lekin yuzi turlicha: ikki yuz qirq va ikki yuz yigirma kvadrat metr. [4] Demak, perimetr bir xil bo‘lsa, yuza bir xil bo‘lishi shart emas. {sekin}To‘siq uchun perimetr kerak — metrda. Ekin uchun yuza kerak — kvadrat metrda.
 DOSKA: JADVAL: Shakl | P (m) | S (m²) ;; 20 × 12 | 64 | 240 ;; 22 × 10 | 64 | 220
@@ -196,9 +201,11 @@ DOSKA: ❌ P bir xil → S bir xil
 DOSKA: To‘siq → P (m)
 DOSKA: Ekin, plitka → S (m²)
 TEKSH: Quyidagilardan qaysi biri uchun yuzani hisoblash kerak? => Xonaning polini laminat bilan qoplash | Rasm ramkasiga bagetga | Hovli to‘sig‘iga | Bayram chiroqlari ipiga
+TEKSH: Ikki bog‘: 18 × 6 m va 12 × 12 m. Qaysi gap to‘g‘ri? => Perimetrlari teng, yuzalari turlicha | Perimetrlari ham, yuzalari ham teng | Yuzalari teng, perimetrlari turlicha | 12 × 12 ning perimetri katta
 @xulosa Esda tut
 OVOZ: Birinchi: perimetr — chegara uzunligi, metrda o‘lchanadi. Ikkinchi: to‘rtburchakda ikki karra uzunlik plyus kenglik. Uchinchi: murakkab shaklda chegarani yurib chiqing, ortiqcha yo‘l yo‘q. To‘rtinchi: perimetr bilan yuzani aralashtirmang — birliklari ham boshqa. Endi mashqda sinab ko‘ring!
 DOSKA: 1. P — uzunlik (m)
 DOSKA: 2. P = 2(a + b)
 DOSKA: 3. Chegara bo‘ylab yur
 DOSKA: 4. P — m; S — m²
+TEKSH: To‘rtburchak bog‘ning perimetri 54 m, uzunligi kengligidan 5 m ortiq. Kengligi qancha? => 11 m | 16 m | 22 m | 13,5 m

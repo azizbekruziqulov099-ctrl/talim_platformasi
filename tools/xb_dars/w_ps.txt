@@ -40,6 +40,7 @@ DOSKA: ❌ faqat atama
 DOSKA: ✅ sabab → natija zanjiri
 DOSKA: «shuning uchun» — yaxshi javob belgisi
 TEKSH: Qaysi javob ilmiy tushuntirish? => Havo isiganda kengayadi, shuning uchun sharcha shishadi | Bu — gaz qonuni | Sharcha shunday bo‘lishi kerak | Shar yasovchi shunday qilgan
+TEKSH: Sovuq stakan sirtida suv tomchilari paydo bo‘ldi. Eng to‘liq tushuntirish qaysi? => Havodagi bug‘ sovuq sirtga tegib suyuqlikka aylanadi | Stakan oqib turadi | Bu — kondensatsiya | Stakan shunday yaratilgan
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Tuzoq birinchi: {baland}«Bu — mening fikrim, demak, to‘g‘ri». Yo‘q! Fikr dalil bilan mustahkamlanadi. [2] Tuzoq ikkinchi: modelni haqiqatning o‘zi deb o‘ylash. {sekin}Zarrachalar chizma emas — chizma faqat tushunish vositasi. [3] Tuzoq uchinchi: tushuntirishda bir qadamni tashlab ketish. {urgu}Zanjir bir bo‘g‘ini uzilsa — butun javob yiqiladi.
 DOSKA: ❌ fikr = isbot
@@ -69,6 +70,7 @@ DOSKA: ❌ ikki omil birdan o‘zgardi
 DOSKA: ✅ bitta omil o‘zgaradi, qolgani bir xil
 TEKSH: Yangi o‘g‘it o‘simlikka ta’sirini tekshirmoqchimiz. Mustaqil o‘zgaruvchi qaysi? => O‘g‘it bor yoki yo‘q | O‘simlik balandligi | Tuproq turi | Suv miqdori
 TEKSH: Tajribada «bog‘liq o‘zgaruvchi» nima? => O‘lchanadigan natija | Biz o‘zgartiradigan omil | Bir xil saqlanadigan narsa | Tajribachi ismi
+TEKSH: Tajriba: turli haroratning urug‘ unishiga ta’siri. NAZORAT o‘zgaruvchisi qaysi? => Urug‘ turi va suv miqdori | Harorat | Unib chiqqan urug‘lar soni | Tajriba natijasi
 @tushuncha Adolatli sinov: nazorat va sinov guruhi
 OVOZ: [1] Adolatli sinov — poygaga o‘xshaydi: hamma bir joydan, bir vaqtda start oladi. [2] Ikki guruh yasaymiz. Sinov guruhi — musiqa eshitadi. {sekin}Nazorat guruhi — musiqasiz, lekin qolgan hamma sharoit aynan bir xil! [3] Faqat shunda farq bo‘lsa, aybdor — musiqa. [4] {baland}Bitta loviya yetmaydi! Tasodifan baland bo‘lib qolishi mumkin. Har guruhga o‘ntadan loviya ekamiz, o‘rtachani solishtiramiz.
 DOSKA: SXEMA: Adolatli tajriba > sinov guruhi: musiqa bor | nazorat guruhi: musiqa yo‘q | qolgani bir xil
@@ -77,6 +79,7 @@ DOSKA: ZANJIR: Bitta omil :: musiqa | Ko‘p nusxa :: 10 ta | O‘rtacha :: soli
 DOSKA: ko‘p nusxa → tasodif ta’siri kamayadi
 TEKSH: Nega bitta loviya o‘rniga o‘nta olinadi? => Tasodifiy farq ta’siri kamayadi | O‘nta chiroyliroq ko‘rinadi | Tajriba qisqaradi | Hech qanday farq yo‘q
 TEKSH: Nazorat guruhida nima qilinadi? => Tekshirilayotgan omil qo‘llanmaydi | Hamma omil qo‘llanadi | Natija o‘lchanmaydi | Guruh olib tashlanadi
+TEKSH: Sinov guruhida 10 ta, nazorat guruhida atigi 2 ta o‘simlik bor. Qanday kamchilik bor? => Nazorat guruhi juda kichik, taqqoslash ishonchsiz | Sinov guruhi kerak emas | Hech qanday kamchilik yo‘q | Nazorat guruhi juda katta
 @tushuncha Tajribani baholaymiz va xulosa yozamiz
 OVOZ: [1] Endi tajribani «sudga» beramiz. Uchta savol: nechta omil farq qildi? Nazorat bormi? Namuna yetarlimi? [2] O‘quvchida: ikkita omil farq qildi — musiqa va yorug‘lik. Nazorat yo‘q. {sekin}Namuna — atigi bittadan loviya. [3] Uchala savolga javob — «yomon». {urgu}Xulosa ishonchsiz! [4] Tuzatamiz: ikkala guruh ham derazada, faqat musiqa farqli, har guruhda o‘ntadan loviya. [5] Xulosa ham ehtiyotkor yoziladi: «Tajriba shuni ko‘rsatdiki...» — «isbotladi» emas!
 DOSKA: JADVAL: Savol | O‘quvchi | Yangi tajriba ;; omil farqi | 2 ta ❌ | 1 ta ✅ ;; nazorat | yo‘q ❌ | bor ✅ ;; namuna | 1 ta ❌ | 10 ta ✅
@@ -86,6 +89,7 @@ DOSKA: ❌ «isbotladi» — juda erta
 DOSKA: ✅ dalil darajasida xulosa
 TEKSH: Dori ta’sirini faqat 2 bemorda sinab, «dori ishlaydi» deyildi. Muammo nima? => Namuna kichik, xulosa ishonchsiz | Hech qanday muammo yo‘q | Dori qimmat | Bemorlar juda ko‘p
 TEKSH: Yaxshilangan tajribada nima o‘zgartiriladi? => Faqat sinalayotgan omil | Hamma narsa | Hech narsa | Natijani o‘lchash usuli faqat
+TEKSH: Tajribada A o‘g‘it qo‘llangan o‘simliklar o‘rtacha balandroq o‘sdi. Eng ehtiyotkor xulosa qaysi? => «Tajriba A o‘g‘it bilan o‘rtacha balandroq o‘sishni ko‘rsatdi» | «A o‘g‘it o‘simlikni albatta o‘stirishi isbotlandi» | «Barcha o‘g‘itlar foydali» | «Natija ahamiyatsiz»
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Tuzoq birinchi: {baland}«Natija men kutganday chiqmadi — demak, tajriba xato!» Yo‘q! Kutilmagan natija ham qimmatli ma’lumot. [2] Tuzoq ikkinchi: bitta tajribadan butun dunyo uchun qonun chiqarish. {sekin}Bir marta shunday bo‘ldi — hali qonun emas. [3] Tuzoq uchinchi: yoqqan natijani qoldirib, yoqmaganini tashlab yuborish. {urgu}Bu — firibgarlik!
 DOSKA: ❌ kutilmagan = xato
@@ -115,6 +119,7 @@ DOSKA: 2 : 10 = 0,2 = 20%
 DOSKA: xulosa = ma’lumot darajasida
 TEKSH: Ma’lumot: 50, 55, 60, 65 (har yil). Qanday yo‘nalish? => Bir tekis oshmoqda | Kamaymoqda | Tebranmoqda | O‘zgarmayapti
 TEKSH: 40 dan 50 gacha o‘sish necha foiz? => 25% | 10% | 20% | 50%
+TEKSH: Maktabda o‘quvchilar soni 200 dan 250 ga ko‘paydi. Necha foizga ko‘paygan? => 25% | 20% | 50% | 250%
 @tushuncha Bog‘liqlik va sabab — ikki xil narsa
 OVOZ: [1] Yozda ikkita narsa birga o‘sadi: muzqaymoq sotuvi va suvdagi mikrob miqdori! {baland}Demak, muzqaymoq mikrob ko‘paytiradimi? [2] Albatta yo‘q! {sekin}Ikkalasiga ham sabab bor — issiq havo. U — yashirin sabab. [3] Ikki narsa birga o‘zgarsa — bu bog‘liqlik. Lekin biri ikkinchisining sababi bo‘lishi shart emas. [4] Sababni isbotlash uchun adolatli tajriba yoki boshqa omillarni chiqarib tashlash kerak. {urgu}«Birga o‘zgaradi» ko‘rgan joyda «sabab bo‘ladi» deb yozmang!
 DOSKA: SXEMA: Issiq havo > muzqaymoq sotuvi ↑ | mikrob ↑
@@ -123,6 +128,7 @@ DOSKA: ❌ muzqaymoq → mikrob
 DOSKA: ✅ yashirin sabab: issiq
 TEKSH: Ko‘p kitob o‘qigan bolalarning bo‘yi ham uzun. Nima uchun bo‘lishi mumkin? => Ikkalasi ham yoshga bog‘liq | Kitob bo‘yni o‘stiradi | Uzun bo‘y kitob o‘qitadi | Bu tasodif emas, qonun
 TEKSH: Sababni isbotlash uchun nima eng yaxshi? => Nazoratli tajriba | Chiroyli grafik | Ko‘p odam fikri | Gazeta maqolasi
+TEKSH: Qishda issiq kiyim ham, isitgich ham ko‘p sotiladi. Ularning birga ko‘payishiga eng yaxshi izoh qaysi? => Ikkalasiga ham sovuq havo sabab | Issiq kiyim isitgichni sotdiradi | Isitgich kiyimni sotdiradi | Bu tasodif
 @tushuncha Tarqoqlik: raqamlarga ishonchmi?
 OVOZ: [1] Yana bir sir: bitta o‘lchovga ishonmang! [2] Mikrob miqdorini uch marta o‘lchadik: o‘n butun ikki, o‘n butun bir, o‘n butun uch. {sekin}Natijalar bir-biriga juda yaqin — o‘rtacha o‘n butun ikki. Ishonchli! [3] Boshqa o‘lchov: sakkiz, o‘n ikki, o‘n. {urgu}O‘rtacha yana o‘n, lekin raqamlar sochilib ketgan — tarqoq! Ishonch kam. [4] Shuning uchun xulosada «taxminan», «ehtimol» deyish — kamchilik emas, halollik belgisi!
 DOSKA: JADVAL: O‘lchovlar | O‘rtacha | Tarqoqlik ;; 10,2 · 10,1 · 10,3 | 10,2 | kichik → ishonchli ;; 8 · 12 · 10 | 10 | katta → ishonch kam
@@ -139,6 +145,7 @@ DOSKA: aslida: 12 : 10 = 1,2
 DOSKA: ✅ o‘q 0 dan → 20% farq
 DOSKA: ❌ 3 kishi = hamma
 TEKSH: Ustunlar 50 va 55, o‘q 40 dan boshlangan. Ikkinchi ustun birinchisidan taxminan necha marta baland ko‘rinadi? => 1,5 marta | 1,1 marta | 5 marta | 2 marta
+TEKSH: Ikki ustun balandligi 20 va 24, o‘q 16 dan boshlangan. Ikkinchi ustun birinchisidan necha marta baland ko‘rinadi? => 2 marta | 1,2 marta | 4 marta | 1,5 marta
 @xulosa Esda tut
 OVOZ: Birinchi: ma’lumotni uch qadamda o‘qing — tavsif, yo‘nalish, miqdor. Ikkinchi: bog‘liqlik sababni isbotlamaydi. Uchinchi: tarqoqlikka qarang. To‘rtinchi: grafik o‘qi va namuna hajmini tekshiring.
 DOSKA: 1. tavsif → yo‘nalish → miqdor

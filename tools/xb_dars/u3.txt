@@ -85,6 +85,7 @@ DOSKA: KETMA: 4x + 3 − x + 7 | 4x − x + 3 + 7 | 3x + 10
 DOSKA: QOIDA: o‘xshash hadlar — bir xil harfli hadlar
 TEKSH: 6m − 2m + 9 nimaga teng? => 4m + 9 | 8m + 9 | 4m − 9 | 13m
 TEKSH: 5a + 3b − 2a + b nimaga teng? => 3a + 4b | 7a + 4b | 3a + 2b | 10ab
+TEKSH: To‘g‘ri to‘rtburchakning eni y metr, uzunligi esa undan 5 metr ko‘p. Perimetri? => 4y + 10 | 2y + 5 | 4y + 5 | y(y + 5)
 @tushuncha Ifodani hayotda ishlatamiz: perimetr
 OVOZ: [1] To‘g‘ri to‘rtburchak maydon: eni x metr, uzunligi esa undan uch metr ko‘proq — x plyus uch. Atrofiga to‘siq kerak. [2] Perimetr — hamma tomonlar yig‘indisi: x, x plyus uch, x, x plyus uch. [3] {sekin}Uni yig‘amiz: x lar — to‘rt x, sonlar — olti. To‘rt x plyus olti! [4] {baland}Endi bitta ifoda bilan istalgan maydon uchun hisoblaymiz: x ikki bo‘lsa — o‘n to‘rt, x o‘n bo‘lsa — qirq olti metr.
 DOSKA: RASM: uy | daraxt:tebran
@@ -92,6 +93,7 @@ DOSKA: CHIZ: to‘rtburchak A(0;0) B(5;0) C(5;3) D(0;3)
 DOSKA: P = x + (x + 3) + x + (x + 3)
 DOSKA: KETMA: P | 4x + 6 | x = 2 → 14 | x = 10 → 46
 TEKSH: Bir daftar a so‘m, bir qalam b so‘m. 3 daftar va 2 qalam narxi? => 3a + 2b | 5ab | 3a · 2b | 5(a + b)
+TEKSH: a = 5 bo‘lganda a · a − (a + a) nechaga teng? => 15 | 35 | 0 | 5
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Eng ko‘p xato: uch a plyus ikki b ni besh a b deb yozish. [2] {urgu}Bu — noto‘g‘ri! Olma va nokni qo‘shib yangi meva hosil qilmaysiz. [3] Ikkinchi tuzoq: a plyus a — ikki a, lekin a karra a — a kvadrat. Ular bir-biridan juda farq qiladi. [4] Sinab ko‘ring: a uch bo‘lsin. Uch plyus uch — olti, uch karra uch — to‘qqiz!
 DOSKA: ❌ 3a + 2b = 5ab
@@ -129,6 +131,7 @@ DOSKA: JADVAL: Ishoralar | Natija ;; + · + | + ;; − · − | + ;; − · + | 
 DOSKA: −2(a + 4) = −2a − 8
 TEKSH: 9 − (a + 2) nimaga teng? => 7 − a | 11 + a | 7 + a | 11 − a
 TEKSH: −3(x − 4) nimaga teng? => −3x + 12 | −3x − 12 | 3x − 12 | −3x + 4
+TEKSH: (a + 7)(a − 2) nimaga teng? => a² + 5a − 14 | a² − 14 | a² + 9a − 14 | a² + 5a + 14
 @tushuncha Ikki qavsni ko‘paytirish: to‘rt bo‘lak
 OVOZ: [1] Endi ikkita qavs: a plyus ikki, karra, a plyus uch. Yana rasm chizamiz: kvadratning tomoni — a plyus ikki, ikkinchi tomoni — a plyus uch. [2] Yuza to‘rt bo‘lakdan iborat! Katta kvadrat — a kvadrat. Ikkita to‘rtburchak — uch a va ikki a. Eng kichigi — olti. [3] {sekin}Hammasini yig‘amiz: a kvadrat plyus besh a plyus olti. [4] {urgu}Demak, qoida: birinchi qavsning har bir hadi ikkinchi qavsning har bir hadiga ko‘paytiriladi. To‘rtta ko‘paytma chiqadi!
 DOSKA: CHIZ: to‘rtburchak A(0;0) B(4;0) C(4;4) D(0;4); to‘rtburchak B(4;0) E(6;0) F(6;4) C(4;4); to‘rtburchak D(0;4) C(4;4) G(4;7) H(0;7); to‘rtburchak C(4;4) F(6;4) I(6;7) G(4;7)
@@ -190,6 +193,7 @@ DOSKA: 3x = 15; x = 5
 DOSKA: tekshir: 28 = 28 ✔
 TEKSH: 7x − 5 = 3x + 11 tenglamada x = ? => 4 | 1,5 | 6 | 16
 TEKSH: 4x + 9 = x + 24 tenglamada x = ? => 5 | 3 | 11 | 6
+TEKSH: Sonning 3 baravaridan 8 ayirilsa, sonning 2 baravariga 5 qo‘shilganiga teng bo‘ladi. Bu son qaysi? => 13 | 3 | 17 | 27
 @tushuncha Matnli masala: gapni tenglamaga aylantiramiz
 OVOZ: [1] «Bir sonning uch baravaridan besh ayirilsa, yigirma ikki chiqadi. Bu son nechchi?» Mana, bizning topishmoq! [2] Noma’lumni x deymiz. Gapni harflarga tarjima qilamiz: uch x minus besh — yigirma ikki. [3] {sekin}Besh ni o‘ngga o‘tkazamiz — yigirma yetti. Uch x — yigirma yetti, x — to‘qqiz. [4] {urgu}Muhim: javobni masala gapiga qo‘yib tekshiring! To‘qqizning uch baravari — yigirma yetti, besh ayirsak — yigirma ikki. To‘g‘ri!
 DOSKA: ZANJIR: x | · 3 | − 5 | 22
@@ -219,6 +223,7 @@ DOSKA: RASM: internet | telefon:sakra
 DOSKA: A: 20 + 2x
 DOSKA: B: 10 + 3x
 DOSKA: Qachon teng? ✋
+TEKSH: 2(3x − 1) = 4x + 10 tenglamada x = ? => 6 | −11 | 4 | 3
 @tushuncha Qavsli tenglama: avval qavsni ochamiz
 OVOZ: [1] Tenglama: uch, qavs x minus ikki, plyus besh — o‘n yetti. [2] Birinchi qadam — qavsni ochamiz: uch x minus olti plyus besh. Minus olti plyus besh — minus bir. [3] {sekin}Endi uch x minus bir — o‘n yetti. Birni o‘ngga o‘tkazamiz: uch x — o‘n sakkiz. [4] x — oltiga teng. Tekshiramiz: oltidan ikki ayiramiz — to‘rt, uch karra to‘rt — o‘n ikki, besh qo‘shsak — o‘n yetti. {baland}To‘g‘ri!
 DOSKA: 3(x − 2) + 5 = 17

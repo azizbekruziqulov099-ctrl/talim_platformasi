@@ -135,6 +135,7 @@ DOSKA: P = 1/6 ≈ 0,17 ≈ 17%
 DOSKA: QOIDA: ehtimol = qulay holat : barcha holat
 TEKSH: Qutida 3 ta qizil va 7 ta ko‘k sharcha bor. Ko‘zni yumib bitta olamiz. Qizil chiqish ehtimoli? => 3/10 | 3/7 | 7/10 | 1/3
 TEKSH: Tanga tashlanganda gerb tushish ehtimoli necha foiz? => 50% | 100% | 25% | 10%
+TEKSH: Sumkada 2 ta oq, 3 ta qora va 5 ta yashil sharcha bor. Ko‘zni yumib bitta olamiz. Oq bo‘lmasligi ehtimoli? => 8/10 | 2/10 | 2/8 | 5/10
 @tushuncha Kutilgan qiymat: lotereya sirini ochamiz
 OVOZ: [1] Endi boshidagi savol! Chipta bir ming so‘m. Yutuq ellik ming. Ehtimol — yuzdan bir. [2] Yuzta chipta olsak nima bo‘ladi? {sekin}Yuz ming so‘m to‘laymiz — va o‘rtacha bittasi yutadi: ellik ming so‘m. [3] Yuz ming to‘ladik, ellik ming oldik. Har bir chiptaga o‘rtacha besh yuz so‘m yutamiz, ming so‘m to‘laymiz. [4] {urgu}Demak, har chiptada o‘rtacha besh yuz so‘m yo‘qotamiz! Lotereya tashkilotchining foydasi shundan.
 DOSKA: 100 chipta · 1 000 = 100 000 so‘m (to‘lov)
@@ -143,6 +144,7 @@ DOSKA: KETMA: 50 000 : 100 | 500 | 1 000 − 500 | −500
 DOSKA: QOIDA: kutilgan yutuq = ehtimol · yutuq summasi
 TEKSH: Chipta 2 000 so‘m. Yutuq 40 000 so‘m, ehtimoli 2/100. Bitta chiptaning kutilgan yutug‘i necha so‘m? => 800 | 40 000 | 2 000 | 400
 TEKSH: Shu chiptani sotib olish o‘rtacha hisobda qanday natija beradi? => O‘rtacha 1 200 so‘m yo‘qotish | O‘rtacha foyda | Foyda ham, zarar ham yo‘q | Doim yutish
+TEKSH: Chipta 5 000 so‘m, yutuq 100 000 so‘m, yutish ehtimoli 1/50. O‘rtacha hisobda bitta chiptadan natija qanday? => O‘rtacha 3 000 so‘m zarar | O‘rtacha 2 000 so‘m foyda | O‘rtacha 3 000 so‘m foyda | O‘rtacha 95 000 so‘m zarar
 @tushuncha Sug‘urta: xavfni ulashish
 OVOZ: [1] Mashinangiz avariyaga uchrashi mumkin. Ta’mir — o‘n million so‘m. Kimdir bunday pulni darhol topolmaydi. [2] Sug‘urta shu yerda yordam beradi: yiliga ikki yuz ming so‘m to‘laysiz, avariya bo‘lsa — kompaniya qoplaydi. [3] {sekin}Kompaniya hisobi: ming mijoz, har biri ikki yuz ming — ikki yuz million so‘m. Ulardan o‘ntasi avariyaga uchradi: o‘n karra o‘n million — yuz million. [4] Qolgan yuz million — kompaniya xarajati va foydasi. {urgu}Ko‘pchilik oz-ozdan to‘laydi, bir-ikkitasiga katta yordam beriladi.
 DOSKA: 1 000 mijoz · 200 000 = 200 000 000

@@ -88,6 +88,7 @@ DOSKA: KETMA: kamida bitta gerb | 1 − P(RR) | 1 − 1/4 | 3/4
 DOSKA: BELGILA: kamida bitta = 1 − «bitta ham yo‘q» | ramka
 TEKSH: Yutish ehtimoli 0,35 bo‘lsa, yutmaslik ehtimoli qancha? => 0,65 | 0,35 | 0,7 | 1,35
 TEKSH: Uchta tanga tashlanadi (8 teng imkoniyat). Kamida bitta gerb chiqish ehtimoli? => 7/8 | 1/8 | 3/8 | 1/2
+TEKSH: Qutida 3 qizil, 4 ko‘k va 5 sariq shar bor. Qizil yoki ko‘k shar chiqish ehtimoli? => 7/12 | 1/2 | 5/12 | 3/7
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Mana, bulutli kun. Bir do‘stingiz aytadi: «Yomg‘ir yo yog‘adi, yo yog‘maydi — demak, ehtimoli yarim!» [2] {urgu}Bu xato! Yarim bo‘lishi uchun ikkala natija teng imkoniyatli bo‘lishi shart. Qulay holat va barcha holatlarni to‘g‘ri sanash kerak. [3] Ikkinchi xato: foiz bilan sonni adashtirish. Nol butun uch — o‘ttiz foiz. Uch foiz emas! Nol butun uch — o‘ttiz foiz, uch foiz — nol butun nol uch. [4] Nol butun nol uch esa — uch foiz. Kasrni yuzga ko‘paytiring — foiz chiqadi.
 DOSKA: RASM: bulut:kel | quyosh
@@ -146,6 +147,7 @@ DOSKA: ✅ teng imkoniyatli — 36 ta juft
 DOSKA: qaytarmasdan: maxraj bittaga kamayadi
 DOSKA: ❌ 2/5 · 2/5   ✅ 2/5 · 1/4
 TEKSH: Qutida 1 qizil va 4 ko‘k shar bor. Qaytarmasdan olingan ikkita sharning ikkalasi ko‘k bo‘lishi uchun to‘g‘ri hisob qaysi? => 4/5 · 3/4 = 3/5 | 4/5 · 4/5 = 16/25 | 4/5 · 1/4 | 4/5 + 3/4
+TEKSH: Ikki kub tashlanganda yig‘indi 10 chiqish ehtimoli? => 3/36 | 1/11 | 1/36 | 2/36
 @xulosa Esda tut
 OVOZ: Birinchi: teng imkoniyatli natijalarni toping — ikki kubda o‘ttiz olti juft. Ikkinchi: mustaqil hodisalarda ehtimollar ko‘paytiriladi. Uchinchi: qaytarmasdan olishda maxraj bittaga kamayadi. To‘rtinchi: daraxt diagrammasi yo‘llarni tartibga soladi.
 DOSKA: 1. teng imkoniyat

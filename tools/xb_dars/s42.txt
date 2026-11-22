@@ -14,6 +14,7 @@ DOSKA: SXEMA: Qo‘lni yuv > ovqatdan oldin | hojatxonadan keyin | ko‘chadan k
 DOSKA: ✔ toza qo‘l → sog‘lik
 TEKSH: Qaysi paytda qo‘lni yuvish kerak? => Ovqatdan oldin | Faqat kechqurun | Faqat bayramda | Hech qachon
 TEKSH: Faqat suv bilan chayqash yetarlimi? => Yo‘q, sovun kerak | Ha | Faqat issiq suvda | Ha, 1 soniya yetadi
+TEKSH: Bola ko‘chadan kirib, darhol ovqatga o‘tirmoqchi. Nima qilishi kerak? => Avval qo‘lni sovun bilan yuvishi | Qo‘lni quruq silkitishi | Faqat ro‘molchaga artishi | Hech narsa qilmasligi
 @tushuncha Muvozanatli ovqatlanish
 OVOZ: [1] Mashina benzinsiz yurmaydi. Tanamiz ham «yoqilg‘i» so‘raydi — lekin bitta emas, turli xil. [2] Non, guruch, makaron — quvvat beradi. Tuxum, go‘sht, yo‘qurt — o‘sishga yordam beradi. [3] {sekin}Meva va sabzavotlar vitamin beradi — kasallikka qarshi kuch. Yog‘ va shirinliklar — oz-ozdan. [4] {urgu}Bitta turdagi ovqat yetmaydi! Xilma-xil bo‘lsin — likopchangiz kamalakdek rang-barang.
 DOSKA: JADVAL: Guruh | Misol | Nima beradi ;; Don | non, guruch | quvvat ;; Oqsil | tuxum, go‘sht | o‘sish ;; Meva-sabzavot | olma, sabzi | vitamin
@@ -23,6 +24,7 @@ DOSKA: 💧 suv — kuniga bir necha stakan
 DOSKA: BELGILA: xilma-xil ovqat | ramka
 TEKSH: Qaysi ovqat bola o‘sishiga ko‘proq yordam beradi? => Tuxum | Faqat shirinlik | Faqat choy | Faqat chips
 TEKSH: Tushlik uchun qaysi to‘plam eng to‘g‘ri? => Sho‘rva, salat va non | Faqat shokolad | Faqat gazli ichimlik | Faqat konfet
+TEKSH: Ovqatda faqat non va makaron bo‘lsa, qaysi guruhlar yetishmaydi? => Oqsil va meva-sabzavot | Don va quvvat | Faqat suv | Hech qaysi guruh
 @tushuncha Harakat, uyqu va dam
 OVOZ: [1] Mushak ishlasa — kuchayadi. Yugurish, sakrash, to‘p o‘yini yurak va o‘pkani ham mustahkamlaydi. [2] Maktab yoshidagi bola har kuni kamida bir soat harakat qilishi kerak. [3] {sekin}Uyqu paytida esa tana dam oladi, miya kun davomida o‘rgangan narsalarni «javonga qo‘yadi». [4] To‘qqiz-o‘n soat uyqu — yaxshi o‘sish va kuchli diqqat uchun. {urgu}Uyqusiz bola darsda diqqat qila olmaydi!
 DOSKA: 🏃 harakat → kuchli mushak
@@ -31,6 +33,7 @@ DOSKA: 😴 uyqu: 9–10 soat
 DOSKA: ZANJIR: Uyqu | Miya tartib qiladi | Diqqat kuchli | Yaxshi o‘qish
 TEKSH: Uyqu nima uchun kerak? => Tana dam oladi, miya tartibga soladi | Faqat charchash uchun | Zerikmaslik uchun | Kerak emas
 TEKSH: Yugurish va sakrash qaysi a’zolarni mustahkamlaydi? => Yurak va o‘pka | Faqat soch | Faqat tirnoq | Hech qaysini
+TEKSH: Bola kuniga 7 soat uxlaydi. Tavsiya etilgan 9–10 soatdan kamida necha soat kam? => 2 | 3 | 1 | 7
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Xato: «Shirinlik energiya beradi, demak ko‘p yeyish yaxshi». [2] {urgu}Yo‘q! Ko‘p shirinlik tishni buzadi, semirtiradi. Ozgina — mayli. [3] Ikkinchi xato: «Kasal bo‘lsam, hech kimga aytmayman, o‘zi o‘tadi». {baland}Har doim kattalarga ayting!
 DOSKA: ❌ ko‘p shirinlik
@@ -60,6 +63,7 @@ DOSKA: 🥛 suyuq → idish shakli
 DOSKA: 🎈 gaz → hamma yerga
 TEKSH: Sharbat stakanga quyilganda qanday shaklga kiradi? => Stakan shakliga | O‘z shaklida qoladi | Havoga tarqaladi | Qotib qoladi
 TEKSH: Shar ichidagi havo qaysi holatda? => Gaz | Qattiq | Suyuq | Muz
+TEKSH: Qaysi biri gaz holatida? => Suv bug‘i | Muz | Sut | Tosh
 @tushuncha Xossalar: material tanlash
 OVOZ: [1] Har bir modda o‘z xossalariga ega: rangi, qattiqligi, issiqlik o‘tkazishi, magnitga munosabati. [2] Temir qoshiq issiq choyda tez qiziydi — chunki issiqlikni yaxshi o‘tkazadi. Yog‘och qoshiq kech qiziydi. [3] {sekin}Magnit temirni tortadi, yog‘ochni va plastikni tortmaydi. [4] {urgu}Shuning uchun qozon — metalldan, dastasi — yog‘ochdan: issiqlik qo‘lingizga o‘tmasin!
 DOSKA: JADVAL: Material | Issiqlik | Magnit ;; Temir | o‘tkazadi | tortadi ;; Yog‘och | kam o‘tkazadi | tortmaydi ;; Plastik | kam o‘tkazadi | tortmaydi
@@ -69,6 +73,7 @@ DOSKA: dasta — yog‘och
 DOSKA: ZANJIR: Xossa | Vazifa | Material tanlash
 TEKSH: Issiq choy qoshig‘ining dastasi uchun qaysi material qo‘l kuydirmaydi? => Plastik | Temir | Mis | Alyuminiy
 TEKSH: Magnit qaysi buyumni tortadi? => Temir mix | Plastik qoshiq | Yog‘och tayoq | Shisha stakan
+TEKSH: Choynak qopqog‘ining tutqichi nega yog‘och yoki plastikdan qilinadi? => Issiqlikni kam o‘tkazadi | Magnitga tortiladi | Tez qiziydi | Og‘ir bo‘ladi
 @tushuncha Erish: tuz suvda qayoqqa ketadi?
 OVOZ: [1] Tuz suvda eriydi. Qarang: donalar mayda-mayda bo‘lib, suv ichida tarqaldi — ko‘rinmay qoldi. [2] Lekin u yo‘qolmadi! Suv endi sho‘r — ta’m dalil. [3] {sekin}Qum esa erimaydi — tagiga cho‘kadi. Bu — aralashma. [4] Aralashmani ajratsa bo‘ladi: qumni filtr bilan ajratamiz, tuzni esa suvni bug‘latib qaytarib olamiz.
 DOSKA: tuz + suv → eritma (ko‘rinmas, sho‘r)
@@ -84,6 +89,7 @@ DOSKA: ✅ ko‘rinmas, lekin bor
 DOSKA: ZANJIR: Muz | Suv | Bug‘
 DOSKA: holat ≠ modda
 TEKSH: Muz erib suvga aylandi. Modda o‘zgardimi? => Faqat holati o‘zgardi | Boshqa modda bo‘ldi | Yo‘qoldi | Og‘irligi nolga tushdi
+TEKSH: Qaynayotgan choy ustidagi bug‘ sovuq qoshiqqa tegib tomchi bo‘ldi. Bug‘ qaysi holatdan qaysi holatga o‘tdi? => Gazdan suyuqlikka | Suyuqlikdan qattiqqa | Qattiqdan gazga | Suyuqlikdan gazga
 @xulosa Esda tut
 OVOZ: Birinchi: moddalar qattiq, suyuq, gaz holatida bo‘ladi. Ikkinchi: material tanlashda xossa hal qiladi. Uchinchi: tuz suvda eriydi, qum erimaydi. To‘rtinchi: erigan modda yo‘qolmaydi.
 DOSKA: 1. qattiq · suyuq · gaz
@@ -132,6 +138,7 @@ DOSKA: kalit ochiq → o‘chadi
 DOSKA: JADVAL: Material | Tok ;; Mis sim | o‘tkazadi ;; Rezina | o‘tkazmaydi ;; Plastik | o‘tkazmaydi
 TEKSH: Sim lampochkadan uzilib qolsa, lampa nima qiladi? => O‘chadi | Yonadi | Yanada yorqin | Isiydi
 TEKSH: Qaysi material elektr tokini o‘tkazadi? => Mis sim | Rezina | Plastik | Quruq yog‘och
+TEKSH: Zanjirda batareya, lampochka va kalit bor, kalit yopiq, lekin lampa yonmaydi. Eng ehtimolli sabab? => Simlardan biri uzilgan | Kalit yopiq | Batareya yangi | Xona yorug‘
 @tushuncha Xato tuzog‘i va xavfsizlik
 OVOZ: [1] Xato: «Elektr faqat simda xavfli, rozetka xavfsiz». [2] {urgu}Rozetkaga hech qachon mix, sim yoki barmoq tiqmang! Ho‘l qo‘l bilan elektr asbobni ushlamang. [3] Ikkinchi xato: «Soya — qora rangli modda». Soya — yorug‘lik yo‘qligi, modda emas.
 DOSKA: ❌ rozetkaga tegish
@@ -160,6 +167,7 @@ DOSKA: kuch → to‘xtatadi
 DOSKA: kuch → yo‘nalishni o‘zgartiradi
 TEKSH: Aravani oldinga yurgizish uchun nima qilamiz? => Turtamiz | Hech nima | Havoga tashlaymiz | Suvga solamiz
 TEKSH: Quyidagilardan qaysi birini kuch o‘zgartira oladi? => Yo‘nalish | Rang | Ta’m | Hid
+TEKSH: Futbolchi to‘pni boshi bilan urdi va to‘p boshqa tomonga ketdi. Kuch nimani o‘zgartirdi? => Yo‘nalishni | Rangini | Og‘irligini | Hajmini
 @tushuncha Ishqalanish: sirt qarshiligi
 OVOZ: [1] Ikki sirt bir-biriga tegib siljiganda ishqalanish kuchi paydo bo‘ladi. U harakatga qarshilik qiladi. [2] To‘p maysada tez to‘xtaydi, pol ustida uzoqroq ketadi, muzda yanada uzoq. [3] {sekin}Sirt silliq bo‘lsa — ishqalanish kam. Dag‘al bo‘lsa — ko‘p. [4] Ishqalanish ba’zan foydali: poyabzal tagi yerda sirpanmaydi. Ba’zan zararli: mashina detallari qiziydi va eskiradi.
 DOSKA: JADVAL: Sirt | Ishqalanish | To‘p ;; Muz | juda kam | uzoq ketadi ;; Pol | o‘rtacha | o‘rtacha ;; Maysa | ko‘p | tez to‘xtaydi
@@ -169,6 +177,7 @@ DOSKA: dag‘al → ko‘p
 DOSKA: 👟 foydali: yurishda
 TEKSH: Chana qayerda uzoqroq sirpanadi? => Muzda | Qumda | Maysada | Loyda
 TEKSH: Qishda yo‘lga qum sepish nima uchun? => Ishqalanish oshadi | Ishqalanish kamayadi | Qor tez erishi uchun | Chiroyli bo‘lishi uchun
+TEKSH: Velosiped tormozi g‘ildirakka ishqalanib uni to‘xtatadi. Bu yerda ishqalanish qanday? => Foydali | Zararli | Umuman yo‘q | Tortishish kuchi
 @tushuncha Tortishish kuchi
 OVOZ: [1] Yer hamma narsani o‘ziga tortadi — bu tortishish kuchi. Shuning uchun tashlangan narsa pastga tushadi. [2] Havosiz joyda yengil va og‘ir narsa bir vaqtda tushadi. [3] {sekin}Patning sekin tushishi esa havo qarshiligi tufayli. Parashyutning katta usti havoni ko‘proq tutadi — shu sabab sekin tushadi. [4] Tortishish bizni yerda ushlab turadi, Oyni esa Yer atrofida aylantiradi.
 DOSKA: ⬇ tortishish → pastga
@@ -184,6 +193,7 @@ DOSKA: ✅ to‘xtatuvchi — ishqalanish
 DOSKA: ❌ og‘ir tez tushadi
 DOSKA: ✅ havo qarshiligi farq qiladi
 TEKSH: Muz ustidagi to‘p nima sabab oxir-oqibat to‘xtaydi? => Kichik ishqalanish va havo | Ishqalanish yo‘q, to‘xtamaydi | Tortishish yo‘qoladi | Havo yo‘qoladi
+TEKSH: Oy yuzasida havo yo‘q. U yerda tosh va pat bir balandlikdan tashlansa nima bo‘ladi? => Bir vaqtda tushadi | Tosh tezroq tushadi | Pat tezroq tushadi | Ikkalasi uchib ketadi
 @xulosa Esda tut
 OVOZ: Birinchi: kuch — turtish yoki tortish. Ikkinchi: ishqalanish harakatga qarshilik qiladi. Uchinchi: tortishish hamma narsani Yerga tortadi. To‘rtinchi: havosiz joyda og‘ir va yengil narsa bir vaqtda tushadi.
 DOSKA: 1. kuch: turtish/tortish

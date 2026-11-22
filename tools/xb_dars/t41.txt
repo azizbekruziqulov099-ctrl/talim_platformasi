@@ -43,6 +43,7 @@ DOSKA: ❌ 10 000 300
 DOSKA: ✅ JADVAL: Minglar | Birliklar ;; 10 | 300
 DOSKA: Ming → keyin aniq 3 raqam
 TEKSH: «Qirq ming olti yuz» sonini yozing. => 40 600 | 40 000 600 | 4 600 | 406 000
+TEKSH: «Sakkiz yuz ming yigirma» sonini yozing. => 800 020 | 800 200 | 80 020 | 8 000 020
 @xulosa Esda tut
 OVOZ: Birinchi: katta sonni o‘ngdan uchta-uchta ajrating. Ikkinchi: nol bo‘sh xonani saqlaydi — uni tashlab ketmang! Uchinchi: million — mingta ming. To‘rtinchi: xonasi ko‘p son katta, xonasi teng bo‘lsa — chapdan solishtiring. {baland}Taxmin qilgan edingiz — endi tekshiring: tomoshabinlar soni 18 453, ya’ni besh xonali!
 DOSKA: 1. o‘ngdan 3 tadan
@@ -101,6 +102,7 @@ DOSKA: 2 turgan xona — yuzlik
 DOSKA: ❌ qiymat = 2    ✅ qiymat = 200
 DOSKA: qiymat = raqam · xona
 TEKSH: 9 861 dagi 8 ning qiymati? => 800 | 8 | 80 | 8 000
+TEKSH: Raqamlari 4, 0, 7, 9 bo‘lgan eng katta to‘rt xonali son qaysi? (har raqam bir marta) => 9 740 | 9 704 | 4 079 | 9 470
 @xulosa Esda tut
 OVOZ: Birinchi: xonalar o‘ngdan chapga — birlik, o‘nlik, yuzlik, minglik. Ikkinchi: har xona o‘zidan o‘ngdagisidan o‘n marta katta, shuning uchun uch yuz yigirma to‘rt va yetti ming uch yuz yigirma to‘rt har xil. Uchinchi: yaxlitlashda keyingi raqamga qarang. To‘rtinchi: raqam bilan uning qiymatini adashtirmang.
 DOSKA: 1. birlik · o‘nlik · yuzlik · minglik
@@ -121,6 +123,7 @@ DOSKA: AMAL: 2487+1546
 DOSKA: javob: 4 033 ta kitob
 TEKSH: 3 658 + 2 475 = ? => 6 133 | 5 133 | 6 033 | 5 123
 TEKSH: 4 305 + 1 698 = ? => 6 003 | 5 893 | 5 993 | 6 103
+TEKSH: 5 276 + 3 748 = ? => 9 024 | 8 024 | 9 014 | 9 124
 @tushuncha Ayirish va qarz olish
 OVOZ: [1] Kutubxonadan 1 876 ta kitob o‘quvchilarga tarqatildi. Javonda nechta qoldi? 5 023 minus 1 876. [2] Birliklardan boshlaymiz: uchdan oltini ayirib bo‘lmaydi! {urgu}Qo‘shni xonadan qarz olamiz. O‘nlikda ikki edi — bittasini oldik, birlikka uzatdik: uch — o‘n uch bo‘ldi. O‘n uch minus olti — yetti. O‘nliklarda endi bir qoldi, yettini ayirib bo‘lmaydi — yana qarz kerak. Yuzlikda esa nol! U minglikdan qarz oladi, keyin o‘zi o‘nlikka beradi. [3] {sekin}Qiyin joyi — nol turgan xona. Shoshilmang: nol qarz olmaydi, nol «qarz so‘raydi». Oxirida javob — uch ming bir yuz qirq yetti.
 DOSKA: 5 023 − 1 876 = ?
@@ -128,12 +131,14 @@ DOSKA: AMAL: 5023-1876
 DOSKA: javob: 3 147 ta kitob qoldi
 TEKSH: 4 200 − 1 750 = ? => 2 450 | 3 550 | 2 550 | 3 450
 TEKSH: 6 004 − 2 305 = ? => 3 699 | 4 301 | 3 709 | 3 799
+TEKSH: 7 000 − 2 458 = ? => 4 542 | 5 542 | 4 552 | 5 458
 @tushuncha Tekshirish: teskari amal
 OVOZ: [1] Javobimiz to‘g‘rimi? Tekshirib ko‘ramiz. Ayirishni qo‘shish bilan tekshiramiz: ayirmaga ayriluvchini qo‘shsak, kamayuvchi chiqishi kerak. [2] Uch ming bir yuz qirq yetti plyus bir ming sakkiz yuz yetmish olti. Qarang, doskada hisob ketayapti! {sekin}Natija — besh ming yigirma uch. Aynan boshlang‘ich son. {baland}Javobimiz to‘g‘ri! [3] Har doim tekshiring — kam vaqt ketadi, katta xatoni ushlab qolasiz.
 DOSKA: 3 147 + 1 876 = ?
 DOSKA: AMAL: 3147+1876
 DOSKA: QOIDA: javobni teskari amal bilan tekshir
 TEKSH: Ayirma 800, ayriluvchi 1 500. Kamayuvchi qanday topiladi? => 800 + 1 500 | 1 500 − 800 | 800 − 1 500 | 800 · 1 500
+TEKSH: Vali 6 241 − 2 786 = 3 465 deb hisobladi. Teskari amal: 3 465 + 2 786 = ? Javob to‘g‘rimi? => 6 251, 6 241 emas — javob xato | 6 241 — javob to‘g‘ri | 679 — javob to‘g‘ri | 9 027 — javob xato
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Eng ko‘p xato: ustunda kichik raqamdan katta raqamni «teskari» ayirib yuborish — uchdan olti emas, olti minus uch deyish. [2] {urgu}Yo‘q! Ayirishda doim yuqoridan pastni ayiramiz. Yuqori kichik bo‘lsa — qo‘shnidan qarz olamiz. [3] Ikkinchi xato: ko‘chgan birni qo‘shishni unutish. Birlikdan ko‘chgan bir — o‘nliklarda albatta qo‘shiladi. [4] Uchinchi: nolli sonlarda qarz zanjirini adashtirish — shoshilmang, har xonani ketma-ket.
 DOSKA: ❌ 6 − 3 = 3
@@ -147,6 +152,7 @@ DOSKA: 1. xona tagiga xona
 DOSKA: 2. o‘ngdan boshla
 DOSKA: 3. ko‘chgan / qarz 1 ni unutma
 DOSKA: 4. teskari amal bilan tekshir
+TEKSH: Kutubxonada 2 850 ta kitob bor edi. Ertalab 1 275 ta keldi, tushdan keyin 940 tasi tarqatildi. Nechta qoldi? => 3 185 | 5 065 | 2 515 | 4 125
 
 ## t4_kopay
 @kirish Qutilarda nechta olma?
@@ -181,6 +187,7 @@ DOSKA: USTUN: 24×3
 DOSKA: 60 + 12 = 72 — ikkala yo‘l bir xil
 TEKSH: 32 · 3 = ? => 96 | 66 | 36 | 92
 TEKSH: 15 · 4 = ? => 60 | 54 | 64 | 45
+TEKSH: 126 · 3 = ? => 378 | 368 | 348 | 3 618
 @tushuncha 10 va 100 ga ko‘paytirish
 OVOZ: [1] Yetti karra o‘n — nechta? Yettita o‘nlik — yetmish! Songa bitta nol qo‘shildi. [2] Yetti karra yuz — yettita yuzlik: yetti yuz. Ikkita nol. [3] {sekin}Yaxlit o‘nliklar bilan ham oson: o‘ttiz karra to‘rt. Avval nolsiz: uch karra to‘rt — o‘n ikki. Keyin nolni qaytaramiz: yuz yigirma. [4] {urgu}Nollarni oxirida qo‘shamiz — chalkashmaydi!
 DOSKA: KETMA: 7 · 10 | 7 o‘nlik | 70
@@ -195,6 +202,7 @@ DOSKA: 6 + 8 = 14
 DOSKA: 6 · 8 = 48
 DOSKA: «har birida» → ko‘paytir
 TEKSH: 5 ta qutida 6 tadan shar. Jami? => 30 | 11 | 56 | 65
+TEKSH: Sinfda 8 qator, har qatorda 6 o‘quvchi o‘tiribdi. Yana 3 ta o‘quvchi keldi. Jami nechta? => 51 | 17 | 54 | 48
 @xulosa Esda tut
 OVOZ: Birinchi: ko‘paytirish — bir xil sonni takror qo‘shish. Ikkinchi: ko‘paytuvchilar o‘rnini almashtirsa, ko‘paytma o‘zgarmaydi. Uchinchi: sonni xonalarga ajratib ko‘paytiring, o‘nga va yuzga ko‘paytirganda nol qo‘shing. To‘rtinchi: «har birida» desa — ko‘paytiring. {baland}Taxmin qilgandingiz — oltita qutida qirq sakkizta olma, qirqdan ko‘p!
 DOSKA: 1. a · b = b · a
@@ -217,6 +225,7 @@ DOSKA: 👦 🍎🍎🍎🍎🍎🍎
 DOSKA: KETMA: 24 : 4 | 6 | 4 · 6 = 24
 TEKSH: 35 : 5 = ? => 7 | 6 | 8 | 30
 TEKSH: 54 : 6 = ? => 9 | 8 | 7 | 48
+TEKSH: 56 : 7 = ? => 8 | 7 | 9 | 49
 @tushuncha Qoldiqli bo‘lish
 OVOZ: [1] Endi savolimizga qaytamiz: yigirma uch olma, to‘rt bola. Chizma doskada. [2] Har bolaga beshtadan beramiz: to‘rt karra besh — yigirma. Olti beramizmi? To‘rt karra olti — yigirma to‘rt, bu yigirma uchdan ko‘p. Bo‘lmaydi! Demak, beshtadan. [3] {sekin}Yigirma uch minus yigirma — uchta olma qoldi. U stolda qoladi: uch — to‘rtdan kichik, shuning uchun to‘rt bolaga yetmaydi. [4] {urgu}Qoldiq doim bo‘luvchidan kichik bo‘ladi. Agar to‘rt yoki katta chiqsa — yana bitta bola olti-beshni olardi. Yozuvi: yigirma uch bo‘lingan to‘rt — besh, qoldiq uch.
 DOSKA: BOLISH: 23:4
@@ -225,6 +234,7 @@ DOSKA: 23 − 20 = 3 (qoldiq)
 DOSKA: 23 : 4 = 5 (3 qoldi) — qoldiq < bo‘luvchi
 TEKSH: 47 : 6 = ? (qoldiq bilan) => 7 (5 qoldi) | 8 (1 qoldi) | 7 (6 qoldi) | 6 (11 qoldi)
 TEKSH: 30 ta qalam 7 kishiga teng bo‘lindi. Nechta ortadi? => 2 | 4 | 5 | 0
+TEKSH: 85 ta qalam 9 ta qutiga teng bo‘lib joylandi. Har qutiga nechtadan tushadi va nechta ortadi? => 9 ta, 4 ta ortadi | 9 ta, 13 ta ortadi | 8 ta, 13 ta ortadi | 10 ta, 5 ta ortadi
 @tushuncha Ustun usulida bo‘lish
 OVOZ: [1] Yuz ellik oltini uchga bo‘lamiz. Doskada burchak chizilmoqda. [2] Yuzlikdagi birni uchga bo‘lib bo‘lmaydi. Shuning uchun o‘n beshni olamiz. {sekin}O‘n besh bo‘lingan uch — besh. Beshni yozamiz. Besh karra uch — o‘n besh. Ayirsak — nol qoldi. [3] Endi oltini tushiramiz. Olti bo‘lingan uch — ikki. [4] {baland}Javob — ellik ikki! Tekshiramiz: ellik ikki karra uch — yuz ellik olti. To‘g‘ri!
 DOSKA: 156 : 3 — burchakli bo‘lish
@@ -233,6 +243,7 @@ DOSKA: tushirilgan 6 : 3 = 2
 DOSKA: 52 · 3 = 156 ✔
 TEKSH: 248 : 4 = ? => 62 | 52 | 72 | 64
 TEKSH: 135 : 5 = ? => 27 | 25 | 35 | 17
+TEKSH: 372 : 6 = ? => 62 | 52 | 602 | 72
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Birinchi xato: qoldiq bo‘luvchidan katta qolishi. Masalan, o‘n birni uchga bo‘lib «ikki, qoldiq besh» deyish. [2] {urgu}To‘xtang! Beshning ichida yana bitta uch bor — demak, bo‘lish tugamagan! Qoldiq uch yoki undan katta chiqsa — yana bo‘lish mumkin. Qoldiq har doim bo‘luvchidan kichik. [3] Ikkinchi xato: nolni tushirib ketish. To‘rt yuz sakkizni to‘rtga bo‘lganda: yuz bir emas, yuz ikki!
 DOSKA: ❌ 11 : 3 = 2 (5 qoldi)

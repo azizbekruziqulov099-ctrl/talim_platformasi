@@ -30,6 +30,7 @@ DOSKA: CHIZ: uchburchak A(0;0) B(12;0) C(12;9)
 DOSKA: 1,5 : 2 = h : 12
 DOSKA: h = 1,5 · 12 : 2 = 9 m
 TEKSH: 2 m uzunlikdagi ustunning soyasi 3 m. Shu paytda minora soyasi 45 m. Minora balandligi necha metr? => 30 m | 67,5 m | 22,5 m | 90 m
+TEKSH: Odam bo‘yi 1,8 m, soyasi 2,4 m. Shu paytda bino soyasi 20 m. Bino balandligi necha metr? => 15 m | 26,7 m | 11,1 m | 36 m
 @tushuncha Xarita va maket: o‘xshashlik hayotda
 OVOZ: [1] O‘xshashlik har kuni ishlaydi! Xaritada masshtab bir ga ellik ming deyilgan: xaritadagi bir santimetr — haqiqatda ellik ming santimetr. [2] Xaritada uch santimetr. Uch karra ellik ming — yuz ellik ming santimetr. [3] {sekin}Santimetrni metrga o‘tkazamiz — bir ming besh yuz metr. Bir yarim kilometr! [4] Maket ham shunday: uyning maketi bir ga o‘n masshtabda bo‘lsa, yuzasi yuz marta kichik.
 DOSKA: ZANJIR: Xaritada 3 sm | ×50 000 | 150 000 sm | 1,5 km
@@ -51,6 +52,7 @@ DOSKA: 1. Burchak =; tomon ×k
 DOSKA: 2. yuza ×k²; hajm ×k³
 DOSKA: 3. soya, xarita, maket
 DOSKA: 4. mos : mos
+TEKSH: O‘xshashlik koeffitsiyenti 2. Kichik jism hajmi 4 sm³. Katta jism hajmi necha sm³? => 32 sm³ | 8 sm³ | 16 sm³ | 64 sm³
 
 ## pm_burchak
 @kirish Soat ikki yarimda — millar orasida necha gradus?
@@ -111,6 +113,7 @@ DOSKA: 1. 1 soat = 30°; 1 daq = 6°
 DOSKA: 2. △: 180°
 DOSKA: 3. parallel: mos burchaklar teng
 DOSKA: 4. (n − 2) · 180°
+TEKSH: Soat 3:20 da millar orasidagi kichik burchak necha gradus? => 20° | 10° | 30° | 40°
 
 ## pm_pifagor
 @kirish Narvon devorga qancha balandlikka yetadi?
@@ -136,6 +139,7 @@ DOSKA: b² = c² − a² = 25 − 1,96
 DOSKA: b² = 23,04
 DOSKA: b = √23,04 = 4,8 m
 TEKSH: 10 metrlik narvon devordan 6 m uzoqda turibdi. Devorda necha metr balandlikka yetadi? => 8 m | 4 m | 12 m | 16 m
+TEKSH: 6,5 m li narvon devordan 2,5 m uzoqda turibdi. Devorda necha metr balandlikka yetadi? => 6 m | 4 m | 9 m | 5,5 m
 @tushuncha Diagonal va koordinata: masofani o‘lchaymiz
 OVOZ: [1] Xona olti ga sakkiz metr. Burchakdan qarama-qarshi burchakka tortilgan ip qancha bo‘ladi? [2] Diagonal xonani ikki to‘g‘ri burchakli uchburchakka bo‘ladi. Olti kvadrat — o‘ttiz olti, sakkiz kvadrat — oltmish to‘rt. [3] {sekin}Yig‘indisi — yuz. Ildizi — o‘n metr. [4] Xaritada ham xuddi shunday: ikki nuqta orasida gorizontal va vertikal farq — bu katetlar, masofa — gipotenuza.
 DOSKA: CHIZ: to‘rtburchak A(0;0) B(6;0) C(6;8) D(0;8)
@@ -158,12 +162,14 @@ DOSKA: ✅ 3² + 4² = 25 → √25 = 5
 DOSKA: ❌ javob 25 (ildiz olinmadi)
 DOSKA: gipotenuza — eng uzun tomon
 TEKSH: Katetlari 9 va 12. Gipotenuza uchun to‘g‘ri hisob qaysi? => √(81 + 144) = 15 | 9 + 12 = 21 | 81 + 144 = 225 | 9 · 12 = 108
+TEKSH: O‘quvchi katetlari 5 va 12 bo‘lgan uchburchak gipotenuzasini 5 + 12 = 17 deb topdi. Xatosi nimada? => Kvadratga ko‘tarmay qo‘shgan | Ildiz olishni unutgan | Gipotenuzani katet deb olgan | Xato yo‘q
 @xulosa Esda tut
 OVOZ: Birinchi: Pifagor teoremasi faqat to‘g‘ri burchakli uchburchakda ishlaydi. Ikkinchi: katetlar kvadratlarining yig‘indisi gipotenuza kvadratiga teng. Uchinchi: oxirida ildiz oling. To‘rtinchi: narvon, diagonal, masofa — hammasi shu teorema. Endi mashqda sinab ko‘ring!
 DOSKA: 1. faqat to‘g‘ri burchakli △
 DOSKA: 2. a² + b² = c²
 DOSKA: 3. oxirida √
 DOSKA: 4. narvon · diagonal · masofa
+TEKSH: Rombning diagonallari 16 sm va 12 sm. Uning tomoni necha sm? => 10 sm | 14 sm | 20 sm | 28 sm
 
 ## pm_trig
 @kirish Daraxt tagiga bormay balandligini topamiz
@@ -197,6 +203,7 @@ DOSKA: tg 35° ≈ 0,70
 DOSKA: h = 20 · 0,70 = 14 m
 DOSKA: + ko‘z balandligi 1,6 → 15,6 m
 TEKSH: Minoradan 30 m narida turibsiz, uchiga burchak 45°. Ko‘z balandligini hisobga olmasdan minora balandligi necha metr? => 30 m | 15 m | 60 m | 21,2 m
+TEKSH: Binodan 50 m narida turibsiz, tomiga burchak 30° (tg 30° ≈ 0,58). Bino balandligi (ko‘z balandligisiz) taxminan necha metr? => 29 m | 86 m | 25 m | 43,5 m
 @tushuncha Teskari yo‘l: burchakni topamiz
 OVOZ: [1] Besh metrlik narvonning uchi devorda to‘rt metr balandlikda. Narvon yer bilan qanday burchak hosil qiladi? [2] Qarshi katet — to‘rt, gipotenuza — besh. Sinus — to‘rt bo‘lingan besh, ya’ni nol butun sakson. [3] {sekin}Kalkulyatorda teskari sinus tugmasini bosamiz: taxminan ellik uch gradus. [4] {baland}Demak, narvon yer bilan ellik uch gradus burchak hosil qilar ekan! Xavfsizlik uchun odatda yetmish besh gradus tavsiya etiladi — bu tikroq.
 DOSKA: CHIZ: uchburchak A(0;0) B(3;0) C(3;4)
@@ -204,6 +211,7 @@ DOSKA: sin α = 4 : 5 = 0,8
 DOSKA: α ≈ 53°
 DOSKA: tik narvon → burchak katta
 TEKSH: Narvon uzunligi 10 m, devorga tegib turgan nuqta 6 m balandlikda. Narvon burchagining sinusi necha? => 0,6 | 0,8 | 1,67 | 0,5
+TEKSH: Qiya yo‘l 100 m uzunlikda va 20 m ko‘tariladi. Yo‘lning yer bilan hosil qilgan burchagi sinusi necha? => 0,2 | 5 | 0,98 | 0,8
 @tushuncha Xato tuzog‘i
 OVOZ: [1] Birinchi tuzoq: qarshi va yondoshni aralashtirish. {urgu}Doim chizma chizib, burchakni belgilang — qarshisi qaysi, yonidagisi qaysi? [2] Ikkinchi tuzoq: kalkulyator rejimi. Gradus kerak bo‘lsa, «DEG». [3] Uchinchi tuzoq: ko‘z balandligini qo‘shishni unutish. Siz yerda emas, ko‘z balandligida turasiz. [4] To‘rtinchi: nisbatni teskari yozish. Tangens — qarshi bo‘lingan yondosh, aksincha emas.
 DOSKA: ❌ tg = yondosh : qarshi
@@ -217,3 +225,4 @@ DOSKA: 1. sin · cos · tg
 DOSKA: 2. 30° · 45° · 60°
 DOSKA: 3. h = d · tg α (+ ko‘z)
 DOSKA: 4. avval chizma
+TEKSH: To‘g‘ri burchakli uchburchakda gipotenuza 10, α burchak qarshisidagi katet 6. cos α necha? => 0,8 | 0,6 | 0,75 | 1,25
