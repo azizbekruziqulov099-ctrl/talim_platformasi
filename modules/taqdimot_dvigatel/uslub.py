@@ -45,7 +45,8 @@ def yorqinlik(c):
 
 
 def ustidagi_matn(fon):
-    return "#FFFFFF" if yorqinlik(fon) < 0.42 else "#1A1A1A"
+    # oq yozuv faqat kontrast kamida 3:1 bo'lganda (to'q fon); och-o'rta ranglarda (sariq, och ko'k, pushti) — to'q yozuv
+    return "#FFFFFF" if yorqinlik(fon) < 0.30 else "#1A1A1A"
 
 
 # ------------------------------------------------------------------ palitralar

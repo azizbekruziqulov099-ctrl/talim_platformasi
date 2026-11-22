@@ -539,7 +539,7 @@ def komp_togri_notogri(k, e, x, y, w, h, i=0):
         ra = {"tr": tg["id"], "e": "zoom", "ms": 350}
         k.s.rect(cx + 18, cy + ch - bh - 10, cw - 36, bh, fill=col, r=bh / 2, a=ra)
         k.s.matn(cx + 18, cy + ch - bh - 10, cw - 36, bh, "✓ To‘g‘ri" if f["javob"] else "✗ Noto‘g‘ri", size=17, bold=True,
-                 color="#FFFFFF", align="c", va="m", a=ra)
+                 color=u.matn_ustida(col), align="c", va="m", a=ra)
         if f.get("izoh"):
             iz_h = min(60, ch * 0.3)
             k.s.matn(cx + 18, cy + ch - bh - 14 - iz_h, cw - 36, iz_h, f["izoh"], size=16, italic=True, color=u.ink, va="b",
@@ -609,7 +609,7 @@ def komp_rasmda_nima(k, e, x, y, w, h, i=0):
         ok = vi == e.get("javob", 0)
         mark = {"tr": tg["id"], "e": "zoom", "ms": 350}
         k.s.doira(rx + rw - 32, vy + vh / 2, 14, fill=u.ok if ok else u.bad, a=mark)
-        k.s.matn(rx + rw - 46, vy + vh / 2 - 14, 28, 28, "✓" if ok else "✗", size=15, bold=True, color="#FFFFFF", align="c", va="m", a=mark)
+        k.s.matn(rx + rw - 46, vy + vh / 2 - 14, 28, 28, "✓" if ok else "✗", size=15, bold=True, color=u.matn_ustida(u.ok if ok else u.bad), align="c", va="m", a=mark)
 
 
 # ------------------------------------------------------------------ katta raqamlar (statistika)

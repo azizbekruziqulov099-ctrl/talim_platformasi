@@ -892,7 +892,7 @@ def _mosini_top(k: K, tk):
         st = k.keyingi()
         y = top + j * rh
         k.s.rect(M + lw + 30, y + rh / 2 - 15, W - 2 * M - 2 * lw - 60, 30, fill=u.ok, r=15, a=k.A("accent", st))
-        k.s.matn(M + lw + 30, y + rh / 2 - 15, W - 2 * M - 2 * lw - 60, 30, f"{j + 1} → {letters[pos_of[j]]}", size=13, bold=True, color="#FFFFFF", align="c", va="m", a=k.A("accent", st))
+        k.s.matn(M + lw + 30, y + rh / 2 - 15, W - 2 * M - 2 * lw - 60, 30, f"{j + 1} → {letters[pos_of[j]]}", size=15, bold=True, color=u.matn_ustida(u.ok), align="c", va="m", a=k.A("accent", st))
     pastki(k)
 
 
@@ -1200,7 +1200,7 @@ def blok_test(k: K, d):
             opt = tegish(k, x + 12, vy, cw - 24, vh - 6)
             mark = {"tr": opt["id"], "e": "zoom", "ms": 350}
             k.s.doira(x + cw - 36, vy + (vh - 6) / 2, 11, fill=u.ok if ok else u.bad, a=mark)
-            k.s.matn(x + cw - 47, vy + (vh - 6) / 2 - 11, 22, 22, "✓" if ok else "✗", size=13, bold=True, color="#FFFFFF", align="c", va="m", a=mark)
+            k.s.matn(x + cw - 47, vy + (vh - 6) / 2 - 11, 22, 22, "✓" if ok else "✗", size=13, bold=True, color=u.matn_ustida(u.ok if ok else u.bad), align="c", va="m", a=mark)
     pastki(k)
 
 
