@@ -182,10 +182,10 @@ def komp_vaqt_chizigi(k, e, x, y, w, h, i=0):
             iw = min(chh - 56, cw * 0.36)
             _img(k, v["rasm"], bx + cw - iw - 10, cy + 10, iw, iw, a)
             tw = cw - iw - 34
-        k.s.matn(bx + 14, ty, tw, 26, v.get("nom") or "", size=16, bold=True, color=u.ink, min_scale=0.55, a=a)
+        k.s.matn(bx + 14, ty, tw, 28, v.get("nom") or "", size=18.5, bold=True, color=u.ink, min_scale=0.55, a=a)
         if v.get("matn"):
-            k.s.matn(bx + 14, ty + 28, cw - 28 if not bor or chh - 84 > (min(chh - 56, cw * 0.36) - 34) else tw, cy + chh - ty - 34,
-                     v["matn"], size=13.5, color=u.muted if not u.qorongi else och(u.ink, 0.1), min_scale=0.55, a=a)
+            k.s.matn(bx + 14, ty + 32, cw - 28 if not bor or chh - 84 > (min(chh - 56, cw * 0.36) - 34) else tw, cy + chh - ty - 38,
+                     v["matn"], size=16, color=u.muted if not u.qorongi else och(u.ink, 0.1), min_scale=0.55, a=a)
 
 
 # ------------------------------------------------------------------ galereya
@@ -201,7 +201,7 @@ def komp_galereya(k, e, x, y, w, h, i=0):
         r_, c_ = divmod(j, cols)
         cx, cy = x + c_ * (cw + gap), y + r_ * (ch + gap)
         a = k.A("big", s, dl=j * k.st)
-        caph = 28 if r.get("izoh") and _rasm(k, r.get("rasm")) else 0
+        caph = 36 if r.get("izoh") and _rasm(k, r.get("rasm")) else 0
         if _rasm(k, r.get("rasm")):
             _img(k, r["rasm"], cx + 10, cy + 6, cw - 20, ch - caph - 14, a, taglik=RS.malumot(r["rasm"]).get("tur") == "rasm")
             kr = RS.kredit(r["rasm"])
@@ -218,7 +218,7 @@ def komp_galereya(k, e, x, y, w, h, i=0):
                      align="c", va="m", min_scale=0.5, a=a)
             continue
         if r.get("izoh"):
-            k.s.matn(cx, cy + ch - caph, cw, caph, r["izoh"], size=16, bold=True, color=u.ink, align="c", va="m", min_scale=0.6, a=a)
+            k.s.matn(cx, cy + ch - caph, cw, caph, r["izoh"], size=20, bold=True, color=u.ink, align="c", va="m", min_scale=0.6, a=a)
 
 
 # ------------------------------------------------------------------ guruhlash
@@ -272,9 +272,9 @@ def komp_tajriba(k, e, x, y, w, h, i=0):
             a = k.A("item", s, dl=j * 80)
             if _rasm(k, it.get("rasm")):
                 _img(k, it["rasm"], ix, ry + 2, rh - 6, rh - 6, a)
-                k.s.matn(ix + rh + 2, ry, iw - rh - 2, rh, it["nom"], size=15, color=u.ink, va="m", min_scale=0.55, a=a)
+                k.s.matn(ix + rh + 2, ry, iw - rh - 2, rh, it["nom"], size=18, color=u.ink, va="m", min_scale=0.55, a=a)
             else:
-                k.s.matn(ix, ry, iw, rh, "• " + it["nom"], size=15, color=u.ink, va="m", min_scale=0.55, a=a)
+                k.s.matn(ix, ry, iw, rh, "• " + it["nom"], size=18, color=u.ink, va="m", min_scale=0.55, a=a)
     # bosqichlar — har biri bosish bilan
     bx = x + w1 + gap
     ix, iy, iw, ih = B._yorliq_kartasi(k, bx, top, w2, hh, "Bosqichlar", u.acc[0], 1, a=k.A("card", s))
@@ -321,9 +321,9 @@ def komp_jarayon(k, e, x, y, w, h, i=0):
                 k.s.doira(cx + cw / 2, y + 36 + ih / 2, min(cw, ih) * 0.3, fill=col, op=0.14 if not u.qorongi else 0.3, a=a)
                 k.s.matn(cx, y + 36 + ih / 2 - 40, cw, 80, str(j + 1), size=54, bold=True, color=col, align="c", va="m", a=a)
             ty = y + 46 + ih
-            k.s.matn(cx + 14, ty, cw - 28, 28, b.get("nom") or "", size=17, bold=True, color=u.ink, min_scale=0.55, a=a)
+            k.s.matn(cx + 14, ty, cw - 28, 32, b.get("nom") or "", size=21, bold=True, color=u.ink, min_scale=0.55, a=a)
             if b.get("matn"):
-                k.s.matn(cx + 14, ty + 30, cw - 28, y + h - ty - 40, b["matn"], size=14.5, color=u.ink, min_scale=0.55, a=a)
+                k.s.matn(cx + 14, ty + 38, cw - 28, y + h - ty - 48, b["matn"], size=18, color=u.ink, min_scale=0.55, a=a)
             if j < n - 1:
                 k.s.matn(cx + cw - 2, y + h / 2 - 14, gap + 4, 28, "›", size=24, bold=True, color=u.muted, align="c", va="m", a=a)
         return
@@ -362,11 +362,11 @@ def komp_jarayon(k, e, x, y, w, h, i=0):
         else:
             k.s.matn(px - r, py - r, 2 * r, 2 * r, str(j + 1), size=r * 0.75, bold=True, color=u.matn_ustida(col), align="c", va="m", a=a)
         ly = py + r + 6
-        nsz = 19 if sh != "aylana" else 16
+        nsz = 22 if sh != "aylana" else 18
         k.s.matn(px - lw_ / 2, ly, lw_, nsz * 1.4, b.get("nom") or "", size=nsz, bold=True, color=u.ink, align="c", min_scale=0.5, a=a)
         if b.get("matn"):
-            mh = (y + h - ly - 30) if sh != "aylana" else 54
-            k.s.matn(px - lw_ / 2, ly + nsz * 1.45, lw_, max(30, mh), b["matn"], size=16 if sh != "aylana" else 13.5, color=u.ink,
+            mh = (y + h - ly - 30) if sh != "aylana" else 62
+            k.s.matn(px - lw_ / 2, ly + nsz * 1.45, lw_, max(30, mh), b["matn"], size=18.5 if sh != "aylana" else 15.5, color=u.ink,
                      align="c", min_scale=0.55, a=a)
     if sh == "aylana" and n > 2:
         ox, oy = pts[-1]
@@ -487,6 +487,7 @@ def komp_moslash(k, e, x, y, w, h, i=0):
     top = y + (h - (rh * n + gap * (n - 1))) / 2
     lw_, rw_ = w * 0.36, w * 0.36
     rx = x + w - rw_
+    msz = max(19, min(26, rh * 0.32))   # katak balandligiga mos: uzoqdan o'qiladi
     pos_ong = {}
     for pos, jdx in enumerate(tartib):
         ry = top + pos * (rh + gap)
@@ -499,15 +500,15 @@ def komp_moslash(k, e, x, y, w, h, i=0):
         else:
             if jj.get("rasm") and _rasm(k, jj["rasm"]):
                 _img(k, jj["rasm"], rx + 8, ry + 4, rh - 8, rh - 8, a)
-                k.s.matn(rx + rh + 4, ry, rw_ - rh - 14, rh, jj["ong"], size=18, color=u.ink, va="m", min_scale=0.5, a=a)
+                k.s.matn(rx + rh + 4, ry, rw_ - rh - 14, rh, jj["ong"], size=msz, color=u.ink, va="m", min_scale=0.5, a=a)
             else:
-                k.s.matn(rx + 14, ry, rw_ - 28, rh, jj["ong"], size=18, color=u.ink, align="c", va="m", min_scale=0.5, a=a)
+                k.s.matn(rx + 14, ry, rw_ - 28, rh, jj["ong"], size=msz, color=u.ink, align="c", va="m", min_scale=0.5, a=a)
     for j, jj in enumerate(js):
         ly = top + j * (rh + gap)
         col = u.acc[j % 4]
         a = k.A("card", s, dl=j * 60)
         k.s.rect(x, ly, lw_, rh, fill=col, op=0.12 if not u.qorongi else 0.25, line=col, lw=1.4, r=min(14, rh / 2), a=a)
-        k.s.matn(x + 14, ly, lw_ - 28, rh, jj["chap"], size=19, bold=True, color=u.ink, align="c", va="m", min_scale=0.5, a=a)
+        k.s.matn(x + 14, ly, lw_ - 28, rh, jj["chap"], size=msz, bold=True, color=u.ink, align="c", va="m", min_scale=0.5, a=a)
         tg = B.tegish(k, x, ly, lw_, rh)
         ra = {"tr": tg["id"], "e": "wipe", "d": "l", "ms": 450}
         ry = pos_ong[j]
@@ -530,18 +531,18 @@ def komp_togri_notogri(k, e, x, y, w, h, i=0):
         B.kart(k, cx, cy, cw, ch, j, a=a)
         bh = 34
         mh = ch - bh - 24 - (min(60, ch * 0.3) if f.get("izoh") else 0)
-        k.s.matn(cx + 18, cy + 12, cw - 36, mh, f["matn"], size=min(21, ch * 0.13 + 6), color=u.ink, va="m", min_scale=0.5, a=a)
-        k.s.matn(cx + 18, cy + ch - bh - 10, cw - 36, bh, "To‘g‘rimi? — bosing", size=12.5, italic=True, color=u.muted, align="c",
+        k.s.matn(cx + 18, cy + 12, cw - 36, mh, f["matn"], size=max(20, min(28, ch * 0.13 + 8)), color=u.ink, va="m", min_scale=0.5, a=a)
+        k.s.matn(cx + 18, cy + ch - bh - 10, cw - 36, bh, "To‘g‘rimi? — bosing", size=14.5, italic=True, color=u.muted, align="c",
                  va="m", a=a)
         tg = B.tegish(k, cx, cy, cw, ch)
         col = u.ok if f["javob"] else u.bad
         ra = {"tr": tg["id"], "e": "zoom", "ms": 350}
         k.s.rect(cx + 18, cy + ch - bh - 10, cw - 36, bh, fill=col, r=bh / 2, a=ra)
-        k.s.matn(cx + 18, cy + ch - bh - 10, cw - 36, bh, "✓ To‘g‘ri" if f["javob"] else "✗ Noto‘g‘ri", size=15, bold=True,
+        k.s.matn(cx + 18, cy + ch - bh - 10, cw - 36, bh, "✓ To‘g‘ri" if f["javob"] else "✗ Noto‘g‘ri", size=17, bold=True,
                  color="#FFFFFF", align="c", va="m", a=ra)
         if f.get("izoh"):
             iz_h = min(60, ch * 0.3)
-            k.s.matn(cx + 18, cy + ch - bh - 14 - iz_h, cw - 36, iz_h, f["izoh"], size=13.5, italic=True, color=u.ink, va="b",
+            k.s.matn(cx + 18, cy + ch - bh - 14 - iz_h, cw - 36, iz_h, f["izoh"], size=16, italic=True, color=u.ink, va="b",
                      min_scale=0.5, a=ra)
 
 
@@ -638,7 +639,7 @@ def komp_raqamlar(k, e, x, y, w, h, i=0):
             k.s.matn(cx + 24, ty, cw - 44, 30, b["nom"], size=19, bold=True, color=u.ink, min_scale=0.55, a=a)
             ty += 34
         if b.get("matn"):
-            k.s.matn(cx + 24, ty, cw - 44, cy + ch - ty - 18, b["matn"], size=15, color=u.ink, min_scale=0.55, a=k.A("item", st, dl=k.st))
+            k.s.matn(cx + 24, ty, cw - 44, cy + ch - ty - 18, b["matn"], size=17, color=u.ink, min_scale=0.55, a=k.A("item", st, dl=k.st))
 
 
 # ------------------------------------------------------------------ iqtibos

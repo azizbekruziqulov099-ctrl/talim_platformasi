@@ -532,7 +532,8 @@ def _qisqa_balandlik(e, w):
     if e["tur"] == "formula":
         return 150 + (40 if e.get("matn") else 0)
     t = e.get("matn") or ""
-    return min(250, B.matn_balandligi(t, w - 60, 21, lh=1.22) + (84 if (e.get("sarlavha") or B.LABEL.get(e["tur"])) else 50))
+    fh = 100 if e.get("formula") else 0   # matn ostidagi formula tasmasi
+    return min(250 + fh, B.matn_balandligi(t, w - 60, 21, lh=1.22) + (84 if (e.get("sarlavha") or B.LABEL.get(e["tur"])) else 50) + fh)
 
 
 def _j_ustma(k, d, vis, matnlar, bar):
@@ -544,7 +545,7 @@ def _j_ustma(k, d, vis, matnlar, bar):
         # birinchi qisqa tepada keng, qolgan ikkitasi ostida yonma-yon
         q = next((e for e in matnlar if _qisqami(e)), matnlar[0])
         qolgan = [e for e in matnlar if e is not q]
-        th = min(h0 * 0.4, _qisqa_balandlik(q, w0))
+        th = min(h0 * (0.5 if q.get("formula") else 0.4), _qisqa_balandlik(q, w0))
         tartib = [q] + qolgan
         regions = [(M, CT, w0, th)]
         bw = (w0 - gap) / 2
@@ -553,7 +554,8 @@ def _j_ustma(k, d, vis, matnlar, bar):
         a, b = matnlar
         tartib = [a, b]
         qa = _qisqami(a)
-        qh = min(h0 * 0.42, _qisqa_balandlik(a if qa else b, w0))
+        qe = a if qa else b
+        qh = min(h0 * (0.5 if qe.get("formula") else 0.42), _qisqa_balandlik(qe, w0))
         ha = qh if qa else h0 - qh - gap
         regions = [(M, CT, w0, ha), (M, CT + ha + gap, w0, h0 - ha - gap)]
     for idx, (e, (x, y, w, h)) in enumerate(zip(tartib, regions)):

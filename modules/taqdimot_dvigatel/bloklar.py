@@ -71,6 +71,7 @@ def pill(k: K, x, y, matn, color, a=None, size=11, fg=None, h=None, lnk=None):
     if k.s.tr:
         matn = k.s.tr(matn)
     matn = matn.upper()
+    size = max(size, 13)   # sahna.KICHIK_CHEGARA: mayda yorliq bo'lmaydi
     tw = kenglik(matn, "sans", True, size) + size * 0.08 * len(matn)
     w = tw + 22
     h = h or size + 12
@@ -342,6 +343,7 @@ def ustun_joyla(k: K, e, ix, iy, iw, ih, col, s, text, dl0=1):
         sz, th = mos_olcham(text, iw, max(40, ih - (fh + gap if fh else 0))) if text else (20, 0)
         if fh:
             fh = min(max(fh, (ih - th - gap) * 0.7), 150)
+            fh = max(40, min(fh, ih - th - (gap if text else 0)))   # formula kartadan pastga chiqib ketmasin
     if text:
         k.s.matn(ix, iy, iw, th + 4, text, size=sz, color=u.ink, urg=col, a=k.A("item", s, dl=dl0 * k.st), lh=1.22)
     y = iy + th + (gap if text else 0)
@@ -828,9 +830,9 @@ def blok_adabiyot(k: K, d):
     half = (CB - CT - 20) / 2
     ix, iy, iw, ih = _yorliq_kartasi(k, rx, CT, rw, half, "Elektron manbalar", u.acc[1], 1, a=k.A("card", 1))
     txt = "\n".join(f"**{e['nomi']}** — {e['izoh']}" if e.get("izoh") else f"**{e['nomi']}**" for e in a["elektron"]) or "ziyonet.uz — ta’lim portali"
-    k.s.matn(ix, iy, iw, ih, txt, size=15, color=u.ink, a=k.A("item", 1, dl=k.st), sp=6)
+    k.s.matn(ix, iy, iw, ih, txt, size=17, color=u.ink, a=k.A("item", 1, dl=k.st), sp=6)
     ix, iy, iw, ih = _yorliq_kartasi(k, rx, CT + half + 20, rw, half, "Mustaqil o‘qish", u.acc[2], 2, a=k.A("card", 2))
-    k.s.matn(ix, iy, iw, ih, a.get("mustaqil") or "Ma’ruza matni slayd izohlarida (Notes) berilgan.", size=15, color=u.ink, a=k.A("item", 2, dl=k.st))
+    k.s.matn(ix, iy, iw, ih, a.get("mustaqil") or "Ma’ruza matni slayd izohlarida (Notes) berilgan.", size=17, color=u.ink, a=k.A("item", 2, dl=k.st))
     pastki(k)
 
 
@@ -842,8 +844,8 @@ def blok_takrorlash(k: K, d):
     bosh_qism(k, "O‘tgan mavzuni takrorlash · o‘yin", "«Blits-so‘rov» o‘yini")
     if tk.get("mavzu"):
         w0 = pill(k, M, CT - 6, "O‘tgan mavzu", u.acc[0], size=10)
-        k.s.matn(M + w0 + 10, CT - 6, 600, 22, tk["mavzu"], size=14, bold=True, color=u.ink, va="m", min_scale=0.6)
-    k.s.matn(W - M - 520, CT - 6, 520, 22, "Avval o‘zingiz javob bering, so‘ng kartani bosing — javob chiqadi", size=12, italic=True, color=u.muted, align="r", va="m")
+        k.s.matn(M + w0 + 10, CT - 6, 600, 22, tk["mavzu"], size=16, bold=True, color=u.ink, va="m", min_scale=0.6)
+    k.s.matn(W - M - 520, CT - 6, 520, 22, "Avval o‘zingiz javob bering, so‘ng kartani bosing — javob chiqadi", size=13.5, italic=True, color=u.muted, align="r", va="m")
     n = len(sv)
     cols = 3 if n > 4 else 2
     rows = (n + cols - 1) // cols
@@ -861,7 +863,7 @@ def blok_takrorlash(k: K, d):
         hit = tegish(k, x, y, cw, ch)
         ans_y = y + ch - 54
         k.s.rect(x + 12, ans_y, cw - 24, 42, fill=col, op=0.12 if not u.qorongi else 0.22, r=8, a={"tr": hit["id"], "e": "zoom", "ms": 400})
-        k.s.matn(x + 22, ans_y, cw - 44, 42, "**Javob:** " + q["javob"], size=14.5, color=u.ink, va="m", a={"tr": hit["id"], "e": "zoom", "ms": 400}, min_scale=0.55)
+        k.s.matn(x + 22, ans_y, cw - 44, 42, "**Javob:** " + q["javob"], size=17, color=u.ink, va="m", a={"tr": hit["id"], "e": "zoom", "ms": 400}, min_scale=0.55)
     pastki(k)
 
 
@@ -871,7 +873,7 @@ def _mosini_top(k: K, tk):
     bosh_qism(k, "O‘tgan mavzuni takrorlash · o‘yin", "«Mosini top» o‘yini")
     if tk.get("mavzu"):
         w0 = pill(k, M, CT - 6, "O‘tgan mavzu", u.acc[0], size=10)
-        k.s.matn(M + w0 + 10, CT - 6, 600, 22, tk["mavzu"], size=14, bold=True, color=u.ink, va="m", min_scale=0.6)
+        k.s.matn(M + w0 + 10, CT - 6, 600, 22, tk["mavzu"], size=16, bold=True, color=u.ink, va="m", min_scale=0.6)
     order = list(range(len(sv)))
     k.rng.shuffle(order)
     letters = "ABCDEF"
@@ -882,10 +884,10 @@ def _mosini_top(k: K, tk):
     for j, q in enumerate(sv):
         y = top + j * rh
         kart(k, M, y + 4, lw, rh - 10, j, a=k.A("item", 0, dl=j * 80))
-        k.s.matn(M + 14, y + 4, lw - 28, rh - 10, f"**{j + 1}.** {q['savol']}", size=15, color=u.ink, va="m", a=k.A("item", 0, dl=j * 80), min_scale=0.55)
+        k.s.matn(M + 14, y + 4, lw - 28, rh - 10, f"**{j + 1}.** {q['savol']}", size=17, color=u.ink, va="m", a=k.A("item", 0, dl=j * 80), min_scale=0.55)
         qi = order[j]
         kart(k, W - M - lw, y + 4, lw, rh - 10, j + 1, a=k.A("item", 0, dl=j * 80 + 40))
-        k.s.matn(W - M - lw + 14, y + 4, lw - 28, rh - 10, f"**{letters[j]})** {sv[qi]['javob']}", size=15, color=u.ink, va="m", a=k.A("item", 0, dl=j * 80 + 40), min_scale=0.55)
+        k.s.matn(W - M - lw + 14, y + 4, lw - 28, rh - 10, f"**{letters[j]})** {sv[qi]['javob']}", size=17, color=u.ink, va="m", a=k.A("item", 0, dl=j * 80 + 40), min_scale=0.55)
     for j in range(len(sv)):
         st = k.keyingi()
         y = top + j * rh
@@ -923,7 +925,7 @@ def blok_reja(k: K, d):
         y = CB - 62
         k.s.rect(M, y, W - 2 * M, 58, fill=u.acc[1], op=0.1 if not u.qorongi else 0.2, line=u.acc[1], lw=1, r=12, a=k.A("accent", 0, dl=n * 100))
         ikon(k, M + 28, y + 29, "◎", u.acc[1], r=14, a=k.A("accent", 0, dl=n * 100), solid=True)
-        k.s.matn(M + 54, y, W - 2 * M - 70, 58, f"**{'Dars' if 'dars' in d.get('tur', '') else 'Ma’ruza'} maqsadi:** " + d["maqsad"], size=14, color=u.ink, va="m",
+        k.s.matn(M + 54, y, W - 2 * M - 70, 58, f"**{'Dars' if 'dars' in d.get('tur', '') else 'Ma’ruza'} maqsadi:** " + d["maqsad"], size=16, color=u.ink, va="m",
                  a=k.A("accent", 0, dl=n * 100), min_scale=0.55)
     pastki(k)
 
@@ -976,13 +978,13 @@ def blok_muammo(k: K, d):
         kart(k, x, top, cw, ch, j, a=a)
         ikon(k, x + 36, top + 36, glyphs[j % 2], col, r=18, a=a)
         k.s.matn(x + 66, top + 20, cw - 84, 30, q.get("sarlavha") or f"{j + 1}-masala", size=18, bold=True, color=col, a=a)
-        k.s.matn(x + 24, top + 66, cw - 48, ch - 80, q["matn"], size=16.5, color=u.ink, a=k.A("item", k.qadam, dl=k.st))
+        k.s.matn(x + 24, top + 66, cw - 48, ch - 80, q["matn"], size=18.5, color=u.ink, a=k.A("item", k.qadam, dl=k.st))
     y = top + ch + 24
     if mu.get("goya"):
         st = k.keyingi()
         k.s.rect(M, y, W - 2 * M, 54, fill=u.acc[3], op=0.1 if not u.qorongi else 0.2, r=12, a=k.A("accent", st))
         ikon(k, M + 28, y + 27, "✦", u.acc[3], r=14, a=k.A("accent", st), solid=True)
-        k.s.matn(M + 54, y, W - 2 * M - 70, 54, "**G‘oya:** " + mu["goya"], size=16, color=u.ink, va="m", a=k.A("item", st, dl=k.st))
+        k.s.matn(M + 54, y, W - 2 * M - 70, 54, "**G‘oya:** " + mu["goya"], size=18, color=u.ink, va="m", a=k.A("item", st, dl=k.st))
         y += 76
     z = mu.get("zanjir") or []
     if z:
@@ -1039,10 +1041,10 @@ def blok_tarix(k: K, d):
                 FM.chiz(k.s, v["belgi"], x + 20, y + ch - vis_h - 6, cw - 40, vis_h - 8, size=26, color=col, a=k.A("accent", st, dl=2 * k.st))
             else:
                 k.s.matn(x + 20, y + ch - vis_h - 10, cw - 40, vis_h, v["belgi"], size=22, bold=True, color=col, align="c", va="m", a=k.A("accent", st, dl=2 * k.st), min_scale=0.5)
-        k.s.matn(x + 18, y + 62, cw - 36, ch - 80 - vis_h, v["matn"], size=14.5, color=u.ink, a=k.A("item", st, dl=k.st), lh=1.22)
+        k.s.matn(x + 18, y + 62, cw - 36, ch - 80 - vis_h, v["matn"], size=17, color=u.ink, a=k.A("item", st, dl=k.st), lh=1.22)
     if tr.get("xulosa"):
         st = k.keyingi()
-        k.s.matn(M, CB - 48, W - 2 * M, 44, tr["xulosa"], size=14, italic=True, color=u.muted, align="c", va="m", a=k.A("item", st))
+        k.s.matn(M, CB - 48, W - 2 * M, 44, tr["xulosa"], size=16, italic=True, color=u.muted, align="c", va="m", a=k.A("item", st))
     pastki(k)
 
 
@@ -1064,17 +1066,17 @@ def blok_xatolar(k: K, d):
         kart(k, x, y, cw, ch, j, a=a)
         pill(k, x + 14, y + 12, "✗ xato", u.bad, size=10, a=a)
         yozuv(k, x_["xato"], x + 14, y + 40, cw - 28, ch * 0.32, size=21, align="c", va="m", a=a, bold=True, min_scale=0.5)
-        k.s.matn(x + 14, y + 40 + ch * 0.32, cw - 28, ch * 0.22, x_["sabab"], size=13, italic=True, color=u.muted, align="c", a=a, min_scale=0.55)
+        k.s.matn(x + 14, y + 40 + ch * 0.32, cw - 28, ch * 0.22, x_["sabab"], size=15, italic=True, color=u.muted, align="c", a=a, min_scale=0.55)
         hit = tegish(k, x, y, cw, ch)
         trg = {"tr": hit["id"], "e": "zoom", "ms": 400}
         by = y + ch - 52
         k.s.rect(x + 12, by, cw - 24, 42, fill=u.ok, op=0.14 if not u.qorongi else 0.28, line=u.ok, lw=1, r=10, a=trg)
         tg = x_["togri"]
         if FORMULA_FAQAT.match(tg):
-            k.s.matn(x + 20, by, 80, 42, "**To‘g‘ri:**", size=14, color=u.ink, va="m", a=trg)
+            k.s.matn(x + 20, by, 80, 42, "**To‘g‘ri:**", size=16, color=u.ink, va="m", a=trg)
             FM.chiz(k.s, tg, x + 96, by + 2, cw - 120, 38, size=20, color=u.ink, a=trg, align="l")
         else:
-            k.s.matn(x + 20, by, cw - 40, 42, "**To‘g‘ri:** " + tg, size=14, color=u.ink, va="m", a=trg, min_scale=0.55)
+            k.s.matn(x + 20, by, cw - 40, 42, "**To‘g‘ri:** " + tg, size=16, color=u.ink, va="m", a=trg, min_scale=0.55)
     pastki(k)
 
 
@@ -1091,7 +1093,7 @@ def blok_metodika(k: K, d):
             x = M + j * (bw + 40)
             a = k.A("card", 0, dl=j * 160)
             k.s.rect(x, y, bw, 64, fill=col, r=12, a=a, sh=0 if u.qorongi else 1)
-            k.s.matn(x + 14, y, bw - 28, 64, f"**{j + 1}.** {b}", size=15, color=u.matn_ustida(col), va="m", a=a, min_scale=0.55)
+            k.s.matn(x + 14, y, bw - 28, 64, f"**{j + 1}.** {b}", size=17, color=u.matn_ustida(col), va="m", a=a, min_scale=0.55)
             if j < n - 1:
                 k.s.matn(x + bw, y, 40, 64, "→", size=26, bold=True, color=u.muted, align="c", va="m", a=a)
         y += 84
@@ -1108,14 +1110,14 @@ def blok_metodika(k: K, d):
             ix, iy, iw, ih = _yorliq_kartasi(k, x, y, cw, bottom - y, c.get("sarlavha") or "", col, j, a=k.A("card", st))
             if c.get("chizma"):
                 th = ih * 0.38
-                k.s.matn(ix, iy, iw, th, c["matn"], size=14.5, color=u.ink, a=k.A("item", st, dl=k.st))
+                k.s.matn(ix, iy, iw, th, c["matn"], size=17, color=u.ink, a=k.A("item", st, dl=k.st))
                 CH.chiz(k.s, c["chizma"], ix, iy + th, iw, ih - th, u, qadam=st, kechikish=2 * k.st)
             else:
                 k.s.matn(ix, iy, iw, ih, c["matn"], size=15.5, color=u.ink, a=k.A("item", st, dl=k.st))
     if me.get("tavsiya"):
         st = k.keyingi()
         k.s.rect(M, CB - 56, W - 2 * M, 54, fill=u.acc[0], op=0.08 if not u.qorongi else 0.18, r=12, a=k.A("accent", st))
-        k.s.matn(M + 18, CB - 56, W - 2 * M - 36, 54, "**Metodik tavsiya:** " + me["tavsiya"], size=14, color=u.ink, va="m", a=k.A("item", st), min_scale=0.55)
+        k.s.matn(M + 18, CB - 56, W - 2 * M - 36, 54, "**Metodik tavsiya:** " + me["tavsiya"], size=16, color=u.ink, va="m", a=k.A("item", st), min_scale=0.55)
     pastki(k)
 
 
