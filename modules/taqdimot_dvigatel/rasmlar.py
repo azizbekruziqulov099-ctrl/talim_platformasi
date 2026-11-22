@@ -175,12 +175,15 @@ def kredit(key: str):
 
 
 def papkadan_qidir(q: str = "", limit: int = 60):
+    """Kalit yoki nom bo'yicha (o'zbekcha, ruscha, inglizcha): «olma», «яблоко», «apple»."""
+    xom = " ".join((q or "").lower().replace("_", " ").split())
     q = kalit_toza(q)
     out = []
     for r in papka_reestri():
         k = r.get("kalit") or ""
-        matn = f"{k} {(r.get('nom') or '')} {(r.get('izoh') or '')} {(r.get('fan') or '')}".lower()
-        if not q or q in k or q.replace("_", " ") in matn:
+        matn = " ".join([k, r.get("nom") or "", r.get("nom_ru") or "", r.get("nom_en") or "", r.get("izoh") or "",
+                         r.get("fan") or ""]).lower()
+        if not (q or xom) or (q and (q in k or q.replace("_", " ") in matn)) or (xom and xom in matn):
             out.append({"kalit": k, "tavsif": r.get("nom") or r.get("izoh") or "", "tur": r.get("tur") or "rasm"})
             if len(out) >= limit:
                 break

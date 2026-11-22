@@ -28,16 +28,19 @@ def _chizma_royxati():
     return "\n".join(qatorlar)
 
 
-def katalog_matni(mavzu: str = "", fan: str = "", n: int = 90) -> str:
-    """Kutubxona rasmlari ro'yxati (AI uchun): mavzuga yaqinlari, mavzu bo'lmasa — hammasi fan bo'yicha."""
+def katalog_matni(mavzu: str = "", fan: str = "", n: int = 90, til: str = "uz") -> str:
+    """Kutubxona rasmlari ro'yxati (AI uchun): mavzuga yaqinlari, mavzu bo'lmasa — hammasi fan bo'yicha.
+    til — taqdimot tili: rasm nomlari shu tilda beriladi (ruscha/inglizcha nomi bo'lsa)."""
     from . import rasm_tanla, rasmlar
+    til = til if til in ("ru", "en") else "uz"
     if mavzu or fan:
-        rows = rasm_tanla.katalog(f"{mavzu} {fan}", fan, n)
+        rows = rasm_tanla.katalog(f"{mavzu} {fan}", fan, n, til)
         return "\n".join(f"- {k} — {nom}" for k, nom in rows) or "(mos rasm topilmadi)"
     guruh = {}
     for r in rasmlar.papka_reestri():
         if r.get("tur") == "rasm":
-            guruh.setdefault(r.get("fan") or "Boshqa", []).append(f"{r['kalit']} — {r.get('nom') or ''}")
+            nom = (r.get(f"nom_{til}") if til != "uz" else "") or r.get("nom") or ""
+            guruh.setdefault(r.get("fan") or "Boshqa", []).append(f"{r['kalit']} — {nom}")
     return "\n".join(f"[{f}]\n" + "\n".join("- " + x for x in sorted(v)) for f, v in sorted(guruh.items()))
 
 
@@ -240,7 +243,8 @@ def _xabar(mavzu, fan, daraja, sinf, tur, qoshimcha, manba, sozlama=None):
     except Exception:
         pass
     try:
-        s += f"\nKUTUBXONA RASMLARI (kalit — nima tasvirlangan; avval shulardan tanla):\n{katalog_matni(f'{mavzu} {qoshimcha}', fan)}\n\n"
+        til_ = (sozlama or {}).get("til") or "uz"
+        s += f"\nKUTUBXONA RASMLARI (kalit — nima tasvirlangan; avval shulardan tanla):\n{katalog_matni(f'{mavzu} {qoshimcha}', fan, til=til_)}\n\n"
     except Exception:
         pass
     if qoshimcha:
@@ -612,7 +616,7 @@ def miya_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", 
     vazifalar = []
     for i, b in enumerate(reja["bolimlar"]):
         try:
-            bk = katalog_matni(" ".join([b["nom"]] + [sl["sarlavha"] for sl in b["slaydlar"]]), fan, 40)
+            bk = katalog_matni(" ".join([b["nom"]] + [sl["sarlavha"] for sl in b["slaydlar"]]), fan, 40, z["til"])
             bk = f"\nBU BO‘LIMGA MOS RASMLAR (kalit — nima tasvirlangan):\n{bk}\n" if "topilmadi" not in bk else ""
         except Exception:
             bk = ""

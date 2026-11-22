@@ -16,9 +16,13 @@ from functools import lru_cache
 from . import rasmlar
 
 _APO = str.maketrans({"‘": "'", "’": "'", "ʻ": "'", "ʼ": "'", "`": "'", "−": "-", "–": "-"})
-_SOZ = re.compile(r"[a-z']+")
+_SOZ = re.compile(r"[a-z']+|[а-яёўқғҳ]+")   # o'zbekcha/inglizcha (lotin) va ruscha (kirill)
 _QOSHIMCHA = ("larining", "laridagi", "laridan", "lariga", "larini", "lari", "lar", "ning", "dagi", "dan", "ga", "da", "ni",
               "ka", "qa", "si", "imiz", "ingiz", "lik", "li", "chi")
+# ruscha so'z oxirlari (uzunrog'i oldin): «фотосинтеза», «клетки», «растений» → фотоси, клетк, растен
+_RU_OXIR = tuple(sorted(("иями", "ями", "ами", "ого", "его", "ому", "ему", "ыми", "ими", "иях", "ах", "ях", "ов", "ев", "ей", "ой",
+                         "ий", "ый", "ая", "яя", "ое", "ее", "ые", "ие", "ую", "юю", "ом", "ем", "ам", "ям", "ия", "ью", "ых",
+                         "их", "а", "я", "ы", "и", "у", "ю", "е", "о", "ь", "й"), key=len, reverse=True))
 _TOXTA = {
     "va", "bilan", "uchun", "bir", "ikki", "uch", "har", "shu", "bu", "ham", "emas", "yoki", "kabi", "orqali", "qanday", "nima",
     "nimani", "nega", "qaysi", "qilib", "bo'ladi", "bo'lgan", "bo'lsa", "bo'lib", "deb", "edi", "esa", "endi", "yana", "faqat",
@@ -26,33 +30,97 @@ _TOXTA = {
     "mavzu", "dars", "slayd", "javob", "savol", "topshiriq", "jadval", "ta'rif", "qoida", "izoh", "muhim", "diqqat", "son",
     "sonlar", "soni", "tartib", "holat", "usul", "xil", "tur", "turi", "qism", "qismi", "o'z", "o'zi", "biz", "siz", "ular",
     "bor", "yo'q", "kerak", "mumkin", "ko'p", "oz",
+    # inglizcha
+    "the", "and", "with", "for", "from", "into", "under", "its", "are", "how", "what", "why", "which", "this", "that", "these",
+    "those", "type", "types", "lesson", "topic", "slide", "picture", "image", "example", "answer", "question", "task", "about",
+    "between", "part", "parts", "our", "your", "their", "they", "them", "has", "have", "was", "were", "can", "not", "all",
+    "also", "each", "other", "some", "more", "most", "very", "use", "used", "using", "who", "when", "where", "there",
+    # ruscha
+    "для", "как", "что", "это", "эти", "этот", "эта", "или", "при", "под", "над", "все", "всё", "вид", "виды", "тип", "типы",
+    "его", "она", "они", "оно", "который", "которые", "также", "после", "перед", "между", "через", "без", "про", "них", "был",
+    "была", "были", "быть", "есть", "урок", "урока", "тема", "темы", "слайд", "рисунок", "схема", "пример", "примеры", "задача",
+    "ответ", "вопрос", "чем", "где", "когда", "почему", "какой", "какие", "каких", "часть", "части", "наш", "ваш", "его", "её",
 }
 
 
 def _ildiz(soz: str) -> str:
     s = soz  # o' / g' saqlanadi: "to'rt" (4) ≠ "tort" (pishiriq)
+    if "а" <= s[:1] <= "я" or s[:1] in "ёўқғҳ":   # ruscha: bitta oxirni kesamiz (asos kamida 3 harf)
+        for q in _RU_OXIR:
+            if s.endswith(q) and len(s) - len(q) >= 3:
+                s = s[: -len(q)]
+                break
+        return s[:7]   # ruscha so'zlar uzunroq: «микроскоп» ≠ «микросхема»
     for _ in range(2):
         for q in _QOSHIMCHA:
             if s.endswith(q) and len(s) - len(q) >= 4:
                 s = s[: -len(q)]
                 break
+    # inglizcha ko'plik: cells → cell, bodies → body (o'zbekcha «atlas», «kompas», «fokus» tegilmaydi)
+    if len(s) >= 5 and s.endswith("ies"):
+        s = s[:-3] + "y"
+    elif len(s) >= 4 and s.endswith("s") and not s.endswith(("ss", "us", "is", "as", "os")):
+        s = s[:-1]
+    # inglizcha so'z (w, ch'siz c, ph, th — o'zbek lotinida yo'q): 7 harf — microscope ≠ microchip, photosynthesis ≠ photos
+    chek = 7 if _INGLIZ.search(s) else 6
     out, n = "", 0
     for ch in s:  # 6 ta harf (apostrof hisobga olinmaydi): o'qituvchi → o'qituv
         out += ch
         if ch != "'":
             n += 1
-            if n >= 6:
+            if n >= chek:
                 break
     return out
+
+
+_INGLIZ = re.compile(r"w|c(?!h)|ph|th")
 
 
 def tokenlar(text: str) -> set:
     out = set()
     for t in _SOZ.findall((text or "").lower().translate(_APO)):
         t = t.strip("'")
+        if t.endswith("'s"):   # inglizcha egalik: ohm's → ohm, newton's → newton
+            t = t[:-2]
         if len(t) >= 3 and t not in _TOXTA:
             out.add(_ildiz(t))
     return out
+
+
+_UZ_SOZ = {"va", "bilan", "uchun", "haqida", "nima", "qanday", "bu", "shu", "ham", "yoki", "emas", "bor", "yo'q", "qilish", "deb"}
+_EN_SOZ = {"the", "of", "and", "in", "with", "is", "are", "to", "for", "on", "by", "from", "how", "what", "its", "an", "a", "or"}
+_UZ_OXIR = ("lar", "lari", "larni", "ning", "dagi", "dan", "ga", "da", "ni", "si", "lik", "ish", "gan", "moq", "ligi")
+
+
+def til_taxmin(matn: str) -> str:
+    """So'rov tili: "ru" (kirill), "uz" yoki "en" (lotin belgilari bo'yicha), aniq bo'lmasa "".
+    O'zbekcha matn inglizcha nomlarga, inglizchasi o'zbekchasiga tasodifan mos tushmasin (dispersiya ≠ dispersal)."""
+    m = (matn or "").lower().translate(_APO)
+    if re.search(r"[а-яёўқғҳ]", m):
+        return "ru"
+    uz = en = 0
+    for w in re.findall(r"[a-z']+", m):
+        w = w.strip("'")
+        if not w:
+            continue
+        if w in _UZ_SOZ or "o'" in w or "g'" in w or re.search(r"q(?!u)", w) or (len(w) >= 5 and w.endswith(_UZ_OXIR)):
+            uz += 1
+        if w in _EN_SOZ or (w not in _UZ_SOZ and re.search(r"w|th|ph|c(?!h)|tion$|ness$|ous$", w)):
+            en += 1
+    if uz > en:
+        return "uz"
+    if en > uz:
+        return "en"
+    return ""
+
+
+def _q(q: set, r: dict, til: str) -> set:
+    """Taqdimot rasmi uchun so'rov so'zlari: o'zbekcha so'rovdan faqat inglizcha nomdagi so'zlar chiqadi va aksincha."""
+    if til == "uz":
+        return q - r.get("faqat_en", frozenset())
+    if til == "en":
+        return q - r.get("faqat_uz", frozenset())
+    return q
 
 
 _YAGONA: set = set()  # faqat bitta rasmda uchraydigan so'zlar (dutor, mitoz, protsessor)
@@ -62,11 +130,39 @@ _FAN_GURUH = {"tabiiy": {"biolog", "fizika", "kimyo", "geogra", "astron", "tabii
               "pedago": {"psixol", "bakala"}, "psixol": {"pedago", "bakala"}, "texnol": {"chizma"}, "chizma": {"texnol"}}
 
 
+# Ruscha/inglizcha fan nomlari → reestrdagi o'zbekcha fan (ruscha taqdimotda AI fanni «Биология» deb yozadi)
+_FAN_SINONIM = {
+    "Biologiya": "биология ботаника зоология анатомия biology botany zoology anatomy",
+    "Fizika": "физика physics", "astronomiya": "астрономия astronomy", "Kimyo": "химия chemistry",
+    "Geografiya": "география geography", "Tarix": "история history",
+    "Matematika": "математика алгебра геометрия mathematics math maths algebra geometry arithmetic арифметика",
+    "adabiyot o'qish": "литература чтение literature reading", "Informatika": "информатика computer computing informatics",
+    "Musiqa": "музыка music", "Tabiiy fanlar": "естествознание природоведение окружающий science nature",
+    "Texnologiya": "технология труд technology", "chizmachilik": "черчение drawing", "Tasviriy": "изобразительное art",
+    "Jismoniy tarbiya": "физкультура физическая", "huquq": "право law", "iqtisod": "экономика economics economy",
+    "tarbiya": "воспитание upbringing", "pedagogika": "педагогика pedagogy", "psixologiya": "психология psychology",
+    "tillar": "русский английский немецкий французский язык english russian german french language",
+}
+
+
+@lru_cache(maxsize=1)
+def _fan_sinonim() -> dict:
+    out = {}
+    for uz, boshqa in _FAN_SINONIM.items():
+        ut = tokenlar(uz)
+        for t in tokenlar(boshqa):
+            out.setdefault(t, set()).update(ut)
+    return out
+
+
 def _fan_guruh(fan: str) -> set:
     t = tokenlar(fan)
+    sin = _fan_sinonim()
+    for x in list(t):
+        t |= sin.get(x, set())
     for x in list(t):
         t |= _FAN_GURUH.get(x, set())
-    if t & {"ingliz", "rus", "nemis", "fransu", "ispan", "koreys", "turk", "arab", "xitoy", "chet", "tili", "til"}:
+    if t & {"ingliz", "rus", "nemis", "fransu", "ispan", "koreys", "turk", "arab", "xitoy", "chet", "tili", "til", "tillar"}:
         t |= {"tillar"}
     return t - {"fanlar", "fanl", "masala"}
 
@@ -167,9 +263,22 @@ def _indeks(_mt: float, _yuklangan: frozenset = frozenset()):
             asosiy = set(nt)
         else:
             asosiy = {t for t in nt if t.replace("'", "") in kt} | {t for t in kt if not any(x.replace("'", "") == t for x in nt)}
+        # ruscha va inglizcha nomlar: «Фотосинтез», «Photosynthesis» — ruscha/inglizcha taqdimot ham rasmni topadi
+        uz_t = asosiy | nt | tg | (set() if r.get("en") else kt)
+        en_t = tokenlar(r.get("nom_en") or "")
+        ismlar = [_na(asosiy)]
+        for maydon in ("nom_ru", "nom_en"):
+            t2 = tokenlar(r.get(maydon) or "")
+            if t2:
+                asosiy |= t2
+                # qavsdagisi aniqlovchi: «Микроскоп (школьный)» — «Микроскоп» so'zining o'zi ham to'liq nom
+                t3 = tokenlar(re.sub(r"\(.*?\)", " ", r.get(maydon) or ""))
+                ismlar.append(_na(t3 or t2))
         hammasi = asosiy | nt | tg | tokenlar(r.get("izoh") or "" if r.get("tur") == "rasm" else "")
         rows.append({"kalit": k, "tur": r.get("tur") or "rasm", "nom": r.get("nom") or "", "fan": r.get("fan") or "",
-                     "asosiy": asosiy, "tok": hammasi, "fan_tok": _fan_guruh(r.get("fan") or ""), "ismlar": [_na(asosiy)],
+                     "nom_ru": r.get("nom_ru") or "", "nom_en": r.get("nom_en") or "",
+                     "faqat_en": frozenset(en_t - uz_t), "faqat_uz": frozenset(uz_t - en_t),
+                     "asosiy": asosiy, "tok": hammasi, "fan_tok": _fan_guruh(r.get("fan") or ""), "ismlar": ismlar,
                      "toifa": r.get("toifa") or "", "umumiylik": int(r.get("umumiylik") or 3), "sifat": int(r.get("sifat") or 4),
                      "shakl": r.get("shakl") or ""})
     ichki = {r["kalit"] for r in rows}
@@ -201,8 +310,9 @@ def indeks():
     return _indeks(os.path.getmtime(p) if os.path.isfile(p) else 0.0, bz)
 
 
-def _ball(q: set, r: dict, idf: dict):
+def _ball(q: set, r: dict, idf: dict, til: str = ""):
     """(ball, mos so'zlar soni, asosiy (kalitdagi) so'zlar soni)."""
+    q = _q(q, r, til)
     umumiy = q & r["tok"]
     asos = q & r["asosiy"]
     if not umumiy or not asos:
@@ -232,18 +342,22 @@ def buyum_rasmi(matn: str, band: set = frozenset()):
         w = (matn or "").strip().lower().translate(_APO).strip(".,!?")
         k = _qisqa_sozlar().get(w) if len(w) == 2 else None
         return k if k and k not in band else None
-    qn = _na(q)
+    til = til_taxmin(matn)
     eng, kal = 0.0, None
     for r in rows:
         if r["tur"] != "rasm" or r["kalit"] in band:
             continue
-        mos = q & r["asosiy"]
+        qr = _q(q, r, til)
+        mos = qr & r["asosiy"]
         if not mos:
             continue
+        qn = _na(qr)
         yagona = bool(mos & _YAGONA)
         # nomlaridan birining hamma so'zi bor (baraban → baraban, tovush_baraban emas; olma → apple/olma)
         toliq = any(s and s <= qn for s in r["ismlar"])
-        b = (sum(idf.get(t, 1.0) for t in mos) + (2.0 if yagona else 0) + (3.0 if toliq else 0) - 0.15 * min(len(r["asosiy"]), 6)
+        # uzun nom jarimasi — so'rovga mos tushgan til nomi bo'yicha (ruscha/inglizcha nomlar o'zbekchasini «uzaytirmasin»)
+        uz = min((len(s) for s in r["ismlar"] if s & qn), default=len(r["asosiy"]))
+        b = (sum(idf.get(t, 1.0) for t in mos) + (2.0 if yagona else 0) + (3.0 if toliq else 0) - 0.15 * min(uz, 6)
              - (0.3 if r.get("past") else 0))
         if (yagona or toliq or len(mos) >= 2) and b > eng:
             eng, kal = b, r["kalit"]
@@ -262,17 +376,18 @@ def eng_mos(matn: str, tur: str = "rasm", chegara: float = 6.5, band: set = froz
     if not q:
         return None, 0.0
     ft = _fan_guruh(fan)
+    til = til_taxmin(matn)
     eng, kal = 0.0, None
     for r in rows:
         if tur and r["tur"] != tur or r["kalit"] in band or (r.get("rk") and not rk):
             continue
-        b, n, na = _ball(q, r, idf)
+        b, n, na = _ball(q, r, idf, til)
         if not b:
             continue
         fan_mos = bool(ft and ft & r["fan_tok"])
         if fan_mos:
             # ikki so'z, yoki faqat shu rasmga xos bitta asosiy so'z (dutor, mitoz)
-            yagona = q & r["asosiy"] & _YAGONA
+            yagona = _q(q, r, til) & r["asosiy"] & _YAGONA
             if yagona and r.get("rk"):
                 # sayt kutubxonasida bitta so'z yetadi faqat rasm nomining o'zi shu so'z bo'lsa (son o'qi → o'qi; «tanlash» emas)
                 yagona = {t for t in yagona if any(s == _na({t}) for s in r["ismlar"])}
@@ -284,16 +399,18 @@ def eng_mos(matn: str, tur: str = "rasm", chegara: float = 6.5, band: set = froz
     return (kal, eng) if kal else (None, 0.0)
 
 
-def katalog(matn: str, fan: str = "", n: int = 60):
-    """AI uchun: mavzuga eng yaqin n ta rasm (kalit — nom). Fan mos kelsa ham qo'shiladi."""
+def katalog(matn: str, fan: str = "", n: int = 60, til: str = "uz"):
+    """AI uchun: mavzuga eng yaqin n ta rasm (kalit — nom). Fan mos kelsa ham qo'shiladi.
+    til="ru"/"en" — nom taqdimot tilida (bor bo'lsa), AI rasmni o'z tilida tanib tanlaydi."""
     rows, idf = indeks()
     q = tokenlar(matn)
+    qtil = til_taxmin(matn)
     ft = _fan_guruh(fan)
     ballar = []
     for r in rows:
         if r["tur"] != "rasm":
             continue
-        b = sum(idf.get(t, 1.0) * (1.3 if t in r["asosiy"] else 1.0) for t in q & r["tok"])
+        b = sum(idf.get(t, 1.0) * (1.3 if t in r["asosiy"] else 1.0) for t in _q(q, r, qtil) & r["tok"])
         fan_mos = bool(ft and ft & r["fan_tok"])
         if r.get("rk"):
             # sayt kutubxonasi katta: faqat so'zi mos kelganlari (fan faqat ustunlik beradi)
@@ -307,7 +424,8 @@ def katalog(matn: str, fan: str = "", n: int = 60):
             b += 0.3 * (r.get("sifat", 4) - 4)
             belgi = ", ".join(x for x in (r.get("toifa") or "", f"umumiylik {r['umumiylik']}" if r.get("toifa") else "",
                                            f"sifat {r['sifat']}" if r.get("toifa") else "", r.get("shakl") or "") if x)
-            ballar.append((b, r["kalit"], r["nom"] + (f" [{belgi}]" if belgi else "")))
+            nom = (r.get(f"nom_{til}") if til in ("ru", "en") else "") or r["nom"]
+            ballar.append((b, r["kalit"], nom + (f" [{belgi}]" if belgi else "")))
     ballar.sort(reverse=True)
     out = [(k, nom) for _, k, nom in ballar[:n]]
     # rejadagi (hali chizilmagan) rasmlar: AI kalitini yozadi — rasm yuklanganda taqdimotga o'zi tushadi
@@ -446,17 +564,25 @@ def titul_rasmi(mavzu: str, fan: str = "", band=frozenset()) -> str:
     if not q:
         return ""
     ft = _fan_guruh(fan)
+    til = til_taxmin(mavzu)
     eng, kal = 0.0, ""
     for r in rows:
         if r.get("toifa") != "titul" or r["kalit"] in band:
             continue
-        mos = q & r["asosiy"]
+        qr = _q(q, r, til)
+        mos = qr & r["asosiy"]
         if not mos:
             continue
-        b = sum(idf.get(t, 1.0) for t in mos) / max(1.0, len(r["asosiy"]) ** 0.5)
+        qn = _na(qr)
+        # nomlardan (o'zbekcha / ruscha / inglizcha) mavzuga eng ko'p mos keladigani
+        isim = max(r["ismlar"], key=lambda s: (len(s & qn), -len(s)))
+        mos = {t for t in mos if t.replace("'", "") in isim}
+        if not mos:
+            continue
+        b = sum(idf.get(t, 1.0) for t in mos) / max(1.0, len(isim) ** 0.5)
         if ft and not (ft & r["fan_tok"]):
             b *= 0.5
-        if len(mos) == len(r["asosiy"]):   # titul nomi to'liq mavzuda bor
+        if len(mos) == len(isim):          # titul nomi to'liq mavzuda bor
             b += 2.0
         elif len(mos) < 2:                 # «Kasrlar» ≠ «Algebraik kasrlar»: bitta so'z yetmaydi
             continue
@@ -476,7 +602,10 @@ def universal(meta: dict, band=frozenset(), urug: str = "") -> str:
     if not kodlar:
         return ""
     q = tokenlar((meta or {}).get("mavzu") or "")
-    mos = [k for k in kodlar if q & tokenlar(k.replace("_", " "))]   # «Vulqonlar» → vulqon, «Dutor» → dutor
+    ks = set(kodlar)
+    asos = {r["kalit"]: r["asosiy"] for r in indeks()[0] if r["kalit"] in ks}
+    # «Vulqonlar» → vulqon, «Dutor» → dutor, «Вулканы» → vulqon (ruscha nomi bo'yicha)
+    mos = [k for k in kodlar if q & (tokenlar(k.replace("_", " ")) | asos.get(k, set()))]
     if mos:
         kodlar = mos
     h = int(hashlib.md5(f"{(meta or {}).get('mavzu') or ''}|{urug}".encode("utf-8")).hexdigest(), 16)

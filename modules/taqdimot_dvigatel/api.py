@@ -641,12 +641,14 @@ def register_taqdimot_dvigatel(app, platform):
     @app.get(PREFIX + "/rasmlar")
     def rasm_royxat(q: str = "", authorization: str | None = Header(None)):
         D.actor(authorization)
+        xom = q
         q = rasmlar.kalit_toza(q)
         with D.ps.db() as cur:
             cur.execute("SELECT kalit, tavsif FROM taqdimot_rasmlar WHERE kalit LIKE %s ORDER BY vaqt DESC LIMIT 60", (f"%{q}%",))
             rows = [{"kalit": r["kalit"], "tavsif": r["tavsif"], "tur": "yuklangan"} for r in cur.fetchall()]
         bor = {r["kalit"] for r in rows}
-        rows += [r for r in rasmlar.papkadan_qidir(q, 120 - len(rows)) if r["kalit"] not in bor]
+        # kirill so'rov («яблоко») ham reestrdagi ruscha nom bo'yicha topiladi
+        rows += [r for r in rasmlar.papkadan_qidir(xom, 120 - len(rows)) if r["kalit"] not in bor]
         return {"rasmlar": rows}
 
     # --- Ochiq dars: metodlar bazasi + mavzu masalliqlari → reja, Word ishlanma, PPTX ---

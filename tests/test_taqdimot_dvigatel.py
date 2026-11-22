@@ -536,3 +536,28 @@ def test_rasmlar_001_1000_reestrda_va_topiladi():
     assert rasm_tanla.titul_rasmi("Kasrlar", "Matematika") == ""          # «Algebraik kasrlar» emas
     assert rasm_tanla.buyum_rasmi("lochin") == "peregrine_falcon_bola"
     assert "daily_routine_of_a_schoolchild_sahna_bola" in rasm_tanla.universal_hovuz("Fizika")
+
+
+def test_rasm_qidiruvi_uch_tilda():
+    """Ruscha va inglizcha taqdimot ham reestr rasmlarini topadi; tillar bir-biriga tasodifan mos tushmaydi."""
+    import re
+    from modules.taqdimot_dvigatel import ai, rasm_tanla as rt, rasmlar
+    reg = rasmlar.papka_reestri()
+    assert all(r.get("nom_ru") and r.get("nom_en") for r in reg)
+    assert all(re.search(r"[а-яё]", r["nom_ru"].lower()) for r in reg)
+    for mavzu, fan in (("Фотосинтез", "Биология"), ("Photosynthesis", "Biology"), ("Fotosintez", "Biologiya")):
+        assert rt.titul_rasmi(mavzu, fan) == "photosynthesis_light_and_dark_reactions_titul"
+    assert rt.titul_rasmi("Закон Ома", "Физика") == rt.titul_rasmi("Ohm's law", "Physics") == "ohms_law_titul"
+    assert rt.titul_rasmi("Законы Ньютона", "Физика") == rt.titul_rasmi("Newton's laws", "Physics") == "newtons_laws_titul"
+    for soz in ("Сапсан", "peregrine falcon", "lochin"):
+        assert rt.buyum_rasmi(soz) == "peregrine_falcon_bola"
+    for soz in ("Микроскоп", "microscope", "Mikroskop"):          # «микросхема» emas
+        assert rt.buyum_rasmi(soz) == "mikroskop"
+    assert rt.buyum_rasmi("Сердце") == rt.buyum_rasmi("heart") == "yurak"
+    # o'zbekcha «dispersiya» inglizcha «seed dispersal» rasmiga tushmaydi
+    assert rt.til_taxmin("Dispersiya (prizmada)") == "uz" and rt.til_taxmin("Seed dispersal by wind") == "en"
+    assert rt.eng_mos("Dispersiya (prizmada) Dispersiya", fan="Fizika")[0] != "seed_dispersal_by_wind_water_animals_bola"
+    assert {"biolog"} <= rt._fan_guruh("Биология") and {"tillar"} <= rt._fan_guruh("Русский язык")
+    # AI katalogi taqdimot tilida
+    assert "— Фотосинтез" in ai.katalog_matni("Фотосинтез растения", "Биология", 20, "ru")
+    assert "— Photosynthesis" in ai.katalog_matni("Photosynthesis in plants", "Biology", 20, "en")
