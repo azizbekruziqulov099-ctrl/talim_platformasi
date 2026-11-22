@@ -463,7 +463,8 @@ def test_universal_rasmlar_bor_va_chiroyli():
         {"sarlavha": "Qwxyz", "elementlar": [{"tur": "matn", "matn": "Qwxyz zyxwq"}]}]}]}
     m = sxema.normallashtir(m)
     rasm_tanla.boyit(m)
-    assert m["meta"]["rasm"] in rasm_tanla.UNIVERSAL["kimyo"].split() and m["bolimlar"][0].get("rasm")
+    hovuz = rasm_tanla.UNIVERSAL["kimyo"].split() + rasm_tanla.universal_hovuz("Kimyo", "kimyo")
+    assert m["meta"]["rasm"] in hovuz and m["bolimlar"][0].get("rasm")
 
 
 def test_ochiq_dars_ai_rejimi(monkeypatch):
@@ -521,3 +522,17 @@ def test_ochiq_dars_mavzu_mazmuni_slaydda_javoblar_izohda(andoza):
         assert "Asosiy qoida" in matn and "Yechim (o‘qituvchi uchun)" in matn and "Tipik qiyinchiliklar" in matn
     sah = yasash.yasa(m, seed=2, bolim_titul=True)
     assert len(sah["slaydlar"]) >= 12
+
+
+def test_rasmlar_001_1000_reestrda_va_topiladi():
+    from modules.taqdimot_dvigatel import rasm_tanla, rasmlar
+    reg = [r for r in rasmlar.papka_reestri() if (r.get("manba") or "").startswith("Rasmlar")]
+    assert len(reg) == 1000
+    for r in reg:
+        assert rasmlar.bor(r["kalit"]) and r["nom"] and r["fan"] and r["vaziyat"]
+        assert 1 <= r["umumiylik"] <= 4 and 3 <= r["sifat"] <= 5 and r["toifa"]
+    assert all(r.get("umumiylik") and r.get("sifat") for r in rasmlar.papka_reestri() if r.get("tur") == "rasm")
+    assert rasm_tanla.titul_rasmi("Fotosintez", "Biologiya") == "photosynthesis_light_and_dark_reactions_titul"
+    assert rasm_tanla.titul_rasmi("Kasrlar", "Matematika") == ""          # «Algebraik kasrlar» emas
+    assert rasm_tanla.buyum_rasmi("lochin") == "peregrine_falcon_bola"
+    assert "daily_routine_of_a_schoolchild_sahna_bola" in rasm_tanla.universal_hovuz("Fizika")

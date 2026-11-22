@@ -162,10 +162,16 @@ def _indeks(_mt: float, _yuklangan: frozenset = frozenset()):
         kt = tokenlar(k.replace("_", " "))
         nt = tokenlar(r.get("nom") or "")
         # kalitda apostrof yo'q (oqituvchi) — nomdagi to'g'ri yozuvini olamiz (o'qituvchi)
-        asosiy = {t for t in nt if t.replace("'", "") in kt} | {t for t in kt if not any(x.replace("'", "") == t for x in nt)}
-        hammasi = asosiy | nt | tokenlar(r.get("izoh") or "" if r.get("tur") == "rasm" else "")
+        tg = tokenlar(" ".join(r.get("teglar") or []))
+        if r.get("en"):   # inglizcha kalitli (Rasmlar 001–1000): asosiy so'zlar o'zbekcha nomdan
+            asosiy = set(nt)
+        else:
+            asosiy = {t for t in nt if t.replace("'", "") in kt} | {t for t in kt if not any(x.replace("'", "") == t for x in nt)}
+        hammasi = asosiy | nt | tg | tokenlar(r.get("izoh") or "" if r.get("tur") == "rasm" else "")
         rows.append({"kalit": k, "tur": r.get("tur") or "rasm", "nom": r.get("nom") or "", "fan": r.get("fan") or "",
-                     "asosiy": asosiy, "tok": hammasi, "fan_tok": _fan_guruh(r.get("fan") or ""), "ismlar": [_na(asosiy)]})
+                     "asosiy": asosiy, "tok": hammasi, "fan_tok": _fan_guruh(r.get("fan") or ""), "ismlar": [_na(asosiy)],
+                     "toifa": r.get("toifa") or "", "umumiylik": int(r.get("umumiylik") or 3), "sifat": int(r.get("sifat") or 4),
+                     "shakl": r.get("shakl") or ""})
     ichki = {r["kalit"] for r in rows}
     rows += [r for r in _kutubxona_cache() if r["kalit"] not in ichki]
     if _yuklangan:  # buyurtma bo'yicha chizilib, saytga yuklangan rasmlar
@@ -298,7 +304,10 @@ def katalog(matn: str, fan: str = "", n: int = 60):
         elif fan_mos:
             b += 2.5
         if b > 0:
-            ballar.append((b, r["kalit"], r["nom"]))
+            b += 0.3 * (r.get("sifat", 4) - 4)
+            belgi = ", ".join(x for x in (r.get("toifa") or "", f"umumiylik {r['umumiylik']}" if r.get("toifa") else "",
+                                           f"sifat {r['sifat']}" if r.get("toifa") else "", r.get("shakl") or "") if x)
+            ballar.append((b, r["kalit"], r["nom"] + (f" [{belgi}]" if belgi else "")))
     ballar.sort(reverse=True)
     out = [(k, nom) for _, k, nom in ballar[:n]]
     # rejadagi (hali chizilmagan) rasmlar: AI kalitini yozadi — rasm yuklanganda taqdimotga o'zi tushadi
@@ -414,11 +423,54 @@ def _universal_guruh(meta: dict) -> str:
     return fk if fk in UNIVERSAL else "umumiy"
 
 
+def universal_hovuz(fan: str, guruh: str = "") -> list:
+    """Reestrdan: umumiylik 1–2 (fanning istalgan mavzusiga yaraydi), sifati 4+, banner emas — sifat bo'yicha."""
+    rows, _ = indeks()
+    ft = _fan_guruh(fan)
+    out = []
+    for r in rows:
+        if r["tur"] != "rasm" or r.get("rk") or r.get("sifat", 4) < 4 or r.get("shakl") == "banner":
+            continue
+        u = r.get("umumiylik", 3)
+        if u == 1 or (u == 2 and ft and ft & r["fan_tok"]):
+            out.append((-r.get("sifat", 4), u, r["kalit"]))
+    if guruh == "matematika_kichik":   # 1–4-sinf: bolalarbop rasmlar
+        out = [x for x in out if x[1] == 1] + [x for x in out if x[1] != 1]
+    return [k for _, _, k in sorted(out)]
+
+
+def titul_rasmi(mavzu: str, fan: str = "", band=frozenset()) -> str:
+    """Mavzu titul rasmlari (toifa=titul) orasidan mavzuga mosini topadi: «Fotosintez» → fotosintez titul rasmi."""
+    rows, idf = indeks()
+    q = tokenlar(mavzu)
+    if not q:
+        return ""
+    ft = _fan_guruh(fan)
+    eng, kal = 0.0, ""
+    for r in rows:
+        if r.get("toifa") != "titul" or r["kalit"] in band:
+            continue
+        mos = q & r["asosiy"]
+        if not mos:
+            continue
+        b = sum(idf.get(t, 1.0) for t in mos) / max(1.0, len(r["asosiy"]) ** 0.5)
+        if ft and not (ft & r["fan_tok"]):
+            b *= 0.5
+        if len(mos) == len(r["asosiy"]):   # titul nomi to'liq mavzuda bor
+            b += 2.0
+        elif len(mos) < 2:                 # «Kasrlar» ≠ «Algebraik kasrlar»: bitta so'z yetmaydi
+            continue
+        if b > eng:
+            eng, kal = b, r["kalit"]
+    return kal if eng >= 2.0 else ""
+
+
 def universal(meta: dict, band=frozenset(), urug: str = "") -> str:
     """Fanga mos chiroyli universal rasm (mavzu bo'yicha barqaror tanlanadi, ishlatilganlari chetlanadi)."""
     import hashlib
     guruh = _universal_guruh(meta or {})
     kodlar = [k for k in UNIVERSAL[guruh].split() if k not in band and rasmlar.bor(k)]
+    kodlar += [k for k in universal_hovuz((meta or {}).get("fan") or "", guruh) if k not in band and k not in kodlar]
     if not kodlar:
         kodlar = [k for k in UNIVERSAL["umumiy"].split() if k not in band and rasmlar.bor(k)]
     if not kodlar:
@@ -605,7 +657,9 @@ def boyit(m: dict, avto: bool = True) -> dict:
         # 4) titul hali bo'sh bo'lsa — butun taqdimot matni bo'yicha (slaydlarda ishlatilmagan rasm)
         if titul_kerak:
             matn = " ".join([meta.get("mavzu") or ""] * 2 + [sl.get("sarlavha") or "" for sl in kontent])
-            kal, _b = eng_mos(matn, chegara=7.0, band=band, fan=fan, rk=False)
+            kal = titul_rasmi(meta.get("mavzu") or "", fan, band) or None
+            if not kal:
+                kal, _b = eng_mos(matn, chegara=7.0, band=band, fan=fan, rk=False)
             if not kal:  # yangisi bo'lmasa — taqdimotdagi eng mavzuviy rasm titulda ham turadi
                 kal, _b = eng_mos(matn, chegara=7.0, fan=fan, rk=False)
             if not kal and nomzod and qoyildi:  # eng yuqori ballli slayd rasmi

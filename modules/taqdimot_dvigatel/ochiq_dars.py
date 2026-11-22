@@ -742,6 +742,9 @@ def _universal_rasm(mavzu, fan_nomi, sorov) -> str:
     """Titul rasmi: avval mavzu nomiga mos kutubxona rasmi, topilmasa — fanning chiroyli universal rasmi."""
     from . import rasm_tanla
     try:
+        kal = rasm_tanla.titul_rasmi(mavzu, fan_nomi or "")
+        if kal:
+            return kal
         kal, _b = rasm_tanla.eng_mos(" ".join([mavzu] * 2), chegara=6.0, fan=fan_nomi or "")
         if kal:
             return kal
