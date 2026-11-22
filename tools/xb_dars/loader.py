@@ -77,7 +77,7 @@ def tekshir(kod, qadamlar):
     if qadamlar and qadamlar[-1]["turi"] != "xulosa": x.append("oxirgi qadam @xulosa bo'lsin")
     t = [q for q in qadamlar if q["turi"] == "tushuncha"]
     if len(t) < 3: x.append(f"kamida 3 tushuncha kerak ({len(t)})")
-    if sum(len(q["teksh"]) for q in qadamlar) < 4: x.append("kamida 4 tekshiruv savoli")
+    if sum(len(q["teksh"]) for q in qadamlar) < 10: x.append("kamida 10 tekshiruv savoli (dars oxirida 10 ta test)")
     for q in qadamlar:
         if q["turi"] != "xulosa" and len(q["ovoz"]) < 60: x.append(f"«{q['sarlavha']}»: ovoz juda qisqa")
         mats = (q["ovoz"] + " " + " ".join(q["doska"])).lower()

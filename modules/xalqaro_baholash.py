@@ -745,7 +745,7 @@ def dars_payload(topic_code, kontent=None, til="uz"):
     rng = random.Random(hashlib.md5(d["kod"].encode()).hexdigest())
     pool = [s for s in k.by_mavzu.get(d["mavzu"], []) if s["variantlar"][0]["turi"] == "tanlov" and not s["variantlar"][0].get("rasm")]
     rng.shuffle(pool)
-    for s in pool[:5]:
+    for s in pool[:10]:
         v = s["variantlar"][0]
         savollar.append({"id": f"xb-{s['id']}", "savol": v["savol"], "variantlar": v["javoblar"], "togri": v["togri"],
                          "izoh": " ".join(x["doska"] for x in (v.get("yechim") or [])[-1:]), "kod": ""})

@@ -114,7 +114,7 @@ def test_oliy_kurs_yakuniy_va_10_test():   # REV471
     assert out[-1]["nazorat"] == "oliy_yakuniy" and out[-1]["savollar"] == 50 and len(out[-1]["darslar"]) == 10
     assert yakuniy_qosh(items[:2]) == items[:2]
     assert savol_chegarasi({"sinf": "1 kurs"}) == 10 and savol_chegarasi({"sinf": "2 kurs magistr"}) == 10
-    assert savol_chegarasi({"sinf": "7"}) == 5
+    assert savol_chegarasi({"sinf": "7"}) == 10
 
 
 def test_ruscha_dars_tartibi():   # REV471

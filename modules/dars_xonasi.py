@@ -27,7 +27,7 @@ VARIANT_NAMES = {
     "takrorlash": "Oldingi mavzu",
 }
 MAX_STEPS = 220   # REV406: markaz kitoblaridagi uzun darslar (nazariya + namuna + mashq + test)
-MAX_QUESTIONS = 5
+MAX_QUESTIONS = 10
 KATTA_TEST = 200   # REV470: 13.00.02 doktorantura — bir bo'lim = bitta dars, oxirida bo'limning barcha testlari (100–150 ta)
 
 
