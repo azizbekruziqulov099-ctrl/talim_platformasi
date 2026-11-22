@@ -169,6 +169,16 @@ CLASS = {
 IZOH_DIR = Path(__file__).resolve().parent / "bogcha_content" / "izoh"
 IZOH_LANGS = ("uz", "ru", "en")
 IZOH_DICTS = {}             # izoh → {sid: tarjima}; bir marta yuklanadi (selftest o'z lug'atini shu yerga qo'yadi)
+# REV680: bolalarga «sen» — dvigatel shablonlaridagi «siz» shakllari (lug'at kaliti o'zgarmaydi, faqat o'zbekcha chiqish)
+_SEN = (("Keling, ", "Kel, "), ("Qani, toping:", "Qani, top:"), ("keling, ", "kel, "))
+
+
+def sen_shakl(matn):
+    for a, b in _SEN:
+        matn = matn.replace(a, b)
+    return matn
+
+
 IZOH_ALLOW_MISSING = False  # True — lug'atda yo'q matn o'zbekcha qoladi (extract / qoralama yig'ish uchun)
 IZOH_RECORDER = None        # callable(kind, text, ctx) — extract: ishlatilgan har shablon va bo'lak yoziladi
 YECHIM_DEFAULT = "Barakalla! Juda yaxshi bajarding! 🌟"   # bogcha_kitob.ai_workbook dagi topshiriq yechimi
@@ -345,7 +355,7 @@ class Builder:
         """Dvigatel shabloni (o'zbekcha) → izoh tilida, keyin .format(**kw)."""
         self._record("shablon", uz_template, "shablon: " + ", ".join("{%s}" % k for k in kw) if kw else "shablon")
         if self.izoh == "uz":
-            return uz_template.format(**kw)
+            return sen_shakl(uz_template).format(**kw)
         return self._lookup(uz_template).format(**kw)
 
     def UZ(self, text, kind="uz"):
@@ -704,9 +714,9 @@ class Builder:
         index = len(self.lesson_items)
         items = [dict(it, _unit=unit_no) for it in lesson["items"]]
         name = self.UZ(lesson["name"], "nom")
-        rows = [{"turi": "kirish", "sarlavha": f"{unit.get('emoji', '🕊️')} {name}",
+        rows = [{"turi": "kirish", "sarlavha": f"{unit.get('emoji', '🤖')} {name}",
                  "matn": self.intro_text(lesson, self.U("Salom, do'stim! Men — robot Kabu. Bip-bip! Bugun «{name}» mavzusini o'rganamiz.", name=name)),
-                 "doska": f"🕊️ {name}", "rasm": lesson.get("image_scene", "")}]
+                 "doska": f"🤖 {name}", "rasm": lesson.get("image_scene", "")}]
         rows += self.review_rows(index)
         for n, it in enumerate(items):
             show_uz = self.lang and it.get("uz") and self.level <= 3
