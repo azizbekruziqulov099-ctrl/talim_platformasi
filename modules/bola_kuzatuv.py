@@ -1291,6 +1291,40 @@ def create_router(platform):
             return {"bola": {"user_id": bola_id, "ism": name}, "sozlar": out[:80]}
         return run_db(run)
 
+    @router.get("/api/ota/bola_til")
+    def child_language_progress(bola_id: int, token: str = None, authorization: str = Header(None)):
+        """REV693: til o'zlashtirish foizi (o'rgangan / mustahkam so'zlar, bosqich) va fanlar bo'yicha natija — oxirgi 180 kun."""
+        try:
+            from . import til_foiz
+        except ImportError:
+            from modules import til_foiz
+        parent_id = uid_of(token, authorization)
+        day = tashkent_day(datetime.now(timezone.utc))
+
+        def run(conn, cur):
+            ota_huquqi(cur, parent_id, bola_id)
+            cur.execute("""SELECT fan, sana, sozlar, togri, jami, tugadi_at FROM bola_dars_faollik
+                           WHERE child_id=%s AND sana > %s ORDER BY sana DESC, boshlandi_at DESC LIMIT 3000""",
+                        (bola_id, day - timedelta(days=180)))
+            rows = []
+            for r in cur.fetchall():
+                words = r["sozlar"]
+                if isinstance(words, str):
+                    try:
+                        words = json.loads(words)
+                    except ValueError:
+                        words = []
+                rows.append({"fan": r["fan"], "sana": r["sana"], "sozlar": clean_words(words if isinstance(words, list) else []),
+                             "togri": r["togri"], "jami": r["jami"], "tugadi": r["tugadi_at"] is not None})
+            conn.commit()
+            name, _ = child_card(cur, bola_id)
+
+            def kurs_of(fan):
+                key = reja_mod.fan_kaliti(fan)
+                return key, reja_mod.KURS.get(key, {})
+            return {"bola": {"user_id": bola_id, "ism": name}, **til_foiz.ozlashtirish(rows, kurs_of)}
+        return run_db(run)
+
     # ── REV166: yutuqlar (umumiy yulduz, daraja, ketma-ket kunlar) va kundalik — bola ham, ota-ona ham ko'radi ──
     def yutuqlar(cur, child_id, day):
         cur.execute("""SELECT COALESCE(SUM(yulduz),0) AS n FROM bola_dars_holat WHERE child_id=%s AND tugatilgan_at IS NOT NULL""",
