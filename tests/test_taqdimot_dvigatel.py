@@ -645,3 +645,20 @@ def test_matn_bosh_joyda_kattalashadi_va_ustiga_chiqmaydi():
     assert t[2]["sc"] <= 1.6 and t[2]["ly"][-1]["y"] < 440                # rasm ustiga chiqmadi
     assert t[3]["sc"] < 1.0 and t[3]["ly"][0]["x"] + t[3]["ly"][0]["w"] <= 361   # uzun havola qutidan chiqmadi
     assert all("_o" not in e for e in els)
+
+
+def test_har_bir_reestr_rasmi_oz_nomi_bilan_topiladi():
+    """Reestrdagi har bir rasm ishlatila oladi: o'z nomi bilan qidirilganda birinchi bo'lib yoki AI ro'yxatida chiqadi."""
+    from modules.taqdimot_dvigatel import rasm_tanla as rt, rasmlar
+    assert rt.tokenlar("Elektrostatika") != rt.tokenlar("Elektromagnit") != rt.tokenlar("Elektroskop")
+    assert rt.til_taxmin("And kondori") != "en"
+    yoq = []
+    for r in rasmlar.papka_reestri():
+        if r.get("tur") != "rasm":
+            continue
+        nom, fan = r["nom"], r.get("fan") or ""
+        if r["kalit"] in (rt.buyum_rasmi(nom), rt.titul_rasmi(nom, fan), rt.eng_mos(nom + " " + nom, fan=fan, chegara=6.0)[0]):
+            continue
+        if r["kalit"] not in [k for k, _ in rt.katalog(nom, fan, 12)]:
+            yoq.append(r["kalit"])
+    assert not yoq, yoq[:10]

@@ -62,7 +62,8 @@ def _ildiz(soz: str) -> str:
     elif len(s) >= 4 and s.endswith("s") and not s.endswith(("ss", "us", "is", "as", "os")):
         s = s[:-1]
     # inglizcha so'z (w, ch'siz c, ph, th — o'zbek lotinida yo'q): 7 harf — microscope ≠ microchip, photosynthesis ≠ photos
-    chek = 7 if _INGLIZ.search(s) else 6
+    # uzun so'zlar: «elektrostatika», «elektromagnit», «elektroskop» bitta «elektr»ga aylanib qolmasin
+    chek = 9 if len(s.replace("'", "")) >= 10 else 7 if _INGLIZ.search(s) else 6
     out, n = "", 0
     for ch in s:  # 6 ta harf (apostrof hisobga olinmaydi): o'qituvchi → o'qituv
         out += ch
@@ -98,18 +99,19 @@ def til_taxmin(matn: str) -> str:
     m = (matn or "").lower().translate(_APO)
     if re.search(r"[а-яёўқғҳ]", m):
         return "ru"
-    uz = en = 0
+    uz = en = n = 0
     for w in re.findall(r"[a-z']+", m):
         w = w.strip("'")
         if not w:
             continue
+        n += 1
         if w in _UZ_SOZ or "o'" in w or "g'" in w or re.search(r"q(?!u)", w) or (len(w) >= 5 and w.endswith(_UZ_OXIR)):
             uz += 1
         if w in _EN_SOZ or (w not in _UZ_SOZ and re.search(r"w|th|ph|c(?!h)|tion$|ness$|ous$", w)):
             en += 1
     if uz > en:
         return "uz"
-    if en > uz:
+    if en > uz and (en >= 2 or n == 1):   # bitta tasodifiy belgi («And kondori», «sincobi») — inglizcha degani emas
         return "en"
     return ""
 
