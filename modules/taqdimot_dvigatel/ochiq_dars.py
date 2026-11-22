@@ -95,12 +95,15 @@ def fan(kod: str) -> dict:
             "amaliy_misol": "", "laboratoriya": "", "steam": ""}
 
 
+UMUMIY_ANDOZALAR = ("ochiq_guruh_45_kichik", "ochiq_guruh_45", "ochiq_otm_80", "loyiha_45", "ekskursiya_45")
+
+
 def andozalar(yosh: str, fan_kod: str) -> list:
     """Shu sinf va fanga mos dars turlari (andozalar) ro'yxati."""
     A = baza()["A"]
     f = fan(fan_kod)
     out = [A[k] for k in f["andozalar"] if k in A and yosh in A[k]["yosh"]]
-    for k in ("ochiq_guruh_45_kichik", "ochiq_guruh_45", "ochiq_otm_80"):   # ochiq dars har fanda bo'lishi mumkin
+    for k in UMUMIY_ANDOZALAR:   # ochiq dars, loyiha va ekskursiya darsi har fanda bo'lishi mumkin
         if k in A and yosh in A[k]["yosh"] and A[k] not in out and fan_kod != "jismoniy":
             out.append(A[k])
     return out
@@ -267,6 +270,20 @@ def masalliq(miya: dict | None) -> dict:
                 mas["tajriba"] = {"nom": e.get("sarlavha") or e.get("maqsad") or "Tajriba", "jihozlar": [j["nom"] for j in e.get("jihozlar") or []],
                                   "bosqichlar": e["bosqichlar"], "kuzatish": e.get("natija") or "", "xavfsizlik": e.get("xavfsizlik") or ""}
                 break
+    if not mas["bayon"]:
+        mas["bayon"] = _bayon_miyadan(m)
+    if not mas["asosiy_qoida"]:
+        for _b, _sl, e in els:
+            if e.get("tur") in ("qoida", "teorema", "tarif") and (e.get("matn") or e.get("formula")):
+                mas["asosiy_qoida"] = (_gaplar(e.get("matn") or "", 2) + (" " + e["formula"] if e.get("formula") else "")).strip()
+                break
+    if not mas["misollar"]:
+        mas["misollar"] = [{"shart": e.get("shart") or e.get("matn") or "", "yechim": list(e.get("qadamlar") or []), "javob": e.get("javob") or ""}
+                           for _b, _sl, e in els if e.get("tur") in ("misol", "masala") and (e.get("shart") or e.get("matn"))][:3]
+    if not mas["mashqlar"]:
+        mas["mashqlar"] = [{"shart": x, "javob": ""} for x in list(m.get("mustaqil_ish") or []) + list(m.get("nazorat") or [])][:6]
+    if not mas["guruh_topshiriqlari"]:
+        mas["guruh_topshiriqlari"] = _topshiriqlar_miyadan(m, mas)
     if not mas["hikmat"]:
         mas["hikmat"] = _HIKMATLAR[int(hashlib.md5(_n(meta.get("mavzu")).encode()).hexdigest(), 16) % len(_HIKMATLAR)]
     if not mas["kalit_soz"]:
@@ -388,6 +405,118 @@ def _mazmun_slaydlari(miya: dict, n: int) -> list:
     return out
 
 
+def _bayon_miyadan(m: dict) -> list:
+    """AI masallig'i bo'lmasa — o'rgatish ketma-ketligi miyaning mazmunli slaydlaridan (ta'rif, qoida, misol, rasm)."""
+    out = []
+    for sl in _mazmun_slaydlari(m, 5):
+        matn, misol, rasm = [], "", ""
+        for e in sl.get("elementlar") or []:
+            t = e.get("tur")
+            if t in ("misol", "masala") and not misol:
+                misol = " ".join(x for x in (e.get("shart") or e.get("matn") or "", ("Javob: " + e["javob"]) if e.get("javob") else "") if x)
+            elif t == "xossalar":
+                matn.append("; ".join(f"{b.get('nom') or ''} {b.get('matn') or ''}".strip() for b in e.get("bandlar") or []))
+            elif e.get("matn") or e.get("formula"):
+                matn.append((_gaplar(e.get("matn") or "", 3) + (" " + e["formula"] if e.get("formula") else "")).strip())
+            rasm = rasm or e.get("rasm") or ""
+        matn = " ".join(x for x in matn if x).strip()
+        if matn or misol:
+            out.append({"sarlavha": sl.get("sarlavha") or "", "matn": matn[:900], "misol": misol[:400], "savol": "", "javob": "", "rasm": rasm})
+    return out
+
+
+def _topshiriqlar_miyadan(m: dict, mas: dict) -> list:
+    """Guruh topshiriqlari (AI yozmagan bo'lsa): miyadagi masalalar, mustaqil ish, so'ng mavzu qismlari bo'yicha topshiriq."""
+    out = []
+    for b in m.get("bolimlar") or []:
+        for sl in b.get("slaydlar") or []:
+            for e in sl.get("elementlar") or []:
+                if e.get("tur") in ("masala", "misol") and (e.get("shart") or e.get("matn")):
+                    out.append({"nom": sl.get("sarlavha") or "Masala", "topshiriq": e.get("shart") or e.get("matn"),
+                                "yechim": "; ".join(list(e.get("qadamlar") or []) + ([f"Javob: {e['javob']}"] if e.get("javob") else [])),
+                                "mahsulot": "yechim va javob"})
+    out = out[len(mas.get("misollar") or []):] or out      # doskadagi namunalar takrorlanmasin
+    for x in m.get("mustaqil_ish") or []:
+        out.append({"nom": "Topshiriq", "topshiriq": x, "yechim": "", "mahsulot": "yechim"})
+    for q in mas.get("qismlar") or []:
+        out.append({"nom": q["nom"], "topshiriq": f"Matnni o‘qing: «{_gaplar(q['matn'], 3)}» Asosiy fikrni 3 ta band bilan yozing"
+                    + (f" va savolga javob bering: {q['savol']}" if q.get("savol") else "."), "yechim": "", "mahsulot": "3 band va javob"})
+    return out[:4]
+
+
+BAYON_METOD = {"evristik_suhbat", "kichik_maruza", "modellashtirish", "namunaviy_yechim", "mozaika", "insert", "ppp", "tpr",
+               "zinama_zina", "yonaltiruvchi_matn", "bashorat_kuzatish", "tajriba_namoyish"}
+MAZMUN_GURUHLI = {"mozaika", "stansiyalar", "charxpalak", "bumerang", "yonaltiruvchi_matn", "insert", "kubik"}
+
+
+def mazmun_turi(b: dict) -> str:
+    """Bosqichda mavzuning qaysi qismi ishlanadi."""
+    if b.get("mazmun"):
+        return b["mazmun"]
+    t = set(b["metod_turi"])
+    if "yangi_bilim" in t:
+        return "bayon"
+    if "guruh_ishi" in t or (b["guruh"] and t & {"mustahkamlash", "amaliy"}):
+        return "guruh_topshiriq"
+    if t & {"amaliy", "mustahkamlash"}:
+        return "mashq"
+    return ""
+
+
+def bosqich_mazmuni(tur: str, qism: int, qismlar: int, oxirgi: bool, mas: dict, miya: dict | None, guruhlar: list,
+                    metod_kod: str, ishlatildi: set) -> dict:
+    """Bosqichning mavzu mazmuni — sinf va mehmonlar slaydda ko'radigan narsa (metod qoidalari emas)."""
+    nomlar = [g["nom"] for g in guruhlar] or [""]
+    if tur == "bayon":
+        by = mas["bayon"]
+        if by:
+            k = -(-len(by) // max(1, qismlar))
+            bo = by[qism * k:(qism + 1) * k] or by[-1:]
+            if metod_kod in MAZMUN_GURUHLI and len(guruhlar) >= 2:
+                bo = [dict(x, guruh=nomlar[i % len(nomlar)]) for i, x in enumerate(bo if len(bo) > 1 else by[:len(nomlar)])]
+            return {"tur": "bayon", "bayon": bo, "qoida": mas["asosiy_qoida"] if oxirgi else "",
+                    "misollar": mas["misollar"] if oxirgi else []}
+        sl = _mazmun_slaydlari(miya, 3) if miya else []
+        return {"tur": "slaydlar", "slaydlar": sl} if sl else {"tur": "yoq"}
+    if tur == "guruh_topshiriq":
+        if "guruh_topshiriq" in ishlatildi:
+            ht = mas["hayotiy_topshiriq"]
+            if ht["topshiriq"]:
+                return {"tur": "ijodiy", "nom": ht["nom"], "topshiriq": ht["topshiriq"]}
+            tur = "mashq"
+        elif mas["guruh_topshiriqlari"]:
+            ishlatildi.add("guruh_topshiriq")
+            gt = mas["guruh_topshiriqlari"]
+            return {"tur": "guruh_topshiriq", "topshiriqlar": [dict(gt[i % len(gt)], guruh=n) for i, n in enumerate(nomlar)]}
+        else:
+            tur = "mashq"
+    if tur == "mashq" and mas["mashqlar"] and "mashq" not in ishlatildi:
+        ishlatildi.add("mashq")
+        return {"tur": "mashq", "mashqlar": mas["mashqlar"][:6]}
+    lo, ek = mas["loyiha"], mas["ekskursiya"]
+    if tur == "loyiha_kirish" and (lo["muammo"] or lo["nom"]):
+        return {"tur": "loyiha_kirish", "nom": lo["nom"], "muammo": lo["muammo"], "mahsulot": lo["mahsulot"], "mezonlar": lo["mezonlar"]}
+    if tur == "loyiha_himoya" and (lo["guruh_vazifalari"] or lo["nom"]):
+        vz = lo["guruh_vazifalari"] or [lo["mahsulot"] or "loyiha mahsuloti"]
+        return {"tur": "loyiha_himoya", "nom": lo["nom"], "guruhlar": [{"guruh": n, "vazifa": vz[i % len(vz)]} for i, n in enumerate(nomlar)],
+                "mezonlar": lo["mezonlar"]}
+    if tur == "ekskursiya_kirish" and (ek["joy"] or ek["bekatlar"]):
+        return {"tur": "ekskursiya_kirish", "joy": ek["joy"], "kundalik": ek["kundalik"], "xavfsizlik": ek["xavfsizlik"]}
+    if tur == "ekskursiya" and ek["bekatlar"]:
+        return {"tur": "ekskursiya", "joy": ek["joy"], "bekatlar": [dict(x, guruh=nomlar[i % len(nomlar)]) for i, x in enumerate(ek["bekatlar"])]}
+    if tur == "kundalik" and ek["kundalik"]:
+        return {"tur": "kundalik", "savollar": ek["kundalik"]}
+    if tur == "loyiha_himoya" and mas["guruh_topshiriqlari"]:   # loyiha masallig'i yo'q — guruh topshiriqlari loyiha vazifasi bo'ladi
+        gt = mas["guruh_topshiriqlari"]
+        return {"tur": "loyiha_himoya", "nom": "", "guruhlar": [{"guruh": n, "vazifa": gt[i % len(gt)]["topshiriq"]} for i, n in enumerate(nomlar)],
+                "mezonlar": []}
+    if tur == "ekskursiya" and mas["bayon"]:   # ekskursiya masallig'i yo'q — mavzu bayoni bekatlar sifatida
+        return {"tur": "ekskursiya", "joy": "", "bekatlar": [{"nom": x["sarlavha"] or f"{i + 1}-bekat", "matn": x["matn"], "topshiriq": x["savol"],
+                                                              "javob": x["javob"], "rasm": x["rasm"], "guruh": nomlar[i % len(nomlar)]}
+                                                             for i, x in enumerate(mas["bayon"])]}
+    return {"tur": "yoq"}
+
+
 def birlashtirish_materiali(kod: str, mas: dict, miya: dict | None, guruhlar: list, rng: random.Random) -> dict:
     meta = (miya or {}).get("meta") or {}
     nomlar = [g["nom"] for g in guruhlar]
@@ -480,6 +609,13 @@ def tuz(sorov: dict, miya: dict | None = None, mas: dict | None = None) -> dict:
     mavzu = sxema.t(sorov.get("mavzu") or meta.get("mavzu"), 200) or "Mavzu"
     if not meta.get("mavzu"):   # miyasiz (o'z mavzusi): masalliq va materiallarda mavzu nomi chiqsin
         miya = {**(miya or {}), "meta": {**meta, "mavzu": mavzu, "fan": fan_nomi}}
+    manba_mazmun = "ai" if mas else ("miya" if bor_masalliq(miya) else "")
+    if not mas:
+        from . import darslar
+        q = darslar.top(sorov.get("daraja") or "maktab", sorov.get("sinf"), fan_nomi, mavzu)
+        if q:   # qo'lda yozilgan, tekshirilgan dars — ustun; bo'sh qismlari miyadan to'ldiriladi
+            mas = masalliq({**(miya or {}), "masalliq": q["masalliq"]})
+            manba_mazmun = "qolda"
     mas = mas or masalliq(miya)
 
     # guruhlar
@@ -508,6 +644,9 @@ def tuz(sorov: dict, miya: dict | None = None, mas: dict | None = None) -> dict:
         bk = (mazmunli or bn or [None])[0] if rejim == "qolda" else _tanla(rng, mazmunli or bn, set())
 
     bosqichlar, band = [], {bk} if bk else set()
+    mturlari = [mazmun_turi(b) for b in a["bosqichlar"]]
+    bayonlar = [i for i, x in enumerate(mturlari) if x == "bayon"]
+    ishlatildi: set = set()
     for i, b in enumerate(a["bosqichlar"]):
         turlar = set(b["metod_turi"])
         nzb = nomzodlar(b, yosh, fk, ball=True)
@@ -530,6 +669,10 @@ def tuz(sorov: dict, miya: dict | None = None, mas: dict | None = None) -> dict:
                 tartib = mazmunli + [k for k in nz if k not in mazmunli]
                 for k in mazmunli:
                     ballar[k] = ballar.get(k, 0) + 5   # masallig'i bor metod afzal
+                if mturlari[i] == "bayon":             # yangi mavzuni o'rgatishga mos metodlar
+                    for k in nz:
+                        if k in BAYON_METOD:
+                            ballar[k] = ballar.get(k, 0) + 6
                 tk = next((k for k in tartib if k not in band), tartib[0]) if rejim == "qolda" else _tanla(rng, tartib, band, ballar)
             band.add(tk)
             mobj = B["M"][tk]
@@ -540,6 +683,10 @@ def tuz(sorov: dict, miya: dict | None = None, mas: dict | None = None) -> dict:
             metod, mat = None, {"tur": "yoq"}
         if b["nom"].lower().startswith(("uy vazifasi", "uyga", "homework", "yakun va uyga")) and mas["vazifalar"]["A"]:
             mat = {"tur": "vazifalar", "vazifalar": mas["vazifalar"]}
+        mz = bosqich_mazmuni(mturlari[i], bayonlar.index(i) if i in bayonlar else 0, len(bayonlar), bool(bayonlar) and i == bayonlar[-1],
+                             mas, miya, guruhlar, metod["kod"] if metod else "", ishlatildi)
+        if mz["tur"] != "yoq" and mat["tur"] in ("qismlar", "slaydlar"):
+            mat = {"tur": "yoq"}      # mavzu mazmuni allaqachon shu bosqichda — metod materiali takrorlanmaydi
         oq = b["oqituvchi"]
         if metod and metod["tur"] == "metod":
             oq = f"{oq}. {_qavs(metod['nom'])}: {'; '.join(metod['qadamlar'])}"
@@ -549,7 +696,7 @@ def tuz(sorov: dict, miya: dict | None = None, mas: dict | None = None) -> dict:
             "nom": b["nom"], "daq": b["daq"], "oqituvchi": oq, "oquvchi": b["oquvchi"], "metod": metod, "material": mat,
             "guruh": b["guruh"], "ilova": list(b["ilova"]), "izoh": (f"Nega bu metod: {metod.get('natija')}" if fmt == "namunaviy" and metod and metod.get("natija") else ""),
             "nomzodlar": [{"kod": k, "nom": B["M"][k]["nom"], "vaqt": B["M"][k]["vaqt"], "shakl": B["M"][k]["shakl"]} for k in nz[:10]],
-            "nutq": "", "rasm": ""})
+            "mazmun": mz, "nutq": "", "rasm": ""})
 
     asosiy = max((x for x in bosqichlar if x["metod"] and x["metod"]["tur"] == "metod"), key=lambda x: x["daq"], default=None)
     asosiy = asosiy["metod"] if asosiy else None
@@ -572,7 +719,8 @@ def tuz(sorov: dict, miya: dict | None = None, mas: dict | None = None) -> dict:
                                       "format_nom": B["FMT"][fmt]["nom"], "andoza": ak, "andoza_nom": a["nom"], "daqiqa": a["daqiqa"],
                                       "oquvchilar": oquvchilar, "rejim": rejim, "urug": urug,
                                       "rasm": meta.get("rasm") or _universal_rasm(mavzu, fan_nomi, sorov),
-                                      "masalliq_bor": bor_masalliq(miya)},
+                                      "masalliq_bor": bool(manba_mazmun) or bool(mas["bayon"] and mas["guruh_topshiriqlari"]),
+                                      "mazmun_manbasi": manba_mazmun},
             "metodik_maqsad": sxema.t(sorov.get("metodik_maqsad"), 300) or (_metodik_maqsad(asosiy, yosh) if fmt != "oddiy" else ""),
             "maqsadlar": maqsad, "kompetensiyalar": komp[:5], "natijalar": natijalar[:5], "jihozlar": jihoz[:12],
             "guruhlash": {"kod": gk, "nom": B["G"][gk]["nom"] if gk else "", "guruhlar": guruhlar,
@@ -584,6 +732,8 @@ def tuz(sorov: dict, miya: dict | None = None, mas: dict | None = None) -> dict:
     dars["baholash"] = _baholash(dars, ak)
     dars["ilovalar"] = _ilovalar(dars, miya)
     dars["tayyorgarlik"] = _tayyorgarlik(dars)
+    if a.get("izoh"):   # loyiha va ekskursiya darsi oldindan boshlanadi
+        dars["tayyorgarlik"].insert(0, {"qachon": "1–2 hafta oldin", "ish": a["izoh"]})
     dars["tahlil"] = B["FMT"]["ochiq"]["tahlil"] if fmt != "oddiy" else {}
     return dars
 
@@ -631,6 +781,11 @@ def _ilovalar(dars, miya) -> list:
             kodlar.append("yoriqnoma_kartasi")
         if mt in ("keys", "taqqoslash", "klaster", "xato", "jamoaviy") and "tarqatma" not in kodlar:
             kodlar.append("tarqatma")
+        mz = (b.get("mazmun") or {}).get("tur")
+        if mz in ("guruh_topshiriq", "mashq", "ekskursiya") and "tarqatma" not in kodlar:
+            kodlar.append("tarqatma")
+        if mz == "bayon" and "tayanch_konspekt" not in kodlar:
+            kodlar.append("tayanch_konspekt")
         b["ilova_raqam"] = [qosh(k) for k in kodlar]
     if dars["meta"]["format"] != "oddiy":
         for k in ("mehmon_varaqasi", "kuzatuv_varagi", "ozini_tahlil"):
@@ -646,9 +801,9 @@ def _tayyorgarlik(dars) -> list:
     ng = len(dars["guruhlash"]["guruhlar"])
     chop = []
     for il in dars["ilovalar"]:
-        if il["kod"] in ("tarqatma", "oyin_kartochkalari", "guruh_qoidalari", "guruh_nomlari"):
+        if il["kod"] in ("tarqatma", "oyin_kartochkalari", "guruh_qoidalari", "guruh_nomlari", "loyiha_varaqasi"):
             chop.append(f"{il['raqam']}-ilova — {ng} nusxa (har guruhga)")
-        elif il["kod"] in ("test", "refleksiya_varagi", "uy_vazifasi", "yoriqnoma_kartasi"):
+        elif il["kod"] in ("test", "refleksiya_varagi", "uy_vazifasi", "yoriqnoma_kartasi", "ekskursiya_varaqasi", "tayanch_konspekt"):
             chop.append(f"{il['raqam']}-ilova — har o‘quvchiga ({dars['meta']['oquvchilar']} nusxa)")
         elif il["kod"] in ("mehmon_varaqasi", "kuzatuv_varagi"):
             chop.append(f"{il['raqam']}-ilova — mehmonlar soniga qarab")
@@ -677,7 +832,7 @@ def _el_material(mat: dict) -> list:
     if t == "bayonotlar":
         return [{"tur": "togri_notogri", "fikrlar": [{"matn": b["matn"], "javob": b["togri"], "izoh": b["izoh"]} for b in mat["bayonotlar"][:6]]}]
     if t == "savollar":
-        bs = [{"nom": f"{i + 1}", "matn": q["savol"]} for i, q in enumerate(mat["savollar"][:6])]
+        bs = [{"nom": "", "matn": q["savol"]} for q in mat["savollar"][:6]]
         out = [{"tur": "xossalar", "korinish": "raqamli", "bandlar": bs}]
         if mat.get("kalit_soz"):
             out.insert(0, {"tur": "eslatma", "matn": "Kalit so‘z: " + " ".join("_" for _ in mat["kalit_soz"])})
@@ -731,58 +886,141 @@ def _el_material(mat: dict) -> list:
     return []
 
 
+def _bosh(x: str) -> str:
+    x = (x or "").strip()
+    return x[:1].upper() + x[1:]
+
+
+def _izoh(b: dict, qoshimcha: list | None = None) -> str:
+    """Slayd izohi (Notes) — faqat o'qituvchi ko'radi: bosqich, vaqt, metod tartibi, aytadigan gapi va javoblar."""
+    q = [f"{b['nom']} — {b['daq']} daqiqa."]
+    if b["metod"]:
+        q.append(f"Metod: {b['metod']['nom']}. " + "; ".join(_qadamlar(b["metod"]["qadamlar"])) + ".")
+    q.append("O‘qituvchi: " + (b.get("nutq") or b["oqituvchi"].split(". «")[0]))
+    q.append(f"O‘quvchilar: {b['oquvchi']}.")
+    q += [x for x in (qoshimcha or []) if x]
+    return "\n".join(q)
+
+
+def _mazmun_slaydlari_dars(b: dict) -> list:
+    """Bosqich mazmuni → slaydlar (sinf va mehmonlar ko'radi: mavzu, topshiriq, rasm). Javob va yechimlar — izohda."""
+    mz = b.get("mazmun") or {}
+    t = mz.get("tur")
+    out = []
+    if t == "bayon":
+        for x in mz["bayon"]:
+            els = [{"tur": "tarif", "sarlavha": x["sarlavha"], "matn": x["matn"]}]
+            if x.get("misol"):
+                els.append({"tur": "misol", "sarlavha": "Misol", "shart": x["misol"]})
+            if x.get("savol"):
+                els.append({"tur": "savol", "matn": x["savol"]})
+            if x.get("rasm"):
+                els.append({"tur": "rasm", "rasm": x["rasm"], "izoh": ""})
+            sar = (f"{x['guruh']}: " if x.get("guruh") else "") + (x["sarlavha"] or b["nom"])
+            out.append({"sarlavha": sar, "izoh": _izoh(b, [f"Savol javobi: {x['javob']}" if x.get("javob") else ""]), "elementlar": els[:4]})
+        if mz.get("qoida"):
+            out.append({"sarlavha": "Asosiy qoida — daftarga yozamiz", "izoh": _izoh(b), "elementlar": [{"tur": "qoida", "matn": mz["qoida"]}]})
+        for i, x in enumerate(mz.get("misollar") or []):
+            out.append({"sarlavha": f"Namuna yechim {i + 1}" if len(mz["misollar"]) > 1 else "Namuna yechim", "izoh": _izoh(b),
+                        "elementlar": [{"tur": "misol", "shart": x["shart"], "qadamlar": x["yechim"][:6], "javob": x["javob"]}]})
+    elif t == "slaydlar":
+        for sl in mz["slaydlar"]:
+            out.append({"sarlavha": sl.get("sarlavha"), "izoh": _izoh(b), "elementlar": sl.get("elementlar") or [], "joylashuv": sl.get("joylashuv") or ""})
+    elif t == "guruh_topshiriq":
+        for x in mz["topshiriqlar"]:
+            els = [{"tur": "masala", "sarlavha": x["nom"], "shart": x["topshiriq"]}]
+            if x.get("mahsulot"):
+                els.append({"tur": "eslatma", "matn": f"Natija: {x['mahsulot']}"})
+            out.append({"sarlavha": f"{x['guruh']} — topshiriq", "izoh": _izoh(b, [f"Yechim: {x['yechim']}" if x.get("yechim") else ""]), "elementlar": els})
+    elif t == "mashq":
+        ms = mz["mashqlar"]
+        out.append({"sarlavha": "Mustaqil bajaramiz", "izoh": _izoh(b, ["Javoblar: " + "; ".join(f"{i + 1}) {x['javob']}" for i, x in enumerate(ms) if x.get("javob"))]),
+                    "elementlar": [{"tur": "xossalar", "korinish": "raqamli", "bandlar": [{"nom": "", "matn": x["shart"]} for x in ms[:6]]}]})
+    elif t == "ijodiy":
+        out.append({"sarlavha": mz["nom"] or "Ijodiy topshiriq", "izoh": _izoh(b), "elementlar": [{"tur": "savol", "matn": mz["topshiriq"]}]})
+    elif t == "loyiha_kirish":
+        els = [{"tur": "savol", "sarlavha": mz["nom"] or "Loyiha muammosi", "matn": mz["muammo"] or mz["nom"]}]
+        if mz["mezonlar"]:
+            els.append({"tur": "xossalar", "korinish": "ikonli", "bandlar": [{"nom": "", "matn": _bosh(x)} for x in mz["mezonlar"][:5]]})
+        out.append({"sarlavha": "Loyiha: muammo va baholash mezonlari", "izoh": _izoh(b), "elementlar": els})
+    elif t == "loyiha_himoya":
+        out.append({"sarlavha": "Loyiha himoyasi" + (f": {mz['nom']}" if mz.get("nom") else ""), "izoh": _izoh(b),
+                    "elementlar": [{"tur": "xossalar", "korinish": "kartalar", "bandlar": [{"nom": g["guruh"], "matn": g["vazifa"]} for g in mz["guruhlar"][:4]]}]})
+    elif t == "ekskursiya_kirish":
+        els = [{"tur": "savol", "sarlavha": "Qayerga boramiz?", "matn": mz["joy"] or "Sayohatga chiqamiz!"}]
+        if mz["kundalik"]:
+            els.append({"tur": "xossalar", "korinish": "raqamli", "bandlar": [{"nom": "", "matn": x} for x in mz["kundalik"][:4]]})
+        out.append({"sarlavha": "Sayohat oldidan: kuzatuv savollari", "izoh": _izoh(b, ["Xavfsizlik: " + "; ".join(mz["xavfsizlik"]) if mz["xavfsizlik"] else ""]),
+                    "elementlar": els})
+    elif t == "ekskursiya":
+        for i, x in enumerate(mz["bekatlar"]):
+            els = [{"tur": "matn", "matn": x["matn"]}]
+            if x.get("rasm"):
+                els.append({"tur": "rasm", "rasm": x["rasm"], "izoh": ""})
+            if x.get("topshiriq"):
+                els.append({"tur": "savol", "matn": x["topshiriq"]})
+            out.append({"sarlavha": f"{i + 1}-bekat: {x['nom']}", "izoh": _izoh(b, [f"Bekat guruhi: {x.get('guruh') or ''}",
+                                                                                  f"Javob: {x['javob']}" if x.get("javob") else ""]), "elementlar": els})
+    elif t == "kundalik":
+        out.append({"sarlavha": "Kuzatuv kundaligi", "izoh": _izoh(b),
+                    "elementlar": [{"tur": "xossalar", "korinish": "raqamli", "bandlar": [{"nom": "", "matn": x} for x in mz["savollar"][:5]]}]})
+    return out
+
+
 def ochiq_miya(dars: dict, miya: dict | None = None) -> dict:
-    """Dars rejasidan taqdimot miyasi: har bosqich — bo'lim; metod ko'rsatmasi, materiali va o'qituvchi gapi (izoh)."""
+    """Dars rejasidan taqdimot miyasi — sinf va mehmonlar ko'radigani: mavzu, topshiriqlar, o'yinlar, rasmlar.
+    Metod tartibi, o'qituvchi gapi, javob va yechimlar slayd izohida (Notes) — faqat o'qituvchi ko'radi."""
     m0 = miya or {}
     mt = dars["meta"]
-    meta = {"mavzu": mt["mavzu"], "fan": mt["fan"], "daraja": mt["daraja"], "sinf": mt["sinf"], "tur": mt["format_nom"].lower(),
+    meta = {"mavzu": mt["mavzu"], "fan": mt["fan"], "daraja": mt["daraja"], "sinf": mt["sinf"], "tur": mt["andoza_nom"].lower(),
             "qisqa": (m0.get("meta") or {}).get("qisqa") or "", "maqsad": dars["maqsadlar"]["talimiy"],
             "tayanch": (m0.get("meta") or {}).get("tayanch") or [], "rasm": mt.get("rasm") or "", "til": "uz"}
     bolimlar = []
     gr = dars["guruhlash"]
-    kirish = [{"sarlavha": "Guruhlar", "izoh": f"Guruhlash: {gr['nom']}. Rollar: " + "; ".join(f"{r['rol']} — {r['vazifa']}" for r in gr["rollar"]),
-               "elementlar": [{"tur": "guruhlash", "guruhlar": [{"nom": g["nom"], "bandlar": [r["rol"] for r in gr["rollar"]][:4]} for g in gr["guruhlar"][:4]]}]
-               if len(gr["guruhlar"]) >= 2 else [{"tur": "matn", "matn": ", ".join(g["nom"] for g in gr["guruhlar"])}]},
-              {"sarlavha": "Guruhda ishlash qoidalari", "elementlar": [{"tur": "xossalar", "korinish": "ikonli",
-                                                                       "bandlar": [{"nom": "", "matn": q} for q in gr["qoidalar"][:5]]}]}]
-    if dars["baholash"]["ustunlar"]:
-        kirish.append({"sarlavha": "Baholash mezonlari", "elementlar": [{"tur": "jadval", "ustunlar": ["Mezon", "Ball"],
-                                                                         "qatorlar": [[x, str(dars["baholash"]["max_ball"])] for x in dars["baholash"]["mezonlar"][:6]]}]})
     for i, b in enumerate(dars["bosqichlar"]):
         slaydlar = []
-        izoh = b.get("nutq") or b["oqituvchi"]
         if b["metod"] and b["metod"]["tur"] == "guruhlash":
-            slaydlar = kirish
+            slaydlar.append({"sarlavha": "Bizning guruhlar", "izoh": _izoh(b, ["Rollar: " + "; ".join(f"{r['rol']} — {r['vazifa']}" for r in gr["rollar"])]),
+                             "elementlar": [{"tur": "guruhlash", "guruhlar": [{"nom": g["nom"], "bandlar": g.get("kartochkalar") or [r["rol"] for r in gr["rollar"]][:4]}
+                                                                              for g in gr["guruhlar"][:4]]}]
+                             if len(gr["guruhlar"]) >= 2 else [{"tur": "matn", "matn": ", ".join(g["nom"] for g in gr["guruhlar"])}]})
+            slaydlar.append({"sarlavha": "Guruhda ishlash qoidalari", "izoh": _izoh(b),
+                             "elementlar": [{"tur": "xossalar", "korinish": "ikonli", "bandlar": [{"nom": "", "matn": _bosh(q)} for q in gr["qoidalar"][:5]]}]})
+            if dars["baholash"]["ustunlar"]:
+                slaydlar.append({"sarlavha": "Qanday baholanamiz", "izoh": _izoh(b), "elementlar": [{"tur": "jadval", "ustunlar": ["Mezon", "Ball"],
+                                 "qatorlar": [[_bosh(x), str(dars["baholash"]["max_ball"])] for x in dars["baholash"]["mezonlar"][:6]]}]})
         else:
-            els = []
-            if b["metod"]:
-                qd = _qadamlar(b["metod"]["qadamlar"])
-                els.append({"tur": "xossalar", "korinish": "raqamli" if len(qd) >= 2 else "ikonli",
-                            "bandlar": [{"nom": "", "matn": q[:1].upper() + q[1:]} for q in qd[:5]]})
-                slaydlar.append({"sarlavha": f"{b['metod']['nom']} · {b['daq']} daqiqa", "izoh": izoh, "elementlar": els})
-            if b["material"]["tur"] == "slaydlar":
-                for sl in b["material"]["slaydlar"]:
-                    slaydlar.append({"sarlavha": sl.get("sarlavha"), "izoh": sl.get("izoh") or izoh, "elementlar": sl.get("elementlar") or [],
+            slaydlar += _mazmun_slaydlari_dars(b)
+            mat = b["material"]
+            if mat["tur"] == "slaydlar":
+                for sl in mat["slaydlar"]:
+                    slaydlar.append({"sarlavha": sl.get("sarlavha"), "izoh": _izoh(b), "elementlar": sl.get("elementlar") or [],
                                      "joylashuv": sl.get("joylashuv") or ""})
-            elif b["material"]["tur"] == "test":
-                pass  # test yakunda alohida chiqadi
-            else:
-                me = _el_material(b["material"])
+            elif mat["tur"] != "test":       # test yakunda alohida chiqadi
+                me = _el_material(mat)
                 if me:
-                    slaydlar.append({"sarlavha": b["metod"]["nom"] if b["metod"] else b["nom"], "izoh": izoh, "elementlar": me})
-            if b.get("rasm"):
-                slaydlar.append({"sarlavha": b["nom"], "izoh": izoh, "elementlar": [{"tur": "rasm", "rasm": b["rasm"], "izoh": ""}]})
+                    javob = []
+                    if mat["tur"] == "savollar":
+                        javob = ["Javoblar: " + "; ".join(f"{k + 1}) {q['javob']}" for k, q in enumerate(mat["savollar"][:6]) if q.get("javob"))]
+                    elif mat["tur"] == "topishmoq":
+                        javob = [f"Javob: {mat['topishmoq']['javob']}"]
+                    elif mat["tur"] == "xato":
+                        javob = [f"To‘g‘ri: {mat['xato']['togri']}. Sabab: {mat['xato']['sabab']}"]
+                    slaydlar.append({"sarlavha": b["metod"]["nom"] if b["metod"] else b["nom"], "izoh": _izoh(b, javob), "elementlar": me})
+            if b.get("rasm") and not any(e.get("rasm") == b["rasm"] for sl in slaydlar for e in sl.get("elementlar") or []):
+                if slaydlar and len(slaydlar[0]["elementlar"]) < 4:
+                    slaydlar[0]["elementlar"].append({"tur": "rasm", "rasm": b["rasm"], "izoh": ""})
+                else:
+                    slaydlar.append({"sarlavha": b["nom"], "izoh": _izoh(b), "elementlar": [{"tur": "rasm", "rasm": b["rasm"], "izoh": ""}]})
             if not slaydlar:
-                slaydlar.append({"sarlavha": f"{b['nom']} · {b['daq']} daqiqa", "izoh": izoh,
-                                 "elementlar": [{"tur": "matn", "matn": b["oquvchi"][:1].upper() + b["oquvchi"][1:]}]})
-        bolimlar.append({"nom": f"{b['nom']} · {b['daq']} daq.", "izoh": b["metod"]["nom"] if b["metod"] else "", "slaydlar": slaydlar})
+                slaydlar.append({"sarlavha": b["nom"], "izoh": _izoh(b), "elementlar": [{"tur": "matn", "matn": _bosh(b["oquvchi"])}]})
+        bolimlar.append({"nom": b["nom"], "izoh": "", "slaydlar": slaydlar})
     test = []
     for b in dars["bosqichlar"]:
         if b["material"]["tur"] == "test":
             test = b["material"]["test"]
-    # uy vazifasi bosqichda chiqadi; xulosa — o'quvchi uchun natijalar (metodik maqsad o'qituvchiniki)
     return {"meta": meta, "bolimlar": bolimlar[:6] if len(bolimlar) <= 6 else _birlashtir_bolimlar(bolimlar),
-            "test": test, "xulosa": {"fikrlar": [x[:1].upper() + x[1:] for x in dars.get("natijalar") or []][:4]}}
+            "test": test, "xulosa": {"fikrlar": [_bosh(x) for x in dars.get("natijalar") or []][:4]}}
 
 
 def _birlashtir_bolimlar(bolimlar: list) -> list:
@@ -791,7 +1029,8 @@ def _birlashtir_bolimlar(bolimlar: list) -> list:
     while len(out) > 6:
         i = min(range(len(out) - 1), key=lambda k: len(out[k]["slaydlar"]) + len(out[k + 1]["slaydlar"]))
         a, b = out[i], out[i + 1]
-        out[i] = {"nom": f"{a['nom'].split(' · ')[0]} va {b['nom'].split(' · ')[0].lower()}", "izoh": "", "slaydlar": a["slaydlar"] + b["slaydlar"]}
+        qisqa = [re.split(r"[:,(]", x["nom"])[0].strip() for x in (a, b)]
+        out[i] = {"nom": f"{qisqa[0]} va {qisqa[1][:1].lower() + qisqa[1][1:]}", "izoh": "", "slaydlar": a["slaydlar"] + b["slaydlar"]}
         del out[i + 1]
     for b in out:
         b["slaydlar"] = b["slaydlar"][:8]
@@ -807,4 +1046,5 @@ def katalog() -> dict:
                            "bosqichlar": [{"nom": b["nom"], "daq": b["daq"]} for b in a["bosqichlar"]]} for a in d["andozalar"]],
             "metodlar": [{k: m[k] for k in ("kod", "nom", "tur", "yosh", "fan", "vaqt", "shakl", "qadamlar", "natija", "ehtiyot")} for m in d["metodlar"]],
             "guruhlash": d["guruhlash"], "birlashtirish": d["birlashtirish"],
-            "fanlar": [{"kod": f["kod"], "nom": f["nom"], "nomlar": f["nomlar"], "yosh": f["yosh"]} for f in d["fanlar"]]}
+            "fanlar": [{"kod": f["kod"], "nom": f["nom"], "nomlar": f["nomlar"], "yosh": f["yosh"],
+                        "andozalar": f["andozalar"] + ([] if f["kod"] == "jismoniy" else list(UMUMIY_ANDOZALAR))} for f in d["fanlar"]]}

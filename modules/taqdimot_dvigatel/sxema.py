@@ -441,6 +441,57 @@ def masalliq_toza(d) -> dict:
         "vazifalar": {"A": t(vz.get("A") or vz.get("a"), 300), "B": t(vz.get("B") or vz.get("b"), 300), "C": t(vz.get("C") or vz.get("c"), 300)},
         "sinkveyn": ls(d.get("sinkveyn"), 5, 80),
         "jamoaviy_masala": {"shart": t(jm.get("shart"), 500), "qismlar": ls(jm.get("qismlar"), 4, 300), "yakun": t(jm.get("yakun"), 300)},
+        **dars_mazmuni_toza(d),
+    }
+
+
+def _rasm_k(v) -> str:
+    k = t(v, 80)
+    return k if re.fullmatch(r"[a-z0-9_]{2,80}", k) else ""
+
+
+def dars_mazmuni_toza(d) -> dict:
+    """Darsning o'zi — mavzu mazmuni: o'rgatish ketma-ketligi (bayon), asosiy qoida, yechimli misollar, har guruh topshirig'i
+    va yechimi, mustaqil mashqlar, tipik qiyinchiliklar, fanlararo bog'lanish, loyiha va ekskursiya (bekatlar)."""
+    d = d if isinstance(d, dict) else {}
+    bayon = []
+    for x in _royxat(d.get("bayon"))[:6]:
+        if isinstance(x, dict) and t(x.get("matn")):
+            bayon.append({"sarlavha": t(x.get("sarlavha"), 90), "matn": t(x.get("matn"), 900), "misol": t(x.get("misol"), 400),
+                          "savol": t(x.get("savol"), 240), "javob": t(x.get("javob"), 240), "rasm": _rasm_k(x.get("rasm"))})
+    misol = []
+    for x in _royxat(d.get("misollar"))[:4]:
+        if isinstance(x, dict) and t(x.get("shart")):
+            misol.append({"shart": t(x.get("shart"), 500), "yechim": ls(x.get("yechim"), 8, 300), "javob": t(x.get("javob"), 240)})
+    gt = []
+    for x in _royxat(d.get("guruh_topshiriqlari"))[:6]:
+        if isinstance(x, dict) and t(x.get("topshiriq")):
+            gt.append({"nom": t(x.get("nom"), 80), "topshiriq": t(x.get("topshiriq"), 900), "yechim": t(x.get("yechim"), 900),
+                       "mahsulot": t(x.get("mahsulot"), 160)})
+    qy = []
+    for x in _royxat(d.get("qiyinchiliklar"))[:4]:
+        if isinstance(x, dict) and t(x.get("xato")):
+            qy.append({"xato": t(x.get("xato"), 300), "sabab": t(x.get("sabab"), 300), "oldini_olish": t(x.get("oldini_olish"), 300)})
+    lo = d.get("loyiha") if isinstance(d.get("loyiha"), dict) else {}
+    ek = d.get("ekskursiya") if isinstance(d.get("ekskursiya"), dict) else {}
+    bek = []
+    for x in _royxat(ek.get("bekatlar"))[:6]:
+        if isinstance(x, dict) and t(x.get("nom")) and t(x.get("matn")):
+            bek.append({"nom": t(x.get("nom"), 90), "matn": t(x.get("matn"), 700), "topshiriq": t(x.get("topshiriq"), 300),
+                        "javob": t(x.get("javob"), 240), "rasm": _rasm_k(x.get("rasm"))})
+    return {
+        "bayon": bayon,
+        "asosiy_qoida": t(d.get("asosiy_qoida"), 400),
+        "misollar": misol,
+        "guruh_topshiriqlari": gt,
+        "mashqlar": _juftlar(d.get("mashqlar"), "shart", "javob", 8, 400, 240),
+        "qiyinchiliklar": qy,
+        "fanlararo": _juftlar(d.get("fanlararo"), "fan", "boglanish", 4, 40, 240),
+        "loyiha": {"nom": t(lo.get("nom"), 120), "muammo": t(lo.get("muammo"), 400), "mahsulot": t(lo.get("mahsulot"), 160),
+                   "bosqichlar": ls(lo.get("bosqichlar"), 6, 200), "guruh_vazifalari": ls(lo.get("guruh_vazifalari"), 6, 300),
+                   "mezonlar": ls(lo.get("mezonlar"), 6, 160)},
+        "ekskursiya": {"joy": t(ek.get("joy"), 200), "bekatlar": bek, "xavfsizlik": ls(ek.get("xavfsizlik"), 5, 200),
+                       "kundalik": ls(ek.get("kundalik"), 5, 200)},
     }
 
 

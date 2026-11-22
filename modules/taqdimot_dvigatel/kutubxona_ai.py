@@ -47,6 +47,9 @@ CREATE INDEX IF NOT EXISTS taqdimot_mavzular_navbat ON taqdimot_mavzular(holat, 
 -- bir mavzu — ikki mahsulot: taqdimot miyasi (miya) va ochiq dars miyasi (ochiq_dars, fan metodlari asosida keyin yoziladi)
 ALTER TABLE taqdimot_mavzular ADD COLUMN IF NOT EXISTS ochiq_dars JSONB;
 ALTER TABLE taqdimot_mavzular ADD COLUMN IF NOT EXISTS ochiq_holat TEXT NOT NULL DEFAULT 'kutmoqda';
+-- dars masalliqlari (bayon, guruh topshiriqlari, loyiha, ekskursiya…) — eski tayyor mavzularga keyin to'ldiriladi
+ALTER TABLE taqdimot_mavzular ADD COLUMN IF NOT EXISTS ochiq_vaqt TIMESTAMPTZ;
+ALTER TABLE taqdimot_mavzular ADD COLUMN IF NOT EXISTS ochiq_urinish INT NOT NULL DEFAULT 0;
 CREATE TABLE IF NOT EXISTS taqdimot_kutubxona_sozlama (
     kalit TEXT PRIMARY KEY,
     qiymat JSONB NOT NULL,
@@ -64,6 +67,13 @@ OTKAZ = re.compile(r"takrorla|masala(lar)? yech|nazorat ishi|mustahkam|^test\b|\
 IJARA_DAQ = 12        # yozuvchi ijarasi (bir nechta gunicorn jarayoni bo'lsa ham bitta yozadi)
 ESKI_DAQ = 30         # shuncha daqiqa «yozilmoqda» turgan mavzu — qayta navbatga
 URINISH_MAX = 3
+# miyada darsning o'zi (bayon) bormi — SQL ifodasi
+BAYON_BOR = ("COALESCE(CASE WHEN jsonb_typeof(miya #> '{masalliq,bayon}') = 'array' "
+             "THEN jsonb_array_length(miya #> '{masalliq,bayon}') END, 0) > 0")
+
+
+def bayon_bor(m) -> bool:
+    return bool(((m or {}).get("masalliq") or {}).get("bayon"))
 TANAFFUS = 15         # mavzular orasida (soniya)
 INFOEDU = "https://infoedu.uz"
 
@@ -341,6 +351,8 @@ class Kutubxona:
             hozir = [_qator(r) for r in cur.fetchall()]
             cur.execute("SELECT manba, count(*) AS n FROM taqdimot_mavzular GROUP BY manba ORDER BY n DESC")
             manbalar = [_qator(r) for r in cur.fetchall()]
+            cur.execute("SELECT ochiq_holat, count(*) AS n FROM taqdimot_mavzular WHERE holat='tayyor' GROUP BY ochiq_holat")
+            dars_mazmuni = {r["ochiq_holat"]: r["n"] for r in cur.fetchall()}
         jami = {h: 0 for h in HOLATLAR}
         guruh = {}
         for r in rows:
@@ -351,7 +363,7 @@ class Kutubxona:
                   sorted(guruh.items(), key=lambda kv: (DARAJALAR.index(kv[0][0]) if kv[0][0] in DARAJALAR else 9, sinf_tartib(kv[0][1]), kv[0][1], kv[0][2]))]
         from . import ai
         return {"jami": jami, "bugun": bugun, "sarf": sarf, "ai": ai.mavjud(), "sozlama": self.sozlama(), "fanlar": fanlar, "xatolar": xatolar, "hozir": hozir,
-                "manbalar": manbalar, "yigish": self._holat_ol("yigish")}
+                "manbalar": manbalar, "yigish": self._holat_ol("yigish"), "dars_mazmuni": dars_mazmuni}
 
     def navbat(self, body) -> int:
         """Tanlangan mavzularni qayta navbatga qo'yish yoki o'tkazib yuborish."""
@@ -568,7 +580,9 @@ class Kutubxona:
             return False
         with self.ps.db() as cur:
             cur.execute("UPDATE taqdimot_mavzular SET holat='kutmoqda' WHERE holat='yozilmoqda' AND boshlandi < now() - make_interval(mins => %s)", (ESKI_DAQ,))
-            cur.execute("SELECT count(*) AS n FROM taqdimot_mavzular WHERE boshlandi > now() - interval '1 day' AND holat IN ('tayyor','yozilmoqda','xato')")
+            cur.execute("SELECT (SELECT count(*) FROM taqdimot_mavzular WHERE boshlandi > now() - interval '1 day' "
+                        "AND holat IN ('tayyor','yozilmoqda','xato')) + (SELECT count(*) FROM taqdimot_mavzular "
+                        "WHERE ochiq_vaqt > now() - interval '1 day') AS n")
             if cur.fetchone()["n"] >= z["kunlik"]:
                 return False
             shart, args = ["holat='kutmoqda'", "yozilsin"], []
@@ -581,17 +595,53 @@ class Kutubxona:
                         f"FOR UPDATE SKIP LOCKED LIMIT 1) RETURNING *", args)
             r = cur.fetchone()
         if not r:
-            return False
+            return self._masalliq_qadam(z)
         r = dict(r)
         try:
             m = self.yoz(r)
             with self.ps.db() as cur:
-                cur.execute("UPDATE taqdimot_mavzular SET holat='tayyor', miya=%s, yozildi=now(), xato=NULL WHERE id=%s",
-                            (json.dumps(m, ensure_ascii=False), r["id"]))
+                cur.execute("UPDATE taqdimot_mavzular SET holat='tayyor', miya=%s, yozildi=now(), xato=NULL, ochiq_holat=%s WHERE id=%s",
+                            (json.dumps(m, ensure_ascii=False), "tayyor" if bayon_bor(m) else "kutmoqda", r["id"]))
         except Exception as exc:
             with self.ps.db() as cur:
                 cur.execute("UPDATE taqdimot_mavzular SET holat=%s, xato=%s WHERE id=%s",
                             ("xato" if r["urinish"] >= URINISH_MAX else "kutmoqda", str(exc)[:300], r["id"]))
+        return True
+
+    def _masalliq_qadam(self, z) -> bool:
+        """Yoziladigan mavzu qolmagan bo'lsa: tayyor mavzularga darsning o'zini (bayon, yechimli misollar, guruh topshiriqlari,
+        loyiha, ekskursiya…) yozadi — miyaning mazmuniga tayanib, masalliq miya bilan mos bo'lsin."""
+        from . import ai
+        with self.ps.db() as cur:
+            cur.execute(f"UPDATE taqdimot_mavzular SET ochiq_holat='tayyor' WHERE holat='tayyor' AND ochiq_holat <> 'tayyor' AND {BAYON_BOR}")
+            cur.execute("UPDATE taqdimot_mavzular SET ochiq_holat='kutmoqda' WHERE ochiq_holat='yozilmoqda' "
+                        "AND ochiq_vaqt < now() - make_interval(mins => %s)", (ESKI_DAQ,))
+            shart, args = ["holat='tayyor'", "ochiq_holat='kutmoqda'", "ochiq_urinish < %s"], [URINISH_MAX]
+            for k, col in (("daraja", "daraja"), ("sinflar", "sinf"), ("fanlar", "fan")):
+                if z.get(k):
+                    shart.append(f"{col} = ANY(%s)")
+                    args.append(z[k])
+            cur.execute(f"UPDATE taqdimot_mavzular SET ochiq_holat='yozilmoqda', ochiq_vaqt=now(), ochiq_urinish=ochiq_urinish+1 WHERE id=("
+                        f"SELECT id FROM taqdimot_mavzular WHERE {' AND '.join(shart)} ORDER BY {self._tartib(z)} "
+                        f"FOR UPDATE SKIP LOCKED LIMIT 1) RETURNING id, daraja, sinf, fan, mavzu, miya, ochiq_urinish", args)
+            r = cur.fetchone()
+        if not r:
+            return False
+        miya = r["miya"] if isinstance(r["miya"], dict) else json.loads(r["miya"] or "{}")
+        try:
+            yangi = ai.masalliq_yoz(r["mavzu"], r["fan"], r["daraja"], sinf_matni(r["daraja"], r.get("sinf") or ""), "",
+                                    deadline=220.0, mazmun=ai.miya_mazmuni(miya))
+            eski = miya.get("masalliq") or {}
+            mas = {k: (v if v and not (isinstance(v, dict) and not any(v.values())) else eski.get(k, v)) for k, v in yangi.items()}
+            ok = bool(mas.get("bayon"))
+            with self.ps.db() as cur:
+                cur.execute("UPDATE taqdimot_mavzular SET miya=jsonb_set(miya, '{masalliq}', %s::jsonb), ochiq_holat=%s WHERE id=%s",
+                            (json.dumps(mas, ensure_ascii=False),
+                             "tayyor" if ok else ("xato" if r["ochiq_urinish"] >= URINISH_MAX else "kutmoqda"), r["id"]))
+        except Exception:
+            with self.ps.db() as cur:
+                cur.execute("UPDATE taqdimot_mavzular SET ochiq_holat=%s WHERE id=%s",
+                            ("xato" if r["ochiq_urinish"] >= URINISH_MAX else "kutmoqda", r["id"]))
         return True
 
     def bittasini(self, mid: int, pool) -> dict:
@@ -609,8 +659,8 @@ class Kutubxona:
             try:
                 m = self.yoz(r)
                 with self.ps.db() as cur:
-                    cur.execute("UPDATE taqdimot_mavzular SET holat='tayyor', yozilsin=true, miya=%s, yozildi=now(), xato=NULL WHERE id=%s",
-                                (json.dumps(m, ensure_ascii=False), r["id"]))
+                    cur.execute("UPDATE taqdimot_mavzular SET holat='tayyor', yozilsin=true, miya=%s, yozildi=now(), xato=NULL, ochiq_holat=%s "
+                                "WHERE id=%s", (json.dumps(m, ensure_ascii=False), "tayyor" if bayon_bor(m) else "kutmoqda", r["id"]))
             except Exception as exc:
                 with self.ps.db() as cur:
                     cur.execute("UPDATE taqdimot_mavzular SET holat='xato', xato=%s WHERE id=%s", (str(exc)[:300], r["id"]))

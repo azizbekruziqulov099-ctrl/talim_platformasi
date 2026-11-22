@@ -1,0 +1,472 @@
+{
+ "daraja": "maktab",
+ "sinf": "5",
+ "fan": "Matematika",
+ "muallif": "qo‘lda yozilgan, hisob-kitob avtomatik tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Maxrajlari bir xil kasrlarni qo‘shish va ayirish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kasr nimani bildiradi?",
+      "matn": "Kasr butunning teng bo‘laklaridan nechtasi olinganini ko‘rsatadi. Kasr chizig‘i ostidagi son — maxraj: butun nechta teng bo‘lakka bo‘linganini bildiradi. Chiziq ustidagi son — surat: shunday bo‘laklardan nechtasi olinganini bildiradi.",
+      "misol": "Pitsa 8 ta teng bo‘lakka kesildi, 3 bo‘lagi yeyildi: pitsaning 3/8 qismi yeyildi.",
+      "savol": "5/6 kasrda maxraj nechaga teng va u nimani bildiradi?",
+      "javob": "6 — butun 6 ta teng bo‘lakka bo‘lingan",
+      "rasm": "pitsa_bolaklar"
+     },
+     {
+      "sarlavha": "Bir xil bo‘laklarni qo‘shamiz",
+      "matn": "Ikki kasrning maxraji bir xil bo‘lsa, ularning bo‘laklari ham bir xil o‘lchamda bo‘ladi. Shuning uchun bo‘laklar sonini — suratlarni — qo‘shamiz. Bo‘lak o‘lchami, ya’ni maxraj, o‘zgarmaydi.",
+      "misol": "2/8 + 3/8: 2 bo‘lak va yana 3 bo‘lak — jami 5 bo‘lak, ya’ni 5/8.",
+      "savol": "1/5 + 2/5 = ?",
+      "javob": "3/5",
+      "rasm": "tort_bolaklar"
+     },
+     {
+      "sarlavha": "Ayirish ham xuddi shunday",
+      "matn": "Maxrajlari bir xil kasrlarni ayirishda kamayuvchining suratidan ayiriluvchining surati ayriladi, maxraj o‘sha-o‘sha qoladi. Natija yana o‘sha o‘lchamdagi bo‘laklar bilan ifodalanadi.",
+      "misol": "7/10 − 4/10 = 3/10: o‘nta bo‘lakdan 7 tasi bor edi, 4 tasi olindi, 3 tasi qoldi.",
+      "savol": "5/9 − 2/9 = ?",
+      "javob": "3/9",
+      "rasm": "shokolad_plitka"
+     },
+     {
+      "sarlavha": "Natija butunga teng yoki undan katta bo‘lsa",
+      "matn": "Yig‘indida surat maxrajga teng bo‘lsa, kasr bir butunga teng: 4/4 = 1. Surat maxrajdan katta bo‘lsa, noto‘g‘ri kasr hosil bo‘ladi; undan butun qismni ajratamiz: 7/5 = 1 butun 2/5.",
+      "misol": "3/5 + 4/5 = 7/5 = 1 butun 2/5.",
+      "savol": "2/3 + 1/3 = ?",
+      "javob": "3/3 = 1",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotda qayerda kerak?",
+      "matn": "Retseptda, vaqtni hisoblashda, yo‘lning bosib o‘tilgan qismini topishda kasrlarni qo‘shamiz va ayiramiz. Soatning 1/4 qismi — 15 daqiqa, 2/4 qismi — 30 daqiqa.",
+      "misol": "Ali yo‘lning 2/7 qismini ertalab, 3/7 qismini kechqurun bosdi: jami 5/7 qism, yana 2/7 qism qoldi.",
+      "savol": "Soatning 3/4 qismi necha daqiqa?",
+      "javob": "45 daqiqa",
+      "rasm": "qum_soat"
+     }
+    ],
+    "asosiy_qoida": "Maxrajlari bir xil kasrlarni qo‘shish (ayirish) uchun suratlari qo‘shiladi (ayriladi), maxraj o‘zgarishsiz qoldiriladi: a/c + b/c = (a + b)/c.",
+    "misollar": [
+     {
+      "shart": "Hisoblang: 3/11 + 5/11.",
+      "yechim": [
+       "Maxrajlar bir xil — 11.",
+       "Suratlarni qo‘shamiz: 3 + 5 = 8.",
+       "Maxraj o‘zgarmaydi: 8/11."
+      ],
+      "javob": "8/11"
+     },
+     {
+      "shart": "Hisoblang: 9/12 − 4/12.",
+      "yechim": [
+       "Maxraj bir xil — 12.",
+       "Suratlarni ayiramiz: 9 − 4 = 5.",
+       "Natija: 5/12."
+      ],
+      "javob": "5/12"
+     },
+     {
+      "shart": "Bog‘ning 4/9 qismiga olma, 3/9 qismiga o‘rik ekildi. Bog‘ning qancha qismiga daraxt ekildi va qancha qismi bo‘sh qoldi?",
+      "yechim": [
+       "Ekilgan qism: 4/9 + 3/9 = 7/9.",
+       "Butun bog‘ — 9/9.",
+       "Bo‘sh qism: 9/9 − 7/9 = 2/9."
+      ],
+      "javob": "7/9 qismiga ekildi, 2/9 qismi bo‘sh"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Pitsa masalasi",
+      "topshiriq": "Pitsa 12 ta teng bo‘lakka kesilgan. Ali 3 bo‘lak, Vali 4 bo‘lak, Sardor 2 bo‘lak yedi. a) Har biri pitsaning qancha qismini yedi? b) Uchalasi birga qancha qismini yedi? d) Pitsaning qancha qismi qoldi?",
+      "yechim": "a) Ali 3/12, Vali 4/12, Sardor 2/12. b) 3/12 + 4/12 + 2/12 = 9/12. d) 12/12 − 9/12 = 3/12.",
+      "mahsulot": "doirada bo‘yalgan pitsa va yechim"
+     },
+     {
+      "nom": "Sayohat masalasi",
+      "topshiriq": "Sayyohlar yo‘lning 2/9 qismini birinchi kuni, 4/9 qismini ikkinchi kuni bosib o‘tdi. a) Ikki kunda yo‘lning qancha qismini bosishdi? b) Uchinchi kunga qancha qismi qoldi? d) Butun yo‘l 90 km bo‘lsa, birinchi kuni necha km yurishgan?",
+      "yechim": "a) 2/9 + 4/9 = 6/9. b) 9/9 − 6/9 = 3/9. d) 90 : 9 = 10 km — bir bo‘lak; 10 · 2 = 20 km.",
+      "mahsulot": "kesmada belgilangan yo‘l sxemasi"
+     },
+     {
+      "nom": "Retsept masalasi",
+      "topshiriq": "Pishiriq uchun 3/8 kg un va 2/8 kg shakar kerak. Uyda 7/8 kg un bor. a) Un va shakar birga necha kilogramm? b) Pishiriqdan keyin qancha un qoladi? d) Pishiriqni ikki marta tayyorlasak, un yetadimi?",
+      "yechim": "a) 3/8 + 2/8 = 5/8 kg. b) 7/8 − 3/8 = 4/8 kg. d) 3/8 + 3/8 = 6/8 kg; 6/8 < 7/8 — yetadi, 1/8 kg qoladi.",
+      "mahsulot": "retsept kartochkasi va hisob"
+     },
+     {
+      "nom": "Xatoni tuzat",
+      "topshiriq": "Do‘stingiz shunday yechgan: 1) 2/7 + 3/7 = 5/14; 2) 5/6 − 1/6 = 4/0; 3) 4/9 + 4/9 = 8/9; 4) 7/10 − 3/10 = 4/10. Qaysilari to‘g‘ri? Noto‘g‘rilarini tuzating va qoidani o‘z so‘zingiz bilan tushuntiring.",
+      "yechim": "1) noto‘g‘ri: 5/7 — maxrajlar qo‘shilmaydi. 2) noto‘g‘ri: 4/6 — maxraj ayrilmaydi. 3) to‘g‘ri. 4) to‘g‘ri.",
+      "mahsulot": "tuzatilgan yechimlar va qoida"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1/4 + 2/4 = ?",
+      "javob": "3/4"
+     },
+     {
+      "shart": "6/7 − 2/7 = ?",
+      "javob": "4/7"
+     },
+     {
+      "shart": "3/10 + 4/10 + 2/10 = ?",
+      "javob": "9/10"
+     },
+     {
+      "shart": "1 − 3/8 = ? (1 ni 8/8 deb yozing)",
+      "javob": "5/8"
+     },
+     {
+      "shart": "Ip 9/10 m edi. Undan avval 3/10 m, so‘ng yana 4/10 m kesib olindi. Qancha qoldi?",
+      "javob": "9/10 − 3/10 − 4/10 = 2/10 m"
+     },
+     {
+      "shart": "x + 2/9 = 7/9 bo‘lsa, x ni toping.",
+      "javob": "x = 5/9"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Maxrajlarni ham qo‘shib yuboradi: 1/5 + 2/5 = 3/10",
+      "sabab": "kasrni ikkita alohida son deb ko‘radi",
+      "oldini_olish": "pitsa yoki tasma modelida ko‘rsatish: bo‘lak o‘lchami o‘zgarmaydi, faqat bo‘laklar soni ko‘payadi"
+     },
+     {
+      "xato": "Ayirishda maxrajni ham ayiradi: 5/6 − 1/6 = 4/0",
+      "sabab": "qo‘shishdagi xatoning davomi",
+      "oldini_olish": "maxrajni bo‘lak nomi deb o‘qitish: «5 ta oltidan bir − 1 ta oltidan bir = 4 ta oltidan bir»"
+     },
+     {
+      "xato": "1 − 3/8 ni hisoblay olmaydi",
+      "sabab": "1 ni kasr ko‘rinishida tasavvur qilmaydi",
+      "oldini_olish": "modelda 1 = 8/8 ekanini ko‘rsatish va bir nechta misolda mashq qildirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "retseptdagi masalliqlarni kilogramm va litrning ulushlarida o‘lchash"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "xaritada yo‘lning bosib o‘tilgan qismini kasr bilan ifodalash"
+     },
+     {
+      "fan": "Musiqa",
+      "boglanish": "nota cho‘zimlari: chorak nota + chorak nota = yarim nota (1/4 + 1/4 = 2/4)"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kasrlar oshxonasi»",
+     "muammo": "Oilaviy retseptlarda masalliqlar kasrlarda berilgan. Qancha masalliq kerakligini va nima qolishini qanday hisoblaymiz?",
+     "mahsulot": "retsept kitobchasi (har guruh — bitta sahifa) va hisob-kitob",
+     "bosqichlar": [
+      "retsept tanlash",
+      "masalliqlarni kasr ulushlarida yozish",
+      "yig‘indi va qoldiqni hisoblash",
+      "kitobcha sahifasini bezash",
+      "himoya"
+     ],
+     "guruh_vazifalari": [
+      "Salat: sabzavotlar miqdorini 1/8 kg larda yozing va jami og‘irlikni toping",
+      "Pishiriq: un va shakarni 1/4 kg larda hisoblang, uydagi zaxiradan qancha qolishini toping",
+      "Sharbat: suv va meva sharbatini 1/10 litrlarda aralashtiring, jami hajmni toping",
+      "Xarid: hamma retseptlar uchun xarid ro‘yxatini tuzing va qoldiqlarni hisoblang"
+     ],
+     "mezonlar": [
+      "hisob-kitobning to‘g‘riligi",
+      "kasrlarni to‘g‘ri yozish va o‘qish",
+      "mahsulotning ko‘rgazmaliligi",
+      "himoyada tushuntira olish",
+      "hamkorlik"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Kasrlar shahri» — bozor, oshxona, shokolad do‘koni va soat minorasi",
+     "bekatlar": [
+      {
+       "nom": "Bozor",
+       "matn": "Bozorda tarozi toshlari 1/4 kg va 1/2 kg bo‘ladi. Sotuvchi avval 1/4 kg, so‘ng yana 2/4 kg olcha tortdi.",
+       "topshiriq": "Jami necha kilogramm olcha tortildi?",
+       "javob": "3/4 kg",
+       "rasm": "tarozi_toshlar"
+      },
+      {
+       "nom": "Oshxona",
+       "matn": "Oshpaz tortni 8 ta teng bo‘lakka kesdi. Mehmonlar 5 bo‘lagini yedi.",
+       "topshiriq": "Tortning qancha qismi qoldi?",
+       "javob": "3/8",
+       "rasm": "tort_bolaklar"
+      },
+      {
+       "nom": "Shokolad do‘koni",
+       "matn": "Shokolad plitkasi 10 ta teng bo‘lakdan iborat. Zarina 3 bo‘lak, ukasi 4 bo‘lak oldi.",
+       "topshiriq": "Ikkalasi birga plitkaning qancha qismini oldi? Qancha qismi qoldi?",
+       "javob": "7/10 oldi, 3/10 qoldi",
+       "rasm": "shokolad_plitka"
+      },
+      {
+       "nom": "Soat minorasi",
+       "matn": "Bir soat — 60 daqiqa. Chorak soat — soatning 1/4 qismi, ya’ni 15 daqiqa.",
+       "topshiriq": "Soatning 1/4 + 2/4 qismi necha daqiqa?",
+       "javob": "3/4 soat = 45 daqiqa",
+       "rasm": "qum_soat"
+      }
+     ],
+     "xavfsizlik": [
+      "guruhdan ajralmang",
+      "har bekatda vaqtga rioya qiling"
+     ],
+     "kundalik": [
+      "Qaysi bekatda kasrlarni qo‘shdik?",
+      "Qaysi bekatda ayirdik?",
+      "Kundalik hayotdan bitta kasrli misol yozing"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kasr",
+      "tarif": "butunning teng bo‘laklaridan bir yoki bir nechtasini ifodalovchi son"
+     },
+     {
+      "atama": "Surat",
+      "tarif": "kasr chizig‘i ustidagi son — olingan bo‘laklar soni"
+     },
+     {
+      "atama": "Maxraj",
+      "tarif": "kasr chizig‘i ostidagi son — butun nechta teng bo‘lakka bo‘lingani"
+     },
+     {
+      "atama": "To‘g‘ri kasr",
+      "tarif": "surati maxrajidan kichik kasr"
+     },
+     {
+      "atama": "Noto‘g‘ri kasr",
+      "tarif": "surati maxrajiga teng yoki undan katta kasr"
+     },
+     {
+      "atama": "Aralash son",
+      "tarif": "butun qism va to‘g‘ri kasrdan iborat son"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "2/7 + 3/7 = 5/7",
+      "togri": true,
+      "izoh": "suratlar qo‘shildi, maxraj saqlandi"
+     },
+     {
+      "matn": "1/4 + 1/4 = 2/8",
+      "togri": false,
+      "izoh": "maxraj qo‘shilmaydi: 2/4"
+     },
+     {
+      "matn": "Maxrajlari bir xil kasrlarni qo‘shishda maxraj o‘zgarmaydi",
+      "togri": true,
+      "izoh": "bo‘lak o‘lchami bir xil qoladi"
+     },
+     {
+      "matn": "5/9 − 2/9 = 3/0",
+      "togri": false,
+      "izoh": "maxraj ayrilmaydi: 3/9"
+     },
+     {
+      "matn": "4/4 = 1",
+      "togri": true,
+      "izoh": "surat maxrajga teng — bir butun"
+     },
+     {
+      "matn": "Surat — kasr chizig‘i ostidagi son",
+      "togri": false,
+      "izoh": "chiziq ostidagisi — maxraj"
+     },
+     {
+      "matn": "7/5 — noto‘g‘ri kasr",
+      "togri": true,
+      "izoh": "surat maxrajdan katta"
+     },
+     {
+      "matn": "3/8 + 5/8 = 1",
+      "togri": true,
+      "izoh": "8/8 = 1"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "1/3 + 1/3 = ?",
+      "javob": "2/3"
+     },
+     {
+      "savol": "4/5 − 1/5 = ?",
+      "javob": "3/5"
+     },
+     {
+      "savol": "Maxraj nimani ko‘rsatadi?",
+      "javob": "butun nechta teng bo‘lakka bo‘lingani"
+     },
+     {
+      "savol": "2/6 + 3/6 = ?",
+      "javob": "5/6"
+     },
+     {
+      "savol": "1 ni beshdan bir ulushlarda yozing",
+      "javob": "5/5"
+     },
+     {
+      "savol": "6/8 − 6/8 = ?",
+      "javob": "0"
+     },
+     {
+      "savol": "3/10 + 7/10 = ?",
+      "javob": "10/10 = 1"
+     },
+     {
+      "savol": "Surat nimani ko‘rsatadi?",
+      "javob": "olingan bo‘laklar soni"
+     },
+     {
+      "savol": "9/11 − 4/11 = ?",
+      "javob": "5/11"
+     },
+     {
+      "savol": "Yarim soat necha daqiqa?",
+      "javob": "30 daqiqa"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kasr va uning qismlari",
+      "matn": "Kasr butunning teng bo‘laklaridan nechtasi olinganini ko‘rsatadi. Maxraj — butun nechta teng bo‘lakka bo‘lingani, surat — nechtasi olingani.",
+      "savol": "3/8 da surat va maxraj nimani bildiradi?"
+     },
+     {
+      "nom": "Qo‘shish qoidasi",
+      "matn": "Maxrajlari bir xil kasrlarni qo‘shishda suratlar qo‘shiladi, maxraj o‘zgarmaydi: 2/8 + 3/8 = 5/8.",
+      "savol": "4/9 + 2/9 = ?"
+     },
+     {
+      "nom": "Ayirish qoidasi",
+      "matn": "Maxrajlari bir xil kasrlarni ayirishda suratlar ayriladi, maxraj o‘zgarmaydi: 7/10 − 4/10 = 3/10.",
+      "savol": "8/11 − 5/11 = ?"
+     },
+     {
+      "nom": "Butun va noto‘g‘ri kasr",
+      "matn": "Surat maxrajga teng bo‘lsa, kasr 1 ga teng. Surat katta bo‘lsa — noto‘g‘ri kasr, undan butun qism ajratiladi: 7/5 = 1 butun 2/5.",
+      "savol": "3/5 + 4/5 ni aralash son ko‘rinishida yozing"
+     }
+    ],
+    "muammoli_savol": "Ona pitsaning 3/8 qismini, ota 2/8 qismini yedi. Bolalarga pitsaning yarmidan ko‘pi qoldimi?",
+    "keys": {
+     "vaziyat": "Sinf bayramga 1 litrli ikkita idishda sharbat olib keldi. Birinchi tanaffusda birinchi idishdan 3/10 litr, ikkinchi tanaffusda yana 5/10 litr ichildi. Bayram uchun kamida 1 litr sharbat kerak.",
+     "savollar": [
+      "Birinchi idishdan qancha sharbat ichildi va qancha qoldi?",
+      "Bayram uchun sharbat yetadimi? Hisoblab ko‘rsating."
+     ]
+    },
+    "tezis": "Kasrlarni bilmasdan yaxshi oshpaz bo‘lib bo‘lmaydi",
+    "taqqoslash": {
+     "a": "Qo‘shish",
+     "b": "Ayirish",
+     "umumiy": [
+      "maxraj o‘zgarmaydi",
+      "amal faqat suratlar bilan bajariladi"
+     ],
+     "a_farq": [
+      "suratlar qo‘shiladi",
+      "natija har bir qo‘shiluvchidan katta"
+     ],
+     "b_farq": [
+      "suratlar ayriladi",
+      "natija kamayuvchidan kichik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kasr",
+     "shoxlar": [
+      {
+       "nom": "Qismlari",
+       "bandlar": [
+        "surat",
+        "maxraj",
+        "kasr chizig‘i"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "to‘g‘ri kasr",
+        "noto‘g‘ri kasr",
+        "aralash son"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "qo‘shish",
+        "ayirish"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "retsept",
+        "vaqt",
+        "yo‘l"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Tepadagim — olinganlar soni, pastdagim — bo‘laklar soni. Ikkovimiz bir chiziqda turamiz. Biz kimmiz?",
+     "javob": "surat va maxraj"
+    },
+    "hikmat": "Yetti o‘lchab, bir kes.",
+    "kalit_soz": "MAXRAJ",
+    "xato_yechim": {
+     "shart": "3/7 + 2/7 ni hisoblang.",
+     "xato": "3/7 + 2/7 = 5/14",
+     "togri": "3/7 + 2/7 = 5/7",
+     "sabab": "maxrajlar ham qo‘shib yuborilgan; maxraj bo‘lak o‘lchami, u o‘zgarmaydi"
+    },
+    "guruh_nomlari": [
+     "Suratlar",
+     "Maxrajlar",
+     "Ulushlar",
+     "Butunlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Adolatli bo‘lish»",
+     "topshiriq": "Guruhga qog‘ozdan «tort» (doira) beriladi. Uni teng bo‘laklarga bo‘ling, har a’zoga ulush bering va qolgan qismni kasr bilan yozing. Hisobni qo‘shish va ayirish bilan tekshiring."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: 1/6 + 4/6; 7/9 − 2/9; 3/10 + 6/10.",
+     "B": "Kun tartibingizni soatning ulushlarida yozing (masalan, 1/4 soat — nonushta) va bir soatning qancha qismi bo‘sh qolishini hisoblang.",
+     "C": "Oilangiz retseptini kasrlar bilan yozib, «Kasrlar oshxonasi» sahifasini tayyorlang."
+    },
+    "sinkveyn": [
+     "Kasr",
+     "teng, bo‘lakli",
+     "qo‘shiladi, ayriladi, o‘lchaydi",
+     "Maxraj bo‘lak o‘lchamini saqlaydi",
+     "Ulush"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Sinf maktab bog‘ini tozaladi. Butun ish 12 ta teng qismga bo‘lingan.",
+     "qismlar": [
+      "1-guruh ishning 3/12 qismini bajardi",
+      "2-guruh 2/12 qismini bajardi",
+      "3-guruh 4/12 qismini bajardi",
+      "4-guruh qolgan qismini bajardi — u qancha?"
+     ],
+     "yakun": "3/12 + 2/12 + 4/12 = 9/12; 4-guruh: 12/12 − 9/12 = 3/12"
+    }
+   }
+  }
+ ]
+}

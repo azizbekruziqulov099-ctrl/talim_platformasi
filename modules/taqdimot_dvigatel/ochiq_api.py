@@ -205,7 +205,8 @@ def register(app, D, prefix, fail, json_ol, biriktirma, no_store):
     @app.get(p + "/katalog")
     def ochiq_katalog(authorization: str | None = Header(None)):
         D.actor(authorization)
-        return _j({**od.katalog(), "ai": ai.mavjud()})
+        from . import darslar
+        return _j({**od.katalog(), "ai": ai.mavjud(), "darslar": darslar.royxat()})
 
     @app.post(p + "/tuz")
     async def ochiq_tuz(request: Request, authorization: str | None = Header(None)):

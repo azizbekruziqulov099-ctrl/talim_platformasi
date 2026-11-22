@@ -497,10 +497,78 @@ sinf yoshiga mos, o‘zbek tilida (lotin), imlo xatosiz. Javob FAQAT JSON:
  "jamoaviy_masala":{"shart":"bitta katta masala","qismlar":["4 qism — har guruhga bittadan"],"yakun":"qismlar natijasidan yakuniy javob"} (aniq fanlarda; boshqa fanlarda umumiy loyiha qismlari)}"""
 
 
-def masalliq_yoz(mavzu, fan="", daraja="maktab", sinf="", qoshimcha="", deadline=120.0, t0=None) -> dict:
+DARS_MAZMUNI_KORSATMA = """Sen fan bo‘yicha eng kuchli o‘qituvchi va metodistsan. Mavzu bo‘yicha DARSNING O‘ZINI — o‘qituvchi sinfda nimani,
+qanday ketma-ketlikda o‘rgatishi, guruhlar aynan nimani yechishi va javoblari bilan — to‘liq yozasan. Ochiq, namunaviy, loyiha va
+ekskursiya darslari shu mazmundan tuziladi. Talablar:
+- Mazmun DARSLIKDAGI MAVZUNING O‘ZI: aniq ta’riflar, qoidalar, formulalar, sanalar, nomlar, raqamlar. Umumiy gaplar («mavzu muhim»,
+  «bilimlar shakllanadi») YOZILMAYDI. Har jumla o‘quvchiga yangi narsa o‘rgatsin.
+- Sinf yoshiga mos til va qiyinlik; 1–4-sinfda oddiy so‘zlar, hayotiy narsalar (olma, pul, soat), qisqa gaplar.
+- Misol va masalalarning hisob-kitobi ANIQ tekshirilgan bo‘lsin; yechim qadamma-qadam.
+- Fanga mos misol: matematika/fizika/kimyo — masala va yechim; tillar — gap yoki matn tahlili; tarix — manba yoki voqea tahlili;
+  biologiya/geografiya — hodisa yoki jarayonni tushuntirish; san’at, texnologiya, jismoniy tarbiya — bajarish tartibi.
+- Rasm kalitlari FAQAT berilgan ro‘yxatdan (mos bo‘lmasa bo‘sh qoldir). O‘zbek tili (lotin), imlo xatosiz.
+Javob FAQAT JSON:
+{"bayon":[{"sarlavha":"o‘rgatish qadami nomi","matn":"o‘qituvchi tushuntiradigan mazmun — 3–5 jumla, aniq faktlar",
+   "misol":"shu qadamga bitta aniq misol","savol":"o‘quvchilarga tekshiruv savoli","javob":"qisqa javob","rasm":"kalit yoki bo‘sh"}] × 4–5
+   (o‘rgatish ketma-ketligi: oddiydan murakkabga, mavzuning hamma asosiy qismi),
+ "asosiy_qoida":"darsning asosiy qoidasi / ta’rifi / formulasi — o‘quvchi daftarga yozadi (1–2 jumla)",
+ "misollar":[{"shart","yechim":["1-qadam","2-qadam","…"],"javob"}] × 3 (o‘qituvchi doskada ko‘rsatadigan yechimli namunalar),
+ "guruh_topshiriqlari":[{"nom":"qisqa nom","topshiriq":"guruh kartochkasidagi aniq topshiriq — kerakli barcha ma’lumot bilan",
+   "yechim":"to‘liq yechim yoki namunaviy javob (o‘qituvchi uchun)","mahsulot":"guruh nima taqdim etadi"}] × 4
+   (har guruhga ALOHIDA topshiriq, teng qiyinlikda, mavzuning turli jihati; 8–10 daqiqada bajariladigan),
+ "mashqlar":[{"shart","javob"}] × 6 (mustaqil ish: 1–2 oson, 3–4 o‘rta, 5–6 murakkab),
+ "qiyinchiliklar":[{"xato":"o‘quvchilar odatda qayerda adashadi","sabab","oldini_olish":"o‘qituvchi nima qiladi"}] × 3,
+ "fanlararo":[{"fan","boglanish":"1 jumla — aniq bog‘lanish"}] × 2–3,
+ "loyiha":{"nom","muammo":"hayotiy muammo","mahsulot":"plakat | maket | model | buklet | video | jadval…","bosqichlar":["4–6 qadam"],
+   "guruh_vazifalari":["4 guruh uchun alohida vazifa"],"mezonlar":["3–5 baholash mezoni"]},
+ "ekskursiya":{"joy":"mavzuga mos real joy (muzey, tabiat, korxona, obida) yoki «virtual sayohat: …»",
+   "bekatlar":[{"nom","matn":"2–4 jumla aniq va qiziqarli fakt","topshiriq":"bekatdagi topshiriq","javob","rasm":"kalit yoki bo‘sh"}] × 4–5,
+   "xavfsizlik":["2–3 qoida"],"kundalik":["kuzatuv kundaligi uchun 3 savol"]}}"""
+
+
+def _masalliq_xabar(mavzu, fan, daraja, sinf, qoshimcha, mazmun=None) -> str:
+    x = f"MAVZU: {mavzu}\nFAN: {fan}\nDARAJA: {daraja}\nSINF/KURS: {sinf}\n" + (f"QO‘SHIMCHA: {qoshimcha}\n" if qoshimcha else "")
+    if mazmun:
+        x += "\nMAVZU MATERIALI (shunga tayan):\n" + mazmun[:3500] + "\n"
+    return x
+
+
+def masalliq_yoz(mavzu, fan="", daraja="maktab", sinf="", qoshimcha="", deadline=120.0, t0=None, mazmun=None) -> dict:
+    """Ochiq dars masalliqlari: ikki parallel chaqiruv — (1) darsning o'zi (bayon, misollar, guruh topshiriqlari va yechimlari,
+    mashqlar, loyiha, ekskursiya), (2) interfaol metodlar xomashyosi (atamalar, bayonotlar, savollar, qismlar, keys…).
+    Biri ishlamasa — ikkinchisi saqlanadi; ikkalasi ham ishlamasa — xato."""
+    from concurrent.futures import ThreadPoolExecutor
     t0 = time.monotonic() if t0 is None else t0
-    xabar = f"MAVZU: {mavzu}\nFAN: {fan}\nDARAJA: {daraja}\nSINF/KURS: {sinf}\n" + (f"QO‘SHIMCHA: {qoshimcha}\n" if qoshimcha else "")
-    return sxema.masalliq_toza(_bir_chaqiruv(MASALLIQ_KORSATMA, xabar + "Masalliqlarni JSON qilib yoz.", deadline, t0))
+    xabar = _masalliq_xabar(mavzu, fan, daraja, sinf, qoshimcha, mazmun)
+    rasm = "\nRASMLAR (kalit — nomi):\n" + katalog_matni(mavzu, fan, 60)
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        f1 = pool.submit(_bir_chaqiruv, DARS_MAZMUNI_KORSATMA, xabar + rasm + "\nDarsni JSON qilib yoz.", deadline, t0)
+        f2 = pool.submit(_bir_chaqiruv, MASALLIQ_KORSATMA, xabar + "Masalliqlarni JSON qilib yoz.", deadline, t0)
+        qism, xato = {}, None
+        for f in (f1, f2):
+            try:
+                qism.update({k: v for k, v in f.result().items() if k != "_ai"})
+            except Exception as exc:
+                xato = exc
+    if not qism:
+        raise RuntimeError(f"Masalliq yozilmadi: {xato}")
+    return sxema.masalliq_toza(qism)
+
+
+def miya_mazmuni(m: dict, n: int = 3500) -> str:
+    """Tayyor miyadan masalliq yozuvchisi uchun qisqa matn (ta'rif, qoida, misollar) — masalliq miya bilan mos bo'lsin."""
+    qator = []
+    for b in (m or {}).get("bolimlar") or []:
+        qator.append(f"# {b.get('nom') or ''}")
+        for sl in b.get("slaydlar") or []:
+            for e in sl.get("elementlar") or []:
+                matn = " ".join(str(e.get(k) or "") for k in ("matn", "shart", "formula", "yechim", "javob") if isinstance(e.get(k), str))
+                if e.get("bandlar"):
+                    matn += " " + "; ".join(f"{x.get('nom') or ''} {x.get('matn') or ''}".strip() for x in e["bandlar"] if isinstance(x, dict))
+                matn = re.sub(r"\s+", " ", matn).strip()
+                if matn:
+                    qator.append(f"- {sl.get('sarlavha') or ''}: {matn[:300]}")
+    return "\n".join(qator)[:n]
 
 
 def miya_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", manba="", deadline=170.0, sozlama=None, reja=None,

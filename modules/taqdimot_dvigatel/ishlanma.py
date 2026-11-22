@@ -17,11 +17,34 @@ from . import ochiq_metodlar as om
 from . import rasmlar
 
 _BELGI = re.compile(r"\*\*|==|\$")
+_USTKI = str.maketrans("0123456789+-()n", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁽⁾ⁿ")
+_OSTKI = str.maketrans("0123456789+-()", "₀₁₂₃₄₅₆₇₈₉₊₋₍₎")
+
+
+def _tex(f: str) -> str:
+    """LaTeX formulani o'qiladigan matnga: \\frac{a}{b} → a/b, x^{2} → x², \\sqrt{x} → √x, \\cdot → ·."""
+    from .formula import SYM
+    for _ in range(4):
+        f = re.sub(r"\\[dt]?frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}",
+                   lambda m: (m.group(1) if re.fullmatch(r"[\w.]+", m.group(1)) else f"({m.group(1)})") + "/" +
+                   (m.group(2) if re.fullmatch(r"[\w.]+", m.group(2)) else f"({m.group(2)})"), f)
+        f = re.sub(r"\\sqrt\s*\{([^{}]*)\}", lambda m: "√" + (m.group(1) if len(m.group(1)) <= 2 else f"({m.group(1)})"), f)
+    f = re.sub(r"\^\{([0-9+\-()n]+)\}|\^([0-9n])", lambda m: (m.group(1) or m.group(2)).translate(_USTKI), f)
+    f = re.sub(r"_\{([0-9+\-()]+)\}|_([0-9])", lambda m: (m.group(1) or m.group(2)).translate(_OSTKI), f)
+    f = re.sub(r"\\mathbb\s*\{([A-Z])\}", lambda m: {"N": "ℕ", "Z": "ℤ", "Q": "ℚ", "R": "ℝ", "C": "ℂ"}.get(m.group(1), m.group(1)), f)
+    f = re.sub(r"\\(text|mathrm|mathbf|operatorname)\s*\{([^{}]*)\}", r"\2", f)
+    f = re.sub(r"\\([A-Za-z]+)", lambda m: SYM.get(m.group(1), "" if m.group(1) in ("left", "right") else m.group(1)), f)
+    f = f.replace("{", "").replace("}", "").replace("\\,", " ").replace("\\", "")
+    return re.sub(r"\s*([·×÷])\s*", r" \1 ", f).replace("  ", " ")
 
 
 def _toza(v) -> str:
-    """Miya matnidagi **qalin**, ==ajratilgan== va $formula$ belgilarini Word uchun olib tashlaydi."""
-    return _BELGI.sub("", str(v if v is not None else ""))
+    """Miya matnidagi **qalin**, ==ajratilgan== belgilarini olib tashlaydi, $formula$ni o'qiladigan matnga aylantiradi."""
+    s = str(v if v is not None else "")
+    s = re.sub(r"\$\$?([^$]+)\$\$?", lambda m: _tex(m.group(1)), s)
+    if "\\" in s:
+        s = _tex(s)
+    return _BELGI.sub("", s)
 
 
 RIM = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
@@ -288,6 +311,93 @@ def _material(d, mat: dict, kalit_bilan=True):
             _p(d, g["nom"] + (": " + ", ".join(g["kartochkalar"]) if g.get("kartochkalar") else ""), after=2)
 
 
+# ---------------------------------------------------------------- bosqich mazmuni (mavzuning o'zi)
+def _mazmun(d, mz: dict, kalit=True):
+    """Bosqichda o'rgatiladigan / ishlanadigan mavzu mazmuni. kalit=False — tarqatma uchun (javob va yechimsiz)."""
+    t = (mz or {}).get("tur")
+    if t == "bayon":
+        for x in mz["bayon"]:
+            _p(d, (f"{x['guruh']}: " if x.get("guruh") else "") + (x["sarlavha"] or ""), bold=True, color=TOQ, after=2)
+            _p(d, x["matn"])
+            if x.get("misol"):
+                _yorliq(d, "Misol:", x["misol"])
+            if x.get("savol"):
+                p = _yorliq(d, "Savol:", x["savol"])
+                if kalit and x.get("javob"):
+                    r = p.add_run(f"  (Javob: {_toza(x['javob'])})")
+                    r.italic = True
+            if x.get("rasm"):
+                _rasm(d, x["rasm"], 6)
+        if mz.get("qoida"):
+            t_ = _jadval(d, [], [["Asosiy qoida (daftarga yoziladi): " + mz["qoida"]]], [17], sarlavha=False)
+            _soya(t_.rows[0].cells[0], "FFF4D6")
+        for i, x in enumerate(mz.get("misollar") or [], 1):
+            _p(d, f"Namuna yechim {i}.", bold=True, after=1)
+            _p(d, x["shart"], after=2)
+            if x["yechim"]:
+                _royxat(d, x["yechim"], raqamli=True)
+            if x.get("javob"):
+                _yorliq(d, "Javob:", x["javob"])
+    elif t == "slaydlar":
+        _material(d, {"tur": "slaydlar", "slaydlar": mz["slaydlar"]})
+    elif t == "guruh_topshiriq":
+        for x in mz["topshiriqlar"]:
+            _p(d, f"{x['guruh']} — {x['nom']}", bold=True, color=TOQ, after=2)
+            _yorliq(d, "Topshiriq:", x["topshiriq"])
+            if x.get("mahsulot"):
+                _yorliq(d, "Natija:", x["mahsulot"])
+            if kalit and x.get("yechim"):
+                _yorliq(d, "Yechim (o‘qituvchi uchun):", x["yechim"])
+    elif t == "mashq":
+        for i, x in enumerate(mz["mashqlar"], 1):
+            p = _p(d, f"{i}. {_toza(x['shart'])}", after=2)
+            if kalit and x.get("javob"):
+                r = p.add_run(f"  (Javob: {_toza(x['javob'])})")
+                r.italic = True
+    elif t == "ijodiy":
+        _yorliq(d, (mz.get("nom") or "Ijodiy topshiriq") + ":", mz["topshiriq"])
+    elif t == "loyiha_kirish":
+        if mz.get("nom"):
+            _yorliq(d, "Loyiha:", mz["nom"])
+        _yorliq(d, "Muammo:", mz["muammo"])
+        if mz.get("mahsulot"):
+            _yorliq(d, "Mahsulot:", mz["mahsulot"])
+        if mz.get("mezonlar"):
+            _p(d, "Baholash mezonlari:", bold=True, after=2)
+            _royxat(d, mz["mezonlar"])
+    elif t == "loyiha_himoya":
+        _jadval(d, ["Guruh", "Loyiha vazifasi", "Ball"], [[g["guruh"], g["vazifa"], ""] for g in mz["guruhlar"]], [4, 11, 2])
+    elif t == "ekskursiya_kirish":
+        _yorliq(d, "Sayohat joyi:", mz["joy"])
+        if mz.get("kundalik"):
+            _p(d, "Kuzatuv savollari:", bold=True, after=2)
+            _royxat(d, mz["kundalik"], raqamli=True)
+        if mz.get("xavfsizlik"):
+            _yorliq(d, "Xavfsizlik:", "; ".join(mz["xavfsizlik"]))
+    elif t == "ekskursiya":
+        if mz.get("joy"):
+            _yorliq(d, "Sayohat joyi:", mz["joy"])
+        for i, x in enumerate(mz["bekatlar"], 1):
+            _p(d, f"{i}-bekat: {x['nom']}" + (f" ({x['guruh']})" if x.get("guruh") else ""), bold=True, color=TOQ, after=2)
+            _p(d, x["matn"])
+            if x.get("rasm"):
+                _rasm(d, x["rasm"], 6)
+            if x.get("topshiriq"):
+                p = _yorliq(d, "Topshiriq:", x["topshiriq"])
+                if kalit and x.get("javob"):
+                    r = p.add_run(f"  (Javob: {_toza(x['javob'])})")
+                    r.italic = True
+    elif t == "kundalik":
+        _royxat(d, mz["savollar"], raqamli=True)
+
+
+def _karta(d, sarlavha, matn, qoshimcha=""):
+    """Tarqatma kartochka: ramkali, qirqib beriladi (javobsiz)."""
+    t_ = _jadval(d, [], [[f"{sarlavha}\n{matn}" + (f"\n{qoshimcha}" if qoshimcha else "")]], [17], sarlavha=False, size=12)
+    t_.rows[0].cells[0].paragraphs[0].runs[0].bold = False
+    return t_
+
+
 # ---------------------------------------------------------------- ilovalar
 def _ilova(d, il: dict, dars: dict, miya: dict | None):
     k = il["kod"]
@@ -315,6 +425,26 @@ def _ilova(d, il: dict, dars: dict, miya: dict | None):
             _p(d, g["nom"], bold=True, size=26, align=WD_ALIGN_PARAGRAPH.CENTER, after=14)
     elif k in ("tarqatma", "oyin_kartochkalari", "tayanch_konspekt"):
         bor = False
+        for b in dars["bosqichlar"]:
+            mz = b.get("mazmun") or {}
+            if il["raqam"] not in b.get("ilova_raqam", []):
+                continue
+            if k == "tarqatma" and mz.get("tur") == "guruh_topshiriq":
+                for x in mz["topshiriqlar"]:
+                    _karta(d, f"{x['guruh']} — {x['nom']}", x["topshiriq"], f"Natija: {x['mahsulot']}" if x.get("mahsulot") else "")
+                bor = True
+            elif k == "tarqatma" and mz.get("tur") == "mashq":
+                _p(d, "Mustaqil ish", bold=True, color=TOQ, after=2)
+                _mazmun(d, mz, kalit=False)
+                bor = True
+            elif k == "tarqatma" and mz.get("tur") == "ekskursiya":
+                for i, x in enumerate(mz["bekatlar"], 1):
+                    _karta(d, f"{i}-bekat: {x['nom']}" + (f" — {x['guruh']}" if x.get("guruh") else ""), x.get("topshiriq") or "Kuzating va yozing.",
+                           "Javob: ______________________________")
+                bor = True
+            elif k == "tayanch_konspekt" and mz.get("tur") in ("bayon", "slaydlar"):
+                _mazmun(d, mz, kalit=True)
+                bor = True
         for b in dars["bosqichlar"]:
             mt = b["material"]
             mos = (k == "tarqatma" and mt["tur"] in ("qismlar", "keys", "taqqoslash", "klaster", "xato", "jamoaviy")) or \
@@ -372,6 +502,35 @@ def _ilova(d, il: dict, dars: dict, miya: dict | None):
         _p(d, "Umumiy xulosa va takliflar: _____________________________________________________________", after=6)
     elif k == "ozini_tahlil":
         _royxat(d, (dars.get("tahlil") or {}).get("ozini_tahlil_savollari") or [], raqamli=True)
+    elif k == "loyiha_varaqasi":
+        lo = mas.get("loyiha") or {}
+        _jadval(d, [], [["Loyiha nomi", lo.get("nom") or dars["meta"]["mavzu"]], ["Muammo", lo.get("muammo") or ""],
+                        ["Mahsulot", lo.get("mahsulot") or ""], ["Muddat", "1–2 hafta (himoya — shu darsda)"]], [4, 13], sarlavha=False)
+        if lo.get("bosqichlar"):
+            _p(d, "Loyiha bosqichlari:", bold=True, after=2)
+            _royxat(d, lo["bosqichlar"], raqamli=True)
+        vz = lo.get("guruh_vazifalari") or [x["topshiriq"] for x in mas.get("guruh_topshiriqlari") or []]
+        if vz:
+            _p(d, "Guruh vazifalari:", bold=True, after=2)
+            _jadval(d, ["Guruh", "Vazifa"], [[g["nom"], vz[i % len(vz)]] for i, g in enumerate(gr["guruhlar"])], [4, 13])
+        mez = lo.get("mezonlar") or dars["baholash"]["mezonlar"]
+        _p(d, "Baholash varag‘i:", bold=True, after=2)
+        kol = [5] + [12 / max(1, len(gr["guruhlar"]))] * len(gr["guruhlar"])
+        _jadval(d, ["Mezon"] + [g["nom"][:16] for g in gr["guruhlar"]], [[m_] + [""] * len(gr["guruhlar"]) for m_ in mez], kol, size=10)
+    elif k == "ekskursiya_varaqasi":
+        ek = mas.get("ekskursiya") or {}
+        if ek.get("joy"):
+            _yorliq(d, "Sayohat joyi:", ek["joy"])
+        bek = ek.get("bekatlar") or []
+        if bek:
+            _p(d, "Marshrut:", bold=True, after=2)
+            _royxat(d, [f"{x['nom']} — {x.get('topshiriq') or 'kuzatish'}" for x in bek], raqamli=True)
+        _p(d, "Kuzatuv kundaligi:", bold=True, after=2)
+        for x in ek.get("kundalik") or ["Nimani ko‘rdim?", "Eng qiziq fakt:", "Qanday savol tug‘ildi?"]:
+            _p(d, f"{x} ____________________________________________", after=8)
+        _p(d, "Xavfsizlik qoidalari:", bold=True, after=2)
+        _royxat(d, ek.get("xavfsizlik") or ["Guruhdan ajralmang, o‘qituvchi ko‘rsatmasiga amal qiling.",
+                                            "Eksponat va jihozlarga ruxsatsiz tegmang.", "Belgilangan vaqtda yig‘ilish joyiga qayting."])
     elif k == "adabiyotlar":
         a = ((miya or {}).get("adabiyotlar") or {})
         _royxat(d, [f"{x.get('muallif') or ''} {x.get('nomi') or ''}. {x.get('nashr') or ''}".strip() for x in a.get("asosiy") or []], raqamli=True)
@@ -453,6 +612,8 @@ def docx_yoz(dars: dict, miya: dict | None = None) -> bytes:
         if b.get("nutq"):
             _yorliq(d, "O‘qituvchi:", b["nutq"])
         _yorliq(d, f"{oquvchi}lar:", b["oquvchi"])
+        if (b.get("mazmun") or {}).get("tur") not in (None, "yoq"):
+            _mazmun(d, b["mazmun"])
         if b["material"]["tur"] not in ("yoq",):
             iz = repr(sorted((k, repr(v)) for k, v in b["material"].items() if k != "guruh"))
             if iz in korilgan:
@@ -465,8 +626,17 @@ def docx_yoz(dars: dict, miya: dict | None = None) -> bytes:
         if b.get("izoh"):
             _p(d, b["izoh"], italic=True, size=11, color=RGBColor(0x55, 0x55, 0x55))
 
+    mas = dars.get("masalliq") or {}
+    if mas.get("qiyinchiliklar"):
+        d.add_heading("Tipik qiyinchiliklar va ularning oldini olish", level=1)
+        _jadval(d, ["O‘quvchilar qayerda adashadi", "Sababi", "O‘qituvchi nima qiladi"],
+                [[x["xato"], x["sabab"], x["oldini_olish"]] for x in mas["qiyinchiliklar"]], [5.7, 5.3, 6], size=10)
+    if mas.get("fanlararo"):
+        d.add_heading("Fanlararo bog‘lanish (STEAM)", level=1)
+        _royxat(d, [f"{x['fan']}: {x['boglanish']}" for x in mas["fanlararo"]])
+
     if dars.get("tayyorgarlik"):
-        d.add_heading("Ochiq darsga tayyorgarlik", level=1)
+        d.add_heading("Darsga tayyorgarlik", level=1)
         _royxat(d, [f"{x['qachon']} — {x['ish']}" for x in dars["tayyorgarlik"]])
 
     # ilovalar

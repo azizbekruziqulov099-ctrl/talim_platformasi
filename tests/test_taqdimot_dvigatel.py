@@ -401,7 +401,7 @@ def test_ochiq_dars_metodlar_bazasi():
     from modules.taqdimot_dvigatel import ochiq_metodlar as om
     d = om.miya()
     assert om.tekshir(d) == []
-    assert len(d["metodlar"]) >= 80 and len(d["andozalar"]) == 15
+    assert len(d["metodlar"]) >= 80 and len(d["andozalar"]) == 17
     for a in d["andozalar"]:
         assert sum(b["daq"] for b in a["bosqichlar"]) == a["daqiqa"] in (45, 80)
     kodlar = {m["kod"] for m in d["metodlar"]}
@@ -488,3 +488,36 @@ def test_ochiq_dars_ai_rejimi(monkeypatch):
     assert "RASMLAR" in chaqirildi[0] and "Kvadrat tenglamalar" in chaqirildi[0]
     assert od.tuz({"daraja": "maktab", "sinf": "8", "fan": "Algebra", "mavzu": "Kvadrat tenglamalar", "rejim": "qolda",
                    "urug": d["meta"]["urug"]}, None, mas=d["masalliq"])["guruhlash"]["guruhlar"][0]["nom"] == "Diskriminant"
+
+
+def test_qolda_yozilgan_darslar_toliq_va_hisobi_togri():
+    from modules.taqdimot_dvigatel import darslar
+    assert darslar.royxat("maktab", "5"), "qo'lda yozilgan dars yo'q"
+    assert darslar.tekshir() == []
+    assert darslar.hisob_xatolari("2/8 + 3/8 = 5/8; 90 : 9 = 10; 1/4 + 1/4 = 2/8") == ["1/4 + 1/4 = 2/8"]
+
+
+@pytest.mark.parametrize("andoza", ["", "loyiha_45", "ekskursiya_45"])
+def test_ochiq_dars_mavzu_mazmuni_slaydda_javoblar_izohda(andoza):
+    from docx import Document
+    from modules.taqdimot_dvigatel import ishlanma, ochiq_dars as od
+    d = od.tuz({"daraja": "maktab", "sinf": "5", "fan": "Matematika", "mavzu": "Maxrajlari bir xil kasrlarni qo‘shish va ayirish",
+                "format": "ochiq", "andoza": andoza, "rejim": "tezkor", "urug": 4})
+    assert d["meta"]["mazmun_manbasi"] == "qolda" and d["meta"]["masalliq_bor"]
+    turlar = {b["mazmun"]["tur"] for b in d["bosqichlar"]}
+    kutilgan = {"": {"bayon", "guruh_topshiriq"}, "loyiha_45": {"loyiha_kirish", "loyiha_himoya"},
+                "ekskursiya_45": {"ekskursiya_kirish", "ekskursiya", "kundalik"}}[andoza]
+    assert kutilgan <= turlar, turlar
+    m = od.ochiq_miya(d)
+    slayd = " ".join(json.dumps(sl["elementlar"], ensure_ascii=False) for b in m["bolimlar"] for sl in b["slaydlar"])
+    izoh = " ".join(sl.get("izoh") or "" for b in m["bolimlar"] for sl in b["slaydlar"])
+    assert "Metod:" in izoh and "Metod:" not in slayd          # metod tartibi — faqat o'qituvchi izohida
+    if not andoza:
+        assert "Maxrajlari bir xil kasrlarni qo‘shish" in slayd and "Yechim:" in izoh and "12 ta teng bo‘lak" in slayd
+    doc = Document(io.BytesIO(ishlanma.docx_yoz(d)))
+    matn = "\n".join(p.text for p in doc.paragraphs) + "\n".join(c.text for t in doc.tables for r in t.rows for c in r.cells)
+    assert "$" not in matn and "\\frac" not in matn
+    if not andoza:
+        assert "Asosiy qoida" in matn and "Yechim (o‘qituvchi uchun)" in matn and "Tipik qiyinchiliklar" in matn
+    sah = yasash.yasa(m, seed=2, bolim_titul=True)
+    assert len(sah["slaydlar"]) >= 12

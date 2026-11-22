@@ -141,10 +141,12 @@ FORMATLAR = [
 ]
 
 # ---------------------------------------------------------------- 3. dars andozalari (vaqt bilan)
-def B(nom, daq, oqituvchi, oquvchi, tur=(), izoh="", guruh=False, ilova=(), afzal=()):
-    """afzal — shu bosqichga eng mos metodlar (tanlovda birinchi navbatda shulardan olinadi)."""
+def B(nom, daq, oqituvchi, oquvchi, tur=(), izoh="", guruh=False, ilova=(), afzal=(), mazmun=""):
+    """afzal — shu bosqichga eng mos metodlar (tanlovda birinchi navbatda shulardan olinadi).
+    mazmun — bosqichda mavzuning qaysi qismi ishlanadi (bo'sh bo'lsa metod turidan aniqlanadi): bayon, guruh_topshiriq, mashq,
+    loyiha_himoya, loyiha_kirish, ekskursiya, ekskursiya_kirish, kundalik."""
     return {"nom": nom, "daq": daq, "oqituvchi": oqituvchi, "oquvchi": oquvchi, "metod_turi": list(tur),
-            "izoh": izoh, "guruh": guruh, "ilova": list(ilova), "afzal": list(afzal)}
+            "izoh": izoh, "guruh": guruh, "ilova": list(ilova), "afzal": list(afzal), "mazmun": mazmun}
 
 
 AF_TAKROR = ["blits", "ha_yoq", "zanjir", "domino", "matematik_diktant", "xatoni_top", "breyn_ring", "men_kimman", "ortiqchasini_top", "tarif_egasi", "intervyu"]
@@ -323,6 +325,40 @@ ANDOZALAR = [
          B("Tadqiqot loyihalari taqdimoti va o‘zaro taqriz", 25, "taqriz mezonlarini beradi", "taqdim etadi, taqriz qiladi", ["tadqiqot", "mustahkamlash"], guruh=True),
          B("Akvarium yoki debat", 15, "munozarani boshqaradi", "ichki doirada bahslashadi yoki kuzatadi", ["mustahkamlash", "birlashtirish"], guruh=True),
          B("Yakun, refleksiya, topshiriq", 10, "umumlashtiradi, keyingi topshiriqni beradi", "refleksiya qiladi", ["refleksiya"])]},
+    # loyiha darsi: loyiha 1–2 hafta oldin beriladi (muammo, guruh vazifalari, mezonlar); bu dars — himoya va umumlashtirish
+    {"kod": "loyiha_45", "nom": "Loyiha darsi (himoya)", "daqiqa": 45, "yosh": oraliq("3-4", "10-11"),
+     "izoh": "Loyiha 1–2 hafta oldin beriladi: muammo, guruh vazifalari, mahsulot va baholash mezonlari e’lon qilinadi; darsda — himoya.",
+     "bosqichlar": [
+         B("Tashkiliy qism: loyiha guruhlari", 2, "loyiha guruhlarini joylashtiradi, himoya tartibi va vaqtini e’lon qiladi", "mahsulotlarini joylaydi",
+           ["guruhlash"], guruh=True, ilova=["guruh_nomlari", "loyiha_varaqasi"]),
+         B("Loyiha muammosi va baholash mezonlari", 4, "loyiha muammosini eslatadi, mezonlar va ball jadvalini ko‘rsatadi", "mezonlarni tinglaydi",
+           ["motivatsiya"], ilova=["baholash_varagi"], afzal=["muammoli_vaziyat", "aqliy_hujum", "video_lavha"], mazmun="loyiha_kirish"),
+         B("Loyiha himoyasi: guruhlar taqdimoti", 20, "har guruhga 3–4 daqiqa himoya, 1 daqiqa savol beradi; vaqtni nazorat qiladi",
+           "mahsulotini taqdim etadi: muammo, jarayon, natija", ["tadqiqot", "mustahkamlash"], guruh=True,
+           afzal=["loyiha", "galereya", "kubik", "akvarium"], mazmun="loyiha_himoya"),
+         B("Savol-javob va o‘zaro baholash", 6, "guruhlarni mezon bo‘yicha bir-birini baholashga yo‘naltiradi", "savol beradi, mezon bo‘yicha baholaydi",
+           ["nazorat"], guruh=True, afzal=["mezonli_baholash", "juft_tekshirish", "pmi"]),
+         B("Guruhlarni birlashtirish: umumiy xulosa", 7, "guruh mahsulotlaridan umumiy xulosa yoki ko‘rgazma yig‘diradi", "birgalikda yakunlaydi",
+           ["birlashtirish"], guruh=True),
+         B("Refleksiya va keyingi qadam", 6, "natijalarni e’lon qiladi, loyihani davom ettirish yo‘lini aytadi", "refleksiya qiladi",
+           ["refleksiya"], ilova=["refleksiya_varagi", "uy_vazifasi"], afzal=AF_REFLEKSIYA)]},
+    # ekskursiya darsi: haqiqiy joyda yoki sinfda virtual sayohat (bekatlar bo'yicha)
+    {"kod": "ekskursiya_45", "nom": "Ekskursiya darsi (virtual sayohat)", "daqiqa": 45, "yosh": oraliq("1-2", "10-11"),
+     "izoh": "Haqiqiy ekskursiya bo‘lsa: oldindan marshrut, ruxsatnoma va xavfsizlik yo‘riqnomasi; virtual bo‘lsa — bekatlar taqdimotda.",
+     "bosqichlar": [
+         B("Tashkiliy qism: sayohat guruhlari va yo‘riqnoma", 3, "guruhlarga ajratadi, sayohat qoidalari va xavfsizlikni tushuntiradi",
+           "guruhga bo‘linadi, kuzatuv kundaligini oladi", ["guruhlash"], guruh=True, ilova=["guruh_nomlari", "ekskursiya_varaqasi"]),
+         B("Qayerga boramiz? Maqsad va kuzatuv savollari", 4, "sayohat joyini sirli tarzda ochadi, kuzatuv savollarini beradi", "taxmin qiladi",
+           ["motivatsiya"], afzal=["sirli_quti", "topishmoq", "muammoli_vaziyat", "video_lavha"], mazmun="ekskursiya_kirish"),
+         B("Ekskursiya: bekatlar bo‘ylab", 22, "har bekatda qiziqarli faktni ko‘rsatadi va topshiriq beradi; guruhlar bekatlarda ishlaydi",
+           "kuzatadi, topshiriq bajaradi, kundalikka yozadi", ["mustahkamlash", "tadqiqot"], guruh=True,
+           afzal=["stansiyalar", "galereya", "tadqiqot_mini", "charxpalak"], mazmun="ekskursiya"),
+         B("Kuzatuv kundaligi va muhokama", 6, "kundalik savollari bo‘yicha javoblarni yig‘adi", "kuzatganlarini aytadi",
+           ["nazorat"], guruh=True, afzal=["blits", "chiqish_chiptasi", "juft_tekshirish"], mazmun="kundalik"),
+         B("Guruhlarni birlashtirish: sayohat xaritasi", 5, "guruhlar topgan ma’lumotdan umumiy xarita yoki plakat yig‘diradi", "birgalikda yakunlaydi",
+           ["birlashtirish"], guruh=True),
+         B("Refleksiya va uy vazifasi", 5, "taassurotlarni so‘raydi, uy vazifasini beradi", "refleksiya qiladi",
+           ["refleksiya"], ilova=["refleksiya_varagi", "uy_vazifasi"], afzal=AF_REFLEKSIYA)]},
 ]
 
 # ---------------------------------------------------------------- 4. metodlar katalogi
@@ -622,6 +658,8 @@ ILOVALAR = [
     {"kod": "kuzatuv_varagi", "nom": "Dars kuzatuv (tahlil) varag‘i"},
     {"kod": "ozini_tahlil", "nom": "O‘z-o‘zini tahlil rejasi"},
     {"kod": "adabiyotlar", "nom": "Adabiyotlar ro‘yxati (OTM)"},
+    {"kod": "loyiha_varaqasi", "nom": "Loyiha pasporti: muammo, guruh vazifalari, mahsulot, bosqichlar va baholash mezonlari"},
+    {"kod": "ekskursiya_varaqasi", "nom": "Ekskursiya varaqasi: marshrut (bekatlar), topshiriqlar, kuzatuv kundaligi va xavfsizlik"},
 ]
 
 BAHOLASH = {
