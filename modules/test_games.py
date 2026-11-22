@@ -27,6 +27,13 @@ GAME_MAX_ROUNDS = 20
 MAX_TOPIC_CODES = 50
 MAX_GAME_LIVES = 3
 GAME_LEVEL_SIZE = 5
+# REV690: har raundda (5 savol) ikkita boss — 3- va 5-savol; 10 savolli o'yinda 4 ta boss (3, 5, 8, 10).
+GAME_BOSS_STEPS = (2, 4)
+
+
+def is_boss_step(round_step: int) -> bool:
+    """Raund ichidagi qadam (0..GAME_LEVEL_SIZE-1) boss savolimi."""
+    return int(round_step) in GAME_BOSS_STEPS
 TASHKENT_TODAY_SQL = "(NOW() AT TIME ZONE 'Asia/Tashkent')::date"
 MIN_GAME_TIME_SECONDS = 20
 MAX_GAME_TIME_SECONDS = 180
@@ -1313,10 +1320,10 @@ def create_test_games_router(
                     option_map = dict(zip(("A", "B", "C", "D"), source_keys))
                     records.append((
                         session_id, position, secrets.token_urlsafe(18), question["id"],
-                        question["topic_code"], "choice", round_step == GAME_LEVEL_SIZE - 1, 1,
+                        question["topic_code"], "choice", is_boss_step(round_step), 1,
                         bounded_question_time_limit(
                             question.get("time_limit"), question.get("difficulty"),
-                            round_step == GAME_LEVEL_SIZE - 1,
+                            is_boss_step(round_step),
                         ),
                         json.dumps(option_map),
                         json.dumps(

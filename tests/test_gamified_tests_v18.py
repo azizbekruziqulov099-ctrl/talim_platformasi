@@ -471,7 +471,9 @@ class GamifiedTestContracts(unittest.TestCase):
 
     def test_four_choice_plus_one_boss_and_lifelines(self):
         self.assertIn("for round_step in range(GAME_LEVEL_SIZE)", self.module)
-        self.assertIn('question["topic_code"], "choice", round_step == GAME_LEVEL_SIZE - 1, 1', self.module)
+        self.assertIn('question["topic_code"], "choice", is_boss_step(round_step), 1', self.module)
+        # REV690: har raundda 2 ta boss (3- va 5-savol) — 10 savolda 4 ta
+        self.assertIn("GAME_BOSS_STEPS = (2, 4)", self.module)
         self.assertIn('"question_type": "single_choice" if is_choice_row(row)', self.module)
         self.assertIn("numeric_answer_choices", self.module)
         self.assertIn("excluded_write_count", self.module)
