@@ -170,7 +170,8 @@ IZOH_DIR = Path(__file__).resolve().parent / "bogcha_content" / "izoh"
 IZOH_LANGS = ("uz", "ru", "en")
 IZOH_DICTS = {}             # izoh → {sid: tarjima}; bir marta yuklanadi (selftest o'z lug'atini shu yerga qo'yadi)
 # REV680: bolalarga «sen» — dvigatel shablonlaridagi «siz» shakllari (lug'at kaliti o'zgarmaydi, faqat o'zbekcha chiqish)
-_SEN = (("Keling, ", "Kel, "), ("Qani, toping:", "Qani, top:"), ("keling, ", "kel, "))
+_SEN = (("Keling, ", "Kel, "), ("Qani, toping:", "Qani, top:"), ("keling, ", "kel, "),
+        ("{names} ni o'rgandik", "{names} bilan tanishdik"))   # REV683: «It ni o'rgandik» emas
 
 
 def sen_shakl(matn):
@@ -672,6 +673,13 @@ class Builder:
                 "matn": self.t(pre + self.U("Men aytaman, sen rasmni barmog'ing bilan bos: {names}. Topsang — qarsak chal!", names=names)),
                 "doska": "  ".join(x["emoji"] for x in game_items), "yechim": self.U("Barakalla! Hammasini topding! 🌟")}
 
+    def _sanab(self, nomlar):
+        """REV683: «A, B va C» — o'zbekcha izohda oxirgi so'z oldidan «va» (boshqa izoh tillarida vergul)."""
+        nomlar = list(nomlar)
+        if self.izoh != "uz" or len(nomlar) < 2:
+            return ", ".join(nomlar)
+        return ", ".join(nomlar[:-1]) + " va " + nomlar[-1]
+
     def summary_row(self, items):
         if self.lang and self.level >= 3:
             names = ", ".join(self.bare(x["say"]) for x in items)
@@ -683,7 +691,7 @@ class Builder:
         pre = f"{self.E(self.good())} " if self.lang and self.level == 2 else f"{self.praise()} "
         return {"turi": "xulosa", "sarlavha": self.U("🌟 Bugun o'rgandik"),
                 "matn": self.t(pre + self.U("Bugun biz {names} ni o'rgandik. Ertaga yana uchrashamiz — yangi sir bor!",
-                                            names=", ".join(_name(self.lang, x) for x in items))),
+                                            names=self._sanab(_name(self.lang, x) for x in items))),
                 "doska": "  ".join(f"{x['emoji']} {x['say']}" for x in items)}
 
     def spiral_tests(self, index, new_tests):
@@ -883,10 +891,17 @@ class Builder:
                          "doska": "\n".join(self.board(x).replace("\n", " — ") for x in chunk),
                          "sodda": self.t(U("Sekin-sekin: {lines}", lines=plain)),
                          "boshqa_usul": self.t(U("Har birini ko'rsatib, qarsak chalib ayt: {lines}", lines=plain))})
+        # REV683: «Harakatli o'yin» jonli — doskada rasmlarning yarmi turadi, Kabu so'zlarni birma-bir aytadi
+        # (ba'zisi doskada bor, ba'zisi yo'q). Ilgari hamma rasm chiqib, so'z umuman aytilmas edi.
+        bor, yoq = items[:12][::2][:5], items[:12][1::2][:3]
+        navbat = [x for juft in zip(bor, yoq + bor[len(yoq):]) for x in juft]
+        navbat = [x for i, x in enumerate(navbat) if all(x.get('say') != y.get('say') for y in navbat[:i])]
+        aytiladi = (self.E(" ".join(f"{self.bare(x['say'])}!" for x in navbat)) if en
+                    else " ".join(f"{_name(self.lang, x)}!" for x in navbat))
         rows.append({"turi": "topshiriq", "sarlavha": "🏃 " + (self.C["t_jump"] if en else U("Harakatli o'yin")),
                      "matn": self.mix(U("Men so'z aytaman: rasm ekranda bo'lsa — sakra, bo'lmasa — o'tir! Tayyormisan? Boshladik!"),
-                                      self.C["jump"]),
-                     "doska": "  ".join(x["emoji"] for x in items[:12]), "yechim": self.E(self.C["played_great"]) + " 🌟" if en else U("Ofarin! Sen zo'r o'ynading! 🌟")})
+                                      self.C["jump"]) + " " + aytiladi,
+                     "doska": "  ".join(x["emoji"] for x in bor), "yechim": self.E(self.C["played_great"]) + " 🌟" if en else U("Ofarin! Sen zo'r o'ynading! 🌟")})
         pool_tests = [t for ts in self.lesson_tests[start:] for t in ts]
         self.rng.shuffle(pool_tests)
         count = 5 if self.age in ("2-3 yosh", "3-4 yosh", "4-5 yosh") else 7
