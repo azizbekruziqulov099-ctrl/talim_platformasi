@@ -12,7 +12,7 @@
     {
      "name": "Salom, do'stim!",
      "goal": "Bola salomlashadi, ismini so'raydi va aytadi, xayrlashadi",
-     "intro": "Salom, do'stim! Yozda sizni juda sog'indim. Keling, salomlashamiz va bir-birimizning ismimizni so'raymiz.",
+     "intro": "Salom, do'stim! Yozda seni juda sog'indim. Qani, salomlashamiz va bir-birimizning ismimizni so'raymiz.",
      "items": [
       {
        "say": "Hello!",
@@ -20,7 +20,7 @@
        "emoji": "👋",
        "image": "en56-u1-hello.png",
        "image_prompt": "A smiling child waving hello, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qo'lingizni silkiting!"
+       "action": "Qo'lingni silkit!"
       },
       {
        "say": "What's your name?",
@@ -35,33 +35,33 @@
        "emoji": "🧒",
        "image": "en56-u1-my-name-is.png",
        "image_prompt": "A happy boy pointing to himself with a name badge, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Ko'kragingizga qo'lingizni qo'ying!"
+       "action": "Ko'kragingga qo'lingni qo'y!"
       },
       {
        "say": "Goodbye!",
        "uz": "xayr",
-       "emoji": "🙋",
+       "emoji": "👋🚶",
        "image": "en56-u1-goodbye.png",
        "image_prompt": "A child raising a hand to say goodbye at a door, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qo'lingizni ko'taring!"
+       "action": "Qo'lingni ko'tar!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: tanishamiz",
-       "matn": "Qani, Kabutar qushcha bilan gaplashamiz. Men so'rayman: [en]Hello! What's your name?[/en] Siz javob bering: [en]Hello! My name is…[/en] va ismingizni ayting. Oxirida: [en]Goodbye![/en]",
+       "matn": "Qani, robot Kabu bilan gaplashamiz. Men so'rayman: [en]Hello! What's your name?[/en] Sen javob ber: [en]Hello! My name is…[/en] va ismingni ayt. Oxirida: [en]Goodbye![/en]",
        "doska": "— Hello! What's your name?\n— Hello! My name is …\n— Goodbye!",
-       "sodda": "Sekin: [en]Hello![/en] — salom. [en]My name is…[/en] — mening ismim… Keyin ismingizni ayting.",
-       "boshqa_usul": "Oynaga qarab o'zingiz bilan tanishing: [en]Hello! My name is…[/en] Keyin onangiz bilan ham shunday gaplashing!"
+       "sodda": "Sekin: [en]Hello![/en] — salom. [en]My name is…[/en] — mening ismim… Keyin ismingni ayt.",
+       "boshqa_usul": "Oynaga qarab o'zing bilan tanish: [en]Hello! My name is…[/en] Keyin onang bilan ham shunday gaplash!"
       }
      ],
      "tests": [
       {
-       "q": "Do'stingiz [en]What's your name?[/en] deb so'radi. Nima deysiz?",
+       "q": "Do'sting [en]What's your name?[/en] deb so'radi. Nima deysan?",
        "options": [
         "🧒 My name is Ali.",
-        "🙋 Goodbye!",
+        "👋🚶 Goodbye!",
         "1️⃣ one"
        ],
        "answer": 0,
@@ -72,7 +72,7 @@
     {
      "name": "Sanaymiz: bir–to'rt",
      "goal": "Bola 1 dan 4 gacha inglizcha sanaydi",
-     "intro": "Men tuxumlarni sanamoqchiman, lekin inglizcha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
+     "intro": "Men batareykalarni sanamoqchiman, lekin inglizcha sanashni unutib qo'ydim. Yordam berasanmi? Barmoqlaringni tayyorla!",
      "items": [
       {
        "say": "one",
@@ -80,7 +80,7 @@
        "emoji": "1️⃣",
        "image": "en56-u1-one.png",
        "image_prompt": "One red apple, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Bitta barmoq ko'rsating!"
+       "action": "Bitta barmoq ko'rsat!"
       },
       {
        "say": "two",
@@ -88,7 +88,7 @@
        "emoji": "2️⃣",
        "image": "en56-u1-two.png",
        "image_prompt": "Two yellow ducks, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Ikkita barmoq ko'rsating!"
+       "action": "Ikkita barmoq ko'rsat!"
       },
       {
        "say": "three",
@@ -96,7 +96,7 @@
        "emoji": "3️⃣",
        "image": "en56-u1-three.png",
        "image_prompt": "Three blue balls, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Uchta barmoq ko'rsating!"
+       "action": "Uchta barmoq ko'rsat!"
       },
       {
        "say": "four",
@@ -104,24 +104,24 @@
        "emoji": "4️⃣",
        "image": "en56-u1-four.png",
        "image_prompt": "Four green frogs, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "To'rtta barmoq ko'rsating!"
+       "action": "To'rtta barmoq ko'rsat!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "👏 Qarsak sanog'i",
-       "matn": "Men sanayman, siz qarsak chalasiz: [en]one[/en] — bir qarsak, [en]two[/en] — ikki qarsak, [en]three[/en] — uch qarsak, [en]four[/en] — to'rt qarsak! Endi o'zingiz sanang!",
+       "matn": "Men sanayman, sen qarsak chalasan: [en]one[/en] — bir qarsak, [en]two[/en] — ikki qarsak, [en]three[/en] — uch qarsak, [en]four[/en] — to'rt qarsak! Endi o'zing sana!",
        "doska": "1 one 👏\n2 two 👏👏\n3 three 👏👏👏\n4 four 👏👏👏👏",
        "sodda": "Sekin sanaymiz: [en]one, two, three, four[/en].",
-       "boshqa_usul": "Qarsak o'rniga sakrab sanang: [en]one, two, three, four![/en]"
+       "boshqa_usul": "Qarsak o'rniga sakrab sana: [en]one, two, three, four![/en]"
       }
      ]
     },
     {
      "name": "Sanaymiz: besh–yetti",
      "goal": "Bola 5, 6, 7 sonlarini aytadi va 1–7 gacha sanaydi",
-     "intro": "Bog'da kapalaklar uchib yuribdi, ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
+     "intro": "Bog'da kapalaklar uchib yuribdi, ular to'rttadan ko'p! Nechta ekan? Qani, yangi sonlarni o'rganib, sanab chiqamiz.",
      "items": [
       {
        "say": "five",
@@ -129,7 +129,7 @@
        "emoji": "5️⃣",
        "image": "en56-u1-five.png",
        "image_prompt": "Five orange stars, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Bir qo'lingizni ochib ko'rsating!"
+       "action": "Bir qo'lingni ochib ko'rsat!"
       },
       {
        "say": "six",
@@ -150,10 +150,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎵 Sanoq qo'shig'i",
-       "matn": "Qo'shiq aytamiz: [en]One, two, three, four, five, six, seven![/en] Sekin boshlaymiz, keyin tezroq! Har songa bitta barmoq oching.",
+       "matn": "Qo'shiq aytamiz: [en]One, two, three, four, five, six, seven![/en] Sekin boshlaymiz, keyin tezroq! Har songa bitta barmoq och.",
        "doska": "one two three four five six seven\n1 2 3 4 5 6 7",
        "sodda": "Faqat beshgacha: [en]one, two, three, four, five[/en]. Keyin qo'shamiz: [en]six, seven[/en].",
-       "boshqa_usul": "Zinapoyada yurib sanang: har qadamda bitta son — [en]one… seven![/en]"
+       "boshqa_usul": "Zinapoyada yurib sana: har qadamda bitta son — [en]one… seven![/en]"
       }
      ],
      "tests": [
@@ -182,7 +182,7 @@
     {
      "name": "Sanaymiz: sakkiz–o'n",
      "goal": "Bola 8, 9, 10 ni aytadi va «How many?» savoliga javob beradi",
-     "intro": "Gu-gu! Bugun bizda katta sir bor: o'ngacha sanashni o'rgansak, Kabutar qushcha sizga o'nta yulduzcha sovg'a qiladi! Tayyormisiz?",
+     "intro": "Bip-bip! Bugun bizda katta sir bor: o'ngacha sanashni o'rgansak, robot Kabu senga o'nta yulduzcha sovg'a qiladi! Tayyormisan?",
      "items": [
       {
        "say": "eight",
@@ -204,24 +204,24 @@
        "emoji": "🔟",
        "image": "en56-u1-ten.png",
        "image_prompt": "Ten fingers of two open hands, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Ikki qo'lingizni ochib ko'rsating!"
+       "action": "Ikki qo'lingni ochib ko'rsat!"
       },
       {
        "say": "How many?",
        "uz": "nechta?",
        "emoji": "🔢",
        "image": "en56-u1-how-many.png",
-       "image_prompt": "A pigeon looking at a group of apples with a question mark, cute cartoon for kids, soft flat colors, white background, no text, square"
+       "image_prompt": "A friendly small robot with an antenna looking at a group of apples with a question mark, cute cartoon for kids, soft flat colors, white background, no text, square"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🚀 Raketa uchadi!",
-       "matn": "Raketa uchishiga tayyor! Pastga sanaymiz: [en]ten, nine, eight, seven, six, five, four, three, two, one![/en] Endi baland sakrang — uchdik!",
+       "matn": "Raketa uchishiga tayyor! Pastga sanaymiz: [en]ten, nine, eight, seven, six, five, four, three, two, one![/en] Endi baland sakra — uchdik!",
        "doska": "10 9 8 7 6 5 4 3 2 1 🚀",
        "sodda": "Avval oldinga sanaymiz: [en]one… ten[/en]. Keyin orqaga.",
-       "boshqa_usul": "Cho'kkalab o'tirib sanang, [en]one[/en] deganda sakrang!"
+       "boshqa_usul": "Cho'kkalab o'tirib sana, [en]one[/en] deganda sakra!"
       }
      ],
      "tests": [
@@ -266,7 +266,7 @@
     {
      "name": "Bu mening onam",
      "goal": "Bola «This is my…» bilan oila a'zolarini tanishtiradi",
-     "intro": "Bugun men oilamning suratini olib keldim — hammasi shu yerda! Keling, siz ham oilangizni inglizcha tanishtirishni o'rganing.",
+     "intro": "Bugun men oilamning suratini olib keldim — hammasi shu yerda! Qani, sen ham oilangni inglizcha tanishtirishni o'rgan.",
      "items": [
       {
        "say": "This is my mum.",
@@ -274,7 +274,7 @@
        "emoji": "👩",
        "image": "en56-u2-my-mum.png",
        "image_prompt": "A smiling mother hugging a child, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Onangizni ko'rsating!"
+       "action": "Onangni ko'rsat!"
       },
       {
        "say": "This is my dad.",
@@ -302,15 +302,15 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🖼️ Oilaviy surat",
-       "matn": "Oilangiz rasmini chizing yoki suratini oling. Har birini ko'rsatib ayting: [en]This is my mum. This is my dad.[/en] Juda chiroyli!",
+       "matn": "Oilang rasmini chiz yoki suratini ol. Har birini ko'rsatib ayt: [en]This is my mum. This is my dad.[/en] Juda chiroyli!",
        "doska": "This is my mum. 👩\nThis is my dad. 👨\nThis is my sister. 👧\nThis is my brother. 👦",
-       "sodda": "Qisqa ayting: [en]my mum[/en], [en]my dad[/en].",
-       "boshqa_usul": "Barmoqlaringizga oila a'zolarini chizing — barmoq teatri! Har barmoq aytadi: [en]This is my…[/en]"
+       "sodda": "Qisqa ayt: [en]my mum[/en], [en]my dad[/en].",
+       "boshqa_usul": "Barmoqlaringga oila a'zolarini chiz — barmoq teatri! Har barmoq aytadi: [en]This is my…[/en]"
       }
      ],
      "tests": [
       {
-       "q": "Dadangizni ko'rsatib nima deysiz?",
+       "q": "Dadangni ko'rsatib nima deysan?",
        "options": [
         "👨 This is my dad.",
         "👩 This is my mum.",
@@ -324,7 +324,7 @@
     {
      "name": "Buvim va bobom",
      "goal": "Bola grandma, grandpa, baby, family so'zlarini biladi",
-     "intro": "Kecha buvimnikiga bordim: buvim non pishirdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
+     "intro": "Kecha buvimnikiga bordim: buvim non pishirdi, bobom ertak aytdi. Sening buving va bobong bormi?",
      "items": [
       {
        "say": "grandma",
@@ -346,7 +346,7 @@
        "emoji": "👶",
        "image": "en56-u2-baby.png",
        "image_prompt": "A happy baby in a onesie, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Chaqaloqni allalagandek tebrating!"
+       "action": "Chaqaloqni allalagandek tebrat!"
       },
       {
        "say": "family",
@@ -360,17 +360,17 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎵 Barmoq oilasi qo'shig'i",
-       "matn": "Barmoqlaringizni ko'rsatib kuylang: [en]Dad finger, mum finger, brother finger, sister finger, baby finger — family![/en] Oxirida hamma barmoqni quchoqlang!",
+       "matn": "Barmoqlaringni ko'rsatib kuyla: [en]Dad finger, mum finger, brother finger, sister finger, baby finger — family![/en] Oxirida hamma barmoqni quchoqla!",
        "doska": "👨 dad  👩 mum  👦 brother\n👧 sister  👶 baby\n👨‍👩‍👧‍👦 family!",
        "sodda": "Faqat uchta: [en]dad, mum, baby[/en].",
-       "boshqa_usul": "Har barmoqni qimirlatib, ovozini o'zgartirib ayting: bobo — yo'g'on, chaqaloq — ingichka ovoz!"
+       "boshqa_usul": "Har barmoqni qimirlatib, ovozini o'zgartirib ayt: bobo — yo'g'on, chaqaloq — ingichka ovoz!"
       }
      ]
     },
     {
      "name": "Qalaysan, do'stim?",
      "goal": "Bola «How are you?» deb so'raydi va «I'm fine, thank you» deb javob beradi",
-     "intro": "Bugun hovlida do'stim Mushukchani ko'rdim va undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
+     "intro": "Bugun hovlida do'stim Mushukchani ko'rdim va undan qalaysan deb so'radim. U nima dedi ekan? Qani, bilib olamiz!",
      "items": [
       {
        "say": "friend",
@@ -378,7 +378,7 @@
        "emoji": "🧑‍🤝‍🧑",
        "image": "en56-u2-friend.png",
        "image_prompt": "Two children holding hands as friends, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Yoningizdagi do'stingizning qo'lini ushlang!"
+       "action": "Yoningdagi do'stingning qo'lini ushla!"
       },
       {
        "say": "How are you?",
@@ -400,17 +400,17 @@
        "emoji": "🌅",
        "image": "en56-u2-good-morning.png",
        "image_prompt": "A child stretching by a window at sunrise, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Kerishib, uyg'onganday bo'ling!"
+       "action": "Kerishib, uyg'onganday bo'l!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: ertalab hovlida",
-       "matn": "Men — Kabutar, siz — do'stim. [en]Good morning! How are you?[/en] Siz javob bering: [en]I'm fine, thank you![/en] Keyin rollarni almashamiz!",
+       "matn": "Men — Kabu, sen — do'stim. [en]Good morning! How are you?[/en] Sen javob ber: [en]I'm fine, thank you![/en] Keyin rollarni almashamiz!",
        "doska": "— Good morning! How are you?\n— I'm fine, thank you!",
        "sodda": "Qisqa javob: [en]Fine, thank you![/en]",
-       "boshqa_usul": "Qo'g'irchoq yoki ayiqcha bilan gaplashing: [en]Good morning, Teddy! How are you?[/en]"
+       "boshqa_usul": "Qo'g'irchoq yoki ayiqcha bilan gaplash: [en]Good morning, Teddy! How are you?[/en]"
       }
      ],
      "tests": [
@@ -429,23 +429,23 @@
     {
      "name": "Katta va kichik",
      "goal": "Bola big, small, happy, sad so'zlari bilan odamni tasvirlaydi",
-     "intro": "Mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
+     "intro": "Mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Qani, shunday so'zlarni o'rganamiz!",
      "items": [
       {
        "say": "big",
        "uz": "katta",
-       "emoji": "🐘",
+       "emoji": "🔶",
        "image": "en56-u2-big.png",
        "image_prompt": "A big friendly elephant, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qo'llaringizni keng oching!"
+       "action": "Qo'llaringni keng och!"
       },
       {
        "say": "small",
        "uz": "kichik",
-       "emoji": "🐭",
+       "emoji": "🔸",
        "image": "en56-u2-small.png",
        "image_prompt": "A tiny cute mouse, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Cho'kkalab, kichkina bo'ling!"
+       "action": "Cho'kkalab, kichkina bo'l!"
       },
       {
        "say": "happy",
@@ -453,7 +453,7 @@
        "emoji": "😄",
        "image": "en56-u2-happy.png",
        "image_prompt": "A child laughing happily, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Keng jilmaying!"
+       "action": "Keng jilmay!"
       },
       {
        "say": "sad",
@@ -461,7 +461,7 @@
        "emoji": "😢",
        "image": "en56-u2-sad.png",
        "image_prompt": "A little child with a tear, looking sad, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Xafa yuz qiling!"
+       "action": "Xafa yuz qil!"
       }
      ],
      "extra": [
@@ -469,24 +469,24 @@
        "turi": "tushuncha",
        "sarlavha": "👨‍👩‍👧 Oilam haqida gapiraman",
        "matn": "Endi gap tuzamiz: [en]My dad is big.[/en] — dadam katta. [en]My baby brother is small.[/en] — ukam kichkina. [en]My mum is happy.[/en] — onam xursand.",
-       "doska": "My dad is big. 👨🐘\nMy brother is small. 👦🐭\nMy mum is happy. 👩😄",
+       "doska": "My dad is big. 👨🔶\nMy brother is small. 👦🔸\nMy mum is happy. 👩😄",
        "sodda": "[en]big[/en] — katta, [en]small[/en] — kichik.",
-       "boshqa_usul": "Men aytaman — siz ko'rsatasiz: [en]big![/en] — qo'l keng; [en]small![/en] — qo'l tor; [en]happy![/en] — kulamiz!"
+       "boshqa_usul": "Men aytaman — sen ko'rsatasan: [en]big![/en] — qo'l keng; [en]small![/en] — qo'l tor; [en]happy![/en] — kulamiz!"
       }
      ],
      "tests": [
       {
        "q": "🐘 Fil qanday?",
        "options": [
-        "🐘 big",
-        "🐭 small",
+        "🔶 big",
+        "🔸 small",
         "😢 sad"
        ],
        "answer": 0,
        "why": "To'g'ri! Fil katta — [en]big[/en]."
       },
       {
-       "q": "Tug'ilgan kuningizda sizga sovg'a berishdi. Siz qandaysiz?",
+       "q": "Tug'ilgan kuningda senga sovg'a berishdi. Sen qandaysan?",
        "options": [
         "😄 happy",
         "😢 sad",
@@ -506,7 +506,7 @@
     {
      "name": "Futbolka va shim",
      "goal": "Bola T-shirt, trousers, dress, shorts so'zlarini biladi",
-     "intro": "Gu-gu! Men bugun sayrga chiqmoqchiman, ammo javonimda kiyimlar aralashib ketibdi. Keling, ularni inglizcha nomlab, joy-joyiga qo'yamiz!",
+     "intro": "Bip-bip! Men bugun sayrga chiqmoqchiman, ammo javonimda kiyimlar aralashib ketibdi. Qani, ularni inglizcha nomlab, joy-joyiga qo'yamiz!",
      "items": [
       {
        "say": "T-shirt",
@@ -541,17 +541,17 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🧺 Kir yoyamiz",
-       "matn": "Kabutar qushcha kir yoyyapti. Men aytgan kiyimni ko'rsating: [en]T-shirt![/en] … [en]dress![/en] … [en]trousers![/en] … [en]shorts![/en] Barakalla!",
+       "matn": "Robot Kabu kir yoyyapti. Men aytgan kiyimni ko'rsat: [en]T-shirt![/en] … [en]dress![/en] … [en]trousers![/en] … [en]shorts![/en] Barakalla!",
        "doska": "👕 T-shirt  👖 trousers\n👗 dress  🩳 shorts",
        "sodda": "Ikkitadan: [en]T-shirt[/en] va [en]dress[/en].",
-       "boshqa_usul": "O'zingizdagi kiyimni ushlab ayting: [en]T-shirt[/en] yoki [en]dress[/en]!"
+       "boshqa_usul": "O'zingdagi kiyimni ushlab ayt: [en]T-shirt[/en] yoki [en]dress[/en]!"
       }
      ]
     },
     {
      "name": "Poyabzal va paypoq",
      "goal": "Bola shoes, socks, boots so'zlarini biladi va «Put on!» buyrug'ini bajaradi",
-     "intro": "Tongda shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni inglizcha o'rganamiz.",
+     "intro": "Tongda shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Qani, izlab, oyoq kiyimlarni inglizcha o'rganamiz.",
      "items": [
       {
        "say": "shoes",
@@ -580,17 +580,17 @@
        "emoji": "🦶",
        "image": "en56-u3-put-on.png",
        "image_prompt": "A child putting on a jacket by themselves, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Kiyim kiyayotgandek harakat qiling!"
+       "action": "Kiyim kiyayotgandek harakat qil!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🏃 Kiyinish o'yini",
-       "matn": "Men buyuraman, siz kiyinganday qilasiz: [en]Put on your socks![/en] … [en]Put on your shoes![/en] … [en]Put on your boots![/en] Kim tezroq?",
+       "matn": "Men buyuraman, sen kiyinganday qilasan: [en]Put on your socks![/en] … [en]Put on your shoes![/en] … [en]Put on your boots![/en] Kim tezroq?",
        "doska": "Put on your socks! 🧦\nPut on your shoes! 👟\nPut on your boots! 👢",
        "sodda": "Sekin: [en]Put on… socks[/en]. Paypoq kiyamiz!",
-       "boshqa_usul": "Rostdan kiyinib ko'ring va har birida ayting: [en]socks, shoes![/en]"
+       "boshqa_usul": "Rostdan kiyinib ko'r va har birida ayt: [en]socks, shoes![/en]"
       }
      ],
      "tests": [
@@ -609,7 +609,7 @@
     {
      "name": "Issiq kiyimlar",
      "goal": "Bola hat, coat, scarf, gloves so'zlarini biladi",
-     "intro": "Brr, tashqarida sovuq! Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
+     "intro": "Brr, tashqarida sovuq! Qishda issiq kiyinish kerak. Qani, issiq kiyimlarni o'rganamiz!",
      "items": [
       {
        "say": "hat",
@@ -631,7 +631,7 @@
        "emoji": "🧣",
        "image": "en56-u3-scarf.png",
        "image_prompt": "A striped woolly scarf, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Bo'yningizga sharf o'raganday qiling!"
+       "action": "Bo'yningga sharf o'raganday qil!"
       },
       {
        "say": "gloves",
@@ -639,17 +639,17 @@
        "emoji": "🧤",
        "image": "en56-u3-gloves.png",
        "image_prompt": "A pair of warm gloves, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qo'llaringizni ishqalang!"
+       "action": "Qo'llaringni ishqala!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "❄️ Qishga tayyorlanamiz",
-       "matn": "Kabutar qushchani kiyintiramiz! Men aytaman, siz ko'rsatasiz: [en]hat[/en] — boshga, [en]scarf[/en] — bo'yinga, [en]gloves[/en] — qo'lga, [en]coat[/en] — ustiga!",
+       "matn": "Robot Kabuni kiyintiramiz! Men aytaman, sen ko'rsatasan: [en]hat[/en] — boshga, [en]scarf[/en] — bo'yinga, [en]gloves[/en] — qo'lga, [en]coat[/en] — ustiga!",
        "doska": "👒 hat — bosh\n🧣 scarf — bo'yin\n🧤 gloves — qo'l\n🧥 coat — ust",
        "sodda": "Ikkitasi: [en]hat[/en] va [en]coat[/en].",
-       "boshqa_usul": "Rostdan shapka va sharf taqib, ko'zguga qarab ayting: [en]hat, scarf![/en]"
+       "boshqa_usul": "Rostdan shapka va sharf taqib, ko'zguga qarab ayt: [en]hat, scarf![/en]"
       }
      ],
      "tests": [
@@ -668,7 +668,7 @@
     {
      "name": "Mening kiyimim",
      "goal": "Bola kiyimini rangi bilan aytadi: «My T-shirt is red.»",
-     "intro": "Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida inglizcha gapiramiz.",
+     "intro": "Men bugun qizil futbolka kiydim! Sen qanday rangli kiyim kiyding? Qani, kiyimimiz haqida inglizcha gapiramiz.",
      "items": [
       {
        "say": "My T-shirt is red.",
@@ -690,16 +690,16 @@
        "emoji": "👒🙂",
        "image": "en56-u3-put-on-hat.png",
        "image_prompt": "A smiling child putting on a hat, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Boshingizga shapka kiyganday qiling!"
+       "action": "Boshingga shapka kiyganday qil!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎨 Rangli kiyim o'yini",
-       "matn": "Kiyimingizga qarang! Qani, ayting: [en]My T-shirt is…[/en] va rangini qo'shing: [en]red, blue, green, yellow[/en]. Keyin do'stingizning kiyimini ham ayting!",
+       "matn": "Kiyimingga qara! Qani, ayt: [en]My T-shirt is…[/en] va rangini qo'sh: [en]red, blue, green, yellow[/en]. Keyin do'stingning kiyimini ham ayt!",
        "doska": "My T-shirt is red. 🔴\nMy dress is pink. 🩷\nMy shoes are blue. 🔵",
-       "sodda": "Faqat rangni ayting: [en]red![/en] [en]blue![/en]",
+       "sodda": "Faqat rangni ayt: [en]red![/en] [en]blue![/en]",
        "boshqa_usul": "Kim [en]red[/en] kiyim kiygan bo'lsa — o'rnidan tursin! Kim [en]blue[/en] kiygan bo'lsa — sakrasin!"
       }
      ],
@@ -725,7 +725,7 @@
     {
      "name": "Nonushta",
      "goal": "Bola bread, milk, egg, cheese so'zlarini biladi",
-     "intro": "Xayrli tong! Nonushta vaqti — dasturxonda nimalar bor ekan? Keling, inglizcha aytamiz.",
+     "intro": "Xayrli tong! Nonushta vaqti — dasturxonda nimalar bor ekan? Qani, inglizcha aytamiz.",
      "items": [
       {
        "say": "bread",
@@ -760,17 +760,17 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🍳 Nonushta tayyorlaymiz",
-       "matn": "Qo'g'irchoqlarga nonushta beramiz! Stolga qo'yganday qiling va ayting: [en]bread[/en] … [en]milk[/en] … [en]egg[/en] … [en]cheese[/en]. Yoqimli ishtaha!",
+       "matn": "Qo'g'irchoqlarga nonushta beramiz! Stolga qo'yganday qil va ayt: [en]bread[/en] … [en]milk[/en] … [en]egg[/en] … [en]cheese[/en]. Yoqimli ishtaha!",
        "doska": "🍞 bread  🥛 milk\n🥚 egg  🧀 cheese",
        "sodda": "Ikkitasi: [en]bread[/en] va [en]milk[/en].",
-       "boshqa_usul": "Uyda nonushtada har ovqatni inglizcha nomlang!"
+       "boshqa_usul": "Uyda nonushtada har ovqatni inglizcha nomla!"
       }
      ]
     },
     {
      "name": "Ichimliklar",
      "goal": "Bola water, juice, tea so'zlarini va «I'm thirsty» iborasini biladi",
-     "intro": "Men uzoq uchdim, tomog'im qaqrab ketdi! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
+     "intro": "Men uzoq yurdim, batareykam qizib, chanqadim! Sen nima ichishni yaxshi ko'rasan? Qani, bilib olamiz.",
      "items": [
       {
        "say": "water",
@@ -799,17 +799,17 @@
        "emoji": "🥤",
        "image": "en56-u4-im-thirsty.png",
        "image_prompt": "A child holding a cup, looking thirsty, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Tomog'ingizni ushlang!"
+       "action": "Tomog'ingni ushla!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: choyxonada",
-       "matn": "Kabutar so'raydi: [en]Water or juice?[/en] Siz tanlang: [en]Juice, please![/en] Kabutar beradi. Siz: [en]Thank you![/en] Endi siz so'rang!",
+       "matn": "Kabu so'raydi: [en]Water or juice?[/en] Sen tanla: [en]Juice, please![/en] Kabu beradi. Sen: [en]Thank you![/en] Endi sen so'ra!",
        "doska": "— Water or juice?\n— Juice, please!\n— Thank you!",
-       "sodda": "Faqat tanlang: [en]water[/en] yoki [en]juice[/en].",
-       "boshqa_usul": "Ikki stakan qo'ying — biriga suv, biriga sharbat. Kattalarga taklif qiling: [en]Water or juice?[/en]"
+       "sodda": "Faqat tanla: [en]water[/en] yoki [en]juice[/en].",
+       "boshqa_usul": "Ikki stakan qo'y — biriga suv, biriga sharbat. Kattalarga taklif qil: [en]Water or juice?[/en]"
       }
      ],
      "tests": [
@@ -857,17 +857,17 @@
        "emoji": "🍽️",
        "image": "en56-u4-im-hungry.png",
        "image_prompt": "A child with an empty plate and a spoon, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qorningizni silang!"
+       "action": "Qorningni sila!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🥄 Oshpaz o'yini",
-       "matn": "Siz — oshpazsiz! O'yinchoq qozonga solganday qiling: [en]rice[/en], [en]chicken[/en]… aralashtiring! Kabutar keladi: [en]I'm hungry![/en] Siz berasiz: [en]Here is soup![/en]",
+       "matn": "Sen — oshpazsan! O'yinchoq qozonga solganday qil: [en]rice[/en], [en]chicken[/en]… aralashtir! Kabu keladi: [en]I'm hungry![/en] Sen berasan: [en]Here is soup![/en]",
        "doska": "🍚 rice + 🍗 chicken\n🍲 soup\nI'm hungry! 🍽️",
-       "sodda": "O'yinchoq qozonga bittadan soling va ayting: [en]rice[/en]!",
-       "boshqa_usul": "Qog'ozdan likopcha yasang, ichiga rasm chizing va nomini ayting."
+       "sodda": "O'yinchoq qozonga bittadan sol va ayt: [en]rice[/en]!",
+       "boshqa_usul": "Qog'ozdan likopcha yasa, ichiga rasm chiz va nomini ayt."
       }
      ],
      "tests": [
@@ -886,7 +886,7 @@
     {
      "name": "Shirinliklar",
      "goal": "Bola cake, ice cream, sweets so'zlarini va «Yummy!» iborasini biladi",
-     "intro": "Bugun do'stimning tug'ilgan kuni, stolda juda ko'p shirinliklar bor! Keling, ularni inglizcha nomlaymiz.",
+     "intro": "Bugun do'stimning tug'ilgan kuni, stolda juda ko'p shirinliklar bor! Qani, ularni inglizcha nomlaymiz.",
      "items": [
       {
        "say": "cake",
@@ -915,17 +915,17 @@
        "emoji": "😋",
        "image": "en56-u4-yummy.png",
        "image_prompt": "A child licking lips happily, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qorningizni silab, «mm» deng!"
+       "action": "Qorningni silab, «mm» de!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎂 Tug'ilgan kun o'yini",
-       "matn": "Tortga shamlarni qo'yamiz va sanaymiz: [en]one, two, three, four, five![/en] Besh sham! Puflaganday qiling! Endi tortdan tatib ko'ramiz — [en]Yummy![/en]",
+       "matn": "Tortga shamlarni qo'yamiz va sanaymiz: [en]one, two, three, four, five![/en] Besh sham! Puflaganday qil! Endi tortdan tatib ko'ramiz — [en]Yummy![/en]",
        "doska": "🕯️🕯️🕯️🕯️🕯️\n🎂 cake\n😋 Yummy!",
        "sodda": "Birgina so'z: [en]cake[/en]… [en]Yummy![/en]",
-       "boshqa_usul": "Loy yoki plastilindan tort yasang va unga sham qo'yib, inglizcha sanang!"
+       "boshqa_usul": "Loy yoki plastilindan tort yasa va unga sham qo'yib, inglizcha sana!"
       }
      ],
      "tests": [
@@ -950,7 +950,7 @@
     {
      "name": "Mening uyim",
      "goal": "Bola house, door, window, garden so'zlarini biladi",
-     "intro": "Sizning chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni inglizcha o'rganamiz.",
+     "intro": "Sening chiroyli uying bor! Uyning eshigi, derazasi bormi? Qani, uyni inglizcha o'rganamiz.",
      "items": [
       {
        "say": "house",
@@ -965,7 +965,7 @@
        "emoji": "🚪",
        "image": "en56-u5-door.png",
        "image_prompt": "A wooden front door, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Eshikni taqillatganday qiling: tuk-tuk!"
+       "action": "Eshikni taqillatganday qil: tuk-tuk!"
       },
       {
        "say": "window",
@@ -986,17 +986,17 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🏠 Uy chizamiz",
-       "matn": "Qog'oz va qalam oling! Avval [en]house[/en] chizing, keyin [en]door[/en], ikkita [en]window[/en], atrofiga [en]garden[/en]. Chizib bo'lgach, har birini ko'rsatib ayting!",
+       "matn": "Qog'oz va qalam ol! Avval [en]house[/en] chiz, keyin [en]door[/en], ikkita [en]window[/en], atrofiga [en]garden[/en]. Chizib bo'lgach, har birini ko'rsatib ayt!",
        "doska": "🏠 house\n🚪 door  🪟 window\n🏡 garden",
-       "sodda": "Faqat [en]house[/en] va [en]door[/en] chizing.",
-       "boshqa_usul": "Uyingizda yurib, eshik va derazani topib ayting: [en]door! window![/en]"
+       "sodda": "Faqat [en]house[/en] va [en]door[/en] chiz.",
+       "boshqa_usul": "Uyingda yurib, eshik va derazani topib ayt: [en]door! window![/en]"
       }
      ]
     },
     {
      "name": "Uydagi xonalar",
      "goal": "Bola kitchen, bedroom, bathroom, living room so'zlarini biladi",
-     "intro": "Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi, qayerda uxlaysiz? Keling, xonalarni inglizcha aytamiz!",
+     "intro": "Men sening uyingga mehmonga keldim. Qayerda ovqat pishiriladi, qayerda uxlaysan? Qani, xonalarni inglizcha aytamiz!",
      "items": [
       {
        "say": "kitchen",
@@ -1011,7 +1011,7 @@
        "emoji": "🛏️",
        "image": "en56-u5-bedroom.png",
        "image_prompt": "A cozy bedroom with a bed and a teddy bear, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Uxlaganday ko'zingizni yuming!"
+       "action": "Uxlaganday ko'zingni yum!"
       },
       {
        "say": "bathroom",
@@ -1019,7 +1019,7 @@
        "emoji": "🛁",
        "image": "en56-u5-bathroom.png",
        "image_prompt": "A bathroom with a bathtub and bubbles, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qo'lingizni yuvganday qiling!"
+       "action": "Qo'lingni yuvganday qil!"
       },
       {
        "say": "living room",
@@ -1033,10 +1033,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🔍 Qaysi xonadamiz?",
-       "matn": "Men ish aytaman, siz xonani toping! Uxlaymiz — [en]bedroom[/en]. Ovqat pishiramiz — [en]kitchen[/en]. Cho'milamiz — [en]bathroom[/en]. Divanda o'tiramiz — [en]living room[/en].",
+       "matn": "Men ish aytaman, sen xonani top! Uxlaymiz — [en]bedroom[/en]. Ovqat pishiramiz — [en]kitchen[/en]. Cho'milamiz — [en]bathroom[/en]. Divanda o'tiramiz — [en]living room[/en].",
        "doska": "😴 → bedroom\n🍳 → kitchen\n🛁 → bathroom\n🛋️ → living room",
        "sodda": "Ikkitasi: [en]kitchen[/en] va [en]bedroom[/en].",
-       "boshqa_usul": "Uyingizda har xonaga kirib, uning nomini inglizcha ayting!"
+       "boshqa_usul": "Uyingda har xonaga kirib, uning nomini inglizcha ayt!"
       }
      ],
      "tests": [
@@ -1055,7 +1055,7 @@
     {
      "name": "Xonadagi narsalar",
      "goal": "Bola chair, lamp, TV, clock so'zlarini biladi",
-     "intro": "Mehmonxonada nimalar bor ekan? Soat chiqillayapti: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
+     "intro": "Mehmonxonada nimalar bor ekan? Soat chiqillayapti: tik-tak! Qani, xonadagi narsalarni o'rganamiz.",
      "items": [
       {
        "say": "chair",
@@ -1070,7 +1070,7 @@
        "emoji": "💡",
        "image": "en56-u5-lamp.png",
        "image_prompt": "A glowing light bulb lamp, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Chiroqni yoqganday qiling: chirt!"
+       "action": "Chiroqni yoqganday qil: chirt!"
       },
       {
        "say": "TV",
@@ -1085,31 +1085,31 @@
        "emoji": "🕰️",
        "image": "en56-u5-clock.png",
        "image_prompt": "A mantel clock, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Tik-tak deb boshingizni chayqating!"
+       "action": "Tik-tak deb boshingni chayqat!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "👀 Top-chi, qayerda?",
-       "matn": "Atrofingizga qarang! Xonangizda [en]chair[/en] bormi? Ko'rsating! [en]lamp[/en]? [en]TV[/en]? [en]clock[/en]? Topgan har narsa uchun — bitta qarsak!",
+       "matn": "Atrofingga qara! Xonangda [en]chair[/en] bormi? Ko'rsat! [en]lamp[/en]? [en]TV[/en]? [en]clock[/en]? Topgan har narsa uchun — bitta qarsak!",
        "doska": "🪑 chair  💡 lamp\n📺 TV  🕰️ clock",
-       "sodda": "Faqat [en]chair[/en] ni toping va ustiga o'tiring!",
-       "boshqa_usul": "Kattalar narsalarga qog'oz yopishtirib, nomini yozsin; siz ko'rsatib ayting."
+       "sodda": "Faqat [en]chair[/en] ni top va ustiga o'tir!",
+       "boshqa_usul": "Kattalar narsalarga qog'oz yopishtirib, nomini yozsin; sen ko'rsatib ayt."
       }
      ]
     },
     {
      "name": "Mushuk qayerda?",
      "goal": "Bola «Where is…?» deb so'raydi, in, on, under so'zlarini tushunadi",
-     "intro": "Voy, mushukcha yashirinib oldi! U qutining ichidami, stolning ustidami yoki karavotning ostidami? Keling, birga qidiramiz!",
+     "intro": "Voy, mushukcha yashirinib oldi! U qutining ichidami, stolning ustidami yoki karavotning ostidami? Qani, birga qidiramiz!",
      "items": [
       {
        "say": "Where is the cat?",
        "uz": "mushuk qayerda?",
        "emoji": "🐈❓",
        "image": "en56-u5-where-cat.png",
-       "image_prompt": "A pigeon looking around searching for a hidden cat, cute cartoon for kids, soft flat colors, white background, no text, square"
+       "image_prompt": "A friendly small robot with an antenna looking around searching for a hidden cat, cute cartoon for kids, soft flat colors, white background, no text, square"
       },
       {
        "say": "in the box",
@@ -1137,10 +1137,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🧸 Yashirinmachoq",
-       "matn": "Ayiqchani yashiring! Kattalar so'raydi: [en]Where is Teddy?[/en] Siz javob bering: [en]in the box[/en], [en]on the chair[/en] yoki [en]under the bed[/en].",
+       "matn": "Ayiqchani yashir! Kattalar so'raydi: [en]Where is Teddy?[/en] Sen javob ber: [en]in the box[/en], [en]on the chair[/en] yoki [en]under the bed[/en].",
        "doska": "Where is Teddy?\nin 📦  on ⬆️  under ⬇️",
-       "sodda": "Qo'l bilan ko'rsating: [en]in[/en] — ichiga, [en]on[/en] — ustiga, [en]under[/en] — ostiga.",
-       "boshqa_usul": "Qalamni qutiga soling va ayting: [en]in![/en] Qutining ustiga qo'ying: [en]on![/en] Ostiga: [en]under![/en]"
+       "sodda": "Qo'l bilan ko'rsat: [en]in[/en] — ichiga, [en]on[/en] — ustiga, [en]under[/en] — ostiga.",
+       "boshqa_usul": "Qalamni qutiga sol va ayt: [en]in![/en] Qutining ustiga qo'y: [en]on![/en] Ostiga: [en]under![/en]"
       }
      ],
      "tests": [
@@ -1165,7 +1165,7 @@
     {
      "name": "Bugun havo qanday?",
      "goal": "Bola «What's the weather like?» savoliga sunny, rainy, windy bilan javob beradi",
-     "intro": "Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni inglizcha aytamiz!",
+     "intro": "Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Qani, ob-havoni inglizcha aytamiz!",
      "items": [
       {
        "say": "What's the weather like?",
@@ -1180,7 +1180,7 @@
        "emoji": "☀️",
        "image": "en56-u6-sunny.png",
        "image_prompt": "A bright smiling sun, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qo'llaringizni quyoshday keng oching!"
+       "action": "Qo'llaringni quyoshday keng och!"
       },
       {
        "say": "It's rainy.",
@@ -1188,7 +1188,7 @@
        "emoji": "🌧️",
        "image": "en56-u6-rainy.png",
        "image_prompt": "A cloud with raindrops, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Barmoqlaringiz bilan yomg'ir tomchilarini ko'rsating!"
+       "action": "Barmoqlaring bilan yomg'ir tomchilarini ko'rsat!"
       },
       {
        "say": "It's windy.",
@@ -1196,17 +1196,17 @@
        "emoji": "🌬️",
        "image": "en56-u6-windy.png",
        "image_prompt": "Wind blowing leaves and a kite, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Daraxtday chayqaling!"
+       "action": "Daraxtday chayqal!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎵 Ob-havo qo'shig'i",
-       "matn": "Kuylaymiz: [en]What's the weather like? It's sunny, it's sunny, hooray![/en] Keyin [en]rainy[/en] va [en]windy[/en] bilan ham kuylang!",
+       "matn": "Kuylaymiz: [en]What's the weather like? It's sunny, it's sunny, hooray![/en] Keyin [en]rainy[/en] va [en]windy[/en] bilan ham kuyla!",
        "doska": "What's the weather like?\nIt's sunny! ☀️ It's rainy! 🌧️ It's windy! 🌬️",
        "sodda": "Faqat javob: [en]sunny![/en] [en]rainy![/en]",
-       "boshqa_usul": "Har tong derazadan qarab, havoni inglizcha ayting va taqvimga rasm chizing."
+       "boshqa_usul": "Har tong derazadan qarab, havoni inglizcha ayt va taqvimga rasm chiz."
       }
      ],
      "tests": [
@@ -1225,7 +1225,7 @@
     {
      "name": "Issiq va sovuq",
      "goal": "Bola snowy, cloudy, hot, cold so'zlari bilan havoni tasvirlaydi",
-     "intro": "Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq ham, sovuq ham bo'ladi. Keling, o'rganamiz!",
+     "intro": "Yozda men soyada salqinlayman, qishda esa antennamni isitaman. Havo issiq ham, sovuq ham bo'ladi. Qani, o'rganamiz!",
      "items": [
       {
        "say": "It's snowy.",
@@ -1247,7 +1247,7 @@
        "emoji": "🥵",
        "image": "en56-u6-hot.png",
        "image_prompt": "A child fanning themselves in the heat, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Yelpinganday qiling!"
+       "action": "Yelpinganday qil!"
       },
       {
        "say": "It's cold.",
@@ -1255,17 +1255,17 @@
        "emoji": "🥶",
        "image": "en56-u6-cold.png",
        "image_prompt": "A shivering child in the cold, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Titraganday qiling: brr!"
+       "action": "Titraganday qil: brr!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🏃 Issiq-sovuq o'yini",
-       "matn": "Men aytaman, siz harakat qilasiz: [en]It's hot![/en] — yelpining! [en]It's cold![/en] — titrang! [en]It's snowy![/en] — qor to'plang! [en]It's cloudy![/en] — bulutday suzing!",
+       "matn": "Men aytaman, sen harakat qilasan: [en]It's hot![/en] — yelpin! [en]It's cold![/en] — titra! [en]It's snowy![/en] — qor to'pla! [en]It's cloudy![/en] — bulutday suz!",
        "doska": "🥵 hot — yelpinamiz\n🥶 cold — titraymiz\n🌨️ snowy — qor\n☁️ cloudy — bulut",
        "sodda": "Ikkitasi: [en]hot[/en] va [en]cold[/en].",
-       "boshqa_usul": "Muzlatkichdan muz oling va ushlang: [en]It's cold![/en] Iliq suvga qo'l tekkizing: [en]hot![/en]"
+       "boshqa_usul": "Muzlatkichdan muz ol va ushla: [en]It's cold![/en] Iliq suvga qo'l tekkiz: [en]hot![/en]"
       }
      ],
      "tests": [
@@ -1284,7 +1284,7 @@
     {
      "name": "To'rt fasl",
      "goal": "Bola spring, summer, autumn, winter fasllarini biladi",
-     "intro": "Bir yilda to'rtta fasl bor: bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
+     "intro": "Bir yilda to'rtta fasl bor: bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri senga yoqadi?",
      "items": [
       {
        "say": "spring",
@@ -1306,7 +1306,7 @@
        "emoji": "🍂",
        "image": "en56-u6-autumn.png",
        "image_prompt": "Falling orange autumn leaves, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Barg kabi aylanib tushing!"
+       "action": "Barg kabi aylanib tush!"
       },
       {
        "say": "winter",
@@ -1323,7 +1323,7 @@
        "matn": "Fasllar aylanib keladi: [en]spring, summer, autumn, winter[/en] — va yana [en]spring[/en]! Bahorda — gul, yozda — dengiz, kuzda — barg, qishda — qor.",
        "doska": "🌷 spring → 🏖️ summer\n↑            ↓\n❄️ winter ← 🍂 autumn",
        "sodda": "[en]summer[/en] — yoz, [en]winter[/en] — qish.",
-       "boshqa_usul": "Doira bo'lib aylaning va har burilishda bitta faslni ayting!"
+       "boshqa_usul": "Doira bo'lib aylan va har burilishda bitta faslni ayt!"
       }
      ],
      "tests": [
@@ -1352,7 +1352,7 @@
     {
      "name": "Soyabon va kamalak",
      "goal": "Bola umbrella, rainbow, snowman so'zlarini biladi",
-     "intro": "Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz.",
+     "intro": "Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Qani, sirni ochamiz.",
      "items": [
       {
        "say": "umbrella",
@@ -1360,7 +1360,7 @@
        "emoji": "☂️",
        "image": "en56-u6-umbrella.png",
        "image_prompt": "A colorful open umbrella, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Soyabonni ochganday qiling!"
+       "action": "Soyabonni ochganday qil!"
       },
       {
        "say": "rainbow",
@@ -1381,10 +1381,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: sayrga chiqamiz",
-       "matn": "Kabutar so'raydi: [en]What's the weather like?[/en] Siz: [en]It's rainy.[/en] Kabutar soyabonni ochadi: [en]Umbrella![/en] Keyin siz ko'rib qolasiz: [en]Look! A rainbow![/en]",
+       "matn": "Kabu so'raydi: [en]What's the weather like?[/en] Sen: [en]It's rainy.[/en] Kabu soyabonni ochadi: [en]Umbrella![/en] Keyin sen ko'rib qolasan: [en]Look! A rainbow![/en]",
        "doska": "— What's the weather like?\n— It's rainy. 🌧️\n— Umbrella! ☂️\n— Look! A rainbow! 🌈",
        "sodda": "Qisqa: [en]rainy[/en] — [en]umbrella[/en].",
-       "boshqa_usul": "Rostdan soyabonni oching (xonada ehtiyot bo'ling!) va ayting: [en]umbrella![/en]"
+       "boshqa_usul": "Rostdan soyabonni och (xonada ehtiyot bo'l!) va ayt: [en]umbrella![/en]"
       }
      ],
      "tests": [
@@ -1409,7 +1409,7 @@
     {
      "name": "Menga yoqadi",
      "goal": "Bola «I like…» bilan yoqtirgan narsasini aytadi",
-     "intro": "Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni inglizcha aytishni o'rganamiz.",
+     "intro": "Men olmaning rasmini juda yaxshi ko'raman! Sen nimani yaxshi ko'rasan? Bugun buni inglizcha aytishni o'rganamiz.",
      "items": [
       {
        "say": "I like apples.",
@@ -1417,7 +1417,7 @@
        "emoji": "🍎❤️",
        "image": "en56-u7-like-apples.png",
        "image_prompt": "A happy child hugging a big red apple, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qo'lingiz bilan yurakcha yasang!"
+       "action": "Qo'ling bilan yurakcha yasa!"
       },
       {
        "say": "I like cats.",
@@ -1438,10 +1438,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "❤️ Yurakcha o'yini",
-       "matn": "Men narsa aytaman. Yoqsa — yurakcha yasang va ayting: [en]I like…![/en] [en]bananas?[/en] [en]dogs?[/en] [en]cake?[/en] [en]milk?[/en]",
+       "matn": "Men narsa aytaman. Yoqsa — yurakcha yasa va ayt: [en]I like…![/en] [en]bananas?[/en] [en]dogs?[/en] [en]cake?[/en] [en]milk?[/en]",
        "doska": "I like … ❤️\n🍌 bananas  🐶 dogs  🎂 cake",
        "sodda": "Faqat [en]I like[/en] va so'z: [en]I like cake![/en]",
-       "boshqa_usul": "Yoqtirgan narsalaringiz rasmini chizing va har biriga ayting: [en]I like…[/en]"
+       "boshqa_usul": "Yoqtirgan narsalaring rasmini chiz va har biriga ayt: [en]I like…[/en]"
       }
      ],
      "tests": [
@@ -1460,7 +1460,7 @@
     {
      "name": "Menga yoqmaydi",
      "goal": "Bola «I don't like…» bilan yoqtirmagan narsasini aytadi",
-     "intro": "Men faqat yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
+     "intro": "Men faqat yomg'irni yoqtirmayman — zang bosib qolaman! Senga nima yoqmaydi? Qani, aytamiz.",
      "items": [
       {
        "say": "I don't like onions.",
@@ -1468,14 +1468,14 @@
        "emoji": "🧅👎",
        "image": "en56-u7-dislike-onions.png",
        "image_prompt": "A child making a funny face at an onion, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Burningizni jiyiring!"
+       "action": "Burningni jiyir!"
       },
       {
        "say": "I don't like rain.",
        "uz": "men yomg'irni yoqtirmayman",
        "emoji": "🌧️👎",
        "image": "en56-u7-dislike-rain.png",
-       "image_prompt": "A wet grumpy pigeon under the rain, cute cartoon for kids, soft flat colors, white background, no text, square"
+       "image_prompt": "A wet grumpy small robot with an antenna under the rain, cute cartoon for kids, soft flat colors, white background, no text, square"
       },
       {
        "say": "I don't like soup.",
@@ -1483,17 +1483,17 @@
        "emoji": "🍲👎",
        "image": "en56-u4-soup.png",
        "image_prompt": "A cute cartoon child making a funny face at a bowl of soup, thumbs down, soft flat colors, white background, no text, square",
-       "action": "Boshingizni «yo'q» deb chayqang!"
+       "action": "Boshingni «yo'q» deb chayqa!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "👍👎 Barmoq o'yini",
-       "matn": "Men aytaman — siz barmoq ko'rsatasiz! Yoqsa 👍: [en]I like…[/en]. Yoqmasa 👎: [en]I don't like…[/en]. [en]Cake?[/en] [en]Onions?[/en] [en]Rain?[/en] [en]Sweets?[/en]",
+       "matn": "Men aytaman — sen barmoq ko'rsatasan! Yoqsa 👍: [en]I like…[/en]. Yoqmasa 👎: [en]I don't like…[/en]. [en]Cake?[/en] [en]Onions?[/en] [en]Rain?[/en] [en]Sweets?[/en]",
        "doska": "👍 I like …\n👎 I don't like …",
        "sodda": "Faqat barmoq va [en]yes[/en] yoki [en]no[/en].",
-       "boshqa_usul": "Oila bilan o'ynang: har kim bitta narsa aytadi, qolganlar 👍 yoki 👎 ko'rsatadi."
+       "boshqa_usul": "Oila bilan o'yna: har kim bitta narsa aytadi, qolganlar 👍 yoki 👎 ko'rsatadi."
       }
      ],
      "tests": [
@@ -1512,7 +1512,7 @@
     {
      "name": "Senga yoqadimi?",
      "goal": "Bola «Do you like…?» deb so'raydi va «Yes, I do / No, I don't» deb javob beradi",
-     "intro": "Gu-gu! Men do'stlarimdan so'rashni yaxshi ko'raman: senga muzqaymoq yoqadimi? Bugun inglizcha so'rash va javob berishni o'rganamiz!",
+     "intro": "Bip-bip! Men do'stlarimdan so'rashni yaxshi ko'raman: senga muzqaymoq yoqadimi? Bugun inglizcha so'rash va javob berishni o'rganamiz!",
      "items": [
       {
        "say": "Do you like…?",
@@ -1527,7 +1527,7 @@
        "emoji": "👍",
        "image": "en56-u7-yes-i-do.png",
        "image_prompt": "A child smiling and giving a thumbs up, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Boshingizni «ha» deb qimirlating!"
+       "action": "Boshingni «ha» deb qimirlat!"
       },
       {
        "say": "No, I don't.",
@@ -1535,26 +1535,26 @@
        "emoji": "👎",
        "image": "en56-u7-no-i-dont.png",
        "image_prompt": "A child shaking head and giving a thumbs down, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Boshingizni «yo'q» deb chayqating!"
+       "action": "Boshingni «yo'q» deb chayqat!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: do'stimdan so'rayman",
-       "matn": "Kabutar: [en]Do you like milk?[/en] Siz: [en]Yes, I do.[/en] Kabutar: [en]Do you like onions?[/en] Siz: [en]No, I don't![/en] Endi siz Kabutardan so'rang!",
+       "matn": "Kabu: [en]Do you like milk?[/en] Sen: [en]Yes, I do.[/en] Kabu: [en]Do you like onions?[/en] Sen: [en]No, I don't![/en] Endi sen Kabudan so'ra!",
        "doska": "— Do you like milk?\n— Yes, I do. 👍\n— Do you like onions?\n— No, I don't. 👎",
-       "sodda": "Faqat [en]Yes[/en] 👍 yoki [en]No[/en] 👎 deb javob bering.",
-       "boshqa_usul": "Oila a'zolaringizdan so'rang: [en]Do you like tea?[/en] Javoblarini sanang!"
+       "sodda": "Faqat [en]Yes[/en] 👍 yoki [en]No[/en] 👎 deb javob ber.",
+       "boshqa_usul": "Oila a'zolaringdan so'ra: [en]Do you like tea?[/en] Javoblarini sana!"
       }
      ],
      "tests": [
       {
-       "q": "[en]Do you like ice cream?[/en] Sizga yoqsa, nima deysiz?",
+       "q": "[en]Do you like ice cream?[/en] Senga yoqsa, nima deysan?",
        "options": [
         "👍 Yes, I do.",
         "👎 No, I don't.",
-        "🙋 Goodbye!"
+        "👋🚶 Goodbye!"
        ],
        "answer": 0,
        "why": "Ajoyib! Yoqsa — [en]Yes, I do.[/en]"
@@ -1564,7 +1564,7 @@
     {
      "name": "Eng sevimli narsam",
      "goal": "Bola sevimli rangi va o'yinchog'ini aytadi, oilasiga mehrini bildiradi",
-     "intro": "Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun sevimli narsalarimiz haqida inglizcha gapiramiz.",
+     "intro": "Mening eng sevimli rangim — ko'k, xuddi osmonday! Seniki qaysi? Bugun sevimli narsalarimiz haqida inglizcha gapiramiz.",
      "items": [
       {
        "say": "My favourite colour is blue.",
@@ -1586,17 +1586,17 @@
        "emoji": "🥰",
        "image": "en56-u7-love-mum.png",
        "image_prompt": "A child hugging mother with hearts around, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Onangizni quchoqlang!"
+       "action": "Onangni quchoqla!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎁 Sevimli narsam ko'rgazmasi",
-       "matn": "Eng sevimli o'yinchog'ingizni olib keling! Uni ko'rsatib ayting: [en]My favourite toy is…[/en] Keyin rangini ayting: [en]My favourite colour is…[/en]",
+       "matn": "Eng sevimli o'yinchog'ingni olib kel! Uni ko'rsatib ayt: [en]My favourite toy is…[/en] Keyin rangini ayt: [en]My favourite colour is…[/en]",
        "doska": "My favourite toy is … 🧸\nMy favourite colour is … 🎨",
-       "sodda": "Faqat nomini ayting: [en]ball![/en] [en]blue![/en]",
-       "boshqa_usul": "Sevimli rangingizdagi qalam bilan rasm chizing va onangizga sovg'a qiling: [en]I love you, mum![/en]"
+       "sodda": "Faqat nomini ayt: [en]ball![/en] [en]blue![/en]",
+       "boshqa_usul": "Sevimli rangingdagi qalam bilan rasm chiz va onangga sovg'a qil: [en]I love you, mum![/en]"
       }
      ]
     }
@@ -1609,7 +1609,7 @@
     {
      "name": "Menda bor",
      "goal": "Bola «I have a…» bilan o'zida bor narsani aytadi",
-     "intro": "Mening bitta qizil to'pim bor. Sizda nima bor — mushuk, it yoki qo'g'irchoq? Keling, inglizcha aytamiz!",
+     "intro": "Mening bitta qizil to'pim bor. Senda nima bor — mushuk, it yoki qo'g'irchoq? Qani, inglizcha aytamiz!",
      "items": [
       {
        "say": "I have a cat.",
@@ -1628,14 +1628,14 @@
       {
        "say": "I have a doll.",
        "uz": "menda qo'g'irchoq bor",
-       "emoji": "🪆",
+       "emoji": "🎎",
        "image": "en56-u8-have-doll.png",
        "image_prompt": "A child holding a colorful doll, cute cartoon for kids, soft flat colors, white background, no text, square"
       },
       {
        "say": "I have a ball.",
        "uz": "menda to'p bor",
-       "emoji": "🏀",
+       "emoji": "⚽",
        "image": "en56-u8-have-ball.png",
        "image_prompt": "A child holding a bouncy ball, cute cartoon for kids, soft flat colors, white background, no text, square"
       }
@@ -1644,10 +1644,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎒 Sehrli sumka",
-       "matn": "Sumkaga o'yinchoq mushuk, it, qo'g'irchoq va to'pni soling. Kattalar birini chiqaradi — siz ayting: [en]I have a cat![/en] [en]I have a dog![/en] [en]I have a doll![/en] [en]I have a ball![/en] Hammasini topdik!",
-       "doska": "🐈 cat  🐕 dog\n🪆 doll  🏀 ball",
-       "sodda": "Faqat nomini ayting: [en]ball![/en] [en]doll![/en]",
-       "boshqa_usul": "Uy hayvoningiz yoki o'yinchog'ingiz rasmini ko'rsatib ayting: [en]I have a…[/en]"
+       "matn": "Sumkaga o'yinchoq mushuk, it, qo'g'irchoq va to'pni sol. Kattalar birini chiqaradi — sen ayt: [en]I have a cat![/en] [en]I have a dog![/en] [en]I have a doll![/en] [en]I have a ball![/en] Hammasini topdik!",
+       "doska": "🐈 cat  🐕 dog\n🎎 doll  ⚽ ball",
+       "sodda": "Faqat nomini ayt: [en]ball![/en] [en]doll![/en]",
+       "boshqa_usul": "Uy hayvoning yoki o'yinchog'ing rasmini ko'rsatib ayt: [en]I have a…[/en]"
       }
      ],
      "tests": [
@@ -1656,7 +1656,7 @@
        "options": [
         "🐕 I have a dog.",
         "🐈 I have a cat.",
-        "🪆 I have a doll."
+        "🎎 I have a doll."
        ],
        "answer": 0,
        "why": "To'g'ri! It — [en]dog[/en]: [en]I have a dog.[/en]"
@@ -1666,7 +1666,7 @@
     {
      "name": "Men qila olaman",
      "goal": "Bola «I can…» bilan qila oladigan harakatini aytadi",
-     "intro": "Men ucha olaman! Siz esa yugura, sakray va qo'shiq ayta olasiz. Keling, buni inglizcha aytishni o'rganamiz.",
+     "intro": "Men g'ildirakda yugura olaman! Sen esa yugura, sakray va qo'shiq ayta olasan. Qani, buni inglizcha aytishni o'rganamiz.",
      "items": [
       {
        "say": "I can jump.",
@@ -1674,7 +1674,7 @@
        "emoji": "🤸",
        "image": "en56-u8-can-jump.png",
        "image_prompt": "A child jumping high, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Sakrang!"
+       "action": "Sakra!"
       },
       {
        "say": "I can run.",
@@ -1682,7 +1682,7 @@
        "emoji": "🏃",
        "image": "en56-u8-can-run.png",
        "image_prompt": "A child running fast, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Joyingizda yuguring!"
+       "action": "Joyingda yugur!"
       },
       {
        "say": "I can swim.",
@@ -1690,7 +1690,7 @@
        "emoji": "🏊",
        "image": "en56-u8-can-swim.png",
        "image_prompt": "A child swimming in a pool, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qo'llaringiz bilan suzganday qiling!"
+       "action": "Qo'llaring bilan suzganday qil!"
       },
       {
        "say": "I can sing.",
@@ -1698,17 +1698,17 @@
        "emoji": "🎤",
        "image": "en56-u8-can-sing.png",
        "image_prompt": "A child singing into a microphone, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "La-la-la deb kuylang!"
+       "action": "La-la-la deb kuyla!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🏃 Qani, ko'rsat!",
-       "matn": "Men aytaman, siz bajarasiz va takrorlaysiz! [en]I can jump![/en] — sakrang! [en]I can run![/en] — yuguring! [en]I can swim![/en] — suzing! [en]I can sing![/en] — kuylang!",
+       "matn": "Men aytaman, sen bajarasan va takrorlaysan! [en]I can jump![/en] — sakra! [en]I can run![/en] — yugur! [en]I can swim![/en] — suz! [en]I can sing![/en] — kuyla!",
        "doska": "🤸 I can jump!\n🏃 I can run!\n🏊 I can swim!\n🎤 I can sing!",
        "sodda": "Faqat harakat so'zi: [en]jump![/en] [en]run![/en]",
-       "boshqa_usul": "Do'stingiz bilan navbatma-navbat buyruq bering: [en]Jump![/en] [en]Run![/en]"
+       "boshqa_usul": "Do'sting bilan navbatma-navbat buyruq ber: [en]Jump![/en] [en]Run![/en]"
       }
      ],
      "tests": [
@@ -1727,7 +1727,7 @@
     {
      "name": "Qila olaman, qila olmayman",
      "goal": "Bola yangi harakatlarni va «I can't…» ni aytadi",
-     "intro": "Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi?",
+     "intro": "Men g'ildirakda yura olaman, lekin rasm chiza olmayman — temir qo'llarim bilan qalam sirpanib ketadi! Sen rasm chiza olasanmi?",
      "items": [
       {
        "say": "I can dance.",
@@ -1735,7 +1735,7 @@
        "emoji": "💃",
        "image": "en56-u8-can-dance.png",
        "image_prompt": "A child dancing happily, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Raqs tushing!"
+       "action": "Raqs tush!"
       },
       {
        "say": "I can draw.",
@@ -1743,7 +1743,7 @@
        "emoji": "🎨",
        "image": "en56-u8-can-draw.png",
        "image_prompt": "A child painting a picture, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Havoda rasm chizing!"
+       "action": "Havoda rasm chiz!"
       },
       {
        "say": "I can clap.",
@@ -1751,7 +1751,7 @@
        "emoji": "👏",
        "image": "en56-u8-can-clap.png",
        "image_prompt": "Two hands clapping, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qarsak chaling!"
+       "action": "Qarsak chal!"
       },
       {
        "say": "I can't fly.",
@@ -1759,7 +1759,7 @@
        "emoji": "🐦🚫",
        "image": "en56-u8-cant-fly.png",
        "image_prompt": "A child flapping arms like wings while a bird flies above, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qanot qoqib ko'ring — uchmaysiz!"
+       "action": "Qanot qoqib ko'r — uchmaysan!"
       }
      ],
      "extra": [
@@ -1769,7 +1769,7 @@
        "matn": "Kuylab harakat qilamiz: [en]I can clap, clap, clap! I can dance, dance, dance! I can jump, jump, jump![/en] Oxirida qo'l qoqib: [en]I can't fly![/en]",
        "doska": "I can clap! 👏\nI can dance! 💃\nI can jump! 🤸\nI can't fly! 🐦🚫",
        "sodda": "Faqat qarsak bilan: [en]clap, clap, clap![/en]",
-       "boshqa_usul": "Kattalarga savol bering: siz nima qila olasiz? Ular inglizcha javob bersin!"
+       "boshqa_usul": "Kattalarga savol ber: sen nima qila olasan? Ular inglizcha javob bersin!"
       }
      ],
      "tests": [
@@ -1788,7 +1788,7 @@
     {
      "name": "Men endi kattaman!",
      "goal": "Bola o'zi haqida 2–3 gap aytadi va xayrlashadi",
-     "intro": "Siz shuncha ko'p so'z o'rgandingiz — endi kattasiz! Keling, o'zingiz haqingizda inglizcha gapirib, xayrlashishni o'rganamiz.",
+     "intro": "Sen shuncha ko'p so'z o'rganding — endi kattasan! Qani, o'zing haqingda inglizcha gapirib, xayrlashishni o'rganamiz.",
      "items": [
       {
        "say": "I am five.",
@@ -1796,7 +1796,7 @@
        "emoji": "🖐️🎂",
        "image": "en56-u8-i-am-five.png",
        "image_prompt": "A child next to a birthday cake with five candles, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Besh barmoq ko'rsating!"
+       "action": "Besh barmoq ko'rsat!"
       },
       {
        "say": "I am big.",
@@ -1804,7 +1804,7 @@
        "emoji": "💪",
        "image": "en56-u8-i-am-big.png",
        "image_prompt": "A proud child showing strong arms, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Kuchingizni ko'rsating!"
+       "action": "Kuchingni ko'rsat!"
       },
       {
        "say": "I am happy!",
@@ -1825,15 +1825,15 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎤 Men haqimda",
-       "matn": "Mikrofon oling va sahnaga chiqing! Ayting: [en]Hello! My name is…[/en] [en]I am five.[/en] [en]I have a cat.[/en] [en]I can dance.[/en] [en]I like apples.[/en] Oxirida: [en]See you soon![/en]",
+       "matn": "Mikrofon ol va sahnaga chiq! Ayt: [en]Hello! My name is…[/en] [en]I am five.[/en] [en]I have a cat.[/en] [en]I can dance.[/en] [en]I like apples.[/en] Oxirida: [en]See you soon![/en]",
        "doska": "Hello! My name is …\nI am five. I have a …\nI can … I like …\nSee you soon!",
        "sodda": "Faqat ikki gap: [en]My name is…[/en] va [en]I am five.[/en]",
-       "boshqa_usul": "Hikoyangizni telefonga yozib oling va oilangizga ko'rsating!"
+       "boshqa_usul": "Hikoyangni telefonga yozib ol va oilangga ko'rsat!"
       }
      ],
      "tests": [
       {
-       "q": "Nechi yoshdasiz? Besh yosh bo'lsa, nima deysiz?",
+       "q": "Nechi yoshdasan? Besh yosh bo'lsa, nima deysan?",
        "options": [
         "🖐️🎂 I am five.",
         "💪 I am big.",

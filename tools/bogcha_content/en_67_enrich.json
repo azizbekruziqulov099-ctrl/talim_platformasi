@@ -1,11 +1,11 @@
 {
  "lessons": {
   "O'n bir va o'n ikki": {
-   "intro_en": "Hello, friends! I am Kabutar the bird. Today we count after ten: eleven, twelve, thirteen, fourteen!",
+   "intro_en": "Hello, friends! I am Kabu the robot. Today we count after ten: eleven, twelve, thirteen, fourteen!",
    "items": {
     "eleven": {
      "sentence": "I have eleven pencils.",
-     "action_en": "Show me eleven fingers!"
+     "action_en": "Jump eleven times!"
     },
     "twelve": {
      "sentence": "There are twelve eggs in the box."
@@ -18,7 +18,7 @@
     }
    },
    "tests_en": [
-    "There are 12 eggs in the box. How many eggs?"
+    "Look at the eggs in the box. How many eggs? 🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚"
    ],
    "extras_en": [
     {
@@ -28,8 +28,11 @@
    ]
   },
   "O'n beshdan o'n yettigacha": {
-   "intro_en": "Hi, children! Kabutar is here again. Let's learn three new numbers: fifteen, sixteen and seventeen!",
+   "intro_en": "Hi, children! Kabu is here again. Let's learn three new numbers: fifteen, sixteen and seventeen!",
    "items": {
+    "fourteen": {
+     "sentence": "My sister has fourteen dolls."
+    },
     "fifteen": {
      "sentence": "There are fifteen apples on the table."
     },
@@ -39,9 +42,6 @@
     "seventeen": {
      "sentence": "I can count to seventeen!",
      "action_en": "Clap your hands seventeen times!"
-    },
-    "fourteen": {
-     "sentence": "My sister has fourteen dolls."
     }
    },
    "tests_en": [
@@ -57,6 +57,10 @@
   "Yigirmagacha sanaymiz": {
    "intro_en": "Hello, my clever friends! Today we count all the way to twenty. Are you ready? Let's go!",
    "items": {
+    "seventeen": {
+     "sentence": "I can count to seventeen!",
+     "action_en": "Clap your hands seventeen times!"
+    },
     "eighteen": {
      "sentence": "There are eighteen children in my class."
     },
@@ -66,13 +70,10 @@
     "twenty": {
      "sentence": "I have twenty fingers and toes.",
      "action_en": "Touch your toes!"
-    },
-    "seventeen": {
-     "sentence": "I can count to seventeen!"
     }
    },
    "tests_en": [
-    "Fingers and toes together. How many?"
+    "Fingers and toes together. How many? 🖐️🖐️🦶🦶"
    ],
    "extras_en": [
     {
@@ -82,7 +83,7 @@
    ]
   },
   "Nechta ekan?": {
-   "intro_en": "Hi, friends! Kabutar loves counting. Let's count cats and stars together!",
+   "intro_en": "Hi, friends! Kabu loves counting. Let's count cats and stars together!",
    "items": {
     "How many?": {
      "sentence": "How many apples do you have?"
@@ -100,7 +101,7 @@
     }
    },
    "tests_en": [
-    "How many stars can you see?"
+    "How many cats can you see? 🐱🐱🐱🐱🐱🐱🐱🐱🐱🐱🐱🐱"
    ],
    "extras_en": [
     {
@@ -110,8 +111,11 @@
    ]
   },
   "Dushanba, seshanba, chorshanba": {
-   "intro_en": "Good morning, friends! A week has seven days. Today we learn Monday, Tuesday and Wednesday!",
+   "intro_en": "Good morning, friends! I am Kabu the robot. A week has seven days. Today we learn Monday, Tuesday and Wednesday!",
    "items": {
+    "week": {
+     "sentence": "A week has seven days."
+    },
     "Monday": {
      "sentence": "On Monday I go to school."
     },
@@ -122,9 +126,6 @@
     "Wednesday": {
      "sentence": "On Wednesday I draw pictures.",
      "action_en": "Draw a circle in the air!"
-    },
-    "week": {
-     "sentence": "A week has seven days."
     }
    },
    "tests_en": [],
@@ -136,7 +137,7 @@
    ]
   },
   "Payshanbadan yakshanbagacha": {
-   "intro_en": "Hello again! Kabutar knows four more days. Thursday, Friday, Saturday and Sunday. Let's say them together!",
+   "intro_en": "Hello again! Kabu knows four more days. Thursday, Friday, Saturday and Sunday. Let's say them together!",
    "items": {
     "Thursday": {
      "sentence": "On Thursday I sing songs.",
@@ -163,7 +164,7 @@
    ]
   },
   "Bugun qaysi kun?": {
-   "intro_en": "Hi, children! Every morning Kabutar asks: what day is it today? Let's learn to ask and answer!",
+   "intro_en": "Hi, children! Every morning Kabu asks: what day is it today? Let's learn to ask and answer!",
    "items": {
     "What day is it today?": {
      "sentence": "Mum, what day is it today?"
@@ -171,8 +172,9 @@
     "Today is Monday.": {
      "sentence": "Today is Monday. I go to school."
     },
-    "week": {
-     "sentence": "A week has seven days."
+    "yesterday": {
+     "sentence": "Yesterday was Sunday.",
+     "action_en": "Point behind you!"
     },
     "tomorrow": {
      "sentence": "Tomorrow is Sunday. Hooray!",
@@ -185,7 +187,7 @@
    "extras_en": [
     {
      "sarlavha_en": "🎭 Dialog: At the calendar",
-     "matn_en": "Kabutar: What day is it today? Child: Today is Friday. Kabutar: And tomorrow? Child: Saturday! Now you ask!"
+     "matn_en": "Kabu: What day is it today? Child: Today is Friday. Kabu: And tomorrow? Child: Saturday! Now you ask!"
     }
    ]
   },
@@ -218,7 +220,7 @@
    ]
   },
   "Shifokor va o'qituvchi": {
-   "intro_en": "Hello, friends! People do many jobs. Today we meet a doctor, a teacher, a cook and a farmer!",
+   "intro_en": "Hello, friends! I am Kabu. People do many jobs. Today we meet a doctor, a teacher, a cook and a farmer!",
    "items": {
     "doctor": {
      "sentence": "The doctor helps sick people."
@@ -245,7 +247,7 @@
    ]
   },
   "Qahramon kasblar": {
-   "intro_en": "Hi, children! Some jobs are very brave. Let's meet the hero jobs with Kabutar!",
+   "intro_en": "Hi, children! Some jobs are very brave. Let's meet the hero jobs with Kabu!",
    "items": {
     "police officer": {
      "sentence": "The police officer helps us.",
@@ -273,7 +275,7 @@
    ]
   },
   "Kim bo'lmoqchisan?": {
-   "intro_en": "Hello, friends! Kabutar wants to be a pilot. What do you want to be? Let's talk about it!",
+   "intro_en": "Hello, friends! Kabu wants to be a pilot. What do you want to be? Let's talk about it!",
    "items": {
     "He is a doctor.": {
      "sentence": "This is my dad. He is a doctor."
@@ -295,12 +297,12 @@
    "extras_en": [
     {
      "sarlavha_en": "🎭 Dialog: My dream",
-     "matn_en": "Kabutar: What do you want to be? Child: I want to be a doctor. Or a teacher, a pilot, a cook. Now ask your friend!"
+     "matn_en": "Kabu: What do you want to be? Child: I want to be a doctor. Or a teacher, a pilot, a cook. Now ask your friend!"
     }
    ]
   },
   "Kim qayerda ishlaydi?": {
-   "intro_en": "Hi, friends! Where do people work? Let's find out with Kabutar!",
+   "intro_en": "Hi, friends! Where do people work? Let's find out with Kabu!",
    "items": {
     "hospital": {
      "sentence": "The doctor works in a hospital."
@@ -326,7 +328,7 @@
    ]
   },
   "Mashina va avtobus": {
-   "intro_en": "Beep, beep! Hello, friends! Today we learn about a car, a bus, a taxi and a bike!",
+   "intro_en": "Beep, beep! Hello, friends! I am Kabu. Today we learn about a car, a bus, a taxi and a bike!",
    "items": {
     "car": {
      "sentence": "My dad has a red car.",
@@ -435,7 +437,7 @@
    ]
   },
   "Kitob va qalam": {
-   "intro_en": "Hello, friends! Soon you go to school. What is in your school bag? Let's look!",
+   "intro_en": "Hi, I am Kabu! Soon you go to school. What is in your school bag? Let's look!",
    "items": {
     "book": {
      "sentence": "I like my new book.",
@@ -460,7 +462,7 @@
    ]
   },
   "Chizg'ich va qaychi": {
-   "intro_en": "Hi, children! Kabutar has a ruler, crayons, scissors and a notebook. Let's learn these words!",
+   "intro_en": "Hi, children! Kabu has a ruler, crayons, scissors and a notebook. Let's learn these words!",
    "items": {
     "ruler": {
      "sentence": "My ruler is long."
@@ -482,12 +484,12 @@
    "extras_en": [
     {
      "sarlavha_en": "🔍 What's in the bag?",
-     "matn_en": "Kabutar: What's in your bag? Child: A book, a pencil, a ruler, crayons, scissors, a notebook! Did you find them all?"
+     "matn_en": "Kabu: What's in your bag? Child: A book, a pencil, a ruler, crayons, scissors, a notebook! Did you find them all? Use scissors only with a grown-up!"
     }
    ]
   },
   "O'rningdan tur!": {
-   "intro_en": "Hello, class! Kabutar is your teacher today. Listen and do what I say!",
+   "intro_en": "Hello, class! Kabu is your teacher today. Listen and do what I say!",
    "items": {
     "Stand up!": {
      "sentence": "Stand up, please, children!",
@@ -517,7 +519,7 @@
    ]
   },
   "Tingla va qara!": {
-   "intro_en": "Hi, friends! Good pupils listen and look. Let's learn more class words with Kabutar!",
+   "intro_en": "Hi, friends! Good pupils listen and look. Let's learn more class words with Kabu!",
    "items": {
     "Listen!": {
      "sentence": "Listen! The bird is singing.",
@@ -547,7 +549,7 @@
    ]
   },
   "Suza olasanmi?": {
-   "intro_en": "Hello, friends! Can you swim? Can you fly? Let's ask and answer with Kabutar!",
+   "intro_en": "Hello, friends! Can you swim? Can you fly? Let's ask and answer with Kabu!",
    "items": {
     "Can you swim?": {
      "sentence": "Can you swim, Anvar?",
@@ -561,7 +563,8 @@
      "sentence": "Can you fly? No, I can't."
     },
     "I can swim.": {
-     "sentence": "I can swim in summer."
+     "sentence": "I can swim in summer.",
+     "action_en": "Swim like a fish!"
     }
    },
    "tests_en": [
@@ -571,12 +574,12 @@
    "extras_en": [
     {
      "sarlavha_en": "🎭 Dialog: Can you?",
-     "matn_en": "Kabutar: Can you swim? Child: Yes, I can. Kabutar: Can you fly? Child: No, I can't! Now you ask Kabutar: Can you jump?"
+     "matn_en": "Kabu: Can you swim? Child: Yes, I can. Kabu: Can you fly? Child: No, I can't! Now you ask Kabu: Can you jump?"
     }
    ]
   },
   "Velosiped va futbol": {
-   "intro_en": "Hi, children! Kabutar loves sports. Let's learn to climb, ride a bike, play football and skate!",
+   "intro_en": "Hi, children! Kabu loves sports. Let's learn to climb, ride a bike, play football and skate!",
    "items": {
     "climb": {
      "sentence": "I can climb a tree.",
@@ -613,7 +616,7 @@
      "action_en": "Swim like a fish!"
     },
     "A bird can fly.": {
-     "sentence": "A bird can fly. I can fly too!",
+     "sentence": "A bird can fly. I can't fly!",
      "action_en": "Fly like a bird!"
     },
     "A frog can jump.": {
@@ -658,12 +661,12 @@
    "extras_en": [
     {
      "sarlavha_en": "🎭 Dialog: Friends",
-     "matn_en": "Kabutar: Can you help me? Child: Of course! We carry the seeds together. Kabutar: Thank you! Let's play! At the end: Well done!"
+     "matn_en": "Kabu: Can you help me? Child: Of course! We carry the box together. Kabu: Thank you! Let's play! At the end: Well done!"
     }
    ]
   },
   "Do'konga kirdik": {
-   "intro_en": "Hello, friends! Let's play shop! Kabutar is the seller. What do you want?",
+   "intro_en": "Hello, friends! Let's play shop! Kabu is the seller. What do you want?",
    "items": {
     "Can I help you?": {
      "sentence": "Hello! Can I help you?"
@@ -690,8 +693,11 @@
    ]
   },
   "Nechta kerak?": {
-   "intro_en": "Hi, friends! In the shop we say how many we want. Let's buy bananas with Kabutar!",
+   "intro_en": "Hi, friends! In the shop we say how many we want. Let's buy bananas with Kabu!",
    "items": {
+    "bananas": {
+     "sentence": "Look! The bananas are yellow."
+    },
     "How many bananas?": {
      "sentence": "How many bananas do you want?"
     },
@@ -701,9 +707,6 @@
     },
     "You're welcome.": {
      "sentence": "Thank you! You're welcome."
-    },
-    "bananas": {
-     "sentence": "Look! The bananas are yellow."
     }
    },
    "tests_en": [
@@ -716,8 +719,8 @@
     }
    ]
   },
-  "Sabzavot rastasi": {
-   "intro_en": "Hello, friends! Now we are at the vegetable stall. Look at the carrots, tomatoes, potatoes and eggs!",
+  "Bozor rastasi": {
+   "intro_en": "Hello, friends! Now we are at the market stall. Look at the carrots, tomatoes, potatoes and eggs!",
    "items": {
     "carrots": {
      "sentence": "Rabbits like carrots."
@@ -745,6 +748,9 @@
   "Savat va pul": {
    "intro_en": "Hi, friends! We need a basket and money for the shop. Let's go shopping!",
    "items": {
+    "shop": {
+     "sentence": "I buy bread at the shop."
+    },
     "basket": {
      "sentence": "Put the apples in the basket.",
      "action_en": "Carry a basket!"
@@ -755,9 +761,6 @@
     "Goodbye, see you!": {
      "sentence": "Goodbye, see you on Monday!",
      "action_en": "Wave your hand!"
-    },
-    "shop": {
-     "sentence": "I buy bread at the shop."
     }
    },
    "tests_en": [
@@ -771,7 +774,7 @@
    ]
   },
   "Ismim va yoshim": {
-   "intro_en": "Hello, friends! My name is Kabutar. What is your name? How old are you?",
+   "intro_en": "Hello, friends! My name is Kabu. What is your name? How old are you?",
    "items": {
     "My name is Malika.": {
      "sentence": "Hello! My name is Malika."
@@ -794,13 +797,17 @@
    "extras_en": [
     {
      "sarlavha_en": "🎭 Dialog: Nice to meet you",
-     "matn_en": "Kabutar: Hello! What's your name? Child: My name is… Kabutar: How old are you? Child: I am six. Or: I am seven."
+     "matn_en": "Kabu: Hello! What's your name? Child: My name is… Kabu: How old are you? Child: I am six. Or: I am seven."
     }
    ]
   },
   "Qayerda yashayman": {
-   "intro_en": "Hi, children! Kabutar lives in a big tree. Where do you live? Let's learn to say it!",
+   "intro_en": "Hi, children! Kabu lives in Samarkand, near the Registan. Where do you live? Let's learn to say it!",
    "items": {
+    "house": {
+     "sentence": "This is my house.",
+     "action_en": "Draw a house in the air!"
+    },
     "Where do you live?": {
      "sentence": "Malika, where do you live?"
     },
@@ -809,21 +816,18 @@
     },
     "I am from Uzbekistan.": {
      "sentence": "Hello! I am from Uzbekistan."
-    },
-    "house": {
-     "sentence": "This is my house."
     }
    },
    "tests_en": [],
    "extras_en": [
     {
      "sarlavha_en": "🗺️ My city",
-     "matn_en": "Kabutar: Where do you live? Child: I live in Samarkand. Or: I live in Tashkent. Then say: I am from Uzbekistan!"
+     "matn_en": "Kabu: Where do you live? Child: I live in Samarkand. Or: I live in Tashkent. Then say: I am from Uzbekistan!"
     }
    ]
   },
   "Men yaxshi ko'raman": {
-   "intro_en": "Hello, friends! Kabutar likes seeds and songs. What do you like? Let's tell each other!",
+   "intro_en": "Hello, friends! Kabu likes batteries and songs. What do you like? Let's tell each other!",
    "items": {
     "What do you like?": {
      "sentence": "Anvar, what do you like?"
@@ -903,7 +907,7 @@
     {
      "who": 1,
      "say": "Hello! Can I have some eggs, please?",
-     "uz": "salom! tuxum bera olasizmi, iltimos?",
+     "uz": "salom! tuxum bera olasanmi, iltimos?",
      "emoji": "👋"
     },
     {
@@ -921,7 +925,7 @@
     {
      "who": 0,
      "say": "Let's count! One, two, three… twelve!",
-     "uz": "keling, sanaymiz! bir, ikki, uch… o'n ikki!",
+     "uz": "qani, sanaymiz! bir, ikki, uch… o'n ikki!",
      "emoji": "🔢"
     },
     {
@@ -933,7 +937,7 @@
     {
      "who": 0,
      "say": "Here you are. Twelve eggs and fifteen apples.",
-     "uz": "mana, oling. o'n ikkita tuxum va o'n beshta olma",
+     "uz": "mana, ol. o'n ikkita tuxum va o'n beshta olma",
      "emoji": "🫴"
     },
     {
@@ -1086,7 +1090,7 @@
     {
      "who": 0,
      "say": "Hello! Come in, please. What's your name?",
-     "uz": "salom! kiring, iltimos. isming nima?",
+     "uz": "salom! kir, iltimos. isming nima?",
      "emoji": "👋🧑‍⚕️"
     },
     {
@@ -1184,19 +1188,19 @@
     {
      "who": 0,
      "say": "Yes, it is. Come in, please!",
-     "uz": "ha. kiring, iltimos!",
+     "uz": "ha. kir, iltimos!",
      "emoji": "✅"
     },
     {
      "who": 1,
      "say": "Thank you! Look, Granny! A fire engine!",
-     "uz": "rahmat! qarang, buvi! o't o'chirish mashinasi!",
+     "uz": "rahmat! qara, buvi! o't o'chirish mashinasi!",
      "emoji": "🚒"
     },
     {
      "who": 0,
      "say": "We go now. Look! A police car!",
-     "uz": "hozir yuramiz. qarang! politsiya mashinasi!",
+     "uz": "hozir yuramiz. qara! politsiya mashinasi!",
      "emoji": "🚓"
     },
     {
@@ -1208,7 +1212,7 @@
     {
      "who": 0,
      "say": "Here is the shop. Get off, please!",
-     "uz": "mana, do'kon. tushing, iltimos!",
+     "uz": "mana, do'kon. tush, iltimos!",
      "emoji": "🏪"
     },
     {
@@ -1341,7 +1345,7 @@
      "why_en": "Yes! Sit down, please."
     },
     {
-     "q": "Javob bermoqchi bo'lsangiz nima qilasiz?",
+     "q": "Javob bermoqchi bo'lsang nima qilasan?",
      "q_en": "You want to answer. What do you do?",
      "options": [
       "🙋 I raise my hand.",
@@ -1392,12 +1396,12 @@
      "who": 0,
      "say": "No, I can't. But I can jump high!",
      "uz": "yo'q, ucha olmayman. lekin baland sakray olaman!",
-     "emoji": "❌🦘"
+     "emoji": "❌🤸"
     },
     {
      "who": 1,
      "say": "Let's play football!",
-     "uz": "keling, futbol o'ynaymiz!",
+     "uz": "qani, futbol o'ynaymiz!",
      "emoji": "⚽"
     },
     {
@@ -1431,7 +1435,7 @@
      "q_en": "What can't the friend do?",
      "options": [
       "⛸️ He can't skate.",
-      "🦘 He can't jump.",
+      "🤸 He can't jump.",
       "⚽ He can't play football."
      ],
      "answer": 0,
@@ -1439,13 +1443,12 @@
      "why_en": "Yes! He can't skate."
     },
     {
-     "q": "Do'stingiz [en]Can you help me?[/en] desa, nima deysiz?",
+     "q": "Do'sting [en]Can you help me?[/en] desa, nima deysan?",
      "q_en": "Your friend says: Can you help me? What do you say?",
      "options": [
       "👌 Of course!",
-      "🤫 Be quiet!",
       "❌ No, I can't.",
-      "📆 Today is Monday."
+      "🙏 Thank you!"
      ],
      "answer": 0,
      "why": "Barakalla! [en]Of course![/en]",
@@ -1477,7 +1480,7 @@
     {
      "who": 0,
      "say": "Hello! Can I help you?",
-     "uz": "salom! sizga nima kerak?",
+     "uz": "salom! senga nima kerak?",
      "emoji": "🧑‍💼"
     },
     {
@@ -1489,7 +1492,7 @@
     {
      "who": 0,
      "say": "Here you are. Anything else?",
-     "uz": "mana, oling. yana nima kerak?",
+     "uz": "mana, ol. yana nima kerak?",
      "emoji": "🫴❓"
     },
     {
@@ -1501,7 +1504,7 @@
     {
      "who": 0,
      "say": "Put them in your basket. Here you are.",
-     "uz": "savatingga sol. mana, oling",
+     "uz": "savatingga sol. mana, ol",
      "emoji": "🧺"
     },
     {
@@ -1548,8 +1551,8 @@
      "q_en": "The child says Thank you! What does the seller say?",
      "options": [
       "😊 You're welcome.",
-      "🛑 Stop!",
-      "❓ How many?"
+      "🫴 Here you are.",
+      "🧑‍💼 Can I help you?"
      ],
      "answer": 0,
      "why": "Ofarin! [en]You're welcome.[/en]",
@@ -1654,12 +1657,12 @@
      "why_en": "Well done! She is seven."
     },
     {
-     "q": "Yangi do'st bilan tanishganda nima deysiz?",
+     "q": "Yangi do'st bilan tanishganda nima deysan?",
      "q_en": "You meet a new friend. What do you say?",
      "options": [
       "🤝 Nice to meet you!",
-      "🛑 Stop!",
-      "🤫 Be quiet!"
+      "👋 Goodbye, see you!",
+      "🙏 Thank you!"
      ],
      "answer": 0,
      "why": "Ofarin! [en]Nice to meet you![/en]",

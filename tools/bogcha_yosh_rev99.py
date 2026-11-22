@@ -31,6 +31,9 @@ PLAN = {
 # REV110: yangi darslar — platformada 2–3 yoshda 50, 4–5 da 80, 6–7 da 100 dars. Ular allaqachon «sen» va robot Kabu
 # uslubida yozilgan, shuning uchun warm() dan keyin qo'shiladi.
 PLUS = {"23y": "23p", "45y": "45p", "67y": "67p"}
+# FIX2: manba kitobi allaqachon «sen» + robot Kabu uslubida bo'lsa, warm() uni qayta o'girmasin (eshitsang→eshitsa,
+# Do'sting→Do'st kabi buzilishlar bo'ladi). Bunday kitobning faqat boshqa kitobdan qo'shilgan bo'limlari o'giriladi.
+SEN_BASE = {("en", "67")}
 SPLIT = re.compile(r"(\[[a-z]{2}\][\s\S]*?\[/[a-z]{2}\])")
 
 # «siz» → «sen»: aniq so'zlar (birinchi) va qo'shimcha qoidalari (keyin). Faqat o'zbekcha bo'laklarga qo'llanadi.
@@ -150,6 +153,7 @@ def load(lang, age):
 def compose(lang, key):
     base, extras, age, label = PLAN[key]
     book = copy.deepcopy(load(lang, base))
+    n_base = len(book["units"])
     for src, idx in extras:
         other = load(lang, src)
         book["units"] += [copy.deepcopy(other["units"][i]) for i in idx]
@@ -161,7 +165,10 @@ def compose(lang, key):
         for sc in unit.get("scenarios") or []:
             sc.pop("unit", None)
     if key != "23y":   # 2–3 kitobi (bogcha_23.py) allaqachon «sen» uslubida — qayta o'girilsa buziladi
-        warm(book)
+        if (lang, base) in SEN_BASE:
+            warm({"units": book["units"][n_base:]})
+        else:
+            warm(book)
     if (ROOT / f"{lang}_{PLUS[key]}.json").is_file():
         plus = load(lang, PLUS[key])
         for unit in plus["units"]:

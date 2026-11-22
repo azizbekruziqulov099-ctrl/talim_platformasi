@@ -161,7 +161,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎲 Ha-yo'q o'yini",
-       "matn": "Robot Kabu mushukmi? Yo'q! [en]No![/en] Sen bolamisan? Ha! [en]Yes![/en] Muzqaymoq yaxshi ko'rasanmi? [en]Yes![/en]",
+       "matn": "Men so'rayman, sen javob ber! Robot Kabu mushukmi? Boshingni chayqa: [en]No![/en] Sen bolamisan? Boshingni irg'a: [en]Yes![/en] Muzqaymoq yaxshi ko'rasanmi? Endi o'zing ayt: [en]Yes![/en] yoki [en]No![/en]",
        "doska": "✅ Yes\n❌ No"
       }
      ],
@@ -209,7 +209,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🙋 Men kimman?",
-       "matn": "O'g'il bolalar, ayting: [en]Boy![/en] Qiz bolalar, ayting: [en]Girl![/en] Endi hammamiz birga: [en]Boy, girl![/en]",
+       "matn": "Agar sen o'g'il bola bo'lsang, ayt: [en]Boy![/en] Qiz bola bo'lsang, ayt: [en]Girl![/en] Endi ikkalasini ayt: [en]Boy, girl![/en]",
        "doska": "👦 boy\n👧 girl"
       }
      ],
@@ -251,7 +251,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎵 Oila barmoqchalari",
-       "matn": "Barmog'ingni ko'rsat. Bu — [en]Mum[/en]! Bu — [en]Dad[/en]! [en]Hello, Mum! Hello, Dad![/en] Barmoqlar ta'zim qiladi!",
+       "matn": "Barmog'ingni ko'rsat. Bu — [en]Mum[/en]! Bu — [en]Dad[/en]! [en]Hello, Mum! Hello, Dad![/en] Barmoqlar «salom» deydi!",
        "doska": "👩 Mum\n👨 Dad"
       }
      ],
@@ -449,7 +449,7 @@
       {
        "say": "pink",
        "uz": "pushti",
-       "emoji": "🩷",
+       "emoji": "🌸",
        "image": "en34-u3-pink.png",
        "image_prompt": "A big soft pink heart, cute cartoon, soft flat colors, white background, no text, square",
        "action": "Pushti narsani ko'rsat!"
@@ -467,7 +467,7 @@
       {
        "q": "Qaysi biri [en]pink[/en]?",
        "options": [
-        "🩷 pink",
+        "🌸 pink",
         "🟠 orange"
        ],
        "answer": 0,
@@ -479,7 +479,7 @@
        "turi": "topshiriq",
        "sarlavha": "🌸 Gul va apelsin",
        "matn": "[en]Pink![/en] — gulni hidlagandek qil: mmm! [en]Orange![/en] — apelsinni archgandek qil. Endi sen ayt: [en]Pink![/en] [en]Orange![/en]",
-       "doska": "🩷 pink\n🟠 orange"
+       "doska": "🌸 pink\n🟠 orange"
       }
      ]
     },
@@ -618,7 +618,7 @@
     {
      "name": "Tovuq va o'rdak",
      "goal": "Bola hen va duck so'zlarini aytadi",
-     "intro": "Kim «qo-qo» deyapti, kim «ga-ga» deyapti? Bular — qanotli do'stlarim!",
+     "intro": "Kim «qo-qo» deyapti, kim «ga-ga» deyapti? Bular — hovli do'stlarim!",
      "items": [
       {
        "say": "hen",
@@ -708,7 +708,7 @@
     {
      "name": "Bir, ikki, uch",
      "goal": "Bola one, two, three sonlarini eshitib, barmoq bilan ko'rsatadi",
-     "intro": "Uchta don topdim! Qani, barmoqchalaring bilan sanaymiz!",
+     "intro": "Uchta olma topdim! Qani, barmoqchalaring bilan sanaymiz!",
      "items": [
       {
        "say": "one",
@@ -789,7 +789,7 @@
        "emoji": "🛑",
        "image": "en23-u5-stop.png",
        "image_prompt": "A child holding up one hand to stop, next to a red stop sign, cute cartoon, soft flat colors, white background, no text, square",
-       "action": "Haykaldek qotib qol!"
+       "action": "Qotib qol!"
       }
      ],
      "extra": [
@@ -876,7 +876,7 @@
       {
        "say": "doll",
        "uz": "qo'g'irchoq",
-       "emoji": "🪆",
+       "emoji": "🎎",
        "image": "en34-u6-doll.png",
        "image_prompt": "A cute doll in a pretty dress, cute cartoon, soft flat colors, white background, no text, square",
        "action": "Qo'g'irchoqni allalaganday tebrat!"
@@ -887,7 +887,7 @@
        "turi": "topshiriq",
        "sarlavha": "⚽ Koptok o'yini",
        "matn": "Koptokni dumalat. Olganingda ayt: [en]Ball![/en] Qo'g'irchoqni quchoqla: [en]Doll![/en]",
-       "doska": "⚽ ball\n🪆 doll"
+       "doska": "⚽ ball\n🎎 doll"
       }
      ],
      "tests": [
@@ -895,7 +895,7 @@
        "q": "Qaysi biri [en]ball[/en]?",
        "options": [
         "⚽ ball",
-        "🪆 doll"
+        "🎎 doll"
        ],
        "answer": 0,
        "why": "Barakalla! [en]Ball[/en] — koptok."
@@ -970,7 +970,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🥁 Baraban o'yini",
-       "matn": "Tizzangga baraban chal: bum-bum-bum! [en]Drum, drum![/en] Endi shardek yengil uch: [en]Balloon, balloon![/en]",
+       "matn": "Tizzangga baraban chal: bum-bum-bum! [en]Drum, drum![/en] Endi shardek yengil uch: [en]Balloon, balloon![/en] Shar puchaksa, parchasini og'zingga solma — kattaga ayt!",
        "doska": "🥁 drum\n🎈 balloon"
       }
      ],
@@ -1012,7 +1012,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🚂 Poyezd o'yini",
-       "matn": "Poyezd bo'lamiz: chu-chu! [en]Train, train![/en] Vagonga kubiklarni ortamiz: [en]Blocks, blocks![/en]",
+       "matn": "Poyezd bo'lamiz: chu-chu! [en]Train, train![/en] Vagonga kubiklarni ortamiz: [en]Blocks, blocks![/en] Kubikni og'zingga solma!",
        "doska": "🚂 train\n🧱 blocks"
       }
      ],
@@ -1037,12 +1037,12 @@
     {
      "name": "Bosh va ko'zlar",
      "goal": "Bola head va eyes so'zlarini aytib, ko'rsatadi",
-     "intro": "Mening boshim va munchoqdek ko'zlarim bor. Seniki-chi?",
+     "intro": "Mening boshim va yumaloq ko'zlarim bor. Seniki-chi?",
      "items": [
       {
        "say": "head",
        "uz": "bosh",
-       "emoji": "🙆",
+       "emoji": "🗣️",
        "image": "en34-u7-head.png",
        "image_prompt": "A smiling child touching the top of their head with both hands, cute cartoon, soft flat colors, white background, no text, square",
        "action": "Boshingni ushla!"
@@ -1061,7 +1061,7 @@
        "turi": "topshiriq",
        "sarlavha": "🙈 Berkinmachoq",
        "matn": "Ko'zingni qo'ling bilan yop… [en]Eyes![/en] Endi och — ku-ku! Boshingni sila: [en]Head![/en]",
-       "doska": "🙆 head\n👀 eyes"
+       "doska": "🗣️ head\n👀 eyes"
       }
      ],
      "tests": [
@@ -1069,7 +1069,7 @@
        "q": "Biz nima bilan ko'ramiz?",
        "options": [
         "👀 eyes",
-        "🙆 head"
+        "🗣️ head"
        ],
        "answer": 0,
        "why": "Ofarin! [en]Eyes[/en] — ko'zlar bilan ko'ramiz."
@@ -1163,7 +1163,7 @@
     {
      "name": "Oyoqlar",
      "goal": "Bola legs va feet so'zlarini aytib, ko'rsatadi",
-     "intro": "Men uchaman, sen esa oyoqlaring bilan yurasan va sakraysan! Qani, tur!",
+     "intro": "Mening g'ildiraklarim bor, sen esa oyoqlaring bilan yurasan va sakraysan! Qani, tur!",
      "items": [
       {
        "say": "legs",
@@ -1253,7 +1253,7 @@
     {
      "name": "Sut va suv",
      "goal": "Bola milk va water so'zlarini aytadi",
-     "intro": "Chanqadingmi? Menda oq ichimlik va tiniq ichimlik bor.",
+     "intro": "Chanqadingmi? Menda sut ham, suv ham bor.",
      "items": [
       {
        "say": "milk",
@@ -1324,13 +1324,13 @@
      ],
      "tests": [
       {
-       "q": "Tug'ilgan kunda shamlar qaysi taomda turadi?",
+       "q": "Tug'ilgan kunda shamlar qaysi birida turadi?",
        "options": [
         "🎂 cake",
         "🍞 bread"
        ],
        "answer": 0,
-       "why": "Ofarin! Shamlar [en]cake[/en] — tortda turadi."
+       "why": "Ofarin! Shamlar tortda turadi — [en]cake[/en]!"
       }
      ]
     },

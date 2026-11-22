@@ -12,7 +12,7 @@
     {
      "name": "O'n bir va o'n ikki",
      "goal": "Bola 1–10 ni takrorlaydi va 11–14 sonlarini aytadi",
-     "intro": "Salom, do'stim! Siz o'ngacha sanashni bilasiz: [en]one, two… ten[/en]! Bugun o'ndan keyingi sirli sonlarni ochamiz.",
+     "intro": "Salom, do'stim! Sen o'ngacha sanashni bilasan: [en]one, two… ten[/en]! Bugun o'ndan keyingi sirli sonlarni ochamiz.",
      "items": [
       {
        "say": "eleven",
@@ -47,15 +47,15 @@
       {
        "turi": "topshiriq",
        "sarlavha": "👏 Qarsak bilan sanaymiz",
-       "matn": "Avval o'ngacha tez sanang: [en]one, two, three, four, five, six, seven, eight, nine, ten![/en] Endi davom etamiz: [en]eleven, twelve, thirteen, fourteen![/en] Har songa bitta qarsak!",
+       "matn": "Avval o'ngacha tez sana: [en]one, two, three, four, five, six, seven, eight, nine, ten![/en] Endi davom etamiz: [en]eleven, twelve, thirteen, fourteen![/en] Har songa bitta qarsak!",
        "doska": "1 … 10\n11 eleven  12 twelve\n13 thirteen  14 fourteen",
        "sodda": "Faqat yangi sonlar: [en]eleven, twelve[/en].",
-       "boshqa_usul": "Zinapoyada har qadamda bitta son ayting — o'n to'rtgacha!"
+       "boshqa_usul": "Zinapoyada har qadamda bitta son ayt — o'n to'rtgacha!"
       }
      ],
      "tests": [
       {
-       "q": "🥚 Qutida 12 ta tuxum. Inglizcha nechta?",
+       "q": "🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚 Qutida nechta tuxum? Inglizcha ayt.",
        "options": [
         "1️⃣2️⃣ twelve",
         "1️⃣1️⃣ eleven",
@@ -70,7 +70,7 @@
     {
      "name": "O'n beshdan o'n yettigacha",
      "goal": "Bola 15, 16, 17 sonlarini aytadi",
-     "intro": "Men bog'da gullarni sanayapman: o'n to'rtta, undan ham ko'p! Keyingi sonlar qanday ataladi? Keling, bilib olamiz.",
+     "intro": "Men bog'da gullarni sanayapman: o'n to'rtta, undan ham ko'p! Keyingi sonlar qanday ataladi? Qani, bilib olamiz.",
      "items": [
       {
        "say": "fourteen",
@@ -107,8 +107,8 @@
        "sarlavha": "🔎 Sir: «teen» qo'shimchasi",
        "matn": "Diqqat! [en]six[/en] + [en]teen[/en] = [en]sixteen[/en]. [en]seven[/en] + [en]teen[/en] = [en]seventeen[/en]. O'n bilan qo'shilgan sonlar oxirida [en]teen[/en] eshitiladi!",
        "doska": "six + teen = sixteen\nseven + teen = seventeen\nfour + teen = fourteen",
-       "sodda": "Tinglang: [en]six — sixteen[/en], [en]seven — seventeen[/en].",
-       "boshqa_usul": "[en]teen[/en] ni eshitsangiz — sakrang! [en]six… sixteen![/en]"
+       "sodda": "Tingla: [en]six — sixteen[/en], [en]seven — seventeen[/en].",
+       "boshqa_usul": "[en]teen[/en] ni eshitsang — sakra! [en]six… sixteen![/en]"
       }
      ],
      "tests": [
@@ -128,7 +128,7 @@
     {
      "name": "Yigirmagacha sanaymiz",
      "goal": "Bola 18, 19, 20 ni aytadi va 1–20 gacha sanaydi",
-     "intro": "Gu-gu! Bugun katta sinov: yigirmagacha sanay olsak, Kabutar qushcha bizga yigirmata yulduzcha beradi! Tayyormisiz?",
+     "intro": "Bip-bip! Bugun katta sinov: yigirmagacha sanay olsak, robot Kabu bizga yigirmata yulduzcha beradi! Tayyormisan?",
      "items": [
       {
        "say": "seventeen",
@@ -163,15 +163,15 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎵 Yigirma qo'shig'i",
-       "matn": "Qo'shiq bilan sanaymiz: [en]eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty![/en] Oxirida baland sakrang — [en]Hooray![/en]",
+       "matn": "Qo'shiq bilan sanaymiz: [en]eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty![/en] Oxirida baland sakra — [en]Hooray![/en]",
        "doska": "11 eleven  12 twelve  13 thirteen  14 fourteen  15 fifteen\n16 sixteen  17 seventeen  18 eighteen  19 nineteen  20 twenty 🎉",
        "sodda": "Uchta yangi son: [en]eighteen, nineteen, twenty[/en].",
-       "boshqa_usul": "Qo'l va oyoq barmoqlarini birga sanang — yigirmata chiqadi: [en]twenty![/en]"
+       "boshqa_usul": "Qo'l va oyoq barmoqlarini birga sana — yigirmata chiqadi: [en]twenty![/en]"
       }
      ],
      "tests": [
       {
-       "q": "Qo'l va oyoq barmoqlari birga nechta?",
+       "q": "Ikki qo'l va ikki oyoq barmoqlari birga nechta? 🖐️🖐️🦶🦶",
        "options": [
         "2️⃣0️⃣ twenty",
         "🔟 ten",
@@ -186,18 +186,18 @@
     {
      "name": "Nechta ekan?",
      "goal": "Bola «How many…?» deb so'raydi va narsalarni sanab javob beradi",
-     "intro": "Gu-gu! Men bozordan olma va yulduzchalar olib keldim, lekin nechtaligini bilmayman. Sanashga yordam berasizmi? Keling, so'rashni ham o'rganamiz!",
+     "intro": "Bip-bip! Men bozordan olma va yulduzchalar olib keldim, lekin nechtaligini bilmayman. Sanashga yordam berasanmi? Qani, so'rashni ham o'rganamiz!",
      "items": [
       {
        "say": "How many?",
        "uz": "nechta?",
        "emoji": "❓🔢",
        "image": "en67-u1-how-many.png",
-       "image_prompt": "A pigeon pointing at a pile of apples with a question mark, cute cartoon for kids, soft flat colors, white background, no text, square"
+       "image_prompt": "A friendly small robot with an antenna pointing at a pile of apples with a question mark, cute cartoon for kids, soft flat colors, white background, no text, square"
       },
       {
        "say": "Let's count!",
-       "uz": "keling, sanaymiz!",
+       "uz": "qani, sanaymiz!",
        "emoji": "🧮",
        "image": "en67-u1-lets-count.png",
        "image_prompt": "A colorful abacus, cute cartoon for kids, soft flat colors, white background, no text, square"
@@ -221,15 +221,15 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🧮 Birga sanaymiz",
-       "matn": "Savatda olmalar bor! [en]Let's count![/en] Har olmaga bitta barmoq ko'rsating: [en]one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve![/en] Nechta olma? [en]Twelve apples![/en] Endi o'zingiz so'rang: [en]How many apples?[/en]",
-       "doska": "🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎\n🧮 Let's count!\n❓ How many apples?\n1️⃣2️⃣ twelve apples",
-       "sodda": "Faqat oxirgi sonni ayting: [en]twelve![/en]",
-       "boshqa_usul": "Uyingizdagi qoshiqlarni yoki yong'oqlarni sanab, inglizcha ayting."
+       "matn": "Savatda olmalar bor! [en]Let's count![/en] Har olmaga bitta barmoq ko'rsat: [en]one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve![/en] Nechta olma? [en]Twelve apples![/en] Endi o'zing so'ra: [en]How many apples?[/en]",
+       "doska": "🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎\n❓ How many apples?\n1️⃣2️⃣ twelve apples",
+       "sodda": "Faqat oxirgi sonni ayt: [en]twelve![/en]",
+       "boshqa_usul": "Uyingdagi qoshiqlarni yoki yong'oqlarni sanab, inglizcha ayt."
       }
      ],
      "tests": [
       {
-       "q": "[en]How many?[/en] ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ — nechta yulduz?",
+       "q": "[en]How many?[/en] 🐱🐱🐱🐱🐱🐱🐱🐱🐱🐱🐱🐱 — nechta mushuk?",
        "options": [
         "1️⃣2️⃣ twelve",
         "1️⃣1️⃣ eleven",
@@ -250,7 +250,7 @@
     {
      "name": "Dushanba, seshanba, chorshanba",
      "goal": "Bola haftaning dastlabki uch kunini aytadi",
-     "intro": "Gu-gu! Bir haftada yetti kun bor, har birining nomi bor! Men dushanba kuni bog'chaga uchaman. Keling, kunlarni inglizcha o'rganamiz.",
+     "intro": "Bip-bip! Bir haftada yetti kun bor, har birining nomi bor! Men dushanba kuni bog'chaga g'ildirab boraman. Qani, kunlarni inglizcha o'rganamiz.",
      "items": [
       {
        "say": "week",
@@ -285,17 +285,17 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🚂 Kunlar poyezdi",
-       "matn": "Poyezd yo'lga chiqdi! Birinchi vagon — [en]Monday[/en], ikkinchisi — [en]Tuesday[/en], uchinchisi — [en]Wednesday[/en]. Chuh-chuh! Har vagonni ayting!",
+       "matn": "Poyezd yo'lga chiqdi! Birinchi vagon — [en]Monday[/en], ikkinchisi — [en]Tuesday[/en], uchinchisi — [en]Wednesday[/en]. Chuh-chuh! Har vagonni ayt!",
        "doska": "🚂 Monday → Tuesday → Wednesday",
        "sodda": "Bittadan: [en]Monday[/en]… [en]Tuesday[/en]…",
-       "boshqa_usul": "Stullarni qatorlab qo'ying — har biri bitta kun. Ustidan o'tib kunlarni ayting!"
+       "boshqa_usul": "Stullarni qatorlab qo'y — har biri bitta kun. Ustidan o'tib kunlarni ayt!"
       }
      ]
     },
     {
      "name": "Payshanbadan yakshanbagacha",
      "goal": "Bola haftaning qolgan to'rt kunini aytadi",
-     "intro": "Gu-gu! Yakshanba kuni men dam olaman va bobomnikiga boraman! Hafta yana qaysi kunlardan iborat? Keling, qolgan kunlarni bilib olamiz.",
+     "intro": "Bip-bip! Yakshanba kuni men dam olaman va bobomnikiga boraman! Hafta yana qaysi kunlardan iborat? Qani, qolgan kunlarni bilib olamiz.",
      "items": [
       {
        "say": "Thursday",
@@ -330,10 +330,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎵 Hafta kunlari qo'shig'i",
-       "matn": "Kuylaymiz: [en]Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday![/en] Yetti kun — bir hafta! Har kunga bitta barmoq oching.",
+       "matn": "Kuylaymiz: [en]Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday![/en] Yetti kun — bir hafta! Har kunga bitta barmoq och.",
        "doska": "Monday Tuesday Wednesday\nThursday Friday\nSaturday Sunday",
        "sodda": "Faqat dam olish kunlari: [en]Saturday, Sunday[/en].",
-       "boshqa_usul": "Har kuni ertalab kattalarga ayting: bugun qaysi kun — inglizcha!"
+       "boshqa_usul": "Har kuni ertalab kattalarga ayt: bugun qaysi kun — inglizcha!"
       }
      ],
      "tests": [
@@ -353,7 +353,7 @@
     {
      "name": "Bugun qaysi kun?",
      "goal": "Bola «What day is it today?» deb so'raydi va «Today is…» bilan javob beradi",
-     "intro": "Ertalab uyg'onib, bugun qaysi kun ekan, deb o'yladim. Taqvimga qaradim — bugun juma! Keling, buni inglizcha so'rashni o'rganamiz.",
+     "intro": "Ertalab uyg'onib, bugun qaysi kun ekan, deb o'yladim. Taqvimga qaradim — bugun juma! Qani, buni inglizcha so'rashni o'rganamiz.",
      "items": [
       {
        "say": "What day is it today?",
@@ -365,16 +365,17 @@
       {
        "say": "Today is Monday.",
        "uz": "bugun dushanba",
-       "emoji": "📆✅",
+       "emoji": "📆👉",
        "image": "en67-u2-today-is.png",
        "image_prompt": "A child pointing at a circled day on a calendar, cute cartoon for kids, soft flat colors, white background, no text, square"
       },
       {
-       "say": "week",
-       "uz": "hafta",
-       "emoji": "🗓️",
-       "image": "en67-u2-week.png",
-       "image_prompt": "A calendar page showing one week with seven boxes, cute cartoon for kids, soft flat colors, white background, no text, square"
+       "say": "yesterday",
+       "uz": "kecha",
+       "emoji": "⏪",
+       "image": "en67-u2-yesterday.png",
+       "image_prompt": "A calendar page turned back to yesterday with a small arrow, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Orqangga ko'rsat!"
       },
       {
        "say": "tomorrow",
@@ -388,10 +389,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: taqvim yonida",
-       "matn": "Kabutar: [en]What day is it today?[/en] Siz: [en]Today is Friday.[/en] Kabutar: [en]And tomorrow?[/en] Siz: [en]Saturday![/en] Endi siz so'rang!",
+       "matn": "Kabu: [en]What day is it today?[/en] Sen: [en]Today is Friday.[/en] Kabu: [en]And tomorrow?[/en] Sen: [en]Saturday![/en] Endi sen so'ra!",
        "doska": "— What day is it today?\n— Today is Friday.\n— And tomorrow?\n— Saturday!",
-       "sodda": "Faqat kun nomi bilan javob bering: [en]Friday![/en]",
-       "boshqa_usul": "Uyda taqvim qiling: har kuni bitta katakka yulduz qo'yib, ayting: [en]Today is…[/en]"
+       "sodda": "Faqat kun nomi bilan javob ber: [en]Friday![/en]",
+       "boshqa_usul": "Uyda taqvim qil: har kuni bitta katakka yulduz qo'yib, ayt: [en]Today is…[/en]"
       }
      ],
      "tests": [
@@ -411,7 +412,7 @@
     {
      "name": "Tong, kech va tun",
      "goal": "Bola morning, evening, night, weekend so'zlarini biladi",
-     "intro": "Tongda men don teraman, kechqurun uyamga qaytaman, tunda uxlayman, dam olish kunlari esa o'ynayman! Sizning kuningiz qanday o'tadi?",
+     "intro": "Tongda men batareykamni zaryadlayman, kechqurun dam olaman, tunda zaryadlanaman, dam olish kunlari esa o'ynayman! Sening kuning qanday o'tadi?",
      "items": [
       {
        "say": "morning",
@@ -433,7 +434,7 @@
        "emoji": "🌙",
        "image": "en67-u2-night.png",
        "image_prompt": "A crescent moon and stars over a sleeping house, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Ko'zingizni yumib, uxlaganday bo'ling!"
+       "action": "Ko'zingni yumib, uxlaganday bo'l!"
       },
       {
        "say": "weekend",
@@ -447,10 +448,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🌓 Kun va tun o'yini",
-       "matn": "Men aytaman, siz ko'rsatasiz: [en]morning![/en] — kerishing! [en]evening![/en] — ovqatlaning! [en]night![/en] — uxlang! [en]weekend![/en] — o'ynang, sakrang!",
+       "matn": "Men aytaman, sen ko'rsatasan: [en]morning![/en] — kerish! [en]evening![/en] — ovqatlaning! [en]night![/en] — uxla! [en]weekend![/en] — o'yna, sakra!",
        "doska": "🌅 morning — kerishamiz\n🌆 evening — ovqat\n🌙 night — uxlaymiz\n🎡 weekend — o'yin",
        "sodda": "Ikkitasi: [en]morning[/en] va [en]night[/en].",
-       "boshqa_usul": "Kun tartibingizni rasmda chizing: tong, kech, tun — har biriga inglizcha nom qo'ying."
+       "boshqa_usul": "Kun tartibingni rasmda chiz: tong, kech, tun — har biriga inglizcha nom qo'y."
       }
      ],
      "tests": [
@@ -476,7 +477,7 @@
     {
      "name": "Shifokor va o'qituvchi",
      "goal": "Bola doctor, teacher, cook, farmer kasblarini biladi",
-     "intro": "Gu-gu! Kecha tumov bo'lib qoldim, shifokor meni davoladi. Bugun esa o'qituvchi menga kitob o'qib berdi! Keling, kasblarni inglizcha o'rganamiz.",
+     "intro": "Bip-bip! Kecha do'stim kasal bo'lib qoldi, shifokor uni davoladi. Bugun esa o'qituvchi menga kitob o'qib berdi! Qani, kasblarni inglizcha o'rganamiz.",
      "items": [
       {
        "say": "doctor",
@@ -498,7 +499,7 @@
        "emoji": "🧑‍🍳",
        "image": "en67-u3-cook.png",
        "image_prompt": "A cheerful cook in a white hat stirring a pot, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qozonni aralashtirganday qiling!"
+       "action": "Qozonni aralashtirganday qil!"
       },
       {
        "say": "farmer",
@@ -513,9 +514,9 @@
        "turi": "topshiriq",
        "sarlavha": "🕵️ Kim bu? Topishmoq",
        "matn": "Topishmoq: u shirin osh pishiradi — kim? [en]cook![/en] U bolalarga dars beradi — kim? [en]teacher![/en] U kasallarni davolaydi — kim? [en]doctor![/en]",
-       "doska": "🍲 → cook\n📚 → teacher\n💊 → doctor\n🌾 → farmer",
-       "sodda": "Rasmga qarab ayting: [en]doctor[/en], [en]teacher[/en].",
-       "boshqa_usul": "Kasbni harakat bilan ko'rsating, do'stingiz inglizcha topsin!"
+       "doska": "🍲 → cook\n📚 → teacher\n🩺 → doctor\n🌾 → farmer",
+       "sodda": "Rasmga qarab ayt: [en]doctor[/en], [en]teacher[/en].",
+       "boshqa_usul": "Kasbni harakat bilan ko'rsat, do'sting inglizcha topsin!"
       }
      ],
      "tests": [
@@ -535,7 +536,7 @@
     {
      "name": "Qahramon kasblar",
      "goal": "Bola police officer, firefighter, pilot, builder kasblarini biladi",
-     "intro": "Gu-gu! Shaharda ba'zi odamlar bizni asraydi: o't o'chiradi, tartib saqlaydi, uylar quradi, osmonda samolyot uchiradi. Kimlar ekan ular?",
+     "intro": "Bip-bip! Shaharda ba'zi odamlar bizni asraydi: o't o'chiradi, tartib saqlaydi, uylar quradi, osmonda samolyot uchiradi. Kimlar ekan ular?",
      "items": [
       {
        "say": "police officer",
@@ -557,7 +558,7 @@
        "emoji": "🧑‍✈️",
        "image": "en67-u3-pilot.png",
        "image_prompt": "A smiling pilot in a cap, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qo'llaringizni qanotday yoying!"
+       "action": "Qo'llaringni qanotday yoy!"
       },
       {
        "say": "builder",
@@ -565,17 +566,17 @@
        "emoji": "👷",
        "image": "en67-u3-builder.png",
        "image_prompt": "A builder with a yellow helmet and bricks, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Bolg'a urganday qiling!"
+       "action": "Bolg'a urganday qil!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🏃 Kasb harakatlari",
-       "matn": "Men kasbni aytaman, siz harakat qilasiz: [en]pilot![/en] — uching! [en]firefighter![/en] — suv sepish! [en]builder![/en] — tuk-tuk! [en]police officer![/en] — hurmat bilan salom bering!",
+       "matn": "Men kasbni aytaman, sen harakat qilasan: [en]pilot![/en] — uch! [en]firefighter![/en] — suv sepish! [en]builder![/en] — tuk-tuk! [en]police officer![/en] — hurmat bilan salom ber!",
        "doska": "🧑‍✈️ pilot — uchamiz\n🧑‍🚒 firefighter — suv\n👷 builder — tuk-tuk\n👮 police officer — salom",
        "sodda": "Ikkitasi: [en]pilot[/en] va [en]builder[/en].",
-       "boshqa_usul": "Karton qalpoq yasab, bitta kasbni o'ynang va ayting: [en]I am a pilot![/en]"
+       "boshqa_usul": "Karton qalpoq yasab, bitta kasbni o'yna va ayt: [en]I am a pilot![/en]"
       }
      ],
      "tests": [
@@ -595,7 +596,7 @@
     {
      "name": "Kim bo'lmoqchisan?",
      "goal": "Bola «He is / She is a…» deydi va orzusidagi kasbni aytadi",
-     "intro": "Men katta bo'lsam, pochtachi kabutar bo'lmoqchiman — xat tashiyman! Siz kim bo'lmoqchisiz? Keling, orzularimizni inglizcha aytamiz.",
+     "intro": "Katta bo'lsam, pochtachi robot bo'lmoqchiman — xat tashiyman! Sen kim bo'lmoqchisan? Qani, orzularimizni inglizcha aytamiz.",
      "items": [
       {
        "say": "He is a doctor.",
@@ -630,10 +631,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: orzularim",
-       "matn": "Kabutar: [en]What do you want to be?[/en] Siz: [en]I want to be a doctor.[/en] yoki [en]a teacher[/en], [en]a pilot[/en], [en]a cook[/en]. Endi do'stingizdan so'rang!",
+       "matn": "Kabu: [en]What do you want to be?[/en] Sen: [en]I want to be a doctor.[/en] yoki [en]a teacher[/en], [en]a pilot[/en], [en]a cook[/en]. Endi do'stingdan so'ra!",
        "doska": "— What do you want to be?\n— I want to be a …\n🧑‍⚕️ doctor  🧑‍🏫 teacher  🧑‍✈️ pilot  🧑‍🍳 cook  👷 builder",
        "sodda": "Faqat kasb nomi: [en]doctor![/en] [en]pilot![/en]",
-       "boshqa_usul": "Orzuingizdagi kasb rasmini chizing va ostiga ayting: [en]I want to be a…[/en]"
+       "boshqa_usul": "Orzuingdagi kasb rasmini chiz va ostiga ayt: [en]I want to be a…[/en]"
       }
      ],
      "tests": [
@@ -641,9 +642,9 @@
        "q": "[en]What do you want to be?[/en] — qanday javob beramiz?",
        "options": [
         "🧑‍✈️🌟 I want to be a pilot.",
-        "😊 I'm fine, thank you.",
-        "📆✅ Today is Monday.",
-        "❓🔢 How many?"
+        "👨‍⚕️ He is a doctor.",
+        "👩‍🏫 She is a teacher.",
+        "💭 What do you want to be?"
        ],
        "answer": 0,
        "why": "Ajoyib! Orzu kasb: [en]I want to be a…[/en]"
@@ -653,7 +654,7 @@
     {
      "name": "Kim qayerda ishlaydi?",
      "goal": "Bola hospital, school, farm, shop so'zlarini biladi",
-     "intro": "Shifokor qayerda ishlaydi? O'qituvchi-chi? Men shahar ustidan uchib, hammasini ko'rdim! Keling, ish joylarini inglizcha o'rganamiz.",
+     "intro": "Shifokor qayerda ishlaydi? O'qituvchi-chi? Men shahar bo'ylab g'ildirab yurib, hammasini ko'rdim! Qani, ish joylarini inglizcha o'rganamiz.",
      "items": [
       {
        "say": "hospital",
@@ -691,7 +692,7 @@
        "matn": "Juftini topamiz: [en]doctor[/en] — [en]hospital[/en]. [en]teacher[/en] — [en]school[/en]. [en]farmer[/en] — [en]farm[/en]. Do'konda sotuvchi ishlaydi — [en]shop[/en].",
        "doska": "🧑‍⚕️ doctor — 🏥 hospital\n🧑‍🏫 teacher — 🏫 school\n🧑‍🌾 farmer — 🚜 farm\n🏪 shop",
        "sodda": "Ikki juft: [en]doctor — hospital[/en], [en]teacher — school[/en].",
-       "boshqa_usul": "Kartochkalar chizing va juftlarini qo'yib, inglizcha ayting."
+       "boshqa_usul": "Kartochkalar chiz va juftlarini qo'yib, inglizcha ayt."
       }
      ],
      "tests": [
@@ -717,7 +718,7 @@
     {
      "name": "Mashina va avtobus",
      "goal": "Bola car, bus, taxi, bike so'zlarini biladi",
-     "intro": "Ko'chada qanday shovqin: biip-biip! Tepadan qarayman — mashinalar, avtobuslar, velosipedlar! Keling, ularni inglizcha nomlaymiz.",
+     "intro": "Ko'chada qanday shovqin: biip-biip! Antennam bilan qarayman — mashinalar, avtobuslar, velosipedlar! Qani, ularni inglizcha nomlaymiz.",
      "items": [
       {
        "say": "car",
@@ -746,24 +747,24 @@
        "emoji": "🚲",
        "image": "en67-u4-bike.png",
        "image_prompt": "A kids bicycle, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Pedal aylantiring!"
+       "action": "Pedal aylantir!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎵 Avtobus qo'shig'i",
-       "matn": "Kuylaymiz: [en]The wheels on the bus go round and round, round and round![/en] Qo'llaringizni g'ildirakday aylantiring! Oxirida: [en]Beep, beep![/en]",
+       "matn": "Kuylaymiz: [en]The wheels on the bus go round and round, round and round![/en] Qo'llaringni g'ildirakday aylantir! Oxirida: [en]Beep, beep![/en]",
        "doska": "The wheels on the bus\ngo round and round 🚌\nBeep, beep!",
        "sodda": "Faqat: [en]bus[/en] va [en]beep, beep![/en]",
-       "boshqa_usul": "Stullardan avtobus yasang, oila a'zolarini o'tqazing va haydovchi bo'ling!"
+       "boshqa_usul": "Stullardan avtobus yasa, oila a'zolarini o'tqaz va haydovchi bo'l!"
       }
      ]
     },
     {
      "name": "Poyezd va samolyot",
      "goal": "Bola train, plane, ship, boat so'zlarini biladi",
-     "intro": "Men uzoq sayohatga chiqmoqchiman! Toshkentga poyezdda boramanmi yoki samolyotdami? Dengizda-chi? Keling, o'rganamiz!",
+     "intro": "Men uzoq sayohatga chiqmoqchiman! Toshkentga poyezdda boramanmi yoki samolyotdami? Dengizda-chi? Qani, o'rganamiz!",
      "items": [
       {
        "say": "train",
@@ -771,7 +772,7 @@
        "emoji": "🚆",
        "image": "en67-u4-train.png",
        "image_prompt": "A modern passenger train, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Chuh-chuh deb yuring!"
+       "action": "Chuh-chuh deb yur!"
       },
       {
        "say": "plane",
@@ -799,10 +800,10 @@
       {
        "turi": "tushuncha",
        "sarlavha": "🗺️ Qayerda yuradi?",
-       "matn": "Yerda — [en]car, bus, train[/en]. Osmonda — [en]plane[/en]. Suvda — [en]ship[/en] va [en]boat[/en]. Qani, siz ham ayting: osmonda nima uchadi? [en]plane![/en]",
+       "matn": "Yerda — [en]car, bus, train[/en]. Osmonda — [en]plane[/en]. Suvda — [en]ship[/en] va [en]boat[/en]. Qani, sen ham ayt: osmonda nima uchadi? [en]plane![/en]",
        "doska": "🛣️ yer: car bus train\n☁️ osmon: plane\n🌊 suv: ship boat",
        "sodda": "Ikkita: [en]plane[/en] — osmonda, [en]boat[/en] — suvda.",
-       "boshqa_usul": "Qog'ozdan kema va samolyot yasang, nomini inglizcha ayting!"
+       "boshqa_usul": "Qog'ozdan kema va samolyot yasa, nomini inglizcha ayt!"
       }
      ],
      "tests": [
@@ -822,7 +823,7 @@
     {
      "name": "Yordam mashinalari",
      "goal": "Bola fire engine, ambulance, police car, helicopter so'zlarini biladi",
-     "intro": "Vi-u, vi-u! Qizil mashina yong'inga, oq mashina bemorga shoshyapti! Keling, bu mashinalarni o'rganamiz.",
+     "intro": "Vi-u, vi-u! Qizil mashina yong'inga, oq mashina bemorga shoshyapti! Qani, bu mashinalarni o'rganamiz.",
      "items": [
       {
        "say": "fire engine",
@@ -851,7 +852,7 @@
        "emoji": "🚁",
        "image": "en67-u4-helicopter.png",
        "image_prompt": "A helicopter flying, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qo'lingizni parrakday aylantiring!"
+       "action": "Qo'lingni parrakday aylantir!"
       }
      ],
      "extra": [
@@ -861,7 +862,7 @@
        "matn": "[en]firefighter[/en] — [en]fire engine[/en] da. [en]doctor[/en] — [en]ambulance[/en] da. [en]police officer[/en] — [en]police car[/en] da. [en]pilot[/en] — [en]helicopter[/en] yoki [en]plane[/en] da!",
        "doska": "🧑‍🚒 → 🚒 fire engine\n🧑‍⚕️ → 🚑 ambulance\n👮 → 🚓 police car\n🧑‍✈️ → 🚁 helicopter",
        "sodda": "Faqat bitta juft: [en]firefighter — fire engine[/en].",
-       "boshqa_usul": "O'yinchoq mashinalarni kasb egalari bilan juftlab, inglizcha ayting."
+       "boshqa_usul": "O'yinchoq mashinalarni kasb egalari bilan juftlab, inglizcha ayt."
       }
      ],
      "tests": [
@@ -881,7 +882,7 @@
     {
      "name": "Maktabga qanday borasan?",
      "goal": "Bola «How do you go to school?» savoliga javob beradi, «Stop!» belgisini biladi",
-     "intro": "Men bog'chaga uchib boraman! Siz-chi — avtobusdami, mashinadami yoki piyodami? Keling, buni inglizcha so'rash va aytishni o'rganamiz.",
+     "intro": "Men bog'chaga g'ildirab boraman! Sen-chi — avtobusdami, mashinadami yoki piyodami? Qani, buni inglizcha so'rash va aytishni o'rganamiz.",
      "items": [
       {
        "say": "How do you go to school?",
@@ -903,7 +904,7 @@
        "emoji": "🚶",
        "image": "en67-u4-i-walk.png",
        "image_prompt": "A child walking on the sidewalk with a backpack, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Joyingizda yuring!"
+       "action": "Joyingda yur!"
       },
       {
        "say": "Stop!",
@@ -911,17 +912,17 @@
        "emoji": "🛑",
        "image": "en67-u4-stop.png",
        "image_prompt": "A red stop sign, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qotib qoling!"
+       "action": "Qotib qol!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🚦 Svetofor o'yini",
-       "matn": "Svetofor o'yini! Qizil chiroq — [en]Stop![/en] — qotib qoling! Yashil chiroq — [en]Go![/en] — [en]I walk.[/en] deb joyingizda yuring! Men chiroq rangini aytaman, siz ayting va harakat qiling!",
+       "matn": "Svetofor o'yini! Qizil chiroq — [en]Stop![/en] — qotib qol! Yashil chiroq — [en]Go![/en] — [en]I walk.[/en] deb joyingda yur! Men chiroq rangini aytaman, sen ayt va harakat qil!",
        "doska": "🛑 Stop! — qizil chiroq 🔴\n🚶 I walk. — yashil chiroq 🟢",
-       "sodda": "Faqat [en]Stop![/en] eshitsangiz — to'xtang.",
-       "boshqa_usul": "Ko'chada kattalar bilan yurganda svetoforni ko'rib ayting: [en]Stop![/en] yoki [en]Go![/en]"
+       "sodda": "Faqat [en]Stop![/en] eshitsang — to'xta.",
+       "boshqa_usul": "Ko'chada kattalar bilan yurganda svetoforni ko'rib ayt: [en]Stop![/en] yoki [en]Go![/en]"
       }
      ],
      "tests": [
@@ -930,7 +931,7 @@
        "options": [
         "🚌🏫 I go by bus.",
         "😊 I'm fine, thank you.",
-        "🗓️7️⃣ Sunday",
+        "🚗 car",
         "🛑 Stop!"
        ],
        "answer": 0,
@@ -947,7 +948,7 @@
     {
      "name": "Kitob va qalam",
      "goal": "Bola book, pencil, pen, school bag so'zlarini biladi",
-     "intro": "Tez orada siz maktabga borasiz! Portfelga nimalarni solamiz — kitob, qalam? Keling, maktab narsalarini inglizcha o'rganamiz.",
+     "intro": "Tez orada sen maktabga borasan! Portfelga nimalarni solamiz — kitob, qalam? Qani, maktab narsalarini inglizcha o'rganamiz.",
      "items": [
       {
        "say": "book",
@@ -976,24 +977,24 @@
        "emoji": "🎒",
        "image": "en67-u5-school-bag.png",
        "image_prompt": "A colorful school backpack, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Portfelni yelkangizga osganday qiling!"
+       "action": "Portfelni yelkangga osganday qil!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎒 Portfel yig'amiz",
-       "matn": "Portfelni yig'amiz! Men aytaman, siz solasiz: [en]book[/en] — soling! [en]pencil[/en] — soling! [en]pen[/en] — soling! Endi [en]school bag[/en] ni yoping. Tayyor!",
+       "matn": "Portfelni yig'amiz! Men aytaman, sen solasan: [en]book[/en] — sol! [en]pencil[/en] — sol! [en]pen[/en] — sol! Endi [en]school bag[/en] ni yop. Tayyor!",
        "doska": "🎒 school bag:\n📖 book  ✏️ pencil  🖊️ pen",
        "sodda": "Ikkitasi: [en]book[/en] va [en]pencil[/en].",
-       "boshqa_usul": "Haqiqiy portfelingizni yig'ib, har bir narsani inglizcha ayting."
+       "boshqa_usul": "Haqiqiy portfelingni yig'ib, har bir narsani inglizcha ayt."
       }
      ]
     },
     {
      "name": "Chizg'ich va qaychi",
      "goal": "Bola ruler, crayons, scissors, notebook so'zlarini biladi",
-     "intro": "Gu-gu! Bugun sinfda rasm chizamiz va qog'ozdan gul qirqamiz! Buning uchun nimalar kerak? Keling, bilib olamiz.",
+     "intro": "Bip-bip! Bugun sinfda rasm chizamiz va qog'ozdan gul qirqamiz! Buning uchun nimalar kerak? Qani, bilib olamiz.",
      "items": [
       {
        "say": "ruler",
@@ -1015,7 +1016,7 @@
        "emoji": "✂️",
        "image": "en67-u5-scissors.png",
        "image_prompt": "A pair of kids safety scissors, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Barmoqlaringiz bilan qirqing: chik-chik!"
+       "action": "Barmoqlaring bilan qirq: chik-chik!"
       },
       {
        "say": "notebook",
@@ -1029,10 +1030,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🔍 Portfelda nima bor?",
-       "matn": "Kabutar so'raydi: [en]What's in your bag?[/en] Siz ko'rsatib ayting: [en]a ruler, crayons, scissors, a notebook![/en] Hammasini ko'rsatdingizmi?",
+       "matn": "Kabu so'raydi: [en]What's in your bag?[/en] Sen ko'rsatib ayt: [en]a ruler, crayons, scissors, a notebook![/en] Hammasini ko'rsatdingmi? [en]Scissors[/en] — faqat kattalar bilan ishlatamiz!",
        "doska": "🎒 What's in your bag?\n📏 ruler\n🖍️ crayons\n✂️ scissors\n📓 notebook",
        "sodda": "Uchtasi: [en]ruler, crayons, notebook[/en].",
-       "boshqa_usul": "Ko'zingizni yumib portfeldan bitta narsani oling — ushlab, nomini ayting!"
+       "boshqa_usul": "Ko'zingni yumib portfeldan bitta narsani ol — ushlab, nomini ayt!"
       }
      ],
      "tests": [
@@ -1052,7 +1053,7 @@
     {
      "name": "O'rningdan tur!",
      "goal": "Bola Stand up, Sit down, Open your book, Close your book buyruqlarini bajaradi",
-     "intro": "Gu-gu! Maktabda o'qituvchi inglizcha buyruq beradi. Siz ularni tushunib, bajarasiz! Keling, mashq qilamiz — men o'qituvchi bo'laman!",
+     "intro": "Bip-bip! Maktabda o'qituvchi inglizcha buyruq beradi. Sen ularni tushunib, bajarasan! Qani, mashq qilamiz — men o'qituvchi bo'laman!",
      "items": [
       {
        "say": "Stand up!",
@@ -1060,7 +1061,7 @@
        "emoji": "🧍",
        "image": "en67-u5-stand-up.png",
        "image_prompt": "A child standing up straight next to a desk, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "O'rningizdan turing!"
+       "action": "O'rningdan tur!"
       },
       {
        "say": "Sit down!",
@@ -1068,7 +1069,7 @@
        "emoji": "🪑",
        "image": "en67-u5-sit-down.png",
        "image_prompt": "A child sitting down on a chair, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "O'tiring!"
+       "action": "O'tir!"
       },
       {
        "say": "Open your book!",
@@ -1076,7 +1077,7 @@
        "emoji": "👐📖",
        "image": "en67-u5-open-book.png",
        "image_prompt": "Two hands opening a book, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Kitobni ochganday qiling!"
+       "action": "Kitobni ochganday qil!"
       },
       {
        "say": "Close your book!",
@@ -1084,17 +1085,17 @@
        "emoji": "📕",
        "image": "en67-u5-close-book.png",
        "image_prompt": "A closed red book, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Kaftlaringizni yoping!"
+       "action": "Kaftlaringni yop!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎲 O'qituvchi aytdi!",
-       "matn": "O'yin: men [en]Teacher says[/en] desam — bajaring! Demasam — qimirlamang! [en]Teacher says: Stand up![/en] … [en]Sit down![/en] — voy, qimirlamang!",
+       "matn": "O'yin: men [en]Teacher says[/en] desam — bajar! Demasam — qimirlama! [en]Teacher says: Stand up![/en] … [en]Sit down![/en] — voy, qimirlama!",
        "doska": "Teacher says: Stand up! 🧍\nTeacher says: Sit down! 🪑\nOpen your book! 👐📖",
        "sodda": "Faqat ikki buyruq: [en]Stand up![/en] va [en]Sit down![/en]",
-       "boshqa_usul": "Siz o'qituvchi bo'ling — kattalarga inglizcha buyruq bering!"
+       "boshqa_usul": "Sen o'qituvchi bo'l — kattalarga inglizcha buyruq ber!"
       }
      ],
      "tests": [
@@ -1114,7 +1115,7 @@
     {
      "name": "Tingla va qara!",
      "goal": "Bola Listen, Look, Be quiet, Raise your hand buyruqlarini tushunadi",
-     "intro": "Sinfda eng muhimi — diqqat! O'qituvchi «tingla», «qara», «jim bo'l» deydi. Javob bermoqchi bo'lsangiz — qo'l ko'tarasiz.",
+     "intro": "Sinfda eng muhimi — diqqat! O'qituvchi «tingla», «qara», «jim bo'l» deydi. Javob bermoqchi bo'lsang — qo'l ko'tarasan.",
      "items": [
       {
        "say": "Listen!",
@@ -1122,7 +1123,7 @@
        "emoji": "👂",
        "image": "en67-u5-listen.png",
        "image_prompt": "A child cupping an ear to listen, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qulog'ingizga kaftingizni tuting!"
+       "action": "Qulog'ingga kaftingni tut!"
       },
       {
        "say": "Look!",
@@ -1130,7 +1131,7 @@
        "emoji": "👀",
        "image": "en67-u5-look.png",
        "image_prompt": "A child looking with big curious eyes, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Ko'zingizni katta ochib qarang!"
+       "action": "Ko'zingni katta ochib qara!"
       },
       {
        "say": "Be quiet!",
@@ -1138,7 +1139,7 @@
        "emoji": "🤫",
        "image": "en67-u5-be-quiet.png",
        "image_prompt": "A child with a finger on lips saying shh, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Barmog'ingizni labingizga qo'ying: shh!"
+       "action": "Barmog'ingni labingga qo'y: shh!"
       },
       {
        "say": "Raise your hand!",
@@ -1146,22 +1147,22 @@
        "emoji": "🙋",
        "image": "en67-u5-raise-hand.png",
        "image_prompt": "A child raising a hand in class, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qo'lingizni ko'taring!"
+       "action": "Qo'lingni ko'tar!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🏫 Kichik dars",
-       "matn": "Keling, darsni o'ynaymiz! [en]Stand up![/en] [en]Look![/en] [en]Listen![/en] [en]Sit down![/en] [en]Open your book![/en] [en]Be quiet![/en] Savolga javob bermoqchimisiz? [en]Raise your hand![/en]",
+       "matn": "Qani, darsni o'ynaymiz! [en]Stand up![/en] [en]Look![/en] [en]Listen![/en] [en]Sit down![/en] [en]Open your book![/en] [en]Be quiet![/en] Savolga javob bermoqchimisan? [en]Raise your hand![/en]",
        "doska": "Stand up! 🧍  Look! 👀\nListen! 👂  Sit down! 🪑\nBe quiet! 🤫  Raise your hand! 🙋",
        "sodda": "Uchta buyruq: [en]Look! Listen! Be quiet![/en]",
-       "boshqa_usul": "Ayiqchalarni o'quvchi qilib o'tqazing va ularga dars bering!"
+       "boshqa_usul": "Ayiqchalarni o'quvchi qilib o'tqaz va ularga dars ber!"
       }
      ],
      "tests": [
       {
-       "q": "Javob bermoqchisiz. O'qituvchi nima deydi?",
+       "q": "Javob bermoqchisan. O'qituvchi nima deydi?",
        "options": [
         "🙋 Raise your hand!",
         "🤫 Be quiet!",
@@ -1182,7 +1183,7 @@
     {
      "name": "Suza olasanmi?",
      "goal": "Bola «Can you…?» deb so'raydi va «Yes, I can / No, I can't» deb javob beradi",
-     "intro": "Men ucha olaman, lekin suza olmayman! O'rdak esa suza oladi. Siz-chi? Bugun inglizcha «qila olasanmi» deb so'rashni o'rganamiz.",
+     "intro": "Men g'ildirab yura olaman, lekin suza olmayman — suvda zang bosaman! Baliq esa suza oladi. Sen-chi? Bugun inglizcha «qila olasanmi» deb so'rashni o'rganamiz.",
      "items": [
       {
        "say": "Can you swim?",
@@ -1197,7 +1198,7 @@
        "emoji": "✅",
        "image": "en67-u6-yes-i-can.png",
        "image_prompt": "A child nodding happily with a green check mark, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Boshingizni «ha» deb qimirlating!"
+       "action": "Boshingni «ha» deb qimirlat!"
       },
       {
        "say": "No, I can't.",
@@ -1205,7 +1206,7 @@
        "emoji": "❌",
        "image": "en67-u6-no-i-cant.png",
        "image_prompt": "A child shaking head with a red cross, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Boshingizni «yo'q» deb chayqating!"
+       "action": "Boshingni «yo'q» deb chayqat!"
       },
       {
        "say": "I can swim.",
@@ -1220,10 +1221,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: qila olasanmi?",
-       "matn": "Kabutar: [en]Can you swim?[/en] Siz: [en]Yes, I can.[/en] Kabutar: [en]Can you fly?[/en] Siz: [en]No, I can't![/en] Endi siz Kabutardan so'rang: [en]Can you jump?[/en]",
+       "matn": "Kabu: [en]Can you swim?[/en] Sen: [en]Yes, I can.[/en] Kabu: [en]Can you fly?[/en] Sen: [en]No, I can't![/en] Endi sen Kabudan so'ra: [en]Can you jump?[/en]",
        "doska": "— Can you swim? 🏊\n— Yes, I can. ✅\n— Can you fly? 🐦\n— No, I can't. ❌",
-       "sodda": "Faqat [en]Yes[/en] ✅ yoki [en]No[/en] ❌ deng.",
-       "boshqa_usul": "Oila a'zolaringizdan so'rang: [en]Can you dance?[/en] [en]Can you sing?[/en]"
+       "sodda": "Faqat [en]Yes[/en] ✅ yoki [en]No[/en] ❌ de.",
+       "boshqa_usul": "Oila a'zolaringdan so'ra: [en]Can you dance?[/en] [en]Can you sing?[/en]"
       }
      ],
      "tests": [
@@ -1238,7 +1239,7 @@
        "why": "To'g'ri! Biz ucha olmaymiz: [en]No, I can't.[/en]"
       },
       {
-       "q": "[en]Can you swim?[/en] — suza olsangiz, nima deysiz?",
+       "q": "[en]Can you swim?[/en] — suza olsang, nima deysan?",
        "options": [
         "✅ Yes, I can.",
         "❌ No, I can't.",
@@ -1253,7 +1254,7 @@
     {
      "name": "Velosiped va futbol",
      "goal": "Bola climb, ride a bike, play football, skate harakatlarini aytadi",
-     "intro": "Gu-gu! Hovlida bolalar o'ynayapti: biri daraxtga chiqyapti, biri velosiped haydayapti, boshqalari futbol o'ynayapti! Keling, qo'shilamiz!",
+     "intro": "Bip-bip! Hovlida bolalar o'ynayapti: biri daraxtga chiqyapti, biri velosiped haydayapti, boshqalari futbol o'ynayapti! Qani, qo'shilamiz!",
      "items": [
       {
        "say": "climb",
@@ -1261,7 +1262,7 @@
        "emoji": "🧗",
        "image": "en67-u6-climb.png",
        "image_prompt": "A child climbing a small climbing wall, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Tirmashganday qiling!"
+       "action": "Tirmashganday qil!"
       },
       {
        "say": "ride a bike",
@@ -1269,7 +1270,7 @@
        "emoji": "🚴",
        "image": "en67-u6-ride-bike.png",
        "image_prompt": "A child riding a bicycle, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Pedal aylantiring!"
+       "action": "Pedal aylantir!"
       },
       {
        "say": "play football",
@@ -1277,7 +1278,7 @@
        "emoji": "⚽",
        "image": "en67-u6-play-football.png",
        "image_prompt": "A child kicking a soccer ball, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "To'pni tepganday qiling!"
+       "action": "To'pni tepganday qil!"
       },
       {
        "say": "skate",
@@ -1285,17 +1286,17 @@
        "emoji": "⛸️",
        "image": "en67-u6-skate.png",
        "image_prompt": "A child ice skating happily, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Muzda sirpanganday yuring!"
+       "action": "Muzda sirpanganday yur!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🏃 Ko'rsat va so'ra",
-       "matn": "Men harakat qilaman — siz toping va so'rang! Pedal aylantiryapman… [en]Can you ride a bike?[/en] To'p tepyapman… [en]Can you play football?[/en] Javob: [en]Yes, I can![/en]",
+       "matn": "Men harakat qilaman — sen top va so'ra! Pedal aylantiryapman… [en]Can you ride a bike?[/en] To'p tepyapman… [en]Can you play football?[/en] Javob: [en]Yes, I can![/en]",
        "doska": "Can you …?\n🧗 climb  🚴 ride a bike\n⚽ play football  ⛸️ skate",
-       "sodda": "Faqat harakat nomini ayting: [en]climb![/en] [en]skate![/en]",
-       "boshqa_usul": "Do'stingiz bilan navbatma-navbat harakat ko'rsating, ikkinchisi inglizcha topsin."
+       "sodda": "Faqat harakat nomini ayt: [en]climb![/en] [en]skate![/en]",
+       "boshqa_usul": "Do'sting bilan navbatma-navbat harakat ko'rsat, ikkinchisi inglizcha topsin."
       }
      ],
      "tests": [
@@ -1315,7 +1316,7 @@
     {
      "name": "Hayvonlar nima qila oladi?",
      "goal": "Bola «A fish can swim» kabi gaplarni aytadi",
-     "intro": "Hayvonot bog'ida baliq suzadi, qush uchadi, qurbaqa sakraydi. Ilon-chi? U yura olmaydi! Keling, gapiramiz.",
+     "intro": "Hayvonot bog'ida baliq suzadi, qush uchadi, qurbaqa sakraydi. Ilon-chi? U yura olmaydi! Qani, gapiramiz.",
      "items": [
       {
        "say": "A fish can swim.",
@@ -1330,7 +1331,7 @@
        "emoji": "🐦",
        "image": "en67-u6-bird-fly.png",
        "image_prompt": "A small bird flying in the sky, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qanot qoqing!"
+       "action": "Qanot qoq!"
       },
       {
        "say": "A frog can jump.",
@@ -1338,7 +1339,7 @@
        "emoji": "🐸",
        "image": "en67-u6-frog-jump.png",
        "image_prompt": "A green frog jumping, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qurbaqaday sakrang!"
+       "action": "Qurbaqaday sakra!"
       },
       {
        "say": "A snake can't walk.",
@@ -1352,10 +1353,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🐾 Hayvonlar paradi",
-       "matn": "Siz hayvonga aylanasiz! [en]A frog can jump![/en] — sakrang! [en]A bird can fly![/en] — qanot qoqing! [en]A fish can swim![/en] — suzing! [en]A snake can't walk![/en] — sudralib yuring!",
+       "matn": "Sen hayvonga aylanasan! [en]A frog can jump![/en] — sakra! [en]A bird can fly![/en] — qanot qoq! [en]A fish can swim![/en] — suz! [en]A snake can't walk![/en] — sudralib yur!",
        "doska": "🐸 A frog can jump.\n🐦 A bird can fly.\n🐟 A fish can swim.\n🐍 A snake can't walk.",
        "sodda": "Ikkita: [en]A bird can fly.[/en] [en]A fish can swim.[/en]",
-       "boshqa_usul": "Hayvon rasmini chizing va ostiga ayting: u nima qila oladi?"
+       "boshqa_usul": "Hayvon rasmini chiz va ostiga ayt: u nima qila oladi?"
       }
      ],
      "tests": [
@@ -1375,7 +1376,7 @@
     {
      "name": "Yordam berasanmi?",
      "goal": "Bola «Can you help me?», «Of course!», «Let's play!», «Well done!» iboralarini ishlatadi",
-     "intro": "Men katta donni ko'tarolmayapman! Qanday qilib yordam so'rayman? Do'stlar doim bir-biriga yordam beradi.",
+     "intro": "Men katta qutini ko'tarolmayapman! Qanday qilib yordam so'rayman? Do'stlar doim bir-biriga yordam beradi.",
      "items": [
       {
        "say": "Can you help me?",
@@ -1393,11 +1394,11 @@
       },
       {
        "say": "Let's play!",
-       "uz": "keling, o'ynaymiz!",
+       "uz": "qani, o'ynaymiz!",
        "emoji": "🎲",
        "image": "en67-u6-lets-play.png",
        "image_prompt": "Children playing a board game together, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Do'stingizni o'yinga chaqiring!"
+       "action": "Do'stingni o'yinga chaqir!"
       },
       {
        "say": "Well done!",
@@ -1405,27 +1406,26 @@
        "emoji": "🏅",
        "image": "en67-u6-well-done.png",
        "image_prompt": "A child receiving a gold medal, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qarsak chaling!"
+       "action": "Qarsak chal!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: do'stlar",
-       "matn": "Kabutar: [en]Can you help me?[/en] Siz: [en]Of course![/en] Birga donni ko'taramiz. Kabutar: [en]Thank you! Let's play![/en] O'yin tugagach: [en]Well done![/en]",
+       "matn": "Kabu: [en]Can you help me?[/en] Sen: [en]Of course![/en] Birga qutini ko'taramiz. Kabu: [en]Thank you! Let's play![/en] O'yin tugagach: [en]Well done![/en]",
        "doska": "— Can you help me? 🤲\n— Of course! 👌\n— Thank you! Let's play! 🎲\n— Well done! 🏅",
        "sodda": "Ikki ibora: [en]Can you help me?[/en] — [en]Of course![/en]",
-       "boshqa_usul": "Uyda kattalarga yordam taklif qiling va ayting: [en]Of course![/en]"
+       "boshqa_usul": "Uyda kattalarga yordam taklif qil va ayt: [en]Of course![/en]"
       }
      ],
      "tests": [
       {
-       "q": "Do'stingiz [en]Can you help me?[/en] dedi. Yaxshi javob qaysi?",
+       "q": "Do'sting [en]Can you help me?[/en] dedi. Yaxshi javob qaysi?",
        "options": [
         "👌 Of course!",
-        "🤫 Be quiet!",
-        "🛑 Stop!",
-        "❌ No, I can't."
+        "❌ No, I can't.",
+        "🙏 Thank you!"
        ],
        "answer": 0,
        "why": "Barakalla! Do'stga yordam beramiz: [en]Of course![/en]"
@@ -1441,7 +1441,7 @@
     {
      "name": "Do'konga kirdik",
      "goal": "Bola «Can I help you?», «…, please», «Here you are», «Thank you» iboralarini ishlatadi",
-     "intro": "Bugun men sotuvchiman, siz esa xaridor! Do'konimizda olma, non, sut bor. Qanday qilib odob bilan so'raymiz?",
+     "intro": "Bugun men sotuvchiman, sen esa xaridor! Do'konimizda olma, non, sut bor. Qanday qilib odob bilan so'raymiz?",
      "items": [
       {
        "say": "Can I help you?",
@@ -1459,7 +1459,7 @@
       },
       {
        "say": "Here you are.",
-       "uz": "mana, oling",
+       "uz": "mana, ol",
        "emoji": "🫴",
        "image": "en67-u7-here-you-are.png",
        "image_prompt": "A hand giving an apple to a child, cute cartoon for kids, soft flat colors, white background, no text, square"
@@ -1470,7 +1470,7 @@
        "emoji": "🙏",
        "image": "en67-u7-thank-you.png",
        "image_prompt": "A child saying thank you with a smile, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qo'lingizni ko'ksingizga qo'ying!"
+       "action": "Qo'lingni ko'ksingga qo'y!"
       }
      ],
      "extra": [
@@ -1480,17 +1480,16 @@
        "matn": "Sotuvchi: [en]Hello! Can I help you?[/en] Xaridor: [en]An apple, please.[/en] Sotuvchi: [en]Here you are.[/en] Xaridor: [en]Thank you![/en] Endi rollarni almashamiz!",
        "doska": "— Hello! Can I help you?\n— An apple, please. 🍎\n— Here you are. 🫴\n— Thank you! 🙏",
        "sodda": "Faqat xaridor so'zlari: [en]An apple, please.[/en] [en]Thank you![/en]",
-       "boshqa_usul": "O'yinchoqlar bilan uyda do'kon qiling va kattalarni xaridor qiling!"
+       "boshqa_usul": "O'yinchoqlar bilan uyda do'kon qil va kattalarni xaridor qil!"
       }
      ],
      "tests": [
       {
-       "q": "Sotuvchi sizga olma berib [en]Here you are.[/en] dedi. Siz nima deysiz?",
+       "q": "Sotuvchi senga olma berib [en]Here you are.[/en] dedi. Sen nima deysan?",
        "options": [
         "🙏 Thank you!",
-        "🛑 Stop!",
-        "❓🔢 How many?",
-        "🙋 Raise your hand!"
+        "🧑‍💼 Can I help you?",
+        "🍎🙏 An apple, please."
        ],
        "answer": 0,
        "why": "Ajoyib! Doim [en]Thank you![/en] deymiz."
@@ -1500,7 +1499,7 @@
     {
      "name": "Nechta kerak?",
      "goal": "Bola «How many…?» savoliga son bilan javob beradi, «You're welcome» deydi",
-     "intro": "Gu-gu! Do'konga yangi bananlar keldi! Sotuvchi so'raydi: nechta kerak? Keling, sonlarni eslab, xarid qilamiz.",
+     "intro": "Bip-bip! Do'konga yangi bananlar keldi! Sotuvchi so'raydi: nechta kerak? Qani, sonlarni eslab, xarid qilamiz.",
      "items": [
       {
        "say": "bananas",
@@ -1537,8 +1536,8 @@
        "sarlavha": "🛒 Sanab sotamiz",
        "matn": "Sotuvchi: [en]How many bananas?[/en] Xaridor: [en]Five bananas, please.[/en] Sotuvchi sanaydi: [en]one, two, three, four, five. Here you are.[/en] Xaridor: [en]Thank you![/en] Sotuvchi: [en]You're welcome![/en]",
        "doska": "— How many bananas?\n— Five bananas, please.\n— Here you are.\n— Thank you!\n— You're welcome!",
-       "sodda": "Faqat son ayting: [en]five, please![/en]",
-       "boshqa_usul": "Tugmalar yoki yong'oqlarni sotib o'ynang — har safar sanab bering!"
+       "sodda": "Faqat son ayt: [en]five, please![/en]",
+       "boshqa_usul": "Tugmalar yoki yong'oqlarni kattalar yonida sotib o'yna — og'zingga solma! Har safar sanab ber."
       }
      ],
      "tests": [
@@ -1546,9 +1545,8 @@
        "q": "Kimgadir [en]Thank you![/en] desa, u nima deb javob beradi?",
        "options": [
         "😊 You're welcome.",
-        "❌ No, I can't.",
-        "🛑 Stop!",
-        "📆✅ Today is Monday."
+        "🫴 Here you are.",
+        "🍌❓ How many bananas?"
        ],
        "answer": 0,
        "why": "To'g'ri! [en]You're welcome.[/en] — arzimaydi."
@@ -1556,9 +1554,9 @@
      ]
     },
     {
-     "name": "Sabzavot rastasi",
-     "goal": "Bola carrots, tomatoes, potatoes, eggs so'zlarini biladi",
-     "intro": "Bozorning sabzavot rastasiga keldik: qizil pomidor, uzun sabzi, yumaloq kartoshka! Onam sho'rva uchun nimalar kerakligini aytdi. Keling, xarid qilamiz!",
+     "name": "Bozor rastasi",
+     "goal": "Bola carrots, tomatoes, potatoes, eggs so'zlarini biladi (bozor rastasi)",
+     "intro": "Bozor rastasiga keldik: qizil pomidor, uzun sabzi, yumaloq kartoshka va yangi tuxum! Onam sho'rva uchun nimalar kerakligini aytdi. Qani, xarid qilamiz!",
      "items": [
       {
        "say": "carrots",
@@ -1593,10 +1591,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "📝 Xarid ro'yxati",
-       "matn": "Onamning ro'yxati: [en]three carrots, two tomatoes, four potatoes, ten eggs[/en]. Sotuvchidan so'rang: [en]Three carrots, please![/en] Hammasini oldik!",
+       "matn": "Onamning ro'yxati: [en]three carrots, two tomatoes, four potatoes, ten eggs[/en]. Sotuvchidan so'ra: [en]Three carrots, please![/en] Hammasini oldik!",
        "doska": "🥕🥕🥕 three carrots\n🍅🍅 two tomatoes\n🥔🥔🥔🥔 four potatoes\n🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚 ten eggs",
-       "sodda": "Bittadan so'rang: [en]Carrots, please![/en]",
-       "boshqa_usul": "Oshxonada kattalar bilan sabzavotlarni sanang va inglizcha nomlang."
+       "sodda": "Bittadan so'ra: [en]Carrots, please![/en]",
+       "boshqa_usul": "Oshxonada kattalar bilan sabzavotlarni sana va inglizcha nomla."
       }
      ],
      "tests": [
@@ -1616,7 +1614,7 @@
     {
      "name": "Savat va pul",
      "goal": "Bola basket, money, «Goodbye, see you!» iboralarini ishlatib to'liq xarid o'ynaydi",
-     "intro": "Gu-gu! Xarid uchun savat va pul kerak! Keling, oxirgi marta to'liq do'kon o'yinini o'ynaymiz: salomlashamiz, so'raymiz, to'laymiz va xayrlashamiz.",
+     "intro": "Bip-bip! Xarid uchun savat va pul kerak! Qani, oxirgi marta to'liq do'kon o'yinini o'ynaymiz: salomlashamiz, so'raymiz, to'laymiz va xayrlashamiz.",
      "items": [
       {
        "say": "shop",
@@ -1651,10 +1649,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🛍️ Katta do'kon o'yini",
-       "matn": "[en]Hello! Can I help you?[/en] — [en]Two tomatoes, please.[/en] — [en]Here you are.[/en] — [en]Thank you! Here is the money.[/en] — [en]Goodbye, see you![/en] Endi siz sotuvchisiz!",
+       "matn": "[en]Hello! Can I help you?[/en] — [en]Two tomatoes, please.[/en] — [en]Here you are.[/en] — [en]Thank you! Here is the money.[/en] — [en]Goodbye, see you![/en] Endi sen sotuvchisan!",
        "doska": "— Hello! Can I help you?\n— Two tomatoes, please. 🍅🍅\n— Here you are.\n— Thank you! 🪙\n— Goodbye, see you! 👋\n🪙 money",
        "sodda": "Uch ibora: [en]please[/en], [en]Thank you[/en], [en]Goodbye[/en].",
-       "boshqa_usul": "Qog'ozdan pul yasab, oila bilan bozor o'ynang!"
+       "boshqa_usul": "Qog'ozdan pul yasab, oila bilan bozor o'yna!"
       }
      ],
      "tests": [
@@ -1680,7 +1678,7 @@
     {
      "name": "Ismim va yoshim",
      "goal": "Bola ismini va yoshini aytadi, «How old are you?» deb so'raydi",
-     "intro": "Gu-gu! Men bir yoshdaman — kabutarlar uchun bu katta yosh! Siz necha yoshdasiz? Keling, o'zimiz haqimizda inglizcha gapirishni boshlaymiz.",
+     "intro": "Bip-bip! Men bir yoshdaman — robotlar uchun bu hali kichkina yosh! Sen necha yoshdasan? Qani, o'zimiz haqimizda inglizcha gapirishni boshlaymiz.",
      "items": [
       {
        "say": "My name is Malika.",
@@ -1715,10 +1713,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: tanishuv",
-       "matn": "Kabutar: [en]Hello! What's your name?[/en] Siz: [en]My name is…[/en] Kabutar: [en]How old are you?[/en] Siz: [en]I am six.[/en] yoki [en]I am seven.[/en]",
+       "matn": "Kabu: [en]Hello! What's your name?[/en] Sen: [en]My name is…[/en] Kabu: [en]How old are you?[/en] Sen: [en]I am six.[/en] yoki [en]I am seven.[/en]",
        "doska": "— What's your name?\n— My name is …\n— How old are you?\n— I am six. / I am seven.",
-       "sodda": "Faqat ikki javob: ismingiz va [en]I am six[/en].",
-       "boshqa_usul": "Do'stlaringiz bilan tanishib, ularning ismi va yoshini inglizcha so'rang."
+       "sodda": "Faqat ikki javob: isming va [en]I am six[/en].",
+       "boshqa_usul": "Do'stlaring bilan tanishib, ularning ismi va yoshini inglizcha so'ra."
       }
      ],
      "tests": [
@@ -1738,7 +1736,7 @@
     {
      "name": "Qayerda yashayman",
      "goal": "Bola qayerda yashashini va qayerdan ekanini aytadi",
-     "intro": "Gu-gu! Men Samarqandda, Registon yonidagi daraxtda yashayman! Siz qayerda yashaysiz? Keling, shahrimiz va vatanimiz haqida inglizcha gapiramiz.",
+     "intro": "Bip-bip! Men Samarqandda, Registon yonida yashayman! Sen qayerda yashaysan? Qani, shahrimiz va vatanimiz haqida inglizcha gapiramiz.",
      "items": [
       {
        "say": "house",
@@ -1773,17 +1771,17 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🗺️ Mening shahrim",
-       "matn": "Kabutar so'raydi: [en]Where do you live?[/en] Siz shahringizni ayting: [en]I live in Samarkand.[/en] yoki [en]I live in Tashkent.[/en] Keyin: [en]I am from Uzbekistan![/en]",
+       "matn": "Kabu so'raydi: [en]Where do you live?[/en] Sen shahringni ayt: [en]I live in Samarkand.[/en] yoki [en]I live in Tashkent.[/en] Keyin: [en]I am from Uzbekistan![/en]",
        "doska": "— Where do you live?\n— I live in … 🕌 Samarkand\n— I am from Uzbekistan! 🇺🇿",
        "sodda": "Faqat shahar nomi: [en]Samarkand![/en]",
-       "boshqa_usul": "Shahringizning chiroyli joyini chizing va ostiga ayting: [en]I live in…[/en]"
+       "boshqa_usul": "Shahringning chiroyli joyini chiz va ostiga ayt: [en]I live in…[/en]"
       }
      ]
     },
     {
      "name": "Men yaxshi ko'raman",
      "goal": "Bola sevimli ovqati, rangi va o'yinini aytadi, «What do you like?» deb so'raydi",
-     "intro": "Men palovni yaxshi ko'raman — ayniqsa, guruchini! Sevimli rangim — yashil. Siz-chi? Keling, sevimli narsalarimizni inglizcha aytamiz.",
+     "intro": "Men batareykamni yaxshi ko'raman, palovni esa hamma bolalar yaxshi ko'radi! Sevimli rangim — yashil. Sen-chi? Qani, sevimli narsalarimizni inglizcha aytamiz.",
      "items": [
       {
        "say": "What do you like?",
@@ -1818,10 +1816,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "❤️ So'rovnoma",
-       "matn": "Do'stlaringizdan so'rang: [en]What do you like?[/en] Ular javob bersin: [en]I like football.[/en] [en]I like cake.[/en] Keyin: [en]My favourite colour is…[/en] Kim nimani yaxshi ko'rar ekan?",
+       "matn": "Do'stlaringdan so'ra: [en]What do you like?[/en] Ular javob bersin: [en]I like football.[/en] [en]I like cake.[/en] Keyin: [en]My favourite colour is…[/en] Kim nimani yaxshi ko'rar ekan?",
        "doska": "— What do you like?\n— I like … ❤️ ⚽ football\n— My favourite colour is … 🎨\n— My favourite food is … 🍛",
        "sodda": "Faqat bitta gap: [en]I like…[/en]",
-       "boshqa_usul": "Oilangizdagi har kishining sevimli ovqatini so'rang va rasmini chizing."
+       "boshqa_usul": "Oilangdagi har kishining sevimli ovqatini so'ra va rasmini chiz."
       }
      ],
      "tests": [
@@ -1841,7 +1839,7 @@
     {
      "name": "Bu — men!",
      "goal": "Bola o'zi haqida 4–5 gaplik kichik hikoya aytadi va tanishadi",
-     "intro": "Gu-gu! Siz shuncha ko'p o'rgandingiz! Endi siz o'zingiz haqingizda butun hikoya aytib bera olasiz. Keling, oxirgi so'zlarni qo'shib, katta chiqish qilamiz!",
+     "intro": "Bip-bip! Sen shuncha ko'p o'rganding! Endi sen o'zing haqingda butun hikoya aytib bera olasan. Qani, oxirgi so'zlarni qo'shib, katta chiqish qilamiz!",
      "items": [
       {
        "say": "I have a sister.",
@@ -1853,7 +1851,7 @@
       {
        "say": "I have a pet.",
        "uz": "mening uy hayvonim bor",
-       "emoji": "🐹",
+       "emoji": "🐱",
        "image": "en67-u8-have-pet.png",
        "image_prompt": "A child holding a cute hamster, cute cartoon for kids, soft flat colors, white background, no text, square"
       },
@@ -1876,20 +1874,20 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎤 Katta chiqish: All about me",
-       "matn": "Sahnaga chiqing va ayting: [en]Hello! This is me! My name is… I am six. I live in Samarkand. I have a sister. I can swim. I like football. Nice to meet you![/en]",
+       "matn": "Sahnaga chiq va ayt: [en]Hello! This is me! My name is… I am six. I live in Samarkand. I have a sister. I can swim. I like football. Nice to meet you![/en]",
        "doska": "Hello! This is me!\nMy name is … I am six.\nI live in … I have a … 👧 sister\nI can … I like …\nNice to meet you!",
        "sodda": "Uch gap yetarli: [en]My name is… I am six. I like…[/en]",
-       "boshqa_usul": "O'zingiz haqingizda kitobcha chizing: har sahifada bitta gap — rasm bilan!"
+       "boshqa_usul": "O'zing haqingda kitobcha chiz: har sahifada bitta gap — rasm bilan!"
       }
      ],
      "tests": [
       {
-       "q": "Yangi do'st bilan tanishdingiz. Nima deysiz?",
+       "q": "Yangi do'st bilan tanishding. Nima deysan?",
        "options": [
         "🤝 Nice to meet you!",
-        "🛑 Stop!",
-        "🤫 Be quiet!",
-        "📕 Close your book!"
+        "👋 Goodbye, see you!",
+        "🙏 Thank you!",
+        "🎂❓ How old are you?"
        ],
        "answer": 0,
        "why": "Ajoyib! [en]Nice to meet you![/en] — tanishganimdan xursandman."

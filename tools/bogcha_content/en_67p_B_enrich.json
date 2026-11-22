@@ -93,7 +93,7 @@
    ]
   },
   "Kecha": {
-   "intro_en": "Beep-beep! Hello, friends! Yesterday I went to the park. What did you do yesterday?",
+   "intro_en": "Beep-beep! I am Kabu. Yesterday I went to the park. What did you do yesterday?",
    "items": {
     "What did you do yesterday?": {
      "sentence": "Laylo, what did you do yesterday?",
@@ -133,12 +133,12 @@
      "sentence": "I saw a big dog. Woof!",
      "action_en": "Show me big!"
     },
+    "I saw a bird.": {
+     "sentence": "I saw a bird in the tree."
+    },
     "I ate ice cream.": {
      "sentence": "I ate ice cream. Yummy!",
      "action_en": "Lick your ice cream!"
-    },
-    "I saw a bird.": {
-     "sentence": "I saw a bird in the tree."
     }
    },
    "tests_en": [
@@ -163,12 +163,12 @@
      "sentence": "On Sunday we went to the zoo.",
      "action_en": "Stretch up like a giraffe!"
     },
+    "We played together.": {
+     "sentence": "We played together in the park."
+    },
     "It was fun!": {
      "sentence": "We saw a giraffe. It was fun!",
      "action_en": "Clap your hands!"
-    },
-    "We played together.": {
-     "sentence": "We played together in the park."
     }
    },
    "tests_en": [
@@ -183,7 +183,7 @@
    ]
   },
   "Katta sholg'om": {
-   "intro_en": "Beep-beep! Grandpa has a giant turnip. He pulls and pulls. Who can help him?",
+   "intro_en": "Beep-beep! I am Kabu. Grandpa has a giant turnip and he pulls and pulls. Who can help him?",
    "items": {
     "turnip": {
      "sentence": "Grandpa has a big turnip.",
@@ -214,15 +214,15 @@
    ]
   },
   "Zumrad va Qimmat": {
-   "intro_en": "This is an Uzbek fairy tale. Zumrad is kind. Qimmat is lazy. Let's listen!",
+   "intro_en": "This is an Uzbek fairy tale. Zumrad is kind. Qimmat does not help. Let's listen!",
    "items": {
     "She is kind.": {
      "sentence": "Zumrad helps. She is kind.",
      "action_en": "Put your hand on your heart!"
     },
-    "She is lazy.": {
-     "sentence": "Qimmat doesn't help. She is lazy.",
-     "action_en": "Yawn and stretch!"
+    "She doesn't help.": {
+     "sentence": "Qimmat sits and sits. She doesn't help.",
+     "action_en": "Sit and fold your arms!"
     },
     "forest": {
      "sentence": "Zumrad goes to the forest.",
@@ -240,7 +240,7 @@
    "extras_en": [
     {
      "sarlavha_en": "👀 Who is kind?",
-     "matn_en": "I tell, you guess! Who helps the old man carry the wood? Say: Zumrad. She is kind. Who lies down and doesn't help? Qimmat. She is lazy. Zumrad gets gold in her chest! And you? Say: I am kind!"
+     "matn_en": "I tell, you guess! Who helps the old man carry the wood? Zumrad. Say: She is kind. Who sits and doesn't help? Qimmat. Say: She doesn't help. Zumrad gets gold in her chest! And you? Say: I am kind!"
     }
    ]
   },
@@ -517,8 +517,8 @@
      "q_en": "What did Laylo say at the end?",
      "options": [
       "😄 It was fun!",
-      "❓ What are you doing?",
-      "🛑 Stop!"
+      "🤔❓ What are you doing?",
+      "👋 Goodbye!"
      ],
      "answer": 0,
      "why": "To'g'ri! [en]It was fun![/en] — juda qiziq bo'ldi!",
@@ -626,8 +626,8 @@
      "q_en": "The teacher asks: Are you ready for school? What does Ali say?",
      "options": [
       "🎒 Yes! I'm ready for school!",
-      "🥱 She is lazy.",
-      "🆘 Help me!"
+      "🙏 No, thank you.",
+      "🏫 I go to school."
      ],
      "answer": 0,
      "why": "To'g'ri! [en]Yes! I'm ready for school![/en]",

@@ -4,7 +4,7 @@
    "intro_en": "Hello, friends! I missed you! Let's say hello and tell our names.",
    "items": {
     "Hello!": {
-     "sentence": "Hello! I am Kabutar.",
+     "sentence": "Hello! I am Kabu.",
      "action_en": "Wave your hand!"
     },
     "What's your name?": {
@@ -15,7 +15,7 @@
      "action_en": "Point to yourself!"
     },
     "Goodbye!": {
-     "sentence": "Goodbye, Kabutar! Goodbye, mum!",
+     "sentence": "Goodbye, Kabu! Goodbye, mum!",
      "action_en": "Wave goodbye!"
     }
    },
@@ -25,12 +25,12 @@
    "extras_en": [
     {
      "sarlavha_en": "🎭 Dialog: Let's meet",
-     "matn_en": "Let's talk to Kabutar the bird. Kabutar: Hello! What's your name? Child: Hello! My name is… (say your name). Kabutar: Goodbye! Child: Goodbye!"
+     "matn_en": "Let's talk to Kabu the robot. Kabu: Hello! What's your name? Child: Hello! My name is… (say your name). Kabu: Goodbye! Child: Goodbye!"
     }
    ]
   },
   "Sanaymiz: bir–to'rt": {
-   "intro_en": "Let's count with Kabutar. One, two, three, four! Count with me!",
+   "intro_en": "Let's count with Kabu. One, two, three, four! Count with me!",
    "items": {
     "one": {
      "sentence": "I have one nose.",
@@ -191,7 +191,7 @@
    "extras_en": [
     {
      "sarlavha_en": "🎭 Dialog: Good morning",
-     "matn_en": "Kabutar: Good morning! How are you? Child: I'm fine, thank you! Now change: you ask, Kabutar answers!"
+     "matn_en": "Kabu: Good morning! How are you? Child: I'm fine, thank you! Now change: you ask, Kabu answers!"
     }
    ]
   },
@@ -247,7 +247,7 @@
    "extras_en": [
     {
      "sarlavha_en": "🧺 Washing day",
-     "matn_en": "Kabutar is putting clothes out to dry. Point to the clothes I say: T-shirt! Dress! Trousers! Shorts! Well done!"
+     "matn_en": "Kabu is putting clothes out to dry. Point to the clothes I say: T-shirt! Dress! Trousers! Shorts! Well done!"
     }
    ]
   },
@@ -303,7 +303,7 @@
    "extras_en": [
     {
      "sarlavha_en": "❄️ Ready for winter",
-     "matn_en": "Let's dress Kabutar! I say, you show: hat — on your head. Scarf — on your neck. Gloves — on your hands. Coat — on you!"
+     "matn_en": "Let's dress Kabu! I say, you show: hat — on your head. Scarf — on your neck. Gloves — on your hands. Coat — on you!"
     }
    ]
   },
@@ -379,7 +379,7 @@
    "extras_en": [
     {
      "sarlavha_en": "🎭 Dialog: At the café",
-     "matn_en": "Kabutar: Water or juice? Child: Juice, please! Kabutar: Here you are. Child: Thank you! Now you ask!"
+     "matn_en": "Kabu: Water or juice? Child: Juice, please! Kabu: Nice! Child: Thank you! Now you ask!"
     }
    ]
   },
@@ -406,7 +406,7 @@
    "extras_en": [
     {
      "sarlavha_en": "🥄 Cook game",
-     "matn_en": "You are the cook! Put rice and chicken in the pot. Mix, mix! Kabutar: I'm hungry! Cook: Here is soup!"
+     "matn_en": "You are the cook! Put rice and chicken in the pot. Mix, mix! Kabu: I'm hungry! Cook: Here is soup!"
     }
    ]
   },
@@ -651,7 +651,7 @@
    "extras_en": [
     {
      "sarlavha_en": "🎭 Dialog: Let's go out",
-     "matn_en": "Kabutar: What's the weather like? Child: It's rainy. Kabutar: Umbrella! Child: Look! A rainbow!"
+     "matn_en": "Kabu: What's the weather like? Child: It's rainy. Kabu: Umbrella! Child: Look! A rainbow!"
     }
    ]
   },
@@ -724,7 +724,7 @@
    "extras_en": [
     {
      "sarlavha_en": "🎭 Dialog: Ask your friend",
-     "matn_en": "Kabutar: Do you like milk? Child: Yes, I do. Kabutar: Do you like onions? Child: No, I don't! Now you ask Kabutar!"
+     "matn_en": "Kabu: Do you like milk? Child: Yes, I do. Kabu: Do you like onions? Child: No, I don't! Now you ask Kabu!"
     }
    ]
   },
@@ -752,7 +752,7 @@
    ]
   },
   "Menda bor": {
-   "intro_en": "I have a nest and a little friend. What do you have? Let's tell!",
+   "intro_en": "I have a red ball and a little friend. What do you have? Let's tell!",
    "items": {
     "I have a cat.": {
      "sentence": "I have a cat. It is white."
@@ -779,7 +779,7 @@
    ]
   },
   "Men qila olaman": {
-   "intro_en": "I can fly! What can you do? Let's jump, run and sing together!",
+   "intro_en": "I can run! What can you do? Let's jump, run and sing together!",
    "items": {
     "I can jump.": {
      "sentence": "Look! I can jump high.",
@@ -809,7 +809,7 @@
    ]
   },
   "Qila olaman, qila olmayman": {
-   "intro_en": "I can fly, but I can't swim. You can dance and draw! Let's see.",
+   "intro_en": "I can run, but I can't swim. You can dance and draw! Let's see.",
    "items": {
     "I can dance.": {
      "sentence": "I can dance with my friends.",
@@ -854,7 +854,7 @@
      "action_en": "Jump and smile!"
     },
     "See you soon!": {
-     "sentence": "Goodbye, Kabutar! See you soon!",
+     "sentence": "Goodbye, Kabu! See you soon!",
      "action_en": "Wave goodbye!"
     }
    },
@@ -876,7 +876,7 @@
    "name_en": "A new friend at kindergarten",
    "emoji": "🏫",
    "goal": "Bola bog'chada yangi do'st bilan salomlashadi, ismini so'raydi va o'yinchoqlarni sanaydi",
-   "intro": "Bog'chaga yangi bola keldi. Keling, u bilan tanishamiz va birga sanaymiz!",
+   "intro": "Bog'chaga yangi bola keldi. Qani, u bilan tanishamiz va birga sanaymiz!",
    "intro_en": "A new friend comes to kindergarten. Let's say hello and count toys together!",
    "roles": [
     "Yangi do'st",
@@ -906,7 +906,7 @@
     {
      "who": 1,
      "say": "My name is Anvar. Let's play!",
-     "uz": "mening ismim Anvar. keling, o'ynaymiz!",
+     "uz": "mening ismim Anvar. qani, o'ynaymiz!",
      "emoji": "🧒"
     },
     {
@@ -930,22 +930,22 @@
    ],
    "questions": [
     {
-     "q": "Yangi do'stning ismini bilmoqchisiz. Nima deysiz?",
+     "q": "Yangi do'stning ismini bilmoqchisan. Nima deysan?",
      "q_en": "You want to know your new friend's name. What do you say?",
      "options": [
       "❓ What's your name?",
       "🔟 ten",
-      "👋 Goodbye!"
+      "👋🚶 Goodbye!"
      ],
      "answer": 0,
      "why": "To'g'ri! [en]What's your name?[/en]",
      "why_en": "Yes! What's your name?"
     },
     {
-     "q": "Do'stingiz ketyapti. Nima deysiz?",
+     "q": "Do'sting ketyapti. Nima deysan?",
      "q_en": "Your friend is going home. What do you say?",
      "options": [
-      "👋 Goodbye!",
+      "👋🚶 Goodbye!",
       "🧱 How many?",
       "3️⃣ three"
      ],
@@ -1003,7 +1003,7 @@
     {
      "who": 0,
      "say": "Hello, Ali! Come in, please.",
-     "uz": "salom, Ali! kiringlar",
+     "uz": "salom, Ali! kir, iltimos",
      "emoji": "🚪"
     },
     {
@@ -1015,7 +1015,7 @@
    ],
    "questions": [
     {
-     "q": "Buvingiz [en]How are you?[/en] deb so'radi. Nima deysiz?",
+     "q": "Buving [en]How are you?[/en] deb so'radi. Nima deysan?",
      "q_en": "Grandma asks, \"How are you?\" What do you say?",
      "options": [
       "😊 I'm fine, thank you.",
@@ -1027,11 +1027,11 @@
      "why_en": "Yes! I'm fine, thank you."
     },
     {
-     "q": "Do'stingizni buviga tanishtiring. Nima deysiz?",
+     "q": "Do'stingni buviga tanishtir. Nima deysan?",
      "q_en": "Show your friend to grandma. What do you say?",
      "options": [
       "🧒 This is my friend Ali.",
-      "👋 Goodbye!",
+      "👋🚶 Goodbye!",
       "😢 sad"
      ],
      "answer": 0,
@@ -1064,7 +1064,7 @@
     {
      "who": 0,
      "say": "Let's go for a walk!",
-     "uz": "keling, sayrga chiqamiz!",
+     "uz": "qani, sayrga chiqamiz!",
      "emoji": "🚶"
     },
     {
@@ -1100,7 +1100,7 @@
    ],
    "questions": [
     {
-     "q": "Tashqarida sovuq. Boshingizga nima kiyasiz?",
+     "q": "Tashqarida sovuq. Boshingga nima kiyasan?",
      "q_en": "It's cold. What do you put on your head?",
      "options": [
       "🧢 hat",
@@ -1112,7 +1112,7 @@
      "why_en": "Yes! A hat."
     },
     {
-     "q": "Qo'lingizga nima kiyasiz?",
+     "q": "Qo'lingga nima kiyasan?",
      "q_en": "What do you put on your hands?",
      "options": [
       "🧤 gloves",
@@ -1124,7 +1124,7 @@
      "why_en": "Yes! Gloves."
     },
     {
-     "q": "Onangiz [en]Put on your hat![/en] dedi. U nima demoqchi?",
+     "q": "Onang [en]Put on your hat![/en] dedi. U nima demoqchi?",
      "q_en": "Mum says, \"Put on your hat!\" What do you do?",
      "options": [
       "🧢 I put on my hat.",
@@ -1172,20 +1172,20 @@
     },
     {
      "who": 0,
-     "say": "Here you are. Bread and an egg.",
-     "uz": "mana, ol. non va tuxum",
+     "say": "Bread and an egg!",
+     "uz": "non va tuxum!",
      "emoji": "🍞🥚"
     },
     {
      "who": 1,
      "say": "Thank you! Milk, please.",
-     "uz": "rahmat! sut bering, iltimos",
+     "uz": "rahmat! sut ber, iltimos",
      "emoji": "🥛"
     },
     {
      "who": 0,
-     "say": "Here is your milk.",
-     "uz": "mana suting",
+     "say": "Milk for you!",
+     "uz": "senga sut!",
      "emoji": "🫴"
     },
     {
@@ -1197,19 +1197,19 @@
    ],
    "questions": [
     {
-     "q": "Sut ichmoqchisiz. Nima deysiz?",
+     "q": "Sut ichmoqchisan. Nima deysan?",
      "q_en": "You want some milk. What do you say?",
      "options": [
       "🥛 Milk, please.",
       "🧀 cheese",
-      "👋 Goodbye!"
+      "👋🚶 Goodbye!"
      ],
      "answer": 0,
      "why": "To'g'ri! [en]Milk, please.[/en]",
      "why_en": "Yes! Milk, please."
     },
     {
-     "q": "Nonushta juda mazali. Nima deysiz?",
+     "q": "Nonushta juda mazali. Nima deysan?",
      "q_en": "Breakfast is very good. What do you say?",
      "options": [
       "😋 Yummy!",
@@ -1264,13 +1264,13 @@
     {
      "who": 0,
      "say": "Let's look in the bedroom.",
-     "uz": "keling, yotoqxonaga qaraymiz",
+     "uz": "qani, yotoqxonaga qaraymiz",
      "emoji": "🛏️"
     },
     {
      "who": 1,
      "say": "Look! It's under the bed!",
-     "uz": "qarang! karavotning ostida!",
+     "uz": "qara! karavotning ostida!",
      "emoji": "🐱"
     },
     {
@@ -1294,7 +1294,7 @@
      "why_en": "Yes! Under the bed."
     },
     {
-     "q": "Mushukni qidiryapsiz. Nima deb so'raysiz?",
+     "q": "Mushukni qidiryapsan. Nima deb so'raysan?",
      "q_en": "You can't find the cat. What do you ask?",
      "options": [
       "❓ Where is the cat?",
@@ -1355,7 +1355,7 @@
     {
      "who": 1,
      "say": "OK! Look, mum! A rainbow!",
-     "uz": "xo'p! qarang, onajon! kamalak!",
+     "uz": "xo'p! qara, onajon! kamalak!",
      "emoji": "🌈"
     },
     {
@@ -1452,7 +1452,7 @@
     {
      "who": 1,
      "say": "Grandma, grapes, please!",
-     "uz": "buvijon, uzum oling, iltimos!",
+     "uz": "buvijon, uzum ol, iltimos!",
      "emoji": "🍇"
     },
     {
@@ -1464,19 +1464,19 @@
    ],
    "questions": [
     {
-     "q": "Buvingiz [en]Do you like apples?[/en] deb so'radi. Sizga yoqadi. Nima deysiz?",
+     "q": "Buving [en]Do you like apples?[/en] deb so'radi. Senga yoqadi. Nima deysan?",
      "q_en": "Grandma asks, \"Do you like apples?\" You like them. What do you say?",
      "options": [
       "👍 Yes, I do.",
       "👎 No, I don't.",
-      "🙋 Goodbye!"
+      "👋🚶 Goodbye!"
      ],
      "answer": 0,
      "why": "To'g'ri! [en]Yes, I do.[/en]",
      "why_en": "Yes! Yes, I do."
     },
     {
-     "q": "Sizga piyoz yoqmaydi. Nima deysiz?",
+     "q": "Senga piyoz yoqmaydi. Nima deysan?",
      "q_en": "You don't like onions. What do you say?",
      "options": [
       "🧅👎 I don't like onions.",
@@ -1531,7 +1531,7 @@
     {
      "who": 0,
      "say": "Thank you! I can dance. Let's dance!",
-     "uz": "rahmat! men raqs tusha olaman. keling, raqs tushamiz!",
+     "uz": "rahmat! men raqs tusha olaman. qani, raqs tushamiz!",
      "emoji": "💃"
     },
     {
@@ -1549,7 +1549,7 @@
    ],
    "questions": [
     {
-     "q": "Do'stingiz besh yoshda. U nima deydi?",
+     "q": "Do'sting besh yoshda. U nima deydi?",
      "q_en": "Your friend is five. What does he say?",
      "options": [
       "🖐️🎂 I am five.",
@@ -1561,7 +1561,7 @@
      "why_en": "Yes! I am five."
     },
     {
-     "q": "Sovg'angiz — to'p. Nima deysiz?",
+     "q": "Sovg'ang — to'p. Nima deysan?",
      "q_en": "Your present is a ball. What do you say?",
      "options": [
       "⚽ I have a ball for you.",
@@ -1573,7 +1573,7 @@
      "why_en": "Yes! I have a ball for you."
     },
     {
-     "q": "Bayram tugadi. Xayrlashganda nima deysiz?",
+     "q": "Bayram tugadi. Xayrlashganda nima deysan?",
      "q_en": "The party is over. What do you say?",
      "options": [
       "👋 See you soon!",

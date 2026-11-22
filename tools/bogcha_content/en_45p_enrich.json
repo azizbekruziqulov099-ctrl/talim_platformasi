@@ -1,122 +1,391 @@
 {
- "lessons": {},
- "scenarios": [
-  {
-   "unit": 1,
-   "name": "Bog'chada tushlik: non so'raymiz",
-   "name_en": "Lunch at kindergarten",
-   "emoji": "🍲",
-   "goal": "Bola tushlikda odob bilan non so'raydi, taklifga javob beradi va rahmat aytadi",
-   "intro": "Bip-bip! Bog'chada tushlik vaqti! Stolda issiq sho'rva, non va piyolada choy. Ali non so'ramoqchi. Qani, sen Alining o'rnida odob bilan so'ra!",
-   "intro_en": "Beep-beep! It's lunch time at kindergarten. Ask for bread politely!",
-   "roles": ["Tarbiyachi", "Bola"],
-   "roles_en": ["Teacher", "Child"],
-   "scene": {
-    "image": "en45-s15-kindergarten-lunch.png",
-    "image_prompt": "ALI at a kindergarten lunch table politely raising his hand while a kind teacher hands him bread, a piyola of tea and bowls of soup on the table, LAYLO smiling beside him, soft 3D cartoon scene for kids, warm colors, no text, square"
-   },
-   "dialog": [
-    {"who": 1, "say": "Excuse me! Can I have bread, please?", "uz": "kechirasiz! iltimos, non bering", "emoji": "✋"},
-    {"who": 0, "say": "Here you are. Some tea?", "uz": "marhamat. choy ham beraymi?", "emoji": "🫴"},
-    {"who": 1, "say": "Yes, please. Thank you!", "uz": "ha, iltimos. rahmat!", "emoji": "🍵"},
-    {"who": 0, "say": "You're welcome!", "uz": "arzimaydi!", "emoji": "😊"}
-   ],
-   "questions": [
-    {
-     "q": "Tarbiyachi senga non uzatdi: [en]Here you are.[/en] Sen nima deysan?",
-     "q_en": "The teacher gives you bread: Here you are. What do you say?",
-     "options": ["🙏 Thank you!", "👋 Goodbye!"],
-     "answer": 0,
-     "why": "Barakalla! [en]Thank you![/en] — rahmat. Sen juda odoblisan!",
-     "why_en": "Good job! Thank you!"
+  "lessons": {
+    "Iltimos va rahmat": {
+      "intro_en": "Hello! [/en]Ba'zi so'zlar sehrli: aytsang, hamma jilmayadi![en] Please, thank you, you're welcome.",
+      "items": {
+        "Please!": {
+          "action_en": "Put your palms together!"
+        },
+        "Thank you!": {
+          "action_en": "Hand on your heart!"
+        },
+        "You're welcome.": {
+          "action_en": "Smile and nod!"
+        }
+      },
+      "extras_en": [
+        {
+          "matn_en": "Role play! [/en]Laylo non so'raydi, Ali beradi — sen Alisan: rahmat desa, «arzimaydi» de![en] Bread, please! Thank you! You're welcome.",
+          "sarlavha_en": "🎭 At the table"
+        }
+      ]
     },
-    {
-     "q": "Tarbiyachi so'raydi: [en]Some tea?[/en] Sen choy xohlaysan. Nima deysan?",
-     "q_en": "The teacher asks: Some tea? You want tea. What do you say?",
-     "options": ["🙅 No, thank you.", "👍 Yes, please."],
-     "answer": 1,
-     "why": "To'g'ri! [en]Yes, please.[/en] — ha, iltimos.",
-     "why_en": "Yes! Yes, please."
+    "Uzr va kechirish": {
+      "intro_en": "Oops! [/en]Ali Laylo bilan to'qnashdi, endi nima deydi?[en] Sorry!",
+      "items": {
+        "Excuse me!": {
+          "action_en": "Raise your hand!"
+        },
+        "Sorry!": {
+          "action_en": "Hand on your heart and bow!"
+        },
+        "That's OK.": {
+          "action_en": "Smile and show a thumb!"
+        }
+      },
+      "extras_en": [
+        {
+          "matn_en": "Walk and stop! [/en]Sekin yur; Kabu «Bip!» desa — do'stingga tegding, kechirim so'ra![en] Sorry! That's OK. Excuse me!",
+          "sarlavha_en": "🎲 Walk and stop"
+        }
+      ]
+    },
+    "Menga berasanmi?": {
+      "intro_en": "Look! [/en]Ali koptok o'ynamoqchi — tarbiyachidan qanday odob bilan so'raydi?[en] Can I have a ball, please?",
+      "items": {
+        "Can I have a ball, please?": {
+          "action_en": "Hold out your hand!"
+        },
+        "Here you are.": {
+          "action_en": "Give a toy to a friend!"
+        },
+        "Yes, please.": {
+          "action_en": "Nod your head!"
+        },
+        "No, thank you.": {
+          "action_en": "Shake your head slowly!"
+        }
+      },
+      "extras_en": [
+        {
+          "matn_en": "Let's sing! [/en]Kabu bilan kuylaymiz: odob bilan so'ra, odob bilan javob ber![en] Can I have a ball, please? Here you are! Yes, please. No, thank you.",
+          "sarlavha_en": "🎵 Manners song"
+        }
+      ]
+    },
+    "Ertalab": {
+      "intro_en": "Good morning! [/en]Tong otdi, Ali esa hali uxlayapti — uni qanday uyg'otamiz?[en] Wake up, Ali!",
+      "items": {
+        "wake up": {
+          "action_en": "Stretch up high!"
+        },
+        "Good morning!": {
+          "action_en": "Open your arms like the sun!"
+        },
+        "breakfast": {
+          "action_en": "Pretend to eat with a spoon!"
+        }
+      },
+      "extras_en": [
+        {
+          "matn_en": "Morning talk! [/en]Oyi Alini uyg'otyapti — sen Alisan, ertalabki salomni ayt![en] Wake up, Ali! Good morning, Mum! Breakfast!",
+          "sarlavha_en": "🎭 Morning talk"
+        }
+      ]
+    },
+    "Bog'chaga boraman": {
+      "intro_en": "Look! [/en]Laylo bog'chaga ketyapti![en] Let's go!",
+      "items": {
+        "I go to kindergarten.": {
+          "action_en": "March on the spot!"
+        },
+        "bag": {
+          "action_en": "Put the bag on your shoulder!"
+        },
+        "Let's go!": {
+          "action_en": "Take big steps!"
+        }
+      },
+      "extras_en": [
+        {
+          "matn_en": "Let's go! [/en]Sumkangni ol, qadam tashla va qayerga ketayotganingni ayt![en] My bag! Let's go! I go to kindergarten.",
+          "sarlavha_en": "🎲 Way to kindergarten"
+        }
+      ]
+    },
+    "Kechqurun": {
+      "intro_en": "Good night! [/en]Quyosh botdi, yulduzlar chiqdi — Ali kechki ovqat yeydi va uxlaydi.[en] Dinner, bath, bed.",
+      "items": {
+        "dinner": {
+          "action_en": "Pretend to eat soup!"
+        },
+        "bath": {
+          "action_en": "Rub your hands like in the bath!"
+        },
+        "go to bed": {
+          "action_en": "Hands to your cheek, close your eyes!"
+        },
+        "Good night!": {
+          "action_en": "Yawn and wave!"
+        }
+      },
+      "extras_en": [
+        {
+          "matn_en": "Guess what! [/en]Men ishora qilaman — sen nima ekanini top![en] Dinner! Bath! Go to bed! Good night, Kabu!",
+          "sarlavha_en": "👀 Guess what"
+        }
+      ]
+    },
+    "Qanday his qilyapsan?": {
+      "intro_en": "How do you feel? [/en]Robot Kabuning batareykasi to'la — u xursand, Laylo esa xomush.[en] Happy, sad, angry.",
+      "items": {
+        "How do you feel?": {
+          "action_en": "Open your hands and ask!"
+        },
+        "I'm happy.": {
+          "action_en": "Smile and jump!"
+        },
+        "I'm sad.": {
+          "action_en": "Make a sad face!"
+        },
+        "I'm angry.": {
+          "action_en": "Fold your arms and frown!"
+        }
+      },
+      "extras_en": [
+        {
+          "matn_en": "Face game! [/en]Yuzing bilan his-tuyg'uni ko'rsat![en] How do you feel? I'm happy. I'm sad. I'm angry.",
+          "sarlavha_en": "🎭 Face game"
+        }
+      ]
+    },
+    "Do'stim bo'l!": {
+      "intro_en": "Hello! [/en]Bog'chaga yangi qizcha keldi va yolg'iz o'tiribdi — qanday do'st bo'lamiz?[en] Be my friend!",
+      "items": {
+        "Be my friend!": {
+          "action_en": "Hold out your hand!"
+        },
+        "Let's play together!": {
+          "action_en": "Open your arms wide!"
+        },
+        "My turn!": {
+          "action_en": "Point to yourself!"
+        },
+        "Your turn!": {
+          "action_en": "Point to your friend!"
+        }
+      },
+      "extras_en": [
+        {
+          "matn_en": "Take turns! [/en]Navbat bilan o'ynaymiz: o'zingni ko'rsatib, keyin do'stingni ko'rsat![en] My turn! Your turn! Let's play together!",
+          "sarlavha_en": "🎲 Take turns"
+        }
+      ]
     }
-   ]
   },
-  {
-   "unit": 2,
-   "name": "Ertalab bog'chaga tayyorlanamiz",
-   "name_en": "Getting ready in the morning",
-   "emoji": "🌅",
-   "goal": "Bola ertalab oyisi bilan salomlashadi, sumkasini oladi va yo'lga chiqadi",
-   "intro": "Bip-bip! Tong otdi! Oyi Alini uyg'otyapti. Keyin nonushta, sumka — va bog'chaga! Qani, sen Alining o'rnida gapir.",
-   "intro_en": "Beep-beep! Good morning! Wake up and get ready for kindergarten!",
-   "roles": ["Oyi", "Bola"],
-   "roles_en": ["Mum", "Child"],
-   "scene": {
-    "image": "en45-s16-morning-ready.png",
-    "image_prompt": "ALI stretching by his bed in the morning while his smiling mum stands at the door holding his small backpack, bread and a piyola of tea on a little table, morning sun through the window, soft 3D cartoon scene for kids, warm colors, no text, square"
-   },
-   "dialog": [
-    {"who": 0, "say": "Wake up, Ali! Good morning!", "uz": "uyg'on, Ali! xayrli tong!", "emoji": "⏰"},
-    {"who": 1, "say": "Good morning, Mum!", "uz": "xayrli tong, oyijon!", "emoji": "🌅"},
-    {"who": 0, "say": "Breakfast is ready. Here is your bag.", "uz": "nonushta tayyor. mana sumkang", "emoji": "🎒"},
-    {"who": 1, "say": "Thank you, Mum! Let's go!", "uz": "rahmat, oyijon! ketdik!", "emoji": "🚶"}
-   ],
-   "questions": [
+  "scenarios": [
     {
-     "q": "Oying seni uyg'otdi: [en]Good morning![/en] Sen nima deysan?",
-     "q_en": "Mum wakes you up: Good morning! What do you say?",
-     "options": ["🌙 Good night!", "🌅 Good morning, Mum!"],
-     "answer": 1,
-     "why": "Barakalla! Ertalab [en]Good morning, Mum![/en] deymiz.",
-     "why_en": "Good job! Good morning, Mum!"
+      "unit": 1,
+      "name": "Bog'chada tushlik: non so'raymiz",
+      "name_en": "Lunch at kindergarten",
+      "emoji": "🍲",
+      "goal": "Bola tushlikda odob bilan non so'raydi, taklifga javob beradi va rahmat aytadi",
+      "intro": "Bip-bip! Bog'chada tushlik vaqti! Stolda issiq sho'rva, non va piyolada choy. Ali non so'ramoqchi. Qani, sen Alining o'rnida odob bilan so'ra!",
+      "intro_en": "Lunch time! [/en]Bog'chada tushlik vaqti — nonni odob bilan so'raymiz![en] Bread, please!",
+      "roles": [
+        "Tarbiyachi",
+        "Bola"
+      ],
+      "roles_en": [
+        "Teacher",
+        "Child"
+      ],
+      "scene": {
+        "image": "en45-s15-kindergarten-lunch.png",
+        "image_prompt": "ALI at a kindergarten lunch table politely raising his hand while a kind teacher hands him bread, a piyola of tea and bowls of soup on the table, LAYLO smiling beside him, soft 3D cartoon scene for kids, warm colors, no text, square"
+      },
+      "dialog": [
+        {
+          "who": 1,
+          "say": "Excuse me! Can I have bread, please?",
+          "uz": "uzr! iltimos, non ber",
+          "emoji": "✋"
+        },
+        {
+          "who": 0,
+          "say": "Here you are. Some tea?",
+          "uz": "marhamat. choy ham beraymi?",
+          "emoji": "🫴"
+        },
+        {
+          "who": 1,
+          "say": "Yes, please. Thank you!",
+          "uz": "ha, iltimos. rahmat!",
+          "emoji": "🍵"
+        },
+        {
+          "who": 0,
+          "say": "You're welcome!",
+          "uz": "arzimaydi!",
+          "emoji": "😊"
+        }
+      ],
+      "questions": [
+        {
+          "q": "Tarbiyachi senga non uzatdi: [en]Here you are.[/en] Sen nima deysan?",
+          "q_en": "The teacher gives you bread: Here you are. What do you say?",
+          "options": [
+            "🙏 Thank you!",
+            "👋 Goodbye!"
+          ],
+          "answer": 0,
+          "why": "Barakalla! [en]Thank you![/en] — rahmat. Sen juda odoblisan!",
+          "why_en": "Good job! Thank you!"
+        },
+        {
+          "q": "Tarbiyachi so'raydi: [en]Some tea?[/en] Sen choy xohlaysan. Nima deysan?",
+          "q_en": "The teacher asks: Some tea? You want tea. What do you say?",
+          "options": [
+            "🙅 No, thank you.",
+            "👍 Yes, please."
+          ],
+          "answer": 1,
+          "why": "To'g'ri! [en]Yes, please.[/en] — ha, iltimos.",
+          "why_en": "Yes! Yes, please."
+        }
+      ]
     },
     {
-     "q": "Sumkang tayyor, eshik oldidasan. Oyingga nima deysan?",
-     "q_en": "Your bag is ready. You are at the door. What do you say?",
-     "options": ["🚶 Let's go!", "🛁 bath"],
-     "answer": 0,
-     "why": "To'g'ri! [en]Let's go![/en] — ketdik. Bog'chaga yo'l oldik!",
-     "why_en": "Yes! Let's go!"
-    }
-   ]
-  },
-  {
-   "unit": 3,
-   "name": "Sirpanchiqda navbat bilan",
-   "name_en": "Taking turns on the slide",
-   "emoji": "🛝",
-   "goal": "Bola maydonchada do'st orttiradi, birga o'ynashni taklif qiladi va navbat beradi",
-   "intro": "Bip-bip! Bog'cha maydonchasida rangli sirpanchiq bor. Laylo yolg'iz turibdi. Sen unga yaqinlash, do'st bo'l va navbat bilan o'yna!",
-   "intro_en": "Beep-beep! Look, a slide! Make a friend and take turns.",
-   "roles": ["Laylo", "Bola"],
-   "roles_en": ["Laylo", "Child"],
-   "scene": {
-    "image": "en45-s17-slide-turns.png",
-    "image_prompt": "ALI at the bottom of a colorful playground slide kindly waving LAYLO to go next, LAYLO smiling at the top of the slide, sunny kindergarten playground with trees, soft 3D cartoon scene for kids, warm colors, no text, square"
-   },
-   "dialog": [
-    {"who": 1, "say": "Hello, Laylo! Be my friend!", "uz": "salom, Laylo! do'stim bo'l!", "emoji": "🤝"},
-    {"who": 0, "say": "Yes! Let's play together!", "uz": "ha! birga o'ynaymiz!", "emoji": "🧸"},
-    {"who": 1, "say": "My turn! Wheee! Your turn, Laylo!", "uz": "mening navbatim! vush! sening navbating, Laylo!", "emoji": "👉"},
-    {"who": 0, "say": "Thank you! I'm happy!", "uz": "rahmat! men xursandman!", "emoji": "😄"}
-   ],
-   "questions": [
-    {
-     "q": "Sen sirpanchiqdan tushding. Laylo kutib turibdi. Nima deysan?",
-     "q_en": "You went down the slide. Laylo is waiting. What do you say?",
-     "options": ["👉 Your turn!", "😠 angry"],
-     "answer": 0,
-     "why": "Barakalla! [en]Your turn![/en] — sening navbating. Sen yaxshi do'stsan!",
-     "why_en": "Good job! Your turn!"
+      "unit": 2,
+      "name": "Ertalab bog'chaga tayyorlanamiz",
+      "name_en": "Getting ready in the morning",
+      "emoji": "🌅",
+      "goal": "Bola ertalab oyisi bilan salomlashadi, sumkasini oladi va yo'lga chiqadi",
+      "intro": "Bip-bip! Tong otdi! Oyi Alini uyg'otyapti. Keyin nonushta, sumka — va bog'chaga! Qani, sen Alining o'rnida gapir.",
+      "intro_en": "Good morning! [/en]Tong otdi — uyg'onamiz, sumkani olamiz va bog'chaga boramiz![en] Let's go!",
+      "roles": [
+        "Oyi",
+        "Bola"
+      ],
+      "roles_en": [
+        "Mum",
+        "Child"
+      ],
+      "scene": {
+        "image": "en45-s16-morning-ready.png",
+        "image_prompt": "ALI stretching by his bed in the morning while his smiling mum stands at the door holding his small backpack, bread and a piyola of tea on a little table, morning sun through the window, soft 3D cartoon scene for kids, warm colors, no text, square"
+      },
+      "dialog": [
+        {
+          "who": 0,
+          "say": "Wake up, Ali! Good morning!",
+          "uz": "uyg'on, Ali! xayrli tong!",
+          "emoji": "⏰"
+        },
+        {
+          "who": 1,
+          "say": "Good morning, Mum!",
+          "uz": "xayrli tong, oyijon!",
+          "emoji": "🌅"
+        },
+        {
+          "who": 0,
+          "say": "Breakfast is ready. Here is your bag.",
+          "uz": "nonushta tayyor. mana sumkang",
+          "emoji": "🎒"
+        },
+        {
+          "who": 1,
+          "say": "Thank you, Mum! Let's go!",
+          "uz": "rahmat, oyijon! ketdik!",
+          "emoji": "🚶"
+        }
+      ],
+      "questions": [
+        {
+          "q": "Oying seni uyg'otdi: [en]Good morning![/en] Sen nima deysan?",
+          "q_en": "Mum wakes you up: Good morning! What do you say?",
+          "options": [
+            "🌙 Good night!",
+            "🌅 Good morning, Mum!"
+          ],
+          "answer": 1,
+          "why": "Barakalla! Ertalab [en]Good morning, Mum![/en] deymiz.",
+          "why_en": "Good job! Good morning, Mum!"
+        },
+        {
+          "q": "Sumkang tayyor, eshik oldidasan. Oyingga nima deysan?",
+          "q_en": "Your bag is ready. You are at the door. What do you say?",
+          "options": [
+            "🚶 Let's go!",
+            "🛁 bath"
+          ],
+          "answer": 0,
+          "why": "To'g'ri! [en]Let's go![/en] — ketdik. Bog'chaga yo'l oldik!",
+          "why_en": "Yes! Let's go!"
+        }
+      ]
     },
     {
-     "q": "Laylo kulyapti va sakrayapti. U o'zini qanday his qilyapti?",
-     "q_en": "Laylo is smiling and jumping. How does she feel?",
-     "options": ["😢 I'm sad.", "😄 I'm happy."],
-     "answer": 1,
-     "why": "To'g'ri! [en]I'm happy.[/en] — men xursandman. Do'st bilan o'ynash quvonchli!",
-     "why_en": "Yes! She is happy."
+      "unit": 3,
+      "name": "Sirpanchiqda navbat bilan",
+      "name_en": "Taking turns on the slide",
+      "emoji": "🛝",
+      "goal": "Bola maydonchada do'st orttiradi, birga o'ynashni taklif qiladi va navbat beradi",
+      "intro": "Bip-bip! Bog'cha maydonchasida rangli sirpanchiq bor. Laylo yolg'iz turibdi. Sen unga yaqinlash, do'st bo'l va navbat bilan o'yna!",
+      "intro_en": "Look, a slide! [/en]Do'st topamiz va navbat bilan o'ynaymiz![en] My turn! Your turn!",
+      "roles": [
+        "Laylo",
+        "Bola"
+      ],
+      "roles_en": [
+        "Laylo",
+        "Child"
+      ],
+      "scene": {
+        "image": "en45-s17-slide-turns.png",
+        "image_prompt": "ALI at the bottom of a colorful playground slide kindly waving LAYLO to go next, LAYLO smiling at the top of the slide, sunny kindergarten playground with trees, soft 3D cartoon scene for kids, warm colors, no text, square"
+      },
+      "dialog": [
+        {
+          "who": 1,
+          "say": "Hello, Laylo! Be my friend!",
+          "uz": "salom, Laylo! do'stim bo'l!",
+          "emoji": "🤝"
+        },
+        {
+          "who": 0,
+          "say": "Yes! Let's play together!",
+          "uz": "ha! birga o'ynaymiz!",
+          "emoji": "🧸"
+        },
+        {
+          "who": 1,
+          "say": "My turn! Wheee! Your turn, Laylo!",
+          "uz": "mening navbatim! vush! sening navbating, Laylo!",
+          "emoji": "👉"
+        },
+        {
+          "who": 0,
+          "say": "Thank you! I'm happy!",
+          "uz": "rahmat! men xursandman!",
+          "emoji": "😄"
+        }
+      ],
+      "questions": [
+        {
+          "q": "Sen sirpanchiqdan tushding. Laylo kutib turibdi. Nima deysan?",
+          "q_en": "You went down the slide. Laylo is waiting. What do you say?",
+          "options": [
+            "👉 Your turn!",
+            "😠 I'm angry."
+          ],
+          "answer": 0,
+          "why": "Barakalla! [en]Your turn![/en] — sening navbating. Sen yaxshi do'stsan!",
+          "why_en": "Good job! Your turn!"
+        },
+        {
+          "q": "Laylo kulyapti va sakrayapti. U o'zini qanday his qilyapti?",
+          "q_en": "Laylo is smiling and jumping. How does she feel?",
+          "options": [
+            "😢 I'm sad.",
+            "😄 I'm happy."
+          ],
+          "answer": 1,
+          "why": "To'g'ri! [en]I'm happy.[/en] — men xursandman. Do'st bilan o'ynash quvonchli!",
+          "why_en": "Yes! She is happy."
+        }
+      ]
     }
-   ]
-  }
- ]
+  ]
 }

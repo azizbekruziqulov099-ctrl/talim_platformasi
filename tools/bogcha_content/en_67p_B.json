@@ -73,7 +73,7 @@
        "options": [
         "👋 Goodbye!",
         "🍽️ I'm eating.",
-        "❓ What are you doing?"
+        "🤔❓ What are you doing?"
        ],
        "answer": 2,
        "why": "To'g'ri! Savol shunday: [en]What are you doing?[/en]"
@@ -290,8 +290,8 @@
       {
        "q": "Laylo kecha haqida so'ramoqchi. Qaysi savol to'g'ri?",
        "options": [
-        "❓ What are you doing?",
-        "🤝 Nice to meet you!",
+        "🤔❓ What are you doing?",
+        "🎂❓ How old are you?",
         "📅 What did you do yesterday?"
        ],
        "answer": 2,
@@ -434,7 +434,7 @@
        "options": [
         "😄 It was fun!",
         "😴 He's sleeping.",
-        "❓ What are you doing?"
+        "🤔❓ What are you doing?"
        ],
        "answer": 0,
        "why": "Barakalla! [en]It was fun![/en] — juda qiziq bo'ldi!"
@@ -521,7 +521,7 @@
     {
      "name": "Zumrad va Qimmat",
      "goal": "Bola mehnatsevarlik haqidagi ertakni tinglaydi",
-     "intro": "Bir qishloqda mehribon Zumrad va dangasa Qimmat yashardi. Zumrad qariyaga yordam berib, sehrli sandiq oldi. Qimmat-chi? Tinglaymiz!",
+     "intro": "Bir qishloqda mehribon Zumrad bilan Qimmat yashardi. Zumrad qariyaga yordam berib, sehrli sandiq oldi. Qimmat-chi? Tinglaymiz!",
      "items": [
       {
        "say": "She is kind.",
@@ -532,12 +532,12 @@
        "action": "Qo'lingni yuragingga qo'y!"
       },
       {
-       "say": "She is lazy.",
-       "uz": "u dangasa",
+       "say": "She doesn't help.",
+       "uz": "u yordam bermaydi",
        "emoji": "🥱🛋️",
        "image": "en67-u17-she-is-lazy.png",
        "image_prompt": "a girl in Uzbek dress lazily lying down refusing to help, soft 3D cartoon for kids, white background, no text, square",
-       "action": "Esnab, dangasaday cho'zil!"
+       "action": "Qo'lingni ko'ksingda chalishtirib, o'tirib ol!"
       },
       {
        "say": "forest",
@@ -560,9 +560,9 @@
       {
        "turi": "topshiriq",
        "sarlavha": "👀 Kim mehribon?",
-       "matn": "Men ish aytaman, sen top! Qariyaga o'tin tashishga yordam berdi — kim? Ayt: [en]Zumrad. She is kind.[/en] Yordam bermay yotdi — kim? [en]Qimmat. She is lazy.[/en] Zumradning sandig'idan oltin chiqdi! Sen-chi, qanday bolasan? Ayt: [en]I am kind![/en]",
-       "doska": "😊 Zumrad — She is kind.\n🥱 Qimmat — She is lazy.\n🌲 forest\n📦 chest",
-       "sodda": "Rasmni ko'rsatib ayt: [en]kind[/en] yoki [en]lazy[/en].",
+       "matn": "Men ish aytaman, sen top! Qariyaga o'tin tashishga yordam berdi — kim? Zumrad! Ayt: [en]She is kind.[/en] Yordam bermay o'tirdi — kim? Qimmat. Ayt: [en]She doesn't help.[/en] Zumradning sandig'idan oltin chiqdi! Sen-chi, qanday bolasan? Ayt: [en]I am kind![/en]",
+       "doska": "😊 Zumrad — She is kind.\n🥱 Qimmat — She doesn't help.\n🌲 forest\n📦 chest",
+       "sodda": "Rasmni ko'rsatib ayt: [en]kind[/en] yoki [en]doesn't help[/en].",
        "boshqa_usul": "Bugun uyda bitta ishda yordam ber va kattalarga ayt: [en]I am kind![/en]"
       }
      ],
@@ -570,7 +570,7 @@
       {
        "q": "Zumrad o'rmonda qariyaga yordam berdi. U qanday qiz?",
        "options": [
-        "🥱 She is lazy.",
+        "🥱 She doesn't help.",
         "😊 She is kind.",
         "🎤 She's singing."
        ],
@@ -652,7 +652,7 @@
        "q": "Sichqon to'rni kemirib, sherni qutqardi. Sher unga nima dedi?",
        "options": [
         "🦁🙏🐭 Thank you, little mouse!",
-        "🥱 She is lazy.",
+        "🥱 She doesn't help.",
         "🛑 Stop!"
        ],
        "answer": 0,
@@ -712,8 +712,8 @@
       {
        "q": "Ali yangi ryukzakini oldi. U maktabga borishga tayyor. U nima deydi?",
        "options": [
-        "🥱 She is lazy.",
-        "🆘 Help me!",
+        "🎉 Hooray!",
+        "🏫 I go to school.",
         "🎒 I'm ready for school!"
        ],
        "answer": 2,
@@ -724,7 +724,7 @@
        "options": [
         "👋 Hello! My name is Ali.",
         "📅 What did you do yesterday?",
-        "🐟 The fish is swimming."
+        "👋 Goodbye!"
        ],
        "answer": 0,
        "why": "To'g'ri! Avval salom berib, ismingni aytasan: [en]Hello! My name is…[/en]"

@@ -109,7 +109,7 @@
    },
    "tests_en": [
     "Ali wants to know the time. What does he ask?",
-    "Look at the clock. What time is it?"
+    "Look at the clock. What time is it? 🕢"
    ],
    "extras_en": [
     {
@@ -119,7 +119,7 @@
    ]
   },
   "Nima bo'ldi?": {
-   "intro_en": "Beep-beep! Hello, friends. Ali is in bed today. Let's ask him: what's the matter?",
+   "intro_en": "Beep-beep! I am Kabu. Ali is in bed today. Let's ask him: what's the matter?",
    "items": {
     "What's the matter?": {
      "sentence": "Ali, what's the matter?"
@@ -172,7 +172,7 @@
    "extras_en": [
     {
      "sarlavha_en": "🎭 Dialog: With the nurse",
-     "matn_en": "Nurse: Hello! What's the matter? Ali: I'm sick. I have a headache. The nurse uses a thermometer: Here is your medicine. Laylo says: Get well soon, Ali! Now you are Ali. The nurse asks: What's the matter? Answer!"
+     "matn_en": "Nurse: Hello! What's the matter? Ali: I'm sick. I have a headache. The nurse uses a thermometer: Here is your medicine. Never take or eat anything without a grown-up! Laylo says: Get well soon, Ali! Now you are Ali. The nurse asks: What's the matter? Answer!"
     }
    ]
   },
@@ -207,7 +207,7 @@
    ]
   },
   "Shahar joylari": {
-   "intro_en": "Beep-beep! Today we go around Tashkent by bus! Look out of the window. What places can you see?",
+   "intro_en": "Beep-beep! I am Kabu, and today we go around Tashkent by bus! Look out of the window. What places can you see?",
    "items": {
     "park": {
      "sentence": "Let's play in the park!"
@@ -285,7 +285,7 @@
     }
    },
    "tests_en": [
-    "The arrow points left. What do we say?",
+    "The arrow points left. What do we say? ⬅️",
     "Where is it safe to cross the street?"
    ],
    "extras_en": [
@@ -314,7 +314,7 @@
     }
    },
    "tests_en": [
-    "The traffic light is red. What do we say?",
+    "The traffic light is red. What do we say? 🔴",
     "Ali is waiting for the bus. Where is he?"
    ],
    "extras_en": [
@@ -325,7 +325,7 @@
    ]
   },
   "Salat tayyorlaymiz": {
-   "intro_en": "Beep-beep! Today we help Mum in the kitchen. We have tomatoes and cucumbers. Let's make a salad!",
+   "intro_en": "Beep-beep! I am Kabu, and today we help Mum in the kitchen. We have tomatoes and cucumbers. Let's make a salad!",
    "items": {
     "Let's make a salad!": {
      "sentence": "Let's make a salad with Mum!"
@@ -491,7 +491,7 @@
      "q_en": "Ali wants to know the time. What does he ask Mum?",
      "options": [
       "🍳 I have breakfast.",
-      "❓ What time is it?",
+      "🕰️❓ What time is it?",
       "👋 Bye, Mum!"
      ],
      "answer": 1,
@@ -599,8 +599,8 @@
      "q": "Hamshira Laylodan nima deb so'radi?",
      "q_en": "What does the nurse ask Laylo?",
      "options": [
-      "❓ What's the matter?",
-      "❓ What time is it?",
+      "🤒❓ What's the matter?",
+      "🕰️❓ What time is it?",
       "❓🔢 How many?"
      ],
      "answer": 0,
@@ -657,7 +657,7 @@
     {
      "who": 1,
      "say": "Excuse me! Where is the zoo?",
-     "uz": "kechirasiz! hayvonot bog'i qayerda?",
+     "uz": "kechir, amaki! hayvonot bog'i qayerda?",
      "emoji": "🗺️❓"
     },
     {
@@ -669,7 +669,7 @@
     {
      "who": 1,
      "say": "Turn left at the bakery. OK!",
-     "uz": "novvoyxonada chapga buriladi. xo'p!",
+     "uz": "novvoyxonada chapga buraman. xo'p!",
      "emoji": "⬅️🫓"
     },
     {
@@ -708,12 +708,12 @@
      "q": "Ali yo'l so'rash uchun nima dedi?",
      "q_en": "How does Ali ask the way?",
      "options": [
-      "❓ What's the matter?",
+      "🤒❓ What's the matter?",
       "🗺️ Excuse me! Where is the zoo?",
       "🕰️❓ What time is it?"
      ],
      "answer": 1,
-     "why": "Barakalla! [en]Excuse me! Where is the zoo?[/en] — kechirasiz, hayvonot bog'i qayerda?",
+     "why": "Barakalla! [en]Excuse me! Where is the zoo?[/en] — kechir, hayvonot bog'i qayerda?",
      "why_en": "Well done! Excuse me! Where is the zoo?"
     },
     {
@@ -766,7 +766,7 @@
     {
      "who": 1,
      "say": "Hello, Grandma! Come in, please!",
-     "uz": "salom, buvijon! kiring, iltimos!",
+     "uz": "salom, buvijon! kir, iltimos!",
      "emoji": "👋🏠"
     },
     {
@@ -778,7 +778,7 @@
     {
      "who": 1,
      "say": "Sit down, please. Would you like some tea?",
-     "uz": "o'tiring, iltimos. choy ichasizmi?",
+     "uz": "o'tir, iltimos. choy ichasanmi?",
      "emoji": "🫖"
     },
     {
@@ -790,7 +790,7 @@
     {
      "who": 1,
      "say": "Here you are. Would you like some salad?",
-     "uz": "mana, oling. salat yeysizmi?",
+     "uz": "mana, ol. salat yeysanmi?",
      "emoji": "🥗"
     },
     {
@@ -808,7 +808,7 @@
     {
      "who": 0,
      "say": "Well done! You are good helpers!",
-     "uz": "barakalla! yaxshi yordamchisizlar!",
+     "uz": "barakalla! sen yaxshi yordamchisan!",
      "emoji": "🤗"
     }
    ],
@@ -817,12 +817,12 @@
      "q": "Laylo buvijonga choyni qanday taklif qildi?",
      "q_en": "How does Laylo offer tea to Grandma?",
      "options": [
-      "❓ What's the matter?",
-      "❓ What time is it?",
+      "🤒❓ What's the matter?",
+      "🕰️❓ What time is it?",
       "🫖 Would you like some tea?"
      ],
      "answer": 2,
-     "why": "Barakalla! [en]Would you like some tea?[/en] — choy ichasizmi?",
+     "why": "Barakalla! [en]Would you like some tea?[/en] — choy ichasanmi?",
      "why_en": "Well done! Would you like some tea?"
     },
     {
@@ -831,7 +831,7 @@
      "options": [
       "🙏 No, thank you.",
       "👍 Yes, please.",
-      "✋ Wait!"
+      "😋 It's delicious!"
      ],
      "answer": 1,
      "why": "To'g'ri! [en]Yes, please.[/en] — ha, iltimos.",
@@ -842,8 +842,8 @@
      "q_en": "What does Grandma say about the salad?",
      "options": [
       "😋 It's delicious!",
-      "🤕 I have a headache.",
-      "⬅️ Turn left!"
+      "🙏 No, thank you.",
+      "👍 Yes, please."
      ],
      "answer": 0,
      "why": "Zo'r! [en]It's delicious![/en] — juda mazali!",

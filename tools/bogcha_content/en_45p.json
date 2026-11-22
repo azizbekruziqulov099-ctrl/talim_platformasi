@@ -63,7 +63,7 @@
        "q": "Sen sharbat so'rayapsan. Qaysi sehrli so'zni qo'shasan?",
        "options": [
         "🤲 Please!",
-        "🚪 Goodbye!"
+        "👋🚶 Goodbye!"
        ],
        "answer": 0,
        "why": "To'g'ri! [en]Juice, please![/en] Iltimos deb so'rasang, hamma xursand bo'ladi."
@@ -71,13 +71,13 @@
      ]
     },
     {
-     "name": "Kechirasiz",
+     "name": "Uzr va kechirish",
      "goal": "Bola kechirim so'raydi va kechiradi",
      "intro": "Ali yugurib ketayotib Laylo bilan to'qnashib ketdi! Endi u nima deydi? Bugun kechirim so'rashni va kechirishni o'rganamiz.",
      "items": [
       {
        "say": "Excuse me!",
-       "uz": "kechirasiz",
+       "uz": "uzr",
        "emoji": "✋",
        "image": "en45-u12-excuse-me.png",
        "image_prompt": "ALI politely raising his hand to get the teacher's attention, soft 3D cartoon for kids, white background, no text, square",
@@ -176,7 +176,7 @@
        "matn": "Kabu bilan kuylaymiz: [en]Can I have a ball, please? Here you are! Here you are![/en] Endi buvijon senga olma taklif qilyapti. Xohlasang: [en]Yes, please.[/en] Xohlamasang: [en]No, thank you.[/en] Sen nima deysan?",
        "doska": "⚽ Can I have a ball, please?\n🫴 Here you are.\n👍 Yes, please.\n🙅 No, thank you.",
        "sodda": "Kabu senga olma uzatyapti: [en]Here you are.[/en] Sen ayt: [en]Thank you![/en]",
-       "boshqa_usul": "Uyda o'yinchoqlarni bir-biringizga uzatib, [en]Can I have a ball, please?[/en] va [en]Here you are.[/en] deb o'ynanglar."
+       "boshqa_usul": "Uyda oilang bilan o'yinchoq uzatib o'yna: [en]Can I have a ball, please?[/en] — [en]Here you are.[/en]"
       }
      ],
      "tests": [
@@ -243,14 +243,14 @@
        "matn": "Oyi Alini uyg'otyapti: [en]Wake up, Ali![/en] Ali kerishadi: [en]Good morning, Mum![/en] Oyi chaqiradi: [en]Breakfast![/en] Stolda non, tuxum, choy. Ali: [en]Yummy![/en] Endi sen ayt: [en]Good morning![/en]",
        "doska": "⏰ Wake up!\n🌅 Good morning!\n🍳 breakfast",
        "sodda": "Kabu aytadi: [en]Wake up![/en] Sen kerishib ayt: [en]Good morning![/en]",
-       "boshqa_usul": "Ertaga ertalab oyingga birinchi bo'lib [en]Good morning![/en] deb ayt, nonushtada esa [en]breakfast[/en] so'zini eslang."
+       "boshqa_usul": "Ertaga ertalab oyingga birinchi bo'lib [en]Good morning![/en] deb ayt, nonushtada esa [en]breakfast[/en] so'zini esla."
       }
      ],
      "tests": [
       {
        "q": "Ertalab uyg'onding, oying xonaga kirdi. Nima deysan?",
        "options": [
-        "🚪 Goodbye!",
+        "👋🚶 Goodbye!",
         "🌅 Good morning!"
        ],
        "answer": 1,
@@ -433,8 +433,8 @@
        "action": "Labingni osiltirib, xafa yuz qil!"
       },
       {
-       "say": "angry",
-       "uz": "jahli chiqqan",
+       "say": "I'm angry.",
+       "uz": "jahlim chiqdi",
        "emoji": "😠",
        "image": "en45-u14-angry.png",
        "image_prompt": "ALI looking angry with crossed arms and red cheeks, soft 3D cartoon for kids, white background, no text, square",
@@ -446,7 +446,7 @@
        "turi": "topshiriq",
        "sarlavha": "🎭 Yuzlar o'yini",
        "matn": "Kabu so'raydi: [en]How do you feel?[/en] Ali sovg'a oldi: [en]I'm happy![/en] Laylo varragi uchib ketdi: [en]I'm sad.[/en] Yuzingni ko'rsat-chi: xursand, xafa, jahldor! Endi Kabu sendan so'raydi: [en]How do you feel?[/en]",
-       "doska": "🤔 How do you feel?\n😄 I'm happy.\n😢 I'm sad.\n😠 angry",
+       "doska": "🤔 How do you feel?\n😄 I'm happy.\n😢 I'm sad.\n😠 I'm angry.",
        "sodda": "Jilmay va ayt: [en]I'm happy.[/en]",
        "boshqa_usul": "Kechqurun ota-onang sendan [en]How do you feel?[/en] deb so'rasin, sen esa yuzing bilan ko'rsatib javob ber."
       }
@@ -464,8 +464,8 @@
       {
        "q": "Laylo qoshini chimirib, qo'llarini qovushtirdi. U qanday?",
        "options": [
-        "😠 angry",
-        "😄 happy"
+        "😠 I'm angry.",
+        "😄 I'm happy."
        ],
        "answer": 0,
        "why": "To'g'ri! [en]Angry[/en] — jahli chiqqan. Chuqur nafas olsa, tinchlanadi."
@@ -514,7 +514,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎲 Navbat o'yini",
-       "matn": "Ali va Laylo sirpanchiqda uchyapti. Ali: [en]My turn![/en] Vush! Endi Ali Layloga: [en]Your turn![/en] Navbat bilan o'ynasak, hamma xursand! Endi sen do'stingga koptok uzat va ayt: [en]Your turn![/en]",
+       "matn": "Ali va Laylo sirpanchiqda sirpanyapti. Ali: [en]My turn![/en] Vush! Endi Ali Layloga: [en]Your turn![/en] Navbat bilan o'ynasak, hamma xursand! Endi sen do'stingga koptok uzat va ayt: [en]Your turn![/en]",
        "doska": "🤝 Be my friend!\n🧸 Let's play together!\n🙋‍♂️ My turn!\n👉 Your turn!",
        "sodda": "Do'stingga koptokni uzat va ayt: [en]Your turn![/en]",
        "boshqa_usul": "Uyda aka-ukang yoki ota-onang bilan koptok o'ynab, navbat bilan [en]My turn![/en] va [en]Your turn![/en] deb aytinglar."
@@ -524,7 +524,7 @@
       {
        "q": "Bog'chaga yangi bola keldi. Sen u bilan do'st bo'lmoqchisan. Nima deysan?",
        "options": [
-        "😠 angry",
+        "😠 I'm angry.",
         "🤝 Be my friend!"
        ],
        "answer": 1,

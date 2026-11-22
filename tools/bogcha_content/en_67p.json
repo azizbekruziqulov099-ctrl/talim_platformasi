@@ -271,7 +271,7 @@
        "q": "Ali soat necha ekanini bilmoqchi. U nima deb so'raydi?",
        "options": [
         "⌚ I have a watch.",
-        "❓ What time is it?",
+        "🕰️❓ What time is it?",
         "🛏️ I go to bed."
        ],
        "answer": 1,
@@ -303,7 +303,7 @@
       {
        "say": "What's the matter?",
        "uz": "nima bo'ldi?",
-       "emoji": "🤔❓",
+       "emoji": "🤒❓",
        "image": "en67-u12-whats-the-matter.png",
        "image_prompt": "a caring mum kneeling and asking a sad ALI, soft 3D cartoon for kids, white background, no text, square"
       },
@@ -356,9 +356,9 @@
       {
        "q": "Do'sting xafa ko'rinyapti. Sen nima deb so'raysan?",
        "options": [
-        "🛏️ I go to bed.",
-        "❓ What's the matter?",
-        "🕖 It's seven o'clock."
+        "🕰️❓ What time is it?",
+        "🤒❓ What's the matter?",
+        "🎂❓ How old are you?"
        ],
        "answer": 1,
        "why": "To'g'ri! [en]What's the matter?[/en] — nima bo'ldi? Sen mehribon do'stsan!"
@@ -405,7 +405,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: Hamshira bilan",
-       "matn": "Hamshira: [en]Hello! What's the matter?[/en] Ali: [en]I'm sick. I have a headache.[/en] Hamshira termometr qo'ydi: [en]Here is your medicine.[/en] Laylo keldi: [en]Get well soon, Ali![/en] Endi sen Ali bo'l! Hamshira so'rayapti: [en]What's the matter?[/en] Javob ber!",
+       "matn": "Hamshira: [en]Hello! What's the matter?[/en] Ali: [en]I'm sick. I have a headache.[/en] Hamshira termometr qo'ydi: [en]Here is your medicine.[/en] (kattalarning ruxsatisiz hech narsa ichma yoki yema!) Laylo keldi: [en]Get well soon, Ali![/en] Endi sen Ali bo'l! Hamshira so'rayapti: [en]What's the matter?[/en] Javob ber!",
        "doska": "👩‍⚕️ What's the matter?\n🤕 I have a headache.\n💊 Here is your medicine.\n💌 Get well soon!",
        "sodda": "Faqat ayt: [en]Get well soon![/en]",
        "boshqa_usul": "Ayiqchangni kasal qilib, sen hamshira bo'l va unga [en]Get well soon![/en] de."
@@ -583,7 +583,7 @@
     {
      "name": "Qayerda?",
      "goal": "Bola joy so'zlarini ishlatadi",
-     "intro": "Bip-bip! Layloning mushugi Mosh yana yashirindi! U qutining yonidami, orqasidami yoki oldidami? Joy so'zlarini o'rgansang, uni darrov topasan.",
+     "intro": "Bip-bip! Layloning mushugi yashirinib oldi! U qutining yonidami, orqasidami yoki oldidami? Joy so'zlarini o'rgansang, uni darrov topasan.",
      "items": [
       {
        "say": "Where is the park?",
@@ -620,8 +620,8 @@
      "extra": [
       {
        "turi": "topshiriq",
-       "sarlavha": "🎵 Mosh qayerda?",
-       "matn": "Kuyla: [en]Where is the cat? Where is the cat?[/en] Qutining yonida — [en]next to the box[/en]! Orqasida — [en]behind the box[/en]! Oldida — [en]in front of the box[/en]! Mosh yana yashirindi. Men so'rayman: [en]Where is the cat?[/en] Sen javob ber!",
+       "sarlavha": "🎵 Mushuk qayerda?",
+       "matn": "Kuyla: [en]Where is the cat? Where is the cat?[/en] Qutining yonida — [en]next to the box[/en]! Orqasida — [en]behind the box[/en]! Oldida — [en]in front of the box[/en]! Mushuk yana yashirindi. Men so'rayman: [en]Where is the cat?[/en] Sen javob ber!",
        "doska": "🗺️ Where is the cat?\n🐱📦 next to the box\n🫣📦 behind the box\n🧍📦 in front of the box",
        "sodda": "Bitta so'z: [en]behind[/en]",
        "boshqa_usul": "Uyda o'yinchoqni yashir. Onang [en]Where is the ball?[/en] deb so'rasin, sen [en]behind the door[/en] kabi javob ber."
@@ -629,7 +629,7 @@
      ],
      "tests": [
       {
-       "q": "Mosh qutining orqasiga yashirindi. Qanday aytamiz?",
+       "q": "Mushuk qutining orqasiga yashirindi. Qanday aytamiz?",
        "options": [
         "🧍 in front of the box",
         "🐱 next to the box",
@@ -641,9 +641,9 @@
       {
        "q": "Ali bog'ni topa olmayapti. U nima deb so'raydi?",
        "options": [
-        "❓ Where is the park?",
-        "❓ What time is it?",
-        "❓ What's the matter?"
+        "🗺️❓ Where is the park?",
+        "🕰️❓ What time is it?",
+        "🤒❓ What's the matter?"
        ],
        "answer": 0,
        "why": "To'g'ri! [en]Where is the park?[/en] — bog' qayerda?"
@@ -811,7 +811,7 @@
       {
        "say": "cut",
        "uz": "to'g'ra",
-       "emoji": "🔪🥒",
+       "emoji": "✂️🥒",
        "image": "en67-u14-cut.png",
        "image_prompt": "a grown-up cutting a cucumber on a board, soft 3D cartoon for kids, white background, no text, square",
        "action": "Kesganday qil — chak-chak!"
@@ -837,7 +837,7 @@
        "turi": "topshiriq",
        "sarlavha": "👀 Top-chi: keyin nima?",
        "matn": "Top-chi! Salat qilish navbatini ayt. Avval: [en]Let's make a salad![/en] Keyin oyijon pomidorni nima qiladi? [en]Cut![/en] Keyin kosaga solamiz va… nima qilamiz? Sen javob ber!",
-       "doska": "🥗 Let's make a salad!\n🔪 cut\n🥄 mix\n🥣 bowl",
+       "doska": "🥗 Let's make a salad!\n✂️ cut\n🥄 mix\n🥣 bowl",
        "sodda": "Bitta so'z: [en]mix[/en]",
        "boshqa_usul": "Onang bilan salat qilganda kosada aralashtirib, [en]I mix the salad![/en] deb ayt."
       }
@@ -846,7 +846,7 @@
       {
        "q": "Laylo qoshiq bilan salatni aylantiryapti. U nima qilyapti?",
        "options": [
-        "🔪 cut",
+        "✂️ cut",
         "🥄 mix",
         "🥣 bowl"
        ],
@@ -856,8 +856,8 @@
       {
        "q": "Salatni nimaga solamiz?",
        "options": [
-        "⌚ watch",
-        "🚏 bus stop",
+        "🧺 basket",
+        "🎒 school bag",
         "🥣 bowl"
        ],
        "answer": 2,
@@ -937,11 +937,11 @@
     {
      "name": "Mehmon kutamiz",
      "goal": "Bola mehmonga taklif iboralarini aytadi",
-     "intro": "Taq-taq! Buvijonning dugonasi mehmonga keldi. Biz mehmonni choy bilan kutamiz. Qani, odob bilan choy taklif qilamiz.",
+     "intro": "Taq-taq! Buvijonning dugonasi mehmonga keldi. Biz mehmonni choy bilan kutamiz — issiq choyni faqat kattalar quyadi. Qani, odob bilan choy taklif qilamiz.",
      "items": [
       {
        "say": "Would you like some tea?",
-       "uz": "choy ichasizmi?",
+       "uz": "choy ichasanmi?",
        "emoji": "🫖",
        "image": "en67-u14-would-you-like-some-tea.png",
        "image_prompt": "LAYLO offering tea in a piyola to a guest, soft 3D cartoon for kids, white background, no text, square",
@@ -997,8 +997,8 @@
        "q": "Buvijonning palovi juda mazali bo'libdi! Sen nima deysan?",
        "options": [
         "😋 It's delicious!",
-        "🤢 I have a stomachache.",
-        "✋ Wait!"
+        "🙏 No, thank you.",
+        "👍 Yes, please."
        ],
        "answer": 0,
        "why": "To'g'ri! [en]It's delicious![/en] — juda mazali!"
@@ -1075,7 +1075,7 @@
        "options": [
         "👋 Goodbye!",
         "🍽️ I'm eating.",
-        "❓ What are you doing?"
+        "🤔❓ What are you doing?"
        ],
        "answer": 2,
        "why": "To'g'ri! Savol shunday: [en]What are you doing?[/en]"
@@ -1292,8 +1292,8 @@
       {
        "q": "Laylo kecha haqida so'ramoqchi. Qaysi savol to'g'ri?",
        "options": [
-        "❓ What are you doing?",
-        "🤝 Nice to meet you!",
+        "🤔❓ What are you doing?",
+        "🎂❓ How old are you?",
         "📅 What did you do yesterday?"
        ],
        "answer": 2,
@@ -1436,7 +1436,7 @@
        "options": [
         "😄 It was fun!",
         "😴 He's sleeping.",
-        "❓ What are you doing?"
+        "🤔❓ What are you doing?"
        ],
        "answer": 0,
        "why": "Barakalla! [en]It was fun![/en] — juda qiziq bo'ldi!"
@@ -1523,7 +1523,7 @@
     {
      "name": "Zumrad va Qimmat",
      "goal": "Bola mehnatsevarlik haqidagi ertakni tinglaydi",
-     "intro": "Bir qishloqda mehribon Zumrad va dangasa Qimmat yashardi. Zumrad qariyaga yordam berib, sehrli sandiq oldi. Qimmat-chi? Tinglaymiz!",
+     "intro": "Bir qishloqda mehribon Zumrad bilan Qimmat yashardi. Zumrad qariyaga yordam berib, sehrli sandiq oldi. Qimmat-chi? Tinglaymiz!",
      "items": [
       {
        "say": "She is kind.",
@@ -1534,12 +1534,12 @@
        "action": "Qo'lingni yuragingga qo'y!"
       },
       {
-       "say": "She is lazy.",
-       "uz": "u dangasa",
+       "say": "She doesn't help.",
+       "uz": "u yordam bermaydi",
        "emoji": "🥱🛋️",
        "image": "en67-u17-she-is-lazy.png",
        "image_prompt": "a girl in Uzbek dress lazily lying down refusing to help, soft 3D cartoon for kids, white background, no text, square",
-       "action": "Esnab, dangasaday cho'zil!"
+       "action": "Qo'lingni ko'ksingda chalishtirib, o'tirib ol!"
       },
       {
        "say": "forest",
@@ -1562,9 +1562,9 @@
       {
        "turi": "topshiriq",
        "sarlavha": "👀 Kim mehribon?",
-       "matn": "Men ish aytaman, sen top! Qariyaga o'tin tashishga yordam berdi — kim? Ayt: [en]Zumrad. She is kind.[/en] Yordam bermay yotdi — kim? [en]Qimmat. She is lazy.[/en] Zumradning sandig'idan oltin chiqdi! Sen-chi, qanday bolasan? Ayt: [en]I am kind![/en]",
-       "doska": "😊 Zumrad — She is kind.\n🥱 Qimmat — She is lazy.\n🌲 forest\n📦 chest",
-       "sodda": "Rasmni ko'rsatib ayt: [en]kind[/en] yoki [en]lazy[/en].",
+       "matn": "Men ish aytaman, sen top! Qariyaga o'tin tashishga yordam berdi — kim? Zumrad! Ayt: [en]She is kind.[/en] Yordam bermay o'tirdi — kim? Qimmat. Ayt: [en]She doesn't help.[/en] Zumradning sandig'idan oltin chiqdi! Sen-chi, qanday bolasan? Ayt: [en]I am kind![/en]",
+       "doska": "😊 Zumrad — She is kind.\n🥱 Qimmat — She doesn't help.\n🌲 forest\n📦 chest",
+       "sodda": "Rasmni ko'rsatib ayt: [en]kind[/en] yoki [en]doesn't help[/en].",
        "boshqa_usul": "Bugun uyda bitta ishda yordam ber va kattalarga ayt: [en]I am kind![/en]"
       }
      ],
@@ -1572,7 +1572,7 @@
       {
        "q": "Zumrad o'rmonda qariyaga yordam berdi. U qanday qiz?",
        "options": [
-        "🥱 She is lazy.",
+        "🥱 She doesn't help.",
         "😊 She is kind.",
         "🎤 She's singing."
        ],
@@ -1654,7 +1654,7 @@
        "q": "Sichqon to'rni kemirib, sherni qutqardi. Sher unga nima dedi?",
        "options": [
         "🦁🙏🐭 Thank you, little mouse!",
-        "🥱 She is lazy.",
+        "🥱 She doesn't help.",
         "🛑 Stop!"
        ],
        "answer": 0,
@@ -1714,8 +1714,8 @@
       {
        "q": "Ali yangi ryukzakini oldi. U maktabga borishga tayyor. U nima deydi?",
        "options": [
-        "🥱 She is lazy.",
-        "🆘 Help me!",
+        "🎉 Hooray!",
+        "🏫 I go to school.",
         "🎒 I'm ready for school!"
        ],
        "answer": 2,
@@ -1726,7 +1726,7 @@
        "options": [
         "👋 Hello! My name is Ali.",
         "📅 What did you do yesterday?",
-        "🐟 The fish is swimming."
+        "👋 Goodbye!"
        ],
        "answer": 0,
        "why": "To'g'ri! Avval salom berib, ismingni aytasan: [en]Hello! My name is…[/en]"
