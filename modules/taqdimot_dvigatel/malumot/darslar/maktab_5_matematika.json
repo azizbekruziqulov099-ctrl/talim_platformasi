@@ -467,6 +467,1414 @@
      "yakun": "3/12 + 2/12 + 4/12 = 9/12; 4-guruh: 12/12 − 9/12 = 3/12"
     }
    }
+  },
+  {
+   "mavzu": "Natural sonlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Natural son nima?",
+      "matn": "Narsalarni sanashda ishlatiladigan sonlar natural sonlar deyiladi: 1, 2, 3, 4, 5 va hokazo. Eng kichik natural son — 1. Eng katta natural son yo‘q: har qanday songa 1 qo‘shsak, undan katta son hosil bo‘ladi. 0 soni natural son emas, chunki sanoq noldan boshlanmaydi.",
+      "misol": "Sinfda 28 o‘quvchi, partada 2 kitob, javonda 135 daftar — bularning hammasi natural sonlar.",
+      "savol": "0, 7, 1/2, 100 sonlaridan qaysilari natural son?",
+      "javob": "7 va 100",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Raqam va son",
+      "matn": "Sonlarni yozish uchun 10 ta belgi — raqamlar ishlatiladi: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Raqam — harfga, son — so‘zga o‘xshaydi. Biz o‘nli sanoq sistemasidan foydalanamiz: har bir xonaning 10 ta birligi undan keyingi katta xonaning 1 ta birligini hosil qiladi. Raqamning qiymati u turgan o‘ringa bog‘liq.",
+      "misol": "555 sonida uchta bir xil raqam bor, lekin birinchisi 5 ta yuzlikni, ikkinchisi 5 ta o‘nlikni, uchinchisi 5 ta birlikni bildiradi.",
+      "savol": "7070 sonidagi chapdan birinchi 7 raqami nimani bildiradi?",
+      "javob": "7 ta minglikni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xonalar va sinflar",
+      "matn": "Ko‘p xonali sonni o‘qish oson bo‘lishi uchun u o‘ngdan chapga uchtadan raqamga — sinflarga ajratiladi. Birinchi sinf — birlar sinfi, ikkinchisi — minglar, uchinchisi — millionlar, to‘rtinchisi — milliardlar sinfi. Har bir sinfda uchta xona bor: birlar, o‘nlar, yuzlar. Sonni o‘qishda chapdan boshlab har bir sinfdagi son va sinf nomi aytiladi, birlar sinfining nomi aytilmaydi.",
+      "misol": "36 204 518 — o‘ttiz olti million ikki yuz to‘rt ming besh yuz o‘n sakkiz.",
+      "savol": "4 050 007 sonini o‘qing.",
+      "javob": "to‘rt million ellik ming yetti",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xona qo‘shiluvchilari",
+      "matn": "Har qanday natural sonni xona birliklari yig‘indisi ko‘rinishida yozish mumkin. Buning uchun har bir raqam o‘z xonasining qiymati bilan olinadi. Nol turgan xonada birlik yo‘q, shuning uchun u yig‘indida yozilmaydi.",
+      "misol": "4507 = 4000 + 500 + 7. Bu sonda o‘nliklar xonasida 0 turibdi.",
+      "savol": "60 000 + 300 + 20 yig‘indi qaysi son?",
+      "javob": "60 320",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Natural sonlarni taqqoslash",
+      "matn": "Ikki natural sondan qaysi birining raqamlari ko‘p bo‘lsa, o‘sha katta. Raqamlar soni teng bo‘lsa, chapdan boshlab xonalar solishtiriladi: birinchi farq qilgan xonada qaysi sonning raqami katta bo‘lsa, o‘sha son katta. Natija > (katta), < (kichik) yoki = belgisi bilan yoziladi.",
+      "misol": "98 765 < 123 456, chunki birinchisi besh xonali, ikkinchisi olti xonali. 4582 > 4528, chunki o‘nliklar xonasida 8 > 2.",
+      "savol": "70 199 va 70 209 sonlarini taqqoslang.",
+      "javob": "70 199 < 70 209",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Natural sonlar — sanashda ishlatiladigan 1, 2, 3, … sonlar. Ular 10 ta raqam bilan yoziladi, raqamning qiymati turgan xonasiga bog‘liq. Sonni o‘qish uchun uni o‘ngdan chapga uchtadan raqamli sinflarga ajratamiz.",
+    "misollar": [
+     {
+      "shart": "70 305 048 sonini o‘qing va unda nechta million borligini ayting.",
+      "yechim": [
+       "O‘ngdan uchtadan ajratamiz: 70 | 305 | 048.",
+       "Millionlar sinfida 70, minglar sinfida 305, birlar sinfida 48 turibdi.",
+       "O‘qiymiz: yetmish million uch yuz besh ming qirq sakkiz."
+      ],
+      "javob": "yetmish million uch yuz besh ming qirq sakkiz; 70 ta million"
+     },
+     {
+      "shart": "Raqamlar bilan yozing: besh million o‘ttiz ming yetti.",
+      "yechim": [
+       "Millionlar sinfi: 5.",
+       "Minglar sinfi: 30 — uch xonali qilib 030 yozamiz.",
+       "Birlar sinfi: 7 — uch xonali qilib 007 yozamiz.",
+       "Hosil bo‘ldi: 5 030 007."
+      ],
+      "javob": "5 030 007"
+     },
+     {
+      "shart": "3, 0, 8, 5 raqamlaridan (har biri bir marta) eng katta va eng kichik to‘rt xonali sonni tuzing.",
+      "yechim": [
+       "Eng katta son uchun raqamlarni kamayish tartibida yozamiz: 8530.",
+       "Eng kichik son 0 bilan boshlana olmaydi, shuning uchun birinchi o‘ringa 0 dan keyingi eng kichik raqam — 3 qo‘yiladi.",
+       "Qolganlarini o‘sish tartibida yozamiz: 3058."
+      ],
+      "javob": "8530 va 3058"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Aholi soni",
+      "topshiriq": "Shaharlar aholisi: Samarqand — 573 000, Namangan — 678 000, Andijon — 468 000, Buxoro — 285 000 kishi. a) Sonlarni o‘qing. b) Shaharlarni aholisi kamayish tartibida joylashtiring. d) Eng katta sonni xona qo‘shiluvchilari yig‘indisi ko‘rinishida yozing.",
+      "yechim": "b) Namangan (678 000), Samarqand (573 000), Andijon (468 000), Buxoro (285 000). d) 678000 = 600000 + 70000 + 8000.",
+      "mahsulot": "kamayish tartibidagi jadval"
+     },
+     {
+      "nom": "Raqamlar konstruktori",
+      "topshiriq": "7, 2, 0, 9, 4 raqamlaridan (har biri bir marta) a) eng katta besh xonali son; b) eng kichik besh xonali son; d) 5 ga tugaydigan son tuzib bo‘ladimi?",
+      "yechim": "a) 97 420. b) 20 479 (0 bilan boshlanmaydi). d) Yo‘q, chunki raqamlar orasida 5 yo‘q.",
+      "mahsulot": "kartochkalardan terilgan sonlar"
+     },
+     {
+      "nom": "Koinot masofalari",
+      "topshiriq": "Yerdan Oygacha taxminan 384 000 km, Yerdan Quyoshgacha taxminan 150 000 000 km. a) Sonlarni o‘qing. b) Har bir sonda nechta sinf bor? d) Qaysi masofa katta va nima uchun?",
+      "yechim": "a) uch yuz sakson to‘rt ming; bir yuz ellik million. b) birinchisida 2 ta sinf, ikkinchisida 3 ta sinf. d) Quyoshgacha masofa katta: 9 xonali son 6 xonali sondan katta.",
+      "mahsulot": "sinflar jadvaliga yozilgan sonlar"
+     },
+     {
+      "nom": "Yashirin raqam",
+      "topshiriq": "Yulduzcha o‘rniga qo‘yish mumkin bo‘lgan barcha raqamlarni toping: a) 5*27 > 5627; b) 38*4 < 3814; d) 9*5 > 985.",
+      "yechim": "a) 7, 8, 9. b) 0 (3804 < 3814). d) 9 (995 > 985).",
+      "mahsulot": "javoblar va izoh"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "O‘qing: 2 000 345.",
+      "javob": "ikki million uch yuz qirq besh"
+     },
+     {
+      "shart": "Raqamlar bilan yozing: o‘n ikki ming olti.",
+      "javob": "12 006"
+     },
+     {
+      "shart": "Taqqoslang: 9999 va 10 000.",
+      "javob": "9999 < 10 000"
+     },
+     {
+      "shart": "8000 + 40 + 3 yig‘indi qaysi son?",
+      "javob": "8043"
+     },
+     {
+      "shart": "Eng katta uch xonali sondan keyin keladigan sonni yozing.",
+      "javob": "1000"
+     },
+     {
+      "shart": "405 612 sonida minglar sinfida qaysi son turibdi?",
+      "javob": "405"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "«Besh ming yetti»ni 507 yoki 50007 deb yozadi",
+      "sabab": "bo‘sh xonalarga nol qo‘yishni unutadi yoki ortiqcha nol yozadi",
+      "oldini_olish": "sinflar jadvalidan foydalanish: har bir sinfda roppa-rosa uchta xona to‘ldiriladi"
+     },
+     {
+      "xato": "Raqamlari katta bo‘lgani uchun 9876 ni 10 234 dan katta deb o‘ylaydi",
+      "sabab": "avval xonalar sonini solishtirmaydi",
+      "oldini_olish": "taqqoslashni doim «nechta raqam bor?» savolidan boshlash"
+     },
+     {
+      "xato": "0 ni natural son deb hisoblaydi",
+      "sabab": "0 raqami sonlar yozuvida uchraydi",
+      "oldini_olish": "«sanoqni nechadan boshlaymiz?» savoli bilan eslatish: sanoq 1 dan boshlanadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "shaharlar aholisi, daryolar uzunligi va tog‘lar balandligi katta natural sonlar bilan ifodalanadi"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "yillar va asrlar natural sonlar bilan yoziladi; hind raqamlarini dunyoga Muhammad al-Xorazmiy asarlari tanitgan"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "kompyuter ikkilik sanoq sistemasida ishlaydi — unda faqat 0 va 1 raqamlari bor"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Katta sonlar atrofimizda»",
+     "muammo": "Katta sonlarni gazeta, internet va darsliklarda uchratamiz, lekin ularni to‘g‘ri o‘qiy olamizmi?",
+     "mahsulot": "«Viloyatimiz sonlarda» plakati: aholi soni, maydon, maktablar soni",
+     "bosqichlar": [
+      "ma’lumot yig‘ish",
+      "sonlarni sinflar jadvaliga yozish",
+      "o‘qish va taqqoslash",
+      "plakat tayyorlash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Aholi soni bo‘yicha ma’lumot to‘plang va sonlarni o‘sish tartibida joylang",
+      "Masofalar (shaharlar orasi) bo‘yicha ma’lumot to‘plang",
+      "Eng katta va eng kichik sonni xona qo‘shiluvchilariga ajrating",
+      "Plakatni bezang va sonlarni so‘z bilan yozing"
+     ],
+     "mezonlar": [
+      "sonlar to‘g‘ri yozilgan",
+      "to‘g‘ri o‘qilgan",
+      "taqqoslash to‘g‘ri",
+      "manba ko‘rsatilgan",
+      "plakat tushunarli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sonlar muzeyi» — to‘rtta zal",
+     "bekatlar": [
+      {
+       "nom": "Qadimgi sanoq zali",
+       "matn": "Qadimda odamlar barmoq, tosh va tugunlar yordamida sanashgan. Rim raqamlarida nol bo‘lmagan, shuning uchun katta sonlarni yozish qiyin edi.",
+       "topshiriq": "Rim raqami XII qaysi natural son?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "Al-Xorazmiy zali",
+       "matn": "Buyuk bobomiz Muhammad al-Xorazmiy o‘nli sanoq sistemasi va hind raqamlari haqida kitob yozgan. «Algoritm» so‘zi uning nomidan kelib chiqqan.",
+       "topshiriq": "O‘nli sanoq sistemasida nechta raqam bor?",
+       "javob": "10 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Sinflar zali",
+       "matn": "Devorda ulkan jadval: birlar, minglar, millionlar, milliardlar sinfi. Har bir sinfda uchta tokcha — birlar, o‘nlar, yuzlar.",
+       "topshiriq": "7 000 000 000 sonida nechta sinf bor?",
+       "javob": "4 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Taqqoslash zali",
+       "matn": "Tarozining ikki pallasida sonlar yozilgan kartochkalar turibdi: 100 001 va 99 999.",
+       "topshiriq": "Qaysi son katta va nega?",
+       "javob": "100 001, chunki u olti xonali",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "guruhdan ajralmang",
+      "eksponatlarga qo‘l tekkizmang",
+      "yo‘lboshchini tinglang"
+     ],
+     "kundalik": [
+      "Qaysi zalda eng ko‘p yangilik bildingiz?",
+      "Nol nima uchun kerak?",
+      "Eng katta natural son bormi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Natural son",
+      "tarif": "narsalarni sanashda ishlatiladigan son: 1, 2, 3, …"
+     },
+     {
+      "atama": "Raqam",
+      "tarif": "sonlarni yozish uchun ishlatiladigan belgi; ular 10 ta: 0 dan 9 gacha"
+     },
+     {
+      "atama": "Xona",
+      "tarif": "raqamning son yozuvidagi o‘rni: birlar, o‘nlar, yuzlar va hokazo"
+     },
+     {
+      "atama": "Sinf",
+      "tarif": "son yozuvida o‘ngdan boshlab har uch xonadan iborat guruh"
+     },
+     {
+      "atama": "O‘nli sanoq sistemasi",
+      "tarif": "har bir xonaning 10 birligi keyingi xonaning 1 birligini hosil qiladigan sanoq usuli"
+     },
+     {
+      "atama": "Xona qo‘shiluvchilari",
+      "tarif": "sonni xona birliklari yig‘indisi ko‘rinishida yozish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Eng kichik natural son — 1",
+      "togri": true,
+      "izoh": "sanoq 1 dan boshlanadi"
+     },
+     {
+      "matn": "0 — natural son",
+      "togri": false,
+      "izoh": "0 sanashda ishlatilmaydi"
+     },
+     {
+      "matn": "Eng katta natural son mavjud emas",
+      "togri": true,
+      "izoh": "har qanday songa 1 qo‘shish mumkin"
+     },
+     {
+      "matn": "Raqamlar 9 ta",
+      "togri": false,
+      "izoh": "raqamlar 10 ta: 0 dan 9 gacha"
+     },
+     {
+      "matn": "Millionlar sinfi minglar sinfidan chapda turadi",
+      "togri": true,
+      "izoh": "sinflar o‘ngdan chapga kattalashadi"
+     },
+     {
+      "matn": "99 999 soni 100 000 dan katta",
+      "togri": false,
+      "izoh": "besh xonali son olti xonali sondan kichik"
+     },
+     {
+      "matn": "3050 = 3000 + 50",
+      "togri": true,
+      "izoh": "yuzlar va birlar xonasida nol turibdi"
+     },
+     {
+      "matn": "Har bir sinfda to‘rtta xona bor",
+      "togri": false,
+      "izoh": "har bir sinfda uchta xona bor"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qanday sonlar natural sonlar deyiladi?",
+      "javob": "sanashda ishlatiladigan sonlar"
+     },
+     {
+      "savol": "Eng kichik natural son qaysi?",
+      "javob": "1"
+     },
+     {
+      "savol": "Nechta raqam bor?",
+      "javob": "10 ta"
+     },
+     {
+      "savol": "Birlar sinfidan keyin qaysi sinf keladi?",
+      "javob": "minglar sinfi"
+     },
+     {
+      "savol": "Bir millionda nechta nol bor?",
+      "javob": "6 ta"
+     },
+     {
+      "savol": "Eng katta ikki xonali son qaysi?",
+      "javob": "99"
+     },
+     {
+      "savol": "Eng kichik to‘rt xonali son qaysi?",
+      "javob": "1000"
+     },
+     {
+      "savol": "909 sonidagi ikkita 9 bir xil qiymatga egami?",
+      "javob": "yo‘q: biri 9 yuzlik, ikkinchisi 9 birlik"
+     },
+     {
+      "savol": "Qaysi biri katta: 45 678 yoki 45 687?",
+      "javob": "45 687"
+     },
+     {
+      "savol": "«Algoritm» so‘zi kimning nomidan olingan?",
+      "javob": "Muhammad al-Xorazmiy"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Natural son va raqam",
+      "matn": "Natural sonlar — sanoq sonlari: 1, 2, 3, … Ular 10 ta raqam yordamida yoziladi. 0 natural son emas, eng katta natural son yo‘q.",
+      "savol": "Raqam va sonning farqi nimada?"
+     },
+     {
+      "nom": "Xonalar va sinflar",
+      "matn": "Son o‘ngdan chapga uchtadan raqamli sinflarga ajratiladi: birlar, minglar, millionlar, milliardlar. Har sinfda birlar, o‘nlar, yuzlar xonasi bor.",
+      "savol": "12 345 678 sonida millionlar sinfida qaysi son turibdi?"
+     },
+     {
+      "nom": "O‘qish va yozish",
+      "matn": "Son chapdan o‘ngga sinfma-sinf o‘qiladi. Yozishda bo‘sh xonalarga nol qo‘yiladi: uch million besh — 3 000 005.",
+      "savol": "Yigirma ming o‘n besh sonini raqamlar bilan yozing."
+     },
+     {
+      "nom": "Taqqoslash",
+      "matn": "Raqamlari ko‘p son katta. Raqamlar soni teng bo‘lsa, chapdan boshlab xonalar solishtiriladi.",
+      "savol": "8091 va 8109 dan qaysi biri katta?"
+     }
+    ],
+    "muammoli_savol": "Bir bola: «Men eng katta sonni bilaman — u milliard!» dedi. Unga qanday e’tiroz bildirasiz?",
+    "keys": {
+     "vaziyat": "Do‘kon egasi chekka «bir million ikki yuz ming besh yuz so‘m» deb yozishi kerak edi, lekin shoshilib 120 500 deb yozib qo‘ydi. Xaridor chekdagi summani to‘ladi.",
+     "savollar": [
+      "To‘g‘ri yozuv qanday bo‘lishi kerak edi?",
+      "Do‘kon egasi qancha kam pul oldi va xato nimadan kelib chiqdi?"
+     ]
+    },
+    "tezis": "Nol ixtiro qilinmaganida katta sonlarni yozib bo‘lmasdi",
+    "taqqoslash": {
+     "a": "Raqam",
+     "b": "Son",
+     "umumiy": [
+      "matematik belgilar bilan yoziladi",
+      "sanoq bilan bog‘liq"
+     ],
+     "a_farq": [
+      "faqat 10 ta",
+      "sonni yozish uchun belgi"
+     ],
+     "b_farq": [
+      "cheksiz ko‘p",
+      "miqdorni bildiradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Natural son",
+     "shoxlar": [
+      {
+       "nom": "Yozilishi",
+       "bandlar": [
+        "raqamlar",
+        "xonalar",
+        "sinflar"
+       ]
+      },
+      {
+       "nom": "Xossalari",
+       "bandlar": [
+        "eng kichigi 1",
+        "eng kattasi yo‘q",
+        "0 kirmaydi"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "o‘qish",
+        "yozish",
+        "taqqoslash"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "aholi soni",
+        "masofa",
+        "narx"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "O‘zim hech narsa emasman, lekin sonning oxiriga tursam, uni o‘n barobar oshiraman. Men kimman?",
+     "javob": "nol"
+    },
+    "hikmat": "Hisobini bilmagan hamyonidan ayrilar.",
+    "kalit_soz": "RAQAM",
+    "xato_yechim": {
+     "shart": "«To‘rt million sakkiz ming o‘n ikki» sonini raqamlar bilan yozing.",
+     "xato": "4 812",
+     "togri": "4 008 012",
+     "sabab": "har bir sinfda uchta xona bo‘lishi kerak; bo‘sh xonalarga nol yozilmagan"
+    },
+    "guruh_nomlari": [
+     "Birliklar",
+     "Mingliklar",
+     "Millionlar",
+     "Milliardlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sonlar ovchisi»",
+     "topshiriq": "Guruhga gazeta parchasi yoki chek beriladi. Undagi uchta eng katta sonni toping, sinflar jadvaliga yozing, o‘qing va o‘sish tartibida joylashtiring."
+    },
+    "vazifalar": {
+     "A": "O‘qing va daftarga so‘z bilan yozing: 7 204; 30 050; 1 000 001.",
+     "B": "Oilangizdagi kattalardan uchta katta sonni (masalan, shahar aholisi, uy narxi, hisoblagich ko‘rsatkichi) so‘rab yozing va ularni taqqoslang.",
+     "C": "«Milliard qancha katta?» mavzusida kichik tadqiqot: bir milliard soniya necha yilga yaqinligini kattalar yordamida aniqlang va xulosa yozing."
+    },
+    "sinkveyn": [
+     "Son",
+     "natural, cheksiz",
+     "sanaydi, taqqoslaydi, tartiblaydi",
+     "Raqamning qiymati o‘rniga bog‘liq",
+     "Miqdor"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Kutubxonaga to‘rt kunda kitoblar keltirildi. Har bir guruh o‘z kunidagi sonni topadi, so‘ng birgalikda eng ko‘p kitob kelgan kun aniqlanadi.",
+     "qismlar": [
+      "1-guruh: 2000 + 300 + 5 sonini yozing",
+      "2-guruh: ikki ming uch yuz ellik sonini yozing",
+      "3-guruh: 2, 3, 0, 5 raqamlaridan eng kichik to‘rt xonali sonni tuzing",
+      "4-guruh: 2349 dan keyingi sonni yozing"
+     ],
+     "yakun": "Sonlar: 2305, 2350, 2035, 2350. Eng ko‘p kitob 2- va 4-kunlari kelgan (2350 tadan), eng kami 3-kuni (2035)."
+    }
+   }
+  },
+  {
+   "mavzu": "Sonlarni yaxlitlash",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yaxlitlash nima uchun kerak?",
+      "matn": "Hayotda har doim ham aniq son kerak bo‘lmaydi. «Stadionga 34 872 tomoshabin keldi» deyish o‘rniga «taxminan 35 000 tomoshabin keldi» deymiz. Sonni unga yaqin, lekin eslab qolish va hisoblash oson bo‘lgan «dumaloq» son bilan almashtirish yaxlitlash deyiladi. Yaxlitlangan son taqribiy qiymat bo‘ladi va ≈ (taxminan teng) belgisi bilan yoziladi.",
+      "misol": "Maktabgacha 1 km 980 m yo‘l bor. Biz «maktabgacha taxminan 2 km» deymiz: 1980 ≈ 2000.",
+      "savol": "≈ belgisi qanday o‘qiladi?",
+      "javob": "taxminan teng",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Son qaysi «dumaloq» songa yaqin?",
+      "matn": "Son nurida 47 soni 40 va 50 orasida turadi. U 40 dan 7 birlik, 50 dan esa 3 birlik uzoqda. Demak, 47 soni 50 ga yaqinroq: 47 ≈ 50. 42 soni esa 40 ga yaqinroq: 42 ≈ 40. O‘rtada turgan 45 sonini kelishuvga ko‘ra katta tomonga yaxlitlaymiz: 45 ≈ 50.",
+      "misol": "63 soni 60 va 70 orasida: 60 gacha 3 birlik, 70 gacha 7 birlik. Demak, 63 ≈ 60.",
+      "savol": "78 soni 70 ga yaqinmi yoki 80 gami?",
+      "javob": "80 ga (2 birlik uzoqlikda)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yaxlitlash qoidasi",
+      "matn": "Sonni biror xonagacha yaxlitlash uchun: 1) shu xonadagi raqamni belgilaymiz; 2) undan keyingi (o‘ngdagi) raqamga qaraymiz; 3) agar u 0, 1, 2, 3 yoki 4 bo‘lsa — belgilangan raqam o‘zgarmaydi; agar 5, 6, 7, 8 yoki 9 bo‘lsa — belgilangan raqamga 1 qo‘shiladi; 4) belgilangan xonadan keyingi barcha raqamlar nol bilan almashtiriladi.",
+      "misol": "3476 ni yuzliklargacha yaxlitlaymiz: yuzlar xonasida 4, undan keyin 7 turibdi. 7 ≥ 5, demak 4 ga 1 qo‘shamiz: 3476 ≈ 3500.",
+      "savol": "3476 ni mingliklargacha yaxlitlang.",
+      "javob": "3000 (mingdan keyingi raqam 4)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Turli xonalargacha yaxlitlash",
+      "matn": "Bitta sonni turli xonalargacha yaxlitlash mumkin va natijalar har xil bo‘ladi. Qaysi xonagacha yaxlitlash kerakligi vaziyatga bog‘liq: do‘konda so‘mlar yuzlik yoki mingliklargacha, shahar aholisi mingliklargacha, davlat aholisi millionlargacha yaxlitlanadi.",
+      "misol": "28 549: o‘nliklargacha — 28 550; yuzliklargacha — 28 500; mingliklargacha — 29 000; o‘n mingliklargacha — 30 000.",
+      "savol": "6 950 ni yuzliklargacha yaxlitlang.",
+      "javob": "7 000 (9 ga 1 qo‘shilganda keyingi xonaga o‘tadi)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chamalab hisoblash",
+      "matn": "Yaxlitlash natijani tez chamalash va javobni tekshirish imkonini beradi. Avval sonlar yaxlitlanadi, so‘ng amal og‘zaki bajariladi. Chamalangan natija aniq javobga yaqin bo‘ladi; agar aniq javob undan juda uzoq chiqsa, hisobda xato bor.",
+      "misol": "Do‘konda 4 850 so‘mlik non va 11 900 so‘mlik sut oldik. Chamalaymiz: 5000 + 12000 = 17000 so‘m atrofida. 20 000 so‘m yetadi.",
+      "savol": "298 + 503 yig‘indini chamalang.",
+      "javob": "taxminan 800 (300 + 500)",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Sonni biror xonagacha yaxlitlashda shu xonadan keyingi raqamga qaraladi: u 0–4 bo‘lsa, xonadagi raqam o‘zgarmaydi, 5–9 bo‘lsa, 1 ga ortadi; undan keyingi barcha raqamlar nol bilan almashtiriladi.",
+    "misollar": [
+     {
+      "shart": "8 362 sonini o‘nliklargacha yaxlitlang.",
+      "yechim": [
+       "O‘nlar xonasida 6 turibdi.",
+       "Undan keyingi raqam — 2; u 5 dan kichik.",
+       "6 o‘zgarmaydi, birlar xonasiga 0 yozamiz: 8 360."
+      ],
+      "javob": "8 362 ≈ 8 360"
+     },
+     {
+      "shart": "45 781 sonini mingliklargacha yaxlitlang.",
+      "yechim": [
+       "Minglar xonasida 5 turibdi.",
+       "Undan keyingi raqam — 7; u 5 dan katta.",
+       "5 ga 1 qo‘shamiz — 6, keyingi raqamlar o‘rniga nollar: 46 000."
+      ],
+      "javob": "45 781 ≈ 46 000"
+     },
+     {
+      "shart": "19 960 sonini yuzliklargacha yaxlitlang.",
+      "yechim": [
+       "Yuzlar xonasida 9 turibdi, undan keyingi raqam — 6.",
+       "9 ga 1 qo‘shsak 10 bo‘ladi: yuzlar xonasiga 0 yozib, 1 ni minglar xonasiga o‘tkazamiz.",
+       "Minglar xonasida 9 + 1 = 10, yana 1 ni o‘n minglar xonasiga o‘tkazamiz: 20 000."
+      ],
+      "javob": "19 960 ≈ 20 000"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Do‘kon cheki",
+      "topshiriq": "Xaridlar: guruch — 18 750 so‘m, yog‘ — 23 400 so‘m, shakar — 11 950 so‘m, choy — 7 300 so‘m. a) Har bir narxni mingliklargacha yaxlitlang. b) Jami xaridni chamalang. d) 60 000 so‘m yetadimi?",
+      "yechim": "a) 19 000; 23 000; 12 000; 7 000. b) 19000 + 23000 + 12000 + 7000 = 61000 so‘m atrofida. d) Chamalashga ko‘ra yetmasligi mumkin; aniq hisob: 18750 + 23400 + 11950 + 7300 = 61400 so‘m — 60 000 so‘m yetmaydi.",
+      "mahsulot": "yaxlitlangan chek va xulosa"
+     },
+     {
+      "nom": "Tog‘lar balandligi",
+      "topshiriq": "Cho‘qqilar: Hazrati Sulton — 4 643 m, Katta Chimyon — 3 309 m, Beshtor — 4 299 m, Adelunga — 4 301 m. a) Har birini yuzliklargacha yaxlitlang. b) Qaysi ikki cho‘qqi yaxlitlangandan keyin bir xil bo‘lib qoldi? d) Bu nimani anglatadi?",
+      "yechim": "a) 4 600; 3 300; 4 300; 4 300. b) Beshtor va Adelunga — ikkalasi ham 4 300 m. d) Yaxlitlangan sonlar teng bo‘lsa ham, aniq sonlar har xil bo‘lishi mumkin: yaxlitlash aniqlikni kamaytiradi.",
+      "mahsulot": "jadval: aniq va yaxlitlangan balandlik"
+     },
+     {
+      "nom": "Qaysi sonlar yashiringan?",
+      "topshiriq": "O‘nliklargacha yaxlitlanganda 70 hosil bo‘ldi. a) Bu qaysi natural sonlar bo‘lishi mumkin? b) Ularning eng kichigi va eng kattasi qaysi? d) Nechta shunday son bor?",
+      "yechim": "a) 65, 66, 67, 68, 69, 70, 71, 72, 73, 74. b) eng kichigi 65, eng kattasi 74. d) 10 ta.",
+      "mahsulot": "son nurida belgilangan oraliq"
+     },
+     {
+      "nom": "Muxbir xatosi",
+      "topshiriq": "Gazetada: «Marafonda 12 486 kishi qatnashdi, bu taxminan 13 000 kishi», deb yozilgan. a) Muxbir to‘g‘ri yaxlitladimi? b) To‘g‘ri javob qanday? d) Qoidaning qaysi qadamida xato qilingan?",
+      "yechim": "a) Noto‘g‘ri. b) 12 486 ≈ 12 000, chunki mingdan keyingi raqam 4. d) Muxbir keyingi bitta raqamga emas, sonning oxiriga (86 ga) qaragan yoki zanjir qilib ikki marta yaxlitlagan.",
+      "mahsulot": "tuzatilgan xabar matni"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "74 ni o‘nliklargacha yaxlitlang.",
+      "javob": "70"
+     },
+     {
+      "shart": "385 ni o‘nliklargacha yaxlitlang.",
+      "javob": "390"
+     },
+     {
+      "shart": "2 449 ni yuzliklargacha yaxlitlang.",
+      "javob": "2 400"
+     },
+     {
+      "shart": "67 500 ni mingliklargacha yaxlitlang.",
+      "javob": "68 000"
+     },
+     {
+      "shart": "999 ni o‘nliklargacha yaxlitlang.",
+      "javob": "1 000"
+     },
+     {
+      "shart": "Chamalang: 612 − 197.",
+      "javob": "taxminan 400 (600 − 200)"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Keyingi raqam emas, oxirgi raqamga qarab yaxlitlaydi",
+      "sabab": "qoidaning «bevosita keyingi raqam» qismini e’tiborsiz qoldiradi",
+      "oldini_olish": "kerakli xonaning tagiga chizib, keyingi bitta raqamni doiraga olish"
+     },
+     {
+      "xato": "Zanjirli yaxlitlash: 2 446 → 2 450 → 2 500",
+      "sabab": "yaxlitlangan sonni yana yaxlitlaydi",
+      "oldini_olish": "har doim dastlabki sondan yaxlitlash; 2 446 ≈ 2 400 ekanini son nurida ko‘rsatish"
+     },
+     {
+      "xato": "Keyingi raqamlarni nolga almashtirish o‘rniga tashlab yuboradi: 3 476 ≈ 35",
+      "sabab": "nollar xonalarni saqlashini tushunmaydi",
+      "oldini_olish": "yaxlitlashdan oldin va keyin raqamlar sonini solishtirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "aholi soni, masofa va balandliklar odatda yaxlitlangan holda aytiladi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "xarid oldidan narxlarni yaxlitlab, pul yetish-yetmasligi chamalanadi"
+     },
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "o‘lchash natijalari asbob aniqligigacha yaxlitlab yoziladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Oilaviy xarid rejasi»",
+     "muammo": "Bozorga borishdan oldin pul yetishini qanday tez bilish mumkin?",
+     "mahsulot": "xaridlar ro‘yxati: aniq narx, yaxlitlangan narx, chamalangan va aniq jami",
+     "bosqichlar": [
+      "ro‘yxat tuzish",
+      "narxlarni aniqlash",
+      "yaxlitlash",
+      "chamalab qo‘shish",
+      "aniq hisob bilan solishtirish",
+      "xulosa"
+     ],
+     "guruh_vazifalari": [
+      "Oziq-ovqat xaridi ro‘yxatini tuzing va narxlarni mingliklargacha yaxlitlang",
+      "O‘quv qurollari ro‘yxatini tuzing va narxlarni yuzliklargacha yaxlitlang",
+      "Chamalangan va aniq jami orasidagi farqni toping",
+      "Natijalarni plakatda jadval qilib ko‘rsating"
+     ],
+     "mezonlar": [
+      "yaxlitlash to‘g‘ri",
+      "chamalash izohlangan",
+      "aniq hisob bilan solishtirilgan",
+      "xulosa bor",
+      "jadval tushunarli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Taxminiy sonlar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Stadion",
+       "matn": "Tablo: bugun o‘yinga 34 872 tomoshabin keldi. Sharhlovchi bu sonni mingliklargacha yaxlitlab aytmoqchi.",
+       "topshiriq": "Sharhlovchi qaysi sonni aytadi?",
+       "javob": "35 000",
+       "rasm": ""
+      },
+      {
+       "nom": "Yo‘l ko‘rsatkichi",
+       "matn": "Ko‘rsatkichda: Toshkent — 287 km. Haydovchi yo‘lovchiga masofani yuzliklargacha yaxlitlab aytdi.",
+       "topshiriq": "Haydovchi necha kilometr dedi?",
+       "javob": "300 km",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "Sotuvchi tarozida 2 kg 480 g uzum tortdi va «taxminan ikki yarim kilo» dedi.",
+       "topshiriq": "2 480 g ni yuzliklargacha yaxlitlang.",
+       "javob": "2 500 g",
+       "rasm": ""
+      },
+      {
+       "nom": "Ob-havo markazi",
+       "matn": "Yil davomida 318 mm yog‘in yog‘di. Sinoptik hisobotga o‘nliklargacha yaxlitlab yozadi.",
+       "topshiriq": "Hisobotga qaysi son yoziladi?",
+       "javob": "320 mm",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "guruh bilan birga yuring",
+      "yo‘lda ehtiyot bo‘ling",
+      "savolni navbat bilan bering"
+     ],
+     "kundalik": [
+      "Qaysi bekatda son katta tomonga yaxlitlandi?",
+      "Qayerda aniq son, qayerda taxminiy son kerak?",
+      "Yaxlitlash nimani osonlashtiradi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yaxlitlash",
+      "tarif": "sonni unga yaqin «dumaloq» son bilan almashtirish"
+     },
+     {
+      "atama": "Taqribiy qiymat",
+      "tarif": "aniq songa yaqin, lekin unga teng bo‘lmagan qiymat"
+     },
+     {
+      "atama": "≈ belgisi",
+      "tarif": "«taxminan teng» degan ma’noni bildiradi"
+     },
+     {
+      "atama": "Chamalash",
+      "tarif": "yaxlitlangan sonlar bilan natijani taxminan hisoblash"
+     },
+     {
+      "atama": "Kamayti bilan yaxlitlash",
+      "tarif": "yaxlitlangan son dastlabki sondan kichik chiqadigan holat"
+     },
+     {
+      "atama": "Ortig‘i bilan yaxlitlash",
+      "tarif": "yaxlitlangan son dastlabki sondan katta chiqadigan holat"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "47 ≈ 50 (o‘nliklargacha)",
+      "togri": true,
+      "izoh": "keyingi raqam 7, u 5 dan katta"
+     },
+     {
+      "matn": "62 ≈ 70 (o‘nliklargacha)",
+      "togri": false,
+      "izoh": "keyingi raqam 2, demak 62 ≈ 60"
+     },
+     {
+      "matn": "350 ≈ 400 (yuzliklargacha)",
+      "togri": true,
+      "izoh": "keyingi raqam 5 bo‘lsa, katta tomonga yaxlitlanadi"
+     },
+     {
+      "matn": "Yaxlitlangan son har doim dastlabki sondan katta bo‘ladi",
+      "togri": false,
+      "izoh": "kichik ham bo‘lishi mumkin: 42 ≈ 40"
+     },
+     {
+      "matn": "1 499 ≈ 1 000 (mingliklargacha)",
+      "togri": true,
+      "izoh": "mingdan keyingi raqam 4"
+     },
+     {
+      "matn": "Yaxlitlashda keyingi raqamlar tashlab yuboriladi",
+      "togri": false,
+      "izoh": "ular nol bilan almashtiriladi"
+     },
+     {
+      "matn": "995 ≈ 1 000 (o‘nliklargacha)",
+      "togri": true,
+      "izoh": "99 o‘nlikka 1 o‘nlik qo‘shiladi"
+     },
+     {
+      "matn": "Tibbiyotda dori miqdorini istalgancha yaxlitlash mumkin",
+      "togri": false,
+      "izoh": "aniqlik muhim bo‘lgan joyda yaxlitlash xavfli"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yaxlitlash nima?",
+      "javob": "sonni unga yaqin dumaloq son bilan almashtirish"
+     },
+     {
+      "savol": "Yaxlitlashda qaysi raqamga qaraladi?",
+      "javob": "kerakli xonadan bevosita keyingi raqamga"
+     },
+     {
+      "savol": "Qaysi raqamlarda xona raqami o‘zgarmaydi?",
+      "javob": "0, 1, 2, 3, 4"
+     },
+     {
+      "savol": "Qaysi raqamlarda xona raqamiga 1 qo‘shiladi?",
+      "javob": "5, 6, 7, 8, 9"
+     },
+     {
+      "savol": "83 ni o‘nliklargacha yaxlitlang.",
+      "javob": "80"
+     },
+     {
+      "savol": "250 ni yuzliklargacha yaxlitlang.",
+      "javob": "300"
+     },
+     {
+      "savol": "7 812 ni mingliklargacha yaxlitlang.",
+      "javob": "8 000"
+     },
+     {
+      "savol": "≈ belgisi nimani bildiradi?",
+      "javob": "taxminan teng"
+     },
+     {
+      "savol": "Chamalash nima uchun kerak?",
+      "javob": "natijani tez taxmin qilish va javobni tekshirish uchun"
+     },
+     {
+      "savol": "O‘nliklargacha yaxlitlanganda 40 bo‘ladigan eng kichik natural son qaysi?",
+      "javob": "35"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yaxlitlash nima?",
+      "matn": "Aniq son o‘rniga unga yaqin, hisoblash oson bo‘lgan dumaloq son olinadi. Natija ≈ belgisi bilan yoziladi: 1980 ≈ 2000.",
+      "savol": "Hayotdan yaxlitlangan songa misol keltiring."
+     },
+     {
+      "nom": "Son nurida yaxlitlash",
+      "matn": "Son ikki dumaloq son orasida turadi. Qaysi biriga yaqin bo‘lsa, o‘shanga yaxlitlanadi. O‘rtada tursa — katta tomonga.",
+      "savol": "36 soni 30 ga yaqinmi yoki 40 gami?"
+     },
+     {
+      "nom": "Qoida",
+      "matn": "Kerakli xonadan keyingi raqam 0–4 bo‘lsa, xona raqami o‘zgarmaydi; 5–9 bo‘lsa, 1 ga ortadi. Keyingi raqamlar nolga aylanadi.",
+      "savol": "5 281 ni yuzliklargacha yaxlitlang."
+     },
+     {
+      "nom": "Chamalash",
+      "matn": "Sonlarni yaxlitlab, amalni og‘zaki bajaramiz: 398 + 205 ≈ 400 + 200. Bu javobni tekshirishga yordam beradi.",
+      "savol": "703 − 296 ayirmani chamalang."
+     }
+    ],
+    "muammoli_savol": "Ikki do‘st 2 450 sonini yuzliklargacha yaxlitladi. Biri 2 400, ikkinchisi 2 500 dedi. Kim haq va nima uchun?",
+    "keys": {
+     "vaziyat": "Sayohatga 28 o‘quvchi boradi. Bitta chipta 14 800 so‘m. Sinf rahbari kassaga bormasdan oldin qancha pul kerakligini chamalamoqchi. U 28 ni 30 ga, 14 800 ni 15 000 ga yaxlitladi.",
+     "savollar": [
+      "Chamalangan summa qancha?",
+      "Chamalangan summa aniq summadan kattami yoki kichikmi va bu nega qulay?"
+     ]
+    },
+    "tezis": "Taxminiy hisob aniq hisobdan foydaliroq bo‘lishi mumkin",
+    "taqqoslash": {
+     "a": "Aniq son",
+     "b": "Yaxlitlangan son",
+     "umumiy": [
+      "bir xil miqdorni ifodalaydi",
+      "hisoblashda ishlatiladi"
+     ],
+     "a_farq": [
+      "haqiqiy qiymat",
+      "bank, dorixona, o‘lchovda kerak"
+     ],
+     "b_farq": [
+      "taxminiy qiymat",
+      "eslab qolish va chamalashga qulay"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yaxlitlash",
+     "shoxlar": [
+      {
+       "nom": "Qoida",
+       "bandlar": [
+        "keyingi raqamga qarash",
+        "0–4: o‘zgarmaydi",
+        "5–9: 1 qo‘shiladi"
+       ]
+      },
+      {
+       "nom": "Xonalar",
+       "bandlar": [
+        "o‘nliklargacha",
+        "yuzliklargacha",
+        "mingliklargacha"
+       ]
+      },
+      {
+       "nom": "Qo‘llanishi",
+       "bandlar": [
+        "chamalash",
+        "javobni tekshirish",
+        "xabar va hisobotlar"
+       ]
+      },
+      {
+       "nom": "Ehtiyot bo‘ling",
+       "bandlar": [
+        "zanjirli yaxlitlash",
+        "aniqlik kerak bo‘lgan joylar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki to‘lqinli chiziqman, tenglikka o‘xshayman, lekin «aynan teng» demayman. Men qaysi belgiman?",
+     "javob": "≈ (taxminan teng) belgisi"
+    },
+    "hikmat": "Avval o‘yla, keyin so‘yla.",
+    "kalit_soz": "TAXMIN",
+    "xato_yechim": {
+     "shart": "2 446 sonini yuzliklargacha yaxlitlang.",
+     "xato": "2 446 ≈ 2 450 ≈ 2 500",
+     "togri": "2 446 ≈ 2 400",
+     "sabab": "son ikki marta ketma-ket yaxlitlangan; yuzlikdan keyingi raqam 4, shuning uchun yuzlar raqami o‘zgarmaydi"
+    },
+    "guruh_nomlari": [
+     "O‘nliklar",
+     "Yuzliklar",
+     "Mingliklar",
+     "Chamachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Chamachi xaridor»",
+     "topshiriq": "Guruhga narxlari yozilgan 5 ta mahsulot kartochkasi va «hamyon» (50 000 so‘m) beriladi. Narxlarni mingliklargacha yaxlitlab, qaysi mahsulotlarga pul yetishini bir daqiqada chamalang, so‘ng aniq hisob bilan tekshiring."
+    },
+    "vazifalar": {
+     "A": "Yaxlitlang: 58 va 134 ni o‘nliklargacha; 2 750 va 6 249 ni yuzliklargacha; 43 500 ni mingliklargacha.",
+     "B": "Uyingizdagi uchta chek yoki kvitansiyadagi summalarni mingliklargacha yaxlitlang va jami xarajatni chamalang.",
+     "C": "Yaxlitlash zarar keltirishi mumkin bo‘lgan uchta vaziyatni (masalan, dori miqdori) va foydali bo‘lgan uchta vaziyatni yozing, izohlang."
+    },
+    "sinkveyn": [
+     "Yaxlitlash",
+     "taxminiy, qulay",
+     "soddalashtiradi, chamalaydi, tekshiradi",
+     "Keyingi raqam taqdirni hal qiladi",
+     "Taqribiy qiymat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Maktab kutubxonasidagi kitoblar to‘rtta javonda turibdi. Har bir guruh o‘z javonidagi kitoblar sonini yuzliklargacha yaxlitlaydi, so‘ng jami chamalanadi.",
+     "qismlar": [
+      "1-guruh: 1 248 ta kitob",
+      "2-guruh: 963 ta kitob",
+      "3-guruh: 1 550 ta kitob",
+      "4-guruh: 782 ta kitob"
+     ],
+     "yakun": "Yaxlitlangan sonlar: 1 200, 1 000, 1 600, 800. Jami chamasi: 1200 + 1000 + 1600 + 800 = 4600 ta kitob atrofida."
+    }
+   }
+  },
+  {
+   "mavzu": "Natural sonlarni qo‘shish va ayirish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Qo‘shish va uning komponentlari",
+      "matn": "Qo‘shish — ikki to‘plamni birlashtirish amali. Qo‘shilayotgan sonlar qo‘shiluvchilar, natija esa yig‘indi deyiladi. Son nurida a ga b ni qo‘shish — a nuqtadan o‘ngga b birlik siljish demakdir.",
+      "misol": "15 + 8 = 23. Bu yerda 15 va 8 — qo‘shiluvchilar, 23 — yig‘indi.",
+      "savol": "40 + 25 = 65 tengligida yig‘indi qaysi son?",
+      "javob": "65",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shish qonunlari",
+      "matn": "O‘rin almashtirish qonuni: qo‘shiluvchilar o‘rni almashsa, yig‘indi o‘zgarmaydi: a + b = b + a. Guruhlash qonuni: uchta sonni qo‘shishda ularni istalgan tartibda guruhlash mumkin: (a + b) + c = a + (b + c). Nolni qo‘shganda son o‘zgarmaydi: a + 0 = a. Bu qonunlar hisobni osonlashtiradi: «dumaloq» son hosil qiladigan qo‘shiluvchilarni birga guruhlaymiz.",
+      "misol": "37 + 48 + 63 = (37 + 63) + 48 = 100 + 48 = 148.",
+      "savol": "Qulay usulda hisoblang: 25 + 19 + 75.",
+      "javob": "(25 + 75) + 19 = 119",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ayirish va uning komponentlari",
+      "matn": "Ayirish — qo‘shishga teskari amal: yig‘indi va bitta qo‘shiluvchi bo‘yicha ikkinchi qo‘shiluvchi topiladi. Qaysi sondan ayirilayotgan bo‘lsa — kamayuvchi, ayrilayotgan son — ayriluvchi, natija — ayirma. Natural sonlarda kamayuvchi ayriluvchidan kichik bo‘lmasligi kerak. Ayirma ikki son biri ikkinchisidan qancha katta ekanini ko‘rsatadi.",
+      "misol": "23 − 8 = 15, chunki 15 + 8 = 23. Bu yerda 23 — kamayuvchi, 8 — ayriluvchi, 15 — ayirma.",
+      "savol": "90 − 35 = 55 tengligida ayriluvchi qaysi son?",
+      "javob": "35",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ustun shaklida qo‘shish va ayirish",
+      "matn": "Ko‘p xonali sonlar ustun shaklida hisoblanadi: birlar birlar ostiga, o‘nlar o‘nlar ostiga yoziladi. Hisob o‘ngdan — birlar xonasidan boshlanadi. Qo‘shishda biror xonada 10 yoki undan ko‘p chiqsa, 1 ta o‘nlik keyingi xonaga o‘tkaziladi. Ayirishda xonadagi raqam yetmasa, chapdagi xonadan 1 ta birlik (ya’ni 10 ta kichik birlik) qarz olinadi.",
+      "misol": "4 586 va 2 739 sonlarini qo‘shamiz. Birlar xonasi 6 + 9 = 15 — 5 yozamiz, 1 dilda; 8 + 3 + 1 = 12 — 2 yozamiz, 1 dilda; 5 + 7 + 1 = 13 — 3 yozamiz, 1 dilda; 4 + 2 + 1 = 7. Javob: 7 325.",
+      "savol": "Ustun shaklida hisob qaysi xonadan boshlanadi?",
+      "javob": "birlar xonasidan (o‘ngdan)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Amallarni tekshirish",
+      "matn": "Qo‘shish ayirish bilan tekshiriladi: yig‘indidan bir qo‘shiluvchini ayirsak, ikkinchi qo‘shiluvchi chiqishi kerak. Ayirish qo‘shish bilan tekshiriladi: ayirmaga ayriluvchini qo‘shsak, kamayuvchi chiqishi kerak. Bundan tashqari, hisobdan oldin natijani yaxlitlab chamalab olish foydali.",
+      "misol": "700 − 264 = 436. Tekshirish: 436 + 264 = 700 — to‘g‘ri.",
+      "savol": "512 − 187 = 325 ekanini qanday tekshirasiz?",
+      "javob": "325 + 187 = 512",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qo‘shishda a + b = b + a va (a + b) + c = a + (b + c). Ayirish — qo‘shishga teskari amal: a − b = c bo‘lsa, c + b = a. Ko‘p xonali sonlar ustun shaklida, birlar xonasidan boshlab qo‘shiladi va ayriladi.",
+    "misollar": [
+     {
+      "shart": "Qulay usulda hisoblang: 246 + 189 + 54.",
+      "yechim": [
+       "246 va 54 qo‘shilsa, dumaloq son chiqadi.",
+       "O‘rin almashtirish va guruhlash qonunidan foydalanamiz: (246 + 54) + 189.",
+       "246 + 54 = 300.",
+       "300 + 189 = 489."
+      ],
+      "javob": "489"
+     },
+     {
+      "shart": "Hisoblang: 8 003 − 4 567.",
+      "yechim": [
+       "Birlar: 3 dan 7 ayrilmaydi; o‘nlar va yuzlar xonasida 0, shuning uchun mingliklardan qarz olamiz: 8 ming 7 ming bo‘ladi, yuzlar 9, o‘nlar 9, birlar 13.",
+       "13 − 7 = 6.",
+       "9 − 6 = 3.",
+       "9 − 5 = 4.",
+       "7 − 4 = 3. Natija: 3 436.",
+       "Tekshiramiz: 3436 + 4567 = 8003."
+      ],
+      "javob": "3 436"
+     },
+     {
+      "shart": "Kitobda 320 bet bor. Dilnoza birinchi kuni 85 bet, ikkinchi kuni 97 bet o‘qidi. O‘qish uchun yana necha bet qoldi?",
+      "yechim": [
+       "Ikki kunda o‘qilgani: 85 + 97 = 182 bet.",
+       "Qolgani: 320 − 182 = 138 bet.",
+       "Tekshirish: 138 + 182 = 320."
+      ],
+      "javob": "138 bet"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sayohat yo‘li",
+      "topshiriq": "Avtobus Samarqanddan Buxoroga 270 km, Buxorodan Xivaga 450 km yurdi, so‘ng Xivadan Nukusga 180 km yo‘l bosdi. a) Jami yo‘l necha km? b) Eng uzun bo‘lak eng qisqasidan necha km uzun? d) Jami yo‘lni qulay usulda qanday hisoblash mumkin?",
+      "yechim": "a) 270 + 450 + 180 = 900 km. b) 450 − 180 = 270 km. d) (270 + 180) + 450 = 450 + 450 = 900.",
+      "mahsulot": "yo‘l sxemasi va hisob"
+     },
+     {
+      "nom": "Maktab kutubxonasi",
+      "topshiriq": "Kutubxonada 5 240 ta kitob bor edi. O‘quv yili boshida 1 385 ta kitob tarqatildi, keyin 620 ta yangi kitob keltirildi. a) Tarqatilgandan keyin nechta kitob qoldi? b) Hozir nechta kitob bor? d) Javobni tekshiring.",
+      "yechim": "a) 5240 − 1385 = 3855 ta. b) 3855 + 620 = 4475 ta. d) 4475 − 620 = 3855; 3855 + 1385 = 5240.",
+      "mahsulot": "ustun shaklidagi hisob va tekshiruv"
+     },
+     {
+      "nom": "Sehrli kvadrat",
+      "topshiriq": "3×3 kvadratning har bir satri, ustuni va diagonalidagi sonlar yig‘indisi 15 ga teng bo‘lishi kerak. Birinchi satr: 2, 7, 6. Ikkinchi satr: 9, ?, 1. Uchinchi satr: 4, ?, 8. Bo‘sh kataklarni to‘ldiring va tekshiring.",
+      "yechim": "O‘rtadagi katak: 15 − 9 − 1 = 5. Pastdagi katak: 15 − 4 − 8 = 3. Tekshirish: ustun 7 + 5 + 3 = 15; diagonal 2 + 5 + 8 = 15; diagonal 6 + 5 + 4 = 15.",
+      "mahsulot": "to‘ldirilgan sehrli kvadrat"
+     },
+     {
+      "nom": "Tez hisobchilar",
+      "topshiriq": "Qonunlardan foydalanib qulay usulda hisoblang: a) 125 + 387 + 875; b) 64 + 99 + 36; d) 1 500 + 728 + 500 + 272.",
+      "yechim": "a) (125 + 875) + 387 = 1000 + 387 = 1387. b) (64 + 36) + 99 = 100 + 99 = 199. d) (1500 + 500) + (728 + 272) = 2000 + 1000 = 3000.",
+      "mahsulot": "guruhlash ko‘rsatilgan yechimlar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Hisoblang: 3 478 + 2 256.",
+      "javob": "5 734"
+     },
+     {
+      "shart": "Hisoblang: 9 000 − 2 615.",
+      "javob": "6 385"
+     },
+     {
+      "shart": "Qulay usulda: 18 + 57 + 82.",
+      "javob": "157"
+     },
+     {
+      "shart": "Noma’lum qo‘shiluvchini toping: 340 + x = 900.",
+      "javob": "x = 560"
+     },
+     {
+      "shart": "Kamayuvchini toping: x − 125 = 475.",
+      "javob": "x = 600"
+     },
+     {
+      "shart": "Bir son ikkinchisidan 48 ga katta. Kichigi 152. Kattasini toping.",
+      "javob": "200"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ustunda sonlarni chapdan tekislab yozadi",
+      "sabab": "xonalar mosligini e’tiborsiz qoldiradi",
+      "oldini_olish": "katakli daftarda har bir xonani alohida ustunga yozish, birlardan boshlab tekislash"
+     },
+     {
+      "xato": "Nolli kamayuvchidan ayirishda qarz olishni chalkashtiradi: 8 003 − 4 567 = 4 564",
+      "sabab": "har bir xonada kattasidan kichigini ayiradi",
+      "oldini_olish": "qarz olishni xonama-xona yozib ko‘rsatish va javobni qo‘shish bilan tekshirish"
+     },
+     {
+      "xato": "Dildagi birlikni qo‘shishni unutadi",
+      "sabab": "o‘tkazilgan o‘nlikni belgilamaydi",
+      "oldini_olish": "o‘tkazilgan birlikni xona ustiga kichik raqam bilan yozib qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "shaharlar orasidagi masofalar qo‘shiladi, balandliklar farqi ayirish bilan topiladi"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "voqealar orasida necha yil o‘tgani ayirish bilan hisoblanadi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "daromad va xarajat hisobi: daromad qo‘shiladi, xarajat ayriladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinf byudjeti»",
+     "muammo": "Sinf bayrami uchun yig‘ilgan pul nimalarga yetadi va qancha ortadi?",
+     "mahsulot": "daromad-xarajat jadvali va qoldiq hisobi",
+     "bosqichlar": [
+      "yig‘ilgan pulni aniqlash",
+      "xarajatlar ro‘yxatini tuzish",
+      "xarajatlarni qo‘shish",
+      "qoldiqni ayirish bilan topish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Bezaklar xarajatini hisoblang",
+      "Shirinliklar xarajatini hisoblang",
+      "Sovg‘alar xarajatini hisoblang",
+      "Jami xarajat va qoldiqni toping, tekshiring"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "tekshiruv bajarilgan",
+      "qulay usul qo‘llangan",
+      "jadval tartibli",
+      "xulosa asosli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Hisob-kitob ko‘chasi»",
+     "bekatlar": [
+      {
+       "nom": "Avtobus bekati",
+       "matn": "Avtobusda 34 yo‘lovchi bor edi. Bekatda 12 kishi tushdi va 9 kishi chiqdi.",
+       "topshiriq": "Avtobusda nechta yo‘lovchi bo‘ldi?",
+       "javob": "31 (34 − 12 + 9)",
+       "rasm": ""
+      },
+      {
+       "nom": "Kitob do‘koni",
+       "matn": "Daftar 3 500 so‘m, ruchka 2 800 so‘m, chizg‘ich 1 700 so‘m turadi.",
+       "topshiriq": "Uchalasi uchun qancha to‘lanadi?",
+       "javob": "8 000 so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Kassa",
+       "matn": "Xaridor 8 000 so‘mlik xarid uchun 10 000 so‘m berdi.",
+       "topshiriq": "Qaytim qancha?",
+       "javob": "2 000 so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Tarix muzeyi",
+       "matn": "Mirzo Ulug‘bek 1394-yilda tug‘ilgan, rasadxonasi 1429-yilda qurib bitkazilgan.",
+       "topshiriq": "Rasadxona qurilganda Ulug‘bek necha yoshda edi?",
+       "javob": "35 yoshda (1429 − 1394)",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "ko‘chada yo‘l qoidalariga rioya qiling",
+      "guruhdan ajralmang",
+      "kassada navbatga turing"
+     ],
+     "kundalik": [
+      "Qaysi bekatda qo‘shdik, qaysisida ayirdik?",
+      "Qaytimni qanday tekshirish mumkin?",
+      "Qulay usulni qayerda qo‘lladik?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Qo‘shiluvchi",
+      "tarif": "qo‘shilayotgan sonlarning har biri"
+     },
+     {
+      "atama": "Yig‘indi",
+      "tarif": "qo‘shish natijasi"
+     },
+     {
+      "atama": "Kamayuvchi",
+      "tarif": "undan ayirilayotgan son"
+     },
+     {
+      "atama": "Ayriluvchi",
+      "tarif": "ayrilayotgan son"
+     },
+     {
+      "atama": "Ayirma",
+      "tarif": "ayirish natijasi; bir son ikkinchisidan qancha katta ekanini ko‘rsatadi"
+     },
+     {
+      "atama": "O‘rin almashtirish qonuni",
+      "tarif": "qo‘shiluvchilar o‘rni almashganda yig‘indi o‘zgarmaydi: a + b = b + a"
+     },
+     {
+      "atama": "Guruhlash qonuni",
+      "tarif": "(a + b) + c = a + (b + c)"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "25 + 40 va 40 + 25 yig‘indilari teng",
+      "togri": true,
+      "izoh": "o‘rin almashtirish qonuni"
+     },
+     {
+      "matn": "Ayirishda ham o‘rin almashtirish mumkin: 9 − 4 va 4 − 9 bir xil",
+      "togri": false,
+      "izoh": "ayirishda o‘rin almashtirish qonuni yo‘q"
+     },
+     {
+      "matn": "Songa nol qo‘shilsa, son o‘zgarmaydi",
+      "togri": true,
+      "izoh": "a + 0 = a"
+     },
+     {
+      "matn": "Ayirish qo‘shish bilan tekshiriladi",
+      "togri": true,
+      "izoh": "ayirma + ayriluvchi = kamayuvchi"
+     },
+     {
+      "matn": "Ustun shaklida hisob chapdan boshlanadi",
+      "togri": false,
+      "izoh": "o‘ngdan, birlar xonasidan boshlanadi"
+     },
+     {
+      "matn": "1000 − 1 = 999",
+      "togri": true,
+      "izoh": "eng kichik to‘rt xonali sondan oldingi son"
+     },
+     {
+      "matn": "Sondan o‘zini ayirsak, 1 chiqadi",
+      "togri": false,
+      "izoh": "a − a = 0"
+     },
+     {
+      "matn": "Yig‘indi har bir qo‘shiluvchidan kichik bo‘lmaydi",
+      "togri": true,
+      "izoh": "natural sonlarda yig‘indi qo‘shiluvchilardan katta"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qo‘shish natijasi nima deyiladi?",
+      "javob": "yig‘indi"
+     },
+     {
+      "savol": "Ayirish natijasi nima deyiladi?",
+      "javob": "ayirma"
+     },
+     {
+      "savol": "O‘rin almashtirish qonunini ayting.",
+      "javob": "a + b = b + a"
+     },
+     {
+      "savol": "Noma’lum qo‘shiluvchi qanday topiladi?",
+      "javob": "yig‘indidan ma’lum qo‘shiluvchi ayriladi"
+     },
+     {
+      "savol": "Noma’lum kamayuvchi qanday topiladi?",
+      "javob": "ayirmaga ayriluvchi qo‘shiladi"
+     },
+     {
+      "savol": "Noma’lum ayriluvchi qanday topiladi?",
+      "javob": "kamayuvchidan ayirma ayriladi"
+     },
+     {
+      "savol": "99 + 1 nechaga teng?",
+      "javob": "100"
+     },
+     {
+      "savol": "500 − 500 nechaga teng?",
+      "javob": "0"
+     },
+     {
+      "savol": "Qulay usulda: 45 + 28 + 55.",
+      "javob": "128"
+     },
+     {
+      "savol": "Ayirish qanday tekshiriladi?",
+      "javob": "ayirmaga ayriluvchini qo‘shib"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qo‘shish",
+      "matn": "Qo‘shiluvchi + qo‘shiluvchi = yig‘indi. Son nurida qo‘shish — o‘ngga siljish. Nol qo‘shilsa, son o‘zgarmaydi.",
+      "savol": "Yig‘indi qo‘shiluvchidan kichik bo‘lishi mumkinmi?"
+     },
+     {
+      "nom": "Qo‘shish qonunlari",
+      "matn": "O‘rin almashtirish: a + b = b + a. Guruhlash: (a + b) + c = a + (b + c). Ular dumaloq son hosil qilib, hisobni tezlashtiradi.",
+      "savol": "Qulay usulda: 73 + 48 + 27."
+     },
+     {
+      "nom": "Ayirish",
+      "matn": "Kamayuvchi − ayriluvchi = ayirma. Ayirish qo‘shishga teskari amal. Ayirma sonlar farqini ko‘rsatadi.",
+      "savol": "84 soni 59 dan nechta katta?"
+     },
+     {
+      "nom": "Ustun shaklida hisob va tekshirish",
+      "matn": "Xonalar bir-birining ostiga yoziladi, hisob birlardan boshlanadi. Qo‘shishda o‘nlik o‘tkaziladi, ayirishda qarz olinadi. Natija teskari amal bilan tekshiriladi.",
+      "savol": "600 − 248 ni hisoblang va tekshiring."
+     }
+    ],
+    "muammoli_savol": "Sardor: «Uchta sonni qaysi tartibda qo‘shsam ham natija bir xil chiqadi, demak ayirishda ham shunday», dedi. U haqmi? Misol bilan isbotlang.",
+    "keys": {
+     "vaziyat": "Oshxona mudiri omborga 1 250 kg kartoshka keltirdi. Birinchi haftada 385 kg, ikkinchi haftada 415 kg sarflandi. Uchinchi haftaga 500 kg kerak bo‘ladi.",
+     "savollar": [
+      "Ikki haftada jami qancha kartoshka sarflandi va omborda qancha qoldi?",
+      "Qolgan kartoshka uchinchi haftaga yetadimi? Hisob bilan asoslang."
+     ]
+    },
+    "tezis": "Aqlli hisobchi avval o‘ylaydi, keyin hisoblaydi",
+    "taqqoslash": {
+     "a": "Qo‘shish",
+     "b": "Ayirish",
+     "umumiy": [
+      "ustun shaklida birlardan boshlab bajariladi",
+      "bir-birini tekshiradi"
+     ],
+     "a_farq": [
+      "o‘rin almashtirish mumkin",
+      "natija kattalashadi"
+     ],
+     "b_farq": [
+      "o‘rin almashtirib bo‘lmaydi",
+      "natija kamayuvchidan katta bo‘lmaydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Qo‘shish va ayirish",
+     "shoxlar": [
+      {
+       "nom": "Qo‘shish",
+       "bandlar": [
+        "qo‘shiluvchi",
+        "yig‘indi",
+        "o‘nlik o‘tkazish"
+       ]
+      },
+      {
+       "nom": "Ayirish",
+       "bandlar": [
+        "kamayuvchi",
+        "ayriluvchi",
+        "ayirma",
+        "qarz olish"
+       ]
+      },
+      {
+       "nom": "Qonunlar",
+       "bandlar": [
+        "o‘rin almashtirish",
+        "guruhlash",
+        "nolning xossasi"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "teskari amal",
+        "chamalash"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikkimiz o‘rnimizni almashsak ham, natijamiz o‘zgarmaydi. Biz kimmiz?",
+     "javob": "qo‘shiluvchilar"
+    },
+    "hikmat": "Tomchi-tomchi ko‘l bo‘lur.",
+    "kalit_soz": "YIGINDI",
+    "xato_yechim": {
+     "shart": "Hisoblang: 6 002 − 2 348.",
+     "xato": "6 002 − 2 348 = 4 346",
+     "togri": "6 002 − 2 348 = 3 654",
+     "sabab": "har bir xonada katta raqamdan kichigi ayrilgan; aslida birlar xonasiga qarz minglar xonasidan olinadi"
+    },
+    "guruh_nomlari": [
+     "Qo‘shiluvchilar",
+     "Yig‘indilar",
+     "Ayirmalar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinf kassasi»",
+     "topshiriq": "Guruhga «kirim» va «chiqim» kartochkalari beriladi (masalan, +25 000, −8 500, +12 000, −14 300 so‘m). Boshlang‘ich summa 30 000 so‘m. Kartochkalarni ketma-ket qo‘llab, oxirgi qoldiqni toping va natijani boshqa tartibda hisoblab tekshiring."
+    },
+    "vazifalar": {
+     "A": "Ustun shaklida hisoblang va tekshiring: 4 728 + 3 596; 7 000 − 2 843; 5 060 − 1 785.",
+     "B": "Oilangizning bir kunlik xaridlari ro‘yxatini tuzing, jami xarajatni toping va 100 000 so‘mdan qancha qolishini hisoblang.",
+     "C": "O‘zingiz 3×3 sehrli kvadrat tuzing (yig‘indisi 30 bo‘lsin) yoki do‘stingiz uchun «qulay usulda hisobla» turidagi 5 ta misol tayyorlang va yechimini yozing."
+    },
+    "sinkveyn": [
+     "Yig‘indi",
+     "to‘liq, aniq",
+     "qo‘shadi, guruhlaydi, tekshiradi",
+     "O‘rin almashsa ham natija o‘zgarmaydi",
+     "Natija"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Maktab to‘rt kun davomida makulatura yig‘di. Reja — 1 000 kg. Har bir guruh o‘z kunining natijasini hisoblaydi, so‘ng birgalikda reja bajarilgani aniqlanadi.",
+     "qismlar": [
+      "1-guruh: dushanba — 185 kg va 97 kg",
+      "2-guruh: seshanba — 300 kg dan 46 kg kam",
+      "3-guruh: chorshanba — 128 kg va 172 kg",
+      "4-guruh: payshanba — 250 kg dan 34 kg kam"
+     ],
+     "yakun": "Dushanba: 185 + 97 = 282 kg; seshanba: 300 − 46 = 254 kg; chorshanba: 128 + 172 = 300 kg; payshanba: 250 − 34 = 216 kg. Jami: 282 + 254 + 300 + 216 = 1052 kg — reja 52 kg ortig‘i bilan bajarildi."
+    }
+   }
   }
  ]
 }
