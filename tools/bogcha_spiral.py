@@ -171,7 +171,9 @@ IZOH_LANGS = ("uz", "ru", "en")
 IZOH_DICTS = {}             # izoh → {sid: tarjima}; bir marta yuklanadi (selftest o'z lug'atini shu yerga qo'yadi)
 # REV680: bolalarga «sen» — dvigatel shablonlaridagi «siz» shakllari (lug'at kaliti o'zgarmaydi, faqat o'zbekcha chiqish)
 _SEN = (("Keling, ", "Kel, "), ("Qani, toping:", "Qani, top:"), ("keling, ", "kel, "),
-        ("{names} ni o'rgandik", "{names} bilan tanishdik"))   # REV683: «It ni o'rgandik» emas
+        ("{names} ni o'rgandik", "{names} bilan tanishdik"),
+        # REV691: takror darsi harakat bilan boshlanadi (faqat o'zbekcha chiqish; lug'at kaliti o'zgarmaydi)
+        ("Har to'g'ri javob — bitta yulduzcha!", "Har to'g'ri javob — bitta yulduzcha! Avval o'rningdan tur, qo'llaringni silkit: bir, ikki, uch — boshladik!"))   # REV683: «It ni o'rgandik» emas
 
 
 def sen_shakl(matn):
