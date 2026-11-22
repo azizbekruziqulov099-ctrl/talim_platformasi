@@ -609,3 +609,39 @@ def test_ruscha_inglizcha_taqdimotda_ozbekcha_yozuv_qolmaydi():
     # inglizcha taqdimotda o'zbekcha qisqa sarlavhalar ham topiladi, inglizchasi esa yo'q
     assert all(ai._boshqa_tilda(x, "en") for x in ("Ratsional sonlar", "Masofa", "Problem yechish tartibi", "Yo‘q."))
     assert not any(ai._boshqa_tilda(x, "en") for x in ("The cell is the basic unit of life.", "Rational numbers", "Answer: 12"))
+
+
+def test_yoshga_mos_hajm_va_chuqurlik():
+    """11-sinf yoki OTM uchun 1-sinfdagidek «yupqa» taqdimot so'ralmaydi; qo'lda tanlangan sozlama saqlanadi."""
+    from modules.taqdimot_dvigatel import ai
+    assert ai.yosh_band("maktab", "1-sinf") == "1-2" and ai.yosh_band("maktab", "11-sinf") == "10-11"
+    assert ai.yosh_band("bakalavr", "1-kurs") == "b1-2" and ai.yosh_band("bakalavr", "4-kurs") == "b3-4"
+    assert ai.yosh_band("magistr", "2-kurs") == "m" and ai.yosh_band("maktab", "2-kurs magistr") == "m"
+    kichik, katta, otm = ai.yosh_tavsiya("maktab", "1-sinf"), ai.yosh_tavsiya("maktab", "11-sinf"), ai.yosh_tavsiya("magistr", "1-kurs")
+    assert kichik["slayd_soni"] < katta["slayd_soni"] < otm["slayd_soni"] and kichik["hajm"] == "qisqa" and otm["hajm"] == "toliq"
+    assert ai.sozlama_yosh({}, "maktab", "11-sinf") == {"hajm": "batafsil", "slayd_soni": 18}
+    assert ai.sozlama_yosh({"hajm": "qisqa", "slayd_soni": 7}, "maktab", "11-sinf") == {"hajm": "qisqa", "slayd_soni": 7}
+    x11 = ai._xabar("Hosila", "Algebra", "maktab", "11-sinf", "dars", "", "", ai.sozlama_yosh({}, "maktab", "11-sinf"))
+    x1 = ai._xabar("Sanash", "Matematika", "maktab", "1-sinf", "dars", "", "", ai.sozlama_yosh({}, "maktab", "1-sinf"))
+    assert "10–11-SINF" in x11 and "BATAFSIL" in x11 and "jami 18 ta" in x11
+    assert "1–2-SINF" in x1 and "QISQA" in x1 and "mazmun CHUQUR" not in x1
+    # yuqori sinfda och fon ustida oq yozuv chiqmaydi (kontrast)
+    from modules.taqdimot_dvigatel import uslub
+    assert uslub.ustidagi_matn("#fb923c") == "#1A1A1A" and uslub.ustidagi_matn("#1D4E89") == "#FFFFFF"
+
+
+def test_matn_bosh_joyda_kattalashadi_va_ustiga_chiqmaydi():
+    s = Slayd()
+    s.rect(40, 40, 400, 300, fill="#FFFFFF")
+    s.matn(60, 60, 360, 260, "Qisqa matn bo‘sh kartada.", size=15)
+    s.matn(500, 60, 300, 40, "Bu matn tor qutida, deyarli to‘la joy egallaydi va kattalashmaydi.", size=15)
+    s.matn(60, 400, 420, 200, "Ostida rasm bor.", size=15)
+    s.img(60, 440, 200, 150, "rasm:globus")
+    s.matn(60, 640, 300, 14, "https://juda-uzun-havola.example.org/bolinmaydigan/manzil/sahifa-nomi", size=14)
+    els = s.json()["els"]
+    t = [e for e in els if e["k"] == "text"]
+    assert t[0]["sc"] > 1.3 and t[0]["ly"][0]["rs"][0]["sz"] > 20      # bo'sh kartada kattalashdi
+    assert t[1]["sc"] == 1.0                                              # tor qutida o'zgarmadi
+    assert t[2]["sc"] <= 1.6 and t[2]["ly"][-1]["y"] < 440                # rasm ustiga chiqmadi
+    assert t[3]["sc"] < 1.0 and t[3]["ly"][0]["x"] + t[3]["ly"][0]["w"] <= 361   # uzun havola qutidan chiqmadi
+    assert all("_o" not in e for e in els)

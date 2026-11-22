@@ -57,7 +57,8 @@ Javob FAQAT bitta JSON obyekt bo‘lsin, izohsiz.
 
 TIL VA USLUB
 - O‘zbek lotin yozuvi: o‘, g‘, ’ belgilari bilan (masalan: «bo‘lak», «ta’rif»). Imlo xatosiz, ilmiy va tushunarli.
-- Matnlar qisqa: slaydda o‘qiladigan gaplar 1–3 jumla. Batafsil gapni "izoh" maydoniga yoz (o‘qituvchining og‘zaki matni).
+- Slayd matni hajmi «MATN HAJMI» va «YOSHGA MOS CHUQURLIK» bandlariga mos bo‘lsin (kichik sinfda qisqa, yuqori sinf va OTMda boy).
+  Ortiqcha uzun gapni "izoh" maydoniga yoz (o‘qituvchining og‘zaki matni).
 - Muhim so‘z **qalin**, asosiy tushuncha ==rangli== belgilanadi. Formulalar $...$ ichida LaTeX: $\\frac{{a}}{{b}}$, $x^2$, $\\sqrt{{x}}$,
   $\\mathbb{{Z}}$, $a\\in A$, $\\le$, $\\ne$, $\\cdot$. Alohida "formula" maydonida $ belgisisiz LaTeX yoziladi.
 - Faktlar aniq bo‘lsin: tarixiy sana, olim nomi, formulalar to‘g‘ri. Bilmasang — yozma.
@@ -186,6 +187,66 @@ OHANG = {"ilmiy": "ILMIY: aniq atamalar, ta’rif manbasi (muallif, yil), mantiq
          "oyinli": "O‘YINLI: qiziqarli savollar, o‘yin slaydlari ko‘p, bolalarga yaqin til."}
 
 
+# Yoshga mos hajm va chuqurlik: 1-sinf va 11-sinf (yoki magistr) uchun bir xil «yupqa» taqdimot bo'lmasin
+YOSH_TAVSIYA = {"bogcha": ("qisqa", 8), "1-2": ("qisqa", 10), "3-4": ("orta", 12), "5-6": ("orta", 14), "7-9": ("batafsil", 16),
+                "10-11": ("batafsil", 18), "b1-2": ("toliq", 20), "b3-4": ("toliq", 22), "m": ("toliq", 24)}
+YOSH_CHUQURLIK = {
+    "bogcha": "BOLALAR BOG‘CHASI: juda sodda so‘zlar, har slaydda bitta fikr va katta rasm, o‘yin va savol ko‘p; uzun matn yo‘q.",
+    "1-2": "1–2-SINF: sodda va qisqa gaplar, tanish narsalar (olma, o‘yinchoq, oila), har tushunchaga rasm va o‘yin; atamalar minimal.",
+    "3-4": "3–4-SINF: oddiy ta’rif + hayotiy misol + mashq; yangi atama albatta tushuntiriladi; rasmli va o‘yinli slaydlar ko‘p.",
+    "5-6": "5–6-SINF: aniq ta’rif va qoida, har qoidaga yechimli misol, taqqoslash yoki jadval; hayot bilan bog‘lash; 1–2 murakkabroq savol.",
+    "7-9": ("7–9-SINF: to‘liq ta’riflar, qoidalar va formulalar asoslab beriladi; har tushunchaga bosqichma-bosqich yechilgan misol; "
+            "sabab-oqibat, tasnif va taqqoslash jadvallari; tipik xatolar; fanlararo bog‘lanish. Yuzaki, umumiy gaplar yetarli emas."),
+    "10-11": ("10–11-SINF (bitiruvchi, imtihon darajasi): mazmun CHUQUR va BOY bo‘lsin — aniq ilmiy ta’riflar, formulalar va ularning "
+              "kelib chiqishi yoki isboti, qonuniyatlar, 2–4 qadamli murakkab misol va masalalar (imtihon/sertifikat darajasida), "
+              "tasnif va taqqoslash jadvallari, grafik yoki sxema, tipik xatolar, amaliy qo‘llanilishi. Har mazmun slaydida 2–3 element. "
+              "Boshlang‘ich sinfga xos sodda, yuzaki taqdimot QAT’IYAN mumkin emas."),
+    "b1-2": ("BAKALAVR 1–2-KURS (ma’ruza darajasi): akademik mazmun — ta’riflar manba bilan (muallif, yil), tushunchalar tizimi va tasnifi, "
+             "teorema/qonun va isbot yoki asoslash, nazariyalar taqqoslanishi (jadval), olimlar fikri (iqtibos), statistik yoki tadqiqot "
+             "ma’lumotlari, amaliy misol va keys, muammoli savollar. Har mazmun slaydida 2–3 element; adabiyotlar kamida 5 ta."),
+    "b3-4": ("BAKALAVR 3–4-KURS (mutaxassislik darajasi): chuqur nazariya va uning amaliyoti — ilmiy maktablar va yondashuvlar tahlili, "
+             "metodika va texnologiyalar, real keyslar va ularning yechimi, me’yoriy hujjatlar, tadqiqot natijalari (raqamlar), "
+             "tanqidiy tahlil va munozarali masalalar. Maktab darsligi darajasidagi umumiy ma’lumot yetarli emas; adabiyotlar kamida 6 ta."),
+    "m": ("MAGISTRATURA (ilmiy daraja): muammoning ilmiy holati, nazariy-metodologik asoslar, zamonaviy tadqiqotlar va ularning natijalari "
+          "(muallif, yil, raqamlar), tadqiqot metodlari, ilmiy maktablar taqqoslanishi, munozarali va hal qilinmagan masalalar, "
+          "o‘z tadqiqoti uchun xulosa va yo‘nalishlar. Har slayd mazmunga to‘la; adabiyotlar kamida 8 ta (jumladan xorijiy manbalar)."),
+}
+_HAJM_TARTIB = ["qisqa", "orta", "batafsil", "toliq"]
+
+
+def yosh_band(daraja: str = "", sinf="") -> str:
+    """Sinf/kursdan yosh guruhi: bogcha, 1-2 … 10-11, b1-2, b3-4, m. Sinf noma'lum bo'lsa — darajaning o'rtachasi."""
+    d = (daraja or "").lower()
+    sm = str(sinf or "").lower()
+    m = re.search(r"\d+", sm)
+    n = int(m.group()) if m else 0
+    if d.startswith("mag") or "magistr" in sm:
+        return "m"
+    if d.startswith(("bak", "otm", "oliy")) or "kurs" in sm:
+        return "b3-4" if n >= 3 else "b1-2"
+    if d.startswith("bog") or "bog" in sm:
+        return "bogcha"
+    if not n:
+        return "5-6"
+    return "1-2" if n <= 2 else "3-4" if n <= 4 else "5-6" if n <= 6 else "7-9" if n <= 9 else "10-11"
+
+
+def yosh_tavsiya(daraja: str = "", sinf="") -> dict:
+    h, n = YOSH_TAVSIYA[yosh_band(daraja, sinf)]
+    return {"hajm": h, "slayd_soni": n}
+
+
+def sozlama_yosh(z: dict | None, daraja: str = "", sinf="") -> dict:
+    """Foydalanuvchi hajm yoki slayd sonini bermagan bo'lsa — yoshga mos tavsiya qo'yiladi."""
+    z = dict(z) if isinstance(z, dict) else {}
+    t = yosh_tavsiya(daraja, sinf)
+    if z.get("hajm") not in HAJM:
+        z["hajm"] = t["hajm"]
+    if not z.get("slayd_soni"):
+        z["slayd_soni"] = t["slayd_soni"]
+    return z
+
+
 def sozlama_toza(z: dict | None) -> dict:
     z = z if isinstance(z, dict) else {}
     try:
@@ -238,6 +299,7 @@ def _til_buyrugi(til: str) -> str:
 def _xabar(mavzu, fan, daraja, sinf, tur, qoshimcha, manba, sozlama=None):
     s = f"MAVZU: {mavzu}\nFAN: {fan}\nDARAJA: {daraja}\nSINF/KURS: {sinf}\nTUR: {tur}\n"
     s += _sozlama_matni(sozlama or {}, daraja)
+    s += "YOSHGA MOS CHUQURLIK — " + YOSH_CHUQURLIK[yosh_band(daraja, sinf)] + "\n"
     try:
         from .profil import profil_matni
         s += profil_matni(fan, sinf, daraja) + "\n"
@@ -342,9 +404,7 @@ Bakalavr/magistr: olimlar fikri uchun iqtibos, tadqiqot natijalari uchun raqamla
 def reja_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", manba="", sozlama=None, deadline=120.0):
     if not provayderlar():
         raise RuntimeError("AI kaliti sozlanmagan (GEMINI_API_KEY, OPENAI_API_KEY yoki GROQ_API_KEY).")
-    z = sozlama_toza(sozlama)
-    if not z["slayd_soni"]:
-        z["slayd_soni"] = 14
+    z = sozlama_toza(sozlama_yosh(sozlama, daraja, sinf))
     from .profil import profil_matni
     user = _xabar(mavzu, fan, daraja, sinf, tur, qoshimcha, manba, z).replace("To‘liq JSON miyani yoz.", "Faqat REJA JSON'ini yoz.")
     t0 = time.monotonic()
@@ -746,7 +806,7 @@ def miya_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", 
     provs = provayderlar()
     if not provs:
         raise RuntimeError("AI kaliti sozlanmagan (GEMINI_API_KEY, OPENAI_API_KEY yoki GROQ_API_KEY).")
-    z = sozlama_toza(sozlama)
+    z = sozlama_toza(sozlama_yosh(sozlama, daraja, sinf))
     t0 = time.monotonic()
     system = korsatma()
     if reja is None and (z["slayd_soni"] or 12) <= 14:

@@ -218,7 +218,7 @@ class Dvigatel:
         sorov["mavzu"] = mavzu
         sorov["qoshimcha"] = sxema.t(body.get("qoshimcha"), 1500)
         sorov["manba"] = sxema.t(body.get("manba"), 12000)
-        sorov["sozlama"] = ai.sozlama_toza(body.get("sozlama"))
+        sorov["sozlama"] = ai.sozlama_toza(ai.sozlama_yosh(body.get("sozlama"), sorov["daraja"], sorov["sinf"]))
         sorov["faqat_reja"] = bool(body.get("faqat_reja"))
         if isinstance(body.get("reja"), dict):
             try:
