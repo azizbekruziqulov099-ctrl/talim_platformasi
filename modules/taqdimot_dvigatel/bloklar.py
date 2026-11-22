@@ -761,7 +761,7 @@ def blok_titul(k: K, d):
     tur = (m.get("tur") or "dars").upper()
     badge = f"{m['raqam']}-{tur}" if m.get("raqam") else tur
     bw = pill(k, M + 16, 104, badge, u.acc[0], size=11, a=k.A("accent", 0))
-    sub = m.get("fan") or ""
+    sub = m.get("fan_nomi") or m.get("fan") or ""   # fan_nomi — taqdimot tilidagi nomi (ai.til_tekshir)
     if m.get("sinf"):
         sub = f"{sub} · {m['sinf']}" if sub else m["sinf"]
     s.matn(M + 30 + bw, 104, 560, 23, sub, size=13, color=u.muted, va="m", min_scale=0.6)

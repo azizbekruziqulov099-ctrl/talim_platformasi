@@ -462,7 +462,7 @@ def komp_xarita(k, e, x, y, w, h, i=0):
             col = u.acc[(j + 1) % 4]
             a = k.A("item", st2, dl=j * 140)
             k.s.doira(px, py, 7, fill=col, line="#FFFFFF", lw=1.5, a=a)
-            label = jy["nom"] + (f" — {jy['matn']}" if jy.get("matn") else "")
+            label = (jy.get("yorliq") or jy["nom"]) + (f" — {jy['matn']}" if jy.get("matn") else "")
             tw = min(260, k.s.olcham(label, 13, bold=True) + 18)
             lx = px + 10 if px + 10 + tw < x + w else px - 10 - tw
             k.s.rect(lx, py - 12, tw, 24, fill="#FFFFFF" if not u.qorongi else u.bg[0], op=0.92, line=col, lw=1, r=12, a=a)

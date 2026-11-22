@@ -204,7 +204,7 @@ def _qur(m, seed, u, rng, rng_a, anim, anim2, bolim_titul, rasm_bor, dizayn, z, 
             izoh = "\n".join(f"{v['davr']} — {v['nom']}: {v['matn']}" for v in m["tarix"]["voqealar"])
         elif blok == "reja":
             izoh = "Reja interaktiv: istalgan kartani bossangiz, o‘sha bo‘limga o‘tasiz. Pastdagi raqamli doirachalar ham bo‘limlarga olib boradi."
-        s.izoh = izoh
+        s.izoh = tr(izoh) if tr and izoh else izoh   # eslatmadagi tayyor yozuvlar («Javob:», «1-qadam:») ham taqdimot tilida
         sd = s.json()
         sd["qorongi"] = u.qorongi
         sd["blok"] = blok

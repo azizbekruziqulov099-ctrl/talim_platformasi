@@ -46,14 +46,50 @@ LUG = {
     "Dars maqsadi:": ("Цель урока:", "Lesson goal:"), "Ma’ruza maqsadi:": ("Цель лекции:", "Lecture goal:"),
     "Jihozlar": ("Оборудование", "Equipment"), "Bosqichlar": ("Ход работы", "Steps"), "Natija": ("Результат", "Result"),
     "Maqsad": ("Цель", "Aim"), "To‘g‘rimi? — bosing": ("Верно? — нажмите", "True? — click"),
-    "Rasmda nima?": ("Что на картинке?", "What is in the picture?"), "Xavfsizlik": ("Безопасность", "Safety"),
+    "Rasmda nima?": ("Что на картинке?", "What is in the picture?"),
+    "Rasmda nima tasvirlangan?": ("Что изображено на картинке?", "What is shown in the picture?"), "Xavfsizlik": ("Безопасность", "Safety"),
     "✓ To‘g‘ri": ("✓ Верно", "✓ True"), "✗ Noto‘g‘ri": ("✗ Неверно", "✗ False"), "BO‘LIM": ("РАЗДЕЛ", "SECTION"),
     "DARS": ("УРОК", "LESSON"), "MA’RUZA": ("ЛЕКЦИЯ", "LECTURE"), "MA'RUZA": ("ЛЕКЦИЯ", "LECTURE"), "AMALIY": ("ПРАКТИКА", "PRACTICE"),
     "SEMINAR": ("СЕМИНАР", "SEMINAR"), "LABORATORIYA": ("ЛАБОРАТОРНАЯ", "LAB"),
+    "MUSTAQIL TA’LIM": ("САМОСТОЯТЕЛЬНАЯ РАБОТА", "INDEPENDENT STUDY"),
+    # o'qituvchi eslatmalari (Notes)
+    "Reja interaktiv: istalgan kartani bossangiz, o‘sha bo‘limga o‘tasiz. Pastdagi raqamli doirachalar ham bo‘limlarga olib boradi.": (
+        "План интерактивный: нажмите на любую карточку — перейдёте к этому разделу. Нумерованные кружки внизу тоже ведут к разделам.",
+        "The outline is interactive: click any card to jump to that section. The numbered circles at the bottom also lead to the sections."),
+    "Formula:": ("Формула:", "Formula:"), "G‘oya": ("Идея", "Idea"),
+    # xarita va manbalar
+    "Xarita:": ("Карта:", "Map:"), "ziyonet.uz — ta’lim portali": ("ziyonet.uz — образовательный портал", "ziyonet.uz — education portal"),
+    # o'lchov birliklari (chizma yozuvlarida)
+    "sm": ("см", "cm"), "sm²": ("см²", "cm²"), "sm³": ("см³", "cm³"), "mm": ("мм", "mm"), "km": ("км", "km"), "kg": ("кг", "kg"),
+    # sinf / kurs
+    "Bog‘cha": ("Детский сад", "Kindergarten"), "bog‘cha": ("детский сад", "kindergarten"),
+    # fan nomlari (titul slaydida «Fan · sinf» qatori)
+    "Matematika": ("Математика", "Mathematics"), "Algebra": ("Алгебра", "Algebra"), "Geometriya": ("Геометрия", "Geometry"),
+    "Fizika va astronomiya": ("Физика и астрономия", "Physics and astronomy"), "Fizika": ("Физика", "Physics"),
+    "Astronomiya": ("Астрономия", "Astronomy"), "Kimyo": ("Химия", "Chemistry"), "Biologiya": ("Биология", "Biology"),
+    "Geografiya": ("География", "Geography"), "Tarix": ("История", "History"), "Jahon tarixi": ("Всемирная история", "World history"),
+    "O‘zbekiston tarixi": ("История Узбекистана", "History of Uzbekistan"), "Ona tili": ("Родной язык", "Native language"),
+    "Ona tili va adabiyot": ("Родной язык и литература", "Native language and literature"), "Adabiyot": ("Литература", "Literature"),
+    "Ingliz tili": ("Английский язык", "English"), "Rus tili": ("Русский язык", "Russian"), "Nemis tili": ("Немецкий язык", "German"),
+    "Fransuz tili": ("Французский язык", "French"), "Informatika": ("Информатика", "Computer science"),
+    "Informatika va axborot texnologiyalari": ("Информатика и информационные технологии", "Computer science and IT"),
+    "Musiqa": ("Музыка", "Music"), "Musiqa madaniyati": ("Музыкальная культура", "Music"), "Tasviriy san’at": ("Изобразительное искусство", "Fine arts"),
+    "Texnologiya": ("Технология", "Technology"), "Chizmachilik": ("Черчение", "Technical drawing"),
+    "Jismoniy tarbiya": ("Физическая культура", "Physical education"), "Tarbiya": ("Воспитание", "Upbringing"), "Huquq": ("Право", "Law"),
+    "Iqtisodiyot": ("Экономика", "Economics"), "Iqtisodiy bilim asoslari": ("Основы экономических знаний", "Basics of economics"),
+    "Tabiiy fanlar": ("Естественные науки", "Natural science"), "Atrofimizdagi olam": ("Окружающий мир", "The world around us"),
+    "O‘qish savodxonligi": ("Литературное чтение", "Reading literacy"), "Alifbe": ("Букварь", "ABC book"),
+    "Boshlang‘ich ta’lim": ("Начальное образование", "Primary education"), "Maktabgacha ta’lim": ("Дошкольное образование", "Preschool education"),
+    "Pedagogika": ("Педагогика", "Pedagogy"), "Psixologiya": ("Психология", "Psychology"),
+    "Boshlang‘ich matematika kursi nazariyasi": ("Теория начального курса математики", "Theory of the primary mathematics course"),
 }
 _TURLAR = {"DARS": ("УРОК", "LESSON"), "MA’RUZA": ("ЛЕКЦИЯ", "LECTURE"), "MA'RUZA": ("ЛЕКЦИЯ", "LECTURE"),
-           "AMALIY": ("ПРАКТИКА", "PRACTICE"), "SEMINAR": ("СЕМИНАР", "SEMINAR")}
+           "AMALIY": ("ПРАКТИКА", "PRACTICE"), "SEMINAR": ("СЕМИНАР", "SEMINAR"), "LABORATORIYA": ("ЛАБОРАТОРНАЯ", "LAB"),
+           "MUSTAQIL TA’LIM": ("САМОСТОЯТЕЛЬНАЯ РАБОТА", "INDEPENDENT STUDY"), "MUSTAQIL TA'LIM": ("САМОСТОЯТЕЛЬНАЯ РАБОТА", "INDEPENDENT STUDY")}
 _HARF = r"[\w‘’'ʻ]"
+_DARS_TURI = {"dars": ("Урок", "Lesson"), "ma’ruza": ("Лекция", "Lecture"), "ma'ruza": ("Лекция", "Lecture"),
+              "amaliy": ("Практика", "Practice"), "seminar": ("Семинар", "Seminar"), "laboratoriya": ("Лабораторная", "Lab"),
+              "mustaqil ta’lim": ("Самостоятельная работа", "Independent study"), "mustaqil ta'lim": ("Самостоятельная работа", "Independent study")}
 
 
 @lru_cache(maxsize=4)
@@ -63,6 +99,10 @@ def _qoidalar(til: str):
     for k, v in LUG.items():
         lug[k] = v[i]
         lug.setdefault(k.upper(), v[i].upper())
+        # foydalanuvchi yozgan matnda apostrof har xil: O'zbekiston, Oʻzbekiston, O‘zbekiston
+        if re.search("[‘’]", k):
+            for a in ("'", "ʻ", "’", "‘"):
+                lug.setdefault(re.sub("[‘’]", a, k), v[i])
     kalitlar = sorted(lug, key=len, reverse=True)
     parts = []
     for k in kalitlar:
@@ -80,6 +120,18 @@ def _qoidalar(til: str):
         (re.compile(r"(\d+)-masala(?!\w)", re.I), ("Задача \\1", "Problem \\1")[i]),
         (re.compile(r"(\d+)-BO‘LIM"), ("РАЗДЕЛ \\1", "SECTION \\1")[i]),
         (re.compile(r"(\d+)-bo['‘’]lim(?!\w)"), ("Раздел \\1", "Section \\1")[i]),
+        (re.compile(r"(\d+)-qadam(?!\w)", re.I), ("Шаг \\1", "Step \\1")[i]),
+        (re.compile(r"(\d+)-kurs bakalavr(?!\w)", re.I), ("\\1 курс бакалавриата", "Bachelor's, year \\1")[i]),
+        (re.compile(r"(\d+)-kurs magistr(?!\w)", re.I), ("\\1 курс магистратуры", "Master's, year \\1")[i]),
+        (re.compile(r"(\d+)-kurs(?!\w)", re.I), ("\\1 курс", "Year \\1")[i]),
+        (re.compile(r"(\d+)[–-](\d+)-sinf(?!\w)", re.I), ("\\1–\\2 классы", "Grades \\1–\\2")[i]),
+        (re.compile(r"(\d+)-sinf(?!\w)", re.I), ("\\1 класс", "Grade \\1")[i]),
+        (re.compile(r"(\d+)[–-](\d+) yosh(?!\w)", re.I), ("\\1–\\2 лет", "ages \\1–\\2")[i]),
+        # titul eslatmasi: «1-ma’ruza: ...», «dars: ...»
+        (re.compile(r"(\d+)-(dars|ma[’']ruza|amaliy|seminar|laboratoriya|mustaqil ta[’']lim)(?=:)", re.I),
+         lambda m_, i=i: f"{_DARS_TURI[m_.group(2).lower()][i]} {m_.group(1)}"),
+        (re.compile(r"^(dars|ma[’']ruza|amaliy|seminar|laboratoriya|mustaqil ta[’']lim)(?=:)", re.I | re.M),
+         lambda m_, i=i: _DARS_TURI[m_.group(1).lower()][i]),
     ]
     turlar = re.compile(r"(\d+)-(" + "|".join(re.escape(t) for t in _TURLAR) + r")(?!\w)")
     return lug, rx, dinamik, turlar, i

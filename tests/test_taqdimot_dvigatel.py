@@ -561,3 +561,46 @@ def test_rasm_qidiruvi_uch_tilda():
     # AI katalogi taqdimot tilida
     assert "— Фотосинтез" in ai.katalog_matni("Фотосинтез растения", "Биология", 20, "ru")
     assert "— Photosynthesis" in ai.katalog_matni("Photosynthesis in plants", "Biology", 20, "en")
+
+
+def test_ruscha_inglizcha_taqdimotda_ozbekcha_yozuv_qolmaydi():
+    """Dvigatelning o'z yozuvlari (eslatma, titul, xarita manbasi, birliklar) va AI tarjima tekshiruvi qamrovi."""
+    import copy
+    import io
+    import re
+    import zipfile
+    from modules.taqdimot_dvigatel import ai, tarjima
+    from tests.taqdimot_fan_namuna import TEST
+    ru, en = tarjima.tarjimon("ru"), tarjima.tarjimon("en")
+    assert ru("Matematika · 5-sinf") == "Математика · 5 класс" and en("Fizika · 2-kurs bakalavr") == "Physics · Bachelor's, year 2"
+    assert ru("1-ma’ruza: Kasrlar") == "Лекция 1: Kasrlar" and en("1-qadam: a") == "Step 1: a" and ru("S = 15 sm²") == "S = 15 см²"
+    assert ru("Tasviriy san'at") == ru("Tasviriy san’at") == "Изобразительное искусство"
+
+    def matnlar(m):
+        z = zipfile.ZipFile(io.BytesIO(yasash.pptx(yasash.yasa(m, seed=3))))
+        return {n: " ".join(re.findall(r"<a:t>([^<]*)</a:t>", z.read(n).decode("utf-8"))) for n in z.namelist()
+                if re.match(r"ppt/(slides|notesSlides)/\w+\d+\.xml$", n)}
+
+    m = copy.deepcopy(TEST)
+    m["meta"]["til"] = "ru"
+    hammasi = " ".join(matnlar(m).values())
+    for soz in ("Reja interaktiv", "-qadam", "Xarita:", "5-sinf", "Javob:"):
+        assert soz not in hammasi, soz
+    assert "5 класс" in hammasi and "Карта:" in hammasi
+
+    # AI o'zbekcha yozib qo'ygan bo'lsa — til_tekshir ko'radigan satrlar
+    yollar = {y for y, _ in ai._matnlar(sxema.normallashtir(copy.deepcopy(TEST)), "ru")}
+    yt = " ".join("/".join(map(str, y)) for y in yollar)
+    assert "rasmlar/0/izoh" in yt                       # galereya izohi
+    assert "joylar/0/yorliq" in yt and "joylar/0/nom" not in yt   # xarita nomi o'zgarmaydi, yorliq tarjima bo'ladi
+    assert "sozlar/0/tarjima" in yt and "sozlar/0/soz" not in yt  # lug'at so'ziga tegilmaydi
+    ch = {"meta": {"fan": "Matematika"}, "bolimlar": [{"nom": "Bo‘lim", "slaydlar": [{"sarlavha": "Son o‘qi", "elementlar": [
+        {"tur": "chizma", "chizma": {"tur": "son_oqi", "dan": -5, "gacha": 5, "sakrashlar": [{"dan": 0, "ga": 3, "nom": "3 birlik"}]}}]}]}]}
+    assert any(y[-1] == "nom" and "chizma" in y for y, _ in ai._matnlar(ch, "ru"))
+    til = {"meta": {"fan": "Ingliz tili"}, "bolimlar": [{"nom": "A", "slaydlar": [{"sarlavha": "Match", "elementlar": [
+        {"tur": "moslash", "juftlar": [{"chap": "quyosh", "ong": "sun"}, {"chap": "kitob", "ong": "book"}, {"chap": "qush", "ong": "bird"}]}]}]}]}
+    tomon = {y[-1] for y, _ in ai._matnlar(til, "ru") if "juftlar" in y}
+    assert tomon == {"chap"}                            # o'rganilayotgan til (inglizcha) tomoni tegilmaydi
+    # inglizcha taqdimotda o'zbekcha qisqa sarlavhalar ham topiladi, inglizchasi esa yo'q
+    assert all(ai._boshqa_tilda(x, "en") for x in ("Ratsional sonlar", "Masofa", "Problem yechish tartibi", "Yo‘q."))
+    assert not any(ai._boshqa_tilda(x, "en") for x in ("The cell is the basic unit of life.", "Rational numbers", "Answer: 12"))

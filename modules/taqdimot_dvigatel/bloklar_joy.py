@@ -653,7 +653,7 @@ def _nishon(k, m, x, y, color, align="l", w=560, rang=None):
     u = k.u
     tur = (m.get("tur") or "dars").upper()
     badge = f"{m['raqam']}-{tur}" if m.get("raqam") else tur
-    sub = m.get("fan") or ""
+    sub = m.get("fan_nomi") or m.get("fan") or ""   # fan_nomi — taqdimot tilidagi nomi (ai.til_tekshir)
     if m.get("sinf"):
         sub = f"{sub} · {m['sinf']}" if sub else m["sinf"]
     if align == "c":

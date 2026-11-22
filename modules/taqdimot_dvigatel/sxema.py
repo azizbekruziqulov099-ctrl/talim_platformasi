@@ -201,7 +201,8 @@ def _fan_elementi(tur, e):
             except (TypeError, ValueError):
                 lat = lon = None
             if t(x.get("nom")):
-                jy.append({"nom": t(x.get("nom"), 40), "matn": t(x.get("matn"), 100), "lat": lat, "lon": lon})
+                jy.append({"nom": t(x.get("nom"), 40), "matn": t(x.get("matn"), 100), "lat": lat, "lon": lon,
+                           "yorliq": t(x.get("yorliq"), 40)})   # yorliq — taqdimot tilidagi nomi (nom xaritada qidiriladi)
         return {"hudud": hd, "joylar": jy, "belgilash": ls(e.get("belgilash") or e.get("hududlar"), 8, 40)}
     if tur == "tajriba":
         jh = []
@@ -293,7 +294,7 @@ def normallashtir(m: dict) -> dict:
         "qisqa": t(meta.get("qisqa"), 60), "maqsad": t(meta.get("maqsad"), 400), "tayanch": ls(meta.get("tayanch"), 10, 60),
         "muassasa": t(meta.get("muassasa"), 120), "kafedra": t(meta.get("kafedra"), 120), "muallif": t(meta.get("muallif"), 80),
         "davr": t(meta.get("davr"), 80), "til": t(meta.get("til"), 5) or "uz", "belgi": t(meta.get("belgi"), 40),
-        "rasm": t(meta.get("rasm"), 120),
+        "rasm": t(meta.get("rasm"), 120), "fan_nomi": t(meta.get("fan_nomi"), 120),
     }
     if _chizma(meta.get("chizma")):
         out["meta"]["chizma"] = meta["chizma"]

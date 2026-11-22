@@ -443,7 +443,7 @@ def _yoz(sahna: dict, rasm_ol) -> bytes:
     cp = prs.core_properties
     cp.title = (meta.get("mavzu") or "Taqdimot")[:200]
     cp.author = (meta.get("muallif") or "talimkabutar.uz")[:120]
-    cp.subject = (meta.get("fan") or "")[:200]
+    cp.subject = (meta.get("fan_nomi") or meta.get("fan") or "")[:200]
     cp.keywords = "talimkabutar.uz taqdimot dvigateli"
     buf = io.BytesIO()
     prs.save(buf)

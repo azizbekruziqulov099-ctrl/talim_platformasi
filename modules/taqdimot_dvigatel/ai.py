@@ -8,6 +8,7 @@ from __future__ import annotations
 import json
 import os
 import re
+from functools import lru_cache
 import time
 from urllib import error, request
 
@@ -390,30 +391,167 @@ _UZ_BELGI = re.compile(r"[oOgG][‘’'ʻʼ`][a-z]|\b(va|bilan|uchun|haqida|hamd
 _KIRILL = re.compile(r"[А-Яа-яЁё]")
 _LOTIN = re.compile(r"[A-Za-z]")
 _MATN_KALITLAR = {"mavzu", "qisqa", "maqsad", "nom", "izoh", "sarlavha", "matn", "shart", "javob", "savol", "goya", "tavsiya", "xato",
-                  "sabab", "togri", "nomi", "davr", "natija", "xavfsizlik"}
+                  "sabab", "togri", "nomi", "davr", "natija", "xavfsizlik", "muassasa", "kafedra", "belgi", "mustaqil", "xulosa"}
+# chizma ichidagi yozuvlar (son o'qidagi «3 birlik», tasmadagi «150 bet», to'plam nomlari): ruscha taqdimotda o'zbekcha qolmasin
+_CHIZMA_MATN = {"nom", "nomlar", "jami", "bolak_nomi", "boyalgan_nomi", "ichida", "darajalar", "umumiy", "natija", "elementlar", "misol",
+                "sarlavha", "izoh", "yorliq", "belgilar", "qatlamlar", "toplamlar", "sakrashlar", "nuqtalar", "kesmalar", "x_nomi", "y_nomi"}
+_CHIZMA_TEGMA = {"tur", "shakl", "turi", "funksiya", "tenglama", "rang", "amal", "kalit"}
 _ROYXAT_KALITLAR = {"variantlar", "qadamlar", "tayanch", "bandlar", "fikrlar", "bilaman", "bilishni_xohlayman", "bilib_oldim",
                     "nazorat", "mustaqil_ish", "zanjir", "bosqichlar", "jihozlar", "ustunlar", "qatorlar", "gaplar"}
 _TIL_OTKAZ_TUR = {"lugat", "dialog", "bosh_joy"}      # til darslari: so'z va tarjima ataylab ikki tilda
-_TIL_OTKAZ_KALIT = {"rasm", "rasmlar", "tur", "kalit", "formula", "joylashuv", "belgi", "chizma", "_ai", "prompt", "muallif", "manba",
+_TIL_OTKAZ_KALIT = {"rasm", "rasmlar", "tur", "kalit", "formula", "joylashuv", "chizma", "_ai", "prompt", "muallif", "manba",
                     "raqam", "nashr", "til", "daraja", "sinf", "fan", "reja"}
+
+
+_MAT_SOZ = {"sin", "cos", "tan", "tg", "ctg", "cot", "log", "lim", "max", "min", "sup", "inf", "mod", "gcd", "lcm", "const", "exp",
+            "det", "arcsin", "arccos", "arctg", "deg", "rad", "km", "kg", "mm"}
+_UZ_QISQA = {"yil", "hajm", "zich", "oqim", "dan", "ham", "emas", "yoki", "bilan", "uchun", "kun", "ha", "yo'q", "yo‘q", "uchta",
+             "ikkita", "nechta", "son", "bor", "yana", "teng", "deb", "agar", "keyin", "avval", "ni", "chunki", "masalan", "ammo",
+             "lekin", "umumiy", "toping", "hisoblang", "yozing", "javob", "misol", "qoida", "ta'rif", "xulosa", "maxraj", "surat"}
+_UZ_OXIR = ("lar", "lari", "larni", "ning", "dagi", "dan", "ga", "da", "ni", "lik", "ish", "gan", "moq", "chi", "siz", "sini", "imiz",
+            "adi", "ydi", "ladi", "mi", "ing")
+_EN_SOZ = {"the", "of", "and", "in", "with", "is", "are", "to", "for", "on", "by", "from", "how", "what", "its", "an", "a", "or", "this",
+           "that", "be", "it", "as", "at", "we", "you", "they", "has", "have", "was", "were", "can", "not", "if", "then", "each"}
+
+
+@lru_cache(maxsize=1)
+def _uz_sozlar() -> frozenset:
+    """Loyihaning o'zbekcha matnlaridan yig'ilgan so'zlar (malumot/uz_sozlar.txt.gz): «daraja», «masofa», «ayirma»."""
+    import gzip
+    import os
+    try:
+        with gzip.open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "malumot", "uz_sozlar.txt.gz"), "rt",
+                       encoding="utf-8") as f:
+            return frozenset(x.strip() for x in f if x.strip())
+    except OSError:
+        return frozenset()
 
 
 def _boshqa_tilda(s: str, til: str) -> bool:
     toza = re.sub(r"\$[^$]*\$", " ", s or "")
     lat, cyr = len(_LOTIN.findall(toza)), len(_KIRILL.findall(toza))
     if til == "ru":
-        sozlar = [w for w in re.findall(r"[A-Za-z‘’'ʻ]{3,}", toza) if not w.isupper()]
-        return lat >= 5 and lat > cyr * 2 and len(sozlar) >= 1
+        # bitta qisqa so'z ham («Yo‘q», «Hajm», «Xiva») — lotincha so'z (katta harfli qisqartma va matematik belgi emas)
+        sozlar = [w for w in re.findall(r"[A-Za-z‘’'ʻ]{3,}", toza) if not w.isupper() and w.lower() not in _MAT_SOZ]
+        return (bool(sozlar) or bool(re.search(r"\b(va|ham|yoki)\b", toza))) and lat > cyr * 2
     if til == "en":
-        return cyr >= 4 or bool(_UZ_BELGI.search(toza))
+        if cyr >= 4 or _UZ_BELGI.search(toza):
+            return True
+        # o'zbekcha belgili so'zlar (q, o‘/g‘, xa/xo, -lar/-dan/-ish/-gan…) inglizcha belgililardan (the, of, w, th, -tion…) ko'p
+        uz = en = 0
+        for w in re.findall(r"[A-Za-z‘’'ʻ]{2,}", toza):   # bitta harf (formuladagi a, c, x) hisobga olinmaydi
+            lw = w.lower()
+            if (lw in _UZ_QISQA or re.search(r"q(?!u)|[og][‘’'ʻ]", lw) or re.sub("[‘’ʻ]", "'", lw).strip("'") in _uz_sozlar()
+                    or (len(lw) >= 5 and lw.endswith(_UZ_OXIR) and not lw.endswith(("ular", "olar", "ilar", "glish", "inish")))):
+                uz += 1
+            if lw in _EN_SOZ or (len(lw) >= 3 and re.search(r"w|th|ph|c(?!h)|tion$|ly$|ous$|ness$", lw)):
+                en += 1
+        return uz > en
     return cyr >= 6 and cyr > lat  # o'zbekcha taqdimotda ruscha qolgan gap
 
 
-def _matnlar(obj, til, yol=(), out=None):
+def _uz_ball(matnlar) -> float:
+    """O'zbekcha belgilari (o‘, g‘, q, -lar…) ko'pmi — inglizcha belgilar (w, th, c…) ayirilgan o'rtacha ball."""
+    jami = 0.0
+    for x in matnlar:
+        x = x or ""
+        uz = len(_UZ_BELGI.findall(x)) + len(re.findall(r"q(?!u)|[oOgG][‘’'ʻ]", x))
+        en = len(re.findall(r"w|th|ph|c(?!h)|\b(the|of|and|is|are)\b", x, re.I))
+        jami += uz - en
+    return jami / max(1, len(matnlar))
+
+
+def _chizma_matnlar(obj, til, yol, out, yozuv=False):
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            if k not in _CHIZMA_TEGMA:
+                _chizma_matnlar(v, til, yol + (k,), out, k in _CHIZMA_MATN)
+    elif isinstance(obj, list):
+        for i, x in enumerate(obj):
+            _chizma_matnlar(x, til, yol + (i,), out, yozuv)
+    elif isinstance(obj, str) and yozuv and _boshqa_tilda(obj, til):
+        out.append((yol, obj))
+    return out
+
+
+def _qosh(out, yol, v, til):
+    if isinstance(v, str) and v.strip() and _boshqa_tilda(v, til):
+        out.append((yol, v))
+
+
+def _til_darsimi(m) -> bool:
+    """Chet tili darsi (ingliz, rus, nemis…): o'rganilayotgan tildagi so'z va gaplar ataylab o'sha tilda qoladi."""
+    try:
+        from . import rasm_tanla
+        fan = ((m.get("meta") or {}).get("fan") or "") if isinstance(m, dict) else ""
+        return "tillar" in rasm_tanla._fan_guruh(fan)
+    except Exception:
+        return False
+
+
+def _element_matnlari(obj, til, yol, out, til_darsi) -> bool:
+    """Maxsus elementlar. True — element to'liq ko'rildi (umumiy yurish kerak emas)."""
+    tur = obj.get("tur")
+    if tur in _TIL_OTKAZ_TUR:
+        # lug'at so'zi, misol gap va dialog qatori ataylab o'rganilayotgan tilda — tegilmaydi;
+        # faqat ona tilidagi tarjima taqdimot tiliga: «apple — olma» → «apple — яблоко»
+        for maydon in ("sozlar", "qatorlar"):
+            for i, x in enumerate(obj.get(maydon) or []):
+                if isinstance(x, dict):
+                    _qosh(out, yol + (maydon, i, "tarjima"), x.get("tarjima"), til)
+        if not til_darsi:   # «bo'sh joyni to'ldir» boshqa fanlarda — oddiy gap
+            for i, x in enumerate(obj.get("gaplar") or []):
+                if isinstance(x, dict):
+                    for k in ("matn", "javob"):
+                        _qosh(out, yol + ("gaplar", i, k), x.get(k), til)
+        return True
+    if tur == "moslash" and isinstance(obj.get("juftlar"), list):
+        js = [x for x in obj["juftlar"] if isinstance(x, dict)]
+        chap, ong = _uz_ball([x.get("chap") for x in js]), _uz_ball([x.get("ong") for x in js])
+        # o'zbekcha tomon tarjima qilinadi; til darsida ikkinchi (o'rganilayotgan) tomon tegilmaydi
+        tomonlar = ["chap", "ong"] if not til_darsi or (chap > 0 and ong > 0) else (["chap"] if chap >= ong else ["ong"])
+        if not til_darsi and chap <= 0 and ong <= 0:
+            tomonlar = ["chap", "ong"]
+        for i, x in enumerate(obj["juftlar"]):
+            if isinstance(x, dict):
+                for k in tomonlar:
+                    _qosh(out, yol + ("juftlar", i, k), x.get(k), til)
+        return True
+    if tur == "galereya":
+        for i, x in enumerate(obj.get("rasmlar") or []):
+            if isinstance(x, dict):
+                _qosh(out, yol + ("rasmlar", i, "izoh"), x.get("izoh"), til)
+        return True
+    if tur == "xarita":
+        # joy nomi xaritadagi nuqtani topish uchun o'zgarmaydi — tarjimasi «yorliq»da ko'rinadi
+        for i, x in enumerate(obj.get("joylar") or []):
+            if isinstance(x, dict):
+                if not x.get("yorliq"):
+                    _qosh(out, yol + ("joylar", i, "yorliq"), x.get("nom"), til)
+                _qosh(out, yol + ("joylar", i, "matn"), x.get("matn"), til)
+        return True
+    if tur in ("iqtibos", "parcha"):
+        for k in ("muallif", "manba"):
+            _qosh(out, yol + (k,), obj.get(k), til)
+        for i, x in enumerate(obj.get("belgilar") or []):   # she'rdagi ajratilgan so'zlar — tarjima qilingan matnga mos
+            _qosh(out, yol + ("belgilar", i), x, til)
+    return False
+
+
+def _matnlar(obj, til, yol=(), out=None, til_darsi=None):
     """Tarjima kerak bo'lgan satrlar: (yo'l, matn)."""
     out = [] if out is None else out
+    if til_darsi is None:
+        til_darsi = _til_darsimi(obj)
     if isinstance(obj, dict):
-        if obj.get("tur") in _TIL_OTKAZ_TUR:
+        if isinstance(obj.get("chizma"), dict):
+            _chizma_matnlar(obj["chizma"], til, yol + ("chizma",), out)
+        if obj.get("tur") and _element_matnlari(obj, til, yol, out, til_darsi):
+            for k in ("sarlavha", "izoh", "savol", "matn"):   # element sarlavhasi va izohi — oddiy matn
+                if k == "matn" and obj.get("tur") in _TIL_OTKAZ_TUR:
+                    continue
+                if isinstance(obj.get(k), str) and _boshqa_tilda(obj[k], til):
+                    out.append((yol + (k,), obj[k]))
             return out
         if isinstance(obj.get("chap"), str) and isinstance(obj.get("ong"), str):
             # moslash jufti: ikkala tomoni ham boshqa tilda bo'lsagina (til darsidagi «apple — olma» juftiga tegilmaydi)
@@ -435,12 +573,12 @@ def _matnlar(obj, til, yol=(), out=None):
                             if isinstance(y, str) and _boshqa_tilda(y, til):
                                 out.append((yol + (k, i, j), y))
                     else:
-                        _matnlar(x, til, yol + (k, i), out)
+                        _matnlar(x, til, yol + (k, i), out, til_darsi)
             elif isinstance(v, (dict, list)):
-                _matnlar(v, til, yol + (k,), out)
+                _matnlar(v, til, yol + (k,), out, til_darsi)
     elif isinstance(obj, list):
         for i, x in enumerate(obj):
-            _matnlar(x, til, yol + (i,), out)
+            _matnlar(x, til, yol + (i,), out, til_darsi)
     return out
 
 
@@ -451,6 +589,18 @@ def til_tekshir(m: dict, til: str, deadline: float = 60.0, t0: float | None = No
         return 0
     t0 = time.monotonic() if t0 is None else t0
     royxat = _matnlar(m, til)
+    # fan nomi: «fan» o'zgarmaydi (rasm, bezak, metodlar uni o'zbekcha kutadi) — titulda «fan_nomi» ko'rinadi
+    mt = m.get("meta") if isinstance(m.get("meta"), dict) else {}
+    fan = mt.get("fan") or ""
+    if fan and not mt.get("fan_nomi"):
+        from . import tarjima
+        tr = tarjima.tarjimon(til)
+        tayyor = tr(fan) if tr else fan
+        if tayyor != fan and not _boshqa_tilda(tayyor, til):
+            mt["fan_nomi"] = tayyor
+        elif _boshqa_tilda(fan, til):
+            mt["fan_nomi"] = fan
+            royxat.insert(0, (("meta", "fan_nomi"), fan))
     if not royxat:
         return 0
     system = (f"Sen tarjimonsan. Berilgan JSON obyektidagi har bir qiymatni {TIL_NOMI[til]}GA tarjima qil. Ma’noni, **qalin** va "
