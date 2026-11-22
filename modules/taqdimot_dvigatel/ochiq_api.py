@@ -208,6 +208,35 @@ def register(app, D, prefix, fail, json_ol, biriktirma, no_store):
         from . import darslar
         return _j({**od.katalog(), "ai": ai.mavjud(), "darslar": darslar.royxat()})
 
+    @app.get(p + "/rasmlar")
+    def ochiq_rasmlar(q: str = "", fan: str = "", authorization: str | None = Header(None)):
+        """Rasm almashtirish uchun nomzodlar: so'rovga (o'zbekcha, ruscha, inglizcha) eng mos rasmlar, keyin fanning universal rasmlari."""
+        D.actor(authorization)
+        from . import rasm_tanla, rasmlar
+        q = (q or "").strip()[:160]
+        fan = (fan or "").strip()[:120]
+        out, bor = [], set()
+
+        def qosh(kalit, nom):
+            if kalit and kalit not in bor and rasmlar.bor(kalit) and (rasmlar.malumot(kalit).get("tur") or "rasm") == "rasm":
+                bor.add(kalit)
+                out.append({"kalit": kalit, "nom": re.sub(r"\s*\[[^\]]*\]$", "", nom or "")})
+
+        if q:
+            for kalit in (rasm_tanla.titul_rasmi(q, fan), rasm_tanla.buyum_rasmi(q)):
+                if kalit:
+                    r = rasmlar.malumot(kalit)
+                    qosh(kalit, r.get("nom") or "")
+            for kalit, nom in rasm_tanla.katalog(q, fan, 40):
+                if "rejada)" not in nom:
+                    qosh(kalit, nom)
+        if len(out) < 36:
+            for kalit in rasm_tanla.universal_hovuz(fan)[:60]:
+                qosh(kalit, rasmlar.malumot(kalit).get("nom") or "")
+                if len(out) >= 36:
+                    break
+        return _j({"rasmlar": out[:36]})
+
     @app.post(p + "/tuz")
     async def ochiq_tuz(request: Request, authorization: str | None = Header(None)):
         uid = await run_in_threadpool(D.actor, authorization)
