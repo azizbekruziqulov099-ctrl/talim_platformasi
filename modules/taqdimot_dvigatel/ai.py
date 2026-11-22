@@ -9,6 +9,7 @@ import json
 import os
 import re
 from functools import lru_cache
+import threading
 import time
 from urllib import error, request
 
@@ -321,19 +322,48 @@ def _xabar(mavzu, fan, daraja, sinf, tur, qoshimcha, manba, sozlama=None):
     return s
 
 
+_KALIT_NOMI = {
+    "gemini": re.compile(r"^(?:GEMINI_API_KEYS?|GEMINI_KEYS?|GOOGLE_AI_API_KEYS?)(?:_?\d{1,2})?$"),
+    "openai": re.compile(r"^OPENAI_API_KEYS?(?:_?\d{1,2})?$"),
+    "groq": re.compile(r"^GROQ_API_KEYS?(?:_?\d{1,2})?$"),
+}
+ZAXIRA_MODEL = {"gemini": "gemini-flash-latest"}   # asosiy model o'chirilgan (404) bo'lsa — Google'ning doimiy taxallusi
+
+
+def kalitlar(nom: str) -> list:
+    """Provayderning barcha kalitlari: GEMINI_API_KEY, GEMINI_API_KEY_2 … (yoki GEMINI_API_KEYS=k1,k2).
+    Bitta o'zgaruvchiga vergul/bo'sh joy bilan bir nechta kalit yozilgan bo'lsa ham ajratiladi."""
+    andoza = _KALIT_NOMI[nom]
+    nomlar = sorted((k for k in os.environ if andoza.match(k)), key=lambda k: (int(re.sub(r"\D", "", k) or 0), k))
+    out = []
+    for k in nomlar:
+        for v in re.split(r"[\s,;]+", os.environ.get(k) or ""):
+            if len(v) >= 8 and v not in out:
+                out.append(v)
+    return out
+
+
+def _modellar(nom: str) -> list:
+    asosiy = {"gemini": os.getenv("TAQDIMOT_GEMINI_MODEL") or os.getenv("PRESENTATION_GEMINI_MODEL") or "gemini-2.5-flash",
+              "openai": os.getenv("TAQDIMOT_OPENAI_MODEL") or "gpt-4o-mini",
+              "groq": os.getenv("TAQDIMOT_GROQ_MODEL") or "openai/gpt-oss-120b"}[nom]
+    out = [m.strip() for m in asosiy.split(",") if m.strip()]
+    if ZAXIRA_MODEL.get(nom) and ZAXIRA_MODEL[nom] not in out:
+        out.append(ZAXIRA_MODEL[nom])
+    return out
+
+
 def provayderlar():
-    keys = {
-        "gemini": (os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_AI_API_KEY") or "").strip(),
-        "openai": os.getenv("OPENAI_API_KEY", "").strip(),
-        "groq": os.getenv("GROQ_API_KEY", "").strip(),
-    }
-    models = {
-        "gemini": os.getenv("TAQDIMOT_GEMINI_MODEL") or os.getenv("PRESENTATION_GEMINI_MODEL") or "gemini-2.5-flash",
-        "openai": os.getenv("TAQDIMOT_OPENAI_MODEL") or "gpt-4o-mini",
-        "groq": os.getenv("TAQDIMOT_GROQ_MODEL") or "openai/gpt-oss-120b",
-    }
+    """(provayder, kalit, model) — sinash tartibida: har provayderning asosiy modeli barcha kalitlari bilan, so'ng zaxira modeli."""
     order = [x.strip() for x in (os.getenv("TAQDIMOT_AI_PROVIDERS") or os.getenv("PRESENTATION_AI_PROVIDERS") or "gemini,openai,groq").split(",")]
-    return [(n, keys[n], models[n]) for n in order if n in keys and keys[n]]
+    out = []
+    for n in order:
+        if n not in _KALIT_NOMI:
+            continue
+        ks = kalitlar(n)
+        for model in _modellar(n):
+            out += [(n, k, model) for k in ks]
+    return out
 
 
 def mavjud():
@@ -373,22 +403,127 @@ def json_ajrat(text: str) -> dict:
     return json.loads(text[a:b + 1])
 
 
+# --- kalitlar navbati: limitga yetgan kalit «soviydi», keyingisi ishlaydi --------------------------------------------
+_QULF = threading.Lock()
+_SOVUQ = {}      # (provayder, kalit, model) → qachongacha (time.monotonic)
+_OLIK = {}       # (provayder, model) → qachongacha: model topilmadi (404)
+_NAVBAT = [0]    # kalitlar orasida yukni teng bo'lish uchun
+_OXIRGI = {}     # (provayder, kalit) → oxirgi xato matni (admin ko'radi)
+KUNLIK_SOVUQ = 1800.0
+DAQIQA_SOVUQ = 30.0
+
+
+class AiTugadi(RuntimeError):
+    """Barcha kalitlar limitga yetgan yoki AI umuman javob bermayapti — chaqiruvchi o'z bazasidan beradi."""
+
+
+def _xato_tahlil(exc) -> tuple:
+    """HTTP xato → (tur, soviish soniyasi). tur: 'kunlik' | 'daqiqa' | 'kalit' | 'model' | 'band' | 'boshqa'."""
+    kod = getattr(exc, "code", None)
+    tana = ""
+    try:
+        tana = exc.read(20000).decode("utf-8", "replace") if hasattr(exc, "read") else ""
+    except Exception:
+        pass
+    if kod == 429:
+        if re.search(r"per\s?day|perday|daily|kunlik", tana, re.I):
+            return "kunlik", KUNLIK_SOVUQ
+        m = re.search(r"retry(?:Delay)?[\"'\s:]+(?:in\s+)?(\d+(?:\.\d+)?)\s*s", tana, re.I)
+        return "daqiqa", min(90.0, float(m.group(1)) + 1) if m else DAQIQA_SOVUQ
+    if kod in (401, 403) or (kod == 400 and re.search(r"api[ _]?key", tana, re.I)):
+        return "kalit", 3600.0
+    if kod == 404:
+        return "model", 6 * 3600.0
+    if kod in (500, 502, 503, 504):
+        return "band", 4.0
+    return "boshqa", 0.0
+
+
+def _nomzodlar() -> list:
+    """Hozir sinab ko'rsa bo'ladigan (provayder, kalit, model) lar; bir xil darajadagi kalitlar navbat bilan aylanadi."""
+    hozir = time.monotonic()
+    with _QULF:
+        _NAVBAT[0] += 1
+        siljish = _NAVBAT[0]
+        guruh = {}
+        for nom, kalit, model in provayderlar():
+            if _OLIK.get((nom, model), 0) > hozir or _SOVUQ.get((nom, kalit, model), 0) > hozir:
+                continue
+            guruh.setdefault((nom, model), []).append((nom, kalit, model))
+    out = []
+    for qator in guruh.values():
+        k = siljish % len(qator)
+        out += qator[k:] + qator[:k]
+    return out
+
+
+def _eng_yaqin_ochilish() -> float:
+    """Sovigan kalitlardan eng birinchisi necha soniyadan keyin ochiladi (hech biri sovimagan bo'lsa 0)."""
+    hozir = time.monotonic()
+    with _QULF:
+        v = [u - hozir for (nom, kalit, model), u in _SOVUQ.items() if u > hozir and _OLIK.get((nom, model), 0) <= hozir]
+    return min(v) if v else 0.0
+
+
+def kalitlar_holati() -> dict:
+    """Admin uchun: nechta kalit bor, qaysi biri hozir limitda (kalitning faqat oxirgi 4 belgisi ko'rinadi)."""
+    hozir = time.monotonic()
+    out = []
+    with _QULF:
+        for nom in _KALIT_NOMI:
+            modellar = _modellar(nom)
+            for k in kalitlar(nom):
+                dam = max([_SOVUQ.get((nom, k, m), 0) - hozir for m in modellar[:1]] + [0])
+                out.append({"provayder": nom, "kalit": "…" + k[-4:], "model": modellar[0], "ishlayapti": dam <= 0,
+                            "dam": int(dam), "xato": _OXIRGI.get((nom, k), "")})
+        olik = [f"{n}: {m}" for (n, m), u in _OLIK.items() if u > hozir]
+    return {"kalitlar": out, "ishlayotgan": sum(1 for x in out if x["ishlayapti"]), "topilmagan_modellar": olik}
+
+
+def tugaganmi() -> bool:
+    """Kalit bor, lekin hammasi hozir limitda (yoki umuman kalit yo'q)."""
+    return not _nomzodlar()
+
+
 def _bir_chaqiruv(system, user, deadline, t0):
-    """Provayderlarni navbat bilan sinaydi, JSON obyekt qaytaradi."""
-    oxirgi = None
-    for nom, kalit, model in provayderlar():
+    """Kalit va provayderlarni navbat bilan sinaydi, JSON obyekt qaytaradi. Limitga yetgan kalit vaqtincha chetlatiladi;
+    daqiqalik limit bo'lsa qisqa kutib qayta uriniladi. Hech biri javob bermasa — AiTugadi."""
+    oxirgi, kutildi = None, 0
+    while True:
+        nomzodlar = _nomzodlar()
+        for nom, kalit, model in nomzodlar:
+            left = deadline - (time.monotonic() - t0)
+            if left < 15:
+                break
+            try:
+                raw = _chaqir(nom, kalit, model, system, user, timeout=min(150, left))
+                out = json_ajrat(raw)
+                out.setdefault("_ai", {"provayder": nom, "model": model})
+                with _QULF:
+                    _OXIRGI.pop((nom, kalit), None)
+                return out
+            except (error.URLError, error.HTTPError, TimeoutError, ValueError, KeyError, json.JSONDecodeError) as exc:
+                oxirgi = exc
+                tur, dam = _xato_tahlil(exc)
+                with _QULF:
+                    if tur == "model":
+                        _OLIK[(nom, model)] = time.monotonic() + dam
+                    elif dam > 0:
+                        _SOVUQ[(nom, kalit, model)] = time.monotonic() + dam
+                    if tur != "boshqa":
+                        _OXIRGI[(nom, kalit)] = {"kunlik": "kunlik limit tugadi", "daqiqa": "daqiqalik limit", "kalit": "kalit yaroqsiz yoki ruxsat yo‘q",
+                                                 "model": f"model topilmadi: {model}", "band": "server band"}[tur]
+                continue
         left = deadline - (time.monotonic() - t0)
-        if left < 15:
-            break
-        try:
-            raw = _chaqir(nom, kalit, model, system, user, timeout=min(150, left))
-            out = json_ajrat(raw)
-            out.setdefault("_ai", {"provayder": nom, "model": model})
-            return out
-        except (error.URLError, error.HTTPError, TimeoutError, ValueError, KeyError, json.JSONDecodeError) as exc:
-            oxirgi = exc
+        dam = _eng_yaqin_ochilish()
+        if kutildi < 3 and 0 < dam <= 45 and left > dam + 25:   # daqiqalik limit — biroz kutamiz
+            kutildi += 1
+            time.sleep(dam + 0.5)
             continue
-    raise RuntimeError(f"AI javob bermadi: {type(oxirgi).__name__ if oxirgi else 'vaqt tugadi'}")
+        if not nomzodlar and kutildi == 0 and oxirgi is None:
+            raise AiTugadi("AI limiti tugadi: barcha kalitlar band")
+        break
+    raise AiTugadi(f"AI javob bermadi: {type(oxirgi).__name__ if oxirgi else 'vaqt tugadi'}")
 
 
 REJA_KORSATMA = """Sen tajribali metodistsan. Mavzu bo‘yicha taqdimot REJASINI tuzasan — faqat tuzilma, to‘liq matn emas.
@@ -848,8 +983,11 @@ def miya_yoz(mavzu, fan="", daraja="maktab", sinf="", tur="dars", qoshimcha="", 
                 natija[(tur_, i)] = f.result()
             except Exception as exc:  # bitta bo'lim yiqilsa — rejadagi sarlavhalar bilan oddiy slaydlar
                 natija[(tur_, i)] = {"_xato": str(exc)[:120]}
+    yiqildi = sum(1 for (tur_, i), v in natija.items() if tur_ == "bolim" and "_xato" in v)
+    if yiqildi * 2 > len(reja["bolimlar"]):   # faqat sarlavhali bo'sh slaydlar bermaymiz — chaqiruvchi bazadan oladi
+        raise AiTugadi("AI bo‘limlarni yoza olmadi")
     yakun = natija.get(("yakun", -1)) or {}
-    m = {k: v for k, v in yakun.items() if k not in ("bolimlar", "_ai")}
+    m = {k: v for k, v in yakun.items() if k not in ("bolimlar", "_ai", "_xato")}
     meta = dict(yakun.get("meta") or {})
     meta.setdefault("mavzu", reja["meta"]["mavzu"])
     for k in ("qisqa", "maqsad", "tayanch"):

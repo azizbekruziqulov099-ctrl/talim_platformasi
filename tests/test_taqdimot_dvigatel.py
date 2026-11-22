@@ -662,3 +662,86 @@ def test_har_bir_reestr_rasmi_oz_nomi_bilan_topiladi():
         if r["kalit"] not in [k for k, _ in rt.katalog(nom, fan, 12)]:
             yoq.append(r["kalit"])
     assert not yoq, yoq[:10]
+
+
+# ---------------------------------------------------------------- AI kalitlari navbati va «AI tugasa — bazadan»
+def _http_xato(kod, tana=""):
+    import io
+    from urllib import error
+    return error.HTTPError("https://x", kod, "xato", {}, io.BytesIO(tana.encode()))
+
+
+def test_bir_nechta_gemini_kaliti_navbat_bilan_ishlaydi(monkeypatch):
+    from modules.taqdimot_dvigatel import ai
+    for k in list(__import__("os").environ):
+        if "GEMINI" in k or "GOOGLE_AI" in k or k.startswith(("OPENAI_API", "GROQ_API", "TAQDIMOT_")):
+            monkeypatch.delenv(k, raising=False)
+    monkeypatch.setenv("GEMINI_API_KEY", "kalit-birinchi-1111")
+    monkeypatch.setenv("GEMINI_API_KEY_2", "kalit-ikkinchi-2222, kalit-uchinchi-3333")
+    assert ai.kalitlar("gemini") == ["kalit-birinchi-1111", "kalit-ikkinchi-2222", "kalit-uchinchi-3333"]
+    assert [m for _, _, m in ai.provayderlar()][:3] == ["gemini-2.5-flash"] * 3 and ai.provayderlar()[-1][2] == "gemini-flash-latest"
+    ai._SOVUQ.clear(); ai._OLIK.clear(); ai._OXIRGI.clear()
+    chaqirildi = []
+
+    def soxta(nom, kalit, model, system, user, timeout=0):
+        chaqirildi.append((kalit[-4:], model))
+        if kalit.endswith("1111"):
+            raise _http_xato(429, '{"error":{"message":"Quota exceeded: GenerateRequestsPerDayPerProjectPerModel-FreeTier"}}')
+        return '{"ok": 1}'
+    monkeypatch.setattr(ai, "_chaqir", soxta)
+    for _ in range(4):
+        assert ai._bir_chaqiruv("s", "u", 60, ai.time.monotonic())["ok"] == 1
+    assert sum(1 for k, _ in chaqirildi if k == "1111") == 1, "limitga yetgan kalit qayta-qayta sinalmasin"
+    assert {k for k, _ in chaqirildi} == {"1111", "2222", "3333"}, "yuk qolgan kalitlarga bo'linsin"
+    h = ai.kalitlar_holati()
+    assert h["ishlayotgan"] == 2 and "kalit-birinchi" not in str(h)
+
+    # model o'chirilgan (404) — zaxira modelga o'tadi; hamma kalit limitda — tez AiTugadi
+    ai._SOVUQ.clear(); chaqirildi.clear()
+    monkeypatch.setattr(ai, "_chaqir", lambda n, k, m, s, u, timeout=0: (_ for _ in ()).throw(_http_xato(404)) if m == "gemini-2.5-flash" else '{"ok": 2}')
+    assert ai._bir_chaqiruv("s", "u", 60, ai.time.monotonic())["_ai"]["model"] == "gemini-flash-latest"
+    ai._OLIK.clear()
+    monkeypatch.setattr(ai, "_chaqir", lambda *a, **k: (_ for _ in ()).throw(_http_xato(429, "limit per day")))
+    t0 = ai.time.monotonic()
+    with pytest.raises(ai.AiTugadi):
+        ai._bir_chaqiruv("s", "u", 60, t0)
+    assert ai.time.monotonic() - t0 < 3 and ai.tugaganmi()
+    ai._SOVUQ.clear(); ai._OLIK.clear(); ai._OXIRGI.clear()
+
+
+def test_ai_tugasa_taqdimot_bazadan_beriladi(monkeypatch):
+    from modules.taqdimot_dvigatel import darslar, kutubxona_ai, yasash, zaxira
+    tayyor = {"meta": {"mavzu": "Fotosintez"}, "bolimlar": [{"nom": "Kirish", "slaydlar": [{"sarlavha": "Fotosintez nima?", "elementlar": [{"tur": "matn", "matn": "x"}]}]}]}
+
+    class K:
+        def miya(self, i):
+            return tayyor if i == 1 else {"meta": {"mavzu": "boshqa"}, "bolimlar": [{"nom": "a", "slaydlar": [{"sarlavha": "b"}]}]}
+    D = type("D", (), {"kutub": K()})()
+    qator = lambda i, sinf, fan, mavzu, daraja="maktab": {"manba": "kutubxona", "id": i, "daraja": daraja, "sinf": sinf, "fan": fan, "mavzu": mavzu}
+    monkeypatch.setattr(zaxira, "_db_qatorlari", lambda D: (qator(1, "6", "Biologiya", "Fotosintez"), qator(2, "6", "Biologiya", "Hujayraning tuzilishi"),
+                                                           qator(3, "7", "Fizika", "Mexanik harakat va uning turlari"),
+                                                           qator(4, "1–4-kurs", "Pedagogika", "Fotosintez", "bakalavr")))
+    z = zaxira.top(D, {"mavzu": "Fotosintez", "fan": "Biologiya", "daraja": "maktab", "sinf": "6"}, "AI limiti tugadi")
+    assert z["meta"]["mavzu"] == "Fotosintez" and z["_zaxira"]["aniq"] and "bazasidan" in z["_zaxira"]["xabar"]
+    z = zaxira.top(D, {"mavzu": "Mexanik harakat tezligi", "fan": "Fizika", "daraja": "maktab", "sinf": "7"})
+    assert z and not z["_zaxira"]["aniq"] and "eng yaqin" in z["_zaxira"]["xabar"]
+    # boshqa mavzu «shu mavzu» deb berilmaydi; boshqa fan va boshqa bosqich ham aralashmaydi
+    assert zaxira.top(D, {"mavzu": "Nafas olish organlari", "fan": "Biologiya", "daraja": "maktab", "sinf": "6"}) is None
+    assert zaxira.top(D, {"mavzu": "Fotosintez", "fan": "Tarix", "daraja": "maktab", "sinf": "6"}) is None
+    assert "Hujayraning tuzilishi" in zaxira.topilmadi_xabari(D, {"mavzu": "Nafas olish", "fan": "Biologiya", "sinf": "6"}, "")
+    r = zaxira.rejaga(tayyor)
+    assert r["bolimlar"][0]["slaydlar"][0]["sarlavha"] == "Fotosintez nima?"
+
+    # qo'lda yozilgan dars → to'liq taqdimot (AIsiz)
+    d = darslar._barchasi()[0]
+    z = zaxira.top(D, {"mavzu": d["mavzu"], "fan": d["fan"], "daraja": d["daraja"], "sinf": d["sinf"]})
+    assert z["_zaxira"]["manba"] == "dars"
+    sah = yasash.yasa({k: v for k, v in z.items() if k != "_zaxira"}, 3)
+    assert len(sah["slaydlar"]) >= 10
+
+    # yozuvchi asosiy fandan boshlaydi; «faqat kechasi» soatlari
+    sql = kutubxona_ai.fan_tartibi_sql()
+    assert sql.index("matemat") < sql.index("ona tili") < sql.index("fizika") < sql.index("tarix")
+    import datetime as dt
+    assert kutubxona_ai.tun_vaqtimi(dt.datetime(2026, 1, 1, 23)) and kutubxona_ai.tun_vaqtimi(dt.datetime(2026, 1, 1, 3))
+    assert not kutubxona_ai.tun_vaqtimi(dt.datetime(2026, 1, 1, 12))

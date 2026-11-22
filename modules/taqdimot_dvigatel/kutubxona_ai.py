@@ -61,7 +61,27 @@ MALUMOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "malumot")
 URUG = os.path.join(MALUMOT, "mavzular_reja.json")
 DARAJALAR = ("maktab", "bakalavr", "magistr")
 HOLATLAR = ("kutmoqda", "yozilmoqda", "tayyor", "xato", "otkazildi")
-STANDART = {"yoqilgan": False, "kunlik": 100, "tartib": "maktab", "daraja": [], "sinflar": [], "fanlar": []}
+STANDART = {"yoqilgan": False, "kunlik": 100, "tartib": "maktab", "daraja": [], "sinflar": [], "fanlar": [], "tun": False}
+TUN_SOATLARI = (22, 7)   # «faqat kechasi» yoqilganda yozuvchi shu oraliqda ishlaydi (Toshkent vaqti)
+# Asosiy fanlar birinchi yoziladi: matematika → ona tili → chet tili → tabiiy fanlar → qolganlari
+ASOSIY_FANLAR = (("%matemat%", "%algebra%", "%geometr%"), ("ona tili%", "%qish savodxon%", "%alifbe%", "%adabiyot%"),
+                 ("%ingliz%", "%rus tili%"), ("%fizika%",), ("%kimyo%",), ("%biolog%", "%tabiiy%"), ("%informat%",),
+                 ("%tarix%",), ("%geograf%",))
+
+
+def fan_tartibi_sql() -> str:
+    qism = []
+    for i, andozalar in enumerate(ASOSIY_FANLAR):
+        shart = " OR ".join("lower(fan) LIKE '" + a.replace("%", "%%") + "'" for a in andozalar)
+        qism.append(f"WHEN {shart} THEN {i}")
+    return "CASE " + " ".join(qism) + f" ELSE {len(ASOSIY_FANLAR)} END"
+
+
+def tun_vaqtimi(hozir=None) -> bool:
+    import datetime as _dt
+    soat = (hozir or _dt.datetime.now(_dt.timezone(_dt.timedelta(hours=5)))).hour
+    a, b = TUN_SOATLARI
+    return soat >= a or soat < b
 OTKAZ = re.compile(r"takrorla|masala(lar)? yech|nazorat ishi|mustahkam|^test\b|\bbsb\b|\bchsb\b|javoblar|foydalanilgan|bob yuzasidan|"
                    r"umumlashtir|mashqlarning javob|kirish$|mundarija", re.I)
 IJARA_DAQ = 12        # yozuvchi ijarasi (bir nechta gunicorn jarayoni bo'lsa ham bitta yozadi)
@@ -301,6 +321,8 @@ class Kutubxona:
         z = self.sozlama()
         if isinstance(body.get("yoqilgan"), bool):
             z["yoqilgan"] = body["yoqilgan"]
+        if isinstance(body.get("tun"), bool):
+            z["tun"] = body["tun"]
         if body.get("kunlik") is not None:
             try:
                 z["kunlik"] = max(0, min(5000, int(body["kunlik"])))
@@ -362,7 +384,8 @@ class Kutubxona:
         fanlar = [{"daraja": d, "sinf": s, "fan": f, **v} for (d, s, f), v in
                   sorted(guruh.items(), key=lambda kv: (DARAJALAR.index(kv[0][0]) if kv[0][0] in DARAJALAR else 9, sinf_tartib(kv[0][1]), kv[0][1], kv[0][2]))]
         from . import ai
-        return {"jami": jami, "bugun": bugun, "sarf": sarf, "ai": ai.mavjud(), "sozlama": self.sozlama(), "fanlar": fanlar, "xatolar": xatolar, "hozir": hozir,
+        return {"jami": jami, "bugun": bugun, "sarf": sarf, "ai": ai.mavjud(), "kalitlar": ai.kalitlar_holati(), "tun_hozir": tun_vaqtimi(),
+                "sozlama": self.sozlama(), "fanlar": fanlar, "xatolar": xatolar, "hozir": hozir,
                 "manbalar": manbalar, "yigish": self._holat_ol("yigish"), "dars_mazmuni": dars_mazmuni}
 
     def navbat(self, body) -> int:
@@ -559,13 +582,26 @@ class Kutubxona:
                         "ON CONFLICT (kalit) DO UPDATE SET qiymat=EXCLUDED.qiymat, vaqt=now()", (json.dumps({"pid": self.pid}),))
             return True
 
+    def _foydalanuvchi_band(self) -> bool:
+        """Hozir foydalanuvchi taqdimot yozdirayaptimi — yozuvchi navbat bermaydi (AI limiti avval odamlarga)."""
+        try:
+            with self.ps.db() as cur:
+                cur.execute("SELECT count(*) AS n FROM taqdimot_dvigatel_ishlar WHERE holat IN ('navbatda','yozilmoqda') "
+                            "AND yaratildi > now() - interval '6 minutes'")
+                return cur.fetchone()["n"] > 0
+        except Exception:
+            return False
+
     def _tartib(self, z) -> str:
         manba = "CASE WHEN manba LIKE 'reja%%' THEN 1 ELSE 0 END"
         sinf = "COALESCE(NULLIF(substring(sinf from '\\d+'), '')::int, 99)"
         dr = {"maktab": "CASE daraja WHEN 'maktab' THEN 0 WHEN 'bakalavr' THEN 1 ELSE 2 END",
               "otm": "CASE daraja WHEN 'bakalavr' THEN 0 WHEN 'magistr' THEN 1 ELSE 2 END",
               "sinf": "0"}[z.get("tartib") if z.get("tartib") in ("maktab", "otm", "sinf") else "maktab"]
-        return f"{dr}, {manba}, {sinf}, fan, raqam NULLS LAST, id"
+        fan = fan_tartibi_sql()
+        if z.get("tartib") == "sinf":
+            return f"{sinf}, {fan}, {manba}, fan, raqam NULLS LAST, id"
+        return f"{dr}, {fan}, {manba}, {sinf}, fan, raqam NULLS LAST, id"
 
     def qadam(self) -> bool:
         """Bitta mavzuni yozadi (yoki hech narsa qilmaydi). Qaytaradi: yozishga urindimi."""
@@ -575,6 +611,12 @@ class Kutubxona:
             return False
         from . import ai
         if not ai.mavjud():
+            return False
+        if z.get("tun") and not tun_vaqtimi():
+            return False
+        if ai.tugaganmi():          # kalitlar limitda — qolgan so'rovlar foydalanuvchilarga qolsin
+            return False
+        if self._foydalanuvchi_band():
             return False
         if not self._ijara():
             return False
@@ -603,7 +645,11 @@ class Kutubxona:
                 cur.execute("UPDATE taqdimot_mavzular SET holat='tayyor', miya=%s, yozildi=now(), xato=NULL, ochiq_holat=%s WHERE id=%s",
                             (json.dumps(m, ensure_ascii=False), "tayyor" if bayon_bor(m) else "kutmoqda", r["id"]))
         except Exception as exc:
+            from . import ai as _ai
             with self.ps.db() as cur:
+                if isinstance(exc, _ai.AiTugadi):   # limit tugagan — mavzu aybdor emas: urinish hisobga olinmaydi
+                    cur.execute("UPDATE taqdimot_mavzular SET holat='kutmoqda', urinish=GREATEST(urinish-1, 0), boshlandi=NULL WHERE id=%s", (r["id"],))
+                    return False
                 cur.execute("UPDATE taqdimot_mavzular SET holat=%s, xato=%s WHERE id=%s",
                             ("xato" if r["urinish"] >= URINISH_MAX else "kutmoqda", str(exc)[:300], r["id"]))
         return True

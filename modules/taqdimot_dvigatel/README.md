@@ -122,3 +122,14 @@ shaharlari / dunyo davlatlari — `malumot/xarita_*.json`, geoBoundaries ODbL va
 (aylana / zanjir / qadam), galereya, guruhlash; o'yinlar: moslash, togri_notogri, bosh_joy, rasmda_nima.
 Ichki rasmlar (lug'at so'zi, jihoz, voqea, bosqich) kutubxonadan o'zi topiladi. `profil.py` — fan va yosh bo'yicha AI ga
 qaysi turlarni ishlatishni aytadi. Slaydlar orasida faqat fade (Morph yo'q).
+
+## AI kalitlari va «AI tugasa — bazadan»
+
+- Bir nechta kalit: `GEMINI_API_KEY`, `GEMINI_API_KEY_2`, `GEMINI_API_KEY_3` … (yoki bitta o‘zgaruvchida vergul bilan). Biri limitga
+  yetsa (429), vaqtincha chetlatiladi va keyingisi ishlaydi. Google limitni kalitga emas, loyihaga qo‘yadi — kalitlar turli
+  loyihalardan bo‘lsagina sig‘im oshadi.
+- Model topilmasa (404), `gemini-flash-latest` zaxira modeli ishlatiladi. Asosiy model: `TAQDIMOT_GEMINI_MODEL`.
+- AI javob bermasa, `zaxira.py` taqdimotni bazadan beradi: qo‘lda yozilgan darslar → AI kutubxonasi (tayyor mavzular) →
+  tayyor to‘plamlar. Mavzu aynan yoki yaqin topilsa beriladi, bo‘lmasa shu fandan tayyor mavzular tavsiya qilinadi.
+- Kutubxona yozuvchisi asosiy fanlardan boshlaydi (matematika → ona tili → chet tili → …), foydalanuvchi taqdimot
+  yozdirayotganda va kalitlar limitda bo‘lganda kutadi; «faqat kechasi» sozlamasi bor.

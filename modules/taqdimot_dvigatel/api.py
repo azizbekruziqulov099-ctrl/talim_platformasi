@@ -20,7 +20,7 @@ from fastapi import Header, HTTPException, Request
 from fastapi.responses import Response
 from starlette.concurrency import run_in_threadpool
 
-from . import ai, excel, kutubxona, rasmlar, sozlamalar, sxema, uslub, yasash
+from . import ai, excel, kutubxona, rasmlar, sozlamalar, sxema, uslub, yasash, zaxira
 
 PREFIX = "/api/taqdimot-dvigatel"
 NO_STORE = {"Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff"}
@@ -207,8 +207,6 @@ class Dvigatel:
 
     # ------------------------------------------------------------ AI navbati
     def ai_boshla(self, uid, body):
-        if not ai.mavjud():
-            fail("AI kaliti serverda sozlanmagan. Hozircha miyani Excel yoki JSON orqali yuklang.", 503)
         if not isinstance(body, dict):
             fail("So‘rov noto‘g‘ri")
         mavzu = sxema.t(body.get("mavzu"), 200)
@@ -261,10 +259,23 @@ class Dvigatel:
                         pass
             with self.ps.db() as cur:
                 cur.execute("UPDATE taqdimot_dvigatel_ishlar SET holat='tayyor', natija=%s, tugadi=now() WHERE id=%s", (json.dumps(m, ensure_ascii=False), ish))
-        except Exception as exc:  # xato foydalanuvchiga qisqa ko'rinadi
+        except Exception as exc:  # AI yoza olmadi (limit, kalit, tarmoq) — o'z bazamizdan beramiz; u ham bo'lmasa qisqa xato
+            xato = str(exc)[:300]
+            try:
+                z = zaxira.top(self, sorov, xato)
+                if z is not None:
+                    if sorov.get("faqat_reja"):
+                        z = {**ai.reja_toza(zaxira.rejaga(z), sorov["mavzu"]), "_zaxira": z["_zaxira"]}
+                    with self.ps.db() as cur:
+                        cur.execute("UPDATE taqdimot_dvigatel_ishlar SET holat='tayyor', natija=%s, tugadi=now() WHERE id=%s", (json.dumps(z, ensure_ascii=False), ish))
+                    return
+                if isinstance(exc, ai.AiTugadi) or "AI kaliti" in xato:
+                    xato = zaxira.topilmadi_xabari(self, sorov, xato)[:600]
+            except Exception:
+                pass
             try:
                 with self.ps.db() as cur:
-                    cur.execute("UPDATE taqdimot_dvigatel_ishlar SET holat='xato', xato=%s, tugadi=now() WHERE id=%s", (str(exc)[:300], ish))
+                    cur.execute("UPDATE taqdimot_dvigatel_ishlar SET holat='xato', xato=%s, tugadi=now() WHERE id=%s", (xato, ish))
             except Exception:
                 pass
 
