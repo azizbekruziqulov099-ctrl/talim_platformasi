@@ -527,7 +527,7 @@ def test_ochiq_dars_mavzu_mazmuni_slaydda_javoblar_izohda(andoza):
 def test_rasmlar_001_1000_reestrda_va_topiladi():
     from modules.taqdimot_dvigatel import rasm_tanla, rasmlar
     reg = [r for r in rasmlar.papka_reestri() if (r.get("manba") or "").startswith("Rasmlar")]
-    assert len(reg) == 1000
+    assert len(reg) >= 1800 and all(r.get("nom_ru") and r.get("nom_en") for r in reg)
     for r in reg:
         assert rasmlar.bor(r["kalit"]) and r["nom"] and r["fan"] and r["vaziyat"]
         assert 1 <= r["umumiylik"] <= 4 and 3 <= r["sifat"] <= 5 and r["toifa"]
