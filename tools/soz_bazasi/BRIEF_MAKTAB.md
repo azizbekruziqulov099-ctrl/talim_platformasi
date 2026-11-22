@@ -30,3 +30,13 @@ fe'llarga "turkum":"harakat" qo'y; sifat/ravish/iboralar uchun tekshiruvdan o'ti
 "turkum":"boshqa" qo'y va `python3 tools/soz_bazasi/tekshir.py --maktab tools/soz_bazasi/qism_mN.json` bilan tekshir (bu rejimda artikl faqat soz_turi "ot" bo'lganda talab qilinadi; arabcha izofa — ikkinchi so'zi «ال» li birikma — ham qabul qilinadi).
 0 xato bo'lishi shart. Commit qilma, boshqa fayllarga tegma.
 Hisobot (qisqa, o'zbekcha): nechta qoldi, nechta tashlandi, shubhali tarjimalar (til + so'z).
+
+## 2-to'lqin qo'shimchalari (REV696)
+- "soz_turi": "son" ham bor (bir, o'n ikki, qirq) — artikl talab qilinmaydi.
+- Artiklsiz aytiladigan otlar (oy, hafta kuni, fan nomi) uchun elementga `"artiklsiz": true` qo'y — tekshiruv artiklni so'ramaydi
+  (fr «septembre», es «septiembre», ar «سبتمبر», de «der September» — tabiiy shaklni yoz).
+- Arabcha izofa («محطة الحافلات») qabul qilinadi — shuning uchun so'zni tashlama.
+- Tushuncha `sozlar` dan aniq bo'lmasa — rasmni OCH va ko'r: `/home/claude/talim_platformasi/modules/rasm_kutubxona/rasm/<fayl>` (Read vositasi rasmni ko'rsatadi).
+  Rasmni ko'rmasdan taxmin qilma; ko'rgandan keyin ham noaniq bo'lsa — tashla.
+- Rasm mavhum sxema bo'lib, so'zni rasmdan topib bo'lmasa (ko'rgan bo'lsang) — elementga `"mavhum": true` qo'y (so'z qoladi, lekin «rasmdan top» o'yinida ishlatilmaydi).
+- Avvalgi to'lqinda bor tushunchalarni takrorlama: `tools/soz_bazasi/maktab.json` va `bolalar.json` dagi "kalit" lar bilan bir xil kalit bo'lmasin (boshlashdan oldin kalitlar ro'yxatini o'qi).

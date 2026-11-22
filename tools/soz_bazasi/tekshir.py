@@ -42,8 +42,11 @@ def tekshir(yol, maktab=False):
                 xato.append(f"{joy}: ja «{s}» — kanji bor")
             if t == "ar" and re.search(r"[ً-ْ]", s):
                 xato.append(f"{joy}: ar «{s}» — harakat belgilari bor")
-        if maktab and x.get("soz_turi") not in ("ot", "fel", "sifat", "ravish", "ibora"):
+        if maktab and x.get("soz_turi") not in ("ot", "fel", "sifat", "ravish", "ibora", "son"):
             xato.append(f"{joy}: soz_turi noma'lum")
+        # "artiklsiz": true — oy, hafta kuni, fan nomi kabi artiklsiz aytiladigan otlar (de/fr/es/ar tekshirilmaydi)
+        if x.get("artiklsiz"):
+            continue
         if (x.get("soz_turi") == "ot") if maktab else (x.get("turkum") != "harakat"):
             # arabcha izofa («رائد الفضاء») — ikkinchi so'zi «ال» bilan: qabul qilinadi
             for t, rx in (("de", r"^(der|die|das) "), ("fr", r"^(le |la |les |l[’'])"), ("es", r"^(el|la|los|las) "), ("ar", r"^ال|\sال")):
