@@ -558,6 +558,11 @@ def test_rasm_qidiruvi_uch_tilda():
     assert rt.til_taxmin("Dispersiya (prizmada)") == "uz" and rt.til_taxmin("Seed dispersal by wind") == "en"
     assert rt.eng_mos("Dispersiya (prizmada) Dispersiya", fan="Fizika")[0] != "seed_dispersal_by_wind_water_animals_bola"
     assert {"biolog"} <= rt._fan_guruh("Биология") and {"tillar"} <= rt._fan_guruh("Русский язык")
+    # sayt kutubxonasi (≈5000 rasm) ham ruscha/inglizcha nom bilan topiladi
+    if rt._kutubxona_cache():
+        assert len(rt._rk_tillar()) > 4500
+        assert rt.buyum_rasmi("Ёж") and rt.buyum_rasmi("Пингвин") == "d_pingvin"
+        assert rt.buyum_rasmi("Транспортир") != "transport_turlari"
     # AI katalogi taqdimot tilida
     assert "— Фотосинтез" in ai.katalog_matni("Фотосинтез растения", "Биология", 20, "ru")
     assert "— Photosynthesis" in ai.katalog_matni("Photosynthesis in plants", "Biology", 20, "en")

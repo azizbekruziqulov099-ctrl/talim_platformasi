@@ -50,7 +50,7 @@ def _ildiz(soz: str) -> str:
             if s.endswith(q) and len(s) - len(q) >= 3:
                 s = s[: -len(q)]
                 break
-        return s[:7]   # ruscha so'zlar uzunroq: «микроскоп» ≠ «микросхема»
+        return s[:10]   # ruscha: oxiri kesiladi, so'z deyarli butun qoladi — «транспортир» ≠ «транспорт»
     for _ in range(2):
         for q in _QOSHIMCHA:
             if s.endswith(q) and len(s) - len(q) >= 4:
@@ -179,9 +179,24 @@ _TIL_FANLAR = {"tillar", "ingliz", "rus", "nemis", "fransu", "ispan", "koreys", 
                "adabiy", "bog'cha", "tarbiy"}
 
 
+@lru_cache(maxsize=1)
+def _rk_tillar() -> dict:
+    """Sayt kutubxonasi rasmlarining ruscha va inglizcha nomlari (malumot/kutubxona_tillar.json.gz): id → [ru, en]."""
+    import gzip
+    import json
+    import os
+    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "malumot", "kutubxona_tillar.json.gz")
+    try:
+        with gzip.open(p, "rt", encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
+
 def _kutubxona_qatorlari():
     """Saytning umumiy rasm kutubxonasi (≈6000 illyustratsiya) — tanlash indeksiga."""
     out = []
+    tillar = _rk_tillar()
     for r in rasmlar.kutubxona_yozuvlari():
         i = r.get("id") or ""
         if not i or i.startswith("d_v-"):  # javob varianti rasmlari — faqat aniq kalit bilan
@@ -197,6 +212,19 @@ def _kutubxona_qatorlari():
             if t and len(s.split()) <= 3:
                 asosiy |= t
                 ismlar.append(_na(t))
+        # ruscha/inglizcha nomi («Ёж», «Hedgehog»); yangi qo'shilgan inglizcha so'zlar o'zbekcha so'rovga tasodifan tushmasin
+        bor_ = set(tok)
+        nom_ru, nom_en = (tillar.get(i) or [None, None])[:2]
+        nom_ru = nom_ru or next((x for x in sozlar if re.search("[а-яё]", x.lower())), "")
+        en_t = set()
+        for nm in (nom_ru, nom_en or ""):
+            t2 = tokenlar(nm)
+            if t2:
+                tok |= t2
+                asosiy |= t2
+                ismlar.append(_na(tokenlar(re.sub(r"\(.*?\)", " ", nm)) or t2))
+                if nm is nom_en:
+                    en_t |= t2
         if not asosiy:
             continue
         turkum = (r.get("turkum") or "").lower()
@@ -207,7 +235,8 @@ def _kutubxona_qatorlari():
         ot = bool(any(_ARTIKL.match(s) for s in sozlar) or i.startswith(("d_mat", "d_fiz", "d_kim", "d_bio", "d_xb", "d_y-"))
                   or not i.startswith("d_"))
         out.append({"kalit": i, "tur": "rasm", "nom": rasmlar.kutubxona_nomi(r), "fan": fanlar, "asosiy": asosiy, "tok": tok,
-                    "fan_tok": ft, "rk": True, "ot": ot, "past": bool(r.get("past")), "ismlar": ismlar})
+                    "fan_tok": ft, "rk": True, "ot": ot, "past": bool(r.get("past")), "ismlar": ismlar,
+                    "nom_ru": nom_ru or "", "nom_en": nom_en or "", "faqat_en": frozenset(en_t - bor_)})
     return out
 
 
@@ -326,10 +355,14 @@ def _qisqa_sozlar():
     """2 harfli so'zlar (ot, it, uy, oy) — tokenlarga kirmaydi; sayt kutubxonasida aynan shu nomli rasm."""
     out = {}
     for r in _kutubxona_cache():
-        for s in rasmlar.kutubxona_yozuvlari_lugat().get(r["kalit"], []):
+        for s in rasmlar.kutubxona_yozuvlari_lugat().get(r["kalit"], []) + [r.get("nom_ru") or ""]:
             w = s.strip().lower().translate(_APO)
             if len(w) == 2 and w.isalpha():
                 out.setdefault(w, []).append(r)
+    for r in indeks()[0]:   # taqdimot rasmlari: «Як»
+        w = (r.get("nom_ru") or "").strip().lower()
+        if not r.get("rk") and r["tur"] == "rasm" and len(w) == 2 and w.isalpha():
+            out.setdefault(w, []).insert(0, r)
     return {w: sorted(v, key=lambda r: (r.get("past", False), len(r["asosiy"])))[0]["kalit"] for w, v in out.items()}
 
 
