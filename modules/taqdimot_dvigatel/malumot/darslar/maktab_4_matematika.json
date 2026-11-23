@@ -13813,6 +13813,1381 @@
      "yakun": "Natijalar: 2 soat; 4 soat; 60 km; 9 km."
     }
    }
+  },
+  {
+   "mavzu": "Quvib yetish bilan bog‘liq harakatga doir masalalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Takrorlaymiz",
+      "matn": "Quvib yetishda orqadagi jism tezroq yuradi. Orasidagi masofa har soatda tezliklar ayirmasicha qisqaradi. Quvib yetish vaqti — masofa bo‘linsin ayirmaga.",
+      "misol": "Mototsikl soatiga 50 km, velosipedchi soatiga 15 km. Orasi 70 km. Ayirma 50 − 15 — 35.",
+      "savol": "50 − 15 nechaga teng?",
+      "javob": "35",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vaqtni topamiz",
+      "matn": "Orasidagi masofani ayirma tezlikka bo‘lib, quvib yetish vaqtini topamiz.",
+      "misol": "70 / 35 — 2 soat.",
+      "savol": "70 / 35 nechaga teng?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yo‘llarni tekshiramiz",
+      "matn": "Quvib yetganda orqadagi jismning yo‘li oldingining yo‘li va dastlabki masofaning yig‘indisiga teng bo‘ladi.",
+      "misol": "Mototsikl: 50 · 2 — 100 km. Velosipedchi: 15 · 2 — 30 km. 30 + 70 — 100 km.",
+      "savol": "15 · 2 + 70 nechaga teng?",
+      "javob": "100",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oldin chiqqan jism",
+      "matn": "Agar bir jism oldin chiqqan bo‘lsa, orasidagi masofani topamiz: tezlikni oldin yurgan vaqtga ko‘paytiramiz. Keyin odatdagidek ishlaymiz.",
+      "misol": "Piyoda soatiga 5 km tezlik bilan 2 soat oldin chiqdi: 5 · 2 — 10 km oldinda. Velosipedchi soatiga 15 km: ayirma 15 − 5 — 10.",
+      "savol": "5 · 2 nechaga teng?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Quvib yetish vaqti",
+      "matn": "Velosipedchi piyodaga necha soatda yetadi? Masofa 10 km, ayirma 10 km.",
+      "misol": "10 / 10 — 1 soat. Tekshirish: velosipedchi 15 · 1 — 15 km, piyoda 5 · 1 + 10 — 15 km.",
+      "savol": "10 / 10 nechaga teng?",
+      "javob": "1",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ayirma tezlik, masofa bo‘linsin ayirmaga — vaqt. Oldin chiqqan bo‘lsa, orasidagi masofani oldin topamiz. Yo‘llarni tekshiramiz.",
+    "misollar": [
+     {
+      "shart": "Mototsikl 50 km, velosipedchi 15 km tezlikda. Orasi 70 km. Necha soatda quvib yetadi?",
+      "yechim": [
+       "Ayirma: 50 − 15 — 35.",
+       "Vaqt: 70 / 35.",
+       "Javob 2 soat."
+      ],
+      "javob": "2 soat"
+     },
+     {
+      "shart": "Poyezd soatiga 80 km, yuk poyezdi soatiga 60 km. Orasi 100 km. Necha soatda yetadi? Qancha yo‘l yuradi?",
+      "yechim": [
+       "Ayirma: 80 − 60 — 20, vaqt 100 / 20 — 5 soat.",
+       "Tez poyezd: 80 · 5 — 400 km.",
+       "Yuk poyezdi: 60 · 5 — 300 km, 300 + 100 — 400."
+      ],
+      "javob": "5 soat, 400 km"
+     },
+     {
+      "shart": "Piyoda 2 soat oldin soatiga 5 km tezlikda chiqdi. Velosipedchi soatiga 15 km tezlikda chiqdi. Necha soatda yetadi?",
+      "yechim": [
+       "Oldinda: 5 · 2 — 10 km.",
+       "Ayirma: 15 − 5 — 10.",
+       "Vaqt: 10 / 10 — 1 soat."
+      ],
+      "javob": "1 soat"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Chizma chizamiz",
+      "topshiriq": "Quvib yetish chizmasini chizing.",
+      "yechim": "Chizmada masofa va tezliklar belgilanadi.",
+      "mahsulot": "chizma varag‘i"
+     },
+     {
+      "nom": "Oldin chiqqan",
+      "topshiriq": "Bir jism oldin chiqqan masalani yeching.",
+      "yechim": "5 · 2 — 10, ayirma 10, vaqt 1 soat.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Yo‘llarning mosligini tekshiring.",
+      "yechim": "30 + 70 — 100.",
+      "mahsulot": "tekshiruv varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "O‘zingiz uchun quvib yetish masalasi tuzing.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala kartochkasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "50 − 15 nechaga teng?",
+      "javob": "35"
+     },
+     {
+      "shart": "70 / 35 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "100 / 20 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "80 · 5 nechaga teng?",
+      "javob": "400"
+     },
+     {
+      "shart": "5 · 2 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "10 / 10 nechaga teng?",
+      "javob": "1"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tezliklarni qo‘shadi",
+      "sabab": "quvib yetishni uchrashuv bilan aralashtiradi",
+      "oldini_olish": "quvib yetishda tezliklar ayiriladi"
+     },
+     {
+      "xato": "Oldin chiqqan masofani unutadi",
+      "sabab": "dastlabki masofani hisoblamaydi",
+      "oldini_olish": "tezlik ko‘paytirilsin oldin yurgan vaqtga"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "yo‘llarning mosligini tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "yo‘lda quvib yetish"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "yugurish musobaqasi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "poyezdlar harakati"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Quvib yetish masalalari banki»",
+     "muammo": "Quvib yetish masalalaridan qanday qilib bank tuzamiz?",
+     "mahsulot": "masalalar banki",
+     "bosqichlar": [
+      "masala tuzish",
+      "chizma chizish",
+      "yechish",
+      "tekshirish",
+      "bank yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Masala tuzing",
+      "Chizing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "masalalar mantiqli",
+      "chizma aniq",
+      "yechim to‘g‘ri",
+      "bank chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Quvib yetish stansiyasi»",
+     "bekatlar": [
+      {
+       "nom": "1-yo‘l",
+       "matn": "Mototsikl 50, velosiped 15 km, orasi 70 km.",
+       "topshiriq": "Necha soat?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "2-yo‘l",
+       "matn": "Poyezdlar 80 va 60 km, orasi 100 km.",
+       "topshiriq": "Necha soat?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "3-yo‘l",
+       "matn": "Piyoda 5 · 2.",
+       "topshiriq": "Oldinda necha km?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "4-yo‘l",
+       "matn": "Masofa 10, ayirma 10.",
+       "topshiriq": "Necha soat?",
+       "javob": "1",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Ayirmani topdingizmi?",
+      "Chizma yordam berdimi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ayirma tezlik",
+      "tarif": "katta va kichik tezlik farqi"
+     },
+     {
+      "atama": "Quvib yetish",
+      "tarif": "orqadagining oldingiga yetishi"
+     },
+     {
+      "atama": "Oldinda",
+      "tarif": "oldin chiqqan jism masofasi"
+     },
+     {
+      "atama": "Masofa",
+      "tarif": "orasidagi uzunlik"
+     },
+     {
+      "atama": "Vaqt",
+      "tarif": "harakat davomiyligi"
+     },
+     {
+      "atama": "Yo‘l",
+      "tarif": "bosib o‘tilgan masofa"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Quvib yetishda tezliklar ayiriladi",
+      "togri": true,
+      "izoh": "ayirma"
+     },
+     {
+      "matn": "70 / 35 — 20",
+      "togri": false,
+      "izoh": "2"
+     },
+     {
+      "matn": "Oldin chiqqan jismning masofasi — tezlik ko‘paytirilsin vaqtga",
+      "togri": true,
+      "izoh": "5 · 2 — 10"
+     },
+     {
+      "matn": "100 / 20 — 5",
+      "togri": true,
+      "izoh": "poyezdlar"
+     },
+     {
+      "matn": "Quvib yetishda tezliklar qo‘shiladi",
+      "togri": false,
+      "izoh": "ayiriladi"
+     },
+     {
+      "matn": "80 · 5 — 400",
+      "togri": true,
+      "izoh": "yo‘l"
+     },
+     {
+      "matn": "10 / 10 — 1",
+      "togri": true,
+      "izoh": "ayirma 10"
+     },
+     {
+      "matn": "Chizma foydasiz",
+      "togri": false,
+      "izoh": "yordam beradi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Quvib yetishda nima qilamiz?",
+      "javob": "tezliklarni ayiramiz"
+     },
+     {
+      "savol": "Vaqt qanday topiladi?",
+      "javob": "masofa bo‘linsin ayirmaga"
+     },
+     {
+      "savol": "50 − 15?",
+      "javob": "35"
+     },
+     {
+      "savol": "70 / 35?",
+      "javob": "2"
+     },
+     {
+      "savol": "100 / 20?",
+      "javob": "5"
+     },
+     {
+      "savol": "80 · 5?",
+      "javob": "400"
+     },
+     {
+      "savol": "5 · 2?",
+      "javob": "10"
+     },
+     {
+      "savol": "10 / 10?",
+      "javob": "1"
+     },
+     {
+      "savol": "Oldin chiqqan masofa qanday topiladi?",
+      "javob": "tezlik ko‘paytirilsin vaqtga"
+     },
+     {
+      "savol": "Tekshirish usuli?",
+      "javob": "yo‘llarning mosligi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Oldinda",
+      "matn": "Oldinda necha km?",
+      "savol": "5 · 2?"
+     },
+     {
+      "nom": "Ayir",
+      "matn": "Tezliklarni ayir.",
+      "savol": "15 − 5?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "Masofani bo‘l.",
+      "savol": "10 / 10?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Yo‘llarni solishtir.",
+      "savol": "15 va 5 + 10?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun oldin chiqqan jism uchun avval orasidagi masofani topamiz?",
+    "keys": {
+     "vaziyat": "Piyoda 2 soat oldin chiqdi. Keyin velosipedchi unga yetmoqchi.",
+     "savollar": [
+      "Piyoda qancha oldinda?",
+      "Velosipedchi necha soatda yetadi?"
+     ]
+    },
+    "tezis": "Masofa, ayirma, vaqt",
+    "taqqoslash": {
+     "a": "Bir vaqtda chiqish",
+     "b": "Turli vaqtda chiqish",
+     "umumiy": [
+      "quvib yetish",
+      "tezliklar ayiriladi"
+     ],
+     "a_farq": [
+      "masofa berilgan",
+      "bir bosqich"
+     ],
+     "b_farq": [
+      "masofani topamiz",
+      "ikki bosqich"
+     ]
+    },
+    "klaster": {
+     "markaz": "Quvib yetish masalalari",
+     "shoxlar": [
+      {
+       "nom": "Ayirma",
+       "bandlar": [
+        "tezliklar farqi"
+       ]
+      },
+      {
+       "nom": "Masofa",
+       "bandlar": [
+        "oldin chiqqan"
+       ]
+      },
+      {
+       "nom": "Vaqt",
+       "bandlar": [
+        "masofa bo‘linsin ayirmaga"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "yo‘llar mosligi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men oldinroq chiqqanman, shuning uchun oldindaman. Men kimman?",
+     "javob": "oldin chiqqan jism"
+    },
+    "hikmat": "Quvgan yetadi.",
+    "kalit_soz": "QUVISH",
+    "xato_yechim": {
+     "shart": "Masofa 70 km, ayirma 35 km. Necha soat?",
+     "xato": "105",
+     "togri": "2 soat",
+     "sabab": "vaqt — masofa bo‘linsin ayirmaga: 70 / 35"
+    },
+    "guruh_nomlari": [
+     "Quvuvchilar",
+     "Hisobchilar",
+     "Chizmachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Quvish poygasi»",
+     "topshiriq": "Guruh turli vaqtda chiqqan jismlar masalasini yechadi."
+    },
+    "vazifalar": {
+     "A": "Mototsikl 50, velosipedchi 15 km tezlikda, orasi 70 km. Necha soat?",
+     "B": "Poyezdlar 80 va 60 km tezlikda, orasi 100 km. Necha soat?",
+     "C": "Piyoda 2 soat oldin 5 km tezlikda chiqdi. Velosipedchi 15 km tezlikda. Necha soatda yetadi?"
+    },
+    "sinkveyn": [
+     "Quvish",
+     "tez, orqadan",
+     "yetadi, ayiradi, tezlashadi",
+     "Tez yetadi",
+     "Harakat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh masalalarni yechadi.",
+     "qismlar": [
+      "1-guruh: 50 va 15 km, 70 km",
+      "2-guruh: 80 va 60 km, 100 km",
+      "3-guruh: 5 · 2",
+      "4-guruh: 10 / 10"
+     ],
+     "yakun": "Natijalar: 2 soat; 5 soat; 10 km; 1 soat."
+    }
+   }
+  },
+  {
+   "mavzu": "Ortda qolish bilan bog‘liq harakat",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ortda qolish",
+      "matn": "Ikki jism bir joydan bir tomonga bir vaqtda chiqsa, tezrog‘i oldinga ketadi, sekini ortda qoladi. Orasidagi masofa har soatda tezliklar ayirmasicha ortadi.",
+      "misol": "Velosipedchi soatiga 12 km, piyoda soatiga 4 km. Ayirma 12 − 4 — 8 km.",
+      "savol": "12 − 4 nechaga teng?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masofani topamiz",
+      "matn": "Ular orasidagi masofani ayirmani vaqtga ko‘paytirib topamiz.",
+      "misol": "3 soatdan keyin masofa: 8 · 3 — 24 km.",
+      "savol": "8 · 3 nechaga teng?",
+      "javob": "24",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Avtomobillar",
+      "matn": "Avtomobillar soatiga 80 km va 60 km tezlikda bir joydan bir tomonga chiqdi. Ayirma 80 − 60 — 20 km.",
+      "misol": "4 soatdan keyin masofa: 20 · 4 — 80 km.",
+      "savol": "(80 − 60) · 4 nechaga teng?",
+      "javob": "80",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vaqtni topamiz",
+      "matn": "Orasidagi masofa ma’lum bo‘lsa, vaqt masofani ayirmaga bo‘lib topiladi.",
+      "misol": "Masofa 80 km, ayirma 20 km: 80 / 20 — 4 soat.",
+      "savol": "80 / 20 nechaga teng?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Taqqoslaymiz",
+      "matn": "Quvib yetishda masofa qisqaradi, ortda qolishda masofa ortadi. Ikkalasida ham tezliklar ayiriladi.",
+      "misol": "Quvib yetish: masofa kamayadi. Ortda qolish: masofa ortadi. Ikkalasida ayirma ishlatiladi.",
+      "savol": "Ortda qolishda masofa ortadimi yoki kamayadimi?",
+      "javob": "ortadi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ortda qolish: ayirma tezlik — katta tezlik minus kichik tezlik. Masofa — ayirma ko‘paytirilsin vaqtga.",
+    "misollar": [
+     {
+      "shart": "Velosipedchi 12 km, piyoda 4 km tezlikda bir joydan chiqdi. 3 soatdan keyin masofa?",
+      "yechim": [
+       "Ayirma: 12 − 4 — 8.",
+       "Masofa: 8 · 3.",
+       "Javob 24 km."
+      ],
+      "javob": "24 km"
+     },
+     {
+      "shart": "Avtomobillar 80 va 60 km tezlikda. 4 soatdan keyin masofa?",
+      "yechim": [
+       "Ayirma: 80 − 60 — 20.",
+       "Masofa: 20 · 4.",
+       "Javob 80 km."
+      ],
+      "javob": "80 km"
+     },
+     {
+      "shart": "Masofa 80 km, ayirma 20 km. Necha soat yurgan?",
+      "yechim": [
+       "Vaqt: masofa bo‘linsin ayirmaga.",
+       "80 / 20.",
+       "Javob 4 soat."
+      ],
+      "javob": "4 soat"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Chizma chizamiz",
+      "topshiriq": "Ikki jism bir tomonga ketayotganini chizing.",
+      "yechim": "Chizmada masofa ortishi ko‘rinadi.",
+      "mahsulot": "chizma varag‘i"
+     },
+     {
+      "nom": "Rolli o‘yin",
+      "topshiriq": "Ikki bola bir joydan har xil tezlikda yurib, masofani o‘lchaydi.",
+      "yechim": "Natijalar solishtiriladi.",
+      "mahsulot": "o‘yin varag‘i"
+     },
+     {
+      "nom": "Taqqoslaymiz",
+      "topshiriq": "Quvib yetish va ortda qolishni taqqoslang.",
+      "yechim": "Masofa kamayadi yoki ortadi.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Ortda qolishga masala tuzing.",
+      "yechim": "Har guruh masalasini yechadi.",
+      "mahsulot": "masala varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "12 − 4 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "8 · 3 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "80 − 60 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "20 · 4 nechaga teng?",
+      "javob": "80"
+     },
+     {
+      "shart": "80 / 20 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "(12 − 4) · 3 nechaga teng?",
+      "javob": "24"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tezliklarni qo‘shadi",
+      "sabab": "ortda qolishni uzoqlashish bilan aralashtiradi",
+      "oldini_olish": "ortda qolishda tezliklar ayiriladi"
+     },
+     {
+      "xato": "Masofa kamayadi deydi",
+      "sabab": "quvib yetish bilan aralashtiradi",
+      "oldini_olish": "ortda qolishda masofa ortadi"
+     },
+     {
+      "xato": "Chizma chizmaydi",
+      "sabab": "masalani tasavvur qilmaydi",
+      "oldini_olish": "chizma chizish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "yo‘lda ortda qolish"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "yugurishda orqada qolish"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "yo‘l masofalari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ortda qolish chizmasi»",
+     "muammo": "Ortda qolish harakatini qanday qilib chizma bilan tushuntiramiz?",
+     "mahsulot": "harakat albomi",
+     "bosqichlar": [
+      "masala tuzish",
+      "chizma chizish",
+      "yechish",
+      "tekshirish",
+      "albom yasash"
+     ],
+     "guruh_vazifalari": [
+      "Masala tuzing",
+      "Chizing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "masala mantiqli",
+      "chizma aniq",
+      "yechim to‘g‘ri",
+      "albom chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ortda qolish yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-yo‘l",
+       "matn": "Velosipedchi 12, piyoda 4 km.",
+       "topshiriq": "Ayirma?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "2-yo‘l",
+       "matn": "Ayirma 8, vaqt 3 soat.",
+       "topshiriq": "Masofa?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "3-yo‘l",
+       "matn": "Avtomobillar 80 va 60 km, 4 soat.",
+       "topshiriq": "Masofa?",
+       "javob": "80",
+       "rasm": ""
+      },
+      {
+       "nom": "4-yo‘l",
+       "matn": "Masofa 80, ayirma 20.",
+       "topshiriq": "Necha soat?",
+       "javob": "4",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Tezliklarni ayirdingizmi?",
+      "Masofa ortdimi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ortda qolish",
+      "tarif": "sekin jismning orqada qolishi"
+     },
+     {
+      "atama": "Ayirma tezlik",
+      "tarif": "katta va kichik tezlik farqi"
+     },
+     {
+      "atama": "Masofa",
+      "tarif": "orasidagi uzunlik"
+     },
+     {
+      "atama": "Vaqt",
+      "tarif": "harakat davomiyligi"
+     },
+     {
+      "atama": "Tezlik",
+      "tarif": "birlik vaqtdagi yo‘l"
+     },
+     {
+      "atama": "Chizma",
+      "tarif": "masalaning rasmi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ortda qolishda masofa ortadi",
+      "togri": true,
+      "izoh": "uzoqlashadi"
+     },
+     {
+      "matn": "Ortda qolishda masofa kamayadi",
+      "togri": false,
+      "izoh": "ortadi"
+     },
+     {
+      "matn": "Ortda qolishda tezliklar ayiriladi",
+      "togri": true,
+      "izoh": "ayirma"
+     },
+     {
+      "matn": "Masofa — ayirma ko‘paytirilsin vaqtga",
+      "togri": true,
+      "izoh": "8 · 3 — 24"
+     },
+     {
+      "matn": "80 − 60 — 40",
+      "togri": false,
+      "izoh": "20"
+     },
+     {
+      "matn": "80 / 20 — 4",
+      "togri": true,
+      "izoh": "vaqt"
+     },
+     {
+      "matn": "(12 − 4) · 3 — 24",
+      "togri": true,
+      "izoh": "8 · 3"
+     },
+     {
+      "matn": "Tezliklar qo‘shiladi",
+      "togri": false,
+      "izoh": "ayiriladi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ortda qolishda masofa?",
+      "javob": "ortadi"
+     },
+     {
+      "savol": "Ayirma tezlik nima?",
+      "javob": "katta tezlik minus kichik tezlik"
+     },
+     {
+      "savol": "12 − 4?",
+      "javob": "8"
+     },
+     {
+      "savol": "8 · 3?",
+      "javob": "24"
+     },
+     {
+      "savol": "80 − 60?",
+      "javob": "20"
+     },
+     {
+      "savol": "20 · 4?",
+      "javob": "80"
+     },
+     {
+      "savol": "80 / 20?",
+      "javob": "4"
+     },
+     {
+      "savol": "Vaqt qanday topiladi?",
+      "javob": "masofa bo‘linsin ayirmaga"
+     },
+     {
+      "savol": "Masofa qanday topiladi?",
+      "javob": "ayirma ko‘paytirilsin vaqtga"
+     },
+     {
+      "savol": "Quvib yetishda masofa?",
+      "javob": "kamayadi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ayir",
+      "matn": "Tezliklarni ayir.",
+      "savol": "12 − 4?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Vaqtga ko‘paytir.",
+      "savol": "8 · 3?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "Vaqtni top.",
+      "savol": "80 / 20?"
+     },
+     {
+      "nom": "Chiz",
+      "matn": "Chizma chiz.",
+      "savol": "Bir tomonga ketish?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ortda qolishda masofa ortadi, quvib yetishda esa kamayadi?",
+    "keys": {
+     "vaziyat": "Velosipedchi va piyoda bir joydan bir tomonga chiqdi.",
+     "savollar": [
+      "Ayirma tezlik nechta?",
+      "3 soatdan keyin masofa qancha?"
+     ]
+    },
+    "tezis": "Ortda qolish — masofa ortadi",
+    "taqqoslash": {
+     "a": "Ortda qolish",
+     "b": "Quvib yetish",
+     "umumiy": [
+      "tezliklar ayiriladi",
+      "chizma chiziladi"
+     ],
+     "a_farq": [
+      "masofa ortadi",
+      "bir joydan chiqadi"
+     ],
+     "b_farq": [
+      "masofa kamayadi",
+      "orqadagi yetib oladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ortda qolish",
+     "shoxlar": [
+      {
+       "nom": "Tezlik",
+       "bandlar": [
+        "ayirma"
+       ]
+      },
+      {
+       "nom": "Masofa",
+       "bandlar": [
+        "ortadi",
+        "ayirma ko‘paytirilsin vaqtga"
+       ]
+      },
+      {
+       "nom": "Vaqt",
+       "bandlar": [
+        "masofa bo‘linsin ayirmaga"
+       ]
+      },
+      {
+       "nom": "Chizma",
+       "bandlar": [
+        "bir tomonga"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men sekin yuraman va orqada qolaman. Men kimman?",
+     "javob": "ortda qoluvchi"
+    },
+    "hikmat": "Sekin yursang — orqada qolasan.",
+    "kalit_soz": "ORTDA",
+    "xato_yechim": {
+     "shart": "Velosipedchi 12, piyoda 4 km tezlikda. 3 soatdan keyin masofa?",
+     "xato": "48",
+     "togri": "24 km",
+     "sabab": "avval ayirma 12 − 4 — 8, keyin 8 · 3"
+    },
+    "guruh_nomlari": [
+     "Yo‘lchilar",
+     "Hisobchilar",
+     "Chizmachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ortda qolish poygasi»",
+     "topshiriq": "Guruh bir joydan chiqqan jismlar orasidagi masofani hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Velosipedchi 12, piyoda 4 km tezlikda. 3 soatdan keyin masofa?",
+     "B": "Avtomobillar 80 va 60 km tezlikda. 4 soatdan keyin masofa?",
+     "C": "Masofa 80 km, ayirma 20 km. Necha soat?"
+    },
+    "sinkveyn": [
+     "Ortda qolish",
+     "sekin, orqada",
+     "yuradi, qoladi, uzoqlashadi",
+     "Orqada qolgan",
+     "Harakat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh masalalarni yechadi.",
+     "qismlar": [
+      "1-guruh: 12 va 4 km, 3 soat",
+      "2-guruh: 80 va 60 km, 4 soat",
+      "3-guruh: 80 km, ayirma 20",
+      "4-guruh: (12 − 4) · 3"
+     ],
+     "yakun": "Natijalar: 24 km; 80 km; 4 soat; 24 km."
+    }
+   }
+  },
+  {
+   "mavzu": "Ortda qolish bilan bog‘liq harakatga doir masalalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tezlikni topamiz",
+      "matn": "Masofa va vaqt ma’lum bo‘lsa, ayirma tezlikni masofani vaqtga bo‘lib topamiz. Bir tezlik ma’lum bo‘lsa, ikkinchisini topamiz.",
+      "misol": "Masofa 45 km, vaqt 3 soat: 45 / 3 — 15. Sekin tezlik 9 bo‘lsa, tez tezlik 9 + 15 — 24.",
+      "savol": "45 / 3 nechaga teng?",
+      "javob": "15",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tez tezlik",
+      "matn": "Tez jismning tezligi sekin tezlik va ayirmaning yig‘indisiga teng.",
+      "misol": "9 + 15 — 24. Tekshirish: 24 − 9 — 15, 15 · 3 — 45.",
+      "savol": "9 + 15 nechaga teng?",
+      "javob": "24",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sekin tezlik",
+      "matn": "Agar tez tezlik ma’lum bo‘lsa, sekin tezlikni ayirmani ayirib topamiz.",
+      "misol": "5 soatdan keyin masofa 100 km, tez jism 30 km: ayirma 100 / 5 — 20, sekin 30 − 20 — 10.",
+      "savol": "100 / 5 nechaga teng?",
+      "javob": "20",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sekin tezlik topildi",
+      "matn": "Tez tezlikdan ayirmani ayiramiz. Natijani tekshiramiz.",
+      "misol": "30 − 20 — 10. Tekshirish: 30 − 10 — 20, 20 · 5 — 100.",
+      "savol": "30 − 20 nechaga teng?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yugurish",
+      "matn": "Ikki bola bir joydan yugurdi: soniyasiga 8 m va 6 m. Ayirma 8 − 6 — 2 m. 10 soniyadan keyin masofa 2 · 10 — 20 m.",
+      "misol": "Masofa 50 m bo‘lishi uchun 50 / 2 — 25 soniya kerak.",
+      "savol": "50 / 2 nechaga teng?",
+      "javob": "25",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Masofa va vaqt ma’lum — ayirma tezlikni topamiz. Tez tezlik — sekin tezlik va ayirma yig‘indisi. Sekin tezlik — tez tezlikdan ayirma ayirilgani.",
+    "misollar": [
+     {
+      "shart": "Masofa 45 km, vaqt 3 soat, sekin tezlik 9. Tez tezlik qancha?",
+      "yechim": [
+       "Ayirma: 45 / 3 — 15.",
+       "Tez tezlik: 9 + 15.",
+       "Javob 24 km."
+      ],
+      "javob": "24 km"
+     },
+     {
+      "shart": "5 soatdan keyin masofa 100 km, tez tezlik 30. Sekin tezlik qancha?",
+      "yechim": [
+       "Ayirma: 100 / 5 — 20.",
+       "Sekin tezlik: 30 − 20.",
+       "Javob 10 km."
+      ],
+      "javob": "10 km"
+     },
+     {
+      "shart": "Bolalar soniyasiga 8 m va 6 m tezlikda yuguradi. Masofa 50 m bo‘lishi uchun necha soniya kerak?",
+      "yechim": [
+       "Ayirma: 8 − 6 — 2.",
+       "Vaqt: 50 / 2.",
+       "Javob 25 soniya."
+      ],
+      "javob": "25 soniya"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Masala yechamiz",
+      "topshiriq": "Masala uchun chizma chizib yeching.",
+      "yechim": "Chizma yordam beradi.",
+      "mahsulot": "chizma varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Javoblarni teskari amal bilan tekshiring.",
+      "yechim": "24 − 9 — 15.",
+      "mahsulot": "tekshiruv varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "O‘zingiz masala tuzib, boshqa guruhga bering.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala kartochkasi"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 45 / 3 ni 135 deb hisobladi. Xato qayerda?",
+      "yechim": "Bo‘lish kerak: 15.",
+      "mahsulot": "tushuntirish"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "45 / 3 nechaga teng?",
+      "javob": "15"
+     },
+     {
+      "shart": "9 + 15 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "100 / 5 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "30 − 20 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "8 − 6 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "50 / 2 nechaga teng?",
+      "javob": "25"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ayirmani topishda ko‘paytiradi",
+      "sabab": "formulani adashtiradi",
+      "oldini_olish": "ayirma — masofa bo‘linsin vaqtga"
+     },
+     {
+      "xato": "Sekin tezlikni qo‘shadi",
+      "sabab": "qaysi tezlik noma’lumligini bilmaydi",
+      "oldini_olish": "sekin tezlik — tezdan ayirma ayiriladi"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "teskari amal bilan tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "yo‘l tezligini hisoblash"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "yugurish tezligi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "hisob algoritmi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Masalalar kitobchasi»",
+     "muammo": "Ortda qolish masalalaridan qanday kitobcha yasaymiz?",
+     "mahsulot": "masalalar kitobchasi",
+     "bosqichlar": [
+      "masala tuzish",
+      "chizma chizish",
+      "yechish",
+      "tekshirish",
+      "kitobcha yasash"
+     ],
+     "guruh_vazifalari": [
+      "Masala tuzing",
+      "Chizing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "masalalar mantiqli",
+      "chizma aniq",
+      "yechim to‘g‘ri",
+      "kitobcha chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Masalalar yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-yo‘l",
+       "matn": "Masofa 45 km, vaqt 3 soat.",
+       "topshiriq": "Ayirma?",
+       "javob": "15",
+       "rasm": ""
+      },
+      {
+       "nom": "2-yo‘l",
+       "matn": "Sekin 9, ayirma 15.",
+       "topshiriq": "Tez tezlik?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "3-yo‘l",
+       "matn": "Masofa 100 km, vaqt 5 soat.",
+       "topshiriq": "Ayirma?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "4-yo‘l",
+       "matn": "Bolalar 8 va 6 m, masofa 50 m.",
+       "topshiriq": "Necha soniya?",
+       "javob": "25",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi masala oson bo‘ldi?",
+      "Chizma yordam berdimi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ayirma tezlik",
+      "tarif": "katta va kichik tezlik farqi"
+     },
+     {
+      "atama": "Tez tezlik",
+      "tarif": "katta tezlik"
+     },
+     {
+      "atama": "Sekin tezlik",
+      "tarif": "kichik tezlik"
+     },
+     {
+      "atama": "Masofa",
+      "tarif": "orasidagi uzunlik"
+     },
+     {
+      "atama": "Vaqt",
+      "tarif": "harakat davomiyligi"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "teskari amal bilan aniqlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ayirma — masofa bo‘linsin vaqtga",
+      "togri": true,
+      "izoh": "45 / 3 — 15"
+     },
+     {
+      "matn": "45 / 3 — 135",
+      "togri": false,
+      "izoh": "15"
+     },
+     {
+      "matn": "Tez tezlik — sekin tezlik va ayirma yig‘indisi",
+      "togri": true,
+      "izoh": "9 + 15 — 24"
+     },
+     {
+      "matn": "Sekin tezlik — tezdan ayirma ayiriladi",
+      "togri": true,
+      "izoh": "30 − 20 — 10"
+     },
+     {
+      "matn": "100 / 5 — 25",
+      "togri": false,
+      "izoh": "20"
+     },
+     {
+      "matn": "50 / 2 — 25",
+      "togri": true,
+      "izoh": "vaqt"
+     },
+     {
+      "matn": "Tekshirish shart emas",
+      "togri": false,
+      "izoh": "tekshirish kerak"
+     },
+     {
+      "matn": "8 − 6 — 2",
+      "togri": true,
+      "izoh": "ayirma"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ayirma qanday topiladi?",
+      "javob": "masofa bo‘linsin vaqtga"
+     },
+     {
+      "savol": "Tez tezlik?",
+      "javob": "sekin tezlik va ayirma yig‘indisi"
+     },
+     {
+      "savol": "Sekin tezlik?",
+      "javob": "tezdan ayirma ayiriladi"
+     },
+     {
+      "savol": "45 / 3?",
+      "javob": "15"
+     },
+     {
+      "savol": "9 + 15?",
+      "javob": "24"
+     },
+     {
+      "savol": "100 / 5?",
+      "javob": "20"
+     },
+     {
+      "savol": "30 − 20?",
+      "javob": "10"
+     },
+     {
+      "savol": "8 − 6?",
+      "javob": "2"
+     },
+     {
+      "savol": "50 / 2?",
+      "javob": "25"
+     },
+     {
+      "savol": "Tekshirish usuli?",
+      "javob": "teskari amal"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Bo‘l",
+      "matn": "Ayirmani top.",
+      "savol": "45 / 3?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "Tez tezlikni top.",
+      "savol": "9 + 15?"
+     },
+     {
+      "nom": "Ayir",
+      "matn": "Sekin tezlikni top.",
+      "savol": "30 − 20?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari amal.",
+      "savol": "24 − 9?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun sekin tezlikni topishda ayirmani ayiramiz?",
+    "keys": {
+     "vaziyat": "Ikki avtomobil bir joydan chiqdi. 5 soatdan keyin orasi 100 km bo‘ldi. Tezroq avtomobil soatiga 30 km yuradi.",
+     "savollar": [
+      "Ayirma tezlik nechta?",
+      "Sekin avtomobil tezligi?"
+     ]
+    },
+    "tezis": "Ayirma — kalit",
+    "taqqoslash": {
+     "a": "Tez tezlikni topish",
+     "b": "Sekin tezlikni topish",
+     "umumiy": [
+      "ayirma tezlik kerak",
+      "masofa bo‘linsin vaqtga"
+     ],
+     "a_farq": [
+      "qo‘shamiz",
+      "sekin tezlik ma’lum"
+     ],
+     "b_farq": [
+      "ayiramiz",
+      "tez tezlik ma’lum"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ortda qolish masalalari",
+     "shoxlar": [
+      {
+       "nom": "Ayirma",
+       "bandlar": [
+        "masofa bo‘linsin vaqtga"
+       ]
+      },
+      {
+       "nom": "Tez tezlik",
+       "bandlar": [
+        "qo‘shish"
+       ]
+      },
+      {
+       "nom": "Sekin tezlik",
+       "bandlar": [
+        "ayirish"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "teskari amal"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tezlar va sekinlar orasidagi farqman. Men kimman?",
+     "javob": "ayirma tezlik"
+    },
+    "hikmat": "Ayirma bilsang — tezlikni topasan.",
+    "kalit_soz": "AYIRMA",
+    "xato_yechim": {
+     "shart": "Masofa 45 km, vaqt 3 soat. Ayirma tezlik?",
+     "xato": "135",
+     "togri": "15",
+     "sabab": "ayirma — masofa bo‘linsin vaqtga: 45 / 3"
+    },
+    "guruh_nomlari": [
+     "Tezchilar",
+     "Hisobchilar",
+     "Chizmachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tezlik izlovchilari»",
+     "topshiriq": "Guruh noma’lum tezlikni topadigan masalalarni yechadi."
+    },
+    "vazifalar": {
+     "A": "Masofa 45 km, vaqt 3 soat, sekin tezlik 9. Tez tezlik?",
+     "B": "5 soatdan keyin masofa 100 km, tez tezlik 30. Sekin tezlik?",
+     "C": "Bolalar 8 va 6 m tezlikda. Masofa 50 m bo‘lishi uchun necha soniya?"
+    },
+    "sinkveyn": [
+     "Tezlik",
+     "tez, sekin",
+     "yuradi, o‘lchanadi, topiladi",
+     "Yo‘l tezligi",
+     "Harakat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh masalalarni yechadi.",
+     "qismlar": [
+      "1-guruh: 45 km, 3 soat",
+      "2-guruh: 9 + 15",
+      "3-guruh: 100 km, 5 soat",
+      "4-guruh: 50 m, ayirma 2"
+     ],
+     "yakun": "Natijalar: 15; 24; 20; 25."
+    }
+   }
   }
  ]
 }
