@@ -4198,6 +4198,1403 @@
      "yakun": "Natijalar: 10; 10; 10; 0."
     }
    }
+  },
+  {
+   "mavzu": "Chiziqli funksiya va grafigi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Chiziqli funksiya",
+      "matn": "y ifoda kx + b ko‘rinishidagi funksiya chiziqli funksiya deyiladi. Bunda x argument, k va b berilgan sonlar. k burchak koeffitsienti, b esa ozod had deb ataladi.",
+      "misol": "y ifoda 2x + 3 funksiyada k ifoda 2, b ifoda 3. x ifoda 1 bo‘lsa y — 5, x ifoda 4 bo‘lsa y — 11.",
+      "savol": "y ifoda 3x + 1 funksiyada x ifoda 2 bo‘lsa, y?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Grafigi — to‘g‘ri chiziq",
+      "matn": "Chiziqli funksiyaning grafigi to‘g‘ri chiziq bo‘ladi. To‘g‘ri chiziqni chizish uchun ikkita nuqta yetarli: x ga ikkita qiymat berib, mos y larni topamiz, nuqtalarni belgilab chizg‘ich bilan tutashtiramiz.",
+      "misol": "y ifoda 2x + 1: x ifoda 0 da y — 1, nuqta (0; 1). x ifoda 2 da y — 5, nuqta (2; 5). Ikki nuqtadan to‘g‘ri chiziq o‘tkazamiz.",
+      "savol": "Grafik chizish uchun nechta nuqta kerak?",
+      "javob": "ikkita",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "k va b ning ma’nosi",
+      "matn": "b — grafikning Oy o‘qini kesish nuqtasi (0; b). k musbat bo‘lsa funksiya o‘sadi, k manfiy bo‘lsa kamayadi, k nolga teng bo‘lsa grafik gorizontal chiziq. Ox o‘qi bilan kesishish nuqtasini topish uchun y o‘rniga 0 qo‘yamiz.",
+      "misol": "y ifoda 2x − 6: Oy bilan kesishish (0; −6). Ox bilan: 2x − 6 ifoda 0 ga teng, 2x ifoda 6, x ifoda 3, nuqta (3; 0).",
+      "savol": "y ifoda 3x + 5 grafigi Oy ni qayerda kesadi?",
+      "javob": "(0; 5)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri proporsionallik",
+      "matn": "b nolga teng bo‘lsa funksiya y ifoda kx ko‘rinishida bo‘ladi va to‘g‘ri proporsionallik deyiladi. Uning grafigi koordinatalar boshidan o‘tadi.",
+      "misol": "y ifoda 3x: x ifoda 1 da y — 3, nuqta (1; 3). Chiziq (0; 0) va (1; 3) nuqtalardan o‘tadi.",
+      "savol": "y ifoda 4x grafigi koordinata boshidan o‘tadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chiziqlarning o‘zaro joylashuvi",
+      "matn": "k lari teng, b lari har xil bo‘lsa, to‘g‘ri chiziqlar parallel. k lari har xil bo‘lsa, chiziqlar kesishadi; kesishish nuqtasi ikki funksiya qiymatlarini tenglashtirib topiladi.",
+      "misol": "y ifoda 2x + 1 va y ifoda 2x − 3 parallel, chunki k bir xil. y ifoda 2x + 1 va y ifoda −x + 7: 2x + 1 ifoda −x + 7 ga teng, 3x ifoda 6, x ifoda 2, y — 5. Kesishish nuqtasi (2; 5).",
+      "savol": "y ifoda x + 1 va y ifoda x + 4 chiziqlar qanday joylashgan?",
+      "javob": "parallel",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "y ifoda kx + b funksiyaning grafigi to‘g‘ri chiziq. k — o‘sish yoki kamayish ko‘rsatkichi, b — Oy o‘qini kesish nuqtasi (0; b). k lari teng chiziqlar parallel.",
+    "misollar": [
+     {
+      "shart": "(2; 4) nuqta y ifoda 3x − 2 grafigiga tegishlimi?",
+      "yechim": [
+       "x ifoda 2 ni qo‘yamiz: 3 ni 2 ga ko‘paytirib 2 ni ayirsak 4.",
+       "Chiqqan 4 nuqtaning ikkinchi koordinatasiga teng.",
+       "Demak, nuqta grafikka tegishli."
+      ],
+      "javob": "ha, tegishli"
+     },
+     {
+      "shart": "y ifoda −2x + 6 grafigining koordinata o‘qlari bilan kesishish nuqtalarini toping.",
+      "yechim": [
+       "Oy bilan: x ifoda 0 da y ifoda 6, nuqta (0; 6).",
+       "Ox bilan: −2x + 6 ifoda 0 ga teng, 2x ifoda 6, x ifoda 3.",
+       "Nuqta (3; 0)."
+      ],
+      "javob": "(0; 6) va (3; 0)"
+     },
+     {
+      "shart": "y ifoda 2x + 4 grafigini chizish uchun ikki nuqta toping.",
+      "yechim": [
+       "x ifoda 0 da y ifoda 4, nuqta (0; 4).",
+       "x ifoda 3 da y — 2 ni 3 ga ko‘paytirib 4 qo‘shsak 10, nuqta (3; 10).",
+       "Ikki nuqtani to‘g‘ri chiziq bilan tutashtiramiz."
+      ],
+      "javob": "(0; 4) va (3; 10)"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Grafik chizamiz",
+      "topshiriq": "y ifoda 2x − 1 funksiya grafigini ikki nuqta bo‘yicha chizing.",
+      "yechim": "Masalan (0; −1) va (2; 3). 2 ni 2 ga ko‘paytirib 1 ayirsak 3.",
+      "mahsulot": "koordinata chizmasi"
+     },
+     {
+      "nom": "Parallel chiziqlar",
+      "topshiriq": "y ifoda 2x + 1, y ifoda 2x − 3, y ifoda −x + 2 chiziqlaridan qaysilari parallel?",
+      "yechim": "Birinchi ikkitasi parallel, chunki k ifoda 2 ikkalasida teng.",
+      "mahsulot": "chizma va xulosa"
+     },
+     {
+      "nom": "Kesishish nuqtasi",
+      "topshiriq": "y ifoda x + 2 va y ifoda −x + 6 chiziqlar kesishish nuqtasini toping.",
+      "yechim": "x + 2 ifoda −x + 6 ga teng, 2x ifoda 4, x ifoda 2, y ifoda 4. Nuqta (2; 4).",
+      "mahsulot": "yechim varag‘i"
+     },
+     {
+      "nom": "Hayotiy funksiya",
+      "topshiriq": "Telefon tarifi: 30000 so‘m abonent to‘lovi va har daqiqa 100 so‘m. Formulani yozing va 200 daqiqa uchun hisoblang.",
+      "yechim": "y ifoda 100x + 30000. x ifoda 200 da y ifoda 50000 so‘m.",
+      "mahsulot": "formula va jadval"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "y ifoda 2x + 3 funksiyada x ifoda 4 bo‘lsa, y nechaga teng?",
+      "javob": "11"
+     },
+     {
+      "shart": "y ifoda −x + 5 funksiyada x ifoda 2 bo‘lsa, y nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "y ifoda 3x − 6 grafigining Ox bilan kesishish nuqtasi?",
+      "javob": "(2; 0)"
+     },
+     {
+      "shart": "y ifoda 4x + 7 grafigining Oy bilan kesishish nuqtasi?",
+      "javob": "(0; 7)"
+     },
+     {
+      "shart": "y ifoda 5x − 1 va y ifoda 5x + 2 grafiklari qanday joylashgan?",
+      "javob": "parallel"
+     },
+     {
+      "shart": "(1; 3) nuqta y ifoda 2x + 1 grafigiga tegishlimi?",
+      "javob": "ha"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ox bilan kesishish nuqtasini (b; 0) deb yozadi",
+      "sabab": "ozod had bilan Ox kesishmasini adashtiradi",
+      "oldini_olish": "y o‘rniga 0 qo‘yib tenglama yechish"
+     },
+     {
+      "xato": "Grafikni bitta nuqta bilan chizadi",
+      "sabab": "to‘g‘ri chiziq ikki nuqtadan o‘tishini unutadi",
+      "oldini_olish": "kamida ikki nuqta topish"
+     },
+     {
+      "xato": "k manfiy bo‘lsa, grafik o‘sadi deydi",
+      "sabab": "yo‘nalishni adashtiradi",
+      "oldini_olish": "x ortganda y ortishi yoki kamayishini ko‘rish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "tekis harakatda yo‘l va vaqt orasidagi bog‘lanish"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "tarif va xizmat narxi hisobi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "balandlik bilan harorat o‘zgarishi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tarif tanlaymiz»",
+     "muammo": "Ikki xil tarifdan qaysi biri foydaliroq ekanini chiziqli funksiya bilan qanday aniqlaymiz?",
+     "mahsulot": "tariflar solishtirma jadvali",
+     "bosqichlar": [
+      "tariflarni yig‘ish",
+      "formulalarni yozish",
+      "grafiklarni chizish",
+      "kesishish nuqtasini topish",
+      "tavsiya tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Tariflarni toping",
+      "Formulalar yozing",
+      "Grafiklar chizing",
+      "Tavsiya bering"
+     ],
+     "mezonlar": [
+      "formulalar to‘g‘ri",
+      "grafiklar aniq",
+      "kesishish nuqtasi to‘g‘ri",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «To‘g‘ri chiziqlar ko‘chasi»",
+     "bekatlar": [
+      {
+       "nom": "Aloqa markazi",
+       "matn": "Tarif: y ifoda 100x + 30000, x — daqiqa.",
+       "topshiriq": "200 daqiqa uchun to‘lov qancha?",
+       "javob": "50000 so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Hovuz",
+       "matn": "Hovuzda 20 litr suv bor, har daqiqa 5 litr qo‘shiladi: y ifoda 5x + 20.",
+       "topshiriq": "6 daqiqadan keyin necha litr?",
+       "javob": "50 litr",
+       "rasm": ""
+      },
+      {
+       "nom": "Velotrek",
+       "matn": "Velosipedchi 3 km dan boshlaydi va soatiga 12 km yuradi: y ifoda 12x + 3.",
+       "topshiriq": "2 soatdan keyin masofa?",
+       "javob": "27 km",
+       "rasm": ""
+      },
+      {
+       "nom": "Issiqxona",
+       "matn": "Ko‘chat bo‘yi 10 sm, har kuni 2 sm o‘sadi: y ifoda 2x + 10.",
+       "topshiriq": "7 kundan keyin bo‘yi?",
+       "javob": "24 sm",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi bog‘lanishlar chiziqli?",
+      "Grafikdan nimani bilish mumkin?",
+      "k va b nimani bildiradi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Chiziqli funksiya",
+      "tarif": "y ifoda kx + b ko‘rinishidagi funksiya"
+     },
+     {
+      "atama": "Burchak koeffitsienti",
+      "tarif": "k son, chiziqning qiyaligini bildiradi"
+     },
+     {
+      "atama": "Ozod had",
+      "tarif": "b son, Oy o‘qini kesish nuqtasi"
+     },
+     {
+      "atama": "To‘g‘ri proporsionallik",
+      "tarif": "b nolga teng bo‘lgan chiziqli funksiya"
+     },
+     {
+      "atama": "Parallel chiziqlar",
+      "tarif": "k lari teng, kesishmaydigan chiziqlar"
+     },
+     {
+      "atama": "Kesishish nuqtasi",
+      "tarif": "ikki grafik umumiy nuqtasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "y ifoda kx + b grafigi to‘g‘ri chiziq",
+      "togri": true,
+      "izoh": "chiziqli funksiya grafigi shunday"
+     },
+     {
+      "matn": "Grafik chizish uchun uchta nuqta shart",
+      "togri": false,
+      "izoh": "ikkita nuqta yetarli"
+     },
+     {
+      "matn": "b nolga teng bo‘lsa, chiziq koordinata boshidan o‘tadi",
+      "togri": true,
+      "izoh": "(0; 0) nuqta tegishli"
+     },
+     {
+      "matn": "k musbat bo‘lsa, funksiya kamayadi",
+      "togri": false,
+      "izoh": "k musbat bo‘lsa funksiya o‘sadi"
+     },
+     {
+      "matn": "y ifoda 2x + 1 va y ifoda 2x + 5 grafiklari parallel",
+      "togri": true,
+      "izoh": "k lari teng"
+     },
+     {
+      "matn": "Oy o‘qini kesish nuqtasi (0; b)",
+      "togri": true,
+      "izoh": "x ifoda 0 da y ifoda b"
+     },
+     {
+      "matn": "y ifoda 3x − 3 grafigi (1; 0) nuqtadan o‘tadi",
+      "togri": true,
+      "izoh": "3 dan 3 ni ayirsak 0"
+     },
+     {
+      "matn": "y ifoda x + 2 va y ifoda x − 2 grafiklari kesishadi",
+      "togri": false,
+      "izoh": "ular parallel"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Chiziqli funksiya qanday yoziladi?",
+      "javob": "y ifoda kx + b"
+     },
+     {
+      "savol": "Grafigi qanday chiziq?",
+      "javob": "to‘g‘ri chiziq"
+     },
+     {
+      "savol": "k nimani bildiradi?",
+      "javob": "burchak koeffitsientini"
+     },
+     {
+      "savol": "b nimani bildiradi?",
+      "javob": "Oy o‘qini kesish nuqtasini"
+     },
+     {
+      "savol": "y ifoda 2x + 5 da x ifoda 3 bo‘lsa, y?",
+      "javob": "11"
+     },
+     {
+      "savol": "y ifoda x − 4 da x ifoda 10 bo‘lsa, y?",
+      "javob": "6"
+     },
+     {
+      "savol": "Parallel chiziqlarda k qanday?",
+      "javob": "teng"
+     },
+     {
+      "savol": "To‘g‘ri proporsionallik nima?",
+      "javob": "b nolga teng chiziqli funksiya"
+     },
+     {
+      "savol": "Ox bilan kesishishni qanday topamiz?",
+      "javob": "y o‘rniga 0 qo‘yib yechamiz"
+     },
+     {
+      "savol": "k nolga teng bo‘lsa grafik qanday?",
+      "javob": "gorizontal chiziq"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "y ifoda kx + b.",
+      "savol": "y ifoda 2x + 1 da k va b?"
+     },
+     {
+      "nom": "Grafik",
+      "matn": "To‘g‘ri chiziq, ikki nuqta bilan chiziladi.",
+      "savol": "y ifoda x + 2 da x ifoda 3 bo‘lsa, y?"
+     },
+     {
+      "nom": "k va b",
+      "matn": "b — Oy bilan kesishish, k — qiyalik.",
+      "savol": "y ifoda 5x + 3 Oy ni qayerda kesadi?"
+     },
+     {
+      "nom": "Joylashuv",
+      "matn": "k teng bo‘lsa — parallel.",
+      "savol": "y ifoda 3x + 1 va y ifoda 3x + 6 qanday joylashgan?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun chiziqli funksiya grafigini chizish uchun ikkita nuqta yetarli? Ikki nuqtadan nechta to‘g‘ri chiziq o‘tishini va nima uchun uchinchi nuqta faqat tekshirish uchun kerakligini tushuntiring.",
+    "keys": {
+     "vaziyat": "Ikki tarifdan birinchisi 30000 so‘m va daqiqasi 100 so‘m, ikkinchisi 10000 so‘m va daqiqasi 200 so‘m. Qaysi biri qachon foydali?",
+     "savollar": [
+      "Har ikki tarif uchun formulani qanday yozamiz?",
+      "Qancha daqiqadan keyin to‘lovlar tenglashadi?"
+     ]
+    },
+    "tezis": "Chiziqli funksiya — bir tekis o‘zgarish modeli",
+    "taqqoslash": {
+     "a": "y ifoda 2x + 1",
+     "b": "y ifoda 2x",
+     "umumiy": [
+      "chiziqli funksiya",
+      "k ifoda 2"
+     ],
+     "a_farq": [
+      "Oy ni (0; 1) da kesadi",
+      "koordinata boshidan o‘tmaydi"
+     ],
+     "b_farq": [
+      "koordinata boshidan o‘tadi",
+      "to‘g‘ri proporsionallik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Chiziqli funksiya",
+     "shoxlar": [
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "y ifoda kx + b",
+        "k",
+        "b"
+       ]
+      },
+      {
+       "nom": "Grafik",
+       "bandlar": [
+        "to‘g‘ri chiziq",
+        "ikki nuqta",
+        "Oy va Ox bilan kesishish"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "o‘sadi",
+        "kamayadi",
+        "gorizontal"
+       ]
+      },
+      {
+       "nom": "Joylashuv",
+       "bandlar": [
+        "parallel",
+        "kesishuvchi",
+        "kesishish nuqtasi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men kx + b bilan yozilaman, chizsangiz tekis yo‘l bo‘laman. Men nimaman?",
+     "javob": "chiziqli funksiya grafigi"
+    },
+    "hikmat": "Ikki nuqta bilan yo‘l topiladi.",
+    "kalit_soz": "CHIZIQ",
+    "xato_yechim": {
+     "shart": "y ifoda 2x − 6 grafigining Ox o‘qi bilan kesishish nuqtasini toping.",
+     "xato": "(−6; 0)",
+     "togri": "(3; 0)",
+     "sabab": "ozod had x ning qiymati deb olingan; y o‘rniga 0 qo‘yib 2x − 6 ifoda 0 ni yechish kerak, x ifoda 3"
+    },
+    "guruh_nomlari": [
+     "Chiziqchilar",
+     "Qiyalikchilar",
+     "Kesishuvchilar",
+     "Parallelchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tarif tanlovi»",
+     "topshiriq": "Guruh ikki xil xizmat tarifini (internet, taksi) topadi, formulalarini yozadi, grafiklarini chizadi va qaysi holda qaysi biri foydali ekanini aytadi."
+    },
+    "vazifalar": {
+     "A": "y ifoda 3x + 2 uchun x ifoda 0, 1, 2 da qiymatlarni toping.",
+     "B": "y ifoda 2x − 4 grafigini chizing va o‘qlar bilan kesishish nuqtalarini toping.",
+     "C": "Ikki chiziqli funksiya tuzing va kesishish nuqtasini toping."
+    },
+    "sinkveyn": [
+     "Chiziq",
+     "tekis, to‘g‘ri",
+     "chizamiz, o‘sadi, kesishadi",
+     "Ikki nuqtadan o‘tadi",
+     "Funksiya"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh chiziqli funksiyalar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: y ifoda 2x + 1 da x ifoda 5 bo‘lsa, y",
+      "2-guruh: y ifoda x − 3 grafigining Ox bilan kesishishi",
+      "3-guruh: y ifoda 4x grafigining Oy bilan kesishishi",
+      "4-guruh: y ifoda x + 2 va y ifoda −x + 6 kesishishi"
+     ],
+     "yakun": "Natijalar: 11; (3; 0); (0; 0); (2; 4)."
+    }
+   }
+  },
+  {
+   "mavzu": "Daraja va uning xossalari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Natural ko‘rsatkichli daraja",
+      "matn": "aⁿ ifoda n ta bir xil a ko‘paytuvchining ko‘paytmasi. a — daraja asosi, n — daraja ko‘rsatkichi. Ikkinchi daraja kvadrat, uchinchi daraja kub deb ham ataladi.",
+      "misol": "2⁴ — 2 ni 4 marta ko‘paytirish: 2 · 2 · 2 · 2, ya’ni 16. 3² — 9, 10³ — 1000.",
+      "savol": "5² nechaga teng?",
+      "javob": "25",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Darajalarni ko‘paytirish",
+      "matn": "Asoslari bir xil darajalar ko‘paytirilganda asos o‘zgarmaydi, ko‘rsatkichlar qo‘shiladi.",
+      "misol": "2³ · 2⁴ — 2⁷, ya’ni 128. Tekshirish: 8 ni 16 ga ko‘paytirsak 128. x⁵ · x³ — x⁸.",
+      "savol": "a² · a⁶ nimaga teng?",
+      "javob": "a⁸",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Darajalarni bo‘lish",
+      "matn": "Asoslari bir xil darajalar bo‘linganda asos o‘zgarmaydi, ko‘rsatkichlar ayiriladi (asos noldan farqli).",
+      "misol": "5⁷ / 5⁴ — 5³, ya’ni 125. x⁹ / x⁶ — x³.",
+      "savol": "a⁸ / a³ nimaga teng?",
+      "javob": "a⁵",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Darajaning darajasi va ko‘paytma darajasi",
+      "matn": "Darajani darajaga ko‘targanda ko‘rsatkichlar ko‘paytiriladi. Ko‘paytmani darajaga ko‘targanda har bir ko‘paytuvchi darajaga ko‘tariladi.",
+      "misol": "(a³)² — a⁶. (2³)² — 2⁶, ya’ni 64. (2x)³ — 8x³.",
+      "savol": "(y²)⁴ nimaga teng?",
+      "javob": "y⁸",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nol va birinchi daraja, standart ko‘rinish",
+      "matn": "Noldan farqli sonning birinchi darajasi o‘ziga, nolinchi darajasi birga teng. Katta sonlarni a · 10ⁿ ko‘rinishida yozish standart ko‘rinish deyiladi.",
+      "misol": "7¹ — 7, 7⁰ — 1. 3000 — 3 · 10³, 700000 — 7 · 10⁵.",
+      "savol": "9⁰ nechaga teng?",
+      "javob": "1",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Asoslari bir xil darajalarni ko‘paytirganda ko‘rsatkichlar qo‘shiladi, bo‘lganda ayiriladi. Darajani darajaga ko‘targanda ko‘rsatkichlar ko‘paytiriladi. Noldan farqli sonning nolinchi darajasi 1 ga teng.",
+    "misollar": [
+     {
+      "shart": "x⁵ · x³ ni soddalashtiring.",
+      "yechim": [
+       "Asoslari bir xil: x.",
+       "Ko‘rsatkichlarni qo‘shamiz: 5 va 3 — 8.",
+       "Natija x⁸."
+      ],
+      "javob": "x⁸"
+     },
+     {
+      "shart": "(2a²)³ ni soddalashtiring.",
+      "yechim": [
+       "Ko‘paytma darajasi: 2³ va (a²)³.",
+       "2³ — 8, (a²)³ — a⁶.",
+       "Natija 8a⁶."
+      ],
+      "javob": "8a⁶"
+     },
+     {
+      "shart": "3⁶ / 3⁴ ni hisoblang.",
+      "yechim": [
+       "Ko‘rsatkichlarni ayiramiz: 6 dan 4 ni.",
+       "Natija 3².",
+       "3² — 9."
+      ],
+      "javob": "9"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Bakteriyalar",
+      "topshiriq": "Bitta bakteriya har soatda ikkiga bo‘linadi. 5 soatdan keyin nechta bo‘ladi?",
+      "yechim": "2⁵ — 32 ta bakteriya.",
+      "mahsulot": "o‘sish jadvali"
+     },
+     {
+      "nom": "Daraja kartochkalari",
+      "topshiriq": "Berilgan darajalarni to‘g‘ri xossa bilan juftlang: a³ · a², a⁷ / a², (a²)³.",
+      "yechim": "a⁵; a⁵; a⁶.",
+      "mahsulot": "juftlash kartochkalari"
+     },
+     {
+      "nom": "Standart ko‘rinish",
+      "topshiriq": "Sonlarni standart ko‘rinishda yozing: 4000, 50000, 600.",
+      "yechim": "4 · 10³; 5 · 10⁴; 6 · 10².",
+      "mahsulot": "natija jadvali"
+     },
+     {
+      "nom": "Xatoni toping",
+      "topshiriq": "Qaysi yechimda ko‘rsatkichlar noto‘g‘ri qo‘shilgan? Toping va to‘g‘rilang.",
+      "yechim": "Ko‘paytirishda ko‘rsatkichlar qo‘shiladi, asoslar o‘zgarmaydi.",
+      "mahsulot": "xatolar jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2⁵ nechaga teng?",
+      "javob": "32"
+     },
+     {
+      "shart": "3⁴ nechaga teng?",
+      "javob": "81"
+     },
+     {
+      "shart": "a⁴ · a⁶ ni soddalashtiring.",
+      "javob": "a¹⁰"
+     },
+     {
+      "shart": "x⁹ / x⁵ ni soddalashtiring.",
+      "javob": "x⁴"
+     },
+     {
+      "shart": "(y²)⁵ ni soddalashtiring.",
+      "javob": "y¹⁰"
+     },
+     {
+      "shart": "7⁰ nechaga teng?",
+      "javob": "1"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "2³ · 2⁴ ni 4⁷ deb yozadi",
+      "sabab": "asoslarni ko‘paytirib yuboradi",
+      "oldini_olish": "asos o‘zgarmasligini, ko‘rsatkichlar qo‘shilishini eslash"
+     },
+     {
+      "xato": "(a²)³ ni a⁵ deb yozadi",
+      "sabab": "ko‘rsatkichlarni qo‘shadi",
+      "oldini_olish": "darajaning darajasida ko‘rsatkichlar ko‘paytirilishini eslash"
+     },
+     {
+      "xato": "2³ ni 6 ga teng deb hisoblaydi",
+      "sabab": "darajani ko‘paytirish deb tushunadi",
+      "oldini_olish": "2³ — 2 · 2 · 2, ya’ni 8"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "hujayra va bakteriyalarning bo‘linib ko‘payishi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "kattalikni standart ko‘rinishda yozish"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "ikkilik hisoblash va xotira hajmi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ko‘payish kuchi»",
+     "muammo": "Daraja bilan tez ko‘payish jarayonlarini qanday ifodalaymiz?",
+     "mahsulot": "ko‘payish jadvali va grafigi",
+     "bosqichlar": [
+      "jarayon tanlash",
+      "darajalarni hisoblash",
+      "jadval tuzish",
+      "xulosa chiqarish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Jarayon tanlang",
+      "Darajalarni hisoblang",
+      "Jadval tuzing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "xossalar qo‘llangan",
+      "jadval aniq",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Daraja shaharchasi»",
+     "bekatlar": [
+      {
+       "nom": "Laboratoriya",
+       "matn": "Bakteriya soni har soatda ikki baravar ko‘payadi, boshida 1 ta.",
+       "topshiriq": "5 soatdan keyin nechta?",
+       "javob": "32 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Ombor",
+       "matn": "Kub shaklidagi qutining tomoni 4 dm.",
+       "topshiriq": "Hajmini toping (4³).",
+       "javob": "64 kub dm",
+       "rasm": ""
+      },
+      {
+       "nom": "Xabar tarqalishi",
+       "matn": "Har bir kishi 3 kishiga xabar beradi, 4 bosqichdan keyin xabar oluvchilar soni 3⁴.",
+       "topshiriq": "Bu nechaga teng?",
+       "javob": "81 kishi",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "Kvadrat maydon tomoni 10 m.",
+       "topshiriq": "Yuzi qancha (10²)?",
+       "javob": "100 kv. m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda tez ko‘payish uchradi?",
+      "Qaysi xossa qulay bo‘ldi?",
+      "Darajasiz yozish nima uchun noqulay?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Daraja",
+      "tarif": "bir xil ko‘paytuvchilar ko‘paytmasi"
+     },
+     {
+      "atama": "Daraja asosi",
+      "tarif": "ko‘paytiriladigan son"
+     },
+     {
+      "atama": "Daraja ko‘rsatkichi",
+      "tarif": "ko‘paytuvchilar soni"
+     },
+     {
+      "atama": "Kvadrat",
+      "tarif": "sonning ikkinchi darajasi"
+     },
+     {
+      "atama": "Kub",
+      "tarif": "sonning uchinchi darajasi"
+     },
+     {
+      "atama": "Standart ko‘rinish",
+      "tarif": "a · 10ⁿ shaklidagi yozuv"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "a³ · a² bu a⁵",
+      "togri": true,
+      "izoh": "ko‘rsatkichlar qo‘shiladi"
+     },
+     {
+      "matn": "a³ · a² bu a⁶",
+      "togri": false,
+      "izoh": "ko‘rsatkichlar ko‘paytirilmaydi, qo‘shiladi"
+     },
+     {
+      "matn": "(a²)³ bu a⁶",
+      "togri": true,
+      "izoh": "ko‘rsatkichlar ko‘paytiriladi"
+     },
+     {
+      "matn": "a⁰ bu 1 (a noldan farqli)",
+      "togri": true,
+      "izoh": "nolinchi daraja birga teng"
+     },
+     {
+      "matn": "2³ bu 6",
+      "togri": false,
+      "izoh": "2³ bu 8"
+     },
+     {
+      "matn": "a⁵ / a² bu a³",
+      "togri": true,
+      "izoh": "ko‘rsatkichlar ayiriladi"
+     },
+     {
+      "matn": "(ab)² bu ab²",
+      "togri": false,
+      "izoh": "(ab)² bu a²b²"
+     },
+     {
+      "matn": "10³ bu 1000",
+      "togri": true,
+      "izoh": "10 ni 3 marta ko‘paytiramiz"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Daraja nima?",
+      "javob": "bir xil ko‘paytuvchilar ko‘paytmasi"
+     },
+     {
+      "savol": "Daraja ko‘rsatkichi nimani bildiradi?",
+      "javob": "ko‘paytuvchilar sonini"
+     },
+     {
+      "savol": "2⁴ nechaga teng?",
+      "javob": "16"
+     },
+     {
+      "savol": "3³ nechaga teng?",
+      "javob": "27"
+     },
+     {
+      "savol": "a² · a³ nimaga teng?",
+      "javob": "a⁵"
+     },
+     {
+      "savol": "a⁶ / a² nimaga teng?",
+      "javob": "a⁴"
+     },
+     {
+      "savol": "(a³)² nimaga teng?",
+      "javob": "a⁶"
+     },
+     {
+      "savol": "Nolinchi daraja nimaga teng?",
+      "javob": "1"
+     },
+     {
+      "savol": "5000 ni standart ko‘rinishda yozing.",
+      "javob": "5 · 10³"
+     },
+     {
+      "savol": "Daraja nima uchun kerak?",
+      "javob": "katta sonlarni qisqa yozish uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "aⁿ — n ta a ko‘paytmasi.",
+      "savol": "2³ nechaga teng?"
+     },
+     {
+      "nom": "Ko‘paytirish va bo‘lish",
+      "matn": "Ko‘rsatkichlar qo‘shiladi yoki ayiriladi.",
+      "savol": "a⁴ · a² nimaga teng?"
+     },
+     {
+      "nom": "Darajaning darajasi",
+      "matn": "Ko‘rsatkichlar ko‘paytiriladi.",
+      "savol": "(a²)⁴ nimaga teng?"
+     },
+     {
+      "nom": "Standart ko‘rinish",
+      "matn": "a · 10ⁿ ko‘rinishi.",
+      "savol": "7000 ni standart ko‘rinishda yozing."
+     }
+    ],
+    "muammoli_savol": "Nima uchun asoslari bir xil darajalar ko‘paytirilganda ko‘rsatkichlar qo‘shiladi, ko‘paytirilmaydi? a³ · a² ni ko‘paytuvchilar soni orqali sanab tushuntiring.",
+    "keys": {
+     "vaziyat": "Laboratoriyada bakteriya har soatda ikki baravar ko‘payadi. Boshida 1 ta bakteriya bor edi. Olim 10 soatdan keyin sonni bilmoqchi.",
+     "savollar": [
+      "Natijani daraja bilan qanday yozamiz?",
+      "10 soatdan keyin nechta bakteriya bo‘ladi?"
+     ]
+    },
+    "tezis": "Daraja — takroriy ko‘paytirishning qisqa yozuvi",
+    "taqqoslash": {
+     "a": "a³ · a²",
+     "b": "(a³)²",
+     "umumiy": [
+      "daraja xossalari",
+      "asos a"
+     ],
+     "a_farq": [
+      "ko‘rsatkichlar qo‘shiladi",
+      "natija a⁵"
+     ],
+     "b_farq": [
+      "ko‘rsatkichlar ko‘paytiriladi",
+      "natija a⁶"
+     ]
+    },
+    "klaster": {
+     "markaz": "Daraja",
+     "shoxlar": [
+      {
+       "nom": "Tushuncha",
+       "bandlar": [
+        "asos",
+        "ko‘rsatkich",
+        "kvadrat va kub"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "ko‘paytirish",
+        "bo‘lish",
+        "darajaning darajasi"
+       ]
+      },
+      {
+       "nom": "Maxsus holatlar",
+       "bandlar": [
+        "birinchi daraja",
+        "nolinchi daraja"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "standart ko‘rinish",
+        "ko‘payish",
+        "yuza va hajm"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men kichik raqamman, yuqorida o‘tiraman. Menga qarab ko‘paytuvchilar sonini bilasiz. Men nimaman?",
+     "javob": "daraja ko‘rsatkichi"
+    },
+    "hikmat": "Kichik ko‘rsatkich — katta kuch.",
+    "kalit_soz": "DARAJA",
+    "xato_yechim": {
+     "shart": "2³ · 2⁴ ni soddalashtiring.",
+     "xato": "4⁷",
+     "togri": "2⁷",
+     "sabab": "asoslar ko‘paytirilgan; asos o‘zgarmaydi, faqat ko‘rsatkichlar qo‘shiladi: 3 + 4 — 7"
+    },
+    "guruh_nomlari": [
+     "Darajachilar",
+     "Ko‘rsatkichchilar",
+     "Asoschilar",
+     "Kvadratchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ko‘payish tajribasi»",
+     "topshiriq": "Guruh qog‘ozni qayta-qayta ikkiga buklaydi va har bosqichda qatlamlar sonini jadvalga yozib, daraja formulasi bilan solishtiradi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: 2⁶, 3³, 10⁴.",
+     "B": "Soddalashtiring: a⁵ · a⁴, x⁸ / x³, (y³)².",
+     "C": "Daraja bilan ifodalanadigan hayotiy jarayon toping va jadval tuzing."
+    },
+    "sinkveyn": [
+     "Daraja",
+     "qisqa, kuchli",
+     "ko‘paytiradi, qo‘shadi, ayiradi",
+     "Takroriy ko‘paytirish yozuvi",
+     "Ko‘rsatkich"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh darajalar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 2⁵ ni hisoblang",
+      "2-guruh: a³ · a⁴ ni soddalashtiring",
+      "3-guruh: x⁸ / x⁵ ni soddalashtiring",
+      "4-guruh: (y²)³ ni soddalashtiring"
+     ],
+     "yakun": "Natijalar: 32; a⁷; x³; y⁶."
+    }
+   }
+  },
+  {
+   "mavzu": "Masalalarni tenglama bilan yechish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Masala yechish bosqichlari",
+      "matn": "Masalani tenglama bilan yechish olti bosqichdan iborat: masalani diqqat bilan o‘qish; noma’lumni harf bilan belgilash; boshqa miqdorlarni shu harf orqali ifodalash; tenglama tuzish; tenglamani yechish; javobni shartga mos kelishini tekshirib yozish.",
+      "misol": "Sonning 3 baravariga 7 ni qo‘shsak 40 chiqadi. Noma’lum son x. Tenglama: 3x + 7 ifoda 40 ga teng, 3x ifoda 33, x ifoda 11. Tekshirish: 3 ni 11 ga ko‘paytirib 7 qo‘shsak 40.",
+      "savol": "Sonni 2 ga ko‘paytirib 5 qo‘shsak 17 chiqadi. Son?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Narx masalalari",
+      "matn": "Narx masalalarida bir mahsulot narxini x deb olamiz, boshqa mahsulot narxini shu x orqali ifodalaymiz. Umumiy summa narxlar yig‘indisiga teng.",
+      "misol": "Qalam x so‘m, daftar x + 500 so‘m. 3 qalam va 2 daftar 6500 so‘m: 3x + 2(x + 500) ifoda 6500 ga teng. 5x + 1000 ifoda 6500, 5x ifoda 5500, x ifoda 1100. Qalam 1100, daftar 1600 so‘m.",
+      "savol": "Qalam daftardan 200 so‘m arzon, ikkalasi 1800 so‘m. Qalam narxi?",
+      "javob": "800 so‘m",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Harakat masalalari",
+      "matn": "Masofa tezlik bilan vaqt ko‘paytmasiga teng. Qarama-qarshi yo‘nalishda bir-biriga qarab harakatda tezliklar qo‘shiladi: uchrashish vaqti masofani umumiy tezlikka bo‘lishdan topiladi.",
+      "misol": "Ikki avtomobil 420 km masofadan bir-biriga qarab chiqdi, tezliklari 60 va 80 km/soat. Uchrashguncha x soat o‘tsin: 60x + 80x ifoda 420 ga teng, 140x ifoda 420, x ifoda 3 soat.",
+      "savol": "Piyoda 5 km/soat tezlik bilan 3 soatda necha km yuradi?",
+      "javob": "15 km",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yosh va geometrik masalalar",
+      "matn": "Yosh masalalarida ikki kishining yoshi bir xil vaqt o‘tganda bir xil miqdorga o‘zgaradi. Geometrik masalalarda perimetr va yuza formulalaridan foydalanamiz.",
+      "misol": "Ota o‘g‘ildan 24 yosh katta. 2 yildan keyin ota 3 marta katta bo‘ladi. O‘g‘il x yoshda: x + 24 + 2 ifoda 3(x + 2) ga teng. x + 26 ifoda 3x + 6, 20 ifoda 2x, x ifoda 10. O‘g‘il 10, ota 34 yoshda.",
+      "savol": "To‘g‘ri to‘rtburchak eni 4, perimetri 20. Uzunligi?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Javobni tekshirish",
+      "matn": "Tenglama ildizi masala shartiga mos kelishi shart: odamlar soni butun va musbat bo‘lishi kerak. Javobni masala matniga qo‘yib tekshiramiz.",
+      "misol": "Maktabda x ta o‘quvchiga 3 tadan qalam berildi, 6 ta ortdi, jami 45 ta: 3x + 6 ifoda 45 ga teng, 3x ifoda 39, x ifoda 13. 13 ta o‘quvchi — butun son, javob mos.",
+      "savol": "O‘quvchilar soni 7,5 chiqsa, javob mosmi?",
+      "javob": "yo‘q, soni butun bo‘lishi kerak",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Masalani tenglama bilan yechishda noma’lumni belgilaymiz, tenglama tuzamiz, yechamiz va javobni masala shartiga qo‘yib tekshiramiz. Masofa tezlik bilan vaqt ko‘paytmasiga teng.",
+    "misollar": [
+     {
+      "shart": "Ikki sonning yig‘indisi 50, biri ikkinchisidan 8 ga katta. Sonlarni toping.",
+      "yechim": [
+       "Kichik son x, katta son x + 8.",
+       "x + x + 8 ifoda 50 ga teng, 2x ifoda 42, x ifoda 21.",
+       "Katta son 29. Tekshirish: 21 + 29 — 50."
+      ],
+      "javob": "21 va 29"
+     },
+     {
+      "shart": "Ikki poyezd 360 km masofadan bir-biriga qarab chiqdi, tezliklari 70 va 50 km/soat. Qancha vaqtdan keyin uchrashadi?",
+      "yechim": [
+       "Vaqt x soat: 70x + 50x ifoda 360 ga teng.",
+       "120x ifoda 360, x ifoda 3.",
+       "Tekshirish: 70 ni 3 ga ko‘paytirsak 210, 50 ni 3 ga ko‘paytirsak 150, yig‘indi 360."
+      ],
+      "javob": "3 soat"
+     },
+     {
+      "shart": "Ona qizidan 28 yosh katta. 5 yildan keyin ona qizidan 2 marta katta bo‘ladi. Qiz necha yoshda?",
+      "yechim": [
+       "Qiz x yoshda: x + 28 + 5 ifoda 2(x + 5) ga teng.",
+       "x + 33 ifoda 2x + 10, 23 ifoda x.",
+       "Qiz 23, ona 51 yoshda. Tekshirish: 5 yildan keyin 28 va 56, 56 ifoda 2 marta 28."
+      ],
+      "javob": "qiz 23 yoshda"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Do‘kon masalasi",
+      "topshiriq": "Daftar qalamdan 300 so‘m qimmat, ikkalasi 2700 so‘m. Narxlarni toping.",
+      "yechim": "x + x + 300 ifoda 2700, 2x ifoda 2400, x ifoda 1200. Qalam 1200, daftar 1500 so‘m.",
+      "mahsulot": "yechim varag‘i"
+     },
+     {
+      "nom": "Yo‘l masalasi",
+      "topshiriq": "Samarqand va Toshkent oralig‘i taxminan 300 km. Avtomobil 75 km/soat bilan yursa, necha soatda boradi?",
+      "yechim": "75x ifoda 300, x ifoda 4 soat.",
+      "mahsulot": "yo‘l jadvali"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Berilgan tenglama uchun hayotiy masala matnini yozing: 2x + 10 ifoda 50.",
+      "yechim": "Masalan: ikki javonda 50 kitob, birinchisida ikkinchisidan 10 ta ko‘p. Ildiz 20.",
+      "mahsulot": "masala kartochkasi"
+     },
+     {
+      "nom": "Xatoni toping",
+      "topshiriq": "Tenglama noto‘g‘ri tuzilgan yechimni toping va to‘g‘rilang.",
+      "yechim": "Noma’lumni to‘g‘ri belgilash va tenglamani matn bilan solishtirish muhim.",
+      "mahsulot": "xatolar jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Sonning 4 baravariga 5 qo‘shsak 29 chiqadi. Sonni toping.",
+      "javob": "6"
+     },
+     {
+      "shart": "Ikki sonning yig‘indisi 40, biri ikkinchisidan 6 ga katta. Sonlarni toping.",
+      "javob": "17 va 23"
+     },
+     {
+      "shart": "Daftar qalamdan 300 so‘m qimmat, ikkalasi 2700 so‘m. Qalam narxi?",
+      "javob": "1200 so‘m"
+     },
+     {
+      "shart": "Piyoda 5 km/soat tezlik bilan 4 soatda necha km yuradi?",
+      "javob": "20 km"
+     },
+     {
+      "shart": "To‘g‘ri to‘rtburchak eni 5, perimetri 28. Uzunligini toping.",
+      "javob": "9"
+     },
+     {
+      "shart": "Ikki poyezd 300 km masofadan tezliklari 60 va 40 km/soat bilan bir-biriga qarab chiqdi. Necha soatda uchrashadi?",
+      "javob": "3 soat"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Noma’lumni belgilamasdan yechishga kirishadi",
+      "sabab": "masalani tahlil qilmaydi",
+      "oldini_olish": "avval x nimani bildirishini yozish"
+     },
+     {
+      "xato": "Javob sifatida faqat x ni yozadi",
+      "sabab": "masala nimani so‘raganini unutadi",
+      "oldini_olish": "masala savoliga qaytib javobni to‘liq yozish"
+     },
+     {
+      "xato": "Javobni tekshirmaydi",
+      "sabab": "tenglama yechilgach tugadi deb o‘ylaydi",
+      "oldini_olish": "javobni masala shartiga qo‘yib ko‘rish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "yo‘l, tezlik va vaqt masalalari"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "narx va xarid hisobi"
+     },
+     {
+      "fan": "Geometriya",
+      "boglanish": "perimetr va yuza masalalari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Masala muallifi»",
+     "muammo": "Hayotiy vaziyatdan masala tuzib, uni tenglama bilan qanday yechamiz?",
+     "mahsulot": "masalalar to‘plami",
+     "bosqichlar": [
+      "vaziyat tanlash",
+      "masala matnini yozish",
+      "tenglama tuzish",
+      "yechish va tekshirish",
+      "to‘plam tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Vaziyat toping",
+      "Masala yozing",
+      "Yeching va tekshiring",
+      "To‘plamni taqdim eting"
+     ],
+     "mezonlar": [
+      "masala hayotiy",
+      "tenglama to‘g‘ri",
+      "yechim to‘g‘ri",
+      "tekshirish bor",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Masalalar ko‘chasi»",
+     "bekatlar": [
+      {
+       "nom": "Kutubxona",
+       "matn": "Ikki javonda 90 ta kitob bor, birinchisida ikkinchisidan 10 ta ko‘p.",
+       "topshiriq": "Har bir javonda nechtadan?",
+       "javob": "50 va 40",
+       "rasm": ""
+      },
+      {
+       "nom": "Yo‘l",
+       "matn": "Avtomobil 75 km/soat tezlikda 300 km yo‘lni bosib o‘tadi.",
+       "topshiriq": "Necha soat ketadi?",
+       "javob": "4 soat",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Olma daraxtlari nokdan 12 ta ko‘p, jami 52 ta daraxt.",
+       "topshiriq": "Har turdan nechtadan?",
+       "javob": "olma 32, nok 20",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab",
+       "matn": "3 tadan qalam berilganda 6 ta qalam ortdi, jami 45 ta qalam bor.",
+       "topshiriq": "Nechta o‘quvchi bor?",
+       "javob": "13 ta",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi masalada noma’lumni belgilash qiyin bo‘ldi?",
+      "Tekshirish nimani ko‘rsatdi?",
+      "Hayotda qayerda tenglama tuzdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Noma’lum",
+      "tarif": "qiymati topilishi kerak bo‘lgan miqdor"
+     },
+     {
+      "atama": "Tenglama tuzish",
+      "tarif": "masala shartini tenglama ko‘rinishida yozish"
+     },
+     {
+      "atama": "Tezlik",
+      "tarif": "vaqt birligida bosib o‘tilgan masofa"
+     },
+     {
+      "atama": "Perimetr",
+      "tarif": "shakl tomonlari uzunliklari yig‘indisi"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "javobni masala shartiga qo‘yib ko‘rish"
+     },
+     {
+      "atama": "Qarama-qarshi harakat",
+      "tarif": "bir-biriga qarab harakat"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Masalani yechishdan oldin noma’lumni belgilaymiz",
+      "togri": true,
+      "izoh": "bu birinchi muhim bosqich"
+     },
+     {
+      "matn": "Tenglama yechilgandan keyin tekshirish shart emas",
+      "togri": false,
+      "izoh": "javob shartga mos bo‘lishi kerak"
+     },
+     {
+      "matn": "Masofa tezlik bilan vaqt ko‘paytmasiga teng",
+      "togri": true,
+      "izoh": "harakat masalalarining asosiy formulasi"
+     },
+     {
+      "matn": "Qarama-qarshi harakatda tezliklar qo‘shiladi",
+      "togri": true,
+      "izoh": "yaqinlashish tezligi yig‘indiga teng"
+     },
+     {
+      "matn": "Ikki sonning yig‘indisi 20, biri 6 ga katta bo‘lsa, sonlar 13 va 7",
+      "togri": true,
+      "izoh": "13 − 7 — 6 va 13 + 7 — 20"
+     },
+     {
+      "matn": "Masalaning javobi doim x ning qiymati bo‘ladi",
+      "togri": false,
+      "izoh": "masala nimani so‘rasa, shuni yozamiz"
+     },
+     {
+      "matn": "Odamlar sonini 7,5 deb yozish mumkin",
+      "togri": false,
+      "izoh": "odamlar soni butun bo‘ladi"
+     },
+     {
+      "matn": "Yosh masalalarida ikkala yosh bir xil miqdorga o‘zgaradi",
+      "togri": true,
+      "izoh": "vaqt hammaga bir xil o‘tadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Masala yechishning birinchi bosqichi nima?",
+      "javob": "masalani diqqat bilan o‘qish"
+     },
+     {
+      "savol": "Noma’lumni nima bilan belgilaymiz?",
+      "javob": "harf bilan, masalan x"
+     },
+     {
+      "savol": "Masofa nimaga teng?",
+      "javob": "tezlik bilan vaqt ko‘paytmasiga"
+     },
+     {
+      "savol": "Qarama-qarshi harakatda tezliklar qanday?",
+      "javob": "qo‘shiladi"
+     },
+     {
+      "savol": "Sonning 2 baravariga 3 qo‘shsak 11 chiqadi. Son?",
+      "javob": "4"
+     },
+     {
+      "savol": "Ikki sonning yig‘indisi 12, biri 2 ga katta. Sonlar?",
+      "javob": "5 va 7"
+     },
+     {
+      "savol": "Perimetr nima?",
+      "javob": "tomonlar uzunligi yig‘indisi"
+     },
+     {
+      "savol": "Javobni nima uchun tekshiramiz?",
+      "javob": "shartga mosligini bilish uchun"
+     },
+     {
+      "savol": "40 km masofa 4 soatda bosib o‘tilsa, tezlik?",
+      "javob": "10 km/soat"
+     },
+     {
+      "savol": "Tenglamani qaysi bosqichda tuzamiz?",
+      "javob": "noma’lumni belgilab, miqdorlarni ifodalagandan keyin"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Bosqichlar",
+      "matn": "O‘qish, belgilash, tenglama, yechish, tekshirish.",
+      "savol": "Birinchi bosqich nima?"
+     },
+     {
+      "nom": "Narx masalasi",
+      "matn": "Bir narxni x deb olamiz.",
+      "savol": "x + x + 100 ifoda 500 ga teng bo‘lsa, x?"
+     },
+     {
+      "nom": "Harakat masalasi",
+      "matn": "Masofa tezlik bilan vaqt ko‘paytmasi.",
+      "savol": "20 km/soat tezlik bilan 3 soatda necha km?"
+     },
+     {
+      "nom": "Yosh masalasi",
+      "matn": "Yoshlar bir xil o‘zgaradi.",
+      "savol": "10 yoshli bola 5 yildan keyin necha yoshda?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tenglamani to‘g‘ri yechish hali masalani to‘g‘ri yechdim degani emas? Odamlar soni kasr chiqqan misolda javobni masala shartiga qo‘yib tekshirish nima uchun zarurligini tushuntiring.",
+    "keys": {
+     "vaziyat": "Ikkita javonda 90 ta kitob bor. Birinchisida ikkinchisidan 10 ta ko‘p. Kutubxonachi har bir javonda nechta kitob borligini bilmoqchi.",
+     "savollar": [
+      "Noma’lumni nima deb belgilaymiz?",
+      "Tenglamani qanday tuzamiz va javob nima?"
+     ]
+    },
+    "tezis": "Tenglama — hayotiy masalaning matematik tili",
+    "taqqoslash": {
+     "a": "Narx masalasi",
+     "b": "Harakat masalasi",
+     "umumiy": [
+      "tenglama tuziladi",
+      "noma’lum belgilanadi"
+     ],
+     "a_farq": [
+      "narxlar yig‘indisi ishlatiladi",
+      "javob so‘mda"
+     ],
+     "b_farq": [
+      "masofa, tezlik, vaqt bog‘lanadi",
+      "javob kilometr yoki soatda"
+     ]
+    },
+    "klaster": {
+     "markaz": "Masalalarni tenglama bilan yechish",
+     "shoxlar": [
+      {
+       "nom": "Bosqichlar",
+       "bandlar": [
+        "o‘qish",
+        "belgilash",
+        "tenglama",
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "Narx",
+       "bandlar": [
+        "mahsulot narxi",
+        "umumiy summa"
+       ]
+      },
+      {
+       "nom": "Harakat",
+       "bandlar": [
+        "masofa",
+        "tezlik",
+        "vaqt"
+       ]
+      },
+      {
+       "nom": "Yosh va geometriya",
+       "bandlar": [
+        "yosh",
+        "perimetr",
+        "yuza"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Meni topmoqchisan, x deb ataysan. Tenglama tuzsang, o‘zim chiqaman. Men kimman?",
+     "javob": "noma’lum"
+    },
+    "hikmat": "Yaxshi belgilangan noma’lum — yarim yechilgan masala.",
+    "kalit_soz": "MASALA",
+    "xato_yechim": {
+     "shart": "Daftar qalamdan 500 so‘m qimmat, ikkalasi 3500 so‘m. Qalam narxini toping.",
+     "xato": "qalam 3000 so‘m",
+     "togri": "qalam 1500 so‘m",
+     "sabab": "x + x + 500 ifoda 3500 dan 2x ifoda 3000 chiqadi, bu x emas; 2 ga bo‘lib x ifoda 1500 olinadi, daftar 2000 so‘m"
+    },
+    "guruh_nomlari": [
+     "Masalachilar",
+     "Tenglamachilar",
+     "Yo‘lchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Savdo va yo‘l»",
+     "topshiriq": "Guruh haqiqiy narxlar va masofalar bilan bitta narx va bitta harakat masalasi tuzib, tenglama bilan yechadi va boshqa guruhga tekshirtiradi."
+    },
+    "vazifalar": {
+     "A": "Sonning 3 baravariga 4 qo‘shsak 19 chiqadi. Sonni toping.",
+     "B": "Ikki sonning yig‘indisi 36, biri ikkinchisidan 4 ga katta. Sonlarni toping.",
+     "C": "Hayotiy vaziyatdan masala tuzing va tenglama bilan yeching."
+    },
+    "sinkveyn": [
+     "Masala",
+     "hayotiy, qiziq",
+     "belgilaymiz, tuzamiz, yechamiz",
+     "Noma’lumni topish yo‘li",
+     "Tenglama"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh masalalar yechadi.",
+     "qismlar": [
+      "1-guruh: sonning 2 baravariga 6 qo‘shsak 20 chiqadi",
+      "2-guruh: ikki son yig‘indisi 30, biri 4 ga katta",
+      "3-guruh: 60 km/soat tezlik bilan 3 soatda yo‘l",
+      "4-guruh: to‘g‘ri to‘rtburchak eni 3, perimetri 16, uzunligi"
+     ],
+     "yakun": "Natijalar: 7; 13 va 17; 180 km; 5."
+    }
+   }
   }
  ]
 }
