@@ -4151,6 +4151,1390 @@
      "yakun": "Natijalar: 43790; 83018; 4000; 34220."
     }
    }
+  },
+  {
+   "mavzu": "1-nazorat ishi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nazorat ishi nima uchun?",
+      "matn": "Nazorat ishi — o‘rganganlarimizni sinash. U bizga nimani yaxshi bilishimizni va nimani takrorlash kerakligini ko‘rsatadi. Xato qilishdan qo‘rqmaymiz, xatodan o‘rganamiz.",
+      "misol": "Birinchi chorakda qo‘shish, ayirish, amallar tartibi va ko‘paytirishni o‘rgandik.",
+      "savol": "Nazorat ishi nima uchun kerak?",
+      "javob": "bilimni sinash uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shish va ayirish",
+      "matn": "Ko‘p xonali sonlarni xonalar ostma-ost yozib qo‘shamiz va ayiramiz. Olib o‘tish va qarz olishni unutmaymiz. Ayirishni qo‘shish bilan tekshiramiz.",
+      "misol": "2745 + 1255 — 4000. 5000 − 1836 — 3164. Tekshirish: 3164 + 1836 — 5000.",
+      "savol": "2745 + 1255 nechaga teng?",
+      "javob": "4000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Amallar tartibi",
+      "matn": "Avval qavs ichi, keyin ko‘paytirish va bo‘lish, oxirida qo‘shish va ayirish. Bir daraja amallar chapdan o‘ngga bajariladi.",
+      "misol": "24 + 6 · 5 — 54. (24 + 6) · 5 — 150. Qavs natijani o‘zgartirdi.",
+      "savol": "(24 + 6) · 5 nechaga teng?",
+      "javob": "150",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirish",
+      "matn": "Ikki va uch xonali songa ko‘paytirishda birlik, o‘nlik, yuzlik qatorlarini topib, qo‘shamiz.",
+      "misol": "48 · 25: 48 · 5 — 240, 48 · 20 — 960, 240 + 960 — 1200. 123 · 21 — 2583.",
+      "savol": "48 · 25 nechaga teng?",
+      "javob": "1200",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masala",
+      "matn": "Masalada shart va savolni topamiz, amalni tanlaymiz, hisoblaymiz va javobni tekshiramiz.",
+      "misol": "36 o‘quvchiga 12 tadan daftar: 36 · 12 — 432 ta daftar.",
+      "savol": "36 o‘quvchiga 12 tadan daftar kerak. Jami nechta?",
+      "javob": "432",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Nazorat ishida shoshilmaymiz: shartni o‘qiymiz, tartib bilan hisoblaymiz va har bir javobni tekshiramiz.",
+    "misollar": [
+     {
+      "shart": "2745 + 1255 va 5000 − 1836 ni hisoblang.",
+      "yechim": [
+       "2745 + 1255 — 4000.",
+       "5000 − 1836 — 3164.",
+       "Ayirishni tekshiramiz: 3164 + 1836 — 5000."
+      ],
+      "javob": "4000 va 3164"
+     },
+     {
+      "shart": "24 + 6 · 5 va (24 + 6) · 5 ni hisoblang.",
+      "yechim": [
+       "Birinchisida avval ko‘paytirish: 6 · 5 — 30, 24 + 30 — 54.",
+       "Ikkinchisida avval qavs: 24 + 6 — 30, 30 · 5 — 150.",
+       "Javoblar: 54 va 150."
+      ],
+      "javob": "54 va 150"
+     },
+     {
+      "shart": "48 · 25 va 123 · 21 ni hisoblang.",
+      "yechim": [
+       "48 · 25 — 240 + 960 — 1200.",
+       "123 · 21 — 123 + 2460 — 2583.",
+       "Javoblar: 1200 va 2583."
+      ],
+      "javob": "1200 va 2583"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Nazorat variantlari",
+      "topshiriq": "Har guruh 4 ta misol tanlab, yechadi va almashib tekshiradi.",
+      "yechim": "Natijalar javoblar bilan solishtiriladi.",
+      "mahsulot": "variant varag‘i"
+     },
+     {
+      "nom": "Xatoni topamiz",
+      "topshiriq": "Do‘stingiz (24 + 6) · 5 ni 54 deb hisobladi. Xato qayerda?",
+      "yechim": "Avval qavs ichini hisoblash kerak edi: 150.",
+      "mahsulot": "tushuntirish"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "36 · 12 ga mos hayotiy masala tuzing.",
+      "yechim": "Har guruh masalasini yechib ko‘rsatadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "O‘z-o‘zini tekshirish",
+      "topshiriq": "Barcha javoblarni teskari amal bilan tekshiring.",
+      "yechim": "Tekshirilgan javoblar daftarga yoziladi.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2745 + 1255 nechaga teng?",
+      "javob": "4000"
+     },
+     {
+      "shart": "5000 − 1836 nechaga teng?",
+      "javob": "3164"
+     },
+     {
+      "shart": "24 + 6 · 5 nechaga teng?",
+      "javob": "54"
+     },
+     {
+      "shart": "(24 + 6) · 5 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "48 · 25 nechaga teng?",
+      "javob": "1200"
+     },
+     {
+      "shart": "123 · 21 nechaga teng?",
+      "javob": "2583"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Shoshilib xato qiladi",
+      "sabab": "shartni diqqat bilan o‘qimaydi",
+      "oldini_olish": "ikki marta o‘qish"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "vaqt yetmaydi deb o‘ylaydi",
+      "oldini_olish": "har misoldan keyin teskari amal"
+     },
+     {
+      "xato": "Amallar tartibini unutadi",
+      "sabab": "qoidani eslamaydi",
+      "oldini_olish": "avval qavs, keyin ko‘paytirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Ona tili",
+      "boglanish": "topshiriqni diqqat bilan o‘qish"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "o‘z-o‘zini baholash"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "natijani yaxshilash uchun mashq"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening natijalarim»",
+     "muammo": "Nazorat natijalarini qanday qilib jadvalga yozib, o‘sishimizni ko‘ramiz?",
+     "mahsulot": "natijalar jadvali",
+     "bosqichlar": [
+      "natijalarni yozish",
+      "xatolarni sanash",
+      "rejani tuzish",
+      "diagramma chizish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Natijalarni yozing",
+      "Xatolarni sanang",
+      "Reja tuzing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "natijalar to‘g‘ri",
+      "xatolar tahlil qilingan",
+      "reja bor",
+      "jadval chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bilim sinovi yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "2745 + 1255.",
+       "topshiriq": "Natija?",
+       "javob": "4000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "5000 − 1836.",
+       "topshiriq": "Natija?",
+       "javob": "3164",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "(24 + 6) · 5.",
+       "topshiriq": "Natija?",
+       "javob": "150",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "36 · 12.",
+       "topshiriq": "Natija?",
+       "javob": "432",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi bekat oson bo‘ldi?",
+      "Qayerda xato qildingiz?",
+      "Qanday tekshirdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Nazorat",
+      "tarif": "bilimni sinash"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "javobning to‘g‘riligini aniqlash"
+     },
+     {
+      "atama": "Teskari amal",
+      "tarif": "tekshirish uchun qarama-qarshi amal"
+     },
+     {
+      "atama": "Qavs",
+      "tarif": "birinchi bajariladigan amal belgisi"
+     },
+     {
+      "atama": "Ko‘paytma",
+      "tarif": "ko‘paytirish natijasi"
+     },
+     {
+      "atama": "Xato",
+      "tarif": "noto‘g‘ri hisob"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "2745 + 1255 — 4000",
+      "togri": true,
+      "izoh": "5 + 5 — 10 va hokazo"
+     },
+     {
+      "matn": "5000 − 1836 — 3264",
+      "togri": false,
+      "izoh": "3164"
+     },
+     {
+      "matn": "(24 + 6) · 5 — 150",
+      "togri": true,
+      "izoh": "avval qavs"
+     },
+     {
+      "matn": "24 + 6 · 5 — 150",
+      "togri": false,
+      "izoh": "54"
+     },
+     {
+      "matn": "48 · 25 — 1200",
+      "togri": true,
+      "izoh": "240 + 960"
+     },
+     {
+      "matn": "Nazoratda tekshirish shart emas",
+      "togri": false,
+      "izoh": "tekshirish kerak"
+     },
+     {
+      "matn": "36 · 12 — 432",
+      "togri": true,
+      "izoh": "360 + 72"
+     },
+     {
+      "matn": "Xatodan o‘rganish foydali",
+      "togri": true,
+      "izoh": "xatolar ustida ishlaymiz"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Nazorat nima uchun?",
+      "javob": "bilimni sinash uchun"
+     },
+     {
+      "savol": "Ayirishni nima bilan tekshiramiz?",
+      "javob": "qo‘shish bilan"
+     },
+     {
+      "savol": "2745 + 1255?",
+      "javob": "4000"
+     },
+     {
+      "savol": "5000 − 1836?",
+      "javob": "3164"
+     },
+     {
+      "savol": "24 + 6 · 5?",
+      "javob": "54"
+     },
+     {
+      "savol": "(24 + 6) · 5?",
+      "javob": "150"
+     },
+     {
+      "savol": "48 · 25?",
+      "javob": "1200"
+     },
+     {
+      "savol": "123 · 21?",
+      "javob": "2583"
+     },
+     {
+      "savol": "36 · 12?",
+      "javob": "432"
+     },
+     {
+      "savol": "Xatoga qanday qaraymiz?",
+      "javob": "undan o‘rganamiz"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘qi",
+      "matn": "Shartni o‘qi.",
+      "savol": "Nima so‘ralyapti?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Amalni bajar.",
+      "savol": "48 · 25?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari amal.",
+      "savol": "1200 / 25?"
+     },
+     {
+      "nom": "Yoz",
+      "matn": "Javobni yoz.",
+      "savol": "Javob 1200 mi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun nazorat ishidan keyin xatolar ustida ishlash kerak?",
+    "keys": {
+     "vaziyat": "Nazorat ishida 6 ta misol berildi. Siz ularni yechdingiz.",
+     "savollar": [
+      "Qaysi misollar oson bo‘ldi?",
+      "Qaysilarda xato qildingiz?"
+     ]
+    },
+    "tezis": "Sinov — o‘sish pillapoyasi",
+    "taqqoslash": {
+     "a": "Nazoratdan oldin",
+     "b": "Nazoratdan keyin",
+     "umumiy": [
+      "bilim sinaladi",
+      "natija bor"
+     ],
+     "a_farq": [
+      "takrorlash",
+      "tayyorgarlik"
+     ],
+     "b_farq": [
+      "xatolar tahlili",
+      "reja tuziladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "1-nazorat ishi",
+     "shoxlar": [
+      {
+       "nom": "Qo‘shish",
+       "bandlar": [
+        "ayirish",
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "Tartib",
+       "bandlar": [
+        "qavs",
+        "ko‘paytirish"
+       ]
+      },
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "ikki xonali",
+        "uch xonali"
+       ]
+      },
+      {
+       "nom": "Masala",
+       "bandlar": [
+        "shart",
+        "yechim",
+        "javob"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men bilimni sinayman, lekin xafa qilmayman. Men kimman?",
+     "javob": "nazorat"
+    },
+    "hikmat": "Sinov — ustoz, xato — o‘rgatuvchi.",
+    "kalit_soz": "SINOV",
+    "xato_yechim": {
+     "shart": "(24 + 6) · 5 ni hisoblang.",
+     "xato": "54",
+     "togri": "150",
+     "sabab": "avval qavs ichi: 24 + 6 — 30, keyin 30 · 5"
+    },
+    "guruh_nomlari": [
+     "Sinovchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar",
+     "Masalachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mening nazoratim»",
+     "topshiriq": "Guruh nazorat savollarini yechib, bir-birini tekshiradi."
+    },
+    "vazifalar": {
+     "A": "2745 + 1255 va 5000 − 1836 ni hisoblang.",
+     "B": "24 + 6 · 5 va (24 + 6) · 5 ni hisoblang.",
+     "C": "36 o‘quvchiga 12 tadan daftar. Jami nechta? 48 · 25 va 123 · 21 ni ham hisoblang."
+    },
+    "sinkveyn": [
+     "Nazorat",
+     "tinch, diqqatli",
+     "sinaydi, ko‘rsatadi, o‘rgatadi",
+     "Bilim sinovi",
+     "Imtihon"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh nazorat misollarini yechadi.",
+     "qismlar": [
+      "1-guruh: 2745 + 1255",
+      "2-guruh: 5000 − 1836",
+      "3-guruh: (24 + 6) · 5",
+      "4-guruh: 48 · 25"
+     ],
+     "yakun": "Natijalar: 4000; 3164; 150; 1200."
+    }
+   }
+  },
+  {
+   "mavzu": "Xatolar ustida ishlash",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Xato — o‘rgatuvchi",
+      "matn": "Xato qilish hammaga xos. Muhimi — xatoni topib, tuzatish. Xatolar ustida ishlasak, keyingi safar bunday xato kamayadi.",
+      "misol": "24 + 6 · 5 ni 150 deb hisoblagan bola amallar tartibini unutgan. To‘g‘ri javob 54.",
+      "savol": "Xatoni topganda nima qilamiz?",
+      "javob": "tuzatamiz va sababini bilamiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xatoni topamiz",
+      "matn": "Avval qaysi misolda xato borligini topamiz. Keyin hisobni qadam-baqadam qayta bajaramiz va qayerda adashganimizni aniqlaymiz.",
+      "misol": "5000 − 1836: bola 3264 yozgan. Tekshiramiz: 3264 + 1836 — 5100, 5000 emas. Demak xato bor, to‘g‘ri javob 3164.",
+      "savol": "3164 + 1836 nechaga teng?",
+      "javob": "5000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sababni aniqlaymiz",
+      "matn": "Xato sababi har xil bo‘ladi: shoshilish, qoidani unutish, olib o‘tishni unutish. Sababni bilsak, uni tuzatish oson.",
+      "misol": "48 · 25 ni 1000 deb hisoblagan bola 960 ni qo‘shishni, 240 ni esa unutgan. To‘g‘ri javob 1200.",
+      "savol": "48 · 25 nechaga teng?",
+      "javob": "1200",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri yechamiz",
+      "matn": "Xatoni tuzatib, misolni to‘g‘ri yechamiz va qoidani qayta yozamiz. Shunda qoida yodimizda mustahkam qoladi.",
+      "misol": "(24 + 6) · 5: avval qavs, 24 + 6 — 30. Keyin 30 · 5 — 150.",
+      "savol": "(24 + 6) · 5 nechaga teng?",
+      "javob": "150",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Reja tuzamiz",
+      "matn": "Eng ko‘p xato qilgan mavzularimizni daftarga yozamiz va ularga ko‘proq mashq qilamiz. Shunda keyingi nazoratda natijamiz yaxshilanadi.",
+      "misol": "Xatolar ro‘yxati: amallar tartibi, olib o‘tish, nol. Har biriga 3 tadan misol yechamiz.",
+      "savol": "Xatolar ro‘yxati nima uchun kerak?",
+      "javob": "ko‘proq mashq qilish uchun",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Xatoni top, sababini aniqla, to‘g‘ri yech, qoidani eslab qol va o‘xshash misollarni mashq qil.",
+    "misollar": [
+     {
+      "shart": "Bola 5000 − 1836 ni 3264 deb yozdi. Xatoni tuzating.",
+      "yechim": [
+       "Tekshiramiz: 3264 + 1836 — 5100.",
+       "5100 emas, 5000 bo‘lishi kerak, demak xato bor.",
+       "To‘g‘ri hisob: 5000 − 1836 — 3164."
+      ],
+      "javob": "3164"
+     },
+     {
+      "shart": "Bola 24 + 6 · 5 ni 150 deb hisobladi. Xatoni tuzating.",
+      "yechim": [
+       "Avval ko‘paytirish: 6 · 5 — 30.",
+       "Keyin qo‘shish: 24 + 30 — 54.",
+       "Bola chapdan o‘ngga bajargan."
+      ],
+      "javob": "54"
+     },
+     {
+      "shart": "Bola 48 · 25 ni 960 deb yozdi. Xatoni tuzating.",
+      "yechim": [
+       "O‘nlikka ko‘paytma: 48 · 20 — 960.",
+       "Birlikka ko‘paytma: 48 · 5 — 240.",
+       "Ikkalasini qo‘shamiz: 1200."
+      ],
+      "javob": "1200"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Xato qidiramiz",
+      "topshiriq": "Berilgan misollar ichidan xatolarni toping va tuzating.",
+      "yechim": "Xatolar sababi bilan yoziladi.",
+      "mahsulot": "xato varag‘i"
+     },
+     {
+      "nom": "Sabab topamiz",
+      "topshiriq": "Har bir xatoning sababini ayting: shoshilish, qoida, olib o‘tish.",
+      "yechim": "Har guruh o‘z fikrini asoslaydi.",
+      "mahsulot": "tahlil varag‘i"
+     },
+     {
+      "nom": "Mashq tuzamiz",
+      "topshiriq": "Xato qilingan mavzuga 3 ta o‘xshash misol tuzing.",
+      "yechim": "Misollar boshqa guruhga beriladi.",
+      "mahsulot": "misol kartochkasi"
+     },
+     {
+      "nom": "Reja tuzamiz",
+      "topshiriq": "Xatolar ustida ishlash rejasini tuzing.",
+      "yechim": "Reja doskaga osiladi.",
+      "mahsulot": "reja varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3164 + 1836 nechaga teng?",
+      "javob": "5000"
+     },
+     {
+      "shart": "24 + 6 · 5 nechaga teng?",
+      "javob": "54"
+     },
+     {
+      "shart": "48 · 25 nechaga teng?",
+      "javob": "1200"
+     },
+     {
+      "shart": "(24 + 6) · 5 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "5000 − 1836 nechaga teng?",
+      "javob": "3164"
+     },
+     {
+      "shart": "123 · 21 nechaga teng?",
+      "javob": "2583"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Xatoni yashiradi",
+      "sabab": "xatodan uyaladi",
+      "oldini_olish": "xato — o‘rganish imkoniyati deb bilish"
+     },
+     {
+      "xato": "Sababini aniqlamaydi",
+      "sabab": "faqat javobni tuzatadi",
+      "oldini_olish": "nima uchun xato bo‘lganini yozib qo‘yish"
+     },
+     {
+      "xato": "O‘xshash misolni yechmaydi",
+      "sabab": "mashq qilmaydi",
+      "oldini_olish": "har xatoga 3 ta misol yechish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Ona tili",
+      "boglanish": "o‘z yozuvidagi xatolarni topish"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "xatolardan o‘rganish"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "tajriba xatolarini tuzatish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Xatolar daftari»",
+     "muammo": "Xatolarimizni qanday qilib foydali daftarga aylantiramiz?",
+     "mahsulot": "xatolar daftari",
+     "bosqichlar": [
+      "xatolarni yig‘ish",
+      "sababini yozish",
+      "to‘g‘ri yechish",
+      "mashq tuzish",
+      "daftarni bezash"
+     ],
+     "guruh_vazifalari": [
+      "Xatolarni yig‘ing",
+      "Sababini yozing",
+      "To‘g‘ri yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xatolar aniq",
+      "sabab to‘g‘ri",
+      "yechim to‘g‘ri",
+      "daftar chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Xatolar ustaxonasi»",
+     "bekatlar": [
+      {
+       "nom": "1-ustaxona",
+       "matn": "5000 − 1836, bola 3264 yozdi.",
+       "topshiriq": "To‘g‘ri javob?",
+       "javob": "3164",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ustaxona",
+       "matn": "24 + 6 · 5, bola 150 yozdi.",
+       "topshiriq": "To‘g‘ri javob?",
+       "javob": "54",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ustaxona",
+       "matn": "48 · 25, bola 960 yozdi.",
+       "topshiriq": "To‘g‘ri javob?",
+       "javob": "1200",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ustaxona",
+       "matn": "(24 + 6) · 5, bola 54 yozdi.",
+       "topshiriq": "To‘g‘ri javob?",
+       "javob": "150",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Xatoni qanday topdingiz?",
+      "Sababi nima edi?",
+      "Qanday tuzatdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Xato",
+      "tarif": "noto‘g‘ri hisob"
+     },
+     {
+      "atama": "Sabab",
+      "tarif": "xato nima uchun bo‘lgani"
+     },
+     {
+      "atama": "Tuzatish",
+      "tarif": "xatoni to‘g‘rilash"
+     },
+     {
+      "atama": "Tahlil",
+      "tarif": "sababini o‘rganish"
+     },
+     {
+      "atama": "Reja",
+      "tarif": "keyingi ishlar ro‘yxati"
+     },
+     {
+      "atama": "Mashq",
+      "tarif": "takror yechish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Xato qilish — odatiy hol",
+      "togri": true,
+      "izoh": "muhimi tuzatish"
+     },
+     {
+      "matn": "Xatoni yashirish kerak",
+      "togri": false,
+      "izoh": "tuzatish kerak"
+     },
+     {
+      "matn": "Sababni bilsak, xatoni tuzatish oson",
+      "togri": true,
+      "izoh": "tahlil"
+     },
+     {
+      "matn": "24 + 6 · 5 — 150",
+      "togri": false,
+      "izoh": "54"
+     },
+     {
+      "matn": "48 · 25 — 1200",
+      "togri": true,
+      "izoh": "240 + 960"
+     },
+     {
+      "matn": "Xatolar ro‘yxati foydali",
+      "togri": true,
+      "izoh": "mashq rejasi"
+     },
+     {
+      "matn": "5000 − 1836 — 3264",
+      "togri": false,
+      "izoh": "3164"
+     },
+     {
+      "matn": "O‘xshash misollar mashq qilinadi",
+      "togri": true,
+      "izoh": "mustahkamlash"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Xato bo‘lsa nima qilamiz?",
+      "javob": "tuzatamiz"
+     },
+     {
+      "savol": "Xato sababi nima?",
+      "javob": "shoshilish yoki qoida unutilishi"
+     },
+     {
+      "savol": "5000 − 1836?",
+      "javob": "3164"
+     },
+     {
+      "savol": "24 + 6 · 5?",
+      "javob": "54"
+     },
+     {
+      "savol": "(24 + 6) · 5?",
+      "javob": "150"
+     },
+     {
+      "savol": "48 · 25?",
+      "javob": "1200"
+     },
+     {
+      "savol": "Ayirishni nima bilan tekshiramiz?",
+      "javob": "qo‘shish bilan"
+     },
+     {
+      "savol": "Xatolar daftari nima uchun?",
+      "javob": "mashq qilish uchun"
+     },
+     {
+      "savol": "Xatodan nima olamiz?",
+      "javob": "tajriba"
+     },
+     {
+      "savol": "Keyingi qadam?",
+      "javob": "o‘xshash misol yechish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Top",
+      "matn": "Xatoni top.",
+      "savol": "Qaysi misolda xato?"
+     },
+     {
+      "nom": "Sabab",
+      "matn": "Sababini ayt.",
+      "savol": "Nima uchun xato?"
+     },
+     {
+      "nom": "Tuzat",
+      "matn": "To‘g‘ri yech.",
+      "savol": "5000 − 1836?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Qo‘shib tekshir.",
+      "savol": "3164 + 1836?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun xatoning sababini bilish muhim?",
+    "keys": {
+     "vaziyat": "Do‘stingiz nazoratda 24 + 6 · 5 ni 150 deb yozdi.",
+     "savollar": [
+      "Do‘stingiz qayerda adashdi?",
+      "To‘g‘ri javob nima?"
+     ]
+    },
+    "tezis": "Xato — bilimning boshlanishi",
+    "taqqoslash": {
+     "a": "Xatoni yashirish",
+     "b": "Xatoni tuzatish",
+     "umumiy": [
+      "xato mavjud",
+      "hamma xato qiladi"
+     ],
+     "a_farq": [
+      "o‘sish yo‘q",
+      "xato takrorlanadi"
+     ],
+     "b_farq": [
+      "o‘sish bor",
+      "xato kamayadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Xatolar ustida ishlash",
+     "shoxlar": [
+      {
+       "nom": "Topish",
+       "bandlar": [
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "Sabab",
+       "bandlar": [
+        "shoshilish",
+        "qoida"
+       ]
+      },
+      {
+       "nom": "Tuzatish",
+       "bandlar": [
+        "to‘g‘ri yechish"
+       ]
+      },
+      {
+       "nom": "Mashq",
+       "bandlar": [
+        "reja",
+        "o‘xshash misol"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men noto‘g‘ri bo‘laman, lekin o‘rgataman. Men kimman?",
+     "javob": "xato"
+    },
+    "hikmat": "Xato qilmagan — o‘rganmagan.",
+    "kalit_soz": "XATO",
+    "xato_yechim": {
+     "shart": "5000 − 1836 ni hisoblang.",
+     "xato": "3264",
+     "togri": "3164",
+     "sabab": "yuzliklardan qarz olishda adashgan"
+    },
+    "guruh_nomlari": [
+     "Xatochilar",
+     "Tuzatuvchilar",
+     "Tahlilchilar",
+     "Rejachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Xatolar tuzatish markazi»",
+     "topshiriq": "Guruh berilgan xatolarni tuzatadi va sababini topadi."
+    },
+    "vazifalar": {
+     "A": "5000 − 1836 ni hisoblab, 3164 + 1836 bilan tekshiring.",
+     "B": "24 + 6 · 5 va (24 + 6) · 5 ni hisoblang.",
+     "C": "48 · 25 ni hisoblang va xatoli javobni tuzating."
+    },
+    "sinkveyn": [
+     "Xato",
+     "hamma qiladi",
+     "yo‘qotadi, o‘rgatadi, o‘stiradi",
+     "Xatosiz — o‘rganmagan",
+     "Tajriba"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh xatolarni tuzatadi.",
+     "qismlar": [
+      "1-guruh: 5000 − 1836",
+      "2-guruh: 24 + 6 · 5",
+      "3-guruh: 48 · 25",
+      "4-guruh: (24 + 6) · 5"
+     ],
+     "yakun": "To‘g‘ri javoblar: 3164; 54; 1200; 150."
+    }
+   }
+  },
+  {
+   "mavzu": "Bo‘luvchilar va karralilar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Bo‘luvchi nima?",
+      "matn": "Berilgan sonni qoldiqsiz bo‘ladigan son shu sonning bo‘luvchisi deyiladi. Har bir sonning kamida ikkita bo‘luvchisi bor: 1 va o‘zi.",
+      "misol": "24 ni 1, 2, 3, 4, 6, 8, 12, 24 qoldiqsiz bo‘ladi. Bu 24 ning bo‘luvchilari.",
+      "savol": "24 / 8 nechaga teng?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bo‘luvchilarni topamiz",
+      "matn": "Bo‘luvchilarni topish uchun sonni 1 dan boshlab bo‘lib ko‘ramiz. Qoldiqsiz bo‘linganlari bo‘luvchi bo‘ladi. Ular juft-juft keladi.",
+      "misol": "24: 1 va 24, 2 va 12, 3 va 8, 4 va 6. Jami 8 ta bo‘luvchi.",
+      "savol": "24 ning nechta bo‘luvchisi bor?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Karrali nima?",
+      "matn": "Berilgan songa qoldiqsiz bo‘linadigan son uning karralisi deyiladi. Karralilar ko‘paytirish jadvalidagi javoblardir.",
+      "misol": "6 ning karralilari: 6, 12, 18, 24, 30, 36, 42, 48 va hokazo.",
+      "savol": "6 ning 4 ta karralisi?",
+      "javob": "6, 12, 18, 24",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bog‘liqlik",
+      "matn": "Agar 8 soni 24 ning bo‘luvchisi bo‘lsa, 24 soni 8 ning karralisi bo‘ladi. Bu ikki tushuncha bir-biriga bog‘liq.",
+      "misol": "8 · 3 — 24. Demak 8 — 24 ning bo‘luvchisi, 24 — 8 ning karralisi.",
+      "savol": "24 soni 8 ning nimasi?",
+      "javob": "karralisi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotiy misol",
+      "matn": "Bo‘luvchi va karrali hayotda ham bor: 24 ta olmani teng bo‘laklarga bo‘lish mumkin bo‘lgan usullar — bo‘luvchilar. Har 7 kunda hafta — 7 ning karralilari.",
+      "misol": "7 ning karralilari: 7, 14, 21, 28, 35, 42, 49. 35 kunda 5 hafta.",
+      "savol": "7 · 5 nechaga teng?",
+      "javob": "35",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qoldiqsiz bo‘ladigan son — bo‘luvchi. Qoldiqsiz bo‘linadigan son — karrali. 8 soni 24 ning bo‘luvchisi, 24 esa 8 ning karralisi.",
+    "misollar": [
+     {
+      "shart": "24 ning barcha bo‘luvchilarini toping.",
+      "yechim": [
+       "1 va 24, 2 va 12.",
+       "3 va 8, 4 va 6.",
+       "Bo‘luvchilar: 1, 2, 3, 4, 6, 8, 12, 24."
+      ],
+      "javob": "8 ta"
+     },
+     {
+      "shart": "6 ning dastlabki 5 ta karralisini yozing.",
+      "yechim": [
+       "6 · 1 — 6, 6 · 2 — 12.",
+       "6 · 3 — 18, 6 · 4 — 24.",
+       "6 · 5 — 30."
+      ],
+      "javob": "6, 12, 18, 24, 30"
+     },
+     {
+      "shart": "36 soni 4 ning karralisimi?",
+      "yechim": [
+       "36 / 4 — 9.",
+       "Qoldiq yo‘q.",
+       "Ha, 36 soni 4 ning karralisi."
+      ],
+      "javob": "ha"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Bo‘luvchilar juftligi",
+      "topshiriq": "30 ning bo‘luvchilarini juft-juft qilib toping.",
+      "yechim": "1 va 30, 2 va 15, 3 va 10, 5 va 6.",
+      "mahsulot": "juftliklar varag‘i"
+     },
+     {
+      "nom": "Karralilar jadvali",
+      "topshiriq": "7 ning karralilarini 49 gacha yozing.",
+      "yechim": "7, 14, 21, 28, 35, 42, 49.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Qoldiqsiz bo‘linadimi?",
+      "topshiriq": "36, 48, 56 sonlarini 4 ga bo‘lib ko‘ring.",
+      "yechim": "36 / 4 — 9, 48 / 4 — 12, 56 / 4 — 14.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "O‘yin",
+      "topshiriq": "Bir bola son aytadi, boshqasi uning bo‘luvchisini aytadi.",
+      "yechim": "Eng ko‘p bo‘luvchi topgan g‘olib.",
+      "mahsulot": "o‘yin kartochkalari"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "24 / 8 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "6 · 5 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "7 · 6 nechaga teng?",
+      "javob": "42"
+     },
+     {
+      "shart": "36 / 4 nechaga teng?",
+      "javob": "9"
+     },
+     {
+      "shart": "56 / 7 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "12 · 4 nechaga teng?",
+      "javob": "48"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Bo‘luvchi bilan karralini adashtiradi",
+      "sabab": "ikki tushunchani farqlamaydi",
+      "oldini_olish": "bo‘luvchi kichik, karrali katta deb eslash"
+     },
+     {
+      "xato": "Bo‘luvchilarni to‘liq topmaydi",
+      "sabab": "juftini topmaydi",
+      "oldini_olish": "juft-juft qilib yozish"
+     },
+     {
+      "xato": "1 va sonning o‘zini unutadi",
+      "sabab": "ularni sanamaydi",
+      "oldini_olish": "har sonda 1 va o‘zi bor"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "narsalarni teng bo‘lish"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "haftalar va kunlar"
+     },
+     {
+      "fan": "Ona tili",
+      "boglanish": "jadval va ro‘yxat tuzish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Karralilar kitobi»",
+     "muammo": "Bo‘luvchi va karralilarni qanday qilib jadval va rasm bilan tushuntiramiz?",
+     "mahsulot": "karralilar kitobi",
+     "bosqichlar": [
+      "sonlarni tanlash",
+      "bo‘luvchilarni topish",
+      "karralilarni yozish",
+      "rasm chizish",
+      "kitob yasash"
+     ],
+     "guruh_vazifalari": [
+      "Son tanlang",
+      "Bo‘luvchilarni toping",
+      "Karralilarni yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "bo‘luvchilar to‘liq",
+      "karralilar to‘g‘ri",
+      "rasm mos",
+      "kitob chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bo‘luvchilar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-gulzor",
+       "matn": "24 ta gulni teng qatorlarga o‘tqazamiz.",
+       "topshiriq": "Nechta usul?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "2-gulzor",
+       "matn": "6 ning 5-karralisi.",
+       "topshiriq": "Qaysi son?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "3-gulzor",
+       "matn": "7 kunlik haftalar, 5 hafta.",
+       "topshiriq": "Necha kun?",
+       "javob": "35",
+       "rasm": ""
+      },
+      {
+       "nom": "4-gulzor",
+       "matn": "36 ta daraxtni 4 qatorga.",
+       "topshiriq": "Har qatorda?",
+       "javob": "9",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi sonni bo‘lish oson bo‘ldi?",
+      "Karralilarni qanday topdingiz?",
+      "Bo‘luvchi nima edi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Bo‘luvchi",
+      "tarif": "sonni qoldiqsiz bo‘ladigan son"
+     },
+     {
+      "atama": "Karrali",
+      "tarif": "songa qoldiqsiz bo‘linadigan son"
+     },
+     {
+      "atama": "Qoldiq",
+      "tarif": "bo‘lishda ortib qolgan qism"
+     },
+     {
+      "atama": "Ko‘paytirish jadvali",
+      "tarif": "karralilar manbai"
+     },
+     {
+      "atama": "Juftlik",
+      "tarif": "ikkita bo‘luvchi"
+     },
+     {
+      "atama": "Bo‘linish",
+      "tarif": "qoldiqsiz bo‘lish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "8 soni 24 ning bo‘luvchisi",
+      "togri": true,
+      "izoh": "24 / 8 — 3"
+     },
+     {
+      "matn": "24 soni 8 ning bo‘luvchisi",
+      "togri": false,
+      "izoh": "karralisi"
+     },
+     {
+      "matn": "6 ning karralilari: 6, 12, 18",
+      "togri": true,
+      "izoh": "ko‘paytirish"
+     },
+     {
+      "matn": "24 ning 6 ta bo‘luvchisi bor",
+      "togri": false,
+      "izoh": "8 ta"
+     },
+     {
+      "matn": "Har sonning bo‘luvchisi 1 va o‘zi",
+      "togri": true,
+      "izoh": "kamida ikkita"
+     },
+     {
+      "matn": "36 soni 4 ning karralisi",
+      "togri": true,
+      "izoh": "36 / 4 — 9"
+     },
+     {
+      "matn": "7 ning karralisi 20",
+      "togri": false,
+      "izoh": "20 / 7 qoldiqli"
+     },
+     {
+      "matn": "Karralilar cheksiz ko‘p",
+      "togri": true,
+      "izoh": "ko‘paytirib boraveramiz"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Bo‘luvchi nima?",
+      "javob": "qoldiqsiz bo‘ladigan son"
+     },
+     {
+      "savol": "Karrali nima?",
+      "javob": "qoldiqsiz bo‘linadigan son"
+     },
+     {
+      "savol": "24 ning bo‘luvchilari soni?",
+      "javob": "8"
+     },
+     {
+      "savol": "6 ning 4-karralisi?",
+      "javob": "24"
+     },
+     {
+      "savol": "7 ning 5-karralisi?",
+      "javob": "35"
+     },
+     {
+      "savol": "8 va 24: kim kimning karralisi?",
+      "javob": "24 soni 8 ning karralisi"
+     },
+     {
+      "savol": "Har sonning ikkita bo‘luvchisi?",
+      "javob": "1 va o‘zi"
+     },
+     {
+      "savol": "36 / 4?",
+      "javob": "9"
+     },
+     {
+      "savol": "56 / 7?",
+      "javob": "8"
+     },
+     {
+      "savol": "Karralilar nechta?",
+      "javob": "cheksiz"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Bo‘l",
+      "matn": "Sonni bo‘lib ko‘r.",
+      "savol": "24 / 6?"
+     },
+     {
+      "nom": "Qoldiq",
+      "matn": "Qoldiqni tekshir.",
+      "savol": "Qoldiq bormi?"
+     },
+     {
+      "nom": "Karrali",
+      "matn": "Karralini top.",
+      "savol": "6 · 4?"
+     },
+     {
+      "nom": "Aytib ber",
+      "matn": "Kim kimning bo‘luvchisi?",
+      "savol": "6 va 24?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun 8 soni 24 ning bo‘luvchisi, 24 esa 8 ning karralisi deymiz?",
+    "keys": {
+     "vaziyat": "24 ta olmani bir nechta savatga teng bo‘lib solmoqchimiz.",
+     "savollar": [
+      "Nechta savatga solish mumkin?",
+      "Bu qaysi tushunchaga bog‘liq?"
+     ]
+    },
+    "tezis": "Bo‘luvchi kichik, karrali katta",
+    "taqqoslash": {
+     "a": "Bo‘luvchi",
+     "b": "Karrali",
+     "umumiy": [
+      "ko‘paytirish va bo‘lish bilan bog‘liq",
+      "qoldiq bo‘lmaydi"
+     ],
+     "a_farq": [
+      "sondan kichik yoki teng",
+      "soni cheklangan"
+     ],
+     "b_farq": [
+      "sondan katta yoki teng",
+      "soni cheksiz"
+     ]
+    },
+    "klaster": {
+     "markaz": "Bo‘luvchilar va karralilar",
+     "shoxlar": [
+      {
+       "nom": "Bo‘luvchi",
+       "bandlar": [
+        "qoldiqsiz bo‘ladi",
+        "1 va o‘zi"
+       ]
+      },
+      {
+       "nom": "Karrali",
+       "bandlar": [
+        "qoldiqsiz bo‘linadi",
+        "cheksiz"
+       ]
+      },
+      {
+       "nom": "Bog‘liqlik",
+       "bandlar": [
+        "8 va 24"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "teng bo‘lish",
+        "hafta"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men sonni qoldiqsiz bo‘laman. Men kimman?",
+     "javob": "bo‘luvchi"
+    },
+    "hikmat": "Bo‘lgan topadi, ko‘paytirgan yetadi.",
+    "kalit_soz": "KARRALI",
+    "xato_yechim": {
+     "shart": "24 ning bo‘luvchilari nechta?",
+     "xato": "6 ta",
+     "togri": "8 ta",
+     "sabab": "1 va 24 ni sanamagan"
+    },
+    "guruh_nomlari": [
+     "Bo‘luvchilar",
+     "Karralilar",
+     "Juftchilar",
+     "Hisobchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bo‘luvchilar bog‘i»",
+     "topshiriq": "Guruh sonlarning bo‘luvchilari va karralilarini topadi."
+    },
+    "vazifalar": {
+     "A": "24 ning bo‘luvchilarini toping.",
+     "B": "6 va 7 ning dastlabki 6 ta karralisini yozing.",
+     "C": "30 ning bo‘luvchilarini juft-juft qilib yozing."
+    },
+    "sinkveyn": [
+     "Bo‘luvchi",
+     "kichik, qoldiqsiz",
+     "bo‘ladi, tenglaydi, ulashadi",
+     "Qoldiq yo‘q",
+     "Son"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh bo‘luvchi va karralilarni topadi.",
+     "qismlar": [
+      "1-guruh: 24 ning bo‘luvchilari",
+      "2-guruh: 6 ning karralilari",
+      "3-guruh: 7 ning karralilari",
+      "4-guruh: 36 / 4"
+     ],
+     "yakun": "Natijalar: 8 ta; 6, 12, 18...; 7, 14, 21...; 9."
+    }
+   }
   }
  ]
 }
