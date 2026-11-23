@@ -11688,6 +11688,474 @@
      "yakun": "Masofalar: bayroq — daraxt 4; start — tugash 14; daraxt — tugash 5. Eng uzun masofa startdan tugashgacha (14)."
     }
    }
+  },
+  {
+   "mavzu": "Matematik o‘yinlar va mantiq",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Mantiqiy fikrlash nima?",
+      "matn": "Mantiqiy fikrlash — berilgan ma’lumotlardan to‘g‘ri xulosa chiqarish qobiliyati. U matematikada ham, kundalik hayotda ham kerak. Mantiqiy masalalarni yechishda ma’lumotlarni tartibga solish, jadval yoki chizma tuzish va ortiqcha variantlarni chiqarib tashlash usullaridan foydalaniladi.",
+      "misol": "Uch do‘st — Ali, Vali va Soli — uchta turli sport bilan shug‘ullanadi. Ali futbol o‘ynamaydi — demak, yo‘q variantlar chiqarib tashlanadi va javob topiladi.",
+      "savol": "Mantiqiy masalada birinchi nima qilamiz?",
+      "javob": "ma’lumotlarni tartibga solamiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Jadval usuli",
+      "matn": "Mantiqiy masalada jadval tuzish juda qulay. Qatorlarga bir guruh ob’ektlar, ustunlarga ikkinchi guruh yoziladi. Aniq bo‘lgan moslik «+», mumkin bo‘lmagan moslik «−» bilan belgilanadi. Bir qatorda yoki ustunda «+» faqat bitta bo‘ladi.",
+      "misol": "Anvar, Bobur, Dilshod — rassom, shifokor, o‘qituvchi. Anvar rassom emas, Bobur shifokor emas va o‘qituvchi emas. Demak, Bobur rassom; Anvar shifokor emas deb chiqarilsa, o‘qituvchi bo‘ladi; qolgani — Dilshod shifokor.",
+      "savol": "Jadvalda «−» nimani bildiradi?",
+      "javob": "bunday moslik mumkin emas",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qonuniyatlarni topish",
+      "matn": "Sonlar yoki shakllar ketma-ketligida qonuniyat bo‘ladi: har safar bir xil songa qo‘shish, ko‘paytirish yoki shakllarni almashtirish. Qonuniyatni topish uchun qo‘shni hadlar orasidagi farq yoki nisbatni qaraymiz va uni keyingi hadga qo‘llaymiz.",
+      "misol": "2, 5, 8, 11 ketma-ketligida har bir keyingi had oldingisidan 3 ga katta. Keyingi had 14.",
+      "savol": "3, 6, 9, 12 dan keyin qaysi son keladi?",
+      "javob": "15",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sehrli kvadratlar",
+      "matn": "Sehrli kvadratda har bir qator, ustun va ikkala diagonal bo‘yicha sonlar yig‘indisi bir xil bo‘ladi. 3 ga 3 sehrli kvadratda 1 dan 9 gacha sonlar ishlatiladi, yig‘indi 15 ga teng, o‘rtada 5 turadi.",
+      "misol": "Birinchi qator 8, 1, 6; ikkinchi 3, 5, 7; uchinchi 4, 9, 2. Har qator yig‘indisi 15.",
+      "savol": "3 ga 3 sehrli kvadratda har bir qator yig‘indisi nechaga teng?",
+      "javob": "15",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Matematik o‘yinlar va boshqotirmalar",
+      "matn": "Matematik o‘yinlar fikrlashni rivojlantiradi: tangram, domino, sudoku, hanoy minorasi, shaxmat. O‘yinda g‘alaba qozonish uchun oldindan o‘ylash, variantlarni solishtirish va xatolardan o‘rganish kerak. Muhimi — shoshilmasdan, tizimli o‘ylash.",
+      "misol": "Sudoku (4 ga 4 variant): har qator, ustun va kichik kvadratda 1, 2, 3, 4 raqamlari bir martadan uchrashi kerak.",
+      "savol": "Sudokuda raqam qatorda necha marta uchraydi?",
+      "javob": "bir marta",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Mantiqiy masalani yechish: ma’lumotni jadvalga yozing, aniq bo‘lganini belgilang, mumkin bo‘lmaganini chiqarib tashlang. Qonuniyatni topish uchun hadlar orasidagi farqni qarang. Sehrli kvadratda qator, ustun va diagonallar yig‘indisi teng.",
+    "misollar": [
+     {
+      "shart": "Qonuniyatni toping va keyingi ikki sonni yozing: 4, 8, 12, 16, ...",
+      "yechim": [
+       "Har bir had oldingisidan 4 ga katta.",
+       "16 dan keyin: 16 + 4 = 20.",
+       "20 dan keyin: 20 + 4 = 24."
+      ],
+      "javob": "20 va 24"
+     },
+     {
+      "shart": "3 ta qutida olma, nok va uzum bor. Hech bir qutining yorlig‘i to‘g‘ri emas. «Olma» yorlig‘li qutidan bitta mevani olib qaraganda nok chiqdi. Qutilarda nima bor?",
+      "yechim": [
+       "«Olma» yozilgan qutida olma emas, nok bor (ko‘rdik).",
+       "«Nok» yozilgan qutida nok emas; nok allaqachon topildi, demak, olma yoki uzum.",
+       "Yorliq yolg‘on, shuning uchun «nok» qutisida olma ham emas bo‘lishi kerak emas — qolgan variantlarni jadvalda tekshiramiz: «nok» qutisida uzum, «uzum» qutisida olma bo‘ladi."
+      ],
+      "javob": "«olma» qutisida nok, «nok» qutisida uzum, «uzum» qutisida olma"
+     },
+     {
+      "shart": "Sehrli kvadratda 4, 9, 2 va 3, 5, 7 qatorlari berilgan. Uchinchi qatorni to‘ldiring.",
+      "yechim": [
+       "Har qator yig‘indisi 4 + 9 + 2 = 15.",
+       "Uchinchi qatordagi sonlar ustunlarni 15 ga to‘ldiradi.",
+       "Birinchi ustunda 4 va 3 bor, 15 − 7 = 8.",
+       "Ikkinchi ustunda 9 va 5 bor, 15 − 14 = 1.",
+       "Uchinchi ustunda 2 va 7 bor, 15 − 9 = 6."
+      ],
+      "javob": "8, 1, 6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Mantiq jadvali",
+      "topshiriq": "Aziza, Barno va Dilnoza — kitob, daftar va qalam olib kelgan, har biri bittadan. Aziza qalam olmagan, Barno kitob olmagan va qalam olmagan. Kim nima olib kelgan?",
+      "yechim": "Barno kitob ham, qalam ham olmagan, demak daftar. Azizada qalam yo‘q va daftar band, demak kitob. Dilnoza — qalam.",
+      "mahsulot": "mantiq jadvali"
+     },
+     {
+      "nom": "Qonuniyat ovchilari",
+      "topshiriq": "Quyidagi ketma-ketliklarda qonuniyatni toping va keyingi ikki hadni yozing: a) 5, 10, 15, 20; b) 1, 2, 4, 8; d) 100, 90, 80, 70.",
+      "yechim": "a) +5: 25, 30. b) har safar 2 marta ko‘paytiriladi: 16, 32. d) har safar 10 ga kamayadi: 60, 50.",
+      "mahsulot": "qonuniyatlar jadvali"
+     },
+     {
+      "nom": "Sehrli kvadrat yasash",
+      "topshiriq": "1 dan 9 gacha sonlardan 3 ga 3 sehrli kvadratni tuzing. O‘rtada 5 turadi. Har bir qator, ustun va diagonal yig‘indisi 15 bo‘lsin.",
+      "yechim": "Masalan: 2, 7, 6; 9, 5, 1; 4, 3, 8. Har bir qator, ustun va diagonal yig‘indisi 15.",
+      "mahsulot": "sehrli kvadrat"
+     },
+     {
+      "nom": "Sudoku 4 ga 4",
+      "topshiriq": "To‘rt qator va to‘rt ustunli jadvalni 1, 2, 3, 4 raqamlari bilan to‘ldiring: har bir qator, ustun va 2 ga 2 kvadratda raqam bir martadan uchraydi. Birinchi qator: 1, 2, 3, 4. Ikkinchi qator: 3, 4, 1, 2.",
+      "yechim": "Uchinchi qator: 2, 1, 4, 3. To‘rtinchi qator: 4, 3, 2, 1.",
+      "mahsulot": "to‘ldirilgan sudoku"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Qonuniyat: 7, 14, 21, 28. Keyingi son?",
+      "javob": "35"
+     },
+     {
+      "shart": "Qonuniyat: 2, 4, 8, 16. Keyingi son?",
+      "javob": "32"
+     },
+     {
+      "shart": "Qonuniyat: 50, 45, 40, 35. Keyingi son?",
+      "javob": "30"
+     },
+     {
+      "shart": "Sehrli kvadratda qator yig‘indisi 15; qatorda 6 va 7 bor. Uchinchi son?",
+      "javob": "2"
+     },
+     {
+      "shart": "Ketma-ketlik: 1, 3, 5, 7. Keyingi son?",
+      "javob": "9"
+     },
+     {
+      "shart": "Ketma-ketlik: 1, 4, 9, 16. Keyingi son?",
+      "javob": "25"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qonuniyatni faqat birinchi ikki haddan aniqlaydi",
+      "sabab": "to‘liq tekshirmaydi",
+      "oldini_olish": "qonuniyatni barcha hadlarda tekshirish"
+     },
+     {
+      "xato": "Mantiqiy masalada barcha shartlarni birdan hal qilmoqchi bo‘ladi",
+      "sabab": "tartibli o‘ylamaydi",
+      "oldini_olish": "avval eng aniq ma’lumotdan boshlash va jadval tuzish"
+     },
+     {
+      "xato": "Sehrli kvadratda faqat qatorlarni tekshiradi",
+      "sabab": "ustun va diagonallarni unutadi",
+      "oldini_olish": "8 ta yig‘indini ro‘yxat qilib tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Informatika",
+      "boglanish": "algoritm va mantiqiy fikrlash dasturlashning asosi"
+     },
+     {
+      "fan": "Ona tili",
+      "boglanish": "mantiqiy xulosalar va ketma-ketliklar matnda ham uchraydi"
+     },
+     {
+      "fan": "Tarbiya",
+      "boglanish": "o‘yin jarayonida sabr, adolat va hamkorlik shakllanadi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Matematik o‘yinlar festivali»",
+     "muammo": "Mantiqiy o‘yinlar yordamida sinfdoshlarni qanday qiziqtiramiz?",
+     "mahsulot": "mantiqiy o‘yinlar to‘plami (kartochkalar va qoidalar)",
+     "bosqichlar": [
+      "o‘yin turlarini tanlash",
+      "qoidalarini yozish",
+      "kartochkalarni tayyorlash",
+      "sinab ko‘rish",
+      "festival"
+     ],
+     "guruh_vazifalari": [
+      "Qonuniyat o‘yinini tayyorlang",
+      "Sehrli kvadrat o‘yinini tayyorlang",
+      "Mantiqiy masalalar to‘plamini tuzing",
+      "Sudoku kartochkalarini tayyorlang"
+     ],
+     "mezonlar": [
+      "qoidalar aniq",
+      "o‘yin qiziqarli",
+      "masalalar to‘g‘ri",
+      "dizayn chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Boshqotirmalar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Sonlar ko‘chasi",
+       "matn": "Uylar raqami: 2, 4, 6, 8, ...",
+       "topshiriq": "Keyingi uyning raqami?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "Shakllar maydoni",
+       "matn": "Doira, kvadrat, uchburchak, doira, kvadrat, ...",
+       "topshiriq": "Keyingi shakl?",
+       "javob": "uchburchak",
+       "rasm": ""
+      },
+      {
+       "nom": "Sehrli kvadrat bog‘i",
+       "matn": "Sehrli kvadratning qator yig‘indisi 15.",
+       "topshiriq": "Qatorda 2 va 9 bo‘lsa, uchinchi son?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "Mantiq minorasi",
+       "matn": "Minorada 3 qavat: qizil, ko‘k, yashil. Qizil ko‘kdan yuqorida, yashil eng pastda.",
+       "topshiriq": "Eng yuqori qavat qaysi rangda?",
+       "javob": "qizil",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "tartibni saqlang",
+      "o‘yin qoidalariga amal qiling"
+     ],
+     "kundalik": [
+      "Qaysi o‘yin eng qiziqarli?",
+      "Mantiq qayerda kerak?",
+      "Qonuniyat topish oson edimi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Mantiq",
+      "tarif": "to‘g‘ri fikrlash va xulosa chiqarish ilmi"
+     },
+     {
+      "atama": "Qonuniyat",
+      "tarif": "ketma-ketlik hadlarini bog‘lovchi qoida"
+     },
+     {
+      "atama": "Ketma-ketlik",
+      "tarif": "ma’lum tartibda joylashgan sonlar qatori"
+     },
+     {
+      "atama": "Had",
+      "tarif": "ketma-ketlikdagi har bir son"
+     },
+     {
+      "atama": "Sehrli kvadrat",
+      "tarif": "qator, ustun va diagonal yig‘indisi teng bo‘lgan jadval"
+     },
+     {
+      "atama": "Boshqotirma",
+      "tarif": "fikrlashni talab qiladigan topshiriq"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Sehrli kvadratda barcha qator yig‘indisi teng",
+      "togri": true,
+      "izoh": "bu uning ta’rifi"
+     },
+     {
+      "matn": "Qonuniyatni bitta haddan aniqlash mumkin",
+      "togri": false,
+      "izoh": "kamida bir necha had kerak"
+     },
+     {
+      "matn": "Jadval mantiqiy masalani yechishga yordam beradi",
+      "togri": true,
+      "izoh": "ma’lumot tartibli bo‘ladi"
+     },
+     {
+      "matn": "2, 4, 8 ketma-ketligida har safar 2 qo‘shiladi",
+      "togri": false,
+      "izoh": "har safar 2 ga ko‘paytiriladi"
+     },
+     {
+      "matn": "Sudokuda raqam bir qatorda ikki marta uchraydi",
+      "togri": false,
+      "izoh": "har raqam bir marta uchraydi"
+     },
+     {
+      "matn": "3 ga 3 sehrli kvadratda o‘rtada 5 turadi",
+      "togri": true,
+      "izoh": "1 dan 9 gacha sonlar uchun"
+     },
+     {
+      "matn": "1, 3, 5, 7 ketma-ketligidan keyin 8 keladi",
+      "togri": false,
+      "izoh": "keyingi son 9"
+     },
+     {
+      "matn": "Matematik o‘yinlar fikrlashni rivojlantiradi",
+      "togri": true,
+      "izoh": "tizimli o‘ylashni o‘rgatadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Mantiq nima?",
+      "javob": "to‘g‘ri fikrlash ilmi"
+     },
+     {
+      "savol": "Qonuniyat nima?",
+      "javob": "ketma-ketlikni bog‘lovchi qoida"
+     },
+     {
+      "savol": "Sehrli kvadratda qanday yig‘indi teng?",
+      "javob": "qator, ustun va diagonal"
+     },
+     {
+      "savol": "3 ga 3 sehrli kvadrat yig‘indisi?",
+      "javob": "15"
+     },
+     {
+      "savol": "1, 2, 3, 4 dan keyin qaysi son?",
+      "javob": "5"
+     },
+     {
+      "savol": "Jadval qaysi masalalarda yordam beradi?",
+      "javob": "mantiqiy"
+     },
+     {
+      "savol": "Had nima?",
+      "javob": "ketma-ketlikdagi son"
+     },
+     {
+      "savol": "Sudokuda raqam nechta marta uchraydi?",
+      "javob": "bir marta"
+     },
+     {
+      "savol": "Boshqotirma nima?",
+      "javob": "fikrlashni talab qiladigan topshiriq"
+     },
+     {
+      "savol": "2, 4, 6, 8 dan keyingi son?",
+      "javob": "10"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Mantiqiy masala",
+      "matn": "Ma’lumotlarni jadvalga yozamiz, ortiqchasini chiqaramiz.",
+      "savol": "Birinchi qadam nima?"
+     },
+     {
+      "nom": "Qonuniyat",
+      "matn": "Hadlar orasidagi farq yoki nisbatni topamiz.",
+      "savol": "5, 10, 15 qonuniyati?"
+     },
+     {
+      "nom": "Sehrli kvadrat",
+      "matn": "Qator, ustun, diagonal yig‘indisi teng.",
+      "savol": "3 ga 3 kvadrat yig‘indisi?"
+     },
+     {
+      "nom": "O‘yinlar",
+      "matn": "Sudoku, tangram, domino fikrlashni rivojlantiradi.",
+      "savol": "Qaysi o‘yinni bilasiz?"
+     }
+    ],
+    "muammoli_savol": "Ketma-ketlik 1, 2, 4, ... Bir do‘sti keyingi son 7 (har safar farq 1 dan oshadi), ikkinchisi 8 (har safar 2 marta ko‘payadi) dedi. Kim to‘g‘ri? Nega ikkalasi ham mantiqli?",
+    "keys": {
+     "vaziyat": "Maktabda mantiqiy o‘yin musobaqasi o‘tkazilmoqda. Jamoa a’zolari vazifalarni taqsimlashi kerak: biri qonuniyat topadi, biri jadval tuzadi, biri xulosa yozadi.",
+     "savollar": [
+      "Jamoa qanday ishlasa, g‘alaba qozonish oson?",
+      "Xato qilgan a’zoga qanday yordam beramiz?"
+     ]
+    },
+    "tezis": "Mantiq — fikrlash san’ati",
+    "taqqoslash": {
+     "a": "Qonuniyat masalasi",
+     "b": "Mantiqiy masala",
+     "umumiy": [
+      "fikrlashni talab qiladi",
+      "javobi bitta"
+     ],
+     "a_farq": [
+      "sonlar ketma-ketligi bilan",
+      "farq yoki nisbat topiladi"
+     ],
+     "b_farq": [
+      "shartlar bilan",
+      "jadval yordam beradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Matematik mantiq",
+     "shoxlar": [
+      {
+       "nom": "Masalalar",
+       "bandlar": [
+        "jadval usuli",
+        "chiqarib tashlash",
+        "xulosa"
+       ]
+      },
+      {
+       "nom": "Ketma-ketlik",
+       "bandlar": [
+        "qonuniyat",
+        "had",
+        "farq"
+       ]
+      },
+      {
+       "nom": "O‘yinlar",
+       "bandlar": [
+        "sudoku",
+        "sehrli kvadrat",
+        "tangram"
+       ]
+      },
+      {
+       "nom": "Foyda",
+       "bandlar": [
+        "diqqat",
+        "xotira",
+        "sabr"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Qatorda ham, ustunda ham, diagonalda ham yig‘indim teng. Men kimman?",
+     "javob": "sehrli kvadrat"
+    },
+    "hikmat": "Aql — bilimning kaliti.",
+    "kalit_soz": "MANTIQ",
+    "xato_yechim": {
+     "shart": "2, 4, 8, 16 dan keyingi sonni toping.",
+     "xato": "18 (har safar 2 qo‘shilgan)",
+     "togri": "32 (har safar 2 marta ko‘payadi)",
+     "sabab": "qonuniyat farq bilan emas, ko‘paytirish bilan"
+    },
+    "guruh_nomlari": [
+     "Mantiqchilar",
+     "Sehrgarlar",
+     "Sudokuchilar",
+     "Boshqotirmachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mening boshqotirmam»",
+     "topshiriq": "Har bir guruh sinfdoshlariga o‘zi o‘ylab topgan mantiqiy masala yoki qonuniyat bergan ketma-ketlikni tayyorlaydi va boshqa guruhdan yechishni so‘raydi."
+    },
+    "vazifalar": {
+     "A": "5 ta qonuniyat topshirig‘ini yeching: 3, 6, 9; 2, 4, 8; 10, 20, 30; 1, 4, 7; 5, 10, 15.",
+     "B": "Uyingizdagi kattalarga mantiqiy topishmoq aytib, javobini toping.",
+     "C": "O‘zingiz yangi sehrli kvadrat yoki sudoku tuzing va do‘stlaringizga bering."
+    },
+    "sinkveyn": [
+     "Mantiq",
+     "aniq, tartibli",
+     "o‘ylaydi, solishtiradi, xulosa qiladi",
+     "Fikrlash san’ati",
+     "Aql"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh turli o‘yinlar tayyorladi: qonuniyat, sehrli kvadrat, jadval va sudoku.",
+     "qismlar": [
+      "1-guruh: 3, 6, 9, ... dan keyingi sonlarni toping",
+      "2-guruh: qator yig‘indisi 15 bo‘lsa, 8 va 4 dan keyin uchinchi sonni toping",
+      "3-guruh: mantiqiy jadvalni to‘ldiring",
+      "4-guruh: sudokuni yeching"
+     ],
+     "yakun": "Birinchi guruh 12 va 15 ni topdi; ikkinchi guruhda uchinchi son 3; qolgan guruhlar o‘z javoblarini tekshirdi."
+    }
+   }
   }
  ]
 }
