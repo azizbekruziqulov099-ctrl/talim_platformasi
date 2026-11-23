@@ -2773,6 +2773,1394 @@
      "yakun": "Natijalar: (3; 4); (3; −4); (0; 1); (−2; 3)."
     }
    }
+  },
+  {
+   "mavzu": "Gomotetiya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Gomotetiya nima?",
+      "matn": "O markaz va k koeffitsient berilgan. Gomotetiyada har bir X nuqta shunday X' nuqtaga o‘tadiki, O, X va X' bir to‘g‘ri chiziqda yotadi va OX' kesma OX kesmadan k marta uzun. Gomotetiya shaklni kattalashtiradi yoki kichiklashtiradi.",
+      "misol": "Kinoproyektor tasvirni ekranga gomotetiya bilan kattalashtiradi: markaz — proyektor lampasi.",
+      "savol": "k ifoda 2 bo‘lsa, kesma qancha marta uzayadi?",
+      "javob": "2 marta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Koordinatalarda",
+      "matn": "Markaz koordinata boshida bo‘lsa, gomotetiya (x; y) nuqtani (k · x; k · y) nuqtaga o‘tkazadi. k musbat bo‘lsa, nuqta markazning o‘sha tomonida qoladi, manfiy bo‘lsa, qarama-qarshi tomonga o‘tadi.",
+      "misol": "(2; 3) nuqta k ifoda 2 bo‘lganda (4; 6) ga o‘tadi. k ifoda 3 da (1; −2) nuqta (3; −6) ga o‘tadi.",
+      "savol": "(1; 2) nuqta k ifoda 3 da qaysi nuqtaga o‘tadi?",
+      "javob": "(3; 6)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uzunlik, yuz va hajm",
+      "matn": "Gomotetiyada uzunliklar |k| marta, yuzlar k kvadrat marta, hajmlar |k| kubi marta o‘zgaradi. Burchaklar saqlanadi, shuning uchun shakllar o‘xshash bo‘ladi.",
+      "misol": "Kesma 5, k ifoda 3: yangi uzunlik 15. Yuz 12, k ifoda 2: yangi yuz 12 · 4, ya’ni 48. Yuz 12, k ifoda 0,5: yangi yuz 3.",
+      "savol": "Yuz 10, k ifoda 3. Yangi yuz?",
+      "javob": "90",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Maxsus holatlar",
+      "matn": "k ifoda 1 bo‘lsa, gomotetiya shaklni o‘zgartirmaydi. k ifoda −1 bo‘lsa, gomotetiya markaziy simmetriyaga aylanadi. k ning moduli 1 dan kichik bo‘lsa, shakl kichrayadi.",
+      "misol": "k ifoda −1 da (3; 4) nuqta (−3; −4) ga o‘tadi. k ifoda 1/2 da (4; 6) nuqta (2; 3) ga o‘tadi.",
+      "savol": "k ifoda −1 da (2; 5) nuqta?",
+      "javob": "(−2; −5)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Gomotetiya hayotda",
+      "matn": "Xarita va chizma masshtabi, rasmni kattalashtirish, fotokamera, mikroskop — hammasi gomotetiyaga asoslangan. Masshtab 1 : 100 bo‘lsa, k ifoda 1/100.",
+      "misol": "Chizmada 5 sm uzunlik haqiqatda 5 · 100 sm, ya’ni 5 m. Rasm 10 va 15 sm, k ifoda 3 bo‘lsa, 30 va 45 sm.",
+      "savol": "Masshtab 1 : 100 da chizmada 3 sm — haqiqatda necha metr?",
+      "javob": "3",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Gomotetiya: (x; y) o‘tadi (kx; ky) ga. Uzunlik — |k| marta, yuz — k kvadrat marta, hajm — |k| kubi marta. Burchaklar saqlanadi. k ifoda −1 — markaziy simmetriya.",
+    "misollar": [
+     {
+      "shart": "(2; 3) nuqta markazi koordinata boshi, k ifoda 2 bo‘lgan gomotetiyada qaysi nuqtaga o‘tadi?",
+      "yechim": [
+       "x koordinata 2 · 2, ya’ni 4.",
+       "y koordinata 2 · 3, ya’ni 6.",
+       "Yangi nuqta (4; 6)."
+      ],
+      "javob": "(4; 6)"
+     },
+     {
+      "shart": "Uchburchak yuzi 12. k ifoda 2 bo‘lsa yangi yuz va tomonlar nisbati?",
+      "yechim": [
+       "Tomonlar 2 marta ortadi.",
+       "Yuz 4 marta ortadi: 12 · 4.",
+       "Yangi yuz 48."
+      ],
+      "javob": "48"
+     },
+     {
+      "shart": "(4; −6) nuqta k ifoda −1/2 bo‘lgan gomotetiyada qaysi nuqtaga o‘tadi?",
+      "yechim": [
+       "x: −1/2 · 4, ya’ni −2.",
+       "y: −1/2 · (−6), ya’ni 3.",
+       "Nuqta (−2; 3)."
+      ],
+      "javob": "(−2; 3)"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Rasm kattalashtirish",
+      "topshiriq": "Rasm 10 sm va 15 sm. k ifoda 3 bo‘lsa yangi o‘lchamlar va yuz qanday?",
+      "yechim": "30 va 45 sm. Yuz 150 dan 1350 ga ortadi: 9 marta.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Soya proyektori",
+      "topshiriq": "Lampa o‘rtasida, kesma 4 sm. k ifoda 2,5 bo‘lsa soya uzunligi?",
+      "yechim": "4 · 2,5, ya’ni 10 sm.",
+      "mahsulot": "tajriba chizmasi"
+     },
+     {
+      "nom": "Koordinata",
+      "topshiriq": "(1; 2), (3; 1), (2; 4) uchburchak uchlarini k ifoda 2 bilan kattalashtiring.",
+      "yechim": "(2; 4), (6; 2), (4; 8).",
+      "mahsulot": "koordinata chizmasi"
+     },
+     {
+      "nom": "Masshtab",
+      "topshiriq": "Maktab hovlisi chizmasi masshtabi 1 : 200. Chizmada 4 sm haqiqatda necha metr?",
+      "yechim": "4 · 200, ya’ni 800 sm, ya’ni 8 m.",
+      "mahsulot": "masshtab jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "(1; 2) nuqta, k ifoda 3. Yangi nuqta?",
+      "javob": "(3; 6)"
+     },
+     {
+      "shart": "(6; −4) nuqta, k ifoda 1/2. Yangi nuqta?",
+      "javob": "(3; −2)"
+     },
+     {
+      "shart": "(2; 5) nuqta, k ifoda −1. Yangi nuqta?",
+      "javob": "(−2; −5)"
+     },
+     {
+      "shart": "Kesma 4, k ifoda 2,5. Yangi uzunlik?",
+      "javob": "10"
+     },
+     {
+      "shart": "Yuz 10, k ifoda 3. Yangi yuz?",
+      "javob": "90"
+     },
+     {
+      "shart": "Kesma 8, k ifoda 0,5. Yangi uzunlik?",
+      "javob": "4"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yuzni k marta oshiradi",
+      "sabab": "yuz k kvadrat marta o‘zgarishini unutadi",
+      "oldini_olish": "yuz — uzunlikning kvadrati ekanini eslash"
+     },
+     {
+      "xato": "Manfiy k da markazning o‘sha tomonida qoldiradi",
+      "sabab": "ishorani e’tiborsiz qoldiradi",
+      "oldini_olish": "manfiy k da nuqta markaz orqali qarama-qarshi tomonga o‘tishini eslash"
+     },
+     {
+      "xato": "Koordinatalardan faqat birini ko‘paytiradi",
+      "sabab": "ikkala koordinata ko‘paytirilishini unutadi",
+      "oldini_olish": "(kx; ky) deb yozib qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "San’at",
+      "boglanish": "rasmni masshtablash va perspektiva"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "xarita masshtabi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "optik asboblar va tasvir kattalashishi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kattalashtirish ustaxonasi»",
+     "muammo": "Bitta rasmni turli koeffitsientlar bilan qanday kattalashtirib, yuz va uzunliklarni solishtiramiz?",
+     "mahsulot": "kattalashtirilgan rasmlar to‘plami",
+     "bosqichlar": [
+      "rasm tanlash",
+      "koeffitsient tanlash",
+      "kattalashtirish",
+      "yuzni hisoblash",
+      "to‘plam yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Rasm tanlang",
+      "Kattalashtiring",
+      "O‘lchang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "koeffitsient to‘g‘ri qo‘llangan",
+      "yuz hisobi to‘g‘ri",
+      "rasm aniq",
+      "tushuntirish asosli",
+      "to‘plam ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Masshtablar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Kinoteatr",
+       "matn": "Tasvir 2 sm, k ifoda 50.",
+       "topshiriq": "Ekrandagi uzunlik?",
+       "javob": "100 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Xarita",
+       "matn": "Masshtab 1 : 100, chizmada 5 sm.",
+       "topshiriq": "Haqiqiy uzunlik (m)?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Mikroskop",
+       "matn": "Yuz 3, k ifoda 10.",
+       "topshiriq": "Yangi yuz?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "Parkka kirish",
+       "matn": "(2; 3), k ifoda −1.",
+       "topshiriq": "Yangi nuqta?",
+       "javob": "(−2; −3)",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Koeffitsient nima qildi?",
+      "Yuz qanday o‘zgardi?",
+      "Qayerda gomotetiya ko‘rdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Gomotetiya",
+      "tarif": "markaz va koeffitsient bilan berilgan o‘xshashlik almashtirishi"
+     },
+     {
+      "atama": "Koeffitsient k",
+      "tarif": "kattalashish yoki kichrayish soni"
+     },
+     {
+      "atama": "Markaz",
+      "tarif": "gomotetiya qo‘zg‘almas nuqtasi"
+     },
+     {
+      "atama": "Masshtab",
+      "tarif": "chizma va haqiqiy uzunlik nisbati"
+     },
+     {
+      "atama": "O‘xshash shakllar",
+      "tarif": "burchaklari teng, tomonlari proporsional shakllar"
+     },
+     {
+      "atama": "Markaziy simmetriya",
+      "tarif": "k ifoda −1 bo‘lgan gomotetiya"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Gomotetiya burchaklarni saqlaydi",
+      "togri": true,
+      "izoh": "shakllar o‘xshash"
+     },
+     {
+      "matn": "Gomotetiyada yuz k marta o‘zgaradi",
+      "togri": false,
+      "izoh": "k kvadrat marta"
+     },
+     {
+      "matn": "k ifoda −1 markaziy simmetriya",
+      "togri": true,
+      "izoh": "(−x; −y)"
+     },
+     {
+      "matn": "Gomotetiya masofalarni saqlaydi",
+      "togri": false,
+      "izoh": "|k| marta o‘zgartiradi"
+     },
+     {
+      "matn": "(2; 3) k ifoda 2 da (4; 6) ga o‘tadi",
+      "togri": true,
+      "izoh": "ikkala koordinata 2 ga ko‘payadi"
+     },
+     {
+      "matn": "k ifoda 0,5 shaklni kattalashtiradi",
+      "togri": false,
+      "izoh": "kichraytiradi"
+     },
+     {
+      "matn": "Hajm k kubi marta o‘zgaradi",
+      "togri": true,
+      "izoh": "uch o‘lcham"
+     },
+     {
+      "matn": "Masshtab 1 : 100 bo‘lsa k ifoda 100",
+      "togri": false,
+      "izoh": "k ifoda 1/100"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Gomotetiya nima?",
+      "javob": "markaz va koeffitsient bilan almashtirish"
+     },
+     {
+      "savol": "Koordinatada formulasi?",
+      "javob": "(kx; ky)"
+     },
+     {
+      "savol": "Uzunlik necha marta o‘zgaradi?",
+      "javob": "|k| marta"
+     },
+     {
+      "savol": "Yuz necha marta o‘zgaradi?",
+      "javob": "k kvadrat marta"
+     },
+     {
+      "savol": "Hajm necha marta o‘zgaradi?",
+      "javob": "|k| kubi marta"
+     },
+     {
+      "savol": "Burchaklar?",
+      "javob": "saqlanadi"
+     },
+     {
+      "savol": "k ifoda −1 nima?",
+      "javob": "markaziy simmetriya"
+     },
+     {
+      "savol": "k ifoda 2 da (1; 1)?",
+      "javob": "(2; 2)"
+     },
+     {
+      "savol": "Masshtab 1 : 100 da k?",
+      "javob": "1/100"
+     },
+     {
+      "savol": "Gomotetiya shakllari qanday?",
+      "javob": "o‘xshash"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Markaz",
+      "matn": "O nuqtani belgila.",
+      "savol": "Koordinata boshi nima?"
+     },
+     {
+      "nom": "Koeffitsient",
+      "matn": "k ni aniqla.",
+      "savol": "Kattalashishda k?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "(kx; ky).",
+      "savol": "(1; 2), k ifoda 2?"
+     },
+     {
+      "nom": "Yuz",
+      "matn": "k kvadrat.",
+      "savol": "k ifoda 3 da yuz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun gomotetiyada yuz k marta emas, k kvadrat marta o‘zgaradi? Kvadratni 2 marta kattalashtirib tushuntiring.",
+    "keys": {
+     "vaziyat": "Rasm 10 sm va 15 sm. Uni 3 baravar kattalashtirishmoqchi.",
+     "savollar": [
+      "Yangi o‘lchamlar qanday?",
+      "Yuz necha baravar ortadi?"
+     ]
+    },
+    "tezis": "Gomotetiya — o‘xshashlik kaliti",
+    "taqqoslash": {
+     "a": "Gomotetiya",
+     "b": "Harakat",
+     "umumiy": [
+      "shaklni almashtiradi",
+      "burchaklarni saqlaydi"
+     ],
+     "a_farq": [
+      "o‘lchamni o‘zgartiradi",
+      "shakllar o‘xshash"
+     ],
+     "b_farq": [
+      "o‘lchamni saqlaydi",
+      "shakllar teng"
+     ]
+    },
+    "klaster": {
+     "markaz": "Gomotetiya",
+     "shoxlar": [
+      {
+       "nom": "Berilishi",
+       "bandlar": [
+        "markaz",
+        "koeffitsient"
+       ]
+      },
+      {
+       "nom": "Koordinata",
+       "bandlar": [
+        "(kx; ky)"
+       ]
+      },
+      {
+       "nom": "O‘zgarish",
+       "bandlar": [
+        "uzunlik",
+        "yuz",
+        "hajm"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "masshtab",
+        "rasm"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men shaklni kattalashtiraman, lekin burchaklarini saqlayman. Men kimman?",
+     "javob": "gomotetiya"
+    },
+    "hikmat": "Kattaligi o‘zgaradi, shakli o‘zgarmaydi.",
+    "kalit_soz": "MASSHTAB",
+    "xato_yechim": {
+     "shart": "Yuz 12, k ifoda 2. Yangi yuzni toping.",
+     "xato": "24",
+     "togri": "48",
+     "sabab": "yuz k kvadrat marta ortadi: 12 · 4"
+    },
+    "guruh_nomlari": [
+     "Gomotetchilar",
+     "Masshtabchilar",
+     "Koeffitsientchilar",
+     "Rassomlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Maktab hovlisi chizmasi»",
+     "topshiriq": "Guruh hovlini masshtabda chizib, haqiqiy o‘lchamlarini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "(2; 5) nuqtani k ifoda 3 bilan kattalashtiring.",
+     "B": "Yuz 5, k ifoda 4 bo‘lsa yangi yuz?",
+     "C": "Masshtab 1 : 50. Chizmada 6 sm haqiqatda necha metr?"
+    },
+    "sinkveyn": [
+     "Gomotetiya",
+     "kattalashtiradi, kichraytiradi",
+     "o‘zgartiradi, saqlaydi, o‘xshatadi",
+     "Shakl o‘xshash",
+     "Masshtab"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh gomotetiya hisoblarini bajaradi.",
+     "qismlar": [
+      "1-guruh: (1; 2), k ifoda 3",
+      "2-guruh: kesma 5, k ifoda 3",
+      "3-guruh: yuz 10, k ifoda 3",
+      "4-guruh: (2; 5), k ifoda −1"
+     ],
+     "yakun": "Natijalar: (3; 6); 15; 90; (−2; −5)."
+    }
+   }
+  },
+  {
+   "mavzu": "Stereometriyaga kirish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Stereometriya nima?",
+      "matn": "Stereometriya fazodagi shakllarni o‘rganadi. Planimetriyada shakllar tekislikda, stereometriyada fazoda bo‘ladi. Fazoning asosiy shakllari: nuqta, to‘g‘ri chiziq va tekislik.",
+      "misol": "Kub, piramida, shar, silindr fazoviy jismlardir: ularning hajmi va sirti bor.",
+      "savol": "Kub fazoviy jismmi yoki tekis shakl?",
+      "javob": "fazoviy jism",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aksiomalar",
+      "matn": "Bir to‘g‘ri chiziqda yotmaydigan har qanday uch nuqta orqali bitta va faqat bitta tekislik o‘tadi. To‘g‘ri chiziqning ikki nuqtasi tekislikda yotsa, butun to‘g‘ri chiziq shu tekislikda yotadi. Ikki tekislik kesishsa, to‘g‘ri chiziq bo‘ylab kesishadi.",
+      "misol": "Stol uch oyoq ustida turg‘un turadi: uch nuqta bitta tekislikni aniqlaydi. To‘rt oyoqli stol esa ba’zan tebranadi.",
+      "savol": "Nechta nuqta tekislikni bir qiymatli aniqlaydi?",
+      "javob": "uchta (bir chiziqda emas)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri chiziqlarning joylashuvi",
+      "matn": "Fazoda ikki to‘g‘ri chiziq kesishishi, parallel bo‘lishi yoki ayqash bo‘lishi mumkin. Ayqash chiziqlar bitta tekislikda yotmaydi va kesishmaydi.",
+      "misol": "Kubda bitta yoqdagi qirra va qarama-qarshi yoqdagi, boshqa yo‘nalishdagi qirra ayqash bo‘lishi mumkin.",
+      "savol": "Ikki to‘g‘ri chiziq fazoda necha xil joylashadi?",
+      "javob": "uch xil",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kub va parallelepiped",
+      "matn": "Kubning 6 yog‘i, 12 qirrasi va 8 uchi bor. Qirrasi a bo‘lgan kub hajmi a kubi, to‘la sirti 6 · a kvadrat. To‘g‘ri burchakli parallelepipedda hajm — uzunlik, kenglik va balandlik ko‘paytmasi.",
+      "misol": "Kub a ifoda 3: hajm 27, sirt 6 · 9, ya’ni 54. Parallelepiped 3, 4, 12: hajm 144, diagonal √(9 + 16 + 144), ya’ni 13.",
+      "savol": "Kub a ifoda 2. Hajmi?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Eyler formulasi",
+      "matn": "Qavariq ko‘pyoqning uchlari soni V, qirralar soni E, yoqlar soni F uchun V − E + F ifoda 2. Bu formula har qanday qavariq ko‘pyoqda to‘g‘ri.",
+      "misol": "Kub: 8 − 12 + 6, ya’ni 2. Tetraedr: 4 − 6 + 4, ya’ni 2.",
+      "savol": "Tetraedrning nechta yog‘i bor?",
+      "javob": "4",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Uch nuqta — bitta tekislik. Kub: hajm a kubi, sirt 6a kvadrat. Parallelepiped diagonali: uchta o‘lcham kvadratlari yig‘indisidan ildiz. Eyler: V − E + F ifoda 2.",
+    "misollar": [
+     {
+      "shart": "Kubning qirrasi 3. Hajmi va to‘la sirtini toping.",
+      "yechim": [
+       "Hajm 3 · 3 · 3, ya’ni 27.",
+       "Sirt 6 · 9.",
+       "Sirt 54."
+      ],
+      "javob": "27; 54"
+     },
+     {
+      "shart": "To‘g‘ri burchakli parallelepiped o‘lchamlari 3, 4, 12. Diagonalini toping.",
+      "yechim": [
+       "Diagonal kvadrati 9 + 16 + 144, ya’ni 169.",
+       "Ildiz 13.",
+       "Diagonal 13."
+      ],
+      "javob": "13"
+     },
+     {
+      "shart": "Eyler formulasini tetraedr uchun tekshiring.",
+      "yechim": [
+       "Uchlar 4, qirralar 6, yoqlar 4.",
+       "4 − 6 + 4.",
+       "Natija 2: formula to‘g‘ri."
+      ],
+      "javob": "2"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tekislik",
+      "topshiriq": "Stol, kitob va deraza yordamida uch nuqta bitta tekislikni qanday aniqlashini ko‘rsating.",
+      "yechim": "Uch oyoqli stol turg‘un turadi.",
+      "mahsulot": "namoyish"
+     },
+     {
+      "nom": "Kub modeli",
+      "topshiriq": "Kub qirrasi 3 sm. Hajm va to‘la sirtini hisoblang.",
+      "yechim": "27 kub sm, 54 kv. sm.",
+      "mahsulot": "model va hisob"
+     },
+     {
+      "nom": "Qutining diagonali",
+      "topshiriq": "Quti 2, 3, 6 sm. Diagonalini toping.",
+      "yechim": "4 + 9 + 36, ya’ni 49, diagonal 7 sm.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Eyler tekshiruvi",
+      "topshiriq": "Kub, tetraedr va uchburchakli prizma uchun V − E + F ni hisoblang.",
+      "yechim": "8 − 12 + 6; 4 − 6 + 4; 6 − 9 + 5: hammasi 2.",
+      "mahsulot": "jadval"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Qirrasi 2 kub hajmi?",
+      "javob": "8"
+     },
+     {
+      "shart": "Qirrasi 2 kub to‘la sirti?",
+      "javob": "24"
+     },
+     {
+      "shart": "Kub yog‘lari soni?",
+      "javob": "6"
+     },
+     {
+      "shart": "Parallelepiped 2, 3, 6 diagonali?",
+      "javob": "7"
+     },
+     {
+      "shart": "Tetraedr yoqlari soni?",
+      "javob": "4"
+     },
+     {
+      "shart": "Kub uchlari soni?",
+      "javob": "8"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Kub sirtini yuz bilan adashtiradi",
+      "sabab": "yoqlar soni 6 ekanini unutadi",
+      "oldini_olish": "to‘la sirt — 6 ta yoq yuzi"
+     },
+     {
+      "xato": "Diagonal formulasida ildizni unutadi",
+      "sabab": "kvadratlar yig‘indisida to‘xtaydi",
+      "oldini_olish": "oxirida kvadrat ildiz olish"
+     },
+     {
+      "xato": "Qirra va yoqni adashtiradi",
+      "sabab": "atamalarni aralashtiradi",
+      "oldini_olish": "yoq — tekis qism, qirra — chiziq, uch — nuqta"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "bino va xonalar fazoviy modeli"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "fazodagi harakat"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "3D modellash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Fazoviy modellar»",
+     "muammo": "Qog‘ozdan kub, tetraedr va parallelepiped yasab, yoq, qirra va uchlarini qanday sanaymiz?",
+     "mahsulot": "fazoviy jismlar modellari",
+     "bosqichlar": [
+      "jism tanlash",
+      "yoyilma chizish",
+      "yig‘ish",
+      "uch, qirra, yoqni sanash",
+      "Eyler tekshiruvi"
+     ],
+     "guruh_vazifalari": [
+      "Yoyilma chizing",
+      "Yig‘ing",
+      "Sanang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model aniq yig‘ilgan",
+      "sanash to‘g‘ri",
+      "Eyler tekshirilgan",
+      "tushuntirish asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Fazo shahri»",
+     "bekatlar": [
+      {
+       "nom": "Kub",
+       "matn": "Qirra 3.",
+       "topshiriq": "Hajm?",
+       "javob": "27",
+       "rasm": ""
+      },
+      {
+       "nom": "Quti",
+       "matn": "O‘lchamlar 3, 4, 12.",
+       "topshiriq": "Diagonal?",
+       "javob": "13",
+       "rasm": ""
+      },
+      {
+       "nom": "Tetraedr",
+       "matn": "Uchlar 4, qirralar 6.",
+       "topshiriq": "Yoqlar?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "Stol",
+       "matn": "Nechta nuqta tekislikni aniqlaydi?",
+       "topshiriq": "Javob?",
+       "javob": "3",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Fazoviy shakllarni qayerda ko‘rdingiz?",
+      "Eyler formulasi to‘g‘ri chiqdimi?",
+      "Tekislikni nima aniqladi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Stereometriya",
+      "tarif": "fazodagi shakllar geometriyasi"
+     },
+     {
+      "atama": "Tekislik",
+      "tarif": "cheksiz tekis sirt"
+     },
+     {
+      "atama": "Ayqash chiziqlar",
+      "tarif": "kesishmaydigan va parallel bo‘lmagan fazoviy chiziqlar"
+     },
+     {
+      "atama": "Parallelepiped",
+      "tarif": "olti yog‘i parallelogramm bo‘lgan jism"
+     },
+     {
+      "atama": "Qirra",
+      "tarif": "ikki yoq kesishgan chiziq"
+     },
+     {
+      "atama": "Eyler formulasi",
+      "tarif": "V − E + F ifoda 2"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Bir chiziqda yotmaydigan uch nuqta bitta tekislikni aniqlaydi",
+      "togri": true,
+      "izoh": "aksioma"
+     },
+     {
+      "matn": "Fazoda ikki to‘g‘ri chiziq faqat kesishadi",
+      "togri": false,
+      "izoh": "parallel yoki ayqash ham bo‘ladi"
+     },
+     {
+      "matn": "Kubning 12 ta qirrasi bor",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "Kub sirti a kubi",
+      "togri": false,
+      "izoh": "6 · a kvadrat"
+     },
+     {
+      "matn": "Eyler formulasi V − E + F ifoda 2",
+      "togri": true,
+      "izoh": "qavariq ko‘pyoq"
+     },
+     {
+      "matn": "Tetraedrning 6 yog‘i bor",
+      "togri": false,
+      "izoh": "4 ta"
+     },
+     {
+      "matn": "Parallelepiped diagonali 3, 4, 12 da 13",
+      "togri": true,
+      "izoh": "169 ning ildizi"
+     },
+     {
+      "matn": "Ayqash chiziqlar bitta tekislikda yotadi",
+      "togri": false,
+      "izoh": "yotmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Stereometriya nima?",
+      "javob": "fazodagi shakllar geometriyasi"
+     },
+     {
+      "savol": "Tekislikni nechta nuqta aniqlaydi?",
+      "javob": "uchta, bir chiziqda emas"
+     },
+     {
+      "savol": "Kub yoqlari?",
+      "javob": "6"
+     },
+     {
+      "savol": "Kub qirralari?",
+      "javob": "12"
+     },
+     {
+      "savol": "Kub uchlari?",
+      "javob": "8"
+     },
+     {
+      "savol": "Kub hajmi formulasi?",
+      "javob": "a kubi"
+     },
+     {
+      "savol": "Kub sirti formulasi?",
+      "javob": "6 · a kvadrat"
+     },
+     {
+      "savol": "Eyler formulasi?",
+      "javob": "V − E + F ifoda 2"
+     },
+     {
+      "savol": "Ayqash chiziqlar nima?",
+      "javob": "kesishmaydigan, parallel emas"
+     },
+     {
+      "savol": "Tetraedr yoqlari?",
+      "javob": "4"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Hajm",
+      "matn": "Uch o‘lchamni ko‘paytir.",
+      "savol": "2, 3, 4 hajmi?"
+     },
+     {
+      "nom": "Sirt",
+      "matn": "Yoqlar yuzini qo‘sh.",
+      "savol": "Kub sirti formulasi?"
+     },
+     {
+      "nom": "Diagonal",
+      "matn": "Kvadratlar yig‘indisidan ildiz.",
+      "savol": "3, 4, 12 diagonali?"
+     },
+     {
+      "nom": "Eyler",
+      "matn": "V − E + F.",
+      "savol": "Kubda natija?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun to‘rt oyoqli stol ba’zan tebranadi, uch oyoqli esa tebranmaydi? Aksioma bilan tushuntiring.",
+    "keys": {
+     "vaziyat": "Xona uzunligi 6, kengligi 4, balandligi 3 metr bo‘lgan to‘g‘ri burchakli parallelepiped.",
+     "savollar": [
+      "Xona hajmi qancha?",
+      "Xona ichidagi eng uzun masofa (diagonal) qancha?"
+     ]
+    },
+    "tezis": "Tekislikdan fazogacha",
+    "taqqoslash": {
+     "a": "Planimetriya",
+     "b": "Stereometriya",
+     "umumiy": [
+      "geometriyaning bo‘limlari",
+      "nuqta va to‘g‘ri chiziq bilan ishlaydi"
+     ],
+     "a_farq": [
+      "tekislikdagi shakllar",
+      "yuz topiladi"
+     ],
+     "b_farq": [
+      "fazodagi jismlar",
+      "hajm va sirt topiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Stereometriya",
+     "shoxlar": [
+      {
+       "nom": "Asosiy shakllar",
+       "bandlar": [
+        "nuqta",
+        "to‘g‘ri chiziq",
+        "tekislik"
+       ]
+      },
+      {
+       "nom": "Aksiomalar",
+       "bandlar": [
+        "uch nuqta — tekislik"
+       ]
+      },
+      {
+       "nom": "Jismlar",
+       "bandlar": [
+        "kub",
+        "parallelepiped"
+       ]
+      },
+      {
+       "nom": "Formulalar",
+       "bandlar": [
+        "hajm",
+        "sirt",
+        "Eyler"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men uch o‘lchamli fazoning geometriyasiman. Men kimman?",
+     "javob": "stereometriya"
+    },
+    "hikmat": "Fazoni o‘lchagan — dunyoni tushungan.",
+    "kalit_soz": "FAZO",
+    "xato_yechim": {
+     "shart": "Qirrasi 3 bo‘lgan kub to‘la sirtini toping.",
+     "xato": "3 · 3, ya’ni 9",
+     "togri": "6 · 9, ya’ni 54",
+     "sabab": "kubning 6 ta yog‘i bor, har biri 9"
+    },
+    "guruh_nomlari": [
+     "Fazochilar",
+     "Kubchilar",
+     "Tekislikchilar",
+     "Eylerchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Xona modeli»",
+     "topshiriq": "Guruh sinf xonasini o‘lchab, hajmini va diagonalini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Qirrasi 4 kub hajmi va to‘la sirtini toping.",
+     "B": "Parallelepiped 2, 3, 6 diagonalini toping.",
+     "C": "Uch qirrali prizma uchun V − E + F ni hisoblang."
+    },
+    "sinkveyn": [
+     "Fazo",
+     "uch o‘lchamli, katta",
+     "o‘lchaydi, joylashtiradi, o‘z ichiga oladi",
+     "Hamma narsa fazoda",
+     "Jism"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh fazoviy hisoblarni bajaradi.",
+     "qismlar": [
+      "1-guruh: kub a ifoda 2 hajm",
+      "2-guruh: kub a ifoda 2 sirt",
+      "3-guruh: 2, 3, 6 diagonal",
+      "4-guruh: tetraedr yoqlari"
+     ],
+     "yakun": "Natijalar: 8; 24; 7; 4."
+    }
+   }
+  },
+  {
+   "mavzu": "Ko‘pyoqlar va aylanma jismlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Prizma va piramida",
+      "matn": "Prizma — ikki teng parallel asos va yon yoqlar parallelogramm bo‘lgan ko‘pyoq. Hajmi: asos yuzi · balandlik. Piramida — bitta asosli va uchi umumiy uchburchak yoqli ko‘pyoq. Hajmi: asos yuzi · balandlik / 3.",
+      "misol": "Prizma asosi 12, balandligi 5: hajm 60. Piramida asosi 9, balandligi 6: hajm 9 · 6 / 3, ya’ni 18.",
+      "savol": "Piramida hajmi prizmaning nechanchi qismi (bir xil asos, balandlik)?",
+      "javob": "uchdan biri",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Silindr",
+      "matn": "Silindr — to‘g‘ri to‘rtburchakni bir tomoni atrofida aylantirishdan hosil bo‘lgan jism. Hajmi: π · r kvadrat · h. Yon sirti: 2 · π · r · h. To‘la sirti: yon sirt plus ikki asos.",
+      "misol": "r ifoda 2, h ifoda 5: hajm 3,14 · 4 · 5, ya’ni 62,8. Yon sirt 2 · 3,14 · 2 · 5, ya’ni 62,8.",
+      "savol": "r ifoda 1, h ifoda 10 silindr hajmi (π ifoda 3,14)?",
+      "javob": "31,4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Konus",
+      "matn": "Konus — to‘g‘ri burchakli uchburchakni katet atrofida aylantirishdan hosil bo‘lgan jism. Hajmi: π · r kvadrat · h / 3. Yon sirti: π · r · l, bunda l — yasovchi.",
+      "misol": "r ifoda 3, h ifoda 4, l ifoda 5: hajm 3,14 · 9 · 4 / 3, ya’ni 37,68. Yon sirt 3,14 · 3 · 5, ya’ni 47,1.",
+      "savol": "r ifoda 3, h ifoda 4 bo‘lsa yasovchi l?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Shar",
+      "matn": "Shar — yarim doirani diametr atrofida aylantirishdan hosil bo‘lgan jism. Hajmi: 4 · π · r kubi / 3. Sirti: 4 · π · r kvadrat.",
+      "misol": "r ifoda 3: hajm 4 · 3,14 · 27 / 3, ya’ni 113,04. Sirt 4 · 3,14 · 9, ya’ni 113,04.",
+      "savol": "r ifoda 3 shar sirti (π ifoda 3,14)?",
+      "javob": "113,04",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Jismlarni solishtirish",
+      "matn": "Bir xil radius va balandlikda silindr hajmi konus hajmidan 3 marta katta. Silindr, konus va shar — aylanma jismlar, ular yarim tekis shakllarni aylantirishdan hosil bo‘ladi.",
+      "misol": "Silindr 3,14 · 9 · 4, ya’ni 113,04, konus 37,68: nisbat 3 ga teng.",
+      "savol": "Silindr va konus hajmlarining nisbati?",
+      "javob": "3",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Prizma: asos yuzi · h. Piramida: asos yuzi · h / 3. Silindr: πr²h. Konus: πr²h / 3. Shar: 4πr³ / 3, sirt 4πr².",
+    "misollar": [
+     {
+      "shart": "Silindr: r ifoda 2, h ifoda 5. Hajmi va yon sirtini toping (π ifoda 3,14).",
+      "yechim": [
+       "Hajm 3,14 · 4 · 5, ya’ni 62,8.",
+       "Yon sirt 2 · 3,14 · 2 · 5.",
+       "Yon sirt 62,8."
+      ],
+      "javob": "62,8; 62,8"
+     },
+     {
+      "shart": "Konus: r ifoda 3, h ifoda 4. Hajmi va yon sirtini toping.",
+      "yechim": [
+       "Yasovchi l: 9 + 16 — 25, ildizi 5.",
+       "Hajm 3,14 · 9 · 4 / 3, ya’ni 37,68.",
+       "Yon sirt 3,14 · 3 · 5, ya’ni 47,1."
+      ],
+      "javob": "37,68; 47,1"
+     },
+     {
+      "shart": "Shar radiusi 3. Hajmi va sirtini toping.",
+      "yechim": [
+       "Hajm 4 · 3,14 · 27 / 3, ya’ni 113,04.",
+       "Sirt 4 · 3,14 · 9.",
+       "Sirt 113,04."
+      ],
+      "javob": "113,04; 113,04"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Suv idishi",
+      "topshiriq": "Silindr shaklidagi bak: r ifoda 0,5 m, h ifoda 2 m. Hajmi va litrlari qancha?",
+      "yechim": "3,14 · 0,25 · 2, ya’ni 1,57 kub metr, ya’ni 1570 litr.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Piramida va prizma",
+      "topshiriq": "Asosi 9, balandligi 6 bo‘lgan prizma va piramida hajmlarini solishtiring.",
+      "yechim": "Prizma 54, piramida 18: 3 marta kam.",
+      "mahsulot": "model va hisob"
+     },
+     {
+      "nom": "Konus tuzilishi",
+      "topshiriq": "r ifoda 3, h ifoda 4. Yasovchini toping va hajmini hisoblang.",
+      "yechim": "l ifoda 5, hajm 37,68.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Shar va aylanma jismlar",
+      "topshiriq": "Doira, to‘g‘ri to‘rtburchak va to‘g‘ri burchakli uchburchakni aylantirib, qaysi jism hosil bo‘lishini aniqlang.",
+      "yechim": "Shar, silindr, konus.",
+      "mahsulot": "aylantirish tajribasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Prizma asosi 8, balandligi 3. Hajmi?",
+      "javob": "24"
+     },
+     {
+      "shart": "Piramida asosi 12, balandligi 5. Hajmi?",
+      "javob": "20"
+     },
+     {
+      "shart": "Silindr r ifoda 1, h ifoda 10 hajmi (π ifoda 3,14)?",
+      "javob": "31,4"
+     },
+     {
+      "shart": "Konus r ifoda 3, h ifoda 4 hajmi?",
+      "javob": "37,68"
+     },
+     {
+      "shart": "Shar r ifoda 3 sirti?",
+      "javob": "113,04"
+     },
+     {
+      "shart": "Silindr va konus (bir xil r, h) hajm nisbati?",
+      "javob": "3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Piramida hajmini 3 ga bo‘lishni unutadi",
+      "sabab": "prizma formulasini qo‘llaydi",
+      "oldini_olish": "piramida va konusda 3 ga bo‘lishni yozib qo‘yish"
+     },
+     {
+      "xato": "Konusda yasovchi o‘rniga balandlikni qo‘yadi",
+      "sabab": "yon sirt formulasida l ni adashtiradi",
+      "oldini_olish": "yasovchini Pifagor bilan topish"
+     },
+     {
+      "xato": "Shar hajmini r kvadrat bilan topadi",
+      "sabab": "daraja ko‘rsatkichini adashtiradi",
+      "oldini_olish": "hajm — r kubi, sirt — r kvadrat"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnika",
+      "boglanish": "bak, quvur va tank hajmi"
+     },
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "gumbaz va minoralar shakli"
+     },
+     {
+      "fan": "Astronomiya",
+      "boglanish": "sayyoralar sharsimon shakli"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Hajmlar bozori»",
+     "muammo": "Hayotdagi silindr, konus va shar shaklidagi buyumlar hajmini qanday o‘lchab hisoblaymiz?",
+     "mahsulot": "hajmlar jadvali",
+     "bosqichlar": [
+      "buyumlarni tanlash",
+      "o‘lchamlarini o‘lchash",
+      "formulani tanlash",
+      "hajmni hisoblash",
+      "jadval tuzish"
+     ],
+     "guruh_vazifalari": [
+      "Buyum tanlang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchash to‘g‘ri",
+      "formula to‘g‘ri tanlangan",
+      "hisoblar to‘g‘ri",
+      "birlik to‘g‘ri",
+      "jadval ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Jismlar muzeyi»",
+     "bekatlar": [
+      {
+       "nom": "Bak",
+       "matn": "Silindr r ifoda 1, h ifoda 10.",
+       "topshiriq": "Hajm (π ifoda 3,14)?",
+       "javob": "31,4",
+       "rasm": ""
+      },
+      {
+       "nom": "Piramida",
+       "matn": "Asos 12, h ifoda 5.",
+       "topshiriq": "Hajm?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "Qutb",
+       "matn": "Konus r ifoda 3, h ifoda 4.",
+       "topshiriq": "Yasovchi?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Globus",
+       "matn": "Shar r ifoda 3.",
+       "topshiriq": "Sirt?",
+       "javob": "113,04",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi jism hajmini hisoblash oson bo‘ldi?",
+      "Formulalar qanday bog‘langan?",
+      "Jismlarni qayerda ko‘rdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Prizma",
+      "tarif": "ikki teng parallel asosli ko‘pyoq"
+     },
+     {
+      "atama": "Piramida",
+      "tarif": "uchi bor ko‘pyoq"
+     },
+     {
+      "atama": "Silindr",
+      "tarif": "to‘g‘ri to‘rtburchakni aylantirishdan hosil bo‘lgan jism"
+     },
+     {
+      "atama": "Konus",
+      "tarif": "to‘g‘ri burchakli uchburchakni aylantirishdan hosil bo‘lgan jism"
+     },
+     {
+      "atama": "Shar",
+      "tarif": "yarim doirani aylantirishdan hosil bo‘lgan jism"
+     },
+     {
+      "atama": "Yasovchi",
+      "tarif": "konus uchidan asos chetigacha kesma"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Piramida hajmi asos yuzi · h / 3",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Konus hajmi πr²h",
+      "togri": false,
+      "izoh": "3 ga bo‘linadi"
+     },
+     {
+      "matn": "Silindr hajmi πr²h",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Shar sirti 4πr³",
+      "togri": false,
+      "izoh": "4πr²"
+     },
+     {
+      "matn": "Konus yasovchisi 3, 4 da 5",
+      "togri": true,
+      "izoh": "Pifagor"
+     },
+     {
+      "matn": "Silindr va konus hajmlari bir xil",
+      "togri": false,
+      "izoh": "silindr 3 marta katta"
+     },
+     {
+      "matn": "Shar hajmi 4πr³ / 3",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Prizma hajmi asos yuzi plus balandlik",
+      "togri": false,
+      "izoh": "ko‘paytma"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Prizma hajmi?",
+      "javob": "asos yuzi · balandlik"
+     },
+     {
+      "savol": "Piramida hajmi?",
+      "javob": "asos yuzi · balandlik / 3"
+     },
+     {
+      "savol": "Silindr hajmi?",
+      "javob": "πr kvadrat h"
+     },
+     {
+      "savol": "Konus hajmi?",
+      "javob": "πr kvadrat h / 3"
+     },
+     {
+      "savol": "Shar hajmi?",
+      "javob": "4πr kubi / 3"
+     },
+     {
+      "savol": "Shar sirti?",
+      "javob": "4πr kvadrat"
+     },
+     {
+      "savol": "Silindr yon sirti?",
+      "javob": "2πrh"
+     },
+     {
+      "savol": "Konus yon sirti?",
+      "javob": "πrl"
+     },
+     {
+      "savol": "Yasovchi qanday topiladi?",
+      "javob": "Pifagor teoremasi bilan"
+     },
+     {
+      "savol": "Silindr va konus hajm nisbati?",
+      "javob": "3"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Asos",
+      "matn": "Asos yuzini top.",
+      "savol": "r ifoda 2 asos yuzi?"
+     },
+     {
+      "nom": "Balandlik",
+      "matn": "h ni ol.",
+      "savol": "Balandlik nima?"
+     },
+     {
+      "nom": "Bo‘lish",
+      "matn": "Piramida, konus — 3 ga.",
+      "savol": "Qaysi jismda 3 ga bo‘lamiz?"
+     },
+     {
+      "nom": "Birlik",
+      "matn": "Kub birlikda yoz.",
+      "savol": "Hajm birligi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bir xil asos va balandlikdagi piramida hajmi prizma hajmining aynan uchdan biriga teng? Kubning uchta piramidaga bo‘linishini tasavvur qiling.",
+    "keys": {
+     "vaziyat": "Silindr shaklidagi bakning radiusi 0,5 m, balandligi 2 m. Uni suv bilan to‘ldirishmoqchi.",
+     "savollar": [
+      "Bak hajmi qancha?",
+      "Necha litr suv sig‘adi?"
+     ]
+    },
+    "tezis": "Hajm — fazoning o‘lchovi",
+    "taqqoslash": {
+     "a": "Ko‘pyoqlar",
+     "b": "Aylanma jismlar",
+     "umumiy": [
+      "hajmi va sirti bor",
+      "fazoviy jismlar"
+     ],
+     "a_farq": [
+      "yoqlari tekis ko‘pburchak",
+      "prizma, piramida"
+     ],
+     "b_farq": [
+      "sirti egri",
+      "silindr, konus, shar"
+     ]
+    },
+    "klaster": {
+     "markaz": "Fazoviy jismlar",
+     "shoxlar": [
+      {
+       "nom": "Ko‘pyoqlar",
+       "bandlar": [
+        "prizma",
+        "piramida"
+       ]
+      },
+      {
+       "nom": "Aylanma jismlar",
+       "bandlar": [
+        "silindr",
+        "konus",
+        "shar"
+       ]
+      },
+      {
+       "nom": "Hajm",
+       "bandlar": [
+        "asos · balandlik",
+        "3 ga bo‘lish"
+       ]
+      },
+      {
+       "nom": "Sirt",
+       "bandlar": [
+        "yon sirt",
+        "to‘la sirt"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yarim doirani aylantirishdan hosil bo‘ldim. Men kimman?",
+     "javob": "shar"
+    },
+    "hikmat": "Jism — shakl va hajm birligi.",
+    "kalit_soz": "JISM",
+    "xato_yechim": {
+     "shart": "Asosi 9, balandligi 6 bo‘lgan piramida hajmini toping.",
+     "xato": "9 · 6, ya’ni 54",
+     "togri": "9 · 6 / 3, ya’ni 18",
+     "sabab": "piramida hajmi 3 ga bo‘linadi"
+    },
+    "guruh_nomlari": [
+     "Piramidachilar",
+     "Silindrchilar",
+     "Konuschilar",
+     "Sharchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bak hajmi»",
+     "topshiriq": "Guruh silindr shaklidagi idishni o‘lchab, hajmi va litrini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Silindr r ifoda 3, h ifoda 2 hajmini toping (π ifoda 3,14).",
+     "B": "Asosi 10, balandligi 6 piramida hajmini toping.",
+     "C": "Shar r ifoda 3 hajmini toping."
+    },
+    "sinkveyn": [
+     "Jism",
+     "hajmli, fazoviy",
+     "to‘ldiradi, o‘lchanadi, aylanadi",
+     "Shakldan hajmga",
+     "Hajm"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh jismlar hajmini hisoblaydi.",
+     "qismlar": [
+      "1-guruh: prizma 8 va 3",
+      "2-guruh: piramida 12 va 5",
+      "3-guruh: silindr r ifoda 1, h ifoda 10",
+      "4-guruh: konus r ifoda 3, h ifoda 4"
+     ],
+     "yakun": "Natijalar: 24; 20; 31,4; 37,68."
+    }
+   }
   }
  ]
 }
