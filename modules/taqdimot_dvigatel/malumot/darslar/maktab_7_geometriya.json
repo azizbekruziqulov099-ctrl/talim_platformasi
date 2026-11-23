@@ -2793,6 +2793,1399 @@
      "yakun": "Natijalar: 9 va 9; 45°; 8 sm; 90°."
     }
    }
+  },
+  {
+   "mavzu": "Parallel to‘g‘ri chiziqlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Parallel chiziqlar",
+      "matn": "Bir tekislikda yotuvchi va kesishmaydigan ikki to‘g‘ri chiziq parallel deyiladi. Ular hech qachon uchrashmaydi, orasidagi masofa har joyda bir xil bo‘ladi. Parallellik a ∥ b ko‘rinishida yoziladi.",
+      "misol": "Temir yo‘l relslari, daftardagi chiziqlar, zinapoya panjarasi parallel chiziqlarga misol.",
+      "savol": "Parallel chiziqlar kesishadimi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kesuvchi va hosil bo‘lgan burchaklar",
+      "matn": "Ikki to‘g‘ri chiziqni kesib o‘tuvchi uchinchi chiziq kesuvchi deyiladi. Kesuvchi sakkizta burchak hosil qiladi. Ular juftlanadi: mos burchaklar (bir xil joylashgan), ichki almashinuvchi burchaklar (chiziqlar orasida, kesuvchining turli tomonida) va ichki bir tomonli burchaklar (chiziqlar orasida, bir tomonda).",
+      "misol": "Kesuvchi c va chiziqlar a, b: yuqori chap burchak va quyi chap burchak mos burchaklar; chiziqlar orasidagi, kesuvchining ikki tomonidagi burchaklar almashinuvchi.",
+      "savol": "Kesuvchi nechta burchak hosil qiladi?",
+      "javob": "8 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Parallellik alomatlari",
+      "matn": "Agar kesuvchi hosil qilgan mos burchaklar teng bo‘lsa, chiziqlar parallel. Agar ichki almashinuvchi burchaklar teng bo‘lsa, chiziqlar parallel. Agar ichki bir tomonli burchaklar yig‘indisi 180° bo‘lsa, chiziqlar parallel.",
+      "misol": "Mos burchaklar 70° va 70° — chiziqlar parallel. Ichki bir tomonli burchaklar 110° va 70°: 110° + 70° — 180°, chiziqlar parallel. 110° va 80° bo‘lsa, yig‘indi 190°, parallel emas.",
+      "savol": "Almashinuvchi burchaklar 45° va 45° bo‘lsa, chiziqlar qanday?",
+      "javob": "parallel",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Parallel chiziqlar xossalari",
+      "matn": "Parallel chiziqlarni kesuvchi kessa, mos burchaklar teng, ichki almashinuvchi burchaklar teng va ichki bir tomonli burchaklar yig‘indisi 180° bo‘ladi. Bu alomatlarga teskari teorema.",
+      "misol": "Parallel chiziqlarni kesuvchi hosil qilgan burchaklardan biri 65°. Mos burchak 65°, almashinuvchi 65°, bir tomonli burchak 180° − 65°, ya’ni 115°.",
+      "savol": "Parallel chiziqlarda bir tomonli burchaklardan biri 100° bo‘lsa, ikkinchisi?",
+      "javob": "80°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Parallellik aksiomasi",
+      "matn": "Berilgan to‘g‘ri chiziqdan tashqaridagi nuqta orqali unga parallel faqat bitta to‘g‘ri chiziq o‘tkazish mumkin. Natijalar: ikki chiziq uchinchisiga parallel bo‘lsa, ular o‘zaro parallel; bitta chiziqqa perpendikulyar ikki chiziq o‘zaro parallel.",
+      "misol": "Daftar chizig‘idan tashqaridagi nuqta orqali unga parallel yagona chiziq o‘tadi. Stol chetiga perpendikulyar ikki chiziq o‘zaro parallel.",
+      "savol": "Nuqta orqali berilgan chiziqqa nechta parallel chiziq o‘tadi?",
+      "javob": "bitta",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Parallel chiziqlarni kesuvchi kesganda mos va ichki almashinuvchi burchaklar teng, ichki bir tomonli burchaklar yig‘indisi 180°. Teskari ham to‘g‘ri: shu shartlar chiziqlar parallelligini isbotlaydi. Nuqta orqali bitta parallel o‘tadi.",
+    "misollar": [
+     {
+      "shart": "Parallel chiziqlarni kesuvchi kesganda burchaklardan biri 110°. Mos va ichki bir tomonli burchaklarni toping.",
+      "yechim": [
+       "Mos burchak teng: 110°.",
+       "Bir tomonli burchak: 180° − 110°.",
+       "Bir tomonli burchak 70°."
+      ],
+      "javob": "mos 110°, bir tomonli 70°"
+     },
+     {
+      "shart": "Kesuvchi ikki chiziqni kesganda ichki bir tomonli burchaklar 100° va 80°. Chiziqlar parallelmi?",
+      "yechim": [
+       "Yig‘indi: 100° + 80°, ya’ni 180°.",
+       "Bir tomonli burchaklar yig‘indisi 180°.",
+       "Alomat bo‘yicha chiziqlar parallel."
+      ],
+      "javob": "ha, parallel"
+     },
+     {
+      "shart": "Parallel chiziqlarda bir tomonli burchaklarning biri ikkinchisidan 2 marta katta. Burchaklarni toping.",
+      "yechim": [
+       "Kichigi x, kattasi 2x.",
+       "Yig‘indi 180: 3x — 180, x — 60.",
+       "Burchaklar 60° va 120°."
+      ],
+      "javob": "60° va 120°"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qog‘oz buklash",
+      "topshiriq": "Qog‘ozni ikki marta buklab, parallel chiziqlar hosil qiling va kesuvchi burchaklarini o‘lchang.",
+      "yechim": "Mos burchaklar teng chiqadi.",
+      "mahsulot": "o‘lchov jadvali"
+     },
+     {
+      "nom": "Alomatni tekshiramiz",
+      "topshiriq": "Chizmada berilgan burchaklar bo‘yicha chiziqlar parallelligini aniqlang.",
+      "yechim": "Mos yoki almashinuvchi burchaklar teng, bir tomonli yig‘indi 180° bo‘lsa — parallel.",
+      "mahsulot": "chizma va xulosa"
+     },
+     {
+      "nom": "Parallel yasash",
+      "topshiriq": "Chizg‘ich va ugolnik bilan nuqta orqali berilgan chiziqqa parallel o‘tkazing.",
+      "yechim": "Ugolnikni chiziq bo‘ylab siljitib parallel chiziq chiziladi.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Burchaklarni topish",
+      "topshiriq": "Parallel chiziqlarda bitta burchak 65° bo‘lsa, qolgan 7 burchakni toping.",
+      "yechim": "65° burchaklar va 115° burchaklar: to‘rttasi 65°, to‘rttasi 115°.",
+      "mahsulot": "burchaklar chizmasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Parallel chiziqlarda mos burchak 75° bo‘lsa, ikkinchi mos burchak?",
+      "javob": "75°"
+     },
+     {
+      "shart": "Ichki almashinuvchi burchak 50° bo‘lsa, ikkinchisi?",
+      "javob": "50°"
+     },
+     {
+      "shart": "Bir tomonli burchaklardan biri 130°. Ikkinchisi?",
+      "javob": "50°"
+     },
+     {
+      "shart": "Bir tomonli burchaklar 100° va 70° bo‘lsa, chiziqlar parallelmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "Almashinuvchi burchaklar 40° va 40° bo‘lsa, chiziqlar parallelmi?",
+      "javob": "ha"
+     },
+     {
+      "shart": "Nuqta orqali berilgan chiziqqa nechta parallel o‘tadi?",
+      "javob": "bitta"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Bir tomonli burchaklarni teng deb oladi",
+      "sabab": "almashinuvchi burchaklar bilan adashtiradi",
+      "oldini_olish": "bir tomonli burchaklar yig‘indisi 180° ekanini eslash"
+     },
+     {
+      "xato": "Alomatni teskarisidan qo‘llaydi",
+      "sabab": "isbotlash va ma’lum xossani adashtiradi",
+      "oldini_olish": "avval parallellik ma’lummi yoki isbotlanadimi aniqlash"
+     },
+     {
+      "xato": "Burchak juftlarini noto‘g‘ri nomlaydi",
+      "sabab": "joylashuvni chizmada tekshirmaydi",
+      "oldini_olish": "burchaklarni chizmada rangli belgilash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "perspektivada parallel chiziqlar"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "parallel detallarni kesish va ulash"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "yorug‘lik nurlari dastasi parallel nurlar sifatida"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Parallel dunyo»",
+     "muammo": "Atrofimizda parallel chiziqlar qayerda uchraydi va ular nimaga kerak?",
+     "mahsulot": "parallel chiziqlar fotoalbomi",
+     "bosqichlar": [
+      "misollar topish",
+      "suratga olish",
+      "burchaklarni o‘lchash",
+      "xulosa yozish",
+      "albom tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Misollar toping",
+      "Suratga oling",
+      "O‘lchang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "misollar to‘g‘ri",
+      "o‘lchov aniq",
+      "parallellik asoslangan",
+      "albom bezatilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Parallel ko‘chalar»",
+     "bekatlar": [
+      {
+       "nom": "Temir yo‘l",
+       "matn": "Relslarni kesib o‘tuvchi shpal bilan burchak 90°.",
+       "topshiriq": "Ikkinchi relsdagi mos burchak?",
+       "javob": "90°",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘cha",
+       "matn": "Ikki parallel ko‘chani kesib o‘tuvchi ko‘chada bir burchak 65°.",
+       "topshiriq": "Bir tomonli burchak?",
+       "javob": "115°",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab daftari",
+       "matn": "Daftar chiziqlari parallel, kesuvchi burchagi 50°.",
+       "topshiriq": "Almashinuvchi burchak?",
+       "javob": "50°",
+       "rasm": ""
+      },
+      {
+       "nom": "Panjara",
+       "matn": "Zinapoya panjarasidagi ustunlar parallel.",
+       "topshiriq": "Ularni kesuvchi bilan mos burchaklar qanday?",
+       "javob": "teng",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda parallel chiziqlarni ko‘rdingiz?",
+      "Burchaklarni qanday o‘lchadingiz?",
+      "Parallelligini qanday tekshirdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Parallel chiziqlar",
+      "tarif": "tekislikda kesishmaydigan to‘g‘ri chiziqlar"
+     },
+     {
+      "atama": "Kesuvchi",
+      "tarif": "ikki chiziqni kesib o‘tuvchi uchinchi chiziq"
+     },
+     {
+      "atama": "Mos burchaklar",
+      "tarif": "kesuvchining bir tomonida bir xil joylashgan burchaklar"
+     },
+     {
+      "atama": "Ichki almashinuvchi burchaklar",
+      "tarif": "chiziqlar orasida, kesuvchining turli tomonidagi burchaklar"
+     },
+     {
+      "atama": "Ichki bir tomonli burchaklar",
+      "tarif": "chiziqlar orasida, kesuvchining bir tomonidagi burchaklar"
+     },
+     {
+      "atama": "Parallellik aksiomasi",
+      "tarif": "nuqta orqali bitta parallel chiziq o‘tishi haqidagi tasdiq"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Parallel chiziqlar kesishmaydi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Parallel chiziqlarni kesuvchi kesganda bir tomonli burchaklar teng",
+      "togri": false,
+      "izoh": "ularning yig‘indisi 180°"
+     },
+     {
+      "matn": "Mos burchaklar teng bo‘lsa, chiziqlar parallel",
+      "togri": true,
+      "izoh": "parallellik alomati"
+     },
+     {
+      "matn": "Almashinuvchi burchaklar teng bo‘lsa, chiziqlar parallel",
+      "togri": true,
+      "izoh": "parallellik alomati"
+     },
+     {
+      "matn": "Nuqta orqali berilgan chiziqqa ikkita parallel o‘tadi",
+      "togri": false,
+      "izoh": "faqat bitta"
+     },
+     {
+      "matn": "Ikki chiziq uchinchisiga parallel bo‘lsa, o‘zaro parallel",
+      "togri": true,
+      "izoh": "parallellik aksiomasining natijasi"
+     },
+     {
+      "matn": "Kesuvchi sakkizta burchak hosil qiladi",
+      "togri": true,
+      "izoh": "ikki chiziqni kesganda"
+     },
+     {
+      "matn": "Bir tomonli burchaklar yig‘indisi 90°",
+      "togri": false,
+      "izoh": "yig‘indi 180°"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Parallel chiziqlar nima?",
+      "javob": "tekislikda kesishmaydigan to‘g‘ri chiziqlar"
+     },
+     {
+      "savol": "Kesuvchi nima?",
+      "javob": "ikki chiziqni kesib o‘tuvchi uchinchi chiziq"
+     },
+     {
+      "savol": "Mos burchaklar qanday?",
+      "javob": "teng"
+     },
+     {
+      "savol": "Almashinuvchi burchaklar qanday?",
+      "javob": "teng"
+     },
+     {
+      "savol": "Bir tomonli burchaklar yig‘indisi?",
+      "javob": "180°"
+     },
+     {
+      "savol": "Parallellik alomati nima deydi?",
+      "javob": "teng mos burchaklar parallellikni bildiradi"
+     },
+     {
+      "savol": "Nuqta orqali nechta parallel o‘tadi?",
+      "javob": "bitta"
+     },
+     {
+      "savol": "Bir tomonli burchaklardan biri 70° bo‘lsa, ikkinchisi?",
+      "javob": "110°"
+     },
+     {
+      "savol": "Mos burchak 80° bo‘lsa, ikkinchisi?",
+      "javob": "80°"
+     },
+     {
+      "savol": "Kesuvchi nechta burchak hosil qiladi?",
+      "javob": "sakkizta"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Kesishmaydigan chiziqlar.",
+      "savol": "Parallel chiziqlar kesishadimi?"
+     },
+     {
+      "nom": "Burchak juftlari",
+      "matn": "Mos, almashinuvchi, bir tomonli.",
+      "savol": "Qaysi burchaklar yig‘indisi 180°?"
+     },
+     {
+      "nom": "Alomatlar",
+      "matn": "Burchaklar tengligi parallellikni bildiradi.",
+      "savol": "Mos burchaklar teng bo‘lsa, chiziqlar qanday?"
+     },
+     {
+      "nom": "Aksioma",
+      "matn": "Nuqta orqali bitta parallel.",
+      "savol": "Nechta parallel o‘tadi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun parallellik aksiomasi isbotlanmaydi, balki qabul qilinadi? Nuqta orqali bir nechta parallel chiziq o‘tishi mumkin bo‘lgan geometriya haqida o‘ylab ko‘ring.",
+    "keys": {
+     "vaziyat": "Qurilishchi ikki devorning parallel ekanini tekshirmoqchi. U ularni kesib o‘tuvchi to‘siqda burchaklarni o‘lchadi: bir tomonli burchaklar 95° va 85° chiqdi.",
+     "savollar": [
+      "Bir tomonli burchaklar yig‘indisi nechaga teng?",
+      "Devorlar parallelmi?"
+     ]
+    },
+    "tezis": "Parallellik burchaklar tili bilan isbotlanadi",
+    "taqqoslash": {
+     "a": "Mos burchaklar",
+     "b": "Bir tomonli burchaklar",
+     "umumiy": [
+      "kesuvchi hosil qiladi",
+      "parallel chiziqlarda muhim"
+     ],
+     "a_farq": [
+      "teng bo‘ladi",
+      "bir xil joylashgan"
+     ],
+     "b_farq": [
+      "yig‘indisi 180°",
+      "chiziqlar orasida"
+     ]
+    },
+    "klaster": {
+     "markaz": "Parallel chiziqlar",
+     "shoxlar": [
+      {
+       "nom": "Ta’rif",
+       "bandlar": [
+        "kesishmaydi",
+        "bir tekislikda"
+       ]
+      },
+      {
+       "nom": "Burchaklar",
+       "bandlar": [
+        "mos",
+        "almashinuvchi",
+        "bir tomonli"
+       ]
+      },
+      {
+       "nom": "Alomatlar",
+       "bandlar": [
+        "mos teng",
+        "almashinuvchi teng",
+        "bir tomonli yig‘indi 180°"
+       ]
+      },
+      {
+       "nom": "Aksioma",
+       "bandlar": [
+        "nuqta orqali bitta",
+        "natijalar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikkimiz yonma-yon yuramiz, lekin hech qachon uchrashmaymiz. Biz kimmiz?",
+     "javob": "parallel chiziqlar"
+    },
+    "hikmat": "Parallel yo‘llar uchrashmaydi, lekin bir tomonga boradi.",
+    "kalit_soz": "PARALLEL",
+    "xato_yechim": {
+     "shart": "Parallel chiziqlarni kesuvchi kesganda ichki bir tomonli burchaklardan biri 70°. Ikkinchisini toping.",
+     "xato": "70°",
+     "togri": "110°",
+     "sabab": "bir tomonli burchaklar teng emas, yig‘indisi 180°: 180° − 70° — 110°"
+    },
+    "guruh_nomlari": [
+     "Parallelchilar",
+     "Kesuvchilar",
+     "Burchakchilar",
+     "Aksiomachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Parallel izlab»",
+     "topshiriq": "Guruh maktab binosi, ko‘cha va xonada parallel chiziqlarni topadi, kesuvchi bilan burchaklarni o‘lchab, parallelligini tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Mos, almashinuvchi va bir tomonli burchaklarni chizmada ko‘rsating.",
+     "B": "Parallel chiziqlarda burchak 55° bo‘lsa, qolgan burchaklarni toping.",
+     "C": "Ikki chiziqning parallelligini burchak o‘lchab tekshirish rejasini yozing."
+    },
+    "sinkveyn": [
+     "Parallel",
+     "tekis, doimiy",
+     "yuradi, kesishmaydi, o‘tadi",
+     "Hech qachon uchrashmaydi",
+     "Chiziq"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh parallel chiziqlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: mos burchak 80° bo‘lsa, ikkinchi mos burchak",
+      "2-guruh: bir tomonli burchak 120° bo‘lsa, ikkinchisi",
+      "3-guruh: almashinuvchi 35° bo‘lsa, ikkinchisi",
+      "4-guruh: bir tomonli 90° va 90° bo‘lsa, parallelmi"
+     ],
+     "yakun": "Natijalar: 80°; 60°; 35°; ha."
+    }
+   }
+  },
+  {
+   "mavzu": "Uchburchak ichki burchaklari yig‘indisi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Teorema: ichki burchaklar yig‘indisi",
+      "matn": "Har qanday uchburchak ichki burchaklarining yig‘indisi 180° ga teng. Bu uchburchaklar haqidagi eng muhim teoremalardan biri: ikkita burchakni bilsak, uchinchisini topamiz.",
+      "misol": "Burchaklari 50°, 60°, 70° bo‘lgan uchburchakda 50° + 60° + 70° — 180°.",
+      "savol": "Uchburchak burchaklari yig‘indisi nechaga teng?",
+      "javob": "180°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Teoremaning isboti",
+      "matn": "Uchburchak uchidan qarshisidagi tomonga parallel chiziq o‘tkazamiz. Hosil bo‘lgan almashinuvchi burchaklar uchburchakning ikki burchagiga teng. Uchala burchak bir nuqtada yoyiq burchak, ya’ni 180° hosil qiladi.",
+      "misol": "ABC da A uchidan BC ga parallel chiziq. Parallel chiziqdagi ikki burchak B va C ga teng, ular va A burchak birgalikda 180°.",
+      "savol": "Isbotda qaysi chiziq o‘tkaziladi?",
+      "javob": "qarshi tomonga parallel",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Noma’lum burchakni topish",
+      "matn": "Ikki burchagi ma’lum bo‘lsa, uchinchisi 180° dan ularning yig‘indisini ayirib topiladi. To‘g‘ri burchakli uchburchakda o‘tkir burchaklar yig‘indisi 90°. Teng yonli uchburchakda asos burchaklari teng.",
+      "misol": "Burchaklari 40° va 60° bo‘lsa, uchinchisi 180° − 100°, ya’ni 80°. To‘g‘ri burchakli uchburchakda bir o‘tkir burchak 35° bo‘lsa, ikkinchisi 55°.",
+      "savol": "Burchaklari 70° va 50° bo‘lsa, uchinchisi?",
+      "javob": "60°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tashqi burchak",
+      "matn": "Uchburchak ichki burchagiga qo‘shni burchak tashqi burchak deyiladi. Teorema: tashqi burchak o‘ziga qo‘shni bo‘lmagan ikki ichki burchak yig‘indisiga teng.",
+      "misol": "Burchaklari 50°, 60°, 70°. 70° li burchakka qo‘shni tashqi burchak 180° − 70°, ya’ni 110°; u 50° + 60° ga teng.",
+      "savol": "Qo‘shni bo‘lmagan ichki burchaklar 30° va 40° bo‘lsa, tashqi burchak?",
+      "javob": "70°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llash: to‘rtburchak va ko‘pburchak",
+      "matn": "To‘rtburchakni diagonal bilan ikki uchburchakka ajratsak, burchaklar yig‘indisi 360°. n burchakli qavariq ko‘pburchakda burchaklar yig‘indisi n dan 2 ni ayirib 180° ga ko‘paytirilganga teng. Uchburchakda ko‘pi bilan bitta o‘tmas yoki to‘g‘ri burchak bo‘ladi.",
+      "misol": "Beshburchak: 5 − 2, ya’ni 3 ta uchburchak, 3 · 180° — 540°. Uchburchakda ikkita o‘tmas burchak bo‘lishi mumkin emas, chunki yig‘indi 180° dan oshadi.",
+      "savol": "Beshburchakning burchaklar yig‘indisi?",
+      "javob": "540°",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Uchburchak ichki burchaklarining yig‘indisi 180°. Tashqi burchak o‘ziga qo‘shni bo‘lmagan ikki ichki burchak yig‘indisiga teng. To‘rtburchakda burchaklar yig‘indisi 360°.",
+    "misollar": [
+     {
+      "shart": "Uchburchakning ikki burchagi 40° va 65°. Uchinchisini toping.",
+      "yechim": [
+       "Yig‘indi: 40° + 65°, ya’ni 105°.",
+       "Uchinchi burchak 180° − 105°.",
+       "Uchinchi burchak 75°."
+      ],
+      "javob": "75°"
+     },
+     {
+      "shart": "Uchburchak burchaklaridan ikkinchisi birinchisidan 2 marta, uchinchisi 3 marta katta. Burchaklarni toping.",
+      "yechim": [
+       "Birinchi x, ikkinchi 2x, uchinchi 3x.",
+       "x + 2x + 3x — 6x, 6x — 180, x — 30.",
+       "Burchaklar 30°, 60°, 90°."
+      ],
+      "javob": "30°, 60°, 90°"
+     },
+     {
+      "shart": "Tashqi burchak 120°, unga qo‘shni bo‘lmagan ichki burchaklardan biri 50°. Ikkinchisini toping.",
+      "yechim": [
+       "Tashqi burchak ikki ichki burchak yig‘indisiga teng.",
+       "Ikkinchisi 120° − 50°.",
+       "Ikkinchi burchak 70°."
+      ],
+      "javob": "70°"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qog‘oz isboti",
+      "topshiriq": "Uchburchak qirqing, uch burchagini yirtib, uchlarini bir nuqtaga yig‘ing va yoyiq burchak hosil bo‘lishini ko‘ring.",
+      "yechim": "Uch burchak yoyiq burchakni (180°) tashkil etadi.",
+      "mahsulot": "qirqilgan shakllar"
+     },
+     {
+      "nom": "Burchak izlash",
+      "topshiriq": "Berilgan 5 ta uchburchakning noma’lum burchaklarini toping.",
+      "yechim": "Noma’lum burchak 180° dan ma’lum ikki burchak yig‘indisini ayirib topiladi.",
+      "mahsulot": "hisoblash jadvali"
+     },
+     {
+      "nom": "Tashqi burchak",
+      "topshiriq": "Uchburchak chizib, tashqi burchakni o‘lchang va ikki ichki burchak yig‘indisi bilan solishtiring.",
+      "yechim": "Ikkalasi teng chiqadi.",
+      "mahsulot": "o‘lchov jadvali"
+     },
+     {
+      "nom": "Ko‘pburchaklar",
+      "topshiriq": "To‘rtburchak, beshburchak va oltiburchakning burchaklar yig‘indisini toping.",
+      "yechim": "360°, 540°, 720°.",
+      "mahsulot": "formula jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Uchburchak burchaklari 50° va 60°. Uchinchisi?",
+      "javob": "70°"
+     },
+     {
+      "shart": "To‘g‘ri burchakli uchburchakda o‘tkir burchak 30°. Ikkinchi o‘tkir burchak?",
+      "javob": "60°"
+     },
+     {
+      "shart": "Teng yonli uchburchakning uchidagi burchagi 80°. Asos burchagi?",
+      "javob": "50°"
+     },
+     {
+      "shart": "Tashqi burchak 110°, qo‘shni bo‘lmagan ichki burchak 40°. Ikkinchisi?",
+      "javob": "70°"
+     },
+     {
+      "shart": "To‘rtburchak burchaklari yig‘indisi?",
+      "javob": "360°"
+     },
+     {
+      "shart": "Beshburchak burchaklari yig‘indisi?",
+      "javob": "540°"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Burchaklar yig‘indisini 360° deb oladi",
+      "sabab": "to‘rtburchak bilan adashtiradi",
+      "oldini_olish": "uchburchakda 180° ekanini eslash"
+     },
+     {
+      "xato": "Uchinchi burchakni topishda ayirishni unutadi",
+      "sabab": "ikki burchakni qo‘shib to‘xtaydi",
+      "oldini_olish": "yig‘indini 180° dan ayirish"
+     },
+     {
+      "xato": "Tashqi burchakni qo‘shni ichki burchakka teng deb oladi",
+      "sabab": "qo‘shni burchaklarni 180° ekanini unutadi",
+      "oldini_olish": "tashqi va qo‘shni ichki burchak yig‘indisi 180° ekanini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "uchburchak usulida masofa va xaritadagi o‘lchovlar"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "yorug‘likning qaytish va sinish burchaklari"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "detallarni kesishda burchakni hisoblash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Burchaklar yig‘indisi sirlari»",
+     "muammo": "Uchburchak burchaklari yig‘indisi nima uchun doim 180°? Tajriba bilan qanday ko‘rsatamiz?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "turli uchburchaklar chizish",
+      "burchaklarni o‘lchash",
+      "yig‘indini hisoblash",
+      "qog‘oz isboti",
+      "hisobot"
+     ],
+     "guruh_vazifalari": [
+      "Uchburchaklar chizing",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "yig‘indi hisoblangan",
+      "isbot tushunarli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «180 gradus ko‘chasi»",
+     "bekatlar": [
+      {
+       "nom": "Tom",
+       "matn": "Tom uchburchagi burchaklari 40° va 60°.",
+       "topshiriq": "Uchinchi burchak?",
+       "javob": "80°",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘prik",
+       "matn": "Ko‘prik fermasi burchaklari 55° va 65°.",
+       "topshiriq": "Uchinchi burchak?",
+       "javob": "60°",
+       "rasm": ""
+      },
+      {
+       "nom": "Piramida",
+       "matn": "Teng yonli yon yoq uchidagi burchak 100°.",
+       "topshiriq": "Asos burchagi?",
+       "javob": "40°",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Uchburchak gulzor to‘g‘ri burchakli, bir o‘tkir burchagi 35°.",
+       "topshiriq": "Ikkinchi o‘tkir burchagi?",
+       "javob": "55°",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda burchak yig‘indisini ishlatdingiz?",
+      "Qog‘oz isboti qanday bo‘ldi?",
+      "Tashqi burchakni qayerda ko‘rdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ichki burchak",
+      "tarif": "uchburchak ichida tomonlar hosil qilgan burchak"
+     },
+     {
+      "atama": "Tashqi burchak",
+      "tarif": "ichki burchakka qo‘shni burchak"
+     },
+     {
+      "atama": "Burchaklar yig‘indisi",
+      "tarif": "uchburchakda 180°"
+     },
+     {
+      "atama": "Qo‘shni burchaklar",
+      "tarif": "yig‘indisi 180° bo‘lgan burchaklar"
+     },
+     {
+      "atama": "Ko‘pburchak",
+      "tarif": "ko‘p tomonli yopiq shakl"
+     },
+     {
+      "atama": "Isbot",
+      "tarif": "tasdiqni mantiqiy asoslash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Uchburchak burchaklari yig‘indisi 180°",
+      "togri": true,
+      "izoh": "teorema"
+     },
+     {
+      "matn": "To‘rtburchak burchaklari yig‘indisi 180°",
+      "togri": false,
+      "izoh": "360°"
+     },
+     {
+      "matn": "Tashqi burchak ikki ichki burchak yig‘indisiga teng",
+      "togri": true,
+      "izoh": "qo‘shni bo‘lmagan ichki burchaklar"
+     },
+     {
+      "matn": "Uchburchakda ikkita to‘g‘ri burchak bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "yig‘indi 180° dan oshadi"
+     },
+     {
+      "matn": "To‘g‘ri burchakli uchburchakda o‘tkir burchaklar yig‘indisi 90°",
+      "togri": true,
+      "izoh": "180° − 90°"
+     },
+     {
+      "matn": "Isbotda qarshi tomonga parallel chiziq o‘tkaziladi",
+      "togri": true,
+      "izoh": "almashinuvchi burchaklar hosil bo‘ladi"
+     },
+     {
+      "matn": "Teng tomonli uchburchakning burchagi 90°",
+      "togri": false,
+      "izoh": "60°"
+     },
+     {
+      "matn": "Beshburchakda burchaklar yig‘indisi 540°",
+      "togri": true,
+      "izoh": "3 ta uchburchak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Uchburchak burchaklari yig‘indisi?",
+      "javob": "180°"
+     },
+     {
+      "savol": "Noma’lum burchak qanday topiladi?",
+      "javob": "180° dan ma’lum ikkitasi yig‘indisini ayiramiz"
+     },
+     {
+      "savol": "Tashqi burchak nima?",
+      "javob": "ichki burchakka qo‘shni burchak"
+     },
+     {
+      "savol": "Tashqi burchak nimaga teng?",
+      "javob": "qo‘shni bo‘lmagan ikki ichki burchak yig‘indisiga"
+     },
+     {
+      "savol": "To‘rtburchak burchaklari yig‘indisi?",
+      "javob": "360°"
+     },
+     {
+      "savol": "Teng tomonli uchburchak burchagi?",
+      "javob": "60°"
+     },
+     {
+      "savol": "Burchaklari 90° va 40° bo‘lsa, uchinchisi?",
+      "javob": "50°"
+     },
+     {
+      "savol": "Uchburchakda nechta o‘tmas burchak bo‘lishi mumkin?",
+      "javob": "ko‘pi bilan bitta"
+     },
+     {
+      "savol": "Isbotda qaysi chiziq o‘tkaziladi?",
+      "javob": "qarshi tomonga parallel"
+     },
+     {
+      "savol": "Beshburchak burchaklari yig‘indisi?",
+      "javob": "540°"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Teorema",
+      "matn": "Yig‘indi 180°.",
+      "savol": "Burchaklari 30° va 70° bo‘lsa, uchinchisi?"
+     },
+     {
+      "nom": "Isbot",
+      "matn": "Qarshi tomonga parallel o‘tkaziladi.",
+      "savol": "Qaysi burchaklar teng bo‘ladi?"
+     },
+     {
+      "nom": "Tashqi burchak",
+      "matn": "Ikki ichki burchak yig‘indisi.",
+      "savol": "Ichki burchaklar 40° va 50° bo‘lsa, tashqi?"
+     },
+     {
+      "nom": "Ko‘pburchak",
+      "matn": "n burchakli: n dan 2 ni ayirib 180° ga ko‘paytiramiz.",
+      "savol": "To‘rtburchakda yig‘indi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun uchburchak kattaligidan qat’i nazar burchaklari yig‘indisi doim 180°? Qog‘oz uchburchakni yirtib, burchaklarni yonma-yon qo‘yish tajribasi bilan tushuntiring.",
+    "keys": {
+     "vaziyat": "Muhandis uchburchak shaklidagi tom detalini kesmoqchi. Ikki burchagi 40° va 70° bo‘lishi kerak.",
+     "savollar": [
+      "Uchinchi burchak necha gradus?",
+      "Bu uchburchak qanday turga kiradi?"
+     ]
+    },
+    "tezis": "180° — uchburchak qonuni",
+    "taqqoslash": {
+     "a": "Ichki burchak",
+     "b": "Tashqi burchak",
+     "umumiy": [
+      "uchburchak burchaklari",
+      "gradus bilan o‘lchanadi"
+     ],
+     "a_farq": [
+      "uchburchak ichida",
+      "uchtasi yig‘indisi 180°"
+     ],
+     "b_farq": [
+      "ichki burchakka qo‘shni",
+      "ikki ichki burchak yig‘indisiga teng"
+     ]
+    },
+    "klaster": {
+     "markaz": "Uchburchak burchaklari",
+     "shoxlar": [
+      {
+       "nom": "Teorema",
+       "bandlar": [
+        "180°",
+        "isbot",
+        "parallel chiziq"
+       ]
+      },
+      {
+       "nom": "Hisoblash",
+       "bandlar": [
+        "uchinchi burchak",
+        "to‘g‘ri burchakli",
+        "teng yonli"
+       ]
+      },
+      {
+       "nom": "Tashqi burchak",
+       "bandlar": [
+        "qo‘shni",
+        "ikki ichki yig‘indisi"
+       ]
+      },
+      {
+       "nom": "Ko‘pburchaklar",
+       "bandlar": [
+        "to‘rtburchak 360°",
+        "beshburchak 540°"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Uch burchakning yig‘indisi men: yoyiq burchak kabiman. Men nechaman?",
+     "javob": "180 gradus"
+    },
+    "hikmat": "Uch burchak — bir yoyiq burchak.",
+    "kalit_soz": "YIG‘INDI",
+    "xato_yechim": {
+     "shart": "Uchburchakning ikki burchagi 70° va 50°. Uchinchisini toping.",
+     "xato": "120°",
+     "togri": "60°",
+     "sabab": "70° + 50° — 120° — bu ikki burchak yig‘indisi; uchinchisi 180° − 120°, ya’ni 60°"
+    },
+    "guruh_nomlari": [
+     "Yig‘indichilar",
+     "Tashqichilar",
+     "Burchakchilar",
+     "Isbotchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qog‘oz isboti»",
+     "topshiriq": "Guruh turli uchburchaklarni qirqib, burchaklarini yig‘ib, har gal yoyiq burchak chiqishini ko‘rsatadi."
+    },
+    "vazifalar": {
+     "A": "Burchaklari 45° va 60° bo‘lgan uchburchakning uchinchi burchagini toping.",
+     "B": "Tashqi burchak 130°, qo‘shni bo‘lmagan burchaklardan biri 60°. Ikkinchisini toping.",
+     "C": "Oltiburchak burchaklari yig‘indisini toping va tushuntiring."
+    },
+    "sinkveyn": [
+     "Burchaklar",
+     "ichki, tashqi",
+     "yig‘iladi, o‘lchanadi, topiladi",
+     "Uch burchak — yoyiq burchak",
+     "180°"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh burchaklarni hisoblaydi.",
+     "qismlar": [
+      "1-guruh: 30° va 50° bo‘lsa uchinchisi",
+      "2-guruh: to‘g‘ri burchakli, o‘tkir burchak 25°, ikkinchisi",
+      "3-guruh: teng yonli, uchidagi burchak 40°, asos burchagi",
+      "4-guruh: tashqi burchak 100°, ichki burchak 30°, ikkinchisi"
+     ],
+     "yakun": "Natijalar: 100°; 65°; 70°; 70°."
+    }
+   }
+  },
+  {
+   "mavzu": "To‘g‘ri burchakli uchburchak",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Katet va gipotenuza",
+      "matn": "Bitta burchagi 90° bo‘lgan uchburchak to‘g‘ri burchakli deyiladi. To‘g‘ri burchakni hosil qiluvchi tomonlar kateti, to‘g‘ri burchak qarshisidagi eng uzun tomon gipotenuza deyiladi. Gipotenuza har doim katetlardan uzun.",
+      "misol": "ABC da burchak C to‘g‘ri bo‘lsa, AC va BC — katetlar, AB — gipotenuza.",
+      "savol": "To‘g‘ri burchak qarshisidagi tomon nima deyiladi?",
+      "javob": "gipotenuza",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘tkir burchaklar",
+      "matn": "To‘g‘ri burchakli uchburchakning ikki o‘tkir burchagi yig‘indisi 90°. Chunki uchala burchak yig‘indisi 180°, to‘g‘ri burchak 90°.",
+      "misol": "Bir o‘tkir burchak 35° bo‘lsa, ikkinchisi 90° − 35°, ya’ni 55°.",
+      "savol": "O‘tkir burchak 40° bo‘lsa, ikkinchisi?",
+      "javob": "50°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "30° burchak qarshisidagi katet",
+      "matn": "To‘g‘ri burchakli uchburchakda 30° li burchak qarshisidagi katet gipotenuzaning yarmiga teng. Teskarisi ham to‘g‘ri: katet gipotenuzaning yarmiga teng bo‘lsa, uning qarshisidagi burchak 30°.",
+      "misol": "Gipotenuza 10 sm bo‘lsa, 30° qarshisidagi katet 5 sm. Gipotenuza 14 sm bo‘lsa, katet 7 sm.",
+      "savol": "Gipotenuza 20 bo‘lsa, 30° qarshisidagi katet?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tenglik alomatlari",
+      "matn": "To‘g‘ri burchakli uchburchaklar teng bo‘lishi uchun: ikki katet teng; yoki katet va unga yopishgan o‘tkir burchak teng; yoki gipotenuza va o‘tkir burchak teng; yoki gipotenuza va katet teng bo‘lishi yetarli.",
+      "misol": "Ikkala uchburchakda gipotenuza 13 sm, bir katet 5 sm bo‘lsa, ular teng, demak ikkinchi katet ham teng.",
+      "savol": "Gipotenuza va katet teng bo‘lsa, uchburchaklar tengmi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Pifagor teoremasiga ishora",
+      "matn": "To‘g‘ri burchakli uchburchakda katetlar kvadratlari yig‘indisi gipotenuza kvadratiga teng. Bu teoremani keyingi darslarda batafsil o‘rganamiz. Eng mashhur misol — 3, 4, 5 uchburchagi.",
+      "misol": "Katetlar 3 va 4: 9 + 16 — 25, gipotenuza 5. Katetlar 6 va 8: 36 + 64 — 100, gipotenuza 10. Katetlar 5 va 12: 25 + 144 — 169, gipotenuza 13.",
+      "savol": "Katetlar 3 va 4 bo‘lsa, gipotenuza?",
+      "javob": "5",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "To‘g‘ri burchakli uchburchakda o‘tkir burchaklar yig‘indisi 90°. 30° qarshisidagi katet gipotenuzaning yarmi. Katetlar kvadratlari yig‘indisi gipotenuza kvadratiga teng.",
+    "misollar": [
+     {
+      "shart": "To‘g‘ri burchakli uchburchakda o‘tkir burchaklardan biri 35°. Ikkinchisini toping.",
+      "yechim": [
+       "O‘tkir burchaklar yig‘indisi 90°.",
+       "Ikkinchisi 90° − 35°.",
+       "Ikkinchi burchak 55°."
+      ],
+      "javob": "55°"
+     },
+     {
+      "shart": "To‘g‘ri burchakli uchburchakda gipotenuza 14 sm, bir o‘tkir burchak 30°. Uning qarshisidagi katetni toping.",
+      "yechim": [
+       "30° qarshisidagi katet gipotenuzaning yarmi.",
+       "14 sm ning yarmi.",
+       "Katet 7 sm."
+      ],
+      "javob": "7 sm"
+     },
+     {
+      "shart": "Katetlari 6 va 8 sm bo‘lgan to‘g‘ri burchakli uchburchak gipotenuzasini toping.",
+      "yechim": [
+       "Katetlar kvadratlari: 36 va 64.",
+       "Yig‘indi 100.",
+       "Gipotenuza — 10 sm, chunki 10 ning kvadrati 100."
+      ],
+      "javob": "10 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Misr uchburchagi",
+      "topshiriq": "12 bo‘lakli ipda tugunlar bilan 3, 4, 5 uzunlikdagi uchburchak yasang va to‘g‘ri burchak hosil bo‘lishini ugolnik bilan tekshiring.",
+      "yechim": "Tomonlari 3, 4, 5 bo‘lgan uchburchak to‘g‘ri burchakli.",
+      "mahsulot": "ip maket"
+     },
+     {
+      "nom": "30° uchburchak",
+      "topshiriq": "Teng tomonli uchburchak qirqib, balandlik bo‘yicha ikkiga bo‘ling. Hosil bo‘lgan uchburchakda 30° qarshisidagi katet va gipotenuzani solishtiring.",
+      "yechim": "Katet gipotenuzaning yarmiga teng.",
+      "mahsulot": "qirqilgan shakllar"
+     },
+     {
+      "nom": "Burchak hisobi",
+      "topshiriq": "Berilgan 5 ta to‘g‘ri burchakli uchburchak uchun noma’lum o‘tkir burchakni toping.",
+      "yechim": "Noma’lum burchak 90° dan ma’lumini ayirib topiladi.",
+      "mahsulot": "hisoblash jadvali"
+     },
+     {
+      "nom": "Narvon masalasi",
+      "topshiriq": "Devorga tiralgan 13 m uzunlikdagi narvon pastki uchi devordan 5 m uzoqlikda. Narvon devorda qanday balandlikka yetadi?",
+      "yechim": "Gipotenuza 13, katet 5: 169 − 25 — 144, ikkinchi katet 12 m.",
+      "mahsulot": "masala yechimi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "O‘tkir burchak 40° bo‘lsa, ikkinchisi?",
+      "javob": "50°"
+     },
+     {
+      "shart": "Gipotenuza 20, 30° qarshisidagi katet?",
+      "javob": "10"
+     },
+     {
+      "shart": "Katetlari 3 va 4 bo‘lgan uchburchak gipotenuzasi?",
+      "javob": "5"
+     },
+     {
+      "shart": "Katetlari 5 va 12 bo‘lgan uchburchak gipotenuzasi?",
+      "javob": "13"
+     },
+     {
+      "shart": "Gipotenuza 13, bir katet 5. Ikkinchi katet?",
+      "javob": "12"
+     },
+     {
+      "shart": "To‘g‘ri burchak qarshisidagi tomon nima deyiladi?",
+      "javob": "gipotenuza"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Gipotenuzani katet deb oladi",
+      "sabab": "to‘g‘ri burchak qarshisidagi tomonni bilmaydi",
+      "oldini_olish": "to‘g‘ri burchak qarshisidagi eng uzun tomon gipotenuza ekanini eslash"
+     },
+     {
+      "xato": "Katetlar yig‘indisini gipotenuza deb oladi",
+      "sabab": "Pifagor teoremasini bilmaydi",
+      "oldini_olish": "kvadratlarni qo‘shib ildiz chiqarish"
+     },
+     {
+      "xato": "Katet qarshisidagi burchakni adashtiradi",
+      "sabab": "30° qarshisidagi tomonni aniqlamaydi",
+      "oldini_olish": "chizmada burchak qarshisidagi tomonni belgilash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "qiya tekislik va kuch tarkibiy qismlari"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "tog‘ yonbag‘ri va balandlik hisobi"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "qadimgi Misrda tugunli ip bilan to‘g‘ri burchak yasash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«To‘g‘ri burchakli ustalar»",
+     "muammo": "Qurilishda to‘g‘ri burchak qanday yasaladi va tekshiriladi?",
+     "mahsulot": "to‘g‘ri burchak yasash qo‘llanmasi",
+     "bosqichlar": [
+      "usullarni o‘rganish",
+      "ip bilan yasash",
+      "ugolnik bilan tekshirish",
+      "hisoblash",
+      "qo‘llanma tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Usullarni o‘rganing",
+      "Yasab ko‘ring",
+      "Tekshiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "yasash to‘g‘ri",
+      "hisob to‘g‘ri",
+      "tekshirish bor",
+      "qo‘llanma tushunarli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «To‘g‘ri burchak qurilishi»",
+     "bekatlar": [
+      {
+       "nom": "Zina",
+       "matn": "Zinapoya balandligi 3 m, gorizontal uzunligi 4 m.",
+       "topshiriq": "Zinapoya qiyaligi uzunligi?",
+       "javob": "5 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Narvon",
+       "matn": "Narvon uzunligi 13 m, pastki uchi devordan 5 m.",
+       "topshiriq": "Devordagi balandlik?",
+       "javob": "12 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Tom",
+       "matn": "Tom yonbag‘ri 30° qiyalikda, gipotenuza 8 m.",
+       "topshiriq": "Qarshisidagi katet?",
+       "javob": "4 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Misr usuli",
+       "matn": "12 bo‘lakli ip 3, 4, 5 bo‘laklarga bo‘linadi.",
+       "topshiriq": "Qanday burchak hosil bo‘ladi?",
+       "javob": "to‘g‘ri burchak",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda to‘g‘ri burchak uchraydi?",
+      "Gipotenuzani qayerda ko‘rdingiz?",
+      "3, 4, 5 qoidasi qayerda foydali?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "To‘g‘ri burchakli uchburchak",
+      "tarif": "bitta burchagi 90° uchburchak"
+     },
+     {
+      "atama": "Katet",
+      "tarif": "to‘g‘ri burchakni hosil qiluvchi tomon"
+     },
+     {
+      "atama": "Gipotenuza",
+      "tarif": "to‘g‘ri burchak qarshisidagi eng uzun tomon"
+     },
+     {
+      "atama": "O‘tkir burchaklar",
+      "tarif": "to‘g‘ri burchakli uchburchakdagi ikki burchak, yig‘indisi 90°"
+     },
+     {
+      "atama": "Misr uchburchagi",
+      "tarif": "tomonlari 3, 4, 5 bo‘lgan uchburchak"
+     },
+     {
+      "atama": "Pifagor teoremasi",
+      "tarif": "katetlar kvadratlari yig‘indisi gipotenuza kvadratiga teng"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Gipotenuza to‘g‘ri burchak qarshisida yotadi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "To‘g‘ri burchakli uchburchakda o‘tkir burchaklar yig‘indisi 180°",
+      "togri": false,
+      "izoh": "yig‘indi 90°"
+     },
+     {
+      "matn": "30° qarshisidagi katet gipotenuzaning yarmi",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "Gipotenuza katetdan qisqa bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "gipotenuza eng uzun"
+     },
+     {
+      "matn": "3, 4, 5 tomonli uchburchak to‘g‘ri burchakli",
+      "togri": true,
+      "izoh": "9 + 16 — 25"
+     },
+     {
+      "matn": "To‘g‘ri burchakli uchburchakda ikkita to‘g‘ri burchak bo‘ladi",
+      "togri": false,
+      "izoh": "faqat bitta"
+     },
+     {
+      "matn": "Katet va gipotenuza teng bo‘lsa, uchburchaklar teng",
+      "togri": true,
+      "izoh": "tenglik alomati"
+     },
+     {
+      "matn": "Katetlar 6 va 8 bo‘lsa, gipotenuza 10",
+      "togri": true,
+      "izoh": "36 + 64 — 100"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "To‘g‘ri burchakli uchburchak nima?",
+      "javob": "bitta burchagi 90° uchburchak"
+     },
+     {
+      "savol": "Katet nima?",
+      "javob": "to‘g‘ri burchakni hosil qiluvchi tomon"
+     },
+     {
+      "savol": "Gipotenuza nima?",
+      "javob": "to‘g‘ri burchak qarshisidagi tomon"
+     },
+     {
+      "savol": "O‘tkir burchaklar yig‘indisi?",
+      "javob": "90°"
+     },
+     {
+      "savol": "30° qarshisidagi katet nimaga teng?",
+      "javob": "gipotenuzaning yarmiga"
+     },
+     {
+      "savol": "3 va 4 katetli uchburchak gipotenuzasi?",
+      "javob": "5"
+     },
+     {
+      "savol": "6 va 8 katetli uchburchak gipotenuzasi?",
+      "javob": "10"
+     },
+     {
+      "savol": "Misr uchburchagi tomonlari?",
+      "javob": "3, 4, 5"
+     },
+     {
+      "savol": "Gipotenuza eng uzun tomonmi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "O‘tkir burchak 60° bo‘lsa, ikkinchisi?",
+      "javob": "30°"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Elementlar",
+      "matn": "Katetlar va gipotenuza.",
+      "savol": "Gipotenuza qayerda yotadi?"
+     },
+     {
+      "nom": "Burchaklar",
+      "matn": "O‘tkir burchaklar yig‘indisi 90°.",
+      "savol": "O‘tkir burchak 20° bo‘lsa, ikkinchisi?"
+     },
+     {
+      "nom": "30° xossasi",
+      "matn": "Katet gipotenuzaning yarmi.",
+      "savol": "Gipotenuza 8 bo‘lsa, 30° qarshisidagi katet?"
+     },
+     {
+      "nom": "Pifagor",
+      "matn": "Kvadratlar yig‘indisi.",
+      "savol": "Katetlar 3 va 4 bo‘lsa, gipotenuza?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun to‘g‘ri burchakli uchburchakda gipotenuza har doim eng uzun tomon? Burchaklar yig‘indisi va katta burchak qarshisida katta tomon yotishi asosida tushuntiring.",
+    "keys": {
+     "vaziyat": "Qurilishchi poydevor burchagining to‘g‘ri ekanini tekshirmoqchi. Uning ipida 12 ta teng bo‘lak bor.",
+     "savollar": [
+      "Ipni qaysi bo‘laklarga bo‘lamiz?",
+      "Qanday burchak hosil bo‘lishi kerak?"
+     ]
+    },
+    "tezis": "To‘g‘ri burchak — qurilish asosi",
+    "taqqoslash": {
+     "a": "Katet",
+     "b": "Gipotenuza",
+     "umumiy": [
+      "to‘g‘ri burchakli uchburchak tomoni",
+      "uzunligi o‘lchanadi"
+     ],
+     "a_farq": [
+      "to‘g‘ri burchakni hosil qiladi",
+      "ikkita bor"
+     ],
+     "b_farq": [
+      "to‘g‘ri burchak qarshisida",
+      "eng uzun tomon"
+     ]
+    },
+    "klaster": {
+     "markaz": "To‘g‘ri burchakli uchburchak",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "katetlar",
+        "gipotenuza",
+        "to‘g‘ri burchak"
+       ]
+      },
+      {
+       "nom": "Burchaklar",
+       "bandlar": [
+        "o‘tkir burchaklar yig‘indisi 90°",
+        "30° burchak"
+       ]
+      },
+      {
+       "nom": "Tenglik",
+       "bandlar": [
+        "ikki katet",
+        "katet va burchak",
+        "gipotenuza va katet"
+       ]
+      },
+      {
+       "nom": "Pifagor",
+       "bandlar": [
+        "3, 4, 5",
+        "6, 8, 10",
+        "5, 12, 13"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Mening bir burchagim to‘g‘ri, qarshisida eng uzun tomon yotadi. Men kimman?",
+     "javob": "to‘g‘ri burchakli uchburchak"
+    },
+    "hikmat": "To‘g‘ri burchak — barqaror qurilish.",
+    "kalit_soz": "GIPOTENUZA",
+    "xato_yechim": {
+     "shart": "To‘g‘ri burchakli uchburchakning katetlari 3 va 4. Gipotenuzasini toping.",
+     "xato": "7",
+     "togri": "5",
+     "sabab": "katetlar qo‘shilgan; katetlar kvadratlari qo‘shiladi: 9 + 16 — 25, 25 ning ildizi 5"
+    },
+    "guruh_nomlari": [
+     "Katetchilar",
+     "Gipotenuzachilar",
+     "Burchakchilar",
+     "Misrliklar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ip bilan to‘g‘ri burchak»",
+     "topshiriq": "Guruh 12 bo‘lakli ip bilan 3, 4, 5 uchburchak yasab, sinfda to‘g‘ri burchak yasashni namoyish etadi."
+    },
+    "vazifalar": {
+     "A": "O‘tkir burchak 25° bo‘lsa, ikkinchisini toping.",
+     "B": "Katetlari 5 va 12 bo‘lgan uchburchak gipotenuzasini toping.",
+     "C": "30° burchakli to‘g‘ri burchakli uchburchak xossasini tushuntiring."
+    },
+    "sinkveyn": [
+     "To‘g‘ri burchak",
+     "aniq, qurilish",
+     "o‘lchanadi, yasaladi, tekshiriladi",
+     "Qurilish uchburchagi",
+     "Gipotenuza"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh to‘g‘ri burchakli uchburchaklar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: o‘tkir burchak 50° bo‘lsa, ikkinchisi",
+      "2-guruh: gipotenuza 16, 30° qarshisidagi katet",
+      "3-guruh: katetlar 6 va 8, gipotenuza",
+      "4-guruh: katetlar 5 va 12, gipotenuza"
+     ],
+     "yakun": "Natijalar: 40°; 8; 10; 13."
+    }
+   }
   }
  ]
 }
