@@ -6912,6 +6912,1387 @@
      "yakun": "316, 724, 508 — 4 ga bo‘linadi; 1350 — faqat 2 ga bo‘linadi."
     }
    }
+  },
+  {
+   "mavzu": "Ikki xonali songa bo‘lish. Tanlash",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Bo‘linmani tanlaymiz",
+      "matn": "Ikki xonali songa bo‘lishda bo‘linmani taxmin qilib tanlaymiz. Bo‘luvchini 10, 20, 30 ga ko‘paytirib ko‘ramiz va bo‘linuvchiga eng yaqin, lekin undan oshmaydigan sonni olamiz.",
+      "misol": "756 / 36: 36 · 10 — 360, 36 · 20 — 720, 36 · 30 — 1080 (katta). Demak 20 ni tanlaymiz.",
+      "savol": "36 · 20 nechaga teng?",
+      "javob": "720",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qoldiqni topamiz",
+      "matn": "Tanlangan ko‘paytmani bo‘linuvchidan ayiramiz. Qolgan son yana bo‘luvchiga bo‘linadimi, tekshiramiz.",
+      "misol": "756 − 720 — 36. 36 / 36 — 1. Bo‘linma 20 + 1 — 21.",
+      "savol": "756 − 720 nechaga teng?",
+      "javob": "36",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qoldiqli bo‘lish",
+      "matn": "Ba’zan bo‘lish qoldiq bilan tugaydi. Qoldiq bo‘luvchidan kichik bo‘lishi kerak. Agar kichik bo‘lmasa, bo‘linmani kattalashtiramiz.",
+      "misol": "500 / 12: 12 · 40 — 480, 500 − 480 — 20, 12 · 1 — 12, 20 − 12 — 8. Bo‘linma 41, qoldiq 8.",
+      "savol": "500 / 12 da qoldiq nechaga teng?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshiramiz",
+      "matn": "Bo‘lishni ko‘paytirish bilan tekshiramiz: bo‘linma ko‘paytirilsin bo‘luvchiga, qoldiq qo‘shilsin. Natija bo‘linuvchiga teng bo‘lishi kerak.",
+      "misol": "41 · 12 — 492, 492 + 8 — 500. To‘g‘ri.",
+      "savol": "41 · 12 nechaga teng?",
+      "javob": "492",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotiy masala",
+      "matn": "936 ta daftarni 12 ta sinfga teng bo‘lib bersak, har sinfga nechta bo‘lishini topamiz.",
+      "misol": "936 / 12: 12 · 70 — 840, 936 − 840 — 96, 96 / 12 — 8. Javob 78.",
+      "savol": "936 / 12 nechaga teng?",
+      "javob": "78",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Bo‘linmani tanla (10, 20, 30...), ko‘paytirib ayir, qolganini yana bo‘l, ko‘paytirib tekshir.",
+    "misollar": [
+     {
+      "shart": "756 / 36 ni hisoblang.",
+      "yechim": [
+       "36 · 20 — 720.",
+       "756 − 720 — 36, 36 / 36 — 1.",
+       "Bo‘linma 20 + 1 — 21."
+      ],
+      "javob": "21"
+     },
+     {
+      "shart": "675 / 25 ni hisoblang.",
+      "yechim": [
+       "25 · 20 — 500, 675 − 500 — 175.",
+       "175 / 25 — 7.",
+       "Bo‘linma 20 + 7 — 27."
+      ],
+      "javob": "27"
+     },
+     {
+      "shart": "500 / 12 ni qoldiq bilan hisoblang.",
+      "yechim": [
+       "12 · 40 — 480, 500 − 480 — 20.",
+       "12 · 1 — 12, 20 − 12 — 8.",
+       "Bo‘linma 41, qoldiq 8."
+      ],
+      "javob": "41 va 8"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tanlash o‘yini",
+      "topshiriq": "Bo‘linmani taxmin qilib, eng yaqin sonni toping.",
+      "yechim": "Taxmin tekshiriladi.",
+      "mahsulot": "o‘yin varag‘i"
+     },
+     {
+      "nom": "Qoldiqli bo‘lish",
+      "topshiriq": "500 / 12 ni qoldiq bilan yeching.",
+      "yechim": "41 va qoldiq 8.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Barcha javoblarni ko‘paytirish bilan tekshiring.",
+      "yechim": "41 · 12 + 8 — 500.",
+      "mahsulot": "tekshiruv varag‘i"
+     },
+     {
+      "nom": "Daftarlar masalasi",
+      "topshiriq": "936 ta daftarni 12 sinfga bo‘ling.",
+      "yechim": "936 / 12 — 78.",
+      "mahsulot": "masala varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "756 / 36 nechaga teng?",
+      "javob": "21"
+     },
+     {
+      "shart": "675 / 25 nechaga teng?",
+      "javob": "27"
+     },
+     {
+      "shart": "936 / 12 nechaga teng?",
+      "javob": "78"
+     },
+     {
+      "shart": "384 / 32 nechaga teng?",
+      "javob": "12"
+     },
+     {
+      "shart": "462 / 21 nechaga teng?",
+      "javob": "22"
+     },
+     {
+      "shart": "252 / 21 nechaga teng?",
+      "javob": "12"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Bo‘linmani juda katta tanlaydi",
+      "sabab": "ko‘paytma bo‘linuvchidan oshadi",
+      "oldini_olish": "kichikroq songa o‘tish"
+     },
+     {
+      "xato": "Qoldiq bo‘luvchidan katta qoladi",
+      "sabab": "bo‘lishni oxirigacha yetkazmaydi",
+      "oldini_olish": "qoldiq bo‘luvchidan kichik bo‘lsin"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "ko‘paytirib tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "narsalarni teng bo‘lib berish"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "kuzatuv natijalarini bo‘lish"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "jamoalarga teng bo‘lish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Bo‘lish plakati»",
+     "muammo": "Ikki xonali songa bo‘lishni qanday qilib plakatda ko‘rsatamiz?",
+     "mahsulot": "bo‘lish plakati",
+     "bosqichlar": [
+      "qadamlarni yozish",
+      "misol tanlash",
+      "rasm chizish",
+      "tekshirish",
+      "plakat chiqarish"
+     ],
+     "guruh_vazifalari": [
+      "Qadamlarni yozing",
+      "Misol tanlang",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "qadamlar to‘g‘ri",
+      "misol to‘g‘ri",
+      "plakat chiroyli",
+      "tushuntirish ravshan",
+      "ishtirok bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bo‘lish ombori»",
+     "bekatlar": [
+      {
+       "nom": "1-ombor",
+       "matn": "756 ta kitob 36 javonga.",
+       "topshiriq": "Har javonda?",
+       "javob": "21",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ombor",
+       "matn": "675 ta qalam 25 qutiga.",
+       "topshiriq": "Har qutida?",
+       "javob": "27",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ombor",
+       "matn": "936 ta daftar 12 sinfga.",
+       "topshiriq": "Har sinfda?",
+       "javob": "78",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ombor",
+       "matn": "500 ta olma 12 savatga.",
+       "topshiriq": "Har savatda va qoldiq?",
+       "javob": "41 va 8",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Bo‘linmani qanday tanladingiz?",
+      "Qoldiq qancha bo‘ldi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Bo‘linuvchi",
+      "tarif": "bo‘linadigan son"
+     },
+     {
+      "atama": "Bo‘luvchi",
+      "tarif": "bo‘ladigan son"
+     },
+     {
+      "atama": "Bo‘linma",
+      "tarif": "bo‘lish natijasi"
+     },
+     {
+      "atama": "Qoldiq",
+      "tarif": "bo‘lishdan ortgan qism"
+     },
+     {
+      "atama": "Tanlash",
+      "tarif": "bo‘linmani taxmin qilish"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "ko‘paytirish bilan aniqlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "756 / 36 — 21",
+      "togri": true,
+      "izoh": "36 · 21 — 756"
+     },
+     {
+      "matn": "675 / 25 — 26",
+      "togri": false,
+      "izoh": "27"
+     },
+     {
+      "matn": "Qoldiq bo‘luvchidan kichik bo‘ladi",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "500 / 12 da qoldiq 20",
+      "togri": false,
+      "izoh": "qoldiq 8"
+     },
+     {
+      "matn": "Bo‘lishni ko‘paytirish bilan tekshiramiz",
+      "togri": true,
+      "izoh": "bo‘linma ko‘paytirilsin bo‘luvchiga"
+     },
+     {
+      "matn": "936 / 12 — 78",
+      "togri": true,
+      "izoh": "12 · 78 — 936"
+     },
+     {
+      "matn": "Bo‘linmani tanlash shart emas",
+      "togri": false,
+      "izoh": "taxmin qilish foydali"
+     },
+     {
+      "matn": "384 / 32 — 12",
+      "togri": true,
+      "izoh": "32 · 12 — 384"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Bo‘lishni nima bilan tekshiramiz?",
+      "javob": "ko‘paytirish bilan"
+     },
+     {
+      "savol": "Qoldiq qanday bo‘ladi?",
+      "javob": "bo‘luvchidan kichik"
+     },
+     {
+      "savol": "756 / 36?",
+      "javob": "21"
+     },
+     {
+      "savol": "675 / 25?",
+      "javob": "27"
+     },
+     {
+      "savol": "936 / 12?",
+      "javob": "78"
+     },
+     {
+      "savol": "384 / 32?",
+      "javob": "12"
+     },
+     {
+      "savol": "500 / 12 da qoldiq?",
+      "javob": "8"
+     },
+     {
+      "savol": "36 · 20?",
+      "javob": "720"
+     },
+     {
+      "savol": "Tanlash nima?",
+      "javob": "bo‘linmani taxmin qilish"
+     },
+     {
+      "savol": "Bo‘linma nima?",
+      "javob": "bo‘lish natijasi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Tanla",
+      "matn": "Bo‘linmani tanla.",
+      "savol": "36 · 20?"
+     },
+     {
+      "nom": "Ayir",
+      "matn": "Qolganini top.",
+      "savol": "756 − 720?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "Qolganini bo‘l.",
+      "savol": "36 / 36?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Ko‘paytirib tekshir.",
+      "savol": "36 · 21?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bo‘linmani tanlashda 10, 20, 30 ga ko‘paytirib ko‘ramiz?",
+    "keys": {
+     "vaziyat": "Omborda 936 ta daftar bor. Ularni 12 ta sinfga teng bo‘lib bermoqchimiz.",
+     "savollar": [
+      "Qaysi amalni tanlaymiz?",
+      "Har sinfga nechta daftar tegadi?"
+     ]
+    },
+    "tezis": "Tanla, ayir, bo‘l, tekshir",
+    "taqqoslash": {
+     "a": "Qoldiqsiz bo‘lish",
+     "b": "Qoldiqli bo‘lish",
+     "umumiy": [
+      "bo‘lish amali",
+      "ko‘paytirib tekshiriladi"
+     ],
+     "a_farq": [
+      "qoldiq yo‘q",
+      "teng bo‘linadi"
+     ],
+     "b_farq": [
+      "qoldiq bor",
+      "qoldiq bo‘luvchidan kichik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ikki xonali songa bo‘lish",
+     "shoxlar": [
+      {
+       "nom": "Tanlash",
+       "bandlar": [
+        "10, 20, 30"
+       ]
+      },
+      {
+       "nom": "Ayirish",
+       "bandlar": [
+        "qoldiqni top"
+       ]
+      },
+      {
+       "nom": "Bo‘lish",
+       "bandlar": [
+        "qolganini bo‘l"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "ko‘paytirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men bo‘lishdan keyin ortib qolaman va bo‘luvchidan kichik bo‘laman. Men kimman?",
+     "javob": "qoldiq"
+    },
+    "hikmat": "Tanla, ayir, tekshir.",
+    "kalit_soz": "BO‘LISH",
+    "xato_yechim": {
+     "shart": "756 / 36 ni hisoblang.",
+     "xato": "20",
+     "togri": "21",
+     "sabab": "36 qoldig‘ini yana bo‘lishni unutgan"
+    },
+    "guruh_nomlari": [
+     "Bo‘luvchilar",
+     "Tanlovchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ombor taqsimoti»",
+     "topshiriq": "Guruh omborni teng bo‘lib, qoldiqni aniqlaydi."
+    },
+    "vazifalar": {
+     "A": "756 / 36 va 675 / 25 ni hisoblang.",
+     "B": "936 / 12 va 384 / 32 ni hisoblang.",
+     "C": "500 ni 12 ga qoldiq bilan bo‘ling va tekshiring."
+    },
+    "sinkveyn": [
+     "Bo‘lish",
+     "teng, aniq",
+     "ulashadi, taqsimlaydi, tenglaydi",
+     "Teng ulashish",
+     "Amal"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh misollarni yechadi.",
+     "qismlar": [
+      "1-guruh: 756 / 36",
+      "2-guruh: 675 / 25",
+      "3-guruh: 936 / 12",
+      "4-guruh: 462 / 21"
+     ],
+     "yakun": "Natijalar: 21; 27; 78; 22."
+    }
+   }
+  },
+  {
+   "mavzu": "Uch xonali songa bo‘lish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Katta bo‘luvchi",
+      "matn": "Uch xonali songa bo‘lish ham ikki xonali songa bo‘lishga o‘xshaydi. Faqat bo‘luvchi kattaroq bo‘lgani uchun bo‘linma kichikroq chiqadi.",
+      "misol": "4536 / 126: 126 ning karralilarini tanlaymiz.",
+      "savol": "4536 / 126 ning bo‘linmasi kattami yoki kichikmi?",
+      "javob": "kichik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tanlaymiz",
+      "matn": "Bo‘luvchini 10, 20, 30, 40 ga ko‘paytirib, bo‘linuvchiga yaqin ko‘paytmani topamiz.",
+      "misol": "126 · 30 — 3780. 126 · 40 — 5040 (katta). Demak 30 ni tanlaymiz.",
+      "savol": "126 · 30 nechaga teng?",
+      "javob": "3780",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qoldiqni bo‘lamiz",
+      "matn": "Tanlangan ko‘paytmani ayiramiz va qolganini yana bo‘luvchiga bo‘lamiz.",
+      "misol": "4536 − 3780 — 756. 756 / 126 — 6. Bo‘linma 30 + 6 — 36.",
+      "savol": "756 / 126 nechaga teng?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nolli sonlar",
+      "matn": "Bo‘linuvchi va bo‘luvchining oxirida nol bo‘lsa, nollarni birdan qisqartirib bo‘lish mumkin.",
+      "misol": "5400 / 120: nollarni qisqartiramiz, 540 / 12 — 45. 9000 / 300 — 90 / 3 — 30.",
+      "savol": "9000 / 300 nechaga teng?",
+      "javob": "30",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshirish",
+      "matn": "Ko‘paytirish bilan tekshiramiz: bo‘linma ko‘paytirilsin bo‘luvchiga. Natija bo‘linuvchiga teng bo‘lishi kerak.",
+      "misol": "126 · 36 — 4536. To‘g‘ri.",
+      "savol": "126 · 36 nechaga teng?",
+      "javob": "4536",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Bo‘luvchining karralilarini tanla, ayir, qolganini bo‘l, nollarni qisqartir, ko‘paytirib tekshir.",
+    "misollar": [
+     {
+      "shart": "4536 / 126 ni hisoblang.",
+      "yechim": [
+       "126 · 30 — 3780, 4536 − 3780 — 756.",
+       "756 / 126 — 6.",
+       "Bo‘linma 30 + 6 — 36."
+      ],
+      "javob": "36"
+     },
+     {
+      "shart": "8352 / 144 ni hisoblang.",
+      "yechim": [
+       "144 · 50 — 7200, 8352 − 7200 — 1152.",
+       "1152 / 144 — 8.",
+       "Bo‘linma 50 + 8 — 58."
+      ],
+      "javob": "58"
+     },
+     {
+      "shart": "2688 / 112 ni hisoblang.",
+      "yechim": [
+       "112 · 20 — 2240, 2688 − 2240 — 448.",
+       "448 / 112 — 4.",
+       "Bo‘linma 20 + 4 — 24."
+      ],
+      "javob": "24"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Karralilar jadvali",
+      "topshiriq": "126 ning 10, 20, 30, 40 karralilarini yozing.",
+      "yechim": "1260; 2520; 3780; 5040.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Nolni qisqartiramiz",
+      "topshiriq": "5400 / 120 va 9000 / 300 ni nollarni qisqartirib yeching.",
+      "yechim": "45 va 30.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Barcha javoblarni ko‘paytirish bilan tekshiring.",
+      "yechim": "126 · 36 — 4536.",
+      "mahsulot": "tekshiruv varag‘i"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 4536 / 126 ni 6 deb hisobladi. Xato qayerda?",
+      "yechim": "Bo‘linma 30 + 6 — 36, faqat 6 ni oldi.",
+      "mahsulot": "tushuntirish"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "4536 / 126 nechaga teng?",
+      "javob": "36"
+     },
+     {
+      "shart": "5400 / 120 nechaga teng?",
+      "javob": "45"
+     },
+     {
+      "shart": "8352 / 144 nechaga teng?",
+      "javob": "58"
+     },
+     {
+      "shart": "9000 / 300 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "2688 / 112 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "7344 / 204 nechaga teng?",
+      "javob": "36"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Bo‘linmaning birinchi qismini unutadi",
+      "sabab": "faqat oxirgi qismni oladi",
+      "oldini_olish": "bo‘linmani qismlarini qo‘shish"
+     },
+     {
+      "xato": "Nollarni noto‘g‘ri qisqartiradi",
+      "sabab": "bir tomondan nol olib tashlaydi",
+      "oldini_olish": "ikkala sondan teng nol olish"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "ko‘paytirib tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "katta miqdorni teng taqsimlash"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "ko‘p kuzatuvni guruhlash"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "kompyuter bo‘lishni shu usulda bajaradi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Katta bo‘lish kitobi»",
+     "muammo": "Uch xonali songa bo‘lishni qanday qilib rasm bilan tushuntiramiz?",
+     "mahsulot": "bo‘lish kitobi",
+     "bosqichlar": [
+      "qadamlarni yozish",
+      "misol yechish",
+      "rasm chizish",
+      "tekshirish",
+      "kitob yasash"
+     ],
+     "guruh_vazifalari": [
+      "Qadamlarni yozing",
+      "Yeching",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "qadamlar to‘g‘ri",
+      "misol to‘g‘ri",
+      "rasm mos",
+      "kitob chiroyli",
+      "tushuntirish ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Katta taqsimot»",
+     "bekatlar": [
+      {
+       "nom": "1-ombor",
+       "matn": "4536 ta daftar 126 sinfga.",
+       "topshiriq": "Har sinfda?",
+       "javob": "36",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ombor",
+       "matn": "5400 ta qalam 120 qutiga.",
+       "topshiriq": "Har qutida?",
+       "javob": "45",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ombor",
+       "matn": "8352 ta kitob 144 javonga.",
+       "topshiriq": "Har javonda?",
+       "javob": "58",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ombor",
+       "matn": "9000 ta olma 300 savatga.",
+       "topshiriq": "Har savatda?",
+       "javob": "30",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Karralini qanday tanladingiz?",
+      "Nollarni qisqartirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Bo‘linuvchi",
+      "tarif": "bo‘linadigan son"
+     },
+     {
+      "atama": "Bo‘luvchi",
+      "tarif": "bo‘ladigan son"
+     },
+     {
+      "atama": "Bo‘linma",
+      "tarif": "bo‘lish natijasi"
+     },
+     {
+      "atama": "Karrali",
+      "tarif": "ko‘paytirish natijasi"
+     },
+     {
+      "atama": "Qisqartirish",
+      "tarif": "nollarni teng olib tashlash"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "ko‘paytirish bilan aniqlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "4536 / 126 — 36",
+      "togri": true,
+      "izoh": "126 · 36 — 4536"
+     },
+     {
+      "matn": "5400 / 120 — 54",
+      "togri": false,
+      "izoh": "45"
+     },
+     {
+      "matn": "Nollarni ikkala sondan teng qisqartiramiz",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "9000 / 300 — 30",
+      "togri": true,
+      "izoh": "90 / 3"
+     },
+     {
+      "matn": "Bo‘linmaning qismlari qo‘shilmaydi",
+      "togri": false,
+      "izoh": "qo‘shiladi"
+     },
+     {
+      "matn": "8352 / 144 — 58",
+      "togri": true,
+      "izoh": "144 · 58 — 8352"
+     },
+     {
+      "matn": "Tekshirish shart emas",
+      "togri": false,
+      "izoh": "tekshirish kerak"
+     },
+     {
+      "matn": "2688 / 112 — 24",
+      "togri": true,
+      "izoh": "112 · 24 — 2688"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "4536 / 126?",
+      "javob": "36"
+     },
+     {
+      "savol": "5400 / 120?",
+      "javob": "45"
+     },
+     {
+      "savol": "8352 / 144?",
+      "javob": "58"
+     },
+     {
+      "savol": "9000 / 300?",
+      "javob": "30"
+     },
+     {
+      "savol": "2688 / 112?",
+      "javob": "24"
+     },
+     {
+      "savol": "7344 / 204?",
+      "javob": "36"
+     },
+     {
+      "savol": "126 · 30?",
+      "javob": "3780"
+     },
+     {
+      "savol": "Nollarni qanday qisqartiramiz?",
+      "javob": "ikkala sondan teng"
+     },
+     {
+      "savol": "Bo‘linma qismlari nima qilinadi?",
+      "javob": "qo‘shiladi"
+     },
+     {
+      "savol": "Tekshirish usuli?",
+      "javob": "ko‘paytirish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Tanla",
+      "matn": "Karralini tanla.",
+      "savol": "126 · 30?"
+     },
+     {
+      "nom": "Ayir",
+      "matn": "Qolganini top.",
+      "savol": "4536 − 3780?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "Qolganini bo‘l.",
+      "savol": "756 / 126?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "Bo‘linmani qo‘sh.",
+      "savol": "30 + 6?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun nollarni faqat ikkala sondan teng miqdorda qisqartiramiz?",
+    "keys": {
+     "vaziyat": "Omborda 4536 ta daftar bor. Uni 126 ta maktabga teng bo‘lib bermoqchimiz.",
+     "savollar": [
+      "Qaysi amalni tanlaymiz?",
+      "Har maktabga nechta daftar?"
+     ]
+    },
+    "tezis": "Katta bo‘luvchi — kichik bo‘linma",
+    "taqqoslash": {
+     "a": "Ikki xonali bo‘luvchi",
+     "b": "Uch xonali bo‘luvchi",
+     "umumiy": [
+      "bo‘lish amali",
+      "ko‘paytirib tekshiriladi"
+     ],
+     "a_farq": [
+      "bo‘linma kattaroq",
+      "tanlash oson"
+     ],
+     "b_farq": [
+      "bo‘linma kichikroq",
+      "karralini ehtiyotkor tanlash"
+     ]
+    },
+    "klaster": {
+     "markaz": "Uch xonali songa bo‘lish",
+     "shoxlar": [
+      {
+       "nom": "Tanlash",
+       "bandlar": [
+        "karrali",
+        "10, 20, 30"
+       ]
+      },
+      {
+       "nom": "Ayirish",
+       "bandlar": [
+        "qoldiqni top"
+       ]
+      },
+      {
+       "nom": "Nollar",
+       "bandlar": [
+        "qisqartirish"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "ko‘paytirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men katta bo‘luvchiman, lekin natijam kichik. Men kimman?",
+     "javob": "uch xonali bo‘luvchi"
+    },
+    "hikmat": "Katta bo‘ldi — kichik chiqdi.",
+    "kalit_soz": "KATTA",
+    "xato_yechim": {
+     "shart": "4536 / 126 ni hisoblang.",
+     "xato": "6",
+     "togri": "36",
+     "sabab": "bo‘linma 30 va 6 ni qo‘shishni unutgan"
+    },
+    "guruh_nomlari": [
+     "Bo‘luvchilar",
+     "Karralichilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Katta ombor taqsimoti»",
+     "topshiriq": "Guruh katta sonlarni teng bo‘lib taqsimlaydi."
+    },
+    "vazifalar": {
+     "A": "4536 / 126 va 8352 / 144 ni hisoblang.",
+     "B": "5400 / 120 va 9000 / 300 ni hisoblang.",
+     "C": "2688 / 112 va 7344 / 204 ni hisoblang."
+    },
+    "sinkveyn": [
+     "Bo‘lish",
+     "katta, teng",
+     "ulashadi, taqsimlaydi, bo‘ladi",
+     "Katta ulush",
+     "Amal"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh misollarni yechadi.",
+     "qismlar": [
+      "1-guruh: 4536 / 126",
+      "2-guruh: 5400 / 120",
+      "3-guruh: 8352 / 144",
+      "4-guruh: 2688 / 112"
+     ],
+     "yakun": "Natijalar: 36; 45; 58; 24."
+    }
+   }
+  },
+  {
+   "mavzu": "2-nazorat ishi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nazorat nima uchun?",
+      "matn": "Ikkinchi nazorat ishi bo‘linish alomatlari va bo‘lishni sinaydi. Ikki xonali va uch xonali songa bo‘lishni, alomatlarni takrorlaymiz.",
+      "misol": "Alomat: 5, 10, 3, 9, 2, 4 ga bo‘linish. Bo‘lish: ikki va uch xonali songa.",
+      "savol": "Nazorat nimani sinaydi?",
+      "javob": "bilimni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Alomatlar",
+      "matn": "Oxirgi raqam: 2, 5, 10. Oxirgi ikki raqam: 4. Raqamlar yig‘indisi: 3 va 9. Shularni eslab, sonlarni tez tekshiramiz.",
+      "misol": "4509: yig‘indi 18 — 3 ga va 9 ga bo‘linadi. 316: oxirgi ikki raqam 16 — 4 ga bo‘linadi.",
+      "savol": "4509 soni 9 ga bo‘linadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikki xonali songa bo‘lish",
+      "matn": "Bo‘linmani tanlab, ayirib, qolganini bo‘lamiz. Ko‘paytirish bilan tekshiramiz.",
+      "misol": "1344 / 32: 32 · 40 — 1280, 1344 − 1280 — 64, 64 / 32 — 2. Javob 42.",
+      "savol": "1344 / 32 nechaga teng?",
+      "javob": "42",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uch xonali songa bo‘lish",
+      "matn": "Karralini tanlab, qolganini bo‘lamiz. Nollarni teng qisqartiramiz.",
+      "misol": "4536 / 126 — 36. 9000 / 300 — 30.",
+      "savol": "4536 / 126 nechaga teng?",
+      "javob": "36",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masala",
+      "matn": "Masalani o‘qib, amalni tanlab, hisoblab va tekshirib yechamiz.",
+      "misol": "720 ta daftarni 45 o‘quvchiga teng bo‘lsak: 720 / 45 — 16 ta daftar.",
+      "savol": "720 / 45 nechaga teng?",
+      "javob": "16",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Nazoratda shoshilmaymiz: shartni o‘qiymiz, alomat yoki bo‘lishni qo‘llaymiz, ko‘paytirib tekshiramiz.",
+    "misollar": [
+     {
+      "shart": "4509 va 316 sonlarini alomat bilan tekshiring.",
+      "yechim": [
+       "4509: yig‘indi 18 — 3 ga va 9 ga bo‘linadi.",
+       "316: oxiri 6 — 2 ga bo‘linadi.",
+       "316: oxirgi ikki raqam 16 — 4 ga bo‘linadi."
+      ],
+      "javob": "4509 — 3 va 9; 316 — 2 va 4"
+     },
+     {
+      "shart": "1344 / 32 va 3150 / 45 ni hisoblang.",
+      "yechim": [
+       "1344 / 32 — 42.",
+       "3150 / 45: 45 · 70 — 3150.",
+       "Javoblar: 42 va 70."
+      ],
+      "javob": "42 va 70"
+     },
+     {
+      "shart": "720 ta daftarni 45 o‘quvchiga teng bo‘lamiz. Har biriga nechta?",
+      "yechim": [
+       "720 / 45.",
+       "45 · 16 — 720.",
+       "Javob: 16 ta."
+      ],
+      "javob": "16"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Nazorat variantlari",
+      "topshiriq": "Har guruh 4 ta misol tanlab yechadi va almashib tekshiradi.",
+      "yechim": "Natijalar javoblar bilan solishtiriladi.",
+      "mahsulot": "variant varag‘i"
+     },
+     {
+      "nom": "Alomat poygasi",
+      "topshiriq": "Sonlarni 2, 3, 4, 5, 9, 10 ga bo‘linishiga tekshiring.",
+      "yechim": "Eng tez va to‘g‘ri guruh yutadi.",
+      "mahsulot": "sonlar kartochkasi"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 1350 ni 4 ga bo‘linadi dedi. Xato qayerda?",
+      "yechim": "50 ni 4 ga bo‘lsak qoldiq 2.",
+      "mahsulot": "tushuntirish"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "720 / 45 ga mos masala tuzing.",
+      "yechim": "Har guruh masalasini yechadi.",
+      "mahsulot": "masala varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1344 / 32 nechaga teng?",
+      "javob": "42"
+     },
+     {
+      "shart": "3150 / 45 nechaga teng?",
+      "javob": "70"
+     },
+     {
+      "shart": "720 / 45 nechaga teng?",
+      "javob": "16"
+     },
+     {
+      "shart": "4536 / 126 nechaga teng?",
+      "javob": "36"
+     },
+     {
+      "shart": "980 / 35 nechaga teng?",
+      "javob": "28"
+     },
+     {
+      "shart": "1008 / 36 nechaga teng?",
+      "javob": "28"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Alomatlarni aralashtiradi",
+      "sabab": "qaysi alomat qaysi songa tegishli ekanini bilmaydi",
+      "oldini_olish": "alomatlar jadvalini yozib qo‘yish"
+     },
+     {
+      "xato": "Bo‘lishda qoldiqni unutadi",
+      "sabab": "oxirigacha bo‘lmaydi",
+      "oldini_olish": "qoldiq bo‘luvchidan kichik bo‘lsin"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "ko‘paytirib tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Ona tili",
+      "boglanish": "topshiriqni diqqat bilan o‘qish"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "o‘z-o‘zini baholash"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "natijani yaxshilash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening natijalarim»",
+     "muammo": "Ikkinchi nazorat natijalarini birinchisi bilan qanday solishtiramiz?",
+     "mahsulot": "solishtirish jadvali",
+     "bosqichlar": [
+      "natijalarni yozish",
+      "solishtirish",
+      "xatolarni sanash",
+      "reja tuzish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Natijalarni yozing",
+      "Solishtiring",
+      "Reja tuzing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "natijalar to‘g‘ri",
+      "solishtirish aniq",
+      "reja bor",
+      "jadval chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bilim sinovi yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "1344 / 32.",
+       "topshiriq": "Natija?",
+       "javob": "42",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "3150 / 45.",
+       "topshiriq": "Natija?",
+       "javob": "70",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "4536 / 126.",
+       "topshiriq": "Natija?",
+       "javob": "36",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "720 / 45.",
+       "topshiriq": "Natija?",
+       "javob": "16",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi bekat oson bo‘ldi?",
+      "Qayerda xato qildingiz?",
+      "Qanday tekshirdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Nazorat",
+      "tarif": "bilimni sinash"
+     },
+     {
+      "atama": "Alomat",
+      "tarif": "bo‘linishni bilish usuli"
+     },
+     {
+      "atama": "Bo‘linma",
+      "tarif": "bo‘lish natijasi"
+     },
+     {
+      "atama": "Qoldiq",
+      "tarif": "bo‘lishdan ortgan qism"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "ko‘paytirish bilan aniqlash"
+     },
+     {
+      "atama": "Xato",
+      "tarif": "noto‘g‘ri hisob"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "4509 soni 9 ga bo‘linadi",
+      "togri": true,
+      "izoh": "yig‘indi 18"
+     },
+     {
+      "matn": "1350 soni 4 ga bo‘linadi",
+      "togri": false,
+      "izoh": "50 ni 4 ga bo‘lsak qoldiq 2"
+     },
+     {
+      "matn": "1344 / 32 — 42",
+      "togri": true,
+      "izoh": "32 · 42 — 1344"
+     },
+     {
+      "matn": "3150 / 45 — 60",
+      "togri": false,
+      "izoh": "70"
+     },
+     {
+      "matn": "720 / 45 — 16",
+      "togri": true,
+      "izoh": "45 · 16 — 720"
+     },
+     {
+      "matn": "4536 / 126 — 36",
+      "togri": true,
+      "izoh": "126 · 36 — 4536"
+     },
+     {
+      "matn": "Nazoratda tekshirish shart emas",
+      "togri": false,
+      "izoh": "tekshirish kerak"
+     },
+     {
+      "matn": "980 / 35 — 28",
+      "togri": true,
+      "izoh": "35 · 28 — 980"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "9 ga bo‘linish alomati?",
+      "javob": "raqamlar yig‘indisi 9 ga bo‘linadi"
+     },
+     {
+      "savol": "4 ga bo‘linish alomati?",
+      "javob": "oxirgi ikki raqam 4 ga bo‘linadi"
+     },
+     {
+      "savol": "1344 / 32?",
+      "javob": "42"
+     },
+     {
+      "savol": "3150 / 45?",
+      "javob": "70"
+     },
+     {
+      "savol": "720 / 45?",
+      "javob": "16"
+     },
+     {
+      "savol": "4536 / 126?",
+      "javob": "36"
+     },
+     {
+      "savol": "980 / 35?",
+      "javob": "28"
+     },
+     {
+      "savol": "1008 / 36?",
+      "javob": "28"
+     },
+     {
+      "savol": "Bo‘lishni nima bilan tekshiramiz?",
+      "javob": "ko‘paytirish bilan"
+     },
+     {
+      "savol": "Xatoga qanday qaraymiz?",
+      "javob": "undan o‘rganamiz"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘qi",
+      "matn": "Shartni o‘qi.",
+      "savol": "Nima so‘ralyapti?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Amalni bajar.",
+      "savol": "1344 / 32?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Ko‘paytirib tekshir.",
+      "savol": "32 · 42?"
+     },
+     {
+      "nom": "Yoz",
+      "matn": "Javobni yoz.",
+      "savol": "Javob 42 mi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun nazorat ishidan keyin xatolar ustida ishlash kerak?",
+    "keys": {
+     "vaziyat": "Nazorat ishida alomatlar va bo‘lishga oid 6 ta misol berildi.",
+     "savollar": [
+      "Qaysi misollar oson bo‘ldi?",
+      "Qaysilarda xato qildingiz?"
+     ]
+    },
+    "tezis": "Sinov — o‘sish pillapoyasi",
+    "taqqoslash": {
+     "a": "1-nazorat",
+     "b": "2-nazorat",
+     "umumiy": [
+      "bilim sinaladi",
+      "xatolar tahlil qilinadi"
+     ],
+     "a_farq": [
+      "qo‘shish va ko‘paytirish",
+      "amallar tartibi"
+     ],
+     "b_farq": [
+      "bo‘linish alomatlari",
+      "bo‘lish"
+     ]
+    },
+    "klaster": {
+     "markaz": "2-nazorat ishi",
+     "shoxlar": [
+      {
+       "nom": "Alomatlar",
+       "bandlar": [
+        "2, 5, 10",
+        "3, 9",
+        "4"
+       ]
+      },
+      {
+       "nom": "Ikki xonali",
+       "bandlar": [
+        "bo‘lish",
+        "tanlash"
+       ]
+      },
+      {
+       "nom": "Uch xonali",
+       "bandlar": [
+        "bo‘lish",
+        "nollar"
+       ]
+      },
+      {
+       "nom": "Masala",
+       "bandlar": [
+        "shart",
+        "yechim",
+        "javob"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men bilimni sinayman va o‘stiraman. Men kimman?",
+     "javob": "nazorat"
+    },
+    "hikmat": "Sinov — ustoz, xato — o‘rgatuvchi.",
+    "kalit_soz": "SINOV",
+    "xato_yechim": {
+     "shart": "1350 soni 4 ga bo‘linadimi?",
+     "xato": "ha",
+     "togri": "yo‘q",
+     "sabab": "oxirgi ikki raqam 50, 50 ni 4 ga bo‘lsak qoldiq 2"
+    },
+    "guruh_nomlari": [
+     "Sinovchilar",
+     "Hisobchilar",
+     "Alomatchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mening nazoratim»",
+     "topshiriq": "Guruh nazorat savollarini yechib, bir-birini tekshiradi."
+    },
+    "vazifalar": {
+     "A": "4509 va 316 sonlarini 2, 3, 4, 9 ga bo‘linishiga tekshiring.",
+     "B": "1344 / 32 va 3150 / 45 ni hisoblang.",
+     "C": "720 ta daftarni 45 o‘quvchiga teng bo‘ling. 4536 / 126 ni ham hisoblang."
+    },
+    "sinkveyn": [
+     "Nazorat",
+     "tinch, diqqatli",
+     "sinaydi, ko‘rsatadi, o‘rgatadi",
+     "Bilim sinovi",
+     "Imtihon"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh nazorat misollarini yechadi.",
+     "qismlar": [
+      "1-guruh: 1344 / 32",
+      "2-guruh: 3150 / 45",
+      "3-guruh: 4536 / 126",
+      "4-guruh: 720 / 45"
+     ],
+     "yakun": "Natijalar: 42; 70; 36; 16."
+    }
+   }
   }
  ]
 }
