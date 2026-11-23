@@ -15188,6 +15188,1389 @@
      "yakun": "Natijalar: 15; 24; 20; 25."
     }
    }
+  },
+  {
+   "mavzu": "Harakatga doir masalalarni yechish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "To‘rt xil harakat",
+      "matn": "Harakat masalalari to‘rt xil bo‘ladi: bir-biriga tomon, qarama-qarshi, quvib yetish va ortda qolish. Avval masala qaysi turga tegishli ekanini aniqlaymiz.",
+      "misol": "Tomon: masofa kamayadi. Qarama-qarshi: masofa ortadi. Quvib yetish: masofa kamayadi. Ortda qolish: masofa ortadi.",
+      "savol": "Quvib yetishda masofa kamayadimi yoki ortadimi?",
+      "javob": "kamayadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tezliklar qachon qo‘shiladi",
+      "matn": "Bir-biriga tomon va qarama-qarshi harakatda tezliklar qo‘shiladi. Quvib yetish va ortda qolishda tezliklar ayiriladi.",
+      "misol": "Tomon: 70 + 80 — 150. Quvib yetish: 14 − 6 — 8.",
+      "savol": "Tomon harakatda tezliklar qo‘shiladimi yoki ayiriladimi?",
+      "javob": "qo‘shiladi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tomon va qarama-qarshi",
+      "matn": "Tomon harakatda masofa bo‘linsin yig‘indi tezlikka — uchrashuv vaqti. Qarama-qarshi harakatda yig‘indi tezlik ko‘paytirilsin vaqtga — masofa.",
+      "misol": "Masofa 300 km, tezliklar 70 va 80: 300 / 150 — 2 soat. Piyodalar 6 va 9 km, 4 soat: 15 · 4 — 60 km.",
+      "savol": "300 / 150 nechaga teng?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Quvib yetish va ortda qolish",
+      "matn": "Quvib yetishda masofa bo‘linsin ayirmaga — vaqt. Ortda qolishda ayirma ko‘paytirilsin vaqtga — masofa.",
+      "misol": "Orasi 40 km, tezliklar 14 va 6: 40 / 8 — 5 soat. Tezliklar 10 va 7, 6 soat: 3 · 6 — 18 km.",
+      "savol": "40 / 8 nechaga teng?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qadamlar",
+      "matn": "Masalani yechishda avval chizma chizamiz, turini aniqlaymiz, qaysi tezlik ishlatilishini tanlaymiz, hisoblaymiz va tekshiramiz.",
+      "misol": "Chizma, tur, amal, hisob, tekshirish — beshta qadam.",
+      "savol": "Masalani yechishda nechta qadam bor?",
+      "javob": "beshta",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Turini aniqla: tomon va qarama-qarshi — tezliklar qo‘shiladi; quvib yetish va ortda qolish — tezliklar ayiriladi. Chizma chiz va tekshir.",
+    "misollar": [
+     {
+      "shart": "Avtomobillar 70 va 80 km tezlikda bir-biriga tomon yuradi. Masofa 300 km. Necha soatda uchrashadi?",
+      "yechim": [
+       "Yig‘indi tezlik: 70 + 80 — 150.",
+       "Vaqt: 300 / 150.",
+       "Javob 2 soat."
+      ],
+      "javob": "2 soat"
+     },
+     {
+      "shart": "Piyodalar bir joydan 6 va 9 km tezlikda qarama-qarshi chiqdi. 4 soatdan keyin masofa?",
+      "yechim": [
+       "Yig‘indi tezlik: 6 + 9 — 15.",
+       "Masofa: 15 · 4.",
+       "Javob 60 km."
+      ],
+      "javob": "60 km"
+     },
+     {
+      "shart": "Orasi 40 km. Orqadagi 14 km, oldingi 6 km tezlikda. Necha soatda yetadi?",
+      "yechim": [
+       "Ayirma: 14 − 6 — 8.",
+       "Vaqt: 40 / 8.",
+       "Javob 5 soat."
+      ],
+      "javob": "5 soat"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Turini aniqlaymiz",
+      "topshiriq": "Berilgan to‘rtta masalaning turini aniqlang.",
+      "yechim": "Tomon, qarama-qarshi, quvib yetish, ortda qolish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Chizma chizamiz",
+      "topshiriq": "Har bir tur uchun chizma chizing.",
+      "yechim": "Chizmada masofa va tezliklar ko‘rinadi.",
+      "mahsulot": "chizma varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Masalalarning javoblarini tekshiring.",
+      "yechim": "Yo‘llar yig‘indisi yoki farqi masofaga mos kelishi kerak.",
+      "mahsulot": "tekshiruv varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Har bir tur uchun bittadan masala tuzing.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala kartochkasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "300 / 150 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "(6 + 9) · 4 nechaga teng?",
+      "javob": "60"
+     },
+     {
+      "shart": "40 / (14 − 6) nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "(10 − 7) · 6 nechaga teng?",
+      "javob": "18"
+     },
+     {
+      "shart": "70 + 80 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "14 − 6 nechaga teng?",
+      "javob": "8"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Turini aniqlamaydi",
+      "sabab": "shoshilib yecha boshlaydi",
+      "oldini_olish": "avval chizma va tur"
+     },
+     {
+      "xato": "Tezliklarni noto‘g‘ri qo‘shadi yoki ayiradi",
+      "sabab": "qoidani aralashtiradi",
+      "oldini_olish": "tomon va qarama-qarshi — qo‘shish"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "yo‘llarni tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "yo‘lda harakat hisobi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "shaharlar orasidagi masofa"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "yugurish tezligi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Harakat jadvali»",
+     "muammo": "To‘rt xil harakatni bitta jadvalda qanday ko‘rsatamiz?",
+     "mahsulot": "harakat jadvali",
+     "bosqichlar": [
+      "turlarni yozish",
+      "qoidalarni yozish",
+      "misollar yechish",
+      "chizma chizish",
+      "jadval chiqarish"
+     ],
+     "guruh_vazifalari": [
+      "Turlarni yozing",
+      "Misol yeching",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "turlar to‘g‘ri",
+      "qoidalar to‘g‘ri",
+      "misollar to‘g‘ri",
+      "jadval chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Harakat shahri»",
+     "bekatlar": [
+      {
+       "nom": "Tomon ko‘chasi",
+       "matn": "70 va 80 km, masofa 300 km.",
+       "topshiriq": "Necha soat?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "Qarama-qarshi ko‘cha",
+       "matn": "6 va 9 km, 4 soat.",
+       "topshiriq": "Masofa?",
+       "javob": "60",
+       "rasm": ""
+      },
+      {
+       "nom": "Quvish ko‘chasi",
+       "matn": "14 va 6 km, orasi 40 km.",
+       "topshiriq": "Necha soat?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Ortda qolish ko‘chasi",
+       "matn": "10 va 7 km, 6 soat.",
+       "topshiriq": "Masofa?",
+       "javob": "18",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi turni aniqladingiz?",
+      "Qo‘shdingizmi yoki ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tomon",
+      "tarif": "bir-biriga qarab harakat"
+     },
+     {
+      "atama": "Qarama-qarshi",
+      "tarif": "ikki tomonga harakat"
+     },
+     {
+      "atama": "Quvib yetish",
+      "tarif": "orqadagi yetib olishi"
+     },
+     {
+      "atama": "Ortda qolish",
+      "tarif": "sekinning orqada qolishi"
+     },
+     {
+      "atama": "Yig‘indi tezlik",
+      "tarif": "tezliklar yig‘indisi"
+     },
+     {
+      "atama": "Ayirma tezlik",
+      "tarif": "tezliklar farqi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tomon harakatda tezliklar qo‘shiladi",
+      "togri": true,
+      "izoh": "yig‘indi tezlik"
+     },
+     {
+      "matn": "Quvib yetishda tezliklar qo‘shiladi",
+      "togri": false,
+      "izoh": "ayiriladi"
+     },
+     {
+      "matn": "Qarama-qarshi harakatda masofa ortadi",
+      "togri": true,
+      "izoh": "uzoqlashadi"
+     },
+     {
+      "matn": "Ortda qolishda masofa kamayadi",
+      "togri": false,
+      "izoh": "ortadi"
+     },
+     {
+      "matn": "300 / 150 — 2",
+      "togri": true,
+      "izoh": "tomon"
+     },
+     {
+      "matn": "(6 + 9) · 4 — 60",
+      "togri": true,
+      "izoh": "qarama-qarshi"
+     },
+     {
+      "matn": "40 / 8 — 5",
+      "togri": true,
+      "izoh": "quvib yetish"
+     },
+     {
+      "matn": "Chizma kerak emas",
+      "togri": false,
+      "izoh": "yordam beradi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tomon harakatda?",
+      "javob": "tezliklar qo‘shiladi"
+     },
+     {
+      "savol": "Qarama-qarshi harakatda?",
+      "javob": "tezliklar qo‘shiladi"
+     },
+     {
+      "savol": "Quvib yetishda?",
+      "javob": "tezliklar ayiriladi"
+     },
+     {
+      "savol": "Ortda qolishda?",
+      "javob": "tezliklar ayiriladi"
+     },
+     {
+      "savol": "300 / 150?",
+      "javob": "2"
+     },
+     {
+      "savol": "15 · 4?",
+      "javob": "60"
+     },
+     {
+      "savol": "40 / 8?",
+      "javob": "5"
+     },
+     {
+      "savol": "3 · 6?",
+      "javob": "18"
+     },
+     {
+      "savol": "Quvib yetishda masofa?",
+      "javob": "kamayadi"
+     },
+     {
+      "savol": "Ortda qolishda masofa?",
+      "javob": "ortadi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Chiz",
+      "matn": "Chizma chiz.",
+      "savol": "Ikki jism?"
+     },
+     {
+      "nom": "Tur",
+      "matn": "Turini top.",
+      "savol": "Tomonmi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Amalni bajar.",
+      "savol": "70 + 80?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Yo‘llarni solishtir.",
+      "savol": "Masofaga mos?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun masalani yechishdan oldin harakat turini aniqlaymiz?",
+    "keys": {
+     "vaziyat": "Ikki avtomobil 300 km masofadan bir-biriga tomon chiqdi.",
+     "savollar": [
+      "Qaysi turdagi masala?",
+      "Necha soatda uchrashadi?"
+     ]
+    },
+    "tezis": "Tur — kalit",
+    "taqqoslash": {
+     "a": "Tezliklar qo‘shiladi",
+     "b": "Tezliklar ayiriladi",
+     "umumiy": [
+      "harakat masalasi",
+      "chizma chiziladi"
+     ],
+     "a_farq": [
+      "tomon va qarama-qarshi",
+      "yig‘indi tezlik"
+     ],
+     "b_farq": [
+      "quvib yetish va ortda qolish",
+      "ayirma tezlik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Harakat masalalari",
+     "shoxlar": [
+      {
+       "nom": "Tomon",
+       "bandlar": [
+        "qo‘shish",
+        "masofa kamayadi"
+       ]
+      },
+      {
+       "nom": "Qarama-qarshi",
+       "bandlar": [
+        "qo‘shish",
+        "masofa ortadi"
+       ]
+      },
+      {
+       "nom": "Quvib yetish",
+       "bandlar": [
+        "ayirish",
+        "masofa kamayadi"
+       ]
+      },
+      {
+       "nom": "Ortda qolish",
+       "bandlar": [
+        "ayirish",
+        "masofa ortadi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men to‘rt turdaman: tomon, qarama-qarshi, quvish, ortda qolish. Men kimman?",
+     "javob": "harakat masalasi"
+    },
+    "hikmat": "Turini bil — yo‘lni top.",
+    "kalit_soz": "HARAKAT",
+    "xato_yechim": {
+     "shart": "Orasi 40 km, tezliklar 14 va 6. Necha soatda yetadi?",
+     "xato": "40 / 20",
+     "togri": "5 soat",
+     "sabab": "quvib yetishda tezliklar ayiriladi: 14 − 6 — 8"
+    },
+    "guruh_nomlari": [
+     "Harakatchilar",
+     "Turchilar",
+     "Chizmachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Harakat shahri»",
+     "topshiriq": "Guruh to‘rt tur masalasini yechadi."
+    },
+    "vazifalar": {
+     "A": "Avtomobillar 70 va 80 km tezlikda, masofa 300 km. Necha soatda uchrashadi?",
+     "B": "Piyodalar 6 va 9 km tezlikda qarama-qarshi, 4 soat. Masofa?",
+     "C": "Orasi 40 km, tezliklar 14 va 6. Necha soatda yetadi? 10 va 7 km tezlikda 6 soatdan keyin masofa?"
+    },
+    "sinkveyn": [
+     "Harakat",
+     "tez, yo‘lda",
+     "yuradi, yetadi, uchrashadi",
+     "To‘rt xil harakat",
+     "Yo‘l"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh to‘rt tur masalasini yechadi.",
+     "qismlar": [
+      "1-guruh: tomon",
+      "2-guruh: qarama-qarshi",
+      "3-guruh: quvib yetish",
+      "4-guruh: ortda qolish"
+     ],
+     "yakun": "Natijalar: 2 soat; 60 km; 5 soat; 18 km."
+    }
+   }
+  },
+  {
+   "mavzu": "Ish unumdorligiga doir masalalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ish unumdorligi nima?",
+      "matn": "Bir birlik vaqtda bajarilgan ish miqdori ish unumdorligi deyiladi. Masalan, ishchi bir soatda 12 ta detal yasasa, uning unumdorligi soatiga 12 detal.",
+      "misol": "Ishchi soatiga 12 detal yasaydi. 8 soatda 12 · 8 — 96 detal.",
+      "savol": "12 · 8 nechaga teng?",
+      "javob": "96",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ish, vaqt, unumdorlik",
+      "matn": "Ish — unumdorlik ko‘paytirilsin vaqtga. Vaqt — ish bo‘linsin unumdorlikka. Unumdorlik — ish bo‘linsin vaqtga.",
+      "misol": "240 detalni soatiga 30 detal bilan: 240 / 30 — 8 soat. 96 detal 8 soatda: 96 / 8 — 12 detal soatiga.",
+      "savol": "240 / 30 nechaga teng?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birgalikda ishlash",
+      "matn": "Ikki kishi birga ishlasa, ularning unumdorliklari qo‘shiladi. Bu bir-biriga tomon harakatga o‘xshaydi.",
+      "misol": "Usta soatiga 15, shogird soatiga 9 detal. Birgalikda 15 + 9 — 24 detal soatiga.",
+      "savol": "15 + 9 nechaga teng?",
+      "javob": "24",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birgalikda vaqt",
+      "matn": "Birgalikda ishlash vaqtini topish uchun ishni birgalikdagi unumdorlikka bo‘lamiz.",
+      "misol": "120 detalni 24 detal soatiga bilan: 120 / 24 — 5 soat. Usta 15 · 5 — 75, shogird 9 · 5 — 45, 75 + 45 — 120.",
+      "savol": "120 / 24 nechaga teng?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikki stanok",
+      "matn": "Ikki stanok soatiga 18 va 22 detal chiqaradi. Birgalikda 40 detal. 720 detal 720 / 40 — 18 soatda.",
+      "misol": "Tekshirish: 18 · 18 — 324, 22 · 18 — 396, 324 + 396 — 720.",
+      "savol": "720 / 40 nechaga teng?",
+      "javob": "18",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ish — unumdorlik ko‘paytirilsin vaqtga. Birgalikda — unumdorliklar qo‘shiladi. Vaqt — ish bo‘linsin unumdorlikka.",
+    "misollar": [
+     {
+      "shart": "Ishchi soatiga 12 detal yasaydi. 8 soatda nechta detal yasaydi?",
+      "yechim": [
+       "Ish — unumdorlik ko‘paytirilsin vaqtga.",
+       "12 · 8.",
+       "Javob 96 ta."
+      ],
+      "javob": "96 ta"
+     },
+     {
+      "shart": "Usta soatiga 15, shogird soatiga 9 detal yasaydi. 120 detalni birga necha soatda yasaydi?",
+      "yechim": [
+       "Birgalikda: 15 + 9 — 24.",
+       "Vaqt: 120 / 24.",
+       "Javob 5 soat."
+      ],
+      "javob": "5 soat"
+     },
+     {
+      "shart": "Stanoklar soatiga 18 va 22 detal chiqaradi. 720 detalni necha soatda chiqaradi?",
+      "yechim": [
+       "Birgalikda: 18 + 22 — 40.",
+       "Vaqt: 720 / 40.",
+       "Javob 18 soat."
+      ],
+      "javob": "18 soat"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Jadval to‘ldiramiz",
+      "topshiriq": "Unumdorlik, vaqt va ish jadvalini to‘ldiring.",
+      "yechim": "Ish — unumdorlik ko‘paytirilsin vaqtga.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Rolli o‘yin",
+      "topshiriq": "Bolalar usta va shogird bo‘lib, ishni bo‘lishadi.",
+      "yechim": "Natijalar solishtiriladi.",
+      "mahsulot": "o‘yin varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Ish unumdorligiga masala tuzing.",
+      "yechim": "Har guruh masalasini yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Usta va shogird ishining yig‘indisini tekshiring.",
+      "yechim": "75 + 45 — 120.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "12 · 8 nechaga teng?",
+      "javob": "96"
+     },
+     {
+      "shart": "240 / 30 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "15 + 9 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "120 / 24 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "720 / 40 nechaga teng?",
+      "javob": "18"
+     },
+     {
+      "shart": "(45 + 55) · 6 nechaga teng?",
+      "javob": "600"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Birgalikda unumdorliklarni ayiradi",
+      "sabab": "harakat bilan aralashtiradi",
+      "oldini_olish": "birgalikda ishlashda qo‘shiladi"
+     },
+     {
+      "xato": "Vaqtni unumdorlikka ko‘paytiradi",
+      "sabab": "formulani adashtiradi",
+      "oldini_olish": "vaqt — ish bo‘linsin unumdorlikka"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "ishlar yig‘indisini tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "ish va mehnat"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "mashinalar unumdorligi"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "hosil yig‘ish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ish unumdorligi jadvali»",
+     "muammo": "Ish unumdorligini qanday qilib jadval bilan ko‘rsatamiz?",
+     "mahsulot": "unumdorlik jadvali",
+     "bosqichlar": [
+      "masala tanlash",
+      "jadval chizish",
+      "yechish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Masala tanlang",
+      "Jadval chizing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "masala mantiqli",
+      "jadval aniq",
+      "yechim to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Zavod sexi»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "Ishchi soatiga 12, 8 soat.",
+       "topshiriq": "Nechta detal?",
+       "javob": "96",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "240 detal, soatiga 30.",
+       "topshiriq": "Necha soat?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "Usta 15, shogird 9, 120 detal.",
+       "topshiriq": "Necha soat?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sex",
+       "matn": "Stanoklar 18 va 22, 720 detal.",
+       "topshiriq": "Necha soat?",
+       "javob": "18",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi amalni tanladingiz?",
+      "Qo‘shdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ish unumdorligi",
+      "tarif": "bir birlik vaqtdagi ish"
+     },
+     {
+      "atama": "Ish",
+      "tarif": "bajarilgan miqdor"
+     },
+     {
+      "atama": "Vaqt",
+      "tarif": "ish davomiyligi"
+     },
+     {
+      "atama": "Birgalikda",
+      "tarif": "ikki ishchining birga ishlashi"
+     },
+     {
+      "atama": "Detal",
+      "tarif": "mashina qismi"
+     },
+     {
+      "atama": "Stanok",
+      "tarif": "detal yasaydigan mashina"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ish — unumdorlik ko‘paytirilsin vaqtga",
+      "togri": true,
+      "izoh": "12 · 8 — 96"
+     },
+     {
+      "matn": "12 · 8 — 86",
+      "togri": false,
+      "izoh": "96"
+     },
+     {
+      "matn": "Vaqt — ish bo‘linsin unumdorlikka",
+      "togri": true,
+      "izoh": "240 / 30 — 8"
+     },
+     {
+      "matn": "Birgalikda unumdorliklar ayiriladi",
+      "togri": false,
+      "izoh": "qo‘shiladi"
+     },
+     {
+      "matn": "15 + 9 — 24",
+      "togri": true,
+      "izoh": "birgalikda"
+     },
+     {
+      "matn": "120 / 24 — 5",
+      "togri": true,
+      "izoh": "vaqt"
+     },
+     {
+      "matn": "720 / 40 — 18",
+      "togri": true,
+      "izoh": "vaqt"
+     },
+     {
+      "matn": "Tekshirish shart emas",
+      "togri": false,
+      "izoh": "tekshirish kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ish unumdorligi nima?",
+      "javob": "bir birlik vaqtdagi ish"
+     },
+     {
+      "savol": "Ish qanday topiladi?",
+      "javob": "unumdorlik ko‘paytirilsin vaqtga"
+     },
+     {
+      "savol": "Vaqt qanday topiladi?",
+      "javob": "ish bo‘linsin unumdorlikka"
+     },
+     {
+      "savol": "12 · 8?",
+      "javob": "96"
+     },
+     {
+      "savol": "240 / 30?",
+      "javob": "8"
+     },
+     {
+      "savol": "15 + 9?",
+      "javob": "24"
+     },
+     {
+      "savol": "120 / 24?",
+      "javob": "5"
+     },
+     {
+      "savol": "18 + 22?",
+      "javob": "40"
+     },
+     {
+      "savol": "720 / 40?",
+      "javob": "18"
+     },
+     {
+      "savol": "Birgalikda unumdorliklar?",
+      "javob": "qo‘shiladi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ish",
+      "matn": "Ishni top.",
+      "savol": "12 · 8?"
+     },
+     {
+      "nom": "Vaqt",
+      "matn": "Vaqtni top.",
+      "savol": "240 / 30?"
+     },
+     {
+      "nom": "Birga",
+      "matn": "Birgalikda unumdorlik.",
+      "savol": "15 + 9?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Ishlarni qo‘sh.",
+      "savol": "75 + 45?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun birgalikda ishlaganda unumdorliklar qo‘shiladi?",
+    "keys": {
+     "vaziyat": "Zavodda usta soatiga 15, shogird soatiga 9 detal yasaydi. 120 detal yasash kerak.",
+     "savollar": [
+      "Birgalikda soatiga nechta detal?",
+      "Necha soatda tugatadi?"
+     ]
+    },
+    "tezis": "Ish — unumdorlik va vaqt",
+    "taqqoslash": {
+     "a": "Yolg‘iz ishlash",
+     "b": "Birgalikda ishlash",
+     "umumiy": [
+      "ish unumdorligi",
+      "ish miqdori"
+     ],
+     "a_farq": [
+      "bitta unumdorlik",
+      "ko‘proq vaqt"
+     ],
+     "b_farq": [
+      "unumdorliklar qo‘shiladi",
+      "kamroq vaqt"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ish unumdorligi",
+     "shoxlar": [
+      {
+       "nom": "Ish",
+       "bandlar": [
+        "unumdorlik ko‘paytirilsin vaqtga"
+       ]
+      },
+      {
+       "nom": "Vaqt",
+       "bandlar": [
+        "ish bo‘linsin unumdorlikka"
+       ]
+      },
+      {
+       "nom": "Birgalikda",
+       "bandlar": [
+        "qo‘shish"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "ishlar yig‘indisi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men bir soatda qancha ish qilishni ko‘rsataman. Men kimman?",
+     "javob": "ish unumdorligi"
+    },
+    "hikmat": "Birga ishlasak — tez bitadi.",
+    "kalit_soz": "ISH",
+    "xato_yechim": {
+     "shart": "Usta soatiga 15, shogird 9 detal. 120 detal necha soatda?",
+     "xato": "120 / 15",
+     "togri": "5 soat",
+     "sabab": "birgalikda unumdorliklar qo‘shiladi: 24"
+    },
+    "guruh_nomlari": [
+     "Ishchilar",
+     "Ustalar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Zavod hisobi»",
+     "topshiriq": "Guruh ish unumdorligiga masala yechadi."
+    },
+    "vazifalar": {
+     "A": "Ishchi soatiga 12 detal yasaydi. 8 soatda nechta?",
+     "B": "Usta 15, shogird 9 detal soatiga. 120 detalni necha soatda?",
+     "C": "Stanoklar soatiga 18 va 22 detal chiqaradi. 720 detalni necha soatda?"
+    },
+    "sinkveyn": [
+     "Ish",
+     "mehnat, tez",
+     "yasaydi, bajaradi, tayyorlaydi",
+     "Mehnat — baraka",
+     "Unumdorlik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ish masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: 12 · 8",
+      "2-guruh: 240 / 30",
+      "3-guruh: 120 / 24",
+      "4-guruh: 720 / 40"
+     ],
+     "yakun": "Natijalar: 96; 8; 5; 18."
+    }
+   }
+  },
+  {
+   "mavzu": "Mustahkamlash",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Katta sonlar",
+      "matn": "Katta sonni o‘ngdan uchtadan sinflarga ajratamiz. Sinflar: birliklar, minglar, millionlar. Taqqoslashda avval raqamlar sonini sanaymiz.",
+      "misol": "12345678: 12 | 345 | 678. 345678 < 345687.",
+      "savol": "12345678 da millionlar sinfi nechta?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bo‘lish alomatlari",
+      "matn": "Oxirgi raqam: 2, 5, 10. Oxirgi ikki raqam: 4. Raqamlar yig‘indisi: 3 va 9.",
+      "misol": "4509: yig‘indi 18 — 3 va 9 ga bo‘linadi. 455: oxiri 5 — 5 ga bo‘linadi.",
+      "savol": "4509 soni 9 ga bo‘linadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bo‘lish",
+      "matn": "Bo‘linmani tanlab, ayirib, qolganini bo‘lamiz. Nollarni teng qisqartiramiz.",
+      "misol": "3150 / 45 — 70. 360000 / 9000 — 40.",
+      "savol": "3150 / 45 nechaga teng?",
+      "javob": "70",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Harakat",
+      "matn": "Tomon va qarama-qarshi harakatda tezliklar qo‘shiladi, quvib yetish va ortda qolishda ayiriladi.",
+      "misol": "70 + 80 — 150, 300 / 150 — 2 soat. 14 − 6 — 8, 40 / 8 — 5 soat.",
+      "savol": "300 / 150 nechaga teng?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ish unumdorligi",
+      "matn": "Ish — unumdorlik ko‘paytirilsin vaqtga. Birgalikda unumdorliklar qo‘shiladi. Vaqt — ish bo‘linsin unumdorlikka.",
+      "misol": "15 + 9 — 24, 120 / 24 — 5 soat.",
+      "savol": "120 / 24 nechaga teng?",
+      "javob": "5",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Sinflar, alomatlar, bo‘lish, harakat, ish unumdorligi — hammasini takrorlab, mustahkamlaymiz.",
+    "misollar": [
+     {
+      "shart": "12345678 ni sinflarga ajrating va 345678 bilan 345687 ni taqqoslang.",
+      "yechim": [
+       "12345678: 12 | 345 | 678.",
+       "345678 va 345687: 7 va 8.",
+       "345678 < 345687."
+      ],
+      "javob": "12 | 345 | 678; 345678 < 345687"
+     },
+     {
+      "shart": "3150 / 45 va 300 / 150 ni hisoblang.",
+      "yechim": [
+       "45 · 70 — 3150, javob 70.",
+       "Tomon: 300 / 150 — 2.",
+       "Javoblar: 70 va 2."
+      ],
+      "javob": "70 va 2"
+     },
+     {
+      "shart": "Usta soatiga 15, shogird 9 detal. 120 detalni necha soatda yasaydi?",
+      "yechim": [
+       "Birgalikda: 15 + 9 — 24.",
+       "Vaqt: 120 / 24.",
+       "Javob 5 soat."
+      ],
+      "javob": "5 soat"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Takrorlash stansiyalari",
+      "topshiriq": "Guruhlar stansiyalarda sinf, alomat, harakat va ish masalalarini yechadi.",
+      "yechim": "Har stansiya natijalari doskaga yoziladi.",
+      "mahsulot": "stansiya varag‘i"
+     },
+     {
+      "nom": "Xatoni topamiz",
+      "topshiriq": "Do‘stingiz 40 / 8 ni quvib yetishda 40 / 20 deb hisobladi. Xato qayerda?",
+      "yechim": "Quvib yetishda tezliklar ayiriladi.",
+      "mahsulot": "tushuntirish"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Harakat yoki ish masalasi tuzing.",
+      "yechim": "Har guruh masalasini yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "O‘z-o‘zini tekshirish",
+      "topshiriq": "Barcha javoblarni teskari amal bilan tekshiring.",
+      "yechim": "Tekshirilgan javoblar daftarga yoziladi.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3150 / 45 nechaga teng?",
+      "javob": "70"
+     },
+     {
+      "shart": "300 / 150 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "120 / 24 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "12 · 8 nechaga teng?",
+      "javob": "96"
+     },
+     {
+      "shart": "40 / (14 − 6) nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "360000 / 9000 nechaga teng?",
+      "javob": "40"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Harakat turini aralashtiradi",
+      "sabab": "qoidani unutadi",
+      "oldini_olish": "chizma va tur"
+     },
+     {
+      "xato": "Alomatlarni aralashtiradi",
+      "sabab": "qaysi alomat qaysiga tegishli ekanini bilmaydi",
+      "oldini_olish": "alomatlar jadvali"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "teskari amal"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Ona tili",
+      "boglanish": "qoidalarni qisqa ifodalash"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "hisob-kitob ko‘nikmalari"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "katta sonlar va masofalar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Takrorlash kitobi»",
+     "muammo": "Mavzularni takrorlab, o‘z kitobimizni qanday yasaymiz?",
+     "mahsulot": "takrorlash kitobi",
+     "bosqichlar": [
+      "mavzularni tanlash",
+      "qoidalarni yozish",
+      "misollar yechish",
+      "rasm chizish",
+      "kitob yasash"
+     ],
+     "guruh_vazifalari": [
+      "Mavzuni tanlang",
+      "Qoidani yozing",
+      "Misol yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "qoidalar to‘g‘ri",
+      "misollar to‘g‘ri",
+      "rasm mos",
+      "kitob chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Takrorlash shahri»",
+     "bekatlar": [
+      {
+       "nom": "Sinflar maydoni",
+       "matn": "12345678 ning millionlar sinfi.",
+       "topshiriq": "Nechta?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "Alomat ko‘chasi",
+       "matn": "4509 soni 9 ga bo‘linadimi?",
+       "topshiriq": "Ha yoki yo‘q?",
+       "javob": "ha",
+       "rasm": ""
+      },
+      {
+       "nom": "Harakat yo‘li",
+       "matn": "300 / 150.",
+       "topshiriq": "Necha soat?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "Zavod sexi",
+       "matn": "120 / 24.",
+       "topshiriq": "Necha soat?",
+       "javob": "5",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi mavzu oson bo‘ldi?",
+      "Qaysi qiyin bo‘ldi?",
+      "Qayerda mashq kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sinf",
+      "tarif": "uchta xonadan iborat guruh"
+     },
+     {
+      "atama": "Alomat",
+      "tarif": "bo‘linishni bilish usuli"
+     },
+     {
+      "atama": "Harakat masalasi",
+      "tarif": "tezlik, vaqt, masofa masalasi"
+     },
+     {
+      "atama": "Ish unumdorligi",
+      "tarif": "bir birlik vaqtdagi ish"
+     },
+     {
+      "atama": "Takrorlash",
+      "tarif": "o‘rganilganni eslash"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "teskari amal bilan aniqlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "12345678 da millionlar sinfi 12",
+      "togri": true,
+      "izoh": "12 | 345 | 678"
+     },
+     {
+      "matn": "4509 soni 9 ga bo‘linmaydi",
+      "togri": false,
+      "izoh": "yig‘indi 18"
+     },
+     {
+      "matn": "3150 / 45 — 70",
+      "togri": true,
+      "izoh": "45 · 70 — 3150"
+     },
+     {
+      "matn": "300 / 150 — 20",
+      "togri": false,
+      "izoh": "2"
+     },
+     {
+      "matn": "Birgalikda ishlashda unumdorliklar qo‘shiladi",
+      "togri": true,
+      "izoh": "15 + 9"
+     },
+     {
+      "matn": "120 / 24 — 5",
+      "togri": true,
+      "izoh": "vaqt"
+     },
+     {
+      "matn": "Quvib yetishda tezliklar qo‘shiladi",
+      "togri": false,
+      "izoh": "ayiriladi"
+     },
+     {
+      "matn": "Takrorlash — bilim onasi",
+      "togri": true,
+      "izoh": "mustahkamlaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sinflar nomi?",
+      "javob": "birliklar, minglar, millionlar"
+     },
+     {
+      "savol": "9 ga bo‘linish alomati?",
+      "javob": "raqamlar yig‘indisi 9 ga bo‘linadi"
+     },
+     {
+      "savol": "3150 / 45?",
+      "javob": "70"
+     },
+     {
+      "savol": "300 / 150?",
+      "javob": "2"
+     },
+     {
+      "savol": "40 / 8?",
+      "javob": "5"
+     },
+     {
+      "savol": "120 / 24?",
+      "javob": "5"
+     },
+     {
+      "savol": "12 · 8?",
+      "javob": "96"
+     },
+     {
+      "savol": "360000 / 9000?",
+      "javob": "40"
+     },
+     {
+      "savol": "Birgalikda ishlashda?",
+      "javob": "unumdorliklar qo‘shiladi"
+     },
+     {
+      "savol": "Quvib yetishda?",
+      "javob": "tezliklar ayiriladi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Sinf",
+      "matn": "Sinflarga ajrat.",
+      "savol": "12345678?"
+     },
+     {
+      "nom": "Alomat",
+      "matn": "Alomatni qo‘lla.",
+      "savol": "4509?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Amalni bajar.",
+      "savol": "3150 / 45?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari amal.",
+      "savol": "45 · 70?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun takrorlash o‘rganilganni mustahkamlaydi?",
+    "keys": {
+     "vaziyat": "Nazoratdan oldin hamma mavzuni takrorlayapsiz.",
+     "savollar": [
+      "Qaysi mavzu qiyin?",
+      "Nimaga ko‘proq mashq qilasiz?"
+     ]
+    },
+    "tezis": "Takror — ilm ko‘zi",
+    "taqqoslash": {
+     "a": "Oldin o‘rganilgan",
+     "b": "Takrorlanayotgan",
+     "umumiy": [
+      "bir mavzu",
+      "bilim mustahkamlanadi"
+     ],
+     "a_farq": [
+      "birinchi marta",
+      "tanishish"
+     ],
+     "b_farq": [
+      "ikkinchi marta",
+      "mustahkamlash"
+     ]
+    },
+    "klaster": {
+     "markaz": "Mustahkamlash",
+     "shoxlar": [
+      {
+       "nom": "Sonlar",
+       "bandlar": [
+        "sinflar",
+        "taqqoslash"
+       ]
+      },
+      {
+       "nom": "Alomatlar",
+       "bandlar": [
+        "2, 5, 10",
+        "3, 9",
+        "4"
+       ]
+      },
+      {
+       "nom": "Harakat",
+       "bandlar": [
+        "tomon",
+        "quvish"
+       ]
+      },
+      {
+       "nom": "Ish",
+       "bandlar": [
+        "unumdorlik",
+        "birgalikda"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men o‘rganilganni qayta eslatib, mustahkamlayman. Men kimman?",
+     "javob": "takrorlash"
+    },
+    "hikmat": "Takror — ilm ko‘zi.",
+    "kalit_soz": "TAKROR",
+    "xato_yechim": {
+     "shart": "Orasi 40 km, tezliklar 14 va 6. Necha soatda yetadi?",
+     "xato": "2",
+     "togri": "5 soat",
+     "sabab": "ayirma 14 − 6 — 8, keyin 40 / 8"
+    },
+    "guruh_nomlari": [
+     "Takrorlovchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar",
+     "Masalachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Takrorlash stansiyalari»",
+     "topshiriq": "Guruh stansiyalardan o‘tib, topshiriqlarni yechadi."
+    },
+    "vazifalar": {
+     "A": "12345678 ni sinflarga ajrating. 345678 va 345687 ni taqqoslang.",
+     "B": "3150 / 45 va 300 / 150 ni hisoblang.",
+     "C": "Usta 15, shogird 9 detal soatiga. 120 detalni necha soatda yasaydi?"
+    },
+    "sinkveyn": [
+     "Takrorlash",
+     "tez, mustahkam",
+     "eslatadi, mustahkamlaydi, o‘rgatadi",
+     "Takror — ilm ko‘zi",
+     "Amal"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh stansiyalarda ishlaydi.",
+     "qismlar": [
+      "1-guruh: sinflar",
+      "2-guruh: alomatlar",
+      "3-guruh: harakat",
+      "4-guruh: ish unumdorligi"
+     ],
+     "yakun": "Hamma topshiriqlar yechildi va tekshirildi."
+    }
+   }
   }
  ]
 }
