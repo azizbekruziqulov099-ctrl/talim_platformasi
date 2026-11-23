@@ -1,0 +1,1395 @@
+{
+ "daraja": "maktab",
+ "sinf": "4",
+ "fan": "Matematika",
+ "muallif": "qo‘lda yozilgan, hisob-kitob avtomatik tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "O‘rganilganlarni takrorlash",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sonlar va xonalar",
+      "matn": "Ko‘p xonali sonda har bir raqamning o‘z o‘rni bor: birlik, o‘nlik, yuzlik, minglik. Raqamning o‘rni uning qiymatini belgilaydi.",
+      "misol": "4308 sonida 4 ta minglik, 3 ta yuzlik, 0 ta o‘nlik va 8 ta birlik bor.",
+      "savol": "5127 sonida nechta yuzlik bor?",
+      "javob": "1",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shish va ayirish",
+      "matn": "Ko‘p xonali sonlarni xonalar ostma-ost yozib, o‘ngdan chapga qo‘shamiz va ayiramiz. Qo‘shishda 10 ta bo‘lsa, keyingi xonaga 1 olib o‘tamiz. Ayirishda xona yetmasa, qo‘shni xonadan qarz olamiz.",
+      "misol": "4562 + 3238 — 7800. 9000 − 2475 — 6525. Tekshirish: 6525 + 2475 — 9000.",
+      "savol": "235 + 465 nechaga teng?",
+      "javob": "700",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirish",
+      "matn": "Ko‘paytirish — bir xil sonlarni takror qo‘shish. Ko‘paytirish jadvalini bilish hisoblashni tezlashtiradi. Ko‘p xonali sonni bir xonali songa ko‘paytirishda har bir xonani ketma-ket ko‘paytiramiz.",
+      "misol": "36 · 8 — 288, chunki 30 · 8 — 240 va 6 · 8 — 48, 240 + 48 — 288.",
+      "savol": "12 · 7 nechaga teng?",
+      "javob": "84",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bo‘lish va qoldiq",
+      "matn": "Bo‘lish — ko‘paytirishga teskari amal. Bo‘linma bilan bo‘luvchini ko‘paytirib, bo‘linuvchini tekshiramiz. Qoldiq bo‘luvchidan doim kichik bo‘ladi.",
+      "misol": "144 / 12 — 12, chunki 12 · 12 — 144. 47 / 6 — 7 va qoldiq 5, chunki 6 · 7 — 42 va 47 − 42 — 5.",
+      "savol": "81 / 9 nechaga teng?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masala yechish",
+      "matn": "Masalani yechishda avval shartni o‘qiymiz, nima ma’lum va nima so‘ralayotganini aniqlaymiz. So‘ng amalni tanlaymiz, hisoblaymiz va javobni tekshiramiz.",
+      "misol": "Qutida 25 tadan 8 ta daftar bor. Jami 25 · 8 — 200 daftar.",
+      "savol": "Har birida 6 ta bo‘lgan 7 ta qutida nechta narsa bor?",
+      "javob": "42",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qo‘shish va ayirishni xonalar ostma-ost yozib bajaramiz. Ko‘paytirish va bo‘lish — teskari amallar. Qoldiq bo‘luvchidan kichik bo‘ladi. Javobni tekshiramiz.",
+    "misollar": [
+     {
+      "shart": "4562 + 3238 ni hisoblang.",
+      "yechim": [
+       "Birliklar: 2 + 8 — 10, 0 yoziladi, 1 olib o‘tamiz.",
+       "O‘nliklar: 6 + 3 + 1 — 10, yana 1 olib o‘tamiz.",
+       "Yuzliklar 5 + 2 + 1 — 8, mingliklar 4 + 3 — 7. Javob 7800."
+      ],
+      "javob": "7800"
+     },
+     {
+      "shart": "9000 − 2475 ni hisoblang.",
+      "yechim": [
+       "9000 − 2000 — 7000.",
+       "7000 − 475 — 6525.",
+       "Tekshiramiz: 6525 + 2475 — 9000."
+      ],
+      "javob": "6525"
+     },
+     {
+      "shart": "Do‘konda 25 tadan 8 quti qalam bor. Jami nechta qalam?",
+      "yechim": [
+       "Har qutida 25 ta, qutilar 8 ta.",
+       "25 · 8 — 200.",
+       "Javob: 200 ta qalam."
+      ],
+      "javob": "200"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sonlar kartochkasi",
+      "topshiriq": "Raqam kartochkalaridan to‘rt xonali son tuzing va xonalarini ayting.",
+      "yechim": "Har guruh o‘z sonining xonalarini aytadi.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Hisob poygasi",
+      "topshiriq": "Qo‘shish, ayirish, ko‘paytirish va bo‘lishdan 2 tadan misolni tez yeching.",
+      "yechim": "Natijalarni tekshiramiz.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Bozor o‘yini",
+      "topshiriq": "Bozorda 3 ta narsa tanlab, ularning narxini qo‘shing va qaytimni toping.",
+      "yechim": "Har guruh o‘z savatining hisobini yuritadi.",
+      "mahsulot": "bozor varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Berilgan amal bo‘yicha o‘z masalangizni tuzing.",
+      "yechim": "Har guruh bitta masala tuzib, boshqalarga beradi.",
+      "mahsulot": "masala kartochkasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "235 + 465 nechaga teng?",
+      "javob": "700"
+     },
+     {
+      "shart": "1000 − 357 nechaga teng?",
+      "javob": "643"
+     },
+     {
+      "shart": "12 · 7 nechaga teng?",
+      "javob": "84"
+     },
+     {
+      "shart": "81 / 9 nechaga teng?",
+      "javob": "9"
+     },
+     {
+      "shart": "506 + 94 nechaga teng?",
+      "javob": "600"
+     },
+     {
+      "shart": "48 / 6 nechaga teng?",
+      "javob": "8"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qo‘shishda olib o‘tishni unutadi",
+      "sabab": "birliklar yig‘indisi 10 dan oshganini sezmaydi",
+      "oldini_olish": "har xonada 10 dan oshishini tekshirish"
+     },
+     {
+      "xato": "Ayirishda kichikdan kattani ayiradi",
+      "sabab": "tartibni adashtiradi",
+      "oldini_olish": "doim katta sondan kichigini ayirish"
+     },
+     {
+      "xato": "Qoldiqni bo‘luvchidan katta qoldiradi",
+      "sabab": "bo‘lishni oxirigacha bajarmaydi",
+      "oldini_olish": "qoldiq bo‘luvchidan kichik ekanini tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Ona tili",
+      "boglanish": "sonlarni so‘z bilan yozish"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "kuzatuv natijalarini sanash"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "natijalarni qo‘shish va solishtirish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening hisob daftarim»",
+     "muammo": "O‘rganganlarimizni qanday qilib bir joyga to‘plab, chiroyli hisob daftari tayyorlaymiz?",
+     "mahsulot": "hisob daftari",
+     "bosqichlar": [
+      "misollarni tanlash",
+      "yechish",
+      "tekshirish",
+      "rasm chizish",
+      "daftarni bezash"
+     ],
+     "guruh_vazifalari": [
+      "Misol tanlang",
+      "Yeching",
+      "Tekshiring",
+      "Namoyish qiling"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "tekshirilgan",
+      "chiroyli yozilgan",
+      "rasm mos",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Hisob shahri»",
+     "bekatlar": [
+      {
+       "nom": "Do‘kon",
+       "matn": "Daftar 3 so‘m, 4 ta.",
+       "topshiriq": "Jami?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab",
+       "matn": "30 o‘quvchi, 5 qatorga teng.",
+       "topshiriq": "Har qatorda?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "125 ta olma va 75 ta nok.",
+       "topshiriq": "Jami?",
+       "javob": "200",
+       "rasm": ""
+      },
+      {
+       "nom": "Stadion",
+       "matn": "1000 ta o‘rindan 350 tasi band.",
+       "topshiriq": "Bo‘sh o‘rin?",
+       "javob": "650",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi amal oson bo‘ldi?",
+      "Qayerda hisob kerak bo‘ldi?",
+      "Natijani tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Xona",
+      "tarif": "raqamning sondagi o‘rni"
+     },
+     {
+      "atama": "Yig‘indi",
+      "tarif": "qo‘shish natijasi"
+     },
+     {
+      "atama": "Ayirma",
+      "tarif": "ayirish natijasi"
+     },
+     {
+      "atama": "Ko‘paytma",
+      "tarif": "ko‘paytirish natijasi"
+     },
+     {
+      "atama": "Bo‘linma",
+      "tarif": "bo‘lish natijasi"
+     },
+     {
+      "atama": "Qoldiq",
+      "tarif": "bo‘lishda ortib qolgan son"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "4308 sonida 3 ta yuzlik bor",
+      "togri": true,
+      "izoh": "yuzlik xonasida 3"
+     },
+     {
+      "matn": "Qoldiq bo‘luvchidan katta bo‘ladi",
+      "togri": false,
+      "izoh": "qoldiq kichik bo‘ladi"
+     },
+     {
+      "matn": "12 · 7 — 84",
+      "togri": true,
+      "izoh": "ko‘paytirish jadvali"
+     },
+     {
+      "matn": "Bo‘lish — qo‘shishga teskari amal",
+      "togri": false,
+      "izoh": "ko‘paytirishga teskari"
+     },
+     {
+      "matn": "Ayirishni qo‘shish bilan tekshiramiz",
+      "togri": true,
+      "izoh": "ayirma plus ayriluvchi"
+     },
+     {
+      "matn": "48 / 6 — 7",
+      "togri": false,
+      "izoh": "8"
+     },
+     {
+      "matn": "235 + 465 — 700",
+      "togri": true,
+      "izoh": "5 + 5 — 10 va hokazo"
+     },
+     {
+      "matn": "Masalada javobni tekshirish shart emas",
+      "togri": false,
+      "izoh": "tekshirish kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Birlik, o‘nlik, yuzlik — nima?",
+      "javob": "xonalar"
+     },
+     {
+      "savol": "Qo‘shish natijasi?",
+      "javob": "yig‘indi"
+     },
+     {
+      "savol": "Ayirish natijasi?",
+      "javob": "ayirma"
+     },
+     {
+      "savol": "Ko‘paytirish natijasi?",
+      "javob": "ko‘paytma"
+     },
+     {
+      "savol": "Bo‘lish natijasi?",
+      "javob": "bo‘linma"
+     },
+     {
+      "savol": "Bo‘lishning teskarisi?",
+      "javob": "ko‘paytirish"
+     },
+     {
+      "savol": "Qoldiq qanday bo‘ladi?",
+      "javob": "bo‘luvchidan kichik"
+     },
+     {
+      "savol": "7 · 8 nechaga teng?",
+      "javob": "56"
+     },
+     {
+      "savol": "100 − 1 nechaga teng?",
+      "javob": "99"
+     },
+     {
+      "savol": "Ayirishni nima bilan tekshiramiz?",
+      "javob": "qo‘shish bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Xona",
+      "matn": "Raqam o‘rnini ayt.",
+      "savol": "5127 da minglik?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "Olib o‘tishni unutma.",
+      "savol": "26 + 38?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Jadvalni eslab ol.",
+      "savol": "9 · 6?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari amalni ishlat.",
+      "savol": "56 / 7 — 8, tekshir?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun hisoblagandan keyin javobni tekshirish kerak? Teskari amal bilan qanday tekshiramiz?",
+    "keys": {
+     "vaziyat": "Do‘konda 25 tadan 8 quti daftar bor. Sotuvchi nechta daftar borligini bilmoqchi.",
+     "savollar": [
+      "Qaysi amalni tanlaymiz?",
+      "Jami nechta daftar bor?"
+     ]
+    },
+    "tezis": "Tekshirish — aqlli hisobchining odati",
+    "taqqoslash": {
+     "a": "Qo‘shish",
+     "b": "Ayirish",
+     "umumiy": [
+      "xonalar ostma-ost yoziladi",
+      "o‘ngdan chapga bajariladi"
+     ],
+     "a_farq": [
+      "olib o‘tamiz",
+      "yig‘indi chiqadi"
+     ],
+     "b_farq": [
+      "qarz olamiz",
+      "ayirma chiqadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Takrorlash",
+     "shoxlar": [
+      {
+       "nom": "Xonalar",
+       "bandlar": [
+        "birlik",
+        "o‘nlik",
+        "yuzlik",
+        "minglik"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "qo‘shish",
+        "ayirish"
+       ]
+      },
+      {
+       "nom": "Amallar 2",
+       "bandlar": [
+        "ko‘paytirish",
+        "bo‘lish"
+       ]
+      },
+      {
+       "nom": "Masala",
+       "bandlar": [
+        "shart",
+        "amal",
+        "javob"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ko‘paytirishning teskarisiman. Men kimman?",
+     "javob": "bo‘lish"
+    },
+    "hikmat": "Takrorlash — bilimning onasi.",
+    "kalit_soz": "HISOB",
+    "xato_yechim": {
+     "shart": "9000 − 2475 ni hisoblang.",
+     "xato": "7525",
+     "togri": "6525",
+     "sabab": "mingliklardan qarz olinganda yuzlikda 9 qoladi"
+    },
+    "guruh_nomlari": [
+     "Hisobchilar",
+     "Sonchilar",
+     "Misolchilar",
+     "Masalachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bozor hisobi»",
+     "topshiriq": "Guruh bozorda xarid qilib, narxni qo‘shadi va qaytimni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "345 + 255 va 800 − 275 ni hisoblang.",
+     "B": "14 · 6 va 96 / 8 ni hisoblang.",
+     "C": "Qutida 24 tadan 7 ta qalam bor. Jami nechta qalam?"
+    },
+    "sinkveyn": [
+     "Hisob",
+     "aniq, tez",
+     "qo‘shadi, ayiradi, tekshiradi",
+     "Sonlar bilan do‘stlik",
+     "Amal"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh amallarni bajaradi.",
+     "qismlar": [
+      "1-guruh: 235 + 465",
+      "2-guruh: 1000 − 357",
+      "3-guruh: 12 · 7",
+      "4-guruh: 81 / 9"
+     ],
+     "yakun": "Natijalar: 700; 643; 84; 9."
+    }
+   }
+  },
+  {
+   "mavzu": "Qavssiz ifodalarda arifmetik amallarning bajarilish tartibi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Amallar tartibi nima uchun kerak?",
+      "matn": "Bir ifodada bir nechta amal bo‘lsa, ularni ma’lum tartibda bajarish kerak. Tartib bo‘lmasa, har kim har xil javob oladi. Matematikada hamma bir xil qoidaga amal qiladi.",
+      "misol": "2 + 3 · 4 ifodani chapdan o‘ngga hisoblasak 20 chiqadi, to‘g‘ri tartibda esa 14 chiqadi. To‘g‘ri javob — 14.",
+      "savol": "2 + 3 · 4 ning to‘g‘ri javobi?",
+      "javob": "14",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birinchi qoida",
+      "matn": "Qavssiz ifodada avval ko‘paytirish va bo‘lish bajariladi, so‘ng qo‘shish va ayirish. Ko‘paytirish va bo‘lish ham, qo‘shish va ayirish ham tengma-teng, ular chapdan o‘ngga bajariladi.",
+      "misol": "20 − 12 / 4: avval 12 / 4 — 3, keyin 20 − 3 — 17. 5 + 6 · 2: avval 6 · 2 — 12, keyin 5 + 12 — 17.",
+      "savol": "20 − 12 / 4 nechaga teng?",
+      "javob": "17",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chapdan o‘ngga",
+      "matn": "Bir xil darajadagi amallar (faqat qo‘shish va ayirish, yoki faqat ko‘paytirish va bo‘lish) chapdan o‘ngga bajariladi. Bu tartibni o‘zgartirib bo‘lmaydi.",
+      "misol": "10 + 20 − 5: 10 + 20 — 30, keyin 30 − 5 — 25. 48 / 8 / 2: 48 / 8 — 6, keyin 6 / 2 — 3.",
+      "savol": "10 + 20 − 5 nechaga teng?",
+      "javob": "25",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikki ko‘paytma yig‘indisi",
+      "matn": "Ifodada bir necha ko‘paytirish bo‘lsa, ularni alohida hisoblab, so‘ng qo‘shamiz yoki ayiramiz. Bu hayotda ko‘p uchraydi: har xil narsalar narxini hisoblashda.",
+      "misol": "5 · 6 − 4 · 3: 30 − 12 — 18. 36 / 6 + 4 · 2: 6 + 8 — 14.",
+      "savol": "5 · 6 − 4 · 3 nechaga teng?",
+      "javob": "18",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotiy masala",
+      "matn": "Masalani ifoda ko‘rinishida yozsak, uni amallar tartibi bilan to‘g‘ri hisoblaymiz. Bozorda: 2 ta non 4 so‘mdan va 1 sut 6 so‘m.",
+      "misol": "2 · 4 + 6 — 8 + 6 — 14 so‘m. Avval nonlar narxi, keyin sut narxi qo‘shiladi.",
+      "savol": "3 · 5 + 4 nechaga teng?",
+      "javob": "19",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qavssiz ifodada avval ko‘paytirish va bo‘lish (chapdan o‘ngga), keyin qo‘shish va ayirish (chapdan o‘ngga).",
+    "misollar": [
+     {
+      "shart": "14 + 6 · 3 ni hisoblang.",
+      "yechim": [
+       "Avval ko‘paytirish: 6 · 3 — 18.",
+       "Keyin qo‘shish: 14 + 18.",
+       "Javob 32."
+      ],
+      "javob": "32"
+     },
+     {
+      "shart": "90 − 48 / 6 ni hisoblang.",
+      "yechim": [
+       "Avval bo‘lish: 48 / 6 — 8.",
+       "Keyin ayirish: 90 − 8.",
+       "Javob 82."
+      ],
+      "javob": "82"
+     },
+     {
+      "shart": "7 · 8 − 36 / 4 ni hisoblang.",
+      "yechim": [
+       "Ikkala ko‘paytirish va bo‘lishni bajaramiz: 7 · 8 — 56 va 36 / 4 — 9.",
+       "Keyin ayirish: 56 − 9.",
+       "Javob 47."
+      ],
+      "javob": "47"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tartib o‘yini",
+      "topshiriq": "3 + 4 · 5 ifodani avval chapdan o‘ngga, so‘ng to‘g‘ri tartibda hisoblang va javoblarni solishtiring.",
+      "yechim": "Chapdan o‘ngga 35 chiqadi, to‘g‘ri tartibda 23.",
+      "mahsulot": "javob varag‘i"
+     },
+     {
+      "nom": "Bozor ifodasi",
+      "topshiriq": "3 ta nonni 4 so‘mdan va 2 ta sutni 6 so‘mdan olamiz. Ifoda tuzing va hisoblang.",
+      "yechim": "3 · 4 + 2 · 6 — 12 + 12 — 24 so‘m.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "O‘rtog‘ingiz 2 + 3 · 4 ni 20 deb hisoblabdi. Xatoni toping.",
+      "yechim": "Avval ko‘paytirish kerak edi: 14.",
+      "mahsulot": "tushuntirish"
+     },
+     {
+      "nom": "O‘z ifodamiz",
+      "topshiriq": "Uchta amalli ifoda tuzib, to‘g‘ri tartibda hisoblang.",
+      "yechim": "Har guruh o‘z ifodasini yechadi.",
+      "mahsulot": "ifoda kartochkasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 + 4 · 5 nechaga teng?",
+      "javob": "23"
+     },
+     {
+      "shart": "30 − 18 / 3 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "6 · 4 + 2 · 5 nechaga teng?",
+      "javob": "34"
+     },
+     {
+      "shart": "40 / 8 + 7 nechaga teng?",
+      "javob": "12"
+     },
+     {
+      "shart": "100 − 4 · 9 nechaga teng?",
+      "javob": "64"
+     },
+     {
+      "shart": "24 / 4 / 2 nechaga teng?",
+      "javob": "3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Hamma amalni chapdan o‘ngga bajaradi",
+      "sabab": "ko‘paytirishni birinchi qilmaydi",
+      "oldini_olish": "avval ko‘paytirish va bo‘lishni belgilab olish"
+     },
+     {
+      "xato": "Bo‘lishdan oldin qo‘shadi",
+      "sabab": "tartibni unutadi",
+      "oldini_olish": "qoidani daftar chetiga yozib qo‘yish"
+     },
+     {
+      "xato": "Bir xil darajadagi amallarni o‘ngdan chapga bajaradi",
+      "sabab": "tartib yo‘nalishini bilmaydi",
+      "oldini_olish": "chapdan o‘ngga deb o‘ylash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "xarid va hisob-kitob"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "kalkulyator ham shu tartibda ishlaydi"
+     },
+     {
+      "fan": "Ona tili",
+      "boglanish": "qoida va tartib tushunchasi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tartib qoidasi»",
+     "muammo": "Amallar tartibini boshqalarga qanday qilib qiziqarli tushuntiramiz?",
+     "mahsulot": "tartib plakati",
+     "bosqichlar": [
+      "qoidani yozish",
+      "misol tanlash",
+      "rasm chizish",
+      "tekshirish",
+      "plakat chiqarish"
+     ],
+     "guruh_vazifalari": [
+      "Qoidani yozing",
+      "Misol tanlang",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "qoida to‘g‘ri",
+      "misollar to‘g‘ri",
+      "plakat chiroyli",
+      "tushuntirish ravshan",
+      "ishtirok bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tartib ko‘chasi»",
+     "bekatlar": [
+      {
+       "nom": "Nonvoy",
+       "matn": "2 ta non 4 so‘mdan va 1 ta 6 so‘mlik sut.",
+       "topshiriq": "Jami?",
+       "javob": "14",
+       "rasm": ""
+      },
+      {
+       "nom": "Do‘kon",
+       "matn": "3 + 4 · 5.",
+       "topshiriq": "Natija?",
+       "javob": "23",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "30 − 18 / 3.",
+       "topshiriq": "Natija?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "Stadion",
+       "matn": "6 · 4 + 2 · 5.",
+       "topshiriq": "Natija?",
+       "javob": "34",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi amalni birinchi bajardingiz?",
+      "Qoida yordam berdimi?",
+      "Qayerda tartib kerak bo‘ldi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ifoda",
+      "tarif": "sonlar va amal belgilaridan iborat yozuv"
+     },
+     {
+      "atama": "Amal",
+      "tarif": "qo‘shish, ayirish, ko‘paytirish, bo‘lish"
+     },
+     {
+      "atama": "Tartib",
+      "tarif": "amallarning bajarilish ketma-ketligi"
+     },
+     {
+      "atama": "Ko‘paytma",
+      "tarif": "ko‘paytirish natijasi"
+     },
+     {
+      "atama": "Bo‘linma",
+      "tarif": "bo‘lish natijasi"
+     },
+     {
+      "atama": "Qiymat",
+      "tarif": "ifodaning hisoblangan natijasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Avval ko‘paytirish bajariladi",
+      "togri": true,
+      "izoh": "qo‘shishdan oldin"
+     },
+     {
+      "matn": "2 + 3 · 4 — 20",
+      "togri": false,
+      "izoh": "14"
+     },
+     {
+      "matn": "Qo‘shish va ayirish chapdan o‘ngga bajariladi",
+      "togri": true,
+      "izoh": "bir daraja"
+     },
+     {
+      "matn": "30 − 18 / 3 — 4",
+      "togri": false,
+      "izoh": "24"
+     },
+     {
+      "matn": "6 · 4 + 2 · 5 — 34",
+      "togri": true,
+      "izoh": "24 + 10"
+     },
+     {
+      "matn": "Bo‘lish qo‘shishdan keyin bajariladi",
+      "togri": false,
+      "izoh": "oldin"
+     },
+     {
+      "matn": "24 / 4 / 2 — 3",
+      "togri": true,
+      "izoh": "6 / 2"
+     },
+     {
+      "matn": "Amallar tartibi muhim emas",
+      "togri": false,
+      "izoh": "natija o‘zgaradi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qaysi amallar birinchi bajariladi?",
+      "javob": "ko‘paytirish va bo‘lish"
+     },
+     {
+      "savol": "Keyin qaysilar?",
+      "javob": "qo‘shish va ayirish"
+     },
+     {
+      "savol": "Bir daraja amallar qanday?",
+      "javob": "chapdan o‘ngga"
+     },
+     {
+      "savol": "2 + 3 · 4?",
+      "javob": "14"
+     },
+     {
+      "savol": "20 − 12 / 4?",
+      "javob": "17"
+     },
+     {
+      "savol": "10 + 20 − 5?",
+      "javob": "25"
+     },
+     {
+      "savol": "3 + 4 · 5?",
+      "javob": "23"
+     },
+     {
+      "savol": "5 · 6 − 4 · 3?",
+      "javob": "18"
+     },
+     {
+      "savol": "48 / 8 / 2?",
+      "javob": "3"
+     },
+     {
+      "savol": "Tartib nima uchun kerak?",
+      "javob": "hamma bir xil javob olishi uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Avval ko‘paytirish.",
+      "savol": "4 · 5?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "Bo‘lish ham birinchi.",
+      "savol": "18 / 3?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "Keyin qo‘shish.",
+      "savol": "3 + 20?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Chapdan o‘ngga.",
+      "savol": "10 + 20 − 5?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun 2 + 3 · 4 ifodani chapdan o‘ngga hisoblash noto‘g‘ri? Bozordagi misol bilan tushuntiring.",
+    "keys": {
+     "vaziyat": "Nonvoyxonada 2 ta non 4 so‘mdan va 1 ta sut 6 so‘m turadi.",
+     "savollar": [
+      "Ifodani qanday yozamiz?",
+      "Jami necha so‘m to‘laymiz?"
+     ]
+    },
+    "tezis": "Tartib — to‘g‘ri javobning kaliti",
+    "taqqoslash": {
+     "a": "Ko‘paytirish va bo‘lish",
+     "b": "Qo‘shish va ayirish",
+     "umumiy": [
+      "chapdan o‘ngga bajariladi",
+      "arifmetik amallar"
+     ],
+     "a_farq": [
+      "birinchi bajariladi",
+      "yuqori daraja"
+     ],
+     "b_farq": [
+      "keyin bajariladi",
+      "quyi daraja"
+     ]
+    },
+    "klaster": {
+     "markaz": "Amallar tartibi",
+     "shoxlar": [
+      {
+       "nom": "Birinchi",
+       "bandlar": [
+        "ko‘paytirish",
+        "bo‘lish"
+       ]
+      },
+      {
+       "nom": "Keyin",
+       "bandlar": [
+        "qo‘shish",
+        "ayirish"
+       ]
+      },
+      {
+       "nom": "Yo‘nalish",
+       "bandlar": [
+        "chapdan o‘ngga"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "bozor",
+        "hisob"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ko‘paytirish va bo‘lishdan keyin kelaman. Men kimman?",
+     "javob": "qo‘shish va ayirish"
+    },
+    "hikmat": "Tartib bor joyda xato yo‘q.",
+    "kalit_soz": "TARTIB",
+    "xato_yechim": {
+     "shart": "2 + 3 · 4 ni hisoblang.",
+     "xato": "20",
+     "togri": "14",
+     "sabab": "avval 3 · 4 — 12, keyin 2 + 12"
+    },
+    "guruh_nomlari": [
+     "Tartibchilar",
+     "Ko‘paytiruvchilar",
+     "Hisobchilar",
+     "Qoidachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bozor ifodasi»",
+     "topshiriq": "Guruh bozor xaridini ifoda qilib yozib, hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "5 + 6 · 2 va 20 − 12 / 4 ni hisoblang.",
+     "B": "6 · 4 + 2 · 5 va 36 / 6 + 4 · 2 ni hisoblang.",
+     "C": "3 ta olma 5 so‘mdan va 2 ta nok 4 so‘mdan. Jami necha so‘m?"
+    },
+    "sinkveyn": [
+     "Tartib",
+     "birinchi, keyin",
+     "bajariladi, hisoblanadi, tekshiriladi",
+     "Qoida bor",
+     "Amal"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ifodalarni hisoblaydi.",
+     "qismlar": [
+      "1-guruh: 3 + 4 · 5",
+      "2-guruh: 30 − 18 / 3",
+      "3-guruh: 6 · 4 + 2 · 5",
+      "4-guruh: 40 / 8 + 7"
+     ],
+     "yakun": "Natijalar: 23; 24; 34; 12."
+    }
+   }
+  },
+  {
+   "mavzu": "Qavsli ifodalarda arifmetik amallarning bajarilish tartibi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Qavs nima qiladi?",
+      "matn": "Qavs amallar tartibini o‘zgartiradi. Qavs ichidagi amal doim birinchi bajariladi, hatto u qo‘shish yoki ayirish bo‘lsa ham. Qavs — «avval shuni hisobla» degan belgi.",
+      "misol": "2 + 3 · 4 — 14, lekin (2 + 3) · 4 — 5 · 4 — 20. Qavs natijani o‘zgartirdi.",
+      "savol": "(2 + 3) · 4 nechaga teng?",
+      "javob": "20",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qoida",
+      "matn": "Qavsli ifodada avval qavs ichi hisoblanadi, so‘ng ko‘paytirish va bo‘lish, oxirida qo‘shish va ayirish bajariladi. Har bir bosqichda chapdan o‘ngga ketamiz.",
+      "misol": "50 − (20 + 10): avval 20 + 10 — 30, keyin 50 − 30 — 20. 36 / (2 + 4): avval 2 + 4 — 6, keyin 36 / 6 — 6.",
+      "savol": "50 − (20 + 10) nechaga teng?",
+      "javob": "20",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ayirma va bo‘linma bilan",
+      "matn": "Qavs ayirish va bo‘lishda ayniqsa muhim. Qavs ichidagi ayirmani avval hisoblaymiz, so‘ng uni ko‘paytirish yoki bo‘lishda ishlatamiz.",
+      "misol": "(18 − 6) / 3: 18 − 6 — 12, 12 / 3 — 4. 5 · (8 − 3): 8 − 3 — 5, 5 · 5 — 25.",
+      "savol": "(18 − 6) / 3 nechaga teng?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikkita qavs",
+      "matn": "Ifodada ikkita qavs bo‘lsa, har birini alohida hisoblab, keyin ularning orasidagi amalni bajaramiz.",
+      "misol": "(7 + 5) · (9 − 6): 12 · 3 — 36. 100 − (40 − 15): 40 − 15 — 25, 100 − 25 — 75.",
+      "savol": "(7 + 5) · (9 − 6) nechaga teng?",
+      "javob": "36",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qavs ichida ko‘p amal",
+      "matn": "Qavs ichida bir nechta amal bo‘lsa, qavs ichida ham tartibga amal qilamiz: avval ko‘paytirish, keyin qo‘shish. Natijani qavs o‘rniga yozamiz.",
+      "misol": "120 − (30 + 6 · 5): qavs ichida 6 · 5 — 30, 30 + 30 — 60, keyin 120 − 60 — 60.",
+      "savol": "(2 + 3 · 4) ni hisoblang.",
+      "javob": "14",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Avval qavs ichidagi amal, keyin ko‘paytirish va bo‘lish, oxirida qo‘shish va ayirish. Qavs ichida ham shu tartib saqlanadi.",
+    "misollar": [
+     {
+      "shart": "(15 + 9) / 4 ni hisoblang.",
+      "yechim": [
+       "Avval qavs ichi: 15 + 9 — 24.",
+       "Keyin bo‘lish: 24 / 4.",
+       "Javob 6."
+      ],
+      "javob": "6"
+     },
+     {
+      "shart": "7 · (10 − 4) ni hisoblang.",
+      "yechim": [
+       "Avval qavs ichi: 10 − 4 — 6.",
+       "Keyin ko‘paytirish: 7 · 6.",
+       "Javob 42."
+      ],
+      "javob": "42"
+     },
+     {
+      "shart": "120 − (30 + 6 · 5) ni hisoblang.",
+      "yechim": [
+       "Qavs ichida avval ko‘paytirish: 6 · 5 — 30.",
+       "Qavs ichi: 30 + 30 — 60.",
+       "Keyin 120 − 60 — 60."
+      ],
+      "javob": "60"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qavs o‘yini",
+      "topshiriq": "2 + 3 · 4 ifodaga qavs qo‘yib, javobni 20 qiling.",
+      "yechim": "(2 + 3) · 4 — 20.",
+      "mahsulot": "o‘yin varag‘i"
+     },
+     {
+      "nom": "Bozor qavsi",
+      "topshiriq": "5 so‘mlik 3 ta va 4 so‘mlik 2 ta narsa oldik, 50 so‘m berdik. Qaytim qancha?",
+      "yechim": "50 − (5 · 3 + 4 · 2) — 50 − 23 — 27 so‘m.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Ikki qavs",
+      "topshiriq": "(8 + 4) / (5 − 2) ni hisoblang.",
+      "yechim": "12 / 3 — 4.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "O‘z ifodamiz",
+      "topshiriq": "Qavsli ifoda tuzing va to‘g‘ri tartibda yeching.",
+      "yechim": "Har guruh o‘z ifodasini yechadi.",
+      "mahsulot": "ifoda kartochkasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "(4 + 6) · 3 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "45 − (15 + 10) nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "48 / (3 + 5) nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "(20 − 8) · 2 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "9 · (7 − 4) nechaga teng?",
+      "javob": "27"
+     },
+     {
+      "shart": "(36 + 24) / 10 nechaga teng?",
+      "javob": "6"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qavsni e’tiborsiz qoldiradi",
+      "sabab": "avval qavs ichini hisoblamaydi",
+      "oldini_olish": "qavsni rangli qalam bilan belgilab olish"
+     },
+     {
+      "xato": "Qavs ichidagi ayirmani oxirida bajaradi",
+      "sabab": "tartibni unutadi",
+      "oldini_olish": "qavs ichi har doim birinchi ekanini eslash"
+     },
+     {
+      "xato": "Qavs ichidagi ko‘paytirishni unutadi",
+      "sabab": "qavs ichida ham tartib borligini bilmaydi",
+      "oldini_olish": "qavs ichida ham avval ko‘paytirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "xarid va qaytim hisobi"
+     },
+     {
+      "fan": "Ona tili",
+      "boglanish": "tinish belgilari ma’noni o‘zgartirishi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "kalkulyator va kompyuterda qavs"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Qavs sehri»",
+     "muammo": "Qavs natijani qanday o‘zgartirishini qanday qilib ko‘rsatamiz?",
+     "mahsulot": "qavs sehri albomi",
+     "bosqichlar": [
+      "ifoda tanlash",
+      "qavssiz hisoblash",
+      "qavs bilan hisoblash",
+      "natijalarni solishtirish",
+      "albom tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Ifoda tanlang",
+      "Hisoblang",
+      "Solishtiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisoblar to‘g‘ri",
+      "solishtirish aniq",
+      "tushuntirish ravshan",
+      "albom chiroyli",
+      "ishtirok bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qavs ko‘chasi»",
+     "bekatlar": [
+      {
+       "nom": "Maktab",
+       "matn": "(2 + 3) · 4.",
+       "topshiriq": "Natija?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "Do‘kon",
+       "matn": "50 − (20 + 10).",
+       "topshiriq": "Natija?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "36 / (2 + 4).",
+       "topshiriq": "Natija?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "Stadion",
+       "matn": "(7 + 5) · (9 − 6).",
+       "topshiriq": "Natija?",
+       "javob": "36",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qavs natijani o‘zgartirdimi?",
+      "Qaysi amalni birinchi bajardingiz?",
+      "Qavs qayerda kerak bo‘ldi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Qavs",
+      "tarif": "birinchi bajariladigan amalni ajratuvchi belgi"
+     },
+     {
+      "atama": "Ifoda",
+      "tarif": "sonlar va amal belgilaridan iborat yozuv"
+     },
+     {
+      "atama": "Amal tartibi",
+      "tarif": "amallar bajarilish ketma-ketligi"
+     },
+     {
+      "atama": "Qiymat",
+      "tarif": "ifodaning natijasi"
+     },
+     {
+      "atama": "Qavs ichi",
+      "tarif": "birinchi hisoblanadigan qism"
+     },
+     {
+      "atama": "Qaytim",
+      "tarif": "berilgan puldan qolgan qism"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qavs ichidagi amal birinchi bajariladi",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "(2 + 3) · 4 — 14",
+      "togri": false,
+      "izoh": "20"
+     },
+     {
+      "matn": "50 − (20 + 10) — 20",
+      "togri": true,
+      "izoh": "qavs ichi 30"
+     },
+     {
+      "matn": "Qavs natijani o‘zgartirmaydi",
+      "togri": false,
+      "izoh": "o‘zgartirishi mumkin"
+     },
+     {
+      "matn": "36 / (2 + 4) — 6",
+      "togri": true,
+      "izoh": "36 / 6"
+     },
+     {
+      "matn": "Qavs ichida ham amallar tartibi saqlanadi",
+      "togri": true,
+      "izoh": "ko‘paytirish oldin"
+     },
+     {
+      "matn": "(18 − 6) / 3 — 15",
+      "togri": false,
+      "izoh": "4"
+     },
+     {
+      "matn": "Qavs faqat qo‘shishda ishlatiladi",
+      "togri": false,
+      "izoh": "hamma amalda"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qavs nimani bildiradi?",
+      "javob": "avval shuni hisobla"
+     },
+     {
+      "savol": "(2 + 3) · 4?",
+      "javob": "20"
+     },
+     {
+      "savol": "50 − (20 + 10)?",
+      "javob": "20"
+     },
+     {
+      "savol": "36 / (2 + 4)?",
+      "javob": "6"
+     },
+     {
+      "savol": "(18 − 6) / 3?",
+      "javob": "4"
+     },
+     {
+      "savol": "5 · (8 − 3)?",
+      "javob": "25"
+     },
+     {
+      "savol": "(7 + 5) · (9 − 6)?",
+      "javob": "36"
+     },
+     {
+      "savol": "100 − (40 − 15)?",
+      "javob": "75"
+     },
+     {
+      "savol": "Qavs ichida qaysi amal avval?",
+      "javob": "ko‘paytirish va bo‘lish"
+     },
+     {
+      "savol": "Qavs nima uchun kerak?",
+      "javob": "tartibni o‘zgartirish uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qavs",
+      "matn": "Qavs ichini toping.",
+      "savol": "(3 + 2) · 4 da qavs ichi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Qavs ichini hisobla.",
+      "savol": "3 + 2?"
+     },
+     {
+      "nom": "Keyin",
+      "matn": "Qolgan amalni bajar.",
+      "savol": "5 · 4?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Natijani solishtir.",
+      "savol": "Javob 20 mi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun 2 + 3 · 4 va (2 + 3) · 4 ning javobi har xil? Qavs nima qildi?",
+    "keys": {
+     "vaziyat": "Do‘konda 5 so‘mlik 3 ta va 4 so‘mlik 2 ta narsa oldik. 50 so‘m berdik.",
+     "savollar": [
+      "Ifodani qanday yozamiz?",
+      "Qaytim qancha?"
+     ]
+    },
+    "tezis": "Qavs — birinchi bo‘lib hisoblash belgisi",
+    "taqqoslash": {
+     "a": "Qavssiz ifoda",
+     "b": "Qavsli ifoda",
+     "umumiy": [
+      "amallar tartibi bor",
+      "natija bitta bo‘ladi"
+     ],
+     "a_farq": [
+      "ko‘paytirish birinchi",
+      "qavs yo‘q"
+     ],
+     "b_farq": [
+      "qavs ichi birinchi",
+      "tartib o‘zgaradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Qavsli ifodalar",
+     "shoxlar": [
+      {
+       "nom": "Qavs",
+       "bandlar": [
+        "birinchi hisoblanadi"
+       ]
+      },
+      {
+       "nom": "Keyin",
+       "bandlar": [
+        "ko‘paytirish",
+        "bo‘lish"
+       ]
+      },
+      {
+       "nom": "Oxirida",
+       "bandlar": [
+        "qo‘shish",
+        "ayirish"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "qaytim",
+        "xarid"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ichimdagini birinchi hisoblashga majbur qilaman. Men kimman?",
+     "javob": "qavs"
+    },
+    "hikmat": "Qavs — hisobning chiroqchisi.",
+    "kalit_soz": "QAVS",
+    "xato_yechim": {
+     "shart": "(2 + 3) · 4 ni hisoblang.",
+     "xato": "14",
+     "togri": "20",
+     "sabab": "avval qavs ichi: 2 + 3 — 5, keyin 5 · 4"
+    },
+    "guruh_nomlari": [
+     "Qavschilar",
+     "Tartibchilar",
+     "Hisobchilar",
+     "Qoidachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Do‘kon qaytimi»",
+     "topshiriq": "Guruh xarid ifodasini qavs bilan yozib, qaytimni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "(15 + 5) / 4 va 7 · (10 − 4) ni hisoblang.",
+     "B": "100 − (40 − 15) va (7 + 5) · (9 − 6) ni hisoblang.",
+     "C": "5 so‘mlik 4 ta va 3 so‘mlik 5 ta narsa. 100 so‘m berdik. Qaytim?"
+    },
+    "sinkveyn": [
+     "Qavs",
+     "yumaloq, ikkita",
+     "ushlaydi, ajratadi, ko‘rsatadi",
+     "Birinchi bo‘lib",
+     "Qavs"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh qavsli ifodalarni hisoblaydi.",
+     "qismlar": [
+      "1-guruh: (4 + 6) · 3",
+      "2-guruh: 45 − (15 + 10)",
+      "3-guruh: 48 / (3 + 5)",
+      "4-guruh: (20 − 8) · 2"
+     ],
+     "yakun": "Natijalar: 30; 20; 6; 24."
+    }
+   }
+  }
+ ]
+}
