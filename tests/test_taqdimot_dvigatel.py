@@ -764,7 +764,7 @@ def test_zamonaviy_uslub_oilalari_va_200dan_ortiq_korinish():
 def test_titul_fon_rasm_va_doira_rasm_variantlari():
     """Titulning ikki yangi ko'rinishi: rasm fon bo'lib turadi (yonida matn paneli) va rasm katta doira ichida."""
     from modules.taqdimot_dvigatel import bloklar_joy, rasmlar, yasash
-    assert bloklar_joy.TITUL_SONI == 8 and len(bloklar_joy.NOMLAR["titul"]) == 8
+    assert bloklar_joy.TITUL_SONI == 9 and len(bloklar_joy.NOMLAR["titul"]) == 9
     m = json.loads(rasmlar.namuna_json())
     m["meta"].update(mavzu="Vulqonlar va zilzilalar", fan="Geografiya")
     for v, shakl in ((6, None), (7, "doira")):
@@ -799,3 +799,20 @@ def test_royxat_markaz_va_zanjir_korinishlari():
     uzun = {"bandlar": [{"nom": "Nom", "matn": "x" * 200}] * 5}
     assert not {"markaz", "zanjir"} & set(bloklar_royxat.nomzodlar(uzun, 1100, 500))
     assert not {"markaz", "zanjir"} & set(bloklar_royxat.nomzodlar({"bandlar": band}, 600, 500))
+
+
+def test_titul_plakat_korinishi():
+    """Plakat titul: sarlavha bosh harflarda ulkan, slaydga sig'adi; uzun nomda ham, rasm yo'q bo'lsa ham xato bermaydi."""
+    from modules.taqdimot_dvigatel import bloklar_joy, rasmlar, yasash
+    m = json.loads(rasmlar.namuna_json())
+    for mavzu in ("Kasrlar", "Tenglamalar sistemasi (ikkinchi daraja) va ularning grafik yechimi"):
+        m["meta"].update(mavzu=mavzu, fan="Algebra")
+        for oila in ("anor", "hashamat"):
+            s = yasash.yasa(m, seed=4, oila=oila, dizayn={"titul": 8}, rasm_avto=False)
+            els = s["slaydlar"][0]["els"]
+            sarlavha = [e for e in els if e.get("nm") == "!!title"]
+            assert sarlavha and mavzu.upper()[:6] in "".join(r["t"] for p in sarlavha[0].get("pp", []) for r in p.get("rs", []))
+            for e in els:
+                if e.get("k") == "text":
+                    assert e["x"] >= -1 and e["y"] >= -1 and e["x"] + e["w"] <= 1281 and e["y"] + e["h"] <= 721, (mavzu, e["x"], e["y"], e["w"], e["h"])
+            assert len(yasash.pptx(s)) > 10000

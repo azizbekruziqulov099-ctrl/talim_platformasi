@@ -38,10 +38,10 @@ JOYLASHUVLAR = {
 }
 SARLAVHA_TURLARI = ["chap", "chiziq", "tasma", "markaz", "raqam"]
 KART_TURLARI = ["oila", "yon", "chiziq", "soya"]
-TITUL_SONI = 8
+TITUL_SONI = 9
 BOLIM_SONI = 5
 NOMLAR = {
-    "titul": ["Oddiy", "Panel", "Markaz", "Diagonal", "Katta rasm", "Ramka", "Fon-rasm", "Doira rasm"],
+    "titul": ["Oddiy", "Panel", "Markaz", "Diagonal", "Katta rasm", "Ramka", "Fon-rasm", "Doira rasm", "Plakat"],
     "bolim": ["Oddiy", "Panel", "Markaz", "Katta raqam", "Rasmli"],
     "sarlavha": {"chap": "Chapda", "chiziq": "Chiziqli", "tasma": "Tasma", "markaz": "Markazda", "raqam": "Raqamli"},
     "kart": {"oila": "Uslubdagidek", "yon": "Yon chiziq", "chiziq": "Ramkali", "soya": "Soyali"},
@@ -709,7 +709,7 @@ def _belgi_doira(k, m, cx, cy, r, col, fg=None):
 
 
 def titul(k, d, v):
-    {1: _titul_panel, 2: _titul_markaz, 3: _titul_diagonal, 4: _titul_katta, 5: _titul_ramka, 6: _titul_fon, 7: _titul_doira}[v](k, d)
+    {1: _titul_panel, 2: _titul_markaz, 3: _titul_diagonal, 4: _titul_katta, 5: _titul_ramka, 6: _titul_fon, 7: _titul_doira, 8: _titul_plakat}[v](k, d)
 
 
 def _keng_rasm(k, m):
@@ -872,6 +872,32 @@ def _titul_katta(k, d):
     _muallif(k, m, M + 34, 474, 560)
     _titul_meta(k, m, M + 8, 40, 620)
     _tugmalar(k, d, M + 8, 600, col)
+
+
+def _titul_plakat(k, d):
+    """Plakat: butun slayd rangli fon, sarlavha ulkan bosh harflarda; rasm bo'lsa pastki o'ngda doirada."""
+    u, m, s = k.u, d["meta"], k.s
+    col = u.acc[0]
+    fg = u.matn_ustida(col)
+    s.rect(0, 0, W, H, fill=col, a=k.A("big", 0))
+    s.doira(W - 120, H + 60, 330, fill=fg, op=0.10, a=k.A("big", 0, dl=100))
+    s.doira(W - 40, 40, 120, fill=fg, op=0.08, a=k.A("big", 0, dl=150))
+    _titul_meta(k, m, 70, 40, 800, rang=fg)
+    key = _titul_rasm(k, m)
+    tw = 760 if key else 1080
+    s.rect(70, 112, 90, 6, fill=fg, a=k.A("accent", 0))
+    sz, th = B.mos_olcham(str(m["mavzu"]).upper(), tw, 330, sizes=(104, 92, 84, 76, 68, 60, 54, 48, 42, 36), lh=1.0)
+    s.matn(70, 136, tw, th + 10, str(m["mavzu"]).upper(), size=sz, font=u.head, bold=True, color=fg, lh=1.0, nm="!!title",
+           a=k.A("big", 0, dl=100), min_scale=0.5)
+    if key:
+        s.doira(1010, 420, 190, fill="#FFFFFF", op=0.95, a=k.A("big", 0, dl=200))
+        _rasm(k, {"rasm": key}, 850, 260, 320, 320, 0, dl=250, taglik=False)
+    yy = 136 + th + 26
+    _nishon(k, m, 70, min(yy, 520), fg, w=700, rang=fg)
+    if m.get("tayanch") and yy + 40 < 560:
+        s.matn(70, min(yy, 520) + 34, tw, 26, " · ".join(m["tayanch"]), size=14, color=fg, align="l", min_scale=0.6, a=k.A("item", 0, dl=300))
+    _muallif(k, m, 70, 590, 640, rang=fg)
+    _tugmalar(k, d, 70, 640, fg, fg=col)
 
 
 def _titul_ramka(k, d):
