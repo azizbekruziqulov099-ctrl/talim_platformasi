@@ -5592,6 +5592,1404 @@
      "yakun": "Natijalar: 4; (4; −3); (2; 5); (−1; 2)."
     }
    }
+  },
+  {
+   "mavzu": "Aylana uzunligi va doira yuzi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Aylana va doira",
+      "matn": "Aylana — markazdan bir xil uzoqlikdagi nuqtalar chizig‘i. Doira — aylana va uning ichidagi qism. Markazdan aylanagacha masofa radius, aylanadagi ikki nuqtani markaz orqali tutashtiruvchi kesma diametr. Diametr radiusdan ikki marta uzun.",
+      "misol": "Radiusi 5 sm bo‘lgan aylananing diametri 10 sm.",
+      "savol": "Radius 7 sm bo‘lsa, diametr necha sm?",
+      "javob": "14 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Pi soni",
+      "matn": "Har qanday aylana uzunligining uning diametriga nisbati bir xil son bo‘ladi. Bu son pi deb ataladi va taxminan 3,14 ga teng. Hisoblashlarda biz pi ni 3,14 deb olamiz.",
+      "misol": "Diametri 10 sm bo‘lgan aylananing uzunligi 31,4 sm. 31,4 ni 10 ga bo‘lsak, pi chiqadi.",
+      "savol": "Diametri 20 sm aylananing uzunligi taxminan necha sm?",
+      "javob": "62,8 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aylana uzunligi",
+      "matn": "Aylana uzunligini topish uchun diametrni pi ga ko‘paytiramiz. Radius berilgan bo‘lsa, 2 ni pi ga va radiusga ko‘paytiramiz.",
+      "misol": "Radiusi 10 sm aylananing uzunligi: 2 ni 3,14 ga ko‘paytirsak 6,28; uni 10 ga ko‘paytirsak 62,8 sm.",
+      "savol": "Diametri 100 sm bo‘lgan g‘ildirak bir aylanishda necha sm yo‘l bosadi?",
+      "javob": "314 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Doira yuzi",
+      "matn": "Doira yuzini topish uchun radiusni o‘ziga ko‘paytiramiz va pi ga ko‘paytiramiz. Yuza kvadrat birliklarda o‘lchanadi.",
+      "misol": "Radiusi 5 sm doiraning yuzi: 5 ni 5 ga ko‘paytirsak 25, uni 3,14 ga ko‘paytirsak 78,5 kvadrat sm.",
+      "savol": "Radiusi 10 sm doiraning yuzi?",
+      "javob": "314 kv. sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masalalarda qo‘llash",
+      "matn": "Aylana uzunligi g‘ildirak yo‘li, bog‘ cheti va doira shaklidagi buyumlar uchun kerak. Doira yuzi maydon va material hisobida kerak. Masalada avval radius yoki diametrni aniqlab olamiz.",
+      "misol": "G‘ildirak diametri 50 sm bo‘lsa, bir aylanishda 157 sm yo‘l bosadi, chunki 3,14 ni 50 ga ko‘paytirsak 157.",
+      "savol": "Diametri 20 sm g‘ildirak bir aylanishda necha sm yo‘l bosadi?",
+      "javob": "62,8 sm",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Diametr radiusdan ikki marta uzun. Aylana uzunligi: diametr ko‘paytirilsin pi ga (pi taxminan 3,14). Doira yuzi: radius ko‘paytirilsin radiusga va pi ga.",
+    "misollar": [
+     {
+      "shart": "Radiusi 10 sm aylananing uzunligini toping.",
+      "yechim": [
+       "Diametr 20 sm.",
+       "Uzunlik: 20 ni 3,14 ga ko‘paytiramiz.",
+       "Natija 62,8 sm."
+      ],
+      "javob": "62,8 sm"
+     },
+     {
+      "shart": "Radiusi 4 sm doiraning yuzini toping.",
+      "yechim": [
+       "Radiusni o‘ziga ko‘paytiramiz: 4 ni 4 ga — 16.",
+       "16 ni 3,14 ga ko‘paytiramiz.",
+       "Natija 50,24 kvadrat sm."
+      ],
+      "javob": "50,24 kv. sm"
+     },
+     {
+      "shart": "Aylana uzunligi 31,4 sm. Uning radiusini toping.",
+      "yechim": [
+       "Diametr: 31,4 ni 3,14 ga bo‘lamiz — 10.",
+       "Radius diametrning yarmi.",
+       "Natija 5 sm."
+      ],
+      "javob": "5 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Pi ni o‘lchaymiz",
+      "topshiriq": "Stakan yoki bankaning aylanasini ip bilan, diametrini chizg‘ich bilan o‘lchang. Aylana uzunligini diametrga bo‘ling.",
+      "yechim": "Natija 3 dan sal ko‘p chiqadi, taxminan 3,14.",
+      "mahsulot": "o‘lchash jadvali"
+     },
+     {
+      "nom": "Gulzor",
+      "topshiriq": "Doira shaklidagi gulzorning radiusi 3 m. Uning yuzini va chetining uzunligini toping.",
+      "yechim": "Yuza: 3 ni 3 ga ko‘paytirsak 9, 3,14 ga ko‘paytirsak 28,26 kv. m. Cheti: 6 ni 3,14 ga ko‘paytirsak 18,84 m.",
+      "mahsulot": "gulzor chizmasi"
+     },
+     {
+      "nom": "G‘ildirak",
+      "topshiriq": "G‘ildirak diametri 60 sm. 10 marta aylansa, necha metr yo‘l bosadi?",
+      "yechim": "Bir aylanishda 3,14 ni 60 ga ko‘paytirsak 188,4 sm. 10 aylanishda 1884 sm, ya’ni 18,84 m.",
+      "mahsulot": "hisob daftari"
+     },
+     {
+      "nom": "Pitsa",
+      "topshiriq": "Pitsaning diametri 30 sm. Uning yuzini toping.",
+      "yechim": "Radius 15 sm. 15 ni 15 ga ko‘paytirsak 225, 3,14 ga ko‘paytirsak 706,5 kv. sm.",
+      "mahsulot": "pitsa chizmasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Radiusi 3 sm aylananing diametri?",
+      "javob": "6 sm"
+     },
+     {
+      "shart": "Radiusi 5 sm aylananing uzunligi?",
+      "javob": "31,4 sm"
+     },
+     {
+      "shart": "Diametri 10 sm aylananing uzunligi?",
+      "javob": "31,4 sm"
+     },
+     {
+      "shart": "Radiusi 2 sm doiraning yuzi?",
+      "javob": "12,56 kv. sm"
+     },
+     {
+      "shart": "Radiusi 10 sm doiraning yuzi?",
+      "javob": "314 kv. sm"
+     },
+     {
+      "shart": "Aylana uzunligi 62,8 sm. Radiusi?",
+      "javob": "10 sm"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Radius o‘rniga diametrni ishlatadi",
+      "sabab": "ikkalasini adashtiradi",
+      "oldini_olish": "diametr radiusning ikki baravari ekanini chizmada ko‘rsatish"
+     },
+     {
+      "xato": "Yuzni topishda radiusni 2 ga ko‘paytiradi",
+      "sabab": "uzunlik formulasi bilan adashtiradi",
+      "oldini_olish": "yuzda radius ikki marta ko‘paytirilishini eslash"
+     },
+     {
+      "xato": "Uzunlik va yuz birliklarini aralashtiradi",
+      "sabab": "kv. sm va sm ni farqlamaydi",
+      "oldini_olish": "yuza kvadrat birlikda ekanini yozib qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "g‘ildirak aylanishi va yo‘l masofasi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "quvur, g‘ildirak va doira shaklidagi detallar"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "yer ekvatori va parallellar aylanalar bilan ko‘rsatiladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Doira shaklidagi bog‘»",
+     "muammo": "Doira shaklidagi bog‘ni o‘rab olish va ekish uchun nima kerak?",
+     "mahsulot": "bog‘ loyihasi va hisob jadvali",
+     "bosqichlar": [
+      "radiusni tanlash",
+      "cheti uzunligini hisoblash",
+      "yuzini hisoblash",
+      "material hisobi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Radiusni tanlang",
+      "Uzunlikni hisoblang",
+      "Yuzni hisoblang",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "formulalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "chizma tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Shahar maydoni»",
+     "bekatlar": [
+      {
+       "nom": "Favvora",
+       "matn": "Favvora havzasi doira shaklida, radiusi 4 m.",
+       "topshiriq": "Havza chetining uzunligi qancha?",
+       "javob": "25,12 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Havza",
+       "matn": "Shu havzaning radiusi 4 m.",
+       "topshiriq": "Havzaning yuzi qancha?",
+       "javob": "50,24 kv. m",
+       "rasm": ""
+      },
+      {
+       "nom": "Velosiped",
+       "matn": "G‘ildirak diametri 60 sm.",
+       "topshiriq": "Bir aylanishda necha sm yo‘l yuradi?",
+       "javob": "188,4 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Soat",
+       "matn": "Devor soatining radiusi 10 sm.",
+       "topshiriq": "Soat doirasining yuzi qancha?",
+       "javob": "314 kv. sm",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda aylana va doirani ko‘rdingiz?",
+      "Pi nima uchun kerak?",
+      "G‘ildirak nima uchun yumaloq?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Aylana",
+      "tarif": "markazdan bir xil uzoqlikdagi nuqtalar chizig‘i"
+     },
+     {
+      "atama": "Doira",
+      "tarif": "aylana va uning ichki qismi"
+     },
+     {
+      "atama": "Radius",
+      "tarif": "markazdan aylanagacha masofa"
+     },
+     {
+      "atama": "Diametr",
+      "tarif": "markazdan o‘tuvchi eng katta kesma"
+     },
+     {
+      "atama": "Pi",
+      "tarif": "aylana uzunligining diametriga nisbati, taxminan 3,14"
+     },
+     {
+      "atama": "Yuza",
+      "tarif": "shaklning egallagan maydoni"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Diametr radiusdan ikki marta uzun",
+      "togri": true,
+      "izoh": "diametr — ikki radius"
+     },
+     {
+      "matn": "Pi taxminan 3,14 ga teng",
+      "togri": true,
+      "izoh": "hisoblashda shunday olamiz"
+     },
+     {
+      "matn": "Aylana uzunligi va doira yuzi bir xil birlikda o‘lchanadi",
+      "togri": false,
+      "izoh": "uzunlik sm da, yuza kv. sm da"
+     },
+     {
+      "matn": "Doira yuzini topishda radius kvadratga ko‘tariladi",
+      "togri": true,
+      "izoh": "radius radiusga ko‘paytiriladi"
+     },
+     {
+      "matn": "Radiusi 2 bo‘lgan aylananing diametri 1",
+      "togri": false,
+      "izoh": "diametr 4"
+     },
+     {
+      "matn": "Pi soni aylana kattaligiga bog‘liq",
+      "togri": false,
+      "izoh": "har qanday aylana uchun bir xil"
+     },
+     {
+      "matn": "Diametri 10 sm aylananing uzunligi 31,4 sm",
+      "togri": true,
+      "izoh": "3,14 ni 10 ga ko‘paytirsak 31,4"
+     },
+     {
+      "matn": "Doira va aylana bir xil tushuncha",
+      "togri": false,
+      "izoh": "aylana chiziq, doira esa uning ichi bilan"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Radius nima?",
+      "javob": "markazdan aylanagacha masofa"
+     },
+     {
+      "savol": "Diametr radiusdan necha marta uzun?",
+      "javob": "2 marta"
+     },
+     {
+      "savol": "Pi taxminan nechaga teng?",
+      "javob": "3,14"
+     },
+     {
+      "savol": "Aylana uzunligi qanday topiladi?",
+      "javob": "diametrni pi ga ko‘paytirib"
+     },
+     {
+      "savol": "Doira yuzi qanday topiladi?",
+      "javob": "radius kvadratini pi ga ko‘paytirib"
+     },
+     {
+      "savol": "Diametri 4 sm bo‘lsa, radius?",
+      "javob": "2 sm"
+     },
+     {
+      "savol": "Radiusi 1 sm doira yuzi?",
+      "javob": "3,14 kv. sm"
+     },
+     {
+      "savol": "Diametri 10 sm aylana uzunligi?",
+      "javob": "31,4 sm"
+     },
+     {
+      "savol": "Yuza qaysi birlikda o‘lchanadi?",
+      "javob": "kvadrat birlikda"
+     },
+     {
+      "savol": "Aylana uzunligi diametrdan necha marta katta?",
+      "javob": "taxminan 3,14 marta"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Elementlar",
+      "matn": "Radius va diametr aylananing asosiy o‘lchamlari.",
+      "savol": "Radiusi 6 sm bo‘lsa, diametri?"
+     },
+     {
+      "nom": "Pi",
+      "matn": "Uzunlikning diametrga nisbati.",
+      "savol": "Pi taxminan nechaga teng?"
+     },
+     {
+      "nom": "Uzunlik",
+      "matn": "Diametrni pi ga ko‘paytiramiz.",
+      "savol": "Diametri 5 sm bo‘lsa, uzunlik?"
+     },
+     {
+      "nom": "Yuza",
+      "matn": "Radius kvadratini pi ga ko‘paytiramiz.",
+      "savol": "Radiusi 3 sm bo‘lsa, yuza?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun g‘ildirak doira shaklida? Agar g‘ildirak kvadrat shaklida bo‘lsa, qanday muammo bo‘lar edi?",
+    "keys": {
+     "vaziyat": "Bog‘da doira shaklidagi favvora havzasi bor. Uning radiusi 4 m. Havza chetiga plitka yotqiziladi.",
+     "savollar": [
+      "Havza chetining uzunligi qancha?",
+      "Havzaning yuzi qancha?"
+     ]
+    },
+    "tezis": "Aylana — mukammal shakl",
+    "taqqoslash": {
+     "a": "Aylana",
+     "b": "Doira",
+     "umumiy": [
+      "markazi va radiusi bor",
+      "yumaloq shakl"
+     ],
+     "a_farq": [
+      "chiziq",
+      "uzunligi o‘lchanadi"
+     ],
+     "b_farq": [
+      "yuzani egallaydi",
+      "yuzi o‘lchanadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Aylana va doira",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "markaz",
+        "radius",
+        "diametr"
+       ]
+      },
+      {
+       "nom": "Pi",
+       "bandlar": [
+        "taxminan 3,14",
+        "nisbat",
+        "o‘zgarmas"
+       ]
+      },
+      {
+       "nom": "Uzunlik",
+       "bandlar": [
+        "diametr ko‘paytirilsin pi ga",
+        "sm da",
+        "g‘ildirak"
+       ]
+      },
+      {
+       "nom": "Yuza",
+       "bandlar": [
+        "radius kvadrati",
+        "kv. sm da",
+        "gulzor"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Boshi ham, oxiri ham yo‘q, markazdan teng uzoqlikda. Men kimman?",
+     "javob": "aylana"
+    },
+    "hikmat": "Aylanma yo‘lning ham oxiri bor.",
+    "kalit_soz": "AYLANA",
+    "xato_yechim": {
+     "shart": "Radiusi 5 sm doiraning yuzini toping.",
+     "xato": "31,4 kv. sm, chunki radiusni 2 ga ko‘paytirgan",
+     "togri": "78,5 kv. sm",
+     "sabab": "yuzni topishda radius radiusga ko‘paytiriladi: 25 ni 3,14 ga ko‘paytirsak 78,5"
+    },
+    "guruh_nomlari": [
+     "Radiuslar",
+     "Diametrlar",
+     "Pilar",
+     "Doiralar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yumaloq buyumlar»",
+     "topshiriq": "Guruh uchta yumaloq buyumni (idish, tanga, soat) o‘lchaydi, aylana uzunligi va doira yuzini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: radiusi 6 sm aylana uzunligini; radiusi 3 sm doira yuzini; diametri 8 sm aylana uzunligini.",
+     "B": "Uydagi yumaloq buyumni o‘lchab, uzunligini hisoblang.",
+     "C": "Pi ning taxminiy qiymatini o‘z o‘lchovlaringiz bilan toping."
+    },
+    "sinkveyn": [
+     "Aylana",
+     "yumaloq, mukammal",
+     "aylanadi, o‘lchanadi, chiziladi",
+     "Markazdan teng uzoqlikda",
+     "Doira"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh aylana va doira masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: radiusi 1 sm doira yuzi",
+      "2-guruh: radiusi 5 sm aylana uzunligi",
+      "3-guruh: diametri 4 sm aylana uzunligi",
+      "4-guruh: radiusi 3 sm doira yuzi"
+     ],
+     "yakun": "Natijalar: 3,14; 31,4; 12,56; 28,26."
+    }
+   }
+  },
+  {
+   "mavzu": "Silindr, konus, shar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Silindr",
+      "matn": "Silindr — ikkita teng doira (asos) va ularni tutashtiruvchi egri yon sirtdan iborat jism. Asoslar bir-biriga parallel. Asoslar orasidagi masofa silindr balandligi.",
+      "misol": "Konserva banka, quvur va stakan silindrga o‘xshaydi.",
+      "savol": "Silindrning nechta asosi bor?",
+      "javob": "ikkita",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Silindrning yoyilmasi",
+      "matn": "Silindr yoyilmasi ikkita doira va bitta to‘g‘ri to‘rtburchakdan iborat. To‘g‘ri to‘rtburchakning bir tomoni asos aylanasining uzunligiga, ikkinchi tomoni silindr balandligiga teng.",
+      "misol": "Radiusi 5 sm, balandligi 10 sm silindrda to‘g‘ri to‘rtburchak tomonlari 31,4 sm va 10 sm. Yon sirt yuzi 314 kv. sm.",
+      "savol": "Asos aylanasi 62,8 sm bo‘lsa, yoyilmadagi to‘g‘ri to‘rtburchakning bir tomoni qancha?",
+      "javob": "62,8 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Konus",
+      "matn": "Konus — bitta doira asosi, bitta uchi va yon sirti bor jism. Uchidan asos aylanasidagi nuqtalarga o‘tkazilgan kesmalar yasovchilar. Uchidan asosgacha perpendikulyar masofa balandlik.",
+      "misol": "Muzqaymoq stakanchasi, voronka va chodir konusga o‘xshaydi.",
+      "savol": "Konusning nechta asosi bor?",
+      "javob": "bitta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Shar",
+      "matn": "Shar — markazdan bir xil uzoqlikda joylashgan nuqtalar to‘plami. Markazdan sirtgacha masofa shar radiusi. Sharning sirti sfera deyiladi.",
+      "misol": "Koptok, globus va olma shar shakliga yaqin. Diametri 20 sm sharning radiusi 10 sm.",
+      "savol": "Diametri 14 sm sharning radiusi?",
+      "javob": "7 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kesimlar",
+      "matn": "Jismni tekislik bilan kesganda kesim hosil bo‘ladi. Shar har qanday tekislik bilan kesilsa, kesim doira bo‘ladi. Silindrni asoslarga parallel kessak, kesim asosga teng doira bo‘ladi. Konusni asosga parallel kessak, kichikroq doira chiqadi.",
+      "misol": "Olmani kesganda uning kesimi doira shaklida ko‘rinadi.",
+      "savol": "Sharning har qanday kesimi qanday shakl?",
+      "javob": "doira",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Silindr — ikki doira asos va yon sirt. Konus — bitta doira asos va uch. Shar — markazdan teng uzoqlikdagi nuqtalar to‘plami. Silindr yoyilmasi — ikki doira va to‘g‘ri to‘rtburchak.",
+    "misollar": [
+     {
+      "shart": "Quyidagi jismlar qaysi geometrik jismga o‘xshaydi: banka, voronka, koptok?",
+      "yechim": [
+       "Banka — ikki doira asos, silindr.",
+       "Voronka — bitta asos va uch, konus.",
+       "Koptok — shar."
+      ],
+      "javob": "silindr, konus, shar"
+     },
+     {
+      "shart": "Silindr radiusi 3 sm, balandligi 5 sm. Yon sirtining yoyilmasidagi to‘g‘ri to‘rtburchakning yuzini toping.",
+      "yechim": [
+       "Asos aylanasi: 6 ni 3,14 ga ko‘paytirsak 18,84 sm.",
+       "To‘g‘ri to‘rtburchak tomonlari 18,84 va 5.",
+       "Yuza 94,2 kv. sm."
+      ],
+      "javob": "94,2 kv. sm"
+     },
+     {
+      "shart": "Konserva bankasining ikkala qopqog‘i radiusi 5 sm doira. Ikkala qopqoqning umumiy yuzi qancha?",
+      "yechim": [
+       "Bir qopqoq yuzi: 25 ni 3,14 ga ko‘paytirsak 78,5.",
+       "Ikkita qopqoq: 78,5 ni 2 ga ko‘paytiramiz.",
+       "Natija 157 kv. sm."
+      ],
+      "javob": "157 kv. sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Jismlarni guruhlaymiz",
+      "topshiriq": "Sinfdagi predmetlarni silindr, konus va shar guruhlariga ajrating: stakan, globus, voronka, qalam yostig‘i, koptok, chodir modeli.",
+      "yechim": "Silindr: stakan, qalam yostig‘i. Konus: voronka, chodir modeli. Shar: globus, koptok.",
+      "mahsulot": "guruhlash jadvali"
+     },
+     {
+      "nom": "Silindr yasaymiz",
+      "topshiriq": "Uzunligi 31,4 sm, eni 10 sm qog‘oz to‘g‘ri to‘rtburchagini o‘rab silindr yasang. Asosining radiusi nechaga teng?",
+      "yechim": "Aylana uzunligi 31,4 sm. Diametr: 31,4 ni 3,14 ga bo‘lsak 10. Radius 5 sm.",
+      "mahsulot": "qog‘oz silindr"
+     },
+     {
+      "nom": "Konus yasaymiz",
+      "topshiriq": "Qog‘ozdan aylana sektorini o‘rab konus yasang. Konus qismlarini ayting.",
+      "yechim": "Konusning asosi, uchi, yasovchisi va balandligi ko‘rsatiladi.",
+      "mahsulot": "qog‘oz konus"
+     },
+     {
+      "nom": "Globus kesimi",
+      "topshiriq": "Globusni markazdan o‘tuvchi tekislik bilan kesgan kabi tasavvur qiling. Qanday shakl hosil bo‘ladi?",
+      "yechim": "Kesim — doira, uning radiusi sharning radiusiga teng.",
+      "mahsulot": "globus modeli"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Silindrning nechta asosi bor?",
+      "javob": "ikkita"
+     },
+     {
+      "shart": "Konusning nechta uchi bor?",
+      "javob": "bitta"
+     },
+     {
+      "shart": "Shar radiusi 7 sm bo‘lsa, diametri?",
+      "javob": "14 sm"
+     },
+     {
+      "shart": "Silindr radiusi 2 sm, balandligi 5 sm. Yon sirt yuzini toping.",
+      "javob": "62,8 kv. sm"
+     },
+     {
+      "shart": "Qaysi jism yoyilmasi ikki doira va to‘g‘ri to‘rtburchak?",
+      "javob": "silindr"
+     },
+     {
+      "shart": "Koptok qaysi jismga o‘xshaydi?",
+      "javob": "shar"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Konusni piramida bilan adashtiradi",
+      "sabab": "asos shakli farqini bilmaydi",
+      "oldini_olish": "konus asosi doira ekanini eslash"
+     },
+     {
+      "xato": "Sharning kesimini kvadrat deb oladi",
+      "sabab": "kesim tushunchasini tasavvur qila olmaydi",
+      "oldini_olish": "olma yoki sharni kesib ko‘rsatish"
+     },
+     {
+      "xato": "Silindr yoyilmasida to‘g‘ri to‘rtburchak tomonini radius deb oladi",
+      "sabab": "aylana uzunligini unutadi",
+      "oldini_olish": "to‘g‘ri to‘rtburchak tomoni aylana uzunligiga teng ekanini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "idish shakllari va suyuqlik hajmi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "Yer shar shaklida, globus uning modeli"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "quvur, bak va detallar silindr shaklida"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Geometrik jismlar ko‘rgazmasi»",
+     "muammo": "Atrofimizdagi jismlar qaysi geometrik jismga o‘xshash?",
+     "mahsulot": "jismlar ko‘rgazmasi va tasnif jadvali",
+     "bosqichlar": [
+      "jismlar yig‘ish",
+      "tasniflash",
+      "yoyilmalarni yasash",
+      "o‘lchash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Jismlarni yig‘ing",
+      "Tasniflang",
+      "Yoyilma yasang",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "tasnif to‘g‘ri",
+      "yoyilma aniq",
+      "jadval tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Jismlar dunyosi»",
+     "bekatlar": [
+      {
+       "nom": "Oshxona",
+       "matn": "Stakan va banka kabi idishlar.",
+       "topshiriq": "Ular qaysi jismga o‘xshaydi?",
+       "javob": "silindr",
+       "rasm": ""
+      },
+      {
+       "nom": "Muzqaymoq do‘koni",
+       "matn": "Muzqaymoq stakanchasi.",
+       "topshiriq": "Qaysi jismga o‘xshaydi?",
+       "javob": "konus",
+       "rasm": ""
+      },
+      {
+       "nom": "Sport zali",
+       "matn": "Futbol koptogi.",
+       "topshiriq": "Qaysi jismga o‘xshaydi?",
+       "javob": "shar",
+       "rasm": ""
+      },
+      {
+       "nom": "Geografiya xonasi",
+       "matn": "Globus.",
+       "topshiriq": "Globusning radiusi 10 sm bo‘lsa, diametri?",
+       "javob": "20 sm",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Atrofda qaysi jismlarni ko‘rdingiz?",
+      "Nima uchun idishlar silindr shaklida?",
+      "Shar eng qulay shakl nima uchun?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Silindr",
+      "tarif": "ikki doira asosli jism"
+     },
+     {
+      "atama": "Konus",
+      "tarif": "bitta doira asosli va uchli jism"
+     },
+     {
+      "atama": "Shar",
+      "tarif": "markazdan teng uzoqlikdagi nuqtalar to‘plami"
+     },
+     {
+      "atama": "Yasovchi",
+      "tarif": "konus uchidan asos aylanasigacha kesma"
+     },
+     {
+      "atama": "Yoyilma",
+      "tarif": "jism sirtining tekislikdagi ko‘rinishi"
+     },
+     {
+      "atama": "Kesim",
+      "tarif": "jismni tekislik bilan kesganda hosil bo‘lgan shakl"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Silindrning ikkita asosi bor",
+      "togri": true,
+      "izoh": "ikkita teng doira"
+     },
+     {
+      "matn": "Konusning ikkita asosi bor",
+      "togri": false,
+      "izoh": "konusning bitta asosi bor"
+     },
+     {
+      "matn": "Sharning har qanday kesimi doira",
+      "togri": true,
+      "izoh": "tekislik bilan kesim doira beradi"
+     },
+     {
+      "matn": "Silindr yoyilmasi uchburchakdan iborat",
+      "togri": false,
+      "izoh": "ikki doira va to‘g‘ri to‘rtburchak"
+     },
+     {
+      "matn": "Konusning uchi bor",
+      "togri": true,
+      "izoh": "bitta uch"
+     },
+     {
+      "matn": "Globus kub shaklida",
+      "togri": false,
+      "izoh": "globus shar shaklida"
+     },
+     {
+      "matn": "Shar diametri radiusdan ikki marta uzun",
+      "togri": true,
+      "izoh": "diametr — ikki radius"
+     },
+     {
+      "matn": "Silindr asoslari turli o‘lchamda",
+      "togri": false,
+      "izoh": "asoslar teng doira"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Silindr asoslari qanday shaklda?",
+      "javob": "doira"
+     },
+     {
+      "savol": "Konusning nechta asosi bor?",
+      "javob": "bitta"
+     },
+     {
+      "savol": "Sharning sirti nima deyiladi?",
+      "javob": "sfera"
+     },
+     {
+      "savol": "Silindr yoyilmasi nimadan iborat?",
+      "javob": "ikki doira va to‘g‘ri to‘rtburchak"
+     },
+     {
+      "savol": "Konusning yasovchisi nima?",
+      "javob": "uchidan asos aylanasigacha kesma"
+     },
+     {
+      "savol": "Shar radiusi 5 sm bo‘lsa, diametri?",
+      "javob": "10 sm"
+     },
+     {
+      "savol": "Voronka qaysi jismga o‘xshaydi?",
+      "javob": "konus"
+     },
+     {
+      "savol": "Quvur qaysi jismga o‘xshaydi?",
+      "javob": "silindr"
+     },
+     {
+      "savol": "Sharni kessak qanday kesim hosil bo‘ladi?",
+      "javob": "doira"
+     },
+     {
+      "savol": "Yer qaysi shaklga yaqin?",
+      "javob": "shar"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Silindr",
+      "matn": "Ikki doira asos va yon sirt.",
+      "savol": "Silindrga misol keltiring."
+     },
+     {
+      "nom": "Konus",
+      "matn": "Bitta doira asos va uch.",
+      "savol": "Konusga misol keltiring."
+     },
+     {
+      "nom": "Shar",
+      "matn": "Markazdan teng uzoqlikdagi nuqtalar.",
+      "savol": "Sharga misol keltiring."
+     },
+     {
+      "nom": "Yoyilma",
+      "matn": "Silindr yoyilmasi — ikki doira va to‘g‘ri to‘rtburchak.",
+      "savol": "To‘g‘ri to‘rtburchak tomoni nimaga teng?"
+     }
+    ],
+    "muammoli_savol": "Nega ko‘p idishlar silindr shaklida, ammo sharsimon idish kam uchraydi? Shar shakli qanday afzallik va qiyinchilik beradi?",
+    "keys": {
+     "vaziyat": "Do‘konda silindr shaklidagi banka bor. Uning radiusi 5 sm, balandligi 10 sm. Bankaga etiket yopishtiriladi.",
+     "savollar": [
+      "Etiket qanday shaklda bo‘ladi?",
+      "Etiketning yuzi qancha?"
+     ]
+    },
+    "tezis": "Jismlar shakli ularning vazifasini belgilaydi",
+    "taqqoslash": {
+     "a": "Silindr",
+     "b": "Konus",
+     "umumiy": [
+      "asosi doira",
+      "yon sirti egri"
+     ],
+     "a_farq": [
+      "ikkita asosi bor",
+      "uchi yo‘q"
+     ],
+     "b_farq": [
+      "bitta asosi bor",
+      "uchi bor"
+     ]
+    },
+    "klaster": {
+     "markaz": "Aylanish jismlari",
+     "shoxlar": [
+      {
+       "nom": "Silindr",
+       "bandlar": [
+        "ikki asos",
+        "yon sirt",
+        "banka"
+       ]
+      },
+      {
+       "nom": "Konus",
+       "bandlar": [
+        "bitta asos",
+        "uch",
+        "voronka"
+       ]
+      },
+      {
+       "nom": "Shar",
+       "bandlar": [
+        "markaz",
+        "radius",
+        "globus"
+       ]
+      },
+      {
+       "nom": "Yoyilma",
+       "bandlar": [
+        "to‘g‘ri to‘rtburchak",
+        "doira",
+        "yuza"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Hamma tomondan yumaloq, markazdan teng uzoq. Koptok ham, globus ham menman. Men kimman?",
+     "javob": "shar"
+    },
+    "hikmat": "Har shaklning o‘z vazifasi bor.",
+    "kalit_soz": "JISM",
+    "xato_yechim": {
+     "shart": "Silindrning nechta asosi bor?",
+     "xato": "bitta",
+     "togri": "ikkita",
+     "sabab": "silindrning yuqori va pastki asosi bor; bitta asosli jism — konus"
+    },
+    "guruh_nomlari": [
+     "Silindrlar",
+     "Konuslar",
+     "Sharlar",
+     "Yoyilmalar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Jismlar izlab»",
+     "topshiriq": "Guruh uydan silindr, konus va shar shaklidagi buyumlarni topadi, ularning rasmini chizadi va nomini yozadi."
+    },
+    "vazifalar": {
+     "A": "Silindr, konus va shar shaklidagi 3 tadan buyum yozing.",
+     "B": "Qog‘ozdan silindr yasang va uning yoyilmasini chizing.",
+     "C": "Radiusi 4 sm silindr asosining aylana uzunligini hisoblang."
+    },
+    "sinkveyn": [
+     "Jism",
+     "yumaloq, hajmli",
+     "o‘ralib, yumalab, turadi",
+     "Fazodagi shakllar",
+     "Geometriya"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh jismlar bo‘yicha masalalarni yechadi.",
+     "qismlar": [
+      "1-guruh: silindrning asoslari soni",
+      "2-guruh: shar radiusi 6 sm, diametri",
+      "3-guruh: radiusi 5 sm, balandligi 10 sm silindr yon sirti",
+      "4-guruh: konus uchlari soni"
+     ],
+     "yakun": "Natijalar: 2; 12 sm; 314 kv. sm; 1."
+    }
+   }
+  },
+  {
+   "mavzu": "Ehtimollik bilan tanishish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tasodifiy hodisalar",
+      "matn": "Hodisalar uch xil bo‘ladi: albatta bo‘ladigan, hech qachon bo‘lmaydigan va tasodifiy, ya’ni ba’zan bo‘ladigan, ba’zan bo‘lmaydigan. Ehtimollik tasodifiy hodisa qanchalik bo‘lishi mumkinligini ko‘rsatadi.",
+      "misol": "Quyosh ertaga chiqishi — aniq hodisa. Tanga tashlaganda gerb tushishi — tasodifiy. Kub tashlaganda 7 tushishi — mumkin emas.",
+      "savol": "Kub tashlaganda 8 tushishi qanday hodisa?",
+      "javob": "mumkin emas",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ehtimollikni hisoblash",
+      "matn": "Hodisa ehtimoli — qulay natijalar sonining barcha teng imkoniyatli natijalar soniga nisbati. U kasr yoki foiz bilan yoziladi.",
+      "misol": "Tanga ikki tomonli: gerb va raqam. Gerb tushishi uchun qulay natija 1 ta, barcha natija 2 ta. Ehtimol 1/2.",
+      "savol": "Tanga tashlaganda raqam tushish ehtimoli?",
+      "javob": "1/2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘yin kubigi",
+      "matn": "Kubning 6 ta yog‘i bor, har biri teng imkoniyatli. Hodisa ehtimolini topish uchun qulay yoqlarni sanab, 6 ga nisbatini yozamiz.",
+      "misol": "5 tushish ehtimoli 1/6. Juft son tushish ehtimoli 3/6, ya’ni 1/2, chunki juft sonlar 2, 4, 6.",
+      "savol": "3 dan katta son tushish ehtimoli?",
+      "javob": "1/2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ehtimollik chegaralari",
+      "matn": "Ehtimollik doim 0 dan 1 gacha bo‘ladi. Mumkin bo‘lmagan hodisa ehtimoli 0, albatta bo‘ladigan hodisa ehtimoli 1. Qancha ko‘p qulay natija bo‘lsa, ehtimol shuncha katta.",
+      "misol": "Kubda 7 tushishi ehtimoli 0. Kubda 1 dan 6 gacha biror son tushishi ehtimoli 1.",
+      "savol": "Kubda 7 tushish ehtimoli qancha?",
+      "javob": "0",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tajriba va chastota",
+      "matn": "Tajriba ko‘p marta takrorlansa, hodisa ro‘y bergan sonning tajribalar soniga nisbati ehtimolga yaqinlashadi. Qancha ko‘p tajriba, shuncha aniq natija.",
+      "misol": "Tanga 100 marta tashlansa, gerb taxminan 50 marta tushadi. 20 marta tashlansa, taxminan 10 marta.",
+      "savol": "Tanga 20 marta tashlansa, gerb taxminan necha marta tushadi?",
+      "javob": "10 marta",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ehtimollik — qulay natijalar sonining barcha teng imkoniyatli natijalar soniga nisbati. U 0 dan 1 gacha bo‘ladi: mumkin bo‘lmagan hodisa uchun 0, aniq hodisa uchun 1.",
+    "misollar": [
+     {
+      "shart": "Qutida 3 ta qizil va 2 ta ko‘k shar bor. Ko‘zni yumib bitta shar olsak, qizil chiqish ehtimoli qancha?",
+      "yechim": [
+       "Barcha sharlar: 3 va 2 ni qo‘shsak 5.",
+       "Qulay natija — qizil sharlar: 3 ta.",
+       "Ehtimol 3/5."
+      ],
+      "javob": "3/5"
+     },
+     {
+      "shart": "O‘yin kubigi tashlandi. Tub son tushish ehtimoli qancha?",
+      "yechim": [
+       "Tub sonlar: 2, 3, 5 — 3 ta qulay natija.",
+       "Barcha natijalar: 6 ta.",
+       "Ehtimol 3/6, ya’ni 1/2."
+      ],
+      "javob": "1/2"
+     },
+     {
+      "shart": "Lotereyada 20 ta chipta, 4 tasi yutuqli. Bitta chipta tortganda yutish ehtimoli qancha?",
+      "yechim": [
+       "Qulay natija: 4 ta chipta.",
+       "Barcha natija: 20 ta.",
+       "Ehtimol 4/20, ya’ni 1/5."
+      ],
+      "javob": "1/5"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tanga tajribasi",
+      "topshiriq": "Tangani 20 marta tashlab, gerb va raqam tushishini jadvalga yozing. Gerb necha marta tushdi?",
+      "yechim": "Natija taxminan 10 atrofida bo‘ladi, aniq son tajribaga bog‘liq.",
+      "mahsulot": "tajriba jadvali"
+     },
+     {
+      "nom": "Kartochkalar",
+      "topshiriq": "1 dan 10 gacha raqamli kartochkalar. Juft son va 3 ga karrali son chiqish ehtimolini toping.",
+      "yechim": "Juft: 5 ta, ehtimol 5/10, ya’ni 1/2. 3 ga karrali: 3, 6, 9 — ehtimol 3/10.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Rangli sharlar",
+      "topshiriq": "Qutida 4 sariq va 6 yashil shar. Yashil shar chiqish ehtimolini toping.",
+      "yechim": "Barcha sharlar 10 ta, yashillari 6 ta. Ehtimol 6/10, ya’ni 3/5.",
+      "mahsulot": "shar modeli"
+     },
+     {
+      "nom": "Kub o‘yini",
+      "topshiriq": "Kubni 30 marta tashlab, 6 necha marta tushishini hisoblang va ehtimol bilan taqqoslang.",
+      "yechim": "Ehtimol 1/6, 30 marta tashlansa, taxminan 5 marta tushadi.",
+      "mahsulot": "kub jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Kub tashlanganda 6 tushish ehtimoli?",
+      "javob": "1/6"
+     },
+     {
+      "shart": "Tanga tashlanganda gerb tushish ehtimoli?",
+      "javob": "1/2"
+     },
+     {
+      "shart": "1 dan 10 gacha sondan tasodifiy tanlanganda, 5 dan katta bo‘lish ehtimoli?",
+      "javob": "1/2"
+     },
+     {
+      "shart": "Qutida 2 oq va 8 qora shar bor. Oq shar chiqish ehtimoli?",
+      "javob": "1/5"
+     },
+     {
+      "shart": "Kubda 7 tushish ehtimoli?",
+      "javob": "0"
+     },
+     {
+      "shart": "Kubda 1 dan 6 gacha biror son tushish ehtimoli?",
+      "javob": "1"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ehtimolni 1 dan katta deb oladi",
+      "sabab": "qulay va barcha natijalarni adashtiradi",
+      "oldini_olish": "ehtimol 0 dan 1 gacha ekanini eslash"
+     },
+     {
+      "xato": "Natijalar teng imkoniyatli ekanini tekshirmaydi",
+      "sabab": "hamma natijani teng deb o‘ylaydi",
+      "oldini_olish": "avval tajriba shartini aniqlash"
+     },
+     {
+      "xato": "Qulay natijalar o‘rniga barcha natijalarni sanaydi",
+      "sabab": "kasrni teskari yozadi",
+      "oldini_olish": "kasrning suratida qulay natijalar turishini yodda tutish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Statistika",
+      "boglanish": "so‘rovnoma va tajribalar natijalarini tahlil qilish"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "irsiyat qonuniyatlari ehtimolga asoslanadi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "sug‘urta va xavf bahosi ehtimolga tayanadi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tajribalar jurnali»",
+     "muammo": "Tanga va kub tajribalaridagi natijalar ehtimolga qanchalik yaqin?",
+     "mahsulot": "tajribalar jadvali va xulosa",
+     "bosqichlar": [
+      "tajriba tanlash",
+      "tajribani o‘tkazish",
+      "natijalarni yozish",
+      "ehtimol bilan taqqoslash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tajribani tanlang",
+      "Tajribani o‘tkazing",
+      "Natijalarni yozing",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "natija to‘g‘ri",
+      "hisob to‘g‘ri",
+      "jadval tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «O‘yinlar olami»",
+     "bekatlar": [
+      {
+       "nom": "Tanga",
+       "matn": "Tanga tashlanadi.",
+       "topshiriq": "Gerb tushish ehtimoli?",
+       "javob": "1/2",
+       "rasm": ""
+      },
+      {
+       "nom": "Kub",
+       "matn": "O‘yin kubigi tashlanadi.",
+       "topshiriq": "Toq son tushish ehtimoli?",
+       "javob": "1/2",
+       "rasm": ""
+      },
+      {
+       "nom": "Quti",
+       "matn": "Qutida 5 ta qizil, 5 ta ko‘k shar.",
+       "topshiriq": "Qizil shar chiqish ehtimoli?",
+       "javob": "1/2",
+       "rasm": ""
+      },
+      {
+       "nom": "Lotereya",
+       "matn": "50 ta chiptadan 5 tasi yutuqli.",
+       "topshiriq": "Yutish ehtimoli?",
+       "javob": "1/10",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda tasodifiy hodisalar bo‘ladi?",
+      "Ob-havo prognozida ehtimol nima beradi?",
+      "Kim ko‘proq yutadi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ehtimollik",
+      "tarif": "hodisa ro‘y berish imkoniyatining o‘lchovi"
+     },
+     {
+      "atama": "Tasodifiy hodisa",
+      "tarif": "ba’zan bo‘ladigan, ba’zan bo‘lmaydigan hodisa"
+     },
+     {
+      "atama": "Aniq hodisa",
+      "tarif": "albatta bo‘ladigan hodisa"
+     },
+     {
+      "atama": "Mumkin bo‘lmagan hodisa",
+      "tarif": "hech qachon bo‘lmaydigan hodisa"
+     },
+     {
+      "atama": "Qulay natija",
+      "tarif": "hodisaga mos keluvchi natija"
+     },
+     {
+      "atama": "Tajriba",
+      "tarif": "hodisani kuzatish uchun o‘tkaziladigan harakat"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Aniq hodisaning ehtimoli 1",
+      "togri": true,
+      "izoh": "albatta bo‘ladi"
+     },
+     {
+      "matn": "Mumkin bo‘lmagan hodisaning ehtimoli 1",
+      "togri": false,
+      "izoh": "ehtimoli 0"
+     },
+     {
+      "matn": "Ehtimollik 0 dan 1 gacha",
+      "togri": true,
+      "izoh": "bu uning chegarasi"
+     },
+     {
+      "matn": "Tangada gerb tushishi ehtimoli 1/3",
+      "togri": false,
+      "izoh": "ikki natijadan biri, ya’ni 1/2"
+     },
+     {
+      "matn": "Kubda juft son tushish ehtimoli 1/2",
+      "togri": true,
+      "izoh": "2, 4, 6 — 3 ta yoq, 6 dan"
+     },
+     {
+      "matn": "Tajriba ko‘p bo‘lsa, natija ehtimolga yaqinlashadi",
+      "togri": true,
+      "izoh": "bu chastotaning ehtimolga yaqinlashishi"
+     },
+     {
+      "matn": "Ehtimol 2 ga teng bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "ehtimol 1 dan oshmaydi"
+     },
+     {
+      "matn": "Tasodifiy hodisani oldindan aniq aytish mumkin",
+      "togri": false,
+      "izoh": "uni faqat ehtimol bilan baholaymiz"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ehtimollik nima?",
+      "javob": "hodisa ro‘y berish imkoniyatining o‘lchovi"
+     },
+     {
+      "savol": "Aniq hodisaning ehtimoli?",
+      "javob": "1"
+     },
+     {
+      "savol": "Mumkin bo‘lmagan hodisaning ehtimoli?",
+      "javob": "0"
+     },
+     {
+      "savol": "Tangada raqam tushish ehtimoli?",
+      "javob": "1/2"
+     },
+     {
+      "savol": "Kubda 3 tushish ehtimoli?",
+      "javob": "1/6"
+     },
+     {
+      "savol": "Kubda toq son tushish ehtimoli?",
+      "javob": "1/2"
+     },
+     {
+      "savol": "Ehtimol qaysi oraliqda?",
+      "javob": "0 dan 1 gacha"
+     },
+     {
+      "savol": "Qulay natija nima?",
+      "javob": "hodisaga mos keluvchi natija"
+     },
+     {
+      "savol": "Qutida 1 oq, 3 qora shar. Oq ehtimoli?",
+      "javob": "1/4"
+     },
+     {
+      "savol": "Ehtimol qanday yoziladi?",
+      "javob": "kasr yoki foiz bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Hodisalar",
+      "matn": "Aniq, mumkin emas va tasodifiy hodisalar.",
+      "savol": "Tanga tashlash qaysi hodisa?"
+     },
+     {
+      "nom": "Ehtimol",
+      "matn": "Qulay natijalar nisbati.",
+      "savol": "Kubda 2 tushishi ehtimoli?"
+     },
+     {
+      "nom": "Chegaralar",
+      "matn": "Ehtimol 0 dan 1 gacha.",
+      "savol": "Aniq hodisa ehtimoli?"
+     },
+     {
+      "nom": "Tajriba",
+      "matn": "Ko‘p tajriba aniq natija beradi.",
+      "savol": "Tajriba ko‘p bo‘lsa nima bo‘ladi?"
+     }
+    ],
+    "muammoli_savol": "Tanga ketma-ket 5 marta gerb tushdi. Keyingi tashlashda yana gerb tushish ehtimoli o‘zgaradimi? Nima uchun?",
+    "keys": {
+     "vaziyat": "Qutida 3 ta qizil, 2 ta ko‘k va 5 ta yashil shar bor. Ko‘zni yumib bitta shar olinadi.",
+     "savollar": [
+      "Qizil shar chiqish ehtimoli qancha?",
+      "Sariq shar chiqish ehtimoli qancha?"
+     ]
+    },
+    "tezis": "Ehtimol — noaniqlikni o‘lchash usuli",
+    "taqqoslash": {
+     "a": "Aniq hodisa",
+     "b": "Tasodifiy hodisa",
+     "umumiy": [
+      "ehtimol bilan baholanadi",
+      "tajribada kuzatiladi"
+     ],
+     "a_farq": [
+      "ehtimoli 1",
+      "albatta bo‘ladi"
+     ],
+     "b_farq": [
+      "ehtimoli 0 va 1 orasida",
+      "ba’zan bo‘ladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ehtimollik",
+     "shoxlar": [
+      {
+       "nom": "Hodisalar",
+       "bandlar": [
+        "aniq",
+        "mumkin emas",
+        "tasodifiy"
+       ]
+      },
+      {
+       "nom": "Hisoblash",
+       "bandlar": [
+        "qulay natijalar",
+        "barcha natijalar",
+        "kasr"
+       ]
+      },
+      {
+       "nom": "Chegaralar",
+       "bandlar": [
+        "0",
+        "1",
+        "oraliq"
+       ]
+      },
+      {
+       "nom": "Tajriba",
+       "bandlar": [
+        "tanga",
+        "kub",
+        "chastota"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Bor ham, yo‘q ham bo‘lishi mumkin, uni kasr bilan o‘lchaysiz. Nolga ham, birga ham teng bo‘lishi mumkin. Men nimaman?",
+     "javob": "ehtimollik"
+    },
+    "hikmat": "Tavakkal bilan, hisob bilan.",
+    "kalit_soz": "EHTIMOL",
+    "xato_yechim": {
+     "shart": "Kubda juft son tushish ehtimolini toping.",
+     "xato": "3, chunki faqat qulay natijalar sonini yozadi",
+     "togri": "1/2",
+     "sabab": "ehtimol kasr bo‘ladi: 3 ta qulay natija 6 ta barcha natijadan, ya’ni 3/6, qisqartirsak 1/2"
+    },
+    "guruh_nomlari": [
+     "Tangalar",
+     "Kublar",
+     "Sharlar",
+     "Ehtimolchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tajriba o‘tkazamiz»",
+     "topshiriq": "Guruh tanga yoki kub bilan 30 marta tajriba o‘tkazadi, natijalarni jadvalga yozadi va ehtimol bilan taqqoslaydi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: kubda 4 dan katta son tushish ehtimoli; qutida 1 oq va 4 qora sharda oq chiqish ehtimoli.",
+     "B": "Tangani 20 marta tashlab, natijani yozing.",
+     "C": "O‘zingiz ehtimolga doir masala tuzing va yeching."
+    },
+    "sinkveyn": [
+     "Ehtimol",
+     "noaniq, o‘lchanadi",
+     "hisoblanadi, kuzatiladi, taqqoslanadi",
+     "Imkoniyat o‘lchovi",
+     "Tavakkal"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ehtimollik masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: tangada gerb ehtimoli",
+      "2-guruh: kubda 6 tushish ehtimoli",
+      "3-guruh: 2 oq 8 qora sharda oq ehtimoli",
+      "4-guruh: kubda 7 tushish ehtimoli"
+     ],
+     "yakun": "Natijalar: 1/2; 1/6; 1/5; 0."
+    }
+   }
   }
  ]
 }
