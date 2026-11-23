@@ -10294,6 +10294,1400 @@
      "yakun": "Hajmlar: 27 sm³, 40 sm³, 30000 sm³ (30 litr). Eng sig‘imli — akvarium."
     }
    }
+  },
+  {
+   "mavzu": "Diagrammalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ma’lumotlarni jadvalga yig‘amiz",
+      "matn": "Kundalik hayotda ko‘p ma’lumot yig‘iladi: sinfdagi o‘quvchilar soni, kunlik harorat, sevimli meva. Ma’lumotlarni tartibli ko‘rsatish uchun jadval tuziladi. Jadval qator va ustunlardan iborat: ustunda nom, boshqasida miqdor yoziladi.",
+      "misol": "Sinfda sevimli meva so‘roviga javoblar: olma — 8, uzum — 6, shaftoli — 4, anor — 2 ta o‘quvchi. Bu ma’lumotlarni jadvalga yozish oson va tushunarli.",
+      "savol": "Jadval nima uchun kerak?",
+      "javob": "ma’lumotlarni tartibli ko‘rsatish uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Piktogramma",
+      "matn": "Piktogramma — ma’lumotlarni rasmcha yoki belgilar bilan ko‘rsatish usuli. Har bir belgi ma’lum miqdorni bildiradi, masalan, bitta olma belgisi 2 ta o‘quvchini. Belgilar qancha ko‘p bo‘lsa, miqdor shuncha katta.",
+      "misol": "Agar bitta belgi 2 ta o‘quvchini bildirsa, 4 ta belgi — 8 ta o‘quvchi demak. Yarim belgi esa 1 ta o‘quvchini anglatadi.",
+      "savol": "Bitta belgi 5 ta kitobni bildirsa, 3 ta belgi nechta kitob?",
+      "javob": "15 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ustunli diagramma",
+      "matn": "Ustunli diagrammada har bir miqdor ustun shaklida tasvirlanadi. Ustun balandligi miqdorga proporsional. Gorizontal o‘qda nomlar, vertikal o‘qda miqdorlar ko‘rsatiladi. Diagrammaning sarlavhasi va o‘q nomlari bo‘lishi kerak.",
+      "misol": "Sevimli mevalar diagrammasida eng baland ustun — olma, eng past — anor. Ustun balandligiga qarab qaysi meva ko‘proq yoqishini darrov bilib olamiz.",
+      "savol": "Ustun qanchalik baland bo‘lsa, miqdor qanday?",
+      "javob": "shunchalik katta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chiziqli diagramma",
+      "matn": "Chiziqli diagramma vaqt o‘tishi bilan o‘zgarishni ko‘rsatadi. Nuqtalar bir-biri bilan kesmalar orqali tutashtiriladi. Chiziq yuqoriga ko‘tarilsa, miqdor oshgan; pastga tushsa, kamaygan; tekis bo‘lsa, o‘zgarmagan.",
+      "misol": "Haftalik harorat grafigida chiziq yakshanbadan keyin pastga qarasa, havo sovigan.",
+      "savol": "Chiziq pastga tushsa, miqdor qanday o‘zgargan?",
+      "javob": "kamaygan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Diagrammani o‘qish va tuzish",
+      "matn": "Diagramma bilan ishlashda: 1) sarlavhani o‘qing; 2) o‘qlarda nima ko‘rsatilganini aniqlang; 3) eng katta va eng kichik qiymatni toping; 4) taqqoslang yoki farqini hisoblang; 5) xulosa chiqaring. Diagramma tuzishda masshtabni to‘g‘ri tanlash muhim.",
+      "misol": "Agar vertikal o‘qda har bir bo‘linma 2 ni bildirsa, 8 ta o‘quvchini ko‘rsatish uchun ustun 4 bo‘linma balandlikda chiziladi.",
+      "savol": "Diagrammani o‘qishda birinchi qadam nima?",
+      "javob": "sarlavhani o‘qish",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Diagramma — ma’lumotlarning ko‘rgazmali tasviri. Piktogramma — belgilar bilan, ustunli diagramma — ustunlar bilan, chiziqli diagramma — o‘zgarishni nuqtalar va kesmalar bilan ko‘rsatadi. Masshtabni to‘g‘ri tanlash va o‘qlarni belgilash muhim.",
+    "misollar": [
+     {
+      "shart": "Jadval: dushanba — 3, seshanba — 5, chorshanba — 4, payshanba — 6 ta kitob o‘qildi. Eng ko‘p va eng kam o‘qilgan kunlar farqi qancha?",
+      "yechim": [
+       "Eng ko‘p — payshanba, 6 ta.",
+       "Eng kam — dushanba, 3 ta.",
+       "Farqi: 6 − 3 = 3."
+      ],
+      "javob": "3 ta kitob"
+     },
+     {
+      "shart": "Ustunli diagrammada ustunlar: olma — 8, uzum — 6, shaftoli — 4. Jami nechta o‘quvchi so‘ralgan?",
+      "yechim": [
+       "Hamma ustunlarni qo‘shamiz.",
+       "8 + 6 = 14.",
+       "14 + 4 = 18."
+      ],
+      "javob": "18 ta o‘quvchi"
+     },
+     {
+      "shart": "Haroratlar: 6 da 12 daraja, 12 da 20 daraja, 18 da 16 daraja. Eng issiq payt qachon? Kun davomida harorat qancha ko‘tarildi?",
+      "yechim": [
+       "Eng yuqori harorat soat 12 da — 20 daraja.",
+       "Ertalabdan tushgacha ko‘tarilish: 20 − 12 = 8 daraja."
+      ],
+      "javob": "soat 12 da; 8 darajaga ko‘tarildi"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sinf so‘rovi",
+      "topshiriq": "Sinfda «Sevimli fan» so‘rovi o‘tkazing. Javoblarni jadvalga yig‘ing va ustunli diagramma chizing. Qaysi fan eng sevimli?",
+      "yechim": "Har bir fan uchun javoblar soni sanaladi, ustunlar chiziladi, eng baland ustun — eng sevimli fan.",
+      "mahsulot": "jadval va diagramma"
+     },
+     {
+      "nom": "Ob-havo kuzatuvi",
+      "topshiriq": "Besh kun davomida har kuni soat 12 da haroratni yozib boring va chiziqli diagramma chizing. Qaysi kun eng issiq?",
+      "yechim": "Har kun uchun nuqta qo‘yiladi, nuqtalar kesmalar bilan tutashtiriladi, eng baland nuqta — eng issiq kun.",
+      "mahsulot": "chiziqli diagramma"
+     },
+     {
+      "nom": "Piktogramma yasash",
+      "topshiriq": "Bitta belgi 2 ta o‘quvchini bildirsa, sinfdagi 12 ta qiz va 10 ta o‘g‘il bolani piktogrammada ko‘rsating.",
+      "yechim": "Qizlar uchun 6 ta, o‘g‘il bolalar uchun 5 ta belgi chiziladi.",
+      "mahsulot": "piktogramma"
+     },
+     {
+      "nom": "Xato diagramma",
+      "topshiriq": "Berilgan diagrammada sarlavha yo‘q, o‘qlar yozilmagan va masshtab bir xil emas. Qanday xatolar bor va qanday tuzatiladi?",
+      "yechim": "Sarlavha yozish, o‘qlarni belgilash, masshtabni bir xil qilish kerak, aks holda diagramma noto‘g‘ri xulosaga olib keladi.",
+      "mahsulot": "tuzatilgan diagramma"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Jadval: 5, 8, 3, 6 ta qalam. Eng ko‘p va eng kam qalam orasidagi farq?",
+      "javob": "5"
+     },
+     {
+      "shart": "Ustunlar balandligi 4, 7 va 5. Jami nechta?",
+      "javob": "16"
+     },
+     {
+      "shart": "Bitta belgi 3 ta narsani bildirsa, 5 ta belgi nechta narsa?",
+      "javob": "15"
+     },
+     {
+      "shart": "Haroratlar 10, 14, 12. Eng yuqori va eng past harorat farqi?",
+      "javob": "4 daraja"
+     },
+     {
+      "shart": "Diagrammada ustunlar 6, 6 va 9. Qaysi ustun eng baland?",
+      "javob": "uchinchisi (9)"
+     },
+     {
+      "shart": "Chiziqli diagrammada chiziq pastga tushdi. Miqdor oshganmi?",
+      "javob": "yo‘q, kamaygan"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ustun balandligini o‘lchamasdan sanab chiqadi",
+      "sabab": "masshtabni e’tiborsiz qoldiradi",
+      "oldini_olish": "avval bitta bo‘linma qancha ekanini aniqlash"
+     },
+     {
+      "xato": "Diagrammaning sarlavhasini o‘qimaydi",
+      "sabab": "darhol ustunlarga qaraydi",
+      "oldini_olish": "o‘qish tartibini daftarga yozib qo‘yish"
+     },
+     {
+      "xato": "Chiziqli diagrammani ustunli bilan adashtiradi",
+      "sabab": "ikkala diagramma ham ma’lumotni ko‘rsatadi",
+      "oldini_olish": "chiziqli — o‘zgarish uchun, ustunli — taqqoslash uchun"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "ob-havo, o‘simlik bo‘yi, harorat o‘zgarishi diagrammalarda ko‘rsatiladi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "aholi, yog‘in miqdori va iqlim ma’lumotlari diagrammalarda beriladi"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "sport natijalari jadval va diagrammalarda taqqoslanadi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinfimiz statistikasi»",
+     "muammo": "Sinfimiz haqida ma’lumotni qanday ko‘rgazmali ko‘rsatamiz?",
+     "mahsulot": "sinf statistikasi plakati: jadval va diagrammalar",
+     "bosqichlar": [
+      "savol tanlash",
+      "so‘rov o‘tkazish",
+      "jadval tuzish",
+      "diagramma chizish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Sevimli fanlar so‘rovi",
+      "Sevimli sport turi so‘rovi",
+      "Sinf o‘quvchilari bo‘yi",
+      "Natijalarni plakatga joylang"
+     ],
+     "mezonlar": [
+      "ma’lumotlar aniq",
+      "diagramma to‘g‘ri",
+      "sarlavha va o‘qlar bor",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Statistika markazi»",
+     "bekatlar": [
+      {
+       "nom": "Kutubxona",
+       "matn": "Haftada o‘qilgan kitoblar: 12, 15, 9, 14.",
+       "topshiriq": "Eng ko‘p o‘qilgan haftadagi kitoblar soni qancha?",
+       "javob": "15",
+       "rasm": ""
+      },
+      {
+       "nom": "Ob-havo stansiyasi",
+       "matn": "Harorat: 18, 21, 19, 24 daraja.",
+       "topshiriq": "Eng issiq kun harorati?",
+       "javob": "24 daraja",
+       "rasm": ""
+      },
+      {
+       "nom": "Stadion",
+       "matn": "Tomoshabinlar: 200, 350, 300.",
+       "topshiriq": "Eng ko‘p tomoshabin necha kishi?",
+       "javob": "350",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "Olma narxi 12, nok narxi 15, uzum narxi 20 ming so‘m.",
+       "topshiriq": "Qaysi mevaning ustuni eng baland?",
+       "javob": "uzum",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "yo‘lga chiqmang",
+      "kattalar bilan yuring",
+      "ashyolarga tegmang"
+     ],
+     "kundalik": [
+      "Diagrammaning foydasi nima?",
+      "Qaysi diagramma qachon kerak?",
+      "Qayerda diagramma ko‘rdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Diagramma",
+      "tarif": "ma’lumotlarning ko‘rgazmali tasviri"
+     },
+     {
+      "atama": "Piktogramma",
+      "tarif": "ma’lumotni belgilar bilan ko‘rsatish"
+     },
+     {
+      "atama": "Ustunli diagramma",
+      "tarif": "miqdorni ustunlar bilan ko‘rsatish"
+     },
+     {
+      "atama": "Chiziqli diagramma",
+      "tarif": "o‘zgarishni nuqtalar va kesmalar bilan ko‘rsatish"
+     },
+     {
+      "atama": "Masshtab",
+      "tarif": "bir bo‘linma bildiradigan miqdor"
+     },
+     {
+      "atama": "So‘rov",
+      "tarif": "ma’lumot yig‘ish usuli"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Baland ustun katta miqdorni bildiradi",
+      "togri": true,
+      "izoh": "ustun balandligi miqdorga mos"
+     },
+     {
+      "matn": "Chiziqli diagramma o‘zgarishni ko‘rsatadi",
+      "togri": true,
+      "izoh": "vaqt bo‘yicha o‘zgarish uchun"
+     },
+     {
+      "matn": "Diagrammada sarlavha shart emas",
+      "togri": false,
+      "izoh": "sarlavha diagramma nima haqida ekanini bildiradi"
+     },
+     {
+      "matn": "Piktogrammada bitta belgi har doim 1 ta narsani bildiradi",
+      "togri": false,
+      "izoh": "belgi bildirgan miqdor oldindan kelishiladi"
+     },
+     {
+      "matn": "Jadval qator va ustunlardan iborat",
+      "togri": true,
+      "izoh": "jadval tuzilishi"
+     },
+     {
+      "matn": "Masshtab diagrammada ahamiyatsiz",
+      "togri": false,
+      "izoh": "masshtab noto‘g‘ri bo‘lsa, xulosa buziladi"
+     },
+     {
+      "matn": "Chiziq tepaga ketsa, miqdor oshgan",
+      "togri": true,
+      "izoh": "grafik o‘qish qoidasi"
+     },
+     {
+      "matn": "Diagramma faqat raqamlardan iborat",
+      "togri": false,
+      "izoh": "u ko‘rgazmali tasvir"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Diagramma nima?",
+      "javob": "ma’lumotning ko‘rgazmali tasviri"
+     },
+     {
+      "savol": "Piktogramma nima?",
+      "javob": "belgilar bilan ko‘rsatilgan ma’lumot"
+     },
+     {
+      "savol": "Qaysi diagramma o‘zgarishni ko‘rsatadi?",
+      "javob": "chiziqli"
+     },
+     {
+      "savol": "Qaysi diagramma taqqoslashga qulay?",
+      "javob": "ustunli"
+     },
+     {
+      "savol": "Masshtab nima?",
+      "javob": "bir bo‘linma bildirgan miqdor"
+     },
+     {
+      "savol": "Diagrammani o‘qishni nimadan boshlaymiz?",
+      "javob": "sarlavhadan"
+     },
+     {
+      "savol": "Eng baland ustun nimani bildiradi?",
+      "javob": "eng katta qiymatni"
+     },
+     {
+      "savol": "Jadval nimadan iborat?",
+      "javob": "qator va ustunlardan"
+     },
+     {
+      "savol": "So‘rov nima uchun kerak?",
+      "javob": "ma’lumot yig‘ish uchun"
+     },
+     {
+      "savol": "Chiziq pastga tushsa nima bo‘ladi?",
+      "javob": "miqdor kamayadi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Jadval",
+      "matn": "Ma’lumotlar qator va ustunlarda tartibli joylashadi.",
+      "savol": "Jadval nimadan iborat?"
+     },
+     {
+      "nom": "Piktogramma",
+      "matn": "Belgi bildirgan miqdor oldindan kelishiladi.",
+      "savol": "Belgi 2 ni bildirsa, 5 ta belgi nechta?"
+     },
+     {
+      "nom": "Ustunli diagramma",
+      "matn": "Ustun balandligi miqdorga mos.",
+      "savol": "Eng baland ustun nimani bildiradi?"
+     },
+     {
+      "nom": "Chiziqli diagramma",
+      "matn": "Nuqtalar kesmalar bilan tutashadi va o‘zgarishni ko‘rsatadi.",
+      "savol": "Chiziq tepaga ketsa-chi?"
+     }
+    ],
+    "muammoli_savol": "Ikki do‘kon sotuvi diagrammada ko‘rsatilgan, lekin birining vertikal o‘qi 0 dan, ikkinchisiniki 50 dan boshlanadi. Ustunlar teng ko‘rinadi. Ular haqiqatan ham tengmi?",
+    "keys": {
+     "vaziyat": "Maktab bufetida bir haftalik sotuv diagrammasi tuzildi. Sotuv dushanba kuni eng ko‘p, juma kuni eng kam bo‘lgan.",
+     "savollar": [
+      "Nega juma kuni sotuv kam bo‘lishi mumkin?",
+      "Bufet nima qilishi kerak?"
+     ]
+    },
+    "tezis": "Rasm bir ming so‘zdan afzal",
+    "taqqoslash": {
+     "a": "Ustunli diagramma",
+     "b": "Chiziqli diagramma",
+     "umumiy": [
+      "ma’lumotni ko‘rsatadi",
+      "o‘qlari bor"
+     ],
+     "a_farq": [
+      "taqqoslash uchun",
+      "ustunlar bilan"
+     ],
+     "b_farq": [
+      "o‘zgarish uchun",
+      "nuqtalar va kesmalar bilan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Diagramma",
+     "shoxlar": [
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "piktogramma",
+        "ustunli",
+        "chiziqli"
+       ]
+      },
+      {
+       "nom": "Elementlari",
+       "bandlar": [
+        "sarlavha",
+        "o‘qlar",
+        "masshtab"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "o‘qish",
+        "tuzish",
+        "taqqoslash"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "ob-havo",
+        "sport",
+        "savdo"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Raqamlarni rasmga aylantiraman, ustunlarim bor, baland-pastiga qarab miqdorni bilasiz. Men kimman?",
+     "javob": "diagramma"
+    },
+    "hikmat": "Ko‘z bilan ko‘rgan — ishonchli.",
+    "kalit_soz": "USTUN",
+    "xato_yechim": {
+     "shart": "Ustunli diagrammada har bir bo‘linma 5 ni bildiradi. Ustun 4 bo‘linma. Miqdor qancha?",
+     "xato": "4",
+     "togri": "20",
+     "sabab": "bo‘linma bildirgan miqdor (5) hisobga olinmagan"
+    },
+    "guruh_nomlari": [
+     "Ustunlar",
+     "Chiziqlar",
+     "Belgilar",
+     "Jadvallar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Oilam diagrammasi»",
+     "topshiriq": "Guruh a’zolari oila a’zolari sonini yoki sevimli taomlarini so‘raydi, ma’lumotni jadvalga yig‘adi va ustunli diagramma tuzadi."
+    },
+    "vazifalar": {
+     "A": "Sinfdoshlaringizning sevimli ranglarini so‘rab, jadval va ustunli diagramma tuzing.",
+     "B": "Bir hafta davomida har kuni ob-havo haroratini yozib, chiziqli diagramma chizing.",
+     "C": "Diagramma tuzib, uni tasvirlab bering va 3 ta xulosa yozing."
+    },
+    "sinkveyn": [
+     "Diagramma",
+     "ko‘rgazmali, aniq",
+     "ko‘rsatadi, taqqoslaydi, o‘rgatadi",
+     "Raqamlar rasmga aylanadi",
+     "Ma’lumot"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sinfda kitob o‘qish so‘rovini o‘tkazdi: ertak — 8, sarguzasht — 6, ilmiy — 4 ta o‘quvchi.",
+     "qismlar": [
+      "1-guruh: jadvalni tuzing",
+      "2-guruh: ustunli diagramma chizing",
+      "3-guruh: jami o‘quvchilarni toping",
+      "4-guruh: eng sevimli turni ayting"
+     ],
+     "yakun": "Jami o‘quvchilar 18 ta. Eng sevimli tur — ertak, uni 8 ta o‘quvchi tanlagan."
+    }
+   }
+  },
+  {
+   "mavzu": "O‘rta arifmetik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "O‘rta arifmetik nima?",
+      "matn": "Bir nechta sonning o‘rta arifmetigi — ularning yig‘indisini sonlar soniga bo‘lish natijasi. U sonlarning «o‘rtacha» qiymatini bildiradi. Hamma sonlar tenglashtirilsa, har biri shunday qiymatga ega bo‘lardi.",
+      "misol": "4, 6 va 8 sonlarining o‘rta arifmetigi: yig‘indisi 18, sonlar 3 ta, demak 18 : 3 = 6.",
+      "savol": "2 va 8 ning o‘rta arifmetigi qancha?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘rta arifmetikni topish qoidasi",
+      "matn": "O‘rta arifmetikni topish uchun: 1) hamma sonlarni qo‘shamiz; 2) yig‘indini sonlar soniga bo‘lamiz. O‘rta arifmetik eng kichik sondan kichik va eng katta sondan katta bo‘la olmaydi: u ular orasida yotadi.",
+      "misol": "Natijalar 7, 9, 10 va 6. Yig‘indisi 32, sonlar 4 ta: 32 : 4 = 8. 8 soni 6 va 10 orasida.",
+      "savol": "O‘rta arifmetik eng katta sondan katta bo‘lishi mumkinmi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotdagi o‘rtacha qiymatlar",
+      "matn": "O‘rtacha qiymat har kuni uchraydi: o‘rtacha harorat, o‘rtacha baho, o‘rtacha tezlik, o‘rtacha bo‘y. U ko‘p ma’lumotni bitta son bilan ifodalashga imkon beradi.",
+      "misol": "Bir hafta davomida kunlik harorat 20, 22, 21, 23, 22, 24 va 20 darajada bo‘lsa, o‘rtacha harorat 22 darajaga yaqin.",
+      "savol": "O‘rtacha qiymat nima uchun kerak?",
+      "javob": "ko‘p ma’lumotni bitta son bilan ifodalash uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Noma’lum sonni topish",
+      "matn": "O‘rta arifmetik va sonlar soni ma’lum bo‘lsa, yig‘indini topish mumkin: o‘rta arifmetikni sonlar soniga ko‘paytiramiz. Yig‘indi ma’lum bo‘lsa, noma’lum sonni topish uchun ma’lum sonlar yig‘indisini ayiramiz.",
+      "misol": "3 ta sonning o‘rta arifmetigi 10, ikkitasi 8 va 9. Yig‘indi 30, ikki son birga 17, uchinchi son 13.",
+      "savol": "4 ta sonning o‘rtachasi 5 bo‘lsa, ularning yig‘indisi qancha?",
+      "javob": "20",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘rta arifmetik va tezlik",
+      "matn": "O‘rtacha tezlik — bosib o‘tilgan butun yo‘lni butun vaqtga bo‘lish natijasi. U har bir bo‘lakdagi tezliklarning o‘rta arifmetigi bo‘lmasligi mumkin.",
+      "misol": "Avtobus 3 soatda 180 km yurdi. O‘rtacha tezligi: 180 : 3 = 60 km/soat.",
+      "savol": "2 soatda 100 km yurgan velosipedchining o‘rtacha tezligi?",
+      "javob": "50 km/soat",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "O‘rta arifmetik — sonlar yig‘indisini ularning soniga bo‘lish natijasi. U eng kichik va eng katta son orasida bo‘ladi. Yig‘indi = o‘rta arifmetik · sonlar soni.",
+    "misollar": [
+     {
+      "shart": "Bahosi: 4, 5, 5, 3, 5 va 4. O‘rtacha bahoni toping.",
+      "yechim": [
+       "Yig‘indi: 4 + 5 + 5 + 3 + 5 + 4 = 26.",
+       "Baholar soni 6 ta.",
+       "O‘rta arifmetik 26 : 6 — taqriban 4,3."
+      ],
+      "javob": "taqriban 4,3"
+     },
+     {
+      "shart": "Uch kunda 12, 15 va 18 km yo‘l yurildi. O‘rtacha kunlik masofani toping.",
+      "yechim": [
+       "Yig‘indi: 12 + 15 + 18 = 45.",
+       "Kunlar 3 ta.",
+       "45 : 3 = 15."
+      ],
+      "javob": "15 km"
+     },
+     {
+      "shart": "4 ta sonning o‘rta arifmetigi 12. Uchtasi 10, 11 va 14. To‘rtinchi sonni toping.",
+      "yechim": [
+       "Yig‘indi: 12 · 4 = 48.",
+       "Uch sonning yig‘indisi: 10 + 11 + 14 = 35.",
+       "To‘rtinchi son: 48 − 35 = 13."
+      ],
+      "javob": "13"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Bo‘y o‘lchash",
+      "topshiriq": "Guruh a’zolarining bo‘yini o‘lchang va o‘rtacha bo‘yni toping. Kimning bo‘yi o‘rtachadan baland?",
+      "yechim": "Bo‘ylar qo‘shiladi, a’zolar soniga bo‘linadi, har biri o‘rtachaga solishtiriladi.",
+      "mahsulot": "bo‘y jadvali"
+     },
+     {
+      "nom": "Harorat o‘rtachasi",
+      "topshiriq": "Bir haftalik harorat: 18, 20, 19, 22, 21, 17 va 19 daraja. O‘rtacha haroratni toping.",
+      "yechim": "Yig‘indi 136. Kunlar 7 ta. 136 ni 7 ga bo‘lsak taxminan 19,4 daraja.",
+      "mahsulot": "harorat jadvali"
+     },
+     {
+      "nom": "Yo‘qolgan baho",
+      "topshiriq": "Dilnozaning to‘rtta bahosi 5, 4, 5 va ... O‘rtacha 4,5 bo‘lishi uchun to‘rtinchi baho qancha?",
+      "yechim": "Yig‘indi — o‘rtachani 4 ga ko‘paytirsak, 18 chiqadi. Uch baho yig‘indisi 14. To‘rtinchi baho 18 − 14 = 4.",
+      "mahsulot": "yechim daftari"
+     },
+     {
+      "nom": "O‘rtacha tezlik",
+      "topshiriq": "Poyezd 2 soatda 160 km, keyingi 3 soatda 240 km yurdi. O‘rtacha tezligini toping.",
+      "yechim": "Butun yo‘l 160 + 240 = 400 km. Butun vaqt 5 soat. 400 : 5 = 80 km/soat.",
+      "mahsulot": "tezlik hisobi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "6 va 10 ning o‘rta arifmetigi?",
+      "javob": "8"
+     },
+     {
+      "shart": "3, 5 va 7 ning o‘rta arifmetigi?",
+      "javob": "5"
+     },
+     {
+      "shart": "10, 20, 30 va 40 ning o‘rta arifmetigi?",
+      "javob": "25"
+     },
+     {
+      "shart": "5 ta sonning o‘rtachasi 8. Yig‘indisi?",
+      "javob": "40"
+     },
+     {
+      "shart": "2 soatda 90 km yurgan mashinaning o‘rtacha tezligi?",
+      "javob": "45 km/soat"
+     },
+     {
+      "shart": "12, 14 va 16 ning o‘rta arifmetigi?",
+      "javob": "14"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yig‘indini sonlar soniga emas, boshqa songa bo‘ladi",
+      "sabab": "nechta son borligini sanamaydi",
+      "oldini_olish": "sonlarni sanab, bo‘luvchi sifatida yozish"
+     },
+     {
+      "xato": "O‘rtachani eng katta sondan katta deb oladi",
+      "sabab": "mantiqiy tekshirmaydi",
+      "oldini_olish": "natijani eng kichik va eng katta son orasida ekanini tekshirish"
+     },
+     {
+      "xato": "O‘rtacha tezlikni tezliklarning oddiy yig‘indisi deb oladi",
+      "sabab": "yo‘l va vaqt tushunchalarini bog‘lamaydi",
+      "oldini_olish": "o‘rtacha tezlik — butun yo‘l bo‘lingan butun vaqt"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "o‘rtacha harorat va yog‘in miqdori iqlimni tavsiflaydi"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "sportchilarning o‘rtacha natijasi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "o‘rtacha narx va o‘rtacha daromad hisoblanadi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinfimizning o‘rtacha ko‘rsatkichlari»",
+     "muammo": "Sinfimiz haqida bitta son bilan nimani aytish mumkin?",
+     "mahsulot": "sinf o‘rtacha ko‘rsatkichlari jadvali",
+     "bosqichlar": [
+      "ko‘rsatkich tanlash",
+      "ma’lumot yig‘ish",
+      "o‘rtachani hisoblash",
+      "jadval tuzish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "O‘rtacha bo‘yni toping",
+      "O‘rtacha uyqu vaqtini toping",
+      "O‘rtacha maktab sumkasi og‘irligini toping",
+      "Natijalarni jamlang"
+     ],
+     "mezonlar": [
+      "ma’lumot aniq",
+      "hisob to‘g‘ri",
+      "jadval tushunarli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Statistika idorasi»",
+     "bekatlar": [
+      {
+       "nom": "Meteostansiya",
+       "matn": "Harorat: 10, 12 va 14 daraja.",
+       "topshiriq": "O‘rtachasi qancha?",
+       "javob": "12 daraja",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab",
+       "matn": "Baholar: 5, 4 va 3.",
+       "topshiriq": "O‘rtacha baho qancha?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "Stadion",
+       "matn": "Yugurish natijalari: 12, 14, 13 va 13 soniya.",
+       "topshiriq": "O‘rtacha natija?",
+       "javob": "13 soniya",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "Narxlar: 10, 15 va 20 ming so‘m.",
+       "topshiriq": "O‘rtacha narx?",
+       "javob": "15 ming so‘m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "asboblarga tegmang",
+      "tartibni saqlang"
+     ],
+     "kundalik": [
+      "O‘rtacha qiymat nima beradi?",
+      "Qayerda o‘rtachani uchratdingiz?",
+      "O‘rtacha va eng katta qiymat farqi nima?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "O‘rta arifmetik",
+      "tarif": "sonlar yig‘indisini ularning soniga bo‘lish natijasi"
+     },
+     {
+      "atama": "O‘rtacha qiymat",
+      "tarif": "ma’lumotlarning o‘rtacha kattaligi"
+     },
+     {
+      "atama": "Yig‘indi",
+      "tarif": "qo‘shish natijasi"
+     },
+     {
+      "atama": "O‘rtacha tezlik",
+      "tarif": "butun yo‘lning butun vaqtga nisbati"
+     },
+     {
+      "atama": "Eng katta qiymat",
+      "tarif": "to‘plamdagi eng katta son"
+     },
+     {
+      "atama": "Eng kichik qiymat",
+      "tarif": "to‘plamdagi eng kichik son"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "O‘rta arifmetik yig‘indini sonlar soniga bo‘lib topiladi",
+      "togri": true,
+      "izoh": "ta’rifga ko‘ra"
+     },
+     {
+      "matn": "O‘rta arifmetik eng katta sondan katta bo‘ladi",
+      "togri": false,
+      "izoh": "u eng kichik va eng katta son orasida"
+     },
+     {
+      "matn": "2 va 4 ning o‘rta arifmetigi 3",
+      "togri": true,
+      "izoh": "6 : 2 = 3"
+     },
+     {
+      "matn": "Sonlar bir xil bo‘lsa, o‘rta arifmetik shu songa teng",
+      "togri": true,
+      "izoh": "masalan, 5, 5 va 5 uchun 5"
+     },
+     {
+      "matn": "O‘rtacha tezlik tezliklarni qo‘shib topiladi",
+      "togri": false,
+      "izoh": "yo‘lni vaqtga bo‘lish kerak"
+     },
+     {
+      "matn": "O‘rtacha baho kasr bo‘lishi mumkin",
+      "togri": true,
+      "izoh": "masalan, 4,5"
+     },
+     {
+      "matn": "Yig‘indi o‘rtachani sonlar soniga ko‘paytirib topiladi",
+      "togri": true,
+      "izoh": "bo‘lishga teskari amal"
+     },
+     {
+      "matn": "O‘rtacha qiymat har doim butun son",
+      "togri": false,
+      "izoh": "kasr ham bo‘lishi mumkin"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "O‘rta arifmetik qanday topiladi?",
+      "javob": "yig‘indini sonlar soniga bo‘lib"
+     },
+     {
+      "savol": "4 va 6 ning o‘rta arifmetigi?",
+      "javob": "5"
+     },
+     {
+      "savol": "O‘rtacha qiymat nimaga kerak?",
+      "javob": "ma’lumotni umumlashtirish"
+     },
+     {
+      "savol": "O‘rta arifmetik qayerda joylashadi?",
+      "javob": "eng kichik va eng katta son orasida"
+     },
+     {
+      "savol": "O‘rtacha tezlik nima?",
+      "javob": "butun yo‘lning butun vaqtga nisbati"
+     },
+     {
+      "savol": "10, 10 va 10 ning o‘rtachasi?",
+      "javob": "10"
+     },
+     {
+      "savol": "5 ta sonning o‘rtachasi 4 bo‘lsa, yig‘indi?",
+      "javob": "20"
+     },
+     {
+      "savol": "O‘rtacha bo‘y nima beradi?",
+      "javob": "sinfdagi umumiy bo‘yni"
+     },
+     {
+      "savol": "Kasr o‘rtacha bo‘lishi mumkinmi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Yig‘indi 36, sonlar 4 ta. O‘rtachasi?",
+      "javob": "9"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Sonlar yig‘indisini ularning soniga bo‘lamiz.",
+      "savol": "6, 8 va 10 ning o‘rtachasi?"
+     },
+     {
+      "nom": "Xossa",
+      "matn": "O‘rtacha eng kichik va eng katta son orasida.",
+      "savol": "O‘rtacha eng kattadan katta bo‘ladimi?"
+     },
+     {
+      "nom": "Teskari masala",
+      "matn": "Yig‘indi — o‘rtacha ko‘paytirilgan sonlar soniga.",
+      "savol": "3 ta sonning o‘rtachasi 7. Yig‘indi?"
+     },
+     {
+      "nom": "O‘rtacha tezlik",
+      "matn": "Butun yo‘lni butun vaqtga bo‘lamiz.",
+      "savol": "3 soatda 150 km. O‘rtacha tezlik?"
+     }
+    ],
+    "muammoli_savol": "Jamoada 5 kishining o‘rtacha bo‘yi 150 sm. Shu jamoaga bo‘yi 180 sm bola qo‘shilsa, o‘rtacha bo‘y qanday o‘zgaradi?",
+    "keys": {
+     "vaziyat": "Sardor uch ta test topshirdi: 70, 80 va 90 ball. O‘qituvchi o‘rtacha 85 ball kerak, deb talab qo‘ydi. Sardor to‘rtinchi testni topshirmoqchi.",
+     "savollar": [
+      "Hozirgi o‘rtacha qancha?",
+      "To‘rtinchi testdan nechta ball olishi kerak?"
+     ]
+    },
+    "tezis": "O‘rtacha — ko‘plikdagi birlik",
+    "taqqoslash": {
+     "a": "O‘rta arifmetik",
+     "b": "Eng katta qiymat",
+     "umumiy": [
+      "sonlar to‘plamini tavsiflaydi",
+      "sondir"
+     ],
+     "a_farq": [
+      "hammasi hisobga olinadi",
+      "ular orasida yotadi"
+     ],
+     "b_farq": [
+      "faqat bitta son",
+      "to‘plamning chegarasi"
+     ]
+    },
+    "klaster": {
+     "markaz": "O‘rta arifmetik",
+     "shoxlar": [
+      {
+       "nom": "Hisoblash",
+       "bandlar": [
+        "qo‘shish",
+        "bo‘lish",
+        "sonlar soni"
+       ]
+      },
+      {
+       "nom": "Xossa",
+       "bandlar": [
+        "eng kichikdan katta",
+        "eng kattadan kichik",
+        "oraliqda"
+       ]
+      },
+      {
+       "nom": "Ilova",
+       "bandlar": [
+        "baho",
+        "harorat",
+        "tezlik"
+       ]
+      },
+      {
+       "nom": "Teskari",
+       "bandlar": [
+        "yig‘indi",
+        "noma’lum son",
+        "tekshiruv"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Hammani teng ko‘raman, hammaning o‘rtasiga tushaman. Men kimman?",
+     "javob": "o‘rta arifmetik"
+    },
+    "hikmat": "O‘rtacha yo‘l — oltin yo‘l.",
+    "kalit_soz": "O‘RTACHA",
+    "xato_yechim": {
+     "shart": "2, 4 va 6 ning o‘rta arifmetigini toping.",
+     "xato": "12 : 2 = 6",
+     "togri": "12 : 3 = 4",
+     "sabab": "yig‘indi sonlar soniga (3 ga) bo‘linishi kerak edi, 2 ga emas"
+    },
+    "guruh_nomlari": [
+     "Yig‘indi",
+     "Bo‘linma",
+     "O‘rtacha",
+     "Hisobchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«O‘rtacha qadam»",
+     "topshiriq": "Guruh a’zolari bir xil masofani qadam bilan o‘lchaydi va o‘rtacha qadam sonini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Quyidagi sonlar o‘rta arifmetigini toping: 4 va 8; 3, 6 va 9; 10, 20, 30 va 40.",
+     "B": "Oilangiz a’zolarining yoshi yoki bo‘yining o‘rtachasini toping.",
+     "C": "5 ta sonni o‘ylab toping: o‘rtachasi 10 bo‘lsin, lekin hammasi turlicha bo‘lsin."
+    },
+    "sinkveyn": [
+     "O‘rtacha",
+     "adolatli, teng",
+     "qo‘shadi, bo‘ladi, tenglashtiradi",
+     "Yig‘indi bo‘lingan sonlar soniga",
+     "Qiymat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh velosiped poygasida qatnashdi: vaqtlari 20, 24, 22 va 26 daqiqa.",
+     "qismlar": [
+      "1-guruh: yig‘indini toping",
+      "2-guruh: o‘rtacha vaqtni toping",
+      "3-guruh: kim o‘rtachadan tez?",
+      "4-guruh: kim sekin?"
+     ],
+     "yakun": "Yig‘indi 92, o‘rtacha 92 : 4 = 23 daqiqa. O‘rtachadan tez — 1- va 3-guruh, sekin — 2- va 4-guruh."
+    }
+   }
+  },
+  {
+   "mavzu": "Koordinata nuri",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sonlar nuri",
+      "matn": "Nurda boshlang‘ich nuqta tanlanadi va u 0 deb belgilanadi. Bu nuqta koordinata boshi deyiladi. Birlik kesma tanlanadi va nur bo‘ylab ketma-ket qo‘yiladi. Natijada natural sonlarni nurda ko‘rsatish mumkin. Bunday nur koordinata nuri deyiladi.",
+      "misol": "Koordinata nuri chizish uchun to‘g‘ri chiziq chizib, uchiga 0 ni yozamiz, o‘ng tomonga yo‘nalishni strelka bilan ko‘rsatamiz va birlik kesmani (masalan, 1 sm) o‘lchab ketma-ket 1, 2, 3 ni belgilaymiz.",
+      "savol": "Koordinata nurida boshlang‘ich nuqta qaysi son?",
+      "javob": "0",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nuqta koordinatasi",
+      "matn": "Nurdagi har bir nuqtaga bitta son mos keladi, bu son nuqtaning koordinatasi deyiladi. Nuqta nomi va koordinatasi shunday yoziladi: A(3) — «A nuqta koordinatasi 3 ga teng». Koordinatasi katta nuqta o‘ng tomonda, kichigi chapda turadi.",
+      "misol": "Agar A(2), B(5) bo‘lsa, B nuqta A dan o‘ngda joylashgan, chunki 5 > 2.",
+      "savol": "C(7) va D(4) nuqtalardan qaysi biri o‘ngda?",
+      "javob": "C",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birlik kesma tanlash",
+      "matn": "Birlik kesma uzunligi masalaga qarab tanlanadi. Katta sonlar uchun birlik kesma kichik, kichik sonlar uchun katta olinadi. Birlik kesma tanlangach, uni butun nur bo‘ylab o‘zgartirmasdan ishlatish kerak.",
+      "misol": "0 dan 10 gacha sonlarni daftar satrida ko‘rsatish uchun birlik kesma 1 sm olinadi. 0 dan 100 gacha bo‘lsa, 10 birlik 1 sm ga to‘g‘ri keladi.",
+      "savol": "Birlik kesma o‘rtada o‘zgartirilsa-chi?",
+      "javob": "nuqtalar noto‘g‘ri joylashadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonlarni taqqoslash va amallar",
+      "matn": "Koordinata nurida sonlar chapdan o‘ngga o‘sadi. O‘ngdagi nuqtaning koordinatasi katta. Qo‘shishda o‘ngga, ayirishda chapga siljiladi. Ikki nuqta orasidagi masofa — koordinatalar ayirmasi (kattasidan kichigi ayiriladi).",
+      "misol": "A(3) va B(8) nuqtalar orasidagi masofa: 8 − 3 = 5 birlik kesma.",
+      "savol": "M(2) dan 4 birlik o‘ngga siljisak, qaysi nuqtaga kelamiz?",
+      "javob": "koordinatasi 6 bo‘lgan nuqtaga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kasr sonlar nurda",
+      "matn": "Koordinata nurida kasr va o‘nli kasr sonlar ham tasvirlanadi. Birlik kesma teng bo‘laklarga bo‘linadi. 0 va 1 orasidagi nuqtalar 0 dan katta, lekin 1 dan kichik sonlarni bildiradi.",
+      "misol": "0 va 1 oralig‘i 10 teng qismga bo‘linsa, 3-chiziqcha 0,3 ni, 5-chiziqcha 0,5 ni ko‘rsatadi.",
+      "savol": "0 va 1 oralig‘ining o‘rtasi qaysi o‘nli kasr?",
+      "javob": "0,5",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Koordinata nuri — boshlang‘ich nuqta 0, yo‘nalishi va birlik kesmasi tanlangan nur. Har bir nuqtaga bitta son (koordinata) mos keladi. O‘ngdagi nuqtaning koordinatasi katta.",
+    "misollar": [
+     {
+      "shart": "A(4) va B(11) nuqtalar orasidagi masofani toping.",
+      "yechim": [
+       "Kattasidan kichigini ayiramiz.",
+       "11 − 4 = 7."
+      ],
+      "javob": "7 birlik"
+     },
+     {
+      "shart": "Koordinatasi 6 bo‘lgan nuqtadan 3 birlik o‘ngga, so‘ng 2 birlik chapga siljildik. Qaysi nuqtaga keldik?",
+      "yechim": [
+       "O‘ngga siljish: 6 + 3 = 9.",
+       "Chapga siljish: 9 − 2 = 7."
+      ],
+      "javob": "koordinatasi 7"
+     },
+     {
+      "shart": "A(5) nuqta B nuqtadan 3 birlik o‘ngda. B ning koordinatasi qancha?",
+      "yechim": [
+       "B nuqta chap tomonda, shuning uchun ayiramiz.",
+       "5 − 3 = 2."
+      ],
+      "javob": "B(2)"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Nur chizamiz",
+      "topshiriq": "Birlik kesmasi 1 sm bo‘lgan koordinata nurini 0 dan 10 gacha chizing va A(2), B(5), C(9) nuqtalarni belgilang. Qaysi nuqtalar orasida masofa eng katta?",
+      "yechim": "Eng katta masofa A va C orasida: 9 − 2 = 7.",
+      "mahsulot": "chizilgan koordinata nuri"
+     },
+     {
+      "nom": "Siljish o‘yini",
+      "topshiriq": "Nurda 3 nuqtadan boshlang. Kartochka bo‘yicha siljing: +4, −2, +5. Qayerga keldingiz?",
+      "yechim": "3 dan o‘ngga 4 — 7; chapga 2 — 5; o‘ngga 5 — 10. Natija 10.",
+      "mahsulot": "sakrashlar chizmasi"
+     },
+     {
+      "nom": "Nur va o‘nli kasr",
+      "topshiriq": "0 dan 1 gacha nurni 10 qismga bo‘ling va 0,2; 0,5; 0,8 nuqtalarni belgilang. Qaysi biri 1 ga eng yaqin?",
+      "yechim": "0,8 soni 1 ga eng yaqin: masofa 0,2.",
+      "mahsulot": "o‘nli kasr nuri"
+     },
+     {
+      "nom": "Yo‘l xaritasi",
+      "topshiriq": "Ko‘cha bo‘ylab joylashgan bekatlar koordinatalari: maktab — 0, do‘kon — 3, bog‘ — 7, kutubxona — 10. Do‘kon va bog‘ orasidagi masofa? Maktabdan kutubxonagacha?",
+      "yechim": "Do‘kon va bog‘: 7 − 3 = 4 birlik. Maktab va kutubxona: 10 birlik.",
+      "mahsulot": "bekatlar nuri"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "A(3) va B(9) orasidagi masofa?",
+      "javob": "6"
+     },
+     {
+      "shart": "Koordinatasi 7 nuqtadan 2 birlik chapga siljildi. Yangi koordinata?",
+      "javob": "5"
+     },
+     {
+      "shart": "C(8) nuqtadan 3 birlik o‘ngda turgan nuqta koordinatasi?",
+      "javob": "11"
+     },
+     {
+      "shart": "D(6) va E(2) dan qaysi biri o‘ngda?",
+      "javob": "D"
+     },
+     {
+      "shart": "0 va 1 orasidagi o‘rta nuqta koordinatasi?",
+      "javob": "0,5"
+     },
+     {
+      "shart": "M(10) va N(4) orasidagi masofa?",
+      "javob": "6"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Birlik kesmalarni notekis qo‘yadi",
+      "sabab": "o‘lchamasdan ko‘z bilan chizadi",
+      "oldini_olish": "chizg‘ich bilan teng kesmalarni belgilash"
+     },
+     {
+      "xato": "0 dan boshlamay, 1 dan boshlaydi",
+      "sabab": "natural sonlar 1 dan boshlanishi odatidan",
+      "oldini_olish": "koordinata boshi doim 0 ekanini eslatish"
+     },
+     {
+      "xato": "Masofani yig‘indi bilan topadi",
+      "sabab": "ayirish kerakligini bilmaydi",
+      "oldini_olish": "kattasidan kichigini ayirish qoidasini chizmada ko‘rsatish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "xaritada joylar koordinatalar bilan aniqlanadi"
+     },
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "termometr shkalasi koordinata nuriga o‘xshaydi"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "yugurish yo‘lakchasi bo‘ylab masofalar belgilanadi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sonlar yo‘lagi»",
+     "muammo": "Sonlar nurini katta o‘lchamda tayyorlab, o‘yinlarda qanday ishlatamiz?",
+     "mahsulot": "sinf koordinata nuri va o‘yin kartochkalari",
+     "bosqichlar": [
+      "nur uzunligini tanlash",
+      "birlik kesmani aniqlash",
+      "nurni chizish",
+      "o‘yin kartochkalarini tayyorlash",
+      "o‘yin o‘tkazish"
+     ],
+     "guruh_vazifalari": [
+      "Nurni chizing",
+      "Raqamlarni yozing",
+      "Kartochkalarni tayyorlang",
+      "O‘yinni o‘tkazing"
+     ],
+     "mezonlar": [
+      "nur aniq",
+      "birlik kesma teng",
+      "raqamlar to‘g‘ri",
+      "o‘yin qiziqarli",
+      "guruh ishi tartibli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sonlar ko‘chasi»",
+     "bekatlar": [
+      {
+       "nom": "Bosh bekat",
+       "matn": "Maktab koordinatasi 0, do‘kon 4.",
+       "topshiriq": "Maktabdan do‘kongacha masofa?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Bog‘ koordinatasi 9, do‘kon 4.",
+       "topshiriq": "Do‘kondan bog‘gacha masofa?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Kutubxona",
+       "matn": "Kutubxona 12, bog‘ 9.",
+       "topshiriq": "Qaysi biri o‘ngda?",
+       "javob": "kutubxona",
+       "rasm": ""
+      },
+      {
+       "nom": "Stadion",
+       "matn": "Stadion koordinatasi 15.",
+       "topshiriq": "Maktabdan stadiongacha masofa?",
+       "javob": "15",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "yo‘lga chiqmang",
+      "kattalar bilan yuring",
+      "ko‘chada ehtiyot bo‘ling"
+     ],
+     "kundalik": [
+      "Nur qayerda foydali?",
+      "Birlik kesma nima?",
+      "Koordinata nima?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Koordinata nuri",
+      "tarif": "boshlang‘ich nuqta, yo‘nalish va birlik kesma tanlangan nur"
+     },
+     {
+      "atama": "Koordinata boshi",
+      "tarif": "nurning 0 bilan belgilangan nuqtasi"
+     },
+     {
+      "atama": "Koordinata",
+      "tarif": "nuqtaga mos kelgan son"
+     },
+     {
+      "atama": "Birlik kesma",
+      "tarif": "uzunlik o‘lchovi sifatida tanlangan kesma"
+     },
+     {
+      "atama": "Yo‘nalish",
+      "tarif": "sonlar o‘sadigan tomon"
+     },
+     {
+      "atama": "Masofa",
+      "tarif": "ikki nuqta koordinatalari ayirmasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Koordinata nuri 0 dan boshlanadi",
+      "togri": true,
+      "izoh": "0 — koordinata boshi"
+     },
+     {
+      "matn": "O‘ngdagi nuqtaning koordinatasi kichik",
+      "togri": false,
+      "izoh": "o‘ngdagi nuqtaning koordinatasi katta"
+     },
+     {
+      "matn": "A(5) va B(8) orasidagi masofa 3",
+      "togri": true,
+      "izoh": "8 − 5 = 3"
+     },
+     {
+      "matn": "Birlik kesma nur bo‘ylab o‘zgarmaydi",
+      "togri": true,
+      "izoh": "ular teng bo‘lishi kerak"
+     },
+     {
+      "matn": "Kasr sonlar nurda ko‘rsatilmaydi",
+      "togri": false,
+      "izoh": "ular ham nurda tasvirlanadi"
+     },
+     {
+      "matn": "Har bir nuqtaga bitta koordinata mos keladi",
+      "togri": true,
+      "izoh": "nuqta va son o‘rtasida moslik"
+     },
+     {
+      "matn": "Qo‘shishda chapga siljiladi",
+      "togri": false,
+      "izoh": "qo‘shishda o‘ngga siljiladi"
+     },
+     {
+      "matn": "0,5 soni 0 va 1 orasida",
+      "togri": true,
+      "izoh": "0 < 0,5 < 1"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Koordinata boshi qaysi son?",
+      "javob": "0"
+     },
+     {
+      "savol": "Koordinata nima?",
+      "javob": "nuqtaga mos kelgan son"
+     },
+     {
+      "savol": "Birlik kesma nima?",
+      "javob": "uzunlik o‘lchovi bo‘lgan kesma"
+     },
+     {
+      "savol": "Qo‘shish qaysi tomonga siljitadi?",
+      "javob": "o‘ngga"
+     },
+     {
+      "savol": "Ayirish qaysi tomonga siljitadi?",
+      "javob": "chapga"
+     },
+     {
+      "savol": "Masofa qanday topiladi?",
+      "javob": "kattasidan kichigini ayirib"
+     },
+     {
+      "savol": "A(3) yozuvi nimani bildiradi?",
+      "javob": "A nuqta koordinatasi 3"
+     },
+     {
+      "savol": "7 va 9 dan qaysi biri o‘ngda?",
+      "javob": "9"
+     },
+     {
+      "savol": "0 va 1 orasidagi o‘rta nuqta?",
+      "javob": "0,5"
+     },
+     {
+      "savol": "Koordinatalar o‘ngga qarab qanday o‘zgaradi?",
+      "javob": "kattalashadi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Nur",
+      "matn": "Boshi — 0, yo‘nalishi — o‘ngga, birlik kesma tanlangan.",
+      "savol": "Nur boshi qaysi son?"
+     },
+     {
+      "nom": "Koordinata",
+      "matn": "Nuqtaga mos son. A(3) — A nuqta koordinatasi 3.",
+      "savol": "B(6) nimani bildiradi?"
+     },
+     {
+      "nom": "Taqqoslash",
+      "matn": "O‘ngdagi nuqta katta.",
+      "savol": "A(2) va B(7). Qaysi biri o‘ngda?"
+     },
+     {
+      "nom": "Masofa",
+      "matn": "Kattasidan kichigini ayiramiz.",
+      "savol": "A(4) va B(10) orasidagi masofa?"
+     }
+    ],
+    "muammoli_savol": "Ikki do‘st nur chizdi. Birida birlik kesma 1 sm, boshqasida 2 sm. Ikkalasi ham 5 nuqtani belgiladi. Nuqtalar bir xil joyda turadimi? Sonlar qanday?",
+    "keys": {
+     "vaziyat": "Avtobus yo‘lida bekatlar koordinatalari: A — 0, B — 6, C — 14. Haydovchi A dan C gacha ketmoqda.",
+     "savollar": [
+      "A dan B gacha masofa qancha?",
+      "B dan C gacha-chi?"
+     ]
+    },
+    "tezis": "Har bir nuqtaning o‘z soni bor",
+    "taqqoslash": {
+     "a": "Koordinata nuri",
+     "b": "Oddiy nur",
+     "umumiy": [
+      "bir tomonga cheksiz",
+      "boshi bor"
+     ],
+     "a_farq": [
+      "birlik kesma va sonlar bor",
+      "nuqtalarga koordinata mos"
+     ],
+     "b_farq": [
+      "birlik kesma yo‘q",
+      "sonlar yo‘q"
+     ]
+    },
+    "klaster": {
+     "markaz": "Koordinata nuri",
+     "shoxlar": [
+      {
+       "nom": "Elementlari",
+       "bandlar": [
+        "boshi 0",
+        "yo‘nalish",
+        "birlik kesma"
+       ]
+      },
+      {
+       "nom": "Nuqta",
+       "bandlar": [
+        "koordinata",
+        "A(3)",
+        "o‘ngda katta"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "qo‘shish — o‘ngga",
+        "ayirish — chapga",
+        "masofa"
+       ]
+      },
+      {
+       "nom": "Sonlar",
+       "bandlar": [
+        "natural",
+        "kasr",
+        "o‘nli kasr"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Boshim noldan boshlanadi, sonlarni o‘ng tomonga tizaman. Men kimman?",
+     "javob": "koordinata nuri"
+    },
+    "hikmat": "Yo‘l o‘lchovsiz bo‘lmas.",
+    "kalit_soz": "KOORDINATA",
+    "xato_yechim": {
+     "shart": "A(4) va B(9) orasidagi masofani toping.",
+     "xato": "4 + 9 = 13",
+     "togri": "9 − 4 = 5",
+     "sabab": "masofa ayirma bilan topiladi, yig‘indi bilan emas"
+    },
+    "guruh_nomlari": [
+     "Nollar",
+     "Birlar",
+     "Nuqtalar",
+     "Nurlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinf yo‘lagi»",
+     "topshiriq": "Guruh sinf yo‘lagida 1 m masofada belgilar qo‘yib, 0 dan 10 gacha koordinata nurini yasaydi va bolalar nuqtalarda turib masofalarni topadi."
+    },
+    "vazifalar": {
+     "A": "0 dan 12 gacha nur chizing va A(3), B(7), C(11) nuqtalarini belgilang.",
+     "B": "Uyingizdagi o‘lchov lentasi bilan koordinata nuri yasab, 5 ta predmet joylashuvini belgilang.",
+     "C": "0 dan 1 gacha nurni 10 qismga bo‘lib, 0,1 dan 0,9 gacha nuqtalarni belgilang."
+    },
+    "sinkveyn": [
+     "Nur",
+     "uzun, tartibli",
+     "boshlanadi, davom etadi, o‘sadi",
+     "Sonlar tartib bilan joylashadi",
+     "Koordinata"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Maktab hovlisi bo‘ylab nur belgilandi: start — 0, bayroq — 5, daraxt — 9, tugash — 14.",
+     "qismlar": [
+      "1-guruh: bayroqdan daraxtgacha masofa",
+      "2-guruh: startdan tugashgacha masofa",
+      "3-guruh: daraxtdan tugashgacha masofa",
+      "4-guruh: eng uzun masofa"
+     ],
+     "yakun": "Masofalar: bayroq — daraxt 4; start — tugash 14; daraxt — tugash 5. Eng uzun masofa startdan tugashgacha (14)."
+    }
+   }
   }
  ]
 }
