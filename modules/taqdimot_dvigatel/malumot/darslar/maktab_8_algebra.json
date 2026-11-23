@@ -4182,6 +4182,1395 @@
      "yakun": "Natijalar: 2; 18; II va IV; 2 soat."
     }
    }
+  },
+  {
+   "mavzu": "Masalalar (harakat, ish)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Harakat formulasi",
+      "matn": "Masofa s, tezlik v va vaqt t o‘zaro bog‘langan: s ifoda v · t. Bundan tezlik v ifoda s / t, vaqt t ifoda s / v. Barcha kattaliklar bir xil birlikda bo‘lishi kerak.",
+      "misol": "Poyezd 5 soatda 240 km yurdi: tezlik 240 / 5, ya’ni 48 km/soat. Tezlik 60 km/soat, vaqt 3 soat bo‘lsa, masofa 180 km.",
+      "savol": "Masofa 150 km, tezlik 50 km/soat. Vaqt nechaga teng?",
+      "javob": "3 soat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qarama-qarshi harakat",
+      "matn": "Ikki jism bir-biriga qarab harakatlansa, ularning tezliklari qo‘shiladi. Uchrashuv vaqti masofani tezliklar yig‘indisiga bo‘lishdan topiladi. Quvib yetishda tezliklar ayriladi.",
+      "misol": "Masofa 120 km, tezliklar 50 va 70 km/soat: uchrashuv vaqti 120 / (50 + 70), ya’ni 1 soat.",
+      "savol": "Masofa 180 km, tezliklar 40 va 50 km/soat. Uchrashuv vaqti?",
+      "javob": "2 soat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Daryodagi harakat",
+      "matn": "Oqim bo‘yicha tezlik o‘z tezlik bilan oqim tezligining yig‘indisi, oqimga qarshi tezlik ularning ayirmasi.",
+      "misol": "Kater o‘z tezligi 12 km/soat, oqim 3 km/soat. Oqim bo‘yicha 15, oqimga qarshi 9 km/soat. 45 km masofani oqim bo‘yicha 3 soatda, oqimga qarshi 5 soatda bosadi.",
+      "savol": "Kater o‘z tezligi 10, oqim 2 km/soat. Oqimga qarshi tezlik?",
+      "javob": "8 km/soat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ish masalasi",
+      "matn": "Butun ishni 1 deb olamiz. Ishni t soatda bajaruvchining unumdorligi 1 / t. Birga ishlaganda unumdorliklar qo‘shiladi, ish vaqti esa unumdorliklar yig‘indisiga teskari son.",
+      "misol": "Birinchi usta ishni 6 soatda, ikkinchisi 3 soatda bajaradi: 1 / 6 + 1 / 3, ya’ni 1 / 2. Birga 2 soatda bajaradi.",
+      "savol": "Ustalar ishni 4 va 12 soatda bajaradi. Birga necha soatda?",
+      "javob": "3 soat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tenglama tuzib yechish",
+      "matn": "Noma’lumni belgilaymiz, shartdan tenglama tuzamiz, yechamiz va ildizlardan masala shartiga mosini tanlaymiz. Tezlik, vaqt, masofa manfiy bo‘lolmaydi.",
+      "misol": "Masofa 36 km. Velosipedchi tezligi x, piyoda x − 6 km/soat, piyoda 3 soat ko‘p yurdi: 36 / (x − 6) − 36 / x ifoda 3. Surat: 216 ifoda 3x² − 18x, x² − 6x − 72 ifoda 0, D — 324, x — 12 yoki −6. Tezlik 12 km/soat.",
+      "savol": "Ildizlar 12 va −6. Tezlik uchun qaysi biri mos?",
+      "javob": "12",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "s ifoda v · t. Qarama-qarshi harakatda tezliklar qo‘shiladi, quvib yetishda ayriladi. Oqim bo‘yicha v + u, oqimga qarshi v − u. Birga ishlaganda unumdorliklar qo‘shiladi.",
+    "misollar": [
+     {
+      "shart": "Poyezd 3 soatda 240 km yurdi. Tezligini toping.",
+      "yechim": [
+       "Tezlik masofani vaqtga bo‘lishdan topiladi.",
+       "240 / 3, ya’ni 80.",
+       "Tekshirish: 80 · 3 — 240."
+      ],
+      "javob": "80 km/soat"
+     },
+     {
+      "shart": "Kater o‘z tezligi 18, oqim tezligi 2 km/soat. 80 km borib, qaytsa, qancha vaqt ketadi?",
+      "yechim": [
+       "Oqim bo‘yicha tezlik 20, vaqt 80 / 20 — 4 soat.",
+       "Oqimga qarshi tezlik 16, vaqt 80 / 16 — 5 soat.",
+       "Jami 4 + 5, ya’ni 9 soat."
+      ],
+      "javob": "9 soat"
+     },
+     {
+      "shart": "Birinchi ishchi ishni 10 soatda, ikkinchisi 15 soatda bajaradi. Birga necha soatda?",
+      "yechim": [
+       "Unumdorliklar 1 / 10 va 1 / 15.",
+       "Yig‘indi 3 / 30 + 2 / 30, ya’ni 5 / 30, ya’ni 1 / 6.",
+       "Vaqt 6 soat."
+      ],
+      "javob": "6 soat"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Uchrashuv",
+      "topshiriq": "Ikki shahar orasi 150 km. Avtomobillar 45 va 30 km/soat tezlikda bir-biriga qarab chiqdi. Qachon uchrashadi?",
+      "yechim": "150 / (45 + 30), ya’ni 2 soat.",
+      "mahsulot": "chizma va hisob"
+     },
+     {
+      "nom": "Quvib yetish",
+      "topshiriq": "Birinchi avtomobil 60 km/soat, ikkinchisi 40 km/soat tezlikda ketmoqda, ikkinchisi 80 km oldinda. Qachon quvib yetadi?",
+      "yechim": "80 / (60 − 40), ya’ni 4 soat.",
+      "mahsulot": "yechim varag‘i"
+     },
+     {
+      "nom": "Hovuz",
+      "topshiriq": "Bir quvur hovuzni 20 soatda, ikkinchisi 30 soatda to‘ldiradi. Birga necha soatda to‘ldiradi?",
+      "yechim": "1 / 20 + 1 / 30 — 3 / 60 + 2 / 60 — 5 / 60 — 1 / 12. Vaqt 12 soat.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Daryo sayohati",
+      "topshiriq": "Kater o‘z tezligi 15, oqim 3 km/soat. 72 km oqim bo‘yicha qancha vaqtda boradi?",
+      "yechim": "Tezlik 18, vaqt 72 / 18, ya’ni 4 soat.",
+      "mahsulot": "chizma"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "200 km yo‘lni 4 soatda bosdi. Tezligi?",
+      "javob": "50 km/soat"
+     },
+     {
+      "shart": "Tezlik 60 km/soat, vaqt 2,5 soat. Masofa?",
+      "javob": "150 km"
+     },
+     {
+      "shart": "Qarama-qarshi harakat: masofa 100 km, tezliklar 30 va 20 km/soat. Uchrashuv vaqti?",
+      "javob": "2 soat"
+     },
+     {
+      "shart": "Kater o‘z tezligi 15, oqim 3 km/soat. Oqimga qarshi tezlik?",
+      "javob": "12 km/soat"
+     },
+     {
+      "shart": "Ustalar ishni 6 va 12 soatda bajaradi. Birga necha soatda?",
+      "javob": "4 soat"
+     },
+     {
+      "shart": "Usta ishni 8 soatda bajaradi. Uning unumdorligi?",
+      "javob": "1 / 8"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qarama-qarshi harakatda tezliklarni ayiradi",
+      "sabab": "harakat turini farqlamaydi",
+      "oldini_olish": "chizma chizib, jismlar yo‘nalishini ko‘rish"
+     },
+     {
+      "xato": "Oqimga qarshi tezlikka oqimni qo‘shadi",
+      "sabab": "oqim yo‘nalishini unutadi",
+      "oldini_olish": "oqimga qarshi v − u ekanini yozib qo‘yish"
+     },
+     {
+      "xato": "Tenglama ildizini tekshirmaydi",
+      "sabab": "masala shartiga mosligini e’tiborsiz qoldiradi",
+      "oldini_olish": "manfiy ildizni masalada rad etish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "tekis harakat va tezliklarni qo‘shish"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "daryo oqimi va kema harakati"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "ish unumdorligi va vaqt hisobi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yo‘lda va ishda»",
+     "muammo": "Harakat va ish masalalarini hayotiy vaziyatlardan qanday tuzamiz?",
+     "mahsulot": "masalalar to‘plami",
+     "bosqichlar": [
+      "vaziyat izlash",
+      "ma’lumot yig‘ish",
+      "masala tuzish",
+      "yechish",
+      "to‘plam yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Vaziyat toping",
+      "Masala tuzing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "masala to‘g‘ri tuzilgan",
+      "yechim to‘g‘ri",
+      "tekshiruv bor",
+      "xulosa asosli",
+      "to‘plam ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Yo‘llar va ustaxonalar»",
+     "bekatlar": [
+      {
+       "nom": "Stansiya",
+       "matn": "Poyezd 360 km yo‘lni 4 soatda bosdi.",
+       "topshiriq": "Tezlik?",
+       "javob": "90 km/soat",
+       "rasm": ""
+      },
+      {
+       "nom": "Daryo bandargohi",
+       "matn": "Kater o‘z tezligi 14, oqim 2 km/soat.",
+       "topshiriq": "Oqim bo‘yicha tezlik?",
+       "javob": "16 km/soat",
+       "rasm": ""
+      },
+      {
+       "nom": "Ustaxona",
+       "matn": "Bir usta 5 soatda, ikkinchisi 20 soatda bajaradi.",
+       "topshiriq": "Birga necha soatda?",
+       "javob": "4 soat",
+       "rasm": ""
+      },
+      {
+       "nom": "Yo‘l uchrashuvi",
+       "matn": "Masofa 210 km, tezliklar 40 va 30 km/soat.",
+       "topshiriq": "Uchrashuv vaqti?",
+       "javob": "3 soat",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi masala qiyin bo‘ldi?",
+      "Chizma yordam berdimi?",
+      "Qayerda tezlik va vaqt kerak bo‘ldi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tezlik",
+      "tarif": "birlik vaqtda bosilgan masofa"
+     },
+     {
+      "atama": "Oqim tezligi",
+      "tarif": "daryo suvining harakat tezligi"
+     },
+     {
+      "atama": "O‘z tezlik",
+      "tarif": "tinch suvdagi tezlik"
+     },
+     {
+      "atama": "Unumdorlik",
+      "tarif": "birlik vaqtda bajarilgan ish ulushi"
+     },
+     {
+      "atama": "Uchrashuv vaqti",
+      "tarif": "masofa bo‘linadi tezliklar yig‘indisiga"
+     },
+     {
+      "atama": "Quvib yetish",
+      "tarif": "tezliklar ayirmasi bilan yaqinlashish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qarama-qarshi harakatda tezliklar qo‘shiladi",
+      "togri": true,
+      "izoh": "yaqinlashish tezligi yig‘indi"
+     },
+     {
+      "matn": "Oqimga qarshi tezlik v + u",
+      "togri": false,
+      "izoh": "to‘g‘risi v − u"
+     },
+     {
+      "matn": "Birga ishlaganda unumdorliklar qo‘shiladi",
+      "togri": true,
+      "izoh": "ish ulushlari yig‘iladi"
+     },
+     {
+      "matn": "t soatda bajaruvchining unumdorligi 1 / t",
+      "togri": true,
+      "izoh": "butun ish 1"
+     },
+     {
+      "matn": "Tezlik manfiy bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "masalada tezlik manfiy emas"
+     },
+     {
+      "matn": "s ifoda v · t",
+      "togri": true,
+      "izoh": "masofa tezlik va vaqt ko‘paytmasi"
+     },
+     {
+      "matn": "Quvib yetishda tezliklar qo‘shiladi",
+      "togri": false,
+      "izoh": "ayiriladi"
+     },
+     {
+      "matn": "Ikki usta 6 va 3 soatda ishlasa, birga 2 soatda bajaradi",
+      "togri": true,
+      "izoh": "1 / 6 + 1 / 3 — 1 / 2"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Masofa formulasi?",
+      "javob": "s ifoda v · t"
+     },
+     {
+      "savol": "Vaqtni qanday topamiz?",
+      "javob": "masofani tezlikka bo‘lib"
+     },
+     {
+      "savol": "Oqim bo‘yicha tezlik?",
+      "javob": "v + u"
+     },
+     {
+      "savol": "Oqimga qarshi tezlik?",
+      "javob": "v − u"
+     },
+     {
+      "savol": "Uchrashuv vaqti?",
+      "javob": "masofa bo‘linadi tezliklar yig‘indisiga"
+     },
+     {
+      "savol": "Butun ish nechaga teng olinadi?",
+      "javob": "1"
+     },
+     {
+      "savol": "t soatda bajaruvchi unumdorligi?",
+      "javob": "1 / t"
+     },
+     {
+      "savol": "Birga ishlashda unumdorliklar nima qilinadi?",
+      "javob": "qo‘shiladi"
+     },
+     {
+      "savol": "120 km, 40 km/soat. Vaqt?",
+      "javob": "3 soat"
+     },
+     {
+      "savol": "Masala yechgach nimani tekshiramiz?",
+      "javob": "ildiz shartga mosligini"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Formula",
+      "matn": "s ifoda v · t.",
+      "savol": "v 30, t 4 bo‘lsa, s?"
+     },
+     {
+      "nom": "Uchrashuv",
+      "matn": "Tezliklar qo‘shiladi.",
+      "savol": "Masofa 90, tezliklar 10 va 20. Vaqt?"
+     },
+     {
+      "nom": "Daryo",
+      "matn": "v + u va v − u.",
+      "savol": "v 9, u 1. Oqimga qarshi?"
+     },
+     {
+      "nom": "Ish",
+      "matn": "Unumdorliklar qo‘shiladi.",
+      "savol": "1 / 3 + 1 / 6 nechaga teng?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ikki usta birga ishlaganda ish vaqti ularning har birining vaqtidan kam bo‘ladi? 6 va 3 soat misolida tushuntiring.",
+    "keys": {
+     "vaziyat": "Ikki bog‘bon bir bog‘ni sug‘orishi kerak. Birinchisi 6 soatda, ikkinchisi 3 soatda sug‘oradi. Ular birga ishlashmoqchi.",
+     "savollar": [
+      "Birga necha soatda sug‘oradi?",
+      "Vaqt qancha kamaydi?"
+     ]
+    },
+    "tezis": "Tezlik va unumdorlik — bitta g‘oya",
+    "taqqoslash": {
+     "a": "Harakat masalasi",
+     "b": "Ish masalasi",
+     "umumiy": [
+      "tenglama tuziladi",
+      "ildiz tekshiriladi"
+     ],
+     "a_farq": [
+      "masofa va tezlik",
+      "s ifoda v · t"
+     ],
+     "b_farq": [
+      "butun ish 1",
+      "unumdorliklar qo‘shiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Harakat va ish masalalari",
+     "shoxlar": [
+      {
+       "nom": "Harakat",
+       "bandlar": [
+        "s ifoda v · t",
+        "uchrashuv",
+        "quvib yetish"
+       ]
+      },
+      {
+       "nom": "Daryo",
+       "bandlar": [
+        "oqim bo‘yicha",
+        "oqimga qarshi"
+       ]
+      },
+      {
+       "nom": "Ish",
+       "bandlar": [
+        "unumdorlik",
+        "birga ishlash"
+       ]
+      },
+      {
+       "nom": "Yechish",
+       "bandlar": [
+        "belgilash",
+        "tenglama",
+        "tekshirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki kishi birga ishlasa, har biridan tez bitiraman. Men nimaman?",
+     "javob": "birgalikdagi unumdorlik"
+    },
+    "hikmat": "Yo‘l yurgan toliqmas, ish qilgan charchamas.",
+    "kalit_soz": "TEZLIK",
+    "xato_yechim": {
+     "shart": "Ikki usta ishni 6 va 3 soatda bajaradi. Birga qancha vaqt kerak?",
+     "xato": "9 soat",
+     "togri": "2 soat",
+     "sabab": "vaqtlar qo‘shilmaydi, unumdorliklar qo‘shiladi: 1 / 6 + 1 / 3 — 1 / 2, vaqt 2 soat"
+    },
+    "guruh_nomlari": [
+     "Tezlikchilar",
+     "Ishchilar",
+     "Oqimchilar",
+     "Uchrashuvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Maktabgacha yo‘l»",
+     "topshiriq": "Guruh maktabgacha masofani va yurish vaqtini o‘lchab, tezlikni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "120 km yo‘lni 3 soatda bosgan avtomobil tezligini toping.",
+     "B": "Kater o‘z tezligi 16, oqim 4 km/soat. 60 km oqim bo‘yicha qancha vaqtda boradi?",
+     "C": "Ikki quvur hovuzni 12 va 6 soatda to‘ldiradi. Birga necha soatda?"
+    },
+    "sinkveyn": [
+     "Masala",
+     "harakat, ish",
+     "yuradi, ishlaydi, hisoblanadi",
+     "Tezlik va unumdorlik",
+     "Tenglama"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh masalalarni yechadi.",
+     "qismlar": [
+      "1-guruh: 150 km, 50 km/soat, vaqt",
+      "2-guruh: uchrashuv: 100 km, 30 va 20",
+      "3-guruh: ustalar 6 va 12 soatda, birga",
+      "4-guruh: kater 15, oqim 3, oqimga qarshi"
+     ],
+     "yakun": "Natijalar: 3 soat; 2 soat; 4 soat; 12 km/soat."
+    }
+   }
+  },
+  {
+   "mavzu": "Standart ko‘rinish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "10 ning darajalari",
+      "matn": "10 ning musbat darajasi birdan keyin shuncha nol yozishdan hosil bo‘ladi. Manfiy daraja kasr beradi: 10 ning −n darajasi — 1 / 10 ning n darajasi.",
+      "misol": "10³ — 1000. 10⁵ — 100000. 10⁻¹ — 0,1. 10⁻² — 0,01. 10⁻³ — 0,001.",
+      "savol": "10⁴ nechaga teng?",
+      "javob": "10000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Standart ko‘rinish",
+      "matn": "Sonning standart ko‘rinishi a · 10ⁿ, bunda 1 ≤ a < 10 va n butun son. a ni mantissa, n ni tartib deb ataymiz. Juda katta va juda kichik sonlarni ixcham yozishga yordam beradi.",
+      "misol": "3500 — 3,5 · 10³. 0,07 — 7 · 10⁻². 800 — 8 · 10².",
+      "savol": "800 ni standart ko‘rinishda yozing.",
+      "javob": "8 · 10²",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Katta sonlar",
+      "matn": "Katta sonni standart ko‘rinishga keltirish uchun vergulni birinchi raqamdan keyin qo‘yamiz. Vergul necha o‘rin chapga siljigan bo‘lsa, daraja shuncha musbat bo‘ladi.",
+      "misol": "Yerdan Quyoshgacha taxminan 150000000 km. Vergulni 8 o‘rin siljitamiz: 1,5 · 10⁸ km. 25000000 — 2,5 · 10⁷.",
+      "savol": "6000000 ni standart ko‘rinishda yozing.",
+      "javob": "6 · 10⁶",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kichik sonlar",
+      "matn": "Kichik sonda vergulni birinchi noldan farqli raqamdan keyin qo‘yamiz. Vergul necha o‘rin o‘ngga siljigan bo‘lsa, daraja shuncha manfiy bo‘ladi.",
+      "misol": "0,00045 — 4,5 · 10⁻⁴. Bakteriya uzunligi taxminan 0,000002 m — 2 · 10⁻⁶ m.",
+      "savol": "0,003 ni standart ko‘rinishda yozing.",
+      "javob": "3 · 10⁻³",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Standart ko‘rinishdagi amallar",
+      "matn": "Ko‘paytirishda mantissalarni ko‘paytiramiz, darajalarni qo‘shamiz. Bo‘lishda mantissalarni bo‘lamiz, darajalarni ayiramiz. Natija 1 dan 10 gacha bo‘lmasa, qayta standart ko‘rinishga keltiramiz.",
+      "misol": "(3 · 10⁴) · (2 · 10³) — 6 · 10⁷. (8 · 10⁵) / (2 · 10²) — 4 · 10³. (5 · 10³) · (4 · 10⁴) — 20 · 10⁷ — 2 · 10⁸.",
+      "savol": "(2 · 10³) · (3 · 10²) nechaga teng?",
+      "javob": "6 · 10⁵",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Standart ko‘rinish: a · 10ⁿ, 1 ≤ a < 10, n butun son. Ko‘paytirishda darajalar qo‘shiladi, bo‘lishda ayriladi. Katta sonlarda n musbat, kichik sonlarda manfiy.",
+    "misollar": [
+     {
+      "shart": "45000 ni standart ko‘rinishda yozing.",
+      "yechim": [
+       "Vergulni 4 o‘rin chapga siljitamiz: 4,5.",
+       "Daraja 4.",
+       "Natija 4,5 · 10⁴."
+      ],
+      "javob": "4,5 · 10⁴"
+     },
+     {
+      "shart": "0,00072 ni standart ko‘rinishda yozing.",
+      "yechim": [
+       "Vergulni 4 o‘rin o‘ngga siljitamiz: 7,2.",
+       "Daraja −4.",
+       "Natija 7,2 · 10⁻⁴."
+      ],
+      "javob": "7,2 · 10⁻⁴"
+     },
+     {
+      "shart": "(6 · 10⁵) · (3 · 10²) ni hisoblang.",
+      "yechim": [
+       "Mantissalar: 6 · 3 — 18.",
+       "Darajalar: 5 + 2 — 7. Hosil 18 · 10⁷.",
+       "18 ni 1,8 · 10 deb yozsak, natija 1,8 · 10⁸."
+      ],
+      "javob": "1,8 · 10⁸"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Koinot",
+      "topshiriq": "Yerdan Oygacha masofa taxminan 384000 km. Standart ko‘rinishda yozing.",
+      "yechim": "3,84 · 10⁵ km.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Mikro olam",
+      "topshiriq": "Hujayra o‘lchami 0,0000005 m. Standart ko‘rinishda yozing.",
+      "yechim": "5 · 10⁻⁷ m.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Yorug‘lik tezligi",
+      "topshiriq": "Yorug‘lik tezligi 300000 km/s. Standart ko‘rinishda yozing.",
+      "yechim": "3 · 10⁵ km/s.",
+      "mahsulot": "plakat"
+     },
+     {
+      "nom": "Ko‘paytiramiz",
+      "topshiriq": "(4 · 10³) · (5 · 10²) ni hisoblang.",
+      "yechim": "20 · 10⁵, ya’ni 2 · 10⁶.",
+      "mahsulot": "yechim varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "7000 ni standart ko‘rinishda yozing.",
+      "javob": "7 · 10³"
+     },
+     {
+      "shart": "52000 ni standart ko‘rinishda yozing.",
+      "javob": "5,2 · 10⁴"
+     },
+     {
+      "shart": "0,06 ni standart ko‘rinishda yozing.",
+      "javob": "6 · 10⁻²"
+     },
+     {
+      "shart": "0,0013 ni standart ko‘rinishda yozing.",
+      "javob": "1,3 · 10⁻³"
+     },
+     {
+      "shart": "3 · 10⁴ ni oddiy ko‘rinishda yozing.",
+      "javob": "30000"
+     },
+     {
+      "shart": "(2 · 10³) · (4 · 10²) ni hisoblang.",
+      "javob": "8 · 10⁵"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Mantissani 10 dan katta qoldiradi",
+      "sabab": "standart shartini unutadi",
+      "oldini_olish": "mantissa 1 dan 10 gacha ekanini tekshirish"
+     },
+     {
+      "xato": "Kichik sonda darajani musbat yozadi",
+      "sabab": "vergul yo‘nalishini adashtiradi",
+      "oldini_olish": "kichik son uchun daraja manfiy ekanini eslash"
+     },
+     {
+      "xato": "Ko‘paytirishda darajalarni ko‘paytiradi",
+      "sabab": "daraja qoidasini unutadi",
+      "oldini_olish": "darajalar qo‘shilishini yozib qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Astronomiya",
+      "boglanish": "yulduzlargacha masofalar juda katta sonlar bilan yoziladi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "yorug‘lik tezligi va atom o‘lchamlari"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "hujayra va bakteriyalar o‘lchamlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Eng katta va eng kichik»",
+     "muammo": "Tabiatdagi juda katta va juda kichik sonlarni qanday ixcham yozamiz?",
+     "mahsulot": "ob’ektlar o‘lchami jadvali",
+     "bosqichlar": [
+      "ma’lumot yig‘ish",
+      "sonlarni yozish",
+      "standart ko‘rinish",
+      "tartiblash",
+      "jadval yasash"
+     ],
+     "guruh_vazifalari": [
+      "Ma’lumot toping",
+      "Standart ko‘rinishga keltiring",
+      "Tartiblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "ma’lumot to‘g‘ri",
+      "standart ko‘rinish to‘g‘ri",
+      "tartib to‘g‘ri",
+      "xulosa asosli",
+      "jadval ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Koinotdan mikro olamgacha»",
+     "bekatlar": [
+      {
+       "nom": "Quyosh",
+       "matn": "Yerdan Quyoshgacha 150000000 km.",
+       "topshiriq": "Standart ko‘rinish?",
+       "javob": "1,5 · 10⁸ km",
+       "rasm": ""
+      },
+      {
+       "nom": "Oy",
+       "matn": "Yerdan Oygacha 384000 km.",
+       "topshiriq": "Standart ko‘rinish?",
+       "javob": "3,84 · 10⁵ km",
+       "rasm": ""
+      },
+      {
+       "nom": "Bakteriya",
+       "matn": "Bakteriya uzunligi 0,000002 m.",
+       "topshiriq": "Standart ko‘rinish?",
+       "javob": "2 · 10⁻⁶ m",
+       "rasm": ""
+      },
+      {
+       "nom": "Atom",
+       "matn": "Atom o‘lchami 0,0000000001 m.",
+       "topshiriq": "Standart ko‘rinish?",
+       "javob": "1 · 10⁻¹⁰ m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda juda katta son uchradi?",
+      "Vergul qaysi tomonga siljidi?",
+      "Standart ko‘rinish nima uchun qulay?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Standart ko‘rinish",
+      "tarif": "a · 10ⁿ, 1 dan 10 gacha mantissa bilan"
+     },
+     {
+      "atama": "Mantissa",
+      "tarif": "1 dan 10 gacha bo‘lgan ko‘paytuvchi a"
+     },
+     {
+      "atama": "Tartib",
+      "tarif": "10 ning daraja ko‘rsatkichi n"
+     },
+     {
+      "atama": "Manfiy daraja",
+      "tarif": "kasrni bildiruvchi daraja"
+     },
+     {
+      "atama": "Vergulni siljitish",
+      "tarif": "darajani aniqlash usuli"
+     },
+     {
+      "atama": "Daraja qoidasi",
+      "tarif": "ko‘paytirishda ko‘rsatkichlar qo‘shiladi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "3500 — 3,5 · 10³",
+      "togri": true,
+      "izoh": "vergul 3 o‘rin siljigan"
+     },
+     {
+      "matn": "0,07 — 7 · 10²",
+      "togri": false,
+      "izoh": "to‘g‘risi 7 · 10⁻²"
+     },
+     {
+      "matn": "Standart ko‘rinishda mantissa 1 dan 10 gacha",
+      "togri": true,
+      "izoh": "1 ≤ a < 10"
+     },
+     {
+      "matn": "10⁻² — 0,01",
+      "togri": true,
+      "izoh": "1 / 100"
+     },
+     {
+      "matn": "Ko‘paytirishda darajalar ko‘paytiriladi",
+      "togri": false,
+      "izoh": "darajalar qo‘shiladi"
+     },
+     {
+      "matn": "(3 · 10⁴) · (2 · 10³) — 6 · 10⁷",
+      "togri": true,
+      "izoh": "3 · 2 va 4 + 3"
+     },
+     {
+      "matn": "18 · 10⁷ standart ko‘rinishda",
+      "togri": false,
+      "izoh": "mantissa 10 dan katta, to‘g‘risi 1,8 · 10⁸"
+     },
+     {
+      "matn": "Kichik sonda daraja manfiy",
+      "togri": true,
+      "izoh": "vergul o‘ngga siljiydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Standart ko‘rinish nima?",
+      "javob": "a · 10ⁿ, 1 ≤ a < 10"
+     },
+     {
+      "savol": "10³ nechaga teng?",
+      "javob": "1000"
+     },
+     {
+      "savol": "10⁻¹ nechaga teng?",
+      "javob": "0,1"
+     },
+     {
+      "savol": "9000 standart ko‘rinishda?",
+      "javob": "9 · 10³"
+     },
+     {
+      "savol": "0,5 standart ko‘rinishda?",
+      "javob": "5 · 10⁻¹"
+     },
+     {
+      "savol": "Mantissa nima?",
+      "javob": "a ko‘paytuvchi"
+     },
+     {
+      "savol": "Katta son uchun daraja qanday?",
+      "javob": "musbat"
+     },
+     {
+      "savol": "Kichik son uchun daraja qanday?",
+      "javob": "manfiy"
+     },
+     {
+      "savol": "(2 · 10²) · (3 · 10³)?",
+      "javob": "6 · 10⁵"
+     },
+     {
+      "savol": "1,2 · 10³ oddiy ko‘rinishda?",
+      "javob": "1200"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Daraja",
+      "matn": "10 ning darajalari.",
+      "savol": "10² nechaga teng?"
+     },
+     {
+      "nom": "Katta son",
+      "matn": "Vergul chapga siljiydi.",
+      "savol": "4000 ni standart ko‘rinishda yozing."
+     },
+     {
+      "nom": "Kichik son",
+      "matn": "Vergul o‘ngga siljiydi.",
+      "savol": "0,02 ni standart ko‘rinishda yozing."
+     },
+     {
+      "nom": "Amallar",
+      "matn": "Mantissalar va darajalar.",
+      "savol": "(2 · 10²) · (2 · 10²) nechaga teng?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun astronomlar va fiziklar sonlarni standart ko‘rinishda yozadi? Yerdan Quyoshgacha masofa misolida tushuntiring.",
+    "keys": {
+     "vaziyat": "Olim ikki ob’ektni solishtirmoqda: bakteriya 0,000002 m, hujayra yadrosi 0,000005 m. Sonlarni solishtirish qiyin ko‘rinmoqda.",
+     "savollar": [
+      "Sonlarni standart ko‘rinishda yozing.",
+      "Qaysi biri katta?"
+     ]
+    },
+    "tezis": "Standart ko‘rinish — sonlarning ixcham tili",
+    "taqqoslash": {
+     "a": "Oddiy yozuv",
+     "b": "Standart ko‘rinish",
+     "umumiy": [
+      "bir xil sonni ifodalaydi",
+      "o‘nli yozuvdan hosil bo‘ladi"
+     ],
+     "a_farq": [
+      "uzun nollar qatori",
+      "solishtirish qiyin"
+     ],
+     "b_farq": [
+      "ixcham",
+      "solishtirish oson"
+     ]
+    },
+    "klaster": {
+     "markaz": "Standart ko‘rinish",
+     "shoxlar": [
+      {
+       "nom": "Shakl",
+       "bandlar": [
+        "a · 10ⁿ",
+        "1 ≤ a < 10"
+       ]
+      },
+      {
+       "nom": "Katta sonlar",
+       "bandlar": [
+        "n musbat",
+        "vergul chapga"
+       ]
+      },
+      {
+       "nom": "Kichik sonlar",
+       "bandlar": [
+        "n manfiy",
+        "vergul o‘ngga"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "ko‘paytirish",
+        "bo‘lish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Nollarimni yig‘ib, o‘nning darajasiga aylantirdim. Men qaysi yozuvman?",
+     "javob": "standart ko‘rinish"
+    },
+    "hikmat": "Ixcham yozgan aniq fikrlaydi.",
+    "kalit_soz": "DARAJA",
+    "xato_yechim": {
+     "shart": "0,004 ni standart ko‘rinishda yozing.",
+     "xato": "4 · 10³",
+     "togri": "4 · 10⁻³",
+     "sabab": "kichik sonda vergul o‘ngga siljiydi, daraja manfiy; tekshirish: 4 · 10⁻³ — 4 / 1000 — 0,004"
+    },
+    "guruh_nomlari": [
+     "Darajachilar",
+     "Mantissachilar",
+     "Katta sonchilar",
+     "Kichik sonchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sonlar plakati»",
+     "topshiriq": "Guruh 6 ta katta va kichik o‘lchamni topib, standart ko‘rinishda plakatga yozadi."
+    },
+    "vazifalar": {
+     "A": "Standart ko‘rinishda yozing: 9000, 450000, 0,008.",
+     "B": "Hisoblang: (3 · 10⁵) · (2 · 10²).",
+     "C": "(9 · 10⁶) / (3 · 10²) ni hisoblang."
+    },
+    "sinkveyn": [
+     "Daraja",
+     "o‘nli, ixcham",
+     "siljitadi, yozadi, hisoblaydi",
+     "Katta va kichikning tili",
+     "10ⁿ"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sonlarni standart ko‘rinishga keltiradi.",
+     "qismlar": [
+      "1-guruh: 8000",
+      "2-guruh: 0,0005",
+      "3-guruh: 250000",
+      "4-guruh: (2 · 10³) · (3 · 10⁴)"
+     ],
+     "yakun": "Natijalar: 8 · 10³; 5 · 10⁻⁴; 2,5 · 10⁵; 6 · 10⁷."
+    }
+   }
+  },
+  {
+   "mavzu": "Taqribiy hisoblash",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Taqribiy sonlar",
+      "matn": "O‘lchash va hisoblash natijalari ko‘pincha aniq emas, taqribiy bo‘ladi. Taqribiy son aniq songa yaqin, lekin undan farq qilishi mumkin. Yaqinlik darajasi aniqlik deyiladi.",
+      "misol": "Daftar uzunligi o‘lchanganda 20,3 sm chiqdi. Haqiqiy uzunlik 20,25 dan 20,35 gacha bo‘lishi mumkin.",
+      "savol": "Taqribiy son aniq sondan farq qilishi mumkinmi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yaxlitlash qoidasi",
+      "matn": "Sonni biror xonagacha yaxlitlashda tashlanadigan birinchi raqamga qaraymiz. U 5 yoki undan katta bo‘lsa, oxirgi qoldiriladigan raqam 1 ga oshadi. 5 dan kichik bo‘lsa, o‘zgarmaydi.",
+      "misol": "3,47 ni o‘ndan birgacha: 3,5. 3,42 ni o‘ndan birgacha: 3,4. 2,5 ni butungacha: 3.",
+      "savol": "7,86 ni o‘ndan birgacha yaxlitlang.",
+      "javob": "7,9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Absolyut xatolik",
+      "matn": "Taqribiy son va aniq son ayirmasining moduli absolyut xatolik deyiladi. U taqribiy qiymat aniq qiymatdan qancha farq qilishini ko‘rsatadi.",
+      "misol": "Aniq qiymat 3,14159, taqribiy 3,14: absolyut xatolik taxminan 0,0016. Aniq 20, taqribiy 19,6: xatolik 0,4.",
+      "savol": "Aniq qiymat 20, taqribiy 19,6. Absolyut xatolik?",
+      "javob": "0,4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nisbiy xatolik",
+      "matn": "Absolyut xatolikni aniq sonning moduliga bo‘lsak, nisbiy xatolik chiqadi. Odatda uni foizda yozamiz. Nisbiy xatolik o‘lchash sifatini baholashga yordam beradi.",
+      "misol": "Aniq 50, taqribiy 49: absolyut xatolik 1, nisbiy xatolik 1 / 50, ya’ni 0,02, ya’ni 2 foiz.",
+      "savol": "Aniq 200, absolyut xatolik 4. Nisbiy xatolik?",
+      "javob": "2 foiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Taqribiy sonlar bilan amallar",
+      "matn": "Qo‘shish va ayirishda natija eng kam aniq son xonasigacha yaxlitlanadi. Ko‘paytirish va bo‘lishda natijada ma’noli raqamlar soni eng kam ma’noli raqamli ko‘paytuvchi bilan bir xil bo‘ladi.",
+      "misol": "2,34 + 1,2 — 3,54, javob 3,5. 2,5 · 3,14 — 7,85, javob 7,9, chunki 2,5 da ikki ma’noli raqam.",
+      "savol": "6,1 + 2,45 yig‘indisini o‘ndan birgacha yaxlitlang.",
+      "javob": "8,6",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Yaxlitlashda tashlanadigan raqam 5 yoki undan katta bo‘lsa, oxirgi raqam 1 ga oshadi. Absolyut xatolik — aniq va taqribiy son ayirmasining moduli. Nisbiy xatolik — absolyut xatolik bo‘linadi aniq sonning moduliga.",
+    "misollar": [
+     {
+      "shart": "4,678 ni yuzdan birgacha yaxlitlang.",
+      "yechim": [
+       "Yuzdan birgacha qoldiramiz: 4,67.",
+       "Tashlanadigan raqam 8, u 5 dan katta.",
+       "Oxirgi raqamni oshiramiz: 4,68."
+      ],
+      "javob": "4,68"
+     },
+     {
+      "shart": "Aniq qiymat 25, taqribiy 24,5. Absolyut va nisbiy xatolikni toping.",
+      "yechim": [
+       "Absolyut xatolik 25 − 24,5, ya’ni 0,5.",
+       "Nisbiy xatolik 0,5 / 25, ya’ni 0,02.",
+       "Foizda 2 foiz."
+      ],
+      "javob": "0,5 va 2 foiz"
+     },
+     {
+      "shart": "Xona uzunligi 5,2 m, eni 3,9 m. Yuzini toping.",
+      "yechim": [
+       "5,2 · 3,9 — 20,28.",
+       "Ko‘paytuvchilar kam aniqlikda, natijani o‘ndan birgacha yaxlitlaymiz.",
+       "Javob 20,3 kv. m."
+      ],
+      "javob": "taxminan 20,3 kv. m"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Yaxlitlash musobaqasi",
+      "topshiriq": "12,345 ni butungacha, o‘ndan birgacha va yuzdan birgacha yaxlitlang.",
+      "yechim": "12; 12,3; 12,35.",
+      "mahsulot": "yaxlitlash jadvali"
+     },
+     {
+      "nom": "Xatolik hisoblaymiz",
+      "topshiriq": "Aniq uzunlik 8,0 m, o‘lchov 7,9 m. Absolyut va nisbiy xatolikni toping.",
+      "yechim": "Absolyut 0,1, nisbiy 0,1 / 8, ya’ni 0,0125, ya’ni 1,25 foiz.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Do‘kon",
+      "topshiriq": "1 kg narxi 18,4 ming so‘m. 2,5 kg narxi qancha?",
+      "yechim": "2,5 · 18,4 — 46 ming so‘m.",
+      "mahsulot": "narx jadvali"
+     },
+     {
+      "nom": "Kalkulyator",
+      "topshiriq": "1 / 3 ni 0,33 deb yozsak, xatolik taxminan qancha?",
+      "yechim": "1 / 3 − 0,33 taxminan 0,0033.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "6,48 ni o‘ndan birgacha yaxlitlang.",
+      "javob": "6,5"
+     },
+     {
+      "shart": "12,304 ni yuzdan birgacha yaxlitlang.",
+      "javob": "12,30"
+     },
+     {
+      "shart": "49,5 ni butungacha yaxlitlang.",
+      "javob": "50"
+     },
+     {
+      "shart": "Aniq 40, taqribiy 38. Absolyut xatolik?",
+      "javob": "2"
+     },
+     {
+      "shart": "Aniq 40, taqribiy 38. Nisbiy xatolik foizda?",
+      "javob": "5 foiz"
+     },
+     {
+      "shart": "0,666 ni yuzdan birgacha yaxlitlang.",
+      "javob": "0,67"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yaxlitlashda 5 raqamini tashlab ketadi",
+      "sabab": "qoidani chalkashtiradi",
+      "oldini_olish": "5 va undan katta raqamda oshirishni eslash"
+     },
+     {
+      "xato": "Absolyut xatolikni manfiy yozadi",
+      "sabab": "modulni unutadi",
+      "oldini_olish": "xatolik moduli doim nomanfiy"
+     },
+     {
+      "xato": "Nisbiy xatolikni taqribiy songa bo‘ladi",
+      "sabab": "mezonni adashtiradi",
+      "oldini_olish": "aniq songa bo‘lish kerakligini yozib qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "o‘lchash xatoliklari va asboblar aniqligi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "kompyuterda sonlarni yaxlitlash"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "detal o‘lchamlari va ruxsat etilgan xatolik"
+     }
+    ],
+    "loyiha": {
+     "nom": "«O‘lchov aniqligi»",
+     "muammo": "O‘lchashda xatolik qanday paydo bo‘ladi va uni qanday baholaymiz?",
+     "mahsulot": "o‘lchash natijalari hisoboti",
+     "bosqichlar": [
+      "ob’ekt tanlash",
+      "o‘lchash",
+      "yaxlitlash",
+      "xatolikni hisoblash",
+      "hisobot tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Ob’ekt tanlang",
+      "O‘lchang",
+      "Xatolikni hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov to‘g‘ri",
+      "yaxlitlash to‘g‘ri",
+      "xatolik to‘g‘ri hisoblangan",
+      "xulosa asosli",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «O‘lchov markazi»",
+     "bekatlar": [
+      {
+       "nom": "Chizg‘ich",
+       "matn": "Qalam uzunligi 14,36 sm.",
+       "topshiriq": "O‘ndan birgacha?",
+       "javob": "14,4 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Tarozi",
+       "matn": "Mahsulot massasi 2,449 kg.",
+       "topshiriq": "Yuzdan birgacha?",
+       "javob": "2,45 kg",
+       "rasm": ""
+      },
+      {
+       "nom": "Soat",
+       "matn": "Aniq vaqt 50 soniya, o‘lchov 49 soniya.",
+       "topshiriq": "Nisbiy xatolik?",
+       "javob": "2 foiz",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "Yer eni 4,5 m, uzunligi 6 m.",
+       "topshiriq": "Yuzi?",
+       "javob": "27 kv. m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda yaxlitlash kerak bo‘ldi?",
+      "Xatolik qanday paydo bo‘ldi?",
+      "Qaysi asbob aniqroq?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Taqribiy son",
+      "tarif": "aniq songa yaqin son"
+     },
+     {
+      "atama": "Yaxlitlash",
+      "tarif": "sonni biror xonagacha taqriblash"
+     },
+     {
+      "atama": "Absolyut xatolik",
+      "tarif": "aniq va taqribiy son ayirmasining moduli"
+     },
+     {
+      "atama": "Nisbiy xatolik",
+      "tarif": "absolyut xatolikning aniq songa nisbati"
+     },
+     {
+      "atama": "Ma’noli raqam",
+      "tarif": "sonning aniqligini bildiruvchi raqam"
+     },
+     {
+      "atama": "Aniqlik",
+      "tarif": "taqribiy sonning aniq songa yaqinligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "3,47 ni o‘ndan birgacha yaxlitlasak 3,5",
+      "togri": true,
+      "izoh": "7 ≥ 5, oshiramiz"
+     },
+     {
+      "matn": "3,42 ni o‘ndan birgacha yaxlitlasak 3,5",
+      "togri": false,
+      "izoh": "2 < 5, natija 3,4"
+     },
+     {
+      "matn": "Absolyut xatolik modul bilan olinadi",
+      "togri": true,
+      "izoh": "nomanfiy son"
+     },
+     {
+      "matn": "Nisbiy xatolik foizda yoziladi",
+      "togri": true,
+      "izoh": "odatda foizda"
+     },
+     {
+      "matn": "Taqribiy son doim aniq songa teng",
+      "togri": false,
+      "izoh": "farq qilishi mumkin"
+     },
+     {
+      "matn": "Aniq 50, taqribiy 49 bo‘lsa, nisbiy xatolik 2 foiz",
+      "togri": true,
+      "izoh": "1 / 50 — 0,02"
+     },
+     {
+      "matn": "5 raqami tashlanganda son o‘zgarmaydi",
+      "togri": false,
+      "izoh": "5 va undan katta bo‘lsa oshiriladi"
+     },
+     {
+      "matn": "Qo‘shishda natija eng kam aniq xonaga yaxlitlanadi",
+      "togri": true,
+      "izoh": "aniqlik oshmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Taqribiy son nima?",
+      "javob": "aniq songa yaqin son"
+     },
+     {
+      "savol": "Yaxlitlash qoidasi?",
+      "javob": "5 va undan katta bo‘lsa oshiriladi"
+     },
+     {
+      "savol": "2,6 ni butungacha yaxlitlang.",
+      "javob": "3"
+     },
+     {
+      "savol": "7,24 ni o‘ndan birgacha?",
+      "javob": "7,2"
+     },
+     {
+      "savol": "Absolyut xatolik nima?",
+      "javob": "aniq va taqribiy son ayirmasining moduli"
+     },
+     {
+      "savol": "Nisbiy xatolik nima?",
+      "javob": "absolyut xatolikning aniq songa nisbati"
+     },
+     {
+      "savol": "Aniq 10, taqribiy 9,8. Xatolik?",
+      "javob": "0,2"
+     },
+     {
+      "savol": "0,2 / 10 nechaga teng?",
+      "javob": "0,02"
+     },
+     {
+      "savol": "0,02 foizda?",
+      "javob": "2 foiz"
+     },
+     {
+      "savol": "Yaxlitlash nima uchun kerak?",
+      "javob": "natijani qulay va aniqligiga mos yozish uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yaxlitlash",
+      "matn": "Tashlanadigan raqamga qaraymiz.",
+      "savol": "5,55 ni o‘ndan birgacha yaxlitlang."
+     },
+     {
+      "nom": "Absolyut",
+      "matn": "Ayirma moduli.",
+      "savol": "Aniq 12, taqribiy 11,5. Xatolik?"
+     },
+     {
+      "nom": "Nisbiy",
+      "matn": "Absolyutni aniq songa bo‘lamiz.",
+      "savol": "Absolyut 1, aniq 10. Nisbiy?"
+     },
+     {
+      "nom": "Amallar",
+      "matn": "Kam aniq son bo‘yicha.",
+      "savol": "1,2 + 3,45 ni o‘ndan birgacha yaxlitlang."
+     }
+    ],
+    "muammoli_savol": "Nima uchun 0,5 m xatolik 10 km masofada sezilmaydi, 2 m masofada esa katta ahamiyatga ega? Nisbiy xatolik orqali tushuntiring.",
+    "keys": {
+     "vaziyat": "Quruvchi xona uzunligini 5,2 m, enini 3,9 m deb o‘lchadi. Ularning yuzi bo‘yicha pol materiali kerak.",
+     "savollar": [
+      "Yuz qancha?",
+      "Qanday aniqlikda yaxlitlash kerak?"
+     ]
+    },
+    "tezis": "Aniqlik — o‘lchashning sifati",
+    "taqqoslash": {
+     "a": "Absolyut xatolik",
+     "b": "Nisbiy xatolik",
+     "umumiy": [
+      "o‘lchash xatoligini baholaydi",
+      "aniq va taqribiy sondan topiladi"
+     ],
+     "a_farq": [
+      "ayirma moduli",
+      "o‘lchov birligida"
+     ],
+     "b_farq": [
+      "nisbat",
+      "foizda"
+     ]
+    },
+    "klaster": {
+     "markaz": "Taqribiy hisoblash",
+     "shoxlar": [
+      {
+       "nom": "Yaxlitlash",
+       "bandlar": [
+        "5 va undan katta",
+        "5 dan kichik"
+       ]
+      },
+      {
+       "nom": "Absolyut xatolik",
+       "bandlar": [
+        "ayirma",
+        "modul"
+       ]
+      },
+      {
+       "nom": "Nisbiy xatolik",
+       "bandlar": [
+        "nisbat",
+        "foiz"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "qo‘shish",
+        "ko‘paytirish",
+        "aniqlik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Aniqqa yaqinman, lekin aniq emasman. Men qanday sonman?",
+     "javob": "taqribiy son"
+    },
+    "hikmat": "Yetti o‘lchab, bir kes.",
+    "kalit_soz": "XATOLIK",
+    "xato_yechim": {
+     "shart": "2,45 ni o‘ndan birgacha yaxlitlang.",
+     "xato": "2,4",
+     "togri": "2,5",
+     "sabab": "tashlanadigan raqam 5, shuning uchun oxirgi raqam oshadi: 2,5"
+    },
+    "guruh_nomlari": [
+     "Aniqchilar",
+     "Yaxlitlovchilar",
+     "Xatolikchilar",
+     "O‘lchovchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Stol o‘lchovi»",
+     "topshiriq": "Guruh stol uzunligini bir necha marta o‘lchab, o‘rtacha qiymatni yaxlitlaydi va xatolikni baholaydi."
+    },
+    "vazifalar": {
+     "A": "Yaxlitlang: 3,14159 ni yuzdan birgacha, 25,67 ni butungacha.",
+     "B": "Aniq 80, taqribiy 78. Absolyut va nisbiy xatolik?",
+     "C": "Eni 2,5 m, uzunligi 4,2 m to‘g‘ri to‘rtburchak yuzini toping."
+    },
+    "sinkveyn": [
+     "Xatolik",
+     "kichik, yaqin",
+     "o‘lchaydi, yaxlitlaydi, baholaydi",
+     "Aniq songa yaqinlik",
+     "Taqribiy"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh taqribiy hisoblarni bajaradi.",
+     "qismlar": [
+      "1-guruh: 3,76 ni o‘ndan birgacha",
+      "2-guruh: aniq 20, taqribiy 19, absolyut xatolik",
+      "3-guruh: aniq 50, xatolik 1, nisbiy xatolik",
+      "4-guruh: 0,444 ni yuzdan birgacha"
+     ],
+     "yakun": "Natijalar: 3,8; 1; 2 foiz; 0,44."
+    }
+   }
   }
  ]
 }
