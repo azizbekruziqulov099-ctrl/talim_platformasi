@@ -20700,6 +20700,1388 @@
      "yakun": "Natijalar: 40; 49; 24; jami 113."
     }
    }
+  },
+  {
+   "mavzu": "Ko‘p xonali sonlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ko‘p xonali son nima?",
+      "matn": "To‘rt va undan ko‘p raqamli sonlar ko‘p xonali sonlar deyiladi. Raqamlar soni xonalar sonini bildiradi.",
+      "misol": "345678 — olti xonali son. 12345678 — sakkiz xonali son.",
+      "savol": "345678 nechta raqamdan iborat?",
+      "javob": "olti",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Eng katta va eng kichik",
+      "matn": "Eng katta olti xonali son 999999. Unga 1 qo‘shsak, eng kichik yetti xonali son 1000000 (million) chiqadi.",
+      "misol": "999999 + 1 — 1000000.",
+      "savol": "999999 + 1 nechaga teng?",
+      "javob": "1000000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonni taqqoslaymiz",
+      "matn": "Avval raqamlar sonini solishtiramiz: raqami ko‘p son katta. Raqamlar soni teng bo‘lsa, chapdan birinchi farqli raqamga qaraymiz.",
+      "misol": "345687 > 345678, chunki 8 > 7.",
+      "savol": "345687 va 345678 dan qaysi biri katta?",
+      "javob": "345687",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonni xona qo‘shiluvchilariga ajratamiz",
+      "matn": "Har bir raqam o‘z xonasidagi qiymatni bildiradi. Sonni xona qo‘shiluvchilari yig‘indisi ko‘rinishida yozamiz.",
+      "misol": "253418 — 200000 + 50000 + 3000 + 400 + 10 + 8.",
+      "savol": "253418 da 5 raqami nechta o‘n mingni bildiradi?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Farqni topamiz",
+      "matn": "Ikki sonning farqini topish uchun katta sondan kichigini ayiramiz.",
+      "misol": "345687 − 345678 — 9.",
+      "savol": "345687 − 345678 nechaga teng?",
+      "javob": "9",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ko‘p xonali sonlarni taqqoslaganda avval raqamlar sonini, keyin chapdan raqamlarni solishtiramiz.",
+    "misollar": [
+     {
+      "shart": "999999 ga 1 qo‘shing.",
+      "yechim": [
+       "Eng katta olti xonali son 999999.",
+       "999999 + 1.",
+       "Javob 1000000."
+      ],
+      "javob": "1000000"
+     },
+     {
+      "shart": "345678 va 345687 ni taqqoslang.",
+      "yechim": [
+       "Raqamlar soni teng — oltita.",
+       "Oxirgi xonalarda 7 va 8.",
+       "345678 < 345687."
+      ],
+      "javob": "345678 < 345687"
+     },
+     {
+      "shart": "253418 ni xona qo‘shiluvchilariga ajrating.",
+      "yechim": [
+       "2 yuz ming — 200000.",
+       "5 o‘n ming — 50000, 3 ming — 3000.",
+       "400 + 10 + 8. Javob: 200000 + 50000 + 3000 + 400 + 10 + 8."
+      ],
+      "javob": "200000 + 50000 + 3000 + 400 + 10 + 8"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Son yozamiz",
+      "topshiriq": "Raqam kartochkalaridan eng katta va eng kichik olti xonali son yasang.",
+      "yechim": "Kattalar chapda turadi.",
+      "mahsulot": "raqam kartochkalari"
+     },
+     {
+      "nom": "Taqqoslaymiz",
+      "topshiriq": "Uch juft sonni taqqoslang.",
+      "yechim": "Avval raqamlar soni.",
+      "mahsulot": "sonlar varag‘i"
+     },
+     {
+      "nom": "Ajratamiz",
+      "topshiriq": "Sonni xona qo‘shiluvchilariga ajrating.",
+      "yechim": "Yig‘indini tekshiring.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Eng katta songa 1 qo‘shib, yangi xona hosil bo‘lishini ko‘ring.",
+      "yechim": "999999 + 1 — 1000000.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "999999 + 1 nechaga teng?",
+      "javob": "1000000"
+     },
+     {
+      "shart": "345687 − 345678 nechaga teng?",
+      "javob": "9"
+     },
+     {
+      "shart": "12345678 nechta raqamdan iborat?",
+      "javob": "8"
+     },
+     {
+      "shart": "Eng katta olti xonali son qaysi?",
+      "javob": "999999"
+     },
+     {
+      "shart": "Eng kichik yetti xonali son qaysi?",
+      "javob": "1000000"
+     },
+     {
+      "shart": "200000 + 50000 + 3000 + 400 + 10 + 8 nechaga teng?",
+      "javob": "253418"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Raqamlar sonini sanamaydi",
+      "sabab": "faqat chapdagi raqamga qaraydi",
+      "oldini_olish": "avval raqamlar soni"
+     },
+     {
+      "xato": "Nolni tushirib qoldiradi",
+      "sabab": "xonalarni adashtiradi",
+      "oldini_olish": "bo‘sh xonaga 0 yoziladi"
+     },
+     {
+      "xato": "Taqqoslashda belgini teskari qo‘yadi",
+      "sabab": "kichik va kattani aralashtiradi",
+      "oldini_olish": "katta tomonga ochiq belgi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "shahar aholisi sonlari"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "narx va pul"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "fayl hajmi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sonlar kitobi»",
+     "muammo": "Ko‘p xonali sonlar haqida kitobcha qanday yasaymiz?",
+     "mahsulot": "sonlar kitobi",
+     "bosqichlar": [
+      "sonlarni tanlash",
+      "xonalarga ajratish",
+      "taqqoslash",
+      "rasm chizish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Son tanlang",
+      "Xonalarga ajrating",
+      "Taqqoslang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sonlar to‘g‘ri",
+      "xonalar to‘g‘ri",
+      "taqqoslash to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sonlar o‘lkasi»",
+     "bekatlar": [
+      {
+       "nom": "Olti xonali ko‘cha",
+       "matn": "Eng katta olti xonali son +1.",
+       "topshiriq": "Natija?",
+       "javob": "1000000",
+       "rasm": ""
+      },
+      {
+       "nom": "Taqqoslash ko‘prigi",
+       "matn": "345687 va 345678 farqi.",
+       "topshiriq": "Farq?",
+       "javob": "9",
+       "rasm": ""
+      },
+      {
+       "nom": "Xonalar minorasi",
+       "matn": "12345678 raqamlari.",
+       "topshiriq": "Nechta?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "Ajratish bog‘i",
+       "matn": "200000 + 50000 + 3000 + 400 + 10 + 8.",
+       "topshiriq": "Son?",
+       "javob": "253418",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi son katta?",
+      "Xonalarni sanadingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Xona",
+      "tarif": "raqamning turgan o‘rni"
+     },
+     {
+      "atama": "Million",
+      "tarif": "1000000"
+     },
+     {
+      "atama": "Raqam",
+      "tarif": "sonni yozish belgisi"
+     },
+     {
+      "atama": "Taqqoslash",
+      "tarif": "katta-kichikni aniqlash"
+     },
+     {
+      "atama": "Qo‘shiluvchi",
+      "tarif": "yig‘indidagi son"
+     },
+     {
+      "atama": "Farq",
+      "tarif": "ayirma natijasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "999999 — eng katta olti xonali son",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "999999 + 1 — 100000",
+      "togri": false,
+      "izoh": "1000000"
+     },
+     {
+      "matn": "345687 > 345678",
+      "togri": true,
+      "izoh": "8 > 7"
+     },
+     {
+      "matn": "12345678 — yetti xonali",
+      "togri": false,
+      "izoh": "sakkiz xonali"
+     },
+     {
+      "matn": "253418 da 5 raqami o‘n minglar xonasida",
+      "togri": true,
+      "izoh": "50000"
+     },
+     {
+      "matn": "Raqamlari ko‘p son kattaroq",
+      "togri": true,
+      "izoh": "teng bo‘lmasa"
+     },
+     {
+      "matn": "345687 − 345678 — 9",
+      "togri": true,
+      "izoh": "farq"
+     },
+     {
+      "matn": "Nolni yozish shart emas",
+      "togri": false,
+      "izoh": "xonani ko‘rsatadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Eng katta olti xonali son?",
+      "javob": "999999"
+     },
+     {
+      "savol": "Eng kichik yetti xonali son?",
+      "javob": "1000000"
+     },
+     {
+      "savol": "999999 + 1?",
+      "javob": "1000000"
+     },
+     {
+      "savol": "345687 − 345678?",
+      "javob": "9"
+     },
+     {
+      "savol": "12345678 nechta raqam?",
+      "javob": "8"
+     },
+     {
+      "savol": "Taqqoslashni nimadan boshlaymiz?",
+      "javob": "raqamlar sonidan"
+     },
+     {
+      "savol": "253418 da 5 qaysi xonada?",
+      "javob": "o‘n minglar"
+     },
+     {
+      "savol": "Million nechta?",
+      "javob": "1000000"
+     },
+     {
+      "savol": "200000 + 50000 + 3000 + 400 + 10 + 8?",
+      "javob": "253418"
+     },
+     {
+      "savol": "Nol nima uchun kerak?",
+      "javob": "xonani ko‘rsatish uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Sana",
+      "matn": "Raqamlarni sana.",
+      "savol": "Nechta?"
+     },
+     {
+      "nom": "Solishtir",
+      "matn": "Chapdan solishtir.",
+      "savol": "8 va 7?"
+     },
+     {
+      "nom": "Ajrat",
+      "matn": "Xonalarga ajrat.",
+      "savol": "253418?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Yig‘indini tekshir.",
+      "savol": "Qaytib chiqdimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ko‘p xonali sonlarni taqqoslaganda avval raqamlar sonini sanaymiz?",
+    "keys": {
+     "vaziyat": "Ikki shahar aholisi: 345678 va 345687 kishi.",
+     "savollar": [
+      "Qaysi shahar katta?",
+      "Farq qancha?"
+     ]
+    },
+    "tezis": "Avval xona, keyin raqam",
+    "taqqoslash": {
+     "a": "Olti xonali son",
+     "b": "Yetti xonali son",
+     "umumiy": [
+      "ko‘p xonali son",
+      "xonalarga ajraladi"
+     ],
+     "a_farq": [
+      "999999 gacha",
+      "yuz minglar"
+     ],
+     "b_farq": [
+      "1000000 dan boshlanadi",
+      "millionlar"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ko‘p xonali sonlar",
+     "shoxlar": [
+      {
+       "nom": "Xonalar",
+       "bandlar": [
+        "birlik",
+        "o‘n",
+        "yuz"
+       ]
+      },
+      {
+       "nom": "Taqqoslash",
+       "bandlar": [
+        "raqamlar soni",
+        "chapdan"
+       ]
+      },
+      {
+       "nom": "Million",
+       "bandlar": [
+        "1000000"
+       ]
+      },
+      {
+       "nom": "Ajratish",
+       "bandlar": [
+        "xona qo‘shiluvchilari"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 999999 dan keyin kelaman. Men kimman?",
+     "javob": "million"
+    },
+    "hikmat": "Xonani sana — sonni bil.",
+    "kalit_soz": "SONLAR",
+    "xato_yechim": {
+     "shart": "345678 va 345687 ni taqqoslang.",
+     "xato": "345678 > 345687",
+     "togri": "345678 < 345687",
+     "sabab": "oxirgi xonada 7 < 8"
+    },
+    "guruh_nomlari": [
+     "Sonchilar",
+     "Xonachilar",
+     "Taqqoslovchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sonlar olami»",
+     "topshiriq": "Guruh sonlarni yozib, taqqoslaydi."
+    },
+    "vazifalar": {
+     "A": "999999 + 1 ni hisoblang.",
+     "B": "345678 va 345687 ni taqqoslang.",
+     "C": "253418 ni xona qo‘shiluvchilariga ajrating."
+    },
+    "sinkveyn": [
+     "Son",
+     "katta, ko‘p xonali",
+     "sanaladi, o‘qiladi, taqqoslanadi",
+     "Son — ilm kaliti",
+     "Raqam"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sonlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: million",
+      "2-guruh: taqqoslash",
+      "3-guruh: xonalar",
+      "4-guruh: ajratish"
+     ],
+     "yakun": "Natijalar: 1000000; 345678 < 345687; sakkiz xona; 253418."
+    }
+   }
+  },
+  {
+   "mavzu": "Sinflar va razryadlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Razryad nima?",
+      "matn": "Sondagi har bir raqamning turgan o‘rni razryad deyiladi. Birinchi razryad — birliklar, ikkinchi — o‘nlar, uchinchi — yuzlar.",
+      "misol": "253418 da 8 — birlik, 1 — o‘n, 4 — yuz.",
+      "savol": "253418 da 8 qaysi razryadda?",
+      "javob": "birliklar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sinf nima?",
+      "matn": "Razryadlar uchtadan sinflarga birlashadi. Birinchi sinf — birliklar, ikkinchi — minglar, uchinchi — millionlar.",
+      "misol": "253 | 418: minglar sinfi 253, birliklar sinfi 418.",
+      "savol": "Nechta razryad bitta sinfni tashkil qiladi?",
+      "javob": "uchta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sinflarga ajratamiz",
+      "matn": "Sonni o‘ngdan uchtadan ajratamiz.",
+      "misol": "12345678 — 12 | 345 | 678.",
+      "savol": "12345678 da millionlar sinfi nechta?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Razryad qiymati",
+      "matn": "Raqamning qiymati razryadiga bog‘liq. Bir xil raqam turli razryadda turlicha qiymatga ega.",
+      "misol": "253418 da 5 — 50000, 3 — 3000.",
+      "savol": "253418 da 5 ning qiymati nechaga teng?",
+      "javob": "50000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Razryad birliklari",
+      "matn": "10 birlik — 1 o‘n, 10 o‘n — 1 yuz, 10 yuz — 1 ming.",
+      "misol": "10 · 100 — 1000.",
+      "savol": "10 · 100 nechaga teng?",
+      "javob": "1000",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Razryadlar uchtadan sinflarga ajraladi: birliklar, minglar, millionlar. Raqam qiymati uning razryadiga bog‘liq.",
+    "misollar": [
+     {
+      "shart": "12345678 sonini sinflarga ajrating.",
+      "yechim": [
+       "O‘ngdan uchtadan ajratamiz.",
+       "678, 345, 12.",
+       "Javob: 12 | 345 | 678."
+      ],
+      "javob": "12 | 345 | 678"
+     },
+     {
+      "shart": "253418 da 5 va 3 ning qiymati?",
+      "yechim": [
+       "5 o‘n minglar razryadida — 50000.",
+       "3 minglar razryadida — 3000.",
+       "Javob 50000 va 3000."
+      ],
+      "javob": "50000 va 3000"
+     },
+     {
+      "shart": "10 yuz necha ming bo‘ladi?",
+      "yechim": [
+       "10 · 100.",
+       "1000.",
+       "Javob 1 ming."
+      ],
+      "javob": "1 ming"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Razryad jadvali",
+      "topshiriq": "Sonlarni razryad jadvaliga joylang.",
+      "yechim": "Har raqam o‘z xonasida turadi.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Sinflarga ajratamiz",
+      "topshiriq": "Beshta sonni sinflarga ajrating.",
+      "yechim": "O‘ngdan uchtadan.",
+      "mahsulot": "sonlar varag‘i"
+     },
+     {
+      "nom": "Qiymatni topamiz",
+      "topshiriq": "Raqamlar qiymatini yozing.",
+      "yechim": "Razryadga qarang.",
+      "mahsulot": "qiymat varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Sinflarni qo‘shib, sonni qayta yozing.",
+      "yechim": "12 | 345 | 678 — 12345678.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "10 · 100 nechaga teng?",
+      "javob": "1000"
+     },
+     {
+      "shart": "253418 da 5 ning qiymati?",
+      "javob": "50000"
+     },
+     {
+      "shart": "12345678 da millionlar sinfi?",
+      "javob": "12"
+     },
+     {
+      "shart": "Nechta razryad bitta sinf?",
+      "javob": "3"
+     },
+     {
+      "shart": "253418 da 8 qaysi razryad?",
+      "javob": "birliklar"
+     },
+     {
+      "shart": "Ikkinchi sinf nomi?",
+      "javob": "minglar"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Sinfni o‘ngdan emas, chapdan ajratadi",
+      "sabab": "yo‘nalishni adashtiradi",
+      "oldini_olish": "o‘ngdan uchtadan"
+     },
+     {
+      "xato": "Razryad qiymatini raqam bilan aralashtiradi",
+      "sabab": "raqam va qiymatni farqlamaydi",
+      "oldini_olish": "5 o‘n minglarda — 50000"
+     },
+     {
+      "xato": "Sinfda 4 ta razryad yozadi",
+      "sabab": "uchtaligini unutadi",
+      "oldini_olish": "sinf — uchta razryad"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "aholi soni sinflari"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "pulni sinflarga ajratish"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "ma’lumot hajmi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Razryad jadvali»",
+     "muammo": "Razryad va sinflar jadvalini qanday yasaymiz?",
+     "mahsulot": "razryad jadvali",
+     "bosqichlar": [
+      "jadval chizish",
+      "sonlarni joylash",
+      "sinflarga ajratish",
+      "qiymat yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Jadval chizing",
+      "Sonni joylang",
+      "Sinflarga ajrating",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "jadval to‘g‘ri",
+      "sinflar to‘g‘ri",
+      "qiymatlar to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Razryadlar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Birliklar ko‘chasi",
+       "matn": "253418 da 8.",
+       "topshiriq": "Qaysi razryad?",
+       "javob": "birliklar",
+       "rasm": ""
+      },
+      {
+       "nom": "Minglar maydoni",
+       "matn": "12345678 millionlar sinfi.",
+       "topshiriq": "Nechta?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "Qiymat bog‘i",
+       "matn": "253418 da 5.",
+       "topshiriq": "Qiymati?",
+       "javob": "50000",
+       "rasm": ""
+      },
+      {
+       "nom": "Almashtirish",
+       "matn": "10 yuz.",
+       "topshiriq": "Necha ming?",
+       "javob": "1",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi razryad edi?",
+      "Sinfni ajratdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Razryad",
+      "tarif": "raqamning o‘rni"
+     },
+     {
+      "atama": "Sinf",
+      "tarif": "uch razryadli guruh"
+     },
+     {
+      "atama": "Birliklar sinfi",
+      "tarif": "birinchi sinf"
+     },
+     {
+      "atama": "Minglar sinfi",
+      "tarif": "ikkinchi sinf"
+     },
+     {
+      "atama": "Millionlar sinfi",
+      "tarif": "uchinchi sinf"
+     },
+     {
+      "atama": "Qiymat",
+      "tarif": "raqamning kattaligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Sinf uchta razryaddan iborat",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Sinflar chapdan ajratiladi",
+      "togri": false,
+      "izoh": "o‘ngdan"
+     },
+     {
+      "matn": "12345678 — 12 | 345 | 678",
+      "togri": true,
+      "izoh": "sinflar"
+     },
+     {
+      "matn": "253418 da 5 — 5000",
+      "togri": false,
+      "izoh": "50000"
+     },
+     {
+      "matn": "10 yuz — 1 ming",
+      "togri": true,
+      "izoh": "10 · 100"
+     },
+     {
+      "matn": "Ikkinchi sinf — minglar",
+      "togri": true,
+      "izoh": "tartib"
+     },
+     {
+      "matn": "Uchinchi sinf — birliklar",
+      "togri": false,
+      "izoh": "millionlar"
+     },
+     {
+      "matn": "Razryad raqamning o‘rni",
+      "togri": true,
+      "izoh": "ta’rif"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Razryad nima?",
+      "javob": "raqamning o‘rni"
+     },
+     {
+      "savol": "Sinf nima?",
+      "javob": "uch razryadli guruh"
+     },
+     {
+      "savol": "Sinflar nomi?",
+      "javob": "birliklar, minglar, millionlar"
+     },
+     {
+      "savol": "12345678 sinflari?",
+      "javob": "12 | 345 | 678"
+     },
+     {
+      "savol": "253418 da 5 qiymati?",
+      "javob": "50000"
+     },
+     {
+      "savol": "10 · 100?",
+      "javob": "1000"
+     },
+     {
+      "savol": "Sinflar qaysi tomondan ajratiladi?",
+      "javob": "o‘ngdan"
+     },
+     {
+      "savol": "Nechta razryad sinf?",
+      "javob": "uchta"
+     },
+     {
+      "savol": "253418 da 3 qiymati?",
+      "javob": "3000"
+     },
+     {
+      "savol": "253418 da 8?",
+      "javob": "birliklar"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ajrat",
+      "matn": "Sinflarga ajrat.",
+      "savol": "12345678?"
+     },
+     {
+      "nom": "Razryad",
+      "matn": "Razryadni top.",
+      "savol": "253418 da 5?"
+     },
+     {
+      "nom": "Qiymat",
+      "matn": "Qiymatni yoz.",
+      "savol": "50000?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Sinflarni qo‘sh.",
+      "savol": "Son chiqdimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun sonni sinflarga ajratib o‘qiymiz?",
+    "keys": {
+     "vaziyat": "Shahar aholisi 12345678 kishi. Uni o‘qimoqchisiz.",
+     "savollar": [
+      "Qanday ajratamiz?",
+      "Millionlar sinfi nechta?"
+     ]
+    },
+    "tezis": "Uchtadan ajrat",
+    "taqqoslash": {
+     "a": "Razryad",
+     "b": "Sinf",
+     "umumiy": [
+      "sonning tuzilishi",
+      "o‘ngdan hisoblanadi"
+     ],
+     "a_farq": [
+      "bitta raqam o‘rni",
+      "birlik, o‘n, yuz"
+     ],
+     "b_farq": [
+      "uchta razryad",
+      "birlik, ming, million"
+     ]
+    },
+    "klaster": {
+     "markaz": "Sinflar va razryadlar",
+     "shoxlar": [
+      {
+       "nom": "Birliklar sinfi",
+       "bandlar": [
+        "birlik",
+        "o‘n",
+        "yuz"
+       ]
+      },
+      {
+       "nom": "Minglar sinfi",
+       "bandlar": [
+        "ming",
+        "o‘n ming",
+        "yuz ming"
+       ]
+      },
+      {
+       "nom": "Millionlar sinfi",
+       "bandlar": [
+        "million"
+       ]
+      },
+      {
+       "nom": "Qiymat",
+       "bandlar": [
+        "raqam va razryad"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men uchta razryadni birlashtiraman. Men kimman?",
+     "javob": "sinf"
+    },
+    "hikmat": "Uchtadan ajrat — oson o‘qi.",
+    "kalit_soz": "SINF",
+    "xato_yechim": {
+     "shart": "12345678 ni sinflarga ajrating.",
+     "xato": "123 | 456 | 78",
+     "togri": "12 | 345 | 678",
+     "sabab": "o‘ngdan uchtadan ajratiladi"
+    },
+    "guruh_nomlari": [
+     "Razryadchilar",
+     "Sinfchilar",
+     "Qiymatchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Razryad o‘yini»",
+     "topshiriq": "Guruh sonni sinflarga ajratib o‘qiydi."
+    },
+    "vazifalar": {
+     "A": "12345678 ni sinflarga ajrating.",
+     "B": "253418 da 5 va 3 qiymatini toping.",
+     "C": "10 yuz necha ming ekanini toping va tekshiring."
+    },
+    "sinkveyn": [
+     "Sinf",
+     "uchtalik, tartibli",
+     "ajraladi, o‘qiladi, yoziladi",
+     "Tartib — ravshanlik",
+     "Razryad"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh razryad va sinflar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: razryad",
+      "2-guruh: sinf",
+      "3-guruh: qiymat",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 12 | 345 | 678; 50000; 3000; 1 ming."
+    }
+   }
+  },
+  {
+   "mavzu": "Ko‘p xonali sonlarni qo‘shish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ustun usuli",
+      "matn": "Ko‘p xonali sonlarni ustun usulida qo‘shamiz: birliklar birliklar ostiga, o‘nlar o‘nlar ostiga yoziladi. Qo‘shishni o‘ngdan boshlaymiz.",
+      "misol": "345678 + 254321 — ustunga yozamiz.",
+      "savol": "Qo‘shishni qaysi tomondan boshlaymiz?",
+      "javob": "o‘ngdan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birliklardan boshlaymiz",
+      "matn": "Avval birliklarni, keyin o‘nlarni, yuzlarni va hokazo qo‘shamiz.",
+      "misol": "8 + 1 — 9, 7 + 2 — 9, 6 + 3 — 9, 5 + 4 — 9, 4 + 5 — 9, 3 + 2 — 5.",
+      "savol": "8 + 1 nechaga teng?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Natija",
+      "matn": "Hamma razryad yig‘indisini yozsak, javob chiqadi.",
+      "misol": "345678 + 254321 — 599999.",
+      "savol": "345678 + 254321 nechaga teng?",
+      "javob": "599999",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘nlikdan oshganda",
+      "matn": "Razryad yig‘indisi 10 dan oshsa, 1 ni keyingi razryadga o‘tkazamiz.",
+      "misol": "123456 + 234567 — 358023.",
+      "savol": "123456 + 234567 nechaga teng?",
+      "javob": "358023",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshiramiz",
+      "matn": "Qo‘shishni ayirish bilan tekshiramiz: yig‘indidan bir qo‘shiluvchini ayirsak, ikkinchisi chiqadi.",
+      "misol": "599999 − 254321 — 345678.",
+      "savol": "599999 − 254321 nechaga teng?",
+      "javob": "345678",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ustunga raqamlarni razryadlar bo‘yicha yoz, o‘ngdan qo‘sh, 10 dan oshsa keyingi razryadga o‘tkaz. Ayirish bilan tekshir.",
+    "misollar": [
+     {
+      "shart": "345678 + 254321 ni hisoblang.",
+      "yechim": [
+       "Birliklar: 8 + 1 — 9.",
+       "Qolgan razryadlar ham 9, oxirgisi 5.",
+       "Javob 599999."
+      ],
+      "javob": "599999"
+     },
+     {
+      "shart": "123456 + 234567 ni hisoblang.",
+      "yechim": [
+       "Birliklar: 6 + 7 — 13, 3 yoziladi, 1 o‘tadi.",
+       "Keyingi razryadlarni qo‘shib boramiz.",
+       "Javob 358023."
+      ],
+      "javob": "358023"
+     },
+     {
+      "shart": "452318 + 137504 ni hisoblang va tekshiring.",
+      "yechim": [
+       "Qo‘shish: 589822.",
+       "Tekshirish: 589822 − 137504.",
+       "Javob 589822."
+      ],
+      "javob": "589822"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ustunga yozamiz",
+      "topshiriq": "Uchta qo‘shishni ustun usulida bajaring.",
+      "yechim": "Razryadlar bir tekis turadi.",
+      "mahsulot": "ustun varag‘i"
+     },
+     {
+      "nom": "Xatoni topamiz",
+      "topshiriq": "Berilgan qo‘shishdagi xatoni toping.",
+      "yechim": "O‘tishni unutish xato.",
+      "mahsulot": "xatolar varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Har bir javobni ayirish bilan tekshiring.",
+      "yechim": "599999 − 254321 — 345678.",
+      "mahsulot": "tekshiruv varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Ko‘p xonali qo‘shishga masala tuzing.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "345678 + 254321 nechaga teng?",
+      "javob": "599999"
+     },
+     {
+      "shart": "123456 + 234567 nechaga teng?",
+      "javob": "358023"
+     },
+     {
+      "shart": "452318 + 137504 nechaga teng?",
+      "javob": "589822"
+     },
+     {
+      "shart": "599999 − 254321 nechaga teng?",
+      "javob": "345678"
+     },
+     {
+      "shart": "8 + 1 nechaga teng?",
+      "javob": "9"
+     },
+     {
+      "shart": "6 + 7 nechaga teng?",
+      "javob": "13"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Razryadlarni bir tekis yozmaydi",
+      "sabab": "ustunni adashtiradi",
+      "oldini_olish": "birlik birlik ostida"
+     },
+     {
+      "xato": "O‘tishni unutadi",
+      "sabab": "13 da 1 ni keyingi razryadga qo‘shmaydi",
+      "oldini_olish": "1 ni keyingi razryadga qo‘sh"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "ayirish bilan tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "xarajatlarni qo‘shish"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "aholi sonini qo‘shish"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "fayl hajmlarini qo‘shish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Katta hisob»",
+     "muammo": "Katta sonlarni qo‘shishni qanday qilib o‘rgatamiz?",
+     "mahsulot": "hisob kartochkalari",
+     "bosqichlar": [
+      "misollar tanlash",
+      "ustunga yozish",
+      "yechish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Misol tanlang",
+      "Ustunga yozing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "misollar to‘g‘ri",
+      "ustun tekis",
+      "javob to‘g‘ri",
+      "tekshirilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qo‘shish zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "345678 + 254321.",
+       "topshiriq": "Yig‘indi?",
+       "javob": "599999",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "123456 + 234567.",
+       "topshiriq": "Yig‘indi?",
+       "javob": "358023",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "452318 + 137504.",
+       "topshiriq": "Yig‘indi?",
+       "javob": "589822",
+       "rasm": ""
+      },
+      {
+       "nom": "Tekshiruv sexi",
+       "matn": "599999 − 254321.",
+       "topshiriq": "Natija?",
+       "javob": "345678",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerdan boshladingiz?",
+      "O‘tish bo‘ldimi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Qo‘shish",
+      "tarif": "yig‘indini topish"
+     },
+     {
+      "atama": "Yig‘indi",
+      "tarif": "qo‘shish natijasi"
+     },
+     {
+      "atama": "Qo‘shiluvchi",
+      "tarif": "qo‘shiladigan son"
+     },
+     {
+      "atama": "Ustun",
+      "tarif": "tik yozuv usuli"
+     },
+     {
+      "atama": "O‘tish",
+      "tarif": "keyingi razryadga 1 qo‘shish"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "teskari amal bilan aniqlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qo‘shish o‘ngdan boshlanadi",
+      "togri": true,
+      "izoh": "birliklardan"
+     },
+     {
+      "matn": "345678 + 254321 — 599999",
+      "togri": true,
+      "izoh": "yig‘indi"
+     },
+     {
+      "matn": "123456 + 234567 — 358013",
+      "togri": false,
+      "izoh": "358023"
+     },
+     {
+      "matn": "13 da 1 keyingi razryadga o‘tadi",
+      "togri": true,
+      "izoh": "o‘tish"
+     },
+     {
+      "matn": "Qo‘shishni tekshirish shart emas",
+      "togri": false,
+      "izoh": "kerak"
+     },
+     {
+      "matn": "599999 − 254321 — 345678",
+      "togri": true,
+      "izoh": "tekshirish"
+     },
+     {
+      "matn": "Razryadlar tekis yoziladi",
+      "togri": true,
+      "izoh": "ustun"
+     },
+     {
+      "matn": "452318 + 137504 — 589822",
+      "togri": true,
+      "izoh": "yig‘indi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qo‘shish qayerdan boshlanadi?",
+      "javob": "o‘ngdan"
+     },
+     {
+      "savol": "345678 + 254321?",
+      "javob": "599999"
+     },
+     {
+      "savol": "123456 + 234567?",
+      "javob": "358023"
+     },
+     {
+      "savol": "452318 + 137504?",
+      "javob": "589822"
+     },
+     {
+      "savol": "599999 − 254321?",
+      "javob": "345678"
+     },
+     {
+      "savol": "8 + 1?",
+      "javob": "9"
+     },
+     {
+      "savol": "6 + 7?",
+      "javob": "13"
+     },
+     {
+      "savol": "13 da nima o‘tadi?",
+      "javob": "1"
+     },
+     {
+      "savol": "Tekshirish usuli?",
+      "javob": "ayirish"
+     },
+     {
+      "savol": "Ustun usuli nima?",
+      "javob": "razryadlar bo‘yicha tik yozish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Ustunga yoz.",
+      "savol": "Tekis turdimi?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "O‘ngdan qo‘sh.",
+      "savol": "8 + 1?"
+     },
+     {
+      "nom": "O‘tkaz",
+      "matn": "1 ni o‘tkaz.",
+      "savol": "13 da?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Ayirib tekshir.",
+      "savol": "599999 − 254321?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ko‘p xonali sonlarni ustun usulida qo‘shamiz?",
+    "keys": {
+     "vaziyat": "Ikki shahar aholisi 345678 va 254321 kishi. Jami aholini bilmoqchimiz.",
+     "savollar": [
+      "Qaysi amalni bajaramiz?",
+      "Jami nechta?"
+     ]
+    },
+    "tezis": "O‘ngdan qo‘sh, ayirib tekshir",
+    "taqqoslash": {
+     "a": "Kichik sonlarni qo‘shish",
+     "b": "Ko‘p xonali sonlarni qo‘shish",
+     "umumiy": [
+      "qo‘shish amali",
+      "yig‘indi topiladi"
+     ],
+     "a_farq": [
+      "ongda ham bo‘ladi",
+      "kam razryad"
+     ],
+     "b_farq": [
+      "ustun usuli",
+      "ko‘p razryad"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ko‘p xonali qo‘shish",
+     "shoxlar": [
+      {
+       "nom": "Yozish",
+       "bandlar": [
+        "ustun",
+        "tekis razryad"
+       ]
+      },
+      {
+       "nom": "Qo‘shish",
+       "bandlar": [
+        "o‘ngdan"
+       ]
+      },
+      {
+       "nom": "O‘tish",
+       "bandlar": [
+        "10 dan oshsa 1"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "ayirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men razryadlarni o‘ngdan qo‘shaman. Men kimman?",
+     "javob": "ustun usuli"
+    },
+    "hikmat": "O‘ngdan qo‘sh — adashma.",
+    "kalit_soz": "QOSHISH",
+    "xato_yechim": {
+     "shart": "123456 + 234567 ni hisoblang.",
+     "xato": "358013",
+     "togri": "358023",
+     "sabab": "13 da 1 keyingi razryadga o‘tadi"
+    },
+    "guruh_nomlari": [
+     "Qo‘shuvchilar",
+     "Ustunchilar",
+     "Tekshiruvchilar",
+     "Hisobchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qo‘shish zavodi»",
+     "topshiriq": "Guruh ko‘p xonali sonlarni qo‘shadi."
+    },
+    "vazifalar": {
+     "A": "345678 + 254321 ni hisoblang.",
+     "B": "123456 + 234567 ni hisoblang.",
+     "C": "452318 + 137504 ni hisoblang va tekshiring."
+    },
+    "sinkveyn": [
+     "Qo‘shish",
+     "katta, aniq",
+     "qo‘shadi, tekshiradi, o‘tkazadi",
+     "O‘ngdan boshla",
+     "Yig‘indi"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh qo‘shish misollarini yechadi.",
+     "qismlar": [
+      "1-guruh: 345678 + 254321",
+      "2-guruh: 123456 + 234567",
+      "3-guruh: 452318 + 137504",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 599999; 358023; 589822; tekshirish 345678."
+    }
+   }
   }
  ]
 }
