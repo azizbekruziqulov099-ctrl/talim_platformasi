@@ -1,0 +1,1404 @@
+{
+ "daraja": "maktab",
+ "sinf": "8",
+ "fan": "Algebra",
+ "muallif": "qo‘lda yozilgan, hisob-kitob avtomatik tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Kvadrat ildiz",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Arifmetik kvadrat ildiz",
+      "matn": "Nomanfiy a sonning kvadrat ildizi — kvadrati a ga teng bo‘lgan nomanfiy son. U √a deb yoziladi. Manfiy sondan haqiqiy kvadrat ildiz mavjud emas, chunki har qanday sonning kvadrati nomanfiy.",
+      "misol": "√25 — 5, chunki 5 ning kvadrati 25. √0 — 0. √1 — 1. 25 ning kvadrat ildizi ikkita emas, arifmetik ildiz faqat 5.",
+      "savol": "√81 nechaga teng?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Asosiy xossalar",
+      "matn": "(√a)² — a (a nomanfiy). √(a²) — a ning moduli: musbat son uchun o‘zi, manfiy son uchun unga qarama-qarshi son. Shuning uchun √((−7)²) — 7.",
+      "misol": "(√13)² — 13. √(5²) — 5, √((−5)²) — 5.",
+      "savol": "√((−3)²) nechaga teng?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytma va bo‘linma ildizi",
+      "matn": "Nomanfiy sonlar ko‘paytmasining ildizi ildizlar ko‘paytmasiga teng: √(ab) — √a · √b. Bo‘linma ildizi: √(a / b) — √a / √b (b noldan farqli). Bu xossa katta sonlarning ildizini topishga yordam beradi.",
+      "misol": "√36 — √4 · √9 — 2 · 3 — 6. √(16 / 25) — 4 / 5.",
+      "savol": "√(4 · 25) nechaga teng?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ildiz ostidan ko‘paytuvchi chiqarish",
+      "matn": "Ildiz ostidagi sonni mukammal kvadratga va qolgan ko‘paytuvchiga ajratib, kvadrat ildizini ildiz tashqarisiga chiqaramiz. Aksincha, ko‘paytuvchini ildiz ostiga kiritish ham mumkin.",
+      "misol": "√72 — √(36 · 2) — 6√2. √50 — 5√2. √12 — 2√3. Aksincha: 3√2 — √(9 · 2) — √18.",
+      "savol": "√20 ni soddalashtiring.",
+      "javob": "2√5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ifodalarni soddalashtirish",
+      "matn": "Ildizli ifodalarda o‘xshash ildizlarni qo‘shamiz, qavslarni ochamiz, qisqa ko‘paytirish formulalaridan foydalanamiz. Maxrajdagi ildizdan qutulish uchun kasrning surat va maxrajini shu ildizga ko‘paytiramiz.",
+      "misol": "√8 + √18 — 2√2 + 3√2 — 5√2. (√3 + 1)(√3 − 1) — 3 − 1 — 2. 6 / √3 — 6√3 / 3 — 2√3.",
+      "savol": "√2 + √2 nimaga teng?",
+      "javob": "2√2",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "√a — kvadrati a bo‘lgan nomanfiy son. √(a²) — a ning moduli. √(ab) — √a · √b. √(a / b) — √a / √b. Yig‘indining ildizi ildizlar yig‘indisiga teng emas.",
+    "misollar": [
+     {
+      "shart": "√144 + √81 ni hisoblang.",
+      "yechim": [
+       "√144 — 12, chunki 12 ning kvadrati 144.",
+       "√81 — 9.",
+       "Yig‘indi 12 + 9, ya’ni 21."
+      ],
+      "javob": "21"
+     },
+     {
+      "shart": "√75 ni soddalashtiring.",
+      "yechim": [
+       "75 — 25 · 3.",
+       "√75 — √25 · √3.",
+       "Natija 5√3."
+      ],
+      "javob": "5√3"
+     },
+     {
+      "shart": "6 / √3 ning maxrajini ildizdan qutqaring.",
+      "yechim": [
+       "Surat va maxrajni √3 ga ko‘paytiramiz.",
+       "6√3 / 3.",
+       "Natija 2√3."
+      ],
+      "javob": "2√3"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kvadrat yuzi",
+      "topshiriq": "Kvadrat yuzi 49, 81, 144 kv. m bo‘lsa, tomonini toping.",
+      "yechim": "Tomonlar 7, 9, 12 m (yuzning kvadrat ildizi).",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Mukammal kvadratlar",
+      "topshiriq": "1 dan 20 gacha sonlarning kvadratlari jadvalini tuzing va ildizlarni topishda ishlating.",
+      "yechim": "1, 4, 9, 16, 25, 36, 49, 64, 81, 100, ... kvadratlar.",
+      "mahsulot": "kvadratlar jadvali"
+     },
+     {
+      "nom": "Ildiz chiqarish",
+      "topshiriq": "√18, √32, √45 ni ildiz ostidan ko‘paytuvchi chiqarib soddalashtiring.",
+      "yechim": "3√2; 4√2; 3√5.",
+      "mahsulot": "yechim varag‘i"
+     },
+     {
+      "nom": "Xato izlaymiz",
+      "topshiriq": "√(9 + 16) ni 3 + 4 deb hisoblagan yechimni toping va to‘g‘rilang.",
+      "yechim": "√25 — 5, yig‘indining ildizi ildizlar yig‘indisiga teng emas.",
+      "mahsulot": "xatolar jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "√64 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "√(9 / 16) nechaga teng?",
+      "javob": "3 / 4"
+     },
+     {
+      "shart": "−9 ning kvadrat ildizi bormi?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "√45 ni soddalashtiring.",
+      "javob": "3√5"
+     },
+     {
+      "shart": "√2 · √8 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "√12 + √27 nechaga teng?",
+      "javob": "5√3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "√(a + b) ni √a + √b deb yozadi",
+      "sabab": "ko‘paytma xossasini yig‘indiga ham qo‘llaydi",
+      "oldini_olish": "ildizning yig‘indi bo‘yicha taqsimlanmasligini eslash"
+     },
+     {
+      "xato": "√(a²) ni doim a deb yozadi",
+      "sabab": "modulni unutadi",
+      "oldini_olish": "manfiy a uchun natija musbat ekanini eslash"
+     },
+     {
+      "xato": "Ildiz ostidan ko‘paytuvchi chiqarishda kvadratni chiqarmaydi",
+      "sabab": "mukammal kvadrat ajratmaydi",
+      "oldini_olish": "ildiz ostini mukammal kvadrat va qoldiqqa ajratish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geometriya",
+      "boglanish": "kvadrat tomoni va to‘g‘ri burchakli uchburchak gipotenuzasi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "erkin tushish va tebranish formulalarida kvadrat ildiz"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "ildizni taqribiy hisoblash algoritmlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ildiz izlab»",
+     "muammo": "Kvadrat ildizni qanday tez va aniq topish mumkin?",
+     "mahsulot": "ildizlar jadvali va hisoblash qo‘llanmasi",
+     "bosqichlar": [
+      "kvadratlar jadvali",
+      "ildiz topish usullari",
+      "taqribiy hisoblash",
+      "soddalashtirish",
+      "qo‘llanma tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Jadval tuzing",
+      "Usullarni sinang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "jadval to‘g‘ri",
+      "hisob to‘g‘ri",
+      "usullar solishtirilgan",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Kvadratlar maydoni»",
+     "bekatlar": [
+      {
+       "nom": "Gulzor",
+       "matn": "Kvadrat gulzor yuzi 81 kv. m.",
+       "topshiriq": "Tomoni qancha?",
+       "javob": "9 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Hovuz",
+       "matn": "Kvadrat hovuz yuzi 144 kv. m.",
+       "topshiriq": "Tomoni qancha?",
+       "javob": "12 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Kvadrat bog‘ yuzi 196 kv. m.",
+       "topshiriq": "Tomoni qancha?",
+       "javob": "14 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "Kvadrat maydon yuzi 50 kv. m.",
+       "topshiriq": "Tomoni qancha (soddalashtirib)?",
+       "javob": "5√2 m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda kvadrat ildiz kerak bo‘ldi?",
+      "Qaysi ildizlarni yodladingiz?",
+      "Soddalashtirish qanday bo‘ldi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kvadrat ildiz",
+      "tarif": "kvadrati berilgan songa teng nomanfiy son"
+     },
+     {
+      "atama": "Ildiz ostidagi ifoda",
+      "tarif": "ildiz belgisi ostidagi son yoki ifoda"
+     },
+     {
+      "atama": "Mukammal kvadrat",
+      "tarif": "butun sonning kvadrati bo‘lgan son"
+     },
+     {
+      "atama": "Modul",
+      "tarif": "sonning noldan uzoqligi"
+     },
+     {
+      "atama": "Soddalashtirish",
+      "tarif": "ifodani ixchamroq ko‘rinishga keltirish"
+     },
+     {
+      "atama": "Irratsionallikdan qutulish",
+      "tarif": "maxrajdagi ildizni yo‘qotish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "√25 — 5",
+      "togri": true,
+      "izoh": "5 ning kvadrati 25"
+     },
+     {
+      "matn": "Manfiy sonning haqiqiy kvadrat ildizi bor",
+      "togri": false,
+      "izoh": "har qanday sonning kvadrati nomanfiy"
+     },
+     {
+      "matn": "√(a²) har doim a",
+      "togri": false,
+      "izoh": "natija a ning moduli"
+     },
+     {
+      "matn": "√(ab) — √a · √b nomanfiy sonlar uchun",
+      "togri": true,
+      "izoh": "ko‘paytma xossasi"
+     },
+     {
+      "matn": "√(a + b) — √a + √b",
+      "togri": false,
+      "izoh": "yig‘indining ildizi shunday emas"
+     },
+     {
+      "matn": "√50 — 5√2",
+      "togri": true,
+      "izoh": "50 — 25 · 2"
+     },
+     {
+      "matn": "(√7)² — 7",
+      "togri": true,
+      "izoh": "ildiz va kvadrat o‘zaro teskari"
+     },
+     {
+      "matn": "√16 ikkita qiymatga ega: 4 va −4",
+      "togri": false,
+      "izoh": "arifmetik ildiz faqat 4"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kvadrat ildiz nima?",
+      "javob": "kvadrati berilgan songa teng nomanfiy son"
+     },
+     {
+      "savol": "√49 nechaga teng?",
+      "javob": "7"
+     },
+     {
+      "savol": "√100 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "savol": "(√6)² nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "savol": "√((−4)²) nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "savol": "√(ab) qanday yoziladi?",
+      "javob": "√a · √b"
+     },
+     {
+      "savol": "√18 ni soddalashtiring.",
+      "javob": "3√2"
+     },
+     {
+      "savol": "Manfiy sondan ildiz bormi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "√a² nima?",
+      "javob": "a ning moduli"
+     },
+     {
+      "savol": "6 / √3 ni soddalashtiring.",
+      "javob": "2√3"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Kvadrati a bo‘lgan nomanfiy son.",
+      "savol": "√36 nechaga teng?"
+     },
+     {
+      "nom": "Xossalar",
+      "matn": "Ko‘paytma va bo‘linma ildizi.",
+      "savol": "√(4 · 9) nechaga teng?"
+     },
+     {
+      "nom": "Chiqarish",
+      "matn": "Ildiz ostidan ko‘paytuvchi chiqarish.",
+      "savol": "√8 ni soddalashtiring."
+     },
+     {
+      "nom": "Soddalashtirish",
+      "matn": "O‘xshash ildizlarni qo‘shamiz.",
+      "savol": "√2 + √2 nimaga teng?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun √(a + b) ifodasi √a + √b ga teng emas? a — 9 va b — 16 qiymatlarida ikkala ifodani hisoblab, farqni tushuntiring.",
+    "keys": {
+     "vaziyat": "Bog‘bon kvadrat gulzorga 50 kv. m gul ekmoqchi. Gulzor atrofiga ariq qazish uchun uning tomonini bilishi kerak.",
+     "savollar": [
+      "Tomon nechaga teng?",
+      "Natijani qanday soddalashtiramiz?"
+     ]
+    },
+    "tezis": "Ildiz — kvadratning teskarisi",
+    "taqqoslash": {
+     "a": "√(ab)",
+     "b": "√(a + b)",
+     "umumiy": [
+      "ildiz ostida ifoda",
+      "nomanfiy sonlar uchun"
+     ],
+     "a_farq": [
+      "ildizlar ko‘paytmasi",
+      "taqsimlanadi"
+     ],
+     "b_farq": [
+      "ildizlar yig‘indisi emas",
+      "taqsimlanmaydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kvadrat ildiz",
+     "shoxlar": [
+      {
+       "nom": "Ta’rif",
+       "bandlar": [
+        "nomanfiy son",
+        "kvadrati a",
+        "√a"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "ko‘paytma",
+        "bo‘linma",
+        "modul"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "ildiz chiqarish",
+        "qo‘shish",
+        "soddalashtirish"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "kvadrat tomoni",
+        "fizika",
+        "geometriya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Kvadratni teskari qilaman, yuzadan tomonni topaman. Men nimaman?",
+     "javob": "kvadrat ildiz"
+    },
+    "hikmat": "Ildizi chuqur daraxt kuchli bo‘ladi.",
+    "kalit_soz": "ILDIZ",
+    "xato_yechim": {
+     "shart": "√(9 + 16) ni hisoblang.",
+     "xato": "7",
+     "togri": "5",
+     "sabab": "ildiz yig‘indi bo‘yicha taqsimlanmaydi: avval 9 + 16 — 25, keyin √25 — 5; 3 + 4 — 7 noto‘g‘ri"
+    },
+    "guruh_nomlari": [
+     "Ildizchilar",
+     "Kvadratchilar",
+     "Soddalashtiruvchilar",
+     "Modulchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Maydon tomoni»",
+     "topshiriq": "Guruh sinf va maktab xonalari yuzini o‘lchab, kvadrat shakl bo‘lsa tomonini ildiz bilan hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: √36, √121, √169.",
+     "B": "Soddalashtiring: √48, √98, √12 + √27.",
+     "C": "Kvadrat yuzi 200 bo‘lsa, tomonini toping va soddalashtiring."
+    },
+    "sinkveyn": [
+     "Ildiz",
+     "kvadrat, nomanfiy",
+     "chiqaradi, soddalashtiradi, hisoblaydi",
+     "Kvadratning teskarisi",
+     "√"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ildizlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: √144",
+      "2-guruh: √50 ni soddalashtiring",
+      "3-guruh: √(4 · 25)",
+      "4-guruh: √2 · √18"
+     ],
+     "yakun": "Natijalar: 12; 5√2; 10; 6."
+    }
+   }
+  },
+  {
+   "mavzu": "Irratsional sonlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ratsional sonlar",
+      "matn": "Ratsional son — m / n ko‘rinishida yoziladigan son, bunda m butun, n natural. Har qanday ratsional son chekli yoki cheksiz davriy o‘nli kasr bilan ifodalanadi. Butun sonlar ham ratsional.",
+      "misol": "1 / 4 — 0,25 (chekli kasr). 1 / 3 — 0,333... (davriy kasr). 5 — 5 / 1.",
+      "savol": "0,5 qaysi kasrga teng?",
+      "javob": "1 / 2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Irratsional sonlar",
+      "matn": "Kasr ko‘rinishida yozib bo‘lmaydigan, cheksiz davriy bo‘lmagan o‘nli kasr bilan ifodalanadigan sonlar irratsional deyiladi. Ularning eng mashhurlari: √2, √3, π.",
+      "misol": "√2 — 1,41421356... va davr yo‘q. π — 3,14159265... davr yo‘q. √16 — 4, bu irratsional emas.",
+      "savol": "√9 irratsionalmi?",
+      "javob": "yo‘q, 3 ga teng",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "√2 irratsionalligi",
+      "matn": "Isbot g‘oyasi qarama-qarshilik usuli bilan. Faraz qilamiz, √2 qisqarmas m / n kasr. Ikkala tomonni kvadratga ko‘tarsak, m kvadrati n kvadratining 2 baravariga teng. Demak, m juft. Lekin u holda n ham juft chiqadi. Bu kasr qisqarmas deganimizga zid. Demak, √2 ratsional emas.",
+      "misol": "Qadimgi yunon matematiklari pifagorchilar √2 ni kvadrat diagonali sifatida topgan va bu ularni hayratga solgan.",
+      "savol": "Isbot qaysi usul bilan bajarildi?",
+      "javob": "qarama-qarshilik usuli",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Haqiqiy sonlar va taqribiy qiymat",
+      "matn": "Ratsional va irratsional sonlar birgalikda haqiqiy sonlarni tashkil etadi. Har bir haqiqiy songa son o‘qida yagona nuqta mos keladi. Irratsional sonning taqribiy qiymatini kvadrat bilan baholab topamiz.",
+      "misol": "1,41 kvadrati 1,9881, 1,42 kvadrati 2,0164. Demak, √2 1,41 va 1,42 orasida: taqriban 1,41.",
+      "savol": "√3 taqriban necha (1,7 yoki 2,7)?",
+      "javob": "1,7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Taqqoslash va amallar",
+      "matn": "Irratsional sonni butun sonlar orasiga joylashtirish uchun ildiz ostidagi sonni mukammal kvadratlar bilan solishtiramiz. Irratsional sonlar yig‘indisi yoki ko‘paytmasi ratsional bo‘lishi mumkin.",
+      "misol": "16 < 20 < 25, demak √20 4 va 5 orasida. √5 > 2, chunki 5 > 4. √2 · √2 — 2 — ratsional.",
+      "savol": "√7 qaysi ikki butun son orasida?",
+      "javob": "2 va 3",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ratsional son — m / n, o‘nli yozuvi chekli yoki davriy. Irratsional son — davriy bo‘lmagan cheksiz o‘nli kasr. Ratsional va irratsional sonlar haqiqiy sonlarni tashkil etadi.",
+    "misollar": [
+     {
+      "shart": "√16, √7, 0,25, π sonlaridan qaysilari irratsional?",
+      "yechim": [
+       "√16 — 4 — ratsional.",
+       "0,25 — 1 / 4 — ratsional.",
+       "√7 va π — irratsional."
+      ],
+      "javob": "√7 va π"
+     },
+     {
+      "shart": "√20 qaysi ikki butun son orasida?",
+      "yechim": [
+       "16 < 20 < 25.",
+       "√16 — 4 va √25 — 5.",
+       "Demak, √20 4 va 5 orasida."
+      ],
+      "javob": "4 va 5"
+     },
+     {
+      "shart": "√7 va 3 sonlarini taqqoslang.",
+      "yechim": [
+       "3 — √9.",
+       "7 < 9, demak √7 < √9.",
+       "Shuning uchun √7 < 3."
+      ],
+      "javob": "√7 < 3"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sonlarni tasniflaymiz",
+      "topshiriq": "Berilgan 10 ta sonni ratsional va irratsional deb ikki ustunga ajrating.",
+      "yechim": "Butun sonlar, kasrlar, mukammal kvadrat ildizlari — ratsional; qolgan ildizlar va π — irratsional.",
+      "mahsulot": "tasnif jadvali"
+     },
+     {
+      "nom": "Diagonalni o‘lchaymiz",
+      "topshiriq": "Tomoni 1 bo‘lgan kvadratni chizing va diagonalini o‘lchang. U √2 ga teng ekanini tekshiring.",
+      "yechim": "Diagonal taxminan 1,41 (Pifagor teoremasi).",
+      "mahsulot": "o‘lchov"
+     },
+     {
+      "nom": "Sonlar o‘qi",
+      "topshiriq": "√2, √3, √5, √10 ni sonlar o‘qida taxminiy joylashtiring.",
+      "yechim": "1,41; 1,73; 2,24; 3,16.",
+      "mahsulot": "sonlar o‘qi chizmasi"
+     },
+     {
+      "nom": "Taqqoslash musobaqasi",
+      "topshiriq": "10 juft sonni (√5 va 2; √10 va 3) taqqoslang.",
+      "yechim": "Ildiz ostini mukammal kvadrat bilan solishtiramiz.",
+      "mahsulot": "taqqoslash jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "√9 irratsionalmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "√3 irratsionalmi?",
+      "javob": "ha"
+     },
+     {
+      "shart": "√30 ning butun qismi?",
+      "javob": "5"
+     },
+     {
+      "shart": "√10 va 3 ni taqqoslang.",
+      "javob": "√10 > 3"
+     },
+     {
+      "shart": "1 / 4 ratsionalmi?",
+      "javob": "ha"
+     },
+     {
+      "shart": "√2 · √2 nechaga teng?",
+      "javob": "2"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Barcha ildizlarni irratsional deb hisoblaydi",
+      "sabab": "mukammal kvadratlarni farqlamaydi",
+      "oldini_olish": "ildiz ostida mukammal kvadrat bo‘lsa, natija ratsional"
+     },
+     {
+      "xato": "Taqribiy qiymatni aniq qiymat deb oladi",
+      "sabab": "cheksizlikni hisobga olmaydi",
+      "oldini_olish": "taqribiy qiymat to‘liq yozuv emasligini eslash"
+     },
+     {
+      "xato": "π ni 22 / 7 ga aniq teng deb oladi",
+      "sabab": "yaqin qiymatni aniq deb biladi",
+      "oldini_olish": "22 / 7 faqat yaqinlashish ekanini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "pifagorchilar va √2 ning topilishi"
+     },
+     {
+      "fan": "Geometriya",
+      "boglanish": "kvadrat diagonali va aylana uzunligi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "sonlarni kompyuterda taqribiy saqlash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Cheksiz sonlar»",
+     "muammo": "Irratsional sonlar tarixi va ularning taqribiy qiymatini qanday topamiz?",
+     "mahsulot": "tarixiy lavha va hisoblash jadvali",
+     "bosqichlar": [
+      "tarixni o‘rganish",
+      "√2 ni baholash",
+      "√3 ni baholash",
+      "jadval tuzish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tarixni o‘rganing",
+      "Baholang",
+      "Jadval tuzing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tarixiy ma’lumot to‘g‘ri",
+      "baholash aniq",
+      "jadval to‘g‘ri",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Cheksiz sonlar olami»",
+     "bekatlar": [
+      {
+       "nom": "Kvadrat maydon",
+       "matn": "Tomoni 1 bo‘lgan kvadrat diagonali.",
+       "topshiriq": "Diagonal uzunligi?",
+       "javob": "√2, taxminan 1,41",
+       "rasm": ""
+      },
+      {
+       "nom": "Katta maydon",
+       "matn": "Tomoni 10 m kvadratning diagonali.",
+       "topshiriq": "Diagonal?",
+       "javob": "10√2, taxminan 14,1 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Qog‘oz",
+       "matn": "A4 qog‘oz tomonlari nisbati √2 ga yaqin.",
+       "topshiriq": "Bu qanday son?",
+       "javob": "irratsional",
+       "rasm": ""
+      },
+      {
+       "nom": "Aylana",
+       "matn": "Aylana uzunligining diametrga nisbati π.",
+       "topshiriq": "π qanday son?",
+       "javob": "irratsional",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda irratsional sonni ko‘rdingiz?",
+      "Taqribiy qiymat qachon yetarli?",
+      "Qaysi sonlar ratsional bo‘ldi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ratsional son",
+      "tarif": "m / n ko‘rinishidagi son"
+     },
+     {
+      "atama": "Irratsional son",
+      "tarif": "kasr ko‘rinishida yozib bo‘lmaydigan son"
+     },
+     {
+      "atama": "Haqiqiy son",
+      "tarif": "ratsional va irratsional sonlar to‘plami elementi"
+     },
+     {
+      "atama": "Davriy kasr",
+      "tarif": "raqamlari takrorlanuvchi o‘nli kasr"
+     },
+     {
+      "atama": "Taqribiy qiymat",
+      "tarif": "aniq qiymatga yaqin son"
+     },
+     {
+      "atama": "Qarama-qarshilik usuli",
+      "tarif": "teskarisini faraz qilib ziddiyatga kelish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "√2 ratsional son",
+      "togri": false,
+      "izoh": "u irratsional"
+     },
+     {
+      "matn": "Butun sonlar ratsional",
+      "togri": true,
+      "izoh": "5 — 5 / 1"
+     },
+     {
+      "matn": "π irratsional son",
+      "togri": true,
+      "izoh": "davriy bo‘lmagan cheksiz kasr"
+     },
+     {
+      "matn": "Davriy o‘nli kasr irratsional",
+      "togri": false,
+      "izoh": "davriy kasr ratsional"
+     },
+     {
+      "matn": "√16 irratsional",
+      "togri": false,
+      "izoh": "√16 — 4"
+     },
+     {
+      "matn": "Haqiqiy sonlar ratsional va irratsional sonlardan iborat",
+      "togri": true,
+      "izoh": "ularning birlashmasi"
+     },
+     {
+      "matn": "Har bir haqiqiy songa sonlar o‘qida nuqta mos",
+      "togri": true,
+      "izoh": "yagona nuqta"
+     },
+     {
+      "matn": "√5 < 2",
+      "togri": false,
+      "izoh": "5 > 4, demak √5 > 2"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ratsional son nima?",
+      "javob": "m / n ko‘rinishidagi son"
+     },
+     {
+      "savol": "Irratsional son nima?",
+      "javob": "kasr ko‘rinishida yozib bo‘lmaydigan son"
+     },
+     {
+      "savol": "Misol keltiring.",
+      "javob": "√2 yoki π"
+     },
+     {
+      "savol": "√2 taxminan nechaga teng?",
+      "javob": "1,41"
+     },
+     {
+      "savol": "Haqiqiy sonlar nimadan iborat?",
+      "javob": "ratsional va irratsional sonlardan"
+     },
+     {
+      "savol": "0,333... qaysi son?",
+      "javob": "ratsional, 1 / 3"
+     },
+     {
+      "savol": "√25 irratsionalmi?",
+      "javob": "yo‘q, 5"
+     },
+     {
+      "savol": "√20 ning butun qismi?",
+      "javob": "4"
+     },
+     {
+      "savol": "√2 ni kim isbotlagan?",
+      "javob": "qadimgi yunon matematiklari"
+     },
+     {
+      "savol": "π taxminan nechaga teng?",
+      "javob": "3,14"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ratsional",
+      "matn": "m / n ko‘rinishi.",
+      "savol": "0,5 qaysi kasr?"
+     },
+     {
+      "nom": "Irratsional",
+      "matn": "Davriy bo‘lmagan cheksiz kasr.",
+      "savol": "√3 irratsionalmi?"
+     },
+     {
+      "nom": "Haqiqiy sonlar",
+      "matn": "Ikkalasi birgalikda.",
+      "savol": "Sonlar o‘qida har bir songa nima mos?"
+     },
+     {
+      "nom": "Taqqoslash",
+      "matn": "Mukammal kvadratlar bilan.",
+      "savol": "√10 va 3 dan qaysi biri katta?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun √2 ni hech qanday kasr bilan aniq ifodalab bo‘lmaydi? Qisqarmas kasr faraz qilib, qarama-qarshilik hosil bo‘lishini tushuntiring.",
+    "keys": {
+     "vaziyat": "Duradgor tomoni 1 m bo‘lgan kvadrat taxtaning diagonalini o‘lchamoqchi.",
+     "savollar": [
+      "Diagonal necha metr?",
+      "Nima uchun uni aniq kasr bilan yozib bo‘lmaydi?"
+     ]
+    },
+    "tezis": "Irratsional sonlar — sonlar olamining kengayishi",
+    "taqqoslash": {
+     "a": "Ratsional son",
+     "b": "Irratsional son",
+     "umumiy": [
+      "haqiqiy sonlar",
+      "sonlar o‘qida joylashgan"
+     ],
+     "a_farq": [
+      "m / n ko‘rinishida",
+      "davriy yoki chekli kasr"
+     ],
+     "b_farq": [
+      "kasr ko‘rinishida emas",
+      "davriy bo‘lmagan cheksiz kasr"
+     ]
+    },
+    "klaster": {
+     "markaz": "Haqiqiy sonlar",
+     "shoxlar": [
+      {
+       "nom": "Ratsional",
+       "bandlar": [
+        "butun",
+        "kasr",
+        "davriy"
+       ]
+      },
+      {
+       "nom": "Irratsional",
+       "bandlar": [
+        "√2",
+        "√3",
+        "π"
+       ]
+      },
+      {
+       "nom": "Taqribiy qiymat",
+       "bandlar": [
+        "baholash",
+        "kvadrat bilan solishtirish"
+       ]
+      },
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "pifagorchilar",
+        "isbot",
+        "kvadrat diagonali"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Raqamlarim cheksiz, lekin takrorlanmayman. Kasr bilan yozib bo‘lmaydi. Men kimman?",
+     "javob": "irratsional son"
+    },
+    "hikmat": "Cheksizlik — sonlarning sirli yuzi.",
+    "kalit_soz": "SON",
+    "xato_yechim": {
+     "shart": "√2 ning o‘nli yozuvi 1,41 chiqdi. U ratsionalmi?",
+     "xato": "ha, chekli kasr",
+     "togri": "yo‘q, irratsional",
+     "sabab": "1,41 faqat taqribiy qiymat; √2 ning o‘nli yozuvi cheksiz va davriy emas"
+    },
+    "guruh_nomlari": [
+     "Ratsionalchilar",
+     "Irratsionalchilar",
+     "Haqiqiychilar",
+     "Taqribchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Diagonal o‘lchovi»",
+     "topshiriq": "Guruh kvadrat qog‘oz tomonini va diagonalini o‘lchab, nisbatini hisoblaydi va 1,41 ga yaqinligini tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Sonlarni tasniflang: √4, √5, 0,2, π.",
+     "B": "√30 qaysi ikki butun son orasida?",
+     "C": "√2 irratsionalligi isboti g‘oyasini o‘z so‘zingiz bilan yozing."
+    },
+    "sinkveyn": [
+     "Irratsional",
+     "cheksiz, davrsiz",
+     "kasr bo‘lmaydi, davom etadi",
+     "Sonlar olamining yangi qismi",
+     "√2"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sonlarni tasniflaydi.",
+     "qismlar": [
+      "1-guruh: √16 qaysi son",
+      "2-guruh: √5 qaysi son",
+      "3-guruh: √20 qaysi butunlar orasida",
+      "4-guruh: √2 · √2"
+     ],
+     "yakun": "Natijalar: ratsional (4); irratsional; 4 va 5; 2."
+    }
+   }
+  },
+  {
+   "mavzu": "Kvadrat tenglama",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kvadrat tenglama tushunchasi",
+      "matn": "ax² + bx + c ifoda 0 ga teng ko‘rinishdagi tenglama kvadrat tenglama deyiladi, bunda a noldan farqli. a, b, c — koeffitsientlar. a — birinchi, b — ikkinchi koeffitsient, c — ozod had. Tenglamaning ildizi — uni to‘g‘ri tenglikka aylantiradigan x qiymati.",
+      "misol": "2x² − 5x + 3 ifoda 0 ga teng: a — 2, b — −5, c — 3. x² − 9 ifoda 0 ga teng: a — 1, b — 0, c — −9.",
+      "savol": "3x² + 2x − 1 ifoda 0 da a, b, c ni ayting.",
+      "javob": "a 3, b 2, c −1",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘liqmas kvadrat tenglamalar",
+      "matn": "b yoki c nolga teng bo‘lsa, tenglama to‘liqmas deyiladi. ax² + c ifoda 0: x² ni topib ikkita ildiz olamiz. ax² + bx ifoda 0: x ni qavsdan chiqaramiz, ildizlar 0 va −b / a. ax² ifoda 0 da yagona ildiz 0.",
+      "misol": "x² − 9 ifoda 0 — x² ifoda 9, x ifoda 3 yoki −3. x² − 5x ifoda 0 — x(x − 5) ifoda 0, ildizlar 0 va 5.",
+      "savol": "x² − 16 ifoda 0 ning ildizlari?",
+      "javob": "4 va −4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Diskriminant va ildiz formulasi",
+      "matn": "D ifoda b² − 4ac diskriminant deyiladi. D nomanfiy bo‘lsa, ildizlar x ifoda (−b ± √D) / (2a) formulasi bilan topiladi.",
+      "misol": "x² − 5x + 6 ifoda 0: D — 25 − 24 — 1. x — (5 ± 1) / 2, ildizlar 3 va 2. Tekshirish: 3 uchun 9 − 15 + 6 — 0; 2 uchun 4 − 10 + 6 — 0.",
+      "savol": "x² − 3x + 2 ifoda 0 da D nechaga teng?",
+      "javob": "1",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "D ishorasi bo‘yicha ildizlar soni",
+      "matn": "D musbat bo‘lsa — ikkita turli ildiz. D nolga teng bo‘lsa — bitta ildiz x ifoda −b / (2a). D manfiy bo‘lsa — haqiqiy ildiz yo‘q.",
+      "misol": "x² − 4x + 4: D — 16 − 16 — 0, ildiz x — 2. x² + 2x + 5: D — 4 − 20 — −16, ildiz yo‘q.",
+      "savol": "D manfiy bo‘lsa, nechta haqiqiy ildiz bor?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kvadrat tenglama bilan masala",
+      "matn": "Masalada noma’lumni belgilab, kvadrat tenglama tuzamiz, ildizlarini topamiz va shartga mosini tanlaymiz. Uzunlik va yuza manfiy bo‘lolmaydi.",
+      "misol": "To‘g‘ri to‘rtburchak uzunligi enidan 3 ga ko‘p, yuzi 40. Eni x: x(x + 3) ifoda 40, x² + 3x − 40 ifoda 0. D — 9 + 160 — 169, x — (−3 ± 13) / 2: 5 yoki −8. Eni 5, uzunligi 8; −8 mos emas.",
+      "savol": "x² + 3x − 40 da manfiy ildiz masalada mosmi?",
+      "javob": "yo‘q, uzunlik manfiy bo‘lmaydi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "ax² + bx + c ifoda 0, a noldan farqli. D ifoda b² − 4ac. D musbat — ikki ildiz, D nol — bitta, D manfiy — ildiz yo‘q. Ildizlar: (−b ± √D) / (2a).",
+    "misollar": [
+     {
+      "shart": "x² − 7x + 10 ifoda 0 tenglamani yeching.",
+      "yechim": [
+       "a — 1, b — −7, c — 10. D — 49 − 40 — 9.",
+       "x — (7 ± 3) / 2: 5 va 2.",
+       "Tekshirish: 25 − 35 + 10 — 0; 4 − 14 + 10 — 0."
+      ],
+      "javob": "x ifoda 5 yoki x ifoda 2"
+     },
+     {
+      "shart": "3x² − 12 ifoda 0 tenglamani yeching.",
+      "yechim": [
+       "3x² ifoda 12, x² ifoda 4.",
+       "x ifoda 2 yoki −2.",
+       "Tekshirish: 3 ni 4 ga ko‘paytirsak 12, 12 − 12 — 0."
+      ],
+      "javob": "x ifoda 2 yoki x ifoda −2"
+     },
+     {
+      "shart": "x² + 6x + 9 ifoda 0 tenglamani yeching.",
+      "yechim": [
+       "D — 36 − 36 — 0.",
+       "x — −6 / 2, ya’ni −3.",
+       "Tekshirish: 9 − 18 + 9 — 0."
+      ],
+      "javob": "x ifoda −3"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Koeffitsientlar",
+      "topshiriq": "Berilgan 5 ta tenglamada a, b, c ni aniqlang va turini (to‘liq, to‘liqmas) ayting.",
+      "yechim": "Koeffitsientlar tenglamadan o‘qiladi; nol koeffitsient bo‘lsa to‘liqmas.",
+      "mahsulot": "tasnif jadvali"
+     },
+     {
+      "nom": "Diskriminant musobaqasi",
+      "topshiriq": "Uchta tenglama uchun D ni hisoblab, ildizlar sonini aniqlang.",
+      "yechim": "D musbat, nol yoki manfiy bo‘lishiga qarab 2, 1 yoki 0 ildiz.",
+      "mahsulot": "hisoblash jadvali"
+     },
+     {
+      "nom": "Maydon masalasi",
+      "topshiriq": "To‘g‘ri to‘rtburchak uzunligi enidan 3 ga ko‘p, yuzi 40 kv. m. Tomonlarini toping.",
+      "yechim": "x² + 3x − 40 ifoda 0, eni 5 m, uzunligi 8 m.",
+      "mahsulot": "yechim varag‘i"
+     },
+     {
+      "nom": "Ildizni tekshirish",
+      "topshiriq": "Topilgan ildizlarni boshlang‘ich tenglamaga qo‘yib tekshiring.",
+      "yechim": "To‘g‘ri tenglik chiqishi kerak.",
+      "mahsulot": "tekshirish varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "x² − 16 ifoda 0 tenglama ildizlarini toping.",
+      "javob": "4 va −4"
+     },
+     {
+      "shart": "x² − 6x ifoda 0 tenglama ildizlarini toping.",
+      "javob": "0 va 6"
+     },
+     {
+      "shart": "x² − 3x + 2 ifoda 0 tenglama ildizlarini toping.",
+      "javob": "1 va 2"
+     },
+     {
+      "shart": "x² + x − 6 ifoda 0 tenglama ildizlarini toping.",
+      "javob": "2 va −3"
+     },
+     {
+      "shart": "x² + 4 ifoda 0 tenglamaning haqiqiy ildizi bormi?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "x² − 2x + 1 ifoda 0 tenglama ildizi?",
+      "javob": "1"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "x² ifoda 9 dan faqat x ifoda 3 oladi",
+      "sabab": "ikkinchi, manfiy ildizni unutadi",
+      "oldini_olish": "ikkita ildiz borligini eslash: 3 va −3"
+     },
+     {
+      "xato": "D ni hisoblashda b² o‘rniga 2b yozadi",
+      "sabab": "formulani adashtiradi",
+      "oldini_olish": "D ifoda b² − 4ac ni yozib hisoblash"
+     },
+     {
+      "xato": "Ildizlarni tekshirmaydi",
+      "sabab": "hisob xatosini payqamaydi",
+      "oldini_olish": "ildizlarni tenglamaga qo‘yib ko‘rish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "vertikal otilgan jism harakati va tezlanish tenglamalari"
+     },
+     {
+      "fan": "Geometriya",
+      "boglanish": "yuza va Pifagor teoremasi masalalari"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "foyda va narx modellarida kvadrat bog‘lanish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kvadrat tenglama ustaxonasi»",
+     "muammo": "Hayotiy masalalarni kvadrat tenglama bilan qanday yechamiz?",
+     "mahsulot": "masalalar to‘plami",
+     "bosqichlar": [
+      "masalalar tanlash",
+      "tenglama tuzish",
+      "diskriminant bilan yechish",
+      "ildizlarni tekshirish",
+      "to‘plam tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Masalalar toping",
+      "Tenglama tuzing",
+      "Yeching va tekshiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tenglama to‘g‘ri tuzilgan",
+      "yechim to‘g‘ri",
+      "tekshirish bor",
+      "masala hayotiy",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Parabolalar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Maydon",
+       "matn": "To‘g‘ri to‘rtburchak maydon uzunligi enidan 3 m ko‘p, yuzi 40 kv. m.",
+       "topshiriq": "Eni va uzunligini toping.",
+       "javob": "eni 5 m, uzunligi 8 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Sonlar",
+       "matn": "Ikki ketma-ket natural son ko‘paytmasi 42.",
+       "topshiriq": "Sonlarni toping.",
+       "javob": "6 va 7",
+       "rasm": ""
+      },
+      {
+       "nom": "Gulzor",
+       "matn": "Kvadrat gulzor yuzi 49 kv. m.",
+       "topshiriq": "Tomoni qancha?",
+       "javob": "7 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Sonli topishmoq",
+       "matn": "Sonning kvadrati shu sondan 12 ga ortiq.",
+       "topshiriq": "Sonni toping.",
+       "javob": "4 yoki −3",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda kvadrat tenglama chiqdi?",
+      "Qaysi usul qulay bo‘ldi?",
+      "Ildizlarni qanday tekshirdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kvadrat tenglama",
+      "tarif": "ax² + bx + c ifoda 0 ko‘rinishidagi tenglama"
+     },
+     {
+      "atama": "Koeffitsient",
+      "tarif": "noma’lum oldidagi son"
+     },
+     {
+      "atama": "Diskriminant",
+      "tarif": "b² − 4ac ifodasi"
+     },
+     {
+      "atama": "Ildiz",
+      "tarif": "tenglamani qanoatlantiruvchi qiymat"
+     },
+     {
+      "atama": "To‘liqmas kvadrat tenglama",
+      "tarif": "b yoki c nolga teng bo‘lgan tenglama"
+     },
+     {
+      "atama": "Ozod had",
+      "tarif": "noma’lumsiz had c"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Kvadrat tenglamada a noldan farqli",
+      "togri": true,
+      "izoh": "aks holda tenglama chiziqli"
+     },
+     {
+      "matn": "D manfiy bo‘lsa, ikki ildiz bor",
+      "togri": false,
+      "izoh": "haqiqiy ildiz yo‘q"
+     },
+     {
+      "matn": "D nol bo‘lsa, bitta ildiz bor",
+      "togri": true,
+      "izoh": "x ifoda −b / (2a)"
+     },
+     {
+      "matn": "x² − 9 ifoda 0 ning faqat bitta ildizi bor",
+      "togri": false,
+      "izoh": "ildizlar 3 va −3"
+     },
+     {
+      "matn": "D ifoda b² − 4ac",
+      "togri": true,
+      "izoh": "diskriminant formulasi"
+     },
+     {
+      "matn": "Ildizni tenglamaga qo‘yib tekshirish mumkin",
+      "togri": true,
+      "izoh": "to‘g‘ri tenglik chiqishi kerak"
+     },
+     {
+      "matn": "x² − 5x ifoda 0 ning ildizlari 0 va 5",
+      "togri": true,
+      "izoh": "x(x − 5) ifoda 0"
+     },
+     {
+      "matn": "Masalada barcha ildizlar mos bo‘ladi",
+      "togri": false,
+      "izoh": "shartga mos kelmaganini tashlaymiz"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kvadrat tenglama nima?",
+      "javob": "ax² + bx + c ifoda 0 ko‘rinishidagi tenglama"
+     },
+     {
+      "savol": "Diskriminant nima?",
+      "javob": "b² − 4ac"
+     },
+     {
+      "savol": "D musbat bo‘lsa, nechta ildiz?",
+      "javob": "ikkita"
+     },
+     {
+      "savol": "D nol bo‘lsa, nechta ildiz?",
+      "javob": "bitta"
+     },
+     {
+      "savol": "D manfiy bo‘lsa, nechta ildiz?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "Ildiz formulasi?",
+      "javob": "(−b ± √D) / (2a)"
+     },
+     {
+      "savol": "x² − 25 ifoda 0 ning ildizlari?",
+      "javob": "5 va −5"
+     },
+     {
+      "savol": "x² − 4x + 3 ifoda 0 da D?",
+      "javob": "4"
+     },
+     {
+      "savol": "x² − 4x + 3 ifoda 0 ning ildizlari?",
+      "javob": "1 va 3"
+     },
+     {
+      "savol": "Ildizlarni nega tekshiramiz?",
+      "javob": "xatoni aniqlash uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "ax² + bx + c ifoda 0.",
+      "savol": "x² − 3x + 2 da a, b, c?"
+     },
+     {
+      "nom": "To‘liqmas",
+      "matn": "b yoki c nolga teng.",
+      "savol": "x² − 9 ifoda 0 ning ildizlari?"
+     },
+     {
+      "nom": "Diskriminant",
+      "matn": "D ifoda b² − 4ac.",
+      "savol": "x² − 2x + 1 da D?"
+     },
+     {
+      "nom": "Ildizlar soni",
+      "matn": "D ishorasiga bog‘liq.",
+      "savol": "D manfiy bo‘lsa nechta ildiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun diskriminant manfiy bo‘lsa, kvadrat tenglamaning haqiqiy ildizi bo‘lmaydi? Kvadrat ildiz va manfiy sonlar haqidagi bilimlaringiz asosida tushuntiring.",
+    "keys": {
+     "vaziyat": "To‘g‘ri to‘rtburchak maydon uzunligi enidan 3 m ko‘p, yuzi 40 kv. m. Atrofiga devor qurilmoqchi.",
+     "savollar": [
+      "Tenglamani qanday tuzamiz?",
+      "Devor uzunligi (perimetr) qancha?"
+     ]
+    },
+    "tezis": "Diskriminant — tenglamaning yo‘l xaritasi",
+    "taqqoslash": {
+     "a": "To‘liq kvadrat tenglama",
+     "b": "To‘liqmas kvadrat tenglama",
+     "umumiy": [
+      "ikkinchi darajali tenglama",
+      "a noldan farqli"
+     ],
+     "a_farq": [
+      "b va c nol emas",
+      "diskriminant bilan yechiladi"
+     ],
+     "b_farq": [
+      "b yoki c nol",
+      "qavsdan chiqarish yoki kvadrat ildiz bilan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kvadrat tenglama",
+     "shoxlar": [
+      {
+       "nom": "Ko‘rinish",
+       "bandlar": [
+        "a, b, c",
+        "to‘liq",
+        "to‘liqmas"
+       ]
+      },
+      {
+       "nom": "Diskriminant",
+       "bandlar": [
+        "D ifoda b² − 4ac",
+        "ishorasi",
+        "ildizlar soni"
+       ]
+      },
+      {
+       "nom": "Ildiz formulasi",
+       "bandlar": [
+        "(−b ± √D) / (2a)",
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "Masalalar",
+       "bandlar": [
+        "maydon",
+        "sonlar",
+        "harakat"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Mening ildizlarim ikkita, yoki bitta, yoki yo‘q. Diskriminant meni hal qiladi. Men nimaman?",
+     "javob": "kvadrat tenglama"
+    },
+    "hikmat": "Ikki yo‘l, bir yo‘l yoki yo‘q yo‘l — diskriminant ko‘rsatadi.",
+    "kalit_soz": "DISKRIMINANT",
+    "xato_yechim": {
+     "shart": "x² − 9 ifoda 0 tenglamani yeching.",
+     "xato": "x ifoda 3",
+     "togri": "x ifoda 3 yoki x ifoda −3",
+     "sabab": "x² ifoda 9 dan ikkita ildiz chiqadi; manfiy ildiz unutilgan, chunki −3 ning kvadrati ham 9"
+    },
+    "guruh_nomlari": [
+     "Diskriminantchilar",
+     "Ildizchilar",
+     "Koeffitsientchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Maydon va devor»",
+     "topshiriq": "Guruh uzunligi eniga bog‘liq bo‘lgan maydon masalasini tuzadi, kvadrat tenglama bilan yechadi va perimetrni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Yeching: x² − 25 ifoda 0; x² − 7x ifoda 0.",
+     "B": "Yeching: x² − 8x + 15 ifoda 0 (D va ildizlar).",
+     "C": "Kvadrat tenglamaga olib keladigan masala tuzing va yeching."
+    },
+    "sinkveyn": [
+     "Kvadrat tenglama",
+     "ikkinchi darajali, aniq",
+     "yechiladi, tekshiriladi, ifodalanadi",
+     "Ikki ildizli tenglama",
+     "Parabola"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh kvadrat tenglamalar yechadi.",
+     "qismlar": [
+      "1-guruh: x² − 9 ifoda 0",
+      "2-guruh: x² − 4x ifoda 0",
+      "3-guruh: x² − 5x + 6 ifoda 0",
+      "4-guruh: x² − 2x + 1 ifoda 0"
+     ],
+     "yakun": "Ildizlar: 3 va −3; 0 va 4; 2 va 3; 1."
+    }
+   }
+  }
+ ]
+}
