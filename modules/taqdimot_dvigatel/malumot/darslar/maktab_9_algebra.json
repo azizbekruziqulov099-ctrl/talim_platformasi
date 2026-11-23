@@ -2776,6 +2776,1397 @@
      "yakun": "Natijalar: 9; 5; 4; 1/16."
     }
    }
+  },
+  {
+   "mavzu": "Trigonometriya asoslari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sinus, kosinus, tangens",
+      "matn": "To‘g‘ri burchakli uchburchakda o‘tkir burchak sinusi — qarshisidagi katetning gipotenuzaga nisbati. Kosinusi — qo‘shni katetning gipotenuzaga nisbati. Tangensi — qarshisidagi katetning qo‘shni katetga nisbati.",
+      "misol": "Tomonlari 3, 4, 5 uchburchakda 3 ga qarshi burchak A uchun sinus 3/5, kosinus 4/5, tangens 3/4.",
+      "savol": "Tomonlari 3, 4, 5 uchburchakda 4 ga qarshi burchak sinusi?",
+      "javob": "4/5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tangens va uning bog‘lanishi",
+      "matn": "Tangens sinusning kosinusga nisbatiga teng. Bu bog‘lanish ikkita katetning nisbatini gipotenuzasiz topishga imkon beradi.",
+      "misol": "3/5 ni 4/5 ga bo‘lsak 3/4: bu tangensning qiymati.",
+      "savol": "Sinus 0,6, kosinus 0,8 bo‘lsa tangens?",
+      "javob": "0,75",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Asosiy trigonometrik ayniyat",
+      "matn": "Har qanday burchak uchun sinus kvadrati va kosinus kvadrati yig‘indisi 1 ga teng. Bu Pifagor teoremasining trigonometriyadagi ko‘rinishidir. Bir qiymatni bilsak, ikkinchisini topamiz.",
+      "misol": "Sinus 3/5 bo‘lsa, kosinus kvadrati 1 − 9/25, ya’ni 16/25, o‘tkir burchakda kosinus 4/5.",
+      "savol": "Kosinus 0,6 bo‘lsa o‘tkir burchak sinusi?",
+      "javob": "0,8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Maxsus burchaklar",
+      "matn": "30, 45 va 60 gradusli burchaklarning qiymatlarini yod olish foydali. 30 gradusda sinus 1/2, kosinus √3/2. 45 gradusda sinus va kosinus √2/2, tangens 1. 60 gradusda sinus √3/2, kosinus 1/2.",
+      "misol": "sin 30° yarmiga teng, cos 60° ham yarmiga teng, tg 45° birga teng.",
+      "savol": "sin 30° nechaga teng?",
+      "javob": "1/2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Radian o‘lchovi",
+      "matn": "Burchakni gradusda ham, radianda ham o‘lchash mumkin. 180 gradus π radianga teng. Shuning uchun 90 gradus π/2, 60 gradus π/3, 45 gradus π/4, 30 gradus π/6.",
+      "misol": "180 gradusni 6 ga bo‘lsak 30 gradus, demak 30 gradus — π/6 radian.",
+      "savol": "90 gradus necha radian?",
+      "javob": "π/2",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Sinus — qarshi katet / gipotenuza. Kosinus — qo‘shni katet / gipotenuza. Tangens — sinus / kosinus. Sinus kvadrati va kosinus kvadrati yig‘indisi 1. 180 gradus — π radian.",
+    "misollar": [
+     {
+      "shart": "Katetlari 6 va 8, gipotenuzasi 10 uchburchakda 6 ga qarshi burchak sinus, kosinus va tangensini toping.",
+      "yechim": [
+       "Sinus 6 / 10, ya’ni 0,6.",
+       "Kosinus 8 / 10, ya’ni 0,8.",
+       "Tangens 6 / 8, ya’ni 0,75."
+      ],
+      "javob": "0,6; 0,8; 0,75"
+     },
+     {
+      "shart": "O‘tkir burchak kosinusi 0,6. Uning sinusini toping.",
+      "yechim": [
+       "Sinus kvadrati 1 − 0,36, ya’ni 0,64.",
+       "Kvadrat ildiz 0,8.",
+       "O‘tkir burchakda sinus musbat."
+      ],
+      "javob": "0,8"
+     },
+     {
+      "shart": "2 sin 30° + cos 60° ifodani hisoblang.",
+      "yechim": [
+       "sin 30° yarmiga teng, ya’ni 0,5.",
+       "cos 60° ham 0,5.",
+       "2 · 0,5 + 0,5 — 1,5."
+      ],
+      "javob": "1,5"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Minora balandligi",
+      "topshiriq": "Quyosh nurlari 45 gradus ostida tushganda minora soyasi 12 m. Minora balandligi qancha?",
+      "yechim": "tg 45° ifoda 1, demak balandlik soyaga teng: 12 m.",
+      "mahsulot": "chizma va hisob"
+     },
+     {
+      "nom": "Narvon",
+      "topshiriq": "5 m uzunlikdagi narvon yer bilan 30 gradus burchak hosil qiladi. Narvon uchi qanday balandlikda?",
+      "yechim": "sin 30° ifoda 0,5, balandlik 5 · 0,5, ya’ni 2,5 m.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Panduslar",
+      "topshiriq": "Pandus 30 gradus qiyalikda 2 m balandlikka ko‘tariladi. Pandus uzunligi?",
+      "yechim": "Uzunlik 2 / 0,5, ya’ni 4 m.",
+      "mahsulot": "pandus modeli"
+     },
+     {
+      "nom": "Burchaklar jadvali",
+      "topshiriq": "30, 45, 60 gradus uchun sinus, kosinus va tangensni jadvalga yozing.",
+      "yechim": "30: 1/2, √3/2; 45: √2/2, √2/2, 1; 60: √3/2, 1/2.",
+      "mahsulot": "qiymatlar jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "sin 30° nechaga teng?",
+      "javob": "0,5"
+     },
+     {
+      "shart": "cos 60° nechaga teng?",
+      "javob": "0,5"
+     },
+     {
+      "shart": "tg 45° nechaga teng?",
+      "javob": "1"
+     },
+     {
+      "shart": "90 gradus necha radian?",
+      "javob": "π/2"
+     },
+     {
+      "shart": "Sinus 0,6, kosinus 0,8 bo‘lsa tangens?",
+      "javob": "0,75"
+     },
+     {
+      "shart": "Katetlari 3 va 4 uchburchakda 3 ga qarshi burchak tangensi?",
+      "javob": "0,75"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Sinus va kosinusni adashtiradi",
+      "sabab": "qarshi va qo‘shni katetni aralashtiradi",
+      "oldini_olish": "sinus — qarshi, kosinus — qo‘shni deb yodlash"
+     },
+     {
+      "xato": "Tangensni gipotenuza bilan hisoblaydi",
+      "sabab": "tangens formulasini bilmaydi",
+      "oldini_olish": "tangens — sinus / kosinus yoki qarshi / qo‘shni ekanini eslash"
+     },
+     {
+      "xato": "Gradus va radianni almashtiradi",
+      "sabab": "180 gradus — π ekanini unutadi",
+      "oldini_olish": "o‘tkazishda 180 gradusni π ga tenglash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "tog‘ balandligi va yo‘l qiyaligini o‘lchash"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "qiya tekislik va kuchlarni ajratish"
+     },
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "tom qiyaligi va zinapoya burchagi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Balandlikni o‘lchaymiz»",
+     "muammo": "Maktab binosi yoki daraxt balandligini soya va burchak yordamida qanday topamiz?",
+     "mahsulot": "o‘lchash hisoboti",
+     "bosqichlar": [
+      "asbob yasash",
+      "soyani o‘lchash",
+      "burchakni aniqlash",
+      "tangens bilan hisoblash",
+      "xulosa yozish"
+     ],
+     "guruh_vazifalari": [
+      "Asbob yasang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchash to‘g‘ri",
+      "hisob to‘g‘ri",
+      "chizma aniq",
+      "xato bahosi bor",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Burchaklar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Minora",
+       "matn": "Soya 10 m, burchak 45 gradus.",
+       "topshiriq": "Balandlik?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "Zinapoya",
+       "matn": "Uzunlik 4 m, burchak 30 gradus.",
+       "topshiriq": "Balandlik?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘prik",
+       "matn": "Katetlar 3 va 4.",
+       "topshiriq": "Gipotenuza?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "sin 30° va cos 60° yig‘indisi.",
+       "topshiriq": "Natija?",
+       "javob": "1",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi nisbat qulay bo‘ldi?",
+      "Burchakni qanday o‘lchadingiz?",
+      "Qayerda trigonometriya kerak bo‘ladi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sinus",
+      "tarif": "qarshi katetning gipotenuzaga nisbati"
+     },
+     {
+      "atama": "Kosinus",
+      "tarif": "qo‘shni katetning gipotenuzaga nisbati"
+     },
+     {
+      "atama": "Tangens",
+      "tarif": "sinusning kosinusga nisbati"
+     },
+     {
+      "atama": "Radian",
+      "tarif": "burchak o‘lchovi, 180 gradus — π"
+     },
+     {
+      "atama": "Gipotenuza",
+      "tarif": "to‘g‘ri burchak qarshisidagi tomon"
+     },
+     {
+      "atama": "Katet",
+      "tarif": "to‘g‘ri burchakni hosil qiluvchi tomon"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Sinus — qarshi katet / gipotenuza",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Kosinus — qarshi katet / gipotenuza",
+      "togri": false,
+      "izoh": "qo‘shni katet / gipotenuza"
+     },
+     {
+      "matn": "tg 45° ifoda 1",
+      "togri": true,
+      "izoh": "sinus va kosinus teng"
+     },
+     {
+      "matn": "sin 30° — √3/2",
+      "togri": false,
+      "izoh": "sin 30° — 1/2"
+     },
+     {
+      "matn": "Sinus kvadrati va kosinus kvadrati yig‘indisi 1",
+      "togri": true,
+      "izoh": "asosiy ayniyat"
+     },
+     {
+      "matn": "180 gradus — 2π radian",
+      "togri": false,
+      "izoh": "180 gradus — π radian"
+     },
+     {
+      "matn": "Tangens — sinus / kosinus",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Sinus 1 dan katta bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "o‘tkir burchakda 1 dan kichik"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sinus nima?",
+      "javob": "qarshi katet / gipotenuza"
+     },
+     {
+      "savol": "Kosinus nima?",
+      "javob": "qo‘shni katet / gipotenuza"
+     },
+     {
+      "savol": "Tangens nima?",
+      "javob": "sinus / kosinus"
+     },
+     {
+      "savol": "sin 30° nechaga teng?",
+      "javob": "1/2"
+     },
+     {
+      "savol": "cos 60° nechaga teng?",
+      "javob": "1/2"
+     },
+     {
+      "savol": "tg 45° nechaga teng?",
+      "javob": "1"
+     },
+     {
+      "savol": "Asosiy ayniyat?",
+      "javob": "sinus kvadrati plus kosinus kvadrati ifoda 1"
+     },
+     {
+      "savol": "180 gradus nechaga teng?",
+      "javob": "π radian"
+     },
+     {
+      "savol": "90 gradus?",
+      "javob": "π/2 radian"
+     },
+     {
+      "savol": "60 gradus?",
+      "javob": "π/3 radian"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Sinus",
+      "matn": "Qarshi katet.",
+      "savol": "3, 4, 5 da 3 ga qarshi sinus?"
+     },
+     {
+      "nom": "Kosinus",
+      "matn": "Qo‘shni katet.",
+      "savol": "3, 4, 5 da 3 ga qarshi kosinus?"
+     },
+     {
+      "nom": "Tangens",
+      "matn": "Qarshi / qo‘shni.",
+      "savol": "3 va 4 da tangens?"
+     },
+     {
+      "nom": "Radian",
+      "matn": "180 gradus — π.",
+      "savol": "30 gradus?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun o‘tkir burchakning sinusi va kosinusi har doim 1 dan kichik bo‘ladi? To‘g‘ri burchakli uchburchakda katet va gipotenuzani solishtirib tushuntiring.",
+    "keys": {
+     "vaziyat": "Daraxt soyasi 8 m, quyosh burchagi 45 gradus. Bir vaqtning o‘zida 2 m tayoq soyasi ham o‘lchandi.",
+     "savollar": [
+      "Daraxt balandligi qancha?",
+      "Tayoq soyasi qancha bo‘ladi?"
+     ]
+    },
+    "tezis": "Burchak — masofaning kaliti",
+    "taqqoslash": {
+     "a": "Sinus",
+     "b": "Kosinus",
+     "umumiy": [
+      "to‘g‘ri burchakli uchburchakdan topiladi",
+      "gipotenuzaga nisbat"
+     ],
+     "a_farq": [
+      "qarshi katet",
+      "30 gradusda 1/2"
+     ],
+     "b_farq": [
+      "qo‘shni katet",
+      "60 gradusda 1/2"
+     ]
+    },
+    "klaster": {
+     "markaz": "Trigonometriya",
+     "shoxlar": [
+      {
+       "nom": "Nisbatlar",
+       "bandlar": [
+        "sinus",
+        "kosinus",
+        "tangens"
+       ]
+      },
+      {
+       "nom": "Ayniyat",
+       "bandlar": [
+        "sinus kvadrati plus kosinus kvadrati"
+       ]
+      },
+      {
+       "nom": "Maxsus burchaklar",
+       "bandlar": [
+        "30",
+        "45",
+        "60"
+       ]
+      },
+      {
+       "nom": "O‘lchov",
+       "bandlar": [
+        "gradus",
+        "radian"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qarshi katetni gipotenuzaga bo‘lib topilaman. Men kimman?",
+     "javob": "sinus"
+    },
+    "hikmat": "Burchak bilinsa, masofa topiladi.",
+    "kalit_soz": "SINUS",
+    "xato_yechim": {
+     "shart": "Katetlari 3 va 4 uchburchakda 3 ga qarshi burchak sinusini toping.",
+     "xato": "3/4",
+     "togri": "3/5",
+     "sabab": "sinus gipotenuzaga nisbat: gipotenuza 5"
+    },
+    "guruh_nomlari": [
+     "Sinuschilar",
+     "Kosinuschilar",
+     "Tangenschilar",
+     "Radianchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Soyadan balandlik»",
+     "topshiriq": "Guruh soya va burchak yordamida bino balandligini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Katetlari 5 va 12 uchburchakda 5 ga qarshi burchak sinusini toping.",
+     "B": "Sinus 0,8 bo‘lsa o‘tkir burchak kosinusi va tangensini toping.",
+     "C": "60 gradus va 45 gradusni radianda yozing."
+    },
+    "sinkveyn": [
+     "Trigonometriya",
+     "burchak, nisbat",
+     "o‘lchaydi, hisoblaydi, topadi",
+     "Burchakdan masofaga",
+     "Sinus"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh trigonometrik masalalarni yechadi.",
+     "qismlar": [
+      "1-guruh: sin 30°",
+      "2-guruh: tg 45°",
+      "3-guruh: 180 gradus radianda",
+      "4-guruh: sinus 0,6 bo‘lsa kosinus"
+     ],
+     "yakun": "Natijalar: 0,5; 1; π; 0,8."
+    }
+   }
+  },
+  {
+   "mavzu": "Tenglamalar sistemasi (ikkinchi daraja)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ikkinchi darajali sistema",
+      "matn": "Tenglamalardan kamida bittasi ikkinchi darajali bo‘lgan sistema ikkinchi darajali sistema deyiladi. Uni yechish — ikkala tenglamani bir vaqtda qanoatlantiradigan juftliklarni topish.",
+      "misol": "x + y ifoda 5 va x · y ifoda 6 sistemasida x va y ning yig‘indisi 5, ko‘paytmasi 6. Birinchisi chiziqli, ikkinchisi ikkinchi darajali.",
+      "savol": "x + y ifoda 5, x · y ifoda 6: x ning bir qiymati?",
+      "javob": "2 yoki 3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘rniga qo‘yish usuli",
+      "matn": "Chiziqli tenglamadan bitta noma’lumni ikkinchisi orqali ifodalab, ikkinchi tenglamaga qo‘yamiz. Natijada bitta noma’lumli kvadrat tenglama hosil bo‘ladi, uning ildizlari bo‘yicha ikkinchi noma’lum topiladi.",
+      "misol": "x + y ifoda 5 dan y ifoda 5 − x. x(5 − x) ifoda 6 dan x² − 5x + 6 ifoda 0, x ildizlari 2 va 3, y mos ravishda 3 va 2.",
+      "savol": "y ifoda 5 − x bo‘lsa, x 2 da y?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Viyet teoremasi bilan yechish",
+      "matn": "Yig‘indi va ko‘paytma ma’lum bo‘lsa, noma’lumlar x² − (yig‘indi) x + (ko‘paytma) kvadrat tenglamaning ildizlari bo‘ladi. Bu usul sistemani tezda yechadi.",
+      "misol": "Yig‘indi 7, ko‘paytma 12: ildizlar 3 va 4, chunki 3 + 4 ifoda 7, 3 · 4 ifoda 12.",
+      "savol": "Yig‘indi 10, ko‘paytma 21 bo‘lsa sonlar?",
+      "javob": "3 va 7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Grafik usul",
+      "matn": "Har bir tenglamaning grafigini chizib, kesishish nuqtalarini topamiz. Parabola va to‘g‘ri chiziq 0, 1 yoki 2 nuqtada kesishadi, shuning uchun sistema 0, 1 yoki 2 yechimga ega.",
+      "misol": "y ifoda x² parabola va y ifoda x + 2 to‘g‘ri chiziq (2, 4) va (−1, 1) nuqtalarda kesishadi.",
+      "savol": "Parabola va to‘g‘ri chiziq eng ko‘pi bilan nechta nuqtada kesishadi?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aylana va to‘g‘ri chiziq",
+      "matn": "x² + y² ifoda r² tenglama markazi koordinata boshida bo‘lgan aylanani beradi. Aylana va to‘g‘ri chiziq sistemasini o‘rniga qo‘yish usuli bilan yechamiz.",
+      "misol": "x² + y² ifoda 25 va y ifoda x + 1: x² + (x + 1)² ifoda 25, ya’ni x² + x − 12 ifoda 0, x ildizlari 3 va −4, nuqtalar (3, 4) va (−4, −3).",
+      "savol": "x² + y² ifoda 25 aylana radiusi?",
+      "javob": "5",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Chiziqli tenglamadan bir noma’lumni ifodalab ikkinchisiga qo‘yamiz va kvadrat tenglama hosil qilamiz. Yig‘indi va ko‘paytma ma’lum bo‘lsa Viyet teoremasi qulay. Parabola va to‘g‘ri chiziq ko‘pi bilan 2 nuqtada kesishadi.",
+    "misollar": [
+     {
+      "shart": "x + y ifoda 5 va x · y ifoda 6 sistemani yeching.",
+      "yechim": [
+       "Yig‘indi 5, ko‘paytma 6: ildizlar 2 va 3.",
+       "Juftliklar (2, 3) va (3, 2).",
+       "Tekshiramiz: 2 + 3 ifoda 5, 2 · 3 ifoda 6."
+      ],
+      "javob": "(2, 3) va (3, 2)"
+     },
+     {
+      "shart": "y ifoda x² va y ifoda x + 2 sistemani yeching.",
+      "yechim": [
+       "x² ifoda x + 2, ya’ni x² − x − 2 ifoda 0.",
+       "Ildizlar 2 va −1.",
+       "y ifoda 4 va 1: juftliklar (2, 4), (−1, 1)."
+      ],
+      "javob": "(2, 4) va (−1, 1)"
+     },
+     {
+      "shart": "x² + y² ifoda 25 va y ifoda x + 1 sistemani yeching.",
+      "yechim": [
+       "x² + (x + 1)² ifoda 25 dan 2x² + 2x − 24 ifoda 0, ya’ni x² + x − 12 ifoda 0.",
+       "Ildizlar 3 va −4.",
+       "y ifoda 4 va −3: juftliklar (3, 4), (−4, −3)."
+      ],
+      "javob": "(3, 4) va (−4, −3)"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Maydon",
+      "topshiriq": "To‘rtburchak perimetri 14, yuzi 12. Tomonlarini toping.",
+      "yechim": "Yarim perimetr 7, ko‘paytma 12: tomonlar 3 va 4.",
+      "mahsulot": "chizma va hisob"
+     },
+     {
+      "nom": "Bog‘ yer",
+      "topshiriq": "Yarim perimetri 13, yuzi 40 bo‘lgan to‘rtburchak tomonlarini toping.",
+      "yechim": "Ildizlar 5 va 8: tekshirish 5 + 8 ifoda 13, 5 · 8 ifoda 40.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Parabola va chiziq",
+      "topshiriq": "y ifoda x² va y ifoda 4 sistemani yeching.",
+      "yechim": "x ifoda 2 yoki −2: nuqtalar (2, 4), (−2, 4).",
+      "mahsulot": "grafik"
+     },
+     {
+      "nom": "O‘z sistemamiz",
+      "topshiriq": "Guruh yechimi (2, 5) va (5, 2) bo‘lgan sistema tuzadi.",
+      "yechim": "Yig‘indi 7, ko‘paytma 10 sistemasi.",
+      "mahsulot": "sistema kartochkasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Yig‘indi 6, ko‘paytma 8. Sonlar?",
+      "javob": "2 va 4"
+     },
+     {
+      "shart": "Yig‘indi 10, ko‘paytma 21. Sonlar?",
+      "javob": "3 va 7"
+     },
+     {
+      "shart": "y ifoda x² va y ifoda 4. x qiymatlari?",
+      "javob": "2 va −2"
+     },
+     {
+      "shart": "Yig‘indi 9, ko‘paytma 20. Sonlar?",
+      "javob": "4 va 5"
+     },
+     {
+      "shart": "x² + y² ifoda 25 aylana radiusi?",
+      "javob": "5"
+     },
+     {
+      "shart": "Ayirma 2, ko‘paytma 15, musbat sonlar?",
+      "javob": "5 va 3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Faqat bitta juftlikni yozadi",
+      "sabab": "ikkinchi ildiz bo‘yicha juftlikni topmaydi",
+      "oldini_olish": "har bir ildiz uchun alohida juftlik hisoblash"
+     },
+     {
+      "xato": "Qo‘yishda ishorani adashtiradi",
+      "sabab": "qavslarni ochishda xato qiladi",
+      "oldini_olish": "qavslarni ehtiyotkorlik bilan ochish va tekshirish"
+     },
+     {
+      "xato": "Tekshirishni unutadi",
+      "sabab": "javobni asosiy tenglamalarga qo‘ymaydi",
+      "oldini_olish": "har bir juftlikni ikkala tenglamaga qo‘yib ko‘rish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geometriya",
+      "boglanish": "to‘rtburchak perimetri va yuzidan tomonlarni topish"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "harakat tenglamalari"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "daromad va xarajat sistemasi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sirli ikki son»",
+     "muammo": "Yig‘indisi va ko‘paytmasi ma’lum sonlarni qanday topamiz va masalaga qanday qo‘llaymiz?",
+     "mahsulot": "masalalar to‘plami",
+     "bosqichlar": [
+      "masala tanlash",
+      "sistema tuzish",
+      "yechish",
+      "tekshirish",
+      "to‘plam yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Masala toping",
+      "Sistema tuzing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sistema to‘g‘ri tuzilgan",
+      "yechim to‘g‘ri",
+      "tekshirish bor",
+      "to‘plam ravshan",
+      "taqdimot izchil"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sistemalar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Darvoza",
+       "matn": "Yig‘indi 8, ko‘paytma 15.",
+       "topshiriq": "Sonlar?",
+       "javob": "3 va 5",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘l",
+       "matn": "Yig‘indi 9, ko‘paytma 14.",
+       "topshiriq": "Sonlar?",
+       "javob": "2 va 7",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘prik",
+       "matn": "y ifoda x² va y ifoda 9.",
+       "topshiriq": "x ning musbat qiymati?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "Yarim perimetr 10, yuz 21.",
+       "topshiriq": "Tomonlar?",
+       "javob": "3 va 7",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi usul qulay bo‘ldi?",
+      "Nechta yechim chiqdi?",
+      "Tekshirish nima uchun kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tenglamalar sistemasi",
+      "tarif": "bir vaqtda bajariladigan tenglamalar to‘plami"
+     },
+     {
+      "atama": "O‘rniga qo‘yish",
+      "tarif": "bir noma’lumni ifodalab ikkinchisiga qo‘yish usuli"
+     },
+     {
+      "atama": "Yechim",
+      "tarif": "sistemani qanoatlantiradigan juftlik"
+     },
+     {
+      "atama": "Parabola",
+      "tarif": "kvadrat funksiya grafigi"
+     },
+     {
+      "atama": "Aylana",
+      "tarif": "markazdan bir xil uzoqlikdagi nuqtalar"
+     },
+     {
+      "atama": "Viyet teoremasi",
+      "tarif": "ildizlar yig‘indisi va ko‘paytmasi bog‘lanishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ikkinchi darajali sistemada bitta yechim bo‘lishi shart",
+      "togri": false,
+      "izoh": "ikkita yoki hech bo‘lmasligi mumkin"
+     },
+     {
+      "matn": "Yig‘indi 7, ko‘paytma 12 bo‘lsa sonlar 3 va 4",
+      "togri": true,
+      "izoh": "Viyet"
+     },
+     {
+      "matn": "Parabola va to‘g‘ri chiziq eng ko‘pi bilan 2 nuqtada kesishadi",
+      "togri": true,
+      "izoh": "kvadrat tenglama ildizlari"
+     },
+     {
+      "matn": "Tekshirish shart emas",
+      "togri": false,
+      "izoh": "xato olmaslik uchun kerak"
+     },
+     {
+      "matn": "x² + y² ifoda 25 aylanadir",
+      "togri": true,
+      "izoh": "radius 5"
+     },
+     {
+      "matn": "Yig‘indi 5, ko‘paytma 6 bo‘lsa sonlar 1 va 4",
+      "togri": false,
+      "izoh": "2 va 3"
+     },
+     {
+      "matn": "Chiziqli tenglamadan noma’lumni ifodalab qo‘yish mumkin",
+      "togri": true,
+      "izoh": "o‘rniga qo‘yish usuli"
+     },
+     {
+      "matn": "Aylana va to‘g‘ri chiziq 3 nuqtada kesishadi",
+      "togri": false,
+      "izoh": "ko‘pi bilan 2"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ikkinchi darajali sistema nima?",
+      "javob": "tenglamalardan biri ikkinchi darajali"
+     },
+     {
+      "savol": "Asosiy usul?",
+      "javob": "o‘rniga qo‘yish"
+     },
+     {
+      "savol": "Yig‘indi 5, ko‘paytma 6 sonlar?",
+      "javob": "2 va 3"
+     },
+     {
+      "savol": "Parabola va chiziq nechta nuqtada kesishadi?",
+      "javob": "ko‘pi bilan 2"
+     },
+     {
+      "savol": "x² + y² ifoda 9 radiusi?",
+      "javob": "3"
+     },
+     {
+      "savol": "Tekshirish nima uchun kerak?",
+      "javob": "xatoni aniqlash uchun"
+     },
+     {
+      "savol": "Viyet teoremasi nima?",
+      "javob": "yig‘indi va ko‘paytma bog‘lanishi"
+     },
+     {
+      "savol": "Yig‘indi 7, ko‘paytma 10?",
+      "javob": "2 va 5"
+     },
+     {
+      "savol": "Yechim nima?",
+      "javob": "sistemani qanoatlantiradigan juftlik"
+     },
+     {
+      "savol": "Grafik usulda nima topiladi?",
+      "javob": "kesishish nuqtalari"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ifodalash",
+      "matn": "Chiziqli tenglamadan y ni top.",
+      "savol": "x + y ifoda 5 dan y?"
+     },
+     {
+      "nom": "Qo‘yish",
+      "matn": "Ikkinchi tenglamaga qo‘y.",
+      "savol": "Qanday tenglama chiqadi?"
+     },
+     {
+      "nom": "Ildizlar",
+      "matn": "Kvadrat tenglamani yech.",
+      "savol": "Ildizlar nechta?"
+     },
+     {
+      "nom": "Tekshirish",
+      "matn": "Ikkala tenglamaga qo‘y.",
+      "savol": "Juftlik mos keladimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ikkinchi darajali sistemaning yechimlari soni har doim ham ikkita bo‘lavermaydi? Parabola va to‘g‘ri chiziqning joylashuvini chizib tushuntiring.",
+    "keys": {
+     "vaziyat": "Maydonchaning perimetri 26 metr, yuzi 40 kv. metr. Uni o‘rab olish va qoplash kerak.",
+     "savollar": [
+      "Tomonlari necha metr?",
+      "Qaysi usul qulay: Viyet yoki o‘rniga qo‘yish?"
+     ]
+    },
+    "tezis": "Ikki noma’lum — ikki yo‘l",
+    "taqqoslash": {
+     "a": "O‘rniga qo‘yish usuli",
+     "b": "Viyet usuli",
+     "umumiy": [
+      "kvadrat tenglamaga olib keladi",
+      "ikkita juftlik beradi"
+     ],
+     "a_farq": [
+      "istalgan chiziqli bog‘lanishda ishlaydi",
+      "ko‘proq hisob talab qiladi"
+     ],
+     "b_farq": [
+      "yig‘indi va ko‘paytmada ishlaydi",
+      "tez va qulay"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ikkinchi darajali sistema",
+     "shoxlar": [
+      {
+       "nom": "Usullar",
+       "bandlar": [
+        "o‘rniga qo‘yish",
+        "Viyet",
+        "grafik"
+       ]
+      },
+      {
+       "nom": "Shakllar",
+       "bandlar": [
+        "parabola",
+        "aylana",
+        "to‘g‘ri chiziq"
+       ]
+      },
+      {
+       "nom": "Yechim",
+       "bandlar": [
+        "juftliklar",
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "Masalalar",
+       "bandlar": [
+        "perimetr va yuz",
+        "sonlar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ikki noma’lumni yig‘indi va ko‘paytma orqali topaman. Men kimman?",
+     "javob": "Viyet usuli"
+    },
+    "hikmat": "Ikki tenglama — bitta haqiqat.",
+    "kalit_soz": "JUFTLIK",
+    "xato_yechim": {
+     "shart": "x + y ifoda 7 va x · y ifoda 12 sistemani yeching.",
+     "xato": "faqat (3, 4)",
+     "togri": "(3, 4) va (4, 3)",
+     "sabab": "ikkala ildiz bo‘yicha ikkita juftlik hosil bo‘ladi"
+    },
+    "guruh_nomlari": [
+     "Qo‘yuvchilar",
+     "Viyetchilar",
+     "Parabolachilar",
+     "Aylanachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Maydon tomonlari»",
+     "topshiriq": "Guruh perimetri va yuzi berilgan maydonchaning tomonlarini topadi va o‘lchab ko‘radi."
+    },
+    "vazifalar": {
+     "A": "Yig‘indi 8, ko‘paytma 15 bo‘lgan sonlarni toping.",
+     "B": "y ifoda x² va y ifoda 9 sistemani yeching.",
+     "C": "x + y ifoda 7 va x² + y² ifoda 25 sistemani yeching."
+    },
+    "sinkveyn": [
+     "Sistema",
+     "ikkinchi daraja, juft",
+     "yechadi, topadi, tekshiradi",
+     "Ikki tenglama birga",
+     "Juftlik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sistemalarni yechadi.",
+     "qismlar": [
+      "1-guruh: yig‘indi 5, ko‘paytma 6",
+      "2-guruh: yig‘indi 10, ko‘paytma 21",
+      "3-guruh: y ifoda x² va y ifoda 4",
+      "4-guruh: x² + y² ifoda 25 aylana radiusi"
+     ],
+     "yakun": "Natijalar: 2 va 3; 3 va 7; x ifoda 2 yoki −2; 5."
+    }
+   }
+  },
+  {
+   "mavzu": "Ehtimollar nazariyasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tasodifiy hodisa va ehtimollik",
+      "matn": "Tajriba natijasi oldindan ma’lum bo‘lmasa, u tasodifiy hodisa deyiladi. Hodisa ehtimolligi — qulay natijalar sonining barcha teng imkoniyatli natijalar soniga nisbati. Ehtimollik 0 bilan 1 orasida bo‘ladi.",
+      "misol": "Tanga tashlaganda gerb tushishi: 1 ta qulay natija, 2 ta imkoniyat, ehtimollik 1/2.",
+      "savol": "Kub tashlaganda 4 tushishi ehtimolligi?",
+      "javob": "1/6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Klassik ta’rif",
+      "matn": "Ehtimollik formulasi: qulay natijalar soni m ni barcha natijalar soni n ga bo‘lamiz. Barcha natijalar teng imkoniyatli bo‘lishi shart. Muqarrar hodisa ehtimolligi 1, mumkin bo‘lmagan hodisaniki 0.",
+      "misol": "Kub tashlaganda juft son tushishi: 2, 4, 6 — 3 ta qulay, 6 ta jami: 3/6, ya’ni 1/2.",
+      "savol": "Qutida 3 qizil va 7 ko‘k shar. Qizil shar chiqishi ehtimolligi?",
+      "javob": "3/10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qarama-qarshi hodisa",
+      "matn": "Hodisa ro‘y bermasligi ehtimolligi birdan uning ehtimolligini ayirish bilan topiladi. Bu usul «hech bo‘lmasa» ko‘rinishidagi masalalarda qulay.",
+      "misol": "Yomg‘ir ehtimolligi 0,3 bo‘lsa, yomg‘ir yog‘masligi ehtimolligi 1 − 0,3, ya’ni 0,7.",
+      "savol": "Hodisa ehtimolligi 0,4 bo‘lsa, qarama-qarshi hodisa ehtimolligi?",
+      "javob": "0,6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shish qoidasi",
+      "matn": "Birgalikda bo‘lmagan hodisalardan birining ro‘y berish ehtimolligi ularning ehtimolliklari yig‘indisiga teng. Qutida bir nechta rangdagi sharlar bo‘lsa, «yoki» so‘zi qo‘shishni bildiradi.",
+      "misol": "3 qizil, 5 ko‘k, 2 sariq shar. Qizil yoki ko‘k: 3/10 + 5/10, ya’ni 8/10, ya’ni 0,8.",
+      "savol": "Yuqoridagi qutida sariq shar ehtimolligi?",
+      "javob": "0,2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirish qoidasi",
+      "matn": "Bog‘liq bo‘lmagan hodisalar birgalikda ro‘y berishi ehtimolligi ularning ehtimolliklari ko‘paytmasiga teng. «Va» so‘zi ko‘paytirishni bildiradi.",
+      "misol": "Ikki tanga tashlaganda ikkalasida ham gerb: 1/2 · 1/2, ya’ni 1/4. Ikki kub yig‘indisi 7 bo‘lishi: 36 natijadan 6 tasi, ya’ni 1/6.",
+      "savol": "Ikki tangada ikkalasida gerb ehtimolligi?",
+      "javob": "1/4",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ehtimollik: qulay natijalar / barcha natijalar. Qarama-qarshi hodisa: 1 minus ehtimollik. Birgalikda bo‘lmagan hodisalar «yoki» — qo‘shiladi. Bog‘liq bo‘lmagan «va» — ko‘paytiriladi.",
+    "misollar": [
+     {
+      "shart": "Qutida 3 qizil va 7 ko‘k shar bor. Tasodifiy shar qizil bo‘lish ehtimolligini toping.",
+      "yechim": [
+       "Qulay natijalar 3 ta.",
+       "Barcha natijalar 3 + 7, ya’ni 10.",
+       "Ehtimollik 3/10, ya’ni 0,3."
+      ],
+      "javob": "0,3"
+     },
+     {
+      "shart": "Ikkita kub tashlandi. Tushgan sonlar yig‘indisi 7 bo‘lish ehtimolligini toping.",
+      "yechim": [
+       "Barcha natijalar 6 · 6, ya’ni 36.",
+       "Qulay: 1 va 6, 2 va 5, 3 va 4 va teskarilari — 6 ta.",
+       "6 / 36, ya’ni 1/6."
+      ],
+      "javob": "1/6"
+     },
+     {
+      "shart": "Ikki tanga tashlandi. Ikkalasida ham gerb tushish ehtimolligini toping.",
+      "yechim": [
+       "Har tangada gerb ehtimolligi 1/2.",
+       "Hodisalar bog‘liq emas, ko‘paytiramiz.",
+       "1/2 · 1/2, ya’ni 1/4."
+      ],
+      "javob": "1/4"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sinfdagi qizlar",
+      "topshiriq": "30 o‘quvchidan 12 tasi qiz. Tasodifiy o‘quvchi qiz bo‘lish ehtimolligi?",
+      "yechim": "12 / 30, ya’ni 2/5, ya’ni 0,4.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Lotereya",
+      "topshiriq": "100 ta biletdan 5 tasi yutuqli. Yutuq chiqish ehtimolligi?",
+      "yechim": "5 / 100, ya’ni 0,05.",
+      "mahsulot": "bilet modeli"
+     },
+     {
+      "nom": "Kub tajribasi",
+      "topshiriq": "Kubni 60 marta tashlab, 3 tushishini sanang. Nazariy kutilma nechta?",
+      "yechim": "60 · 1/6, ya’ni taxminan 10 marta.",
+      "mahsulot": "tajriba jadvali"
+     },
+     {
+      "nom": "Tanga tajribasi",
+      "topshiriq": "Tangani 20 marta tashlab, gerbni sanang va nazariy kutilma bilan solishtiring.",
+      "yechim": "Kutilma 10 marta, natija 10 atrofida.",
+      "mahsulot": "tajriba natijalari"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Tanga tashlaganda gerb ehtimolligi?",
+      "javob": "1/2"
+     },
+     {
+      "shart": "Kub tashlaganda 4 tushishi ehtimolligi?",
+      "javob": "1/6"
+     },
+     {
+      "shart": "Kub tashlaganda toq son tushishi ehtimolligi?",
+      "javob": "1/2"
+     },
+     {
+      "shart": "20 shardan 5 tasi qizil. Qizil shar ehtimolligi?",
+      "javob": "1/4"
+     },
+     {
+      "shart": "Yomg‘ir ehtimolligi 0,3 bo‘lsa yog‘masligi?",
+      "javob": "0,7"
+     },
+     {
+      "shart": "36 kartadan tuz chiqish ehtimolligi (4 ta tuz)?",
+      "javob": "1/9"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ehtimollikni 1 dan katta yozadi",
+      "sabab": "qulay va barcha natijalarni almashtiradi",
+      "oldini_olish": "ehtimollik 0 bilan 1 orasida ekanini tekshirish"
+     },
+     {
+      "xato": "Qo‘shish o‘rniga ko‘paytiradi",
+      "sabab": "«yoki» va «va» ni adashtiradi",
+      "oldini_olish": "«yoki» — qo‘shish, «va» — ko‘paytirish deb eslash"
+     },
+     {
+      "xato": "Natijalarni teng imkoniyatli deb olmaydi",
+      "sabab": "imkoniyatlar teng ekanini tekshirmaydi",
+      "oldini_olish": "avval barcha natijalar teng imkoniyatli ekanini aniqlash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "irsiyat va genlar tasodifiyligi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "tasodifiy sonlar generatsiyasi"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "xavf va sug‘urta"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tasodifiy tajriba»",
+     "muammo": "Tajribalar yordamida ehtimollikni qanday baholab, nazariya bilan solishtiramiz?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "tajriba tanlash",
+      "nazariy ehtimollik",
+      "tajriba o‘tkazish",
+      "chastotani hisoblash",
+      "solishtirish"
+     ],
+     "guruh_vazifalari": [
+      "Tajriba tanlang",
+      "O‘tkazing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "nazariy hisob to‘g‘ri",
+      "tajriba yetarli",
+      "jadval aniq",
+      "solishtirish asosli",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ehtimollar o‘yinxonasi»",
+     "bekatlar": [
+      {
+       "nom": "Tanga",
+       "matn": "Bitta tanga tashlandi.",
+       "topshiriq": "Raqam tushish ehtimolligi?",
+       "javob": "1/2",
+       "rasm": ""
+      },
+      {
+       "nom": "Kub",
+       "matn": "Bitta kub tashlandi.",
+       "topshiriq": "6 tushishi ehtimolligi?",
+       "javob": "1/6",
+       "rasm": ""
+      },
+      {
+       "nom": "Quti",
+       "matn": "2 qizil, 8 ko‘k shar.",
+       "topshiriq": "Qizil ehtimolligi?",
+       "javob": "1/5",
+       "rasm": ""
+      },
+      {
+       "nom": "Karta",
+       "matn": "36 kartadan bitta tanlandi.",
+       "topshiriq": "Tuz ehtimolligi?",
+       "javob": "1/9",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi hodisa ehtimolroq edi?",
+      "Tajriba nazariyaga mos keldimi?",
+      "Ehtimollik qayerda kerak bo‘ladi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tasodifiy hodisa",
+      "tarif": "ro‘y berishi oldindan noma’lum hodisa"
+     },
+     {
+      "atama": "Ehtimollik",
+      "tarif": "hodisa ro‘y berish imkoniyatining sonli o‘lchovi"
+     },
+     {
+      "atama": "Qulay natija",
+      "tarif": "hodisa ro‘y berishiga olib keladigan natija"
+     },
+     {
+      "atama": "Muqarrar hodisa",
+      "tarif": "ehtimolligi 1 bo‘lgan hodisa"
+     },
+     {
+      "atama": "Mumkin bo‘lmagan hodisa",
+      "tarif": "ehtimolligi 0 bo‘lgan hodisa"
+     },
+     {
+      "atama": "Qarama-qarshi hodisa",
+      "tarif": "hodisa ro‘y bermasligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ehtimollik 1 dan katta bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "0 bilan 1 orasida"
+     },
+     {
+      "matn": "Tanga tashlaganda gerb ehtimolligi 1/2",
+      "togri": true,
+      "izoh": "bitta qulay, ikkita natija"
+     },
+     {
+      "matn": "Kubda toq son ehtimolligi 1/2",
+      "togri": true,
+      "izoh": "3 ta qulay, 6 ta natija"
+     },
+     {
+      "matn": "«Yoki» bo‘lsa ko‘paytiriladi",
+      "togri": false,
+      "izoh": "birgalikda bo‘lmaganda qo‘shiladi"
+     },
+     {
+      "matn": "Qarama-qarshi hodisa: 1 minus ehtimollik",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Muqarrar hodisa ehtimolligi 0",
+      "togri": false,
+      "izoh": "1"
+     },
+     {
+      "matn": "Ikki tangada ikkalasi gerb: 1/4",
+      "togri": true,
+      "izoh": "1/2 · 1/2"
+     },
+     {
+      "matn": "Ikki kub yig‘indisi 7 bo‘lishi ehtimolligi 1/2",
+      "togri": false,
+      "izoh": "1/6"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ehtimollik nima?",
+      "javob": "qulay natijalar nisbati barcha natijalarga"
+     },
+     {
+      "savol": "Tanga: gerb ehtimolligi?",
+      "javob": "1/2"
+     },
+     {
+      "savol": "Kub: 6 ehtimolligi?",
+      "javob": "1/6"
+     },
+     {
+      "savol": "Muqarrar hodisa ehtimolligi?",
+      "javob": "1"
+     },
+     {
+      "savol": "Mumkin bo‘lmagan hodisa?",
+      "javob": "0"
+     },
+     {
+      "savol": "Qarama-qarshi hodisa formulasi?",
+      "javob": "1 minus ehtimollik"
+     },
+     {
+      "savol": "«Yoki» nima qiladi?",
+      "javob": "ehtimolliklar qo‘shiladi"
+     },
+     {
+      "savol": "«Va» nima qiladi?",
+      "javob": "ehtimolliklar ko‘paytiriladi"
+     },
+     {
+      "savol": "Ikki tangada ikkalasi gerb?",
+      "javob": "1/4"
+     },
+     {
+      "savol": "Ehtimollik qanday oraliqda?",
+      "javob": "0 dan 1 gacha"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qulay",
+      "matn": "Qulay natijalarni sana.",
+      "savol": "Kubda juft — nechta?"
+     },
+     {
+      "nom": "Jami",
+      "matn": "Barcha natijalarni sana.",
+      "savol": "Kubda jami nechta?"
+     },
+     {
+      "nom": "Nisbat",
+      "matn": "Qulayni jamiga bo‘l.",
+      "savol": "3 / 6 nechaga teng?"
+     },
+     {
+      "nom": "Qoida",
+      "matn": "Yoki — qo‘sh, va — ko‘paytir.",
+      "savol": "Ikki tanga uchun?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tangani 10 marta tashlaganda gerb aniq 5 marta tushmasligi mumkin, lekin 1000 marta tashlaganda 500 ga yaqin bo‘ladi?",
+    "keys": {
+     "vaziyat": "Sinfda 30 o‘quvchi bor, ulardan 12 tasi qiz. O‘qituvchi tasodifiy bitta o‘quvchini javobga chaqiradi.",
+     "savollar": [
+      "Qiz chaqirilishi ehtimolligi qancha?",
+      "O‘g‘il bola chaqirilishi ehtimolligi qancha?"
+     ]
+    },
+    "tezis": "Tasodif ham qonunga bo‘ysunadi",
+    "taqqoslash": {
+     "a": "Nazariy ehtimollik",
+     "b": "Tajriba chastotasi",
+     "umumiy": [
+      "0 bilan 1 orasida",
+      "hodisa imkoniyatini baholaydi"
+     ],
+     "a_farq": [
+      "hisoblab topiladi",
+      "teng imkoniyatli natijalar kerak"
+     ],
+     "b_farq": [
+      "tajribada aniqlanadi",
+      "tajribalar ko‘paysa nazariyaga yaqinlashadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ehtimollar nazariyasi",
+     "shoxlar": [
+      {
+       "nom": "Hodisa",
+       "bandlar": [
+        "tasodifiy",
+        "muqarrar",
+        "mumkin emas"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "qulay / jami"
+       ]
+      },
+      {
+       "nom": "Qoidalar",
+       "bandlar": [
+        "qo‘shish",
+        "ko‘paytirish",
+        "qarama-qarshi"
+       ]
+      },
+      {
+       "nom": "Tajriba",
+       "bandlar": [
+        "tanga",
+        "kub",
+        "karta"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 0 va 1 orasida yashayman, imkoniyatni o‘lchayman. Men kimman?",
+     "javob": "ehtimollik"
+    },
+    "hikmat": "Tasodif ichida qonuniyat bor.",
+    "kalit_soz": "EHTIMOL",
+    "xato_yechim": {
+     "shart": "Kub tashlaganda juft son tushish ehtimolligini toping.",
+     "xato": "1/6",
+     "togri": "1/2",
+     "sabab": "qulay natijalar 2, 4, 6 — uchta, jami 6: 3/6"
+    },
+    "guruh_nomlari": [
+     "Tangachilar",
+     "Kubchilar",
+     "Ehtimolchilar",
+     "Kartachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tajriba o‘tkazamiz»",
+     "topshiriq": "Guruh tanga yoki kubni ko‘p marta tashlab, chastotani nazariy ehtimollik bilan solishtiradi."
+    },
+    "vazifalar": {
+     "A": "Qutida 4 qizil va 6 ko‘k shar. Qizil shar ehtimolligini toping.",
+     "B": "Kub tashlaganda 5 dan katta son tushish ehtimolligini toping.",
+     "C": "Ikki tanga tashlaganda ikkalasida ham raqam tushish ehtimolligini toping."
+    },
+    "sinkveyn": [
+     "Ehtimollik",
+     "tasodifiy, o‘lchanadigan",
+     "baholaydi, hisoblaydi, taqqoslaydi",
+     "Tasodifning qonuni",
+     "Hodisa"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ehtimolliklarni hisoblaydi.",
+     "qismlar": [
+      "1-guruh: tanga, gerb",
+      "2-guruh: kub, 6",
+      "3-guruh: kub, juft",
+      "4-guruh: ikki tanga, ikkalasi gerb"
+     ],
+     "yakun": "Natijalar: 1/2; 1/6; 1/2; 1/4."
+    }
+   }
   }
  ]
 }
