@@ -1390,6 +1390,1387 @@
      "yakun": "Natijalar: 30; 20; 6; 24."
     }
    }
+  },
+  {
+   "mavzu": "Misol va masalalar yechish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Masalani o‘qiymiz",
+      "matn": "Masalani yechishdan oldin uni ikki marta o‘qiymiz. Nima ma’lum? Nima so‘ralyapti? Shu ikki savolga javob bersak, masala yarim yechilgan bo‘ladi.",
+      "misol": "Maktabda 3 ta sinf bor, har birida 28 o‘quvchi. Ma’lum: sinflar 3 ta, har sinfda 28 nafar. So‘ralyapti: jami o‘quvchi.",
+      "savol": "Masalada nimani aniqlaymiz?",
+      "javob": "nima ma’lum va nima so‘ralyapti",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Amalni tanlaymiz",
+      "matn": "Bir xil sonlar takrorlansa — ko‘paytirish. Teng bo‘laklarga bo‘lsak — bo‘lish. Jami topilsa — qo‘shish. Qolgani so‘ralsa — ayirish.",
+      "misol": "3 sinf, har birida 28 nafar: 28 · 3 — 84 nafar.",
+      "savol": "Teng bo‘laklarga bo‘lish uchun qaysi amal kerak?",
+      "javob": "bo‘lish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ifoda tuzamiz",
+      "matn": "Masalani bitta ifoda bilan yozish mumkin. Ifodani amallar tartibi bo‘yicha hisoblaymiz.",
+      "misol": "3 kg olma 12 so‘mdan, 2 kg nok 15 so‘mdan: 3 · 12 + 2 · 15 — 36 + 30 — 66 so‘m.",
+      "savol": "6 · 7 + 18 nechaga teng?",
+      "javob": "60",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikki amalli masala",
+      "matn": "Ba’zi masalalar ikki yoki undan ko‘p amal bilan yechiladi. Avval oraliq natijani topamiz, so‘ng javobni.",
+      "misol": "Kitob 120 sahifa. Kuniga 15 sahifadan o‘qisak, 120 / 15 — 8 kunda tugaydi.",
+      "savol": "120 sahifani kuniga 15 tadan o‘qisak, necha kun?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshiramiz",
+      "matn": "Javobni tekshirish — odat bo‘lsin. Teskari amal bilan yoki taxminan hisoblab tekshiramiz. Javob mantiqqa mos bo‘lishi kerak.",
+      "misol": "8 · 15 — 120, javob to‘g‘ri. Qaytim: 100 − 66 — 34 so‘m.",
+      "savol": "Bo‘lishni qanday tekshiramiz?",
+      "javob": "ko‘paytirish bilan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Masalani o‘qi, ma’lumni va so‘ralganni top, amalni tanla, hisobla, javobni tekshir va javobni yoz.",
+    "misollar": [
+     {
+      "shart": "3 kg olma 12 so‘mdan, 2 kg nok 15 so‘mdan. Jami necha so‘m?",
+      "yechim": [
+       "Olma: 3 · 12 — 36 so‘m.",
+       "Nok: 2 · 15 — 30 so‘m.",
+       "Jami: 36 + 30 — 66 so‘m."
+      ],
+      "javob": "66"
+     },
+     {
+      "shart": "Xaridor 100 so‘m berdi. Qaytim qancha?",
+      "yechim": [
+       "Xarid 66 so‘m.",
+       "100 − 66 — 34.",
+       "Javob: 34 so‘m."
+      ],
+      "javob": "34"
+     },
+     {
+      "shart": "Kitob 120 sahifa. Kuniga 15 sahifa o‘qiymiz. Necha kunda tugaydi?",
+      "yechim": [
+       "120 / 15 — 8.",
+       "Tekshiramiz: 8 · 15 — 120.",
+       "Javob: 8 kun."
+      ],
+      "javob": "8"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Bozor haqida ikki amalli masala tuzing.",
+      "yechim": "Har guruh masalasini yechib ko‘rsatadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Ifoda yozamiz",
+      "topshiriq": "Masalani bitta ifoda qilib yozing va hisoblang.",
+      "yechim": "3 · 12 + 2 · 15 — 66.",
+      "mahsulot": "ifoda kartochkasi"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 28 · 3 ni 74 deb hisobladi. Xatoni toping.",
+      "yechim": "To‘g‘ri javob 84.",
+      "mahsulot": "tushuntirish"
+     },
+     {
+      "nom": "Tezkor poyga",
+      "topshiriq": "Beshta masalani eng tez va to‘g‘ri yeching.",
+      "yechim": "Natijalar solishtiriladi.",
+      "mahsulot": "poyga varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "28 · 3 nechaga teng?",
+      "javob": "84"
+     },
+     {
+      "shart": "120 / 15 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "6 · 7 + 18 nechaga teng?",
+      "javob": "60"
+     },
+     {
+      "shart": "(45 + 15) / 6 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "100 − 66 nechaga teng?",
+      "javob": "34"
+     },
+     {
+      "shart": "3 · 12 + 2 · 15 nechaga teng?",
+      "javob": "66"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Shartni o‘qimay yecha boshlaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "avval ikki marta o‘qish"
+     },
+     {
+      "xato": "Noto‘g‘ri amal tanlaydi",
+      "sabab": "masalaning ma’nosini tushunmaydi",
+      "oldini_olish": "rasm yoki chizma chizish"
+     },
+     {
+      "xato": "Javobni tekshirmaydi",
+      "sabab": "tekshirishni unutadi",
+      "oldini_olish": "teskari amal bilan tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "bozor va xarid hisobi"
+     },
+     {
+      "fan": "Ona tili",
+      "boglanish": "masala matnini o‘qish va tushunish"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "kuzatuv natijalarini hisoblash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Masalalar kitobchasi»",
+     "muammo": "O‘zimiz tuzgan masalalardan qanday qilib kitobcha yasaymiz?",
+     "mahsulot": "masalalar kitobchasi",
+     "bosqichlar": [
+      "masala tuzish",
+      "yechish",
+      "rasm chizish",
+      "tekshirish",
+      "kitobcha yasash"
+     ],
+     "guruh_vazifalari": [
+      "Masala tuzing",
+      "Yeching",
+      "Rasm chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "masala mantiqli",
+      "yechim to‘g‘ri",
+      "rasm mos",
+      "kitobcha chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Masalalar bozori»",
+     "bekatlar": [
+      {
+       "nom": "Meva rastasi",
+       "matn": "3 kg olma 12 so‘mdan.",
+       "topshiriq": "Narxi?",
+       "javob": "36",
+       "rasm": ""
+      },
+      {
+       "nom": "Kitob do‘koni",
+       "matn": "120 sahifani kuniga 15 tadan.",
+       "topshiriq": "Necha kun?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "Non rastasi",
+       "matn": "6 ta non 7 so‘mdan va 18 so‘mlik sut.",
+       "topshiriq": "Jami?",
+       "javob": "60",
+       "rasm": ""
+      },
+      {
+       "nom": "Kassa",
+       "matn": "100 so‘m berdik, xarid 66 so‘m.",
+       "topshiriq": "Qaytim?",
+       "javob": "34",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi amalni tanladingiz?",
+      "Javobni tekshirdingizmi?",
+      "Qayerda hisob kerak bo‘ldi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Masala",
+      "tarif": "savolli matematik topshiriq"
+     },
+     {
+      "atama": "Shart",
+      "tarif": "masalada berilgan ma’lumot"
+     },
+     {
+      "atama": "Savol",
+      "tarif": "masalada nima so‘ralgani"
+     },
+     {
+      "atama": "Yechim",
+      "tarif": "masalaning hisob-kitobi"
+     },
+     {
+      "atama": "Javob",
+      "tarif": "so‘ralgan natija"
+     },
+     {
+      "atama": "Qaytim",
+      "tarif": "berilgan puldan qolgan qism"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Masalani avval o‘qish kerak",
+      "togri": true,
+      "izoh": "shartni tushunish"
+     },
+     {
+      "matn": "Javobni tekshirish shart emas",
+      "togri": false,
+      "izoh": "tekshirish kerak"
+     },
+     {
+      "matn": "Teng bo‘laklarga bo‘lishda bo‘lish ishlatiladi",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "28 · 3 — 74",
+      "togri": false,
+      "izoh": "84"
+     },
+     {
+      "matn": "120 / 15 — 8",
+      "togri": true,
+      "izoh": "8 · 15 — 120"
+     },
+     {
+      "matn": "Ikki amalli masala ham bo‘ladi",
+      "togri": true,
+      "izoh": "oraliq natija bilan"
+     },
+     {
+      "matn": "3 · 12 + 2 · 15 — 56",
+      "togri": false,
+      "izoh": "66"
+     },
+     {
+      "matn": "Qaytim — berilgan pul minus xarid",
+      "togri": true,
+      "izoh": "ayirish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Masalada nima ma’lum bo‘ladi?",
+      "javob": "shart"
+     },
+     {
+      "savol": "Masalada nima so‘raladi?",
+      "javob": "savol"
+     },
+     {
+      "savol": "Jami topish uchun qaysi amal?",
+      "javob": "qo‘shish"
+     },
+     {
+      "savol": "Teng bo‘lish uchun?",
+      "javob": "bo‘lish"
+     },
+     {
+      "savol": "28 · 3?",
+      "javob": "84"
+     },
+     {
+      "savol": "120 / 15?",
+      "javob": "8"
+     },
+     {
+      "savol": "6 · 7 + 18?",
+      "javob": "60"
+     },
+     {
+      "savol": "100 − 66?",
+      "javob": "34"
+     },
+     {
+      "savol": "Javobni nima bilan tekshiramiz?",
+      "javob": "teskari amal bilan"
+     },
+     {
+      "savol": "Qaytim nima?",
+      "javob": "berilgan puldan qolgani"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘qi",
+      "matn": "Masalani ikki marta o‘qi.",
+      "savol": "Nima so‘ralyapti?"
+     },
+     {
+      "nom": "Tanla",
+      "matn": "Amalni tanla.",
+      "savol": "Teng bo‘lish uchun?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Amalni bajar.",
+      "savol": "28 · 3?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Javobni solishtir.",
+      "savol": "84 / 3?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun masalani yechishdan oldin ikki marta o‘qish kerak?",
+    "keys": {
+     "vaziyat": "Bozorda 3 kg olma 12 so‘mdan va 2 kg nok 15 so‘mdan sotilmoqda. Sizda 100 so‘m bor.",
+     "savollar": [
+      "Jami necha so‘m to‘laymiz?",
+      "Qaytim qancha bo‘ladi?"
+     ]
+    },
+    "tezis": "Masala — aql mashqi",
+    "taqqoslash": {
+     "a": "Bir amalli masala",
+     "b": "Ikki amalli masala",
+     "umumiy": [
+      "shart va savol bor",
+      "javob tekshiriladi"
+     ],
+     "a_farq": [
+      "bitta amal",
+      "tez yechiladi"
+     ],
+     "b_farq": [
+      "ikki amal",
+      "oraliq natija kerak"
+     ]
+    },
+    "klaster": {
+     "markaz": "Masala yechish",
+     "shoxlar": [
+      {
+       "nom": "O‘qish",
+       "bandlar": [
+        "shart",
+        "savol"
+       ]
+      },
+      {
+       "nom": "Amal",
+       "bandlar": [
+        "qo‘shish",
+        "ayirish"
+       ]
+      },
+      {
+       "nom": "Amal 2",
+       "bandlar": [
+        "ko‘paytirish",
+        "bo‘lish"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "teskari amal",
+        "mantiq"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men savolli, shartli va javobli bo‘laman. Men kimman?",
+     "javob": "masala"
+    },
+    "hikmat": "Masala yechgan — hayotni yechadi.",
+    "kalit_soz": "MASALA",
+    "xato_yechim": {
+     "shart": "28 · 3 ni hisoblang.",
+     "xato": "74",
+     "togri": "84",
+     "sabab": "20 · 3 — 60 va 8 · 3 — 24, 60 + 24 — 84"
+    },
+    "guruh_nomlari": [
+     "Masalachilar",
+     "Hisobchilar",
+     "Tekshiruvchilar",
+     "Izlanuvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bozor masalasi»",
+     "topshiriq": "Guruh bozor haqida masala tuzib, yechadi va tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Maktabda 3 sinf, har birida 28 nafar. Jami necha o‘quvchi?",
+     "B": "3 kg olma 12 so‘mdan, 2 kg nok 15 so‘mdan. Jami necha so‘m?",
+     "C": "Kitob 120 sahifa. Kuniga 15 sahifa o‘qisak, necha kunda tugaydi va tekshirish?"
+    },
+    "sinkveyn": [
+     "Masala",
+     "qiziqarli, o‘ylatadi",
+     "o‘qiymiz, hisoblaymiz, tekshiramiz",
+     "Yechim topamiz",
+     "Aql"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh masalalarni yechadi.",
+     "qismlar": [
+      "1-guruh: 28 · 3",
+      "2-guruh: 120 / 15",
+      "3-guruh: 6 · 7 + 18",
+      "4-guruh: 100 − 66"
+     ],
+     "yakun": "Natijalar: 84; 8; 60; 34."
+    }
+   }
+  },
+  {
+   "mavzu": "Ko‘p xonali sonni ikki xonali songa ko‘paytirish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ikki xonali son — bo‘laklar",
+      "matn": "Ikki xonali sonni o‘nlik va birlikka ajratamiz. 12 — bu 10 va 2. Sonni avval 10 ga, so‘ng 2 ga ko‘paytirib, natijalarni qo‘shamiz.",
+      "misol": "234 · 12: 234 · 10 — 2340, 234 · 2 — 468, 2340 + 468 — 2808.",
+      "savol": "234 · 10 nechaga teng?",
+      "javob": "2340",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘nga ko‘paytirish",
+      "matn": "Sonni 10 ga ko‘paytirish uchun oxiriga bitta nol yozamiz. 20 ga ko‘paytirishda 2 ga ko‘paytirib, oxiriga nol qo‘yamiz.",
+      "misol": "315 · 20: 315 · 2 — 630, oxiriga nol — 6300.",
+      "savol": "315 · 20 nechaga teng?",
+      "javob": "6300",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qismiy ko‘paytmalar",
+      "matn": "Birinchi qismiy ko‘paytma — birlikka ko‘paytma. Ikkinchisi — o‘nlikka ko‘paytma. Ikkalasini qo‘shsak, to‘liq ko‘paytma chiqadi.",
+      "misol": "315 · 24: 315 · 4 — 1260, 315 · 20 — 6300, 1260 + 6300 — 7560.",
+      "savol": "315 · 24 nechaga teng?",
+      "javob": "7560",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nol qatnashganda",
+      "matn": "Sonda nol bo‘lsa, ehtiyot bo‘lamiz: nolni ko‘paytirganda nol chiqadi, lekin xona o‘rni saqlanadi.",
+      "misol": "408 · 21: 408 · 20 — 8160, 408 · 1 — 408, 8160 + 408 — 8568.",
+      "savol": "408 · 21 nechaga teng?",
+      "javob": "8568",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotiy misol",
+      "matn": "Tez-tez ko‘p xonali sonni ikki xonali songa ko‘paytirishga to‘g‘ri keladi: har qutida 126 ta, qutilar 35 ta.",
+      "misol": "126 · 35: 126 · 5 — 630, 126 · 30 — 3780, 630 + 3780 — 4410 dona.",
+      "savol": "126 · 35 nechaga teng?",
+      "javob": "4410",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ikki xonali songa ko‘paytirishda sonni birlikka va o‘nlikka alohida ko‘paytiramiz, so‘ng qismiy ko‘paytmalarni qo‘shamiz.",
+    "misollar": [
+     {
+      "shart": "234 · 12 ni hisoblang.",
+      "yechim": [
+       "234 · 2 — 468.",
+       "234 · 10 — 2340.",
+       "468 + 2340 — 2808."
+      ],
+      "javob": "2808"
+     },
+     {
+      "shart": "315 · 24 ni hisoblang.",
+      "yechim": [
+       "315 · 4 — 1260.",
+       "315 · 20 — 6300.",
+       "1260 + 6300 — 7560."
+      ],
+      "javob": "7560"
+     },
+     {
+      "shart": "Har qutida 126 ta qalam, qutilar 35 ta. Jami nechta qalam?",
+      "yechim": [
+       "126 · 5 — 630.",
+       "126 · 30 — 3780.",
+       "630 + 3780 — 4410 ta."
+      ],
+      "javob": "4410"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Bo‘laklarga ajratamiz",
+      "topshiriq": "145 · 12 ni birlik va o‘nlik bo‘yicha hisoblang.",
+      "yechim": "145 · 2 — 290, 145 · 10 — 1450, 290 + 1450 — 1740.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Nolli son",
+      "topshiriq": "408 · 21 ni hisoblab, nolga e’tibor bering.",
+      "yechim": "Javob 8568.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Qutilar masalasi",
+      "topshiriq": "126 ta qalamdan 35 quti. Jami nechta?",
+      "yechim": "126 · 35 — 4410.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Tezkor sinov",
+      "topshiriq": "Uchta misolni tez va to‘g‘ri yeching.",
+      "yechim": "Natijalar solishtiriladi.",
+      "mahsulot": "poyga varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "234 · 10 nechaga teng?",
+      "javob": "2340"
+     },
+     {
+      "shart": "315 · 20 nechaga teng?",
+      "javob": "6300"
+     },
+     {
+      "shart": "234 · 12 nechaga teng?",
+      "javob": "2808"
+     },
+     {
+      "shart": "315 · 24 nechaga teng?",
+      "javob": "7560"
+     },
+     {
+      "shart": "408 · 21 nechaga teng?",
+      "javob": "8568"
+     },
+     {
+      "shart": "126 · 35 nechaga teng?",
+      "javob": "4410"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ikkinchi qismiy ko‘paytmada nolni unutadi",
+      "sabab": "xona o‘rnini sezmaydi",
+      "oldini_olish": "o‘nlikka ko‘paytirishda nol yozish"
+     },
+     {
+      "xato": "Qismiy ko‘paytmalarni qo‘shmaydi",
+      "sabab": "oxirigacha yetkazmaydi",
+      "oldini_olish": "ikkalasini qo‘shib, javobni yozish"
+     },
+     {
+      "xato": "Birlik bilan o‘nlikni adashtiradi",
+      "sabab": "xonalarni farqlamaydi",
+      "oldini_olish": "12 ni 10 va 2 deb ajratish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "qutilardagi narsalarni sanash"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "kompyuter ko‘paytirishni shu usulda bajaradi"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "ko‘p sonli kuzatuvlarni hisoblash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ko‘paytirish plakati»",
+     "muammo": "Ko‘p xonali sonni ikki xonaliga ko‘paytirishni qanday qilib rasm bilan tushuntiramiz?",
+     "mahsulot": "ko‘paytirish plakati",
+     "bosqichlar": [
+      "misol tanlash",
+      "bo‘laklarga ajratish",
+      "rasm chizish",
+      "tekshirish",
+      "plakat yasash"
+     ],
+     "guruh_vazifalari": [
+      "Misol tanlang",
+      "Hisoblang",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "qadamlar ko‘rinadi",
+      "rasm mos",
+      "plakat chiroyli",
+      "tushuntirish ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ko‘paytirish ombori»",
+     "bekatlar": [
+      {
+       "nom": "Qalam ombori",
+       "matn": "126 ta qalamdan 35 quti.",
+       "topshiriq": "Jami?",
+       "javob": "4410",
+       "rasm": ""
+      },
+      {
+       "nom": "Daftar ombori",
+       "matn": "234 ta daftardan 12 quti.",
+       "topshiriq": "Jami?",
+       "javob": "2808",
+       "rasm": ""
+      },
+      {
+       "nom": "Kitob ombori",
+       "matn": "315 ta kitobdan 24 javon.",
+       "topshiriq": "Jami?",
+       "javob": "7560",
+       "rasm": ""
+      },
+      {
+       "nom": "Rangli qalam",
+       "matn": "408 ta qalamdan 21 quti.",
+       "topshiriq": "Jami?",
+       "javob": "8568",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qismiy ko‘paytma oson bo‘ldi?",
+      "Nolga e’tibor berdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ko‘paytma",
+      "tarif": "ko‘paytirish natijasi"
+     },
+     {
+      "atama": "Ko‘paytuvchi",
+      "tarif": "ko‘paytiriladigan son"
+     },
+     {
+      "atama": "Qismiy ko‘paytma",
+      "tarif": "bir xonaga ko‘paytma"
+     },
+     {
+      "atama": "O‘nlik",
+      "tarif": "ikkinchi xona"
+     },
+     {
+      "atama": "Birlik",
+      "tarif": "birinchi xona"
+     },
+     {
+      "atama": "Yig‘indi",
+      "tarif": "qo‘shish natijasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "234 · 10 — 2340",
+      "togri": true,
+      "izoh": "oxiriga nol"
+     },
+     {
+      "matn": "315 · 20 — 630",
+      "togri": false,
+      "izoh": "6300"
+     },
+     {
+      "matn": "Qismiy ko‘paytmalar qo‘shiladi",
+      "togri": true,
+      "izoh": "to‘liq ko‘paytma"
+     },
+     {
+      "matn": "408 · 21 — 8568",
+      "togri": true,
+      "izoh": "8160 + 408"
+     },
+     {
+      "matn": "12 — bu 10 va 2",
+      "togri": true,
+      "izoh": "o‘nlik va birlik"
+     },
+     {
+      "matn": "126 · 35 — 4400",
+      "togri": false,
+      "izoh": "4410"
+     },
+     {
+      "matn": "Nolga ko‘paytirishda xona o‘rni muhim",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "Qismiy ko‘paytmalarni ayiramiz",
+      "togri": false,
+      "izoh": "qo‘shamiz"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "12 nimadan iborat?",
+      "javob": "10 va 2"
+     },
+     {
+      "savol": "234 · 10?",
+      "javob": "2340"
+     },
+     {
+      "savol": "315 · 20?",
+      "javob": "6300"
+     },
+     {
+      "savol": "234 · 12?",
+      "javob": "2808"
+     },
+     {
+      "savol": "315 · 24?",
+      "javob": "7560"
+     },
+     {
+      "savol": "408 · 21?",
+      "javob": "8568"
+     },
+     {
+      "savol": "126 · 35?",
+      "javob": "4410"
+     },
+     {
+      "savol": "Qismiy ko‘paytmalar nima qilinadi?",
+      "javob": "qo‘shiladi"
+     },
+     {
+      "savol": "Sonni 10 ga ko‘paytirish?",
+      "javob": "oxiriga nol yoziladi"
+     },
+     {
+      "savol": "O‘nlik nima?",
+      "javob": "ikkinchi xona"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ajrat",
+      "matn": "Ikki xonali sonni ajrat.",
+      "savol": "24 nimadan iborat?"
+     },
+     {
+      "nom": "Birlik",
+      "matn": "Birlikka ko‘paytir.",
+      "savol": "315 · 4?"
+     },
+     {
+      "nom": "O‘nlik",
+      "matn": "O‘nlikka ko‘paytir.",
+      "savol": "315 · 20?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "Ikkalasini qo‘sh.",
+      "savol": "1260 + 6300?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ikki xonali songa ko‘paytirishda ikkita qismiy ko‘paytma hosil bo‘ladi?",
+    "keys": {
+     "vaziyat": "Omborda 126 tadan 35 quti qalam bor.",
+     "savollar": [
+      "Qaysi amalni tanlaymiz?",
+      "Jami nechta qalam?"
+     ]
+    },
+    "tezis": "Katta sonni bo‘laklab ko‘paytiramiz",
+    "taqqoslash": {
+     "a": "Birlikka ko‘paytma",
+     "b": "O‘nlikka ko‘paytma",
+     "umumiy": [
+      "ko‘paytirish amali",
+      "keyin qo‘shiladi"
+     ],
+     "a_farq": [
+      "birinchi qism",
+      "oxiriga nol yo‘q"
+     ],
+     "b_farq": [
+      "ikkinchi qism",
+      "oxiriga nol yoziladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ikki xonali songa ko‘paytirish",
+     "shoxlar": [
+      {
+       "nom": "Ajratish",
+       "bandlar": [
+        "o‘nlik",
+        "birlik"
+       ]
+      },
+      {
+       "nom": "Birlikka",
+       "bandlar": [
+        "birinchi qism"
+       ]
+      },
+      {
+       "nom": "O‘nlikka",
+       "bandlar": [
+        "nol bilan"
+       ]
+      },
+      {
+       "nom": "Qo‘shish",
+       "bandlar": [
+        "yig‘indi",
+        "javob"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ikki qismdan tuzilaman, ikkalasi qo‘shilsa — javob. Men kimman?",
+     "javob": "ko‘paytma"
+    },
+    "hikmat": "Bo‘lak-bo‘lak — katta ish bitadi.",
+    "kalit_soz": "KO‘PAYTMA",
+    "xato_yechim": {
+     "shart": "315 · 24 ni hisoblang.",
+     "xato": "1260",
+     "togri": "7560",
+     "sabab": "o‘nlikka ko‘paytma 6300 ni qo‘shishni unutgan"
+    },
+    "guruh_nomlari": [
+     "Ko‘paytiruvchilar",
+     "Bo‘lakchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ombor hisobi»",
+     "topshiriq": "Guruh omborga kelgan narsalarni ko‘paytirib hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "234 · 12 va 145 · 12 ni hisoblang.",
+     "B": "315 · 24 va 408 · 21 ni hisoblang.",
+     "C": "Har qutida 126 ta qalam, 35 quti. Jami va tekshirish."
+    },
+    "sinkveyn": [
+     "Ko‘paytirish",
+     "tez, aniq",
+     "ajratadi, ko‘paytiradi, qo‘shadi",
+     "Bo‘lak-bo‘lak",
+     "Amal"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh misollarni yechadi.",
+     "qismlar": [
+      "1-guruh: 234 · 12",
+      "2-guruh: 315 · 24",
+      "3-guruh: 408 · 21",
+      "4-guruh: 126 · 35"
+     ],
+     "yakun": "Natijalar: 2808; 7560; 8568; 4410."
+    }
+   }
+  },
+  {
+   "mavzu": "Ikki xonali songa ko‘paytirish algoritmi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Algoritm nima?",
+      "matn": "Algoritm — ishni qadamma-qadam bajarish qoidasi. Ikki xonali songa ko‘paytirish ham aniq qadamlardan iborat. Qadamlarni bilsak, xato qilmaymiz.",
+      "misol": "48 · 23 ni ustun shaklida yozamiz: 48 ning tagiga 23.",
+      "savol": "Algoritm nima?",
+      "javob": "qadamma-qadam qoida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birinchi qadam",
+      "matn": "Birinchi qadamda yuqoridagi sonni pastdagi sonning birligiga ko‘paytiramiz. Natijani birinchi qatorga yozamiz.",
+      "misol": "48 · 3 — 144. Birinchi qator: 144.",
+      "savol": "48 · 3 nechaga teng?",
+      "javob": "144",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikkinchi qadam",
+      "matn": "Ikkinchi qadamda o‘nlikka ko‘paytiramiz. Natijani bir xona chapga surib yozamiz, ya’ni oxiriga nol qo‘yamiz.",
+      "misol": "48 · 20 — 960. Ikkinchi qator: 960.",
+      "savol": "48 · 20 nechaga teng?",
+      "javob": "960",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchinchi qadam",
+      "matn": "Uchinchi qadamda ikkala qatorni qo‘shamiz. Bu — to‘liq ko‘paytma.",
+      "misol": "144 + 960 — 1104. Demak 48 · 23 — 1104.",
+      "savol": "144 + 960 nechaga teng?",
+      "javob": "1104",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshirish",
+      "matn": "Ko‘paytirishni ko‘paytuvchilar o‘rnini almashtirib tekshiramiz. Yoki taxminiy hisoblaymiz: 48 taxminan 50, 23 taxminan 20, 50 · 20 — 1000.",
+      "misol": "23 · 48: 23 · 8 — 184, 23 · 40 — 920, 184 + 920 — 1104. Mos keldi.",
+      "savol": "Ko‘paytirishni qanday tekshiramiz?",
+      "javob": "o‘rnini almashtirib",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Algoritm: 1) birlikka ko‘paytir, 2) o‘nlikka ko‘paytir (oxiriga nol), 3) qatorlarni qo‘sh, 4) tekshir.",
+    "misollar": [
+     {
+      "shart": "48 · 23 ni algoritm bilan hisoblang.",
+      "yechim": [
+       "48 · 3 — 144.",
+       "48 · 20 — 960.",
+       "144 + 960 — 1104."
+      ],
+      "javob": "1104"
+     },
+     {
+      "shart": "67 · 45 ni hisoblang.",
+      "yechim": [
+       "67 · 5 — 335.",
+       "67 · 40 — 2680.",
+       "335 + 2680 — 3015."
+      ],
+      "javob": "3015"
+     },
+     {
+      "shart": "54 · 32 ni hisoblang.",
+      "yechim": [
+       "54 · 2 — 108.",
+       "54 · 30 — 1620.",
+       "108 + 1620 — 1728."
+      ],
+      "javob": "1728"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qadamlar kartochkasi",
+      "topshiriq": "Algoritm qadamlarini to‘g‘ri tartibga qo‘ying.",
+      "yechim": "Birlik, o‘nlik, qo‘shish, tekshirish.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Ustun shakli",
+      "topshiriq": "36 · 15 ni ustun shaklida yozib hisoblang.",
+      "yechim": "36 · 5 — 180, 36 · 10 — 360, 540.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 67 · 45 ni 2680 deb hisobladi. Xato qayerda?",
+      "yechim": "Birlikka ko‘paytma 335 ni qo‘shmagan. To‘g‘ri javob 3015.",
+      "mahsulot": "tushuntirish"
+     },
+     {
+      "nom": "Almashtirib tekshiramiz",
+      "topshiriq": "48 · 23 va 23 · 48 ni hisoblab solishtiring.",
+      "yechim": "Ikkalasi 1104.",
+      "mahsulot": "hisob jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "48 · 3 nechaga teng?",
+      "javob": "144"
+     },
+     {
+      "shart": "48 · 20 nechaga teng?",
+      "javob": "960"
+     },
+     {
+      "shart": "48 · 23 nechaga teng?",
+      "javob": "1104"
+     },
+     {
+      "shart": "67 · 45 nechaga teng?",
+      "javob": "3015"
+     },
+     {
+      "shart": "36 · 15 nechaga teng?",
+      "javob": "540"
+     },
+     {
+      "shart": "54 · 32 nechaga teng?",
+      "javob": "1728"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ikkinchi qatorni surmaydi",
+      "sabab": "o‘nlikka ko‘paytirishda nol yozmaydi",
+      "oldini_olish": "ikkinchi qator oxiriga nol qo‘yish"
+     },
+     {
+      "xato": "Qatorlarni qo‘shishni unutadi",
+      "sabab": "oxirgi qadamga yetmaydi",
+      "oldini_olish": "uchinchi qadamni belgilab qo‘yish"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "o‘rnini almashtirib tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "ko‘p xaridni hisoblash"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "algoritm tushunchasi"
+     },
+     {
+      "fan": "Ona tili",
+      "boglanish": "qadamlar ketma-ketligini bayon qilish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Algoritm yo‘l xaritasi»",
+     "muammo": "Ko‘paytirish algoritmini qanday qilib yo‘l xaritasi ko‘rinishida chizamiz?",
+     "mahsulot": "yo‘l xaritasi",
+     "bosqichlar": [
+      "qadamlarni yozish",
+      "xarita chizish",
+      "misol yechish",
+      "tekshirish",
+      "namoyish"
+     ],
+     "guruh_vazifalari": [
+      "Qadamlarni yozing",
+      "Chizing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "qadamlar to‘g‘ri",
+      "xarita ravshan",
+      "misol to‘g‘ri",
+      "chiroyli",
+      "tushuntirish ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Algoritm yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "48 · 3.",
+       "topshiriq": "Natija?",
+       "javob": "144",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "48 · 20.",
+       "topshiriq": "Natija?",
+       "javob": "960",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "144 + 960.",
+       "topshiriq": "Natija?",
+       "javob": "1104",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "67 · 45.",
+       "topshiriq": "Natija?",
+       "javob": "3015",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qadam oson bo‘ldi?",
+      "Xato qilmadingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Algoritm",
+      "tarif": "qadamma-qadam bajariladigan qoida"
+     },
+     {
+      "atama": "Ustun",
+      "tarif": "sonlarni ostma-ost yozish"
+     },
+     {
+      "atama": "Qator",
+      "tarif": "qismiy ko‘paytma yozilgan joy"
+     },
+     {
+      "atama": "Surish",
+      "tarif": "o‘nlikka ko‘paytmada nol qo‘yish"
+     },
+     {
+      "atama": "Ko‘paytma",
+      "tarif": "to‘liq natija"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "javobning to‘g‘riligini aniqlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Algoritm — qadamma-qadam qoida",
+      "togri": true,
+      "izoh": "tartib bor"
+     },
+     {
+      "matn": "48 · 20 — 96",
+      "togri": false,
+      "izoh": "960"
+     },
+     {
+      "matn": "Qatorlar oxirida qo‘shiladi",
+      "togri": true,
+      "izoh": "uchinchi qadam"
+     },
+     {
+      "matn": "67 · 45 — 3015",
+      "togri": true,
+      "izoh": "335 + 2680"
+     },
+     {
+      "matn": "Ikkinchi qatorni surmaymiz",
+      "togri": false,
+      "izoh": "bir xona suramiz"
+     },
+     {
+      "matn": "36 · 15 — 540",
+      "togri": true,
+      "izoh": "180 + 360"
+     },
+     {
+      "matn": "48 · 23 — 1140",
+      "togri": false,
+      "izoh": "1104"
+     },
+     {
+      "matn": "O‘rnini almashtirib tekshirish mumkin",
+      "togri": true,
+      "izoh": "ko‘paytma o‘zgarmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Algoritm nima?",
+      "javob": "qadamma-qadam qoida"
+     },
+     {
+      "savol": "Birinchi qadam?",
+      "javob": "birlikka ko‘paytirish"
+     },
+     {
+      "savol": "Ikkinchi qadam?",
+      "javob": "o‘nlikka ko‘paytirish"
+     },
+     {
+      "savol": "Uchinchi qadam?",
+      "javob": "qatorlarni qo‘shish"
+     },
+     {
+      "savol": "48 · 23?",
+      "javob": "1104"
+     },
+     {
+      "savol": "67 · 45?",
+      "javob": "3015"
+     },
+     {
+      "savol": "36 · 15?",
+      "javob": "540"
+     },
+     {
+      "savol": "54 · 32?",
+      "javob": "1728"
+     },
+     {
+      "savol": "Ikkinchi qatorga nima yoziladi?",
+      "javob": "oxiriga nol"
+     },
+     {
+      "savol": "Qanday tekshiramiz?",
+      "javob": "o‘rnini almashtirib"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Birlik",
+      "matn": "Birlikka ko‘paytir.",
+      "savol": "36 · 5?"
+     },
+     {
+      "nom": "O‘nlik",
+      "matn": "O‘nlikka ko‘paytir.",
+      "savol": "36 · 10?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "Qatorlarni qo‘sh.",
+      "savol": "180 + 360?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "O‘rnini almashtir.",
+      "savol": "15 · 36?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ikkinchi qatorni bir xona chapga suramiz?",
+    "keys": {
+     "vaziyat": "Do‘konga 48 tadan 23 quti daftar keldi.",
+     "savollar": [
+      "Qaysi amalni tanlaymiz?",
+      "Jami nechta daftar?"
+     ]
+    },
+    "tezis": "Algoritm — xatosiz hisob yo‘li",
+    "taqqoslash": {
+     "a": "Birinchi qator",
+     "b": "Ikkinchi qator",
+     "umumiy": [
+      "ko‘paytirish bilan topiladi",
+      "keyin qo‘shiladi"
+     ],
+     "a_farq": [
+      "birlikka ko‘paytma",
+      "surilmaydi"
+     ],
+     "b_farq": [
+      "o‘nlikka ko‘paytma",
+      "bir xona suriladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ko‘paytirish algoritmi",
+     "shoxlar": [
+      {
+       "nom": "1-qadam",
+       "bandlar": [
+        "birlikka ko‘paytir"
+       ]
+      },
+      {
+       "nom": "2-qadam",
+       "bandlar": [
+        "o‘nlikka ko‘paytir",
+        "nol qo‘y"
+       ]
+      },
+      {
+       "nom": "3-qadam",
+       "bandlar": [
+        "qatorlarni qo‘sh"
+       ]
+      },
+      {
+       "nom": "4-qadam",
+       "bandlar": [
+        "tekshir"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qadamma-qadam yuraman va yo‘ldan adashtirmayman. Men kimman?",
+     "javob": "algoritm"
+    },
+    "hikmat": "Qadam bilan yursang — manzilga yetasan.",
+    "kalit_soz": "QADAM",
+    "xato_yechim": {
+     "shart": "48 · 23 ni hisoblang.",
+     "xato": "1140",
+     "togri": "1104",
+     "sabab": "qatorlar noto‘g‘ri qo‘shilgan: 144 + 960 — 1104"
+    },
+    "guruh_nomlari": [
+     "Algoritmchilar",
+     "Qadamchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Daftar ombori»",
+     "topshiriq": "Guruh ustun shaklida ko‘paytirib, omborga kelgan daftarlarni sanaydi."
+    },
+    "vazifalar": {
+     "A": "48 · 23 va 36 · 15 ni ustun shaklida hisoblang.",
+     "B": "67 · 45 va 54 · 32 ni hisoblang.",
+     "C": "48 tadan 23 quti daftar. Jami va o‘rnini almashtirib tekshirish."
+    },
+    "sinkveyn": [
+     "Algoritm",
+     "aniq, tartibli",
+     "boshlaydi, bajaradi, tugatadi",
+     "Qadamma-qadam",
+     "Yo‘l"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ustunda ko‘paytiradi.",
+     "qismlar": [
+      "1-guruh: 48 · 23",
+      "2-guruh: 67 · 45",
+      "3-guruh: 36 · 15",
+      "4-guruh: 54 · 32"
+     ],
+     "yakun": "Natijalar: 1104; 3015; 540; 1728."
+    }
+   }
   }
  ]
 }
