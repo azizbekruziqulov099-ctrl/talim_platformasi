@@ -1399,6 +1399,1396 @@
      "yakun": "Ildizlar: 3 va −3; 0 va 4; 2 va 3; 1."
     }
    }
+  },
+  {
+   "mavzu": "Viyet teoremasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Viyet teoremasi",
+      "matn": "Keltirilgan x² + px + q ifoda 0 tenglama ildizlarining yig‘indisi −p ga, ko‘paytmasi q ga teng. Ya’ni ildizlarni formulasiz, koeffitsientlar orqali bog‘lash mumkin. Teorema fransuz matematigi Fransua Viyet nomi bilan ataladi.",
+      "misol": "x² − 5x + 6 ifoda 0 tenglamaning ildizlari 2 va 3. Yig‘indi 2 + 3 — 5, bu −p, chunki p — −5. Ko‘paytma 2 · 3 — 6, bu q.",
+      "savol": "x² − 7x + 12 ifoda 0 da ildizlar yig‘indisi nechaga teng?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ildizlarni tanlash",
+      "matn": "Butun ildizlarni topish uchun ko‘paytmasi q, yig‘indisi −p bo‘ladigan ikki sonni qidiramiz. Avval q ning bo‘luvchilarini yozamiz, keyin ularning yig‘indisini tekshiramiz.",
+      "misol": "x² + 3x − 10 ifoda 0: ko‘paytma −10, yig‘indi −3. Juftlar: 2 va −5, ularning yig‘indisi −3. Ildizlar 2 va −5.",
+      "savol": "x² − 8x + 15 ifoda 0 ning ildizlari?",
+      "javob": "3 va 5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Teskari teorema",
+      "matn": "Agar ikki sonning yig‘indisi −p, ko‘paytmasi q bo‘lsa, ular x² + px + q ifoda 0 tenglamaning ildizlari bo‘ladi. Shu bilan berilgan ildizlar bo‘yicha tenglama tuziladi.",
+      "misol": "Ildizlari 4 va −1 bo‘lgan tenglama: yig‘indi 3, ko‘paytma −4, tenglama x² − 3x − 4 ifoda 0. Tekshirish: 16 − 12 − 4 — 0; 1 + 3 − 4 — 0.",
+      "savol": "Ildizlari 2 va 5 bo‘lgan keltirilgan tenglamani yozing.",
+      "javob": "x² − 7x + 10 ifoda 0",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Umumiy kvadrat tenglama uchun",
+      "matn": "ax² + bx + c ifoda 0 tenglamada ildizlar yig‘indisi −b / a, ko‘paytmasi c / a. Keltirilgan bo‘lmagan tenglamada avval a ga bo‘lamiz yoki shu formulalardan foydalanamiz.",
+      "misol": "2x² − 7x + 3 ifoda 0: yig‘indi 7 / 2, ko‘paytma 3 / 2. Ildizlar 3 va 1 / 2: 3 + 1 / 2 — 7 / 2 va 3 · 1 / 2 — 3 / 2.",
+      "savol": "3x² − 6x + 2 ifoda 0 da ildizlar yig‘indisi nechaga teng?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ildizlarsiz hisoblash",
+      "matn": "Ildizlarni topmasdan ular kvadratlarining yig‘indisini hisoblash mumkin: yig‘indi kvadratidan ko‘paytmaning ikkilanganini ayiramiz. Noma’lum koeffitsientni topishda ham Viyet teoremasi qulay.",
+      "misol": "x² − 5x + 6 ifoda 0 da kvadratlar yig‘indisi: 25 − 12 — 13. Tekshirish: 4 + 9 — 13. Agar x² + px + 12 ifoda 0 ning bir ildizi 3 bo‘lsa, ikkinchisi 12 / 3, ya’ni 4; p — −(3 + 4), ya’ni −7.",
+      "savol": "x² − 3x + 2 ifoda 0 da ildizlar kvadratlari yig‘indisi nechaga teng?",
+      "javob": "5",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "x² + px + q ifoda 0 da ildizlar yig‘indisi −p, ko‘paytmasi q. ax² + bx + c ifoda 0 da yig‘indi −b / a, ko‘paytma c / a. Teskari: yig‘indisi −p, ko‘paytmasi q bo‘lgan ikki son shu tenglamaning ildizlari.",
+    "misollar": [
+     {
+      "shart": "x² − 9x + 14 ifoda 0 tenglamaning ildizlarini Viyet teoremasi bilan toping.",
+      "yechim": [
+       "Yig‘indi 9, ko‘paytma 14.",
+       "14 ning bo‘luvchilari: 1 va 14, 2 va 7. Yig‘indisi 9 bo‘lgani 2 va 7.",
+       "Tekshirish: 4 − 18 + 14 — 0; 49 − 63 + 14 — 0."
+      ],
+      "javob": "2 va 7"
+     },
+     {
+      "shart": "Ildizlari 3 va −5 bo‘lgan keltirilgan kvadrat tenglama tuzing.",
+      "yechim": [
+       "Ildizlar yig‘indisi 3 − 5, ya’ni −2, shuning uchun p — 2.",
+       "Ko‘paytma 3 · (−5), ya’ni −15, shuning uchun q — −15.",
+       "Tenglama x² + 2x − 15 ifoda 0. Tekshirish: 9 + 6 − 15 — 0; 25 − 10 − 15 — 0."
+      ],
+      "javob": "x² + 2x − 15 ifoda 0"
+     },
+     {
+      "shart": "x² − 6x + c ifoda 0 tenglamaning bir ildizi 4. Ikkinchi ildizni va c ni toping.",
+      "yechim": [
+       "Yig‘indi 6, shuning uchun ikkinchi ildiz 6 − 4, ya’ni 2.",
+       "c ildizlar ko‘paytmasi: 4 · 2, ya’ni 8.",
+       "Tekshirish: 16 − 24 + 8 — 0."
+      ],
+      "javob": "ikkinchi ildiz 2, c ifoda 8"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Juftlar qidiramiz",
+      "topshiriq": "Ko‘paytmasi 24, yig‘indisi 10 bo‘lgan ikki sonni toping va mos tenglamani yozing.",
+      "yechim": "4 va 6, chunki 4 · 6 — 24 va 4 + 6 — 10. Tenglama x² − 10x + 24 ifoda 0.",
+      "mahsulot": "juftlar jadvali"
+     },
+     {
+      "nom": "Tenglama tuzamiz",
+      "topshiriq": "Ildizlari 1 va 6 bo‘lgan keltirilgan tenglamani tuzing va tekshiring.",
+      "yechim": "Yig‘indi 7, ko‘paytma 6, tenglama x² − 7x + 6 ifoda 0. Tekshirish: 1 − 7 + 6 — 0; 36 − 42 + 6 — 0.",
+      "mahsulot": "tenglamalar kartochkasi"
+     },
+     {
+      "nom": "Kartochka o‘yini",
+      "topshiriq": "Ildizlari yig‘indisi 8, ko‘paytmasi 15 bo‘lgan tenglamani va uning ildizlarini toping.",
+      "yechim": "Ildizlar 3 va 5, tenglama x² − 8x + 15 ifoda 0.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Yer maydoni",
+      "topshiriq": "To‘g‘ri to‘rtburchak perimetri 14, yuzi 12. Tomonlarini Viyet teoremasi bilan toping.",
+      "yechim": "Yarim perimetr 7, yuza 12: tomonlar 3 va 4, chunki 3 + 4 — 7 va 3 · 4 — 12.",
+      "mahsulot": "yechim varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "x² − 8x + 15 ifoda 0 tenglamaning ildizlarini toping.",
+      "javob": "3 va 5"
+     },
+     {
+      "shart": "x² + 2x − 15 ifoda 0 tenglamaning ildizlarini toping.",
+      "javob": "3 va −5"
+     },
+     {
+      "shart": "x² − 9x + 20 ifoda 0 da ildizlar yig‘indisi nechaga teng?",
+      "javob": "9"
+     },
+     {
+      "shart": "Ildizlari 2 va 5 bo‘lgan keltirilgan tenglamani yozing.",
+      "javob": "x² − 7x + 10 ifoda 0"
+     },
+     {
+      "shart": "x² + px − 10 ifoda 0 tenglamaning bir ildizi 5. Ikkinchi ildizni toping.",
+      "javob": "−2"
+     },
+     {
+      "shart": "x² − 6x + 8 ifoda 0 tenglamaning ildizlarini toping.",
+      "javob": "2 va 4"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ildizlar yig‘indisini p ga teng deb oladi",
+      "sabab": "ishorani unutadi",
+      "oldini_olish": "yig‘indi −p ekanini daftarga yozib qo‘yish"
+     },
+     {
+      "xato": "2x² − 7x + 3 ifoda 0 da yig‘indini 7 deb oladi",
+      "sabab": "a ga bo‘lishni unutadi",
+      "oldini_olish": "−b / a formulasidan foydalanish"
+     },
+     {
+      "xato": "Faqat ko‘paytmani tekshirib ildizlarni tanlaydi",
+      "sabab": "yig‘indini tekshirmaydi",
+      "oldini_olish": "ikkala shartni ham tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geometriya",
+      "boglanish": "to‘g‘ri to‘rtburchak tomonlarini perimetr va yuzidan topish"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "harakat tenglamalarida ildizlar yig‘indisi va ko‘paytmasi"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Fransua Viyet — algebrada harfiy belgilarni joriy etgan olim"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ildizlar bilan o‘yin»",
+     "muammo": "Tenglamani yechmasdan ildizlarni qanday topamiz?",
+     "mahsulot": "Viyet o‘yin kartochkalari to‘plami",
+     "bosqichlar": [
+      "teoremani o‘rganish",
+      "kartochkalar tuzish",
+      "juftlarni tanlash",
+      "o‘yinni sinash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Teoremani tushuntiring",
+      "Kartochka tuzing",
+      "O‘ynab ko‘ring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tenglamalar to‘g‘ri",
+      "ildizlar tekshirilgan",
+      "o‘yin qiziqarli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ildizlar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Yig‘indi ko‘chasi",
+       "matn": "Ildizlar yig‘indisi 7, ko‘paytmasi 12.",
+       "topshiriq": "Ildizlarni toping.",
+       "javob": "3 va 4",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘paytma maydoni",
+       "matn": "Ildizlar yig‘indisi 1, ko‘paytmasi −6.",
+       "topshiriq": "Ildizlarni toping.",
+       "javob": "3 va −2",
+       "rasm": ""
+      },
+      {
+       "nom": "Tenglama bog‘i",
+       "matn": "Ildizlari 5 va 1 bo‘lgan keltirilgan tenglama kerak.",
+       "topshiriq": "Tenglamani yozing.",
+       "javob": "x² − 6x + 5 ifoda 0",
+       "rasm": ""
+      },
+      {
+       "nom": "Tekshiruv ko‘prigi",
+       "matn": "x² − 4x + 3 ifoda 0 tenglamada ildizlar 1 va 3.",
+       "topshiriq": "Ildizlar ko‘paytmasi nechaga teng?",
+       "javob": "3",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi tenglamani yechmasdan hal qildingiz?",
+      "Juftlarni topish oson bo‘ldimi?",
+      "Qayerda adashdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Viyet teoremasi",
+      "tarif": "ildizlar yig‘indisi va ko‘paytmasini koeffitsientlar bilan bog‘laydi"
+     },
+     {
+      "atama": "Keltirilgan tenglama",
+      "tarif": "birinchi koeffitsienti 1 bo‘lgan kvadrat tenglama"
+     },
+     {
+      "atama": "Ildizlar yig‘indisi",
+      "tarif": "keltirilgan tenglamada −p"
+     },
+     {
+      "atama": "Ildizlar ko‘paytmasi",
+      "tarif": "keltirilgan tenglamada q"
+     },
+     {
+      "atama": "Teskari teorema",
+      "tarif": "yig‘indi va ko‘paytmadan tenglama tuzish"
+     },
+     {
+      "atama": "Bo‘luvchi",
+      "tarif": "sonni qoldiqsiz bo‘ladigan son"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "x² − 5x + 6 ifoda 0 da ildizlar yig‘indisi 5",
+      "togri": true,
+      "izoh": "−p — 5"
+     },
+     {
+      "matn": "x² − 5x + 6 ifoda 0 da ildizlar yig‘indisi −5",
+      "togri": false,
+      "izoh": "p — −5, yig‘indi −p — 5"
+     },
+     {
+      "matn": "Keltirilgan tenglamada ildizlar ko‘paytmasi q ga teng",
+      "togri": true,
+      "izoh": "Viyet teoremasi"
+     },
+     {
+      "matn": "Ildizlari 2 va 3 bo‘lgan tenglama x² − 5x + 6 ifoda 0",
+      "togri": true,
+      "izoh": "yig‘indi 5, ko‘paytma 6"
+     },
+     {
+      "matn": "Ildizlari 2 va 3 bo‘lgan tenglama x² + 5x + 6 ifoda 0",
+      "togri": false,
+      "izoh": "yig‘indi 5 bo‘lsa, p — −5"
+     },
+     {
+      "matn": "ax² + bx + c ifoda 0 da ildizlar yig‘indisi −b / a",
+      "togri": true,
+      "izoh": "umumiy formula"
+     },
+     {
+      "matn": "Viyet teoremasi faqat butun ildizlar uchun to‘g‘ri",
+      "togri": false,
+      "izoh": "ildizlar kasr ham bo‘lishi mumkin"
+     },
+     {
+      "matn": "Ildizlar kvadratlari yig‘indisi: yig‘indi kvadrati minus ko‘paytmaning ikkilanganini",
+      "togri": true,
+      "izoh": "5 kvadrati 25, 25 − 12 — 13"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Viyet teoremasi nima haqida?",
+      "javob": "ildizlar yig‘indisi va ko‘paytmasi haqida"
+     },
+     {
+      "savol": "x² + px + q ifoda 0 da yig‘indi nechaga teng?",
+      "javob": "−p"
+     },
+     {
+      "savol": "Shu tenglamada ko‘paytma nechaga teng?",
+      "javob": "q"
+     },
+     {
+      "savol": "x² − 10x + 21 ifoda 0 ildizlari?",
+      "javob": "3 va 7"
+     },
+     {
+      "savol": "x² + x − 6 ifoda 0 ildizlari?",
+      "javob": "2 va −3"
+     },
+     {
+      "savol": "ax² + bx + c ifoda 0 da yig‘indi?",
+      "javob": "−b / a"
+     },
+     {
+      "savol": "ax² + bx + c ifoda 0 da ko‘paytma?",
+      "javob": "c / a"
+     },
+     {
+      "savol": "Ildizlari 1 va 4 bo‘lgan tenglama?",
+      "javob": "x² − 5x + 4 ifoda 0"
+     },
+     {
+      "savol": "Teskari teorema nima uchun kerak?",
+      "javob": "ildizlar bo‘yicha tenglama tuzish uchun"
+     },
+     {
+      "savol": "Teoremani kim topgan?",
+      "javob": "Fransua Viyet"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Teorema",
+      "matn": "Yig‘indi −p, ko‘paytma q.",
+      "savol": "x² − 7x + 10 ifoda 0 da yig‘indi?"
+     },
+     {
+      "nom": "Tanlash",
+      "matn": "Bo‘luvchilar orasidan juft qidiramiz.",
+      "savol": "Ko‘paytmasi 12, yig‘indisi 7 bo‘lgan juft?"
+     },
+     {
+      "nom": "Teskari",
+      "matn": "Ildizlar bo‘yicha tenglama tuzamiz.",
+      "savol": "Ildizlari 1 va 2 bo‘lgan tenglama?"
+     },
+     {
+      "nom": "Umumiy",
+      "matn": "−b / a va c / a.",
+      "savol": "2x² − 8x + 6 ifoda 0 da yig‘indi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun x² − 5x + 6 ifoda 0 tenglamaning ildizlari yig‘indisi 5 bo‘lib, koeffitsient esa −5? Ishora qayerdan kelib chiqishini tushuntiring.",
+    "keys": {
+     "vaziyat": "Bog‘bon to‘g‘ri to‘rtburchak gulzorni o‘rab olmoqchi: perimetri 20 m, yuzi 21 kv. m. Tomonlarini bilmasdan taxtalar sonini rejalashtirishi kerak.",
+     "savollar": [
+      "Yarim perimetr nechaga teng?",
+      "Tomonlar qaysi sonlar?"
+     ]
+    },
+    "tezis": "Koeffitsientlar ildizlarning sirini ochadi",
+    "taqqoslash": {
+     "a": "Ildizlar formulasi bilan topish",
+     "b": "Viyet teoremasi bilan tanlash",
+     "umumiy": [
+      "kvadrat tenglama ildizlari",
+      "tekshirish mumkin"
+     ],
+     "a_farq": [
+      "diskriminant kerak",
+      "hamma hollarda ishlaydi"
+     ],
+     "b_farq": [
+      "yig‘indi va ko‘paytma kerak",
+      "butun ildizlarda tez"
+     ]
+    },
+    "klaster": {
+     "markaz": "Viyet teoremasi",
+     "shoxlar": [
+      {
+       "nom": "Teorema",
+       "bandlar": [
+        "yig‘indi −p",
+        "ko‘paytma q"
+       ]
+      },
+      {
+       "nom": "Teskari",
+       "bandlar": [
+        "tenglama tuzish",
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "Umumiy",
+       "bandlar": [
+        "−b / a",
+        "c / a"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "ildiz tanlash",
+        "koeffitsient topish",
+        "masalalar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki ildiz qo‘shilsa — koeffitsientning teskarisi, ko‘paytirilsa — ozod had. Men qaysi teoremaman?",
+     "javob": "Viyet teoremasi"
+    },
+    "hikmat": "Ikki bosh yaxshi, ikki ildiz undan ham yaxshi.",
+    "kalit_soz": "VIYET",
+    "xato_yechim": {
+     "shart": "x² − 7x + 12 ifoda 0 tenglamaning ildizlari yig‘indisini toping.",
+     "xato": "−7",
+     "togri": "7",
+     "sabab": "yig‘indi −p, bu yerda p — −7, shuning uchun yig‘indi 7; tekshirish: 3 + 4 — 7"
+    },
+    "guruh_nomlari": [
+     "Viyetchilar",
+     "Ildizchilar",
+     "Yig‘indichilar",
+     "Ko‘paytmachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tomonlarni top»",
+     "topshiriq": "Guruh sinf doskasining perimetri va yuzini o‘lchab, tomonlarini Viyet teoremasi bilan tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Ildizlarni toping: x² − 8x + 12 ifoda 0, x² + 5x + 6 ifoda 0.",
+     "B": "Ildizlari 2 va −7 bo‘lgan tenglama tuzing.",
+     "C": "x² + px + 18 ifoda 0 ning bir ildizi 3. Ikkinchi ildiz va p ni toping."
+    },
+    "sinkveyn": [
+     "Viyet",
+     "yig‘indi, ko‘paytma",
+     "bog‘laydi, topadi, tekshiradi",
+     "Koeffitsientlar ildizlarni aytadi",
+     "Teorema"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tenglamalarning ildizlarini Viyet teoremasi bilan topadi.",
+     "qismlar": [
+      "1-guruh: x² − 7x + 12 ifoda 0",
+      "2-guruh: x² + 2x − 8 ifoda 0",
+      "3-guruh: x² − 11x + 24 ifoda 0",
+      "4-guruh: x² + x − 12 ifoda 0"
+     ],
+     "yakun": "Natijalar: 3 va 4; 2 va −4; 3 va 8; 3 va −4."
+    }
+   }
+  },
+  {
+   "mavzu": "Kvadrat uchhad",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kvadrat uchhad",
+      "matn": "ax² + bx + c ko‘rinishdagi ko‘phad (a noldan farqli) kvadrat uchhad deyiladi. Uning ildizlari — ax² + bx + c ifoda 0 tenglamaning ildizlari. Diskriminant D ifoda b² − 4ac uchhadning ildizlari borligini aytadi.",
+      "misol": "2x² − 3x − 2 uchhadda a — 2, b — −3, c — −2. D — 9 + 16 — 25, demak ikkita ildiz bor.",
+      "savol": "x² − 5x + 6 uchhadning ildizlari?",
+      "javob": "2 va 3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytuvchilarga ajratish",
+      "matn": "Agar uchhadning ildizlari bo‘lsa, ax² + bx + c ifoda a(x − birinchi ildiz)(x − ikkinchi ildiz) ga teng. D nolga teng bo‘lsa, a(x − ildiz)² chiqadi. D manfiy bo‘lsa, haqiqiy sonlar to‘plamida ajratib bo‘lmaydi.",
+      "misol": "x² − 5x + 6 — (x − 2)(x − 3). x² + 4x + 4 — (x + 2)². x² + x + 1 uchun D — 1 − 4 — −3, ajralmaydi.",
+      "savol": "x² − 7x + 12 ni ko‘paytuvchilarga ajrating.",
+      "javob": "(x − 3)(x − 4)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birinchi koeffitsienti 1 dan farqli uchhad",
+      "matn": "a ning 1 dan farqli qiymatida ham ajratish ildizlar orqali bajariladi, a ko‘paytuvchi sifatida oldinda qoladi. Kasr ildiz chiqsa, a ni qavsga kiritib, butun koeffitsientli ko‘paytuvchilarga keltirish qulay.",
+      "misol": "2x² − 3x − 2: ildizlar 2 va −1 / 2, shuning uchun 2(x − 2)(x + 1 / 2), ya’ni (x − 2)(2x + 1). Tekshirish: 2x² + x − 4x − 2 — 2x² − 3x − 2.",
+      "savol": "3x² − x − 2 uchhadning ildizlari?",
+      "javob": "1 va −2 / 3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘la kvadrat ajratish",
+      "matn": "x² + bx + c uchhadni (x + b / 2)² + (c − b² / 4) ko‘rinishga keltirish mumkin. Bu usul uchhadning eng kichik yoki eng katta qiymatini topishga yordam beradi, chunki kvadrat hech qachon manfiy bo‘lmaydi.",
+      "misol": "x² + 6x + 5 — (x + 3)² − 4. x² − 4x + 7 — (x − 2)² + 3, shuning uchun eng kichik qiymat 3 va u x — 2 da erishiladi.",
+      "savol": "x² − 8x + 3 ni to‘la kvadrat ko‘rinishga keltiring.",
+      "javob": "(x − 4)² − 13",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kasrlarni qisqartirish",
+      "matn": "Surat va maxrajdagi uchhadlarni ko‘paytuvchilarga ajratamiz va umumiy ko‘paytuvchini qisqartiramiz. Maxraj nolga aylanadigan x qiymatlari chiqarib tashlanadi.",
+      "misol": "(x² − 5x + 6) / (x² − 4) — (x − 2)(x − 3) / ((x − 2)(x + 2)) — (x − 3) / (x + 2), bunda x noldan farqli ravishda 2 va −2 dan boshqa.",
+      "savol": "(x² − 1) / (x² + 3x + 2) ni qisqartiring.",
+      "javob": "(x − 1) / (x + 2)",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Agar ax² + bx + c uchhadning ildizlari bo‘lsa, u a(x − birinchi ildiz)(x − ikkinchi ildiz) ko‘rinishda yoziladi. D manfiy bo‘lsa, haqiqiy sonlarda ajralmaydi. To‘la kvadrat: x² + bx + c ifoda (x + b / 2)² + (c − b² / 4).",
+    "misollar": [
+     {
+      "shart": "x² − 2x − 15 ni ko‘paytuvchilarga ajrating.",
+      "yechim": [
+       "D — 4 + 60 — 64, √D — 8.",
+       "Ildizlar (2 ± 8) / 2: 5 va −3.",
+       "Ajratma (x − 5)(x + 3). Tekshirish: x² + 3x − 5x − 15 — x² − 2x − 15."
+      ],
+      "javob": "(x − 5)(x + 3)"
+     },
+     {
+      "shart": "(x² − 9) / (x² + x − 6) kasrni qisqartiring.",
+      "yechim": [
+       "Suratni ajratamiz: (x − 3)(x + 3).",
+       "x² + x − 6 uchun D — 25, ildizlar 2 va −3, ajratma (x − 2)(x + 3).",
+       "(x + 3) ni qisqartirsak, (x − 3) / (x − 2) chiqadi, bunda x noldan farqli ravishda 2 va −3 dan boshqa."
+      ],
+      "javob": "(x − 3) / (x − 2)"
+     },
+     {
+      "shart": "x² − 6x + 11 uchhadning eng kichik qiymatini toping.",
+      "yechim": [
+       "x² − 6x + 9 + 2 — (x − 3)² + 2.",
+       "(x − 3)² nomanfiy, eng kichik qiymati 0, bu x — 3 da.",
+       "Tekshirish: x — 3 da 9 − 18 + 11 — 2."
+      ],
+      "javob": "2"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ajratish estafetasi",
+      "topshiriq": "Uchta uchhadni navbat bilan ajrating: x² − 3x + 2, x² + 5x + 6, x² − x − 6.",
+      "yechim": "(x − 1)(x − 2); (x + 2)(x + 3); (x − 3)(x + 2).",
+      "mahsulot": "yechim varag‘i"
+     },
+     {
+      "nom": "Orqaga tekshiruv",
+      "topshiriq": "Ajratmangizdagi qavslarni ochib, boshlang‘ich uchhad chiqishini tekshiring.",
+      "yechim": "(x − 1)(x − 2) — x² − 2x − x + 2 — x² − 3x + 2.",
+      "mahsulot": "tekshiruv jadvali"
+     },
+     {
+      "nom": "Kvadrat to‘ldirish",
+      "topshiriq": "x² + 10x + 21 ni to‘la kvadrat ko‘rinishga keltiring.",
+      "yechim": "(x + 5)² − 4. Tekshirish: 25 − 4 — 21.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Kasr qisqartirish",
+      "topshiriq": "(x² − 4) / (x² − 4x + 4) kasrni qisqartiring.",
+      "yechim": "(x − 2)(x + 2) / (x − 2)² — (x + 2) / (x − 2), bunda x noldan farqli ravishda 2 dan boshqa.",
+      "mahsulot": "qisqartirish varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "x² − 7x + 12 ni ko‘paytuvchilarga ajrating.",
+      "javob": "(x − 3)(x − 4)"
+     },
+     {
+      "shart": "x² + 2x − 8 ni ko‘paytuvchilarga ajrating.",
+      "javob": "(x + 4)(x − 2)"
+     },
+     {
+      "shart": "3x² − x − 2 ni ko‘paytuvchilarga ajrating.",
+      "javob": "(x − 1)(3x + 2)"
+     },
+     {
+      "shart": "x² + 2x + 3 haqiqiy sonlarda ajraladimi?",
+      "javob": "yo‘q, D manfiy"
+     },
+     {
+      "shart": "x² − 8x + 3 ni to‘la kvadrat ko‘rinishga keltiring.",
+      "javob": "(x − 4)² − 13"
+     },
+     {
+      "shart": "(x² − 1) / (x² + 3x + 2) ni qisqartiring.",
+      "javob": "(x − 1) / (x + 2)"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ajratmada a ko‘paytuvchisini yozmaydi",
+      "sabab": "birinchi koeffitsientni unutadi",
+      "oldini_olish": "ajratmani qavslarni ochib tekshirish"
+     },
+     {
+      "xato": "(x − ildiz) o‘rniga (x + ildiz) yozadi",
+      "sabab": "ishorani adashtiradi",
+      "oldini_olish": "ildizni qo‘yib, qavs nolga aylanishini tekshirish"
+     },
+     {
+      "xato": "Kasrda yig‘indidagi hadlarni qisqartiradi",
+      "sabab": "ko‘paytuvchi bilan haddan farqlamaydi",
+      "oldini_olish": "avval surat va maxrajni ko‘paytuvchilarga ajratish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geometriya",
+      "boglanish": "yuza ifodalarini ko‘paytuvchilarga ajratib, tomonlarni topish"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "kvadrat bog‘lanishlarda eng kichik va eng katta qiymat"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "foyda ifodasining eng katta qiymatini topish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Uchhad ustaxonasi»",
+     "muammo": "Kvadrat uchhadni qanday tez ajratamiz va tekshiramiz?",
+     "mahsulot": "ajratish usullari qo‘llanmasi",
+     "bosqichlar": [
+      "uchhadlarni tanlash",
+      "ildizlarni topish",
+      "ajratish",
+      "orqaga tekshirish",
+      "qo‘llanma tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Uchhad tanlang",
+      "Ajrating",
+      "Tekshiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "ajratma to‘g‘ri",
+      "tekshiruv bajarilgan",
+      "usullar solishtirilgan",
+      "xulosa asosli",
+      "qo‘llanma ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Uchhadlar zavodi»",
+     "bekatlar": [
+      {
+       "nom": "Ajratish sexi",
+       "matn": "x² + 7x + 10 uchhadni ajrating.",
+       "topshiriq": "Ajratma?",
+       "javob": "(x + 2)(x + 5)",
+       "rasm": ""
+      },
+      {
+       "nom": "Kvadrat sexi",
+       "matn": "x² + 4x + 4 uchhadni ajrating.",
+       "topshiriq": "Ajratma?",
+       "javob": "(x + 2)²",
+       "rasm": ""
+      },
+      {
+       "nom": "Qisqartirish sexi",
+       "matn": "(x² − 16) / (x − 4) kasrni qisqartiring.",
+       "topshiriq": "Natija?",
+       "javob": "x + 4",
+       "rasm": ""
+      },
+      {
+       "nom": "Eng kichik qiymat sexi",
+       "matn": "x² − 2x + 5 uchhadning eng kichik qiymati?",
+       "topshiriq": "Qiymat?",
+       "javob": "4",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi uchhadni ajratish qiyin bo‘ldi?",
+      "Tekshiruv xatoni topdimi?",
+      "To‘la kvadrat nima uchun kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kvadrat uchhad",
+      "tarif": "ax² + bx + c ko‘rinishdagi ko‘phad"
+     },
+     {
+      "atama": "Uchhad ildizi",
+      "tarif": "uchhadni nolga aylantiradigan x qiymati"
+     },
+     {
+      "atama": "Diskriminant",
+      "tarif": "b² − 4ac ifoda"
+     },
+     {
+      "atama": "Ko‘paytuvchilarga ajratish",
+      "tarif": "ifodani ko‘paytma ko‘rinishida yozish"
+     },
+     {
+      "atama": "To‘la kvadrat",
+      "tarif": "ikki had yig‘indisi yoki ayirmasining kvadrati"
+     },
+     {
+      "atama": "Qisqartirish",
+      "tarif": "umumiy ko‘paytuvchini kasrdan olib tashlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "x² − 5x + 6 — (x − 2)(x − 3)",
+      "togri": true,
+      "izoh": "ildizlar 2 va 3"
+     },
+     {
+      "matn": "x² + 4x + 4 — (x + 2)²",
+      "togri": true,
+      "izoh": "D nolga teng"
+     },
+     {
+      "matn": "x² + x + 1 haqiqiy sonlarda ajraladi",
+      "togri": false,
+      "izoh": "D — −3, manfiy"
+     },
+     {
+      "matn": "Uchhadni ajratishda a ko‘paytuvchi sifatida qoladi",
+      "togri": true,
+      "izoh": "a(x − birinchi ildiz)(x − ikkinchi ildiz)"
+     },
+     {
+      "matn": "(x − 3)² hech qachon manfiy bo‘lmaydi",
+      "togri": true,
+      "izoh": "kvadrat nomanfiy"
+     },
+     {
+      "matn": "(x² + 1) / (x + 1) kasrni x² ni qisqartirib soddalashtirish mumkin",
+      "togri": false,
+      "izoh": "yig‘indidagi hadni qisqartirib bo‘lmaydi"
+     },
+     {
+      "matn": "x² − 4x + 7 ning eng kichik qiymati 3",
+      "togri": true,
+      "izoh": "(x − 2)² + 3"
+     },
+     {
+      "matn": "Kasrni qisqartirganda maxraj nolga teng bo‘ladigan x qiymatlari chiqarib tashlanadi",
+      "togri": true,
+      "izoh": "nolga bo‘lish mumkin emas"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kvadrat uchhad nima?",
+      "javob": "ax² + bx + c ko‘rinishdagi ko‘phad"
+     },
+     {
+      "savol": "Uchhadni qanday ajratamiz?",
+      "javob": "ildizlari orqali a(x − birinchi ildiz)(x − ikkinchi ildiz)"
+     },
+     {
+      "savol": "x² − 9 ni ajrating.",
+      "javob": "(x − 3)(x + 3)"
+     },
+     {
+      "savol": "x² − 3x + 2 ni ajrating.",
+      "javob": "(x − 1)(x − 2)"
+     },
+     {
+      "savol": "D manfiy bo‘lsa uchhad ajraladimi?",
+      "javob": "haqiqiy sonlarda yo‘q"
+     },
+     {
+      "savol": "x² + 6x + 9 nimaning kvadrati?",
+      "javob": "(x + 3)²"
+     },
+     {
+      "savol": "To‘la kvadrat nima uchun kerak?",
+      "javob": "eng kichik yoki eng katta qiymatni topish uchun"
+     },
+     {
+      "savol": "x² − 2x + 1 ning eng kichik qiymati?",
+      "javob": "0"
+     },
+     {
+      "savol": "(x² − 4) / (x − 2) ni qisqartiring.",
+      "javob": "x + 2"
+     },
+     {
+      "savol": "Kasrni qisqartirishdan oldin nima qilamiz?",
+      "javob": "surat va maxrajni ajratamiz"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "ax² + bx + c ko‘rinishi.",
+      "savol": "x² − 5x + 6 ning ildizlari?"
+     },
+     {
+      "nom": "Ajratish",
+      "matn": "a(x − birinchi ildiz)(x − ikkinchi ildiz).",
+      "savol": "x² − 4 ni ajrating."
+     },
+     {
+      "nom": "To‘la kvadrat",
+      "matn": "(x + b / 2)² + (c − b² / 4).",
+      "savol": "x² + 2x + 3 ni to‘la kvadratga keltiring."
+     },
+     {
+      "nom": "Kasr",
+      "matn": "Ajrating va qisqartiring.",
+      "savol": "(x² − 9) / (x + 3) ni qisqartiring."
+     }
+    ],
+    "muammoli_savol": "Nima uchun x² + 1 uchhad haqiqiy sonlarda ko‘paytuvchilarga ajralmaydi? Diskriminant va to‘la kvadrat orqali tushuntiring.",
+    "keys": {
+     "vaziyat": "Quruvchi yuzi x² + 7x + 10 kv. m bo‘lgan to‘g‘ri to‘rtburchak maydonning tomonlarini ifodalamoqchi.",
+     "savollar": [
+      "Uchhadni qanday ajratamiz?",
+      "Tomonlar qaysi ifodalar?"
+     ]
+    },
+    "tezis": "Uchhad — ikki qavsning yashirin ko‘paytmasi",
+    "taqqoslash": {
+     "a": "Ko‘paytuvchilarga ajratish",
+     "b": "To‘la kvadrat ajratish",
+     "umumiy": [
+      "uchhadni boshqa ko‘rinishga keltiradi",
+      "qavslarni ochib tekshiriladi"
+     ],
+     "a_farq": [
+      "ildizlar kerak",
+      "kasrni qisqartirishga yordam beradi"
+     ],
+     "b_farq": [
+      "ildizlar kerak emas",
+      "eng kichik qiymatni beradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kvadrat uchhad",
+     "shoxlar": [
+      {
+       "nom": "Ildizlar",
+       "bandlar": [
+        "diskriminant",
+        "formula"
+       ]
+      },
+      {
+       "nom": "Ajratish",
+       "bandlar": [
+        "a(x − birinchi ildiz)(x − ikkinchi ildiz)",
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "To‘la kvadrat",
+       "bandlar": [
+        "(x + b / 2)²",
+        "eng kichik qiymat"
+       ]
+      },
+      {
+       "nom": "Kasrlar",
+       "bandlar": [
+        "ajratish",
+        "qisqartirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Uch hadli, ikki qavsga ajrayman. Ildizlarim meni oshkor qiladi. Men kimman?",
+     "javob": "kvadrat uchhad"
+    },
+    "hikmat": "Murakkabni ajrat, sodda bo‘ladi.",
+    "kalit_soz": "UCHHAD",
+    "xato_yechim": {
+     "shart": "x² − 5x + 6 ni ko‘paytuvchilarga ajrating.",
+     "xato": "(x + 2)(x + 3)",
+     "togri": "(x − 2)(x − 3)",
+     "sabab": "ajratmada ildiz ayriladi: (x − ildiz); (x + 2)(x + 3) qavslarini ochsak, x² + 5x + 6 chiqadi"
+    },
+    "guruh_nomlari": [
+     "Uchhadchilar",
+     "Ajratuvchilar",
+     "Kvadratchilar",
+     "Qisqartiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tomonlar ifodasi»",
+     "topshiriq": "Guruh yuzi uchhad bilan berilgan maydon tomonlarini ajratish orqali ifodalaydi va chizmada ko‘rsatadi."
+    },
+    "vazifalar": {
+     "A": "Ajrating: x² − 6x + 8, x² + 3x − 10.",
+     "B": "Qisqartiring: (x² − 25) / (x² − 3x − 10).",
+     "C": "x² − 10x + 30 ning eng kichik qiymatini va u qaysi x da erishilishini toping."
+    },
+    "sinkveyn": [
+     "Uchhad",
+     "kvadrat, uch hadli",
+     "ajraladi, soddalashadi, qisqaradi",
+     "Ikki qavsning ko‘paytmasi",
+     "Ajratma"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh uchhadlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: x² − 4x + 3 ni ajrating",
+      "2-guruh: x² + 6x + 9 ni ajrating",
+      "3-guruh: (x² − 4) / (x − 2) ni qisqartiring",
+      "4-guruh: x² − 4x + 7 ning eng kichik qiymatini toping"
+     ],
+     "yakun": "Natijalar: (x − 1)(x − 3); (x + 3)²; x + 2; 3."
+    }
+   }
+  },
+  {
+   "mavzu": "Kvadrat funksiya (parabola)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kvadrat funksiya",
+      "matn": "y ifoda ax² + bx + c ko‘rinishdagi funksiya kvadrat funksiya deyiladi, bunda a noldan farqli. Uning grafigi parabola deb ataladi. Eng sodda hol — y ifoda x².",
+      "misol": "y ifoda x² uchun nuqtalar: (−2; 4), (−1; 1), (0; 0), (1; 1), (2; 4). Grafik Oy o‘qiga nisbatan simmetrik.",
+      "savol": "y ifoda x² funksiyaning x ifoda 3 dagi qiymati?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Shoxlar yo‘nalishi",
+      "matn": "a musbat bo‘lsa, parabola shoxlari yuqoriga qaragan, uchi eng past nuqta. a manfiy bo‘lsa, shoxlar pastga qaragan, uchi eng yuqori nuqta. a ning moduli katta bo‘lsa, parabola tor, kichik bo‘lsa, keng bo‘ladi.",
+      "misol": "y ifoda 2x² — shoxlari yuqoriga, tor. y ifoda −x² — pastga. y ifoda 0,5x² — yuqoriga, keng.",
+      "savol": "y ifoda −3x² + 1 ning shoxlari qayoqqa qaragan?",
+      "javob": "pastga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchi va simmetriya o‘qi",
+      "matn": "Parabola uchining abssissasi x0 — −b / (2a). Ordinatasi y0 — funksiyaning x0 dagi qiymati. Simmetriya o‘qi — x ifoda x0 vertikal chiziq: parabola unga nisbatan simmetrik.",
+      "misol": "y ifoda x² − 4x + 3: x0 — 4 / 2, ya’ni 2. y0 — 4 − 8 + 3 — −1. Uchi (2; −1), simmetriya o‘qi x ifoda 2.",
+      "savol": "y ifoda x² − 6x + 5 uchining abssissasi?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nollar va Oy bilan kesishish",
+      "matn": "Funksiya nollari — ax² + bx + c ifoda 0 tenglamaning ildizlari, ya’ni Ox o‘qi bilan kesishish nuqtalari. Oy o‘qi bilan kesishish nuqtasi: x ifoda 0 da y ifoda c, ya’ni (0; c).",
+      "misol": "y ifoda x² − 4x + 3: D — 16 − 12 — 4, nollar (4 ± 2) / 2: 1 va 3. Oy bilan (0; 3) nuqtada kesishadi.",
+      "savol": "y ifoda x² − 5x + 4 grafigi Oy bilan qayerda kesishadi?",
+      "javob": "(0; 4)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Grafik chizish rejasi",
+      "matn": "Reja: 1) a ishorasi bo‘yicha shoxlar yo‘nalishini aniqlaymiz; 2) uchini topamiz; 3) nollarni va (0; c) nuqtani topamiz; 4) jadval tuzib, simmetrik nuqtalarni belgilaymiz; 5) nuqtalarni silliq egri chiziq bilan tutashtiramiz.",
+      "misol": "y ifoda x² − 4x + 3 jadvali: x — 0, 1, 2, 3, 4 bo‘lganda y — 3, 0, −1, 0, 3. (0; 3) va (4; 3) simmetrik nuqtalar.",
+      "savol": "y ifoda x² − 4x + 3 da x ifoda 4 bo‘lganda y nechaga teng?",
+      "javob": "3",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "y ifoda ax² + bx + c grafigi — parabola. a musbat — shoxlari yuqoriga, a manfiy — pastga. Uchi: x0 — −b / (2a), y0 — funksiyaning x0 dagi qiymati. Nollar — ildizlar, Oy bilan kesishish — (0; c).",
+    "misollar": [
+     {
+      "shart": "y ifoda x² − 6x + 8 parabolasining uchi va nollarini toping.",
+      "yechim": [
+       "x0 — 6 / 2, ya’ni 3. y0 — 9 − 18 + 8 — −1. Uchi (3; −1).",
+       "D — 36 − 32 — 4, nollar (6 ± 2) / 2: 4 va 2.",
+       "a musbat, shoxlari yuqoriga, Oy bilan (0; 8)."
+      ],
+      "javob": "uchi (3; −1), nollar 2 va 4"
+     },
+     {
+      "shart": "y ifoda −x² + 2x + 3 funksiyasini tahlil qiling.",
+      "yechim": [
+       "a — −1, shoxlari pastga. x0 — −2 / (−2), ya’ni 1; y0 — −1 + 2 + 3 — 4, uchi (1; 4).",
+       "Nollar: x² − 2x − 3 ifoda 0, ildizlar 3 va −1. Oy bilan (0; 3).",
+       "Eng katta qiymat 4, u x ifoda 1 da."
+      ],
+      "javob": "uchi (1; 4), nollar −1 va 3, eng katta qiymat 4"
+     },
+     {
+      "shart": "Koptok balandligi h ifoda −t² + 4t (metrda), t sekundda. Eng katta balandlik qachon va qancha?",
+      "yechim": [
+       "a manfiy, uch eng yuqori nuqta. t0 — −4 / (−2), ya’ni 2.",
+       "h — −4 + 8 — 4.",
+       "Yerga qaytish: −t² + 4t ifoda 0, t(4 − t) ifoda 0, t — 4."
+      ],
+      "javob": "2 sekundda, 4 metr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Jadval tuzamiz",
+      "topshiriq": "y ifoda x² − 2x − 3 uchun x ifoda −1, 0, 1, 2, 3 da qiymatlar jadvalini tuzing va uchini toping.",
+      "yechim": "y: 0, −3, −4, −3, 0. Uchi (1; −4).",
+      "mahsulot": "jadval va chizma"
+     },
+     {
+      "nom": "Shoxlar bahsi",
+      "topshiriq": "y ifoda 2x² − 1, y ifoda −x² + 3, y ifoda 0,5x², y ifoda −4x² shoxlari yo‘nalishini aniqlang.",
+      "yechim": "Yuqoriga; pastga; yuqoriga; pastga.",
+      "mahsulot": "tasnif jadvali"
+     },
+     {
+      "nom": "Fontan",
+      "topshiriq": "Fontan oqimi y ifoda −x² + 4x. Oqim qancha masofaga borib tushadi va qanchaga ko‘tariladi?",
+      "yechim": "Nollar 0 va 4: 4 m masofaga. Uchi (2; 4): 4 m balandlikka.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Ko‘prik arkasi",
+      "topshiriq": "y ifoda 4 − x² arka. Uning eng baland nuqtasi va ko‘prik kengligini toping.",
+      "yechim": "Uchi (0; 4), nollar −2 va 2: kenglik 4.",
+      "mahsulot": "chizma"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "y ifoda x² − 6x + 8 parabolasining uchini toping.",
+      "javob": "(3; −1)"
+     },
+     {
+      "shart": "y ifoda x² + 2x − 3 parabolasining uchini toping.",
+      "javob": "(−1; −4)"
+     },
+     {
+      "shart": "y ifoda x² + 2x − 3 funksiyasining nollarini toping.",
+      "javob": "1 va −3"
+     },
+     {
+      "shart": "y ifoda −2x² + 5 ning shoxlari qayoqqa qaragan?",
+      "javob": "pastga"
+     },
+     {
+      "shart": "y ifoda x² − 10x parabolasining simmetriya o‘qini toping.",
+      "javob": "x ifoda 5"
+     },
+     {
+      "shart": "y ifoda x² − 4x + 7 ning eng kichik qiymatini toping.",
+      "javob": "3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Uchning abssissasini −b / a deb oladi",
+      "sabab": "formuladagi 2 ni unutadi",
+      "oldini_olish": "x0 — −b / (2a) ni yozib qo‘yish"
+     },
+     {
+      "xato": "Nollarni Oy bilan kesishish nuqtasi deb oladi",
+      "sabab": "o‘qlarni adashtiradi",
+      "oldini_olish": "nollar Ox da, c esa Oy da ekanini eslash"
+     },
+     {
+      "xato": "a manfiy bo‘lsa ham uchni eng past nuqta deb oladi",
+      "sabab": "shoxlar yo‘nalishini tekshirmaydi",
+      "oldini_olish": "avval a ning ishorasini aniqlash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "otilgan jism trayektoriyasi parabola bo‘ladi"
+     },
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "ko‘prik va arkalar parabolik shaklda"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "faralar va antennalarning parabolik oynasi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Atrofimizdagi parabola»",
+     "muammo": "Hayotda parabolani qayerda uchratamiz va uni qanday chizamiz?",
+     "mahsulot": "parabolalar albomi",
+     "bosqichlar": [
+      "misollar izlash",
+      "funksiya tanlash",
+      "jadval tuzish",
+      "grafik chizish",
+      "albom yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Misollar toping",
+      "Jadval tuzing",
+      "Grafik chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "grafik aniq",
+      "uchi to‘g‘ri topilgan",
+      "nollar tekshirilgan",
+      "xulosa asosli",
+      "albom ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Parabola bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Fontan",
+       "matn": "Oqim balandligi y ifoda −x² + 4x.",
+       "topshiriq": "Eng katta balandlik?",
+       "javob": "4 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Suv tushadigan joy",
+       "matn": "Oqim y ifoda −x² + 4x, yerga tushadi.",
+       "topshiriq": "Qancha masofada tushadi?",
+       "javob": "4 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Koptok maydoni",
+       "matn": "Balandlik h ifoda −t² + 6t.",
+       "topshiriq": "Eng katta balandlik?",
+       "javob": "3 sekundda 9 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘prik arkasi",
+       "matn": "Arka y ifoda 4 − x² shaklida.",
+       "topshiriq": "Eng baland nuqta?",
+       "javob": "4",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda parabolani ko‘rdingiz?",
+      "Uchini topish oson bo‘ldimi?",
+      "Qaysi grafik yoqdi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kvadrat funksiya",
+      "tarif": "y ifoda ax² + bx + c ko‘rinishdagi funksiya"
+     },
+     {
+      "atama": "Parabola",
+      "tarif": "kvadrat funksiya grafigi"
+     },
+     {
+      "atama": "Parabola uchi",
+      "tarif": "grafikning eng past yoki eng yuqori nuqtasi"
+     },
+     {
+      "atama": "Simmetriya o‘qi",
+      "tarif": "uchdan o‘tuvchi vertikal chiziq"
+     },
+     {
+      "atama": "Funksiya nollari",
+      "tarif": "y nolga teng bo‘ladigan x qiymatlari"
+     },
+     {
+      "atama": "Shoxlar",
+      "tarif": "parabolaning uchdan chiquvchi ikki tarmog‘i"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "y ifoda x² funksiyaning grafigi parabola",
+      "togri": true,
+      "izoh": "kvadrat funksiya grafigi parabola"
+     },
+     {
+      "matn": "a manfiy bo‘lsa, shoxlar yuqoriga qaraydi",
+      "togri": false,
+      "izoh": "a manfiy bo‘lsa, pastga"
+     },
+     {
+      "matn": "Uchning abssissasi −b / (2a)",
+      "togri": true,
+      "izoh": "uch formulasi"
+     },
+     {
+      "matn": "Parabola simmetriya o‘qiga nisbatan simmetrik",
+      "togri": true,
+      "izoh": "o‘q uchdan o‘tadi"
+     },
+     {
+      "matn": "y ifoda x² − 4x + 3 ning nollari 1 va 3",
+      "togri": true,
+      "izoh": "1 − 4 + 3 — 0 va 9 − 12 + 3 — 0"
+     },
+     {
+      "matn": "y ifoda x² + 1 ning nollari bor",
+      "togri": false,
+      "izoh": "D manfiy, grafik Ox ni kesmaydi"
+     },
+     {
+      "matn": "Oy bilan kesishish nuqtasi (0; c)",
+      "togri": true,
+      "izoh": "x ifoda 0 da y ifoda c"
+     },
+     {
+      "matn": "a musbat bo‘lsa, funksiya eng katta qiymatga ega",
+      "togri": false,
+      "izoh": "a musbat bo‘lsa eng kichik qiymatga ega"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kvadrat funksiya qanday yoziladi?",
+      "javob": "y ifoda ax² + bx + c"
+     },
+     {
+      "savol": "Uning grafigi nima?",
+      "javob": "parabola"
+     },
+     {
+      "savol": "a musbat bo‘lsa shoxlar qayoqqa?",
+      "javob": "yuqoriga"
+     },
+     {
+      "savol": "Uchning abssissasi formulasi?",
+      "javob": "−b / (2a)"
+     },
+     {
+      "savol": "y ifoda x² − 2x uchining abssissasi?",
+      "javob": "1"
+     },
+     {
+      "savol": "Oy bilan kesishish nuqtasi?",
+      "javob": "(0; c)"
+     },
+     {
+      "savol": "Funksiya nollari nima?",
+      "javob": "ax² + bx + c ifoda 0 ning ildizlari"
+     },
+     {
+      "savol": "y ifoda x² − 4 nollari?",
+      "javob": "2 va −2"
+     },
+     {
+      "savol": "Simmetriya o‘qi nima?",
+      "javob": "uchdan o‘tuvchi vertikal chiziq"
+     },
+     {
+      "savol": "y ifoda −x² ning eng katta qiymati?",
+      "javob": "0"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "y ifoda ax² + bx + c, grafigi parabola.",
+      "savol": "a ning ishorasi nimani belgilaydi?"
+     },
+     {
+      "nom": "Uch",
+      "matn": "x0 — −b / (2a).",
+      "savol": "y ifoda x² − 8x uchining abssissasi?"
+     },
+     {
+      "nom": "Nollar",
+      "matn": "Ildizlar — Ox bilan kesishish.",
+      "savol": "y ifoda x² − 1 nollari?"
+     },
+     {
+      "nom": "Grafik",
+      "matn": "Jadval va simmetriya.",
+      "savol": "(0; 3) nuqtaga y ifoda x² − 4x + 3 da simmetrik nuqta?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun y ifoda x² + 1 parabolasi Ox o‘qini kesmaydi? Diskriminant, uchi va shoxlar yo‘nalishi orqali tushuntiring.",
+    "keys": {
+     "vaziyat": "Futbolchi to‘pni tepdi, to‘pning balandligi h ifoda −t² + 4t metr (t sekundda). Murabbiy to‘p qachon eng baland nuqtaga chiqishini bilmoqchi.",
+     "savollar": [
+      "Eng baland nuqtaga qachon chiqadi?",
+      "Yerga qachon tushadi?"
+     ]
+    },
+    "tezis": "Parabola — harakat va shaklning grafigi",
+    "taqqoslash": {
+     "a": "a musbat parabola",
+     "b": "a manfiy parabola",
+     "umumiy": [
+      "uchi bor",
+      "simmetriya o‘qi bor"
+     ],
+     "a_farq": [
+      "shoxlari yuqoriga",
+      "uchi eng past nuqta"
+     ],
+     "b_farq": [
+      "shoxlari pastga",
+      "uchi eng yuqori nuqta"
+     ]
+    },
+    "klaster": {
+     "markaz": "Parabola",
+     "shoxlar": [
+      {
+       "nom": "Shoxlar",
+       "bandlar": [
+        "a musbat",
+        "a manfiy",
+        "tor va keng"
+       ]
+      },
+      {
+       "nom": "Uch",
+       "bandlar": [
+        "−b / (2a)",
+        "ordinata",
+        "simmetriya o‘qi"
+       ]
+      },
+      {
+       "nom": "Kesishish",
+       "bandlar": [
+        "nollar",
+        "Oy bilan (0; c)"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "fontan",
+        "ko‘prik",
+        "koptok"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Uchim bor, shoxlarim ikkita, simmetriya o‘qim o‘rtada. Men qaysi egri chiziqman?",
+     "javob": "parabola"
+    },
+    "hikmat": "Eng baland cho‘qqining ham o‘z uchi bor.",
+    "kalit_soz": "PARABOLA",
+    "xato_yechim": {
+     "shart": "y ifoda x² − 4x + 3 parabolasi uchining abssissasini toping.",
+     "xato": "4",
+     "togri": "2",
+     "sabab": "x0 — −b / (2a): b — −4, a — 1, shuning uchun 4 / 2, ya’ni 2; ikkiga bo‘lishni unutish xatoga olib keladi"
+    },
+    "guruh_nomlari": [
+     "Parabolachilar",
+     "Uchchilar",
+     "Grafikchilar",
+     "Simmetriyachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Fontan o‘lchovi»",
+     "topshiriq": "Guruh suv oqimi yoki otilgan to‘pning yo‘lini kuzatib, uni parabola sifatida chizadi va uchini belgilaydi."
+    },
+    "vazifalar": {
+     "A": "y ifoda x² − 2x − 8 ning uchi va nollarini toping.",
+     "B": "y ifoda −x² + 6x − 5 grafigi uchun uchi, nollari va Oy bilan kesishishni toping.",
+     "C": "Balandlik h ifoda −t² + 6t. Eng katta balandlikni va yerga tushish vaqtini toping."
+    },
+    "sinkveyn": [
+     "Parabola",
+     "egri, simmetrik",
+     "ko‘tariladi, tushadi, kesishadi",
+     "Kvadrat funksiya grafigi",
+     "Uch"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh parabolalar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: y ifoda x² − 2x uchi",
+      "2-guruh: y ifoda x² − 9 nollari",
+      "3-guruh: y ifoda −x² + 4 eng katta qiymati",
+      "4-guruh: y ifoda x² + 4x + 3 Oy bilan kesishishi"
+     ],
+     "yakun": "Natijalar: (1; −1); 3 va −3; 4; (0; 3)."
+    }
+   }
   }
  ]
 }
