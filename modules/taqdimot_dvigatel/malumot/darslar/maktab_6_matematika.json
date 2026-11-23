@@ -6990,6 +6990,1403 @@
      "yakun": "Natijalar: 1/2; 1/6; 1/5; 0."
     }
    }
+  },
+  {
+   "mavzu": "Statistika: moda, mediana",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ma’lumotlar qatori",
+      "matn": "Statistika ma’lumotlarni yig‘ish, tartiblash va tahlil qilish bilan shug‘ullanadi. Kuzatuv natijalari yozilgan sonlar ma’lumotlar qatori deyiladi. Qatorni xarakterlash uchun o‘rtacha arifmetik, moda, mediana va qator kengligi topiladi.",
+      "misol": "Besh o‘quvchining bo‘yi: 140, 145, 145, 150, 152 sm. Bu ma’lumotlar qatori.",
+      "savol": "Ma’lumotlar qatori nima?",
+      "javob": "kuzatuv natijalari yozilgan sonlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Moda",
+      "matn": "Ma’lumotlar qatorida eng ko‘p uchraydigan son moda deyiladi. Qatorda modasi bo‘lmasligi yoki bir nechta moda bo‘lishi mumkin.",
+      "misol": "3, 5, 5, 7, 5, 9 qatorida 5 soni uch marta uchraydi, shuning uchun moda 5.",
+      "savol": "2, 4, 4, 6, 4, 8 qatorining modasi?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mediana",
+      "matn": "Qator sonlarini o‘sish tartibida yozib, o‘rtadagi sonni olsak, mediana chiqadi. Agar sonlar soni juft bo‘lsa, o‘rtadagi ikki sonning yig‘indisini ikkiga bo‘lamiz.",
+      "misol": "2, 4, 7, 9, 12 qatorida o‘rtadagi son 7, demak mediana 7. 3, 5, 7, 9 qatorida o‘rtadagi sonlar 5 va 7, ularning yarim yig‘indisi 6.",
+      "savol": "1, 3, 5, 7, 9 qatorining medianasi?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘rtacha arifmetik va qator kengligi",
+      "matn": "O‘rtacha arifmetik — barcha sonlar yig‘indisini ularning soniga bo‘lish. Qator kengligi — eng katta va eng kichik son ayirmasi. Bular ma’lumotlarning tarqoqligini ko‘rsatadi.",
+      "misol": "2, 4, 4, 5, 7, 4, 9 qatorida yig‘indi 35, sonlar 7 ta, o‘rtacha 5. Eng katta 9, eng kichik 2, kenglik 7.",
+      "savol": "4, 8, 6, 2 qatorining o‘rtacha arifmetigi?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qaysi ko‘rsatkich qachon kerak?",
+      "matn": "Moda eng ko‘p tanlanganini ko‘rsatadi, masalan, eng ko‘p sotiladigan poyabzal o‘lchami. Mediana o‘rtadagi qiymatni beradi va juda katta yoki kichik sonlardan kam ta’sirlanadi. O‘rtacha arifmetik umumiy darajani bildiradi.",
+      "misol": "Do‘kon eng ko‘p sotilgan o‘lchamni bilmoqchi bo‘lsa, modani topadi.",
+      "savol": "Eng ko‘p uchraydigan qiymatni qaysi ko‘rsatkich beradi?",
+      "javob": "moda",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Moda — eng ko‘p uchraydigan son. Mediana — tartiblangan qatorning o‘rtasidagi son. O‘rtacha arifmetik — yig‘indining sonlar soniga bo‘linmasi. Qator kengligi — eng katta va eng kichik son ayirmasi.",
+    "misollar": [
+     {
+      "shart": "2, 4, 4, 5, 7, 4, 9 qatorida modani, medianani va qator kengligini toping.",
+      "yechim": [
+       "Moda: 4 soni uch marta uchraydi.",
+       "Tartiblaymiz: 2, 4, 4, 4, 5, 7, 9; o‘rtadagi 4-son — 4, demak mediana 4.",
+       "Kenglik: 9 dan 2 ni ayirsak, 7."
+      ],
+      "javob": "moda 4, mediana 4, kenglik 7"
+     },
+     {
+      "shart": "9, 3, 7, 5 qatorining medianasini toping.",
+      "yechim": [
+       "Tartiblaymiz: 3, 5, 7, 9.",
+       "Sonlar soni juft, o‘rtadagi sonlar 5 va 7.",
+       "Ularning yig‘indisi 12, ikkiga bo‘lsak 6."
+      ],
+      "javob": "6"
+     },
+     {
+      "shart": "Bo‘ylar: 140, 145, 145, 150, 152, 145, 158 sm. Modani va kenglikni toping.",
+      "yechim": [
+       "145 soni uch marta uchraydi — moda 145.",
+       "Eng katta 158, eng kichik 140.",
+       "Kenglik 18."
+      ],
+      "javob": "moda 145 sm, kenglik 18 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Harorat qatori",
+      "topshiriq": "Haftalik harorat: 18, 20, 22, 20, 25, 20, 23. Modani, medianani va kenglikni toping.",
+      "yechim": "Moda 20. Tartiblasak: 18, 20, 20, 20, 22, 23, 25, mediana 20. Kenglik: 25 dan 18 ni ayirsak, 7.",
+      "mahsulot": "harorat jadvali"
+     },
+     {
+      "nom": "Narxlar",
+      "topshiriq": "Daftar narxlari (ming so‘m): 12, 15, 15, 18, 20. Moda, mediana va o‘rtachani toping.",
+      "yechim": "Moda 15, mediana 15. Yig‘indi 80, 5 ga bo‘lsak, o‘rtacha 16.",
+      "mahsulot": "narxlar jadvali"
+     },
+     {
+      "nom": "Sinf so‘rovi",
+      "topshiriq": "Sinfdagi o‘quvchilardan poyabzal o‘lchamini so‘rab, modani toping.",
+      "yechim": "Eng ko‘p uchragan o‘lcham moda bo‘ladi.",
+      "mahsulot": "so‘rovnoma jadvali"
+     },
+     {
+      "nom": "Baholar",
+      "topshiriq": "Baholar: 5, 4, 5, 3, 5, 4, 4, 5, 2. Moda va medianani toping.",
+      "yechim": "Tartib: 2, 3, 4, 4, 4, 5, 5, 5, 5. Moda 5 (to‘rt marta), o‘rtadagi 5-son 4, mediana 4.",
+      "mahsulot": "baholar jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3, 5, 5, 7, 5, 9 qatorining modasi?",
+      "javob": "5"
+     },
+     {
+      "shart": "2, 4, 7, 9, 12 qatorining medianasi?",
+      "javob": "7"
+     },
+     {
+      "shart": "3, 5, 7, 9 qatorining medianasi?",
+      "javob": "6"
+     },
+     {
+      "shart": "2, 7, 12 qatorining kengligi?",
+      "javob": "10"
+     },
+     {
+      "shart": "4, 8, 6, 2 qatorining o‘rtacha arifmetigi?",
+      "javob": "5"
+     },
+     {
+      "shart": "1, 2, 2, 3, 3, 3, 4 qatorining modasi?",
+      "javob": "3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Medianani topishda sonlarni tartiblamaydi",
+      "sabab": "o‘rtadagi sonni qator tartibida oladi",
+      "oldini_olish": "avval sonlarni o‘sish tartibida yozish"
+     },
+     {
+      "xato": "Modani eng katta son deb oladi",
+      "sabab": "moda ma’nosini bilmaydi",
+      "oldini_olish": "qaysi son ko‘p uchrashini sanash"
+     },
+     {
+      "xato": "Juft sonli qatorda o‘rtadagi bitta sonni oladi",
+      "sabab": "ikkita o‘rta son borligini unutadi",
+      "oldini_olish": "juft holda ikki o‘rta sonning yarim yig‘indisini olish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "tajriba natijalarini tahlil qilish"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "o‘rtacha harorat va yog‘in miqdori"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "narx va daromadlar statistikasi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinf statistikasi»",
+     "muammo": "Sinfdagi o‘quvchilar haqida ma’lumotlarni qanday tahlil qilamiz?",
+     "mahsulot": "sinf statistikasi jadvali va diagramma",
+     "bosqichlar": [
+      "savol tanlash",
+      "so‘rov o‘tkazish",
+      "ma’lumotlarni tartiblash",
+      "moda va medianani topish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Savolni tanlang",
+      "So‘rov o‘tkazing",
+      "Ko‘rsatkichlarni toping",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "ma’lumotlar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "jadval tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Statistika byurosi»",
+     "bekatlar": [
+      {
+       "nom": "Maktab",
+       "matn": "O‘quvchilar bo‘yi: 140, 145, 145, 150, 152.",
+       "topshiriq": "Mediana nechaga teng?",
+       "javob": "145",
+       "rasm": ""
+      },
+      {
+       "nom": "Meteostansiya",
+       "matn": "Harorat: 18, 20, 22, 20, 25, 20, 23.",
+       "topshiriq": "Moda nechaga teng?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "Do‘kon",
+       "matn": "Narxlar: 12, 15, 15, 18, 20 ming so‘m.",
+       "topshiriq": "O‘rtacha narx qancha?",
+       "javob": "16 ming so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Stadion",
+       "matn": "Gollar: 1, 2, 2, 3, 3, 3, 4.",
+       "topshiriq": "Moda nechaga teng?",
+       "javob": "3",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Statistika qayerda uchraydi?",
+      "Eng ko‘p uchraydigan qiymatni qanday topamiz?",
+      "O‘rtacha nima uchun kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Moda",
+      "tarif": "qatorda eng ko‘p uchraydigan son"
+     },
+     {
+      "atama": "Mediana",
+      "tarif": "tartiblangan qatorning o‘rtasidagi son"
+     },
+     {
+      "atama": "O‘rtacha arifmetik",
+      "tarif": "yig‘indining sonlar soniga bo‘linmasi"
+     },
+     {
+      "atama": "Qator kengligi",
+      "tarif": "eng katta va eng kichik son ayirmasi"
+     },
+     {
+      "atama": "Ma’lumotlar qatori",
+      "tarif": "kuzatuv natijalari yozilgan sonlar"
+     },
+     {
+      "atama": "Statistika",
+      "tarif": "ma’lumotlarni yig‘ish va tahlil qilish fani"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Moda — eng ko‘p uchraydigan son",
+      "togri": true,
+      "izoh": "moda ta’rifi"
+     },
+     {
+      "matn": "Medianani topishdan oldin sonlar tartiblanadi",
+      "togri": true,
+      "izoh": "o‘sish tartibida yoziladi"
+     },
+     {
+      "matn": "Qator kengligi eng katta va eng kichik sonlar yig‘indisi",
+      "togri": false,
+      "izoh": "kenglik ularning ayirmasi"
+     },
+     {
+      "matn": "Qatorning bir nechta modasi bo‘lishi mumkin",
+      "togri": true,
+      "izoh": "ikki son bir xil ko‘p uchrashi mumkin"
+     },
+     {
+      "matn": "Juft sonli qatorda mediana bitta o‘rtadagi son",
+      "togri": false,
+      "izoh": "ikki o‘rta sonning yarim yig‘indisi"
+     },
+     {
+      "matn": "Moda har doim eng katta son",
+      "togri": false,
+      "izoh": "moda — eng ko‘p uchraydigan son"
+     },
+     {
+      "matn": "O‘rtacha arifmetik yig‘indini sonlar soniga bo‘lib topiladi",
+      "togri": true,
+      "izoh": "o‘rtacha arifmetik ta’rifi"
+     },
+     {
+      "matn": "Mediana qatorning eng kichik soni",
+      "togri": false,
+      "izoh": "u qatorning o‘rtasidagi son"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Moda nima?",
+      "javob": "eng ko‘p uchraydigan son"
+     },
+     {
+      "savol": "Mediana nima?",
+      "javob": "tartiblangan qatorning o‘rtasidagi son"
+     },
+     {
+      "savol": "1, 2, 3, 4, 5 ning medianasi?",
+      "javob": "3"
+     },
+     {
+      "savol": "2, 2, 3, 5 ning modasi?",
+      "javob": "2"
+     },
+     {
+      "savol": "O‘rtacha arifmetik qanday topiladi?",
+      "javob": "yig‘indini sonlar soniga bo‘lib"
+     },
+     {
+      "savol": "Qator kengligi nima?",
+      "javob": "eng katta va eng kichik son ayirmasi"
+     },
+     {
+      "savol": "3, 9 qatorining kengligi?",
+      "javob": "6"
+     },
+     {
+      "savol": "Medianani topishdan oldin nima qilamiz?",
+      "javob": "sonlarni tartiblaymiz"
+     },
+     {
+      "savol": "2, 6 ning o‘rtacha arifmetigi?",
+      "javob": "4"
+     },
+     {
+      "savol": "Statistika nima bilan shug‘ullanadi?",
+      "javob": "ma’lumotlarni tahlil qilish bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qator",
+      "matn": "Kuzatuv natijalari sonlar qatorini hosil qiladi.",
+      "savol": "Qatorga misol keltiring."
+     },
+     {
+      "nom": "Moda",
+      "matn": "Eng ko‘p uchraydigan son.",
+      "savol": "1, 1, 2, 3 ning modasi?"
+     },
+     {
+      "nom": "Mediana",
+      "matn": "Tartiblangan qatorning o‘rtasi.",
+      "savol": "1, 2, 9 ning medianasi?"
+     },
+     {
+      "nom": "Kenglik",
+      "matn": "Eng katta va eng kichik son ayirmasi.",
+      "savol": "2 va 10 uchun kenglik?"
+     }
+    ],
+    "muammoli_savol": "Besh kishining oylik maoshi (ming so‘mda): 400, 400, 500, 500 va 5000. O‘rtacha arifmetik va mediana qanday farq qiladi? Qaysi biri maoshni to‘g‘riroq ko‘rsatadi?",
+    "keys": {
+     "vaziyat": "Dehqon besh kun davomida pomidor hosili terdi (kg): 20, 25, 25, 30, 35.",
+     "savollar": [
+      "Moda va mediana nechaga teng?",
+      "O‘rtacha kunlik hosil qancha?"
+     ]
+    },
+    "tezis": "Raqamlar ortidagi haqiqatni ko‘rish",
+    "taqqoslash": {
+     "a": "Moda",
+     "b": "Mediana",
+     "umumiy": [
+      "qatorni xarakterlaydi",
+      "o‘rtacha arifmetikdan farq qiladi"
+     ],
+     "a_farq": [
+      "eng ko‘p uchraydi",
+      "tartiblash shart emas"
+     ],
+     "b_farq": [
+      "o‘rtadagi qiymat",
+      "tartiblash shart"
+     ]
+    },
+    "klaster": {
+     "markaz": "Statistika",
+     "shoxlar": [
+      {
+       "nom": "Moda",
+       "bandlar": [
+        "eng ko‘p uchraydi",
+        "bir nechta bo‘lishi mumkin",
+        "poyabzal o‘lchami"
+       ]
+      },
+      {
+       "nom": "Mediana",
+       "bandlar": [
+        "tartiblash",
+        "o‘rta son",
+        "juft holat"
+       ]
+      },
+      {
+       "nom": "O‘rtacha",
+       "bandlar": [
+        "yig‘indi",
+        "sonlar soni",
+        "bo‘lish"
+       ]
+      },
+      {
+       "nom": "Kenglik",
+       "bandlar": [
+        "eng katta",
+        "eng kichik",
+        "ayirma"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ko‘p uchrasam, men moda bo‘laman. O‘rtada tursam, men mediana. Men qaysi fanning kalitiman?",
+     "javob": "statistika"
+    },
+    "hikmat": "Sanoq — ilmning boshi.",
+    "kalit_soz": "STATISTIKA",
+    "xato_yechim": {
+     "shart": "5, 2, 9, 4, 7 qatorining medianasini toping.",
+     "xato": "9, chunki o‘rtadagi son",
+     "togri": "5",
+     "sabab": "avval tartiblash kerak: 2, 4, 5, 7, 9; o‘rtadagi son 5"
+    },
+    "guruh_nomlari": [
+     "Modachilar",
+     "Medianachilar",
+     "Sanoqchilar",
+     "Tahlilchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinf so‘rovi»",
+     "topshiriq": "Guruh sinfdoshlarining oyoq kiyimi o‘lchamini yoki bo‘yini so‘raydi, modani va medianani topadi."
+    },
+    "vazifalar": {
+     "A": "5, 7, 7, 8, 9 qatorining moda, mediana va o‘rtachasini toping.",
+     "B": "Oilangiz a’zolari yoshlarining medianasini toping.",
+     "C": "Bir hafta kunlik haroratni yozib, moda va medianani toping."
+    },
+    "sinkveyn": [
+     "Statistika",
+     "aniq, foydali",
+     "sanaydi, tahlil qiladi, taqqoslaydi",
+     "Raqamlar tili",
+     "Ma’lumot"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh statistika masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: 6, 2, 6, 9 ning modasi",
+      "2-guruh: 1, 3, 5, 7, 9 ning medianasi",
+      "3-guruh: 4, 6, 8, 10 ning o‘rtachasi",
+      "4-guruh: 3, 8, 10 ning kengligi"
+     ],
+     "yakun": "Natijalar: 6; 5; 7; 7."
+    }
+   }
+  },
+  {
+   "mavzu": "Harfiy ifodalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Harfiy ifoda",
+      "matn": "Sonlar o‘rnida harflar qatnashgan ifoda harfiy ifoda deyiladi. Harf turli qiymatlar qabul qilishi mumkin, shuning uchun harfiy ifoda ko‘p holatni bir yo‘la yozishga imkon beradi.",
+      "misol": "3a ifodasi: a ga 4 ni qo‘ysak, 3 ni 4 ga ko‘paytirib 12 olamiz.",
+      "savol": "5b ifodasida b 3 bo‘lsa, ifoda qiymati?",
+      "javob": "15",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ifoda qiymatini topish",
+      "matn": "Harfiy ifodaning qiymatini topish uchun harf o‘rniga berilgan sonni qo‘yib, amallarni tartib bilan bajaramiz.",
+      "misol": "2x va 5 yig‘indisida x 3 bo‘lsa: 2 ni 3 ga ko‘paytirsak 6, 5 qo‘shsak 11.",
+      "savol": "4y dan 1 ni ayirish ifodasida y 2 bo‘lsa, qiymati?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘xshash hadlarni ixchamlash",
+      "matn": "Harf qismi bir xil bo‘lgan hadlar o‘xshash hadlar deyiladi. Ularni qo‘shish yoki ayirishda koeffitsientlar qo‘shiladi yoki ayiriladi, harf qismi o‘zgarmaydi.",
+      "misol": "3a va 5a ni qo‘shsak, 8a chiqadi. 9b dan 4b ni ayirsak, 5b chiqadi.",
+      "savol": "7b va 2b ni qo‘shsak nima chiqadi?",
+      "javob": "9b",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qavslarni ochish",
+      "matn": "Songa qavs ichidagi yig‘indini ko‘paytirishda sonni qavs ichidagi har bir qo‘shiluvchiga ko‘paytiramiz. Bu taqsimot qonuni.",
+      "misol": "3 ni a va 2 yig‘indisiga ko‘paytirsak, 3a va 6 yig‘indisi chiqadi.",
+      "savol": "2 ni b va 5 yig‘indisiga ko‘paytirsak nima chiqadi?",
+      "javob": "2b va 10 yig‘indisi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Formulalar",
+      "matn": "Harfiy ifodalar yordamida qoidalar qisqa yoziladi. To‘g‘ri to‘rtburchak perimetri uchun 2 ni tomonlar yig‘indisiga ko‘paytiramiz, yuzi esa tomonlar ko‘paytmasi.",
+      "misol": "Tomonlari 5 va 3 bo‘lsa, perimetr: 5 va 3 yig‘indisi 8, 2 ga ko‘paytirsak 16. Yuza: 15.",
+      "savol": "Tomonlari 6 va 4 bo‘lgan to‘g‘ri to‘rtburchak perimetri?",
+      "javob": "20",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Harfiy ifodada harf o‘rniga son qo‘yib qiymat topiladi. O‘xshash hadlarda koeffitsientlar qo‘shiladi. Songa qavs ichidagi yig‘indini ko‘paytirishda har bir qo‘shiluvchi ko‘paytiriladi.",
+    "misollar": [
+     {
+      "shart": "3x va 4 yig‘indisida x 5 bo‘lsa, qiymatini toping.",
+      "yechim": [
+       "x o‘rniga 5 qo‘yamiz.",
+       "3 ni 5 ga ko‘paytirsak 15.",
+       "15 ga 4 ni qo‘shsak, 19."
+      ],
+      "javob": "19"
+     },
+     {
+      "shart": "Ifodani ixchamlang: 4a va 3a yig‘indisidan 2a ni ayiring.",
+      "yechim": [
+       "4a va 3a yig‘indisi 7a.",
+       "7a dan 2a ni ayirsak 5a."
+      ],
+      "javob": "5a"
+     },
+     {
+      "shart": "Qavsni oching: 5 ni x va 3 yig‘indisiga ko‘paytiring.",
+      "yechim": [
+       "5 ni x ga ko‘paytirsak 5x.",
+       "5 ni 3 ga ko‘paytirsak 15.",
+       "Natija: 5x va 15 yig‘indisi."
+      ],
+      "javob": "5x va 15 yig‘indisi"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qiymatlar jadvali",
+      "topshiriq": "2a va 1 yig‘indisi uchun a ning 1, 2, 3, 4 qiymatlarida jadval tuzing.",
+      "yechim": "Qiymatlar: 3, 5, 7, 9.",
+      "mahsulot": "qiymatlar jadvali"
+     },
+     {
+      "nom": "Yo‘l formulasi",
+      "topshiriq": "Yo‘l tezlik ko‘paytirilsin vaqtga. Tezlik 60 km/soat, vaqt 3 soat bo‘lsa, yo‘l?",
+      "yechim": "60 ni 3 ga ko‘paytirsak, 180 km.",
+      "mahsulot": "formulalar varag‘i"
+     },
+     {
+      "nom": "Ixchamlash",
+      "topshiriq": "6x va 2x yig‘indisini ixchamlang.",
+      "yechim": "Koeffitsientlar yig‘indisi 8, natija 8x.",
+      "mahsulot": "ixchamlash kartochkasi"
+     },
+     {
+      "nom": "Qavslarni ochish",
+      "topshiriq": "4 ni m va 2 yig‘indisiga ko‘paytiring.",
+      "yechim": "4m va 8 yig‘indisi.",
+      "mahsulot": "taqsimot kartochkasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "5a ifodasida a 4 bo‘lsa, qiymati?",
+      "javob": "20"
+     },
+     {
+      "shart": "3x va 2 yig‘indisida x 6 bo‘lsa, qiymati?",
+      "javob": "20"
+     },
+     {
+      "shart": "6b va 4b ni qo‘shing.",
+      "javob": "10b"
+     },
+     {
+      "shart": "3 ni y va 4 yig‘indisiga ko‘paytiring.",
+      "javob": "3y va 12 yig‘indisi"
+     },
+     {
+      "shart": "2a va 3a yig‘indisidan a ni ayiring.",
+      "javob": "4a"
+     },
+     {
+      "shart": "a va 2b yig‘indisida a 2, b 3 bo‘lsa, qiymati?",
+      "javob": "8"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qavsni ochishda faqat birinchi had bilan ko‘paytiradi",
+      "sabab": "taqsimot qonunini to‘liq bilmaydi",
+      "oldini_olish": "har bir qo‘shiluvchiga ko‘paytirishni strelkalar bilan ko‘rsatish"
+     },
+     {
+      "xato": "3a va 5a ni qo‘shib 8aa deb yozadi",
+      "sabab": "harf qismi o‘zgarmasligini unutadi",
+      "oldini_olish": "faqat koeffitsientlar qo‘shilishini aytib turish"
+     },
+     {
+      "xato": "a va b ni o‘xshash had deb oladi",
+      "sabab": "harf qismlari turlicha ekanini payqamaydi",
+      "oldini_olish": "harf qismi bir xil bo‘lishi shartligini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "yo‘l, tezlik va vaqt formulalari harflar bilan yoziladi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "o‘zgaruvchi tushunchasi dasturlashda ishlatiladi"
+     },
+     {
+      "fan": "Geometriya",
+      "boglanish": "perimetr va yuza formulalari harfiy ifodalardir"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Formulalar kitobchasi»",
+     "muammo": "Hayotiy hisoblarni harfiy formulalar bilan qanday yozamiz?",
+     "mahsulot": "formulalar kitobchasi",
+     "bosqichlar": [
+      "formulalarni tanlash",
+      "harflar kiritish",
+      "misollar yechish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Formulalarni tanlang",
+      "Misollarni yeching",
+      "Kitobchani bezang",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "formulalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "kitobcha tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Formulalar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Do‘kon",
+       "matn": "Bitta daftar d so‘m. 5 ta daftar narxi?",
+       "topshiriq": "Daftar narxi 4000 so‘m bo‘lsa, 5 ta daftar necha so‘m?",
+       "javob": "20000 so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Yo‘l",
+       "matn": "Yo‘l tezlik ko‘paytirilsin vaqtga.",
+       "topshiriq": "Tezlik 50, vaqt 2 bo‘lsa, yo‘l qancha?",
+       "javob": "100",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "To‘g‘ri to‘rtburchak tomonlari a va b.",
+       "topshiriq": "a 5, b 3 bo‘lsa, yuza qancha?",
+       "javob": "15",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Bog‘ tomoni a bo‘lgan kvadrat.",
+       "topshiriq": "a 4 bo‘lsa, perimetri qancha?",
+       "javob": "16",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Harf nima uchun kerak?",
+      "Formula qayerda ishlatiladi?",
+      "Ifoda qiymati harf qiymatiga qanday bog‘liq?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Harfiy ifoda",
+      "tarif": "sonlar va harflar qatnashgan ifoda"
+     },
+     {
+      "atama": "O‘zgaruvchi",
+      "tarif": "turli qiymat qabul qiluvchi harf"
+     },
+     {
+      "atama": "Koeffitsient",
+      "tarif": "harf oldidagi ko‘paytuvchi son"
+     },
+     {
+      "atama": "O‘xshash hadlar",
+      "tarif": "harf qismi bir xil hadlar"
+     },
+     {
+      "atama": "Formula",
+      "tarif": "qoidaning harflar bilan yozilishi"
+     },
+     {
+      "atama": "Ixchamlash",
+      "tarif": "ifodani soddaroq ko‘rinishga keltirish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Harfiy ifodada harf o‘rniga son qo‘yish mumkin",
+      "togri": true,
+      "izoh": "shunda ifoda qiymati topiladi"
+     },
+     {
+      "matn": "3a va 5a o‘xshash hadlar",
+      "togri": true,
+      "izoh": "harf qismi bir xil"
+     },
+     {
+      "matn": "a va b o‘xshash hadlar",
+      "togri": false,
+      "izoh": "harf qismlari turlicha"
+     },
+     {
+      "matn": "3a va 5a yig‘indisi 8aa",
+      "togri": false,
+      "izoh": "yig‘indi 8a"
+     },
+     {
+      "matn": "Qavsni ochishda sonni har bir qo‘shiluvchiga ko‘paytiramiz",
+      "togri": true,
+      "izoh": "taqsimot qonuni"
+     },
+     {
+      "matn": "Harfiy ifoda faqat bitta qiymatga ega",
+      "togri": false,
+      "izoh": "harf qiymatiga qarab o‘zgaradi"
+     },
+     {
+      "matn": "Perimetr formulasi harfiy ifoda",
+      "togri": true,
+      "izoh": "harflar bilan yozilgan qoida"
+     },
+     {
+      "matn": "Koeffitsient harf qismi",
+      "togri": false,
+      "izoh": "harf oldidagi son"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Harfiy ifoda nima?",
+      "javob": "sonlar va harflar qatnashgan ifoda"
+     },
+     {
+      "savol": "O‘zgaruvchi nima?",
+      "javob": "turli qiymat qabul qiluvchi harf"
+     },
+     {
+      "savol": "3a ifodasida koeffitsient nima?",
+      "javob": "3"
+     },
+     {
+      "savol": "2a va 4a yig‘indisi?",
+      "javob": "6a"
+     },
+     {
+      "savol": "7a dan 3a ni ayirsak?",
+      "javob": "4a"
+     },
+     {
+      "savol": "a 2 bo‘lsa, 5a ning qiymati?",
+      "javob": "10"
+     },
+     {
+      "savol": "O‘xshash hadlar qanday bo‘ladi?",
+      "javob": "harf qismi bir xil"
+     },
+     {
+      "savol": "Qavsni ochishda nimani ishlatamiz?",
+      "javob": "taqsimot qonunini"
+     },
+     {
+      "savol": "To‘g‘ri to‘rtburchak yuzi formulasi?",
+      "javob": "tomonlar ko‘paytmasi"
+     },
+     {
+      "savol": "Formula nima?",
+      "javob": "qoidaning harflar bilan yozilishi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ifoda",
+      "matn": "Sonlar va harflardan iborat yozuv.",
+      "savol": "Harfiy ifodaga misol keltiring."
+     },
+     {
+      "nom": "Qiymat",
+      "matn": "Harf o‘rniga son qo‘yib hisoblaymiz.",
+      "savol": "a 3 bo‘lsa, 4a nechaga teng?"
+     },
+     {
+      "nom": "Ixchamlash",
+      "matn": "O‘xshash hadlarda koeffitsientlar qo‘shiladi.",
+      "savol": "5b va 2b yig‘indisi?"
+     },
+     {
+      "nom": "Qavs",
+      "matn": "Har bir qo‘shiluvchiga ko‘paytiramiz.",
+      "savol": "2 ni a va 1 yig‘indisiga ko‘paytiring."
+     }
+    ],
+    "muammoli_savol": "Nega formulalar harflar bilan yoziladi? Har safar son bilan yozsak, qanday noqulaylik bo‘lar edi?",
+    "keys": {
+     "vaziyat": "Daftar narxi d so‘m, qalam narxi q so‘m. Madina 5 ta daftar va 3 ta qalam sotib oldi. Daftar narxi 4000 so‘m, qalam narxi 2000 so‘m.",
+     "savollar": [
+      "Umumiy narx ifodasini yozing.",
+      "Umumiy narx necha so‘m?"
+     ]
+    },
+    "tezis": "Harflar — sonlarning umumiy tili",
+    "taqqoslash": {
+     "a": "Songa oid ifoda",
+     "b": "Harfiy ifoda",
+     "umumiy": [
+      "amallar bilan yoziladi",
+      "qiymati bor"
+     ],
+     "a_farq": [
+      "faqat sonlar",
+      "bitta qiymat"
+     ],
+     "b_farq": [
+      "harflar bor",
+      "harfga qarab o‘zgaradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Harfiy ifodalar",
+     "shoxlar": [
+      {
+       "nom": "Ifoda",
+       "bandlar": [
+        "harf",
+        "son",
+        "amal"
+       ]
+      },
+      {
+       "nom": "Qiymat",
+       "bandlar": [
+        "son qo‘yish",
+        "hisoblash",
+        "jadval"
+       ]
+      },
+      {
+       "nom": "Ixchamlash",
+       "bandlar": [
+        "o‘xshash hadlar",
+        "koeffitsient",
+        "qo‘shish"
+       ]
+      },
+      {
+       "nom": "Qavs",
+       "bandlar": [
+        "taqsimot",
+        "ko‘paytirish",
+        "ochish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men harfman, lekin son o‘rnida turaman. Qiymatim o‘zgaradi. Men kimman?",
+     "javob": "o‘zgaruvchi"
+    },
+    "hikmat": "Qisqa yozuv — aniq fikr.",
+    "kalit_soz": "IFODA",
+    "xato_yechim": {
+     "shart": "3 ni a va 2 yig‘indisiga ko‘paytiring.",
+     "xato": "3a va 2 yig‘indisi",
+     "togri": "3a va 6 yig‘indisi",
+     "sabab": "3 ni ikkala qo‘shiluvchiga ko‘paytirish kerak"
+    },
+    "guruh_nomlari": [
+     "Harflar",
+     "Koeffitsientlar",
+     "Formulalar",
+     "Ifodalar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Do‘kon hisobi»",
+     "topshiriq": "Guruh uchta mahsulot narxini harf bilan belgilab, umumiy narx ifodasini yozadi va qiymatini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: 4a ifodasida a 5 bo‘lsa; 3x va 2 yig‘indisida x 4 bo‘lsa; 5b va 3b yig‘indisi.",
+     "B": "Bir formulaga uydan misol toping.",
+     "C": "O‘z formulangizni tuzing va qiymatini hisoblang."
+    },
+    "sinkveyn": [
+     "Ifoda",
+     "harfiy, qisqa",
+     "yoziladi, hisoblanadi, ixchamlanadi",
+     "Sonlar va harflar",
+     "Formula"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh harfiy ifodalar bo‘yicha masalalarni yechadi.",
+     "qismlar": [
+      "1-guruh: 6a ifodasida a 3 bo‘lsa",
+      "2-guruh: 4b va 5b yig‘indisi",
+      "3-guruh: 2 ni x va 7 yig‘indisiga ko‘paytiring",
+      "4-guruh: a va 2 yig‘indisida a 5 bo‘lsa, 3 ga ko‘paytiring"
+     ],
+     "yakun": "Natijalar: 18; 9b; 2x va 14 yig‘indisi; 21."
+    }
+   }
+  },
+  {
+   "mavzu": "Tenglamalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tenglama nima?",
+      "matn": "Noma’lum son qatnashgan tenglik tenglama deyiladi. Noma’lum odatda x harfi bilan belgilanadi. Tenglamani to‘g‘ri tenglikka aylantiruvchi son tenglamaning ildizi, ildizni topish esa tenglamani yechish deyiladi.",
+      "misol": "x ga 5 ni qo‘shsak 12 chiqadi. Bunda x ning qiymati 7, chunki 7 ga 5 ni qo‘shsak 12.",
+      "savol": "x ga 3 ni qo‘shsak 10 chiqadi. x nechaga teng?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shiluvchini topish",
+      "matn": "Noma’lum qo‘shiluvchini topish uchun yig‘indidan ma’lum qo‘shiluvchini ayiramiz.",
+      "misol": "x ga 9 ni qo‘shsak 15 chiqadi. x ni topamiz: 15 dan 9 ni ayirsak, 6.",
+      "savol": "x ga 4 ni qo‘shsak 11 chiqadi. x nechaga teng?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytuvchini topish",
+      "matn": "Noma’lum ko‘paytuvchini topish uchun ko‘paytmani ma’lum ko‘paytuvchiga bo‘lamiz.",
+      "misol": "4 ni x ga ko‘paytirsak 28 chiqadi. x ni topamiz: 28 ni 4 ga bo‘lsak, 7.",
+      "savol": "5 ni x ga ko‘paytirsak 45 chiqadi. x nechaga teng?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kamayuvchi va ayriluvchi",
+      "matn": "Noma’lum kamayuvchini topish uchun ayirmaga ayriluvchini qo‘shamiz. Noma’lum ayriluvchini topish uchun kamayuvchidan ayirmani ayiramiz. Javobni doim tekshiramiz.",
+      "misol": "x dan 8 ni ayirsak 5 chiqadi. x ni topamiz: 5 ga 8 ni qo‘shsak, 13. Tekshirish: 13 dan 8 ni ayirsak, 5 chiqadi.",
+      "savol": "x dan 6 ni ayirsak 4 chiqadi. x nechaga teng?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masalani tenglama bilan yechish",
+      "matn": "Masalani yechish uchun noma’lumni x deb belgilaymiz, shartga ko‘ra tenglama tuzamiz, uni yechamiz va javobni tekshiramiz.",
+      "misol": "Sonning ikki baravariga 3 ni qo‘shsak 17 chiqadi. 17 dan 3 ni ayirsak 14, 14 ni 2 ga bo‘lsak 7. Son 7.",
+      "savol": "Sonning 3 baravari 24 bo‘lsa, son nechaga teng?",
+      "javob": "8",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tenglama — noma’lum qatnashgan tenglik. Noma’lum qo‘shiluvchini topishda yig‘indidan ma’lum qo‘shiluvchi ayiriladi. Noma’lum ko‘paytuvchini topishda ko‘paytma ma’lum ko‘paytuvchiga bo‘linadi. Javob tekshiriladi.",
+    "misollar": [
+     {
+      "shart": "x ga 12 ni qo‘shsak 30 chiqadi. x ni toping.",
+      "yechim": [
+       "Noma’lum qo‘shiluvchi.",
+       "30 dan 12 ni ayiramiz.",
+       "Natija 18. Tekshirish: 18 ga 12 ni qo‘shsak, 30."
+      ],
+      "javob": "18"
+     },
+     {
+      "shart": "6 ni x ga ko‘paytirsak 54 chiqadi. x ni toping.",
+      "yechim": [
+       "Noma’lum ko‘paytuvchi.",
+       "54 ni 6 ga bo‘lamiz.",
+       "Natija 9. Tekshirish: 6 ni 9 ga ko‘paytirsak 54."
+      ],
+      "javob": "9"
+     },
+     {
+      "shart": "Sonning ikki baravariga 5 ni qo‘shsak 21 chiqadi. Sonni toping.",
+      "yechim": [
+       "21 dan 5 ni ayirsak 16.",
+       "16 ni 2 ga bo‘lsak 8.",
+       "Tekshirish: 8 ning ikki baravari 16, 5 qo‘shsak 21."
+      ],
+      "javob": "8"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tenglamalar poygasi",
+      "topshiriq": "Yeching: x dan 7 ni ayirsak 9; 3 ni x ga ko‘paytirsak 27; x ga 15 ni qo‘shsak 40.",
+      "yechim": "x 16; x 9; x 25.",
+      "mahsulot": "tenglamalar jadvali"
+     },
+     {
+      "nom": "Kitoblar",
+      "topshiriq": "Aziz 5 ta kitob sotib oldi, endi uning 12 ta kitobi bor. Avval nechta kitobi bo‘lgan?",
+      "yechim": "Avvalgi sonni x desak, x ga 5 ni qo‘shsak 12. 12 dan 5 ni ayirsak, 7.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Daftarlar",
+      "topshiriq": "4 ta bir xil daftar va 3000 so‘mlik qalam jami 19000 so‘m turadi. Daftar narxini toping.",
+      "yechim": "19000 dan 3000 ni ayirsak 16000. 16000 ni 4 ga bo‘lsak, 4000 so‘m.",
+      "mahsulot": "narxlar jadvali"
+     },
+     {
+      "nom": "O‘z tenglamangiz",
+      "topshiriq": "Javobi 6 bo‘lgan tenglama tuzing va do‘stingizga yechtiring.",
+      "yechim": "Masalan: x ga 4 ni qo‘shsak 10 chiqadi.",
+      "mahsulot": "tenglamalar to‘plami"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "x ga 4 ni qo‘shsak 11 chiqadi. x?",
+      "javob": "7"
+     },
+     {
+      "shart": "x dan 5 ni ayirsak 8 chiqadi. x?",
+      "javob": "13"
+     },
+     {
+      "shart": "4 ni x ga ko‘paytirsak 36 chiqadi. x?",
+      "javob": "9"
+     },
+     {
+      "shart": "x ni 3 ga bo‘lsak 5 chiqadi. x?",
+      "javob": "15"
+     },
+     {
+      "shart": "Sonning ikki baravariga 1 ni qo‘shsak 15 chiqadi. Son?",
+      "javob": "7"
+     },
+     {
+      "shart": "Sonning 3 baravari 21 bo‘lsa, son?",
+      "javob": "7"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Noma’lum qo‘shiluvchini topishda yig‘indiga qo‘shadi",
+      "sabab": "teskari amalni bilmaydi",
+      "oldini_olish": "qo‘shishning teskarisi ayirish ekanini eslash"
+     },
+     {
+      "xato": "Javobni tekshirmaydi",
+      "sabab": "tekshirishning ahamiyatini bilmaydi",
+      "oldini_olish": "har safar x o‘rniga topilgan sonni qo‘yib ko‘rish"
+     },
+     {
+      "xato": "Ko‘paytuvchini topishda ayiradi",
+      "sabab": "teskari amalni adashtiradi",
+      "oldini_olish": "ko‘paytirishning teskarisi bo‘lish ekanini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "formulalardan noma’lum kattalikni topish"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "narx, miqdor va umumiy summa masalalari"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "algoritmlarda noma’lum qiymatni topish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tenglamalar ustaxonasi»",
+     "muammo": "Hayotiy masalalarni tenglama bilan qanday yechamiz?",
+     "mahsulot": "tenglamalar to‘plami va yechimlar",
+     "bosqichlar": [
+      "masala tanlash",
+      "tenglama tuzish",
+      "yechish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Masala tanlang",
+      "Tenglama tuzing",
+      "Yeching va tekshiring",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "tenglama to‘g‘ri",
+      "yechim to‘g‘ri",
+      "tekshirish bor",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tenglamalar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Do‘kon",
+       "matn": "4 ta bir xil daftar va 3000 so‘mlik qalam jami 19000 so‘m.",
+       "topshiriq": "Daftar narxi qancha?",
+       "javob": "4000 so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Kutubxona",
+       "matn": "Kitoblar 5 ta olib kelinsa, 12 ta bo‘ladi.",
+       "topshiriq": "Avval nechta kitob bor edi?",
+       "javob": "7 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab",
+       "matn": "Sinfdagi o‘quvchilar 3 guruhga bo‘linsa, har guruhda 9 kishi.",
+       "topshiriq": "Sinfda nechta o‘quvchi?",
+       "javob": "27 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "Sabzi 6 kg olinsa, 48 ming so‘m to‘lanadi.",
+       "topshiriq": "1 kg sabzi narxi qancha?",
+       "javob": "8 ming so‘m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Tenglamani qayerda uchratdingiz?",
+      "Noma’lumni qanday topamiz?",
+      "Tekshirish nima uchun kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tenglama",
+      "tarif": "noma’lum qatnashgan tenglik"
+     },
+     {
+      "atama": "Noma’lum",
+      "tarif": "qiymati topiladigan son"
+     },
+     {
+      "atama": "Ildiz",
+      "tarif": "tenglamani to‘g‘ri tenglikka aylantiruvchi son"
+     },
+     {
+      "atama": "Yechish",
+      "tarif": "ildizni topish"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "ildizni tenglamaga qo‘yib ko‘rish"
+     },
+     {
+      "atama": "Teskari amal",
+      "tarif": "berilgan amalni bekor qiluvchi amal"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tenglamada noma’lum son qatnashadi",
+      "togri": true,
+      "izoh": "bu tenglama ta’rifi"
+     },
+     {
+      "matn": "Noma’lum qo‘shiluvchi yig‘indiga ma’lum qo‘shiluvchini qo‘shib topiladi",
+      "togri": false,
+      "izoh": "ayirish kerak"
+     },
+     {
+      "matn": "Noma’lum ko‘paytuvchi ko‘paytmani bo‘lib topiladi",
+      "togri": true,
+      "izoh": "ko‘paytirishning teskarisi bo‘lish"
+     },
+     {
+      "matn": "Tenglama ildizini tekshirish shart emas",
+      "togri": false,
+      "izoh": "tekshirish xatoni oldini oladi"
+     },
+     {
+      "matn": "Ildiz tenglamani to‘g‘ri tenglikka aylantiradi",
+      "togri": true,
+      "izoh": "ildiz ta’rifi"
+     },
+     {
+      "matn": "Tenglamani yechish — ildizni topish",
+      "togri": true,
+      "izoh": "yechish ma’nosi"
+     },
+     {
+      "matn": "Noma’lum faqat x harfi bilan belgilanadi",
+      "togri": false,
+      "izoh": "boshqa harflar ham mumkin"
+     },
+     {
+      "matn": "Masalani tenglama bilan yechishda noma’lum belgilanmaydi",
+      "togri": false,
+      "izoh": "avval noma’lum belgilanadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tenglama nima?",
+      "javob": "noma’lum qatnashgan tenglik"
+     },
+     {
+      "savol": "Ildiz nima?",
+      "javob": "tenglamani to‘g‘ri tenglikka aylantiruvchi son"
+     },
+     {
+      "savol": "x ga 3 ni qo‘shsak 8 chiqadi. x?",
+      "javob": "5"
+     },
+     {
+      "savol": "2 ni x ga ko‘paytirsak 14 chiqadi. x?",
+      "javob": "7"
+     },
+     {
+      "savol": "x dan 4 ni ayirsak 6 chiqadi. x?",
+      "javob": "10"
+     },
+     {
+      "savol": "x ni 2 ga bo‘lsak 6 chiqadi. x?",
+      "javob": "12"
+     },
+     {
+      "savol": "Noma’lum qo‘shiluvchi qanday topiladi?",
+      "javob": "yig‘indidan ma’lum qo‘shiluvchini ayirib"
+     },
+     {
+      "savol": "Noma’lum ko‘paytuvchi qanday topiladi?",
+      "javob": "ko‘paytmani ma’lum ko‘paytuvchiga bo‘lib"
+     },
+     {
+      "savol": "Tenglamani yechgach nima qilamiz?",
+      "javob": "tekshiramiz"
+     },
+     {
+      "savol": "Masalani tenglama bilan yechishda birinchi nima qilinadi?",
+      "javob": "noma’lum belgilanadi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Tenglama",
+      "matn": "Noma’lum qatnashgan tenglik.",
+      "savol": "Tenglamaga misol keltiring."
+     },
+     {
+      "nom": "Qo‘shiluvchi",
+      "matn": "Yig‘indidan ma’lum qo‘shiluvchini ayiramiz.",
+      "savol": "x ga 2 ni qo‘shsak 9 chiqadi. x?"
+     },
+     {
+      "nom": "Ko‘paytuvchi",
+      "matn": "Ko‘paytmani ma’lum ko‘paytuvchiga bo‘lamiz.",
+      "savol": "3 ni x ga ko‘paytirsak 12 chiqadi. x?"
+     },
+     {
+      "nom": "Tekshirish",
+      "matn": "Ildizni tenglamaga qo‘yamiz.",
+      "savol": "Nima uchun tekshiramiz?"
+     }
+    ],
+    "muammoli_savol": "Nega tenglamani yechishda teskari amallardan foydalanamiz? Agar teskari amalni noto‘g‘ri tanlasak, nima bo‘ladi?",
+    "keys": {
+     "vaziyat": "Do‘konda 4 ta bir xil daftar va 3000 so‘mlik qalam sotib olindi. Jami to‘lov 19000 so‘m bo‘ldi.",
+     "savollar": [
+      "Daftarlarga necha so‘m to‘langan?",
+      "Bitta daftar narxi qancha?"
+     ]
+    },
+    "tezis": "Noma’lumni topish — ilm yo‘li",
+    "taqqoslash": {
+     "a": "Ifoda",
+     "b": "Tenglama",
+     "umumiy": [
+      "harf qatnashadi",
+      "amallardan iborat"
+     ],
+     "a_farq": [
+      "qiymati hisoblanadi",
+      "tenglik belgisi yo‘q"
+     ],
+     "b_farq": [
+      "ildizi topiladi",
+      "tenglik belgisi bor"
+     ]
+    },
+    "klaster": {
+     "markaz": "Tenglamalar",
+     "shoxlar": [
+      {
+       "nom": "Ta’rif",
+       "bandlar": [
+        "noma’lum",
+        "tenglik",
+        "ildiz"
+       ]
+      },
+      {
+       "nom": "Yechish",
+       "bandlar": [
+        "teskari amal",
+        "qo‘shiluvchi",
+        "ko‘paytuvchi"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "ildizni qo‘yish",
+        "to‘g‘ri tenglik",
+        "xatoni topish"
+       ]
+      },
+      {
+       "nom": "Masalalar",
+       "bandlar": [
+        "noma’lum belgilash",
+        "tenglama tuzish",
+        "javob"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ichimda yashirin son bor, uni topsangiz, tenglik to‘g‘ri bo‘ladi. Men nimaman?",
+     "javob": "tenglama"
+    },
+    "hikmat": "Izlagan topadi.",
+    "kalit_soz": "TENGLAMA",
+    "xato_yechim": {
+     "shart": "x ga 9 ni qo‘shsak 15 chiqadi. x ni toping.",
+     "xato": "24, chunki 15 ga 9 ni qo‘shadi",
+     "togri": "6",
+     "sabab": "noma’lum qo‘shiluvchini topishda yig‘indidan ma’lum qo‘shiluvchi ayiriladi: 15 dan 9 ni ayirsak 6"
+    },
+    "guruh_nomlari": [
+     "Noma’lumlar",
+     "Ildizlar",
+     "Tekshiruvchilar",
+     "Yechuvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Do‘kon tenglamasi»",
+     "topshiriq": "Guruh do‘kon narxlari asosida ikkita masala tuzadi, ularni tenglama bilan yechadi va tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Yeching: x ga 8 ni qo‘shsak 20 chiqadi; 5 ni x ga ko‘paytirsak 35; x dan 9 ni ayirsak 4.",
+     "B": "Uydagi biror holatga tenglama tuzib yeching.",
+     "C": "O‘zingiz tenglamalar to‘plamini tuzing va ildizlarini toping."
+    },
+    "sinkveyn": [
+     "Tenglama",
+     "aniq, qiziq",
+     "topiladi, yechiladi, tekshiriladi",
+     "Noma’lumni izlash",
+     "Ildiz"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tenglamalarni yechadi.",
+     "qismlar": [
+      "1-guruh: x ga 8 ni qo‘shsak 20",
+      "2-guruh: 5 ni x ga ko‘paytirsak 35",
+      "3-guruh: x dan 4 ni ayirsak 9",
+      "4-guruh: sonning ikki baravariga 1 ni qo‘shsak 11"
+     ],
+     "yakun": "Natijalar: 12; 7; 13; 5."
+    }
+   }
   }
  ]
 }
