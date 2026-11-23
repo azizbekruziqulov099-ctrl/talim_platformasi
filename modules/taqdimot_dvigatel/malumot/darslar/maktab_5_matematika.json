@@ -1875,6 +1875,1417 @@
      "yakun": "Dushanba: 185 + 97 = 282 kg; seshanba: 300 − 46 = 254 kg; chorshanba: 128 + 172 = 300 kg; payshanba: 250 − 34 = 216 kg. Jami: 282 + 254 + 300 + 216 = 1052 kg — reja 52 kg ortig‘i bilan bajarildi."
     }
    }
+  },
+  {
+   "mavzu": "Ko‘paytirish va bo‘lish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ko‘paytirish — bir xil qo‘shiluvchilar yig‘indisi",
+      "matn": "Bir xil sonni bir necha marta qo‘shish o‘rniga ko‘paytirish amali ishlatiladi. Ko‘paytirilayotgan sonlar ko‘paytuvchilar, natija esa ko‘paytma deyiladi. Ko‘paytirish belgisi — nuqta (·) yoki × belgisi.",
+      "misol": "Har birida 6 tadan olma bo‘lgan 4 ta savat: 6 + 6 + 6 + 6 = 24, qisqacha 6 · 4 = 24.",
+      "savol": "7 + 7 + 7 + 7 + 7 yig‘indini ko‘paytma ko‘rinishida yozing.",
+      "javob": "7 · 5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirish qonunlari",
+      "matn": "O‘rin almashtirish qonuni: ko‘paytuvchilar o‘rni almashsa, ko‘paytma o‘zgarmaydi. Guruhlash qonuni: uchta sonni ko‘paytirishda ularni istalgancha guruhlash mumkin. Taqsimot qonuni: yig‘indini songa ko‘paytirish uchun har bir qo‘shiluvchini shu songa ko‘paytirib, natijalarni qo‘shish mumkin. Har qanday son 1 ga ko‘paytirilsa — o‘zi, 0 ga ko‘paytirilsa — 0 chiqadi.",
+      "misol": "25 · 7 · 4 ni qulay hisoblaymiz: avval 25 · 4 = 100, so‘ng 100 · 7 = 700. Taqsimot qonuni: 7 · 12 ni 7 · 10 + 7 · 2 = 84 deb hisoblash mumkin.",
+      "savol": "Qulay usulda hisoblang: 5 · 13 · 2.",
+      "javob": "130 (avval 5 · 2 = 10)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bo‘lish — ko‘paytirishga teskari amal",
+      "matn": "Bo‘lish yordamida ko‘paytma va bitta ko‘paytuvchi bo‘yicha ikkinchi ko‘paytuvchi topiladi. Bo‘linayotgan son — bo‘linuvchi, qaysi songa bo‘linayotgan bo‘lsa — bo‘luvchi, natija — bo‘linma. Bo‘lish ikki ma’noni bildiradi: teng qismlarga ajratish va «necha marta sig‘adi?» degan savolga javob. Nolga bo‘lish mumkin emas!",
+      "misol": "24 : 6 = 4, chunki 4 · 6 = 24. 24 ta olmani 6 bolaga teng bo‘lsak, har biriga 4 tadan tegadi.",
+      "savol": "Nima uchun 5 ni 0 ga bo‘lib bo‘lmaydi?",
+      "javob": "chunki hech bir sonni 0 ga ko‘paytirganda 5 chiqmaydi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qoldiqli bo‘lish",
+      "matn": "Har doim ham bir son ikkinchisiga butun bo‘linavermaydi. Bunda to‘liqsiz bo‘linma va qoldiq hosil bo‘ladi. Qoldiq har doim bo‘luvchidan kichik bo‘ladi. Tekshirish: bo‘luvchini to‘liqsiz bo‘linmaga ko‘paytirib, qoldiqni qo‘shsak, bo‘linuvchi chiqadi.",
+      "misol": "17 ta konfetni 5 bolaga teng bo‘lamiz: har biriga 3 tadan tegadi va 2 ta konfet ortib qoladi. Tekshirish: 5 · 3 + 2 = 17.",
+      "savol": "29 ni 4 ga bo‘lganda to‘liqsiz bo‘linma va qoldiq nechaga teng?",
+      "javob": "bo‘linma 7, qoldiq 1",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ustun shaklida ko‘paytirish va burchak usulida bo‘lish",
+      "matn": "Ko‘p xonali sonlar ustun shaklida ko‘paytiriladi: birinchi son ikkinchi sonning har bir xonasiga alohida ko‘paytiriladi, to‘liqsiz ko‘paytmalar xonasiga moslab yoziladi va qo‘shiladi. Bo‘lish burchak usulida, eng katta xonadan boshlab bajariladi: bo‘lamiz, ko‘paytiramiz, ayiramiz, keyingi raqamni tushiramiz. Natija teskari amal bilan tekshiriladi.",
+      "misol": "34 · 12: avval 34 · 2 = 68, keyin 34 · 10 = 340, yig‘indi 68 + 340 = 408. Bo‘lish: 408 : 12 = 34.",
+      "savol": "Burchak usulida bo‘lish qaysi xonadan boshlanadi?",
+      "javob": "eng katta (chapdagi) xonadan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ko‘paytirish — bir xil qo‘shiluvchilar yig‘indisi: a · b = b · a, (a · b) · c = a · (b · c), (a + b) · c = a · c + b · c. Bo‘lish — ko‘paytirishga teskari amal; nolga bo‘lib bo‘lmaydi. Qoldiqli bo‘lishda bo‘linuvchi = bo‘luvchi · bo‘linma + qoldiq, qoldiq bo‘luvchidan kichik.",
+    "misollar": [
+     {
+      "shart": "Qulay usulda hisoblang: 4 · 37 · 25.",
+      "yechim": [
+       "4 va 25 ko‘paytirilsa, dumaloq son chiqadi.",
+       "O‘rin almashtirish va guruhlash qonunidan foydalanamiz.",
+       "4 · 25 = 100.",
+       "100 · 37 = 3700."
+      ],
+      "javob": "3700"
+     },
+     {
+      "shart": "Hisoblang: 206 · 34.",
+      "yechim": [
+       "206 ni birlar xonasidagi 4 ga ko‘paytiramiz: 206 · 4 = 824.",
+       "206 ni o‘nlar xonasidagi 3 ga (ya’ni 30 ga) ko‘paytiramiz: 206 · 30 = 6180.",
+       "To‘liqsiz ko‘paytmalarni qo‘shamiz: 824 + 6180 = 7004.",
+       "Chamalab tekshiramiz: 200 · 35 = 7000 — javob shunga yaqin."
+      ],
+      "javob": "7004"
+     },
+     {
+      "shart": "152 ta o‘quvchini sayohatga olib borish kerak. Bitta avtobusga 45 o‘quvchi sig‘adi. Nechta avtobus kerak?",
+      "yechim": [
+       "152 ni 45 ga bo‘lamiz: 45 · 3 = 135, qoldiq 152 − 135 = 17.",
+       "3 ta avtobusga 135 o‘quvchi sig‘adi, 17 o‘quvchi ortib qoladi.",
+       "Ular uchun yana bitta avtobus kerak.",
+       "Jami: 3 + 1 = 4 ta avtobus."
+      ],
+      "javob": "4 ta avtobus"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Maktab bog‘i",
+      "topshiriq": "Maktab bog‘iga ko‘chat ekilmoqda: 12 qator, har qatorda 15 tadan ko‘chat. a) Jami nechta ko‘chat ekiladi? b) Bitta ko‘chat 8 000 so‘m tursa, hammasi qancha turadi? d) Ko‘chatlarni 9 ta sinf teng bo‘lib eksa, har bir sinfga nechtadan tegadi?",
+      "yechim": "a) 12 · 15 = 180 ta. b) 180 · 8000 = 1440000 so‘m. d) 180 : 9 = 20 tadan.",
+      "mahsulot": "bog‘ rejasi chizmasi va hisob"
+     },
+     {
+      "nom": "Kitoblarni joylash",
+      "topshiriq": "Kutubxonaga 500 ta kitob keldi. Bitta tokchaga 32 ta kitob sig‘adi. a) Nechta tokcha to‘liq to‘ladi? b) Nechta kitob ortib qoladi? d) Hamma kitobni joylash uchun kamida nechta tokcha kerak? e) Javobni tekshiring.",
+      "yechim": "a) 32 · 15 = 480, demak 15 ta tokcha to‘ladi. b) 500 − 480 = 20 ta kitob ortadi. d) 15 + 1 = 16 ta tokcha. e) 32 · 15 + 20 = 500.",
+      "mahsulot": "qoldiqli bo‘lish yozuvi va tekshiruv"
+     },
+     {
+      "nom": "Tez hisobchilar",
+      "topshiriq": "Qonunlardan foydalanib qulay usulda hisoblang: a) 125 · 9 · 8; b) 50 · 17 · 2; d) 7 · 98 (98 ni 100 − 2 deb oling); e) 36 · 25 (36 ni 9 · 4 deb oling).",
+      "yechim": "a) 125 · 8 = 1000; 1000 · 9 = 9000. b) 50 · 2 = 100; 100 · 17 = 1700. d) 7 · 100 − 7 · 2 = 686. e) 4 · 25 = 100; 100 · 9 = 900.",
+      "mahsulot": "qulay usul ko‘rsatilgan yechimlar"
+     },
+     {
+      "nom": "Sayohat xarajati",
+      "topshiriq": "24 o‘quvchi muzeyga boradi. Chipta — 6 500 so‘m, yo‘l haqi — har bir o‘quvchiga 3 000 so‘m. a) Bir o‘quvchining xarajati qancha? b) Butun sinf uchun qancha pul kerak? d) Sinf jamg‘armasida 250 000 so‘m bor. U yetadimi, qancha ortadi yoki yetmaydi?",
+      "yechim": "a) 6500 + 3000 = 9500 so‘m. b) 9500 · 24 = 228000 so‘m. d) Yetadi: 250000 − 228000 = 22000 so‘m ortadi.",
+      "mahsulot": "xarajatlar jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Hisoblang: 48 · 25.",
+      "javob": "1200"
+     },
+     {
+      "shart": "Hisoblang: 2 436 : 12.",
+      "javob": "203"
+     },
+     {
+      "shart": "Qulay usulda: 2 · 39 · 50.",
+      "javob": "3900"
+     },
+     {
+      "shart": "Noma’lum ko‘paytuvchini toping: x · 15 = 450.",
+      "javob": "x = 30"
+     },
+     {
+      "shart": "50 ni 8 ga bo‘lganda bo‘linma va qoldiqni toping.",
+      "javob": "bo‘linma 6, qoldiq 2"
+     },
+     {
+      "shart": "Bo‘linuvchini toping: bo‘luvchi 9, bo‘linma 12, qoldiq 5.",
+      "javob": "113"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Bo‘linmada nolni tushirib qoldiradi: 2 436 : 12 = 23",
+      "sabab": "tushirilgan son bo‘luvchidan kichik bo‘lganda bo‘linmaga 0 yozishni unutadi",
+      "oldini_olish": "bo‘lishdan oldin bo‘linmada nechta raqam bo‘lishini aniqlab, nuqtalar bilan belgilab qo‘yish"
+     },
+     {
+      "xato": "Ikkinchi to‘liqsiz ko‘paytmani bir xona surmasdan yozadi",
+      "sabab": "o‘nliklarga ko‘paytirayotganini unutadi",
+      "oldini_olish": "ikkinchi qatorni yozishdan oldin birlar xonasiga 0 qo‘yish"
+     },
+     {
+      "xato": "Qoldiq bo‘luvchidan katta chiqadi: 29 ni 4 ga bo‘lganda bo‘linma 6, qoldiq 5",
+      "sabab": "bo‘linmani to‘liq tanlamagan",
+      "oldini_olish": "har doim «qoldiq bo‘luvchidan kichikmi?» deb tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "tezlik, vaqt va masofa orasidagi bog‘lanish: masofa = tezlik · vaqt"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "qiymat = narx · miqdor; pulni teng taqsimlash — bo‘lish"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "matoni teng bo‘laklarga kesish, mahsulotlarni qutilarga joylashda qoldiqli bo‘lish ishlatiladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinf sayohati smetasi»",
+     "muammo": "Sayohatga qancha pul kerakligini va har bir o‘quvchi qancha to‘lashini qanday aniq hisoblaymiz?",
+     "mahsulot": "sayohat smetasi: xarajat turlari, jami summa, bir kishiga to‘g‘ri keladigan to‘lov",
+     "bosqichlar": [
+      "sayohat joyini tanlash",
+      "narxlarni aniqlash",
+      "bir kishilik xarajatni hisoblash",
+      "sinf uchun jami xarajatni ko‘paytirish bilan topish",
+      "transport sonini qoldiqli bo‘lish bilan aniqlash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chipta va yo‘l haqi xarajatini hisoblang",
+      "Ovqatlanish xarajatini hisoblang",
+      "Nechta avtobus kerakligini aniqlang",
+      "Jami smetani tuzing va bir kishilik to‘lovni toping"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "qoldiq to‘g‘ri talqin qilingan",
+      "tekshiruv bajarilgan",
+      "jadval tartibli",
+      "taqdimot tushunarli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Non zavodi»",
+     "bekatlar": [
+      {
+       "nom": "Xamir sexi",
+       "matn": "Bitta qorishtirgich bir soatda 120 kg xamir tayyorlaydi. Sexda shunday 4 ta qorishtirgich ishlaydi.",
+       "topshiriq": "Bir soatda jami qancha xamir tayyorlanadi?",
+       "javob": "480 kg",
+       "rasm": ""
+      },
+      {
+       "nom": "Tandir sexi",
+       "matn": "480 kg xamirdan non yopiladi. Bitta nonga 400 g xamir ketadi, ya’ni har 2 kg xamirdan 5 ta non chiqadi.",
+       "topshiriq": "480 kg xamirdan nechta non chiqadi?",
+       "javob": "1200 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Qadoqlash sexi",
+       "matn": "Nonlar savatlarga 25 tadan joylanadi.",
+       "topshiriq": "1200 ta non uchun nechta savat kerak?",
+       "javob": "48 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Yuk mashinasi",
+       "matn": "Bitta mashinaga 14 ta savat sig‘adi. 48 ta savatni do‘konlarga yetkazish kerak.",
+       "topshiriq": "Kamida nechta qatnov kerak?",
+       "javob": "4 ta (3 ta to‘liq qatnov va 6 ta savat uchun yana bitta)",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "issiq tandirga yaqinlashmang",
+      "sexda maxsus kiyimda yuring",
+      "uskunalarga qo‘l tekkizmang"
+     ],
+     "kundalik": [
+      "Qaysi bekatda ko‘paytirdik, qaysisida bo‘ldik?",
+      "Qoldiq qayerda hosil bo‘ldi va uni qanday hisobga oldik?",
+      "Zavodda matematika yana qayerda kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ko‘paytuvchi",
+      "tarif": "ko‘paytirilayotgan sonlarning har biri"
+     },
+     {
+      "atama": "Ko‘paytma",
+      "tarif": "ko‘paytirish natijasi"
+     },
+     {
+      "atama": "Bo‘linuvchi",
+      "tarif": "bo‘linayotgan son"
+     },
+     {
+      "atama": "Bo‘luvchi",
+      "tarif": "qaysi songa bo‘linayotgan bo‘lsa, o‘sha son"
+     },
+     {
+      "atama": "Bo‘linma",
+      "tarif": "bo‘lish natijasi"
+     },
+     {
+      "atama": "Qoldiq",
+      "tarif": "butun bo‘linmaganda ortib qoladigan, bo‘luvchidan kichik son"
+     },
+     {
+      "atama": "Taqsimot qonuni",
+      "tarif": "(a + b) · c = a · c + b · c"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "8 · 7 = 56",
+      "togri": true,
+      "izoh": "ko‘paytirish jadvali"
+     },
+     {
+      "matn": "Har qanday sonni 0 ga ko‘paytirsak, o‘sha sonning o‘zi chiqadi",
+      "togri": false,
+      "izoh": "0 chiqadi"
+     },
+     {
+      "matn": "Nolga bo‘lish mumkin emas",
+      "togri": true,
+      "izoh": "hech bir sonni 0 ga ko‘paytirib, noldan farqli son hosil qilib bo‘lmaydi"
+     },
+     {
+      "matn": "Qoldiq bo‘luvchidan katta bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "qoldiq har doim bo‘luvchidan kichik"
+     },
+     {
+      "matn": "Ko‘paytuvchilar o‘rni almashsa, ko‘paytma o‘zgarmaydi",
+      "togri": true,
+      "izoh": "o‘rin almashtirish qonuni"
+     },
+     {
+      "matn": "0 ni 9 ga bo‘lsak, 9 chiqadi",
+      "togri": false,
+      "izoh": "0 chiqadi"
+     },
+     {
+      "matn": "Bo‘lish ko‘paytirish bilan tekshiriladi",
+      "togri": true,
+      "izoh": "bo‘linma · bo‘luvchi = bo‘linuvchi"
+     },
+     {
+      "matn": "Sonni 1 ga bo‘lsak, 1 chiqadi",
+      "togri": false,
+      "izoh": "sonning o‘zi chiqadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ko‘paytirish natijasi nima deyiladi?",
+      "javob": "ko‘paytma"
+     },
+     {
+      "savol": "Bo‘lish natijasi nima deyiladi?",
+      "javob": "bo‘linma"
+     },
+     {
+      "savol": "Qaysi songa bo‘lib bo‘lmaydi?",
+      "javob": "nolga"
+     },
+     {
+      "savol": "Sonni 1 ga ko‘paytirsak nima chiqadi?",
+      "javob": "sonning o‘zi"
+     },
+     {
+      "savol": "Noma’lum ko‘paytuvchi qanday topiladi?",
+      "javob": "ko‘paytma ma’lum ko‘paytuvchiga bo‘linadi"
+     },
+     {
+      "savol": "Noma’lum bo‘linuvchi qanday topiladi?",
+      "javob": "bo‘linma bo‘luvchiga ko‘paytiriladi"
+     },
+     {
+      "savol": "Noma’lum bo‘luvchi qanday topiladi?",
+      "javob": "bo‘linuvchi bo‘linmaga bo‘linadi"
+     },
+     {
+      "savol": "Qoldiq qanday bo‘lishi kerak?",
+      "javob": "bo‘luvchidan kichik"
+     },
+     {
+      "savol": "25 · 4 nechaga teng?",
+      "javob": "100"
+     },
+     {
+      "savol": "125 · 8 nechaga teng?",
+      "javob": "1000"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ko‘paytirish",
+      "matn": "Ko‘paytirish — bir xil qo‘shiluvchilarni qisqa yozish: 6 + 6 + 6 + 6 o‘rniga 6 · 4. Ko‘paytuvchi · ko‘paytuvchi = ko‘paytma.",
+      "savol": "9 · 3 ni yig‘indi ko‘rinishida yozing."
+     },
+     {
+      "nom": "Ko‘paytirish qonunlari",
+      "matn": "O‘rin almashtirish, guruhlash va taqsimot qonunlari hisobni osonlashtiradi: 25 · 4 = 100 va 125 · 8 = 1000 juftliklarini eslab qoling.",
+      "savol": "Qulay usulda: 25 · 13 · 4."
+     },
+     {
+      "nom": "Bo‘lish",
+      "matn": "Bo‘linuvchi : bo‘luvchi = bo‘linma. Bo‘lish — ko‘paytirishga teskari amal. Nolga bo‘lib bo‘lmaydi.",
+      "savol": "72 : 8 ni ko‘paytirish bilan tekshiring."
+     },
+     {
+      "nom": "Qoldiqli bo‘lish",
+      "matn": "Butun bo‘linmasa, to‘liqsiz bo‘linma va qoldiq chiqadi. Qoldiq bo‘luvchidan kichik. Tekshirish: bo‘luvchi · bo‘linma + qoldiq = bo‘linuvchi.",
+      "savol": "38 ni 7 ga bo‘ling va tekshiring."
+     }
+    ],
+    "muammoli_savol": "31 ta o‘quvchi qayiqda sayr qilmoqchi. Bitta qayiqqa 4 kishi sig‘adi. Kalkulyator 31 ni 4 ga bo‘lganda «7 butun-u qoldiq 3» chiqdi. Nechta qayiq kerak — 7 tami yoki 8 ta? Nima uchun?",
+    "keys": {
+     "vaziyat": "Do‘kondor 1 000 ta tuxumni 30 talik kataklarga joylamoqda. U «1000 ni 30 ga bo‘lsam, 33 chiqadi, demak 33 ta katak yetadi», deb o‘yladi va 33 ta katak sotib oldi.",
+     "savollar": [
+      "33 ta katakka nechta tuxum sig‘adi va nechtasi ortib qoladi?",
+      "Do‘kondor qayerda xato qildi va unga qanday maslahat berasiz?"
+     ]
+    },
+    "tezis": "Ko‘paytirish jadvalini bilgan odam hisobda hech qachon adashmaydi",
+    "taqqoslash": {
+     "a": "Ko‘paytirish",
+     "b": "Bo‘lish",
+     "umumiy": [
+      "bir-biriga teskari amallar",
+      "bir-birini tekshiradi"
+     ],
+     "a_farq": [
+      "o‘rin almashtirish mumkin",
+      "har doim bajariladi"
+     ],
+     "b_farq": [
+      "o‘rin almashtirib bo‘lmaydi",
+      "nolga bo‘lib bo‘lmaydi, qoldiq chiqishi mumkin"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ko‘paytirish va bo‘lish",
+     "shoxlar": [
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "ko‘paytuvchi",
+        "ko‘paytma",
+        "ustun shaklida"
+       ]
+      },
+      {
+       "nom": "Bo‘lish",
+       "bandlar": [
+        "bo‘linuvchi",
+        "bo‘luvchi",
+        "bo‘linma",
+        "burchak usuli"
+       ]
+      },
+      {
+       "nom": "Qonunlar",
+       "bandlar": [
+        "o‘rin almashtirish",
+        "guruhlash",
+        "taqsimot"
+       ]
+      },
+      {
+       "nom": "Maxsus hollar",
+       "bandlar": [
+        "1 ga ko‘paytirish",
+        "0 ga ko‘paytirish",
+        "nolga bo‘lib bo‘lmaydi",
+        "qoldiq"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Meni qaysi songa ko‘paytirsang ham, o‘zimga aylantiraman. Men qaysi sonman?",
+     "javob": "nol"
+    },
+    "hikmat": "Bo‘linganni bo‘ri yer.",
+    "kalit_soz": "QOLDIQ",
+    "xato_yechim": {
+     "shart": "Hisoblang: 3 618 : 18.",
+     "xato": "3618 : 18 = 21",
+     "togri": "3618 : 18 = 201",
+     "sabab": "36 ni 18 ga bo‘lgach, tushirilgan 1 soni 18 dan kichik — bo‘linmaga 0 yozish kerak edi, u tushirib qoldirilgan"
+    },
+    "guruh_nomlari": [
+     "Ko‘paytuvchilar",
+     "Bo‘luvchilar",
+     "Bo‘linmalar",
+     "Qoldiqlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Adolatli taqsimot»",
+     "topshiriq": "Guruhga 50 ta sanoq cho‘pi (yoki tugma) beriladi. Ularni navbat bilan 4, 6, 7 va 8 kishiga teng bo‘ling. Har safar bo‘linma va qoldiqni jadvalga yozing va «bo‘luvchi · bo‘linma + qoldiq» formulasi bilan tekshiring."
+    },
+    "vazifalar": {
+     "A": "Ustun shaklida hisoblang va tekshiring: 318 · 24; 4 536 : 12; 75 ni 9 ga qoldiqli bo‘ling.",
+     "B": "Oilangiz bir oyda necha dona non iste’mol qilishini hisoblang (kunlik son · 30) va bir yillik xarajatni toping.",
+     "C": "«Nima uchun nolga bo‘lib bo‘lmaydi?» savoliga kichik sinfdagi ukangizga tushunarli bo‘ladigan izoh va rasm tayyorlang."
+    },
+    "sinkveyn": [
+     "Ko‘paytma",
+     "tez, qulay",
+     "ko‘paytiradi, guruhlaydi, tekshiradi",
+     "Bir xil qo‘shiluvchilarning qisqa yozuvi",
+     "Natija"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Maktab oshxonasi bir haftaga mahsulot buyurtma qilmoqda. Har bir guruh o‘z mahsulotini hisoblaydi, so‘ng jami og‘irlik topiladi.",
+     "qismlar": [
+      "1-guruh: kuniga 45 kg kartoshka, 6 kun",
+      "2-guruh: kuniga 18 kg guruch, 6 kun",
+      "3-guruh: 240 kg sabzi 6 kunga teng bo‘linadi — kuniga qancha?",
+      "4-guruh: jami kartoshka, guruch va sabzi og‘irligini toping"
+     ],
+     "yakun": "Kartoshka: 45 · 6 = 270 kg; guruch: 18 · 6 = 108 kg; sabzi: 240 : 6 = 40 kg dan; jami: 270 + 108 + 240 = 618 kg."
+    }
+   }
+  },
+  {
+   "mavzu": "Daraja (kvadrat va kub)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Daraja — bir xil ko‘paytuvchilar ko‘paytmasi",
+      "matn": "Bir xil qo‘shiluvchilar yig‘indisini ko‘paytirish bilan qisqa yozganimizdek, bir xil ko‘paytuvchilar ko‘paytmasini daraja bilan qisqa yozamiz. Takrorlanayotgan ko‘paytuvchi — daraja asosi, u necha marta ko‘paytirilayotganini ko‘rsatuvchi son — daraja ko‘rsatkichi deyiladi. Ko‘rsatkich asosning o‘ng tepasiga kichik qilib yoziladi.",
+      "misol": "2 · 2 · 2 · 2 · 2 ko‘paytma 2⁵ deb yoziladi va «ikkining beshinchi darajasi» deb o‘qiladi. Uning qiymati 32 ga teng.",
+      "savol": "3⁴ yozuvida asos va ko‘rsatkichni ayting.",
+      "javob": "asos 3, ko‘rsatkich 4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonning kvadrati",
+      "matn": "Sonning ikkinchi darajasi uning kvadrati deyiladi: a² — a ni o‘ziga ko‘paytirish. Bu nom tasodifiy emas: tomoni a ga teng kvadratning yuzi aynan a² ga teng. 1 dan 10 gacha sonlarning kvadratlari: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 — ularni yoddan bilish kerak.",
+      "misol": "7² ni topamiz: 7 · 7 = 49. Tomoni 7 sm bo‘lgan kvadratning yuzi 49 sm².",
+      "savol": "9 ning kvadrati nechaga teng?",
+      "javob": "81",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonning kubi",
+      "matn": "Sonning uchinchi darajasi uning kubi deyiladi: a³ — a ni uch marta ko‘paytuvchi qilib olish. Qirrasi a ga teng kubning hajmi a³ ga teng. 1 dan 5 gacha sonlarning kublari: 1, 8, 27, 64, 125.",
+      "misol": "4³ ni topamiz: 4 · 4 · 4 = 64. Qirrasi 4 sm bo‘lgan kubning hajmi 64 sm³.",
+      "savol": "5 ning kubi nechaga teng?",
+      "javob": "125",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Maxsus hollar: 1, 0 va 10 ning darajalari",
+      "matn": "Har qanday sonning birinchi darajasi o‘ziga teng. 1 ning har qanday darajasi 1 ga teng, 0 ning har qanday natural darajasi 0 ga teng. 10 ning darajalari juda qulay: ko‘rsatkich nechta bo‘lsa, 1 dan keyin shuncha nol yoziladi. Shuning uchun katta sonlar 10 ning darajalari yordamida qisqa yoziladi.",
+      "misol": "10² — yuz, 10³ — ming, 10⁶ — million. Million sonida 1 dan keyin 6 ta nol bor.",
+      "savol": "10⁴ qaysi son?",
+      "javob": "10 000 (o‘n ming)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Darajali ifodalarda amallar tartibi",
+      "matn": "Ifodada daraja qatnashsa, avval darajaga ko‘tarish bajariladi, keyin ko‘paytirish va bo‘lish, oxirida qo‘shish va ayirish. Qavs bo‘lsa, eng avval qavs ichidagi amallar bajariladi. Diqqat: daraja — ko‘paytirish emas, 2³ va 2 · 3 turli sonlar!",
+      "misol": "5 + 2 · 3² ifodada avval 3² ni topamiz — 9, keyin 2 · 9 = 18, oxirida 5 + 18 = 23.",
+      "savol": "2³ va 2 · 3 dan qaysi biri katta?",
+      "javob": "2³ katta: u 8 ga, 2 · 3 esa 6 ga teng",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "aⁿ — n ta bir xil a ko‘paytuvchining ko‘paytmasi; a — asos, n — ko‘rsatkich. a² — sonning kvadrati, a³ — sonning kubi. Ifodada avval darajaga ko‘tarish, keyin ko‘paytirish va bo‘lish, so‘ng qo‘shish va ayirish bajariladi.",
+    "misollar": [
+     {
+      "shart": "Hisoblang: 2⁶.",
+      "yechim": [
+       "2⁶ — oltita 2 ning ko‘paytmasi.",
+       "Ketma-ket ko‘paytiramiz: 2 · 2 = 4; 4 · 2 = 8; 8 · 2 = 16; 16 · 2 = 32; 32 · 2 = 64.",
+       "Demak, 2⁶ qiymati 64."
+      ],
+      "javob": "64"
+     },
+     {
+      "shart": "Ifodaning qiymatini toping: 4² + 3³ − 5 · 2.",
+      "yechim": [
+       "Avval darajalar: 4² — bu 4 · 4 = 16; 3³ — bu 3 · 3 · 3 = 27.",
+       "Keyin ko‘paytirish: 5 · 2 = 10.",
+       "Endi chapdan o‘ngga: 16 + 27 = 43.",
+       "43 − 10 = 33."
+      ],
+      "javob": "33"
+     },
+     {
+      "shart": "Tomoni 12 m bo‘lgan kvadrat shaklidagi maydonning yuzini va qirrasi 3 m bo‘lgan kub shaklidagi suv idishining hajmini toping.",
+      "yechim": [
+       "Kvadratning yuzi tomonining kvadratiga teng: 12 · 12 = 144 m².",
+       "Kubning hajmi qirrasining kubiga teng: 3 · 3 · 3 = 27 m³.",
+       "Birliklarga e’tibor beramiz: yuz — kvadrat metrda, hajm — kub metrda."
+      ],
+      "javob": "144 m² va 27 m³"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kvadratlar jadvali",
+      "topshiriq": "a) 11 dan 15 gacha sonlarning kvadratlarini hisoblab jadval tuzing. b) Qo‘shni kvadratlar ayirmasini toping (masalan, 12² va 11² orasidagi farq). d) Qanday qonuniyat ko‘rdingiz?",
+      "yechim": "a) 121, 144, 169, 196, 225. b) 144 − 121 = 23; 169 − 144 = 25; 196 − 169 = 27; 225 − 196 = 29. d) Farqlar ketma-ket toq sonlar — har safar 2 ga ortadi.",
+      "mahsulot": "kvadratlar jadvali va topilgan qonuniyat"
+     },
+     {
+      "nom": "Shaxmat va bug‘doy",
+      "topshiriq": "Afsonaga ko‘ra, shaxmat ixtirochisi taxtaning 1-katagiga 1 dona, 2-katagiga 2 dona, 3-katagiga 4 dona va hokazo — har keyingi katakka ikki barobar ko‘p bug‘doy so‘ragan. a) 5-, 8- va 10-kataklarga nechta dona to‘g‘ri keladi? b) Javoblarni 2 ning darajasi ko‘rinishida yozing.",
+      "yechim": "a) 5-katak: 16 dona; 8-katak: 128 dona; 10-katak: 512 dona. b) 16 — 2⁴, 128 — 2⁷, 512 — 2⁹ (katak raqamidan bitta kam ko‘rsatkich).",
+      "mahsulot": "kataklar va donalar jadvali"
+     },
+     {
+      "nom": "Kub qurilishi",
+      "topshiriq": "Kichik kubchalardan katta kub yig‘ilmoqda. a) Qirrasi 2 ta kubchadan iborat kub uchun nechta kubcha kerak? b) Qirrasi 3 ta kubchadan iborat kub uchunchi? d) Qirrasi 5 ta bo‘lsachi? e) 64 ta kubchadan qanday kub yig‘iladi?",
+      "yechim": "a) 2 · 2 · 2 = 8 ta. b) 3 · 3 · 3 = 27 ta. d) 5 · 5 · 5 = 125 ta. e) qirrasi 4 ta kubchali kub, chunki 4 · 4 · 4 = 64.",
+      "mahsulot": "kub modeli yoki chizmasi va hisob"
+     },
+     {
+      "nom": "Amallar tartibi",
+      "topshiriq": "Ifodalarning qiymatini toping va natijalarni o‘sish tartibida joylang: a) 3² + 4²; b) (3 + 4)²; d) 2 · 5²; e) (2 · 5)².",
+      "yechim": "a) 9 + 16 = 25. b) 7 · 7 = 49. d) 2 · 25 = 50. e) 10 · 10 = 100. O‘sish tartibi: 25, 49, 50, 100. Xulosa: yig‘indining kvadrati kvadratlar yig‘indisiga teng emas.",
+      "mahsulot": "yechimlar va xulosa"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Daraja ko‘rinishida yozing: 6 · 6 · 6 · 6.",
+      "javob": "6⁴"
+     },
+     {
+      "shart": "Hisoblang: 8².",
+      "javob": "64"
+     },
+     {
+      "shart": "Hisoblang: 3³.",
+      "javob": "27"
+     },
+     {
+      "shart": "Hisoblang: 10⁵.",
+      "javob": "100 000"
+     },
+     {
+      "shart": "Qiymatini toping: 6² − 2³.",
+      "javob": "28"
+     },
+     {
+      "shart": "Qaysi sonning kvadrati 144 ga teng?",
+      "javob": "12"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Asosni ko‘rsatkichga ko‘paytiradi: 2³ ni 6 deb hisoblaydi",
+      "sabab": "darajani ko‘paytirish bilan adashtiradi",
+      "oldini_olish": "darajani har doim ko‘paytma ko‘rinishida yoyib yozish: 2 · 2 · 2"
+     },
+     {
+      "xato": "(3 + 4)² ni 3² + 4² deb hisoblaydi",
+      "sabab": "darajani har bir qo‘shiluvchiga alohida qo‘llaydi",
+      "oldini_olish": "ikkala ifodani hisoblab solishtirish: 49 va 25 teng emas"
+     },
+     {
+      "xato": "2 · 5² da avval ko‘paytirishni bajaradi va 100 chiqaradi",
+      "sabab": "amallar tartibini buzadi",
+      "oldini_olish": "«avval daraja» qoidasini rangli qalam bilan belgilab ishlash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geometriya",
+      "boglanish": "kvadratning yuzi a², kubning hajmi a³ formulalari bilan topiladi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "xotira hajmi 2 ning darajalari bilan o‘lchanadi: 1 kilobayt 2¹⁰ bayt, ya’ni 1024 bayt"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "bakteriyalar ikkiga bo‘linib ko‘payadi: 1, 2, 4, 8, 16 … — bu 2 ning darajalari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ikkining darajalari qudrati»",
+     "muammo": "Qog‘ozni har safar ikki buklasak, qatlamlar soni qanchalik tez o‘sadi?",
+     "mahsulot": "buklash tajribasi jadvali va «tez o‘sish» haqida plakat",
+     "bosqichlar": [
+      "qog‘ozni buklash tajribasi",
+      "qatlamlarni sanash",
+      "2 ning darajalari jadvalini tuzish",
+      "10 marta buklangandagi qatlamlar sonini hisoblash",
+      "xulosa va taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Qog‘ozni 1–6 marta buklab, qatlamlarni sanang",
+      "Natijalarni 2 ning darajasi ko‘rinishida yozing",
+      "Shaxmat afsonasidagi dastlabki 10 katakni hisoblang",
+      "Plakat tayyorlab, «nega tez o‘sadi?» savoliga javob bering"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "daraja yozuvi to‘g‘ri",
+      "tajriba bajarilgan",
+      "qonuniyat tushuntirilgan",
+      "plakat ko‘rgazmali"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Darajalar shaharchasi»",
+     "bekatlar": [
+      {
+       "nom": "Kvadratlar maydoni",
+       "matn": "Maydon tomoni 9 m bo‘lgan kvadrat shaklida. U kvadrat plitkalar bilan qoplangan, har bir plitkaning yuzi 1 m².",
+       "topshiriq": "Maydonga nechta plitka ketgan?",
+       "javob": "81 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Kublar ombori",
+       "matn": "Omborda qirrasi 1 m bo‘lgan qutilar kub shaklida taxlangan: uzunligi, eni va balandligi 4 qutidan.",
+       "topshiriq": "Omborda nechta quti bor?",
+       "javob": "64 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Bakteriyalar laboratoriyasi",
+       "matn": "Bitta bakteriya har 20 daqiqada ikkiga bo‘linadi.",
+       "topshiriq": "Bir soatdan keyin (3 marta bo‘lingach) nechta bakteriya bo‘ladi?",
+       "javob": "8 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Katta sonlar minorasi",
+       "matn": "Minoraning har qavatida 10 ning darajasi yozilgan: 10, 100, 1000 …",
+       "topshiriq": "6-qavatda qaysi son yozilgan?",
+       "javob": "1 000 000 (million)",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "laboratoriyada hech narsaga tegmang",
+      "minoraga navbat bilan chiqing",
+      "guruhdan ajralmang"
+     ],
+     "kundalik": [
+      "Qaysi bekatda kvadrat, qaysisida kub ishlatildi?",
+      "Nega bakteriyalar soni tez o‘sadi?",
+      "10 ning darajalari nimasi bilan qulay?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Daraja",
+      "tarif": "bir xil ko‘paytuvchilar ko‘paytmasining qisqa yozuvi"
+     },
+     {
+      "atama": "Daraja asosi",
+      "tarif": "takrorlanayotgan ko‘paytuvchi"
+     },
+     {
+      "atama": "Daraja ko‘rsatkichi",
+      "tarif": "asos necha marta ko‘paytuvchi qilib olinganini ko‘rsatuvchi son"
+     },
+     {
+      "atama": "Sonning kvadrati",
+      "tarif": "sonning ikkinchi darajasi, ya’ni sonni o‘ziga ko‘paytirish natijasi"
+     },
+     {
+      "atama": "Sonning kubi",
+      "tarif": "sonning uchinchi darajasi"
+     },
+     {
+      "atama": "Darajaga ko‘tarish",
+      "tarif": "darajaning qiymatini hisoblash amali"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "5² qiymati 25 ga teng",
+      "togri": true,
+      "izoh": "5 · 5 = 25"
+     },
+     {
+      "matn": "2³ qiymati 6 ga teng",
+      "togri": false,
+      "izoh": "2 · 2 · 2 = 8"
+     },
+     {
+      "matn": "1 ning har qanday darajasi 1 ga teng",
+      "togri": true,
+      "izoh": "1 ni necha marta ko‘paytirsak ham 1 chiqadi"
+     },
+     {
+      "matn": "10³ — bu yuz",
+      "togri": false,
+      "izoh": "10³ — ming"
+     },
+     {
+      "matn": "Tomoni 6 sm bo‘lgan kvadratning yuzi 36 sm²",
+      "togri": true,
+      "izoh": "6 · 6 = 36"
+     },
+     {
+      "matn": "Ifodada avval ko‘paytirish, keyin darajaga ko‘tarish bajariladi",
+      "togri": false,
+      "izoh": "avval darajaga ko‘tariladi"
+     },
+     {
+      "matn": "4³ qiymati 64 ga teng",
+      "togri": true,
+      "izoh": "4 · 4 · 4 = 64"
+     },
+     {
+      "matn": "3² va 2³ teng",
+      "togri": false,
+      "izoh": "3² — 9, 2³ — 8"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Daraja nima?",
+      "javob": "bir xil ko‘paytuvchilar ko‘paytmasining qisqa yozuvi"
+     },
+     {
+      "savol": "Daraja asosi nimani bildiradi?",
+      "javob": "takrorlanayotgan ko‘paytuvchini"
+     },
+     {
+      "savol": "Daraja ko‘rsatkichi nimani bildiradi?",
+      "javob": "asos necha marta ko‘paytirilishini"
+     },
+     {
+      "savol": "Sonning kvadrati nima?",
+      "javob": "sonning ikkinchi darajasi"
+     },
+     {
+      "savol": "Sonning kubi nima?",
+      "javob": "sonning uchinchi darajasi"
+     },
+     {
+      "savol": "6 ning kvadrati nechaga teng?",
+      "javob": "36"
+     },
+     {
+      "savol": "2 ning kubi nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "savol": "10 ning to‘rtinchi darajasida nechta nol bor?",
+      "javob": "4 ta"
+     },
+     {
+      "savol": "Darajali ifodada qaysi amal birinchi bajariladi?",
+      "javob": "darajaga ko‘tarish (qavs bo‘lmasa)"
+     },
+     {
+      "savol": "Qaysi sonning kvadrati 100 ga teng?",
+      "javob": "10"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Daraja tushunchasi",
+      "matn": "Bir xil ko‘paytuvchilar ko‘paytmasi daraja bilan yoziladi. Asos — takrorlanuvchi son, ko‘rsatkich — takrorlar soni: 3⁴ — to‘rtta 3 ning ko‘paytmasi, ya’ni 81.",
+      "savol": "5 · 5 · 5 ni daraja ko‘rinishida yozing."
+     },
+     {
+      "nom": "Kvadrat",
+      "matn": "Ikkinchi daraja — kvadrat. Tomoni a bo‘lgan kvadratning yuzi a² ga teng. 1–10 sonlarining kvadratlari yod olinadi.",
+      "savol": "Tomoni 8 sm bo‘lgan kvadratning yuzi qancha?"
+     },
+     {
+      "nom": "Kub",
+      "matn": "Uchinchi daraja — kub. Qirrasi a bo‘lgan kubning hajmi a³ ga teng. 2³ — 8, 3³ — 27, 4³ — 64, 5³ — 125.",
+      "savol": "Qirrasi 3 sm bo‘lgan kubning hajmi qancha?"
+     },
+     {
+      "nom": "Amallar tartibi",
+      "matn": "Avval qavs, keyin daraja, so‘ng ko‘paytirish va bo‘lish, oxirida qo‘shish va ayirish bajariladi.",
+      "savol": "3 · 2² + 1 ifodaning qiymatini toping."
+     }
+    ],
+    "muammoli_savol": "Sizga ikki xil mukofot taklif qilindi: har kuni 100 000 so‘mdan 10 kun davomida yoki birinchi kuni 1 000 so‘m, har keyingi kuni avvalgisidan ikki barobar ko‘p — 10 kun davomida. Qaysi birini tanlaysiz va nima uchun?",
+    "keys": {
+     "vaziyat": "Usta kvadrat shaklidagi hovlini plitka bilan qoplamoqchi. Hovli tomoni 6 m. U «tomon ikki barobar katta bo‘lsa, plitka ham ikki barobar ko‘p ketadi», deb o‘ylab, tomoni 12 m bo‘lgan qo‘shni hovli uchun ikki barobar ko‘p plitka buyurdi.",
+     "savollar": [
+      "Har bir hovlining yuzi qancha?",
+      "Usta qayerda adashdi: tomon 2 barobar ortsa, yuz necha barobar ortadi?"
+     ]
+    },
+    "tezis": "Kichik sonning katta darajasi katta sonning kichik darajasidan kuchliroq",
+    "taqqoslash": {
+     "a": "Kvadrat",
+     "b": "Kub",
+     "umumiy": [
+      "bir xil ko‘paytuvchilar ko‘paytmasi",
+      "geometrik ma’noga ega"
+     ],
+     "a_farq": [
+      "ikkinchi daraja",
+      "kvadratning yuzi, birligi — kvadrat birlik"
+     ],
+     "b_farq": [
+      "uchinchi daraja",
+      "kubning hajmi, birligi — kub birlik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Daraja",
+     "shoxlar": [
+      {
+       "nom": "Tuzilishi",
+       "bandlar": [
+        "asos",
+        "ko‘rsatkich"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "kvadrat",
+        "kub",
+        "10 ning darajalari"
+       ]
+      },
+      {
+       "nom": "Qoidalar",
+       "bandlar": [
+        "avval daraja",
+        "1 ning darajasi 1",
+        "0 ning darajasi 0"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "yuz",
+        "hajm",
+        "xotira hajmi",
+        "bakteriyalar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Tepada kichkina turaman, lekin pastdagi sonni necha marta ko‘paytirishni men hal qilaman. Men kimman?",
+     "javob": "daraja ko‘rsatkichi"
+    },
+    "hikmat": "Bilim — kuchda, kuch — bilimda.",
+    "kalit_soz": "DARAJA",
+    "xato_yechim": {
+     "shart": "Hisoblang: 2 · 3².",
+     "xato": "2 · 3² = 6² = 36",
+     "togri": "2 · 3² = 2 · 9 = 18",
+     "sabab": "avval ko‘paytirish bajarilgan; qoida bo‘yicha avval darajaga ko‘tariladi"
+    },
+    "guruh_nomlari": [
+     "Asoslar",
+     "Ko‘rsatkichlar",
+     "Kvadratlar",
+     "Kublar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qog‘oz buklash»",
+     "topshiriq": "Guruhga A4 qog‘oz beriladi. Uni ketma-ket 5 marta ikki buklang va har safar qatlamlar sonini jadvalga yozing. Natijalarni 2 ning darajasi ko‘rinishida yozing va 8 marta buklanganda nechta qatlam bo‘lishini hisoblang."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: 7²; 2⁵; 5³; 10⁴; 3² + 4²; 6² − 5².",
+     "B": "Xonangiz yoki oshxonangizdagi kvadrat shaklidagi buyumni (kafel, stol, gilamcha) o‘lchab, yuzini kvadrat santimetrda hisoblang.",
+     "C": "Shaxmat afsonasini davom ettiring: 20-katakka nechta bug‘doy donasi to‘g‘ri kelishini hisoblang va bu sonni o‘qing."
+    },
+    "sinkveyn": [
+     "Daraja",
+     "qisqa, kuchli",
+     "ko‘paytiradi, o‘stiradi, qisqartiradi",
+     "Kichik ko‘rsatkich katta sonni yashiradi",
+     "Qudrat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Bolalar maydonchasi qurilmoqda. Har bir guruh bitta qismni hisoblaydi, so‘ng birgalikda umumiy natija topiladi.",
+     "qismlar": [
+      "1-guruh: tomoni 5 m bo‘lgan kvadrat qumloqning yuzi",
+      "2-guruh: tomoni 8 m bo‘lgan kvadrat o‘yin maydonining yuzi",
+      "3-guruh: qirrasi 2 m bo‘lgan kub shaklidagi uychaning hajmi",
+      "4-guruh: qumloq va o‘yin maydonining jami yuzi"
+     ],
+     "yakun": "Qumloq: 5 · 5 = 25 m²; maydon: 8 · 8 = 64 m²; uycha: 2 · 2 · 2 = 8 m³; jami yuz: 25 + 64 = 89 m²."
+    }
+   }
+  },
+  {
+   "mavzu": "Ifodalar va tenglamalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sonli ifoda va uning qiymati",
+      "matn": "Sonlar, amal belgilari va qavslardan tuzilgan yozuv sonli ifoda deyiladi. Undagi barcha amallarni bajarib topilgan son ifodaning qiymati bo‘ladi. Amallar tartibi: avval qavs ichi, keyin ko‘paytirish va bo‘lish (chapdan o‘ngga), oxirida qo‘shish va ayirish (chapdan o‘ngga).",
+      "misol": "48 − 6 · 5 ifodada avval ko‘paytiramiz: 6 · 5 = 30, keyin ayiramiz: 48 − 30 = 18.",
+      "savol": "20 − 12 : 4 ifodaning qiymatini toping.",
+      "javob": "17",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Harfli ifoda",
+      "matn": "Ifodada sonlar bilan birga harflar ham qatnashsa, u harfli ifoda deyiladi. Harf o‘rniga turli sonlar qo‘yish mumkin, shuning uchun harf o‘zgaruvchi deb ataladi. Harf o‘rniga son qo‘yib hisoblasak, ifodaning shu sondagi qiymati chiqadi. Harf oldidagi ko‘paytirish belgisi odatda yozilmaydi: 5 · a o‘rniga 5a.",
+      "misol": "Bitta daftar 3000 so‘m. n ta daftar 3000 · n so‘m turadi. n o‘rniga 4 qo‘ysak: 3000 · 4 = 12000 so‘m.",
+      "savol": "a + 15 ifodaning a o‘rniga 25 qo‘yilgandagi qiymati nechaga teng?",
+      "javob": "40",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tenglama va uning ildizi",
+      "matn": "Noma’lum son (harf) qatnashgan tenglik tenglama deyiladi. Noma’lumning tenglamani to‘g‘ri sonli tenglikka aylantiradigan qiymati tenglamaning ildizi deyiladi. Tenglamani yechish — uning barcha ildizlarini topish. Tenglamani tarozi deb tasavvur qilish mumkin: ikki palla muvozanatda turadi.",
+      "misol": "x + 7 tenglama emas, ifoda. x + 7 yig‘indi 12 ga teng degan yozuv esa tenglama; uning ildizi 5, chunki 5 + 7 = 12.",
+      "savol": "8 soni «x − 3 ayirma 5 ga teng» tenglamasining ildizimi?",
+      "javob": "ha, chunki 8 − 3 = 5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Noma’lum komponentni topish",
+      "matn": "Sodda tenglamalar amal komponentlari orasidagi bog‘lanish yordamida yechiladi. Noma’lum qo‘shiluvchi: yig‘indidan ma’lum qo‘shiluvchi ayriladi. Noma’lum kamayuvchi: ayirmaga ayriluvchi qo‘shiladi. Noma’lum ayriluvchi: kamayuvchidan ayirma ayriladi. Noma’lum ko‘paytuvchi: ko‘paytma ma’lum ko‘paytuvchiga bo‘linadi. Noma’lum bo‘linuvchi: bo‘linma bo‘luvchiga ko‘paytiriladi. Noma’lum bo‘luvchi: bo‘linuvchi bo‘linmaga bo‘linadi.",
+      "misol": "Noma’lum songa 28 qo‘shilganda 75 chiqdi. Noma’lum qo‘shiluvchini topamiz: 75 − 28 = 47. Tekshirish: 47 + 28 = 75.",
+      "savol": "Noma’lum son 6 ga ko‘paytirilganda 54 chiqdi. U qaysi son?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masalani tenglama tuzib yechish",
+      "matn": "Matnli masalani tenglama bilan yechish bosqichlari: 1) noma’lum miqdorni harf bilan belgilaymiz; 2) masala shartiga ko‘ra tenglama tuzamiz; 3) tenglamani yechamiz; 4) javobni masala shartiga qo‘yib tekshiramiz va to‘liq javob yozamiz.",
+      "misol": "Savatda bir nechta olma bor edi. Unga 15 ta olma solingach, 42 ta bo‘ldi. Dastlab x ta deb olamiz: x ga 15 qo‘shilsa 42. Demak x ni topish uchun 42 − 15 = 27. Dastlab 27 ta olma bo‘lgan.",
+      "savol": "Masalani tenglama bilan yechishning birinchi qadami qaysi?",
+      "javob": "noma’lumni harf bilan belgilash",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ifodaning qiymati amallar tartibiga rioya qilib topiladi: qavs, ko‘paytirish va bo‘lish, qo‘shish va ayirish. Tenglama — noma’lum qatnashgan tenglik; uning ildizi tenglikni to‘g‘ri qiladigan son. Noma’lum komponent teskari amal yordamida topiladi va javob albatta tekshiriladi.",
+    "misollar": [
+     {
+      "shart": "Ifodaning qiymatini toping: (36 + 14) · 3 − 120 : 4.",
+      "yechim": [
+       "Qavs ichi: 36 + 14 = 50.",
+       "Ko‘paytirish: 50 · 3 = 150.",
+       "Bo‘lish: 120 : 4 = 30.",
+       "Ayirish: 150 − 30 = 120."
+      ],
+      "javob": "120"
+     },
+     {
+      "shart": "Tenglamani yeching: x − 136 ayirma 264 ga teng.",
+      "yechim": [
+       "x — noma’lum kamayuvchi.",
+       "Kamayuvchini topish uchun ayirmaga ayriluvchini qo‘shamiz: 264 + 136 = 400.",
+       "Tekshiramiz: 400 − 136 = 264 — to‘g‘ri."
+      ],
+      "javob": "x qiymati 400"
+     },
+     {
+      "shart": "Tenglamani yeching: 3 ta bir xil qutida va yana alohida 15 ta qalam bor, jami 87 ta qalam. Bitta qutida nechta qalam bor?",
+      "yechim": [
+       "Bitta qutidagi qalamlar sonini x deb belgilaymiz. Qutilardagi qalamlar va 15 ta qalam birga 87 ta.",
+       "Avval qutilardagi jami qalamni topamiz: 87 − 15 = 72.",
+       "Endi bitta qutidagisini: 72 : 3 = 24.",
+       "Tekshirish: 24 · 3 + 15 = 87."
+      ],
+      "javob": "24 ta qalam"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tarozi tenglamasi",
+      "topshiriq": "Tarozining chap pallasida 3 ta bir xil quti va 200 g tosh, o‘ng pallasida 950 g tosh turibdi. Tarozi muvozanatda. a) Bitta quti massasini x deb olib, tenglama tuzing. b) Tenglamani yeching. d) Javobni tekshiring.",
+      "yechim": "a) Uchta quti va 200 g birga 950 g. b) Uchta quti: 950 − 200 = 750 g; bitta quti: 750 : 3 = 250 g. d) 250 · 3 + 200 = 950.",
+      "mahsulot": "tarozi rasmi, tenglama va yechim"
+     },
+     {
+      "nom": "Ifoda tuzamiz",
+      "topshiriq": "Kinoteatrga chipta: kattalarga 20 000 so‘m, bolalarga 12 000 so‘m. a) k ta katta va b ta bola uchun to‘lov ifodasini tuzing. b) 2 ta katta va 3 ta bola uchun qiymatini toping. d) 4 ta katta va 5 ta bola uchunchi?",
+      "yechim": "a) 20000 · k + 12000 · b. b) 20000 · 2 + 12000 · 3 = 76000 so‘m. d) 20000 · 4 + 12000 · 5 = 140000 so‘m.",
+      "mahsulot": "harfli ifoda va ikki hisob"
+     },
+     {
+      "nom": "Qavsni qayerga qo‘yamiz?",
+      "topshiriq": "Ifodalarga qavs qo‘yib, tenglik to‘g‘ri bo‘ladigan qiling: a) 6 + 4 · 5 natijasi 50 bo‘lsin; b) 40 − 10 − 5 natijasi 35 bo‘lsin; d) 72 : 6 + 2 natijasi 9 bo‘lsin.",
+      "yechim": "a) (6 + 4) · 5 — qavs ichi 10, 10 · 5 = 50. b) 40 − (10 − 5) — qavs ichi 5, 40 − 5 = 35. d) 72 : (6 + 2) — qavs ichi 8, 72 : 8 = 9.",
+      "mahsulot": "qavsli ifodalar va tekshiruv"
+     },
+     {
+      "nom": "Yoshni top",
+      "topshiriq": "Otaning yoshi o‘g‘ilning yoshidan 4 marta katta. Ikkalasining yoshi yig‘indisi 45 ga teng. a) O‘g‘ilning yoshini x deb olib, otaning yoshini ifodalang. b) Tenglama tuzib yeching. d) Tekshiring.",
+      "yechim": "a) Ota — 4x yosh. b) x va 4x birga 5x, u 45 ga teng; x ni topamiz: 45 : 5 = 9. O‘g‘il 9 yoshda, ota 9 · 4 = 36 yoshda. d) 9 + 36 = 45.",
+      "mahsulot": "tenglama, yechim va tekshiruv"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Qiymatini toping: 90 − 5 · 12.",
+      "javob": "30"
+     },
+     {
+      "shart": "Qiymatini toping: (18 + 22) : 8.",
+      "javob": "5"
+     },
+     {
+      "shart": "3a + 7 ifodaning a o‘rniga 6 qo‘yilgandagi qiymati?",
+      "javob": "25"
+     },
+     {
+      "shart": "Yeching: x + 48 yig‘indi 120 ga teng.",
+      "javob": "72"
+     },
+     {
+      "shart": "Yeching: 96 ni x ga bo‘lganda 8 chiqdi.",
+      "javob": "12"
+     },
+     {
+      "shart": "O‘ylagan sonimni 7 ga ko‘paytirib, 9 ni qo‘shsam, 51 chiqdi. Qaysi sonni o‘yladim?",
+      "javob": "6"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Amallarni faqat chapdan o‘ngga bajaradi: 48 − 6 · 5 ni 210 deb hisoblaydi",
+      "sabab": "amallar tartibini unutadi",
+      "oldini_olish": "hisobdan oldin amallar ustiga tartib raqamini yozib chiqish"
+     },
+     {
+      "xato": "Noma’lum ayriluvchini topishda qo‘shadi",
+      "sabab": "kamayuvchi va ayriluvchini topish qoidalarini adashtiradi",
+      "oldini_olish": "oddiy sonli misolda sinab ko‘rish: 10 dan nechani ayirsak 4 chiqadi?"
+     },
+     {
+      "xato": "Javobni tekshirmaydi",
+      "sabab": "tekshirishni ortiqcha ish deb biladi",
+      "oldini_olish": "«tekshiruvsiz javob — yarim javob» qoidasi: har bir tenglamadan keyin ildizni o‘rniga qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "formulalar — harfli ifodalar: masofa = tezlik · vaqt (s = v · t)"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "dasturlashda o‘zgaruvchilar harflar bilan belgilanadi va ularga qiymat beriladi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "xarid qiymati harfli ifoda bilan hisoblanadi: narx · miqdor"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tenglamalar hayotda»",
+     "muammo": "Kundalik hayotdagi «noma’lumni topish» vaziyatlarini tenglama bilan qanday yozish mumkin?",
+     "mahsulot": "hayotiy vaziyatlar asosida tuzilgan 8 ta masala-tenglama to‘plami (yechimlari bilan)",
+     "bosqichlar": [
+      "hayotiy vaziyatlarni yig‘ish",
+      "noma’lumni belgilash",
+      "tenglama tuzish",
+      "yechish va tekshirish",
+      "to‘plamni bezash",
+      "boshqa guruh bilan almashib yechish"
+     ],
+     "guruh_vazifalari": [
+      "Do‘kon va xaridga oid 2 ta masala tuzing",
+      "Yosh va vaqtga oid 2 ta masala tuzing",
+      "Masofa va tezlikka oid 2 ta masala tuzing",
+      "Tarozi va massaga oid 2 ta masala tuzing"
+     ],
+     "mezonlar": [
+      "tenglama shartga mos",
+      "yechim to‘g‘ri",
+      "tekshiruv bor",
+      "masala hayotiy",
+      "matn savodli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Noma’lumlar bozori»",
+     "bekatlar": [
+      {
+       "nom": "Meva rastasi",
+       "matn": "Sotuvchi: «Bir kilo olma va 5 000 so‘mlik paket birga 17 000 so‘m bo‘ladi», dedi.",
+       "topshiriq": "Bir kilo olma necha so‘m?",
+       "javob": "12 000 so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Tarozi",
+       "matn": "Tarozining bir pallasida tarvuz, ikkinchisida 2 kg va 5 kg toshlar turibdi. Tarozi muvozanatda.",
+       "topshiriq": "Tarvuz necha kilogramm?",
+       "javob": "7 kg",
+       "rasm": ""
+      },
+      {
+       "nom": "Non do‘koni",
+       "matn": "4 ta bir xil non uchun 14 000 so‘m to‘landi.",
+       "topshiriq": "Bitta non necha so‘m?",
+       "javob": "3 500 so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Kassa",
+       "matn": "Xaridor 50 000 so‘m berib, 8 000 so‘m qaytim oldi.",
+       "topshiriq": "Xarid necha so‘mlik edi?",
+       "javob": "42 000 so‘m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "bozorda guruhdan ajralmang",
+      "pulni ehtiyot qiling",
+      "navbatga rioya qiling"
+     ],
+     "kundalik": [
+      "Qaysi bekatda noma’lum qo‘shiluvchini topdik?",
+      "Tarozi tenglamaga nimasi bilan o‘xshaydi?",
+      "O‘zingiz bitta «bozor tenglamasi» tuzing."
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sonli ifoda",
+      "tarif": "sonlar, amal belgilari va qavslardan tuzilgan yozuv"
+     },
+     {
+      "atama": "Harfli ifoda",
+      "tarif": "sonlar bilan birga harflar ham qatnashgan ifoda"
+     },
+     {
+      "atama": "Ifodaning qiymati",
+      "tarif": "ifodadagi amallarni bajarib topilgan son"
+     },
+     {
+      "atama": "Tenglama",
+      "tarif": "noma’lum son (harf) qatnashgan tenglik"
+     },
+     {
+      "atama": "Tenglamaning ildizi",
+      "tarif": "noma’lumning tenglamani to‘g‘ri tenglikka aylantiradigan qiymati"
+     },
+     {
+      "atama": "O‘zgaruvchi",
+      "tarif": "turli qiymatlar qabul qilishi mumkin bo‘lgan harf"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ifodada avval qavs ichidagi amallar bajariladi",
+      "togri": true,
+      "izoh": "amallar tartibining birinchi qoidasi"
+     },
+     {
+      "matn": "Qo‘shish har doim ko‘paytirishdan oldin bajariladi",
+      "togri": false,
+      "izoh": "qavs bo‘lmasa, avval ko‘paytirish bajariladi"
+     },
+     {
+      "matn": "Tenglama — noma’lum qatnashgan tenglik",
+      "togri": true,
+      "izoh": "ta’rifga ko‘ra"
+     },
+     {
+      "matn": "x + 5 — tenglama",
+      "togri": false,
+      "izoh": "bu harfli ifoda, unda tenglik belgisi yo‘q"
+     },
+     {
+      "matn": "Noma’lum qo‘shiluvchini topish uchun yig‘indidan ma’lum qo‘shiluvchi ayriladi",
+      "togri": true,
+      "izoh": "qo‘shish va ayirish bog‘lanishi"
+     },
+     {
+      "matn": "Noma’lum bo‘linuvchini topish uchun bo‘linma bo‘luvchiga bo‘linadi",
+      "togri": false,
+      "izoh": "bo‘linma bo‘luvchiga ko‘paytiriladi"
+     },
+     {
+      "matn": "Tenglamaning ildizini o‘rniga qo‘yib tekshirish mumkin",
+      "togri": true,
+      "izoh": "to‘g‘ri sonli tenglik chiqishi kerak"
+     },
+     {
+      "matn": "5a yozuvi 5 + a degani",
+      "togri": false,
+      "izoh": "5a — 5 ni a ga ko‘paytirish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sonli ifoda nima?",
+      "javob": "sonlar, amal belgilari va qavslardan tuzilgan yozuv"
+     },
+     {
+      "savol": "Qavssiz ifodada qaysi amallar birinchi bajariladi?",
+      "javob": "ko‘paytirish va bo‘lish"
+     },
+     {
+      "savol": "Tenglama nima?",
+      "javob": "noma’lum qatnashgan tenglik"
+     },
+     {
+      "savol": "Tenglamaning ildizi nima?",
+      "javob": "tenglamani to‘g‘ri tenglikka aylantiradigan son"
+     },
+     {
+      "savol": "Noma’lum kamayuvchi qanday topiladi?",
+      "javob": "ayirmaga ayriluvchi qo‘shiladi"
+     },
+     {
+      "savol": "Noma’lum ko‘paytuvchi qanday topiladi?",
+      "javob": "ko‘paytma ma’lum ko‘paytuvchiga bo‘linadi"
+     },
+     {
+      "savol": "Noma’lum bo‘luvchi qanday topiladi?",
+      "javob": "bo‘linuvchi bo‘linmaga bo‘linadi"
+     },
+     {
+      "savol": "7a yozuvi nimani bildiradi?",
+      "javob": "7 ni a ga ko‘paytirishni"
+     },
+     {
+      "savol": "10 + 2 · 3 nechaga teng?",
+      "javob": "16"
+     },
+     {
+      "savol": "Tenglama yechimi qanday tekshiriladi?",
+      "javob": "ildiz noma’lum o‘rniga qo‘yiladi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Sonli ifoda va amallar tartibi",
+      "matn": "Avval qavs, keyin ko‘paytirish va bo‘lish, oxirida qo‘shish va ayirish. Bir xil bosqichdagi amallar chapdan o‘ngga bajariladi.",
+      "savol": "30 − 4 · 6 + 2 ifodaning qiymatini toping."
+     },
+     {
+      "nom": "Harfli ifoda",
+      "matn": "Harf — o‘zgaruvchi. Uning o‘rniga son qo‘yib, ifoda qiymatini topamiz. 5a — 5 ni a ga ko‘paytirish.",
+      "savol": "2a + 3 ifodaning a o‘rniga 10 qo‘yilgandagi qiymati?"
+     },
+     {
+      "nom": "Tenglama va ildiz",
+      "matn": "Tenglama — noma’lumli tenglik. Ildiz — tenglikni to‘g‘ri qiladigan son. Tenglama taroziga o‘xshaydi.",
+      "savol": "7 soni «x + 9 yig‘indi 16 ga teng» tenglamasining ildizimi?"
+     },
+     {
+      "nom": "Tenglamani yechish",
+      "matn": "Noma’lum komponent teskari amal bilan topiladi: qo‘shiluvchi — ayirish bilan, ko‘paytuvchi — bo‘lish bilan. Oxirida albatta tekshiriladi.",
+      "savol": "x ni 5 ga ko‘paytirganda 85 chiqdi. x ni toping."
+     }
+    ],
+    "muammoli_savol": "Ikki o‘quvchi 8 + 2 · 5 ifodani hisobladi: biri 50, ikkinchisi 18 javobini oldi. Ikkalasi ham «men to‘g‘ri hisobladim» deydi. Kim haq va matematikada nima uchun yagona tartib kerak?",
+    "keys": {
+     "vaziyat": "Sinf rahbari ekskursiya uchun 30 ta o‘quvchidan pul yig‘di. Avtobus ijarasi 240 000 so‘m, qolgan pul muzey chiptalariga sarflandi. Jami 600 000 so‘m yig‘ilgan edi. Kassir bitta chipta narxini bilmoqchi.",
+     "savollar": [
+      "Chiptalarga jami qancha pul sarflangan?",
+      "Bitta chipta narxini x deb olib, masalani tenglama yordamida yeching va tekshiring."
+     ]
+    },
+    "tezis": "Tenglama — har qanday masalaning kaliti",
+    "taqqoslash": {
+     "a": "Ifoda",
+     "b": "Tenglama",
+     "umumiy": [
+      "son, harf va amal belgilaridan tuziladi",
+      "amallar tartibiga bo‘ysunadi"
+     ],
+     "a_farq": [
+      "tenglik belgisi yo‘q",
+      "qiymati hisoblanadi"
+     ],
+     "b_farq": [
+      "tenglik belgisi bor",
+      "ildizi topiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ifoda va tenglama",
+     "shoxlar": [
+      {
+       "nom": "Ifoda",
+       "bandlar": [
+        "sonli",
+        "harfli",
+        "qiymati"
+       ]
+      },
+      {
+       "nom": "Amallar tartibi",
+       "bandlar": [
+        "qavs",
+        "ko‘paytirish va bo‘lish",
+        "qo‘shish va ayirish"
+       ]
+      },
+      {
+       "nom": "Tenglama",
+       "bandlar": [
+        "noma’lum",
+        "ildiz",
+        "yechish"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "ildizni o‘rniga qo‘yish",
+        "to‘g‘ri tenglik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki pallam bor, ikkisi teng tursa — xursandman. Bir pallamda noma’lum yashiringan. Men nimaman?",
+     "javob": "tenglama (tarozi)"
+    },
+    "hikmat": "Bilmaganni so‘rab o‘rgangan — olim, orlanib so‘ramagan — o‘ziga zolim.",
+    "kalit_soz": "ILDIZ",
+    "xato_yechim": {
+     "shart": "Tenglamani yeching: 120 dan x ayrilganda 45 chiqdi.",
+     "xato": "x ni topish uchun 120 ga 45 qo‘shilgan: 165",
+     "togri": "x — noma’lum ayriluvchi: kamayuvchidan ayirma ayriladi, 120 − 45 = 75",
+     "sabab": "ayriluvchini topish qoidasi kamayuvchini topish qoidasi bilan adashtirilgan; tekshirish: 120 − 75 = 45"
+    },
+    "guruh_nomlari": [
+     "Ifodalar",
+     "Ildizlar",
+     "Tarozilar",
+     "O‘zgaruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sirli quti»",
+     "topshiriq": "Guruhga yopiq quti (ichida noma’lum sondagi tugmalar) va «qutidagi tugmalar va yana 8 ta tugma birga 23 ta» degan kartochka beriladi. Tenglama tuzing, yeching, so‘ng qutini ochib tekshiring. Keyin boshqa guruh uchun o‘zingiz shunday sirli quti tayyorlang."
+    },
+    "vazifalar": {
+     "A": "Qiymatini toping: 56 + 8 · 7; (56 + 8) · 7; 200 − 144 : 12. Yeching: x + 37 yig‘indi 100 ga teng; x ni 9 ga ko‘paytirganda 108 chiqadi.",
+     "B": "Oilangizning bir haftalik non xarajati uchun harfli ifoda tuzing (kuniga n ta non) va n ning ikki xil qiymatida hisoblang.",
+     "C": "«O‘ylagan sonni top» o‘yini uchun 3 ta topishmoq-tenglama tuzing (masalan: «o‘ylagan sonimni 4 ga ko‘paytirib, 6 ni ayirsam, 30 chiqdi») va yechimlarini yozing."
+    },
+    "sinkveyn": [
+     "Tenglama",
+     "noma’lumli, muvozanatli",
+     "tuziladi, yechiladi, tekshiriladi",
+     "Ildiz tenglikni to‘g‘ri qiladi",
+     "Tarozi"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh birgalikda «sirli son»ni topadi: har bir guruhning javobi keyingi guruh uchun boshlang‘ich son bo‘ladi.",
+     "qismlar": [
+      "1-guruh: 15 + 9 · 5 ifodaning qiymatini toping",
+      "2-guruh: 1-guruh javobini 4 ga bo‘ling",
+      "3-guruh: 2-guruh javobiga qaysi son qo‘shilsa 40 chiqadi?",
+      "4-guruh: 3-guruh javobini 3 ga ko‘paytirib, 5 ni ayiring"
+     ],
+     "yakun": "1-guruh: 9 · 5 = 45, 15 + 45 = 60. 2-guruh: 60 : 4 = 15. 3-guruh: 40 − 15 = 25. 4-guruh: 25 · 3 = 75, 75 − 5 = 70. Sirli son — 70."
+    }
+   }
   }
  ]
 }
