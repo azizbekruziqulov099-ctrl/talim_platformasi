@@ -1,0 +1,1403 @@
+{
+ "daraja": "maktab",
+ "sinf": "6",
+ "fan": "Matematika",
+ "muallif": "qo‘lda yozilgan, hisob-kitob avtomatik tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Musbat va manfiy sonlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nega manfiy sonlar kerak?",
+      "matn": "Natural sonlar narsalarni sanash uchun yetarli, lekin hayotda shunday kattaliklar bor, ularni faqat natural sonlar bilan ifodalab bo‘lmaydi: noldan past harorat, dengiz sathidan past joylar, qarz. Shu uchun noldan kichik sonlar — manfiy sonlar kiritilgan. Noldan katta sonlar musbat deyiladi, nol esa na musbat, na manfiy.",
+      "misol": "Qishda harorat noldan 5 daraja past bo‘lsa, uni −5 daraja deb yozamiz. Dengiz sathidan 30 m past joy −30 m, 30 m baland joy esa +30 m bilan belgilanadi.",
+      "savol": "Nol musbat sonmi yoki manfiy?",
+      "javob": "na musbat, na manfiy",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qarama-qarshi sonlar",
+      "matn": "Faqat ishorasi bilan farq qiladigan sonlar qarama-qarshi sonlar deyiladi: 4 va −4, −7 va 7. Nolga qarama-qarshi son — nolning o‘zi. Sonning oldiga minus qo‘yilsa, unga qarama-qarshi son hosil bo‘ladi.",
+      "misol": "5 ga qarama-qarshi son −5. −9 ga qarama-qarshi son 9. Termometrda +10 va −10 noldan teng uzoqlikda turadi.",
+      "savol": "−12 ga qarama-qarshi son qaysi?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Butun sonlar",
+      "matn": "Natural sonlar, ularga qarama-qarshi sonlar va nol birgalikda butun sonlar to‘plamini tashkil etadi. Butun sonlar: ..., −3, −2, −1, 0, 1, 2, 3, ... Natural sonlar butun sonlarning qismi.",
+      "misol": "−8, 0 va 25 — butun sonlar. 3,5 va 1/2 butun son emas, chunki ular kasr.",
+      "savol": "0,5 butun sonmi?",
+      "javob": "yo‘q, kasr son",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonlarni taqqoslash",
+      "matn": "Har qanday musbat son noldan katta, har qanday manfiy son noldan kichik. Shuning uchun musbat son har qanday manfiy sondan katta. Ikki manfiy sondan moduli kichigi katta: noldan yaqinroq son katta bo‘ladi.",
+      "misol": "Termometrda −2 daraja −10 darajadan iliqroq, ya’ni −2 > −10. 3 > −100, chunki musbat manfiydan katta.",
+      "savol": "Qaysi biri katta: −4 yoki −9?",
+      "javob": "−4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotda manfiy sonlar",
+      "matn": "Manfiy sonlar harorat o‘lchashda, balandlik va chuqurlikda, hisob-kitobda (daromad va qarz), vaqt zonalari va liftlarning qavat raqamlarida uchraydi. Ular noldan ikki tomonga yo‘nalishni ko‘rsatadi: biri — ortishga, ikkinchisi — kamayishga.",
+      "misol": "Bino ostidagi garaj −1 qavat deb belgilanadi. Hisobda 50 ming so‘m daromad +50, 30 ming so‘m xarajat −30 deb yoziladi.",
+      "savol": "Lift tugmasida −2 nimani bildiradi?",
+      "javob": "yer ostidagi ikkinchi qavat",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Noldan katta sonlar — musbat, noldan kichik sonlar — manfiy, nol — na musbat, na manfiy. Faqat ishorasi bilan farqlanadigan sonlar qarama-qarshi. Musbat son har doim manfiydan katta; ikki manfiy sondan noldan yaqini katta.",
+    "misollar": [
+     {
+      "shart": "Sonlarni o‘sish tartibida joylashtiring: 3, −5, 0, −1, 7.",
+      "yechim": [
+       "Manfiy sonlarni topamiz: −5 va −1. Ulardan −5 kichik (noldan uzoqroq).",
+       "Keyin nol, undan keyin musbat sonlar: 3 va 7.",
+       "O‘sish tartibi: −5, −1, 0, 3, 7."
+      ],
+      "javob": "−5, −1, 0, 3, 7"
+     },
+     {
+      "shart": "Qishda ertalab harorat −7 daraja edi, tushda 4 daraja ko‘tarildi. Tushdagi harorat qancha?",
+      "yechim": [
+       "Ko‘tarilish — sonlar nurida o‘ngga siljish.",
+       "−7 dan 4 qadam o‘ngga: −6, −5, −4, −3.",
+       "Natija −3."
+      ],
+      "javob": "−3 daraja"
+     },
+     {
+      "shart": "Dengiz sathiga nisbatan balandliklar: tog‘ +120 m, vodiy +40 m, cho‘qqi −10 m. Qaysi joy eng past?",
+      "yechim": [
+       "Manfiy balandlik — dengiz sathidan pastda.",
+       "−10 m — eng kichik son.",
+       "Eng past joy — dengiz sathidan 10 m past."
+      ],
+      "javob": "−10 m li joy"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Termometr o‘yini",
+      "topshiriq": "Haroratlar: Toshkent −3, Samarqand 2, Buxoro 5, Nukus −8, Xiva 0. Shaharlarni eng sovuqdan eng issiqqa tartiblang. Qaysi shahar noldan past?",
+      "yechim": "Nukus (−8), Toshkent (−3), Xiva (0), Samarqand (2), Buxoro (5). Noldan past: Nukus va Toshkent.",
+      "mahsulot": "harorat jadvali"
+     },
+     {
+      "nom": "Qarama-qarshi juftlar",
+      "topshiriq": "Kartochkalarda sonlar yozilgan: 6, −2, 9, −9, 2, −6. Qarama-qarshi juftlarni toping.",
+      "yechim": "Juftlar: 6 va −6; 2 va −2; 9 va −9.",
+      "mahsulot": "juftlar jadvali"
+     },
+     {
+      "nom": "Hisob-kitob daftari",
+      "topshiriq": "Oilaviy byudjetda daromad +200, xarajat −150, yana xarajat −30 (ming so‘mda). Qoldiq musbatmi yoki manfiy? Qanday topamiz?",
+      "yechim": "Avval xarajatlar yig‘indisi 180, keyin daromaddan 180 ayiriladi: qoldiq 20 ming so‘m — musbat.",
+      "mahsulot": "byudjet jadvali"
+     },
+     {
+      "nom": "Lift qavatlari",
+      "topshiriq": "Binoda −2, −1, 0, 1, 2, 3 qavatlar bor. Lift 1-qavatdan 3 qavat pastga tushdi. Qaysi qavatda to‘xtadi?",
+      "yechim": "1-qavatdan 3 ta pastga: nolinchi, −1, −2. Lift −2 qavatda to‘xtadi.",
+      "mahsulot": "lift chizmasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "−6 ga qarama-qarshi son?",
+      "javob": "6"
+     },
+     {
+      "shart": "Taqqoslang: −3 va −8.",
+      "javob": "−3 katta"
+     },
+     {
+      "shart": "Taqqoslang: 0 va −1.",
+      "javob": "0 katta"
+     },
+     {
+      "shart": "Eng kichik butun son −5, −2, 0, 4 orasida?",
+      "javob": "−5"
+     },
+     {
+      "shart": "Harorat −4 edi, 6 darajaga ko‘tarildi. Qancha bo‘ldi?",
+      "javob": "2 daraja"
+     },
+     {
+      "shart": "Harorat 3 edi, 5 darajaga pasaydi. Qancha bo‘ldi?",
+      "javob": "−2 daraja"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "−9 soni −2 dan katta deb o‘ylaydi",
+      "sabab": "natural sonlardagi qoidani manfiyga ko‘chiradi",
+      "oldini_olish": "termometr yoki sonlar nuri: noldan yaqin son katta"
+     },
+     {
+      "xato": "Nolni musbat son deb hisoblaydi",
+      "sabab": "nolni natural son deb o‘ylaydi",
+      "oldini_olish": "nol na musbat, na manfiy ekanini eslatish"
+     },
+     {
+      "xato": "−5 va 5 ni bir xil kattalik deb oladi",
+      "sabab": "ishorani e’tiborsiz qoldiradi",
+      "oldini_olish": "ular noldan teng uzoqlikda, lekin qarama-qarshi tomonda ekanini chizma bilan ko‘rsatish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "balandlik dengiz sathidan, chuqurlik manfiy sonlar bilan beriladi; harorat iqlimda"
+     },
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "suvning muzlash harorati 0 daraja, muz noldan past haroratda hosil bo‘ladi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "daromad musbat, qarz va zarar manfiy sonlar bilan yoziladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Manfiy sonlar atlasi»",
+     "muammo": "Hayotda manfiy sonlar qayerlarda uchraydi?",
+     "mahsulot": "manfiy sonlar atlasi: rasm, ma’lumot, izoh",
+     "bosqichlar": [
+      "misollarni izlash",
+      "ma’lumot yig‘ish",
+      "rasm yoki chizma tayyorlash",
+      "izoh yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Harorat misollarini toping",
+      "Balandlik va chuqurlik misollarini toping",
+      "Pul va hisobdagi misollarni toping",
+      "Atlasni yig‘ing"
+     ],
+     "mezonlar": [
+      "misollar to‘g‘ri",
+      "sonlar ishorasi to‘g‘ri",
+      "rasm chiroyli",
+      "izoh aniq",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Dunyo iqlimi»",
+     "bekatlar": [
+      {
+       "nom": "Antarktida",
+       "matn": "Qish kunlari harorat −40 daraja.",
+       "topshiriq": "Bu noldan nechta daraja past?",
+       "javob": "40 daraja",
+       "rasm": ""
+      },
+      {
+       "nom": "Cho‘l",
+       "matn": "Kunduzi harorat 35 daraja, kechasi 5 daraja.",
+       "topshiriq": "Qaysi harorat katta?",
+       "javob": "35 daraja",
+       "rasm": ""
+      },
+      {
+       "nom": "O‘lik dengiz",
+       "matn": "Dengiz sathidan taxminan 400 m pastda joylashgan, ya’ni −400 m.",
+       "topshiriq": "Bu balandlik manfiymi?",
+       "javob": "ha, manfiy",
+       "rasm": ""
+      },
+      {
+       "nom": "Everest",
+       "matn": "Cho‘qqi dengiz sathidan taxminan 8849 m baland.",
+       "topshiriq": "Balandlik musbatmi?",
+       "javob": "ha, musbat",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "issiq kiyining",
+      "kattalar bilan yuring",
+      "muz ustida ehtiyot bo‘ling"
+     ],
+     "kundalik": [
+      "Manfiy sonlar qayerda ko‘rinadi?",
+      "Nega nol muhim?",
+      "Noldan past harorat nimani bildiradi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Musbat son",
+      "tarif": "noldan katta son"
+     },
+     {
+      "atama": "Manfiy son",
+      "tarif": "noldan kichik son"
+     },
+     {
+      "atama": "Qarama-qarshi sonlar",
+      "tarif": "faqat ishorasi bilan farq qiladigan sonlar"
+     },
+     {
+      "atama": "Butun sonlar",
+      "tarif": "natural sonlar, ularga qarama-qarshi sonlar va nol"
+     },
+     {
+      "atama": "Ishora",
+      "tarif": "plyus yoki minus belgisi"
+     },
+     {
+      "atama": "Nol",
+      "tarif": "na musbat, na manfiy son"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Har qanday musbat son manfiy sondan katta",
+      "togri": true,
+      "izoh": "musbat noldan katta, manfiy noldan kichik"
+     },
+     {
+      "matn": "−1 soni −5 dan kichik",
+      "togri": false,
+      "izoh": "−1 noldan yaqinroq, shuning uchun u katta"
+     },
+     {
+      "matn": "Nol musbat son",
+      "togri": false,
+      "izoh": "nol na musbat, na manfiy"
+     },
+     {
+      "matn": "7 va −7 qarama-qarshi sonlar",
+      "togri": true,
+      "izoh": "faqat ishorasi bilan farqlanadi"
+     },
+     {
+      "matn": "Natural sonlar butun sonlarning qismi",
+      "togri": true,
+      "izoh": "har bir natural son butun son"
+     },
+     {
+      "matn": "−3,5 butun son",
+      "togri": false,
+      "izoh": "kasr qismi bor"
+     },
+     {
+      "matn": "Termometrda −10 daraja −2 darajadan sovuqroq",
+      "togri": true,
+      "izoh": "−10 < −2"
+     },
+     {
+      "matn": "Manfiy sonlar faqat haroratda ishlatiladi",
+      "togri": false,
+      "izoh": "balandlik, qarz va boshqa joylarda ham"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Manfiy son nima?",
+      "javob": "noldan kichik son"
+     },
+     {
+      "savol": "Musbat son nima?",
+      "javob": "noldan katta son"
+     },
+     {
+      "savol": "Nolga qarama-qarshi son qaysi?",
+      "javob": "nolning o‘zi"
+     },
+     {
+      "savol": "−8 ga qarama-qarshi son?",
+      "javob": "8"
+     },
+     {
+      "savol": "Qaysi biri katta: −2 yoki −20?",
+      "javob": "−2"
+     },
+     {
+      "savol": "Butun sonlar nimalardan iborat?",
+      "javob": "natural sonlar, ularga qarama-qarshi sonlar va nol"
+     },
+     {
+      "savol": "Termometrda noldan past harorat qanday yoziladi?",
+      "javob": "minus ishorasi bilan"
+     },
+     {
+      "savol": "Manfiy son musbat sondan kichikmi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Dengiz sathi qaysi son bilan belgilanadi?",
+      "javob": "0"
+     },
+     {
+      "savol": "Yer ostidagi birinchi qavat qanday belgilanadi?",
+      "javob": "−1"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Manfiy sonlar",
+      "matn": "Noldan kichik sonlar. Haroratda, chuqurlikda, qarzda uchraydi.",
+      "savol": "Manfiy son nima?"
+     },
+     {
+      "nom": "Qarama-qarshi sonlar",
+      "matn": "Faqat ishorasi bilan farqlanadi: 5 va −5.",
+      "savol": "−4 ga qarama-qarshi son?"
+     },
+     {
+      "nom": "Butun sonlar",
+      "matn": "Natural sonlar, ularga qarama-qarshi sonlar va nol.",
+      "savol": "Butun songa misol keltiring."
+     },
+     {
+      "nom": "Taqqoslash",
+      "matn": "Musbat son manfiydan katta; manfiylardan noldan yaqini katta.",
+      "savol": "−1 va −6 ni taqqoslang."
+     }
+    ],
+    "muammoli_savol": "Bola: «−100 soni −1 dan katta, chunki 100 soni 1 dan katta!» dedi. U to‘g‘rimi? Termometrda qanday tushuntirasiz?",
+    "keys": {
+     "vaziyat": "Qishda Samarqandda tun harorati −6 daraja, kunduzi 3 daraja. Ona bolani maktabga qanday kiyintirishni o‘ylayapti.",
+     "savollar": [
+      "Kun davomida harorat necha darajaga o‘zgardi?",
+      "Ertalab nega issiq kiyinish kerak?"
+     ]
+    },
+    "tezis": "Nol — chegara, undan ikki tomonga sonlar ketadi",
+    "taqqoslash": {
+     "a": "Musbat son",
+     "b": "Manfiy son",
+     "umumiy": [
+      "butun son bo‘lishi mumkin",
+      "nurda joylashadi"
+     ],
+     "a_farq": [
+      "noldan katta",
+      "nurda o‘ngda"
+     ],
+     "b_farq": [
+      "noldan kichik",
+      "nurda chapda"
+     ]
+    },
+    "klaster": {
+     "markaz": "Manfiy sonlar",
+     "shoxlar": [
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "harorat",
+        "chuqurlik",
+        "qarz"
+       ]
+      },
+      {
+       "nom": "Tushunchalar",
+       "bandlar": [
+        "qarama-qarshi sonlar",
+        "butun sonlar",
+        "nol"
+       ]
+      },
+      {
+       "nom": "Taqqoslash",
+       "bandlar": [
+        "musbat > manfiy",
+        "noldan yaqin — katta",
+        "nur"
+       ]
+      },
+      {
+       "nom": "Belgilash",
+       "bandlar": [
+        "minus ishorasi",
+        "plyus ishorasi",
+        "−5, +5"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Noldan chap tomonda yashayman, sovuq kunlarda termometrda ko‘rinaman. Men kimman?",
+     "javob": "manfiy son"
+    },
+    "hikmat": "Qish bor joyda bahor ham bor.",
+    "kalit_soz": "MANFIY",
+    "xato_yechim": {
+     "shart": "−9 va −2 ni taqqoslang.",
+     "xato": "−9 katta, chunki 9 soni 2 dan katta",
+     "togri": "−2 katta",
+     "sabab": "manfiy sonlarda noldan yaqin son katta bo‘ladi"
+    },
+    "guruh_nomlari": [
+     "Musbatlar",
+     "Manfiylar",
+     "Nollar",
+     "Termometrlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Harorat kundaligi»",
+     "topshiriq": "Guruh haftalik ob-havo prognozidagi haroratlarni yozib oladi, noldan pastlarini manfiy son bilan belgilaydi va sovuqdan issiqqa qarab tartiblaydi."
+    },
+    "vazifalar": {
+     "A": "Sonlarni o‘sish tartibida yozing: 5, −2, −7, 0, 3, −1. Har biriga qarama-qarshi sonni yozing.",
+     "B": "Uyingizda 5 ta joyda manfiy sonlar ishlatiladimi (termometr, lift, hisob) — kuzating va yozing.",
+     "C": "Dunyodagi 5 ta shahar haroratini topib (kamida bittasi manfiy), eng sovuq va eng issiq shaharni aniqlang."
+    },
+    "sinkveyn": [
+     "Manfiy",
+     "sovuq, past",
+     "kamayadi, pasayadi, chapga ketadi",
+     "Noldan kichik son",
+     "Minus"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt shaharning haroratlari: A — −5, B — 3, C — −12, D — 0.",
+     "qismlar": [
+      "1-guruh: sovuqdan issiqqa tartiblang",
+      "2-guruh: noldan past shaharlarni toping",
+      "3-guruh: eng sovuq shaharni toping",
+      "4-guruh: har bir haroratga qarama-qarshi sonni yozing"
+     ],
+     "yakun": "Tartib: C (−12), A (−5), D (0), B (3). Noldan past — C va A. Eng sovuq — C."
+    }
+   }
+  },
+  {
+   "mavzu": "Koordinata to‘g‘ri chizig‘i",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "To‘g‘ri chiziqda sonlar",
+      "matn": "To‘g‘ri chiziqda boshlang‘ich nuqta (0), musbat yo‘nalish va birlik kesma tanlansa, koordinata to‘g‘ri chizig‘i hosil bo‘ladi. Musbat sonlar boshlang‘ich nuqtadan o‘ngda, manfiy sonlar chapda joylashadi. Har bir butun songa nuqta mos keladi.",
+      "misol": "Chizg‘ichga o‘xshash to‘g‘ri chiziq chizib, o‘rtasiga 0 ni yozamiz, o‘ngga 1, 2, 3 ni, chapga −1, −2, −3 ni belgilaymiz.",
+      "savol": "Manfiy sonlar 0 ning qaysi tomonida joylashadi?",
+      "javob": "chap tomonida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nuqtaning koordinatasi",
+      "matn": "To‘g‘ri chiziqdagi nuqtaga mos son uning koordinatasi deyiladi. A(−3) yozuvi «A nuqtaning koordinatasi −3» ni bildiradi. Koordinata nuqtaning boshlang‘ich nuqtadan qaysi tomonda va qancha uzoqlikda turishini ko‘rsatadi.",
+      "misol": "B(4) nuqta 0 dan 4 birlik o‘ngda, A(−3) nuqta esa 0 dan 3 birlik chapda joylashgan.",
+      "savol": "C(−5) nuqta 0 dan qaysi tomonda turadi?",
+      "javob": "chapda, 5 birlik uzoqlikda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qarama-qarshi sonlar nuqtalari",
+      "matn": "Qarama-qarshi sonlarga mos nuqtalar boshlang‘ich nuqtadan teng uzoqlikda, lekin qarama-qarshi tomonlarda joylashadi. Ular 0 ga nisbatan simmetrik.",
+      "misol": "A(2) va B(−2) nuqtalar 0 dan 2 birlik uzoqlikda. 0 ularning o‘rtasida turadi.",
+      "savol": "7 va −7 nuqtalar 0 ga nisbatan qanday joylashadi?",
+      "javob": "simmetrik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonlarni taqqoslash",
+      "matn": "To‘g‘ri chiziqda o‘ngda turgan nuqtaning koordinatasi katta. Shuning uchun har qanday musbat son manfiydan, har qanday ikki manfiy sondan o‘ngdagisi katta. Sonlarni o‘sish tartibida joylashtirish — ularni chapdan o‘ngga o‘qish demakdir.",
+      "misol": "−6 chapda, −1 o‘ngda turadi, demak −1 > −6.",
+      "savol": "Nuqta o‘ngga siljisa, koordinata qanday o‘zgaradi?",
+      "javob": "ortadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nuqtalar orasidagi masofa",
+      "matn": "Ikki nuqta orasidagi masofa — koordinatalarning katta qiymatdan kichigini ayirish natijasi. Koordinatalar turli ishorali bo‘lsa, masofa ularning modullari yig‘indisiga teng.",
+      "misol": "A(−2) va B(5) orasidagi masofa: 2 va 5 modullari yig‘indisi — 7 birlik.",
+      "savol": "A(−4) va B(3) orasidagi masofa qancha?",
+      "javob": "7",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Koordinata to‘g‘ri chizig‘i: boshlang‘ich nuqta 0, musbat yo‘nalish (odatda o‘ngga), birlik kesma. O‘ngdagi nuqtaning koordinatasi katta. Qarama-qarshi sonlar 0 ga nisbatan simmetrik.",
+    "misollar": [
+     {
+      "shart": "To‘g‘ri chiziqda A(−4) va B(3) nuqtalar berilgan. Qaysi biri o‘ngda va ular orasidagi masofa qancha?",
+      "yechim": [
+       "3 soni −4 dan katta, demak B o‘ngda.",
+       "Ishoralari turli, shuning uchun modullar yig‘indisi olinadi.",
+       "4 + 3 = 7."
+      ],
+      "javob": "B o‘ngda, masofa 7"
+     },
+     {
+      "shart": "A(2) nuqtadan 5 birlik chapga siljildik. Yangi nuqta koordinatasi nechaga teng?",
+      "yechim": [
+       "Chapga siljish — koordinata kamayadi.",
+       "2 dan 5 ni ayirsak, −3 chiqadi."
+      ],
+      "javob": "−3"
+     },
+     {
+      "shart": "Koordinatalari −3 va 3 bo‘lgan nuqtalar orasidagi masofani toping.",
+      "yechim": [
+       "Qarama-qarshi sonlar 0 dan teng uzoqlikda.",
+       "Har biri 3 birlik: 3 + 3 = 6."
+      ],
+      "javob": "6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Nur chizamiz",
+      "topshiriq": "−6 dan 6 gacha koordinata to‘g‘ri chizig‘ini chizing (birlik kesma 1 sm). A(−4), B(0), C(2), D(5) nuqtalarini belgilang va o‘sish tartibida yozing.",
+      "yechim": "O‘sish tartibi: −4, 0, 2, 5.",
+      "mahsulot": "chizilgan to‘g‘ri chiziq"
+     },
+     {
+      "nom": "Simmetriya",
+      "topshiriq": "A(3), B(−1), C(5) nuqtalarga 0 ga nisbatan simmetrik nuqtalarni toping.",
+      "yechim": "A′(−3), B′(1), C′(−5).",
+      "mahsulot": "simmetrik nuqtalar jadvali"
+     },
+     {
+      "nom": "Masofa o‘lchash",
+      "topshiriq": "Nuqtalar: M(−7), N(−2), K(4). MN, NK va MK masofalarini toping.",
+      "yechim": "MN: 7 − 2 = 5 (ikkalasi manfiy: modullar ayirmasi). NK: 2 + 4 = 6. MK: 7 + 4 = 11.",
+      "mahsulot": "masofalar jadvali"
+     },
+     {
+      "nom": "Termometr — to‘g‘ri chiziq",
+      "topshiriq": "Vertikal termometr koordinata to‘g‘ri chizig‘i bo‘lib xizmat qiladi. Harorat −8 dan 5 gacha ko‘tarildi. Necha darajaga ko‘tarildi?",
+      "yechim": "8 + 5 = 13 daraja.",
+      "mahsulot": "termometr chizmasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Qaysi nuqta o‘ngda: A(−2) yoki B(−5)?",
+      "javob": "A"
+     },
+     {
+      "shart": "A(4) ga simmetrik nuqta koordinatasi?",
+      "javob": "−4"
+     },
+     {
+      "shart": "A(−3) va B(3) orasidagi masofa?",
+      "javob": "6"
+     },
+     {
+      "shart": "A(−1) va B(5) orasidagi masofa?",
+      "javob": "6"
+     },
+     {
+      "shart": "A(3) nuqtadan 5 birlik chapga siljildik. Koordinata?",
+      "javob": "−2"
+     },
+     {
+      "shart": "O‘sish tartibida joylashtiring: 2, −4, 0, −1.",
+      "javob": "−4, −1, 0, 2"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Manfiy sonlarni 0 ning o‘ng tomoniga joylashtiradi",
+      "sabab": "musbat sonlar bilan adashtiradi",
+      "oldini_olish": "manfiy sonlar chapda ekanini termometr yoki chiziq bilan takrorlash"
+     },
+     {
+      "xato": "Masofani koordinatalar yig‘indisi deb oladi",
+      "sabab": "ishoralarni e’tiborsiz qoldiradi",
+      "oldini_olish": "chizmada qadamlarni sanash"
+     },
+     {
+      "xato": "Birlik kesmalarni teng qilib chizmaydi",
+      "sabab": "ko‘z bilan chizadi",
+      "oldini_olish": "chizg‘ichda teng bo‘laklarni belgilash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "kenglik va uzunlik koordinatalar bilan ko‘rsatiladi"
+     },
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "termometr va balandlik o‘lchagich koordinata to‘g‘ri chizig‘iga asoslangan"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "ekranda joylashuv koordinatalar bilan beriladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinf termometri»",
+     "muammo": "Harorat o‘zgarishini koordinata to‘g‘ri chizig‘ida qanday ko‘rsatamiz?",
+     "mahsulot": "katta termometr modeli va harorat jadvali",
+     "bosqichlar": [
+      "termometr shkalasini chizish",
+      "birlik kesmani belgilash",
+      "haroratni yozib borish",
+      "jadval tuzish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Shkala tayyorlang",
+      "Haroratni o‘lchang",
+      "Natijalarni belgilang",
+      "Jadvalga yig‘ing"
+     ],
+     "mezonlar": [
+      "shkala aniq",
+      "belgilar to‘g‘ri",
+      "natijalar to‘g‘ri",
+      "jadval tartibli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sonlar o‘qi»",
+     "bekatlar": [
+      {
+       "nom": "Shahar markazi",
+       "matn": "Markaz koordinatasi 0, maktab 3 birlik o‘ngda.",
+       "topshiriq": "Maktab koordinatasi?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "Daryo bo‘yi",
+       "matn": "Daryo markazdan 4 birlik chapda.",
+       "topshiriq": "Daryo koordinatasi?",
+       "javob": "−4",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘prik",
+       "matn": "Daryo koordinatasi −4, maktab 3.",
+       "topshiriq": "Daryo va maktab orasidagi masofa?",
+       "javob": "7",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Bog‘ koordinatasi −6, daryo −4.",
+       "topshiriq": "Qaysi biri o‘ngda?",
+       "javob": "daryo",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "yo‘lga chiqmang",
+      "daryoga yaqinlashmang",
+      "kattalar bilan yuring"
+     ],
+     "kundalik": [
+      "Nega koordinata kerak?",
+      "Manfiy tomon qayerda?",
+      "Masofani qanday topdik?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Koordinata to‘g‘ri chizig‘i",
+      "tarif": "boshlang‘ich nuqta, yo‘nalish va birlik kesma tanlangan to‘g‘ri chiziq"
+     },
+     {
+      "atama": "Koordinata",
+      "tarif": "nuqtaga mos kelgan son"
+     },
+     {
+      "atama": "Boshlang‘ich nuqta",
+      "tarif": "0 koordinatali nuqta"
+     },
+     {
+      "atama": "Birlik kesma",
+      "tarif": "uzunlik o‘lchovi bo‘lgan kesma"
+     },
+     {
+      "atama": "Simmetrik nuqtalar",
+      "tarif": "nolga nisbatan teng uzoqlikdagi, qarama-qarshi tomondagi nuqtalar"
+     },
+     {
+      "atama": "Masofa",
+      "tarif": "ikki nuqta orasidagi uzunlik"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Manfiy sonlar 0 ning chap tomonida",
+      "togri": true,
+      "izoh": "odatdagi tanlovga ko‘ra"
+     },
+     {
+      "matn": "O‘ngdagi nuqta koordinatasi kichik",
+      "togri": false,
+      "izoh": "o‘ngda koordinata katta"
+     },
+     {
+      "matn": "A(−2) va B(2) simmetrik nuqtalar",
+      "togri": true,
+      "izoh": "0 dan teng uzoqlikda"
+     },
+     {
+      "matn": "A(−3) va B(4) orasidagi masofa 1",
+      "togri": false,
+      "izoh": "ishoralari turli, modullar yig‘indisi: 7"
+     },
+     {
+      "matn": "Har bir butun songa nuqta mos keladi",
+      "togri": true,
+      "izoh": "to‘g‘ri chiziqda"
+     },
+     {
+      "matn": "Chapga siljish koordinatani kamaytiradi",
+      "togri": true,
+      "izoh": "yo‘nalishga ko‘ra"
+     },
+     {
+      "matn": "Birlik kesmalar teng bo‘lishi shart emas",
+      "togri": false,
+      "izoh": "teng bo‘lishi shart"
+     },
+     {
+      "matn": "0 koordinata boshi",
+      "togri": true,
+      "izoh": "boshlang‘ich nuqta"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Koordinata boshi qaysi son?",
+      "javob": "0"
+     },
+     {
+      "savol": "Musbat sonlar qayerda?",
+      "javob": "o‘ngda"
+     },
+     {
+      "savol": "Manfiy sonlar qayerda?",
+      "javob": "chapda"
+     },
+     {
+      "savol": "Koordinata nima?",
+      "javob": "nuqtaga mos son"
+     },
+     {
+      "savol": "5 ga simmetrik son?",
+      "javob": "−5"
+     },
+     {
+      "savol": "Ikki nuqta orasidagi masofa qanday topiladi?",
+      "javob": "koordinatalar bo‘yicha qadamlarni sanab"
+     },
+     {
+      "savol": "Nuqta o‘ngga siljisa, koordinata?",
+      "javob": "ortadi"
+     },
+     {
+      "savol": "Birlik kesma nima?",
+      "javob": "o‘lchov kesmasi"
+     },
+     {
+      "savol": "A(−1) va B(2) dan qaysi biri o‘ngda?",
+      "javob": "B"
+     },
+     {
+      "savol": "Simmetrik nuqtalar nimaga nisbatan?",
+      "javob": "nolga"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "To‘g‘ri chiziq",
+      "matn": "Boshlang‘ich nuqta, yo‘nalish va birlik kesma tanlanadi.",
+      "savol": "Nimalar tanlanadi?"
+     },
+     {
+      "nom": "Koordinata",
+      "matn": "Nuqtaga mos son: A(−3) — nuqta 0 dan chapda 3 birlik.",
+      "savol": "B(5) nimani bildiradi?"
+     },
+     {
+      "nom": "Simmetriya",
+      "matn": "Qarama-qarshi sonlar 0 ga nisbatan simmetrik.",
+      "savol": "−8 ga simmetrik son?"
+     },
+     {
+      "nom": "Masofa",
+      "matn": "Turli ishorali sonlar modullari yig‘indisi.",
+      "savol": "−2 va 6 orasida masofa?"
+     }
+    ],
+    "muammoli_savol": "Kichkina bola: «Ikki nuqta A(−3) va B(−8) orasidagi masofani −3 va −8 ni qo‘shib topaman» dedi. U to‘g‘rimi? Chizma bilan tekshiring.",
+    "keys": {
+     "vaziyat": "Lift 4-qavatdan boshlab pastga tushmoqda. U 0 ni, −1 va −2 qavatlarni ham o‘tadi. Bola necha qavat tushganini hisoblay olmayapti.",
+     "savollar": [
+      "4-qavatdan −2 gacha necha qavat tushadi?",
+      "Koordinata chizig‘i qanday yordam beradi?"
+     ]
+    },
+    "tezis": "Sonlarning o‘z manzili bor",
+    "taqqoslash": {
+     "a": "Koordinata nuri",
+     "b": "Koordinata to‘g‘ri chizig‘i",
+     "umumiy": [
+      "birlik kesma bor",
+      "nuqtaga son mos"
+     ],
+     "a_farq": [
+      "faqat 0 dan o‘ngda",
+      "faqat nomanfiy sonlar"
+     ],
+     "b_farq": [
+      "ikki tomonga cheksiz",
+      "manfiy sonlar ham bor"
+     ]
+    },
+    "klaster": {
+     "markaz": "Koordinata to‘g‘ri chizig‘i",
+     "shoxlar": [
+      {
+       "nom": "Elementlari",
+       "bandlar": [
+        "0",
+        "yo‘nalish",
+        "birlik kesma"
+       ]
+      },
+      {
+       "nom": "Nuqta",
+       "bandlar": [
+        "koordinata",
+        "o‘ngda katta",
+        "chapda kichik"
+       ]
+      },
+      {
+       "nom": "Simmetriya",
+       "bandlar": [
+        "qarama-qarshi sonlar",
+        "teng masofa",
+        "nol markaz"
+       ]
+      },
+      {
+       "nom": "Masofa",
+       "bandlar": [
+        "bir ishorada ayirma",
+        "turli ishorada yig‘indi",
+        "qadam sanash"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Nolning ikki yonida sonlarni saflayman. Men kimman?",
+     "javob": "koordinata to‘g‘ri chizig‘i"
+    },
+    "hikmat": "Yo‘lini bilgan — adashmas.",
+    "kalit_soz": "KOORDINATA",
+    "xato_yechim": {
+     "shart": "A(−3) va B(5) orasidagi masofani toping.",
+     "xato": "5 va 3 ni ayirib, 2",
+     "togri": "8",
+     "sabab": "ishoralari turli, shuning uchun modullar qo‘shiladi: 3 va 5"
+    },
+    "guruh_nomlari": [
+     "Nolchilar",
+     "Chapchilar",
+     "O‘ngchilar",
+     "Masofachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinf chizig‘i»",
+     "topshiriq": "Guruh yerga yoki doskaga −5 dan 5 gacha sonlar o‘qini chizadi. A’zolar turli koordinatalarda turib, orasidagi masofalarni topadi."
+    },
+    "vazifalar": {
+     "A": "−8 dan 8 gacha sonlar o‘qini chizing va 6 ta nuqtani belgilang.",
+     "B": "Uyingizdagi termometrdan haftalik haroratni yozib, koordinata chizig‘ida belgilang.",
+     "C": "3 ta nuqta tanlang va ular orasidagi barcha masofalarni toping."
+    },
+    "sinkveyn": [
+     "Chiziq",
+     "uzun, tartibli",
+     "boshlanadi, davom etadi, ikki tomonlama",
+     "Sonlarning manzili",
+     "Koordinata"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt do‘st sonlar o‘qida turibdi: Ali −4 da, Vali −1 da, Soli 2 da, Dilnoza 5 da.",
+     "qismlar": [
+      "1-guruh: Ali va Vali orasidagi masofa",
+      "2-guruh: Vali va Soli orasidagi masofa",
+      "3-guruh: Ali va Dilnoza orasidagi masofa",
+      "4-guruh: eng o‘ngdagi do‘stni toping"
+     ],
+     "yakun": "Masofalar: Ali — Vali 3; Vali — Soli 3; Ali — Dilnoza 9. Eng o‘ngda — Dilnoza."
+    }
+   }
+  },
+  {
+   "mavzu": "Modul",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Modul nima?",
+      "matn": "Sonning moduli — koordinata to‘g‘ri chizig‘ida shu songa mos nuqtadan boshlang‘ich nuqtagacha bo‘lgan masofa. Modul ikki tik chiziq bilan yoziladi: |a|. Masofa hech qachon manfiy bo‘lmaydi, shuning uchun modul har doim nol yoki musbat son.",
+      "misol": "|5| soni — 5 ga mos nuqtadan 0 gacha bo‘lgan masofa, ya’ni 5. |−5| ham 5, chunki −5 nuqtadan 0 gacha ham 5 birlik.",
+      "savol": "|−9| nechaga teng?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Modulni topish qoidasi",
+      "matn": "Musbat sonning moduli o‘ziga teng. Manfiy sonning moduli unga qarama-qarshi songa teng. Nolning moduli nolga teng. Demak, modul sonning ishorasini «olib tashlaydi», qiymatini saqlaydi.",
+      "misol": "|12| = 12; |−12| = 12; |0| = 0. |−3,5| = 3,5.",
+      "savol": "|0| nechaga teng?",
+      "javob": "0",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qarama-qarshi sonlar modullari",
+      "matn": "Qarama-qarshi sonlarning modullari teng. Bu ularning nolga teng uzoqlikda turganidan kelib chiqadi. Lekin modullari teng sonlar har doim ham teng emas: 4 va −4 ning modullari teng, ammo o‘zlari teng emas.",
+      "misol": "|7| va |−7| teng (ikkalasi 7). Lekin 7 va −7 teng emas.",
+      "savol": "|−6| va |6| tengmi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Modullarni taqqoslash",
+      "matn": "Sonlarning modullarini taqqoslash nuqtalarning nolgacha bo‘lgan masofasini taqqoslashdir. Modul katta bo‘lsa, nuqta noldan uzoqroq. Manfiy sonlarni taqqoslashda modul kattasi kichik bo‘ladi: −9 < −2, lekin |−9| > |−2|.",
+      "misol": "|−3| va |2| ni taqqoslaymiz: 3 > 2, demak |−3| > |2|.",
+      "savol": "Qaysi biri katta: |−5| yoki |4|?",
+      "javob": "|−5|",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Modul va masofa",
+      "matn": "Modul yordamida ikki nuqta orasidagi masofani topish mumkin. A(a) va B(b) orasidagi masofa — koordinatalar ayirmasining moduli: |a − b|. Bu formula nuqtalar qanday joylashganidan qat’i nazar ishlaydi.",
+      "misol": "A(−2) va B(5) orasidagi masofa — |−2 − 5|, ya’ni 7.",
+      "savol": "A(1) va B(6) orasidagi masofa?",
+      "javob": "5",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Sonning moduli — koordinata to‘g‘ri chizig‘ida shu songa mos nuqtadan 0 gacha masofa. |a| = a, agar a musbat; |a| qarama-qarshi son, agar a manfiy; |0| = 0. Modul manfiy bo‘lmaydi, qarama-qarshi sonlarning modullari teng.",
+    "misollar": [
+     {
+      "shart": "Hisoblang: |−7| va |3|. Qaysi biri katta?",
+      "yechim": [
+       "|−7| soni 7 ga teng, chunki −7 nuqta noldan 7 birlik uzoqda.",
+       "|3| soni 3 ga teng.",
+       "7 va 3 ni taqqoslaymiz: 7 > 3."
+      ],
+      "javob": "|−7| katta"
+     },
+     {
+      "shart": "Modul 4 ga teng bo‘lgan barcha sonlarni toping.",
+      "yechim": [
+       "Noldan 4 birlik uzoqlikdagi nuqtalar ikkita.",
+       "Biri o‘ngda — 4, ikkinchisi chapda — −4."
+      ],
+      "javob": "4 va −4"
+     },
+     {
+      "shart": "−12, 5, −3, 8 sonlarini modullari o‘sish tartibida joylashtiring.",
+      "yechim": [
+       "Modullar: 12, 5, 3 va 8.",
+       "O‘sish tartibi: 3, 5, 8, 12.",
+       "Ularga mos sonlar: −3, 5, 8, −12."
+      ],
+      "javob": "−3, 5, 8, −12"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Modul kartochkalari",
+      "topshiriq": "Kartochkalardagi sonlarning modullarini toping: −8, 6, −1, 0, −15, 12.",
+      "yechim": "8, 6, 1, 0, 15, 12.",
+      "mahsulot": "modullar jadvali"
+     },
+     {
+      "nom": "Ikki yechim",
+      "topshiriq": "Modullari 7, 0 va 10 bo‘lgan sonlarni toping. Nega birida bitta yechim bor?",
+      "yechim": "7 va −7; 0; 10 va −10. Nolning moduli nol, nolga teng uzoqlikdagi nuqta faqat nolning o‘zi.",
+      "mahsulot": "yechimlar jadvali"
+     },
+     {
+      "nom": "Masofa o‘lchash",
+      "topshiriq": "Koordinata to‘g‘ri chizig‘ida A(−6), B(−1), C(3) nuqtalar berilgan. AB, BC va AC masofalarini modul yordamida toping.",
+      "yechim": "AB — 5; BC — 4; AC — 9.",
+      "mahsulot": "masofalar jadvali"
+     },
+     {
+      "nom": "Modul o‘yini",
+      "topshiriq": "Har bir o‘yinchi kartochka tanlaydi va modulini aytadi. Eng katta modulni aytgan o‘yinchi yutadi. Kartochkalar: −9, 7, −11, 4.",
+      "yechim": "Modullar 9, 7, 11, 4. Yutuqli — −11 kartochkali.",
+      "mahsulot": "o‘yin natijalari"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "|−10| nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "|25| nechaga teng?",
+      "javob": "25"
+     },
+     {
+      "shart": "|−1,5| nechaga teng?",
+      "javob": "1,5"
+     },
+     {
+      "shart": "Modul 6 ga teng sonlar?",
+      "javob": "6 va −6"
+     },
+     {
+      "shart": "Qaysi biri katta: |−3| yoki |2|?",
+      "javob": "|−3|"
+     },
+     {
+      "shart": "A(−4) va B(2) orasidagi masofa?",
+      "javob": "6"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Manfiy sonning modulini manfiy deb oladi",
+      "sabab": "modulni «ishora» deb tushunadi",
+      "oldini_olish": "modul — masofa, masofa manfiy bo‘lmaydi"
+     },
+     {
+      "xato": "|−5| va |5| ni teng emas deb hisoblaydi",
+      "sabab": "sonlarning o‘zlari teng emasligini modullar bilan aralashtiradi",
+      "oldini_olish": "ikkala nuqta 0 dan 5 birlik uzoqlikda ekanini ko‘rsatish"
+     },
+     {
+      "xato": "Modulni taqqoslashda manfiy sonlar qoidasini ishlatadi",
+      "sabab": "sonlar va ularning modullarini adashtiradi",
+      "oldini_olish": "avval modulni hisoblab, keyin natijani taqqoslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "masofa va tezlik kattaliklari modul bilan ifodalanadi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "ekvatordan shimol va janub tomon masofa modul sifatida o‘lchanadi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "dasturlashda abs funksiyasi sonning modulini beradi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Modul — masofa o‘lchovi»",
+     "muammo": "Modul tushunchasi hayotdagi masofalarni qanday bildiradi?",
+     "mahsulot": "sonlar o‘qida masofalar plakati",
+     "bosqichlar": [
+      "sonlar o‘qini chizish",
+      "nuqtalarni belgilash",
+      "modullarni hisoblash",
+      "masofalarni o‘lchash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Musbat sonlar modulini ko‘rsating",
+      "Manfiy sonlar modulini ko‘rsating",
+      "Masofalarni hisoblang",
+      "Plakatni yig‘ing"
+     ],
+     "mezonlar": [
+      "chizma aniq",
+      "modul to‘g‘ri hisoblangan",
+      "masofa to‘g‘ri",
+      "plakat chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Masofa o‘lchash markazi»",
+     "bekatlar": [
+      {
+       "nom": "Shimol",
+       "matn": "Nuqta koordinatasi −8.",
+       "topshiriq": "Noldan masofa?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "Janub",
+       "matn": "Nuqta koordinatasi 6.",
+       "topshiriq": "Noldan masofa?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘prik",
+       "matn": "Ikki nuqta: −5 va 2.",
+       "topshiriq": "Orasidagi masofa?",
+       "javob": "7",
+       "rasm": ""
+      },
+      {
+       "nom": "Dengiz sathi",
+       "matn": "Dengiz sathi koordinatasi 0.",
+       "topshiriq": "Uning moduli?",
+       "javob": "0",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarga tegmang"
+     ],
+     "kundalik": [
+      "Modul nimani bildiradi?",
+      "Masofa manfiy bo‘ladimi?",
+      "Nega ishora tushib qoladi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Modul",
+      "tarif": "sondan boshlang‘ich nuqtagacha masofa"
+     },
+     {
+      "atama": "Masofa",
+      "tarif": "ikki nuqta orasidagi uzunlik"
+     },
+     {
+      "atama": "Ishora",
+      "tarif": "plyus yoki minus belgisi"
+     },
+     {
+      "atama": "Qarama-qarshi sonlar",
+      "tarif": "modullari teng, ishoralari qarama-qarshi sonlar"
+     },
+     {
+      "atama": "Koordinata",
+      "tarif": "nuqtaga mos son"
+     },
+     {
+      "atama": "Nol",
+      "tarif": "moduli nolga teng yagona son"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Modul hech qachon manfiy bo‘lmaydi",
+      "togri": true,
+      "izoh": "masofa manfiy bo‘lmaydi"
+     },
+     {
+      "matn": "|−4| = −4",
+      "togri": false,
+      "izoh": "|−4| soni 4 ga teng"
+     },
+     {
+      "matn": "Qarama-qarshi sonlarning modullari teng",
+      "togri": true,
+      "izoh": "nolgacha masofalari teng"
+     },
+     {
+      "matn": "|0| = 0",
+      "togri": true,
+      "izoh": "nolning noldan masofasi nol"
+     },
+     {
+      "matn": "Modullari teng sonlar har doim teng",
+      "togri": false,
+      "izoh": "masalan, 3 va −3"
+     },
+     {
+      "matn": "Modul 5 ga teng ikkita son bor",
+      "togri": true,
+      "izoh": "5 va −5"
+     },
+     {
+      "matn": "Modul masofani bildiradi",
+      "togri": true,
+      "izoh": "nolgacha masofa"
+     },
+     {
+      "matn": "Manfiy sonning moduli manfiy",
+      "togri": false,
+      "izoh": "modul manfiy bo‘lmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sonning moduli nima?",
+      "javob": "nolgacha masofa"
+     },
+     {
+      "savol": "|7| nechaga teng?",
+      "javob": "7"
+     },
+     {
+      "savol": "|−7| nechaga teng?",
+      "javob": "7"
+     },
+     {
+      "savol": "|0| nechaga teng?",
+      "javob": "0"
+     },
+     {
+      "savol": "Modul manfiy bo‘ladimi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "Modul 3 ga teng sonlar?",
+      "javob": "3 va −3"
+     },
+     {
+      "savol": "Modul qanday yoziladi?",
+      "javob": "ikki tik chiziq orasida"
+     },
+     {
+      "savol": "Qarama-qarshi sonlar modullari?",
+      "javob": "teng"
+     },
+     {
+      "savol": "Modul nimaning o‘lchovi?",
+      "javob": "masofaning"
+     },
+     {
+      "savol": "|−12| va |5| dan qaysi biri katta?",
+      "javob": "|−12|"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Sonning moduli — nolgacha bo‘lgan masofa.",
+      "savol": "Modul nimani bildiradi?"
+     },
+     {
+      "nom": "Qoida",
+      "matn": "Musbatniki — o‘zi; manfiyniki — qarama-qarshisi; nolniki — nol.",
+      "savol": "|−8| qancha?"
+     },
+     {
+      "nom": "Xossa",
+      "matn": "Modul manfiy bo‘lmaydi; qarama-qarshi sonlar modullari teng.",
+      "savol": "|−2| va |2| tengmi?"
+     },
+     {
+      "nom": "Masofa",
+      "matn": "Ikki nuqta orasidagi masofa ayirma moduli.",
+      "savol": "1 va 7 orasida masofa?"
+     }
+    ],
+    "muammoli_savol": "|a| = 5 bo‘lsa, a nechaga teng? Nega ikkita javob chiqadi? Sonlar o‘qida tushuntiring.",
+    "keys": {
+     "vaziyat": "Ikkita do‘st maktabdan qarama-qarshi tomonlarga 300 m uzoqlikda yashaydi. Biri «mening masofam −300 m» dedi.",
+     "savollar": [
+      "Masofa manfiy bo‘lishi mumkinmi?",
+      "Modul bu yerda qanday yordam beradi?"
+     ]
+    },
+    "tezis": "Modul — masofa, masofa esa manfiy bo‘lmaydi",
+    "taqqoslash": {
+     "a": "Son",
+     "b": "Sonning moduli",
+     "umumiy": [
+      "koordinata to‘g‘ri chizig‘i bilan bog‘liq",
+      "bir xil nuqta bilan"
+     ],
+     "a_farq": [
+      "manfiy bo‘lishi mumkin",
+      "joylashuvni ko‘rsatadi"
+     ],
+     "b_farq": [
+      "manfiy bo‘lmaydi",
+      "masofani ko‘rsatadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Modul",
+     "shoxlar": [
+      {
+       "nom": "Ma’nosi",
+       "bandlar": [
+        "masofa",
+        "nolgacha",
+        "manfiy emas"
+       ]
+      },
+      {
+       "nom": "Qoidalar",
+       "bandlar": [
+        "musbat — o‘zi",
+        "manfiy — qarama-qarshisi",
+        "nol — nol"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "teng modullar",
+        "ikkita yechim",
+        "taqqoslash"
+       ]
+      },
+      {
+       "nom": "Ilova",
+       "bandlar": [
+        "masofa topish",
+        "harorat",
+        "tezlik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ishorani yutib yuboraman, masofani aytaman. Men kimman?",
+     "javob": "modul"
+    },
+    "hikmat": "Yo‘l uzun bo‘lsa ham, qadam sanaladi.",
+    "kalit_soz": "MODUL",
+    "xato_yechim": {
+     "shart": "|−6| ni toping.",
+     "xato": "−6",
+     "togri": "6",
+     "sabab": "modul masofa, u manfiy bo‘lmaydi"
+    },
+    "guruh_nomlari": [
+     "Modullar",
+     "Masofalar",
+     "Nuqtalar",
+     "Ishoralar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qadam masofasi»",
+     "topshiriq": "Guruh sinfda bir nuqtani 0 deb oladi va qadam bilan o‘ng va chap tomonga masofa o‘lchaydi. O‘ng tomon — musbat, chap tomon — manfiy. Har bir a’zoning moduli (nechta qadam) yoziladi."
+    },
+    "vazifalar": {
+     "A": "Modulni toping: |9|, |−9|, |0|, |−2,5|, |14|, |−14|.",
+     "B": "Modul 8 ga teng sonlarni toping va sonlar o‘qida belgilang.",
+     "C": "Ikki sonning modullari teng, ammo o‘zlari teng emas: ularga 3 ta misol keltiring."
+    },
+    "sinkveyn": [
+     "Modul",
+     "mutlaq, ijobiy",
+     "o‘lchaydi, ajratadi, topadi",
+     "Sondan nolgacha masofa",
+     "Masofa"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sonlar o‘qida turibdi: A(−7), B(3), C(−2), D(5).",
+     "qismlar": [
+      "1-guruh: har bir sonning modulini toping",
+      "2-guruh: eng katta modulni toping",
+      "3-guruh: eng kichik modulni toping",
+      "4-guruh: modullari o‘sish tartibida yozing"
+     ],
+     "yakun": "Modullar: 7, 3, 2, 5. Eng katta — 7 (A), eng kichik — 2 (C). O‘sish tartibi: 2, 3, 5, 7."
+    }
+   }
+  }
+ ]
+}
