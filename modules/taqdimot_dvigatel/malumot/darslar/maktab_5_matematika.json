@@ -11704,7 +11704,7 @@
      {
       "sarlavha": "Jadval usuli",
       "matn": "Mantiqiy masalada jadval tuzish juda qulay. Qatorlarga bir guruh ob’ektlar, ustunlarga ikkinchi guruh yoziladi. Aniq bo‘lgan moslik «+», mumkin bo‘lmagan moslik «−» bilan belgilanadi. Bir qatorda yoki ustunda «+» faqat bitta bo‘ladi.",
-      "misol": "Anvar, Bobur, Dilshod — rassom, shifokor, o‘qituvchi. Anvar rassom emas, Bobur shifokor emas va o‘qituvchi emas. Demak, Bobur rassom; Anvar shifokor emas deb chiqarilsa, o‘qituvchi bo‘ladi; qolgani — Dilshod shifokor.",
+      "misol": "Anvar, Bobur, Dilshod — rassom, shifokor, o‘qituvchi. Anvar rassom emas va o‘qituvchi emas, Bobur shifokor emas va o‘qituvchi emas. Bobur faqat rassom bo‘la oladi. Anvar faqat shifokor bo‘la oladi. Qolgan kasb — o‘qituvchi, u Dilshodniki.",
       "savol": "Jadvalda «−» nimani bildiradi?",
       "javob": "bunday moslik mumkin emas",
       "rasm": ""
@@ -11748,9 +11748,9 @@
      {
       "shart": "3 ta qutida olma, nok va uzum bor. Hech bir qutining yorlig‘i to‘g‘ri emas. «Olma» yorlig‘li qutidan bitta mevani olib qaraganda nok chiqdi. Qutilarda nima bor?",
       "yechim": [
-       "«Olma» yozilgan qutida olma emas, nok bor (ko‘rdik).",
-       "«Nok» yozilgan qutida nok emas; nok allaqachon topildi, demak, olma yoki uzum.",
-       "Yorliq yolg‘on, shuning uchun «nok» qutisida olma ham emas bo‘lishi kerak emas — qolgan variantlarni jadvalda tekshiramiz: «nok» qutisida uzum, «uzum» qutisida olma bo‘ladi."
+       "«Olma» yozilgan qutidan nok chiqdi, demak, u qutida nok bor.",
+       "«Uzum» yozilgan qutida uzum bo‘lishi mumkin emas (yorliq noto‘g‘ri). Nok ham band, shuning uchun unda olma bor.",
+       "Qolgan «nok» yozilgan qutida uzum bo‘ladi."
       ],
       "javob": "«olma» qutisida nok, «nok» qutisida uzum, «uzum» qutisida olma"
      },
