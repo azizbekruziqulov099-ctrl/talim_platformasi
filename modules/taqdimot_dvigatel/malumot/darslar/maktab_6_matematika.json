@@ -2796,6 +2796,1404 @@
      "yakun": "Natijalar: 2 : 3; 20 va 30; 30; ha, ikkalasi ham 3 : 7 ga teng."
     }
    }
+  },
+  {
+   "mavzu": "Proporsiya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Proporsiya nima?",
+      "matn": "Ikki teng nisbat proporsiya deyiladi. Agar ikkita nisbatni qisqartirganda bir xil natija chiqsa, ular teng, demak ulardan proporsiya tuzish mumkin. Proporsiyada to‘rtta son bo‘ladi, ular hadlar deb ataladi.",
+      "misol": "6 : 9 nisbat qisqarib 2 : 3 bo‘ladi. 4 : 6 nisbat ham qisqarib 2 : 3 bo‘ladi. Demak, 6 : 9 va 4 : 6 nisbatlar teng, ulardan proporsiya tuzildi.",
+      "savol": "5 : 10 va 3 : 6 nisbatlar proporsiya hosil qiladimi?",
+      "javob": "ha, ikkalasi ham 1 : 2 ga teng",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Proporsiya hadlari",
+      "matn": "Proporsiyadagi birinchi va to‘rtinchi hadlar chetki hadlar, ikkinchi va uchinchi hadlar o‘rta hadlar deyiladi. Chetki hadlar chetda, o‘rta hadlar o‘rtada turadi.",
+      "misol": "3 : 4 va 9 : 12 proporsiyada chetki hadlar 3 va 12, o‘rta hadlar 4 va 9.",
+      "savol": "2 : 5 va 6 : 15 proporsiyada o‘rta hadlar qaysilar?",
+      "javob": "5 va 6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Proporsiyaning asosiy xossasi",
+      "matn": "Proporsiyada o‘rta hadlar ko‘paytmasi chetki hadlar ko‘paytmasiga teng. Bu xossa proporsiya to‘g‘ri tuzilganini tekshirishga va noma’lum hadni topishga yordam beradi.",
+      "misol": "3 : 4 va 9 : 12 proporsiyada chetki hadlar 3 va 12, ularning ko‘paytmasi 36. O‘rta hadlar 4 va 9, ko‘paytmasi ham 36.",
+      "savol": "2 : 3 va 4 : 6 proporsiyada chetki hadlar ko‘paytmasi nechaga teng?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Noma’lum hadni topish",
+      "matn": "Noma’lum o‘rta hadni topish uchun chetki hadlar ko‘paytmasini ma’lum o‘rta hadga bo‘lamiz. Noma’lum chetki hadni topish uchun o‘rta hadlar ko‘paytmasini ma’lum chetki hadga bo‘lamiz.",
+      "misol": "x : 6 va 10 : 12 proporsiyada o‘rta hadlar ko‘paytmasi 6 ni 10 ga ko‘paytirsak 60. Uni ma’lum chetki had 12 ga bo‘lsak, x ning qiymati 5 chiqadi.",
+      "savol": "3 : x va 6 : 8 proporsiyada x nechaga teng?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Proporsiyani masalada qo‘llash",
+      "matn": "Ikki miqdorning mos qiymatlari nisbati teng bo‘lsa, proporsiya tuzib masala yechamiz. Noma’lumni belgilab, asosiy xossa orqali topamiz.",
+      "misol": "3 kg olma 24 ming so‘m turadi. 5 kg olma narxini x deb olamiz: 3 : 5 va 24 : x. Chetki hadlar 3 va x, o‘rta hadlar 5 va 24. 5 ni 24 ga ko‘paytirsak 120, uni 3 ga bo‘lsak, 40 ming so‘m chiqadi.",
+      "savol": "2 kg 18 ming so‘m bo‘lsa, 4 kg necha so‘m?",
+      "javob": "36 ming so‘m",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ikki teng nisbat proporsiya hosil qiladi. Proporsiyada o‘rta hadlar ko‘paytmasi chetki hadlar ko‘paytmasiga teng. Shu xossa bilan noma’lum had topiladi.",
+    "misollar": [
+     {
+      "shart": "4 : 5 va 12 : 15 nisbatlar proporsiya hosil qiladimi?",
+      "yechim": [
+       "Chetki hadlar 4 va 15, ularning ko‘paytmasi 60.",
+       "O‘rta hadlar 5 va 12, ularning ko‘paytmasi ham 60.",
+       "Ko‘paytmalar teng, demak proporsiya to‘g‘ri."
+      ],
+      "javob": "ha"
+     },
+     {
+      "shart": "x : 9 va 4 : 6 proporsiyada x ni toping.",
+      "yechim": [
+       "x chetki had. O‘rta hadlar 9 va 4, ularning ko‘paytmasi 36.",
+       "36 ni ma’lum chetki had 6 ga bo‘lamiz: 6.",
+       "Tekshiramiz: 6 : 9 va 4 : 6 nisbatlar ikkalasi 2 : 3 ga teng."
+      ],
+      "javob": "6"
+     },
+     {
+      "shart": "3 stakan un bilan 18 ta kulcha pishadi. 30 ta kulcha uchun necha stakan un kerak?",
+      "yechim": [
+       "Un: 3 : x, kulcha: 18 : 30. Proporsiya: 3 : x va 18 : 30.",
+       "Chetki hadlar 3 va 30, ko‘paytmasi 90.",
+       "x o‘rta had: 90 ni ma’lum o‘rta had 18 ga bo‘lamiz: 5."
+      ],
+      "javob": "5 stakan"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Proporsiya tuzamiz",
+      "topshiriq": "Kartochkalarda 2, 3, 6, 9 sonlari yozilgan. Ulardan proporsiya tuzing.",
+      "yechim": "2 : 3 va 6 : 9. Tekshirish: chetki hadlar 2 va 9, ko‘paytma 18; o‘rta hadlar 3 va 6, ko‘paytma 18.",
+      "mahsulot": "proporsiya kartochkalari"
+     },
+     {
+      "nom": "Yo‘qolgan had",
+      "topshiriq": "x : 24 va 5 : 8 proporsiyada x ni toping.",
+      "yechim": "x chetki had, uning juftligi 8 ham chetki. O‘rta hadlar 24 va 5, ko‘paytmasi 120. 120 ni 8 ga bo‘lsak, 15.",
+      "mahsulot": "tekshiruv varag‘i"
+     },
+     {
+      "nom": "Daftar narxi",
+      "topshiriq": "4 ta daftar 20 ming so‘m. 7 ta daftar necha so‘m?",
+      "yechim": "4 : 7 va 20 : x. 7 ni 20 ga ko‘paytirsak 140, 4 ga bo‘lsak 35. Javob 35 ming so‘m.",
+      "mahsulot": "narx jadvali"
+     },
+     {
+      "nom": "Proporsiyani topamiz",
+      "topshiriq": "6 : 8, 9 : 12, 4 : 6, 10 : 15 nisbatlardan ikkita proporsiya tuzing.",
+      "yechim": "6 : 8 va 9 : 12 ikkalasi 3 : 4 ga teng. 4 : 6 va 10 : 15 ikkalasi 2 : 3 ga teng.",
+      "mahsulot": "nisbatlar jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 : 5 va 9 : 15 proporsiya bo‘ladimi?",
+      "javob": "ha"
+     },
+     {
+      "shart": "x : 4 va 15 : 20 proporsiyada x ni toping.",
+      "javob": "3"
+     },
+     {
+      "shart": "7 : 2 va 21 : x proporsiyada x ni toping.",
+      "javob": "6"
+     },
+     {
+      "shart": "6 : x va 9 : 12 proporsiyada x ni toping.",
+      "javob": "8"
+     },
+     {
+      "shart": "5 ta qalam 15 ming so‘m. 8 ta qalam necha so‘m?",
+      "javob": "24 ming so‘m"
+     },
+     {
+      "shart": "4 : 7 va 8 : 14 proporsiyada chetki hadlar qaysilar?",
+      "javob": "4 va 14"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Chetki va o‘rta hadlarni adashtiradi",
+      "sabab": "hadlarning o‘rnini bilmaydi",
+      "oldini_olish": "proporsiyani yozib, chetki hadlarni bir rangda, o‘rta hadlarni boshqa rangda ajratish"
+     },
+     {
+      "xato": "Noma’lum hadni topishda ko‘paytma o‘rniga yig‘indi oladi",
+      "sabab": "xossani noto‘g‘ri eslaydi",
+      "oldini_olish": "har safar ko‘paytmalar tengligini yozib chiqish"
+     },
+     {
+      "xato": "Nisbatlarni qisqartirmay taqqoslaydi",
+      "sabab": "qisqartirish usulini qo‘llamaydi",
+      "oldini_olish": "avval ikkala nisbatni qisqartirib ko‘rish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo va fizika",
+      "boglanish": "aralashma va eritmalarda moddalar miqdori proporsiya bilan hisoblanadi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "narx, miqdor va xarajatlarni hisoblash proporsiyaga asoslanadi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "taom retsepti va o‘lchamlarini kattalashtirish yoki kichraytirish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Retsept kattalashtiramiz»",
+     "muammo": "Retseptdagi masalliqlarni boshqa mehmonlar soniga qanday moslaymiz?",
+     "mahsulot": "yangi mehmonlar soni uchun retsept jadvali",
+     "bosqichlar": [
+      "retsept tanlash",
+      "mehmonlar sonini belgilash",
+      "proporsiya tuzish",
+      "yangi miqdorlarni hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Retseptni tanlang",
+      "Proporsiyalarni tuzing",
+      "Miqdorlarni hisoblang",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "proporsiya to‘g‘ri",
+      "hisob to‘g‘ri",
+      "jadval tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Oshxona va bozor»",
+     "bekatlar": [
+      {
+       "nom": "Oshxona",
+       "matn": "4 kishiga 600 g guruch kerak.",
+       "topshiriq": "8 kishiga necha g guruch kerak?",
+       "javob": "1200 g",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "3 kg sabzi 21 ming so‘m turadi.",
+       "topshiriq": "5 kg sabzi necha so‘m?",
+       "javob": "35 ming so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Novvoyxona",
+       "matn": "2 kg un bilan 6 ta non pishadi.",
+       "topshiriq": "9 ta non uchun necha kg un kerak?",
+       "javob": "3 kg",
+       "rasm": ""
+      },
+      {
+       "nom": "Bo‘yoq do‘koni",
+       "matn": "4 litr bo‘yoq 20 m devorni qoplaydi.",
+       "topshiriq": "30 m devor uchun necha litr kerak?",
+       "javob": "6 litr",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Retseptni kattalashtirishda nimaga e’tibor beramiz?",
+      "Narx va miqdor qanday bog‘langan?",
+      "Proporsiya qayerda foydali?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Nisbat",
+      "tarif": "ikki sonning bo‘linmasi"
+     },
+     {
+      "atama": "Proporsiya",
+      "tarif": "ikki teng nisbat"
+     },
+     {
+      "atama": "Chetki hadlar",
+      "tarif": "proporsiyaning birinchi va to‘rtinchi hadlari"
+     },
+     {
+      "atama": "O‘rta hadlar",
+      "tarif": "proporsiyaning ikkinchi va uchinchi hadlari"
+     },
+     {
+      "atama": "Noma’lum had",
+      "tarif": "qiymati izlanayotgan had"
+     },
+     {
+      "atama": "Asosiy xossa",
+      "tarif": "o‘rta hadlar ko‘paytmasi chetki hadlar ko‘paytmasiga teng"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Proporsiya — ikki teng nisbat",
+      "togri": true,
+      "izoh": "bu proporsiyaning ta’rifi"
+     },
+     {
+      "matn": "Proporsiyada chetki hadlar ko‘paytmasi o‘rta hadlar ko‘paytmasiga teng",
+      "togri": true,
+      "izoh": "asosiy xossa"
+     },
+     {
+      "matn": "Proporsiya uchta haddan iborat",
+      "togri": false,
+      "izoh": "proporsiyada to‘rtta had bor"
+     },
+     {
+      "matn": "2 : 3 va 4 : 5 proporsiya hosil qiladi",
+      "togri": false,
+      "izoh": "4 : 5 qisqarmaydi, 2 : 3 ga teng emas"
+     },
+     {
+      "matn": "Noma’lum o‘rta hadni chetki hadlar ko‘paytmasini ma’lum o‘rta hadga bo‘lib topamiz",
+      "togri": true,
+      "izoh": "asosiy xossadan kelib chiqadi"
+     },
+     {
+      "matn": "Nisbatni qisqartirsak, uning qiymati o‘zgaradi",
+      "togri": false,
+      "izoh": "qisqartirsak nisbat qiymati o‘zgarmaydi"
+     },
+     {
+      "matn": "1 : 2 va 3 : 6 proporsiya hosil qiladi",
+      "togri": true,
+      "izoh": "ikkalasi ham 1 : 2 ga teng"
+     },
+     {
+      "matn": "Proporsiyada hadlar o‘rnini xohlagancha almashtirish mumkin",
+      "togri": false,
+      "izoh": "faqat xossalarga mos almashtirish mumkin"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Proporsiya nima?",
+      "javob": "ikki teng nisbat"
+     },
+     {
+      "savol": "Proporsiyada nechta had bor?",
+      "javob": "to‘rtta"
+     },
+     {
+      "savol": "Chetki hadlar qaysilar?",
+      "javob": "birinchi va to‘rtinchi"
+     },
+     {
+      "savol": "O‘rta hadlar qaysilar?",
+      "javob": "ikkinchi va uchinchi"
+     },
+     {
+      "savol": "Asosiy xossa nima?",
+      "javob": "o‘rta hadlar ko‘paytmasi chetki hadlar ko‘paytmasiga teng"
+     },
+     {
+      "savol": "2 : 5 va 6 : 15 proporsiyada chetki hadlar ko‘paytmasi nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "savol": "1 : 3 va 2 : x proporsiyada x nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "savol": "4 : 6 nisbat qanday qisqaradi?",
+      "javob": "2 : 3"
+     },
+     {
+      "savol": "Noma’lum chetki had qanday topiladi?",
+      "javob": "o‘rta hadlar ko‘paytmasini ma’lum chetki hadga bo‘lib"
+     },
+     {
+      "savol": "3 : 4 va 6 : 8 proporsiya bo‘ladimi?",
+      "javob": "ha"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Ikki teng nisbat proporsiya hosil qiladi.",
+      "savol": "10 : 20 va 1 : 2 proporsiyami?"
+     },
+     {
+      "nom": "Hadlar",
+      "matn": "Chetki hadlar chetda, o‘rta hadlar o‘rtada.",
+      "savol": "3 : 5 va 6 : 10 da o‘rta hadlar?"
+     },
+     {
+      "nom": "Asosiy xossa",
+      "matn": "O‘rta hadlar ko‘paytmasi chetki hadlar ko‘paytmasiga teng.",
+      "savol": "2 : 3 va 8 : 12 da o‘rta hadlar ko‘paytmasi?"
+     },
+     {
+      "nom": "Noma’lum had",
+      "matn": "Ko‘paytmani ma’lum hadga bo‘lamiz.",
+      "savol": "2 : x va 6 : 9 da x nechaga teng?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun retseptni ikki marta kattalashtirsak, hamma masalliq ham ikki marta ortadi? Agar faqat bittasini orttirsak, taom mazasi nima bo‘ladi?",
+    "keys": {
+     "vaziyat": "Oshpaz 2 kishiga 300 g guruch ishlatadi. Bayramga 6 kishi, keyin 10 kishi keladi.",
+     "savollar": [
+      "6 kishiga necha g guruch kerak?",
+      "10 kishiga necha g guruch kerak?"
+     ]
+    },
+    "tezis": "Nisbatlar tengligi — adolatli bo‘lishning belgisi",
+    "taqqoslash": {
+     "a": "Nisbat",
+     "b": "Proporsiya",
+     "umumiy": [
+      "sonlar bilan ifodalanadi",
+      "qisqartirish mumkin"
+     ],
+     "a_farq": [
+      "ikki sondan iborat",
+      "taqqoslash uchun"
+     ],
+     "b_farq": [
+      "to‘rt haddan iborat",
+      "ikki nisbat tengligi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Proporsiya",
+     "shoxlar": [
+      {
+       "nom": "Ta’rif",
+       "bandlar": [
+        "ikki teng nisbat",
+        "to‘rtta had",
+        "nisbatni qisqartirish"
+       ]
+      },
+      {
+       "nom": "Hadlar",
+       "bandlar": [
+        "chetki hadlar",
+        "o‘rta hadlar",
+        "noma’lum had"
+       ]
+      },
+      {
+       "nom": "Xossa",
+       "bandlar": [
+        "o‘rta hadlar ko‘paytmasi",
+        "chetki hadlar ko‘paytmasi",
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "retsept",
+        "narx",
+        "o‘lchamlar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "To‘rt hadim bor, ikki nisbatim teng. Mening o‘rtam bilan chetim ko‘paytmada teng. Men kimman?",
+     "javob": "proporsiya"
+    },
+    "hikmat": "Muvozanat — har bir ishning go‘zalligi.",
+    "kalit_soz": "PROPORSIYA",
+    "xato_yechim": {
+     "shart": "x : 4 va 15 : 20 proporsiyada x ni toping.",
+     "xato": "x ning qiymati 19 deb oladi, chunki 4 va 15 ni qo‘shadi",
+     "togri": "3",
+     "sabab": "noma’lum hadni ko‘paytma orqali topish kerak: 4 ni 15 ga ko‘paytirib 60, 20 ga bo‘lsak 3"
+    },
+    "guruh_nomlari": [
+     "Chetkilar",
+     "O‘rtalar",
+     "Nisbatchilar",
+     "Tenglar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Oshxona retsepti»",
+     "topshiriq": "Guruh uyda pishiriladigan taomning retseptini tanlaydi va 2 baravar kattalashtirib, keyin 3 baravar kichraytirib yozadi. Barcha miqdorlar proporsiya orqali tekshiriladi."
+    },
+    "vazifalar": {
+     "A": "Proporsiyani to‘ldiring: x : 3 va 10 : 15; 4 : x va 8 : 12; 5 : 2 va 20 : x.",
+     "B": "Uyingizdagi biror retseptni 2 baravar kattalashtirib yozing.",
+     "C": "O‘z proporsiya masalangizni tuzib, yechimini yozing."
+    },
+    "sinkveyn": [
+     "Proporsiya",
+     "teng, aniq",
+     "tuziladi, tekshiriladi, topiladi",
+     "Ikki nisbatning tengligi",
+     "Tenglik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh turli proporsiyalarni yechadi.",
+     "qismlar": [
+      "1-guruh: x : 5 va 6 : 10 da x ni toping",
+      "2-guruh: 3 : 4 va 9 : x da x ni toping",
+      "3-guruh: 2 : 3 va 4 : 6 proporsiyami?",
+      "4-guruh: 3 kg 12 ming so‘m, 5 kg necha so‘m?"
+     ],
+     "yakun": "Natijalar: 3; 12; ha; 20 ming so‘m."
+    }
+   }
+  },
+  {
+   "mavzu": "To‘g‘ri va teskari proporsionallik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "To‘g‘ri proporsional miqdorlar",
+      "matn": "Ikki miqdordan biri necha marta ortsa, ikkinchisi ham shuncha marta ortsa, ular to‘g‘ri proporsional deyiladi. Bunda mos qiymatlar nisbati o‘zgarmaydi.",
+      "misol": "1 kg non 5 ming so‘m. 3 kg non 15 ming so‘m turadi: miqdor 3 marta ortdi, narx ham 3 marta ortdi.",
+      "savol": "Bitta daftar 4 ming so‘m bo‘lsa, 5 ta daftar necha so‘m?",
+      "javob": "20 ming so‘m",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri proporsionallik koeffitsienti",
+      "matn": "To‘g‘ri proporsional miqdorlarda har bir juft mos qiymat nisbati bir xil sonni beradi. Bu son proporsionallik koeffitsienti deyiladi.",
+      "misol": "Tezlik 60 km/soat. 2 soatda 120 km, 3 soatda 180 km yuriladi. 120 ni 2 ga bo‘lsak 60, 180 ni 3 ga bo‘lsak ham 60.",
+      "savol": "Tezlik 40 km/soat bo‘lsa, 3 soatda necha km yuriladi?",
+      "javob": "120 km",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Teskari proporsional miqdorlar",
+      "matn": "Ikki miqdordan biri necha marta ortsa, ikkinchisi shuncha marta kamaysa, ular teskari proporsional deyiladi. Bunda mos qiymatlar ko‘paytmasi o‘zgarmaydi.",
+      "misol": "24 km yo‘lni 4 km/soat tezlikda 6 soatda bosamiz. Tezlik 2 marta ortib 8 km/soat bo‘lsa, vaqt 2 marta kamayib 3 soat bo‘ladi.",
+      "savol": "24 km yo‘lni 12 km/soat tezlikda necha soatda bosamiz?",
+      "javob": "2 soatda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qanday farqlaymiz?",
+      "matn": "Savol beramiz: bir miqdor ortsa, ikkinchisi ham ortadimi? Agar ortsa, to‘g‘ri proporsionallik. Agar kamaysa, teskari proporsionallik. Har qanday bog‘lanish ham proporsionallik bo‘lavermaydi.",
+      "misol": "Mahsulot soni va narxi — to‘g‘ri proporsional. Ishchilar soni va ishni tugatish vaqti — teskari proporsional.",
+      "savol": "Ishchilar ko‘paysa, ish tugash vaqti nima bo‘ladi?",
+      "javob": "kamayadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masala yechish usuli",
+      "matn": "To‘g‘ri proporsionallikda mos qiymatlar nisbati teng bo‘ladi. Teskari proporsionallikda mos qiymatlar ko‘paytmasi teng bo‘ladi.",
+      "misol": "To‘g‘ri: 5 kg 30 ming so‘m, 8 kg narxi 48 ming so‘m, chunki 1 kg 6 ming so‘m. Teskari: 6 ishchi 10 kunda tugatadigan ishni 12 ishchi 5 kunda tugatadi, chunki ish hajmi 60 ishchi-kun.",
+      "savol": "4 ishchi 15 kunda tugatadigan ishni 12 ishchi necha kunda tugatadi?",
+      "javob": "5 kunda",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "To‘g‘ri proporsionallikda bir miqdor necha marta ortsa, ikkinchisi shuncha marta ortadi, nisbatlari teng. Teskari proporsionallikda bir miqdor ortsa, ikkinchisi shuncha marta kamayadi, ko‘paytmalari teng.",
+    "misollar": [
+     {
+      "shart": "7 kg kartoshka 28 ming so‘m turadi. 10 kg kartoshka necha so‘m turadi?",
+      "yechim": [
+       "Narx va miqdor to‘g‘ri proporsional.",
+       "1 kg narxi: 28 ni 7 ga bo‘lsak, 4 ming so‘m.",
+       "10 kg narxi: 4 ni 10 ga ko‘paytirsak, 40."
+      ],
+      "javob": "40 ming so‘m"
+     },
+     {
+      "shart": "6 ishchi omborni 8 kunda bo‘shatadi. 4 ishchi omborni necha kunda bo‘shatadi?",
+      "yechim": [
+       "Ishchilar soni va vaqt teskari proporsional.",
+       "Ish hajmi: 6 ni 8 ga ko‘paytirsak, 48 ishchi-kun.",
+       "4 ishchi: 48 ni 4 ga bo‘lsak, 12 kun."
+      ],
+      "javob": "12 kun"
+     },
+     {
+      "shart": "Velosipedchi 3 soatda 45 km yurdi. Shu tezlikda 5 soatda necha km yuradi?",
+      "yechim": [
+       "Yo‘l va vaqt to‘g‘ri proporsional.",
+       "Tezlik: 45 ni 3 ga bo‘lsak, 15 km/soat.",
+       "5 soatda: 15 ni 5 ga ko‘paytirsak, 75."
+      ],
+      "javob": "75 km"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Narx jadvali",
+      "topshiriq": "Bitta qalam 3 ming so‘m. 2, 3, 5 va 10 ta qalam narxini jadvalga yozing.",
+      "yechim": "Narxlar: 6, 9, 15 va 30 ming so‘m. Miqdor ortgan sari narx ham ortadi.",
+      "mahsulot": "narx jadvali"
+     },
+     {
+      "nom": "Tezlik va vaqt",
+      "topshiriq": "60 km yo‘lni 10, 20, 30 va 60 km/soat tezlikda bosish vaqtini toping.",
+      "yechim": "Vaqtlar: 6, 3, 2 va 1 soat. Tezlik ortsa, vaqt kamayadi.",
+      "mahsulot": "tezlik-vaqt jadvali"
+     },
+     {
+      "nom": "To‘g‘ri yoki teskari?",
+      "topshiriq": "Aniqlang: a) kitoblar soni va narxi; b) ishchilar soni va vaqt; v) tezlik va vaqt (yo‘l bir xil); g) kvadrat tomoni va perimetri.",
+      "yechim": "a) to‘g‘ri; b) teskari; v) teskari; g) to‘g‘ri.",
+      "mahsulot": "tasniflash jadvali"
+     },
+     {
+      "nom": "Bog‘ ekish",
+      "topshiriq": "5 bog‘bon bog‘ni 12 kunda ekadi. 10 bog‘bon necha kunda ekadi?",
+      "yechim": "Ish hajmi 60 bog‘bon-kun. 10 bog‘bon: 60 ni 10 ga bo‘lsak, 6 kun.",
+      "mahsulot": "hisob daftari"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 m mato 24 ming so‘m. 5 m mato necha so‘m?",
+      "javob": "40 ming so‘m"
+     },
+     {
+      "shart": "4 soatda 200 km yuriladi. 6 soatda necha km yuriladi?",
+      "javob": "300 km"
+     },
+     {
+      "shart": "8 ishchi ishni 9 kunda tugatadi. 6 ishchi necha kunda tugatadi?",
+      "javob": "12 kunda"
+     },
+     {
+      "shart": "36 km yo‘lni 9 km/soat tezlikda necha soatda bosamiz?",
+      "javob": "4 soatda"
+     },
+     {
+      "shart": "Tezlik va vaqt (yo‘l bir xil) qanday proporsionallik?",
+      "javob": "teskari"
+     },
+     {
+      "shart": "12 ta kitob 60 ming so‘m. 7 ta kitob necha so‘m?",
+      "javob": "35 ming so‘m"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Teskari proporsionallikda ham nisbat tuzadi",
+      "sabab": "ikki turni farqlay olmaydi",
+      "oldini_olish": "avval miqdorlar ortsa nima bo‘lishini aniqlash"
+     },
+     {
+      "xato": "Har qanday bog‘lanishni to‘g‘ri proporsional deb oladi",
+      "sabab": "miqdor ortsa ikkinchisi ortadi deb xulosa qiladi",
+      "oldini_olish": "ko‘paytma yoki nisbat doimiy ekanini tekshirish"
+     },
+     {
+      "xato": "Masalada birliklarni aralashtiradi",
+      "sabab": "soat va daqiqa, km va m birga olinadi",
+      "oldini_olish": "avval barcha birliklarni bir xil qilish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "yo‘l, tezlik va vaqt orasidagi bog‘lanish"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "narx va miqdor, ishchilar soni va ish vaqti"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "mashina ishlash vaqti va mahsulot miqdori"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Bozor hisobi»",
+     "muammo": "Mahsulot narxi va miqdori orasidagi bog‘lanishni qanday ko‘rsatamiz?",
+     "mahsulot": "narx jadvali va grafik",
+     "bosqichlar": [
+      "mahsulot tanlash",
+      "narxlarni yig‘ish",
+      "jadval tuzish",
+      "bog‘lanishni aniqlash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Mahsulotni tanlang",
+      "Narxlarni yig‘ing",
+      "Jadval tuzing",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "jadval to‘g‘ri",
+      "hisob to‘g‘ri",
+      "bog‘lanish aniqlangan",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bozor va yo‘l»",
+     "bekatlar": [
+      {
+       "nom": "Bozor",
+       "matn": "2 kg uzum 30 ming so‘m turadi.",
+       "topshiriq": "5 kg uzum necha so‘m?",
+       "javob": "75 ming so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Yo‘l",
+       "matn": "Avtobus 2 soatda 100 km yurdi.",
+       "topshiriq": "Shu tezlikda 5 soatda necha km yuradi?",
+       "javob": "250 km",
+       "rasm": ""
+      },
+      {
+       "nom": "Qurilish",
+       "matn": "6 usta devorni 4 kunda quradi.",
+       "topshiriq": "3 usta necha kunda quradi?",
+       "javob": "8 kunda",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "12 kishi maydonni 5 soatda tozalaydi.",
+       "topshiriq": "10 kishi necha soatda tozalaydi?",
+       "javob": "6 soatda",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda to‘g‘ri proporsionallik uchraydi?",
+      "Qayerda teskari proporsionallik uchraydi?",
+      "Ikkalasini qanday farqlaymiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "To‘g‘ri proporsionallik",
+      "tarif": "bir miqdor ortsa, ikkinchisi ham shuncha marta ortadi"
+     },
+     {
+      "atama": "Teskari proporsionallik",
+      "tarif": "bir miqdor ortsa, ikkinchisi shuncha marta kamayadi"
+     },
+     {
+      "atama": "Koeffitsient",
+      "tarif": "doimiy nisbat yoki doimiy ko‘paytma"
+     },
+     {
+      "atama": "Bog‘lanish",
+      "tarif": "ikki miqdor orasidagi aloqa"
+     },
+     {
+      "atama": "Tezlik",
+      "tarif": "vaqt birligida bosib o‘tilgan yo‘l"
+     },
+     {
+      "atama": "Ish hajmi",
+      "tarif": "ishchi soni bilan vaqt ko‘paytmasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Narx va miqdor to‘g‘ri proporsional",
+      "togri": true,
+      "izoh": "miqdor ortsa, narx ham ortadi"
+     },
+     {
+      "matn": "Tezlik va vaqt (yo‘l bir xil) to‘g‘ri proporsional",
+      "togri": false,
+      "izoh": "ular teskari proporsional"
+     },
+     {
+      "matn": "Teskari proporsionallikda ko‘paytma doimiy",
+      "togri": true,
+      "izoh": "mos qiymatlar ko‘paytmasi o‘zgarmaydi"
+     },
+     {
+      "matn": "To‘g‘ri proporsionallikda nisbat doimiy",
+      "togri": true,
+      "izoh": "bu koeffitsient"
+     },
+     {
+      "matn": "Ishchilar ko‘paysa, vaqt ko‘payadi",
+      "togri": false,
+      "izoh": "vaqt kamayadi"
+     },
+     {
+      "matn": "Har qanday bog‘lanish proporsionallik bo‘ladi",
+      "togri": false,
+      "izoh": "bog‘lanishda proporsionallik alohida holat"
+     },
+     {
+      "matn": "Yo‘l va vaqt (tezlik bir xil) to‘g‘ri proporsional",
+      "togri": true,
+      "izoh": "vaqt ortsa, yo‘l ham ortadi"
+     },
+     {
+      "matn": "Teskari proporsionallikda miqdor ortsa, ikkinchisi ham ortadi",
+      "togri": false,
+      "izoh": "ikkinchi miqdor kamayadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "To‘g‘ri proporsionallikda nima doimiy?",
+      "javob": "nisbat"
+     },
+     {
+      "savol": "Teskari proporsionallikda nima doimiy?",
+      "javob": "ko‘paytma"
+     },
+     {
+      "savol": "Narx va miqdor qanday proporsional?",
+      "javob": "to‘g‘ri"
+     },
+     {
+      "savol": "Ishchilar soni va vaqt qanday proporsional?",
+      "javob": "teskari"
+     },
+     {
+      "savol": "1 kg 6 ming so‘m, 4 kg necha so‘m?",
+      "javob": "24 ming so‘m"
+     },
+     {
+      "savol": "4 ishchi 6 kunda, 3 ishchi necha kunda?",
+      "javob": "8 kunda"
+     },
+     {
+      "savol": "Tezlik 2 marta ortsa, vaqt nima bo‘ladi?",
+      "javob": "2 marta kamayadi"
+     },
+     {
+      "savol": "60 km/soat tezlikda 2 soatda necha km?",
+      "javob": "120 km"
+     },
+     {
+      "savol": "Doimiy nisbat qanday ataladi?",
+      "javob": "koeffitsient"
+     },
+     {
+      "savol": "To‘g‘ri proporsionallik uchun misol keltiring.",
+      "javob": "narx va miqdor"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "To‘g‘ri",
+      "matn": "Bir miqdor ortsa, ikkinchisi ham ortadi, nisbat doimiy.",
+      "savol": "1 ta qalam 3 ming, 4 ta qalam necha so‘m?"
+     },
+     {
+      "nom": "Teskari",
+      "matn": "Bir miqdor ortsa, ikkinchisi kamayadi, ko‘paytma doimiy.",
+      "savol": "6 ishchi 4 kunda, 3 ishchi necha kunda?"
+     },
+     {
+      "nom": "Farqlash",
+      "matn": "Ortsa nima bo‘lishini aniqlaymiz.",
+      "savol": "Tezlik va vaqt qanday?"
+     },
+     {
+      "nom": "Masala",
+      "matn": "To‘g‘rida nisbat, teskarida ko‘paytma.",
+      "savol": "Qaysi usul ko‘paytma?"
+     }
+    ],
+    "muammoli_savol": "Nega ishchilar soni ikki marta ko‘paysa, ish ikki marta tezroq tugaydi, lekin amalda ba’zan unday bo‘lmaydi? Qanday shartlar bajarilishi kerak?",
+    "keys": {
+     "vaziyat": "Qurilishda 8 usta binoni 15 kunda quradi. Muddat qisqartirilishi kerak, shuning uchun ustalar soni ortdi.",
+     "savollar": [
+      "12 usta necha kunda quradi?",
+      "10 kunda tugatish uchun nechta usta kerak?"
+     ]
+    },
+    "tezis": "Bir miqdor o‘zgarsa, boshqasi ham o‘zgaradi",
+    "taqqoslash": {
+     "a": "To‘g‘ri proporsionallik",
+     "b": "Teskari proporsionallik",
+     "umumiy": [
+      "ikki miqdor orasidagi bog‘lanish",
+      "masalalarda qo‘llanadi"
+     ],
+     "a_farq": [
+      "ikkalasi bir yo‘nalishda o‘zgaradi",
+      "nisbat doimiy"
+     ],
+     "b_farq": [
+      "qarama-qarshi yo‘nalishda o‘zgaradi",
+      "ko‘paytma doimiy"
+     ]
+    },
+    "klaster": {
+     "markaz": "Proporsionallik",
+     "shoxlar": [
+      {
+       "nom": "To‘g‘ri",
+       "bandlar": [
+        "narx va miqdor",
+        "nisbat doimiy",
+        "birga ortadi"
+       ]
+      },
+      {
+       "nom": "Teskari",
+       "bandlar": [
+        "ishchilar va vaqt",
+        "ko‘paytma doimiy",
+        "biri ortsa biri kamayadi"
+       ]
+      },
+      {
+       "nom": "Farqlash",
+       "bandlar": [
+        "ortsa nima bo‘ladi",
+        "jadval",
+        "grafik"
+       ]
+      },
+      {
+       "nom": "Masala",
+       "bandlar": [
+        "nisbat usuli",
+        "ko‘paytma usuli",
+        "tekshirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Biri ortsa, ikkinchisi ham ortadi, nisbatlari doim bir xil. Bu qanday bog‘lanish?",
+     "javob": "to‘g‘ri proporsionallik"
+    },
+    "hikmat": "Ko‘p qo‘l bo‘lsa, ish tez bitadi.",
+    "kalit_soz": "BOG‘LANISH",
+    "xato_yechim": {
+     "shart": "6 ishchi ishni 10 kunda tugatadi. 12 ishchi necha kunda tugatadi?",
+     "xato": "20 kun, chunki ishchi ortgan sari vaqt ham ortadi deb oladi",
+     "togri": "5 kun",
+     "sabab": "bu teskari proporsionallik: ishchilar 2 marta ko‘paysa, vaqt 2 marta kamayadi"
+    },
+    "guruh_nomlari": [
+     "To‘g‘rilar",
+     "Teskarilar",
+     "Koeffitsientlar",
+     "Hisobchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Do‘kondagi hisob»",
+     "topshiriq": "Guruh do‘kondan biror mahsulot narxini yozadi va 2, 3, 5, 10 dona narxini hisoblaydi. So‘ng tezlik va vaqt uchun teskari proporsional jadval tuzadi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: 4 kg olma 32 ming so‘m, 7 kg olma necha so‘m? 6 ishchi 8 kunda, 12 ishchi necha kunda?",
+     "B": "Uydan maktabgacha yo‘lni turli tezlikda bosish vaqtini hisoblang.",
+     "C": "Ikki turdagi proporsionallikka o‘zingiz masala tuzing."
+    },
+    "sinkveyn": [
+     "Proporsionallik",
+     "to‘g‘ri, teskari",
+     "ortadi, kamayadi, bog‘lanadi",
+     "Miqdorlar o‘zaro bog‘liq",
+     "Bog‘lanish"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh turli proporsionallik masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: 3 kg 18 ming so‘m, 5 kg necha so‘m?",
+      "2-guruh: 4 ishchi 9 kunda, 6 ishchi necha kunda?",
+      "3-guruh: 80 km yo‘l 2 soatda, 5 soatda necha km?",
+      "4-guruh: 24 km yo‘lni 6 km/soat tezlikda necha soatda?"
+     ],
+     "yakun": "Natijalar: 30 ming so‘m; 6 kun; 200 km; 4 soat."
+    }
+   }
+  },
+  {
+   "mavzu": "Masshtab va xarita",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Masshtab nima?",
+      "matn": "Masshtab — chizmadagi masofaning haqiqiy masofaga nisbati. U chizma va xaritada katta narsalarni kichraytirib, kichik narsalarni kattalashtirib ko‘rsatishga imkon beradi.",
+      "misol": "1 : 100000 masshtabda xaritadagi 1 sm yerda 100000 sm, ya’ni 1 km bo‘ladi.",
+      "savol": "1 : 1000 masshtabda 1 sm yerda necha metr?",
+      "javob": "10 metr",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masshtab turlari",
+      "matn": "Masshtab uch xil ko‘rsatiladi: sonli (1 : 500), nomli (1 sm da 5 m) va chiziqli (chizg‘ich shaklida). Bularning hammasi bir xil ma’no beradi.",
+      "misol": "1 : 500 masshtab: 1 sm da 500 sm, ya’ni 5 m. Shuning uchun nomli shakli: 1 sm da 5 m.",
+      "savol": "1 sm da 2 km nomli masshtabni sonli ko‘rinishda yozing.",
+      "javob": "1 : 200000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xaritada masofani o‘lchash",
+      "matn": "Xaritada ikki nuqta orasini chizg‘ich bilan o‘lchab, uni masshtabga ko‘paytirsak, haqiqiy masofa chiqadi.",
+      "misol": "1 : 100000 masshtabda xaritada 6 sm o‘lchandi. Haqiqiy masofa 600000 sm, ya’ni 6 km.",
+      "savol": "1 sm da 10 km masshtabda 4 sm necha km?",
+      "javob": "40 km",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Haqiqiy masofani xaritaga tushirish",
+      "matn": "Haqiqiy masofani xaritaga tushirish uchun uni masshtabga bo‘lamiz. Bu proporsiya yordamida ham topiladi.",
+      "misol": "1 sm da 5 km masshtabda 35 km masofa xaritada 7 sm bo‘ladi.",
+      "savol": "1 sm da 2 km masshtabda 18 km xaritada necha sm?",
+      "javob": "9 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masshtab tanlash",
+      "matn": "Kichik hududlar (xona, hovli) uchun yirik masshtab, katta hududlar (davlat, qit’a) uchun mayda masshtab tanlanadi. Masshtab qancha kichik bo‘lsa, xaritada tafsilot shuncha kam.",
+      "misol": "Xona chizmasi 1 : 50 masshtabda. 4 m xona chizmada 8 sm bo‘ladi, chunki 400 sm ni 50 ga bo‘lsak 8.",
+      "savol": "1 : 50 masshtabda 3 m necha sm bo‘ladi?",
+      "javob": "6 sm",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Masshtab chizmadagi va haqiqiy masofa nisbatini ko‘rsatadi. Xaritadagi masofani masshtabga ko‘paytirsak, haqiqiy masofa chiqadi. Haqiqiy masofani masshtabga bo‘lsak, xaritadagi masofa chiqadi.",
+    "misollar": [
+     {
+      "shart": "Xaritada ikki shahar orasi 7 sm, masshtab 1 sm da 20 km. Haqiqiy masofa qancha?",
+      "yechim": [
+       "Xaritadagi masofa 7 sm.",
+       "Masshtab: 1 sm da 20 km.",
+       "7 ni 20 ga ko‘paytirsak, 140."
+      ],
+      "javob": "140 km"
+     },
+     {
+      "shart": "Ikki qishloq orasi haqiqatda 45 km. Masshtab 1 sm da 5 km. Xaritada necha sm?",
+      "yechim": [
+       "Haqiqiy masofa 45 km.",
+       "Masshtab 1 sm da 5 km.",
+       "45 ni 5 ga bo‘lsak, 9."
+      ],
+      "javob": "9 sm"
+     },
+     {
+      "shart": "Xona uzunligi 5 m, eni 4 m. 1 : 100 masshtabda chizmadagi o‘lchamlarini toping.",
+      "yechim": [
+       "1 : 100 — 1 sm da 100 sm, ya’ni 1 m.",
+       "Uzunlik 5 m — chizmada 5 sm.",
+       "En 4 m — chizmada 4 sm."
+      ],
+      "javob": "5 sm va 4 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Maktab hovlisi",
+      "topshiriq": "Hovli 40 m uzunlikda va 30 m enlikda. 1 : 1000 masshtabda chizmadagi o‘lchamlarini toping.",
+      "yechim": "40 m — 4000 sm, 1000 ga bo‘lsak 4 sm. 30 m — 3000 sm, 1000 ga bo‘lsak 3 sm.",
+      "mahsulot": "hovli chizmasi"
+     },
+     {
+      "nom": "Masofalar jadvali",
+      "topshiriq": "Masshtab 1 sm da 3 km. Xaritada 2, 5 va 8 sm masofalarni haqiqiy masofaga aylantiring.",
+      "yechim": "Haqiqiy masofalar: 6 km, 15 km va 24 km.",
+      "mahsulot": "masofalar jadvali"
+     },
+     {
+      "nom": "Masshtabni almashtirish",
+      "topshiriq": "1 sm da 1 km va 1 sm da 50 m nomli masshtablarni sonli ko‘rinishga o‘tkazing.",
+      "yechim": "1 km — 100000 sm, demak 1 : 100000. 50 m — 5000 sm, demak 1 : 5000.",
+      "mahsulot": "masshtablar jadvali"
+     },
+     {
+      "nom": "Xona rejasi",
+      "topshiriq": "Xona 6 m va 5 m. 1 : 50 masshtabda chizmadagi o‘lchamlarini toping.",
+      "yechim": "600 sm ni 50 ga bo‘lsak 12 sm. 500 sm ni 50 ga bo‘lsak 10 sm.",
+      "mahsulot": "xona rejasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1 : 200 masshtabda 1 sm yerda necha metr?",
+      "javob": "2 metr"
+     },
+     {
+      "shart": "1 sm da 4 km masshtabda xaritada 6 sm necha km?",
+      "javob": "24 km"
+     },
+     {
+      "shart": "Haqiqiy masofa 60 km, masshtab 1 sm da 10 km. Xaritada necha sm?",
+      "javob": "6 sm"
+     },
+     {
+      "shart": "1 : 100000 masshtabda 1 sm yerda necha km?",
+      "javob": "1 km"
+     },
+     {
+      "shart": "1 sm da 25 m masshtabda 8 sm necha metr?",
+      "javob": "200 metr"
+     },
+     {
+      "shart": "Katta hudud uchun qaysi masshtab mos: 1 : 100 yoki 1 : 1000000?",
+      "javob": "1 : 1000000"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Masshtabni haqiqiy masofa deb oladi",
+      "sabab": "masshtab nisbat ekanini bilmaydi",
+      "oldini_olish": "masshtab ma’nosini birlik bilan yozib ko‘rish"
+     },
+     {
+      "xato": "Birliklarni aralashtiradi: sm, m va km",
+      "sabab": "birliklarni bir xil qilmaydi",
+      "oldini_olish": "avval hamma masofani santimetrga aylantirish"
+     },
+     {
+      "xato": "Bo‘lish o‘rniga ko‘paytiradi",
+      "sabab": "yo‘nalishni adashtiradi",
+      "oldini_olish": "xaritada kichik, yerda katta ekanini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "xaritada masofa va maydonlarni o‘lchash"
+     },
+     {
+      "fan": "Chizmachilik",
+      "boglanish": "buyum va binolar chizmasini masshtabda chizish"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "qadimiy xaritalar va yo‘l masofalari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Maktab xaritasi»",
+     "muammo": "Maktab hovlisining xaritasini masshtabda qanday chizamiz?",
+     "mahsulot": "masshtabli maktab xaritasi",
+     "bosqichlar": [
+      "o‘lchash",
+      "masshtab tanlash",
+      "chizmaga o‘tkazish",
+      "xaritani bezash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Hovlini o‘lchang",
+      "Masshtab tanlang",
+      "Xaritani chizing",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "masshtab to‘g‘ri",
+      "o‘lchamlar to‘g‘ri",
+      "xarita tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Xarita bo‘ylab»",
+     "bekatlar": [
+      {
+       "nom": "Shahar xaritasi",
+       "matn": "Masshtab 1 sm da 2 km. Xaritada 6 sm.",
+       "topshiriq": "Haqiqiy masofa qancha?",
+       "javob": "12 km",
+       "rasm": ""
+      },
+      {
+       "nom": "Qishloq yo‘li",
+       "matn": "Haqiqiy masofa 30 km, masshtab 1 sm da 5 km.",
+       "topshiriq": "Xaritada necha sm?",
+       "javob": "6 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab",
+       "matn": "Sinf xonasi 8 m va 6 m, masshtab 1 : 100.",
+       "topshiriq": "Chizmada o‘lchamlari qancha?",
+       "javob": "8 sm va 6 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Qadimiy yo‘l",
+       "matn": "Masshtab 1 sm da 10 km. Xaritada 9 sm.",
+       "topshiriq": "Haqiqiy masofa qancha?",
+       "javob": "90 km",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Masshtab nima uchun kerak?",
+      "Xaritada masofani qanday o‘lchaymiz?",
+      "Qaysi masshtab batafsil?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Masshtab",
+      "tarif": "chizmadagi va haqiqiy masofa nisbati"
+     },
+     {
+      "atama": "Xarita",
+      "tarif": "yer yuzasining kichraytirilgan tasviri"
+     },
+     {
+      "atama": "Sonli masshtab",
+      "tarif": "1 : n ko‘rinishidagi masshtab"
+     },
+     {
+      "atama": "Nomli masshtab",
+      "tarif": "1 sm da qancha masofa ekanini so‘z bilan ko‘rsatish"
+     },
+     {
+      "atama": "Chiziqli masshtab",
+      "tarif": "chizg‘ich shaklidagi masshtab"
+     },
+     {
+      "atama": "Chizma",
+      "tarif": "buyum yoki joyning masshtabdagi tasviri"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Masshtab chizma va haqiqiy masofa nisbatini ko‘rsatadi",
+      "togri": true,
+      "izoh": "bu masshtab ta’rifi"
+     },
+     {
+      "matn": "1 : 1000 masshtabda 1 sm yerda 1000 m bo‘ladi",
+      "togri": false,
+      "izoh": "1000 sm, ya’ni 10 m bo‘ladi"
+     },
+     {
+      "matn": "Masshtab qancha mayda bo‘lsa, xaritada tafsilot kam bo‘ladi",
+      "togri": true,
+      "izoh": "mayda masshtab katta hududni ko‘rsatadi"
+     },
+     {
+      "matn": "Xaritadagi masofani masshtabga ko‘paytirsak, haqiqiy masofa chiqadi",
+      "togri": true,
+      "izoh": "bu asosiy qoida"
+     },
+     {
+      "matn": "Haqiqiy masofa xaritadagi masofadan doim kichik",
+      "togri": false,
+      "izoh": "haqiqiy masofa odatda katta"
+     },
+     {
+      "matn": "Masshtabni faqat sonli ko‘rinishda yozish mumkin",
+      "togri": false,
+      "izoh": "nomli va chiziqli ko‘rinishlari ham bor"
+     },
+     {
+      "matn": "1 sm da 5 km va 1 : 500000 bir xil masshtab",
+      "togri": true,
+      "izoh": "5 km — 500000 sm"
+     },
+     {
+      "matn": "Xona chizmasi uchun mayda masshtab mos",
+      "togri": false,
+      "izoh": "xona uchun yirik masshtab mos"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Masshtab nima?",
+      "javob": "chizma va haqiqiy masofa nisbati"
+     },
+     {
+      "savol": "Masshtab necha xil bo‘ladi?",
+      "javob": "uch xil"
+     },
+     {
+      "savol": "1 : 100 masshtabda 1 sm yerda necha m?",
+      "javob": "1 m"
+     },
+     {
+      "savol": "1 sm da 3 km, xaritada 4 sm necha km?",
+      "javob": "12 km"
+     },
+     {
+      "savol": "Haqiqiy masofani xaritaga tushirishda nima qilamiz?",
+      "javob": "masshtabga bo‘lamiz"
+     },
+     {
+      "savol": "1 : 50 masshtabda 2 m necha sm?",
+      "javob": "4 sm"
+     },
+     {
+      "savol": "Katta hududga qaysi masshtab mos?",
+      "javob": "mayda masshtab"
+     },
+     {
+      "savol": "1 sm da 1 km sonli ko‘rinishda?",
+      "javob": "1 : 100000"
+     },
+     {
+      "savol": "Chiziqli masshtab nima?",
+      "javob": "chizg‘ich shaklidagi masshtab"
+     },
+     {
+      "savol": "Xaritada masofa nima bilan o‘lchanadi?",
+      "javob": "chizg‘ich bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Masshtab — chizma va haqiqiy masofa nisbati.",
+      "savol": "1 : 1000 da 1 sm yerda nechaga teng?"
+     },
+     {
+      "nom": "Turlari",
+      "matn": "Sonli, nomli va chiziqli masshtab.",
+      "savol": "1 sm da 2 km qaysi tur?"
+     },
+     {
+      "nom": "O‘lchash",
+      "matn": "Masofani masshtabga ko‘paytiramiz.",
+      "savol": "1 sm da 5 km, 3 sm necha km?"
+     },
+     {
+      "nom": "Chizish",
+      "matn": "Haqiqiy masofani masshtabga bo‘lamiz.",
+      "savol": "1 sm da 5 km, 20 km necha sm?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun dunyo xaritasi va shahar xaritasi turli masshtabda chiziladi? Har birida qanday ma’lumotlarni ko‘ramiz?",
+    "keys": {
+     "vaziyat": "Sayohatchi xaritada ikki qishloq orasini 8 sm deb o‘lchadi. Xaritaning masshtabi 1 sm da 5 km.",
+     "savollar": [
+      "Qishloqlar orasi necha km?",
+      "Agar masofa 60 km bo‘lsa, xaritada necha sm bo‘ladi?"
+     ]
+    },
+    "tezis": "Masshtab — kattani kichikka sig‘dirish san’ati",
+    "taqqoslash": {
+     "a": "Sonli masshtab",
+     "b": "Nomli masshtab",
+     "umumiy": [
+      "masofa nisbatini bildiradi",
+      "xaritada ko‘rsatiladi"
+     ],
+     "a_farq": [
+      "1 : n ko‘rinishida",
+      "birliksiz yoziladi"
+     ],
+     "b_farq": [
+      "1 sm da qancha masofa deb yoziladi",
+      "birlik bilan yoziladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Masshtab",
+     "shoxlar": [
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "sonli",
+        "nomli",
+        "chiziqli"
+       ]
+      },
+      {
+       "nom": "O‘lchash",
+       "bandlar": [
+        "chizg‘ich",
+        "ko‘paytirish",
+        "haqiqiy masofa"
+       ]
+      },
+      {
+       "nom": "Chizish",
+       "bandlar": [
+        "bo‘lish",
+        "xarita",
+        "chizma"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "geografiya",
+        "chizmachilik",
+        "yo‘l rejasi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Kattani kichik qilaman, lekin nisbatni saqlayman. Men kimman?",
+     "javob": "masshtab"
+    },
+    "hikmat": "Yo‘lni bilgan manzilga yetadi.",
+    "kalit_soz": "MASSHTAB",
+    "xato_yechim": {
+     "shart": "Masshtab 1 sm da 5 km. Xaritada 4 sm necha km?",
+     "xato": "0,8 km, chunki 4 ni 5 ga bo‘ladi",
+     "togri": "20 km",
+     "sabab": "xaritadagi masofa masshtabga ko‘paytiriladi, bo‘linmaydi"
+    },
+    "guruh_nomlari": [
+     "Xaritachilar",
+     "Chizmachilar",
+     "Sayyohlar",
+     "Masshtabchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinf xonasi chizmasi»",
+     "topshiriq": "Guruh sinf xonasining uzunligi va enini o‘lchaydi, 1 : 50 masshtabda chizmasini chizadi va jihozlarni joylashtiradi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: 1 sm da 3 km, 5 sm necha km; 1 : 100 da 6 m necha sm.",
+     "B": "O‘z xonangiz chizmasini 1 : 50 masshtabda chizing.",
+     "C": "Uydan maktabgacha yo‘lning sxemasini masshtab tanlab chizing."
+    },
+    "sinkveyn": [
+     "Masshtab",
+     "aniq, foydali",
+     "kichraytiradi, o‘lchaydi, ko‘rsatadi",
+     "Xaritaning kaliti",
+     "Nisbat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh turli masshtab masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: 1 sm da 4 km, 5 sm necha km?",
+      "2-guruh: 1 sm da 3 km, 18 km necha sm?",
+      "3-guruh: 1 : 200 da 2 sm necha m?",
+      "4-guruh: 1 : 50 da 5 m necha sm?"
+     ],
+     "yakun": "Natijalar: 20 km; 6 sm; 4 m; 10 sm."
+    }
+   }
   }
  ]
 }
