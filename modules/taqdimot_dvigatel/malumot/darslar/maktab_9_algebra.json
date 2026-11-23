@@ -1,0 +1,1394 @@
+{
+ "daraja": "maktab",
+ "sinf": "9",
+ "fan": "Algebra",
+ "muallif": "qo‘lda yozilgan, hisob-kitob avtomatik tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Funksiya xossalari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Aniqlanish sohasi",
+      "matn": "Funksiyaning aniqlanish sohasi — argument x qabul qilishi mumkin bo‘lgan barcha qiymatlar to‘plami. Kasr maxraji nolga teng bo‘lmasligi, kvadrat ildiz ostidagi ifoda manfiy bo‘lmasligi kerak.",
+      "misol": "1 / (x − 2) funksiyada x ning 2 dan boshqa hamma qiymati mumkin. Kvadrat ildiz ostida x − 3 bo‘lsa, x 3 dan kichik bo‘lmasligi kerak.",
+      "savol": "1 / (x − 5) funksiyada x qaysi son bo‘la olmaydi?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qiymatlar to‘plami",
+      "matn": "Funksiya qabul qiladigan barcha y qiymatlar to‘plami qiymatlar to‘plami deyiladi. U grafikka qarab, ya’ni grafik Oy o‘qida qaysi oraliqni egallashiga qarab topiladi.",
+      "misol": "y funksiya x² bo‘lsa, kvadrat manfiy bo‘lmaydi, shuning uchun y noldan kichik bo‘lmaydi. Eng kichik qiymat 0.",
+      "savol": "x² + 3 funksiyaning eng kichik qiymati nechaga teng?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nollar va ishora doimiyligi",
+      "matn": "Funksiya qiymati nolga aylanadigan x lar funksiya nollari deyiladi, ular grafikning Ox o‘qi bilan kesishgan nuqtalari. Nollar oralig‘ida funksiya ishorasini saqlaydi.",
+      "misol": "2x − 6 funksiyaning nolini topamiz: 2x ifoda 6, x ifoda 3. 3 dan katta x larda funksiya musbat, kichiklarida manfiy.",
+      "savol": "x − 4 funksiyaning noli nechaga teng?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘sish va kamayish",
+      "matn": "Argument kattalashganda funksiya qiymati ham kattalashsa, funksiya o‘suvchi, kichiklashsa kamayuvchi deyiladi. Chiziqli funksiyada k musbat bo‘lsa o‘sadi, manfiy bo‘lsa kamayadi.",
+      "misol": "2x + 1 o‘sadi: x 1 bo‘lganda 3, x 2 bo‘lganda 5. −3x kamayadi: x 1 bo‘lganda −3, x 2 bo‘lganda −6.",
+      "savol": "−5x + 2 funksiya o‘sadimi yoki kamayadimi?",
+      "javob": "kamayadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Juft va toq funksiyalar",
+      "matn": "Agar x ni −x ga almashtirganda qiymat o‘zgarmasa, funksiya juft, qarama-qarshi ishoraga o‘tsa, toq deyiladi. Juft funksiya grafigi Oy o‘qiga, toq funksiya grafigi koordinata boshiga nisbatan simmetrik.",
+      "misol": "x² juft: f(−2) — 4 va f(2) — 4. x³ toq: f(−2) — −8, f(2) — 8.",
+      "savol": "x⁴ juft funksiyami yoki toqmi?",
+      "javob": "juft",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Aniqlanish sohasida maxraj nolga teng emas, ildiz ostidagi ifoda manfiy emas. Funksiya noli — qiymati nol bo‘lgan x. Juft funksiya Oy o‘qiga, toq funksiya koordinata boshiga nisbatan simmetrik.",
+    "misollar": [
+     {
+      "shart": "√(x − 5) funksiyaning aniqlanish sohasini toping.",
+      "yechim": [
+       "Ildiz ostidagi ifoda manfiy bo‘lmasligi kerak.",
+       "x − 5 noldan kichik bo‘lmasin, ya’ni x 5 dan kichik emas.",
+       "Soha — 5 va undan katta barcha sonlar."
+      ],
+      "javob": "x ≥ 5"
+     },
+     {
+      "shart": "x² − 4 funksiyaning nollarini va qiymatlar to‘plamini toping.",
+      "yechim": [
+       "x² ifoda 4 bo‘lganda funksiya nol: x ikki qiymat oladi, 2 va −2.",
+       "x² noldan kichik emas, shuning uchun x² − 4 ifoda −4 dan kichik bo‘lmaydi.",
+       "Eng kichik qiymat −4 (x nol bo‘lganda)."
+      ],
+      "javob": "nollar 2 va −2; y ≥ −4"
+     },
+     {
+      "shart": "x³ + x funksiya juftmi yoki toqmi?",
+      "yechim": [
+       "x ni −x bilan almashtiramiz: (−x)³ + (−x).",
+       "Bu −x³ − x, ya’ni funksiyaga qarama-qarshi ishorali ifoda.",
+       "Demak, funksiya toq."
+      ],
+      "javob": "toq"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Grafik o‘qiymiz",
+      "topshiriq": "Berilgan grafikdan aniqlanish sohasi, nollari, o‘sish va kamayish oraliqlarini aniqlang.",
+      "yechim": "Grafikdagi chap va o‘ng chegara — soha, Ox bilan kesishish — nollar.",
+      "mahsulot": "izohli grafik"
+     },
+     {
+      "nom": "Juftmi, toqmi?",
+      "topshiriq": "x², x³, x⁴, 2x funksiyalarni juft va toqqa ajrating.",
+      "yechim": "x² va x⁴ juft, x³ va 2x toq.",
+      "mahsulot": "ajratish jadvali"
+     },
+     {
+      "nom": "Soha izlash",
+      "topshiriq": "1 / (x − 7), √(x − 1) va 1 / (x + 3) funksiyalarning sohasini toping.",
+      "yechim": "7 dan boshqa; 1 dan kichik emas; −3 dan boshqa.",
+      "mahsulot": "soha varag‘i"
+     },
+     {
+      "nom": "O‘z funksiyamiz",
+      "topshiriq": "Guruh o‘z funksiyasini o‘ylab, uning xossalarini yozadi.",
+      "yechim": "Har guruh o‘z funksiyasi xossalarini topadi.",
+      "mahsulot": "xossalar kartochkasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1 / (x − 7) funksiyada x qaysi son bo‘la olmaydi?",
+      "javob": "7"
+     },
+     {
+      "shart": "f(x) funksiya 3x − 2 bo‘lsa, f(4) nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "x² funksiyaning eng kichik qiymati?",
+      "javob": "0"
+     },
+     {
+      "shart": "−2x funksiya o‘sadimi yoki kamayadimi?",
+      "javob": "kamayadi"
+     },
+     {
+      "shart": "x⁴ funksiya juftmi yoki toqmi?",
+      "javob": "juft"
+     },
+     {
+      "shart": "2x − 8 funksiyaning noli?",
+      "javob": "4"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Maxrajni nol qilib qo‘yadi",
+      "sabab": "aniqlanish sohasini tekshirmaydi",
+      "oldini_olish": "avval maxraj nolga teng bo‘lgan x ni topib, uni chiqarib tashlash"
+     },
+     {
+      "xato": "Nol bilan eng kichik qiymatni adashtiradi",
+      "sabab": "ikki tushunchani aralashtiradi",
+      "oldini_olish": "nol — Ox bilan kesishish, qiymat — Oy bo‘yicha deb eslash"
+     },
+     {
+      "xato": "Juft va toqni x ning qiymatidan aniqlaydi",
+      "sabab": "−x ni qo‘yib tekshirmaydi",
+      "oldini_olish": "har doim x ni −x ga almashtirib ko‘rish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "yo‘l va vaqt bog‘lanishining funksiya grafigi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "harorat grafigining o‘sish va kamayish oraliqlari"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "jadval asosida grafik qurish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Funksiyalar pasporti»",
+     "muammo": "Funksiyaning xossalarini qanday qilib bir sahifaga sig‘dirib, pasport shaklida yozamiz?",
+     "mahsulot": "funksiyalar pasporti albomi",
+     "bosqichlar": [
+      "funksiya tanlash",
+      "soha va qiymatlar",
+      "nollar va ishora",
+      "o‘sish va juftlik",
+      "pasport yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Funksiya tanlang",
+      "Xossalarni toping",
+      "Grafik chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xossalar to‘g‘ri topilgan",
+      "grafik aniq",
+      "hisoblar to‘g‘ri",
+      "pasport ravshan",
+      "taqdimot izchil"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Funksiyalar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Darvoza",
+       "matn": "Funksiya 1 / (x − 4).",
+       "topshiriq": "x nechaga teng bo‘la olmaydi?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘prik",
+       "matn": "Funksiya 3x − 9.",
+       "topshiriq": "Nolni toping.",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘l",
+       "matn": "Funksiya x².",
+       "topshiriq": "Eng kichik qiymat?",
+       "javob": "0",
+       "rasm": ""
+      },
+      {
+       "nom": "Minora",
+       "matn": "Funksiya x³.",
+       "topshiriq": "Juftmi yoki toqmi?",
+       "javob": "toq",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi xossa oson bo‘ldi?",
+      "Grafik nimani ko‘rsatdi?",
+      "Nollarni qanday topdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Aniqlanish sohasi",
+      "tarif": "argumentning mumkin bo‘lgan qiymatlari"
+     },
+     {
+      "atama": "Qiymatlar to‘plami",
+      "tarif": "funksiyaning barcha qiymatlari"
+     },
+     {
+      "atama": "Funksiya noli",
+      "tarif": "qiymati nol bo‘ladigan argument"
+     },
+     {
+      "atama": "O‘suvchi funksiya",
+      "tarif": "argument ortganda qiymati ham ortadigan"
+     },
+     {
+      "atama": "Juft funksiya",
+      "tarif": "x ni −x ga almashtirganda o‘zgarmaydigan"
+     },
+     {
+      "atama": "Toq funksiya",
+      "tarif": "x ni −x ga almashtirganda ishorasi o‘zgaradigan"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Maxraj nol bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "kasrda maxraj nolga teng bo‘lmaydi"
+     },
+     {
+      "matn": "Ildiz ostidagi ifoda manfiy bo‘lmaydi",
+      "togri": true,
+      "izoh": "kvadrat ildiz sohasi"
+     },
+     {
+      "matn": "x² funksiya juft",
+      "togri": true,
+      "izoh": "f(−x) va f(x) bir xil"
+     },
+     {
+      "matn": "x³ funksiya juft",
+      "togri": false,
+      "izoh": "x³ toq"
+     },
+     {
+      "matn": "Funksiya noli — Ox bilan kesishish nuqtasi",
+      "togri": true,
+      "izoh": "y nolga teng"
+     },
+     {
+      "matn": "−3x funksiya o‘sadi",
+      "togri": false,
+      "izoh": "k manfiy, kamayadi"
+     },
+     {
+      "matn": "x² funksiyaning eng kichik qiymati 0",
+      "togri": true,
+      "izoh": "kvadrat manfiy emas"
+     },
+     {
+      "matn": "Toq funksiya grafigi Oy o‘qiga nisbatan simmetrik",
+      "togri": false,
+      "izoh": "koordinata boshiga nisbatan"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Aniqlanish sohasi nima?",
+      "javob": "argumentning mumkin bo‘lgan qiymatlari"
+     },
+     {
+      "savol": "1 / (x − 2) da x nima bo‘la olmaydi?",
+      "javob": "2"
+     },
+     {
+      "savol": "Funksiya noli nima?",
+      "javob": "qiymati nol bo‘ladigan x"
+     },
+     {
+      "savol": "x² ning eng kichik qiymati?",
+      "javob": "0"
+     },
+     {
+      "savol": "2x + 1 o‘sadimi?",
+      "javob": "ha, o‘sadi"
+     },
+     {
+      "savol": "−4x kamayadimi?",
+      "javob": "ha, kamayadi"
+     },
+     {
+      "savol": "x² juftmi?",
+      "javob": "ha, juft"
+     },
+     {
+      "savol": "x³ toqmi?",
+      "javob": "ha, toq"
+     },
+     {
+      "savol": "Juft funksiya grafigi nimaga simmetrik?",
+      "javob": "Oy o‘qiga"
+     },
+     {
+      "savol": "2x − 6 ning noli?",
+      "javob": "3"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Soha",
+      "matn": "Maxraj va ildizni tekshir.",
+      "savol": "1 / x da x nima bo‘la olmaydi?"
+     },
+     {
+      "nom": "Nollar",
+      "matn": "Qiymatni nolga tenglashtir.",
+      "savol": "x − 9 ning noli?"
+     },
+     {
+      "nom": "Monotonlik",
+      "matn": "k ishorasiga qara.",
+      "savol": "5x o‘sadimi?"
+     },
+     {
+      "nom": "Juftlik",
+      "matn": "x ni −x ga almashtir.",
+      "savol": "x² juftmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun x² funksiya butun sonlar to‘plamida emas, faqat noldan boshlab o‘sadi va noldan oldin kamayadi? Grafik yordamida tushuntiring.",
+    "keys": {
+     "vaziyat": "Taksi yo‘l haqi funksiyasi: 5000 so‘m ulanish va har kilometr uchun 2000 so‘m.",
+     "savollar": [
+      "Funksiya o‘sadimi yoki kamayadimi?",
+      "3 kilometr uchun yo‘l haqi qancha?"
+     ]
+    },
+    "tezis": "Funksiya — bog‘liqlik qonuni",
+    "taqqoslash": {
+     "a": "Juft funksiya",
+     "b": "Toq funksiya",
+     "umumiy": [
+      "x ni −x ga almashtirib tekshiriladi",
+      "aniqlanish sohasi nolga nisbatan simmetrik"
+     ],
+     "a_farq": [
+      "qiymat o‘zgarmaydi",
+      "grafik Oy o‘qiga simmetrik"
+     ],
+     "b_farq": [
+      "ishora o‘zgaradi",
+      "grafik koordinata boshiga simmetrik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Funksiya xossalari",
+     "shoxlar": [
+      {
+       "nom": "Soha",
+       "bandlar": [
+        "aniqlanish",
+        "qiymatlar"
+       ]
+      },
+      {
+       "nom": "Nollar",
+       "bandlar": [
+        "Ox bilan kesishish",
+        "ishora"
+       ]
+      },
+      {
+       "nom": "Monotonlik",
+       "bandlar": [
+        "o‘sish",
+        "kamayish"
+       ]
+      },
+      {
+       "nom": "Simmetriya",
+       "bandlar": [
+        "juft",
+        "toq"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men x ni −x ga almashtirsangiz o‘zgarmayman. Men qanday funksiyaman?",
+     "javob": "juft"
+    },
+    "hikmat": "Grafik — funksiyaning yuzi.",
+    "kalit_soz": "JUFT",
+    "xato_yechim": {
+     "shart": "1 / (x − 3) funksiyaning aniqlanish sohasini toping.",
+     "xato": "x 1 dan boshqa",
+     "togri": "x 3 dan boshqa",
+     "sabab": "maxraj x − 3 nolga teng bo‘ladigan qiymat 3"
+    },
+    "guruh_nomlari": [
+     "Sohachilar",
+     "Nollar ovchilari",
+     "Simmetriyachilar",
+     "Grafikchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Taksi grafigi»",
+     "topshiriq": "Guruh yo‘l haqi funksiyasini jadval va grafikda ko‘rsatadi."
+    },
+    "vazifalar": {
+     "A": "2x − 10 funksiyaning nolini va o‘sishini toping.",
+     "B": "1 / (x + 6) va √(x − 2) funksiyalarning sohasini toping.",
+     "C": "x⁴ − 1 funksiya juftmi? Nollari va eng kichik qiymatini toping."
+    },
+    "sinkveyn": [
+     "Funksiya",
+     "aniq, o‘sadi",
+     "bog‘laydi, ko‘rsatadi, o‘zgaradi",
+     "Qonun grafikda",
+     "Xossa"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh funksiya xossalarini aniqlaydi.",
+     "qismlar": [
+      "1-guruh: 1 / (x − 8) sohasi",
+      "2-guruh: 4x − 12 noli",
+      "3-guruh: x² eng kichik qiymati",
+      "4-guruh: x³ juftmi?"
+     ],
+     "yakun": "Natijalar: 8 dan boshqa; 3; 0; toq."
+    }
+   }
+  },
+  {
+   "mavzu": "Kvadrat tengsizliklar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kvadrat tengsizlik nima?",
+      "matn": "ax² + bx + c noldan katta yoki kichik ko‘rinishdagi tengsizlik kvadrat tengsizlik deyiladi, bunda a noldan farqli. Uni yechish — shartni qanoatlantiradigan barcha x larni topish.",
+      "misol": "x² − 5x + 6 noldan katta degan tengsizlik kvadrat tengsizlik. x ning ba’zi qiymatlari uni qanoatlantiradi, ba’zilari yo‘q.",
+      "savol": "x² − 1 noldan kichik tengsizlik kvadratmi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Parabola usuli",
+      "matn": "Avval kvadrat uchhadning ildizlarini topamiz. Keyin parabolani chizamiz: a musbat bo‘lsa shoxlari yuqoriga, manfiy bo‘lsa pastga qaragan. Ildizlar o‘qni bo‘laklarga ajratadi, kerakli ishorali bo‘lakni tanlaymiz.",
+      "misol": "x² − 5x + 6 ildizlari 2 va 3. Shoxlar yuqoriga: ildizlar orasida funksiya manfiy, tashqarisida musbat.",
+      "savol": "x² − 5x + 6 ning ildizlari?",
+      "javob": "2 va 3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Katta va kichik ishora",
+      "matn": "Parabola shoxlari yuqoriga bo‘lsa, noldan katta tengsizlik yechimi ildizlardan tashqarida: x birinchi ildizdan kichik yoki ikkinchi ildizdan katta. Noldan kichik tengsizlik yechimi ildizlar oralig‘ida.",
+      "misol": "x² − 5x + 6 noldan katta bo‘lsa, x < 2 yoki x > 3. Noldan kichik bo‘lsa, 2 < x < 3.",
+      "savol": "x² − 5x + 6 noldan kichik bo‘lsa, yechim?",
+      "javob": "2 < x < 3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nostrogie tengsizliklar",
+      "matn": "Tengsizlikda «katta yoki teng» yoki «kichik yoki teng» belgisi bo‘lsa, ildizlar yechimga kiradi. Bu holda oraliqning chegaralari ham yechimga qo‘shiladi.",
+      "misol": "x² − 4 kichik yoki teng nol: ildizlar 2 va −2, yechim −2 ≤ x ≤ 2, chegaralar kiradi.",
+      "savol": "x² − 9 kichik yoki teng nol yechimi?",
+      "javob": "−3 ≤ x ≤ 3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ildizi yo‘q yoki bitta ildizli holat",
+      "matn": "Diskriminant manfiy bo‘lsa, parabola Ox o‘qiga tegmaydi: tengsizlik yo hamma x da, yo hech qaysi x da bajariladi. Diskriminant nol bo‘lsa, parabola o‘qqa urinadi, faqat bitta nuqta farq qiladi.",
+      "misol": "x² + 1 hamma vaqt musbat, shuning uchun x² + 1 noldan katta tengsizlik hamma x da to‘g‘ri, x² + 9 noldan kichik tengsizlikning yechimi yo‘q.",
+      "savol": "x² + 4 noldan katta tengsizlik qaysi x larda to‘g‘ri?",
+      "javob": "hamma x da",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Avval ildizlarni top, parabolani chiz. Shoxlari yuqoriga bo‘lsa: noldan katta — ildizlardan tashqarida, noldan kichik — ildizlar orasida. Nostrogi belgida chegaralar yechimga kiradi.",
+    "misollar": [
+     {
+      "shart": "x² − 7x + 10 noldan kichik tengsizlikni yeching.",
+      "yechim": [
+       "Ildizlar: 2 va 5, chunki 2 + 5 ifoda 7 va 2 · 5 ifoda 10.",
+       "Shoxlar yuqoriga, kichik ishora ildizlar orasida.",
+       "Yechim 2 < x < 5."
+      ],
+      "javob": "2 < x < 5"
+     },
+     {
+      "shart": "x² − 9 katta yoki teng nol tengsizlikni yeching.",
+      "yechim": [
+       "Ildizlar 3 va −3.",
+       "Shoxlar yuqoriga, tashqarisi va chegaralar kiradi.",
+       "Yechim x ≤ −3 yoki x ≥ 3."
+      ],
+      "javob": "x ≤ −3 yoki x ≥ 3"
+     },
+     {
+      "shart": "x² − 6x + 9 noldan katta tengsizlikni yeching.",
+      "yechim": [
+       "Uchhad (x − 3)² ga teng, qo‘sh ildiz 3.",
+       "Kvadrat doim noldan katta yoki nolga teng, nol faqat x 3 bo‘lganda.",
+       "Yechim — 3 dan boshqa hamma sonlar."
+      ],
+      "javob": "3 dan boshqa hamma x"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Parabola chizamiz",
+      "topshiriq": "x² − 5x + 6 ning grafigini chizing va yechimni oraliqlarda belgilang.",
+      "yechim": "Ildizlar 2 va 3, tashqarida musbat, orasida manfiy.",
+      "mahsulot": "grafik va oraliqlar"
+     },
+     {
+      "nom": "Oralig‘ini topamiz",
+      "topshiriq": "x² − 4x − 5 noldan kichik tengsizlikni yeching.",
+      "yechim": "Ildizlar 5 va −1, yechim −1 < x < 5.",
+      "mahsulot": "yechim varag‘i"
+     },
+     {
+      "nom": "Butun yechimlar",
+      "topshiriq": "x² − 6x + 5 noldan kichik tengsizlikning butun yechimlarini sanang.",
+      "yechim": "Ildizlar 1 va 5, butun yechimlar 2, 3, 4: uchta.",
+      "mahsulot": "sanoq jadvali"
+     },
+     {
+      "nom": "Hayotiy masala",
+      "topshiriq": "To‘rtburchak maydonchaning eni 10 − x, bo‘yi x metr. Yuzi 16 dan katta bo‘lishi uchun x qanday?",
+      "yechim": "x(10 − x) katta 16: x² − 10x + 16 kichik nol, ildizlar 2 va 8, yechim 2 < x < 8.",
+      "mahsulot": "masala yechimi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "x² − 1 noldan kichik tengsizlik yechimi?",
+      "javob": "−1 < x < 1"
+     },
+     {
+      "shart": "x² − 3x noldan katta tengsizlik yechimi?",
+      "javob": "x < 0 yoki x > 3"
+     },
+     {
+      "shart": "x² + 4x + 3 kichik yoki teng nol tengsizlik yechimi?",
+      "javob": "−3 ≤ x ≤ −1"
+     },
+     {
+      "shart": "x² − 2x − 8 noldan katta tengsizlik yechimi?",
+      "javob": "x < −2 yoki x > 4"
+     },
+     {
+      "shart": "x² + 9 noldan kichik tengsizlik nechta yechimga ega?",
+      "javob": "yechimi yo‘q"
+     },
+     {
+      "shart": "x² − 6x + 8 katta yoki teng nol tengsizlik yechimi?",
+      "javob": "x ≤ 2 yoki x ≥ 4"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ildizlarni noto‘g‘ri topadi",
+      "sabab": "Viyet teoremasini tekshirmaydi",
+      "oldini_olish": "ildizlar yig‘indisi va ko‘paytmasini tekshirish"
+     },
+     {
+      "xato": "Ishora oralig‘ini adashtiradi",
+      "sabab": "parabola shoxining yo‘nalishini unutadi",
+      "oldini_olish": "avval parabolani chizib, shoxlarini belgilash"
+     },
+     {
+      "xato": "Nostrogi belgida chegarani tashlab ketadi",
+      "sabab": "belgini e’tiborsiz qoldiradi",
+      "oldini_olish": "«yoki teng» bo‘lsa, ildizlar yechimga kirishini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "tezlik va masofa bog‘lanishlaridagi chegaralar"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "foyda musbat bo‘ladigan oraliqni topish"
+     },
+     {
+      "fan": "Geometriya",
+      "boglanish": "yuz berilgan qiymatdan katta bo‘ladigan o‘lchamlar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Foyda oralig‘i»",
+     "muammo": "Kichik biznesda foyda qaysi narxlarda musbat bo‘lishini kvadrat tengsizlik bilan qanday topamiz?",
+     "mahsulot": "foyda oralig‘i hisoboti",
+     "bosqichlar": [
+      "biznes tanlash",
+      "foyda funksiyasini tuzish",
+      "ildizlarni topish",
+      "parabolani chizish",
+      "xulosa yozish"
+     ],
+     "guruh_vazifalari": [
+      "Biznes tanlang",
+      "Funksiya tuzing",
+      "Tengsizlikni yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "funksiya to‘g‘ri tuzilgan",
+      "ildizlar to‘g‘ri",
+      "grafik aniq",
+      "xulosa asosli",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Parabola vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "Tepalik",
+       "matn": "x² − 4 kichik nol.",
+       "topshiriq": "Yechim oralig‘i?",
+       "javob": "−2 < x < 2",
+       "rasm": ""
+      },
+      {
+       "nom": "Daryo",
+       "matn": "x² − 5x + 4 kichik nol.",
+       "topshiriq": "Yechim?",
+       "javob": "1 < x < 4",
+       "rasm": ""
+      },
+      {
+       "nom": "Vodiy",
+       "matn": "x² − 1 katta nol.",
+       "topshiriq": "Yechim?",
+       "javob": "x < −1 yoki x > 1",
+       "rasm": ""
+      },
+      {
+       "nom": "Soyabon",
+       "matn": "x² + 2 katta nol.",
+       "topshiriq": "Yechim?",
+       "javob": "hamma x",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Parabolani qanday chizdingiz?",
+      "Qaysi ishora qiyin bo‘ldi?",
+      "Chegaralar qachon kiradi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kvadrat tengsizlik",
+      "tarif": "kvadrat uchhad noldan katta yoki kichik bo‘lishi sharti"
+     },
+     {
+      "atama": "Parabola",
+      "tarif": "kvadrat funksiya grafigi"
+     },
+     {
+      "atama": "Ildiz",
+      "tarif": "uchhad nolga aylanadigan x"
+     },
+     {
+      "atama": "Diskriminant",
+      "tarif": "ildizlar sonini aniqlaydigan ifoda"
+     },
+     {
+      "atama": "Oraliq",
+      "tarif": "ikki son orasidagi sonlar to‘plami"
+     },
+     {
+      "atama": "Nostrogi tengsizlik",
+      "tarif": "chegarasi yechimga kiradigan tengsizlik"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Shoxlari yuqoriga parabolada noldan kichik yechim ildizlar orasida",
+      "togri": true,
+      "izoh": "parabola o‘qdan pastda"
+     },
+     {
+      "matn": "x² + 1 noldan kichik tengsizlik hamma x da to‘g‘ri",
+      "togri": false,
+      "izoh": "uchhad doim musbat"
+     },
+     {
+      "matn": "x² − 4 ning ildizlari 2 va −2",
+      "togri": true,
+      "izoh": "kvadrat ayirmasi"
+     },
+     {
+      "matn": "Nostrogi belgida ildizlar kirmaydi",
+      "togri": false,
+      "izoh": "kiradi"
+     },
+     {
+      "matn": "x² − 5x + 6 noldan katta bo‘lsa x < 2 yoki x > 3",
+      "togri": true,
+      "izoh": "tashqarida musbat"
+     },
+     {
+      "matn": "Diskriminant manfiy bo‘lsa parabola o‘qni kesadi",
+      "togri": false,
+      "izoh": "kesmaydi"
+     },
+     {
+      "matn": "x² − 9 katta yoki teng nol: x ≤ −3 yoki x ≥ 3",
+      "togri": true,
+      "izoh": "chegara kiradi"
+     },
+     {
+      "matn": "Kvadrat tengsizlik doim bitta oraliq beradi",
+      "togri": false,
+      "izoh": "ba’zan ikkita oraliq chiqadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kvadrat tengsizlik nima?",
+      "javob": "kvadrat uchhad ishorasi sharti"
+     },
+     {
+      "savol": "x² − 5x + 6 ildizlari?",
+      "javob": "2 va 3"
+     },
+     {
+      "savol": "Shoxlari yuqoriga parabola ildizlar orasida qanday?",
+      "javob": "manfiy"
+     },
+     {
+      "savol": "Tashqarisida qanday?",
+      "javob": "musbat"
+     },
+     {
+      "savol": "x² − 1 kichik nol yechimi?",
+      "javob": "−1 < x < 1"
+     },
+     {
+      "savol": "x² + 4 katta nol yechimi?",
+      "javob": "hamma x"
+     },
+     {
+      "savol": "x² + 4 kichik nol yechimi?",
+      "javob": "yechimi yo‘q"
+     },
+     {
+      "savol": "Nostrogi belgida chegara kiradimi?",
+      "javob": "ha, kiradi"
+     },
+     {
+      "savol": "x² − 9 ning ildizlari?",
+      "javob": "3 va −3"
+     },
+     {
+      "savol": "Parabola usuli nima?",
+      "javob": "grafikka qarab ishorani aniqlash"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ildizlar",
+      "matn": "Uchhadni nolga tenglab ildizlarni top.",
+      "savol": "x² − 9 ning ildizlari?"
+     },
+     {
+      "nom": "Parabola",
+      "matn": "Shoxlarning yo‘nalishini aniqla.",
+      "savol": "x² ning shoxlari qayoqqa?"
+     },
+     {
+      "nom": "Ishora",
+      "matn": "Kerakli bo‘lakni tanla.",
+      "savol": "Katta nol — qayerda?"
+     },
+     {
+      "nom": "Javob",
+      "matn": "Oraliqni yoz.",
+      "savol": "Chegara kiradimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun x² − 5x + 6 noldan katta tengsizlikning yechimi bitta oraliq emas, ikki oraliqdan iborat? Grafik bilan tushuntiring.",
+    "keys": {
+     "vaziyat": "Bog‘bon to‘rtburchak gulzor uchun 20 metr panjara oldi. Gulzor eni x, bo‘yi 10 − x metr. Yuzi 21 kv. metrdan oshishi kerak.",
+     "savollar": [
+      "Qanday tengsizlik hosil bo‘ladi?",
+      "x qaysi oraliqda?"
+     ]
+    },
+    "tezis": "Parabola ishoraning xaritasi",
+    "taqqoslash": {
+     "a": "Katta nol tengsizligi",
+     "b": "Kichik nol tengsizligi",
+     "umumiy": [
+      "ildizlar topiladi",
+      "parabola chiziladi"
+     ],
+     "a_farq": [
+      "shoxlari yuqoriga bo‘lsa tashqarida",
+      "ikki oraliq beradi"
+     ],
+     "b_farq": [
+      "shoxlari yuqoriga bo‘lsa orasida",
+      "bitta oraliq beradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kvadrat tengsizliklar",
+     "shoxlar": [
+      {
+       "nom": "Ildizlar",
+       "bandlar": [
+        "Viyet",
+        "diskriminant"
+       ]
+      },
+      {
+       "nom": "Parabola",
+       "bandlar": [
+        "shoxlar",
+        "ishora"
+       ]
+      },
+      {
+       "nom": "Yechim",
+       "bandlar": [
+        "oraliq",
+        "chegara"
+       ]
+      },
+      {
+       "nom": "Masala",
+       "bandlar": [
+        "yuz",
+        "foyda"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men noldan kichikman, ildizlar orasida yashayman. Men kimman?",
+     "javob": "oraliq"
+    },
+    "hikmat": "Ishoni o‘lchab, so‘ng yech.",
+    "kalit_soz": "ORALIQ",
+    "xato_yechim": {
+     "shart": "x² − 4 noldan kichik tengsizlikni yeching.",
+     "xato": "x < −2 yoki x > 2",
+     "togri": "−2 < x < 2",
+     "sabab": "shoxlari yuqoriga parabola ildizlar orasida manfiy"
+    },
+    "guruh_nomlari": [
+     "Ildizchilar",
+     "Parabolachilar",
+     "Oraliqchilar",
+     "Ishorachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Maydon chegarasi»",
+     "topshiriq": "Guruh berilgan yuz uchun o‘lchamlar oralig‘ini topadi."
+    },
+    "vazifalar": {
+     "A": "x² − 8x + 12 noldan kichik tengsizlikni yeching.",
+     "B": "x² − 25 katta yoki teng nol tengsizlikni yeching.",
+     "C": "x² − 7x + 6 noldan kichik tengsizlikning butun yechimlarini sanang."
+    },
+    "sinkveyn": [
+     "Parabola",
+     "egri, ochiq",
+     "ko‘tariladi, tushadi, ko‘rsatadi",
+     "Ishora yo‘lboshchisi",
+     "Oraliq"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tengsizliklarni yechadi.",
+     "qismlar": [
+      "1-guruh: x² − 4 kichik nol",
+      "2-guruh: x² − 1 katta nol",
+      "3-guruh: x² − 3x kichik nol",
+      "4-guruh: x² + 5 katta nol"
+     ],
+     "yakun": "Natijalar: −2 < x < 2; x < −1 yoki x > 1; 0 < x < 3; hamma x."
+    }
+   }
+  },
+  {
+   "mavzu": "Arifmetik progressiya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Progressiya nima?",
+      "matn": "Sonli ketma-ketlikda har bir had, ikkinchisidan boshlab, oldingisiga bir xil son qo‘shilganiga teng bo‘lsa, u arifmetik progressiya deyiladi. Bu bir xil son progressiyaning ayirmasi d deyiladi.",
+      "misol": "3, 7, 11, 15, ... ketma-ketlikda har safar 4 qo‘shilgan, demak ayirma d 4 ga teng. 10, 8, 6, 4 ketma-ketlikda d manfiy: −2.",
+      "savol": "2, 5, 8, 11 ketma-ketlikning ayirmasi d nechaga teng?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "n-had formulasi",
+      "matn": "Birinchi had va ayirma d ma’lum bo‘lsa, n-hadni topamiz: n-had ifoda birinchi had plus (n − 1) ni d ga ko‘paytmasi. Formuladagi (n − 1) — birinchi haddan n-hadga o‘tishda qo‘shilgan qadamlar soni.",
+      "misol": "Birinchi had 3, d 4. 10-had: 3 + 9 · 4, ya’ni 39.",
+      "savol": "Birinchi had 5, d 3 bo‘lsa 8-had nechaga teng?",
+      "javob": "26",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘rta had xossasi",
+      "matn": "Arifmetik progressiyada har bir had (birinchisidan tashqari) qo‘shni ikki hadning o‘rta arifmetigiga teng. Bu xossa yo‘qolgan hadni topish uchun qulay.",
+      "misol": "3, ?, 11 progressiyada o‘rtadagi had (3 + 11) / 2, ya’ni 7. Haqiqatan, 3, 7, 11 — ayirma 4.",
+      "savol": "5, ?, 13 progressiyada o‘rtadagi had?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Dastlabki n had yig‘indisi",
+      "matn": "Yig‘indi uchun formula: birinchi va n-had yig‘indisini n ga ko‘paytirib, 2 ga bo‘lamiz. Bu formulani yosh Gauss 1 dan 100 gacha sonlarni juftlab qo‘shganda kashf etgan.",
+      "misol": "1 dan 100 gacha: (1 + 100) · 100 / 2, ya’ni 5050. 3, 7, 11, ... ning dastlabki 10 hadi: (3 + 39) · 10 / 2, ya’ni 210.",
+      "savol": "1 dan 10 gacha sonlar yig‘indisi?",
+      "javob": "55",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Progressiyaning ahamiyati",
+      "matn": "Arifmetik progressiya bir xil qadam bilan o‘zgarishni ifodalaydi: har kuni bir xil miqdor tejash, zinapoya pog‘onalari, amfiteatr o‘rinlari. Shu sababli kundalik hayotda ko‘p uchraydi.",
+      "misol": "Har kuni oldingisidan 500 so‘m ko‘p jamg‘arsangiz, miqdorlar 1000, 1500, 2000, ... — arifmetik progressiya.",
+      "savol": "1000, 1500, 2000 progressiyaning ayirmasi?",
+      "javob": "500",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "n-had: birinchi had plus (n − 1) · d. Yig‘indi: (birinchi had plus n-had) · n / 2. Har bir had qo‘shni ikki hadning o‘rta arifmetigi. d musbat bo‘lsa progressiya o‘sadi, manfiy bo‘lsa kamayadi.",
+    "misollar": [
+     {
+      "shart": "Birinchi hadi 5, ayirmasi 3 bo‘lgan progressiyaning 8-hadini toping.",
+      "yechim": [
+       "n-had formulasidan: 5 + (8 − 1) · 3.",
+       "7 · 3 — 21.",
+       "5 + 21 — 26."
+      ],
+      "javob": "26"
+     },
+     {
+      "shart": "2, 5, 8, ... progressiyaning dastlabki 20 hadi yig‘indisini toping.",
+      "yechim": [
+       "Ayirma d — 3. 20-had: 2 + 19 · 3 — 59.",
+       "Yig‘indi (2 + 59) · 20 / 2.",
+       "61 · 10 — 610."
+      ],
+      "javob": "610"
+     },
+     {
+      "shart": "4, 9, 14, ... progressiyada 99 soni bormi?",
+      "yechim": [
+       "Ayirma d — 5. 99 ni topish uchun (99 − 4) ni 5 ga bo‘lamiz.",
+       "95 / 5 — 19, butun son.",
+       "Demak, 99 progressiyaning 20-hadi (19 + 1)."
+      ],
+      "javob": "ha, 20-had"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Gauss usuli",
+      "topshiriq": "1 dan 50 gacha sonlar yig‘indisini Gauss usuli bilan toping.",
+      "yechim": "(1 + 50) · 50 / 2, ya’ni 1275.",
+      "mahsulot": "juftlash chizmasi"
+     },
+     {
+      "nom": "Amfiteatr",
+      "topshiriq": "Amfiteatrning birinchi qatorida 10 o‘rin, har keyingi qatorda 2 tadan ko‘p. 8 qatorda jami o‘rinlar nechta?",
+      "yechim": "8-qator: 10 + 7 · 2 — 24. Yig‘indi (10 + 24) · 8 / 2 — 136.",
+      "mahsulot": "chizma va hisob"
+     },
+     {
+      "nom": "Tejash",
+      "topshiriq": "Birinchi kuni 1000 so‘m, har kuni 500 so‘mdan ko‘p jamg‘ariladi. 10 kunda jami nechta so‘m?",
+      "yechim": "10-kun: 1000 + 9 · 500 — 5500. Yig‘indi (1000 + 5500) · 10 / 2 — 32500.",
+      "mahsulot": "jamg‘arma jadvali"
+     },
+     {
+      "nom": "O‘z progressiyamiz",
+      "topshiriq": "Guruh o‘z progressiyasini tuzib, 6-hadini va dastlabki 6 had yig‘indisini topadi.",
+      "yechim": "Har guruh o‘z ayirmasi bilan hisoblaydi.",
+      "mahsulot": "progressiya kartochkasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "10, 14, 18 progressiyaning ayirmasi?",
+      "javob": "4"
+     },
+     {
+      "shart": "1, 4, 7, ... progressiyaning 5-hadi?",
+      "javob": "13"
+     },
+     {
+      "shart": "1 dan 10 gacha sonlar yig‘indisi?",
+      "javob": "55"
+     },
+     {
+      "shart": "Birinchi had 20, d ifoda −2 bo‘lsa 6-had?",
+      "javob": "10"
+     },
+     {
+      "shart": "2, 4, 6, ..., 20 sonlar yig‘indisi?",
+      "javob": "110"
+     },
+     {
+      "shart": "3, ?, 11 progressiyada o‘rtadagi had?",
+      "javob": "7"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "(n − 1) o‘rniga n qo‘yadi",
+      "sabab": "birinchi haddan o‘tishdagi qadamlar sonini adashtiradi",
+      "oldini_olish": "n-had uchun n − 1 ta qadam borligini eslash"
+     },
+     {
+      "xato": "Ayirmani bo‘lib topadi",
+      "sabab": "qo‘shni hadlar ayirmasini olmaydi",
+      "oldini_olish": "keyingi had minus oldingi had deb yozish"
+     },
+     {
+      "xato": "Yig‘indini 2 ga bo‘lishni unutadi",
+      "sabab": "formulani to‘liq yozmaydi",
+      "oldini_olish": "yig‘indi formulasida 2 ga bo‘linishini tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Iqtisod",
+      "boglanish": "bir xil qadam bilan o‘sadigan jamg‘arma"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "bir tekis tezlanuvchan harakatda bosib o‘tilgan yo‘l"
+     },
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "zinapoya va amfiteatr o‘rinlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening progressiyam»",
+     "muammo": "Kundalik hayotdan arifmetik progressiyani qanday topib, formulalar bilan hisoblaymiz?",
+     "mahsulot": "progressiyalar kolleksiyasi",
+     "bosqichlar": [
+      "hayotiy misol topish",
+      "birinchi had va d ni aniqlash",
+      "n-hadni hisoblash",
+      "yig‘indini topish",
+      "kolleksiya yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Misol toping",
+      "Formulani qo‘llang",
+      "Tekshiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "progressiya to‘g‘ri aniqlangan",
+      "formulalar to‘g‘ri qo‘llangan",
+      "hisoblar to‘g‘ri",
+      "kolleksiya ravshan",
+      "taqdimot izchil"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Progressiya shahri»",
+     "bekatlar": [
+      {
+       "nom": "Stadion",
+       "matn": "Birinchi qatorda 20 o‘rin, har keyingi qatorda 2 tadan ko‘p.",
+       "topshiriq": "5-qatorda necha o‘rin?",
+       "javob": "28",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "Narxlar 3, 6, 9, ... ming so‘m.",
+       "topshiriq": "6-had?",
+       "javob": "18",
+       "rasm": ""
+      },
+      {
+       "nom": "Sport zali",
+       "matn": "Har kuni bitta ko‘p mashq: 1, 2, 3, ..., 10.",
+       "topshiriq": "Yig‘indi?",
+       "javob": "55",
+       "rasm": ""
+      },
+      {
+       "nom": "Kutubxona",
+       "matn": "Javonlarda kitoblar 5, 7, 9, ...",
+       "topshiriq": "4-javonda nechta?",
+       "javob": "11",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formula foydali bo‘ldi?",
+      "d ni qanday topdingiz?",
+      "Yig‘indini qanday hisobladingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Arifmetik progressiya",
+      "tarif": "har bir had oldingisiga bir xil son qo‘shilgan ketma-ketlik"
+     },
+     {
+      "atama": "Ayirma d",
+      "tarif": "qo‘shni hadlarning ayirmasi"
+     },
+     {
+      "atama": "n-had",
+      "tarif": "n-o‘rindagi had"
+     },
+     {
+      "atama": "Yig‘indi",
+      "tarif": "dastlabki n had yig‘indisi"
+     },
+     {
+      "atama": "O‘rta had",
+      "tarif": "qo‘shni ikki hadning o‘rta arifmetigi"
+     },
+     {
+      "atama": "Ketma-ketlik",
+      "tarif": "tartiblangan sonlar qatori"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "2, 5, 8, 11 arifmetik progressiya",
+      "togri": true,
+      "izoh": "ayirma har safar 3"
+     },
+     {
+      "matn": "1, 2, 4, 8 arifmetik progressiya",
+      "togri": false,
+      "izoh": "ayirma har xil: 1, 2, 4"
+     },
+     {
+      "matn": "n-had: birinchi had plus (n − 1) · d",
+      "togri": true,
+      "izoh": "asosiy formula"
+     },
+     {
+      "matn": "d manfiy bo‘lsa progressiya o‘sadi",
+      "togri": false,
+      "izoh": "kamayadi"
+     },
+     {
+      "matn": "1 dan 100 gacha yig‘indi 5050",
+      "togri": true,
+      "izoh": "Gauss"
+     },
+     {
+      "matn": "O‘rta had qo‘shni hadlar yig‘indisiga teng",
+      "togri": false,
+      "izoh": "o‘rta arifmetigiga teng"
+     },
+     {
+      "matn": "4, 9, 14 da ayirma 5",
+      "togri": true,
+      "izoh": "9 − 4"
+     },
+     {
+      "matn": "Yig‘indi formulasida 2 ga bo‘linmaydi",
+      "togri": false,
+      "izoh": "2 ga bo‘linadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Arifmetik progressiya nima?",
+      "javob": "har bir had oldingisiga bir xil son qo‘shilgan"
+     },
+     {
+      "savol": "Ayirma d nima?",
+      "javob": "qo‘shni hadlar ayirmasi"
+     },
+     {
+      "savol": "2, 4, 6 da d?",
+      "javob": "2"
+     },
+     {
+      "savol": "n-had formulasi?",
+      "javob": "birinchi had plus (n − 1) · d"
+     },
+     {
+      "savol": "1, 4, 7 ning 4-hadi?",
+      "javob": "10"
+     },
+     {
+      "savol": "Yig‘indi formulasi?",
+      "javob": "(birinchi had plus n-had) · n / 2"
+     },
+     {
+      "savol": "1 dan 100 gacha yig‘indi?",
+      "javob": "5050"
+     },
+     {
+      "savol": "3, ?, 9 da o‘rtadagi had?",
+      "javob": "6"
+     },
+     {
+      "savol": "d manfiy bo‘lsa progressiya?",
+      "javob": "kamayadi"
+     },
+     {
+      "savol": "1 dan 10 gacha yig‘indi?",
+      "javob": "55"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ayirma",
+      "matn": "Keyingi had minus oldingisi.",
+      "savol": "5, 8, 11 da d?"
+     },
+     {
+      "nom": "n-had",
+      "matn": "Birinchi had plus (n − 1) · d.",
+      "savol": "Birinchi had 2, d 3 bo‘lsa 4-had?"
+     },
+     {
+      "nom": "O‘rta had",
+      "matn": "Qo‘shnilarning o‘rta arifmetigi.",
+      "savol": "4, ?, 10 da o‘rtadagi had?"
+     },
+     {
+      "nom": "Yig‘indi",
+      "matn": "(Birinchi plus oxirgi) · n / 2.",
+      "savol": "1, 2, 3, 4 yig‘indisi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun Gauss 1 dan 100 gacha sonlarni birma-bir qo‘shmay, juftlab 101 ga keltirib tezda topgan? Bu usul formulaga qanday aylandi?",
+    "keys": {
+     "vaziyat": "Zinapoya birinchi pog‘onasi 20 sm balandlikda, har keyingi pog‘ona oldingisidan 15 sm balandroq.",
+     "savollar": [
+      "Bu qanday ketma-ketlik?",
+      "5-pog‘ona balandligi qancha?"
+     ]
+    },
+    "tezis": "Bir xil qadam — kuchli qonun",
+    "taqqoslash": {
+     "a": "Arifmetik progressiya",
+     "b": "Oddiy ketma-ketlik",
+     "umumiy": [
+      "sonlar tartib bilan yoziladi",
+      "hadlari raqamlanadi"
+     ],
+     "a_farq": [
+      "bir xil son qo‘shiladi",
+      "n-had va yig‘indi formulasi bor"
+     ],
+     "b_farq": [
+      "qonuniyat har xil bo‘lishi mumkin",
+      "umumiy formula bo‘lmasligi mumkin"
+     ]
+    },
+    "klaster": {
+     "markaz": "Arifmetik progressiya",
+     "shoxlar": [
+      {
+       "nom": "Ayirma",
+       "bandlar": [
+        "d musbat",
+        "d manfiy"
+       ]
+      },
+      {
+       "nom": "Had",
+       "bandlar": [
+        "n-had formulasi",
+        "o‘rta had"
+       ]
+      },
+      {
+       "nom": "Yig‘indi",
+       "bandlar": [
+        "Gauss usuli",
+        "formula"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "tejash",
+        "zinapoya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men har safar bir xil qadam tashlayman, shuning uchun mening ayirmam o‘zgarmaydi. Men kimman?",
+     "javob": "arifmetik progressiya"
+    },
+    "hikmat": "Kichik qadamlar katta masofaga olib boradi.",
+    "kalit_soz": "QADAM",
+    "xato_yechim": {
+     "shart": "2, 5, 8, ... progressiyaning 10-hadini toping.",
+     "xato": "2 + 10 · 3, ya’ni 32",
+     "togri": "2 + 9 · 3, ya’ni 29",
+     "sabab": "n-had formulasida n − 1 ta qadam bor: 9"
+    },
+    "guruh_nomlari": [
+     "Qadamchilar",
+     "Ayirmachilar",
+     "Gausschilar",
+     "Yig‘indichilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Jamg‘arma rejasi»",
+     "topshiriq": "Guruh bir oylik jamg‘arma rejasini progressiya sifatida tuzib, jami summani hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "3, 7, 11, ... progressiyaning 6-hadini toping.",
+     "B": "5, 8, 11, ... progressiyaning dastlabki 10 hadi yig‘indisini toping.",
+     "C": "Amfiteatrda birinchi qatorda 12 o‘rin, har keyingi qatorda 3 tadan ko‘p. 6 qatorda jami o‘rin nechta?"
+    },
+    "sinkveyn": [
+     "Progressiya",
+     "teng qadamli, tartibli",
+     "o‘sadi, kamayadi, sanaydi",
+     "Qadam qadamga qo‘shiladi",
+     "Ketma-ketlik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh progressiya masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: 3, 7, 11 ning 5-hadi",
+      "2-guruh: 1 dan 20 gacha yig‘indi",
+      "3-guruh: 10, 8, 6 ning 5-hadi",
+      "4-guruh: 4, ?, 12 o‘rta hadi"
+     ],
+     "yakun": "Natijalar: 19; 210; 2; 8."
+    }
+   }
+  }
+ ]
+}
