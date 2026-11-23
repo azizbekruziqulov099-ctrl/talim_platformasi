@@ -1,0 +1,34 @@
+[
+ {
+  "fayl": "maktab",
+  "kalit": "storm",
+  "eski": "l’orage",
+  "yangi": "la tempête",
+  "sabab": "bo‘ron = «la tempête»; «l’orage» — momaqaldiroq (thunderstorm bilan bir xil bo‘lib qolgan)",
+  "shubha": false
+ },
+ {
+  "fayl": "maktab",
+  "kalit": "place",
+  "eski": "la place",
+  "yangi": "l’endroit",
+  "sabab": "joy = «l’endroit»; «la place» maydon/o‘rindiq ma’nosida (town_square bilan bir xil)",
+  "shubha": true
+ },
+ {
+  "fayl": "maktab",
+  "kalit": "room",
+  "eski": "la chambre",
+  "yangi": "la pièce",
+  "sabab": "xona (umumiy) = «la pièce»; «la chambre» — yotoqxona",
+  "shubha": true
+ },
+ {
+  "fayl": "maktab",
+  "kalit": "round",
+  "eski": "le round",
+  "yangi": "le tour",
+  "sabab": "«le round» faqat boks raundi; bahs/musobaqa raundi — «le tour» (atrofdagi so‘zlar debat mavzusida)",
+  "shubha": true
+ }
+]

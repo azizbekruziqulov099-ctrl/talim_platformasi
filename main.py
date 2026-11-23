@@ -414,6 +414,12 @@ if __package__:
 else:
     from modules.bola_kuzatuv import create_router as create_bola_kuzatuv_router
 app.include_router(create_bola_kuzatuv_router(samtm_platform))
+# REV702: So'z sandig'i — so'z yodlash holati (faqat kichik natija: kalit → quti, kun).
+if __package__:
+    from .modules.soz_sandiq import create_router as create_soz_sandiq_router
+else:
+    from modules.soz_sandiq import create_router as create_soz_sandiq_router
+app.include_router(create_soz_sandiq_router(samtm_platform))
 # REV173: maktab (1–11) til o'yinlari — ball, daraja (CEFR) va sinfdoshlar orasida o'rin.
 if __package__:
     from .modules.maktab_natija import create_router as create_maktab_natija_router

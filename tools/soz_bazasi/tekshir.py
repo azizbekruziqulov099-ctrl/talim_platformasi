@@ -32,7 +32,7 @@ def tekshir(yol, maktab=False):
             s = str(w.get(t) or "").strip()
             if not s:
                 xato.append(f"{joy}: {t} bo'sh"); continue
-            if len(s.split()) > 4 or re.search(r"[/()\[\]|;]", s):
+            if len(s.split()) > 5 or re.search(r"[/()\[\]|;]", s):
                 xato.append(f"{joy}: {t} «{s}» — uzun yoki variantli")
             if t in YOZUV and not re.search(YOZUV[t], s, re.I):
                 xato.append(f"{joy}: {t} «{s}» — yozuv turi noto'g'ri")

@@ -1,0 +1,4122 @@
+[
+{
+"kalit": "fate",
+"uz": "taqdir",
+"en": "fate",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "forbid",
+"uz": "taqiqlamoq",
+"en": "forbid",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "coincidence",
+"uz": "tasodif",
+"en": "coincidence",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "risk",
+"uz": "tavakkal",
+"en": "risk",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "rely_on",
+"uz": "tayanmoq",
+"en": "rely on",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "preparation",
+"uz": "tayyorgarlik",
+"en": "preparation",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "phone_booth",
+"uz": "telefon budkasi",
+"en": "phone booth",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 2
+},
+{
+"kalit": "equal_rights",
+"uz": "teng huquqlilik",
+"en": "equal rights",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "equality",
+"uz": "tenglik",
+"en": "equality",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "national_team",
+"uz": "terma jamoa",
+"en": "national team",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 2
+},
+{
+"kalit": "speed_limit",
+"uz": "tezlik cheklovi",
+"en": "speed limit",
+"soz_turi": "ot",
+"turkum": "transport",
+"daraja": 2
+},
+{
+"kalit": "acceleration",
+"uz": "tezlikni oshirish",
+"en": "acceleration",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "hectic",
+"uz": "tig‘iz",
+"en": "hectic",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "wish",
+"uz": "tilamoq",
+"en": "wish",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "payment",
+"uz": "to‘lov",
+"en": "payment",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "nonstop",
+"uz": "to‘xtovsiz",
+"en": "nonstop",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "washtub",
+"uz": "tog‘ora",
+"en": "washtub",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "assignment",
+"uz": "topshiriq",
+"en": "assignment",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "deadline",
+"uz": "topshirish muddati",
+"en": "deadline",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "accommodation",
+"uz": "turar joy",
+"en": "accommodation",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 2
+},
+{
+"kalit": "carbon_footprint",
+"uz": "uglerod izi",
+"en": "carbon footprint",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 3
+},
+{
+"kalit": "until_then",
+"uz": "ungacha",
+"en": "until then",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "campus",
+"uz": "universitet shaharchasi",
+"en": "campus",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 3
+},
+{
+"kalit": "be_ashamed",
+"uz": "uyalmoq",
+"en": "be ashamed",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "shame",
+"uz": "uyat",
+"en": "shame",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "sleep_noun",
+"uz": "uyqu",
+"en": "sleep",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 1
+},
+{
+"kalit": "homeless",
+"uz": "uysiz",
+"en": "homeless",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "time_capsule",
+"uz": "vaqt kapsulasi",
+"en": "time capsule",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 3
+},
+{
+"kalit": "option",
+"uz": "variant",
+"en": "option",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "homesickness",
+"uz": "vatanni sog‘inish",
+"en": "homesickness",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "situation",
+"uz": "vaziyat",
+"en": "situation",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "shop_window",
+"uz": "vitrina",
+"en": "shop window",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 2
+},
+{
+"kalit": "offend",
+"uz": "xafa qilmoq",
+"en": "offend",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "mistake",
+"uz": "xato",
+"en": "mistake",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 1
+},
+{
+"kalit": "seat_belt",
+"uz": "xavfsizlik kamari",
+"en": "seat belt",
+"soz_turi": "ot",
+"turkum": "transport",
+"daraja": 2
+},
+{
+"kalit": "donate",
+"uz": "xayriya qilmoq",
+"en": "donate",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "charity",
+"uz": "xayriya",
+"en": "charity",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "recruiter",
+"uz": "xodim tanlovchi",
+"en": "recruiter",
+"soz_turi": "ot",
+"turkum": "kasb",
+"daraja": 3
+},
+{
+"kalit": "raw_material",
+"uz": "xom ashyo",
+"en": "raw material",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 3
+},
+{
+"kalit": "roommate",
+"uz": "xonadosh",
+"en": "roommate",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 2
+},
+{
+"kalit": "refresh_memory",
+"uz": "xotirani yangilamoq",
+"en": "refresh memory",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "isolated",
+"uz": "yakkalanib qolgan",
+"en": "isolated",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "reconcile",
+"uz": "yarashmoq",
+"en": "make up",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "master_verb",
+"uz": "yaxshi egallamoq",
+"en": "master",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "well_rested",
+"uz": "yaxshi uxlab olgan",
+"en": "well rested",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "do_a_favour",
+"uz": "yaxshilik qilmoq",
+"en": "do a favour",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "fork_in_the_road",
+"uz": "yo‘l ayrilishi",
+"en": "fork in the road",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 3
+},
+{
+"kalit": "traffic_fine",
+"uz": "yo‘l harakati jarimasi",
+"en": "traffic fine",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "passer_by",
+"uz": "o‘tkinchi",
+"en": "passer-by",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 3
+},
+{
+"kalit": "beg",
+"uz": "yolvormoq",
+"en": "beg",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "load",
+"uz": "yuklamoq",
+"en": "load",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "modernize",
+"uz": "zamonaviylashtirmoq",
+"en": "modernize",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "source",
+"uz": "manba",
+"en": "source",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 3
+},
+{
+"kalit": "warehouse",
+"uz": "ombor",
+"en": "warehouse",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 2
+},
+{
+"kalit": "applicant",
+"uz": "abituriyent",
+"en": "applicant",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 3
+},
+{
+"kalit": "literary",
+"uz": "adabiy",
+"en": "literary",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "apparently",
+"uz": "aftidan",
+"en": "apparently",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "algorithm",
+"uz": "algoritm",
+"en": "algorithm",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "carry_out",
+"uz": "amalga oshirmoq",
+"en": "carry out",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "specific",
+"uz": "muayyan",
+"en": "specific",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "accurate",
+"uz": "aniq",
+"en": "accurate",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "clarify",
+"uz": "aniqroq tushuntirmoq",
+"en": "clarify",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "antonym",
+"uz": "antonim",
+"en": "antonym",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "be_worth_it",
+"uz": "arzimoq",
+"en": "be worth it",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "nervousness",
+"uz": "asabiylik",
+"en": "nervousness",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "key_question",
+"uz": "asosiy savol",
+"en": "key question",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "emphasis",
+"uz": "urg‘u",
+"en": "emphasis",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "major",
+"uz": "asosiy mutaxassislik",
+"en": "major",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "main_body",
+"uz": "asosiy qism",
+"en": "main body",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "outline",
+"uz": "asosiy reja",
+"en": "outline",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "justify",
+"uz": "asoslamoq",
+"en": "justify",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "first_of_all",
+"uz": "avvalo",
+"en": "first of all",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "news_agency",
+"uz": "axborot agentligi",
+"en": "news agency",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 3
+},
+{
+"kalit": "go_around",
+"uz": "aylanib o‘tmoq",
+"en": "go around",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "exactly",
+"uz": "aynan",
+"en": "exactly",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "especially",
+"uz": "ayniqsa",
+"en": "especially",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "by_the_way",
+"uz": "aytgancha",
+"en": "by the way",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "grading_scale",
+"uz": "baholash shkalasi",
+"en": "grading scale",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "bachelors_degree",
+"uz": "bakalavriat",
+"en": "bachelor's degree",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "stable",
+"uz": "barqaror",
+"en": "stable",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "prediction",
+"uz": "bashorat",
+"en": "prediction",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "determine",
+"uz": "belgilamoq",
+"en": "determine",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "settle_down",
+"uz": "bir joyda o‘rnashmoq",
+"en": "settle down",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "at_first_glance",
+"uz": "bir qarashda",
+"en": "at first glance",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "one_sided",
+"uz": "bir tomonlama",
+"en": "one-sided",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "instantly",
+"uz": "bir zumda",
+"en": "instantly",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "final_year",
+"uz": "bitiruv sinfi",
+"en": "final year",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "founder",
+"uz": "asoschi",
+"en": "founder",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 3
+},
+{
+"kalit": "business_idea",
+"uz": "biznes g‘oya",
+"en": "business idea",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "exaggerate",
+"uz": "bo‘rttirib ko‘rsatmoq",
+"en": "exaggerate",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "context",
+"uz": "kontekst",
+"en": "context",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "paraphrase",
+"uz": "boshqacha ifodalamoq",
+"en": "paraphrase",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "turning_point",
+"uz": "burilish nuqtasi",
+"en": "turning point",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "use_up",
+"uz": "ishlatib bo‘lmoq",
+"en": "use up",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "tireless",
+"uz": "charchamas",
+"en": "tireless",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "resilience",
+"uz": "chidamlilik",
+"en": "resilience",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "exchange_ticket",
+"uz": "chiptani almashtirmoq",
+"en": "exchange a ticket",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "get_along",
+"uz": "til topishmoq",
+"en": "get along",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "claim",
+"uz": "da’vo",
+"en": "claim",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "diploma",
+"uz": "diplom",
+"en": "diploma",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "immediately",
+"uz": "darhol",
+"en": "immediately",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "ongoing",
+"uz": "davom etayotgan",
+"en": "ongoing",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "centre_of_attention",
+"uz": "diqqat markazi",
+"en": "centre of attention",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "attract_attention",
+"uz": "diqqatni jalb qilmoq",
+"en": "attract attention",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "permanent",
+"uz": "doimiy",
+"en": "permanent",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "importance",
+"uz": "ahamiyat",
+"en": "importance",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "confront",
+"uz": "duch kelmoq",
+"en": "face",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "object_verb",
+"uz": "e’tiroz bildirmoq",
+"en": "object",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "curve",
+"uz": "egri chiziq",
+"en": "curve",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "deliver",
+"uz": "eltib bermoq",
+"en": "deliver",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "confidently",
+"uz": "ishonch bilan",
+"en": "confidently",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "sooner_or_later",
+"uz": "ertami-kechmi",
+"en": "sooner or later",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "take_notes",
+"uz": "eshitib yozib bormoq",
+"en": "take notes",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "fact",
+"uz": "fakt",
+"en": "fact",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "faculty",
+"uz": "fakultet",
+"en": "faculty",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "only",
+"uz": "faqat",
+"en": "only",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 1
+},
+{
+"kalit": "hypothetical",
+"uz": "faraziy",
+"en": "hypothetical",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "dedication",
+"uz": "fidoyilik",
+"en": "dedication",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "percentage",
+"uz": "foiz ulushi",
+"en": "percentage",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "background",
+"uz": "fon",
+"en": "background",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "reveal",
+"uz": "fosh qilmoq",
+"en": "reveal",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "graph",
+"uz": "grafik",
+"en": "graph",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "flourish",
+"uz": "gullab-yashnamoq",
+"en": "flourish",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "solve",
+"uz": "hal qilmoq",
+"en": "solve",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "decisive",
+"uz": "hal qiluvchi",
+"en": "decisive",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "affordable",
+"uz": "hamyonbop",
+"en": "affordable",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "motivation",
+"uz": "motivatsiya",
+"en": "motivation",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "splendour",
+"uz": "hashamat",
+"en": "splendour",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "excitement",
+"uz": "hayajon",
+"en": "excitement",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "suspense",
+"uz": "hayajonli kutish",
+"en": "suspense",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "fascinating",
+"uz": "maftunkor",
+"en": "fascinating",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "unrealistic",
+"uz": "real bo‘lmagan",
+"en": "unrealistic",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "amaze",
+"uz": "hayratga solmoq",
+"en": "amaze",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "amazing",
+"uz": "hayratlanarli",
+"en": "amazing",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "breathtaking",
+"uz": "nafasni to‘xtatadigan",
+"en": "breathtaking",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "at_least",
+"uz": "hech bo‘lmasa",
+"en": "at least",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "narrator",
+"uz": "hikoyachi",
+"en": "narrator",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 3
+},
+{
+"kalit": "feeling",
+"uz": "tuyg‘u",
+"en": "feeling",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "contribute",
+"uz": "hissa qo‘shmoq",
+"en": "contribute",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "documents",
+"uz": "hujjatlar",
+"en": "documents",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "eligible",
+"uz": "huquqli",
+"en": "eligible",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "express",
+"uz": "ifodalamoq",
+"en": "express",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "double_verb",
+"uz": "ikki baravar ko‘paymoq",
+"en": "double",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "inspiring",
+"uz": "ilhomlantiruvchi",
+"en": "inspiring",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "academic_style",
+"uz": "ilmiy uslub",
+"en": "academic style",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "essay",
+"uz": "insho",
+"en": "essay",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "strive",
+"uz": "intilmoq",
+"en": "strive",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "look_forward_to",
+"uz": "intiqlik bilan kutmoq",
+"en": "look forward to",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "quote",
+"uz": "iqtibos keltirmoq",
+"en": "quote",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "willpower",
+"uz": "iroda kuchi",
+"en": "willpower",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "proof",
+"uz": "isbot",
+"en": "proof",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "break_down",
+"uz": "ishdan chiqmoq",
+"en": "break down",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "employment",
+"uz": "ishga joylashish",
+"en": "employment",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "start_up",
+"uz": "ishga tushirmoq",
+"en": "start up",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "exclude",
+"uz": "istisno qilmoq",
+"en": "exclude",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "involve",
+"uz": "jalb qilmoq",
+"en": "involve",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "process",
+"uz": "jarayon",
+"en": "process",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "answer_sheet",
+"uz": "javoblar varag‘i",
+"en": "answer sheet",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "punishment",
+"uz": "jazo",
+"en": "punishment",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "sanction",
+"uz": "sanksiya",
+"en": "sanction",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "settle_in",
+"uz": "joylashmoq",
+"en": "settle in",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "essential",
+"uz": "juda zarur",
+"en": "essential",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "decrease_noun",
+"uz": "kamayish",
+"en": "decrease",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "rarely",
+"uz": "kamdan-kam",
+"en": "rarely",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "career_path",
+"uz": "karyera yo‘li",
+"en": "career path",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "vocational_education",
+"uz": "kasb-hunar ta’limi",
+"en": "vocational education",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "ambitious",
+"uz": "shijoatli",
+"en": "ambitious",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "achievement",
+"uz": "yutuq",
+"en": "achievement",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "agreement",
+"uz": "kelishuv",
+"en": "agreement",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "extend",
+"uz": "kengaytirmoq",
+"en": "extend",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "tension",
+"uz": "keskinlik",
+"en": "tension",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "sequence",
+"uz": "ketma-ketlik",
+"en": "sequence",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "later",
+"uz": "keyinchalik",
+"en": "later",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 1
+},
+{
+"kalit": "subheading",
+"uz": "kichik sarlavha",
+"en": "subheading",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "entrance_exam",
+"uz": "kirish imtihoni",
+"en": "entrance exam",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "visual_aid",
+"uz": "ko‘rgazmali vosita",
+"en": "visual aid",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "predictable",
+"uz": "oldindan bilsa bo‘ladigan",
+"en": "predictable",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "indicator",
+"uz": "ko‘rsatkich",
+"en": "indicator",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "increase",
+"uz": "o‘sish",
+"en": "increase",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "eye_contact",
+"uz": "ko‘z bilan aloqa",
+"en": "eye contact",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "unexpectedly",
+"uz": "kutilmaganda",
+"en": "unexpectedly",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "gather_information",
+"uz": "ma’lumot to‘plamoq",
+"en": "gather information",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "captivate",
+"uz": "maftun etmoq",
+"en": "captivate",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "failure",
+"uz": "muvaffaqiyatsizlik",
+"en": "failure",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "masters_degree",
+"uz": "magistratura",
+"en": "master's degree",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "target_group",
+"uz": "maqsadli guruh",
+"en": "target group",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 3
+},
+{
+"kalit": "for_example",
+"uz": "masalan",
+"en": "for example",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "problem_statement",
+"uz": "masalaning qo‘yilishi",
+"en": "problem statement",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "arduous",
+"uz": "mashaqqatli",
+"en": "arduous",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "text_type",
+"uz": "matn turi",
+"en": "text type",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "digress",
+"uz": "mavzudan chetga chiqmoq",
+"en": "digress",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "gratitude",
+"uz": "minnatdorlik",
+"en": "gratitude",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "illustrate",
+"uz": "misol bilan ko‘rsatmoq",
+"en": "illustrate",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "match_up",
+"uz": "moslashtirmoq",
+"en": "match up",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "deadline_extension",
+"uz": "muddatni uzaytirish",
+"en": "deadline extension",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "important",
+"uz": "muhim",
+"en": "important",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "mastery",
+"uz": "mukammal egallash",
+"en": "mastery",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "specialty",
+"uz": "mutaxassislik",
+"en": "specialty",
+"soz_turi": "ot",
+"turkum": "kasb",
+"daraja": 3
+},
+{
+"kalit": "absolutely",
+"uz": "mutlaqo",
+"en": "absolutely",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "succeed",
+"uz": "muvaffaqiyatga erishmoq",
+"en": "succeed",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "fail",
+"uz": "muvaffaqiyatsizlikka uchramoq",
+"en": "fail",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "intention",
+"uz": "niyat",
+"en": "intention",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "uncertainty",
+"uz": "noaniqlik",
+"en": "uncertainty",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "informally",
+"uz": "norasmiy ravishda",
+"en": "informally",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "weigh_up",
+"uz": "o‘lchab ko‘rmoq",
+"en": "weigh up",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "field_of_study",
+"uz": "o‘qish yo‘nalishi",
+"en": "field of study",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "inspect",
+"uz": "tekshirmoq",
+"en": "inspect",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "pertinent",
+"uz": "o‘rinli",
+"en": "relevant",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "transition",
+"uz": "o‘tish",
+"en": "transition",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "flashback",
+"uz": "o‘tmishga qaytish",
+"en": "flashback",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "take_a_stand",
+"uz": "o‘z pozitsiyasini bildirmoq",
+"en": "take a stand",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "take_on",
+"uz": "o‘z zimmasiga olmoq",
+"en": "take on",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "self_confident",
+"uz": "o‘ziga ishongan",
+"en": "self-confident",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "set_a_goal",
+"uz": "o‘ziga maqsad qo‘ymoq",
+"en": "set a goal",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "devote_oneself",
+"uz": "o‘zini bag‘ishlamoq",
+"en": "devote oneself",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "fulfil_oneself",
+"uz": "o‘zini ro‘yobga chiqarmoq",
+"en": "fulfil oneself",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "assimilate",
+"uz": "o‘zlashtirmoq",
+"en": "assimilate",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "usual",
+"uz": "odatiy",
+"en": "usual",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "warning",
+"uz": "ogohlantirish",
+"en": "warning",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "tone",
+"uz": "ohang",
+"en": "tone",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "intonation",
+"uz": "intonatsiya",
+"en": "intonation",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "predict",
+"uz": "oldindan aytmoq",
+"en": "predict",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "foresee",
+"uz": "oldindan ko‘rmoq",
+"en": "foresee",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "take_out",
+"uz": "olib chiqmoq",
+"en": "take out",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "applause",
+"uz": "olqish",
+"en": "applause",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "setback",
+"uz": "orqaga ketish",
+"en": "setback",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "fall_behind",
+"uz": "ortda qolmoq",
+"en": "fall behind",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "gush",
+"uz": "otilib chiqmoq",
+"en": "gush",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "decline",
+"uz": "pasayish",
+"en": "decline",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "stance",
+"uz": "pozitsiya",
+"en": "stance",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "forecast",
+"uz": "prognoz",
+"en": "forecast",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "counterargument",
+"uz": "qarshi dalil",
+"en": "counterargument",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "determination",
+"uz": "qat’iylik",
+"en": "determination",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "reread",
+"uz": "qayta o‘qimoq",
+"en": "reread",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "reconsider",
+"uz": "qayta o‘ylab ko‘rmoq",
+"en": "reconsider",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "find",
+"uz": "qidirib topmoq",
+"en": "find",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 1
+},
+{
+"kalit": "anecdote",
+"uz": "qisqa hayotiy hikoya",
+"en": "anecdote",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "summary",
+"uz": "qisqacha mazmun",
+"en": "summary",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "in_short",
+"uz": "qisqasi",
+"en": "in short",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "captivating",
+"uz": "qiziqtiruvchi",
+"en": "captivating",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "follow_up_question",
+"uz": "qo‘shimcha savol",
+"en": "follow-up question",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "moreover",
+"uz": "bundan tashqari",
+"en": "moreover",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "legitimate",
+"uz": "qonuniy",
+"en": "legitimate",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "refute",
+"uz": "dalilni rad etmoq",
+"en": "refute",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "digital_economy",
+"uz": "raqamli iqtisodiyot",
+"en": "digital economy",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "official",
+"uz": "rasmiy",
+"en": "official",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "fluency",
+"uz": "ravonlik",
+"en": "fluency",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "diagram",
+"uz": "sxema",
+"en": "diagram",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "planned",
+"uz": "rejalashtirilgan",
+"en": "planned",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "rhetorical_question",
+"uz": "ritorik savol",
+"en": "rhetorical question",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "come_true",
+"uz": "ro‘yobga chiqmoq",
+"en": "come true",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "stage_fright",
+"uz": "sahna hayajoni",
+"en": "stage fright",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "shortlist",
+"uz": "saralangan ro‘yxat",
+"en": "shortlist",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "effort",
+"uz": "sarflangan kuch",
+"en": "effort",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "webcam",
+"uz": "veb-kamera",
+"en": "webcam",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "video_call",
+"uz": "videoqo‘ng‘iroq",
+"en": "video call",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "region",
+"uz": "viloyat",
+"en": "region",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 2
+},
+{
+"kalit": "oasis",
+"uz": "voha",
+"en": "oasis",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 2
+},
+{
+"kalit": "wifi",
+"uz": "Wi-Fi",
+"en": "Wi-Fi",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "charity_organization",
+"uz": "xayriya tashkiloti",
+"en": "charity organization",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 3
+},
+{
+"kalit": "newlyweds",
+"uz": "yangi turmush qurganlar",
+"en": "newlyweds",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 2
+},
+{
+"kalit": "renovation",
+"uz": "yangilanish",
+"en": "renewal",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "half_year",
+"uz": "yarim yil",
+"en": "half year",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "solution",
+"uz": "yechim",
+"en": "solution",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "leader",
+"uz": "yetakchi",
+"en": "leader",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 2
+},
+{
+"kalit": "donation_drive",
+"uz": "yig‘ish aksiyasi",
+"en": "donation drive",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "route",
+"uz": "marshrut",
+"en": "route",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 2
+},
+{
+"kalit": "wood_carving",
+"uz": "yog‘och o‘ymakorligi",
+"en": "wood carving",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "correspond",
+"uz": "yozishmoq",
+"en": "correspond",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "typewriter",
+"uz": "yozuv mashinkasi",
+"en": "typewriter",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "anniversary",
+"uz": "yubiley",
+"en": "anniversary",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "weak_point",
+"uz": "zaif tomon",
+"en": "weak point",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "charger",
+"uz": "zaryadlovchi",
+"en": "charger",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "make_mistake",
+"uz": "adashmoq",
+"en": "make a mistake",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "confuse",
+"uz": "chalkashtirmoq",
+"en": "confuse",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "lawyer",
+"uz": "advokat",
+"en": "lawyer",
+"soz_turi": "ot",
+"turkum": "kasb",
+"daraja": 2
+},
+{
+"kalit": "accent",
+"uz": "aksent",
+"en": "accent",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "intern",
+"uz": "amaliyotchi",
+"en": "intern",
+"soz_turi": "ot",
+"turkum": "kasb",
+"daraja": 3
+},
+{
+"kalit": "precision",
+"uz": "aniqlik",
+"en": "precision",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "apply",
+"uz": "ariza bermoq",
+"en": "apply",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "rope",
+"uz": "arqon",
+"en": "rope",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 1
+},
+{
+"kalit": "genuine",
+"uz": "asl",
+"en": "genuine",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "refuel",
+"uz": "bakni to‘ldirmoq",
+"en": "refuel",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "fingerprint",
+"uz": "barmoq izi",
+"en": "fingerprint",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "bully",
+"uz": "bezorilik qilmoq",
+"en": "bully",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "the_day_before",
+"uz": "bir kun oldin",
+"en": "the day before",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "book_cover",
+"uz": "muqova",
+"en": "cover",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "block",
+"uz": "bloklamoq",
+"en": "block",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "boss",
+"uz": "boshliq",
+"en": "boss",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 2
+},
+{
+"kalit": "manage",
+"uz": "boshqarmoq",
+"en": "manage",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "reign",
+"uz": "hukmronlik qilmoq",
+"en": "rule",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "budget",
+"uz": "byudjet",
+"en": "budget",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "championship",
+"uz": "chempionat",
+"en": "championship",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "edge",
+"uz": "chet",
+"en": "edge",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "porcelain",
+"uz": "chinni",
+"en": "porcelain",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 3
+},
+{
+"kalit": "pocket_money",
+"uz": "cho‘ntak puli",
+"en": "pocket money",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "attic",
+"uz": "chordoq",
+"en": "attic",
+"soz_turi": "ot",
+"turkum": "uy",
+"daraja": 2
+},
+{
+"kalit": "evidence",
+"uz": "ashyoviy dalil",
+"en": "evidence",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "programmer",
+"uz": "dasturchi",
+"en": "programmer",
+"soz_turi": "ot",
+"turkum": "kasb",
+"daraja": 2
+},
+{
+"kalit": "continue",
+"uz": "davom ettirmoq",
+"en": "continue",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "iron_verb",
+"uz": "dazmollamoq",
+"en": "iron",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "chart",
+"uz": "diagramma",
+"en": "chart",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "data_table",
+"uz": "jadval",
+"en": "table",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "concentrate",
+"uz": "diqqatni jamlamoq",
+"en": "concentrate",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "stain",
+"uz": "dog‘",
+"en": "stain",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "wise",
+"uz": "dono",
+"en": "wise",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "announcement",
+"uz": "e’lon",
+"en": "notice",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "advertisement",
+"uz": "reklama",
+"en": "advertisement",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "owner",
+"uz": "ega",
+"en": "owner",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 2
+},
+{
+"kalit": "unlikely",
+"uz": "ehtimoli kam",
+"en": "unlikely",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "crew",
+"uz": "ekipaj",
+"en": "crew",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 3
+},
+{
+"kalit": "expert",
+"uz": "ekspert",
+"en": "expert",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 3
+},
+{
+"kalit": "achieve",
+"uz": "erishmoq",
+"en": "achieve",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "the_next_day",
+"uz": "ertasi kuni",
+"en": "the next day",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "mention",
+"uz": "tilga olmoq",
+"en": "mention",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "yawn",
+"uz": "esnamoq",
+"en": "yawn",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 1
+},
+{
+"kalit": "pharmacist",
+"uz": "dorixonachi",
+"en": "pharmacist",
+"soz_turi": "ot",
+"turkum": "kasb",
+"daraja": 2
+},
+{
+"kalit": "read_mind",
+"uz": "fikrni o‘qimoq",
+"en": "read minds",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "final",
+"uz": "final",
+"en": "final",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "gossip",
+"uz": "g‘iybat",
+"en": "gossip",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "have_a_snack",
+"uz": "gazak qilmoq",
+"en": "have a snack",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "front_page",
+"uz": "gazetaning bosh sahifasi",
+"en": "front page",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "hypothesis",
+"uz": "gipoteza",
+"en": "hypothesis",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "matchstick",
+"uz": "gugurt cho‘pi",
+"en": "match",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "suspect",
+"uz": "gumondor",
+"en": "suspect",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 3
+},
+{
+"kalit": "witness",
+"uz": "guvoh",
+"en": "witness",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 3
+},
+{
+"kalit": "judge",
+"uz": "baho bermoq",
+"en": "judge",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "jury",
+"uz": "hakamlar hay’ati",
+"en": "jury",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 3
+},
+{
+"kalit": "honest",
+"uz": "halol",
+"en": "honest",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "colleague",
+"uz": "hamkasb",
+"en": "colleague",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 2
+},
+{
+"kalit": "luxurious",
+"uz": "hashamatli",
+"en": "luxurious",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "exhausted",
+"uz": "holdan toygan",
+"en": "exhausted",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "research",
+"uz": "ilmiy tadqiqot",
+"en": "research",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "cover_letter",
+"uz": "ilova xat",
+"en": "cover letter",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "empire",
+"uz": "imperiya",
+"en": "empire",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "signature",
+"uz": "imzo",
+"en": "signature",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "deny",
+"uz": "inkor qilmoq",
+"en": "deny",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "investor",
+"uz": "investor",
+"en": "investor",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 3
+},
+{
+"kalit": "prove",
+"uz": "isbotlamoq",
+"en": "prove",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "employer",
+"uz": "ish beruvchi",
+"en": "employer",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 3
+},
+{
+"kalit": "job_ad",
+"uz": "ish e’loni",
+"en": "job advertisement",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "job_offer",
+"uz": "ish taklifi",
+"en": "job offer",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "job_interview",
+"uz": "ishga qabul suhbati",
+"en": "job interview",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "persuade",
+"uz": "ko‘ndirmoq",
+"en": "persuade",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "voice_message",
+"uz": "ovozli xabar",
+"en": "voice message",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "nutrition",
+"uz": "ovqatlanish",
+"en": "nutrition",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "notice_verb",
+"uz": "payqamoq",
+"en": "notice",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "petition",
+"uz": "petitsiya",
+"en": "petition",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "pedestrian_zone",
+"uz": "piyodalar zonasi",
+"en": "pedestrian zone",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 2
+},
+{
+"kalit": "portion",
+"uz": "porsiya",
+"en": "portion",
+"soz_turi": "ot",
+"turkum": "ovqat",
+"daraja": 2
+},
+{
+"kalit": "test_tube",
+"uz": "probirka",
+"en": "test tube",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "earn_money",
+"uz": "pul ishlab topmoq",
+"en": "earn money",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "fake",
+"uz": "soxta",
+"en": "fake",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "decide",
+"uz": "qaror qilmoq",
+"en": "decide",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "oppose",
+"uz": "qarshi bo‘lmoq",
+"en": "oppose",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "swear_oath",
+"uz": "qasam ichmoq",
+"en": "swear",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "reduce",
+"uz": "qisqartirmoq",
+"en": "reduce",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "blush",
+"uz": "qizarmoq",
+"en": "blush",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "avoid",
+"uz": "chetlab o‘tmoq",
+"en": "avoid",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "stumble",
+"uz": "qoqilmoq",
+"en": "stumble",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "frown",
+"uz": "qovog‘ini solmoq",
+"en": "frown",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "drought",
+"uz": "qurg‘oqchilik",
+"en": "drought",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 2
+},
+{
+"kalit": "rescue",
+"uz": "qutqarmoq",
+"en": "rescue",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "solar_eclipse",
+"uz": "quyosh tutilishi",
+"en": "solar eclipse",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 2
+},
+{
+"kalit": "sunburn",
+"uz": "quyoshda kuyish",
+"en": "sunburn",
+"soz_turi": "ot",
+"turkum": "tana",
+"daraja": 2
+},
+{
+"kalit": "radius",
+"uz": "radius",
+"en": "radius",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "manager",
+"uz": "menejer",
+"en": "manager",
+"soz_turi": "ot",
+"turkum": "kasb",
+"daraja": 2
+},
+{
+"kalit": "rival",
+"uz": "raqib",
+"en": "rival",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 2
+},
+{
+"kalit": "realistic",
+"uz": "real",
+"en": "realistic",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "news_report",
+"uz": "reportaj",
+"en": "news report",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "cv",
+"uz": "rezyume",
+"en": "CV",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 3
+},
+{
+"kalit": "enjoy",
+"uz": "zavqlanmoq",
+"en": "enjoy",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "agree",
+"uz": "rozi bo‘lmoq",
+"en": "agree",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "permission",
+"uz": "ruxsat",
+"en": "permission",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "sincere",
+"uz": "samimiy",
+"en": "sincere",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "spend",
+"uz": "sarflamoq",
+"en": "spend",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "trade",
+"uz": "savdo",
+"en": "trade",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "magic_lamp",
+"uz": "sehrli chiroq",
+"en": "magic lamp",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 1
+},
+{
+"kalit": "sextant",
+"uz": "sekstant",
+"en": "sextant",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 3
+},
+{
+"kalit": "privacy",
+"uz": "maxfiylik",
+"en": "privacy",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "private_life",
+"uz": "shaxsiy hayot",
+"en": "private life",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "personal_data",
+"uz": "shaxsiy ma’lumot",
+"en": "personal data",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "complain",
+"uz": "shikoyat qilmoq",
+"en": "complain",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "honk",
+"uz": "signal chalmoq",
+"en": "honk",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "class_president",
+"uz": "sinf sardori",
+"en": "class president",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 2
+},
+{
+"kalit": "challenge",
+"uz": "sinov",
+"en": "challenge",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "screenshot",
+"uz": "skrinshot",
+"en": "screenshot",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "questionnaire",
+"uz": "anketa",
+"en": "questionnaire",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 3
+},
+{
+"kalit": "startup",
+"uz": "startap",
+"en": "startup",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "stressed",
+"uz": "asabiylashgan",
+"en": "stressed",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "irrigation",
+"uz": "sug‘orish",
+"en": "irrigation",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 3
+},
+{
+"kalit": "conversation",
+"uz": "suhbat",
+"en": "conversation",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "satellite",
+"uz": "sun’iy yo‘ldosh",
+"en": "satellite",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "superpower",
+"uz": "super kuch",
+"en": "superpower",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "flood",
+"uz": "suv toshqini",
+"en": "flood",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 2
+},
+{
+"kalit": "impress",
+"uz": "taassurot qoldirmoq",
+"en": "impress",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "departure_board",
+"uz": "tablo",
+"en": "departure board",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "experiment",
+"uz": "tajriba",
+"en": "experiment",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 2
+},
+{
+"kalit": "choose",
+"uz": "tanlamoq",
+"en": "choose",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 1
+},
+{
+"kalit": "translate",
+"uz": "tarjima qilmoq",
+"en": "translate",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "imagine",
+"uz": "tasavvur qilmoq",
+"en": "imagine",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "confirm",
+"uz": "tasdiqlamoq",
+"en": "confirm",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "initiative",
+"uz": "tashabbus",
+"en": "initiative",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "accidentally",
+"uz": "tasodifan",
+"en": "accidentally",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "recommend",
+"uz": "tavsiya qilmoq",
+"en": "recommend",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "belong",
+"uz": "tegishli bo‘lmoq",
+"en": "belong",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "investigation",
+"uz": "tergov",
+"en": "investigation",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "investigator",
+"uz": "tergovchi",
+"en": "investigator",
+"soz_turi": "ot",
+"turkum": "kasb",
+"daraja": 3
+},
+{
+"kalit": "soothe",
+"uz": "tinchlantirmoq",
+"en": "calm",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "earn_a_living",
+"uz": "tirikchilik qilmoq",
+"en": "earn a living",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "spill",
+"uz": "to‘kib yubormoq",
+"en": "spill",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 1
+},
+{
+"kalit": "full_time",
+"uz": "to‘liq stavka",
+"en": "full-time work",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "part_time",
+"uz": "yarim stavka",
+"en": "part-time work",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "lost_and_found",
+"uz": "topilgan buyumlar bo‘limi",
+"en": "lost and found",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 2
+},
+{
+"kalit": "cant_stand",
+"uz": "toqat qila olmaslik",
+"en": "can't stand",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "insist",
+"uz": "turib olmoq",
+"en": "insist",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "tournament",
+"uz": "turnir",
+"en": "tournament",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "misunderstanding",
+"uz": "tushunmovchilik",
+"en": "misunderstanding",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "explain",
+"uz": "tushuntirmoq",
+"en": "explain",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "launch",
+"uz": "uchirmoq",
+"en": "launch",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "hope",
+"uz": "umid qilmoq",
+"en": "hope",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "champion_title",
+"uz": "unvon",
+"en": "title",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "embarrassing",
+"uz": "uyatli",
+"en": "embarrassing",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "panic",
+"uz": "vahimaga tushmoq",
+"en": "panic",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "vaccine",
+"uz": "vaksina",
+"en": "vaccine",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "weightlessness",
+"uz": "vaznsizlik",
+"en": "weightlessness",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 3
+},
+{
+"kalit": "inform",
+"uz": "xabar bermoq",
+"en": "inform",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "be_upset",
+"uz": "xafa bo‘lmoq",
+"en": "be upset",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 1
+},
+{
+"kalit": "treasure",
+"uz": "xazina",
+"en": "treasure",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 1
+},
+{
+"kalit": "blurry",
+"uz": "xira",
+"en": "blurry",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "sigh",
+"uz": "xo‘rsinmoq",
+"en": "sigh",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "close_up",
+"uz": "yaqin plan",
+"en": "close-up",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "zoom_in",
+"uz": "yaqinlashtirmoq",
+"en": "zoom in",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "relieved",
+"uz": "yengil tortgan",
+"en": "relieved",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "meeting",
+"uz": "yig‘ilish",
+"en": "meeting",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "memorize",
+"uz": "yodlamoq",
+"en": "memorize",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "passionate",
+"uz": "ishqiboz",
+"en": "passionate",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "get_bored",
+"uz": "zerikmoq",
+"en": "get bored",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 1
+},
+{
+"kalit": "fail_exam",
+"uz": "imtihondan yiqilmoq",
+"en": "fail",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "enter",
+"uz": "kirmoq",
+"en": "enter",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 1
+},
+{
+"kalit": "what_a_pity",
+"uz": "afsus",
+"en": "what a pity",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "unfortunately",
+"uz": "afsuski",
+"en": "unfortunately",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "advantage",
+"uz": "afzallik",
+"en": "advantage",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "exchange",
+"uz": "almashinuv",
+"en": "exchange",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "exchange_programme",
+"uz": "almashinuv dasturi",
+"en": "exchange programme",
+"soz_turi": "ot",
+"turkum": "maktab",
+"daraja": 3
+},
+{
+"kalit": "internship",
+"uz": "amaliyot",
+"en": "internship",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "annoying",
+"uz": "asabga tegadigan",
+"en": "annoying",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "justified",
+"uz": "asosli",
+"en": "justified",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "accuse",
+"uz": "ayblamoq",
+"en": "accuse",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "detour",
+"uz": "aylanma yo‘l",
+"en": "detour",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 2
+},
+{
+"kalit": "argue",
+"uz": "bahslashmoq",
+"en": "argue",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "fit",
+"uz": "baquvvat",
+"en": "fit",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "careless",
+"uz": "beparvo",
+"en": "careless",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "on_the_one_hand",
+"uz": "bir tomondan",
+"en": "on the one hand",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "starting_point",
+"uz": "boshlang‘ich nuqta",
+"en": "starting point",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "on_the_other_hand",
+"uz": "boshqa tomondan",
+"en": "on the other hand",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "stress_resistance",
+"uz": "bosimga chidamlilik",
+"en": "stress resistance",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "phase",
+"uz": "bosqich",
+"en": "stage",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "reservation",
+"uz": "bron",
+"en": "reservation",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "command",
+"uz": "buyruq",
+"en": "command",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "breakdown",
+"uz": "buzilish",
+"en": "breakdown",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "distract",
+"uz": "chalg‘itmoq",
+"en": "distract",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "distraction",
+"uz": "chalg‘ituvchi narsa",
+"en": "distraction",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "dust_storm",
+"uz": "chang bo‘roni",
+"en": "dust storm",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 2
+},
+{
+"kalit": "unbearable",
+"uz": "chidab bo‘lmas",
+"en": "unbearable",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "exhaust_fumes",
+"uz": "chiqindi gazlar",
+"en": "exhaust fumes",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 3
+},
+{
+"kalit": "emissions",
+"uz": "emissiya",
+"en": "emissions",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 3
+},
+{
+"kalit": "claim_verb",
+"uz": "da’vo qilmoq",
+"en": "claim",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "genius",
+"uz": "daho",
+"en": "genius",
+"soz_turi": "ot",
+"turkum": "odam",
+"daraja": 2
+},
+{
+"kalit": "give_reasons",
+"uz": "dalil keltirmoq",
+"en": "give reasons",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "income",
+"uz": "daromad",
+"en": "income",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "constantly",
+"uz": "tinmay",
+"en": "constantly",
+"soz_turi": "ravish",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "ignore",
+"uz": "e’tibor bermaslik",
+"en": "ignore",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "take_into_account",
+"uz": "e’tiborga olmoq",
+"en": "take into account",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "objection",
+"uz": "e’tiroz",
+"en": "objection",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "just_in_case",
+"uz": "ehtiyot shart",
+"en": "just in case",
+"soz_turi": "ibora",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "caution",
+"uz": "ehtiyotkorlik",
+"en": "caution",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "eco_friendly",
+"uz": "ekologik toza",
+"en": "eco-friendly",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "export",
+"uz": "eksport qilmoq",
+"en": "export",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "highlight",
+"uz": "eng yorqin lahza",
+"en": "highlight",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "opinion",
+"uz": "fikr",
+"en": "opinion",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "company",
+"uz": "kompaniya",
+"en": "company",
+"soz_turi": "ot",
+"turkum": "joy",
+"daraja": 2
+},
+{
+"kalit": "profit",
+"uz": "foyda",
+"en": "profit",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "take_advantage",
+"uz": "foydalanib qolmoq",
+"en": "take advantage",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "interrupt",
+"uz": "gapni bo‘lmoq",
+"en": "interrupt",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "global_warming",
+"uz": "global isish",
+"en": "global warming",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 3
+},
+{
+"kalit": "honesty",
+"uz": "halollik",
+"en": "honesty",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "envy",
+"uz": "havas qilmoq",
+"en": "envy",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "scaffolding",
+"uz": "havoza",
+"en": "scaffolding",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 3
+},
+{
+"kalit": "driving_licence",
+"uz": "haydovchilik guvohnomasi",
+"en": "driving licence",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "arrest",
+"uz": "hibsga olmoq",
+"en": "arrest",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "harvest_verb",
+"uz": "hosil yig‘moq",
+"en": "harvest",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "hesitate",
+"uz": "ikkilanmoq",
+"en": "hesitate",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "opportunity",
+"uz": "imkoniyat",
+"en": "opportunity",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "disabled",
+"uz": "imkoniyati cheklangan",
+"en": "disabled",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "climate_change",
+"uz": "iqlim o‘zgarishi",
+"en": "climate change",
+"soz_turi": "ot",
+"turkum": "tabiat",
+"daraja": 3
+},
+{
+"kalit": "job_position",
+"uz": "lavozim",
+"en": "position",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "convincing",
+"uz": "ishonarli",
+"en": "convincing",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "convinced",
+"uz": "ishonch hosil qilgan",
+"en": "convinced",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "convince",
+"uz": "ishontirmoq",
+"en": "convince",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 3
+},
+{
+"kalit": "unemployment",
+"uz": "ishsizlik",
+"en": "unemployment",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "consumption",
+"uz": "iste’mol",
+"en": "consumption",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "annoy",
+"uz": "jahlini chiqarmoq",
+"en": "annoy",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "fine",
+"uz": "jarima",
+"en": "fine",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "injury",
+"uz": "jarohat",
+"en": "injury",
+"soz_turi": "ot",
+"turkum": "tana",
+"daraja": 2
+},
+{
+"kalit": "equipment",
+"uz": "jihozlar",
+"en": "equipment",
+"soz_turi": "ot",
+"turkum": "buyum",
+"daraja": 2
+},
+{
+"kalit": "gender",
+"uz": "jins",
+"en": "gender",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "hr_manager",
+"uz": "kadrlar bo‘limi boshlig‘i",
+"en": "HR manager",
+"soz_turi": "ot",
+"turkum": "kasb",
+"daraja": 3
+},
+{
+"kalit": "lack_of_exercise",
+"uz": "kam harakatlilik",
+"en": "lack of exercise",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "fasten_seat_belt",
+"uz": "kamar taqmoq",
+"en": "buckle up",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 2
+},
+{
+"kalit": "flounder",
+"uz": "kambala",
+"en": "flounder",
+"soz_turi": "ot",
+"turkum": "hayvon",
+"daraja": 3
+},
+{
+"kalit": "disadvantage",
+"uz": "kamchilik",
+"en": "disadvantage",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 2
+},
+{
+"kalit": "reserved",
+"uz": "kamgap",
+"en": "reserved",
+"soz_turi": "sifat",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "career_change",
+"uz": "kasbni o‘zgartirish",
+"en": "career change",
+"soz_turi": "ot",
+"turkum": "boshqa",
+"daraja": 3
+},
+{
+"kalit": "forgive",
+"uz": "kechirmoq",
+"en": "forgive",
+"soz_turi": "fel",
+"turkum": "harakat",
+"daraja": 1
+}
+]
