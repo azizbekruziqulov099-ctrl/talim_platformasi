@@ -9678,6 +9678,1384 @@
      "yakun": "Sonlar to‘g‘ri o‘qildi va yozildi."
     }
    }
+  },
+  {
+   "mavzu": "Ko‘p xonali sonlarning o‘qilishi, yozilishi va ularni taqqoslash",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Xonalar sonini solishtiramiz",
+      "matn": "Sonlarni taqqoslashda avval raqamlar sonini sanaymiz. Raqami ko‘p bo‘lgan son katta bo‘ladi. Raqamlari bir xil bo‘lsa, keyingi qadamga o‘tamiz.",
+      "misol": "4506 to‘rt xonali, 45060 besh xonali. Demak 45060 katta.",
+      "savol": "45060 va 4506 dan qaysi biri katta?",
+      "javob": "45060",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chapdan boshlab",
+      "matn": "Raqamlari soni bir xil bo‘lsa, sonlarni chapdan o‘ngga raqamma-raqam solishtiramiz. Birinchi farq qiladigan raqamda kattasini topamiz.",
+      "misol": "345678 va 345687: 3, 4, 5, 6 bir xil. Keyingi raqam 7 va 8, 7 kichik. Demak 345678 kichik.",
+      "savol": "345678 va 345687 dan qaysi biri kichik?",
+      "javob": "345678",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Belgilar",
+      "matn": "Taqqoslash belgilari: katta (>), kichik (<) va teng. Belgi ochiq tomoni kattasiga qaraydi.",
+      "misol": "1000000 > 999999. 345678 < 345687.",
+      "savol": "1000000 va 999999 ni belgi bilan taqqoslang.",
+      "javob": "1000000 > 999999",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Katta sonlarni o‘qiymiz",
+      "matn": "Taqqoslashdan oldin sonni sinflar bo‘yicha o‘qiymiz. Bu raqamlarni adashtirmaslikka yordam beradi.",
+      "misol": "7654321: yetti million olti yuz ellik to‘rt ming uch yuz yigirma bir. 7654312 undan kichik.",
+      "savol": "7654321 va 7654312 dan qaysi biri katta?",
+      "javob": "7654321",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tartiblash",
+      "matn": "Sonlarni o‘sish tartibida joylashtirish uchun ularni ketma-ket taqqoslaymiz. Eng kichigidan boshlaymiz.",
+      "misol": "4506, 45060, 345678 — o‘sish tartibida.",
+      "savol": "4506, 345678, 45060 ni o‘sish tartibida joylang.",
+      "javob": "4506, 45060, 345678",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Avval raqamlar sonini solishtir: ko‘pi katta. Teng bo‘lsa, chapdan boshlab raqamma-raqam solishtir.",
+    "misollar": [
+     {
+      "shart": "45060 va 4506 ni taqqoslang.",
+      "yechim": [
+       "45060 — besh xonali.",
+       "4506 — to‘rt xonali.",
+       "Demak 45060 > 4506."
+      ],
+      "javob": "45060 > 4506"
+     },
+     {
+      "shart": "345678 va 345687 ni taqqoslang.",
+      "yechim": [
+       "Raqamlar soni bir xil — olti xonali.",
+       "Dastlabki to‘rtta raqam bir xil, keyin 7 va 8.",
+       "345678 < 345687."
+      ],
+      "javob": "345678 < 345687"
+     },
+     {
+      "shart": "7654321 va 7654312 ni taqqoslang.",
+      "yechim": [
+       "Yetti xonali ikkala son.",
+       "Birinchi farq: 2 va 1, 2 katta.",
+       "7654321 > 7654312."
+      ],
+      "javob": "7654321 > 7654312"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Katta-kichik o‘yini",
+      "topshiriq": "Sonlar juftligini kartochkada taqqoslang.",
+      "yechim": "Belgi qo‘yib tekshiriladi.",
+      "mahsulot": "sonlar kartochkasi"
+     },
+     {
+      "nom": "Tartib poygasi",
+      "topshiriq": "Beshta sonni o‘sish tartibida joylashtiring.",
+      "yechim": "Natijalar doskada tekshiriladi.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "O‘qib taqqoslaymiz",
+      "topshiriq": "Sonlarni o‘qib, keyin taqqoslang.",
+      "yechim": "7654321 va 7654312.",
+      "mahsulot": "yozuv varag‘i"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 4506 ni 45060 dan katta dedi. Xato qayerda?",
+      "yechim": "Raqamlari ko‘p bo‘lgan son katta.",
+      "mahsulot": "tushuntirish"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "45060 va 4506 dan qaysi biri katta?",
+      "javob": "45060"
+     },
+     {
+      "shart": "345678 va 345687 dan qaysi biri katta?",
+      "javob": "345687"
+     },
+     {
+      "shart": "1000000 va 999999 dan qaysi biri katta?",
+      "javob": "1000000"
+     },
+     {
+      "shart": "7654321 va 7654312 dan qaysi biri kichik?",
+      "javob": "7654312"
+     },
+     {
+      "shart": "4506 nechta raqamdan iborat?",
+      "javob": "4"
+     },
+     {
+      "shart": "45060 nechta raqamdan iborat?",
+      "javob": "5"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Raqamlar sonini sanamaydi",
+      "sabab": "to‘g‘ridan-to‘g‘ri raqamlarni solishtiradi",
+      "oldini_olish": "avval raqamlar sonini sanash"
+     },
+     {
+      "xato": "O‘ngdan solishtiradi",
+      "sabab": "yo‘nalishni adashtiradi",
+      "oldini_olish": "chapdan boshlash"
+     },
+     {
+      "xato": "Belgini teskari qo‘yadi",
+      "sabab": "belgi yo‘nalishini unutadi",
+      "oldini_olish": "ochiq tomon kattaga qaraydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "shaharlar aholisini taqqoslash"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "masofalarni solishtirish"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "narxlarni taqqoslash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sonlar musobaqasi»",
+     "muammo": "Katta sonlarni taqqoslash musobaqasini qanday o‘tkazamiz?",
+     "mahsulot": "sonlar musobaqasi",
+     "bosqichlar": [
+      "sonlarni tanlash",
+      "kartochka yasash",
+      "qoidalar yozish",
+      "o‘ynash",
+      "natijani sanash"
+     ],
+     "guruh_vazifalari": [
+      "Son tanlang",
+      "Kartochka yasang",
+      "O‘ynang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sonlar to‘g‘ri",
+      "qoidalar ravshan",
+      "o‘yin qiziqarli",
+      "chiroyli",
+      "ishtirok bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Taqqoslash yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "45060 va 4506.",
+       "topshiriq": "Qaysi katta?",
+       "javob": "45060",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "345678 va 345687.",
+       "topshiriq": "Qaysi katta?",
+       "javob": "345687",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "1000000 va 999999.",
+       "topshiriq": "Qaysi katta?",
+       "javob": "1000000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "7654321 va 7654312.",
+       "topshiriq": "Qaysi kichik?",
+       "javob": "7654312",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Avval nimani sanadingiz?",
+      "Qayerda adashdingiz?",
+      "Belgi to‘g‘rimi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Taqqoslash",
+      "tarif": "sonlarni katta-kichikka solishtirish"
+     },
+     {
+      "atama": "Katta",
+      "tarif": "qiymati ko‘p"
+     },
+     {
+      "atama": "Kichik",
+      "tarif": "qiymati kam"
+     },
+     {
+      "atama": "Belgi",
+      "tarif": "> va < kabi yozuv"
+     },
+     {
+      "atama": "O‘sish tartibi",
+      "tarif": "kichikdan kattaga"
+     },
+     {
+      "atama": "Kamayish tartibi",
+      "tarif": "kattadan kichikka"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Raqami ko‘p son katta",
+      "togri": true,
+      "izoh": "xonalar soni"
+     },
+     {
+      "matn": "345678 > 345687",
+      "togri": false,
+      "izoh": "kichik"
+     },
+     {
+      "matn": "1000000 > 999999",
+      "togri": true,
+      "izoh": "7 va 6 raqam"
+     },
+     {
+      "matn": "Taqqoslash o‘ngdan boshlanadi",
+      "togri": false,
+      "izoh": "chapdan"
+     },
+     {
+      "matn": "45060 > 4506",
+      "togri": true,
+      "izoh": "5 va 4 raqam"
+     },
+     {
+      "matn": "7654321 > 7654312",
+      "togri": true,
+      "izoh": "2 va 1"
+     },
+     {
+      "matn": "4506 > 45060",
+      "togri": false,
+      "izoh": "kichik"
+     },
+     {
+      "matn": "Belgining ochiq tomoni kattaga qaraydi",
+      "togri": true,
+      "izoh": "qoida"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Birinchi qadam?",
+      "javob": "raqamlar sonini sanash"
+     },
+     {
+      "savol": "Raqamlar soni teng bo‘lsa?",
+      "javob": "chapdan solishtirish"
+     },
+     {
+      "savol": "45060 va 4506?",
+      "javob": "45060 katta"
+     },
+     {
+      "savol": "345678 va 345687?",
+      "javob": "345687 katta"
+     },
+     {
+      "savol": "1000000 va 999999?",
+      "javob": "1000000 katta"
+     },
+     {
+      "savol": "7654321 va 7654312?",
+      "javob": "7654321 katta"
+     },
+     {
+      "savol": "O‘sish tartibi?",
+      "javob": "kichikdan kattaga"
+     },
+     {
+      "savol": "Kamayish tartibi?",
+      "javob": "kattadan kichikka"
+     },
+     {
+      "savol": "Belgi ochiq tomoni?",
+      "javob": "kattaga qaraydi"
+     },
+     {
+      "savol": "Eng kichik yetti xonali son?",
+      "javob": "1000000"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Sana",
+      "matn": "Raqamlarni sana.",
+      "savol": "4506?"
+     },
+     {
+      "nom": "Solishtir",
+      "matn": "Chapdan boshla.",
+      "savol": "345678 va 345687?"
+     },
+     {
+      "nom": "Belgi",
+      "matn": "Belgi qo‘y.",
+      "savol": "1000000 va 999999?"
+     },
+     {
+      "nom": "Tartibla",
+      "matn": "Tartibga sol.",
+      "savol": "4506, 345678, 45060?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun taqqoslashda avval raqamlar sonini sanaymiz?",
+    "keys": {
+     "vaziyat": "Ikki shaharning aholisi: 345678 va 345687 kishi.",
+     "savollar": [
+      "Qaysi shaharning aholisi ko‘p?",
+      "Qanday aniqladingiz?"
+     ]
+    },
+    "tezis": "Avval sana, keyin solishtir",
+    "taqqoslash": {
+     "a": "Raqamlar soni turlicha",
+     "b": "Raqamlar soni bir xil",
+     "umumiy": [
+      "sonlar taqqoslanadi",
+      "belgi qo‘yiladi"
+     ],
+     "a_farq": [
+      "raqami ko‘pi katta",
+      "bir qadam"
+     ],
+     "b_farq": [
+      "raqamma-raqam solishtiriladi",
+      "chapdan boshlanadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Sonlarni taqqoslash",
+     "shoxlar": [
+      {
+       "nom": "Sanash",
+       "bandlar": [
+        "raqamlar soni"
+       ]
+      },
+      {
+       "nom": "Solishtirish",
+       "bandlar": [
+        "chapdan o‘ngga"
+       ]
+      },
+      {
+       "nom": "Belgilar",
+       "bandlar": [
+        ">",
+        "<"
+       ]
+      },
+      {
+       "nom": "Tartiblash",
+       "bandlar": [
+        "o‘sish",
+        "kamayish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men katta bo‘lsam, raqamlarim ko‘p bo‘ladi. Men kimman?",
+     "javob": "katta son"
+    },
+    "hikmat": "Sanagan topadi.",
+    "kalit_soz": "KATTA",
+    "xato_yechim": {
+     "shart": "345678 va 345687 ni taqqoslang.",
+     "xato": "345678 > 345687",
+     "togri": "345678 < 345687",
+     "sabab": "birinchi farq: 7 va 8, 7 kichik"
+    },
+    "guruh_nomlari": [
+     "Taqqoslovchilar",
+     "Sanovchilar",
+     "Belgichilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sonlar musobaqasi»",
+     "topshiriq": "Guruh sonlarni taqqoslab, g‘olibni aniqlaydi."
+    },
+    "vazifalar": {
+     "A": "45060 va 4506 ni taqqoslang.",
+     "B": "345678 va 345687 ni taqqoslang.",
+     "C": "4506, 345678, 45060 ni o‘sish tartibida joylang."
+    },
+    "sinkveyn": [
+     "Taqqoslash",
+     "tez, aniq",
+     "solishtiradi, tanlaydi, aytadi",
+     "Katta yoki kichik",
+     "Amal"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sonlarni taqqoslaydi.",
+     "qismlar": [
+      "1-guruh: 45060 va 4506",
+      "2-guruh: 345678 va 345687",
+      "3-guruh: 1000000 va 999999",
+      "4-guruh: 7654321 va 7654312"
+     ],
+     "yakun": "Katta sonlar: 45060; 345687; 1000000; 7654321."
+    }
+   }
+  },
+  {
+   "mavzu": "Ko‘p xonali sonlarni qo‘shish va ayirish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ostma-ost yozamiz",
+      "matn": "Ko‘p xonali sonlarni qo‘shishda xonalarni ostma-ost yozamiz: birlik birlik ostiga, o‘nlik o‘nlik ostiga va hokazo. Qo‘shishni o‘ngdan chapga bajaramiz.",
+      "misol": "1245678 + 354322: birliklar 8 + 2 — 10, nol yozilib 1 olib o‘tiladi, va hokazo. Natija 1600000.",
+      "savol": "1245678 + 354322 nechaga teng?",
+      "javob": "1600000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Olib o‘tish",
+      "matn": "Xonada 10 dan oshsa, birligi keyingi xonaga olib o‘tiladi. Olib o‘tilgan raqamni unutmaymiz.",
+      "misol": "2345678 + 1234567 — 3580245. Har xonada olib o‘tishni kuzatdik.",
+      "savol": "2345678 + 1234567 nechaga teng?",
+      "javob": "3580245",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ayirish",
+      "matn": "Ayirishda xonalarni ostma-ost yozamiz. Xona yetmasa, qo‘shni xonadan qarz olamiz. Ayirishni o‘ngdan chapga bajaramiz.",
+      "misol": "5000000 − 1234567 — 3765433. Nolli xonalardan ketma-ket qarz olinadi.",
+      "savol": "5000000 − 1234567 nechaga teng?",
+      "javob": "3765433",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshirish",
+      "matn": "Qo‘shishni ayirish bilan, ayirishni qo‘shish bilan tekshiramiz. Natija boshlang‘ich songa teng bo‘lishi kerak.",
+      "misol": "3765433 + 1234567 — 5000000. To‘g‘ri.",
+      "savol": "3765433 + 1234567 nechaga teng?",
+      "javob": "5000000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotiy masala",
+      "matn": "Shahar aholisi 2500000 kishi edi, 900000 kishi boshqa joyga ko‘chdi. Qolgan aholini topamiz.",
+      "misol": "2500000 − 900000 — 1600000.",
+      "savol": "2500000 − 900000 nechaga teng?",
+      "javob": "1600000",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Xonalarni ostma-ost yoz, o‘ngdan chapga hisobla, olib o‘tishni unutma, qo‘shish va ayirish bilan tekshir.",
+    "misollar": [
+     {
+      "shart": "1245678 + 354322 ni hisoblang.",
+      "yechim": [
+       "Birliklar: 8 + 2 — 10, 0 yozib 1 olib o‘tamiz.",
+       "Keyingi xonalarda ham shunday davom etamiz.",
+       "Natija 1600000."
+      ],
+      "javob": "1600000"
+     },
+     {
+      "shart": "5000000 − 1234567 ni hisoblang.",
+      "yechim": [
+       "Nolli xonalardan ketma-ket qarz olamiz.",
+       "Birliklar: 10 − 7 — 3 va hokazo.",
+       "Natija 3765433."
+      ],
+      "javob": "3765433"
+     },
+     {
+      "shart": "4800000 − 2650000 ni hisoblang.",
+      "yechim": [
+       "Ikkala son 0000 bilan tugaydi, 480 − 265 hisoblaymiz.",
+       "480 − 265 — 215.",
+       "Natija 2150000."
+      ],
+      "javob": "2150000"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Katta qo‘shish",
+      "topshiriq": "Ikkita yetti xonali sonni qo‘shing va tekshiring.",
+      "yechim": "2345678 + 1234567 — 3580245.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Katta ayirish",
+      "topshiriq": "5000000 dan 1234567 ni ayiring.",
+      "yechim": "3765433.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Ayirishni qo‘shish bilan tekshiring.",
+      "yechim": "3765433 + 1234567 — 5000000.",
+      "mahsulot": "tekshiruv varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Shahar aholisi haqida masala tuzing.",
+      "yechim": "Har guruh masalasini yechadi.",
+      "mahsulot": "masala varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "340000 + 660000 nechaga teng?",
+      "javob": "1000000"
+     },
+     {
+      "shart": "1250000 + 750000 nechaga teng?",
+      "javob": "2000000"
+     },
+     {
+      "shart": "2500000 − 900000 nechaga teng?",
+      "javob": "1600000"
+     },
+     {
+      "shart": "2345678 + 1234567 nechaga teng?",
+      "javob": "3580245"
+     },
+     {
+      "shart": "5000000 − 1234567 nechaga teng?",
+      "javob": "3765433"
+     },
+     {
+      "shart": "4800000 − 2650000 nechaga teng?",
+      "javob": "2150000"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Xonalarni ostma-ost yozmaydi",
+      "sabab": "xona o‘rnini adashtiradi",
+      "oldini_olish": "to‘rlangan daftardan foydalanish"
+     },
+     {
+      "xato": "Olib o‘tishni unutadi",
+      "sabab": "belgi qo‘ymaydi",
+      "oldini_olish": "olib o‘tilgan raqamni kichik yozish"
+     },
+     {
+      "xato": "Qarz olishni unutadi",
+      "sabab": "ayirishda xonani kamaytirmaydi",
+      "oldini_olish": "qarz olingan xonani belgilash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "aholi va masofa sonlarini qo‘shish"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "katta xarid va byudjet"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "kuzatuv natijalarini yig‘ish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Katta hisob daftari»",
+     "muammo": "Katta sonlar bilan qo‘shish va ayirishni qanday daftarga yig‘amiz?",
+     "mahsulot": "hisob daftari",
+     "bosqichlar": [
+      "misollar tanlash",
+      "yechish",
+      "tekshirish",
+      "rasm chizish",
+      "daftar bezash"
+     ],
+     "guruh_vazifalari": [
+      "Misol tanlang",
+      "Yeching",
+      "Tekshiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "tekshirilgan",
+      "chiroyli yozilgan",
+      "rasm mos",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Katta hisob shahri»",
+     "bekatlar": [
+      {
+       "nom": "Bank",
+       "matn": "340000 + 660000.",
+       "topshiriq": "Natija?",
+       "javob": "1000000",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "2500000 − 900000.",
+       "topshiriq": "Natija?",
+       "javob": "1600000",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab",
+       "matn": "2345678 + 1234567.",
+       "topshiriq": "Natija?",
+       "javob": "3580245",
+       "rasm": ""
+      },
+      {
+       "nom": "Stadion",
+       "matn": "5000000 − 1234567.",
+       "topshiriq": "Natija?",
+       "javob": "3765433",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Olib o‘tishni esladingizmi?",
+      "Qarz olishni esladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Qo‘shish",
+      "tarif": "yig‘indi topish"
+     },
+     {
+      "atama": "Ayirish",
+      "tarif": "ayirma topish"
+     },
+     {
+      "atama": "Olib o‘tish",
+      "tarif": "10 dan ortganini keyingi xonaga qo‘shish"
+     },
+     {
+      "atama": "Qarz olish",
+      "tarif": "xona yetmasa, qo‘shnidan olish"
+     },
+     {
+      "atama": "Yig‘indi",
+      "tarif": "qo‘shish natijasi"
+     },
+     {
+      "atama": "Ayirma",
+      "tarif": "ayirish natijasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Xonalar ostma-ost yoziladi",
+      "togri": true,
+      "izoh": "birlik birlik ostiga"
+     },
+     {
+      "matn": "2345678 + 1234567 — 3580245",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "5000000 − 1234567 — 3765432",
+      "togri": false,
+      "izoh": "3765433"
+     },
+     {
+      "matn": "Qo‘shishni ayirish bilan tekshiramiz",
+      "togri": true,
+      "izoh": "teskari amal"
+     },
+     {
+      "matn": "Olib o‘tishni unutish mumkin",
+      "togri": false,
+      "izoh": "natija xato bo‘ladi"
+     },
+     {
+      "matn": "2500000 − 900000 — 1600000",
+      "togri": true,
+      "izoh": "25 − 9 — 16 yuz ming"
+     },
+     {
+      "matn": "Hisob chapdan boshlanadi",
+      "togri": false,
+      "izoh": "o‘ngdan"
+     },
+     {
+      "matn": "340000 + 660000 — 1000000",
+      "togri": true,
+      "izoh": "34 + 66 — 100"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qaysi tomondan hisoblaymiz?",
+      "javob": "o‘ngdan"
+     },
+     {
+      "savol": "Xonalar qanday yoziladi?",
+      "javob": "ostma-ost"
+     },
+     {
+      "savol": "340000 + 660000?",
+      "javob": "1000000"
+     },
+     {
+      "savol": "2500000 − 900000?",
+      "javob": "1600000"
+     },
+     {
+      "savol": "2345678 + 1234567?",
+      "javob": "3580245"
+     },
+     {
+      "savol": "5000000 − 1234567?",
+      "javob": "3765433"
+     },
+     {
+      "savol": "4800000 − 2650000?",
+      "javob": "2150000"
+     },
+     {
+      "savol": "Ayirishni nima bilan tekshiramiz?",
+      "javob": "qo‘shish bilan"
+     },
+     {
+      "savol": "Qarz olish qachon?",
+      "javob": "xona yetmasa"
+     },
+     {
+      "savol": "Olib o‘tish qachon?",
+      "javob": "xonada 10 dan oshsa"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Ostma-ost yoz.",
+      "savol": "Xonalar?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "O‘ngdan boshla.",
+      "savol": "8 + 2?"
+     },
+     {
+      "nom": "Olib o‘t",
+      "matn": "Olib o‘tishni yoz.",
+      "savol": "10 da nechta?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari amal.",
+      "savol": "3765433 + 1234567?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun qo‘shish va ayirishda xonalarni ostma-ost yozamiz?",
+    "keys": {
+     "vaziyat": "Shaharning aholisi 2500000 kishi edi. 900000 kishi ko‘chib ketdi.",
+     "savollar": [
+      "Qaysi amalni tanlaymiz?",
+      "Shaharda nechta kishi qoldi?"
+     ]
+    },
+    "tezis": "Ostma-ost, o‘ngdan, tekshir",
+    "taqqoslash": {
+     "a": "Qo‘shish",
+     "b": "Ayirish",
+     "umumiy": [
+      "xonalar ostma-ost yoziladi",
+      "o‘ngdan chapga bajariladi"
+     ],
+     "a_farq": [
+      "olib o‘tamiz",
+      "yig‘indi chiqadi"
+     ],
+     "b_farq": [
+      "qarz olamiz",
+      "ayirma chiqadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Qo‘shish va ayirish",
+     "shoxlar": [
+      {
+       "nom": "Yozish",
+       "bandlar": [
+        "ostma-ost"
+       ]
+      },
+      {
+       "nom": "Qo‘shish",
+       "bandlar": [
+        "olib o‘tish"
+       ]
+      },
+      {
+       "nom": "Ayirish",
+       "bandlar": [
+        "qarz olish"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "teskari amal"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yig‘indi bo‘laman, ayirsangiz — boshlang‘ichga qaytaman. Men kimman?",
+     "javob": "qo‘shish"
+    },
+    "hikmat": "Yig‘gan topadi.",
+    "kalit_soz": "HISOB",
+    "xato_yechim": {
+     "shart": "5000000 − 1234567 ni hisoblang.",
+     "xato": "3765432",
+     "togri": "3765433",
+     "sabab": "birliklarda 10 − 7 — 3, qarz olingan"
+    },
+    "guruh_nomlari": [
+     "Qo‘shuvchilar",
+     "Ayiruvchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Aholi hisobi»",
+     "topshiriq": "Guruh shahar aholisini qo‘shib va ayirib hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "340000 + 660000 va 1250000 + 750000 ni hisoblang.",
+     "B": "2345678 + 1234567 va 2500000 − 900000 ni hisoblang.",
+     "C": "5000000 − 1234567 va 4800000 − 2650000 ni hisoblang."
+    },
+    "sinkveyn": [
+     "Hisob",
+     "katta, uzun",
+     "qo‘shadi, ayiradi, tekshiradi",
+     "Ostma-ost",
+     "Amal"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh misollarni yechadi.",
+     "qismlar": [
+      "1-guruh: 340000 + 660000",
+      "2-guruh: 2345678 + 1234567",
+      "3-guruh: 5000000 − 1234567",
+      "4-guruh: 2500000 − 900000"
+     ],
+     "yakun": "Natijalar: 1000000; 3580245; 3765433; 1600000."
+    }
+   }
+  },
+  {
+   "mavzu": "Ko‘p xonali sonlarni ko‘paytirish va bo‘lish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nollarni olib tashlaymiz",
+      "matn": "Katta sonlarni ko‘paytirishda oxiridagi nollarni olib tashlab ko‘paytiramiz, so‘ng nollarni oxirida qaytarib yozamiz. Bu hisobni juda yengillashtiradi.",
+      "misol": "125000 · 8: 125 · 8 — 1000, oxiriga uchta nol, natija 1000000.",
+      "savol": "125000 · 8 nechaga teng?",
+      "javob": "1000000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikkala sonda nol",
+      "matn": "Ikkala ko‘paytuvchi oxirida nol bo‘lsa, nollar sonini qo‘shamiz. 4500 · 200: 45 · 2 — 90, to‘rtta nol qo‘shiladi — 900000.",
+      "misol": "25000 · 400: 25 · 4 — 100, beshta nol — 10000000.",
+      "savol": "4500 · 200 nechaga teng?",
+      "javob": "900000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bo‘lish",
+      "matn": "Katta sonlarni bo‘lishda bo‘linuvchi va bo‘luvchidan teng miqdorda nollarni qisqartiramiz. Qolgan sonlarni bo‘lamiz.",
+      "misol": "2400000 / 6 — 400000. 360000 / 9000: nollarni qisqartirsak, 360 / 9 — 40.",
+      "savol": "360000 / 9000 nechaga teng?",
+      "javob": "40",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirib tekshirish",
+      "matn": "Bo‘lishni ko‘paytirish bilan tekshiramiz: bo‘linma ko‘paytirilsin bo‘luvchiga. Ko‘paytirishni esa bo‘lish bilan tekshirish mumkin.",
+      "misol": "400000 · 6 — 2400000. To‘g‘ri.",
+      "savol": "400000 · 6 nechaga teng?",
+      "javob": "2400000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotiy masala",
+      "matn": "Zavod bir kunda 120000 ta detal chiqaradi. 30 kunda nechta detal chiqaradi?",
+      "misol": "120000 · 30 — 3600000. 12 · 3 — 36, oxiriga beshta nol.",
+      "savol": "120000 · 30 nechaga teng?",
+      "javob": "3600000",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Oxirgi nollarni olib tashla, qolganini hisobla, nollarni qaytarib yoz. Bo‘lishda nollarni ikkalasidan teng qisqartir.",
+    "misollar": [
+     {
+      "shart": "125000 · 8 ni hisoblang.",
+      "yechim": [
+       "Nollarni olib tashlaymiz: 125 · 8 — 1000.",
+       "Uchta nolni qaytaramiz.",
+       "Natija 1000000."
+      ],
+      "javob": "1000000"
+     },
+     {
+      "shart": "4500 · 200 ni hisoblang.",
+      "yechim": [
+       "45 · 2 — 90.",
+       "Nollar: ikkita va ikkita, jami to‘rtta.",
+       "Natija 900000."
+      ],
+      "javob": "900000"
+     },
+     {
+      "shart": "360000 / 9000 ni hisoblang.",
+      "yechim": [
+       "Uchta nolni ikkalasidan qisqartiramiz: 360 / 9.",
+       "360 / 9 — 40.",
+       "Natija 40."
+      ],
+      "javob": "40"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Nollar o‘yini",
+      "topshiriq": "Nollarni olib tashlab ko‘paytiring.",
+      "yechim": "125 · 8 — 1000.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Bo‘lish poygasi",
+      "topshiriq": "Nollarni qisqartirib bo‘ling.",
+      "yechim": "360000 / 9000 — 40.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Zavod masalasi",
+      "topshiriq": "Zavod bir kunda 120000 ta detal chiqaradi. 30 kunda nechta?",
+      "yechim": "3600000.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Javoblarni teskari amal bilan tekshiring.",
+      "yechim": "400000 · 6 — 2400000.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "125000 · 8 nechaga teng?",
+      "javob": "1000000"
+     },
+     {
+      "shart": "4500 · 200 nechaga teng?",
+      "javob": "900000"
+     },
+     {
+      "shart": "2400000 / 6 nechaga teng?",
+      "javob": "400000"
+     },
+     {
+      "shart": "360000 / 9000 nechaga teng?",
+      "javob": "40"
+     },
+     {
+      "shart": "120000 · 30 nechaga teng?",
+      "javob": "3600000"
+     },
+     {
+      "shart": "3600000 / 1200 nechaga teng?",
+      "javob": "3000"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Nollarni qaytarishni unutadi",
+      "sabab": "faqat sonlarni ko‘paytiradi",
+      "oldini_olish": "nollarni sanab qo‘yish"
+     },
+     {
+      "xato": "Nollarni noto‘g‘ri sanaydi",
+      "sabab": "adashadi",
+      "oldini_olish": "ikkala sondagi nollarni qo‘shish"
+     },
+     {
+      "xato": "Bo‘lishda nollarni bir tomondan olib tashlaydi",
+      "sabab": "teng qisqartirmaydi",
+      "oldini_olish": "ikkalasidan teng nol olish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "zavod va ishlab chiqarish hisobi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "katta masofalar"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "katta sonlar kompyuterda"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Nollar sirlari»",
+     "muammo": "Katta sonlarni nollarni olib tashlab hisoblashni qanday tushuntiramiz?",
+     "mahsulot": "nollar albomi",
+     "bosqichlar": [
+      "misollar tanlash",
+      "yechish",
+      "rasm chizish",
+      "tekshirish",
+      "albom"
+     ],
+     "guruh_vazifalari": [
+      "Misol tanlang",
+      "Yeching",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisoblar to‘g‘ri",
+      "nollar to‘g‘ri",
+      "rasm mos",
+      "albom chiroyli",
+      "tushuntirish ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Zavod ombori»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "125000 · 8.",
+       "topshiriq": "Natija?",
+       "javob": "1000000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "4500 · 200.",
+       "topshiriq": "Natija?",
+       "javob": "900000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "2400000 / 6.",
+       "topshiriq": "Natija?",
+       "javob": "400000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sex",
+       "matn": "120000 · 30.",
+       "topshiriq": "Natija?",
+       "javob": "3600000",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Nollarni olib tashladingizmi?",
+      "Qaytarib yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ko‘paytirish",
+      "tarif": "takror qo‘shish"
+     },
+     {
+      "atama": "Bo‘lish",
+      "tarif": "teng bo‘laklash"
+     },
+     {
+      "atama": "Nol",
+      "tarif": "bo‘sh xona belgisi"
+     },
+     {
+      "atama": "Qisqartirish",
+      "tarif": "nollarni teng olib tashlash"
+     },
+     {
+      "atama": "Ko‘paytma",
+      "tarif": "ko‘paytirish natijasi"
+     },
+     {
+      "atama": "Bo‘linma",
+      "tarif": "bo‘lish natijasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "125000 · 8 — 1000000",
+      "togri": true,
+      "izoh": "125 · 8 — 1000"
+     },
+     {
+      "matn": "4500 · 200 — 90000",
+      "togri": false,
+      "izoh": "900000"
+     },
+     {
+      "matn": "2400000 / 6 — 400000",
+      "togri": true,
+      "izoh": "24 / 6 — 4"
+     },
+     {
+      "matn": "Bo‘lishda nollarni bir tomondan olib tashlaymiz",
+      "togri": false,
+      "izoh": "ikkalasidan teng"
+     },
+     {
+      "matn": "360000 / 9000 — 40",
+      "togri": true,
+      "izoh": "360 / 9"
+     },
+     {
+      "matn": "120000 · 30 — 3600000",
+      "togri": true,
+      "izoh": "12 · 3 — 36"
+     },
+     {
+      "matn": "Nollarni qaytarib yozmaymiz",
+      "togri": false,
+      "izoh": "qaytarib yozamiz"
+     },
+     {
+      "matn": "400000 · 6 — 2400000",
+      "togri": true,
+      "izoh": "tekshiruv"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ko‘paytirishda nollarni nima qilamiz?",
+      "javob": "olib tashlab, oxirida qaytaramiz"
+     },
+     {
+      "savol": "Bo‘lishda nollarni nima qilamiz?",
+      "javob": "teng qisqartiramiz"
+     },
+     {
+      "savol": "125000 · 8?",
+      "javob": "1000000"
+     },
+     {
+      "savol": "4500 · 200?",
+      "javob": "900000"
+     },
+     {
+      "savol": "2400000 / 6?",
+      "javob": "400000"
+     },
+     {
+      "savol": "360000 / 9000?",
+      "javob": "40"
+     },
+     {
+      "savol": "120000 · 30?",
+      "javob": "3600000"
+     },
+     {
+      "savol": "3600000 / 1200?",
+      "javob": "3000"
+     },
+     {
+      "savol": "Ko‘paytirishni nima bilan tekshiramiz?",
+      "javob": "bo‘lish bilan"
+     },
+     {
+      "savol": "Bo‘lishni nima bilan tekshiramiz?",
+      "javob": "ko‘paytirish bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Nol",
+      "matn": "Nollarni sana.",
+      "savol": "125000 da nechta nol?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Qolganini ko‘paytir.",
+      "savol": "125 · 8?"
+     },
+     {
+      "nom": "Qaytar",
+      "matn": "Nollarni qaytar.",
+      "savol": "1000 va uchta nol?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari amal.",
+      "savol": "1000000 / 8?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bo‘lishda nollarni ikkala sondan teng qisqartiramiz?",
+    "keys": {
+     "vaziyat": "Zavod bir kunda 120000 ta detal chiqaradi.",
+     "savollar": [
+      "30 kunda nechta detal chiqaradi?",
+      "Qaysi amal kerak?"
+     ]
+    },
+    "tezis": "Nollarni yech, hisobla, qaytar",
+    "taqqoslash": {
+     "a": "Ko‘paytirish",
+     "b": "Bo‘lish",
+     "umumiy": [
+      "nollarni olib tashlaymiz",
+      "ko‘paytirib tekshiramiz"
+     ],
+     "a_farq": [
+      "nollar qo‘shiladi",
+      "ko‘paytma chiqadi"
+     ],
+     "b_farq": [
+      "nollar qisqartiriladi",
+      "bo‘linma chiqadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Katta sonlarni ko‘paytirish va bo‘lish",
+     "shoxlar": [
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "nolsiz hisobla",
+        "nollarni qaytar"
+       ]
+      },
+      {
+       "nom": "Bo‘lish",
+       "bandlar": [
+        "nollarni qisqartir"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "teskari amal"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "zavod",
+        "masofa"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men oxirimda nollarimni olib tashlasangiz, hisob yengillashadi. Men kimman?",
+     "javob": "katta son"
+    },
+    "hikmat": "Nolni olib tashla, hisobni yengillat.",
+    "kalit_soz": "NOLLAR",
+    "xato_yechim": {
+     "shart": "4500 · 200 ni hisoblang.",
+     "xato": "90000",
+     "togri": "900000",
+     "sabab": "45 · 2 — 90, to‘rtta nol qaytarilishi kerak"
+    },
+    "guruh_nomlari": [
+     "Nollar",
+     "Hisobchilar",
+     "Zavodchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Zavod hisobi»",
+     "topshiriq": "Guruh zavod mahsulotini ko‘paytirib va bo‘lib hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "125000 · 8 va 4500 · 200 ni hisoblang.",
+     "B": "2400000 / 6 va 360000 / 9000 ni hisoblang.",
+     "C": "120000 · 30 ni hisoblang va 3600000 / 1200 bilan tekshiring."
+    },
+    "sinkveyn": [
+     "Nol",
+     "yumaloq, bo‘sh",
+     "turadi, o‘rin tutadi, hisobni yengillatadi",
+     "Hech narsa emas",
+     "Raqam"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh katta sonlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 125000 · 8",
+      "2-guruh: 4500 · 200",
+      "3-guruh: 2400000 / 6",
+      "4-guruh: 360000 / 9000"
+     ],
+     "yakun": "Natijalar: 1000000; 900000; 400000; 40."
+    }
+   }
   }
  ]
 }
