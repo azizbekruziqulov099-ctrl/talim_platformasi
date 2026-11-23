@@ -6103,6 +6103,1407 @@
      "yakun": "Ekin maydoni: 480 : 4 = 120, 120 · 3 = 360 m². Sabzavot: 360 : 3 = 120, 120 · 2 = 240 m². Pomidor: 240 : 4 = 60 m². Ulushi: 3/4 · 2/3 · 1/4 = 1/8 — tekshirish: 480 : 8 = 60 m²."
     }
    }
+  },
+  {
+   "mavzu": "O‘nli kasrlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "O‘nli kasr nima?",
+      "matn": "Maxraji 10, 100, 1000 va hokazo bo‘lgan kasrlarni maxrajsiz, vergul yordamida yozish mumkin. Bunday yozuv o‘nli kasr deyiladi. Verguldan chapda butun qism, o‘ngda kasr qism turadi. Butun qism bo‘lmasa, uning o‘rniga 0 yoziladi.",
+      "misol": "7/10 kasr 0,7 deb yoziladi va «nol butun o‘ndan yetti» deb o‘qiladi. 3 butun 25/100 soni 3,25 deb yoziladi — «uch butun yuzdan yigirma besh».",
+      "savol": "9/10 ni o‘nli kasr ko‘rinishida yozing.",
+      "javob": "0,9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Verguldan keyingi xonalar",
+      "matn": "Verguldan keyingi birinchi xona — o‘ndan birlar, ikkinchisi — yuzdan birlar, uchinchisi — mingdan birlar xonasi. Har bir xona o‘zidan chapdagi xonadan 10 marta kichik. Verguldan keyin nechta raqam bo‘lsa, maxrajda 1 dan keyin shuncha nol bo‘ladi. Yetishmagan xonalar nol bilan to‘ldiriladi.",
+      "misol": "5/100 kasrda maxrajda ikkita nol bor, demak verguldan keyin ikkita raqam bo‘lishi kerak: 0,05. 4,307 sonida 3 — o‘ndan birlar, 0 — yuzdan birlar, 7 — mingdan birlar.",
+      "savol": "23/1000 ni o‘nli kasr ko‘rinishida yozing.",
+      "javob": "0,023",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oxiridagi nollar",
+      "matn": "O‘nli kasrning oxiriga nol yozilsa yoki oxiridagi nol tashlab yuborilsa, kasr qiymati o‘zgarmaydi: bu kasrning asosiy xossasidan kelib chiqadi (surat va maxraj 10 ga ko‘paytirilgan). Bu xossa xonalar sonini tenglashtirishda juda kerak. Diqqat: o‘rtadagi nolni tashlab bo‘lmaydi!",
+      "misol": "0,5 va 0,50 va 0,500 — bitta son: besh o‘ndan, ellik yuzdan va besh yuz mingdan birlar teng. Lekin 3,05 va 3,5 — turli sonlar.",
+      "savol": "2,300 ni qisqa yozing.",
+      "javob": "2,3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘nli kasrlarni taqqoslash",
+      "matn": "Avval butun qismlar solishtiriladi: butun qismi katta kasr katta. Butun qismlar teng bo‘lsa, verguldan keyingi xonalar chapdan o‘ngga birma-bir solishtiriladi. Qulaylik uchun verguldan keyingi raqamlar soni nollar yozib tenglashtiriladi. Raqamlari ko‘p kasr katta degani emas!",
+      "misol": "0,7 va 0,65 ni taqqoslaymiz: 0,7 ni 0,70 deb yozamiz. 70 yuzdan bir 65 yuzdan birdan katta, demak 0,7 > 0,65.",
+      "savol": "Qaysi biri katta: 2,09 yoki 2,1?",
+      "javob": "2,1 (ya’ni 2,10)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oddiy kasr va o‘nli kasr",
+      "matn": "O‘nli kasrni oddiy kasrga aylantirish oson: verguldan keyingi raqamlar suratga, 1 va shuncha nol maxrajga yoziladi, so‘ng qisqartiriladi. Oddiy kasrni o‘nli kasrga aylantirish uchun uning maxrajini 10, 100 yoki 1000 ga keltirish yoki suratni maxrajga bo‘lish kerak. O‘nli kasrlar ham yaxlitlanadi — qoida natural sonlardagidek.",
+      "misol": "0,25 — bu 25/100, qisqartirsak 1/4. 3/5 ning surat va maxrajini 2 ga ko‘paytirsak 6/10 chiqadi, ya’ni 0,6. Yaxlitlash: 3,47 o‘ndan birlargacha — 3,5.",
+      "savol": "1/2 ni o‘nli kasr ko‘rinishida yozing.",
+      "javob": "0,5",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "O‘nli kasr — maxraji 10, 100, 1000 … bo‘lgan kasrning vergulli yozuvi: verguldan keyin nechta raqam bo‘lsa, maxrajda shuncha nol. Oxiridagi nollar qiymatni o‘zgartirmaydi. Taqqoslashda avval butun qismlar, keyin xonama-xona kasr qism solishtiriladi.",
+    "misollar": [
+     {
+      "shart": "Sonlarni o‘sish tartibida joylashtiring: 0,5; 0,45; 0,405; 0,54.",
+      "yechim": [
+       "Verguldan keyingi raqamlar sonini tenglashtiramiz: 0,500; 0,450; 0,405; 0,540.",
+       "Endi mingdan birlarni solishtiramiz: 405, 450, 500, 540.",
+       "O‘sish tartibi: 0,405; 0,45; 0,5; 0,54."
+      ],
+      "javob": "0,405; 0,45; 0,5; 0,54"
+     },
+     {
+      "shart": "0,375 ni oddiy kasrga aylantiring.",
+      "yechim": [
+       "Verguldan keyin uchta raqam — maxraj 1000: bu 375/1000.",
+       "EKUB(375; 1000) — 125.",
+       "Suratni bo‘lamiz: 375 : 125 = 3; maxrajni bo‘lamiz: 1000 : 125 = 8.",
+       "Natija: 3/8."
+      ],
+      "javob": "3/8"
+     },
+     {
+      "shart": "Uzunlikka sakrash natijalari: Anvar — 3,8 m, Bobur — 3,75 m, Sardor — 3,08 m. Kim g‘olib bo‘ldi? O‘rinlarni aniqlang.",
+      "yechim": [
+       "Butun qismlar teng (3), kasr qismlarni tenglashtiramiz: 3,80; 3,75; 3,08.",
+       "Yuzdan birlarni solishtiramiz: 80 > 75 > 8.",
+       "1-o‘rin — Anvar, 2-o‘rin — Bobur, 3-o‘rin — Sardor."
+      ],
+      "javob": "Anvar g‘olib (3,8 m)"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Yugurish natijalari",
+      "topshiriq": "100 metrga yugurish natijalari (soniyada): Ali — 14,3; Vali — 14,25; G‘ani — 14,09; Soli — 14,3. a) Natijalarni o‘sish tartibida joylang. b) Kim eng tez yugurdi? d) Kimlar bir xil natija ko‘rsatdi?",
+      "yechim": "a) 14,09; 14,25; 14,3; 14,3. b) G‘ani — vaqti eng kichik (yugurishda kichik vaqt yaxshi). d) Ali va Soli.",
+      "mahsulot": "natijalar jadvali va shohsupa"
+     },
+     {
+      "nom": "Ikki tilda",
+      "topshiriq": "Jadvalni to‘ldiring: a) oddiy kasrlarni o‘nli kasrga aylantiring: 3/10, 7/100, 1/4, 2/5; b) o‘nli kasrlarni oddiy kasrga aylantirib qisqartiring: 0,8; 0,15; 0,125.",
+      "yechim": "a) 0,3; 0,07; 0,25; 0,4. b) 0,8 — 8/10, ya’ni 4/5; 0,15 — 15/100, ya’ni 3/20; 0,125 — 125/1000, ya’ni 1/8.",
+      "mahsulot": "ikki ustunli jadval"
+     },
+     {
+      "nom": "Son nuri",
+      "topshiriq": "0 dan 1 gacha son nurini chizing va 10 ta teng qismga bo‘ling. a) 0,3; 0,7; 0,5 nuqtalarni belgilang. b) 0,25 va 0,75 qayerda turadi? d) 0,5 qaysi oddiy kasrga teng?",
+      "yechim": "a) 3-, 7-, 5-bo‘linmalarda. b) 0,25 — 0,2 va 0,3 ning qoq o‘rtasida; 0,75 — 0,7 va 0,8 ning o‘rtasida. d) 1/2.",
+      "mahsulot": "belgilangan son nuri"
+     },
+     {
+      "nom": "Yaxlitlash",
+      "topshiriq": "Do‘kondagi narxlar (ming so‘mda): non — 4,85; sut — 11,49; pishloq — 38,5; choy — 7,25. a) Har birini birlargacha yaxlitlang. b) Jami xaridni chamalang. d) Eng arzon va eng qimmat mahsulotni ayting.",
+      "yechim": "a) 5; 11; 39; 7. b) 5 + 11 + 39 + 7 = 62 ming so‘m atrofida. d) Eng arzoni — non (4,85), eng qimmati — pishloq (38,5).",
+      "mahsulot": "yaxlitlangan chek"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "O‘nli kasr ko‘rinishida yozing: 47/100.",
+      "javob": "0,47"
+     },
+     {
+      "shart": "O‘nli kasr ko‘rinishida yozing: 2 butun 3/1000.",
+      "javob": "2,003"
+     },
+     {
+      "shart": "Taqqoslang: 0,6 va 0,58.",
+      "javob": "0,6 > 0,58"
+     },
+     {
+      "shart": "Taqqoslang: 5,07 va 5,7.",
+      "javob": "5,07 < 5,7"
+     },
+     {
+      "shart": "Oddiy kasrga aylantiring: 0,4.",
+      "javob": "2/5"
+     },
+     {
+      "shart": "Yuzdan birlargacha yaxlitlang: 6,348.",
+      "javob": "6,35"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Raqamlari ko‘p kasrni katta deb o‘ylaydi: 0,65 > 0,7",
+      "sabab": "verguldan keyingi qismni natural son kabi solishtiradi (65 va 7)",
+      "oldini_olish": "xonalar sonini nol bilan tenglashtirish: 0,65 va 0,70"
+     },
+     {
+      "xato": "5/100 ni 0,5 deb yozadi",
+      "sabab": "yetishmagan xonani nol bilan to‘ldirmaydi",
+      "oldini_olish": "qoida: maxrajda nechta nol bo‘lsa, verguldan keyin shuncha raqam"
+     },
+     {
+      "xato": "3,05 dagi nolni tashlab, 3,5 deb yozadi",
+      "sabab": "«nollarni tashlash mumkin» qoidasini noto‘g‘ri umumlashtiradi",
+      "oldini_olish": "faqat oxirdagi nollar tashlanishini xonalar jadvalida ko‘rsatish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "sport natijalari o‘nli kasrlarda o‘lchanadi: 9,58 soniya, 2,45 metr"
+     },
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "o‘lchash natijalari: tana harorati 36,6 daraja, uzunlik 1,5 metr"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "valyuta kurslari va narxlar o‘nli kasrlar bilan yoziladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinfimiz rekordlari»",
+     "muammo": "Sport natijalarini qanday aniq o‘lchash va adolatli taqqoslash mumkin?",
+     "mahsulot": "sinf rekordlari jadvali: sakrash, yugurish, uloqtirish natijalari o‘nli kasrlarda",
+     "bosqichlar": [
+      "o‘lchash turlarini tanlash",
+      "natijalarni metr va soniyaning o‘nli ulushlarida yozish",
+      "taqqoslash va o‘rinlarni aniqlash",
+      "jadval tayyorlash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Uzunlikka sakrash natijalarini o‘lchang va tartiblang",
+      "30 metrga yugurish vaqtini o‘lchang va tartiblang",
+      "To‘p uloqtirish masofasini o‘lchang va tartiblang",
+      "Barcha natijalarni umumiy jadvalga yig‘ing"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "yozuv to‘g‘ri",
+      "taqqoslash to‘g‘ri",
+      "jadval tushunarli",
+      "xulosa bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sport majmuasi»",
+     "bekatlar": [
+      {
+       "nom": "Yugurish yo‘lakchasi",
+       "matn": "Tabloda ikki sportchining vaqti: 11,8 va 11,75 soniya.",
+       "topshiriq": "Kim tezroq yugurgan?",
+       "javob": "11,75 soniya ko‘rsatgan sportchi",
+       "rasm": ""
+      },
+      {
+       "nom": "Sakrash maydoni",
+       "matn": "Sportchi 5,06 m ga sakradi. Hakam natijani 5,6 deb yozib qo‘ydi.",
+       "topshiriq": "Hakam xato qildimi?",
+       "javob": "ha, 5,06 va 5,6 — turli sonlar",
+       "rasm": ""
+      },
+      {
+       "nom": "Tarozi xonasi",
+       "matn": "Bokschining vazni 63,50 kg. Jadvalda 63,5 kg yozilgan.",
+       "topshiriq": "Bu yozuvlar tengmi?",
+       "javob": "ha, oxiridagi nol qiymatni o‘zgartirmaydi",
+       "rasm": ""
+      },
+      {
+       "nom": "Suzish havzasi",
+       "matn": "Suzuvchi masofani 58,348 soniyada bosib o‘tdi. Tablo yuzdan birlargacha ko‘rsatadi.",
+       "topshiriq": "Tabloda qaysi son chiqadi?",
+       "javob": "58,35",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "yo‘lakchani kesib o‘tmang",
+      "havza chetida yugurmang",
+      "murabbiyni tinglang"
+     ],
+     "kundalik": [
+      "Sportda nega o‘nli kasrlar kerak?",
+      "Yugurishda katta son yaxshimi yoki kichik?",
+      "Qaysi bekatda yaxlitladik?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "O‘nli kasr",
+      "tarif": "maxraji 10, 100, 1000 … bo‘lgan kasrning vergul bilan yozilishi"
+     },
+     {
+      "atama": "Butun qism",
+      "tarif": "o‘nli kasrda verguldan chapdagi son"
+     },
+     {
+      "atama": "Kasr qism",
+      "tarif": "o‘nli kasrda verguldan o‘ngdagi raqamlar"
+     },
+     {
+      "atama": "O‘ndan birlar xonasi",
+      "tarif": "verguldan keyingi birinchi xona"
+     },
+     {
+      "atama": "Yuzdan birlar xonasi",
+      "tarif": "verguldan keyingi ikkinchi xona"
+     },
+     {
+      "atama": "Mingdan birlar xonasi",
+      "tarif": "verguldan keyingi uchinchi xona"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "0,5 va 0,50 teng",
+      "togri": true,
+      "izoh": "oxiridagi nol qiymatni o‘zgartirmaydi"
+     },
+     {
+      "matn": "0,65 soni 0,7 dan katta",
+      "togri": false,
+      "izoh": "0,70 > 0,65"
+     },
+     {
+      "matn": "3/100 kasr 0,03 deb yoziladi",
+      "togri": true,
+      "izoh": "maxrajda ikkita nol — verguldan keyin ikkita raqam"
+     },
+     {
+      "matn": "3,05 va 3,5 teng",
+      "togri": false,
+      "izoh": "o‘rtadagi nolni tashlab bo‘lmaydi"
+     },
+     {
+      "matn": "Verguldan keyingi birinchi xona — o‘ndan birlar",
+      "togri": true,
+      "izoh": "xonalar tartibiga ko‘ra"
+     },
+     {
+      "matn": "0,25 kasr 1/4 ga teng",
+      "togri": true,
+      "izoh": "25/100 qisqartirilsa 1/4"
+     },
+     {
+      "matn": "Verguldan keyin raqami ko‘p kasr har doim katta",
+      "togri": false,
+      "izoh": "0,125 soni 0,5 dan kichik"
+     },
+     {
+      "matn": "1/2 kasr 0,2 ga teng",
+      "togri": false,
+      "izoh": "1/2 — bu 5/10, ya’ni 0,5"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "O‘nli kasrda vergul nimani ajratadi?",
+      "javob": "butun qismni kasr qismdan"
+     },
+     {
+      "savol": "Verguldan keyingi birinchi xona qanday ataladi?",
+      "javob": "o‘ndan birlar"
+     },
+     {
+      "savol": "Verguldan keyingi ikkinchi xona qanday ataladi?",
+      "javob": "yuzdan birlar"
+     },
+     {
+      "savol": "0,7 qanday o‘qiladi?",
+      "javob": "nol butun o‘ndan yetti"
+     },
+     {
+      "savol": "1/10 ni o‘nli kasrda yozing.",
+      "javob": "0,1"
+     },
+     {
+      "savol": "1/4 ni o‘nli kasrda yozing.",
+      "javob": "0,25"
+     },
+     {
+      "savol": "O‘nli kasr oxiriga nol yozilsa nima bo‘ladi?",
+      "javob": "qiymati o‘zgarmaydi"
+     },
+     {
+      "savol": "Qaysi biri katta: 0,9 yoki 0,89?",
+      "javob": "0,9"
+     },
+     {
+      "savol": "0,75 qaysi oddiy kasrga teng?",
+      "javob": "3/4"
+     },
+     {
+      "savol": "Inson tanasining me’yoriy harorati qancha?",
+      "javob": "36,6 daraja"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘nli kasr yozuvi",
+      "matn": "Maxraji 10, 100, 1000 bo‘lgan kasr vergul bilan yoziladi: 7/10 — 0,7; 25/100 — 0,25. Butun qism bo‘lmasa 0 yoziladi.",
+      "savol": "13/100 ni o‘nli kasrda yozing."
+     },
+     {
+      "nom": "Xonalar",
+      "matn": "Verguldan keyin: o‘ndan birlar, yuzdan birlar, mingdan birlar. Maxrajdagi nollar soni verguldan keyingi raqamlar soniga teng.",
+      "savol": "7/1000 qanday yoziladi?"
+     },
+     {
+      "nom": "Taqqoslash",
+      "matn": "Avval butun qism, keyin xonama-xona. Raqamlar soni nol bilan tenglashtiriladi: 0,7 — bu 0,70.",
+      "savol": "1,2 va 1,19 ni taqqoslang."
+     },
+     {
+      "nom": "O‘tkazish va yaxlitlash",
+      "matn": "0,25 — 25/100 — 1/4. Oddiy kasrni o‘nli kasrga o‘tkazish uchun maxraj 10, 100, 1000 ga keltiriladi. Yaxlitlash qoidasi natural sonlardagidek.",
+      "savol": "3/4 ni o‘nli kasrda yozing."
+     }
+    ],
+    "muammoli_savol": "Do‘konda ikki xil sharbat bor: birida 0,5 litr, ikkinchisida 0,45 litr. Narxi bir xil. Kichik uka: «0,45 ko‘p, chunki 45 soni 5 dan katta!» dedi. U haqmi? Qanday tushuntirasiz?",
+    "keys": {
+     "vaziyat": "Shifokor bolaga 0,5 gramm dori buyurdi. Dorixonada 0,25 grammli va 0,05 grammli tabletkalar bor. Ona qaysi tabletkadan nechta berishni bilmay turibdi.",
+     "savollar": [
+      "0,25 grammli tabletkadan nechta kerak? 0,05 grammlidan-chi?",
+      "Ona 0,05 ni 0,5 bilan adashtirsa, bola kerakli miqdordan necha marta kam dori oladi?"
+     ]
+    },
+    "tezis": "Bitta vergul sonni o‘n barobar o‘zgartirishi mumkin",
+    "taqqoslash": {
+     "a": "Oddiy kasr",
+     "b": "O‘nli kasr",
+     "umumiy": [
+      "butunning qismini ifodalaydi",
+      "bir-biriga aylantirish mumkin"
+     ],
+     "a_farq": [
+      "surat va maxraj bilan yoziladi",
+      "maxraj istalgan son"
+     ],
+     "b_farq": [
+      "vergul bilan yoziladi",
+      "maxraj faqat 10, 100, 1000 …"
+     ]
+    },
+    "klaster": {
+     "markaz": "O‘nli kasr",
+     "shoxlar": [
+      {
+       "nom": "Tuzilishi",
+       "bandlar": [
+        "butun qism",
+        "vergul",
+        "kasr qism"
+       ]
+      },
+      {
+       "nom": "Xonalar",
+       "bandlar": [
+        "o‘ndan birlar",
+        "yuzdan birlar",
+        "mingdan birlar"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "taqqoslash",
+        "yaxlitlash",
+        "oddiy kasrga o‘tkazish"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "narx",
+        "sport natijasi",
+        "harorat"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Kichkina belgiman, lekin joyimni bir xona sursang, son o‘n barobar o‘zgaradi. Men kimman?",
+     "javob": "vergul"
+    },
+    "hikmat": "Yuz o‘lchab, bir kes.",
+    "kalit_soz": "VERGUL",
+    "xato_yechim": {
+     "shart": "0,7 va 0,65 ni taqqoslang.",
+     "xato": "0,65 katta, chunki 65 soni 7 dan katta",
+     "togri": "0,7 katta: 0,70 > 0,65",
+     "sabab": "kasr qismlar natural son sifatida solishtirilgan; avval xonalar sonini tenglashtirish kerak"
+    },
+    "guruh_nomlari": [
+     "O‘ndan birlar",
+     "Yuzdan birlar",
+     "Mingdan birlar",
+     "Vergullar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Chizg‘ich bilan o‘lchash»",
+     "topshiriq": "Guruh partadagi 5 ta buyum (qalam, daftar, o‘chirg‘ich, kitob, penal) uzunligini chizg‘ichda millimetr aniqligida o‘lchaydi va santimetrda o‘nli kasr bilan yozadi (masalan, 14 sm 3 mm — 14,3 sm). Natijalarni o‘sish tartibida joylang va eng uzun hamda eng qisqa buyumni ayting."
+    },
+    "vazifalar": {
+     "A": "O‘nli kasrda yozing: 9/10, 31/100, 7/1000, 5 butun 3/10. Taqqoslang: 0,8 va 0,79; 4,05 va 4,5; 1,200 va 1,2.",
+     "B": "Uyingizdagi 5 ta mahsulot qadog‘idan massani yoki hajmni yozib oling (masalan, 0,5 l; 0,9 kg) va ularni o‘sish tartibida joylang.",
+     "C": "Oilangiz a’zolarining bo‘yini metrda o‘nli kasr bilan yozing (masalan, 1,62 m), tartiblang va eng baland hamda eng past bo‘y orasidagi farqni santimetrda toping."
+    },
+    "sinkveyn": [
+     "Vergul",
+     "kichik, muhim",
+     "ajratadi, aniqlaydi, o‘zgartiradi",
+     "Butunni kasrdan ajratib turadi",
+     "Chegara"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh estafetada qatnashdi. Har bir guruh o‘z natijasini o‘nli kasr bilan yozadi, so‘ng o‘rinlar aniqlanadi.",
+     "qismlar": [
+      "1-guruh: 52 soniya va 3/10 soniya",
+      "2-guruh: 52 soniya va 25/100 soniya",
+      "3-guruh: 52 soniya va 5/100 soniya",
+      "4-guruh: 52 soniya va 30/100 soniya"
+     ],
+     "yakun": "Natijalar: 52,3; 52,25; 52,05; 52,30. G‘olib — 3-guruh (52,05), ikkinchi — 2-guruh (52,25), 1- va 4-guruh teng natija (52,3) ko‘rsatdi."
+    }
+   }
+  },
+  {
+   "mavzu": "O‘nli kasrlar bilan amallar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Qo‘shish va ayirish: vergul vergul ostida",
+      "matn": "O‘nli kasrlar ustun shaklida qo‘shiladi va ayriladi. Asosiy qoida: vergul vergul ostiga yoziladi, shunda bir xil xonalar bir-birining ostida turadi. Verguldan keyingi raqamlar soni teng bo‘lmasa, nol yozib tenglashtiriladi. Amal natural sonlardagidek bajariladi, javobda vergul o‘z ustuniga qo‘yiladi.",
+      "misol": "3,7 ga 2,45 ni qo‘shamiz: 3,70 va 2,45. Yuzdan birlar: 0 va 5 — 5; o‘ndan birlar: 7 va 4 — 11, 1 yozamiz, 1 dilda; butunlar: 3, 2 va dildagi 1 — 6. Javob: 6,15.",
+      "savol": "1,5 ga 2,3 ni qo‘shing.",
+      "javob": "3,8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ayirishda nol qo‘shish",
+      "matn": "Kamayuvchida xonalar kam bo‘lsa, oxiriga nollar yoziladi va kerak bo‘lsa qo‘shni xonadan qarz olinadi. Natural sondan o‘nli kasr ayirilganda natural son vergul va nollar bilan yozib olinadi.",
+      "misol": "5 dan 1,75 ni ayiramiz: 5,00 dan 1,75. Natija 3,25. Tekshirish: 3,25 ga 1,75 qo‘shilsa, 5 chiqadi.",
+      "savol": "4 dan 0,6 ni ayiring.",
+      "javob": "3,4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "10, 100, 1000 ga ko‘paytirish va bo‘lish",
+      "matn": "O‘nli kasrni 10 ga ko‘paytirganda vergul bir xona o‘ngga, 100 ga ko‘paytirganda ikki xona, 1000 ga — uch xona o‘ngga suriladi. Bo‘lishda vergul shuncha xona chapga suriladi. Xonalar yetmasa, nollar yoziladi.",
+      "misol": "3,47 ni 10 ga ko‘paytirsak 34,7; 100 ga ko‘paytirsak 347. 52,6 ni 10 ga bo‘lsak 5,26; 100 ga bo‘lsak 0,526.",
+      "savol": "0,8 ni 100 ga ko‘paytiring.",
+      "javob": "80",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘nli kasrlarni ko‘paytirish",
+      "matn": "Qoida: 1) vergullarga e’tibor bermay, sonlarni natural sonlar kabi ko‘paytiramiz; 2) ikkala ko‘paytuvchida verguldan keyin jami nechta raqam borligini sanaymiz; 3) ko‘paytmada o‘ngdan shuncha raqamni vergul bilan ajratamiz. Raqamlar yetmasa, oldiga nollar yoziladi.",
+      "misol": "1,2 ni 0,3 ga ko‘paytiramiz: 12 · 3 = 36. Verguldan keyin jami ikkita raqam bor (bittadan). Javob: 0,36.",
+      "savol": "0,4 ni 0,2 ga ko‘paytiring.",
+      "javob": "0,08",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘nli kasrni natural songa bo‘lish",
+      "matn": "O‘nli kasr natural songa burchak usulida, natural sonlar kabi bo‘linadi. Butun qismni bo‘lish tugashi bilan bo‘linmaga vergul qo‘yiladi va bo‘lish davom ettiriladi. Butun qism bo‘luvchidan kichik bo‘lsa, bo‘linma «0,» bilan boshlanadi. Qoldiq qolsa, bo‘linuvchi oxiriga nol yozib davom ettirish mumkin.",
+      "misol": "7,2 ni 3 ga bo‘lamiz: 7 ni 3 ga — 2, qoldiq 1; vergul qo‘yamiz; 12 ni 3 ga — 4. Javob: 2,4. Tekshirish: 2,4 ni 3 ga ko‘paytirsak 7,2.",
+      "savol": "4,8 ni 4 ga bo‘ling.",
+      "javob": "1,2",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qo‘shish va ayirishda vergul vergul ostiga yoziladi. Ko‘paytirishda sonlar vergulsiz ko‘paytirilib, ko‘paytmada verguldan keyin ko‘paytuvchilardagi jami kasr xonalari soni qadar raqam ajratiladi. 10, 100, 1000 ga ko‘paytirishda vergul o‘ngga, bo‘lishda chapga suriladi.",
+    "misollar": [
+     {
+      "shart": "Hisoblang: 12,6 ga 7,85 ni qo‘shing.",
+      "yechim": [
+       "Xonalarni tenglashtiramiz: 12,60 va 7,85.",
+       "Vergul vergul ostida. Yuzdan birlar: 0 va 5 — 5.",
+       "O‘ndan birlar: 6 va 8 — 14; 4 yozamiz, 1 dilda.",
+       "Butunlar: 12, 7 va dildagi 1 — 20.",
+       "Javob: 20,45."
+      ],
+      "javob": "20,45"
+     },
+     {
+      "shart": "Hisoblang: 2,5 ni 1,4 ga ko‘paytiring.",
+      "yechim": [
+       "Vergulsiz ko‘paytiramiz: 25 · 14 = 350.",
+       "Ko‘paytuvchilarda verguldan keyin jami ikkita raqam bor.",
+       "350 da o‘ngdan ikkita raqamni ajratamiz: 3,50.",
+       "Oxiridagi nolni tashlaymiz: 3,5.",
+       "Chamalab tekshiramiz: 2,5 soni 1 dan sal ko‘proq songa ko‘paytirildi — 3,5 mantiqli."
+      ],
+      "javob": "3,5"
+     },
+     {
+      "shart": "Bir kilogramm olma 12,5 ming so‘m. 2,4 kg olma qancha turadi? 50 ming so‘mdan qancha qaytim qoladi?",
+      "yechim": [
+       "Qiymat — narx va miqdor ko‘paytmasi: 12,5 ni 2,4 ga ko‘paytiramiz.",
+       "Vergulsiz: 125 · 24 = 3000. Verguldan keyin jami ikkita raqam: 30,00, ya’ni 30 ming so‘m.",
+       "Qaytim: 50 − 30 = 20 ming so‘m."
+      ],
+      "javob": "30 ming so‘m; qaytim 20 ming so‘m"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Do‘kon cheki",
+      "topshiriq": "Xaridlar (ming so‘mda): non — 4,5; sut — 11,8; pishloq 0,5 kg (1 kg narxi 64); olma 1,5 kg (1 kg narxi 14). a) Pishloq va olma qiymatini toping. b) Jami xarid qancha? d) 100 ming so‘mdan qancha qaytim qoladi?",
+      "yechim": "a) Pishloq: 64 ning yarmi — 32; olma: 14 ni 1,5 ga ko‘paytirsak 21. b) 4,5 va 11,8 va 32 va 21 yig‘indisi — 69,3 ming so‘m. d) 100 dan 69,3 ayirilsa — 30,7 ming so‘m.",
+      "mahsulot": "to‘ldirilgan chek"
+     },
+     {
+      "nom": "Vergul qayerda?",
+      "topshiriq": "Ko‘paytmalarda vergulni to‘g‘ri joyga qo‘ying (raqamlar to‘g‘ri, faqat vergul yo‘q): a) 3,2 · 1,5 → 480; b) 0,6 · 0,7 → 42; d) 12,5 · 0,8 → 1000; e) 0,03 · 0,2 → 6.",
+      "yechim": "a) Jami ikkita kasr xonasi: 4,80, ya’ni 4,8. b) Ikkita xona: 0,42. d) Ikkita xona: 10,00, ya’ni 10. e) Uchta xona: 0,006.",
+      "mahsulot": "vergul qo‘yilgan javoblar va izoh"
+     },
+     {
+      "nom": "Xona ta’miri",
+      "topshiriq": "Xona poli to‘g‘ri to‘rtburchak: bo‘yi 4,5 m, eni 3,2 m. a) Pol yuzini toping. b) 1 m² linoleum 85 ming so‘m tursa, hammasi qancha turadi? d) Plintus uchun xona perimetrini toping.",
+      "yechim": "a) 4,5 ni 3,2 ga ko‘paytiramiz: 45 · 32 = 1440, ikkita kasr xonasi — 14,4 m². b) 14,4 ni 85 ga ko‘paytiramiz: 144 · 85 = 12240, bitta kasr xonasi — 1224 ming so‘m. d) Bo‘y va en yig‘indisi 7,7 m; perimetr uning ikki barobari — 15,4 m.",
+      "mahsulot": "xona chizmasi va smeta"
+     },
+     {
+      "nom": "Teng bo‘lamiz",
+      "topshiriq": "a) 7,5 litr sharbat 5 ta idishga teng quyildi — har birida qancha? b) 12,6 metr lenta 4 ta teng bo‘lakka kesildi — har biri qancha? d) 3 kg konfet 4 bolaga teng bo‘lindi — har biriga qancha?",
+      "yechim": "a) 7,5 ni 5 ga bo‘lsak — 1,5 litr. b) 12,6 ni 4 ga bo‘lsak — 3,15 metr. d) 3 ni 4 ga bo‘lsak — 0,75 kg.",
+      "mahsulot": "burchak usulidagi bo‘lishlar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "4,6 ga 3,75 ni qo‘shing.",
+      "javob": "8,35"
+     },
+     {
+      "shart": "9,2 dan 4,58 ni ayiring.",
+      "javob": "4,62"
+     },
+     {
+      "shart": "0,37 ni 100 ga ko‘paytiring.",
+      "javob": "37"
+     },
+     {
+      "shart": "2,5 ni 0,4 ga ko‘paytiring.",
+      "javob": "1"
+     },
+     {
+      "shart": "8,4 ni 6 ga bo‘ling.",
+      "javob": "1,4"
+     },
+     {
+      "shart": "45,2 ni 10 ga bo‘ling.",
+      "javob": "4,52"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qo‘shishda sonlarni o‘ng chetidan tekislaydi: 3,7 va 2,45 ni 37 va 245 kabi yozadi",
+      "sabab": "natural sonlardagi odat",
+      "oldini_olish": "avval vergullarni bir ustunga yozish, so‘ng raqamlarni joylash; bo‘sh xonalarga nol yozish"
+     },
+     {
+      "xato": "Ko‘paytirishda vergulni ko‘paytuvchilardagidek joyga qo‘yadi: 1,2 va 0,3 ko‘paytmasini 3,6 deydi",
+      "sabab": "qo‘shish qoidasini ko‘paytirishga ko‘chiradi",
+      "oldini_olish": "kasr xonalarini sanash va chamalab tekshirish: 1,2 ning uchdan biriga yaqin son chiqishi kerak"
+     },
+     {
+      "xato": "10 ga bo‘lganda vergulni o‘ngga suradi",
+      "sabab": "ko‘paytirish va bo‘lish yo‘nalishini adashtiradi",
+      "oldini_olish": "tayanch: ko‘paytirsak — son kattalashadi (vergul o‘ngga), bo‘lsak — kichrayadi (vergul chapga)"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "xarid qiymati, qaytim va valyuta ayirboshlash o‘nli kasrlar bilan hisoblanadi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "mato, taxta va boshqa materiallar uzunligi metrning o‘nli ulushlarida o‘lchanadi va hisoblanadi"
+     },
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "o‘lchov birliklarini almashtirish 10, 100, 1000 ga ko‘paytirish va bo‘lishga asoslangan: 1 km — 1000 m, 1 m — 100 sm"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Xonamni ta’mirlayman»",
+     "muammo": "Xonani ta’mirlash uchun qancha material kerak va u qancha turadi?",
+     "mahsulot": "xona chizmasi va ta’mir smetasi (pol, plintus, bo‘yoq)",
+     "bosqichlar": [
+      "xona o‘lchamlarini metrda o‘nli kasr bilan o‘lchash",
+      "pol yuzi va perimetrni hisoblash",
+      "material narxlarini aniqlash",
+      "smeta tuzish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Pol yuzini va linoleum xarajatini hisoblang",
+      "Perimetr va plintus xarajatini hisoblang",
+      "Devorlar yuzi va bo‘yoq xarajatini hisoblang",
+      "Jami smetani tuzing va 10 foiz zaxira qo‘shing"
+     ],
+     "mezonlar": [
+      "o‘lchovlar aniq",
+      "hisob to‘g‘ri",
+      "vergul to‘g‘ri qo‘yilgan",
+      "smeta tartibli",
+      "xulosa asosli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bozor va tarozi»",
+     "bekatlar": [
+      {
+       "nom": "Meva rastasi",
+       "matn": "Xaridor 1,5 kg uzum va 2,25 kg shaftoli oldi.",
+       "topshiriq": "Jami necha kilogramm meva olindi?",
+       "javob": "3,75 kg",
+       "rasm": ""
+      },
+      {
+       "nom": "Tarozi",
+       "matn": "Qovun 3,2 kg chiqdi. 1 kg qovun 5 ming so‘m.",
+       "topshiriq": "Qovun necha so‘m turadi?",
+       "javob": "16 ming so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Mato do‘koni",
+       "matn": "10 metrlik matodan 3,65 metr kesib olindi.",
+       "topshiriq": "Necha metr mato qoldi?",
+       "javob": "6,35 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Kassa",
+       "matn": "Uch do‘st 13,5 ming so‘mlik tushlik hisobini teng bo‘lib to‘lamoqchi.",
+       "topshiriq": "Har biri qancha to‘laydi?",
+       "javob": "4,5 ming so‘m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "bozorda guruhdan ajralmang",
+      "tarozi va pichoqlarga tegmang",
+      "pulni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi bekatda qaysi amal bajarildi?",
+      "Vergulni qayerga qo‘yishni qanday bildingiz?",
+      "Javobni qanday chamaladingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Vergul vergul ostida",
+      "tarif": "o‘nli kasrlarni ustun shaklida qo‘shish va ayirish qoidasi"
+     },
+     {
+      "atama": "Kasr xonalari",
+      "tarif": "verguldan keyingi raqamlar"
+     },
+     {
+      "atama": "Xonalarni tenglashtirish",
+      "tarif": "oxiriga nol yozib, verguldan keyingi raqamlar sonini bir xil qilish"
+     },
+     {
+      "atama": "Vergulni surish",
+      "tarif": "10, 100, 1000 ga ko‘paytirish yoki bo‘lishda vergul o‘rnini o‘zgartirish"
+     },
+     {
+      "atama": "Chamalash",
+      "tarif": "natijani yaxlitlangan sonlar bilan taxminan hisoblash"
+     },
+     {
+      "atama": "Qiymat",
+      "tarif": "narx va miqdor ko‘paytmasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "O‘nli kasrlarni qo‘shishda vergul vergul ostiga yoziladi",
+      "togri": true,
+      "izoh": "bir xil xonalar ustma-ust turishi kerak"
+     },
+     {
+      "matn": "1,2 va 0,3 ko‘paytmasi 3,6 ga teng",
+      "togri": false,
+      "izoh": "jami ikkita kasr xonasi: 0,36"
+     },
+     {
+      "matn": "O‘nli kasrni 10 ga ko‘paytirganda vergul bir xona o‘ngga suriladi",
+      "togri": true,
+      "izoh": "son 10 marta kattalashadi"
+     },
+     {
+      "matn": "O‘nli kasrni 100 ga bo‘lganda vergul ikki xona o‘ngga suriladi",
+      "togri": false,
+      "izoh": "chapga suriladi"
+     },
+     {
+      "matn": "5 dan 1,75 ni ayirsak 3,25 chiqadi",
+      "togri": true,
+      "izoh": "5,00 dan 1,75 ayriladi"
+     },
+     {
+      "matn": "0,5 ni 0,5 ga ko‘paytirsak 2,5 chiqadi",
+      "togri": false,
+      "izoh": "0,25 chiqadi"
+     },
+     {
+      "matn": "7,2 ni 3 ga bo‘lsak 2,4 chiqadi",
+      "togri": true,
+      "izoh": "2,4 ni 3 ga ko‘paytirsak 7,2"
+     },
+     {
+      "matn": "Ko‘paytmada vergul har doim ko‘paytuvchidagi joyda turadi",
+      "togri": false,
+      "izoh": "kasr xonalari soni qo‘shiladi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "O‘nli kasrlar qanday qo‘shiladi?",
+      "javob": "vergul vergul ostida, xonama-xona"
+     },
+     {
+      "savol": "Xonalar soni teng bo‘lmasa nima qilinadi?",
+      "javob": "oxiriga nol yozib tenglashtiriladi"
+     },
+     {
+      "savol": "10 ga ko‘paytirganda vergul qayerga suriladi?",
+      "javob": "bir xona o‘ngga"
+     },
+     {
+      "savol": "100 ga bo‘lganda vergul qayerga suriladi?",
+      "javob": "ikki xona chapga"
+     },
+     {
+      "savol": "Ko‘paytmada vergul qanday qo‘yiladi?",
+      "javob": "ko‘paytuvchilardagi jami kasr xonalari soni qadar raqam o‘ngdan ajratiladi"
+     },
+     {
+      "savol": "0,1 ni 0,1 ga ko‘paytirsak nima chiqadi?",
+      "javob": "0,01"
+     },
+     {
+      "savol": "2,5 ga 2,5 ni qo‘shsak nima chiqadi?",
+      "javob": "5"
+     },
+     {
+      "savol": "1 dan 0,3 ni ayirsak nima chiqadi?",
+      "javob": "0,7"
+     },
+     {
+      "savol": "6,4 ni 2 ga bo‘lsak nima chiqadi?",
+      "javob": "3,2"
+     },
+     {
+      "savol": "Javobni qanday tez tekshirish mumkin?",
+      "javob": "chamalab yoki teskari amal bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qo‘shish va ayirish",
+      "matn": "Vergul vergul ostida. Xonalar nol bilan tenglashtiriladi. Amal natural sonlardagidek.",
+      "savol": "2,8 ga 1,35 ni qo‘shing."
+     },
+     {
+      "nom": "10, 100, 1000",
+      "matn": "Ko‘paytirishda vergul o‘ngga, bo‘lishda chapga suriladi — nollar soni qadar xona.",
+      "savol": "0,45 ni 10 ga ko‘paytiring."
+     },
+     {
+      "nom": "Ko‘paytirish",
+      "matn": "Vergulsiz ko‘paytirib, jami kasr xonalari soni qadar raqam ajratiladi: 1,2 va 0,3 ko‘paytmasi 0,36.",
+      "savol": "0,5 ni 0,6 ga ko‘paytiring."
+     },
+     {
+      "nom": "Natural songa bo‘lish",
+      "matn": "Burchak usulida bo‘linadi; butun qism tugaganda bo‘linmaga vergul qo‘yiladi.",
+      "savol": "9,6 ni 8 ga bo‘ling."
+     }
+    ],
+    "muammoli_savol": "Kalkulyatorda 2,5 ni 0,4 ga ko‘paytirgan o‘quvchi ekranda 1 sonini ko‘rib hayron bo‘ldi: «Ikkita kasrni ko‘paytirsam, qanday qilib butun son chiqdi? Kalkulyator buzilgan!» U haqmi?",
+    "keys": {
+     "vaziyat": "Ona bozordan 2,5 kg go‘sht (1 kg — 95 ming so‘m) va 3,2 kg kartoshka (1 kg — 5 ming so‘m) oldi. Sotuvchi jami 265,5 ming so‘m so‘radi. Ona chamalab ko‘rib, hisob xato ekanini sezdi.",
+     "savollar": [
+      "Go‘sht va kartoshka alohida-alohida qancha turadi?",
+      "To‘g‘ri jami summa qancha va sotuvchi qanchaga adashgan?"
+     ]
+    },
+    "tezis": "Vergulni to‘g‘ri qo‘yish — pulni to‘g‘ri sanash demak",
+    "taqqoslash": {
+     "a": "Qo‘shish va ayirish",
+     "b": "Ko‘paytirish",
+     "umumiy": [
+      "natural sonlar kabi bajariladi",
+      "chamalab tekshiriladi"
+     ],
+     "a_farq": [
+      "vergul vergul ostida yoziladi",
+      "javobda vergul o‘z ustunida"
+     ],
+     "b_farq": [
+      "vergullarni tekislash shart emas",
+      "kasr xonalari soni qo‘shiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "O‘nli kasrlar bilan amallar",
+     "shoxlar": [
+      {
+       "nom": "Qo‘shish, ayirish",
+       "bandlar": [
+        "vergul vergul ostida",
+        "nol bilan tenglashtirish"
+       ]
+      },
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "vergulsiz ko‘paytirish",
+        "kasr xonalarini sanash"
+       ]
+      },
+      {
+       "nom": "Bo‘lish",
+       "bandlar": [
+        "burchak usuli",
+        "bo‘linmaga vergul qo‘yish"
+       ]
+      },
+      {
+       "nom": "10, 100, 1000",
+       "bandlar": [
+        "vergul o‘ngga",
+        "vergul chapga"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Sonni menga ko‘paytirsang, vergul bir qadam o‘ngga sakraydi; bo‘lsang — chapga. Men qaysi sonman?",
+     "javob": "10"
+    },
+    "hikmat": "Hisobli do‘st ayrilmas.",
+    "kalit_soz": "VERGUL",
+    "xato_yechim": {
+     "shart": "3,7 ga 2,45 ni qo‘shing.",
+     "xato": "Sonlar o‘ng chetidan tekislangan: 37 va 245 qo‘shilib, 2,82 yozilgan",
+     "togri": "Vergul vergul ostida: 3,70 va 2,45 yig‘indisi 6,15",
+     "sabab": "xonalar aralashib ketgan: o‘ndan birlar yuzdan birlar bilan qo‘shilgan; chamalash ham xatoni ko‘rsatadi — 3 dan katta son qo‘shilganda 2,82 chiqishi mumkin emas"
+    },
+    "guruh_nomlari": [
+     "Vergullar",
+     "Kassirlar",
+     "O‘lchovchilar",
+     "Chamachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Do‘konchi va xaridor»",
+     "topshiriq": "Guruh ikkiga bo‘linadi: «do‘konchilar» 5 ta mahsulotga o‘nli kasrli narx (ming so‘mda) va miqdor yozilgan kartochka tayyorlaydi, «xaridorlar» jami summani va 100 ming so‘mdan qaytimni hisoblaydi. So‘ng rollar almashadi va hisoblar chamalash orqali tekshiriladi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: 5,4 ga 2,78 ni qo‘shing; 10 dan 3,65 ni ayiring; 0,6 ni 0,9 ga ko‘paytiring; 3,2 ni 100 ga ko‘paytiring; 7,5 ni 5 ga bo‘ling.",
+     "B": "Oilangizning bir martalik bozorlig‘i chekini yozing (kamida 4 mahsulot, miqdori o‘nli kasrda), jami summani hisoblang va chamalab tekshiring.",
+     "C": "Xonangiz polining bo‘yi va enini metrda o‘nli kasr bilan o‘lchang, yuzini va perimetrini hisoblang. 1 m² gilam 120 ming so‘m tursa, butun polga gilam qancha turishini toping."
+    },
+    "sinkveyn": [
+     "Amal",
+     "aniq, vergulli",
+     "tekislaydi, suradi, sanaydi",
+     "Vergul joyini bilgan adashmaydi",
+     "Hisob"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Sinf sayohatga tayyorlanmoqda. Har bir guruh o‘z xarajatini (ming so‘mda) hisoblaydi, so‘ng jami summa topiladi.",
+     "qismlar": [
+      "1-guruh: 24 ta chipta, har biri 6,5",
+      "2-guruh: 12 litr sharbat, 1 litri 9,5",
+      "3-guruh: avtobus ijarasi 250, undan 12,5 chegirma",
+      "4-guruh: jami xarajatni toping"
+     ],
+     "yakun": "Chiptalar: 6,5 ni 24 ga ko‘paytirsak 156; sharbat: 9,5 ni 12 ga ko‘paytirsak 114; avtobus: 250 dan 12,5 ayirilsa 237,5; jami 156 va 114 va 237,5 yig‘indisi — 507,5 ming so‘m."
+    }
+   }
+  },
+  {
+   "mavzu": "Foizlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Foiz nima?",
+      "matn": "Sonning yuzdan bir qismi foiz deyiladi va % belgisi bilan yoziladi. «Foiz» so‘zi «yuzdan» degan ma’noni bildiradi. Demak, 1% — bu 1/100, ya’ni 0,01. Butun narsaning hammasi — 100%. Foizlar turli miqdorlarni bir xil o‘lchovda — yuzdan ulushlarda taqqoslash uchun qulay.",
+      "misol": "Sinfdagi 100 o‘quvchidan 7 tasi a’lochi bo‘lsa, a’lochilar 7% ni tashkil etadi.",
+      "savol": "100% nimani bildiradi?",
+      "javob": "butunning hammasini",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Foiz, kasr va o‘nli kasr",
+      "matn": "Foizni o‘nli kasrga aylantirish uchun sonni 100 ga bo‘lamiz (vergul ikki xona chapga). O‘nli kasrni foizga aylantirish uchun 100 ga ko‘paytiramiz. Ko‘p uchraydigan foizlarni yoddan bilish foydali: 50% — yarim, 25% — chorak, 10% — o‘ndan bir, 20% — beshdan bir, 75% — to‘rtdan uch.",
+      "misol": "35% — bu 35/100, ya’ni 0,35. 0,6 — bu 60%. 1/4 — bu 25%.",
+      "savol": "50% ni oddiy kasr ko‘rinishida yozing.",
+      "javob": "1/2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonning foizini topish",
+      "matn": "Sonning bir necha foizini topish uchun: 1) sonni 100 ga bo‘lib, 1 foizini topamiz; 2) natijani foizlar soniga ko‘paytiramiz. Boshqacha aytganda, son foizning o‘nli kasr ko‘rinishiga ko‘paytiriladi.",
+      "misol": "400 ning 15 foizini topamiz: 400 : 100 = 4 — bu 1%; 4 · 15 = 60. Demak, 400 ning 15% i — 60.",
+      "savol": "200 ning 10 foizi nechaga teng?",
+      "javob": "20",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Foiziga ko‘ra sonni topish",
+      "matn": "Sonning ma’lum foizi berilgan bo‘lsa, sonning o‘zini topish uchun: 1) berilgan qiymatni foizlar soniga bo‘lib, 1 foizni topamiz; 2) natijani 100 ga ko‘paytiramiz.",
+      "misol": "Kitobning 20% i — 60 bet. Butun kitob: 60 : 20 = 3 bet — bu 1%; 3 · 100 = 300 bet.",
+      "savol": "Sonning 50% i 40 ga teng. Sonning o‘zi nechaga teng?",
+      "javob": "80",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bir son ikkinchisining necha foizi?",
+      "matn": "Bir son ikkinchisining necha foizini tashkil etishini topish uchun birinchi son ikkinchisiga bo‘linadi va natija 100 ga ko‘paytiriladi. Bu usul test natijalari, chegirmalar va o‘sishni hisoblashda ishlatiladi.",
+      "misol": "Testdagi 40 savoldan 30 tasiga to‘g‘ri javob berildi. 30/40 kasr 3/4 ga teng, bu 0,75, ya’ni 75%.",
+      "savol": "50 dan 10 necha foiz?",
+      "javob": "20%",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "1% — sonning yuzdan bir qismi; 100% — butun. Sonning p foizini topish uchun son 100 ga bo‘linib, p ga ko‘paytiriladi. Foiziga ko‘ra sonni topish uchun qiymat p ga bo‘linib, 100 ga ko‘paytiriladi. Bir son ikkinchisining necha foizi ekanini topish uchun ular bo‘linib, 100 ga ko‘paytiriladi.",
+    "misollar": [
+     {
+      "shart": "Kurtka 300 000 so‘m turadi. 20% chegirma e’lon qilindi. Kurtkaning yangi narxini toping.",
+      "yechim": [
+       "1% ni topamiz: 300000 : 100 = 3000 so‘m.",
+       "Chegirma: 3000 · 20 = 60000 so‘m.",
+       "Yangi narx: 300000 − 60000 = 240000 so‘m.",
+       "Boshqa usul: yangi narx eski narxning 80% i — 3000 · 80 = 240000 so‘m."
+      ],
+      "javob": "240 000 so‘m"
+     },
+     {
+      "shart": "Sayyoh yo‘lning 35% ini, ya’ni 14 km ni bosib o‘tdi. Butun yo‘l necha km?",
+      "yechim": [
+       "1% ni topamiz: 14 km ni 35 ga bo‘lamiz. Hisob qulay bo‘lishi uchun metrga o‘tamiz: 14000 : 35 = 400 m.",
+       "100% — 400 · 100 = 40000 m.",
+       "Bu 40 km."
+      ],
+      "javob": "40 km"
+     },
+     {
+      "shart": "Sinfda 25 o‘quvchi bor, shundan 15 nafari qizlar. Qizlar sinfning necha foizini tashkil etadi?",
+      "yechim": [
+       "Qizlar ulushi: 15/25.",
+       "Kasrni 100 maxrajga keltiramiz: surat va maxrajni 4 ga ko‘paytirsak 60/100.",
+       "Bu 60%.",
+       "Tekshirish: 25 : 100 · 60 hisobida 25 ning 60% i — 15."
+      ],
+      "javob": "60%"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Chegirmalar kuni",
+      "topshiriq": "Do‘konda: telefon 2 000 000 so‘m — chegirma 15%; quloqchin 300 000 so‘m — chegirma 30%; sumka 150 000 so‘m — chegirma 10%. a) Har bir chegirma summasini toping. b) Yangi narxlarni toping. d) Uchalasini olsak, jami qancha tejaladi?",
+      "yechim": "a) Telefon: 2000000 : 100 = 20000, 20000 · 15 = 300000 so‘m; quloqchin: 3000 · 30 = 90000 so‘m; sumka: 1500 · 10 = 15000 so‘m. b) 1 700 000; 210 000; 135 000 so‘m. d) 300000 + 90000 + 15000 = 405000 so‘m.",
+      "mahsulot": "narxlar jadvali: eski, chegirma, yangi"
+     },
+     {
+      "nom": "Sinf so‘rovnomasi",
+      "topshiriq": "40 o‘quvchidan sevimli fan so‘raldi: matematika — 12, ona tili — 10, ingliz tili — 8, jismoniy tarbiya — 6, boshqa — 4. a) Har bir fanning foizini toping. b) Foizlar yig‘indisini tekshiring. d) Eng ommabop fanni ayting.",
+      "yechim": "a) Matematika: 12/40 — 30%; ona tili: 10/40 — 25%; ingliz tili: 8/40 — 20%; jismoniy tarbiya: 6/40 — 15%; boshqa: 4/40 — 10%. b) 30 + 25 + 20 + 15 + 10 = 100. d) Matematika.",
+      "mahsulot": "foizli ustunli diagramma"
+     },
+     {
+      "nom": "Omonat",
+      "topshiriq": "Bankka 5 000 000 so‘m omonat qo‘yildi. Bank yiliga 20% qo‘shadi. a) Bir yilda qancha foyda qo‘shiladi? b) Bir yildan keyin hisobda qancha bo‘ladi? d) Ikkinchi yili foiz yangi summadan hisoblansa, ikki yildan keyin qancha bo‘ladi?",
+      "yechim": "a) 5000000 : 100 = 50000, 50000 · 20 = 1000000 so‘m. b) 6 000 000 so‘m. d) Ikkinchi yil: 6000000 : 100 = 60000, 60000 · 20 = 1200000 so‘m; jami 7 200 000 so‘m.",
+      "mahsulot": "yillar bo‘yicha jadval"
+     },
+     {
+      "nom": "Qaysi biri foydali?",
+      "topshiriq": "Bir xil 80 000 so‘mlik kitobga ikki do‘kon taklif bermoqda: birinchisi 25% chegirma, ikkinchisi «2 ta kitob olsang, uchinchisi bepul». a) Birinchi do‘konda 3 ta kitob qancha turadi? b) Ikkinchisida-chi? d) Qaysi biri foydali va ikkinchi taklif necha foiz chegirmaga teng?",
+      "yechim": "a) Bitta kitob: 80000 : 100 = 800, 800 · 75 = 60000 so‘m; uchtasi 60000 · 3 = 180000 so‘m. b) 80000 · 2 = 160000 so‘m. d) Ikkinchisi foydali; 3 ta kitob o‘rniga 2 tasining puli to‘lanadi — uchdan bir qism tejaladi, bu taxminan 33% chegirma.",
+      "mahsulot": "taqqoslash jadvali va xulosa"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "O‘nli kasr ko‘rinishida yozing: 45%.",
+      "javob": "0,45"
+     },
+     {
+      "shart": "Foizda yozing: 0,08.",
+      "javob": "8%"
+     },
+     {
+      "shart": "600 ning 25 foizini toping.",
+      "javob": "150"
+     },
+     {
+      "shart": "Sonning 10% i 35 ga teng. Sonni toping.",
+      "javob": "350"
+     },
+     {
+      "shart": "80 dan 20 necha foiz?",
+      "javob": "25%"
+     },
+     {
+      "shart": "1 soatning 50% i necha daqiqa?",
+      "javob": "30 daqiqa"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Foizni to‘g‘ridan-to‘g‘ri ayiradi: 300 000 so‘mdan 20% chegirmani 300 000 − 20 deb hisoblaydi",
+      "sabab": "foiz — sonning qismi ekanini unutadi",
+      "oldini_olish": "har doim avval «20% — bu necha so‘m?» savoliga javob topish"
+     },
+     {
+      "xato": "5% ni 0,5 deb yozadi",
+      "sabab": "100 ga bo‘lishda vergulni bir xona suradi",
+      "oldini_olish": "5% — bu 5/100; maxrajda ikkita nol — verguldan keyin ikkita raqam: 0,05"
+     },
+     {
+      "xato": "Avval 10% qimmatlab, keyin 10% arzonlagan narxni eski narxga teng deb o‘ylaydi",
+      "sabab": "foiz har safar boshqa sondan olinishini e’tiborga olmaydi",
+      "oldini_olish": "100 so‘mlik misolda sinash: 110 bo‘ladi, so‘ng 110 ning 10% i — 11 ayriladi, 99 qoladi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "chegirma, bank foizi, soliq va narx o‘sishi foizlarda ifodalanadi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "Yer yuzining taxminan 71% i suv bilan qoplangan; aholi tarkibi foizlarda beriladi"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "inson tanasining taxminan 60–70% i suvdan iborat; mahsulot tarkibidagi yog‘ va shakar foizda ko‘rsatiladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinfimiz foizlarda»",
+     "muammo": "Sinf haqidagi ma’lumotlarni boshqa sinflar bilan qanday adolatli taqqoslash mumkin?",
+     "mahsulot": "«Sinfimiz foizlarda» infografikasi: sevimli fan, sport, kitobxonlik bo‘yicha foizlar",
+     "bosqichlar": [
+      "so‘rovnoma savollarini tuzish",
+      "ma’lumot yig‘ish",
+      "foizlarni hisoblash",
+      "diagramma chizish",
+      "xulosa va taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Sevimli fan bo‘yicha so‘rov o‘tkazing va foizlarni toping",
+      "Sport to‘garagi bo‘yicha so‘rov o‘tkazing va foizlarni toping",
+      "Oyiga o‘qilgan kitoblar bo‘yicha so‘rov o‘tkazing va foizlarni toping",
+      "Barcha natijalarni bitta infografikaga yig‘ing"
+     ],
+     "mezonlar": [
+      "ma’lumot to‘liq",
+      "foizlar to‘g‘ri",
+      "yig‘indi 100%",
+      "diagramma aniq",
+      "xulosa asosli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Savdo markazi»",
+     "bekatlar": [
+      {
+       "nom": "Kiyim do‘koni",
+       "matn": "Vitrinada: «Barcha ko‘ylaklarga 50% chegirma». Ko‘ylak 120 000 so‘m turardi.",
+       "topshiriq": "Yangi narx qancha?",
+       "javob": "60 000 so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Elektronika bo‘limi",
+       "matn": "Planshet 3 000 000 so‘m. Bo‘lib to‘lashda narxga 10% qo‘shiladi.",
+       "topshiriq": "Bo‘lib to‘lashda planshet qancha turadi?",
+       "javob": "3 300 000 so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Oziq-ovqat bo‘limi",
+       "matn": "Sut qadog‘ida «yog‘liligi 3%» deb yozilgan. Idishda 1000 g sut bor.",
+       "topshiriq": "Sutda necha gramm yog‘ bor?",
+       "javob": "30 g",
+       "rasm": ""
+      },
+      {
+       "nom": "Kitob do‘koni",
+       "matn": "Kitob 40 000 so‘m edi, hozir 30 000 so‘mga sotilmoqda.",
+       "topshiriq": "Chegirma necha foiz?",
+       "javob": "25%",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "eskalatorda ehtiyot bo‘ling",
+      "guruhdan ajralmang",
+      "narsalarga ruxsatsiz tegmang"
+     ],
+     "kundalik": [
+      "Qaysi bekatda sonning foizini topdik?",
+      "Qayerda necha foiz ekanini topdik?",
+      "«Chegirma» reklamasiga qanday qarash kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Foiz",
+      "tarif": "sonning yuzdan bir qismi; % belgisi bilan yoziladi"
+     },
+     {
+      "atama": "100%",
+      "tarif": "butun miqdorning hammasi"
+     },
+     {
+      "atama": "Sonning foizi",
+      "tarif": "sonning foiz bilan ifodalangan qismi"
+     },
+     {
+      "atama": "Chegirma",
+      "tarif": "narxning foizlarda ifodalangan kamaytirilishi"
+     },
+     {
+      "atama": "Ustama",
+      "tarif": "narxga foizlarda qo‘shiladigan qism"
+     },
+     {
+      "atama": "Omonat foizi",
+      "tarif": "bank omonatga qo‘shadigan foyda foizi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "1% — sonning yuzdan bir qismi",
+      "togri": true,
+      "izoh": "ta’rifga ko‘ra"
+     },
+     {
+      "matn": "50% — sonning yarmi",
+      "togri": true,
+      "izoh": "50/100 kasr 1/2 ga teng"
+     },
+     {
+      "matn": "25% — sonning uchdan biri",
+      "togri": false,
+      "izoh": "25% — to‘rtdan bir (chorak)"
+     },
+     {
+      "matn": "5% o‘nli kasrda 0,5 deb yoziladi",
+      "togri": false,
+      "izoh": "5% — 0,05"
+     },
+     {
+      "matn": "200 ning 10% i 20 ga teng",
+      "togri": true,
+      "izoh": "200 : 100 = 2; 2 · 10 = 20"
+     },
+     {
+      "matn": "Narx 10% oshib, keyin 10% tushsa, avvalgi narxga qaytadi",
+      "togri": false,
+      "izoh": "ikkinchi foiz kattaroq sondan olinadi — narx biroz past chiqadi"
+     },
+     {
+      "matn": "Butun son 100% ga teng",
+      "togri": true,
+      "izoh": "hamma ulushlar yig‘indisi"
+     },
+     {
+      "matn": "Foiz 100 dan katta bo‘lishi mumkin emas",
+      "togri": false,
+      "izoh": "masalan, narx ikki barobar oshsa — bu 200%"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Foiz nima?",
+      "javob": "sonning yuzdan bir qismi"
+     },
+     {
+      "savol": "Butun necha foizga teng?",
+      "javob": "100%"
+     },
+     {
+      "savol": "Yarim necha foiz?",
+      "javob": "50%"
+     },
+     {
+      "savol": "Chorak necha foiz?",
+      "javob": "25%"
+     },
+     {
+      "savol": "10% qaysi oddiy kasrga teng?",
+      "javob": "1/10"
+     },
+     {
+      "savol": "Sonning 1 foizi qanday topiladi?",
+      "javob": "son 100 ga bo‘linadi"
+     },
+     {
+      "savol": "500 ning 1 foizi nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "savol": "0,3 necha foiz?",
+      "javob": "30%"
+     },
+     {
+      "savol": "Foiziga ko‘ra son qanday topiladi?",
+      "javob": "qiymat foizlar soniga bo‘linib, 100 ga ko‘paytiriladi"
+     },
+     {
+      "savol": "Yer yuzining taxminan necha foizi suv?",
+      "javob": "71%"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Foiz tushunchasi",
+      "matn": "1% — yuzdan bir. 100% — butun. 50% — yarim, 25% — chorak, 10% — o‘ndan bir.",
+      "savol": "75% qaysi oddiy kasrga teng?"
+     },
+     {
+      "nom": "Sonning foizi",
+      "matn": "Son 100 ga bo‘linadi (1%), keyin foizlar soniga ko‘paytiriladi.",
+      "savol": "300 ning 20 foizini toping."
+     },
+     {
+      "nom": "Foiziga ko‘ra son",
+      "matn": "Qiymat foizlar soniga bo‘linadi (1%), keyin 100 ga ko‘paytiriladi.",
+      "savol": "Sonning 25% i 50. Sonni toping."
+     },
+     {
+      "nom": "Necha foiz?",
+      "matn": "Bir son ikkinchisiga bo‘linadi va 100 ga ko‘paytiriladi.",
+      "savol": "20 dan 5 necha foiz?"
+     }
+    ],
+    "muammoli_savol": "Do‘kon narxni avval 20% oshirdi, bir haftadan keyin «20% chegirma!» deb e’lon qildi. Sotuvchi: «Narx avvalgi holiga qaytdi», deydi. Bu to‘g‘rimi? 100 000 so‘mlik buyum misolida tekshiring.",
+    "keys": {
+     "vaziyat": "Ikki do‘konda bir xil krossovka 400 000 so‘m turadi. Birinchi do‘kon 30% chegirma berdi. Ikkinchi do‘kon avval 20%, keyin yangi narxdan yana 10% chegirma qildi va «bizda ham jami 30%» deb reklama berdi.",
+     "savollar": [
+      "Har bir do‘konda krossovkaning oxirgi narxi qancha?",
+      "Ikkinchi do‘kon reklamasi to‘g‘rimi? Haqiqiy chegirma necha foiz?"
+     ]
+    },
+    "tezis": "Foizni tushungan xaridorni reklama aldolmaydi",
+    "taqqoslash": {
+     "a": "Kasr",
+     "b": "Foiz",
+     "umumiy": [
+      "butunning qismini ifodalaydi",
+      "bir-biriga aylantiriladi"
+     ],
+     "a_farq": [
+      "maxraj istalgan son",
+      "1/4, 3/5 kabi yoziladi"
+     ],
+     "b_farq": [
+      "maxraj har doim 100",
+      "% belgisi bilan yoziladi, taqqoslashga qulay"
+     ]
+    },
+    "klaster": {
+     "markaz": "Foiz",
+     "shoxlar": [
+      {
+       "nom": "Ma’nosi",
+       "bandlar": [
+        "yuzdan bir",
+        "100% — butun",
+        "50% — yarim"
+       ]
+      },
+      {
+       "nom": "Uch turdagi masala",
+       "bandlar": [
+        "sonning foizi",
+        "foiziga ko‘ra son",
+        "necha foiz"
+       ]
+      },
+      {
+       "nom": "Yozilishi",
+       "bandlar": [
+        "% belgisi",
+        "o‘nli kasr",
+        "oddiy kasr"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "chegirma",
+        "bank omonati",
+        "mahsulot tarkibi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Yuz bo‘lakdan bittasiman, belgimda ikki nol va bir chiziq bor. Do‘konlarda meni «chegirma» so‘zi yonida ko‘rasan. Men kimman?",
+     "javob": "foiz"
+    },
+    "hikmat": "Tejagan tog‘ oshar.",
+    "kalit_soz": "FOIZ",
+    "xato_yechim": {
+     "shart": "500 000 so‘mlik buyumga 10% chegirma qilindi. Yangi narxni toping.",
+     "xato": "500 000 dan 10 ayirilgan: 499 990 so‘m",
+     "togri": "Chegirma 50 000 so‘m, yangi narx 450 000 so‘m",
+     "sabab": "10% — bu 10 so‘m emas, narxning o‘ndan bir qismi; avval foizning so‘mdagi qiymati topiladi"
+    },
+    "guruh_nomlari": [
+     "Yuzliklar",
+     "Chegirmachilar",
+     "Bankirlar",
+     "Tahlilchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Reklamani tekshiramiz»",
+     "topshiriq": "Guruhga 4 ta «chegirma» reklamasi kartochkasi beriladi (eski narx, yangi narx yoki foiz ko‘rsatilgan). Har biri uchun chegirma summasini va haqiqiy foizni hisoblang, eng foydali taklifni aniqlang va reklama rostmi yoki chalg‘ituvchimi — xulosa yozing."
+    },
+    "vazifalar": {
+     "A": "Toping: 800 ning 5% i; 250 ning 40% i; sonning 20% i 18 bo‘lsa — sonning o‘zi; 60 dan 15 necha foiz.",
+     "B": "Uyingizdagi 3 ta mahsulot qadog‘idan tarkib foizlarini yozib oling (masalan, yog‘liligi, shakar miqdori) va 100 grammda necha gramm borligini hisoblang.",
+     "C": "Bir kunlik vaqtingizni foizlarda ifodalang (uyqu, maktab, o‘yin, boshqa) va doiraviy diagramma chizing. Foizlar yig‘indisi 100 bo‘lishini tekshiring."
+    },
+    "sinkveyn": [
+     "Foiz",
+     "yuzdan bir, qulay",
+     "taqqoslaydi, kamaytiradi, oshiradi",
+     "Butunning yuzdan bir ulushi",
+     "Ulush"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Maktab kutubxonasida 2 000 ta kitob bor. Har bir guruh o‘z bo‘limidagi kitoblar sonini topadi.",
+     "qismlar": [
+      "1-guruh: badiiy adabiyot — 45%",
+      "2-guruh: darsliklar — 30%",
+      "3-guruh: ilmiy-ommabop kitoblar — 15%",
+      "4-guruh: qolgani lug‘atlar — necha foiz va nechta?"
+     ],
+     "yakun": "1% — 2000 : 100 = 20 ta kitob. Badiiy: 20 · 45 = 900 ta; darsliklar: 20 · 30 = 600 ta; ilmiy-ommabop: 20 · 15 = 300 ta; lug‘atlar: 100 − 45 − 30 − 15 = 10 foiz, ya’ni 20 · 10 = 200 ta."
+    }
+   }
   }
  ]
 }
