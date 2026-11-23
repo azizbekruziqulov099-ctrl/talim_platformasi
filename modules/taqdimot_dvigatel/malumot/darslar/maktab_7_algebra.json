@@ -5595,6 +5595,1404 @@
      "yakun": "Natijalar: 7; 13 va 17; 180 km; 5."
     }
    }
+  },
+  {
+   "mavzu": "Statistika",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ma’lumotlarni to‘plash va chastota jadvali",
+      "matn": "Statistika ma’lumotlarni to‘plash, tartiblash va tahlil qilish bilan shug‘ullanadi. Qiymatning necha marta uchrashi uning chastotasi deyiladi. Chastotalarni jadvalga yozish ma’lumotlarni ko‘rinarli qiladi.",
+      "misol": "10 o‘quvchi baholari: 5, 4, 5, 3, 4, 5, 4, 5, 5, 3. Jadval: baho 3 — 2 marta, baho 4 — 3 marta, baho 5 — 5 marta. Chastotalar yig‘indisi 10.",
+      "savol": "Baholar 4, 4, 5, 4 bo‘lsa, 4 ning chastotasi?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘rta arifmetik",
+      "matn": "Sonlarning o‘rta arifmetigi — ularning yig‘indisini sonlar soniga bo‘lishdan hosil bo‘lgan qiymat. U ma’lumotlarning umumiy darajasini ko‘rsatadi.",
+      "misol": "4, 6, 5, 6, 9 sonlari yig‘indisi 30, sonlar 5 ta. O‘rta arifmetik 30 / 5, ya’ni 6. Yana: 7, 8, 9 sonlarining o‘rtachasi 8.",
+      "savol": "2, 4, 6 sonlarining o‘rta arifmetigi?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Moda",
+      "matn": "Ma’lumotlar qatorida eng ko‘p uchraydigan son moda deyiladi. Modasi bo‘lmasligi (barcha son bir marta uchrasa) yoki bir nechta bo‘lishi mumkin.",
+      "misol": "2, 3, 3, 5, 3, 7 qatorida 3 uch marta uchraydi, moda 3. Do‘konda eng ko‘p sotilgan poyabzal o‘lchami moda bo‘ladi.",
+      "savol": "1, 2, 2, 3 qatorida moda?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mediana",
+      "matn": "Ma’lumotlarni o‘sish tartibida yozganda o‘rtadagi son mediana deyiladi. Sonlar soni juft bo‘lsa, o‘rtadagi ikki sonning o‘rta arifmetigi olinadi.",
+      "misol": "3, 5, 7, 9, 11 qatorida mediana 7. 2, 4, 6, 8 qatorida o‘rtadagi sonlar 4 va 6, mediana 5.",
+      "savol": "1, 3, 5, 7, 9 qatorida mediana?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘zgarish kengligi va ko‘rsatkichni tanlash",
+      "matn": "O‘zgarish kengligi — eng katta va eng kichik son ayirmasi, ma’lumotlar qancha tarqoqligini ko‘rsatadi. Qatorda juda katta yoki juda kichik son bo‘lsa, mediana o‘rta arifmetikka qaraganda ishonchliroq.",
+      "misol": "12, 5, 9, 20 qatorida kenglik 20 − 5, ya’ni 15. 5, 6, 6, 7, 76 qatorida o‘rta arifmetik 20, mediana esa 6 — mediana tipik qiymatga yaqin.",
+      "savol": "3, 8, 5 qatorida kenglik?",
+      "javob": "5",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "O‘rta arifmetik — yig‘indi bo‘lingan sonlar soniga. Moda — eng ko‘p uchraydigan son. Mediana — tartiblangan qatorning o‘rtasi. Kenglik — eng katta va eng kichik son ayirmasi.",
+    "misollar": [
+     {
+      "shart": "Besh o‘quvchining bo‘yi 150, 154, 148, 152, 156 sm. O‘rtachasini va kenglikni toping.",
+      "yechim": [
+       "Yig‘indi: 150 + 154 + 148 + 152 + 156 — 760.",
+       "O‘rtacha 760 / 5, ya’ni 152 sm.",
+       "Kenglik 156 − 148, ya’ni 8 sm."
+      ],
+      "javob": "o‘rtacha 152 sm, kenglik 8 sm"
+     },
+     {
+      "shart": "3, 7, 7, 2, 9, 7, 4 qatorining modasi va medianasini toping.",
+      "yechim": [
+       "7 uch marta uchraydi, moda 7.",
+       "Tartiblaymiz: 2, 3, 4, 7, 7, 7, 9.",
+       "O‘rtadagi (to‘rtinchi) son 7, mediana 7."
+      ],
+      "javob": "moda 7, mediana 7"
+     },
+     {
+      "shart": "2, 4, 8, 10 qatorining o‘rtachasi va medianasini toping.",
+      "yechim": [
+       "Yig‘indi 24, sonlar 4 ta, o‘rtacha 6.",
+       "Juft son: o‘rtadagi sonlar 4 va 8.",
+       "Mediana (4 + 8) / 2, ya’ni 6."
+      ],
+      "javob": "o‘rtacha 6, mediana 6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sinf bo‘yi",
+      "topshiriq": "Guruh a’zolarining bo‘yini o‘lchab, o‘rtachasini, modasini va kengligini toping.",
+      "yechim": "O‘lchangan sonlardan yig‘indi topiladi, o‘rtacha va kenglik hisoblanadi.",
+      "mahsulot": "o‘lchov jadvali"
+     },
+     {
+      "nom": "Baholar tahlili",
+      "topshiriq": "Berilgan 10 ta bahodan chastota jadvali tuzing va modani toping.",
+      "yechim": "Chastotalar yig‘indisi 10 bo‘lishi kerak; eng katta chastotali baho moda.",
+      "mahsulot": "chastota jadvali"
+     },
+     {
+      "nom": "Ko‘rsatkichni tanlaymiz",
+      "topshiriq": "5, 6, 6, 7, 76 qatorida qaysi ko‘rsatkich tipik qiymatni yaxshiroq ko‘rsatadi va nima uchun?",
+      "yechim": "Mediana 6 — tipik qiymat; o‘rtacha 20 katta songa tobe.",
+      "mahsulot": "tushuntirish yozuvi"
+     },
+     {
+      "nom": "Haftalik harorat",
+      "topshiriq": "Bir haftalik harorat sonlarini yozib, o‘rtacha, moda va kenglikni toping.",
+      "yechim": "Ko‘rsatkichlar mos formulalar bilan hisoblanadi.",
+      "mahsulot": "harorat jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2, 4, 6 sonlarining o‘rta arifmetigi?",
+      "javob": "4"
+     },
+     {
+      "shart": "5, 7, 9, 11 sonlarining o‘rta arifmetigi?",
+      "javob": "8"
+     },
+     {
+      "shart": "3, 3, 4, 5, 3 qatorining modasi?",
+      "javob": "3"
+     },
+     {
+      "shart": "1, 3, 5, 7, 9 qatorining medianasi?",
+      "javob": "5"
+     },
+     {
+      "shart": "6, 10, 15, 8 qatorining kengligi?",
+      "javob": "9"
+     },
+     {
+      "shart": "10, 20, 30, 40 sonlarining o‘rta arifmetigi?",
+      "javob": "25"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Medianani tartiblamasdan o‘rtadagi son deb oladi",
+      "sabab": "tartiblash shartini unutadi",
+      "oldini_olish": "avval sonlarni o‘sish tartibida yozish"
+     },
+     {
+      "xato": "O‘rtachani hisoblashda sonlar sonini noto‘g‘ri sanaydi",
+      "sabab": "uchragan sonlarni sanashda adashadi",
+      "oldini_olish": "sonlar sonini alohida sanab yozish"
+     },
+     {
+      "xato": "Modani eng katta son deb oladi",
+      "sabab": "moda va maksimumni adashtiradi",
+      "oldini_olish": "moda eng ko‘p takrorlanishi bilan aniqlanishini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "harorat va yog‘in ma’lumotlarini tahlil qilish"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "o‘simlik bo‘yi va o‘sishini kuzatish natijalari"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "sport natijalari o‘rtachasini hisoblash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinf statistikasi»",
+     "muammo": "Sinfimiz haqida qanday qiziq faktlarni statistika bilan aniqlaymiz?",
+     "mahsulot": "sinf statistik ma’lumotnomasi",
+     "bosqichlar": [
+      "savol tanlash",
+      "ma’lumot yig‘ish",
+      "jadval tuzish",
+      "ko‘rsatkichlarni hisoblash",
+      "xulosa yozish"
+     ],
+     "guruh_vazifalari": [
+      "Savol tanlang",
+      "So‘rov o‘tkazing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "ma’lumot to‘liq",
+      "hisob to‘g‘ri",
+      "jadval aniq",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Statistika markazi»",
+     "bekatlar": [
+      {
+       "nom": "Ob-havo stansiyasi",
+       "matn": "Besh kunlik harorat: 20, 22, 24, 22, 22.",
+       "topshiriq": "O‘rtacha va modani toping.",
+       "javob": "o‘rtacha 22, moda 22",
+       "rasm": ""
+      },
+      {
+       "nom": "Kutubxona",
+       "matn": "Besh kunda olingan kitoblar: 4, 6, 5, 9, 6.",
+       "topshiriq": "O‘rtacha sonni toping.",
+       "javob": "6 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Stadion",
+       "matn": "Sakrash natijalari: 140, 150, 150, 160, 170 sm.",
+       "topshiriq": "Modani, medianani va o‘rtachani toping.",
+       "javob": "moda 150, mediana 150, o‘rtacha 154",
+       "rasm": ""
+      },
+      {
+       "nom": "Do‘kon",
+       "matn": "Poyabzal o‘lchamlari: 36, 37, 37, 38, 37.",
+       "topshiriq": "Eng ko‘p sotilgan o‘lchamni toping.",
+       "javob": "37",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda o‘rtacha qiymat kerak?",
+      "Qaysi ko‘rsatkich foydali bo‘ldi?",
+      "Ma’lumotlar qanday to‘plandi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Statistika",
+      "tarif": "ma’lumotlarni to‘plash va tahlil qilish fani"
+     },
+     {
+      "atama": "Chastota",
+      "tarif": "qiymatning uchrash soni"
+     },
+     {
+      "atama": "O‘rta arifmetik",
+      "tarif": "yig‘indini sonlar soniga bo‘lish natijasi"
+     },
+     {
+      "atama": "Moda",
+      "tarif": "eng ko‘p uchraydigan qiymat"
+     },
+     {
+      "atama": "Mediana",
+      "tarif": "tartiblangan qatorning o‘rtasidagi qiymat"
+     },
+     {
+      "atama": "O‘zgarish kengligi",
+      "tarif": "eng katta va eng kichik qiymat ayirmasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "O‘rta arifmetik yig‘indini sonlar soniga bo‘lish bilan topiladi",
+      "togri": true,
+      "izoh": "bu uning ta’rifi"
+     },
+     {
+      "matn": "Moda eng kam uchraydigan son",
+      "togri": false,
+      "izoh": "moda eng ko‘p uchraydigan son"
+     },
+     {
+      "matn": "Mediana tartiblangan qatorning o‘rtasidagi son",
+      "togri": true,
+      "izoh": "ta’rif shunday"
+     },
+     {
+      "matn": "2, 4, 6 sonlarining o‘rta arifmetigi 4",
+      "togri": true,
+      "izoh": "12 / 3 — 4"
+     },
+     {
+      "matn": "3, 5, 7, 9 qatorining medianasi 6",
+      "togri": true,
+      "izoh": "(5 + 7) / 2 — 6"
+     },
+     {
+      "matn": "Kenglik eng katta va eng kichik sonlar yig‘indisi",
+      "togri": false,
+      "izoh": "kenglik ularning ayirmasi"
+     },
+     {
+      "matn": "Modasi bo‘lmagan qator bo‘lishi mumkin",
+      "togri": true,
+      "izoh": "barcha son bir marta uchrasa moda yo‘q"
+     },
+     {
+      "matn": "1, 2, 3 qatorining kengligi 2",
+      "togri": true,
+      "izoh": "3 − 1 — 2"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Statistika nima bilan shug‘ullanadi?",
+      "javob": "ma’lumotlarni to‘plash va tahlil qilish"
+     },
+     {
+      "savol": "Chastota nima?",
+      "javob": "qiymatning necha marta uchrashi"
+     },
+     {
+      "savol": "O‘rta arifmetikni qanday topamiz?",
+      "javob": "yig‘indini sonlar soniga bo‘lamiz"
+     },
+     {
+      "savol": "Moda nima?",
+      "javob": "eng ko‘p uchraydigan qiymat"
+     },
+     {
+      "savol": "Mediana nima?",
+      "javob": "tartiblangan qator o‘rtasidagi qiymat"
+     },
+     {
+      "savol": "Kenglik nima?",
+      "javob": "eng katta va eng kichik son ayirmasi"
+     },
+     {
+      "savol": "4, 6, 8 sonlarining o‘rtachasi?",
+      "javob": "6"
+     },
+     {
+      "savol": "2, 5, 5, 7 qatorining modasi?",
+      "javob": "5"
+     },
+     {
+      "savol": "Mediana qachon o‘rtachadan ishonchli?",
+      "javob": "juda katta yoki kichik son bo‘lganda"
+     },
+     {
+      "savol": "Juft sonli qatorda mediana qanday topiladi?",
+      "javob": "o‘rtadagi ikki sonning o‘rtachasi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Chastota",
+      "matn": "Qiymat necha marta uchraydi.",
+      "savol": "3, 3, 5 qatorida 3 ning chastotasi?"
+     },
+     {
+      "nom": "O‘rta arifmetik",
+      "matn": "Yig‘indi bo‘lingan sonlar soniga.",
+      "savol": "6, 8, 10 ning o‘rtachasi?"
+     },
+     {
+      "nom": "Moda va mediana",
+      "matn": "Eng ko‘p uchraydigan va o‘rtadagi son.",
+      "savol": "1, 2, 2, 3, 4 ning modasi?"
+     },
+     {
+      "nom": "Kenglik",
+      "matn": "Eng katta minus eng kichik.",
+      "savol": "4, 9, 6 ning kengligi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bir sinfdagi o‘quvchilarning oylik daromadini o‘rta arifmetik bilan emas, mediana bilan tavsiflash ko‘pincha to‘g‘riroq? Bitta juda katta son o‘rtachaga qanday ta’sir qilishini misolda ko‘rsating.",
+    "keys": {
+     "vaziyat": "Do‘kon egasi oxirgi besh kunda sotilgan poyabzal o‘lchamlarini yozib qo‘ydi: 36, 37, 37, 38, 37. U qaysi o‘lchamdan ko‘proq buyurtma berishni bilmoqchi.",
+     "savollar": [
+      "Qaysi ko‘rsatkich kerak?",
+      "Qaysi o‘lchamdan ko‘proq buyurtma beramiz?"
+     ]
+    },
+    "tezis": "Statistika — ma’lumotdan xulosa chiqarish san’ati",
+    "taqqoslash": {
+     "a": "O‘rta arifmetik",
+     "b": "Mediana",
+     "umumiy": [
+      "markaziy qiymatni ko‘rsatadi",
+      "sonlar qatori bilan ishlaydi"
+     ],
+     "a_farq": [
+      "hamma sonni hisobga oladi",
+      "juda katta songa sezgir"
+     ],
+     "b_farq": [
+      "o‘rtadagi sonni oladi",
+      "juda katta songa sezgir emas"
+     ]
+    },
+    "klaster": {
+     "markaz": "Statistika",
+     "shoxlar": [
+      {
+       "nom": "Ma’lumot",
+       "bandlar": [
+        "yig‘ish",
+        "chastota jadvali",
+        "tartiblash"
+       ]
+      },
+      {
+       "nom": "O‘rtacha ko‘rsatkichlar",
+       "bandlar": [
+        "o‘rta arifmetik",
+        "moda",
+        "mediana"
+       ]
+      },
+      {
+       "nom": "Tarqoqlik",
+       "bandlar": [
+        "kenglik",
+        "eng katta",
+        "eng kichik"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "harorat",
+        "baho",
+        "savdo"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Eng ko‘p uchrayman, shuning uchun mashhurman. Men qatorning nimasiman?",
+     "javob": "moda"
+    },
+    "hikmat": "Son aytadi, to‘g‘ri o‘qisang.",
+    "kalit_soz": "MODA",
+    "xato_yechim": {
+     "shart": "4, 6, 8, 10 qatorining medianasini toping.",
+     "xato": "6",
+     "togri": "7",
+     "sabab": "o‘rtadagi ikki sondan faqat bittasi olingan; mediana (6 + 8) / 2, ya’ni 7"
+    },
+    "guruh_nomlari": [
+     "O‘rtachachilar",
+     "Modachilar",
+     "Medianachilar",
+     "Jadvalchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinf so‘rovnomasi»",
+     "topshiriq": "Guruh sinfdoshlaridan sevimli fan yoki oyoq kiyim o‘lchami bo‘yicha so‘rov o‘tkazadi, chastota jadvalini tuzadi va modani topadi."
+    },
+    "vazifalar": {
+     "A": "5, 7, 9 sonlarining o‘rtachasini toping.",
+     "B": "2, 3, 3, 8, 9 qatorining modasini, medianasini va kengligini toping.",
+     "C": "Oilangizdagi kishilar yoshi uchun barcha ko‘rsatkichlarni hisoblang."
+    },
+    "sinkveyn": [
+     "Statistika",
+     "aniq, foydali",
+     "yig‘adi, sanaydi, solishtiradi",
+     "Ma’lumotdan xulosa",
+     "Tahlil"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh bir xil 5, 7, 7, 9, 12 qatori bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: o‘rta arifmetikni toping",
+      "2-guruh: modani toping",
+      "3-guruh: medianani toping",
+      "4-guruh: kenglikni toping"
+     ],
+     "yakun": "Natijalar: 8; 7; 7; 7."
+    }
+   }
+  },
+  {
+   "mavzu": "Grafiklarni o‘qish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ustunli diagramma",
+      "matn": "Ustunli diagrammada har bir kategoriya ustun balandligi bilan beriladi. O‘qish uchun ustun balandligini o‘q bo‘yicha aniqlaymiz, ustunlarni solishtiramiz.",
+      "misol": "Bir haftada o‘qilgan kitoblar: dushanba 4 ta, seshanba 6 ta, chorshanba 8 ta. Eng ko‘pi chorshanba. Chorshanba va dushanba farqi 8 − 4, ya’ni 4 ta.",
+      "savol": "Seshanba va dushanba farqi nechta?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chiziqli grafik",
+      "matn": "Chiziqli grafik vaqt davomida o‘zgarishni ko‘rsatadi: nuqtalar tutashtiriladi. Chiziq yuqoriga ketsa miqdor o‘sadi, pastga ketsa kamayadi, gorizontal bo‘lsa o‘zgarmaydi.",
+      "misol": "Harorat: soat 6 da 12 daraja, soat 12 da 20 daraja, soat 18 da 18 daraja. Eng baland harorat soat 12 da. 6 dan 12 gacha o‘sish 20 − 12, ya’ni 8 daraja.",
+      "savol": "Soat 12 dan 18 gacha harorat qancha o‘zgardi?",
+      "javob": "2 darajaga kamaydi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Doiraviy diagramma",
+      "matn": "Doiraviy diagrammada butun 100 foiz yoki 360 gradusga teng. Har bir sektor butunning bir qismini ko‘rsatadi. Qism foizi bo‘yicha sonini va gradusini hisoblash mumkin.",
+      "misol": "100 o‘quvchidan sport 40 foiz, musiqa 25 foiz, rasm 35 foiz; yig‘indi 100 foiz. 200 o‘quvchi bo‘lsa, sport bilan 80 nafari shug‘ullanadi. 25 foiz sektor — 360 ning choragi, 90 gradus.",
+      "savol": "50 foiz sektori necha gradus?",
+      "javob": "180",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Jadvaldan diagramma",
+      "matn": "Jadvalni diagrammaga aylantirish uchun o‘qlarni belgilaymiz, masshtabni tanlaymiz, ustunlarni yoki nuqtalarni chizamiz va sarlavha yozamiz. Diagramma o‘qlarida kattaliklar va birliklar yozilgan bo‘lishi kerak.",
+      "misol": "Jadval: 5-A — 25 o‘quvchi, 5-B — 30, 5-D — 20. Ustun balandligi 1 katak uchun 5 o‘quvchi desak, ustunlar 5, 6, 4 katak.",
+      "savol": "Masshtabda 1 katak 10 o‘quvchi bo‘lsa, 30 o‘quvchi necha katak?",
+      "javob": "3 katak",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Grafikdan xulosa va chalg‘ituvchi grafiklar",
+      "matn": "Grafikdan o‘sish yoki kamayish tendensiyasini ko‘rib, keyingi qiymatni taxmin qilamiz. O‘q noldan boshlanmasa, kichik farq katta ko‘rinishi mumkin, shuning uchun o‘q boshiga e’tibor beramiz.",
+      "misol": "Oylik sotuv: 10, 14, 18, 22 — har oy 4 ga o‘sadi, keyingi oy taxminan 26. Ustunlar 50 va 52 bo‘lib, o‘q 50 dan boshlansa, ikkinchisi cheksiz katta ko‘rinadi, aslida farq 2.",
+      "savol": "Sotuv 10, 14, 18, 22 bo‘lsa, keyingi oy?",
+      "javob": "26",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Grafikni o‘qishda sarlavhani, o‘qlarni, masshtabni va birliklarni tekshiramiz. Doiraviy diagrammada butun 100 foiz yoki 360 gradus. O‘q boshiga e’tibor bering.",
+    "misollar": [
+     {
+      "shart": "Yanvar 30, fevral 45, mart 60 ta kitob sotildi. Fevraldan martga necha kitob ortiq sotildi?",
+      "yechim": [
+       "Fevral 45, mart 60.",
+       "Ayirma 60 − 45.",
+       "Natija 15 ta."
+      ],
+      "javob": "15 ta"
+     },
+     {
+      "shart": "120 o‘quvchidan 25 foizi futbol bilan shug‘ullanadi. Nechta o‘quvchi?",
+      "yechim": [
+       "25 foiz — choragi.",
+       "120 ning choragi 120 / 4.",
+       "Natija 30."
+      ],
+      "javob": "30 ta"
+     },
+     {
+      "shart": "Harorat soat 8 da 12 daraja, soat 14 da 24 daraja. Soatiga o‘rtacha necha daraja o‘sdi?",
+      "yechim": [
+       "O‘sish 24 − 12, ya’ni 12 daraja.",
+       "Vaqt 14 − 8, ya’ni 6 soat.",
+       "12 / 6, ya’ni soatiga 2 daraja."
+      ],
+      "javob": "soatiga 2 daraja"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ustunli diagramma chizamiz",
+      "topshiriq": "Guruh a’zolarining sevimli fanlari bo‘yicha so‘rov o‘tkazing va ustunli diagramma chizing.",
+      "yechim": "Har fan uchun ustun balandligi — ovozlar soni.",
+      "mahsulot": "ustunli diagramma"
+     },
+     {
+      "nom": "Chiziqli grafik",
+      "topshiriq": "Bir kunlik harorat jadvalidan chiziqli grafik tuzing va eng baland nuqtani toping.",
+      "yechim": "Nuqtalar belgilanib tutashtiriladi, eng baland nuqta ko‘rsatiladi.",
+      "mahsulot": "grafik"
+     },
+     {
+      "nom": "Foizni gradusga",
+      "topshiriq": "Doiraviy diagrammada 20, 30 va 50 foiz sektorlari necha gradus?",
+      "yechim": "20 foiz — 72, 30 foiz — 108, 50 foiz — 180 gradus; yig‘indi 360.",
+      "mahsulot": "hisoblash jadvali"
+     },
+     {
+      "nom": "Chalg‘ituvchi grafik",
+      "topshiriq": "Ikki ustun 50 va 52 bo‘lgan diagramma ikki xil chizilsin: o‘q noldan va 50 dan boshlanadigan. Farqni izohlang.",
+      "yechim": "O‘q 50 dan boshlansa farq katta ko‘rinadi; haqiqiy farq 2.",
+      "mahsulot": "ikki grafik"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Ustunlar balandligi 5, 8, 6. Eng katta va eng kichik farqi?",
+      "javob": "3"
+     },
+     {
+      "shart": "Jami 200 ta o‘quvchining 30 foizi nechta?",
+      "javob": "60"
+     },
+     {
+      "shart": "Doiraviy diagrammada 25 foiz necha gradus?",
+      "javob": "90"
+     },
+     {
+      "shart": "Doiraviy diagrammada 50 foiz necha gradus?",
+      "javob": "180"
+     },
+     {
+      "shart": "Harorat 10, 14, 18 bo‘lsa, o‘rtachasi?",
+      "javob": "14"
+     },
+     {
+      "shart": "Ustunlar 12, 18, 6 bo‘lsa, jami nechta?",
+      "javob": "36"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ustun balandligini masshtabni hisobga olmay o‘qiydi",
+      "sabab": "o‘q birligini tekshirmaydi",
+      "oldini_olish": "avval masshtabni aniqlash"
+     },
+     {
+      "xato": "Doiraviy diagrammada foizni gradus bilan adashtiradi",
+      "sabab": "100 foiz va 360 gradus bog‘lanishini unutadi",
+      "oldini_olish": "butun 100 foiz, 360 gradus ekanini eslash"
+     },
+     {
+      "xato": "O‘q noldan boshlanmaganini sezmaydi",
+      "sabab": "faqat ustun balandligiga qaraydi",
+      "oldini_olish": "o‘q boshini tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "iqlim diagrammalari: harorat va yog‘in"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "aholi sonining yillar bo‘yicha o‘zgarishi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "jadval va diagramma bilan ishlash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Diagramma bilan hikoya»",
+     "muammo": "Kundalik ma’lumotlarni diagrammada qanday ko‘rsatib, hikoyaga aylantiramiz?",
+     "mahsulot": "diagrammalar plakati",
+     "bosqichlar": [
+      "mavzu tanlash",
+      "ma’lumot yig‘ish",
+      "diagramma chizish",
+      "xulosa yozish",
+      "plakat tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Mavzu tanlang",
+      "Ma’lumot yig‘ing",
+      "Diagramma chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "ma’lumot to‘g‘ri",
+      "diagramma aniq",
+      "o‘qlar belgilangan",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Diagrammalar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Ob-havo posti",
+       "matn": "Uch kunlik harorat 18, 22, 20.",
+       "topshiriq": "O‘rtacha haroratni toping.",
+       "javob": "20 daraja",
+       "rasm": ""
+      },
+      {
+       "nom": "Oshxona",
+       "matn": "300 o‘quvchining 40 foizi sho‘rva tanladi.",
+       "topshiriq": "Nechta o‘quvchi?",
+       "javob": "120 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Do‘kon",
+       "matn": "Oylik sotuv 10, 14, 18, 22. Har oy 4 ga ortadi.",
+       "topshiriq": "Beshinchi oy sotuvi?",
+       "javob": "26",
+       "rasm": ""
+      },
+      {
+       "nom": "Sport zali",
+       "matn": "Qatnashchilar: 20, 25, 30, 25 (4 hafta).",
+       "topshiriq": "Jami va eng ko‘p qatnashgan hafta?",
+       "javob": "jami 100, uchinchi hafta",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda diagramma uchradi?",
+      "Qaysi diagramma sizga qulay?",
+      "Grafik chalg‘itishi mumkinmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Diagramma",
+      "tarif": "ma’lumotlarning rasm ko‘rinishi"
+     },
+     {
+      "atama": "Ustunli diagramma",
+      "tarif": "ustun balandligi bilan beriladigan diagramma"
+     },
+     {
+      "atama": "Doiraviy diagramma",
+      "tarif": "doirani sektorlarga bo‘luvchi diagramma"
+     },
+     {
+      "atama": "Chiziqli grafik",
+      "tarif": "vaqt bo‘yicha o‘zgarishni ko‘rsatuvchi chiziq"
+     },
+     {
+      "atama": "Masshtab",
+      "tarif": "o‘qdagi bir bo‘lak qiymati"
+     },
+     {
+      "atama": "Tendensiya",
+      "tarif": "o‘zgarish yo‘nalishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Doiraviy diagrammada butun 100 foizga teng",
+      "togri": true,
+      "izoh": "barcha sektorlar yig‘indisi 100 foiz"
+     },
+     {
+      "matn": "Chiziq pastga ketsa, miqdor o‘sadi",
+      "togri": false,
+      "izoh": "pastga ketsa kamayadi"
+     },
+     {
+      "matn": "Ustun balandligi qiymatni ko‘rsatadi",
+      "togri": true,
+      "izoh": "o‘q bo‘yicha o‘qiladi"
+     },
+     {
+      "matn": "Doira 360 gradusdan iborat",
+      "togri": true,
+      "izoh": "doira to‘liq burchagi"
+     },
+     {
+      "matn": "O‘q boshiga e’tibor berish shart emas",
+      "togri": false,
+      "izoh": "u farqni katta ko‘rsatishi mumkin"
+     },
+     {
+      "matn": "25 foiz sektori 90 gradus",
+      "togri": true,
+      "izoh": "360 ning choragi"
+     },
+     {
+      "matn": "Gorizontal chiziq o‘zgarmasligini bildiradi",
+      "togri": true,
+      "izoh": "qiymat bir xil"
+     },
+     {
+      "matn": "Diagrammada o‘qlar belgilanmasa ham bo‘ladi",
+      "togri": false,
+      "izoh": "o‘qlar va birliklar yozilishi kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ustunli diagramma nimani ko‘rsatadi?",
+      "javob": "kategoriyalar qiymatini ustun balandligi bilan"
+     },
+     {
+      "savol": "Chiziqli grafik nimani ko‘rsatadi?",
+      "javob": "vaqt bo‘yicha o‘zgarishni"
+     },
+     {
+      "savol": "Doiraviy diagrammada butun necha foiz?",
+      "javob": "100 foiz"
+     },
+     {
+      "savol": "Doira necha gradus?",
+      "javob": "360 gradus"
+     },
+     {
+      "savol": "10 foiz necha gradus?",
+      "javob": "36 gradus"
+     },
+     {
+      "savol": "Masshtab nima?",
+      "javob": "o‘qdagi bir bo‘lak qiymati"
+     },
+     {
+      "savol": "Tendensiya nima?",
+      "javob": "o‘zgarish yo‘nalishi"
+     },
+     {
+      "savol": "Chalg‘ituvchi grafikdan qanday saqlanamiz?",
+      "javob": "o‘q boshini tekshiramiz"
+     },
+     {
+      "savol": "Grafik sarlavhasi nima uchun kerak?",
+      "javob": "nimani ko‘rsatishini bilish uchun"
+     },
+     {
+      "savol": "Ustunlar 3 va 7 bo‘lsa, farq?",
+      "javob": "4"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ustunli diagramma",
+      "matn": "Ustun balandligi qiymat.",
+      "savol": "Ustunlar 4 va 9 bo‘lsa, farq?"
+     },
+     {
+      "nom": "Chiziqli grafik",
+      "matn": "Vaqt bo‘yicha o‘zgarish.",
+      "savol": "Chiziq yuqoriga ketsa nima bo‘ladi?"
+     },
+     {
+      "nom": "Doiraviy diagramma",
+      "matn": "Butun — 100 foiz va 360 gradus.",
+      "savol": "50 foiz necha gradus?"
+     },
+     {
+      "nom": "O‘q boshi",
+      "matn": "O‘q boshi grafikni o‘zgartiradi.",
+      "savol": "Nima uchun o‘q boshiga qaraymiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bir xil ma’lumotdan ikki xil chizilgan diagramma ikki xil taassurot qoldirishi mumkin? O‘q noldan boshlanganda va boshlanmaganda ustunlar farqi qanday ko‘rinishini taqqoslang.",
+    "keys": {
+     "vaziyat": "Maktab oshxonasida 300 o‘quvchi bor. Doiraviy diagramma bo‘yicha 40 foiz o‘quvchi sho‘rva, 35 foiz palov, qolgani salat tanlagan.",
+     "savollar": [
+      "Salat tanlaganlar necha foiz?",
+      "Sho‘rva tanlagan o‘quvchilar necha nafar?"
+     ]
+    },
+    "tezis": "Grafik — ma’lumotning ko‘zga ko‘rinadigan tili",
+    "taqqoslash": {
+     "a": "Ustunli diagramma",
+     "b": "Chiziqli grafik",
+     "umumiy": [
+      "ma’lumotni ko‘rsatadi",
+      "o‘qlar bilan ishlaydi"
+     ],
+     "a_farq": [
+      "kategoriyalarni solishtiradi",
+      "ustunlar alohida turadi"
+     ],
+     "b_farq": [
+      "vaqt bo‘yicha o‘zgarishni ko‘rsatadi",
+      "nuqtalar tutashtiriladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Grafiklarni o‘qish",
+     "shoxlar": [
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "ustunli",
+        "chiziqli",
+        "doiraviy"
+       ]
+      },
+      {
+       "nom": "O‘qish",
+       "bandlar": [
+        "sarlavha",
+        "o‘qlar",
+        "masshtab"
+       ]
+      },
+      {
+       "nom": "Hisoblash",
+       "bandlar": [
+        "farq",
+        "foiz",
+        "gradus"
+       ]
+      },
+      {
+       "nom": "Xulosa",
+       "bandlar": [
+        "tendensiya",
+        "taxmin",
+        "chalg‘itish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Meni chizsa, sonlar rasmga aylanadi. Ustun yoki chiziq bo‘lib turaman. Men nimaman?",
+     "javob": "diagramma"
+    },
+    "hikmat": "Grafikka ishonishdan oldin o‘qiga qara.",
+    "kalit_soz": "GRAFIK",
+    "xato_yechim": {
+     "shart": "Doiraviy diagrammada 25 foiz sektori necha gradus?",
+     "xato": "25 gradus",
+     "togri": "90 gradus",
+     "sabab": "foiz gradusga tenglashtirilgan; butun 100 foiz 360 gradus, 25 foiz 360 ning choragi, ya’ni 90"
+    },
+    "guruh_nomlari": [
+     "Ustunchilar",
+     "Chiziqchilar",
+     "Doirachilar",
+     "Taqqoslovchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Haftalik diagramma»",
+     "topshiriq": "Guruh bir hafta davomida kunlik ma’lumot (harorat, o‘qilgan sahifalar) yig‘adi va uni chiziqli grafikda ko‘rsatadi."
+    },
+    "vazifalar": {
+     "A": "Ustunlar 6, 9, 4 bo‘lsa, jami va eng katta farqni toping.",
+     "B": "Doiraviy diagrammada 20 foiz necha gradus?",
+     "C": "O‘zingiz ma’lumot yig‘ib, ustunli diagramma chizing."
+    },
+    "sinkveyn": [
+     "Grafik",
+     "ko‘rgazmali, aniq",
+     "ko‘rsatadi, solishtiradi, xulosa beradi",
+     "Sonlarning rasmi",
+     "Diagramma"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh grafiklar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: ustunlar 7 va 12 bo‘lsa farq",
+      "2-guruh: 200 ning 25 foizi",
+      "3-guruh: 10 foiz necha gradus",
+      "4-guruh: sotuv 6, 9, 12 bo‘lsa keyingisi"
+     ],
+     "yakun": "Natijalar: 5; 50; 36; 15."
+    }
+   }
+  },
+  {
+   "mavzu": "Ehtimollik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tasodifiy, ishonchli va mumkin bo‘lmagan hodisalar",
+      "matn": "Albatta ro‘y beradigan hodisa ishonchli, hech qachon ro‘y bermaydigan hodisa mumkin bo‘lmagan hodisa deyiladi. Ro‘y berishi ham, bermasligi ham mumkin bo‘lgan hodisa tasodifiy hodisa deyiladi.",
+      "misol": "Kuzdan keyin qish keladi — ishonchli. Kub tashlaganda 7 ochko chiqishi — mumkin emas. Tanga tashlaganda gerb tushishi — tasodifiy.",
+      "savol": "Kubda 6 dan katta ochko chiqishi qanday hodisa?",
+      "javob": "mumkin emas",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ehtimollikning klassik ta’rifi",
+      "matn": "Teng imkoniyatli natijalarda hodisa ehtimolligi qulay natijalar sonining barcha natijalar soniga nisbatiga teng. Ehtimollik 0 dan 1 gacha bo‘ladi: ishonchli hodisada 1, mumkin bo‘lmaganda 0.",
+      "misol": "Tanga tashlaganda 2 ta natija bor, gerb tushishi 1 ta qulay natija. Ehtimollik 1 / 2.",
+      "savol": "Tangada raqam tushish ehtimolligi?",
+      "javob": "1 / 2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘yin kubigi",
+      "matn": "Oddiy kubning 6 ta yog‘i bor, har birida 1 dan 6 gacha ochko. Barcha natijalar soni 6. Qulay natijalarni sanab ehtimollikni topamiz.",
+      "misol": "Juft ochko: 2, 4, 6 — 3 ta natija, ehtimollik 3 / 6, ya’ni 1 / 2. 5 dan katta ochko: faqat 6, ehtimollik 1 / 6.",
+      "savol": "Kubda toq ochko chiqish ehtimolligi?",
+      "javob": "1 / 2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Shar va bilet masalalari",
+      "matn": "Idishda turli rangli sharlar bo‘lsa, ma’lum rangli shar chiqishi ehtimolligi shu rangdagi sharlar sonini barcha sharlar soniga bo‘lish bilan topiladi.",
+      "misol": "Idishda 3 qizil va 2 ko‘k shar. Qizil shar ehtimolligi 3 / 5, ko‘k 2 / 5. Ikkalasining yig‘indisi 1.",
+      "savol": "Idishda 1 oq, 3 qora shar. Oq shar ehtimolligi?",
+      "javob": "1 / 4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qarama-qarshi hodisa va tajriba",
+      "matn": "Hodisa ro‘y bermasligi ehtimolligi 1 dan uning ehtimolligini ayirishga teng. Tajriba ko‘p marta takrorlansa, hodisaning nisbiy chastotasi ehtimollikka yaqinlashadi.",
+      "misol": "Lotereyada 30 biletdan 6 tasi yutuqli. Yutish ehtimolligi 6 / 30, ya’ni 1 / 5. Yutmaslik ehtimolligi 1 − 1 / 5, ya’ni 4 / 5. Tanga 100 marta tashlansa, gerb taxminan 50 marta tushadi.",
+      "savol": "Yutish ehtimolligi 1 / 4 bo‘lsa, yutmaslik?",
+      "javob": "3 / 4",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ehtimollik — qulay natijalar sonining barcha teng imkoniyatli natijalar soniga nisbati. U 0 dan 1 gacha bo‘ladi. Hodisa ro‘y bermasligi ehtimolligi — 1 dan uning ehtimolligini ayirish.",
+    "misollar": [
+     {
+      "shart": "Kub tashlanganda 3 dan kichik ochko chiqish ehtimolligini toping.",
+      "yechim": [
+       "Qulay natijalar: 1 va 2, ya’ni 2 ta.",
+       "Barcha natijalar 6 ta.",
+       "Ehtimollik 2 / 6, ya’ni 1 / 3."
+      ],
+      "javob": "1 / 3"
+     },
+     {
+      "shart": "Qopda 4 oq va 6 qora shar. Oq shar chiqish ehtimolligini toping.",
+      "yechim": [
+       "Barcha sharlar 4 + 6, ya’ni 10.",
+       "Qulay natijalar 4 ta.",
+       "Ehtimollik 4 / 10, ya’ni 2 / 5."
+      ],
+      "javob": "2 / 5"
+     },
+     {
+      "shart": "30 biletdan 6 tasi yutuqli. Yutmaslik ehtimolligini toping.",
+      "yechim": [
+       "Yutish ehtimolligi 6 / 30, ya’ni 1 / 5.",
+       "Yutmaslik 1 − 1 / 5.",
+       "Natija 4 / 5."
+      ],
+      "javob": "4 / 5"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tanga tajribasi",
+      "topshiriq": "Tangani 20 marta tashlang, gerb necha marta tushganini yozing va 1 / 2 bilan solishtiring.",
+      "yechim": "Natija taxminan 10 ga yaqin bo‘ladi, aniq 10 bo‘lishi shart emas.",
+      "mahsulot": "tajriba jadvali"
+     },
+     {
+      "nom": "Kub tajribasi",
+      "topshiriq": "Kubni 30 marta tashlang va har bir ochko chastotasini yozing.",
+      "yechim": "Har ochko taxminan 5 marta, ehtimollik 1 / 6.",
+      "mahsulot": "chastota jadvali"
+     },
+     {
+      "nom": "Hodisalarni tasniflaymiz",
+      "topshiriq": "Beshta hodisani ishonchli, mumkin emas yoki tasodifiy deb tasniflang.",
+      "yechim": "Tasodifiy hodisalarda natija oldindan aniq emas.",
+      "mahsulot": "tasniflash jadvali"
+     },
+     {
+      "nom": "Shar tanlash",
+      "topshiriq": "Qopda 5 qizil, 3 ko‘k shar bor. Har bir rang ehtimolligini toping.",
+      "yechim": "Qizil 5 / 8, ko‘k 3 / 8; yig‘indi 1.",
+      "mahsulot": "ehtimollik jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Tangada raqam tushish ehtimolligi?",
+      "javob": "1 / 2"
+     },
+     {
+      "shart": "Kubda 6 ochko chiqish ehtimolligi?",
+      "javob": "1 / 6"
+     },
+     {
+      "shart": "Kubda toq ochko chiqish ehtimolligi?",
+      "javob": "1 / 2"
+     },
+     {
+      "shart": "Qopda 2 qizil va 8 ko‘k shar. Qizil shar ehtimolligi?",
+      "javob": "1 / 5"
+     },
+     {
+      "shart": "20 biletdan 5 tasi yutuqli. Yutish ehtimolligi?",
+      "javob": "1 / 4"
+     },
+     {
+      "shart": "Ishonchli hodisa ehtimolligi nechaga teng?",
+      "javob": "1"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ehtimollikni qulay natijalar sonining boshqa natijalarga nisbati deb oladi",
+      "sabab": "maxrajda barcha natijalarni emas, faqat qolganlarini oladi",
+      "oldini_olish": "maxrajda barcha natijalar sonini yozish"
+     },
+     {
+      "xato": "Ehtimollik 1 dan katta bo‘lishi mumkin deydi",
+      "sabab": "kasrni noto‘g‘ri yozadi",
+      "oldini_olish": "ehtimollik 0 dan 1 gacha ekanini eslash"
+     },
+     {
+      "xato": "Tanga 2 marta tashlansa albatta bir marta gerb tushadi deydi",
+      "sabab": "tasodifiylikni tushunmaydi",
+      "oldini_olish": "natijalar kafolatli emasligini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "irsiyat belgilarining uchrash ehtimolligi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "ob-havo prognozida yomg‘ir ehtimolligi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "tasodifiy sonlar va o‘yinlar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tasodif va qonuniyat»",
+     "muammo": "Tasodifiy hodisalarda qonuniyat bormi? Tajriba bilan qanday aniqlaymiz?",
+     "mahsulot": "tajriba natijalari hisoboti",
+     "bosqichlar": [
+      "tajriba tanlash",
+      "tajribani o‘tkazish",
+      "chastotani hisoblash",
+      "ehtimollik bilan solishtirish",
+      "hisobot tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Tajriba tanlang",
+      "Tajriba o‘tkazing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba ko‘p marta takrorlangan",
+      "hisob to‘g‘ri",
+      "solishtirish bor",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tasodif vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "Kartalar",
+       "matn": "36 ta kartali dastada 4 ta qirol bor.",
+       "topshiriq": "Qirol chiqish ehtimolligini toping.",
+       "javob": "1 / 9",
+       "rasm": ""
+      },
+      {
+       "nom": "Meva savati",
+       "matn": "Savatda 5 olma va 3 nok bor.",
+       "topshiriq": "Olma chiqish ehtimolligi?",
+       "javob": "5 / 8",
+       "rasm": ""
+      },
+      {
+       "nom": "Sinf",
+       "matn": "Sinfda 10 qiz va 15 o‘g‘il bola bor.",
+       "topshiriq": "Tasodifiy tanlangan o‘quvchi qiz bo‘lish ehtimolligi?",
+       "javob": "2 / 5",
+       "rasm": ""
+      },
+      {
+       "nom": "Kub maydonchasi",
+       "matn": "Kub tashlanganda 4 dan katta ochko chiqishi.",
+       "topshiriq": "Ehtimollikni toping.",
+       "javob": "1 / 3",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda tasodifiy hodisa uchradi?",
+      "Qaysi hodisa ishonchli edi?",
+      "Ehtimollikni hayotda qayerda qo‘llaymiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tasodifiy hodisa",
+      "tarif": "ro‘y berishi ham, bermasligi ham mumkin bo‘lgan hodisa"
+     },
+     {
+      "atama": "Ishonchli hodisa",
+      "tarif": "albatta ro‘y beradigan hodisa"
+     },
+     {
+      "atama": "Mumkin bo‘lmagan hodisa",
+      "tarif": "hech qachon ro‘y bermaydigan hodisa"
+     },
+     {
+      "atama": "Ehtimollik",
+      "tarif": "hodisa ro‘y berishining son o‘lchovi"
+     },
+     {
+      "atama": "Qulay natija",
+      "tarif": "hodisa ro‘y berishiga olib keladigan natija"
+     },
+     {
+      "atama": "Qarama-qarshi hodisa",
+      "tarif": "berilgan hodisa ro‘y bermasligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ehtimollik 0 dan 1 gacha bo‘ladi",
+      "togri": true,
+      "izoh": "ehtimollik shu oraliqda"
+     },
+     {
+      "matn": "Ishonchli hodisa ehtimolligi 0",
+      "togri": false,
+      "izoh": "ishonchli hodisada ehtimollik 1"
+     },
+     {
+      "matn": "Tangada gerb tushish ehtimolligi 1 / 2",
+      "togri": true,
+      "izoh": "ikki natijadan bittasi qulay"
+     },
+     {
+      "matn": "Kubda 7 ochko chiqishi tasodifiy hodisa",
+      "togri": false,
+      "izoh": "bu mumkin bo‘lmagan hodisa"
+     },
+     {
+      "matn": "Kubda juft ochko chiqish ehtimolligi 1 / 2",
+      "togri": true,
+      "izoh": "3 ta qulay natija, 6 ta barcha natija"
+     },
+     {
+      "matn": "Yutmaslik ehtimolligi 1 dan yutish ehtimolligini ayirish bilan topiladi",
+      "togri": true,
+      "izoh": "qarama-qarshi hodisa qoidasi"
+     },
+     {
+      "matn": "Tanga 2 marta tashlansa, albatta bir marta gerb tushadi",
+      "togri": false,
+      "izoh": "tasodifiy hodisa kafolatsiz"
+     },
+     {
+      "matn": "Ehtimollik 2 ga teng bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "ehtimollik 1 dan oshmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ehtimollik nima?",
+      "javob": "hodisa ro‘y berishining son o‘lchovi"
+     },
+     {
+      "savol": "Ehtimollikni qanday topamiz?",
+      "javob": "qulay natijalar sonini barcha natijalar soniga bo‘lamiz"
+     },
+     {
+      "savol": "Ishonchli hodisa ehtimolligi?",
+      "javob": "1"
+     },
+     {
+      "savol": "Mumkin bo‘lmagan hodisa ehtimolligi?",
+      "javob": "0"
+     },
+     {
+      "savol": "Tangada gerb ehtimolligi?",
+      "javob": "1 / 2"
+     },
+     {
+      "savol": "Kubda 3 ochko ehtimolligi?",
+      "javob": "1 / 6"
+     },
+     {
+      "savol": "Qopda 1 oq, 4 qora shar. Oq shar ehtimolligi?",
+      "javob": "1 / 5"
+     },
+     {
+      "savol": "Qarama-qarshi hodisa ehtimolligi qanday topiladi?",
+      "javob": "1 dan hodisa ehtimolligini ayiramiz"
+     },
+     {
+      "savol": "Ehtimollik eng katta qiymati?",
+      "javob": "1"
+     },
+     {
+      "savol": "Tasodifiy hodisa nima?",
+      "javob": "ro‘y berishi aniq bo‘lmagan hodisa"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Hodisa turlari",
+      "matn": "Ishonchli, mumkin emas, tasodifiy.",
+      "savol": "Kubda 8 ochko chiqishi qanday hodisa?"
+     },
+     {
+      "nom": "Ta’rif",
+      "matn": "Qulay natijalar bo‘lingan barcha natijalarga.",
+      "savol": "Kubda 2 yoki 3 chiqish ehtimolligi?"
+     },
+     {
+      "nom": "Shar masalasi",
+      "matn": "Rang soni bo‘lingan sharlar soniga.",
+      "savol": "3 qizil, 1 ko‘k shar. Ko‘k ehtimolligi?"
+     },
+     {
+      "nom": "Qarama-qarshi hodisa",
+      "matn": "1 dan ehtimollikni ayiramiz.",
+      "savol": "Yutish 1 / 3 bo‘lsa, yutmaslik?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tanga ketma-ket ikki marta gerb tushganidan keyin uchinchi marta ham gerb tushishi ehtimolligi baribir 1 / 2 ga teng? Avvalgi tashlashlar keyingisiga ta’sir qiladimi?",
+    "keys": {
+     "vaziyat": "Lotereyada 30 ta biletdan 6 tasi yutuqli. Siz bitta bilet tortasiz.",
+     "savollar": [
+      "Yutish ehtimolligi qancha?",
+      "Yutmaslik ehtimolligi qancha?"
+     ]
+    },
+    "tezis": "Ehtimollik — tasodifning son o‘lchovi",
+    "taqqoslash": {
+     "a": "Ishonchli hodisa",
+     "b": "Mumkin bo‘lmagan hodisa",
+     "umumiy": [
+      "natijasi oldindan ma’lum",
+      "ehtimollik chegaraviy qiymatda"
+     ],
+     "a_farq": [
+      "ehtimollik 1",
+      "albatta ro‘y beradi"
+     ],
+     "b_farq": [
+      "ehtimollik 0",
+      "hech qachon ro‘y bermaydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ehtimollik",
+     "shoxlar": [
+      {
+       "nom": "Hodisalar",
+       "bandlar": [
+        "ishonchli",
+        "mumkin emas",
+        "tasodifiy"
+       ]
+      },
+      {
+       "nom": "Hisoblash",
+       "bandlar": [
+        "qulay natijalar",
+        "barcha natijalar",
+        "kasr"
+       ]
+      },
+      {
+       "nom": "Tajriba",
+       "bandlar": [
+        "tanga",
+        "kub",
+        "shar"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "0 dan 1 gacha",
+        "qarama-qarshi hodisa",
+        "nisbiy chastota"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 0 va 1 orasida yashayman. Tasodifni sonlar bilan o‘lchayman. Men nimaman?",
+     "javob": "ehtimollik"
+    },
+    "hikmat": "Tasodifda ham qonuniyat bor.",
+    "kalit_soz": "EHTIMOL",
+    "xato_yechim": {
+     "shart": "Qopda 3 qizil va 2 ko‘k shar bor. Qizil shar chiqish ehtimolligini toping.",
+     "xato": "3 / 2",
+     "togri": "3 / 5",
+     "sabab": "maxrajda barcha sharlar soni (3 + 2, ya’ni 5) bo‘lishi kerak; 3 / 2 esa 1 dan katta, ehtimollik bunday bo‘lmaydi"
+    },
+    "guruh_nomlari": [
+     "Ehtimolchilar",
+     "Kubchilar",
+     "Tangachilar",
+     "Sharchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tasodif laboratoriyasi»",
+     "topshiriq": "Guruh kubni 60 marta tashlab, har bir ochko chastotasini yozadi va 1 / 6 bilan solishtiradi, xulosa chiqaradi."
+    },
+    "vazifalar": {
+     "A": "Kubda 5 yoki 6 chiqish ehtimolligini toping.",
+     "B": "Qopda 4 qizil, 6 ko‘k shar. Har bir rang ehtimolligini toping.",
+     "C": "Hayotdan ishonchli, mumkin emas va tasodifiy hodisa misollarini toping."
+    },
+    "sinkveyn": [
+     "Ehtimollik",
+     "tasodifiy, aniq",
+     "sanaydi, bo‘ladi, o‘lchaydi",
+     "Tasodifning son o‘lchovi",
+     "Imkoniyat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ehtimollikni hisoblaydi.",
+     "qismlar": [
+      "1-guruh: tangada gerb tushishi",
+      "2-guruh: kubda juft ochko chiqishi",
+      "3-guruh: qopda 2 oq, 3 qora shar, oq shar chiqishi",
+      "4-guruh: ishonchli hodisa ehtimolligi"
+     ],
+     "yakun": "Natijalar: 1 / 2; 1 / 2; 2 / 5; 1."
+    }
+   }
   }
  ]
 }
