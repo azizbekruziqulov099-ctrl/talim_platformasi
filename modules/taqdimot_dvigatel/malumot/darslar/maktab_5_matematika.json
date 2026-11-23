@@ -3286,6 +3286,1412 @@
      "yakun": "1-guruh: 9 · 5 = 45, 15 + 45 = 60. 2-guruh: 60 : 4 = 15. 3-guruh: 40 − 15 = 25. 4-guruh: 25 · 3 = 75, 75 − 5 = 70. Sirli son — 70."
     }
    }
+  },
+  {
+   "mavzu": "Bo‘linish belgilari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Bo‘luvchi va karrali",
+      "matn": "Agar a soni b soniga qoldiqsiz bo‘linsa, b soni a ning bo‘luvchisi, a soni esa b ning karralisi deyiladi. Har qanday natural son 1 ga va o‘ziga bo‘linadi. Sonning bo‘luvchilari chekli, karralilari esa cheksiz ko‘p.",
+      "misol": "12 ning bo‘luvchilari: 1, 2, 3, 4, 6, 12. 4 ning karralilari: 4, 8, 12, 16, 20 va hokazo.",
+      "savol": "15 ning barcha bo‘luvchilarini ayting.",
+      "javob": "1, 3, 5, 15",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "2 ga, 5 ga va 10 ga bo‘linish belgilari",
+      "matn": "Bo‘linish belgisi — bo‘lishni bajarmasdan, son yozuviga qarab uning bo‘linishini aniqlash qoidasi. Bu uchta belgi sonning oxirgi raqamiga bog‘liq. Oxirgi raqami 0, 2, 4, 6, 8 (juft) bo‘lgan son 2 ga bo‘linadi. Oxirgi raqami 0 yoki 5 bo‘lgan son 5 ga bo‘linadi. Oxirgi raqami 0 bo‘lgan son 10 ga bo‘linadi.",
+      "misol": "3 570 soni 0 bilan tugaydi, shuning uchun u 2 ga ham, 5 ga ham, 10 ga ham bo‘linadi. 4 135 soni faqat 5 ga bo‘linadi.",
+      "savol": "738 soni 2 ga bo‘linadimi? 5 gachi?",
+      "javob": "2 ga bo‘linadi (8 — juft), 5 ga bo‘linmaydi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "3 ga va 9 ga bo‘linish belgilari",
+      "matn": "Bu belgilar oxirgi raqamga emas, raqamlar yig‘indisiga bog‘liq. Raqamlari yig‘indisi 3 ga bo‘linsa, son 3 ga bo‘linadi. Raqamlari yig‘indisi 9 ga bo‘linsa, son 9 ga bo‘linadi. 9 ga bo‘linadigan har qanday son 3 ga ham bo‘linadi, lekin aksincha har doim ham emas.",
+      "misol": "4 725 sonining raqamlari yig‘indisi 4 + 7 + 2 + 5 = 18. 18 soni 3 ga ham, 9 ga ham bo‘linadi, demak 4 725 ham 3 ga va 9 ga bo‘linadi.",
+      "savol": "123 soni 3 ga bo‘linadimi? 9 gachi?",
+      "javob": "3 ga bo‘linadi (yig‘indi 6), 9 ga bo‘linmaydi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "4 ga va 6 ga bo‘linish belgilari",
+      "matn": "Sonning oxirgi ikki raqamidan tuzilgan son 4 ga bo‘linsa, sonning o‘zi ham 4 ga bo‘linadi. Son 6 ga bo‘linishi uchun u bir vaqtda 2 ga ham, 3 ga ham bo‘linishi kerak: ya’ni juft bo‘lishi va raqamlari yig‘indisi 3 ga bo‘linishi lozim.",
+      "misol": "5 316 sonining oxirgi ikki raqami 16 ni hosil qiladi, 16 soni 4 ga bo‘linadi — demak 5 316 ham 4 ga bo‘linadi. 714 soni juft va raqamlari yig‘indisi 12, demak u 6 ga bo‘linadi.",
+      "savol": "2 022 soni 6 ga bo‘linadimi?",
+      "javob": "ha: u juft va raqamlari yig‘indisi 6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Belgilarni qo‘llash",
+      "matn": "Bo‘linish belgilari kasrlarni qisqartirishda, sonni ko‘paytuvchilarga ajratishda va narsalarni teng guruhlarga bo‘lish mumkinligini tez aniqlashda yordam beradi. Tekshirish tartibi: avval oxirgi raqamga qaraymiz (2, 5, 10), keyin raqamlar yig‘indisini topamiz (3, 9).",
+      "misol": "270 ta daftarni 9 ta sinfga teng bo‘lish mumkinmi? Raqamlar yig‘indisi 2 + 7 + 0 = 9, demak mumkin. Har sinfga 270 : 9 = 30 tadan.",
+      "savol": "145 ta olmani 3 bolaga teng bo‘lib bo‘ladimi?",
+      "javob": "yo‘q: raqamlar yig‘indisi 10, u 3 ga bo‘linmaydi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Son 2 ga bo‘linadi — oxirgi raqami juft bo‘lsa; 5 ga — oxirgi raqami 0 yoki 5 bo‘lsa; 10 ga — oxirgi raqami 0 bo‘lsa; 3 ga (9 ga) — raqamlari yig‘indisi 3 ga (9 ga) bo‘linsa; 4 ga — oxirgi ikki raqamidan tuzilgan son 4 ga bo‘linsa; 6 ga — 2 ga ham, 3 ga ham bo‘linsa.",
+    "misollar": [
+     {
+      "shart": "2 340 soni 2, 3, 5, 9, 10 sonlaridan qaysilariga bo‘linadi?",
+      "yechim": [
+       "Oxirgi raqam 0: son 2 ga, 5 ga va 10 ga bo‘linadi.",
+       "Raqamlar yig‘indisi: 2 + 3 + 4 + 0 = 9.",
+       "9 soni 3 ga ham, 9 ga ham bo‘linadi — demak son 3 ga va 9 ga bo‘linadi."
+      ],
+      "javob": "hammasiga: 2, 3, 5, 9, 10"
+     },
+     {
+      "shart": "52* yozuvida yulduzcha o‘rniga qanday raqam qo‘yilsa, son 3 ga bo‘linadi?",
+      "yechim": [
+       "Ma’lum raqamlar yig‘indisi: 5 + 2 = 7.",
+       "7 ga qo‘shilganda 3 ga bo‘linadigan son chiqishi kerak: 9, 12 yoki 15.",
+       "Demak, yulduzcha o‘rniga 2, 5 yoki 8 qo‘yiladi.",
+       "Tekshirish: 522, 525, 528 — raqamlar yig‘indisi 9, 12, 15."
+      ],
+      "javob": "2, 5 yoki 8"
+     },
+     {
+      "shart": "Do‘konga 1 356 ta qalam keldi. Ularni 6 tadan qilib qutilarga ortiqchasiz joylash mumkinmi?",
+      "yechim": [
+       "6 ga bo‘linish uchun son 2 ga va 3 ga bo‘linishi kerak.",
+       "Oxirgi raqam 6 — juft, demak 2 ga bo‘linadi.",
+       "Raqamlar yig‘indisi: 1 + 3 + 5 + 6 = 15, u 3 ga bo‘linadi.",
+       "Demak, 1 356 soni 6 ga bo‘linadi: 1356 : 6 = 226 ta quti."
+      ],
+      "javob": "mumkin, 226 ta quti"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sonlarni saralash",
+      "topshiriq": "Sonlar: 135, 240, 318, 405, 1 002, 729, 550, 96. Jadval tuzing: a) 2 ga bo‘linadiganlar; b) 3 ga bo‘linadiganlar; d) 5 ga bo‘linadiganlar; e) 9 ga bo‘linadiganlar.",
+      "yechim": "a) 240, 318, 1 002, 550, 96. b) 135, 240, 318, 405, 1 002, 729, 96. d) 135, 240, 405, 550. e) 135, 405, 729.",
+      "mahsulot": "to‘rt ustunli jadval"
+     },
+     {
+      "nom": "Yashirin raqam",
+      "topshiriq": "Yulduzcha o‘rniga mos raqamlarni toping: a) 47* soni 5 ga bo‘linsin; b) 3*6 soni 9 ga bo‘linsin; d) 81* soni 2 ga ham, 3 ga ham bo‘linsin.",
+      "yechim": "a) 0 yoki 5. b) 3 + 6 = 9, demak yulduzcha 0 yoki 9 (yig‘indi 9 yoki 18). d) 8 + 1 = 9; juft va yig‘indi 3 ga bo‘linadigan bo‘lishi uchun 0 yoki 6 (810, 816).",
+      "mahsulot": "javoblar va tekshiruv"
+     },
+     {
+      "nom": "Adolatli bo‘lish",
+      "topshiriq": "Maktabga 432 ta darslik keldi. a) Ularni 3 ta sinfga teng bo‘lish mumkinmi? b) 5 ta sinfgachi? d) 9 ta sinfgachi? e) Mumkin bo‘lgan hollarda har sinfga nechtadan tegadi?",
+      "yechim": "Raqamlar yig‘indisi 4 + 3 + 2 = 9. a) Mumkin: 432 : 3 = 144 tadan. b) Mumkin emas: oxirgi raqam 2. d) Mumkin: 432 : 9 = 48 tadan.",
+      "mahsulot": "xulosa jadvali"
+     },
+     {
+      "nom": "Son tuzamiz",
+      "topshiriq": "0, 3, 5, 7 raqamlaridan (har biri bir marta) to‘rt xonali son tuzing: a) 10 ga bo‘linadigan eng katta son; b) 5 ga bo‘linadigan, lekin 10 ga bo‘linmaydigan eng kichik son; d) bu raqamlardan tuzilgan sonlar 3 ga bo‘linadimi?",
+      "yechim": "a) 7 530. b) 3 075. d) Raqamlar yig‘indisi 0 + 3 + 5 + 7 = 15, u 3 ga bo‘linadi — demak bu raqamlardan tuzilgan har qanday son 3 ga bo‘linadi.",
+      "mahsulot": "tuzilgan sonlar va izoh"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1 248 soni 2 ga bo‘linadimi?",
+      "javob": "ha"
+     },
+     {
+      "shart": "7 315 soni 5 ga bo‘linadimi?",
+      "javob": "ha"
+     },
+     {
+      "shart": "5 124 soni 3 ga bo‘linadimi?",
+      "javob": "ha (raqamlar yig‘indisi 12)"
+     },
+     {
+      "shart": "8 001 soni 9 ga bo‘linadimi?",
+      "javob": "ha (raqamlar yig‘indisi 9)"
+     },
+     {
+      "shart": "3 414 soni 4 ga bo‘linadimi?",
+      "javob": "yo‘q (14 soni 4 ga bo‘linmaydi)"
+     },
+     {
+      "shart": "20 ning barcha bo‘luvchilarini yozing.",
+      "javob": "1, 2, 4, 5, 10, 20"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "3 ga bo‘linishni oxirgi raqamga qarab aniqlaydi: «13 soni 3 bilan tugaydi, demak bo‘linadi»",
+      "sabab": "2 va 5 belgilarini 3 ga ko‘chiradi",
+      "oldini_olish": "belgilarni ikki guruhga ajratish: «oxirgi raqam» (2, 5, 10) va «raqamlar yig‘indisi» (3, 9)"
+     },
+     {
+      "xato": "3 ga bo‘linadigan sonni 9 ga ham bo‘linadi deb hisoblaydi",
+      "sabab": "ikki belgining o‘xshashligi",
+      "oldini_olish": "qarshi misol: 12 soni 3 ga bo‘linadi, 9 ga bo‘linmaydi"
+     },
+     {
+      "xato": "Bo‘luvchi va karralini adashtiradi",
+      "sabab": "atamalar o‘xshash vaziyatda ishlatiladi",
+      "oldini_olish": "«bo‘luvchi — kichik yoki teng, karrali — katta yoki teng» degan tayanch"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Informatika",
+      "boglanish": "juft-toqlikni tekshirish — dasturlashdagi eng oddiy shartlardan biri (qoldiqni topish amali)"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "kabisa yilini aniqlashda 4 ga bo‘linish belgisi ishlatiladi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "mahsulotlarni qutilarga ortiqchasiz joylash mumkinligini bo‘linish belgilari bilan tez aniqlash mumkin"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Bo‘linish belgilari qo‘llanmasi»",
+     "muammo": "Katta sonni bo‘lmasdan turib uning bo‘linishini qanday tez aniqlash mumkin?",
+     "mahsulot": "kichik sinf o‘quvchilari uchun rasmli eslatma-buklet",
+     "bosqichlar": [
+      "belgilarni yig‘ish",
+      "har biriga misol va qarshi misol topish",
+      "rasm va sxemalar chizish",
+      "bukletni yig‘ish",
+      "boshqa sinfda sinab ko‘rish"
+     ],
+     "guruh_vazifalari": [
+      "2, 5, 10 ga bo‘linish sahifasini tayyorlang",
+      "3 va 9 ga bo‘linish sahifasini tayyorlang",
+      "4 va 6 ga bo‘linish sahifasini tayyorlang",
+      "Kabisa yili va hayotiy misollar sahifasini tayyorlang"
+     ],
+     "mezonlar": [
+      "qoidalar to‘g‘ri",
+      "misollar tekshirilgan",
+      "qarshi misol bor",
+      "tushunarli tilda",
+      "bezagi chiroyli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qadoqlash fabrikasi»",
+     "bekatlar": [
+      {
+       "nom": "Juftlash sexi",
+       "matn": "Paypoqlar juft-juft qilib qadoqlanadi. Konveyerda 1 357 ta paypoq bor.",
+       "topshiriq": "Hammasi juftlanadimi?",
+       "javob": "yo‘q, bittasi ortadi (toq son)",
+       "rasm": ""
+      },
+      {
+       "nom": "Beshlik sexi",
+       "matn": "Qalamlar 5 tadan bog‘lanadi. Omborda 2 480 ta qalam bor.",
+       "topshiriq": "Ortiqcha qalam qoladimi?",
+       "javob": "yo‘q (0 bilan tugaydi)",
+       "rasm": ""
+      },
+      {
+       "nom": "Uchlik sexi",
+       "matn": "Sovunlar 3 tadan qutiga solinadi. 1 011 ta sovun tayyor.",
+       "topshiriq": "Ortiqchasiz joylanadimi?",
+       "javob": "ha (raqamlar yig‘indisi 3)",
+       "rasm": ""
+      },
+      {
+       "nom": "To‘qqizlik sexi",
+       "matn": "Konfetlar 9 tadan qadoqlanadi. 5 004 ta konfet bor.",
+       "topshiriq": "Ortiqchasiz joylanadimi?",
+       "javob": "ha (raqamlar yig‘indisi 9)",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "konveyerga yaqinlashmang",
+      "maxsus kiyimda yuring",
+      "yo‘lboshchidan ajralmang"
+     ],
+     "kundalik": [
+      "Qaysi sexda oxirgi raqamga qaradik?",
+      "Qaysi sexda raqamlar yig‘indisi kerak bo‘ldi?",
+      "Fabrikaga bo‘linish belgilari nima uchun kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Bo‘luvchi",
+      "tarif": "berilgan son qoldiqsiz bo‘linadigan natural son"
+     },
+     {
+      "atama": "Karrali",
+      "tarif": "berilgan songa qoldiqsiz bo‘linadigan natural son"
+     },
+     {
+      "atama": "Bo‘linish belgisi",
+      "tarif": "bo‘lishni bajarmasdan bo‘linishni aniqlash qoidasi"
+     },
+     {
+      "atama": "Juft son",
+      "tarif": "2 ga bo‘linadigan son"
+     },
+     {
+      "atama": "Toq son",
+      "tarif": "2 ga bo‘linmaydigan son"
+     },
+     {
+      "atama": "Raqamlar yig‘indisi",
+      "tarif": "son yozuvidagi barcha raqamlarning yig‘indisi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Oxirgi raqami 0 bo‘lgan son 10 ga bo‘linadi",
+      "togri": true,
+      "izoh": "10 ga bo‘linish belgisi"
+     },
+     {
+      "matn": "Oxirgi raqami 3 bo‘lgan har qanday son 3 ga bo‘linadi",
+      "togri": false,
+      "izoh": "13 soni 3 ga bo‘linmaydi; raqamlar yig‘indisiga qaraladi"
+     },
+     {
+      "matn": "111 soni 3 ga bo‘linadi",
+      "togri": true,
+      "izoh": "raqamlar yig‘indisi 3"
+     },
+     {
+      "matn": "3 ga bo‘linadigan har qanday son 9 ga ham bo‘linadi",
+      "togri": false,
+      "izoh": "12 soni 9 ga bo‘linmaydi"
+     },
+     {
+      "matn": "9 ga bo‘linadigan har qanday son 3 ga ham bo‘linadi",
+      "togri": true,
+      "izoh": "chunki 9 ning o‘zi 3 ga bo‘linadi"
+     },
+     {
+      "matn": "Toq son 2 ga bo‘linadi",
+      "togri": false,
+      "izoh": "faqat juft sonlar 2 ga bo‘linadi"
+     },
+     {
+      "matn": "Har qanday natural son 1 ga bo‘linadi",
+      "togri": true,
+      "izoh": "1 — har qanday sonning bo‘luvchisi"
+     },
+     {
+      "matn": "Sonning karralilari chekli",
+      "togri": false,
+      "izoh": "karralilar cheksiz ko‘p"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Bo‘linish belgisi nima?",
+      "javob": "bo‘lmasdan turib bo‘linishni aniqlash qoidasi"
+     },
+     {
+      "savol": "Qanday son 2 ga bo‘linadi?",
+      "javob": "oxirgi raqami juft bo‘lgan son"
+     },
+     {
+      "savol": "Qanday son 5 ga bo‘linadi?",
+      "javob": "oxirgi raqami 0 yoki 5 bo‘lgan son"
+     },
+     {
+      "savol": "Qanday son 3 ga bo‘linadi?",
+      "javob": "raqamlari yig‘indisi 3 ga bo‘linadigan son"
+     },
+     {
+      "savol": "Qanday son 9 ga bo‘linadi?",
+      "javob": "raqamlari yig‘indisi 9 ga bo‘linadigan son"
+     },
+     {
+      "savol": "Qanday son 10 ga bo‘linadi?",
+      "javob": "oxirgi raqami 0 bo‘lgan son"
+     },
+     {
+      "savol": "6 ga bo‘linish uchun son qaysi sonlarga bo‘linishi kerak?",
+      "javob": "2 ga va 3 ga"
+     },
+     {
+      "savol": "Eng kichik juft natural son qaysi?",
+      "javob": "2"
+     },
+     {
+      "savol": "7 ning dastlabki uchta karralisini ayting.",
+      "javob": "7, 14, 21"
+     },
+     {
+      "savol": "Har qanday sonning eng kichik bo‘luvchisi qaysi?",
+      "javob": "1"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Bo‘luvchi va karrali",
+      "matn": "a soni b ga qoldiqsiz bo‘linsa, b — a ning bo‘luvchisi, a — b ning karralisi. Bo‘luvchilar chekli, karralilar cheksiz.",
+      "savol": "18 ning bo‘luvchilarini yozing."
+     },
+     {
+      "nom": "Oxirgi raqam belgilari",
+      "matn": "2 ga — oxirgi raqam juft; 5 ga — 0 yoki 5; 10 ga — 0. Bu belgilarda faqat oxirgi raqamga qaraladi.",
+      "savol": "4 570 soni qaysilariga bo‘linadi: 2, 5, 10?"
+     },
+     {
+      "nom": "Raqamlar yig‘indisi belgilari",
+      "matn": "3 ga va 9 ga bo‘linishda raqamlar yig‘indisi topiladi. Yig‘indi 3 ga (9 ga) bo‘linsa, son ham bo‘linadi.",
+      "savol": "2 718 soni 9 ga bo‘linadimi?"
+     },
+     {
+      "nom": "4 va 6",
+      "matn": "4 ga — oxirgi ikki raqamdan tuzilgan son 4 ga bo‘linsa. 6 ga — son juft va raqamlari yig‘indisi 3 ga bo‘linsa.",
+      "savol": "1 524 soni 4 ga bo‘linadimi?"
+     }
+    ],
+    "muammoli_savol": "Sotuvchi 3 ta bir xil daftar uchun 20 000 so‘m so‘radi. Xaridor darhol: «Siz xato hisobladingiz», dedi. U hisoblamasdan turib buni qanday bildi?",
+    "keys": {
+     "vaziyat": "Sinf rahbari 28 nafar o‘quvchini musobaqa uchun teng jamoalarga bo‘lmoqchi. Avval 3 tadan jamoa tuzmoqchi bo‘ldi, keyin 4 tadan, so‘ng 5 tadan.",
+     "savollar": [
+      "Qaysi holatda o‘quvchilar ortiqchasiz bo‘linadi va nechta jamoa chiqadi?",
+      "Yana 2 o‘quvchi qo‘shilsa (30 nafar), qaysi variantlar mumkin bo‘ladi?"
+     ]
+    },
+    "tezis": "Bo‘linish belgilarini bilgan odam kalkulyatordan tez hisoblaydi",
+    "taqqoslash": {
+     "a": "Bo‘luvchi",
+     "b": "Karrali",
+     "umumiy": [
+      "qoldiqsiz bo‘linish bilan bog‘liq",
+      "natural sonlar"
+     ],
+     "a_farq": [
+      "sondan katta emas",
+      "soni chekli"
+     ],
+     "b_farq": [
+      "sondan kichik emas",
+      "soni cheksiz"
+     ]
+    },
+    "klaster": {
+     "markaz": "Bo‘linish belgilari",
+     "shoxlar": [
+      {
+       "nom": "Oxirgi raqam",
+       "bandlar": [
+        "2 ga",
+        "5 ga",
+        "10 ga"
+       ]
+      },
+      {
+       "nom": "Raqamlar yig‘indisi",
+       "bandlar": [
+        "3 ga",
+        "9 ga"
+       ]
+      },
+      {
+       "nom": "Murakkab belgilar",
+       "bandlar": [
+        "4 ga — oxirgi ikki raqam",
+        "6 ga — 2 va 3"
+       ]
+      },
+      {
+       "nom": "Qo‘llanishi",
+       "bandlar": [
+        "teng bo‘lish",
+        "kasrni qisqartirish",
+        "kabisa yili"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men faqat oxirgi raqamga qarayman: u 0 yoki 5 bo‘lsa, «bo‘linadi» deyman. Men qaysi songa bo‘linish belgisiman?",
+     "javob": "5 ga"
+    },
+    "hikmat": "Aql — yoshda emas, boshda.",
+    "kalit_soz": "KARRALI",
+    "xato_yechim": {
+     "shart": "243 soni 3 ga bo‘linadimi?",
+     "xato": "Ha, chunki oxirgi raqami 3",
+     "togri": "Ha, chunki raqamlar yig‘indisi 2 + 4 + 3 = 9, u 3 ga bo‘linadi",
+     "sabab": "javob to‘g‘ri chiqqan, lekin asos noto‘g‘ri: 3 ga bo‘linish oxirgi raqamga emas, raqamlar yig‘indisiga bog‘liq (masalan, 13 soni 3 ga bo‘linmaydi)"
+    },
+    "guruh_nomlari": [
+     "Juftlar",
+     "Beshliklar",
+     "Uchliklar",
+     "To‘qqizliklar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bo‘linish detektivi»",
+     "topshiriq": "Guruhga 10 ta son yozilgan kartochkalar beriladi. Bir daqiqa ichida har bir kartochkaga 2, 3, 5, 9, 10 belgilaridan mos stikerlarni yopishtiring (bo‘lishni bajarmasdan). So‘ng qo‘shni guruh bilan almashib, bir-biringizni tekshiring."
+    },
+    "vazifalar": {
+     "A": "Qaysi sonlar 2 ga, 3 ga, 5 ga, 9 ga bo‘linishini aniqlang: 126, 405, 1 230, 7 777, 9 018.",
+     "B": "Tug‘ilgan yilingiz va uy raqamingiz qaysi sonlarga bo‘linishini belgilar yordamida tekshiring. 2028, 2030, 2032-yillardan qaysilari kabisa yili ekanini aniqlang (4 ga bo‘linish).",
+     "C": "11 ga bo‘linish belgisini mustaqil izlab toping yoki o‘ylab ko‘ring: 121, 132, 143 sonlarida qanday qonuniyat bor? Kuzatishingizni yozing."
+    },
+    "sinkveyn": [
+     "Belgi",
+     "tez, ishonchli",
+     "aniqlaydi, tejaydi, tekshiradi",
+     "Bo‘lmasdan turib bo‘linishni aytadi",
+     "Qoida"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Maktab kutubxonasiga 2 520 ta kitob keldi. Har bir guruh kitoblarni o‘z usulida teng taxlash mumkinligini tekshiradi.",
+     "qismlar": [
+      "1-guruh: 2 tadan va 5 tadan taxlash mumkinmi?",
+      "2-guruh: 3 tadan va 9 tadan taxlash mumkinmi?",
+      "3-guruh: 4 tadan taxlash mumkinmi?",
+      "4-guruh: 6 tadan va 10 tadan taxlash mumkinmi?"
+     ],
+     "yakun": "2 520 soni 0 bilan tugaydi — 2, 5, 10 ga bo‘linadi; raqamlar yig‘indisi 2 + 5 + 2 + 0 = 9 — 3 va 9 ga bo‘linadi; oxirgi ikki raqam 20 — 4 ga bo‘linadi; 2 va 3 ga bo‘lingani uchun 6 ga ham bo‘linadi. Hamma usulda taxlash mumkin."
+    }
+   }
+  },
+  {
+   "mavzu": "Tub va murakkab sonlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tub son nima?",
+      "matn": "Faqat ikkita bo‘luvchisi — 1 va o‘zi — bo‘lgan natural son tub son deyiladi. Tub sonni teng guruhlarga bo‘lib bo‘lmaydi: 7 ta olmani faqat bittadan yoki hammasini birga joylash mumkin. Dastlabki tub sonlar: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29.",
+      "misol": "13 ning bo‘luvchilari faqat 1 va 13, demak 13 — tub son.",
+      "savol": "17 tub sonmi? Nima uchun?",
+      "javob": "ha, chunki u faqat 1 ga va 17 ga bo‘linadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Murakkab son nima?",
+      "matn": "Ikkitadan ko‘p bo‘luvchisi bor natural son murakkab son deyiladi. Murakkab sonni teng guruhlarga bo‘lish, ya’ni ikkita kichikroq sonning ko‘paytmasi ko‘rinishida yozish mumkin. 1 soni tub ham emas, murakkab ham emas — uning faqat bitta bo‘luvchisi bor.",
+      "misol": "12 ning bo‘luvchilari: 1, 2, 3, 4, 6, 12 — oltita, demak 12 murakkab son. Uni 3 · 4 yoki 2 · 6 ko‘rinishida yozish mumkin.",
+      "savol": "9 tub sonmi yoki murakkab?",
+      "javob": "murakkab: bo‘luvchilari 1, 3, 9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "2 — yagona juft tub son",
+      "matn": "2 dan boshqa barcha juft sonlar 2 ga bo‘linadi, demak ularning kamida uchta bo‘luvchisi bor va ular murakkab. Shuning uchun 2 — yagona juft tub son, qolgan barcha tub sonlar toq. Lekin har qanday toq son tub bo‘lavermaydi: 9, 15, 21, 25 — toq, ammo murakkab.",
+      "misol": "15 toq son, lekin 3 · 5 = 15, demak u murakkab.",
+      "savol": "21 tub sonmi?",
+      "javob": "yo‘q, 21 soni 3 ga va 7 ga bo‘linadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Eratosfen g‘alviri",
+      "matn": "Qadimgi yunon olimi Eratosfen tub sonlarni topishning oddiy usulini o‘ylab topgan. 1 dan 100 gacha sonlar yoziladi. 1 o‘chiriladi. 2 qoldiriladi, uning qolgan barcha karralilari o‘chiriladi. Keyin 3 qoldirilib, karralilari o‘chiriladi, so‘ng 5 va 7 bilan ham shunday qilinadi. O‘chirilmay qolgan sonlar — tub sonlar. 100 gacha 25 ta tub son bor.",
+      "misol": "30 gacha tub sonlar: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 — jami 10 ta.",
+      "savol": "30 dan 40 gacha qaysi tub sonlar bor?",
+      "javob": "31 va 37",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tub ko‘paytuvchilarga ajratish",
+      "matn": "Har qanday murakkab sonni tub sonlar ko‘paytmasi ko‘rinishida yozish mumkin va bu yozuv ko‘paytuvchilar tartibini hisobga olmaganda yagona. Buning uchun son eng kichik tub bo‘luvchisiga ketma-ket bo‘lib boriladi, to bo‘linma 1 chiqquncha. Bo‘linish belgilari bu ishni tezlashtiradi.",
+      "misol": "60 ni ajratamiz: 60 : 2 = 30; 30 : 2 = 15; 15 : 3 = 5; 5 : 5 = 1. Demak, 60 soni 2 · 2 · 3 · 5 ko‘paytmasiga teng.",
+      "savol": "18 ni tub ko‘paytuvchilarga ajrating.",
+      "javob": "2 · 3 · 3",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tub son — faqat ikkita bo‘luvchisi (1 va o‘zi) bor natural son. Murakkab son — ikkitadan ko‘p bo‘luvchisi bor son. 1 soni tub ham, murakkab ham emas. Har qanday murakkab son tub ko‘paytuvchilarga yagona usulda ajraladi.",
+    "misollar": [
+     {
+      "shart": "51 tub sonmi yoki murakkab?",
+      "yechim": [
+       "51 toq son, 2 ga bo‘linmaydi.",
+       "3 ga bo‘linishini tekshiramiz: raqamlar yig‘indisi 5 + 1 = 6, u 3 ga bo‘linadi.",
+       "Demak, 51 soni 3 ga bo‘linadi: 51 : 3 = 17.",
+       "Uning 1 va 51 dan boshqa bo‘luvchilari bor."
+      ],
+      "javob": "murakkab son (3 · 17)"
+     },
+     {
+      "shart": "84 ni tub ko‘paytuvchilarga ajrating.",
+      "yechim": [
+       "84 juft: 84 : 2 = 42.",
+       "42 juft: 42 : 2 = 21.",
+       "21 soni 3 ga bo‘linadi: 21 : 3 = 7.",
+       "7 — tub son: 7 : 7 = 1.",
+       "Tekshirish: 2 · 2 · 3 · 7 = 84."
+      ],
+      "javob": "84 soni 2 · 2 · 3 · 7 ga teng"
+     },
+     {
+      "shart": "97 tub son ekanini isbotlang.",
+      "yechim": [
+       "97 toq — 2 ga bo‘linmaydi.",
+       "Raqamlar yig‘indisi 16 — 3 ga bo‘linmaydi.",
+       "Oxirgi raqami 7 — 5 ga bo‘linmaydi.",
+       "7 ga bo‘lamiz: 7 · 13 = 91, qoldiq 6 — bo‘linmaydi.",
+       "Keyingi tub son 11, lekin 11 · 11 = 121 soni 97 dan katta — tekshirishni to‘xtatamiz."
+      ],
+      "javob": "97 — tub son"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Eratosfen g‘alviri",
+      "topshiriq": "1 dan 50 gacha sonlar jadvalida g‘alvir usulini bajaring: a) 1 ni o‘chiring; b) 2, 3, 5, 7 ning o‘zidan boshqa karralilarini o‘chiring; d) qolgan tub sonlarni yozing va sanang.",
+      "yechim": "Tub sonlar: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47 — jami 15 ta.",
+      "mahsulot": "bo‘yalgan jadval va tub sonlar ro‘yxati"
+     },
+     {
+      "nom": "Ko‘paytuvchilar daraxti",
+      "topshiriq": "Sonlarni «daraxt» usulida tub ko‘paytuvchilarga ajrating: a) 36; b) 90; d) 100.",
+      "yechim": "a) 36 soni 2 · 2 · 3 · 3 ga teng. b) 90 soni 2 · 3 · 3 · 5 ga teng. d) 100 soni 2 · 2 · 5 · 5 ga teng.",
+      "mahsulot": "uchta ko‘paytuvchilar daraxti"
+     },
+     {
+      "nom": "To‘rtburchaklar",
+      "topshiriq": "24 ta kvadrat plitkadan to‘g‘ri to‘rtburchak yig‘ish kerak. a) Necha xil to‘rtburchak yig‘ish mumkin (tomonlari natural son)? b) 23 ta plitkadan-chi? d) Bu tub va murakkab sonlar haqida nimani ko‘rsatadi?",
+      "yechim": "a) 4 xil: 1×24, 2×12, 3×8, 4×6. b) Faqat bitta: 1×23. d) Tub sondagi plitkalardan faqat bir qatorli to‘rtburchak chiqadi, murakkab sondan esa bir necha xil.",
+      "mahsulot": "katakli qog‘ozdagi chizmalar"
+     },
+     {
+      "nom": "Egizak tub sonlar",
+      "topshiriq": "Ayirmasi 2 ga teng bo‘lgan tub sonlar juftligi «egizak tub sonlar» deyiladi (masalan, 3 va 5). a) 50 gacha barcha egizak juftliklarni toping. b) Ular nechta?",
+      "yechim": "a) (3, 5), (5, 7), (11, 13), (17, 19), (29, 31), (41, 43). b) 6 ta juftlik.",
+      "mahsulot": "egizak juftliklar ro‘yxati"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Tub sonmi: 23?",
+      "javob": "ha"
+     },
+     {
+      "shart": "Tub sonmi: 27?",
+      "javob": "yo‘q (3 · 9)"
+     },
+     {
+      "shart": "Tub sonmi: 49?",
+      "javob": "yo‘q (7 · 7)"
+     },
+     {
+      "shart": "Tub ko‘paytuvchilarga ajrating: 30.",
+      "javob": "2 · 3 · 5"
+     },
+     {
+      "shart": "Tub ko‘paytuvchilarga ajrating: 72.",
+      "javob": "2 · 2 · 2 · 3 · 3"
+     },
+     {
+      "shart": "40 dan 50 gacha tub sonlarni yozing.",
+      "javob": "41, 43, 47"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "1 ni tub son deb hisoblaydi",
+      "sabab": "«o‘ziga va 1 ga bo‘linadi» ta’rifini yuzaki qo‘llaydi",
+      "oldini_olish": "ta’rifda «roppa-rosa ikkita turli bo‘luvchi» ekanini ta’kidlash: 1 da bitta bo‘luvchi bor"
+     },
+     {
+      "xato": "Barcha toq sonlarni tub deb o‘ylaydi",
+      "sabab": "2 dan boshqa tub sonlar toq bo‘lgani uchun teskari xulosa chiqaradi",
+      "oldini_olish": "qarshi misollar: 9, 15, 21, 25, 27"
+     },
+     {
+      "xato": "Ajratishda murakkab ko‘paytuvchini qoldiradi: 60 ni 4 · 15 deb yozib to‘xtaydi",
+      "sabab": "ko‘paytuvchilar tub bo‘lishi shartligini unutadi",
+      "oldini_olish": "har bir ko‘paytuvchini «tubmi?» deb tekshirish va daraxtni oxirigacha davom ettirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Informatika",
+      "boglanish": "internetdagi ma’lumotlarni shifrlash juda katta tub sonlarga asoslangan"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Eratosfen — miloddan avvalgi III asrda yashagan olim, u Yer aylanasining uzunligini ham hisoblagan"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "ayrim chirildoqlar (sikadalar) 13 yoki 17 yilda bir marta ommaviy chiqadi — bu sonlar tub"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tub sonlar xaritasi»",
+     "muammo": "Tub sonlar natural sonlar orasida qanday joylashgan — tartibli yoki tartibsizmi?",
+     "mahsulot": "1 dan 100 gacha sonlar plakati (tub sonlar bo‘yalgan) va kuzatilgan qonuniyatlar ro‘yxati",
+     "bosqichlar": [
+      "100 lik jadval chizish",
+      "g‘alvir usulini bajarish",
+      "tub sonlarni bo‘yash",
+      "o‘nliklar bo‘yicha sanash",
+      "qonuniyatlarni yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "1–25 oralig‘ini g‘alvirdan o‘tkazing",
+      "26–50 oralig‘ini g‘alvirdan o‘tkazing",
+      "51–75 oralig‘ini g‘alvirdan o‘tkazing",
+      "76–100 oralig‘ini g‘alvirdan o‘tkazing"
+     ],
+     "mezonlar": [
+      "tub sonlar to‘g‘ri topilgan",
+      "jami 25 ta",
+      "qonuniyat yozilgan",
+      "plakat tartibli",
+      "taqdimot tushunarli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tub sonlar oroli»",
+     "bekatlar": [
+      {
+       "nom": "Yolg‘izlar ko‘chasi",
+       "matn": "Bu ko‘chada faqat tub raqamli uylar bor. Dastlabki uylar: 2, 3, 5, 7.",
+       "topshiriq": "Keyingi uchta uy raqamini ayting.",
+       "javob": "11, 13, 17",
+       "rasm": ""
+      },
+      {
+       "nom": "G‘alvir ustaxonasi",
+       "matn": "Usta Eratosfen sonlarni g‘alvirdan o‘tkazmoqda: 2 ning karralilari tushib ketdi, keyin 3 ning karralilari.",
+       "topshiriq": "20 gacha sonlardan g‘alvirda nechta son qoladi?",
+       "javob": "8 ta: 2, 3, 5, 7, 11, 13, 17, 19",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘paytuvchilar bog‘i",
+       "matn": "Bog‘dagi har bir daraxt — sonning tub ko‘paytuvchilarga ajralishi. Bir daraxtning mevalari: 2, 3 va 7.",
+       "topshiriq": "Bu qaysi sonning daraxti?",
+       "javob": "42",
+       "rasm": ""
+      },
+      {
+       "nom": "Sirli qulf",
+       "matn": "Xazina sandig‘ining kodi — 50 dan kichik eng katta tub son.",
+       "topshiriq": "Kodni toping.",
+       "javob": "47",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "orolda guruhdan ajralmang",
+      "ustaxonada asboblarga tegmang",
+      "navbat bilan javob bering"
+     ],
+     "kundalik": [
+      "Qaysi bekat eng qiziq bo‘ldi?",
+      "1 soni nega orolda yashamaydi?",
+      "Eng katta tub son bormi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tub son",
+      "tarif": "faqat 1 ga va o‘ziga bo‘linadigan, 1 dan katta natural son"
+     },
+     {
+      "atama": "Murakkab son",
+      "tarif": "ikkitadan ko‘p bo‘luvchisi bor natural son"
+     },
+     {
+      "atama": "Eratosfen g‘alviri",
+      "tarif": "karralilarni ketma-ket o‘chirib, tub sonlarni topish usuli"
+     },
+     {
+      "atama": "Tub ko‘paytuvchilarga ajratish",
+      "tarif": "sonni tub sonlar ko‘paytmasi ko‘rinishida yozish"
+     },
+     {
+      "atama": "Egizak tub sonlar",
+      "tarif": "ayirmasi 2 ga teng bo‘lgan tub sonlar juftligi"
+     },
+     {
+      "atama": "Tub bo‘luvchi",
+      "tarif": "sonning tub son bo‘lgan bo‘luvchisi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "2 — tub son",
+      "togri": true,
+      "izoh": "bo‘luvchilari faqat 1 va 2"
+     },
+     {
+      "matn": "1 — tub son",
+      "togri": false,
+      "izoh": "1 ning faqat bitta bo‘luvchisi bor"
+     },
+     {
+      "matn": "Barcha toq sonlar tub",
+      "togri": false,
+      "izoh": "9, 15, 21 — toq, lekin murakkab"
+     },
+     {
+      "matn": "2 dan boshqa barcha tub sonlar toq",
+      "togri": true,
+      "izoh": "boshqa juft sonlar 2 ga bo‘linadi"
+     },
+     {
+      "matn": "91 — tub son",
+      "togri": false,
+      "izoh": "91 soni 7 ga va 13 ga bo‘linadi"
+     },
+     {
+      "matn": "100 gacha 25 ta tub son bor",
+      "togri": true,
+      "izoh": "Eratosfen g‘alviri natijasi"
+     },
+     {
+      "matn": "Murakkab sonni tub ko‘paytuvchilarga ajratish mumkin",
+      "togri": true,
+      "izoh": "va bu ajralish yagona"
+     },
+     {
+      "matn": "Eng katta tub son — 97",
+      "togri": false,
+      "izoh": "tub sonlar cheksiz ko‘p; 97 — faqat 100 gacha eng kattasi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tub son nima?",
+      "javob": "faqat 1 ga va o‘ziga bo‘linadigan son"
+     },
+     {
+      "savol": "Murakkab son nima?",
+      "javob": "ikkitadan ko‘p bo‘luvchisi bor son"
+     },
+     {
+      "savol": "1 tub sonmi?",
+      "javob": "yo‘q, u tub ham, murakkab ham emas"
+     },
+     {
+      "savol": "Yagona juft tub son qaysi?",
+      "javob": "2"
+     },
+     {
+      "savol": "Eng kichik murakkab son qaysi?",
+      "javob": "4"
+     },
+     {
+      "savol": "10 gacha nechta tub son bor?",
+      "javob": "4 ta: 2, 3, 5, 7"
+     },
+     {
+      "savol": "Tub sonlarni topish usulini kim o‘ylab topgan?",
+      "javob": "Eratosfen"
+     },
+     {
+      "savol": "15 ni tub ko‘paytuvchilarga ajrating.",
+      "javob": "3 · 5"
+     },
+     {
+      "savol": "Eng kichik ikki xonali tub son qaysi?",
+      "javob": "11"
+     },
+     {
+      "savol": "Tub sonlar nechta?",
+      "javob": "cheksiz ko‘p"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Tub sonlar",
+      "matn": "Faqat ikkita bo‘luvchisi bor sonlar: 2, 3, 5, 7, 11, 13 … Ularni teng guruhlarga bo‘lib bo‘lmaydi.",
+      "savol": "19 tub sonmi?"
+     },
+     {
+      "nom": "Murakkab sonlar va 1",
+      "matn": "Ikkitadan ko‘p bo‘luvchisi bor sonlar murakkab: 4, 6, 8, 9, 10 … 1 soni alohida turadi — u tub ham, murakkab ham emas.",
+      "savol": "25 nega murakkab son?"
+     },
+     {
+      "nom": "Eratosfen g‘alviri",
+      "matn": "Sonlar yoziladi, 1 o‘chiriladi, so‘ng 2, 3, 5, 7 ning karralilari o‘chiriladi. Qolganlari — tub sonlar.",
+      "savol": "20 dan 30 gacha qaysi tub sonlar bor?"
+     },
+     {
+      "nom": "Tub ko‘paytuvchilarga ajratish",
+      "matn": "Son eng kichik tub bo‘luvchisiga ketma-ket bo‘linadi. Masalan, 12 soni 2 · 2 · 3 ga teng.",
+      "savol": "45 ni tub ko‘paytuvchilarga ajrating."
+     }
+    ],
+    "muammoli_savol": "Bog‘bon 29 tup ko‘chatni teng qatorlarga (har qatorda bittadan ko‘p) ekmoqchi bo‘ldi, lekin hech qanday usulda uddalay olmadi. Nega? U 30 tup ekkanida necha xil usul bo‘lar edi?",
+    "keys": {
+     "vaziyat": "Sinfda 31 o‘quvchi bor. O‘qituvchi ularni teng guruhlarga bo‘lmoqchi edi, lekin hech qanday usulda bo‘linmadi. Ertasi kuni bir o‘quvchi kelmadi va sinfda 30 kishi qoldi.",
+     "savollar": [
+      "Nega 31 o‘quvchini teng guruhlarga bo‘lib bo‘lmadi?",
+      "30 o‘quvchini necha xil usulda teng guruhlarga bo‘lish mumkin (guruhda kamida 2 kishi, kamida 2 ta guruh)?"
+     ]
+    },
+    "tezis": "Tub sonlar — barcha sonlarning qurilish g‘ishtlari",
+    "taqqoslash": {
+     "a": "Tub son",
+     "b": "Murakkab son",
+     "umumiy": [
+      "1 dan katta natural sonlar",
+      "1 ga va o‘ziga bo‘linadi"
+     ],
+     "a_farq": [
+      "roppa-rosa 2 ta bo‘luvchi",
+      "ko‘paytuvchilarga ajralmaydi"
+     ],
+     "b_farq": [
+      "2 tadan ko‘p bo‘luvchi",
+      "tub ko‘paytuvchilarga ajraladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Natural sonlar",
+     "shoxlar": [
+      {
+       "nom": "Tub sonlar",
+       "bandlar": [
+        "2, 3, 5, 7",
+        "ikkita bo‘luvchi",
+        "cheksiz ko‘p"
+       ]
+      },
+      {
+       "nom": "Murakkab sonlar",
+       "bandlar": [
+        "4, 6, 8, 9",
+        "ko‘p bo‘luvchi",
+        "ajraladi"
+       ]
+      },
+      {
+       "nom": "Bir soni",
+       "bandlar": [
+        "bitta bo‘luvchi",
+        "tub ham, murakkab ham emas"
+       ]
+      },
+      {
+       "nom": "Usullar",
+       "bandlar": [
+        "Eratosfen g‘alviri",
+        "ko‘paytuvchilar daraxti"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Tub sonlar oilasida hammamiz toqmiz, faqat bittamiz juft. U kim?",
+     "javob": "2"
+    },
+    "hikmat": "Bir kun tuz ichgan joyga qirq kun salom ber.",
+    "kalit_soz": "TUBSON",
+    "xato_yechim": {
+     "shart": "60 ni tub ko‘paytuvchilarga ajrating.",
+     "xato": "60 soni 6 · 10 ga teng",
+     "togri": "60 soni 2 · 2 · 3 · 5 ga teng",
+     "sabab": "6 va 10 — murakkab sonlar; ajratishni har bir ko‘paytuvchi tub bo‘lguncha davom ettirish kerak"
+    },
+    "guruh_nomlari": [
+     "Tublar",
+     "G‘alvirchilar",
+     "Egizaklar",
+     "Daraxtlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Plitkachi»",
+     "topshiriq": "Guruhga 12, 13, 16, 17, 18 ta kvadrat kartochkalar to‘plami beriladi. Har bir to‘plamdan mumkin bo‘lgan barcha to‘g‘ri to‘rtburchaklarni yig‘ing va jadvalga yozing. Qaysi to‘plamlardan faqat bitta qatorli to‘rtburchak chiqdi? Xulosa chiqaring."
+    },
+    "vazifalar": {
+     "A": "Tub yoki murakkabligini aniqlang: 31, 39, 57, 61, 87. Tub ko‘paytuvchilarga ajrating: 28, 50, 66.",
+     "B": "Oila a’zolaringiz yoshi tub sonmi yoki murakkab? Murakkab bo‘lsa, tub ko‘paytuvchilarga ajrating.",
+     "C": "50 dan 100 gacha tub sonlarni g‘alvir usulida toping va «100 gacha tub sonlar» jadvalini to‘ldiring."
+    },
+    "sinkveyn": [
+     "Tub son",
+     "bo‘linmas, yolg‘iz",
+     "bo‘linmaydi, quradi, himoyalaydi",
+     "Barcha sonlarning qurilish g‘ishti",
+     "Poydevor"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh birgalikda 210 sonining «pasporti»ni tuzadi.",
+     "qismlar": [
+      "1-guruh: 210 soni 2 ga va 5 ga bo‘linadimi? Bo‘ling.",
+      "2-guruh: 21 ni tub ko‘paytuvchilarga ajrating.",
+      "3-guruh: 210 ning tub ko‘paytuvchilarga ajralishini yozing.",
+      "4-guruh: ko‘paytirib tekshiring."
+     ],
+     "yakun": "210 : 2 = 105; 105 : 5 = 21; 21 soni 3 · 7 ga teng. Demak, 210 soni 2 · 3 · 5 · 7 ga teng. Tekshirish: 2 · 3 · 5 · 7 = 210."
+    }
+   }
+  },
+  {
+   "mavzu": "EKUB va EKUK",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Umumiy bo‘luvchi va EKUB",
+      "matn": "Ikki sonning ikkalasi ham bo‘linadigan son ularning umumiy bo‘luvchisi deyiladi. Umumiy bo‘luvchilarning eng kattasi — eng katta umumiy bo‘luvchi, qisqacha EKUB. EKUB narsalarni eng ko‘p sondagi bir xil to‘plamlarga ajratish masalalarida kerak bo‘ladi.",
+      "misol": "12 ning bo‘luvchilari: 1, 2, 3, 4, 6, 12. 18 ning bo‘luvchilari: 1, 2, 3, 6, 9, 18. Umumiylari: 1, 2, 3, 6. Demak, EKUB(12; 18) — 6.",
+      "savol": "8 va 12 ning umumiy bo‘luvchilarini ayting.",
+      "javob": "1, 2, 4; EKUB — 4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "EKUBni tub ko‘paytuvchilar yordamida topish",
+      "matn": "Katta sonlar uchun bo‘luvchilarni birma-bir yozish noqulay. Qoida: 1) sonlarni tub ko‘paytuvchilarga ajratamiz; 2) ikkala ajralishda ham qatnashgan umumiy tub ko‘paytuvchilarni olamiz; 3) ularni ko‘paytiramiz.",
+      "misol": "48 soni 2 · 2 · 2 · 2 · 3 ga, 60 soni 2 · 2 · 3 · 5 ga teng. Umumiy ko‘paytuvchilar: 2, 2 va 3. Ko‘paytiramiz: 2 · 2 · 3 = 12. Demak, EKUB(48; 60) — 12.",
+      "savol": "EKUB(20; 30) ni toping.",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘zaro tub sonlar",
+      "matn": "Agar ikki sonning 1 dan boshqa umumiy bo‘luvchisi bo‘lmasa, ya’ni EKUBi 1 ga teng bo‘lsa, ular o‘zaro tub sonlar deyiladi. O‘zaro tub sonlarning o‘zi tub bo‘lishi shart emas.",
+      "misol": "8 va 15 — ikkalasi ham murakkab son, lekin ularning umumiy bo‘luvchisi faqat 1. Demak, 8 va 15 o‘zaro tub.",
+      "savol": "9 va 16 o‘zaro tubmi?",
+      "javob": "ha, umumiy bo‘luvchisi faqat 1",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Umumiy karrali va EKUK",
+      "matn": "Ikki sonning ikkalasiga ham bo‘linadigan son ularning umumiy karralisi deyiladi. Umumiy karralilarning eng kichigi — eng kichik umumiy karrali, qisqacha EKUK. EKUK «qachon yana bir vaqtda to‘g‘ri keladi?» degan masalalarda va kasrlarni umumiy maxrajga keltirishda kerak.",
+      "misol": "4 ning karralilari: 4, 8, 12, 16, 20, 24 … 6 ning karralilari: 6, 12, 18, 24 … Umumiylari: 12, 24 … Demak, EKUK(4; 6) — 12.",
+      "savol": "EKUK(3; 5) ni toping.",
+      "javob": "15",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "EKUKni tub ko‘paytuvchilar yordamida topish",
+      "matn": "Qoida: 1) sonlarni tub ko‘paytuvchilarga ajratamiz; 2) birinchi sonning barcha ko‘paytuvchilarini yozamiz; 3) ikkinchi sonning ajralishidan birinchisida yetishmayotgan ko‘paytuvchilarni qo‘shamiz; 4) hammasini ko‘paytiramiz. Foydali xossa: ikki son ko‘paytmasi ularning EKUBi va EKUKi ko‘paytmasiga teng.",
+      "misol": "12 soni 2 · 2 · 3 ga, 18 soni 2 · 3 · 3 ga teng. 12 ning ko‘paytuvchilariga 18 dan yetishmayotgan bitta 3 ni qo‘shamiz: 2 · 2 · 3 · 3 = 36. Demak, EKUK(12; 18) — 36.",
+      "savol": "EKUK(6; 8) ni toping.",
+      "javob": "24",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "EKUB — sonlarning eng katta umumiy bo‘luvchisi: umumiy tub ko‘paytuvchilar ko‘paytmasi. EKUK — eng kichik umumiy karrali: bir sonning ko‘paytuvchilariga ikkinchisidan yetishmayotganlari qo‘shib ko‘paytiriladi. EKUBi 1 bo‘lgan sonlar o‘zaro tub.",
+    "misollar": [
+     {
+      "shart": "EKUB(36; 54) ni toping.",
+      "yechim": [
+       "36 soni 2 · 2 · 3 · 3 ga teng.",
+       "54 soni 2 · 3 · 3 · 3 ga teng.",
+       "Umumiy ko‘paytuvchilar: 2, 3, 3.",
+       "Ko‘paytiramiz: 2 · 3 · 3 = 18.",
+       "Tekshirish: 36 : 18 = 2 va 54 : 18 = 3."
+      ],
+      "javob": "18"
+     },
+     {
+      "shart": "EKUK(15; 20) ni toping.",
+      "yechim": [
+       "15 soni 3 · 5 ga teng.",
+       "20 soni 2 · 2 · 5 ga teng.",
+       "15 ning ko‘paytuvchilari: 3, 5. 20 dan yetishmayotganlari: 2, 2.",
+       "Ko‘paytiramiz: 3 · 5 · 2 · 2 = 60.",
+       "Tekshirish: 60 : 15 = 4 va 60 : 20 = 3."
+      ],
+      "javob": "60"
+     },
+     {
+      "shart": "Bekatdan 1-avtobus har 12 daqiqada, 2-avtobus har 18 daqiqada jo‘naydi. Soat 8:00 da ikkalasi birga jo‘nadi. Ular yana qachon birga jo‘naydi?",
+      "yechim": [
+       "Ikkala oraliqqa ham bo‘linadigan eng kichik vaqt kerak — bu EKUK(12; 18).",
+       "12 soni 2 · 2 · 3 ga, 18 soni 2 · 3 · 3 ga teng.",
+       "EKUK: 2 · 2 · 3 · 3 = 36 daqiqa.",
+       "8:00 dan 36 daqiqa o‘tgach — soat 8:36 da."
+      ],
+      "javob": "soat 8:36 da"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sovg‘a to‘plamlari",
+      "topshiriq": "48 ta konfet va 36 ta pechenyedan eng ko‘p sondagi bir xil sovg‘a to‘plamlari tayyorlash kerak (hech narsa ortmasin). a) Nechta to‘plam chiqadi? b) Har bir to‘plamda nechta konfet va nechta pechenye bo‘ladi?",
+      "yechim": "a) EKUB(48; 36): 48 soni 2 · 2 · 2 · 2 · 3 ga, 36 soni 2 · 2 · 3 · 3 ga teng; umumiylari 2 · 2 · 3 = 12 ta to‘plam. b) 48 : 12 = 4 ta konfet va 36 : 12 = 3 ta pechenye.",
+      "mahsulot": "to‘plam tarkibi jadvali"
+     },
+     {
+      "nom": "Chiroqlar",
+      "topshiriq": "Bayram gulchambarida qizil chiroq har 4 soniyada, yashil chiroq har 6 soniyada, ko‘k chiroq har 10 soniyada yonadi. Hozir uchalasi birga yondi. a) Qizil va yashil necha soniyadan keyin yana birga yonadi? b) Uchalasi-chi?",
+      "yechim": "a) EKUK(4; 6) — 12 soniya. b) EKUK(4; 6; 10): 4 soni 2 · 2 ga, 6 soni 2 · 3 ga, 10 soni 2 · 5 ga teng; 2 · 2 · 3 · 5 = 60 soniya.",
+      "mahsulot": "vaqt chizig‘idagi belgilar"
+     },
+     {
+      "nom": "Plitka",
+      "topshiriq": "Uzunligi 120 sm, eni 90 sm bo‘lgan to‘g‘ri to‘rtburchak maydonni bir xil kvadrat plitkalar bilan (kesmasdan) qoplash kerak. a) Eng katta plitka tomoni necha sm? b) Nechta plitka kerak?",
+      "yechim": "a) EKUB(120; 90) — 30 sm. b) Uzunligi bo‘ylab 120 : 30 = 4 ta, eni bo‘ylab 90 : 30 = 3 ta; jami 4 · 3 = 12 ta plitka.",
+      "mahsulot": "maydon chizmasi va hisob"
+     },
+     {
+      "nom": "Xossani tekshiramiz",
+      "topshiriq": "8 va 12 sonlari uchun: a) EKUBni toping; b) EKUKni toping; d) EKUB va EKUK ko‘paytmasini sonlar ko‘paytmasi bilan solishtiring; e) 6 va 10 uchun ham tekshiring.",
+      "yechim": "a) EKUB — 4. b) EKUK — 24. d) 4 · 24 = 96 va 8 · 12 = 96 — teng. e) EKUB(6; 10) — 2, EKUK — 30; 2 · 30 = 60 va 6 · 10 = 60 — teng.",
+      "mahsulot": "jadval va xulosa"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "EKUB(18; 24) ni toping.",
+      "javob": "6"
+     },
+     {
+      "shart": "EKUB(25; 40) ni toping.",
+      "javob": "5"
+     },
+     {
+      "shart": "EKUK(4; 10) ni toping.",
+      "javob": "20"
+     },
+     {
+      "shart": "EKUK(9; 12) ni toping.",
+      "javob": "36"
+     },
+     {
+      "shart": "14 va 25 o‘zaro tubmi?",
+      "javob": "ha"
+     },
+     {
+      "shart": "EKUB(7; 21) va EKUK(7; 21) ni toping.",
+      "javob": "7 va 21"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "EKUB va EKUKni adashtiradi",
+      "sabab": "nomlari o‘xshash, ikkalasi ham «umumiy»",
+      "oldini_olish": "tayanch: EKUB — bo‘luvchi, sonlardan katta emas; EKUK — karrali, sonlardan kichik emas"
+     },
+     {
+      "xato": "EKUKni har doim sonlar ko‘paytmasi deb oladi",
+      "sabab": "o‘zaro tub sonlardagi xususiy holni umumlashtiradi",
+      "oldini_olish": "qarshi misol: EKUK(4; 6) — 12, ko‘paytma esa 24"
+     },
+     {
+      "xato": "EKUBda umumiy bo‘lmagan ko‘paytuvchilarni ham ko‘paytiradi",
+      "sabab": "qoidaning «faqat umumiylari» qismini o‘tkazib yuboradi",
+      "oldini_olish": "ajralishlarni ustma-ust yozib, umumiy ko‘paytuvchilarni juftlab chizish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Musiqa",
+      "boglanish": "turli uzunlikdagi ritmlar EKUK ga teng vaqtdan keyin yana bir vaqtda boshlanadi"
+     },
+     {
+      "fan": "Astronomiya",
+      "boglanish": "sayyoralarning yana bir chiziqda turish vaqti ularning aylanish davrlari EKUKi bilan bog‘liq"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "tishli g‘ildiraklar dastlabki holatga EKUK ga teng tishlar aylangach qaytadi; materialni chiqindisiz kesishda EKUB ishlatiladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Avtobuslar jadvali»",
+     "muammo": "Turli oraliqda qatnaydigan avtobuslar bekatda qachon uchrashadi?",
+     "mahsulot": "uch yo‘nalish uchun bir soatlik qatnov jadvali va uchrashuv vaqtlari",
+     "bosqichlar": [
+      "oraliqlarni belgilash",
+      "har bir yo‘nalish jadvalini yozish",
+      "EKUK yordamida uchrashuv vaqtini topish",
+      "vaqt chizig‘ida ko‘rsatish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Har 10 daqiqada qatnaydigan yo‘nalish jadvalini tuzing",
+      "Har 15 daqiqada qatnaydigan yo‘nalish jadvalini tuzing",
+      "Har 20 daqiqada qatnaydigan yo‘nalish jadvalini tuzing",
+      "Uchala yo‘nalishning uchrashuv vaqtlarini EKUK bilan toping"
+     ],
+     "mezonlar": [
+      "jadval to‘g‘ri",
+      "EKUK to‘g‘ri topilgan",
+      "vaqt chizig‘i aniq",
+      "hayotiy xulosa bor",
+      "taqdimot tushunarli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Soatlar minorasi»",
+     "bekatlar": [
+      {
+       "nom": "Qo‘ng‘iroqlar",
+       "matn": "Kichik qo‘ng‘iroq har 3 daqiqada, katta qo‘ng‘iroq har 5 daqiqada chalinadi. Ular hozir birga chalindi.",
+       "topshiriq": "Necha daqiqadan keyin yana birga chalinadi?",
+       "javob": "15 daqiqadan keyin",
+       "rasm": ""
+      },
+      {
+       "nom": "Tishli g‘ildiraklar",
+       "matn": "Bir g‘ildirakda 8 ta, ikkinchisida 12 ta tish bor. Belgilangan tishlar hozir bir-biriga tegib turibdi.",
+       "topshiriq": "Nechta tish o‘tgach belgilar yana uchrashadi?",
+       "javob": "24 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Bayroqchalar",
+       "matn": "Usta 24 ta qizil va 16 ta ko‘k bayroqchadan eng ko‘p sondagi bir xil shodalar yasamoqchi.",
+       "topshiriq": "Nechta shoda chiqadi?",
+       "javob": "8 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Zinapoya",
+       "matn": "Ali zinadan 2 tadan, Vali 3 tadan pog‘ona hatlab chiqmoqda.",
+       "topshiriq": "Ikkalasi ham bosadigan birinchi pog‘ona qaysi?",
+       "javob": "6-pog‘ona",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "zinada yugurmang",
+      "mexanizmlarga qo‘l tekkizmang",
+      "guruhdan ajralmang"
+     ],
+     "kundalik": [
+      "Qaysi bekatda EKUB, qaysisida EKUK kerak bo‘ldi?",
+      "Buni qanday ajratdingiz?",
+      "Hayotdan yana bitta misol o‘ylab toping."
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Umumiy bo‘luvchi",
+      "tarif": "ikkala son ham bo‘linadigan son"
+     },
+     {
+      "atama": "EKUB",
+      "tarif": "eng katta umumiy bo‘luvchi"
+     },
+     {
+      "atama": "Umumiy karrali",
+      "tarif": "ikkala songa ham bo‘linadigan son"
+     },
+     {
+      "atama": "EKUK",
+      "tarif": "eng kichik umumiy karrali"
+     },
+     {
+      "atama": "O‘zaro tub sonlar",
+      "tarif": "EKUBi 1 ga teng bo‘lgan sonlar"
+     },
+     {
+      "atama": "Tub ko‘paytuvchi",
+      "tarif": "sonning ajralishidagi tub son"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "EKUB(12; 18) — 6",
+      "togri": true,
+      "izoh": "umumiy bo‘luvchilar: 1, 2, 3, 6"
+     },
+     {
+      "matn": "EKUK(4; 6) — 24",
+      "togri": false,
+      "izoh": "eng kichik umumiy karrali 12"
+     },
+     {
+      "matn": "8 va 15 o‘zaro tub sonlar",
+      "togri": true,
+      "izoh": "umumiy bo‘luvchisi faqat 1"
+     },
+     {
+      "matn": "O‘zaro tub sonlarning har biri tub bo‘lishi shart",
+      "togri": false,
+      "izoh": "8 va 15 murakkab, lekin o‘zaro tub"
+     },
+     {
+      "matn": "EKUB sonlarning kichigidan katta bo‘lmaydi",
+      "togri": true,
+      "izoh": "bo‘luvchi sondan katta emas"
+     },
+     {
+      "matn": "EKUK sonlarning kattasidan kichik bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "karrali sondan kichik emas"
+     },
+     {
+      "matn": "Agar bir son ikkinchisiga bo‘linsa, kichigi ularning EKUBi bo‘ladi",
+      "togri": true,
+      "izoh": "masalan, EKUB(7; 21) — 7"
+     },
+     {
+      "matn": "O‘zaro tub sonlarning EKUKi ularning yig‘indisiga teng",
+      "togri": false,
+      "izoh": "ko‘paytmasiga teng"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "EKUB qanday yoyiladi?",
+      "javob": "eng katta umumiy bo‘luvchi"
+     },
+     {
+      "savol": "EKUK qanday yoyiladi?",
+      "javob": "eng kichik umumiy karrali"
+     },
+     {
+      "savol": "Qanday sonlar o‘zaro tub deyiladi?",
+      "javob": "EKUBi 1 ga teng sonlar"
+     },
+     {
+      "savol": "EKUB(10; 15) nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "savol": "EKUK(2; 3) nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "savol": "EKUBni topishda qaysi ko‘paytuvchilar olinadi?",
+      "javob": "umumiy tub ko‘paytuvchilar"
+     },
+     {
+      "savol": "EKUK qayerda kerak bo‘ladi?",
+      "javob": "kasrlarni umumiy maxrajga keltirishda, «yana qachon uchrashadi» masalalarida"
+     },
+     {
+      "savol": "EKUB qayerda kerak bo‘ladi?",
+      "javob": "kasrni qisqartirishda, teng to‘plamlarga ajratishda"
+     },
+     {
+      "savol": "O‘zaro tub sonlarning EKUKi nimaga teng?",
+      "javob": "ularning ko‘paytmasiga"
+     },
+     {
+      "savol": "EKUB(5; 5) nechaga teng?",
+      "javob": "5"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "EKUB",
+      "matn": "Eng katta umumiy bo‘luvchi. Sonlar tub ko‘paytuvchilarga ajratiladi va umumiy ko‘paytuvchilar ko‘paytiriladi.",
+      "savol": "EKUB(16; 24) ni toping."
+     },
+     {
+      "nom": "O‘zaro tub sonlar",
+      "matn": "Umumiy bo‘luvchisi faqat 1 bo‘lgan sonlar. Ularning o‘zi tub bo‘lishi shart emas: 4 va 9.",
+      "savol": "10 va 21 o‘zaro tubmi?"
+     },
+     {
+      "nom": "EKUK",
+      "matn": "Eng kichik umumiy karrali. Bir sonning ko‘paytuvchilariga ikkinchisidan yetishmayotganlari qo‘shiladi va ko‘paytiriladi.",
+      "savol": "EKUK(6; 9) ni toping."
+     },
+     {
+      "nom": "Qaysi biri kerak?",
+      "matn": "Bo‘lish, teng to‘plamlarga ajratish — EKUB. Takrorlanish, yana uchrashish — EKUK.",
+      "savol": "Ikki chiroq yana qachon birga yonishini topishda qaysi biri kerak?"
+     }
+    ],
+    "muammoli_savol": "Ikki do‘st stadionda yugurmoqda: biri bir aylanani 4 daqiqada, ikkinchisi 6 daqiqada bosib o‘tadi. Ular startdan birga chiqdi. Qachon yana start chizig‘ida uchrashadi va bungacha har biri necha aylana yuguradi?",
+    "keys": {
+     "vaziyat": "Bayramga 60 ta olma, 45 ta nok va 30 ta banan olib kelindi. Tashkilotchi mevalarni bolalarga teng tarqatmoqchi: har bir bolaga bir xil sonda olma, bir xil sonda nok va bir xil sonda banan tegishi, hech narsa ortmasligi kerak.",
+     "savollar": [
+      "Eng ko‘pi bilan nechta bolaga tarqatish mumkin?",
+      "Har bir bolaga nechta olma, nok va banan tegadi?"
+     ]
+    },
+    "tezis": "EKUB bo‘ladi, EKUK birlashtiradi",
+    "taqqoslash": {
+     "a": "EKUB",
+     "b": "EKUK",
+     "umumiy": [
+      "tub ko‘paytuvchilarga ajratish orqali topiladi",
+      "ikki yoki undan ko‘p son uchun"
+     ],
+     "a_farq": [
+      "umumiy bo‘luvchilarning eng kattasi",
+      "sonlardan katta emas"
+     ],
+     "b_farq": [
+      "umumiy karralilarning eng kichigi",
+      "sonlardan kichik emas"
+     ]
+    },
+    "klaster": {
+     "markaz": "EKUB va EKUK",
+     "shoxlar": [
+      {
+       "nom": "EKUB",
+       "bandlar": [
+        "umumiy bo‘luvchi",
+        "umumiy tub ko‘paytuvchilar",
+        "teng to‘plamlar"
+       ]
+      },
+      {
+       "nom": "EKUK",
+       "bandlar": [
+        "umumiy karrali",
+        "yetishmayotgan ko‘paytuvchilar",
+        "yana uchrashish"
+       ]
+      },
+      {
+       "nom": "O‘zaro tub",
+       "bandlar": [
+        "EKUB — 1",
+        "EKUK — ko‘paytma"
+       ]
+      },
+      {
+       "nom": "Qo‘llanishi",
+       "bandlar": [
+        "kasrni qisqartirish",
+        "umumiy maxraj",
+        "jadvallar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki sonning ikkalasini ham bo‘la olaman va shundaylar ichida eng kattasiman. Men kimman?",
+     "javob": "EKUB"
+    },
+    "hikmat": "Birlashgan o‘zar, birlashmagan to‘zar.",
+    "kalit_soz": "EKUB",
+    "xato_yechim": {
+     "shart": "EKUK(6; 8) ni toping.",
+     "xato": "EKUK — 48, chunki sonlar ko‘paytirildi",
+     "togri": "6 soni 2 · 3 ga, 8 soni 2 · 2 · 2 ga teng; EKUK: 2 · 2 · 2 · 3 = 24",
+     "sabab": "sonlar o‘zaro tub emas (umumiy ko‘paytuvchi 2 bor), shuning uchun ko‘paytma eng kichik umumiy karrali bo‘lmaydi"
+    },
+    "guruh_nomlari": [
+     "Bo‘luvchilar",
+     "Karralilar",
+     "O‘zaro tublar",
+     "Uchrashuvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sovg‘a qutilari»",
+     "topshiriq": "Guruhga 24 ta qizil va 18 ta ko‘k tugma (yoki sanoq cho‘pi) beriladi. Ulardan eng ko‘p sondagi bir xil to‘plamlar tuzing, hech narsa ortmasin. Natijani EKUB yordamida tekshiring va har bir to‘plam tarkibini yozing."
+    },
+    "vazifalar": {
+     "A": "Toping: EKUB(24; 36); EKUB(35; 49); EKUK(8; 12); EKUK(10; 15).",
+     "B": "Uyingiz yaqinidagi ikkita avtobus yo‘nalishi oralig‘ini bilib oling (yoki 8 va 12 daqiqa deb oling) va ular bekatda necha daqiqada bir marta uchrashishini toping.",
+     "C": "Istalgan uchta juft son uchun «sonlar ko‘paytmasi EKUB va EKUK ko‘paytmasiga teng» xossasini tekshiring va natijani jadvalda ko‘rsating."
+    },
+    "sinkveyn": [
+     "EKUK",
+     "eng kichik, umumiy",
+     "takrorlanadi, uchrashtiradi, birlashtiradi",
+     "Ikki songa ham bo‘linadigan eng kichik son",
+     "Uchrashuv"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Maktab hovlisiga 3 xil gul ekilmoqda: 36 tup atirgul, 24 tup lola, 60 tup chinnigul. Bir xil gulzorlar (har birida har gul turidan bir xil sonda) qilinadi.",
+     "qismlar": [
+      "1-guruh: 36 ni tub ko‘paytuvchilarga ajrating",
+      "2-guruh: 24 ni tub ko‘paytuvchilarga ajrating",
+      "3-guruh: 60 ni tub ko‘paytuvchilarga ajrating",
+      "4-guruh: EKUBni toping va har gulzor tarkibini yozing"
+     ],
+     "yakun": "36 soni 2 · 2 · 3 · 3 ga, 24 soni 2 · 2 · 2 · 3 ga, 60 soni 2 · 2 · 3 · 5 ga teng. Umumiylari: 2 · 2 · 3 = 12 ta gulzor. Har birida 36 : 12 = 3 tup atirgul, 24 : 12 = 2 tup lola, 60 : 12 = 5 tup chinnigul."
+    }
+   }
   }
  ]
 }
