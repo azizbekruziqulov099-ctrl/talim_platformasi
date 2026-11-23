@@ -10716,6 +10716,937 @@
      "yakun": "Natijalar: 6; 4; 96; 2."
     }
    }
+  },
+  {
+   "mavzu": "Matematika tarixi (al-Xorazmiy)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Al-Xorazmiy kim edi?",
+      "matn": "Muhammad ibn Muso al-Xorazmiy — IX asrda yashagan buyuk o‘zbek va jahon olimi. U Xorazmda tug‘ilgan, keyinchalik Bag‘dodda «Donishmandlik uyi»da ilmiy ish olib borgan. Matematika, astronomiya va geografiya sohalarida yirik asarlar yozgan.",
+      "misol": "Al-Xorazmiyning nomi butun dunyoda hurmat bilan tilga olinadi, uning nomi bilan ataladigan atama bugun ham har bir kompyuter dasturida qo‘llaniladi.",
+      "savol": "Al-Xorazmiy qaysi asrda yashagan?",
+      "javob": "IX asrda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Algebra fanining tug‘ilishi",
+      "matn": "Al-Xorazmiyning hisob va tenglamalar haqidagi mashhur asari nomidagi «al-jabr» so‘zidan «algebra» atamasi kelib chiqqan. Asarda tenglamalarni yechishning umumiy qoidalari bayon etilgan. «Al-jabr» — tenglamaning bir tomonidagi ayriluvchi hadni ikkinchi tomonga o‘tkazish, «al-muqobala» — o‘xshash hadlarni ixchamlash.",
+      "misol": "x dan 3 ni ayirsak 5 chiqsin. Ayriluvchi 3 ni ikkinchi tomonga qo‘shib o‘tkazamiz: x ning qiymati 8.",
+      "savol": "Algebra so‘zi qaysi so‘zdan kelib chiqqan?",
+      "javob": "al-jabr",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hind raqamlari va o‘nli sanoq",
+      "matn": "Al-Xorazmiy hind olimlarining o‘nli pozitsion sanoq tizimini, ya’ni nolni ham o‘z ichiga olgan 10 ta raqamni arab dunyosi va Yevropaga yoyishda katta rol o‘ynadi. Bugun biz foydalanadigan raqamlar shu yo‘l bilan tarqalgan.",
+      "misol": "Biz 0, 1, 2, ... 9 raqamlari bilan istalgan sonni yozamiz. Raqamning o‘rni uning qiymatini belgilaydi.",
+      "savol": "O‘nli sanoq tizimida nechta raqam bor?",
+      "javob": "10 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Algoritm atamasi",
+      "matn": "Algoritm so‘zi al-Xorazmiy nomining lotincha ko‘rinishidan kelib chiqqan. Algoritm — masalani yechish uchun ketma-ket bajariladigan aniq qadamlar. Bugungi dasturlash va kompyuterlar algoritmlarga asoslanadi.",
+      "misol": "Ikki sonni ustun qilib qo‘shish ham algoritm: birliklarni, so‘ng o‘nliklarni qo‘shamiz, kerak bo‘lsa, o‘nlik ko‘chiramiz.",
+      "savol": "Algoritm nima?",
+      "javob": "masalani yechishning ketma-ket aniq qadamlari",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vatanimiz olimlari",
+      "matn": "Al-Xorazmiydan keyin ham yurtimizda ko‘plab matematik va astronomlar yashagan. Beruniy ilm-fanning ko‘p sohalarida asarlar yozgan, Yerning radiusini o‘lchash usulini ishlab chiqqan. Ulug‘bek Samarqandda rasadxona qurdirgan va yulduzlar jadvalini tuzgan.",
+      "misol": "Samarqanddagi Ulug‘bek rasadxonasi XV asrda qurilgan.",
+      "savol": "Ulug‘bek qaysi shaharda rasadxona qurdirgan?",
+      "javob": "Samarqandda",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Al-Xorazmiy — IX asr buyuk olimi. «Algebra» atamasi uning asaridagi «al-jabr» so‘zidan, «algoritm» atamasi esa uning nomidan kelib chiqqan. U hind raqamlari va o‘nli sanoq tizimini tarqatishga hissa qo‘shgan.",
+    "misollar": [
+     {
+      "shart": "al-Jabr usuli: x dan 7 ni ayirsak 4 chiqsin. x ni toping.",
+      "yechim": [
+       "Ayriluvchi 7 ni ikkinchi tomonga o‘tkazamiz.",
+       "4 ga 7 ni qo‘shamiz.",
+       "Natija 11. Tekshirish: 11 dan 7 ni ayirsak, 4."
+      ],
+      "javob": "11"
+     },
+     {
+      "shart": "Algoritm bilan qo‘shish: 38 va 45 ni qo‘shing.",
+      "yechim": [
+       "Birliklarni qo‘shamiz: 8 va 5 yig‘indisi 13. 3 ni yozib, 1 o‘nlikni ko‘chiramiz.",
+       "O‘nliklarni qo‘shamiz: 3 va 4 yig‘indisi 7, ko‘chirilgan 1 bilan 8.",
+       "Natija 83."
+      ],
+      "javob": "83"
+     },
+     {
+      "shart": "al-Muqobala usuli: 5 ta x va 3 ta x ni ixchamlang.",
+      "yechim": [
+       "O‘xshash hadlarni qo‘shamiz: koeffitsientlar 5 va 3.",
+       "Yig‘indi 8.",
+       "Natija 8 ta x."
+      ],
+      "javob": "8x"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Olim taqdimoti",
+      "topshiriq": "Al-Xorazmiy haqida 5 ta gapdan iborat qisqa taqdimot tayyorlang.",
+      "yechim": "IX asr, Xorazm, Bag‘dod, algebra, algoritm tushunchalari aytiladi.",
+      "mahsulot": "taqdimot"
+     },
+     {
+      "nom": "Algoritm tuzamiz",
+      "topshiriq": "Choy damlash yoki ikki sonni qo‘shish uchun qadamma-qadam algoritm yozing.",
+      "yechim": "Har qadam aniq va ketma-ket bo‘lishi kerak.",
+      "mahsulot": "algoritm kartochkasi"
+     },
+     {
+      "nom": "Tenglama yechamiz",
+      "topshiriq": "al-Jabr usuli bilan yeching: x dan 5 ni ayirsak 9; x dan 2 ni ayirsak 6.",
+      "yechim": "Birinchisida x 14, ikkinchisida x 8.",
+      "mahsulot": "tenglamalar jadvali"
+     },
+     {
+      "nom": "Olimlar vaqt chizig‘i",
+      "topshiriq": "Al-Xorazmiy, Beruniy va Ulug‘bekni asrlar bo‘yicha vaqt chizig‘iga joylashtiring.",
+      "yechim": "IX asr — al-Xorazmiy, X–XI asr — Beruniy, XV asr — Ulug‘bek.",
+      "mahsulot": "vaqt chizig‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Al-Xorazmiy qaysi asrda yashagan?",
+      "javob": "IX asrda"
+     },
+     {
+      "shart": "Algebra so‘zi qaysi so‘zdan kelib chiqqan?",
+      "javob": "al-jabr"
+     },
+     {
+      "shart": "Algoritm so‘zi kimning nomidan kelib chiqqan?",
+      "javob": "al-Xorazmiyning"
+     },
+     {
+      "shart": "x dan 6 ni ayirsak 5 chiqsa, x?",
+      "javob": "11"
+     },
+     {
+      "shart": "O‘nli sanoq tizimida nechta raqam bor?",
+      "javob": "10 ta"
+     },
+     {
+      "shart": "Ulug‘bek qaysi shaharda rasadxona qurdirgan?",
+      "javob": "Samarqandda"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Olimlarni va asrlarni aralashtiradi",
+      "sabab": "vaqt chizig‘ini tasavvur qilmaydi",
+      "oldini_olish": "olimlarni asrlar bo‘yicha chizmada joylashtirish"
+     },
+     {
+      "xato": "Algoritm va tenglamani adashtiradi",
+      "sabab": "ma’nolarini farqlamaydi",
+      "oldini_olish": "algoritm — qadamlar ketma-ketligi, tenglama — noma’lum topiladigan tenglik"
+     },
+     {
+      "xato": "Al-jabr ma’nosini tushunmaydi",
+      "sabab": "ayriluvchini o‘tkazishni ko‘rmagan",
+      "oldini_olish": "sonli misolda qadamlarni ko‘rsatish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "o‘rta asr Markaziy Osiyo ilm-fani"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "algoritm tushunchasi dasturlashning asosi"
+     },
+     {
+      "fan": "Geografiya va astronomiya",
+      "boglanish": "al-Xorazmiy va Ulug‘bekning geografiya va astronomiya asarlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Buyuk olimlarimiz»",
+     "muammo": "Vatanimiz olimlarining matematikaga qo‘shgan hissasini qanday tanishtiramiz?",
+     "mahsulot": "olimlar haqida kitobcha va vaqt chizig‘i",
+     "bosqichlar": [
+      "olim tanlash",
+      "ma’lumot yig‘ish",
+      "vaqt chizig‘i tuzish",
+      "kitobcha yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Olimni tanlang",
+      "Ma’lumot yig‘ing",
+      "Kitobchani yozing",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "ma’lumotlar to‘g‘ri",
+      "vaqt chizig‘i aniq",
+      "kitobcha tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ilm yo‘lida»",
+     "bekatlar": [
+      {
+       "nom": "Xorazm",
+       "matn": "Al-Xorazmiy tug‘ilgan o‘lka.",
+       "topshiriq": "U qaysi asrda yashagan?",
+       "javob": "IX asrda",
+       "rasm": ""
+      },
+      {
+       "nom": "Bag‘dod",
+       "matn": "«Donishmandlik uyi» ilmiy markazi.",
+       "topshiriq": "Al-Xorazmiy u yerda nima qilgan?",
+       "javob": "ilmiy ish olib borgan",
+       "rasm": ""
+      },
+      {
+       "nom": "Samarqand",
+       "matn": "Ulug‘bek rasadxonasi.",
+       "topshiriq": "Qaysi asrda qurilgan?",
+       "javob": "XV asrda",
+       "rasm": ""
+      },
+      {
+       "nom": "Kompyuter",
+       "matn": "Dasturlar algoritmlarga asoslanadi.",
+       "topshiriq": "Algoritm atamasi kimning nomidan?",
+       "javob": "al-Xorazmiyning",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi olimlarni bilasiz?",
+      "Algoritm qayerda ishlatiladi?",
+      "Algebra nima uchun kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Algebra",
+      "tarif": "harflar va tenglamalar bilan ishlovchi fan"
+     },
+     {
+      "atama": "Algoritm",
+      "tarif": "masalani yechishning ketma-ket aniq qadamlari"
+     },
+     {
+      "atama": "Al-jabr",
+      "tarif": "ayriluvchini tenglamaning ikkinchi tomoniga o‘tkazish"
+     },
+     {
+      "atama": "Al-muqobala",
+      "tarif": "o‘xshash hadlarni ixchamlash"
+     },
+     {
+      "atama": "Rasadxona",
+      "tarif": "osmon jismlarini kuzatish joyi"
+     },
+     {
+      "atama": "Pozitsion sanoq",
+      "tarif": "raqam qiymati uning o‘rniga bog‘liq bo‘lgan sanoq"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Al-Xorazmiy IX asrda yashagan",
+      "togri": true,
+      "izoh": "tarixiy ma’lumot"
+     },
+     {
+      "matn": "Algoritm so‘zi al-Xorazmiy nomidan kelib chiqqan",
+      "togri": true,
+      "izoh": "lotincha shakli orqali"
+     },
+     {
+      "matn": "Algebra so‘zi «al-jabr» so‘zidan kelib chiqqan",
+      "togri": true,
+      "izoh": "asar nomidagi atama"
+     },
+     {
+      "matn": "Ulug‘bek rasadxonasi Buxoroda joylashgan",
+      "togri": false,
+      "izoh": "Samarqandda joylashgan"
+     },
+     {
+      "matn": "O‘nli sanoq tizimida 12 ta raqam bor",
+      "togri": false,
+      "izoh": "10 ta raqam bor"
+     },
+     {
+      "matn": "Algoritm tartibsiz amallar to‘plami",
+      "togri": false,
+      "izoh": "algoritm ketma-ket aniq qadamlar"
+     },
+     {
+      "matn": "Beruniy ham yurtimizning buyuk olimi",
+      "togri": true,
+      "izoh": "ko‘p fanlarda asarlar yozgan"
+     },
+     {
+      "matn": "Al-Xorazmiy faqat she’r yozgan",
+      "togri": false,
+      "izoh": "u matematik va astronom edi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Al-Xorazmiy kim?",
+      "javob": "buyuk matematik va astronom"
+     },
+     {
+      "savol": "Algebra qaysi so‘zdan kelib chiqqan?",
+      "javob": "al-jabr"
+     },
+     {
+      "savol": "Algoritm nima?",
+      "javob": "masalani yechishning ketma-ket qadamlari"
+     },
+     {
+      "savol": "O‘nli sanoq tizimida nechta raqam bor?",
+      "javob": "10 ta"
+     },
+     {
+      "savol": "Ulug‘bek kim edi?",
+      "javob": "olim va astronom, rasadxona quruvchisi"
+     },
+     {
+      "savol": "Beruniy kim edi?",
+      "javob": "buyuk olim"
+     },
+     {
+      "savol": "x dan 3 ni ayirsak 4 chiqsa, x?",
+      "javob": "7"
+     },
+     {
+      "savol": "Al-muqobala nima?",
+      "javob": "o‘xshash hadlarni ixchamlash"
+     },
+     {
+      "savol": "Al-Xorazmiy qayerda ishlagan?",
+      "javob": "Bag‘dodda"
+     },
+     {
+      "savol": "Algoritm bugun qayerda qo‘llanadi?",
+      "javob": "kompyuter dasturlarida"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Hayoti",
+      "matn": "IX asrda yashagan buyuk olim.",
+      "savol": "Al-Xorazmiy qaysi asrda yashagan?"
+     },
+     {
+      "nom": "Algebra",
+      "matn": "Tenglamalar haqidagi fan.",
+      "savol": "Algebra qaysi so‘zdan?"
+     },
+     {
+      "nom": "Algoritm",
+      "matn": "Ketma-ket aniq qadamlar.",
+      "savol": "Algoritm kimning nomidan?"
+     },
+     {
+      "nom": "Raqamlar",
+      "matn": "O‘nli pozitsion sanoq tizimi.",
+      "savol": "Nechta raqam bor?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bugungi kompyuterlar va telefonlar ishlashida al-Xorazmiy nomi bilan bog‘liq algoritm tushunchasi muhim? Kundalik hayotdan algoritmga misol keltiring.",
+    "keys": {
+     "vaziyat": "Maktabda «Buyuk olimlarimiz» haftaligi o‘tkazilmoqda. Sinf al-Xorazmiy haqida taqdimot tayyorlamoqda.",
+     "savollar": [
+      "Taqdimotga qanday 3 ta asosiy ma’lumotni kiritasiz?",
+      "Algoritm tushunchasini qanday misol bilan tushuntirasiz?"
+     ]
+    },
+    "tezis": "Ilm-fan bugungi kunni yaratadi",
+    "taqqoslash": {
+     "a": "Algebra",
+     "b": "Algoritm",
+     "umumiy": [
+      "al-Xorazmiy nomi bilan bog‘liq",
+      "matematikada ishlatiladi"
+     ],
+     "a_farq": [
+      "tenglamalar haqidagi fan",
+      "al-jabr so‘zidan"
+     ],
+     "b_farq": [
+      "ketma-ket qadamlar",
+      "al-Xorazmiy nomidan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Al-Xorazmiy",
+     "shoxlar": [
+      {
+       "nom": "Hayoti",
+       "bandlar": [
+        "IX asr",
+        "Xorazm",
+        "Bag‘dod"
+       ]
+      },
+      {
+       "nom": "Algebra",
+       "bandlar": [
+        "al-jabr",
+        "al-muqobala",
+        "tenglamalar"
+       ]
+      },
+      {
+       "nom": "Algoritm",
+       "bandlar": [
+        "qadamlar",
+        "kompyuter",
+        "nom"
+       ]
+      },
+      {
+       "nom": "Raqamlar",
+       "bandlar": [
+        "o‘nli sanoq",
+        "10 ta raqam",
+        "nol"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Mening nomim bilan qadamlar ketma-ketligi ataladi. Men kimman?",
+     "javob": "al-Xorazmiy"
+    },
+    "hikmat": "Ilm olish — insonni ulug‘laydi.",
+    "kalit_soz": "XORAZMIY",
+    "xato_yechim": {
+     "shart": "Al-Xorazmiy qaysi asrda yashagan?",
+     "xato": "XV asrda",
+     "togri": "IX asrda",
+     "sabab": "XV asrda Ulug‘bek yashagan, al-Xorazmiy esa ancha oldin, IX asrda"
+    },
+    "guruh_nomlari": [
+     "Xorazmiylar",
+     "Algebrachilar",
+     "Algoritmchilar",
+     "Olimlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Algoritm yozamiz»",
+     "topshiriq": "Guruh kundalik ishning (masalan, non sotib olish) algoritmini qadamma-qadam yozadi va sinf oldida o‘qib beradi."
+    },
+    "vazifalar": {
+     "A": "Al-Xorazmiy haqida 5 ta gap yozing.",
+     "B": "Biror ishning algoritmini yozing.",
+     "C": "Al-jabr usuli bilan 3 ta tenglama tuzib yeching."
+    },
+    "sinkveyn": [
+     "Xorazmiy",
+     "buyuk, donishmand",
+     "yaratdi, o‘rgatdi, ochdi",
+     "Algebra va algoritm otasi",
+     "Olim"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh matematika tarixi bo‘yicha topshiriq bajaradi.",
+     "qismlar": [
+      "1-guruh: al-Xorazmiy yashagan asr",
+      "2-guruh: x dan 5 ni ayirsak 8 bo‘lsa, x",
+      "3-guruh: o‘nli sanoq raqamlari soni",
+      "4-guruh: Ulug‘bek rasadxonasi shahri"
+     ],
+     "yakun": "Natijalar: IX asr; 13; 10 ta; Samarqand."
+    }
+   }
+  },
+  {
+   "mavzu": "Mantiqiy masalalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Jadval usuli",
+      "matn": "Mantiqiy masalalarda shartlardan xulosa chiqaramiz. Jadval usuli: shaxslar va narsalarni jadvalga yozib, mumkin bo‘lmagan holatlarni chizib tashlaymiz, qolgani javob bo‘ladi.",
+      "misol": "Ali, Vali va Sami qizil, ko‘k va yashil kitob olishdi. Ali na qizil, na ko‘k kitob olmagan, Vali ko‘k kitob olmagan. Alida yashil, Valida qizil, Samida ko‘k kitob.",
+      "savol": "Ali yashil, Vali qizil bo‘lsa, Samida qaysi rangdagi kitob?",
+      "javob": "ko‘k",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirish qoidasi",
+      "matn": "Agar birinchi tanlovni a usulda, ikkinchisini b usulda bajarish mumkin bo‘lsa, ikkalasini birga a marta b usulda bajarish mumkin. Bu variantlarni sanashni osonlashtiradi.",
+      "misol": "3 ta ko‘ylak va 2 ta shim bilan 3 ni 2 ga ko‘paytirsak, 6 xil kiyinish mumkin.",
+      "savol": "4 xil birinchi taom va 3 xil ikkinchi taomdan nechta tushlik tuzish mumkin?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Haqiqatchi va yolg‘onchi",
+      "matn": "Haqiqatchi doim rost, yolg‘onchi doim yolg‘on gapiradi. Gapning to‘g‘ri yoki noto‘g‘ri ekanini taxmin qilib, ziddiyat chiqsa, taxminni rad etamiz.",
+      "misol": "A: «Biz ikkimiz ham yolg‘onchimiz» dedi. Agar A haqiqatchi bo‘lsa, gapi rost bo‘ladi, ziddiyat. Demak A yolg‘onchi, uning gapi yolg‘on, shuning uchun B haqiqatchi.",
+      "savol": "A yolg‘onchi, uning gapi yolg‘on bo‘lsa, B kim bo‘lishi mumkin?",
+      "javob": "haqiqatchi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tortish masalalari",
+      "matn": "Tortish masalalarida eng kam tortishda javobni topish uchun narsalarni teng guruhlarga bo‘lamiz.",
+      "misol": "9 ta tangadan biri yengil. Tarozida ikki marta tortib topamiz: 3 tadan uch guruhga bo‘lib, ikkitasini tortamiz, so‘ng yengil guruhdan 2 tasini tortamiz.",
+      "savol": "9 tadan bitta yengil tangani nechta tortishda topamiz?",
+      "javob": "2 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘plamlar va Dirixle",
+      "matn": "Ikki to‘plamning birlashmasida umumiy elementlar ikki marta sanalmasligi kerak. Dirixle tamoyili: elementlar guruhlardan ko‘p bo‘lsa, kamida bitta guruhda ikkita element bo‘ladi.",
+      "misol": "Sinfda 30 o‘quvchi: 18 tasi futbol, 15 tasi voleybol bilan shug‘ullanadi, 5 tasi ikkalasi bilan. Kamida bittasi bilan 28 ta o‘quvchi, hech biri bilan shug‘ullanmaydigan 2 ta. 13 kishining ichida kamida ikkitasi bir oyda tug‘ilgan, chunki oylar 12 ta.",
+      "savol": "13 kishidan kamida nechtasi bir oyda tug‘ilgan?",
+      "javob": "kamida 2 ta",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Mantiqiy masalada shartlarni jadval, chizma yoki taxmin bilan tekshiramiz. Ko‘paytirish qoidasi variantlar sonini beradi. Ziddiyat chiqsa, taxmin noto‘g‘ri. Dirixle: elementlar guruhlardan ko‘p bo‘lsa, birida kamida ikkitasi bo‘ladi.",
+    "misollar": [
+     {
+      "shart": "4 ta ko‘ylak va 3 ta shim bilan nechta xil kiyinish mumkin?",
+      "yechim": [
+       "Ko‘ylakni 4 usulda tanlaymiz.",
+       "Shimni 3 usulda tanlaymiz.",
+       "4 ni 3 ga ko‘paytirsak, 12."
+      ],
+      "javob": "12"
+     },
+     {
+      "shart": "9 ta tangadan bitta yengil. Eng kamida nechta tortishda topiladi?",
+      "yechim": [
+       "Tangalarni 3 tadan uch guruhga bo‘lamiz, ikki guruhni tortamiz.",
+       "Yengil guruh topiladi (teng bo‘lsa, uchinchisi).",
+       "Yengil guruhdagi 3 tadan 2 tasini tortamiz."
+      ],
+      "javob": "2 ta"
+     },
+     {
+      "shart": "Sinfda 30 o‘quvchi: 18 tasi futbol, 15 tasi voleybol, 5 tasi ikkalasi bilan shug‘ullanadi. Hech bilan shug‘ullanmaydiganlar nechta?",
+      "yechim": [
+       "Kamida bittasi bilan: 18 va 15 yig‘indisi 33, ikkalasini ikki marta sanadik, 5 ni ayirsak 28.",
+       "30 dan 28 ni ayirsak, 2."
+      ],
+      "javob": "2 ta"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Uch xonali sonlar",
+      "topshiriq": "1, 2 va 3 raqamlaridan, takrorlamasdan, nechta uch xonali son yozish mumkin?",
+      "yechim": "123, 132, 213, 231, 312, 321 — jami 6 ta.",
+      "mahsulot": "sonlar ro‘yxati"
+     },
+     {
+      "nom": "Qo‘l siqish",
+      "topshiriq": "5 kishi uchrashganda hammasi bir-biri bilan bir marta qo‘l siqdi. Jami nechta qo‘l siqish bo‘ldi?",
+      "yechim": "Har biri 4 kishi bilan, 5 ni 4 ga ko‘paytirsak 20, har bir qo‘l siqish ikki marta sanalgani uchun 2 ga bo‘lsak 10.",
+      "mahsulot": "qo‘l siqish chizmasi"
+     },
+     {
+      "nom": "Dirixle",
+      "topshiriq": "13 kishining kamida ikkitasi bir oyda tug‘ilganini tushuntiring.",
+      "yechim": "Oylar 12 ta, kishilar 13 ta, shuning uchun biror oyda kamida ikki kishi.",
+      "mahsulot": "tushuntirish varag‘i"
+     },
+     {
+      "nom": "Jadvalli masala",
+      "topshiriq": "Sardor, Nodir va Jasur shifokor, o‘qituvchi va haydovchi. Sardor shifokor emas, Nodir o‘qituvchi emas, Jasur haydovchi emas va Nodir shifokor ham emas. Kim kim?",
+      "yechim": "Nodir shifokor ham, o‘qituvchi ham emas, demak haydovchi. Sardor shifokor emas va haydovchi ham emas (u band), demak o‘qituvchi. Qolgan kasb shifokor Jasurga tegadi.",
+      "mahsulot": "jadval"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 ta ko‘ylak va 2 ta shimdan nechta kiyinish mumkin?",
+      "javob": "6"
+     },
+     {
+      "shart": "4 xil va 5 xil tanlovdan nechta juftlik tuzish mumkin?",
+      "javob": "20"
+     },
+     {
+      "shart": "1, 2, 3 raqamlaridan nechta uch xonali son yozish mumkin (takrorsiz)?",
+      "javob": "6"
+     },
+     {
+      "shart": "4 kishi bir-biri bilan qo‘l siqishsa, nechta qo‘l siqish bo‘ladi?",
+      "javob": "6"
+     },
+     {
+      "shart": "5 kishi bir-biri bilan qo‘l siqishsa, nechta qo‘l siqish bo‘ladi?",
+      "javob": "10"
+     },
+     {
+      "shart": "13 kishidan kamida nechtasi bir oyda tug‘ilgan?",
+      "javob": "2 ta"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Variantlarni qo‘shadi, ko‘paytirmaydi",
+      "sabab": "ko‘paytirish qoidasini bilmaydi",
+      "oldini_olish": "kichik misolda barcha variantlarni yozib ko‘rish"
+     },
+     {
+      "xato": "Shartlardan birini e’tiborsiz qoldiradi",
+      "sabab": "masalani to‘liq o‘qimaydi",
+      "oldini_olish": "har bir shartni jadvalga alohida belgilash"
+     },
+     {
+      "xato": "Qo‘l siqishda har bir juftni ikki marta sanaydi",
+      "sabab": "takrorni hisobga olmaydi",
+      "oldini_olish": "natijani 2 ga bo‘lishni eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Informatika",
+      "boglanish": "mantiqiy fikrlash va algoritmlar"
+     },
+     {
+      "fan": "Ona tili",
+      "boglanish": "gaplardagi mantiqiy bog‘lanishni tahlil qilish"
+     },
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "kuzatishdan xulosa chiqarish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mantiq kitobchasi»",
+     "muammo": "Qiziqarli mantiqiy masalalarni qanday to‘playmiz va yechamiz?",
+     "mahsulot": "mantiqiy masalalar to‘plami",
+     "bosqichlar": [
+      "masala tanlash",
+      "yechish usulini aniqlash",
+      "yechish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Masalalarni tanlang",
+      "Usulni aniqlang",
+      "Yeching",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "yechim to‘g‘ri",
+      "usul aniq",
+      "kitobcha tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Mantiq saroyi»",
+     "bekatlar": [
+      {
+       "nom": "Kiyim do‘koni",
+       "matn": "4 ta ko‘ylak va 3 ta shim.",
+       "topshiriq": "Nechta kiyinish usuli bor?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "Tarozi",
+       "matn": "9 ta tangadan biri yengil.",
+       "topshiriq": "Nechta tortishda topamiz?",
+       "javob": "2 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Uchrashuv",
+       "matn": "4 kishi hammasi bir-biri bilan salomlashdi.",
+       "topshiriq": "Nechta salomlashish bo‘ldi?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "Sinf",
+       "matn": "13 o‘quvchi.",
+       "topshiriq": "Kamida nechtasi bir oyda tug‘ilgan?",
+       "javob": "2 ta",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Mantiq qayerda kerak?",
+      "Jadval usuli qachon qulay?",
+      "Ziddiyatni qanday topamiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Mantiq",
+      "tarif": "to‘g‘ri fikrlash qoidalari"
+     },
+     {
+      "atama": "Xulosa",
+      "tarif": "shartlardan chiqarilgan natija"
+     },
+     {
+      "atama": "Ziddiyat",
+      "tarif": "bir-biriga to‘g‘ri kelmaydigan holat"
+     },
+     {
+      "atama": "Jadval usuli",
+      "tarif": "shartlarni jadvalga yozib yechish usuli"
+     },
+     {
+      "atama": "Ko‘paytirish qoidasi",
+      "tarif": "variantlar sonini ko‘paytirib topish"
+     },
+     {
+      "atama": "Dirixle tamoyili",
+      "tarif": "elementlar guruhlardan ko‘p bo‘lsa, birida kamida ikkitasi bo‘ladi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ziddiyat chiqsa, taxmin noto‘g‘ri",
+      "togri": true,
+      "izoh": "teskarisidan isbotlash usuli"
+     },
+     {
+      "matn": "3 ta ko‘ylak va 2 ta shim 5 ta kiyinish beradi",
+      "togri": false,
+      "izoh": "3 ni 2 ga ko‘paytirsak 6"
+     },
+     {
+      "matn": "Haqiqatchi doim rost gapiradi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Yolg‘onchi ba’zan rost gapiradi",
+      "togri": false,
+      "izoh": "yolg‘onchi doim yolg‘on gapiradi"
+     },
+     {
+      "matn": "13 kishidan kamida ikkitasi bir oyda tug‘ilgan",
+      "togri": true,
+      "izoh": "oylar 12 ta"
+     },
+     {
+      "matn": "Jadval usuli mantiqiy masalada yordam beradi",
+      "togri": true,
+      "izoh": "mumkin bo‘lmaganlarni chizib tashlaymiz"
+     },
+     {
+      "matn": "4 kishi qo‘l siqishsa, 4 ta qo‘l siqish bo‘ladi",
+      "togri": false,
+      "izoh": "6 ta bo‘ladi"
+     },
+     {
+      "matn": "Mantiqiy masalada shartlar kerak emas",
+      "togri": false,
+      "izoh": "xulosa shartlarga tayanadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Mantiq nima?",
+      "javob": "to‘g‘ri fikrlash qoidalari"
+     },
+     {
+      "savol": "Haqiqatchi qanday gapiradi?",
+      "javob": "doim rost"
+     },
+     {
+      "savol": "Yolg‘onchi qanday gapiradi?",
+      "javob": "doim yolg‘on"
+     },
+     {
+      "savol": "2 ko‘ylak va 3 shimdan nechta kiyinish?",
+      "javob": "6"
+     },
+     {
+      "savol": "Ziddiyat chiqsa, taxmin qanday?",
+      "javob": "noto‘g‘ri"
+     },
+     {
+      "savol": "Jadval usulida nima qilamiz?",
+      "javob": "mumkin bo‘lmaganni chizib tashlaymiz"
+     },
+     {
+      "savol": "3 kishi qo‘l siqishsa, nechta qo‘l siqish?",
+      "javob": "3 ta"
+     },
+     {
+      "savol": "Dirixle tamoyili nima?",
+      "javob": "elementlar guruhlardan ko‘p bo‘lsa, birida kamida ikkitasi bo‘ladi"
+     },
+     {
+      "savol": "Tangani 9 tadan topish uchun nechta tortish?",
+      "javob": "2 ta"
+     },
+     {
+      "savol": "5 kishidan nechta juft tuzish mumkin?",
+      "javob": "10 ta"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Jadval",
+      "matn": "Shartlarni jadvalga yozib yechamiz.",
+      "savol": "Jadval usuli qachon qulay?"
+     },
+     {
+      "nom": "Ko‘paytirish",
+      "matn": "Variantlar sonini ko‘paytiramiz.",
+      "savol": "2 va 4 variantdan nechta juftlik?"
+     },
+     {
+      "nom": "Haqiqatchi-yolg‘onchi",
+      "matn": "Taxmin qilib ziddiyatni izlaymiz.",
+      "savol": "Ziddiyat chiqsa nima qilamiz?"
+     },
+     {
+      "nom": "Dirixle",
+      "matn": "Elementlar guruhdan ko‘p bo‘lsa, takror bo‘ladi.",
+      "savol": "13 kishi va 12 oy: natija?"
+     }
+    ],
+    "muammoli_savol": "Nega mantiqiy masalalarni yechishda avval taxmin qilib, keyin uni tekshirish foydali? Qachon taxmin noto‘g‘ri deb hisoblanadi?",
+    "keys": {
+     "vaziyat": "Do‘konda 4 ta ko‘ylak va 3 ta shim bor. Siz ulardan bir to‘plam tanlamoqchisiz.",
+     "savollar": [
+      "Nechta xil to‘plam bor?",
+      "Agar yana 2 xil poyabzal bo‘lsa, nechta?"
+     ]
+    },
+    "tezis": "Mantiq — fikrning kuchi",
+    "taqqoslash": {
+     "a": "Jadval usuli",
+     "b": "Taxmin usuli",
+     "umumiy": [
+      "mantiqiy masalalarni yechadi",
+      "shartlarga tayanadi"
+     ],
+     "a_farq": [
+      "natijalar jadvalga yoziladi",
+      "ko‘p shaxs bo‘lganda qulay"
+     ],
+     "b_farq": [
+      "taxmin qilinadi",
+      "ziddiyat chiqsa rad etiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Mantiqiy masalalar",
+     "shoxlar": [
+      {
+       "nom": "Jadval",
+       "bandlar": [
+        "shartlar",
+        "chizib tashlash",
+        "javob"
+       ]
+      },
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "variantlar",
+        "juftliklar",
+        "kiyinish"
+       ]
+      },
+      {
+       "nom": "Haqiqatchi va yolg‘onchi",
+       "bandlar": [
+        "taxmin",
+        "ziddiyat",
+        "xulosa"
+       ]
+      },
+      {
+       "nom": "Tamoyillar",
+       "bandlar": [
+        "Dirixle",
+        "to‘plamlar",
+        "tortish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Shartlardan xulosa chiqaraman, ziddiyatni topsam taxminni rad qilaman. Men nimaman?",
+     "javob": "mantiq"
+    },
+    "hikmat": "Aql — eng katta boylik.",
+    "kalit_soz": "MANTIQ",
+    "xato_yechim": {
+     "shart": "3 ta ko‘ylak va 2 ta shimdan nechta kiyinish mumkin?",
+     "xato": "5, chunki 3 va 2 ni qo‘shadi",
+     "togri": "6",
+     "sabab": "har bir ko‘ylakni har bir shim bilan juftlaymiz: 3 ni 2 ga ko‘paytirsak 6"
+    },
+    "guruh_nomlari": [
+     "Mantiqchilar",
+     "Tahlilchilar",
+     "Hisobchilar",
+     "Xulosachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mantiq o‘yini»",
+     "topshiriq": "Guruh o‘zi 2 ta mantiqiy masala tuzadi, bir-biriga yechtiradi va yechimlarini tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Yeching: 2 ta ko‘ylak va 5 ta shimdan nechta kiyinish; 5 kishi qo‘l siqishsa nechta qo‘l siqish.",
+     "B": "Uyda oila a’zolari bilan 1 ta mantiqiy masala yeching.",
+     "C": "O‘zingiz haqiqatchi-yolg‘onchi masalasini tuzing."
+    },
+    "sinkveyn": [
+     "Mantiq",
+     "aniq, qiziq",
+     "o‘ylaydi, tekshiradi, xulosa qiladi",
+     "Fikrlash san’ati",
+     "Aql"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh mantiqiy masalalarni yechadi.",
+     "qismlar": [
+      "1-guruh: 3 ta ko‘ylak va 3 ta shimdan kiyinishlar soni",
+      "2-guruh: 4 kishi qo‘l siqishi soni",
+      "3-guruh: 13 kishidan kamida bir oyda tug‘ilganlar",
+      "4-guruh: 9 ta tangadan yengilini topish uchun tortishlar soni"
+     ],
+     "yakun": "Natijalar: 9; 6; 2 ta; 2 ta."
+    }
+   }
   }
  ]
 }
