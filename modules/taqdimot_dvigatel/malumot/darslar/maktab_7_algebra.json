@@ -1,0 +1,1406 @@
+{
+ "daraja": "maktab",
+ "sinf": "7",
+ "fan": "Algebra",
+ "muallif": "qo‘lda yozilgan, hisob-kitob avtomatik tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Algebraik ifodalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Algebraik ifoda nima?",
+      "matn": "Sonlar, harflar, amal belgilari va qavslardan tuzilgan yozuv algebraik ifoda deyiladi. Agar ifodada harfga bo‘lish bo‘lmasa, u butun ifoda, harfga bo‘lish bo‘lsa, kasr ifoda deyiladi.",
+      "misol": "3a va 2b yig‘indisi, 5x kvadrat — butun ifodalar. 7 ni x ga bo‘lish — kasr ifoda.",
+      "savol": "5 ni x ga bo‘lish qanday ifoda?",
+      "javob": "kasr ifoda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ifodaning qiymati va aniqlanish sohasi",
+      "matn": "Ifodadagi harflar o‘rniga sonlar qo‘yib, amallarni bajarsak, ifodaning qiymati chiqadi. Harflarning ifoda ma’noga ega bo‘ladigan qiymatlari ifodaning aniqlanish sohasini tashkil qiladi. Nolga bo‘lish mumkin emas, shuning uchun maxrajdagi ifoda nolga teng bo‘lmasligi shart.",
+      "misol": "5 ni x dan 2 ni ayirmasiga bo‘lish ifodasida x ning qiymati 2 bo‘lmasligi kerak, chunki maxraj nolga aylanadi.",
+      "savol": "1 ni x ga bo‘lish ifodasida x qaysi qiymatni qabul qila olmaydi?",
+      "javob": "nolni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qiymatni hisoblash",
+      "matn": "Ifoda qiymatini topishda harflar o‘rniga berilgan sonlarni qo‘yamiz va amallar tartibiga rioya qilamiz: avval qavs, so‘ng daraja, so‘ng ko‘paytirish va bo‘lish, oxirida qo‘shish va ayirish.",
+      "misol": "x kvadrat va 2x yig‘indisida x 3 bo‘lsa, 3 kvadrati 9, 2 ni 3 ga ko‘paytirsak 6, yig‘indi 15.",
+      "savol": "2a dan 3b ni ayirish ifodasida a 4, b 2 bo‘lsa, qiymati?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ifodani soddalashtirish",
+      "matn": "Ifodani soddalashtirishda o‘rin almashtirish, guruhlash va taqsimot qonunlaridan foydalanamiz. Taqsimot qonuni: songa yig‘indini ko‘paytirishda sonni har bir qo‘shiluvchiga ko‘paytiramiz, so‘ng o‘xshash hadlarni ixchamlaymiz.",
+      "misol": "3 ni x va 2 yig‘indisiga ko‘paytirib, undan x ni ayirsak: 3x va 6 yig‘indisidan x ni ayiramiz, 2x va 6 chiqadi.",
+      "savol": "5 ni a va 1 yig‘indisiga ko‘paytirib, 2a ni ayirsak, nima chiqadi?",
+      "javob": "3a va 5 yig‘indisi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ayniyat",
+      "matn": "Harflarning barcha qiymatlarida o‘zaro teng qiymat qabul qiladigan ikki ifoda aynan teng, ular orasidagi tenglik esa ayniyat deyiladi. Ifodani aynan teng ifodaga almashtirish ayniy almashtirish deyiladi.",
+      "misol": "2 ni x va 3 yig‘indisiga ko‘paytirsak, 2x va 6 yig‘indisi chiqadi. x ning 1 qiymatida ikkalasi 8, x ning 5 qiymatida ikkalasi 16.",
+      "savol": "x va x yig‘indisi bilan 2x aynan tengmi?",
+      "javob": "ha",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Algebraik ifoda — sonlar va harflardan tuzilgan yozuv. Ifoda qiymatini harf o‘rniga son qo‘yib topamiz; maxraj nolga teng bo‘lmasligi kerak. Ifodani soddalashtirishda taqsimot qonuni va o‘xshash hadlarni ixchamlashdan foydalanamiz. Barcha qiymatlarda teng ifodalar aynan teng, ular ayniyat hosil qiladi.",
+    "misollar": [
+     {
+      "shart": "4a va 3b yig‘indisining qiymatini toping, a 2 va b 5 bo‘lsa.",
+      "yechim": [
+       "4 ni 2 ga ko‘paytirsak 8.",
+       "3 ni 5 ga ko‘paytirsak 15.",
+       "Yig‘indi 23."
+      ],
+      "javob": "23"
+     },
+     {
+      "shart": "Ifodani soddalashtiring: 7x dan 3 ni (x ayirma 2) ga ko‘paytirib ayiring.",
+      "yechim": [
+       "Qavsni ochamiz: 3 ni x ga ko‘paytirsak 3x, 3 ni 2 ga ko‘paytirsak 6; ayirmada 3x va 6.",
+       "7x dan 3x ni ayiramiz — 4x; ayirilayotgan 6 oldida minus bor, shuning uchun 6 qo‘shiladi.",
+       "Natija 4x va 6 yig‘indisi."
+      ],
+      "javob": "4x va 6 yig‘indisi"
+     },
+     {
+      "shart": "Ikkita ketma-ket natural sonning birinchisi n. Ularning yig‘indisini yozing va n 7 bo‘lganda qiymatini toping.",
+      "yechim": [
+       "Keyingi son n va 1 yig‘indisi.",
+       "Yig‘indi ikki n va 1.",
+       "n 7 bo‘lsa: 2 ni 7 ga ko‘paytirsak 14, 1 qo‘shsak 15."
+      ],
+      "javob": "2n va 1; qiymati 15"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ifoda tuzamiz",
+      "topshiriq": "3 ta daftar a so‘m, 2 ta qalam b so‘m turadi. Umumiy narx ifodasini yozing va a 4000, b 3000 bo‘lganda hisoblang.",
+      "yechim": "Umumiy narx 3a va 2b yig‘indisi. 12000 va 6000 yig‘indisi 18000 so‘m.",
+      "mahsulot": "ifodalar jadvali"
+     },
+     {
+      "nom": "Aniqlanish sohasi",
+      "topshiriq": "5 ni (x ayirma 4) ga bo‘lish ifodasida x qaysi qiymatni qabul qila olmaydi? Nega?",
+      "yechim": "x 4 bo‘lsa, maxraj nolga aylanadi, nolga bo‘lish mumkin emas.",
+      "mahsulot": "tushuntirish varag‘i"
+     },
+     {
+      "nom": "Ayniyatni tekshiramiz",
+      "topshiriq": "2 ni (x va 3) ga ko‘paytirgan ifoda bilan 2x va 6 yig‘indisi aynan tengmi? x ning 1, 2 va 10 qiymatlarida tekshiring.",
+      "yechim": "x 1 da 8 va 8; x 2 da 10 va 10; x 10 da 26 va 26. Ayniyat.",
+      "mahsulot": "tekshirish jadvali"
+     },
+     {
+      "nom": "Soddalashtirish poygasi",
+      "topshiriq": "Soddalashtiring: 5 ni (a va 1) ga ko‘paytirib, 2a ni ayiring; 4x va 3x yig‘indisidan x ni ayiring.",
+      "yechim": "Birinchisi 3a va 5 yig‘indisi. Ikkinchisi 6x.",
+      "mahsulot": "yechimlar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "5x va 2 yig‘indisida x 3 bo‘lsa, qiymati?",
+      "javob": "17"
+     },
+     {
+      "shart": "2a dan b ni ayirishda a 6, b 4 bo‘lsa, qiymati?",
+      "javob": "8"
+     },
+     {
+      "shart": "4 ni (x va 2) ga ko‘paytiring.",
+      "javob": "4x va 8 yig‘indisi"
+     },
+     {
+      "shart": "3a, 5a yig‘indisidan 2a ni ayiring.",
+      "javob": "6a"
+     },
+     {
+      "shart": "1 ni (x ayirma 5) ga bo‘lish ifodasida x qaysi qiymatni olmaydi?",
+      "javob": "5 ni"
+     },
+     {
+      "shart": "2 ni (n va 1) ga ko‘paytirish va 2n bilan 2 yig‘indisi aynan tengmi?",
+      "javob": "ha"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Maxraj nolga aylanadigan qiymatni ham ruxsat etadi",
+      "sabab": "aniqlanish sohasini tekshirmaydi",
+      "oldini_olish": "kasr ifodada maxrajni nolga tenglab, mumkin bo‘lmagan qiymatni topish"
+     },
+     {
+      "xato": "Qavs oldida minus bo‘lsa, ishorani o‘zgartirmaydi",
+      "sabab": "qavs ochish qoidasini unutadi",
+      "oldini_olish": "minus oldida qavsni ochganda har bir had ishorasi teskari bo‘lishini yozib ko‘rish"
+     },
+     {
+      "xato": "Ayniyatni faqat bitta qiymatda tekshirib qo‘yadi",
+      "sabab": "ayniyat barcha qiymatlarda to‘g‘ri bo‘lishi shartligini unutadi",
+      "oldini_olish": "kamida ikkita-uchta qiymat bilan, so‘ng umumiy almashtirish bilan tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "yo‘l, ish, quvvat formulalari algebraik ifodalardir"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "dasturlashda ifodalarni hisoblash va soddalashtirish"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "narx, foyda va xarajat ifodalari harflar bilan yoziladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Taksi narxi formulasi»",
+     "muammo": "Taksi yo‘l haqini harfiy ifoda bilan qanday yozamiz?",
+     "mahsulot": "yo‘l haqi formulasi va jadvali",
+     "bosqichlar": [
+      "shartlarni aniqlash",
+      "ifoda tuzish",
+      "jadval hisoblash",
+      "ayniy almashtirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Shartlarni aniqlang",
+      "Ifoda tuzing",
+      "Jadval hisoblang",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "ifoda to‘g‘ri",
+      "hisob to‘g‘ri",
+      "jadval tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Formulalar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Taksi",
+       "matn": "Boshlang‘ich to‘lov 5 ming so‘m, har km uchun 2 ming so‘m.",
+       "topshiriq": "10 km uchun yo‘l haqi qancha?",
+       "javob": "25 ming so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Do‘kon",
+       "matn": "Daftar narxi a, qalam narxi b. 3 daftar va 2 qalam.",
+       "topshiriq": "Umumiy narx ifodasi?",
+       "javob": "3a va 2b yig‘indisi",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab",
+       "matn": "Ikki ketma-ket son: n va n va 1.",
+       "topshiriq": "Yig‘indisi qanday ifoda?",
+       "javob": "2n va 1 yig‘indisi",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Kvadrat bog‘ tomoni a.",
+       "topshiriq": "Perimetri qanday ifoda?",
+       "javob": "4a",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Ifodalar qayerda uchraydi?",
+      "Nega maxraj nol bo‘lmasligi kerak?",
+      "Ayniyat nima uchun kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Algebraik ifoda",
+      "tarif": "sonlar va harflardan tuzilgan yozuv"
+     },
+     {
+      "atama": "Butun ifoda",
+      "tarif": "harfga bo‘lish bo‘lmagan ifoda"
+     },
+     {
+      "atama": "Kasr ifoda",
+      "tarif": "harfga bo‘lish bo‘lgan ifoda"
+     },
+     {
+      "atama": "Aniqlanish sohasi",
+      "tarif": "ifoda ma’noga ega bo‘ladigan qiymatlar to‘plami"
+     },
+     {
+      "atama": "Ayniyat",
+      "tarif": "harflarning barcha qiymatlarida to‘g‘ri tenglik"
+     },
+     {
+      "atama": "Ayniy almashtirish",
+      "tarif": "ifodani aynan teng ifodaga almashtirish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Maxraj nolga teng bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "nolga bo‘lish mumkin emas"
+     },
+     {
+      "matn": "Ayniyat harflarning barcha qiymatlarida to‘g‘ri",
+      "togri": true,
+      "izoh": "ayniyat ta’rifi"
+     },
+     {
+      "matn": "3a va 2a yig‘indisi 5a bilan aynan teng",
+      "togri": true,
+      "izoh": "o‘xshash hadlarni qo‘shdik"
+     },
+     {
+      "matn": "Ifoda qiymati harf qiymatiga bog‘liq emas",
+      "togri": false,
+      "izoh": "harf qiymati o‘zgarsa, qiymat o‘zgaradi"
+     },
+     {
+      "matn": "Taqsimot qonuni qavsni ochishga imkon beradi",
+      "togri": true,
+      "izoh": "sonni har bir qo‘shiluvchiga ko‘paytiramiz"
+     },
+     {
+      "matn": "Bitta qiymatda teng bo‘lgan ifodalar doim aynan teng",
+      "togri": false,
+      "izoh": "barcha qiymatlarda teng bo‘lishi kerak"
+     },
+     {
+      "matn": "Kasr ifodada harf maxrajda bo‘lishi mumkin",
+      "togri": true,
+      "izoh": "kasr ifoda ta’rifi"
+     },
+     {
+      "matn": "Butun ifodada harfga bo‘lish bor",
+      "togri": false,
+      "izoh": "butun ifodada harfga bo‘lish yo‘q"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Algebraik ifoda nima?",
+      "javob": "sonlar va harflardan tuzilgan yozuv"
+     },
+     {
+      "savol": "Butun ifoda nima?",
+      "javob": "harfga bo‘lish bo‘lmagan ifoda"
+     },
+     {
+      "savol": "Aniqlanish sohasi nima?",
+      "javob": "ifoda ma’noga ega bo‘ladigan qiymatlar"
+     },
+     {
+      "savol": "Ayniyat nima?",
+      "javob": "barcha qiymatlarda to‘g‘ri tenglik"
+     },
+     {
+      "savol": "3a va a yig‘indisi?",
+      "javob": "4a"
+     },
+     {
+      "savol": "2 ni (x va 1) ga ko‘paytirsak?",
+      "javob": "2x va 2 yig‘indisi"
+     },
+     {
+      "savol": "Nolga bo‘lish mumkinmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "Ifoda qiymatini qanday topamiz?",
+      "javob": "harf o‘rniga son qo‘yib"
+     },
+     {
+      "savol": "Ayniy almashtirish nima?",
+      "javob": "aynan teng ifodaga almashtirish"
+     },
+     {
+      "savol": "3a va a ayirmasi?",
+      "javob": "2a"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ifoda",
+      "matn": "Sonlar va harflardan tuzilgan yozuv.",
+      "savol": "Ifodaga misol keltiring."
+     },
+     {
+      "nom": "Qiymat",
+      "matn": "Harf o‘rniga son qo‘yamiz.",
+      "savol": "3a ifodasida a 5 bo‘lsa?"
+     },
+     {
+      "nom": "Soddalashtirish",
+      "matn": "Taqsimot va o‘xshash hadlar.",
+      "savol": "2 ni (a va 3) ga ko‘paytirsak?"
+     },
+     {
+      "nom": "Ayniyat",
+      "matn": "Barcha qiymatlarda teng.",
+      "savol": "x va x aynan 2x bilan tengmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ayniyatni bitta son bilan tekshirib bo‘lmaydi? Ikkita ifoda bitta qiymatda teng, boshqa qiymatda teng bo‘lmasligiga misol keltiring.",
+    "keys": {
+     "vaziyat": "Taksi boshlang‘ich to‘lov 5 ming so‘m va har kilometr uchun 2 ming so‘m oladi.",
+     "savollar": [
+      "k kilometr uchun yo‘l haqi ifodasini yozing.",
+      "10 kilometr uchun necha so‘m to‘lanadi?"
+     ]
+    },
+    "tezis": "Harflar sonlarning umumiy tilidir",
+    "taqqoslash": {
+     "a": "Butun ifoda",
+     "b": "Kasr ifoda",
+     "umumiy": [
+      "algebraik ifoda",
+      "qiymati harfga bog‘liq"
+     ],
+     "a_farq": [
+      "harfga bo‘lish yo‘q",
+      "hamma qiymatda ma’noli"
+     ],
+     "b_farq": [
+      "harfga bo‘lish bor",
+      "maxraj nol bo‘lmasligi kerak"
+     ]
+    },
+    "klaster": {
+     "markaz": "Algebraik ifodalar",
+     "shoxlar": [
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "butun ifoda",
+        "kasr ifoda",
+        "aniqlanish sohasi"
+       ]
+      },
+      {
+       "nom": "Qiymat",
+       "bandlar": [
+        "harf o‘rniga son",
+        "amallar tartibi",
+        "jadval"
+       ]
+      },
+      {
+       "nom": "Soddalashtirish",
+       "bandlar": [
+        "taqsimot qonuni",
+        "o‘xshash hadlar",
+        "qavs ochish"
+       ]
+      },
+      {
+       "nom": "Ayniyat",
+       "bandlar": [
+        "aynan teng",
+        "tekshirish",
+        "almashtirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Barcha qiymatlarda to‘g‘ri bo‘lgan tenglik menman. Men kimman?",
+     "javob": "ayniyat"
+    },
+    "hikmat": "Qisqa yozuv — aniq fikr.",
+    "kalit_soz": "IFODA",
+    "xato_yechim": {
+     "shart": "3 ni (x ayirma 2) ga ko‘paytirib, so‘ng undan x ni ayiring.",
+     "xato": "3x ayirma 2 ayirma x, ya’ni 2x ayirma 2",
+     "togri": "2x ayirma 6",
+     "sabab": "3 ni qavs ichidagi ikkala hadga ko‘paytirish kerak: 3x va 6; so‘ng x ni ayirsak 2x ayirma 6"
+    },
+    "guruh_nomlari": [
+     "Ifodalar",
+     "Harflar",
+     "Ayniyatlar",
+     "Soddalashtiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Narx formulasi»",
+     "topshiriq": "Guruh biror xizmat (taksi, internet, kafe) narxini harfiy ifoda bilan yozadi va 3 ta qiymatda hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: 4a va 3b yig‘indisida a 3, b 2; 5 ni (x va 2) ga ko‘paytiring.",
+     "B": "Uydagi xizmatlardan biri uchun formula yozing.",
+     "C": "Ikkita aynan teng ifoda tuzing va 3 ta qiymatda tekshiring."
+    },
+    "sinkveyn": [
+     "Ifoda",
+     "harfiy, aniq",
+     "yoziladi, soddalashadi, hisoblanadi",
+     "Sonlar va harflar",
+     "Algebra"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh algebraik ifodalar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 2a va 3 yig‘indisida a 4 bo‘lsa",
+      "2-guruh: 3 ni (x va 4) ga ko‘paytiring",
+      "3-guruh: 1 ni (x ayirma 7) ga bo‘lishda x qaysi qiymatni olmaydi",
+      "4-guruh: 5a va 2a yig‘indisidan a ni ayiring"
+     ],
+     "yakun": "Natijalar: 11; 3x va 12 yig‘indisi; 7; 6a."
+    }
+   }
+  },
+  {
+   "mavzu": "Birhadlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Birhad nima?",
+      "matn": "Sonlar, harflar va ularning natural darajalari ko‘paytmasidan iborat ifoda birhad deyiladi. Bitta son yoki bitta harf ham birhad. Yig‘indi yoki ayirma birhad emas.",
+      "misol": "5x, manfiy 3a kvadrat b, 7 va a — birhadlar. 2x va 3 yig‘indisi esa birhad emas.",
+      "savol": "2x va 3 yig‘indisi birhadmi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Standart shakl",
+      "matn": "Birhad standart shaklda yoziladi: avval son ko‘paytuvchi (koeffitsient), keyin har bir harf bir martadan, alifbo tartibida, daraja bilan. Bir xil harflar ko‘paytirilganda darajalar qo‘shiladi.",
+      "misol": "2 ni a, 3 ni b va a ga ko‘paytirsak: sonlar 2 va 3 ko‘paytmasi 6, a ikki marta — a kvadrat. Standart shakl: 6 a kvadrat b.",
+      "savol": "4 ni x, x va y ga ko‘paytirsak, standart shakli?",
+      "javob": "4x kvadrat y",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Koeffitsient va birhad darajasi",
+      "matn": "Standart shakldagi birhadning son ko‘paytuvchisi koeffitsient, barcha harflar daraja ko‘rsatkichlari yig‘indisi esa birhad darajasi deyiladi.",
+      "misol": "5x kub y kvadrat birhadning koeffitsienti 5, darajasi 3 va 2 yig‘indisi, ya’ni 5.",
+      "savol": "7a kvadrat b birhadning darajasi?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birhadlarni ko‘paytirish",
+      "matn": "Birhadlarni ko‘paytirishda koeffitsientlar ko‘paytiriladi, bir xil harflarning darajalari qo‘shiladi. Natija yana birhad bo‘ladi.",
+      "misol": "3x kvadrat bilan 4x kub ko‘paytmasi: 3 ni 4 ga ko‘paytirsak 12, darajalar 2 va 3 yig‘indisi 5: 12 x beshinchi daraja. 2ab bilan 3a kvadrat b ko‘paytmasi: 6 a kub b kvadrat.",
+      "savol": "5a bilan 2a kvadrat ko‘paytmasi?",
+      "javob": "10 a kub",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Darajaga ko‘tarish va o‘xshash birhadlar",
+      "matn": "Birhadni darajaga ko‘tarishda koeffitsient ham, har bir harf darajasi ham shu darajaga ko‘tariladi: harf darajasi ko‘rsatkichga ko‘paytiriladi. Harf qismi bir xil birhadlar o‘xshash deyiladi, ularni qo‘shish yoki ayirishda koeffitsientlar qo‘shiladi yoki ayiriladi.",
+      "misol": "2x kvadratni kub darajaga ko‘tarsak: 2 ning kubi 8, x ning darajasi 2 ni 3 ga ko‘paytirsak 6: 8 x oltinchi daraja. 3x kvadrat y va 5x kvadrat y yig‘indisi 8x kvadrat y.",
+      "savol": "3a ni kvadratga ko‘tarsak, nima chiqadi?",
+      "javob": "9a kvadrat",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Birhad — son va harflar darajalari ko‘paytmasi. Standart shaklda koeffitsient oldin turadi. Ko‘paytirishda koeffitsientlar ko‘paytiriladi, bir xil harflar darajalari qo‘shiladi. Darajaga ko‘tarishda koeffitsient darajaga ko‘tariladi, harf darajasi ko‘rsatkichga ko‘paytiriladi.",
+    "misollar": [
+     {
+      "shart": "4a, manfiy 2 va a kvadrat b ko‘paytmasini standart shaklda yozing.",
+      "yechim": [
+       "Sonlar: 4 ni manfiy 2 ga ko‘paytirsak manfiy 8.",
+       "Harflar: a va a kvadrat ko‘paytmasi a kub; b qoladi.",
+       "Natija: manfiy 8 a kub b."
+      ],
+      "javob": "manfiy 8 a kub b"
+     },
+     {
+      "shart": "Manfiy 2x kvadrat y ni kub darajaga ko‘taring.",
+      "yechim": [
+       "Koeffitsient: manfiy 2 ning kubi manfiy 8.",
+       "x ning darajasi 2 ni 3 ga ko‘paytirsak 6.",
+       "y ning darajasi 1 ni 3 ga ko‘paytirsak 3."
+      ],
+      "javob": "manfiy 8 x oltinchi daraja y kub"
+     },
+     {
+      "shart": "6x kvadrat y dan 2x kvadrat y ni ayirib, x kvadrat y ni qo‘shing.",
+      "yechim": [
+       "Hammasi o‘xshash birhadlar.",
+       "Koeffitsientlar: 6 ayirma 2 va 1.",
+       "6 dan 2 ni ayirsak 4, 1 qo‘shsak 5."
+      ],
+      "javob": "5 x kvadrat y"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Standart shakl",
+      "topshiriq": "2a, 3b va a ko‘paytmasini standart shaklga keltiring.",
+      "yechim": "Koeffitsient 6, a ikki marta, b bir marta: 6 a kvadrat b.",
+      "mahsulot": "standart shakl kartochkasi"
+     },
+     {
+      "nom": "Daraja qo‘shamiz",
+      "topshiriq": "x kvadrat bilan x kub ko‘paytmasini toping.",
+      "yechim": "Darajalar 2 va 3 qo‘shiladi: x beshinchi daraja.",
+      "mahsulot": "darajalar jadvali"
+     },
+     {
+      "nom": "Yuza va hajm",
+      "topshiriq": "To‘g‘ri to‘rtburchak tomonlari 3a va 2a. Yuzini yozing. Qirrasi 2a bo‘lgan kub hajmini yozing.",
+      "yechim": "Yuza: 6 a kvadrat. Hajm: 2 ning kubi 8, a kub: 8 a kub.",
+      "mahsulot": "formulalar kartochkasi"
+     },
+     {
+      "nom": "O‘xshash birhadlar",
+      "topshiriq": "3x kvadrat y, 5x kvadrat y va x y kvadrat birhadlarini guruhlang. Qaysilari o‘xshash?",
+      "yechim": "Birinchi va ikkinchisi o‘xshash (x kvadrat y), uchinchisi boshqa (x y kvadrat).",
+      "mahsulot": "guruhlash jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 ni x, 4 ni y ga ko‘paytiring.",
+      "javob": "12xy"
+     },
+     {
+      "shart": "2a bilan 5a kub ko‘paytmasi?",
+      "javob": "10 a to‘rtinchi daraja"
+     },
+     {
+      "shart": "3b ni kvadratga ko‘taring.",
+      "javob": "9b kvadrat"
+     },
+     {
+      "shart": "5x kvadrat y birhadning koeffitsienti va darajasi?",
+      "javob": "5 va 3"
+     },
+     {
+      "shart": "7ab va 2ab yig‘indisi?",
+      "javob": "9ab"
+     },
+     {
+      "shart": "x kvadratni kub darajaga ko‘taring.",
+      "javob": "x oltinchi daraja"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ko‘paytirishda darajalarni ko‘paytiradi",
+      "sabab": "qoidani aralashtiradi",
+      "oldini_olish": "bir xil asosli darajalar ko‘paytirilganda ko‘rsatkichlar qo‘shiladi deb eslash"
+     },
+     {
+      "xato": "Daraja ko‘tarishda koeffitsientni ko‘tarmaydi",
+      "sabab": "faqat harfni darajaga ko‘taradi",
+      "oldini_olish": "ichidagi hamma ko‘paytuvchi darajaga ko‘tarilishini yozib ko‘rsatish"
+     },
+     {
+      "xato": "Harf qismi har xil birhadlarni qo‘shadi",
+      "sabab": "o‘xshash birhadlar shartini unutadi",
+      "oldini_olish": "harf qismi bir xilmi, deb tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "kinetik energiya, yuza va hajm formulalari birhadlar"
+     },
+     {
+      "fan": "Geometriya",
+      "boglanish": "kvadrat yuzi va kub hajmi daraja ko‘rinishida"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "hisoblashda daraja qoidalari qo‘llanadi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Birhadlar o‘yini»",
+     "muammo": "Birhadlar bilan amallar uchun kartochka o‘yinini qanday tuzamiz?",
+     "mahsulot": "kartochkalar to‘plami",
+     "bosqichlar": [
+      "birhadlar tanlash",
+      "amallarni belgilash",
+      "kartochka tayyorlash",
+      "o‘yin o‘tkazish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Birhadlarni tanlang",
+      "Kartochkalar tayyorlang",
+      "O‘yin o‘tkazing",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "amallar to‘g‘ri",
+      "javoblar to‘g‘ri",
+      "kartochkalar tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Birhadlar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Maydon",
+       "matn": "Kvadrat tomoni 3a.",
+       "topshiriq": "Yuzi qanday birhad?",
+       "javob": "9 a kvadrat",
+       "rasm": ""
+      },
+      {
+       "nom": "Quti",
+       "matn": "Kub qirrasi 2a.",
+       "topshiriq": "Hajmi qanday birhad?",
+       "javob": "8 a kub",
+       "rasm": ""
+      },
+      {
+       "nom": "To‘rtburchak",
+       "matn": "Tomonlari 5a va 2a.",
+       "topshiriq": "Yuzi qanday?",
+       "javob": "10 a kvadrat",
+       "rasm": ""
+      },
+      {
+       "nom": "Ombor",
+       "matn": "Qirralari a, 2a va 3a bo‘lgan parallelepiped.",
+       "topshiriq": "Hajmi qanday?",
+       "javob": "6 a kub",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Birhadlar qayerda uchraydi?",
+      "Daraja qoidalarini qayerda ishlatamiz?",
+      "O‘xshash birhadlar qanday qo‘shiladi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Birhad",
+      "tarif": "son va harflar darajalari ko‘paytmasi"
+     },
+     {
+      "atama": "Koeffitsient",
+      "tarif": "birhaddagi son ko‘paytuvchi"
+     },
+     {
+      "atama": "Standart shakl",
+      "tarif": "koeffitsient va alifbo tartibidagi harflar"
+     },
+     {
+      "atama": "Birhad darajasi",
+      "tarif": "harflar daraja ko‘rsatkichlari yig‘indisi"
+     },
+     {
+      "atama": "O‘xshash birhadlar",
+      "tarif": "harf qismi bir xil birhadlar"
+     },
+     {
+      "atama": "Daraja",
+      "tarif": "bir xil ko‘paytuvchilar ko‘paytmasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "5x birhad",
+      "togri": true,
+      "izoh": "son va harf ko‘paytmasi"
+     },
+     {
+      "matn": "2x va 3 yig‘indisi birhad",
+      "togri": false,
+      "izoh": "yig‘indi birhad emas"
+     },
+     {
+      "matn": "Ko‘paytirishda bir xil harflar darajalari qo‘shiladi",
+      "togri": true,
+      "izoh": "daraja qoidasi"
+     },
+     {
+      "matn": "Darajaga ko‘tarishda koeffitsient o‘zgarmaydi",
+      "togri": false,
+      "izoh": "koeffitsient ham darajaga ko‘tariladi"
+     },
+     {
+      "matn": "3x kvadrat y va 5x kvadrat y o‘xshash birhadlar",
+      "togri": true,
+      "izoh": "harf qismi bir xil"
+     },
+     {
+      "matn": "x kvadrat bilan x kub ko‘paytmasi x oltinchi daraja",
+      "togri": false,
+      "izoh": "darajalar qo‘shiladi: x beshinchi daraja"
+     },
+     {
+      "matn": "Birhad koeffitsienti manfiy bo‘lishi mumkin",
+      "togri": true,
+      "izoh": "ishorali son ham koeffitsient"
+     },
+     {
+      "matn": "Birhad darajasi koeffitsientga teng",
+      "togri": false,
+      "izoh": "u harflar darajalari yig‘indisi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Birhad nima?",
+      "javob": "son va harflar darajalari ko‘paytmasi"
+     },
+     {
+      "savol": "Koeffitsient nima?",
+      "javob": "birhaddagi son ko‘paytuvchi"
+     },
+     {
+      "savol": "3x bilan 2x ko‘paytmasi?",
+      "javob": "6 x kvadrat"
+     },
+     {
+      "savol": "a kvadrat bilan a kub ko‘paytmasi?",
+      "javob": "a beshinchi daraja"
+     },
+     {
+      "savol": "2a ni kvadratga ko‘tarsak?",
+      "javob": "4 a kvadrat"
+     },
+     {
+      "savol": "5ab birhadning darajasi?",
+      "javob": "2"
+     },
+     {
+      "savol": "O‘xshash birhadlar qanday?",
+      "javob": "harf qismi bir xil"
+     },
+     {
+      "savol": "3a va 4a yig‘indisi?",
+      "javob": "7a"
+     },
+     {
+      "savol": "Standart shaklda nima birinchi turadi?",
+      "javob": "koeffitsient"
+     },
+     {
+      "savol": "x kvadratning kubi?",
+      "javob": "x oltinchi daraja"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Birhad",
+      "matn": "Son va harflar ko‘paytmasi.",
+      "savol": "Birhadga misol keltiring."
+     },
+     {
+      "nom": "Standart shakl",
+      "matn": "Koeffitsient va harflar.",
+      "savol": "2a va 3a ko‘paytmasi?"
+     },
+     {
+      "nom": "Ko‘paytirish",
+      "matn": "Koeffitsientlarni ko‘paytirib, darajalarni qo‘shamiz.",
+      "savol": "x bilan x kvadrat ko‘paytmasi?"
+     },
+     {
+      "nom": "Daraja",
+      "matn": "Koeffitsient va harfni darajaga ko‘taramiz.",
+      "savol": "2x ni kvadratga ko‘tarsak?"
+     }
+    ],
+    "muammoli_savol": "Nega bir xil harfli birhadlarni ko‘paytirganda darajalar qo‘shiladi, qo‘shishda esa harf darajasi o‘zgarmaydi? x kvadrat va x kub misolida tushuntirib ko‘ring.",
+    "keys": {
+     "vaziyat": "Kvadrat maydonning tomoni 3a metr, qutining qirrasi 2a metr.",
+     "savollar": [
+      "Maydon yuzini birhad bilan yozing.",
+      "Kub shaklidagi quti hajmini birhad bilan yozing."
+     ]
+    },
+    "tezis": "Daraja — ko‘paytirishning qisqa yozuvi",
+    "taqqoslash": {
+     "a": "Birhadlarni ko‘paytirish",
+     "b": "Birhadlarni qo‘shish",
+     "umumiy": [
+      "birhadlar bilan bajariladi",
+      "koeffitsientlar ishtirok etadi"
+     ],
+     "a_farq": [
+      "koeffitsientlar ko‘paytiriladi",
+      "darajalar qo‘shiladi"
+     ],
+     "b_farq": [
+      "faqat o‘xshashlar qo‘shiladi",
+      "harf qismi o‘zgarmaydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Birhadlar",
+     "shoxlar": [
+      {
+       "nom": "Tuzilishi",
+       "bandlar": [
+        "koeffitsient",
+        "harflar",
+        "daraja"
+       ]
+      },
+      {
+       "nom": "Standart shakl",
+       "bandlar": [
+        "alifbo tartibi",
+        "darajalar",
+        "soddalash"
+       ]
+      },
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "koeffitsientlar",
+        "darajalar qo‘shiladi",
+        "natija birhad"
+       ]
+      },
+      {
+       "nom": "Daraja",
+       "bandlar": [
+        "darajaga ko‘tarish",
+        "o‘xshash birhadlar",
+        "qo‘shish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Son va harflar ko‘paytmasi, yig‘indi emasman. Men kimman?",
+     "javob": "birhad"
+    },
+    "hikmat": "Kichikdan katta bo‘ladi.",
+    "kalit_soz": "BIRHAD",
+    "xato_yechim": {
+     "shart": "3x kvadrat bilan 4x kub ko‘paytmasini toping.",
+     "xato": "12 x oltinchi daraja, chunki darajalarni ko‘paytiradi",
+     "togri": "12 x beshinchi daraja",
+     "sabab": "bir xil asosli darajalar ko‘paytirilganda ko‘rsatkichlar qo‘shiladi: 2 va 3 yig‘indisi 5"
+    },
+    "guruh_nomlari": [
+     "Birhadlar",
+     "Koeffitsientlar",
+     "Darajalar",
+     "Standartchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yuza va hajm formulalari»",
+     "topshiriq": "Guruh kvadrat, to‘g‘ri to‘rtburchak va kub o‘lchamlarini harfiy birhad bilan yozib, yuza va hajmini topadi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: 2a bilan 3a kub; 4b ni kvadratga ko‘taring; 6xy va 2xy yig‘indisi.",
+     "B": "Uydagi kub shaklidagi narsaning hajmini formulada yozing.",
+     "C": "5 ta birhad tuzib, ularni ko‘paytiring."
+    },
+    "sinkveyn": [
+     "Birhad",
+     "qisqa, aniq",
+     "ko‘paytiriladi, ko‘tariladi, qo‘shiladi",
+     "Son va harflar",
+     "Daraja"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh birhadlar bo‘yicha masalalarni yechadi.",
+     "qismlar": [
+      "1-guruh: 3 ni x ga ko‘paytirib, 2 ga ko‘paytiring",
+      "2-guruh: a kvadrat bilan a kub ko‘paytmasi",
+      "3-guruh: 2b ni kvadratga ko‘taring",
+      "4-guruh: 3xy va 5xy yig‘indisi"
+     ],
+     "yakun": "Natijalar: 6x; a beshinchi daraja; 4 b kvadrat; 8xy."
+    }
+   }
+  },
+  {
+   "mavzu": "Ko‘phadlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ko‘phad nima?",
+      "matn": "Bir necha birhadning yig‘indisi ko‘phad deyiladi. Ko‘phadni tashkil etgan birhadlar uning hadlari deyiladi. Ikki hadli ko‘phad ikkihad, uch hadli ko‘phad uchhad deb ataladi.",
+      "misol": "3x kvadrat ayirma 2x va 5 — uch hadli ko‘phad, ya’ni uchhad.",
+      "savol": "2a kvadrat va ab ayirma b kvadrat ko‘phadining nechta hadi bor?",
+      "javob": "3 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Standart shakl va daraja",
+      "matn": "Ko‘phadning o‘xshash hadlarini ixchamlasak, standart shakl hosil bo‘ladi. Standart shakldagi ko‘phadning darajasi — uning hadlari ichidagi eng katta daraja.",
+      "misol": "4x kvadrat va 3x va 2 yig‘indisidan x kvadratni ayirsak: 3x kvadrat va 3x va 2 chiqadi, darajasi 2.",
+      "savol": "4x kub ayirma x va 7 ko‘phadining darajasi?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shish va ayirish",
+      "matn": "Ko‘phadlarni qo‘shishda qavslarni ochib, o‘xshash hadlarni ixchamlaymiz. Ko‘phadni ayirishda qavs oldida minus bo‘lgani uchun qavs ichidagi har bir had ishorasi teskari bo‘ladi.",
+      "misol": "3x va 2 hamda x ayirma 5 yig‘indisi: 4x ayirma 3. 5a va 3 dan 2a ayirma 1 ni ayirsak: 3a va 4.",
+      "savol": "2x va 1 hamda 3x va 4 yig‘indisi?",
+      "javob": "5x va 5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birhadni ko‘phadga ko‘paytirish",
+      "matn": "Birhadni ko‘phadga ko‘paytirishda birhadni ko‘phadning har bir hadiga ko‘paytiramiz va natijalarni qo‘shamiz. Bu taqsimot qonunidan kelib chiqadi.",
+      "misol": "2x ni (x va 3) ga ko‘paytirsak: 2x kvadrat va 6x.",
+      "savol": "3a ni (a va 2) ga ko‘paytirsak?",
+      "javob": "3a kvadrat va 6a",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘phadni ko‘phadga ko‘paytirish",
+      "matn": "Ko‘phadni ko‘phadga ko‘paytirishda birinchi ko‘phadning har bir hadini ikkinchisining har bir hadiga ko‘paytiramiz va chiqqan birhadlarni qo‘shib, o‘xshashlarni ixchamlaymiz.",
+      "misol": "(x va 2) ni (x va 3) ga ko‘paytirsak: x kvadrat, 3x, 2x va 6; o‘xshashlarni qo‘shsak x kvadrat va 5x va 6.",
+      "savol": "(x va 1) ni (x va 5) ga ko‘paytirsak?",
+      "javob": "x kvadrat va 6x va 5",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ko‘phad — birhadlar yig‘indisi. Qo‘shishda qavsni ochib, o‘xshash hadlarni ixchamlaymiz, ayirishda ishoralar teskari bo‘ladi. Birhadni ko‘phadga ko‘paytirishda har bir hadga ko‘paytiramiz. Ko‘phadni ko‘phadga ko‘paytirishda har bir hadni har bir hadga ko‘paytirib, o‘xshashlarni ixchamlaymiz.",
+    "misollar": [
+     {
+      "shart": "(4x kvadrat ayirma 3x va 1) bilan (x kvadrat va 5x ayirma 6) ni qo‘shing.",
+      "yechim": [
+       "Qavsni ochamiz va o‘xshashlarni guruhlaymiz.",
+       "x kvadrat: 4 va 1 yig‘indisi 5. x: manfiy 3 va 5 yig‘indisi 2.",
+       "Sonlar: 1 ayirma 6 — manfiy 5."
+      ],
+      "javob": "5x kvadrat va 2x ayirma 5"
+     },
+     {
+      "shart": "(3a kvadrat va 2a) dan (a kvadrat ayirma 4a va 3) ni ayiring.",
+      "yechim": [
+       "Qavs oldida minus: ikkinchi ko‘phad ishoralari teskari.",
+       "a kvadrat: 3 ayirma 1 — 2. a: 2 va 4 — 6.",
+       "Sonlar: manfiy 3."
+      ],
+      "javob": "2a kvadrat va 6a ayirma 3"
+     },
+     {
+      "shart": "(2x ayirma 3) ni (x va 4) ga ko‘paytiring.",
+      "yechim": [
+       "2x ni x ga: 2x kvadrat; 2x ni 4 ga: 8x.",
+       "Manfiy 3 ni x ga: manfiy 3x; manfiy 3 ni 4 ga: manfiy 12.",
+       "8x ayirma 3x — 5x."
+      ],
+      "javob": "2x kvadrat va 5x ayirma 12"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Yuza hisobi",
+      "topshiriq": "To‘g‘ri to‘rtburchak tomonlari (x va 3) va (x va 1). Yuzini ko‘phad bilan yozing.",
+      "yechim": "x kvadrat, x, 3x va 3: x kvadrat va 4x va 3.",
+      "mahsulot": "yuza chizmasi"
+     },
+     {
+      "nom": "Perimetr",
+      "topshiriq": "Shu to‘g‘ri to‘rtburchakning perimetrini toping.",
+      "yechim": "Tomonlar yig‘indisi 2x va 4, uni 2 ga ko‘paytirsak 4x va 8.",
+      "mahsulot": "perimetr jadvali"
+     },
+     {
+      "nom": "Tekshirish",
+      "topshiriq": "(x va 2) ni (x ayirma 2) ga ko‘paytirib, x 5 bo‘lganda natijani ikki yo‘l bilan tekshiring.",
+      "yechim": "Ko‘paytma x kvadrat ayirma 4. x 5 bo‘lsa, 7 ni 3 ga ko‘paytirsak 21; 25 ayirma 4 — 21 ham.",
+      "mahsulot": "tekshirish varag‘i"
+     },
+     {
+      "nom": "Ko‘phad tuzamiz",
+      "topshiriq": "Uchta hadli ko‘phad tuzing, uning darajasini aniqlang va x 2 da qiymatini toping.",
+      "yechim": "Masalan, x kvadrat va 3x va 1: darajasi 2, x 2 da 4 va 6 va 1, ya’ni 11.",
+      "mahsulot": "ko‘phadlar to‘plami"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "(x va 2) bilan (3x ayirma 1) yig‘indisi?",
+      "javob": "4x va 1"
+     },
+     {
+      "shart": "(5a ayirma 2) dan (2a va 1) ni ayiring.",
+      "javob": "3a ayirma 3"
+     },
+     {
+      "shart": "3x ni (x ayirma 2) ga ko‘paytiring.",
+      "javob": "3x kvadrat ayirma 6x"
+     },
+     {
+      "shart": "(x va 3) ni (x va 4) ga ko‘paytiring.",
+      "javob": "x kvadrat va 7x va 12"
+     },
+     {
+      "shart": "(a va 2) ni (a ayirma 2) ga ko‘paytiring.",
+      "javob": "a kvadrat ayirma 4"
+     },
+     {
+      "shart": "4x kub ayirma x va 7 ko‘phadining darajasi?",
+      "javob": "3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ayirishda qavs ichidagi faqat birinchi had ishorasini o‘zgartiradi",
+      "sabab": "minus qoidasini to‘liq qo‘llamaydi",
+      "oldini_olish": "har bir hadni alohida yozib, ishorasini teskari qilish"
+     },
+     {
+      "xato": "Ko‘phadlarni ko‘paytirishda ayrim hadlarni tashlab ketadi",
+      "sabab": "har bir hadni har bir hadga ko‘paytirishni unutadi",
+      "oldini_olish": "strelkalar yoki jadval bilan hamma juftlikni yozish"
+     },
+     {
+      "xato": "O‘xshash hadlarni ixchamlamaydi",
+      "sabab": "standart shakl ma’nosini bilmaydi",
+      "oldini_olish": "natijani tekshirib, harf qismi bir xil hadlarni qo‘shish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geometriya",
+      "boglanish": "yuza va perimetr ko‘phad bilan ifodalanadi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "harakat qonuni ko‘phad ko‘rinishida yoziladi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "foyda va xarajat modellari ko‘phad bilan ifodalanadi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Maydon hisobi»",
+     "muammo": "Murakkab shakl yuzini ko‘phad bilan qanday ifodalaymiz?",
+     "mahsulot": "shakllar yuzi jadvali",
+     "bosqichlar": [
+      "shakl tanlash",
+      "ko‘phad tuzish",
+      "ko‘paytirish va soddalashtirish",
+      "qiymatni tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Shaklni tanlang",
+      "Ko‘phad tuzing",
+      "Soddalashtiring",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "ko‘phad to‘g‘ri",
+      "hisob to‘g‘ri",
+      "tekshirish bor",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ko‘phadlar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Maydon",
+       "matn": "Tomonlari (x va 3) va (x va 1).",
+       "topshiriq": "Yuzi qanday ko‘phad?",
+       "javob": "x kvadrat va 4x va 3",
+       "rasm": ""
+      },
+      {
+       "nom": "Devor",
+       "matn": "Devor yuzi 2x ni (x va 3) ga ko‘paytma.",
+       "topshiriq": "Yuzi qanday?",
+       "javob": "2x kvadrat va 6x",
+       "rasm": ""
+      },
+      {
+       "nom": "Qoplama",
+       "matn": "(x va 2) bilan (x ayirma 2) ko‘paytmasi.",
+       "topshiriq": "Natija?",
+       "javob": "x kvadrat ayirma 4",
+       "rasm": ""
+      },
+      {
+       "nom": "Ombor",
+       "matn": "Ko‘phadlar yig‘indisi: (2x va 1) va (3x va 4).",
+       "topshiriq": "Natija?",
+       "javob": "5x va 5",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Ko‘phad qayerda uchraydi?",
+      "Ko‘paytirishda nimani unutmaslik kerak?",
+      "Natijani qanday tekshiramiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ko‘phad",
+      "tarif": "birhadlar yig‘indisi"
+     },
+     {
+      "atama": "Had",
+      "tarif": "ko‘phaddagi birhad"
+     },
+     {
+      "atama": "Uchhad",
+      "tarif": "uch hadli ko‘phad"
+     },
+     {
+      "atama": "Ko‘phad darajasi",
+      "tarif": "standart shakldagi eng katta daraja"
+     },
+     {
+      "atama": "O‘xshash hadlar",
+      "tarif": "harf qismi bir xil hadlar"
+     },
+     {
+      "atama": "Standart shakl",
+      "tarif": "o‘xshash hadlar ixchamlangan ko‘rinish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ko‘phad birhadlar yig‘indisi",
+      "togri": true,
+      "izoh": "ko‘phad ta’rifi"
+     },
+     {
+      "matn": "Ayirishda qavs ichidagi ishoralar o‘zgarmaydi",
+      "togri": false,
+      "izoh": "ishoralar teskari bo‘ladi"
+     },
+     {
+      "matn": "Birhadni ko‘phadga ko‘paytirishda har bir hadga ko‘paytiramiz",
+      "togri": true,
+      "izoh": "taqsimot qonuni"
+     },
+     {
+      "matn": "Ko‘phad darajasi eng kichik daraja",
+      "togri": false,
+      "izoh": "eng katta daraja"
+     },
+     {
+      "matn": "(x va 2)(x ayirma 2) ko‘paytmasi x kvadrat ayirma 4",
+      "togri": true,
+      "izoh": "o‘rta hadlar yo‘qoladi"
+     },
+     {
+      "matn": "Ko‘phadlarni ko‘paytirgandan keyin o‘xshash hadlar ixchamlanadi",
+      "togri": true,
+      "izoh": "standart shaklga keltiramiz"
+     },
+     {
+      "matn": "Uchhad to‘rt hadli ko‘phad",
+      "togri": false,
+      "izoh": "uch hadli"
+     },
+     {
+      "matn": "(x va 1)(x va 5) ko‘paytmasi x kvadrat va 5",
+      "togri": false,
+      "izoh": "x kvadrat va 6x va 5"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ko‘phad nima?",
+      "javob": "birhadlar yig‘indisi"
+     },
+     {
+      "savol": "Uchhad nima?",
+      "javob": "uch hadli ko‘phad"
+     },
+     {
+      "savol": "Ko‘phad darajasi nima?",
+      "javob": "eng katta daraja"
+     },
+     {
+      "savol": "Ayirishda ishoralar qanday bo‘ladi?",
+      "javob": "teskari"
+     },
+     {
+      "savol": "2x ni (x va 1) ga ko‘paytirsak?",
+      "javob": "2x kvadrat va 2x"
+     },
+     {
+      "savol": "(x va 1)(x ayirma 1) ko‘paytmasi?",
+      "javob": "x kvadrat ayirma 1"
+     },
+     {
+      "savol": "O‘xshash hadlarni qanday ixchamlaymiz?",
+      "javob": "koeffitsientlarni qo‘shamiz"
+     },
+     {
+      "savol": "Standart shakl nima?",
+      "javob": "o‘xshash hadlar ixchamlangan ko‘rinish"
+     },
+     {
+      "savol": "(x va 2)(x va 2) ko‘paytmasi?",
+      "javob": "x kvadrat va 4x va 4"
+     },
+     {
+      "savol": "(a va 3) ni 2 ga ko‘paytirsak?",
+      "javob": "2a va 6"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ko‘phad",
+      "matn": "Birhadlar yig‘indisi.",
+      "savol": "Ko‘phadga misol keltiring."
+     },
+     {
+      "nom": "Qo‘shish va ayirish",
+      "matn": "Qavsni ochib, o‘xshashlarni ixchamlaymiz.",
+      "savol": "(x va 2) ayirma (x va 1)?"
+     },
+     {
+      "nom": "Birhadga ko‘paytirish",
+      "matn": "Har bir hadga ko‘paytiramiz.",
+      "savol": "3 ni (a va 2) ga ko‘paytirsak?"
+     },
+     {
+      "nom": "Ko‘phadga ko‘paytirish",
+      "matn": "Har bir hadni har bir hadga ko‘paytiramiz.",
+      "savol": "(x va 1) ni (x va 2) ga ko‘paytirsak?"
+     }
+    ],
+    "muammoli_savol": "Nega ko‘phadni ko‘phadga ko‘paytirishda to‘rtta ko‘paytma hosil bo‘ladi? To‘g‘ri to‘rtburchak yuzi chizmasi orqali tushuntirib ko‘ring.",
+    "keys": {
+     "vaziyat": "To‘g‘ri to‘rtburchak shaklidagi bog‘ning tomonlari (x va 3) va (x va 1) metr.",
+     "savollar": [
+      "Bog‘ yuzini ko‘phad bilan yozing.",
+      "x 5 bo‘lganda yuzni toping."
+     ]
+    },
+    "tezis": "Har bir had o‘z o‘rnini topadi",
+    "taqqoslash": {
+     "a": "Birhad",
+     "b": "Ko‘phad",
+     "umumiy": [
+      "algebraik ifoda",
+      "koeffitsient va harflar bor"
+     ],
+     "a_farq": [
+      "ko‘paytma",
+      "bitta had"
+     ],
+     "b_farq": [
+      "yig‘indi",
+      "bir nechta had"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ko‘phadlar",
+     "shoxlar": [
+      {
+       "nom": "Tuzilishi",
+       "bandlar": [
+        "hadlar",
+        "daraja",
+        "standart shakl"
+       ]
+      },
+      {
+       "nom": "Qo‘shish va ayirish",
+       "bandlar": [
+        "qavsni ochish",
+        "ishora",
+        "ixchamlash"
+       ]
+      },
+      {
+       "nom": "Birhadga ko‘paytirish",
+       "bandlar": [
+        "taqsimot",
+        "har bir had",
+        "natija"
+       ]
+      },
+      {
+       "nom": "Ko‘phadga ko‘paytirish",
+       "bandlar": [
+        "har bir hadni har biriga",
+        "o‘xshash hadlar",
+        "tekshirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ko‘p hadim bor, yig‘indi shaklidaman. Men kimman?",
+     "javob": "ko‘phad"
+    },
+    "hikmat": "Har bir qismning o‘z o‘rni bor.",
+    "kalit_soz": "KO‘PHAD",
+    "xato_yechim": {
+     "shart": "(x va 3) ni (x va 4) ga ko‘paytiring.",
+     "xato": "x kvadrat va 12, chunki faqat birinchi va oxirgi hadlarni ko‘paytiradi",
+     "togri": "x kvadrat va 7x va 12",
+     "sabab": "to‘rtta ko‘paytma kerak: x kvadrat, 4x, 3x va 12; o‘rtadagi 4x va 3x yig‘indisi 7x"
+    },
+    "guruh_nomlari": [
+     "Ko‘phadlar",
+     "Hadlar",
+     "Ixchamlovchilar",
+     "Ko‘paytiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yuza formulasi»",
+     "topshiriq": "Guruh bog‘ yoki xona o‘lchamlarini x orqali yozib, yuzini ko‘phad bilan ifodalaydi va x ning aniq qiymatida tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: (x va 4) bilan (2x ayirma 3) yig‘indisi; 2x ni (x ayirma 5) ga ko‘paytiring; (x va 2) ni (x va 5) ga ko‘paytiring.",
+     "B": "Uyingiz xonasining yuzini x orqali ko‘phad bilan yozing.",
+     "C": "O‘z ko‘phadingizni tuzib, boshqa ko‘phadga ko‘paytiring va tekshiring."
+    },
+    "sinkveyn": [
+     "Ko‘phad",
+     "ko‘p hadli, aniq",
+     "qo‘shiladi, ko‘paytiriladi, ixchamlanadi",
+     "Birhadlar yig‘indisi",
+     "Algebra"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ko‘phadlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: (x va 1) bilan (x va 2) yig‘indisi",
+      "2-guruh: (2a ayirma 1) dan (a ayirma 3) ni ayiring",
+      "3-guruh: 3x ni (x va 1) ga ko‘paytiring",
+      "4-guruh: (x va 1) ni (x va 3) ga ko‘paytiring"
+     ],
+     "yakun": "Natijalar: 2x va 3; a va 2; 3x kvadrat va 3x; x kvadrat va 4x va 3."
+    }
+   }
+  }
+ ]
+}
