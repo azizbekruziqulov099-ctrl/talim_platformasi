@@ -533,7 +533,7 @@ def test_rasmlar_001_1000_reestrda_va_topiladi():
         assert 1 <= r["umumiylik"] <= 4 and 3 <= r["sifat"] <= 5 and r["toifa"]
     assert all(r.get("umumiylik") and r.get("sifat") for r in rasmlar.papka_reestri() if r.get("tur") == "rasm")
     assert rasm_tanla.titul_rasmi("Fotosintez", "Biologiya") == "photosynthesis_light_and_dark_reactions_titul"
-    assert rasm_tanla.titul_rasmi("Kasrlar", "Matematika") == ""          # «Algebraik kasrlar» emas
+    assert rasm_tanla.titul_rasmi("Kasrlar", "Matematika") == "fractions_titul"
     assert rasm_tanla.buyum_rasmi("lochin") == "peregrine_falcon_bola"
     assert "daily_routine_of_a_schoolchild_sahna_bola" in rasm_tanla.universal_hovuz("Fizika")
 
