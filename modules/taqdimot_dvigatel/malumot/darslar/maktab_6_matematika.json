@@ -8387,6 +8387,1404 @@
      "yakun": "Natijalar: 12; 7; 13; 5."
     }
    }
+  },
+  {
+   "mavzu": "Tengsizliklar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sonli tengsizlik",
+      "matn": "Ikki sonni taqqoslaganda katta yoki kichik ekanini ko‘rsatuvchi yozuv sonli tengsizlik deyiladi. Katta son tomonga belgining ochiq uchi qaraydi.",
+      "misol": "5 soni 3 dan katta, buni 5 > 3 deb yozamiz. 7 soni 9 dan kichik, buni 7 < 9 deb yozamiz.",
+      "savol": "12 va 8 ni taqqoslab, tengsizlik yozing.",
+      "javob": "12 > 8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tengsizlik belgilari",
+      "matn": "Ikkita asosiy belgi bor: katta (>) va kichik (<). Yana ikkita belgi: katta yoki teng (≥) va kichik yoki teng (≤). Oxirgi ikkitasi sonning o‘zi ham mos kelishini bildiradi.",
+      "misol": "x ≥ 4 yozuvi x soni 4 ga teng yoki 4 dan katta ekanini bildiradi. x < 4 yozuvida 4 ning o‘zi kirmaydi.",
+      "savol": "x ≤ 5 yozuvida 5 ning o‘zi mos keladimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tengsizlik xossalari",
+      "matn": "Tengsizlikning ikkala tomoniga bir xil son qo‘shsak yoki ayirsak, tengsizlik belgisi o‘zgarmaydi. Ikkala tomonni musbat songa ko‘paytirsak yoki bo‘lsak, belgi o‘zgarmaydi. Manfiy songa ko‘paytirsak, belgi teskarisiga o‘zgaradi.",
+      "misol": "4 < 6 ga 3 ni qo‘shsak, 7 < 9 chiqadi. 2 < 5 ni 3 ga ko‘paytirsak, 6 < 15. 2 < 5 ni manfiy 1 ga ko‘paytirsak, manfiy 2 soni manfiy 5 dan katta bo‘ladi.",
+      "savol": "3 < 8 ning ikkala tomoniga 2 ni qo‘shsak nima chiqadi?",
+      "javob": "5 < 10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Noma’lumli tengsizlik",
+      "matn": "Tarkibida noma’lum bo‘lgan tengsizlikni yechish — noma’lumning tengsizlikni to‘g‘ri qiladigan barcha qiymatlarini topish. Tengsizlikni tenglama kabi yechamiz, faqat belgini saqlaymiz.",
+      "misol": "x ga 3 ni qo‘shsak 7 dan katta bo‘lsin. Ikkala tomondan 3 ni ayirsak, x > 4 chiqadi. Yechimlar: 5, 6, 7 va undan katta sonlar.",
+      "savol": "x dan 2 ni ayirsak 5 dan kichik bo‘lsin. Yechim?",
+      "javob": "x < 7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonlar o‘qida tasvirlash",
+      "matn": "Tengsizlik yechimlari sonlar o‘qida nurda tasvirlanadi. Qat’iy tengsizlikda (>, <) chegara son kirmaydi, qat’iy bo‘lmaganda (≥, ≤) kiradi.",
+      "misol": "x > 4 yechimi sonlar o‘qida 4 dan o‘ngdagi hamma nuqtalar, 4 ning o‘zi kirmaydi.",
+      "savol": "x < 3 tengsizlikning natural yechimlari qaysilar?",
+      "javob": "1 va 2",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tengsizlikning ikkala tomoniga bir xil son qo‘shilsa yoki ayirilsa, belgi saqlanadi. Musbat songa ko‘paytirilsa, belgi saqlanadi; manfiy songa ko‘paytirilsa, belgi teskarisiga o‘zgaradi. Tengsizlik yechimi sonlar o‘qida nur bilan ko‘rsatiladi.",
+    "misollar": [
+     {
+      "shart": "2x > 10 tengsizlikni yeching.",
+      "yechim": [
+       "Ikkala tomonni musbat 2 ga bo‘lamiz, belgi saqlanadi.",
+       "x > 5 chiqadi.",
+       "Natural yechimlar: 6, 7, 8 va undan katta sonlar."
+      ],
+      "javob": "x > 5"
+     },
+     {
+      "shart": "x ga 5 ni qo‘shsak 12 dan kichik bo‘lsin. Natural yechimlarni toping.",
+      "yechim": [
+       "Ikkala tomondan 5 ni ayiramiz: x < 7.",
+       "Natural sonlar 7 dan kichik bo‘lishi kerak.",
+       "Yechimlar: 1, 2, 3, 4, 5, 6."
+      ],
+      "javob": "1, 2, 3, 4, 5, 6"
+     },
+     {
+      "shart": "3x ≤ 12 tengsizlikni yeching.",
+      "yechim": [
+       "Ikkala tomonni 3 ga bo‘lamiz.",
+       "x ≤ 4 chiqadi.",
+       "Natural yechimlar: 1, 2, 3, 4."
+      ],
+      "javob": "x ≤ 4"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Belgilarni qo‘yamiz",
+      "topshiriq": "Mos belgini qo‘ying: 7 va 12; 25 va 19; 6 ga 2 ni qo‘shgan va 8.",
+      "yechim": "7 < 12; 25 > 19; 6 ga 2 ni qo‘shsak 8, ular teng.",
+      "mahsulot": "belgilar jadvali"
+     },
+     {
+      "nom": "Harorat chegarasi",
+      "topshiriq": "Muzlatkich harorati 18 gradusdan past bo‘lishi kerak. Tengsizlikni yozing.",
+      "yechim": "Harorat t bo‘lsa, t < 18 yoziladi.",
+      "mahsulot": "chegaralar kartochkasi"
+     },
+     {
+      "nom": "Tengsizlik yechamiz",
+      "topshiriq": "Yeching: x ga 4 ni qo‘shsak 9 dan katta; 2x 8 dan kichik.",
+      "yechim": "Birinchisida x > 5. Ikkinchisida x < 4.",
+      "mahsulot": "yechimlar varag‘i"
+     },
+     {
+      "nom": "Sonlar o‘qi",
+      "topshiriq": "x ≥ 3 yechimini sonlar o‘qida ko‘rsating.",
+      "yechim": "3 va undan o‘ngdagi hamma nuqtalar, 3 ning o‘zi kiradi.",
+      "mahsulot": "sonlar o‘qi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "x ga 4 ni qo‘shsak 9 dan katta bo‘lsin. Yeching.",
+      "javob": "x > 5"
+     },
+     {
+      "shart": "x dan 3 ni ayirsak 2 dan kichik bo‘lsin. Yeching.",
+      "javob": "x < 5"
+     },
+     {
+      "shart": "2x < 8 tengsizlikni yeching.",
+      "javob": "x < 4"
+     },
+     {
+      "shart": "3 < 4 ning ikkala tomonini 5 ga ko‘paytirsak belgi o‘zgaradimi?",
+      "javob": "yo‘q, 15 < 20"
+     },
+     {
+      "shart": "x < 4 ning natural yechimlari nechta?",
+      "javob": "3 ta"
+     },
+     {
+      "shart": "x ≥ 7 ning eng kichik butun yechimi?",
+      "javob": "7"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Manfiy songa ko‘paytirganda belgini o‘zgartirmaydi",
+      "sabab": "bu qoidani bilmaydi",
+      "oldini_olish": "sonli misolda tekshirib ko‘rish"
+     },
+     {
+      "xato": "Qat’iy tengsizlikda chegara sonni yechimga kiritadi",
+      "sabab": "belgi ma’nosini adashtiradi",
+      "oldini_olish": "belgida teng ishorasi bor-yo‘qligiga qarash"
+     },
+     {
+      "xato": "Katta va kichik belgisini adashtiradi",
+      "sabab": "belgi yo‘nalishini bilmaydi",
+      "oldini_olish": "belgining ochiq uchi katta songa qaraydi, deb eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "ruxsat etilgan yuk va tezlik chegaralari tengsizlik bilan yoziladi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "byudjetdan oshmaslik shartlari tengsizlik bilan ifodalanadi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "dasturlarda shartlar taqqoslash orqali tekshiriladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Chegaralar kitobchasi»",
+     "muammo": "Hayotdagi chegaralar va cheklovlarni tengsizliklar bilan qanday yozamiz?",
+     "mahsulot": "tengsizliklar kitobchasi",
+     "bosqichlar": [
+      "chegaralarni topish",
+      "tengsizlik yozish",
+      "yechish",
+      "sonlar o‘qida ko‘rsatish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chegaralarni toping",
+      "Tengsizlik yozing",
+      "Yeching",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "tengsizlik to‘g‘ri",
+      "yechim to‘g‘ri",
+      "sonlar o‘qi aniq",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Chegaralar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Lift",
+       "matn": "Liftga ko‘pi bilan 8 kishi chiqadi.",
+       "topshiriq": "Kishilar soni n uchun tengsizlikni yozing.",
+       "javob": "n ≤ 8",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘prik",
+       "matn": "Ko‘prikdan 5 tonnadan og‘ir bo‘lmagan mashina o‘tadi.",
+       "topshiriq": "Qaysi mashina o‘tadi: 4 tonna yoki 6 tonna?",
+       "javob": "4 tonna",
+       "rasm": ""
+      },
+      {
+       "nom": "Kino",
+       "matn": "Filmga 12 yoshdan katta bolalar kiradi.",
+       "topshiriq": "10 yoshli kira oladimi?",
+       "javob": "yo‘q",
+       "rasm": ""
+      },
+      {
+       "nom": "Do‘kon",
+       "matn": "Madinada 50 ming so‘m bor. Daftarlar 8 ming so‘mdan.",
+       "topshiriq": "Ko‘pi bilan nechta daftar olishi mumkin?",
+       "javob": "6 ta",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda cheklovlar bor?",
+      "Tengsizlik qayerda kerak?",
+      "Belgini qanday eslab qolamiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tengsizlik",
+      "tarif": "ikki ifodani katta yoki kichik deb taqqoslovchi yozuv"
+     },
+     {
+      "atama": "Qat’iy tengsizlik",
+      "tarif": "katta yoki kichik belgili tengsizlik"
+     },
+     {
+      "atama": "Qat’iy bo‘lmagan tengsizlik",
+      "tarif": "katta yoki teng, kichik yoki teng belgili tengsizlik"
+     },
+     {
+      "atama": "Yechim",
+      "tarif": "tengsizlikni to‘g‘ri qiluvchi qiymat"
+     },
+     {
+      "atama": "Nur",
+      "tarif": "sonlar o‘qidagi yechimlar to‘plami"
+     },
+     {
+      "atama": "Taqqoslash",
+      "tarif": "qaysi son katta ekanini aniqlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tengsizlikning ikkala tomoniga bir xil son qo‘shsak, belgi o‘zgarmaydi",
+      "togri": true,
+      "izoh": "bu xossa"
+     },
+     {
+      "matn": "Manfiy songa ko‘paytirganda belgi o‘zgarmaydi",
+      "togri": false,
+      "izoh": "belgi teskarisiga o‘zgaradi"
+     },
+     {
+      "matn": "x ≥ 4 yechimiga 4 kiradi",
+      "togri": true,
+      "izoh": "belgida teng ishorasi bor"
+     },
+     {
+      "matn": "x < 4 yechimiga 4 kiradi",
+      "togri": false,
+      "izoh": "qat’iy tengsizlik, 4 kirmaydi"
+     },
+     {
+      "matn": "Musbat songa ko‘paytirganda belgi saqlanadi",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "Tengsizlikning yechimi doim bitta son",
+      "togri": false,
+      "izoh": "ko‘pincha cheksiz ko‘p qiymat"
+     },
+     {
+      "matn": "Belgining ochiq uchi katta songa qaraydi",
+      "togri": true,
+      "izoh": "belgini eslash qoidasi"
+     },
+     {
+      "matn": "5 < 3 to‘g‘ri tengsizlik",
+      "togri": false,
+      "izoh": "5 soni 3 dan katta"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tengsizlik nima?",
+      "javob": "sonlarni taqqoslovchi yozuv"
+     },
+     {
+      "savol": "Qaysi biri katta: 7 yoki 9?",
+      "javob": "9"
+     },
+     {
+      "savol": "x > 3 ning natural yechimlaridan birini ayting.",
+      "javob": "4"
+     },
+     {
+      "savol": "x ≥ 3 yechimiga 3 kiradimi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "x < 3 yechimiga 3 kiradimi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "Musbat songa ko‘paytirganda belgi?",
+      "javob": "saqlanadi"
+     },
+     {
+      "savol": "Manfiy songa ko‘paytirganda belgi?",
+      "javob": "teskari bo‘ladi"
+     },
+     {
+      "savol": "x ga 2 ni qo‘shsak 7 dan katta bo‘lsa, x?",
+      "javob": "x > 5"
+     },
+     {
+      "savol": "Belgini qanday eslab qolamiz?",
+      "javob": "ochiq uchi katta songa qaraydi"
+     },
+     {
+      "savol": "Yechim sonlar o‘qida nimada tasvirlanadi?",
+      "javob": "nurda"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Belgilar",
+      "matn": "Katta, kichik, katta yoki teng, kichik yoki teng.",
+      "savol": "x ≥ 2 nimani bildiradi?"
+     },
+     {
+      "nom": "Xossalar",
+      "matn": "Qo‘shish, ayirish va musbat songa ko‘paytirishda belgi saqlanadi.",
+      "savol": "Manfiy songa ko‘paytirsak belgi?"
+     },
+     {
+      "nom": "Yechish",
+      "matn": "Tengsizlikni tenglama kabi yechamiz.",
+      "savol": "x ga 1 ni qo‘shsak 5 dan katta. x?"
+     },
+     {
+      "nom": "Tasvir",
+      "matn": "Yechim nurda ko‘rsatiladi.",
+      "savol": "x > 2 da 2 kiradimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tengsizlikning ikkala tomonini manfiy songa ko‘paytirganda belgi teskari bo‘ladi? Sonlar o‘qida 2 va 5 misolida tushuntirib ko‘ring.",
+    "keys": {
+     "vaziyat": "Liftga ko‘pi bilan 8 kishi chiqishi mumkin. Birinchi qavatda 5 kishi turibdi, keyin yana 4 kishi keldi.",
+     "savollar": [
+      "Hammasi birdan chiqa oladimi?",
+      "Nechta kishi kutishi kerak?"
+     ]
+    },
+    "tezis": "Chegara bor joyda tengsizlik bor",
+    "taqqoslash": {
+     "a": "Tenglama",
+     "b": "Tengsizlik",
+     "umumiy": [
+      "noma’lum qatnashadi",
+      "yechim topiladi"
+     ],
+     "a_farq": [
+      "ildizi bitta yoki bir nechta",
+      "tenglik belgisi bor"
+     ],
+     "b_farq": [
+      "yechimlari ko‘p",
+      "katta yoki kichik belgisi bor"
+     ]
+    },
+    "klaster": {
+     "markaz": "Tengsizliklar",
+     "shoxlar": [
+      {
+       "nom": "Belgilar",
+       "bandlar": [
+        "katta",
+        "kichik",
+        "katta yoki teng"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "qo‘shish",
+        "musbatga ko‘paytirish",
+        "manfiyga ko‘paytirish"
+       ]
+      },
+      {
+       "nom": "Yechish",
+       "bandlar": [
+        "noma’lum",
+        "belgini saqlash",
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "Tasvir",
+       "bandlar": [
+        "sonlar o‘qi",
+        "nur",
+        "natural yechim"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki sonni solishtiraman, ochiq uchim kattasiga qaraydi. Men kimman?",
+     "javob": "tengsizlik belgisi"
+    },
+    "hikmat": "Har narsaning chegarasi bor.",
+    "kalit_soz": "TENGSIZLIK",
+    "xato_yechim": {
+     "shart": "x ga 3 ni qo‘shsak 8 dan katta bo‘lsin. x ni toping.",
+     "xato": "x > 11, chunki 3 ni qo‘shadi",
+     "togri": "x > 5",
+     "sabab": "ikkala tomondan 3 ni ayirish kerak: 8 dan 3 ni ayirsak 5"
+    },
+    "guruh_nomlari": [
+     "Kattalar",
+     "Kichiklar",
+     "Chegaralar",
+     "Nurlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Chegara belgilari»",
+     "topshiriq": "Guruh maktab va ko‘chadagi cheklovlarni (tezlik, yuk, yosh) topadi va tengsizlik shaklida yozadi."
+    },
+    "vazifalar": {
+     "A": "Yeching: x ga 5 ni qo‘shsak 12 dan katta; 3x 15 dan kichik; x dan 2 ni ayirsak 6 dan katta.",
+     "B": "Uyda 3 ta cheklovni tengsizlik bilan yozing.",
+     "C": "O‘zingiz tengsizlik tuzing va sonlar o‘qida tasvirlang."
+    },
+    "sinkveyn": [
+     "Tengsizlik",
+     "aniq, chegaralovchi",
+     "taqqoslaydi, yechiladi, cheklaydi",
+     "Katta yoki kichik",
+     "Belgi"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tengsizliklarni yechadi.",
+     "qismlar": [
+      "1-guruh: x ga 4 ni qo‘shsak 10 dan katta",
+      "2-guruh: 2x 12 dan kichik",
+      "3-guruh: x dan 1 ni ayirsak 3 dan katta yoki teng",
+      "4-guruh: x < 4 ning natural yechimlari"
+     ],
+     "yakun": "Natijalar: x > 6; x < 6; x ≥ 4; 1, 2, 3."
+    }
+   }
+  },
+  {
+   "mavzu": "Ko‘pyoqlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ko‘pyoq nima?",
+      "matn": "Sirti ko‘pburchaklardan tashkil topgan jism ko‘pyoq deyiladi. Ko‘pburchaklar ko‘pyoqning yoqlari, ularning tomonlari qirralari, tomonlar uchrashgan nuqtalar uchlari.",
+      "misol": "Kubning 6 ta yog‘i, 12 ta qirrasi va 8 ta uchi bor.",
+      "savol": "Kubning nechta yog‘i bor?",
+      "javob": "6 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Prizma",
+      "matn": "Prizma — ikkita teng va parallel ko‘pburchak asosi hamda yon yoqlari parallelogrammlardan iborat ko‘pyoq. Asosidagi ko‘pburchak nomi bilan ataladi: uchburchakli, to‘rtburchakli prizma.",
+      "misol": "Uchburchakli prizmaning 5 yog‘i, 9 qirrasi, 6 uchi bor. Karton quti to‘rtburchakli prizmadir.",
+      "savol": "To‘rtburchakli prizmaning nechta yog‘i bor?",
+      "javob": "6 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Piramida",
+      "matn": "Piramida — asosi ko‘pburchak, yon yoqlari umumiy uchga ega uchburchaklardan iborat ko‘pyoq. Asosi uchburchak bo‘lsa, u tetraedr deyiladi.",
+      "misol": "To‘rtburchakli piramidaning 5 yog‘i, 8 qirrasi, 5 uchi bor. Misr piramidalari shunday shaklda.",
+      "savol": "Tetraedrning nechta yog‘i bor?",
+      "javob": "4 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kub va parallelepiped",
+      "matn": "Kub — barcha yoqlari teng kvadratlardan iborat. Parallelepiped — barcha yoqlari to‘g‘ri to‘rtburchaklar. Kub hajmini topish uchun qirra uzunligini uch marta o‘ziga ko‘paytiramiz. Parallelepiped hajmi uzunlik, kenglik va balandlik ko‘paytmasi.",
+      "misol": "Qirrasi 3 bo‘lgan kubning hajmi 27, to‘la sirti 54. Qirralari 4, 3 va 2 bo‘lgan parallelepipedning hajmi 24.",
+      "savol": "Qirrasi 2 bo‘lgan kubning hajmi?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Eyler qoidasi",
+      "matn": "Har qanday qavariq ko‘pyoq uchun uchlar soni va yoqlar sonining yig‘indisidan qirralar sonini ayirsak, har doim 2 chiqadi. Bu qonuniyat Eyler nomi bilan ataladi.",
+      "misol": "Kubda 8 ta uch va 6 ta yoq: 14, qirra 12, ayirma 2. Tetraedrda 4 uch va 4 yoq: 8, qirra 6, ayirma 2.",
+      "savol": "Uchburchakli prizmada 6 uch, 5 yoq, 9 qirra. Ayirma nechaga teng?",
+      "javob": "2",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ko‘pyoq elementlari: yoq, qirra, uch. Prizma va piramida asosiy ko‘pyoqlar. Kub hajmi — qirrani uch marta ko‘paytirish, parallelepiped hajmi — uchta o‘lcham ko‘paytmasi. Eyler qoidasi: uchlar va yoqlar yig‘indisi qirralardan 2 ga ko‘p.",
+    "misollar": [
+     {
+      "shart": "Qirralari 4, 3 va 2 bo‘lgan parallelepipedning hajmini va to‘la sirtini toping.",
+      "yechim": [
+       "Hajm: 4 ni 3 ga ko‘paytirsak 12, 2 ga ko‘paytirsak 24.",
+       "Yoqlar yuzlari: 12, 8 va 6; ularning yig‘indisi 26.",
+       "To‘la sirt: 26 ni 2 ga ko‘paytiramiz — 52."
+      ],
+      "javob": "hajm 24, sirt 52"
+     },
+     {
+      "shart": "Qirrasi 5 bo‘lgan kubning hajmini va to‘la sirtini toping.",
+      "yechim": [
+       "Hajm: 5 ni 5 ga ko‘paytirsak 25, yana 5 ga ko‘paytirsak 125.",
+       "Bitta yoq yuzi 25, yoqlar 6 ta.",
+       "To‘la sirt: 25 ni 6 ga ko‘paytirsak 150."
+      ],
+      "javob": "hajm 125, sirt 150"
+     },
+     {
+      "shart": "Oltiburchakli piramidaning uchlari, yoqlari va qirralarini toping.",
+      "yechim": [
+       "Asosda 6 uch va yana bitta cho‘qqi: jami 7 uch.",
+       "Yoqlar: 6 yon yoq va asos — 7.",
+       "Qirralar: asosda 6 va yon tomonda 6 — 12. Tekshirish: 7 va 7 yig‘indisi 14, 12 ni ayirsak 2."
+      ],
+      "javob": "7 uch, 7 yoq, 12 qirra"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Elementlar jadvali",
+      "topshiriq": "Kub, tetraedr, to‘rtburchakli piramida va uchburchakli prizma uchun uch, qirra va yoq sonini yozing.",
+      "yechim": "Kub: 8, 12, 6. Tetraedr: 4, 6, 4. To‘rtburchakli piramida: 5, 8, 5. Uchburchakli prizma: 6, 9, 5.",
+      "mahsulot": "elementlar jadvali"
+     },
+     {
+      "nom": "Akvarium",
+      "topshiriq": "Akvarium uzunligi 50 sm, kengligi 30 sm, balandligi 40 sm. Hajmi qancha?",
+      "yechim": "50 ni 30 ga ko‘paytirsak 1500, 40 ga ko‘paytirsak 60000 kub sm, ya’ni 60 litr.",
+      "mahsulot": "hisob daftari"
+     },
+     {
+      "nom": "Kub yoyilmasi",
+      "topshiriq": "Kub yoyilmasini chizing va yig‘ib ko‘ring.",
+      "yechim": "Yoyilma 6 ta teng kvadratdan iborat.",
+      "mahsulot": "kub modeli"
+     },
+     {
+      "nom": "Eyler tekshiruvi",
+      "topshiriq": "Qo‘lingizdagi ko‘pyoq modeli uchun uch, yoq va qirra sonini sanab, Eyler qoidasini tekshiring.",
+      "yechim": "Uchlar va yoqlar yig‘indisidan qirralarni ayirsak, 2 chiqishi kerak.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Kubning nechta yog‘i bor?",
+      "javob": "6 ta"
+     },
+     {
+      "shart": "Kubning nechta qirrasi bor?",
+      "javob": "12 ta"
+     },
+     {
+      "shart": "Tetraedrning nechta uchi bor?",
+      "javob": "4 ta"
+     },
+     {
+      "shart": "Qirralari 5, 2 va 3 bo‘lgan parallelepiped hajmi?",
+      "javob": "30"
+     },
+     {
+      "shart": "Qirrasi 4 bo‘lgan kub hajmi?",
+      "javob": "64"
+     },
+     {
+      "shart": "Qirrasi 4 bo‘lgan kubning to‘la sirti?",
+      "javob": "96"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yoq, qirra va uchni adashtiradi",
+      "sabab": "atamalarni farqlamaydi",
+      "oldini_olish": "kub modelida har birini sanab ko‘rsatish"
+     },
+     {
+      "xato": "Hajmni topishda qirrani 3 ga ko‘paytiradi",
+      "sabab": "uch marta ko‘paytirishni uch bilan ko‘paytirishga aylantiradi",
+      "oldini_olish": "kub hajmi — qirra ko‘paytirilsin qirraga va yana qirraga"
+     },
+     {
+      "xato": "Sirt va hajm birliklarini aralashtiradi",
+      "sabab": "kv. sm va kub sm ni farqlamaydi",
+      "oldini_olish": "sirt kvadrat, hajm kub birlikda ekanini yozib qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "binolar va piramidalar ko‘pyoq shaklida"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "kristallar ko‘pyoq shaklida"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "quti va qadoqlar loyihasi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ko‘pyoqlar muzeyi»",
+     "muammo": "Ko‘pyoqlarning modelini qanday yasaymiz?",
+     "mahsulot": "ko‘pyoq modellari to‘plami",
+     "bosqichlar": [
+      "ko‘pyoqni tanlash",
+      "yoyilmasini chizish",
+      "modelni yig‘ish",
+      "elementlarni sanash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Ko‘pyoqni tanlang",
+      "Yoyilmasini chizing",
+      "Modelni yig‘ing",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "model aniq",
+      "sanoq to‘g‘ri",
+      "jadval tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ko‘pyoqlar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Quti ishlab chiqarish",
+       "matn": "Karton quti to‘rtburchakli prizma.",
+       "topshiriq": "Nechta yog‘i bor?",
+       "javob": "6 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Piramida",
+       "matn": "Piramidaning asosi to‘rtburchak.",
+       "topshiriq": "Nechta yog‘i bor?",
+       "javob": "5 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Akvarium",
+       "matn": "Uzunligi 40, kengligi 20, balandligi 30 sm.",
+       "topshiriq": "Hajmi qancha?",
+       "javob": "24000 kub sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Kub",
+       "matn": "Qirrasi 3 sm bo‘lgan kub.",
+       "topshiriq": "Hajmi qancha?",
+       "javob": "27 kub sm",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda ko‘pyoqlarni ko‘rdingiz?",
+      "Nega binolar ko‘pyoq?",
+      "Qutini qanday yasaymiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ko‘pyoq",
+      "tarif": "sirti ko‘pburchaklardan iborat jism"
+     },
+     {
+      "atama": "Yoq",
+      "tarif": "ko‘pyoq sirtidagi ko‘pburchak"
+     },
+     {
+      "atama": "Qirra",
+      "tarif": "ikki yoqning umumiy tomoni"
+     },
+     {
+      "atama": "Uch",
+      "tarif": "qirralar uchrashgan nuqta"
+     },
+     {
+      "atama": "Prizma",
+      "tarif": "ikki parallel asosli ko‘pyoq"
+     },
+     {
+      "atama": "Piramida",
+      "tarif": "umumiy uchli yon yoqli ko‘pyoq"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Kubning 6 ta yog‘i bor",
+      "togri": true,
+      "izoh": "kub — oltiyoqli"
+     },
+     {
+      "matn": "Piramidaning yon yoqlari to‘rtburchaklar",
+      "togri": false,
+      "izoh": "yon yoqlari uchburchaklar"
+     },
+     {
+      "matn": "Prizmaning ikkita parallel asosi bor",
+      "togri": true,
+      "izoh": "ikki teng asos"
+     },
+     {
+      "matn": "Tetraedrning 5 ta yog‘i bor",
+      "togri": false,
+      "izoh": "4 ta yog‘i bor"
+     },
+     {
+      "matn": "Kubning barcha yoqlari teng kvadratlar",
+      "togri": true,
+      "izoh": "kub ta’rifi"
+     },
+     {
+      "matn": "Kubning 8 ta uchi bor",
+      "togri": true,
+      "izoh": "ustida 4 va ostida 4"
+     },
+     {
+      "matn": "Kub hajmi qirrani 3 ga ko‘paytirib topiladi",
+      "togri": false,
+      "izoh": "qirrani uch marta o‘ziga ko‘paytiramiz"
+     },
+     {
+      "matn": "Eyler qoidasida yoqlar va uchlar yig‘indisi qirralardan 2 ga ko‘p",
+      "togri": true,
+      "izoh": "qoida shunday"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ko‘pyoq nima?",
+      "javob": "sirti ko‘pburchaklardan iborat jism"
+     },
+     {
+      "savol": "Kubning nechta qirrasi bor?",
+      "javob": "12 ta"
+     },
+     {
+      "savol": "Kubning nechta uchi bor?",
+      "javob": "8 ta"
+     },
+     {
+      "savol": "Tetraedrning nechta qirrasi bor?",
+      "javob": "6 ta"
+     },
+     {
+      "savol": "Piramida yon yoqlari qanday shaklda?",
+      "javob": "uchburchak"
+     },
+     {
+      "savol": "Prizma yon yoqlari qanday shaklda?",
+      "javob": "parallelogramm"
+     },
+     {
+      "savol": "Qirrasi 2 bo‘lgan kub hajmi?",
+      "javob": "8"
+     },
+     {
+      "savol": "Parallelepiped hajmi qanday topiladi?",
+      "javob": "uchta o‘lcham ko‘paytmasi"
+     },
+     {
+      "savol": "Eyler qoidasi nima?",
+      "javob": "uch va yoq yig‘indisidan qirra 2 ga kam"
+     },
+     {
+      "savol": "Kub yoyilmasi nechta kvadratdan iborat?",
+      "javob": "6 ta"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Elementlar",
+      "matn": "Yoq, qirra va uch.",
+      "savol": "Kubda nechta yoq bor?"
+     },
+     {
+      "nom": "Prizma",
+      "matn": "Ikki teng parallel asosli ko‘pyoq.",
+      "savol": "Prizmaga misol keltiring."
+     },
+     {
+      "nom": "Piramida",
+      "matn": "Asos va uchga ega.",
+      "savol": "Piramidaga misol keltiring."
+     },
+     {
+      "nom": "Hajm",
+      "matn": "Uchta o‘lcham ko‘paytmasi.",
+      "savol": "Qirrasi 2, 3 va 4 bo‘lgan parallelepiped hajmi?"
+     }
+    ],
+    "muammoli_savol": "Nega ko‘p binolar va qutilar to‘g‘ri burchakli parallelepiped shaklida quriladi? Boshqa shakl bo‘lsa, qanday noqulaylik bo‘lardi?",
+    "keys": {
+     "vaziyat": "Akvariumning uzunligi 50 sm, kengligi 30 sm, balandligi 40 sm.",
+     "savollar": [
+      "Akvarium hajmi qancha?",
+      "Unga necha litr suv sig‘adi?"
+     ]
+    },
+    "tezis": "Shakl vazifaga xizmat qiladi",
+    "taqqoslash": {
+     "a": "Prizma",
+     "b": "Piramida",
+     "umumiy": [
+      "ko‘pyoq",
+      "asosi ko‘pburchak"
+     ],
+     "a_farq": [
+      "ikkita asosi bor",
+      "yon yoqlari parallelogramm"
+     ],
+     "b_farq": [
+      "bitta asosi bor",
+      "yon yoqlari uchburchak"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ko‘pyoqlar",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "yoq",
+        "qirra",
+        "uch"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "prizma",
+        "piramida",
+        "kub"
+       ]
+      },
+      {
+       "nom": "Hajm",
+       "bandlar": [
+        "kub",
+        "parallelepiped",
+        "litr"
+       ]
+      },
+      {
+       "nom": "Eyler",
+       "bandlar": [
+        "uchlar",
+        "yoqlar",
+        "qirralar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Olti yog‘im, o‘n ikki qirram, sakkiz uchim bor, barcha yog‘im kvadrat. Men kimman?",
+     "javob": "kub"
+    },
+    "hikmat": "Quti qanday bo‘lsa, sig‘imi shunday.",
+    "kalit_soz": "KO‘PYOQ",
+    "xato_yechim": {
+     "shart": "Qirrasi 3 bo‘lgan kubning hajmini toping.",
+     "xato": "9, chunki 3 ni 3 ga ko‘paytiradi",
+     "togri": "27",
+     "sabab": "hajm uchun qirra uch marta o‘ziga ko‘paytiriladi: 3 ni 3 ga ko‘paytirsak 9, yana 3 ga ko‘paytirsak 27"
+    },
+    "guruh_nomlari": [
+     "Yoqlar",
+     "Qirralar",
+     "Uchlar",
+     "Prizmalar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Quti yasaymiz»",
+     "topshiriq": "Guruh kartondan quti yoyilmasini chizadi, yig‘adi va uning hajmini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: qirrasi 3 bo‘lgan kub hajmi; qirralari 5, 2 va 3 bo‘lgan parallelepiped hajmi.",
+     "B": "Uydan ko‘pyoq shaklidagi 3 ta buyum toping.",
+     "C": "Kub modelida uch, qirra va yoqni sanab, Eyler qoidasini tekshiring."
+    },
+    "sinkveyn": [
+     "Ko‘pyoq",
+     "qirrali, hajmli",
+     "o‘lchanadi, sanaladi, yig‘iladi",
+     "Yoqli jism",
+     "Kub"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ko‘pyoqlar bo‘yicha masalalarni yechadi.",
+     "qismlar": [
+      "1-guruh: kubning yoqlari soni",
+      "2-guruh: tetraedrning uchlari soni",
+      "3-guruh: qirrasi 2 bo‘lgan kub hajmi",
+      "4-guruh: qirralari 3, 2 va 5 bo‘lgan parallelepiped hajmi"
+     ],
+     "yakun": "Natijalar: 6; 4; 8; 30."
+    }
+   }
+  },
+  {
+   "mavzu": "Burchaklar (qo‘shni, vertikal)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Burchak va gradus",
+      "matn": "Burchak — umumiy boshlang‘ich nuqtadan chiqqan ikki nurdan hosil bo‘ladi. Burchak gradusda o‘lchanadi, asbobi transportir. 90 gradusdan kichik burchak o‘tkir, 90 gradusli to‘g‘ri, 90 dan katta va 180 dan kichik o‘tmas, 180 gradusli esa yoyiq burchak deyiladi.",
+      "misol": "Soat 3 da soat va daqiqa millari to‘g‘ri burchak hosil qiladi.",
+      "savol": "90 gradusli burchak qanday burchak?",
+      "javob": "to‘g‘ri burchak",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shni burchaklar",
+      "matn": "Bir tomoni umumiy, qolgan ikki tomoni bir to‘g‘ri chiziqni tashkil qiladigan burchaklar qo‘shni burchaklar deyiladi. Qo‘shni burchaklar yig‘indisi 180 gradus.",
+      "misol": "Qo‘shni burchaklardan biri 70 gradus bo‘lsa, ikkinchisi 180 dan 70 ni ayirsak, 110 gradus.",
+      "savol": "Qo‘shni burchaklardan biri 120 gradus bo‘lsa, ikkinchisi?",
+      "javob": "60 gradus",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vertikal burchaklar",
+      "matn": "Ikki to‘g‘ri chiziq kesishganda hosil bo‘ladigan qarama-qarshi burchaklar vertikal burchaklar deyiladi. Vertikal burchaklar o‘zaro teng.",
+      "misol": "Vertikal burchaklardan biri 55 gradus bo‘lsa, ikkinchisi ham 55 gradus.",
+      "savol": "Vertikal burchaklardan biri 38 gradus bo‘lsa, ikkinchisi?",
+      "javob": "38 gradus",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kesishgan to‘g‘ri chiziqlar",
+      "matn": "Ikki to‘g‘ri chiziq kesishganda to‘rtta burchak hosil bo‘ladi. Ularning ikkitasi vertikal, qo‘shnilari esa 180 gradusgacha to‘ldiradi. Bitta burchakni bilsak, hammasini topamiz.",
+      "misol": "Bir burchak 40 gradus bo‘lsa, unga vertikal burchak 40, qo‘shni burchaklar esa 140 gradusdan.",
+      "savol": "Bir burchak 90 gradus bo‘lsa, qolganlari?",
+      "javob": "hammasi 90 gradus",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masalalar yechish",
+      "matn": "Qo‘shni burchaklar haqidagi masalalarda yig‘indi 180 bo‘lishidan foydalanamiz. Noma’lumni belgilab, tenglama tuzamiz.",
+      "misol": "Qo‘shni burchaklardan biri ikkinchisidan 20 gradus katta. Kichigini x desak, ikki x va 20 yig‘indisi 180, demak ikki x 160, x 80. Burchaklar 80 va 100 gradus.",
+      "savol": "Qo‘shni burchaklardan biri ikkinchisidan 2 marta katta bo‘lsa, ular necha gradus?",
+      "javob": "60 va 120 gradus",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qo‘shni burchaklar yig‘indisi 180 gradus. Vertikal burchaklar o‘zaro teng. Ikki to‘g‘ri chiziq kesishganda bitta burchakni bilsak, qolganlarini topamiz.",
+    "misollar": [
+     {
+      "shart": "Qo‘shni burchaklardan biri 125 gradus. Ikkinchisini toping.",
+      "yechim": [
+       "Qo‘shni burchaklar yig‘indisi 180 gradus.",
+       "180 dan 125 ni ayiramiz.",
+       "Natija 55 gradus."
+      ],
+      "javob": "55 gradus"
+     },
+     {
+      "shart": "Ikki to‘g‘ri chiziq kesishganda bir burchak 72 gradus. Qolgan uchta burchakni toping.",
+      "yechim": [
+       "Vertikal burchak 72 gradusga teng.",
+       "Qo‘shni burchak: 180 dan 72 ni ayirsak, 108.",
+       "Ikkinchi qo‘shni ham vertikal bo‘lgani uchun 108."
+      ],
+      "javob": "72, 108, 108 gradus"
+     },
+     {
+      "shart": "Qo‘shni burchaklardan biri ikkinchisidan 2 marta katta. Ularni toping.",
+      "yechim": [
+       "Kichik burchak x, katta ikki x.",
+       "Ularning yig‘indisi 3 x va 180 ga teng.",
+       "180 ni 3 ga bo‘lsak, x 60. Katta burchak 120."
+      ],
+      "javob": "60 va 120 gradus"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Transportir bilan",
+      "topshiriq": "Daftarda burchak chizing va uni transportir bilan o‘lchang. Turini aniqlang.",
+      "yechim": "O‘lchov bo‘yicha o‘tkir, to‘g‘ri yoki o‘tmas ekani aniqlanadi.",
+      "mahsulot": "burchaklar jadvali"
+     },
+     {
+      "nom": "Qo‘shni burchaklar",
+      "topshiriq": "Qo‘shni burchaklardan biri 35, 90, 150 gradus bo‘lsa, ikkinchisini toping.",
+      "yechim": "145, 90 va 30 gradus.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Yo‘l chorrahasi",
+      "topshiriq": "Ikki ko‘cha kesishgan joyda bir burchak 50 gradus. Qolgan burchaklarni toping.",
+      "yechim": "Vertikal burchak 50, qo‘shnilari 130 gradusdan.",
+      "mahsulot": "chorraha chizmasi"
+     },
+     {
+      "nom": "Qaychi burchagi",
+      "topshiriq": "Qaychining ikki tig‘i orasidagi burchak 40 gradus. Vertikal burchak qancha?",
+      "yechim": "Vertikal burchak 40 gradus.",
+      "mahsulot": "qaychi modeli"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Qo‘shni burchaklardan biri 100 gradus. Ikkinchisi?",
+      "javob": "80 gradus"
+     },
+     {
+      "shart": "Vertikal burchaklardan biri 65 gradus. Ikkinchisi?",
+      "javob": "65 gradus"
+     },
+     {
+      "shart": "Qo‘shni burchaklardan biri 90 gradus. Ikkinchisi?",
+      "javob": "90 gradus"
+     },
+     {
+      "shart": "Kesishgan chiziqlarda bir burchak 130 gradus. Qo‘shnisi?",
+      "javob": "50 gradus"
+     },
+     {
+      "shart": "Yoyiq burchak necha gradus?",
+      "javob": "180 gradus"
+     },
+     {
+      "shart": "Qo‘shni burchaklardan biri ikkinchisidan 40 gradus katta. Ularni toping.",
+      "javob": "70 va 110 gradus"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qo‘shni burchaklar yig‘indisini 90 deb oladi",
+      "sabab": "to‘g‘ri burchak bilan adashtiradi",
+      "oldini_olish": "qo‘shni burchaklar yoyiq burchakni hosil qilishini chizib ko‘rsatish"
+     },
+     {
+      "xato": "Vertikal burchaklarni 180 ga to‘ldiradi",
+      "sabab": "vertikal va qo‘shni burchaklarni farqlamaydi",
+      "oldini_olish": "vertikal burchaklar teng, qo‘shnilar yig‘indisi 180"
+     },
+     {
+      "xato": "Transportirni noto‘g‘ri qo‘yadi",
+      "sabab": "boshlang‘ich nolni ko‘rmaydi",
+      "oldini_olish": "transportir markazini uchga, nol chizig‘ini nurga moslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "yorug‘lik nurining tushish va qaytish burchaklari"
+     },
+     {
+      "fan": "Chizmachilik",
+      "boglanish": "burchak chizish va o‘lchash"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "kompas va yo‘nalishlar burchagi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Burchaklar atrofimizda»",
+     "muammo": "Atrofdagi burchaklarni qanday o‘lchaymiz va turlarga ajratamiz?",
+     "mahsulot": "burchaklar albomi",
+     "bosqichlar": [
+      "burchaklarni topish",
+      "o‘lchash",
+      "turini aniqlash",
+      "albom tuzish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Burchaklarni toping",
+      "O‘lchang",
+      "Turini aniqlang",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "o‘lchov to‘g‘ri",
+      "tur to‘g‘ri",
+      "albom tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Burchaklar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Soat",
+       "matn": "Soat 3 da millar orasidagi burchak.",
+       "topshiriq": "Qanday burchak?",
+       "javob": "to‘g‘ri burchak",
+       "rasm": ""
+      },
+      {
+       "nom": "Chorraha",
+       "matn": "Ikki ko‘cha kesishdi, bir burchak 60 gradus.",
+       "topshiriq": "Vertikal burchak qancha?",
+       "javob": "60 gradus",
+       "rasm": ""
+      },
+      {
+       "nom": "Eshik",
+       "matn": "Eshik 110 gradusga ochildi.",
+       "topshiriq": "Qo‘shni burchak qancha?",
+       "javob": "70 gradus",
+       "rasm": ""
+      },
+      {
+       "nom": "Qaychi",
+       "matn": "Qaychi tig‘lari orasi 30 gradus.",
+       "topshiriq": "Qo‘shni burchak qancha?",
+       "javob": "150 gradus",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Burchaklarni qayerda ko‘rdingiz?",
+      "Qo‘shni burchaklar qanday topiladi?",
+      "Vertikal burchaklar nima uchun teng?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Burchak",
+      "tarif": "umumiy boshlang‘ich nuqtadan chiqqan ikki nur"
+     },
+     {
+      "atama": "Gradus",
+      "tarif": "burchak o‘lchov birligi"
+     },
+     {
+      "atama": "Transportir",
+      "tarif": "burchak o‘lchash asbobi"
+     },
+     {
+      "atama": "Qo‘shni burchaklar",
+      "tarif": "yig‘indisi 180 gradus bo‘lgan burchaklar"
+     },
+     {
+      "atama": "Vertikal burchaklar",
+      "tarif": "kesishgan chiziqlardagi o‘zaro teng burchaklar"
+     },
+     {
+      "atama": "Yoyiq burchak",
+      "tarif": "180 gradusli burchak"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qo‘shni burchaklar yig‘indisi 180 gradus",
+      "togri": true,
+      "izoh": "yoyiq burchak hosil qiladi"
+     },
+     {
+      "matn": "Vertikal burchaklar o‘zaro teng",
+      "togri": true,
+      "izoh": "bu xossa"
+     },
+     {
+      "matn": "Qo‘shni burchaklar yig‘indisi 90 gradus",
+      "togri": false,
+      "izoh": "yig‘indi 180 gradus"
+     },
+     {
+      "matn": "To‘g‘ri burchak 90 gradus",
+      "togri": true,
+      "izoh": "to‘g‘ri burchak ta’rifi"
+     },
+     {
+      "matn": "O‘tkir burchak 90 gradusdan katta",
+      "togri": false,
+      "izoh": "u 90 dan kichik"
+     },
+     {
+      "matn": "Yoyiq burchak 180 gradus",
+      "togri": true,
+      "izoh": "bir to‘g‘ri chiziq"
+     },
+     {
+      "matn": "Ikki to‘g‘ri chiziq kesishganda 3 ta burchak hosil bo‘ladi",
+      "togri": false,
+      "izoh": "to‘rtta burchak hosil bo‘ladi"
+     },
+     {
+      "matn": "Vertikal burchaklar yig‘indisi 180 gradus",
+      "togri": false,
+      "izoh": "ular teng, yig‘indisi 180 bo‘lishi shart emas"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Burchak nima bilan o‘lchanadi?",
+      "javob": "gradus bilan"
+     },
+     {
+      "savol": "Burchak o‘lchash asbobi nima?",
+      "javob": "transportir"
+     },
+     {
+      "savol": "O‘tkir burchak necha gradusdan kichik?",
+      "javob": "90 gradusdan"
+     },
+     {
+      "savol": "Qo‘shni burchaklar yig‘indisi?",
+      "javob": "180 gradus"
+     },
+     {
+      "savol": "Vertikal burchaklar qanday?",
+      "javob": "teng"
+     },
+     {
+      "savol": "Qo‘shni burchaklardan biri 80 gradus. Ikkinchisi?",
+      "javob": "100 gradus"
+     },
+     {
+      "savol": "Vertikal burchaklardan biri 70 gradus. Ikkinchisi?",
+      "javob": "70 gradus"
+     },
+     {
+      "savol": "Yoyiq burchak necha gradus?",
+      "javob": "180 gradus"
+     },
+     {
+      "savol": "Ikki to‘g‘ri chiziq kesishganda nechta burchak hosil bo‘ladi?",
+      "javob": "to‘rtta"
+     },
+     {
+      "savol": "To‘g‘ri burchak necha gradus?",
+      "javob": "90 gradus"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Burchak turlari",
+      "matn": "O‘tkir, to‘g‘ri, o‘tmas, yoyiq.",
+      "savol": "100 gradusli burchak qanday?"
+     },
+     {
+      "nom": "Qo‘shni",
+      "matn": "Yig‘indisi 180 gradus.",
+      "savol": "70 gradusga qo‘shni burchak?"
+     },
+     {
+      "nom": "Vertikal",
+      "matn": "Kesishganda qarama-qarshi burchaklar teng.",
+      "savol": "45 gradusga vertikal burchak?"
+     },
+     {
+      "nom": "Masala",
+      "matn": "Noma’lumni belgilab, tenglama tuzamiz.",
+      "savol": "Qo‘shni burchaklardan biri 3 marta katta bo‘lsa?"
+     }
+    ],
+    "muammoli_savol": "Nega ikki to‘g‘ri chiziq kesishganda qarama-qarshi burchaklar doim teng bo‘ladi? Har biri o‘z qo‘shnisi bilan 180 gradus bo‘lishidan foydalanib tushuntirib ko‘ring.",
+    "keys": {
+     "vaziyat": "Ikki ko‘cha chorrahada kesishadi. Bir burchak 65 gradus.",
+     "savollar": [
+      "Vertikal burchak qancha?",
+      "Qo‘shni burchaklar qancha?"
+     ]
+    },
+    "tezis": "Burchaklar sir-asrorlarni ochadi",
+    "taqqoslash": {
+     "a": "Qo‘shni burchaklar",
+     "b": "Vertikal burchaklar",
+     "umumiy": [
+      "ikki chiziq kesishganda hosil bo‘ladi",
+      "gradus bilan o‘lchanadi"
+     ],
+     "a_farq": [
+      "yig‘indisi 180 gradus",
+      "bir tomoni umumiy"
+     ],
+     "b_farq": [
+      "o‘zaro teng",
+      "umumiy tomoni yo‘q"
+     ]
+    },
+    "klaster": {
+     "markaz": "Burchaklar",
+     "shoxlar": [
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "o‘tkir",
+        "to‘g‘ri",
+        "o‘tmas"
+       ]
+      },
+      {
+       "nom": "Qo‘shni",
+       "bandlar": [
+        "umumiy tomon",
+        "yig‘indi 180",
+        "yoyiq burchak"
+       ]
+      },
+      {
+       "nom": "Vertikal",
+       "bandlar": [
+        "kesishish",
+        "teng",
+        "qarama-qarshi"
+       ]
+      },
+      {
+       "nom": "O‘lchash",
+       "bandlar": [
+        "gradus",
+        "transportir",
+        "chizish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki chiziq kesishdi, qarama-qarshi burchaklarim tengdir. Men kimman?",
+     "javob": "vertikal burchaklar"
+    },
+    "hikmat": "Burchak to‘g‘ri bo‘lsa, ish ham to‘g‘ri.",
+    "kalit_soz": "BURCHAK",
+    "xato_yechim": {
+     "shart": "Qo‘shni burchaklardan biri 70 gradus. Ikkinchisini toping.",
+     "xato": "20 gradus, chunki 90 dan ayirgan",
+     "togri": "110 gradus",
+     "sabab": "qo‘shni burchaklar yig‘indisi 180, shuning uchun 180 dan 70 ni ayirsak, 110"
+    },
+    "guruh_nomlari": [
+     "Qo‘shnilar",
+     "Vertikallar",
+     "Gradusli",
+     "Transportirchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Burchak izlab»",
+     "topshiriq": "Guruh sinf xonasidagi 5 ta burchakni transportir bilan o‘lchaydi, turini aniqlaydi."
+    },
+    "vazifalar": {
+     "A": "Qo‘shni burchaklardan biri 40, 90, 135 gradus bo‘lsa, ikkinchisini toping.",
+     "B": "Uyda 3 ta burchak toping va turini yozing.",
+     "C": "Ikki kesishgan chiziq chizib, to‘rtta burchakni o‘lchang."
+    },
+    "sinkveyn": [
+     "Burchak",
+     "aniq, o‘lchanadi",
+     "kesishadi, o‘lchanadi, to‘ldiradi",
+     "Ikki nur orasi",
+     "Gradus"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh burchak masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: 110 gradusga qo‘shni burchak",
+      "2-guruh: 35 gradusga vertikal burchak",
+      "3-guruh: bir burchak 60 bo‘lsa, qo‘shnisi",
+      "4-guruh: yoyiq burchak"
+     ],
+     "yakun": "Natijalar: 70; 35; 120; 180 gradus."
+    }
+   }
   }
  ]
 }
