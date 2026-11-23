@@ -9785,6 +9785,937 @@
      "yakun": "Natijalar: 70; 35; 120; 180 gradus."
     }
    }
+  },
+  {
+   "mavzu": "Parallel va perpendikulyar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Parallel to‘g‘ri chiziqlar",
+      "matn": "Bir tekislikda yotib, hech qachon kesishmaydigan to‘g‘ri chiziqlar parallel deyiladi. Parallel chiziqlar orasidagi masofa hamma joyda bir xil bo‘ladi.",
+      "misol": "Temir yo‘l relslari, daftardagi chiziqlar va ko‘cha chetlari parallel chiziqlarga o‘xshaydi.",
+      "savol": "Parallel chiziqlar kesishadimi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Parallellik belgilari",
+      "matn": "Ikki to‘g‘ri chiziqni uchinchisi (kesuvchi) kesganda mos burchaklar teng bo‘lsa, ichki almashinuvchi burchaklar teng bo‘lsa yoki bir tomonlama ichki burchaklar yig‘indisi 180 gradus bo‘lsa, chiziqlar parallel bo‘ladi.",
+      "misol": "Kesuvchi bilan hosil bo‘lgan mos burchaklar 70 va 70 gradus bo‘lsa, chiziqlar parallel.",
+      "savol": "Bir tomonlama ichki burchaklar 110 va 70 gradus bo‘lsa, chiziqlar parallelmi?",
+      "javob": "ha, chunki yig‘indisi 180",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Perpendikulyar to‘g‘ri chiziqlar",
+      "matn": "To‘g‘ri burchak ostida, ya’ni 90 gradusda kesishadigan to‘g‘ri chiziqlar perpendikulyar deyiladi. Perpendikulyar chiziqlar to‘rtta teng to‘g‘ri burchak hosil qiladi.",
+      "misol": "Devor bilan pol, kvadratning qo‘shni tomonlari perpendikulyar.",
+      "savol": "Perpendikulyar chiziqlar orasidagi burchak necha gradus?",
+      "javob": "90 gradus",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Perpendikulyar chizish va masofa",
+      "matn": "Nuqtadan to‘g‘ri chiziqqacha masofa shu nuqtadan chiziqqa tushirilgan perpendikulyar uzunligiga teng. Perpendikulyarni ugolnik yoki chizg‘ich yordamida chizamiz.",
+      "misol": "Nuqtadan chiziqqa perpendikulyar uzunligi 5 sm bo‘lsa, nuqtadan chiziqqacha masofa 5 sm.",
+      "savol": "Nuqtadan chiziqqacha masofa qaysi kesma uzunligi?",
+      "javob": "perpendikulyar uzunligi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Koordinata tekisligida",
+      "matn": "Ox o‘qiga parallel chiziqda barcha nuqtalarning ordinatasi bir xil. Oy o‘qiga parallel chiziqda barcha nuqtalarning abssissasi bir xil. Ox va Oy o‘zaro perpendikulyar.",
+      "misol": "(1; 3) va (5; 3) nuqtalar orqali o‘tgan chiziq Ox ga parallel, chunki ikkalasining ordinatasi 3.",
+      "savol": "(2; 1) va (2; 6) nuqtalardan o‘tgan chiziq qaysi o‘qqa parallel?",
+      "javob": "Oy o‘qiga",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Parallel chiziqlar kesishmaydi. Perpendikulyar chiziqlar 90 gradusda kesishadi. Kesuvchi parallel chiziqlarni kesganda mos va ichki almashinuvchi burchaklar teng, bir tomonlama ichki burchaklar yig‘indisi 180 gradus.",
+    "misollar": [
+     {
+      "shart": "Ikki chiziqni kesuvchi kesganda mos burchaklar 65 va 65 gradus. Chiziqlar parallelmi?",
+      "yechim": [
+       "Mos burchaklar teng.",
+       "Parallellik belgisiga ko‘ra chiziqlar parallel."
+      ],
+      "javob": "ha, parallel"
+     },
+     {
+      "shart": "a va b parallel, kesuvchi bilan hosil bo‘lgan mos burchak 80 gradus. Bir tomonlama ichki burchakni toping.",
+      "yechim": [
+       "Mos burchak 80 bo‘lsa, unga qo‘shni burchak 100.",
+       "Bir tomonlama ichki burchak 180 dan 80 ni ayirsak, 100.",
+       "Tekshirish: 80 va 100 yig‘indisi 180."
+      ],
+      "javob": "100 gradus"
+     },
+     {
+      "shart": "a va b chiziqlar c ga perpendikulyar. a va b o‘zaro qanday joylashgan?",
+      "yechim": [
+       "Ikkalasi ham c bilan 90 gradus burchak hosil qiladi.",
+       "Mos burchaklar teng, ya’ni 90 va 90.",
+       "Demak, a va b parallel."
+      ],
+      "javob": "parallel"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Parallel chizamiz",
+      "topshiriq": "Chizg‘ich va ugolnik bilan berilgan chiziqqa parallel chiziq chizing.",
+      "yechim": "Ugolnikni chiziq bo‘ylab qo‘yib, chizg‘ich bo‘ylab surib, parallel chiziq chiziladi.",
+      "mahsulot": "parallel chiziqlar chizmasi"
+     },
+     {
+      "nom": "Burchaklarni topamiz",
+      "topshiriq": "Parallel chiziqlarni kesuvchi kesdi. Bir burchak 50 gradus. Qolgan burchaklarni toping.",
+      "yechim": "Qo‘shni burchaklar 130, mos va vertikal burchaklar ham 50 yoki 130 bo‘ladi.",
+      "mahsulot": "burchaklar jadvali"
+     },
+     {
+      "nom": "Koordinata chiziqlari",
+      "topshiriq": "(1; 2), (4; 2), (4; 6), (1; 6) nuqtalarni tutashtiring. Qaysi tomonlar parallel?",
+      "yechim": "Ikki tomon Ox ga, ikki tomon Oy ga parallel; qo‘shni tomonlar perpendikulyar.",
+      "mahsulot": "koordinata chizmasi"
+     },
+     {
+      "nom": "Atrofimizda",
+      "topshiriq": "Sinf xonasida parallel va perpendikulyar chiziqlarni toping.",
+      "yechim": "Parta tomonlari, deraza romi, doska qirralari.",
+      "mahsulot": "kuzatuv jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Parallel chiziqlar kesishadimi?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "Perpendikulyar chiziqlar orasidagi burchak?",
+      "javob": "90 gradus"
+     },
+     {
+      "shart": "Bir tomonlama ichki burchaklardan biri 120 gradus. Ikkinchisi?",
+      "javob": "60 gradus"
+     },
+     {
+      "shart": "Mos burchaklar 55 va 55 bo‘lsa, chiziqlar?",
+      "javob": "parallel"
+     },
+     {
+      "shart": "(0; 4) va (7; 4) nuqtalardan o‘tgan chiziq qaysi o‘qqa parallel?",
+      "javob": "Ox o‘qiga"
+     },
+     {
+      "shart": "Nuqtadan to‘g‘ri chiziqqacha masofa qanday kesma?",
+      "javob": "perpendikulyar"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Parallel chiziqlar kesishadi deb o‘ylaydi",
+      "sabab": "chiziqlarni cheksiz davom ettirishni tasavvur qilmaydi",
+      "oldini_olish": "parallel chiziqlar orasidagi masofa doim bir xil ekanini ko‘rsatish"
+     },
+     {
+      "xato": "Perpendikulyar va parallelni adashtiradi",
+      "sabab": "atamalarni farqlamaydi",
+      "oldini_olish": "perpendikulyar 90 gradus, parallel kesishmaydi deb takrorlash"
+     },
+     {
+      "xato": "Bir tomonlama ichki burchaklar teng deb oladi",
+      "sabab": "yig‘indisi 180 ekanini unutadi",
+      "oldini_olish": "chizmada ikkala burchakni o‘lchab ko‘rish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Chizmachilik",
+      "boglanish": "parallel va perpendikulyar chiziqlar bilan chizma chiziladi"
+     },
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "devor, pol va deraza to‘g‘ri burchak ostida quriladi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "parallellar va meridianlar o‘zaro perpendikulyar to‘rni hosil qiladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Chiziqlar shahri»",
+     "muammo": "Shahar rejasida parallel va perpendikulyar ko‘chalarni qanday chizamiz?",
+     "mahsulot": "shahar rejasi",
+     "bosqichlar": [
+      "reja tuzish",
+      "parallel ko‘chalarni chizish",
+      "perpendikulyar ko‘chalarni chizish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Rejani tuzing",
+      "Ko‘chalarni chizing",
+      "Burchaklarni tekshiring",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "chiziqlar aniq",
+      "burchaklar to‘g‘ri",
+      "reja tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Shahar ko‘chalari»",
+     "bekatlar": [
+      {
+       "nom": "Temir yo‘l",
+       "matn": "Relslar bir-biriga kesishmaydi.",
+       "topshiriq": "Ular qanday chiziqlar?",
+       "javob": "parallel",
+       "rasm": ""
+      },
+      {
+       "nom": "Chorraha",
+       "matn": "Ikki ko‘cha to‘g‘ri burchak ostida kesishadi.",
+       "topshiriq": "Ular qanday chiziqlar?",
+       "javob": "perpendikulyar",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab hovlisi",
+       "matn": "Kvadrat hovlining qo‘shni tomonlari.",
+       "topshiriq": "Ular qanday joylashgan?",
+       "javob": "perpendikulyar",
+       "rasm": ""
+      },
+      {
+       "nom": "Daftar",
+       "matn": "Daftardagi qator chiziqlari.",
+       "topshiriq": "Ular qanday chiziqlar?",
+       "javob": "parallel",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda parallel chiziqlarni ko‘rdingiz?",
+      "Perpendikulyar chiziqlar nima uchun kerak?",
+      "Devor nega polga perpendikulyar?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Parallel chiziqlar",
+      "tarif": "bir tekislikda kesishmaydigan chiziqlar"
+     },
+     {
+      "atama": "Perpendikulyar",
+      "tarif": "90 gradus ostida kesishuvchi chiziq"
+     },
+     {
+      "atama": "Kesuvchi",
+      "tarif": "ikki chiziqni kesib o‘tuvchi uchinchi chiziq"
+     },
+     {
+      "atama": "Mos burchaklar",
+      "tarif": "kesuvchining bir tomonidagi o‘xshash burchaklar"
+     },
+     {
+      "atama": "Ichki almashinuvchi burchaklar",
+      "tarif": "chiziqlar orasida, kesuvchining qarama-qarshi tomonidagi burchaklar"
+     },
+     {
+      "atama": "Ugolnik",
+      "tarif": "to‘g‘ri burchak chizish asbobi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Parallel chiziqlar kesishmaydi",
+      "togri": true,
+      "izoh": "bu ularning ta’rifi"
+     },
+     {
+      "matn": "Perpendikulyar chiziqlar 60 gradusda kesishadi",
+      "togri": false,
+      "izoh": "90 gradusda kesishadi"
+     },
+     {
+      "matn": "Mos burchaklar teng bo‘lsa, chiziqlar parallel",
+      "togri": true,
+      "izoh": "parallellik belgisi"
+     },
+     {
+      "matn": "Bir tomonlama ichki burchaklar yig‘indisi 90 gradus",
+      "togri": false,
+      "izoh": "180 gradus"
+     },
+     {
+      "matn": "Ox va Oy o‘qlari perpendikulyar",
+      "togri": true,
+      "izoh": "koordinata o‘qlari 90 gradusda kesishadi"
+     },
+     {
+      "matn": "Parallel chiziqlar orasidagi masofa o‘zgaradi",
+      "togri": false,
+      "izoh": "hamma joyda bir xil"
+     },
+     {
+      "matn": "Nuqtadan chiziqqacha masofa perpendikulyar uzunligi",
+      "togri": true,
+      "izoh": "eng qisqa masofa"
+     },
+     {
+      "matn": "Ox ga parallel chiziqda abssissa bir xil",
+      "togri": false,
+      "izoh": "ordinata bir xil"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Parallel chiziqlar qanday?",
+      "javob": "kesishmaydigan"
+     },
+     {
+      "savol": "Perpendikulyar chiziqlar orasidagi burchak?",
+      "javob": "90 gradus"
+     },
+     {
+      "savol": "Kesuvchi nima?",
+      "javob": "ikki chiziqni kesuvchi uchinchi chiziq"
+     },
+     {
+      "savol": "Bir tomonlama ichki burchaklar yig‘indisi?",
+      "javob": "180 gradus"
+     },
+     {
+      "savol": "Mos burchaklar parallel chiziqlarda qanday?",
+      "javob": "teng"
+     },
+     {
+      "savol": "Perpendikulyar chizish asbobi?",
+      "javob": "ugolnik"
+     },
+     {
+      "savol": "Ox ga parallel chiziqda nima bir xil?",
+      "javob": "ordinata"
+     },
+     {
+      "savol": "Oy ga parallel chiziqda nima bir xil?",
+      "javob": "abssissa"
+     },
+     {
+      "savol": "Nuqtadan chiziqqacha masofa?",
+      "javob": "perpendikulyar uzunligi"
+     },
+     {
+      "savol": "Ox va Oy o‘zaro qanday?",
+      "javob": "perpendikulyar"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Parallel",
+      "matn": "Kesishmaydigan chiziqlar.",
+      "savol": "Parallelga misol keltiring."
+     },
+     {
+      "nom": "Perpendikulyar",
+      "matn": "90 gradusda kesishadi.",
+      "savol": "Perpendikulyarga misol keltiring."
+     },
+     {
+      "nom": "Burchaklar",
+      "matn": "Mos burchaklar teng, bir tomonlama yig‘indisi 180.",
+      "savol": "70 gradusga bir tomonlama burchak?"
+     },
+     {
+      "nom": "Koordinata",
+      "matn": "Ox va Oy perpendikulyar.",
+      "savol": "Ox ga parallel chiziq qanday?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun qurilishda devorlarni polga albatta perpendikulyar qilib quramiz? Agar devor qiyshiq bo‘lsa, nima bo‘ladi?",
+    "keys": {
+     "vaziyat": "Shahar rejasida ikkita ko‘cha parallel, ularni uchinchi ko‘cha kesib o‘tadi. Kesishuvda bir burchak 70 gradus.",
+     "savollar": [
+      "Mos burchak qancha?",
+      "Bir tomonlama ichki burchak qancha?"
+     ]
+    },
+    "tezis": "To‘g‘ri chiziq — tartibning belgisi",
+    "taqqoslash": {
+     "a": "Parallel chiziqlar",
+     "b": "Perpendikulyar chiziqlar",
+     "umumiy": [
+      "to‘g‘ri chiziqlar",
+      "chizmada ishlatiladi"
+     ],
+     "a_farq": [
+      "kesishmaydi",
+      "masofa bir xil"
+     ],
+     "b_farq": [
+      "90 gradusda kesishadi",
+      "to‘g‘ri burchak hosil qiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Chiziqlar",
+     "shoxlar": [
+      {
+       "nom": "Parallel",
+       "bandlar": [
+        "kesishmaydi",
+        "belgilar",
+        "masofa"
+       ]
+      },
+      {
+       "nom": "Perpendikulyar",
+       "bandlar": [
+        "90 gradus",
+        "ugolnik",
+        "masofa"
+       ]
+      },
+      {
+       "nom": "Burchaklar",
+       "bandlar": [
+        "mos",
+        "almashinuvchi",
+        "bir tomonlama"
+       ]
+      },
+      {
+       "nom": "Koordinata",
+       "bandlar": [
+        "Ox",
+        "Oy",
+        "to‘g‘ri burchak"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikkita yo‘lman, hech qachon uchrashmaymiz. Biz kimmiz?",
+     "javob": "parallel chiziqlar"
+    },
+    "hikmat": "To‘g‘ri yo‘l — eng qisqa yo‘l.",
+    "kalit_soz": "PARALLEL",
+    "xato_yechim": {
+     "shart": "Parallel chiziqlarni kesuvchi kesganda bir tomonlama ichki burchaklardan biri 110 gradus. Ikkinchisini toping.",
+     "xato": "110 gradus, chunki ular teng deb oladi",
+     "togri": "70 gradus",
+     "sabab": "bir tomonlama ichki burchaklar yig‘indisi 180 gradus: 180 dan 110 ni ayirsak 70"
+    },
+    "guruh_nomlari": [
+     "Parallellar",
+     "Perpendikulyarlar",
+     "Kesuvchilar",
+     "Ugolniklar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinfdagi chiziqlar»",
+     "topshiriq": "Guruh sinfdagi parallel va perpendikulyar chiziqlarni topib, daftarga chizadi va ugolnik bilan tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Chizing: berilgan chiziqqa parallel va perpendikulyar chiziq.",
+     "B": "Uydan 3 ta parallel va 3 ta perpendikulyar chiziq toping.",
+     "C": "Kesuvchi bilan hosil bo‘lgan 8 ta burchakni chizib, bir burchak 60 bo‘lsa, qolganlarini toping."
+    },
+    "sinkveyn": [
+     "Chiziq",
+     "to‘g‘ri, aniq",
+     "kesishadi, o‘tadi, ajratadi",
+     "Tekislikdagi yo‘l",
+     "Parallel"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh parallel va perpendikulyar masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: perpendikulyar chiziqlar orasidagi burchak",
+      "2-guruh: bir tomonlama ichki burchak 100 bo‘lsa, ikkinchisi",
+      "3-guruh: mos burchaklar 40 va 40 bo‘lsa, chiziqlar",
+      "4-guruh: (1; 5) va (8; 5) nuqtalardan o‘tgan chiziq qaysi o‘qqa parallel"
+     ],
+     "yakun": "Natijalar: 90 gradus; 80 gradus; parallel; Ox."
+    }
+   }
+  },
+  {
+   "mavzu": "Yoyilmalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yoyilma nima?",
+      "matn": "Jism sirtini kesib, tekislikka yoyib chizilgan shakl yoyilma deyiladi. Yoyilmani buklab, jismni qayta yasash mumkin. Yoyilma jism sirtining yuzini topishga yordam beradi.",
+      "misol": "Karton qutini kesib ochsak, uning yoyilmasi hosil bo‘ladi.",
+      "savol": "Yoyilmani buklasak nima hosil bo‘ladi?",
+      "javob": "jism",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kub yoyilmasi",
+      "matn": "Kubning yoyilmasi 6 ta teng kvadratdan iborat. Kubning turli ko‘rinishdagi yoyilmalari bor, ularning soni 11 ta. Hamma kvadratlar qirrasi bo‘yicha tutashgan bo‘lishi kerak.",
+      "misol": "Xoch shaklidagi 6 ta kvadrat kub yoyilmasi bo‘ladi.",
+      "savol": "Kub yoyilmasida nechta kvadrat bor?",
+      "javob": "6 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Prizma va piramida yoyilmasi",
+      "matn": "Uchburchakli prizma yoyilmasi ikkita uchburchak va uchta to‘g‘ri to‘rtburchakdan iborat. To‘rtburchakli piramida yoyilmasi bitta to‘rtburchak asos va to‘rtta uchburchakdan iborat. Tetraedr yoyilmasi to‘rtta uchburchak.",
+      "misol": "Uchburchakli prizmada 5 ta yoq bor, yoyilmada ham 5 ta shakl.",
+      "savol": "Uchburchakli prizma yoyilmasida nechta to‘g‘ri to‘rtburchak bor?",
+      "javob": "3 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Silindr va konus yoyilmasi",
+      "matn": "Silindr yoyilmasi ikkita doira va bitta to‘g‘ri to‘rtburchakdan iborat; to‘g‘ri to‘rtburchakning bir tomoni asos aylanasi uzunligiga teng. Konus yoyilmasi bitta doira va aylana sektoridan iborat.",
+      "misol": "Radiusi 5 sm, balandligi 10 sm silindr yoyilmasida to‘g‘ri to‘rtburchak tomonlari 31,4 sm va 10 sm.",
+      "savol": "Konus yoyilmasi qanday shakllardan iborat?",
+      "javob": "doira va sektor",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yoyilmadan sirt yuzi",
+      "matn": "Jismning to‘la sirt yuzi yoyilmasidagi barcha shakllar yuzlarining yig‘indisiga teng. Kubning to‘la sirti bitta yoq yuzini 6 ga ko‘paytirib topiladi.",
+      "misol": "Qirrasi 2 bo‘lgan kubda bitta yoq yuzi 4, to‘la sirti 24.",
+      "savol": "Qirrasi 3 bo‘lgan kubning to‘la sirti?",
+      "javob": "54",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Yoyilma — jism sirtining tekislikdagi ko‘rinishi. Kub yoyilmasi 6 ta kvadrat. Prizma yoyilmasi — ikki asos va yon yoqlar. Silindr yoyilmasi — ikki doira va to‘g‘ri to‘rtburchak. To‘la sirt yuzi yoyilmadagi shakllar yuzlarining yig‘indisi.",
+    "misollar": [
+     {
+      "shart": "Qirralari 4, 3 va 2 bo‘lgan parallelepipedning to‘la sirtini toping.",
+      "yechim": [
+       "Yoqlar yuzlari: 4 ni 3 ga ko‘paytirsak 12, 4 ni 2 ga ko‘paytirsak 8, 3 ni 2 ga ko‘paytirsak 6.",
+       "Yig‘indi 26, har biridan ikkitadan, shuning uchun 2 ga ko‘paytiramiz.",
+       "Natija 52."
+      ],
+      "javob": "52"
+     },
+     {
+      "shart": "Radiusi 2 sm, balandligi 5 sm silindrning to‘la sirtini toping (pi taxminan 3,14).",
+      "yechim": [
+       "Bitta asos yuzi: 4 ni 3,14 ga ko‘paytirsak 12,56; ikkitasi 25,12.",
+       "Yon sirt: aylana uzunligi 12,56 ni 5 ga ko‘paytirsak 62,8.",
+       "To‘la sirt: 25,12 va 62,8 yig‘indisi 87,92."
+      ],
+      "javob": "87,92 kv. sm"
+     },
+     {
+      "shart": "Asosi 4 ga 4 bo‘lgan kvadrat piramida yon yoqlari uchburchak: asosi 4, balandligi 5. To‘la sirtini toping.",
+      "yechim": [
+       "Asos yuzi: 4 ni 4 ga ko‘paytirsak 16.",
+       "Bitta uchburchak yuzi: 4 ni 5 ga ko‘paytirsak 20, 2 ga bo‘lsak 10; to‘rttasi 40.",
+       "To‘la sirt: 16 va 40 yig‘indisi 56."
+      ],
+      "javob": "56"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kub yoyilmasi",
+      "topshiriq": "Katakli qog‘ozda kub yoyilmasini chizing, kesib, buklab kub yasang.",
+      "yechim": "6 ta kvadrat qirra bo‘yicha tutashgan bo‘lsa, kub yasaladi.",
+      "mahsulot": "qog‘oz kub"
+     },
+     {
+      "nom": "Karton quti",
+      "topshiriq": "Uzunligi 6, kengligi 4, balandligi 3 sm bo‘lgan quti yoyilmasini chizing va sirtini toping.",
+      "yechim": "Yoqlar yuzi: 24, 18 va 12; yig‘indi 54, ikkilantirsak 108 kv. sm.",
+      "mahsulot": "quti yoyilmasi"
+     },
+     {
+      "nom": "Silindr o‘rash",
+      "topshiriq": "31,4 sm uzun, 10 sm baland to‘g‘ri to‘rtburchakni o‘rab silindr yasang. Radiusi nechaga teng?",
+      "yechim": "Aylana uzunligi 31,4, diametr 10, radius 5 sm.",
+      "mahsulot": "qog‘oz silindr"
+     },
+     {
+      "nom": "Piramida yoyilmasi",
+      "topshiriq": "Kvadrat asosli piramida yoyilmasini chizing. Nechta shakl bor?",
+      "yechim": "Bitta kvadrat va to‘rtta uchburchak, jami 5 ta.",
+      "mahsulot": "piramida yoyilmasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Kub yoyilmasi nechta kvadratdan iborat?",
+      "javob": "6 ta"
+     },
+     {
+      "shart": "Tetraedr yoyilmasida nechta uchburchak bor?",
+      "javob": "4 ta"
+     },
+     {
+      "shart": "Uchburchakli prizmaning nechta yog‘i bor?",
+      "javob": "5 ta"
+     },
+     {
+      "shart": "Qirrasi 3 bo‘lgan kubning to‘la sirti?",
+      "javob": "54"
+     },
+     {
+      "shart": "Qirrasi 5 bo‘lgan kubning to‘la sirti?",
+      "javob": "150"
+     },
+     {
+      "shart": "Silindr yoyilmasidagi to‘g‘ri to‘rtburchakning bir tomoni nimaga teng?",
+      "javob": "asos aylanasi uzunligiga"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yoyilmada kvadratlarni noto‘g‘ri tutashtiradi",
+      "sabab": "buklashni tasavvur qilmaydi",
+      "oldini_olish": "qog‘ozda kesib, buklab tekshirish"
+     },
+     {
+      "xato": "Sirt yuzini hajm birligida yozadi",
+      "sabab": "kv. sm va kub sm ni aralashtiradi",
+      "oldini_olish": "yuza kvadrat birlikda ekanini yozib qo‘yish"
+     },
+     {
+      "xato": "Silindrda to‘g‘ri to‘rtburchak tomonini radius deb oladi",
+      "sabab": "aylana uzunligini unutadi",
+      "oldini_olish": "to‘g‘ri to‘rtburchak tomoni aylana uzunligiga teng ekanini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "quti va qadoqlar yoyilmadan tayyorlanadi"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "qog‘oz bilan modellashtirish"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "globus yuzini xaritaga yoyish yoyilma tushunchasiga yaqin"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Qadoq ustaxonasi»",
+     "muammo": "Mahsulot uchun qadoq yoyilmasini qanday chizamiz va material sarfini qanday hisoblaymiz?",
+     "mahsulot": "qadoq modeli va hisob",
+     "bosqichlar": [
+      "jismni tanlash",
+      "yoyilmani chizish",
+      "kesib yig‘ish",
+      "sirtni hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Jismni tanlang",
+      "Yoyilmani chizing",
+      "Sirtni hisoblang",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "yoyilma aniq",
+      "hisob to‘g‘ri",
+      "model yig‘ilgan",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qadoq fabrikasi»",
+     "bekatlar": [
+      {
+       "nom": "Quti sexi",
+       "matn": "Qirrasi 2 bo‘lgan kub quti.",
+       "topshiriq": "To‘la sirti qancha?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "Konserva sexi",
+       "matn": "Silindr shaklidagi banka.",
+       "topshiriq": "Yoyilmasi nimalardan iborat?",
+       "javob": "ikki doira va to‘g‘ri to‘rtburchak",
+       "rasm": ""
+      },
+      {
+       "nom": "Shirinlik sexi",
+       "matn": "Uchburchakli prizma shaklidagi quti.",
+       "topshiriq": "Nechta yoq bor?",
+       "javob": "5 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Bayram sexi",
+       "matn": "Konus shaklidagi qalpoq.",
+       "topshiriq": "Yoyilmasi nimalardan iborat?",
+       "javob": "doira va sektor",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Quti yoyilmasini ko‘rdingizmi?",
+      "Nega qadoq yoyilmadan tayyorlanadi?",
+      "Qaysi jismni yoyish oson?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yoyilma",
+      "tarif": "jism sirtining tekislikdagi ko‘rinishi"
+     },
+     {
+      "atama": "To‘la sirt",
+      "tarif": "jismning barcha yoqlari yuzlari yig‘indisi"
+     },
+     {
+      "atama": "Yon sirt",
+      "tarif": "asoslardan boshqa yoqlar yuzi"
+     },
+     {
+      "atama": "Asos",
+      "tarif": "jismning pastki yoki yuqori yog‘i"
+     },
+     {
+      "atama": "Sektor",
+      "tarif": "doiraning radiuslar bilan chegaralangan qismi"
+     },
+     {
+      "atama": "Model",
+      "tarif": "jismning kichraytirilgan nusxasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Kub yoyilmasi 6 ta kvadratdan iborat",
+      "togri": true,
+      "izoh": "6 ta teng yoq"
+     },
+     {
+      "matn": "Tetraedr yoyilmasida 6 ta uchburchak bor",
+      "togri": false,
+      "izoh": "4 ta uchburchak"
+     },
+     {
+      "matn": "Kubning 11 xil yoyilmasi bor",
+      "togri": true,
+      "izoh": "ma’lum natija"
+     },
+     {
+      "matn": "Silindr yoyilmasida uchburchaklar bor",
+      "togri": false,
+      "izoh": "ikki doira va to‘g‘ri to‘rtburchak"
+     },
+     {
+      "matn": "Yoyilmani buklasak jism hosil bo‘ladi",
+      "togri": true,
+      "izoh": "yoyilma ta’rifi"
+     },
+     {
+      "matn": "Qirrasi 2 bo‘lgan kubning to‘la sirti 24",
+      "togri": true,
+      "izoh": "6 ni 4 ga ko‘paytirsak 24"
+     },
+     {
+      "matn": "Konus yoyilmasi faqat doiradan iborat",
+      "togri": false,
+      "izoh": "doira va sektordan"
+     },
+     {
+      "matn": "To‘la sirt hajm birligida o‘lchanadi",
+      "togri": false,
+      "izoh": "kvadrat birlikda"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yoyilma nima?",
+      "javob": "jism sirtining tekislikdagi ko‘rinishi"
+     },
+     {
+      "savol": "Kub yoyilmasida nechta kvadrat?",
+      "javob": "6 ta"
+     },
+     {
+      "savol": "Kubning nechta xil yoyilmasi bor?",
+      "javob": "11 ta"
+     },
+     {
+      "savol": "Tetraedr yoyilmasida nechta uchburchak?",
+      "javob": "4 ta"
+     },
+     {
+      "savol": "Silindr yoyilmasida nechta doira?",
+      "javob": "2 ta"
+     },
+     {
+      "savol": "Kvadrat piramida yoyilmasida nechta shakl?",
+      "javob": "5 ta"
+     },
+     {
+      "savol": "Qirrasi 1 bo‘lgan kub sirti?",
+      "javob": "6"
+     },
+     {
+      "savol": "To‘la sirt nima bilan topiladi?",
+      "javob": "yoq yuzlari yig‘indisi bilan"
+     },
+     {
+      "savol": "Sirt yuzi qaysi birlikda?",
+      "javob": "kvadrat birlikda"
+     },
+     {
+      "savol": "Konus yoyilmasida qanday sektor?",
+      "javob": "aylana sektori"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kub",
+      "matn": "6 ta kvadrat.",
+      "savol": "Kub yoyilmasida nechta kvadrat?"
+     },
+     {
+      "nom": "Prizma",
+      "matn": "Ikki asos va yon to‘g‘ri to‘rtburchaklar.",
+      "savol": "Uchburchakli prizmada nechta to‘g‘ri to‘rtburchak?"
+     },
+     {
+      "nom": "Silindr",
+      "matn": "Ikki doira va to‘g‘ri to‘rtburchak.",
+      "savol": "Silindrning nechta doirasi bor?"
+     },
+     {
+      "nom": "Sirt",
+      "matn": "Yoq yuzlari yig‘indisi.",
+      "savol": "Qirrasi 2 bo‘lgan kub sirti?"
+     }
+    ],
+    "muammoli_savol": "Nega ko‘p qadoqlar yoyilma shaklida bitta kartondan kesib olinadi? Bu material tejashga qanday yordam beradi?",
+    "keys": {
+     "vaziyat": "Fabrikada uzunligi 6, kengligi 4, balandligi 3 sm bo‘lgan quti tayyorlanadi.",
+     "savollar": [
+      "Qutining yoyilmasi qanday shakllardan iborat?",
+      "Karton sarfi, ya’ni to‘la sirt qancha?"
+     ]
+    },
+    "tezis": "Tekislikdan fazoga yo‘l",
+    "taqqoslash": {
+     "a": "Prizma yoyilmasi",
+     "b": "Piramida yoyilmasi",
+     "umumiy": [
+      "ko‘pburchaklardan iborat",
+      "buklab jism yasaladi"
+     ],
+     "a_farq": [
+      "ikkita asos bor",
+      "yon yoqlari to‘g‘ri to‘rtburchak"
+     ],
+     "b_farq": [
+      "bitta asos bor",
+      "yon yoqlari uchburchak"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yoyilmalar",
+     "shoxlar": [
+      {
+       "nom": "Kub",
+       "bandlar": [
+        "6 kvadrat",
+        "11 xil yoyilma",
+        "sirt"
+       ]
+      },
+      {
+       "nom": "Prizma",
+       "bandlar": [
+        "2 asos",
+        "to‘g‘ri to‘rtburchaklar",
+        "buklash"
+       ]
+      },
+      {
+       "nom": "Silindr va konus",
+       "bandlar": [
+        "doira",
+        "to‘g‘ri to‘rtburchak",
+        "sektor"
+       ]
+      },
+      {
+       "nom": "Sirt",
+       "bandlar": [
+        "to‘la sirt",
+        "yon sirt",
+        "yig‘indi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Meni kesib yoysangiz, jism tekis bo‘ladi, buklasangiz yana jism. Men nimaman?",
+     "javob": "yoyilma"
+    },
+    "hikmat": "Qog‘ozdan ham go‘zallik yasaladi.",
+    "kalit_soz": "YOYILMA",
+    "xato_yechim": {
+     "shart": "Qirrasi 2 bo‘lgan kubning to‘la sirtini toping.",
+     "xato": "8, chunki hajm bilan adashtiradi",
+     "togri": "24",
+     "sabab": "bitta yoq yuzi 4, yoqlar 6 ta: 4 ni 6 ga ko‘paytirsak 24"
+    },
+    "guruh_nomlari": [
+     "Kublar",
+     "Prizmalar",
+     "Piramidalar",
+     "Yoyilmalar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Quti yasaymiz»",
+     "topshiriq": "Guruh kartondan yoyilma chizib, qutini yig‘adi va to‘la sirtini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: qirrasi 4 bo‘lgan kubning to‘la sirti; qirralari 5, 2 va 3 bo‘lgan parallelepipedning to‘la sirti.",
+     "B": "Uydagi quti yoyilmasini chizing.",
+     "C": "Silindr yoyilmasini chizib, jismni yig‘ing."
+    },
+    "sinkveyn": [
+     "Yoyilma",
+     "tekis, aniq",
+     "kesiladi, yoyiladi, buklanadi",
+     "Jism sirti tekislikda",
+     "Model"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yoyilmalarga doir masalalarni yechadi.",
+     "qismlar": [
+      "1-guruh: kub yoyilmasidagi kvadratlar soni",
+      "2-guruh: tetraedr yoyilmasidagi uchburchaklar soni",
+      "3-guruh: qirrasi 4 bo‘lgan kubning to‘la sirti",
+      "4-guruh: silindr yoyilmasidagi doiralar soni"
+     ],
+     "yakun": "Natijalar: 6; 4; 96; 2."
+    }
+   }
   }
  ]
 }
