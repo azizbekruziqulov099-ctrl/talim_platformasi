@@ -2789,6 +2789,1399 @@
      "yakun": "Natijalar: (1; −1); 3 va −3; 4; (0; 3)."
     }
    }
+  },
+  {
+   "mavzu": "Tengsizliklar va ularning sistemalari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tengsizlik xossalari",
+      "matn": "Tengsizlikning ikki tomoniga bir xil son qo‘shsak, ishora o‘zgarmaydi. Musbat songa ko‘paytirsak yoki bo‘lsak, ishora saqlanadi. Manfiy songa ko‘paytirsak yoki bo‘lsak, tengsizlik ishorasi teskarisiga almashadi.",
+      "misol": "3 < 5. Ikkala tomonni −2 ga ko‘paytiramiz: −6 va −10, endi −6 > −10. Ishora almashdi.",
+      "savol": "2 < 7 ning ikki tomonini −1 ga ko‘paytirsak nima chiqadi?",
+      "javob": "−2 > −7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chiziqli tengsizlik",
+      "matn": "Noma’lumi birinchi darajali tengsizlik chiziqli tengsizlik deyiladi. Uni tenglamadek yechamiz: noma’lumli hadlarni bir tomonga, sonlarni ikkinchi tomonga o‘tkazamiz. Manfiy koeffitsientga bo‘lganda ishorani almashtiramiz.",
+      "misol": "3x − 5 > 4: 3x > 9, x > 3. −2x ≤ 6: ikkala tomonni −2 ga bo‘lamiz, ishora almashadi: x ≥ −3.",
+      "savol": "x + 4 < 10 tengsizlikni yeching.",
+      "javob": "x < 6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonli oraliqlar",
+      "matn": "Tengsizlik yechimi oraliq bilan yoziladi. Chegara kirmasa, doira qavs, kirsa, kvadrat qavs ishlatiladi. Cheksizlik doim doira qavs bilan yoziladi.",
+      "misol": "x > 3 — (3; +∞). x ≤ −3 — (−∞; −3]. 1 ≤ x < 4 — [1; 4). Sonlar o‘qida kirmaydigan chegara bo‘sh doira, kiradigan chegara to‘la doira bilan belgilanadi.",
+      "savol": "x ≥ 2 yechimini oraliq bilan yozing.",
+      "javob": "[2; +∞)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tengsizliklar sistemasi",
+      "matn": "Bir nechta tengsizlikning umumiy yechimini topish kerak bo‘lsa, sistema tuziladi. Har bir tengsizlikni alohida yechib, yechimlarning kesishmasini (umumiy qismini) olamiz.",
+      "misol": "x > 1 va x < 5 sistemada yechim (1; 5). 2x − 1 > 3 va x − 6 < 0: x > 2 va x < 6, yechim (2; 6). x > 5 va x < 2 sistemada umumiy qism yo‘q.",
+      "savol": "x > 2 va x > 4 sistemaning yechimi?",
+      "javob": "x > 4, ya’ni (4; +∞)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘sh va kvadrat tengsizlik",
+      "matn": "Qo‘sh tengsizlikni uch qismga bir vaqtda amal bajarib yechamiz. Kvadrat tengsizlikni parabola bilan yechamiz: nollarni topib, parabolaning qaysi qismi x o‘qidan yuqorida yoki pastda ekanini aniqlaymiz.",
+      "misol": "−3 < 2x + 1 < 7: hammasidan 1 ayiramiz: −4 < 2x < 6, 2 ga bo‘lamiz: −2 < x < 3. x² − 5x + 6 < 0: nollar 2 va 3, shoxlar yuqoriga, manfiy qism nollar orasida: 2 < x < 3.",
+      "savol": "1 < x − 2 < 4 ni yeching.",
+      "javob": "(3; 6)",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Manfiy songa ko‘paytirganda yoki bo‘lganda tengsizlik ishorasi teskarisiga almashadi. Sistema yechimi — yechimlarning kesishmasi. Kvadrat tengsizlik parabola va uning nollari bilan yechiladi.",
+    "misollar": [
+     {
+      "shart": "5x − 7 ≤ 3x + 1 tengsizlikni yeching.",
+      "yechim": [
+       "Noma’lumlarni chapga o‘tkazamiz: 5x − 3x ≤ 1 + 7.",
+       "2x ≤ 8, x ≤ 4.",
+       "Tekshirish: x — 0 da −7 ≤ 1 to‘g‘ri."
+      ],
+      "javob": "(−∞; 4]"
+     },
+     {
+      "shart": "3x − 2 > 7 va 10 − x ≥ 4 sistemani yeching.",
+      "yechim": [
+       "Birinchisi: 3x > 9, x > 3.",
+       "Ikkinchisi: −x ≥ −6, ishora almashadi, x ≤ 6.",
+       "Kesishma: 3 < x ≤ 6."
+      ],
+      "javob": "(3; 6]"
+     },
+     {
+      "shart": "−4x + 8 > 0 tengsizlikni yeching.",
+      "yechim": [
+       "−4x > −8.",
+       "−4 ga bo‘lamiz, ishora almashadi: x < 2.",
+       "Tekshirish: x — 0 da 8 > 0 to‘g‘ri."
+      ],
+      "javob": "x < 2"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ishorani almashtiramiz",
+      "topshiriq": "−3x < 12 tengsizlikni yeching va sababini tushuntiring.",
+      "yechim": "−3 ga bo‘lamiz, ishora almashadi: x > −4.",
+      "mahsulot": "yechim varag‘i"
+     },
+     {
+      "nom": "Oraliq o‘yini",
+      "topshiriq": "x > −2 va x ≤ 3 sistemaning yechimini sonlar o‘qida ko‘rsating va oraliq bilan yozing.",
+      "yechim": "(−2; 3].",
+      "mahsulot": "sonlar o‘qi chizmasi"
+     },
+     {
+      "nom": "Byudjet masalasi",
+      "topshiriq": "Daftar narxi 4 ming so‘m. 50 ming so‘mga eng ko‘pi bilan nechta daftar olish mumkin?",
+      "yechim": "4x ≤ 50, x ≤ 12,5. Butun son bo‘lgani uchun 12 ta.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Parabola bilan",
+      "topshiriq": "x² − 9 < 0 tengsizlikni parabola orqali yeching.",
+      "yechim": "Nollar −3 va 3, shoxlar yuqoriga: −3 < x < 3.",
+      "mahsulot": "parabola chizmasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2x − 6 > 0 tengsizlikni yeching.",
+      "javob": "x > 3"
+     },
+     {
+      "shart": "−x ≥ 5 tengsizlikni yeching.",
+      "javob": "x ≤ −5"
+     },
+     {
+      "shart": "3x + 1 < 10 tengsizlikni yeching.",
+      "javob": "x < 3"
+     },
+     {
+      "shart": "x > 1 va x < 4 sistemaning yechimi?",
+      "javob": "(1; 4)"
+     },
+     {
+      "shart": "x² − 9 < 0 tengsizlikni yeching.",
+      "javob": "(−3; 3)"
+     },
+     {
+      "shart": "x > 5 va x < 2 sistemaning yechimi bormi?",
+      "javob": "yo‘q"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Manfiy songa bo‘lganda ishorani almashtirmaydi",
+      "sabab": "xossani unutadi",
+      "oldini_olish": "manfiy songa ko‘paytirish yoki bo‘lishda ishorani teskari qilish"
+     },
+     {
+      "xato": "Sistema yechimida yechimlarni birlashtiradi",
+      "sabab": "kesishma va birlashmani adashtiradi",
+      "oldini_olish": "sonlar o‘qida umumiy qismni bo‘yash"
+     },
+     {
+      "xato": "Chegarani qavsda noto‘g‘ri yozadi",
+      "sabab": "qat’iy va noqat’iy ishorani farqlamaydi",
+      "oldini_olish": "ishora tengsizlikmi yoki tenglikni ham o‘z ichiga olishini tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "byudjet va narx cheklovlari tengsizlik bilan yoziladi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "ruxsat etilgan tezlik va harorat chegaralari"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "me’yoriy ko‘rsatkichlar oralig‘i"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Chegaralar olamida»",
+     "muammo": "Kundalik hayotdagi cheklovlarni tengsizlik bilan qanday yozamiz?",
+     "mahsulot": "tengsizliklar plakati",
+     "bosqichlar": [
+      "cheklovlarni topish",
+      "tengsizlik tuzish",
+      "yechish",
+      "oraliq yozish",
+      "plakat yasash"
+     ],
+     "guruh_vazifalari": [
+      "Misollar toping",
+      "Tengsizlik tuzing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tengsizlik to‘g‘ri",
+      "yechim to‘g‘ri",
+      "oraliq to‘g‘ri yozilgan",
+      "xulosa asosli",
+      "plakat ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Chegaralar ko‘chasi»",
+     "bekatlar": [
+      {
+       "nom": "Yo‘l belgisi",
+       "matn": "Tezlik 60 km/soatdan oshmasligi kerak.",
+       "topshiriq": "Tengsizlikni yozing.",
+       "javob": "v ≤ 60",
+       "rasm": ""
+      },
+      {
+       "nom": "Do‘kon",
+       "matn": "Kitob narxi 15 ming so‘m, 80 ming so‘m bor.",
+       "topshiriq": "Eng ko‘pi bilan nechta kitob?",
+       "javob": "5 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Lift",
+       "matn": "Liftga 4 kishidan ko‘p bo‘lmagan odam kiradi.",
+       "topshiriq": "Tengsizlikni yozing.",
+       "javob": "n ≤ 4",
+       "rasm": ""
+      },
+      {
+       "nom": "Termometr",
+       "matn": "Xona harorati 18 dan kam emas, 24 dan ko‘p emas.",
+       "topshiriq": "Qo‘sh tengsizlik?",
+       "javob": "18 ≤ t ≤ 24",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda cheklovni uchratdingiz?",
+      "Ishora almashishi nega kerak?",
+      "Oraliqni yozish oson bo‘ldimi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tengsizlik",
+      "tarif": "ikki ifodani katta yoki kichik ishorasi bilan solishtirish"
+     },
+     {
+      "atama": "Tengsizlik yechimi",
+      "tarif": "tengsizlikni to‘g‘ri qiladigan x qiymatlari"
+     },
+     {
+      "atama": "Oraliq",
+      "tarif": "ikki son orasidagi sonlar to‘plami"
+     },
+     {
+      "atama": "Sistema",
+      "tarif": "birgalikda bajarilishi kerak bo‘lgan tengsizliklar"
+     },
+     {
+      "atama": "Kesishma",
+      "tarif": "yechimlarning umumiy qismi"
+     },
+     {
+      "atama": "Qat’iy tengsizlik",
+      "tarif": "chegara kirmaydigan tengsizlik"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Manfiy songa ko‘paytirganda tengsizlik ishorasi almashadi",
+      "togri": true,
+      "izoh": "bu asosiy xossa"
+     },
+     {
+      "matn": "x > 3 yechimi [3; +∞)",
+      "togri": false,
+      "izoh": "3 kirmaydi, to‘g‘risi (3; +∞)"
+     },
+     {
+      "matn": "Sistema yechimi yechimlarning kesishmasi",
+      "togri": true,
+      "izoh": "ikkala shart ham bajarilishi kerak"
+     },
+     {
+      "matn": "x > 5 va x < 2 sistemaning yechimi bor",
+      "togri": false,
+      "izoh": "umumiy qism yo‘q"
+     },
+     {
+      "matn": "−2x ≤ 6 ning yechimi x ≥ −3",
+      "togri": true,
+      "izoh": "−2 ga bo‘lganda ishora almashadi"
+     },
+     {
+      "matn": "Cheksizlik kvadrat qavs bilan yoziladi",
+      "togri": false,
+      "izoh": "doim doira qavs"
+     },
+     {
+      "matn": "x² − 9 < 0 ning yechimi (−3; 3)",
+      "togri": true,
+      "izoh": "nollar orasida parabola manfiy"
+     },
+     {
+      "matn": "Tengsizlikning ikki tomoniga son qo‘shsak ishora o‘zgaradi",
+      "togri": false,
+      "izoh": "qo‘shishda ishora saqlanadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Manfiy songa bo‘lganda ishora nima bo‘ladi?",
+      "javob": "teskarisiga almashadi"
+     },
+     {
+      "savol": "2x > 8 ni yeching.",
+      "javob": "x > 4"
+     },
+     {
+      "savol": "−x < 3 ni yeching.",
+      "javob": "x > −3"
+     },
+     {
+      "savol": "x ≤ 5 oraliq bilan?",
+      "javob": "(−∞; 5]"
+     },
+     {
+      "savol": "Sistema yechimi nima?",
+      "javob": "yechimlarning kesishmasi"
+     },
+     {
+      "savol": "x > 1 va x < 3 yechimi?",
+      "javob": "(1; 3)"
+     },
+     {
+      "savol": "Qat’iy tengsizlikda chegara kiradimi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "x − 2 ≥ 0 ni yeching.",
+      "javob": "x ≥ 2"
+     },
+     {
+      "savol": "x² − 4 < 0 ni yeching.",
+      "javob": "(−2; 2)"
+     },
+     {
+      "savol": "5 − x > 1 ni yeching.",
+      "javob": "x < 4"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Xossalar",
+      "matn": "Manfiy songa ko‘paytirishda ishora almashadi.",
+      "savol": "−2x < 4 ni yeching."
+     },
+     {
+      "nom": "Chiziqli",
+      "matn": "Tenglamadek yechamiz.",
+      "savol": "x − 3 > 2 ni yeching."
+     },
+     {
+      "nom": "Sistema",
+      "matn": "Kesishmani olamiz.",
+      "savol": "x > 0 va x < 2 yechimi?"
+     },
+     {
+      "nom": "Oraliq",
+      "matn": "Qavslar bilan yozamiz.",
+      "savol": "x < 7 oraliq bilan?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun manfiy songa bo‘lganda tengsizlik ishorasi almashadi? 3 < 5 va −2 ga ko‘paytirish misolida tushuntiring.",
+    "keys": {
+     "vaziyat": "Sinf 120 ming so‘m yig‘di. Bitta kitob 18 ming so‘m turadi. Nechta kitob sotib olish mumkinligini bilish kerak.",
+     "savollar": [
+      "Tengsizlikni qanday tuzamiz?",
+      "Eng ko‘pi bilan nechta kitob olish mumkin?"
+     ]
+    },
+    "tezis": "Tengsizlik — cheklovlar tili",
+    "taqqoslash": {
+     "a": "Tenglama",
+     "b": "Tengsizlik",
+     "umumiy": [
+      "noma’lum qatnashadi",
+      "o‘xshash usul bilan yechiladi"
+     ],
+     "a_farq": [
+      "aniq qiymatlar beradi",
+      "ishora almashmaydi"
+     ],
+     "b_farq": [
+      "oraliq beradi",
+      "manfiy songa bo‘lganda ishora almashadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Tengsizliklar",
+     "shoxlar": [
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "qo‘shish",
+        "ko‘paytirish",
+        "ishora almashishi"
+       ]
+      },
+      {
+       "nom": "Yechish",
+       "bandlar": [
+        "chiziqli",
+        "qo‘sh",
+        "kvadrat"
+       ]
+      },
+      {
+       "nom": "Oraliqlar",
+       "bandlar": [
+        "doira qavs",
+        "kvadrat qavs",
+        "cheksizlik"
+       ]
+      },
+      {
+       "nom": "Sistema",
+       "bandlar": [
+        "kesishma",
+        "sonlar o‘qi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Manfiyga bo‘lsang, men teskariga aylanaman. Men kimman?",
+     "javob": "tengsizlik ishorasi"
+    },
+    "hikmat": "Chegarani bilgan, yo‘ldan adashmaydi.",
+    "kalit_soz": "ORALIQ",
+    "xato_yechim": {
+     "shart": "−2x < 6 ni yeching.",
+     "xato": "x < −3",
+     "togri": "x > −3",
+     "sabab": "manfiy songa bo‘lganda ishora almashadi; tekshirish: x — 0 da 0 < 6 to‘g‘ri, x — −5 da 10 < 6 noto‘g‘ri"
+    },
+    "guruh_nomlari": [
+     "Oraliqchilar",
+     "Chegarachilar",
+     "Ishorachilar",
+     "Sistemachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Cheklov belgilari»",
+     "topshiriq": "Guruh maktab va ko‘chadagi cheklovlarni (tezlik, yosh, vazn) topib, tengsizlik bilan yozadi."
+    },
+    "vazifalar": {
+     "A": "Yeching: 4x − 3 > 9, −5x ≤ 15.",
+     "B": "Sistemani yeching: 2x + 1 > 5 va 3 − x > −1.",
+     "C": "x² − 7x + 10 < 0 tengsizlikni yeching."
+    },
+    "sinkveyn": [
+     "Tengsizlik",
+     "kichik, katta",
+     "solishtiradi, cheklaydi, yechiladi",
+     "Cheklovlar tili",
+     "Oraliq"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tengsizliklarni yechadi.",
+     "qismlar": [
+      "1-guruh: 2x > 10",
+      "2-guruh: −3x ≥ 9",
+      "3-guruh: x > 1 va x ≤ 5",
+      "4-guruh: x² − 1 < 0"
+     ],
+     "yakun": "Natijalar: x > 5; x ≤ −3; (1; 5]; (−1; 1)."
+    }
+   }
+  },
+  {
+   "mavzu": "Ratsional tenglamalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ratsional tenglama",
+      "matn": "Noma’lum kasr maxrajida qatnashadigan tenglama ratsional tenglama deyiladi. Bunday tenglamada kasr ifodalari bo‘ladi va ularni maxrajdan qutqarish kerak.",
+      "misol": "6 / x ifoda 3 tenglamada x ifoda 2, chunki 6 / 2 — 3.",
+      "savol": "12 / x ifoda 4 tenglamaning ildizi?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aniqlanish sohasi",
+      "matn": "Kasrning maxraji nolga teng bo‘la olmaydi. Shuning uchun tenglamani yechishdan oldin maxraj nolga aylanadigan x qiymatlarini chiqarib tashlaymiz.",
+      "misol": "(x + 1) / (x − 2) ifodada x noldan farqli ravishda 2 dan boshqa bo‘lishi kerak. 5 / (x + 3) da x noldan farqli ravishda −3 dan boshqa.",
+      "savol": "5 / (x + 3) uchun qaysi x mumkin emas?",
+      "javob": "−3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yechish algoritmi",
+      "matn": "1) Aniqlanish sohasini topamiz. 2) Umumiy maxrajni topamiz. 3) Ikkala tomonni umumiy maxrajga ko‘paytirib, kasrlardan qutulamiz. 4) Hosil bo‘lgan tenglamani yechamiz. 5) Ildizlarni aniqlanish sohasi bilan tekshiramiz.",
+      "misol": "1 / x + 1 / 2 ifoda 1: umumiy maxraj 2x. 2 + x ifoda 2x, x ifoda 2. Tekshirish: 1 / 2 + 1 / 2 — 1.",
+      "savol": "1 / x ifoda 1 / 5 tenglamaning ildizi?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chet ildiz",
+      "matn": "Kasrdan qutulganda hosil bo‘lgan tenglamaning ildizlaridan ba’zilari maxrajni nolga aylantirishi mumkin. Bunday ildizlar chet ildiz deyiladi va javobga yozilmaydi.",
+      "misol": "(x² − 4) / (x − 2) ifoda 0: suratni nolga tenglaymiz, x² − 4 ifoda 0, x ifoda 2 yoki −2. x ifoda 2 maxrajni nol qiladi, chet ildiz. Javob: −2.",
+      "savol": "(x² − 9) / (x − 3) ifoda 0 ning ildizi?",
+      "javob": "−3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Proporsiya ko‘rinishidagi tenglama",
+      "matn": "a / b ifoda c / d ko‘rinishdagi tenglamada ko‘paytirish xossasi ishlaydi: a · d ifoda b · c. Shundan keyin oddiy tenglama hosil bo‘ladi, ildizni aniqlanish sohasi bilan tekshiramiz.",
+      "misol": "6 / (x + 1) ifoda 3 / 2: 6 · 2 ifoda 3(x + 1), 12 ifoda 3x + 3, x ifoda 3. Tekshirish: 6 / 4 — 3 / 2.",
+      "savol": "8 / (x − 1) ifoda 2 tenglamaning ildizi?",
+      "javob": "5",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Maxraj nolga teng bo‘lmasligi kerak. Umumiy maxrajga ko‘paytirib kasrlardan qutulamiz, hosil bo‘lgan tenglamani yechamiz va ildizlarni tekshiramiz. Maxrajni nol qiladigan ildiz — chet ildiz.",
+    "misollar": [
+     {
+      "shart": "3 / x + 1 ifoda 4 tenglamani yeching.",
+      "yechim": [
+       "1 ni o‘ng tomonga o‘tkazamiz: 3 / x ifoda 3.",
+       "Demak x ifoda 1.",
+       "Tekshirish: 3 / 1 + 1 — 4."
+      ],
+      "javob": "1"
+     },
+     {
+      "shart": "1 / (x − 1) + 1 / (x + 1) ifoda 4 / 3 tenglamani yeching.",
+      "yechim": [
+       "Umumiy maxraj (x − 1)(x + 1). Ikkala tomonni unga ko‘paytiramiz: 3(x + 1 + x − 1) ifoda 4(x² − 1).",
+       "6x ifoda 4x² − 4, 4x² − 6x − 4 ifoda 0, 2x² − 3x − 2 ifoda 0. D — 9 + 16 — 25, x — (3 ± 5) / 4: 2 yoki −1 / 2.",
+       "Tekshirish: x — 2 da 1 + 1 / 3 — 4 / 3. x — −1 / 2 da −2 / 3 + 2 — 4 / 3."
+      ],
+      "javob": "2 va −1 / 2"
+     },
+     {
+      "shart": "(x² − 25) / (x − 5) ifoda 0 tenglamani yeching.",
+      "yechim": [
+       "x² − 25 ifoda 0, x ifoda 5 yoki −5.",
+       "x ifoda 5 maxrajni nol qiladi — chet ildiz.",
+       "Qoladi x ifoda −5. Tekshirish: (25 − 25) / (−10) — 0."
+      ],
+      "javob": "−5"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Aniqlanish sohasi",
+      "topshiriq": "Uchta kasrning aniqlanish sohasini toping: 1 / (x − 4), 3 / (x + 2), 7 / x.",
+      "yechim": "x noldan farqli ravishda 4 dan, −2 dan va 0 dan boshqa.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Tenglama yechamiz",
+      "topshiriq": "10 / x ifoda 2 tenglamani yeching va tekshiring.",
+      "yechim": "x ifoda 5. Tekshirish: 10 / 5 — 2.",
+      "mahsulot": "yechim varag‘i"
+     },
+     {
+      "nom": "Ish masalasi",
+      "topshiriq": "Bir usta ishni 6 soatda, ikkinchisi 3 soatda bajaradi. Birga ishlasa necha soat kerak?",
+      "yechim": "1 / x ifoda 1 / 6 + 1 / 3, ya’ni 1 / 2, x ifoda 2 soat.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Chet ildiz izlaymiz",
+      "topshiriq": "x / (x − 1) ifoda 1 / (x − 1) ni yeching.",
+      "yechim": "x ifoda 1, lekin 1 maxrajni nol qiladi. Chet ildiz, yechim yo‘q.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "12 / x ifoda 4 tenglamani yeching.",
+      "javob": "3"
+     },
+     {
+      "shart": "(x + 1) / (x − 2) ifoda 0 tenglamani yeching.",
+      "javob": "−1"
+     },
+     {
+      "shart": "5 / (x − 1) ifoda 1 tenglamani yeching.",
+      "javob": "6"
+     },
+     {
+      "shart": "1 / x + 1 / 3 ifoda 1 / 2 tenglamani yeching.",
+      "javob": "6"
+     },
+     {
+      "shart": "(x² − 16) / (x − 4) ifoda 0 tenglamani yeching.",
+      "javob": "−4"
+     },
+     {
+      "shart": "x / (x + 2) ifoda 1 / 2 tenglamani yeching.",
+      "javob": "2"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ildizni aniqlanish sohasi bilan tekshirmaydi",
+      "sabab": "chet ildizni unutadi",
+      "oldini_olish": "har bir ildizni maxrajga qo‘yib ko‘rish"
+     },
+     {
+      "xato": "Faqat bitta hadni umumiy maxrajga ko‘paytiradi",
+      "sabab": "tenglama tengligi buziladi",
+      "oldini_olish": "tenglamaning barcha hadlarini ko‘paytirish"
+     },
+     {
+      "xato": "Maxrajni nolga teng bo‘lishini e’tiborsiz qoldiradi",
+      "sabab": "aniqlanish sohasini yozmaydi",
+      "oldini_olish": "yechishni aniqlanish sohasidan boshlash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "birga ishlash, umumiy qarshilik va tezlik masalalari"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "eritma konsentratsiyasi kasr tenglamalari"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "birlik narx va ish unumdorligi hisoblari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Birga tezroq»",
+     "muammo": "Bir necha ishchi birga ishlaganda vaqt qanday topiladi?",
+     "mahsulot": "ish masalalari to‘plami",
+     "bosqichlar": [
+      "masalalar tanlash",
+      "tenglama tuzish",
+      "yechish",
+      "tekshirish",
+      "to‘plam yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Masala tanlang",
+      "Tenglama tuzing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tenglama to‘g‘ri",
+      "ildiz tekshirilgan",
+      "chet ildiz hisobga olingan",
+      "xulosa asosli",
+      "to‘plam ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Kasrlar ustaxonasi»",
+     "bekatlar": [
+      {
+       "nom": "Quvur",
+       "matn": "Bir quvur hovuzni 4 soatda, ikkinchisi 12 soatda to‘ldiradi.",
+       "topshiriq": "Birga necha soatda to‘ldiradi?",
+       "javob": "3 soat",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "6 kg mahsulot narxi 30 ming so‘m.",
+       "topshiriq": "1 kg narxi?",
+       "javob": "5 ming so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Yo‘l",
+       "matn": "60 km yo‘lni 4 soatda bosdi.",
+       "topshiriq": "Tezlik?",
+       "javob": "15 km/soat",
+       "rasm": ""
+      },
+      {
+       "nom": "Tekshiruv",
+       "matn": "(x − 3) / (x + 1) ifoda 2 tenglama.",
+       "topshiriq": "Ildizi?",
+       "javob": "−5",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda kasr tenglamasi kerak bo‘ldi?",
+      "Chet ildiz nima edi?",
+      "Tekshirish nima uchun muhim?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ratsional tenglama",
+      "tarif": "noma’lum kasr maxrajida bo‘lgan tenglama"
+     },
+     {
+      "atama": "Aniqlanish sohasi",
+      "tarif": "ifoda ma’noga ega bo‘ladigan x qiymatlari"
+     },
+     {
+      "atama": "Umumiy maxraj",
+      "tarif": "barcha kasrlar maxrajiga bo‘linadigan ifoda"
+     },
+     {
+      "atama": "Chet ildiz",
+      "tarif": "maxrajni nol qiladigan ildiz"
+     },
+     {
+      "atama": "Maxraj",
+      "tarif": "kasr ostidagi ifoda"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "ildizni boshlang‘ich tenglamaga qo‘yib ko‘rish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Maxraj nolga teng bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "nolga bo‘lish mumkin emas"
+     },
+     {
+      "matn": "Chet ildiz maxrajni nol qiladi",
+      "togri": true,
+      "izoh": "bunday ildiz javobga kirmaydi"
+     },
+     {
+      "matn": "6 / x ifoda 3 ning ildizi 2",
+      "togri": true,
+      "izoh": "6 / 2 — 3"
+     },
+     {
+      "matn": "(x² − 4) / (x − 2) ifoda 0 ning ikkala ildizi 2 va −2 javob bo‘ladi",
+      "togri": false,
+      "izoh": "2 chet ildiz"
+     },
+     {
+      "matn": "Kasrdan qutulish uchun umumiy maxrajga ko‘paytiramiz",
+      "togri": true,
+      "izoh": "barcha hadlarni ko‘paytiramiz"
+     },
+     {
+      "matn": "Yechishdan oldin aniqlanish sohasini topish shart emas",
+      "togri": false,
+      "izoh": "chet ildizni aniqlash uchun kerak"
+     },
+     {
+      "matn": "1 / x ifoda 1 / 5 ning ildizi 5",
+      "togri": true,
+      "izoh": "maxrajlar teng"
+     },
+     {
+      "matn": "Ratsional tenglamada ildizlarni tekshirish kerak",
+      "togri": true,
+      "izoh": "chet ildizlarni topish uchun"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ratsional tenglama nima?",
+      "javob": "noma’lum maxrajda bo‘lgan tenglama"
+     },
+     {
+      "savol": "Maxraj nimaga teng bo‘lolmaydi?",
+      "javob": "nolga"
+     },
+     {
+      "savol": "6 / x ifoda 2 ni yeching.",
+      "javob": "3"
+     },
+     {
+      "savol": "Chet ildiz nima?",
+      "javob": "maxrajni nol qiladigan ildiz"
+     },
+     {
+      "savol": "1 / x ifoda 1 / 4 ni yeching.",
+      "javob": "4"
+     },
+     {
+      "savol": "Kasrlardan qanday qutulamiz?",
+      "javob": "umumiy maxrajga ko‘paytirib"
+     },
+     {
+      "savol": "(x − 3) / x ifoda 0 ni yeching.",
+      "javob": "3"
+     },
+     {
+      "savol": "10 / x ifoda 5 ni yeching.",
+      "javob": "2"
+     },
+     {
+      "savol": "2 / (x − 1) uchun mumkin bo‘lmagan x?",
+      "javob": "1"
+     },
+     {
+      "savol": "Yechimni nima bilan tekshiramiz?",
+      "javob": "aniqlanish sohasi va boshlang‘ich tenglama bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Soha",
+      "matn": "Maxraj nol bo‘lmasin.",
+      "savol": "3 / (x − 5) da qaysi x mumkin emas?"
+     },
+     {
+      "nom": "Algoritm",
+      "matn": "Umumiy maxrajga ko‘paytiramiz.",
+      "savol": "8 / x ifoda 2 ni yeching."
+     },
+     {
+      "nom": "Chet ildiz",
+      "matn": "Maxrajni nol qiladi.",
+      "savol": "(x² − 1) / (x − 1) ifoda 0 ning javobi?"
+     },
+     {
+      "nom": "Tekshirish",
+      "matn": "Ildizni qo‘yib ko‘ramiz.",
+      "savol": "x — 2 da 4 / x — 2 to‘g‘rimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun kasrdan qutulgandan keyin topilgan ildiz boshlang‘ich tenglamaga to‘g‘ri kelmasligi mumkin? (x² − 4) / (x − 2) ifoda 0 misolida tushuntiring.",
+    "keys": {
+     "vaziyat": "Ikki quvur hovuzni to‘ldiradi: birinchisi 6 soatda, ikkinchisi 3 soatda. Ikkalasi birga ochilsa, hovuz qancha vaqtda to‘ladi?",
+     "savollar": [
+      "Tenglamani qanday tuzamiz?",
+      "Javob nechaga teng?"
+     ]
+    },
+    "tezis": "Ratsional tenglamada tekshirish shart",
+    "taqqoslash": {
+     "a": "Chiziqli tenglama",
+     "b": "Ratsional tenglama",
+     "umumiy": [
+      "noma’lumni topish talab qilinadi",
+      "tekshirish mumkin"
+     ],
+     "a_farq": [
+      "maxraj sondan iborat",
+      "chet ildiz bo‘lmaydi"
+     ],
+     "b_farq": [
+      "maxrajda noma’lum bor",
+      "chet ildiz chiqishi mumkin"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ratsional tenglamalar",
+     "shoxlar": [
+      {
+       "nom": "Aniqlanish",
+       "bandlar": [
+        "maxraj nolga teng emas",
+        "soha"
+       ]
+      },
+      {
+       "nom": "Yechish",
+       "bandlar": [
+        "umumiy maxraj",
+        "ko‘paytirish",
+        "tenglama"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "chet ildiz",
+        "qo‘yib ko‘rish"
+       ]
+      },
+      {
+       "nom": "Masalalar",
+       "bandlar": [
+        "ish",
+        "harakat",
+        "narx"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Maxrajga noldan qo‘rqaman, ildizim ba’zan yolg‘on chiqadi. Men kimman?",
+     "javob": "chet ildiz"
+    },
+    "hikmat": "Ishonchning kaliti — tekshirish.",
+    "kalit_soz": "MAXRAJ",
+    "xato_yechim": {
+     "shart": "(x² − 4) / (x − 2) ifoda 0 ni yeching.",
+     "xato": "2 va −2",
+     "togri": "−2",
+     "sabab": "x ifoda 2 maxrajni nol qiladi, bu chet ildiz; faqat −2 qoladi"
+    },
+    "guruh_nomlari": [
+     "Maxrajchilar",
+     "Kasrchilar",
+     "Tekshiruvchilar",
+     "Ildizchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Birga ishlaymiz»",
+     "topshiriq": "Guruh sinfdagi ikki o‘quvchi bir ishni alohida va birga qancha vaqtda bajarishini o‘lchab, hisob bilan solishtiradi."
+    },
+    "vazifalar": {
+     "A": "Yeching: 15 / x ifoda 3, 2 / x ifoda 1 / 4.",
+     "B": "Yeching: 3 / (x + 1) ifoda 1.",
+     "C": "Birinchi usta 12 soatda, ikkinchisi 4 soatda. Birga necha soatda bajaradi?"
+    },
+    "sinkveyn": [
+     "Tenglama",
+     "kasr, ratsional",
+     "yechiladi, tekshiriladi, tozalanadi",
+     "Maxraj nol bo‘lmasin",
+     "Ildiz"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh kasr tenglamalarni yechadi.",
+     "qismlar": [
+      "1-guruh: 12 / x ifoda 3",
+      "2-guruh: 1 / x ifoda 1 / 7",
+      "3-guruh: (x² − 9) / (x − 3) ifoda 0",
+      "4-guruh: 4 / (x + 2) ifoda 1"
+     ],
+     "yakun": "Natijalar: 4; 7; −3; 2."
+    }
+   }
+  },
+  {
+   "mavzu": "Teskari proporsional funksiya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Teskari proporsional bog‘lanish",
+      "matn": "y ifoda k / x ko‘rinishdagi funksiya teskari proporsional funksiya deyiladi, bunda k noldan farqli son, x noldan farqli. x oshganda y kamayadi, x kamayganda y oshadi, ko‘paytma x · y doim k ga teng.",
+      "misol": "k — 12 bo‘lsa: x — 1, 2, 3, 4, 6, 12 da y — 12, 6, 4, 3, 2, 1.",
+      "savol": "y ifoda 8 / x da x ifoda 2 bo‘lsa, y nechaga teng?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Asosiy xossalar",
+      "matn": "Funksiya x noldan farqli barcha qiymatlarda aniqlangan. x · y doim k. Argument bir necha marta oshsa, funksiya shuncha marta kamayadi. y hech qachon nolga teng bo‘lmaydi.",
+      "misol": "k — 12: x ni 3 dan 6 ga (2 marta) oshirsak, y 4 dan 2 ga (2 marta) kamayadi.",
+      "savol": "k ifoda 20, x ifoda 4 bo‘lsa, y nechaga teng?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Grafik — giperbola",
+      "matn": "y ifoda k / x ning grafigi giperbola deyiladi va ikki shoxdan iborat. k musbat bo‘lsa, shoxlar I va III choraklarda, k manfiy bo‘lsa, II va IV choraklarda joylashadi. Grafik koordinata o‘qlariga yaqinlashadi, lekin ularni kesmaydi.",
+      "misol": "y ifoda 6 / x: (1; 6), (2; 3), (3; 2), (6; 1) va (−1; −6), (−2; −3), (−3; −2), (−6; −1) nuqtalar.",
+      "savol": "y ifoda −4 / x grafigi qaysi choraklarda?",
+      "javob": "II va IV",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Simmetriya va kamayish",
+      "matn": "Teskari proporsional funksiya grafigi koordinata boshiga nisbatan simmetrik: x ni −x ga almashtirsak, y ham −y ga almashadi. k musbat bo‘lsa, funksiya har bir chorakda kamayadi.",
+      "misol": "y ifoda 6 / x: x — 2 da y — 3, x — −2 da y — −3. Qiymatlar qarama-qarshi.",
+      "savol": "y ifoda 10 / x da x ifoda −5 bo‘lsa, y nechaga teng?",
+      "javob": "−2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Koeffitsientni topish va masalalar",
+      "matn": "Grafik berilgan nuqtadan o‘tsa, shu nuqta koordinatalarini ko‘paytirib k ni topamiz. Hayotda tezlik va vaqt, ishchilar soni va ish muddati teskari proporsional bo‘ladi.",
+      "misol": "Grafik (2; 3) nuqtadan o‘tsa, k — 6. Masofa 60 km: tezlik 30 bo‘lsa, vaqt 2 soat; tezlik 20 bo‘lsa, vaqt 3 soat; tezlik 60 bo‘lsa, vaqt 1 soat.",
+      "savol": "y ifoda k / x grafigi (4; 2) nuqtadan o‘tsa, k nechaga teng?",
+      "javob": "8",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "y ifoda k / x, k noldan farqli, x noldan farqli. x · y — k. Grafigi giperbola: k musbat bo‘lsa I va III choraklarda, k manfiy bo‘lsa II va IV choraklarda.",
+    "misollar": [
+     {
+      "shart": "(−3; 4) nuqtadan o‘tuvchi teskari proporsional funksiyani toping.",
+      "yechim": [
+       "k — x · y, ya’ni −3 · 4 — −12.",
+       "Funksiya y ifoda −12 / x.",
+       "Tekshirish: x — −3 da −12 / (−3) — 4."
+      ],
+      "javob": "y ifoda −12 / x"
+     },
+     {
+      "shart": "y ifoda 12 / x funksiyaning x — 1, 2, 3, 4, 6 dagi qiymatlarini toping.",
+      "yechim": [
+       "12 / 1 — 12.",
+       "12 / 2 — 6, 12 / 3 — 4.",
+       "12 / 4 — 3, 12 / 6 — 2."
+      ],
+      "javob": "12, 6, 4, 3, 2"
+     },
+     {
+      "shart": "Masofa 90 km. Tezlik 45 va 30 km/soat bo‘lsa, vaqt qancha? (t ifoda 90 / v)",
+      "yechim": [
+       "Tezlik 45 da vaqt 90 / 45, ya’ni 2 soat.",
+       "Tezlik 30 da vaqt 90 / 30, ya’ni 3 soat.",
+       "Tezlik kamaysa, vaqt oshadi."
+      ],
+      "javob": "2 soat va 3 soat"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Jadval va grafik",
+      "topshiriq": "y ifoda 6 / x uchun x — 1, 2, 3, 6 dagi qiymatlarni topib, grafikning I chorakdagi qismini chizing.",
+      "yechim": "y — 6, 3, 2, 1.",
+      "mahsulot": "jadval va chizma"
+     },
+     {
+      "nom": "Chorak aniqlash",
+      "topshiriq": "y ifoda 5 / x va y ifoda −5 / x grafiklari qaysi choraklarda joylashadi?",
+      "yechim": "Birinchisi I va III, ikkinchisi II va IV.",
+      "mahsulot": "tasnif jadvali"
+     },
+     {
+      "nom": "Tezlik va vaqt",
+      "topshiriq": "120 km yo‘lni 40 km/soat tezlikda necha soatda bosamiz? Tezlik 60 bo‘lsa-chi?",
+      "yechim": "3 soat va 2 soat. Tezlik oshsa, vaqt kamayadi.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Ishchilar",
+      "topshiriq": "6 ishchi ishni 10 kunda bajaradi. 15 ishchi necha kunda bajaradi?",
+      "yechim": "Ish 60 ishchi-kun. 60 / 15, ya’ni 4 kun.",
+      "mahsulot": "yechim varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "y ifoda 8 / x da x ifoda 2 bo‘lsa, y nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "y ifoda −6 / x da x ifoda 3 bo‘lsa, y nechaga teng?",
+      "javob": "−2"
+     },
+     {
+      "shart": "Grafik (2; 5) nuqtadan o‘tadi. k nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "k musbat bo‘lsa, grafik qaysi choraklarda?",
+      "javob": "I va III"
+     },
+     {
+      "shart": "y ifoda 12 / x da y ifoda 3 bo‘lsa, x nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "Masofa 120 km, tezlik 40 km/soat. Vaqt qancha?",
+      "javob": "3 soat"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Teskari proporsional bog‘lanishni to‘g‘ri proporsional deb oladi",
+      "sabab": "x va y bir yo‘nalishda o‘zgaradi deb o‘ylaydi",
+      "oldini_olish": "x oshganda y kamayishini tekshirish"
+     },
+     {
+      "xato": "Giperbolani o‘qlarni kesadi deb chizadi",
+      "sabab": "grafik o‘qlarga yaqinlashishini bilmaydi",
+      "oldini_olish": "x ifoda 0 va y ifoda 0 mavjud emasligini eslash"
+     },
+     {
+      "xato": "k ni topishda x va y ni qo‘shadi",
+      "sabab": "formulani unutadi",
+      "oldini_olish": "k — x · y ekanini yozib qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "tezlik, vaqt va masofa; bosim va hajm bog‘lanishi"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "narx va sotib olinadigan miqdor"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "ishchilar soni va ish muddati"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Teskari bog‘lanishlar»",
+     "muammo": "Hayotda qaysi miqdorlar teskari proporsional va ularni grafik bilan qanday ko‘rsatamiz?",
+     "mahsulot": "giperbolalar albomi",
+     "bosqichlar": [
+      "misollar izlash",
+      "jadval tuzish",
+      "grafik chizish",
+      "k ni aniqlash",
+      "albom yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Misollar toping",
+      "Jadval tuzing",
+      "Grafik chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "bog‘lanish to‘g‘ri aniqlangan",
+      "k to‘g‘ri topilgan",
+      "grafik aniq",
+      "xulosa asosli",
+      "albom ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tezlik va vaqt yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "Avtobus",
+       "matn": "Masofa 60 km, tezlik 30 km/soat.",
+       "topshiriq": "Vaqt?",
+       "javob": "2 soat",
+       "rasm": ""
+      },
+      {
+       "nom": "Velosiped",
+       "matn": "Masofa 60 km, tezlik 20 km/soat.",
+       "topshiriq": "Vaqt?",
+       "javob": "3 soat",
+       "rasm": ""
+      },
+      {
+       "nom": "Qurilish",
+       "matn": "8 ishchi ishni 6 kunda bajaradi.",
+       "topshiriq": "12 ishchi necha kunda?",
+       "javob": "4 kun",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "Pul miqdori 120 ming so‘m, bir kg narxi 20 ming.",
+       "topshiriq": "Necha kg olish mumkin?",
+       "javob": "6 kg",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda teskari bog‘lanishni ko‘rdingiz?",
+      "k nimani anglatadi?",
+      "Grafik nima uchun o‘qni kesmaydi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Teskari proporsionallik",
+      "tarif": "bir miqdor oshganda ikkinchisi shuncha marta kamayadi"
+     },
+     {
+      "atama": "Koeffitsient k",
+      "tarif": "x va y ko‘paytmasi"
+     },
+     {
+      "atama": "Giperbola",
+      "tarif": "teskari proporsional funksiya grafigi"
+     },
+     {
+      "atama": "Aniqlanish sohasi",
+      "tarif": "noldan farqli barcha x"
+     },
+     {
+      "atama": "Koordinata choragi",
+      "tarif": "o‘qlar bo‘lgan tekislik bo‘lagi"
+     },
+     {
+      "atama": "Simmetriya",
+      "tarif": "koordinata boshiga nisbatan mos nuqtalar"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "y ifoda 6 / x grafigi giperbola",
+      "togri": true,
+      "izoh": "teskari proporsional funksiya grafigi"
+     },
+     {
+      "matn": "k musbat bo‘lsa, grafik II va IV choraklarda",
+      "togri": false,
+      "izoh": "k musbat bo‘lsa I va III"
+     },
+     {
+      "matn": "x · y doim k ga teng",
+      "togri": true,
+      "izoh": "bu asosiy xossa"
+     },
+     {
+      "matn": "x oshsa, y ham oshadi",
+      "togri": false,
+      "izoh": "k musbat bo‘lsa y kamayadi"
+     },
+     {
+      "matn": "Grafik Ox o‘qini kesadi",
+      "togri": false,
+      "izoh": "y hech qachon nol bo‘lmaydi"
+     },
+     {
+      "matn": "x ifoda 0 da funksiya aniqlanmagan",
+      "togri": true,
+      "izoh": "nolga bo‘lish mumkin emas"
+     },
+     {
+      "matn": "y ifoda 6 / x da x ifoda 3 bo‘lsa y ifoda 2",
+      "togri": true,
+      "izoh": "6 / 3 — 2"
+     },
+     {
+      "matn": "Tezlik oshsa, vaqt kamayadi",
+      "togri": true,
+      "izoh": "masofa o‘zgarmasa teskari bog‘lanish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Teskari proporsional funksiya qanday yoziladi?",
+      "javob": "y ifoda k / x"
+     },
+     {
+      "savol": "Grafigi nima deyiladi?",
+      "javob": "giperbola"
+     },
+     {
+      "savol": "x oshsa y nima bo‘ladi?",
+      "javob": "kamayadi"
+     },
+     {
+      "savol": "k musbat bo‘lsa grafik qaysi choraklarda?",
+      "javob": "I va III"
+     },
+     {
+      "savol": "k manfiy bo‘lsa grafik qaysi choraklarda?",
+      "javob": "II va IV"
+     },
+     {
+      "savol": "y ifoda 10 / x da x ifoda 5 da y?",
+      "javob": "2"
+     },
+     {
+      "savol": "k ni qanday topamiz?",
+      "javob": "x va y ni ko‘paytirib"
+     },
+     {
+      "savol": "Grafik o‘qlarni kesadimi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "x ifoda 0 mumkinmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "Tezlik va vaqt qanday bog‘langan?",
+      "javob": "teskari proporsional"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "y ifoda k / x.",
+      "savol": "k nimaga teng bo‘lolmaydi?"
+     },
+     {
+      "nom": "Xossa",
+      "matn": "x · y — k.",
+      "savol": "x ifoda 2, y ifoda 6 bo‘lsa k?"
+     },
+     {
+      "nom": "Grafik",
+      "matn": "Giperbola ikki shoxli.",
+      "savol": "k musbat bo‘lsa choraklar?"
+     },
+     {
+      "nom": "Masala",
+      "matn": "Tezlik va vaqt.",
+      "savol": "Masofa 80 km, tezlik 40. Vaqt?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun y ifoda k / x grafigi koordinata o‘qlarini hech qachon kesmaydi? x ifoda 0 va y ifoda 0 holatlarini tushuntiring.",
+    "keys": {
+     "vaziyat": "Maktab bog‘i uchun 4 ishchi ishni 12 kunda tugatishi rejalashtirilgan. Ishchilar soni oshirilsa, muddat qanday o‘zgaradi?",
+     "savollar": [
+      "Ish qancha ishchi-kunga teng?",
+      "8 ishchi necha kunda bajaradi?"
+     ]
+    },
+    "tezis": "Biri oshsa, ikkinchisi kamayadi",
+    "taqqoslash": {
+     "a": "To‘g‘ri proporsionallik",
+     "b": "Teskari proporsionallik",
+     "umumiy": [
+      "ikki miqdor bog‘langan",
+      "k doimiy"
+     ],
+     "a_farq": [
+      "y ifoda kx",
+      "grafigi to‘g‘ri chiziq"
+     ],
+     "b_farq": [
+      "y ifoda k / x",
+      "grafigi giperbola"
+     ]
+    },
+    "klaster": {
+     "markaz": "Teskari proporsionallik",
+     "shoxlar": [
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "y ifoda k / x",
+        "x · y — k"
+       ]
+      },
+      {
+       "nom": "Grafik",
+       "bandlar": [
+        "giperbola",
+        "choraklar",
+        "o‘qlarni kesmaydi"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "kamayish",
+        "simmetriya"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "tezlik va vaqt",
+        "ishchilar",
+        "narx"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Biri oshsa, ikkinchisi kamayadi, ko‘paytmalari doim bir xil. Grafigim ikki shoxli. Men kimman?",
+     "javob": "teskari proporsional funksiya"
+    },
+    "hikmat": "Ko‘p ishchi bo‘lsa, ish tez bitadi.",
+    "kalit_soz": "GIPERBOLA",
+    "xato_yechim": {
+     "shart": "(3; 4) nuqtadan o‘tgan y ifoda k / x da k ni toping.",
+     "xato": "7",
+     "togri": "12",
+     "sabab": "k — x · y, ya’ni 3 · 4 — 12; 3 + 4 — 7 noto‘g‘ri"
+    },
+    "guruh_nomlari": [
+     "Giperbolachilar",
+     "Kamayuvchilar",
+     "Koeffitsientchilar",
+     "Choraklar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tezlik va vaqt»",
+     "topshiriq": "Guruh maktabdan uygacha masofani turli tezlikda bosish vaqtini hisoblab, jadval tuzadi va grafigini chizadi."
+    },
+    "vazifalar": {
+     "A": "y ifoda 18 / x ning x — 1, 2, 3, 6, 9 dagi qiymatlarini toping.",
+     "B": "(−2; 5) nuqtadan o‘tuvchi teskari proporsional funksiyani toping.",
+     "C": "Masofa 240 km. Tezlik 60 va 80 km/soat bo‘lsa, vaqtlar farqini toping."
+    },
+    "sinkveyn": [
+     "Giperbola",
+     "ikki shoxli, silliq",
+     "yaqinlashadi, kamayadi, simmetrik",
+     "O‘qlarni kesmaydi",
+     "k / x"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh teskari proporsional funksiya bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: y ifoda 10 / x, x ifoda 5",
+      "2-guruh: (3; 6) dan o‘tgan funksiyaning k",
+      "3-guruh: y ifoda −8 / x grafigi choraklari",
+      "4-guruh: 100 km yo‘lni 50 km/soat tezlikda"
+     ],
+     "yakun": "Natijalar: 2; 18; II va IV; 2 soat."
+    }
+   }
   }
  ]
 }
