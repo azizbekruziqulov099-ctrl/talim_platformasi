@@ -745,3 +745,17 @@ def test_ai_tugasa_taqdimot_bazadan_beriladi(monkeypatch):
     import datetime as dt
     assert kutubxona_ai.tun_vaqtimi(dt.datetime(2026, 1, 1, 23)) and kutubxona_ai.tun_vaqtimi(dt.datetime(2026, 1, 1, 3))
     assert not kutubxona_ai.tun_vaqtimi(dt.datetime(2026, 1, 1, 12))
+
+
+def test_zamonaviy_uslub_oilalari_va_200dan_ortiq_korinish():
+    """Yangi oilalar (lenta, to'lqin, yoylar, hashamat, chiroq nuri, raqamli panel) va palitralar: jami 200+ ko'rinish, hammasi yasaladi."""
+    from modules.taqdimot_dvigatel import rasmlar, uslub, yasash
+    assert {"lenta", "tolqin", "yoy", "hashamat", "nur", "panel"} <= set(uslub.OILALAR)
+    kodlar = uslub.barcha_uslublar()
+    assert len(kodlar) >= 200 and len(set(kodlar)) == len(kodlar)
+    m = json.loads(rasmlar.namuna_json())
+    for oila in ("lenta", "tolqin", "yoy", "hashamat", "nur", "panel"):
+        for pal in uslub.mos_palitralar(oila)[-2:]:
+            assert uslub.fon_rasm(f"{oila}.{pal}.0")[:2] == b"\xff\xd8"
+        s = yasash.yasa(m, seed=5, oila=oila)
+        assert s["uslub"]["oila"] == oila and len(yasash.pptx(s)) > 20000

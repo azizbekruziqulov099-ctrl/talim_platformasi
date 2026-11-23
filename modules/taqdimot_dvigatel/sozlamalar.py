@@ -17,11 +17,12 @@ HEX = re.compile(r"^#[0-9A-Fa-f]{6}$")
 SHRIFT_VARIANTLARI = [["", "Avto (uslubniki)"]] + [[k, v[0]] for k, v in olchov.SHRIFT_KATALOG.items()]
 OLCHAMLAR = {"kichik": 0.9, "katta": 1.12, "juda_katta": 1.25}
 TEZLIK = {"sekin": 1.5, "tez": 0.65}
-FON_YORUG = ["aurora", "mesh", "minimal", "qogoz", "jurnal", "daftar", "barg", "tekis"]
-FON_QORONGI = ["glow", "stars", "tekis", "chalk"]
+FON_YORUG = ["aurora", "mesh", "minimal", "qogoz", "jurnal", "daftar", "barg", "tekis", "lenta", "tolqin", "yoy"]
+FON_QORONGI = ["glow", "stars", "tekis", "chalk", "qirra", "nur", "panel"]
 FON_NOMI = {"aurora": "Yumshoq dog‘lar", "mesh": "Rangli tuman", "minimal": "Minimal (chap chiziq)", "qogoz": "Qog‘oz",
             "jurnal": "Jurnal (yon tasma)", "daftar": "Katakli daftar", "barg": "Barglar", "tekis": "Tekis gradient",
-            "glow": "Nurli (qorong‘i)", "stars": "Yulduzli (qorong‘i)", "chalk": "Bo‘r doska (qorong‘i)"}
+            "lenta": "Rangli lenta", "tolqin": "To‘lqin", "yoy": "Yoylar", "qirra": "Qirralar (qorong‘i)", "nur": "Chiroq nuri (qorong‘i)",
+            "panel": "Raqamli panel (qorong‘i)", "glow": "Nurli (qorong‘i)", "stars": "Yulduzli (qorong‘i)", "chalk": "Bo‘r doska (qorong‘i)"}
 QISMLAR = [["reja", "Reja slaydi (mundarija)"], ["takrorlash", "O‘tgan mavzuni takrorlash"], ["muammo", "Muammoli savol bilan boshlash"],
            ["tarix", "Tarixiy ma’lumot"], ["xatolar", "Ko‘p uchraydigan xatolar"], ["metodika", "Metodika (o‘qituvchi uchun)"],
            ["xulosa", "Xulosa"], ["test", "Test savollari"], ["yakun", "Uy vazifasi va keyingi dars"], ["adabiyot", "Adabiyotlar"]]

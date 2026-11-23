@@ -61,6 +61,12 @@ YORUG = {
     "yalpiz": dict(nom="Yalpiz", acc=["#21867A", "#264653", "#D9A520", "#E76F51"], ink="#1F2D2E", muted="#5F6F70"),
     "gulsafsar": dict(nom="Gulsafsar", acc=["#7B2CBF", "#1FA79A", "#F28C18", "#E71D36"], ink="#240046", muted="#6C5B7B"),
     "tosh": dict(nom="Tosh", acc=["#3A506B", "#3FA7A5", "#E4572E", "#E0A100"], ink="#1C2541", muted="#5B6475"),
+    # zamonaviy shablonlar ranglari: to'q ko'k-binafsha, feruza, siyohrang, po'lat ko'k, oltin
+    "indigo": dict(nom="Indigo", acc=["#3730C8", "#7C6CF2", "#E0437A", "#F2A93B"], ink="#17153F", muted="#5D5A85"),
+    "feruza": dict(nom="Feruza", acc=["#14958F", "#0F5F6B", "#F08A4B", "#5B6CC9"], ink="#0E3A3D", muted="#4F7073"),
+    "siyohrang": dict(nom="Siyohrang", acc=["#6D28D9", "#C026D3", "#2563EB", "#F59E0B"], ink="#1F1147", muted="#665C86"),
+    "polat": dict(nom="Po‘lat ko‘k", acc=["#3B5BA9", "#6C8AD0", "#C9963B", "#2F8F83"], ink="#18264A", muted="#5A6788"),
+    "oltin_kul": dict(nom="Oltin va grafit", acc=["#A87B12", "#2B2B30", "#B5452C", "#3B6C8E"], ink="#1B1B1F", muted="#66625A"),
 }
 QORONGI = {
     "olov": dict(nom="Olov", bg=["#1E1236", "#3B1D5E"], glow="#FB923C", acc=["#FB923C", "#8B5CF6", "#F472B6", "#4ADE80"], ink="#FFFFFF", muted="#D9D0F5"),
@@ -69,6 +75,10 @@ QORONGI = {
     "oltin": dict(nom="Qora oltin", bg=["#111114", "#2A2A31"], glow="#F59E0B", acc=["#F59E0B", "#38BDF8", "#F43F5E", "#A3E635"], ink="#FAFAFA", muted="#D4D4D8"),
     "olcha_tun": dict(nom="Olcha tun", bg=["#24080F", "#5A1424"], glow="#FB7185", acc=["#FDBA74", "#FDA4AF", "#93C5FD", "#86EFAC"], ink="#FFF7ED", muted="#FECACA"),
     "kosmik": dict(nom="Kosmik", bg=["#080D24", "#1B2A6B"], glow="#818CF8", acc=["#60A5FA", "#F472B6", "#FDE047", "#4ADE80"], ink="#EEF2FF", muted="#C7D2FE"),
+    "shoh_kok": dict(nom="Shoh ko‘k", bg=["#0E0F7A", "#1C22C4"], glow="#7C8BFF", acc=["#FFD166", "#8EC5FF", "#FF8FA3", "#7CF0C5"], ink="#FFFFFF", muted="#CFD4FF"),
+    "binafsha": dict(nom="Binafsha neon", bg=["#12062B", "#3A0F7A"], glow="#A855F7", acc=["#C084FC", "#38BDF8", "#F472B6", "#FACC15"], ink="#FAF5FF", muted="#DDD0F7"),
+    "ormon": dict(nom="O‘rmon yashil", bg=["#0F3D12", "#2C7A1F"], glow="#A3E635", acc=["#FDE047", "#BBF7D0", "#FDBA74", "#93C5FD"], ink="#FFFFFF", muted="#D5F0CE"),
+    "grafit": dict(nom="Grafit va tilla", bg=["#0C0C0E", "#1E1E22"], glow="#D4A72C", acc=["#E6B93A", "#F5E6B8", "#F97066", "#7DD3FC"], ink="#FAFAF7", muted="#CFCBC0"),
 }
 DOSKA = {
     "yashil": dict(nom="Yashil doska", bg=["#1E3A2C", "#2B4F3C"], acc=["#FDE68A", "#FCA5A5", "#93C5FD", "#BBF7D0"], ink="#F8FAF5", muted="#CFE3D5"),
@@ -89,6 +99,13 @@ OILALAR = {
     "doska": dict(nom="Sinf doskasi", turi="doska", head="sans", fon="chalk", kart=dict(r=8, sh=0, line="#FFFFFF@0.55", fill="#FFFFFF", op=0.05, dash=1), tab="bar"),
     "akademik": dict(nom="Akademik", turi="yorug", head="serif", fon="qogoz", kart=dict(r=4, sh=0, line="tint", fill="#FFFFFF", op=1.0), tab="bar"),
     "jurnal": dict(nom="Jurnal", turi="yorug", head="serif", fon="jurnal", kart=dict(r=0, sh=0, line=None, fill="tint", op=1.0), tab="bar"),
+    # --- zamonaviy shablon oilalari
+    "lenta": dict(nom="Lenta (kartali)", turi="yorug", head="sans", fon="lenta", kart=dict(r=22, sh=1, line=None, fill="#FFFFFF", op=1.0), tab="pill"),
+    "tolqin": dict(nom="To‘lqin", turi="yorug", head="sans", fon="tolqin", kart=dict(r=20, sh=1, line="tint", fill="#FFFFFF", op=0.94), tab="pill"),
+    "yoy": dict(nom="Yoylar", turi="yorug", head="serif", fon="yoy", kart=dict(r=16, sh=1, line=None, fill="#FFFFFF", op=0.96), tab="pill"),
+    "hashamat": dict(nom="Hashamat", turi="qorongi", head="serif", fon="qirra", kart=dict(r=10, sh=0, line="acc@0.55", fill="#FFFFFF", op=0.07), tab="bar"),
+    "nur": dict(nom="Chiroq nuri", turi="qorongi", head="sans", fon="nur", kart=dict(r=14, sh=0, line="#FFFFFF@0.14", fill="#000000", op=0.28), tab="pill"),
+    "panel": dict(nom="Raqamli panel", turi="qorongi", head="sans", fon="panel", kart=dict(r=8, sh=0, line="acc@0.5", fill="acc", op=0.09), tab="bar"),
     "kecha": dict(nom="Kecha (tekis)", turi="qorongi", head="sans", fon="tekis", kart=dict(r=18, sh=0, line=None, fill="#FFFFFF", op=0.07), tab="pill"),
 }
 
@@ -213,9 +230,13 @@ def _oila_vaznlari(fan: str = "", daraja: str = "", sinf: str = "") -> dict:
         for o, w in {"anor": 1.6, "tabiat": 1.6, "shisha": 1.5, "daftar": 1.4, "doska": 1.2, "akademik": 0.3, "jurnal": 0.4, "kecha": 0.5,
                      "minimal": 0.6}.items():
             v[o] = w
-    fanga = {"matematika": {"daftar": 1.8, "doska": 1.6, "minimal": 1.3}, "biologiya": {"tabiat": 2.2}, "geografiya": {"tabiat": 1.8, "shisha": 1.3},
+    for o, w in ({"lenta": 1.3, "yoy": 1.5, "tolqin": 1.1, "hashamat": 1.3, "panel": 1.1, "nur": 0.8} if (d in ("bakalavr", "magistr", "oliy") or "kurs" in s)
+                 else {"lenta": 1.5, "tolqin": 1.5, "yoy": 1.0, "hashamat": 0.3, "nur": 0.4, "panel": 0.4} if kichik
+                 else {"lenta": 1.3, "tolqin": 1.2, "yoy": 1.1, "hashamat": 0.7, "nur": 0.7, "panel": 0.8}).items():
+        v[o] = w
+    fanga = {"matematika": {"daftar": 1.8, "doska": 1.6, "minimal": 1.3}, "biologiya": {"tabiat": 2.2}, "geografiya": {"tabiat": 1.8, "shisha": 1.3, "panel": 1.5, "tolqin": 1.3},
              "fizika": {"yulduz": 1.6, "tun": 1.4, "doska": 1.3}, "astronomiya": {"yulduz": 2.5}, "kimyo": {"kecha": 1.5, "tun": 1.3},
-             "tarix": {"jurnal": 2.0, "akademik": 1.6, "anor": 1.3}, "adabiyot": {"jurnal": 2.0, "anor": 1.4}, "informatika": {"kecha": 1.8, "tun": 1.5},
+             "tarix": {"jurnal": 2.0, "akademik": 1.6, "anor": 1.3}, "adabiyot": {"jurnal": 2.0, "anor": 1.4}, "informatika": {"kecha": 1.8, "tun": 1.5, "panel": 2.4, "lenta": 1.3},
              "pedagogika": {"akademik": 1.6, "jurnal": 1.5}, "xorijiy_til": {"shisha": 1.5, "anor": 1.3}, "musiqa": {"yulduz": 1.4, "anor": 1.3},
              "tabiiy": {"tabiat": 1.8, "shisha": 1.2}, "ona_tili": {"anor": 1.3, "daftar": 1.3}}
     for o, w in (fanga.get(f) or {}).items():
@@ -418,6 +439,68 @@ def fon_rasm(kod: str) -> bytes:
         d.rectangle([x0, 0, x0 + 26, H], fill=hex2rgb(och(a0, 0.85)) + (255,))
         d.rectangle([x0 + (0 if side else 23), 0, x0 + (3 if side else 26), H], fill=hex2rgb(a0) + (255,))
         _blob(img, W * (0.1 if side else 0.9), H * 1.05, 300, 160, och(a1, 0.7), 0.12, 90)
+    elif t == "lenta":      # tepada rangli tasma, pastda oq — kartalar tasma ustida «suzadi»
+        img = Image.new("RGBA", (W, H), hex2rgb(och(a0, 0.95)) + (255,))
+        band = _gradient(W, int(H * 0.40), och(a0, 0.52), och(aralash(a0, a1, 0.5), 0.72), angle=rng.choice([0, 25, 155])).convert("RGBA")
+        img.alpha_composite(band, (0, 0))
+        _blob(img, W * rng.choice([0.12, 0.88]), H * 0.05, 300, 150, "#FFFFFF", 0.35, 90)
+        d = ImageDraw.Draw(img)
+        d.rectangle([0, int(H * 0.40), W, int(H * 0.40) + 3], fill=hex2rgb(och(a0, 0.35)) + (150,))
+        for i in range(3):
+            d.ellipse([W - 92 + i * 22, 26, W - 80 + i * 22, 38], fill=hex2rgb(a0) + (190 - i * 55,))
+    elif t == "tolqin":     # pastdan oqib o'tuvchi rangli to'lqin lentalari
+        import math
+        img = _gradient(W, H, "#FFFFFF", och(a0, 0.93)).convert("RGBA")
+        faza = rng.uniform(0, 6.28)
+        for k, (c, al, y0, amp) in enumerate([(och(a0, 0.72), 90, 0.885, 26), (och(aralash(a0, a1, 0.5), 0.55), 95, 0.925, 20), (och(a0, 0.25), 120, 0.968, 14)]):
+            layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            pts = [(x, H * y0 + amp * math.sin(x / 190.0 + faza + k * 1.3) + amp * 0.4 * math.sin(x / 71.0 + k)) for x in range(0, W + 21, 20)]
+            ImageDraw.Draw(layer).polygon(pts + [(W, H), (0, H)], fill=hex2rgb(c) + (al,))
+            img.alpha_composite(layer.filter(ImageFilter.GaussianBlur(1.2)))
+        _blob(img, W * 0.9, -30, 320, 200, och(a1, 0.5), 0.20, 110)
+    elif t == "yoy":        # nozik konsentrik yoylar va yengil tuman
+        img = _gradient(W, H, och(a0, 0.95), "#FFFFFF", angle=20).convert("RGBA")
+        d = ImageDraw.Draw(img)
+        cx, cy = (W * 0.93, H * 1.02) if rng.random() < 0.5 else (W * 0.06, H * 1.05)
+        for i, r in enumerate(range(170, 700, 76)):
+            d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=hex2rgb(och(a0, 0.45 + 0.05 * i)) + (150 - i * 14,), width=3 if i % 3 == 0 else 1)
+        _blob(img, cx, cy, 330, 300, och(a0, 0.6), 0.28, 90)
+        d.rectangle([0, 0, W, 4], fill=hex2rgb(a0) + (255,))
+    elif t == "qirra":      # to'q fon, diagonal qirralar va tilla chiziqlar
+        img = _gradient(W, H, u.bg[0], u.bg[1], angle=120).convert("RGBA")
+        layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        dl = ImageDraw.Draw(layer)
+        o = rng.randint(-60, 60)
+        dl.polygon([(W * 0.62 + o, 0), (W, 0), (W, H * 0.55)], fill=(255, 255, 255, 14))
+        dl.polygon([(W * 0.80 + o, 0), (W, 0), (W, H * 0.30)], fill=hex2rgb(u.glow) + (46,))
+        dl.polygon([(0, H * 0.62), (0, H), (W * 0.30 - o, H)], fill=(255, 255, 255, 12))
+        dl.line([(W * 0.62 + o, 0), (W, H * 0.55)], fill=hex2rgb(u.glow) + (190,), width=2)
+        dl.line([(0, H * 0.62), (W * 0.30 - o, H)], fill=hex2rgb(u.glow) + (150,), width=2)
+        img.alpha_composite(layer)
+        ImageDraw.Draw(img).rectangle([0, H - 5, W, H], fill=hex2rgb(u.glow) + (255,))
+    elif t == "nur":        # qorong'i sahna, burchakdan tushgan chiroq nuri
+        img = Image.new("RGBA", (W, H), hex2rgb(toq(u.bg[0], 0.35)) + (255,))
+        layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        chap = rng.random() < 0.5
+        x0 = -40 if chap else W + 40
+        ImageDraw.Draw(layer).polygon([(x0, -40), (W * (0.95 if chap else 0.05), H * 0.30), (W * (0.70 if chap else 0.30), H + 60), (x0, H * 0.55)],
+                                      fill=hex2rgb(u.glow) + (58,))
+        img.alpha_composite(layer.filter(ImageFilter.GaussianBlur(38)))
+        _blob(img, x0, -20, 260, 200, u.glow, 0.5, 90)
+    elif t == "panel":      # raqamli panel: nozik to'r va nurli halqalar
+        img = _gradient(W, H, toq(u.bg[0], 0.2), u.bg[1], angle=90).convert("RGBA")
+        d = ImageDraw.Draw(img)
+        g = hex2rgb(u.acc[0])
+        for x in range(0, W, 64):
+            d.line([(x, 0), (x, H)], fill=g + (8,), width=1)
+        for y in range(0, H, 64):
+            d.line([(0, y), (W, y)], fill=g + (8,), width=1)
+        for _ in range(3):
+            cx, cy, r = rng.choice([rng.randint(-40, 160), rng.randint(W - 160, W + 40)]), rng.randint(40, H - 40), rng.randint(60, 150)
+            _blob(img, cx, cy, r, r, u.glow, 0.20, 50)
+            for rr in (r, int(r * 0.62)):
+                d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], outline=g + (60,), width=2)
+        d.rectangle([0, 0, W, 3], fill=g + (220,))
     elif t == "tekis":
         img = _gradient(W, H, u.bg[0], toq(u.bg[1], 0.15), angle=110).convert("RGBA")
         d = ImageDraw.Draw(img)
