@@ -19322,6 +19322,1384 @@
      "yakun": "Natijalar: 40; 49; 5; 36."
     }
    }
+  },
+  {
+   "mavzu": "To‘g‘ri burchakli uchburchakning yuzi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "To‘g‘ri burchakli uchburchak",
+      "matn": "Bir burchagi to‘g‘ri bo‘lgan uchburchak to‘g‘ri burchakli uchburchak deyiladi. To‘g‘ri burchakni tashkil qilgan ikki tomoni katetlar deyiladi.",
+      "misol": "Katetlar 6 va 8 sm.",
+      "savol": "To‘g‘ri burchakni tashkil qilgan tomonlar nima deyiladi?",
+      "javob": "katetlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘rtburchakni kesamiz",
+      "matn": "To‘g‘ri to‘rtburchakni diagonal bo‘ylab kessak, ikkita teng to‘g‘ri burchakli uchburchak hosil bo‘ladi.",
+      "misol": "6 va 8 tomonli to‘rtburchak yuzi 6 · 8 — 48.",
+      "savol": "6 · 8 nechaga teng?",
+      "javob": "48",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchburchak yuzi",
+      "matn": "To‘g‘ri burchakli uchburchak yuzi — katetlar ko‘paytmasining yarmi. Ya’ni to‘rtburchak yuzining yarmi.",
+      "misol": "S — 6 · 8 / 2 — 24 kv. sm.",
+      "savol": "48 / 2 nechaga teng?",
+      "javob": "24",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Boshqa misollar",
+      "matn": "Katetlari 10 va 12 bo‘lsa: 10 · 12 — 120, yarmi 60. Katetlari 9 va 4 bo‘lsa: 36 ning yarmi 18.",
+      "misol": "S — 60 kv. sm va S — 18 kv. sm.",
+      "savol": "120 / 2 nechaga teng?",
+      "javob": "60",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshiramiz",
+      "matn": "Ikkita bir xil uchburchakdan to‘rtburchak yasab, yuzini tekshiramiz. Ikki uchburchak yuzi to‘rtburchak yuziga teng.",
+      "misol": "24 + 24 — 48.",
+      "savol": "24 + 24 nechaga teng?",
+      "javob": "48",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "To‘g‘ri burchakli uchburchak yuzi — katetlar ko‘paytirilsin va ikkiga bo‘linsin. Birlik kv. sm.",
+    "misollar": [
+     {
+      "shart": "Katetlari 6 sm va 8 sm bo‘lgan to‘g‘ri burchakli uchburchak yuzi?",
+      "yechim": [
+       "Katetlarni ko‘paytiramiz: 6 · 8 — 48.",
+       "Yarmini olamiz: 48 / 2.",
+       "Javob 24 kv. sm."
+      ],
+      "javob": "24 kv. sm"
+     },
+     {
+      "shart": "Katetlari 10 sm va 12 sm bo‘lsa, yuzi?",
+      "yechim": [
+       "10 · 12 — 120.",
+       "120 / 2.",
+       "Javob 60 kv. sm."
+      ],
+      "javob": "60 kv. sm"
+     },
+     {
+      "shart": "Katetlari 9 sm va 4 sm bo‘lsa, yuzi?",
+      "yechim": [
+       "9 · 4 — 36.",
+       "36 / 2.",
+       "Javob 18 kv. sm."
+      ],
+      "javob": "18 kv. sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kesib ko‘ramiz",
+      "topshiriq": "Qog‘ozdan to‘rtburchak kesib, diagonal bo‘ylab ikkiga ajrating.",
+      "yechim": "Ikki uchburchak teng ekanini ko‘ring.",
+      "mahsulot": "qog‘oz va qaychi"
+     },
+     {
+      "nom": "Yuzni hisoblaymiz",
+      "topshiriq": "Uchta uchburchak yuzini toping.",
+      "yechim": "Katetlar ko‘paytmasining yarmi.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "To‘g‘ri burchakli uchburchakka masala tuzing.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Ikki uchburchak yuzini qo‘shib, to‘rtburchak yuzi bilan solishtiring.",
+      "yechim": "24 + 24 — 48.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "6 · 8 nechaga teng?",
+      "javob": "48"
+     },
+     {
+      "shart": "48 / 2 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "10 · 12 / 2 nechaga teng?",
+      "javob": "60"
+     },
+     {
+      "shart": "9 · 4 / 2 nechaga teng?",
+      "javob": "18"
+     },
+     {
+      "shart": "24 + 24 nechaga teng?",
+      "javob": "48"
+     },
+     {
+      "shart": "Uchburchak yuzi to‘rtburchak yuzidan necha marta kichik?",
+      "javob": "2 marta"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yarmini olmaydi",
+      "sabab": "to‘rtburchak yuzini yozadi",
+      "oldini_olish": "ko‘paytmani ikkiga bo‘lish"
+     },
+     {
+      "xato": "Katetlar o‘rniga uchinchi tomonni oladi",
+      "sabab": "tomonlarni adashtiradi",
+      "oldini_olish": "faqat katetlar"
+     },
+     {
+      "xato": "Birlikni yozmaydi",
+      "sabab": "kv. sm ni unutadi",
+      "oldini_olish": "yuz — kv. sm"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "uchburchak shaklidagi yer"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "tom shakli"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "uchburchakli naqsh"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Uchburchak naqshi»",
+     "muammo": "Uchburchaklardan naqsh yasab, yuzini qanday hisoblaymiz?",
+     "mahsulot": "uchburchak naqshi",
+     "bosqichlar": [
+      "uchburchak kesish",
+      "katetlarni o‘lchash",
+      "yuzni hisoblash",
+      "naqsh yasash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kesing",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "naqsh chiroyli",
+      "birlik yozilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Uchburchaklar vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "1-tog‘",
+       "matn": "Katetlar 6 va 8.",
+       "topshiriq": "Yuz?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "2-tog‘",
+       "matn": "Katetlar 10 va 12.",
+       "topshiriq": "Yuz?",
+       "javob": "60",
+       "rasm": ""
+      },
+      {
+       "nom": "3-tog‘",
+       "matn": "Katetlar 9 va 4.",
+       "topshiriq": "Yuz?",
+       "javob": "18",
+       "rasm": ""
+      },
+      {
+       "nom": "To‘rtburchak",
+       "matn": "6 va 8 tomonli.",
+       "topshiriq": "Yuz?",
+       "javob": "48",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi amalni tanladingiz?",
+      "Ikkiga bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Katet",
+      "tarif": "to‘g‘ri burchak tomoni"
+     },
+     {
+      "atama": "Uchburchak",
+      "tarif": "uch tomonli shakl"
+     },
+     {
+      "atama": "To‘g‘ri burchak",
+      "tarif": "90 daraja burchak"
+     },
+     {
+      "atama": "Yuz",
+      "tarif": "tekislik qismi"
+     },
+     {
+      "atama": "Diagonal",
+      "tarif": "qarama-qarshi uchlarni tutashtirgan kesma"
+     },
+     {
+      "atama": "Yarmi",
+      "tarif": "ikkiga bo‘lingan qism"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Uchburchak yuzi katetlar ko‘paytmasining yarmi",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "6 · 8 / 2 — 48",
+      "togri": false,
+      "izoh": "24"
+     },
+     {
+      "matn": "10 · 12 / 2 — 60",
+      "togri": true,
+      "izoh": "yuz"
+     },
+     {
+      "matn": "9 · 4 / 2 — 18",
+      "togri": true,
+      "izoh": "yuz"
+     },
+     {
+      "matn": "Diagonal to‘rtburchakni teng ikki uchburchakka bo‘ladi",
+      "togri": true,
+      "izoh": "kesish"
+     },
+     {
+      "matn": "Yuz sm bilan o‘lchanadi",
+      "togri": false,
+      "izoh": "kv. sm"
+     },
+     {
+      "matn": "24 + 24 — 48",
+      "togri": true,
+      "izoh": "tekshirish"
+     },
+     {
+      "matn": "Yarmini olish shart emas",
+      "togri": false,
+      "izoh": "kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Katet nima?",
+      "javob": "to‘g‘ri burchak tomoni"
+     },
+     {
+      "savol": "Uchburchak yuzi?",
+      "javob": "katetlar ko‘paytmasining yarmi"
+     },
+     {
+      "savol": "6 · 8?",
+      "javob": "48"
+     },
+     {
+      "savol": "48 / 2?",
+      "javob": "24"
+     },
+     {
+      "savol": "10 · 12 / 2?",
+      "javob": "60"
+     },
+     {
+      "savol": "9 · 4 / 2?",
+      "javob": "18"
+     },
+     {
+      "savol": "Yuz birligi?",
+      "javob": "kv. sm"
+     },
+     {
+      "savol": "Diagonal nima qiladi?",
+      "javob": "to‘rtburchakni ikkiga bo‘ladi"
+     },
+     {
+      "savol": "24 + 24?",
+      "javob": "48"
+     },
+     {
+      "savol": "Nechta katet bor?",
+      "javob": "ikkita"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Katet",
+      "matn": "Katetlarni top.",
+      "savol": "Qaysi tomonlar?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Katetlarni ko‘paytir.",
+      "savol": "6 · 8?"
+     },
+     {
+      "nom": "Yarmi",
+      "matn": "Ikkiga bo‘l.",
+      "savol": "48 / 2?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Ikkitasini qo‘sh.",
+      "savol": "24 + 24?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun uchburchak yuzi to‘rtburchak yuzining yarmi?",
+    "keys": {
+     "vaziyat": "Yer 6 va 8 m katetli to‘g‘ri burchakli uchburchak shaklida.",
+     "savollar": [
+      "Yer yuzi qancha?",
+      "Qaysi amallarni bajaramiz?"
+     ]
+    },
+    "tezis": "Yarmini ol — yuzni top",
+    "taqqoslash": {
+     "a": "To‘rtburchak yuzi",
+     "b": "Uchburchak yuzi",
+     "umumiy": [
+      "kv. sm bilan",
+      "tomonlar ko‘paytiriladi"
+     ],
+     "a_farq": [
+      "ko‘paytma",
+      "48"
+     ],
+     "b_farq": [
+      "ko‘paytmaning yarmi",
+      "24"
+     ]
+    },
+    "klaster": {
+     "markaz": "Uchburchak yuzi",
+     "shoxlar": [
+      {
+       "nom": "Katetlar",
+       "bandlar": [
+        "ikkita"
+       ]
+      },
+      {
+       "nom": "Ko‘paytma",
+       "bandlar": [
+        "katet · katet"
+       ]
+      },
+      {
+       "nom": "Yarmi",
+       "bandlar": [
+        "ikkiga bo‘lish"
+       ]
+      },
+      {
+       "nom": "Birlik",
+       "bandlar": [
+        "kv. sm"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men to‘rtburchakning yarmiman, to‘g‘ri burchagim bor. Men kimman?",
+     "javob": "to‘g‘ri burchakli uchburchak"
+    },
+    "hikmat": "Yarimi — uchburchak.",
+    "kalit_soz": "KATET",
+    "xato_yechim": {
+     "shart": "Katetlari 6 va 8. Yuzi?",
+     "xato": "48 kv. sm",
+     "togri": "24 kv. sm",
+     "sabab": "ko‘paytmaning yarmi olinadi"
+    },
+    "guruh_nomlari": [
+     "Uchburchakchilar",
+     "Hisobchilar",
+     "Chizmachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Uchburchaklar bog‘i»",
+     "topshiriq": "Guruh uchburchak yuzlarini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Katetlari 6 va 8 bo‘lgan uchburchak yuzi?",
+     "B": "Katetlari 10 va 12 bo‘lgan uchburchak yuzi?",
+     "C": "Katetlari 9 va 4 bo‘lgan uchburchak yuzini toping va tekshiring."
+    },
+    "sinkveyn": [
+     "Uchburchak",
+     "uchli, to‘g‘ri",
+     "kesadi, hisoblaydi, yarmini oladi",
+     "Yarmi — uchburchak",
+     "Burchak"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh uchburchak yuzini hisoblaydi.",
+     "qismlar": [
+      "1-guruh: 6 va 8",
+      "2-guruh: 10 va 12",
+      "3-guruh: 9 va 4",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 24; 60; 18; tekshirish 48."
+    }
+   }
+  },
+  {
+   "mavzu": "Ar va gektar – yuz o‘lchov birliklari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Katta yerlar",
+      "matn": "Dalalar va bog‘lar yuzini kv. sm bilan o‘lchash noqulay. Shuning uchun ar va gektar birliklari ishlatiladi.",
+      "misol": "Paxta dalasi yuzi gektar bilan o‘lchanadi.",
+      "savol": "Dala yuzi qanday birlikda o‘lchanadi?",
+      "javob": "gektarda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ar nima?",
+      "matn": "Tomoni 10 m bo‘lgan kvadratning yuzi 1 ar. 1 ar — 100 kv. m.",
+      "misol": "10 · 10 — 100 kv. m — 1 ar.",
+      "savol": "10 · 10 nechaga teng?",
+      "javob": "100",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Gektar nima?",
+      "matn": "Tomoni 100 m bo‘lgan kvadratning yuzi 1 gektar. 1 ga — 10000 kv. m — 100 ar.",
+      "misol": "100 · 100 — 10000.",
+      "savol": "100 · 100 nechaga teng?",
+      "javob": "10000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Almashtiramiz",
+      "matn": "Arni kv. m ga aylantirish uchun 100 ga ko‘paytiramiz. Gektarni arga aylantirish uchun ham 100 ga ko‘paytiramiz.",
+      "misol": "5 ar — 5 · 100 — 500 kv. m. 3 ga — 3 · 100 — 300 ar.",
+      "savol": "5 · 100 nechaga teng?",
+      "javob": "500",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Teskari almashtirish",
+      "matn": "Kichik birlikdan kattasiga o‘tish uchun 100 ga bo‘lamiz.",
+      "misol": "400 kv. m — 400 / 100 — 4 ar. 20000 kv. m — 2 ga.",
+      "savol": "400 / 100 nechaga teng?",
+      "javob": "4",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "1 ar — 100 kv. m. 1 ga — 100 ar — 10000 kv. m. Katta birlikka o‘tishda bo‘lamiz, kichigiga o‘tishda ko‘paytiramiz.",
+    "misollar": [
+     {
+      "shart": "5 ar necha kv. m?",
+      "yechim": [
+       "1 ar — 100 kv. m.",
+       "5 · 100.",
+       "Javob 500 kv. m."
+      ],
+      "javob": "500 kv. m"
+     },
+     {
+      "shart": "3 ga necha ar?",
+      "yechim": [
+       "1 ga — 100 ar.",
+       "3 · 100.",
+       "Javob 300 ar."
+      ],
+      "javob": "300 ar"
+     },
+     {
+      "shart": "400 kv. m necha ar?",
+      "yechim": [
+       "100 kv. m — 1 ar.",
+       "400 / 100.",
+       "Javob 4 ar."
+      ],
+      "javob": "4 ar"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Hovlini o‘lchaymiz",
+      "topshiriq": "Maktab hovlisi yuzini arda hisoblang.",
+      "yechim": "Yuzni 100 ga bo‘ling.",
+      "mahsulot": "o‘lchov lentasi"
+     },
+     {
+      "nom": "Jadval to‘ldiramiz",
+      "topshiriq": "Ar, gektar va kv. m jadvalini to‘ldiring.",
+      "yechim": "1 ga — 100 ar — 10000 kv. m.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Ar va gektarga masala tuzing.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Almashtirishni teskari amal bilan tekshiring.",
+      "yechim": "500 / 100 — 5.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "10 · 10 nechaga teng?",
+      "javob": "100"
+     },
+     {
+      "shart": "100 · 100 nechaga teng?",
+      "javob": "10000"
+     },
+     {
+      "shart": "5 · 100 nechaga teng?",
+      "javob": "500"
+     },
+     {
+      "shart": "3 · 100 nechaga teng?",
+      "javob": "300"
+     },
+     {
+      "shart": "400 / 100 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "20000 / 10000 nechaga teng?",
+      "javob": "2"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "1 ar ni 10 kv. m deb oladi",
+      "sabab": "tomon 10 m ekanini yuz bilan aralashtiradi",
+      "oldini_olish": "1 ar — 100 kv. m"
+     },
+     {
+      "xato": "Gektarni arga bo‘ladi",
+      "sabab": "yo‘nalishni adashtiradi",
+      "oldini_olish": "gektardan arga o‘tishda ko‘paytiramiz"
+     },
+     {
+      "xato": "Birlikni yozmaydi",
+      "sabab": "ar yoki ga ni unutadi",
+      "oldini_olish": "javobga birlik yozish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "dala va bog‘ yuzi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "yer maydoni"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "ekin maydoni"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening tomorqam»",
+     "muammo": "Tomorqa yuzini arda qanday hisoblaymiz?",
+     "mahsulot": "tomorqa rejasi",
+     "bosqichlar": [
+      "tomorqani o‘lchash",
+      "yuzini topish",
+      "arga aylantirish",
+      "reja chizish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "O‘lchang",
+      "Yuzni toping",
+      "Arga aylantiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "reja chiroyli",
+      "birlik yozilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Dala va bog‘»",
+     "bekatlar": [
+      {
+       "nom": "Bog‘",
+       "matn": "5 ar.",
+       "topshiriq": "Necha kv. m?",
+       "javob": "500",
+       "rasm": ""
+      },
+      {
+       "nom": "Dala",
+       "matn": "3 ga.",
+       "topshiriq": "Necha ar?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "Hovli",
+       "matn": "400 kv. m.",
+       "topshiriq": "Necha ar?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "Paxtazor",
+       "matn": "20000 kv. m.",
+       "topshiriq": "Necha ga?",
+       "javob": "2",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi birlik katta?",
+      "Ko‘paytirdingizmi yoki bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ar",
+      "tarif": "100 kv. m ga teng birlik"
+     },
+     {
+      "atama": "Gektar",
+      "tarif": "10000 kv. m ga teng birlik"
+     },
+     {
+      "atama": "Kv. m",
+      "tarif": "kvadrat metr"
+     },
+     {
+      "atama": "Dala",
+      "tarif": "ekin ekiladigan yer"
+     },
+     {
+      "atama": "Tomorqa",
+      "tarif": "uy yonidagi yer"
+     },
+     {
+      "atama": "Maydon",
+      "tarif": "yer yuzi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "1 ar — 100 kv. m",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "1 ga — 100 ar",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "1 ga — 1000 kv. m",
+      "togri": false,
+      "izoh": "10000"
+     },
+     {
+      "matn": "5 ar — 500 kv. m",
+      "togri": true,
+      "izoh": "5 · 100"
+     },
+     {
+      "matn": "3 ga — 30 ar",
+      "togri": false,
+      "izoh": "300 ar"
+     },
+     {
+      "matn": "400 kv. m — 4 ar",
+      "togri": true,
+      "izoh": "400 / 100"
+     },
+     {
+      "matn": "20000 kv. m — 2 ga",
+      "togri": true,
+      "izoh": "20000 / 10000"
+     },
+     {
+      "matn": "Dala yuzi kv. sm bilan o‘lchanadi",
+      "togri": false,
+      "izoh": "ga bilan"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "1 ar necha kv. m?",
+      "javob": "100"
+     },
+     {
+      "savol": "1 ga necha ar?",
+      "javob": "100"
+     },
+     {
+      "savol": "1 ga necha kv. m?",
+      "javob": "10000"
+     },
+     {
+      "savol": "5 ar necha kv. m?",
+      "javob": "500"
+     },
+     {
+      "savol": "3 ga necha ar?",
+      "javob": "300"
+     },
+     {
+      "savol": "400 kv. m necha ar?",
+      "javob": "4"
+     },
+     {
+      "savol": "20000 kv. m necha ga?",
+      "javob": "2"
+     },
+     {
+      "savol": "Gektardan arga o‘tishda?",
+      "javob": "100 ga ko‘paytiramiz"
+     },
+     {
+      "savol": "Kv. m dan arga o‘tishda?",
+      "javob": "100 ga bo‘lamiz"
+     },
+     {
+      "savol": "Dala yuzi birligi?",
+      "javob": "gektar"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ar",
+      "matn": "Arni top.",
+      "savol": "100 kv. m?"
+     },
+     {
+      "nom": "Gektar",
+      "matn": "Gektarni top.",
+      "savol": "100 ar?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Kichik birlikka o‘t.",
+      "savol": "5 · 100?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "Katta birlikka o‘t.",
+      "savol": "400 / 100?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun katta yerlar ar va gektarda o‘lchanadi?",
+    "keys": {
+     "vaziyat": "Fermer dalasi 3 gektar. Uni arda va kv. m da bilmoqchi.",
+     "savollar": [
+      "3 ga necha ar?",
+      "Qaysi amalni bajaramiz?"
+     ]
+    },
+    "tezis": "Katta yer — katta birlik",
+    "taqqoslash": {
+     "a": "Ar",
+     "b": "Gektar",
+     "umumiy": [
+      "yuz birligi",
+      "kv. m dan katta"
+     ],
+     "a_farq": [
+      "100 kv. m",
+      "bog‘ va hovli"
+     ],
+     "b_farq": [
+      "10000 kv. m",
+      "dala"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yuz birliklari",
+     "shoxlar": [
+      {
+       "nom": "Kv. m",
+       "bandlar": [
+        "kichik"
+       ]
+      },
+      {
+       "nom": "Ar",
+       "bandlar": [
+        "100 kv. m"
+       ]
+      },
+      {
+       "nom": "Gektar",
+       "bandlar": [
+        "100 ar"
+       ]
+      },
+      {
+       "nom": "Almashtirish",
+       "bandlar": [
+        "100 ga ko‘paytirish yoki bo‘lish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 100 kv. m ga tengman. Men kimman?",
+     "javob": "ar"
+    },
+    "hikmat": "Katta yer — gektar.",
+    "kalit_soz": "GEKTAR",
+    "xato_yechim": {
+     "shart": "3 ga necha ar?",
+     "xato": "30 ar",
+     "togri": "300 ar",
+     "sabab": "1 ga — 100 ar"
+    },
+    "guruh_nomlari": [
+     "Dehqonlar",
+     "Hisobchilar",
+     "O‘lchovchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yer hisobi»",
+     "topshiriq": "Guruh yer yuzlarini almashtiradi."
+    },
+    "vazifalar": {
+     "A": "5 ar necha kv. m?",
+     "B": "3 ga necha ar?",
+     "C": "400 kv. m necha ar? 20000 kv. m necha ga?"
+    },
+    "sinkveyn": [
+     "Gektar",
+     "katta, keng",
+     "ekadi, o‘lchaydi, hisoblaydi",
+     "Yer — boylik",
+     "Maydon"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yuz birliklarini almashtiradi.",
+     "qismlar": [
+      "1-guruh: ar — kv. m",
+      "2-guruh: ga — ar",
+      "3-guruh: kv. m — ar",
+      "4-guruh: kv. m — ga"
+     ],
+     "yakun": "Natijalar: 500; 300; 4; 2."
+    }
+   }
+  },
+  {
+   "mavzu": "“Shakllarning yuzlari” loyihasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Loyiha nima?",
+      "matn": "Loyiha — bir maqsad bilan bajariladigan ish. Bu loyihada shakllarning yuzini o‘lchab, hisoblab, albom yasaymiz.",
+      "misol": "Maqsad: shakllar yuzlari albomi.",
+      "savol": "Loyiha nima?",
+      "javob": "bir maqsadli ish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Shakl tanlaymiz",
+      "matn": "Albom uchun uchta shakl tanlaymiz: to‘g‘ri to‘rtburchak, kvadrat va to‘g‘ri burchakli uchburchak.",
+      "misol": "To‘rtburchak 8 va 5, kvadrat 7, uchburchak katetlari 6 va 8.",
+      "savol": "Nechta shakl tanladik?",
+      "javob": "uchta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yuzlarni hisoblaymiz",
+      "matn": "Har shakl yuzini formula bilan topamiz.",
+      "misol": "8 · 5 — 40; 7 · 7 — 49; 6 · 8 / 2 — 24.",
+      "savol": "7 · 7 nechaga teng?",
+      "javob": "49",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Jami yuz",
+      "matn": "Barcha shakllar yuzini qo‘shib, jami yuzni topamiz.",
+      "misol": "40 + 49 + 24 — 113 kv. sm.",
+      "savol": "40 + 49 + 24 nechaga teng?",
+      "javob": "113",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Taqdimot",
+      "matn": "Albomni sinfga taqdim etamiz: shakl, o‘lchov, formula va javobni ko‘rsatamiz.",
+      "misol": "Har sahifada shakl, formula, javob bo‘ladi.",
+      "savol": "Har sahifada nimalar bo‘ladi?",
+      "javob": "shakl, formula, javob",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Loyiha: shakl tanla, o‘lcha, formula bilan yuzni hisobla, tekshir, albom yasa va taqdim et.",
+    "misollar": [
+     {
+      "shart": "To‘rtburchak 8 va 5, kvadrat tomoni 7. Yuzlarini toping.",
+      "yechim": [
+       "To‘rtburchak: 8 · 5 — 40.",
+       "Kvadrat: 7 · 7 — 49.",
+       "Javob 40 va 49 kv. sm."
+      ],
+      "javob": "40 va 49 kv. sm"
+     },
+     {
+      "shart": "Katetlari 6 va 8 bo‘lgan uchburchak yuzi?",
+      "yechim": [
+       "6 · 8 — 48.",
+       "48 / 2.",
+       "Javob 24 kv. sm."
+      ],
+      "javob": "24 kv. sm"
+     },
+     {
+      "shart": "Uchala shakl jami yuzi?",
+      "yechim": [
+       "40 + 49 — 89.",
+       "89 + 24.",
+       "Javob 113 kv. sm."
+      ],
+      "javob": "113 kv. sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "O‘lchash",
+      "topshiriq": "Tanlangan shakllarning tomonlarini o‘lchang.",
+      "yechim": "O‘lchovlar jadvalga yoziladi.",
+      "mahsulot": "chizg‘ich va jadval"
+     },
+     {
+      "nom": "Hisoblash",
+      "topshiriq": "Har shakl yuzini hisoblang.",
+      "yechim": "Formula va javob yoziladi.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Albom yasash",
+      "topshiriq": "Shakl, formula va javobni albomga joylang.",
+      "yechim": "Albom chiroyli bo‘lsin.",
+      "mahsulot": "albom varag‘i"
+     },
+     {
+      "nom": "Taqdimot",
+      "topshiriq": "Albomni sinfga taqdim eting.",
+      "yechim": "Savollarga javob bering.",
+      "mahsulot": "albom"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "8 · 5 nechaga teng?",
+      "javob": "40"
+     },
+     {
+      "shart": "7 · 7 nechaga teng?",
+      "javob": "49"
+     },
+     {
+      "shart": "6 · 8 / 2 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "40 + 49 + 24 nechaga teng?",
+      "javob": "113"
+     },
+     {
+      "shart": "5 ar necha kv. m?",
+      "javob": "500"
+     },
+     {
+      "shart": "Uchburchak yuzi qanday topiladi?",
+      "javob": "katetlar ko‘paytmasining yarmi"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Formulani aralashtiradi",
+      "sabab": "shakl turini adashtiradi",
+      "oldini_olish": "shaklga mos formula"
+     },
+     {
+      "xato": "Birlikni yozmaydi",
+      "sabab": "kv. sm ni unutadi",
+      "oldini_olish": "birlik yozish"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "hisobni qayta ko‘rish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "albom yasash"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "shakllarni bo‘yash"
+     },
+     {
+      "fan": "Ona tili",
+      "boglanish": "taqdimot nutqi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Shakllarning yuzlari»",
+     "muammo": "Shakllar yuzlari albomini qanday yasaymiz?",
+     "mahsulot": "yuzlar albomi",
+     "bosqichlar": [
+      "shakllarni tanlash",
+      "o‘lchash",
+      "yuzlarni hisoblash",
+      "albom yasash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Shakl tanlang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "albom chiroyli",
+      "birlik yozilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Shakllar galereyasi»",
+     "bekatlar": [
+      {
+       "nom": "1-zal",
+       "matn": "To‘rtburchak 8 va 5.",
+       "topshiriq": "Yuz?",
+       "javob": "40",
+       "rasm": ""
+      },
+      {
+       "nom": "2-zal",
+       "matn": "Kvadrat tomoni 7.",
+       "topshiriq": "Yuz?",
+       "javob": "49",
+       "rasm": ""
+      },
+      {
+       "nom": "3-zal",
+       "matn": "Katetlar 6 va 8.",
+       "topshiriq": "Yuz?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "Xazina",
+       "matn": "Uchala yuz yig‘indisi.",
+       "topshiriq": "Jami?",
+       "javob": "113",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi shaklni yaxshi bildingiz?",
+      "Qaysi formula qiyin edi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Loyiha",
+      "tarif": "maqsadli ish"
+     },
+     {
+      "atama": "Yuz",
+      "tarif": "tekislik qismi"
+     },
+     {
+      "atama": "Formula",
+      "tarif": "hisoblash qoidasi"
+     },
+     {
+      "atama": "Albom",
+      "tarif": "rasmlar to‘plami"
+     },
+     {
+      "atama": "Taqdimot",
+      "tarif": "ishni namoyish etish"
+     },
+     {
+      "atama": "Jami",
+      "tarif": "hammasining yig‘indisi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "To‘rtburchak yuzi 8 · 5 — 40",
+      "togri": true,
+      "izoh": "yuz"
+     },
+     {
+      "matn": "Kvadrat yuzi 7 · 7 — 49",
+      "togri": true,
+      "izoh": "yuz"
+     },
+     {
+      "matn": "Uchburchak yuzi 6 · 8 — 48",
+      "togri": false,
+      "izoh": "48 / 2 — 24"
+     },
+     {
+      "matn": "Jami yuz 113",
+      "togri": true,
+      "izoh": "40 + 49 + 24"
+     },
+     {
+      "matn": "Loyihada taqdimot kerak emas",
+      "togri": false,
+      "izoh": "kerak"
+     },
+     {
+      "matn": "Albomda formula bo‘ladi",
+      "togri": true,
+      "izoh": "javob bilan"
+     },
+     {
+      "matn": "Yuz kv. sm bilan o‘lchanadi",
+      "togri": true,
+      "izoh": "birlik"
+     },
+     {
+      "matn": "Tekshirish shart emas",
+      "togri": false,
+      "izoh": "kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Loyiha nima?",
+      "javob": "maqsadli ish"
+     },
+     {
+      "savol": "To‘rtburchak yuzi?",
+      "javob": "uzunlik · kenglik"
+     },
+     {
+      "savol": "Kvadrat yuzi?",
+      "javob": "tomon · tomon"
+     },
+     {
+      "savol": "Uchburchak yuzi?",
+      "javob": "katetlar ko‘paytmasining yarmi"
+     },
+     {
+      "savol": "8 · 5?",
+      "javob": "40"
+     },
+     {
+      "savol": "7 · 7?",
+      "javob": "49"
+     },
+     {
+      "savol": "6 · 8 / 2?",
+      "javob": "24"
+     },
+     {
+      "savol": "40 + 49 + 24?",
+      "javob": "113"
+     },
+     {
+      "savol": "Yuz birligi?",
+      "javob": "kv. sm"
+     },
+     {
+      "savol": "Albom nima uchun?",
+      "javob": "natijani ko‘rsatish uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Tanla",
+      "matn": "Shaklni tanla.",
+      "savol": "Qaysi shakl?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Tomonni o‘lcha.",
+      "savol": "Necha sm?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yuzni top.",
+      "savol": "8 · 5?"
+     },
+     {
+      "nom": "Taqdim et",
+      "matn": "Albomni ko‘rsat.",
+      "savol": "Nima chiqdi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun loyihada o‘lchov va hisobni tekshiramiz?",
+    "keys": {
+     "vaziyat": "Sinf shakllar yuzi albomini tayyorlayapti.",
+     "savollar": [
+      "Qaysi shakllarni tanlaymiz?",
+      "Jami yuz qancha?"
+     ]
+    },
+    "tezis": "O‘lcha, hisobla, ko‘rsat",
+    "taqqoslash": {
+     "a": "Hisoblash",
+     "b": "Taqdimot",
+     "umumiy": [
+      "loyiha bosqichi",
+      "guruh ishi"
+     ],
+     "a_farq": [
+      "formula",
+      "javob topiladi"
+     ],
+     "b_farq": [
+      "namoyish",
+      "javob tushuntiriladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yuzlar loyihasi",
+     "shoxlar": [
+      {
+       "nom": "Shakllar",
+       "bandlar": [
+        "to‘rtburchak",
+        "kvadrat",
+        "uchburchak"
+       ]
+      },
+      {
+       "nom": "Hisob",
+       "bandlar": [
+        "formula",
+        "birlik"
+       ]
+      },
+      {
+       "nom": "Albom",
+       "bandlar": [
+        "rasm",
+        "javob"
+       ]
+      },
+      {
+       "nom": "Taqdimot",
+       "bandlar": [
+        "sinfga ko‘rsatish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men shakllar yuzlarini bir joyga yig‘aman. Men kimman?",
+     "javob": "albom"
+    },
+    "hikmat": "O‘lcha, hisobla, ko‘rsat.",
+    "kalit_soz": "LOYIHA",
+    "xato_yechim": {
+     "shart": "Katetlari 6 va 8. Uchburchak yuzi?",
+     "xato": "48",
+     "togri": "24",
+     "sabab": "ko‘paytmaning yarmi olinadi"
+    },
+    "guruh_nomlari": [
+     "Loyihachilar",
+     "Hisobchilar",
+     "Chizmachilar",
+     "Taqdimotchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yuzlar albomi»",
+     "topshiriq": "Guruh albom yasab, sinfga taqdim etadi."
+    },
+    "vazifalar": {
+     "A": "To‘rtburchak 8 va 5, kvadrat 7. Yuzlarini toping.",
+     "B": "Katetlari 6 va 8 uchburchak yuzini toping.",
+     "C": "Uchala shakl jami yuzini toping va albom yasang."
+    },
+    "sinkveyn": [
+     "Loyiha",
+     "aniq, chiroyli",
+     "o‘lchaydi, hisoblaydi, ko‘rsatadi",
+     "Ish — ko‘rik",
+     "Shakl"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh albom bo‘limlarini tayyorlaydi.",
+     "qismlar": [
+      "1-guruh: to‘rtburchak",
+      "2-guruh: kvadrat",
+      "3-guruh: uchburchak",
+      "4-guruh: jami yuz"
+     ],
+     "yakun": "Natijalar: 40; 49; 24; jami 113."
+    }
+   }
   }
  ]
 }
