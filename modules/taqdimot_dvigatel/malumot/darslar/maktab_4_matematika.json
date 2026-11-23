@@ -8293,6 +8293,1391 @@
      "yakun": "Natijalar: 42; 70; 36; 16."
     }
    }
+  },
+  {
+   "mavzu": "Xonalar va sinflar. Million",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Million nima?",
+      "matn": "Million — bir mingta mingdan iborat son. 1000 ming bo‘lsa, bu 1 million bo‘ladi. Million juda katta son: shahar aholisi, daryo uzunligi millionlab bo‘lishi mumkin.",
+      "misol": "1000 · 1000 — 1000000. Bu — bir million.",
+      "savol": "1000 ming nechaga teng?",
+      "javob": "1000000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Milliongacha sanash",
+      "matn": "999999 dan keyin 1000000 keladi. 999999 — oltita raqamli eng katta son. 1000000 — yettita raqamli eng kichik son.",
+      "misol": "999999 + 1 — 1000000. 1000000 − 1 — 999999.",
+      "savol": "999999 dan keyin qaysi son keladi?",
+      "javob": "1000000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Million nechta nol?",
+      "matn": "Bir million yozilganda 1 raqamidan keyin oltita nol turadi. Shuning uchun 1000000 yetti xonali son.",
+      "misol": "1000000: bitta 1 va oltita 0, jami 7 ta raqam.",
+      "savol": "1000000 nechta raqamdan iborat?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bir nechta million",
+      "matn": "2 million — 2000000, 3 million — 3000000. Million oldiga son qo‘ysak, nechta million ekanini bilamiz.",
+      "misol": "2 million — 2000000. 3 million 500 ming — 3500000.",
+      "savol": "3 million nechaga teng?",
+      "javob": "3000000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Million yarmi",
+      "matn": "Yarim million — 500000. Ikkita yarim million — bir million.",
+      "misol": "500000 + 500000 — 1000000.",
+      "savol": "500000 + 500000 nechaga teng?",
+      "javob": "1000000",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "1000 ming — bir million. 999999 dan keyin 1000000 keladi. Million — yettita raqamli son.",
+    "misollar": [
+     {
+      "shart": "1000 · 1000 ni hisoblang.",
+      "yechim": [
+       "1000 · 1000 — bir ming marta mingta.",
+       "Natija 1000000.",
+       "Bu — bir million."
+      ],
+      "javob": "1000000"
+     },
+     {
+      "shart": "999999 dan keyingi sonni toping.",
+      "yechim": [
+       "999999 + 1.",
+       "Oxirgi raqam 9 dan 0 ga o‘tadi, olib o‘tiladi.",
+       "Javob 1000000."
+      ],
+      "javob": "1000000"
+     },
+     {
+      "shart": "3 million 500 ming sonini raqamlarda yozing.",
+      "yechim": [
+       "3 million — 3000000.",
+       "500 ming — 500000.",
+       "Yig‘indi 3500000."
+      ],
+      "javob": "3500000"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Million poygasi",
+      "topshiriq": "Mingtadan sanab milliongacha yetib borishni tasavvur qiling.",
+      "yechim": "1000 ming — bir million.",
+      "mahsulot": "sanash varag‘i"
+     },
+     {
+      "nom": "Nollar sanog‘i",
+      "topshiriq": "1000000 da nechta nol bor? Hisoblang.",
+      "yechim": "Oltita nol.",
+      "mahsulot": "yozuv varag‘i"
+     },
+     {
+      "nom": "Katta sonlar",
+      "topshiriq": "Sinfingizda, shaharda, mamlakatda nechta odam borligini taxmin qiling.",
+      "yechim": "Taxminlar solishtiriladi.",
+      "mahsulot": "taxmin varag‘i"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 1000000 ni olti xonali dedi. Xato qayerda?",
+      "yechim": "1000000 yetti xonali.",
+      "mahsulot": "tushuntirish"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1000 · 1000 nechaga teng?",
+      "javob": "1000000"
+     },
+     {
+      "shart": "999999 + 1 nechaga teng?",
+      "javob": "1000000"
+     },
+     {
+      "shart": "1000000 − 1 nechaga teng?",
+      "javob": "999999"
+     },
+     {
+      "shart": "500000 + 500000 nechaga teng?",
+      "javob": "1000000"
+     },
+     {
+      "shart": "1000000 nechta raqamdan iborat?",
+      "javob": "7"
+     },
+     {
+      "shart": "2 million nechaga teng?",
+      "javob": "2000000"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Nollarni noto‘g‘ri sanaydi",
+      "sabab": "e’tiborsiz yozadi",
+      "oldini_olish": "oltita nol deb eslash"
+     },
+     {
+      "xato": "Millionni olti xonali deydi",
+      "sabab": "raqamlarni sanamaydi",
+      "oldini_olish": "raqamlarni sanash"
+     },
+     {
+      "xato": "999999 ni million deb o‘ylaydi",
+      "sabab": "bir tushib qoldiradi",
+      "oldini_olish": "999999 + 1 — million"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "shahar va mamlakat aholisi"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "katta sonlar tabiatda"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "katta narxlar va masofalar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Million plakati»",
+     "muammo": "Million sonini qanday qilib rasm bilan tushuntiramiz?",
+     "mahsulot": "million plakati",
+     "bosqichlar": [
+      "nollarni sanash",
+      "mingtalab ko‘rsatish",
+      "rasm chizish",
+      "tekshirish",
+      "plakat chiqarish"
+     ],
+     "guruh_vazifalari": [
+      "Nollarni sanang",
+      "Ko‘rsating",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "son to‘g‘ri",
+      "nollar to‘g‘ri",
+      "plakat chiroyli",
+      "tushuntirish ravshan",
+      "ishtirok bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Million shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "1000 ming.",
+       "topshiriq": "Nechaga teng?",
+       "javob": "1000000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "999999 dan keyingi son.",
+       "topshiriq": "Qaysi son?",
+       "javob": "1000000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "1000000 dagi raqamlar soni.",
+       "topshiriq": "Nechta?",
+       "javob": "7",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "500000 + 500000.",
+       "topshiriq": "Natija?",
+       "javob": "1000000",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Million nechta nolli?",
+      "Million nechta xonali?",
+      "Eng katta olti xonali son?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Million",
+      "tarif": "bir ming ming"
+     },
+     {
+      "atama": "Nol",
+      "tarif": "bo‘sh xonani bildiruvchi raqam"
+     },
+     {
+      "atama": "Xona",
+      "tarif": "raqamning sondagi o‘rni"
+     },
+     {
+      "atama": "Olti xonali son",
+      "tarif": "oltita raqamli son"
+     },
+     {
+      "atama": "Yetti xonali son",
+      "tarif": "yettita raqamli son"
+     },
+     {
+      "atama": "Yarim million",
+      "tarif": "500000"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "1000 ming — bir million",
+      "togri": true,
+      "izoh": "1000 · 1000"
+     },
+     {
+      "matn": "1000000 oltita raqamdan iborat",
+      "togri": false,
+      "izoh": "yetti"
+     },
+     {
+      "matn": "999999 dan keyin 1000000 keladi",
+      "togri": true,
+      "izoh": "bir qo‘shiladi"
+     },
+     {
+      "matn": "1000000 da oltita nol bor",
+      "togri": true,
+      "izoh": "bitta 1 va oltita 0"
+     },
+     {
+      "matn": "Yarim million — 50000",
+      "togri": false,
+      "izoh": "500000"
+     },
+     {
+      "matn": "500000 + 500000 — 1000000",
+      "togri": true,
+      "izoh": "ikki yarim"
+     },
+     {
+      "matn": "Million — to‘rt xonali son",
+      "togri": false,
+      "izoh": "yetti xonali"
+     },
+     {
+      "matn": "1000000 − 1 — 999999",
+      "togri": true,
+      "izoh": "oldingi son"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "1000 ming nima?",
+      "javob": "million"
+     },
+     {
+      "savol": "Million nechta nolli?",
+      "javob": "oltita"
+     },
+     {
+      "savol": "Million nechta xonali?",
+      "javob": "yetti"
+     },
+     {
+      "savol": "999999 dan keyin?",
+      "javob": "1000000"
+     },
+     {
+      "savol": "1000000 − 1?",
+      "javob": "999999"
+     },
+     {
+      "savol": "Yarim million?",
+      "javob": "500000"
+     },
+     {
+      "savol": "2 million?",
+      "javob": "2000000"
+     },
+     {
+      "savol": "3 million?",
+      "javob": "3000000"
+     },
+     {
+      "savol": "1000 · 1000?",
+      "javob": "1000000"
+     },
+     {
+      "savol": "Eng katta olti xonali son?",
+      "javob": "999999"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Sana",
+      "matn": "Mingtalab sana.",
+      "savol": "1000, 2000, 3000..."
+     },
+     {
+      "nom": "Million",
+      "matn": "1000 ta mingni top.",
+      "savol": "1000 · 1000?"
+     },
+     {
+      "nom": "Nol",
+      "matn": "Nollarni sana.",
+      "savol": "Nechta nol?"
+     },
+     {
+      "nom": "Xona",
+      "matn": "Xonalarni sana.",
+      "savol": "Nechta raqam?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun 999999 dan keyingi son 1000000 bo‘ladi?",
+    "keys": {
+     "vaziyat": "Katta shaharda bir million aholi yashaydi.",
+     "savollar": [
+      "Million raqamlarda qanday yoziladi?",
+      "Nechta nol kerak?"
+     ]
+    },
+    "tezis": "Million — mingning mingtasi",
+    "taqqoslash": {
+     "a": "Olti xonali son",
+     "b": "Million",
+     "umumiy": [
+      "katta sonlar",
+      "xonalar bilan yoziladi"
+     ],
+     "a_farq": [
+      "eng katta 999999",
+      "oltita raqam"
+     ],
+     "b_farq": [
+      "1000000",
+      "yettita raqam"
+     ]
+    },
+    "klaster": {
+     "markaz": "Million",
+     "shoxlar": [
+      {
+       "nom": "Hosil bo‘lishi",
+       "bandlar": [
+        "1000 ming",
+        "999999 + 1"
+       ]
+      },
+      {
+       "nom": "Yozilishi",
+       "bandlar": [
+        "1 va oltita nol"
+       ]
+      },
+      {
+       "nom": "Xonalar",
+       "bandlar": [
+        "yetti xonali"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "aholi",
+        "masofa"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men mingning mingtasiman. Men kimman?",
+     "javob": "million"
+    },
+    "hikmat": "Million — mingtalab ming.",
+    "kalit_soz": "MILLION",
+    "xato_yechim": {
+     "shart": "1000000 nechta raqamdan iborat?",
+     "xato": "6",
+     "togri": "7",
+     "sabab": "1 raqami va oltita nol, jami 7"
+    },
+    "guruh_nomlari": [
+     "Millionchilar",
+     "Nolchilar",
+     "Sanoqchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Million shahri»",
+     "topshiriq": "Guruh milliongacha sanashni tasavvur qilib, nollar sonini aniqlaydi."
+    },
+    "vazifalar": {
+     "A": "1000 · 1000 va 999999 + 1 ni hisoblang.",
+     "B": "1000000 dagi nollar va raqamlar sonini aniqlang.",
+     "C": "3 million 500 ming sonini yozing."
+    },
+    "sinkveyn": [
+     "Million",
+     "katta, ko‘p",
+     "o‘sadi, sanaladi, yoziladi",
+     "Mingtalab ming",
+     "Son"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh katta sonlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 1000 · 1000",
+      "2-guruh: 999999 + 1",
+      "3-guruh: 500000 + 500000",
+      "4-guruh: 1000000 − 1"
+     ],
+     "yakun": "Natijalar: 1000000; 1000000; 1000000; 999999."
+    }
+   }
+  },
+  {
+   "mavzu": "Xonalar va sinflar. Millionlar sinfi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sinflar",
+      "matn": "Ko‘p xonali sonni uchtadan raqamga bo‘lib, sinflarga ajratamiz. Birinchi sinf — birliklar sinfi, ikkinchi — minglar sinfi, uchinchi — millionlar sinfi. Har sinfda uchta xona bor.",
+      "misol": "2345678: 2 | 345 | 678. Millionlar sinfi — 2, minglar sinfi — 345, birliklar sinfi — 678.",
+      "savol": "2345678 da necha sinf bor?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sinf xonalari",
+      "matn": "Har bir sinfda xonalar: birliklar, o‘nliklar, yuzliklar. Minglar sinfida minglar, o‘n minglar, yuz minglar. Millionlar sinfida millionlar, o‘n millionlar, yuz millionlar.",
+      "misol": "12345678: 12 million, 345 ming, 678. O‘n millionlik xonada 1, millionlik xonada 2.",
+      "savol": "12345678 da nechta o‘n million bor?",
+      "javob": "1",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nolli sinflar",
+      "matn": "Sinfda nol bo‘lsa, shu xonalar bo‘sh qoladi. Sinfni uchta raqam bilan to‘ldirish uchun nollar yozamiz.",
+      "misol": "35004002: millionlar sinfi 35, minglar sinfi 004 — ya’ni 4 ming, birliklar sinfi 002 — ya’ni 2.",
+      "savol": "35004002 da minglar sinfidagi son nechta?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonni sinflarga ajratish",
+      "matn": "Sonni o‘ng tomondan boshlab uchtadan ajratamiz. Shunda har bir sinfni osongina o‘qiymiz.",
+      "misol": "7090005: 7 | 090 | 005. Yetti million, to‘qson ming, besh.",
+      "savol": "7090005 ni sinflarga ajrating. Millionlar sinfida nima bor?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yig‘indi ko‘rinishi",
+      "matn": "Sonni sinflar yig‘indisi ko‘rinishida yozish mumkin: millionlar, minglar va birliklar yig‘indisi.",
+      "misol": "2345678 — 2000000 + 345000 + 678.",
+      "savol": "2000000 + 345000 + 678 nechaga teng?",
+      "javob": "2345678",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "O‘ngdan chapga uchtadan ajrat: birliklar, minglar, millionlar sinfi. Nol bo‘lsa, sinfni nol bilan to‘ldiramiz.",
+    "misollar": [
+     {
+      "shart": "2345678 ni sinflarga ajrating.",
+      "yechim": [
+       "O‘ngdan uchtadan: 678.",
+       "Keyingi uchta: 345.",
+       "Qolgan: 2, ya’ni 2 | 345 | 678."
+      ],
+      "javob": "2 | 345 | 678"
+     },
+     {
+      "shart": "35004002 ni sinflarga ajrating.",
+      "yechim": [
+       "O‘ngdan uchtadan: 002.",
+       "Keyingi uchta: 004.",
+       "Qolgan: 35, ya’ni 35 | 004 | 002."
+      ],
+      "javob": "35 | 004 | 002"
+     },
+     {
+      "shart": "12345678 ni sinflar yig‘indisi ko‘rinishida yozing.",
+      "yechim": [
+       "Millionlar sinfi: 12 million — 12000000.",
+       "Minglar sinfi: 345 ming — 345000.",
+       "Birliklar sinfi: 678."
+      ],
+      "javob": "12000000 + 345000 + 678"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sinflarga ajratamiz",
+      "topshiriq": "Berilgan sonlarni o‘ngdan uchtadan ajrating.",
+      "yechim": "Natijalar doskada tekshiriladi.",
+      "mahsulot": "sonlar kartochkasi"
+     },
+     {
+      "nom": "Nolli sinflar",
+      "topshiriq": "35004002 dagi nollarni toping va ma’nosini ayting.",
+      "yechim": "Minglar sinfi — 4 ming, birliklar — 2.",
+      "mahsulot": "yozuv varag‘i"
+     },
+     {
+      "nom": "Yig‘indi ko‘rinishi",
+      "topshiriq": "7090005 ni sinflar yig‘indisi qilib yozing.",
+      "yechim": "7000000 + 90000 + 5.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 2345678 ni 23 | 456 | 78 deb ajratdi. Xato qayerda?",
+      "yechim": "O‘ngdan boshlab ajratish kerak: 2 | 345 | 678.",
+      "mahsulot": "tushuntirish"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2000000 + 345000 + 678 nechaga teng?",
+      "javob": "2345678"
+     },
+     {
+      "shart": "12000000 + 345000 + 678 nechaga teng?",
+      "javob": "12345678"
+     },
+     {
+      "shart": "35000000 + 4000 + 2 nechaga teng?",
+      "javob": "35004002"
+     },
+     {
+      "shart": "7000000 + 90000 + 5 nechaga teng?",
+      "javob": "7090005"
+     },
+     {
+      "shart": "Har sinfda nechta xona bor?",
+      "javob": "3"
+     },
+     {
+      "shart": "999999 + 1 nechaga teng?",
+      "javob": "1000000"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Sonni chapdan boshlab ajratadi",
+      "sabab": "sinflar noto‘g‘ri chiqadi",
+      "oldini_olish": "o‘ngdan boshlash"
+     },
+     {
+      "xato": "Nollarni yozmaydi",
+      "sabab": "sinfni uchta raqam bilan to‘ldirmaydi",
+      "oldini_olish": "nol bilan to‘ldirish"
+     },
+     {
+      "xato": "Sinf va xonani adashtiradi",
+      "sabab": "ikki tushunchani farqlamaydi",
+      "oldini_olish": "sinfda uchta xona bor"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "katta aholi va masofa sonlari"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "katta sonlarni o‘qish"
+     },
+     {
+      "fan": "Ona tili",
+      "boglanish": "sonlarni so‘z bilan yozish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinflar jadvali»",
+     "muammo": "Sinflar va xonalar jadvalini qanday qilib chiroyli chizamiz?",
+     "mahsulot": "sinflar jadvali",
+     "bosqichlar": [
+      "jadval chizish",
+      "sonlarni joylashtirish",
+      "rang berish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Jadval chizing",
+      "Sonlarni joylang",
+      "Bo‘yang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "jadval to‘g‘ri",
+      "sonlar to‘g‘ri",
+      "rang mos",
+      "chiroyli",
+      "tushuntirish ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sinflar saroyi»",
+     "bekatlar": [
+      {
+       "nom": "Birliklar zali",
+       "matn": "2345678 ning birliklar sinfi.",
+       "topshiriq": "Qaysi son?",
+       "javob": "678",
+       "rasm": ""
+      },
+      {
+       "nom": "Minglar zali",
+       "matn": "2345678 ning minglar sinfi.",
+       "topshiriq": "Qaysi son?",
+       "javob": "345",
+       "rasm": ""
+      },
+      {
+       "nom": "Millionlar zali",
+       "matn": "2345678 ning millionlar sinfi.",
+       "topshiriq": "Qaysi son?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "Nolli zal",
+       "matn": "35004002 ning minglar sinfi.",
+       "topshiriq": "Necha ming?",
+       "javob": "4",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Sinflarni qanday ajratdingiz?",
+      "Nolga e’tibor berdingizmi?",
+      "Nechta sinf bor?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sinf",
+      "tarif": "uchta xonadan iborat guruh"
+     },
+     {
+      "atama": "Birliklar sinfi",
+      "tarif": "birlik, o‘nlik, yuzlik"
+     },
+     {
+      "atama": "Minglar sinfi",
+      "tarif": "ming, o‘n ming, yuz ming"
+     },
+     {
+      "atama": "Millionlar sinfi",
+      "tarif": "million, o‘n million, yuz million"
+     },
+     {
+      "atama": "Xona",
+      "tarif": "raqamning o‘rni"
+     },
+     {
+      "atama": "Ajratish",
+      "tarif": "uchtadan guruhlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Har sinfda uchta xona bor",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "Sonni chapdan ajratamiz",
+      "togri": false,
+      "izoh": "o‘ngdan"
+     },
+     {
+      "matn": "2345678 da millionlar sinfi 2",
+      "togri": true,
+      "izoh": "2 | 345 | 678"
+     },
+     {
+      "matn": "Sinfda nol bo‘lsa, uni yozmaymiz",
+      "togri": false,
+      "izoh": "nol bilan to‘ldiramiz"
+     },
+     {
+      "matn": "35004002 da minglar sinfi 4 ming",
+      "togri": true,
+      "izoh": "004"
+     },
+     {
+      "matn": "Uchinchi sinf — millionlar sinfi",
+      "togri": true,
+      "izoh": "birliklar, minglar, millionlar"
+     },
+     {
+      "matn": "7090005 da millionlar sinfi 7",
+      "togri": true,
+      "izoh": "7 | 090 | 005"
+     },
+     {
+      "matn": "Sinflar sakkizta",
+      "togri": false,
+      "izoh": "uchta"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sinflar nomi?",
+      "javob": "birliklar, minglar, millionlar"
+     },
+     {
+      "savol": "Har sinfda nechta xona?",
+      "javob": "uchta"
+     },
+     {
+      "savol": "2345678 millionlar sinfi?",
+      "javob": "2"
+     },
+     {
+      "savol": "2345678 minglar sinfi?",
+      "javob": "345"
+     },
+     {
+      "savol": "2345678 birliklar sinfi?",
+      "javob": "678"
+     },
+     {
+      "savol": "35004002 minglar sinfi?",
+      "javob": "004"
+     },
+     {
+      "savol": "7090005 millionlar sinfi?",
+      "javob": "7"
+     },
+     {
+      "savol": "Qaysi tomondan ajratamiz?",
+      "javob": "o‘ngdan"
+     },
+     {
+      "savol": "2000000 + 345000 + 678?",
+      "javob": "2345678"
+     },
+     {
+      "savol": "Nol bo‘lsa nima qilamiz?",
+      "javob": "nol bilan to‘ldiramiz"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘ngdan",
+      "matn": "O‘ngdan boshla.",
+      "savol": "678 qaysi sinf?"
+     },
+     {
+      "nom": "Uchta",
+      "matn": "Uchtadan ajrat.",
+      "savol": "345 qaysi sinf?"
+     },
+     {
+      "nom": "Qolgan",
+      "matn": "Qolganini ol.",
+      "savol": "2 qaysi sinf?"
+     },
+     {
+      "nom": "Yig‘",
+      "matn": "Yig‘indi yoz.",
+      "savol": "2000000 + 345000 + 678?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun sonni o‘ngdan boshlab uchtadan ajratamiz?",
+    "keys": {
+     "vaziyat": "Shaharning aholisi 12345678 kishi.",
+     "savollar": [
+      "Sonni sinflarga qanday ajratamiz?",
+      "Millionlar sinfida nima bor?"
+     ]
+    },
+    "tezis": "Uchtadan — sinf",
+    "taqqoslash": {
+     "a": "Minglar sinfi",
+     "b": "Millionlar sinfi",
+     "umumiy": [
+      "uchta xona",
+      "uchta raqam"
+     ],
+     "a_farq": [
+      "ming, o‘n ming, yuz ming",
+      "ikkinchi sinf"
+     ],
+     "b_farq": [
+      "million, o‘n million, yuz million",
+      "uchinchi sinf"
+     ]
+    },
+    "klaster": {
+     "markaz": "Sinflar",
+     "shoxlar": [
+      {
+       "nom": "Birliklar",
+       "bandlar": [
+        "birlik",
+        "o‘nlik",
+        "yuzlik"
+       ]
+      },
+      {
+       "nom": "Minglar",
+       "bandlar": [
+        "ming",
+        "o‘n ming",
+        "yuz ming"
+       ]
+      },
+      {
+       "nom": "Millionlar",
+       "bandlar": [
+        "million",
+        "o‘n million",
+        "yuz million"
+       ]
+      },
+      {
+       "nom": "Ajratish",
+       "bandlar": [
+        "o‘ngdan uchtadan"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men uchta xonaning yig‘indisiman. Men kimman?",
+     "javob": "sinf"
+    },
+    "hikmat": "Uchtadan — uchinchi sinf.",
+    "kalit_soz": "SINF",
+    "xato_yechim": {
+     "shart": "2345678 da millionlar sinfi nechta?",
+     "xato": "23",
+     "togri": "2",
+     "sabab": "o‘ngdan uchtadan ajratsak 2 | 345 | 678"
+    },
+    "guruh_nomlari": [
+     "Sinfchilar",
+     "Xonachilar",
+     "Millionchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinflar jadvali»",
+     "topshiriq": "Guruh sonlarni sinflarga ajratib, jadvalga joylaydi."
+    },
+    "vazifalar": {
+     "A": "2345678 va 12345678 ni sinflarga ajrating.",
+     "B": "35004002 va 7090005 ni sinflarga ajrating.",
+     "C": "2345678 ni sinflar yig‘indisi ko‘rinishida yozing."
+    },
+    "sinkveyn": [
+     "Sinf",
+     "uchta, tartibli",
+     "guruhlaydi, ajratadi, o‘qitadi",
+     "Uchtadan",
+     "Xona"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sonlarni sinflarga ajratadi.",
+     "qismlar": [
+      "1-guruh: 2345678",
+      "2-guruh: 12345678",
+      "3-guruh: 35004002",
+      "4-guruh: 7090005"
+     ],
+     "yakun": "Natijalar: 2|345|678; 12|345|678; 35|004|002; 7|090|005."
+    }
+   }
+  },
+  {
+   "mavzu": "Ko‘p xonali sonlarning o‘qilishi va yozilishi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sonni o‘qish",
+      "matn": "Sonni o‘qishda chapdan boshlab sinflar bo‘yicha o‘qiymiz. Har sinfdagi sonni o‘qib, uning nomini aytamiz: million, ming. Birliklar sinfining nomi aytilmaydi.",
+      "misol": "2345678: ikki million uch yuz qirq besh ming olti yuz yetmish sakkiz.",
+      "savol": "2345678 ni qanday o‘qiymiz? Millionlar sinfida nima bor?",
+      "javob": "ikki million",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nolli sonni o‘qish",
+      "matn": "Nol bo‘lgan xonani o‘qimaymiz, ya’ni uni aytmaymiz. Faqat noldan farqli sinflar o‘qiladi.",
+      "misol": "35004002: o‘ttiz besh million to‘rt ming ikki. 7090005: yetti million to‘qson ming besh.",
+      "savol": "7090005 da millionlar sinfida nechta million bor?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonni yozish",
+      "matn": "Sonni yozish uchun sinflarni chapdan o‘ngga yozamiz. Sinfda raqam yetishmasa, nol bilan to‘ldiramiz.",
+      "misol": "Uch million besh yuz ming ikki yuz o‘n: 3 | 500 | 210 — 3500210.",
+      "savol": "Uch million besh yuz ming ikki yuz o‘n sonini yozing. Nechta raqam bo‘ladi?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qiyin yozilishlar",
+      "matn": "Sinflar orasida bo‘sh joy bo‘lsa, uni nol bilan to‘ldiramiz. Yigirma besh million sakkiz ming: 25 | 008 | 000 — 25008000.",
+      "misol": "To‘rt yuz ming uch yuz: 400 | 300 — 400300.",
+      "savol": "400300 sonini o‘qing. Minglar sinfi nechta?",
+      "javob": "400",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshirish",
+      "matn": "Yozilgan sonni qayta o‘qib tekshiramiz. O‘qilgan son so‘zlar bilan mos kelishi kerak. Raqamlar sonini ham sanaymiz.",
+      "misol": "25008000 ni o‘qiymiz: yigirma besh million sakkiz ming. Mos keldi.",
+      "savol": "25008000 nechta raqamdan iborat?",
+      "javob": "8",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Chapdan o‘qiymiz: millionlar sinfi, minglar sinfi, birliklar sinfi. Nol xonalarni aytmaymiz, yozishda esa nol bilan to‘ldiramiz.",
+    "misollar": [
+     {
+      "shart": "2345678 ni so‘z bilan yozing.",
+      "yechim": [
+       "Millionlar sinfi: ikki million.",
+       "Minglar sinfi: uch yuz qirq besh ming.",
+       "Birliklar sinfi: olti yuz yetmish sakkiz."
+      ],
+      "javob": "ikki million uch yuz qirq besh ming olti yuz yetmish sakkiz"
+     },
+     {
+      "shart": "Uch million besh yuz ming ikki yuz o‘n sonini raqam bilan yozing.",
+      "yechim": [
+       "3 million — 3.",
+       "Besh yuz ming — 500, ikki yuz o‘n — 210.",
+       "Son: 3500210."
+      ],
+      "javob": "3500210"
+     },
+     {
+      "shart": "Yigirma besh million sakkiz ming sonini yozing.",
+      "yechim": [
+       "25 million — 25.",
+       "Sakkiz ming — 008, birliklar sinfi — 000.",
+       "Son: 25008000."
+      ],
+      "javob": "25008000"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "O‘qish poygasi",
+      "topshiriq": "Berilgan sonlarni tez va to‘g‘ri o‘qing.",
+      "yechim": "Natijalar solishtiriladi.",
+      "mahsulot": "sonlar kartochkasi"
+     },
+     {
+      "nom": "Yozish poygasi",
+      "topshiriq": "Og‘zaki aytilgan sonlarni raqam bilan yozing.",
+      "yechim": "Natijalar doskada tekshiriladi.",
+      "mahsulot": "yozuv varag‘i"
+     },
+     {
+      "nom": "Nolli sonlar",
+      "topshiriq": "7090005 va 400300 ni o‘qing va ma’nosini tushuntiring.",
+      "yechim": "Yetti million to‘qson ming besh; to‘rt yuz ming uch yuz.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz yigirma besh million sakkiz mingni 2508000 deb yozdi. Xato qayerda?",
+      "yechim": "Nollar yetmagan: 25008000.",
+      "mahsulot": "tushuntirish"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Ikki million uch yuz qirq besh ming olti yuz yetmish sakkiz — qaysi son?",
+      "javob": "2345678"
+     },
+     {
+      "shart": "Uch million besh yuz ming ikki yuz o‘n — qaysi son?",
+      "javob": "3500210"
+     },
+     {
+      "shart": "Yigirma besh million sakkiz ming — qaysi son?",
+      "javob": "25008000"
+     },
+     {
+      "shart": "To‘rt yuz ming uch yuz — qaysi son?",
+      "javob": "400300"
+     },
+     {
+      "shart": "Yetti million to‘qson ming besh — qaysi son?",
+      "javob": "7090005"
+     },
+     {
+      "shart": "35004002 da nechta raqam bor?",
+      "javob": "8"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Nolli sinfni tashlab yuboradi",
+      "sabab": "yozishda nol qo‘ymaydi",
+      "oldini_olish": "sinfni uchta raqam bilan to‘ldirish"
+     },
+     {
+      "xato": "Sinf nomini aytmaydi",
+      "sabab": "million va ming so‘zini tushirib qoldiradi",
+      "oldini_olish": "har sinfdan keyin nomini aytish"
+     },
+     {
+      "xato": "O‘qishni o‘ngdan boshlaydi",
+      "sabab": "yo‘nalishni adashtiradi",
+      "oldini_olish": "chapdan boshlash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Ona tili",
+      "boglanish": "sonlarni so‘z bilan yozish"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "katta raqamlarni o‘qish"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "narx va masofani o‘qish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sonlar o‘qish kartochkalari»",
+     "muammo": "Katta sonlarni o‘qish va yozishni mashq qilish uchun qanday kartochkalar yasaymiz?",
+     "mahsulot": "o‘qish kartochkalari",
+     "bosqichlar": [
+      "sonlarni tanlash",
+      "so‘z bilan yozish",
+      "kartochka yasash",
+      "tekshirish",
+      "o‘ynash"
+     ],
+     "guruh_vazifalari": [
+      "Son tanlang",
+      "So‘z bilan yozing",
+      "Kartochka yasang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sonlar to‘g‘ri",
+      "so‘zlar to‘g‘ri",
+      "kartochka chiroyli",
+      "o‘yin qiziqarli",
+      "ishtirok bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Katta sonlar yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "Ikki million uch yuz qirq besh ming olti yuz yetmish sakkiz.",
+       "topshiriq": "Qaysi son?",
+       "javob": "2345678",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "Uch million besh yuz ming ikki yuz o‘n.",
+       "topshiriq": "Qaysi son?",
+       "javob": "3500210",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "Yigirma besh million sakkiz ming.",
+       "topshiriq": "Qaysi son?",
+       "javob": "25008000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "To‘rt yuz ming uch yuz.",
+       "topshiriq": "Qaysi son?",
+       "javob": "400300",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Nolli sinfga e’tibor berdingizmi?",
+      "Qaysi son qiyin bo‘ldi?",
+      "Qanday tekshirdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "O‘qish",
+      "tarif": "sonni so‘z bilan aytish"
+     },
+     {
+      "atama": "Yozish",
+      "tarif": "sonni raqam bilan yozish"
+     },
+     {
+      "atama": "Sinf",
+      "tarif": "uchta xonadan iborat guruh"
+     },
+     {
+      "atama": "Nol",
+      "tarif": "bo‘sh xona belgisi"
+     },
+     {
+      "atama": "Million",
+      "tarif": "mingning mingtasi"
+     },
+     {
+      "atama": "Ming",
+      "tarif": "yuzning o‘ntasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Sonni chapdan o‘qiymiz",
+      "togri": true,
+      "izoh": "sinflar bo‘yicha"
+     },
+     {
+      "matn": "Nol xonani aytib o‘qiymiz",
+      "togri": false,
+      "izoh": "aytmaymiz"
+     },
+     {
+      "matn": "25008000 — yigirma besh million sakkiz ming",
+      "togri": true,
+      "izoh": "25 | 008 | 000"
+     },
+     {
+      "matn": "Yigirma besh million sakkiz ming — 2508000",
+      "togri": false,
+      "izoh": "25008000"
+     },
+     {
+      "matn": "400300 — to‘rt yuz ming uch yuz",
+      "togri": true,
+      "izoh": "400 | 300"
+     },
+     {
+      "matn": "Sinfda raqam yetmasa, nol bilan to‘ldiramiz",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "7090005 — yetti million to‘qson ming besh",
+      "togri": true,
+      "izoh": "7 | 090 | 005"
+     },
+     {
+      "matn": "Birliklar sinfi nomini aytamiz: birlik",
+      "togri": false,
+      "izoh": "aytilmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sonni qaysi tomondan o‘qiymiz?",
+      "javob": "chapdan"
+     },
+     {
+      "savol": "2345678?",
+      "javob": "ikki million uch yuz qirq besh ming olti yuz yetmish sakkiz"
+     },
+     {
+      "savol": "35004002?",
+      "javob": "o‘ttiz besh million to‘rt ming ikki"
+     },
+     {
+      "savol": "7090005?",
+      "javob": "yetti million to‘qson ming besh"
+     },
+     {
+      "savol": "Ikki million — nechta raqam?",
+      "javob": "yetti"
+     },
+     {
+      "savol": "Nolli xonani o‘qiymizmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "Yozishda nolni nima qilamiz?",
+      "javob": "yozamiz"
+     },
+     {
+      "savol": "400300 — o‘qilishi?",
+      "javob": "to‘rt yuz ming uch yuz"
+     },
+     {
+      "savol": "25008000 nechta raqam?",
+      "javob": "8"
+     },
+     {
+      "savol": "Sinf nechta xona?",
+      "javob": "uchta"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Chap",
+      "matn": "Chapdan boshla.",
+      "savol": "Millionlar sinfi?"
+     },
+     {
+      "nom": "Ming",
+      "matn": "Minglar sinfini o‘qi.",
+      "savol": "345?"
+     },
+     {
+      "nom": "Birlik",
+      "matn": "Birliklarni o‘qi.",
+      "savol": "678?"
+     },
+     {
+      "nom": "Yoz",
+      "matn": "Raqam bilan yoz.",
+      "savol": "ikki million uch yuz qirq besh ming?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun sonni yozishda sinfni nol bilan to‘ldiramiz?",
+    "keys": {
+     "vaziyat": "Gazetada yozilgan: «Yigirma besh million sakkiz ming so‘m».",
+     "savollar": [
+      "Bu sonni raqam bilan qanday yozamiz?",
+      "Nechta raqam bo‘ladi?"
+     ]
+    },
+    "tezis": "O‘qi va yoz — son tilga kiradi",
+    "taqqoslash": {
+     "a": "Sonni o‘qish",
+     "b": "Sonni yozish",
+     "umumiy": [
+      "sinflar bo‘yicha",
+      "chapdan boshlanadi"
+     ],
+     "a_farq": [
+      "raqamdan so‘zga",
+      "nol aytilmaydi"
+     ],
+     "b_farq": [
+      "so‘zdan raqamga",
+      "nol yoziladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Sonlarni o‘qish va yozish",
+     "shoxlar": [
+      {
+       "nom": "O‘qish",
+       "bandlar": [
+        "chapdan",
+        "sinf nomi"
+       ]
+      },
+      {
+       "nom": "Yozish",
+       "bandlar": [
+        "sinflar tartibi",
+        "nol bilan to‘ldirish"
+       ]
+      },
+      {
+       "nom": "Nol",
+       "bandlar": [
+        "aytilmaydi",
+        "yoziladi"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "qayta o‘qish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men sonni og‘zaki aytilishga va yozilishga ham moslashaman. Men kimman?",
+     "javob": "ko‘p xonali son"
+    },
+    "hikmat": "O‘qigan o‘rganadi, yozgan eslab qoladi.",
+    "kalit_soz": "SONLAR",
+    "xato_yechim": {
+     "shart": "Yigirma besh million sakkiz ming sonini yozing.",
+     "xato": "2508000",
+     "togri": "25008000",
+     "sabab": "birliklar sinfi 000 yozilmagan"
+    },
+    "guruh_nomlari": [
+     "O‘quvchilar",
+     "Yozuvchilar",
+     "Sinfchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Gazeta sonlari»",
+     "topshiriq": "Guruh gazetadagi sonlarni o‘qib, raqam bilan yozadi."
+    },
+    "vazifalar": {
+     "A": "2345678 va 35004002 ni so‘z bilan yozing.",
+     "B": "Uch million besh yuz ming ikki yuz o‘n sonini raqam bilan yozing.",
+     "C": "Yigirma besh million sakkiz ming va to‘rt yuz ming uch yuz sonlarini yozing."
+    },
+    "sinkveyn": [
+     "Son",
+     "katta, uzun",
+     "o‘qiladi, yoziladi, sanaladi",
+     "Raqamlar dunyosi",
+     "Hisob"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sonlarni o‘qiydi va yozadi.",
+     "qismlar": [
+      "1-guruh: 2345678",
+      "2-guruh: 35004002",
+      "3-guruh: 7090005",
+      "4-guruh: 400300"
+     ],
+     "yakun": "Sonlar to‘g‘ri o‘qildi va yozildi."
+    }
+   }
   }
  ]
 }
