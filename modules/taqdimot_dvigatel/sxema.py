@@ -43,7 +43,7 @@ ELEMENT_TURLARI = {
     "raqamlar": "Katta raqamlar (statistika: 2–4 ta raqam va izoh)",
     "iqtibos": "Iqtibos (katta matn, muallif, portret)",
 }
-ROYXAT_KORINISHLARI = {"kartalar", "ikonli", "raqamli", "zinapoya", "piramida", "vaqt", "sikl", "strelka"}
+ROYXAT_KORINISHLARI = {"kartalar", "ikonli", "raqamli", "zinapoya", "piramida", "vaqt", "sikl", "strelka", "markaz", "zanjir"}
 JOYLASHUV_KODLARI = {"avto", "standart", "rasm_ong", "rasm_chap", "rasm_panel", "rasm_katta", "markaz", "ustunlar", "qatorlar",
                      "yon_sarlavha", "ustma", "asosiy_yon", "chizma_chap", "qadam_qator", "rasm_tepa"}
 YANGI_KENG = {"lugat", "dialog", "vaqt_chizigi", "xarita", "tajriba", "jarayon", "galereya", "guruhlash", "moslash",

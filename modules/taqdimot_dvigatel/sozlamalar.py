@@ -27,7 +27,8 @@ QISMLAR = [["reja", "Reja slaydi (mundarija)"], ["takrorlash", "O‘tgan mavzuni
            ["tarix", "Tarixiy ma’lumot"], ["xatolar", "Ko‘p uchraydigan xatolar"], ["metodika", "Metodika (o‘qituvchi uchun)"],
            ["xulosa", "Xulosa"], ["test", "Test savollari"], ["yakun", "Uy vazifasi va keyingi dars"], ["adabiyot", "Adabiyotlar"]]
 ROYXAT_NOMI = [["kartalar", "Kartalar"], ["ikonli", "Belgili qatorlar"], ["raqamli", "Katta raqamlar"], ["zinapoya", "Zinapoya"],
-               ["piramida", "Piramida"], ["vaqt", "Vaqt chizig‘i"], ["sikl", "Aylana (sikl)"], ["strelka", "Strelkalar"]]
+               ["piramida", "Piramida"], ["vaqt", "Vaqt chizig‘i"], ["sikl", "Aylana (sikl)"], ["strelka", "Strelkalar"],
+               ["markaz", "Markaz va bandlar"], ["zanjir", "Zanjir"]]
 
 # Saytdagi sozlamalar oynasi (tartib bilan). tur: tanlov | rang | matn | qismlar
 KATALOG = [

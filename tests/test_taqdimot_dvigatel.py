@@ -777,3 +777,25 @@ def test_titul_fon_rasm_va_doira_rasm_variantlari():
         assert "<a:srcRect" in x and (('prst="ellipse"' in x.split("<p:pic>")[1]) == (shakl == "doira"))
     # rasm bo'lmasa — eski ko'rinishlarga qaytadi, xato bermaydi
     assert yasash.yasa(m, seed=4, dizayn={"titul": 6}, rasm_avto=False, rasm_bor=lambda k: False)["slaydlar"]
+
+
+def test_royxat_markaz_va_zanjir_korinishlari():
+    """Ikki yangi infografika: «markaz va bandlar» hamda «zanjir» — tanlansa chiziladi, matn slayddan chiqmaydi, sig'masa taklif qilinmaydi."""
+    from modules.taqdimot_dvigatel import bloklar_royxat, sozlamalar, sxema, yasash
+    assert {"markaz", "zanjir"} <= set(bloklar_royxat.KORINISHLAR) & sxema.ROYXAT_KORINISHLARI & {k for k, _ in sozlamalar.ROYXAT_NOMI}
+    band = [{"nom": f"{i}-manba nomi", "matn": "Qisqa izoh matni shu yerda turadi"} for i in range(1, 7)]
+    for v, n in (("markaz", 6), ("markaz", 4), ("zanjir", 6), ("zanjir", 3)):
+        m = sxema.normallashtir({"meta": {"mavzu": "Energiya manbalari", "fan": "Fizika", "sinf": "9"}, "bolimlar": [{"nom": "Manbalar", "slaydlar": [
+            {"sarlavha": "Energiya manbalari", "elementlar": [{"tur": "xossalar", "korinish": v, "bandlar": band[:n]}]}]}]})
+        for oila in ("anor", "hashamat"):
+            s = yasash.yasa(m, seed=3, oila=oila, bolim_titul=False)
+            sl = next(x for x in s["slaydlar"] if x.get("blok") == "kontent")
+            doira = [e for e in sl["els"] if e.get("k") == "ell"]
+            assert len(doira) >= n + 1, (v, n, len(doira))
+            for e in sl["els"]:
+                if e.get("k") == "text":
+                    assert e["x"] >= -1 and e["y"] >= -1 and e["x"] + e["w"] <= 1281 and e["y"] + e["h"] <= 721, (v, n, e["x"], e["y"], e["w"], e["h"])
+            assert len(yasash.pptx(s)) > 10000
+    uzun = {"bandlar": [{"nom": "Nom", "matn": "x" * 200}] * 5}
+    assert not {"markaz", "zanjir"} & set(bloklar_royxat.nomzodlar(uzun, 1100, 500))
+    assert not {"markaz", "zanjir"} & set(bloklar_royxat.nomzodlar({"bandlar": band}, 600, 500))

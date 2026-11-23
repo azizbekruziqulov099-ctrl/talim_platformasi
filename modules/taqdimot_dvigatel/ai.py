@@ -146,7 +146,8 @@ JOYLASHUV ("joylashuv" — slayd qanday joylashishi; mazmunga mos kelmasa dastur
 - standart — boshqalari (jadval, taqqoslash, lugat, xarita va boshqa keng elementlar shu bilan)
 XOSSALAR ko‘rinishi ("korinish" — ixtiyoriy, mazmunga mosini tanla): kartalar | ikonli (ro‘yxat) | raqamli (2–4 band) |
 zinapoya (o‘sish, bosqichlar) | piramida (darajalar, ierarxiya) | vaqt (ketma-ketlik, tarix) | sikl (takrorlanuvchi jarayon) |
-strelka (bosqichma-bosqich jarayon). Bilmasang — yozma, dastur o‘zi xilma-xil qiladi.
+strelka (bosqichma-bosqich jarayon) | markaz (bir tushunchaning 4–6 tomoni, o‘rtada doira) | zanjir (3–6 ketma-ket bosqich).
+Bilmasang — yozma, dastur o‘zi xilma-xil qiladi.
 Bir xil joylashuvni ketma-ket ikki slaydda ishlatma; taqdimotda kamida 4 xil joylashuv bo‘lsin; rasmli slaydlarning
 yarmidan ko‘pida rasm_panel yoki rasm_katta bo‘lsin. Bilmasang — "avto".
 

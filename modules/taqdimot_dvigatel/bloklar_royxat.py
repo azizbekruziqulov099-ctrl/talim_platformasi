@@ -13,7 +13,7 @@ from . import bloklar as B
 from . import formula as FM
 from .uslub import och, toq
 
-KENG_KERAK = {"piramida", "sikl"}  # to'liq kenglik kerak (chap sarlavhali joylashuvga sig'maydi)
+KENG_KERAK = {"piramida", "sikl", "markaz", "zanjir"}  # to'liq kenglik kerak (chap sarlavhali joylashuvga sig'maydi)
 KORINISHLAR = {
     "kartalar": "bandlar kartalarda (to'r)",
     "ikonli": "belgili ro'yxat: raqam doirasi, nom va izoh qatorlarda",
@@ -23,6 +23,8 @@ KORINISHLAR = {
     "vaqt": "gorizontal vaqt chizig'i (ketma-ketlik, tarix)",
     "sikl": "aylana: bandlar doira bo'ylab (takrorlanuvchi jarayon)",
     "strelka": "strelkalar: chapdan o'ngga bosqichlar",
+    "markaz": "markaz va atrofida bandlar: o'rtada doira, ikki yonda unga ulangan kartalar (bir tushunchaning tomonlari)",
+    "zanjir": "zanjir: bir-biriga ulangan doiralar ilonizi qatorda (ketma-ket bosqichlar)",
 }
 
 
@@ -54,6 +56,10 @@ def nomzodlar(e, w, h) -> list:
         c.append("sikl")
     if 3 <= n <= 5 and w >= 760 and nom_max <= 22 and eng <= 150 and hammasida_nom:
         c.append("strelka")
+    if 4 <= n <= 6 and w >= 860 and h >= 380 and eng <= 110 and nom_max <= 30 and hammasida_nom:
+        c.append("markaz")
+    if 3 <= n <= 6 and w >= 780 and h >= 380 and eng <= 120 and nom_max <= 28 and hammasida_nom:
+        c.append("zanjir")
     return c
 
 
@@ -110,7 +116,7 @@ def komp_royxat(k, e, x, y, w, h, i=0):
     if v == "kartalar":
         return B._komp_xossalar_kartalar(k, e, x, y, w, h, i)
     return {"ikonli": _ikonli, "raqamli": _raqamli, "zinapoya": _zinapoya, "piramida": _piramida, "vaqt": _vaqt,
-            "sikl": _sikl, "strelka": _strelka}[v](k, e["bandlar"], x, y, w, h)
+            "sikl": _sikl, "strelka": _strelka, "markaz": _markaz, "zanjir": _zanjir}[v](k, e["bandlar"], x, y, w, h)
 
 
 def _rang(k, j):
@@ -325,3 +331,109 @@ def _strelka(k, bs, x, y, w, h):
             sz, th = B.mos_olcham(b["matn"], cw - 50, y + h - yy - chh - 20, sizes=(21, 20, 19, 18, 17, 16, 15, 14))
             k.s.matn(bx + 16, yy + chh + 18, cw - 50, th + 4, b["matn"], size=sz, color=u.ink, align="c", lh=1.2, min_scale=0.6,
                      a=k.A("item", s, dl=dl + 100))
+
+
+# --- 8) markaz va atrofida bandlar (hub)
+def _markaz(k, bs, x, y, w, h):
+    """O'rtada halqali doira, ikki yonida unga chiziq bilan ulangan kartalar (chapda va o'ngda teng bo'linadi)."""
+    u, s = k.u, k.qadam
+    n = len(bs)
+    cx, cy = x + w / 2, y + h / 2
+    R = min(86, h * 0.2)
+    chap, ong = bs[:(n + 1) // 2], bs[(n + 1) // 2:]
+    kw_ = (w - 2 * R - 150) / 2          # karta kengligi
+    asos = u.acc[0]
+    k.s.doira(cx, cy, R + 26, fill=asos, op=0.10 if not u.qorongi else 0.18, a=k.A("diagram", s))
+    k.s.doira(cx, cy, R + 12, fill=None, line=asos, lw=2, op=0.55, a=k.A("diagram", s))
+    k.s.doira(cx, cy, R, fill=asos, a=k.A("big", s), sh=0 if u.qorongi else 1)
+    k.s.doira(cx, cy, R * 0.52, fill=u.matn_ustida(asos), op=0.92, a=k.A("accent", s))
+    k.s.doira(cx, cy, R * 0.24, fill=asos, a=k.A("accent", s))
+    j = 0
+    for tomon, guruh in ((-1, chap), (1, ong)):
+        m = len(guruh)
+        if not m:
+            continue
+        gap = 14
+        kh = min(112, (h - gap * (m - 1)) / m)
+        y0 = cy - (m * kh + gap * (m - 1)) / 2
+        for i, b in enumerate(guruh):
+            col = _rang(k, j)
+            dl = j * k.st
+            ky = y0 + i * (kh + gap)
+            kx = x if tomon < 0 else x + w - kw_
+            ichki = kx + kw_ if tomon < 0 else kx          # markazga qaragan chet
+            a = k.A("item", s, dl=dl)
+            k.s.line(cx + tomon * (R + 12), cy + (ky + kh / 2 - cy) * 0.35, ichki + tomon * -22, ky + kh / 2, color=col, lw=2, op=0.7,
+                     a=k.A("diagram", s, dl=dl))
+            k.s.rect(kx, ky, kw_, kh, r=min(22, kh / 2), a=a, **_fon(k, col))
+            bx = ichki - 22 if tomon < 0 else ichki + 22
+            k.s.doira(bx, ky + kh / 2, 22, fill=col, a=k.A("accent", s, dl=dl), sh=0 if u.qorongi else 1)
+            k.s.matn(bx - 22, ky + kh / 2 - 22, 44, 44, str(j + 1), size=19, bold=True, color=u.matn_ustida(col), align="c", va="m",
+                     a=k.A("accent", s, dl=dl))
+            tx = kx + 18 if tomon < 0 else kx + 54
+            tw = kw_ - 72
+            band_h = _matn_balandligi(k, b, tw, kh - 16, 20, (18, 17, 16, 15, 14))
+            _matn(k, b, tx, ky + max(8, (kh - band_h) / 2), tw, kh - 16, nom_sz=20, sz=(18, 17, 16, 15, 14), a=a,
+                  align="r" if tomon < 0 else "l", nom_rang=_nom_rang(k, col))
+            j += 1
+
+
+def _matn_balandligi(k, b, w, h, nom_sz=18, sz=(16, 15, 14, 13)) -> float:
+    """_matn chizmasdan oldin egallaydigan balandlikni chamalaydi (kartada tik o'rtalash uchun)."""
+    t = 0.0
+    if b.get("nom"):
+        ns, nh = B.mos_olcham(b["nom"], w * 0.92, nom_sz * 2.7, sizes=tuple(range(nom_sz, nom_sz - 5, -1)), lh=1.15)
+        t += max(nh, ns * 1.3) + 6
+    if b.get("matn"):
+        _s, th = B.mos_olcham(b["matn"], w, max(20, h - t), sizes=sz)
+        t += th + 4
+    return min(t, h)
+
+
+# --- 9) zanjir (ilonizi ulangan doiralar)
+def _zanjir(k, bs, x, y, w, h):
+    """Doiralar navbat bilan yuqori va pastda, qalin tasma bilan ulangan; matni yuqoridagisining tepasida, pastdagisining ostida."""
+    u, s = k.u, k.qadam
+    n = len(bs)
+    r = 34
+    qadam = (w - 2 * r - 40) / (n - 1)
+    x0 = x + r + 20
+    amp = min(46, h * 0.1)
+    cy = y + h / 2
+    nuqta = [(x0 + j * qadam, cy + (-amp if j % 2 == 0 else amp)) for j in range(n)]
+    tasma = och(u.acc[0], 0.55) if not u.qorongi else aralash_(u, 0.45)
+    for j in range(n - 1):
+        (ax, ay), (bx, by) = nuqta[j], nuqta[j + 1]
+        k.s.line(ax, ay, bx, by, color=tasma, lw=14, a=k.A("diagram", s, dl=j * k.st))
+    th = (h / 2 - amp - r - 16)                       # matn uchun balandlik
+    tw = min(2 * qadam - 24, 330) if n > 2 else qadam
+    for j, b in enumerate(bs):
+        col = _rang(k, j)
+        dl = j * k.st
+        px, py = nuqta[j]
+        a = k.A("item", s, dl=dl)
+        k.s.doira(px, py, r + 7, fill=tasma, a=k.A("diagram", s, dl=dl))
+        k.s.doira(px, py, r, fill=col, a=k.A("accent", s, dl=dl), sh=0 if u.qorongi else 1)
+        k.s.matn(px - r, py - r, 2 * r, 2 * r, str(j + 1), size=24, bold=True, color=u.matn_ustida(col), align="c", va="m", a=k.A("accent", s, dl=dl))
+        tx = min(max(x, px - tw / 2), x + w - tw)
+        align = "l" if tx > px - tw / 2 + 1 else "r" if tx < px - tw / 2 - 1 else "c"
+        if j % 2 == 0:      # yuqoridagi tugun — matn tepada (pastga tekislab)
+            bh_ = _matn_balandligi(k, b, tw, th, 20, (18, 17, 16, 15, 14))
+            _matn(k, b, tx, py - r - 14 - bh_, tw, bh_ + 4, nom_sz=20, sz=(18, 17, 16, 15, 14), a=a, align=align,
+                  nom_rang=_nom_rang(k, col))
+        else:
+            _matn(k, b, tx, py + r + 14, tw, th, nom_sz=20, sz=(18, 17, 16, 15, 14), a=a, align=align,
+                  nom_rang=_nom_rang(k, col))
+
+
+def aralash_(u, t):
+    from .uslub import aralash
+    return aralash(u.bg[0], u.acc[0], t)
+
+
+def _nom_rang(k, col):
+    """Band nomi rangi: yorug' fonda juda och urg'u rangi (sariq, och yashil) o'qilmaydi — to'qlashtiriladi."""
+    from .uslub import yorqinlik
+    if k.u.qorongi:
+        return och(col, 0.3)
+    return toq(col, 0.38) if yorqinlik(col) > 0.5 else col
