@@ -4167,6 +4167,1400 @@
      "yakun": "Natijalar: 1/2; 1/6; 1/2; 1/4."
     }
    }
+  },
+  {
+   "mavzu": "Statistik tadqiqot",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tadqiqot bosqichlari",
+      "matn": "Statistik tadqiqot bir necha bosqichdan iborat: savol qo‘yish, tanlanma tanlash, ma’lumot yig‘ish, tartiblash, tahlil qilish va xulosa chiqarish. Har bosqich keyingisining asosi bo‘ladi.",
+      "misol": "«Sinfdoshlar qancha uxlaydi?» savoli uchun avval o‘quvchilar tanlanadi, so‘ng uyqu soatlari yig‘iladi, jadvalga tushiriladi va o‘rtacha topiladi.",
+      "savol": "Tadqiqot qaysi bosqichdan boshlanadi?",
+      "javob": "savol qo‘yishdan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bosh to‘plam va tanlanma",
+      "matn": "Tekshiriladigan barcha obyektlar bosh to‘plam, ulardan tanlab olingan qismi tanlanma deyiladi. Tanlanma bosh to‘plamni yaxshi ifodalashi, ya’ni vakillik qilishi kerak.",
+      "misol": "Maktabda 1000 o‘quvchi bor, 50 tasidan so‘rov o‘tkazildi: 1000 ta — bosh to‘plam, 50 ta — tanlanma.",
+      "savol": "2000 o‘quvchidan 100 tasi so‘ralsa, tanlanma hajmi?",
+      "javob": "100",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chastota va nisbiy chastota",
+      "matn": "Qiymat necha marta uchrashi chastota, uning kuzatuvlar umumiy soniga nisbati nisbiy chastota deyiladi. Nisbiy chastotalar yig‘indisi 1 ga teng.",
+      "misol": "40 ta kuzatuvdan 8 tasida baho 5. Nisbiy chastota 8 / 40, ya’ni 0,2, ya’ni 20 foiz.",
+      "savol": "20 kuzatuvdan 5 tasi — nisbiy chastota?",
+      "javob": "0,25",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Markaziy ko‘rsatkichlar",
+      "matn": "Ma’lumotni o‘rta arifmetik, moda va mediana bilan tavsiflaymiz. 12, 15, 15, 18, 20, 22, 22, 22, 25, 29 qatorida yig‘indi 200, 10 ta son: o‘rtacha 20. Moda 22. Mediana ikki o‘rtadagi 20 va 22 ning o‘rtasi — 21.",
+      "misol": "Kenglik 29 − 12, ya’ni 17. Bu ma’lumotlar qanchalik tarqoq ekanini ko‘rsatadi.",
+      "savol": "Yuqoridagi qatorning modasi?",
+      "javob": "22",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Dispersiya",
+      "matn": "Ma’lumotlarning o‘rtachadan tarqoqligini aniqroq o‘lchash uchun dispersiya ishlatiladi: har sonning o‘rtachadan ayirmasi kvadratlarining o‘rta arifmetigi. Dispersiya katta bo‘lsa ma’lumotlar tarqoq.",
+      "misol": "1, 2, 3, 4, 5 da o‘rtacha 3. Ayirmalar kvadratlari: 4, 1, 0, 1, 4. Yig‘indi 10, dispersiya 10 / 5, ya’ni 2.",
+      "savol": "3, 3, 3 qatori dispersiyasi?",
+      "javob": "0",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tadqiqot: savol, tanlanma, yig‘ish, tartiblash, tahlil, xulosa. Nisbiy chastota — chastota / kuzatuvlar soni. Dispersiya — o‘rtachadan ayirmalar kvadratlarining o‘rtachasi.",
+    "misollar": [
+     {
+      "shart": "4, 6, 8, 10, 12 qatorining o‘rtachasi va dispersiyasini toping.",
+      "yechim": [
+       "O‘rtacha 40 / 5, ya’ni 8.",
+       "Ayirmalar kvadratlari: 16, 4, 0, 4, 16, yig‘indi 40.",
+       "Dispersiya 40 / 5, ya’ni 8."
+      ],
+      "javob": "o‘rtacha 8, dispersiya 8"
+     },
+     {
+      "shart": "50 ta kuzatuvda chastotalar 5, 10, 15, 20. Nisbiy chastotalarni toping.",
+      "yechim": [
+       "5 / 50, ya’ni 0,1.",
+       "10 / 50 — 0,2; 15 / 50 — 0,3; 20 / 50 — 0,4.",
+       "Yig‘indi 1 ga teng, tekshirdik."
+      ],
+      "javob": "0,1; 0,2; 0,3; 0,4"
+     },
+     {
+      "shart": "2000 o‘quvchidan 100 tasi so‘ralganda 30 tasi sportni yaxshi ko‘rishini aytdi. Butun maktabda taxminan nechta?",
+      "yechim": [
+       "Nisbiy chastota 30 / 100, ya’ni 0,3.",
+       "Maktab bo‘yicha 2000 · 0,3.",
+       "Taxminan 600 o‘quvchi."
+      ],
+      "javob": "taxminan 600"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sinf so‘rovi",
+      "topshiriq": "Sinfdoshlarning kunlik uyqu soatini so‘rab, o‘rtacha, moda va medianani toping.",
+      "yechim": "Har guruh o‘z ma’lumoti bilan hisoblaydi.",
+      "mahsulot": "jadval va diagramma"
+     },
+     {
+      "nom": "Tanlanma tanlash",
+      "topshiriq": "Maktabdagi 600 o‘quvchi o‘qish vaqtini o‘rganish uchun tanlanmani qanday tanlash kerakligini muhokama qiling.",
+      "yechim": "Tanlanma barcha sinflardan va teng sondagi o‘g‘il-qizlardan bo‘lishi kerak.",
+      "mahsulot": "tanlash rejasi"
+     },
+     {
+      "nom": "Dispersiya",
+      "topshiriq": "2, 4, 6 va 4, 4, 4 qatorlarining o‘rtacha va dispersiyasini solishtiring.",
+      "yechim": "Ikkalasining o‘rtachasi 4. Birinchisining dispersiyasi 8 / 3, ikkinchisiniki 0.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Nisbiy chastota",
+      "topshiriq": "40 kuzatuvda 8 ta 5, 16 ta 4, 12 ta 3, 4 ta 2. Nisbiy chastotalarni toping.",
+      "yechim": "0,2; 0,4; 0,3; 0,1.",
+      "mahsulot": "nisbiy chastota jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2, 4, 6 qatorining o‘rtachasi?",
+      "javob": "4"
+     },
+     {
+      "shart": "3, 9, 5 qatorining medianasi?",
+      "javob": "5"
+     },
+     {
+      "shart": "1, 2, 3, 4, 5 qatorining dispersiyasi?",
+      "javob": "2"
+     },
+     {
+      "shart": "20 kuzatuvdan 5 tasi — nisbiy chastota?",
+      "javob": "0,25"
+     },
+     {
+      "shart": "7 va 19 sonlarining kengligi?",
+      "javob": "12"
+     },
+     {
+      "shart": "Nisbiy chastotalar yig‘indisi nechaga teng?",
+      "javob": "1"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tanlanmani faqat bitta guruhdan oladi",
+      "sabab": "vakillikni tekshirmaydi",
+      "oldini_olish": "tanlanmaga turli guruhlarni kiritish"
+     },
+     {
+      "xato": "Nisbiy chastotani jami songa emas, boshqa songa bo‘ladi",
+      "sabab": "kuzatuvlar sonini adashtiradi",
+      "oldini_olish": "doim jami kuzatuvlarga bo‘lish"
+     },
+     {
+      "xato": "Dispersiyada ayirmani kvadratga ko‘tarmaydi",
+      "sabab": "formulani to‘liq yozmaydi",
+      "oldini_olish": "ayirmalarni avval kvadratga ko‘tarish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Sotsiologiya",
+      "boglanish": "so‘rovnomalar va jamoat fikri"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "kuzatuv va tajriba natijalarini tahlil qilish"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "jadval va diagrammalar bilan ishlash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinf tadqiqoti»",
+     "muammo": "Sinf hayoti haqida qanday haqiqiy statistik tadqiqot o‘tkazib, xulosa chiqaramiz?",
+     "mahsulot": "tadqiqot hisoboti",
+     "bosqichlar": [
+      "savol qo‘yish",
+      "tanlanma tanlash",
+      "ma’lumot yig‘ish",
+      "tahlil qilish",
+      "xulosa va diagramma"
+     ],
+     "guruh_vazifalari": [
+      "Savol bering",
+      "Yig‘ing",
+      "Tahlil qiling",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "savol aniq",
+      "tanlanma asosli",
+      "hisoblar to‘g‘ri",
+      "xulosa asosli",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Statistika instituti»",
+     "bekatlar": [
+      {
+       "nom": "So‘rov xonasi",
+       "matn": "10 kishidan 4 tasi kitob o‘qiydi.",
+       "topshiriq": "Nisbiy chastota?",
+       "javob": "0,4",
+       "rasm": ""
+      },
+      {
+       "nom": "Jadval xonasi",
+       "matn": "2, 4, 6, 8.",
+       "topshiriq": "O‘rtacha?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Diagramma xonasi",
+       "matn": "3, 5, 9.",
+       "topshiriq": "Mediana?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Tahlil xonasi",
+       "matn": "1, 2, 3, 4, 5.",
+       "topshiriq": "Dispersiya?",
+       "javob": "2",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi bosqich qiyin bo‘ldi?",
+      "Tanlanma yaxshi tanlandimi?",
+      "Xulosa asosli bo‘ldimi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Bosh to‘plam",
+      "tarif": "tekshiriladigan barcha obyektlar"
+     },
+     {
+      "atama": "Tanlanma",
+      "tarif": "bosh to‘plamdan olingan qism"
+     },
+     {
+      "atama": "Chastota",
+      "tarif": "qiymat necha marta uchrashi"
+     },
+     {
+      "atama": "Nisbiy chastota",
+      "tarif": "chastotaning umumiy songa nisbati"
+     },
+     {
+      "atama": "Dispersiya",
+      "tarif": "o‘rtachadan tarqoqlik o‘lchovi"
+     },
+     {
+      "atama": "Vakillik",
+      "tarif": "tanlanmaning bosh to‘plamni ifodalashi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tanlanma bosh to‘plamning qismi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Nisbiy chastotalar yig‘indisi 100",
+      "togri": false,
+      "izoh": "yig‘indi 1"
+     },
+     {
+      "matn": "Dispersiya katta bo‘lsa ma’lumotlar tarqoq",
+      "togri": true,
+      "izoh": "tarqoqlik o‘lchovi"
+     },
+     {
+      "matn": "Bir xil sonlar qatori dispersiyasi 0",
+      "togri": true,
+      "izoh": "o‘rtachadan farq yo‘q"
+     },
+     {
+      "matn": "Tanlanma doim bosh to‘plamga teng",
+      "togri": false,
+      "izoh": "faqat qismi"
+     },
+     {
+      "matn": "Mediana — qatorning o‘rtasidagi son",
+      "togri": true,
+      "izoh": "tartiblangan qatorda"
+     },
+     {
+      "matn": "Tadqiqot xulosadan boshlanadi",
+      "togri": false,
+      "izoh": "savoldan boshlanadi"
+     },
+     {
+      "matn": "1, 2, 3, 4, 5 dispersiyasi 2",
+      "togri": true,
+      "izoh": "10 / 5"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Bosh to‘plam nima?",
+      "javob": "barcha tekshiriladigan obyektlar"
+     },
+     {
+      "savol": "Tanlanma nima?",
+      "javob": "bosh to‘plamning qismi"
+     },
+     {
+      "savol": "Nisbiy chastota nima?",
+      "javob": "chastota bo‘linadi jamiga"
+     },
+     {
+      "savol": "Nisbiy chastotalar yig‘indisi?",
+      "javob": "1"
+     },
+     {
+      "savol": "Dispersiya nima?",
+      "javob": "o‘rtachadan tarqoqlik"
+     },
+     {
+      "savol": "2, 4, 6 o‘rtachasi?",
+      "javob": "4"
+     },
+     {
+      "savol": "Mediana nima?",
+      "javob": "qator o‘rtasidagi son"
+     },
+     {
+      "savol": "Moda nima?",
+      "javob": "eng ko‘p uchraydigan son"
+     },
+     {
+      "savol": "Tadqiqotni nimadan boshlaymiz?",
+      "javob": "savoldan"
+     },
+     {
+      "savol": "Xulosa nimaga asoslanadi?",
+      "javob": "tahlil natijasiga"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Savol",
+      "matn": "Nimani o‘rganamiz?",
+      "savol": "Misol keltiring."
+     },
+     {
+      "nom": "Yig‘ish",
+      "matn": "Ma’lumotni jadvalga yoz.",
+      "savol": "Nechta kuzatuv?"
+     },
+     {
+      "nom": "Tahlil",
+      "matn": "O‘rtacha va dispersiyani top.",
+      "savol": "O‘rtacha nechaga teng?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Natijani izohla.",
+      "savol": "Nima aniqlandi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun kichik tanlanma asosida butun maktab haqida xulosa chiqarish mumkin, lekin tanlanma noto‘g‘ri tanlansa, xulosa xato bo‘lishi mumkin?",
+    "keys": {
+     "vaziyat": "2000 o‘quvchidan 100 tasi so‘ralganda, 30 tasi maktabga piyoda kelishini aytdi.",
+     "savollar": [
+      "Nisbiy chastota nechaga teng?",
+      "Butun maktabda taxminan nechta o‘quvchi piyoda keladi?"
+     ]
+    },
+    "tezis": "Statistika — tanlanmadan butunni ko‘rish",
+    "taqqoslash": {
+     "a": "Dispersiya",
+     "b": "Kenglik",
+     "umumiy": [
+      "tarqoqlikni o‘lchaydi",
+      "ma’lumot qatoridan topiladi"
+     ],
+     "a_farq": [
+      "barcha sonlarni hisobga oladi",
+      "aniqroq"
+     ],
+     "b_farq": [
+      "faqat eng katta va eng kichikni oladi",
+      "oddiyroq"
+     ]
+    },
+    "klaster": {
+     "markaz": "Statistik tadqiqot",
+     "shoxlar": [
+      {
+       "nom": "Bosqichlar",
+       "bandlar": [
+        "savol",
+        "yig‘ish",
+        "tahlil",
+        "xulosa"
+       ]
+      },
+      {
+       "nom": "To‘plamlar",
+       "bandlar": [
+        "bosh to‘plam",
+        "tanlanma"
+       ]
+      },
+      {
+       "nom": "Ko‘rsatkichlar",
+       "bandlar": [
+        "o‘rtacha",
+        "moda",
+        "mediana"
+       ]
+      },
+      {
+       "nom": "Tarqoqlik",
+       "bandlar": [
+        "kenglik",
+        "dispersiya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men bosh to‘plamning bir qismiman, uni ifodalayman. Men kimman?",
+     "javob": "tanlanma"
+    },
+    "hikmat": "Ma’lumot — bilimning xomashyosi.",
+    "kalit_soz": "TANLANMA",
+    "xato_yechim": {
+     "shart": "40 kuzatuvdan 8 tasida baho 5. Nisbiy chastotani toping.",
+     "xato": "40 / 8, ya’ni 5",
+     "togri": "8 / 40, ya’ni 0,2",
+     "sabab": "chastota jami kuzatuvlarga bo‘linadi"
+    },
+    "guruh_nomlari": [
+     "Tanlanmachilar",
+     "Chastotachilar",
+     "Dispersiyachilar",
+     "Xulosachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Maktab so‘rovnomasi»",
+     "topshiriq": "Guruh bitta savol bo‘yicha so‘rov o‘tkazib, nisbiy chastotalarni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "3, 5, 7, 9 qatorining o‘rtacha va medianasini toping.",
+     "B": "1, 3, 5 qatorining dispersiyasini toping.",
+     "C": "50 kuzatuvdan 10 tasi — nisbiy chastotani toping."
+    },
+    "sinkveyn": [
+     "Tadqiqot",
+     "so‘rov, tahlil",
+     "yig‘adi, hisoblaydi, xulosa qiladi",
+     "Ma’lumotdan haqiqatga",
+     "Tanlanma"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh statistik hisoblar bajaradi.",
+     "qismlar": [
+      "1-guruh: 2, 4, 6 o‘rtachasi",
+      "2-guruh: 1, 5, 9 medianasi",
+      "3-guruh: 1, 2, 3, 4, 5 dispersiyasi",
+      "4-guruh: 20 dan 5 nisbiy chastotasi"
+     ],
+     "yakun": "Natijalar: 4; 5; 2; 0,25."
+    }
+   }
+  },
+  {
+   "mavzu": "Matematik modellashtirish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Model nima?",
+      "matn": "Matematik model — real vaziyatning formulalar, tenglamalar yoki jadvallar yordamidagi tavsifi. Model vaziyatning muhim tomonlarini oladi va ikkinchi darajali tafsilotlarni tashlab yuboradi.",
+      "misol": "Taksi haqi: 5000 so‘m ulanish va har kilometrga 2000 so‘m. Model: haq ifoda 5000 + 2000 · x, x — kilometr.",
+      "savol": "Taksi modelida 4 kilometr uchun haq?",
+      "javob": "13000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Modellashtirish bosqichlari",
+      "matn": "Bosqichlar: masalani tushunish, model tuzish, modelni yechish, natijani vaziyatga qaytarib izohlash, tekshirish. Oxirgi bosqich eng muhim: natija hayotga mos kelishi kerak.",
+      "misol": "Agar odamlar sonini ifodalovchi yechim manfiy yoki kasr chiqsa, javob hayotga mos emas va modelni qayta ko‘rib chiqamiz.",
+      "savol": "Model yechilgach, keyingi qadam?",
+      "javob": "natijani izohlash",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chiziqli model",
+      "matn": "Bir tekis o‘zgarishlar chiziqli model bilan ifodalanadi: natija ifoda boshlang‘ich qiymat plus tezlik ko‘paytirilgan o‘zgaruvchi. Harakat, narx, tarif masalalarida ko‘p uchraydi.",
+      "misol": "Yo‘l formulasi: yo‘l ifoda tezlik · vaqt. 60 km/soat tezlikda 2,5 soatda 60 · 2,5, ya’ni 150 km.",
+      "savol": "50 km/soat tezlikda 3 soatda yo‘l?",
+      "javob": "150 km",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tenglama va tengsizlik modeli",
+      "matn": "Ikki variantni taqqoslashda ularning formulalarini tenglashtiramiz yoki tengsizlik tuzamiz. Qaysi variant qachon foydali ekani shunda chiqadi.",
+      "misol": "A tarifi: 20000 + 100 · t, B tarifi: 30000 + 50 · t. Tenglashtirsak 50 · t ifoda 10000, t ifoda 200 daqiqa.",
+      "savol": "t qanday bo‘lsa, A tarifi arzon bo‘ladi (200 dan)?",
+      "javob": "200 dan kam bo‘lsa",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kvadrat model",
+      "matn": "Maydon, eng katta qiymat kabi masalalarda kvadrat model tuziladi. Perimetri berilgan to‘rtburchakning yuzi tomonlar teng, ya’ni kvadrat bo‘lganda eng katta bo‘ladi.",
+      "misol": "Panjara 40 m. Eni x, bo‘yi 20 − x. Yuz x · (20 − x). x ifoda 10 da yuz 100, x ifoda 9 da 99, x ifoda 8 da 96.",
+      "savol": "x ifoda 10 da yuz?",
+      "javob": "100",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Modellashtirish: vaziyat, model, yechim, izoh, tekshirish. Chiziqli model — boshlang‘ich qiymat plus tezlik · o‘zgaruvchi. Natija hayotga mos bo‘lishi shart.",
+    "misollar": [
+     {
+      "shart": "Taksi haqi 5000 so‘m plus har kilometrga 2000 so‘m. Yo‘lovchi 31000 so‘m to‘lasa, necha kilometr yurgan?",
+      "yechim": [
+       "Model: 5000 + 2000 · x ifoda 31000.",
+       "2000 · x ifoda 26000, x ifoda 13.",
+       "13 kilometr, haqiqatga mos."
+      ],
+      "javob": "13 km"
+     },
+     {
+      "shart": "A tarifi: 20000 + 100 · t. B tarifi: 30000 + 50 · t. Qaysi daqiqada tariflar tenglashadi?",
+      "yechim": [
+       "20000 + 100 · t ifoda 30000 + 50 · t.",
+       "50 · t ifoda 10000, t ifoda 200.",
+       "Tekshiramiz: ikkalasi ham 40000. 200 daqiqadan ko‘pda B arzon."
+      ],
+      "javob": "200 daqiqa"
+     },
+     {
+      "shart": "40 m panjara bilan to‘g‘ri to‘rtburchak maydon o‘ralmoqda. Eng katta yuz qancha?",
+      "yechim": [
+       "Eni x, bo‘yi 20 − x, yuz x · (20 − x).",
+       "Eng katta yuz x ifoda 10 da, ya’ni kvadratda.",
+       "10 · 10, ya’ni 100 kv. metr."
+      ],
+      "javob": "100 kv. m"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Taksi hisobi",
+      "topshiriq": "5000 so‘m plus har km 2000 so‘m. 10 km uchun haq qancha?",
+      "yechim": "5000 + 20000, ya’ni 25000.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Tarif tanlash",
+      "topshiriq": "Ikki internet tarifini solishtirib, qaysi vaqtdan keyin ikkinchisi arzonligini toping.",
+      "yechim": "Formulalarni tenglashtiramiz.",
+      "mahsulot": "taqqoslash grafigi"
+     },
+     {
+      "nom": "Maydon",
+      "topshiriq": "Perimetri 40 m to‘rtburchakning eng katta yuzini jadval bilan toping.",
+      "yechim": "x: 8, 9, 10 — yuz 96, 99, 100.",
+      "mahsulot": "jadval va grafik"
+     },
+     {
+      "nom": "O‘z modelimiz",
+      "topshiriq": "Guruh kundalik vaziyat (masalan, maktabga yo‘l) bo‘yicha model tuzadi.",
+      "yechim": "Har guruh o‘z formulasini tuzadi.",
+      "mahsulot": "model kartochkasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "5000 + 2000 · 4 nechaga teng?",
+      "javob": "13000"
+     },
+     {
+      "shart": "60 km/soat, 3 soat. Yo‘l?",
+      "javob": "180 km"
+     },
+     {
+      "shart": "Yuz x · (20 − x), x ifoda 8. Yuz?",
+      "javob": "96"
+     },
+     {
+      "shart": "100 so‘m, 50 daqiqa. 100 · 50 nechaga teng?",
+      "javob": "5000"
+     },
+     {
+      "shart": "2x + 3 ifoda 11 tenglama ildizi?",
+      "javob": "4"
+     },
+     {
+      "shart": "150 km, 50 km/soat. Vaqt?",
+      "javob": "3 soat"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Natijani hayotga mosligini tekshirmaydi",
+      "sabab": "oxirgi bosqichni tashlab ketadi",
+      "oldini_olish": "javobning haqiqatga mosligini so‘rash"
+     },
+     {
+      "xato": "Birliklarni aralashtiradi",
+      "sabab": "so‘m va ming so‘mni adashtiradi",
+      "oldini_olish": "birliklarni modeldan oldin tenglashtirish"
+     },
+     {
+      "xato": "Modelni noto‘g‘ri tuzadi",
+      "sabab": "ma’lumotni to‘liq o‘qimaydi",
+      "oldini_olish": "shartdagi miqdorlarni ro‘yxat qilib chiqish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Iqtisod",
+      "boglanish": "narx va tariflar modellari"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "harakat va yo‘l formulalari"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "jarayonlarni simulyatsiya qilish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Hayot modeli»",
+     "muammo": "Kundalik hayotdagi biror vaziyatni matematik model bilan qanday tushuntiramiz?",
+     "mahsulot": "model hisoboti",
+     "bosqichlar": [
+      "vaziyat tanlash",
+      "miqdorlarni aniqlash",
+      "model tuzish",
+      "yechish",
+      "izohlash va tekshirish"
+     ],
+     "guruh_vazifalari": [
+      "Vaziyat tanlang",
+      "Model tuzing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri tuzilgan",
+      "hisoblar to‘g‘ri",
+      "izoh mantiqiy",
+      "tekshirish bor",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Modellar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Taksi bekati",
+       "matn": "5000 + 2000 · x, x ifoda 5.",
+       "topshiriq": "Haq?",
+       "javob": "15000",
+       "rasm": ""
+      },
+      {
+       "nom": "Yo‘l",
+       "matn": "70 km/soat, 2 soat.",
+       "topshiriq": "Yo‘l?",
+       "javob": "140",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Panjara 20 m, kvadrat.",
+       "topshiriq": "Tomon?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "Kilogramm narxi 8000, 3 kg.",
+       "topshiriq": "Jami?",
+       "javob": "24000",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi model oson bo‘ldi?",
+      "Natija mos keldimi?",
+      "Qayerda model tuzgan bo‘lardingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Matematik model",
+      "tarif": "vaziyatning formula yoki tenglama bilan tavsifi"
+     },
+     {
+      "atama": "Chiziqli model",
+      "tarif": "bir tekis o‘zgarishni ifodalovchi model"
+     },
+     {
+      "atama": "O‘zgaruvchi",
+      "tarif": "qiymati o‘zgaradigan miqdor"
+     },
+     {
+      "atama": "Parametr",
+      "tarif": "model berilgan o‘zgarmas qiymat"
+     },
+     {
+      "atama": "Izohlash",
+      "tarif": "natijani vaziyat tiliga qaytarish"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "natija mosligini aniqlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Matematik model vaziyatni soddalashtiradi",
+      "togri": true,
+      "izoh": "muhimini oladi"
+     },
+     {
+      "matn": "Model tuzgach tekshirish shart emas",
+      "togri": false,
+      "izoh": "tekshirish zarur"
+     },
+     {
+      "matn": "Yo‘l ifoda tezlik · vaqt",
+      "togri": true,
+      "izoh": "chiziqli model"
+     },
+     {
+      "matn": "Natija manfiy odamlar soni bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "mos kelmaydi"
+     },
+     {
+      "matn": "Ikki tarifni tenglashtirib teng nuqtani topish mumkin",
+      "togri": true,
+      "izoh": "model tenglamasi"
+     },
+     {
+      "matn": "Perimetr berilganda kvadrat eng katta yuz beradi",
+      "togri": true,
+      "izoh": "tomonlar teng"
+     },
+     {
+      "matn": "Birliklarni aralashtirish xato bermaydi",
+      "togri": false,
+      "izoh": "xatoga olib keladi"
+     },
+     {
+      "matn": "Model har doim to‘liq haqiqatni aks ettiradi",
+      "togri": false,
+      "izoh": "faqat soddalashtirilgan"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Matematik model nima?",
+      "javob": "vaziyatning formulalardagi tavsifi"
+     },
+     {
+      "savol": "Bosqichlar?",
+      "javob": "model, yechim, izoh, tekshirish"
+     },
+     {
+      "savol": "Yo‘l formulasi?",
+      "javob": "tezlik · vaqt"
+     },
+     {
+      "savol": "Taksi modeli?",
+      "javob": "ulanish plus har km"
+     },
+     {
+      "savol": "Nima uchun tekshiramiz?",
+      "javob": "haqiqatga mosligi uchun"
+     },
+     {
+      "savol": "Qachon ikki tarif tenglashadi?",
+      "javob": "formulalar teng bo‘lganda"
+     },
+     {
+      "savol": "Eng katta yuz qachon?",
+      "javob": "kvadratda"
+     },
+     {
+      "savol": "60 · 2,5 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "savol": "Model nimani tashlab yuboradi?",
+      "javob": "ikkinchi darajali tafsilot"
+     },
+     {
+      "savol": "Birlik nima uchun kerak?",
+      "javob": "xatoni oldini olish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Vaziyat",
+      "matn": "Masalani o‘qi.",
+      "savol": "Nima so‘ralyapti?"
+     },
+     {
+      "nom": "Model",
+      "matn": "Formula tuz.",
+      "savol": "Qanday formula?"
+     },
+     {
+      "nom": "Yechim",
+      "matn": "Tenglamani yech.",
+      "savol": "Javob nechaga teng?"
+     },
+     {
+      "nom": "Izoh",
+      "matn": "Hayotga qayt.",
+      "savol": "Javob mosmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bir xil vaziyat uchun bir nechta matematik model tuzish mumkin? Model qanchalik murakkab bo‘lishi kerak?",
+    "keys": {
+     "vaziyat": "Maktab bufetida bir porsiya 7000 so‘m. Bir kunda sotilgan porsiyalar soni x, ijara va xarajatlar 100000 so‘m.",
+     "savollar": [
+      "Foyda formulasi qanday?",
+      "Foyda ijobiy bo‘lishi uchun kamida nechta porsiya sotish kerak?"
+     ]
+    },
+    "tezis": "Model — hayotning matematik xaritasi",
+    "taqqoslash": {
+     "a": "Chiziqli model",
+     "b": "Kvadrat model",
+     "umumiy": [
+      "formula bilan yoziladi",
+      "vaziyatni soddalashtiradi"
+     ],
+     "a_farq": [
+      "bir tekis o‘zgarish",
+      "grafigi to‘g‘ri chiziq"
+     ],
+     "b_farq": [
+      "eng katta yoki kichik qiymat",
+      "grafigi parabola"
+     ]
+    },
+    "klaster": {
+     "markaz": "Matematik modellashtirish",
+     "shoxlar": [
+      {
+       "nom": "Bosqichlar",
+       "bandlar": [
+        "vaziyat",
+        "model",
+        "yechim",
+        "izoh"
+       ]
+      },
+      {
+       "nom": "Modellar",
+       "bandlar": [
+        "chiziqli",
+        "kvadrat",
+        "tenglama"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "birlik",
+        "mosligi"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "taksi",
+        "tarif",
+        "maydon"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men hayotni formulaga o‘giraman. Men kimman?",
+     "javob": "matematik model"
+    },
+    "hikmat": "Model soddalashtiradi, lekin yo‘lni ko‘rsatadi.",
+    "kalit_soz": "MODEL",
+    "xato_yechim": {
+     "shart": "Taksi haqi 5000 + 2000 · x. 31000 so‘m to‘langan. x ni toping.",
+     "xato": "x ifoda 15,5",
+     "togri": "x ifoda 13",
+     "sabab": "avval 5000 ni ayirish kerak: 26000 / 2000"
+    },
+    "guruh_nomlari": [
+     "Modelchilar",
+     "Formulachilar",
+     "Tarifchilar",
+     "Maydonchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bufet foydasi»",
+     "topshiriq": "Guruh maktab bufeti foydasi modelini tuzib, minimal porsiya sonini topadi."
+    },
+    "vazifalar": {
+     "A": "Taksi haqi 5000 + 2000 · x. 7 km uchun haq?",
+     "B": "50 km/soat tezlikda 4 soatda yo‘l?",
+     "C": "Panjara 60 m. Eng katta yuzli to‘rtburchak tomonlari?"
+    },
+    "sinkveyn": [
+     "Model",
+     "formula, soddalashtirilgan",
+     "tuzadi, yechadi, izohlaydi",
+     "Hayot formulada",
+     "Vaziyat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh modellarni yechadi.",
+     "qismlar": [
+      "1-guruh: 5000 + 2000 · 4",
+      "2-guruh: 60 · 3 yo‘l",
+      "3-guruh: x · (20 − x), x ifoda 8",
+      "4-guruh: 150 km, 50 km/soat vaqti"
+     ],
+     "yakun": "Natijalar: 13000; 180; 96; 3 soat."
+    }
+   }
+  },
+  {
+   "mavzu": "Sonli ketma-ketliklar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sonli ketma-ketlik",
+      "matn": "Natural sonlar to‘plamida berilgan funksiya sonli ketma-ketlik deyiladi. Har bir n natural songa bitta son mos qo‘yiladi, u ketma-ketlikning n-hadi deyiladi.",
+      "misol": "n-had 2n + 1 bo‘lsa: 3, 5, 7, 9, ... Bu yerda n ifoda 1 da had 3, n ifoda 2 da had 5.",
+      "savol": "n-had 2n + 1 bo‘lsa 4-had?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Formula bilan berish",
+      "matn": "Ketma-ketlikni n-had formulasi bilan berish eng qulay: istalgan hadni to‘g‘ridan to‘g‘ri hisoblaymiz. Masalan, n-had n kvadrat bo‘lsa, 1, 4, 9, 16, 25, ...",
+      "misol": "n-had n kvadrat plus 1: 5-had 25 + 1, ya’ni 26.",
+      "savol": "n-had n kvadrat bo‘lsa 6-had?",
+      "javob": "36",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Rekurrent usul",
+      "matn": "Rekurrent usulda birinchi had(lar) va keyingi hadni oldingilari orqali topish qoidasi beriladi. Har yangi hadni topish uchun oldingilarini bilish kerak.",
+      "misol": "Birinchi had 2, keyingi had oldingisini 2 ga ko‘paytirib 1 ayirilgan: 2, 3, 5, 9, 17, ...",
+      "savol": "Birinchi had 1, keyingi had oldingisidan 2 ortiq. Dastlabki 4 had?",
+      "javob": "1, 3, 5, 7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Fibonachchi ketma-ketligi",
+      "matn": "Fibonachchi ketma-ketligida birinchi ikkita had 1, keyingi har bir had oldingi ikkitasining yig‘indisiga teng: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55. U tabiatda: gul barglarida, chig‘anoq shaklida uchraydi.",
+      "misol": "34 — 13 va 21 yig‘indisi, 55 — 21 va 34 yig‘indisi.",
+      "savol": "Fibonachchida 8-had?",
+      "javob": "21",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘suvchi, kamayuvchi, chegaralangan",
+      "matn": "Har keyingi had oldingisidan katta bo‘lsa, ketma-ketlik o‘suvchi, kichik bo‘lsa kamayuvchi deyiladi. Hadlari ma’lum sondan oshmasa, ketma-ketlik yuqoridan chegaralangan.",
+      "misol": "n-had 1/n: 1, 1/2, 1/3, 1/4 — kamayuvchi, hadlari 0 bilan 1 orasida, ya’ni chegaralangan. n kvadrat o‘suvchi.",
+      "savol": "n-had 1/n ketma-ketlik o‘sadimi yoki kamayadimi?",
+      "javob": "kamayadi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ketma-ketlik n-had formulasi yoki rekurrent qoida bilan beriladi. O‘suvchi — har had oldingisidan katta, kamayuvchi — kichik. Fibonachchi: har had oldingi ikkitasining yig‘indisi.",
+    "misollar": [
+     {
+      "shart": "n-had 3n − 2 bo‘lsa, dastlabki 4 hadni va 10-hadni toping.",
+      "yechim": [
+       "n 1, 2, 3, 4 da: 1, 4, 7, 10.",
+       "10-had: 3 · 10 − 2.",
+       "30 − 2, ya’ni 28."
+      ],
+      "javob": "1, 4, 7, 10; 10-had 28"
+     },
+     {
+      "shart": "Fibonachchi ketma-ketligining 9- va 10-hadlarini toping.",
+      "yechim": [
+       "1, 1, 2, 3, 5, 8, 13, 21 — 8-had 21.",
+       "9-had 13 + 21, ya’ni 34.",
+       "10-had 21 + 34, ya’ni 55."
+      ],
+      "javob": "34 va 55"
+     },
+     {
+      "shart": "Birinchi had 2, keyingi had oldingisining ikki baravaridan 1 ayirilgan. 5-hadni toping.",
+      "yechim": [
+       "Ikkinchi had 2 · 2 − 1, ya’ni 3.",
+       "Uchinchi 2 · 3 − 1 — 5, to‘rtinchi 2 · 5 − 1 — 9.",
+       "Beshinchi 2 · 9 − 1, ya’ni 17."
+      ],
+      "javob": "17"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kvadratlar",
+      "topshiriq": "n-had n kvadrat. Dastlabki 5 hadni va ularning yig‘indisini toping.",
+      "yechim": "1, 4, 9, 16, 25. Yig‘indi 55.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Uchburchak sonlar",
+      "topshiriq": "n-had n(n + 1) / 2: dastlabki 5 hadni va 10-hadni toping.",
+      "yechim": "1, 3, 6, 10, 15. 10-had 10 · 11 / 2, ya’ni 55.",
+      "mahsulot": "dona chizmalari"
+     },
+     {
+      "nom": "Fibonachchi tabiatda",
+      "topshiriq": "Fibonachchi sonlarini tabiatdan (gul barglari, qarag‘ay mevasi) topishga harakat qiling.",
+      "yechim": "1, 2, 3, 5, 8 ko‘rinishidagi sonlarni sanash.",
+      "mahsulot": "kuzatuv daftari"
+     },
+     {
+      "nom": "O‘z ketma-ketligimiz",
+      "topshiriq": "Guruh o‘z qoidasi bilan ketma-ketlik tuzib, 5 hadni topadi.",
+      "yechim": "Har guruh o‘z qoidasi bilan hisoblaydi.",
+      "mahsulot": "ketma-ketlik kartochkasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "n-had n kvadrat plus 1, 5-had?",
+      "javob": "26"
+     },
+     {
+      "shart": "n-had 2n, 6-had?",
+      "javob": "12"
+     },
+     {
+      "shart": "n-had 1/n, 4-had?",
+      "javob": "1/4"
+     },
+     {
+      "shart": "1, 3, 5, 7 ketma-ketlikning n-had formulasi?",
+      "javob": "2n − 1"
+     },
+     {
+      "shart": "Fibonachchida 8-had?",
+      "javob": "21"
+     },
+     {
+      "shart": "n-had 3n − 2, 5-had?",
+      "javob": "13"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "n-hadga n o‘rniga n − 1 qo‘yadi",
+      "sabab": "raqamlashni 1 dan boshlashni unutadi",
+      "oldini_olish": "n ifoda 1 dan boshlanishini eslash"
+     },
+     {
+      "xato": "Rekurrentda oldingi hadni noto‘g‘ri oladi",
+      "sabab": "qoidani chalkashtiradi",
+      "oldini_olish": "har qadamni jadvalga yozib borish"
+     },
+     {
+      "xato": "O‘suvchi va kamayuvchini adashtiradi",
+      "sabab": "hadlarni solishtirmaydi",
+      "oldini_olish": "ketma-ket ikkita hadni solishtirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "Fibonachchi sonlari tabiatda"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "algoritmlar va takrorlanuvchi jarayonlar"
+     },
+     {
+      "fan": "San’at",
+      "boglanish": "oltin nisbat va me’morchilik"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sonlar naqshi»",
+     "muammo": "Sonli ketma-ketliklarda qanday naqshlar bor va ularni qanday topamiz?",
+     "mahsulot": "ketma-ketliklar albomi",
+     "bosqichlar": [
+      "ketma-ketliklarni yig‘ish",
+      "qoidani topish",
+      "n-had formulasini yozish",
+      "keyingi hadlarni hisoblash",
+      "albom tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Ketma-ketlik toping",
+      "Qoidani aniqlang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "qoida to‘g‘ri topilgan",
+      "hisoblar to‘g‘ri",
+      "naqsh ko‘rsatilgan",
+      "albom ravshan",
+      "taqdimot izchil"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ketma-ketliklar yo‘lagi»",
+     "bekatlar": [
+      {
+       "nom": "Birinchi xona",
+       "matn": "n-had 2n + 1.",
+       "topshiriq": "5-had?",
+       "javob": "11",
+       "rasm": ""
+      },
+      {
+       "nom": "Ikkinchi xona",
+       "matn": "n-had n kvadrat.",
+       "topshiriq": "7-had?",
+       "javob": "49",
+       "rasm": ""
+      },
+      {
+       "nom": "Uchinchi xona",
+       "matn": "Fibonachchi.",
+       "topshiriq": "7-had?",
+       "javob": "13",
+       "rasm": ""
+      },
+      {
+       "nom": "To‘rtinchi xona",
+       "matn": "n-had 1/n.",
+       "topshiriq": "5-had?",
+       "javob": "1/5",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qoidani qanday topdingiz?",
+      "Qaysi usul qulay bo‘ldi?",
+      "Naqsh qayerda ko‘rindi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ketma-ketlik",
+      "tarif": "tartiblangan sonlar qatori"
+     },
+     {
+      "atama": "n-had",
+      "tarif": "n-o‘rindagi had"
+     },
+     {
+      "atama": "Rekurrent usul",
+      "tarif": "keyingi hadni oldingilari orqali topish"
+     },
+     {
+      "atama": "Fibonachchi",
+      "tarif": "har had oldingi ikkitasining yig‘indisi"
+     },
+     {
+      "atama": "O‘suvchi",
+      "tarif": "har had oldingisidan katta"
+     },
+     {
+      "atama": "Chegaralangan",
+      "tarif": "hadlari ma’lum sondan oshmaydigan"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "n-had 2n + 1 bo‘lsa 3-had 7",
+      "togri": true,
+      "izoh": "2 · 3 + 1"
+     },
+     {
+      "matn": "Fibonachchida har had oldingisining ikki baravari",
+      "togri": false,
+      "izoh": "oldingi ikkitasining yig‘indisi"
+     },
+     {
+      "matn": "n-had 1/n kamayuvchi",
+      "togri": true,
+      "izoh": "hadlari kichrayadi"
+     },
+     {
+      "matn": "n-had n kvadrat kamayuvchi",
+      "togri": false,
+      "izoh": "o‘suvchi"
+     },
+     {
+      "matn": "Rekurrent usulda keyingi had oldingilari orqali topiladi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Ketma-ketlik n ifoda 0 dan boshlanadi",
+      "togri": false,
+      "izoh": "n ifoda 1 dan"
+     },
+     {
+      "matn": "Fibonachchida 5-had 5",
+      "togri": true,
+      "izoh": "1, 1, 2, 3, 5"
+     },
+     {
+      "matn": "n-had 1/n hadlari 1 dan katta",
+      "togri": false,
+      "izoh": "1 dan kichik yoki teng"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ketma-ketlik nima?",
+      "javob": "tartiblangan sonlar qatori"
+     },
+     {
+      "savol": "n-had nima?",
+      "javob": "n-o‘rindagi had"
+     },
+     {
+      "savol": "Usullar?",
+      "javob": "formula, rekurrent, tavsif"
+     },
+     {
+      "savol": "Fibonachchi qoidasi?",
+      "javob": "oldingi ikkitasining yig‘indisi"
+     },
+     {
+      "savol": "n-had 2n, 3-had?",
+      "javob": "6"
+     },
+     {
+      "savol": "n-had n kvadrat, 4-had?",
+      "javob": "16"
+     },
+     {
+      "savol": "O‘suvchi nima?",
+      "javob": "har had oldingisidan katta"
+     },
+     {
+      "savol": "Kamayuvchi nima?",
+      "javob": "har had oldingisidan kichik"
+     },
+     {
+      "savol": "Rekurrent nima?",
+      "javob": "oldingi hadlar orqali"
+     },
+     {
+      "savol": "n ifoda nechadan boshlanadi?",
+      "javob": "1 dan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Formula",
+      "matn": "n-hadni hisobla.",
+      "savol": "n-had 2n da 5-had?"
+     },
+     {
+      "nom": "Rekurrent",
+      "matn": "Oldingisini ishlat.",
+      "savol": "1, ? : oldingisi plus 2?"
+     },
+     {
+      "nom": "Solishtir",
+      "matn": "Qo‘shni hadlarni ko‘r.",
+      "savol": "1, 2, 3 — qanday?"
+     },
+     {
+      "nom": "Naqsh",
+      "matn": "Qoidani top.",
+      "savol": "2, 4, 6 — qoida?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun Fibonachchi sonlari tabiatda tez-tez uchraydi? Barg va gul yaprog‘lari sonini kuzatib, o‘z fikringizni bayon eting.",
+    "keys": {
+     "vaziyat": "Zinapoyada birinchi pog‘onada 3 ta g‘isht, har keyingi pog‘onada 2 tadan ko‘p.",
+     "savollar": [
+      "n-had formulasi qanday?",
+      "6-pog‘onada nechta g‘isht?"
+     ]
+    },
+    "tezis": "Sonlar qatorida qonun yashiringan",
+    "taqqoslash": {
+     "a": "Formula bilan berish",
+     "b": "Rekurrent berish",
+     "umumiy": [
+      "ketma-ketlikni belgilaydi",
+      "hadlarini topishga imkon beradi"
+     ],
+     "a_farq": [
+      "istalgan hadni to‘g‘ridan topadi",
+      "n-had formulasi kerak"
+     ],
+     "b_farq": [
+      "oldingi hadlar kerak",
+      "qadamma-qadam hisoblanadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Sonli ketma-ketliklar",
+     "shoxlar": [
+      {
+       "nom": "Berilishi",
+       "bandlar": [
+        "formula",
+        "rekurrent",
+        "tavsif"
+       ]
+      },
+      {
+       "nom": "Turlar",
+       "bandlar": [
+        "o‘suvchi",
+        "kamayuvchi"
+       ]
+      },
+      {
+       "nom": "Mashhurlari",
+       "bandlar": [
+        "Fibonachchi",
+        "kvadratlar"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "zinapoya",
+        "tabiat naqshi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men sonlar qatoriman, mening qoidam bor. Men kimman?",
+     "javob": "ketma-ketlik"
+    },
+    "hikmat": "Har sonning o‘z o‘rni bor.",
+    "kalit_soz": "NAQSH",
+    "xato_yechim": {
+     "shart": "n-had 3n − 2 bo‘lsa, 5-hadni toping.",
+     "xato": "3 · 5 + 2, ya’ni 17",
+     "togri": "3 · 5 − 2, ya’ni 13",
+     "sabab": "formulada ayirish belgisi bor"
+    },
+    "guruh_nomlari": [
+     "Formulachilar",
+     "Rekurrentchilar",
+     "Fibonachchilar",
+     "Naqshchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tabiatdagi sonlar»",
+     "topshiriq": "Guruh o‘simlik bargi yoki gul yaprog‘i sonini sanab, Fibonachchi bilan solishtiradi."
+    },
+    "vazifalar": {
+     "A": "n-had 2n + 3 bo‘lsa, dastlabki 4 hadni toping.",
+     "B": "Fibonachchining 6-hadini toping.",
+     "C": "Birinchi had 3, har keyingi had oldingisidan 4 ortiq. 5-had?"
+    },
+    "sinkveyn": [
+     "Ketma-ketlik",
+     "tartibli, qoidali",
+     "hosil bo‘ladi, o‘sadi, kamayadi",
+     "Qoida sonlarni boshqaradi",
+     "Had"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ketma-ketliklar hadlarini topadi.",
+     "qismlar": [
+      "1-guruh: n-had 2n, 5-had",
+      "2-guruh: n-had n kvadrat, 6-had",
+      "3-guruh: Fibonachchi, 7-had",
+      "4-guruh: n-had 1/n, 8-had"
+     ],
+     "yakun": "Natijalar: 10; 36; 13; 1/8."
+    }
+   }
   }
  ]
 }
