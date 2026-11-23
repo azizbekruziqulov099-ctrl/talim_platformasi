@@ -4161,6 +4161,471 @@
      "yakun": "Natijalar: 24; 20; 31,4; 37,68."
     }
    }
+  },
+  {
+   "mavzu": "Geometriya va san’at (naqshlar)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Naqsh va simmetriya",
+      "matn": "Naqsh — shakllarning ma’lum qoida bo‘yicha takrorlanishi. Har bir naqshda simmetriya yashirin: ko‘zgu simmetriyasi, aylanma simmetriya yoki ko‘chirma takrorlanish. Simmetriya naqshga tartib va go‘zallik beradi.",
+      "misol": "O‘zbek ganch va kulolchilik naqshlari — ko‘zgu va aylanma simmetriyaga boy. Qor parchasi 6 ta o‘qqa nisbatan simmetrik.",
+      "savol": "Kvadratning nechta simmetriya o‘qi bor?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aylanma simmetriya",
+      "matn": "Shakl markaz atrofida 360 / n gradusga burilganda o‘z-o‘ziga mos tushsa, uning n-tartibli aylanma simmetriyasi bor. Muntazam n burchakli ko‘pburchak n-tartibli simmetriyaga ega.",
+      "misol": "Kvadrat: 360 / 4, ya’ni 90 gradus. Teng tomonli uchburchak: 360 / 3, ya’ni 120. Oltiburchak: 360 / 6, ya’ni 60. Sakkizburchak: 360 / 8, ya’ni 45.",
+      "savol": "Teng tomonli uchburchak necha gradusga burilganda mos tushadi?",
+      "javob": "120",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mozaika (parket)",
+      "matn": "Tekislikni bo‘shliqsiz va ustma-ust tushirmasdan qoplash mozaika deyiladi. Uchlarda yig‘iladigan burchaklar yig‘indisi 360 gradus bo‘lishi shart. Faqat uchburchak, kvadrat va oltiburchak bilan muntazam mozaika hosil bo‘ladi.",
+      "misol": "Uchburchak: 6 ta uchda 6 · 60, ya’ni 360. Kvadrat: 4 · 90, ya’ni 360. Oltiburchak: 3 · 120, ya’ni 360.",
+      "savol": "Uchda nechta kvadrat yig‘iladi (burchak 90)?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oltin nisbat",
+      "matn": "Kesmani shunday ikki qismga bo‘lamiz: kattasining kichigiga nisbati butunning kattaga nisbatiga teng. Bu nisbat taxminan 1,618. U Fibonachchi sonlari nisbatiga yaqin va san’atda go‘zal nisbat sifatida ishlatiladi.",
+      "misol": "10 m ni oltin nisbatda bo‘lsak: katta qism 10 / 1,618, ya’ni 6,18, kichik qism 10 − 6,18, ya’ni 3,82.",
+      "savol": "Fibonachchida 8 / 5 nisbati taxminan nimaga teng?",
+      "javob": "1,6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Friz va naqsh turlari",
+      "matn": "Friz — bir yo‘nalishda takrorlanadigan polosa naqshi. Ko‘chirish, ko‘zgu va burish harakatlarining birikmasi bilan 7 xil friz hosil bo‘ladi. Tekislik naqshlarida esa 17 xil simmetriya guruhi bor.",
+      "misol": "Devor chekkasi bezagi — friz. Gilam va ganchdagi naqshlar — tekislik naqshlari.",
+      "savol": "Frizda shakl qanday harakat bilan takrorlanadi?",
+      "javob": "ko‘chirish bilan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Simmetriya: ko‘zgu, aylanma, ko‘chirma. n-tartibli aylanma simmetriya: 360 / n gradus. Mozaikada uchdagi burchaklar yig‘indisi 360. Oltin nisbat taxminan 1,618.",
+    "misollar": [
+     {
+      "shart": "Muntazam sakkizburchakning aylanma simmetriya burchagini toping.",
+      "yechim": [
+       "Burchak 360 / n.",
+       "n ifoda 8.",
+       "360 / 8, ya’ni 45 gradus."
+      ],
+      "javob": "45 gradus"
+     },
+     {
+      "shart": "10 m uzunlikdagi lentani oltin nisbatda ikkiga bo‘ling.",
+      "yechim": [
+       "Katta qism 10 / 1,618, ya’ni 6,18.",
+       "Kichik qism 10 − 6,18.",
+       "3,82. Tekshirish: 6,18 / 3,82 taxminan 1,618."
+      ],
+      "javob": "6,18 va 3,82"
+     },
+     {
+      "shart": "Nima uchun muntazam beshburchak bilan tekislikni bo‘shliqsiz qoplab bo‘lmaydi?",
+      "yechim": [
+       "Beshburchak burchagi 108 gradus.",
+       "360 ni 108 ga bo‘lsak, butun son chiqmaydi.",
+       "Shuning uchun uchda burchaklar 360 ni bermaydi."
+      ],
+      "javob": "108 ga 360 butun bo‘linmaydi"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Simmetriya o‘qlari",
+      "topshiriq": "Kvadrat, to‘g‘ri to‘rtburchak, teng tomonli uchburchak va doiraning simmetriya o‘qlari sonini toping.",
+      "yechim": "4; 2; 3; cheksiz ko‘p.",
+      "mahsulot": "simmetriya jadvali"
+     },
+     {
+      "nom": "Mozaika yasash",
+      "topshiriq": "Uchburchak, kvadrat yoki oltiburchaklardan mozaika tuzing, uchlardagi burchak yig‘indisini yozing.",
+      "yechim": "Uchlarda yig‘indi har doim 360.",
+      "mahsulot": "mozaika rasmi"
+     },
+     {
+      "nom": "Oltin nisbat",
+      "topshiriq": "20 m uzunlikni oltin nisbatda bo‘ling.",
+      "yechim": "Katta 12,36, kichik 7,64.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "O‘zbek naqshi",
+      "topshiriq": "Ganch yoki gilam naqshidan simmetriya turlarini va aylanma simmetriya tartibini toping.",
+      "yechim": "Har guruh o‘z naqshini tahlil qiladi.",
+      "mahsulot": "tahlil varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Kvadratning simmetriya o‘qlari soni?",
+      "javob": "4"
+     },
+     {
+      "shart": "Teng tomonli uchburchakning aylanma simmetriya burchagi?",
+      "javob": "120"
+     },
+     {
+      "shart": "Oltiburchakning aylanma simmetriya burchagi?",
+      "javob": "60"
+     },
+     {
+      "shart": "Uchda nechta oltiburchak yig‘iladi?",
+      "javob": "3"
+     },
+     {
+      "shart": "20 m ni oltin nisbatda bo‘lganda katta qism (taxminan)?",
+      "javob": "12,36"
+     },
+     {
+      "shart": "To‘g‘ri to‘rtburchakning simmetriya o‘qlari soni?",
+      "javob": "2"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Oltin nisbatni 1 : 2 deb oladi",
+      "sabab": "nisbat taxminan 1,618 ekanini bilmaydi",
+      "oldini_olish": "oltin nisbat taxminan 1,618 ekanini yodlash"
+     },
+     {
+      "xato": "Muntazam beshburchak bilan mozaika mumkin deb o‘ylaydi",
+      "sabab": "burchaklar yig‘indisini tekshirmaydi",
+      "oldini_olish": "uchda 360 gradus bo‘lishini hisoblash"
+     },
+     {
+      "xato": "Simmetriya o‘qlarini sanashda adashadi",
+      "sabab": "chizma chizmaydi",
+      "oldini_olish": "ko‘zgu chizig‘ini chizib tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "San’at",
+      "boglanish": "naqsh, rassomlik va me’morchilik"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "o‘zbek me’morchiligidagi geometrik naqshlar"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "tabiatdagi simmetriya va Fibonachchi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Naqsh ustaxonasi»",
+     "muammo": "Geometrik shakllardan o‘zbek an’anaviy naqshini qanday yasaymiz va simmetriyasini qanday tahlil qilamiz?",
+     "mahsulot": "naqshlar albomi",
+     "bosqichlar": [
+      "naqsh namunasini topish",
+      "simmetriyani aniqlash",
+      "asosiy shaklni chizish",
+      "naqshni takrorlash",
+      "albom tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Naqsh toping",
+      "Simmetriyani aniqlang",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "simmetriya to‘g‘ri aniqlangan",
+      "naqsh aniq chizilgan",
+      "hisoblar to‘g‘ri",
+      "tushuntirish asosli",
+      "albom ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Registon naqshlari»",
+     "bekatlar": [
+      {
+       "nom": "Madrasa peshtoqi",
+       "matn": "Sakkizburchakli yulduz.",
+       "topshiriq": "Aylanma burchak?",
+       "javob": "45",
+       "rasm": ""
+      },
+      {
+       "nom": "Ganch devor",
+       "matn": "Oltiburchak mozaika.",
+       "topshiriq": "Uchda nechta shakl?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "Gilam",
+       "matn": "Kvadratli naqsh.",
+       "topshiriq": "Simmetriya o‘qlari?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "Ravoq",
+       "matn": "Lenta 10 m, oltin nisbat.",
+       "topshiriq": "Katta qism (taxminan)?",
+       "javob": "6,18",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi simmetriyani ko‘rdingiz?",
+      "Naqshda qanday shakllar bor?",
+      "Qaysi naqsh yoqdi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Naqsh",
+      "tarif": "shakllarning qoida bo‘yicha takrorlanishi"
+     },
+     {
+      "atama": "Simmetriya",
+      "tarif": "shaklning o‘z-o‘ziga mos tushishi"
+     },
+     {
+      "atama": "Mozaika",
+      "tarif": "tekislikni bo‘shliqsiz qoplash"
+     },
+     {
+      "atama": "Oltin nisbat",
+      "tarif": "taxminan 1,618 bo‘lgan go‘zal nisbat"
+     },
+     {
+      "atama": "Friz",
+      "tarif": "bir yo‘nalishdagi polosa naqshi"
+     },
+     {
+      "atama": "Aylanma simmetriya",
+      "tarif": "markaz atrofida burilganda mos tushish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Kvadratda 4 ta simmetriya o‘qi bor",
+      "togri": true,
+      "izoh": "ikki diagonal va ikki o‘rta chiziq"
+     },
+     {
+      "matn": "Oltin nisbat taxminan 2",
+      "togri": false,
+      "izoh": "taxminan 1,618"
+     },
+     {
+      "matn": "Oltiburchak bilan mozaika hosil bo‘ladi",
+      "togri": true,
+      "izoh": "3 · 120 ifoda 360"
+     },
+     {
+      "matn": "Beshburchak bilan mozaika hosil bo‘ladi",
+      "togri": false,
+      "izoh": "108 ga 360 bo‘linmaydi"
+     },
+     {
+      "matn": "Teng tomonli uchburchak 120 gradusga burilganda mos tushadi",
+      "togri": true,
+      "izoh": "360 / 3"
+     },
+     {
+      "matn": "Naqshda simmetriya bo‘lmaydi",
+      "togri": false,
+      "izoh": "simmetriya naqshning asosi"
+     },
+     {
+      "matn": "Fibonachchi nisbati oltin nisbatga yaqin",
+      "togri": true,
+      "izoh": "8 / 5 taxminan 1,6"
+     },
+     {
+      "matn": "Faqat 3 xil tekislik naqshi mavjud",
+      "togri": false,
+      "izoh": "17 xil guruh"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Naqsh nima?",
+      "javob": "shakllarning qoida bo‘yicha takrorlanishi"
+     },
+     {
+      "savol": "Simmetriya turlari?",
+      "javob": "ko‘zgu, aylanma, ko‘chirma"
+     },
+     {
+      "savol": "Aylanma burchak formulasi?",
+      "javob": "360 / n"
+     },
+     {
+      "savol": "Mozaikada uchda burchaklar yig‘indisi?",
+      "javob": "360 gradus"
+     },
+     {
+      "savol": "Qaysi shakllar muntazam mozaika beradi?",
+      "javob": "uchburchak, kvadrat, oltiburchak"
+     },
+     {
+      "savol": "Oltin nisbat?",
+      "javob": "taxminan 1,618"
+     },
+     {
+      "savol": "Kvadrat aylanma burchagi?",
+      "javob": "90"
+     },
+     {
+      "savol": "Friz nima?",
+      "javob": "polosa naqshi"
+     },
+     {
+      "savol": "Oltiburchak aylanma burchagi?",
+      "javob": "60"
+     },
+     {
+      "savol": "Doiraning simmetriya o‘qlari?",
+      "javob": "cheksiz ko‘p"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Simmetriya",
+      "matn": "Ko‘zgu chizig‘ini top.",
+      "savol": "Kvadratda nechta?"
+     },
+     {
+      "nom": "Burilish",
+      "matn": "360 ni n ga bo‘l.",
+      "savol": "Sakkizburchak uchun?"
+     },
+     {
+      "nom": "Mozaika",
+      "matn": "Burchaklarni qo‘sh.",
+      "savol": "3 · 120 nechaga teng?"
+     },
+     {
+      "nom": "Oltin",
+      "matn": "Bo‘lak 1,618 ga bo‘l.",
+      "savol": "10 / 1,618?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun qadimgi ustalar naqshlarda kvadrat, oltiburchak va yulduzlarni ko‘p ishlatgan? Simmetriya va mozaika bilan tushuntiring.",
+    "keys": {
+     "vaziyat": "Usta 10 m uzunlikdagi lentani oltin nisbatda ikki qismga bo‘lib bezakka ishlatmoqchi.",
+     "savollar": [
+      "Katta qism qancha?",
+      "Kichik qism qancha?"
+     ]
+    },
+    "tezis": "Go‘zallik — hisobning natijasi",
+    "taqqoslash": {
+     "a": "Ko‘zgu simmetriyasi",
+     "b": "Aylanma simmetriya",
+     "umumiy": [
+      "naqshga tartib beradi",
+      "harakat bilan bog‘liq"
+     ],
+     "a_farq": [
+      "o‘q bilan beriladi",
+      "chap va o‘ng aks etadi"
+     ],
+     "b_farq": [
+      "markaz va burchak bilan beriladi",
+      "360 / n gradusga buriladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Geometriya va san’at",
+     "shoxlar": [
+      {
+       "nom": "Simmetriya",
+       "bandlar": [
+        "ko‘zgu",
+        "aylanma",
+        "ko‘chirma"
+       ]
+      },
+      {
+       "nom": "Mozaika",
+       "bandlar": [
+        "uchburchak",
+        "kvadrat",
+        "oltiburchak"
+       ]
+      },
+      {
+       "nom": "Oltin nisbat",
+       "bandlar": [
+        "1,618",
+        "Fibonachchi"
+       ]
+      },
+      {
+       "nom": "Naqshlar",
+       "bandlar": [
+        "friz",
+        "ganch",
+        "gilam"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men shakllarni tartib bilan takrorlayman va chiroy beraman. Men kimman?",
+     "javob": "naqsh"
+    },
+    "hikmat": "Geometriya — san’atning ko‘rinmas ustasi.",
+    "kalit_soz": "NAQSH",
+    "xato_yechim": {
+     "shart": "Muntazam beshburchak bilan tekislikni bo‘shliqsiz qoplash mumkinmi?",
+     "xato": "mumkin",
+     "togri": "mumkin emas",
+     "sabab": "burchagi 108, 360 ni 108 ga butun bo‘lib bo‘lmaydi"
+    },
+    "guruh_nomlari": [
+     "Simmetrchilar",
+     "Mozaikachilar",
+     "Naqshchilar",
+     "Oltin nisbatchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Maktab naqshi»",
+     "topshiriq": "Guruh maktab devori uchun geometrik naqsh loyihasini tayyorlab, simmetriyasini tushuntiradi."
+    },
+    "vazifalar": {
+     "A": "Muntazam oltiburchakning aylanma simmetriya burchagini toping.",
+     "B": "15 m ni oltin nisbatda ikkiga bo‘ling (1,618 bilan).",
+     "C": "Uchda nechta kvadrat yig‘iladi va nega?"
+    },
+    "sinkveyn": [
+     "Naqsh",
+     "chiroyli, takrorlanuvchi",
+     "bezatadi, takrorlanadi, aks etadi",
+     "Tartibli go‘zallik",
+     "Simmetriya"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh naqsh hisoblarini bajaradi.",
+     "qismlar": [
+      "1-guruh: kvadrat simmetriya o‘qlari",
+      "2-guruh: oltiburchak aylanma burchagi",
+      "3-guruh: uchda nechta oltiburchak",
+      "4-guruh: 10 m oltin nisbatda katta qism"
+     ],
+     "yakun": "Natijalar: 4; 60; 3; 6,18."
+    }
+   }
   }
  ]
 }
