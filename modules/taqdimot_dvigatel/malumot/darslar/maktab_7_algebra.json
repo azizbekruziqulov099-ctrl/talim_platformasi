@@ -1401,6 +1401,1404 @@
      "yakun": "Natijalar: 2x va 3; a va 2; 3x kvadrat va 3x; x kvadrat va 4x va 3."
     }
    }
+  },
+  {
+   "mavzu": "Qisqa ko‘paytirish formulalari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yig‘indining kvadrati",
+      "matn": "Ikki son yig‘indisining kvadrati birinchi son kvadrati, ularning ikkilangan ko‘paytmasi va ikkinchi son kvadratining yig‘indisiga teng: (a + b)² — bu a² + 2ab + b². Formulani chizma bilan ham ko‘rsatish mumkin: tomoni a + b bo‘lgan kvadrat ikki kvadrat va ikki to‘g‘ri to‘rtburchakdan iborat.",
+      "misol": "(x + 3)² ifodasida a — x, b — 3: x² + 6x + 9. Sonlar uchun: 51² — (50 + 1)², ya’ni 2500 + 100 + 1, natija 2601.",
+      "savol": "(a + 2)² ni oching.",
+      "javob": "a² + 4a + 4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ayirmaning kvadrati",
+      "matn": "Ikki son ayirmasining kvadrati: (a − b)² — bu a² − 2ab + b². O‘rtadagi had ishorasi minus, oxirgi had doim musbat.",
+      "misol": "(x − 4)² — bu x² − 8x + 16. 99² — (100 − 1)², ya’ni 10000 − 200 + 1, natija 9801.",
+      "savol": "(y − 5)² ni oching.",
+      "javob": "y² − 10y + 25",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kvadratlar ayirmasi",
+      "matn": "Ikki son kvadratlarining ayirmasi shu sonlar ayirmasi bilan yig‘indisi ko‘paytmasiga teng: a² − b² — bu (a − b)(a + b). Aksincha, (a − b)(a + b) ko‘paytma a² − b² ga teng.",
+      "misol": "(x − 3)(x + 3) — bu x² − 9. 49 · 51 — (50 − 1)(50 + 1), ya’ni 2500 − 1, natija 2499.",
+      "savol": "(y − 6)(y + 6) ni oching.",
+      "javob": "y² − 36",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kublar yig‘indisi va ayirmasi",
+      "matn": "a³ + b³ — bu (a + b)(a² − ab + b²). a³ − b³ — bu (a − b)(a² + ab + b²). Ikkinchi qavs «to‘liqsiz kvadrat» deyiladi, chunki o‘rtadagi had ikkilangan emas.",
+      "misol": "x³ + 8 — bu (x + 2)(x² − 2x + 4). x³ − 27 — bu (x − 3)(x² + 3x + 9).",
+      "savol": "a³ − 1 ni ko‘paytuvchilarga ajrating.",
+      "javob": "(a − 1)(a² + a + 1)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Formulalarni qo‘llash",
+      "matn": "Qisqa ko‘paytirish formulalari qavslarni tez ochishga, sonlar ustida tez hisoblashga va ifodalarni ko‘paytuvchilarga ajratishga yordam beradi. Formulani tanlashdan oldin ifoda ko‘rinishini aniqlaymiz: kvadrat, ayirma yoki yig‘indi.",
+      "misol": "Tomoni a + 3 bo‘lgan kvadrat yuzi (a + 3)², ya’ni a² + 6a + 9.",
+      "savol": "Tomoni x + 1 bo‘lgan kvadratning yuzi?",
+      "javob": "x² + 2x + 1",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "(a + b)² — bu a² + 2ab + b². (a − b)² — bu a² − 2ab + b². a² − b² — bu (a − b)(a + b). a³ + b³ — bu (a + b)(a² − ab + b²). a³ − b³ — bu (a − b)(a² + ab + b²).",
+    "misollar": [
+     {
+      "shart": "(2x + 5)² ni oching.",
+      "yechim": [
+       "Birinchi son 2x, ikkinchisi 5.",
+       "Kvadratlar: 4x² va 25.",
+       "Ikkilangan ko‘paytma: 2 · 2x · 5 — 20x. Natija 4x² + 20x + 25."
+      ],
+      "javob": "4x² + 20x + 25"
+     },
+     {
+      "shart": "(3a − 2b)² ni oching.",
+      "yechim": [
+       "Kvadratlar: 9a² va 4b².",
+       "Ikkilangan ko‘paytma: 2 · 3a · 2b — 12ab.",
+       "Natija 9a² − 12ab + 4b²."
+      ],
+      "javob": "9a² − 12ab + 4b²"
+     },
+     {
+      "shart": "98 · 102 ni formula bilan hisoblang.",
+      "yechim": [
+       "98 — 100 − 2, 102 — 100 + 2.",
+       "Kvadratlar ayirmasi: 100² − 2².",
+       "10000 − 4, natija 9996."
+      ],
+      "javob": "9996"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tez hisoblash",
+      "topshiriq": "Formula bilan hisoblang: 101², 29², 51 · 49.",
+      "yechim": "101² — (100 + 1)²: 10201. 29² — (30 − 1)²: 841. 51 · 49 — (50 + 1)(50 − 1): 2499.",
+      "mahsulot": "hisoblash jadvali"
+     },
+     {
+      "nom": "Kvadrat yuzi",
+      "topshiriq": "Kvadrat tomoni a + 3. Yuzini formula bilan yozing va chizma bilan tekshiring.",
+      "yechim": "a² + 6a + 9: katta kvadrat a², ikkita 3a to‘g‘ri to‘rtburchak va 9 kichik kvadrat.",
+      "mahsulot": "yuza chizmasi"
+     },
+     {
+      "nom": "Kublar formulasi",
+      "topshiriq": "x³ + 1 ni ko‘paytuvchilarga ajrating va qavslarni ochib tekshiring.",
+      "yechim": "(x + 1)(x² − x + 1). Tekshirish: x³ − x² + x + x² − x + 1 — bu x³ + 1.",
+      "mahsulot": "tekshirish varag‘i"
+     },
+     {
+      "nom": "Formula tanlaymiz",
+      "topshiriq": "(x + 7)(x − 7), (m − 3)², (y + 4)² ifodalarini oching.",
+      "yechim": "x² − 49, m² − 6m + 9, y² + 8y + 16.",
+      "mahsulot": "formulalar jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "(x + 1)² ni oching.",
+      "javob": "x² + 2x + 1"
+     },
+     {
+      "shart": "(m − 3)² ni oching.",
+      "javob": "m² − 6m + 9"
+     },
+     {
+      "shart": "(a − 7)(a + 7) ni oching.",
+      "javob": "a² − 49"
+     },
+     {
+      "shart": "31² ni formula bilan hisoblang.",
+      "javob": "961"
+     },
+     {
+      "shart": "29² ni formula bilan hisoblang.",
+      "javob": "841"
+     },
+     {
+      "shart": "(2y + 1)(2y − 1) ni oching.",
+      "javob": "4y² − 1"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "(a + b)² ni a² + b² deb yozadi",
+      "sabab": "ikkilangan ko‘paytmani unutadi",
+      "oldini_olish": "chizma yoki qavslarni ochib tekshirish"
+     },
+     {
+      "xato": "(a − b)² da oxirgi had ishorasini minus qiladi",
+      "sabab": "ishora qoidasini adashtiradi",
+      "oldini_olish": "kvadrat doim musbat ekanini eslash"
+     },
+     {
+      "xato": "Kvadratlar ayirmasini kvadrat ayirma bilan adashtiradi",
+      "sabab": "(a − b)² va a² − b² ni farqlamaydi",
+      "oldini_olish": "a² − b² — ko‘paytma, (a − b)² — kvadrat ekanini ajratish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geometriya",
+      "boglanish": "kvadrat va to‘g‘ri to‘rtburchak yuzlari formulalar bilan isbotlanadi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "energiya va tezlik formulalarini soddalashtirish"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "hisoblashni tezlatuvchi usullar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tez hisoblash ustasi»",
+     "muammo": "Qisqa ko‘paytirish formulalari bilan sonlarni qanday tez hisoblaymiz?",
+     "mahsulot": "tez hisoblash qo‘llanmasi",
+     "bosqichlar": [
+      "formulalarni tanlash",
+      "misollar tuzish",
+      "hisoblash",
+      "chizma bilan isbotlash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Formulalarni tanlang",
+      "Misollar tuzing",
+      "Tez hisoblang",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "formulalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "chizma aniq",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Formulalar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Maydon",
+       "matn": "Kvadrat maydon tomoni 51 m.",
+       "topshiriq": "Yuzini formula bilan hisoblang.",
+       "javob": "2601 kv. m",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "49 ta qutida 51 tadan olma bor.",
+       "topshiriq": "Jami nechta olma?",
+       "javob": "2499 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Kvadrat bog‘ tomoni x + 2.",
+       "topshiriq": "Yuzi qanday?",
+       "javob": "x² + 4x + 4",
+       "rasm": ""
+      },
+      {
+       "nom": "Ombor",
+       "matn": "Kub shaklida quti hajmi x³ + 8.",
+       "topshiriq": "Ko‘paytuvchilarga ajrating.",
+       "javob": "(x + 2)(x² − 2x + 4)",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Formulalar qayerda foydali?",
+      "Qaysi sonlarni tez hisoblash mumkin?",
+      "Chizma formulani qanday isbotlaydi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Qisqa ko‘paytirish formulasi",
+      "tarif": "tez ko‘paytirishga yordam beradigan ayniyat"
+     },
+     {
+      "atama": "Yig‘indining kvadrati",
+      "tarif": "(a + b)² ifodasi"
+     },
+     {
+      "atama": "Ayirmaning kvadrati",
+      "tarif": "(a − b)² ifodasi"
+     },
+     {
+      "atama": "Kvadratlar ayirmasi",
+      "tarif": "a² − b² ifodasi"
+     },
+     {
+      "atama": "Ikkilangan ko‘paytma",
+      "tarif": "2ab ifodasi"
+     },
+     {
+      "atama": "To‘liqsiz kvadrat",
+      "tarif": "kublar formulasidagi a² − ab + b² kabi ifoda"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "(a + b)² bu a² + b²",
+      "togri": false,
+      "izoh": "ikkilangan ko‘paytma 2ab ham qo‘shiladi"
+     },
+     {
+      "matn": "(a − b)(a + b) bu a² − b²",
+      "togri": true,
+      "izoh": "kvadratlar ayirmasi formulasi"
+     },
+     {
+      "matn": "(a − b)² bu a² − b²",
+      "togri": false,
+      "izoh": "bu a² − 2ab + b²"
+     },
+     {
+      "matn": "51² ni (50 + 1)² deb hisoblash mumkin",
+      "togri": true,
+      "izoh": "yig‘indi kvadrati formulasi"
+     },
+     {
+      "matn": "(x + 3)² bu x² + 6x + 9",
+      "togri": true,
+      "izoh": "ikkilangan ko‘paytma 6x"
+     },
+     {
+      "matn": "(x − 4)² bu x² − 16",
+      "togri": false,
+      "izoh": "bu x² − 8x + 16"
+     },
+     {
+      "matn": "a³ − b³ bu (a − b)(a² + ab + b²)",
+      "togri": true,
+      "izoh": "kublar ayirmasi formulasi"
+     },
+     {
+      "matn": "Kvadratlar ayirmasi formulasida ikkilangan ko‘paytma bor",
+      "togri": false,
+      "izoh": "o‘rta hadlar yo‘qoladi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "(a + b)² nimaga teng?",
+      "javob": "a² + 2ab + b²"
+     },
+     {
+      "savol": "(a − b)² nimaga teng?",
+      "javob": "a² − 2ab + b²"
+     },
+     {
+      "savol": "a² − b² nimaga teng?",
+      "javob": "(a − b)(a + b)"
+     },
+     {
+      "savol": "(x + 2)² ni oching.",
+      "javob": "x² + 4x + 4"
+     },
+     {
+      "savol": "(x − 1)² ni oching.",
+      "javob": "x² − 2x + 1"
+     },
+     {
+      "savol": "(x − 5)(x + 5) ni oching.",
+      "javob": "x² − 25"
+     },
+     {
+      "savol": "Ikkilangan ko‘paytma nima?",
+      "javob": "2ab"
+     },
+     {
+      "savol": "99² ni qanday hisoblaymiz?",
+      "javob": "(100 − 1)² formulasi bilan"
+     },
+     {
+      "savol": "a³ + b³ nimaga teng?",
+      "javob": "(a + b)(a² − ab + b²)"
+     },
+     {
+      "savol": "Kvadrat yuzi tomon bilan qanday bog‘liq?",
+      "javob": "tomon kvadratiga teng"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yig‘indi kvadrati",
+      "matn": "a² + 2ab + b².",
+      "savol": "(x + 1)² ni oching."
+     },
+     {
+      "nom": "Ayirma kvadrati",
+      "matn": "a² − 2ab + b².",
+      "savol": "(x − 1)² ni oching."
+     },
+     {
+      "nom": "Kvadratlar ayirmasi",
+      "matn": "a² − b² bu (a − b)(a + b).",
+      "savol": "(a − 3)(a + 3) ni oching."
+     },
+     {
+      "nom": "Kublar",
+      "matn": "Kublar yig‘indisi va ayirmasi formulalari.",
+      "savol": "x³ + 1 ni ajrating."
+     }
+    ],
+    "muammoli_savol": "Nima uchun (a + b)² faqat a² + b² ga teng emas? Tomoni a + b bo‘lgan kvadratni bo‘laklarga bo‘lib, yuzini hisoblab tushuntiring.",
+    "keys": {
+     "vaziyat": "Kvadrat shaklidagi dalaning tomoni 51 metr. Dehqon uning yuzini tez hisoblamoqchi.",
+     "savollar": [
+      "51 ni qanday ikki songa ajratamiz?",
+      "Dala yuzi necha kvadrat metr?"
+     ]
+    },
+    "tezis": "Formulalar vaqtni tejaydi",
+    "taqqoslash": {
+     "a": "(a + b)²",
+     "b": "a² − b²",
+     "umumiy": [
+      "qisqa ko‘paytirish formulalari",
+      "ko‘paytma shaklida ifodalanadi"
+     ],
+     "a_farq": [
+      "uch hadli natija",
+      "ikkilangan ko‘paytma bor"
+     ],
+     "b_farq": [
+      "ikki hadli natija",
+      "o‘rta had yo‘q"
+     ]
+    },
+    "klaster": {
+     "markaz": "Qisqa ko‘paytirish formulalari",
+     "shoxlar": [
+      {
+       "nom": "Kvadratlar",
+       "bandlar": [
+        "yig‘indi",
+        "ayirma",
+        "ikkilangan ko‘paytma"
+       ]
+      },
+      {
+       "nom": "Ayirma",
+       "bandlar": [
+        "a² − b²",
+        "(a − b)(a + b)",
+        "tez hisoblash"
+       ]
+      },
+      {
+       "nom": "Kublar",
+       "bandlar": [
+        "yig‘indi",
+        "ayirma",
+        "to‘liqsiz kvadrat"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "hisoblash",
+        "soddalashtirish",
+        "ajratish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Yuzaning kvadrati yig‘indi bo‘lsa, ikkilangan ko‘paytma ham qo‘shiladi. Men nimaman?",
+     "javob": "yig‘indining kvadrati formulasi"
+    },
+    "hikmat": "Qisqa yo‘l — to‘g‘ri yo‘l, agar to‘g‘ri bo‘lsa.",
+    "kalit_soz": "FORMULA",
+    "xato_yechim": {
+     "shart": "(x + 4)² ni oching.",
+     "xato": "x² + 16",
+     "togri": "x² + 8x + 16",
+     "sabab": "ikkilangan ko‘paytma 2 · x · 4, ya’ni 8x unutilgan"
+    },
+    "guruh_nomlari": [
+     "Kvadratchilar",
+     "Ayirmachilar",
+     "Kubchilar",
+     "Formulachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tez hisoblash musobaqasi»",
+     "topshiriq": "Guruh 5 ta sonni (masalan, 31², 49 · 51) formula yordamida tez hisoblaydi va kalkulyator bilan tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Oching: (x + 6)², (y − 2)², (a − 8)(a + 8).",
+     "B": "Formula bilan hisoblang: 61², 39², 48 · 52.",
+     "C": "Biror formulani chizma bilan isbotlang."
+    },
+    "sinkveyn": [
+     "Formula",
+     "qisqa, aniq",
+     "ochadi, hisoblaydi, ajratadi",
+     "Ko‘paytirishning yo‘li",
+     "Ayniyat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh formulalar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: (x + 2)² ni oching",
+      "2-guruh: (x − 3)² ni oching",
+      "3-guruh: (x − 4)(x + 4) ni oching",
+      "4-guruh: 41² ni formula bilan hisoblang"
+     ],
+     "yakun": "Natijalar: x² + 4x + 4; x² − 6x + 9; x² − 16; 1681."
+    }
+   }
+  },
+  {
+   "mavzu": "Ko‘paytuvchilarga ajratish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ko‘paytuvchilarga ajratish nima?",
+      "matn": "Ko‘phadni ikki yoki undan ortiq ko‘phad ko‘paytmasi ko‘rinishida yozish ko‘paytuvchilarga ajratish deyiladi. Bu qavslarni ochishning teskari amali. Ajratishni ko‘paytirib tekshirish mumkin.",
+      "misol": "6x + 9 ni 3(2x + 3) deb yozish — ko‘paytuvchilarga ajratish. Tekshirish: 3 ni 2x va 3 ga ko‘paytirsak 6x + 9.",
+      "savol": "Ko‘paytuvchilarga ajratishni qanday tekshiramiz?",
+      "javob": "qavslarni ochib",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Umumiy ko‘paytuvchini qavsdan chiqarish",
+      "matn": "Barcha hadlarda umumiy ko‘paytuvchi bo‘lsa, uni qavsdan tashqariga chiqaramiz. Umumiy ko‘paytuvchi sifatida koeffitsientlarning eng katta umumiy bo‘luvchisi va harflarning eng kichik darajasini olamiz.",
+      "misol": "4a² − 8a ifodasida umumiy ko‘paytuvchi 4a: 4a(a − 2). 12a²b − 18ab² ifodasida umumiy ko‘paytuvchi 6ab: 6ab(2a − 3b).",
+      "savol": "5x + 10 ni ajrating.",
+      "javob": "5(x + 2)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Guruhlash usuli",
+      "matn": "Hadlari umumiy ko‘paytuvchiga ega bo‘lmagan ko‘phadni hadlarini guruhlab, har bir guruhdan umumiy ko‘paytuvchini chiqaramiz, so‘ng umumiy qavsni chiqaramiz.",
+      "misol": "xy + 2x + 3y + 6: x(y + 2) + 3(y + 2) — bu (y + 2)(x + 3).",
+      "savol": "ab + 3a + 2b + 6 ni ajrating.",
+      "javob": "(b + 3)(a + 2)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qisqa ko‘paytirish formulalari bilan",
+      "matn": "Formulalarni teskari yo‘nalishda ishlatamiz: a² − b² — bu (a − b)(a + b), a² + 2ab + b² — bu (a + b)², a² − 2ab + b² — bu (a − b)².",
+      "misol": "x² − 16 — bu (x − 4)(x + 4). x² + 10x + 25 — bu (x + 5)². 9a² − 4 — bu (3a − 2)(3a + 2).",
+      "savol": "y² − 81 ni ajrating.",
+      "javob": "(y − 9)(y + 9)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Usullarni birlashtirish",
+      "matn": "Murakkab ifodalarda avval umumiy ko‘paytuvchi chiqariladi, so‘ng formula yoki guruhlash qo‘llanadi. Yakuniy natijada har bir ko‘paytuvchi yana ajratilmasligi kerak.",
+      "misol": "2x³ − 8x: avval 2x ni chiqaramiz — 2x(x² − 4), so‘ng formula — 2x(x − 2)(x + 2).",
+      "savol": "3a² − 12 ni ajrating.",
+      "javob": "3(a − 2)(a + 2)",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ko‘paytuvchilarga ajratish usullari: umumiy ko‘paytuvchini qavsdan chiqarish, guruhlash, qisqa ko‘paytirish formulalari. Avval umumiy ko‘paytuvchi, keyin formula, so‘ng guruhlash. Natijani ko‘paytirib tekshiramiz.",
+    "misollar": [
+     {
+      "shart": "12a²b − 18ab² ni ko‘paytuvchilarga ajrating.",
+      "yechim": [
+       "Koeffitsientlar 12 va 18 ning EKUB i 6.",
+       "Harflar: a va b birinchi darajada umumiy.",
+       "Natija 6ab(2a − 3b). Tekshirish: 6ab · 2a — 12a²b, 6ab · 3b — 18ab²."
+      ],
+      "javob": "6ab(2a − 3b)"
+     },
+     {
+      "shart": "x² − 6x + 9 ni ajrating.",
+      "yechim": [
+       "Birinchi had x², oxirgi 9 — 3².",
+       "O‘rtadagi had 2 · x · 3 — 6x, ishora minus.",
+       "Demak (x − 3)²."
+      ],
+      "javob": "(x − 3)²"
+     },
+     {
+      "shart": "a³ + a² − a − 1 ni guruhlab ajrating.",
+      "yechim": [
+       "Birinchi ikki had: a²(a + 1). Oxirgi ikki had: −(a + 1).",
+       "(a + 1)(a² − 1).",
+       "a² − 1 — (a − 1)(a + 1). Natija (a + 1)²(a − 1)."
+      ],
+      "javob": "(a + 1)²(a − 1)"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Hisoblash",
+      "topshiriq": "73² − 27² ni ko‘paytuvchilarga ajratib hisoblang.",
+      "yechim": "(73 − 27)(73 + 27) — bu 46 · 100, natija 4600.",
+      "mahsulot": "hisoblash varag‘i"
+     },
+     {
+      "nom": "Qulay hisob",
+      "topshiriq": "37 · 15 + 37 · 85 ni qulay usulda hisoblang.",
+      "yechim": "37 ni qavsdan chiqaramiz: 37(15 + 85), ya’ni 37 · 100, natija 3700.",
+      "mahsulot": "hisoblash jadvali"
+     },
+     {
+      "nom": "Usulni tanlaymiz",
+      "topshiriq": "Qaysi usul bilan ajratiladi: 7x + 14; x² − 25; xy + x + y + 1?",
+      "yechim": "Birinchisi umumiy ko‘paytuvchi, ikkinchisi formula, uchinchisi guruhlash.",
+      "mahsulot": "usullar jadvali"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "x² + 10x + 25 ni ajrating va qavslarni ochib tekshiring.",
+      "yechim": "(x + 5)². Tekshirish: x² + 5x + 5x + 25 — bu x² + 10x + 25.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "7x + 14 ni ajrating.",
+      "javob": "7(x + 2)"
+     },
+     {
+      "shart": "a² − 5a ni ajrating.",
+      "javob": "a(a − 5)"
+     },
+     {
+      "shart": "x² − 25 ni ajrating.",
+      "javob": "(x − 5)(x + 5)"
+     },
+     {
+      "shart": "y² + 6y + 9 ni ajrating.",
+      "javob": "(y + 3)²"
+     },
+     {
+      "shart": "xy + x + y + 1 ni ajrating.",
+      "javob": "(x + 1)(y + 1)"
+     },
+     {
+      "shart": "2a² − 18 ni ajrating.",
+      "javob": "2(a − 3)(a + 3)"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Umumiy ko‘paytuvchini chiqarganda ayrim hadni unutadi",
+      "sabab": "qavs ichida hadlar sonini tekshirmaydi",
+      "oldini_olish": "natijani ko‘paytirib tekshirish"
+     },
+     {
+      "xato": "Yig‘indi kvadratini noto‘g‘ri tanib oladi",
+      "sabab": "o‘rta had ikkilangan ko‘paytma ekanini tekshirmaydi",
+      "oldini_olish": "avval birinchi va oxirgi hadlardan ildiz olish"
+     },
+     {
+      "xato": "To‘liq ajratmaydi",
+      "sabab": "qavs ichidagi ifodani yana ajratish mumkinligini ko‘rmaydi",
+      "oldini_olish": "yakuniy ko‘paytuvchilarni yana tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geometriya",
+      "boglanish": "yuza va perimetr formulalarini soddalashtirish"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "formulalardan noma’lumni ifodalash"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "ifodalarni optimallashtirish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ajratish ustaxonasi»",
+     "muammo": "Ko‘phadlarni turli usullar bilan ko‘paytuvchilarga qanday ajratamiz?",
+     "mahsulot": "usullar to‘plami va misollar",
+     "bosqichlar": [
+      "usullarni o‘rganish",
+      "misollar tanlash",
+      "ajratish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Usullarni o‘rganing",
+      "Misollar tanlang",
+      "Ajrating va tekshiring",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "usul to‘g‘ri",
+      "natija to‘g‘ri",
+      "tekshirish bor",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ajratish shahri»",
+     "bekatlar": [
+      {
+       "nom": "Omborxona",
+       "matn": "Ombor yuzi 6x + 9.",
+       "topshiriq": "Qanday ajratiladi?",
+       "javob": "3(2x + 3)",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "Maydon yuzi x² − 16.",
+       "topshiriq": "Qanday ajratiladi?",
+       "javob": "(x − 4)(x + 4)",
+       "rasm": ""
+      },
+      {
+       "nom": "Qoplama",
+       "matn": "Qoplama yuzi y² + 6y + 9.",
+       "topshiriq": "Qanday ajratiladi?",
+       "javob": "(y + 3)²",
+       "rasm": ""
+      },
+      {
+       "nom": "Qurilish",
+       "matn": "Hisoblash: 73² − 27².",
+       "topshiriq": "Natija qancha?",
+       "javob": "4600",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Ajratish nima uchun kerak?",
+      "Qaysi usulni birinchi sinaymiz?",
+      "Natijani qanday tekshiramiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ko‘paytuvchilarga ajratish",
+      "tarif": "ko‘phadni ko‘paytma shaklida yozish"
+     },
+     {
+      "atama": "Umumiy ko‘paytuvchi",
+      "tarif": "barcha hadlarda bor ko‘paytuvchi"
+     },
+     {
+      "atama": "Guruhlash usuli",
+      "tarif": "hadlarni guruhlab ajratish usuli"
+     },
+     {
+      "atama": "EKUB",
+      "tarif": "eng katta umumiy bo‘luvchi"
+     },
+     {
+      "atama": "Qavsdan chiqarish",
+      "tarif": "umumiy ko‘paytuvchini qavs tashqarisiga olish"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "qavslarni ochib ifodaga qaytish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ajratish qavslarni ochishning teskari amali",
+      "togri": true,
+      "izoh": "ko‘paytmadan yig‘indiga emas, yig‘indidan ko‘paytmaga"
+     },
+     {
+      "matn": "6x + 9 bu 3(2x + 3)",
+      "togri": true,
+      "izoh": "umumiy ko‘paytuvchi 3"
+     },
+     {
+      "matn": "x² − 16 bu (x − 4)²",
+      "togri": false,
+      "izoh": "bu (x − 4)(x + 4)"
+     },
+     {
+      "matn": "Natijani ko‘paytirib tekshirish mumkin",
+      "togri": true,
+      "izoh": "qavslarni ochamiz"
+     },
+     {
+      "matn": "Guruhlash usulida hadlar tasodifiy guruhlanadi",
+      "togri": false,
+      "izoh": "umumiy ko‘paytuvchi chiqadigan qilib guruhlanadi"
+     },
+     {
+      "matn": "x² + 6x + 9 bu (x + 3)²",
+      "togri": true,
+      "izoh": "yig‘indi kvadrati"
+     },
+     {
+      "matn": "Har qanday ko‘phadni ajratib bo‘ladi",
+      "togri": false,
+      "izoh": "ba’zilari ajralmaydi"
+     },
+     {
+      "matn": "Avval umumiy ko‘paytuvchini chiqarish foydali",
+      "togri": true,
+      "izoh": "ifoda soddalashadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ko‘paytuvchilarga ajratish nima?",
+      "javob": "ko‘phadni ko‘paytma shaklida yozish"
+     },
+     {
+      "savol": "5x + 10 ni ajrating.",
+      "javob": "5(x + 2)"
+     },
+     {
+      "savol": "x² − 9 ni ajrating.",
+      "javob": "(x − 3)(x + 3)"
+     },
+     {
+      "savol": "y² + 2y + 1 ni ajrating.",
+      "javob": "(y + 1)²"
+     },
+     {
+      "savol": "Guruhlash usuli nima?",
+      "javob": "hadlarni guruhlab umumiy ko‘paytuvchi chiqarish"
+     },
+     {
+      "savol": "Tekshirish qanday?",
+      "javob": "qavslarni ochib"
+     },
+     {
+      "savol": "3a + 3b ni ajrating.",
+      "javob": "3(a + b)"
+     },
+     {
+      "savol": "x² − 1 ni ajrating.",
+      "javob": "(x − 1)(x + 1)"
+     },
+     {
+      "savol": "Qaysi usulni birinchi sinaymiz?",
+      "javob": "umumiy ko‘paytuvchini"
+     },
+     {
+      "savol": "a² − 4a ni ajrating.",
+      "javob": "a(a − 4)"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Umumiy ko‘paytuvchi",
+      "matn": "Qavsdan tashqariga chiqaramiz.",
+      "savol": "4x + 8 ni ajrating."
+     },
+     {
+      "nom": "Guruhlash",
+      "matn": "Hadlarni guruhlab ajratamiz.",
+      "savol": "ab + a + b + 1 ni ajrating."
+     },
+     {
+      "nom": "Formula",
+      "matn": "Qisqa ko‘paytirish formulalarini teskari qo‘llaymiz.",
+      "savol": "x² − 4 ni ajrating."
+     },
+     {
+      "nom": "Tekshirish",
+      "matn": "Qavslarni ochamiz.",
+      "savol": "Nima uchun tekshiramiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ko‘paytuvchilarga ajratish tenglamalar yechishda va kasrlarni qisqartirishda foydali? Misol keltiring.",
+    "keys": {
+     "vaziyat": "Do‘kon sotuvchisi 37 ta xaridorga 15 ming so‘mdan va yana 37 ta xaridorga 85 ming so‘mdan sotuv qildi.",
+     "savollar": [
+      "Hisobni qulay usulda qanday topamiz?",
+      "Umumiy ko‘paytuvchi nima?"
+     ]
+    },
+    "tezis": "Murakkabni sodda qismlarga ajrat",
+    "taqqoslash": {
+     "a": "Qavslarni ochish",
+     "b": "Ko‘paytuvchilarga ajratish",
+     "umumiy": [
+      "ayniy almashtirish",
+      "ko‘phadlar bilan ishlaydi"
+     ],
+     "a_farq": [
+      "ko‘paytmadan yig‘indiga",
+      "taqsimot qonuni"
+     ],
+     "b_farq": [
+      "yig‘indidan ko‘paytmaga",
+      "umumiy ko‘paytuvchi qidiriladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ko‘paytuvchilarga ajratish",
+     "shoxlar": [
+      {
+       "nom": "Umumiy ko‘paytuvchi",
+       "bandlar": [
+        "EKUB",
+        "qavsdan chiqarish",
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "Guruhlash",
+       "bandlar": [
+        "hadlarni guruhlash",
+        "umumiy qavs",
+        "natija"
+       ]
+      },
+      {
+       "nom": "Formulalar",
+       "bandlar": [
+        "a² − b²",
+        "kvadrat",
+        "kub"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "hisoblash",
+        "kasr qisqartirish",
+        "tenglama"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Yig‘indini ko‘paytmaga aylantiraman. Men kimman?",
+     "javob": "ko‘paytuvchilarga ajratish"
+    },
+    "hikmat": "Bo‘lak-bo‘lak qilib yechgan, butunni yengadi.",
+    "kalit_soz": "AJRATISH",
+    "xato_yechim": {
+     "shart": "6x + 9 ni ko‘paytuvchilarga ajrating.",
+     "xato": "3(2x + 9)",
+     "togri": "3(2x + 3)",
+     "sabab": "9 ni ham 3 ga bo‘lish kerak: 9 : 3 — 3; tekshirsak 3 · 3 — 9"
+    },
+    "guruh_nomlari": [
+     "Ajratuvchilar",
+     "Guruhlovchilar",
+     "Tekshiruvchilar",
+     "Ko‘paytuvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qulay hisob»",
+     "topshiriq": "Guruh sonli ifodalarni (masalan, 45 · 17 + 45 · 83) umumiy ko‘paytuvchini chiqarib qulay hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Ajrating: 8x + 12, a² − 36, y² + 4y + 4.",
+     "B": "Qulay hisoblang: 64 · 28 + 64 · 72.",
+     "C": "O‘zingiz ajratiladigan 3 ta ko‘phad tuzing."
+    },
+    "sinkveyn": [
+     "Ajratish",
+     "aniq, foydali",
+     "chiqaradi, guruhlaydi, tekshiradi",
+     "Yig‘indidan ko‘paytma",
+     "Ko‘paytuvchi"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ajratish bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 4x + 8 ni ajrating",
+      "2-guruh: x² − 49 ni ajrating",
+      "3-guruh: x² + 6x + 9 ni ajrating",
+      "4-guruh: ab + a + b + 1 ni ajrating"
+     ],
+     "yakun": "Natijalar: 4(x + 2); (x − 7)(x + 7); (x + 3)²; (a + 1)(b + 1)."
+    }
+   }
+  },
+  {
+   "mavzu": "Algebraik kasrlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Algebraik kasr nima?",
+      "matn": "Surat va maxraji ko‘phadlardan iborat kasr algebraik kasr deyiladi. Maxraj nolga teng bo‘la olmaydi, shuning uchun kasr maxraj nolga aylanadigan qiymatlarda ma’noga ega emas.",
+      "misol": "3 / x va (x + 1) / (x − 2) — algebraik kasrlar. Ikkinchisida x ning qiymati 2 bo‘lmasligi kerak.",
+      "savol": "5 / (x − 3) kasrda x qaysi qiymatni olmaydi?",
+      "javob": "3 ni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kasrning asosiy xossasi",
+      "matn": "Kasr suratini va maxrajini nolga teng bo‘lmagan bir xil ifodaga ko‘paytirsak yoki bo‘lsak, kasr o‘zgarmaydi. Shu xossa kasrni qisqartirish va umumiy maxrajga keltirish uchun asos.",
+      "misol": "3 / x kasrning surat va maxrajini 2 ga ko‘paytirsak, 6 / (2x) chiqadi, u 3 / x ga teng.",
+      "savol": "2 / a kasrning surat va maxrajini 3 ga ko‘paytiring.",
+      "javob": "6 / (3a)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kasrni qisqartirish",
+      "matn": "Kasrni qisqartirish uchun surat va maxrajni ko‘paytuvchilarga ajratib, umumiy ko‘paytuvchini qisqartiramiz. Qisqartirishda umumiy ko‘paytuvchi nolga teng bo‘lmasligi kerak.",
+      "misol": "(x² − 9) / (x − 3) kasrni qisqartiramiz: surat (x − 3)(x + 3), natija x + 3 (x 3 ga teng emas). 4a / (8a²) — bu 1 / (2a).",
+      "savol": "6x / (9x²) ni qisqartiring.",
+      "javob": "2 / (3x)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shish va ayirish",
+      "matn": "Maxrajlari bir xil kasrlarni qo‘shishda suratlar qo‘shiladi, maxraj o‘zgarmaydi. Maxrajlari har xil bo‘lsa, avval umumiy maxrajga keltiramiz.",
+      "misol": "2 / x + 3 / x — bu 5 / x. a / 3 + a / 6: umumiy maxraj 6, 2a / 6 + a / 6 — 3a / 6, ya’ni a / 2.",
+      "savol": "x / 3 + x / 6 ni hisoblang.",
+      "javob": "x / 2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirish va bo‘lish",
+      "matn": "Kasrlarni ko‘paytirishda suratlar suratlarga, maxrajlar maxrajlarga ko‘paytiriladi. Kasrni kasrga bo‘lishda ikkinchi kasrning teskarisiga ko‘paytiramiz. Ko‘paytirishdan oldin qisqartirsak, hisob osonlashadi.",
+      "misol": "(2 / x) · (x / 4): suratlar 2x, maxrajlar 4x, qisqartirsak 1 / 2. (x / 2) bo‘linsin (x / 6) ga: (x / 2) · (6 / x) — 3.",
+      "savol": "(3 / a) · (a / 6) ni hisoblang.",
+      "javob": "1 / 2",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Algebraik kasrning maxraji nolga teng bo‘lmasligi kerak. Asosiy xossa: surat va maxrajni bir xil nolga teng bo‘lmagan ifodaga ko‘paytirish yoki bo‘lish kasrni o‘zgartirmaydi. Qisqartirishda ko‘paytuvchilarga ajratamiz. Qo‘shishda umumiy maxrajga keltiramiz.",
+    "misollar": [
+     {
+      "shart": "(x² − 4) / (x + 2) kasrni qisqartiring.",
+      "yechim": [
+       "Suratni ajratamiz: (x − 2)(x + 2).",
+       "(x + 2) ni qisqartiramiz.",
+       "Natija x − 2 (x manfiy 2 ga teng emas)."
+      ],
+      "javob": "x − 2"
+     },
+     {
+      "shart": "1 / x + 2 / (3x) ni hisoblang.",
+      "yechim": [
+       "Umumiy maxraj 3x.",
+       "1 / x — bu 3 / (3x).",
+       "3 / (3x) + 2 / (3x) — 5 / (3x)."
+      ],
+      "javob": "5 / (3x)"
+     },
+     {
+      "shart": "(6a² / 5b) · (10b / 3a) ni hisoblang.",
+      "yechim": [
+       "Suratlar: 6a² · 10b — 60a²b.",
+       "Maxrajlar: 5b · 3a — 15ab.",
+       "Qisqartiramiz: 60a²b / 15ab — 4a."
+      ],
+      "javob": "4a"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Aniqlanish sohasi",
+      "topshiriq": "(x + 1) / (x − 2) kasrda x ning qaysi qiymati mumkin emas? Nega?",
+      "yechim": "x 2 bo‘lsa, maxraj nol bo‘ladi, shuning uchun x 2 ga teng bo‘lishi mumkin emas.",
+      "mahsulot": "tushuntirish varag‘i"
+     },
+     {
+      "nom": "Qisqartirish poygasi",
+      "topshiriq": "Qisqartiring: 6x / (3x²), (x² − 1) / (x − 1), 4a / 8a².",
+      "yechim": "2 / x; x + 1; 1 / (2a).",
+      "mahsulot": "yechimlar jadvali"
+     },
+     {
+      "nom": "Umumiy maxraj",
+      "topshiriq": "1 / a + 1 / b ni umumiy maxrajga keltirib qo‘shing.",
+      "yechim": "Umumiy maxraj ab: b / (ab) + a / (ab) — (a + b) / (ab).",
+      "mahsulot": "umumiy maxraj kartochkasi"
+     },
+     {
+      "nom": "Kasrni tekshirish",
+      "topshiriq": "(x² − 9) / (x − 3) kasrni qisqartirib, x 5 bo‘lganda ikki yo‘l bilan qiymatini toping.",
+      "yechim": "Qisqartirgach x + 3, x 5 bo‘lsa 8. Asl kasrda: (25 − 9) / 2 — 16 / 2 — 8.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "4 / (x − 2) kasrda x qaysi qiymatni olmaydi?",
+      "javob": "2 ni"
+     },
+     {
+      "shart": "6x / (3x²) ni qisqartiring.",
+      "javob": "2 / x"
+     },
+     {
+      "shart": "(x² − 1) / (x − 1) ni qisqartiring.",
+      "javob": "x + 1"
+     },
+     {
+      "shart": "1 / a + 2 / a ni hisoblang.",
+      "javob": "3 / a"
+     },
+     {
+      "shart": "x / 3 + x / 6 ni hisoblang.",
+      "javob": "x / 2"
+     },
+     {
+      "shart": "(a / b) · (b / a) ni hisoblang.",
+      "javob": "1"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Kasrni qisqartirishda hadlarni qisqartiradi",
+      "sabab": "faqat ko‘paytuvchilarni qisqartirish mumkinligini unutadi",
+      "oldini_olish": "avval ko‘paytuvchilarga ajratish"
+     },
+     {
+      "xato": "Maxrajlarni ham qo‘shadi",
+      "sabab": "kasrlarni qo‘shish qoidasini noto‘g‘ri qo‘llaydi",
+      "oldini_olish": "umumiy maxrajga keltirish va suratlarni qo‘shishni eslash"
+     },
+     {
+      "xato": "Maxraj nolga aylanadigan qiymatni tekshirmaydi",
+      "sabab": "aniqlanish sohasini e’tiborsiz qoldiradi",
+      "oldini_olish": "maxrajni nolga tenglab, mumkin bo‘lmagan qiymatni topish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "tezlik va ish formulalarida kasrlar"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "eritma konsentratsiyasi kasr ko‘rinishida"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "narx va foyda nisbatlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kasrlar ustaxonasi»",
+     "muammo": "Algebraik kasrlar bilan amallar uchun qo‘llanma qanday tuziladi?",
+     "mahsulot": "algebraik kasrlar qo‘llanmasi",
+     "bosqichlar": [
+      "qoidalarni yig‘ish",
+      "misollar tuzish",
+      "yechish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Qoidalarni yig‘ing",
+      "Misollar tuzing",
+      "Yeching va tekshiring",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "qoidalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "tekshirish bor",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Kasrlar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Yo‘l",
+       "matn": "Yo‘l 6x km, tezlik 3x km/soat.",
+       "topshiriq": "Vaqt qancha?",
+       "javob": "2 soat",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "(x² − 4) / (x + 2).",
+       "topshiriq": "Qisqartiring.",
+       "javob": "x − 2",
+       "rasm": ""
+      },
+      {
+       "nom": "Ombor",
+       "matn": "2 / x + 3 / x.",
+       "topshiriq": "Hisoblang.",
+       "javob": "5 / x",
+       "rasm": ""
+      },
+      {
+       "nom": "Kafe",
+       "matn": "(2 / x) · (x / 4).",
+       "topshiriq": "Hisoblang.",
+       "javob": "1 / 2",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Kasrlar qayerda uchraydi?",
+      "Nima uchun maxraj nol bo‘lmaydi?",
+      "Qisqartirish nima beradi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Algebraik kasr",
+      "tarif": "surat va maxraji ko‘phad bo‘lgan kasr"
+     },
+     {
+      "atama": "Surat",
+      "tarif": "kasrning yuqori qismi"
+     },
+     {
+      "atama": "Maxraj",
+      "tarif": "kasrning pastki qismi"
+     },
+     {
+      "atama": "Qisqartirish",
+      "tarif": "surat va maxrajni umumiy ko‘paytuvchiga bo‘lish"
+     },
+     {
+      "atama": "Umumiy maxraj",
+      "tarif": "kasrlar maxrajlariga bo‘linadigan ifoda"
+     },
+     {
+      "atama": "Aniqlanish sohasi",
+      "tarif": "kasr ma’noga ega bo‘ladigan qiymatlar"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Algebraik kasr maxraji nolga teng bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "maxraj nol bo‘lmasligi kerak"
+     },
+     {
+      "matn": "Kasrni qisqartirishdan oldin ko‘paytuvchilarga ajratamiz",
+      "togri": true,
+      "izoh": "umumiy ko‘paytuvchini topish uchun"
+     },
+     {
+      "matn": "(x² − 9) / (x − 3) kasr x + 3 ga qisqaradi",
+      "togri": true,
+      "izoh": "x 3 ga teng bo‘lmaganda"
+     },
+     {
+      "matn": "Kasrlarni qo‘shishda maxrajlar ham qo‘shiladi",
+      "togri": false,
+      "izoh": "umumiy maxraj saqlanadi"
+     },
+     {
+      "matn": "Kasrni kasrga bo‘lishda teskarisiga ko‘paytiramiz",
+      "togri": true,
+      "izoh": "bo‘lish qoidasi"
+     },
+     {
+      "matn": "Qisqartirishda hadlarni ham qisqartirish mumkin",
+      "togri": false,
+      "izoh": "faqat ko‘paytuvchilar qisqartiriladi"
+     },
+     {
+      "matn": "2 / x + 3 / x bu 5 / x",
+      "togri": true,
+      "izoh": "maxrajlar bir xil"
+     },
+     {
+      "matn": "x ni 0 ga teng deb 1 / x ni hisoblash mumkin",
+      "togri": false,
+      "izoh": "nolga bo‘lish mumkin emas"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Algebraik kasr nima?",
+      "javob": "surat va maxraji ko‘phad bo‘lgan kasr"
+     },
+     {
+      "savol": "Maxraj nolga teng bo‘lishi mumkinmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "4a / (8a²) ni qisqartiring.",
+      "javob": "1 / (2a)"
+     },
+     {
+      "savol": "(x² − 1) / (x − 1) ni qisqartiring.",
+      "javob": "x + 1"
+     },
+     {
+      "savol": "1 / x + 1 / x ni hisoblang.",
+      "javob": "2 / x"
+     },
+     {
+      "savol": "Qisqartirish nimani talab qiladi?",
+      "javob": "umumiy ko‘paytuvchini"
+     },
+     {
+      "savol": "Kasrni kasrga bo‘lish qoidasi?",
+      "javob": "teskarisiga ko‘paytirish"
+     },
+     {
+      "savol": "Asosiy xossa nima?",
+      "javob": "surat va maxrajni bir xil songa ko‘paytirish yoki bo‘lish"
+     },
+     {
+      "savol": "(a / 2) · (4 / a) ni hisoblang.",
+      "javob": "2"
+     },
+     {
+      "savol": "Umumiy maxraj nima?",
+      "javob": "maxrajlarga bo‘linadigan ifoda"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Surat va maxrajda ko‘phad.",
+      "savol": "Maxraj qanday bo‘lmasligi kerak?"
+     },
+     {
+      "nom": "Qisqartirish",
+      "matn": "Ko‘paytuvchilarga ajratib qisqartiramiz.",
+      "savol": "(x² − 4) / (x − 2) ni qisqartiring."
+     },
+     {
+      "nom": "Qo‘shish",
+      "matn": "Umumiy maxrajga keltiramiz.",
+      "savol": "1 / x + 3 / x nechaga teng?"
+     },
+     {
+      "nom": "Ko‘paytirish",
+      "matn": "Suratlarni va maxrajlarni ko‘paytiramiz.",
+      "savol": "(a / 2) · (2 / a) nechaga teng?"
+     }
+    ],
+    "muammoli_savol": "Nega (x² − 9) / (x − 3) kasrni x + 3 ga qisqartirish uchun x 3 ga teng emasligini shart qilamiz? x 3 bo‘lganda asl kasrga nima bo‘ladi?",
+    "keys": {
+     "vaziyat": "Yo‘l uzunligi 6x km, avtomobil tezligi 3x km/soat.",
+     "savollar": [
+      "Vaqt qanday ifoda bilan yoziladi?",
+      "Qisqartirgach nima chiqadi?"
+     ]
+    },
+    "tezis": "Qisqartirish — soddalikka yo‘l",
+    "taqqoslash": {
+     "a": "Oddiy kasr",
+     "b": "Algebraik kasr",
+     "umumiy": [
+      "surat va maxrajdan iborat",
+      "qisqartiriladi"
+     ],
+     "a_farq": [
+      "sonlardan iborat",
+      "maxraj natural son"
+     ],
+     "b_farq": [
+      "ko‘phadlardan iborat",
+      "maxraj nol bo‘lmasligi shart"
+     ]
+    },
+    "klaster": {
+     "markaz": "Algebraik kasrlar",
+     "shoxlar": [
+      {
+       "nom": "Ta’rif",
+       "bandlar": [
+        "surat",
+        "maxraj",
+        "aniqlanish sohasi"
+       ]
+      },
+      {
+       "nom": "Qisqartirish",
+       "bandlar": [
+        "ajratish",
+        "umumiy ko‘paytuvchi",
+        "natija"
+       ]
+      },
+      {
+       "nom": "Qo‘shish va ayirish",
+       "bandlar": [
+        "umumiy maxraj",
+        "suratlar",
+        "soddalashtirish"
+       ]
+      },
+      {
+       "nom": "Ko‘paytirish va bo‘lish",
+       "bandlar": [
+        "suratlar ko‘paytmasi",
+        "teskarisiga ko‘paytirish",
+        "qisqartirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Pastim nolga teng bo‘la olmaydi, yuqorim ham ko‘phad. Men kimman?",
+     "javob": "algebraik kasr"
+    },
+    "hikmat": "Soddalik — aqlning belgisi.",
+    "kalit_soz": "KASR",
+    "xato_yechim": {
+     "shart": "(x + 3) / 3 kasrni qisqartiring.",
+     "xato": "x + 1, chunki 3 va 3 ni qisqartiradi",
+     "togri": "kasr qisqarmaydi",
+     "sabab": "suratdagi 3 — had, ko‘paytuvchi emas; faqat ko‘paytuvchilar qisqartiriladi"
+    },
+    "guruh_nomlari": [
+     "Suratchilar",
+     "Maxrajchilar",
+     "Qisqartiruvchilar",
+     "Kasrchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tezlik va vaqt»",
+     "topshiriq": "Guruh yo‘l, tezlik va vaqt formulalarini kasr shaklida yozib, qiymatlar qo‘yib hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Qisqartiring: 8x / (4x²), (a² − 16) / (a − 4); hisoblang: 2 / a + 5 / a.",
+     "B": "Kundalik hayotdan algebraik kasr uchun misol toping.",
+     "C": "O‘zingiz uchta kasr tuzib, qisqartiring."
+    },
+    "sinkveyn": [
+     "Kasr",
+     "algebraik, aniq",
+     "qisqaradi, qo‘shiladi, ko‘payadi",
+     "Surat va maxraj",
+     "Nisbat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh algebraik kasrlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 6x / (3x²) ni qisqartiring",
+      "2-guruh: (x² − 1) / (x − 1) ni qisqartiring",
+      "3-guruh: 2 / x + 3 / x ni hisoblang",
+      "4-guruh: (a / 2) · (4 / a) ni hisoblang"
+     ],
+     "yakun": "Natijalar: 2 / x; x + 1; 5 / x; 2."
+    }
+   }
   }
  ]
 }
