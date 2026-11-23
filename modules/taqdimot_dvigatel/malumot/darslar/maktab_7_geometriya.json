@@ -4186,6 +4186,1406 @@
      "yakun": "Natijalar: 40°; 8; 10; 13."
     }
    }
+  },
+  {
+   "mavzu": "Aylana va urinma",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Aylana va uning elementlari",
+      "matn": "Tekislikda berilgan nuqtadan (markazdan) bir xil uzoqlikdagi barcha nuqtalar to‘plami aylana deyiladi. Markazni aylana nuqtasi bilan tutashtiruvchi kesma radius. Aylananing ikki nuqtasini tutashtiruvchi kesma vatar. Markazdan o‘tuvchi vatar diametr deyiladi. Aylananing ikki nuqta orasidagi qismi yoy.",
+      "misol": "Markaz O, radius 5 sm bo‘lsa, aylananing barcha nuqtalari O dan 5 sm uzoqlikda. Diametr — ikki radius, ya’ni 10 sm.",
+      "savol": "Radius 6 sm bo‘lsa, diametr?",
+      "javob": "12 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aylana va doira",
+      "matn": "Aylana — faqat chiziq. Aylana va uning ichidagi qism birgalikda doira deyiladi. Diametr aylananing eng uzun vatari. Diametr aylanani ikki teng yoyga, ya’ni yarim aylanalarga bo‘ladi.",
+      "misol": "G‘ildirak chekkasi aylanaga, uning yuzasi esa doiraga o‘xshaydi. Diametr 14 sm bo‘lsa, radius 7 sm.",
+      "savol": "Eng uzun vatar qaysi?",
+      "javob": "diametr",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri chiziq va aylananing joylashuvi",
+      "matn": "Aylana markazidan to‘g‘ri chiziqqacha masofa d, aylana radiusi r bo‘lsin. d radiusdan kichik bo‘lsa, chiziq aylanani ikki nuqtada kesadi. d radiusga teng bo‘lsa, chiziq aylanaga urinadi, ya’ni bitta umumiy nuqta. d radiusdan katta bo‘lsa, kesishmaydi.",
+      "misol": "Radius 5 sm. d — 3 sm bo‘lsa, kesadi. d — 5 sm bo‘lsa, urinadi. d — 7 sm bo‘lsa, kesishmaydi.",
+      "savol": "Radius 4, masofa 4 bo‘lsa, chiziq aylanaga qanday joylashgan?",
+      "javob": "urinadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Urinma xossasi",
+      "matn": "Urinma aylana bilan faqat bitta nuqtada, urinish nuqtasida umumiy nuqtaga ega. Urinma urinish nuqtasiga o‘tkazilgan radiusga perpendikulyar, ya’ni ular orasidagi burchak 90°. Shuning uchun markaz, urinish nuqtasi va tashqi nuqta to‘g‘ri burchakli uchburchak hosil qiladi.",
+      "misol": "Radius 3 sm, tashqi nuqta A markazdan 5 sm uzoqda. To‘g‘ri burchakli uchburchakda katet 3 va gipotenuza 5, ikkinchi katet 4: urinma kesmasi 4 sm.",
+      "savol": "Urinma va urinish nuqtasidagi radius orasidagi burchak?",
+      "javob": "90°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bir nuqtadan o‘tkazilgan ikki urinma",
+      "matn": "Aylanadan tashqaridagi nuqtadan unga ikkita urinma o‘tkazish mumkin. Bu nuqtadan urinish nuqtalarigacha kesmalar teng. Nuqta va markazni tutashtiruvchi chiziq urinmalar orasidagi burchakni teng ikkiga bo‘ladi.",
+      "misol": "A nuqtadan o‘tkazilgan ikki urinmaning urinish nuqtalarigacha masofalari 4 sm va 4 sm.",
+      "savol": "Bitta nuqtadan nechta urinma o‘tkazish mumkin?",
+      "javob": "ikkita",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Diametr ikki radiusga teng. Urinma urinish nuqtasidagi radiusga perpendikulyar. Tashqi nuqtadan o‘tkazilgan ikki urinma kesmasi teng. Markazdan chiziqqacha masofa radiusga teng bo‘lsa, chiziq urinadi.",
+    "misollar": [
+     {
+      "shart": "Aylana diametri 14 sm. Radiusini toping.",
+      "yechim": [
+       "Diametr ikki radiusga teng.",
+       "Radius 14 / 2.",
+       "Radius 7 sm."
+      ],
+      "javob": "7 sm"
+     },
+     {
+      "shart": "Radiusi 5 sm bo‘lgan aylanadan markazdan chiziqqacha masofa 4, 5 va 6 sm. Har birida chiziq aylanaga qanday joylashgan?",
+      "yechim": [
+       "4 sm — radiusdan kichik: kesadi.",
+       "5 sm — radiusga teng: urinadi.",
+       "6 sm — radiusdan katta: kesishmaydi."
+      ],
+      "javob": "kesadi; urinadi; kesishmaydi"
+     },
+     {
+      "shart": "Tashqi nuqta A markazdan 5 sm uzoqda, radius 3 sm. Urinma kesmasi uzunligini toping.",
+      "yechim": [
+       "Radius urinish nuqtasida urinmaga perpendikulyar.",
+       "To‘g‘ri burchakli uchburchak: katet 3, gipotenuza 5.",
+       "Ikkinchi katet 4 sm (3, 4, 5 uchburchagi)."
+      ],
+      "javob": "4 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sirkul bilan aylana",
+      "topshiriq": "Sirkul bilan radiusi 4 sm aylana chizing, vatar, diametr va yoy belgilang.",
+      "yechim": "Diametr 8 sm, eng uzun vatar.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Urinma o‘tkazamiz",
+      "topshiriq": "Aylana chizing, uning nuqtasiga radius o‘tkazing va ugolnik bilan perpendikulyar chiziq (urinma) chizing.",
+      "yechim": "Urinma radiusga 90° burchak ostida.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Uch holat",
+      "topshiriq": "Aylana va chiziqning uch xil joylashuvini chizing: kesadi, urinadi, kesishmaydi.",
+      "yechim": "Markazdan masofa radius bilan solishtiriladi.",
+      "mahsulot": "uch chizma"
+     },
+     {
+      "nom": "Urinma kesmasi",
+      "topshiriq": "Radius 6, markazdan tashqi nuqtagacha 10. Urinma kesmasini toping.",
+      "yechim": "Katet 6, gipotenuza 10: ikkinchi katet 8 (6, 8, 10).",
+      "mahsulot": "yechim varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Radius 9 bo‘lsa, diametr?",
+      "javob": "18"
+     },
+     {
+      "shart": "Diametr 20 bo‘lsa, radius?",
+      "javob": "10"
+     },
+     {
+      "shart": "Aylananing eng uzun vatari qaysi?",
+      "javob": "diametr"
+     },
+     {
+      "shart": "Radius 6, markazdan chiziqqacha masofa 6. Chiziq qanday joylashgan?",
+      "javob": "urinadi"
+     },
+     {
+      "shart": "Urinma va urinish nuqtasidagi radius orasidagi burchak?",
+      "javob": "90°"
+     },
+     {
+      "shart": "A nuqtadan bir urinma kesmasi 7 sm. Ikkinchisi?",
+      "javob": "7 sm"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Diametrni radiusga teng deb oladi",
+      "sabab": "ikki radius ekanini unutadi",
+      "oldini_olish": "diametr — ikki radius ekanini eslash"
+     },
+     {
+      "xato": "Aylana va doirani farqlamaydi",
+      "sabab": "chiziq va yuzani adashtiradi",
+      "oldini_olish": "aylana — chiziq, doira — ichi bilan"
+     },
+     {
+      "xato": "Urinmani radiusga parallel deb oladi",
+      "sabab": "perpendikulyarlikni bilmaydi",
+      "oldini_olish": "urinma radiusga 90° burchak ostida ekanini chizmada ko‘rish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "g‘ildirak aylanishi va tezlik yo‘nalishi urinma bo‘ylab"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "detallarni aylana bo‘yicha kesish"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "aylana va doira shakllari bilan kompozitsiya"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Aylana atrofda»",
+     "muammo": "Atrofimizdagi aylana shakllarni topib, ularning radius va diametrini o‘lchaymiz.",
+     "mahsulot": "aylanalar albomi",
+     "bosqichlar": [
+      "misollar izlash",
+      "diametrni o‘lchash",
+      "radiusni hisoblash",
+      "urinma topish",
+      "albom tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Misollar toping",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "radius to‘g‘ri hisoblangan",
+      "misollar xilma-xil",
+      "albom bezatilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Aylanalar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Velosiped ustaxonasi",
+       "matn": "G‘ildirak diametri 60 sm.",
+       "topshiriq": "Spitsa uzunligi (radius)?",
+       "javob": "30 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Soat",
+       "matn": "Devor soatining radiusi 15 sm.",
+       "topshiriq": "Diametri?",
+       "javob": "30 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Burilish",
+       "matn": "Avtomobil aylana yo‘lda to‘g‘ri chiziq bo‘ylab chiqib ketdi.",
+       "topshiriq": "Qaysi chiziq bo‘ylab ketadi?",
+       "javob": "urinma bo‘ylab",
+       "rasm": ""
+      },
+      {
+       "nom": "Registon gumbazi",
+       "matn": "Gumbaz asosi aylana, radiusi 8 m.",
+       "topshiriq": "Diametri?",
+       "javob": "16 m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda aylana ko‘rdingiz?",
+      "Urinmani qayerda uchratdingiz?",
+      "Radius va diametrni qanday o‘lchadingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Aylana",
+      "tarif": "markazdan bir xil uzoqlikdagi nuqtalar to‘plami"
+     },
+     {
+      "atama": "Radius",
+      "tarif": "markazni aylana nuqtasi bilan tutashtiruvchi kesma"
+     },
+     {
+      "atama": "Diametr",
+      "tarif": "markazdan o‘tuvchi vatar, ikki radiusga teng"
+     },
+     {
+      "atama": "Vatar",
+      "tarif": "aylananing ikki nuqtasini tutashtiruvchi kesma"
+     },
+     {
+      "atama": "Urinma",
+      "tarif": "aylana bilan bitta umumiy nuqtaga ega to‘g‘ri chiziq"
+     },
+     {
+      "atama": "Doira",
+      "tarif": "aylana va uning ichidagi qism"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Diametr ikki radiusga teng",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Urinma aylanani ikki nuqtada kesadi",
+      "togri": false,
+      "izoh": "faqat bitta umumiy nuqta"
+     },
+     {
+      "matn": "Urinma urinish nuqtasidagi radiusga perpendikulyar",
+      "togri": true,
+      "izoh": "90° burchak"
+     },
+     {
+      "matn": "Eng uzun vatar radius",
+      "togri": false,
+      "izoh": "eng uzun vatar diametr"
+     },
+     {
+      "matn": "Tashqi nuqtadan o‘tkazilgan ikki urinma kesmalari teng",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "Aylana va doira bir xil",
+      "togri": false,
+      "izoh": "aylana — chiziq, doira — ichi bilan"
+     },
+     {
+      "matn": "Markazdan chiziqqacha masofa radiusga teng bo‘lsa, chiziq urinadi",
+      "togri": true,
+      "izoh": "bitta umumiy nuqta"
+     },
+     {
+      "matn": "Bir nuqtadan aylanaga uchta urinma o‘tkazish mumkin",
+      "togri": false,
+      "izoh": "ikkita"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Aylana nima?",
+      "javob": "markazdan bir xil uzoqlikdagi nuqtalar to‘plami"
+     },
+     {
+      "savol": "Radius nima?",
+      "javob": "markazdan aylana nuqtasigacha kesma"
+     },
+     {
+      "savol": "Diametr nima?",
+      "javob": "markazdan o‘tuvchi vatar"
+     },
+     {
+      "savol": "Vatar nima?",
+      "javob": "aylananing ikki nuqtasini tutashtiruvchi kesma"
+     },
+     {
+      "savol": "Urinma nima?",
+      "javob": "aylana bilan bitta umumiy nuqtali to‘g‘ri chiziq"
+     },
+     {
+      "savol": "Urinma va radius orasidagi burchak?",
+      "javob": "90°"
+     },
+     {
+      "savol": "Radius 5 bo‘lsa, diametr?",
+      "javob": "10"
+     },
+     {
+      "savol": "Doira nima?",
+      "javob": "aylana va uning ichidagi qism"
+     },
+     {
+      "savol": "Tashqi nuqtadan nechta urinma o‘tadi?",
+      "javob": "ikkita"
+     },
+     {
+      "savol": "d radiusdan kichik bo‘lsa, chiziq aylanani nechta nuqtada kesadi?",
+      "javob": "ikki nuqtada"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Elementlar",
+      "matn": "Markaz, radius, diametr, vatar, yoy.",
+      "savol": "Diametr radiusdan necha marta katta?"
+     },
+     {
+      "nom": "Joylashuv",
+      "matn": "Masofa va radius solishtiriladi.",
+      "savol": "Masofa radiusdan katta bo‘lsa, chiziq?"
+     },
+     {
+      "nom": "Urinma xossasi",
+      "matn": "Urinma radiusga perpendikulyar.",
+      "savol": "Ular orasidagi burchak?"
+     },
+     {
+      "nom": "Ikki urinma",
+      "matn": "Tashqi nuqtadan ikki teng kesma.",
+      "savol": "Bir urinma 5 bo‘lsa, ikkinchisi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun urinma urinish nuqtasidagi radiusga perpendikulyar bo‘lishi kerak? Radiusga perpendikulyar bo‘lmagan chiziq aylanani nechta nuqtada kesishini tushuntiring.",
+    "keys": {
+     "vaziyat": "Velosipedchi aylana shaklidagi yo‘lakda ketayapti va to‘satdan to‘g‘ri chiziq bo‘ylab ketib qoldi.",
+     "savollar": [
+      "U qaysi chiziq bo‘ylab ketdi?",
+      "Bu chiziq radiusga nisbatan qanday joylashgan?"
+     ]
+    },
+    "tezis": "Urinma aylanaga yo‘nalishni beradi",
+    "taqqoslash": {
+     "a": "Vatar",
+     "b": "Diametr",
+     "umumiy": [
+      "aylananing ikki nuqtasini tutashtiradi",
+      "kesma"
+     ],
+     "a_farq": [
+      "markazdan o‘tmasligi mumkin",
+      "uzunligi diametrdan kichik"
+     ],
+     "b_farq": [
+      "markazdan o‘tadi",
+      "eng uzun vatar"
+     ]
+    },
+    "klaster": {
+     "markaz": "Aylana",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "markaz",
+        "radius",
+        "diametr",
+        "vatar",
+        "yoy"
+       ]
+      },
+      {
+       "nom": "Joylashuv",
+       "bandlar": [
+        "kesadi",
+        "urinadi",
+        "kesishmaydi"
+       ]
+      },
+      {
+       "nom": "Urinma",
+       "bandlar": [
+        "radiusga perpendikulyar",
+        "bitta umumiy nuqta"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "g‘ildirak",
+        "soat",
+        "gumbaz"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Boshim ham yo‘q, oxirim ham yo‘q, markazdan bir xil uzoqman. Men nimaman?",
+     "javob": "aylana"
+    },
+    "hikmat": "Aylananing hamma nuqtasi markazga teng uzoq.",
+    "kalit_soz": "AYLANA",
+    "xato_yechim": {
+     "shart": "Aylana radiusi 8 sm. Diametrini toping.",
+     "xato": "4 sm",
+     "togri": "16 sm",
+     "sabab": "radius 2 ga bo‘lingan; diametr ikki radius, ya’ni 8 ni 2 ga ko‘paytirish kerak"
+    },
+    "guruh_nomlari": [
+     "Aylanachilar",
+     "Radiuschilar",
+     "Urinmachilar",
+     "Diametrchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«G‘ildirak o‘lchovi»",
+     "topshiriq": "Guruh stakan, tarelka va velosiped g‘ildiragi diametrini o‘lchab, radiusini hisoblaydi va jadvalga yozadi."
+    },
+    "vazifalar": {
+     "A": "Radius 7 bo‘lsa, diametr; diametr 18 bo‘lsa, radius.",
+     "B": "Aylana va chiziqning uch joylashuvini chizing.",
+     "C": "Urinma kesmasi uchun 3, 4, 5 misolini chizma bilan tushuntiring."
+    },
+    "sinkveyn": [
+     "Aylana",
+     "yumaloq, mukammal",
+     "aylanadi, o‘lchanadi, chiziladi",
+     "Markazdan bir xil uzoqlik",
+     "Doira"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh aylana bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: radius 5 bo‘lsa, diametr",
+      "2-guruh: diametr 12 bo‘lsa, radius",
+      "3-guruh: radius 4, masofa 4, chiziq qanday",
+      "4-guruh: urinma va radius orasidagi burchak"
+     ],
+     "yakun": "Natijalar: 10; 6; urinadi; 90°."
+    }
+   }
+  },
+  {
+   "mavzu": "Geometrik yasashlar (sirkul va chizg‘ich)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Asboblar va qoidalar",
+      "matn": "Klassik geometrik yasashlarda faqat ikki asbob ishlatiladi: shkalasiz chizg‘ich (faqat to‘g‘ri chiziq chizadi, o‘lchamaydi) va sirkul (aylana chizadi va teng kesmalarni qo‘yadi). Yasashda har bir qadam asoslanadi.",
+      "misol": "Sirkul bilan AB kesmaga teng kesma ajratish mumkin: sirkul ochilishini A va B ga qo‘yib o‘lchaymiz, so‘ng boshqa joyga ko‘chiramiz.",
+      "savol": "Shkalasiz chizg‘ich bilan nima qilinadi?",
+      "javob": "to‘g‘ri chiziq chiziladi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kesmaning o‘rta nuqtasi va o‘rta perpendikulyari",
+      "matn": "A va B nuqtalardan AB ning yarmidan katta radius bilan aylana chizamiz. Ular kesishgan ikki nuqtadan o‘tuvchi to‘g‘ri chiziq AB ga perpendikulyar bo‘ladi va uni teng ikkiga bo‘ladi. Bu chiziq o‘rta perpendikulyar deyiladi.",
+      "misol": "AB 8 sm bo‘lsa, o‘rta nuqta M dan AM va MB 4 sm dan, perpendikulyar 90° burchak hosil qiladi.",
+      "savol": "AB 10 sm bo‘lsa, o‘rta nuqtadan A gacha masofa?",
+      "javob": "5 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchak bissektrisasini yasash",
+      "matn": "Burchak uchidan ixtiyoriy radiusli aylana chizamiz, u tomonlarni ikki nuqtada kesadi. Shu nuqtalardan teng radius bilan aylanalar chizamiz, ular kesishgan nuqtani burchak uchi bilan tutashtiramiz. Bu bissektrisa.",
+      "misol": "60° burchak bissektrisasi uni 30° va 30° ga ajratadi. 30° ni yana bissektrisa bilan 15° ga bo‘lamiz.",
+      "savol": "90° burchak bissektrisasi hosil qilgan burchaklar?",
+      "javob": "45° dan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Teng tomonli uchburchak va 60° burchak",
+      "matn": "Tomoni a bo‘lgan teng tomonli uchburchak yasash uchun a kesmaning ikki uchidan a radiusli aylanalar chizamiz. Ularning kesishish nuqtasi uchinchi uch bo‘ladi. Uchburchak burchaklari 60° dan. Shu usul bilan 60° burchak yasaladi.",
+      "misol": "Tomoni 6 sm: sirkul 6 sm ga ochiladi, ikki aylana kesishgan nuqta uchinchi uch; perimetr 6 + 6 + 6, ya’ni 18 sm.",
+      "savol": "60° burchak qaysi uchburchak yordamida yasaladi?",
+      "javob": "teng tomonli",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yasash masalasi bosqichlari",
+      "matn": "Yasash masalasi to‘rt bosqichda yechiladi: tahlil (masala shartini chizma bilan tahlil), yasash (qadamlarni bajarish), isbot (yasalgan shakl shartga mosligini asoslash), tekshirish (yechim bor-yo‘qligi, nechtaligi). Yasalgan burchaklar: 60°, 30°, 15°, 90°, 45°.",
+      "misol": "90° ni kesma o‘rta perpendikulyari bilan, 45° ni 90° bissektrisasi bilan, 30° ni 60° bissektrisasi bilan yasaymiz.",
+      "savol": "Yasash bosqichlari nechta?",
+      "javob": "to‘rtta",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Yasashda faqat shkalasiz chizg‘ich va sirkul ishlatiladi. O‘rta perpendikulyar, bissektrisa va teng tomonli uchburchak asosiy yasashlar. Yasash bosqichlari: tahlil, yasash, isbot, tekshirish.",
+    "misollar": [
+     {
+      "shart": "AB 8 sm kesmaning o‘rta nuqtasini yasab, AM ni toping.",
+      "yechim": [
+       "A va B dan 5 sm radiusli aylanalar chizamiz (4 dan katta).",
+       "Kesishish nuqtalaridan chiziq o‘tkazamiz, AB bilan kesishgan nuqta M.",
+       "AM ifoda AB yarmi, ya’ni 4 sm."
+      ],
+      "javob": "AM 4 sm"
+     },
+     {
+      "shart": "60° burchakni yasab, uning bissektrisasi bilan 30° va 15° li burchaklarni hosil qiling.",
+      "yechim": [
+       "Teng tomonli uchburchak orqali 60°.",
+       "60° bissektrisasi 30° ni beradi.",
+       "30° bissektrisasi 15° ni beradi."
+      ],
+      "javob": "30° va 15°"
+     },
+     {
+      "shart": "Tomoni 6 sm bo‘lgan teng tomonli uchburchak yasab, perimetrini toping.",
+      "yechim": [
+       "Kesma 6 sm chiziladi.",
+       "Ikki uchidan 6 sm radiusli aylana chiziladi.",
+       "Perimetr 6 + 6 + 6, ya’ni 18 sm."
+      ],
+      "javob": "18 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "O‘rta perpendikulyar",
+      "topshiriq": "12 sm kesma chizib, uning o‘rta perpendikulyarini yasang. Burchaklarni ugolnik bilan tekshiring.",
+      "yechim": "O‘rta nuqta uchlardan 6 sm, burchak 90°.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Bissektrisa",
+      "topshiriq": "70° burchak chizib, uning bissektrisasini yasang va transportir bilan tekshiring.",
+      "yechim": "Har bir qism 35°.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Teng tomonli uchburchak",
+      "topshiriq": "Turli tomonli (4, 5 va 6 sm) teng tomonli uchburchaklar yasang.",
+      "yechim": "Har birida burchaklar 60°.",
+      "mahsulot": "chizmalar"
+     },
+     {
+      "nom": "Burchaklar yasash",
+      "topshiriq": "Faqat sirkul va chizg‘ich bilan 90°, 45°, 60°, 30° burchaklarni yasang.",
+      "yechim": "90° — o‘rta perpendikulyar, 45° — 90° bissektrisasi, 60° — teng tomonli, 30° — 60° bissektrisasi.",
+      "mahsulot": "yasash daftari"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "60° burchakni qaysi uchburchak yordamida yasaymiz?",
+      "javob": "teng tomonli"
+     },
+     {
+      "shart": "90° burchakni qanday yasaymiz?",
+      "javob": "o‘rta perpendikulyar bilan"
+     },
+     {
+      "shart": "60° bissektrisasi hosil qilgan burchak?",
+      "javob": "30°"
+     },
+     {
+      "shart": "30° bissektrisasi hosil qilgan burchak?",
+      "javob": "15°"
+     },
+     {
+      "shart": "90° bissektrisasi hosil qilgan burchak?",
+      "javob": "45°"
+     },
+     {
+      "shart": "AB 10 sm. O‘rta nuqtadan A gacha masofa?",
+      "javob": "5 sm"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Chizg‘ich bilan o‘lchaydi",
+      "sabab": "shkalasiz chizg‘ich qoidasini unutadi",
+      "oldini_olish": "chizg‘ich faqat to‘g‘ri chiziq chizishini eslash"
+     },
+     {
+      "xato": "O‘rta perpendikulyarda kichik radius oladi",
+      "sabab": "aylanalar kesishmaydi",
+      "oldini_olish": "radius AB yarmidan katta bo‘lishini tekshirish"
+     },
+     {
+      "xato": "Yasashni isbotlamaydi",
+      "sabab": "chizma o‘zi yetarli deb o‘ylaydi",
+      "oldini_olish": "har yasashdan keyin asoslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "chizmachilikda sirkul va chizg‘ich bilan ishlash"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "geometrik naqshlarni sirkul bilan chizish"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "qadimgi yunon geometrlari klassik yasashlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sirkul san’ati»",
+     "muammo": "Faqat sirkul va chizg‘ich bilan chiroyli naqsh qanday chiziladi?",
+     "mahsulot": "geometrik naqsh albomi",
+     "bosqichlar": [
+      "asosiy yasashlarni o‘rganish",
+      "naqsh loyihalash",
+      "chizish",
+      "bo‘yash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Yasashlarni o‘rganing",
+      "Naqsh loyihalang",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "yasash to‘g‘ri",
+      "chizma aniq",
+      "naqsh chiroyli",
+      "isbot bor",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sirkul ustaxonasi»",
+     "bekatlar": [
+      {
+       "nom": "Naqqoshlik",
+       "matn": "Naqqosh sirkul bilan gul naqshi chizadi.",
+       "topshiriq": "Qaysi asbob aylana chizadi?",
+       "javob": "sirkul",
+       "rasm": ""
+      },
+      {
+       "nom": "Duradgorlik",
+       "matn": "Duradgor taxtada to‘g‘ri burchak yasamoqchi.",
+       "topshiriq": "Qaysi yasash yordam beradi?",
+       "javob": "o‘rta perpendikulyar",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Bog‘bon gulzorda 60° burchak belgilamoqchi.",
+       "topshiriq": "Qaysi uchburchakdan foydalanadi?",
+       "javob": "teng tomonli",
+       "rasm": ""
+      },
+      {
+       "nom": "Memor",
+       "matn": "Memor burchakni teng ikkiga bo‘lmoqchi.",
+       "topshiriq": "Qaysi chiziqni yasaydi?",
+       "javob": "bissektrisa",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Sirkul bilan nimani yasadingiz?",
+      "Qaysi yasash qiyin bo‘ldi?",
+      "Naqshda qaysi shakllar uchradi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sirkul",
+      "tarif": "aylana chizuvchi va teng kesmani ko‘chiruvchi asbob"
+     },
+     {
+      "atama": "Shkalasiz chizg‘ich",
+      "tarif": "faqat to‘g‘ri chiziq chizuvchi chizg‘ich"
+     },
+     {
+      "atama": "O‘rta perpendikulyar",
+      "tarif": "kesmani teng ikkiga bo‘luvchi perpendikulyar chiziq"
+     },
+     {
+      "atama": "Bissektrisa",
+      "tarif": "burchakni teng ikkiga bo‘luvchi nur"
+     },
+     {
+      "atama": "Yasash",
+      "tarif": "asboblar bilan shaklni chizish"
+     },
+     {
+      "atama": "Isbot",
+      "tarif": "yasash to‘g‘riligini asoslash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Yasashda shkalali chizg‘ichdan foydalaniladi",
+      "togri": false,
+      "izoh": "faqat shkalasiz chizg‘ich"
+     },
+     {
+      "matn": "Sirkul aylana chizadi",
+      "togri": true,
+      "izoh": "asosiy vazifasi"
+     },
+     {
+      "matn": "O‘rta perpendikulyar kesmani teng ikkiga bo‘ladi",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "60° burchakni teng tomonli uchburchak yordamida yasaymiz",
+      "togri": true,
+      "izoh": "uning burchaklari 60°"
+     },
+     {
+      "matn": "Yasash faqat chizma chizishdan iborat",
+      "togri": false,
+      "izoh": "tahlil, isbot va tekshirish ham bor"
+     },
+     {
+      "matn": "30° ni 60° bissektrisasi bilan yasaymiz",
+      "togri": true,
+      "izoh": "yarmini olamiz"
+     },
+     {
+      "matn": "O‘rta perpendikulyarda radius AB yarmidan kichik bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "aylanalar kesishmaydi"
+     },
+     {
+      "matn": "90° ni o‘rta perpendikulyar bilan yasash mumkin",
+      "togri": true,
+      "izoh": "perpendikulyar 90° hosil qiladi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yasashda qanday asboblar ishlatiladi?",
+      "javob": "sirkul va shkalasiz chizg‘ich"
+     },
+     {
+      "savol": "Sirkul nima qiladi?",
+      "javob": "aylana chizadi va kesma ko‘chiradi"
+     },
+     {
+      "savol": "O‘rta perpendikulyar nima?",
+      "javob": "kesmani teng ikkiga bo‘luvchi perpendikulyar"
+     },
+     {
+      "savol": "Bissektrisa nima?",
+      "javob": "burchakni teng ikkiga bo‘luvchi nur"
+     },
+     {
+      "savol": "60° qanday yasaladi?",
+      "javob": "teng tomonli uchburchak bilan"
+     },
+     {
+      "savol": "45° qanday yasaladi?",
+      "javob": "90° bissektrisasi bilan"
+     },
+     {
+      "savol": "30° qanday yasaladi?",
+      "javob": "60° bissektrisasi bilan"
+     },
+     {
+      "savol": "Yasash bosqichlari?",
+      "javob": "tahlil, yasash, isbot, tekshirish"
+     },
+     {
+      "savol": "AB 6 sm bo‘lsa, o‘rta nuqtadan A gacha?",
+      "javob": "3 sm"
+     },
+     {
+      "savol": "Teng tomonli uchburchak perimetri tomoni 5 bo‘lsa?",
+      "javob": "15"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Asboblar",
+      "matn": "Sirkul va shkalasiz chizg‘ich.",
+      "savol": "Chizg‘ich bilan o‘lchaymizmi?"
+     },
+     {
+      "nom": "O‘rta perpendikulyar",
+      "matn": "Kesmani teng ikkiga bo‘ladi.",
+      "savol": "AB 4 sm bo‘lsa, AM?"
+     },
+     {
+      "nom": "Bissektrisa",
+      "matn": "Burchakni teng ikkiga bo‘ladi.",
+      "savol": "80° bissektrisasi hosil qilgan burchak?"
+     },
+     {
+      "nom": "Uchburchak",
+      "matn": "Teng tomonli: burchaklari 60°.",
+      "savol": "Burchagi necha gradus?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun qadimgi yunon geometrlari faqat sirkul va shkalasiz chizg‘ich bilan cheklangan? Shkalali chizg‘ich bilan yasash va shkalasiz chizg‘ich bilan yasash farqini, ikkinchisining mantiqiy aniqligini muhokama qiling.",
+    "keys": {
+     "vaziyat": "Usta devorda burchak yasamoqchi, lekin transportiri yo‘q. Unda sirkul va chizg‘ich bor.",
+     "savollar": [
+      "Qaysi usul bilan 90° yasash mumkin?",
+      "45° burchakni qanday hosil qiladi?"
+     ]
+    },
+    "tezis": "Aniq yasash — aniq fikr",
+    "taqqoslash": {
+     "a": "Sirkul",
+     "b": "Shkalasiz chizg‘ich",
+     "umumiy": [
+      "yasash asboblari",
+      "geometrik yasashlarda ishlatiladi"
+     ],
+     "a_farq": [
+      "aylana chizadi",
+      "kesma ko‘chiradi"
+     ],
+     "b_farq": [
+      "to‘g‘ri chiziq chizadi",
+      "o‘lchamaydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Geometrik yasashlar",
+     "shoxlar": [
+      {
+       "nom": "Asboblar",
+       "bandlar": [
+        "sirkul",
+        "shkalasiz chizg‘ich"
+       ]
+      },
+      {
+       "nom": "Asosiy yasashlar",
+       "bandlar": [
+        "o‘rta perpendikulyar",
+        "bissektrisa",
+        "teng tomonli uchburchak"
+       ]
+      },
+      {
+       "nom": "Burchaklar",
+       "bandlar": [
+        "90°",
+        "60°",
+        "45°",
+        "30°"
+       ]
+      },
+      {
+       "nom": "Bosqichlar",
+       "bandlar": [
+        "tahlil",
+        "yasash",
+        "isbot",
+        "tekshirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Bir oyog‘im qadalgan, ikkinchisi aylanadi. Men nimaman?",
+     "javob": "sirkul"
+    },
+    "hikmat": "Aniq yasash — aniq fikrning ko‘zgusi.",
+    "kalit_soz": "SIRKUL",
+    "xato_yechim": {
+     "shart": "AB 10 sm kesmaning o‘rta perpendikulyarini yasashda sirkul 3 sm ga ochildi. Nima xato?",
+     "xato": "yasash to‘g‘ri",
+     "togri": "radius 5 sm dan katta bo‘lishi kerak",
+     "sabab": "radius AB yarmidan (5 sm) kichik bo‘lsa, aylanalar kesishmaydi, perpendikulyar chizib bo‘lmaydi"
+    },
+    "guruh_nomlari": [
+     "Sirkulchilar",
+     "Chizg‘ichchilar",
+     "Yasovchilar",
+     "Isbotchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Naqsh ustalari»",
+     "topshiriq": "Guruh sirkul bilan olti yaproqli gul naqshini chizadi va unda qanday geometrik shakllar borligini tahlil qiladi."
+    },
+    "vazifalar": {
+     "A": "12 sm kesma o‘rta nuqtasini yasang.",
+     "B": "80° burchak bissektrisasini yasang.",
+     "C": "Tomoni 7 sm teng tomonli uchburchak yasang va burchaklarini o‘lchang."
+    },
+    "sinkveyn": [
+     "Yasash",
+     "aniq, mantiqiy",
+     "chizadi, o‘lchamaydi, isbotlaydi",
+     "Sirkul va chizg‘ich bilan",
+     "Geometriya"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yasashlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 60° bissektrisasi",
+      "2-guruh: 90° bissektrisasi",
+      "3-guruh: AB 16 sm, AM",
+      "4-guruh: teng tomonli, tomoni 5, perimetri"
+     ],
+     "yakun": "Natijalar: 30°; 45°; 8 sm; 15 sm."
+    }
+   }
+  },
+  {
+   "mavzu": "Geometriya arxitekturada",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Binolardagi geometrik shakllar",
+      "matn": "Arxitekturada geometrik shakllar har joyda uchraydi: devorlar to‘g‘ri to‘rtburchak va kvadrat, tom uchburchak yoki trapetsiya, ark yarim aylana, minora silindr, gumbaz yarim shar shaklida. Shakl tanlash binoning mustahkamligi va chiroyiga bog‘liq.",
+      "misol": "Registon ansambli Samarqandda joylashgan, uni Ulug‘bek, Sherdor va Tillakori madrasalari tashkil etadi. Peshtoqlar to‘g‘ri to‘rtburchak, kirish arklari esa yarim aylana shaklida.",
+      "savol": "Ark qaysi geometrik shaklning qismi?",
+      "javob": "aylananing qismi (yarim aylana)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Simmetriya",
+      "matn": "Arxitekturada simmetriya — bino ikki yarmining bir-birini aks ettirishi. Sharq me’morchiligida ansamblar ko‘pincha o‘q simmetriyasiga ega. Kvadratning to‘rtta, teng tomonli uchburchakning uchta simmetriya o‘qi bor.",
+      "misol": "Registondagi madrasalar markaziy maydonga nisbatan simmetrik joylashgan: chap va o‘ng tomon bir-birini takrorlaydi.",
+      "savol": "Kvadratning nechta simmetriya o‘qi bor?",
+      "javob": "4 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchburchak va mustahkamlik",
+      "matn": "Uchburchak o‘zgarmas shakl, shuning uchun ko‘priklar, tomlar va minoralarning fermalarida ishlatiladi. Teng yonli tom shaklida asos burchaklari teng bo‘ladi, yog‘in oqib tushishiga yordam beradi.",
+      "misol": "Teng yonli tomning uchidagi burchak 100° bo‘lsa, asos burchaklari 180° − 100° — 80°, 80° / 2, ya’ni 40° dan.",
+      "savol": "Tom uchidagi burchak 80° bo‘lsa, asos burchagi?",
+      "javob": "50° dan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Gumbaz va aylana",
+      "matn": "Gumbaz yarim shar shaklida bo‘lib, og‘irlikni devorlarga teng taqsimlaydi. Samarqanddagi Gur-Amir maqbarasining qovurg‘ali gumbazi mashhur. Gumbaz asosi aylana, shuning uchun radius va diametr bilan o‘lchanadi.",
+      "misol": "Gumbaz asosi aylana, radiusi 8 m bo‘lsa, diametri 16 m.",
+      "savol": "Gumbaz asosi radiusi 5 m bo‘lsa, diametri?",
+      "javob": "10 m",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Maket va masshtab",
+      "matn": "Binolar loyihalanganda avval maket yasaladi. Masshtab maketdagi o‘lcham haqiqiy o‘lchamdan necha marta kichikligini ko‘rsatadi. Masshtab 1 ga 100 bo‘lsa, maketdagi 1 sm haqiqatda 100 sm, ya’ni 1 m.",
+      "misol": "Maketdagi balandlik 15 sm, masshtab 1 ga 100: haqiqiy balandlik 15 m. To‘g‘ri to‘rtburchak old tomi 12 m va 8 m bo‘lsa, perimetri 40 m.",
+      "savol": "Masshtab 1 ga 100, maketda 20 sm bo‘lsa, haqiqatda?",
+      "javob": "20 m",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Arxitekturada to‘g‘ri to‘rtburchak, uchburchak, aylana va simmetriya qo‘llanadi. Uchburchak mustahkam, gumbaz og‘irlikni taqsimlaydi. Masshtab maket va haqiqiy o‘lcham nisbatini ko‘rsatadi.",
+    "misollar": [
+     {
+      "shart": "Bino old tomoni to‘g‘ri to‘rtburchak, uzunligi 12 m, balandligi 8 m. Perimetrini toping.",
+      "yechim": [
+       "Perimetr — ikki tomon yig‘indisining ikki baravari.",
+       "12 + 8 — 20, 20 ni 2 ga ko‘paytirsak 40.",
+       "Perimetr 40 m."
+      ],
+      "javob": "40 m"
+     },
+     {
+      "shart": "Maketdagi minora balandligi 15 sm, masshtab 1 ga 100. Haqiqiy balandligini toping.",
+      "yechim": [
+       "Masshtab 100 marta kattalashtiradi.",
+       "15 sm ni 100 ga ko‘paytiramiz: 1500 sm.",
+       "1500 sm — 15 m."
+      ],
+      "javob": "15 m"
+     },
+     {
+      "shart": "Teng yonli tomning uchidagi burchak 100°. Asos burchagini toping.",
+      "yechim": [
+       "Asos burchaklari yig‘indisi 180° − 100°, ya’ni 80°.",
+       "Teng, shuning uchun 80° / 2.",
+       "Asos burchagi 40°."
+      ],
+      "javob": "40°"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Shakllar izlaymiz",
+      "topshiriq": "Sinf rasmlari yoki Registon fotosuratida to‘g‘ri to‘rtburchak, uchburchak va aylana shakllarini toping.",
+      "yechim": "Har shakl qaysi qismda ekanini ro‘yxatga yozing.",
+      "mahsulot": "shakllar ro‘yxati"
+     },
+     {
+      "nom": "Simmetriya o‘qlari",
+      "topshiriq": "Kvadrat, to‘g‘ri to‘rtburchak va teng tomonli uchburchakning simmetriya o‘qlarini chizing.",
+      "yechim": "Kvadrat 4 ta, to‘g‘ri to‘rtburchak 2 ta, teng tomonli uchburchak 3 ta.",
+      "mahsulot": "chizmalar"
+     },
+     {
+      "nom": "Karton maket",
+      "topshiriq": "Oddiy binoning maketini 1 ga 50 masshtabda yasang. Balandligi 6 m bo‘lsa, maketda necha sm?",
+      "yechim": "6 m — 600 sm, 600 / 50 — 12 sm.",
+      "mahsulot": "maket"
+     },
+     {
+      "nom": "Naqsh loyihalaymiz",
+      "topshiriq": "Sirkul bilan olti yaproqli gul naqshini chizib, madrasa peshtoqi uchun loyiha tayyorlang.",
+      "yechim": "Aylana radiusi bilan olti marta ajratiladi.",
+      "mahsulot": "naqsh chizmasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Ark qaysi geometrik shaklning qismi?",
+      "javob": "aylananing"
+     },
+     {
+      "shart": "Masshtab 1 ga 50, maketda 20 sm. Haqiqatda necha metr?",
+      "javob": "10"
+     },
+     {
+      "shart": "Kvadrat tomoni 7 m. Perimetri?",
+      "javob": "28"
+     },
+     {
+      "shart": "To‘g‘ri to‘rtburchak 10 m va 6 m. Yuzi?",
+      "javob": "60"
+     },
+     {
+      "shart": "Teng tomonli uchburchak tomoni 9 m. Perimetri?",
+      "javob": "27"
+     },
+     {
+      "shart": "Kvadratning nechta simmetriya o‘qi bor?",
+      "javob": "4"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Masshtabda o‘lchamni bo‘lib yuboradi",
+      "sabab": "maketdan haqiqatga o‘tishni adashtiradi",
+      "oldini_olish": "maket kichik, haqiqat katta: ko‘paytirish"
+     },
+     {
+      "xato": "Simmetriya o‘qlarini sanashda adashadi",
+      "sabab": "diagonal va o‘rta chiziqlarni birga olmaydi",
+      "oldini_olish": "kvadrat uchun 2 diagonal va 2 o‘rta chiziq: 4 ta"
+     },
+     {
+      "xato": "Perimetr bilan yuzni adashtiradi",
+      "sabab": "chiziq va yuzani farqlamaydi",
+      "oldini_olish": "perimetr — tomonlar yig‘indisi, yuza — ichi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Samarqand me’morchilik yodgorliklari: Registon, Gur-Amir"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "naqsh va kompozitsiyada geometrik shakllar"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "inshootlar mustahkamligi va og‘irlik taqsimoti"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening me’moriy loyiham»",
+     "muammo": "Geometrik shakllardan foydalanib, kelajak binosining maketini qanday yasaymiz?",
+     "mahsulot": "bino maketi va chizmasi",
+     "bosqichlar": [
+      "g‘oya tanlash",
+      "chizma tuzish",
+      "masshtabni belgilash",
+      "maket yasash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "G‘oya tanlang",
+      "Chizma tuzing",
+      "Maket yasang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "shakllar to‘g‘ri qo‘llangan",
+      "masshtab to‘g‘ri",
+      "maket chiroyli",
+      "simmetriya bor",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Samarqand geometriyasi»",
+     "bekatlar": [
+      {
+       "nom": "Registon",
+       "matn": "Registon ansambli uch madrasadan iborat va markaziy maydonga nisbatan simmetrik.",
+       "topshiriq": "Simmetriya nimani bildiradi?",
+       "javob": "ikki yarmi bir-birini takrorlaydi",
+       "rasm": ""
+      },
+      {
+       "nom": "Gur-Amir",
+       "matn": "Gumbaz yarim shar shaklida, asosi aylana, radiusi 8 m.",
+       "topshiriq": "Asos diametri?",
+       "javob": "16 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Shohizinda",
+       "matn": "Peshtoq arki yarim aylana shaklida.",
+       "topshiriq": "Arka qaysi shaklning qismi?",
+       "javob": "aylananing",
+       "rasm": ""
+      },
+      {
+       "nom": "Bibixonim masjidi",
+       "matn": "Maketda minora 20 sm, masshtab 1 ga 100.",
+       "topshiriq": "Haqiqiy balandligi?",
+       "javob": "20 m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi binolarda geometrik shakllarni ko‘rdingiz?",
+      "Simmetriya qayerda ko‘rindi?",
+      "Maket yasashda qaysi shakllar kerak bo‘ldi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Arxitektura",
+      "tarif": "binolar loyihalash va qurish san’ati"
+     },
+     {
+      "atama": "Simmetriya",
+      "tarif": "shaklning ikki yarmi bir-birini aks ettirishi"
+     },
+     {
+      "atama": "Gumbaz",
+      "tarif": "yarim shar shaklidagi tom"
+     },
+     {
+      "atama": "Ark",
+      "tarif": "yarim aylana shaklidagi qavs"
+     },
+     {
+      "atama": "Masshtab",
+      "tarif": "maket va haqiqat o‘lchamlari nisbati"
+     },
+     {
+      "atama": "Maket",
+      "tarif": "binoning kichik nusxasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Uchburchak shakli mustahkam",
+      "togri": true,
+      "izoh": "shakli o‘zgarmaydi"
+     },
+     {
+      "matn": "Arxitekturada geometriya ishlatilmaydi",
+      "togri": false,
+      "izoh": "shakllar har joyda ishlatiladi"
+     },
+     {
+      "matn": "Kvadratning to‘rtta simmetriya o‘qi bor",
+      "togri": true,
+      "izoh": "ikki diagonal va ikki o‘rta chiziq"
+     },
+     {
+      "matn": "Masshtab 1 ga 100 bo‘lsa, maketdagi 1 sm haqiqatda 1 m",
+      "togri": true,
+      "izoh": "100 sm — 1 m"
+     },
+     {
+      "matn": "Gumbaz prizma shaklida",
+      "togri": false,
+      "izoh": "yarim shar shaklida"
+     },
+     {
+      "matn": "Registon Samarqandda joylashgan",
+      "togri": true,
+      "izoh": "mashhur ansambl"
+     },
+     {
+      "matn": "Ark to‘g‘ri to‘rtburchakning qismi",
+      "togri": false,
+      "izoh": "aylananing qismi"
+     },
+     {
+      "matn": "Maket binoning kichik nusxasi",
+      "togri": true,
+      "izoh": "masshtab bo‘yicha yasaladi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Arxitektura nima?",
+      "javob": "binolar loyihalash san’ati"
+     },
+     {
+      "savol": "Simmetriya nima?",
+      "javob": "ikki yarmining bir-birini aks ettirishi"
+     },
+     {
+      "savol": "Gumbaz qanday shaklda?",
+      "javob": "yarim shar"
+     },
+     {
+      "savol": "Ark qanday shaklda?",
+      "javob": "yarim aylana"
+     },
+     {
+      "savol": "Masshtab nima?",
+      "javob": "maket va haqiqat o‘lchamlari nisbati"
+     },
+     {
+      "savol": "Uchburchak nega mustahkam?",
+      "javob": "shakli o‘zgarmaydi"
+     },
+     {
+      "savol": "Registon qaysi shaharda?",
+      "javob": "Samarqand"
+     },
+     {
+      "savol": "Kvadratning simmetriya o‘qlari soni?",
+      "javob": "4"
+     },
+     {
+      "savol": "Masshtab 1 ga 100, maketda 5 sm bo‘lsa, haqiqatda?",
+      "javob": "5 m"
+     },
+     {
+      "savol": "Maket nima uchun kerak?",
+      "javob": "binoni oldindan ko‘rish uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Shakllar",
+      "matn": "To‘g‘ri to‘rtburchak, uchburchak, aylana.",
+      "savol": "Ark qaysi shaklning qismi?"
+     },
+     {
+      "nom": "Simmetriya",
+      "matn": "Ikki yarim bir-birini takrorlaydi.",
+      "savol": "Kvadratda nechta o‘q?"
+     },
+     {
+      "nom": "Mustahkamlik",
+      "matn": "Uchburchak shakli o‘zgarmaydi.",
+      "savol": "Nega fermada uchburchak?"
+     },
+     {
+      "nom": "Masshtab",
+      "matn": "Maket kichik, haqiqat katta.",
+      "savol": "Masshtab 1 ga 10 bo‘lsa, maketda 3 sm haqiqatda?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun me’morlar ko‘p binolarda simmetriyadan foydalanadi? Simmetriya chiroy, mustahkamlik va og‘irlik taqsimotiga qanday ta’sir qilishini muhokama qiling.",
+    "keys": {
+     "vaziyat": "Shahar yangi madrasa binosini loyihalamoqda. Maket masshtabi 1 ga 100, maketda markaziy ark balandligi 12 sm.",
+     "savollar": [
+      "Haqiqiy ark balandligi qancha?",
+      "Qaysi shakllar binoni mustahkam qiladi?"
+     ]
+    },
+    "tezis": "Geometriya — me’morchilik tili",
+    "taqqoslash": {
+     "a": "Gumbaz",
+     "b": "Ark",
+     "umumiy": [
+      "aylanaga bog‘liq shakllar",
+      "og‘irlikni taqsimlaydi"
+     ],
+     "a_farq": [
+      "yarim shar",
+      "tom yopadi"
+     ],
+     "b_farq": [
+      "yarim aylana",
+      "kirish va oynalar ustida"
+     ]
+    },
+    "klaster": {
+     "markaz": "Geometriya arxitekturada",
+     "shoxlar": [
+      {
+       "nom": "Shakllar",
+       "bandlar": [
+        "to‘g‘ri to‘rtburchak",
+        "uchburchak",
+        "aylana"
+       ]
+      },
+      {
+       "nom": "Simmetriya",
+       "bandlar": [
+        "o‘q simmetriyasi",
+        "ansambl",
+        "naqsh"
+       ]
+      },
+      {
+       "nom": "Mustahkamlik",
+       "bandlar": [
+        "uchburchak ferma",
+        "gumbaz",
+        "ark"
+       ]
+      },
+      {
+       "nom": "Maket",
+       "bandlar": [
+        "masshtab",
+        "chizma",
+        "o‘lcham"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men binoning kichik nusxasiman, o‘lchamlarim masshtab bilan kichiklashgan. Men nimaman?",
+     "javob": "maket"
+    },
+    "hikmat": "Bino — toshdan yasalgan geometriya.",
+    "kalit_soz": "MAKET",
+    "xato_yechim": {
+     "shart": "Masshtab 1 ga 100, maketda 5 sm. Haqiqiy uzunlikni toping.",
+     "xato": "5 sm",
+     "togri": "5 m",
+     "sabab": "maket o‘lchamini 100 ga ko‘paytirish kerak: 5 sm ni 100 ga ko‘paytirsak 500 sm, ya’ni 5 m"
+    },
+    "guruh_nomlari": [
+     "Me’morlar",
+     "Maketchilar",
+     "Simmetriyachilar",
+     "Naqqoshlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Maktab maketi»",
+     "topshiriq": "Guruh maktab binosini o‘lchab, masshtabni tanlaydi va karton maket yasaydi."
+    },
+    "vazifalar": {
+     "A": "Kvadrat, to‘g‘ri to‘rtburchak va teng tomonli uchburchakning simmetriya o‘qlari sonini ayting.",
+     "B": "Masshtab 1 ga 50. Maketda 12 sm bo‘lsa, haqiqatda necha metr?",
+     "C": "Samarqanddagi bitta yodgorlikdagi geometrik shakllar haqida qisqa hisobot yozing."
+    },
+    "sinkveyn": [
+     "Arxitektura",
+     "chiroyli, mustahkam",
+     "loyihalaydi, quradi, bezaydi",
+     "Geometriyaning amaliy ko‘rinishi",
+     "Me’morchilik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh arxitektura masalalarini hisoblaydi.",
+     "qismlar": [
+      "1-guruh: kvadrat tomoni 5 bo‘lsa, perimetr",
+      "2-guruh: masshtab 1 ga 100, maketda 3 sm, haqiqatda",
+      "3-guruh: gumbaz radiusi 6, diametri",
+      "4-guruh: kvadratning simmetriya o‘qlari"
+     ],
+     "yakun": "Natijalar: 20; 3 m; 12; 4."
+    }
+   }
   }
  ]
 }
