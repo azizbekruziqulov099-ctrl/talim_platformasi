@@ -1,0 +1,1391 @@
+{
+ "daraja": "maktab",
+ "sinf": "9",
+ "fan": "Geometriya",
+ "muallif": "qo‘lda yozilgan, hisob-kitob avtomatik tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Vektorlar va koordinatalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Vektor koordinatalari",
+      "matn": "Vektor — yo‘nalishli kesma. Boshi A(x₁; y₁), oxiri B(x₂; y₂) bo‘lgan vektorning koordinatalari oxiri koordinatalaridan boshi koordinatalarini ayirib topiladi: (x₂ − x₁; y₂ − y₁).",
+      "misol": "A(1; 2) va B(4; 6) uchun vektor AB koordinatalari (4 − 1; 6 − 2), ya’ni (3; 4).",
+      "savol": "A(0; 1), B(3; 5) uchun vektor AB koordinatalari?",
+      "javob": "(3; 4)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vektor uzunligi",
+      "matn": "Koordinatalari (x; y) bo‘lgan vektorning uzunligi x kvadrat va y kvadrat yig‘indisining kvadrat ildiziga teng. Bu Pifagor teoremasidan kelib chiqadi.",
+      "misol": "Vektor (3; 4) uzunligi: 9 + 16 — 25, ildizi 5. Vektor (5; 12) uzunligi 13.",
+      "savol": "Vektor (6; 8) uzunligi?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Amallar: qo‘shish va songa ko‘paytirish",
+      "matn": "Vektorlar qo‘shilganda mos koordinatalar qo‘shiladi. Vektorni songa ko‘paytirganda har bir koordinata shu songa ko‘paytiriladi.",
+      "misol": "(1; 2) + (3; 4) — (4; 6). 2 · (3; −1) — (6; −2).",
+      "savol": "(1; 2) + (−1; 5) nechaga teng?",
+      "javob": "(0; 7)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kesma o‘rtasi va masofa",
+      "matn": "A(x₁; y₁) va B(x₂; y₂) nuqtalar orasidagi masofa koordinatalar ayirmalari kvadratlari yig‘indisining ildizidan topiladi. Kesma o‘rtasi koordinatalari mos koordinatalarning o‘rta arifmetigiga teng.",
+      "misol": "A(2; 4), B(6; 8): o‘rta nuqta ((2 + 6) / 2; (4 + 8) / 2), ya’ni (4; 6). A(−1; 2), B(2; 6): ayirmalar 3 va 4, masofa 5.",
+      "savol": "A(0; 0), B(6; 8) kesma o‘rtasi?",
+      "javob": "(3; 4)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Skalyar ko‘paytma",
+      "matn": "Vektorlar skalyar ko‘paytmasi mos koordinatalar ko‘paytmalarining yig‘indisiga teng. Agar ko‘paytma 0 bo‘lsa, vektorlar perpendikulyar. Burchak kosinusi skalyar ko‘paytmani uzunliklar ko‘paytmasiga bo‘lishdan topiladi.",
+      "misol": "(1; 2) va (3; 4): 1 · 3 + 2 · 4, ya’ni 11. (2; 3) va (3; −2): 6 − 6, ya’ni 0 — perpendikulyar.",
+      "savol": "(2; 1) va (1; 3) skalyar ko‘paytmasi?",
+      "javob": "5",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Vektor AB koordinatalari: oxiri minus boshi. Uzunlik: x kvadrat plus y kvadrat ildizi. Skalyar ko‘paytma: x₁x₂ + y₁y₂; nolga teng bo‘lsa, vektorlar perpendikulyar.",
+    "misollar": [
+     {
+      "shart": "A(1; 2), B(4; 6). Vektor AB koordinatalari va uzunligini toping.",
+      "yechim": [
+       "Koordinatalar (4 − 1; 6 − 2), ya’ni (3; 4).",
+       "Uzunlik: 9 + 16 — 25.",
+       "Ildiz 5."
+      ],
+      "javob": "(3; 4); 5"
+     },
+     {
+      "shart": "A(2; 4), B(6; 8) kesma o‘rtasini toping.",
+      "yechim": [
+       "x bo‘yicha (2 + 6) / 2, ya’ni 4.",
+       "y bo‘yicha (4 + 8) / 2, ya’ni 6.",
+       "O‘rta nuqta (4; 6)."
+      ],
+      "javob": "(4; 6)"
+     },
+     {
+      "shart": "(1; 0) va (1; 1) vektorlar orasidagi burchakni toping.",
+      "yechim": [
+       "Skalyar ko‘paytma 1 · 1 + 0 · 1, ya’ni 1.",
+       "Uzunliklar 1 va √2, kosinus 1 / √2, ya’ni √2 / 2.",
+       "Burchak 45 gradus."
+      ],
+      "javob": "45 gradus"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Xarita bo‘yicha",
+      "topshiriq": "Maktab A(0; 0), bog‘ B(6; 8). Masofani va o‘rta nuqtani toping.",
+      "yechim": "Masofa 10, o‘rta nuqta (3; 4).",
+      "mahsulot": "koordinata chizmasi"
+     },
+     {
+      "nom": "Perpendikulyarlik",
+      "topshiriq": "(2; 3) va (3; −2) vektorlar perpendikulyarmi? Skalyar ko‘paytma bilan tekshiring.",
+      "yechim": "6 − 6, ya’ni 0, perpendikulyar.",
+      "mahsulot": "tekshirish varag‘i"
+     },
+     {
+      "nom": "Vektor yo‘li",
+      "topshiriq": "Kema (3; 4) vektor bo‘yicha, so‘ng (3; 1) vektor bo‘yicha suzdi. Umumiy ko‘chish?",
+      "yechim": "(3; 4) + (3; 1) — (6; 5).",
+      "mahsulot": "vektor chizmasi"
+     },
+     {
+      "nom": "O‘z vektorimiz",
+      "topshiriq": "Guruh koordinata tekisligida to‘rtburchak chizib, tomonlar vektorlarini va uzunliklarini topadi.",
+      "yechim": "Har guruh o‘z shakli bilan hisoblaydi.",
+      "mahsulot": "chizma va jadval"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "A(0; 1), B(3; 5). Vektor AB?",
+      "javob": "(3; 4)"
+     },
+     {
+      "shart": "Vektor (5; 12) uzunligi?",
+      "javob": "13"
+     },
+     {
+      "shart": "2 · (1; −3)?",
+      "javob": "(2; −6)"
+     },
+     {
+      "shart": "(1; 2) + (−1; 5)?",
+      "javob": "(0; 7)"
+     },
+     {
+      "shart": "(2; 1) va (1; 3) skalyar ko‘paytmasi?",
+      "javob": "5"
+     },
+     {
+      "shart": "A(2; 4), B(6; 8) o‘rtasi?",
+      "javob": "(4; 6)"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Boshdan oxirga emas, oxirdan boshga ayiradi",
+      "sabab": "vektor yo‘nalishini unutadi",
+      "oldini_olish": "oxiri minus boshi deb yodlash"
+     },
+     {
+      "xato": "Uzunlikda ildiz chiqarishni unutadi",
+      "sabab": "kvadratlar yig‘indisida to‘xtaydi",
+      "oldini_olish": "oxirida kvadrat ildiz olish"
+     },
+     {
+      "xato": "Skalyar ko‘paytmani vektor deb oladi",
+      "sabab": "natija son ekanini bilmaydi",
+      "oldini_olish": "skalyar ko‘paytma natijasi son ekanini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "kuch va tezlik vektorlari"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "xaritada yo‘nalish va masofa"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "koordinatalar va grafika"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Vektor xaritasi»",
+     "muammo": "Maktab hovlisi xaritasini koordinatalar bilan chizib, masofalar va yo‘nalishlarni qanday hisoblaymiz?",
+     "mahsulot": "vektorli xarita",
+     "bosqichlar": [
+      "xarita chizish",
+      "koordinatalarni yozish",
+      "vektorlarni topish",
+      "masofalarni hisoblash",
+      "xarita taqdimoti"
+     ],
+     "guruh_vazifalari": [
+      "Xaritani chizing",
+      "Koordinata bering",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "koordinatalar to‘g‘ri",
+      "masofalar to‘g‘ri",
+      "xarita aniq",
+      "tushuntirish asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Koordinatalar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Maktab",
+       "matn": "A(0; 0), B(3; 4).",
+       "topshiriq": "Masofa?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "A(2; 2), B(8; 6).",
+       "topshiriq": "O‘rta nuqta?",
+       "javob": "(5; 4)",
+       "rasm": ""
+      },
+      {
+       "nom": "Sport zali",
+       "matn": "Vektor (6; 8).",
+       "topshiriq": "Uzunlik?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "Kutubxona",
+       "matn": "(1; 2) va (2; −1).",
+       "topshiriq": "Skalyar ko‘paytma?",
+       "javob": "0",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Vektorni qanday topdingiz?",
+      "Masofani qanday hisobladingiz?",
+      "Perpendikulyarlikni qanday tekshirdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Vektor",
+      "tarif": "yo‘nalishli kesma"
+     },
+     {
+      "atama": "Koordinatalar",
+      "tarif": "vektorning x va y bo‘yicha qiymatlari"
+     },
+     {
+      "atama": "Uzunlik",
+      "tarif": "vektor moduli"
+     },
+     {
+      "atama": "Skalyar ko‘paytma",
+      "tarif": "mos koordinatalar ko‘paytmalari yig‘indisi"
+     },
+     {
+      "atama": "Perpendikulyar",
+      "tarif": "o‘zaro to‘g‘ri burchak hosil qiluvchi"
+     },
+     {
+      "atama": "O‘rta nuqta",
+      "tarif": "kesmani teng ikkiga bo‘luvchi nuqta"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Vektor koordinatalari oxiri minus boshi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "(3; 4) vektor uzunligi 7",
+      "togri": false,
+      "izoh": "uzunlik 5"
+     },
+     {
+      "matn": "Skalyar ko‘paytma 0 bo‘lsa, vektorlar perpendikulyar",
+      "togri": true,
+      "izoh": "to‘g‘ri burchak"
+     },
+     {
+      "matn": "Skalyar ko‘paytma vektor beradi",
+      "togri": false,
+      "izoh": "son beradi"
+     },
+     {
+      "matn": "Kesma o‘rtasi koordinatalarning o‘rta arifmetigi",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "(1; 2) + (3; 4) — (4; 6)",
+      "togri": true,
+      "izoh": "mos qo‘shish"
+     },
+     {
+      "matn": "Vektorni songa ko‘paytirganda faqat x ko‘payadi",
+      "togri": false,
+      "izoh": "ikkala koordinata"
+     },
+     {
+      "matn": "Masofa ildizsiz topiladi",
+      "togri": false,
+      "izoh": "kvadrat ildiz kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Vektor nima?",
+      "javob": "yo‘nalishli kesma"
+     },
+     {
+      "savol": "Vektor koordinatalari qanday topiladi?",
+      "javob": "oxiri minus boshi"
+     },
+     {
+      "savol": "(3; 4) uzunligi?",
+      "javob": "5"
+     },
+     {
+      "savol": "(1; 2) + (3; 4)?",
+      "javob": "(4; 6)"
+     },
+     {
+      "savol": "2 · (3; −1)?",
+      "javob": "(6; −2)"
+     },
+     {
+      "savol": "Skalyar ko‘paytma 0 nimani bildiradi?",
+      "javob": "perpendikulyarlik"
+     },
+     {
+      "savol": "A(0; 0), B(6; 8) o‘rtasi?",
+      "javob": "(3; 4)"
+     },
+     {
+      "savol": "(1; 2) va (3; 4) skalyar ko‘paytmasi?",
+      "javob": "11"
+     },
+     {
+      "savol": "A(0; 0), B(6; 8) masofa?",
+      "javob": "10"
+     },
+     {
+      "savol": "Vektor uzunligi nima?",
+      "javob": "moduli"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Koordinata",
+      "matn": "Oxiri minus boshi.",
+      "savol": "A(1; 1), B(4; 5) vektor?"
+     },
+     {
+      "nom": "Uzunlik",
+      "matn": "Ildiz chiqar.",
+      "savol": "(3; 4) uzunligi?"
+     },
+     {
+      "nom": "Qo‘shish",
+      "matn": "Mos qo‘sh.",
+      "savol": "(1; 1) + (2; 3)?"
+     },
+     {
+      "nom": "Ko‘paytma",
+      "matn": "Ko‘paytirib qo‘sh.",
+      "savol": "(1; 2) va (2; 1)?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun skalyar ko‘paytma nolga teng bo‘lsa, vektorlar perpendikulyar bo‘ladi? Burchak kosinusi formulasi bilan tushuntiring.",
+    "keys": {
+     "vaziyat": "Kema A(0; 0) nuqtadan chiqib, B(6; 8) portga bordi.",
+     "savollar": [
+      "Vektor AB koordinatalari?",
+      "Masofa va o‘rta nuqta qanday?"
+     ]
+    },
+    "tezis": "Vektor — yo‘nalish va masofa",
+    "taqqoslash": {
+     "a": "Vektor",
+     "b": "Kesma",
+     "umumiy": [
+      "ikki nuqta orasida",
+      "uzunlikka ega"
+     ],
+     "a_farq": [
+      "yo‘nalishi bor",
+      "koordinatalar bilan beriladi"
+     ],
+     "b_farq": [
+      "yo‘nalishi yo‘q",
+      "faqat uzunlik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Vektorlar va koordinatalar",
+     "shoxlar": [
+      {
+       "nom": "Koordinatalar",
+       "bandlar": [
+        "oxiri minus boshi"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "qo‘shish",
+        "songa ko‘paytirish",
+        "skalyar ko‘paytma"
+       ]
+      },
+      {
+       "nom": "Masofa",
+       "bandlar": [
+        "uzunlik",
+        "o‘rta nuqta"
+       ]
+      },
+      {
+       "nom": "Qo‘llanish",
+       "bandlar": [
+        "perpendikulyarlik",
+        "burchak"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yo‘nalishli kesmaman. Men kimman?",
+     "javob": "vektor"
+    },
+    "hikmat": "Yo‘nalishsiz tezlik — yo‘lsiz sayohat.",
+    "kalit_soz": "VEKTOR",
+    "xato_yechim": {
+     "shart": "A(1; 2), B(4; 6) uchun vektor AB koordinatalarini toping.",
+     "xato": "(−3; −4)",
+     "togri": "(3; 4)",
+     "sabab": "oxiri minus boshi: (4 − 1; 6 − 2)"
+    },
+    "guruh_nomlari": [
+     "Vektorchilar",
+     "Koordinatachilar",
+     "Masofachilar",
+     "Perpendikulyarchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yo‘l xaritasi»",
+     "topshiriq": "Guruh maktabdan uygacha yo‘lni koordinatalarda chizib, vektorlar yig‘indisini topadi."
+    },
+    "vazifalar": {
+     "A": "A(1; 1), B(4; 5) uchun vektor AB va uzunligini toping.",
+     "B": "(2; 4) va (1; −3) vektorlar yig‘indisini toping.",
+     "C": "(2; 3) va (3; −2) vektorlar perpendikulyarligini tekshiring."
+    },
+    "sinkveyn": [
+     "Vektor",
+     "yo‘nalishli, uzunlikli",
+     "ko‘rsatadi, qo‘shiladi, o‘lchanadi",
+     "Yo‘nalishli kesma",
+     "Koordinata"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh vektorlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: (3; 4) uzunligi",
+      "2-guruh: (1; 2) + (3; 4)",
+      "3-guruh: (1; 2) va (3; 4) skalyar ko‘paytmasi",
+      "4-guruh: A(2; 4), B(6; 8) o‘rtasi"
+     ],
+     "yakun": "Natijalar: 5; (4; 6); 11; (4; 6)."
+    }
+   }
+  },
+  {
+   "mavzu": "Uchburchaklarni yechish (sinuslar teoremasi)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sinuslar teoremasi",
+      "matn": "Uchburchak tomonlari qarshisidagi burchaklar sinuslariga proporsional: tomonning qarshisidagi burchak sinusiga nisbati hamma tomonlar uchun bir xil. Bu umumiy nisbat uchburchakka tashqi chizilgan aylana diametriga teng.",
+      "misol": "a tomon A burchak qarshisida, b tomon B burchak qarshisida: a / sin A ifoda b / sin B ifoda 2R.",
+      "savol": "Sinuslar teoremasida umumiy nisbat nimaga teng?",
+      "javob": "2R",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tomonni topish",
+      "matn": "Ikki burchak va bitta tomon ma’lum bo‘lsa, boshqa tomonni topamiz: b ifoda a · sin B / sin A. Uchinchi burchak 180 gradusdan qolgan ikkitasini ayirib topiladi.",
+      "misol": "a ifoda 10, A ifoda 30, B ifoda 90: b ifoda 10 · 1 / 0,5, ya’ni 20. Uchinchi burchak 180 − 30 − 90, ya’ni 60.",
+      "savol": "A ifoda 40, B ifoda 60 bo‘lsa, C?",
+      "javob": "80",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchakni topish",
+      "matn": "Ikki tomon va ulardan birining qarshisidagi burchak ma’lum bo‘lsa, ikkinchi burchak sinusi: sin B ifoda b · sin A / a. Burchak sinusi bo‘yicha burchak topiladi.",
+      "misol": "a ifoda 10, b ifoda 5, A ifoda 90: sin B ifoda 5 · 1 / 10, ya’ni 0,5. Demak B ifoda 30 gradus.",
+      "savol": "sin B ifoda 0,5 bo‘lsa o‘tkir burchak B?",
+      "javob": "30 gradus",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tashqi chizilgan aylana radiusi",
+      "matn": "Sinuslar teoremasidan R ifoda a / (2 sin A). Bu formula uchburchak tomoni va qarshisidagi burchak bo‘yicha aylana radiusini topishga imkon beradi.",
+      "misol": "a ifoda 8, A ifoda 30: R ifoda 8 / (2 · 0,5), ya’ni 8.",
+      "savol": "a ifoda 6, A ifoda 30 bo‘lsa R?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchburchak yuzi",
+      "matn": "Ikki tomon va ular orasidagi burchak ma’lum bo‘lsa, yuz yarim ko‘paytmaga teng: S ifoda (1/2) · a · b · sin C. To‘g‘ri burchakda sinus 1 bo‘lib, yuz katetlar ko‘paytmasining yarmi chiqadi.",
+      "misol": "a ifoda 6, b ifoda 8, C ifoda 30: S ifoda 0,5 · 6 · 8 · 0,5, ya’ni 12.",
+      "savol": "a ifoda 4, b ifoda 5, C ifoda 90 bo‘lsa S?",
+      "javob": "10",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "a / sin A ifoda b / sin B ifoda c / sin C ifoda 2R. Uchburchak burchaklari yig‘indisi 180 gradus. Yuz: (1/2) · a · b · sin C.",
+    "misollar": [
+     {
+      "shart": "A ifoda 30, a ifoda 5. Tashqi chizilgan aylana radiusini toping.",
+      "yechim": [
+       "2R ifoda a / sin A, ya’ni 5 / 0,5.",
+       "2R ifoda 10.",
+       "R ifoda 5."
+      ],
+      "javob": "5"
+     },
+     {
+      "shart": "a ifoda 10, b ifoda 5, A ifoda 90. B burchakni toping.",
+      "yechim": [
+       "sin B ifoda b · sin A / a, ya’ni 5 · 1 / 10.",
+       "sin B ifoda 0,5.",
+       "B ifoda 30 gradus."
+      ],
+      "javob": "30 gradus"
+     },
+     {
+      "shart": "a ifoda 6, b ifoda 8, C ifoda 30. Uchburchak yuzini toping.",
+      "yechim": [
+       "S ifoda (1/2) · a · b · sin C.",
+       "0,5 · 6 · 8 · 0,5.",
+       "Yuz 12."
+      ],
+      "javob": "12"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Daryo kengligi",
+      "topshiriq": "Qirg‘oqda A burchak 30, qarshi qirg‘oqdagi nuqta tomonidan masofa a ifoda 7, B burchak 90. b tomonni toping.",
+      "yechim": "2R ifoda 7 / 0,5, ya’ni 14, b ifoda 14.",
+      "mahsulot": "chizma va hisob"
+     },
+     {
+      "nom": "Burchak yig‘indisi",
+      "topshiriq": "A ifoda 50, B ifoda 70 bo‘lgan uchburchakning C burchagini toping.",
+      "yechim": "180 − 50 − 70, ya’ni 60.",
+      "mahsulot": "burchak jadvali"
+     },
+     {
+      "nom": "Yuz",
+      "topshiriq": "Tomonlari 6 va 8, orasidagi burchak 30 gradus uchburchak yuzini toping.",
+      "yechim": "0,5 · 6 · 8 · 0,5, ya’ni 12.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Aylana radiusi",
+      "topshiriq": "a ifoda 8, A ifoda 30 bo‘lgan uchburchakka tashqi chizilgan aylana radiusini toping.",
+      "yechim": "R ifoda 8 / (2 · 0,5), ya’ni 8.",
+      "mahsulot": "chizma"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "A ifoda 50, B ifoda 70. C?",
+      "javob": "60"
+     },
+     {
+      "shart": "a ifoda 6, A ifoda 30. 2R?",
+      "javob": "12"
+     },
+     {
+      "shart": "a ifoda 4, A ifoda 30, B ifoda 90. b?",
+      "javob": "8"
+     },
+     {
+      "shart": "a ifoda 10, b ifoda 5, A ifoda 90. sin B?",
+      "javob": "0,5"
+     },
+     {
+      "shart": "a ifoda 10, A ifoda 30. R?",
+      "javob": "10"
+     },
+     {
+      "shart": "sin 30 gradus?",
+      "javob": "0,5"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tomonni qarama-qarshi burchak bilan emas, qo‘shni burchak bilan nisbatlaydi",
+      "sabab": "tomon va burchakni moslay olmaydi",
+      "oldini_olish": "har bir tomonni qarshisidagi burchak bilan juftlash"
+     },
+     {
+      "xato": "Uchinchi burchakni 180 emas, 360 dan topadi",
+      "sabab": "burchak yig‘indisini adashtiradi",
+      "oldini_olish": "uchburchak burchaklari yig‘indisi 180 ekanini eslash"
+     },
+     {
+      "xato": "Sinusni gradus bilan adashtiradi",
+      "sabab": "sinus qiymati va burchakni aralashtiradi",
+      "oldini_olish": "sinus — son, burchak — gradus ekanini ajratish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geodeziya",
+      "boglanish": "masofani o‘lchash"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "kuchlarning ajratilishi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "xaritada kuzatuv burchaklari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ulanmaydigan masofa»",
+     "muammo": "To‘g‘ridan o‘lchab bo‘lmaydigan masofani (masalan, ko‘l eni) sinuslar teoremasi bilan qanday topamiz?",
+     "mahsulot": "masofa hisoboti",
+     "bosqichlar": [
+      "asosiy chiziq tanlash",
+      "burchaklarni o‘lchash",
+      "teoremani qo‘llash",
+      "natijani tekshirish",
+      "hisobot tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Chiziq tanlang",
+      "Burchakni o‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchash to‘g‘ri",
+      "teorema to‘g‘ri qo‘llangan",
+      "chizma aniq",
+      "xato bahosi bor",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Uchburchaklar vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "Ko‘l",
+       "matn": "A ifoda 30, a ifoda 5.",
+       "topshiriq": "2R?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "Tepalik",
+       "matn": "A ifoda 50, B ifoda 70.",
+       "topshiriq": "C?",
+       "javob": "60",
+       "rasm": ""
+      },
+      {
+       "nom": "Dala",
+       "matn": "Tomonlar 4 va 5, burchak 90.",
+       "topshiriq": "Yuz?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘prik",
+       "matn": "a ifoda 6, A ifoda 30.",
+       "topshiriq": "R?",
+       "javob": "6",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formula foydali bo‘ldi?",
+      "Burchakni qanday topdingiz?",
+      "Qayerda o‘lchash qiyin bo‘ldi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sinuslar teoremasi",
+      "tarif": "tomonlar qarshisidagi burchak sinuslariga proporsional"
+     },
+     {
+      "atama": "Tashqi chizilgan aylana",
+      "tarif": "uchburchak uchlaridan o‘tuvchi aylana"
+     },
+     {
+      "atama": "Burchak yig‘indisi",
+      "tarif": "uchburchak burchaklari 180 gradus"
+     },
+     {
+      "atama": "Yuz formulasi",
+      "tarif": "yarim ko‘paytma sinus bilan"
+     },
+     {
+      "atama": "Sinus",
+      "tarif": "qarshi katet nisbati"
+     },
+     {
+      "atama": "Proporsional",
+      "tarif": "bir xil nisbatli"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Sinuslar teoremasida umumiy nisbat 2R",
+      "togri": true,
+      "izoh": "tashqi aylana diametri"
+     },
+     {
+      "matn": "Uchburchak burchaklari yig‘indisi 360",
+      "togri": false,
+      "izoh": "180"
+     },
+     {
+      "matn": "Yuz: (1/2) · a · b · sin C",
+      "togri": true,
+      "izoh": "ikki tomon va orasidagi burchak"
+     },
+     {
+      "matn": "sin 30 gradus ifoda 1",
+      "togri": false,
+      "izoh": "0,5"
+     },
+     {
+      "matn": "A ifoda 50, B ifoda 70 bo‘lsa C ifoda 60",
+      "togri": true,
+      "izoh": "180 − 120"
+     },
+     {
+      "matn": "Teorema faqat to‘g‘ri burchakli uchburchakda ishlaydi",
+      "togri": false,
+      "izoh": "har qanday uchburchakda"
+     },
+     {
+      "matn": "a ifoda 8, A ifoda 30 bo‘lsa R ifoda 8",
+      "togri": true,
+      "izoh": "8 / 1"
+     },
+     {
+      "matn": "Tomon qarshisidagi burchak qo‘shni burchakdir",
+      "togri": false,
+      "izoh": "qarama-qarshi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sinuslar teoremasi nima?",
+      "javob": "tomon bo‘linadi qarshi burchak sinusiga, nisbat bir xil"
+     },
+     {
+      "savol": "Umumiy nisbat?",
+      "javob": "2R"
+     },
+     {
+      "savol": "Uchburchak burchaklari yig‘indisi?",
+      "javob": "180 gradus"
+     },
+     {
+      "savol": "sin 30 gradus?",
+      "javob": "0,5"
+     },
+     {
+      "savol": "R formulasi?",
+      "javob": "a / (2 sin A)"
+     },
+     {
+      "savol": "Yuz formulasi?",
+      "javob": "yarim ko‘paytma · sin C"
+     },
+     {
+      "savol": "A ifoda 50, B ifoda 70 bo‘lsa C?",
+      "javob": "60"
+     },
+     {
+      "savol": "sin 90 gradus?",
+      "javob": "1"
+     },
+     {
+      "savol": "Teorema qaysi uchburchakda ishlaydi?",
+      "javob": "har qandayida"
+     },
+     {
+      "savol": "Tomonlar 4 va 5, burchak 90 bo‘lsa yuz?",
+      "javob": "10"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Juftla",
+      "matn": "Tomon bilan qarshi burchak.",
+      "savol": "a bilan qaysi burchak?"
+     },
+     {
+      "nom": "Nisbat",
+      "matn": "a / sin A.",
+      "savol": "6 / 0,5?"
+     },
+     {
+      "nom": "Radius",
+      "matn": "2R dan R.",
+      "savol": "2R ifoda 12 bo‘lsa R?"
+     },
+     {
+      "nom": "Yuz",
+      "matn": "Yarim ko‘paytma · sin.",
+      "savol": "Burchak 90 bo‘lsa sin?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun sinuslar teoremasi ham o‘tkir, ham o‘tmas burchakli uchburchaklarda ishlaydi? Tashqi chizilgan aylana bilan tushuntiring.",
+    "keys": {
+     "vaziyat": "Ko‘lning ikki chekkasi A va B orasidagi masofani to‘g‘ridan o‘lchab bo‘lmaydi. Uchinchi nuqta C dan BC ifoda 100 m, burchaklar B ifoda 90 va C ifoda 45 o‘lchandi.",
+     "savollar": [
+      "A burchak necha gradus?",
+      "AB masofa qancha?"
+     ]
+    },
+    "tezis": "Burchak bilinsa, masofa topiladi",
+    "taqqoslash": {
+     "a": "Sinuslar teoremasi",
+     "b": "Pifagor teoremasi",
+     "umumiy": [
+      "tomonlar orasidagi bog‘lanishni beradi",
+      "uchburchakka tegishli"
+     ],
+     "a_farq": [
+      "har qanday uchburchakda",
+      "burchak sinuslari bilan"
+     ],
+     "b_farq": [
+      "faqat to‘g‘ri burchakli",
+      "tomonlar kvadratlari bilan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Sinuslar teoremasi",
+     "shoxlar": [
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "a / sin A",
+        "2R"
+       ]
+      },
+      {
+       "nom": "Topish",
+       "bandlar": [
+        "tomon",
+        "burchak"
+       ]
+      },
+      {
+       "nom": "Aylana",
+       "bandlar": [
+        "R formulasi"
+       ]
+      },
+      {
+       "nom": "Yuz",
+       "bandlar": [
+        "yarim ko‘paytma · sin"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tomon va burchak sinusi nisbatini aytaman, bu nisbat 2R. Men kimman?",
+     "javob": "sinuslar teoremasi"
+    },
+    "hikmat": "Uchburchak sirini sinus ochadi.",
+    "kalit_soz": "SINUS",
+    "xato_yechim": {
+     "shart": "A ifoda 50, B ifoda 70 bo‘lsa, C burchakni toping.",
+     "xato": "360 − 120, ya’ni 240",
+     "togri": "180 − 120, ya’ni 60",
+     "sabab": "uchburchak burchaklari yig‘indisi 180"
+    },
+    "guruh_nomlari": [
+     "Sinuschilar",
+     "Burchakchilar",
+     "Aylanachilar",
+     "Yuzchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ko‘l kengligi»",
+     "topshiriq": "Guruh maktab hovlisida o‘lchab bo‘lmaydigan masofani modelda hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "A ifoda 40, B ifoda 60 bo‘lsa C ni toping.",
+     "B": "a ifoda 12, A ifoda 30 bo‘lsa R ni toping.",
+     "C": "Tomonlari 5 va 6, orasidagi burchak 30 bo‘lgan uchburchak yuzi?"
+    },
+    "sinkveyn": [
+     "Teorema",
+     "sinusli, universal",
+     "bog‘laydi, topadi, o‘lchaydi",
+     "Burchak va tomon",
+     "Sinus"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sinuslar teoremasini qo‘llaydi.",
+     "qismlar": [
+      "1-guruh: A ifoda 50, B ifoda 70, C?",
+      "2-guruh: a ifoda 6, A ifoda 30, 2R?",
+      "3-guruh: a ifoda 4, A ifoda 30, B ifoda 90, b?",
+      "4-guruh: tomonlar 4, 5, burchak 90, yuz?"
+     ],
+     "yakun": "Natijalar: 60; 12; 8; 10."
+    }
+   }
+  },
+  {
+   "mavzu": "Kosinuslar teoremasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kosinuslar teoremasi",
+      "matn": "Uchburchak tomonining kvadrati qolgan ikki tomon kvadratlari yig‘indisidan ularning ikkilangan ko‘paytmasini orasidagi burchak kosinusiga ko‘paytirib ayirilganiga teng. Bu Pifagor teoremasining umumlashmasi.",
+      "misol": "c kvadrat ifoda a kvadrat + b kvadrat − 2ab cos C. C ifoda 90 bo‘lsa cos 0, Pifagor teoremasi chiqadi.",
+      "savol": "C ifoda 90 bo‘lganda kosinus nechaga teng?",
+      "javob": "0",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tomonni topish",
+      "matn": "Ikki tomon va orasidagi burchak ma’lum bo‘lsa, uchinchi tomon kvadratini topamiz, so‘ng kvadrat ildiz olamiz.",
+      "misol": "a ifoda 5, b ifoda 8, C ifoda 60: c kvadrat ifoda 25 + 64 − 2 · 5 · 8 · 0,5, ya’ni 89 − 40, ya’ni 49. c ifoda 7.",
+      "savol": "a ifoda 6, b ifoda 8, C ifoda 90 bo‘lsa c?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchakni topish",
+      "matn": "Uch tomon ma’lum bo‘lsa, burchak kosinusi: cos C ifoda (a kvadrat + b kvadrat − c kvadrat) / (2ab). Kosinus manfiy bo‘lsa, burchak o‘tmas.",
+      "misol": "a ifoda 3, b ifoda 5, c ifoda 7: (9 + 25 − 49) / 30, ya’ni −15 / 30, ya’ni −0,5. Demak C ifoda 120 gradus.",
+      "savol": "cos C ifoda 0,5 bo‘lsa o‘tkir burchak?",
+      "javob": "60 gradus",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchburchak turini aniqlash",
+      "matn": "Katta tomon kvadratini qolgan ikki tomon kvadratlari yig‘indisi bilan solishtiramiz. Yig‘indi katta bo‘lsa, burchaklar o‘tkir; teng bo‘lsa, to‘g‘ri burchakli; kichik bo‘lsa, tupburchakli (o‘tmas burchakli).",
+      "misol": "Tomonlar 4, 5, 6: 36 va 16 + 25, ya’ni 41: 36 kichik 41, o‘tkir burchakli. Tomonlar 2, 3, 4: 16 va 4 + 9, ya’ni 13: 16 katta 13, o‘tmas burchakli.",
+      "savol": "Tomonlar 3, 4, 5 qanday uchburchak?",
+      "javob": "to‘g‘ri burchakli",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Parallelogramm diagonallari",
+      "matn": "Parallelogramm tomonlari a va b, ular orasidagi burchak 60 gradus bo‘lsa, kichik diagonal kvadrati a kvadrat + b kvadrat − ab, katta diagonal kvadrati a kvadrat + b kvadrat + ab ga teng.",
+      "misol": "a ifoda 3, b ifoda 5: kichik diagonal kvadrati 9 + 25 − 15, ya’ni 19. Katta 9 + 25 + 15, ya’ni 49, katta diagonal 7.",
+      "savol": "a ifoda 3, b ifoda 5, burchak 60. Katta diagonal kvadrati?",
+      "javob": "49",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "c kvadrat ifoda a kvadrat + b kvadrat − 2ab cos C. Uch tomondan burchak: cos C ifoda (a kvadrat + b kvadrat − c kvadrat) / (2ab). Burchak 90 bo‘lsa Pifagor teoremasi.",
+    "misollar": [
+     {
+      "shart": "a ifoda 5, b ifoda 8, C ifoda 60. c tomonni toping.",
+      "yechim": [
+       "c kvadrat ifoda 25 + 64 − 2 · 5 · 8 · 0,5.",
+       "89 − 40 — 49.",
+       "c ifoda 7."
+      ],
+      "javob": "7"
+     },
+     {
+      "shart": "Tomonlari 3, 5, 7 bo‘lgan uchburchakning 7 qarshisidagi burchagini toping.",
+      "yechim": [
+       "cos C ifoda (9 + 25 − 49) / (2 · 3 · 5).",
+       "−15 / 30, ya’ni −0,5.",
+       "C ifoda 120 gradus."
+      ],
+      "javob": "120 gradus"
+     },
+     {
+      "shart": "a ifoda 6, b ifoda 6, C ifoda 60. c tomonni toping.",
+      "yechim": [
+       "c kvadrat ifoda 36 + 36 − 2 · 6 · 6 · 0,5.",
+       "72 − 36 — 36.",
+       "c ifoda 6: uchburchak teng tomonli."
+      ],
+      "javob": "6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ikki yo‘l",
+      "topshiriq": "Ikki yo‘l 60 gradus burchak ostida ajraladi. Ikki velosipedchi 3 km va 4 km yurdi. Ular orasidagi masofa?",
+      "yechim": "c kvadrat ifoda 9 + 16 − 12, ya’ni 13, c ifoda √13, taxminan 3,6 km.",
+      "mahsulot": "chizma va hisob"
+     },
+     {
+      "nom": "Kema yo‘li",
+      "topshiriq": "Port A dan ikki kema 60 gradus ostida 5 km va 8 km suzdi. Masofa qancha?",
+      "yechim": "c kvadrat ifoda 25 + 64 − 40, ya’ni 49, c ifoda 7 km.",
+      "mahsulot": "yo‘nalish chizmasi"
+     },
+     {
+      "nom": "Burchak topish",
+      "topshiriq": "Tomonlari 3, 5, 7 uchburchak katta burchagini toping.",
+      "yechim": "cos ifoda −0,5, burchak 120 gradus.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Tur aniqlash",
+      "topshiriq": "Tomonlari 2, 3, 4; 4, 5, 6; 3, 4, 5 uchburchaklarni turlarga ajrating.",
+      "yechim": "O‘tmas; o‘tkir; to‘g‘ri burchakli.",
+      "mahsulot": "turlar jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "a ifoda 6, b ifoda 8, C ifoda 90. c?",
+      "javob": "10"
+     },
+     {
+      "shart": "cos 60 gradus?",
+      "javob": "0,5"
+     },
+     {
+      "shart": "cos 120 gradus?",
+      "javob": "−0,5"
+     },
+     {
+      "shart": "a ifoda 3, b ifoda 5, C ifoda 120. c?",
+      "javob": "7"
+     },
+     {
+      "shart": "Tomonlari 2, 3, 4 uchburchak qanday?",
+      "javob": "o‘tmas burchakli"
+     },
+     {
+      "shart": "Tomonlari 3, 4, 5 uchburchak qanday?",
+      "javob": "to‘g‘ri burchakli"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "2ab cos C ni qo‘shadi",
+      "sabab": "ishorani adashtiradi",
+      "oldini_olish": "formulada ayirish belgisi borligini eslash"
+     },
+     {
+      "xato": "Kvadrat ildizni olmaydi",
+      "sabab": "c kvadratda to‘xtaydi",
+      "oldini_olish": "oxirida kvadrat ildiz olish"
+     },
+     {
+      "xato": "Kosinus manfiy chiqsa xato deb o‘ylaydi",
+      "sabab": "o‘tmas burchak kosinusi manfiy ekanini bilmaydi",
+      "oldini_olish": "manfiy kosinus o‘tmas burchakni bildirishini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Navigatsiya",
+      "boglanish": "kema va samolyot marshrutlari"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "kuchlarni qo‘shish"
+     },
+     {
+      "fan": "Qurilish",
+      "boglanish": "tom konstruksiyasi va burchaklar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yo‘l uzunligi»",
+     "muammo": "Burchak ostida ajralgan ikki yo‘l uchlari orasidagi masofani kosinuslar teoremasi bilan qanday topamiz?",
+     "mahsulot": "masofalar hisoboti",
+     "bosqichlar": [
+      "vaziyat tanlash",
+      "tomonlar va burchakni o‘lchash",
+      "teoremani qo‘llash",
+      "natijani tekshirish",
+      "hisobot yozish"
+     ],
+     "guruh_vazifalari": [
+      "Vaziyat tanlang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchash to‘g‘ri",
+      "formula to‘g‘ri qo‘llangan",
+      "hisoblar to‘g‘ri",
+      "tekshirish bor",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Kosinus vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "Port",
+       "matn": "a ifoda 5, b ifoda 8, burchak 60.",
+       "topshiriq": "c?",
+       "javob": "7",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "a ifoda 6, b ifoda 6, burchak 60.",
+       "topshiriq": "c?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "Yo‘lak",
+       "matn": "Tomonlar 3, 4, 5.",
+       "topshiriq": "Uchburchak turi?",
+       "javob": "to‘g‘ri burchakli",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘prik",
+       "matn": "Tomonlar 2, 3, 4.",
+       "topshiriq": "Uchburchak turi?",
+       "javob": "o‘tmas burchakli",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi usul oson bo‘ldi?",
+      "Kosinus ishorasi nimani bildirdi?",
+      "Pifagor bilan qanday bog‘liq?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kosinuslar teoremasi",
+      "tarif": "tomon kvadratini ikki tomon va burchak bilan topish formulasi"
+     },
+     {
+      "atama": "Kosinus",
+      "tarif": "qo‘shni katet nisbati"
+     },
+     {
+      "atama": "O‘tmas burchak",
+      "tarif": "90 dan katta burchak"
+     },
+     {
+      "atama": "Tupburchakli uchburchak",
+      "tarif": "bitta o‘tmas burchakli uchburchak"
+     },
+     {
+      "atama": "Umumlashma",
+      "tarif": "boshqa teoremani o‘z ichiga olgan teorema"
+     },
+     {
+      "atama": "Diagonal",
+      "tarif": "qarama-qarshi uchlarni birlashtiruvchi kesma"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Burchak 90 bo‘lsa kosinuslar teoremasi Pifagorga aylanadi",
+      "togri": true,
+      "izoh": "cos 90 ifoda 0"
+     },
+     {
+      "matn": "c kvadrat ifoda a kvadrat + b kvadrat + 2ab cos C",
+      "togri": false,
+      "izoh": "ayirish belgisi bor"
+     },
+     {
+      "matn": "a ifoda 5, b ifoda 8, C ifoda 60 bo‘lsa c ifoda 7",
+      "togri": true,
+      "izoh": "49 ning ildizi"
+     },
+     {
+      "matn": "Manfiy kosinus o‘tkir burchakni bildiradi",
+      "togri": false,
+      "izoh": "o‘tmas burchak"
+     },
+     {
+      "matn": "Tomonlar 3, 4, 5 — to‘g‘ri burchakli",
+      "togri": true,
+      "izoh": "9 + 16 ifoda 25"
+     },
+     {
+      "matn": "Tomonlar 2, 3, 4 — o‘tkir burchakli",
+      "togri": false,
+      "izoh": "o‘tmas burchakli"
+     },
+     {
+      "matn": "Teorema uch tomondan burchak topishga imkon beradi",
+      "togri": true,
+      "izoh": "kosinus formulasi"
+     },
+     {
+      "matn": "Teorema faqat to‘g‘ri burchakli uchburchakda ishlaydi",
+      "togri": false,
+      "izoh": "hamma uchburchakda"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kosinuslar teoremasi nima?",
+      "javob": "tomon kvadrati ikki tomon va burchak orqali"
+     },
+     {
+      "savol": "Formulasi?",
+      "javob": "a kvadrat + b kvadrat − 2ab cos C"
+     },
+     {
+      "savol": "cos 90 gradus?",
+      "javob": "0"
+     },
+     {
+      "savol": "cos 60 gradus?",
+      "javob": "0,5"
+     },
+     {
+      "savol": "cos 120 gradus?",
+      "javob": "−0,5"
+     },
+     {
+      "savol": "Kosinus manfiy bo‘lsa burchak?",
+      "javob": "o‘tmas"
+     },
+     {
+      "savol": "Pifagor bilan bog‘liqligi?",
+      "javob": "burchak 90 bo‘lsa Pifagor"
+     },
+     {
+      "savol": "Tomonlar 3, 4, 5 turi?",
+      "javob": "to‘g‘ri burchakli"
+     },
+     {
+      "savol": "a ifoda 6, b ifoda 8, C ifoda 90, c?",
+      "javob": "10"
+     },
+     {
+      "savol": "Uch tomondan nima topiladi?",
+      "javob": "burchak"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ikki tomon",
+      "matn": "a va b.",
+      "savol": "Ular orasida nima bor?"
+     },
+     {
+      "nom": "Burchak",
+      "matn": "Orasidagi burchak.",
+      "savol": "cos 60 nechaga teng?"
+     },
+     {
+      "nom": "Formula",
+      "matn": "a² + b² − 2ab cos C.",
+      "savol": "Ishora nima?"
+     },
+     {
+      "nom": "Ildiz",
+      "matn": "c kvadratdan ildiz.",
+      "savol": "49 ning ildizi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun kosinuslar teoremasini Pifagor teoremasining umumlashmasi deymiz? Burchak 90 gradusdan kichik va katta bo‘lgan holatlarni taqqoslang.",
+    "keys": {
+     "vaziyat": "Ikki yo‘l 60 gradus ostida ajraladi. Birinchi yo‘lda 3 km, ikkinchisida 4 km yurildi.",
+     "savollar": [
+      "Ikkala nuqta orasidagi masofaning kvadrati qancha?",
+      "Masofa taxminan necha km?"
+     ]
+    },
+    "tezis": "Pifagorning kengaygan shakli",
+    "taqqoslash": {
+     "a": "Pifagor teoremasi",
+     "b": "Kosinuslar teoremasi",
+     "umumiy": [
+      "tomonlar kvadratlari bilan ishlaydi",
+      "uchburchak tomonlarini bog‘laydi"
+     ],
+     "a_farq": [
+      "faqat to‘g‘ri burchakli",
+      "burchak ishlatilmaydi"
+     ],
+     "b_farq": [
+      "har qanday uchburchakda",
+      "burchak kosinusi ishlatiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kosinuslar teoremasi",
+     "shoxlar": [
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "c kvadrat",
+        "cos C"
+       ]
+      },
+      {
+       "nom": "Tomon",
+       "bandlar": [
+        "ikki tomon va burchak"
+       ]
+      },
+      {
+       "nom": "Burchak",
+       "bandlar": [
+        "uch tomon"
+       ]
+      },
+      {
+       "nom": "Tur",
+       "bandlar": [
+        "o‘tkir",
+        "to‘g‘ri",
+        "o‘tmas"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Pifagorning umumlashmasiman, burchak kosinusi menda. Men kimman?",
+     "javob": "kosinuslar teoremasi"
+    },
+    "hikmat": "Burchak qo‘shilsa, Pifagor kengayadi.",
+    "kalit_soz": "KOSINUS",
+    "xato_yechim": {
+     "shart": "a ifoda 5, b ifoda 8, C ifoda 60 bo‘lsa, c ni toping.",
+     "xato": "c kvadrat ifoda 25 + 64 + 40, ya’ni 129",
+     "togri": "c kvadrat ifoda 25 + 64 − 40, ya’ni 49, c ifoda 7",
+     "sabab": "2ab cos C ayiriladi"
+    },
+    "guruh_nomlari": [
+     "Kosinuschilar",
+     "Tomonchilar",
+     "Burchakchilar",
+     "Pifagorchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yo‘l tomonlari»",
+     "topshiriq": "Guruh ikki yo‘lning burchagi va uzunliklarini o‘lchab, masofani hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "a ifoda 3, b ifoda 4, C ifoda 90. c ni toping.",
+     "B": "a ifoda 6, b ifoda 6, C ifoda 60. c ni toping.",
+     "C": "Tomonlari 3, 5, 7 uchburchakning katta burchagini toping."
+    },
+    "sinkveyn": [
+     "Kosinus",
+     "yangi, burchakli",
+     "bog‘laydi, kengaytiradi, topadi",
+     "Pifagor va burchak",
+     "Teorema"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh kosinuslar teoremasini qo‘llaydi.",
+     "qismlar": [
+      "1-guruh: a ifoda 6, b ifoda 8, C ifoda 90, c?",
+      "2-guruh: a ifoda 5, b ifoda 8, C ifoda 60, c?",
+      "3-guruh: tomonlar 3, 5, 7 katta burchagi?",
+      "4-guruh: tomonlar 2, 3, 4 turi?"
+     ],
+     "yakun": "Natijalar: 10; 7; 120 gradus; o‘tmas burchakli."
+    }
+   }
+  }
+ ]
+}
