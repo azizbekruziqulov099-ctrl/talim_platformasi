@@ -1386,6 +1386,1393 @@
      "yakun": "Natijalar: 10; 7; 120 gradus; o‘tmas burchakli."
     }
    }
+  },
+  {
+   "mavzu": "Muntazam ko‘pburchaklar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Muntazam ko‘pburchak nima?",
+      "matn": "Barcha tomonlari teng va barcha burchaklari teng bo‘lgan qavariq ko‘pburchak muntazam ko‘pburchak deyiladi. Teng tomonli uchburchak va kvadrat — eng sodda misollar.",
+      "misol": "Teng tomonli uchburchak (3 tomon), kvadrat (4 tomon), muntazam beshburchak va oltiburchak muntazam ko‘pburchaklardir.",
+      "savol": "Qaysi to‘rtburchak muntazam: kvadratmi yoki to‘g‘ri to‘rtburchakmi?",
+      "javob": "kvadrat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchaklar yig‘indisi",
+      "matn": "n burchakli qavariq ko‘pburchak ichki burchaklari yig‘indisi (n − 2) ni 180 gradusga ko‘paytirishdan topiladi. Uchburchakda 180, to‘rtburchakda 360.",
+      "misol": "Beshburchak: 3 · 180, ya’ni 540. Oltiburchak: 4 · 180, ya’ni 720. Sakkizburchak: 6 · 180, ya’ni 1080.",
+      "savol": "Oltiburchak ichki burchaklari yig‘indisi?",
+      "javob": "720",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Muntazam ko‘pburchak burchagi",
+      "matn": "Muntazam n burchakli ko‘pburchakning har bir ichki burchagi (n − 2) · 180 / n gradusga teng. Tashqi burchagi 360 / n gradus.",
+      "misol": "Beshburchak: 540 / 5, ya’ni 108. Oltiburchak: 720 / 6, ya’ni 120. Sakkizburchak: 1080 / 8, ya’ni 135. Beshburchak tashqi burchagi 360 / 5, ya’ni 72.",
+      "savol": "Muntazam to‘qqizburchakning tashqi burchagi?",
+      "javob": "40 gradus",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Diagonallar soni",
+      "matn": "n burchakli ko‘pburchakning diagonallari soni n · (n − 3) / 2 ga teng. Har bir uchdan (n − 3) ta diagonal chiqadi, har biri ikki marta sanaladi.",
+      "misol": "Beshburchak: 5 · 2 / 2, ya’ni 5. Oltiburchak: 6 · 3 / 2, ya’ni 9. Sakkizburchak: 8 · 5 / 2, ya’ni 20.",
+      "savol": "Beshburchakda nechta diagonal?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tashqi va ichki chizilgan aylana",
+      "matn": "Har qanday muntazam ko‘pburchakka tashqi ham, ichki ham aylana chizish mumkin, ularning markazi bir xil. Muntazam oltiburchakda tashqi aylana radiusi tomoniga teng.",
+      "misol": "Kvadrat tomoni 4: ichki aylana radiusi 2, tashqi aylana radiusi 4 · √2 / 2, ya’ni 2√2. Oltiburchak tomoni 4: R ifoda 4.",
+      "savol": "Kvadrat tomoni 6. Ichki aylana radiusi?",
+      "javob": "3",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ichki burchak: (n − 2) · 180 / n. Tashqi burchak: 360 / n. Diagonallar: n(n − 3) / 2. Muntazam oltiburchakda tashqi aylana radiusi tomoniga teng.",
+    "misollar": [
+     {
+      "shart": "Muntazam o‘nburchakning ichki burchagini toping.",
+      "yechim": [
+       "Burchaklar yig‘indisi (10 − 2) · 180, ya’ni 1440.",
+       "Bitta burchak 1440 / 10.",
+       "144 gradus."
+      ],
+      "javob": "144 gradus"
+     },
+     {
+      "shart": "Muntazam ko‘pburchak ichki burchagi 150 gradus. Necha burchakli?",
+      "yechim": [
+       "Tashqi burchak 180 − 150, ya’ni 30.",
+       "n ifoda 360 / 30.",
+       "n ifoda 12."
+      ],
+      "javob": "12 burchakli"
+     },
+     {
+      "shart": "Muntazam oltiburchak tomoni 4. Perimetri, R va yuzini toping.",
+      "yechim": [
+       "Perimetr 6 · 4, ya’ni 24.",
+       "R ifoda tomon, ya’ni 4.",
+       "Yuz 6 · (√3 / 4) · 16, ya’ni 24√3."
+      ],
+      "javob": "24; 4; 24√3"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Mozaika",
+      "topshiriq": "Qaysi muntazam ko‘pburchaklar bilan tekislikni bo‘shliqsiz qoplash mumkin? Burchaklar bo‘yicha tekshiring.",
+      "yechim": "Uchburchak (60), kvadrat (90), oltiburchak (120): 360 ga bo‘linadi.",
+      "mahsulot": "mozaika modeli"
+     },
+     {
+      "nom": "Diagonallar",
+      "topshiriq": "Beshburchak, oltiburchak va sakkizburchakda diagonallar sonini toping.",
+      "yechim": "5; 9; 20.",
+      "mahsulot": "chizma va jadval"
+     },
+     {
+      "nom": "Burchak jadvali",
+      "topshiriq": "n ifoda 3, 4, 5, 6, 8 uchun ichki va tashqi burchaklarni jadvalga yozing.",
+      "yechim": "60, 90, 108, 120, 135 va 120, 90, 72, 60, 45.",
+      "mahsulot": "burchak jadvali"
+     },
+     {
+      "nom": "Oltiburchak asal uyasi",
+      "topshiriq": "Tomoni 4 sm oltiburchak katakning perimetri va yuzini toping.",
+      "yechim": "Perimetr 24, yuz 24√3, taxminan 41,6 kv. sm.",
+      "mahsulot": "katak modeli"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Sakkizburchak ichki burchaklari yig‘indisi?",
+      "javob": "1080"
+     },
+     {
+      "shart": "Yettiburchakda nechta diagonal?",
+      "javob": "14"
+     },
+     {
+      "shart": "Muntazam beshburchakning tashqi burchagi?",
+      "javob": "72"
+     },
+     {
+      "shart": "Muntazam to‘qqizburchakning ichki burchagi?",
+      "javob": "140"
+     },
+     {
+      "shart": "Muntazam oltiburchak tomoni 5. Perimetri?",
+      "javob": "30"
+     },
+     {
+      "shart": "Muntazam 20 burchakli tashqi burchagi?",
+      "javob": "18"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ichki burchak yig‘indisini bitta burchak deb oladi",
+      "sabab": "yig‘indini n ga bo‘lmaydi",
+      "oldini_olish": "yig‘indini n ga bo‘lish kerakligini eslash"
+     },
+     {
+      "xato": "(n − 2) o‘rniga n qo‘llaydi",
+      "sabab": "uchburchaklarga bo‘lishni unutadi",
+      "oldini_olish": "n burchakli shaklni n − 2 uchburchakka bo‘lish"
+     },
+     {
+      "xato": "Diagonallarni ikki marta sanaydi",
+      "sabab": "formuladagi 2 ga bo‘lishni unutadi",
+      "oldini_olish": "har diagonal ikki uch bilan bog‘liq ekanini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "San’at",
+      "boglanish": "naqsh va mozaika"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "asal uyasi va qor parchalari shakli"
+     },
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "binolarning plan shakllari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Muntazam shakllar albomi»",
+     "muammo": "Muntazam ko‘pburchaklar tabiat va me’morchilikda qayerda uchraydi va ularni qanday chizamiz?",
+     "mahsulot": "shakllar albomi",
+     "bosqichlar": [
+      "shakllarni topish",
+      "burchaklarni hisoblash",
+      "chizish",
+      "mozaika tuzish",
+      "albom tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Shakllarni toping",
+      "Hisoblang",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "burchaklar to‘g‘ri",
+      "shakllar aniq chizilgan",
+      "mozaika uyg‘un",
+      "tushuntirish asosli",
+      "albom ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ko‘pburchaklar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Asal uyasi",
+       "matn": "Oltiburchak ichki burchagi.",
+       "topshiriq": "Gradus?",
+       "javob": "120",
+       "rasm": ""
+      },
+      {
+       "nom": "Stop belgisi",
+       "matn": "Sakkizburchak ichki burchagi.",
+       "topshiriq": "Gradus?",
+       "javob": "135",
+       "rasm": ""
+      },
+      {
+       "nom": "Yulduz",
+       "matn": "Beshburchakda diagonallar.",
+       "topshiriq": "Soni?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Plitka",
+       "matn": "Kvadrat va uchburchak.",
+       "topshiriq": "Burchak yig‘indisi uchburchakda?",
+       "javob": "180",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi ko‘pburchak ko‘p uchradi?",
+      "Burchakni qanday hisobladingiz?",
+      "Qaysi shakl mozaikaga mos?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Muntazam ko‘pburchak",
+      "tarif": "tomonlari va burchaklari teng ko‘pburchak"
+     },
+     {
+      "atama": "Ichki burchak",
+      "tarif": "ko‘pburchak ichidagi burchak"
+     },
+     {
+      "atama": "Tashqi burchak",
+      "tarif": "ichki burchakning qo‘shni burchagi"
+     },
+     {
+      "atama": "Diagonal",
+      "tarif": "qo‘shni bo‘lmagan uchlarni tutashtiruvchi kesma"
+     },
+     {
+      "atama": "Mozaika",
+      "tarif": "shakllar bilan tekislikni qoplash"
+     },
+     {
+      "atama": "Qavariq",
+      "tarif": "barcha diagonallari ichida yotadigan"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Kvadrat muntazam ko‘pburchak",
+      "togri": true,
+      "izoh": "tomonlari va burchaklari teng"
+     },
+     {
+      "matn": "To‘g‘ri to‘rtburchak muntazam",
+      "togri": false,
+      "izoh": "tomonlari teng bo‘lmasligi mumkin"
+     },
+     {
+      "matn": "Beshburchak burchaklari yig‘indisi 540",
+      "togri": true,
+      "izoh": "3 · 180"
+     },
+     {
+      "matn": "Muntazam oltiburchak burchagi 100",
+      "togri": false,
+      "izoh": "120"
+     },
+     {
+      "matn": "Tashqi burchak 360 / n",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Oltiburchakda 6 diagonal",
+      "togri": false,
+      "izoh": "9 ta"
+     },
+     {
+      "matn": "Muntazam oltiburchakda R ifoda tomon",
+      "togri": true,
+      "izoh": "oltita teng tomonli uchburchak"
+     },
+     {
+      "matn": "Muntazam sakkizburchak burchagi 135",
+      "togri": true,
+      "izoh": "1080 / 8"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Muntazam ko‘pburchak nima?",
+      "javob": "tomonlari va burchaklari teng"
+     },
+     {
+      "savol": "Ichki burchak formulasi?",
+      "javob": "(n − 2) · 180 / n"
+     },
+     {
+      "savol": "Tashqi burchak formulasi?",
+      "javob": "360 / n"
+     },
+     {
+      "savol": "Beshburchak ichki burchagi?",
+      "javob": "108"
+     },
+     {
+      "savol": "Oltiburchak ichki burchagi?",
+      "javob": "120"
+     },
+     {
+      "savol": "Diagonallar soni formulasi?",
+      "javob": "n(n − 3) / 2"
+     },
+     {
+      "savol": "Oltiburchakda diagonal?",
+      "javob": "9"
+     },
+     {
+      "savol": "Burchaklar yig‘indisi formulasi?",
+      "javob": "(n − 2) · 180"
+     },
+     {
+      "savol": "Oltiburchakda R nimaga teng?",
+      "javob": "tomoniga"
+     },
+     {
+      "savol": "Kvadrat tashqi burchagi?",
+      "javob": "90"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yig‘indi",
+      "matn": "(n − 2) · 180.",
+      "savol": "Beshburchak yig‘indisi?"
+     },
+     {
+      "nom": "Bitta burchak",
+      "matn": "Yig‘indi / n.",
+      "savol": "Oltiburchak burchagi?"
+     },
+     {
+      "nom": "Tashqi",
+      "matn": "360 / n.",
+      "savol": "Sakkizburchak tashqi burchagi?"
+     },
+     {
+      "nom": "Diagonal",
+      "matn": "n(n − 3) / 2.",
+      "savol": "Beshburchakda diagonal?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun faqat uchburchak, kvadrat va oltiburchak bilan tekislikni bo‘shliqsiz qoplash mumkin, muntazam beshburchak bilan esa mumkin emas?",
+    "keys": {
+     "vaziyat": "Bog‘bon muntazam oltiburchak shaklidagi gulzor yasamoqchi, tomoni 4 m.",
+     "savollar": [
+      "Panjara uzunligi qancha?",
+      "Gulzor markazidan uchigacha masofa qancha?"
+     ]
+    },
+    "tezis": "Tartib — chiroyning asosi",
+    "taqqoslash": {
+     "a": "Muntazam ko‘pburchak",
+     "b": "Oddiy ko‘pburchak",
+     "umumiy": [
+      "tomonlari to‘g‘ri chiziq kesmalari",
+      "burchaklari yig‘indisi (n − 2) · 180"
+     ],
+     "a_farq": [
+      "tomonlari va burchaklari teng",
+      "aylana chizish mumkin"
+     ],
+     "b_farq": [
+      "tomonlari har xil bo‘lishi mumkin",
+      "aylana doim chizilmaydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Muntazam ko‘pburchaklar",
+     "shoxlar": [
+      {
+       "nom": "Burchaklar",
+       "bandlar": [
+        "ichki",
+        "tashqi",
+        "yig‘indi"
+       ]
+      },
+      {
+       "nom": "Diagonallar",
+       "bandlar": [
+        "soni"
+       ]
+      },
+      {
+       "nom": "Aylanalar",
+       "bandlar": [
+        "tashqi",
+        "ichki"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "asal uyasi",
+        "mozaika"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Mening tomonlarim ham, burchaklarim ham teng. Men kimman?",
+     "javob": "muntazam ko‘pburchak"
+    },
+    "hikmat": "Tenglik — go‘zallik.",
+    "kalit_soz": "MUNTAZAM",
+    "xato_yechim": {
+     "shart": "Muntazam beshburchakning ichki burchagini toping.",
+     "xato": "540",
+     "togri": "108",
+     "sabab": "540 bu yig‘indi, bitta burchak uchun 5 ga bo‘lamiz"
+    },
+    "guruh_nomlari": [
+     "Beshburchakchilar",
+     "Oltiburchakchilar",
+     "Burchakchilar",
+     "Mozaikachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mozaika ustaxonasi»",
+     "topshiriq": "Guruh muntazam ko‘pburchaklardan mozaika tuzib, burchaklar yig‘indisini 360 bilan tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Muntazam sakkizburchakning ichki burchagini toping.",
+     "B": "Oltiburchakda diagonallar sonini toping.",
+     "C": "Ichki burchagi 140 bo‘lgan muntazam ko‘pburchak necha burchakli?"
+    },
+    "sinkveyn": [
+     "Ko‘pburchak",
+     "teng, muntazam",
+     "chiziladi, bezaydi, qoplaydi",
+     "Tenglik tartibi",
+     "Shakl"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh muntazam ko‘pburchaklarni hisoblaydi.",
+     "qismlar": [
+      "1-guruh: beshburchak ichki burchagi",
+      "2-guruh: oltiburchak ichki burchagi",
+      "3-guruh: beshburchak diagonallari",
+      "4-guruh: sakkizburchak yig‘indisi"
+     ],
+     "yakun": "Natijalar: 108; 120; 5; 1080."
+    }
+   }
+  },
+  {
+   "mavzu": "Aylana uzunligi va doira yuzi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Aylana uzunligi",
+      "matn": "Aylana uzunligi C diametrga nisbati o‘zgarmas son — π ga teng, π taxminan 3,14. Shuning uchun aylana uzunligi: C ifoda 2 · π · r, bunda r — radius.",
+      "misol": "Radiusi 5 bo‘lgan aylana uzunligi: 2 · 3,14 · 5, ya’ni 31,4.",
+      "savol": "Radiusi 10 bo‘lgan aylana uzunligi (π ifoda 3,14)?",
+      "javob": "62,8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Doira yuzi",
+      "matn": "Doira yuzi S ifoda π · r kvadrat. Radius ikki baravar katta bo‘lsa, yuz to‘rt baravar ortadi, chunki radius kvadratga ko‘tariladi.",
+      "misol": "Radiusi 2 bo‘lgan doira yuzi: 3,14 · 4, ya’ni 12,56. Radiusi 10 bo‘lsa: 3,14 · 100, ya’ni 314.",
+      "savol": "Radiusi 10 doira yuzi?",
+      "javob": "314",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yoy uzunligi",
+      "matn": "Markaziy burchagi α gradus bo‘lgan yoyning uzunligi: l ifoda π · r · α / 180. Bu aylana uzunligining α / 360 qismi.",
+      "misol": "r ifoda 6, α ifoda 60: l ifoda π · 6 · 60 / 180, ya’ni 2π, taxminan 6,28.",
+      "savol": "Yarim aylana (180 gradus) uzunligi, r ifoda 3?",
+      "javob": "3π, ya’ni 9,42",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Doira sektori yuzi",
+      "matn": "Markaziy burchagi α gradus bo‘lgan sektor yuzi: S ifoda π · r kvadrat · α / 360. Bu doira yuzining α / 360 qismi.",
+      "misol": "r ifoda 6, α ifoda 90: S ifoda π · 36 · 90 / 360, ya’ni 9π, taxminan 28,26.",
+      "savol": "Yarim doira (180 gradus) yuzi, r ifoda 2?",
+      "javob": "2π, ya’ni 6,28",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Halqa yuzi",
+      "matn": "Ikki konsentrik aylana orasidagi halqa yuzi katta va kichik doira yuzlari ayirmasiga teng: π · (R kvadrat − r kvadrat).",
+      "misol": "R ifoda 5, r ifoda 3: π · (25 − 9), ya’ni 16π, taxminan 50,24.",
+      "savol": "R ifoda 4, r ifoda 3 halqa yuzi (π orqali)?",
+      "javob": "7π",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "C ifoda 2πr. S ifoda πr². Yoy: l ifoda πrα / 180. Sektor: S ifoda πr²α / 360. Halqa: π · (R kvadrat − r kvadrat). π taxminan 3,14.",
+    "misollar": [
+     {
+      "shart": "Radiusi 7 bo‘lgan aylana uzunligi va doira yuzini toping (π ifoda 3,14).",
+      "yechim": [
+       "C ifoda 2 · 3,14 · 7, ya’ni 43,96.",
+       "S ifoda 3,14 · 49.",
+       "S ifoda 153,86."
+      ],
+      "javob": "C 43,96; S 153,86"
+     },
+     {
+      "shart": "Aylana uzunligi 31,4. Radiusini toping.",
+      "yechim": [
+       "C ifoda 2πr, ya’ni 31,4 ifoda 6,28 · r.",
+       "r ifoda 31,4 / 6,28.",
+       "r ifoda 5."
+      ],
+      "javob": "5"
+     },
+     {
+      "shart": "Radiusi 6 bo‘lgan doiraning 90 gradusli sektori yuzini toping.",
+      "yechim": [
+       "S ifoda π · 36 · 90 / 360.",
+       "36 / 4 ifoda 9, S ifoda 9π.",
+       "Taxminan 28,26."
+      ],
+      "javob": "9π, ya’ni 28,26"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "G‘ildirak",
+      "topshiriq": "G‘ildirak radiusi 0,5 m. U 10 marta aylanganda necha metr yuradi?",
+      "yechim": "C ifoda 3,14 m, 10 aylanishda 31,4 m.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Pitsa",
+      "topshiriq": "Pitsa diametri 30 sm. Yuzini toping.",
+      "yechim": "r ifoda 15, S ifoda 3,14 · 225, ya’ni 706,5.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Yoy uzunligi",
+      "topshiriq": "Radiusi 6 bo‘lgan aylananing 60 gradusli yoyi uzunligini toping.",
+      "yechim": "2π, ya’ni 6,28.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Halqa maydoni",
+      "topshiriq": "Tashqi radius 5, ichki radius 3 bo‘lgan halqa yuzini toping.",
+      "yechim": "16π, ya’ni 50,24.",
+      "mahsulot": "halqa modeli"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Radius 5. Aylana uzunligi (π ifoda 3,14)?",
+      "javob": "31,4"
+     },
+     {
+      "shart": "Radius 2. Doira yuzi?",
+      "javob": "12,56"
+     },
+     {
+      "shart": "Aylana uzunligi 62,8. Radius?",
+      "javob": "10"
+     },
+     {
+      "shart": "Radius 6, 90 gradusli sektor yuzi?",
+      "javob": "28,26"
+     },
+     {
+      "shart": "Radius 3, yarim aylana uzunligi?",
+      "javob": "9,42"
+     },
+     {
+      "shart": "Diametri 10 doira yuzi?",
+      "javob": "78,5"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yuz va uzunlik formulalarini adashtiradi",
+      "sabab": "ikki formulani almashtirib yuboradi",
+      "oldini_olish": "uzunlik — radius bir marta, yuz — radius kvadrat"
+     },
+     {
+      "xato": "Diametrni radius deb oladi",
+      "sabab": "diametrni ikkiga bo‘lmaydi",
+      "oldini_olish": "avval diametrni 2 ga bo‘lib radius topish"
+     },
+     {
+      "xato": "Yuzni uzunlik birligida yozadi",
+      "sabab": "birlikni e’tiborsiz qoldiradi",
+      "oldini_olish": "yuzni kvadrat birlikda yozish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnika",
+      "boglanish": "g‘ildirak va tishli uzatma"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "Yer ekvatori uzunligi"
+     },
+     {
+      "fan": "Oshpazlik",
+      "boglanish": "pitsa va tort o‘lchamlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«π sirlari»",
+     "muammo": "π sonini o‘lchash orqali qanday topamiz va aylanaga oid hisoblarni hayotda qanday qo‘llaymiz?",
+     "mahsulot": "π tajribasi hisoboti",
+     "bosqichlar": [
+      "aylana buyumlar yig‘ish",
+      "uzunlik va diametrni o‘lchash",
+      "nisbatni hisoblash",
+      "yuzni hisoblash",
+      "hisobot tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Buyum tanlang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchash to‘g‘ri",
+      "π taxminan 3,14 chiqdi",
+      "hisoblar to‘g‘ri",
+      "xato bahosi bor",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Aylanalar bozori»",
+     "bekatlar": [
+      {
+       "nom": "G‘ildirak",
+       "matn": "Radius 1.",
+       "topshiriq": "Aylana uzunligi (π ifoda 3,14)?",
+       "javob": "6,28",
+       "rasm": ""
+      },
+      {
+       "nom": "Tort",
+       "matn": "Radius 10.",
+       "topshiriq": "Yuz?",
+       "javob": "314",
+       "rasm": ""
+      },
+      {
+       "nom": "Soat",
+       "matn": "Radius 3, 180 gradusli yoy.",
+       "topshiriq": "Uzunlik?",
+       "javob": "9,42",
+       "rasm": ""
+      },
+      {
+       "nom": "Halqa",
+       "matn": "R ifoda 5, r ifoda 3.",
+       "topshiriq": "Yuz (π orqali)?",
+       "javob": "16π",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formula qulay bo‘ldi?",
+      "π nima uchun kerak?",
+      "Aylanalarni qayerda uchratdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Aylana uzunligi",
+      "tarif": "aylanani o‘rab turgan chiziq uzunligi"
+     },
+     {
+      "atama": "Doira yuzi",
+      "tarif": "aylana ichidagi yuz"
+     },
+     {
+      "atama": "π",
+      "tarif": "uzunlikning diametrga nisbati, taxminan 3,14"
+     },
+     {
+      "atama": "Yoy",
+      "tarif": "aylananing bir qismi"
+     },
+     {
+      "atama": "Sektor",
+      "tarif": "ikki radius va yoy orasidagi bo‘lak"
+     },
+     {
+      "atama": "Halqa",
+      "tarif": "ikki konsentrik aylana orasidagi qism"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Aylana uzunligi 2πr",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Doira yuzi 2πr",
+      "togri": false,
+      "izoh": "πr kvadrat"
+     },
+     {
+      "matn": "π taxminan 3,14",
+      "togri": true,
+      "izoh": "uzunlikning diametrga nisbati"
+     },
+     {
+      "matn": "Radius ikki baravar bo‘lsa yuz ikki baravar ortadi",
+      "togri": false,
+      "izoh": "to‘rt baravar"
+     },
+     {
+      "matn": "Sektor yuzi — doira yuzining α / 360 qismi",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Halqa yuzi — katta va kichik yuz ayirmasi",
+      "togri": true,
+      "izoh": "π(R² − r²)"
+     },
+     {
+      "matn": "Radius 10 doira yuzi 62,8",
+      "togri": false,
+      "izoh": "314"
+     },
+     {
+      "matn": "Yoy uzunligi πrα / 180",
+      "togri": true,
+      "izoh": "formula"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Aylana uzunligi formulasi?",
+      "javob": "2πr"
+     },
+     {
+      "savol": "Doira yuzi formulasi?",
+      "javob": "πr kvadrat"
+     },
+     {
+      "savol": "π nimaga teng?",
+      "javob": "taxminan 3,14"
+     },
+     {
+      "savol": "Radius 5 uzunlik?",
+      "javob": "31,4"
+     },
+     {
+      "savol": "Radius 10 yuz?",
+      "javob": "314"
+     },
+     {
+      "savol": "Yoy uzunligi formulasi?",
+      "javob": "πrα / 180"
+     },
+     {
+      "savol": "Sektor yuzi formulasi?",
+      "javob": "πr kvadrat α / 360"
+     },
+     {
+      "savol": "Halqa yuzi?",
+      "javob": "π(R kvadrat − r kvadrat)"
+     },
+     {
+      "savol": "Diametr va radius?",
+      "javob": "diametr radiusdan 2 baravar katta"
+     },
+     {
+      "savol": "Yuz qaysi birlikda?",
+      "javob": "kvadrat birlikda"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Radius",
+      "matn": "Diametrni 2 ga bo‘l.",
+      "savol": "Diametr 10 bo‘lsa radius?"
+     },
+     {
+      "nom": "Uzunlik",
+      "matn": "2πr.",
+      "savol": "Radius 1 uzunlik?"
+     },
+     {
+      "nom": "Yuz",
+      "matn": "πr kvadrat.",
+      "savol": "Radius 1 yuz?"
+     },
+     {
+      "nom": "Bo‘lak",
+      "matn": "Burchak / 360.",
+      "savol": "90 gradus — qaysi qism?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun π hamma aylanada bir xil son? Katta va kichik aylanani o‘lchab, uzunlikni diametrga bo‘lib ko‘ring.",
+    "keys": {
+     "vaziyat": "Radiusi 0,5 m bo‘lgan velosiped g‘ildiragi 10 marta aylandi.",
+     "savollar": [
+      "Bitta aylanishda necha metr yuradi?",
+      "10 aylanishda necha metr?"
+     ]
+    },
+    "tezis": "Aylana — mukammal shakl",
+    "taqqoslash": {
+     "a": "Aylana uzunligi",
+     "b": "Doira yuzi",
+     "umumiy": [
+      "radius bilan topiladi",
+      "π ishtirok etadi"
+     ],
+     "a_farq": [
+      "chiziq uzunligi",
+      "radius birinchi darajada"
+     ],
+     "b_farq": [
+      "tekislik qismi",
+      "radius kvadratda"
+     ]
+    },
+    "klaster": {
+     "markaz": "Aylana va doira",
+     "shoxlar": [
+      {
+       "nom": "Uzunlik",
+       "bandlar": [
+        "2πr",
+        "yoy"
+       ]
+      },
+      {
+       "nom": "Yuz",
+       "bandlar": [
+        "πr kvadrat",
+        "sektor",
+        "halqa"
+       ]
+      },
+      {
+       "nom": "π",
+       "bandlar": [
+        "3,14"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "g‘ildirak",
+        "pitsa"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Mening uzunligimni diametrga bo‘lsangiz, har doim bir xil son chiqadi. Men kimman?",
+     "javob": "aylana"
+    },
+    "hikmat": "π — har bir aylananing sirli soni.",
+    "kalit_soz": "AYLANA",
+    "xato_yechim": {
+     "shart": "Radiusi 5 bo‘lgan aylana uzunligini toping (π ifoda 3,14).",
+     "xato": "3,14 · 25, ya’ni 78,5",
+     "togri": "2 · 3,14 · 5, ya’ni 31,4",
+     "sabab": "78,5 — bu doira yuzi, uzunlik uchun 2πr"
+    },
+    "guruh_nomlari": [
+     "Aylanachilar",
+     "Doirachilar",
+     "Yoychilar",
+     "πchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«g‘ildirak yo‘li»",
+     "topshiriq": "Guruh g‘ildirak o‘lchamini o‘lchab, bir aylanishdagi yo‘lni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Radiusi 4 aylana uzunligi va doira yuzini toping (π ifoda 3,14).",
+     "B": "Aylana uzunligi 18,84. Radiusini toping.",
+     "C": "Radiusi 4, 90 gradusli sektor yuzini toping."
+    },
+    "sinkveyn": [
+     "Aylana",
+     "yumaloq, cheksiz",
+     "aylanadi, o‘ralgan, yopiq",
+     "π — sir",
+     "Doira"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh aylana masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: radius 5 uzunlik",
+      "2-guruh: radius 2 yuz",
+      "3-guruh: uzunlik 62,8 radius",
+      "4-guruh: diametr 10 yuz"
+     ],
+     "yakun": "Natijalar: 31,4; 12,56; 10; 78,5."
+    }
+   }
+  },
+  {
+   "mavzu": "Harakat (burish, ko‘chirish)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Harakat nima?",
+      "matn": "Shakllar orasidagi masofalarni saqlaydigan almashtirish harakat deyiladi. Harakatda shakl shaklini, o‘lchamini saqlaydi, faqat joyi yoki yo‘nalishi o‘zgaradi. Ko‘chirish, burish, simmetriya — harakatlar.",
+      "misol": "Kesma AB ni ko‘chirib A'B' hosil qilsak, uzunligi o‘zgarmaydi.",
+      "savol": "Harakat shakl o‘lchamini o‘zgartiradimi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Parallel ko‘chirish",
+      "matn": "Nuqta (x; y) ni (a; b) vektorga ko‘chirsak, yangi nuqta (x + a; y + b) bo‘ladi. Butun shakl bir xil vektorga siljiydi.",
+      "misol": "A(1; 2) ni (3; −1) vektorga ko‘chirsak: (1 + 3; 2 − 1), ya’ni (4; 1).",
+      "savol": "(1; 1) ni (2; 3) vektorga ko‘chirsak?",
+      "javob": "(3; 4)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Simmetriyalar",
+      "matn": "Ox o‘qiga nisbatan simmetriyada (x; y) nuqta (x; −y) ga o‘tadi. Oy o‘qiga nisbatan — (−x; y) ga. Markaziy simmetriyada koordinata boshiga nisbatan (−x; −y) ga o‘tadi.",
+      "misol": "(3; 4) Ox ga nisbatan (3; −4), Oy ga nisbatan (−3; 4), markazga nisbatan (−3; −4).",
+      "savol": "(2; 7) Oy ga nisbatan simmetrik nuqta?",
+      "javob": "(−2; 7)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burish",
+      "matn": "Koordinata boshi atrofida 90 gradusga soat miliga teskari burishda (x; y) nuqta (−y; x) ga o‘tadi. 180 gradusga burish markaziy simmetriyaga teng.",
+      "misol": "(3; 4) ni 90 gradusga bursak (−4; 3). 180 gradusga bursak (−3; −4).",
+      "savol": "(1; 0) ni 90 gradusga bursak?",
+      "javob": "(0; 1)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Harakat xossalari",
+      "matn": "Harakat masofalarni, burchaklarni va yuzlarni saqlaydi. Harakat natijasida to‘g‘ri chiziq to‘g‘ri chiziqqa, aylana aylanaga o‘tadi. Shakllar teng deyiladi, agar ularni bir-biriga harakat bilan ustma-ust qo‘yish mumkin bo‘lsa.",
+      "misol": "A(0; 0), B(3; 4) kesmani (2; 1) vektorga ko‘chirsak: A'(2; 1), B'(5; 5). Uzunlik ikkalasida ham 5.",
+      "savol": "Harakat burchakni saqlaydimi?",
+      "javob": "ha",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ko‘chirish: (x + a; y + b). Ox simmetriya: (x; −y). Oy simmetriya: (−x; y). Markaziy simmetriya: (−x; −y). 90 gradusga burish: (−y; x). Harakat masofa, burchak, yuzni saqlaydi.",
+    "misollar": [
+     {
+      "shart": "A(1; 2) ni (3; −1) vektorga ko‘chiring.",
+      "yechim": [
+       "x bo‘yicha 1 + 3, ya’ni 4.",
+       "y bo‘yicha 2 − 1, ya’ni 1.",
+       "A'(4; 1)."
+      ],
+      "javob": "(4; 1)"
+     },
+     {
+      "shart": "(3; 4) nuqtani koordinata boshi atrofida 90 gradusga soat miliga teskari buring.",
+      "yechim": [
+       "Qoida: (x; y) o‘tadi (−y; x) ga.",
+       "(−4; 3).",
+       "Koordinata boshidan masofa 5 saqlandi."
+      ],
+      "javob": "(−4; 3)"
+     },
+     {
+      "shart": "(5; −2) nuqtaning Ox ga nisbatan simmetrik nuqtasini toping.",
+      "yechim": [
+       "Ox simmetriyada y ishorasi o‘zgaradi.",
+       "(5; −(−2)).",
+       "(5; 2)."
+      ],
+      "javob": "(5; 2)"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ko‘chirish",
+      "topshiriq": "A(1; 1), B(4; 1), C(1; 5) uchburchakni (2; 3) vektorga ko‘chiring.",
+      "yechim": "A'(3; 4), B'(6; 4), C'(3; 8).",
+      "mahsulot": "chizma va jadval"
+     },
+     {
+      "nom": "Ko‘zgu",
+      "topshiriq": "(2; 3) nuqtaning Ox, Oy va markazga nisbatan simmetrik nuqtalarini toping.",
+      "yechim": "(2; −3), (−2; 3), (−2; −3).",
+      "mahsulot": "simmetriya jadvali"
+     },
+     {
+      "nom": "Burish",
+      "topshiriq": "(1; 0), (2; 3) nuqtalarni 90 gradusga buring.",
+      "yechim": "(0; 1) va (−3; 2).",
+      "mahsulot": "burish chizmasi"
+     },
+     {
+      "nom": "Harakat bilan naqsh",
+      "topshiriq": "Guruh bitta shaklni ko‘chirish va burish bilan naqshga aylantiradi.",
+      "yechim": "Har guruh o‘z naqshini chizadi.",
+      "mahsulot": "naqsh"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "A(1; 1) ni (2; 3) vektorga ko‘chirsak?",
+      "javob": "(3; 4)"
+     },
+     {
+      "shart": "(4; −5) ning markaziy simmetrik nuqtasi?",
+      "javob": "(−4; 5)"
+     },
+     {
+      "shart": "(2; 7) ning Oy ga nisbatan simmetrik nuqtasi?",
+      "javob": "(−2; 7)"
+     },
+     {
+      "shart": "(1; 0) ni 90 gradusga burish?",
+      "javob": "(0; 1)"
+     },
+     {
+      "shart": "(2; 3) ni 180 gradusga burish?",
+      "javob": "(−2; −3)"
+     },
+     {
+      "shart": "Ko‘chirishda kesma uzunligi o‘zgaradimi?",
+      "javob": "yo‘q"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Simmetriyada ikkala koordinata ishorasini o‘zgartiradi",
+      "sabab": "o‘qlarni adashtiradi",
+      "oldini_olish": "Ox da faqat y, Oy da faqat x ishorasi o‘zgarishini eslash"
+     },
+     {
+      "xato": "Burishda koordinatalarni almashtirmaydi",
+      "sabab": "qoidani unutadi",
+      "oldini_olish": "(−y; x) qoidasini yozib qo‘yish"
+     },
+     {
+      "xato": "Ko‘chirishda ayiradi",
+      "sabab": "vektor ishorasini adashtiradi",
+      "oldini_olish": "yangi koordinata ifoda eski plus vektor"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "San’at",
+      "boglanish": "naqsh va ornament"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "grafikada ko‘chirish va burish"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "ko‘zgu va aks"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Harakat naqshi»",
+     "muammo": "Bitta shaklni ko‘chirish, burish va ko‘zgu aksi bilan qanday naqsh yasaymiz?",
+     "mahsulot": "naqshlar albomi",
+     "bosqichlar": [
+      "asosiy shakl chizish",
+      "ko‘chirish",
+      "burish",
+      "simmetriya",
+      "naqsh yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Shakl chizing",
+      "Harakat qiling",
+      "Naqsh yasang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "harakatlar to‘g‘ri",
+      "koordinatalar aniq",
+      "naqsh uyg‘un",
+      "tushuntirish asosli",
+      "albom ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Harakatlar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Ko‘cha",
+       "matn": "A(2; 1), vektor (1; 4).",
+       "topshiriq": "Yangi nuqta?",
+       "javob": "(3; 5)",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘zgu",
+       "matn": "(3; 4) Ox simmetriyasi.",
+       "topshiriq": "Nuqta?",
+       "javob": "(3; −4)",
+       "rasm": ""
+      },
+      {
+       "nom": "Karusel",
+       "matn": "(1; 0), 90 gradusga burish.",
+       "topshiriq": "Nuqta?",
+       "javob": "(0; 1)",
+       "rasm": ""
+      },
+      {
+       "nom": "Markaz",
+       "matn": "(2; −3), markaziy simmetriya.",
+       "topshiriq": "Nuqta?",
+       "javob": "(−2; 3)",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi harakat oson bo‘ldi?",
+      "Uzunlik saqlandimi?",
+      "Qayerda harakatni ko‘rdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Harakat",
+      "tarif": "masofani saqlovchi almashtirish"
+     },
+     {
+      "atama": "Parallel ko‘chirish",
+      "tarif": "vektor bo‘yicha siljitish"
+     },
+     {
+      "atama": "Simmetriya",
+      "tarif": "o‘q yoki markazga nisbatan aks ettirish"
+     },
+     {
+      "atama": "Burish",
+      "tarif": "nuqta atrofida burchakka aylantirish"
+     },
+     {
+      "atama": "Teng shakllar",
+      "tarif": "harakat bilan ustma-ust tushadigan shakllar"
+     },
+     {
+      "atama": "Vektor",
+      "tarif": "yo‘nalishli kesma"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Harakat masofalarni saqlaydi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Ko‘chirishda shakl kattalashadi",
+      "togri": false,
+      "izoh": "o‘lcham saqlanadi"
+     },
+     {
+      "matn": "(3; 4) ning Ox simmetrikasi (3; −4)",
+      "togri": true,
+      "izoh": "y ishorasi o‘zgaradi"
+     },
+     {
+      "matn": "(3; 4) ni 90 gradusga burish (4; 3)",
+      "togri": false,
+      "izoh": "(−4; 3)"
+     },
+     {
+      "matn": "180 gradusga burish markaziy simmetriyaga teng",
+      "togri": true,
+      "izoh": "(−x; −y)"
+     },
+     {
+      "matn": "Harakat burchakni o‘zgartiradi",
+      "togri": false,
+      "izoh": "saqlaydi"
+     },
+     {
+      "matn": "Teng shakllar harakat bilan ustma-ust tushadi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Simmetriyada yuz o‘zgaradi",
+      "togri": false,
+      "izoh": "yuz saqlanadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Harakat nima?",
+      "javob": "masofani saqlaydigan almashtirish"
+     },
+     {
+      "savol": "Ko‘chirish formulasi?",
+      "javob": "(x + a; y + b)"
+     },
+     {
+      "savol": "Ox simmetriya?",
+      "javob": "(x; −y)"
+     },
+     {
+      "savol": "Oy simmetriya?",
+      "javob": "(−x; y)"
+     },
+     {
+      "savol": "Markaziy simmetriya?",
+      "javob": "(−x; −y)"
+     },
+     {
+      "savol": "90 gradusga burish?",
+      "javob": "(−y; x)"
+     },
+     {
+      "savol": "Harakat nimani saqlaydi?",
+      "javob": "masofa, burchak, yuz"
+     },
+     {
+      "savol": "(1; 1) vektor (2; 3) ko‘chirish?",
+      "javob": "(3; 4)"
+     },
+     {
+      "savol": "(2; 3) markaziy simmetriya?",
+      "javob": "(−2; −3)"
+     },
+     {
+      "savol": "Teng shakllar nima?",
+      "javob": "harakat bilan mos tushadigan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ko‘chirish",
+      "matn": "Vektorni qo‘sh.",
+      "savol": "(1; 1) + (2; 3)?"
+     },
+     {
+      "nom": "Ox",
+      "matn": "y ishorasi.",
+      "savol": "(2; 5) Ox simmetriya?"
+     },
+     {
+      "nom": "Burish",
+      "matn": "(−y; x).",
+      "savol": "(2; 1) burilsa?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Uzunlikni solishtir.",
+      "savol": "Saqlandimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun harakat shakl yuzini va burchaklarini o‘zgartirmaydi? Ko‘chirish, burish va simmetriya misolida tushuntiring.",
+    "keys": {
+     "vaziyat": "Uchburchak A(0; 0), B(3; 0), C(0; 4) ni (2; 1) vektorga ko‘chirishdi.",
+     "savollar": [
+      "Yangi uchlar qanday?",
+      "Uchburchak yuzi o‘zgardimi?"
+     ]
+    },
+    "tezis": "Shakl bir, joyi boshqa",
+    "taqqoslash": {
+     "a": "Ko‘chirish",
+     "b": "Burish",
+     "umumiy": [
+      "harakat",
+      "masofa saqlanadi"
+     ],
+     "a_farq": [
+      "vektor bilan beriladi",
+      "yo‘nalish o‘zgarmaydi"
+     ],
+     "b_farq": [
+      "burchak va markaz bilan beriladi",
+      "yo‘nalish o‘zgaradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Harakat",
+     "shoxlar": [
+      {
+       "nom": "Ko‘chirish",
+       "bandlar": [
+        "vektor"
+       ]
+      },
+      {
+       "nom": "Simmetriya",
+       "bandlar": [
+        "Ox",
+        "Oy",
+        "markaziy"
+       ]
+      },
+      {
+       "nom": "Burish",
+       "bandlar": [
+        "90",
+        "180"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "masofa",
+        "burchak",
+        "yuz"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men shaklni kattalashtirmayman, faqat joyini yoki yo‘nalishini o‘zgartiraman. Men kimman?",
+     "javob": "harakat"
+    },
+    "hikmat": "Harakat o‘lchamni saqlaydi.",
+    "kalit_soz": "HARAKAT",
+    "xato_yechim": {
+     "shart": "(3; 4) nuqtani Ox ga nisbatan akslantiring.",
+     "xato": "(−3; 4)",
+     "togri": "(3; −4)",
+     "sabab": "Ox simmetriyada faqat y ishorasi o‘zgaradi"
+    },
+    "guruh_nomlari": [
+     "Ko‘chiruvchilar",
+     "Burovchilar",
+     "Ko‘zgu ustalari",
+     "Naqshchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ko‘zgu va naqsh»",
+     "topshiriq": "Guruh shaklni harakatlar bilan naqshga aylantirib, koordinatalarini yozadi."
+    },
+    "vazifalar": {
+     "A": "(2; 3) ni (3; 1) vektorga ko‘chiring.",
+     "B": "(4; −2) ning Oy simmetrikasini toping.",
+     "C": "(3; 1) ni 90 gradusga buring."
+    },
+    "sinkveyn": [
+     "Harakat",
+     "o‘zgarmas, siljituvchi",
+     "ko‘chadi, buriladi, aks etadi",
+     "Joy o‘zgaradi, o‘lcham yo‘q",
+     "Simmetriya"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh harakatlarni bajaradi.",
+     "qismlar": [
+      "1-guruh: (1; 1) + (2; 3) ko‘chirish",
+      "2-guruh: (3; 4) Ox simmetriyasi",
+      "3-guruh: (1; 0) 90 gradusga burish",
+      "4-guruh: (2; −3) markaziy simmetriyasi"
+     ],
+     "yakun": "Natijalar: (3; 4); (3; −4); (0; 1); (−2; 3)."
+    }
+   }
   }
  ]
 }
