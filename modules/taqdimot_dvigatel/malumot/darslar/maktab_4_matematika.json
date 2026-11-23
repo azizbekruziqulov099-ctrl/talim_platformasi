@@ -16571,6 +16571,1382 @@
      "yakun": "Hamma topshiriqlar yechildi va tekshirildi."
     }
    }
+  },
+  {
+   "mavzu": "Narx, miqdor, qiymat",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Uch tushuncha",
+      "matn": "Xarid qilganda uch narsa bor: narx (bittasining puli), miqdor (nechta olindi) va qiymat (jami to‘langan pul). Ular bir-biriga bog‘liq.",
+      "misol": "1 kg olma 12 so‘m, 5 kg olindi. Narx 12, miqdor 5, qiymat 60.",
+      "savol": "Narx nima?",
+      "javob": "bittasining puli",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qiymatni topamiz",
+      "matn": "Qiymat — narx ko‘paytirilsin miqdorga. Narxni miqdorga ko‘paytirsak, jami pulni bilamiz.",
+      "misol": "12 · 5 — 60 so‘m.",
+      "savol": "12 · 5 nechaga teng?",
+      "javob": "60",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Miqdorni topamiz",
+      "matn": "Miqdor — qiymat bo‘linsin narxga. Jami pulni bittasining puliga bo‘lsak, nechta olinganini bilamiz.",
+      "misol": "Qiymat 96 so‘m, narx 8 so‘m: 96 / 8 — 12 ta.",
+      "savol": "96 / 8 nechaga teng?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Narxni topamiz",
+      "matn": "Narx — qiymat bo‘linsin miqdorga. Jami pulni nechtaga bo‘lsak, bittasining puli chiqadi.",
+      "misol": "Qiymat 150 so‘m, miqdor 6: 150 / 6 — 25 so‘m.",
+      "savol": "150 / 6 nechaga teng?",
+      "javob": "25",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchburchak qoida",
+      "matn": "Uch tushunchani uchburchakda eslab qolish mumkin: yuqorida qiymat, pastda narx va miqdor. Qaysini topsak, uni berkitamiz.",
+      "misol": "Narx va miqdor pastda — ko‘paytiramiz. Qiymat tepada — bo‘lamiz.",
+      "savol": "Qiymat qanday topiladi?",
+      "javob": "narx ko‘paytirilsin miqdorga",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qiymat — narx ko‘paytirilsin miqdorga. Miqdor — qiymat bo‘linsin narxga. Narx — qiymat bo‘linsin miqdorga.",
+    "misollar": [
+     {
+      "shart": "1 kg olma 12 so‘m. 5 kg olma qancha turadi?",
+      "yechim": [
+       "Qiymat — narx ko‘paytirilsin miqdorga.",
+       "12 · 5.",
+       "Javob 60 so‘m."
+      ],
+      "javob": "60 so‘m"
+     },
+     {
+      "shart": "Daftarning narxi 8 so‘m. 96 so‘mga nechta daftar olamiz?",
+      "yechim": [
+       "Miqdor — qiymat bo‘linsin narxga.",
+       "96 / 8.",
+       "Javob 12 ta."
+      ],
+      "javob": "12 ta"
+     },
+     {
+      "shart": "6 ta qalam 150 so‘m turadi. Bitta qalamning narxi?",
+      "yechim": [
+       "Narx — qiymat bo‘linsin miqdorga.",
+       "150 / 6.",
+       "Javob 25 so‘m."
+      ],
+      "javob": "25 so‘m"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Do‘kon o‘yini",
+      "topshiriq": "Bolalar sotuvchi va xaridor bo‘lib, narx, miqdor, qiymatni hisoblaydi.",
+      "yechim": "Natijalar jadvalga yoziladi.",
+      "mahsulot": "do‘kon varag‘i"
+     },
+     {
+      "nom": "Jadval to‘ldiramiz",
+      "topshiriq": "Narx, miqdor va qiymat jadvalini to‘ldiring.",
+      "yechim": "Qaysi biri noma’lum ekanini aniqlang.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Narx, miqdor, qiymatga masala tuzing.",
+      "yechim": "Har guruh masalasini yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Javoblarni teskari amal bilan tekshiring.",
+      "yechim": "12 · 5 — 60, 60 / 5 — 12.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "12 · 5 nechaga teng?",
+      "javob": "60"
+     },
+     {
+      "shart": "96 / 8 nechaga teng?",
+      "javob": "12"
+     },
+     {
+      "shart": "150 / 6 nechaga teng?",
+      "javob": "25"
+     },
+     {
+      "shart": "8 · 15 nechaga teng?",
+      "javob": "120"
+     },
+     {
+      "shart": "120 / 8 nechaga teng?",
+      "javob": "15"
+     },
+     {
+      "shart": "120 / 15 nechaga teng?",
+      "javob": "8"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qiymatni topishda bo‘ladi",
+      "sabab": "formulani adashtiradi",
+      "oldini_olish": "qiymat — narx ko‘paytirilsin miqdorga"
+     },
+     {
+      "xato": "Narxni miqdorga qo‘shadi",
+      "sabab": "amalni adashtiradi",
+      "oldini_olish": "ko‘paytirish kerak"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "teskari amal bilan tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "bozorda xarid"
+     },
+     {
+      "fan": "Ona tili",
+      "boglanish": "narx va qiymat so‘zlari"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "onlayn do‘kon hisobi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening do‘konim»",
+     "muammo": "O‘z do‘konimizni qanday qilib narxlar bilan yasaymiz?",
+     "mahsulot": "do‘kon maketi",
+     "bosqichlar": [
+      "mahsulotlarni tanlash",
+      "narxlarni yozish",
+      "xarid hisobi",
+      "chek yozish",
+      "namoyish"
+     ],
+     "guruh_vazifalari": [
+      "Mahsulot tanlang",
+      "Narx yozing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "narxlar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "chek aniq",
+      "maket chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bozor»",
+     "bekatlar": [
+      {
+       "nom": "Meva rastasi",
+       "matn": "1 kg olma 12 so‘m, 5 kg.",
+       "topshiriq": "Qiymat?",
+       "javob": "60",
+       "rasm": ""
+      },
+      {
+       "nom": "Daftar do‘koni",
+       "matn": "Daftar 8 so‘m, jami 96 so‘m.",
+       "topshiriq": "Nechta daftar?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "Qalam do‘koni",
+       "matn": "6 ta qalam 150 so‘m.",
+       "topshiriq": "Narxi?",
+       "javob": "25",
+       "rasm": ""
+      },
+      {
+       "nom": "Kassa",
+       "matn": "8 so‘mdan 15 ta.",
+       "topshiriq": "Qiymat?",
+       "javob": "120",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi biri noma’lum edi?",
+      "Qaysi amalni tanladingiz?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Narx",
+      "tarif": "bitta narsaning puli"
+     },
+     {
+      "atama": "Miqdor",
+      "tarif": "narsalar soni"
+     },
+     {
+      "atama": "Qiymat",
+      "tarif": "jami to‘langan pul"
+     },
+     {
+      "atama": "Xarid",
+      "tarif": "narsa sotib olish"
+     },
+     {
+      "atama": "Chek",
+      "tarif": "xarid hisobi qog‘ozi"
+     },
+     {
+      "atama": "Qaytim",
+      "tarif": "berilgan puldan qolgan qism"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qiymat — narx ko‘paytirilsin miqdorga",
+      "togri": true,
+      "izoh": "12 · 5 — 60"
+     },
+     {
+      "matn": "Qiymat — narx bo‘linsin miqdorga",
+      "togri": false,
+      "izoh": "ko‘paytiramiz"
+     },
+     {
+      "matn": "Miqdor — qiymat bo‘linsin narxga",
+      "togri": true,
+      "izoh": "96 / 8 — 12"
+     },
+     {
+      "matn": "Narx — qiymat bo‘linsin miqdorga",
+      "togri": true,
+      "izoh": "150 / 6 — 25"
+     },
+     {
+      "matn": "12 · 5 — 50",
+      "togri": false,
+      "izoh": "60"
+     },
+     {
+      "matn": "8 · 15 — 120",
+      "togri": true,
+      "izoh": "qiymat"
+     },
+     {
+      "matn": "Narx — jami pul",
+      "togri": false,
+      "izoh": "bittasining puli"
+     },
+     {
+      "matn": "Qiymat — jami to‘langan pul",
+      "togri": true,
+      "izoh": "ta’rif"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Narx nima?",
+      "javob": "bittasining puli"
+     },
+     {
+      "savol": "Miqdor nima?",
+      "javob": "nechta olindi"
+     },
+     {
+      "savol": "Qiymat nima?",
+      "javob": "jami pul"
+     },
+     {
+      "savol": "Qiymat qanday topiladi?",
+      "javob": "narx ko‘paytirilsin miqdorga"
+     },
+     {
+      "savol": "Miqdor qanday topiladi?",
+      "javob": "qiymat bo‘linsin narxga"
+     },
+     {
+      "savol": "Narx qanday topiladi?",
+      "javob": "qiymat bo‘linsin miqdorga"
+     },
+     {
+      "savol": "12 · 5?",
+      "javob": "60"
+     },
+     {
+      "savol": "96 / 8?",
+      "javob": "12"
+     },
+     {
+      "savol": "150 / 6?",
+      "javob": "25"
+     },
+     {
+      "savol": "8 · 15?",
+      "javob": "120"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Narx",
+      "matn": "Narxni top.",
+      "savol": "1 kg olma?"
+     },
+     {
+      "nom": "Miqdor",
+      "matn": "Miqdorni top.",
+      "savol": "Nechta kg?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Qiymatni top.",
+      "savol": "12 · 5?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari amal.",
+      "savol": "60 / 5?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun narx, miqdor va qiymat bir-biriga bog‘liq?",
+    "keys": {
+     "vaziyat": "Bozorda 1 kg olma 12 so‘m. Siz 5 kg olmoqchisiz.",
+     "savollar": [
+      "Qiymatni qanday topamiz?",
+      "Jami necha so‘m to‘laymiz?"
+     ]
+    },
+    "tezis": "Narx, miqdor, qiymat — uchlik",
+    "taqqoslash": {
+     "a": "Narx",
+     "b": "Qiymat",
+     "umumiy": [
+      "pul bilan bog‘liq",
+      "xaridda ishlatiladi"
+     ],
+     "a_farq": [
+      "bittasining puli",
+      "bo‘lish bilan topiladi"
+     ],
+     "b_farq": [
+      "jami pul",
+      "ko‘paytirish bilan topiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Narx, miqdor, qiymat",
+     "shoxlar": [
+      {
+       "nom": "Narx",
+       "bandlar": [
+        "qiymat bo‘linsin miqdorga"
+       ]
+      },
+      {
+       "nom": "Miqdor",
+       "bandlar": [
+        "qiymat bo‘linsin narxga"
+       ]
+      },
+      {
+       "nom": "Qiymat",
+       "bandlar": [
+        "narx ko‘paytirilsin miqdorga"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "bozor",
+        "do‘kon"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men jami to‘langan pulman. Men kimman?",
+     "javob": "qiymat"
+    },
+    "hikmat": "Narxni bil — pulni sana.",
+    "kalit_soz": "NARX",
+    "xato_yechim": {
+     "shart": "1 kg olma 12 so‘m. 5 kg qancha turadi?",
+     "xato": "17",
+     "togri": "60 so‘m",
+     "sabab": "qiymatni topishda ko‘paytiramiz: 12 · 5"
+    },
+    "guruh_nomlari": [
+     "Narxchilar",
+     "Hisobchilar",
+     "Sotuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bizning bozor»",
+     "topshiriq": "Guruh bozorda sotuvchi va xaridor bo‘lib hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "1 kg olma 12 so‘m. 5 kg qancha turadi?",
+     "B": "Daftar 8 so‘m. 96 so‘mga nechta daftar olamiz?",
+     "C": "6 ta qalam 150 so‘m. Bitta qalam necha so‘m?"
+    },
+    "sinkveyn": [
+     "Narx",
+     "pul, son",
+     "to‘laymiz, sotamiz, hisoblaymiz",
+     "Bozor hisobi",
+     "Pul"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh bozor masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: 12 · 5",
+      "2-guruh: 96 / 8",
+      "3-guruh: 150 / 6",
+      "4-guruh: 8 · 15"
+     ],
+     "yakun": "Natijalar: 60; 12; 25; 120."
+    }
+   }
+  },
+  {
+   "mavzu": "Tarkibli tenglamalarni yechish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tenglama nima?",
+      "matn": "Tenglama — noma’lum son qatnashgan tenglik. Noma’lumni x harfi bilan belgilaymiz. Tenglamani yechish — x ning qiymatini topish.",
+      "misol": "3 · x + 5 teng 20. Noma’lum x ni topamiz.",
+      "savol": "Tenglamada noma’lum qaysi harf bilan belgilanadi?",
+      "javob": "x",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tarkibli tenglama",
+      "matn": "Tarkibli tenglamada bir nechta amal bo‘ladi. Uni qadamma-qadam yechamiz: avval oxirgi amalni teskari amal bilan bajaramiz.",
+      "misol": "3 · x + 5 teng 20. 3 · x — noma’lum qo‘shiluvchi: 20 − 5 — 15. So‘ng x — 15 / 3 — 5.",
+      "savol": "20 − 5 nechaga teng?",
+      "javob": "15",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirish va ayirish",
+      "matn": "2 · x − 4 teng 10. Avval ayriluvchini topamiz: 10 + 4 — 14. So‘ng x — 14 / 2 — 7.",
+      "misol": "Tekshirish: 2 · 7 − 4 — 10. To‘g‘ri.",
+      "savol": "10 + 4 nechaga teng?",
+      "javob": "14",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qavsli tenglama",
+      "matn": "(x + 3) · 4 teng 32. Avval qavs ichini topamiz: 32 / 4 — 8. So‘ng x — 8 − 3 — 5.",
+      "misol": "Tekshirish: (5 + 3) · 4 — 32. To‘g‘ri.",
+      "savol": "32 / 4 nechaga teng?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshiramiz",
+      "matn": "Tenglamani yechgach, topilgan x ni o‘rniga qo‘yib tekshiramiz. Ikki tomon teng bo‘lishi kerak.",
+      "misol": "x teng 5 bo‘lsa, 3 · 5 + 5 — 20. Tekshirish to‘g‘ri.",
+      "savol": "3 · 5 + 5 nechaga teng?",
+      "javob": "20",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tarkibli tenglamada oxirgi amalning teskarisini avval bajaramiz. Keyin x ni topamiz va tekshiramiz.",
+    "misollar": [
+     {
+      "shart": "3 · x + 5 teng 20 tenglamasini yeching.",
+      "yechim": [
+       "3 · x — 20 − 5 — 15.",
+       "x — 15 / 3.",
+       "x teng 5. Tekshirish: 3 · 5 + 5 — 20."
+      ],
+      "javob": "5"
+     },
+     {
+      "shart": "2 · x − 4 teng 10 tenglamasini yeching.",
+      "yechim": [
+       "2 · x — 10 + 4 — 14.",
+       "x — 14 / 2.",
+       "x teng 7. Tekshirish: 2 · 7 − 4 — 10."
+      ],
+      "javob": "7"
+     },
+     {
+      "shart": "(x + 3) · 4 teng 32 tenglamasini yeching.",
+      "yechim": [
+       "x + 3 — 32 / 4 — 8.",
+       "x — 8 − 3.",
+       "x teng 5. Tekshirish: (5 + 3) · 4 — 32."
+      ],
+      "javob": "5"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tenglama yechamiz",
+      "topshiriq": "Berilgan tenglamalarni qadamma-qadam yeching.",
+      "yechim": "Natijalar tekshiriladi.",
+      "mahsulot": "tenglamalar varag‘i"
+     },
+     {
+      "nom": "Teskari amal",
+      "topshiriq": "Har amalning teskarisini yozing.",
+      "yechim": "Qo‘shish — ayirish, ko‘paytirish — bo‘lish.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Tenglama tuzamiz",
+      "topshiriq": "Masalaga mos tenglama tuzing.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala kartochkasi"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Barcha javoblarni o‘rniga qo‘yib tekshiring.",
+      "yechim": "3 · 5 + 5 — 20.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "20 − 5 nechaga teng?",
+      "javob": "15"
+     },
+     {
+      "shart": "15 / 3 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "10 + 4 nechaga teng?",
+      "javob": "14"
+     },
+     {
+      "shart": "14 / 2 nechaga teng?",
+      "javob": "7"
+     },
+     {
+      "shart": "32 / 4 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "8 − 3 nechaga teng?",
+      "javob": "5"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Amallarni teskari bajarmaydi",
+      "sabab": "tartibni adashtiradi",
+      "oldini_olish": "oxirgi amalning teskarisi"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "x ni qo‘yib tekshirish"
+     },
+     {
+      "xato": "Qavsni e’tiborsiz qoldiradi",
+      "sabab": "qavs ichini hisoblamaydi",
+      "oldini_olish": "avval qavs ichi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "noma’lumni topish"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "algoritm va noma’lum o‘zgaruvchi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "kalkulyator va dasturlash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tenglamalar albomi»",
+     "muammo": "Tenglama yechishni qanday qilib rasm bilan tushuntiramiz?",
+     "mahsulot": "tenglamalar albomi",
+     "bosqichlar": [
+      "tenglama tanlash",
+      "qadamlarni yozish",
+      "yechish",
+      "tekshirish",
+      "albom yasash"
+     ],
+     "guruh_vazifalari": [
+      "Tenglama tanlang",
+      "Qadamlarni yozing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tenglama to‘g‘ri",
+      "qadamlar aniq",
+      "yechim to‘g‘ri",
+      "albom chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Noma’lum shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "3 · x + 5 teng 20.",
+       "topshiriq": "x?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "2 · x − 4 teng 10.",
+       "topshiriq": "x?",
+       "javob": "7",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "(x + 3) · 4 teng 32.",
+       "topshiriq": "x?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "x / 4 + 6 teng 10.",
+       "topshiriq": "x?",
+       "javob": "16",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi amalni birinchi bajardingiz?",
+      "Tekshirdingizmi?",
+      "Qaysi tenglama qiyin edi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tenglama",
+      "tarif": "noma’lum qatnashgan tenglik"
+     },
+     {
+      "atama": "Noma’lum",
+      "tarif": "topilishi kerak bo‘lgan son"
+     },
+     {
+      "atama": "Teskari amal",
+      "tarif": "qarama-qarshi amal"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "x ni qo‘yib aniqlash"
+     },
+     {
+      "atama": "Tarkibli",
+      "tarif": "bir necha amalli"
+     },
+     {
+      "atama": "Ildiz",
+      "tarif": "tenglamani to‘g‘rilaydigan son"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tenglamada noma’lum x bilan belgilanadi",
+      "togri": true,
+      "izoh": "odatda x"
+     },
+     {
+      "matn": "3 · x + 5 teng 20 da x teng 6",
+      "togri": false,
+      "izoh": "5"
+     },
+     {
+      "matn": "2 · x − 4 teng 10 da x teng 7",
+      "togri": true,
+      "izoh": "14 / 2"
+     },
+     {
+      "matn": "(x + 3) · 4 teng 32 da x teng 5",
+      "togri": true,
+      "izoh": "8 − 3"
+     },
+     {
+      "matn": "Tenglamani tekshirish shart emas",
+      "togri": false,
+      "izoh": "tekshirish kerak"
+     },
+     {
+      "matn": "Oxirgi amalning teskarisi avval bajariladi",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "x / 4 + 6 teng 10 da x teng 16",
+      "togri": true,
+      "izoh": "4 · 4"
+     },
+     {
+      "matn": "Ayirishning teskarisi — ayirish",
+      "togri": false,
+      "izoh": "qo‘shish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Noma’lum qanday belgilanadi?",
+      "javob": "x harfi bilan"
+     },
+     {
+      "savol": "Qo‘shishning teskarisi?",
+      "javob": "ayirish"
+     },
+     {
+      "savol": "Ko‘paytirishning teskarisi?",
+      "javob": "bo‘lish"
+     },
+     {
+      "savol": "3 · x + 5 teng 20 da x?",
+      "javob": "5"
+     },
+     {
+      "savol": "2 · x − 4 teng 10 da x?",
+      "javob": "7"
+     },
+     {
+      "savol": "(x + 3) · 4 teng 32 da x?",
+      "javob": "5"
+     },
+     {
+      "savol": "20 − 5?",
+      "javob": "15"
+     },
+     {
+      "savol": "14 / 2?",
+      "javob": "7"
+     },
+     {
+      "savol": "32 / 4?",
+      "javob": "8"
+     },
+     {
+      "savol": "Tekshirish usuli?",
+      "javob": "x ni qo‘yish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Teskari",
+      "matn": "Teskari amalni top.",
+      "savol": "Qo‘shishniki?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Qadamni bajar.",
+      "savol": "20 − 5?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "x ni top.",
+      "savol": "15 / 3?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "x ni qo‘y.",
+      "savol": "3 · 5 + 5?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tenglamani yechgach, x ni qo‘yib tekshiramiz?",
+    "keys": {
+     "vaziyat": "Sizda noma’lum son bor: uni 3 ga ko‘paytirib, 5 qo‘shsak 20 bo‘ladi.",
+     "savollar": [
+      "Tenglamani qanday yozamiz?",
+      "Noma’lum son nechta?"
+     ]
+    },
+    "tezis": "Teskari amal — kalit",
+    "taqqoslash": {
+     "a": "Oddiy tenglama",
+     "b": "Tarkibli tenglama",
+     "umumiy": [
+      "noma’lum x bor",
+      "teskari amal ishlatiladi"
+     ],
+     "a_farq": [
+      "bitta amal",
+      "bir qadam"
+     ],
+     "b_farq": [
+      "bir necha amal",
+      "bir necha qadam"
+     ]
+    },
+    "klaster": {
+     "markaz": "Tarkibli tenglama",
+     "shoxlar": [
+      {
+       "nom": "Tenglama",
+       "bandlar": [
+        "noma’lum x"
+       ]
+      },
+      {
+       "nom": "Qadam 1",
+       "bandlar": [
+        "oxirgi amalning teskarisi"
+       ]
+      },
+      {
+       "nom": "Qadam 2",
+       "bandlar": [
+        "x ni top"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "x ni qo‘y"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yashirinman, lekin topsangiz tenglamani to‘g‘rilayman. Men kimman?",
+     "javob": "noma’lum x"
+    },
+    "hikmat": "Noma’lum izla, teskari amal bilan top.",
+    "kalit_soz": "TENGLAMA",
+    "xato_yechim": {
+     "shart": "3 · x + 5 teng 20 ni yeching.",
+     "xato": "x teng 25 / 3",
+     "togri": "x teng 5",
+     "sabab": "avval 20 − 5 — 15, keyin 15 / 3"
+    },
+    "guruh_nomlari": [
+     "Tenglamachilar",
+     "Noma’lumchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Noma’lumni izlaymiz»",
+     "topshiriq": "Guruh tenglamalarni yechib, javobni tekshiradi."
+    },
+    "vazifalar": {
+     "A": "3 · x + 5 teng 20 va 2 · x − 4 teng 10 ni yeching.",
+     "B": "(x + 3) · 4 teng 32 ni yeching.",
+     "C": "x / 4 + 6 teng 10 ni yeching va tekshiring."
+    },
+    "sinkveyn": [
+     "Tenglama",
+     "noma’lumli, tengli",
+     "yechiladi, tekshiriladi, topiladi",
+     "Noma’lum x",
+     "Tenglik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tenglamalarni yechadi.",
+     "qismlar": [
+      "1-guruh: 3 · x + 5 teng 20",
+      "2-guruh: 2 · x − 4 teng 10",
+      "3-guruh: (x + 3) · 4 teng 32",
+      "4-guruh: x / 4 + 6 teng 10"
+     ],
+     "yakun": "Natijalar: 5; 7; 5; 16."
+    }
+   }
+  },
+  {
+   "mavzu": "Diagrammalar va ularning turlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Diagramma nima?",
+      "matn": "Diagramma — ma’lumotlarni rasm ko‘rinishida ko‘rsatish. Raqamlar jadvaliga qaraganda rasmni tushunish osonroq.",
+      "misol": "Sinfda 30 o‘quvchi: baho 5 olganlar 8 ta, 4 olganlar 12 ta, 3 olganlar 6 ta, 2 olganlar 4 ta.",
+      "savol": "Diagramma nima uchun kerak?",
+      "javob": "ma’lumotni rasmda ko‘rsatish uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ustunli diagramma",
+      "matn": "Ustunli diagrammada har bir ma’lumot ustun bilan ko‘rsatiladi. Ustun qancha baland bo‘lsa, son shuncha katta.",
+      "misol": "Baholar: 5 — 8 ta, 4 — 12 ta, 3 — 6 ta, 2 — 4 ta. Eng baland ustun 4 bahoniki.",
+      "savol": "Eng ko‘p qaysi baho olingan?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chiziqli diagramma",
+      "matn": "Chiziqli diagramma vaqt o‘tishi bilan o‘zgarishni ko‘rsatadi. Nuqtalar chiziq bilan tutashtiriladi.",
+      "misol": "4 kunlik harorat: 10, 12, 15, 13 daraja. Eng issiq kun — uchinchi, harorat 15.",
+      "savol": "Eng issiq kunda harorat necha daraja?",
+      "javob": "15",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Doiraviy diagramma",
+      "matn": "Doiraviy diagramma butunning qismlarini ko‘rsatadi. Doira bo‘laklarga bo‘linadi.",
+      "misol": "30 o‘quvchining yarmi 15 nafar. Bu doiraning yarmi.",
+      "savol": "30 ning yarmi nechaga teng?",
+      "javob": "15",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Diagramma tanlash",
+      "matn": "Har xil ma’lumotga mos diagramma tanlaymiz: taqqoslash uchun ustunli, o‘zgarish uchun chiziqli, qismlar uchun doiraviy.",
+      "misol": "Baholarni taqqoslash — ustunli. Harorat o‘zgarishi — chiziqli. Sinf tarkibi — doiraviy.",
+      "savol": "Harorat o‘zgarishi uchun qaysi diagramma mos?",
+      "javob": "chiziqli",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ustunli — taqqoslash. Chiziqli — o‘zgarish. Doiraviy — butunning qismlari.",
+    "misollar": [
+     {
+      "shart": "Baholar: 5 — 8 ta, 4 — 12 ta, 3 — 6 ta, 2 — 4 ta. Jami nechta o‘quvchi?",
+      "yechim": [
+       "8 + 12 — 20.",
+       "20 + 6 + 4 — 30.",
+       "Jami 30 o‘quvchi."
+      ],
+      "javob": "30"
+     },
+     {
+      "shart": "Qaysi baho eng ko‘p, qaysi eng kam olingan?",
+      "yechim": [
+       "Eng ko‘p: 4, uning soni 12.",
+       "Eng kam: 2, uning soni 4.",
+       "Farq: 12 − 4 — 8."
+      ],
+      "javob": "4 va 2"
+     },
+     {
+      "shart": "Harorat 10, 12, 15, 13 daraja. Eng issiq va eng sovuq kun farqi?",
+      "yechim": [
+       "Eng issiq 15, eng sovuq 10.",
+       "Farq: 15 − 10.",
+       "Javob 5 daraja."
+      ],
+      "javob": "5 daraja"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ustunli diagramma chizamiz",
+      "topshiriq": "Baholar uchun ustunli diagramma chizing.",
+      "yechim": "Ustun balandligi sonni bildiradi.",
+      "mahsulot": "diagramma varag‘i"
+     },
+     {
+      "nom": "Chiziqli diagramma chizamiz",
+      "topshiriq": "Haroratni chiziqli diagrammada ko‘rsating.",
+      "yechim": "Nuqtalarni chiziq bilan ulang.",
+      "mahsulot": "diagramma varag‘i"
+     },
+     {
+      "nom": "Diagramma o‘qiymiz",
+      "topshiriq": "Berilgan diagramma bo‘yicha savollarga javob bering.",
+      "yechim": "Javoblar tekshiriladi.",
+      "mahsulot": "savollar varag‘i"
+     },
+     {
+      "nom": "Tur tanlaymiz",
+      "topshiriq": "Ma’lumotga mos diagramma turini tanlang.",
+      "yechim": "Tanlov asoslanadi.",
+      "mahsulot": "ma’lumotlar kartochkasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "8 + 12 + 6 + 4 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "12 − 4 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "15 − 10 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "30 ning yarmi nechaga teng?",
+      "javob": "15"
+     },
+     {
+      "shart": "Taqqoslash uchun qaysi diagramma mos?",
+      "javob": "ustunli"
+     },
+     {
+      "shart": "O‘zgarish uchun qaysi diagramma mos?",
+      "javob": "chiziqli"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Diagrammani noto‘g‘ri o‘qiydi",
+      "sabab": "ustun balandligiga qaramaydi",
+      "oldini_olish": "balandlik sonni bildiradi"
+     },
+     {
+      "xato": "Noto‘g‘ri tur tanlaydi",
+      "sabab": "ma’lumot turini bilmaydi",
+      "oldini_olish": "taqqoslash — ustunli, o‘zgarish — chiziqli"
+     },
+     {
+      "xato": "Sarlavha yozmaydi",
+      "sabab": "diagrammani izohlamaydi",
+      "oldini_olish": "sarlavha va birliklarni yozish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "kuzatuv natijalarini diagrammada ko‘rsatish"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "xarajat va daromad diagrammasi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "jadval va diagramma"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinfimiz diagrammasi»",
+     "muammo": "Sinfimiz haqida ma’lumot yig‘ib, diagramma qanday chizamiz?",
+     "mahsulot": "diagrammalar albomi",
+     "bosqichlar": [
+      "so‘rov o‘tkazish",
+      "jadval tuzish",
+      "diagramma chizish",
+      "xulosa yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "So‘rov o‘tkazing",
+      "Jadval tuzing",
+      "Diagramma chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "ma’lumot aniq",
+      "diagramma to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Diagrammalar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Ustunli gulzor",
+       "matn": "Baholar: 8, 12, 6, 4.",
+       "topshiriq": "Jami?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "Ustunli gulzor 2",
+       "matn": "Eng baland ustun 12, eng past 4.",
+       "topshiriq": "Farq?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "Chiziqli gulzor",
+       "matn": "Harorat 10 va 15.",
+       "topshiriq": "Farq?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Doiraviy gulzor",
+       "matn": "30 ning yarmi.",
+       "topshiriq": "Nechta?",
+       "javob": "15",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi diagramma oson o‘qildi?",
+      "Qaysi turni tanladingiz?",
+      "Nima uchun?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Diagramma",
+      "tarif": "ma’lumotning rasmi"
+     },
+     {
+      "atama": "Ustunli",
+      "tarif": "ustunlar bilan ko‘rsatish"
+     },
+     {
+      "atama": "Chiziqli",
+      "tarif": "chiziq bilan ko‘rsatish"
+     },
+     {
+      "atama": "Doiraviy",
+      "tarif": "doira bo‘laklari bilan ko‘rsatish"
+     },
+     {
+      "atama": "Ma’lumot",
+      "tarif": "sonlar va faktlar"
+     },
+     {
+      "atama": "Sarlavha",
+      "tarif": "diagramma nomi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Diagramma ma’lumotni rasm ko‘rinishida ko‘rsatadi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Ustun baland bo‘lsa, son kichik",
+      "togri": false,
+      "izoh": "katta"
+     },
+     {
+      "matn": "Chiziqli diagramma o‘zgarishni ko‘rsatadi",
+      "togri": true,
+      "izoh": "vaqt bo‘yicha"
+     },
+     {
+      "matn": "Doiraviy diagramma butunning qismlarini ko‘rsatadi",
+      "togri": true,
+      "izoh": "bo‘laklar"
+     },
+     {
+      "matn": "Baholar yig‘indisi 30",
+      "togri": true,
+      "izoh": "8 + 12 + 6 + 4"
+     },
+     {
+      "matn": "Eng issiq kun harorati 10",
+      "togri": false,
+      "izoh": "15"
+     },
+     {
+      "matn": "Taqqoslash uchun doiraviy diagramma eng mos",
+      "togri": false,
+      "izoh": "ustunli"
+     },
+     {
+      "matn": "Diagramma sarlavhasi kerak",
+      "togri": true,
+      "izoh": "izoh"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Diagramma nima?",
+      "javob": "ma’lumotning rasmi"
+     },
+     {
+      "savol": "Taqqoslash uchun?",
+      "javob": "ustunli"
+     },
+     {
+      "savol": "O‘zgarish uchun?",
+      "javob": "chiziqli"
+     },
+     {
+      "savol": "Qismlar uchun?",
+      "javob": "doiraviy"
+     },
+     {
+      "savol": "8 + 12 + 6 + 4?",
+      "javob": "30"
+     },
+     {
+      "savol": "12 − 4?",
+      "javob": "8"
+     },
+     {
+      "savol": "15 − 10?",
+      "javob": "5"
+     },
+     {
+      "savol": "30 ning yarmi?",
+      "javob": "15"
+     },
+     {
+      "savol": "Ustun baland bo‘lsa?",
+      "javob": "son katta"
+     },
+     {
+      "savol": "Sarlavha nima uchun?",
+      "javob": "diagrammani izohlash uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qara",
+      "matn": "Diagrammaga qara.",
+      "savol": "Qaysi ustun baland?"
+     },
+     {
+      "nom": "O‘qi",
+      "matn": "Sonni o‘qi.",
+      "savol": "12 ta"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ustunlarni solishtir.",
+      "savol": "12 va 4?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qaysi baho ko‘p?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ma’lumotni diagrammada ko‘rsatish qulay?",
+    "keys": {
+     "vaziyat": "Sinfda 30 o‘quvchi bor. Baholar: 5 — 8 ta, 4 — 12 ta, 3 — 6 ta, 2 — 4 ta.",
+     "savollar": [
+      "Qaysi diagramma mos keladi?",
+      "Eng ko‘p qaysi baho?"
+     ]
+    },
+    "tezis": "Rasm so‘zdan tushunarli",
+    "taqqoslash": {
+     "a": "Ustunli diagramma",
+     "b": "Chiziqli diagramma",
+     "umumiy": [
+      "ma’lumotni ko‘rsatadi",
+      "sarlavhasi bor"
+     ],
+     "a_farq": [
+      "taqqoslaydi",
+      "ustunlar"
+     ],
+     "b_farq": [
+      "o‘zgarishni ko‘rsatadi",
+      "chiziq"
+     ]
+    },
+    "klaster": {
+     "markaz": "Diagrammalar",
+     "shoxlar": [
+      {
+       "nom": "Ustunli",
+       "bandlar": [
+        "taqqoslash"
+       ]
+      },
+      {
+       "nom": "Chiziqli",
+       "bandlar": [
+        "o‘zgarish"
+       ]
+      },
+      {
+       "nom": "Doiraviy",
+       "bandlar": [
+        "qismlar"
+       ]
+      },
+      {
+       "nom": "O‘qish",
+       "bandlar": [
+        "sarlavha",
+        "sonlar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ma’lumotni rasmda ko‘rsataman. Men kimman?",
+     "javob": "diagramma"
+    },
+    "hikmat": "Bir rasm — ming so‘z.",
+    "kalit_soz": "DIAGRAMMA",
+    "xato_yechim": {
+     "shart": "Baholar 8, 12, 6, 4. Jami necha o‘quvchi?",
+     "xato": "26",
+     "togri": "30",
+     "sabab": "8 + 12 + 6 + 4 — 30"
+    },
+    "guruh_nomlari": [
+     "Diagrammachilar",
+     "Ustunchilar",
+     "Chiziqchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinf diagrammasi»",
+     "topshiriq": "Guruh ma’lumot yig‘ib, diagramma chizadi."
+    },
+    "vazifalar": {
+     "A": "Baholar uchun ustunli diagramma chizing.",
+     "B": "Harorat 10, 12, 15, 13 uchun chiziqli diagramma chizing.",
+     "C": "Diagramma bo‘yicha jami va farqni toping."
+    },
+    "sinkveyn": [
+     "Diagramma",
+     "rangli, tushunarli",
+     "ko‘rsatadi, solishtiradi, tushuntiradi",
+     "Rasmli son",
+     "Chizma"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh diagramma bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: ustunli",
+      "2-guruh: chiziqli",
+      "3-guruh: doiraviy",
+      "4-guruh: o‘qish"
+     ],
+     "yakun": "Natijalar: jami 30; farq 8; farq 5; yarmi 15."
+    }
+   }
   }
  ]
 }
