@@ -1398,6 +1398,1404 @@
      "yakun": "Modullar: 7, 3, 2, 5. Eng katta — 7 (A), eng kichik — 2 (C). O‘sish tartibi: 2, 3, 5, 7."
     }
    }
+  },
+  {
+   "mavzu": "Butun sonlar bilan amallar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Bir xil ishorali sonlarni qo‘shish",
+      "matn": "Ikki musbat sonni qo‘shsak, moduli bu sonlar modullari yig‘indisiga teng musbat son chiqadi. Ikki manfiy sonni qo‘shganda, modullarni qo‘shib, natijaga minus ishorasi qo‘yiladi. Sonlar o‘qida buni bir tomonga ketma-ket qadam tashlash deb tasavvur qilamiz.",
+      "misol": "Harorat −3 daraja edi va yana 4 darajaga pasaydi. Ikkalasi ham pasayish: 3 va 4 qo‘shiladi, natija −7 daraja.",
+      "savol": "−5 ga −2 ni qo‘shsak, nima chiqadi?",
+      "javob": "−7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Turli ishorali sonlarni qo‘shish",
+      "matn": "Turli ishorali sonlarni qo‘shishda modullardan kattasidan kichigi ayiriladi, natijaga moduli katta sonning ishorasi qo‘yiladi. Qarama-qarshi sonlar yig‘indisi nolga teng.",
+      "misol": "5 ga −8 ni qo‘shamiz: modullar 5 va 8, katta modul 8, ayirma 3, katta modulli son manfiy, demak natija −3. 7 ga −7 ni qo‘shsak, nol chiqadi.",
+      "savol": "10 ga −4 ni qo‘shsak, nima chiqadi?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ayirish — qarama-qarshisini qo‘shish",
+      "matn": "Songa boshqa sonni ayirish uchun unga ayriluvchining qarama-qarshi sonini qo‘shish kifoya. Shu qoida bilan ayirish har doim qo‘shishga keltiriladi. Qoida: a dan b ni ayirish — a ga b ning qarama-qarshi sonini qo‘shish demak.",
+      "misol": "3 dan 5 ni ayirish uchun 3 ga −5 ni qo‘shamiz: natija −2. −4 dan −6 ni ayirish uchun −4 ga 6 ni qo‘shamiz: natija 2.",
+      "savol": "2 dan 7 ni ayirsak, nima chiqadi?",
+      "javob": "−5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirish qoidasi",
+      "matn": "Ikki sonning ko‘paytmasi: ishoralari bir xil bo‘lsa, musbat; turlicha bo‘lsa, manfiy. Modullar ko‘paytiriladi. Nolga ko‘paytma nolga teng. Eslab qolish: «bir xil ishorali — plyus, turli ishorali — minus».",
+      "misol": "6 ni −3 ga ko‘paytirsak, −18. −4 ni −5 ga ko‘paytirsak, 20, chunki ikkalasi manfiy.",
+      "savol": "−7 ni 3 ga ko‘paytirsak nima chiqadi?",
+      "javob": "−21",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bo‘lish qoidasi",
+      "matn": "Bo‘lishning ishora qoidasi ko‘paytirishniki bilan bir xil: bir xil ishorali sonlar bo‘linmasi musbat, turli ishorali sonlar bo‘linmasi manfiy. Nolni nolga teng bo‘lmagan songa bo‘lsak, nol chiqadi; nolga bo‘lish mumkin emas.",
+      "misol": "−20 ni 4 ga bo‘lsak −5; −18 ni −3 ga bo‘lsak 6.",
+      "savol": "−30 ni 5 ga bo‘lsak nima chiqadi?",
+      "javob": "−6",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Bir xil ishorali sonlar yig‘indisi: modullar qo‘shiladi, ishora saqlanadi. Turli ishorali sonlar yig‘indisi: modullar ayirmasi, ishora katta modulniki. Ayirish — qarama-qarshisini qo‘shish. Ko‘paytma va bo‘linmada bir xil ishora — musbat, turli ishora — manfiy.",
+    "misollar": [
+     {
+      "shart": "Hisoblang: harorat −6 daraja edi, 9 darajaga ko‘tarildi. Yangi harorat?",
+      "yechim": [
+       "Turli ishorali sonlarni qo‘shamiz: modullar 6 va 9.",
+       "Katta modul 9 (musbat), ayirma — 3.",
+       "Natija musbat: 3 daraja."
+      ],
+      "javob": "3 daraja"
+     },
+     {
+      "shart": "Qaysi son 8 dan 15 ga kichik?",
+      "yechim": [
+       "Kichik son — 8 dan 15 ni ayiramiz.",
+       "8 dan 15 ayirish — 8 ga −15 ni qo‘shish.",
+       "Modullar ayirmasi 7, ishora manfiy: −7."
+      ],
+      "javob": "−7"
+     },
+     {
+      "shart": "Savdogar kuniga 12 ming so‘m zarar qildi. 5 kun zarar davomida jami natijasi qancha?",
+      "yechim": [
+       "Zarar — manfiy son, 12 ni −12 deb olamiz.",
+       "5 ta manfiy qo‘shiluvchi: −12 ni 5 ga ko‘paytiramiz.",
+       "Modullar ko‘paytmasi 60, ishora manfiy: −60."
+      ],
+      "javob": "−60 ming so‘m"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Termometr hisobi",
+      "topshiriq": "Dushanba kuni harorat −4 edi. Seshanba kuni 7 darajaga ko‘tarildi, chorshanba kuni 5 darajaga pasaydi. Chorshanbadagi haroratni toping.",
+      "yechim": "Seshanba: −4 ga 7 qo‘shamiz — 3 daraja. Chorshanba: 3 dan 5 ayiramiz — −2 daraja.",
+      "mahsulot": "termometr chizmasi"
+     },
+     {
+      "nom": "Ishora poygasi",
+      "topshiriq": "Kartochkalarda sonlar yozilgan. Ikkita kartochka tanlab, ko‘paytmasini toping: −3, 4, −5, 2. Eng katta va eng kichik ko‘paytmani toping.",
+      "yechim": "Eng katta: −3 va −5 ko‘paytmasi 15. Eng kichik: −5 va 4 ko‘paytmasi −20.",
+      "mahsulot": "ko‘paytmalar jadvali"
+     },
+     {
+      "nom": "Hisob daftari",
+      "topshiriq": "Do‘kon haftalik foyda va zararlari (ming so‘mda): 30, −10, −25, 15, −5. Haftalik umumiy natija?",
+      "yechim": "Foydalar: 30 va 15 — jami 45. Zararlar: 10, 25 va 5 — jami 40. Umumiy natija: 45 dan 40 ni ayirsak, 5 ming so‘m foyda.",
+      "mahsulot": "hisob daftari"
+     },
+     {
+      "nom": "Lift o‘yini",
+      "topshiriq": "Lift 2-qavatdan boshlab: 5 qavat pastga, 3 qavat yuqoriga, 4 qavat pastga harakatlandi. Oxirgi qavat?",
+      "yechim": "Pastga 5: −3. Yuqoriga 3: 0. Pastga 4: −4. Lift −4 qavatda to‘xtadi.",
+      "mahsulot": "lift yo‘li chizmasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "−8 ga 3 ni qo‘shing.",
+      "javob": "−5"
+     },
+     {
+      "shart": "−4 ga −9 ni qo‘shing.",
+      "javob": "−13"
+     },
+     {
+      "shart": "5 dan 12 ni ayiring.",
+      "javob": "−7"
+     },
+     {
+      "shart": "−6 ni −7 ga ko‘paytiring.",
+      "javob": "42"
+     },
+     {
+      "shart": "−48 ni 6 ga bo‘ling.",
+      "javob": "−8"
+     },
+     {
+      "shart": "−15 ni −3 ga bo‘ling.",
+      "javob": "5"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "−3 ga −4 ni qo‘shib, 1 deb yozadi",
+      "sabab": "ikkala sonning ishorasini e’tiborsiz qoldiradi",
+      "oldini_olish": "sonlar o‘qida ikkala qadam ham chapga ketishini chizish"
+     },
+     {
+      "xato": "Manfiy sonlar ko‘paytmasini manfiy deb oladi",
+      "sabab": "ishora qoidasini yodlamagan",
+      "oldini_olish": "«bir xil ishora — plyus» qoidasini jadvalda mashq qilish"
+     },
+     {
+      "xato": "Ayirishda qarama-qarshi songa o‘tkazmaydi",
+      "sabab": "ayirishni bevosita bajarishga urinadi",
+      "oldini_olish": "avval ayirishni qo‘shishga aylantirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "harorat o‘zgarishi, chuqurlik va balandlik manfiy sonlar bilan hisoblanadi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "daromad va zarar, qarz va to‘lov hisoblari"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "dengiz sathidan balandlik va chuqurlik farqini topish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Oilaviy byudjet»",
+     "muammo": "Oilaning oylik daromad va xarajatlarini manfiy va musbat sonlar bilan qanday hisoblaymiz?",
+     "mahsulot": "oylik byudjet jadvali: daromad musbat, xarajat manfiy",
+     "bosqichlar": [
+      "daromad va xarajatlarni yig‘ish",
+      "musbat va manfiy sonlar bilan yozish",
+      "yig‘indini hisoblash",
+      "xulosa chiqarish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Daromadlarni yozing",
+      "Xarajatlarni yozing",
+      "Qoldiqni toping",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "ishoralar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "jadval tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bank va do‘kon»",
+     "bekatlar": [
+      {
+       "nom": "Bank",
+       "matn": "Hisobda 50 ming so‘m bor, 80 ming so‘m to‘lov o‘tkazildi.",
+       "topshiriq": "Hisobdagi natija?",
+       "javob": "−30 ming so‘m (qarz)",
+       "rasm": ""
+      },
+      {
+       "nom": "Do‘kon",
+       "matn": "Do‘kon kuniga 10 ming so‘m zarar qildi.",
+       "topshiriq": "4 kunda natija?",
+       "javob": "−40 ming so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Meteostansiya",
+       "matn": "Harorat −5 dan 8 darajaga ko‘tarildi.",
+       "topshiriq": "Necha darajaga o‘zgardi?",
+       "javob": "13 daraja",
+       "rasm": ""
+      },
+      {
+       "nom": "Lift",
+       "matn": "Lift −2 qavatdan 3-qavatgacha ko‘tarildi.",
+       "topshiriq": "Necha qavat o‘tdi?",
+       "javob": "5 qavat",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "liftda o‘ynamang",
+      "yo‘lga chiqmang"
+     ],
+     "kundalik": [
+      "Qarama-qarshi sonlar yig‘indisi nechaga teng?",
+      "Qachon natija manfiy bo‘ladi?",
+      "Qayerda manfiy sonlar foydali?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yig‘indi",
+      "tarif": "qo‘shish natijasi"
+     },
+     {
+      "atama": "Ayirma",
+      "tarif": "ayirish natijasi"
+     },
+     {
+      "atama": "Ko‘paytma",
+      "tarif": "ko‘paytirish natijasi"
+     },
+     {
+      "atama": "Bo‘linma",
+      "tarif": "bo‘lish natijasi"
+     },
+     {
+      "atama": "Qarama-qarshi son",
+      "tarif": "ishorasi o‘zgargan son"
+     },
+     {
+      "atama": "Modul",
+      "tarif": "sondan nolgacha masofa"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qarama-qarshi sonlar yig‘indisi nolga teng",
+      "togri": true,
+      "izoh": "masalan, 5 va −5"
+     },
+     {
+      "matn": "Ikki manfiy son ko‘paytmasi manfiy",
+      "togri": false,
+      "izoh": "bir xil ishorali sonlar ko‘paytmasi musbat"
+     },
+     {
+      "matn": "Ayirishni qo‘shishga keltirish mumkin",
+      "togri": true,
+      "izoh": "qarama-qarshi sonni qo‘shamiz"
+     },
+     {
+      "matn": "Nolga bo‘lish mumkin",
+      "togri": false,
+      "izoh": "nolga bo‘lish mumkin emas"
+     },
+     {
+      "matn": "Turli ishorali sonlar bo‘linmasi manfiy",
+      "togri": true,
+      "izoh": "ishora qoidasi"
+     },
+     {
+      "matn": "Ikki manfiy son yig‘indisi musbat",
+      "togri": false,
+      "izoh": "yig‘indi manfiy bo‘ladi"
+     },
+     {
+      "matn": "Nolga ko‘paytma nolga teng",
+      "togri": true,
+      "izoh": "har qanday son uchun"
+     },
+     {
+      "matn": "Manfiy sonni ayirsak, son kichrayadi",
+      "togri": false,
+      "izoh": "manfiy sonni ayirish — musbatni qo‘shishga teng"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "−2 ga −3 ni qo‘shsak?",
+      "javob": "−5"
+     },
+     {
+      "savol": "5 ga −5 ni qo‘shsak?",
+      "javob": "0"
+     },
+     {
+      "savol": "Ayirish nimaga keltiriladi?",
+      "javob": "qarama-qarshi sonni qo‘shishga"
+     },
+     {
+      "savol": "−4 ni 5 ga ko‘paytirsak?",
+      "javob": "−20"
+     },
+     {
+      "savol": "−4 ni −5 ga ko‘paytirsak?",
+      "javob": "20"
+     },
+     {
+      "savol": "−12 ni 3 ga bo‘lsak?",
+      "javob": "−4"
+     },
+     {
+      "savol": "−12 ni −3 ga bo‘lsak?",
+      "javob": "4"
+     },
+     {
+      "savol": "Nolga bo‘lish mumkinmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "Bir xil ishorali ko‘paytma qanday?",
+      "javob": "musbat"
+     },
+     {
+      "savol": "Turli ishorali ko‘paytma qanday?",
+      "javob": "manfiy"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qo‘shish",
+      "matn": "Bir xil ishorada — modullar yig‘indisi; turli ishorada — ayirma, ishora katta modulniki.",
+      "savol": "−3 ga 8 ni qo‘shsak?"
+     },
+     {
+      "nom": "Ayirish",
+      "matn": "Qarama-qarshisini qo‘shamiz.",
+      "savol": "4 dan 9 ni ayirsak?"
+     },
+     {
+      "nom": "Ko‘paytirish",
+      "matn": "Bir xil ishora — musbat, turli — manfiy.",
+      "savol": "−6 ni 2 ga ko‘paytirsak?"
+     },
+     {
+      "nom": "Bo‘lish",
+      "matn": "Ishora qoidasi ko‘paytirishdagidek.",
+      "savol": "−20 ni −4 ga bo‘lsak?"
+     }
+    ],
+    "muammoli_savol": "Nega ikki manfiy son ko‘paytmasi musbat? Qarz va uni «yo‘qotish» misolida tushuntirib ko‘ring: sizda 3 ta 5 ming so‘mlik qarz bor, siz uni bekor qildingiz.",
+    "keys": {
+     "vaziyat": "Do‘kon sotuvchisi oy boshida hisobda −20 ming so‘mga ega bo‘ldi (qarz). Birinchi haftada 50 ming foyda, ikkinchisida 15 ming zarar, uchinchisida 30 ming foyda qildi.",
+     "savollar": [
+      "Uch haftadan keyin hisobda nechta pul bor?",
+      "Qarz to‘liq yopildimi?"
+     ]
+    },
+    "tezis": "Ishora — yo‘nalish bildiradi",
+    "taqqoslash": {
+     "a": "Qo‘shish",
+     "b": "Ko‘paytirish",
+     "umumiy": [
+      "butun sonlarda bajariladi",
+      "modullar bilan hisoblanadi"
+     ],
+     "a_farq": [
+      "bir xil ishorada ishora saqlanadi",
+      "turli ishorada ayirma"
+     ],
+     "b_farq": [
+      "bir xil ishora — musbat",
+      "turli ishora — manfiy"
+     ]
+    },
+    "klaster": {
+     "markaz": "Butun sonlar bilan amallar",
+     "shoxlar": [
+      {
+       "nom": "Qo‘shish",
+       "bandlar": [
+        "bir xil ishora",
+        "turli ishora",
+        "qarama-qarshi sonlar"
+       ]
+      },
+      {
+       "nom": "Ayirish",
+       "bandlar": [
+        "qarama-qarshisini qo‘shish",
+        "sonlar o‘qi",
+        "farq"
+       ]
+      },
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "ishora qoidasi",
+        "modullar",
+        "nolga ko‘paytma"
+       ]
+      },
+      {
+       "nom": "Bo‘lish",
+       "bandlar": [
+        "ishora qoidasi",
+        "nolga bo‘lish mumkin emas",
+        "tekshirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki manfiy mening ichimda musbatga aylanadi. Men kimman?",
+     "javob": "ko‘paytirish"
+    },
+    "hikmat": "Zarardan so‘ng foyda keladi.",
+    "kalit_soz": "ISHORA",
+    "xato_yechim": {
+     "shart": "−3 ni −4 ga ko‘paytiring.",
+     "xato": "−12",
+     "togri": "12",
+     "sabab": "ikkala son manfiy, bir xil ishorali sonlar ko‘paytmasi musbat"
+    },
+    "guruh_nomlari": [
+     "Plyuslar",
+     "Minuslar",
+     "Nollar",
+     "Hisobchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Kartochka o‘yini»",
+     "topshiriq": "Guruh kartochkalarga −5 dan 5 gacha sonlarni yozadi. Ikki kartochka tanlab, ularni qo‘shadi, ayiradi va ko‘paytiradi. Natijalarni jadvalga yozadi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: −5 ga 3 ni qo‘shing; −7 ga −2 ni qo‘shing; 4 dan 10 ni ayiring; −3 ni 6 ga ko‘paytiring.",
+     "B": "Uyingizda haftalik haroratni yozib, har bir kun orasidagi o‘zgarishni toping.",
+     "C": "Yig‘indisi nolga teng bo‘lgan 5 juft qarama-qarshi sonni yozing va har biri uchun nuqtani sonlar o‘qida belgilang."
+    },
+    "sinkveyn": [
+     "Ishora",
+     "muhim, aniq",
+     "qo‘shadi, ayiradi, aniqlaydi",
+     "Sonning yo‘nalishi",
+     "Plyus minus"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh turli amallarni bajaradi: yig‘indi, ayirma, ko‘paytma va bo‘linma.",
+     "qismlar": [
+      "1-guruh: −6 ga 10 ni qo‘shing",
+      "2-guruh: 3 dan 8 ni ayiring",
+      "3-guruh: −5 ni −4 ga ko‘paytiring",
+      "4-guruh: −24 ni 6 ga bo‘ling"
+     ],
+     "yakun": "Natijalar: 4; −5; 20; −4."
+    }
+   }
+  },
+  {
+   "mavzu": "Ratsional sonlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ratsional son nima?",
+      "matn": "Surati butun son, maxraji natural son bo‘lgan kasr ko‘rinishida yozish mumkin bo‘lgan sonlar ratsional sonlar deyiladi. Ratsional sonlarga butun sonlar, oddiy kasrlar, aralash sonlar va o‘nli kasrlar kiradi, ular musbat, manfiy yoki nol bo‘lishi mumkin.",
+      "misol": "2/3, −5/4, 0,25, −3 va 0 — ratsional sonlar. Masalan, −3 ni −3/1 shaklida yozish mumkin, 0,25 ni esa 1/4 shaklida.",
+      "savol": "0,5 ratsional sonmi?",
+      "javob": "ha, 1/2 ga teng",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonlar to‘plamlari",
+      "matn": "Natural sonlar butun sonlarning qismi, butun sonlar esa ratsional sonlarning qismi. Shuning uchun har bir natural son butun son, har bir butun son ratsional son bo‘ladi. Teskarisi har doim to‘g‘ri emas: 1/2 ratsional son, lekin butun son emas.",
+      "misol": "5 — natural, butun va ratsional son. −2 — butun va ratsional, lekin natural emas. 3/4 — faqat ratsional.",
+      "savol": "−7 qaysi to‘plamlarga tegishli?",
+      "javob": "butun va ratsional",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ratsional sonlarni sonlar o‘qida tasvirlash",
+      "matn": "Ratsional sonlar koordinata to‘g‘ri chizig‘ida nuqtalar bilan ko‘rsatiladi. Kasr sonlar uchun birlik kesma teng qismlarga bo‘linadi. Manfiy ratsional sonlar noldan chapda, musbatlar o‘ngda joylashadi.",
+      "misol": "1/2 soni 0 va 1 orasida, aynan o‘rtasida. −1/2 soni 0 va −1 orasida o‘rtasida turadi.",
+      "savol": "−3/4 soni qaysi ikki butun son orasida?",
+      "javob": "−1 va 0 orasida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qarama-qarshi sonlar va modul",
+      "matn": "Ratsional sonlar uchun ham qarama-qarshi son va modul tushunchalari bor. Qarama-qarshi sonlar faqat ishorasi bilan farq qiladi, modul esa sondan nolgacha bo‘lgan masofa.",
+      "misol": "2/5 ga qarama-qarshi son −2/5. |−0,7| = 0,7 chunki −0,7 nuqta noldan 0,7 birlik uzoqda.",
+      "savol": "−1,5 ga qarama-qarshi son?",
+      "javob": "1,5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ratsional sonlarni taqqoslash",
+      "matn": "Ratsional sonlarni taqqoslashda butun sonlardagi qoidalar saqlanadi: musbat son manfiydan katta; ikki manfiy sondan moduli kichigi katta; ikki musbatdan moduli kattasi katta. Kasrlar umumiy maxrajga keltirilishi yoki o‘nli kasrga o‘tkazilishi mumkin.",
+      "misol": "−0,5 va −0,25 ni taqqoslaymiz: modullar 0,5 va 0,25, kichigi 0,25, demak −0,25 katta.",
+      "savol": "Qaysi biri katta: −1/2 yoki −1/3?",
+      "javob": "−1/3",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ratsional son — surati butun, maxraji natural bo‘lgan kasr ko‘rinishidagi son. Natural ⊂ butun ⊂ ratsional. Ratsional sonlar sonlar o‘qida nuqta bilan ko‘rsatiladi; taqqoslash qoidasi butun sonlardagidek.",
+    "misollar": [
+     {
+      "shart": "Sonlarni o‘sish tartibida joylashtiring: −0,5, 1/4, −1, 0, 3/4.",
+      "yechim": [
+       "Manfiylar: −1 va −0,5; modullar 1 va 0,5. Kichik son — −1.",
+       "Keyin −0,5, nol.",
+       "Musbatlar: 1/4 va 3/4; kichigi 1/4."
+      ],
+      "javob": "−1; −0,5; 0; 1/4; 3/4"
+     },
+     {
+      "shart": "−3/4 va −2/3 ni taqqoslang.",
+      "yechim": [
+       "Umumiy maxraj 12.",
+       "3/4 ni 9/12 deb, 2/3 ni 8/12 deb yozamiz.",
+       "Modullar: 9/12 va 8/12; modul kichik — 8/12.",
+       "Demak, −2/3 katta."
+      ],
+      "javob": "−2/3 > −3/4"
+     },
+     {
+      "shart": "Harorat o‘zgarishi: −2,5 dan 1,5 gacha ko‘tarildi. Qancha darajaga?",
+      "yechim": [
+       "Nol nuqtasidan chapda 2,5, o‘ngda 1,5.",
+       "Ikkalasining modullari yig‘indisi: 2,5 va 1,5 — jami 4.",
+       "Ko‘tarilish: 4 daraja."
+      ],
+      "javob": "4 daraja"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "To‘plamlar xaritasi",
+      "topshiriq": "Sonlar: 7, −3, 1/2, 0, −2,5, 0,75. Ularni natural, butun va ratsional to‘plamlar bo‘yicha guruhlang.",
+      "yechim": "Natural: 7. Butun: 7, −3, 0. Ratsional: hammasi.",
+      "mahsulot": "to‘plamlar diagrammasi"
+     },
+     {
+      "nom": "Sonlar o‘qi",
+      "topshiriq": "−2 dan 2 gacha sonlar o‘qini chizing va −1,5; −1/2; 0,5; 1 1/2 nuqtalarini belgilang.",
+      "yechim": "Birlik kesmani ikkiga bo‘lib, kasr nuqtalarni belgilaymiz: −1,5 va −0,5 chapda, 0,5 va 1,5 o‘ngda.",
+      "mahsulot": "sonlar o‘qi"
+     },
+     {
+      "nom": "Eng katta va eng kichik",
+      "topshiriq": "Sonlar: −0,3; 1/5; −1/2; 0; 0,6. Eng katta va eng kichik sonni toping.",
+      "yechim": "Eng katta — 0,6; eng kichik — −1/2.",
+      "mahsulot": "tartiblangan sonlar"
+     },
+     {
+      "nom": "Harorat jadvali",
+      "topshiriq": "Haftalik haroratlar: −1,5; 0; 2,5; −3; 1,2. Eng sovuq va eng issiq kunni toping.",
+      "yechim": "Eng sovuq — −3, eng issiq — 2,5.",
+      "mahsulot": "harorat jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Taqqoslang: −0,7 va −0,07.",
+      "javob": "−0,07 katta"
+     },
+     {
+      "shart": "1/2 ga qarama-qarshi son?",
+      "javob": "−1/2"
+     },
+     {
+      "shart": "|−2,5| nechaga teng?",
+      "javob": "2,5"
+     },
+     {
+      "shart": "Eng kichik son: −1/2, −2/3, −1/4?",
+      "javob": "−2/3"
+     },
+     {
+      "shart": "0,5 ni oddiy kasr shaklida yozing.",
+      "javob": "1/2"
+     },
+     {
+      "shart": "−3 ratsional sonmi?",
+      "javob": "ha"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Manfiy kasrlarni taqqoslashda noto‘g‘ri xulosa chiqaradi",
+      "sabab": "modul katta bo‘lsa son ham katta deb o‘ylaydi",
+      "oldini_olish": "sonlar o‘qida nuqtalarni ko‘rsatish"
+     },
+     {
+      "xato": "Butun sonni ratsional emas deb hisoblaydi",
+      "sabab": "ratsional sonlarni faqat kasr deb o‘ylaydi",
+      "oldini_olish": "3 ni 3/1 shaklida yozib ko‘rsatish"
+     },
+     {
+      "xato": "−1/2 ni 1/2 dan katta deb oladi",
+      "sabab": "ishorani hisobga olmaydi",
+      "oldini_olish": "manfiylar noldan chapda ekanini chizish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "o‘lchash natijalari kasr va manfiy sonlar bilan ifodalanadi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "foiz, kurs va narx o‘zgarishlari ratsional sonlarda"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "kenglik va balandliklar kasr va manfiy qiymatlarga ega bo‘lishi mumkin"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sonlar oilasi»",
+     "muammo": "Natural, butun va ratsional sonlar qanday bog‘langan?",
+     "mahsulot": "sonlar to‘plamlari plakati va misollar",
+     "bosqichlar": [
+      "to‘plamlarni o‘rganish",
+      "misollar tanlash",
+      "diagramma chizish",
+      "sonlar o‘qini yasash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Natural sonlar to‘plami",
+      "Butun sonlar to‘plami",
+      "Ratsional sonlar to‘plami",
+      "Umumiy diagramma"
+     ],
+     "mezonlar": [
+      "misollar to‘g‘ri",
+      "diagramma aniq",
+      "o‘q to‘g‘ri chizilgan",
+      "plakat tartibli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sonlar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Natural ko‘cha",
+       "matn": "Uylar raqamlari 1, 2, 3, ...",
+       "topshiriq": "Qaysi sonlar to‘plami?",
+       "javob": "natural sonlar",
+       "rasm": ""
+      },
+      {
+       "nom": "Butun maydon",
+       "matn": "Yer ostida va yer ustidagi qavatlar: −2, −1, 0, 1, 2.",
+       "topshiriq": "Qaysi sonlar to‘plami?",
+       "javob": "butun sonlar",
+       "rasm": ""
+      },
+      {
+       "nom": "Kasr bozori",
+       "matn": "Narxlar: 2,5 va 1/2 va −3/4.",
+       "topshiriq": "Qaysi sonlar to‘plami?",
+       "javob": "ratsional sonlar",
+       "rasm": ""
+      },
+      {
+       "nom": "Harorat minorasi",
+       "matn": "Harorat −0,5 darajadan 0,5 gacha ko‘tarildi.",
+       "topshiriq": "Qancha ko‘tarildi?",
+       "javob": "1 daraja",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarga tegmang"
+     ],
+     "kundalik": [
+      "Ratsional sonlar qayerda uchraydi?",
+      "Natural son ratsionalmi?",
+      "Kasr manfiy bo‘ladimi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ratsional son",
+      "tarif": "surati butun, maxraji natural kasr ko‘rinishidagi son"
+     },
+     {
+      "atama": "Butun son",
+      "tarif": "natural son, unga qarama-qarshi son yoki nol"
+     },
+     {
+      "atama": "Natural son",
+      "tarif": "sanash uchun ishlatiladigan son"
+     },
+     {
+      "atama": "Qarama-qarshi son",
+      "tarif": "ishorasi bilan farqlanuvchi son"
+     },
+     {
+      "atama": "Modul",
+      "tarif": "sondan nolgacha masofa"
+     },
+     {
+      "atama": "Maxraj",
+      "tarif": "kasrning bo‘lakka bo‘lingan qismi sonini bildiradi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Har bir butun son ratsional son",
+      "togri": true,
+      "izoh": "3 ni 3/1 shaklida yozish mumkin"
+     },
+     {
+      "matn": "Har bir ratsional son butun son",
+      "togri": false,
+      "izoh": "1/2 butun son emas"
+     },
+     {
+      "matn": "0,25 ratsional son",
+      "togri": true,
+      "izoh": "1/4 ga teng"
+     },
+     {
+      "matn": "−1/3 soni −1/2 dan katta",
+      "togri": true,
+      "izoh": "modul kichik"
+     },
+     {
+      "matn": "Natural sonlar ratsional sonlarning qismi",
+      "togri": true,
+      "izoh": "natural ⊂ butun ⊂ ratsional"
+     },
+     {
+      "matn": "Manfiy kasr noldan katta",
+      "togri": false,
+      "izoh": "manfiy son noldan kichik"
+     },
+     {
+      "matn": "Nol ratsional son",
+      "togri": true,
+      "izoh": "0 ni 0/1 shaklida yozish mumkin"
+     },
+     {
+      "matn": "Ratsional sonlar sonlar o‘qida ko‘rsatilmaydi",
+      "togri": false,
+      "izoh": "ular ham nuqta bilan ko‘rsatiladi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ratsional son nima?",
+      "javob": "kasr ko‘rinishida yozish mumkin bo‘lgan son"
+     },
+     {
+      "savol": "Natural son ratsionalmi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Butun son ratsionalmi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "1/2 butun sonmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "−3/4 ga qarama-qarshi son?",
+      "javob": "3/4"
+     },
+     {
+      "savol": "|−4/5| nechaga teng?",
+      "javob": "4/5"
+     },
+     {
+      "savol": "Qaysi katta: −1 yoki −2?",
+      "javob": "−1"
+     },
+     {
+      "savol": "0,2 ni kasr shaklida yozing.",
+      "javob": "1/5"
+     },
+     {
+      "savol": "Nol ratsionalmi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Ratsional sonlar sonlar o‘qida qayerda?",
+      "javob": "nuqtalar bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Surati butun, maxraji natural kasr ko‘rinishidagi son.",
+      "savol": "Ratsional son nima?"
+     },
+     {
+      "nom": "To‘plamlar",
+      "matn": "Natural, butun va ratsional sonlar bir-birining ichida.",
+      "savol": "5 qaysi to‘plamlarda?"
+     },
+     {
+      "nom": "Sonlar o‘qi",
+      "matn": "Kasrlar birlik kesmani bo‘lib ko‘rsatiladi.",
+      "savol": "1/2 qayerda?"
+     },
+     {
+      "nom": "Taqqoslash",
+      "matn": "Musbat > manfiy; manfiylardan moduli kichigi katta.",
+      "savol": "−1/3 va −1/2 ni taqqoslang."
+     }
+    ],
+    "muammoli_savol": "Ikki sonning orasida yana son bormi? 0 va 1 orasida nechta ratsional son bor? Nega?",
+    "keys": {
+     "vaziyat": "Savdogar mahsulot narxini 2,5 ming so‘mdan 1,75 ming so‘mga tushirdi, keyin yana 0,5 ming so‘mga ko‘tardi. Mijozga yangi narxni aytish kerak.",
+     "savollar": [
+      "Narx qanday o‘zgardi?",
+      "Oxirgi narx qancha?"
+     ]
+    },
+    "tezis": "Sonlar oilasi kengaygan",
+    "taqqoslash": {
+     "a": "Butun son",
+     "b": "Ratsional son",
+     "umumiy": [
+      "sonlar o‘qida joylashadi",
+      "ishorasi bor"
+     ],
+     "a_farq": [
+      "kasr qismi yo‘q",
+      "ratsional sonning qismi"
+     ],
+     "b_farq": [
+      "kasr bo‘lishi mumkin",
+      "butun sonlarni o‘z ichiga oladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ratsional sonlar",
+     "shoxlar": [
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "butun",
+        "kasr",
+        "o‘nli kasr"
+       ]
+      },
+      {
+       "nom": "Ishora",
+       "bandlar": [
+        "musbat",
+        "manfiy",
+        "nol"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "taqqoslash",
+        "modul",
+        "qarama-qarshi"
+       ]
+      },
+      {
+       "nom": "Tasvir",
+       "bandlar": [
+        "sonlar o‘qi",
+        "nuqta",
+        "birlik kesma"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Hamma sonlarni o‘z ichiga olgan katta oilaman: natural, butun va kasr. Men kimman?",
+     "javob": "ratsional sonlar"
+    },
+    "hikmat": "Katta oila — baraka.",
+    "kalit_soz": "RATSIONAL",
+    "xato_yechim": {
+     "shart": "−1/2 va −1/3 ni taqqoslang.",
+     "xato": "−1/2 katta, chunki 1/2 katta",
+     "togri": "−1/3 katta",
+     "sabab": "manfiy sonlarda moduli kichigi katta bo‘ladi"
+    },
+    "guruh_nomlari": [
+     "Natural",
+     "Butun",
+     "Ratsional",
+     "Kasrlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Retsept va harorat»",
+     "topshiriq": "Guruh uch xil retseptdan kasr miqdorlarni (1/2 stakan, 0,25 kg) va muzlatgich haroratlarini (−18, −4) yozib, ularni to‘plamlarga ajratadi."
+    },
+    "vazifalar": {
+     "A": "Sonlarni natural, butun va ratsional to‘plamlarga ajrating: 5, −2, 1/3, 0, 0,5, −7.",
+     "B": "Uydagi 5 ta mahsulotning og‘irligi yoki hajmini kasr ko‘rinishida yozing.",
+     "C": "0 va 1 oralig‘ida 5 ta ratsional son toping va sonlar o‘qida belgilang."
+    },
+    "sinkveyn": [
+     "Ratsional",
+     "keng, boy",
+     "to‘ldiradi, birlashtiradi, o‘lchaydi",
+     "Natural, butun, kasr sonlar oilasi",
+     "Sonlar"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh turli sonlarni to‘plamlarga ajratadi: 8, −5, 3/4, 0, −1/2, 2,5.",
+     "qismlar": [
+      "1-guruh: natural sonlarni toping",
+      "2-guruh: butun sonlarni toping",
+      "3-guruh: ratsional bo‘lmagan sonlarni toping",
+      "4-guruh: sonlarni o‘sish tartibida yozing"
+     ],
+     "yakun": "Natural: 8. Butun: 8, −5, 0. Hammasi ratsional. O‘sish tartibi: −5; −1/2; 0; 3/4; 2,5; 8."
+    }
+   }
+  },
+  {
+   "mavzu": "Nisbat",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nisbat nima?",
+      "matn": "Ikki sonning bo‘linmasi ularning nisbati deyiladi. a ning b ga nisbati a : b yoki a/b shaklida yoziladi. Nisbat birinchi son ikkinchisidan necha marta katta ekanini yoki birinchi son ikkinchisining qancha qismini tashkil etishini ko‘rsatadi.",
+      "misol": "Sinfda 12 ta qiz va 8 ta o‘g‘il bola bor. Qizlar sonining o‘g‘illar soniga nisbati 12 : 8, ya’ni 3 : 2.",
+      "savol": "10 ning 5 ga nisbati nechaga teng?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nisbatning asosiy xossasi",
+      "matn": "Nisbatning ikkala hadini bir xil nolga teng bo‘lmagan songa ko‘paytirish yoki bo‘lish nisbat qiymatini o‘zgartirmaydi. Shu xossadan nisbatni qisqartirish va butun sonlar nisbatiga keltirish uchun foydalaniladi.",
+      "misol": "12 : 8 nisbatni 4 ga qisqartirsak 3 : 2 chiqadi. 0,5 : 1,5 nisbatni 10 ga ko‘paytirib 5 : 15, so‘ng 5 ga qisqartirib 1 : 3 hosil qilamiz.",
+      "savol": "20 : 30 nisbatni qisqartiring.",
+      "javob": "2 : 3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nisbatni qiyoslash",
+      "matn": "Nisbat bo‘yicha qiymatlarni taqqoslash mumkin: bir mahsulot narxi boshqasidan necha marta qimmat, bir sinfdagi o‘quvchilar ikkinchisidan necha marta ko‘p va hokazo. Nisbatning qiymati 1 dan katta bo‘lsa, birinchi kattalik ikkinchisidan katta.",
+      "misol": "Olma 12 ming so‘m, nok 6 ming so‘m. Olma narxining nok narxiga nisbati 12 : 6, ya’ni 2: olma 2 marta qimmat.",
+      "savol": "5 ming so‘mlik daftar 20 ming so‘mlik kitobdan necha marta arzon?",
+      "javob": "4 marta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Berilgan nisbatda bo‘lish",
+      "matn": "Kattalikni berilgan nisbatda bo‘lish uchun nisbat hadlari yig‘indisi topiladi, kattalik shu yig‘indiga bo‘linadi va har bir hadga ko‘paytiriladi. Yig‘indi — butun «qismlar» soni, bir qism qiymati bo‘linma.",
+      "misol": "60 ni 2 : 3 nisbatda bo‘lamiz: qismlar soni 5, bir qism 12, birinchi bo‘lak 24, ikkinchisi 36.",
+      "savol": "100 ni 1 : 4 nisbatda bo‘lsak, bo‘laklar nechta?",
+      "javob": "20 va 80",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nisbat hayotda",
+      "matn": "Nisbatlar hamma joyda uchraydi: retseptlarda (1 : 2 — bir qism bug‘doy, ikki qism suv), xaritalarda (masshtab 1 : 100), rasmlarda, qurilishda, tezlikda. Nisbat bo‘yicha ishlash — maqsadga muvofiq ulushlarni saqlash demakdir.",
+      "misol": "Beton uchun sement va qum 1 : 3 nisbatda olinadi. Agar 2 chelak sement olsak, 6 chelak qum kerak.",
+      "savol": "Sement va qum 1 : 3 bo‘lsa, 5 chelak sementga necha chelak qum kerak?",
+      "javob": "15 chelak",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "a ning b ga nisbati — a : b, ya’ni a ni b ga bo‘lish. Nisbatning ikkala hadini bir xil songa ko‘paytirish yoki bo‘lish uning qiymatini o‘zgartirmaydi. Kattalikni nisbatda bo‘lish: hadlar yig‘indisi — qismlar soni.",
+    "misollar": [
+     {
+      "shart": "Qisqartiring: 18 : 24.",
+      "yechim": [
+       "EKUB(18; 24) — 6.",
+       "18 ni 6 ga bo‘lsak 3, 24 ni 6 ga bo‘lsak 4."
+      ],
+      "javob": "3 : 4"
+     },
+     {
+      "shart": "Konsert zalida 120 o‘rindiq bor. Ular ayollar va erkaklar uchun 3 : 2 nisbatda ajratilgan. Har biriga nechta o‘rindiq?",
+      "yechim": [
+       "Qismlar soni: 3 + 2 = 5.",
+       "Bir qism: 120 : 5 = 24.",
+       "Ayollar: 24 · 3 = 72; erkaklar: 24 · 2 = 48."
+      ],
+      "javob": "72 va 48"
+     },
+     {
+      "shart": "Choy uchun suv va shakar 50 : 1 nisbatda. 5 litr suvga necha gramm shakar?",
+      "yechim": [
+       "5 litr — 5000 gramm suv.",
+       "50 qism suvga 1 qism shakar.",
+       "5000 : 50 = 100 gramm."
+      ],
+      "javob": "100 gramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sinf nisbatlari",
+      "topshiriq": "Sinfdagi qiz va o‘g‘il bolalar sonini sanang va nisbatini toping. Nisbatni qisqartiring. Qaysi biri necha marta ko‘p?",
+      "yechim": "Misol: 15 qiz va 10 o‘g‘il bo‘lsa, nisbat 3 : 2 (ikkalasini 5 ga qisqartirdik). Qizlar 1,5 marta ko‘p.",
+      "mahsulot": "nisbatlar jadvali"
+     },
+     {
+      "nom": "Retsept",
+      "topshiriq": "Palov uchun guruch va go‘sht 3 : 2 nisbatda. 1 kg 500 g guruchga necha gramm go‘sht kerak?",
+      "yechim": "1500 : 3 = 500 — bir qism. Go‘sht 500 · 2 = 1000 gramm.",
+      "mahsulot": "retsept kartochkasi"
+     },
+     {
+      "nom": "Bo‘lish",
+      "topshiriq": "180 ming so‘mni uch do‘st 1 : 2 : 3 nisbatda bo‘lishdi. Har biriga qancha?",
+      "yechim": "Qismlar 6. Bir qism 30. Ularga 30, 60 va 90 ming so‘m.",
+      "mahsulot": "taqsimot jadvali"
+     },
+     {
+      "nom": "Rasm kattalashtirish",
+      "topshiriq": "Rasm 10 sm ga 15 sm. Uni nisbatni saqlab kattalashtiramiz: yangi eni 30 sm. Yangi bo‘yi qancha?",
+      "yechim": "Nisbat 2 : 3 (10 va 15 ni 5 ga qisqartirdik). Eni 30 bo‘lsa, 30 ning 2 ga nisbati 15, bo‘yi 45 sm.",
+      "mahsulot": "kattalashtirilgan rasm chizmasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "15 : 25 nisbatni qisqartiring.",
+      "javob": "3 : 5"
+     },
+     {
+      "shart": "8 ning 2 ga nisbati?",
+      "javob": "4"
+     },
+     {
+      "shart": "Qizlar 14, o‘g‘illar 7. Nisbatni qisqartiring.",
+      "javob": "2 : 1"
+     },
+     {
+      "shart": "90 ni 4 : 5 nisbatda bo‘ling.",
+      "javob": "40 va 50"
+     },
+     {
+      "shart": "Sement va qum 1 : 4. 3 chelak sementga qum?",
+      "javob": "12 chelak"
+     },
+     {
+      "shart": "0,5 : 2,5 nisbatni qisqartiring.",
+      "javob": "1 : 5"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Nisbatni tartibsiz yozadi: a : b o‘rniga b : a",
+      "sabab": "qaysi son birinchi ekanini e’tiborsiz qoldiradi",
+      "oldini_olish": "savoldagi so‘z tartibiga qarab yozish"
+     },
+     {
+      "xato": "Nisbatni qisqartirmaydi",
+      "sabab": "EKUBni topmaydi",
+      "oldini_olish": "qisqartirish orqali nisbatni sodda ko‘rinishga keltirish mashqi"
+     },
+     {
+      "xato": "Kattalikni nisbatda bo‘lishda yig‘indini hisoblamaydi",
+      "sabab": "qismlar sonini tushunmaydi",
+      "oldini_olish": "chizmada qismlarni sanash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "xarita masshtabi — nisbat"
+     },
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "aralashmalar va eritmalar tarkibi nisbatlarda beriladi"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "rasm va haykaltaroshlikda nisbatlar muhim"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Nisbat oshxonasi»",
+     "muammo": "Ovqat retseptida nisbatni saqlab, mahsulot miqdorini qanday o‘zgartiramiz?",
+     "mahsulot": "3 ta retseptning nisbatlari va kattalashtirilgan versiyalari",
+     "bosqichlar": [
+      "retseptlarni tanlash",
+      "nisbatlarni topish",
+      "miqdorni o‘zgartirish",
+      "jadval tuzish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Palov retsepti",
+      "Non retsepti",
+      "Sharbat retsepti",
+      "Natijalarni jamlang"
+     ],
+     "mezonlar": [
+      "nisbatlar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "jadval tushunarli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Nisbat bozori»",
+     "bekatlar": [
+      {
+       "nom": "Non do‘koni",
+       "matn": "Un va suv 5 : 3.",
+       "topshiriq": "10 kg unga nechta suv?",
+       "javob": "6 kg",
+       "rasm": ""
+      },
+      {
+       "nom": "Mevalar",
+       "matn": "Olma va nok 2 : 1.",
+       "topshiriq": "8 ta olmaga nechta nok?",
+       "javob": "4 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Qurilish do‘koni",
+       "matn": "Sement va qum 1 : 3.",
+       "topshiriq": "4 qop sementga nechta qum?",
+       "javob": "12 qop",
+       "rasm": ""
+      },
+      {
+       "nom": "Xarita",
+       "matn": "Masshtab 1 : 100.",
+       "topshiriq": "Xaritada 3 sm — haqiqatda?",
+       "javob": "300 sm, ya’ni 3 m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "og‘ir narsalarni ko‘tarmang",
+      "yo‘lga chiqmang"
+     ],
+     "kundalik": [
+      "Nisbat qayerda uchraydi?",
+      "Nisbat bilan nima taqqoslanadi?",
+      "Retseptda nisbat nimaga kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Nisbat",
+      "tarif": "ikki sonning bo‘linmasi"
+     },
+     {
+      "atama": "Nisbat hadlari",
+      "tarif": "nisbatni tashkil etuvchi sonlar"
+     },
+     {
+      "atama": "Nisbat qiymati",
+      "tarif": "hadlarning bo‘linmasi"
+     },
+     {
+      "atama": "Qisqartirish",
+      "tarif": "ikkala hadni umumiy bo‘luvchiga bo‘lish"
+     },
+     {
+      "atama": "Masshtab",
+      "tarif": "xarita yoki chizmadagi uzunlikning haqiqiy uzunlikka nisbati"
+     },
+     {
+      "atama": "Qism",
+      "tarif": "nisbatda bo‘lishdagi bir ulush"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Nisbat ikki sonning bo‘linmasi",
+      "togri": true,
+      "izoh": "ta’rifga ko‘ra"
+     },
+     {
+      "matn": "10 : 5 nisbat 2 ga teng",
+      "togri": true,
+      "izoh": "10 ni 5 ga bo‘lamiz"
+     },
+     {
+      "matn": "Nisbatning hadlarini turli songa ko‘paytirsa ham qiymati o‘zgarmaydi",
+      "togri": false,
+      "izoh": "bir xil songa ko‘paytirish kerak"
+     },
+     {
+      "matn": "3 : 4 va 6 : 8 nisbatlar teng",
+      "togri": true,
+      "izoh": "ikkala hadni 2 ga ko‘paytirdik"
+     },
+     {
+      "matn": "Nolga bo‘lingan nisbat mavjud",
+      "togri": false,
+      "izoh": "nolga bo‘lish mumkin emas"
+     },
+     {
+      "matn": "Masshtab — nisbat",
+      "togri": true,
+      "izoh": "xarita va haqiqiy uzunlik nisbati"
+     },
+     {
+      "matn": "Nisbat faqat butun sonlar bilan yoziladi",
+      "togri": false,
+      "izoh": "kasr va o‘nli kasrlar bilan ham"
+     },
+     {
+      "matn": "2 : 3 nisbatda bo‘lishda hadlar yig‘indisi 5",
+      "togri": true,
+      "izoh": "qismlar soni"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Nisbat nima?",
+      "javob": "ikki sonning bo‘linmasi"
+     },
+     {
+      "savol": "6 : 3 nisbat qiymati?",
+      "javob": "2"
+     },
+     {
+      "savol": "12 : 18 ni qisqartiring.",
+      "javob": "2 : 3"
+     },
+     {
+      "savol": "Masshtab nima?",
+      "javob": "xarita va haqiqiy uzunlik nisbati"
+     },
+     {
+      "savol": "1 : 4 nisbatda 50 ni bo‘lsak?",
+      "javob": "10 va 40"
+     },
+     {
+      "savol": "Nisbat xossasi nima?",
+      "javob": "ikkala had bir xil songa ko‘paytirilsa qiymat o‘zgarmaydi"
+     },
+     {
+      "savol": "Nisbatni qisqartirish uchun nima topiladi?",
+      "javob": "umumiy bo‘luvchi"
+     },
+     {
+      "savol": "Nolga nisbat bormi?",
+      "javob": "yo‘q, bo‘lish mumkin emas"
+     },
+     {
+      "savol": "Retseptda nisbat nimaga kerak?",
+      "javob": "mahsulot ulushini saqlash"
+     },
+     {
+      "savol": "4 : 8 nisbat nechaga teng?",
+      "javob": "1 : 2"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Ikki sonning bo‘linmasi — nisbat.",
+      "savol": "a : b nimani bildiradi?"
+     },
+     {
+      "nom": "Xossa",
+      "matn": "Hadlarni bir xil songa ko‘paytirish yoki bo‘lish qiymatni o‘zgartirmaydi.",
+      "savol": "12 : 8 ni qisqartiring."
+     },
+     {
+      "nom": "Nisbatda bo‘lish",
+      "matn": "Hadlar yig‘indisi — qismlar soni.",
+      "savol": "20 ni 1 : 4 nisbatda bo‘ling."
+     },
+     {
+      "nom": "Hayotda",
+      "matn": "Retsept, masshtab, qurilish aralashmalari.",
+      "savol": "Qayerda nisbat uchraydi?"
+     }
+    ],
+    "muammoli_savol": "Ikki do‘kon aksiya e’lon qildi: biri «3 ta olsangiz 1 tasi bepul» (3 : 1), boshqasi «5 ta olsangiz 2 tasi bepul» (5 : 2). Qaysi aksiya foydaliroq? Nisbat bilan tushuntiring.",
+    "keys": {
+     "vaziyat": "Oshpaz palov uchun guruch va go‘shtni 3 : 1 nisbatda oladi. Bugun 12 kg guruch tayyorlangan, lekin go‘sht 3 kg ekan.",
+     "savollar": [
+      "Go‘sht yetadimi?",
+      "Nisbatni saqlash uchun nima qilish kerak?"
+     ]
+    },
+    "tezis": "Nisbat — adolatli taqqoslash",
+    "taqqoslash": {
+     "a": "Nisbat",
+     "b": "Kasr",
+     "umumiy": [
+      "bo‘linma sifatida yoziladi",
+      "qisqartiriladi"
+     ],
+     "a_farq": [
+      "ikki kattalikni taqqoslaydi",
+      "a : b ko‘rinishida"
+     ],
+     "b_farq": [
+      "butunning qismini bildiradi",
+      "a/b ko‘rinishida"
+     ]
+    },
+    "klaster": {
+     "markaz": "Nisbat",
+     "shoxlar": [
+      {
+       "nom": "Ta’rif",
+       "bandlar": [
+        "bo‘linma",
+        "a : b",
+        "taqqoslash"
+       ]
+      },
+      {
+       "nom": "Xossa",
+       "bandlar": [
+        "bir xil songa ko‘paytirish",
+        "qisqartirish",
+        "qiymati o‘zgarmaydi"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "nisbatda bo‘lish",
+        "qismlar soni",
+        "bir qism"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "retsept",
+        "masshtab",
+        "qurilish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki sonni solishtiraman, bo‘linma shaklida yozilaman. Men kimman?",
+     "javob": "nisbat"
+    },
+    "hikmat": "O‘lchovli ish — barakali ish.",
+    "kalit_soz": "NISBAT",
+    "xato_yechim": {
+     "shart": "12 va 4 ning nisbatini qisqartiring.",
+     "xato": "6 : 2",
+     "togri": "3 : 1",
+     "sabab": "nisbat to‘liq qisqartirilmagan, EKUB 4 ga bo‘lish kerak edi"
+    },
+    "guruh_nomlari": [
+     "Nisbatlar",
+     "Qismlar",
+     "Masshtablar",
+     "Retseptlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sharbat tayyorlaymiz»",
+     "topshiriq": "Guruh sharbat uchun sharbat konsentrati va suvni 1 : 4 nisbatda aralashtirish retseptini tuzadi va 1 litr tayyor sharbat uchun kerakli miqdorlarni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Qisqartiring: 8 : 12; 15 : 45; 18 : 6; 20 : 50.",
+     "B": "Uyda biror retseptdagi mahsulot nisbatini toping va bir marta kattalashtirib hisoblang.",
+     "C": "Masshtabi 1 : 50 bo‘lgan xonaning chizmasini chizing (xona 4 m ga 3 m)."
+    },
+    "sinkveyn": [
+     "Nisbat",
+     "aniq, adolatli",
+     "taqqoslaydi, bo‘ladi, qisqaradi",
+     "Ikki sonning bo‘linmasi",
+     "Ulush"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh turli nisbat masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: 24 : 36 ni qisqartiring",
+      "2-guruh: 50 ni 2 : 3 nisbatda bo‘ling",
+      "3-guruh: 1 : 5 nisbatda 6 ga qancha",
+      "4-guruh: 3 : 7 va 6 : 14 teng ekanini tekshiring"
+     ],
+     "yakun": "Natijalar: 2 : 3; 20 va 30; 30; ha, ikkalasi ham 3 : 7 ga teng."
+    }
+   }
   }
  ]
 }
