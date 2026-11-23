@@ -2779,6 +2779,1395 @@
      "yakun": "Natijalar: 10; 12; to‘g‘ri burchakli; 8."
     }
    }
+  },
+  {
+   "mavzu": "Ko‘pburchaklar yuzi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yuza tushunchasi",
+      "matn": "Yuza — shaklning tekislikdagi o‘lchami. Uni birlik kvadratlar soni bilan o‘lchaymiz. Teng shakllarning yuzalari teng; shakl bo‘laklarga ajratilsa, uning yuzi bo‘laklar yuzlari yig‘indisiga teng. Tomoni a bo‘lgan kvadrat yuzi a².",
+      "misol": "3 ga 4 o‘lchamli to‘g‘ri to‘rtburchak 12 ta birlik kvadratdan iborat: yuzi 12. Tomoni 5 bo‘lgan kvadrat yuzi 25.",
+      "savol": "Tomoni 6 bo‘lgan kvadrat yuzi?",
+      "javob": "36",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri to‘rtburchak va parallelogramm yuzi",
+      "matn": "To‘g‘ri to‘rtburchak yuzi qo‘shni tomonlari ko‘paytmasiga teng: S ifoda a · b. Parallelogramm yuzi asos bilan balandlik ko‘paytmasiga teng: S ifoda a · h.",
+      "misol": "To‘g‘ri to‘rtburchak 8 va 5: 8 · 5, ya’ni 40. Parallelogramm asosi 7, balandligi 6: 7 · 6 — 42.",
+      "savol": "Tomonlari 9 va 4 to‘g‘ri to‘rtburchak yuzi?",
+      "javob": "36",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchburchak yuzi",
+      "matn": "Uchburchak yuzi asos bilan unga tushirilgan balandlik ko‘paytmasining yarmiga teng: S ifoda a · h / 2. To‘g‘ri burchakli uchburchakda yuza katetlar ko‘paytmasining yarmi.",
+      "misol": "Asosi 10, balandligi 6: 10 · 6 / 2, ya’ni 30. Katetlari 6 va 8: 6 · 8 / 2 — 24.",
+      "savol": "Asosi 8, balandligi 5 bo‘lgan uchburchak yuzi?",
+      "javob": "20",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Geron formulasi",
+      "matn": "Uch tomoni ma’lum uchburchak yuzini Geron formulasi bilan topamiz. Yarim perimetr p — tomonlar yig‘indisining yarmi. Yuza — p(p − a)(p − b)(p − c) ning kvadrat ildizi.",
+      "misol": "Tomonlari 13, 14, 15: p — 21. Ko‘paytma 21 · 8 · 7 · 6 — 7056, ildizi 84. Yuza 84.",
+      "savol": "Tomonlari 3, 4, 5 bo‘lgan uchburchak yuzi Geron formulasi bilan?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Murakkab shakllar yuzi",
+      "matn": "Murakkab ko‘pburchakni to‘g‘ri to‘rtburchak, uchburchak kabi oddiy shakllarga bo‘lamiz yoki katta shakldan ortiqcha qismni ayiramiz. Yuzalarni qo‘shamiz yoki ayiramiz.",
+      "misol": "L shaklli xona: 10 ga 6 to‘g‘ri to‘rtburchakdan 4 ga 3 burchak kesilgan: 60 − 12, ya’ni 48.",
+      "savol": "8 ga 5 to‘g‘ri to‘rtburchakdan 2 ga 2 qism kesildi. Qolgan yuza?",
+      "javob": "36",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Kvadrat: a². To‘g‘ri to‘rtburchak: a · b. Parallelogramm: a · h. Uchburchak: a · h / 2. Geron: yarim perimetr p, yuza — p(p − a)(p − b)(p − c) ildizi. Yuzalar bo‘laklar bo‘yicha qo‘shiladi.",
+    "misollar": [
+     {
+      "shart": "Asosi 14, balandligi 9 bo‘lgan uchburchak yuzini toping.",
+      "yechim": [
+       "Yuza asos bilan balandlik ko‘paytmasining yarmi.",
+       "14 · 9 — 126.",
+       "126 / 2, ya’ni 63."
+      ],
+      "javob": "63"
+     },
+     {
+      "shart": "Tomonlari 13, 14, 15 bo‘lgan uchburchak yuzini va 14 ga tushirilgan balandlikni toping.",
+      "yechim": [
+       "Yarim perimetr p — 21. Yuza — 21 · 8 · 7 · 6 ning ildizi, 7056 ning ildizi, ya’ni 84.",
+       "14 ga tushirilgan balandlik h: 14 · h / 2 — 84.",
+       "7h — 84, h — 12."
+      ],
+      "javob": "yuza 84, balandlik 12"
+     },
+     {
+      "shart": "12 ga 8 to‘g‘ri to‘rtburchakdan 5 ga 3 burchak kesib olingan. Qolgan yuzani toping.",
+      "yechim": [
+       "Katta to‘g‘ri to‘rtburchak 12 · 8 — 96.",
+       "Kesilgan qism 5 · 3 — 15.",
+       "Qolgan yuza 96 − 15, ya’ni 81."
+      ],
+      "javob": "81"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Uchburchak maydoni",
+      "topshiriq": "Asosi 12, balandligi 7 bo‘lgan uchburchak yuzini toping.",
+      "yechim": "12 · 7 / 2, ya’ni 42.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Romb yuzi",
+      "topshiriq": "Diagonallari 10 va 16 bo‘lgan romb yuzini toping.",
+      "yechim": "10 · 16 / 2, ya’ni 80.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Pol plitkasi",
+      "topshiriq": "Xona 6 m ga 5 m. Kvadrat plitka tomoni 50 sm. Nechta plitka kerak?",
+      "yechim": "Xona yuzi 30 kv. m, plitka yuzi 0,25 kv. m. 30 / 0,25, ya’ni 120 ta.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Murakkab shakl",
+      "topshiriq": "O‘zingiz L shaklli figura chizing va uning yuzini ikki usul bilan toping.",
+      "yechim": "Bo‘lib qo‘shish va ayirish natijalari bir xil chiqadi.",
+      "mahsulot": "chizma"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Tomoni 9 bo‘lgan kvadrat yuzi?",
+      "javob": "81"
+     },
+     {
+      "shart": "Katetlari 5 va 12 bo‘lgan uchburchak yuzi?",
+      "javob": "30"
+     },
+     {
+      "shart": "Asosi 10, balandligi 4 bo‘lgan uchburchak yuzi?",
+      "javob": "20"
+     },
+     {
+      "shart": "Tomonlari 5, 5, 6 uchburchak yuzi?",
+      "javob": "12"
+     },
+     {
+      "shart": "Asosi 7, balandligi 6 bo‘lgan parallelogramm yuzi?",
+      "javob": "42"
+     },
+     {
+      "shart": "Uchburchak yuzi 60, asosi 12. Balandligi?",
+      "javob": "10"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Uchburchak yuzini a · h deb oladi",
+      "sabab": "yarmini unutadi",
+      "oldini_olish": "uchburchak yuzi — to‘g‘ri to‘rtburchakning yarmi ekanini eslash"
+     },
+     {
+      "xato": "Yon tomonni balandlik deb oladi",
+      "sabab": "balandlikni asosga perpendikulyar ekanini unutadi",
+      "oldini_olish": "balandlikni chizmada punktir bilan ko‘rsatish"
+     },
+     {
+      "xato": "Geron formulasida yarim perimetr o‘rniga perimetr oladi",
+      "sabab": "p ni adashtiradi",
+      "oldini_olish": "p — tomonlar yig‘indisining yarmi ekanini yozib qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "maydon va xona yuzini hisoblash"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "hududlar yuzini xaritadan topish"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "materiallar va xarajatni yuza bo‘yicha hisoblash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Maydon hisobi»",
+     "muammo": "Murakkab shaklli maydon yuzini qanday topamiz?",
+     "mahsulot": "maydon yuzi hisoboti",
+     "bosqichlar": [
+      "maydonni tanlash",
+      "bo‘laklarga ajratish",
+      "o‘lchash",
+      "yuzani hisoblash",
+      "hisobot tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Maydon tanlang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "bo‘laklash to‘g‘ri",
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "xulosa asosli",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Maydonlar vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "Uchburchak gulzor",
+       "matn": "Asosi 20 m, balandligi 8 m.",
+       "topshiriq": "Yuzi?",
+       "javob": "80 kv. m",
+       "rasm": ""
+      },
+      {
+       "nom": "Kvadrat maydon",
+       "matn": "Tomoni 15 m.",
+       "topshiriq": "Yuzi?",
+       "javob": "225 kv. m",
+       "rasm": ""
+      },
+      {
+       "nom": "To‘g‘ri to‘rtburchak sport maydoni",
+       "matn": "40 m ga 25 m.",
+       "topshiriq": "Yuzi?",
+       "javob": "1000 kv. m",
+       "rasm": ""
+      },
+      {
+       "nom": "Romb shaklli bezak",
+       "matn": "Diagonallari 12 va 8 dm.",
+       "topshiriq": "Yuzi?",
+       "javob": "48 kv. dm",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda yuzani hisobladingiz?",
+      "Qaysi shakl uchun formula esda qoldi?",
+      "Murakkab shaklni qanday bo‘ldingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yuza",
+      "tarif": "shaklning tekislikdagi o‘lchami"
+     },
+     {
+      "atama": "Birlik kvadrat",
+      "tarif": "tomoni 1 bo‘lgan kvadrat"
+     },
+     {
+      "atama": "Balandlik",
+      "tarif": "asosga tushirilgan perpendikulyar"
+     },
+     {
+      "atama": "Yarim perimetr",
+      "tarif": "tomonlar yig‘indisining yarmi"
+     },
+     {
+      "atama": "Geron formulasi",
+      "tarif": "uch tomon bo‘yicha yuza formulasi"
+     },
+     {
+      "atama": "Ko‘pburchak",
+      "tarif": "yopiq siniq chiziq bilan chegaralangan shakl"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Uchburchak yuzi asos va balandlik ko‘paytmasining yarmi",
+      "togri": true,
+      "izoh": "S ifoda a · h / 2"
+     },
+     {
+      "matn": "Parallelogramm yuzi tomonlari ko‘paytmasi",
+      "togri": false,
+      "izoh": "asos va balandlik ko‘paytmasi"
+     },
+     {
+      "matn": "Kvadrat yuzi a²",
+      "togri": true,
+      "izoh": "tomonning kvadrati"
+     },
+     {
+      "matn": "Teng shakllarning yuzalari teng",
+      "togri": true,
+      "izoh": "yuza xossasi"
+     },
+     {
+      "matn": "Yuza birligi sm",
+      "togri": false,
+      "izoh": "yuza kv. sm bilan o‘lchanadi"
+     },
+     {
+      "matn": "Geron formulasida p — tomonlar yig‘indisining yarmi",
+      "togri": true,
+      "izoh": "yarim perimetr"
+     },
+     {
+      "matn": "Tomonlari 3, 4, 5 uchburchak yuzi 12",
+      "togri": false,
+      "izoh": "yuza 6"
+     },
+     {
+      "matn": "Murakkab shakl yuzi bo‘laklar yuzlari yig‘indisi",
+      "togri": true,
+      "izoh": "qo‘shiluvchanlik"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kvadrat yuzi?",
+      "javob": "a²"
+     },
+     {
+      "savol": "To‘g‘ri to‘rtburchak yuzi?",
+      "javob": "a · b"
+     },
+     {
+      "savol": "Parallelogramm yuzi?",
+      "javob": "a · h"
+     },
+     {
+      "savol": "Uchburchak yuzi?",
+      "javob": "a · h / 2"
+     },
+     {
+      "savol": "Katetlari 6 va 8. Yuzi?",
+      "javob": "24"
+     },
+     {
+      "savol": "Geron formulasi nima uchun?",
+      "javob": "uch tomon bo‘yicha yuza uchun"
+     },
+     {
+      "savol": "Yarim perimetr nima?",
+      "javob": "tomonlar yig‘indisining yarmi"
+     },
+     {
+      "savol": "Tomoni 10 kvadrat yuzi?",
+      "javob": "100"
+     },
+     {
+      "savol": "Yuza qanday birlikda o‘lchanadi?",
+      "javob": "kvadrat birlikda"
+     },
+     {
+      "savol": "Murakkab shaklni qanday hisoblaymiz?",
+      "javob": "bo‘laklarga bo‘lib"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Asosiy",
+      "matn": "Kvadrat va to‘g‘ri to‘rtburchak.",
+      "savol": "7 ga 3 to‘g‘ri to‘rtburchak yuzi?"
+     },
+     {
+      "nom": "Uchburchak",
+      "matn": "Yarmi.",
+      "savol": "Asos 6, balandlik 5. Yuza?"
+     },
+     {
+      "nom": "Geron",
+      "matn": "Yarim perimetr.",
+      "savol": "3, 4, 5 uchun p?"
+     },
+     {
+      "nom": "Murakkab",
+      "matn": "Bo‘lib hisoblaymiz.",
+      "savol": "Shaklni qanday bo‘lasiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun uchburchak yuzi asos va balandlik ko‘paytmasining aynan yarmiga teng? Uchburchakni parallelogrammga to‘ldirib tushuntiring.",
+    "keys": {
+     "vaziyat": "Uchburchak shaklli yer maydonining tomonlari 13, 14, 15 m. Egasi uni ekish uchun yuzini bilmoqchi.",
+     "savollar": [
+      "Yuza qancha?",
+      "Qaysi formuladan foydalanamiz?"
+     ]
+    },
+    "tezis": "Yuza — shaklning o‘lchami",
+    "taqqoslash": {
+     "a": "Uchburchak yuzi",
+     "b": "Parallelogramm yuzi",
+     "umumiy": [
+      "asos va balandlikka bog‘liq",
+      "kv. birlikda o‘lchanadi"
+     ],
+     "a_farq": [
+      "a · h / 2",
+      "yarmi"
+     ],
+     "b_farq": [
+      "a · h",
+      "butun ko‘paytma"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yuzalar",
+     "shoxlar": [
+      {
+       "nom": "To‘g‘ri to‘rtburchak",
+       "bandlar": [
+        "a · b",
+        "kvadrat a²"
+       ]
+      },
+      {
+       "nom": "Parallelogramm",
+       "bandlar": [
+        "a · h"
+       ]
+      },
+      {
+       "nom": "Uchburchak",
+       "bandlar": [
+        "a · h / 2",
+        "Geron"
+       ]
+      },
+      {
+       "nom": "Murakkab shakl",
+       "bandlar": [
+        "bo‘lish",
+        "ayirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Shaklning ichini o‘lchayman, kvadrat birlikda sanayman. Men kimman?",
+     "javob": "yuza"
+    },
+    "hikmat": "Yerni o‘lchagan, rizqini o‘lchaydi.",
+    "kalit_soz": "YUZA",
+    "xato_yechim": {
+     "shart": "Asosi 10, balandligi 6 uchburchak yuzini toping.",
+     "xato": "60",
+     "togri": "30",
+     "sabab": "uchburchak yuzi yarmi: 10 · 6 / 2 — 30"
+    },
+    "guruh_nomlari": [
+     "Yuzachilar",
+     "Geronchilar",
+     "Maydonchilar",
+     "O‘lchovchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinf yuzi»",
+     "topshiriq": "Guruh sinf xonasi pol yuzini o‘lchab, kerakli plitkalar sonini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Tomoni 12 bo‘lgan kvadrat va 9 ga 7 to‘g‘ri to‘rtburchak yuzini toping.",
+     "B": "Asosi 16, balandligi 5 bo‘lgan uchburchak yuzini toping.",
+     "C": "Tomonlari 13, 14, 15 uchburchakning eng katta tomoniga tushirilgan balandlikni toping."
+    },
+    "sinkveyn": [
+     "Yuza",
+     "kvadrat birlik, o‘lcham",
+     "o‘lchaydi, hisoblaydi, qo‘shadi",
+     "Shaklning ichki kattaligi",
+     "Maydon"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yuzalarni hisoblaydi.",
+     "qismlar": [
+      "1-guruh: kvadrat tomoni 8",
+      "2-guruh: uchburchak asos 10, balandlik 6",
+      "3-guruh: katetlari 6 va 8",
+      "4-guruh: parallelogramm asos 5, balandlik 4"
+     ],
+     "yakun": "Natijalar: 64; 30; 24; 20."
+    }
+   }
+  },
+  {
+   "mavzu": "O‘xshash uchburchaklar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "O‘xshash uchburchaklar",
+      "matn": "Burchaklari mos ravishda teng va mos tomonlari proporsional uchburchaklar o‘xshash deyiladi. Mos tomonlar nisbati o‘xshashlik koeffitsienti deyiladi va k bilan belgilanadi. O‘xshash shakllar shakli bir xil, o‘lchami har xil bo‘ladi.",
+      "misol": "3, 4, 5 tomonli va 6, 8, 10 tomonli uchburchaklar o‘xshash: 6 / 3, 8 / 4, 10 / 5 hammasi 2 ga teng, k — 2.",
+      "savol": "3, 4, 5 va 6, 8, 10 uchburchaklar uchun k?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘xshashlik alomatlari",
+      "matn": "Birinchi alomat: ikki burchagi mos teng uchburchaklar o‘xshash. Ikkinchi alomat: ikki tomoni proporsional va ular orasidagi burchaklari teng. Uchinchi alomat: uch tomoni proporsional.",
+      "misol": "40° va 60° burchakli uchburchak boshqa 40° va 60° burchakli uchburchakka o‘xshash, chunki uchinchi burchak ham teng — 80°.",
+      "savol": "Ikki burchagi teng uchburchaklar qanday bo‘ladi?",
+      "javob": "o‘xshash",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Perimetr va yuza nisbati",
+      "matn": "O‘xshash uchburchaklar perimetrlarining nisbati koeffitsient k ga, yuzalarining nisbati k kvadratga teng.",
+      "misol": "k — 2 bo‘lsa, 3, 4, 5 uchburchak perimetri 12 va yuzi 6; 6, 8, 10 uchburchak perimetri 24 va yuzi 24. Perimetr 2 marta, yuza 4 marta katta.",
+      "savol": "k — 3 bo‘lsa, yuzalar nisbati?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Noma’lum tomonni topish",
+      "matn": "O‘xshashlikdan mos tomonlar proporsional ekanini yozib, proporsiya tuzamiz va noma’lumni topamiz. Soya va balandlik masalalari shunga asoslanadi.",
+      "misol": "3 / 6 va 4 / x teng: x — 8. 2 m tayoq soyasi 3 m, bino soyasi 30 m bo‘lsa, bino balandligi h: 2 / 3 va h / 30 teng, h — 20.",
+      "savol": "1 m tayoq soyasi 2 m, daraxt soyasi 12 m. Balandlik?",
+      "javob": "6 m",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri burchakli uchburchakda balandlik",
+      "matn": "To‘g‘ri burchakdan gipotenuzaga tushirilgan balandlik uchburchakni o‘zaro va butun uchburchakka o‘xshash ikki uchburchakka ajratadi. Balandlik kvadrati gipotenuza bo‘laklari ko‘paytmasiga, katet kvadrati gipotenuza bilan uning proyeksiyasi ko‘paytmasiga teng.",
+      "misol": "Gipotenuza 25, bo‘laklari 9 va 16: balandlik kvadrati 9 · 16 — 144, balandlik 12. Katet 15: 15² — 225, 25 · 9 — 225.",
+      "savol": "Gipotenuza bo‘laklari 4 va 9. Balandlik?",
+      "javob": "6",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "O‘xshash uchburchaklarning burchaklari teng, mos tomonlari proporsional. Perimetrlar nisbati k, yuzalar nisbati k kvadrat. Alomatlar: ikki burchak, ikki tomon va orasidagi burchak, uch tomon.",
+    "misollar": [
+     {
+      "shart": "ABC va DEF o‘xshash. AB — 6, BC — 9, DE — 4. EF ni toping.",
+      "yechim": [
+       "Koeffitsient DE / AB — 4 / 6, ya’ni 2 / 3.",
+       "EF — BC ning 2 / 3 qismi: 9 · 2 / 3.",
+       "EF — 6."
+      ],
+      "javob": "6"
+     },
+     {
+      "shart": "Ikki o‘xshash uchburchak yuzalari nisbati 4 : 9. Kichigining perimetri 20 bo‘lsa, kattasining perimetrini toping.",
+      "yechim": [
+       "Yuzalar nisbati k kvadrat: k kvadrat 4 / 9, k — 2 / 3.",
+       "Perimetrlar nisbati 2 / 3.",
+       "Katta perimetr 20 ni 2 / 3 ga bo‘lamiz: 20 · 3 / 2 — 30."
+      ],
+      "javob": "30"
+     },
+     {
+      "shart": "1,5 m bo‘yli odamning soyasi 2 m, daraxt soyasi 8 m. Daraxt balandligini toping.",
+      "yechim": [
+       "Proporsiya: 1,5 / 2 va h / 8 teng.",
+       "h — 1,5 · 8 / 2.",
+       "h — 12 / 2, ya’ni 6 m."
+      ],
+      "javob": "6 m"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Soya o‘lchovi",
+      "topshiriq": "Quyoshli kunda tayoq balandligi va soyasini, maktab daraxti soyasini o‘lchab, daraxt balandligini toping.",
+      "yechim": "Balandlik tayoq balandligini daraxt soyasiga ko‘paytirib, tayoq soyasiga bo‘lishdan topiladi.",
+      "mahsulot": "o‘lchov jadvali"
+     },
+     {
+      "nom": "Koeffitsient",
+      "topshiriq": "3, 4, 5 uchburchakni 3 marta kattalashtiring. Yangi tomonlarni toping.",
+      "yechim": "9, 12, 15, k — 3.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Yuza",
+      "topshiriq": "Yuzi 6 bo‘lgan uchburchak k — 3 koeffitsient bilan kattalashtirildi. Yangi yuzi?",
+      "yechim": "Yuza k kvadratga: 6 · 9, ya’ni 54.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Alomatni tekshiramiz",
+      "topshiriq": "Ikki uchburchakning ikkitadan burchagi 50° va 70°. O‘xshashmi?",
+      "yechim": "Ha, ikki burchak teng bo‘lgani uchun o‘xshash.",
+      "mahsulot": "tekshiruv jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3, 4, 5 va 6, 8, 10 uchburchaklar koeffitsienti?",
+      "javob": "2"
+     },
+     {
+      "shart": "k — 3 bo‘lsa, yuzalar nisbati?",
+      "javob": "9"
+     },
+     {
+      "shart": "3 / 6 va 5 / x teng. x?",
+      "javob": "10"
+     },
+     {
+      "shart": "Kichik uchburchak perimetri 12, k — 2. Katta perimetr?",
+      "javob": "24"
+     },
+     {
+      "shart": "Gipotenuza bo‘laklari 4 va 9. Balandlik?",
+      "javob": "6"
+     },
+     {
+      "shart": "Yuzalar 8 va 18. Koeffitsient?",
+      "javob": "2 / 3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yuzalar nisbatini k ga teng deb oladi",
+      "sabab": "kvadratni unutadi",
+      "oldini_olish": "yuza nisbati k kvadrat ekanini eslash"
+     },
+     {
+      "xato": "Mos bo‘lmagan tomonlarni nisbat qiladi",
+      "sabab": "mos tomonlarni adashtiradi",
+      "oldini_olish": "chizmada mos tomonlarni bir rangda belgilash"
+     },
+     {
+      "xato": "Perimetrlar nisbatini k kvadrat deb oladi",
+      "sabab": "perimetr va yuzani adashtiradi",
+      "oldini_olish": "perimetr uzunlik, shuning uchun k ga proporsional"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "xarita masshtabi o‘xshashlikka asoslangan"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "soya va tasvir o‘lchamlari"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "chizma va maketni kattalashtirish yoki kichraytirish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Soya bilan o‘lchov»",
+     "muammo": "Baland ob’ektlarni soyasi bo‘yicha qanday o‘lchaymiz?",
+     "mahsulot": "o‘lchash hisoboti",
+     "bosqichlar": [
+      "ob’ekt tanlash",
+      "soyani o‘lchash",
+      "proporsiya tuzish",
+      "balandlikni hisoblash",
+      "hisobot yozish"
+     ],
+     "guruh_vazifalari": [
+      "Ob’ekt tanlang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov to‘g‘ri",
+      "proporsiya to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa asosli",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Soyalar vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "Bino",
+       "matn": "Tayoq 2 m, soyasi 3 m. Bino soyasi 21 m.",
+       "topshiriq": "Bino balandligi?",
+       "javob": "14 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Xarita",
+       "matn": "Masshtab 1 : 1000. Xaritada kesma 5 sm.",
+       "topshiriq": "Haqiqiy uzunlik?",
+       "javob": "50 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Maket",
+       "matn": "Maket 1 : 10, maketda uzunlik 12 sm.",
+       "topshiriq": "Haqiqiy uzunlik?",
+       "javob": "120 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Daraxt",
+       "matn": "Odam 1,8 m, soyasi 3 m. Daraxt soyasi 15 m.",
+       "topshiriq": "Daraxt balandligi?",
+       "javob": "9 m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda o‘xshashlikni uchratdingiz?",
+      "k nima edi?",
+      "Soya bilan o‘lchash oson bo‘ldimi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "O‘xshash uchburchaklar",
+      "tarif": "burchaklari teng, tomonlari proporsional uchburchaklar"
+     },
+     {
+      "atama": "O‘xshashlik koeffitsienti",
+      "tarif": "mos tomonlar nisbati k"
+     },
+     {
+      "atama": "Mos tomonlar",
+      "tarif": "teng burchaklar qarshisidagi tomonlar"
+     },
+     {
+      "atama": "Proporsiya",
+      "tarif": "ikki teng nisbat"
+     },
+     {
+      "atama": "Proyeksiya",
+      "tarif": "katetning gipotenuzadagi tushirilgan qismi"
+     },
+     {
+      "atama": "Masshtab",
+      "tarif": "tasvir va haqiqiy uzunlik nisbati"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ikki burchagi teng uchburchaklar o‘xshash",
+      "togri": true,
+      "izoh": "birinchi alomat"
+     },
+     {
+      "matn": "O‘xshash uchburchaklar yuzalari nisbati k ga teng",
+      "togri": false,
+      "izoh": "k kvadratga teng"
+     },
+     {
+      "matn": "O‘xshash uchburchaklar perimetrlari nisbati k ga teng",
+      "togri": true,
+      "izoh": "uzunlik k marta"
+     },
+     {
+      "matn": "O‘xshash uchburchaklarning burchaklari teng",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Barcha uchburchaklar o‘xshash",
+      "togri": false,
+      "izoh": "burchaklari teng bo‘lishi kerak"
+     },
+     {
+      "matn": "3, 4, 5 va 6, 8, 10 uchburchaklar o‘xshash",
+      "togri": true,
+      "izoh": "k — 2"
+     },
+     {
+      "matn": "Balandlik kvadrati gipotenuza bo‘laklari ko‘paytmasi",
+      "togri": true,
+      "izoh": "h² — 9 · 16 uchun 144"
+     },
+     {
+      "matn": "k — 2 bo‘lsa yuza 2 marta oshadi",
+      "togri": false,
+      "izoh": "4 marta oshadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "O‘xshash uchburchaklar nima?",
+      "javob": "burchaklari teng, tomonlari proporsional"
+     },
+     {
+      "savol": "k nima?",
+      "javob": "mos tomonlar nisbati"
+     },
+     {
+      "savol": "Birinchi alomat?",
+      "javob": "ikki burchak teng"
+     },
+     {
+      "savol": "Yuzalar nisbati?",
+      "javob": "k kvadrat"
+     },
+     {
+      "savol": "Perimetrlar nisbati?",
+      "javob": "k"
+     },
+     {
+      "savol": "k — 3. Tomon 4 bo‘lsa, mos tomon?",
+      "javob": "12"
+     },
+     {
+      "savol": "k — 2. Yuza 5 bo‘lsa, kattasi?",
+      "javob": "20"
+     },
+     {
+      "savol": "Soya bilan balandlikni qanday topamiz?",
+      "javob": "proporsiya bilan"
+     },
+     {
+      "savol": "Masshtab 1 : 100. 3 sm — haqiqatda?",
+      "javob": "3 m"
+     },
+     {
+      "savol": "Gipotenuza bo‘laklari 1 va 4. Balandlik?",
+      "javob": "2"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Burchaklar teng, tomonlar proporsional.",
+      "savol": "k nimani bildiradi?"
+     },
+     {
+      "nom": "Alomat",
+      "matn": "Ikki burchak teng.",
+      "savol": "50° va 60° burchakli ikki uchburchak?"
+     },
+     {
+      "nom": "Nisbatlar",
+      "matn": "Perimetr k, yuza k kvadrat.",
+      "savol": "k — 4. Yuzalar nisbati?"
+     },
+     {
+      "nom": "Masala",
+      "matn": "Proporsiya tuzamiz.",
+      "savol": "2 / 4 va 3 / x teng. x?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun o‘xshash uchburchaklar yuzalarining nisbati koeffitsientning kvadratiga teng? Tomonlar 2 marta oshganda yuza nega 4 marta oshishini tushuntiring.",
+    "keys": {
+     "vaziyat": "Bola maktab bayrog‘i ustuni balandligini o‘lchamoqchi. Uning bo‘yi 1,5 m, soyasi 2 m, ustun soyasi 8 m.",
+     "savollar": [
+      "Ustun balandligi qancha?",
+      "Qaysi usul bilan topdingiz?"
+     ]
+    },
+    "tezis": "O‘xshashlik — shakl bir xil, o‘lcham har xil",
+    "taqqoslash": {
+     "a": "Teng uchburchaklar",
+     "b": "O‘xshash uchburchaklar",
+     "umumiy": [
+      "burchaklari teng",
+      "bir xil shaklga ega"
+     ],
+     "a_farq": [
+      "tomonlari teng",
+      "yuzalari teng"
+     ],
+     "b_farq": [
+      "tomonlari proporsional",
+      "yuzalari k kvadrat nisbatda"
+     ]
+    },
+    "klaster": {
+     "markaz": "O‘xshash uchburchaklar",
+     "shoxlar": [
+      {
+       "nom": "Ta’rif",
+       "bandlar": [
+        "teng burchaklar",
+        "proporsional tomonlar"
+       ]
+      },
+      {
+       "nom": "Alomatlar",
+       "bandlar": [
+        "ikki burchak",
+        "ikki tomon va burchak",
+        "uch tomon"
+       ]
+      },
+      {
+       "nom": "Nisbatlar",
+       "bandlar": [
+        "perimetr k",
+        "yuza k kvadrat"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "soya",
+        "xarita",
+        "maket"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Shaklim bir xil, o‘lchamim har xil. Men kimman?",
+     "javob": "o‘xshash uchburchak"
+    },
+    "hikmat": "Kichik soya katta daraxtning o‘lchovini aytadi.",
+    "kalit_soz": "O‘XSHASH",
+    "xato_yechim": {
+     "shart": "k — 2 bo‘lsa, o‘xshash uchburchaklar yuzalari nisbatini toping.",
+     "xato": "2",
+     "togri": "4",
+     "sabab": "yuzalar nisbati k kvadrat: 2 kvadrat, ya’ni 4"
+    },
+    "guruh_nomlari": [
+     "O‘xshashchilar",
+     "Koeffitsientchilar",
+     "Soyachilar",
+     "Masshtabchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Daraxt balandligi»",
+     "topshiriq": "Guruh maktab daraxti balandligini soya usuli bilan o‘lchaydi."
+    },
+    "vazifalar": {
+     "A": "3, 4, 5 va 9, 12, 15 uchburchaklar o‘xshashmi? k nechaga teng?",
+     "B": "k — 2 bo‘lsa, yuzi 7 uchburchakning o‘xshash kattasi yuzi?",
+     "C": "Tayoq 1,2 m, soyasi 1,6 m. Minora soyasi 40 m. Minora balandligi?"
+    },
+    "sinkveyn": [
+     "O‘xshashlik",
+     "shakl, nisbat",
+     "kattalashadi, proporsional, o‘lchanadi",
+     "Shakl bir, o‘lcham boshqa",
+     "k"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh o‘xshash uchburchaklar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 3, 4, 5 va 6, 8, 10 uchun k",
+      "2-guruh: k — 3 uchun yuzalar nisbati",
+      "3-guruh: 2 / 4 va 3 / x, x",
+      "4-guruh: gipotenuza bo‘laklari 4 va 9, balandlik"
+     ],
+     "yakun": "Natijalar: 2; 9; 6; 6."
+    }
+   }
+  },
+  {
+   "mavzu": "Trigonometrik nisbatlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sinus, kosinus, tangens",
+      "matn": "To‘g‘ri burchakli uchburchakda o‘tkir burchak A uchun: sinus — qarshisidagi katetning gipotenuzaga nisbati, kosinus — yondosh katetning gipotenuzaga nisbati, tangens — qarshisidagi katetning yondosh katetga nisbati.",
+      "misol": "Katetlari 3 va 4, gipotenuza 5, A qarshisida 3. sin A — 3 / 5, cos A — 4 / 5, tg A — 3 / 4.",
+      "savol": "Shu uchburchakda sin A 3 / 5. cos A nechaga teng?",
+      "javob": "4 / 5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Maxsus burchaklar qiymatlari",
+      "matn": "30°, 45°, 60° burchaklar uchun qiymatlarni yodlash foydali. 30°: sin 1 / 2, cos √3 / 2, tg √3 / 3. 45°: sin √2 / 2, cos √2 / 2, tg 1. 60°: sin √3 / 2, cos 1 / 2, tg √3.",
+      "misol": "sin 30° va cos 60° bir xil — 1 / 2. tg 45° — 1, chunki teng yonli to‘g‘ri burchakli uchburchakda katetlar teng.",
+      "savol": "sin 30° nechaga teng?",
+      "javob": "1 / 2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Asosiy ayniyatlar",
+      "matn": "Har qanday o‘tkir burchak uchun sin kvadrat va cos kvadrat yig‘indisi 1 ga teng. Tangens sinusning kosinusga nisbati. Bu ayniyatlar bir nisbatni bilib, boshqalarini topishga yordam beradi.",
+      "misol": "3 / 5 va 4 / 5: 9 / 25 + 16 / 25, ya’ni 25 / 25 — 1. sin 30° kvadrati 1 / 4, cos 30° kvadrati 3 / 4, yig‘indi 1.",
+      "savol": "sin A — 5 / 13 bo‘lsa, cos A?",
+      "javob": "12 / 13",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tomonlarni topish",
+      "matn": "Gipotenuza va burchak ma’lum bo‘lsa, qarshisidagi katet gipotenuzani sinusga, yondosh katet kosinusga ko‘paytirishdan topiladi.",
+      "misol": "Gipotenuza 10, A — 30°: qarshisidagi katet 10 · 1 / 2, ya’ni 5, yondosh katet 10 · √3 / 2, ya’ni 5√3.",
+      "savol": "Gipotenuza 8, A — 30°. Qarshisidagi katet?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchakni topish va qo‘llash",
+      "matn": "Nisbat ma’lum bo‘lsa, jadvaldan burchakni topamiz. Trigonometriya binolar balandligini, masofani va qiyalikni o‘lchashda qo‘llanadi.",
+      "misol": "tg A — 1 bo‘lsa, A — 45°. Binoga 20 m masofadan 45° burchak ostida qaralsa, balandlik 20 m. 60° va 10 m masofada balandlik 10√3.",
+      "savol": "tg A — 1 bo‘lsa, A burchak?",
+      "javob": "45°",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "sin — qarshisidagi katet / gipotenuza; cos — yondosh katet / gipotenuza; tg — qarshisidagi katet / yondosh katet. sin kvadrat + cos kvadrat — 1. 30°, 45°, 60° qiymatlari jadvali.",
+    "misollar": [
+     {
+      "shart": "Katetlari 5 va 12, gipotenuza 13. A qarshisida 5. sin A, cos A, tg A ni toping.",
+      "yechim": [
+       "sin A — 5 / 13.",
+       "cos A — 12 / 13.",
+       "tg A — 5 / 12. Tekshirish: 25 / 169 + 144 / 169 — 1."
+      ],
+      "javob": "5 / 13, 12 / 13, 5 / 12"
+     },
+     {
+      "shart": "Gipotenuza 12, A — 60°. Katetlarini toping.",
+      "yechim": [
+       "Qarshisidagi katet 12 · sin 60°, ya’ni 12 · √3 / 2 — 6√3.",
+       "Yondosh katet 12 · cos 60°, ya’ni 12 · 1 / 2 — 6.",
+       "Tekshirish: 108 + 36 — 144, bu 12 ning kvadrati."
+      ],
+      "javob": "6√3 va 6"
+     },
+     {
+      "shart": "10 m narvon yerga 60° burchak ostida tayalgan. Narvon qanday balandlikka yetadi va tagi devordan qancha uzoqda?",
+      "yechim": [
+       "Balandlik 10 · sin 60°, ya’ni 10 · √3 / 2 — 5√3, taxminan 8,7 m.",
+       "Tagi 10 · cos 60°, ya’ni 5 m.",
+       "Tekshirish: 75 + 25 — 100."
+      ],
+      "javob": "5√3 m (taxminan 8,7 m) va 5 m"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qiymatlar jadvali",
+      "topshiriq": "30°, 45°, 60° uchun sin, cos, tg qiymatlari jadvalini tuzing.",
+      "yechim": "30°: 1 / 2, √3 / 2, √3 / 3. 45°: √2 / 2, √2 / 2, 1. 60°: √3 / 2, 1 / 2, √3.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Daraxt balandligi",
+      "topshiriq": "Daraxtdan 30 m masofada daraxt uchiga 45° burchak ostida qaraladi. Balandligi?",
+      "yechim": "tg 45° — 1, balandlik 30 m.",
+      "mahsulot": "chizma va hisob"
+     },
+     {
+      "nom": "Narvon",
+      "topshiriq": "Narvon 8 m, burchak 30°. Balandlik va tagidagi masofani toping.",
+      "yechim": "Balandlik 8 · 1 / 2, ya’ni 4 m. Tagi 8 · √3 / 2 — 4√3 m.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Ayniyatni tekshiramiz",
+      "topshiriq": "30° uchun sin kvadrat va cos kvadrat yig‘indisini tekshiring.",
+      "yechim": "1 / 4 + 3 / 4, ya’ni 1.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "sin 30° nechaga teng?",
+      "javob": "1 / 2"
+     },
+     {
+      "shart": "cos 60° nechaga teng?",
+      "javob": "1 / 2"
+     },
+     {
+      "shart": "tg 45° nechaga teng?",
+      "javob": "1"
+     },
+     {
+      "shart": "Katetlari 3 va 4. A qarshisida 3. sin A?",
+      "javob": "3 / 5"
+     },
+     {
+      "shart": "Gipotenuza 20, A — 30°. Qarshisidagi katet?",
+      "javob": "10"
+     },
+     {
+      "shart": "sin A — 8 / 17 bo‘lsa, cos A?",
+      "javob": "15 / 17"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Sinus va kosinusni adashtiradi",
+      "sabab": "qarshisidagi va yondosh katetni farqlamaydi",
+      "oldini_olish": "burchakdan qarshisidagi katetni ko‘rsatib, nisbatni yozish"
+     },
+     {
+      "xato": "Tangensni gipotenuzaga nisbat deb oladi",
+      "sabab": "ta’rifni unutadi",
+      "oldini_olish": "tg — ikki katet nisbati ekanini yozib qo‘yish"
+     },
+     {
+      "xato": "30° va 60° qiymatlarini almashtiradi",
+      "sabab": "jadvalni yodlamagan",
+      "oldini_olish": "sin 30° va cos 60° bir xil 1 / 2 ekanini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "tog‘ qiyaligi va balandligini o‘lchash"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "kuchlarni tashkil etuvchilarga ajratish"
+     },
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "tom qiyaligi va narvon burchagi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Balandlik o‘lchagich»",
+     "muammo": "Oddiy asbob bilan ob’ekt balandligini burchak orqali qanday o‘lchaymiz?",
+     "mahsulot": "klinometr va hisob jadvali",
+     "bosqichlar": [
+      "asbob yasash",
+      "burchakni o‘lchash",
+      "masofani o‘lchash",
+      "balandlikni hisoblash",
+      "hisobot yozish"
+     ],
+     "guruh_vazifalari": [
+      "Asbob yasang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "asbob ishlaydi",
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "xulosa asosli",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Burchaklar tepaligi»",
+     "bekatlar": [
+      {
+       "nom": "Bino",
+       "matn": "Binoga 20 m masofadan 45° ostida qaraladi.",
+       "topshiriq": "Balandlik?",
+       "javob": "20 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Narvon",
+       "matn": "Narvon 10 m, burchak 30°.",
+       "topshiriq": "Balandlik?",
+       "javob": "5 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Tog‘ yo‘li",
+       "matn": "Yo‘l uzunligi 100 m, qiyalik 30°.",
+       "topshiriq": "Balandlikka ko‘tarilish?",
+       "javob": "50 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Tom",
+       "matn": "Tom qiyasi 12 m, burchak 60°.",
+       "topshiriq": "Tom asosi?",
+       "javob": "6 m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda burchak orqali o‘lchadingiz?",
+      "Qaysi nisbat qulay edi?",
+      "Jadvalni yodladingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sinus",
+      "tarif": "qarshisidagi katet / gipotenuza"
+     },
+     {
+      "atama": "Kosinus",
+      "tarif": "yondosh katet / gipotenuza"
+     },
+     {
+      "atama": "Tangens",
+      "tarif": "qarshisidagi katet / yondosh katet"
+     },
+     {
+      "atama": "Trigonometriya",
+      "tarif": "burchak va tomonlar bog‘lanishi haqidagi bo‘lim"
+     },
+     {
+      "atama": "Yondosh katet",
+      "tarif": "burchak tomonini tashkil etuvchi katet"
+     },
+     {
+      "atama": "Asosiy ayniyat",
+      "tarif": "sin kvadrat plus cos kvadrat — 1"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "sin A qarshisidagi katetning gipotenuzaga nisbati",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "tg A gipotenuza va katet nisbati",
+      "togri": false,
+      "izoh": "ikki katet nisbati"
+     },
+     {
+      "matn": "sin 30° — 1 / 2",
+      "togri": true,
+      "izoh": "jadval qiymati"
+     },
+     {
+      "matn": "cos 60° — √3 / 2",
+      "togri": false,
+      "izoh": "cos 60° — 1 / 2"
+     },
+     {
+      "matn": "tg 45° — 1",
+      "togri": true,
+      "izoh": "katetlar teng"
+     },
+     {
+      "matn": "sin kvadrat plus cos kvadrat — 1",
+      "togri": true,
+      "izoh": "asosiy ayniyat"
+     },
+     {
+      "matn": "Gipotenuza katetdan kichik",
+      "togri": false,
+      "izoh": "gipotenuza eng uzun tomon"
+     },
+     {
+      "matn": "sin A — 3 / 5 bo‘lsa, cos A — 4 / 5",
+      "togri": true,
+      "izoh": "9 / 25 + 16 / 25 — 1"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sinus nima?",
+      "javob": "qarshisidagi katet / gipotenuza"
+     },
+     {
+      "savol": "Kosinus nima?",
+      "javob": "yondosh katet / gipotenuza"
+     },
+     {
+      "savol": "Tangens nima?",
+      "javob": "qarshisidagi katet / yondosh katet"
+     },
+     {
+      "savol": "sin 30°?",
+      "javob": "1 / 2"
+     },
+     {
+      "savol": "cos 60°?",
+      "javob": "1 / 2"
+     },
+     {
+      "savol": "tg 45°?",
+      "javob": "1"
+     },
+     {
+      "savol": "sin 60°?",
+      "javob": "√3 / 2"
+     },
+     {
+      "savol": "cos 45°?",
+      "javob": "√2 / 2"
+     },
+     {
+      "savol": "Asosiy ayniyat?",
+      "javob": "sin kvadrat plus cos kvadrat — 1"
+     },
+     {
+      "savol": "tg qanday sin va cos orqali yoziladi?",
+      "javob": "sin / cos"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "sin, cos, tg.",
+      "savol": "Sinus qaysi nisbat?"
+     },
+     {
+      "nom": "Jadval",
+      "matn": "30°, 45°, 60°.",
+      "savol": "tg 45°?"
+     },
+     {
+      "nom": "Ayniyat",
+      "matn": "sin kvadrat plus cos kvadrat — 1.",
+      "savol": "sin 3 / 5 bo‘lsa, cos?"
+     },
+     {
+      "nom": "Qo‘llash",
+      "matn": "Balandlik va masofa.",
+      "savol": "Gipotenuza 6, 30°. Qarshisidagi katet?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun sin 30° va cos 60° bir xil qiymatga ega? To‘g‘ri burchakli uchburchakning o‘tkir burchaklari yig‘indisi 90° ekanini hisobga olib tushuntiring.",
+    "keys": {
+     "vaziyat": "Alpinist tog‘ yonbag‘rida 100 m yo‘l yurdi, yo‘l 30° qiyalikda edi. U qanchaga ko‘tarildi?",
+     "savollar": [
+      "Qaysi trigonometrik nisbat kerak?",
+      "Ko‘tarilish balandligi qancha?"
+     ]
+    },
+    "tezis": "Burchak va tomon — bir hikoya",
+    "taqqoslash": {
+     "a": "Sinus",
+     "b": "Kosinus",
+     "umumiy": [
+      "gipotenuzaga nisbat",
+      "o‘tkir burchak uchun aniqlanadi"
+     ],
+     "a_farq": [
+      "qarshisidagi katet",
+      "30° da 1 / 2"
+     ],
+     "b_farq": [
+      "yondosh katet",
+      "30° da √3 / 2"
+     ]
+    },
+    "klaster": {
+     "markaz": "Trigonometriya",
+     "shoxlar": [
+      {
+       "nom": "Nisbatlar",
+       "bandlar": [
+        "sin",
+        "cos",
+        "tg"
+       ]
+      },
+      {
+       "nom": "Maxsus burchaklar",
+       "bandlar": [
+        "30°",
+        "45°",
+        "60°"
+       ]
+      },
+      {
+       "nom": "Ayniyat",
+       "bandlar": [
+        "sin kvadrat plus cos kvadrat — 1"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "balandlik",
+        "masofa",
+        "qiyalik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Burchak bilan tomonni bog‘layman, uchta nisbatim bor. Men kimman?",
+     "javob": "trigonometriya"
+    },
+    "hikmat": "Burchak bilan o‘lchagan adashmaydi.",
+    "kalit_soz": "SINUS",
+    "xato_yechim": {
+     "shart": "Katetlari 3 va 4, gipotenuza 5. A qarshisida 3. sin A ni toping.",
+     "xato": "3 / 4",
+     "togri": "3 / 5",
+     "sabab": "sinus qarshisidagi katetning gipotenuzaga nisbati: 3 / 5; 3 / 4 — bu tangens"
+    },
+    "guruh_nomlari": [
+     "Sinuschilar",
+     "Kosinuschilar",
+     "Tangenschilar",
+     "Burchakchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Klinometr»",
+     "topshiriq": "Guruh oddiy klinometr yasab, maktab binosi balandligini o‘lchaydi."
+    },
+    "vazifalar": {
+     "A": "Katetlari 6 va 8 uchburchak uchun sin, cos, tg ni toping (A qarshisida 6).",
+     "B": "Gipotenuza 14, A — 30°. Katetlarni toping.",
+     "C": "Binoga 15 m masofadan 60° burchak ostida qaraladi. Balandlikni toping."
+    },
+    "sinkveyn": [
+     "Sinus",
+     "nisbat, burchak",
+     "hisoblaydi, o‘lchaydi, bog‘laydi",
+     "Qarshisidagi katet nisbati",
+     "sin"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh trigonometrik nisbatlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: sin 30°",
+      "2-guruh: tg 45°",
+      "3-guruh: 3, 4, 5 da cos A",
+      "4-guruh: gipotenuza 20, 30°, qarshisidagi katet"
+     ],
+     "yakun": "Natijalar: 1 / 2; 1; 4 / 5; 10."
+    }
+   }
   }
  ]
 }
