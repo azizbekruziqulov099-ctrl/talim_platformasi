@@ -1,0 +1,76 @@
+[
+ {
+  "fayl": "bolalar",
+  "kalit": "glass",
+  "eski": "杯子",
+  "yangi": "玻璃杯",
+  "sabab": "stakan ham, chashka (cup) ham «杯子» — ikki kalitda bir xil so‘z, o‘yinda ajratib bo‘lmaydi; stakan = 玻璃杯",
+  "shubha": false
+ },
+ {
+  "fayl": "gaplar",
+  "kalit": "glass",
+  "eski": [
+   "这",
+   "是",
+   "我的",
+   "杯子"
+  ],
+  "yangi": [
+   "这",
+   "是",
+   "我的",
+   "玻璃杯"
+  ],
+  "sabab": "so‘z o‘zgargani uchun (stakan = 玻璃杯)",
+  "shubha": false
+ },
+ {
+  "fayl": "gaplar",
+  "kalit": "honey",
+  "eski": [
+   "小熊",
+   "喜欢",
+   "蜂蜜"
+  ],
+  "yangi": [
+   "熊",
+   "喜欢",
+   "蜂蜜"
+  ],
+  "sabab": "o‘zbekchada «Ayiq»; «小熊» — ayiqcha (bear_cub kalitining so‘zi), ma’no boshqa",
+  "shubha": false
+ },
+ {
+  "fayl": "gaplar",
+  "kalit": "bone",
+  "eski": [
+   "小狗",
+   "喜欢",
+   "骨头"
+  ],
+  "yangi": [
+   "狗",
+   "喜欢",
+   "骨头"
+  ],
+  "sabab": "o‘zbekchada «It»; «小狗» — kuchukcha (puppy kalitining so‘zi), meat gapida ham «狗»",
+  "shubha": false
+ },
+ {
+  "fayl": "gaplar",
+  "kalit": "shower",
+  "eski": [
+   "我",
+   "洗",
+   "淋浴"
+  ],
+  "yangi": [
+   "我",
+   "在",
+   "淋浴"
+  ],
+  "sabab": "«洗淋浴» tabiiy emas; «我在淋浴» yoki «我洗澡» deyiladi",
+  "shubha": true
+ }
+]

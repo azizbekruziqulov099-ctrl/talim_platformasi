@@ -1,0 +1,50 @@
+[
+ {
+  "fayl": "bolalar",
+  "kalit": "earth",
+  "eski": "earth",
+  "yangi": "Earth",
+  "sabab": "sayyora nomi atoqli ot — bosh harf bilan (fr/es dagi kabi)",
+  "shubha": true
+ },
+ {
+  "fayl": "gaplar",
+  "kalit": "earth",
+  "eski": [
+   "The",
+   "earth",
+   "is",
+   "round"
+  ],
+  "yangi": [
+   "The",
+   "Earth",
+   "is",
+   "round"
+  ],
+  "sabab": "sayyora nomi bosh harf bilan",
+  "shubha": true
+ },
+ {
+  "fayl": "gaplar",
+  "kalit": "bowl",
+  "eski": [
+   "The",
+   "bowl",
+   "is",
+   "on",
+   "a",
+   "table"
+  ],
+  "yangi": [
+   "A",
+   "bowl",
+   "is",
+   "on",
+   "the",
+   "table"
+  ],
+  "sabab": "«on a table» tabiiy emas; odatda «on the table» (takror «the» bo'lmasligi uchun boshiga «A»)",
+  "shubha": true
+ }
+]

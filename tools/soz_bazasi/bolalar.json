@@ -96,7 +96,7 @@
    "en": "pump",
    "de": "die Pumpe",
    "fr": "la pompe",
-   "es": "la bomba",
+   "es": "la bomba de aire",
    "ar": "المضخة",
    "tr": "pompa",
    "zh": "打气筒",
@@ -141,9 +141,9 @@
    "es": "el vaso",
    "ar": "الكأس",
    "tr": "bardak",
-   "zh": "杯子",
+   "zh": "玻璃杯",
    "ja": "コップ",
-   "ko": "컵"
+   "ko": "유리컵"
   }
  },
  {
@@ -201,7 +201,7 @@
    "en": "crescent",
    "de": "die Mondsichel",
    "fr": "le croissant de lune",
-   "es": "la luna creciente",
+   "es": "la media luna",
    "ar": "الهلال",
    "tr": "hilal",
    "zh": "月牙",
@@ -373,7 +373,7 @@
    "ar": "الراكب",
    "tr": "yolcu",
    "zh": "乘客",
-   "ja": "じょうきゃく",
+   "ja": "おきゃくさん",
    "ko": "승객"
   }
  },
@@ -1235,7 +1235,7 @@
    "tr": "alkışlamak",
    "zh": "拍手",
    "ja": "てをたたく",
-   "ko": "박수치다"
+   "ko": "박수 치다"
   }
  },
  {
@@ -1352,8 +1352,8 @@
   "emoji": "🌍",
   "w": {
    "uz": "yer shari",
-   "ru": "земля",
-   "en": "earth",
+   "ru": "Земля",
+   "en": "Earth",
    "de": "die Erde",
    "fr": "la Terre",
    "es": "la Tierra",
@@ -1861,7 +1861,7 @@
    "de": "das Thermometer",
    "fr": "le thermomètre",
    "es": "el termómetro",
-   "ar": "الترمومتر",
+   "ar": "ميزان الحرارة",
    "tr": "termometre",
    "zh": "体温计",
    "ja": "たいおんけい",
@@ -2638,7 +2638,7 @@
    "de": "der Globus",
    "fr": "le globe",
    "es": "el globo terráqueo",
-   "ar": "الكرة الأرضية",
+   "ar": "مجسم الكرة الأرضية",
    "tr": "dünya küresi",
    "zh": "地球仪",
    "ja": "ちきゅうぎ",
@@ -2993,7 +2993,7 @@
    "ru": "пингвин",
    "en": "penguin",
    "de": "der Pinguin",
-   "fr": "le pingouin",
+   "fr": "le manchot",
    "es": "el pingüino",
    "ar": "البطريق",
    "tr": "penguen",
@@ -3328,7 +3328,7 @@
    "uz": "mikrob",
    "ru": "микроб",
    "en": "germ",
-   "de": "der Keim",
+   "de": "die Mikrobe",
    "fr": "le microbe",
    "es": "el microbio",
    "ar": "الجرثومة",
@@ -3546,27 +3546,6 @@
    "zh": "钻石",
    "ja": "ダイヤモンド",
    "ko": "다이아몬드"
-  }
- },
- {
-  "id": "d_u1f54a",
-  "fayl": "u1f54a.webp",
-  "kalit": "dove",
-  "turkum": "hayvon",
-  "daraja": 2,
-  "emoji": "🕊️",
-  "w": {
-   "uz": "kaptar",
-   "ru": "голубь",
-   "en": "dove",
-   "de": "die Taube",
-   "fr": "la colombe",
-   "es": "la paloma",
-   "ar": "الحمامة",
-   "tr": "güvercin",
-   "zh": "鸽子",
-   "ja": "はと",
-   "ko": "비둘기"
   }
  },
  {
@@ -3796,7 +3775,7 @@
    "ar": "الشتلة",
    "tr": "filiz",
    "zh": "幼苗",
-   "ja": "め",
+   "ja": "なえ",
    "ko": "새싹"
   }
  },

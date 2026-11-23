@@ -1,0 +1,70 @@
+[
+ {
+  "fayl": "bolalar",
+  "kalit": "sprout",
+  "eski": "め",
+  "yangi": "なえ",
+  "sabab": "«め» ko‘z (eye) so‘zi bilan hiraganada aynan bir xil — o‘yinda ajratib bo‘lmaydi; nihol = なえ",
+  "shubha": false
+ },
+ {
+  "fayl": "gaplar",
+  "kalit": "sprout",
+  "eski": [
+   "わたしは",
+   "めに",
+   "みずを",
+   "やります"
+  ],
+  "yangi": [
+   "わたしは",
+   "なえに",
+   "みずを",
+   "やります"
+  ],
+  "sabab": "so‘z o‘zgargani uchun (nihol = なえ)",
+  "shubha": false
+ },
+ {
+  "fayl": "bolalar",
+  "kalit": "passenger",
+  "eski": "じょうきゃく",
+  "yangi": "おきゃくさん",
+  "sabab": "«じょうきゃく» — kitobiy so‘z; bolalar yo‘lovchini «おきゃくさん» deydi",
+  "shubha": true
+ },
+ {
+  "fayl": "gaplar",
+  "kalit": "passenger",
+  "eski": [
+   "じょうきゃくが",
+   "バスを",
+   "まっています"
+  ],
+  "yangi": [
+   "おきゃくさんが",
+   "バスを",
+   "まっています"
+  ],
+  "sabab": "so‘z o‘zgarsa gap ham mos bo‘lsin",
+  "shubha": true
+ },
+ {
+  "fayl": "gaplar",
+  "kalit": "bowl",
+  "eski": [
+   "おわんは",
+   "つくえの",
+   "うえに",
+   "あります"
+  ],
+  "yangi": [
+   "おわんは",
+   "テーブルの",
+   "うえに",
+   "あります"
+  ],
+  "sabab": "«つくえ» — yozuv stoli (parta); ovqat stoli «テーブル» (boshqa tillarda ham table/식탁)",
+  "shubha": true
+ }
+]
