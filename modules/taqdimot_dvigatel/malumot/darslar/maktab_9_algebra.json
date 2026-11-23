@@ -1389,6 +1389,1393 @@
      "yakun": "Natijalar: 19; 210; 2; 8."
     }
    }
+  },
+  {
+   "mavzu": "Geometrik progressiya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Geometrik progressiya nima?",
+      "matn": "Har bir hadi, ikkinchisidan boshlab, oldingisini bir xil nolga teng bo‘lmagan songa ko‘paytirishdan hosil bo‘ladigan ketma-ketlik geometrik progressiya deyiladi. Bu son maxraj q deyiladi.",
+      "misol": "2, 6, 18, 54 ketma-ketlikda har safar 3 ga ko‘paytirilgan: maxraj q 3 ga teng. 80, 40, 20, 10 da maxraj 1/2.",
+      "savol": "3, 6, 12, 24 ning maxraji q nechaga teng?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "n-had formulasi",
+      "matn": "n-had birinchi hadni maxrajning (n − 1)-darajasiga ko‘paytirishdan topiladi. Qadamlar soni n − 1 ekanini unutmang.",
+      "misol": "Birinchi had 2, q 3. 5-had: 2 · 3 · 3 · 3 · 3, ya’ni 2 · 81, ya’ni 162.",
+      "savol": "Birinchi had 3, q 2 bo‘lsa 4-had nechaga teng?",
+      "javob": "24",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘rta had xossasi",
+      "matn": "Geometrik progressiyada har bir had kvadrati qo‘shni ikki had ko‘paytmasiga teng. Musbat hadlarda o‘rta had ikki qo‘shni had ko‘paytmasining kvadrat ildiziga teng.",
+      "misol": "4, ?, 16 da o‘rta hadning kvadrati 4 · 16, ya’ni 64, o‘rta had 8. Haqiqatan, 4, 8, 16 — maxraj 2.",
+      "savol": "3, ?, 27 da musbat o‘rta had?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Dastlabki n had yig‘indisi",
+      "matn": "Maxraj 1 dan farqli bo‘lsa, yig‘indi: birinchi had ni (q ning n-darajasi minus 1) ga ko‘paytirib, (q − 1) ga bo‘lamiz.",
+      "misol": "2, 6, 18, 54, 162 yig‘indisi: 2 · (243 − 1) / (3 − 1), ya’ni 2 · 242 / 2, ya’ni 242. Birma-bir qo‘shsak ham 242.",
+      "savol": "1, 2, 4, 8 yig‘indisi?",
+      "javob": "15",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Cheksiz kamayuvchi progressiya",
+      "matn": "Maxraj moduli 1 dan kichik bo‘lsa, hadlar nolga intiladi va cheksiz yig‘indi chekli son bo‘ladi: birinchi had ni (1 − q) ga bo‘lamiz.",
+      "misol": "1, 1/2, 1/4, 1/8, ... yig‘indisi: 1 / (1 − 1/2), ya’ni 1 / (1/2), ya’ni 2. 6, 2, 2/3, ... (q 1/3): 6 / (2/3), ya’ni 9.",
+      "savol": "4, 2, 1, ... cheksiz yig‘indisi?",
+      "javob": "8",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "n-had: birinchi had · q ning (n − 1)-darajasi. Yig‘indi: birinchi had · (q ning n-darajasi minus 1) / (q − 1). O‘rta had kvadrati qo‘shnilar ko‘paytmasiga teng. Cheksiz kamayuvchida: birinchi had / (1 − q).",
+    "misollar": [
+     {
+      "shart": "Birinchi hadi 3, maxraji 2 bo‘lgan progressiyaning 6-hadini toping.",
+      "yechim": [
+       "3 · 2 ning 5-darajasi.",
+       "2 ning 5-darajasi — 32.",
+       "3 · 32 — 96."
+      ],
+      "javob": "96"
+     },
+     {
+      "shart": "1, 3, 9, ... progressiyaning dastlabki 6 hadi yig‘indisini toping.",
+      "yechim": [
+       "q — 3, n — 6. 3 ning 6-darajasi — 729.",
+       "(729 − 1) / (3 − 1), ya’ni 728 / 2.",
+       "Yig‘indi 364."
+      ],
+      "javob": "364"
+     },
+     {
+      "shart": "4, ?, 9 progressiyaning musbat o‘rta hadini toping.",
+      "yechim": [
+       "O‘rta had kvadrati 4 · 9, ya’ni 36.",
+       "Musbat ildiz 6.",
+       "Tekshiramiz: 4, 6, 9 — maxraj 3/2."
+      ],
+      "javob": "6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Bakteriyalar",
+      "topshiriq": "Bakteriya har soatda ikki baravar ko‘payadi. Boshida 1 ta bo‘lsa, 6 soatdan keyin nechta bo‘ladi?",
+      "yechim": "1 · 2 ning 6-darajasi, ya’ni 64.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Sakrovchi koptok",
+      "topshiriq": "Koptok har gal oldingi balandlikning yarmigacha sakraydi: 80, 40, 20, ... 4-sakrash balandligi?",
+      "yechim": "q 1/2: 80, 40, 20, 10. Javob 10.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Qog‘oz buklash",
+      "topshiriq": "Qog‘ozni har gal ikkiga buklaymiz. 5 buklashdan keyin necha qatlam bo‘ladi?",
+      "yechim": "2, 4, 8, 16, 32: javob 32.",
+      "mahsulot": "buklash modeli"
+     },
+     {
+      "nom": "Zanjirli xabar",
+      "topshiriq": "Har kim xabarni 3 kishiga yuboradi: 1, 3, 9, 27, 81. Dastlabki 5 bosqichda jami nechta kishi xabar oladi?",
+      "yechim": "1 + 3 + 9 + 27 + 81 — 121.",
+      "mahsulot": "xabar daraxti"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "5, 10, 20 progressiyaning maxraji?",
+      "javob": "2"
+     },
+     {
+      "shart": "Birinchi had 2, q 2 bo‘lsa 5-had?",
+      "javob": "32"
+     },
+     {
+      "shart": "1, 2, 4, 8 yig‘indisi?",
+      "javob": "15"
+     },
+     {
+      "shart": "81, 27, 9 progressiyaning 4-hadi?",
+      "javob": "3"
+     },
+     {
+      "shart": "3, ?, 27 progressiyaning musbat o‘rta hadi?",
+      "javob": "9"
+     },
+     {
+      "shart": "4, 2, 1, ... cheksiz yig‘indisi?",
+      "javob": "8"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Maxrajni ayirish bilan topadi",
+      "sabab": "arifmetik progressiya bilan adashtiradi",
+      "oldini_olish": "keyingi had ni oldingisiga bo‘lish kerakligini eslash"
+     },
+     {
+      "xato": "n-had uchun n qadam oladi",
+      "sabab": "(n − 1) ni unutadi",
+      "oldini_olish": "birinchi haddan n-hadgacha n − 1 qadam borligini tekshirish"
+     },
+     {
+      "xato": "Cheksiz yig‘indini maxraji katta progressiyada qo‘llaydi",
+      "sabab": "q modulini tekshirmaydi",
+      "oldini_olish": "avval q ning moduli 1 dan kichikligini tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "bakteriyalarning tez ko‘payishi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "radioaktiv yemirilish va tebranishning so‘nishi"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "foiz o‘sishi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ko‘payish qonuni»",
+     "muammo": "Tabiat va hayotda ikki-uch baravar ko‘payish qanday ro‘y beradi va uni progressiya bilan qanday hisoblaymiz?",
+     "mahsulot": "ko‘payish jadvali va grafigi",
+     "bosqichlar": [
+      "misol tanlash",
+      "birinchi had va q ni aniqlash",
+      "hadlarni hisoblash",
+      "grafik chizish",
+      "xulosa yozish"
+     ],
+     "guruh_vazifalari": [
+      "Misol toping",
+      "Hisoblang",
+      "Grafik chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "q to‘g‘ri aniqlangan",
+      "hisoblar to‘g‘ri",
+      "grafik aniq",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Geometrik progressiya bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Darvoza",
+       "matn": "Birinchi had 2, q 2.",
+       "topshiriq": "5-had?",
+       "javob": "32",
+       "rasm": ""
+      },
+      {
+       "nom": "Daraxtzor",
+       "matn": "5, 15, 45, ...",
+       "topshiriq": "Maxraj?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "Hovuz",
+       "matn": "1, 2, 4, 8, 16.",
+       "topshiriq": "Yig‘indi?",
+       "javob": "31",
+       "rasm": ""
+      },
+      {
+       "nom": "Shovqin",
+       "matn": "64, 32, 16, ...",
+       "topshiriq": "4-had?",
+       "javob": "8",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Maxrajni qanday topdingiz?",
+      "Qaysi formula qulay bo‘ldi?",
+      "Qayerda tez o‘sish ko‘rdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Geometrik progressiya",
+      "tarif": "har bir had oldingisini bir xil songa ko‘paytirishdan hosil bo‘ladigan ketma-ketlik"
+     },
+     {
+      "atama": "Maxraj q",
+      "tarif": "keyingi hadning oldingisiga nisbati"
+     },
+     {
+      "atama": "n-had",
+      "tarif": "n-o‘rindagi had"
+     },
+     {
+      "atama": "O‘rta had",
+      "tarif": "qo‘shni ikki had ko‘paytmasining ildizi"
+     },
+     {
+      "atama": "Yig‘indi",
+      "tarif": "dastlabki n had yig‘indisi"
+     },
+     {
+      "atama": "Cheksiz kamayuvchi progressiya",
+      "tarif": "maxraj moduli 1 dan kichik progressiya"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "2, 6, 18 geometrik progressiya",
+      "togri": true,
+      "izoh": "maxraj 3"
+     },
+     {
+      "matn": "1, 2, 3, 4 geometrik progressiya",
+      "togri": false,
+      "izoh": "arifmetik progressiya"
+     },
+     {
+      "matn": "n-had: birinchi had · q ning (n − 1)-darajasi",
+      "togri": true,
+      "izoh": "asosiy formula"
+     },
+     {
+      "matn": "Maxraj nol bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "maxraj noldan farqli"
+     },
+     {
+      "matn": "1, 2, 4, 8 yig‘indisi 15",
+      "togri": true,
+      "izoh": "formula yoki birma-bir qo‘shish"
+     },
+     {
+      "matn": "Cheksiz yig‘indi har qanday progressiyada bor",
+      "togri": false,
+      "izoh": "faqat q moduli 1 dan kichik bo‘lsa"
+     },
+     {
+      "matn": "4, 2, 1, ... cheksiz yig‘indisi 8",
+      "togri": true,
+      "izoh": "4 / (1 − 1/2)"
+     },
+     {
+      "matn": "O‘rta had qo‘shnilar yig‘indisiga teng",
+      "togri": false,
+      "izoh": "kvadrati ko‘paytmaga teng"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Geometrik progressiya nima?",
+      "javob": "har bir had oldingisini bir xil songa ko‘paytirishdan hosil bo‘ladi"
+     },
+     {
+      "savol": "Maxraj nima?",
+      "javob": "keyingi had bo‘linadi oldingisiga"
+     },
+     {
+      "savol": "2, 4, 8 da q?",
+      "javob": "2"
+     },
+     {
+      "savol": "n-had formulasi?",
+      "javob": "birinchi had · q ning (n − 1)-darajasi"
+     },
+     {
+      "savol": "3, 6, 12 ning 4-hadi?",
+      "javob": "24"
+     },
+     {
+      "savol": "1, 2, 4 yig‘indisi?",
+      "javob": "7"
+     },
+     {
+      "savol": "2, ?, 18 musbat o‘rta had?",
+      "javob": "6"
+     },
+     {
+      "savol": "Cheksiz yig‘indi qachon bor?",
+      "javob": "q moduli 1 dan kichik bo‘lsa"
+     },
+     {
+      "savol": "1, 1/2, 1/4 cheksiz yig‘indisi?",
+      "javob": "2"
+     },
+     {
+      "savol": "q manfiy bo‘lishi mumkinmi?",
+      "javob": "ha, hadlar ishorasi almashadi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Maxraj",
+      "matn": "Keyingi had bo‘linadi oldingisiga.",
+      "savol": "5, 15 da q?"
+     },
+     {
+      "nom": "n-had",
+      "matn": "Birinchi had · q ning (n − 1)-darajasi.",
+      "savol": "2, 4 da 4-had?"
+     },
+     {
+      "nom": "O‘rta had",
+      "matn": "Kvadrat ildiz ko‘paytmadan.",
+      "savol": "2, ?, 8 da o‘rta had?"
+     },
+     {
+      "nom": "Yig‘indi",
+      "matn": "(q ning n-darajasi minus 1) / (q − 1).",
+      "savol": "1, 2, 4 yig‘indisi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun cheksiz ko‘p son qo‘shilganda ham yig‘indi chekli bo‘lishi mumkin? 1, 1/2, 1/4, ... misolida tushuntiring.",
+    "keys": {
+     "vaziyat": "Bir sinfdagi o‘quvchi yangilikni 2 do‘stiga aytdi, ular har biri yana 2 tadan do‘stiga aytdi va hokazo.",
+     "savollar": [
+      "Bu qanday progressiya?",
+      "4-bosqichda nechta kishi eshitadi?"
+     ]
+    },
+    "tezis": "Bir hisob — ko‘p baravar o‘sish",
+    "taqqoslash": {
+     "a": "Arifmetik progressiya",
+     "b": "Geometrik progressiya",
+     "umumiy": [
+      "ketma-ketlik",
+      "n-had formulasi bor"
+     ],
+     "a_farq": [
+      "bir xil son qo‘shiladi",
+      "chiziqli o‘sadi"
+     ],
+     "b_farq": [
+      "bir xil songa ko‘paytiriladi",
+      "tez o‘sadi yoki kamayadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Geometrik progressiya",
+     "shoxlar": [
+      {
+       "nom": "Maxraj",
+       "bandlar": [
+        "q katta 1",
+        "q kichik 1"
+       ]
+      },
+      {
+       "nom": "Had",
+       "bandlar": [
+        "n-had",
+        "o‘rta had"
+       ]
+      },
+      {
+       "nom": "Yig‘indi",
+       "bandlar": [
+        "chekli",
+        "cheksiz"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "bakteriya",
+        "xabar tarqalishi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men har gal ko‘paytiraman, shuning uchun tez o‘saman. Men kimman?",
+     "javob": "geometrik progressiya"
+    },
+    "hikmat": "Kichik ko‘paytma katta natija beradi.",
+    "kalit_soz": "MAXRAJ",
+    "xato_yechim": {
+     "shart": "3, 6, 12, ... progressiyaning 5-hadini toping.",
+     "xato": "3 · 2 · 5, ya’ni 30",
+     "togri": "3 · 2 ning 4-darajasi, ya’ni 48",
+     "sabab": "n-had uchun maxraj (n − 1)-darajaga ko‘tariladi"
+    },
+    "guruh_nomlari": [
+     "Maxrajchilar",
+     "Ko‘payuvchilar",
+     "Yig‘indichilar",
+     "Cheksizchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Xabar tarqalishi»",
+     "topshiriq": "Guruh xabar tarqalish modelini chizib, bosqichlar bo‘yicha hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "2, 6, 18, ... ning 4-hadini toping.",
+     "B": "1, 2, 4, ... ning dastlabki 7 hadi yig‘indisini toping.",
+     "C": "12, 6, 3, ... cheksiz yig‘indisini toping."
+    },
+    "sinkveyn": [
+     "Progressiya",
+     "ko‘paytiriladi, tez",
+     "o‘sadi, so‘nadi, tarqaladi",
+     "Ko‘paytma qonuni",
+     "Maxraj"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh geometrik progressiya masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: 2, 4, 8 ning 5-hadi",
+      "2-guruh: 1, 3, 9 ning 4-hadi",
+      "3-guruh: 1, 2, 4, 8 yig‘indisi",
+      "4-guruh: 2, ?, 18 o‘rta hadi"
+     ],
+     "yakun": "Natijalar: 32; 27; 15; 6."
+    }
+   }
+  },
+  {
+   "mavzu": "Murakkab foizlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Oddiy va murakkab foiz",
+      "matn": "Oddiy foizda har yili foiz faqat boshlang‘ich summadan hisoblanadi. Murakkab foizda har yili foiz oldingi yil oxiridagi, ya’ni foiz qo‘shilgan summadan hisoblanadi, shuning uchun summa tezroq o‘sadi.",
+      "misol": "1000 so‘m, yiliga 10 foiz, 2 yil. Oddiy foiz: 1000 + 100 + 100, ya’ni 1200. Murakkab: birinchi yil 1100, ikkinchi yil 1100 ning 10 foizi 110, jami 1210.",
+      "savol": "Murakkab foizda 2 yildan keyin 1000 so‘m qancha bo‘ladi (10 foiz)?",
+      "javob": "1210",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Murakkab foiz formulasi",
+      "matn": "Boshlang‘ich summa P, yillik foiz r (o‘nli kasrda) bo‘lsa, n yildan keyingi summa P ni (1 + r) ning n-darajasiga ko‘paytirishdan topiladi. Bu geometrik progressiya, maxraj 1 + r.",
+      "misol": "1000000 so‘m, 10 foiz, 3 yil: 1000000 · 1,1 · 1,1 · 1,1, ya’ni 1331000 so‘m.",
+      "savol": "100 so‘m 10 foiz bilan 1 yildan keyin nechta?",
+      "javob": "110",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Foiz oshishi koeffitsienti",
+      "matn": "Kattalik p foizga oshsa, uni 1 + p / 100 ga ko‘paytiramiz. 10 foiz oshish — 1,1 ga, 20 foiz — 1,2 ga, 50 foiz — 1,5 ga ko‘paytirish. Ketma-ket oshishlarda koeffitsientlar ko‘paytiriladi.",
+      "misol": "200 so‘m 50 foizga 2 marta oshsa: 200 · 1,5 · 1,5, ya’ni 450.",
+      "savol": "100 ni 20 foizga oshirsak?",
+      "javob": "120",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Foiz kamayishi",
+      "matn": "Kattalik p foizga kamaysa, uni 1 − p / 100 ga ko‘paytiramiz. Qiymatning har yili foizga arzonlashishi ham murakkab foiz qonuniga bo‘ysunadi, faqat koeffitsient 1 dan kichik bo‘ladi.",
+      "misol": "400 so‘mlik narsa har yili 25 foizga arzonlashsa, 2 yildan keyin: 400 · 0,75 · 0,75, ya’ni 225.",
+      "savol": "100 ni 10 foizga kamaytirsak?",
+      "javob": "90",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Murakkab foiz hayotda",
+      "matn": "Bank omonatlari, kreditlar, aholi o‘sishi va narxlar o‘zgarishi murakkab foiz bilan hisoblanadi. Foiz hisobini tushunish kishini ortiqcha to‘lovdan va qarzdan asraydi.",
+      "misol": "100000 kishilik shahar har yili 2 foiz o‘sadi: 1 yilda 102000, 2 yilda 102000 · 1,02, ya’ni 104040.",
+      "savol": "Foizlar qachon tezroq o‘sadi: oddiyda yoki murakkabda?",
+      "javob": "murakkabda",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Murakkab foiz: P · (1 + r) ning n-darajasi. Oshishda koeffitsient 1 + r, kamayishda 1 − r. Ketma-ket o‘zgarishlarda koeffitsientlar ko‘paytiriladi.",
+    "misollar": [
+     {
+      "shart": "1000000 so‘m yiliga 10 foiz murakkab foiz bilan 3 yilga qo‘yildi. Qancha bo‘ladi?",
+      "yechim": [
+       "Koeffitsient 1,1. 1,1 · 1,1 — 1,21; 1,21 · 1,1 — 1,331.",
+       "1000000 · 1,331.",
+       "Natija 1331000 so‘m."
+      ],
+      "javob": "1331000"
+     },
+     {
+      "shart": "500000 so‘m yiliga 20 foiz bilan 2 yilga qo‘yildi. Oxirgi summa?",
+      "yechim": [
+       "Koeffitsient 1,2. 1,2 · 1,2 — 1,44.",
+       "500000 · 1,44.",
+       "Natija 720000."
+      ],
+      "javob": "720000"
+     },
+     {
+      "shart": "Narx har yili 20 foizga arzonlashadi. 5000000 so‘mlik telefon 2 yildan keyin qancha turadi?",
+      "yechim": [
+       "Koeffitsient 0,8.",
+       "5000000 · 0,8 — 4000000; 4000000 · 0,8 — 3200000.",
+       "Natija 3200000."
+      ],
+      "javob": "3200000"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Oddiy va murakkab",
+      "topshiriq": "1000 so‘m 10 foiz bilan 3 yilga. Oddiy va murakkab foizda natijani solishtiring.",
+      "yechim": "Oddiy: 1000 + 3 · 100, ya’ni 1300. Murakkab: 1000 · 1,331, ya’ni 1331.",
+      "mahsulot": "taqqoslash jadvali"
+     },
+     {
+      "nom": "Aholi o‘sishi",
+      "topshiriq": "100000 kishilik shahar har yili 2 foiz o‘sadi. 2 yildan keyin aholi soni?",
+      "yechim": "100000 · 1,02 — 102000; 102000 · 1,02 — 104040.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Arzonlashish",
+      "topshiriq": "Telefon narxi 5000000 so‘m, har yili 20 foiz arzonlashadi. 2 yildan keyin narx?",
+      "yechim": "5000000 · 0,8 · 0,8, ya’ni 3200000.",
+      "mahsulot": "narx grafigi"
+     },
+     {
+      "nom": "O‘z omonatimiz",
+      "topshiriq": "Guruh o‘z summasi va foizini tanlab, 3 yillik natijani jadvalda hisoblaydi.",
+      "yechim": "Har guruh o‘z summasi bilan hisoblaydi.",
+      "mahsulot": "omonat jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "100 so‘m, 10 foiz, 1 yildan keyin?",
+      "javob": "110"
+     },
+     {
+      "shart": "100 so‘m, 10 foiz, 2 yildan keyin?",
+      "javob": "121"
+     },
+     {
+      "shart": "200 so‘m, 50 foiz, 2 yildan keyin?",
+      "javob": "450"
+     },
+     {
+      "shart": "1000 so‘m, 20 foiz, 2 yildan keyin?",
+      "javob": "1440"
+     },
+     {
+      "shart": "400 so‘m, har yili 25 foiz kamayadi, 2 yildan keyin?",
+      "javob": "225"
+     },
+     {
+      "shart": "1000000 so‘m, 5 foiz, 2 yildan keyin?",
+      "javob": "1102500"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Foizni faqat boshlang‘ich summadan hisoblaydi",
+      "sabab": "murakkab foizni oddiy deb oladi",
+      "oldini_olish": "har yilgi summa yangilanishini eslash"
+     },
+     {
+      "xato": "20 foizni 0,2 ga ko‘paytiradi",
+      "sabab": "koeffitsientni 1 + r deb olmaydi",
+      "oldini_olish": "oshishda 1,2 ga ko‘paytirish kerakligini yozib qo‘yish"
+     },
+     {
+      "xato": "Kamayishda koeffitsientni 1 + r deb oladi",
+      "sabab": "ishorani adashtiradi",
+      "oldini_olish": "kamayishda 1 − r ishlatish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Iqtisod",
+      "boglanish": "omonat va kredit hisoblari"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "aholi sonining yillik o‘sishi"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "populyatiyaning foizli o‘sishi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Omonat hisobi»",
+     "muammo": "Bank omonatining foizini qanday hisoblab, eng foydali variantni tanlaymiz?",
+     "mahsulot": "omonat solishtirish jadvali",
+     "bosqichlar": [
+      "bank shartlarini topish",
+      "summalarni tanlash",
+      "oddiy va murakkab foizni hisoblash",
+      "natijalarni solishtirish",
+      "xulosa yozish"
+     ],
+     "guruh_vazifalari": [
+      "Shartlarni toping",
+      "Hisoblang",
+      "Solishtiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "shartlar to‘g‘ri olingan",
+      "hisoblar to‘g‘ri",
+      "solishtirish aniq",
+      "xulosa asosli",
+      "jadval ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Foizlar bozori»",
+     "bekatlar": [
+      {
+       "nom": "Bank",
+       "matn": "100 so‘m, yiliga 10 foiz, 2 yil.",
+       "topshiriq": "Natija?",
+       "javob": "121",
+       "rasm": ""
+      },
+      {
+       "nom": "Do‘kon",
+       "matn": "Narx 200 so‘m, 50 foiz oshdi.",
+       "topshiriq": "Yangi narx?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "Chegirma",
+       "matn": "Narx 400 so‘m, 25 foiz arzonladi.",
+       "topshiriq": "Yangi narx?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "Shahar",
+       "matn": "10000 kishi, 10 foiz o‘sdi.",
+       "topshiriq": "Yangi aholi?",
+       "javob": "11000",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi koeffitsientni ishlatdingiz?",
+      "Murakkab foiz nimasi bilan qiziq?",
+      "Qayerda foiz hisobi kerak bo‘ladi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Oddiy foiz",
+      "tarif": "faqat boshlang‘ich summadan hisoblanadigan foiz"
+     },
+     {
+      "atama": "Murakkab foiz",
+      "tarif": "har yili o‘sgan summadan hisoblanadigan foiz"
+     },
+     {
+      "atama": "Omonat",
+      "tarif": "bankka qo‘yilgan summa"
+     },
+     {
+      "atama": "Koeffitsient",
+      "tarif": "foizdan hosil bo‘lgan ko‘paytuvchi"
+     },
+     {
+      "atama": "O‘sish",
+      "tarif": "qiymatning ortishi"
+     },
+     {
+      "atama": "Kamayish",
+      "tarif": "qiymatning kamayishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Murakkab foizda foiz har yili yangilangan summadan hisoblanadi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "20 foiz oshish — 0,2 ga ko‘paytirish",
+      "togri": false,
+      "izoh": "1,2 ga ko‘paytiriladi"
+     },
+     {
+      "matn": "100 so‘m 10 foiz bilan 2 yildan keyin 121",
+      "togri": true,
+      "izoh": "100 · 1,21"
+     },
+     {
+      "matn": "Oddiy foiz doim murakkabdan ko‘p",
+      "togri": false,
+      "izoh": "murakkab ko‘p yoki teng"
+     },
+     {
+      "matn": "25 foiz kamayish — 0,75 ga ko‘paytirish",
+      "togri": true,
+      "izoh": "1 − 0,25"
+     },
+     {
+      "matn": "Murakkab foiz arifmetik progressiya",
+      "togri": false,
+      "izoh": "geometrik progressiya"
+     },
+     {
+      "matn": "Ketma-ket o‘zgarishda koeffitsientlar ko‘paytiriladi",
+      "togri": true,
+      "izoh": "koeffitsientlar ko‘paytmasi"
+     },
+     {
+      "matn": "Murakkab foizda summa kamayadi",
+      "togri": false,
+      "izoh": "oshadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Murakkab foiz nima?",
+      "javob": "o‘sgan summadan hisoblanadigan foiz"
+     },
+     {
+      "savol": "Formula?",
+      "javob": "P · (1 + r) ning n-darajasi"
+     },
+     {
+      "savol": "10 foiz oshish koeffitsienti?",
+      "javob": "1,1"
+     },
+     {
+      "savol": "20 foiz oshish koeffitsienti?",
+      "javob": "1,2"
+     },
+     {
+      "savol": "10 foiz kamayish koeffitsienti?",
+      "javob": "0,9"
+     },
+     {
+      "savol": "100 so‘m 10 foiz 2 yil?",
+      "javob": "121"
+     },
+     {
+      "savol": "200 so‘m 50 foiz 1 yil?",
+      "javob": "300"
+     },
+     {
+      "savol": "Murakkab foiz qaysi progressiya?",
+      "javob": "geometrik"
+     },
+     {
+      "savol": "Oddiy foiz 1000 so‘m 10 foiz 2 yil?",
+      "javob": "1200"
+     },
+     {
+      "savol": "Murakkab foiz 1000 so‘m 10 foiz 2 yil?",
+      "javob": "1210"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Boshlang‘ich",
+      "matn": "P summa.",
+      "savol": "100 so‘m, 10 foiz: P?"
+     },
+     {
+      "nom": "Koeffitsient",
+      "matn": "1 + r yoki 1 − r.",
+      "savol": "30 foiz oshish koeffitsienti?"
+     },
+     {
+      "nom": "Daraja",
+      "matn": "Yillar soni n.",
+      "savol": "3 yil: daraja?"
+     },
+     {
+      "nom": "Natija",
+      "matn": "P · koeffitsientning n-darajasi.",
+      "savol": "100 · 1,1 · 1,1?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bir xil foizda murakkab foiz oddiy foizdan ko‘proq foyda beradi? Qaysi yildan boshlab farq seziladi?",
+    "keys": {
+     "vaziyat": "Omonatchi 1000000 so‘mni bir bankka oddiy 10 foiz bilan, ikkinchisiga murakkab 10 foiz bilan 3 yilga qo‘ydi.",
+     "savollar": [
+      "Birinchi bankda qancha bo‘ladi?",
+      "Ikkinchi bankda qancha bo‘ladi?"
+     ]
+    },
+    "tezis": "Foiz — o‘sishning ikkinchi nomi",
+    "taqqoslash": {
+     "a": "Oddiy foiz",
+     "b": "Murakkab foiz",
+     "umumiy": [
+      "foiz stavkasi bor",
+      "yillar bo‘yicha hisoblanadi"
+     ],
+     "a_farq": [
+      "faqat boshlang‘ich summadan",
+      "arifmetik o‘sadi"
+     ],
+     "b_farq": [
+      "o‘sgan summadan",
+      "geometrik o‘sadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Murakkab foizlar",
+     "shoxlar": [
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "P",
+        "koeffitsient",
+        "daraja"
+       ]
+      },
+      {
+       "nom": "O‘sish",
+       "bandlar": [
+        "omonat",
+        "aholi"
+       ]
+      },
+      {
+       "nom": "Kamayish",
+       "bandlar": [
+        "arzonlashish",
+        "eskirish"
+       ]
+      },
+      {
+       "nom": "Solishtirish",
+       "bandlar": [
+        "oddiy foiz",
+        "murakkab foiz"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Foizdan foiz olaman, ko‘p o‘saman. Men kimman?",
+     "javob": "murakkab foiz"
+    },
+    "hikmat": "Vaqt foizni kattalashtiradi.",
+    "kalit_soz": "FOIZ",
+    "xato_yechim": {
+     "shart": "100 so‘m 10 foiz bilan 2 yilga qo‘yilsa, qancha bo‘ladi?",
+     "xato": "120",
+     "togri": "121",
+     "sabab": "ikkinchi yil foizi 110 dan hisoblanadi"
+    },
+    "guruh_nomlari": [
+     "Foizchilar",
+     "Omonatchilar",
+     "Koeffitsientchilar",
+     "Bankchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Oila omonati»",
+     "topshiriq": "Guruh oila byudjetidan summa ajratib, 3 yillik omonat jadvalini tuzadi."
+    },
+    "vazifalar": {
+     "A": "100 so‘m 20 foiz bilan 2 yilga qo‘yilsa, qancha bo‘ladi?",
+     "B": "1000 so‘m har yili 10 foiz arzonlashsa, 2 yildan keyin qancha?",
+     "C": "Oddiy va murakkab foizda 1000 so‘m, 10 foiz, 3 yil natijasini solishtiring."
+    },
+    "sinkveyn": [
+     "Foiz",
+     "oddiy, murakkab",
+     "o‘sadi, kamayadi, hisoblanadi",
+     "Foizdan foiz",
+     "Omonat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh foiz masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: 100, 10 foiz, 1 yil",
+      "2-guruh: 100, 10 foiz, 2 yil",
+      "3-guruh: 200, 50 foiz, 1 yil",
+      "4-guruh: 100, 10 foiz kamayish"
+     ],
+     "yakun": "Natijalar: 110; 121; 300; 90."
+    }
+   }
+  },
+  {
+   "mavzu": "Daraja ko‘rsatkichi ratsional",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kasr ko‘rsatkichli daraja",
+      "matn": "Sonning 1/n darajasi shu sonning n-darajali ildizi deyiladi: 9 ning 1/2 darajasi 9 ning kvadrat ildizi, 8 ning 1/3 darajasi 8 ning kub ildizi. Asos manfiy bo‘lmasligi kerak.",
+      "misol": "9 ning 1/2 darajasi 3. 8 ning 1/3 darajasi 2. 16 ning 1/4 darajasi 2.",
+      "savol": "100 ning 1/2 darajasi nechaga teng?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Umumiy kasr daraja",
+      "matn": "Sonning m/n darajasi — shu sonning n-darajali ildizini m-darajaga ko‘tarish. Avval ildiz chiqarish, keyin darajaga ko‘tarish qulay.",
+      "misol": "8 ning 2/3 darajasi: 8 ning kub ildizi 2, 2 ning kvadrati 4. 4 ning 3/2 darajasi: kvadrat ildiz 2, kubi 8.",
+      "savol": "27 ning 2/3 darajasi nechaga teng?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Manfiy ko‘rsatkich",
+      "matn": "Sonning manfiy darajasi shu sonning musbat darajasiga teskari sondir. Manfiy ko‘rsatkich sonni manfiy qilmaydi, balki 1 ga bo‘lishni bildiradi.",
+      "misol": "2 ning −3 darajasi 1/8. 5 ning −2 darajasi 1/25. 16 ning −1/2 darajasi 1 / 4, chunki 16 ning 1/2 darajasi 4.",
+      "savol": "2 ning −2 darajasi nechaga teng?",
+      "javob": "1/4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Daraja xossalari",
+      "matn": "Ratsional ko‘rsatkichlarda ham butun ko‘rsatkichlardagi xossalar o‘z kuchida: bir xil asosli ko‘paytmada ko‘rsatkichlar qo‘shiladi, bo‘linmada ayriladi, darajani darajaga ko‘tarishda ko‘paytiriladi.",
+      "misol": "2 ning 1/2 darajasi ni 2 ning 3/2 darajasiga ko‘paytirsak, ko‘rsatkichlar 1/2 + 3/2, ya’ni 2: 2 ning kvadrati 4.",
+      "savol": "3 ning 1/2 darajasi ni 3 ning 3/2 darajasiga ko‘paytirsak nima chiqadi?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ildizni darajaga aylantirish",
+      "matn": "Har qanday ildizni kasr ko‘rsatkichli daraja ko‘rinishida yozish mumkin va aksincha. Bu ildizli ifodalarni soddalashtirishni osonlashtiradi.",
+      "misol": "32 ning 1/5 darajasi 2, chunki 2 ning 5-darajasi 32. 81 ning 3/4 darajasi: 81 ning to‘rtinchi ildizi 3, kubi 27.",
+      "savol": "32 ning 1/5 darajasi?",
+      "javob": "2",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Sonning 1/n darajasi — n-darajali ildiz. m/n daraja — n-darajali ildizni m-darajaga ko‘tarish. Manfiy ko‘rsatkich teskari sonni beradi. Ko‘paytmada ko‘rsatkichlar qo‘shiladi.",
+    "misollar": [
+     {
+      "shart": "27 ning 1/3 darajasini toping.",
+      "yechim": [
+       "Bu 27 ning kub ildizi.",
+       "3 ning kubi 27.",
+       "Demak, 3."
+      ],
+      "javob": "3"
+     },
+     {
+      "shart": "16 ning 3/4 darajasini toping.",
+      "yechim": [
+       "16 ning to‘rtinchi ildizi 2.",
+       "2 ning kubi 8.",
+       "Natija 8."
+      ],
+      "javob": "8"
+     },
+     {
+      "shart": "4 ning −3/2 darajasini toping.",
+      "yechim": [
+       "Avval 4 ning 3/2 darajasi: kvadrat ildiz 2, kubi 8.",
+       "Manfiy ko‘rsatkich — teskari son.",
+       "Natija 1/8."
+      ],
+      "javob": "1/8"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ildizdan darajaga",
+      "topshiriq": "36, 64, 32 va 49 ni mos ravishda 1/2, 1/3, 1/5, 1/2 darajalarga ko‘tarib hisoblang.",
+      "yechim": "6; 4; 2; 7.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Kasr darajalar",
+      "topshiriq": "8 ning 2/3, 27 ning 2/3, 4 ning 3/2 darajalarini hisoblang.",
+      "yechim": "4; 9; 8.",
+      "mahsulot": "tekshirish kartochkasi"
+     },
+     {
+      "nom": "Manfiy ko‘rsatkich",
+      "topshiriq": "2 ning −3, 5 ning −2, 10 ning −1 darajalarini hisoblang.",
+      "yechim": "1/8; 1/25; 1/10.",
+      "mahsulot": "teskari sonlar jadvali"
+     },
+     {
+      "nom": "O‘z misollarimiz",
+      "topshiriq": "Guruh o‘ziga ratsional ko‘rsatkichli 3 ta misol tuzib, o‘rtoqlariga beradi.",
+      "yechim": "Har guruh o‘z misollarini tekshiradi.",
+      "mahsulot": "misol varaqlari"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "25 ning 1/2 darajasi?",
+      "javob": "5"
+     },
+     {
+      "shart": "8 ning 1/3 darajasi?",
+      "javob": "2"
+     },
+     {
+      "shart": "9 ning 3/2 darajasi?",
+      "javob": "27"
+     },
+     {
+      "shart": "2 ning −2 darajasi?",
+      "javob": "1/4"
+     },
+     {
+      "shart": "16 ning 1/4 darajasi?",
+      "javob": "2"
+     },
+     {
+      "shart": "1000 ning 2/3 darajasi?",
+      "javob": "100"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "1/2 darajani 2 ga ko‘paytirish deb oladi",
+      "sabab": "ildiz ma’nosini unutadi",
+      "oldini_olish": "1/2 daraja — kvadrat ildiz ekanini eslash"
+     },
+     {
+      "xato": "Manfiy ko‘rsatkichni manfiy son deb oladi",
+      "sabab": "teskari ma’noni tushunmaydi",
+      "oldini_olish": "manfiy ko‘rsatkich — 1 ga bo‘lish ekanini yozib qo‘yish"
+     },
+     {
+      "xato": "m/n da m va n ni almashtirib yuboradi",
+      "sabab": "surat va maxrajni adashtiradi",
+      "oldini_olish": "maxraj — ildiz darajasi, surat — ko‘tarish darajasi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "ildizli formulalar va tebranish davri"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "ikkilik sanoq va darajalar"
+     },
+     {
+      "fan": "Geometriya",
+      "boglanish": "yuz va hajm bog‘lanishlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Daraja va ildiz lug‘ati»",
+     "muammo": "Ildiz va kasr ko‘rsatkichli darajani bir-biriga qanday o‘tkazamiz?",
+     "mahsulot": "daraja-ildiz lug‘ati",
+     "bosqichlar": [
+      "misollar tanlash",
+      "ildizga o‘tkazish",
+      "darajaga o‘tkazish",
+      "tekshirish",
+      "lug‘at yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Misol tanlang",
+      "O‘tkazing",
+      "Tekshiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘tkazishlar to‘g‘ri",
+      "hisoblar to‘g‘ri",
+      "tekshirish bor",
+      "lug‘at ravshan",
+      "taqdimot izchil"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Daraja shahri»",
+     "bekatlar": [
+      {
+       "nom": "Minora",
+       "matn": "Sonning 1/2 darajasi 49.",
+       "topshiriq": "Natija?",
+       "javob": "7",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘l",
+       "matn": "8 ning 2/3 darajasi.",
+       "topshiriq": "Natija?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "2 ning −3 darajasi.",
+       "topshiriq": "Natija?",
+       "javob": "1/8",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "81 ning 1/4 darajasi.",
+       "topshiriq": "Natija?",
+       "javob": "3",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoida oson bo‘ldi?",
+      "Ildiz bilan daraja qanday bog‘liq?",
+      "Manfiy ko‘rsatkich nimani bildiradi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ratsional ko‘rsatkich",
+      "tarif": "kasr ko‘rinishidagi daraja ko‘rsatkichi"
+     },
+     {
+      "atama": "Ildiz",
+      "tarif": "darajaga teskari amal"
+     },
+     {
+      "atama": "Daraja asosi",
+      "tarif": "darajaga ko‘tariladigan son"
+     },
+     {
+      "atama": "Daraja ko‘rsatkichi",
+      "tarif": "asos necha marta ko‘paytirilishini bildiruvchi son"
+     },
+     {
+      "atama": "Teskari son",
+      "tarif": "ko‘paytmasi 1 bo‘ladigan son"
+     },
+     {
+      "atama": "Kasr daraja",
+      "tarif": "m/n ko‘rinishdagi daraja"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "9 ning 1/2 darajasi 3",
+      "togri": true,
+      "izoh": "kvadrat ildiz"
+     },
+     {
+      "matn": "8 ning 1/3 darajasi 4",
+      "togri": false,
+      "izoh": "kub ildiz 2"
+     },
+     {
+      "matn": "8 ning 2/3 darajasi 4",
+      "togri": true,
+      "izoh": "ildiz 2, kvadrat 4"
+     },
+     {
+      "matn": "Manfiy ko‘rsatkich sonni manfiy qiladi",
+      "togri": false,
+      "izoh": "teskari son beradi"
+     },
+     {
+      "matn": "2 ning −3 darajasi 1/8",
+      "togri": true,
+      "izoh": "1 / 2 ning kubi"
+     },
+     {
+      "matn": "Ko‘paytmada ko‘rsatkichlar ko‘paytiriladi",
+      "togri": false,
+      "izoh": "qo‘shiladi"
+     },
+     {
+      "matn": "16 ning 1/4 darajasi 2",
+      "togri": true,
+      "izoh": "to‘rtinchi ildiz"
+     },
+     {
+      "matn": "1/n daraja n-darajali ildizga teng",
+      "togri": true,
+      "izoh": "ta’rif"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "9 ning 1/2 darajasi?",
+      "javob": "3"
+     },
+     {
+      "savol": "8 ning 1/3 darajasi?",
+      "javob": "2"
+     },
+     {
+      "savol": "4 ning 3/2 darajasi?",
+      "javob": "8"
+     },
+     {
+      "savol": "27 ning 2/3 darajasi?",
+      "javob": "9"
+     },
+     {
+      "savol": "2 ning −1 darajasi?",
+      "javob": "1/2"
+     },
+     {
+      "savol": "5 ning −2 darajasi?",
+      "javob": "1/25"
+     },
+     {
+      "savol": "1/2 daraja nimani bildiradi?",
+      "javob": "kvadrat ildiz"
+     },
+     {
+      "savol": "m/n daraja nima?",
+      "javob": "n-ildizning m-darajasi"
+     },
+     {
+      "savol": "Ko‘paytmada ko‘rsatkichlar nima bo‘ladi?",
+      "javob": "qo‘shiladi"
+     },
+     {
+      "savol": "100 ning 1/2 darajasi?",
+      "javob": "10"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ildiz",
+      "matn": "Maxraj — ildiz darajasi.",
+      "savol": "64 ning 1/3 darajasi?"
+     },
+     {
+      "nom": "Daraja",
+      "matn": "Surat — ko‘tarish darajasi.",
+      "savol": "4 ning 3/2 darajasi?"
+     },
+     {
+      "nom": "Teskari",
+      "matn": "Manfiy ko‘rsatkich — 1 ga bo‘lish.",
+      "savol": "3 ning −1 darajasi?"
+     },
+     {
+      "nom": "Xossa",
+      "matn": "Ko‘paytmada qo‘shiladi.",
+      "savol": "2 ning 1/2 va 3/2 ko‘paytmasi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun 1/2 ko‘rsatkichli daraja aynan kvadrat ildizga teng bo‘lishi kerak? Xossa bilan isbotlang: ikki marta ko‘paytirsak nima chiqadi?",
+    "keys": {
+     "vaziyat": "Kub shaklidagi idishning hajmi 27 litr. Qirrasi shu hajmning 1/3 darajasiga teng.",
+     "savollar": [
+      "Qirra uzunligi qancha?",
+      "Yon yuzi qancha?"
+     ]
+    },
+    "tezis": "Ildiz va daraja — bir tanganing ikki yuzi",
+    "taqqoslash": {
+     "a": "Butun ko‘rsatkich",
+     "b": "Kasr ko‘rsatkich",
+     "umumiy": [
+      "daraja xossalari bir xil",
+      "asos ko‘paytiriladi yoki ildiz olinadi"
+     ],
+     "a_farq": [
+      "bir necha marta ko‘paytirish",
+      "natija ildizsiz"
+     ],
+     "b_farq": [
+      "ildiz va daraja birga",
+      "asos manfiy bo‘lmasligi kerak"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ratsional ko‘rsatkich",
+     "shoxlar": [
+      {
+       "nom": "1/n daraja",
+       "bandlar": [
+        "kvadrat ildiz",
+        "kub ildiz"
+       ]
+      },
+      {
+       "nom": "m/n daraja",
+       "bandlar": [
+        "ildiz",
+        "ko‘tarish"
+       ]
+      },
+      {
+       "nom": "Manfiy daraja",
+       "bandlar": [
+        "teskari son"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "qo‘shish",
+        "ayirish",
+        "ko‘paytirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men kasr ko‘rinishidagi darajaman va ildizga aylanaman. Men kimman?",
+     "javob": "ratsional ko‘rsatkich"
+    },
+    "hikmat": "Ildiz — darajaning yashirin ko‘rinishi.",
+    "kalit_soz": "ILDIZ",
+    "xato_yechim": {
+     "shart": "8 ning 2/3 darajasini toping.",
+     "xato": "8 · 2 / 3",
+     "togri": "4",
+     "sabab": "kasr daraja — ildiz va ko‘tarish: 8 ning kub ildizi 2, kvadrati 4"
+    },
+    "guruh_nomlari": [
+     "Ildizchilar",
+     "Darajachilar",
+     "Kasrchilar",
+     "Teskarichilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Kub idish»",
+     "topshiriq": "Guruh kub hajmidan qirrasini daraja yordamida topib, haqiqiy qutini o‘lchaydi."
+    },
+    "vazifalar": {
+     "A": "36 ning 1/2 va 125 ning 1/3 darajalarini toping.",
+     "B": "27 ning 2/3 va 16 ning 3/4 darajalarini toping.",
+     "C": "2 ning −4 darajasini va 9 ning −1/2 darajasini toping."
+    },
+    "sinkveyn": [
+     "Daraja",
+     "kasr, manfiy",
+     "ildizlaydi, ko‘taradi, aylantiradi",
+     "Ildiz — daraja",
+     "Ko‘rsatkich"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ratsional darajalarni hisoblaydi.",
+     "qismlar": [
+      "1-guruh: 81 ning 1/2 darajasi",
+      "2-guruh: 125 ning 1/3 darajasi",
+      "3-guruh: 8 ning 2/3 darajasi",
+      "4-guruh: 2 ning −4 darajasi"
+     ],
+     "yakun": "Natijalar: 9; 5; 4; 1/16."
+    }
+   }
   }
  ]
 }
