@@ -1,0 +1,1405 @@
+{
+ "daraja": "maktab",
+ "sinf": "7",
+ "fan": "Geometriya",
+ "muallif": "qo‘lda yozilgan, hisob-kitob avtomatik tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Geometriyaning asosiy tushunchalari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Geometriya nimani o‘rganadi",
+      "matn": "Geometriya — shakllarning shakli, o‘lchami va o‘zaro joylashuvini o‘rganuvchi fan. «Geometriya» so‘zi qadimgi yunoncha bo‘lib, «yer o‘lchash» degan ma’noni bildiradi. Nuqta, to‘g‘ri chiziq va tekislik asosiy tushunchalar bo‘lib, ular ta’riflanmaydi, ularning xossalari aksiomalar bilan beriladi.",
+      "misol": "Qalam uchining izi nuqtaga, tarang tortilgan ip to‘g‘ri chiziqqa, stol usti tekislikka o‘xshaydi. Haqiqiy nuqtaning o‘lchami yo‘q, to‘g‘ri chiziqning uchi yo‘q.",
+      "savol": "To‘g‘ri chiziqning uchlari bormi?",
+      "javob": "yo‘q, u ikki tomonga cheksiz davom etadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nuqta va to‘g‘ri chiziq",
+      "matn": "Nuqtalar bosh lotin harflari A, B, C bilan, to‘g‘ri chiziqlar kichik harflar a, b yoki ikki nuqta bilan AB deb belgilanadi. Nuqta to‘g‘ri chiziqda yotishi yoki yotmasligi mumkin. Aksioma: har qanday ikki nuqtadan faqat bitta to‘g‘ri chiziq o‘tadi.",
+      "misol": "A va B nuqtalardan faqat bitta AB to‘g‘ri chiziq o‘tadi. Bitta chiziqda yotmagan 3 nuqta berilsa, juft-juft o‘tkazilgan to‘g‘ri chiziqlar 3 ta: AB, BC, AC.",
+      "savol": "Hech uchtasi bitta chiziqda yotmaydigan 4 nuqta orqali nechta to‘g‘ri chiziq o‘tkazish mumkin?",
+      "javob": "6 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nur va kesma",
+      "matn": "To‘g‘ri chiziqning nuqtadan bir tomonga cheksiz davom etuvchi qismi nur deyiladi. To‘g‘ri chiziqning ikki nuqta orasidagi qismi kesma deyiladi. Kesma uzunligi bor, to‘g‘ri chiziq va nurning uzunligi yo‘q.",
+      "misol": "AB kesma — A va B uchlari bor, uzunligi 5 sm bo‘lishi mumkin. AB nur A dan boshlanib B tomonga cheksiz davom etadi.",
+      "savol": "Nurning nechta uchi bor?",
+      "javob": "bitta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri chiziqlarning o‘zaro joylashuvi",
+      "matn": "Tekislikda ikki to‘g‘ri chiziq yo kesishadi (bitta umumiy nuqta), yo parallel (umumiy nuqta yo‘q), yo ustma-ust tushadi. Ikki turli to‘g‘ri chiziqning umumiy nuqtalari ko‘pi bilan bitta.",
+      "misol": "Kesishgan ko‘cha chorrahada bitta umumiy nuqtaga ega. Temir yo‘l relslari parallel, ular kesishmaydi.",
+      "savol": "Ikki turli to‘g‘ri chiziq ko‘pi bilan nechta umumiy nuqtaga ega?",
+      "javob": "bitta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ta’rif, aksioma, teorema, isbot",
+      "matn": "Ta’rif — tushunchaning ma’nosini tushuntiradi. Aksioma — isbotsiz qabul qilinadigan tasdiq. Teorema — isbotlanadigan tasdiq: unda shart («agar») va xulosa («u holda») bo‘ladi. Isbot — ma’lum faktlarga tayanib xulosani mantiqiy asoslash. Teskari teorema shart bilan xulosani almashtirishdan hosil bo‘ladi, u har doim ham to‘g‘ri emas.",
+      "misol": "Teorema: agar son 10 ga bo‘linsa, u 5 ga bo‘linadi. Shart — 10 ga bo‘linish, xulosa — 5 ga bo‘linish. Teskari tasdiq «5 ga bo‘linsa, 10 ga bo‘linadi» noto‘g‘ri: 15 soni 5 ga bo‘linadi, 10 ga bo‘linmaydi.",
+      "savol": "Teoremaning «agar» qismi nima deyiladi?",
+      "javob": "shart",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Nuqta, to‘g‘ri chiziq va tekislik asosiy tushunchalar. Ikki nuqtadan faqat bitta to‘g‘ri chiziq o‘tadi. Teoremada shart va xulosa bo‘ladi, u isbotlanadi; aksioma isbotsiz qabul qilinadi.",
+    "misollar": [
+     {
+      "shart": "Tekislikda hech uchtasi bitta chiziqda yotmaydigan 4 nuqta berilgan. Ular orqali nechta to‘g‘ri chiziq o‘tkazish mumkin?",
+      "yechim": [
+       "Har ikki nuqtadan bitta to‘g‘ri chiziq o‘tadi.",
+       "Juftlar: AB, AC, AD, BC, BD, CD.",
+       "Jami 6 ta."
+      ],
+      "javob": "6 ta to‘g‘ri chiziq"
+     },
+     {
+      "shart": "Ikki turli to‘g‘ri chiziq nechta umumiy nuqtaga ega bo‘lishi mumkin?",
+      "yechim": [
+       "Parallel bo‘lsa, umumiy nuqta yo‘q.",
+       "Kesishsa, bitta umumiy nuqta.",
+       "Ikkita umumiy nuqta bo‘lsa, ular ustma-ust tushgan bo‘lardi, ya’ni turli emas."
+      ],
+      "javob": "0 yoki 1 ta"
+     },
+     {
+      "shart": "«Agar son 10 ga bo‘linsa, u 5 ga bo‘linadi» teoremasining shartini, xulosasini va teskari tasdiqini toping.",
+      "yechim": [
+       "Shart: son 10 ga bo‘linadi.",
+       "Xulosa: son 5 ga bo‘linadi.",
+       "Teskari tasdiq: 5 ga bo‘linsa, 10 ga bo‘linadi — noto‘g‘ri, 15 qarshi misol."
+      ],
+      "javob": "teskari tasdiq noto‘g‘ri"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Nuqtalar va chiziqlar",
+      "topshiriq": "Daftarda hech uchtasi bitta chiziqda yotmaydigan 5 nuqta belgilang va ular orqali barcha to‘g‘ri chiziqlarni o‘tkazing. Nechta chiziq chiqdi?",
+      "yechim": "5 nuqtadan 10 ta to‘g‘ri chiziq: har bir nuqta qolgan 4 ta bilan, ikki marta sanalganini 2 ga bo‘lamiz: 5 ni 4 ga ko‘paytirib 2 ga bo‘lsak 10.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Ip bilan to‘g‘ri chiziq",
+      "topshiriq": "Ikki nuqta orasiga ipni tarang tortib, to‘g‘ri chiziq hosil qiling. Ipni bo‘shatsangiz nima o‘zgaradi?",
+      "yechim": "Tarang ip kesma beradi, bo‘sh ip egri chiziq hosil qiladi; ikki nuqta orasidagi eng qisqa yo‘l kesma.",
+      "mahsulot": "foto va xulosa"
+     },
+     {
+      "nom": "Teorema qismlari",
+      "topshiriq": "Berilgan 3 ta tasdiqni «agar... u holda...» shaklida yozing va shart bilan xulosani ajrating.",
+      "yechim": "Shart va xulosa aniq ajratilsa, isbot rejasi tuziladi.",
+      "mahsulot": "tasdiqlar jadvali"
+     },
+     {
+      "nom": "Geometriya tarixi",
+      "topshiriq": "Evklid, Beruniy va Ulug‘bek haqida bittadan qisqa ma’lumot tayyorlang.",
+      "yechim": "Evklid «Negizlar» kitobini yozgan; Beruniy Yer radiusini o‘lchagan; Ulug‘bek Samarqandda rasadxona qurgan.",
+      "mahsulot": "tarixiy lavha"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Bitta chiziqda yotmagan 3 nuqta orqali jami nechta to‘g‘ri chiziq o‘tkazish mumkin?",
+      "javob": "3"
+     },
+     {
+      "shart": "Hech uchtasi bitta chiziqda yotmagan 5 nuqta orqali nechta to‘g‘ri chiziq o‘tkazish mumkin?",
+      "javob": "10"
+     },
+     {
+      "shart": "Ikki nuqta orqali nechta to‘g‘ri chiziq o‘tkazish mumkin?",
+      "javob": "bitta"
+     },
+     {
+      "shart": "To‘g‘ri chiziqning uchlari bormi?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "Tekislikda ikki turli to‘g‘ri chiziqning umumiy nuqtalari ko‘pi bilan nechta?",
+      "javob": "bitta"
+     },
+     {
+      "shart": "Isbotsiz qabul qilinadigan tasdiq nima deyiladi?",
+      "javob": "aksioma"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Kesma, nur va to‘g‘ri chiziqni bir xil deb oladi",
+      "sabab": "uchlari soni farqini bilmaydi",
+      "oldini_olish": "kesmada ikki uch, nurda bitta uch, to‘g‘ri chiziqda uch yo‘qligini eslash"
+     },
+     {
+      "xato": "Ikki nuqtadan cheksiz ko‘p to‘g‘ri chiziq o‘tadi deydi",
+      "sabab": "egri chiziqlarni ham hisoblaydi",
+      "oldini_olish": "to‘g‘ri chiziq faqat bitta ekanini aksioma sifatida eslash"
+     },
+     {
+      "xato": "Teskari teoremani har doim to‘g‘ri deb hisoblaydi",
+      "sabab": "shart va xulosani almashtirganda tekshirmaydi",
+      "oldini_olish": "qarshi misol izlash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Evklid, Beruniy va Ulug‘bekning geometriya sohasidagi ishlari"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "perspektiva va chizma: nuqta, chiziq va tekislik"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "xaritada nuqta, chiziq va masofa"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Geometriya yo‘lboshchisi»",
+     "muammo": "Atrofimizdagi nuqta, chiziq va tekislik misollarini qanday topib, tasniflaymiz?",
+     "mahsulot": "geometriya foto-lug‘ati",
+     "bosqichlar": [
+      "misollarni topish",
+      "suratga olish",
+      "tasniflash",
+      "ta’rif yozish",
+      "lug‘at tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Misollar toping",
+      "Suratga oling",
+      "Tasniflang",
+      "Lug‘atni taqdim eting"
+     ],
+     "mezonlar": [
+      "misollar to‘g‘ri",
+      "ta’riflar aniq",
+      "tasnif mantiqli",
+      "bezatilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qadimiy Samarqand geometriyasi»",
+     "bekatlar": [
+      {
+       "nom": "Ulug‘bek rasadxonasi",
+       "matn": "Rasadxonada yulduzlarga yo‘nalish to‘g‘ri chiziq (nur) bilan kuzatilgan.",
+       "topshiriq": "Nurning nechta uchi bor?",
+       "javob": "bitta",
+       "rasm": ""
+      },
+      {
+       "nom": "Registon",
+       "matn": "Ikki madrasa o‘rtasidagi eng qisqa yo‘l tarang ip bilan o‘lchanadi.",
+       "topshiriq": "Bu qanday geometrik shakl?",
+       "javob": "kesma",
+       "rasm": ""
+      },
+      {
+       "nom": "Shohizinda",
+       "matn": "Zinapoyaning har bir pog‘onasi tekislik bo‘lagi.",
+       "topshiriq": "Tekislikning chegarasi bormi?",
+       "javob": "geometrik tekislik cheksiz",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "Ikki ustun orasiga ip tortilgan.",
+       "topshiriq": "Ikki nuqta orasidagi eng qisqa chiziq qaysi?",
+       "javob": "kesma",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda to‘g‘ri chiziqni ko‘rdingiz?",
+      "Qayerda tekislik bor?",
+      "Teoremani qayerda qo‘lladingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Nuqta",
+      "tarif": "o‘lchamsiz eng sodda geometrik tushuncha"
+     },
+     {
+      "atama": "To‘g‘ri chiziq",
+      "tarif": "ikki tomonga cheksiz davom etuvchi chiziq"
+     },
+     {
+      "atama": "Nur",
+      "tarif": "nuqtadan bir tomonga cheksiz davom etuvchi to‘g‘ri chiziq qismi"
+     },
+     {
+      "atama": "Kesma",
+      "tarif": "to‘g‘ri chiziqning ikki nuqta orasidagi qismi"
+     },
+     {
+      "atama": "Aksioma",
+      "tarif": "isbotsiz qabul qilinadigan tasdiq"
+     },
+     {
+      "atama": "Teorema",
+      "tarif": "isbotlanadigan tasdiq"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ikki nuqtadan faqat bitta to‘g‘ri chiziq o‘tadi",
+      "togri": true,
+      "izoh": "bu aksioma"
+     },
+     {
+      "matn": "To‘g‘ri chiziqning ikkita uchi bor",
+      "togri": false,
+      "izoh": "to‘g‘ri chiziqning uchi yo‘q"
+     },
+     {
+      "matn": "Kesma uzunligi o‘lchanadi",
+      "togri": true,
+      "izoh": "kesmaning uchlari bor"
+     },
+     {
+      "matn": "Nur ikki tomonga cheksiz davom etadi",
+      "togri": false,
+      "izoh": "nur faqat bir tomonga davom etadi"
+     },
+     {
+      "matn": "Ikki turli to‘g‘ri chiziq ko‘pi bilan bitta umumiy nuqtaga ega",
+      "togri": true,
+      "izoh": "ko‘p bo‘lsa ustma-ust tushardi"
+     },
+     {
+      "matn": "Teorema isbotsiz qabul qilinadi",
+      "togri": false,
+      "izoh": "isbotsiz qabul qilinadigan tasdiq aksioma"
+     },
+     {
+      "matn": "Geometriya so‘zi yer o‘lchash ma’nosini bildiradi",
+      "togri": true,
+      "izoh": "yunoncha kelib chiqishi shunday"
+     },
+     {
+      "matn": "Teskari teorema doim to‘g‘ri",
+      "togri": false,
+      "izoh": "qarshi misol bo‘lishi mumkin"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Geometriya nimani o‘rganadi?",
+      "javob": "shakllarning shakli, o‘lchami va joylashuvini"
+     },
+     {
+      "savol": "Asosiy tushunchalar qaysilar?",
+      "javob": "nuqta, to‘g‘ri chiziq va tekislik"
+     },
+     {
+      "savol": "Aksioma nima?",
+      "javob": "isbotsiz qabul qilinadigan tasdiq"
+     },
+     {
+      "savol": "Teorema nima?",
+      "javob": "isbotlanadigan tasdiq"
+     },
+     {
+      "savol": "Nur nima?",
+      "javob": "bir tomonga cheksiz davom etuvchi to‘g‘ri chiziq qismi"
+     },
+     {
+      "savol": "Kesma nima?",
+      "javob": "to‘g‘ri chiziqning ikki nuqta orasidagi qismi"
+     },
+     {
+      "savol": "Teoremada nimalar bor?",
+      "javob": "shart va xulosa"
+     },
+     {
+      "savol": "3 nuqta bitta chiziqda yotmasa, nechta chiziq o‘tadi?",
+      "javob": "3 ta"
+     },
+     {
+      "savol": "Parallel chiziqlar nechta umumiy nuqtaga ega?",
+      "javob": "umumiy nuqta yo‘q"
+     },
+     {
+      "savol": "Evklid qaysi kitobni yozgan?",
+      "javob": "«Negizlar»"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Asosiy tushunchalar",
+      "matn": "Nuqta, to‘g‘ri chiziq, tekislik.",
+      "savol": "To‘g‘ri chiziqning uchi bormi?"
+     },
+     {
+      "nom": "Aksioma",
+      "matn": "Ikki nuqtadan bitta to‘g‘ri chiziq o‘tadi.",
+      "savol": "A va B dan nechta to‘g‘ri chiziq o‘tadi?"
+     },
+     {
+      "nom": "Nur va kesma",
+      "matn": "Nurning bitta, kesmaning ikkita uchi bor.",
+      "savol": "Kesmaning nechta uchi bor?"
+     },
+     {
+      "nom": "Teorema",
+      "matn": "Shart va xulosa, isbot kerak.",
+      "savol": "Teoremaning «u holda» qismi nima deyiladi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun geometriyada ba’zi tushunchalar (nuqta, to‘g‘ri chiziq) ta’riflanmaydi va ularning xossalari isbotsiz qabul qilinadi? Har bir ta’rif boshqa tushunchalarga tayanishini va bu zanjir qayerdadir to‘xtashi kerakligini tushuntiring.",
+    "keys": {
+     "vaziyat": "Ikki qishloq orasiga yangi yo‘l qurilmoqda. Muhandis eng qisqa yo‘lni tanlamoqchi.",
+     "savollar": [
+      "Ikki nuqta orasidagi eng qisqa yo‘l qanday chiziq?",
+      "Nima uchun bu yo‘l har doim ham qurilmaydi?"
+     ]
+    },
+    "tezis": "Geometriya — isbot san’ati",
+    "taqqoslash": {
+     "a": "Kesma",
+     "b": "Nur",
+     "umumiy": [
+      "to‘g‘ri chiziqning qismi",
+      "to‘g‘ri bo‘lib davom etadi"
+     ],
+     "a_farq": [
+      "ikkita uchi bor",
+      "uzunligi o‘lchanadi"
+     ],
+     "b_farq": [
+      "bitta uchi bor",
+      "uzunligi yo‘q"
+     ]
+    },
+    "klaster": {
+     "markaz": "Geometriya asoslari",
+     "shoxlar": [
+      {
+       "nom": "Asosiy tushunchalar",
+       "bandlar": [
+        "nuqta",
+        "to‘g‘ri chiziq",
+        "tekislik"
+       ]
+      },
+      {
+       "nom": "Qismlar",
+       "bandlar": [
+        "nur",
+        "kesma"
+       ]
+      },
+      {
+       "nom": "Mantiq",
+       "bandlar": [
+        "aksioma",
+        "teorema",
+        "isbot"
+       ]
+      },
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "Evklid",
+        "Beruniy",
+        "Ulug‘bek"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Boshim bor, oxirim yo‘q; bir tomonga ketaman. Men nimaman?",
+     "javob": "nur"
+    },
+    "hikmat": "Isbotsiz so‘z — shunchaki fikr.",
+    "kalit_soz": "NUQTA",
+    "xato_yechim": {
+     "shart": "Ikki nuqta orqali nechta to‘g‘ri chiziq o‘tkazish mumkin?",
+     "xato": "cheksiz ko‘p",
+     "togri": "faqat bitta",
+     "sabab": "cheksiz ko‘p egri chiziq o‘tishi mumkin, lekin to‘g‘ri chiziq aksiomaga ko‘ra faqat bitta"
+    },
+    "guruh_nomlari": [
+     "Nuqtachilar",
+     "Kesmachilar",
+     "Nurchilar",
+     "Isbotchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Geometriya sayohati»",
+     "topshiriq": "Guruh maktab hovlisida nuqta, kesma, nur, parallel va kesishuvchi chiziqlarga misollar topib, rasmga oladi va kartaga belgilaydi."
+    },
+    "vazifalar": {
+     "A": "Nuqta, kesma va nur ta’riflarini yozing va chizing.",
+     "B": "Hech uchtasi bitta chiziqda yotmagan 4 nuqta orqali barcha chiziqlarni chizing.",
+     "C": "Biror teoremani «agar... u holda...» shaklida yozing va teskarisini tekshiring."
+    },
+    "sinkveyn": [
+     "Geometriya",
+     "aniq, mantiqiy",
+     "o‘lchaydi, isbotlaydi, chizadi",
+     "Shakllar haqidagi fan",
+     "Evklid"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tushunchalar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 3 nuqta orqali nechta chiziq",
+      "2-guruh: 4 nuqta orqali nechta chiziq",
+      "3-guruh: 5 nuqta orqali nechta chiziq",
+      "4-guruh: kesmaning nechta uchi bor"
+     ],
+     "yakun": "Natijalar: 3; 6; 10; 2."
+    }
+   }
+  },
+  {
+   "mavzu": "Kesma va burchak",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kesma uzunligi va o‘rta nuqta",
+      "matn": "Kesma uzunligi — uning uchlari orasidagi masofa. Kesma ustida C nuqta olsak, AC va CB uzunliklarining yig‘indisi AB ga teng. Kesmani teng ikkiga bo‘luvchi nuqta o‘rta nuqta deyiladi.",
+      "misol": "AB uzunligi 10 sm, C nuqta A dan 4 sm uzoqlikda: CB — 10 − 4, ya’ni 6 sm. AB 14 sm bo‘lsa, o‘rta nuqtasi har bir uchdan 7 sm uzoqlikda.",
+      "savol": "AB 12 sm bo‘lsa, o‘rta nuqtadan A gacha masofa?",
+      "javob": "6 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchak va uning o‘lchovi",
+      "matn": "Umumiy boshlang‘ich nuqtadan chiqqan ikki nur burchakni hosil qiladi. Nurlar burchak tomonlari, ularning umumiy uchi burchak uchi deyiladi. Burchak gradus bilan o‘lchanadi; asbob — transportir. To‘liq burilish 360 gradus.",
+      "misol": "Soat 3 da soat va daqiqa millari orasidagi burchak 90 gradus. Soat 6 da 180 gradus. Soat 1 da 30 gradus, chunki 360 ni 12 ga bo‘lsak 30.",
+      "savol": "Soat 4 da millar orasidagi burchak?",
+      "javob": "120 gradus",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchak turlari",
+      "matn": "O‘tkir burchak 0 dan 90 gradusgacha, to‘g‘ri burchak 90 gradus, o‘tmas burchak 90 dan 180 gradusgacha, yoyiq burchak 180 gradus. Burchaklarni qo‘shish va ayirish mumkin: katta burchak qismlarining yig‘indisiga teng.",
+      "misol": "35° va 25° burchaklar yig‘indisi 60°. 110° burchak o‘tmas, 45° o‘tkir. Yoyiq burchakning yarmi — to‘g‘ri burchak.",
+      "savol": "130° burchak qaysi turga kiradi?",
+      "javob": "o‘tmas",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shni va vertikal burchaklar",
+      "matn": "Bir tomoni umumiy, qolgan tomonlari to‘ldiruvchi nurlar bo‘lgan burchaklar qo‘shni burchaklar deyiladi; ularning yig‘indisi 180°. Ikki to‘g‘ri chiziq kesishganda hosil bo‘lgan qarama-qarshi burchaklar vertikal burchaklar bo‘lib, ular teng.",
+      "misol": "Qo‘shni burchaklardan biri 70° bo‘lsa, ikkinchisi 180° − 70°, ya’ni 110°. Vertikal burchaklar: 40° va 40°.",
+      "savol": "Qo‘shni burchaklardan biri 65° bo‘lsa, ikkinchisi?",
+      "javob": "115°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchak bissektrisasi",
+      "matn": "Burchak uchidan chiqib, uni teng ikkiga bo‘luvchi nur bissektrisa deyiladi. Bissektrisa burchakni ikkita teng burchakka ajratadi.",
+      "misol": "80° burchakning bissektrisasi uni 40° va 40° ga ajratadi. To‘g‘ri burchak bissektrisasi 45° ni beradi.",
+      "savol": "100° burchak bissektrisasi hosil qilgan burchaklar?",
+      "javob": "50° dan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Kesma uchlari orasidagi masofa — uzunlik; AC va CB yig‘indisi AB. Qo‘shni burchaklar yig‘indisi 180°. Vertikal burchaklar teng. Bissektrisa burchakni teng ikkiga bo‘ladi.",
+    "misollar": [
+     {
+      "shart": "AB kesma 20 sm. C nuqta AB da yotadi va AC kesma CB dan 3 marta katta. AC va CB ni toping.",
+      "yechim": [
+       "CB ni x desak, AC ifoda 3x.",
+       "x + 3x — 4x, 4x — 20, x — 5.",
+       "CB — 5 sm, AC — 15 sm. Tekshirish: 15 + 5 — 20."
+      ],
+      "javob": "AC 15 sm, CB 5 sm"
+     },
+     {
+      "shart": "Ikki qo‘shni burchakdan biri ikkinchisidan 20° katta. Burchaklarni toping.",
+      "yechim": [
+       "Kichigi x, kattasi x + 20.",
+       "Yig‘indi 180: 2x + 20 — 180, 2x — 160, x — 80.",
+       "Burchaklar 80° va 100°."
+      ],
+      "javob": "80° va 100°"
+     },
+     {
+      "shart": "Ikki to‘g‘ri chiziq kesishganda burchaklardan biri 65°. Qolgan uch burchakni toping.",
+      "yechim": [
+       "Vertikal burchak 65°.",
+       "Qo‘shni burchak 180° − 65°, ya’ni 115°.",
+       "Uning vertikali ham 115°."
+      ],
+      "javob": "65°, 115°, 115°"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "O‘lchaymiz",
+      "topshiriq": "Transportir bilan daftarda 5 ta burchakni o‘lchang va turini aniqlang.",
+      "yechim": "Burchaklar o‘tkir, to‘g‘ri yoki o‘tmas deb tasniflanadi.",
+      "mahsulot": "o‘lchov jadvali"
+     },
+     {
+      "nom": "O‘rta nuqta",
+      "topshiriq": "12 sm kesma chizing va o‘rta nuqtasini chizg‘ich bilan toping.",
+      "yechim": "O‘rta nuqta uchlardan 6 sm uzoqlikda.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Soat burchaklari",
+      "topshiriq": "Soat 2, 5, 8 da millar orasidagi burchakni toping.",
+      "yechim": "Soat 2 da 60°, soat 5 da 150°, soat 8 da 120° (kichik burchak).",
+      "mahsulot": "hisoblash jadvali"
+     },
+     {
+      "nom": "Vertikal burchaklar",
+      "topshiriq": "Ikki chiziq kesishtiring, to‘rt burchakni o‘lchab, juft-juft solishtiring.",
+      "yechim": "Vertikal burchaklar teng, qo‘shnilari yig‘indisi 180°.",
+      "mahsulot": "o‘lchov jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "AB 12 sm, M o‘rta nuqta. AM nechaga teng?",
+      "javob": "6 sm"
+     },
+     {
+      "shart": "AC 5 sm, CB 8 sm, C nuqta AB da. AB nechaga teng?",
+      "javob": "13 sm"
+     },
+     {
+      "shart": "Qo‘shni burchaklardan biri 70°. Ikkinchisi?",
+      "javob": "110°"
+     },
+     {
+      "shart": "Vertikal burchaklardan biri 55°. Ikkinchisi?",
+      "javob": "55°"
+     },
+     {
+      "shart": "To‘g‘ri burchak bissektrisasi hosil qilgan burchak?",
+      "javob": "45°"
+     },
+     {
+      "shart": "Yoyiq burchakning yarmi necha gradus?",
+      "javob": "90°"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qo‘shni burchaklar yig‘indisini 360° deb oladi",
+      "sabab": "yoyiq burchak va to‘liq burilishni adashtiradi",
+      "oldini_olish": "qo‘shni burchaklar yig‘indisi 180° ekanini eslash"
+     },
+     {
+      "xato": "Vertikal burchaklarni qo‘shni deb oladi",
+      "sabab": "joylashuvni chizmada aniqlamaydi",
+      "oldini_olish": "vertikal burchaklar qarama-qarshi joylashishini ko‘rish"
+     },
+     {
+      "xato": "Transportirda noto‘g‘ri shkalani o‘qiydi",
+      "sabab": "nol nurni tanlamaydi",
+      "oldini_olish": "nol belgisini bir tomonga to‘g‘rilab o‘qish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "yorug‘lik nurining tushish va qaytish burchaklari"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "kompas va azimut burchaklari"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "detallarni burchak bo‘yicha kesish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Burchaklar ustasi»",
+     "muammo": "Atrofimizdagi burchaklarni topib o‘lchash va tasniflash mumkinmi?",
+     "mahsulot": "burchaklar albomi",
+     "bosqichlar": [
+      "burchak izlash",
+      "transportir bilan o‘lchash",
+      "tasniflash",
+      "albom tuzish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Burchaklarni toping",
+      "O‘lchang",
+      "Tasniflang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "tasnif to‘g‘ri",
+      "misollar xilma-xil",
+      "albom bezatilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Soat minorasi»",
+     "bekatlar": [
+      {
+       "nom": "Soat 3",
+       "matn": "Soat 3 ni ko‘rsatmoqda.",
+       "topshiriq": "Millar orasidagi burchak?",
+       "javob": "90 gradus",
+       "rasm": ""
+      },
+      {
+       "nom": "Soat 6",
+       "matn": "Soat 6 ni ko‘rsatmoqda.",
+       "topshiriq": "Millar orasidagi burchak?",
+       "javob": "180 gradus",
+       "rasm": ""
+      },
+      {
+       "nom": "Soat 1",
+       "matn": "Soat 1 ni ko‘rsatmoqda.",
+       "topshiriq": "Millar orasidagi burchak?",
+       "javob": "30 gradus",
+       "rasm": ""
+      },
+      {
+       "nom": "Soat 4",
+       "matn": "Soat 4 ni ko‘rsatmoqda.",
+       "topshiriq": "Millar orasidagi burchak?",
+       "javob": "120 gradus",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda burchak ko‘rdingiz?",
+      "Qaysi burchak eng ko‘p uchradi?",
+      "Transportirdan qayerda foydalanish mumkin?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Burchak",
+      "tarif": "umumiy uchli ikki nur"
+     },
+     {
+      "atama": "Gradus",
+      "tarif": "burchak o‘lchov birligi"
+     },
+     {
+      "atama": "O‘rta nuqta",
+      "tarif": "kesmani teng ikkiga bo‘luvchi nuqta"
+     },
+     {
+      "atama": "Qo‘shni burchaklar",
+      "tarif": "yig‘indisi 180° bo‘lgan burchaklar"
+     },
+     {
+      "atama": "Vertikal burchaklar",
+      "tarif": "kesishgan chiziqlardan hosil bo‘lgan teng qarama-qarshi burchaklar"
+     },
+     {
+      "atama": "Bissektrisa",
+      "tarif": "burchakni teng ikkiga bo‘luvchi nur"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qo‘shni burchaklar yig‘indisi 180°",
+      "togri": true,
+      "izoh": "yoyiq burchakni tashkil etadi"
+     },
+     {
+      "matn": "Vertikal burchaklar har doim teng",
+      "togri": true,
+      "izoh": "teorema"
+     },
+     {
+      "matn": "To‘g‘ri burchak 180°",
+      "togri": false,
+      "izoh": "to‘g‘ri burchak 90°"
+     },
+     {
+      "matn": "O‘tmas burchak 90° dan katta, 180° dan kichik",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Bissektrisa burchakni teng ikkiga bo‘ladi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Qo‘shni burchaklar yig‘indisi 360°",
+      "togri": false,
+      "izoh": "yig‘indi 180°"
+     },
+     {
+      "matn": "Kesma o‘rta nuqtasi uni teng ikkiga bo‘ladi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Yoyiq burchak 90°",
+      "togri": false,
+      "izoh": "yoyiq burchak 180°"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Burchak nima?",
+      "javob": "umumiy uchli ikki nur"
+     },
+     {
+      "savol": "Burchak qanday o‘lchanadi?",
+      "javob": "gradus bilan, transportir yordamida"
+     },
+     {
+      "savol": "To‘g‘ri burchak necha gradus?",
+      "javob": "90"
+     },
+     {
+      "savol": "Yoyiq burchak necha gradus?",
+      "javob": "180"
+     },
+     {
+      "savol": "Qo‘shni burchaklar yig‘indisi?",
+      "javob": "180°"
+     },
+     {
+      "savol": "Vertikal burchaklar qanday?",
+      "javob": "teng"
+     },
+     {
+      "savol": "Bissektrisa nima?",
+      "javob": "burchakni teng ikkiga bo‘luvchi nur"
+     },
+     {
+      "savol": "Kesma o‘rta nuqtasi nima?",
+      "javob": "uni teng ikkiga bo‘luvchi nuqta"
+     },
+     {
+      "savol": "60° burchak qanday?",
+      "javob": "o‘tkir burchak"
+     },
+     {
+      "savol": "120° burchak qanday?",
+      "javob": "o‘tmas burchak"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kesma",
+      "matn": "AC va CB yig‘indisi AB.",
+      "savol": "AC 3 sm, CB 4 sm bo‘lsa, AB?"
+     },
+     {
+      "nom": "Burchak",
+      "matn": "Gradus bilan o‘lchanadi.",
+      "savol": "Yoyiq burchak necha gradus?"
+     },
+     {
+      "nom": "Qo‘shni va vertikal",
+      "matn": "180° va tenglik.",
+      "savol": "Qo‘shni burchaklardan biri 100° bo‘lsa, ikkinchisi?"
+     },
+     {
+      "nom": "Bissektrisa",
+      "matn": "Burchakni teng ikkiga bo‘ladi.",
+      "savol": "60° burchak bissektrisasi hosil qilgan burchak?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ikki to‘g‘ri chiziq kesishganda hosil bo‘lgan vertikal burchaklar har doim teng bo‘ladi? Qo‘shni burchaklar yig‘indisi 180° ekanidan foydalanib isbotlab bering.",
+    "keys": {
+     "vaziyat": "Duradgorning taxtasi 90° li burchak hosil qiladi. U burchakni teng ikkiga bo‘lib, 45° li detal kesmoqchi.",
+     "savollar": [
+      "Qaysi chiziq burchakni teng ikkiga bo‘ladi?",
+      "Hosil bo‘lgan burchak necha gradus?"
+     ]
+    },
+    "tezis": "Burchak — burilish o‘lchovi",
+    "taqqoslash": {
+     "a": "Qo‘shni burchaklar",
+     "b": "Vertikal burchaklar",
+     "umumiy": [
+      "ikki to‘g‘ri chiziq kesishganda hosil bo‘ladi",
+      "gradus bilan o‘lchanadi"
+     ],
+     "a_farq": [
+      "tomoni umumiy",
+      "yig‘indisi 180°"
+     ],
+     "b_farq": [
+      "umumiy tomoni yo‘q",
+      "o‘zaro teng"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kesma va burchak",
+     "shoxlar": [
+      {
+       "nom": "Kesma",
+       "bandlar": [
+        "uzunlik",
+        "o‘rta nuqta",
+        "qismlar yig‘indisi"
+       ]
+      },
+      {
+       "nom": "Burchak turlari",
+       "bandlar": [
+        "o‘tkir",
+        "to‘g‘ri",
+        "o‘tmas",
+        "yoyiq"
+       ]
+      },
+      {
+       "nom": "Burchak juftlari",
+       "bandlar": [
+        "qo‘shni",
+        "vertikal"
+       ]
+      },
+      {
+       "nom": "Bissektrisa",
+       "bandlar": [
+        "teng ikkiga bo‘ladi",
+        "yarmi",
+        "yasash"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki nur bir joydan chiqadi, orasida men yashayman. Gradus bilan o‘lchanaman. Men nimaman?",
+     "javob": "burchak"
+    },
+    "hikmat": "Burchakni o‘lchasang, yo‘lni topasan.",
+    "kalit_soz": "BURCHAK",
+    "xato_yechim": {
+     "shart": "Qo‘shni burchaklardan biri 110° bo‘lsa, ikkinchisini toping.",
+     "xato": "250°",
+     "togri": "70°",
+     "sabab": "qo‘shni burchaklar yig‘indisi 360° emas, 180° bo‘ladi: 180° − 110° — 70°"
+    },
+    "guruh_nomlari": [
+     "Burchakchilar",
+     "Transportirchilar",
+     "Bissektrisachilar",
+     "Kesmachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Soat burchaklari»",
+     "topshiriq": "Guruh soatning 12 ta vaziyatida millar orasidagi burchaklarni hisoblab, jadval tuzadi va transportir bilan tekshiradi."
+    },
+    "vazifalar": {
+     "A": "AB 16 sm kesma o‘rta nuqtasini toping.",
+     "B": "Qo‘shni burchaklardan biri 125° bo‘lsa, ikkinchisini toping.",
+     "C": "Ikki chiziq kesishgan chizma tuzing va barcha burchaklarni o‘lchang."
+    },
+    "sinkveyn": [
+     "Burchak",
+     "o‘tkir, o‘tmas",
+     "o‘lchaydi, bo‘ladi, chizadi",
+     "Ikki nur orasidagi burilish",
+     "Gradus"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh kesma va burchaklar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: AB 18 sm bo‘lsa, o‘rta nuqtadan uchgacha masofa",
+      "2-guruh: qo‘shni burchaklardan biri 80° bo‘lsa, ikkinchisi",
+      "3-guruh: vertikal burchak 35° bo‘lsa, ikkinchisi",
+      "4-guruh: 70° burchak bissektrisasi hosil qilgan burchak"
+     ],
+     "yakun": "Natijalar: 9 sm; 100°; 35°; 35°."
+    }
+   }
+  },
+  {
+   "mavzu": "Uchburchak",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Uchburchak va uning elementlari",
+      "matn": "Bitta to‘g‘ri chiziqda yotmaydigan uchta nuqta va ularni tutashtiruvchi uchta kesmadan iborat shakl uchburchak deyiladi. Nuqtalar — uchburchak uchlari, kesmalar — tomonlari. Uchburchakning uchta burchagi bor. Uchburchak ABC deb yoziladi.",
+      "misol": "ABC uchburchakda uchlari A, B, C; tomonlari AB, BC, AC; burchaklari A, B, C. Kesmalar yig‘indisi uchburchak perimetrini beradi.",
+      "savol": "Uchburchakning nechta uchi va tomoni bor?",
+      "javob": "3 ta uch va 3 ta tomon",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Perimetr",
+      "matn": "Uchburchak perimetri — barcha tomonlari uzunliklari yig‘indisi. Perimetr bo‘yicha chegarani yoki o‘ramni hisoblaymiz.",
+      "misol": "Tomonlari 5, 7, 9 sm bo‘lsa, perimetr 5 + 7 + 9, ya’ni 21 sm. Teng tomonli uchburchakning tomoni 6 bo‘lsa, perimetr 18.",
+      "savol": "Tomonlari 3, 4, 5 bo‘lsa, perimetr?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tomonlariga ko‘ra turlari",
+      "matn": "Barcha tomonlari har xil bo‘lsa — turli tomonli; ikki tomoni teng bo‘lsa — teng yonli; uch tomoni teng bo‘lsa — teng tomonli uchburchak. Teng yonli uchburchakning teng tomonlari yon tomonlari, uchinchisi asos deyiladi.",
+      "misol": "Tomonlari 6, 6, 4 — teng yonli, asos 4, perimetr 16. Tomonlari 5, 5, 5 — teng tomonli.",
+      "savol": "Tomonlari 7, 7, 3 qanday uchburchak?",
+      "javob": "teng yonli",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchaklariga ko‘ra turlari",
+      "matn": "Barcha burchaklari o‘tkir bo‘lsa — o‘tkir burchakli; bitta burchagi 90° bo‘lsa — to‘g‘ri burchakli; bitta burchagi o‘tmas bo‘lsa — o‘tmas burchakli uchburchak. Uchburchak ichki burchaklarining yig‘indisi 180° ekanini keyingi darslarda isbotlaymiz.",
+      "misol": "Burchaklari 50°, 60°, 70° bo‘lsa, o‘tkir burchakli. 30°, 60°, 90° — to‘g‘ri burchakli: 30° + 60° + 90° — 180°.",
+      "savol": "Burchaklari 40°, 60° bo‘lsa, uchinchisi?",
+      "javob": "80°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchburchak tengsizligi",
+      "matn": "Uchburchakning har bir tomoni qolgan ikki tomoni yig‘indisidan kichik bo‘ladi. Shu sababli har qanday uchta kesmadan uchburchak yasab bo‘lmaydi. Uchburchak mustahkam shakl bo‘lgani uchun inshootlarda keng qo‘llanadi.",
+      "misol": "3, 4, 6 kesmalardan uchburchak yasash mumkin: 3 + 4 — 7, bu 6 dan katta. 3, 4, 8 dan mumkin emas: 3 + 4 — 7, bu 8 dan kichik.",
+      "savol": "2, 3, 6 kesmalardan uchburchak yasash mumkinmi?",
+      "javob": "yo‘q, 2 + 3 — 5, 6 dan kichik",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Uchburchakning 3 uchi, 3 tomoni va 3 burchagi bor. Perimetr — tomonlar yig‘indisi. Har bir tomon qolgan ikkitasi yig‘indisidan kichik. Ichki burchaklar yig‘indisi 180°.",
+    "misollar": [
+     {
+      "shart": "Tomonlari 5, 7 va 9 sm bo‘lgan uchburchak perimetrini toping.",
+      "yechim": [
+       "Tomonlar yig‘indisini topamiz.",
+       "5 + 7 — 12, 12 + 9 — 21.",
+       "Perimetr 21 sm."
+      ],
+      "javob": "21 sm"
+     },
+     {
+      "shart": "Teng yonli uchburchakning yon tomoni 6 sm, asosi 4 sm. Perimetrini toping.",
+      "yechim": [
+       "Yon tomonlar ikkita: 6 va 6.",
+       "6 + 6 + 4 — 16.",
+       "Perimetr 16 sm."
+      ],
+      "javob": "16 sm"
+     },
+     {
+      "shart": "5, 6 va 10 sm kesmalardan uchburchak yasash mumkinmi?",
+      "yechim": [
+       "Eng katta tomon 10.",
+       "Qolgan ikkisi: 5 + 6 — 11.",
+       "11 — 10 dan katta, uchburchak mavjud."
+      ],
+      "javob": "ha, mumkin"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tayoqchalardan uchburchak",
+      "topshiriq": "3, 4, 5 sm tayoqchalardan uchburchak yasang. Keyin 3, 4, 8 sm bilan urinib ko‘ring.",
+      "yechim": "3, 4, 5 dan yasaladi, 3, 4, 8 dan yasalmaydi, chunki 3 + 4 — 7, 8 dan kichik.",
+      "mahsulot": "foto va jadval"
+     },
+     {
+      "nom": "Uchburchak turlari",
+      "topshiriq": "Berilgan 6 ta uchburchakni tomonlariga va burchaklariga ko‘ra tasniflang.",
+      "yechim": "Har uchburchak ikki belgi bo‘yicha tasniflanadi.",
+      "mahsulot": "tasniflash jadvali"
+     },
+     {
+      "nom": "Perimetr musobaqasi",
+      "topshiriq": "Tomonlari berilgan 5 ta uchburchak perimetrini hisoblang.",
+      "yechim": "Perimetr — barcha tomon yig‘indisi.",
+      "mahsulot": "hisoblash jadvali"
+     },
+     {
+      "nom": "Uchburchak inshootlarda",
+      "topshiriq": "Ko‘prik, tom, velosiped ramasidan uchburchak shakllarni toping va nima uchun mustahkam ekanini tushuntiring.",
+      "yechim": "Uchburchak shakli o‘zgarmaydi, shuning uchun inshootlarni mustahkamlaydi.",
+      "mahsulot": "foto lavha"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Tomonlari 3, 4, 5 sm bo‘lgan uchburchak perimetri?",
+      "javob": "12 sm"
+     },
+     {
+      "shart": "Teng tomonli uchburchak tomoni 7 sm. Perimetri?",
+      "javob": "21 sm"
+     },
+     {
+      "shart": "2, 2, 5 kesmalardan uchburchak yasash mumkinmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "4, 5, 6 kesmalardan uchburchak yasash mumkinmi?",
+      "javob": "ha"
+     },
+     {
+      "shart": "Teng yonli uchburchakning yon tomoni 8, perimetri 21. Asosi?",
+      "javob": "5"
+     },
+     {
+      "shart": "Uchburchakning nechta uchi bor?",
+      "javob": "3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Har qanday uchta kesmadan uchburchak yasash mumkin deydi",
+      "sabab": "uchburchak tengsizligini bilmaydi",
+      "oldini_olish": "kichik ikki tomon yig‘indisini katta tomon bilan solishtirish"
+     },
+     {
+      "xato": "Perimetrni yuza bilan adashtiradi",
+      "sabab": "tomonlar yig‘indisini ko‘paytma deb oladi",
+      "oldini_olish": "perimetr — tomonlar yig‘indisi ekanini eslash"
+     },
+     {
+      "xato": "Teng yonli uchburchakni teng tomonli deb oladi",
+      "sabab": "ikki va uch teng tomon farqini unutadi",
+      "oldini_olish": "teng tomonlar sonini sanash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "uchburchak shaklining mustahkamligi: fermalar va ko‘priklar"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "kompozitsiyada uchburchak shakli"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "uchburchak shaklidagi detallarni kesish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Uchburchak inshootlar»",
+     "muammo": "Nima uchun ko‘plab inshootlarda uchburchak shakl qo‘llanadi?",
+     "mahsulot": "uchburchak ferma maketi",
+     "bosqichlar": [
+      "misollarni topish",
+      "tayoqchalardan maket yasash",
+      "mustahkamlikni sinash",
+      "xulosa",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Misollar toping",
+      "Maket yasang",
+      "Sinang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "maket mustahkam",
+      "uchburchaklar to‘g‘ri",
+      "sinov o‘tkazilgan",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Uchburchaklar shaharchasi»",
+     "bekatlar": [
+      {
+       "nom": "Ko‘prik",
+       "matn": "Ko‘prik fermasi tomonlari 3, 4, 5 m uchburchaklardan iborat.",
+       "topshiriq": "Bitta uchburchak perimetri?",
+       "javob": "12 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Tom",
+       "matn": "Teng yonli tom: yon tomonlari 5 m, asosi 6 m.",
+       "topshiriq": "Perimetri?",
+       "javob": "16 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Velosiped",
+       "matn": "Velosiped ramasida uchburchak bor.",
+       "topshiriq": "Nima uchun uchburchak qo‘llanadi?",
+       "javob": "shakli o‘zgarmaydi, mustahkam",
+       "rasm": ""
+      },
+      {
+       "nom": "Piramida modeli",
+       "matn": "Yon yoqlari uchburchak.",
+       "topshiriq": "Uchburchakning nechta tomoni bor?",
+       "javob": "3 ta",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda uchburchak ko‘rdingiz?",
+      "Nima uchun uchburchak mustahkam?",
+      "Qaysi uchburchak turi uchradi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Uchburchak",
+      "tarif": "uchta uch va uchta tomonli shakl"
+     },
+     {
+      "atama": "Perimetr",
+      "tarif": "tomonlar uzunliklari yig‘indisi"
+     },
+     {
+      "atama": "Teng yonli uchburchak",
+      "tarif": "ikki tomoni teng uchburchak"
+     },
+     {
+      "atama": "Teng tomonli uchburchak",
+      "tarif": "uch tomoni teng uchburchak"
+     },
+     {
+      "atama": "To‘g‘ri burchakli uchburchak",
+      "tarif": "bitta burchagi 90° uchburchak"
+     },
+     {
+      "atama": "Uchburchak tengsizligi",
+      "tarif": "tomon qolgan ikkitasi yig‘indisidan kichik"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Uchburchakning uchta tomoni bor",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "3, 4, 8 kesmalardan uchburchak yasash mumkin",
+      "togri": false,
+      "izoh": "3 + 4 — 7, 8 dan kichik"
+     },
+     {
+      "matn": "Teng tomonli uchburchak ham teng yonli",
+      "togri": true,
+      "izoh": "unda kamida ikki tomon teng"
+     },
+     {
+      "matn": "Perimetr — tomonlar ko‘paytmasi",
+      "togri": false,
+      "izoh": "perimetr — tomonlar yig‘indisi"
+     },
+     {
+      "matn": "To‘g‘ri burchakli uchburchakda bitta burchak 90°",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Uchburchak ichki burchaklari yig‘indisi 180°",
+      "togri": true,
+      "izoh": "keyingi darslarda isbotlanadi"
+     },
+     {
+      "matn": "Uchburchakda ikkita o‘tmas burchak bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "yig‘indi 180° dan oshib ketadi"
+     },
+     {
+      "matn": "Uchburchak mustahkam shakl",
+      "togri": true,
+      "izoh": "shakli o‘zgarmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Uchburchak nima?",
+      "javob": "uch nuqta va ularni tutashtiruvchi uch kesma"
+     },
+     {
+      "savol": "Perimetr nima?",
+      "javob": "tomonlar yig‘indisi"
+     },
+     {
+      "savol": "Teng yonli uchburchak nima?",
+      "javob": "ikki tomoni teng uchburchak"
+     },
+     {
+      "savol": "Teng tomonli uchburchak nima?",
+      "javob": "uch tomoni teng uchburchak"
+     },
+     {
+      "savol": "Uchburchak tengsizligi nima?",
+      "javob": "har bir tomon qolgan ikkitasi yig‘indisidan kichik"
+     },
+     {
+      "savol": "Ichki burchaklar yig‘indisi?",
+      "javob": "180°"
+     },
+     {
+      "savol": "Tomonlari 4, 5, 6 bo‘lsa, perimetr?",
+      "javob": "15"
+     },
+     {
+      "savol": "To‘g‘ri burchakli uchburchak nima?",
+      "javob": "bitta burchagi 90° uchburchak"
+     },
+     {
+      "savol": "Nima uchun inshootlarda uchburchak ishlatiladi?",
+      "javob": "shakli o‘zgarmaydi, mustahkam"
+     },
+     {
+      "savol": "Teng yonli uchburchakda teng tomonlar nima deyiladi?",
+      "javob": "yon tomonlar"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Elementlar",
+      "matn": "3 uch, 3 tomon, 3 burchak.",
+      "savol": "Uchburchakning nechta burchagi bor?"
+     },
+     {
+      "nom": "Perimetr",
+      "matn": "Tomonlar yig‘indisi.",
+      "savol": "Tomonlari 2, 3, 4 bo‘lsa, perimetr?"
+     },
+     {
+      "nom": "Turlari",
+      "matn": "Tomonlariga va burchaklariga ko‘ra.",
+      "savol": "5, 5, 8 qanday uchburchak?"
+     },
+     {
+      "nom": "Tengsizlik",
+      "matn": "Tomon qolgan ikkitasi yig‘indisidan kichik.",
+      "savol": "1, 2, 5 dan uchburchak yasaladimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun uchburchak tomonlari 3, 4 va 8 bo‘lishi mumkin emas? Ikki kichik tomonni bir chiziq bo‘ylab qo‘yib, ular katta tomonga yetmasligini chizma bilan tushuntiring.",
+    "keys": {
+     "vaziyat": "Duradgor tom uchun 3 m, 4 m va 8 m li to‘sinlardan uchburchak ferma yasamoqchi.",
+     "savollar": [
+      "Bu to‘sinlardan uchburchak yasash mumkinmi?",
+      "Qaysi to‘sinni almashtirish kerak?"
+     ]
+    },
+    "tezis": "Uchburchak — mustahkam shakl",
+    "taqqoslash": {
+     "a": "Teng yonli uchburchak",
+     "b": "Teng tomonli uchburchak",
+     "umumiy": [
+      "tomonlari teng bo‘ladi",
+      "simmetrik shakl"
+     ],
+     "a_farq": [
+      "ikki tomoni teng",
+      "asosi boshqacha bo‘lishi mumkin"
+     ],
+     "b_farq": [
+      "uch tomoni teng",
+      "barcha burchaklari teng"
+     ]
+    },
+    "klaster": {
+     "markaz": "Uchburchak",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "uchlar",
+        "tomonlar",
+        "burchaklar"
+       ]
+      },
+      {
+       "nom": "Tomonlariga ko‘ra",
+       "bandlar": [
+        "turli tomonli",
+        "teng yonli",
+        "teng tomonli"
+       ]
+      },
+      {
+       "nom": "Burchaklariga ko‘ra",
+       "bandlar": [
+        "o‘tkir",
+        "to‘g‘ri",
+        "o‘tmas"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "perimetr",
+        "tengsizlik",
+        "mustahkamlik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Uchta uchim, uchta tomonim bor. Ko‘priklarda mustahkam turaman. Men nimaman?",
+     "javob": "uchburchak"
+    },
+    "hikmat": "Uchta tayanch — mustahkam tayanch.",
+    "kalit_soz": "UCHBURCHAK",
+    "xato_yechim": {
+     "shart": "3, 4, 8 kesmalardan uchburchak yasash mumkinmi?",
+     "xato": "ha, mumkin",
+     "togri": "yo‘q, mumkin emas",
+     "sabab": "3 + 4 — 7, bu 8 dan kichik; uchburchak tengsizligi bajarilmaydi"
+    },
+    "guruh_nomlari": [
+     "Uchburchakchilar",
+     "Perimetrchilar",
+     "Tomonchilar",
+     "Burchakchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tayoqchalardan uchburchak»",
+     "topshiriq": "Guruh turli uzunlikdagi tayoqchalardan uchburchak yasab ko‘radi, qaysi to‘plamlardan yasalishini jadvalga yozadi va qoidani chiqaradi."
+    },
+    "vazifalar": {
+     "A": "Tomonlari 4, 6, 8 sm bo‘lgan uchburchak perimetrini toping.",
+     "B": "5, 5, 11 kesmalardan uchburchak yasash mumkinmi? Sababini yozing.",
+     "C": "Atrofdan uchburchak shakllarni toping va turini aniqlang."
+    },
+    "sinkveyn": [
+     "Uchburchak",
+     "mustahkam, oddiy",
+     "yasaladi, o‘lchanadi, tasniflanadi",
+     "Uch uchli shakl",
+     "Shakl"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh uchburchaklar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 3, 4, 5 perimetri",
+      "2-guruh: teng tomonli, tomoni 6, perimetri",
+      "3-guruh: 2, 3, 6 dan yasash mumkinmi",
+      "4-guruh: burchaklari 50° va 60° bo‘lsa, uchinchi burchak"
+     ],
+     "yakun": "Natijalar: 12; 18; yo‘q; 70°."
+    }
+   }
+  }
+ ]
+}
