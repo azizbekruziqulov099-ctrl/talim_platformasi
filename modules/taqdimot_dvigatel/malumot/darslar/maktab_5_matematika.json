@@ -8901,6 +8901,1399 @@
      "yakun": "Perimetrlar: kvadrat — 28 sm; to‘g‘ri to‘rtburchak — 28 sm; teng tomonli uchburchak — 27 sm; oxirgi uchburchak — 19 sm. Birinchi ikki shaklning perimetri teng."
     }
    }
+  },
+  {
+   "mavzu": "Aylana va doira",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Aylana va doira — bir narsa emas",
+      "matn": "Tekislikdagi bir nuqtadan bir xil uzoqlikda joylashgan barcha nuqtalar to‘plami aylana deyiladi. Aylana bilan chegaralangan tekislik qismi doira deyiladi. Aylana — faqat chiziq, doira esa uning ichi bilan birga shakl.",
+      "misol": "Halqa — aylanaga, tarelka tubi — doiraga o‘xshaydi. Tanga chetini kuzatsak aylanani, butun tangani ko‘rsak doirani ko‘ramiz.",
+      "savol": "Aylana ichi bilan birga shakl hisoblanadimi?",
+      "javob": "yo‘q, ichi bilan birga shakl — doira",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Markaz, radius, diametr",
+      "matn": "Aylananing barcha nuqtalaridan bir xil uzoqlikda turgan nuqta uning markazi deyiladi. Markazni aylana nuqtasi bilan tutashtiruvchi kesma radius. Aylananing ikki nuqtasini tutashtiruvchi va markazdan o‘tuvchi kesma diametr. Diametr radiusdan ikki marta uzun: d = r · 2.",
+      "misol": "Radiusi 4 sm bo‘lgan aylananing diametri 8 sm. Diametri 10 sm bo‘lsa, radiusi 5 sm.",
+      "savol": "Radiusi 7 sm bo‘lgan aylananing diametri qancha?",
+      "javob": "14 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sirkul bilan aylana chizish",
+      "matn": "Aylana sirkul bilan chiziladi. Sirkulning igna uchi markazga qo‘yiladi, oyoqlari orasi radiusga teng qilib ochiladi, so‘ng qalam uchi bilan aylana tortiladi. Sirkul oyoqlari orasidagi masofa o‘zgarmasa, aylana yopiq va tekis chiqadi.",
+      "misol": "Radiusi 3 sm aylana chizish uchun sirkul oyoqlari orasi chizg‘ichda 3 sm qilib o‘rnatiladi.",
+      "savol": "Sirkul oyoqlari orasi nimaga teng bo‘ladi?",
+      "javob": "aylana radiusiga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vatar va diametr",
+      "matn": "Aylananing ikki nuqtasini tutashtiruvchi kesma vatar deyiladi. Markazdan o‘tgan vatar — diametr, ya’ni eng uzun vatar. Barcha radiuslar teng, barcha diametrlar ham teng.",
+      "misol": "Aylanada istalgan ikki nuqtani tutashtirsak, vatar hosil bo‘ladi. Markazdan o‘tsa, u diametr bo‘ladi.",
+      "savol": "Eng uzun vatar qanday ataladi?",
+      "javob": "diametr",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Simmetriya va naqshlar",
+      "matn": "Aylananing cheksiz ko‘p simmetriya o‘qi bor — har bir diametr simmetriya o‘qidir. Sirkul yordamida chiroyli naqshlar yasash mumkin: gul, yulduz, to‘lqinsimon bezaklar. Markaz bitta, radius bir xil bo‘lsa, aylana oltita nuqtada ketma-ket kesishadi — «gul» hosil bo‘ladi.",
+      "misol": "Milliy naqshlarda, koshin va gilamlarda aylanalardan yasalgan bezaklar ko‘p uchraydi.",
+      "savol": "Doira yoki aylananing nechta simmetriya o‘qi bor?",
+      "javob": "cheksiz ko‘p",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Aylana — markazdan teng uzoqlikdagi nuqtalar to‘plami (chiziq), doira — aylana bilan chegaralangan shakl. Radius — markaz bilan aylana nuqtasini tutashtiruvchi kesma. Diametr — markazdan o‘tuvchi vatar, d = r · 2.",
+    "misollar": [
+     {
+      "shart": "Aylananing radiusi 9 sm. Diametrini toping.",
+      "yechim": [
+       "Diametr radiusdan ikki marta uzun.",
+       "9 · 2 = 18."
+      ],
+      "javob": "18 sm"
+     },
+     {
+      "shart": "Doira shaklidagi stolning diametri 120 sm. Radiusini toping.",
+      "yechim": [
+       "Radius diametrning yarmi.",
+       "120 : 2 = 60."
+      ],
+      "javob": "60 sm"
+     },
+     {
+      "shart": "To‘g‘ri to‘rtburchak shaklidagi qog‘ozning eni 20 sm. Undan eng katta doira qirqildi. Uning radiusi qancha?",
+      "yechim": [
+       "Eng katta doiraning diametri qog‘oz eniga teng: 20 sm.",
+       "Radius — diametrning yarmi.",
+       "20 : 2 = 10."
+      ],
+      "javob": "10 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Doira izlovchilar",
+      "topshiriq": "Sinf xonasi va uyingizdagi doira va aylana shaklidagi 6 ta buyum toping. Qaysilari aylana (faqat chiziq), qaysilari doira ekanini ajrating.",
+      "yechim": "Aylana: halqa, soat chekkasi. Doira: tanga, tarelka, soat ichi, tugma.",
+      "mahsulot": "buyumlar jadvali"
+     },
+     {
+      "nom": "Sirkul ustalari",
+      "topshiriq": "Sirkul bilan radiusi 2 sm, 3 sm va 4 sm bo‘lgan uchta aylanani bir markazdan chizing. Har birining diametrini yozing.",
+      "yechim": "Diametrlar: 4 sm, 6 sm va 8 sm.",
+      "mahsulot": "konsentrik aylanalar"
+     },
+     {
+      "nom": "Gul naqsh",
+      "topshiriq": "Radiusi 3 sm aylana chizing. Aylanada ixtiyoriy nuqta oling, shu nuqtaga sirkul igna uchini qo‘ying va xuddi shu radius bilan yangi aylana chizing. Aylanalar kesishgan nuqtalarda yana shuni takrorlang. Qanday shakl hosil bo‘ldi?",
+      "yechim": "Oltita gulbarg shaklidagi «gul» naqshi hosil bo‘ladi.",
+      "mahsulot": "naqsh chizmasi"
+     },
+     {
+      "nom": "G‘ildirak",
+      "topshiriq": "Velosiped g‘ildiragining diametri 60 sm. a) Radiusi qancha? b) G‘ildirak spitsalari markazdan aylanagacha 30 sm bo‘lsa, ular nimaga mos keladi?",
+      "yechim": "a) 60 : 2 = 30 sm. b) Spitsalar radiusga mos keladi.",
+      "mahsulot": "g‘ildirak chizmasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Radiusi 5 sm bo‘lgan aylananing diametri qancha?",
+      "javob": "10 sm"
+     },
+     {
+      "shart": "Diametri 14 sm bo‘lgan aylananing radiusi qancha?",
+      "javob": "7 sm"
+     },
+     {
+      "shart": "Radiusi 12 mm bo‘lgan aylananing diametri qancha?",
+      "javob": "24 mm"
+     },
+     {
+      "shart": "Diametri 1 m bo‘lgan doira radiusini santimetrda toping.",
+      "javob": "50 sm"
+     },
+     {
+      "shart": "Aylananing eng uzun vatari 16 sm. Radiusi qancha?",
+      "javob": "8 sm"
+     },
+     {
+      "shart": "Bir aylanada nechta radius o‘tkazish mumkin?",
+      "javob": "cheksiz ko‘p"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Diametrni radiusga teng deb oladi",
+      "sabab": "ikki tushunchani adashtiradi",
+      "oldini_olish": "chizmada radiusni bir rang, diametrni ikki rang bilan belgilash"
+     },
+     {
+      "xato": "Aylana va doirani bir xil deb hisoblaydi",
+      "sabab": "kundalik nutqda ikkalasi ham «dumaloq» deyiladi",
+      "oldini_olish": "halqa va tanga misolida farqlash"
+     },
+     {
+      "xato": "Sirkul oyoqlarini diametrga ochadi",
+      "sabab": "radius va diametrni chalkashtiradi",
+      "oldini_olish": "sirkul oyoqlari orasi radiusga teng ekanini takrorlash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "Yer, Oy va Quyosh shar shaklida, ularning kesimi doira"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "g‘ildirak, shesternya va tugmalarni yasashda aylana asos"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "aylanalardan naqsh va ornament yasash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Aylanalar bog‘i»",
+     "muammo": "Sirkul va aylanalar yordamida chiroyli naqsh qanday yasaladi?",
+     "mahsulot": "sirkul naqshlari albomi",
+     "bosqichlar": [
+      "namunalarni o‘rganish",
+      "naqsh tanlash",
+      "sirkul bilan chizish",
+      "bo‘yash",
+      "ko‘rgazma"
+     ],
+     "guruh_vazifalari": [
+      "Gul naqshini yasang",
+      "Yulduz naqshini yasang",
+      "Bir markazli aylanalar naqshini yasang",
+      "Albom tuzing"
+     ],
+     "mezonlar": [
+      "chizma aniq",
+      "naqsh chiroyli",
+      "radius to‘g‘ri tanlangan",
+      "ish toza",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Aylanalar dunyosi»",
+     "bekatlar": [
+      {
+       "nom": "Velosiped ustaxonasi",
+       "matn": "G‘ildirakning radiusi 35 sm.",
+       "topshiriq": "Diametri qancha?",
+       "javob": "70 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Soat ustaxonasi",
+       "matn": "Devor soatining diametri 40 sm.",
+       "topshiriq": "Radiusi qancha?",
+       "javob": "20 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Tanga zarbxonasi",
+       "matn": "Tanganing diametri 24 mm.",
+       "topshiriq": "Radiusi qancha?",
+       "javob": "12 mm",
+       "rasm": ""
+      },
+      {
+       "nom": "Sirk maydoni",
+       "matn": "Sirk arenasining radiusi 6 m.",
+       "topshiriq": "Diametri qancha?",
+       "javob": "12 m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "sirkulning uchi o‘tkir, ehtiyot bo‘ling",
+      "g‘ildirakka yaqin turmang",
+      "kattalar bilan yuring"
+     ],
+     "kundalik": [
+      "Nega g‘ildirak dumaloq?",
+      "Radius va diametrning farqi nima?",
+      "Qayerda aylana ko‘rdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Aylana",
+      "tarif": "markazdan teng uzoqlikdagi nuqtalar to‘plami"
+     },
+     {
+      "atama": "Doira",
+      "tarif": "aylana bilan chegaralangan shakl"
+     },
+     {
+      "atama": "Markaz",
+      "tarif": "aylananing barcha nuqtalaridan teng uzoqlikdagi nuqta"
+     },
+     {
+      "atama": "Radius",
+      "tarif": "markaz va aylana nuqtasini tutashtiruvchi kesma"
+     },
+     {
+      "atama": "Diametr",
+      "tarif": "markazdan o‘tuvchi vatar"
+     },
+     {
+      "atama": "Sirkul",
+      "tarif": "aylana chizish asbobi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Diametr radiusdan ikki marta uzun",
+      "togri": true,
+      "izoh": "d = r · 2"
+     },
+     {
+      "matn": "Aylana — ichi bilan birga shakl",
+      "togri": false,
+      "izoh": "ichi bilan birga shakl — doira"
+     },
+     {
+      "matn": "Barcha radiuslar teng",
+      "togri": true,
+      "izoh": "markazdan teng uzoqlikda"
+     },
+     {
+      "matn": "Eng uzun vatar — diametr",
+      "togri": true,
+      "izoh": "u markazdan o‘tadi"
+     },
+     {
+      "matn": "Aylananing bitta simmetriya o‘qi bor",
+      "togri": false,
+      "izoh": "har bir diametr simmetriya o‘qi, ya’ni cheksiz ko‘p"
+     },
+     {
+      "matn": "Sirkul oyoqlari orasi radiusga teng",
+      "togri": true,
+      "izoh": "shunda aylana kerakli o‘lchamda chiqadi"
+     },
+     {
+      "matn": "Markaz aylananing nuqtasi",
+      "togri": false,
+      "izoh": "markaz aylananing ichida, aylanada emas"
+     },
+     {
+      "matn": "Diametri 10 sm doiraning radiusi 5 sm",
+      "togri": true,
+      "izoh": "radius diametrning yarmi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Aylana chizadigan asbob nima?",
+      "javob": "sirkul"
+     },
+     {
+      "savol": "Aylana markazi qayerda joylashgan?",
+      "javob": "aylana ichida"
+     },
+     {
+      "savol": "Radius nima?",
+      "javob": "markaz bilan aylana nuqtasini tutashtiruvchi kesma"
+     },
+     {
+      "savol": "Diametr nima?",
+      "javob": "markazdan o‘tuvchi vatar"
+     },
+     {
+      "savol": "Diametr radiusdan necha marta uzun?",
+      "javob": "ikki marta"
+     },
+     {
+      "savol": "Radius 6 sm bo‘lsa, diametr qancha?",
+      "javob": "12 sm"
+     },
+     {
+      "savol": "Diametr 18 sm bo‘lsa, radius qancha?",
+      "javob": "9 sm"
+     },
+     {
+      "savol": "Vatar nima?",
+      "javob": "aylananing ikki nuqtasini tutashtiruvchi kesma"
+     },
+     {
+      "savol": "Qaysi shaklning ichi bor: aylananingmi yoki doiraning?",
+      "javob": "doiraning"
+     },
+     {
+      "savol": "Aylananing nechta simmetriya o‘qi bor?",
+      "javob": "cheksiz ko‘p"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Aylana va doira",
+      "matn": "Aylana — chiziq, doira — ichi bilan birga shakl.",
+      "savol": "Halqa aylanami yoki doira?"
+     },
+     {
+      "nom": "Radius va diametr",
+      "matn": "Radius — markazdan aylanagacha. Diametr — radiusdan ikki marta uzun.",
+      "savol": "Radius 8 sm bo‘lsa, diametr necha sm?"
+     },
+     {
+      "nom": "Sirkul",
+      "matn": "Igna uchi markazga, oyoqlar orasi radiusga teng.",
+      "savol": "Igna uchi qayerga qo‘yiladi?"
+     },
+     {
+      "nom": "Vatar",
+      "matn": "Aylananing ikki nuqtasini tutashtiradi. Eng uzun vatar — diametr.",
+      "savol": "Diametr vatarmi?"
+     }
+    ],
+    "muammoli_savol": "Nega manhol qopqog‘i doira shaklida? Agar kvadrat bo‘lsa, nima bo‘lishi mumkin edi?",
+    "keys": {
+     "vaziyat": "Bolalar maydonda aylana chizmoqchi, lekin sirkul yo‘q. Ular arqonga qoziq bog‘lab, ikkinchi uchiga cho‘p bog‘ladi.",
+     "savollar": [
+      "Arqon aylananing qaysi qismiga mos keladi?",
+      "Arqon 2 m bo‘lsa, aylananing diametri qancha bo‘ladi?"
+     ]
+    },
+    "tezis": "Hamma nuqta markazdan bir xil uzoqlikda",
+    "taqqoslash": {
+     "a": "Radius",
+     "b": "Diametr",
+     "umumiy": [
+      "kesma",
+      "markaz bilan bog‘liq"
+     ],
+     "a_farq": [
+      "markazdan aylanagacha",
+      "bir uchi aylanada, ikkinchisi markazda"
+     ],
+     "b_farq": [
+      "aylananing bir chetidan ikkinchisigacha",
+      "radiusdan ikki barobar uzun"
+     ]
+    },
+    "klaster": {
+     "markaz": "Aylana",
+     "shoxlar": [
+      {
+       "nom": "Elementlari",
+       "bandlar": [
+        "markaz",
+        "radius",
+        "diametr"
+       ]
+      },
+      {
+       "nom": "Asbob",
+       "bandlar": [
+        "sirkul",
+        "igna uchi",
+        "qalam uchi"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "g‘ildirak",
+        "tanga",
+        "soat"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "simmetrik",
+        "yopiq",
+        "teng uzoqlik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Boshi ham, oxiri ham yo‘q, markazdan teng uzoqlikda. Men kimman?",
+     "javob": "aylana"
+    },
+    "hikmat": "Sabr — to‘liq aylana.",
+    "kalit_soz": "AYLANA",
+    "xato_yechim": {
+     "shart": "Radiusi 6 sm bo‘lgan aylananing diametrini toping.",
+     "xato": "diametr 3 sm",
+     "togri": "diametr 12 sm",
+     "sabab": "radiusni ikkiga bo‘lgan, aslida ikkiga ko‘paytirish kerak"
+    },
+    "guruh_nomlari": [
+     "Markaz",
+     "Radius",
+     "Diametr",
+     "Sirkul"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tanga izi»",
+     "topshiriq": "Guruh uchta har xil tanga yoki qopqoq oladi, izini daftarga chizadi, diametrini chizg‘ich bilan o‘lchab, radiusini hisoblaydi va jadvalga yozadi."
+    },
+    "vazifalar": {
+     "A": "Sirkul bilan radiusi 2, 4 va 5 sm bo‘lgan aylanalar chizing, diametrlarini yozing.",
+     "B": "Uyingizdan 5 ta doira shaklidagi buyumni toping, diametrini o‘lchang va radiusini hisoblang.",
+     "C": "Sirkul bilan o‘zingiz o‘ylab topgan naqsh (gul, yulduz yoki to‘lqin) yasab, bo‘yang."
+    },
+    "sinkveyn": [
+     "Aylana",
+     "yopiq, tekis",
+     "chiziladi, aylanadi, o‘ralgan",
+     "Markazdan teng uzoq nuqtalar",
+     "Shakl"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Bog‘da aylana shaklida gulzor tashkil etilmoqda. Guruhlar o‘lchamlarni hisoblaydi.",
+     "qismlar": [
+      "1-guruh: gulzor radiusi 3 m",
+      "2-guruh: diametrini toping",
+      "3-guruh: diametri 10 m gulzor radiusini toping",
+      "4-guruh: qaysi gulzor katta?"
+     ],
+     "yakun": "Birinchi gulzor diametri 6 m, ikkinchi gulzor radiusi 5 m. Katta gulzor — diametri 10 m bo‘lgani."
+    }
+   }
+  },
+  {
+   "mavzu": "Yuz va perimetr",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yuz nima?",
+      "matn": "Shaklning tekislikda egallagan joyining kattaligi uning yuzi deyiladi. Yuz S harfi bilan belgilanadi. Yuz kvadrat birliklarda o‘lchanadi: kvadrat millimetr, kvadrat santimetr (sm²), kvadrat detsimetr, kvadrat metr (m²). Tomoni 1 sm bo‘lgan kvadratning yuzi 1 sm².",
+      "misol": "Daftar varag‘ining yuzi, hovlining yuzi, xonaning yuzi — hammasi yuz. Katakli daftarda har bir katak taxminan 1 sm² ni tashkil etadi.",
+      "savol": "Yuz qanday birliklarda o‘lchanadi?",
+      "javob": "kvadrat birliklarda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri to‘rtburchak yuzi",
+      "matn": "To‘g‘ri to‘rtburchakning yuzi uning bo‘yi bilan eni ko‘paytmasiga teng: S = a · b. Bo‘y va en bir xil birlikda bo‘lishi shart. Yuz birligi uzunlik birligining kvadratidir.",
+      "misol": "Bo‘yi 6 sm, eni 4 sm bo‘lgan to‘g‘ri to‘rtburchakning yuzi: 6 · 4 = 24 sm².",
+      "savol": "Bo‘yi 8 sm, eni 5 sm to‘g‘ri to‘rtburchakning yuzi qancha?",
+      "javob": "40 sm²",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kvadrat yuzi",
+      "matn": "Kvadratning tomonlari teng, shuning uchun yuz tomonni o‘ziga ko‘paytirib topiladi: S = a · a. Tomonni ikkinchi darajaga ko‘tarish shunday yoziladi: a².",
+      "misol": "Tomoni 7 sm bo‘lgan kvadratning yuzi 7 · 7 = 49 sm².",
+      "savol": "Tomoni 9 sm kvadratning yuzi qancha?",
+      "javob": "81 sm²",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yuz birliklari orasidagi bog‘liqlik",
+      "matn": "1 sm² — tomoni 1 sm kvadrat. 1 dm² da 100 sm², 1 m² da 100 dm², ya’ni 10 000 sm² bor. Katta maydonlar uchun ar, gektar, kvadrat kilometr ishlatiladi: 1 ar — 100 m², 1 ga — 100 ar.",
+      "misol": "3 dm² — 300 sm². 2 m² — 200 dm². 500 ar — 5 ga.",
+      "savol": "1 dm² necha sm²?",
+      "javob": "100 sm²",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Perimetr va yuz — farqi",
+      "matn": "Perimetr — shakl atrofining uzunligi, u uzunlik birliklarida (sm, m) o‘lchanadi. Yuz — shaklning ichining kattaligi, u kvadrat birliklarda (sm², m²) o‘lchanadi. Perimetr bir xil bo‘lgan shakllarning yuzi turlicha bo‘lishi mumkin.",
+      "misol": "Perimetri 12 sm bo‘lgan 5 va 1 sm li to‘g‘ri to‘rtburchakning yuzi 5 sm², 3 va 3 sm li kvadratniki esa 9 sm².",
+      "savol": "Atrofini o‘lchash uchun nimani hisoblaymiz: perimetrnimi yoki yuznimi?",
+      "javob": "perimetrni",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "To‘g‘ri to‘rtburchak yuzi: S = a · b. Kvadrat yuzi: S = a · a. Yuz kvadrat birliklarda o‘lchanadi. Perimetr — atrof uzunligi, yuz — ichi kattaligi.",
+    "misollar": [
+     {
+      "shart": "Xona poli to‘g‘ri to‘rtburchak: bo‘yi 6 m, eni 4 m. Pol yuzini toping.",
+      "yechim": [
+       "Yuz bo‘y va en ko‘paytmasiga teng.",
+       "6 · 4 = 24."
+      ],
+      "javob": "24 m²"
+     },
+     {
+      "shart": "Kvadrat yuzi 64 sm². Tomoni nechaga teng?",
+      "yechim": [
+       "Tomonni o‘ziga ko‘paytirsak, 64 chiqishi kerak.",
+       "8 · 8 = 64.",
+       "Demak, tomoni 8 sm."
+      ],
+      "javob": "8 sm"
+     },
+     {
+      "shart": "To‘g‘ri to‘rtburchakning yuzi 72 sm², bo‘yi 12 sm. Eni qancha?",
+      "yechim": [
+       "Yuz bo‘y va en ko‘paytmasi, shuning uchun enini topish uchun yuzni bo‘yiga bo‘lamiz.",
+       "72 : 12 = 6."
+      ],
+      "javob": "6 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Katakli daftar yuzi",
+      "topshiriq": "Katakli daftarda har xil shakl chizing: bo‘yi 5 va eni 3 katak, kvadrat 4 · 4 va yana bitta murakkab shakl. Kataklarni sanab yuzlarini toping va formula bilan tekshiring.",
+      "yechim": "Birinchi shakl 15 katak, kvadrat 16 katak. Formulalar sanashni tasdiqlaydi.",
+      "mahsulot": "shakllar jadvali"
+     },
+     {
+      "nom": "Xona plitkasi",
+      "topshiriq": "Xonaning bo‘yi 5 m, eni 4 m. a) Pol yuzi qancha? b) Plitka tomoni 50 sm bo‘lsa, 1 m² ga nechta plitka kerak? d) Hammasi nechta plitka?",
+      "yechim": "a) 5 · 4 = 20 m². b) 1 m² da 4 ta plitka. d) 20 · 4 = 80 ta.",
+      "mahsulot": "xona va plitka chizmasi"
+     },
+     {
+      "nom": "Bir xil perimetr — turli yuz",
+      "topshiriq": "Perimetri 20 sm bo‘lgan to‘g‘ri to‘rtburchaklarni toping (butun tomonli) va yuzlarini hisoblang: 1 va 9, 2 va 8, 3 va 7, 4 va 6, 5 va 5. Qaysi birining yuzi eng katta?",
+      "yechim": "Yuzlar: 9, 16, 21, 24, 25 sm². Eng katta — kvadrat (5 va 5).",
+      "mahsulot": "yuzlar jadvali"
+     },
+     {
+      "nom": "Maktab hovlisi",
+      "topshiriq": "Maktab hovlisi to‘g‘ri to‘rtburchak: 40 m va 25 m. a) Yuzi qancha? b) Perimetri qancha? d) Yuzi arda qancha?",
+      "yechim": "a) 40 · 25 = 1000 m². b) (40 + 25) · 2 = 130 m. d) 1000 m² — 10 ar.",
+      "mahsulot": "hovli chizmasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Bo‘yi 9 sm, eni 3 sm to‘g‘ri to‘rtburchakning yuzi?",
+      "javob": "27 sm²"
+     },
+     {
+      "shart": "Tomoni 6 m kvadratning yuzi?",
+      "javob": "36 m²"
+     },
+     {
+      "shart": "Yuzi 56 sm², bo‘yi 8 sm to‘g‘ri to‘rtburchakning eni?",
+      "javob": "7 sm"
+     },
+     {
+      "shart": "5 dm² necha sm²?",
+      "javob": "500 sm²"
+     },
+     {
+      "shart": "Kvadrat yuzi 100 sm². Tomoni nechaga teng?",
+      "javob": "10 sm"
+     },
+     {
+      "shart": "Bo‘yi 15 m, eni 6 m maydonning yuzi?",
+      "javob": "90 m²"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yuzni sm bilan yozadi, sm² emas",
+      "sabab": "kvadrat birlik tushunchasi shakllanmagan",
+      "oldini_olish": "1 sm² — tomoni 1 sm kvadrat ekanini daftarda chizib ko‘rsatish"
+     },
+     {
+      "xato": "Perimetr va yuz formulalarini aralashtiradi",
+      "sabab": "ikkalasi ham tomonlar bilan hisoblanadi",
+      "oldini_olish": "perimetr — yig‘indi (atrofni aylanish), yuz — ko‘paytma (ichini to‘ldirish)"
+     },
+     {
+      "xato": "Turli birlikdagi tomonlarni ko‘paytiradi: 5 m va 40 sm",
+      "sabab": "birliklarni tenglashtirmaydi",
+      "oldini_olish": "ko‘paytirishdan oldin ikkala tomonni bir xil birlikka keltirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "qog‘oz va matodan kerakli yuzdagi bo‘laklar kesish"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "viloyat va mamlakatlarning maydoni kvadrat kilometrlarda o‘lchanadi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "ta’mir va yer maydoni narxi kvadrat metr bo‘yicha hisoblanadi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinfni ta’mirlaymiz»",
+     "muammo": "Sinf polini yangilash uchun qancha material kerak?",
+     "mahsulot": "sinf chizmasi, yuzi va material smetasi",
+     "bosqichlar": [
+      "xonani o‘lchash",
+      "yuzni hisoblash",
+      "plitka yoki linoleum tanlash",
+      "narxni hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Pol yuzini hisoblang",
+      "Devor yuzini hisoblang",
+      "Material miqdorini aniqlang",
+      "Smetani tuzing"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "birliklar to‘g‘ri",
+      "smeta tartibli",
+      "xulosa asosli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qurilish do‘koni»",
+     "bekatlar": [
+      {
+       "nom": "Plitka bo‘limi",
+       "matn": "Xonaning poli 3 m va 4 m.",
+       "topshiriq": "Pol yuzi qancha?",
+       "javob": "12 m²",
+       "rasm": ""
+      },
+      {
+       "nom": "Bo‘yoq bo‘limi",
+       "matn": "Devor yuzi 30 m², 1 bank bo‘yoq 5 m² ga yetadi.",
+       "topshiriq": "Nechta bank kerak?",
+       "javob": "6 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Gilam bo‘limi",
+       "matn": "Gilam 2 m va 3 m.",
+       "topshiriq": "Gilam yuzi qancha?",
+       "javob": "6 m²",
+       "rasm": ""
+      },
+      {
+       "nom": "Oyna bo‘limi",
+       "matn": "Deraza oynasi 80 sm va 50 sm.",
+       "topshiriq": "Oyna yuzi qancha?",
+       "javob": "4000 sm²",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "shisha va oynalar bilan ehtiyot bo‘ling",
+      "og‘ir yuklarni ko‘tarmang",
+      "kattalar bilan yuring"
+     ],
+     "kundalik": [
+      "Nega yuz kvadrat birlikda?",
+      "Perimetr bilan yuz qanday farq qiladi?",
+      "Qayerda yuz kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yuz",
+      "tarif": "shaklning tekislikda egallagan joyi kattaligi"
+     },
+     {
+      "atama": "Kvadrat santimetr",
+      "tarif": "tomoni 1 sm bo‘lgan kvadratning yuzi"
+     },
+     {
+      "atama": "Kvadrat metr",
+      "tarif": "tomoni 1 m bo‘lgan kvadratning yuzi"
+     },
+     {
+      "atama": "Ar",
+      "tarif": "yer maydoni birligi: 100 m²"
+     },
+     {
+      "atama": "Gektar",
+      "tarif": "yer maydoni birligi: 100 ar"
+     },
+     {
+      "atama": "Perimetr",
+      "tarif": "shakl tomonlari yig‘indisi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "To‘g‘ri to‘rtburchak yuzi bo‘y va en ko‘paytmasi",
+      "togri": true,
+      "izoh": "S = a · b"
+     },
+     {
+      "matn": "Yuz sm bilan o‘lchanadi",
+      "togri": false,
+      "izoh": "yuz sm² bilan o‘lchanadi"
+     },
+     {
+      "matn": "Kvadrat yuzi tomonni o‘ziga ko‘paytirib topiladi",
+      "togri": true,
+      "izoh": "S = a · a"
+     },
+     {
+      "matn": "1 m² da 100 sm² bor",
+      "togri": false,
+      "izoh": "1 m² da 10 000 sm² bor"
+     },
+     {
+      "matn": "1 dm² da 100 sm² bor",
+      "togri": true,
+      "izoh": "10 sm ni 10 sm ga ko‘paytiramiz"
+     },
+     {
+      "matn": "Perimetri bir xil shakllar yuzi ham bir xil",
+      "togri": false,
+      "izoh": "yuzlar turlicha bo‘lishi mumkin"
+     },
+     {
+      "matn": "1 ga 100 ar ga teng",
+      "togri": true,
+      "izoh": "yer maydoni birliklari bog‘liqligi"
+     },
+     {
+      "matn": "Perimetr kvadrat birlikda o‘lchanadi",
+      "togri": false,
+      "izoh": "perimetr uzunlik birligida o‘lchanadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yuz qaysi harf bilan belgilanadi?",
+      "javob": "S"
+     },
+     {
+      "savol": "To‘g‘ri to‘rtburchak yuzi qanday topiladi?",
+      "javob": "bo‘yini enga ko‘paytirib"
+     },
+     {
+      "savol": "Kvadrat yuzi qanday topiladi?",
+      "javob": "tomonni o‘ziga ko‘paytirib"
+     },
+     {
+      "savol": "1 dm² necha sm²?",
+      "javob": "100"
+     },
+     {
+      "savol": "1 m² necha dm²?",
+      "javob": "100"
+     },
+     {
+      "savol": "1 ar necha m²?",
+      "javob": "100"
+     },
+     {
+      "savol": "1 ga necha ar?",
+      "javob": "100"
+     },
+     {
+      "savol": "Tomoni 5 sm kvadrat yuzi?",
+      "javob": "25 sm²"
+     },
+     {
+      "savol": "Yuz qaysi birlikda o‘lchanadi?",
+      "javob": "kvadrat birliklarda"
+     },
+     {
+      "savol": "Perimetr va yuz bir narsami?",
+      "javob": "yo‘q"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yuz tushunchasi",
+      "matn": "Shaklning ichi kattaligi yuz. Kvadrat birliklarda o‘lchanadi.",
+      "savol": "Yuz nimani bildiradi?"
+     },
+     {
+      "nom": "To‘g‘ri to‘rtburchak",
+      "matn": "S = a · b: bo‘yni enga ko‘paytiramiz.",
+      "savol": "Bo‘yi 7, eni 3 bo‘lsa yuzi nechaga teng?"
+     },
+     {
+      "nom": "Kvadrat",
+      "matn": "S = a · a: tomonni o‘ziga ko‘paytiramiz.",
+      "savol": "Tomoni 4 sm kvadrat yuzi?"
+     },
+     {
+      "nom": "Birliklar",
+      "matn": "1 dm² — 100 sm²; 1 m² — 100 dm²; 1 ar — 100 m²; 1 ga — 100 ar.",
+      "savol": "1 ga necha m²?"
+     }
+    ],
+    "muammoli_savol": "Ikkala hovli ham to‘g‘ri to‘rtburchak, perimetri 40 m. Biri 10 va 10, ikkinchisi 15 va 5 m. Qaysi birining yuzi katta va nega?",
+    "keys": {
+     "vaziyat": "Dehqon 20 m uzunlikdagi to‘siq bilan to‘g‘ri to‘rtburchak shaklida ekin maydoni ajratmoqchi. U ko‘p hosil olish uchun maydon eng katta bo‘lishini istaydi.",
+     "savollar": [
+      "Qanday tomonlarni tanlash kerak?",
+      "Eng katta yuz qancha chiqadi?"
+     ]
+    },
+    "tezis": "Yuz — ichi, perimetr — atrofi",
+    "taqqoslash": {
+     "a": "Perimetr",
+     "b": "Yuz",
+     "umumiy": [
+      "shaklning kattaligini ifodalaydi",
+      "tomonlar bilan hisoblanadi"
+     ],
+     "a_farq": [
+      "uzunlik (sm, m)",
+      "tomonlar yig‘indisi"
+     ],
+     "b_farq": [
+      "kvadrat birlik (sm², m²)",
+      "tomonlar ko‘paytmasi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yuz",
+     "shoxlar": [
+      {
+       "nom": "Formulalar",
+       "bandlar": [
+        "to‘g‘ri to‘rtburchak: a · b",
+        "kvadrat: a · a",
+        "yuz — S"
+       ]
+      },
+      {
+       "nom": "Birliklar",
+       "bandlar": [
+        "sm²",
+        "m²",
+        "ar, ga"
+       ]
+      },
+      {
+       "nom": "Bog‘liqlik",
+       "bandlar": [
+        "1 dm² — 100 sm²",
+        "1 m² — 100 dm²",
+        "1 ga — 100 ar"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "pol",
+        "yer maydoni",
+        "devor"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ichimni o‘lchasalar, kvadrat birlikda aytaman. Men kimman?",
+     "javob": "yuz"
+    },
+    "hikmat": "Zamin o‘lchovi — dehqon xazinasi.",
+    "kalit_soz": "MAYDON",
+    "xato_yechim": {
+     "shart": "Bo‘yi 8 m, eni 3 m to‘g‘ri to‘rtburchak yuzini toping.",
+     "xato": "8 va 3 qo‘shib 11 m",
+     "togri": "8 · 3 = 24 m²",
+     "sabab": "yuz o‘rniga yig‘indi hisoblagan va kvadrat birlik yozmagan"
+    },
+    "guruh_nomlari": [
+     "Kvadratlar",
+     "To‘rtburchaklar",
+     "Metrlar",
+     "Gektarlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinf xonasi yuzi»",
+     "topshiriq": "Guruh sinf xonasi poli yoki doskaning yuzini o‘lchab hisoblaydi, 1 m² ga nechta parta sig‘ishini taxmin qiladi."
+    },
+    "vazifalar": {
+     "A": "Bo‘yi va eni 12 va 5 sm, 9 va 9 sm, 15 va 4 sm bo‘lgan shakllar yuzini toping.",
+     "B": "Uyingizdagi bir xonaning bo‘yi va enini o‘lchang, yuzini va perimetrini hisoblang.",
+     "C": "Perimetri 24 sm bo‘lgan barcha butun tomonli to‘g‘ri to‘rtburchaklarni toping, yuzlarini hisoblab, eng kattasini aniqlang."
+    },
+    "sinkveyn": [
+     "Yuz",
+     "katta, aniq",
+     "o‘lchanadi, hisoblanadi, ko‘paytiriladi",
+     "Shakl ichining kattaligi",
+     "Maydon"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Maktab hovlisining to‘rt qismi turli to‘g‘ri to‘rtburchaklar. Guruhlar yuzlarini hisoblaydi.",
+     "qismlar": [
+      "1-guruh: 12 m va 5 m",
+      "2-guruh: 8 m va 7 m",
+      "3-guruh: 10 m va 10 m",
+      "4-guruh: umumiy yuzni toping"
+     ],
+     "yakun": "Yuzlar: 60 m², 56 m², 100 m². Birga 216 m²."
+    }
+   }
+  },
+  {
+   "mavzu": "Hajm (kub va parallelepiped)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Jism va hajm",
+      "matn": "Fazoda joy egallaydigan narsa jism deyiladi. Jismning fazoda egallagan joyining kattaligi uning hajmi. Hajm V harfi bilan belgilanadi va kub birliklarda o‘lchanadi: kub santimetr (sm³), kub detsimetr (dm³), kub metr (m³).",
+      "misol": "Quti ichiga sig‘adigan narsalarning miqdori, idishga quyiladigan suv miqdori — hajmga misol.",
+      "savol": "Hajm qanday birliklarda o‘lchanadi?",
+      "javob": "kub birliklarda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri burchakli parallelepiped",
+      "matn": "To‘g‘ri burchakli parallelepiped — oltita yog‘i to‘g‘ri to‘rtburchak bo‘lgan jism. Uning uchta o‘lchami bor: uzunlik, kenglik va balandlik. Qarama-qarshi yoqlari teng. Qirralari 12 ta, uchlari 8 ta, yoqlari 6 ta.",
+      "misol": "Gugurt qutisi, g‘isht, kitob, shkaf — to‘g‘ri burchakli parallelepiped shaklida.",
+      "savol": "Parallelepipedning nechta yog‘i bor?",
+      "javob": "oltita",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hajmni hisoblash",
+      "matn": "To‘g‘ri burchakli parallelepipedning hajmi uzunlik, kenglik va balandlik ko‘paytmasiga teng: V = a · b · c. Uchala o‘lcham bir xil birlikda bo‘lishi kerak. Natija kub birlikda yoziladi.",
+      "misol": "Uzunligi 5 sm, kengligi 4 sm, balandligi 3 sm bo‘lgan quti hajmi: 5 · 4 · 3 = 60 sm³.",
+      "savol": "Uzunligi 6, kengligi 2, balandligi 5 sm bo‘lgan qutining hajmi?",
+      "javob": "60 sm³",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kub va uning hajmi",
+      "matn": "Kub — hamma yog‘i teng kvadratlardan iborat parallelepiped. Uning uchala o‘lchami teng, shuning uchun hajmi V = a · a · a. Kubning 6 ta yog‘i, 12 ta qirrasi va 8 ta uchi bor.",
+      "misol": "Qirrasi 3 sm kubning hajmi: 3 · 3 · 3 = 27 sm³. Kubik rubik kubi aynan shunday.",
+      "savol": "Qirrasi 4 sm kubning hajmi?",
+      "javob": "64 sm³",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hajm birliklari va litr",
+      "matn": "1 dm³ — qirrasi 1 dm bo‘lgan kub hajmi. U 1 litrga teng. 1 dm³ da 1000 sm³, 1 m³ da 1000 dm³ bor. Suyuqliklar litr bilan o‘lchanadi: 1 l — 1 dm³.",
+      "misol": "Qirrasi 10 sm bo‘lgan idish 1000 sm³, ya’ni 1 litr suv sig‘diradi.",
+      "savol": "1 dm³ necha litr?",
+      "javob": "1 litr",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Parallelepiped hajmi: V = a · b · c. Kub hajmi: V = a · a · a. Hajm kub birliklarda o‘lchanadi. 1 dm³ — 1 l; 1 dm³ — 1000 sm³.",
+    "misollar": [
+     {
+      "shart": "Akvariumning uzunligi 50 sm, kengligi 30 sm, balandligi 40 sm. Hajmini toping.",
+      "yechim": [
+       "Hajm uch o‘lcham ko‘paytmasi.",
+       "50 · 30 = 1500.",
+       "1500 · 40 = 60000 sm³."
+      ],
+      "javob": "60000 sm³ (60 litr)"
+     },
+     {
+      "shart": "Kub qirrasi 5 dm. Hajmini toping.",
+      "yechim": [
+       "Kubning hajmi qirrani uch marta ko‘paytirib topiladi.",
+       "5 · 5 = 25.",
+       "25 · 5 = 125."
+      ],
+      "javob": "125 dm³"
+     },
+     {
+      "shart": "Qutining hajmi 120 sm³, uzunligi 8 sm, kengligi 5 sm. Balandligi qancha?",
+      "yechim": [
+       "Avval uzunlik va kenglik ko‘paytmasi: 8 · 5 = 40.",
+       "Hajmni shu ko‘paytmaga bo‘lamiz: 120 : 40 = 3."
+      ],
+      "javob": "3 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kublardan quti",
+      "topshiriq": "Qirrasi 1 sm bo‘lgan kublardan 4 sm uzunlik, 3 sm kenglik va 2 sm balandlikdagi quti yasang. Nechta kub kerak?",
+      "yechim": "4 · 3 = 12 ta kub bir qavatda, 2 qavat — 24 ta. Hajm 24 sm³.",
+      "mahsulot": "kublardan yasalgan quti"
+     },
+     {
+      "nom": "Suv idishi",
+      "topshiriq": "Idishning o‘lchami 20 sm, 10 sm va 5 sm. a) Hajmi qancha? b) Necha litr suv sig‘adi? d) 2 litrli shisha suvi bilan to‘ldirish mumkinmi?",
+      "yechim": "a) 20 · 10 = 200; 200 · 5 = 1000 sm³. b) 1 litr. d) Ha, 1 litr suv uchun yarmi yetadi.",
+      "mahsulot": "idish chizmasi va hisob"
+     },
+     {
+      "nom": "Yuk mashinasi",
+      "topshiriq": "Yuk mashinasi kuzovi: uzunligi 4 m, kengligi 2 m, balandligi 1 m. a) Hajmi qancha? b) Har bir qutining hajmi 1 m³ bo‘lsa, nechta quti sig‘adi?",
+      "yechim": "a) 4 · 2 = 8; 8 · 1 = 8 m³. b) 8 ta.",
+      "mahsulot": "kuzov chizmasi"
+     },
+     {
+      "nom": "Yoyilma",
+      "topshiriq": "Qog‘ozdan 3 sm qirrali kub yoyilmasini chizing, qirqing va yig‘ing. Hajmini hisoblang.",
+      "yechim": "Yoyilma 6 ta kvadratdan iborat. Hajm 3 · 3 · 3 = 27 sm³.",
+      "mahsulot": "yig‘ilgan kub"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "O‘lchamlari 4, 5 va 6 sm bo‘lgan qutining hajmi?",
+      "javob": "120 sm³"
+     },
+     {
+      "shart": "Qirrasi 2 dm kubning hajmi?",
+      "javob": "8 dm³"
+     },
+     {
+      "shart": "3 dm³ necha sm³?",
+      "javob": "3000 sm³"
+     },
+     {
+      "shart": "2 litr suv necha dm³?",
+      "javob": "2 dm³"
+     },
+     {
+      "shart": "Hajmi 60 sm³, o‘lchamlari 5 va 4 sm bo‘lgan qutining balandligi?",
+      "javob": "3 sm"
+     },
+     {
+      "shart": "Kub qirrasi 10 sm. Hajmi necha litr?",
+      "javob": "1 litr"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Hajmni sm² bilan yozadi",
+      "sabab": "yuz birligi bilan adashtiradi",
+      "oldini_olish": "kub — uch o‘lcham, shuning uchun uchinchi daraja"
+     },
+     {
+      "xato": "Uch o‘lchamni qo‘shadi",
+      "sabab": "perimetr formulasi bilan adashtiradi",
+      "oldini_olish": "hajmni «qavatlar soni» sifatida tasavvur qilish: ko‘paytirish"
+     },
+     {
+      "xato": "Turli birlikdagi o‘lchamlarni ko‘paytiradi",
+      "sabab": "birlikni tenglashtirmaydi",
+      "oldini_olish": "avval hamma o‘lchamni bir birlikka keltirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "suyuqlik va gaz hajmi, idishdagi suv miqdori"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "quti, idish va mebel yasash uchun hajm hisoblanadi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "yuk tashishda hajm bo‘yicha narx belgilanadi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Eng sig‘imli quti»",
+     "muammo": "Berilgan qog‘ozdan eng ko‘p narsa sig‘adigan quti qanday yasaladi?",
+     "mahsulot": "turli qutilar modeli va hajmlari jadvali",
+     "bosqichlar": [
+      "qog‘ozdan yoyilma chizish",
+      "qutini yig‘ish",
+      "hajmni hisoblash",
+      "qutilarni taqqoslash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Past va keng quti yasang",
+      "Baland va tor quti yasang",
+      "Hajmlarni hisoblang",
+      "Qaysi quti sig‘imliroq — aniqlang"
+     ],
+     "mezonlar": [
+      "yoyilma aniq",
+      "hajm to‘g‘ri hisoblangan",
+      "taqqoslash asosli",
+      "quti chiroyli",
+      "xulosa bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ombor»",
+     "bekatlar": [
+      {
+       "nom": "Quti bo‘limi",
+       "matn": "Qutining o‘lchamlari 6 sm, 5 sm va 2 sm.",
+       "topshiriq": "Hajmi qancha?",
+       "javob": "60 sm³",
+       "rasm": ""
+      },
+      {
+       "nom": "Suv bo‘limi",
+       "matn": "Idish 2 dm, 5 dm va 1 dm.",
+       "topshiriq": "Necha litr sig‘adi?",
+       "javob": "10 litr",
+       "rasm": ""
+      },
+      {
+       "nom": "Kublar bo‘limi",
+       "matn": "Qirrasi 3 dm kub.",
+       "topshiriq": "Hajmi qancha?",
+       "javob": "27 dm³",
+       "rasm": ""
+      },
+      {
+       "nom": "Konteyner",
+       "matn": "Konteyner 6 m, 2 m va 2 m.",
+       "topshiriq": "Hajmi qancha?",
+       "javob": "24 m³",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "og‘ir qutilarni ko‘tarmang",
+      "stellajlarga chiqmang",
+      "kattalar bilan yuring"
+     ],
+     "kundalik": [
+      "Hajm yuzdan nimasi bilan farq qiladi?",
+      "Nega kub birlikda?",
+      "Qayerda hajm kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Jism",
+      "tarif": "fazoda joy egallagan narsa"
+     },
+     {
+      "atama": "Hajm",
+      "tarif": "jismning fazoda egallagan joyi kattaligi"
+     },
+     {
+      "atama": "Parallelepiped",
+      "tarif": "oltita to‘g‘ri to‘rtburchak yoqli jism"
+     },
+     {
+      "atama": "Kub",
+      "tarif": "hamma yog‘i teng kvadrat bo‘lgan jism"
+     },
+     {
+      "atama": "Kub santimetr",
+      "tarif": "qirrasi 1 sm bo‘lgan kub hajmi"
+     },
+     {
+      "atama": "Litr",
+      "tarif": "suyuqlik hajmi birligi: 1 dm³"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Parallelepipedning 6 ta yog‘i bor",
+      "togri": true,
+      "izoh": "oltita to‘g‘ri to‘rtburchak"
+     },
+     {
+      "matn": "Hajm sm² bilan o‘lchanadi",
+      "togri": false,
+      "izoh": "hajm sm³ bilan o‘lchanadi"
+     },
+     {
+      "matn": "Kub hajmi: V = a · a · a",
+      "togri": true,
+      "izoh": "uchala o‘lcham teng"
+     },
+     {
+      "matn": "1 dm³ 1 litrga teng",
+      "togri": true,
+      "izoh": "o‘lchov birliklari bog‘liqligi"
+     },
+     {
+      "matn": "1 m³ da 100 dm³ bor",
+      "togri": false,
+      "izoh": "1 m³ da 1000 dm³ bor"
+     },
+     {
+      "matn": "Parallelepipedning 12 ta qirrasi bor",
+      "togri": true,
+      "izoh": "to‘rttadan uch guruh"
+     },
+     {
+      "matn": "Hajm uch o‘lcham yig‘indisiga teng",
+      "togri": false,
+      "izoh": "ko‘paytmaga teng"
+     },
+     {
+      "matn": "Kubning hamma qirrasi teng",
+      "togri": true,
+      "izoh": "ta’rifga ko‘ra"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Hajm qaysi harf bilan belgilanadi?",
+      "javob": "V"
+     },
+     {
+      "savol": "Parallelepiped hajmi qanday topiladi?",
+      "javob": "uch o‘lcham ko‘paytmasi"
+     },
+     {
+      "savol": "Kub hajmi qanday topiladi?",
+      "javob": "qirrani uch marta ko‘paytirib"
+     },
+     {
+      "savol": "1 dm³ necha sm³?",
+      "javob": "1000"
+     },
+     {
+      "savol": "1 m³ necha dm³?",
+      "javob": "1000"
+     },
+     {
+      "savol": "1 litr necha dm³?",
+      "javob": "1"
+     },
+     {
+      "savol": "Kubning nechta qirrasi bor?",
+      "javob": "12"
+     },
+     {
+      "savol": "Kubning nechta uchi bor?",
+      "javob": "8"
+     },
+     {
+      "savol": "Qirrasi 2 sm kub hajmi?",
+      "javob": "8 sm³"
+     },
+     {
+      "savol": "Hajm qaysi birliklarda o‘lchanadi?",
+      "javob": "kub birliklarda"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Hajm",
+      "matn": "Jism egallagan joy kattaligi. Kub birliklarda o‘lchanadi.",
+      "savol": "Hajm nima?"
+     },
+     {
+      "nom": "Parallelepiped",
+      "matn": "V = a · b · c. Uch o‘lcham ko‘paytiriladi.",
+      "savol": "O‘lchamlari 2, 3, 4 bo‘lsa hajmi?"
+     },
+     {
+      "nom": "Kub",
+      "matn": "V = a · a · a. 6 yoq, 12 qirra, 8 uch.",
+      "savol": "Qirrasi 3 bo‘lsa hajmi?"
+     },
+     {
+      "nom": "Birliklar",
+      "matn": "1 dm³ — 1 litr — 1000 sm³. 1 m³ — 1000 dm³.",
+      "savol": "1 m³ necha litr?"
+     }
+    ],
+    "muammoli_savol": "Ikkala quti ham 24 sm³ hajmli: biri 4, 3 va 2 sm, ikkinchisi 6, 4 va 1 sm. Ular bir xilmi? Qaysi biriga ko‘proq qog‘oz ketadi?",
+    "keys": {
+     "vaziyat": "Oila yangi akvarium sotib olmoqchi: uzunligi 60 sm, kengligi 30 sm, balandligi 40 sm. Baliqlar uchun har 1 litr suvga 1 ta baliq sig‘adi.",
+     "savollar": [
+      "Akvariumning hajmi qancha?",
+      "Nechta baliq sotib olish mumkin?"
+     ]
+    },
+    "tezis": "Hajm — jism egallagan fazo",
+    "taqqoslash": {
+     "a": "Yuz",
+     "b": "Hajm",
+     "umumiy": [
+      "kattalik",
+      "o‘lchamlar ko‘paytmasi"
+     ],
+     "a_farq": [
+      "tekis shaklda",
+      "sm², m²"
+     ],
+     "b_farq": [
+      "jismda",
+      "sm³, m³"
+     ]
+    },
+    "klaster": {
+     "markaz": "Hajm",
+     "shoxlar": [
+      {
+       "nom": "Jismlar",
+       "bandlar": [
+        "kub",
+        "parallelepiped",
+        "quti"
+       ]
+      },
+      {
+       "nom": "Formulalar",
+       "bandlar": [
+        "a · b · c",
+        "a · a · a",
+        "V"
+       ]
+      },
+      {
+       "nom": "Birliklar",
+       "bandlar": [
+        "sm³",
+        "dm³ — litr",
+        "m³"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "akvarium",
+        "idish",
+        "konteyner"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Uch o‘lchamim bor, kub birlikda aytiladi, idishga qancha sig‘ishini aytaman. Men kimman?",
+     "javob": "hajm"
+    },
+    "hikmat": "Idish to‘la bo‘lsa, ichida joy qolmaydi.",
+    "kalit_soz": "HAJM",
+    "xato_yechim": {
+     "shart": "O‘lchamlari 2, 3 va 4 sm qutining hajmini toping.",
+     "xato": "2 va 3 va 4 qo‘shib 9 sm³",
+     "togri": "2 · 3 · 4 = 24 sm³",
+     "sabab": "hajm o‘rniga yig‘indi hisoblagan"
+    },
+    "guruh_nomlari": [
+     "Kublar",
+     "Qutilar",
+     "Litrlar",
+     "Hajmchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Quti hajmi»",
+     "topshiriq": "Guruh gugurt qutisi, kitob va poyabzal qutisi o‘lchamlarini chizg‘ich bilan o‘lchab, hajmlarini hisoblaydi va o‘sish tartibida joylaydi."
+    },
+    "vazifalar": {
+     "A": "O‘lchamlari 3, 4, 5 sm; 2, 6, 7 sm; 5, 5, 5 sm bo‘lgan qutilar hajmlarini toping.",
+     "B": "Uyingizdagi 3 ta quti hajmini hisoblang va qaysisi sig‘imliroq ekanini ayting.",
+     "C": "Hajmi 36 sm³ bo‘lgan 3 xil quti o‘lchamlarini toping (butun sonlarda) va jadval tuzing."
+    },
+    "sinkveyn": [
+     "Hajm",
+     "katta, to‘la",
+     "sig‘adi, o‘lchanadi, to‘ldiriladi",
+     "Jism egallagan joy",
+     "Fazo"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh turli jismlar hajmlarini hisoblaydi.",
+     "qismlar": [
+      "1-guruh: kub, qirrasi 3 sm",
+      "2-guruh: quti 5, 4 va 2 sm",
+      "3-guruh: akvarium 50, 20 va 30 sm",
+      "4-guruh: hajmlarni taqqoslang"
+     ],
+     "yakun": "Hajmlar: 27 sm³, 40 sm³, 30000 sm³ (30 litr). Eng sig‘imli — akvarium."
+    }
+   }
   }
  ]
 }
