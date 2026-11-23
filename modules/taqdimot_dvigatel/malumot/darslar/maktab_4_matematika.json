@@ -11056,6 +11056,1387 @@
      "yakun": "Natijalar: 1000000; 900000; 400000; 40."
     }
    }
+  },
+  {
+   "mavzu": "3-nazorat ishi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nazorat ishi nima uchun?",
+      "matn": "Uchinchi nazorat ishi katta sonlar bilan ishlashni sinaydi: o‘qish, yozish, taqqoslash, qo‘shish, ayirish, ko‘paytirish va bo‘lish. Xato qilsak, undan o‘rganamiz.",
+      "misol": "Million, sinflar va katta sonlar ustida amallarni o‘rgandik.",
+      "savol": "Nazorat nimani sinaydi?",
+      "javob": "bilimni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Taqqoslash va yozish",
+      "matn": "Katta sonlarni taqqoslashda avval raqamlar sonini sanaymiz, keyin chapdan o‘ngga solishtiramiz. Sonni yozishda sinflarni nol bilan to‘ldiramiz.",
+      "misol": "345678 < 345687. Uch million besh yuz ming — 3500000.",
+      "savol": "345678 va 345687 dan qaysi biri kichik?",
+      "javob": "345678",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shish va ayirish",
+      "matn": "Xonalarni ostma-ost yozamiz, o‘ngdan chapga hisoblaymiz. Olib o‘tish va qarz olishni unutmaymiz. Ayirishni qo‘shish bilan tekshiramiz.",
+      "misol": "1250000 + 750000 — 2000000. 5000000 − 1234567 — 3765433.",
+      "savol": "1250000 + 750000 nechaga teng?",
+      "javob": "2000000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirish va bo‘lish",
+      "matn": "Oxiridagi nollarni olib tashlab hisoblaymiz, so‘ng nollarni qaytaramiz. Bo‘lishda nollarni ikkala sondan teng qisqartiramiz.",
+      "misol": "125000 · 8 — 1000000. 360000 / 9000 — 40.",
+      "savol": "360000 / 9000 nechaga teng?",
+      "javob": "40",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshirish",
+      "matn": "Har bir javobni teskari amal bilan tekshiramiz: qo‘shishni ayirish bilan, bo‘lishni ko‘paytirish bilan.",
+      "misol": "40 · 9000 — 360000. To‘g‘ri.",
+      "savol": "40 · 9000 nechaga teng?",
+      "javob": "360000",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Nazoratda shoshilmaymiz: shartni o‘qiymiz, amalni tanlaymiz, hisoblaymiz va teskari amal bilan tekshiramiz.",
+    "misollar": [
+     {
+      "shart": "345678 va 345687 ni taqqoslang, 3 million 500 ming ni yozing.",
+      "yechim": [
+       "Olti xonali ikkala son, birinchi farq 7 va 8.",
+       "345678 < 345687.",
+       "3 million 500 ming — 3500000."
+      ],
+      "javob": "345678 < 345687; 3500000"
+     },
+     {
+      "shart": "1250000 + 750000 va 5000000 − 1234567 ni hisoblang.",
+      "yechim": [
+       "1250000 + 750000 — 2000000.",
+       "5000000 − 1234567 — 3765433.",
+       "Tekshiramiz: 3765433 + 1234567 — 5000000."
+      ],
+      "javob": "2000000 va 3765433"
+     },
+     {
+      "shart": "125000 · 8 va 360000 / 9000 ni hisoblang.",
+      "yechim": [
+       "125 · 8 — 1000, uchta nol qaytadi — 1000000.",
+       "360000 / 9000 — 360 / 9 — 40.",
+       "Javoblar: 1000000 va 40."
+      ],
+      "javob": "1000000 va 40"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Nazorat variantlari",
+      "topshiriq": "Har guruh 4 ta misol tanlab yechadi va almashib tekshiradi.",
+      "yechim": "Natijalar javoblar bilan solishtiriladi.",
+      "mahsulot": "variant varag‘i"
+     },
+     {
+      "nom": "Xatoni topamiz",
+      "topshiriq": "Do‘stingiz 5000000 − 1234567 ni 3765432 dedi. Xato qayerda?",
+      "yechim": "Birliklarda 10 − 7 — 3.",
+      "mahsulot": "tushuntirish"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "125000 · 8 ga mos hayotiy masala tuzing.",
+      "yechim": "Har guruh masalasini yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "O‘z-o‘zini tekshirish",
+      "topshiriq": "Barcha javoblarni teskari amal bilan tekshiring.",
+      "yechim": "Tekshirilgan javoblar daftarga yoziladi.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1250000 + 750000 nechaga teng?",
+      "javob": "2000000"
+     },
+     {
+      "shart": "5000000 − 1234567 nechaga teng?",
+      "javob": "3765433"
+     },
+     {
+      "shart": "125000 · 8 nechaga teng?",
+      "javob": "1000000"
+     },
+     {
+      "shart": "360000 / 9000 nechaga teng?",
+      "javob": "40"
+     },
+     {
+      "shart": "Uch million besh yuz ming — qaysi son?",
+      "javob": "3500000"
+     },
+     {
+      "shart": "345678 va 345687 dan qaysi biri katta?",
+      "javob": "345687"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Shoshilib xato qiladi",
+      "sabab": "shartni diqqat bilan o‘qimaydi",
+      "oldini_olish": "ikki marta o‘qish"
+     },
+     {
+      "xato": "Nollarni qaytarishni unutadi",
+      "sabab": "faqat sonlarni ko‘paytiradi",
+      "oldini_olish": "nollarni sanab qo‘yish"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "vaqt yetmaydi deb o‘ylaydi",
+      "oldini_olish": "har misoldan keyin teskari amal"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Ona tili",
+      "boglanish": "topshiriqni diqqat bilan o‘qish"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "o‘z-o‘zini baholash"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "katta sonlar bilan ishlash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening natijalarim»",
+     "muammo": "Uchinchi nazorat natijalarini oldingilari bilan qanday solishtiramiz?",
+     "mahsulot": "solishtirish jadvali",
+     "bosqichlar": [
+      "natijalarni yozish",
+      "solishtirish",
+      "xatolarni sanash",
+      "reja tuzish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Natijalarni yozing",
+      "Solishtiring",
+      "Reja tuzing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "natijalar to‘g‘ri",
+      "solishtirish aniq",
+      "reja bor",
+      "jadval chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Katta sonlar yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "1250000 + 750000.",
+       "topshiriq": "Natija?",
+       "javob": "2000000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "5000000 − 1234567.",
+       "topshiriq": "Natija?",
+       "javob": "3765433",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "125000 · 8.",
+       "topshiriq": "Natija?",
+       "javob": "1000000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "360000 / 9000.",
+       "topshiriq": "Natija?",
+       "javob": "40",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi bekat oson bo‘ldi?",
+      "Qayerda xato qildingiz?",
+      "Qanday tekshirdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Nazorat",
+      "tarif": "bilimni sinash"
+     },
+     {
+      "atama": "Taqqoslash",
+      "tarif": "katta-kichikni aniqlash"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "teskari amal bilan aniqlash"
+     },
+     {
+      "atama": "Xato",
+      "tarif": "noto‘g‘ri hisob"
+     },
+     {
+      "atama": "Million",
+      "tarif": "mingning mingtasi"
+     },
+     {
+      "atama": "Sinf",
+      "tarif": "uchta xonadan iborat guruh"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "345678 < 345687",
+      "togri": true,
+      "izoh": "7 va 8"
+     },
+     {
+      "matn": "5000000 − 1234567 — 3765432",
+      "togri": false,
+      "izoh": "3765433"
+     },
+     {
+      "matn": "125000 · 8 — 1000000",
+      "togri": true,
+      "izoh": "125 · 8 — 1000"
+     },
+     {
+      "matn": "360000 / 9000 — 400",
+      "togri": false,
+      "izoh": "40"
+     },
+     {
+      "matn": "1250000 + 750000 — 2000000",
+      "togri": true,
+      "izoh": "125 + 75 — 200"
+     },
+     {
+      "matn": "Nazoratda tekshirish shart emas",
+      "togri": false,
+      "izoh": "tekshirish kerak"
+     },
+     {
+      "matn": "Uch million besh yuz ming — 3500000",
+      "togri": true,
+      "izoh": "3 | 500 | 000"
+     },
+     {
+      "matn": "Xatodan o‘rganish foydali",
+      "togri": true,
+      "izoh": "xatolar ustida ishlash"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Nazorat nima uchun?",
+      "javob": "bilimni sinash uchun"
+     },
+     {
+      "savol": "1250000 + 750000?",
+      "javob": "2000000"
+     },
+     {
+      "savol": "5000000 − 1234567?",
+      "javob": "3765433"
+     },
+     {
+      "savol": "125000 · 8?",
+      "javob": "1000000"
+     },
+     {
+      "savol": "360000 / 9000?",
+      "javob": "40"
+     },
+     {
+      "savol": "Uch million besh yuz ming?",
+      "javob": "3500000"
+     },
+     {
+      "savol": "Qo‘shishni nima bilan tekshiramiz?",
+      "javob": "ayirish bilan"
+     },
+     {
+      "savol": "Bo‘lishni nima bilan tekshiramiz?",
+      "javob": "ko‘paytirish bilan"
+     },
+     {
+      "savol": "Taqqoslashda birinchi qadam?",
+      "javob": "raqamlar sonini sanash"
+     },
+     {
+      "savol": "Xatoga qanday qaraymiz?",
+      "javob": "undan o‘rganamiz"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘qi",
+      "matn": "Shartni o‘qi.",
+      "savol": "Nima so‘ralyapti?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Amalni bajar.",
+      "savol": "125000 · 8?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari amal.",
+      "savol": "1000000 / 8?"
+     },
+     {
+      "nom": "Yoz",
+      "matn": "Javobni yoz.",
+      "savol": "Javob 125000 mi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun nazorat ishidan keyin xatolar ustida ishlash kerak?",
+    "keys": {
+     "vaziyat": "Nazorat ishida katta sonlarga oid 6 ta misol berildi.",
+     "savollar": [
+      "Qaysi misollar oson bo‘ldi?",
+      "Qaysilarda xato qildingiz?"
+     ]
+    },
+    "tezis": "Sinov — o‘sish pillapoyasi",
+    "taqqoslash": {
+     "a": "2-nazorat",
+     "b": "3-nazorat",
+     "umumiy": [
+      "bilim sinaladi",
+      "xatolar tahlil qilinadi"
+     ],
+     "a_farq": [
+      "bo‘linish alomatlari",
+      "bo‘lish"
+     ],
+     "b_farq": [
+      "katta sonlar",
+      "million"
+     ]
+    },
+    "klaster": {
+     "markaz": "3-nazorat ishi",
+     "shoxlar": [
+      {
+       "nom": "Taqqoslash",
+       "bandlar": [
+        "raqamlar soni",
+        "chapdan"
+       ]
+      },
+      {
+       "nom": "Qo‘shish",
+       "bandlar": [
+        "ayirish",
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "nollar"
+       ]
+      },
+      {
+       "nom": "Bo‘lish",
+       "bandlar": [
+        "nollarni qisqartirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men bilimni sinayman va o‘stiraman. Men kimman?",
+     "javob": "nazorat"
+    },
+    "hikmat": "Sinov — ustoz, xato — o‘rgatuvchi.",
+    "kalit_soz": "SINOV",
+    "xato_yechim": {
+     "shart": "5000000 − 1234567 ni hisoblang.",
+     "xato": "3765432",
+     "togri": "3765433",
+     "sabab": "birliklarda 10 − 7 — 3"
+    },
+    "guruh_nomlari": [
+     "Sinovchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar",
+     "Masalachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mening nazoratim»",
+     "topshiriq": "Guruh nazorat savollarini yechib, bir-birini tekshiradi."
+    },
+    "vazifalar": {
+     "A": "345678 va 345687 ni taqqoslang. 3 million 500 ming ni yozing.",
+     "B": "1250000 + 750000 va 5000000 − 1234567 ni hisoblang.",
+     "C": "125000 · 8 va 360000 / 9000 ni hisoblang."
+    },
+    "sinkveyn": [
+     "Nazorat",
+     "tinch, diqqatli",
+     "sinaydi, ko‘rsatadi, o‘rgatadi",
+     "Bilim sinovi",
+     "Imtihon"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh nazorat misollarini yechadi.",
+     "qismlar": [
+      "1-guruh: 1250000 + 750000",
+      "2-guruh: 5000000 − 1234567",
+      "3-guruh: 125000 · 8",
+      "4-guruh: 360000 / 9000"
+     ],
+     "yakun": "Natijalar: 2000000; 3765433; 1000000; 40."
+    }
+   }
+  },
+  {
+   "mavzu": "O‘rganilganlarni mustahkamlash",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sinflar va xonalar",
+      "matn": "Katta sonni o‘ngdan uchtadan sinflarga ajratamiz: birliklar, minglar, millionlar. Har sinfda uchta xona bor.",
+      "misol": "2345678: 2 | 345 | 678.",
+      "savol": "2345678 da millionlar sinfida nechta?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Amallar tartibi",
+      "matn": "Qavs ichi birinchi, keyin ko‘paytirish va bo‘lish, oxirida qo‘shish va ayirish. Bir daraja amallar chapdan o‘ngga bajariladi.",
+      "misol": "(45 + 15) / 6 — 60 / 6 — 10. 24 + 6 · 5 — 54.",
+      "savol": "(45 + 15) / 6 nechaga teng?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirish va bo‘lish",
+      "matn": "Ikki xonali songa ko‘paytirishda qismiy ko‘paytmalarni topib, qo‘shamiz. Bo‘lishda bo‘linmani tanlab, ayirib, qolganini bo‘lamiz.",
+      "misol": "48 · 25 — 1200. 756 / 36 — 21.",
+      "savol": "48 · 25 nechaga teng?",
+      "javob": "1200",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bo‘linish alomatlari",
+      "matn": "Oxirgi raqam: 2, 5, 10. Oxirgi ikki raqam: 4. Raqamlar yig‘indisi: 3 va 9. Alomat bo‘lmasdan bo‘linishini bilishga yordam beradi.",
+      "misol": "455 oxiri 5 — 5 ga bo‘linadi. 4509: yig‘indi 18 — 3 va 9 ga bo‘linadi.",
+      "savol": "455 soni 5 ga bo‘linadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masala",
+      "matn": "Masalani o‘qib, shart va savolni topib, amalni tanlaymiz. Hisoblab, teskari amal bilan tekshiramiz.",
+      "misol": "Zavod bir kunda 125000 detal chiqaradi. 8 kunda: 125000 · 8 — 1000000.",
+      "savol": "125000 · 8 nechaga teng?",
+      "javob": "1000000",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Sinflar, amallar tartibi, ko‘paytirish va bo‘lish, alomatlar, masala — hammasini takrorlaymiz va tekshiramiz.",
+    "misollar": [
+     {
+      "shart": "(45 + 15) / 6 va 24 + 6 · 5 ni hisoblang.",
+      "yechim": [
+       "Birinchisi: 45 + 15 — 60, 60 / 6 — 10.",
+       "Ikkinchisi: 6 · 5 — 30, 24 + 30 — 54.",
+       "Javoblar: 10 va 54."
+      ],
+      "javob": "10 va 54"
+     },
+     {
+      "shart": "48 · 25 va 756 / 36 ni hisoblang.",
+      "yechim": [
+       "48 · 5 — 240, 48 · 20 — 960, 240 + 960 — 1200.",
+       "36 · 20 — 720, 756 − 720 — 36, 36 / 36 — 1, jami 21.",
+       "Javoblar: 1200 va 21."
+      ],
+      "javob": "1200 va 21"
+     },
+     {
+      "shart": "455 va 4509 sonlarini alomat bilan tekshiring.",
+      "yechim": [
+       "455 oxiri 5 — 5 ga bo‘linadi.",
+       "4509: 4 + 5 + 0 + 9 — 18.",
+       "18 — 3 ga va 9 ga bo‘linadi."
+      ],
+      "javob": "455 — 5 ga; 4509 — 3 va 9 ga"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Takrorlash stansiyalari",
+      "topshiriq": "Guruhlar stansiyalarda sinf, amal, alomat va masalani yechadi.",
+      "yechim": "Har stansiya natijalari doskaga yoziladi.",
+      "mahsulot": "stansiya varag‘i"
+     },
+     {
+      "nom": "Xatoni topamiz",
+      "topshiriq": "Do‘stingiz 24 + 6 · 5 ni 150 dedi. Xato qayerda?",
+      "yechim": "Avval ko‘paytirish: 54.",
+      "mahsulot": "tushuntirish"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Zavod haqida ikki amalli masala tuzing.",
+      "yechim": "Har guruh masalasini yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "O‘z-o‘zini tekshirish",
+      "topshiriq": "Barcha javoblarni teskari amal bilan tekshiring.",
+      "yechim": "Tekshirilgan javoblar daftarga yoziladi.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "(45 + 15) / 6 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "24 + 6 · 5 nechaga teng?",
+      "javob": "54"
+     },
+     {
+      "shart": "48 · 25 nechaga teng?",
+      "javob": "1200"
+     },
+     {
+      "shart": "756 / 36 nechaga teng?",
+      "javob": "21"
+     },
+     {
+      "shart": "125000 · 8 nechaga teng?",
+      "javob": "1000000"
+     },
+     {
+      "shart": "455 / 5 nechaga teng?",
+      "javob": "91"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Amallar tartibini unutadi",
+      "sabab": "qavs va ko‘paytirishni e’tiborsiz qoldiradi",
+      "oldini_olish": "avval qavs, keyin ko‘paytirish"
+     },
+     {
+      "xato": "Alomatlarni aralashtiradi",
+      "sabab": "qaysi alomat qaysiga tegishli ekanini bilmaydi",
+      "oldini_olish": "alomatlar jadvali"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "teskari amal"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Ona tili",
+      "boglanish": "qoidalarni qisqa ifodalash"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "hisob-kitob ko‘nikmalari"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "katta sonlar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Takrorlash kitobi»",
+     "muammo": "Hammasini takrorlab, o‘z kitobimizni qanday yasaymiz?",
+     "mahsulot": "takrorlash kitobi",
+     "bosqichlar": [
+      "mavzularni tanlash",
+      "qoidalarni yozish",
+      "misollar yechish",
+      "rasm chizish",
+      "kitob yasash"
+     ],
+     "guruh_vazifalari": [
+      "Mavzuni tanlang",
+      "Qoidani yozing",
+      "Misol yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "qoidalar to‘g‘ri",
+      "misollar to‘g‘ri",
+      "rasm mos",
+      "kitob chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Takrorlash shahri»",
+     "bekatlar": [
+      {
+       "nom": "Sinflar maydoni",
+       "matn": "2345678 ning millionlar sinfi.",
+       "topshiriq": "Nechta?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "Amallar ko‘chasi",
+       "matn": "(45 + 15) / 6.",
+       "topshiriq": "Natija?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘paytirish bog‘i",
+       "matn": "48 · 25.",
+       "topshiriq": "Natija?",
+       "javob": "1200",
+       "rasm": ""
+      },
+      {
+       "nom": "Alomat bozori",
+       "matn": "455 / 5.",
+       "topshiriq": "Natija?",
+       "javob": "91",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi mavzu oson bo‘ldi?",
+      "Qaysi mavzu qiyin bo‘ldi?",
+      "Qayerda mashq kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sinf",
+      "tarif": "uchta xonadan iborat guruh"
+     },
+     {
+      "atama": "Amallar tartibi",
+      "tarif": "amallar bajarilish ketma-ketligi"
+     },
+     {
+      "atama": "Alomat",
+      "tarif": "bo‘linishni bilish usuli"
+     },
+     {
+      "atama": "Masala",
+      "tarif": "savolli topshiriq"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "teskari amal bilan aniqlash"
+     },
+     {
+      "atama": "Takrorlash",
+      "tarif": "o‘rganganni yana eslash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "2345678 da millionlar sinfi 2",
+      "togri": true,
+      "izoh": "2 | 345 | 678"
+     },
+     {
+      "matn": "24 + 6 · 5 — 150",
+      "togri": false,
+      "izoh": "54"
+     },
+     {
+      "matn": "(45 + 15) / 6 — 10",
+      "togri": true,
+      "izoh": "60 / 6"
+     },
+     {
+      "matn": "756 / 36 — 21",
+      "togri": true,
+      "izoh": "36 · 21 — 756"
+     },
+     {
+      "matn": "455 soni 5 ga bo‘linmaydi",
+      "togri": false,
+      "izoh": "oxiri 5"
+     },
+     {
+      "matn": "125000 · 8 — 1000000",
+      "togri": true,
+      "izoh": "125 · 8 — 1000"
+     },
+     {
+      "matn": "Takrorlash — bilim onasi",
+      "togri": true,
+      "izoh": "mustahkamlaydi"
+     },
+     {
+      "matn": "Tekshirish shart emas",
+      "togri": false,
+      "izoh": "tekshirish kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sinflar nomi?",
+      "javob": "birliklar, minglar, millionlar"
+     },
+     {
+      "savol": "Amallar tartibida birinchi?",
+      "javob": "qavs"
+     },
+     {
+      "savol": "(45 + 15) / 6?",
+      "javob": "10"
+     },
+     {
+      "savol": "24 + 6 · 5?",
+      "javob": "54"
+     },
+     {
+      "savol": "48 · 25?",
+      "javob": "1200"
+     },
+     {
+      "savol": "756 / 36?",
+      "javob": "21"
+     },
+     {
+      "savol": "455 5 ga bo‘linadimi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "4509 9 ga bo‘linadimi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "125000 · 8?",
+      "javob": "1000000"
+     },
+     {
+      "savol": "Takrorlash nima uchun?",
+      "javob": "mustahkamlash uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Sinf",
+      "matn": "Sinflarga ajrat.",
+      "savol": "2345678?"
+     },
+     {
+      "nom": "Tartib",
+      "matn": "Tartibni top.",
+      "savol": "(45 + 15) / 6?"
+     },
+     {
+      "nom": "Alomat",
+      "matn": "Alomatni qo‘lla.",
+      "savol": "455?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari amal.",
+      "savol": "10 · 6?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun takrorlash o‘rganilganni mustahkamlaydi?",
+    "keys": {
+     "vaziyat": "Nazoratdan oldin hamma mavzuni takrorlayapsiz.",
+     "savollar": [
+      "Qaysi mavzu qiyin?",
+      "Nimaga ko‘proq mashq qilasiz?"
+     ]
+    },
+    "tezis": "Takror — ilm ko‘zi",
+    "taqqoslash": {
+     "a": "Oldin o‘rganilgan",
+     "b": "Takrorlanayotgan",
+     "umumiy": [
+      "bir mavzu",
+      "bilim mustahkamlanadi"
+     ],
+     "a_farq": [
+      "birinchi marta",
+      "tanishish"
+     ],
+     "b_farq": [
+      "ikkinchi marta",
+      "mustahkamlash"
+     ]
+    },
+    "klaster": {
+     "markaz": "Mustahkamlash",
+     "shoxlar": [
+      {
+       "nom": "Sonlar",
+       "bandlar": [
+        "sinflar",
+        "million"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "tartib",
+        "qavs"
+       ]
+      },
+      {
+       "nom": "Bo‘lish",
+       "bandlar": [
+        "alomatlar",
+        "bo‘lish"
+       ]
+      },
+      {
+       "nom": "Masala",
+       "bandlar": [
+        "shart",
+        "yechim",
+        "javob"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men o‘rganilganni qayta eslatib, mustahkamlayman. Men kimman?",
+     "javob": "takrorlash"
+    },
+    "hikmat": "Takror — ilm ko‘zi.",
+    "kalit_soz": "TAKROR",
+    "xato_yechim": {
+     "shart": "24 + 6 · 5 ni hisoblang.",
+     "xato": "150",
+     "togri": "54",
+     "sabab": "avval ko‘paytirish: 6 · 5 — 30, keyin 24 + 30"
+    },
+    "guruh_nomlari": [
+     "Takrorlovchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar",
+     "Masalachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Takrorlash stansiyalari»",
+     "topshiriq": "Guruh stansiyalardan o‘tib, topshiriqlarni yechadi."
+    },
+    "vazifalar": {
+     "A": "(45 + 15) / 6 va 24 + 6 · 5 ni hisoblang.",
+     "B": "48 · 25 va 756 / 36 ni hisoblang.",
+     "C": "455 va 4509 sonlarini alomat bilan tekshiring."
+    },
+    "sinkveyn": [
+     "Takrorlash",
+     "tez, mustahkam",
+     "eslatadi, mustahkamlaydi, o‘rgatadi",
+     "Takror — ilm ko‘zi",
+     "Amal"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh stansiyalarda ishlaydi.",
+     "qismlar": [
+      "1-guruh: sinflar",
+      "2-guruh: amallar tartibi",
+      "3-guruh: ko‘paytirish va bo‘lish",
+      "4-guruh: alomatlar"
+     ],
+     "yakun": "Hamma topshiriqlar yechildi va tekshirildi."
+    }
+   }
+  },
+  {
+   "mavzu": "Bir-biriga tomon yo‘nalishdagi harakatga doir masalalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Bir-biriga tomon",
+      "matn": "Ikki jism bir vaqtda bir-biriga tomon yo‘lga chiqsa, ular har soatda masofani ikkala tezlik yig‘indisicha qisqartiradi. Bu yig‘indi tezlik yaqinlashish tezligi deyiladi.",
+      "misol": "Piyodalar soatiga 5 km va 4 km tezlik bilan bir-biriga tomon yuradi. Yaqinlashish tezligi 5 + 4 — 9 km.",
+      "savol": "Soatiga 5 km va 4 km tezlikli piyodalarning yaqinlashish tezligi?",
+      "javob": "9 km",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchrashuv vaqti",
+      "matn": "Uchrashuv vaqtini topish uchun masofani yaqinlashish tezligiga bo‘lamiz.",
+      "misol": "Masofa 36 km, yaqinlashish tezligi soatiga 9 km. Vaqt: 36 / 9 — 4 soat.",
+      "savol": "36 km masofani soatiga 9 km tezlik bilan qancha vaqtda bosib o‘tamiz?",
+      "javob": "4 soat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Avtomobillar",
+      "matn": "Avtomobillar soatiga 60 km va 70 km tezlik bilan bir-biriga tomon yuradi, masofa 260 km. Yaqinlashish tezligi 60 + 70 — 130. Vaqt 260 / 130 — 2 soat.",
+      "misol": "Uchrashguncha birinchi 60 · 2 — 120 km, ikkinchi 70 · 2 — 140 km yuradi. 120 + 140 — 260.",
+      "savol": "260 km masofada ikki avtomobil necha soatda uchrashadi?",
+      "javob": "2 soat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Masofani topish",
+      "matn": "Tezliklar va vaqt ma’lum bo‘lsa, masofani topish uchun yaqinlashish tezligini vaqtga ko‘paytiramiz.",
+      "misol": "Tezliklar 45 va 55, vaqt 2 soat: (45 + 55) · 2 — 200 km.",
+      "savol": "Soatiga 45 va 55 km tezlikli avtomobillar 2 soatda necha km yaqinlashadi?",
+      "javob": "200 km",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tezlikni topish",
+      "matn": "Masofa va vaqt ma’lum bo‘lsa, yaqinlashish tezligi masofani vaqtga bo‘lib topiladi. Bir tezlik ma’lum bo‘lsa, ikkinchisini ayirib topamiz.",
+      "misol": "Masofa 240 km, vaqt 3 soat: 240 / 3 — 80. Birinchi tezlik 35 bo‘lsa, ikkinchisi 80 − 35 — 45.",
+      "savol": "240 km masofa 3 soatda bosib o‘tildi. Yaqinlashish tezligi?",
+      "javob": "80 km",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Bir-biriga tomon: yaqinlashish tezligi — tezliklar yig‘indisi. Vaqt — masofa bo‘lingan yig‘indi tezlikka. Masofa — yig‘indi tezlik ko‘paytirilsin vaqtga.",
+    "misollar": [
+     {
+      "shart": "Ikki velosipedchi soatiga 12 km va 15 km tezlik bilan bir-biriga tomon chiqdi. Masofa 81 km. Necha soatda uchrashadi?",
+      "yechim": [
+       "Yaqinlashish tezligi: 12 + 15 — 27.",
+       "Vaqt: 81 / 27 — 3.",
+       "Javob 3 soat."
+      ],
+      "javob": "3 soat"
+     },
+     {
+      "shart": "Avtomobillar soatiga 60 va 70 km tezlik bilan yuradi, masofa 260 km. Har biri qancha yo‘l yuradi?",
+      "yechim": [
+       "Vaqt: 260 / 130 — 2 soat.",
+       "Birinchi: 60 · 2 — 120 km.",
+       "Ikkinchi: 70 · 2 — 140 km."
+      ],
+      "javob": "120 km va 140 km"
+     },
+     {
+      "shart": "Masofa 240 km, vaqt 3 soat, birinchining tezligi 35. Ikkinchining tezligini toping.",
+      "yechim": [
+       "Yaqinlashish tezligi: 240 / 3 — 80.",
+       "Ikkinchisi: 80 − 35.",
+       "Javob 45 km."
+      ],
+      "javob": "45 km"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Chizma chizamiz",
+      "topshiriq": "Masalaning chizmasini chizib, tezlik va masofani belgilang.",
+      "yechim": "Chizma masalani tushunishga yordam beradi.",
+      "mahsulot": "chizma varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Do‘stlar bir-biriga tomon chiqqan masala tuzing.",
+      "yechim": "Har guruh masalasini yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Yo‘llar yig‘indisi masofaga tengligini tekshiring.",
+      "yechim": "120 + 140 — 260.",
+      "mahsulot": "tekshiruv varag‘i"
+     },
+     {
+      "nom": "Rolli o‘yin",
+      "topshiriq": "Ikki bola bir-biriga tomon yurib, uchrashuv vaqtini hisoblaydi.",
+      "yechim": "Natijalar solishtiriladi.",
+      "mahsulot": "o‘yin varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "5 + 4 nechaga teng?",
+      "javob": "9"
+     },
+     {
+      "shart": "36 / 9 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "260 / 130 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "(45 + 55) · 2 nechaga teng?",
+      "javob": "200"
+     },
+     {
+      "shart": "81 / 27 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "240 / 3 − 35 nechaga teng?",
+      "javob": "45"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tezliklarni ayiradi",
+      "sabab": "yaqinlashishni ayirish deb o‘ylaydi",
+      "oldini_olish": "bir-biriga tomon yurganda tezliklar qo‘shiladi"
+     },
+     {
+      "xato": "Vaqtni tezlikka bo‘ladi",
+      "sabab": "formulani adashtiradi",
+      "oldini_olish": "masofani yig‘indi tezlikka bo‘lish"
+     },
+     {
+      "xato": "Chizma chizmaydi",
+      "sabab": "masalani tasavvur qilmaydi",
+      "oldini_olish": "chizma chizib ko‘rish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "yo‘lda uchrashish"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "yugurish va tezlik"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "shaharlar orasidagi masofa"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Uchrashuv chizmasi»",
+     "muammo": "Bir-biriga tomon harakat masalasini qanday qilib chizma bilan tushuntiramiz?",
+     "mahsulot": "harakat albomi",
+     "bosqichlar": [
+      "masala tuzish",
+      "chizma chizish",
+      "yechish",
+      "tekshirish",
+      "albom yasash"
+     ],
+     "guruh_vazifalari": [
+      "Masala tuzing",
+      "Chizing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "masala mantiqli",
+      "chizma aniq",
+      "yechim to‘g‘ri",
+      "albom chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Uchrashuv yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-yo‘l",
+       "matn": "Piyodalar 5 va 4 km tezlikda, masofa 36 km.",
+       "topshiriq": "Necha soatda uchrashadi?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "2-yo‘l",
+       "matn": "Avtomobillar 60 va 70 km tezlikda, masofa 260 km.",
+       "topshiriq": "Necha soatda?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-yo‘l",
+       "matn": "Velosipedchilar 12 va 15 km tezlikda, masofa 81 km.",
+       "topshiriq": "Necha soatda?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "4-yo‘l",
+       "matn": "Masofa 240 km, vaqt 3 soat.",
+       "topshiriq": "Yaqinlashish tezligi?",
+       "javob": "80",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Chizma yordam berdimi?",
+      "Tezliklarni qo‘shdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tezlik",
+      "tarif": "birlik vaqtda bosib o‘tilgan yo‘l"
+     },
+     {
+      "atama": "Masofa",
+      "tarif": "ikki joy orasidagi uzunlik"
+     },
+     {
+      "atama": "Vaqt",
+      "tarif": "harakat davomiyligi"
+     },
+     {
+      "atama": "Yaqinlashish tezligi",
+      "tarif": "tezliklar yig‘indisi"
+     },
+     {
+      "atama": "Uchrashuv",
+      "tarif": "ikki jismning bir joyda bo‘lishi"
+     },
+     {
+      "atama": "Chizma",
+      "tarif": "masalaning rasmi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Bir-biriga tomon yurganda tezliklar qo‘shiladi",
+      "togri": true,
+      "izoh": "yaqinlashish tezligi"
+     },
+     {
+      "matn": "Tezliklar ayiriladi",
+      "togri": false,
+      "izoh": "qo‘shiladi"
+     },
+     {
+      "matn": "Vaqt — masofa bo‘linsin yig‘indi tezlikka",
+      "togri": true,
+      "izoh": "36 / 9 — 4"
+     },
+     {
+      "matn": "260 / 130 — 20",
+      "togri": false,
+      "izoh": "2"
+     },
+     {
+      "matn": "Masofa — yaqinlashish tezligi ko‘paytirilsin vaqtga",
+      "togri": true,
+      "izoh": "(45 + 55) · 2 — 200"
+     },
+     {
+      "matn": "81 / 27 — 3",
+      "togri": true,
+      "izoh": "12 + 15 — 27"
+     },
+     {
+      "matn": "Chizma masalani tushunishga yordam beradi",
+      "togri": true,
+      "izoh": "tasavvur"
+     },
+     {
+      "matn": "Yo‘llar yig‘indisi masofaga teng emas",
+      "togri": false,
+      "izoh": "tengdir"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yaqinlashish tezligi nima?",
+      "javob": "tezliklar yig‘indisi"
+     },
+     {
+      "savol": "Vaqt qanday topiladi?",
+      "javob": "masofa bo‘linsin yig‘indi tezlikka"
+     },
+     {
+      "savol": "Masofa qanday topiladi?",
+      "javob": "yig‘indi tezlik ko‘paytirilsin vaqtga"
+     },
+     {
+      "savol": "5 + 4?",
+      "javob": "9"
+     },
+     {
+      "savol": "36 / 9?",
+      "javob": "4"
+     },
+     {
+      "savol": "60 + 70?",
+      "javob": "130"
+     },
+     {
+      "savol": "260 / 130?",
+      "javob": "2"
+     },
+     {
+      "savol": "12 + 15?",
+      "javob": "27"
+     },
+     {
+      "savol": "81 / 27?",
+      "javob": "3"
+     },
+     {
+      "savol": "240 / 3?",
+      "javob": "80"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qo‘sh",
+      "matn": "Tezliklarni qo‘sh.",
+      "savol": "12 + 15?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "Masofani bo‘l.",
+      "savol": "81 / 27?"
+     },
+     {
+      "nom": "Yur",
+      "matn": "Har biri qancha yuradi?",
+      "savol": "60 · 2?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Yo‘llarni qo‘sh.",
+      "savol": "120 + 140?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bir-biriga tomon yurganda tezliklar qo‘shiladi?",
+    "keys": {
+     "vaziyat": "Ikki velosipedchi 81 km masofadan bir-biriga tomon chiqdi.",
+     "savollar": [
+      "Ularning yaqinlashish tezligi nechta?",
+      "Necha soatda uchrashadi?"
+     ]
+    },
+    "tezis": "Bir-biriga tomon — tezliklar qo‘shiladi",
+    "taqqoslash": {
+     "a": "Bir-biriga tomon",
+     "b": "Bir tomonga",
+     "umumiy": [
+      "tezlik va masofa bor",
+      "vaqt topiladi"
+     ],
+     "a_farq": [
+      "tezliklar qo‘shiladi",
+      "masofa qisqaradi"
+     ],
+     "b_farq": [
+      "tezliklar ayiriladi",
+      "masofa o‘zgaradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Bir-biriga tomon harakat",
+     "shoxlar": [
+      {
+       "nom": "Tezlik",
+       "bandlar": [
+        "yig‘indi tezlik"
+       ]
+      },
+      {
+       "nom": "Vaqt",
+       "bandlar": [
+        "masofa bo‘linsin tezlikka"
+       ]
+      },
+      {
+       "nom": "Masofa",
+       "bandlar": [
+        "tezlik ko‘paytirilsin vaqtga"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "yo‘llar yig‘indisi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ikkita tezlikdan yig‘ilaman va masofani qisqartiraman. Men kimman?",
+     "javob": "yaqinlashish tezligi"
+    },
+    "hikmat": "Birga yursak — yo‘l qisqaradi.",
+    "kalit_soz": "TOMON",
+    "xato_yechim": {
+     "shart": "Piyodalar 5 va 4 km tezlikda, masofa 36 km. Necha soatda uchrashadi?",
+     "xato": "36 / 5",
+     "togri": "4 soat",
+     "sabab": "avval tezliklarni qo‘shamiz: 9, keyin 36 / 9"
+    },
+    "guruh_nomlari": [
+     "Yo‘lchilar",
+     "Hisobchilar",
+     "Chizmachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Uchrashuv masalasi»",
+     "topshiriq": "Guruh uchrashuv masalasini chizma bilan yechadi."
+    },
+    "vazifalar": {
+     "A": "Piyodalar 5 va 4 km tezlikda, masofa 36 km. Necha soatda uchrashadi?",
+     "B": "Avtomobillar 60 va 70 km tezlikda, masofa 260 km. Har biri qancha yuradi?",
+     "C": "Masofa 240 km, vaqt 3 soat, tezliklardan biri 35. Ikkinchisini toping."
+    },
+    "sinkveyn": [
+     "Harakat",
+     "tez, yaqin",
+     "yuradi, uchrashadi, qisqartiradi",
+     "Birga yo‘lda",
+     "Yo‘l"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh uchrashuv masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: 5 va 4 km, 36 km",
+      "2-guruh: 60 va 70 km, 260 km",
+      "3-guruh: 12 va 15 km, 81 km",
+      "4-guruh: 240 km, 3 soat"
+     ],
+     "yakun": "Natijalar: 4 soat; 2 soat; 3 soat; 80 km."
+    }
+   }
   }
  ]
 }
