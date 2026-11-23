@@ -2799,6 +2799,1405 @@
      "yakun": "Natijalar: 2 / x; x + 1; 5 / x; 2."
     }
    }
+  },
+  {
+   "mavzu": "Chiziqli tenglama",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tenglama va uning ildizi",
+      "matn": "Noma’lum son qatnashgan tenglik tenglama deyiladi. Noma’lumning tenglamani to‘g‘ri tenglikka aylantiradigan qiymati tenglamaning ildizi deyiladi. Tenglamani yechish — uning barcha ildizlarini topish yoki ildiz yo‘qligini ko‘rsatish.",
+      "misol": "x + 5 ifoda 12 ga teng bo‘lsin. Ildiz 7: 7 ga 5 ni qo‘shsak 12 chiqadi. Boshqa son, masalan 6, mos kelmaydi: 6 ga 5 ni qo‘shsak 11 chiqadi.",
+      "savol": "x + 3 ifoda 10 ga teng bo‘lsa, ildiz nechaga teng?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tenglamaning xossalari",
+      "matn": "Tenglamaning ikkala tomoniga bir xil son qo‘shsak yoki ikkala tomonidan bir xil sonni ayirsak, ildiz o‘zgarmaydi. Ikkala tomonni noldan farqli songa ko‘paytirsak yoki bo‘lsak ham ildiz o‘zgarmaydi. Shu sababli hadni qarama-qarshi ishora bilan boshqa tomonga o‘tkazish mumkin.",
+      "misol": "x − 4 ifoda 9 ga teng. Ikkala tomonga 4 ni qo‘shamiz, x ifoda 13 ga teng bo‘ladi. Tekshirish: 13 dan 4 ni ayirsak 9 chiqadi.",
+      "savol": "x − 6 ifoda 5 ga teng bo‘lsa, ildiz?",
+      "javob": "11",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chiziqli tenglama",
+      "matn": "ax + b ifoda c ga teng ko‘rinishdagi tenglama chiziqli tenglama deyiladi, bunda x noma’lum, a, b, c berilgan sonlar va a noldan farqli. Yechish tartibi: avval b ni o‘ng tomonga o‘tkazamiz, so‘ng c − b ni a ga bo‘lamiz.",
+      "misol": "3x + 5 ifoda 20 ga teng. 5 ni o‘tkazamiz: 3x ifoda 15 ga teng. 15 ni 3 ga bo‘lamiz: x ifoda 5 ga teng. Tekshirish: 3 ni 5 ga ko‘paytirsak 15, 5 ni qo‘shsak 20 chiqadi.",
+      "savol": "2x + 4 ifoda 14 ga teng bo‘lsa, x nechaga teng?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qavsli va kasrli tenglamalar",
+      "matn": "Qavsli tenglamada avval qavslarni ochamiz yoki ikkala tomonni qavsdan tashqaridagi songa bo‘lamiz. Kasrli tenglamada ikkala tomonni maxrajlarning umumiy bo‘linuvchisiga ko‘paytirib, kasrlardan qutulamiz. So‘ng o‘xshash hadlarni ixchamlab, chiziqli tenglamaga keltiramiz.",
+      "misol": "2(x + 3) ifoda 14 ga teng: ikkala tomonni 2 ga bo‘lsak x + 3 ifoda 7 ga teng, demak x ifoda 4 ga teng. Kasrli: x / 3 + 2 ifoda 6 ga teng, x / 3 ifoda 4 ga teng, x ifoda 12 ga teng.",
+      "savol": "3(x − 1) ifoda 12 ga teng bo‘lsa, x?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ildizlar soni",
+      "matn": "Chiziqli tenglama odatda bitta ildizga ega. Ba’zan tenglamani soddalashtirganda 0x ifoda 5 ga teng kabi ko‘rinish chiqadi — bunda ildiz yo‘q. 0x ifoda 0 ga teng bo‘lsa, x ning har qanday qiymati ildiz bo‘ladi.",
+      "misol": "2x + 3 ifoda 2x + 7 ga teng: ikkala tomondan 2x ni ayirsak 3 ifoda 7 ga teng chiqadi, bu mumkin emas, ildiz yo‘q. 3(x + 1) ifoda 3x + 3 ga teng: ikki tomon bir xil, ildiz cheksiz ko‘p.",
+      "savol": "x + 1 ifoda x + 2 ga teng tenglamaning ildizi bormi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tenglamaning ikkala tomoniga bir xil amal bajarsak, ildiz o‘zgarmaydi. ax + b ifoda c ga teng bo‘lsa, x topish uchun c − b ni a ga bo‘lamiz. Har bir ildizni tenglamaga qo‘yib tekshiramiz.",
+    "misollar": [
+     {
+      "shart": "7x − 4 ifoda 24 ga teng tenglamani yeching.",
+      "yechim": [
+       "4 ni o‘ng tomonga o‘tkazamiz: 7x ifoda 28 ga teng.",
+       "28 ni 7 ga bo‘lamiz: x ifoda 4 ga teng.",
+       "Tekshirish: 7 ni 4 ga ko‘paytirsak 28, 4 ni ayirsak 24 chiqadi."
+      ],
+      "javob": "x ifoda 4"
+     },
+     {
+      "shart": "5(x − 1) ifoda 3x + 9 ga teng tenglamani yeching.",
+      "yechim": [
+       "Qavsni ochamiz: 5x − 5 ifoda 3x + 9 ga teng.",
+       "3x ni chap tomonga, 5 ni o‘ng tomonga o‘tkazamiz: 2x ifoda 14 ga teng.",
+       "x ifoda 7 ga teng. Tekshirish: chapda 5 ni 6 ga ko‘paytirsak 30, o‘ngda 21 ga 9 ni qo‘shsak 30."
+      ],
+      "javob": "x ifoda 7"
+     },
+     {
+      "shart": "x / 2 + x / 3 ifoda 10 ga teng tenglamani yeching.",
+      "yechim": [
+       "Umumiy maxraj 6: ikkala tomonni 6 ga ko‘paytiramiz.",
+       "3x + 2x ifoda 60 ga teng, ya’ni 5x ifoda 60 ga teng.",
+       "x ifoda 12 ga teng. Tekshirish: 12 / 2 — 6, 12 / 3 — 4, yig‘indi 10."
+      ],
+      "javob": "x ifoda 12"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tarozi modeli",
+      "topshiriq": "Tarozi pallalarida x gramm yuk va 50 gramm toshcha bir pallada, 200 gramm ikkinchi pallada. Tenglamani tuzing va yeching.",
+      "yechim": "x + 50 ifoda 200 ga teng, x ifoda 150 ga teng. Tarozi muvozanati ikkala tomonga bir xil amal bajarilganda saqlanadi.",
+      "mahsulot": "tarozi chizmasi"
+     },
+     {
+      "nom": "Sonli topishmoq",
+      "topshiriq": "Sonni 3 ga ko‘paytirib, 8 qo‘shsak 35 chiqadi. Sonni toping.",
+      "yechim": "3x + 8 ifoda 35 ga teng, 3x ifoda 27 ga teng, x ifoda 9 ga teng.",
+      "mahsulot": "yechim varag‘i"
+     },
+     {
+      "nom": "Xatoni toping",
+      "topshiriq": "Berilgan yechimda ishorasi noto‘g‘ri ko‘chirilgan qatorni toping va to‘g‘rilang.",
+      "yechim": "Hadni boshqa tomonga o‘tkazganda ishora teskarisiga o‘zgaradi.",
+      "mahsulot": "xatolar jadvali"
+     },
+     {
+      "nom": "Ildiz bormi?",
+      "topshiriq": "Uch tenglamadan qaysi birida ildiz yo‘q, qaysi birida cheksiz ko‘p ekanini aniqlang.",
+      "yechim": "Soddalashtirib 0x ifoda sonli qiymat bilan solishtiramiz: noldan farqli bo‘lsa ildiz yo‘q, nolga teng bo‘lsa cheksiz.",
+      "mahsulot": "tasniflash jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "x + 9 ifoda 15 ga teng. x nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "4x ifoda 28 ga teng. x nechaga teng?",
+      "javob": "7"
+     },
+     {
+      "shart": "5x − 3 ifoda 22 ga teng. x nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "2x + 7 ifoda 19 ga teng. x nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "3(x − 2) ifoda 15 ga teng. x nechaga teng?",
+      "javob": "7"
+     },
+     {
+      "shart": "x / 4 + 1 ifoda 5 ga teng. x nechaga teng?",
+      "javob": "16"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Hadni o‘tkazganda ishorani o‘zgartirmaydi",
+      "sabab": "qarama-qarshi ishora qoidasini unutadi",
+      "oldini_olish": "ikkala tomonga bir xil amal bajarishni eslash"
+     },
+     {
+      "xato": "Qavsni ochganda faqat birinchi hadni ko‘paytiradi",
+      "sabab": "taqsimot qonunini to‘liq qo‘llamaydi",
+      "oldini_olish": "qavs ichidagi har bir hadni ko‘paytirish"
+     },
+     {
+      "xato": "Ildizni tekshirmaydi",
+      "sabab": "tekshirishni ortiqcha deb hisoblaydi",
+      "oldini_olish": "ildizni boshlang‘ich tenglamaga qo‘yib ko‘rish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "yo‘l, tezlik va vaqt formulalaridan noma’lumni topish"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "eritma tarkibidagi moddalar miqdorini hisoblash"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "narx, miqdor va umumiy xarajat orasidagi bog‘lanish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tenglama bilan masala»",
+     "muammo": "Kundalik hayotdagi noma’lum miqdorni tenglama tuzib qanday topamiz?",
+     "mahsulot": "masalalar to‘plami",
+     "bosqichlar": [
+      "hayotiy vaziyatlarni tanlash",
+      "tenglama tuzish",
+      "yechish",
+      "ildizni tekshirish",
+      "to‘plamni bezash"
+     ],
+     "guruh_vazifalari": [
+      "Vaziyatlar toping",
+      "Tenglamalar tuzing",
+      "Yeching va tekshiring",
+      "To‘plamni taqdim eting"
+     ],
+     "mezonlar": [
+      "tenglama to‘g‘ri tuzilgan",
+      "yechim to‘g‘ri",
+      "tekshirish bor",
+      "vaziyat hayotiy",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Noma’lum izidan»",
+     "bekatlar": [
+      {
+       "nom": "Do‘kon",
+       "matn": "5 ta daftar va 3000 so‘mlik qalam jami 18000 so‘m turadi.",
+       "topshiriq": "Bitta daftar narxini toping.",
+       "javob": "3000 so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Taksi",
+       "matn": "Taksi 4000 so‘m boshlang‘ich to‘lov oladi va har kilometr uchun 2000 so‘m qo‘shadi. Jami 20000 so‘m to‘landi.",
+       "topshiriq": "Necha kilometr yurilgan?",
+       "javob": "8 km",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "To‘g‘ri to‘rtburchak bog‘ning uzunligi enidan 4 m ko‘p, perimetri 36 m.",
+       "topshiriq": "Eni va uzunligini toping.",
+       "javob": "eni 7 m, uzunligi 11 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab",
+       "matn": "Har bir o‘quvchiga 3 tadan qalam berildi, 6 ta qalam ortib qoldi. Jami 45 qalam bor edi.",
+       "topshiriq": "Nechta o‘quvchi bor?",
+       "javob": "13 ta",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda noma’lum miqdorni topishga to‘g‘ri keldi?",
+      "Tenglama tuzish qaysi masalada yordam berdi?",
+      "Ildizni tekshirish nima uchun kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tenglama",
+      "tarif": "noma’lum son qatnashgan tenglik"
+     },
+     {
+      "atama": "Ildiz",
+      "tarif": "tenglamani to‘g‘ri tenglikka aylantiradigan qiymat"
+     },
+     {
+      "atama": "Chiziqli tenglama",
+      "tarif": "ax + b ifoda c ga teng ko‘rinishdagi tenglama"
+     },
+     {
+      "atama": "Teng kuchli tenglamalar",
+      "tarif": "ildizlari bir xil bo‘lgan tenglamalar"
+     },
+     {
+      "atama": "Noma’lum",
+      "tarif": "qiymati topilishi kerak bo‘lgan harf"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "ildizni boshlang‘ich tenglamaga qo‘yib ko‘rish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tenglamaning ikkala tomoniga bir xil son qo‘shsak, ildiz o‘zgaradi",
+      "togri": false,
+      "izoh": "ildiz o‘zgarmaydi"
+     },
+     {
+      "matn": "Hadni boshqa tomonga o‘tkazganda ishora teskarisiga o‘zgaradi",
+      "togri": true,
+      "izoh": "bu tenglama xossasining natijasi"
+     },
+     {
+      "matn": "Ikkala tomonni nolga ko‘paytirish mumkin",
+      "togri": false,
+      "izoh": "nolga ko‘paytirsak ildiz haqida ma’lumot yo‘qoladi"
+     },
+     {
+      "matn": "3x ifoda 12 ga teng tenglamaning ildizi 4",
+      "togri": true,
+      "izoh": "3 ni 4 ga ko‘paytirsak 12 chiqadi"
+     },
+     {
+      "matn": "Har bir chiziqli tenglamaning ildizi bor",
+      "togri": false,
+      "izoh": "0x ifoda 5 ga teng tenglamada ildiz yo‘q"
+     },
+     {
+      "matn": "Tenglama ildizini tenglamaga qo‘yib tekshirish mumkin",
+      "togri": true,
+      "izoh": "to‘g‘ri tenglik chiqishi kerak"
+     },
+     {
+      "matn": "x / 5 ifoda 3 ga teng bo‘lsa, x ifoda 15 ga teng",
+      "togri": true,
+      "izoh": "ikkala tomonni 5 ga ko‘paytiramiz"
+     },
+     {
+      "matn": "2x + 6 ifoda 14 ga teng tenglamaning ildizi 5",
+      "togri": false,
+      "izoh": "ildiz 4: 2 ni 4 ga ko‘paytirib 6 qo‘shsak 14"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tenglama nima?",
+      "javob": "noma’lum son qatnashgan tenglik"
+     },
+     {
+      "savol": "Tenglamaning ildizi nima?",
+      "javob": "tenglamani to‘g‘ri tenglikka aylantiradigan qiymat"
+     },
+     {
+      "savol": "Hadni boshqa tomonga o‘tkazsak, ishora qanday bo‘ladi?",
+      "javob": "teskari"
+     },
+     {
+      "savol": "x + 8 ifoda 20 ga teng bo‘lsa, x?",
+      "javob": "12"
+     },
+     {
+      "savol": "6x ifoda 42 ga teng bo‘lsa, x?",
+      "javob": "7"
+     },
+     {
+      "savol": "2x − 5 ifoda 9 ga teng bo‘lsa, x?",
+      "javob": "7"
+     },
+     {
+      "savol": "Qavsli tenglamada birinchi qadam nima?",
+      "javob": "qavsni ochish yoki ikkala tomonni bo‘lish"
+     },
+     {
+      "savol": "Kasrli tenglamada kasrdan qanday qutulamiz?",
+      "javob": "ikkala tomonni umumiy maxrajga ko‘paytiramiz"
+     },
+     {
+      "savol": "Ildiz yo‘q bo‘lishi mumkinmi?",
+      "javob": "ha, masalan 0x ifoda 5 ga teng bo‘lsa"
+     },
+     {
+      "savol": "Ildizni nima uchun tekshiramiz?",
+      "javob": "hisob xatosini aniqlash uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Tenglama va ildiz",
+      "matn": "Ildiz tenglamani to‘g‘ri tenglikka aylantiradi.",
+      "savol": "x + 2 ifoda 9 ga teng bo‘lsa, x?"
+     },
+     {
+      "nom": "Xossalar",
+      "matn": "Ikkala tomonga bir xil amal bajariladi.",
+      "savol": "x − 3 ifoda 4 ga teng bo‘lsa, x?"
+     },
+     {
+      "nom": "Chiziqli tenglama",
+      "matn": "ax + b ifoda c ga teng: x topish uchun c − b ni a ga bo‘lamiz.",
+      "savol": "4x + 2 ifoda 18 ga teng bo‘lsa, x?"
+     },
+     {
+      "nom": "Qavs va kasr",
+      "matn": "Avval qavs va kasrlardan qutulamiz.",
+      "savol": "x / 2 ifoda 6 ga teng bo‘lsa, x?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tenglamaning ikkala tomoniga bir xil amalni bajarsak ildiz o‘zgarmaydi? Tarozi misolida tushuntiring va ikkala tomonni nolga ko‘paytirish nima uchun mumkin emasligini ayting.",
+    "keys": {
+     "vaziyat": "Sotuvchi 3 kg olma va 2000 so‘mlik paket uchun jami 20000 so‘m oldi. Xaridor bir kilogramm olma narxini bilmoqchi.",
+     "savollar": [
+      "Tenglamani qanday tuzamiz?",
+      "Bir kilogramm olma necha so‘m?"
+     ]
+    },
+    "tezis": "Tenglama — noma’lumni topish vositasi",
+    "taqqoslash": {
+     "a": "x + 5 ifoda 12 ga teng",
+     "b": "3x + 5 ifoda 20 ga teng",
+     "umumiy": [
+      "birinchi darajali tenglama",
+      "bitta ildiz"
+     ],
+     "a_farq": [
+      "bir amal bilan yechiladi",
+      "ildiz 7"
+     ],
+     "b_farq": [
+      "ikki amal bilan yechiladi",
+      "ildiz 5"
+     ]
+    },
+    "klaster": {
+     "markaz": "Chiziqli tenglama",
+     "shoxlar": [
+      {
+       "nom": "Tushunchalar",
+       "bandlar": [
+        "noma’lum",
+        "ildiz",
+        "tenglama"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "qo‘shish va ayirish",
+        "ko‘paytirish va bo‘lish",
+        "hadni o‘tkazish"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "oddiy",
+        "qavsli",
+        "kasrli"
+       ]
+      },
+      {
+       "nom": "Ildizlar soni",
+       "bandlar": [
+        "bitta",
+        "yo‘q",
+        "cheksiz ko‘p"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yashiringan sonman, tenglamada x bo‘lib turaman. Meni topsangiz, tenglik to‘g‘ri bo‘ladi. Men nimaman?",
+     "javob": "tenglamaning ildizi"
+    },
+    "hikmat": "Noma’lum — hali topilmagan javob.",
+    "kalit_soz": "ILDIZ",
+    "xato_yechim": {
+     "shart": "3x − 6 ifoda 12 ga teng tenglamani yeching.",
+     "xato": "x ifoda 2 ga teng",
+     "togri": "x ifoda 6 ga teng",
+     "sabab": "6 ni o‘ng tomonga o‘tkazganda ishora o‘zgartirilmagan: 12 dan ayirilgan, qo‘shish kerak edi"
+    },
+    "guruh_nomlari": [
+     "Ildizchilar",
+     "Tarozichilar",
+     "Noma’lumchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Do‘kon hisobi»",
+     "topshiriq": "Guruh haqiqiy narxlar asosida masala tuzadi: bir nechta mahsulot va jami summa berilgan. Tenglama tuzib, bitta mahsulot narxini topadi va tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Yeching: x + 7 ifoda 15 ga teng; 3x ifoda 24 ga teng; 2x − 1 ifoda 9 ga teng.",
+     "B": "Yeching: 4(x − 2) ifoda 20 ga teng; x / 3 + 2 ifoda 5 ga teng.",
+     "C": "O‘zingiz hayotiy masala tuzing va uni tenglama bilan yeching."
+    },
+    "sinkveyn": [
+     "Tenglama",
+     "chiziqli, oddiy",
+     "yechamiz, tekshiramiz, topamiz",
+     "Noma’lumni topish yo‘li",
+     "Ildiz"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tenglamalar yechadi.",
+     "qismlar": [
+      "1-guruh: x + 6 ifoda 14 ga teng",
+      "2-guruh: 5x ifoda 35 ga teng",
+      "3-guruh: 2x + 3 ifoda 13 ga teng",
+      "4-guruh: 3(x − 1) ifoda 18 ga teng"
+     ],
+     "yakun": "Ildizlar: 8; 7; 5; 7."
+    }
+   }
+  },
+  {
+   "mavzu": "Tenglamalar sistemasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ikki noma’lumli tenglama",
+      "matn": "Ikkita noma’lum qatnashgan tenglama ikki noma’lumli tenglama deyiladi. Uning yechimi — tenglamani to‘g‘ri tenglikka aylantiradigan sonlar jufti (x; y). Bunday tenglamaning yechimlari ko‘p bo‘ladi.",
+      "misol": "x + y ifoda 10 ga teng tenglamaning yechimlari: (3; 7), (4; 6), (5; 5) va boshqalar. Har birida ikki son yig‘indisi 10.",
+      "savol": "x + y ifoda 8 ga teng tenglamaga bitta yechim ayting.",
+      "javob": "masalan (3; 5)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tenglamalar sistemasi",
+      "matn": "Birgalikda bajarilishi talab etiladigan ikki yoki undan ortiq tenglama tenglamalar sistemasi deyiladi. Sistemaning yechimi — barcha tenglamani bir vaqtda to‘g‘ri tenglikka aylantiradigan juft sonlar. Sistemani yechish — uning barcha yechimlarini topish.",
+      "misol": "Sistema: x + y ifoda 12, x − y ifoda 2. Yechim (7; 5): 7 ga 5 ni qo‘shsak 12, 7 dan 5 ni ayirsak 2 chiqadi.",
+      "savol": "(7; 5) juft x + y ifoda 12 tenglamani qanoatlantiradimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘rniga qo‘yish usuli",
+      "matn": "Bir tenglamadan bir noma’lumni ikkinchisi orqali ifodalaymiz, uni ikkinchi tenglamaga qo‘yamiz. Bir noma’lumli tenglama hosil bo‘ladi, uni yechamiz va ikkinchi noma’lumni topamiz.",
+      "misol": "Sistema: y ifoda 2x, x + y ifoda 12. Ikkinchi tenglamaga y o‘rniga 2x ni qo‘yamiz: x + 2x ifoda 12, 3x ifoda 12, x ifoda 4. Keyin y ifoda 8. Tekshirish: 4 + 8 — 12, 8 ifoda 2 marta 4.",
+      "savol": "y ifoda x + 1 va x + y ifoda 9 sistemada x?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shish usuli",
+      "matn": "Tenglamalarni hadma-had qo‘shamiz yoki ayiramiz, shunda bitta noma’lum yo‘qoladi. Agar koeffitsientlar teng bo‘lmasa, avval tenglamani mos songa ko‘paytirib tenglashtiramiz.",
+      "misol": "x + y ifoda 11, x − y ifoda 3. Qo‘shsak 2x ifoda 14, x ifoda 7, keyin y ifoda 4. Yana bir misol: 2x + y ifoda 11 va x + 3y ifoda 18. Birinchisini 3 ga ko‘paytirsak 6x + 3y ifoda 33. Ikkinchini ayirsak 5x ifoda 15, x ifoda 3, y ifoda 5.",
+      "savol": "x + y ifoda 9 va x − y ifoda 3 sistemada x?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Grafik usul va masalalar",
+      "matn": "Har bir chiziqli tenglamaning grafigi to‘g‘ri chiziq. Ikki chiziqning kesishish nuqtasi sistemaning yechimi. Chiziqlar parallel bo‘lsa yechim yo‘q, ustma-ust tushsa yechim cheksiz ko‘p. Masalani yechishda noma’lumlarni belgilab sistema tuzamiz.",
+      "misol": "x + y ifoda 4 va x − y ifoda 2 chiziqlari (3; 1) nuqtada kesishadi. Masala: ikki sonning yig‘indisi 25, ayirmasi 7. x + y ifoda 25, x − y ifoda 7; x ifoda 16, y ifoda 9.",
+      "savol": "Ikki sonning yig‘indisi 10, ayirmasi 2. Sonlar?",
+      "javob": "6 va 4",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Sistemani o‘rniga qo‘yish yoki qo‘shish usuli bilan yechamiz: bitta noma’lumni yo‘qotib, bir noma’lumli tenglamaga o‘tamiz. Topilgan juftni ikkala tenglamaga qo‘yib tekshiramiz.",
+    "misollar": [
+     {
+      "shart": "x + y ifoda 14 va x − y ifoda 4 sistemani yeching.",
+      "yechim": [
+       "Hadma-had qo‘shamiz: 2x ifoda 18.",
+       "x ifoda 9. Birinchi tenglamadan y ifoda 14 − 9, ya’ni 5.",
+       "Tekshirish: 9 − 5 — 4. Yechim (9; 5)."
+      ],
+      "javob": "x ifoda 9, y ifoda 5"
+     },
+     {
+      "shart": "y ifoda x + 3 va 2x + y ifoda 15 sistemani yeching.",
+      "yechim": [
+       "Ikkinchi tenglamaga y o‘rniga x + 3 ni qo‘yamiz: 2x + x + 3 ifoda 15.",
+       "3x ifoda 12, x ifoda 4. Keyin y ifoda 7.",
+       "Tekshirish: 2 ni 4 ga ko‘paytirib 7 ni qo‘shsak 15."
+      ],
+      "javob": "x ifoda 4, y ifoda 7"
+     },
+     {
+      "shart": "3x + 2y ifoda 16 va x + 2y ifoda 8 sistemani yeching.",
+      "yechim": [
+       "Birinchidan ikkinchini ayiramiz: 2x ifoda 8, x ifoda 4.",
+       "Ikkinchi tenglamaga qo‘yamiz: 4 + 2y ifoda 8, y ifoda 2.",
+       "Tekshirish: 3 ni 4 ga ko‘paytirsak 12, 2 ni 2 ga ko‘paytirib qo‘shsak 16."
+      ],
+      "javob": "x ifoda 4, y ifoda 2"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qalam va daftar",
+      "topshiriq": "2 ta qalam va 1 ta daftar 7000 so‘m, 1 ta qalam va 1 ta daftar 4000 so‘m turadi. Narxlarni toping.",
+      "yechim": "Ayirsak qalam 3000 so‘m, daftar 1000 so‘m. Tekshirish: 2 ni 3000 ga ko‘paytirib 1000 qo‘shsak 7000.",
+      "mahsulot": "narxlar jadvali"
+     },
+     {
+      "nom": "Usulni tanlaymiz",
+      "topshiriq": "Uch sistemadan qaysi birini qaysi usulda yechish qulay ekanini aniqlang.",
+      "yechim": "Bir noma’lum ifodalangan bo‘lsa — o‘rniga qo‘yish, koeffitsientlar teng bo‘lsa — qo‘shish.",
+      "mahsulot": "tanlov jadvali"
+     },
+     {
+      "nom": "Chiziqlar kesishmasi",
+      "topshiriq": "x + y ifoda 4 va x − y ifoda 2 chiziqlarini chizing va kesishish nuqtasini toping.",
+      "yechim": "Kesishish nuqtasi (3; 1), bu algebraik yechim bilan mos keladi.",
+      "mahsulot": "koordinata chizmasi"
+     },
+     {
+      "nom": "Ikki son",
+      "topshiriq": "Ikki sonning yig‘indisi 30, ayirmasi 6. Sonlarni toping.",
+      "yechim": "x ifoda 18, y ifoda 12. Tekshirish: 18 + 12 — 30, 18 − 12 — 6.",
+      "mahsulot": "yechim varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "x + y ifoda 8 va x − y ifoda 2 sistemani yeching.",
+      "javob": "x ifoda 5, y ifoda 3"
+     },
+     {
+      "shart": "y ifoda x + 1 va x + y ifoda 9 sistemani yeching.",
+      "javob": "x ifoda 4, y ifoda 5"
+     },
+     {
+      "shart": "2x + y ifoda 10 va x − y ifoda 2 sistemani yeching.",
+      "javob": "x ifoda 4, y ifoda 2"
+     },
+     {
+      "shart": "x + y ifoda 12 va 2x + y ifoda 17 sistemani yeching.",
+      "javob": "x ifoda 5, y ifoda 7"
+     },
+     {
+      "shart": "Ikki sonning yig‘indisi 30, ayirmasi 6. Sonlarni toping.",
+      "javob": "18 va 12"
+     },
+     {
+      "shart": "x ifoda 2 va 3x + y ifoda 11 sistemani yeching.",
+      "javob": "x ifoda 2, y ifoda 5"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Bitta noma’lumni topib to‘xtaydi",
+      "sabab": "sistema ikki noma’lumni talab qilishini unutadi",
+      "oldini_olish": "ikkinchi noma’lumni ham topish"
+     },
+     {
+      "xato": "Tenglamalarni ayirishda ishorani adashtiradi",
+      "sabab": "ikkinchi tenglamaning barcha hadlari ishorasini o‘zgartirmaydi",
+      "oldini_olish": "har bir hadni alohida ayirish"
+     },
+     {
+      "xato": "Topilgan juftni tekshirmaydi",
+      "sabab": "tekshirishni qoldirib ketadi",
+      "oldini_olish": "juftni ikkala tenglamaga qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geometriya",
+      "boglanish": "ikki to‘g‘ri chiziqning kesishish nuqtasini topish"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "yo‘lda uchrashish va tezlik masalalari"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "narx va miqdor bo‘yicha ikki shartli masalalar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ikki shart, ikki noma’lum»",
+     "muammo": "Ikki shartli kundalik masalalarni sistema bilan qanday yechamiz?",
+     "mahsulot": "sistemalar to‘plami",
+     "bosqichlar": [
+      "masalalar tuzish",
+      "noma’lumlarni belgilash",
+      "sistema tuzish",
+      "yechish va tekshirish",
+      "to‘plam tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Masalalar tuzing",
+      "Sistema yozing",
+      "Yeching va tekshiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sistema to‘g‘ri",
+      "yechim to‘g‘ri",
+      "tekshirish bor",
+      "masala hayotiy",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ikki tenglama bozori»",
+     "bekatlar": [
+      {
+       "nom": "Bozor",
+       "matn": "3 kg olma va 2 kg nok 26 ming so‘m, 1 kg olma va 2 kg nok 14 ming so‘m.",
+       "topshiriq": "Bir kilogramm olma va nok narxini toping.",
+       "javob": "olma 6 ming, nok 4 ming so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab",
+       "matn": "Sinfda 28 o‘quvchi bor, qizlar o‘g‘il bolalardan 4 ta ko‘p.",
+       "topshiriq": "Nechta qiz va nechta o‘g‘il bola?",
+       "javob": "16 qiz va 12 o‘g‘il bola",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "To‘g‘ri to‘rtburchak bog‘ning perimetri 30 m, uzunligi enidan 3 m ko‘p.",
+       "topshiriq": "Uzunlik va enini toping.",
+       "javob": "uzunligi 9 m, eni 6 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Kafe",
+       "matn": "2 ta choy va 1 ta somsa 9000 so‘m, 1 ta choy va 1 ta somsa 6000 so‘m.",
+       "topshiriq": "Choy va somsa narxi qancha?",
+       "javob": "choy 3000, somsa 3000 so‘m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi masalada ikkita noma’lum bor edi?",
+      "Qaysi usul sizga qulay bo‘ldi?",
+      "Tekshirish xatoni topishga yordam berdimi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tenglamalar sistemasi",
+      "tarif": "birga bajarilishi kerak bo‘lgan tenglamalar to‘plami"
+     },
+     {
+      "atama": "Sistema yechimi",
+      "tarif": "barcha tenglamani qanoatlantiruvchi juft son"
+     },
+     {
+      "atama": "O‘rniga qo‘yish usuli",
+      "tarif": "bir noma’lumni ifodalab ikkinchi tenglamaga qo‘yish"
+     },
+     {
+      "atama": "Qo‘shish usuli",
+      "tarif": "tenglamalarni hadma-had qo‘shib noma’lumni yo‘qotish"
+     },
+     {
+      "atama": "Grafik usul",
+      "tarif": "chiziqlar kesishish nuqtasini topish"
+     },
+     {
+      "atama": "Teng kuchli sistema",
+      "tarif": "yechimlari bir xil bo‘lgan sistema"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Sistemaning yechimi juft sondan iborat",
+      "togri": true,
+      "izoh": "x va y ning qiymatlari juftligi"
+     },
+     {
+      "matn": "x + y ifoda 10 tenglamaning faqat bitta yechimi bor",
+      "togri": false,
+      "izoh": "yechimlar ko‘p"
+     },
+     {
+      "matn": "(5; 3) juft x + y ifoda 8 va x − y ifoda 2 sistemaning yechimi",
+      "togri": true,
+      "izoh": "5 + 3 — 8 va 5 − 3 — 2"
+     },
+     {
+      "matn": "Qo‘shish usulida noma’lum yo‘qoladi",
+      "togri": true,
+      "izoh": "mos hadlar qarama-qarshi bo‘lganda"
+     },
+     {
+      "matn": "Parallel chiziqlar sistemasi bitta yechimga ega",
+      "togri": false,
+      "izoh": "yechim yo‘q"
+     },
+     {
+      "matn": "Sistema yechimini ikkala tenglamaga qo‘yib tekshiramiz",
+      "togri": true,
+      "izoh": "ikkalasi ham to‘g‘ri chiqishi kerak"
+     },
+     {
+      "matn": "O‘rniga qo‘yish usulida faqat bitta tenglama ishlatiladi",
+      "togri": false,
+      "izoh": "ikkala tenglama ham ishlatiladi"
+     },
+     {
+      "matn": "Ikki chiziqning kesishish nuqtasi sistema yechimini beradi",
+      "togri": true,
+      "izoh": "nuqta ikkala tenglamaga mos"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tenglamalar sistemasi nima?",
+      "javob": "birga bajarilishi kerak bo‘lgan tenglamalar"
+     },
+     {
+      "savol": "Sistema yechimi nima?",
+      "javob": "ikkala tenglamani qanoatlantiruvchi juft"
+     },
+     {
+      "savol": "x + y ifoda 7 va x − y ifoda 1 sistemada x?",
+      "javob": "4"
+     },
+     {
+      "savol": "x + y ifoda 7 va x − y ifoda 1 sistemada y?",
+      "javob": "3"
+     },
+     {
+      "savol": "O‘rniga qo‘yish usuli nima?",
+      "javob": "bir noma’lumni ifodalab boshqa tenglamaga qo‘yish"
+     },
+     {
+      "savol": "Qo‘shish usuli nima?",
+      "javob": "tenglamalarni qo‘shib bir noma’lumni yo‘qotish"
+     },
+     {
+      "savol": "Grafik usulda yechim nima?",
+      "javob": "chiziqlarning kesishish nuqtasi"
+     },
+     {
+      "savol": "Parallel chiziqlarda nechta yechim?",
+      "javob": "yechim yo‘q"
+     },
+     {
+      "savol": "Ikki sonning yig‘indisi 20, ayirmasi 4. Sonlar?",
+      "javob": "12 va 8"
+     },
+     {
+      "savol": "Yechimni nima uchun tekshiramiz?",
+      "javob": "ikkala tenglamaga mosligini bilish uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Sistema tushunchasi",
+      "matn": "Ikki tenglama birga bajariladi.",
+      "savol": "Sistema yechimi nima?"
+     },
+     {
+      "nom": "O‘rniga qo‘yish",
+      "matn": "Bir noma’lumni ifodalab qo‘yamiz.",
+      "savol": "y ifoda 2x va x + y ifoda 9 sistemada x?"
+     },
+     {
+      "nom": "Qo‘shish",
+      "matn": "Hadma-had qo‘shib noma’lumni yo‘qotamiz.",
+      "savol": "x + y ifoda 6 va x − y ifoda 2 sistemada x?"
+     },
+     {
+      "nom": "Grafik usul",
+      "matn": "Chiziqlar kesishgan nuqta yechim.",
+      "savol": "Parallel chiziqlar nechta yechim beradi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bitta tenglama ikki noma’lumni topishga yetmaydi, ikkita tenglama esa yetadi? x + y ifoda 10 tenglama yechimlarini sanab, ikkinchi shart ularni qanday cheklashini tushuntiring.",
+    "keys": {
+     "vaziyat": "Kafeda 2 ta choy va 1 ta somsa 9000 so‘m, 1 ta choy va 1 ta somsa 6000 so‘m turadi. Siz bitta choy va bitta somsa narxini bilmoqchisiz.",
+     "savollar": [
+      "Noma’lumlarni qanday belgilaymiz?",
+      "Qaysi usul qulayroq va nima uchun?"
+     ]
+    },
+    "tezis": "Ikki shart — ikki noma’lum",
+    "taqqoslash": {
+     "a": "O‘rniga qo‘yish usuli",
+     "b": "Qo‘shish usuli",
+     "umumiy": [
+      "sistemani yechadi",
+      "bir noma’lumni yo‘qotadi"
+     ],
+     "a_farq": [
+      "noma’lum ifodalanadi",
+      "bir tenglama soddalashadi"
+     ],
+     "b_farq": [
+      "tenglamalar qo‘shiladi yoki ayriladi",
+      "koeffitsientlar tenglashtiriladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Tenglamalar sistemasi",
+     "shoxlar": [
+      {
+       "nom": "Tushunchalar",
+       "bandlar": [
+        "ikki noma’lum",
+        "yechim juftligi",
+        "sistema"
+       ]
+      },
+      {
+       "nom": "Usullar",
+       "bandlar": [
+        "o‘rniga qo‘yish",
+        "qo‘shish",
+        "grafik"
+       ]
+      },
+      {
+       "nom": "Yechimlar soni",
+       "bandlar": [
+        "bitta",
+        "yo‘q",
+        "cheksiz ko‘p"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "narx masalalari",
+        "yo‘l masalalari",
+        "geometriya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki tenglama bir joyda uchrashadi. Ikki to‘g‘ri chiziq kesishgan nuqta kim?",
+     "javob": "sistemaning yechimi"
+    },
+    "hikmat": "Ikki shart bo‘lsa, ikki noma’lum topiladi.",
+    "kalit_soz": "SISTEMA",
+    "xato_yechim": {
+     "shart": "x + y ifoda 9 va x − y ifoda 3 sistemani yeching.",
+     "xato": "x ifoda 6, y ifoda 15",
+     "togri": "x ifoda 6, y ifoda 3",
+     "sabab": "y ni topishda x ni yig‘indiga qo‘shilgan, aslida 9 dan 6 ni ayirish kerak edi"
+    },
+    "guruh_nomlari": [
+     "Juftchilar",
+     "Qo‘shuvchilar",
+     "O‘rinbosarlar",
+     "Kesishuvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bozor sistemalari»",
+     "topshiriq": "Guruh haqiqiy narxlar asosida ikki shartli masala tuzadi, sistema yozadi, ikki usul bilan yechadi va natijalarni solishtiradi."
+    },
+    "vazifalar": {
+     "A": "Yeching: x + y ifoda 10 va x − y ifoda 2.",
+     "B": "Yeching: y ifoda 3x va x + y ifoda 16.",
+     "C": "O‘zingiz ikki shartli masala tuzing va sistema bilan yeching."
+    },
+    "sinkveyn": [
+     "Sistema",
+     "ikki shartli, aniq",
+     "qo‘shamiz, qo‘yamiz, tekshiramiz",
+     "Ikki noma’lumni topish yo‘li",
+     "Yechim juftligi"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sistemalarni yechadi.",
+     "qismlar": [
+      "1-guruh: x + y ifoda 6 va x − y ifoda 2",
+      "2-guruh: y ifoda x va x + y ifoda 10",
+      "3-guruh: x + y ifoda 9 va 2x + y ifoda 14",
+      "4-guruh: ikki sonning yig‘indisi 20, ayirmasi 4"
+     ],
+     "yakun": "Yechimlar: (4; 2); (5; 5); (5; 4); 12 va 8."
+    }
+   }
+  },
+  {
+   "mavzu": "Funksiya tushunchasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Funksiya nima?",
+      "matn": "Funksiya — bu bog‘lanish: x o‘zgaruvchining har bir qiymatiga y ning bitta aniq qiymati mos keladi. x argument yoki mustaqil o‘zgaruvchi, y esa funksiya qiymati yoki bog‘liq o‘zgaruvchi deyiladi.",
+      "misol": "Kvadrat tomoni x bo‘lsa, perimetri y ifoda 4x. Tomon 3 bo‘lsa perimetr 12, tomon 5 bo‘lsa perimetr 20. Har bir tomonga bitta perimetr mos keladi.",
+      "savol": "Kvadrat tomoni 6 bo‘lsa, perimetri nechaga teng?",
+      "javob": "24",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Funksiyaning berilish usullari",
+      "matn": "Funksiya to‘rt usulda beriladi: formula bilan, jadval bilan, grafik bilan va so‘z bilan. Formula qiymatni hisoblashga, jadval aniq sonlarni ko‘rishga, grafik esa o‘zgarish xarakterini ko‘rishga qulay.",
+      "misol": "Formula: y ifoda 2x. Jadval: x ning qiymatlari 1, 2, 3 bo‘lsa, y ning qiymatlari 2, 4, 6. Bu ikkalasi bir xil funksiyani beradi.",
+      "savol": "y ifoda 2x funksiyada x ifoda 4 bo‘lsa, y?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Funksiya qiymatini hisoblash",
+      "matn": "Funksiya qiymatini topish uchun formulada x o‘rniga argumentning qiymatini qo‘yamiz. Teskari masala: y berilgan bo‘lsa, tenglama tuzib x ni topamiz.",
+      "misol": "y ifoda 3x − 2 funksiyada x ifoda 4 bo‘lsa, y — 3 ni 4 ga ko‘paytirib 2 ni ayirsak 10. y ifoda 7 bo‘lsa, 3x − 2 ifoda 7 ga teng, 3x ifoda 9, x ifoda 3.",
+      "savol": "y ifoda 2x + 1 funksiyada x ifoda 5 bo‘lsa, y?",
+      "javob": "11",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aniqlanish sohasi va qiymatlar sohasi",
+      "matn": "Argumentning funksiya ma’noga ega bo‘ladigan barcha qiymatlari aniqlanish sohasi deyiladi. Funksiyaning qabul qiladigan barcha qiymatlari qiymatlar sohasi deyiladi. Nolga bo‘lish mumkin emas, shu sababli maxrajdagi ifoda nolga teng bo‘lmasligi kerak.",
+      "misol": "y ifoda 12 / x funksiyada x nolga teng bo‘lolmaydi, soha — noldan farqli barcha sonlar. Daftar narxi 2000 so‘m bo‘lsa, x ta daftar narxi y ifoda 2000x; x faqat butun musbat son.",
+      "savol": "y ifoda 5 / x funksiyada x ning qaysi qiymati mumkin emas?",
+      "javob": "0",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Funksiya grafigi",
+      "matn": "Koordinatalar tekisligida (x; y) ko‘rinishdagi barcha nuqtalar to‘plami funksiya grafigini hosil qiladi. Nuqta grafikka tegishli bo‘lishi uchun uning koordinatalari formulani qanoatlantirishi kerak. Har bir x qiymatiga bitta y mos kelishi uchun vertikal chiziq grafikni bir nuqtadan ortiq kesmaydi.",
+      "misol": "y ifoda 2x + 1 grafigiga (3; 7) nuqta tegishli: 2 ni 3 ga ko‘paytirib 1 qo‘shsak 7. (2; 6) tegishli emas, chunki x ifoda 2 da y ifoda 5.",
+      "savol": "(1; 3) nuqta y ifoda 2x + 1 grafigiga tegishlimi?",
+      "javob": "ha",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Funksiyada argumentning har bir qiymatiga funksiyaning bitta qiymati mos keladi. Funksiya formula, jadval, grafik yoki so‘z bilan beriladi. Maxrajdagi ifoda nolga teng bo‘lishi mumkin emas.",
+    "misollar": [
+     {
+      "shart": "y ifoda 4x − 3 funksiyaning x ifoda 2, 5, 10 dagi qiymatlarini toping.",
+      "yechim": [
+       "x ifoda 2: 4 ni 2 ga ko‘paytirib 3 ni ayiramiz, 5.",
+       "x ifoda 5: 20 dan 3 ni ayiramiz, 17.",
+       "x ifoda 10: 40 dan 3 ni ayiramiz, 37."
+      ],
+      "javob": "5; 17; 37"
+     },
+     {
+      "shart": "y ifoda 5x + 2 funksiya qiymati 17 bo‘lsa, argument nechaga teng?",
+      "yechim": [
+       "5x + 2 ifoda 17 ga teng.",
+       "2 ni o‘tkazamiz: 5x ifoda 15 ga teng.",
+       "x ifoda 3. Tekshirish: 5 ni 3 ga ko‘paytirib 2 qo‘shsak 17."
+      ],
+      "javob": "x ifoda 3"
+     },
+     {
+      "shart": "y ifoda 6 / (x − 2) funksiyaning aniqlanish sohasini toping.",
+      "yechim": [
+       "Maxraj nolga teng bo‘lmasligi kerak.",
+       "x − 2 nolga teng bo‘lsa, x ifoda 2 ga teng.",
+       "Demak, x ikkidan boshqa har qanday son bo‘lishi mumkin."
+      ],
+      "javob": "x ikkiga teng bo‘lmagan barcha sonlar"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Jadval to‘ldiramiz",
+      "topshiriq": "y ifoda 3x + 1 funksiya uchun x ifoda 1, 2, 3, 4 da jadval tuzing.",
+      "yechim": "y ning qiymatlari: 4, 7, 10, 13.",
+      "mahsulot": "qiymatlar jadvali"
+     },
+     {
+      "nom": "Grafik chizamiz",
+      "topshiriq": "y ifoda 2x funksiyaning grafigini nuqtalar bo‘yicha chizing.",
+      "yechim": "Nuqtalar (0; 0), (1; 2), (2; 4), (3; 6) bir to‘g‘ri chiziqda yotadi.",
+      "mahsulot": "koordinata chizmasi"
+     },
+     {
+      "nom": "Bu funksiyami?",
+      "topshiriq": "Berilgan jadvallardan qaysi birida bitta x ga ikki xil y mos kelishini aniqlang.",
+      "yechim": "Bitta x ga ikki xil y mos kelsa, bu funksiya emas.",
+      "mahsulot": "tasniflash jadvali"
+     },
+     {
+      "nom": "Hayotdagi funksiyalar",
+      "topshiriq": "Uchta kundalik bog‘lanishni topib, har birini formula bilan yozing.",
+      "yechim": "Masalan, narx y ifoda 12000x, yo‘l y ifoda 60x, perimetr y ifoda 4x.",
+      "mahsulot": "formulalar plakati"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "y ifoda 2x + 5 funksiyada x ifoda 4 bo‘lsa, y nechaga teng?",
+      "javob": "13"
+     },
+     {
+      "shart": "y ifoda 3x − 1 funksiyada x ifoda 6 bo‘lsa, y nechaga teng?",
+      "javob": "17"
+     },
+     {
+      "shart": "y ifoda x² funksiyada x ifoda 7 bo‘lsa, y nechaga teng?",
+      "javob": "49"
+     },
+     {
+      "shart": "y ifoda 4x funksiyaning qiymati 36 bo‘lsa, x nechaga teng?",
+      "javob": "9"
+     },
+     {
+      "shart": "y ifoda 10 / x funksiyada x ning qaysi qiymati mumkin emas?",
+      "javob": "0"
+     },
+     {
+      "shart": "(2; 5) nuqta y ifoda 2x + 1 grafigiga tegishlimi?",
+      "javob": "ha"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "3x ni 3 + x deb hisoblaydi",
+      "sabab": "ko‘paytirish belgisi yozilmaganini tushunmaydi",
+      "oldini_olish": "3x — 3 ni x ga ko‘paytirish ekanini eslash"
+     },
+     {
+      "xato": "Maxrajda nolni qoldiradi",
+      "sabab": "aniqlanish sohasini tekshirmaydi",
+      "oldini_olish": "maxraj nolga teng bo‘ladigan qiymatni topib chiqarib tashlash"
+     },
+     {
+      "xato": "Bir x ga ikki y ni funksiya deb hisoblaydi",
+      "sabab": "funksiya ta’rifini unutadi",
+      "oldini_olish": "har bir x ga bitta y mosligini tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "yo‘l, tezlik va vaqt orasidagi bog‘lanish funksiya sifatida"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "harorat va balandlik orasidagi bog‘lanish"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "o‘simlik bo‘yining vaqtga bog‘liq o‘zgarishi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Hayotdagi funksiyalar»",
+     "muammo": "Kundalik hayotdagi qaysi bog‘lanishlarni funksiya deb atash mumkin?",
+     "mahsulot": "funksiyalar albomi",
+     "bosqichlar": [
+      "bog‘lanishlarni topish",
+      "formula yozish",
+      "jadval tuzish",
+      "grafik chizish",
+      "albom tayyorlash"
+     ],
+     "guruh_vazifalari": [
+      "Bog‘lanishlar toping",
+      "Formula yozing",
+      "Jadval va grafik tuzing",
+      "Albomni taqdim eting"
+     ],
+     "mezonlar": [
+      "bog‘lanish to‘g‘ri tanlangan",
+      "formula to‘g‘ri",
+      "jadval aniq",
+      "grafik chizilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Funksiyalar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Taksi bekati",
+       "matn": "To‘lov y ifoda 2000x + 4000, x — kilometr.",
+       "topshiriq": "5 km uchun to‘lovni toping.",
+       "javob": "14000 so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Do‘kon",
+       "matn": "Bir kilogramm olma 12000 so‘m, to‘lov y ifoda 12000x.",
+       "topshiriq": "3 kg uchun to‘lovni toping.",
+       "javob": "36000 so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Avtobus",
+       "matn": "Avtobus soatiga 60 km yuradi, yo‘l y ifoda 60x.",
+       "topshiriq": "3 soatda necha km yuradi?",
+       "javob": "180 km",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Kvadrat gulzor yuzi y ifoda x², x — tomon uzunligi.",
+       "topshiriq": "Tomoni 5 m bo‘lsa, yuzi?",
+       "javob": "25 kv. m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi bog‘lanishlar funksiya bo‘ldi?",
+      "Qaysi usul sizga qulay: formulami, jadvalmi, grafikmi?",
+      "Aniqlanish sohasi nima uchun muhim?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Funksiya",
+      "tarif": "argumentning har bir qiymatiga bitta qiymat mos qo‘yadigan bog‘lanish"
+     },
+     {
+      "atama": "Argument",
+      "tarif": "mustaqil o‘zgaruvchi x"
+     },
+     {
+      "atama": "Funksiya qiymati",
+      "tarif": "argument qiymatiga mos keladigan y"
+     },
+     {
+      "atama": "Aniqlanish sohasi",
+      "tarif": "argumentning ruxsat etilgan barcha qiymatlari"
+     },
+     {
+      "atama": "Qiymatlar sohasi",
+      "tarif": "funksiya qabul qiladigan barcha qiymatlar"
+     },
+     {
+      "atama": "Funksiya grafigi",
+      "tarif": "(x; y) nuqtalar to‘plami"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Funksiyada bitta x ga ikki xil y mos kelishi mumkin",
+      "togri": false,
+      "izoh": "har bir x ga bitta y mos keladi"
+     },
+     {
+      "matn": "Funksiya jadval bilan berilishi mumkin",
+      "togri": true,
+      "izoh": "jadval funksiya berilishining usuli"
+     },
+     {
+      "matn": "y ifoda 12 / x funksiyada x ifoda 0 bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "nolga bo‘lish mumkin emas"
+     },
+     {
+      "matn": "y ifoda 2x funksiyada x ifoda 3 bo‘lsa, y ifoda 6",
+      "togri": true,
+      "izoh": "2 ni 3 ga ko‘paytirsak 6"
+     },
+     {
+      "matn": "Argument bog‘liq o‘zgaruvchi deyiladi",
+      "togri": false,
+      "izoh": "argument mustaqil o‘zgaruvchi"
+     },
+     {
+      "matn": "Grafikdagi har bir nuqta formulani qanoatlantiradi",
+      "togri": true,
+      "izoh": "nuqtaning koordinatalari formulaga mos"
+     },
+     {
+      "matn": "(3; 7) nuqta y ifoda 2x + 1 grafigiga tegishli",
+      "togri": true,
+      "izoh": "2 ni 3 ga ko‘paytirib 1 qo‘shsak 7"
+     },
+     {
+      "matn": "Funksiyani faqat formula bilan berish mumkin",
+      "togri": false,
+      "izoh": "jadval, grafik va so‘z bilan ham beriladi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Funksiya nima?",
+      "javob": "argumentning har bir qiymatiga bitta qiymat mos keladigan bog‘lanish"
+     },
+     {
+      "savol": "Argument nima?",
+      "javob": "mustaqil o‘zgaruvchi"
+     },
+     {
+      "savol": "Funksiya qiymati nima?",
+      "javob": "argumentga mos keladigan y"
+     },
+     {
+      "savol": "Funksiya necha usulda beriladi?",
+      "javob": "to‘rt usulda: formula, jadval, grafik, so‘z"
+     },
+     {
+      "savol": "y ifoda 5x funksiyada x ifoda 3 bo‘lsa, y?",
+      "javob": "15"
+     },
+     {
+      "savol": "y ifoda x + 4 funksiyada x ifoda 6 bo‘lsa, y?",
+      "javob": "10"
+     },
+     {
+      "savol": "Aniqlanish sohasi nima?",
+      "javob": "argumentning ruxsat etilgan qiymatlari"
+     },
+     {
+      "savol": "Nimaga nolga bo‘lish mumkin emas?",
+      "javob": "natija aniqlanmagan"
+     },
+     {
+      "savol": "Grafik nimadan iborat?",
+      "javob": "(x; y) nuqtalar to‘plamidan"
+     },
+     {
+      "savol": "Grafikdan nimani bilamiz?",
+      "javob": "funksiya qanday o‘zgarishini"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Funksiya ta’rifi",
+      "matn": "Har bir x ga bitta y mos keladi.",
+      "savol": "Argument nima?"
+     },
+     {
+      "nom": "Berilish usullari",
+      "matn": "Formula, jadval, grafik va so‘z.",
+      "savol": "y ifoda 2x funksiyada x ifoda 5 bo‘lsa, y?"
+     },
+     {
+      "nom": "Aniqlanish sohasi",
+      "matn": "Maxraj nolga teng bo‘lmasligi kerak.",
+      "savol": "y ifoda 3 / x da x ning nechasi mumkin emas?"
+     },
+     {
+      "nom": "Grafik",
+      "matn": "(x; y) nuqtalar to‘plami.",
+      "savol": "(1; 3) nuqta y ifoda 2x + 1 grafigiga tegishlimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun funksiyada bitta x qiymatiga ikkita turli y qiymati mos kela olmaydi? Bankomat misolida tushuntiring: bitta tugma bosilganda ikki xil natija chiqsa nima bo‘ladi?",
+    "keys": {
+     "vaziyat": "Taksi yo‘l haqi boshlang‘ich 4000 so‘m va har kilometr uchun 2000 so‘m. Yo‘lovchi masofaga qarab to‘lovni oldindan bilmoqchi.",
+     "savollar": [
+      "To‘lovni formula bilan qanday yozamiz?",
+      "7 km uchun to‘lov qancha?"
+     ]
+    },
+    "tezis": "Funksiya — bog‘lanishni ifodalash tili",
+    "taqqoslash": {
+     "a": "Formula bilan berish",
+     "b": "Grafik bilan berish",
+     "umumiy": [
+      "bir xil funksiyani beradi",
+      "argument va qiymatni bog‘laydi"
+     ],
+     "a_farq": [
+      "aniq hisoblash qulay",
+      "qisqa yoziladi"
+     ],
+     "b_farq": [
+      "o‘zgarish ko‘rinadi",
+      "tez tahlil qilinadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Funksiya",
+     "shoxlar": [
+      {
+       "nom": "Tushunchalar",
+       "bandlar": [
+        "argument",
+        "qiymat",
+        "bog‘lanish"
+       ]
+      },
+      {
+       "nom": "Berilish usullari",
+       "bandlar": [
+        "formula",
+        "jadval",
+        "grafik",
+        "so‘z"
+       ]
+      },
+      {
+       "nom": "Soha",
+       "bandlar": [
+        "aniqlanish sohasi",
+        "qiymatlar sohasi",
+        "maxraj nolga teng emas"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "narx",
+        "yo‘l",
+        "perimetr"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men x ni qabul qilaman, y ni qaytaraman. Har bir x ga faqat bitta javob beraman. Men nimaman?",
+     "javob": "funksiya"
+    },
+    "hikmat": "Har bir sababning bitta aniq natijasi bor.",
+    "kalit_soz": "FUNKSIYA",
+    "xato_yechim": {
+     "shart": "y ifoda 3x + 2 funksiyada x ifoda 4 bo‘lganda y ni toping.",
+     "xato": "y ifoda 9",
+     "togri": "y ifoda 14",
+     "sabab": "3x ni 3 va x ning yig‘indisi deb olingan, aslida 3 ni 4 ga ko‘paytirish kerak, 12 chiqadi va 2 qo‘shiladi"
+    },
+    "guruh_nomlari": [
+     "Argumentchilar",
+     "Jadvalchilar",
+     "Grafikchilar",
+     "Formulachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Funksiya izlab»",
+     "topshiriq": "Guruh maktab hayotidan (oshxona, kutubxona, yo‘l) uchta bog‘lanish topadi, har birini formula, jadval va grafik bilan beradi."
+    },
+    "vazifalar": {
+     "A": "y ifoda 2x + 3 funksiyaning x ifoda 1, 2, 3 dagi qiymatlarini toping.",
+     "B": "y ifoda 8 / x funksiyaning aniqlanish sohasini ayting va jadval tuzing.",
+     "C": "Kundalik hayotdan funksiya toping va uni to‘rt usulda bering."
+    },
+    "sinkveyn": [
+     "Funksiya",
+     "aniq, bog‘liq",
+     "hisoblaydi, bog‘laydi, ifodalaydi",
+     "Har x ga bitta y",
+     "Bog‘lanish"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh funksiyalar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: y ifoda 2x funksiyada x ifoda 5 bo‘lsa, y",
+      "2-guruh: y ifoda x + 7 funksiyada x ifoda 3 bo‘lsa, y",
+      "3-guruh: y ifoda 3x − 2 funksiyada x ifoda 4 bo‘lsa, y",
+      "4-guruh: y ifoda 6 / x da x ning mumkin bo‘lmagan qiymati"
+     ],
+     "yakun": "Natijalar: 10; 10; 10; 0."
+    }
+   }
   }
  ]
 }
