@@ -2771,6 +2771,1386 @@
      "yakun": "Natijalar: 1104; 3015; 540; 1728."
     }
    }
+  },
+  {
+   "mavzu": "Ikki xonali songa ko‘paytirish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Takrorlaymiz",
+      "matn": "Ikki xonali songa ko‘paytirishda ikki qadam bor: birlikka ko‘paytiramiz, o‘nlikka ko‘paytiramiz, so‘ng qo‘shamiz. Bugun shuni mashq qilamiz.",
+      "misol": "86 · 34: 86 · 4 — 344, 86 · 30 — 2580, 344 + 2580 — 2924.",
+      "savol": "86 · 4 nechaga teng?",
+      "javob": "344",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Olib o‘tish",
+      "matn": "Ko‘paytirishda xona to‘lib ketsa, ortig‘ini keyingi xonaga olib o‘tamiz. Olib o‘tilganini unutmaslik uchun kichik raqam bilan belgilab qo‘yamiz.",
+      "misol": "95 · 7: 5 · 7 — 35, 5 yoziladi, 3 olib o‘tiladi. 9 · 7 — 63, 63 + 3 — 66. Javob 665.",
+      "savol": "95 · 7 nechaga teng?",
+      "javob": "665",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikki qator",
+      "matn": "Ikki qatorni ostma-ost to‘g‘ri yozamiz: ikkinchi qator bir xona chapga suriladi. Shunda qo‘shish oson bo‘ladi.",
+      "misol": "95 · 27: 95 · 7 — 665, 95 · 20 — 1900, 665 + 1900 — 2565.",
+      "savol": "95 · 27 nechaga teng?",
+      "javob": "2565",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Taxminiy hisob",
+      "matn": "Javob mantiqqa mosligini taxmin bilan tekshiramiz. Sonlarni yaxlitlaymiz va ko‘paytiramiz. Katta farq chiqsa, qayta hisoblaymiz.",
+      "misol": "64 · 58: taxminan 60 · 60 — 3600. Haqiqiy javob 3712, yaqin.",
+      "savol": "64 · 58 taxminan nechaga yaqin?",
+      "javob": "3600",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotiy masala",
+      "matn": "Do‘konda 72 ta quti, har birida 11 ta shokolad bor. Jami shokoladni topish uchun ko‘paytiramiz.",
+      "misol": "72 · 11: 72 · 1 — 72, 72 · 10 — 720, 72 + 720 — 792.",
+      "savol": "72 · 11 nechaga teng?",
+      "javob": "792",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Birlikka, so‘ng o‘nlikka ko‘paytir, ikkinchi qatorni bir xona sur, qatorlarni qo‘sh, javobni taxmin bilan tekshir.",
+    "misollar": [
+     {
+      "shart": "86 · 34 ni hisoblang.",
+      "yechim": [
+       "86 · 4 — 344.",
+       "86 · 30 — 2580.",
+       "344 + 2580 — 2924."
+      ],
+      "javob": "2924"
+     },
+     {
+      "shart": "95 · 27 ni hisoblang.",
+      "yechim": [
+       "95 · 7 — 665.",
+       "95 · 20 — 1900.",
+       "665 + 1900 — 2565."
+      ],
+      "javob": "2565"
+     },
+     {
+      "shart": "64 · 58 ni hisoblang.",
+      "yechim": [
+       "64 · 8 — 512.",
+       "64 · 50 — 3200.",
+       "512 + 3200 — 3712."
+      ],
+      "javob": "3712"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Poyga",
+      "topshiriq": "Uchta misolni eng tez va to‘g‘ri yeching.",
+      "yechim": "Natijalar tekshiriladi.",
+      "mahsulot": "poyga varag‘i"
+     },
+     {
+      "nom": "Taxmin qilamiz",
+      "topshiriq": "64 · 58 ning javobini avval taxmin qiling, keyin hisoblang.",
+      "yechim": "Taxmin 3600, javob 3712.",
+      "mahsulot": "taxmin varag‘i"
+     },
+     {
+      "nom": "Shokolad masalasi",
+      "topshiriq": "72 quti, har birida 11 ta shokolad. Jami nechta?",
+      "yechim": "72 · 11 — 792.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 86 · 34 ni 2580 deb hisobladi. Xato qayerda?",
+      "yechim": "Birlikka ko‘paytma 344 ni qo‘shmagan. To‘g‘ri javob 2924.",
+      "mahsulot": "tushuntirish"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "86 · 4 nechaga teng?",
+      "javob": "344"
+     },
+     {
+      "shart": "95 · 7 nechaga teng?",
+      "javob": "665"
+     },
+     {
+      "shart": "86 · 34 nechaga teng?",
+      "javob": "2924"
+     },
+     {
+      "shart": "95 · 27 nechaga teng?",
+      "javob": "2565"
+     },
+     {
+      "shart": "64 · 58 nechaga teng?",
+      "javob": "3712"
+     },
+     {
+      "shart": "72 · 11 nechaga teng?",
+      "javob": "792"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Olib o‘tilganini unutadi",
+      "sabab": "belgi qo‘ymaydi",
+      "oldini_olish": "olib o‘tilgan raqamni kichik yozib qo‘yish"
+     },
+     {
+      "xato": "Ikkinchi qatorni surmaydi",
+      "sabab": "xona o‘rnini sezmaydi",
+      "oldini_olish": "oxiriga nol qo‘yish"
+     },
+     {
+      "xato": "Taxmin bilan tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "yaxlitlab ko‘paytirib ko‘rish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "qutilardagi mahsulotni sanash"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "kalkulyator va taxminiy hisob"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "ko‘p sonli kuzatuvlarni hisoblash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ko‘paytirish o‘yini»",
+     "muammo": "Ikki xonali songa ko‘paytirishni mashq qilish uchun qanday o‘yin yasaymiz?",
+     "mahsulot": "ko‘paytirish o‘yini",
+     "bosqichlar": [
+      "misollar tanlash",
+      "kartochka yasash",
+      "qoidalar yozish",
+      "sinab ko‘rish",
+      "o‘ynash"
+     ],
+     "guruh_vazifalari": [
+      "Misol tanlang",
+      "Kartochka yasang",
+      "Sinang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "misollar to‘g‘ri",
+      "qoidalar ravshan",
+      "o‘yin qiziqarli",
+      "chiroyli",
+      "ishtirok bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Shokolad fabrikasi»",
+     "bekatlar": [
+      {
+       "nom": "Qadoqlash",
+       "matn": "72 quti, har birida 11 ta.",
+       "topshiriq": "Jami?",
+       "javob": "792",
+       "rasm": ""
+      },
+      {
+       "nom": "Ombor",
+       "matn": "86 quti, har birida 34 ta.",
+       "topshiriq": "Jami?",
+       "javob": "2924",
+       "rasm": ""
+      },
+      {
+       "nom": "Do‘kon",
+       "matn": "95 javon, har birida 27 ta.",
+       "topshiriq": "Jami?",
+       "javob": "2565",
+       "rasm": ""
+      },
+      {
+       "nom": "Yuk mashinasi",
+       "matn": "64 quti, har birida 58 ta.",
+       "topshiriq": "Jami?",
+       "javob": "3712",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Taxmin bilan tekshirdingizmi?",
+      "Olib o‘tishni esladingizmi?",
+      "Qaysi misol qiyin bo‘ldi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Olib o‘tish",
+      "tarif": "to‘lgan xonadan keyingisiga qo‘shish"
+     },
+     {
+      "atama": "Qator",
+      "tarif": "qismiy ko‘paytma yozilgan joy"
+     },
+     {
+      "atama": "Taxmin",
+      "tarif": "yaxlitlab topilgan taxminiy javob"
+     },
+     {
+      "atama": "Yaxlitlash",
+      "tarif": "sonni yaqin o‘nlikka keltirish"
+     },
+     {
+      "atama": "Ko‘paytma",
+      "tarif": "to‘liq natija"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "javob to‘g‘riligini aniqlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "86 · 4 — 344",
+      "togri": true,
+      "izoh": "80 · 4 plus 6 · 4"
+     },
+     {
+      "matn": "95 · 7 — 655",
+      "togri": false,
+      "izoh": "665"
+     },
+     {
+      "matn": "Ikkinchi qator bir xona suriladi",
+      "togri": true,
+      "izoh": "o‘nlikka ko‘paytma"
+     },
+     {
+      "matn": "64 · 58 taxminan 3600",
+      "togri": true,
+      "izoh": "60 · 60"
+     },
+     {
+      "matn": "72 · 11 — 782",
+      "togri": false,
+      "izoh": "792"
+     },
+     {
+      "matn": "Taxmin javobni tekshirishga yordam beradi",
+      "togri": true,
+      "izoh": "katta farq xato belgisi"
+     },
+     {
+      "matn": "Olib o‘tishni unutish mumkin",
+      "togri": false,
+      "izoh": "natija xato bo‘ladi"
+     },
+     {
+      "matn": "95 · 27 — 2565",
+      "togri": true,
+      "izoh": "665 + 1900"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Birinchi qadam?",
+      "javob": "birlikka ko‘paytirish"
+     },
+     {
+      "savol": "Ikkinchi qadam?",
+      "javob": "o‘nlikka ko‘paytirish"
+     },
+     {
+      "savol": "Uchinchi qadam?",
+      "javob": "qatorlarni qo‘shish"
+     },
+     {
+      "savol": "86 · 4?",
+      "javob": "344"
+     },
+     {
+      "savol": "95 · 7?",
+      "javob": "665"
+     },
+     {
+      "savol": "86 · 34?",
+      "javob": "2924"
+     },
+     {
+      "savol": "95 · 27?",
+      "javob": "2565"
+     },
+     {
+      "savol": "72 · 11?",
+      "javob": "792"
+     },
+     {
+      "savol": "Taxmin nima uchun kerak?",
+      "javob": "javobni tekshirish uchun"
+     },
+     {
+      "savol": "Olib o‘tish nima?",
+      "javob": "to‘lgan xonadan keyingisiga qo‘shish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Birlik",
+      "matn": "Birlikka ko‘paytir.",
+      "savol": "86 · 4?"
+     },
+     {
+      "nom": "O‘nlik",
+      "matn": "O‘nlikka ko‘paytir.",
+      "savol": "86 · 30?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "Qatorlarni qo‘sh.",
+      "savol": "344 + 2580?"
+     },
+     {
+      "nom": "Taxmin",
+      "matn": "Yaxlitlab tekshir.",
+      "savol": "90 · 30?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun javobni taxminiy hisob bilan tekshirish foydali?",
+    "keys": {
+     "vaziyat": "Fabrikada 72 quti shokolad, har birida 11 ta.",
+     "savollar": [
+      "Qaysi amalni tanlaymiz?",
+      "Jami nechta shokolad bor?"
+     ]
+    },
+    "tezis": "Taxmin qil, hisobla, tekshir",
+    "taqqoslash": {
+     "a": "Aniq hisob",
+     "b": "Taxminiy hisob",
+     "umumiy": [
+      "ko‘paytirish amali",
+      "javobni tekshiradi"
+     ],
+     "a_farq": [
+      "aniq natija",
+      "ko‘proq vaqt"
+     ],
+     "b_farq": [
+      "yaqin natija",
+      "tez bajariladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ikki xonali songa ko‘paytirish",
+     "shoxlar": [
+      {
+       "nom": "Birlik",
+       "bandlar": [
+        "birinchi qator"
+       ]
+      },
+      {
+       "nom": "O‘nlik",
+       "bandlar": [
+        "ikkinchi qator",
+        "bir xona surish"
+       ]
+      },
+      {
+       "nom": "Qo‘shish",
+       "bandlar": [
+        "qatorlar yig‘indisi"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "taxmin",
+        "almashtirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men aniq javobga yaqin bo‘laman, lekin aniq emasman. Men kimman?",
+     "javob": "taxmin"
+    },
+    "hikmat": "Mashq — ustozlarning ustozi.",
+    "kalit_soz": "MASHQ",
+    "xato_yechim": {
+     "shart": "86 · 34 ni hisoblang.",
+     "xato": "2580",
+     "togri": "2924",
+     "sabab": "birlikka ko‘paytma 344 ni qo‘shmagan"
+    },
+    "guruh_nomlari": [
+     "Mashqchilar",
+     "Hisobchilar",
+     "Taxminchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Fabrika hisobi»",
+     "topshiriq": "Guruh fabrikadagi qutilar sonini ko‘paytirib hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "86 · 34 va 72 · 11 ni hisoblang.",
+     "B": "95 · 27 va 64 · 58 ni hisoblang.",
+     "C": "75 quti, har birida 24 ta. Taxmin qiling va aniq hisoblang."
+    },
+    "sinkveyn": [
+     "Mashq",
+     "tez, takror",
+     "o‘rgatadi, charxlaydi, mustahkamlaydi",
+     "Takror — ilm ko‘zi",
+     "Amal"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh misollarni yechadi.",
+     "qismlar": [
+      "1-guruh: 86 · 34",
+      "2-guruh: 95 · 27",
+      "3-guruh: 64 · 58",
+      "4-guruh: 72 · 11"
+     ],
+     "yakun": "Natijalar: 2924; 2565; 3712; 792."
+    }
+   }
+  },
+  {
+   "mavzu": "Uch xonali songa ko‘paytirish algoritmi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Uch qadam",
+      "matn": "Uch xonali songa ko‘paytirishda uchta qismiy ko‘paytma bo‘ladi: birlikka, o‘nlikka va yuzlikka. Keyin hammasini qo‘shamiz.",
+      "misol": "123 · 234: 123 · 4, 123 · 30, 123 · 200, so‘ng yig‘indi.",
+      "savol": "Uch xonali songa ko‘paytirishda nechta qismiy ko‘paytma bor?",
+      "javob": "uchta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birinchi qator",
+      "matn": "Birinchi qatorda yuqoridagi sonni birlikka ko‘paytiramiz.",
+      "misol": "123 · 4 — 492. Birinchi qator: 492.",
+      "savol": "123 · 4 nechaga teng?",
+      "javob": "492",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikkinchi qator",
+      "matn": "Ikkinchi qatorda o‘nlikka ko‘paytiramiz va bir xona suramiz, ya’ni oxiriga bitta nol qo‘yamiz.",
+      "misol": "123 · 30 — 3690. Ikkinchi qator: 3690.",
+      "savol": "123 · 30 nechaga teng?",
+      "javob": "3690",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchinchi qator",
+      "matn": "Uchinchi qatorda yuzlikka ko‘paytiramiz va ikki xona suramiz, ya’ni oxiriga ikkita nol qo‘yamiz.",
+      "misol": "123 · 200 — 24600. Uchinchi qator: 24600.",
+      "savol": "123 · 200 nechaga teng?",
+      "javob": "24600",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yig‘indi",
+      "matn": "Uchala qatorni qo‘shamiz. Bu to‘liq ko‘paytma bo‘ladi. Oxirida taxmin bilan tekshiramiz.",
+      "misol": "492 + 3690 + 24600 — 28782. Taxmin: 120 · 230 — 27600, yaqin.",
+      "savol": "492 + 3690 + 24600 nechaga teng?",
+      "javob": "28782",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Algoritm: birlikka, o‘nlikka (bitta nol), yuzlikka (ikkita nol) ko‘paytir, uchala qatorni qo‘sh, taxmin bilan tekshir.",
+    "misollar": [
+     {
+      "shart": "123 · 234 ni hisoblang.",
+      "yechim": [
+       "123 · 4 — 492.",
+       "123 · 30 — 3690.",
+       "123 · 200 — 24600, yig‘indi 28782."
+      ],
+      "javob": "28782"
+     },
+     {
+      "shart": "236 · 145 ni hisoblang.",
+      "yechim": [
+       "236 · 5 — 1180.",
+       "236 · 40 — 9440, 236 · 100 — 23600.",
+       "1180 + 9440 + 23600 — 34220."
+      ],
+      "javob": "34220"
+     },
+     {
+      "shart": "312 · 213 ni hisoblang.",
+      "yechim": [
+       "312 · 3 — 936, 312 · 10 — 3120.",
+       "312 · 200 — 62400.",
+       "936 + 3120 + 62400 — 66456."
+      ],
+      "javob": "66456"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qadamlar tartibi",
+      "topshiriq": "Uch xonali songa ko‘paytirish qadamlarini tartibga soling.",
+      "yechim": "Birlik, o‘nlik, yuzlik, qo‘shish, tekshirish.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Ustun shakli",
+      "topshiriq": "236 · 145 ni ustun shaklida yozing.",
+      "yechim": "1180; 9440; 23600; yig‘indi 34220.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 123 · 234 ni 4182 deb hisobladi. Nima xato?",
+      "yechim": "Yuzlikka ko‘paytmani qo‘shmagan. To‘g‘ri javob 28782.",
+      "mahsulot": "tushuntirish"
+     },
+     {
+      "nom": "Taxmin qilamiz",
+      "topshiriq": "312 · 213 ning javobini taxmin qiling.",
+      "yechim": "300 · 200 — 60000, aniq javob 66456.",
+      "mahsulot": "taxmin varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "123 · 4 nechaga teng?",
+      "javob": "492"
+     },
+     {
+      "shart": "123 · 30 nechaga teng?",
+      "javob": "3690"
+     },
+     {
+      "shart": "123 · 200 nechaga teng?",
+      "javob": "24600"
+     },
+     {
+      "shart": "123 · 234 nechaga teng?",
+      "javob": "28782"
+     },
+     {
+      "shart": "236 · 145 nechaga teng?",
+      "javob": "34220"
+     },
+     {
+      "shart": "312 · 213 nechaga teng?",
+      "javob": "66456"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yuzlikka ko‘paytirganda bitta nol qo‘yadi",
+      "sabab": "xonalarni adashtiradi",
+      "oldini_olish": "yuzlik uchun ikkita nol"
+     },
+     {
+      "xato": "Uchinchi qatorni qo‘shmaydi",
+      "sabab": "ikki qator bilan to‘xtaydi",
+      "oldini_olish": "uchala qatorni belgilab chiqish"
+     },
+     {
+      "xato": "Qatorlarni noto‘g‘ri tekislaydi",
+      "sabab": "xona o‘rnini sezmaydi",
+      "oldini_olish": "kataklarga yozish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "katta xaridlar hisobi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "algoritm — qadamlar ketma-ketligi"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "ko‘p kuzatuvlar yig‘indisi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Uch qadamli yo‘l»",
+     "muammo": "Uch xonali songa ko‘paytirishni qanday qilib yo‘l xaritasi bilan tushuntiramiz?",
+     "mahsulot": "uch qadamli yo‘l xaritasi",
+     "bosqichlar": [
+      "qadamlarni yozish",
+      "xarita chizish",
+      "misol yechish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Qadamlarni yozing",
+      "Chizing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "qadamlar to‘g‘ri",
+      "xarita ravshan",
+      "misol to‘g‘ri",
+      "chiroyli",
+      "tushuntirish ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Katta ombor»",
+     "bekatlar": [
+      {
+       "nom": "1-ombor",
+       "matn": "123 · 234.",
+       "topshiriq": "Natija?",
+       "javob": "28782",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ombor",
+       "matn": "236 · 145.",
+       "topshiriq": "Natija?",
+       "javob": "34220",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ombor",
+       "matn": "312 · 213.",
+       "topshiriq": "Natija?",
+       "javob": "66456",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ombor",
+       "matn": "123 · 4.",
+       "topshiriq": "Natija?",
+       "javob": "492",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Nechta qator hosil bo‘ldi?",
+      "Nollarni to‘g‘ri qo‘ydingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yuzlik",
+      "tarif": "uchinchi xona"
+     },
+     {
+      "atama": "O‘nlik",
+      "tarif": "ikkinchi xona"
+     },
+     {
+      "atama": "Birlik",
+      "tarif": "birinchi xona"
+     },
+     {
+      "atama": "Qator",
+      "tarif": "qismiy ko‘paytma yozilgan joy"
+     },
+     {
+      "atama": "Algoritm",
+      "tarif": "qadamma-qadam qoida"
+     },
+     {
+      "atama": "Ko‘paytma",
+      "tarif": "to‘liq natija"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Uch xonali songa ko‘paytirishda uchta qator bor",
+      "togri": true,
+      "izoh": "birlik, o‘nlik, yuzlik"
+     },
+     {
+      "matn": "123 · 200 — 2460",
+      "togri": false,
+      "izoh": "24600"
+     },
+     {
+      "matn": "Yuzlik qatori ikki xona suriladi",
+      "togri": true,
+      "izoh": "ikkita nol"
+     },
+     {
+      "matn": "123 · 234 — 28782",
+      "togri": true,
+      "izoh": "492 + 3690 + 24600"
+     },
+     {
+      "matn": "236 · 145 — 34200",
+      "togri": false,
+      "izoh": "34220"
+     },
+     {
+      "matn": "Qatorlar oxirida qo‘shiladi",
+      "togri": true,
+      "izoh": "yig‘indi"
+     },
+     {
+      "matn": "Taxmin bilan tekshirib bo‘lmaydi",
+      "togri": false,
+      "izoh": "mumkin"
+     },
+     {
+      "matn": "312 · 213 — 66456",
+      "togri": true,
+      "izoh": "936 + 3120 + 62400"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Nechta qator bo‘ladi?",
+      "javob": "uchta"
+     },
+     {
+      "savol": "Yuzlik qatorida nechta nol?",
+      "javob": "ikkita"
+     },
+     {
+      "savol": "123 · 4?",
+      "javob": "492"
+     },
+     {
+      "savol": "123 · 30?",
+      "javob": "3690"
+     },
+     {
+      "savol": "123 · 200?",
+      "javob": "24600"
+     },
+     {
+      "savol": "123 · 234?",
+      "javob": "28782"
+     },
+     {
+      "savol": "236 · 145?",
+      "javob": "34220"
+     },
+     {
+      "savol": "312 · 213?",
+      "javob": "66456"
+     },
+     {
+      "savol": "Oxirgi qadam?",
+      "javob": "qatorlarni qo‘shish"
+     },
+     {
+      "savol": "Tekshirish usuli?",
+      "javob": "taxmin"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Birlik",
+      "matn": "Birlikka ko‘paytir.",
+      "savol": "236 · 5?"
+     },
+     {
+      "nom": "O‘nlik",
+      "matn": "O‘nlikka ko‘paytir.",
+      "savol": "236 · 40?"
+     },
+     {
+      "nom": "Yuzlik",
+      "matn": "Yuzlikka ko‘paytir.",
+      "savol": "236 · 100?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "Uchala qatorni qo‘sh.",
+      "savol": "1180 + 9440 + 23600?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun yuzlik qatorida ikkita nol yoziladi?",
+    "keys": {
+     "vaziyat": "Omborda 236 tadan 145 quti mahsulot bor.",
+     "savollar": [
+      "Qaysi amalni tanlaymiz?",
+      "Jami nechta mahsulot?"
+     ]
+    },
+    "tezis": "Uch qadam — katta natija",
+    "taqqoslash": {
+     "a": "Ikki xonali songa",
+     "b": "Uch xonali songa",
+     "umumiy": [
+      "ustun shaklida yoziladi",
+      "qatorlar qo‘shiladi"
+     ],
+     "a_farq": [
+      "ikkita qator",
+      "bitta nol"
+     ],
+     "b_farq": [
+      "uchta qator",
+      "bitta va ikkita nol"
+     ]
+    },
+    "klaster": {
+     "markaz": "Uch xonali songa ko‘paytirish",
+     "shoxlar": [
+      {
+       "nom": "Birlik",
+       "bandlar": [
+        "birinchi qator"
+       ]
+      },
+      {
+       "nom": "O‘nlik",
+       "bandlar": [
+        "bitta nol"
+       ]
+      },
+      {
+       "nom": "Yuzlik",
+       "bandlar": [
+        "ikkita nol"
+       ]
+      },
+      {
+       "nom": "Yig‘indi",
+       "bandlar": [
+        "qo‘shish",
+        "tekshirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men uch qatordan tuzilaman va oxirida qo‘shilaman. Men kimman?",
+     "javob": "uch xonali songa ko‘paytirish"
+    },
+    "hikmat": "Uch qadam — uch zina.",
+    "kalit_soz": "UCH",
+    "xato_yechim": {
+     "shart": "123 · 234 ni hisoblang.",
+     "xato": "4182",
+     "togri": "28782",
+     "sabab": "yuzlikka ko‘paytma 24600 ni qo‘shmagan"
+    },
+    "guruh_nomlari": [
+     "Uchlik",
+     "Qadamchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Katta ombor hisobi»",
+     "topshiriq": "Guruh uch xonali sonlarni ko‘paytirib omborni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "123 · 234 ni hisoblang.",
+     "B": "236 · 145 va 312 · 213 ni hisoblang.",
+     "C": "236 quti, har birida 145 ta. Taxmin qiling va aniq hisoblang."
+    },
+    "sinkveyn": [
+     "Uch qadam",
+     "tartibli, aniq",
+     "ko‘paytiradi, suradi, qo‘shadi",
+     "Zina-zina",
+     "Yo‘l"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ustunda ko‘paytiradi.",
+     "qismlar": [
+      "1-guruh: 123 · 234",
+      "2-guruh: 236 · 145",
+      "3-guruh: 312 · 213",
+      "4-guruh: 123 · 4"
+     ],
+     "yakun": "Natijalar: 28782; 34220; 66456; 492."
+    }
+   }
+  },
+  {
+   "mavzu": "Uch xonali songa ko‘paytirish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nolli sonlar",
+      "matn": "Ko‘paytuvchida nol bo‘lsa, shu xona uchun qator hosil bo‘lmaydi. Nolga ko‘paytma nol, shuning uchun uni o‘tkazib yuboramiz, lekin xona o‘rnini yo‘qotmaymiz.",
+      "misol": "145 · 302: birlikka 145 · 2 — 290, o‘nlik nol, yuzlikka 145 · 300 — 43500.",
+      "savol": "145 · 302 nechaga teng?",
+      "javob": "43790",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yig‘indi",
+      "matn": "Qatorlarni qo‘shamiz. Nol o‘rniga qator yozish shart emas, lekin yuzlik qatorida xona o‘rnini saqlaymiz.",
+      "misol": "290 + 43500 — 43790.",
+      "savol": "290 + 43500 nechaga teng?",
+      "javob": "43790",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikkala sonda nol",
+      "matn": "Ikkala ko‘paytuvchida nol bo‘lsa, hisob yanada qisqaradi. Bu hisobni tezlashtiradi.",
+      "misol": "403 · 206: 403 · 6 — 2418, 403 · 200 — 80600, 2418 + 80600 — 83018.",
+      "savol": "403 · 206 nechaga teng?",
+      "javob": "83018",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oxiri nolli sonlar",
+      "matn": "Sonning oxirida nol bo‘lsa, nollarni olib tashlab ko‘paytiramiz, so‘ng nollarni oxiriga qaytarib yozamiz.",
+      "misol": "250 · 16: 25 · 16 — 400, oxiriga bitta nol — 4000.",
+      "savol": "250 · 16 nechaga teng?",
+      "javob": "4000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotiy masala",
+      "matn": "Katta hisoblarda uch xonali son qatnashadi: kitoblar, daftarlar, qadoqlar. Ko‘paytirishni bilsak, hisobni tez bajaramiz.",
+      "misol": "236 · 145 — 34220 dona.",
+      "savol": "236 · 145 nechaga teng?",
+      "javob": "34220",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Nol bo‘lsa, shu xona uchun qator yo‘q, lekin xona o‘rnini saqlaymiz. Oxiridagi nollarni oxirida qaytarib yozamiz.",
+    "misollar": [
+     {
+      "shart": "145 · 302 ni hisoblang.",
+      "yechim": [
+       "145 · 2 — 290.",
+       "145 · 300 — 43500.",
+       "290 + 43500 — 43790."
+      ],
+      "javob": "43790"
+     },
+     {
+      "shart": "403 · 206 ni hisoblang.",
+      "yechim": [
+       "403 · 6 — 2418.",
+       "403 · 200 — 80600.",
+       "2418 + 80600 — 83018."
+      ],
+      "javob": "83018"
+     },
+     {
+      "shart": "250 · 16 ni hisoblang.",
+      "yechim": [
+       "25 · 16 — 400.",
+       "Oxiriga bitta nol qo‘yamiz.",
+       "Javob 4000."
+      ],
+      "javob": "4000"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Nolli misollar",
+      "topshiriq": "145 · 302 va 403 · 206 ni hisoblang.",
+      "yechim": "43790 va 83018.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Nollarni olib tashlaymiz",
+      "topshiriq": "250 · 16 ni qisqa usulda yeching.",
+      "yechim": "25 · 16 — 400, javob 4000.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 145 · 302 ni 4350 deb hisobladi. Xato qayerda?",
+      "yechim": "Yuzlikka ko‘paytmani noto‘g‘ri yozgan. To‘g‘ri javob 43790.",
+      "mahsulot": "tushuntirish"
+     },
+     {
+      "nom": "Qutilar masalasi",
+      "topshiriq": "236 quti, har birida 145 ta. Jami nechta?",
+      "yechim": "34220.",
+      "mahsulot": "masala varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "145 · 2 nechaga teng?",
+      "javob": "290"
+     },
+     {
+      "shart": "145 · 300 nechaga teng?",
+      "javob": "43500"
+     },
+     {
+      "shart": "145 · 302 nechaga teng?",
+      "javob": "43790"
+     },
+     {
+      "shart": "403 · 206 nechaga teng?",
+      "javob": "83018"
+     },
+     {
+      "shart": "250 · 16 nechaga teng?",
+      "javob": "4000"
+     },
+     {
+      "shart": "236 · 145 nechaga teng?",
+      "javob": "34220"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Nolni butunlay unutadi",
+      "sabab": "xona o‘rnini yo‘qotadi",
+      "oldini_olish": "nol o‘rnini belgilab qo‘yish"
+     },
+     {
+      "xato": "Oxirgi nollarni qaytarmaydi",
+      "sabab": "tezkor usulni oxirigacha bajarmaydi",
+      "oldini_olish": "nollarni sanab qo‘yish"
+     },
+     {
+      "xato": "Qatorlarni noto‘g‘ri qo‘shadi",
+      "sabab": "tekislamaydi",
+      "oldini_olish": "kataklarga yozish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "katta miqdorni hisoblash"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "kalkulyator bilan tekshirish"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "nol va bir — raqamlar dunyosi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Nollar sirlari»",
+     "muammo": "Nolli sonlarni ko‘paytirishni qanday qilib qiziqarli tushuntiramiz?",
+     "mahsulot": "nollar albomi",
+     "bosqichlar": [
+      "misollar tanlash",
+      "yechish",
+      "rasm chizish",
+      "tekshirish",
+      "albom"
+     ],
+     "guruh_vazifalari": [
+      "Misol tanlang",
+      "Yeching",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisoblar to‘g‘ri",
+      "nollar to‘g‘ri qo‘yilgan",
+      "rasm mos",
+      "albom chiroyli",
+      "tushuntirish ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Nollar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Birinchi ko‘cha",
+       "matn": "145 · 302.",
+       "topshiriq": "Natija?",
+       "javob": "43790",
+       "rasm": ""
+      },
+      {
+       "nom": "Ikkinchi ko‘cha",
+       "matn": "403 · 206.",
+       "topshiriq": "Natija?",
+       "javob": "83018",
+       "rasm": ""
+      },
+      {
+       "nom": "Uchinchi ko‘cha",
+       "matn": "250 · 16.",
+       "topshiriq": "Natija?",
+       "javob": "4000",
+       "rasm": ""
+      },
+      {
+       "nom": "To‘rtinchi ko‘cha",
+       "matn": "236 · 145.",
+       "topshiriq": "Natija?",
+       "javob": "34220",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Nolni qayerda qo‘ydingiz?",
+      "Qisqa usulni ishlatdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Nol",
+      "tarif": "hech narsani bildiruvchi raqam"
+     },
+     {
+      "atama": "Xona o‘rni",
+      "tarif": "raqamning sondagi joyi"
+     },
+     {
+      "atama": "Qator",
+      "tarif": "qismiy ko‘paytma"
+     },
+     {
+      "atama": "Qisqa usul",
+      "tarif": "oxirgi nollarni olib tashlash"
+     },
+     {
+      "atama": "Ko‘paytma",
+      "tarif": "to‘liq natija"
+     },
+     {
+      "atama": "Yig‘indi",
+      "tarif": "qo‘shish natijasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Nolga ko‘paytma nol",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "145 · 302 — 4350",
+      "togri": false,
+      "izoh": "43790"
+     },
+     {
+      "matn": "403 · 206 — 83018",
+      "togri": true,
+      "izoh": "2418 + 80600"
+     },
+     {
+      "matn": "250 · 16 — 4000",
+      "togri": true,
+      "izoh": "25 · 16 — 400"
+     },
+     {
+      "matn": "Nolning xona o‘rnini unutish mumkin",
+      "togri": false,
+      "izoh": "natija xato bo‘ladi"
+     },
+     {
+      "matn": "Qisqa usulda oxirgi nollarni qaytaramiz",
+      "togri": true,
+      "izoh": "oxirida"
+     },
+     {
+      "matn": "236 · 145 — 34220",
+      "togri": true,
+      "izoh": "1180 + 9440 + 23600"
+     },
+     {
+      "matn": "Nolli sonlarni ko‘paytirib bo‘lmaydi",
+      "togri": false,
+      "izoh": "mumkin"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Nolga ko‘paytma?",
+      "javob": "nol"
+     },
+     {
+      "savol": "145 · 2?",
+      "javob": "290"
+     },
+     {
+      "savol": "145 · 300?",
+      "javob": "43500"
+     },
+     {
+      "savol": "145 · 302?",
+      "javob": "43790"
+     },
+     {
+      "savol": "403 · 206?",
+      "javob": "83018"
+     },
+     {
+      "savol": "250 · 16?",
+      "javob": "4000"
+     },
+     {
+      "savol": "236 · 145?",
+      "javob": "34220"
+     },
+     {
+      "savol": "Qisqa usul nima?",
+      "javob": "oxirgi nollarni olib tashlash"
+     },
+     {
+      "savol": "Nollar oxirida nima qilamiz?",
+      "javob": "qaytarib yozamiz"
+     },
+     {
+      "savol": "Xona o‘rni nima uchun muhim?",
+      "javob": "natija to‘g‘ri bo‘lishi uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Nol",
+      "matn": "Nolni toping.",
+      "savol": "302 da nol qaysi xonada?"
+     },
+     {
+      "nom": "Birlik",
+      "matn": "Birlikka ko‘paytir.",
+      "savol": "145 · 2?"
+     },
+     {
+      "nom": "Yuzlik",
+      "matn": "Yuzlikka ko‘paytir.",
+      "savol": "145 · 300?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "Qatorlarni qo‘sh.",
+      "savol": "290 + 43500?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ko‘paytuvchida nol bo‘lsa ham xona o‘rnini saqlash kerak?",
+    "keys": {
+     "vaziyat": "Do‘konga 145 tadan 302 quti daftar keldi.",
+     "savollar": [
+      "Qaysi amalni tanlaymiz?",
+      "Jami nechta daftar?"
+     ]
+    },
+    "tezis": "Nol — bo‘sh emas, o‘rin egallaydi",
+    "taqqoslash": {
+     "a": "Nolsiz ko‘paytuvchi",
+     "b": "Nolli ko‘paytuvchi",
+     "umumiy": [
+      "ustun shaklida yoziladi",
+      "qatorlar qo‘shiladi"
+     ],
+     "a_farq": [
+      "uchta qator",
+      "hammasi hisoblanadi"
+     ],
+     "b_farq": [
+      "nol qatori yo‘q",
+      "xona o‘rni saqlanadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Uch xonali songa ko‘paytirish",
+     "shoxlar": [
+      {
+       "nom": "Nolli son",
+       "bandlar": [
+        "qator yo‘q",
+        "xona o‘rni"
+       ]
+      },
+      {
+       "nom": "Qisqa usul",
+       "bandlar": [
+        "nolni olib tashla",
+        "oxirida qaytar"
+       ]
+      },
+      {
+       "nom": "Qo‘shish",
+       "bandlar": [
+        "qatorlar yig‘indisi"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "taxmin",
+        "kalkulyator"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men hech narsa emasman, lekin o‘rnimni bo‘sh qoldirmang. Men kimman?",
+     "javob": "nol"
+    },
+    "hikmat": "Nol — kichik, ammo kerakli.",
+    "kalit_soz": "NOL",
+    "xato_yechim": {
+     "shart": "145 · 302 ni hisoblang.",
+     "xato": "4350",
+     "togri": "43790",
+     "sabab": "yuzlikka ko‘paytma 43500 ni to‘g‘ri yozmagan"
+    },
+    "guruh_nomlari": [
+     "Nolchilar",
+     "Hisobchilar",
+     "Qadamchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Daftar ombori»",
+     "topshiriq": "Guruh nolli sonlarni ko‘paytirib, omborni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "145 · 302 va 403 · 206 ni hisoblang.",
+     "B": "250 · 16 ni qisqa usulda hisoblang.",
+     "C": "236 quti, har birida 145 ta. Jami va tekshirish."
+    },
+    "sinkveyn": [
+     "Nol",
+     "yumaloq, bo‘sh",
+     "turadi, o‘rin tutadi, ma’no beradi",
+     "Hech narsa emas",
+     "Raqam"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh misollarni yechadi.",
+     "qismlar": [
+      "1-guruh: 145 · 302",
+      "2-guruh: 403 · 206",
+      "3-guruh: 250 · 16",
+      "4-guruh: 236 · 145"
+     ],
+     "yakun": "Natijalar: 43790; 83018; 4000; 34220."
+    }
+   }
   }
  ]
 }
