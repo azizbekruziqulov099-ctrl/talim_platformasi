@@ -4168,6 +4168,1398 @@
      "yakun": "Natijalar: 1 / 2; 1; 4 / 5; 10."
     }
    }
+  },
+  {
+   "mavzu": "Aylana va unga ichki chizilgan burchak",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Aylana elementlari",
+      "matn": "Aylana — markazdan bir xil uzoqlikdagi nuqtalar to‘plami. Markazni aylana nuqtasi bilan tutashtiruvchi kesma radius, aylananing ikki nuqtasini tutashtiruvchi kesma vatar, markazdan o‘tuvchi vatar diametr deyiladi. Diametr radiusdan 2 marta uzun. Aylananing bir qismi yoy deyiladi.",
+      "misol": "Radius 5 bo‘lsa, diametr 10. Diametr eng katta vatar.",
+      "savol": "Diametr 14 bo‘lsa, radius?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Markaziy burchak",
+      "matn": "Uchi aylana markazida bo‘lgan burchak markaziy burchak deyiladi. Uning o‘lchovi tayanadigan yoy o‘lchoviga teng. To‘liq aylana yoyi 360°.",
+      "misol": "Yoy 80° bo‘lsa, unga tiralgan markaziy burchak 80°. Yarim aylana 180°.",
+      "savol": "Yoy 120° bo‘lsa, markaziy burchak?",
+      "javob": "120°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ichki chizilgan burchak",
+      "matn": "Uchi aylanada, tomonlari vatarlardan iborat burchak ichki chizilgan burchak deyiladi. Uning o‘lchovi tayanadigan yoy yarmiga teng. Bir yoyga tiralgan ichki chizilgan burchaklar teng.",
+      "misol": "Yoy 80° bo‘lsa, ichki chizilgan burchak 40°. Shu yoyga tiralgan markaziy burchak 80°, ya’ni ikki marta katta.",
+      "savol": "Yoy 100° bo‘lsa, ichki chizilgan burchak?",
+      "javob": "50°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Diametrga tiralgan burchak",
+      "matn": "Diametrga tiralgan ichki chizilgan burchak to‘g‘ri burchak, chunki u 180° li yoyning yarmi. Aksincha, to‘g‘ri burchakli uchburchakni ichiga chizgan aylana gipotenuza diametri bo‘ladi.",
+      "misol": "AC diametr, B aylanada. Yoy AC — 180°, burchak B — 90°.",
+      "savol": "Diametrga tiralgan ichki chizilgan burchak necha gradus?",
+      "javob": "90°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vatar va urinma xossalari",
+      "matn": "Urinma urinish nuqtasiga o‘tkazilgan radiusga perpendikulyar. Aylana ichida kesishgan ikki vatar bo‘laklari ko‘paytmalari teng. Bitta tashqi nuqtadan o‘tkazilgan urinmalar kesmalari teng.",
+      "misol": "Vatarlar O nuqtada kesishdi: AO — 4, OB — 6, CO — 3 bo‘lsa, OD: 4 · 6 — 24, 3 · OD — 24, OD — 8.",
+      "savol": "Urinma va radius orasidagi burchak?",
+      "javob": "90°",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Markaziy burchak — yoy o‘lchoviga teng. Ichki chizilgan burchak — yoy yarmiga teng. Diametrga tiralgan burchak 90°. Urinma radiusga perpendikulyar. Kesishgan vatarlar bo‘laklari ko‘paytmasi teng.",
+    "misollar": [
+     {
+      "shart": "Markaziy burchak 70° yoyga tiralgan. Shu yoyga tiralgan ichki chizilgan burchakni toping.",
+      "yechim": [
+       "Yoy 70°.",
+       "Ichki chizilgan burchak yoy yarmiga teng.",
+       "70° / 2, ya’ni 35°."
+      ],
+      "javob": "35°"
+     },
+     {
+      "shart": "Ichki chizilgan burchak 42°. Tayanadigan yoyni va markaziy burchakni toping.",
+      "yechim": [
+       "Yoy ichki burchakning ikki baravari: 84°.",
+       "Markaziy burchak yoyga teng: 84°.",
+       "Tekshirish: 84° / 2, ya’ni 42°."
+      ],
+      "javob": "yoy 84°, markaziy burchak 84°"
+     },
+     {
+      "shart": "Vatarlar kesishdi: AO — 4, OB — 6, CO — 3. OD ni toping.",
+      "yechim": [
+       "Bo‘laklar ko‘paytmalari teng: 4 · 6 va 3 · OD.",
+       "24 — 3 · OD.",
+       "OD — 8."
+      ],
+      "javob": "8"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Yoy va burchak",
+      "topshiriq": "60° li yoyga tiralgan markaziy va ichki chizilgan burchaklarni toping.",
+      "yechim": "Markaziy 60°, ichki 30°.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Yarim aylana",
+      "topshiriq": "AC — diametr, B aylanada. Burchak ABC ni toping va isbotlang.",
+      "yechim": "90°, chunki u 180° li yoyning yarmi.",
+      "mahsulot": "isbot varag‘i"
+     },
+     {
+      "nom": "Yoylar yig‘indisi",
+      "topshiriq": "Aylana 4 yoyga bo‘lingan: 90°, 100°, 120° va x. x ni toping.",
+      "yechim": "360° − (90° + 100° + 120°), ya’ni 50°.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Urinma uzunligi",
+      "topshiriq": "Aylana radiusi 5. Markazdan 13 uzoqlikdagi nuqtadan urinma o‘tkazilgan. Urinma uzunligi?",
+      "yechim": "Urinma kvadrati 169 − 25, ya’ni 144, urinma 12.",
+      "mahsulot": "chizma"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Yoy 90° bo‘lsa, markaziy burchak?",
+      "javob": "90°"
+     },
+     {
+      "shart": "Ichki chizilgan burchak 25° bo‘lsa, yoy?",
+      "javob": "50°"
+     },
+     {
+      "shart": "Diametrga tiralgan burchak?",
+      "javob": "90°"
+     },
+     {
+      "shart": "Radius 6 bo‘lsa, diametr?",
+      "javob": "12"
+     },
+     {
+      "shart": "Yoy 140° bo‘lsa, ichki chizilgan burchak?",
+      "javob": "70°"
+     },
+     {
+      "shart": "Markazgacha masofa 10, radius 6. Urinma uzunligi?",
+      "javob": "8"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ichki chizilgan burchakni yoyga teng deb oladi",
+      "sabab": "yarmini olmaydi",
+      "oldini_olish": "ichki burchak yoyning yarmi ekanini eslash"
+     },
+     {
+      "xato": "Diametrni radius deb oladi",
+      "sabab": "ikki baravar farqni unutadi",
+      "oldini_olish": "diametr 2r ekanini yozib qo‘yish"
+     },
+     {
+      "xato": "Urinmani radiusga parallel deb oladi",
+      "sabab": "perpendikulyarlikni unutadi",
+      "oldini_olish": "urinma va radius 90° ekanini chizmada ko‘rsatish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Astronomiya",
+      "boglanish": "yoy va burchaklar bilan yulduz harakatini o‘lchash"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "g‘ildirak, shesternya va aylana detallar"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "aylana naqshlari va kompozitsiya"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Aylana sirlari»",
+     "muammo": "Aylana burchaklari bilan qanday qiziqarli masalalar tuzamiz?",
+     "mahsulot": "aylana burchaklari plakati",
+     "bosqichlar": [
+      "aylana chizish",
+      "burchaklarni o‘lchash",
+      "xossalarni tekshirish",
+      "masala tuzish",
+      "plakat yasash"
+     ],
+     "guruh_vazifalari": [
+      "Chizing",
+      "O‘lchang",
+      "Tekshiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "chizma aniq",
+      "o‘lchov to‘g‘ri",
+      "xossalar tekshirilgan",
+      "xulosa asosli",
+      "plakat ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Doira bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Fontan",
+       "matn": "Fontan radiusi 4 m.",
+       "topshiriq": "Diametri?",
+       "javob": "8 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Karusel",
+       "matn": "Yoy 90°, ichki chizilgan burchak?",
+       "topshiriq": "Burchak?",
+       "javob": "45°",
+       "rasm": ""
+      },
+      {
+       "nom": "Soat",
+       "matn": "Soat strelkalari orasidagi markaziy burchak 60°.",
+       "topshiriq": "Ichki chizilgan burchak?",
+       "javob": "30°",
+       "rasm": ""
+      },
+      {
+       "nom": "Yo‘l",
+       "matn": "Yo‘l aylanaga urinadi, radius 3, markazgacha 5.",
+       "topshiriq": "Urinma uzunligi?",
+       "javob": "4",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda aylanani ko‘rdingiz?",
+      "Ichki burchakni qanday topdingiz?",
+      "Diametr nima uchun maxsus?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Aylana",
+      "tarif": "markazdan teng uzoqlikdagi nuqtalar to‘plami"
+     },
+     {
+      "atama": "Vatar",
+      "tarif": "aylana ikki nuqtasini tutashtiruvchi kesma"
+     },
+     {
+      "atama": "Diametr",
+      "tarif": "markazdan o‘tuvchi vatar"
+     },
+     {
+      "atama": "Markaziy burchak",
+      "tarif": "uchi markazda bo‘lgan burchak"
+     },
+     {
+      "atama": "Ichki chizilgan burchak",
+      "tarif": "uchi aylanada bo‘lgan burchak"
+     },
+     {
+      "atama": "Urinma",
+      "tarif": "aylanani bitta nuqtada kesuvchi to‘g‘ri chiziq"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Markaziy burchak yoyga teng",
+      "togri": true,
+      "izoh": "o‘lchovi bir xil"
+     },
+     {
+      "matn": "Ichki chizilgan burchak yoyga teng",
+      "togri": false,
+      "izoh": "yoyning yarmiga teng"
+     },
+     {
+      "matn": "Diametrga tiralgan burchak 90°",
+      "togri": true,
+      "izoh": "180° ning yarmi"
+     },
+     {
+      "matn": "Urinma radiusga parallel",
+      "togri": false,
+      "izoh": "perpendikulyar"
+     },
+     {
+      "matn": "Diametr radiusdan ikki baravar katta",
+      "togri": true,
+      "izoh": "2r"
+     },
+     {
+      "matn": "Bir yoyga tiralgan ichki burchaklar teng",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "Aylana yoylari yig‘indisi 180°",
+      "togri": false,
+      "izoh": "360°"
+     },
+     {
+      "matn": "Kesishgan vatarlar bo‘laklari ko‘paytmasi teng",
+      "togri": true,
+      "izoh": "xossa"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Aylana nima?",
+      "javob": "markazdan teng uzoqlikdagi nuqtalar to‘plami"
+     },
+     {
+      "savol": "Vatar nima?",
+      "javob": "aylana ikki nuqtasini tutashtiruvchi kesma"
+     },
+     {
+      "savol": "Diametr nima?",
+      "javob": "markazdan o‘tuvchi vatar"
+     },
+     {
+      "savol": "Markaziy burchak nimaga teng?",
+      "javob": "tayanadigan yoyga"
+     },
+     {
+      "savol": "Ichki burchak nimaga teng?",
+      "javob": "yoyning yarmiga"
+     },
+     {
+      "savol": "Yoy 60°. Ichki burchak?",
+      "javob": "30°"
+     },
+     {
+      "savol": "Diametrga tiralgan burchak?",
+      "javob": "90°"
+     },
+     {
+      "savol": "Urinma radiusga qanday?",
+      "javob": "perpendikulyar"
+     },
+     {
+      "savol": "Aylana to‘liq yoyi?",
+      "javob": "360°"
+     },
+     {
+      "savol": "Radius 5. Diametr?",
+      "javob": "10"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Elementlar",
+      "matn": "Radius, vatar, diametr.",
+      "savol": "Diametr nechta radius?"
+     },
+     {
+      "nom": "Markaziy",
+      "matn": "Yoyga teng.",
+      "savol": "Yoy 100° bo‘lsa, markaziy burchak?"
+     },
+     {
+      "nom": "Ichki",
+      "matn": "Yoyning yarmi.",
+      "savol": "Yoy 100° bo‘lsa, ichki burchak?"
+     },
+     {
+      "nom": "Urinma",
+      "matn": "Radiusga perpendikulyar.",
+      "savol": "Urinma va radius orasidagi burchak?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun diametrga tiralgan har qanday ichki chizilgan burchak 90° bo‘ladi? Markaziy va ichki burchak munosabati orqali tushuntiring.",
+    "keys": {
+     "vaziyat": "Sirk arenasi aylana shaklida, radiusi 7 m. Arenaning markazidan va chetidan ikki xodim bir yoyga qarab turibdi. Yoy 80°.",
+     "savollar": [
+      "Markaziy burchak qancha?",
+      "Chetdagi xodim burchagi qancha?"
+     ]
+    },
+    "tezis": "Aylana — mukammal shaklning sirlari",
+    "taqqoslash": {
+     "a": "Markaziy burchak",
+     "b": "Ichki chizilgan burchak",
+     "umumiy": [
+      "bir yoyga tiraladi",
+      "aylana bilan bog‘liq"
+     ],
+     "a_farq": [
+      "uchi markazda",
+      "yoyga teng"
+     ],
+     "b_farq": [
+      "uchi aylanada",
+      "yoyning yarmiga teng"
+     ]
+    },
+    "klaster": {
+     "markaz": "Aylana",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "radius",
+        "vatar",
+        "diametr",
+        "yoy"
+       ]
+      },
+      {
+       "nom": "Burchaklar",
+       "bandlar": [
+        "markaziy",
+        "ichki chizilgan"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "diametrga 90°",
+        "vatarlar ko‘paytmasi"
+       ]
+      },
+      {
+       "nom": "Urinma",
+       "bandlar": [
+        "radiusga perpendikulyar",
+        "teng urinmalar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Markazdan teng uzoqda joylashganman, diametrim ikki radius. Men kimman?",
+     "javob": "aylana"
+    },
+    "hikmat": "Aylana boshi ham oxiri ham yo‘q yo‘l.",
+    "kalit_soz": "AYLANA",
+    "xato_yechim": {
+     "shart": "Yoy 80° bo‘lsa, ichki chizilgan burchakni toping.",
+     "xato": "80°",
+     "togri": "40°",
+     "sabab": "ichki chizilgan burchak yoy yarmiga teng: 80° / 2, ya’ni 40°; 80° markaziy burchak"
+    },
+    "guruh_nomlari": [
+     "Aylanachilar",
+     "Vatarchilar",
+     "Yoychilar",
+     "Urinmachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Aylana o‘lchovi»",
+     "topshiriq": "Guruh sirkul yordamida aylana chizib, markaziy va ichki burchaklarni o‘lchaydi."
+    },
+    "vazifalar": {
+     "A": "Yoy 110°. Markaziy va ichki chizilgan burchaklarni toping.",
+     "B": "Aylana yoylari 80°, 100°, 120° va x. x ni toping.",
+     "C": "Radius 6, markazgacha 10. Urinma uzunligini toping."
+    },
+    "sinkveyn": [
+     "Aylana",
+     "yumaloq, yopiq",
+     "chiziladi, o‘lchanadi, aylanadi",
+     "Markazdan teng uzoqlik",
+     "Doira"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh aylana burchaklari bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: yoy 90°, ichki burchak",
+      "2-guruh: ichki burchak 20°, yoy",
+      "3-guruh: diametrga tiralgan burchak",
+      "4-guruh: radius 4, diametr"
+     ],
+     "yakun": "Natijalar: 45°; 40°; 90°; 8."
+    }
+   }
+  },
+  {
+   "mavzu": "Ichki va tashqi chizilgan aylana",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tashqi chizilgan aylana",
+      "matn": "Ko‘pburchakning barcha uchlari orqali o‘tuvchi aylana tashqi chizilgan aylana deyiladi. Uning markazi tomonlarning o‘rta perpendikulyarlari kesishgan nuqtada yotadi. To‘g‘ri burchakli uchburchakda markaz gipotenuza o‘rtasida, radius R — gipotenuzaning yarmi.",
+      "misol": "3, 4, 5 uchburchakda gipotenuza 5, R — 2,5.",
+      "savol": "Gipotenuza 10 bo‘lsa, tashqi chizilgan aylana radiusi?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ichki chizilgan aylana",
+      "matn": "Ko‘pburchakning barcha tomonlariga urinuvchi aylana ichki chizilgan aylana deyiladi. Uchburchakda uning markazi bissektrisalar kesishgan nuqtada yotadi. Radius r ifoda S / p, bunda S — yuza, p — yarim perimetr.",
+      "misol": "3, 4, 5 uchburchak: S — 6, p — 6, r — 1. To‘g‘ri burchakli uchburchakda r — (a + b − c) / 2: (3 + 4 − 5) / 2, ya’ni 1.",
+      "savol": "Yuza 24, yarim perimetr 12. r?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchburchak radiuslari formulalari",
+      "matn": "Tashqi chizilgan aylana radiusi: R ifoda abc / (4S). Ichki chizilgan: r ifoda S / p. Ikkala formulada ham yuza Geron formulasi bilan topilishi mumkin.",
+      "misol": "13, 14, 15: S — 84, p — 21, r — 84 / 21, ya’ni 4. R — 13 · 14 · 15 / (4 · 84), ya’ni 2730 / 336 — 8,125.",
+      "savol": "5, 5, 6 uchburchak yuzi 12. r?",
+      "javob": "1,5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chizilgan to‘rtburchaklar",
+      "matn": "Aylanaga ichki chizilgan to‘rtburchakda qarama-qarshi burchaklar yig‘indisi 180°. Aylanaga tashqi chizilgan to‘rtburchakda qarama-qarshi tomonlar yig‘indilari teng.",
+      "misol": "A — 80° bo‘lsa, C — 100°. Tomonlar AB — 5, CD — 9, BC — 6, AD — 8: 5 + 9, ya’ni 14, 6 + 8, ya’ni 14.",
+      "savol": "Ichki chizilgan to‘rtburchakda A — 70°. C burchak?",
+      "javob": "110°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Muntazam ko‘pburchak",
+      "matn": "Tomonlari va burchaklari teng ko‘pburchak muntazam deyiladi. Unga har doim ichki va tashqi aylana chizish mumkin, ularning markazi umumiy. Kvadrat: R — a√2 / 2, r — a / 2. Muntazam uchburchak: R — a√3 / 3, r — a√3 / 6.",
+      "misol": "Kvadrat tomoni 6: r — 3, R — 3√2. Muntazam uchburchak tomoni 6: R — 2√3, r — √3.",
+      "savol": "Kvadrat tomoni 4. Ichki aylana radiusi?",
+      "javob": "2",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tashqi chizilgan aylana uchlardan, ichki chizilgan aylana tomonlarga urinadi. R ifoda abc / (4S), r ifoda S / p. Ichki chizilgan to‘rtburchakda qarama-qarshi burchaklar yig‘indisi 180°, tashqi chizilganda qarama-qarshi tomonlar yig‘indilari teng.",
+    "misollar": [
+     {
+      "shart": "Tomonlari 6, 8, 10 uchburchak uchun R va r ni toping.",
+      "yechim": [
+       "To‘g‘ri burchakli uchburchak (36 + 64, ya’ni 100). R — 10 / 2, ya’ni 5.",
+       "S — 6 · 8 / 2, ya’ni 24, p — 12, r — 24 / 12, ya’ni 2.",
+       "Tekshirish: (6 + 8 − 10) / 2, ya’ni 2."
+      ],
+      "javob": "R — 5, r — 2"
+     },
+     {
+      "shart": "Tomonlari 5, 5, 6 uchburchak yuzini, r va R ni toping.",
+      "yechim": [
+       "Balandlik asosga: 25 − 9, ya’ni 16, balandlik 4. Yuza 6 · 4 / 2, ya’ni 12.",
+       "p — 8, r — 12 / 8, ya’ni 1,5.",
+       "R — 5 · 5 · 6 / (4 · 12), ya’ni 150 / 48 — 3,125."
+      ],
+      "javob": "yuza 12, r — 1,5, R — 3,125"
+     },
+     {
+      "shart": "Aylanaga tashqi chizilgan to‘rtburchakda AB — 7, CD — 9, BC — 8. AD ni toping.",
+      "yechim": [
+       "Qarama-qarshi tomonlar yig‘indisi teng: AB + CD — BC + AD.",
+       "7 + 9, ya’ni 16, 16 — 8 + AD.",
+       "AD — 8."
+      ],
+      "javob": "8"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Markazni topamiz",
+      "topshiriq": "Uchburchakni chizing, tomonlarining o‘rta perpendikulyarlarini o‘tkazing va tashqi aylana chizing.",
+      "yechim": "Perpendikulyarlar bir nuqtada kesishadi, bu aylana markazi.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Radiuslar",
+      "topshiriq": "5, 12, 13 uchburchak uchun R va r ni toping.",
+      "yechim": "R — 13 / 2, ya’ni 6,5. r — (5 + 12 − 13) / 2, ya’ni 2.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "To‘rtburchak",
+      "topshiriq": "Ichki chizilgan to‘rtburchakda A — 95°. C burchak qancha?",
+      "yechim": "180° − 95°, ya’ni 85°.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Kvadrat",
+      "topshiriq": "Tomoni 10 bo‘lgan kvadrat uchun R va r ni toping.",
+      "yechim": "R — 10√2 / 2, ya’ni 5√2. r — 10 / 2, ya’ni 5.",
+      "mahsulot": "hisob varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "8, 15, 17 uchburchak uchun R?",
+      "javob": "8,5"
+     },
+     {
+      "shart": "8, 15, 17 uchburchak uchun r?",
+      "javob": "3"
+     },
+     {
+      "shart": "Yuza 30, yarim perimetr 15. r?",
+      "javob": "2"
+     },
+     {
+      "shart": "Ichki chizilgan to‘rtburchakda A — 100°. C?",
+      "javob": "80°"
+     },
+     {
+      "shart": "Tashqi chizilgan to‘rtburchakda AB — 5, CD — 11, BC — 7. AD?",
+      "javob": "9"
+     },
+     {
+      "shart": "Kvadrat tomoni 6. r?",
+      "javob": "3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "R va r formulalarini adashtiradi",
+      "sabab": "tashqi va ichki aylanani farqlamaydi",
+      "oldini_olish": "R — abc / (4S), r — S / p ekanini yozib qo‘yish"
+     },
+     {
+      "xato": "p ni perimetr deb oladi",
+      "sabab": "yarmini olmaydi",
+      "oldini_olish": "p — yarim perimetr ekanini eslash"
+     },
+     {
+      "xato": "To‘rtburchak burchaklarini yig‘indisi 360° deb, qarama-qarshi burchak 180° ni unutadi",
+      "sabab": "chizilgan to‘rtburchak xossasini bilmaydi",
+      "oldini_olish": "ichki chizilganda qarama-qarshi burchaklar yig‘indisi 180°"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "detalni eng kichik aylana ichiga joylashtirish"
+     },
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "gumbaz va zal aylana shaklida"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "shakllarni aylana ichiga chizish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Aylana ichida»",
+     "muammo": "Ko‘pburchakka qanday aylanalar chiziladi va ularning radiuslari qanday topiladi?",
+     "mahsulot": "chizilgan aylanalar albomi",
+     "bosqichlar": [
+      "uchburchak tanlash",
+      "aylanalarni chizish",
+      "radiuslarni hisoblash",
+      "o‘lchab tekshirish",
+      "albom yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Uchburchak tanlang",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "chizma aniq",
+      "formula to‘g‘ri",
+      "o‘lchov mos",
+      "xulosa asosli",
+      "albom ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Chizilgan aylanalar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Hovuz",
+       "matn": "Uchburchak 3, 4, 5. Tashqi aylana radiusi?",
+       "topshiriq": "R?",
+       "javob": "2,5",
+       "rasm": ""
+      },
+      {
+       "nom": "Gulzor",
+       "matn": "Uchburchak 3, 4, 5. Ichki aylana radiusi?",
+       "topshiriq": "r?",
+       "javob": "1",
+       "rasm": ""
+      },
+      {
+       "nom": "Kvadrat maydon",
+       "matn": "Tomoni 8. Ichki aylana radiusi?",
+       "topshiriq": "r?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "Platforma",
+       "matn": "Ichki chizilgan to‘rtburchak, A — 60°.",
+       "topshiriq": "C?",
+       "javob": "120°",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi aylana oson chizildi?",
+      "R va r qanday farq qiladi?",
+      "Markazni qanday topdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tashqi chizilgan aylana",
+      "tarif": "ko‘pburchak uchlaridan o‘tuvchi aylana"
+     },
+     {
+      "atama": "Ichki chizilgan aylana",
+      "tarif": "ko‘pburchak tomonlariga urinuvchi aylana"
+     },
+     {
+      "atama": "O‘rta perpendikulyar",
+      "tarif": "kesma o‘rtasidan o‘tuvchi perpendikulyar"
+     },
+     {
+      "atama": "Bissektrisa",
+      "tarif": "burchakni teng ikkiga bo‘luvchi nur"
+     },
+     {
+      "atama": "Yarim perimetr",
+      "tarif": "perimetrning yarmi"
+     },
+     {
+      "atama": "Muntazam ko‘pburchak",
+      "tarif": "tomonlari va burchaklari teng ko‘pburchak"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "To‘g‘ri burchakli uchburchakda R — gipotenuzaning yarmi",
+      "togri": true,
+      "izoh": "markaz gipotenuza o‘rtasida"
+     },
+     {
+      "matn": "r ifoda S / p",
+      "togri": true,
+      "izoh": "yuza bo‘linadi yarim perimetrga"
+     },
+     {
+      "matn": "Ichki chizilgan aylana markazi o‘rta perpendikulyarlar kesishgan nuqtada",
+      "togri": false,
+      "izoh": "bissektrisalar kesishgan nuqtada"
+     },
+     {
+      "matn": "Ichki chizilgan to‘rtburchakda qarama-qarshi burchaklar yig‘indisi 180°",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "Tashqi chizilgan to‘rtburchakda qarama-qarshi tomonlar yig‘indisi teng",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "3, 4, 5 uchburchak uchun r — 2,5",
+      "togri": false,
+      "izoh": "r — 1, R — 2,5"
+     },
+     {
+      "matn": "Kvadrat tomoni 6 bo‘lsa, r — 3",
+      "togri": true,
+      "izoh": "a / 2"
+     },
+     {
+      "matn": "Har qanday to‘rtburchakka aylana chizish mumkin",
+      "togri": false,
+      "izoh": "faqat maxsus to‘rtburchaklarga"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tashqi chizilgan aylana nima?",
+      "javob": "uchlardan o‘tuvchi aylana"
+     },
+     {
+      "savol": "Ichki chizilgan aylana nima?",
+      "javob": "tomonlarga urinuvchi aylana"
+     },
+     {
+      "savol": "r formulasi?",
+      "javob": "S / p"
+     },
+     {
+      "savol": "R formulasi?",
+      "javob": "abc / (4S)"
+     },
+     {
+      "savol": "3, 4, 5 uchun R?",
+      "javob": "2,5"
+     },
+     {
+      "savol": "3, 4, 5 uchun r?",
+      "javob": "1"
+     },
+     {
+      "savol": "Ichki chizilgan to‘rtburchak xossasi?",
+      "javob": "qarama-qarshi burchaklar yig‘indisi 180°"
+     },
+     {
+      "savol": "Tashqi chizilgan to‘rtburchak xossasi?",
+      "javob": "qarama-qarshi tomonlar yig‘indilari teng"
+     },
+     {
+      "savol": "Kvadrat tomoni 10. r?",
+      "javob": "5"
+     },
+     {
+      "savol": "Ichki aylana markazi qayerda?",
+      "javob": "bissektrisalar kesishgan nuqtada"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Tashqi",
+      "matn": "Uchlardan o‘tadi.",
+      "savol": "Gipotenuza 12. R?"
+     },
+     {
+      "nom": "Ichki",
+      "matn": "Tomonlarga urinadi.",
+      "savol": "S — 20, p — 10. r?"
+     },
+     {
+      "nom": "To‘rtburchak",
+      "matn": "180° va teng yig‘indilar.",
+      "savol": "A — 70°, ichki chizilgan. C?"
+     },
+     {
+      "nom": "Muntazam",
+      "matn": "Kvadrat va uchburchak.",
+      "savol": "Kvadrat tomoni 8. r?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun to‘g‘ri burchakli uchburchakning tashqi chizilgan aylana markazi gipotenuza o‘rtasida bo‘ladi? Diametrga tiralgan burchak xossasidan foydalanib tushuntiring.",
+    "keys": {
+     "vaziyat": "Bog‘bon 6, 8, 10 m tomonli uchburchak gulzorni aylana bilan o‘ramoqchi va ichiga ham aylana ariq qazimoqchi.",
+     "savollar": [
+      "Tashqi aylana radiusi qancha?",
+      "Ichki aylana radiusi qancha?"
+     ]
+    },
+    "tezis": "Shakl ichidagi va tashqarisidagi aylana",
+    "taqqoslash": {
+     "a": "Ichki chizilgan aylana",
+     "b": "Tashqi chizilgan aylana",
+     "umumiy": [
+      "markazi bor",
+      "ko‘pburchak bilan bog‘liq"
+     ],
+     "a_farq": [
+      "tomonlarga urinadi",
+      "r — S / p"
+     ],
+     "b_farq": [
+      "uchlardan o‘tadi",
+      "R — abc / (4S)"
+     ]
+    },
+    "klaster": {
+     "markaz": "Chizilgan aylanalar",
+     "shoxlar": [
+      {
+       "nom": "Tashqi",
+       "bandlar": [
+        "uchlardan o‘tadi",
+        "R",
+        "o‘rta perpendikulyar"
+       ]
+      },
+      {
+       "nom": "Ichki",
+       "bandlar": [
+        "tomonlarga urinadi",
+        "r",
+        "bissektrisa"
+       ]
+      },
+      {
+       "nom": "To‘rtburchak",
+       "bandlar": [
+        "180° yig‘indi",
+        "teng yig‘indi"
+       ]
+      },
+      {
+       "nom": "Muntazam",
+       "bandlar": [
+        "kvadrat",
+        "uchburchak"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Uchlarni birlashtiraman, aylana bo‘laman. Men qanday aylanaman?",
+     "javob": "tashqi chizilgan aylana"
+    },
+    "hikmat": "Shakl ichida shakl, doira ichida doira.",
+    "kalit_soz": "RADIUS",
+    "xato_yechim": {
+     "shart": "3, 4, 5 uchburchakning ichki aylana radiusini toping.",
+     "xato": "2,5",
+     "togri": "1",
+     "sabab": "r — S / p, ya’ni 6 / 6 — 1; 2,5 — bu tashqi aylana radiusi"
+    },
+    "guruh_nomlari": [
+     "Ichkichilar",
+     "Tashqichilar",
+     "Radiuschilar",
+     "Markazchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Markaz izlab»",
+     "topshiriq": "Guruh uchburchak shaklini kesib, bissektrisalar kesishuvi orqali ichki aylana markazini topadi."
+    },
+    "vazifalar": {
+     "A": "6, 8, 10 uchburchak uchun R va r ni toping.",
+     "B": "Ichki chizilgan to‘rtburchakda A — 75°. C burchakni toping.",
+     "C": "Tomoni 12 bo‘lgan kvadrat uchun R va r ni toping."
+    },
+    "sinkveyn": [
+     "Aylana",
+     "ichki, tashqi",
+     "o‘tadi, urinadi, chiziladi",
+     "Shakl bilan aylana uyg‘unligi",
+     "Radius"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh chizilgan aylanalar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: gipotenuza 10, R",
+      "2-guruh: S — 24, p — 12, r",
+      "3-guruh: A — 80°, C",
+      "4-guruh: kvadrat tomoni 10, r"
+     ],
+     "yakun": "Natijalar: 5; 2; 100°; 5."
+    }
+   }
+  },
+  {
+   "mavzu": "Vektorlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Vektor tushunchasi",
+      "matn": "Yo‘nalgan kesma vektor deyiladi. Uning boshi va oxiri bor. Vektor uzunligi (moduli) — kesma uzunligi. Vektor AB yoki a harfi bilan belgilanadi. Tezlik, kuch, ko‘chish — vektor kattaliklar, ularning qiymati va yo‘nalishi bor.",
+      "misol": "Avtomobil 60 km/soat tezlik bilan sharqqa ketmoqda: bu vektor, chunki yo‘nalishi ham bor.",
+      "savol": "Vektor nimalarga ega?",
+      "javob": "uzunlik va yo‘nalish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vektor koordinatalari",
+      "matn": "A(x1; y1) va B(x2; y2) nuqtalar berilsa, AB vektor koordinatalari oxiri koordinatalaridan boshi koordinatalarini ayirib topiladi: (x2 − x1; y2 − y1). Uzunligi (a; b) vektor uchun a² + b² ning kvadrat ildizi.",
+      "misol": "A(1; 2), B(4; 6): AB — (3; 4), uzunligi 9 + 16, ya’ni 25 ning ildizi, 5.",
+      "savol": "A(2; 1), B(5; 5). AB koordinatalari?",
+      "javob": "(3; 4)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shish va ayirish",
+      "matn": "Vektorlarni qo‘shish va ayirish koordinatalar bo‘yicha bajariladi: (a1; a2) + (b1; b2) — (a1 + b1; a2 + b2). Geometrik jihatdan uchburchak yoki parallelogramm qoidasi qo‘llanadi.",
+      "misol": "(2; 3) + (1; −1) — (3; 2). (5; 1) − (2; 3) — (3; −2).",
+      "savol": "(1; 2) + (3; 4) nimaga teng?",
+      "javob": "(4; 6)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vektorni songa ko‘paytirish",
+      "matn": "Vektorni k soniga ko‘paytirsak, har bir koordinata k marta o‘zgaradi, uzunlik |k| marta o‘zgaradi. k manfiy bo‘lsa, yo‘nalish teskarisiga almashadi.",
+      "misol": "2 · (3; 4) — (6; 8), uzunlik 10 (oldin 5). −1 · (3; 4) — (−3; −4), qarama-qarshi vektor.",
+      "savol": "3 · (1; 2) nimaga teng?",
+      "javob": "(3; 6)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kollinear vektorlar va o‘rta nuqta",
+      "matn": "Bir to‘g‘ri chiziqda yoki parallel chiziqlarda yotgan vektorlar kollinear deyiladi: biri ikkinchisini songa ko‘paytirishdan hosil bo‘ladi. Kesma o‘rtasining koordinatalari uchlar koordinatalarining yarim yig‘indisi.",
+      "misol": "(2; 4) va (1; 2) kollinear, chunki (2; 4) — 2 · (1; 2). A(2; 4), B(6; 8) kesma o‘rtasi (4; 6).",
+      "savol": "A(0; 2), B(4; 6) kesma o‘rtasi?",
+      "javob": "(2; 4)",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "AB — (x2 − x1; y2 − y1). (a; b) vektor uzunligi — a² + b² ning ildizi. Vektorlar koordinatalar bo‘yicha qo‘shiladi, songa ko‘paytiriladi. O‘rta nuqta — uchlar koordinatalarining yarim yig‘indisi.",
+    "misollar": [
+     {
+      "shart": "A(1; 2), B(4; 6) nuqtalar bo‘yicha AB vektor koordinatalari va uzunligini toping.",
+      "yechim": [
+       "Koordinatalar (4 − 1; 6 − 2), ya’ni (3; 4).",
+       "Uzunlik 9 + 16 ning ildizi.",
+       "25 ning ildizi, ya’ni 5."
+      ],
+      "javob": "(3; 4) va 5"
+     },
+     {
+      "shart": "a — (3; 1), b — (−1; 2). a + b, a − b va 2a ni toping.",
+      "yechim": [
+       "a + b — (3 − 1; 1 + 2), ya’ni (2; 3).",
+       "a − b — (3 + 1; 1 − 2), ya’ni (4; −1).",
+       "2a — (6; 2)."
+      ],
+      "javob": "(2; 3), (4; −1), (6; 2)"
+     },
+     {
+      "shart": "A(−2; 3), B(4; −1). AB koordinatalari va uzunligini toping.",
+      "yechim": [
+       "Koordinatalar (4 + 2; −1 − 3), ya’ni (6; −4).",
+       "Uzunlik 36 + 16, ya’ni 52 ning ildizi.",
+       "52 — 4 · 13, ildizi 2√13."
+      ],
+      "javob": "(6; −4), uzunlik 2√13"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ko‘chish",
+      "topshiriq": "Sayohatchi 3 km sharqqa, so‘ng 4 km shimolga yurdi. Umumiy ko‘chish vektori va uzunligini toping.",
+      "yechim": "Vektor (3; 4), uzunlik 5 km.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Vektorlar yig‘indisi",
+      "topshiriq": "a — (2; 5) va b — (−3; 1). a + b va a − b ni toping.",
+      "yechim": "(−1; 6) va (5; 4).",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Kollinearlik",
+      "topshiriq": "(2; −4) va (−1; 2) vektorlar kollinearmi?",
+      "yechim": "Ha: (2; −4) — −2 · (−1; 2).",
+      "mahsulot": "tekshiruv varag‘i"
+     },
+     {
+      "nom": "O‘rta nuqta",
+      "topshiriq": "A(−2; 0), B(4; 6) kesma o‘rtasini toping.",
+      "yechim": "((−2 + 4) / 2; (0 + 6) / 2), ya’ni (1; 3).",
+      "mahsulot": "chizma"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "(1; 2) + (3; 4) nimaga teng?",
+      "javob": "(4; 6)"
+     },
+     {
+      "shart": "3 · (1; 2) nimaga teng?",
+      "javob": "(3; 6)"
+     },
+     {
+      "shart": "(6; 8) vektor uzunligi?",
+      "javob": "10"
+     },
+     {
+      "shart": "A(2; 1), B(5; 5). AB koordinatalari?",
+      "javob": "(3; 4)"
+     },
+     {
+      "shart": "(5; 1) − (2; 3) nimaga teng?",
+      "javob": "(3; −2)"
+     },
+     {
+      "shart": "A(0; 2), B(4; 6) kesma o‘rtasi?",
+      "javob": "(2; 4)"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "AB koordinatalarini boshidan oxirini ayirib topadi",
+      "sabab": "tartibni adashtiradi",
+      "oldini_olish": "oxiri minus boshi ekanini yozib qo‘yish"
+     },
+     {
+      "xato": "Vektor uzunligini koordinatalar yig‘indisi deb oladi",
+      "sabab": "Pifagor formulasini unutadi",
+      "oldini_olish": "uzunlik — kvadratlar yig‘indisining ildizi"
+     },
+     {
+      "xato": "Manfiy songa ko‘paytirganda yo‘nalish o‘zgarmaydi deb o‘ylaydi",
+      "sabab": "teskari yo‘nalishni unutadi",
+      "oldini_olish": "manfiy k yo‘nalishni teskari qilishini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "kuch, tezlik va ko‘chish vektorlari"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "shamol va oqim yo‘nalishi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "kompyuter grafikasi va o‘yinlarda vektorlar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Xazina xaritasi»",
+     "muammo": "Vektorlar yordamida xazinaga yo‘lni qanday ko‘rsatamiz?",
+     "mahsulot": "vektorli xazina xaritasi",
+     "bosqichlar": [
+      "maydon tanlash",
+      "boshlang‘ich nuqta",
+      "vektorlar ketma-ketligi",
+      "umumiy ko‘chishni hisoblash",
+      "xarita yasash"
+     ],
+     "guruh_vazifalari": [
+      "Nuqtalarni belgilang",
+      "Vektorlarni yozing",
+      "Yig‘indini toping",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "koordinatalar to‘g‘ri",
+      "yig‘indi to‘g‘ri",
+      "xarita aniq",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Vektorlar sarguzashti»",
+     "bekatlar": [
+      {
+       "nom": "Boshlanish",
+       "matn": "A(1; 1), B(4; 5).",
+       "topshiriq": "AB koordinatalari?",
+       "javob": "(3; 4)",
+       "rasm": ""
+      },
+      {
+       "nom": "Yo‘l",
+       "matn": "(3; 4) vektor.",
+       "topshiriq": "Uzunligi?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘prik",
+       "matn": "(2; 3) + (4; 1).",
+       "topshiriq": "Yig‘indi?",
+       "javob": "(6; 4)",
+       "rasm": ""
+      },
+      {
+       "nom": "Manzil",
+       "matn": "A(0; 0), B(6; 8).",
+       "topshiriq": "O‘rta nuqta?",
+       "javob": "(3; 4)",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda vektorni uchratdingiz?",
+      "Koordinatalarni qanday topdingiz?",
+      "Yig‘indi qanday chiqdi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Vektor",
+      "tarif": "yo‘nalgan kesma"
+     },
+     {
+      "atama": "Vektor uzunligi",
+      "tarif": "kesma uzunligi (moduli)"
+     },
+     {
+      "atama": "Vektor koordinatalari",
+      "tarif": "oxiri minus boshi koordinatalari"
+     },
+     {
+      "atama": "Kollinear vektorlar",
+      "tarif": "bir to‘g‘ri chiziqqa parallel vektorlar"
+     },
+     {
+      "atama": "Qarama-qarshi vektor",
+      "tarif": "uzunligi teng, yo‘nalishi teskari vektor"
+     },
+     {
+      "atama": "Nol vektor",
+      "tarif": "boshi va oxiri ustma-ust tushgan vektor"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Vektorning uzunligi va yo‘nalishi bor",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "AB koordinatalari boshi minus oxiri",
+      "togri": false,
+      "izoh": "oxiri minus boshi"
+     },
+     {
+      "matn": "(3; 4) vektor uzunligi 5",
+      "togri": true,
+      "izoh": "9 + 16, ya’ni 25"
+     },
+     {
+      "matn": "Vektorlar koordinatalar bo‘yicha qo‘shiladi",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "Manfiy songa ko‘paytirganda yo‘nalish saqlanadi",
+      "togri": false,
+      "izoh": "teskari bo‘ladi"
+     },
+     {
+      "matn": "(2; 4) va (1; 2) kollinear",
+      "togri": true,
+      "izoh": "(2; 4) — 2 · (1; 2)"
+     },
+     {
+      "matn": "Kesma o‘rtasi uchlar koordinatalarining yarim yig‘indisi",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Tezlik skalyar kattalik",
+      "togri": false,
+      "izoh": "tezlik yo‘nalishga ega, vektor"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Vektor nima?",
+      "javob": "yo‘nalgan kesma"
+     },
+     {
+      "savol": "AB koordinatalari qanday topiladi?",
+      "javob": "oxiri minus boshi"
+     },
+     {
+      "savol": "(3; 4) uzunligi?",
+      "javob": "5"
+     },
+     {
+      "savol": "(1; 1) + (2; 3)?",
+      "javob": "(3; 4)"
+     },
+     {
+      "savol": "2 · (2; 3)?",
+      "javob": "(4; 6)"
+     },
+     {
+      "savol": "Kollinear nima?",
+      "javob": "parallel yoki bir chiziqda yotgan vektorlar"
+     },
+     {
+      "savol": "Qarama-qarshi vektor?",
+      "javob": "teskari yo‘nalishli teng uzunlikli vektor"
+     },
+     {
+      "savol": "(0; 0), (4; 6) o‘rtasi?",
+      "javob": "(2; 3)"
+     },
+     {
+      "savol": "Vektor kattalikka misol?",
+      "javob": "tezlik yoki kuch"
+     },
+     {
+      "savol": "−1 · (2; 5)?",
+      "javob": "(−2; −5)"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Tushuncha",
+      "matn": "Uzunlik va yo‘nalish.",
+      "savol": "Vektor nima?"
+     },
+     {
+      "nom": "Koordinata",
+      "matn": "Oxiri minus boshi.",
+      "savol": "A(0; 0), B(3; 4). AB?"
+     },
+     {
+      "nom": "Amallar",
+      "matn": "Koordinatalar bo‘yicha.",
+      "savol": "(1; 2) + (2; 2)?"
+     },
+     {
+      "nom": "Uzunlik",
+      "matn": "Kvadratlar yig‘indisi ildizi.",
+      "savol": "(6; 8) uzunligi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun vektorning uzunligi (a; b) koordinatalari kvadratlari yig‘indisining ildiziga teng? Pifagor teoremasi orqali tushuntiring.",
+    "keys": {
+     "vaziyat": "Kema A(0; 0) nuqtadan chiqib, B(6; 8) nuqtaga yetishi kerak. Har bir birlik 1 km.",
+     "savollar": [
+      "Ko‘chish vektori qanday?",
+      "Masofa qancha?"
+     ]
+    },
+    "tezis": "Vektor — yo‘nalish va kattalik",
+    "taqqoslash": {
+     "a": "Vektor kattalik",
+     "b": "Skalyar kattalik",
+     "umumiy": [
+      "son bilan ifodalanadi",
+      "o‘lchov birligi bor"
+     ],
+     "a_farq": [
+      "yo‘nalishi bor",
+      "tezlik, kuch"
+     ],
+     "b_farq": [
+      "yo‘nalishi yo‘q",
+      "massa, vaqt"
+     ]
+    },
+    "klaster": {
+     "markaz": "Vektorlar",
+     "shoxlar": [
+      {
+       "nom": "Tushuncha",
+       "bandlar": [
+        "uzunlik",
+        "yo‘nalish"
+       ]
+      },
+      {
+       "nom": "Koordinatalar",
+       "bandlar": [
+        "oxiri minus boshi",
+        "uzunlik formulasi"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "qo‘shish",
+        "ayirish",
+        "songa ko‘paytirish"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "kuch",
+        "tezlik",
+        "o‘rta nuqta"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Kattaligim ham, yo‘nalishim ham bor. Men kimman?",
+     "javob": "vektor"
+    },
+    "hikmat": "Yo‘nalishni bilgan manzilga yetadi.",
+    "kalit_soz": "VEKTOR",
+    "xato_yechim": {
+     "shart": "A(1; 2), B(4; 6) nuqtalar bo‘yicha AB ni toping.",
+     "xato": "(−3; −4)",
+     "togri": "(3; 4)",
+     "sabab": "koordinatalar oxiri minus boshi: (4 − 1; 6 − 2), ya’ni (3; 4)"
+    },
+    "guruh_nomlari": [
+     "Vektorchilar",
+     "Yo‘nalishchilar",
+     "Koordinatachilar",
+     "Yig‘indichilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Xarita bo‘yicha»",
+     "topshiriq": "Guruh maktab hovlisida vektorlar bo‘yicha yurib, boshlang‘ich va oxirgi nuqta orasidagi ko‘chishni topadi."
+    },
+    "vazifalar": {
+     "A": "A(1; 3), B(5; 6) nuqtalar bo‘yicha AB va uzunligini toping.",
+     "B": "a — (2; 5), b — (1; −3). a + b, a − b, 3a ni toping.",
+     "C": "A(−2; 4), B(6; 0) kesma o‘rtasini toping."
+    },
+    "sinkveyn": [
+     "Vektor",
+     "yo‘nalgan, kesma",
+     "ko‘chadi, qo‘shiladi, cho‘ziladi",
+     "Kattalik va yo‘nalish",
+     "Strelka"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh vektorlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: A(0; 0), B(3; 4), AB",
+      "2-guruh: (3; 4) uzunligi",
+      "3-guruh: (1; 2) + (2; 3)",
+      "4-guruh: 2 · (2; 3)"
+     ],
+     "yakun": "Natijalar: (3; 4); 5; (3; 5); (4; 6)."
+    }
+   }
   }
  ]
 }
