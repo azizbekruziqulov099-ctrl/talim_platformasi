@@ -4194,6 +4194,1404 @@
      "yakun": "Natijalar: 20 km; 6 sm; 4 m; 10 sm."
     }
    }
+  },
+  {
+   "mavzu": "Foizga doir masalalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Foiz nima?",
+      "matn": "Foiz — sonning yuzdan bir ulushi. 1 foiz yuzdan bir qismni bildiradi, shuning uchun 100 foiz butun sonning o‘ziga teng. Foiz % belgisi bilan yoziladi.",
+      "misol": "200 ning 1 foizi 2, chunki 200 ni 100 ga bo‘lsak 2 chiqadi. 100 foiz esa butun 200 ning o‘zi.",
+      "savol": "500 ning 1 foizi nechaga teng?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonning foizini topish",
+      "matn": "Sonning berilgan foizini topish uchun sonni 100 ga bo‘lib, foiz soniga ko‘paytiramiz. Ba’zan foizni oddiy kasrga o‘tkazish qulay: 50 foiz — yarmi, 25 foiz — choragi, 10 foiz — o‘ndan biri.",
+      "misol": "80 ning 25 foizini topamiz: 25 foiz — chorak qismi. 80 ning choragi 20.",
+      "savol": "60 ning 50 foizi nechaga teng?",
+      "javob": "30",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Foiziga ko‘ra sonni topish",
+      "matn": "Agar sonning ma’lum foizi berilgan bo‘lsa, butun sonni topish uchun berilgan qiymatni foiz soniga bo‘lib, 100 ga ko‘paytiramiz.",
+      "misol": "Sonning 20 foizi 30 bo‘lsa, 30 ni 20 ga bo‘lamiz: 1 foiz 1,5 ga teng ekan. 1,5 ni 100 ga ko‘paytirsak, son 150 bo‘ladi. Tekshirish: 150 ning 20 foizi 30.",
+      "savol": "Sonning 10 foizi 7 bo‘lsa, son nechaga teng?",
+      "javob": "70",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bir son ikkinchisining necha foizi?",
+      "matn": "Birinchi sonni ikkinchisiga bo‘lib, 100 ga ko‘paytirsak, birinchi son ikkinchisining necha foizi ekanini topamiz.",
+      "misol": "15 soni 60 ning necha foizi? 15 ni 60 ga bo‘lsak chorak chiqadi, chorak esa 25 foiz.",
+      "savol": "12 soni 48 ning necha foizi?",
+      "javob": "25 foiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chegirma va narx ortishi",
+      "matn": "Chegirma narxdan ayiriladi, narx ortishi esa qo‘shiladi. Avval chegirma miqdorini foizdan topamiz, keyin yangi narxni hisoblaymiz.",
+      "misol": "Narx 200 ming so‘m, chegirma 15 foiz. 200 ning 15 foizi 30. Yangi narx 200 dan 30 ni ayirsak, 170 ming so‘m.",
+      "savol": "400 ming so‘mlik narxga 10 foiz chegirma qilinsa, yangi narx necha so‘m?",
+      "javob": "360 ming so‘m",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Foiz — sonning yuzdan bir ulushi. Sonning foizini topish uchun sonni 100 ga bo‘lib foiz soniga ko‘paytiramiz. Foiziga ko‘ra sonni topish uchun qiymatni foiz soniga bo‘lib 100 ga ko‘paytiramiz.",
+    "misollar": [
+     {
+      "shart": "Sinfda 30 o‘quvchi bor, 40 foizi qizlar. Nechta qiz bor?",
+      "yechim": [
+       "30 ni 100 ga bo‘lish o‘rniga 10 ga bo‘lamiz: 10 foiz — 3 o‘quvchi.",
+       "40 foiz — to‘rt marta ko‘p: 3 ni 4 ga ko‘paytiramiz.",
+       "Natija 12."
+      ],
+      "javob": "12 ta"
+     },
+     {
+      "shart": "Kitob 120 bet. Uning 25 foizi o‘qildi. Necha bet qoldi?",
+      "yechim": [
+       "25 foiz — chorak qism. 120 ning choragi 30.",
+       "O‘qilgan 30 bet.",
+       "Qolgan bet: 120 dan 30 ni ayirsak, 90."
+      ],
+      "javob": "90 bet"
+     },
+     {
+      "shart": "Maktab o‘quvchilarining 15 foizi 45 ta. Maktabda hammasi bo‘lib nechta o‘quvchi bor?",
+      "yechim": [
+       "15 foiz 45 ta.",
+       "1 foiz: 45 ni 15 ga bo‘lsak, 3.",
+       "100 foiz: 3 ni 100 ga ko‘paytirsak, 300."
+      ],
+      "javob": "300 ta"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Foiz jadvali",
+      "topshiriq": "200 ning 10, 25, 50 va 75 foizini toping.",
+      "yechim": "10 foiz — 20; 25 foiz — 50; 50 foiz — 100; 75 foiz — 150.",
+      "mahsulot": "foiz jadvali"
+     },
+     {
+      "nom": "Chegirma",
+      "topshiriq": "Telefon narxi 800 ming so‘m, chegirma 20 foiz. Yangi narxni toping.",
+      "yechim": "800 ning 20 foizi 160. Yangi narx 800 dan 160 ni ayirsak, 640 ming so‘m.",
+      "mahsulot": "chegirma varag‘i"
+     },
+     {
+      "nom": "Test natijasi",
+      "topshiriq": "25 ta savoldan 20 tasi to‘g‘ri javob berilgan. Necha foiz to‘g‘ri?",
+      "yechim": "20 ni 25 ga bo‘lsak 4/5, ya’ni 80 foiz.",
+      "mahsulot": "natijalar jadvali"
+     },
+     {
+      "nom": "Omonat",
+      "topshiriq": "500 ming so‘m omonatga yillik 12 foiz foyda beriladi. Bir yilda necha so‘m foyda keladi?",
+      "yechim": "500 ming ning 1 foizi 5 ming. 12 foizi: 5 ni 12 ga ko‘paytirsak, 60 ming so‘m.",
+      "mahsulot": "hisob daftari"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "300 ning 10 foizini toping.",
+      "javob": "30"
+     },
+     {
+      "shart": "80 ning 25 foizini toping.",
+      "javob": "20"
+     },
+     {
+      "shart": "50 ning 30 foizini toping.",
+      "javob": "15"
+     },
+     {
+      "shart": "9 soni 36 ning necha foizi?",
+      "javob": "25 foiz"
+     },
+     {
+      "shart": "Sonning 20 foizi 12 bo‘lsa, sonni toping.",
+      "javob": "60"
+     },
+     {
+      "shart": "600 ming so‘mlik narxga 15 foiz chegirma qilindi. Chegirma necha so‘m?",
+      "javob": "90 ming so‘m"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Foizni oddiy son kabi ko‘paytiradi",
+      "sabab": "foiz yuzdan bir ulush ekanini unutadi",
+      "oldini_olish": "avval foizni kasr ko‘rinishda yozib olish"
+     },
+     {
+      "xato": "Chegirmani narxdan emas, narxga qo‘shadi",
+      "sabab": "chegirma ma’nosini adashtiradi",
+      "oldini_olish": "chegirma — kamayish, ortish — ko‘payish ekanini aytib o‘tish"
+     },
+     {
+      "xato": "Bir son ikkinchisining foizini topishda bo‘lishni teskari qiladi",
+      "sabab": "qaysi son butun ekanini aniqlamaydi",
+      "oldini_olish": "butun — ikkinchi son ekanini belgilab olish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "chegirma, soliq, omonat va kredit foizlari"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "eritma konsentratsiyasi foizlarda ko‘rsatiladi"
+     },
+     {
+      "fan": "Statistika",
+      "boglanish": "so‘rovnoma natijalari foizlarda beriladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Chegirmalar bozori»",
+     "muammo": "Do‘kon chegirmalarining haqiqiy foydasini qanday hisoblaymiz?",
+     "mahsulot": "chegirmalar jadvali",
+     "bosqichlar": [
+      "mahsulotlarni tanlash",
+      "narxlarni yig‘ish",
+      "chegirmalarni hisoblash",
+      "taqqoslash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Mahsulotlarni tanlang",
+      "Chegirmani hisoblang",
+      "Yangi narxlarni toping",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "foiz to‘g‘ri",
+      "hisob to‘g‘ri",
+      "jadval tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Do‘kon va bank»",
+     "bekatlar": [
+      {
+       "nom": "Kiyim do‘koni",
+       "matn": "Kurtka narxi 500 ming so‘m, chegirma 20 foiz.",
+       "topshiriq": "Chegirma necha so‘m?",
+       "javob": "100 ming so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Bank",
+       "matn": "400 ming so‘m omonatga yillik 10 foiz foyda beriladi.",
+       "topshiriq": "Bir yilda necha so‘m foyda?",
+       "javob": "40 ming so‘m",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab",
+       "matn": "Sinfda 25 o‘quvchi, 20 foizi a’lochi.",
+       "topshiriq": "Nechta a’lochi bor?",
+       "javob": "5 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "200 ta daraxtning 30 foizi olma.",
+       "topshiriq": "Nechta olma daraxti bor?",
+       "javob": "60 ta",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Chegirma nima uchun foizda beriladi?",
+      "Foizni qayerda uchratdingiz?",
+      "Sizga foyda qachon ko‘p?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Foiz",
+      "tarif": "sonning yuzdan bir ulushi"
+     },
+     {
+      "atama": "Chegirma",
+      "tarif": "narxning kamaytirilgan qismi"
+     },
+     {
+      "atama": "Omonat",
+      "tarif": "bankda saqlanadigan pul"
+     },
+     {
+      "atama": "Foyda",
+      "tarif": "daromaddan xarajat chiqarilgandan keyingi qism"
+     },
+     {
+      "atama": "Konsentratsiya",
+      "tarif": "aralashmadagi modda ulushi"
+     },
+     {
+      "atama": "Ulush",
+      "tarif": "butunning bir qismi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "100 foiz butun sonning o‘ziga teng",
+      "togri": true,
+      "izoh": "100 foiz — butun"
+     },
+     {
+      "matn": "50 foiz — sonning choragi",
+      "togri": false,
+      "izoh": "50 foiz — yarmi, chorak esa 25 foiz"
+     },
+     {
+      "matn": "1 foiz — sonning yuzdan biri",
+      "togri": true,
+      "izoh": "foiz ta’rifi"
+     },
+     {
+      "matn": "Chegirma narxni oshiradi",
+      "togri": false,
+      "izoh": "chegirma narxni kamaytiradi"
+     },
+     {
+      "matn": "10 foiz — sonning o‘ndan biri",
+      "togri": true,
+      "izoh": "10 foiz — 1/10"
+     },
+     {
+      "matn": "Foizni topishda sonni 100 ga ko‘paytiramiz",
+      "togri": false,
+      "izoh": "100 ga bo‘lamiz"
+     },
+     {
+      "matn": "25 foiz — sonning choragi",
+      "togri": true,
+      "izoh": "25/100 — 1/4"
+     },
+     {
+      "matn": "Foiz faqat pulda ishlatiladi",
+      "togri": false,
+      "izoh": "ko‘p sohalarda ishlatiladi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Foiz nima?",
+      "javob": "sonning yuzdan bir ulushi"
+     },
+     {
+      "savol": "200 ning 10 foizi nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "savol": "50 foiz qanday ulush?",
+      "javob": "yarmi"
+     },
+     {
+      "savol": "25 foiz qanday ulush?",
+      "javob": "choragi"
+     },
+     {
+      "savol": "60 ning 50 foizi?",
+      "javob": "30"
+     },
+     {
+      "savol": "20 soni 80 ning necha foizi?",
+      "javob": "25 foiz"
+     },
+     {
+      "savol": "Sonning 10 foizi 5 bo‘lsa, son?",
+      "javob": "50"
+     },
+     {
+      "savol": "Chegirma narxni qanday o‘zgartiradi?",
+      "javob": "kamaytiradi"
+     },
+     {
+      "savol": "400 ning 5 foizi?",
+      "javob": "20"
+     },
+     {
+      "savol": "100 foiz qanday miqdor?",
+      "javob": "butun miqdor"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Foiz — sonning yuzdan bir ulushi.",
+      "savol": "100 ning 1 foizi?"
+     },
+     {
+      "nom": "Foizni topish",
+      "matn": "Sonni 100 ga bo‘lib foizga ko‘paytiramiz.",
+      "savol": "200 ning 5 foizi?"
+     },
+     {
+      "nom": "Sonni topish",
+      "matn": "Qiymatni foizga bo‘lib 100 ga ko‘paytiramiz.",
+      "savol": "20 foizi 10 bo‘lgan son?"
+     },
+     {
+      "nom": "Chegirma",
+      "matn": "Chegirmani narxdan ayiramiz.",
+      "savol": "100 ming so‘mga 10 foiz chegirma?"
+     }
+    ],
+    "muammoli_savol": "Narx avval 20 foizga oshirilib, keyin 20 foizga arzonlashtirilsa, u dastlabki narxga qaytadimi? Misol bilan tekshirib ko‘ring.",
+    "keys": {
+     "vaziyat": "Do‘konda 500 ming so‘mlik poyabzalga 20 foiz chegirma e’lon qilindi.",
+     "savollar": [
+      "Chegirma necha so‘m?",
+      "Yangi narx necha so‘m?"
+     ]
+    },
+    "tezis": "Foiz — butunning ulushini o‘lchaydi",
+    "taqqoslash": {
+     "a": "Foizni topish",
+     "b": "Sonni topish",
+     "umumiy": [
+      "foiz bilan ishlaydi",
+      "100 raqami qatnashadi"
+     ],
+     "a_farq": [
+      "butun ma’lum",
+      "foizni topamiz"
+     ],
+     "b_farq": [
+      "foizi ma’lum",
+      "butunni topamiz"
+     ]
+    },
+    "klaster": {
+     "markaz": "Foiz",
+     "shoxlar": [
+      {
+       "nom": "Ta’rif",
+       "bandlar": [
+        "yuzdan bir",
+        "% belgisi",
+        "100 foiz — butun"
+       ]
+      },
+      {
+       "nom": "Foizni topish",
+       "bandlar": [
+        "100 ga bo‘lish",
+        "kasrga o‘tkazish",
+        "ko‘paytirish"
+       ]
+      },
+      {
+       "nom": "Sonni topish",
+       "bandlar": [
+        "foizga bo‘lish",
+        "100 ga ko‘paytirish",
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "chegirma",
+        "omonat",
+        "so‘rovnoma"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Butun uning yuzga bo‘lingan qismi. Do‘konda ko‘rsang, narx tushadi. Men kimman?",
+     "javob": "foiz"
+    },
+    "hikmat": "Tejagan boy bo‘ladi.",
+    "kalit_soz": "FOIZ",
+    "xato_yechim": {
+     "shart": "50 ning 10 foizini toping.",
+     "xato": "500, chunki 50 ni 10 ga ko‘paytiradi",
+     "togri": "5",
+     "sabab": "foizni topishda 100 ga ham bo‘lish kerak: 10 foiz — o‘ndan bir"
+    },
+    "guruh_nomlari": [
+     "Foizchilar",
+     "Chegirmachilar",
+     "Hisobchilar",
+     "Savdogarlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Do‘kon chegirmasi»",
+     "topshiriq": "Guruh uch xil mahsulot narxini yozadi, chegirma foizlarini tanlaydi va yangi narxlarni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: 400 ning 15 foizi; 18 soni 72 ning necha foizi; 30 foizi 60 bo‘lgan son.",
+     "B": "Uydagi biror mahsulotning chegirmali narxini toping.",
+     "C": "Foizga doir o‘z masalangizni tuzing va yeching."
+    },
+    "sinkveyn": [
+     "Foiz",
+     "yuzdan bir, ulush",
+     "hisoblaydi, kamaytiradi, ko‘paytiradi",
+     "Butunning ulushi",
+     "Yuzlik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh turli foiz masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: 200 ning 15 foizi",
+      "2-guruh: 40 soni 160 ning necha foizi",
+      "3-guruh: sonning 30 foizi 90 bo‘lsa, son",
+      "4-guruh: 800 ga 5 foiz qo‘shilsa, qo‘shilgan miqdor"
+     ],
+     "yakun": "Natijalar: 30; 25 foiz; 300; 40."
+    }
+   }
+  },
+  {
+   "mavzu": "Koordinata tekisligi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Koordinata tekisligi",
+      "matn": "Ikkita o‘zaro perpendikulyar son o‘qi koordinata tekisligini hosil qiladi. Gorizontal o‘q abssissalar o‘qi (Ox), vertikal o‘q ordinatalar o‘qi (Oy) deyiladi. O‘qlar kesishgan nuqta koordinata boshi (O).",
+      "misol": "Koordinata boshi O ning koordinatalari (0; 0). Ox o‘qi bo‘ylab o‘ngga, Oy o‘qi bo‘ylab yuqoriga musbat yo‘nalish.",
+      "savol": "Koordinata boshining koordinatalari qanday?",
+      "javob": "(0; 0)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nuqta koordinatalari",
+      "matn": "Tekislikdagi har bir nuqta ikkita son bilan beriladi: birinchisi abssissa (x), ikkinchisi ordinata (y). Ularning tartibi muhim: (x; y).",
+      "misol": "A(3; 2) nuqtani topish uchun koordinata boshidan o‘ngga 3 qadam, so‘ng yuqoriga 2 qadam yuramiz.",
+      "savol": "A(3; 2) va B(2; 3) bir nuqtami?",
+      "javob": "yo‘q, tartib muhim",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Choraklar",
+      "matn": "Koordinata o‘qlari tekislikni to‘rt chorakka ajratadi. I chorakda ikkala koordinata musbat. II chorakda x manfiy, y musbat. III chorakda ikkalasi manfiy. IV chorakda x musbat, y manfiy.",
+      "misol": "(−2; 4) nuqta II chorakda, chunki x manfiy, y musbat.",
+      "savol": "(−3; −1) nuqta qaysi chorakda?",
+      "javob": "III chorakda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘qlardagi nuqtalar",
+      "matn": "Ox o‘qida yotgan nuqtaning ordinatasi 0 bo‘ladi, Oy o‘qida yotgan nuqtaning abssissasi 0 bo‘ladi. Bunday nuqtalar hech bir chorakka tegishli emas.",
+      "misol": "(5; 0) nuqta Ox o‘qida, (0; −2) nuqta Oy o‘qida yotadi.",
+      "savol": "(0; 4) nuqta qaysi o‘qda yotadi?",
+      "javob": "Oy o‘qida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Shakllarni chizish",
+      "matn": "Koordinatalar bo‘yicha nuqtalarni belgilab, ketma-ket tutashtirsak, shakl hosil bo‘ladi. Shakl o‘lchamlari koordinatalar ayirmasidan topiladi.",
+      "misol": "(1; 1), (4; 1), (4; 3), (1; 3) nuqtalar to‘g‘ri to‘rtburchak hosil qiladi. Tomonlari 3 va 2, perimetri 10, yuzasi 6.",
+      "savol": "Shu to‘g‘ri to‘rtburchakning perimetri nechaga teng?",
+      "javob": "10",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Koordinata tekisligi — ikki perpendikulyar son o‘qi. Nuqta (x; y) juftlik bilan beriladi, tartib muhim. Tekislik to‘rt chorakka bo‘linadi, o‘qlardagi nuqtalar hech bir chorakka tegishli emas.",
+    "misollar": [
+     {
+      "shart": "A(−3; 2) nuqtani koordinata tekisligida toping va qaysi chorakda ekanini ayting.",
+      "yechim": [
+       "Koordinata boshidan chapga 3 qadam yuramiz.",
+       "Keyin yuqoriga 2 qadam yuramiz.",
+       "x manfiy, y musbat — II chorak."
+      ],
+      "javob": "II chorak"
+     },
+     {
+      "shart": "(2; 3) va (2; −1) nuqtalar orasidagi masofani toping.",
+      "yechim": [
+       "Ikkala nuqtaning abssissasi 2, ular bir vertikal chiziqda.",
+       "Ordinatalar 3 va −1: 3 dan −1 gacha masofa 4 birlik.",
+       "Sonlar o‘qida 3 dan 0 gacha 3 qadam, 0 dan −1 gacha 1 qadam."
+      ],
+      "javob": "4 birlik"
+     },
+     {
+      "shart": "Kvadratning uchlari (0; 0), (3; 0), (3; 3), (0; 3). Perimetr va yuzni toping.",
+      "yechim": [
+       "Tomon uzunligi 3 birlik.",
+       "Perimetr: 3 ni 4 ga ko‘paytirsak, 12.",
+       "Yuza: 3 ni 3 ga ko‘paytirsak, 9."
+      ],
+      "javob": "perimetr 12, yuza 9"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Choraklarni aniqlaymiz",
+      "topshiriq": "Nuqtalar: A(2; 3), B(−1; 4), C(−3; −2), D(4; −1). Har biri qaysi chorakda?",
+      "yechim": "A — I chorak, B — II chorak, C — III chorak, D — IV chorak.",
+      "mahsulot": "choraklar jadvali"
+     },
+     {
+      "nom": "Uchburchak",
+      "topshiriq": "(0; 0), (4; 0), (2; 3) nuqtalarni belgilab, uchburchak chizing. Asosi va balandligini toping.",
+      "yechim": "Asosi 4, balandligi 3. Yuza: 4 ni 3 ga ko‘paytirsak 12, 2 ga bo‘lsak 6.",
+      "mahsulot": "koordinata chizmasi"
+     },
+     {
+      "nom": "Simmetrik nuqta",
+      "topshiriq": "(3; 2) nuqtaga Ox o‘qiga va Oy o‘qiga nisbatan simmetrik nuqtalarni toping.",
+      "yechim": "Ox ga nisbatan (3; −2). Oy ga nisbatan (−3; 2).",
+      "mahsulot": "simmetriya chizmasi"
+     },
+     {
+      "nom": "Xazina izlash",
+      "topshiriq": "Xazina (4; 3) nuqtada. Boshlang‘ich nuqta (0; 0). Yo‘lni tasvirlang.",
+      "yechim": "O‘ngga 4 qadam, yuqoriga 3 qadam.",
+      "mahsulot": "xazina xaritasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "(4; −3) nuqta qaysi chorakda?",
+      "javob": "IV chorak"
+     },
+     {
+      "shart": "Ox o‘qida yotgan nuqtaning ordinatasi nechaga teng?",
+      "javob": "0"
+     },
+     {
+      "shart": "(−5; 0) nuqta qaysi o‘qda yotadi?",
+      "javob": "Ox o‘qida"
+     },
+     {
+      "shart": "(1; 1) va (5; 1) nuqtalar orasidagi masofa?",
+      "javob": "4"
+     },
+     {
+      "shart": "A(2; 3) dan B(2; 7) gacha masofa?",
+      "javob": "4"
+     },
+     {
+      "shart": "(0; 0), (2; 0), (2; 2), (0; 2) kvadratning yuzi?",
+      "javob": "4"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "x va y ni almashtirib yozadi",
+      "sabab": "tartib muhimligini unutadi",
+      "oldini_olish": "avval o‘ngga yoki chapga, keyin yuqoriga yoki pastga qoidasini aytish"
+     },
+     {
+      "xato": "Choraklarni adashtiradi",
+      "sabab": "ishoralarni eslay olmaydi",
+      "oldini_olish": "choraklar jadvalini chizib mashq qilish"
+     },
+     {
+      "xato": "Manfiy koordinatani teskari yo‘nalishda qo‘yadi",
+      "sabab": "yo‘nalishni noto‘g‘ri tushunadi",
+      "oldini_olish": "manfiy x — chap, manfiy y — pastga"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "kenglik va uzunlik koordinatalari joyni aniqlaydi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "ekrandagi nuqta (x; y) koordinatalar bilan beriladi"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "katakli rasm va piksellar koordinata bilan chiziladi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Koordinatali rasm»",
+     "muammo": "Nuqtalar koordinatalari bilan rasmni qanday chizamiz?",
+     "mahsulot": "koordinatalar bo‘yicha chizilgan rasm",
+     "bosqichlar": [
+      "rasm tanlash",
+      "nuqtalarni belgilash",
+      "koordinatalarni yozish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Rasmni tanlang",
+      "Nuqtalarni belgilang",
+      "Koordinatalarni yozing",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "koordinatalar to‘g‘ri",
+      "rasm aniq",
+      "ro‘yxat tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Shahar xaritasi»",
+     "bekatlar": [
+      {
+       "nom": "Maktab",
+       "matn": "Maktab (2; 3) nuqtada, bog‘ (5; 3) nuqtada.",
+       "topshiriq": "Maktabdan bog‘gacha necha katak?",
+       "javob": "3 katak",
+       "rasm": ""
+      },
+      {
+       "nom": "Kutubxona",
+       "matn": "Bog‘ (5; 3), kutubxona (5; 7).",
+       "topshiriq": "Bog‘dan kutubxonagacha necha katak?",
+       "javob": "4 katak",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "Bozor (−2; 1) nuqtada.",
+       "topshiriq": "Bozor qaysi chorakda?",
+       "javob": "II chorak",
+       "rasm": ""
+      },
+      {
+       "nom": "Bekat",
+       "matn": "Avtobus bekati (3; −2) nuqtada.",
+       "topshiriq": "Bekat qaysi chorakda?",
+       "javob": "IV chorak",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Koordinatalar qayerda foydali?",
+      "Nuqta joyini qanday aytamiz?",
+      "Xaritada koordinatalar nima beradi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Koordinata tekisligi",
+      "tarif": "ikki perpendikulyar son o‘qi"
+     },
+     {
+      "atama": "Abssissa",
+      "tarif": "nuqtaning x koordinatasi"
+     },
+     {
+      "atama": "Ordinata",
+      "tarif": "nuqtaning y koordinatasi"
+     },
+     {
+      "atama": "Koordinata boshi",
+      "tarif": "o‘qlar kesishgan nuqta"
+     },
+     {
+      "atama": "Chorak",
+      "tarif": "tekislikning o‘qlar ajratgan to‘rtdan bir qismi"
+     },
+     {
+      "atama": "Juftlik",
+      "tarif": "tartiblangan ikki son"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ox o‘qi — abssissalar o‘qi",
+      "togri": true,
+      "izoh": "gorizontal o‘q"
+     },
+     {
+      "matn": "(2; 3) va (3; 2) bir nuqta",
+      "togri": false,
+      "izoh": "koordinatalar tartibi muhim"
+     },
+     {
+      "matn": "I chorakda ikkala koordinata musbat",
+      "togri": true,
+      "izoh": "I chorak ta’rifi"
+     },
+     {
+      "matn": "Oy o‘qidagi nuqtaning abssissasi 0",
+      "togri": true,
+      "izoh": "Oy o‘qida x nolga teng"
+     },
+     {
+      "matn": "II chorakda x musbat, y manfiy",
+      "togri": false,
+      "izoh": "II chorakda x manfiy, y musbat"
+     },
+     {
+      "matn": "Koordinata boshi (1; 1) nuqta",
+      "togri": false,
+      "izoh": "koordinata boshi (0; 0)"
+     },
+     {
+      "matn": "Koordinata tekisligi to‘rt chorakka bo‘linadi",
+      "togri": true,
+      "izoh": "o‘qlar tekislikni to‘rt qismga ajratadi"
+     },
+     {
+      "matn": "Ox o‘qidagi nuqta I chorakka tegishli",
+      "togri": false,
+      "izoh": "o‘qdagi nuqtalar hech bir chorakka tegishli emas"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Koordinata tekisligi nechta o‘qdan iborat?",
+      "javob": "ikkita"
+     },
+     {
+      "savol": "Gorizontal o‘q nima deyiladi?",
+      "javob": "Ox, abssissalar o‘qi"
+     },
+     {
+      "savol": "Vertikal o‘q nima deyiladi?",
+      "javob": "Oy, ordinatalar o‘qi"
+     },
+     {
+      "savol": "Koordinata boshining koordinatalari?",
+      "javob": "(0; 0)"
+     },
+     {
+      "savol": "(−1; 5) qaysi chorakda?",
+      "javob": "II chorak"
+     },
+     {
+      "savol": "(2; −3) qaysi chorakda?",
+      "javob": "IV chorak"
+     },
+     {
+      "savol": "(−4; −4) qaysi chorakda?",
+      "javob": "III chorak"
+     },
+     {
+      "savol": "Ox o‘qida y nechaga teng?",
+      "javob": "0"
+     },
+     {
+      "savol": "Nechta chorak bor?",
+      "javob": "to‘rtta"
+     },
+     {
+      "savol": "Nuqta nechta son bilan beriladi?",
+      "javob": "ikkita"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘qlar",
+      "matn": "Ox gorizontal, Oy vertikal.",
+      "savol": "Gorizontal o‘q qaysi?"
+     },
+     {
+      "nom": "Nuqta",
+      "matn": "Nuqta (x; y) bilan beriladi.",
+      "savol": "(4; 1) nuqtani qanday topamiz?"
+     },
+     {
+      "nom": "Choraklar",
+      "matn": "Ishoralarga qarab chorak aniqlanadi.",
+      "savol": "(−2; −5) qaysi chorak?"
+     },
+     {
+      "nom": "Shakl",
+      "matn": "Nuqtalarni tutashtirib shakl hosil qilamiz.",
+      "savol": "To‘rt nuqtadan qanday shakl?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun nuqtaning o‘rnini bitta son bilan emas, ikkita son bilan beramiz? Bitta son bilan faqat qayerni aniqlay olamiz?",
+    "keys": {
+     "vaziyat": "Shahar xaritasida maktab (2; 3), bog‘ (5; 3), kutubxona (5; 7) nuqtalarda joylashgan.",
+     "savollar": [
+      "Maktabdan bog‘gacha necha katak?",
+      "Bog‘dan kutubxonagacha necha katak?"
+     ]
+    },
+    "tezis": "Ikki son bilan har qanday nuqtani topamiz",
+    "taqqoslash": {
+     "a": "Sonlar o‘qi",
+     "b": "Koordinata tekisligi",
+     "umumiy": [
+      "sonlar bilan nuqta ko‘rsatiladi",
+      "boshlang‘ich nuqta bor"
+     ],
+     "a_farq": [
+      "bitta o‘q",
+      "nuqta bitta son bilan"
+     ],
+     "b_farq": [
+      "ikkita o‘q",
+      "nuqta ikkita son bilan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Koordinata tekisligi",
+     "shoxlar": [
+      {
+       "nom": "O‘qlar",
+       "bandlar": [
+        "Ox",
+        "Oy",
+        "koordinata boshi"
+       ]
+      },
+      {
+       "nom": "Nuqta",
+       "bandlar": [
+        "abssissa",
+        "ordinata",
+        "juftlik"
+       ]
+      },
+      {
+       "nom": "Choraklar",
+       "bandlar": [
+        "I chorak",
+        "II chorak",
+        "III va IV"
+       ]
+      },
+      {
+       "nom": "Shakllar",
+       "bandlar": [
+        "to‘rtburchak",
+        "uchburchak",
+        "yuza va perimetr"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikkita o‘qim bor, kesishgan joyda nol turadi. To‘rt qismga bo‘lgan tekislik men. Kimman?",
+     "javob": "koordinata tekisligi"
+    },
+    "hikmat": "Yo‘lni bilgan manzilni topadi.",
+    "kalit_soz": "KOORDINATA",
+    "xato_yechim": {
+     "shart": "A(3; 2) nuqtani qanday topamiz?",
+     "xato": "yuqoriga 3, o‘ngga 2 deb oladi",
+     "togri": "o‘ngga 3, yuqoriga 2",
+     "sabab": "avval abssissa (x), keyin ordinata (y) bo‘yicha yuramiz"
+    },
+    "guruh_nomlari": [
+     "Abssissalar",
+     "Ordinatalar",
+     "Choraklar",
+     "Nuqtachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinf xaritasi»",
+     "topshiriq": "Guruh sinf xonasini katak qog‘ozda chizadi, parta va doskaning koordinatalarini yozadi."
+    },
+    "vazifalar": {
+     "A": "Nuqtalarni belgilang: (1; 2), (−3; 4), (−2; −2), (3; −3) va choraklarini ayting.",
+     "B": "Katakli daftarga nuqtalar bo‘yicha oddiy rasm chizing.",
+     "C": "O‘zingiz koordinatalar bo‘yicha rasm tuzing va do‘stingizga topshiring."
+    },
+    "sinkveyn": [
+     "Koordinata",
+     "aniq, qulay",
+     "belgilaydi, topadi, chizadi",
+     "Nuqtaning manzili",
+     "Tekislik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh koordinata masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: (−3; 5) qaysi chorak",
+      "2-guruh: (1; 2) va (1; 6) orasidagi masofa",
+      "3-guruh: (0; 0), (4; 0), (4; 2), (0; 2) to‘rtburchak perimetri",
+      "4-guruh: (5; 0) qaysi o‘qda yotadi"
+     ],
+     "yakun": "Natijalar: II chorak; 4; 12; Ox o‘qi."
+    }
+   }
+  },
+  {
+   "mavzu": "Simmetriya (o‘q va markaziy)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "O‘qqa nisbatan simmetriya",
+      "matn": "Agar shaklni biror to‘g‘ri chiziq bo‘ylab bukkanimizda ikki qismi ustma-ust tushsa, shakl o‘qqa nisbatan simmetrik deyiladi. Bu chiziq simmetriya o‘qi.",
+      "misol": "Kvadratning 4 ta simmetriya o‘qi bor. To‘g‘ri to‘rtburchakning 2 ta, teng yonli uchburchakning 1 ta o‘qi bor.",
+      "savol": "Doiraning nechta simmetriya o‘qi bor?",
+      "javob": "cheksiz ko‘p",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Simmetrik nuqtalar",
+      "matn": "Ikki nuqta o‘qqa nisbatan simmetrik bo‘lsa, ular o‘qdan teng masofada, o‘qning ikki tomonida va ularni tutashtiruvchi kesma o‘qqa perpendikulyar bo‘ladi. Koordinata tekisligida (x; y) nuqtaning Ox ga nisbatan simmetrigi (x; −y), Oy ga nisbatan simmetrigi (−x; y).",
+      "misol": "(3; 2) nuqtaning Ox ga nisbatan simmetrigi (3; −2), Oy ga nisbatan simmetrigi (−3; 2).",
+      "savol": "(4; −1) nuqtaning Oy ga nisbatan simmetrigi qanday?",
+      "javob": "(−4; −1)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Markaziy simmetriya",
+      "matn": "Shaklni biror nuqta atrofida 180 gradusga burganda o‘z-o‘ziga tushsa, shakl markaziy simmetrik deyiladi. Bu nuqta simmetriya markazi.",
+      "misol": "Parallelogramm, kvadrat, to‘g‘ri to‘rtburchak va doira markaziy simmetrik. Parallelogrammning markazi diagonallar kesishgan nuqta.",
+      "savol": "Teng yonli uchburchak markaziy simmetrikmi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Koordinata boshiga nisbatan simmetriya",
+      "matn": "(x; y) nuqtaning koordinata boshiga nisbatan simmetrigi (−x; −y) bo‘ladi. Ya’ni ikkala koordinata ishorasi teskari bo‘ladi.",
+      "misol": "(2; 3) nuqtaning koordinata boshiga nisbatan simmetrigi (−2; −3).",
+      "savol": "(−1; 4) nuqtaning koordinata boshiga nisbatan simmetrigi?",
+      "javob": "(1; −4)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Simmetriya hayotda",
+      "matn": "Simmetriya tabiatda, san’atda va me’morchilikda uchraydi: kapalak qanotlari, barglar, qor parchalari, naqshlar, bino peshtoqlari. Ayrim harflar ham simmetrik.",
+      "misol": "H harfi ham o‘q bo‘yicha, ham markaziy simmetrik. A harfi faqat vertikal o‘q bo‘yicha simmetrik. S harfi faqat markaziy simmetrik.",
+      "savol": "O harfi qanday simmetriyaga ega?",
+      "javob": "ham o‘q, ham markaziy",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "O‘qqa nisbatan simmetriya: shakl o‘q bo‘ylab bukilganda ustma-ust tushadi. Markaziy simmetriya: shakl markaz atrofida 180 gradusga burilganda o‘ziga tushadi. Koordinata tekisligida Ox ga nisbatan y ishorasi, Oy ga nisbatan x ishorasi, koordinata boshiga nisbatan ikkalasi o‘zgaradi.",
+    "misollar": [
+     {
+      "shart": "Kvadratning nechta simmetriya o‘qi bor? Ularni sanang.",
+      "yechim": [
+       "Ikkita diagonal bo‘yicha — 2 ta o‘q.",
+       "Qarama-qarshi tomonlar o‘rtalarini tutashtiruvchi chiziqlar — 2 ta o‘q.",
+       "Jami 4 ta."
+      ],
+      "javob": "4 ta"
+     },
+     {
+      "shart": "A(−2; 5) nuqtaning Ox, Oy va koordinata boshiga nisbatan simmetrigini toping.",
+      "yechim": [
+       "Ox ga nisbatan: y ishorasi o‘zgaradi — (−2; −5).",
+       "Oy ga nisbatan: x ishorasi o‘zgaradi — (2; 5).",
+       "Koordinata boshiga nisbatan: ikkalasi — (2; −5)."
+      ],
+      "javob": "(−2; −5), (2; 5), (2; −5)"
+     },
+     {
+      "shart": "A, H, S, O harflarining qaysilari o‘q bo‘yicha, qaysilari markaz bo‘yicha simmetrik?",
+      "yechim": [
+       "A — faqat o‘q bo‘yicha.",
+       "H va O — ham o‘q, ham markaz bo‘yicha.",
+       "S — faqat markaz bo‘yicha."
+      ],
+      "javob": "A — o‘q; H, O — ikkalasi; S — markaz"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qog‘oz buklash",
+      "topshiriq": "Kvadrat shaklidagi qog‘ozni ikki marta buklab, simmetriya o‘qlarini toping.",
+      "yechim": "Ikkita diagonal va ikkita o‘rta chiziq bo‘yicha bukish mumkin. Jami 4 ta o‘q.",
+      "mahsulot": "buklangan qog‘oz"
+     },
+     {
+      "nom": "Uchburchak simmetriyasi",
+      "topshiriq": "A(1; 1), B(4; 1), C(2; 3) uchburchakni Oy ga nisbatan simmetrik akslantiring.",
+      "yechim": "A'(−1; 1), B'(−4; 1), C'(−2; 3).",
+      "mahsulot": "koordinata chizmasi"
+     },
+     {
+      "nom": "Harflar",
+      "topshiriq": "Ismingizdagi harflarni o‘q va markaziy simmetriya bo‘yicha guruhlang.",
+      "yechim": "Natija ismga bog‘liq; tekshirish uchun har harfni buklab yoki 180 gradusga burib ko‘ramiz.",
+      "mahsulot": "harflar jadvali"
+     },
+     {
+      "nom": "Naqsh",
+      "topshiriq": "Katakli qog‘ozda bir tomoni berilgan naqshni simmetrik davom ettiring.",
+      "yechim": "Naqshning har bir nuqtasini o‘qdan teng masofada ikkinchi tomonga ko‘chiramiz.",
+      "mahsulot": "naqsh chizmasi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "To‘g‘ri to‘rtburchakning nechta simmetriya o‘qi bor?",
+      "javob": "2 ta"
+     },
+     {
+      "shart": "(5; 2) nuqtaning Ox ga nisbatan simmetrigi?",
+      "javob": "(5; −2)"
+     },
+     {
+      "shart": "(−3; −4) nuqtaning Oy ga nisbatan simmetrigi?",
+      "javob": "(3; −4)"
+     },
+     {
+      "shart": "(4; −6) nuqtaning koordinata boshiga nisbatan simmetrigi?",
+      "javob": "(−4; 6)"
+     },
+     {
+      "shart": "Teng tomonli uchburchakning nechta simmetriya o‘qi bor?",
+      "javob": "3 ta"
+     },
+     {
+      "shart": "Doira markaziy simmetrikmi?",
+      "javob": "ha"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Simmetrik nuqtada ikkala ishorani o‘zgartiradi",
+      "sabab": "qaysi o‘qqa nisbatan ekanini adashtiradi",
+      "oldini_olish": "Ox — y o‘zgaradi, Oy — x o‘zgaradi deb eslash"
+     },
+     {
+      "xato": "Har qanday shaklni markaziy simmetrik deb hisoblaydi",
+      "sabab": "180 gradusga burishni tekshirmaydi",
+      "oldini_olish": "shaklni qog‘ozda burib ko‘rish"
+     },
+     {
+      "xato": "Uchburchakka ko‘p o‘q beradi",
+      "sabab": "teng yonli va teng tomonlini farqlamaydi",
+      "oldini_olish": "uchburchak turlarini yodda tutish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "kapalak, barg va gullar simmetriyasi"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "naqsh va ornamentlar simmetriyaga asoslangan"
+     },
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "binolar peshtoqi va gumbazlari simmetrik"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Simmetrik naqsh»",
+     "muammo": "Simmetriya yordamida chiroyli naqsh qanday yaratiladi?",
+     "mahsulot": "simmetrik naqsh va uning tavsifi",
+     "bosqichlar": [
+      "naqsh tanlash",
+      "o‘q yoki markaz belgilash",
+      "naqshni chizish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Naqshni tanlang",
+      "Simmetriyani aniqlang",
+      "Naqshni chizing",
+      "Taqdimot tayyorlang"
+     ],
+     "mezonlar": [
+      "simmetriya to‘g‘ri",
+      "naqsh aniq",
+      "chizma tartibli",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Simmetriya olami»",
+     "bekatlar": [
+      {
+       "nom": "Bog‘",
+       "matn": "Kapalak qanotlari bir-birini aks ettiradi.",
+       "topshiriq": "Kapalak qaysi simmetriyaga ega?",
+       "javob": "o‘qqa nisbatan",
+       "rasm": ""
+      },
+      {
+       "nom": "Masjid",
+       "matn": "Peshtoq naqshlari o‘rta chiziqqa nisbatan bir xil.",
+       "topshiriq": "Nechta o‘q bor?",
+       "javob": "1 ta vertikal o‘q",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab",
+       "matn": "Kvadrat shaklidagi deraza.",
+       "topshiriq": "Nechta simmetriya o‘qi bor?",
+       "javob": "4 ta",
+       "rasm": ""
+      },
+      {
+       "nom": "Atlas bozori",
+       "matn": "Atlas naqshi markazga nisbatan aylanib takrorlanadi.",
+       "topshiriq": "Qaysi simmetriya?",
+       "javob": "markaziy",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Simmetriyani qayerda ko‘rdingiz?",
+      "Nega simmetrik shakllar chiroyli?",
+      "Qaysi harflar simmetrik?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Simmetriya",
+      "tarif": "shaklning bir qismi ikkinchisini aks ettirishi"
+     },
+     {
+      "atama": "Simmetriya o‘qi",
+      "tarif": "shaklni ikki teng qismga ajratuvchi chiziq"
+     },
+     {
+      "atama": "Simmetriya markazi",
+      "tarif": "180 gradusga burishda qo‘zg‘almas nuqta"
+     },
+     {
+      "atama": "Akslantirish",
+      "tarif": "shaklni simmetrik ko‘chirish"
+     },
+     {
+      "atama": "Simmetrik nuqtalar",
+      "tarif": "o‘qdan yoki markazdan teng uzoqlikdagi nuqtalar"
+     },
+     {
+      "atama": "Naqsh",
+      "tarif": "takrorlanuvchi bezak"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Kvadratning 4 ta simmetriya o‘qi bor",
+      "togri": true,
+      "izoh": "ikkita diagonal va ikkita o‘rta chiziq"
+     },
+     {
+      "matn": "Har qanday uchburchak simmetrik",
+      "togri": false,
+      "izoh": "turli tomonli uchburchak simmetrik emas"
+     },
+     {
+      "matn": "Doira markaziy simmetrik",
+      "togri": true,
+      "izoh": "markaz atrofida har qanday burishda ustma-ust tushadi"
+     },
+     {
+      "matn": "(x; y) nuqtaning Ox ga nisbatan simmetrigi (−x; y)",
+      "togri": false,
+      "izoh": "Ox ga nisbatan (x; −y)"
+     },
+     {
+      "matn": "Parallelogramm markaziy simmetrik",
+      "togri": true,
+      "izoh": "markazi diagonallar kesishgan nuqta"
+     },
+     {
+      "matn": "Teng yonli uchburchak markaziy simmetrik",
+      "togri": false,
+      "izoh": "180 gradusga burganda o‘ziga tushmaydi"
+     },
+     {
+      "matn": "Simmetrik nuqtalar o‘qdan teng masofada",
+      "togri": true,
+      "izoh": "simmetriya ta’rifi"
+     },
+     {
+      "matn": "To‘g‘ri to‘rtburchakning 4 ta simmetriya o‘qi bor",
+      "togri": false,
+      "izoh": "kvadratda 4 ta, to‘g‘ri to‘rtburchakda 2 ta"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Simmetriya o‘qi nima?",
+      "javob": "shaklni ikki teng qismga ajratuvchi chiziq"
+     },
+     {
+      "savol": "Kvadratning nechta o‘qi bor?",
+      "javob": "4 ta"
+     },
+     {
+      "savol": "To‘g‘ri to‘rtburchakning nechta o‘qi bor?",
+      "javob": "2 ta"
+     },
+     {
+      "savol": "(1; 5) ning Ox ga nisbatan simmetrigi?",
+      "javob": "(1; −5)"
+     },
+     {
+      "savol": "(2; 3) ning Oy ga nisbatan simmetrigi?",
+      "javob": "(−2; 3)"
+     },
+     {
+      "savol": "(−2; 1) ning koordinata boshiga nisbatan simmetrigi?",
+      "javob": "(2; −1)"
+     },
+     {
+      "savol": "Markaziy simmetriyada necha gradusga buramiz?",
+      "javob": "180 gradusga"
+     },
+     {
+      "savol": "Teng tomonli uchburchakning nechta o‘qi bor?",
+      "javob": "3 ta"
+     },
+     {
+      "savol": "Doiraning simmetriya markazi qayerda?",
+      "javob": "markazida"
+     },
+     {
+      "savol": "H harfi qanday simmetrik?",
+      "javob": "ham o‘q, ham markaziy"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘q simmetriyasi",
+      "matn": "Shaklni bukkanda ikki qismi ustma-ust tushadi.",
+      "savol": "Kvadratning nechta o‘qi bor?"
+     },
+     {
+      "nom": "Nuqtalar",
+      "matn": "Simmetrik nuqtalar o‘qdan teng masofada.",
+      "savol": "(3; 1) ning Ox ga nisbatan simmetrigi?"
+     },
+     {
+      "nom": "Markaziy simmetriya",
+      "matn": "180 gradusga burganda shakl o‘ziga tushadi.",
+      "savol": "Parallelogramm markaziy simmetrikmi?"
+     },
+     {
+      "nom": "Hayotda",
+      "matn": "Kapalak, barg, naqsh va harflar simmetrik.",
+      "savol": "O harfi qanday simmetrik?"
+     }
+    ],
+    "muammoli_savol": "Nega tabiatdagi ko‘p jonzotlar simmetrik tuzilgan? Simmetriya ularga qanday foyda beradi?",
+    "keys": {
+     "vaziyat": "Rassom naqsh chizyapti. U naqshning bir yarmini chizdi va ikkinchi yarmini simmetrik chizmoqchi.",
+     "savollar": [
+      "Qaysi chiziq simmetriya o‘qi bo‘ladi?",
+      "Nuqtani qanday ko‘chiramiz?"
+     ]
+    },
+    "tezis": "Simmetriya — uyg‘unlikning ko‘rinishi",
+    "taqqoslash": {
+     "a": "O‘qqa nisbatan simmetriya",
+     "b": "Markaziy simmetriya",
+     "umumiy": [
+      "shaklning go‘zalligini bildiradi",
+      "nuqtalar teng uzoqlikda"
+     ],
+     "a_farq": [
+      "bukish bilan tekshiriladi",
+      "o‘q chiziq"
+     ],
+     "b_farq": [
+      "180 gradusga burish bilan tekshiriladi",
+      "markaz nuqta"
+     ]
+    },
+    "klaster": {
+     "markaz": "Simmetriya",
+     "shoxlar": [
+      {
+       "nom": "O‘q simmetriyasi",
+       "bandlar": [
+        "bukish",
+        "o‘q",
+        "kvadrat"
+       ]
+      },
+      {
+       "nom": "Markaziy simmetriya",
+       "bandlar": [
+        "180 gradus",
+        "markaz",
+        "parallelogramm"
+       ]
+      },
+      {
+       "nom": "Koordinatalar",
+       "bandlar": [
+        "Ox ga nisbatan",
+        "Oy ga nisbatan",
+        "koordinata boshi"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "kapalak",
+        "naqsh",
+        "harflar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Bir tomonini buksam, ikkinchisi ustiga tushadi. Kapalakda ham bor, kvadratda ham. Men nimaman?",
+     "javob": "simmetriya"
+    },
+    "hikmat": "Uyg‘unlik — go‘zallikning asosi.",
+    "kalit_soz": "SIMMETRIYA",
+    "xato_yechim": {
+     "shart": "(3; 2) nuqtaning Ox ga nisbatan simmetrigini toping.",
+     "xato": "(−3; 2)",
+     "togri": "(3; −2)",
+     "sabab": "Ox ga nisbatan y koordinata ishorasi o‘zgaradi, x o‘zgarmaydi"
+    },
+    "guruh_nomlari": [
+     "O‘qchilar",
+     "Markazchilar",
+     "Naqshchilar",
+     "Akslar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Simmetriya izlab»",
+     "topshiriq": "Guruh sinf xonasi va hovlida simmetrik narsalarni topadi, ularning o‘q yoki markazini ko‘rsatadi va rasmga oladi yoki chizadi."
+    },
+    "vazifalar": {
+     "A": "(2; 5), (−3; 1) nuqtalarning Ox, Oy va koordinata boshiga nisbatan simmetriklarini toping.",
+     "B": "Uydan 5 ta simmetrik narsa toping va ularning o‘qlari sonini yozing.",
+     "C": "Simmetrik naqsh chizing va o‘q yoki markazini ko‘rsating."
+    },
+    "sinkveyn": [
+     "Simmetriya",
+     "uyg‘un, go‘zal",
+     "aks ettiradi, buriladi, mos keladi",
+     "Ikki qism teng",
+     "Uyg‘unlik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh simmetriya masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: kvadratning o‘qlari soni",
+      "2-guruh: (4; 3) ning Ox ga nisbatan simmetrigi",
+      "3-guruh: (−2; 5) ning Oy ga nisbatan simmetrigi",
+      "4-guruh: (1; −2) ning koordinata boshiga nisbatan simmetrigi"
+     ],
+     "yakun": "Natijalar: 4; (4; −3); (2; 5); (−1; 2)."
+    }
+   }
   }
  ]
 }
