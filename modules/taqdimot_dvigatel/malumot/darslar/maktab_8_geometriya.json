@@ -1391,6 +1391,1394 @@
      "yakun": "Natijalar: 5; 30; 36; 20."
     }
    }
+  },
+  {
+   "mavzu": "Trapetsiya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Trapetsiya ta’rifi",
+      "matn": "Faqat ikki tomoni parallel, qolgan ikki tomoni parallel bo‘lmagan to‘rtburchak trapetsiya deyiladi. Parallel tomonlar asoslar, parallel bo‘lmaganlari yon tomonlar deyiladi. Asoslar orasidagi masofa balandlik.",
+      "misol": "ABCD trapetsiyada BC ∥ AD: BC va AD — asoslar, AB va CD — yon tomonlar.",
+      "savol": "Trapetsiyada nechta juft parallel tomon bor?",
+      "javob": "1 juft",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Trapetsiya turlari",
+      "matn": "Yon tomonlari teng bo‘lsa — teng yonli trapetsiya: uning asosdagi burchaklari teng va diagonallari teng. Bir yon tomoni asoslarga perpendikulyar bo‘lsa — to‘g‘ri burchakli trapetsiya.",
+      "misol": "Teng yonli trapetsiyada A — D — 70°, B — C — 110°. To‘g‘ri burchakli trapetsiyada ikkita burchak 90°.",
+      "savol": "To‘g‘ri burchakli trapetsiyada nechta burchak 90°?",
+      "javob": "2 ta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘rta chiziq",
+      "matn": "Yon tomonlarning o‘rtalarini tutashtiruvchi kesma trapetsiyaning o‘rta chizig‘i deyiladi. U asoslarga parallel va uzunligi asoslar yig‘indisining yarmiga teng.",
+      "misol": "Asoslari 6 va 10 bo‘lsa, o‘rta chiziq (6 + 10) / 2, ya’ni 8.",
+      "savol": "Asoslari 4 va 12. O‘rta chiziq?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchaklar",
+      "matn": "Trapetsiyaning bir yon tomoniga yondosh burchaklar yig‘indisi 180° ga teng, chunki asoslar parallel. Teng yonli trapetsiyada asosdagi burchaklar juft-juft teng.",
+      "misol": "A — 70° bo‘lsa, B — 180° − 70°, ya’ni 110°. Teng yonli trapetsiyada D — 70°, C — 110°. Yig‘indi 360°.",
+      "savol": "Bir yon tomondagi burchaklardan biri 80°. Ikkinchisi?",
+      "javob": "100°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yuza",
+      "matn": "Trapetsiya yuzi asoslar yig‘indisining yarmi bilan balandlik ko‘paytmasiga teng: S ifoda (a + b) / 2 · h. Ya’ni o‘rta chiziq ko‘paytiriladi balandlikka.",
+      "misol": "Asoslari 6 va 10, balandligi 5: S — 8 · 5, ya’ni 40.",
+      "savol": "Asoslari 5 va 9, balandligi 4. Yuzi?",
+      "javob": "28",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Trapetsiyada faqat ikki tomon parallel. O‘rta chiziq — asoslar yig‘indisining yarmi. Yuza S ifoda (a + b) / 2 · h. Bir yon tomondagi burchaklar yig‘indisi 180°.",
+    "misollar": [
+     {
+      "shart": "Asoslari 7 va 13 bo‘lgan trapetsiyaning o‘rta chizig‘ini toping.",
+      "yechim": [
+       "O‘rta chiziq asoslar yig‘indisining yarmi.",
+       "(7 + 13) / 2, ya’ni 20 / 2.",
+       "Natija 10."
+      ],
+      "javob": "10"
+     },
+     {
+      "shart": "Teng yonli trapetsiya asoslari 4 va 10, yon tomoni 5. Balandligi va yuzini toping.",
+      "yechim": [
+       "Asoslar ayirmasining yarmi (10 − 4) / 2, ya’ni 3.",
+       "Balandlik kvadrati 25 − 9, ya’ni 16, balandlik 4.",
+       "Yuza (4 + 10) / 2 · 4, ya’ni 7 · 4 — 28."
+      ],
+      "javob": "balandlik 4, yuza 28"
+     },
+     {
+      "shart": "Trapetsiya yuzi 54, asoslari 8 va 10. Balandligini toping.",
+      "yechim": [
+       "O‘rta chiziq (8 + 10) / 2, ya’ni 9.",
+       "54 — 9 · h.",
+       "h — 54 / 9, ya’ni 6."
+      ],
+      "javob": "6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "O‘rta chiziq",
+      "topshiriq": "Asoslari 9 va 15 bo‘lgan trapetsiya o‘rta chizig‘ini toping.",
+      "yechim": "(9 + 15) / 2, ya’ni 12.",
+      "mahsulot": "chizma va hisob"
+     },
+     {
+      "nom": "Perimetr",
+      "topshiriq": "Teng yonli trapetsiya asoslari 8 va 14, yon tomoni 5. Perimetrini toping.",
+      "yechim": "8 + 14 + 5 + 5, ya’ni 32.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Burchaklar",
+      "topshiriq": "Trapetsiyada A — 65° va AB yon tomon. B burchakni toping. Teng yonli bo‘lsa, C va D?",
+      "yechim": "B — 115°. Teng yonli bo‘lsa, D — 65°, C — 115°.",
+      "mahsulot": "burchaklar jadvali"
+     },
+     {
+      "nom": "Yuza",
+      "topshiriq": "Asoslari 12 va 20, balandligi 5 bo‘lgan trapetsiya yuzini toping.",
+      "yechim": "(12 + 20) / 2 · 5, ya’ni 16 · 5 — 80.",
+      "mahsulot": "hisob varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Asoslari 6 va 10. O‘rta chiziq?",
+      "javob": "8"
+     },
+     {
+      "shart": "Asoslari 5 va 9, balandligi 4. Yuzi?",
+      "javob": "28"
+     },
+     {
+      "shart": "Bir yon tomondagi burchaklardan biri 80°. Ikkinchisi?",
+      "javob": "100°"
+     },
+     {
+      "shart": "Yuzi 36, asoslari 4 va 8. Balandligi?",
+      "javob": "6"
+     },
+     {
+      "shart": "Teng yonli trapetsiyada asosdagi burchak 60°. Boshqa asosdagi burchak?",
+      "javob": "120°"
+     },
+     {
+      "shart": "Asoslari 10 va 16. O‘rta chiziq?",
+      "javob": "13"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yuzni asoslar ko‘paytmasi deb oladi",
+      "sabab": "formulani adashtiradi",
+      "oldini_olish": "yuza — o‘rta chiziq ko‘paytirilsin balandlikka"
+     },
+     {
+      "xato": "Yon tomonni balandlik deb oladi",
+      "sabab": "balandlikni asosga perpendikulyar ekanini unutadi",
+      "oldini_olish": "balandlikni asosga tushirilgan perpendikulyar sifatida chizish"
+     },
+     {
+      "xato": "O‘rta chiziqni asoslar yig‘indisiga teng deb oladi",
+      "sabab": "yarmini olmaydi",
+      "oldini_olish": "ikkiga bo‘lishni unutmaslik"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "tom, ko‘prik va kanal ko‘ndalang kesimi trapetsiya shaklida"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "daryo o‘zani va ariq kesimi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "detal chizmalarida trapetsiya shakli"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Trapetsiyalar atrofimizda»",
+     "muammo": "Qayerda trapetsiya shaklini uchratamiz va yuzini qanday hisoblaymiz?",
+     "mahsulot": "trapetsiyalar albomi",
+     "bosqichlar": [
+      "shakllarni topish",
+      "o‘lchash",
+      "o‘rta chiziqni topish",
+      "yuzani hisoblash",
+      "albom yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Shakl toping",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov to‘g‘ri",
+      "hisob to‘g‘ri",
+      "o‘rta chiziq aniqlangan",
+      "xulosa asosli",
+      "albom ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Trapetsiyalar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Ariq",
+       "matn": "Ariq kesimi trapetsiya: asoslari 2 va 4 m, chuqurligi 1 m.",
+       "topshiriq": "Kesim yuzi?",
+       "javob": "3 kv. m",
+       "rasm": ""
+      },
+      {
+       "nom": "Tom",
+       "matn": "Tom bo‘lagi trapetsiya: asoslari 6 va 10 m, balandligi 3 m.",
+       "topshiriq": "Yuzi?",
+       "javob": "24 kv. m",
+       "rasm": ""
+      },
+      {
+       "nom": "Ko‘prik",
+       "matn": "Ko‘prik ustuni trapetsiya: asoslari 8 va 12 m.",
+       "topshiriq": "O‘rta chiziq?",
+       "javob": "10 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Gulzor teng yonli trapetsiya: asoslari 6 va 12, yon tomoni 5.",
+       "topshiriq": "Perimetri?",
+       "javob": "28 m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda trapetsiyani ko‘rdingiz?",
+      "O‘rta chiziq nimaga kerak bo‘ldi?",
+      "Yuza formulasi qanday chiqdi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Trapetsiya",
+      "tarif": "faqat ikki tomoni parallel to‘rtburchak"
+     },
+     {
+      "atama": "Asoslar",
+      "tarif": "trapetsiyaning parallel tomonlari"
+     },
+     {
+      "atama": "Yon tomonlar",
+      "tarif": "parallel bo‘lmagan tomonlar"
+     },
+     {
+      "atama": "O‘rta chiziq",
+      "tarif": "yon tomonlar o‘rtalarini tutashtiruvchi kesma"
+     },
+     {
+      "atama": "Teng yonli trapetsiya",
+      "tarif": "yon tomonlari teng trapetsiya"
+     },
+     {
+      "atama": "Balandlik",
+      "tarif": "asoslar orasidagi masofa"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Trapetsiyada faqat bir juft tomon parallel",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "O‘rta chiziq asoslar yig‘indisiga teng",
+      "togri": false,
+      "izoh": "yarmiga teng"
+     },
+     {
+      "matn": "Teng yonli trapetsiyada diagonallar teng",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "Trapetsiya yuzi (a + b) / 2 · h",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Parallelogramm trapetsiya",
+      "togri": false,
+      "izoh": "unda ikki juft parallel tomon bor"
+     },
+     {
+      "matn": "Bir yon tomondagi burchaklar yig‘indisi 180°",
+      "togri": true,
+      "izoh": "asoslar parallel"
+     },
+     {
+      "matn": "To‘g‘ri burchakli trapetsiyada 3 ta burchak 90°",
+      "togri": false,
+      "izoh": "faqat 2 ta"
+     },
+     {
+      "matn": "O‘rta chiziq asoslarga parallel",
+      "togri": true,
+      "izoh": "xossa"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Trapetsiya nima?",
+      "javob": "faqat ikki tomoni parallel to‘rtburchak"
+     },
+     {
+      "savol": "Asoslar nima?",
+      "javob": "parallel tomonlar"
+     },
+     {
+      "savol": "O‘rta chiziq nimaga teng?",
+      "javob": "asoslar yig‘indisining yarmi"
+     },
+     {
+      "savol": "Yuza formulasi?",
+      "javob": "(a + b) / 2 · h"
+     },
+     {
+      "savol": "Teng yonli trapetsiyada nima teng?",
+      "javob": "yon tomonlar va diagonallar"
+     },
+     {
+      "savol": "Asoslari 4 va 6. O‘rta chiziq?",
+      "javob": "5"
+     },
+     {
+      "savol": "Bir yon tomondagi burchaklar yig‘indisi?",
+      "javob": "180°"
+     },
+     {
+      "savol": "Asoslari 2, 4, balandlik 3. Yuza?",
+      "javob": "9"
+     },
+     {
+      "savol": "To‘g‘ri burchakli trapetsiyada nechta to‘g‘ri burchak?",
+      "javob": "2"
+     },
+     {
+      "savol": "Balandlik nima?",
+      "javob": "asoslar orasidagi masofa"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Faqat ikki tomon parallel.",
+      "savol": "Asoslar nima?"
+     },
+     {
+      "nom": "Turlari",
+      "matn": "Teng yonli, to‘g‘ri burchakli.",
+      "savol": "Teng yonli trapetsiyada diagonallar?"
+     },
+     {
+      "nom": "O‘rta chiziq",
+      "matn": "Asoslar yig‘indisining yarmi.",
+      "savol": "Asoslari 8 va 12. O‘rta chiziq?"
+     },
+     {
+      "nom": "Yuza",
+      "matn": "O‘rta chiziq ko‘paytiriladi balandlikka.",
+      "savol": "O‘rta chiziq 6, balandlik 4. Yuza?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun trapetsiya yuzini o‘rta chiziq bilan balandlik ko‘paytmasi orqali topish mumkin? Trapetsiyani parallelogrammga to‘ldirib tushuntiring.",
+    "keys": {
+     "vaziyat": "Ariq kesimi trapetsiya shaklida: tubi 2 m, yuqorisi 6 m, chuqurligi 2 m. Qancha suv o‘tishini bilish uchun kesim yuzi kerak.",
+     "savollar": [
+      "Kesim yuzi qancha?",
+      "O‘rta chiziq qancha?"
+     ]
+    },
+    "tezis": "Trapetsiya — bir juft parallel tomonning shakli",
+    "taqqoslash": {
+     "a": "Trapetsiya",
+     "b": "Parallelogramm",
+     "umumiy": [
+      "to‘rtburchak",
+      "asoslarga nisbatan balandlik bor"
+     ],
+     "a_farq": [
+      "bir juft parallel tomon",
+      "o‘rta chiziq bor"
+     ],
+     "b_farq": [
+      "ikki juft parallel tomon",
+      "diagonallari teng bo‘linadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Trapetsiya",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "asoslar",
+        "yon tomonlar",
+        "balandlik"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "teng yonli",
+        "to‘g‘ri burchakli"
+       ]
+      },
+      {
+       "nom": "O‘rta chiziq",
+       "bandlar": [
+        "yarim yig‘indi",
+        "asosga parallel"
+       ]
+      },
+      {
+       "nom": "Yuza",
+       "bandlar": [
+        "(a + b) / 2 · h"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki tomonim parallel, ikkitasi esa yo‘q. O‘rta chizig‘im asoslarning yarim yig‘indisi. Men kimman?",
+     "javob": "trapetsiya"
+    },
+    "hikmat": "Muvozanat ikki asosga tayanadi.",
+    "kalit_soz": "TRAPETSIYA",
+    "xato_yechim": {
+     "shart": "Asoslari 6 va 10, balandligi 4 bo‘lgan trapetsiya yuzini toping.",
+     "xato": "240",
+     "togri": "32",
+     "sabab": "yuza asoslar yig‘indisining yarmi bilan balandlik ko‘paytmasi: (6 + 10) / 2 · 4, ya’ni 8 · 4 — 32"
+    },
+    "guruh_nomlari": [
+     "Trapetsiyachilar",
+     "Asoschilar",
+     "O‘rta chiziqchilar",
+     "Balandlikchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Trapetsiya izlab»",
+     "topshiriq": "Guruh maktab atrofidan trapetsiya shaklidagi 5 ta buyumni topib, o‘lchaydi va yuzini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Asoslari 8 va 12 bo‘lgan trapetsiya o‘rta chizig‘ini toping.",
+     "B": "Asoslari 6 va 14, balandligi 5 bo‘lgan trapetsiya yuzini toping.",
+     "C": "Teng yonli trapetsiya asoslari 6 va 12, yon tomoni 5. Balandligi va yuzini toping."
+    },
+    "sinkveyn": [
+     "Trapetsiya",
+     "ikki asosli, qiyshiq",
+     "o‘lchanadi, chiziladi, hisoblanadi",
+     "Bir juft parallel tomon",
+     "Shakl"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh trapetsiyalar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: asoslar 6 va 10, o‘rta chiziq",
+      "2-guruh: asoslar 4 va 8, balandlik 5, yuza",
+      "3-guruh: bir yon tomondagi burchak 70°, ikkinchisi",
+      "4-guruh: yuza 40, o‘rta chiziq 8, balandlik"
+     ],
+     "yakun": "Natijalar: 8; 30; 110°; 5."
+    }
+   }
+  },
+  {
+   "mavzu": "Fales teoremasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Fales teoremasi",
+      "matn": "Agar burchak tomonlarini kesuvchi parallel to‘g‘ri chiziqlar bir tomonda teng kesmalar ajratsa, ular ikkinchi tomonda ham teng kesmalar ajratadi. Teorema qadimgi yunon olimi Fales nomi bilan ataladi.",
+      "misol": "Burchak bir tomonida kesmalar 3, 3, 3 bo‘lsa, ikkinchi tomonda ham kesmalar o‘zaro teng bo‘ladi.",
+      "savol": "Fales teoremasi nima haqida?",
+      "javob": "parallel chiziqlar ajratgan teng kesmalar haqida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kesmani teng bo‘laklarga bo‘lish",
+      "matn": "Kesmani n teng qismga bo‘lish uchun uning uchidan nur chiqaramiz, nurda n ta teng kesma ketma-ket qo‘yamiz, oxirgi nuqtani kesmaning ikkinchi uchi bilan tutashtiramiz va unga parallel chiziqlar o‘tkazamiz.",
+      "misol": "12 sm kesmani 4 teng qismga bo‘lsak, har bir qism 3 sm bo‘ladi.",
+      "savol": "15 sm kesmani 5 teng qismga bo‘lsak, har bir qism?",
+      "javob": "3 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Proporsional kesmalar",
+      "matn": "Burchak tomonlarini kesuvchi parallel to‘g‘ri chiziqlar tomonlarda proporsional kesmalar ajratadi: bir tomondagi kesmalar nisbati ikkinchi tomondagi mos kesmalar nisbatiga teng.",
+      "misol": "OA — 4, AB — 6, OC — 6 bo‘lsa, CD ni topamiz: 4 / 6 va 6 / CD teng, CD — 9. Tekshirish: 4 · 9 — 36, 6 · 6 — 36.",
+      "savol": "OA — 3, AB — 6, OC — 4 bo‘lsa, CD?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchburchak o‘rta chizig‘i",
+      "matn": "Uchburchak ikki tomonining o‘rtalarini tutashtiruvchi kesma uchburchakning o‘rta chizig‘i deyiladi. U uchinchi tomonga parallel va uning yarmiga teng. Bu Fales teoremasining natijasi.",
+      "misol": "Uchinchi tomon 14 bo‘lsa, o‘rta chiziq 7.",
+      "savol": "Uchburchak tomoni 20. Unga parallel o‘rta chiziq?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kesmani nisbatda bo‘lish",
+      "matn": "Kesmani berilgan nisbatda bo‘lish uchun uni nisbat qismlari yig‘indisiga bo‘lamiz va bir qismni topamiz. Bir qismni nisbat sonlariga ko‘paytiramiz.",
+      "misol": "10 ni 2 : 3 nisbatda bo‘lamiz: 5 qism, bir qism 2. Bo‘laklar 4 va 6. 21 ni 3 : 4 nisbatda: 7 qism, bir qism 3, bo‘laklar 9 va 12.",
+      "savol": "15 ni 2 : 3 nisbatda bo‘ling.",
+      "javob": "6 va 9",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Parallel to‘g‘ri chiziqlar burchak tomonida teng kesmalar ajratsa, ikkinchi tomonda ham teng kesmalar ajratadi. Umuman, proporsional kesmalar hosil bo‘ladi. Uchburchak o‘rta chizig‘i uchinchi tomonning yarmiga teng va unga parallel.",
+    "misollar": [
+     {
+      "shart": "Burchak bir tomonida parallel chiziqlar 4, 4, 4 teng kesmalar ajratdi. Ikkinchi tomonda birinchi kesma 5 bo‘lsa, qolganlari?",
+      "yechim": [
+       "Fales teoremasiga ko‘ra ikkinchi tomonda ham kesmalar teng.",
+       "Birinchisi 5 bo‘lsa, qolganlari ham 5.",
+       "Kesmalar 5, 5, 5."
+      ],
+      "javob": "5, 5, 5"
+     },
+     {
+      "shart": "OA — 6, AB — 3, OC — 10. CD ni toping.",
+      "yechim": [
+       "6 / 3 va 10 / CD teng.",
+       "6 · CD — 3 · 10, ya’ni 6 · CD — 30.",
+       "CD — 5."
+      ],
+      "javob": "5"
+     },
+     {
+      "shart": "Uchburchak tomonlari 18, 24 va 20. O‘rta chiziqlari va ular hosil qilgan uchburchak perimetrini toping.",
+      "yechim": [
+       "O‘rta chiziqlar tomonlarning yarmi: 9, 12, 10.",
+       "Ularning yig‘indisi 9 + 12 + 10, ya’ni 31.",
+       "Perimetr berilgan uchburchak perimetrining yarmi: 62 / 2, ya’ni 31."
+      ],
+      "javob": "9, 12, 10; perimetr 31"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kesmani bo‘lamiz",
+      "topshiriq": "10 sm kesmani sirkul va chizg‘ich yordamida 5 teng qismga bo‘ling.",
+      "yechim": "Har bir qism 2 sm bo‘ladi.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "O‘rta chiziqlar",
+      "topshiriq": "Tomonlari 12, 16, 20 bo‘lgan uchburchak o‘rta chiziqlarini toping.",
+      "yechim": "6, 8, 10.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Nisbatda bo‘lish",
+      "topshiriq": "35 sm kesmani 2 : 5 nisbatda bo‘ling.",
+      "yechim": "7 qism, bir qism 5. Bo‘laklar 10 va 25.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Proporsiya",
+      "topshiriq": "2 / x va 3 / 9 teng. x ni toping.",
+      "yechim": "3 · x — 2 · 9, ya’ni 3x — 18, x — 6.",
+      "mahsulot": "yechim varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "15 sm kesmani 3 teng qismga bo‘lsak, har bir qism?",
+      "javob": "5 sm"
+     },
+     {
+      "shart": "Uchburchak tomoni 20. O‘rta chiziq?",
+      "javob": "10"
+     },
+     {
+      "shart": "OA — 3, AB — 6, OC — 4. CD?",
+      "javob": "8"
+     },
+     {
+      "shart": "21 ni 3 : 4 nisbatda bo‘ling.",
+      "javob": "9 va 12"
+     },
+     {
+      "shart": "O‘rta chiziq 7 bo‘lsa, parallel tomon?",
+      "javob": "14"
+     },
+     {
+      "shart": "12 ni 1 : 2 : 3 nisbatda bo‘ling.",
+      "javob": "2, 4, 6"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "O‘rta chiziqni tomonga teng deb oladi",
+      "sabab": "yarmini olmaydi",
+      "oldini_olish": "o‘rta chiziq — tomonning yarmi ekanini eslash"
+     },
+     {
+      "xato": "Proporsiyada kesmalarni noto‘g‘ri juftlaydi",
+      "sabab": "mos kesmalarni adashtiradi",
+      "oldini_olish": "chizmada mos kesmalarni bir rangda belgilash"
+     },
+     {
+      "xato": "Nisbatda bo‘lishda qismlar yig‘indisini unutadi",
+      "sabab": "bir qismni hisoblamaydi",
+      "oldini_olish": "avval qismlar yig‘indisini topish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Fales — qadimgi yunon olimi, piramida balandligini soya bilan o‘lchagan"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "xarita masshtabi va masofalarni proporsiya bilan topish"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "chizmada teng bo‘laklar ajratish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Falesning o‘lchovi»",
+     "muammo": "Fales teoremasi bilan balandlik va masofalarni qanday o‘lchaymiz?",
+     "mahsulot": "o‘lchash qo‘llanmasi",
+     "bosqichlar": [
+      "teoremani o‘rganish",
+      "kesmani bo‘lish",
+      "masofani o‘lchash",
+      "hisoblash",
+      "qo‘llanma yozish"
+     ],
+     "guruh_vazifalari": [
+      "Teoremani tushuntiring",
+      "Bo‘ling",
+      "O‘lchang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "teorema to‘g‘ri qo‘llangan",
+      "yasash aniq",
+      "hisob to‘g‘ri",
+      "xulosa asosli",
+      "qo‘llanma ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Fales yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "Taxta",
+       "matn": "18 sm taxtani 6 teng bo‘lakka bo‘lish kerak.",
+       "topshiriq": "Bo‘lak uzunligi?",
+       "javob": "3 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "Uchburchak maydon tomoni 40 m. O‘rta chiziq?",
+       "topshiriq": "O‘rta chiziq uzunligi?",
+       "javob": "20 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Ariq",
+       "matn": "OA — 4, AB — 2, OC — 6.",
+       "topshiriq": "CD?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "Xarita",
+       "matn": "Kesmani 2 : 3 nisbatda bo‘ling, uzunligi 25.",
+       "topshiriq": "Bo‘laklar?",
+       "javob": "10 va 15",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda teng bo‘lish kerak bo‘ldi?",
+      "Proporsiya qanday yordam berdi?",
+      "O‘rta chiziq nimani ko‘rsatdi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Fales teoremasi",
+      "tarif": "parallel chiziqlar ajratgan teng kesmalar haqidagi teorema"
+     },
+     {
+      "atama": "Parallel to‘g‘ri chiziqlar",
+      "tarif": "kesishmaydigan to‘g‘ri chiziqlar"
+     },
+     {
+      "atama": "Proporsional kesmalar",
+      "tarif": "nisbatlari teng kesmalar"
+     },
+     {
+      "atama": "O‘rta chiziq",
+      "tarif": "tomonlar o‘rtalarini tutashtiruvchi kesma"
+     },
+     {
+      "atama": "Kesuvchi",
+      "tarif": "to‘g‘ri chiziqni kesib o‘tuvchi chiziq"
+     },
+     {
+      "atama": "Nisbat",
+      "tarif": "ikki sonning bo‘linmasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Parallel chiziqlar burchak tomonida teng kesmalar ajratsa, ikkinchi tomonda ham teng ajratadi",
+      "togri": true,
+      "izoh": "Fales teoremasi"
+     },
+     {
+      "matn": "Uchburchak o‘rta chizig‘i uchinchi tomonga teng",
+      "togri": false,
+      "izoh": "yarmiga teng"
+     },
+     {
+      "matn": "O‘rta chiziq uchinchi tomonga parallel",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "12 sm kesmani 4 teng qismga bo‘lsak, har biri 3 sm",
+      "togri": true,
+      "izoh": "12 / 4 — 3"
+     },
+     {
+      "matn": "Proporsional kesmalarning nisbatlari turlicha",
+      "togri": false,
+      "izoh": "nisbatlar teng"
+     },
+     {
+      "matn": "10 ni 2 : 3 nisbatda bo‘lsak, 4 va 6 chiqadi",
+      "togri": true,
+      "izoh": "5 qism, bir qism 2"
+     },
+     {
+      "matn": "Fales teoremasi faqat uchburchaklar uchun",
+      "togri": false,
+      "izoh": "burchak tomonlari uchun"
+     },
+     {
+      "matn": "Uchburchak o‘rta chiziqlari uchburchakni 4 teng uchburchakka ajratadi",
+      "togri": true,
+      "izoh": "uchta o‘rta chiziq"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Fales teoremasi nima?",
+      "javob": "parallel chiziqlar teng kesmalar ajratishi haqida"
+     },
+     {
+      "savol": "O‘rta chiziq nimaga teng?",
+      "javob": "uchinchi tomonning yarmiga"
+     },
+     {
+      "savol": "O‘rta chiziq qanday joylashadi?",
+      "javob": "uchinchi tomonga parallel"
+     },
+     {
+      "savol": "20 sm ni 4 teng qismga bo‘lsak?",
+      "javob": "5 sm"
+     },
+     {
+      "savol": "Proporsional kesmalar nima?",
+      "javob": "nisbatlari teng kesmalar"
+     },
+     {
+      "savol": "12 ni 1 : 3 nisbatda bo‘ling.",
+      "javob": "3 va 9"
+     },
+     {
+      "savol": "Tomoni 16, o‘rta chiziq?",
+      "javob": "8"
+     },
+     {
+      "savol": "Fales kim?",
+      "javob": "qadimgi yunon olimi"
+     },
+     {
+      "savol": "OA — 2, AB — 2, OC — 3. CD?",
+      "javob": "3"
+     },
+     {
+      "savol": "O‘rta chiziqlar nechta bo‘ladi uchburchakda?",
+      "javob": "uchta"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Teorema",
+      "matn": "Teng kesmalar ajratadi.",
+      "savol": "Parallel chiziqlar nima ajratadi?"
+     },
+     {
+      "nom": "Bo‘lish",
+      "matn": "Kesmani teng qismlarga bo‘lish.",
+      "savol": "18 ni 6 qismga bo‘lsak?"
+     },
+     {
+      "nom": "Proporsiya",
+      "matn": "Kesmalar nisbati teng.",
+      "savol": "2 / 3 va 4 / x teng. x?"
+     },
+     {
+      "nom": "O‘rta chiziq",
+      "matn": "Tomonning yarmi.",
+      "savol": "Tomon 30. O‘rta chiziq?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun uchburchak o‘rta chizig‘i uchinchi tomonning aynan yarmiga teng bo‘ladi? Fales teoremasi orqali tushuntiring.",
+    "keys": {
+     "vaziyat": "Duradgor 30 sm taxtani 5 teng qismga bo‘lmoqchi, lekin chizg‘ichi yo‘q. Unda faqat sirkul va yordamchi nur bor.",
+     "savollar": [
+      "Har bir qism necha sm?",
+      "Qanday yasash mumkin?"
+     ]
+    },
+    "tezis": "Parallel chiziqlar adolatli bo‘ladi",
+    "taqqoslash": {
+     "a": "Fales teoremasi",
+     "b": "O‘rta chiziq teoremasi",
+     "umumiy": [
+      "parallel chiziqlar bilan bog‘liq",
+      "kesmalarni solishtiradi"
+     ],
+     "a_farq": [
+      "burchak tomonlari",
+      "teng kesmalar"
+     ],
+     "b_farq": [
+      "uchburchak",
+      "yarim uzunlik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Fales teoremasi",
+     "shoxlar": [
+      {
+       "nom": "Teorema",
+       "bandlar": [
+        "parallel chiziqlar",
+        "teng kesmalar"
+       ]
+      },
+      {
+       "nom": "Yasash",
+       "bandlar": [
+        "kesmani bo‘lish",
+        "sirkul va chizg‘ich"
+       ]
+      },
+      {
+       "nom": "Proporsiya",
+       "bandlar": [
+        "nisbat",
+        "kesmalar"
+       ]
+      },
+      {
+       "nom": "O‘rta chiziq",
+       "bandlar": [
+        "yarmi",
+        "parallel"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Parallel chiziqlar yo‘lboshchi, kesmalarni teng bo‘lib beraman. Men kim?",
+     "javob": "Fales teoremasi"
+    },
+    "hikmat": "Teng bo‘lgan ulush adolat belgisi.",
+    "kalit_soz": "FALES",
+    "xato_yechim": {
+     "shart": "Uchburchak tomoni 18. Unga parallel o‘rta chiziq nechaga teng?",
+     "xato": "18",
+     "togri": "9",
+     "sabab": "o‘rta chiziq uchinchi tomonning yarmiga teng: 18 / 2, ya’ni 9"
+    },
+    "guruh_nomlari": [
+     "Faleschilar",
+     "Parallelchilar",
+     "O‘rta chiziqchilar",
+     "Proporsiyachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Teng bo‘lamiz»",
+     "topshiriq": "Guruh qog‘oz tasmasini chizg‘ichsiz 5 teng qismga bo‘ladi va usulini tushuntiradi."
+    },
+    "vazifalar": {
+     "A": "24 sm kesmani 6 teng qismga bo‘ling.",
+     "B": "Uchburchak tomonlari 10, 14, 16. O‘rta chiziqlarini toping.",
+     "C": "OA — 5, AB — 10, OC — 6 bo‘lsa, CD ni toping."
+    },
+    "sinkveyn": [
+     "Fales",
+     "parallel, teng",
+     "bo‘ladi, ajratadi, tenglashtiradi",
+     "Parallel chiziqlar adolati",
+     "Teorema"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh Fales teoremasi bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 20 ni 4 teng qismga",
+      "2-guruh: tomon 12, o‘rta chiziq",
+      "3-guruh: 15 ni 2 : 3 nisbatda",
+      "4-guruh: OA 2, AB 2, OC 5, CD"
+     ],
+     "yakun": "Natijalar: 5; 6; 6 va 9; 5."
+    }
+   }
+  },
+  {
+   "mavzu": "Pifagor teoremasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Pifagor teoremasi",
+      "matn": "To‘g‘ri burchakli uchburchakda gipotenuza kvadrati katetlar kvadratlari yig‘indisiga teng: c² ifoda a² + b². Bunda a va b — katetlar, c — gipotenuza, ya’ni to‘g‘ri burchak qarshisidagi eng uzun tomon.",
+      "misol": "Katetlari 3 va 4: 9 + 16, ya’ni 25, gipotenuza 5.",
+      "savol": "Katetlari 6 va 8 bo‘lsa, gipotenuza?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Katetni topish",
+      "matn": "Gipotenuza va bitta katet ma’lum bo‘lsa, ikkinchi katet kvadrati gipotenuza kvadrati bilan ma’lum katet kvadrati ayirmasiga teng: a² ifoda c² − b².",
+      "misol": "c — 13, b — 5 bo‘lsa, a² — 169 − 25, ya’ni 144, a — 12.",
+      "savol": "c — 10, b — 6 bo‘lsa, a?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Teskari teorema",
+      "matn": "Agar uchburchakda bir tomon kvadrati qolgan ikki tomon kvadratlari yig‘indisiga teng bo‘lsa, bu uchburchak to‘g‘ri burchakli bo‘ladi. Shu bilan uchburchak turini aniqlaymiz.",
+      "misol": "7, 24, 25: 49 + 576, ya’ni 625, bu 25 ning kvadrati, uchburchak to‘g‘ri burchakli. 4, 5, 6: 16 + 25, ya’ni 41, 36 ga teng emas, to‘g‘ri burchakli emas.",
+      "savol": "5, 12, 13 uchburchak to‘g‘ri burchaklimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Pifagor uchliklari",
+      "matn": "Pifagor teoremasini qanoatlantiruvchi butun sonlar uchligi Pifagor uchligi deyiladi. Mashhur uchliklar: 3, 4, 5; 5, 12, 13; 8, 15, 17; 7, 24, 25. Uchlikni bir songa ko‘paytirsak, yangi uchlik hosil bo‘ladi.",
+      "misol": "3, 4, 5 ni 2 ga ko‘paytirsak 6, 8, 10: 36 + 64, ya’ni 100. 5, 12, 13 ni 2 ga ko‘paytirsak 10, 24, 26.",
+      "savol": "5, 12 katetli uchburchak gipotenuzasi?",
+      "javob": "13",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Teoremani qo‘llash",
+      "matn": "Pifagor teoremasi kvadrat va to‘g‘ri to‘rtburchak diagonalini, teng yonli uchburchak balandligini, narvon va tros uzunligini topishda qo‘llaniladi.",
+      "misol": "Narvon 5 m, devordan tagigacha 3 m bo‘lsa, devorga tegish balandligi 4 m. Kvadrat diagonali a√2.",
+      "savol": "Narvon 13 m, tagi devordan 5 m. Balandlik?",
+      "javob": "12 m",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "To‘g‘ri burchakli uchburchakda c² ifoda a² + b², c — gipotenuza. Katet: a² ifoda c² − b². Teskari teorema: tomonlar kvadratlari shu munosabatni qanoatlantirsa, uchburchak to‘g‘ri burchakli. Uchliklar: 3, 4, 5; 5, 12, 13; 8, 15, 17; 7, 24, 25.",
+    "misollar": [
+     {
+      "shart": "Katetlari 9 va 12 bo‘lgan uchburchak gipotenuzasini toping.",
+      "yechim": [
+       "Kvadratlar yig‘indisi 81 + 144, ya’ni 225.",
+       "Gipotenuza kvadrati 225.",
+       "Gipotenuza 15, chunki 15 ning kvadrati 225."
+      ],
+      "javob": "15"
+     },
+     {
+      "shart": "Gipotenuza 17, bir katet 8. Ikkinchi katetni toping.",
+      "yechim": [
+       "Katet kvadrati 289 − 64, ya’ni 225.",
+       "Katet 15.",
+       "Tekshirish: 64 + 225, ya’ni 289."
+      ],
+      "javob": "15"
+     },
+     {
+      "shart": "Teng yonli uchburchak asosi 10, yon tomoni 13. Balandligi va yuzini toping.",
+      "yechim": [
+       "Balandlik asosni teng ikkiga bo‘ladi: 5 va 5.",
+       "Balandlik kvadrati 169 − 25, ya’ni 144, balandlik 12.",
+       "Yuza 10 · 12 / 2, ya’ni 60."
+      ],
+      "javob": "balandlik 12, yuza 60"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Uchliklar",
+      "topshiriq": "3, 4, 5 uchlikni 2 ga ko‘paytiring va Pifagor teoremasi bilan tekshiring.",
+      "yechim": "6, 8, 10: 36 + 64, ya’ni 100.",
+      "mahsulot": "tekshiruv jadvali"
+     },
+     {
+      "nom": "Narvon",
+      "topshiriq": "10 m narvon devorga tayalgan, tagi devordan 6 m. Narvon qanday balandlikka yetadi?",
+      "yechim": "Balandlik kvadrati 100 − 36, ya’ni 64, balandlik 8 m.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Diagonal",
+      "topshiriq": "20 va 21 tomonli to‘g‘ri to‘rtburchak diagonalini toping.",
+      "yechim": "400 + 441, ya’ni 841, diagonal 29.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Teskari teorema",
+      "topshiriq": "9, 12, 15 tomonli uchburchak to‘g‘ri burchaklimi?",
+      "yechim": "81 + 144, ya’ni 225, bu 15 ning kvadrati: ha.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Katetlari 6 va 8. Gipotenuza?",
+      "javob": "10"
+     },
+     {
+      "shart": "Gipotenuza 10, katet 6. Ikkinchi katet?",
+      "javob": "8"
+     },
+     {
+      "shart": "5, 12, 13 to‘g‘ri burchakli uchburchakmi?",
+      "javob": "ha"
+     },
+     {
+      "shart": "4, 5, 6 to‘g‘ri burchakli uchburchakmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "Narvon 13 m, tagi 5 m. Balandlik?",
+      "javob": "12 m"
+     },
+     {
+      "shart": "Gipotenuza 25, katet 7. Ikkinchi katet?",
+      "javob": "24"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Gipotenuzani katet deb oladi",
+      "sabab": "eng uzun tomonni aniqlamaydi",
+      "oldini_olish": "gipotenuza to‘g‘ri burchak qarshisida va eng uzun tomon ekanini eslash"
+     },
+     {
+      "xato": "Kvadratlarni qo‘shmay, sonlarni qo‘shadi",
+      "sabab": "kvadratga ko‘tarishni unutadi",
+      "oldini_olish": "avval har bir tomonni kvadratga ko‘tarish"
+     },
+     {
+      "xato": "Kateti topishda kvadratlarni qo‘shadi",
+      "sabab": "ayirish o‘rniga qo‘shadi",
+      "oldini_olish": "katet uchun c² − b² ekanini yozib qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Pifagor va qadimgi misrliklarning 3, 4, 5 usuli"
+     },
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "burchakni to‘g‘ri qurish va tom qiyaligi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "vektor uzunligi va masofalar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Pifagor uchligi»",
+     "muammo": "Pifagor uchliklarini qanday topamiz va qurilishda qanday qo‘llaymiz?",
+     "mahsulot": "uchliklar jadvali va 3-4-5 arqon modeli",
+     "bosqichlar": [
+      "uchliklarni topish",
+      "teoremani tekshirish",
+      "arqon modeli",
+      "o‘lchash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Uchlik toping",
+      "Tekshiring",
+      "Model yasang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "uchliklar to‘g‘ri",
+      "tekshiruv bajarilgan",
+      "model aniq",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Pifagor shahri»",
+     "bekatlar": [
+      {
+       "nom": "Narvon",
+       "matn": "Narvon 5 m, tagi devordan 3 m.",
+       "topshiriq": "Balandlik?",
+       "javob": "4 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "To‘g‘ri to‘rtburchak 8 va 15 m.",
+       "topshiriq": "Diagonali?",
+       "javob": "17 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Tom",
+       "matn": "Tom balandligi 12 m, devordan chetgacha 5 m.",
+       "topshiriq": "Tom qiyasi uzunligi?",
+       "javob": "13 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Kvadrat gulzor tomoni 6.",
+       "topshiriq": "Diagonali?",
+       "javob": "6√2",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda Pifagor teoremasi kerak bo‘ldi?",
+      "Qaysi uchlikni esladingiz?",
+      "Teskari teorema nimaga kerak?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Katet",
+      "tarif": "to‘g‘ri burchakni hosil qiluvchi tomon"
+     },
+     {
+      "atama": "Gipotenuza",
+      "tarif": "to‘g‘ri burchak qarshisidagi tomon"
+     },
+     {
+      "atama": "Pifagor teoremasi",
+      "tarif": "c² ifoda a² + b²"
+     },
+     {
+      "atama": "Pifagor uchligi",
+      "tarif": "teoremani qanoatlantiruvchi butun sonlar"
+     },
+     {
+      "atama": "Teskari teorema",
+      "tarif": "tomonlar bo‘yicha to‘g‘ri burchakni aniqlash"
+     },
+     {
+      "atama": "Kvadrat diagonali",
+      "tarif": "a√2"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Gipotenuza eng uzun tomon",
+      "togri": true,
+      "izoh": "to‘g‘ri burchak qarshisida"
+     },
+     {
+      "matn": "3, 4, 5 uchburchak to‘g‘ri burchakli",
+      "togri": true,
+      "izoh": "9 + 16, ya’ni 25"
+     },
+     {
+      "matn": "Katetlari 6 va 8 uchburchak gipotenuzasi 14",
+      "togri": false,
+      "izoh": "36 + 64, ya’ni 100, gipotenuza 10"
+     },
+     {
+      "matn": "4, 5, 6 to‘g‘ri burchakli uchburchak",
+      "togri": false,
+      "izoh": "16 + 25 va 36 teng emas"
+     },
+     {
+      "matn": "5, 12, 13 Pifagor uchligi",
+      "togri": true,
+      "izoh": "25 + 144, ya’ni 169"
+     },
+     {
+      "matn": "Katet kvadrati c² − b²",
+      "togri": true,
+      "izoh": "ayirma"
+     },
+     {
+      "matn": "Teskari teorema uchburchak turini aniqlaydi",
+      "togri": true,
+      "izoh": "to‘g‘ri burchakli ekanini"
+     },
+     {
+      "matn": "Pifagor teoremasi har qanday uchburchakka to‘g‘ri",
+      "togri": false,
+      "izoh": "faqat to‘g‘ri burchakli uchburchakka"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Pifagor teoremasi nima?",
+      "javob": "gipotenuza kvadrati katetlar kvadratlari yig‘indisiga teng"
+     },
+     {
+      "savol": "Gipotenuza nima?",
+      "javob": "to‘g‘ri burchak qarshisidagi tomon"
+     },
+     {
+      "savol": "Katetlari 3 va 4. Gipotenuza?",
+      "javob": "5"
+     },
+     {
+      "savol": "Gipotenuza 13, katet 12. Ikkinchi katet?",
+      "javob": "5"
+     },
+     {
+      "savol": "Pifagor uchligiga misol keltiring.",
+      "javob": "3, 4, 5"
+     },
+     {
+      "savol": "8, 15, 17 to‘g‘ri burchakli uchburchakmi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Kvadrat diagonali?",
+      "javob": "a√2"
+     },
+     {
+      "savol": "Teskari teorema nima?",
+      "javob": "tomonlar bo‘yicha to‘g‘ri burchakni aniqlash"
+     },
+     {
+      "savol": "6, 8, 10 uchlikmi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Kvadrat tomoni 4. Diagonal?",
+      "javob": "4√2"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Teorema",
+      "matn": "c² ifoda a² + b².",
+      "savol": "Katetlari 5 va 12. Gipotenuza?"
+     },
+     {
+      "nom": "Katet",
+      "matn": "c² − b².",
+      "savol": "c — 10, b — 8. a?"
+     },
+     {
+      "nom": "Teskari",
+      "matn": "Tomonlar bo‘yicha tekshiramiz.",
+      "savol": "6, 8, 10 to‘g‘ri burchaklimi?"
+     },
+     {
+      "nom": "Qo‘llash",
+      "matn": "Narvon, diagonal.",
+      "savol": "Narvon 5, tagi 3. Balandlik?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun 3, 4, 5 uchlik qurilishda to‘g‘ri burchak hosil qilish uchun qulay? Teskari teorema bilan tushuntiring.",
+    "keys": {
+     "vaziyat": "Quruvchi poydevor burchagining to‘g‘ri ekanini tekshirmoqchi. Uning qo‘lida faqat uzun arqon bor.",
+     "savollar": [
+      "3, 4, 5 usuli qanday ishlaydi?",
+      "Nima uchun burchak to‘g‘ri chiqadi?"
+     ]
+    },
+    "tezis": "Kvadratlar yig‘indisi — to‘g‘ri burchak kaliti",
+    "taqqoslash": {
+     "a": "To‘g‘ri teorema",
+     "b": "Teskari teorema",
+     "umumiy": [
+      "katetlar va gipotenuzani bog‘laydi",
+      "kvadratlar bilan ishlaydi"
+     ],
+     "a_farq": [
+      "to‘g‘ri burchakdan tomonni topadi",
+      "gipotenuza hisoblanadi"
+     ],
+     "b_farq": [
+      "tomonlardan to‘g‘ri burchakni aniqlaydi",
+      "uchburchak turi aniqlanadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Pifagor teoremasi",
+     "shoxlar": [
+      {
+       "nom": "Teorema",
+       "bandlar": [
+        "c² ifoda a² + b²",
+        "gipotenuza"
+       ]
+      },
+      {
+       "nom": "Katet",
+       "bandlar": [
+        "c² − b²"
+       ]
+      },
+      {
+       "nom": "Uchliklar",
+       "bandlar": [
+        "3, 4, 5",
+        "5, 12, 13",
+        "8, 15, 17",
+        "7, 24, 25"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "narvon",
+        "diagonal",
+        "balandlik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Kvadratlarim qo‘shilsa, gipotenuza kvadratini beradi. Men kimman?",
+     "javob": "Pifagor teoremasi"
+    },
+    "hikmat": "To‘g‘ri burchak to‘g‘ri yo‘lning boshlanishi.",
+    "kalit_soz": "PIFAGOR",
+    "xato_yechim": {
+     "shart": "Katetlari 3 va 4 uchburchak gipotenuzasini toping.",
+     "xato": "7",
+     "togri": "5",
+     "sabab": "avval kvadratlar qo‘shiladi: 9 + 16 — 25, keyin ildiz olinadi: 5; 3 + 4 — 7 noto‘g‘ri"
+    },
+    "guruh_nomlari": [
+     "Pifagorchilar",
+     "Katetchilar",
+     "Gipotenuzachilar",
+     "Uchlikchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Arqon bilan burchak»",
+     "topshiriq": "Guruh 12 bo‘lakli arqonni 3, 4, 5 qismga bukib, to‘g‘ri burchak hosil qiladi va tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Katetlari 5 va 12 bo‘lgan uchburchak gipotenuzasini toping.",
+     "B": "Gipotenuza 26, katet 10. Ikkinchi katetni toping.",
+     "C": "Tomonlari 20, 21, 29 uchburchak to‘g‘ri burchaklimi? Isbotlang."
+    },
+    "sinkveyn": [
+     "Pifagor",
+     "to‘g‘ri, aniq",
+     "hisoblaydi, tekshiradi, quradi",
+     "Kvadratlar yig‘indisi kaliti",
+     "Teorema"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh Pifagor teoremasi bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: katetlar 6 va 8",
+      "2-guruh: gipotenuza 13, katet 5",
+      "3-guruh: 8, 15, 17 tekshiruvi",
+      "4-guruh: narvon 10, tagi 6, balandlik"
+     ],
+     "yakun": "Natijalar: 10; 12; to‘g‘ri burchakli; 8."
+    }
+   }
   }
  ]
 }
