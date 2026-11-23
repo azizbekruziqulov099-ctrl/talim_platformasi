@@ -1,0 +1,1396 @@
+{
+ "daraja": "maktab",
+ "sinf": "8",
+ "fan": "Geometriya",
+ "muallif": "qo‘lda yozilgan, hisob-kitob avtomatik tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "To‘rtburchaklar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "To‘rtburchak nima?",
+      "matn": "To‘rtta nuqtani (uchlarni) ketma-ket kesmalar bilan tutashtirib, to‘rtburchak hosil qilamiz. Qo‘shni uchta uchi bir to‘g‘ri chiziqda yotmaydi, kesmalar bir-birini kesmaydi. Kesmalar tomonlar, qarama-qarshi bo‘lmagan uchlarni tutashtiruvchi kesmalar diagonallar deyiladi.",
+      "misol": "ABCD to‘rtburchakda tomonlar AB, BC, CD, DA. Diagonallar AC va BD.",
+      "savol": "To‘rtburchakda nechta diagonal bor?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchaklar yig‘indisi",
+      "matn": "Har qanday qavariq to‘rtburchak ichki burchaklarining yig‘indisi 360° ga teng. Diagonal to‘rtburchakni ikki uchburchakka ajratadi, ularning har birida burchaklar yig‘indisi 180°.",
+      "misol": "90° + 80° + 100° + 90° — 360°. Ikki uchburchak: 180° + 180° — 360°.",
+      "savol": "Uch burchak 100°, 80°, 120°. To‘rtinchisi?",
+      "javob": "60°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Perimetr",
+      "matn": "To‘rtburchak perimetri uning barcha tomonlari uzunliklari yig‘indisiga teng. Perimetr chegara uzunligini ko‘rsatadi.",
+      "misol": "Tomonlari 5, 7, 6, 4 sm bo‘lgan to‘rtburchak perimetri 5 + 7 + 6 + 4, ya’ni 22 sm.",
+      "savol": "Tomonlari 3, 4, 5, 6 bo‘lgan to‘rtburchak perimetri?",
+      "javob": "18",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘rtburchak turlari",
+      "matn": "Qarama-qarshi tomonlari juft-juft parallel bo‘lsa — parallelogramm. Burchaklari to‘g‘ri bo‘lsa — to‘g‘ri to‘rtburchak. Tomonlari teng bo‘lsa — romb. Hammasi teng va burchaklari to‘g‘ri bo‘lsa — kvadrat. Faqat bir juft tomoni parallel bo‘lsa — trapetsiya.",
+      "misol": "Eshik — to‘g‘ri to‘rtburchak, shaxmat doskasi — kvadrat, uchburchak olmos — romb.",
+      "savol": "Qarama-qarshi tomonlari juft-juft parallel to‘rtburchak qanday ataladi?",
+      "javob": "parallelogramm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tomonlar tengsizligi",
+      "matn": "To‘rtburchakning har bir tomoni qolgan uch tomon yig‘indisidan kichik bo‘ladi. Aks holda to‘rtburchak yasab bo‘lmaydi.",
+      "misol": "3, 4, 5, 6 tomonlari mumkin, chunki 6 kichik 3 + 4 + 5. 3, 4, 5, 13 mumkin emas, chunki 13 katta 12.",
+      "savol": "2, 3, 4, 10 tomonlardan to‘rtburchak yasash mumkinmi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qavariq to‘rtburchak burchaklari yig‘indisi 360°. Perimetr — tomonlar yig‘indisi. Har bir tomon qolgan uch tomon yig‘indisidan kichik. Diagonal to‘rtburchakni ikki uchburchakka ajratadi.",
+    "misollar": [
+     {
+      "shart": "To‘rtburchakda A — 70°, B — 110°, C — 90°. D burchakni toping.",
+      "yechim": [
+       "Uch burchak yig‘indisi 70° + 110° + 90°, ya’ni 270°.",
+       "Umumiy yig‘indi 360°.",
+       "D — 360° − 270°, ya’ni 90°."
+      ],
+      "javob": "90°"
+     },
+     {
+      "shart": "To‘rtburchak tomonlari ketma-ket x, x + 2, x + 4, x + 6, perimetri 40. Tomonlarni toping.",
+      "yechim": [
+       "Perimetr 4x + 12, bu 40 ga teng.",
+       "4x — 28, x — 7.",
+       "Tomonlar 7, 9, 11, 13. Tekshirish: 7 + 9 + 11 + 13 — 40."
+      ],
+      "javob": "7, 9, 11, 13"
+     },
+     {
+      "shart": "To‘rtburchak burchaklari nisbati 1 : 2 : 3 : 4. Burchaklarni toping.",
+      "yechim": [
+       "Qismlar yig‘indisi 1 + 2 + 3 + 4, ya’ni 10.",
+       "Bir qism 360° / 10, ya’ni 36°.",
+       "Burchaklar 36°, 72°, 108°, 144°. Yig‘indi 360°."
+      ],
+      "javob": "36°, 72°, 108°, 144°"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Burchaklarni yig‘amiz",
+      "topshiriq": "Qog‘ozdan to‘rtburchak kesing, burchaklarini yirtib olib, uchlarini bir nuqtada birlashtiring.",
+      "yechim": "Burchaklar to‘liq burchakni hosil qiladi: 360°.",
+      "mahsulot": "qog‘oz modeli"
+     },
+     {
+      "nom": "Perimetr hisobi",
+      "topshiriq": "Tomonlari 6, 8, 10, 12 bo‘lgan to‘rtburchak perimetrini toping.",
+      "yechim": "6 + 8 + 10 + 12, ya’ni 36.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Mumkinmi?",
+      "topshiriq": "Tomonlari 5, 6, 7, 20 va 4, 5, 6, 7 bo‘lgan to‘rtburchaklar mavjudmi?",
+      "yechim": "Birinchisi yo‘q (20 katta 18), ikkinchisi ha.",
+      "mahsulot": "tekshiruv jadvali"
+     },
+     {
+      "nom": "Turlarni tasniflaymiz",
+      "topshiriq": "Sinfdagi 8 ta buyum shaklini to‘rtburchak turlariga ajrating.",
+      "yechim": "Eshik, daftar — to‘g‘ri to‘rtburchak; plitka — kvadrat va h.k.",
+      "mahsulot": "tasnif jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "To‘rtburchak burchaklari yig‘indisi nechaga teng?",
+      "javob": "360°"
+     },
+     {
+      "shart": "Burchaklar 90°, 90°, 90° bo‘lsa, to‘rtinchisi?",
+      "javob": "90°"
+     },
+     {
+      "shart": "Burchaklar nisbati 2 : 3 : 3 : 4. Eng kichik burchak?",
+      "javob": "60°"
+     },
+     {
+      "shart": "Tomonlari 5, 5, 8, 8 bo‘lgan to‘rtburchak perimetri?",
+      "javob": "26"
+     },
+     {
+      "shart": "To‘rtburchakda nechta diagonal bor?",
+      "javob": "2"
+     },
+     {
+      "shart": "2, 3, 4, 10 tomonlardan to‘rtburchak yasash mumkinmi?",
+      "javob": "yo‘q"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Burchaklar yig‘indisini 180° deb oladi",
+      "sabab": "uchburchak bilan adashtiradi",
+      "oldini_olish": "to‘rtburchak ikki uchburchakdan iboratligini eslash: 360°"
+     },
+     {
+      "xato": "Perimetrga diagonalni ham qo‘shadi",
+      "sabab": "perimetr nimaligini bilmaydi",
+      "oldini_olish": "perimetr faqat tomonlar yig‘indisi ekanini yozib qo‘yish"
+     },
+     {
+      "xato": "Har qanday to‘rt kesmadan to‘rtburchak yasash mumkin deb o‘ylaydi",
+      "sabab": "tomonlar tengsizligini bilmaydi",
+      "oldini_olish": "eng katta tomonni qolganlar yig‘indisi bilan solishtirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "rasmda to‘rtburchak shakllar va kompozitsiya"
+     },
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "xona, deraza va eshiklar to‘rtburchak shaklda"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "detallar o‘lchami va chizma"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Atrofimizdagi to‘rtburchaklar»",
+     "muammo": "Atrofimizdagi to‘rtburchak shakllar qaysi turlarga kiradi?",
+     "mahsulot": "to‘rtburchaklar albomi",
+     "bosqichlar": [
+      "buyumlarni topish",
+      "o‘lchash",
+      "turini aniqlash",
+      "perimetrni hisoblash",
+      "albom yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Buyum toping",
+      "O‘lchang",
+      "Turini aniqlang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov to‘g‘ri",
+      "tur to‘g‘ri aniqlangan",
+      "hisob to‘g‘ri",
+      "xulosa asosli",
+      "albom ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Shakllar ko‘chasi»",
+     "bekatlar": [
+      {
+       "nom": "Maktab hovlisi",
+       "matn": "Maydon tomonlari 20, 30, 20, 30 m.",
+       "topshiriq": "Perimetri?",
+       "javob": "100 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Bog‘",
+       "matn": "Gulzor tomonlari 5, 6, 7, 8 m.",
+       "topshiriq": "Perimetri?",
+       "javob": "26 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Kutubxona",
+       "matn": "Burchaklar 90°, 85°, 95°, x.",
+       "topshiriq": "x?",
+       "javob": "90°",
+       "rasm": ""
+      },
+      {
+       "nom": "Maydon",
+       "matn": "Burchaklar 60°, 120°, 60°, x.",
+       "topshiriq": "x?",
+       "javob": "120°",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi to‘rtburchakni uchratdingiz?",
+      "Burchaklar yig‘indisi nima uchun 360°?",
+      "Perimetrni qayerda hisobladingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "To‘rtburchak",
+      "tarif": "to‘rt uchli, to‘rt tomonli yopiq siniq chiziq"
+     },
+     {
+      "atama": "Diagonal",
+      "tarif": "qarama-qarshi uchlarni tutashtiruvchi kesma"
+     },
+     {
+      "atama": "Qarama-qarshi tomonlar",
+      "tarif": "umumiy uchga ega bo‘lmagan tomonlar"
+     },
+     {
+      "atama": "Perimetr",
+      "tarif": "barcha tomonlar yig‘indisi"
+     },
+     {
+      "atama": "Qavariq to‘rtburchak",
+      "tarif": "har bir tomon chizig‘ining bir tomonida yotgan to‘rtburchak"
+     },
+     {
+      "atama": "Ichki burchak",
+      "tarif": "tomonlar orasidagi ichki sohadagi burchak"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qavariq to‘rtburchak burchaklari yig‘indisi 360°",
+      "togri": true,
+      "izoh": "ikki uchburchakka ajraladi"
+     },
+     {
+      "matn": "To‘rtburchakda 3 ta diagonal bor",
+      "togri": false,
+      "izoh": "faqat 2 ta"
+     },
+     {
+      "matn": "Perimetr — tomonlar yig‘indisi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Kvadrat to‘rtburchakning bir turi",
+      "togri": true,
+      "izoh": "tomonlari teng, burchaklari to‘g‘ri"
+     },
+     {
+      "matn": "Tomonlari 2, 3, 4, 10 bo‘lgan to‘rtburchak mavjud",
+      "togri": false,
+      "izoh": "10 katta 9"
+     },
+     {
+      "matn": "Diagonal to‘rtburchakni ikki uchburchakka ajratadi",
+      "togri": true,
+      "izoh": "har biri 180°"
+     },
+     {
+      "matn": "Har bir to‘rtburchak parallelogramm",
+      "togri": false,
+      "izoh": "trapetsiya va oddiy to‘rtburchaklar ham bor"
+     },
+     {
+      "matn": "Burchaklari 90°, 90°, 90°, 80° bo‘lgan to‘rtburchak bor",
+      "togri": false,
+      "izoh": "yig‘indi 350°"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "To‘rtburchak nima?",
+      "javob": "to‘rt uchli, to‘rt tomonli shakl"
+     },
+     {
+      "savol": "Diagonal nima?",
+      "javob": "qarama-qarshi uchlarni tutashtiruvchi kesma"
+     },
+     {
+      "savol": "Burchaklar yig‘indisi?",
+      "javob": "360°"
+     },
+     {
+      "savol": "Perimetr nima?",
+      "javob": "tomonlar yig‘indisi"
+     },
+     {
+      "savol": "Qanday to‘rtburchaklarni bilasiz?",
+      "javob": "parallelogramm, to‘g‘ri to‘rtburchak, romb, kvadrat, trapetsiya"
+     },
+     {
+      "savol": "Burchaklari 90°, 80°, 100° va x. x?",
+      "javob": "90°"
+     },
+     {
+      "savol": "To‘rtburchak necha uchburchakka ajraladi?",
+      "javob": "ikkita"
+     },
+     {
+      "savol": "Perimetr 4, 5, 6, 7 uchun?",
+      "javob": "22"
+     },
+     {
+      "savol": "Qarama-qarshi tomonlar nima?",
+      "javob": "umumiy uchi yo‘q tomonlar"
+     },
+     {
+      "savol": "Tomonlar tengsizligi nima?",
+      "javob": "har bir tomon qolganlar yig‘indisidan kichik"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "To‘rt uch, to‘rt tomon.",
+      "savol": "Diagonal nima?"
+     },
+     {
+      "nom": "Burchaklar",
+      "matn": "Yig‘indi 360°.",
+      "savol": "90°, 90°, 90°, x. x?"
+     },
+     {
+      "nom": "Perimetr",
+      "matn": "Tomonlar yig‘indisi.",
+      "savol": "5 + 6 + 7 + 8?"
+     },
+     {
+      "nom": "Turlar",
+      "matn": "Parallelogramm, romb, kvadrat.",
+      "savol": "Hamma tomoni teng to‘rtburchak?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun har qanday to‘rtburchak burchaklari yig‘indisi 360° bo‘ladi? Diagonal yordamida uchburchaklarga ajratib tushuntiring.",
+    "keys": {
+     "vaziyat": "Usta to‘rtburchak maydonni o‘rab olmoqchi. Tomonlari 12, 15, 12, 15 m. Burchaklari to‘g‘ri deb faraz qilinmoqda.",
+     "savollar": [
+      "Qancha to‘siq kerak?",
+      "To‘rtinchi burchak nechaga teng bo‘lishi kerak, agar uchtasi 90° bo‘lsa?"
+     ]
+    },
+    "tezis": "To‘rtburchak — shakllar oilasining boshlig‘i",
+    "taqqoslash": {
+     "a": "Uchburchak",
+     "b": "To‘rtburchak",
+     "umumiy": [
+      "ko‘pburchak",
+      "perimetri tomonlar yig‘indisi"
+     ],
+     "a_farq": [
+      "burchaklar yig‘indisi 180°",
+      "diagonal yo‘q"
+     ],
+     "b_farq": [
+      "burchaklar yig‘indisi 360°",
+      "ikkita diagonal bor"
+     ]
+    },
+    "klaster": {
+     "markaz": "To‘rtburchaklar",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "uchlar",
+        "tomonlar",
+        "diagonallar"
+       ]
+      },
+      {
+       "nom": "Burchaklar",
+       "bandlar": [
+        "yig‘indi 360°",
+        "ikki uchburchak"
+       ]
+      },
+      {
+       "nom": "Perimetr",
+       "bandlar": [
+        "tomonlar yig‘indisi"
+       ]
+      },
+      {
+       "nom": "Turlar",
+       "bandlar": [
+        "parallelogramm",
+        "romb",
+        "kvadrat",
+        "trapetsiya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "To‘rt uchim, to‘rt tomonim, ikki diagonalim bor. Burchaklarim 360°. Men kimman?",
+     "javob": "to‘rtburchak"
+    },
+    "hikmat": "To‘rt tomoni teng uy mustahkam bo‘lar.",
+    "kalit_soz": "TO‘RTBURCHAK",
+    "xato_yechim": {
+     "shart": "To‘rtburchak burchaklari 80°, 100°, 90° va x. x ni toping.",
+     "xato": "10°",
+     "togri": "90°",
+     "sabab": "burchaklar yig‘indisi 360°: 80° + 100° + 90° — 270°, x — 360° − 270° — 90°"
+    },
+    "guruh_nomlari": [
+     "To‘rtburchaklar",
+     "Diagonalchilar",
+     "Perimetrchilar",
+     "Burchakchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinf xonasi»",
+     "topshiriq": "Guruh sinf xonasining devor va pol o‘lchamlarini o‘lchab, perimetrni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Burchaklar 100°, 80°, 70° va x. x ni toping.",
+     "B": "Tomonlari 7, 8, 9, 10 bo‘lgan to‘rtburchak perimetrini toping.",
+     "C": "Burchaklari nisbati 1 : 2 : 4 : 5 to‘rtburchak burchaklarini toping."
+    },
+    "sinkveyn": [
+     "To‘rtburchak",
+     "to‘rt tomonli, qavariq",
+     "chizadi, o‘lchaydi, hisoblaydi",
+     "Burchaklar yig‘indisi 360°",
+     "Shakl"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh to‘rtburchaklar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 90°, 80°, 100°, x",
+      "2-guruh: tomonlari 3, 4, 5, 6, perimetr",
+      "3-guruh: 1 : 1 : 2 : 2 nisbatli burchaklar",
+      "4-guruh: diagonallar soni"
+     ],
+     "yakun": "Natijalar: 90°; 18; 60°, 60°, 120°, 120°; 2."
+    }
+   }
+  },
+  {
+   "mavzu": "Parallelogramm",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Parallelogramm ta’rifi",
+      "matn": "Qarama-qarshi tomonlari juft-juft parallel bo‘lgan to‘rtburchak parallelogramm deyiladi. ABCD parallelogrammda AB ∥ CD va BC ∥ AD.",
+      "misol": "Eshik tavaqasining qiyshaygan shakli, qaychi ochilganda hosil bo‘lgan shakl parallelogramm bo‘lishi mumkin.",
+      "savol": "Parallelogrammda nechta juft parallel tomon bor?",
+      "javob": "2 juft",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tomonlar va burchaklar xossalari",
+      "matn": "Parallelogrammning qarama-qarshi tomonlari teng, qarama-qarshi burchaklari teng. Qo‘shni burchaklari yig‘indisi 180° ga teng.",
+      "misol": "A — 65° bo‘lsa, C — 65°, B va D — 180° − 65°, ya’ni 115°. Yig‘indi 65° + 115° + 65° + 115° — 360°.",
+      "savol": "A — 70° bo‘lsa, B burchak nechaga teng?",
+      "javob": "110°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Diagonallar xossasi",
+      "matn": "Parallelogramm diagonallari kesishish nuqtasida teng ikkiga bo‘linadi. Har bir diagonal parallelogrammni ikki teng uchburchakka ajratadi.",
+      "misol": "AC — 10, BD — 8 bo‘lsa, kesishish nuqtasi O uchun AO — 5, BO — 4.",
+      "savol": "AC — 14 bo‘lsa, AO nechaga teng?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Parallelogramm alomatlari",
+      "matn": "Quyidagilardan biri bajarilsa, to‘rtburchak parallelogramm bo‘ladi: 1) qarama-qarshi tomonlari juft-juft teng; 2) ikki qarama-qarshi tomoni teng va parallel; 3) diagonallari kesishish nuqtasida teng ikkiga bo‘linadi.",
+      "misol": "AB — CD — 6 va BC — AD — 4 bo‘lsa, ABCD parallelogramm.",
+      "savol": "Ikki qarama-qarshi tomoni teng va parallel to‘rtburchak qanday ataladi?",
+      "javob": "parallelogramm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yuza va perimetr",
+      "matn": "Parallelogramm yuzi asos va unga tushirilgan balandlik ko‘paytmasiga teng: S ifoda a · h. Perimetr — qo‘shni ikki tomon yig‘indisining ikkilanganiga teng: P ifoda 2(a + b).",
+      "misol": "a — 8, h — 5 bo‘lsa, S — 40. a — 8, b — 5 bo‘lsa, P — 2 · 13, ya’ni 26.",
+      "savol": "Asos 6, balandlik 4. Yuzi?",
+      "javob": "24",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Parallelogramm: qarama-qarshi tomonlari va burchaklari teng, qo‘shni burchaklari yig‘indisi 180°, diagonallari teng ikkiga bo‘linadi. Yuzi S ifoda a · h, perimetri P ifoda 2(a + b).",
+    "misollar": [
+     {
+      "shart": "Parallelogramm tomonlari 7 va 4 sm. Perimetrini toping.",
+      "yechim": [
+       "Perimetr 2(7 + 4).",
+       "2 · 11, ya’ni 22.",
+       "Tekshirish: 7 + 4 + 7 + 4 — 22."
+      ],
+      "javob": "22 sm"
+     },
+     {
+      "shart": "Parallelogrammda A — 55°. Qolgan burchaklarni toping.",
+      "yechim": [
+       "C — 55° (qarama-qarshi burchak).",
+       "B — 180° − 55°, ya’ni 125°, D — 125°.",
+       "Tekshirish: 55° + 125° + 55° + 125° — 360°."
+      ],
+      "javob": "B — 125°, C — 55°, D — 125°"
+     },
+     {
+      "shart": "Parallelogramm yuzi 60 kv. sm, asosi 12 sm. Balandligini toping.",
+      "yechim": [
+       "S ifoda a · h, 60 — 12 · h.",
+       "h — 60 / 12.",
+       "h — 5 sm."
+      ],
+      "javob": "5 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Diagonallar",
+      "topshiriq": "AC — 12, BD — 18. O — diagonallar kesishish nuqtasi. AO va BO ni toping.",
+      "yechim": "AO — 6, BO — 9.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Tomonlarni topamiz",
+      "topshiriq": "Perimetri 30, bir tomoni ikkinchisidan 3 ga uzun parallelogramm tomonlarini toping.",
+      "yechim": "a + b — 15, a — b + 3: b — 6, a — 9. Tekshirish: 2 · 15, ya’ni 30.",
+      "mahsulot": "yechim varag‘i"
+     },
+     {
+      "nom": "Yuza",
+      "topshiriq": "Asosi 10, balandligi 7 bo‘lgan parallelogramm yuzini toping.",
+      "yechim": "10 · 7, ya’ni 70.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Alomatni sinaymiz",
+      "topshiriq": "Ikki qarama-qarshi tomoni 5 sm va parallel bo‘lgan to‘rtburchak yasang va parallelogramm ekanini tekshiring.",
+      "yechim": "Ikki qarama-qarshi tomoni teng va parallel, demak parallelogramm.",
+      "mahsulot": "yasash"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "A — 40° bo‘lsa, B burchak nechaga teng?",
+      "javob": "140°"
+     },
+     {
+      "shart": "Diagonallar 16 va 10. Kesishish nuqtasi ularni qanday bo‘laklarga bo‘ladi?",
+      "javob": "8 va 5"
+     },
+     {
+      "shart": "Tomonlari 9 va 5 bo‘lgan parallelogramm perimetri?",
+      "javob": "28"
+     },
+     {
+      "shart": "Asos 9, balandlik 6. Yuzi?",
+      "javob": "54"
+     },
+     {
+      "shart": "Bir burchagi ikkinchisidan 40° ortiq qo‘shni burchaklarni toping.",
+      "javob": "70° va 110°"
+     },
+     {
+      "shart": "Parallelogrammning qarama-qarshi burchaklari tengmi?",
+      "javob": "ha"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yuzni tomonlar ko‘paytmasi deb hisoblaydi",
+      "sabab": "balandlikni yon tomon bilan adashtiradi",
+      "oldini_olish": "yuza asos va balandlik ko‘paytmasi ekanini yozib qo‘yish"
+     },
+     {
+      "xato": "Qo‘shni burchaklarni teng deb oladi",
+      "sabab": "qarama-qarshi va qo‘shni burchaklarni farqlamaydi",
+      "oldini_olish": "qo‘shni burchaklar yig‘indisi 180° ekanini eslash"
+     },
+     {
+      "xato": "Perimetrni a + b deb yozadi",
+      "sabab": "ikkilantirishni unutadi",
+      "oldini_olish": "P ifoda 2(a + b) formulasini ishlatish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "kuchlarni qo‘shishda parallelogramm qoidasi"
+     },
+     {
+      "fan": "Texnika",
+      "boglanish": "mexanizm va ko‘tarma panjaralari parallelogramm shaklida"
+     },
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "qiyshiq tomonli bezaklar va panjaralar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Harakatlanuvchi parallelogramm»",
+     "muammo": "Parallelogramm tomonlari o‘zgarmasa, yuzi qanday o‘zgaradi?",
+     "mahsulot": "sharnirli parallelogramm modeli",
+     "bosqichlar": [
+      "model yasash",
+      "burchakni o‘zgartirish",
+      "balandlikni o‘lchash",
+      "yuzani hisoblash",
+      "xulosa"
+     ],
+     "guruh_vazifalari": [
+      "Model yasang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Parallelogrammlar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Panjara",
+       "matn": "Panjara bo‘lagi parallelogramm: tomonlari 6 va 4 sm.",
+       "topshiriq": "Perimetri?",
+       "javob": "20 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Uchrashuv nuqtasi",
+       "matn": "Diagonallar 20 va 14.",
+       "topshiriq": "Kesishish nuqtasi bo‘laklari?",
+       "javob": "10 va 7",
+       "rasm": ""
+      },
+      {
+       "nom": "Gulzor",
+       "matn": "Asosi 8 m, balandligi 5 m.",
+       "topshiriq": "Yuzi?",
+       "javob": "40 kv. m",
+       "rasm": ""
+      },
+      {
+       "nom": "Burchaklar",
+       "matn": "A — 75°.",
+       "topshiriq": "B?",
+       "javob": "105°",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi xossa yoqdi?",
+      "Alomatni qayerda qo‘lladingiz?",
+      "Yuza formulasi qanday xulosa berdi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Parallelogramm",
+      "tarif": "qarama-qarshi tomonlari parallel to‘rtburchak"
+     },
+     {
+      "atama": "Asos",
+      "tarif": "yuza hisoblanadigan tomon"
+     },
+     {
+      "atama": "Balandlik",
+      "tarif": "asosga tushirilgan perpendikulyar"
+     },
+     {
+      "atama": "Diagonal",
+      "tarif": "qarama-qarshi uchlarni tutashtiruvchi kesma"
+     },
+     {
+      "atama": "Qo‘shni burchaklar",
+      "tarif": "bir tomonga yondosh burchaklar"
+     },
+     {
+      "atama": "Alomat",
+      "tarif": "shaklni aniqlovchi shart"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Parallelogrammning qarama-qarshi tomonlari teng",
+      "togri": true,
+      "izoh": "asosiy xossa"
+     },
+     {
+      "matn": "Parallelogrammning qo‘shni burchaklari teng",
+      "togri": false,
+      "izoh": "ularning yig‘indisi 180°"
+     },
+     {
+      "matn": "Diagonallar kesishish nuqtasida teng ikkiga bo‘linadi",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "Parallelogramm yuzi a · h",
+      "togri": true,
+      "izoh": "asos va balandlik"
+     },
+     {
+      "matn": "Perimetr a + b",
+      "togri": false,
+      "izoh": "2(a + b)"
+     },
+     {
+      "matn": "Ikki tomoni teng va parallel to‘rtburchak parallelogramm",
+      "togri": true,
+      "izoh": "alomat"
+     },
+     {
+      "matn": "Parallelogrammda barcha burchaklar 90°",
+      "togri": false,
+      "izoh": "bu to‘g‘ri to‘rtburchak"
+     },
+     {
+      "matn": "Diagonal parallelogrammni ikki teng uchburchakka ajratadi",
+      "togri": true,
+      "izoh": "xossa"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Parallelogramm nima?",
+      "javob": "qarama-qarshi tomonlari juft-juft parallel to‘rtburchak"
+     },
+     {
+      "savol": "Qarama-qarshi tomonlari haqida?",
+      "javob": "teng"
+     },
+     {
+      "savol": "Qarama-qarshi burchaklari haqida?",
+      "javob": "teng"
+     },
+     {
+      "savol": "Qo‘shni burchaklar yig‘indisi?",
+      "javob": "180°"
+     },
+     {
+      "savol": "Diagonallar kesishsa nima bo‘ladi?",
+      "javob": "teng ikkiga bo‘linadi"
+     },
+     {
+      "savol": "Yuza formulasi?",
+      "javob": "a · h"
+     },
+     {
+      "savol": "Perimetr formulasi?",
+      "javob": "2(a + b)"
+     },
+     {
+      "savol": "A — 60° bo‘lsa, B?",
+      "javob": "120°"
+     },
+     {
+      "savol": "Tomonlari 3 va 5. Perimetr?",
+      "javob": "16"
+     },
+     {
+      "savol": "Alomatlardan birini ayting.",
+      "javob": "ikki qarama-qarshi tomoni teng va parallel"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Juft-juft parallel tomonlar.",
+      "savol": "AB ∥ CD bo‘lsa, yana qaysi tomonlar parallel?"
+     },
+     {
+      "nom": "Xossalar",
+      "matn": "Teng tomon va burchaklar.",
+      "savol": "A — 50°. C?"
+     },
+     {
+      "nom": "Alomatlar",
+      "matn": "Teng va parallel tomonlar.",
+      "savol": "Diagonallar teng ikkiga bo‘linsa, shakl?"
+     },
+     {
+      "nom": "Yuza",
+      "matn": "Asos ko‘paytiriladi balandlikka.",
+      "savol": "a — 5, h — 4. S?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun parallelogrammning tomonlari o‘zgarmasa ham, burchagi o‘zgarsa yuzi o‘zgaradi? Balandlik orqali tushuntiring.",
+    "keys": {
+     "vaziyat": "Bog‘bon parallelogramm shaklidagi gulzorni ekmoqchi. Asosi 12 m, unga tushirilgan balandlik 5 m.",
+     "savollar": [
+      "Gulzor yuzi qancha?",
+      "Yon tomoni 6,5 m bo‘lsa, perimetr qancha?"
+     ]
+    },
+    "tezis": "Parallelogramm — qiyshaygan to‘g‘ri to‘rtburchak",
+    "taqqoslash": {
+     "a": "Parallelogramm",
+     "b": "Oddiy to‘rtburchak",
+     "umumiy": [
+      "to‘rt tomoni bor",
+      "burchaklari yig‘indisi 360°"
+     ],
+     "a_farq": [
+      "qarama-qarshi tomonlari parallel",
+      "diagonallari teng bo‘linadi"
+     ],
+     "b_farq": [
+      "parallellik shart emas",
+      "xossalar cheklangan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Parallelogramm",
+     "shoxlar": [
+      {
+       "nom": "Tomonlar",
+       "bandlar": [
+        "juft-juft parallel",
+        "juft-juft teng"
+       ]
+      },
+      {
+       "nom": "Burchaklar",
+       "bandlar": [
+        "qarama-qarshilari teng",
+        "qo‘shnilari 180°"
+       ]
+      },
+      {
+       "nom": "Diagonallar",
+       "bandlar": [
+        "teng ikkiga bo‘linadi",
+        "ikki uchburchak"
+       ]
+      },
+      {
+       "nom": "Yuza",
+       "bandlar": [
+        "a · h",
+        "perimetr"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Qarama-qarshi tomonlarim parallel, diagonallarim bir-birini teng bo‘ladi. Men kimman?",
+     "javob": "parallelogramm"
+    },
+    "hikmat": "Parallel yo‘llar hech qachon kesishmaydi.",
+    "kalit_soz": "PARALLEL",
+    "xato_yechim": {
+     "shart": "Asosi 8, yon tomoni 5, balandligi 4 bo‘lgan parallelogramm yuzini toping.",
+     "xato": "40",
+     "togri": "32",
+     "sabab": "yuza asos va balandlik ko‘paytmasi: 8 · 4 — 32; yon tomon 5 yuzaga kirmaydi"
+    },
+    "guruh_nomlari": [
+     "Parallelchilar",
+     "Diagonalchilar",
+     "Balandlikchilar",
+     "Alomatchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Panjara»",
+     "topshiriq": "Guruh maktab panjarasidagi parallelogrammlarni topib, tomon va burchaklarini o‘lchaydi."
+    },
+    "vazifalar": {
+     "A": "A — 80° bo‘lsa, parallelogrammning qolgan burchaklarini toping.",
+     "B": "Asosi 15, balandligi 6 bo‘lgan parallelogramm yuzini toping.",
+     "C": "Perimetri 36, bir tomoni ikkinchisidan 2 ga qisqa bo‘lsa, tomonlarini toping."
+    },
+    "sinkveyn": [
+     "Parallelogramm",
+     "parallel, teng",
+     "ajratadi, bo‘ladi, o‘lchanadi",
+     "Qiyshaygan to‘rtburchak",
+     "Shakl"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh parallelogrammlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: A — 70°, B",
+      "2-guruh: tomonlar 6 va 9, perimetr",
+      "3-guruh: asos 10, balandlik 3, yuza",
+      "4-guruh: diagonal 18, AO"
+     ],
+     "yakun": "Natijalar: 110°; 30; 30; 9."
+    }
+   }
+  },
+  {
+   "mavzu": "To‘g‘ri to‘rtburchak, romb, kvadrat",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "To‘g‘ri to‘rtburchak",
+      "matn": "Barcha burchaklari to‘g‘ri bo‘lgan parallelogramm to‘g‘ri to‘rtburchak deyiladi. Uning diagonallari teng. Yuzi tomonlari ko‘paytmasiga teng. Diagonalni Pifagor teoremasi bilan topamiz.",
+      "misol": "Tomonlari 6 va 8 bo‘lsa, diagonal kvadrati 36 + 64, ya’ni 100, diagonal 10. Yuzi 6 · 8, ya’ni 48.",
+      "savol": "Tomonlari 3 va 4 bo‘lgan to‘g‘ri to‘rtburchak diagonali?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Romb",
+      "matn": "Barcha tomonlari teng parallelogramm romb deyiladi. Rombning diagonallari o‘zaro perpendikulyar va burchaklarini teng ikkiga bo‘ladi. Diagonallar uni to‘rtta teng to‘g‘ri burchakli uchburchakka ajratadi.",
+      "misol": "Diagonallari 6 va 8 bo‘lsa, yarimlari 3 va 4, tomoni 5, chunki 9 + 16, ya’ni 25.",
+      "savol": "Romb diagonallari 6 va 8. Tomoni nechaga teng?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kvadrat",
+      "matn": "Barcha tomonlari teng va barcha burchaklari to‘g‘ri bo‘lgan to‘rtburchak kvadrat deyiladi. Kvadrat ham to‘g‘ri to‘rtburchak, ham romb. Tomoni a bo‘lsa, diagonali a√2.",
+      "misol": "Tomoni 5 bo‘lsa, yuzi 25, diagonali 5√2.",
+      "savol": "Tomoni 4 bo‘lgan kvadrat yuzi?",
+      "javob": "16",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yuza formulalari",
+      "matn": "To‘g‘ri to‘rtburchak: S ifoda a · b. Romb: S ifoda d1 · d2 / 2, bunda d1 va d2 diagonallar. Kvadrat: S ifoda a² yoki d² / 2, d — diagonal.",
+      "misol": "Romb diagonallari 6 va 8: S — 6 · 8 / 2, ya’ni 24. Kvadrat diagonali 6: S — 36 / 2, ya’ni 18.",
+      "savol": "Romb diagonallari 10 va 4. Yuzi?",
+      "javob": "20",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Shakllar orasidagi bog‘liqlik",
+      "matn": "Har bir kvadrat — romb va to‘g‘ri to‘rtburchak. Har bir romb va to‘g‘ri to‘rtburchak — parallelogramm. Aksincha to‘g‘ri bo‘lmaydi: har bir romb kvadrat emas.",
+      "misol": "Kvadrat — eng maxsus to‘rtburchak. Romb burchaklari to‘g‘ri bo‘lmasa, kvadrat emas.",
+      "savol": "Har bir kvadrat rombmi?",
+      "javob": "ha",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "To‘g‘ri to‘rtburchak: burchaklari to‘g‘ri, diagonallari teng. Romb: tomonlari teng, diagonallari perpendikulyar. Kvadrat: ikkalasi birgalikda. Romb yuzi d1 · d2 / 2, kvadrat yuzi a².",
+    "misollar": [
+     {
+      "shart": "To‘g‘ri to‘rtburchak perimetri 28, tomonlari nisbati 3 : 4. Tomonlarini, yuzini va diagonalini toping.",
+      "yechim": [
+       "Yarim perimetr 14, 3 + 4 — 7 qism, bir qism 2.",
+       "Tomonlar 6 va 8, yuza 6 · 8, ya’ni 48.",
+       "Diagonal kvadrati 36 + 64 — 100, diagonal 10."
+      ],
+      "javob": "6 va 8, yuza 48, diagonal 10"
+     },
+     {
+      "shart": "Romb diagonallari 10 va 24. Tomonini, perimetrini va yuzini toping.",
+      "yechim": [
+       "Yarim diagonallar 5 va 12, tomon kvadrati 25 + 144 — 169, tomon 13.",
+       "Perimetr 4 · 13, ya’ni 52.",
+       "Yuza 10 · 24 / 2, ya’ni 120."
+      ],
+      "javob": "tomon 13, perimetr 52, yuza 120"
+     },
+     {
+      "shart": "Kvadrat diagonali 8. Yuzini va tomonini toping.",
+      "yechim": [
+       "Yuza d² / 2, ya’ni 64 / 2 — 32.",
+       "Tomon kvadrati 32, tomon √32, ya’ni 4√2.",
+       "Tekshirish: diagonal tomon · √2, ya’ni 4√2 · √2 — 8."
+      ],
+      "javob": "yuza 32, tomon 4√2"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Diagonal hisobi",
+      "topshiriq": "Tomonlari 9 va 12 bo‘lgan to‘g‘ri to‘rtburchak diagonalini toping.",
+      "yechim": "81 + 144 — 225, diagonal 15.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Romb tomoni",
+      "topshiriq": "Romb diagonallari 16 va 12. Tomoni va yuzini toping.",
+      "yechim": "Yarimlari 8 va 6, tomon 10. Yuza 16 · 12 / 2, ya’ni 96.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Kvadrat",
+      "topshiriq": "Perimetri 20 bo‘lgan kvadrat tomoni va yuzini toping.",
+      "yechim": "Tomon 5, yuza 25.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Venn diagrammasi",
+      "topshiriq": "To‘rtburchak turlarini Venn diagrammasida joylashtiring.",
+      "yechim": "Kvadrat romb va to‘g‘ri to‘rtburchak kesishmasida.",
+      "mahsulot": "diagramma"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Tomonlari 5 va 12 bo‘lgan to‘g‘ri to‘rtburchak diagonali?",
+      "javob": "13"
+     },
+     {
+      "shart": "Romb diagonallari 6 va 10. Yuzi?",
+      "javob": "30"
+     },
+     {
+      "shart": "Tomoni 7 bo‘lgan kvadrat yuzi?",
+      "javob": "49"
+     },
+     {
+      "shart": "Perimetri 24 bo‘lgan kvadrat tomoni?",
+      "javob": "6"
+     },
+     {
+      "shart": "Tomoni 6 bo‘lgan romb perimetri?",
+      "javob": "24"
+     },
+     {
+      "shart": "Tomonlari 15 va 8 bo‘lgan to‘g‘ri to‘rtburchak diagonali?",
+      "javob": "17"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Romb yuzini tomonlar ko‘paytmasi deb oladi",
+      "sabab": "diagonal formulasini unutadi",
+      "oldini_olish": "romb yuzi diagonallar ko‘paytmasining yarmi ekanini yozib qo‘yish"
+     },
+     {
+      "xato": "Har bir rombni kvadrat deb hisoblaydi",
+      "sabab": "burchaklarni tekshirmaydi",
+      "oldini_olish": "kvadratda burchaklar to‘g‘ri bo‘lishi kerakligini eslash"
+     },
+     {
+      "xato": "Diagonalni tomonlar yig‘indisi deb oladi",
+      "sabab": "Pifagor teoremasini qo‘llamaydi",
+      "oldini_olish": "diagonal kvadrati tomonlar kvadratlari yig‘indisi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Me’morchilik",
+      "boglanish": "xonalar, plitkalar va deraza oynalari"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "romb va kvadrat naqshlari"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "detal chizmalari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Plitka naqshlari»",
+     "muammo": "Kvadrat va romb plitkalardan qanday naqsh yasaymiz?",
+     "mahsulot": "plitka naqshi maketi",
+     "bosqichlar": [
+      "shakl tanlash",
+      "o‘lchash",
+      "naqsh loyihasi",
+      "yuzani hisoblash",
+      "maket yasash"
+     ],
+     "guruh_vazifalari": [
+      "Shakl tanlang",
+      "Loyiha chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "shakllar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "naqsh chiroyli",
+      "xulosa asosli",
+      "maket ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Plitkalar ustaxonasi»",
+     "bekatlar": [
+      {
+       "nom": "Pol",
+       "matn": "Xona 4 m va 5 m, to‘g‘ri to‘rtburchak.",
+       "topshiriq": "Yuzi?",
+       "javob": "20 kv. m",
+       "rasm": ""
+      },
+      {
+       "nom": "Qo‘shma plitka",
+       "matn": "Romb diagonallari 8 va 6 dm.",
+       "topshiriq": "Yuzi?",
+       "javob": "24 kv. dm",
+       "rasm": ""
+      },
+      {
+       "nom": "Kvadrat hovli",
+       "matn": "Tomoni 9 m.",
+       "topshiriq": "Yuzi?",
+       "javob": "81 kv. m",
+       "rasm": ""
+      },
+      {
+       "nom": "Eshik",
+       "matn": "Eshik 90 sm va 210 sm, to‘g‘ri to‘rtburchak.",
+       "topshiriq": "Yuzi?",
+       "javob": "18900 kv. sm",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi shakl ko‘p uchradi?",
+      "Romb yuzi qanday topildi?",
+      "Kvadrat nima uchun maxsus?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "To‘g‘ri to‘rtburchak",
+      "tarif": "barcha burchaklari to‘g‘ri to‘rtburchak"
+     },
+     {
+      "atama": "Romb",
+      "tarif": "barcha tomonlari teng parallelogramm"
+     },
+     {
+      "atama": "Kvadrat",
+      "tarif": "tomonlari teng va burchaklari to‘g‘ri to‘rtburchak"
+     },
+     {
+      "atama": "Diagonal",
+      "tarif": "qarama-qarshi uchlarni tutashtiruvchi kesma"
+     },
+     {
+      "atama": "Perpendikulyar",
+      "tarif": "to‘g‘ri burchak ostida kesishuvchi"
+     },
+     {
+      "atama": "Yarim diagonal",
+      "tarif": "diagonalning yarmi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "To‘g‘ri to‘rtburchak diagonallari teng",
+      "togri": true,
+      "izoh": "xossa"
+     },
+     {
+      "matn": "Romb diagonallari teng",
+      "togri": false,
+      "izoh": "ular perpendikulyar, lekin odatda teng emas"
+     },
+     {
+      "matn": "Har bir kvadrat romb",
+      "togri": true,
+      "izoh": "tomonlari teng"
+     },
+     {
+      "matn": "Har bir romb kvadrat",
+      "togri": false,
+      "izoh": "burchaklari to‘g‘ri bo‘lmasligi mumkin"
+     },
+     {
+      "matn": "Romb yuzi diagonallar ko‘paytmasining yarmi",
+      "togri": true,
+      "izoh": "d1 · d2 / 2"
+     },
+     {
+      "matn": "Kvadrat diagonali a√2",
+      "togri": true,
+      "izoh": "Pifagor teoremasi"
+     },
+     {
+      "matn": "Tomonlari 6 va 8 to‘g‘ri to‘rtburchak diagonali 12",
+      "togri": false,
+      "izoh": "36 + 64 — 100, diagonal 10"
+     },
+     {
+      "matn": "Romb diagonallari burchaklarini teng ikkiga bo‘ladi",
+      "togri": true,
+      "izoh": "xossa"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "To‘g‘ri to‘rtburchak nima?",
+      "javob": "burchaklari to‘g‘ri parallelogramm"
+     },
+     {
+      "savol": "Romb nima?",
+      "javob": "tomonlari teng parallelogramm"
+     },
+     {
+      "savol": "Kvadrat nima?",
+      "javob": "tomonlari teng va burchaklari to‘g‘ri to‘rtburchak"
+     },
+     {
+      "savol": "Romb diagonallari qanday?",
+      "javob": "perpendikulyar"
+     },
+     {
+      "savol": "Kvadrat yuzi?",
+      "javob": "a²"
+     },
+     {
+      "savol": "Romb yuzi?",
+      "javob": "diagonallar ko‘paytmasining yarmi"
+     },
+     {
+      "savol": "3 va 4 tomonli to‘g‘ri to‘rtburchak diagonali?",
+      "javob": "5"
+     },
+     {
+      "savol": "Kvadrat diagonali?",
+      "javob": "a√2"
+     },
+     {
+      "savol": "Kvadrat rombmi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Romb kvadratmi?",
+      "javob": "har doim emas"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "To‘g‘ri to‘rtburchak",
+      "matn": "Diagonallari teng.",
+      "savol": "6 va 8 tomonli diagonal?"
+     },
+     {
+      "nom": "Romb",
+      "matn": "Diagonallari perpendikulyar.",
+      "savol": "Diagonallar 6 va 8, yuza?"
+     },
+     {
+      "nom": "Kvadrat",
+      "matn": "Ikkalasining birikmasi.",
+      "savol": "Tomoni 5, yuza?"
+     },
+     {
+      "nom": "Bog‘liqlik",
+      "matn": "Kvadrat — eng maxsus.",
+      "savol": "Har bir kvadrat rombmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun kvadrat bir vaqtda ham to‘g‘ri to‘rtburchak, ham romb hisoblanadi? Ularning ta’riflarini solishtirib tushuntiring.",
+    "keys": {
+     "vaziyat": "Plitkachi 4 m va 5 m xonaga kvadrat plitka yotqizmoqchi. Bitta plitka tomoni 50 sm.",
+     "savollar": [
+      "Xona yuzi qancha?",
+      "Nechta plitka kerak?"
+     ]
+    },
+    "tezis": "Kvadrat — shakllar oilasining g‘ururi",
+    "taqqoslash": {
+     "a": "Romb",
+     "b": "To‘g‘ri to‘rtburchak",
+     "umumiy": [
+      "parallelogramm",
+      "diagonallari kesishish nuqtasida teng bo‘linadi"
+     ],
+     "a_farq": [
+      "tomonlari teng",
+      "diagonallari perpendikulyar"
+     ],
+     "b_farq": [
+      "burchaklari to‘g‘ri",
+      "diagonallari teng"
+     ]
+    },
+    "klaster": {
+     "markaz": "Maxsus to‘rtburchaklar",
+     "shoxlar": [
+      {
+       "nom": "To‘g‘ri to‘rtburchak",
+       "bandlar": [
+        "burchaklari 90°",
+        "diagonallari teng"
+       ]
+      },
+      {
+       "nom": "Romb",
+       "bandlar": [
+        "tomonlari teng",
+        "diagonallari perpendikulyar"
+       ]
+      },
+      {
+       "nom": "Kvadrat",
+       "bandlar": [
+        "ikkalasi birgalikda",
+        "a²"
+       ]
+      },
+      {
+       "nom": "Yuza",
+       "bandlar": [
+        "a · b",
+        "d1 · d2 / 2"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Tomonlarim teng, burchaklarim to‘g‘ri. Men kimman?",
+     "javob": "kvadrat"
+    },
+    "hikmat": "To‘g‘rilik — kvadratning fazilati.",
+    "kalit_soz": "KVADRAT",
+    "xato_yechim": {
+     "shart": "Diagonallari 6 va 8 bo‘lgan romb yuzini toping.",
+     "xato": "48",
+     "togri": "24",
+     "sabab": "romb yuzi diagonallar ko‘paytmasining yarmi: 6 · 8 / 2 — 24"
+    },
+    "guruh_nomlari": [
+     "Rombchilar",
+     "Kvadratchilar",
+     "To‘g‘ri burchakchilar",
+     "Diagonalchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Plitka hisobi»",
+     "topshiriq": "Guruh sinf polining yuzini o‘lchab, kvadrat plitkalar sonini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Tomonlari 8 va 15 bo‘lgan to‘g‘ri to‘rtburchak diagonalini toping.",
+     "B": "Diagonallari 14 va 10 bo‘lgan romb yuzini toping.",
+     "C": "Yuzi 49 bo‘lgan kvadrat tomoni va perimetrini toping."
+    },
+    "sinkveyn": [
+     "Kvadrat",
+     "teng, to‘g‘ri",
+     "o‘lchanadi, chiziladi, hisoblanadi",
+     "Eng maxsus to‘rtburchak",
+     "Shakl"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh maxsus to‘rtburchaklar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 3 va 4 tomonli to‘g‘ri to‘rtburchak diagonali",
+      "2-guruh: diagonallari 6 va 10 romb yuzi",
+      "3-guruh: tomoni 6 kvadrat yuzi",
+      "4-guruh: tomoni 5 romb perimetri"
+     ],
+     "yakun": "Natijalar: 5; 30; 36; 20."
+    }
+   }
+  }
+ ]
+}
