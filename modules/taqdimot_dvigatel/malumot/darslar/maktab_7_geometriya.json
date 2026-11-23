@@ -1400,6 +1400,1399 @@
      "yakun": "Natijalar: 12; 18; yo‘q; 70°."
     }
    }
+  },
+  {
+   "mavzu": "Uchburchaklar tengligi alomatlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Teng uchburchaklar",
+      "matn": "Ustma-ust qo‘yganda to‘liq mos tushadigan uchburchaklar teng deyiladi. Teng uchburchaklarda mos tomonlar va mos burchaklar teng bo‘ladi. Teng tomonlar qarshisida teng burchaklar yotadi.",
+      "misol": "ABC va DEF teng bo‘lsa, AB va DE, BC va EF, AC va DF teng; burchak A va D, B va E, C va F ham teng.",
+      "savol": "Teng uchburchaklarning mos burchaklari qanday?",
+      "javob": "teng",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birinchi alomat: ikki tomon va orasidagi burchak",
+      "matn": "Agar bir uchburchakning ikki tomoni va ular orasidagi burchagi ikkinchi uchburchakning mos ikki tomoni va ular orasidagi burchagiga teng bo‘lsa, bunday uchburchaklar teng bo‘ladi. Burchak aynan shu tomonlar orasida bo‘lishi shart.",
+      "misol": "ABC va MNK: AB va MN 6 sm, AC va MK 8 sm, orasidagi burchaklar 50° dan. Uchburchaklar teng, demak BC va NK ham teng.",
+      "savol": "Birinchi alomatda burchak qayerda bo‘ladi?",
+      "javob": "ikki tomon orasida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikkinchi alomat: tomon va unga yopishgan ikki burchak",
+      "matn": "Agar bir uchburchakning tomoni va unga yopishgan ikki burchagi ikkinchi uchburchakning mos tomoni va unga yopishgan ikki burchagiga teng bo‘lsa, uchburchaklar teng bo‘ladi.",
+      "misol": "ABC va DEF: AB va DE 7 sm, burchak A va D 40° dan, burchak B va E 60° dan. Uchburchaklar teng, demak AC va DF ham teng.",
+      "savol": "Ikkinchi alomatda nechta burchak kerak?",
+      "javob": "ikkita",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchinchi alomat: uch tomon",
+      "matn": "Agar bir uchburchakning uch tomoni ikkinchi uchburchakning mos uch tomoniga teng bo‘lsa, uchburchaklar teng bo‘ladi. Shu sababli uchburchak qattiq shakl: tomonlari berilsa, shakli bir qiymatli aniqlanadi.",
+      "misol": "Tomonlari 4, 5, 6 bo‘lgan uchburchak va tomonlari 6, 4, 5 bo‘lgan uchburchak teng.",
+      "savol": "Tomonlari 3, 4, 5 va 5, 3, 4 bo‘lgan uchburchaklar tengmi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Alomatni qo‘llash va yetarli bo‘lmagan holatlar",
+      "matn": "Teng ekanini isbotlash uchun: berilganlarni yozamiz, mos elementlarni ajratamiz, alomatni tanlaymiz, xulosa chiqaramiz. Faqat uchala burchak teng bo‘lishi yetarli emas: burchaklari 60°, 60°, 60° bo‘lgan 3 sm va 5 sm tomonli uchburchaklar teng emas. Burchak tomonlar orasida bo‘lmasa, ikki tomon va burchak ham yetarli emas.",
+      "misol": "Ikki tomon 5 va 6, burchak 40° tomonlar orasida emas — bu holda uchburchaklar teng bo‘lmasligi mumkin.",
+      "savol": "Uchala burchak teng bo‘lsa, uchburchaklar tengmi?",
+      "javob": "yo‘q, yetarli emas",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Uchburchaklar tengligining uchta alomati: ikki tomon va ular orasidagi burchak; tomon va unga yopishgan ikki burchak; uch tomon. Teng uchburchaklarda mos elementlar teng.",
+    "misollar": [
+     {
+      "shart": "ABC da AB 6 sm, AC 8 sm, burchak A 50°. MNK da MN 6 sm, MK 8 sm, burchak M 50°. Uchburchaklar tengmi? NK ni BC bilan solishtiring.",
+      "yechim": [
+       "Ikki tomon va orasidagi burchak teng.",
+       "Birinchi alomat bo‘yicha uchburchaklar teng.",
+       "Mos tomonlar teng: BC va NK teng."
+      ],
+      "javob": "teng, BC va NK teng"
+     },
+     {
+      "shart": "ABC va DEF da AB va DE 7 sm, burchak A va D 40° dan, burchak B va E 60° dan. AC va DF ni solishtiring.",
+      "yechim": [
+       "Tomon va unga yopishgan ikki burchak teng.",
+       "Ikkinchi alomat: uchburchaklar teng.",
+       "Mos tomonlar teng: AC va DF teng."
+      ],
+      "javob": "AC va DF teng"
+     },
+     {
+      "shart": "Tomonlari 4, 5, 6 va 6, 4, 5 bo‘lgan uchburchaklar tengmi?",
+      "yechim": [
+       "Uch tomon juft-juft teng: 4 va 4, 5 va 5, 6 va 6.",
+       "Uchinchi alomat qo‘llanadi.",
+       "Uchburchaklar teng."
+      ],
+      "javob": "ha, teng"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qog‘ozdan uchburchaklar",
+      "topshiriq": "Ikkita uchburchakni bir xil ikki tomon va orasidagi burchak bilan chizing, qirqing va ustma-ust qo‘ying.",
+      "yechim": "To‘liq mos tushadi: birinchi alomat.",
+      "mahsulot": "qirqilgan shakllar"
+     },
+     {
+      "nom": "Qaysi alomat?",
+      "topshiriq": "Berilgan 5 ta juftlik uchun qaysi alomat qo‘llanishini aniqlang.",
+      "yechim": "Berilgan elementlar tomon va burchak joylashuviga qarab alomat tanlanadi.",
+      "mahsulot": "alomatlar jadvali"
+     },
+     {
+      "nom": "Tayoqchali uchburchak",
+      "topshiriq": "Uch tayoqchadan uchburchak yasang. Boshqa guruh shu tayoqchalar bilan yana yasasin. Ular teng chiqadimi?",
+      "yechim": "Uch tomon bir xil bo‘lsa, shakl bir qiymatli, uchburchaklar teng.",
+      "mahsulot": "foto"
+     },
+     {
+      "nom": "Isbotlash varag‘i",
+      "topshiriq": "Bitta teng uchburchaklar misolini 4 qadamda isbotlab, varaqqa yozing.",
+      "yechim": "Berilgan, isbot qilish kerak, isbot, xulosa.",
+      "mahsulot": "isbot varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Teng uchburchaklarning mos tomonlari qanday?",
+      "javob": "teng"
+     },
+     {
+      "shart": "Ikki tomon va orasidagi burchak — nechanchi alomat?",
+      "javob": "birinchi"
+     },
+     {
+      "shart": "Tomon va unga yopishgan ikki burchak — nechanchi alomat?",
+      "javob": "ikkinchi"
+     },
+     {
+      "shart": "Uch tomon bo‘yicha alomat nechanchi?",
+      "javob": "uchinchi"
+     },
+     {
+      "shart": "Tomonlari 3, 4, 5 va 5, 4, 3 uchburchaklar tengmi?",
+      "javob": "ha"
+     },
+     {
+      "shart": "Tomonlari 3, 4, 6 va 3, 4, 7 uchburchaklar tengmi?",
+      "javob": "yo‘q"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Burchak tomonlar orasida bo‘lmaganda ham birinchi alomatni qo‘llaydi",
+      "sabab": "joylashuvni tekshirmaydi",
+      "oldini_olish": "burchak ikki tomon orasida ekanini chizmada ko‘rsatish"
+     },
+     {
+      "xato": "Uchala burchak teng bo‘lsa, uchburchaklarni teng deydi",
+      "sabab": "o‘lcham farqini hisobga olmaydi",
+      "oldini_olish": "kamida bitta tomon teng bo‘lishi kerakligini eslash"
+     },
+     {
+      "xato": "Mos tomonlarni noto‘g‘ri juftlaydi",
+      "sabab": "teng burchaklar qarshisidagi tomonlarni tekshirmaydi",
+      "oldini_olish": "teng burchak qarshisida teng tomon yotishini ishlatish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "bir xil detallarni shablon bo‘yicha qirqish"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "o‘lchash qiyin masofani teng uchburchaklar yordamida aniqlash"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "naqshlarda takrorlanuvchi bir xil shakllar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Daryo kengligini o‘lchaymiz»",
+     "muammo": "Daryodan o‘tmasdan uning kengligini teng uchburchaklar yordamida qanday aniqlaymiz?",
+     "mahsulot": "o‘lchash sxemasi va maket",
+     "bosqichlar": [
+      "g‘oyani o‘rganish",
+      "sxema chizish",
+      "maketda sinash",
+      "hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Sxema chizing",
+      "Maket yasang",
+      "O‘lchang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "alomat to‘g‘ri tanlangan",
+      "o‘lchov aniq",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Teng shakllar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Daryo bo‘yi",
+       "matn": "Qarama-qarshi qirg‘oqdagi daraxtgacha masofani o‘lchash uchun qirg‘oqda teng uchburchak yasaladi.",
+       "topshiriq": "Qaysi tomonlar teng bo‘ladi?",
+       "javob": "mos tomonlar, masofa qirg‘oqdagi tomonga teng",
+       "rasm": ""
+      },
+      {
+       "nom": "Duradgorlik",
+       "matn": "Ikki bir xil to‘sin bir xil burchak ostida mahkamlangan.",
+       "topshiriq": "Hosil bo‘lgan uchburchaklar tengmi?",
+       "javob": "ha, birinchi alomat",
+       "rasm": ""
+      },
+      {
+       "nom": "Gilam",
+       "matn": "Gilam naqshida uchburchak bo‘laklar bir xil tomonli.",
+       "topshiriq": "Qaysi alomat qo‘llanadi?",
+       "javob": "uchinchi alomat",
+       "rasm": ""
+      },
+      {
+       "nom": "Tom",
+       "matn": "Ikki ferma uchburchagida tomon va ikki burchak bir xil.",
+       "topshiriq": "Qaysi alomat qo‘llanadi?",
+       "javob": "ikkinchi alomat",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda bir xil shakllar uchradi?",
+      "Qaysi alomat qulay bo‘ldi?",
+      "Isbotni qanday boshladingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Teng uchburchaklar",
+      "tarif": "ustma-ust qo‘yganda mos tushadigan uchburchaklar"
+     },
+     {
+      "atama": "Mos tomonlar",
+      "tarif": "teng burchaklar qarshisidagi tomonlar"
+     },
+     {
+      "atama": "Birinchi alomat",
+      "tarif": "ikki tomon va orasidagi burchak"
+     },
+     {
+      "atama": "Ikkinchi alomat",
+      "tarif": "tomon va unga yopishgan ikki burchak"
+     },
+     {
+      "atama": "Uchinchi alomat",
+      "tarif": "uch tomon"
+     },
+     {
+      "atama": "Isbot",
+      "tarif": "tasdiqni mantiqiy asoslash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Teng uchburchaklarda mos tomonlar teng",
+      "togri": true,
+      "izoh": "ta’rifning natijasi"
+     },
+     {
+      "matn": "Uchala burchagi teng uchburchaklar doim teng",
+      "togri": false,
+      "izoh": "o‘lchamlari har xil bo‘lishi mumkin"
+     },
+     {
+      "matn": "Uch tomon bo‘yicha alomat uchinchi",
+      "togri": true,
+      "izoh": "uchburchak qattiq shakl"
+     },
+     {
+      "matn": "Birinchi alomatda burchak tomonlar orasida bo‘lishi shart",
+      "togri": true,
+      "izoh": "aks holda alomat ishlamaydi"
+     },
+     {
+      "matn": "Ikkinchi alomatda ikki tomon va burchak kerak",
+      "togri": false,
+      "izoh": "bitta tomon va ikki burchak kerak"
+     },
+     {
+      "matn": "Tomonlari 3, 4, 5 va 5, 3, 4 uchburchaklar teng",
+      "togri": true,
+      "izoh": "uchinchi alomat"
+     },
+     {
+      "matn": "Teng uchburchaklarning perimetrlari har xil",
+      "togri": false,
+      "izoh": "tomonlari teng, perimetr ham teng"
+     },
+     {
+      "matn": "Isbotni berilganlarni yozishdan boshlaymiz",
+      "togri": true,
+      "izoh": "avval nima berilganini aniqlaymiz"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Teng uchburchaklar nima?",
+      "javob": "ustma-ust tushadigan uchburchaklar"
+     },
+     {
+      "savol": "Birinchi alomat nima?",
+      "javob": "ikki tomon va ular orasidagi burchak"
+     },
+     {
+      "savol": "Ikkinchi alomat nima?",
+      "javob": "tomon va unga yopishgan ikki burchak"
+     },
+     {
+      "savol": "Uchinchi alomat nima?",
+      "javob": "uch tomon"
+     },
+     {
+      "savol": "Mos burchaklar qanday?",
+      "javob": "teng"
+     },
+     {
+      "savol": "Teng burchak qarshisida nima yotadi?",
+      "javob": "teng tomon"
+     },
+     {
+      "savol": "Uchala burchak teng bo‘lsa, uchburchaklar teng bo‘ladimi?",
+      "javob": "doim emas"
+     },
+     {
+      "savol": "Nima uchun uchburchak qattiq shakl?",
+      "javob": "tomonlari berilsa, shakli aniq"
+     },
+     {
+      "savol": "Isbot qanday boshlanadi?",
+      "javob": "berilganlarni yozish"
+     },
+     {
+      "savol": "Tengligi nimaga kerak?",
+      "javob": "noma’lum tomon va burchakni topish uchun"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Teng uchburchaklar",
+      "matn": "Mos elementlar teng.",
+      "savol": "Mos burchaklar qanday?"
+     },
+     {
+      "nom": "Birinchi alomat",
+      "matn": "Ikki tomon va orasidagi burchak.",
+      "savol": "Burchak qayerda bo‘ladi?"
+     },
+     {
+      "nom": "Ikkinchi alomat",
+      "matn": "Tomon va yopishgan ikki burchak.",
+      "savol": "Nechta burchak kerak?"
+     },
+     {
+      "nom": "Uchinchi alomat",
+      "matn": "Uch tomon.",
+      "savol": "Nechta tomon teng bo‘lishi kerak?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun uchburchaklar tengligini uchala burchak teng bo‘lishi bilan emas, tomonlar yordamida tekshiramiz? Burchaklari 60° bo‘lgan 3 sm va 5 sm tomonli uchburchaklarni solishtiring.",
+    "keys": {
+     "vaziyat": "Zargar bir xil uchburchak shaklidagi 20 ta bezak detalini yasamoqchi. U har bir detalning teng bo‘lishini tekshirmoqchi.",
+     "savollar": [
+      "Qaysi alomat bilan tekshirish qulay?",
+      "Nechta o‘lchov kerak?"
+     ]
+    },
+    "tezis": "Alomat — tenglikni isbotlash kaliti",
+    "taqqoslash": {
+     "a": "Birinchi alomat",
+     "b": "Uchinchi alomat",
+     "umumiy": [
+      "uchburchaklar tengligini isbotlaydi",
+      "mos elementlar teng bo‘ladi"
+     ],
+     "a_farq": [
+      "ikki tomon va burchak",
+      "burchak o‘lchanadi"
+     ],
+     "b_farq": [
+      "faqat tomonlar",
+      "burchak o‘lchash shart emas"
+     ]
+    },
+    "klaster": {
+     "markaz": "Uchburchaklar tengligi",
+     "shoxlar": [
+      {
+       "nom": "Alomatlar",
+       "bandlar": [
+        "ikki tomon va burchak",
+        "tomon va ikki burchak",
+        "uch tomon"
+       ]
+      },
+      {
+       "nom": "Natijalar",
+       "bandlar": [
+        "mos tomonlar teng",
+        "mos burchaklar teng"
+       ]
+      },
+      {
+       "nom": "Isbot",
+       "bandlar": [
+        "berilgan",
+        "isbot",
+        "xulosa"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "o‘lchash",
+        "qurilish",
+        "shablonlar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikkita shakl bir-birining nusxasi, ustma-ust qo‘ysang mos tushadi. Ular qanday uchburchaklar?",
+     "javob": "teng uchburchaklar"
+    },
+    "hikmat": "Teng shakllar teng ishlarni ko‘rsatadi.",
+    "kalit_soz": "ALOMAT",
+    "xato_yechim": {
+     "shart": "Ikki uchburchakda 5 sm va 6 sm tomonlar teng, 40° burchak tomonlar orasida emas. Teng deb bo‘ladimi?",
+     "xato": "ha, birinchi alomat",
+     "togri": "yo‘q, alomat qo‘llanmaydi",
+     "sabab": "birinchi alomatda burchak aynan teng tomonlar orasida bo‘lishi kerak"
+    },
+    "guruh_nomlari": [
+     "Alomatchilar",
+     "Tengchilar",
+     "Isbotchilar",
+     "Shablonchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bir xil detallar»",
+     "topshiriq": "Guruh shablon bo‘yicha bir xil uchburchak detal qirqadi va qaysi alomat bilan tengligini tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Uchburchaklar tengligining uchta alomatini yozing.",
+     "B": "Tomonlari 5, 6, 7 va 7, 5, 6 uchburchaklar tengligini isbotlang.",
+     "C": "Daryo kengligini o‘lchash sxemasini chizing."
+    },
+    "sinkveyn": [
+     "Alomat",
+     "aniq, mantiqiy",
+     "isbotlaydi, solishtiradi, tekshiradi",
+     "Tenglikni aniqlash kaliti",
+     "Isbot"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh alomatlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: ikki tomon va orasidagi burchak — alomat raqami",
+      "2-guruh: tomon va ikki burchak — alomat raqami",
+      "3-guruh: uch tomon — alomat raqami",
+      "4-guruh: 3, 4, 5 va 5, 4, 3 uchburchaklar tengmi"
+     ],
+     "yakun": "Natijalar: birinchi; ikkinchi; uchinchi; ha."
+    }
+   }
+  },
+  {
+   "mavzu": "Teng yonli uchburchak",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Teng yonli uchburchak",
+      "matn": "Ikki tomoni teng uchburchak teng yonli uchburchak deyiladi. Teng tomonlar yon tomonlar, uchinchi tomon asos deyiladi. Yon tomonlar tutashgan uch uchburchakning uchi, asosdagi ikki burchak asos burchaklari deyiladi.",
+      "misol": "ABC da AB va AC teng bo‘lsa, AB va AC — yon tomonlar, BC — asos, A — uchi, burchak B va C — asos burchaklari.",
+      "savol": "Teng yonli uchburchakning nechta tomoni teng?",
+      "javob": "ikkitasi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Asos burchaklari teng",
+      "matn": "Teorema: teng yonli uchburchakning asosidagi burchaklari teng. Isbot: uchidan bissektrisa AD o‘tkazamiz. ABD va ACD da AB va AC teng, burchak BAD va CAD teng, AD umumiy. Birinchi alomat bo‘yicha uchburchaklar teng, demak burchak B va C teng.",
+      "misol": "Asos burchagi B 65° bo‘lsa, C ham 65°. Uchidagi burchak 180° − 130°, ya’ni 50°.",
+      "savol": "Teng yonli uchburchakda asos burchagi 70° bo‘lsa, ikkinchisi?",
+      "javob": "70°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Teskari teorema",
+      "matn": "Agar uchburchakning ikki burchagi teng bo‘lsa, u teng yonli bo‘ladi, teng burchaklar qarshisidagi tomonlar teng. Shuning uchun burchaklarni o‘lchab, uchburchak teng yonli ekanini aniqlash mumkin.",
+      "misol": "Burchaklari 50°, 50°, 80° bo‘lgan uchburchak teng yonli, asos burchaklari 50° dan.",
+      "savol": "Burchaklari 40°, 40°, 100° bo‘lsa, qanday uchburchak?",
+      "javob": "teng yonli",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchidan asosga tushirilgan chiziq",
+      "matn": "Teng yonli uchburchakda uchidan asosga tushirilgan bissektrisa bir vaqtda mediana va balandlik bo‘ladi. Demak, u asosni teng ikkiga bo‘ladi va asosga perpendikulyar.",
+      "misol": "Asos 10 sm bo‘lsa, bissektrisa uni 5 sm va 5 sm ga ajratadi va asos bilan 90° burchak hosil qiladi.",
+      "savol": "Asos 12 sm bo‘lsa, mediana uni qanday bo‘ladi?",
+      "javob": "6 sm va 6 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Teng tomonli uchburchak",
+      "matn": "Uch tomoni teng uchburchak teng tomonli deyiladi; uning barcha burchaklari 60° va u teng yonli uchburchakning xususiy holi. Perimetr tomon uzunligining 3 baravariga teng.",
+      "misol": "Teng tomonli uchburchak tomoni 7 sm bo‘lsa, perimetri 21 sm, har bir burchagi 60°.",
+      "savol": "Teng tomonli uchburchak tomoni 5 bo‘lsa, perimetri?",
+      "javob": "15",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Teng yonli uchburchakda asos burchaklari teng. Uchidan asosga tushirilgan bissektrisa mediana va balandlik ham bo‘ladi. Teng tomonli uchburchakning barcha burchaklari 60°.",
+    "misollar": [
+     {
+      "shart": "Teng yonli uchburchakning uchidagi burchak 40°. Asos burchaklarini toping.",
+      "yechim": [
+       "Burchaklar yig‘indisi 180°.",
+       "Asos burchaklari yig‘indisi 180° − 40°, ya’ni 140°.",
+       "Har biri 140° / 2, ya’ni 70°."
+      ],
+      "javob": "70° dan"
+     },
+     {
+      "shart": "Teng yonli uchburchak asosi 8 sm, perimetri 20 sm. Yon tomonini toping.",
+      "yechim": [
+       "Yon tomonlar yig‘indisi 20 − 8, ya’ni 12.",
+       "Ikkita teng yon tomon: 12 / 2.",
+       "Yon tomon 6 sm."
+      ],
+      "javob": "6 sm"
+     },
+     {
+      "shart": "Teng yonli uchburchak asos burchagi 55°. Uchidagi burchakni toping.",
+      "yechim": [
+       "Ikkala asos burchagi 55° + 55°, ya’ni 110°.",
+       "180° − 110°.",
+       "Uchidagi burchak 70°."
+      ],
+      "javob": "70°"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qog‘ozni buklaymiz",
+      "topshiriq": "Teng yonli uchburchak qirqing, uchidan buklang va asos burchaklari ustma-ust tushishini ko‘ring.",
+      "yechim": "Buklangan chiziq simmetriya o‘qi; asos burchaklari teng.",
+      "mahsulot": "qirqilgan shakllar"
+     },
+     {
+      "nom": "Burchak hisobi",
+      "topshiriq": "Uchidagi burchagi 100°, 80°, 50° bo‘lgan teng yonli uchburchaklarning asos burchaklarini toping.",
+      "yechim": "40°, 50°, 65°.",
+      "mahsulot": "hisoblash jadvali"
+     },
+     {
+      "nom": "Teng tomonli yasash",
+      "topshiriq": "Tomoni 5 sm bo‘lgan teng tomonli uchburchakni sirkul va chizg‘ich bilan yasang.",
+      "yechim": "Sirkul ochilishi 5 sm, ikki aylana kesishgan nuqta uchinchi uch bo‘ladi.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Perimetr topish",
+      "topshiriq": "Yon tomoni 9 sm, asosi 5 sm teng yonli uchburchak perimetrini toping.",
+      "yechim": "9 + 9 + 5 — 23 sm.",
+      "mahsulot": "yechim varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Yon tomoni 6, asosi 4 bo‘lgan teng yonli uchburchak perimetri?",
+      "javob": "16"
+     },
+     {
+      "shart": "Asos burchagi 70° bo‘lsa, uchidagi burchak?",
+      "javob": "40°"
+     },
+     {
+      "shart": "Uchidagi burchak 100° bo‘lsa, asos burchaklari?",
+      "javob": "40° dan"
+     },
+     {
+      "shart": "Teng tomonli uchburchak tomoni 5. Perimetri?",
+      "javob": "15"
+     },
+     {
+      "shart": "Teng tomonli uchburchakning burchagi?",
+      "javob": "60°"
+     },
+     {
+      "shart": "Asosi 12 sm bo‘lgan teng yonli uchburchakda uchidan tushirilgan mediana asosni nechaga bo‘ladi?",
+      "javob": "6 sm dan"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Asos burchaklarini uchidagi burchak bilan teng deb oladi",
+      "sabab": "teng burchaklarni adashtiradi",
+      "oldini_olish": "teng yon tomonlar qarshisida teng burchaklar yotishini eslash"
+     },
+     {
+      "xato": "Teng tomonli uchburchakni teng yonli emas deydi",
+      "sabab": "xususiy holni bilmaydi",
+      "oldini_olish": "ikki tomon teng bo‘lsa yetarli ekanini eslash"
+     },
+     {
+      "xato": "Asos burchagini hisoblashda 2 ga bo‘lishni unutadi",
+      "sabab": "180° dan uchidagi burchakni ayirib to‘xtaydi",
+      "oldini_olish": "ayirmani ikkita teng burchakka bo‘lish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "simmetrik naqshlar va kompozitsiya"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "tom ferma va simmetrik detallar"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "muvozanat va simmetriya"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Simmetriya burchagi»",
+     "muammo": "Teng yonli uchburchaklar atrofimizda qayerda uchraydi va nima uchun ular chiroyli?",
+     "mahsulot": "teng yonli uchburchaklar kollaji",
+     "bosqichlar": [
+      "misollar yig‘ish",
+      "burchaklarni o‘lchash",
+      "simmetriya o‘qini chizish",
+      "kollaj yasash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Misollar toping",
+      "O‘lchang",
+      "O‘qini chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "misollar to‘g‘ri",
+      "o‘lchov aniq",
+      "simmetriya ko‘rsatilgan",
+      "kollaj chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Simmetriya bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "Ferma",
+       "matn": "Teng yonli tom fermasi uchidagi burchak 80°.",
+       "topshiriq": "Asos burchaklari?",
+       "javob": "50° dan",
+       "rasm": ""
+      },
+      {
+       "nom": "Bayroqcha",
+       "matn": "Teng tomonli bayroqcha tomoni 20 sm.",
+       "topshiriq": "Perimetri?",
+       "javob": "60 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Chodir",
+       "matn": "Chodir old devori teng yonli: yon 5 m, asos 6 m.",
+       "topshiriq": "Perimetri?",
+       "javob": "16 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Piramida",
+       "matn": "Yon yoqlari teng yonli uchburchaklar, asos burchagi 70°.",
+       "topshiriq": "Uchidagi burchak?",
+       "javob": "40°",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda teng yonli uchburchak ko‘rdingiz?",
+      "Simmetriya o‘qi qayerda?",
+      "Burchaklarni qanday hisobladingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Teng yonli uchburchak",
+      "tarif": "ikki tomoni teng uchburchak"
+     },
+     {
+      "atama": "Yon tomon",
+      "tarif": "teng tomonlarning har biri"
+     },
+     {
+      "atama": "Asos",
+      "tarif": "uchinchi tomon"
+     },
+     {
+      "atama": "Asos burchaklari",
+      "tarif": "asosdagi ikki teng burchak"
+     },
+     {
+      "atama": "Teng tomonli uchburchak",
+      "tarif": "uch tomoni teng uchburchak"
+     },
+     {
+      "atama": "Simmetriya o‘qi",
+      "tarif": "shaklni teng ikki qismga ajratuvchi to‘g‘ri chiziq"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Teng yonli uchburchakning asos burchaklari teng",
+      "togri": true,
+      "izoh": "teorema"
+     },
+     {
+      "matn": "Teng yonli uchburchakda uch tomon teng",
+      "togri": false,
+      "izoh": "ikki tomon teng"
+     },
+     {
+      "matn": "Teng tomonli uchburchakning burchaklari 60°",
+      "togri": true,
+      "izoh": "yig‘indi 180°, uchtasi teng"
+     },
+     {
+      "matn": "Uchidan asosga tushirilgan bissektrisa mediana ham bo‘ladi",
+      "togri": true,
+      "izoh": "teng yonli uchburchak xossasi"
+     },
+     {
+      "matn": "Asos burchagi 70° bo‘lsa, uchidagi burchak 70°",
+      "togri": false,
+      "izoh": "180° − 140°, ya’ni 40°"
+     },
+     {
+      "matn": "Ikki burchagi teng uchburchak teng yonli",
+      "togri": true,
+      "izoh": "teskari teorema"
+     },
+     {
+      "matn": "Teng tomonli uchburchak teng yonli ham bo‘ladi",
+      "togri": true,
+      "izoh": "ikki tomoni teng"
+     },
+     {
+      "matn": "Asosi doim eng katta tomon",
+      "togri": false,
+      "izoh": "asos kichik yoki katta bo‘lishi mumkin"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Teng yonli uchburchak nima?",
+      "javob": "ikki tomoni teng uchburchak"
+     },
+     {
+      "savol": "Asos burchaklari qanday?",
+      "javob": "teng"
+     },
+     {
+      "savol": "Teng tomonli uchburchak burchagi?",
+      "javob": "60°"
+     },
+     {
+      "savol": "Asos burchagi 50° bo‘lsa, uchidagi burchak?",
+      "javob": "80°"
+     },
+     {
+      "savol": "Uchidagi burchak 80° bo‘lsa, asos burchagi?",
+      "javob": "50°"
+     },
+     {
+      "savol": "Uchidan tushirilgan bissektrisa yana nima?",
+      "javob": "mediana va balandlik"
+     },
+     {
+      "savol": "Yon tomoni 7, asosi 4 bo‘lsa, perimetr?",
+      "javob": "18"
+     },
+     {
+      "savol": "Teng tomonli uchburchak tomoni 4 bo‘lsa, perimetr?",
+      "javob": "12"
+     },
+     {
+      "savol": "Teskari teorema nima deydi?",
+      "javob": "ikki burchagi teng uchburchak teng yonli"
+     },
+     {
+      "savol": "Teng yonli uchburchakda nechta simmetriya o‘qi bor?",
+      "javob": "bitta"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ta’rif",
+      "matn": "Ikki tomon teng.",
+      "savol": "Yon tomonlar qaysilar?"
+     },
+     {
+      "nom": "Asos burchaklari",
+      "matn": "Asos burchaklari teng.",
+      "savol": "Asos burchagi 65° bo‘lsa, ikkinchisi?"
+     },
+     {
+      "nom": "Bissektrisa xossasi",
+      "matn": "Bissektrisa mediana va balandlik.",
+      "savol": "Asos 10 bo‘lsa, mediana asosni qanday bo‘ladi?"
+     },
+     {
+      "nom": "Teng tomonli",
+      "matn": "Barcha burchaklar 60°.",
+      "savol": "Teng tomonli uchburchak tomoni 6 bo‘lsa, perimetr?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun teng yonli uchburchakda uchidan asosga tushirilgan bissektrisa bir vaqtda mediana va balandlik ham bo‘ladi? Hosil bo‘lgan ikki uchburchakning tengligidan foydalanib tushuntiring.",
+    "keys": {
+     "vaziyat": "Tom fermasi teng yonli uchburchak shaklida, uchidagi burchak 80°. Duradgor asos burchaklariga mos qirqim kerak.",
+     "savollar": [
+      "Asos burchagi necha gradus?",
+      "Nima uchun ikkala qirqim bir xil?"
+     ]
+    },
+    "tezis": "Teng yonli uchburchak — simmetrik shakl",
+    "taqqoslash": {
+     "a": "Teng yonli uchburchak",
+     "b": "Teng tomonli uchburchak",
+     "umumiy": [
+      "ikki tomoni teng",
+      "simmetrik shakllar"
+     ],
+     "a_farq": [
+      "uchinchi tomon boshqacha bo‘lishi mumkin",
+      "bitta simmetriya o‘qi"
+     ],
+     "b_farq": [
+      "uchala tomon teng",
+      "uchta simmetriya o‘qi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Teng yonli uchburchak",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "yon tomonlar",
+        "asos",
+        "uchi"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "asos burchaklari teng",
+        "bissektrisa mediana va balandlik"
+       ]
+      },
+      {
+       "nom": "Teng tomonli",
+       "bandlar": [
+        "60° burchaklar",
+        "perimetr 3 ta tomon"
+       ]
+      },
+      {
+       "nom": "Qo‘llash",
+       "bandlar": [
+        "tom ferma",
+        "naqshlar",
+        "bayroqchalar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki yonim teng, asosim bitta. Buklasam, ikki yarmim mos tushadi. Men kimman?",
+     "javob": "teng yonli uchburchak"
+    },
+    "hikmat": "Simmetriya — tenglik chiroyi.",
+    "kalit_soz": "SIMMETRIYA",
+    "xato_yechim": {
+     "shart": "Teng yonli uchburchakning uchidagi burchak 50°. Asos burchagini toping.",
+     "xato": "50°",
+     "togri": "65°",
+     "sabab": "asos burchaklari yig‘indisi 180° − 50°, ya’ni 130°; uni ikkiga bo‘lib, har biri 65° olinadi"
+    },
+    "guruh_nomlari": [
+     "Yonchilar",
+     "Asoschilar",
+     "Simmetriyachilar",
+     "Burchakchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Buklangan shakl»",
+     "topshiriq": "Guruh qog‘ozdan teng yonli uchburchak qirqib, buklaydi, burchaklarni transportirda o‘lchaydi va asos burchaklari tengligini tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Uchidagi burchagi 30° bo‘lgan teng yonli uchburchakning asos burchaklarini toping.",
+     "B": "Yon tomoni 8, asosi 5 bo‘lgan uchburchak perimetrini toping.",
+     "C": "Teng yonli uchburchak teoremasini o‘z so‘zingiz bilan isbotlang."
+    },
+    "sinkveyn": [
+     "Uchburchak",
+     "teng yonli, simmetrik",
+     "buklanadi, teng bo‘ladi, chiroyli",
+     "Ikki yoni teng shakl",
+     "Simmetriya"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh teng yonli uchburchaklar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: asos burchagi 75° bo‘lsa, uchidagi burchak",
+      "2-guruh: uchidagi burchak 60° bo‘lsa, asos burchagi",
+      "3-guruh: yon 10, asos 6 bo‘lsa, perimetr",
+      "4-guruh: teng tomonli tomoni 9 bo‘lsa, perimetr"
+     ],
+     "yakun": "Natijalar: 30°; 60°; 26; 27."
+    }
+   }
+  },
+  {
+   "mavzu": "Mediana, bissektrisa, balandlik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Mediana",
+      "matn": "Uchburchak uchini qarshisidagi tomonning o‘rta nuqtasi bilan tutashtiruvchi kesma mediana deyiladi. Har bir uchburchakda uchta mediana bor. Mediana qarshisidagi tomonni teng ikkiga bo‘ladi.",
+      "misol": "ABC da AM mediana bo‘lsa, M nuqta BC ning o‘rta nuqtasi. BC 14 sm bo‘lsa, BM va MC 7 sm dan.",
+      "savol": "BC 20 sm bo‘lsa, mediana uni qanday bo‘ladi?",
+      "javob": "10 sm va 10 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bissektrisa",
+      "matn": "Uchburchak burchagini teng ikkiga bo‘luvchi, uchidan qarshisidagi tomongacha o‘tkazilgan kesma bissektrisa deyiladi. Uchta bissektrisa bitta nuqtada kesishadi.",
+      "misol": "A burchak 70° bo‘lsa, uning bissektrisasi uni 35° va 35° ga ajratadi.",
+      "savol": "80° burchak bissektrisasi hosil qilgan burchaklar?",
+      "javob": "40° dan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Balandlik",
+      "matn": "Uchburchak uchidan qarshisidagi tomonga (yoki uning davomiga) tushirilgan perpendikulyar balandlik deyiladi. Perpendikulyar tomon bilan 90° burchak hosil qiladi. O‘tmas burchakli uchburchakda ikki balandlik uchburchak tashqarisida o‘tadi.",
+      "misol": "To‘g‘ri burchakli uchburchakda katetlar bir-biriga perpendikulyar, shuning uchun ular balandliklar bo‘ladi.",
+      "savol": "Balandlik tomon bilan necha gradusli burchak hosil qiladi?",
+      "javob": "90°",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Medianalarning kesishishi",
+      "matn": "Uchta mediana bitta nuqtada kesishadi, bu nuqta uchburchakning og‘irlik markazi deyiladi. Og‘irlik markazi har bir medianani uchidan boshlab 2 : 1 nisbatda bo‘ladi: uchdan 2 qism, tomondan 1 qism.",
+      "misol": "Mediana 12 sm bo‘lsa, og‘irlik markazi uchdan 8 sm, tomondan 4 sm uzoqlikda. Karton uchburchakni shu nuqtadan barmoq ustida muvozanatda ushlab turish mumkin.",
+      "savol": "Mediana 15 sm bo‘lsa, og‘irlik markazi uchdan qancha?",
+      "javob": "10 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uch chiziqni solishtirish",
+      "matn": "Mediana — tomonni teng ikkiga bo‘ladi, bissektrisa — burchakni teng ikkiga bo‘ladi, balandlik — tomonga perpendikulyar. Teng yonli uchburchakda uchidan asosga tushirilgan bu uchalasi bitta kesma bo‘ladi.",
+      "misol": "Teng yonli uchburchakda asos 10 sm: uchidan tushirilgan kesma asosni 5 va 5 ga bo‘ladi, burchak 90°, uchidagi burchakni teng ikkiga bo‘ladi.",
+      "savol": "Qaysi chiziq tomonga perpendikulyar bo‘ladi?",
+      "javob": "balandlik",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Mediana — uchni qarshi tomon o‘rta nuqtasi bilan tutashtiradi. Bissektrisa — burchakni teng ikkiga bo‘ladi. Balandlik — qarshi tomonga perpendikulyar. Medianalar 2 : 1 nisbatda kesishadi.",
+    "misollar": [
+     {
+      "shart": "ABC da AM mediana, BC 14 sm. BM ni toping.",
+      "yechim": [
+       "Mediana qarshisidagi tomonni teng ikkiga bo‘ladi.",
+       "BM — 14 / 2.",
+       "BM 7 sm."
+      ],
+      "javob": "7 sm"
+     },
+     {
+      "shart": "A burchak 70°, AD bissektrisa. Burchak BAD ni toping.",
+      "yechim": [
+       "Bissektrisa burchakni teng ikkiga bo‘ladi.",
+       "70° / 2.",
+       "Burchak BAD 35°."
+      ],
+      "javob": "35°"
+     },
+     {
+      "shart": "Mediana 12 sm. Og‘irlik markazidan uchgacha va tomongacha masofani toping.",
+      "yechim": [
+       "2 : 1 nisbat: jami 3 qism.",
+       "Bir qism 12 / 3, ya’ni 4 sm.",
+       "Uchdan 8 sm, tomondan 4 sm."
+      ],
+      "javob": "8 sm va 4 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Karton muvozanati",
+      "topshiriq": "Kartondan uchburchak qirqing, medianalarni chizing va kesishgan nuqtadan barmoq ustida muvozanatda ushlang.",
+      "yechim": "Medianalar kesishgan nuqta og‘irlik markazi.",
+      "mahsulot": "karton maket"
+     },
+     {
+      "nom": "Uch chiziqni chizamiz",
+      "topshiriq": "Bir uchburchakda mediana, bissektrisa va balandlikni turli rangda chizing.",
+      "yechim": "Uchala chiziq alohida kesmalar, teng yonli bo‘lsa ustma-ust.",
+      "mahsulot": "rangli chizma"
+     },
+     {
+      "nom": "Balandlik o‘tmas burchakda",
+      "topshiriq": "O‘tmas burchakli uchburchak chizing va balandliklarni tushiring. Qaysi biri tashqarida?",
+      "yechim": "O‘tmas burchak uchidan boshqa ikki uchning balandliklari tashqarida.",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Mediana 18 sm bo‘lsa, og‘irlik markazining uchdan va tomondan masofasini toping.",
+      "yechim": "Uchdan 12 sm, tomondan 6 sm.",
+      "mahsulot": "yechim varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "BC 20 sm, AM mediana. BM nechaga teng?",
+      "javob": "10 sm"
+     },
+     {
+      "shart": "80° burchak bissektrisasi hosil qilgan burchak?",
+      "javob": "40°"
+     },
+     {
+      "shart": "Balandlik tomon bilan qanday burchak hosil qiladi?",
+      "javob": "90°"
+     },
+     {
+      "shart": "Uchburchakda nechta mediana bor?",
+      "javob": "3"
+     },
+     {
+      "shart": "Mediana 15 sm. Og‘irlik markazi uchdan qancha uzoqlikda?",
+      "javob": "10 sm"
+     },
+     {
+      "shart": "To‘g‘ri burchakli uchburchakda katet balandlik bo‘ladimi?",
+      "javob": "ha"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Medianani tomonga perpendikulyar deb oladi",
+      "sabab": "medianani balandlik bilan adashtiradi",
+      "oldini_olish": "mediana tomonni teng ikkiga bo‘lishini, balandlik perpendikulyar ekanini eslash"
+     },
+     {
+      "xato": "Bissektrisani tomonni teng ikkiga bo‘luvchi deb oladi",
+      "sabab": "bissektrisani medianaga aralashtiradi",
+      "oldini_olish": "bissektrisa burchakni bo‘lishini eslash"
+     },
+     {
+      "xato": "Og‘irlik markazida 1 : 1 nisbat deydi",
+      "sabab": "nisbatni bilmaydi",
+      "oldini_olish": "uchdan 2 qism, tomondan 1 qism ekanini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "og‘irlik markazi va muvozanat"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "tom ferma va ramalarda balandlik o‘lchash"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "kompozitsiya markazini topish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Og‘irlik markazi»",
+     "muammo": "Turli shakllarning og‘irlik markazini qanday topamiz?",
+     "mahsulot": "muvozanat maketlari",
+     "bosqichlar": [
+      "uchburchaklar qirqish",
+      "medianalarni chizish",
+      "markazni topish",
+      "muvozanatni sinash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Shakllar qirqing",
+      "Medianalarni chizing",
+      "Sinab ko‘ring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "chizma to‘g‘ri",
+      "markaz aniq",
+      "sinov bajarilgan",
+      "xulosa asosli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Uch chiziq maydoni»",
+     "bekatlar": [
+      {
+       "nom": "Muvozanat maydoni",
+       "matn": "Karton uchburchak medianasi 12 sm.",
+       "topshiriq": "Og‘irlik markazi uchdan necha sm?",
+       "javob": "8 sm",
+       "rasm": ""
+      },
+      {
+       "nom": "Tom",
+       "matn": "Teng yonli tomning asosi 10 m.",
+       "topshiriq": "Uchidan tushirilgan balandlik asosni qanday bo‘ladi?",
+       "javob": "5 m va 5 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Burchak",
+       "matn": "Uchburchak burchagi 70°.",
+       "topshiriq": "Bissektrisa hosil qilgan burchak?",
+       "javob": "35°",
+       "rasm": ""
+      },
+      {
+       "nom": "Maktab hovlisi",
+       "matn": "Uchburchak bog‘ tomoni 14 m, mediana shu tomonga tushirilgan.",
+       "topshiriq": "Mediana tomonni qanday bo‘ladi?",
+       "javob": "7 m va 7 m",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda og‘irlik markazi muhim?",
+      "Balandlikni qayerda o‘lchaysiz?",
+      "Uchta chiziqning farqini aytib bering."
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Mediana",
+      "tarif": "uchni qarshi tomon o‘rta nuqtasi bilan tutashtiruvchi kesma"
+     },
+     {
+      "atama": "Bissektrisa",
+      "tarif": "burchakni teng ikkiga bo‘luvchi kesma"
+     },
+     {
+      "atama": "Balandlik",
+      "tarif": "uchdan qarshi tomonga tushirilgan perpendikulyar"
+     },
+     {
+      "atama": "Perpendikulyar",
+      "tarif": "90° burchak ostida kesishuvchi chiziq"
+     },
+     {
+      "atama": "Og‘irlik markazi",
+      "tarif": "medianalar kesishgan nuqta"
+     },
+     {
+      "atama": "Qarshi tomon",
+      "tarif": "uchga qarama-qarshi yotgan tomon"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Mediana tomonni teng ikkiga bo‘ladi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Balandlik tomon bilan 60° burchak hosil qiladi",
+      "togri": false,
+      "izoh": "balandlik perpendikulyar, ya’ni 90°"
+     },
+     {
+      "matn": "Bissektrisa burchakni teng ikkiga bo‘ladi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Uchburchakda ikkita mediana bor",
+      "togri": false,
+      "izoh": "uchta mediana bor"
+     },
+     {
+      "matn": "Medianalar og‘irlik markazida kesishadi",
+      "togri": true,
+      "izoh": "bitta nuqtada kesishadi"
+     },
+     {
+      "matn": "O‘tmas burchakli uchburchakda ba’zi balandliklar tashqarida",
+      "togri": true,
+      "izoh": "ular tomon davomiga tushiriladi"
+     },
+     {
+      "matn": "Og‘irlik markazi medianani 1 : 1 nisbatda bo‘ladi",
+      "togri": false,
+      "izoh": "2 : 1 nisbatda, uchdan 2 qism"
+     },
+     {
+      "matn": "Teng yonli uchburchakda asosga tushirilgan mediana balandlik ham bo‘ladi",
+      "togri": true,
+      "izoh": "xossa"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Mediana nima?",
+      "javob": "uchni qarshi tomon o‘rta nuqtasi bilan tutashtiruvchi kesma"
+     },
+     {
+      "savol": "Bissektrisa nima?",
+      "javob": "burchakni teng ikkiga bo‘luvchi kesma"
+     },
+     {
+      "savol": "Balandlik nima?",
+      "javob": "uchdan qarshi tomonga tushirilgan perpendikulyar"
+     },
+     {
+      "savol": "Nechta mediana bor?",
+      "javob": "3"
+     },
+     {
+      "savol": "Og‘irlik markazi nima?",
+      "javob": "medianalar kesishgan nuqta"
+     },
+     {
+      "savol": "Og‘irlik markazi medianani qanday bo‘ladi?",
+      "javob": "uchdan 2 qism, tomondan 1 qism"
+     },
+     {
+      "savol": "60° burchak bissektrisasi hosil qilgan burchak?",
+      "javob": "30°"
+     },
+     {
+      "savol": "Balandlik tomon bilan burchagi?",
+      "javob": "90°"
+     },
+     {
+      "savol": "Mediana 9 sm bo‘lsa, markaz uchdan?",
+      "javob": "6 sm"
+     },
+     {
+      "savol": "Qaysi uchburchakda uch chiziq ustma-ust tushadi?",
+      "javob": "teng tomonli"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Mediana",
+      "matn": "Tomonni teng ikkiga bo‘ladi.",
+      "savol": "BC 16 bo‘lsa, BM?"
+     },
+     {
+      "nom": "Bissektrisa",
+      "matn": "Burchakni teng ikkiga bo‘ladi.",
+      "savol": "100° burchak bissektrisasi?"
+     },
+     {
+      "nom": "Balandlik",
+      "matn": "Tomonga perpendikulyar.",
+      "savol": "Balandlik tomon bilan necha gradus?"
+     },
+     {
+      "nom": "Og‘irlik markazi",
+      "matn": "Medianalar 2 : 1 nisbatda bo‘linadi.",
+      "savol": "Mediana 6 bo‘lsa, markaz uchdan?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun uchburchakning uchta medianasi har doim bitta nuqtada kesishadi, balandliklari esa ba’zan uchburchak tashqarisida uchrashadi? To‘g‘ri burchakli, o‘tkir va o‘tmas burchakli uchburchaklar uchun chizma bilan solishtiring.",
+    "keys": {
+     "vaziyat": "Haykaltarosh uchburchak shaklidagi metall plastinkani bitta tayanchda muvozanatda ushlab turmoqchi.",
+     "savollar": [
+      "Tayanchni qayerga qo‘yish kerak?",
+      "Medianalardan qanday foydalanamiz?"
+     ]
+    },
+    "tezis": "Uch chiziq — uchburchakning uch xarakteristikasi",
+    "taqqoslash": {
+     "a": "Mediana",
+     "b": "Balandlik",
+     "umumiy": [
+      "uchdan chiqadi",
+      "qarshi tomonga boradi"
+     ],
+     "a_farq": [
+      "tomonni teng ikkiga bo‘ladi",
+      "o‘rta nuqtaga tushadi"
+     ],
+     "b_farq": [
+      "tomonga perpendikulyar",
+      "ba’zan tashqarida o‘tadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Uchburchakning muhim chiziqlari",
+     "shoxlar": [
+      {
+       "nom": "Mediana",
+       "bandlar": [
+        "o‘rta nuqta",
+        "uchta",
+        "og‘irlik markazi"
+       ]
+      },
+      {
+       "nom": "Bissektrisa",
+       "bandlar": [
+        "burchakni teng ikkiga bo‘ladi",
+        "uchta"
+       ]
+      },
+      {
+       "nom": "Balandlik",
+       "bandlar": [
+        "perpendikulyar",
+        "90°",
+        "tashqarida bo‘lishi mumkin"
+       ]
+      },
+      {
+       "nom": "Teng yonli holat",
+       "bandlar": [
+        "bitta kesma bo‘ladi",
+        "asosga tushirilgan"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Uchdan chiqaman, tomonning o‘rtasiga kelaman. Uchtamiz bir nuqtada uchrashamiz. Biz kimmiz?",
+     "javob": "medianalar"
+    },
+    "hikmat": "Markaz topilsa, muvozanat topiladi.",
+    "kalit_soz": "MEDIANA",
+    "xato_yechim": {
+     "shart": "Mediana va balandlikning farqini ayting.",
+     "xato": "mediana tomonga perpendikulyar",
+     "togri": "mediana tomonni teng ikkiga bo‘ladi, balandlik tomonga perpendikulyar",
+     "sabab": "mediana va balandlik adashtirilgan; perpendikulyar bo‘lish faqat balandlikka xos"
+    },
+    "guruh_nomlari": [
+     "Medianachilar",
+     "Bissektrisachilar",
+     "Balandlikchilar",
+     "Markazchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Muvozanat ustalari»",
+     "topshiriq": "Guruh karton shakllarning og‘irlik markazini medianalar bilan topadi va barmoq ustida muvozanat bilan tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Mediana, bissektrisa va balandlikni bittadan chizing.",
+     "B": "Mediana 21 sm bo‘lsa, og‘irlik markazi uchdan qancha?",
+     "C": "O‘tmas burchakli uchburchakda uchala balandlikni chizing."
+    },
+    "sinkveyn": [
+     "Mediana",
+     "o‘rtaga boradi",
+     "bo‘ladi, kesishadi, muvozanatlaydi",
+     "Tomonni teng ikkiga bo‘ladi",
+     "Markaz"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh uch chiziq bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: BC 18 bo‘lsa, mediana uni qanday bo‘ladi",
+      "2-guruh: 90° burchak bissektrisasi hosil qilgan burchak",
+      "3-guruh: mediana 12 bo‘lsa, markaz uchdan",
+      "4-guruh: balandlik tomon bilan burchagi"
+     ],
+     "yakun": "Natijalar: 9 va 9; 45°; 8 sm; 90°."
+    }
+   }
   }
  ]
 }
