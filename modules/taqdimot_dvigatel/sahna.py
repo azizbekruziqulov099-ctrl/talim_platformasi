@@ -204,8 +204,11 @@ class Slayd:
         return self._qosh({"k": "path", "x": x, "y": y, "w": w, "h": h, "pts": [[round(px, 2), round(py, 2)] for px, py in pts],
                            "z": closed, "fill": fill, "line": line, "lw": lw, "op": op, "dash": dash}, a, lnk, nm)
 
-    def img(self, x, y, w, h, src, fit="contain", a=None, lnk=None, nm=None):
-        return self._qosh({"k": "img", "x": x, "y": y, "w": w, "h": h, "src": src, "fit": fit}, a, lnk, nm)
+    def img(self, x, y, w, h, src, fit="contain", a=None, lnk=None, nm=None, shakl=None):
+        el = {"k": "img", "x": x, "y": y, "w": w, "h": h, "src": src, "fit": fit}
+        if shakl:               # "doira" — rasm doira (ellips) ichida qirqib ko'rsatiladi
+            el["shakl"] = shakl
+        return self._qosh(el, a, lnk, nm)
 
     # ------------------------------------------------------------- matn
     def matn(self, x, y, w, h, matn, size=18, font="sans", color="#222222", bold=False, italic=False, align="l", va="t",

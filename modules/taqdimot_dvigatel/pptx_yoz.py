@@ -195,7 +195,7 @@ def _pic_xml(el, sid, rid, img_w, img_h, link_xml):
     name = el.get("nm") or f"rasm{sid}"
     return (f'<p:pic><p:nvPicPr>{_nv(sid, name, link_xml)}<p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr><p:nvPr/></p:nvPicPr>'
             f'<p:blipFill><a:blip r:embed="{rid}"/>{crop}<a:stretch><a:fillRect/></a:stretch></p:blipFill>'
-            f'<p:spPr>{_xfrm(x, y, w, h)}<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr></p:pic>')
+            f'<p:spPr>{_xfrm(x, y, w, h)}<a:prstGeom prst="{"ellipse" if el.get("shakl") == "doira" else "rect"}"><a:avLst/></a:prstGeom></p:spPr></p:pic>')
 
 
 # ------------------------------------------------------------------ animatsiya

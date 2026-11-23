@@ -38,10 +38,10 @@ JOYLASHUVLAR = {
 }
 SARLAVHA_TURLARI = ["chap", "chiziq", "tasma", "markaz", "raqam"]
 KART_TURLARI = ["oila", "yon", "chiziq", "soya"]
-TITUL_SONI = 6
+TITUL_SONI = 8
 BOLIM_SONI = 5
 NOMLAR = {
-    "titul": ["Oddiy", "Panel", "Markaz", "Diagonal", "Katta rasm", "Ramka"],
+    "titul": ["Oddiy", "Panel", "Markaz", "Diagonal", "Katta rasm", "Ramka", "Fon-rasm", "Doira rasm"],
     "bolim": ["Oddiy", "Panel", "Markaz", "Katta raqam", "Rasmli"],
     "sarlavha": {"chap": "Chapda", "chiziq": "Chiziqli", "tasma": "Tasma", "markaz": "Markazda", "raqam": "Raqamli"},
     "kart": {"oila": "Uslubdagidek", "yon": "Yon chiziq", "chiziq": "Ramkali", "soya": "Soyali"},
@@ -709,7 +709,67 @@ def _belgi_doira(k, m, cx, cy, r, col, fg=None):
 
 
 def titul(k, d, v):
-    {1: _titul_panel, 2: _titul_markaz, 3: _titul_diagonal, 4: _titul_katta, 5: _titul_ramka}[v](k, d)
+    {1: _titul_panel, 2: _titul_markaz, 3: _titul_diagonal, 4: _titul_katta, 5: _titul_ramka, 6: _titul_fon, 7: _titul_doira}[v](k, d)
+
+
+def _keng_rasm(k, m):
+    """Titul rasmi fon bo'la oladimi: mavjud, illyustratsiya va yotiq (keng) bo'lishi kerak."""
+    key = _titul_rasm(k, m)
+    if not key:
+        return None
+    info = RS.malumot(key)
+    ol = (info.get("olcham") or _olcham(key))[:2]
+    return key if info.get("tur") == "rasm" and ol[1] and ol[0] / ol[1] >= 1.25 else None
+
+
+def _titul_fon(k, d):
+    """Rasm slaydning o'ng qismini to'liq egallaydi, chapda yarim shaffof matn paneli; sarlavha ostida ingichka chiziq."""
+    u, m, s = k.u, d["meta"], k.s
+    key = _keng_rasm(k, m)
+    if not key:
+        return _titul_panel(k, d)
+    col = u.acc[0]
+    pw = 590
+    s.img(pw - 150, -56, W - pw + 215, H + 112, "rasm:" + key, fit="cover", a=k.A("big", 0))   # chetidagi oq hoshiya slayddan tashqarida qoladi
+    panel = u.bg[0] if u.qorongi else "#FFFFFF"
+    s.rect(0, 0, pw, H, fill=panel, op=0.93 if not u.qorongi else 0.88, a=k.A("card", 0))
+    s.rect(pw, 0, 26, H, fill=panel, op=0.55, a=k.A("card", 0))
+    s.rect(pw + 26, 0, 26, H, fill=panel, op=0.25, a=k.A("card", 0))
+    s.rect(0, 0, 8, H, fill=col, a=k.A("accent", 0))
+    x, w = M + 16, pw - M - 46
+    _titul_meta(k, m, x, 44, w)
+    _nishon(k, m, x, 112, col, w=w)
+    sz, th = B.mos_olcham(m["mavzu"], w, 240, sizes=(46, 42, 38, 34, 30, 27))
+    s.matn(x, 164, w, 240, m["mavzu"], size=sz, font=u.head, bold=True, color=u.ink, va="m", nm="!!title", lh=1.08, a=k.A("big", 0, dl=100))
+    s.rect(x, 420, w, 2, fill=col, a=k.A("accent", 0, dl=250))
+    if m.get("tayanch"):
+        s.matn(x, 438, w, 62, " · ".join(m["tayanch"]), size=15, color=u.muted, lh=1.25, a=k.A("item", 0, dl=300), min_scale=0.6)
+    _muallif(k, m, x, 526, w)
+    _tugmalar(k, d, x, 600, col)
+
+
+def _titul_doira(k, d):
+    """Rasm o'ngda katta doira ichida (slayd chetidan biroz chiqib turadi), chapda sarlavha va ingichka chiziq."""
+    u, m, s = k.u, d["meta"], k.s
+    key = _keng_rasm(k, m) or _titul_rasm(k, m)
+    if not key:
+        return _titul_markaz(k, d)
+    col = u.acc[0]
+    cx, cy, r = 985, H / 2 + 10, 372
+    s.doira(cx, cy, r + 22, fill=col, op=0.14 if not u.qorongi else 0.22, a=k.A("card", 0))
+    s.doira(cx, cy, r + 8, fill=None, line=col, lw=2.2, op=0.8, a=k.A("card", 0, dl=120))
+    s.doira(cx, cy, r, fill="#FFFFFF", a=k.A("big", 0, dl=150))
+    s.img(cx - r, cy - r, 2 * r, 2 * r, "rasm:" + key, fit="cover", shakl="doira", a=k.A("big", 0, dl=200))
+    x, w = M + 16, 520
+    _titul_meta(k, m, x, 44, w)
+    _nishon(k, m, x, 112, col, w=w)
+    sz, th = B.mos_olcham(m["mavzu"], w, 240, sizes=(48, 44, 40, 36, 32, 28))
+    s.matn(x, 164, w, 240, m["mavzu"], size=sz, font=u.head, bold=True, color=u.ink, va="m", nm="!!title", lh=1.08, a=k.A("big", 0, dl=100))
+    s.line(x, 422, x + w + 60, 422, color=col, lw=2, a=k.A("accent", 0, dl=250))
+    if m.get("tayanch"):
+        s.matn(x, 438, w, 62, " · ".join(m["tayanch"]), size=15, color=u.muted, lh=1.25, a=k.A("item", 0, dl=300), min_scale=0.6)
+    _muallif(k, m, x, 526, w)
+    _tugmalar(k, d, x, 600, col)
 
 
 def _titul_panel(k, d):

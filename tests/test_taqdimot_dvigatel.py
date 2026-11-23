@@ -759,3 +759,21 @@ def test_zamonaviy_uslub_oilalari_va_200dan_ortiq_korinish():
             assert uslub.fon_rasm(f"{oila}.{pal}.0")[:2] == b"\xff\xd8"
         s = yasash.yasa(m, seed=5, oila=oila)
         assert s["uslub"]["oila"] == oila and len(yasash.pptx(s)) > 20000
+
+
+def test_titul_fon_rasm_va_doira_rasm_variantlari():
+    """Titulning ikki yangi ko'rinishi: rasm fon bo'lib turadi (yonida matn paneli) va rasm katta doira ichida."""
+    from modules.taqdimot_dvigatel import bloklar_joy, rasmlar, yasash
+    assert bloklar_joy.TITUL_SONI == 8 and len(bloklar_joy.NOMLAR["titul"]) == 8
+    m = json.loads(rasmlar.namuna_json())
+    m["meta"].update(mavzu="Vulqonlar va zilzilalar", fan="Geografiya")
+    for v, shakl in ((6, None), (7, "doira")):
+        s = yasash.yasa(m, seed=4, oila="anor", dizayn={"titul": v})
+        rasm = [e for e in s["slaydlar"][0]["els"] if e.get("k") == "img"]
+        assert len(rasm) == 1 and rasm[0]["fit"] == "cover" and rasm[0].get("shakl") == shakl
+        assert any("Vulqonlar" in "".join(r["t"] for p in e.get("pp", []) for r in p.get("rs", [])) for e in s["slaydlar"][0]["els"] if e.get("k") == "text")
+        z = zipfile.ZipFile(io.BytesIO(yasash.pptx(s)))
+        x = z.read("ppt/slides/slide1.xml").decode()
+        assert "<a:srcRect" in x and (('prst="ellipse"' in x.split("<p:pic>")[1]) == (shakl == "doira"))
+    # rasm bo'lmasa — eski ko'rinishlarga qaytadi, xato bermaydi
+    assert yasash.yasa(m, seed=4, dizayn={"titul": 6}, rasm_avto=False, rasm_bor=lambda k: False)["slaydlar"]
