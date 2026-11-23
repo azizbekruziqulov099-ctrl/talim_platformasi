@@ -5571,6 +5571,1395 @@
      "yakun": "Natijalar: 3,8; 1; 2 foiz; 0,44."
     }
    }
+  },
+  {
+   "mavzu": "Statistik ma’lumotlar tahlili",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "O‘rta arifmetik",
+      "matn": "Sonlar qatorining o‘rta arifmetigi — barcha sonlar yig‘indisini ularning soniga bo‘lishdan hosil bo‘ladi. U ma’lumotlarning o‘rtacha qiymatini ko‘rsatadi.",
+      "misol": "2, 4, 4, 6, 9 sonlarida yig‘indi 25, sonlar 5 ta: 25 / 5, ya’ni 5.",
+      "savol": "3, 5, 7 sonlarining o‘rta arifmetigi nechaga teng?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Moda",
+      "matn": "Qatorda eng ko‘p uchraydigan son moda deyiladi. Qatorda bitta, bir nechta moda bo‘lishi yoki umuman bo‘lmasligi mumkin.",
+      "misol": "3, 5, 5, 7, 10 qatorida 5 ikki marta uchraydi, shuning uchun moda 5.",
+      "savol": "1, 2, 2, 3, 2, 4 qatorining modasi?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mediana",
+      "matn": "Sonlarni o‘sish tartibida yozsak, o‘rtadagi son mediana deyiladi. Sonlar soni juft bo‘lsa, mediana ikki o‘rtadagi son o‘rta arifmetigiga teng.",
+      "misol": "2, 4, 6, 8, 10, 12 qatorida o‘rtada 6 va 8 turibdi, mediana (6 + 8) / 2, ya’ni 7. 1, 3, 9 qatorida mediana 3.",
+      "savol": "1, 3, 9 qatorining medianasi?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘zgarish kengligi",
+      "matn": "Qatordagi eng katta va eng kichik sonlar ayirmasi o‘zgarish kengligi deyiladi. U ma’lumotlar qanchalik tarqoq ekanini ko‘rsatadi.",
+      "misol": "2, 4, 4, 6, 9 qatorida kenglik 9 − 2, ya’ni 7.",
+      "savol": "5, 8, 12 qatorining kengligi?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chastota jadvali va diagramma",
+      "matn": "Ma’lumotlarni tartiblash uchun har bir qiymat necha marta uchrashini chastota jadvaliga yozamiz. Chastotalar yig‘indisi barcha kuzatuvlar soniga teng. Ma’lumotni ustunli yoki doiraviy diagrammada ko‘rsatamiz.",
+      "misol": "Baholar: 5 — 4 ta, 4 — 8 ta, 3 — 6 ta, 2 — 2 ta. Jami 20 ta. O‘rtacha: (20 + 32 + 18 + 4) / 20, ya’ni 74 / 20, ya’ni 3,7. Moda 4. 5 baho ulushi 4 / 20, ya’ni 20 foiz.",
+      "savol": "Chastotalar 4, 8, 6, 2. Ularning yig‘indisi?",
+      "javob": "20",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "O‘rta arifmetik — yig‘indi bo‘linadi sonlar soniga. Moda — eng ko‘p uchraydigan son. Mediana — tartiblangan qatorning o‘rtasi. Kenglik — eng katta va eng kichik son ayirmasi.",
+    "misollar": [
+     {
+      "shart": "12, 15, 9, 14 sonlarining o‘rta arifmetigini toping.",
+      "yechim": [
+       "Yig‘indi 12 + 15 + 9 + 14, ya’ni 50.",
+       "Sonlar 4 ta.",
+       "50 / 4, ya’ni 12,5."
+      ],
+      "javob": "12,5"
+     },
+     {
+      "shart": "7, 3, 9, 1, 5 qatorining medianasini toping.",
+      "yechim": [
+       "Tartiblaymiz: 1, 3, 5, 7, 9.",
+       "Sonlar 5 ta, o‘rtadagi uchinchi son 5.",
+       "Mediana 5."
+      ],
+      "javob": "5"
+     },
+     {
+      "shart": "3, 6, 6, 7, 8 qatorining o‘rtachasi, modasi, medianasi va kengligini toping.",
+      "yechim": [
+       "Yig‘indi 30, 30 / 5, ya’ni 6.",
+       "6 ikki marta uchraydi, moda 6. Tartiblangan qatorda o‘rtadagi son 6, mediana 6.",
+       "Kenglik 8 − 3, ya’ni 5."
+      ],
+      "javob": "o‘rtacha 6, moda 6, mediana 6, kenglik 5"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sinf bo‘yi",
+      "topshiriq": "Beshta o‘quvchi bo‘yi (sm): 150, 152, 152, 154, 157. O‘rtacha, moda, mediana va kenglikni toping.",
+      "yechim": "Yig‘indi 765, o‘rtacha 153, moda 152, mediana 152, kenglik 7.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Harorat",
+      "topshiriq": "Olti kunlik harorat: 12, 15, 15, 18, 20, 22. O‘rtacha, moda, mediana va kenglikni toping.",
+      "yechim": "Yig‘indi 102, o‘rtacha 17, moda 15, mediana (15 + 18) / 2, ya’ni 16,5, kenglik 10.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Chastota jadvali",
+      "topshiriq": "Sinfdagi 20 ta baho: 5 — 4 ta, 4 — 8 ta, 3 — 6 ta, 2 — 2 ta. Jadval tuzing va ustunli diagramma chizing.",
+      "yechim": "O‘rtacha baho 3,7, moda 4.",
+      "mahsulot": "jadval va diagramma"
+     },
+     {
+      "nom": "O‘z ma’lumotimiz",
+      "topshiriq": "Guruh a’zolarining yoshi yoki oyoq kiyimi o‘lchamini yig‘ib, o‘rtacha va modani toping.",
+      "yechim": "Har guruh o‘z ma’lumoti bilan hisoblaydi.",
+      "mahsulot": "ma’lumotlar to‘plami"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "4, 8, 12 sonlarining o‘rta arifmetigi?",
+      "javob": "8"
+     },
+     {
+      "shart": "3, 4, 4, 5 qatorining modasi?",
+      "javob": "4"
+     },
+     {
+      "shart": "2, 5, 9 qatorining medianasi?",
+      "javob": "5"
+     },
+     {
+      "shart": "3, 11, 7 qatorining kengligi?",
+      "javob": "8"
+     },
+     {
+      "shart": "10, 20, 30, 40 sonlarining o‘rta arifmetigi?",
+      "javob": "25"
+     },
+     {
+      "shart": "1, 2, 3, 4 qatorining medianasi?",
+      "javob": "2,5"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Medianani tartiblamasdan topadi",
+      "sabab": "qatorni tartiblashni unutadi",
+      "oldini_olish": "avval sonlarni o‘sish tartibida yozish"
+     },
+     {
+      "xato": "Juft sonli qatorda medianani bitta son deb oladi",
+      "sabab": "ikki o‘rtadagi sonni o‘rtalashtirmaydi",
+      "oldini_olish": "ikki o‘rtadagi sonlarning o‘rta arifmetigini olish"
+     },
+     {
+      "xato": "Kenglikni yig‘indi deb hisoblaydi",
+      "sabab": "ayirma o‘rniga qo‘shadi",
+      "oldini_olish": "eng katta minus eng kichik ekanini yozib qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "haroratlar va yog‘ingarchilik ma’lumotlarini tahlil qilish"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "o‘sish va kuzatuv natijalarini yig‘ish"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "jadval va diagrammalar yaratish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinf statistikasi»",
+     "muammo": "Sinf haqidagi ma’lumotlarni qanday yig‘ib, tahlil qilamiz?",
+     "mahsulot": "sinf statistikasi hisoboti",
+     "bosqichlar": [
+      "savol tanlash",
+      "ma’lumot yig‘ish",
+      "chastota jadvali",
+      "o‘rtacha, moda, mediana",
+      "diagramma va xulosa"
+     ],
+     "guruh_vazifalari": [
+      "Savol tanlang",
+      "Ma’lumot yig‘ing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "ma’lumot to‘g‘ri yig‘ilgan",
+      "ko‘rsatkichlar to‘g‘ri",
+      "diagramma aniq",
+      "xulosa asosli",
+      "hisobot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Statistika shahri»",
+     "bekatlar": [
+      {
+       "nom": "Maktab",
+       "matn": "Beshta o‘quvchi bahosi: 3, 4, 5, 4, 4.",
+       "topshiriq": "Moda?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "Stadion",
+       "matn": "Futbolchilar bo‘yi (sm): 170, 175, 180.",
+       "topshiriq": "O‘rtacha?",
+       "javob": "175",
+       "rasm": ""
+      },
+      {
+       "nom": "Ob-havo markazi",
+       "matn": "Harorat: 10, 12, 14, 16.",
+       "topshiriq": "Mediana?",
+       "javob": "13",
+       "rasm": ""
+      },
+      {
+       "nom": "Bozor",
+       "matn": "Narxlar (ming so‘m): 8, 12, 20.",
+       "topshiriq": "Kenglik?",
+       "javob": "12",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi ko‘rsatkich foydali bo‘ldi?",
+      "Ma’lumot yig‘ish oson bo‘ldimi?",
+      "Diagramma nimani ko‘rsatdi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "O‘rta arifmetik",
+      "tarif": "sonlar yig‘indisining ularning soniga nisbati"
+     },
+     {
+      "atama": "Moda",
+      "tarif": "eng ko‘p uchraydigan son"
+     },
+     {
+      "atama": "Mediana",
+      "tarif": "tartiblangan qatorning o‘rtasidagi son"
+     },
+     {
+      "atama": "O‘zgarish kengligi",
+      "tarif": "eng katta va eng kichik son ayirmasi"
+     },
+     {
+      "atama": "Chastota",
+      "tarif": "qiymat necha marta uchrashi"
+     },
+     {
+      "atama": "Diagramma",
+      "tarif": "ma’lumotning rasmli ko‘rinishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Moda eng ko‘p uchraydigan son",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Mediana doim o‘rtachaga teng",
+      "togri": false,
+      "izoh": "ular har xil bo‘lishi mumkin"
+     },
+     {
+      "matn": "Kenglik eng katta va eng kichik son ayirmasi",
+      "togri": true,
+      "izoh": "tarqoqlikni ko‘rsatadi"
+     },
+     {
+      "matn": "2, 4, 6 qatorining medianasi 4",
+      "togri": true,
+      "izoh": "o‘rtadagi son"
+     },
+     {
+      "matn": "Chastotalar yig‘indisi kuzatuvlar soniga teng",
+      "togri": true,
+      "izoh": "barcha kuzatuvlar sanaladi"
+     },
+     {
+      "matn": "Qatorda doim bitta moda bo‘ladi",
+      "togri": false,
+      "izoh": "bir nechta yoki umuman bo‘lmasligi mumkin"
+     },
+     {
+      "matn": "O‘rta arifmetik yig‘indini sonlar soniga bo‘lib topiladi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Mediana tartiblanmagan qatordan topiladi",
+      "togri": false,
+      "izoh": "avval tartiblash kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "O‘rta arifmetik qanday topiladi?",
+      "javob": "yig‘indini sonlar soniga bo‘lib"
+     },
+     {
+      "savol": "Moda nima?",
+      "javob": "eng ko‘p uchraydigan son"
+     },
+     {
+      "savol": "Mediana nima?",
+      "javob": "tartiblangan qatorning o‘rtasi"
+     },
+     {
+      "savol": "Kenglik nima?",
+      "javob": "eng katta minus eng kichik"
+     },
+     {
+      "savol": "2, 4, 6 ning o‘rtachasi?",
+      "javob": "4"
+     },
+     {
+      "savol": "5, 5, 7 ning modasi?",
+      "javob": "5"
+     },
+     {
+      "savol": "1, 3, 5, 7 ning medianasi?",
+      "javob": "4"
+     },
+     {
+      "savol": "Chastota nima?",
+      "javob": "qiymat necha marta uchrashi"
+     },
+     {
+      "savol": "Ma’lumotni qanday ko‘rsatamiz?",
+      "javob": "diagramma bilan"
+     },
+     {
+      "savol": "4, 10 ning kengligi?",
+      "javob": "6"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘rtacha",
+      "matn": "Yig‘indi bo‘linadi soniga.",
+      "savol": "2 va 8 ning o‘rtachasi?"
+     },
+     {
+      "nom": "Moda",
+      "matn": "Eng ko‘p uchraydigan.",
+      "savol": "3, 3, 4 ning modasi?"
+     },
+     {
+      "nom": "Mediana",
+      "matn": "Qator o‘rtasi.",
+      "savol": "1, 5, 9 ning medianasi?"
+     },
+     {
+      "nom": "Kenglik",
+      "matn": "Eng katta minus eng kichik.",
+      "savol": "2, 9 ning kengligi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ba’zan o‘rta arifmetik ma’lumotlarni yaxshi ifodalamaydi, mediana esa yaxshiroq ifodalaydi? 1, 2, 3, 4, 100 qatori misolida tushuntiring.",
+    "keys": {
+     "vaziyat": "Sinf o‘quvchilari matematikadan nazorat ishida quyidagi baholarni oldi: 3, 4, 4, 5, 5, 5, 3. O‘qituvchi natijani baholamoqchi.",
+     "savollar": [
+      "Moda nechaga teng?",
+      "Mediana nechaga teng?"
+     ]
+    },
+    "tezis": "Ma’lumotlar hikoya qiladi",
+    "taqqoslash": {
+     "a": "O‘rta arifmetik",
+     "b": "Mediana",
+     "umumiy": [
+      "markaziy qiymatni ko‘rsatadi",
+      "sonlar qatoridan topiladi"
+     ],
+     "a_farq": [
+      "yig‘indi bo‘yicha",
+      "juda katta songa sezgir"
+     ],
+     "b_farq": [
+      "o‘rtadagi son bo‘yicha",
+      "kuchli farqlarga sezgir emas"
+     ]
+    },
+    "klaster": {
+     "markaz": "Statistika",
+     "shoxlar": [
+      {
+       "nom": "Markaziy qiymatlar",
+       "bandlar": [
+        "o‘rta arifmetik",
+        "moda",
+        "mediana"
+       ]
+      },
+      {
+       "nom": "Tarqoqlik",
+       "bandlar": [
+        "kenglik"
+       ]
+      },
+      {
+       "nom": "Jadval",
+       "bandlar": [
+        "chastota",
+        "ulush"
+       ]
+      },
+      {
+       "nom": "Diagramma",
+       "bandlar": [
+        "ustunli",
+        "doiraviy"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Eng ko‘p uchrayman, shuning uchun moda deyishadi. Men kimman?",
+     "javob": "moda"
+    },
+    "hikmat": "Ma’lumot — bilimning xomashyosi.",
+    "kalit_soz": "MODA",
+    "xato_yechim": {
+     "shart": "1, 3, 5, 7 qatorining medianasini toping.",
+     "xato": "3",
+     "togri": "4",
+     "sabab": "sonlar soni juft, mediana ikki o‘rtadagi 3 va 5 ning o‘rta arifmetigi: 4"
+    },
+    "guruh_nomlari": [
+     "Modachilar",
+     "Medianachilar",
+     "O‘rtachachilar",
+     "Diagrammachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sinf so‘rovnomasi»",
+     "topshiriq": "Guruh sinfdoshlari o‘rtasida so‘rov o‘tkazib, natijani jadval va diagrammada ko‘rsatadi."
+    },
+    "vazifalar": {
+     "A": "4, 6, 8, 10 sonlarining o‘rtacha va medianasini toping.",
+     "B": "2, 3, 3, 5, 7 qatorining o‘rtachasi, modasi, medianasi va kengligini toping.",
+     "C": "Baholar: 5 — 3 ta, 4 — 5 ta, 3 — 2 ta. O‘rtacha bahoni toping."
+    },
+    "sinkveyn": [
+     "Statistika",
+     "ma’lumot, son",
+     "yig‘adi, tahlil qiladi, ko‘rsatadi",
+     "Raqamlar hikoyasi",
+     "Mediana"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ma’lumotlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 2, 4, 6 o‘rtachasi",
+      "2-guruh: 1, 2, 2, 3 modasi",
+      "3-guruh: 1, 5, 9 medianasi",
+      "4-guruh: 3, 11 kengligi"
+     ],
+     "yakun": "Natijalar: 4; 2; 5; 8."
+    }
+   }
+  },
+  {
+   "mavzu": "Kombinatorika",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ko‘paytirish qoidasi",
+      "matn": "Agar birinchi tanlovni m usulda, ikkinchisini n usulda bajarish mumkin bo‘lsa, ikkalasini ketma-ket m · n usulda bajarish mumkin. Qoida ikkitadan ko‘p tanlovda ham ishlaydi.",
+      "misol": "3 xil ko‘ylak va 4 xil shimdan 3 · 4, ya’ni 12 xil kiyim to‘plami tuzish mumkin.",
+      "savol": "2 xil bosh kiyim va 5 xil poyabzaldan nechta to‘plam bo‘ladi?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Faktorial va o‘rin almashtirish",
+      "matn": "1 dan n gacha natural sonlar ko‘paytmasi n faktorial deyiladi va n! deb yoziladi. n ta turli elementni qatorga tizishning barcha usullari soni n! ga teng. Bu o‘rin almashtirishlar deyiladi.",
+      "misol": "3! — 1 · 2 · 3, ya’ni 6. 4! — 24. 5! — 120. Uch kishini qatorga 6 usulda tizish mumkin.",
+      "savol": "4 ta kitobni javonga necha usulda terish mumkin?",
+      "javob": "24",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘rinlashtirishlar",
+      "matn": "n ta elementdan k tasini tartib bilan tanlash usullari soni n(n − 1)...(n − k + 1) ga teng. Bunda tartib muhim: elementlarning o‘rni almashsa, boshqa usul hisoblanadi.",
+      "misol": "5 ta o‘quvchidan 3 tasini sardor, o‘rinbosar va kotib qilib tanlash: 5 · 4 · 3, ya’ni 60 usul.",
+      "savol": "6 ta elementdan 2 tasini tartib bilan necha usulda tanlaymiz?",
+      "javob": "30",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Guruhlashlar",
+      "matn": "Tartib muhim bo‘lmagan holda n ta elementdan k tasini tanlash usullari soni o‘rinlashtirishlar sonini k! ga bo‘lishdan topiladi. Ikki kishilik juft uchun n(n − 1) / 2.",
+      "misol": "5 ta o‘quvchidan 2 tasini tanlash: 5 · 4 / 2, ya’ni 10. 6 tadan 3 tasini tanlash: 6 · 5 · 4 / 6, ya’ni 20.",
+      "savol": "4 ta elementdan 2 tasini necha usulda tanlaymiz?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Raqamlardan son tuzish",
+      "matn": "Son tuzishda har bir xona uchun imkoniyatlar sonini ko‘paytiramiz. Takrorlanmasa, har keyingi xonada tanlov bittaga kamayadi. Birinchi raqam nol bo‘lmasligini hisobga olamiz.",
+      "misol": "1, 2, 3 raqamlaridan takrorlamay uch xonali sonlar: 3 · 2 · 1, ya’ni 6 ta. 0, 1, 2 raqamlaridan: birinchi raqamga 2 imkoniyat, keyingi 2 va 1: 2 · 2 · 1, ya’ni 4 ta: 102, 120, 201, 210.",
+      "savol": "1, 2, 3, 4 dan takrorlamay nechta ikki xonali son tuzish mumkin?",
+      "javob": "12",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ko‘paytirish qoidasi: m · n usul. n ta elementni qatorga tizish — n! usul. O‘rinlashtirishda tartib muhim, guruhlashda muhim emas. Ikki kishilik juft: n(n − 1) / 2.",
+    "misollar": [
+     {
+      "shart": "Kafeda 3 xil sho‘rva, 4 xil ikkinchi taom va 2 xil ichimlik bor. Necha xil tushlik tanlash mumkin?",
+      "yechim": [
+       "Uchta tanlovni ketma-ket bajaramiz.",
+       "3 · 4 · 2.",
+       "Jami 24 xil tushlik."
+      ],
+      "javob": "24"
+     },
+     {
+      "shart": "8 o‘quvchidan sardor, o‘rinbosar va kotibni necha usulda tanlash mumkin?",
+      "yechim": [
+       "Sardorga 8 imkoniyat, o‘rinbosarga 7, kotibga 6.",
+       "8 · 7 · 6 — 336.",
+       "Tartib muhim, shuning uchun o‘rinlashtirish."
+      ],
+      "javob": "336"
+     },
+     {
+      "shart": "10 o‘quvchidan 2 kishilik juftni necha usulda tanlash mumkin?",
+      "yechim": [
+       "Tartib muhim emas, guruhlash.",
+       "10 · 9 / 2.",
+       "Natija 45."
+      ],
+      "javob": "45"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Libos",
+      "topshiriq": "4 xil futbolka va 3 xil shimdan necha xil to‘plam tuzish mumkin?",
+      "yechim": "4 · 3, ya’ni 12.",
+      "mahsulot": "chizma va hisob"
+     },
+     {
+      "nom": "Qatorga tizilish",
+      "topshiriq": "5 ta o‘quvchi suratga tushish uchun necha usulda qatorga tizilishi mumkin?",
+      "yechim": "5! — 120.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Jamoa",
+      "topshiriq": "6 o‘quvchidan 2 kishilik jamoani necha usulda tanlash mumkin?",
+      "yechim": "6 · 5 / 2, ya’ni 15.",
+      "mahsulot": "tanlov jadvali"
+     },
+     {
+      "nom": "Kod",
+      "topshiriq": "0 dan 9 gacha raqamlardan uch xonali kod (takrorlanishi mumkin) nechta?",
+      "yechim": "10 · 10 · 10, ya’ni 1000.",
+      "mahsulot": "hisob jadvali"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "4! nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "2 xil sho‘rva va 3 xil taomdan nechta tushlik?",
+      "javob": "6"
+     },
+     {
+      "shart": "7 elementdan 2 tasini tartib bilan necha usulda tanlaymiz?",
+      "javob": "42"
+     },
+     {
+      "shart": "5 elementdan 3 tasini tartib muhim bo‘lmagan holda necha usulda tanlaymiz?",
+      "javob": "10"
+     },
+     {
+      "shart": "1, 2, 3, 4 dan takrorlamay nechta uch xonali son tuzish mumkin?",
+      "javob": "24"
+     },
+     {
+      "shart": "6 o‘quvchidan 2 kishilik juft nechta?",
+      "javob": "15"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tartib muhim bo‘lmagan holda ham o‘rinlashtirish hisoblaydi",
+      "sabab": "guruhlash va o‘rinlashtirishni adashtiradi",
+      "oldini_olish": "avval tartib muhimmi yo‘qmi aniqlash"
+     },
+     {
+      "xato": "Ko‘paytirish o‘rniga qo‘shadi",
+      "sabab": "qoidani unutadi",
+      "oldini_olish": "ketma-ket tanlovda imkoniyatlar ko‘paytirilishini eslash"
+     },
+     {
+      "xato": "Sonning birinchi raqamini nol qilib oladi",
+      "sabab": "shartni e’tiborsiz qoldiradi",
+      "oldini_olish": "birinchi raqam noldan farqli ekanini tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Informatika",
+      "boglanish": "parol va kodlar variantlari soni"
+     },
+     {
+      "fan": "Ehtimollar nazariyasi",
+      "boglanish": "hodisalar sonini sanash"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "genlar kombinatsiyalari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Variantlar olami»",
+     "muammo": "Kundalik hayotda nechta variant mavjudligini qanday sanaymiz?",
+     "mahsulot": "variantlar katalogi",
+     "bosqichlar": [
+      "vaziyat tanlash",
+      "tanlovlarni aniqlash",
+      "variantlar sonini hisoblash",
+      "ro‘yxat tuzish",
+      "katalog yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Vaziyat toping",
+      "Variantlarni sanang",
+      "Tekshiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tanlovlar to‘g‘ri aniqlangan",
+      "hisob to‘g‘ri",
+      "ro‘yxat to‘liq",
+      "xulosa asosli",
+      "katalog ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Variantlar bozori»",
+     "bekatlar": [
+      {
+       "nom": "Kiyim do‘koni",
+       "matn": "3 xil ko‘ylak, 2 xil shim.",
+       "topshiriq": "Nechta to‘plam?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "Kafe",
+       "matn": "4 xil taom, 3 xil ichimlik.",
+       "topshiriq": "Nechta tushlik?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "Sport zali",
+       "matn": "4 o‘quvchi qatorga tizilmoqda.",
+       "topshiriq": "Necha usul?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "Seyf",
+       "matn": "2 xonali kod, raqamlar 1 dan 5 gacha, takrorlanmaydi.",
+       "topshiriq": "Nechta kod?",
+       "javob": "20",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qayerda variantlarni sanadingiz?",
+      "Qaysi qoida foydali bo‘ldi?",
+      "Tartib muhimmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kombinatorika",
+      "tarif": "variantlar sonini sanash bo‘limi"
+     },
+     {
+      "atama": "Ko‘paytirish qoidasi",
+      "tarif": "ketma-ket tanlovlar sonini ko‘paytirish"
+     },
+     {
+      "atama": "Faktorial",
+      "tarif": "1 dan n gacha sonlar ko‘paytmasi"
+     },
+     {
+      "atama": "O‘rin almashtirish",
+      "tarif": "n ta elementni qatorga tizish"
+     },
+     {
+      "atama": "O‘rinlashtirish",
+      "tarif": "tartib bilan tanlash"
+     },
+     {
+      "atama": "Guruhlash",
+      "tarif": "tartibsiz tanlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "3! — 6",
+      "togri": true,
+      "izoh": "1 · 2 · 3"
+     },
+     {
+      "matn": "Ketma-ket tanlovlarda usullar soni qo‘shiladi",
+      "togri": false,
+      "izoh": "ko‘paytiriladi"
+     },
+     {
+      "matn": "5 ta elementni qatorga 120 usulda tizish mumkin",
+      "togri": true,
+      "izoh": "5! — 120"
+     },
+     {
+      "matn": "Guruhlashda tartib muhim",
+      "togri": false,
+      "izoh": "tartib muhim emas"
+     },
+     {
+      "matn": "3 xil ko‘ylak va 4 xil shimdan 12 to‘plam",
+      "togri": true,
+      "izoh": "3 · 4"
+     },
+     {
+      "matn": "0, 1, 2 dan takrorlamay 6 ta uch xonali son",
+      "togri": false,
+      "izoh": "birinchi raqam 0 bo‘lmaydi, 4 ta"
+     },
+     {
+      "matn": "10 dan 2 ni tanlash 45 usul",
+      "togri": true,
+      "izoh": "10 · 9 / 2"
+     },
+     {
+      "matn": "Faktorial noldan katta sonlar ko‘paytmasi",
+      "togri": true,
+      "izoh": "n! — 1 · 2 · ... · n"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ko‘paytirish qoidasi nima?",
+      "javob": "ketma-ket tanlovlar sonini ko‘paytirish"
+     },
+     {
+      "savol": "3! nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "savol": "4! nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "savol": "5! nechaga teng?",
+      "javob": "120"
+     },
+     {
+      "savol": "3 ta narsani qatorga necha usulda tizamiz?",
+      "javob": "6"
+     },
+     {
+      "savol": "4 dan 2 ni tartib bilan?",
+      "javob": "12"
+     },
+     {
+      "savol": "4 dan 2 ni tartibsiz?",
+      "javob": "6"
+     },
+     {
+      "savol": "2 xil a va 5 xil b dan nechta juft?",
+      "javob": "10"
+     },
+     {
+      "savol": "O‘rinlashtirishda tartib muhimmi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Guruhlashda tartib muhimmi?",
+      "javob": "yo‘q"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ko‘paytirish",
+      "matn": "m · n usul.",
+      "savol": "3 va 5 tanlovdan nechta juft?"
+     },
+     {
+      "nom": "Faktorial",
+      "matn": "1 · 2 · ... · n.",
+      "savol": "3! nechaga teng?"
+     },
+     {
+      "nom": "Tartib bilan",
+      "matn": "O‘rinlashtirish.",
+      "savol": "5 dan 2 ni tartib bilan tanlang."
+     },
+     {
+      "nom": "Tartibsiz",
+      "matn": "Guruhlash.",
+      "savol": "5 dan 2 ni tartibsiz tanlang."
+     }
+    ],
+    "muammoli_savol": "Nima uchun 5 o‘quvchidan sardor va o‘rinbosarni tanlash 20 usul, ikki kishilik juft tanlash esa 10 usul? Tartibning ahamiyatini tushuntiring.",
+    "keys": {
+     "vaziyat": "Sinfda 5 ta o‘quvchi bor. Ularni olimpiadaga yuborish uchun 2 kishilik jamoa tuzish kerak.",
+     "savollar": [
+      "Necha xil jamoa tuzish mumkin?",
+      "Tartib muhimmi?"
+     ]
+    },
+    "tezis": "Sanash — matematikaning birinchi san’ati",
+    "taqqoslash": {
+     "a": "O‘rinlashtirish",
+     "b": "Guruhlash",
+     "umumiy": [
+      "n ta elementdan k tasi tanlanadi",
+      "ko‘paytirish qoidasiga asoslanadi"
+     ],
+     "a_farq": [
+      "tartib muhim",
+      "natija katta"
+     ],
+     "b_farq": [
+      "tartib muhim emas",
+      "k! ga bo‘linadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kombinatorika",
+     "shoxlar": [
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "m · n",
+        "ketma-ket tanlov"
+       ]
+      },
+      {
+       "nom": "Faktorial",
+       "bandlar": [
+        "n!",
+        "o‘rin almashtirish"
+       ]
+      },
+      {
+       "nom": "O‘rinlashtirish",
+       "bandlar": [
+        "tartib muhim",
+        "n(n − 1)"
+       ]
+      },
+      {
+       "nom": "Guruhlash",
+       "bandlar": [
+        "tartib muhim emas",
+        "k! ga bo‘lish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Variantlar sonini sanayman, ko‘paytirib boraman. Men qaysi qoidaman?",
+     "javob": "ko‘paytirish qoidasi"
+    },
+    "hikmat": "Sanagan sanoqda adashmaydi.",
+    "kalit_soz": "VARIANT",
+    "xato_yechim": {
+     "shart": "3 ko‘ylak va 4 shimdan nechta to‘plam tuzish mumkin?",
+     "xato": "7",
+     "togri": "12",
+     "sabab": "ketma-ket tanlovlarda usullar ko‘paytiriladi: 3 · 4 — 12"
+    },
+    "guruh_nomlari": [
+     "Sanovchilar",
+     "Faktorialchilar",
+     "Variantchilar",
+     "Tanlovchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Kiyim variantlari»",
+     "topshiriq": "Guruh o‘z kiyimlaridan nechta turli to‘plam tuzish mumkinligini sanaydi va ro‘yxat qiladi."
+    },
+    "vazifalar": {
+     "A": "5! va 3! ni hisoblang.",
+     "B": "4 ta o‘quvchidan 2 kishilik jamoani necha usulda tanlash mumkin?",
+     "C": "1, 2, 3, 4, 5 raqamlaridan takrorlamay nechta uch xonali son tuzish mumkin?"
+    },
+    "sinkveyn": [
+     "Kombinatorika",
+     "sanash, tanlash",
+     "ko‘paytiradi, tartiblaydi, tanlaydi",
+     "Variantlar sanog‘i",
+     "Usul"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh variantlarni sanaydi.",
+     "qismlar": [
+      "1-guruh: 3 · 4 ta to‘plam",
+      "2-guruh: 4! ni toping",
+      "3-guruh: 5 dan 2 ni tartibsiz",
+      "4-guruh: 5 dan 2 ni tartib bilan"
+     ],
+     "yakun": "Natijalar: 12; 24; 10; 20."
+    }
+   }
+  },
+  {
+   "mavzu": "Funksiyalar grafiklari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Funksiya va uning grafigi",
+      "matn": "Funksiya grafigi — koordinatalari (x; y) bo‘lgan barcha nuqtalar to‘plami, bunda y funksiyaning x dagi qiymati. Grafikni chizish uchun x ning bir necha qiymati bo‘yicha jadval tuzib, nuqtalarni tutashtiramiz.",
+      "misol": "y ifoda 2x − 1: x — 0, 1, 2 da y — −1, 1, 3. Nuqtalar (0; −1), (1; 1), (2; 3).",
+      "savol": "y ifoda 3x + 2 da x ifoda 2 bo‘lsa, y?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chiziqli funksiya",
+      "matn": "y ifoda kx + b grafigi to‘g‘ri chiziq. k — burchak koeffitsienti: k musbat bo‘lsa, funksiya o‘sadi, manfiy bo‘lsa, kamayadi. b — Oy o‘qi bilan kesishish nuqtasi (0; b). Nol: x ifoda −b / k.",
+      "misol": "y ifoda 2x − 4: Oy bilan (0; −4), nol x — 2, ya’ni Ox bilan (2; 0). k musbat, funksiya o‘sadi.",
+      "savol": "y ifoda x + 3 grafigi Oy bilan qayerda kesishadi?",
+      "javob": "(0; 3)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Asosiy funksiyalar",
+      "matn": "Asosiy funksiyalar: y ifoda x² (parabola), y ifoda k / x (giperbola), y ifoda √x (x nomanfiy), y ifoda |x| (modul, ikki bo‘lakli chiziq). Har birining grafigi o‘ziga xos shaklga ega.",
+      "misol": "y ifoda √x: (0; 0), (1; 1), (4; 2), (9; 3). y ifoda |x|: (−3; 3), (0; 0), (3; 3). Grafik Oy ga nisbatan simmetrik.",
+      "savol": "|−5| nechaga teng?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Grafikni siljitish",
+      "matn": "y ifoda f(x) + a grafigi y ifoda f(x) grafigini Oy bo‘ylab a ga siljitishdan hosil bo‘ladi: a musbat bo‘lsa yuqoriga. y ifoda f(x − a) grafigi Ox bo‘ylab a ga o‘ngga siljiydi.",
+      "misol": "y ifoda x² + 2: parabola 2 birlik yuqoriga, uchi (0; 2). y ifoda (x − 3)²: parabola 3 birlik o‘ngga, uchi (3; 0). y ifoda (x + 1)²: 1 birlik chapga, uchi (−1; 0).",
+      "savol": "y ifoda (x + 1)² parabolasining uchi?",
+      "javob": "(−1; 0)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Grafikdan ma’lumot o‘qish",
+      "matn": "Grafikdan funksiya nollari (Ox bilan kesishish), o‘sish va kamayish oraliqlari, eng katta va eng kichik qiymatlarini o‘qiymiz.",
+      "misol": "y ifoda x² − 4x + 3 grafigi: nollar 1 va 3, x kichik 2 da kamayadi, x katta 2 da o‘sadi, eng kichik qiymat −1.",
+      "savol": "y ifoda x² funksiyasi x musbat bo‘lganda o‘sadimi?",
+      "javob": "ha",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Chiziqli funksiya y ifoda kx + b grafigi — to‘g‘ri chiziq. Grafikni f(x) + a ga yuqoriga, f(x − a) ga o‘ngga siljitamiz. Grafikdan nollar, o‘sish va kamayish oraliqlari hamda eng katta va kichik qiymatlar o‘qiladi.",
+    "misollar": [
+     {
+      "shart": "y ifoda 2x − 4 grafigining muhim nuqtalarini toping.",
+      "yechim": [
+       "x — 0 da y — −4, Oy bilan (0; −4).",
+       "y — 0 da 2x — 4, x — 2, Ox bilan (2; 0).",
+       "Yana x — 3 da y — 2, nuqta (3; 2)."
+      ],
+      "javob": "(0; −4), (2; 0), (3; 2)"
+     },
+     {
+      "shart": "y ifoda (x − 3)² + 1 parabolasining uchini toping.",
+      "yechim": [
+       "Asosiy parabola uchi (0; 0).",
+       "3 birlik o‘ngga va 1 birlik yuqoriga siljigan.",
+       "Uchi (3; 1), shoxlari yuqoriga, eng kichik qiymat 1."
+      ],
+      "javob": "(3; 1)"
+     },
+     {
+      "shart": "y ifoda |x| − 2 ning nollarini va uchini toping.",
+      "yechim": [
+       "|x| ifoda 2: x — 2 yoki −2.",
+       "Grafik y ifoda |x| ni 2 birlik pastga siljitish.",
+       "Uchi (0; −2), nollar 2 va −2."
+      ],
+      "javob": "nollar 2 va −2, uchi (0; −2)"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Jadval tuzamiz",
+      "topshiriq": "y ifoda x² − 1 uchun x — −2, −1, 0, 1, 2 da qiymatlarni toping.",
+      "yechim": "y — 3, 0, −1, 0, 3.",
+      "mahsulot": "jadval va chizma"
+     },
+     {
+      "nom": "Siljitish",
+      "topshiriq": "y ifoda √x + 1 uchun x — 0, 1, 4, 9 da nuqtalarni toping.",
+      "yechim": "(0; 1), (1; 2), (4; 3), (9; 4).",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "To‘g‘ri chiziq",
+      "topshiriq": "y ifoda −x + 3 grafigining o‘qlar bilan kesishishini toping.",
+      "yechim": "Oy bilan (0; 3), Ox bilan (3; 0).",
+      "mahsulot": "chizma"
+     },
+     {
+      "nom": "Parabola surish",
+      "topshiriq": "y ifoda (x + 2)² parabolasining uchini toping va chizing.",
+      "yechim": "Uchi (−2; 0), shoxlari yuqoriga.",
+      "mahsulot": "chizma"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "y ifoda 3x + 2 da x ifoda 2 bo‘lsa, y?",
+      "javob": "8"
+     },
+     {
+      "shart": "y ifoda x − 5 funksiyasining nolini toping.",
+      "javob": "5"
+     },
+     {
+      "shart": "y ifoda (x + 1)² parabolasining uchini toping.",
+      "javob": "(−1; 0)"
+     },
+     {
+      "shart": "y ifoda x² + 3 parabolasining uchini toping.",
+      "javob": "(0; 3)"
+     },
+     {
+      "shart": "y ifoda |x| da x ifoda −7 bo‘lsa, y?",
+      "javob": "7"
+     },
+     {
+      "shart": "y ifoda √x da x ifoda 16 bo‘lsa, y?",
+      "javob": "4"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "f(x − a) ni chapga siljitadi",
+      "sabab": "ishorani adashtiradi",
+      "oldini_olish": "x ning qiymatini qo‘yib tekshirish: (x − 3)² uchi x — 3 da"
+     },
+     {
+      "xato": "Chiziqli funksiya nolini k / b deb oladi",
+      "sabab": "formulani adashtiradi",
+      "oldini_olish": "nol x ifoda −b / k ekanini yozib qo‘yish"
+     },
+     {
+      "xato": "√x ni manfiy x uchun chizadi",
+      "sabab": "aniqlanish sohasini unutadi",
+      "oldini_olish": "x nomanfiy bo‘lishi kerakligini eslash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "harakat va bog‘lanishlar grafiklari"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "harorat o‘zgarishi grafiklari"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "narx va talab grafiklari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Grafiklar galereyasi»",
+     "muammo": "Turli funksiyalar grafiklari qanday ko‘rinishga ega va ular qanday siljiydi?",
+     "mahsulot": "grafiklar albomi",
+     "bosqichlar": [
+      "funksiyalarni tanlash",
+      "jadval tuzish",
+      "grafik chizish",
+      "siljitishlarni sinash",
+      "albom yig‘ish"
+     ],
+     "guruh_vazifalari": [
+      "Funksiya tanlang",
+      "Jadval tuzing",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "jadval to‘g‘ri",
+      "grafik aniq",
+      "siljitish to‘g‘ri ko‘rsatilgan",
+      "xulosa asosli",
+      "albom ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Grafiklar muzeyi»",
+     "bekatlar": [
+      {
+       "nom": "To‘g‘ri chiziq zali",
+       "matn": "y ifoda 2x + 1 funksiyasi.",
+       "topshiriq": "x ifoda 3 da y?",
+       "javob": "7",
+       "rasm": ""
+      },
+      {
+       "nom": "Parabola zali",
+       "matn": "y ifoda x² − 4 funksiyasi.",
+       "topshiriq": "Nollari?",
+       "javob": "2 va −2",
+       "rasm": ""
+      },
+      {
+       "nom": "Modul zali",
+       "matn": "y ifoda |x| − 1 funksiyasi.",
+       "topshiriq": "Uchi?",
+       "javob": "(0; −1)",
+       "rasm": ""
+      },
+      {
+       "nom": "Ildiz zali",
+       "matn": "y ifoda √x funksiyasi.",
+       "topshiriq": "x ifoda 25 da y?",
+       "javob": "5",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi grafik yoqdi?",
+      "Siljitishni qanday aniqladingiz?",
+      "Qayerda grafikni ko‘rdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Funksiya grafigi",
+      "tarif": "(x; y) nuqtalar to‘plami"
+     },
+     {
+      "atama": "Burchak koeffitsienti",
+      "tarif": "chiziqli funksiyada k"
+     },
+     {
+      "atama": "Parallel ko‘chirish",
+      "tarif": "grafikni siljitish"
+     },
+     {
+      "atama": "Funksiya noli",
+      "tarif": "y nol bo‘ladigan x"
+     },
+     {
+      "atama": "Modul funksiyasi",
+      "tarif": "y ifoda |x|"
+     },
+     {
+      "atama": "O‘sish oralig‘i",
+      "tarif": "x oshganda y ham oshadigan oraliq"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "y ifoda kx + b grafigi to‘g‘ri chiziq",
+      "togri": true,
+      "izoh": "chiziqli funksiya"
+     },
+     {
+      "matn": "y ifoda (x − 3)² parabolasi 3 ga chapga siljigan",
+      "togri": false,
+      "izoh": "3 ga o‘ngga siljigan"
+     },
+     {
+      "matn": "y ifoda x² + 2 uchi (0; 2)",
+      "togri": true,
+      "izoh": "2 birlik yuqoriga"
+     },
+     {
+      "matn": "y ifoda |x| grafigi Oy ga nisbatan simmetrik",
+      "togri": true,
+      "izoh": "|−x| — |x|"
+     },
+     {
+      "matn": "y ifoda √x manfiy x uchun aniqlangan",
+      "togri": false,
+      "izoh": "x nomanfiy bo‘lishi kerak"
+     },
+     {
+      "matn": "k musbat bo‘lsa, chiziqli funksiya o‘sadi",
+      "togri": true,
+      "izoh": "x oshsa y oshadi"
+     },
+     {
+      "matn": "y ifoda 2x − 4 ning noli 2",
+      "togri": true,
+      "izoh": "2 · 2 − 4 — 0"
+     },
+     {
+      "matn": "Funksiya nollari Oy bilan kesishish nuqtalari",
+      "togri": false,
+      "izoh": "Ox bilan kesishish nuqtalari"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Funksiya grafigi nima?",
+      "javob": "(x; y) nuqtalar to‘plami"
+     },
+     {
+      "savol": "Chiziqli funksiya grafigi?",
+      "javob": "to‘g‘ri chiziq"
+     },
+     {
+      "savol": "y ifoda x + 2 Oy bilan kesishishi?",
+      "javob": "(0; 2)"
+     },
+     {
+      "savol": "y ifoda x² + 1 uchi?",
+      "javob": "(0; 1)"
+     },
+     {
+      "savol": "y ifoda (x − 2)² uchi?",
+      "javob": "(2; 0)"
+     },
+     {
+      "savol": "f(x) + 3 grafigi qayoqqa siljiydi?",
+      "javob": "3 ga yuqoriga"
+     },
+     {
+      "savol": "f(x − 3) grafigi qayoqqa siljiydi?",
+      "javob": "3 ga o‘ngga"
+     },
+     {
+      "savol": "√9 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "savol": "|−4| nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "savol": "Funksiya noli nima?",
+      "javob": "y nol bo‘ladigan x"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Chiziqli",
+      "matn": "y ifoda kx + b.",
+      "savol": "y ifoda 2x + 1 da x ifoda 1 bo‘lsa y?"
+     },
+     {
+      "nom": "Asosiy",
+      "matn": "Parabola, modul, ildiz.",
+      "savol": "|−2| nechaga teng?"
+     },
+     {
+      "nom": "Siljitish",
+      "matn": "f(x) + a va f(x − a).",
+      "savol": "y ifoda x² − 1 uchi?"
+     },
+     {
+      "nom": "O‘qish",
+      "matn": "Nollar, o‘sish, kamayish.",
+      "savol": "y ifoda x − 3 noli?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun y ifoda (x − 3)² parabolasi o‘ngga siljiydi, chapga emas? x ifoda 3 da nima sodir bo‘lishini tushuntiring.",
+    "keys": {
+     "vaziyat": "Taksi narxi y ifoda 2x + 4 (ming so‘m), x — kilometr. Yo‘lovchi narxni oldindan bilmoqchi.",
+     "savollar": [
+      "5 km uchun narx?",
+      "Grafik Oy ni qayerda kesadi va nimani bildiradi?"
+     ]
+    },
+    "tezis": "Grafik — funksiyaning rasmi",
+    "taqqoslash": {
+     "a": "Chiziqli funksiya",
+     "b": "Kvadrat funksiya",
+     "umumiy": [
+      "grafigi chiziq",
+      "jadval bilan chiziladi"
+     ],
+     "a_farq": [
+      "to‘g‘ri chiziq",
+      "uchi yo‘q"
+     ],
+     "b_farq": [
+      "parabola",
+      "uchi bor"
+     ]
+    },
+    "klaster": {
+     "markaz": "Funksiya grafiklari",
+     "shoxlar": [
+      {
+       "nom": "Chiziqli",
+       "bandlar": [
+        "to‘g‘ri chiziq",
+        "k va b"
+       ]
+      },
+      {
+       "nom": "Asosiy",
+       "bandlar": [
+        "x²",
+        "k / x",
+        "√x",
+        "|x|"
+       ]
+      },
+      {
+       "nom": "Siljitish",
+       "bandlar": [
+        "yuqoriga",
+        "o‘ngga"
+       ]
+      },
+      {
+       "nom": "O‘qish",
+       "bandlar": [
+        "nollar",
+        "o‘sish",
+        "eng kichik qiymat"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Nuqtalarni tutashtirsang, funksiya rasmi chiqadi. Men nimaman?",
+     "javob": "funksiya grafigi"
+    },
+    "hikmat": "Bir rasm ming so‘zdan afzal.",
+    "kalit_soz": "GRAFIK",
+    "xato_yechim": {
+     "shart": "y ifoda (x − 3)² parabolasi uchini toping.",
+     "xato": "(−3; 0)",
+     "togri": "(3; 0)",
+     "sabab": "uchi x — 3 da, kvadrat ichi nolga aylanadigan nuqtada; parabola 3 ga o‘ngga siljigan"
+    },
+    "guruh_nomlari": [
+     "Grafikchilar",
+     "Siljituvchilar",
+     "Parabolachilar",
+     "To‘g‘ri chiziqchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Hayot grafigi»",
+     "topshiriq": "Guruh bir hafta haroratini yozib, grafik chizadi va o‘sish hamda kamayish oraliqlarini aniqlaydi."
+    },
+    "vazifalar": {
+     "A": "y ifoda 3x − 6 ning nolini va Oy bilan kesishishini toping.",
+     "B": "y ifoda (x − 2)² + 3 parabolasining uchini toping.",
+     "C": "y ifoda |x − 1| funksiyasining uchini va nollarini toping."
+    },
+    "sinkveyn": [
+     "Grafik",
+     "chiziq, nuqta",
+     "chizadi, siljiydi, o‘qiladi",
+     "Funksiyaning rasmi",
+     "Egri"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh grafiklar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: y ifoda 2x + 1, x ifoda 3",
+      "2-guruh: y ifoda x² − 4 nollari",
+      "3-guruh: y ifoda (x − 1)² uchi",
+      "4-guruh: y ifoda √x, x ifoda 25"
+     ],
+     "yakun": "Natijalar: 7; 2 va −2; (1; 0); 5."
+    }
+   }
   }
  ]
 }
