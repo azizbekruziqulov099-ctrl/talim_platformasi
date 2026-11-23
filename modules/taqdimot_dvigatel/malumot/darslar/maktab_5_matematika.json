@@ -4692,6 +4692,1417 @@
      "yakun": "36 soni 2 · 2 · 3 · 3 ga, 24 soni 2 · 2 · 2 · 3 ga, 60 soni 2 · 2 · 3 · 5 ga teng. Umumiylari: 2 · 2 · 3 = 12 ta gulzor. Har birida 36 : 12 = 3 tup atirgul, 24 : 12 = 2 tup lola, 60 : 12 = 5 tup chinnigul."
     }
    }
+  },
+  {
+   "mavzu": "Oddiy kasrlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ulush va kasr",
+      "matn": "Butun narsa teng bo‘laklarga bo‘linsa, har bir bo‘lak ulush deyiladi. Bir yoki bir nechta ulushni ifodalovchi son — oddiy kasr. Kasr chizig‘i ostidagi son — maxraj: u butun nechta teng bo‘lakka bo‘linganini ko‘rsatadi. Chiziq ustidagi son — surat: u shunday bo‘laklardan nechtasi olinganini ko‘rsatadi.",
+      "misol": "Non 4 ta teng bo‘lakka bo‘lindi va 3 bo‘lagi yeyildi. Yeyilgan qism — 3/4 (to‘rtdan uch).",
+      "savol": "5/8 kasrda surat va maxrajni ayting.",
+      "javob": "surat 5, maxraj 8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kasr — bo‘lish natijasi",
+      "matn": "Kasr chizig‘i bo‘lish belgisini ham bildiradi: suratni maxrajga bo‘lish. Shuning uchun ikki natural sonning bo‘linmasini har doim kasr ko‘rinishida yozish mumkin, hatto ular butun bo‘linmasa ham.",
+      "misol": "3 ta olmani 4 bolaga teng bo‘lsak, har biriga 3/4 olma tegadi: uchni to‘rtga bo‘lish natijasi 3/4.",
+      "savol": "2 ta nonni 5 kishiga teng bo‘lsak, har biriga qancha tegadi?",
+      "javob": "2/5 non",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri va noto‘g‘ri kasrlar, aralash son",
+      "matn": "Surati maxrajidan kichik kasr — to‘g‘ri kasr, u 1 dan kichik. Surati maxrajiga teng yoki undan katta kasr — noto‘g‘ri kasr, u 1 ga teng yoki 1 dan katta. Noto‘g‘ri kasrni butun qism va to‘g‘ri kasrdan iborat aralash son ko‘rinishida yozish mumkin: buning uchun surat maxrajga qoldiqli bo‘linadi — bo‘linma butun qism, qoldiq esa yangi surat bo‘ladi.",
+      "misol": "7/4 — noto‘g‘ri kasr. 7 ni 4 ga bo‘lsak, bo‘linma 1, qoldiq 3. Demak, 7/4 — bu 1 butun 3/4.",
+      "savol": "9/9 qanday kasr va u nechaga teng?",
+      "javob": "noto‘g‘ri kasr, 1 ga teng",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kasrning asosiy xossasi va qisqartirish",
+      "matn": "Kasrning surat va maxrajini bir xil natural songa ko‘paytirsak yoki bo‘lsak, kasr qiymati o‘zgarmaydi — bu kasrning asosiy xossasi. Surat va maxrajni ularning umumiy bo‘luvchisiga bo‘lish kasrni qisqartirish deyiladi. Agar EKUBga bo‘linsa, bir yo‘la qisqarmas kasr hosil bo‘ladi.",
+      "misol": "1/2, 2/4 va 4/8 — bitta sonning turli yozuvlari. 12/18 ni qisqartiramiz: EKUB(12; 18) — 6; suratni va maxrajni 6 ga bo‘lsak, 2/3 chiqadi.",
+      "savol": "6/8 ni qisqartiring.",
+      "javob": "3/4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kasrlarni taqqoslash",
+      "matn": "Maxrajlari bir xil kasrlardan qaysi birining surati katta bo‘lsa, o‘sha katta. Suratlari bir xil kasrlardan qaysi birining maxraji kichik bo‘lsa, o‘sha katta — chunki bo‘laklar yirikroq. Maxrajlari ham, suratlari ham har xil bo‘lsa, kasrlar umumiy maxrajga keltiriladi.",
+      "misol": "5/7 > 3/7 (suratlar: 5 > 3). 1/3 > 1/5 (uchdan bir bo‘lak beshdan birdan yirik). 2/3 va 3/5 ni 15 maxrajga keltiramiz: 10/15 va 9/15, demak 2/3 > 3/5.",
+      "savol": "Qaysi biri katta: 3/8 yoki 3/10?",
+      "javob": "3/8",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Kasrda maxraj butun nechta teng bo‘lakka bo‘linganini, surat nechtasi olinganini ko‘rsatadi. Surat va maxraj bir xil songa ko‘paytirilsa yoki bo‘linsa, kasr o‘zgarmaydi. Bir xil maxrajli kasrlardan surati kattasi katta; bir xil suratli kasrlardan maxraji kichigi katta.",
+    "misollar": [
+     {
+      "shart": "24/36 kasrni qisqartiring.",
+      "yechim": [
+       "24 va 36 ning EKUBini topamiz: 24 soni 2 · 2 · 2 · 3 ga, 36 soni 2 · 2 · 3 · 3 ga teng; umumiylari 2 · 2 · 3 = 12.",
+       "Suratni bo‘lamiz: 24 : 12 = 2.",
+       "Maxrajni bo‘lamiz: 36 : 12 = 3.",
+       "Qisqarmas kasr: 2/3."
+      ],
+      "javob": "2/3"
+     },
+     {
+      "shart": "17/5 noto‘g‘ri kasrni aralash son ko‘rinishida yozing.",
+      "yechim": [
+       "17 ni 5 ga qoldiqli bo‘lamiz: 5 · 3 = 15, qoldiq 17 − 15 = 2.",
+       "Bo‘linma 3 — butun qism.",
+       "Qoldiq 2 — surat, maxraj o‘zgarmaydi — 5.",
+       "Natija: 3 butun 2/5."
+      ],
+      "javob": "3 butun 2/5"
+     },
+     {
+      "shart": "3/4 va 5/6 kasrlarni taqqoslang.",
+      "yechim": [
+       "Umumiy maxraj — EKUK(4; 6), ya’ni 12.",
+       "3/4 ni 12 maxrajga keltiramiz: qo‘shimcha ko‘paytuvchi 3, surat 3 · 3 = 9. Hosil bo‘ldi 9/12.",
+       "5/6 ni 12 maxrajga keltiramiz: qo‘shimcha ko‘paytuvchi 2, surat 5 · 2 = 10. Hosil bo‘ldi 10/12.",
+       "9/12 < 10/12."
+      ],
+      "javob": "3/4 < 5/6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Shokolad plitkasi",
+      "topshiriq": "Shokolad 12 ta teng bo‘lakdan iborat. Anvar 3 bo‘lak, Laylo 4 bo‘lak, Jasur 2 bo‘lak yedi. a) Har biri shokoladning qancha qismini yedi? Kasrlarni qisqartiring. b) Kim eng ko‘p yedi? d) Shokoladning qancha qismi qoldi?",
+      "yechim": "a) Anvar 3/12, ya’ni 1/4; Laylo 4/12, ya’ni 1/3; Jasur 2/12, ya’ni 1/6. b) Laylo (1/3). d) Yeyilgani 9 bo‘lak, qolgani 3 bo‘lak — 3/12, ya’ni 1/4.",
+      "mahsulot": "bo‘yalgan plitka chizmasi va kasrlar"
+     },
+     {
+      "nom": "Teng kasrlar zanjiri",
+      "topshiriq": "a) 2/3 ga teng, maxrajlari 6, 9, 12, 30 bo‘lgan kasrlarni yozing. b) 18/24 ga teng eng sodda (qisqarmas) kasrni toping. d) 3/5 va 9/15 tengmi? Isbotlang.",
+      "yechim": "a) 4/6, 6/9, 8/12, 20/30. b) EKUB(18; 24) — 6, demak 3/4. d) Teng: 3/5 ning surat va maxrajini 3 ga ko‘paytirsak 9/15 chiqadi.",
+      "mahsulot": "teng kasrlar zanjiri"
+     },
+     {
+      "nom": "Kim ko‘p o‘qidi?",
+      "topshiriq": "Uch do‘st bir xil kitobni o‘qimoqda. Ali kitobning 2/3 qismini, Vali 3/4 qismini, Sami 7/12 qismini o‘qidi. a) Kasrlarni umumiy maxrajga keltiring. b) Kim eng ko‘p, kim eng kam o‘qigan? d) Kitob 240 betli bo‘lsa, har biri necha bet o‘qigan?",
+      "yechim": "a) Umumiy maxraj 12: Ali 8/12, Vali 9/12, Sami 7/12. b) Eng ko‘p — Vali, eng kam — Sami. d) 240 : 12 = 20 bet — bitta ulush; Ali 20 · 8 = 160 bet, Vali 20 · 9 = 180 bet, Sami 20 · 7 = 140 bet.",
+      "mahsulot": "taqqoslash jadvali"
+     },
+     {
+      "nom": "Aralash sonlar",
+      "topshiriq": "a) Noto‘g‘ri kasrlarni aralash songa aylantiring: 11/4, 23/6, 20/5. b) Aralash sonlarni noto‘g‘ri kasrga aylantiring: 2 butun 1/3, 4 butun 3/5. d) Qoidani so‘z bilan yozing.",
+      "yechim": "a) 11/4 — 2 butun 3/4; 23/6 — 3 butun 5/6; 20/5 — 4. b) 2 butun 1/3: 2 · 3 + 1 = 7, demak 7/3; 4 butun 3/5: 4 · 5 + 3 = 23, demak 23/5. d) Butun qism maxrajga ko‘paytiriladi, surat qo‘shiladi — bu yangi surat; maxraj o‘zgarmaydi.",
+      "mahsulot": "ikki yo‘nalishli jadval"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Kasr ko‘rinishida yozing: yettidan to‘rt.",
+      "javob": "4/7"
+     },
+     {
+      "shart": "Qisqartiring: 15/20.",
+      "javob": "3/4"
+     },
+     {
+      "shart": "Taqqoslang: 4/9 va 7/9.",
+      "javob": "4/9 < 7/9"
+     },
+     {
+      "shart": "Taqqoslang: 2/5 va 2/7.",
+      "javob": "2/5 > 2/7"
+     },
+     {
+      "shart": "Aralash songa aylantiring: 13/5.",
+      "javob": "2 butun 3/5"
+     },
+     {
+      "shart": "40 ning 3/8 qismini toping.",
+      "javob": "15"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Maxraji katta kasrni katta deb o‘ylaydi: 1/8 > 1/4",
+      "sabab": "natural sonlarni taqqoslash odatini kasrlarga ko‘chiradi",
+      "oldini_olish": "pitsa modeli: 8 ga bo‘lingan pitsaning bo‘lagi 4 ga bo‘lingandan kichik"
+     },
+     {
+      "xato": "Qisqartirishda faqat suratni yoki faqat maxrajni bo‘ladi",
+      "sabab": "asosiy xossaning «ikkalasini ham» shartini unutadi",
+      "oldini_olish": "surat va maxrajdan bir xil strelka chizib, ikkalasiga bir xil sonni yozish"
+     },
+     {
+      "xato": "Teng bo‘lmagan bo‘laklarni ham ulush deb hisoblaydi",
+      "sabab": "«teng» so‘zini e’tiborsiz qoldiradi",
+      "oldini_olish": "noteng bo‘lingan shakllarni ko‘rsatib, «bu 1/3 mi?» deb muhokama qilish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Musiqa",
+      "boglanish": "nota cho‘zimlari kasrlar bilan ataladi: butun, yarim (1/2), chorak (1/4), sakkizlik (1/8) nota"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "retseptlarda masalliq miqdori kasrlarda beriladi: yarim stakan, chorak qoshiq"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "qadimgi misrliklar asosan surati 1 bo‘lgan kasrlardan foydalangan; meros taqsimotida ulushlar kasr bilan ifodalangan"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kasrlar atrofimizda»",
+     "muammo": "Kundalik hayotda kasrlarni qayerda uchratamiz va ular nimani bildiradi?",
+     "mahsulot": "«Bir kunim kasrlarda» doiraviy diagramma-plakati",
+     "bosqichlar": [
+      "bir kunlik mashg‘ulotlarni yozish",
+      "24 soatning ulushlarida ifodalash",
+      "kasrlarni qisqartirish",
+      "doirani bo‘laklarga bo‘lib bo‘yash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Uyqu va dam olish vaqtini kasr bilan ifodalang",
+      "Maktab va dars tayyorlash vaqtini kasr bilan ifodalang",
+      "O‘yin va sport vaqtini kasr bilan ifodalang",
+      "Barcha ulushlarni bitta doirada birlashtiring va tekshiring"
+     ],
+     "mezonlar": [
+      "kasrlar to‘g‘ri",
+      "qisqartirilgan",
+      "ulushlar yig‘indisi butunni beradi",
+      "diagramma aniq",
+      "taqdimot tushunarli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Novvoyxona va qandolatxona»",
+     "bekatlar": [
+      {
+       "nom": "Non peshtaxtasi",
+       "matn": "Novvoy patirni 8 ta teng bo‘lakka kesdi va 3 bo‘lagini sotdi.",
+       "topshiriq": "Patirning qancha qismi qoldi?",
+       "javob": "5/8",
+       "rasm": ""
+      },
+      {
+       "nom": "Tort sexi",
+       "matn": "Bir tort 6 ga, ikkinchi xuddi shunday tort 12 ga teng bo‘lingan. Mijoz birinchisidan 2 bo‘lak, ikkinchisidan 4 bo‘lak oldi.",
+       "topshiriq": "U qaysi tortdan ko‘proq oldi?",
+       "javob": "teng: 2/6 va 4/12 ikkalasi ham 1/3",
+       "rasm": ""
+      },
+      {
+       "nom": "Tarozi",
+       "matn": "Qandolatchi 1 kg shakarning 3/4 qismini xamirga soldi.",
+       "topshiriq": "Bu necha gramm?",
+       "javob": "750 g",
+       "rasm": ""
+      },
+      {
+       "nom": "Kassa",
+       "matn": "Kun davomida 60 ta somsa pishirildi, ularning 5/6 qismi sotildi.",
+       "topshiriq": "Nechta somsa sotildi?",
+       "javob": "50 ta",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "issiq pechga yaqinlashmang",
+      "qo‘lni yuvib kiring",
+      "pichoqlarga tegmang"
+     ],
+     "kundalik": [
+      "Qaysi bekatda teng kasrlar uchradi?",
+      "Sonning qismi qanday topiladi?",
+      "Uyda kasrni qayerda ko‘rasiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Oddiy kasr",
+      "tarif": "butunning bir yoki bir nechta teng ulushini ifodalovchi son"
+     },
+     {
+      "atama": "Surat",
+      "tarif": "kasr chizig‘i ustidagi son; nechta ulush olinganini ko‘rsatadi"
+     },
+     {
+      "atama": "Maxraj",
+      "tarif": "kasr chizig‘i ostidagi son; butun nechta teng bo‘lakka bo‘linganini ko‘rsatadi"
+     },
+     {
+      "atama": "To‘g‘ri kasr",
+      "tarif": "surati maxrajidan kichik kasr"
+     },
+     {
+      "atama": "Noto‘g‘ri kasr",
+      "tarif": "surati maxrajiga teng yoki undan katta kasr"
+     },
+     {
+      "atama": "Aralash son",
+      "tarif": "butun qism va to‘g‘ri kasrdan iborat son"
+     },
+     {
+      "atama": "Kasrni qisqartirish",
+      "tarif": "surat va maxrajni umumiy bo‘luvchisiga bo‘lish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Kasrning maxraji butun nechta teng bo‘lakka bo‘linganini ko‘rsatadi",
+      "togri": true,
+      "izoh": "ta’rifga ko‘ra"
+     },
+     {
+      "matn": "1/8 kasr 1/4 dan katta",
+      "togri": false,
+      "izoh": "maxraj katta bo‘lsa, bo‘lak kichik bo‘ladi"
+     },
+     {
+      "matn": "2/4 va 1/2 teng kasrlar",
+      "togri": true,
+      "izoh": "2/4 ni 2 ga qisqartirsak 1/2 chiqadi"
+     },
+     {
+      "matn": "7/7 — to‘g‘ri kasr",
+      "togri": false,
+      "izoh": "surat maxrajga teng — bu noto‘g‘ri kasr, u 1 ga teng"
+     },
+     {
+      "matn": "To‘g‘ri kasr har doim 1 dan kichik",
+      "togri": true,
+      "izoh": "surati maxrajidan kichik"
+     },
+     {
+      "matn": "Kasrni qisqartirganda uning qiymati kichrayadi",
+      "togri": false,
+      "izoh": "qiymat o‘zgarmaydi"
+     },
+     {
+      "matn": "9/4 kasr 2 butun 1/4 ga teng",
+      "togri": true,
+      "izoh": "9 ni 4 ga bo‘lsak, bo‘linma 2, qoldiq 1"
+     },
+     {
+      "matn": "Surat va maxrajga bir xil sonni qo‘shsak, kasr o‘zgarmaydi",
+      "togri": false,
+      "izoh": "faqat ko‘paytirish yoki bo‘lishda o‘zgarmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Maxraj nimani bildiradi?",
+      "javob": "butun nechta teng bo‘lakka bo‘linganini"
+     },
+     {
+      "savol": "Surat nimani bildiradi?",
+      "javob": "nechta ulush olinganini"
+     },
+     {
+      "savol": "Qanday kasr to‘g‘ri kasr deyiladi?",
+      "javob": "surati maxrajidan kichik kasr"
+     },
+     {
+      "savol": "Qanday kasr noto‘g‘ri kasr deyiladi?",
+      "javob": "surati maxrajiga teng yoki undan katta kasr"
+     },
+     {
+      "savol": "Kasrning asosiy xossasini ayting.",
+      "javob": "surat va maxraj bir xil songa ko‘paytirilsa yoki bo‘linsa, kasr o‘zgarmaydi"
+     },
+     {
+      "savol": "4/8 ni qisqartiring.",
+      "javob": "1/2"
+     },
+     {
+      "savol": "Yarim soat necha daqiqa?",
+      "javob": "30 daqiqa"
+     },
+     {
+      "savol": "Chorak soat necha daqiqa?",
+      "javob": "15 daqiqa"
+     },
+     {
+      "savol": "Qaysi biri katta: 1/2 yoki 1/3?",
+      "javob": "1/2"
+     },
+     {
+      "savol": "5/5 nechaga teng?",
+      "javob": "1 ga"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kasr tushunchasi",
+      "matn": "Maxraj — butun nechta teng bo‘lakka bo‘lingani, surat — nechtasi olingani. Kasr chizig‘i bo‘lish amalini ham bildiradi.",
+      "savol": "Doiraning 8 bo‘lagidan 3 tasi bo‘yalgan. Bu qaysi kasr?"
+     },
+     {
+      "nom": "To‘g‘ri, noto‘g‘ri kasr va aralash son",
+      "matn": "To‘g‘ri kasr 1 dan kichik. Noto‘g‘ri kasr 1 ga teng yoki katta, uni aralash songa aylantirish mumkin.",
+      "savol": "11/3 ni aralash son ko‘rinishida yozing."
+     },
+     {
+      "nom": "Asosiy xossa va qisqartirish",
+      "matn": "Surat va maxraj bir xil songa ko‘paytirilsa yoki bo‘linsa, kasr o‘zgarmaydi. Qisqartirishda ikkalasi umumiy bo‘luvchiga bo‘linadi.",
+      "savol": "10/25 ni qisqartiring."
+     },
+     {
+      "nom": "Taqqoslash",
+      "matn": "Maxraj bir xil — surati kattasi katta. Surat bir xil — maxraji kichigi katta. Aks holda umumiy maxrajga keltiriladi.",
+      "savol": "3/5 va 4/7 ni taqqoslang."
+     }
+    ],
+    "muammoli_savol": "Ikki aka-uka bir xil pitsa oldi. Akasi o‘zinikini 4 bo‘lakka bo‘lib 2 bo‘lagini, ukasi 8 bo‘lakka bo‘lib 4 bo‘lagini yedi. Ukasi: «Men ko‘p yedim, chunki 4 bo‘lak 2 bo‘lakdan ko‘p!» dedi. U haqmi?",
+    "keys": {
+     "vaziyat": "Bog‘bon yerining 3/5 qismiga olma, 3/10 qismiga o‘rik ekdi, qolgan qismiga gul ekmoqchi. Qo‘shnisi: «Senda o‘rik olmadan ko‘p, chunki 10 soni 5 dan katta», dedi.",
+     "savollar": [
+      "Qo‘shni haqmi? Kasrlarni umumiy maxrajga keltirib taqqoslang.",
+      "Yerning qancha qismi gulga qoldi?"
+     ]
+    },
+    "tezis": "Kasrni tushungan odam har qanday narsani adolatli bo‘la oladi",
+    "taqqoslash": {
+     "a": "To‘g‘ri kasr",
+     "b": "Noto‘g‘ri kasr",
+     "umumiy": [
+      "surat va maxrajdan iborat",
+      "ulushlarni ifodalaydi"
+     ],
+     "a_farq": [
+      "surat maxrajdan kichik",
+      "1 dan kichik"
+     ],
+     "b_farq": [
+      "surat maxrajga teng yoki katta",
+      "1 ga teng yoki katta, aralash songa aylanadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Oddiy kasr",
+     "shoxlar": [
+      {
+       "nom": "Tuzilishi",
+       "bandlar": [
+        "surat",
+        "maxraj",
+        "kasr chizig‘i"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "to‘g‘ri",
+        "noto‘g‘ri",
+        "aralash son"
+       ]
+      },
+      {
+       "nom": "Amallar",
+       "bandlar": [
+        "qisqartirish",
+        "umumiy maxrajga keltirish",
+        "taqqoslash"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "yarim soat",
+        "chorak nota",
+        "retsept"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qancha katta bo‘lsam, bo‘laklar shuncha mayda bo‘ladi. Kasr chizig‘i ostida yashayman. Men kimman?",
+     "javob": "maxraj"
+    },
+    "hikmat": "Oz bo‘lsa ham, soz bo‘lsin.",
+    "kalit_soz": "ULUSH",
+    "xato_yechim": {
+     "shart": "1/3 va 1/5 kasrlarni taqqoslang.",
+     "xato": "1/5 > 1/3, chunki 5 > 3",
+     "togri": "1/3 > 1/5",
+     "sabab": "suratlar bir xil bo‘lsa, maxraji kichik kasr katta: butun kamroq bo‘lakka bo‘linsa, har bir bo‘lak yirikroq bo‘ladi"
+    },
+    "guruh_nomlari": [
+     "Suratlar",
+     "Maxrajlar",
+     "Ulushlar",
+     "Choraklar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qog‘oz buklash»",
+     "topshiriq": "Guruhga 4 ta bir xil qog‘oz tasma beriladi. Birinchisini 2 ga, ikkinchisini 4 ga, uchinchisini 8 ga, to‘rtinchisini 3 ga teng buklang va bo‘laklarga kasrlarni yozing. Tasmalarni yonma-yon qo‘yib, qaysi kasrlar teng ekanini toping (masalan, 1/2 va 2/4) va uchta tenglik yozing."
+    },
+    "vazifalar": {
+     "A": "Qisqartiring: 6/9, 14/21, 25/100. Taqqoslang: 5/11 va 8/11; 3/4 va 3/7; 1/2 va 3/5.",
+     "B": "Bir kunlik vaqtingizni kasrlarda yozing: 24 soatning qancha qismini uxlaysiz, maktabda bo‘lasiz, o‘ynaysiz? Kasrlarni qisqartiring.",
+     "C": "Qadimgi Misr kasrlari haqida ma’lumot toping: ular 3/4 ni qanday yozishgan (1/2 va 1/4 yig‘indisi)? 5/6 ni ham surati 1 bo‘lgan kasrlar yig‘indisi ko‘rinishida yozib ko‘ring."
+    },
+    "sinkveyn": [
+     "Kasr",
+     "to‘g‘ri, qisqarmas",
+     "bo‘ladi, taqqoslaydi, qisqaradi",
+     "Butunning teng ulushlarini ko‘rsatadi",
+     "Ulush"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Sinf 36 o‘quvchidan iborat. Har bir guruh o‘z to‘garagiga qatnaydigan o‘quvchilar sonini topadi, so‘ng hech qayerga qatnamaydiganlar aniqlanadi.",
+     "qismlar": [
+      "1-guruh: sinfning 1/4 qismi shaxmatga qatnaydi",
+      "2-guruh: sinfning 1/3 qismi futbolga qatnaydi",
+      "3-guruh: sinfning 2/9 qismi rasmga qatnaydi",
+      "4-guruh: qolganlar hech qayerga qatnamaydi — ular nechta?"
+     ],
+     "yakun": "Shaxmat: 36 : 4 = 9 ta; futbol: 36 : 3 = 12 ta; rasm: 36 : 9 = 4, 4 · 2 = 8 ta; jami 9 + 12 + 8 = 29 ta; qatnamaydiganlar: 36 − 29 = 7 ta."
+    }
+   }
+  },
+  {
+   "mavzu": "Kasrlarni qo‘shish va ayirish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Bir xil maxrajli kasrlar (takrorlash)",
+      "matn": "Maxrajlari bir xil kasrlarni qo‘shishda suratlar qo‘shiladi, ayirishda suratlar ayriladi, maxraj esa o‘zgarmaydi. Sababi: maxraj — bo‘lak o‘lchami, biz bir xil o‘lchamdagi bo‘laklarni sanayapmiz.",
+      "misol": "2/9 + 5/9 = 7/9; 7/9 − 4/9 = 3/9, qisqartirsak 1/3.",
+      "savol": "3/8 + 4/8 ni hisoblang.",
+      "javob": "7/8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Har xil maxrajli kasrlar: nega to‘g‘ridan-to‘g‘ri qo‘shib bo‘lmaydi?",
+      "matn": "Yarimta va uchdan bir bo‘lak — har xil o‘lchamdagi bo‘laklar, ularni shunchaki sanab bo‘lmaydi. Avval ikkalasini bir xil o‘lchamdagi mayda bo‘laklarga aylantirish kerak. Buning uchun kasrlar umumiy maxrajga keltiriladi: eng qulay umumiy maxraj — maxrajlarning EKUKi.",
+      "misol": "1/2 va 1/3 uchun umumiy maxraj 6. Yarimta — bu 3/6, uchdan bir — bu 2/6. Endi bo‘laklar bir xil.",
+      "savol": "1/4 va 1/6 uchun eng kichik umumiy maxraj qaysi?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Umumiy maxrajga keltirish va qo‘shish",
+      "matn": "Qoida: 1) maxrajlarning EKUKini topamiz — bu umumiy maxraj; 2) har bir kasr uchun qo‘shimcha ko‘paytuvchini topamiz (umumiy maxrajni kasr maxrajiga bo‘lamiz); 3) surat va maxrajni qo‘shimcha ko‘paytuvchiga ko‘paytiramiz; 4) suratlarni qo‘shamiz, maxraj o‘zgarmaydi; 5) natijani qisqartiramiz, noto‘g‘ri kasr bo‘lsa butun qismini ajratamiz.",
+      "misol": "1/2 + 1/3: umumiy maxraj 6; 3/6 + 2/6 = 5/6. Tekshiruvchi yozuv: 1/2 + 1/3 = 5/6.",
+      "savol": "1/4 + 1/2 ni hisoblang.",
+      "javob": "3/4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Har xil maxrajli kasrlarni ayirish",
+      "matn": "Ayirish ham xuddi shunday: kasrlar umumiy maxrajga keltiriladi, so‘ng suratlar ayriladi. Natijani qo‘shish bilan tekshirish mumkin.",
+      "misol": "3/4 − 1/6: umumiy maxraj 12; 9/12 − 2/12 = 7/12. Tekshirish: 7/12 + 2/12 = 9/12.",
+      "savol": "5/6 − 1/3 ni hisoblang.",
+      "javob": "1/2 (5/6 − 2/6 = 3/6)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aralash sonlarni qo‘shish va ayirish",
+      "matn": "Aralash sonlarni qo‘shishda butun qismlar alohida, kasr qismlar alohida qo‘shiladi. Kasr qismlar yig‘indisi noto‘g‘ri kasr chiqsa, undan butun ajratilib, butun qismga qo‘shiladi. Ayirishda kasr qism yetmasa, butun qismdan 1 ta butun «maydalab» olinadi.",
+      "misol": "2 butun 1/4 va 1 butun 1/2 ni qo‘shamiz: butunlar 2 + 1 = 3; kasrlar 1/4 + 1/2 = 3/4. Natija: 3 butun 3/4.",
+      "savol": "1 dan 3/5 ni ayiring.",
+      "javob": "2/5 (1 — bu 5/5)",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Bir xil maxrajli kasrlarda amal suratlar bilan bajariladi, maxraj o‘zgarmaydi. Har xil maxrajli kasrlar avval umumiy maxrajga (maxrajlar EKUKiga) keltiriladi, so‘ng suratlar qo‘shiladi yoki ayriladi. Natija qisqartiriladi.",
+    "misollar": [
+     {
+      "shart": "Hisoblang: 3/4 + 5/6.",
+      "yechim": [
+       "Umumiy maxraj: EKUK(4; 6), ya’ni 12.",
+       "Qo‘shimcha ko‘paytuvchilar: 12 : 4 = 3 va 12 : 6 = 2.",
+       "3/4 — bu 9/12; 5/6 — bu 10/12.",
+       "9/12 + 10/12 = 19/12.",
+       "19/12 noto‘g‘ri kasr: 1 butun 7/12."
+      ],
+      "javob": "19/12, ya’ni 1 butun 7/12"
+     },
+     {
+      "shart": "Hisoblang: 7/10 − 4/15.",
+      "yechim": [
+       "Umumiy maxraj: EKUK(10; 15), ya’ni 30.",
+       "Qo‘shimcha ko‘paytuvchilar: 30 : 10 = 3 va 30 : 15 = 2.",
+       "7/10 — bu 21/30; 4/15 — bu 8/30.",
+       "21/30 − 8/30 = 13/30.",
+       "13 — tub son, kasr qisqarmaydi."
+      ],
+      "javob": "13/30"
+     },
+     {
+      "shart": "Sayyoh birinchi kuni yo‘lning 2/5 qismini, ikkinchi kuni 1/3 qismini bosib o‘tdi. Yo‘lning qancha qismi qoldi?",
+      "yechim": [
+       "Ikki kunda o‘tilgani: 2/5 + 1/3. Umumiy maxraj 15.",
+       "6/15 + 5/15 = 11/15.",
+       "Butun yo‘l — 15/15. Qolgani: 15/15 − 11/15 = 4/15."
+      ],
+      "javob": "yo‘lning 4/15 qismi"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Oshxona retsepti",
+      "topshiriq": "Pirog uchun 3/4 stakan un va 2/3 stakan shakar kerak. a) Un va shakar birga necha stakan? b) Un shakardan qancha ko‘p? d) 2 stakanlik idishga ikkalasi sig‘adimi?",
+      "yechim": "a) 3/4 + 2/3 = 17/12, ya’ni 1 butun 5/12 stakan. b) 3/4 − 2/3 = 1/12 stakan. d) Sig‘adi: 1 butun 5/12 soni 2 dan kichik.",
+      "mahsulot": "retsept kartochkasi va hisob"
+     },
+     {
+      "nom": "Suv idishi",
+      "topshiriq": "Bochkaning 5/6 qismi suv bilan to‘la edi. Ertalab bochkaning 1/4 qismicha, kechqurun 1/3 qismicha suv ishlatildi. a) Jami qancha ishlatildi? b) Bochkada qancha suv qoldi?",
+      "yechim": "a) 1/4 + 1/3 = 7/12. b) 5/6 − 7/12: umumiy maxraj 12; 10/12 − 7/12 = 3/12, ya’ni 1/4.",
+      "mahsulot": "bochka chizmasi va yechim"
+     },
+     {
+      "nom": "Sehrli uchburchak",
+      "topshiriq": "Uchburchakning har tomonidagi uchta sonning yig‘indisi 1 ga teng bo‘lishi kerak. Uchlarida 1/2, 1/3, 1/6 turibdi. Tomonlar o‘rtasiga qaysi sonlar qo‘yiladi?",
+      "yechim": "1/2 va 1/3 orasiga: 1/2 + 1/3 = 5/6, demak 1/6 kerak. 1/3 va 1/6 orasiga: 1/3 + 1/6 = 1/2, demak 1/2 kerak. 1/2 va 1/6 orasiga: 1/2 + 1/6 = 2/3, demak 1/3 kerak.",
+      "mahsulot": "to‘ldirilgan uchburchak"
+     },
+     {
+      "nom": "Xatoni top",
+      "topshiriq": "O‘quvchi shunday yechdi: «2/3 va 1/4 ni qo‘shdim: suratlarni qo‘shdim — 3, maxrajlarni qo‘shdim — 7. Javob 3/7». a) Javob nega mantiqsiz (2/3 bilan solishtiring)? b) To‘g‘ri yeching. d) Xatoning sababini yozing.",
+      "yechim": "a) 3/7 soni 2/3 dan kichik — qo‘shganda natija kamayib ketgan, bu mumkin emas. b) 2/3 + 1/4 = 11/12 (8/12 va 3/12). d) Maxrajlar qo‘shilmaydi: avval umumiy maxrajga keltiriladi.",
+      "mahsulot": "tuzatilgan yechim va izoh"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Hisoblang: 1/2 + 1/4.",
+      "javob": "3/4"
+     },
+     {
+      "shart": "Hisoblang: 2/3 + 1/6.",
+      "javob": "5/6"
+     },
+     {
+      "shart": "Hisoblang: 5/8 − 1/4.",
+      "javob": "3/8"
+     },
+     {
+      "shart": "Hisoblang: 3/5 − 1/2.",
+      "javob": "1/10"
+     },
+     {
+      "shart": "Hisoblang: 1 − 4/9.",
+      "javob": "5/9"
+     },
+     {
+      "shart": "Hisoblang: 1/3 + 1/4 + 1/6.",
+      "javob": "3/4"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Suratni suratga, maxrajni maxrajga qo‘shadi: 1/2 va 1/3 yig‘indisini 2/5 deydi",
+      "sabab": "kasrni ikkita alohida son deb qabul qiladi",
+      "oldini_olish": "chamalash: 2/5 soni 1/2 dan kichik — yig‘indi qo‘shiluvchidan kichik bo‘lolmaydi; doira modelida ko‘rsatish"
+     },
+     {
+      "xato": "Umumiy maxrajga keltirishda faqat maxrajni o‘zgartiradi, suratni ko‘paytirmaydi",
+      "sabab": "asosiy xossani to‘liq qo‘llamaydi",
+      "oldini_olish": "har bir kasr ustiga qo‘shimcha ko‘paytuvchini yozib qo‘yish"
+     },
+     {
+      "xato": "Natijani qisqartirmaydi yoki butun qismini ajratmaydi",
+      "sabab": "hisobni tugagan deb hisoblaydi",
+      "oldini_olish": "nazorat savoli: «qisqaradimi? noto‘g‘ri kasrmi?»"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Musiqa",
+      "boglanish": "takt ichidagi nota cho‘zimlari yig‘indisi o‘lchovga teng bo‘lishi kerak: 1/2 + 1/4 + 1/4 butun taktni beradi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "retseptdagi masalliqlarni qo‘shish, mato bo‘laklari uzunligini hisoblash"
+     },
+     {
+      "fan": "Tabiiy fanlar",
+      "boglanish": "aralashmalar tarkibidagi ulushlar yig‘indisi 1 ga teng"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kasrli retseptlar kitobi»",
+     "muammo": "Retseptdagi kasrli miqdorlarni qo‘shib, kerakli idish hajmini qanday aniqlaymiz?",
+     "mahsulot": "har guruhdan bittadan retsept sahifasi: masalliqlar kasrlarda, jami hajm hisobi bilan",
+     "bosqichlar": [
+      "retsept tanlash",
+      "masalliqlarni stakan ulushlarida yozish",
+      "umumiy maxrajga keltirib qo‘shish",
+      "idish hajmi bilan solishtirish",
+      "sahifani bezash"
+     ],
+     "guruh_vazifalari": [
+      "Salat retsepti: masalliqlarni qo‘shing",
+      "Sharbat retsepti: suyuqliklarni qo‘shing",
+      "Pirog retsepti: quruq masalliqlarni qo‘shing",
+      "Barcha retseptlarni tekshirib, kitobchaga yig‘ing"
+     ],
+     "mezonlar": [
+      "umumiy maxraj to‘g‘ri",
+      "hisob to‘g‘ri",
+      "natija qisqartirilgan",
+      "hayotiy xulosa bor",
+      "sahifa chiroyli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bog‘ va issiqxona»",
+     "bekatlar": [
+      {
+       "nom": "Gulzor",
+       "matn": "Gulzorning 1/2 qismiga atirgul, 1/4 qismiga lola ekilgan.",
+       "topshiriq": "Gulzorning qancha qismi band?",
+       "javob": "3/4",
+       "rasm": ""
+      },
+      {
+       "nom": "Suv ombori",
+       "matn": "Hovuzning 2/3 qismi to‘la edi, sug‘orishga hovuzning 1/6 qismicha suv ketdi.",
+       "topshiriq": "Hovuzda qancha suv qoldi?",
+       "javob": "1/2",
+       "rasm": ""
+      },
+      {
+       "nom": "Issiqxona",
+       "matn": "Pomidor issiqxonaning 1/3 qismini, bodring 2/5 qismini egallaydi.",
+       "topshiriq": "Ikkalasi birga qancha joy egallaydi?",
+       "javob": "11/15",
+       "rasm": ""
+      },
+      {
+       "nom": "Meva ombori",
+       "matn": "Savatning 5/8 qismi olma bilan to‘la. Unga yana savatning 1/4 qismicha olma solindi.",
+       "topshiriq": "Savatning qancha qismi to‘ldi?",
+       "javob": "7/8",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "o‘simliklarni uzmang",
+      "hovuzga yaqinlashmang",
+      "bog‘bon ko‘rsatmasiga amal qiling"
+     ],
+     "kundalik": [
+      "Qaysi bekatda maxrajlar har xil edi?",
+      "Umumiy maxrajni qanday topdingiz?",
+      "Natijani qanday tekshirdingiz?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Umumiy maxraj",
+      "tarif": "bir nechta kasr uchun bir xil qilib olingan maxraj"
+     },
+     {
+      "atama": "Eng kichik umumiy maxraj",
+      "tarif": "maxrajlarning EKUKi"
+     },
+     {
+      "atama": "Qo‘shimcha ko‘paytuvchi",
+      "tarif": "umumiy maxrajni kasr maxrajiga bo‘lishdan chiqqan son"
+     },
+     {
+      "atama": "Umumiy maxrajga keltirish",
+      "tarif": "kasrlarni bir xil maxrajli teng kasrlar bilan almashtirish"
+     },
+     {
+      "atama": "Aralash son",
+      "tarif": "butun qism va to‘g‘ri kasrdan iborat son"
+     },
+     {
+      "atama": "Qisqarmas kasr",
+      "tarif": "surat va maxraji o‘zaro tub bo‘lgan kasr"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "1/2 + 1/3 = 5/6",
+      "togri": true,
+      "izoh": "3/6 va 2/6 qo‘shiladi"
+     },
+     {
+      "matn": "Kasrlarni qo‘shishda maxrajlar ham qo‘shiladi",
+      "togri": false,
+      "izoh": "maxraj umumiy bo‘lib qoladi, faqat suratlar qo‘shiladi"
+     },
+     {
+      "matn": "Har xil maxrajli kasrlar avval umumiy maxrajga keltiriladi",
+      "togri": true,
+      "izoh": "bo‘laklar bir xil o‘lchamda bo‘lishi kerak"
+     },
+     {
+      "matn": "1/4 va 1/6 ning eng kichik umumiy maxraji 24",
+      "togri": false,
+      "izoh": "EKUK(4; 6) — 12"
+     },
+     {
+      "matn": "3/4 − 1/2 = 1/4",
+      "togri": true,
+      "izoh": "3/4 dan 2/4 ayriladi"
+     },
+     {
+      "matn": "Ikki to‘g‘ri kasr yig‘indisi har doim 1 dan kichik",
+      "togri": false,
+      "izoh": "masalan, 3/4 va 1/2 yig‘indisi 1 dan katta"
+     },
+     {
+      "matn": "1 sonini istalgan maxrajli kasr ko‘rinishida yozish mumkin",
+      "togri": true,
+      "izoh": "masalan, 5/5 yoki 12/12"
+     },
+     {
+      "matn": "Umumiy maxrajga keltirganda kasr qiymati o‘zgaradi",
+      "togri": false,
+      "izoh": "asosiy xossaga ko‘ra o‘zgarmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Bir xil maxrajli kasrlar qanday qo‘shiladi?",
+      "javob": "suratlar qo‘shiladi, maxraj o‘zgarmaydi"
+     },
+     {
+      "savol": "Har xil maxrajli kasrlarni qo‘shishdan oldin nima qilinadi?",
+      "javob": "umumiy maxrajga keltiriladi"
+     },
+     {
+      "savol": "Eng kichik umumiy maxraj nima?",
+      "javob": "maxrajlarning EKUKi"
+     },
+     {
+      "savol": "Qo‘shimcha ko‘paytuvchi qanday topiladi?",
+      "javob": "umumiy maxraj kasrning maxrajiga bo‘linadi"
+     },
+     {
+      "savol": "1/2 va 1/4 yig‘indisi nechaga teng?",
+      "javob": "3/4"
+     },
+     {
+      "savol": "1 dan 1/3 ni ayirsak nima chiqadi?",
+      "javob": "2/3"
+     },
+     {
+      "savol": "1/2 va 1/5 ning umumiy maxraji qaysi?",
+      "javob": "10"
+     },
+     {
+      "savol": "Kasrlarni ayirish qanday tekshiriladi?",
+      "javob": "ayirmaga ayriluvchini qo‘shib"
+     },
+     {
+      "savol": "Natija noto‘g‘ri kasr chiqsa nima qilinadi?",
+      "javob": "butun qismi ajratiladi"
+     },
+     {
+      "savol": "1/3 va 1/6 yig‘indisi nechaga teng?",
+      "javob": "1/2"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Bir xil maxraj",
+      "matn": "Suratlar qo‘shiladi yoki ayriladi, maxraj o‘zgarmaydi: 2/7 + 3/7 = 5/7.",
+      "savol": "6/11 − 2/11 ni hisoblang."
+     },
+     {
+      "nom": "Umumiy maxraj",
+      "matn": "Har xil maxrajli kasrlar EKUK ga teng umumiy maxrajga keltiriladi. Surat va maxraj qo‘shimcha ko‘paytuvchiga ko‘paytiriladi.",
+      "savol": "1/3 va 1/4 ni umumiy maxrajga keltiring."
+     },
+     {
+      "nom": "Qo‘shish va ayirish",
+      "matn": "Umumiy maxrajga keltirilgach, suratlar bilan amal bajariladi. Natija qisqartiriladi.",
+      "savol": "1/2 + 2/5 ni hisoblang."
+     },
+     {
+      "nom": "Aralash sonlar",
+      "matn": "Butun qismlar alohida, kasr qismlar alohida qo‘shiladi. Noto‘g‘ri kasr chiqsa, butun ajratiladi.",
+      "savol": "1 butun 1/2 va 2 butun 1/4 ni qo‘shing."
+     }
+    ],
+    "muammoli_savol": "Ona tortning yarmini mehmonlarga, uchdan birini bolalarga berdi. Otaga tortning qancha qismi qoldi? Nega «yarim» va «uchdan bir»ni to‘g‘ridan-to‘g‘ri qo‘shib bo‘lmaydi?",
+    "keys": {
+     "vaziyat": "Uch aka-uka otasidan qolgan yerni bo‘lishdi: kattasiga yerning 1/2 qismi, o‘rtanchasiga 1/3 qismi, kichigiga 1/9 qismi tegishi kerak edi. Ular hisoblab ko‘rishganda yer to‘liq taqsimlanmaganini payqashdi.",
+     "savollar": [
+      "Uchala ulush yig‘indisi qancha? Umumiy maxrajga keltirib hisoblang.",
+      "Yerning qancha qismi taqsimlanmay qoldi?"
+     ]
+    },
+    "tezis": "Har xil narsani qo‘shishdan oldin ularni bir xil o‘lchovga keltir",
+    "taqqoslash": {
+     "a": "Bir xil maxrajli kasrlar",
+     "b": "Har xil maxrajli kasrlar",
+     "umumiy": [
+      "amal suratlar bilan bajariladi",
+      "natija qisqartiriladi"
+     ],
+     "a_farq": [
+      "darhol qo‘shiladi",
+      "maxraj o‘zgarmaydi"
+     ],
+     "b_farq": [
+      "avval umumiy maxrajga keltiriladi",
+      "qo‘shimcha ko‘paytuvchi kerak"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kasrlarni qo‘shish va ayirish",
+     "shoxlar": [
+      {
+       "nom": "Tayyorlash",
+       "bandlar": [
+        "EKUK",
+        "umumiy maxraj",
+        "qo‘shimcha ko‘paytuvchi"
+       ]
+      },
+      {
+       "nom": "Amal",
+       "bandlar": [
+        "suratlar qo‘shiladi",
+        "suratlar ayriladi",
+        "maxraj saqlanadi"
+       ]
+      },
+      {
+       "nom": "Yakunlash",
+       "bandlar": [
+        "qisqartirish",
+        "butun qismni ajratish",
+        "tekshirish"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "retsept",
+        "yo‘l",
+        "vaqt"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ikki xil kasr meni topmaguncha qo‘shila olmaydi. Men ularning maxrajlari uchun umumiy uyman. Men kimman?",
+     "javob": "umumiy maxraj"
+    },
+    "hikmat": "Yetti o‘lchab, bir kes.",
+    "kalit_soz": "MAXRAJ",
+    "xato_yechim": {
+     "shart": "1/2 va 1/3 ni qo‘shing.",
+     "xato": "Suratlar va maxrajlar alohida qo‘shilgan: javob 2/5",
+     "togri": "Umumiy maxraj 6: 3/6 va 2/6 yig‘indisi 5/6",
+     "sabab": "maxrajlar qo‘shilmaydi; 2/5 soni 1/2 dan kichik, yig‘indi esa qo‘shiluvchidan kichik bo‘lishi mumkin emas"
+    },
+    "guruh_nomlari": [
+     "Yarimlar",
+     "Choraklar",
+     "Uchdan birlar",
+     "Umumiy maxrajlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Kasrli tasmalar»",
+     "topshiriq": "Guruhga 12 katakli qog‘oz tasmalar beriladi. Birida 1/3 qismni (4 katak), ikkinchisida 1/4 qismni (3 katak) bo‘yang. Tasmalarni ustma-ust qo‘yib, yig‘indini kataklarda sanang va kasr ko‘rinishida yozing. So‘ng 1/2 va 1/6 uchun ham bajaring."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: 1/3 + 1/2; 3/4 − 1/8; 2/5 + 3/10; 5/6 − 3/4; 1 − 2/7.",
+     "B": "Bir kunda uy vazifasiga 3/4 soat, kitob o‘qishga 1/2 soat sarfladingiz. Jami qancha vaqt? Daqiqalarda ham ifodalang.",
+     "C": "Uchta turli kasr toping, ularning yig‘indisi roppa-rosa 1 bo‘lsin (suratlari 1 ga teng). Bir nechta yechim topishga harakat qiling."
+    },
+    "sinkveyn": [
+     "Maxraj",
+     "umumiy, eng kichik",
+     "birlashtiradi, tenglaydi, saqlanadi",
+     "Bo‘laklar bir xil bo‘lsagina qo‘shiladi",
+     "O‘lchov"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh maktab devorini bo‘yamoqda. Har bir guruh o‘z ulushini aytadi, so‘ng birgalikda qancha qism bo‘yalgani topiladi.",
+     "qismlar": [
+      "1-guruh devorning 1/4 qismini bo‘yadi",
+      "2-guruh devorning 1/3 qismini bo‘yadi",
+      "3-guruh devorning 1/6 qismini bo‘yadi",
+      "4-guruh qolgan qismini bo‘yaydi — u qancha?"
+     ],
+     "yakun": "Umumiy maxraj — 12. Yig‘indi 3/12 + 4/12 + 2/12 = 9/12, ya’ni 3/4. 4-guruhga 12/12 − 9/12 = 3/12, ya’ni 1/4 qism qoldi."
+    }
+   }
+  },
+  {
+   "mavzu": "Kasrlarni ko‘paytirish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kasrni natural songa ko‘paytirish",
+      "matn": "Kasrni natural songa ko‘paytirish — bir xil kasrni bir necha marta qo‘shish demakdir. Buning uchun surat shu songa ko‘paytiriladi, maxraj o‘zgarmaydi.",
+      "misol": "2/7 ni 3 ga ko‘paytiramiz: 2/7 + 2/7 + 2/7 = 6/7. Qisqa yozuv: 2/7 · 3 = 6/7.",
+      "savol": "3/10 ni 3 ga ko‘paytiring.",
+      "javob": "9/10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kasrni kasrga ko‘paytirish",
+      "matn": "Ikki kasrni ko‘paytirish uchun surat suratga, maxraj maxrajga ko‘paytiriladi. Buni to‘g‘ri to‘rtburchak modelida ko‘rish mumkin: tomonlari 2/3 va 4/5 bo‘lgan to‘rtburchak butun kvadratning 15 ta katagidan 8 tasini egallaydi.",
+      "misol": "2/3 · 4/5 = 8/15: suratlar 2 · 4 = 8, maxrajlar 3 · 5 = 15.",
+      "savol": "1/2 · 3/5 ni hisoblang.",
+      "javob": "3/10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirishdan oldin qisqartirish",
+      "matn": "Hisobni osonlashtirish uchun ko‘paytirishdan oldin qisqartirish mumkin: istalgan suratni istalgan maxraj bilan ularning umumiy bo‘luvchisiga bo‘lamiz. Shunda kichik sonlar bilan ishlaymiz va natija darhol qisqarmas chiqadi.",
+      "misol": "3/4 · 8/9: 3 va 9 ni 3 ga, 8 va 4 ni 4 ga qisqartiramiz. Qoladi 1/1 · 2/3, ya’ni 2/3. Tekshiruvchi yozuv: 3/4 · 8/9 = 2/3.",
+      "savol": "2/5 · 5/6 ni qisqartirib hisoblang.",
+      "javob": "1/3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonning kasr qismini topish",
+      "matn": "Sonning kasr bilan ifodalangan qismini topish uchun sonni shu kasrga ko‘paytirish kerak. «Ning» so‘zi ko‘paytirishni bildiradi: 60 ning 3/4 qismi — 60 ni 3/4 ga ko‘paytirish. Amalda sonni maxrajga bo‘lib, suratga ko‘paytiramiz.",
+      "misol": "60 ning 3/4 qismi: 60 : 4 = 15 — bir ulush; 15 · 3 = 45.",
+      "savol": "20 ning 2/5 qismini toping.",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aralash sonlarni ko‘paytirish va muhim kuzatuv",
+      "matn": "Aralash sonlarni ko‘paytirishdan oldin ular noto‘g‘ri kasrga aylantiriladi. Muhim kuzatuv: sonni to‘g‘ri kasrga (1 dan kichik songa) ko‘paytirsak, natija kichrayadi; noto‘g‘ri kasrga (1 dan katta songa) ko‘paytirsak, kattalashadi. Ko‘paytirish har doim ham «ko‘paytirmaydi»!",
+      "misol": "1 butun 1/2 ni 2/3 ga ko‘paytiramiz: 1 butun 1/2 — bu 3/2. Demak 3/2 · 2/3 = 1.",
+      "savol": "8 ni 1/2 ga ko‘paytirsak, natija 8 dan kattami yoki kichik?",
+      "javob": "kichik: 4",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Kasrni kasrga ko‘paytirishda surat suratga, maxraj maxrajga ko‘paytiriladi. Avval qisqartirish hisobni osonlashtiradi. Sonning kasr qismini topish uchun son shu kasrga ko‘paytiriladi. Aralash sonlar avval noto‘g‘ri kasrga aylantiriladi.",
+    "misollar": [
+     {
+      "shart": "Hisoblang: 5/6 · 3/10.",
+      "yechim": [
+       "Avval qisqartiramiz: 5 va 10 ni 5 ga — qoladi 1 va 2.",
+       "3 va 6 ni 3 ga — qoladi 1 va 2.",
+       "Ko‘paytiramiz: suratlar 1 · 1 = 1, maxrajlar 2 · 2 = 4.",
+       "Tekshiruvchi yozuv: 5/6 · 3/10 = 1/4."
+      ],
+      "javob": "1/4"
+     },
+     {
+      "shart": "Sinfda 32 o‘quvchi bor, ularning 5/8 qismi qizlar. Sinfda nechta o‘g‘il bola bor?",
+      "yechim": [
+       "Qizlar soni — 32 ning 5/8 qismi.",
+       "Bir ulush: 32 : 8 = 4.",
+       "Qizlar: 4 · 5 = 20 nafar.",
+       "O‘g‘il bolalar: 32 − 20 = 12 nafar."
+      ],
+      "javob": "12 nafar"
+     },
+     {
+      "shart": "To‘g‘ri to‘rtburchak shaklidagi stolning bo‘yi 3/2 m, eni 4/5 m. Stol yuzini toping.",
+      "yechim": [
+       "Yuz — bo‘y va en ko‘paytmasi.",
+       "Qisqartiramiz: 4 va 2 ni 2 ga — qoladi 2 va 1.",
+       "Suratlar: 3 · 2 = 6, maxrajlar: 1 · 5 = 5.",
+       "Tekshiruvchi yozuv: 3/2 · 4/5 = 6/5. Bu 1 butun 1/5 kvadrat metr."
+      ],
+      "javob": "6/5 m², ya’ni 1 butun 1/5 m²"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Retseptni kichraytirish",
+      "topshiriq": "Tort retsepti: 3/4 kg un, 2/5 kg shakar, 1/2 kg sariyog‘. Oshpaz retseptning yarmini tayyorlamoqchi. a) Har bir masalliqdan qancha kerak? b) Uchta masalliqning jami og‘irligi qancha bo‘ladi?",
+      "yechim": "a) Un: 3/4 · 1/2 = 3/8 kg; shakar: 2/5 · 1/2 = 1/5 kg; sariyog‘: 1/2 · 1/2 = 1/4 kg. b) Umumiy maxraj — 40. Yig‘indi 15/40 + 8/40 + 10/40 = 33/40 kg.",
+      "mahsulot": "yangi retsept kartochkasi"
+     },
+     {
+      "nom": "Bog‘ maydoni",
+      "topshiriq": "Bog‘ning 2/3 qismi mevali daraxtlar bilan band, shu qismning 3/4 qismi — olma. a) Olma butun bog‘ning qancha qismini egallaydi? b) Bog‘ 600 m² bo‘lsa, olmazor necha kvadrat metr? d) To‘g‘ri to‘rtburchak modelida ko‘rsating.",
+      "yechim": "a) 2/3 · 3/4 = 1/2. b) 600 ning yarmi: 600 : 2 = 300 m². d) To‘rtburchak 3 ustun va 4 satrga bo‘linadi, 12 katakdan 6 tasi bo‘yaladi.",
+      "mahsulot": "katakli model va hisob"
+     },
+     {
+      "nom": "Chegirma",
+      "topshiriq": "Do‘konda kurtka 240 000 so‘m turadi. Chegirma narxning 1/4 qismiga teng. Kartadan to‘lansa, chegirmali narxning yana 1/10 qismi qaytariladi. a) Chegirma necha so‘m? b) Chegirmali narx? d) Kartadan to‘lansa, qancha qaytadi?",
+      "yechim": "a) 240000 : 4 = 60000 so‘m. b) 240000 − 60000 = 180000 so‘m. d) 180000 : 10 = 18000 so‘m qaytadi.",
+      "mahsulot": "narxlar zanjiri"
+     },
+     {
+      "nom": "Kattalashadimi, kichrayadimi?",
+      "topshiriq": "12 sonini navbat bilan 1/2, 2/3, 3/3, 4/3, 3/2 ga ko‘paytiring. a) Natijalarni jadvalga yozing. b) Qaysi hollarda natija 12 dan kichik, teng, katta? d) Qoidani ifodalang.",
+      "yechim": "a) 6, 8, 12, 16, 18. b) 1/2 va 2/3 da kichik; 3/3 da teng; 4/3 va 3/2 da katta. d) To‘g‘ri kasrga ko‘paytirsak — kichrayadi, 1 ga — o‘zgarmaydi, noto‘g‘ri kasrga (1 dan katta) — kattalashadi.",
+      "mahsulot": "jadval va qoida"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Hisoblang: 2/9 · 4.",
+      "javob": "8/9"
+     },
+     {
+      "shart": "Hisoblang: 3/5 · 2/7.",
+      "javob": "6/35"
+     },
+     {
+      "shart": "Hisoblang: 4/9 · 3/8.",
+      "javob": "1/6"
+     },
+     {
+      "shart": "45 ning 2/9 qismini toping.",
+      "javob": "10"
+     },
+     {
+      "shart": "Hisoblang: 7/8 · 8/7.",
+      "javob": "1"
+     },
+     {
+      "shart": "1 soatning 2/3 qismi necha daqiqa?",
+      "javob": "40 daqiqa"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ko‘paytirishda ham umumiy maxrajga keltiradi",
+      "sabab": "qo‘shish qoidasini ko‘paytirishga ko‘chiradi",
+      "oldini_olish": "ikki qoidani yonma-yon jadvalda solishtirish: qo‘shishda — umumiy maxraj, ko‘paytirishda — surat suratga, maxraj maxrajga"
+     },
+     {
+      "xato": "Kasrni natural songa ko‘paytirganda maxrajni ham ko‘paytiradi",
+      "sabab": "natural sonni maxraji 1 bo‘lgan kasr deb ko‘rmaydi",
+      "oldini_olish": "natural sonni n/1 ko‘rinishida yozib ko‘paytirish"
+     },
+     {
+      "xato": "«Ko‘paytirish har doim kattalashtiradi» deb o‘ylaydi",
+      "sabab": "natural sonlardagi tajriba",
+      "oldini_olish": "12 ni 1/2 ga ko‘paytirish — yarmini topish ekanini model bilan ko‘rsatish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "xarita masshtabi — kasr: haqiqiy masofa masshtabga ko‘paytirilib, xaritadagi masofa topiladi"
+     },
+     {
+      "fan": "Iqtisodiy bilim",
+      "boglanish": "chegirma va ulushlarni hisoblash — narxning kasr qismini topish"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "retseptni kichraytirish yoki kattalashtirish — har bir miqdorni kasrga ko‘paytirish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Retseptni o‘zgartiramiz»",
+     "muammo": "4 kishilik retseptni 2, 6 yoki 10 kishiga qanday moslashtirish mumkin?",
+     "mahsulot": "bitta taomning to‘rt xil hajmdagi retsept jadvali",
+     "bosqichlar": [
+      "4 kishilik retseptni yozish",
+      "ko‘paytuvchi kasrni aniqlash (1/2, 3/2, 5/2)",
+      "har bir masalliqni ko‘paytirish",
+      "natijalarni qisqartirish va qulay birlikka o‘tkazish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "2 kishiga moslang (1/2 ga ko‘paytiring)",
+      "6 kishiga moslang (3/2 ga ko‘paytiring)",
+      "10 kishiga moslang (5/2 ga ko‘paytiring)",
+      "Barcha jadvallarni tekshirib, umumiy plakat tayyorlang"
+     ],
+     "mezonlar": [
+      "ko‘paytuvchi to‘g‘ri tanlangan",
+      "hisob to‘g‘ri",
+      "natijalar qisqartirilgan",
+      "jadval tushunarli",
+      "hayotiy xulosa bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qurilish maydoni»",
+     "bekatlar": [
+      {
+       "nom": "Chizmachi xonasi",
+       "matn": "Chizmada 1 sm haqiqatda 1/2 m ni bildiradi. Devor chizmada 8 sm.",
+       "topshiriq": "Devorning haqiqiy uzunligi necha metr?",
+       "javob": "4 m",
+       "rasm": ""
+      },
+      {
+       "nom": "Bo‘yoqchi",
+       "matn": "Bir devorga 3/4 chelak bo‘yoq ketadi. 4 ta shunday devor bor.",
+       "topshiriq": "Necha chelak bo‘yoq kerak?",
+       "javob": "3 chelak",
+       "rasm": ""
+      },
+      {
+       "nom": "Koshinkor",
+       "matn": "Oshxona poli 2/3 qismigacha qoplangan. Shu qoplangan qismning 1/2 qismi ko‘k koshin.",
+       "topshiriq": "Ko‘k koshin polning qancha qismini egallaydi?",
+       "javob": "1/3",
+       "rasm": ""
+      },
+      {
+       "nom": "Ombor",
+       "matn": "Omborda 120 qop sement bor edi, uning 5/6 qismi ishlatildi.",
+       "topshiriq": "Nechta qop ishlatildi?",
+       "javob": "100 qop",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kaska kiying",
+      "qurilish texnikasiga yaqinlashmang",
+      "belgilangan yo‘lakdan yuring"
+     ],
+     "kundalik": [
+      "Qaysi bekatda sonning qismini topdik?",
+      "Qayerda kasr kasrga ko‘paytirildi?",
+      "Natija qachon kichraydi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kasrlar ko‘paytmasi",
+      "tarif": "surati suratlar ko‘paytmasiga, maxraji maxrajlar ko‘paytmasiga teng kasr"
+     },
+     {
+      "atama": "Sonning qismi",
+      "tarif": "sonni kasrga ko‘paytirish natijasi"
+     },
+     {
+      "atama": "Qisqartirib ko‘paytirish",
+      "tarif": "ko‘paytirishdan oldin surat va maxrajlarni umumiy bo‘luvchiga bo‘lish"
+     },
+     {
+      "atama": "O‘zaro teskari sonlar",
+      "tarif": "ko‘paytmasi 1 ga teng sonlar, masalan 2/3 va 3/2"
+     },
+     {
+      "atama": "Noto‘g‘ri kasr",
+      "tarif": "surati maxrajiga teng yoki undan katta kasr"
+     },
+     {
+      "atama": "Masshtab",
+      "tarif": "chizmadagi uzunlikning haqiqiy uzunlikka nisbati"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "1/2 · 1/3 = 1/6",
+      "togri": true,
+      "izoh": "suratlar 1 · 1, maxrajlar 2 · 3"
+     },
+     {
+      "matn": "Kasrlarni ko‘paytirish uchun umumiy maxraj kerak",
+      "togri": false,
+      "izoh": "umumiy maxraj faqat qo‘shish va ayirishda kerak"
+     },
+     {
+      "matn": "Sonni to‘g‘ri kasrga ko‘paytirsak, natija kichrayadi",
+      "togri": true,
+      "izoh": "sonning qismi topiladi"
+     },
+     {
+      "matn": "2/3 · 3 = 6/9",
+      "togri": false,
+      "izoh": "faqat surat ko‘paytiriladi: natija 6/3, ya’ni 2"
+     },
+     {
+      "matn": "2/3 va 3/2 ning ko‘paytmasi 1 ga teng",
+      "togri": true,
+      "izoh": "ular o‘zaro teskari sonlar"
+     },
+     {
+      "matn": "40 ning 3/4 qismi 30 ga teng",
+      "togri": true,
+      "izoh": "40 : 4 = 10; 10 · 3 = 30"
+     },
+     {
+      "matn": "Ko‘paytirishdan oldin qisqartirish natijani o‘zgartiradi",
+      "togri": false,
+      "izoh": "natija o‘zgarmaydi, faqat hisob osonlashadi"
+     },
+     {
+      "matn": "Aralash sonlar ko‘paytirishdan oldin noto‘g‘ri kasrga aylantiriladi",
+      "togri": true,
+      "izoh": "aks holda xato chiqadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kasr kasrga qanday ko‘paytiriladi?",
+      "javob": "surat suratga, maxraj maxrajga"
+     },
+     {
+      "savol": "Kasr natural songa qanday ko‘paytiriladi?",
+      "javob": "surat ko‘paytiriladi, maxraj o‘zgarmaydi"
+     },
+     {
+      "savol": "Sonning kasr qismi qanday topiladi?",
+      "javob": "son shu kasrga ko‘paytiriladi"
+     },
+     {
+      "savol": "30 ning 1/3 qismi nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "savol": "1/2 ning yarmi qancha?",
+      "javob": "1/4"
+     },
+     {
+      "savol": "O‘zaro teskari sonlar ko‘paytmasi nechaga teng?",
+      "javob": "1"
+     },
+     {
+      "savol": "Sonni 1 dan kichik kasrga ko‘paytirsak, natija qanday o‘zgaradi?",
+      "javob": "kichrayadi"
+     },
+     {
+      "savol": "Aralash sonni ko‘paytirishdan oldin nima qilinadi?",
+      "javob": "noto‘g‘ri kasrga aylantiriladi"
+     },
+     {
+      "savol": "«Ning» so‘zi qaysi amalni bildiradi?",
+      "javob": "ko‘paytirishni"
+     },
+     {
+      "savol": "100 ning 7/10 qismi nechaga teng?",
+      "javob": "70"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kasr va natural son",
+      "matn": "Surat songa ko‘paytiriladi, maxraj o‘zgarmaydi: 2/7 · 3 = 6/7.",
+      "savol": "3/8 · 2 ni hisoblab, qisqartiring."
+     },
+     {
+      "nom": "Kasr va kasr",
+      "matn": "Surat suratga, maxraj maxrajga: 2/3 · 4/5 = 8/15. Avval qisqartirish mumkin.",
+      "savol": "3/4 · 2/3 ni hisoblang."
+     },
+     {
+      "nom": "Sonning qismi",
+      "matn": "Sonni maxrajga bo‘lamiz, suratga ko‘paytiramiz. 60 ning 3/4 qismi — 45.",
+      "savol": "24 ning 5/6 qismini toping."
+     },
+     {
+      "nom": "Kattalashadimi?",
+      "matn": "To‘g‘ri kasrga ko‘paytirish sonni kichraytiradi, noto‘g‘ri kasrga ko‘paytirish kattalashtiradi.",
+      "savol": "10 ni 3/5 ga ko‘paytirsak, 10 dan kattami?"
+     }
+    ],
+    "muammoli_savol": "Ali: «Ko‘paytirish har doim sonni kattalashtiradi», dedi. Vali esa 10 ni 1/2 ga ko‘paytirib, 5 hosil qildi. Kim haq? «Ko‘paytirish» so‘zi nega chalg‘itadi?",
+    "keys": {
+     "vaziyat": "Fermer hosilning 3/5 qismini bozorga olib chiqdi. Olib chiqqan hosilining 2/3 qismini sotdi. Hosil jami 900 kg edi. Qo‘shnisi: «Sen hosilingning 2/3 qismini sotibsan», dedi.",
+     "savollar": [
+      "Fermer butun hosilning qancha qismini sotgan? Qo‘shni haqmi?",
+      "Sotilgan hosil necha kilogramm?"
+     ]
+    },
+    "tezis": "Qismning qismini topish — kasrlarni ko‘paytirish",
+    "taqqoslash": {
+     "a": "Kasrlarni qo‘shish",
+     "b": "Kasrlarni ko‘paytirish",
+     "umumiy": [
+      "natija qisqartiriladi",
+      "aralash sonlar bilan ham bajariladi"
+     ],
+     "a_farq": [
+      "umumiy maxraj kerak",
+      "maxraj saqlanadi"
+     ],
+     "b_farq": [
+      "umumiy maxraj kerak emas",
+      "maxrajlar ko‘paytiriladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kasrlarni ko‘paytirish",
+     "shoxlar": [
+      {
+       "nom": "Qoidalar",
+       "bandlar": [
+        "surat suratga",
+        "maxraj maxrajga",
+        "avval qisqartirish"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "kasr va natural son",
+        "kasr va kasr",
+        "aralash sonlar"
+       ]
+      },
+      {
+       "nom": "Sonning qismi",
+       "bandlar": [
+        "maxrajga bo‘lish",
+        "suratga ko‘paytirish"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "chegirma",
+        "retsept",
+        "masshtab"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Meni 2/3 ga ko‘paytirsang 1 chiqadi. Men 2/3 ning teskarisiman. Men qaysi sonman?",
+     "javob": "3/2"
+    },
+    "hikmat": "Oz-oz o‘rganib dono bo‘lur.",
+    "kalit_soz": "KOPAYTMA",
+    "xato_yechim": {
+     "shart": "2/3 ni 3/4 ga ko‘paytiring.",
+     "xato": "Umumiy maxraj 12 ga keltirilgan: 8/12 va 9/12, so‘ng suratlar ko‘paytirilib 72/12 yozilgan",
+     "togri": "Surat suratga, maxraj maxrajga: 6/12, qisqartirsak 1/2",
+     "sabab": "ko‘paytirishda umumiy maxraj kerak emas; maxrajlar ham ko‘paytirilishi kerak edi"
+    },
+    "guruh_nomlari": [
+     "Suratlar",
+     "Maxrajlar",
+     "Qismlar",
+     "Teskarilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qismning qismi»",
+     "topshiriq": "Guruhga kvadrat qog‘oz beriladi. Uni tik chiziqlar bilan 3 ta teng ustunga bo‘lib, 2 ustunni bo‘yang (2/3). So‘ng yotiq chiziqlar bilan 4 ta teng satrga bo‘lib, bo‘yalgan qismning 3 satrini boshqa rang bilan bo‘yang. Ikki marta bo‘yalgan kataklarni sanab, 2/3 ning 3/4 qismi qancha ekanini toping va hisob bilan tekshiring."
+    },
+    "vazifalar": {
+     "A": "Hisoblang: 3/7 · 2; 2/5 · 3/4; 5/9 · 3/10; 36 ning 7/9 qismi; 1/2 · 2/3 · 3/4.",
+     "B": "Oilangizdagi bir taom retseptini yozing va uni yarim hajmga (1/2 ga ko‘paytirib) moslang.",
+     "C": "1/2 · 2/3 · 3/4 · 4/5 ko‘paytmani qisqartirish yordamida og‘zaki hisoblang. Qonuniyatni toping va shu usulda 9/10 gacha davom ettirsangiz, natija qancha bo‘lishini ayting."
+    },
+    "sinkveyn": [
+     "Ko‘paytma",
+     "qisqa, aniq",
+     "qisqartiradi, ko‘paytiradi, kichraytiradi",
+     "Qismning qismini topib beradi",
+     "Ulush"
+    ],
+    "jamoaviy_masala": {
+     "shart": "Maktab bog‘i 480 m². To‘rt guruh ketma-ket hisoblaydi: har bir guruh natijasi keyingisiga kerak bo‘ladi.",
+     "qismlar": [
+      "1-guruh: bog‘ning 3/4 qismi ekin maydoni — u necha m²?",
+      "2-guruh: ekin maydonining 2/3 qismi sabzavot — u necha m²?",
+      "3-guruh: sabzavot maydonining 1/4 qismi pomidor — u necha m²?",
+      "4-guruh: pomidor butun bog‘ning qancha qismini egallaydi?"
+     ],
+     "yakun": "Ekin maydoni: 480 : 4 = 120, 120 · 3 = 360 m². Sabzavot: 360 : 3 = 120, 120 · 2 = 240 m². Pomidor: 240 : 4 = 60 m². Ulushi: 3/4 · 2/3 · 1/4 = 1/8 — tekshirish: 480 : 8 = 60 m²."
+    }
+   }
   }
  ]
 }
