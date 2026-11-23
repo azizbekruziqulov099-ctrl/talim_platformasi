@@ -5535,6 +5535,1383 @@
      "yakun": "Natijalar: 8 ta; 6, 12, 18...; 7, 14, 21...; 9."
     }
    }
+  },
+  {
+   "mavzu": "5 ga va 10 ga bo‘linish alomatlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Alomat nima?",
+      "matn": "Bo‘linish alomati — sonni bo‘lmasdan turib, qoldiqsiz bo‘linishini bilish usuli. Faqat son yozuviga qarab javob beramiz. Bu hisobni juda tezlashtiradi.",
+      "misol": "Sonning oxirgi raqamiga qarab, 5 ga yoki 10 ga bo‘linishini bilamiz.",
+      "savol": "Alomat nimaga yordam beradi?",
+      "javob": "bo‘lmasdan bo‘linishini bilishga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "5 ga bo‘linish",
+      "matn": "Sonning oxirgi raqami 0 yoki 5 bo‘lsa, son 5 ga qoldiqsiz bo‘linadi. Boshqa raqam bo‘lsa, bo‘linmaydi.",
+      "misol": "345 oxiri 5, demak 345 / 5 — 69. 780 oxiri 0, 780 / 5 — 156. 983 oxiri 3, bo‘linmaydi.",
+      "savol": "455 soni 5 ga bo‘linadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "10 ga bo‘linish",
+      "matn": "Sonning oxirgi raqami 0 bo‘lsa, son 10 ga qoldiqsiz bo‘linadi. Oxiri 5 bo‘lsa, 10 ga bo‘linmaydi, lekin 5 ga bo‘linadi.",
+      "misol": "2310 oxiri 0, demak 2310 / 10 — 231. 345 oxiri 5, 10 ga bo‘linmaydi.",
+      "savol": "4700 soni 10 ga bo‘linadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bog‘liqlik",
+      "matn": "10 ga bo‘linadigan har bir son 5 ga ham bo‘linadi, chunki oxiri 0. Lekin 5 ga bo‘linadigan son 10 ga bo‘linmasligi mumkin.",
+      "misol": "120 ham 5 ga, ham 10 ga bo‘linadi. 455 faqat 5 ga bo‘linadi.",
+      "savol": "120 soni 10 ga bo‘linadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotiy misol",
+      "matn": "Pulni 5 so‘mlik yoki 10 so‘mlik tangalarga almashtirishda alomat kerak bo‘ladi. Summa oxiri 0 yoki 5 bo‘lsa, 5 so‘mliklar bilan to‘liq beriladi.",
+      "misol": "345 so‘mni 5 so‘mlikka almashtirsak, 69 ta tanga bo‘ladi. 120 so‘mni 10 so‘mlikka almashtirsak, 12 ta.",
+      "savol": "120 so‘m — nechta 10 so‘mlik?",
+      "javob": "12",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Oxiri 0 yoki 5 bo‘lsa — 5 ga bo‘linadi. Oxiri 0 bo‘lsa — 10 ga bo‘linadi.",
+    "misollar": [
+     {
+      "shart": "345, 780, 983 sonlaridan qaysilari 5 ga bo‘linadi?",
+      "yechim": [
+       "345 oxiri 5 — bo‘linadi.",
+       "780 oxiri 0 — bo‘linadi.",
+       "983 oxiri 3 — bo‘linmaydi."
+      ],
+      "javob": "345 va 780"
+     },
+     {
+      "shart": "120, 345, 1000 sonlaridan qaysilari 10 ga bo‘linadi?",
+      "yechim": [
+       "120 oxiri 0 — bo‘linadi.",
+       "345 oxiri 5 — bo‘linmaydi.",
+       "1000 oxiri 0 — bo‘linadi."
+      ],
+      "javob": "120 va 1000"
+     },
+     {
+      "shart": "4700 ni 5 ga va 10 ga bo‘ling.",
+      "yechim": [
+       "Oxiri 0, ikkala songa bo‘linadi.",
+       "4700 / 5 — 940.",
+       "4700 / 10 — 470."
+      ],
+      "javob": "940 va 470"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Alomat bo‘yicha saralash",
+      "topshiriq": "Sonlarni 5 ga va 10 ga bo‘linishiga qarab guruhlang.",
+      "yechim": "Natijalar doskada tekshiriladi.",
+      "mahsulot": "sonlar kartochkasi"
+     },
+     {
+      "nom": "Tanga almashtirish",
+      "topshiriq": "Berilgan pulni 5 va 10 so‘mliklarga almashtiring.",
+      "yechim": "120 so‘m — 12 ta 10 so‘mlik.",
+      "mahsulot": "pul kartochkalari"
+     },
+     {
+      "nom": "Son tanlaymiz",
+      "topshiriq": "5 ga bo‘linadigan, lekin 10 ga bo‘linmaydigan 3 ta son yozing.",
+      "yechim": "Masalan 15, 25, 35.",
+      "mahsulot": "yozuv varag‘i"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 345 ni 10 ga bo‘linadi deb o‘yladi. Xato qayerda?",
+      "yechim": "Oxiri 5, faqat 5 ga bo‘linadi.",
+      "mahsulot": "tushuntirish"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "455 / 5 nechaga teng?",
+      "javob": "91"
+     },
+     {
+      "shart": "780 / 10 nechaga teng?",
+      "javob": "78"
+     },
+     {
+      "shart": "4700 / 5 nechaga teng?",
+      "javob": "940"
+     },
+     {
+      "shart": "2310 / 10 nechaga teng?",
+      "javob": "231"
+     },
+     {
+      "shart": "345 / 5 nechaga teng?",
+      "javob": "69"
+     },
+     {
+      "shart": "1000 / 10 nechaga teng?",
+      "javob": "100"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "5 ga bo‘linadigan son 10 ga ham bo‘linadi deydi",
+      "sabab": "oxirgi raqam 5 ekanini e’tiborsiz qoldiradi",
+      "oldini_olish": "faqat oxiri 0 bo‘lsa 10 ga bo‘linadi"
+     },
+     {
+      "xato": "Oxirgi raqamga qaramaydi",
+      "sabab": "sonning boshiga qaraydi",
+      "oldini_olish": "alomat oxirgi raqamga bog‘liq"
+     },
+     {
+      "xato": "Oxiri 5 bo‘lsa 10 ga bo‘linadi deydi",
+      "sabab": "5 va 0 ni adashtiradi",
+      "oldini_olish": "0 — 10 ga, 0 va 5 — 5 ga"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "pul va tangalar almashtirish"
+     },
+     {
+      "fan": "Ona tili",
+      "boglanish": "qoidani qisqa ifodalash"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "kuzatuv sonlarini guruhlash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Alomatlar plakati»",
+     "muammo": "5 va 10 ga bo‘linish alomatlarini qanday qilib plakatda ko‘rsatamiz?",
+     "mahsulot": "alomatlar plakati",
+     "bosqichlar": [
+      "qoidani yozish",
+      "misollar tanlash",
+      "rasm chizish",
+      "tekshirish",
+      "plakat chiqarish"
+     ],
+     "guruh_vazifalari": [
+      "Qoidani yozing",
+      "Misol tanlang",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "qoida to‘g‘ri",
+      "misollar to‘g‘ri",
+      "plakat chiroyli",
+      "tushuntirish ravshan",
+      "ishtirok bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tangalar bozori»",
+     "bekatlar": [
+      {
+       "nom": "1-rasta",
+       "matn": "345 so‘mni 5 so‘mlik tangalarga.",
+       "topshiriq": "Nechta tanga?",
+       "javob": "69",
+       "rasm": ""
+      },
+      {
+       "nom": "2-rasta",
+       "matn": "120 so‘mni 10 so‘mlikka.",
+       "topshiriq": "Nechta tanga?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "3-rasta",
+       "matn": "4700 so‘mni 10 so‘mlikka.",
+       "topshiriq": "Nechta tanga?",
+       "javob": "470",
+       "rasm": ""
+      },
+      {
+       "nom": "4-rasta",
+       "matn": "455 so‘mni 5 so‘mlikka.",
+       "topshiriq": "Nechta tanga?",
+       "javob": "91",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Alomat qanday yordam berdi?",
+      "Qaysi son bo‘linmadi?",
+      "Nima uchun?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Alomat",
+      "tarif": "bo‘linishni bilish usuli"
+     },
+     {
+      "atama": "Oxirgi raqam",
+      "tarif": "sonning birlik xonasi"
+     },
+     {
+      "atama": "Bo‘linish",
+      "tarif": "qoldiqsiz bo‘lish"
+     },
+     {
+      "atama": "Qoldiq",
+      "tarif": "bo‘lishdan ortgan qism"
+     },
+     {
+      "atama": "Tanga",
+      "tarif": "pul birligi"
+     },
+     {
+      "atama": "Karrali",
+      "tarif": "songa bo‘linadigan son"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Oxiri 0 yoki 5 bo‘lsa, son 5 ga bo‘linadi",
+      "togri": true,
+      "izoh": "alomat"
+     },
+     {
+      "matn": "345 soni 10 ga bo‘linadi",
+      "togri": false,
+      "izoh": "oxiri 5"
+     },
+     {
+      "matn": "Oxiri 0 bo‘lsa, son 10 ga bo‘linadi",
+      "togri": true,
+      "izoh": "alomat"
+     },
+     {
+      "matn": "983 soni 5 ga bo‘linadi",
+      "togri": false,
+      "izoh": "oxiri 3"
+     },
+     {
+      "matn": "10 ga bo‘linadigan son 5 ga ham bo‘linadi",
+      "togri": true,
+      "izoh": "oxiri 0"
+     },
+     {
+      "matn": "2310 soni 10 ga bo‘linadi",
+      "togri": true,
+      "izoh": "oxiri 0"
+     },
+     {
+      "matn": "Alomat sonning boshiga qaraydi",
+      "togri": false,
+      "izoh": "oxirgi raqamga"
+     },
+     {
+      "matn": "455 soni 5 ga bo‘linadi",
+      "togri": true,
+      "izoh": "oxiri 5"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "5 ga bo‘linish alomati?",
+      "javob": "oxiri 0 yoki 5"
+     },
+     {
+      "savol": "10 ga bo‘linish alomati?",
+      "javob": "oxiri 0"
+     },
+     {
+      "savol": "345 soni 5 ga bo‘linadimi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "345 soni 10 ga bo‘linadimi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "983 soni 5 ga bo‘linadimi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "780 / 10?",
+      "javob": "78"
+     },
+     {
+      "savol": "455 / 5?",
+      "javob": "91"
+     },
+     {
+      "savol": "4700 / 5?",
+      "javob": "940"
+     },
+     {
+      "savol": "10 ga bo‘linadigan son 5 ga ham bo‘linadimi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Qaysi raqamga qaraymiz?",
+      "javob": "oxirgisiga"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qara",
+      "matn": "Oxirgi raqamga qara.",
+      "savol": "780 ning oxiri?"
+     },
+     {
+      "nom": "Aniqla",
+      "matn": "5 ga bo‘linadimi?",
+      "savol": "Oxiri 0 yoki 5mi?"
+     },
+     {
+      "nom": "10 ga",
+      "matn": "10 ga bo‘linadimi?",
+      "savol": "Oxiri 0mi?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Bo‘lib ko‘r.",
+      "savol": "780 / 10?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun 5 ga bo‘linish alomati faqat oxirgi raqamga qaraydi?",
+    "keys": {
+     "vaziyat": "Sizda 345 so‘m bor. Uni 5 so‘mlik tangalarga almashtirmoqchisiz.",
+     "savollar": [
+      "Pul 5 ga bo‘linadimi?",
+      "Nechta tanga olasiz?"
+     ]
+    },
+    "tezis": "Oxirgi raqam — kalit",
+    "taqqoslash": {
+     "a": "5 ga bo‘linish",
+     "b": "10 ga bo‘linish",
+     "umumiy": [
+      "oxirgi raqamga qaraymiz",
+      "qoldiq bo‘lmaydi"
+     ],
+     "a_farq": [
+      "oxiri 0 yoki 5",
+      "ko‘proq sonlar"
+     ],
+     "b_farq": [
+      "oxiri faqat 0",
+      "kamroq sonlar"
+     ]
+    },
+    "klaster": {
+     "markaz": "5 va 10 ga bo‘linish",
+     "shoxlar": [
+      {
+       "nom": "5 ga",
+       "bandlar": [
+        "oxiri 0",
+        "oxiri 5"
+       ]
+      },
+      {
+       "nom": "10 ga",
+       "bandlar": [
+        "oxiri 0"
+       ]
+      },
+      {
+       "nom": "Bog‘liqlik",
+       "bandlar": [
+        "10 ga bo‘linsa 5 ga ham"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "tangalar",
+        "pul"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men oxirimdan tanilaman: 0 yoki 5 bo‘lsam, 5 ga bo‘linaman. Men kimman?",
+     "javob": "5 ga bo‘linadigan son"
+    },
+    "hikmat": "Oxiriga qara — javobni bil.",
+    "kalit_soz": "OXIR",
+    "xato_yechim": {
+     "shart": "345 soni 10 ga bo‘linadimi?",
+     "xato": "ha",
+     "togri": "yo‘q",
+     "sabab": "oxiri 5, faqat 0 bo‘lsa 10 ga bo‘linadi"
+    },
+    "guruh_nomlari": [
+     "Alomatchilar",
+     "Tangachilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tanga bozori»",
+     "topshiriq": "Guruh pulni tangalarga almashtirib, bo‘linishni tekshiradi."
+    },
+    "vazifalar": {
+     "A": "345, 780, 983 sonlarini 5 ga bo‘linishiga tekshiring.",
+     "B": "120, 345, 1000 sonlarini 10 ga bo‘linishiga tekshiring.",
+     "C": "455 va 4700 ni 5 ga bo‘ling."
+    },
+    "sinkveyn": [
+     "Alomat",
+     "tez, oddiy",
+     "ko‘rsatadi, aytadi, tekshiradi",
+     "Oxiriga qara",
+     "Belgi"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sonlarni tekshiradi.",
+     "qismlar": [
+      "1-guruh: 345",
+      "2-guruh: 780",
+      "3-guruh: 983",
+      "4-guruh: 4700"
+     ],
+     "yakun": "5 ga: 345, 780, 4700 bo‘linadi; 983 bo‘linmaydi."
+    }
+   }
+  },
+  {
+   "mavzu": "3 ga va 9 ga bo‘linish alomatlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Raqamlar yig‘indisi",
+      "matn": "3 ga va 9 ga bo‘linishni bilish uchun sonning raqamlarini qo‘shamiz. Bu yig‘indi alomat bo‘ladi. Sonning o‘zini bo‘lib o‘tirmaymiz.",
+      "misol": "243: 2 + 4 + 3 — 9. Raqamlar yig‘indisi 9.",
+      "savol": "123 ning raqamlari yig‘indisi nechaga teng?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "3 ga bo‘linish",
+      "matn": "Raqamlar yig‘indisi 3 ga bo‘linsa, son ham 3 ga bo‘linadi.",
+      "misol": "123: 1 + 2 + 3 — 6, 6 / 3 — 2, demak 123 / 3 — 41. 345: 12, 3 ga bo‘linadi.",
+      "savol": "345 soni 3 ga bo‘linadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "9 ga bo‘linish",
+      "matn": "Raqamlar yig‘indisi 9 ga bo‘linsa, son 9 ga bo‘linadi.",
+      "misol": "4509: 4 + 5 + 0 + 9 — 18, 18 / 9 — 2, demak 4509 / 9 — 501. 123: yig‘indi 6, 9 ga bo‘linmaydi.",
+      "savol": "4509 soni 9 ga bo‘linadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bog‘liqlik",
+      "matn": "9 ga bo‘linadigan har bir son 3 ga ham bo‘linadi. Lekin 3 ga bo‘linadigan son 9 ga bo‘linmasligi mumkin.",
+      "misol": "123 va 345 faqat 3 ga bo‘linadi. 1278 (yig‘indi 18) ikkalasiga ham bo‘linadi.",
+      "savol": "1278 raqamlari yig‘indisi?",
+      "javob": "18",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bo‘linmaydigan son",
+      "matn": "Raqamlar yig‘indisi 3 ga bo‘linmasa, son 3 ga ham, 9 ga ham bo‘linmaydi.",
+      "misol": "1234: 1 + 2 + 3 + 4 — 10, 10 ni 3 ga bo‘lsak qoldiq 1. Demak 1234 bo‘linmaydi.",
+      "savol": "1234 ning raqamlari yig‘indisi?",
+      "javob": "10",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Raqamlar yig‘indisi 3 ga bo‘linsa — son 3 ga bo‘linadi. Yig‘indi 9 ga bo‘linsa — son 9 ga bo‘linadi.",
+    "misollar": [
+     {
+      "shart": "123, 345, 1234 sonlaridan qaysilari 3 ga bo‘linadi?",
+      "yechim": [
+       "123: 1 + 2 + 3 — 6, bo‘linadi.",
+       "345: 3 + 4 + 5 — 12, bo‘linadi.",
+       "1234: 1 + 2 + 3 + 4 — 10, bo‘linmaydi."
+      ],
+      "javob": "123 va 345"
+     },
+     {
+      "shart": "1278, 4509, 345 sonlaridan qaysilari 9 ga bo‘linadi?",
+      "yechim": [
+       "1278: yig‘indi 18, bo‘linadi.",
+       "4509: yig‘indi 18, bo‘linadi.",
+       "345: yig‘indi 12, 9 ga bo‘linmaydi."
+      ],
+      "javob": "1278 va 4509"
+     },
+     {
+      "shart": "243 ni 3 ga va 9 ga bo‘ling.",
+      "yechim": [
+       "Yig‘indi 9 — ikkalasiga bo‘linadi.",
+       "243 / 3 — 81.",
+       "243 / 9 — 27."
+      ],
+      "javob": "81 va 27"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Raqamlar yig‘indisi",
+      "topshiriq": "Berilgan sonlarning raqamlari yig‘indisini toping.",
+      "yechim": "123 — 6, 345 — 12, 4509 — 18.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Saralash",
+      "topshiriq": "Sonlarni 3 ga va 9 ga bo‘linishiga qarab saralang.",
+      "yechim": "Natijalar doskada tekshiriladi.",
+      "mahsulot": "sonlar kartochkasi"
+     },
+     {
+      "nom": "Son tuzamiz",
+      "topshiriq": "3 ga bo‘linadigan, lekin 9 ga bo‘linmaydigan son tuzing.",
+      "yechim": "Masalan 123.",
+      "mahsulot": "yozuv varag‘i"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 1234 ni 3 ga bo‘linadi dedi. Xato qayerda?",
+      "yechim": "Yig‘indi 10, 3 ga bo‘linmaydi.",
+      "mahsulot": "tushuntirish"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "243 / 3 nechaga teng?",
+      "javob": "81"
+     },
+     {
+      "shart": "243 / 9 nechaga teng?",
+      "javob": "27"
+     },
+     {
+      "shart": "4509 / 9 nechaga teng?",
+      "javob": "501"
+     },
+     {
+      "shart": "123 / 3 nechaga teng?",
+      "javob": "41"
+     },
+     {
+      "shart": "345 / 3 nechaga teng?",
+      "javob": "115"
+     },
+     {
+      "shart": "1278 / 9 nechaga teng?",
+      "javob": "142"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Oxirgi raqamga qaraydi",
+      "sabab": "5 ga bo‘linish alomatini aralashtiradi",
+      "oldini_olish": "3 va 9 uchun raqamlarni qo‘shish"
+     },
+     {
+      "xato": "Raqamlarni noto‘g‘ri qo‘shadi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "ikki marta qo‘shib tekshirish"
+     },
+     {
+      "xato": "3 ga bo‘linsa 9 ga ham bo‘linadi deydi",
+      "sabab": "bog‘liqlikni teskari tushunadi",
+      "oldini_olish": "9 ga bo‘linsa 3 ga bo‘linadi, teskarisi shart emas"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "narsalarni 3 ga yoki 9 ga teng bo‘lish"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "raqamlar yig‘indisi bilan tekshirish"
+     },
+     {
+      "fan": "Ona tili",
+      "boglanish": "qoidani tushunarli ifodalash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Raqamlar yig‘indisi sehri»",
+     "muammo": "Raqamlar yig‘indisi bo‘linishni qanday ko‘rsatishini qanday tushuntiramiz?",
+     "mahsulot": "sehrli jadval",
+     "bosqichlar": [
+      "sonlarni tanlash",
+      "yig‘indini topish",
+      "bo‘lib tekshirish",
+      "jadval chizish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Son tanlang",
+      "Yig‘indini toping",
+      "Tekshiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "yig‘indi to‘g‘ri",
+      "tekshiruv to‘g‘ri",
+      "jadval chiroyli",
+      "tushuntirish ravshan",
+      "ishtirok bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Raqamlar saroyi»",
+     "bekatlar": [
+      {
+       "nom": "1-xona",
+       "matn": "243 raqamlari yig‘indisi.",
+       "topshiriq": "Natija?",
+       "javob": "9",
+       "rasm": ""
+      },
+      {
+       "nom": "2-xona",
+       "matn": "4509 raqamlari yig‘indisi.",
+       "topshiriq": "Natija?",
+       "javob": "18",
+       "rasm": ""
+      },
+      {
+       "nom": "3-xona",
+       "matn": "243 / 9.",
+       "topshiriq": "Natija?",
+       "javob": "27",
+       "rasm": ""
+      },
+      {
+       "nom": "4-xona",
+       "matn": "345 / 3.",
+       "topshiriq": "Natija?",
+       "javob": "115",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Yig‘indi qanday yordam berdi?",
+      "Qaysi son bo‘linmadi?",
+      "Nima uchun?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Raqamlar yig‘indisi",
+      "tarif": "sonning raqamlarini qo‘shish natijasi"
+     },
+     {
+      "atama": "Alomat",
+      "tarif": "bo‘linishni bilish usuli"
+     },
+     {
+      "atama": "Bo‘linish",
+      "tarif": "qoldiqsiz bo‘lish"
+     },
+     {
+      "atama": "Qoldiq",
+      "tarif": "bo‘lishdan ortgan qism"
+     },
+     {
+      "atama": "Yig‘indi",
+      "tarif": "qo‘shish natijasi"
+     },
+     {
+      "atama": "Son",
+      "tarif": "sanash uchun ifoda"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Raqamlar yig‘indisi 3 ga bo‘linsa, son 3 ga bo‘linadi",
+      "togri": true,
+      "izoh": "alomat"
+     },
+     {
+      "matn": "123 soni 9 ga bo‘linadi",
+      "togri": false,
+      "izoh": "yig‘indi 6"
+     },
+     {
+      "matn": "4509 soni 9 ga bo‘linadi",
+      "togri": true,
+      "izoh": "yig‘indi 18"
+     },
+     {
+      "matn": "1234 soni 3 ga bo‘linadi",
+      "togri": false,
+      "izoh": "yig‘indi 10"
+     },
+     {
+      "matn": "9 ga bo‘linadigan son 3 ga ham bo‘linadi",
+      "togri": true,
+      "izoh": "bog‘liqlik"
+     },
+     {
+      "matn": "345 soni 3 ga bo‘linadi",
+      "togri": true,
+      "izoh": "yig‘indi 12"
+     },
+     {
+      "matn": "Alomat oxirgi raqamga qaraydi",
+      "togri": false,
+      "izoh": "raqamlar yig‘indisiga"
+     },
+     {
+      "matn": "243 soni 9 ga bo‘linadi",
+      "togri": true,
+      "izoh": "yig‘indi 9"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "3 ga bo‘linish alomati?",
+      "javob": "raqamlar yig‘indisi 3 ga bo‘linadi"
+     },
+     {
+      "savol": "9 ga bo‘linish alomati?",
+      "javob": "raqamlar yig‘indisi 9 ga bo‘linadi"
+     },
+     {
+      "savol": "123 raqamlari yig‘indisi?",
+      "javob": "6"
+     },
+     {
+      "savol": "345 raqamlari yig‘indisi?",
+      "javob": "12"
+     },
+     {
+      "savol": "4509 raqamlari yig‘indisi?",
+      "javob": "18"
+     },
+     {
+      "savol": "243 / 3?",
+      "javob": "81"
+     },
+     {
+      "savol": "243 / 9?",
+      "javob": "27"
+     },
+     {
+      "savol": "1234 3 ga bo‘linadimi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "9 ga bo‘linsa 3 ga ham?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Nimani qo‘shamiz?",
+      "javob": "raqamlarni"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qo‘sh",
+      "matn": "Raqamlarni qo‘sh.",
+      "savol": "2 + 4 + 3?"
+     },
+     {
+      "nom": "Qara",
+      "matn": "Yig‘indi nechaga bo‘linadi?",
+      "savol": "9 ni 3 ga?"
+     },
+     {
+      "nom": "9 ga",
+      "matn": "9 ga bo‘linadimi?",
+      "savol": "9 ni 9 ga?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Bo‘lib ko‘r.",
+      "savol": "243 / 9?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun 3 ga va 9 ga bo‘linishda raqamlar yig‘indisiga qaraymiz?",
+    "keys": {
+     "vaziyat": "243 ta konfetni 3 yoki 9 ta bolaga teng bo‘lib bermoqchimiz.",
+     "savollar": [
+      "Raqamlar yig‘indisi nechaga teng?",
+      "Teng bo‘lish mumkinmi?"
+     ]
+    },
+    "tezis": "Raqamlar yig‘indisi — kalit",
+    "taqqoslash": {
+     "a": "3 ga bo‘linish",
+     "b": "9 ga bo‘linish",
+     "umumiy": [
+      "raqamlar yig‘indisiga qaraymiz",
+      "qoldiq bo‘lmaydi"
+     ],
+     "a_farq": [
+      "yig‘indi 3 ga bo‘linadi",
+      "ko‘proq sonlar"
+     ],
+     "b_farq": [
+      "yig‘indi 9 ga bo‘linadi",
+      "kamroq sonlar"
+     ]
+    },
+    "klaster": {
+     "markaz": "3 va 9 ga bo‘linish",
+     "shoxlar": [
+      {
+       "nom": "Yig‘indi",
+       "bandlar": [
+        "raqamlarni qo‘sh"
+       ]
+      },
+      {
+       "nom": "3 ga",
+       "bandlar": [
+        "yig‘indi 3 ga bo‘linsa"
+       ]
+      },
+      {
+       "nom": "9 ga",
+       "bandlar": [
+        "yig‘indi 9 ga bo‘linsa"
+       ]
+      },
+      {
+       "nom": "Bog‘liqlik",
+       "bandlar": [
+        "9 ga bo‘linsa 3 ga ham"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men raqamlarimni qo‘shsangiz, bo‘linishimni ko‘rsataman. Men kimman?",
+     "javob": "3 yoki 9 ga bo‘linadigan son"
+    },
+    "hikmat": "Qo‘sh va bil.",
+    "kalit_soz": "YIG‘INDI",
+    "xato_yechim": {
+     "shart": "1234 soni 3 ga bo‘linadimi?",
+     "xato": "ha",
+     "togri": "yo‘q",
+     "sabab": "raqamlar yig‘indisi 10, 3 ga bo‘linmaydi"
+    },
+    "guruh_nomlari": [
+     "Yig‘indichilar",
+     "Alomatchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Konfet bo‘lish»",
+     "topshiriq": "Guruh konfetlar sonini 3 va 9 ga bo‘lishni alomat bilan tekshiradi."
+    },
+    "vazifalar": {
+     "A": "123, 345, 1234 sonlarini 3 ga bo‘linishiga tekshiring.",
+     "B": "1278, 4509, 345 sonlarini 9 ga bo‘linishiga tekshiring.",
+     "C": "243 ni 3 ga va 9 ga bo‘ling."
+    },
+    "sinkveyn": [
+     "Yig‘indi",
+     "kichik, aniq",
+     "qo‘shadi, bildiradi, ko‘rsatadi",
+     "Qo‘sh va bil",
+     "Son"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sonlarni tekshiradi.",
+     "qismlar": [
+      "1-guruh: 243",
+      "2-guruh: 4509",
+      "3-guruh: 1278",
+      "4-guruh: 1234"
+     ],
+     "yakun": "243, 4509, 1278 — 3 ga va 9 ga bo‘linadi; 1234 bo‘linmaydi."
+    }
+   }
+  },
+  {
+   "mavzu": "2 ga va 4 ga bo‘linish alomatlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "2 ga bo‘linish",
+      "matn": "Sonning oxirgi raqami juft (0, 2, 4, 6, 8) bo‘lsa, son 2 ga bo‘linadi. Oxirgi raqami toq (1, 3, 5, 7, 9) bo‘lsa, bo‘linmaydi.",
+      "misol": "316 oxiri 6, juft — 2 ga bo‘linadi. 3571 oxiri 1, toq — bo‘linmaydi.",
+      "savol": "3478 soni 2 ga bo‘linadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Juft va toq",
+      "matn": "2 ga bo‘linadigan sonlar juft, bo‘linmaydigan sonlar toq deyiladi. Juft sonlarni juft-juft qilib bo‘lish mumkin.",
+      "misol": "124 juft, 125 toq. 2468 juft.",
+      "savol": "7 juftmi yoki toqmi?",
+      "javob": "toq",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "4 ga bo‘linish",
+      "matn": "Sonning oxirgi ikkita raqamidan hosil bo‘lgan son 4 ga bo‘linsa, butun son ham 4 ga bo‘linadi. Oxirgi ikki raqam nol bo‘lsa ham bo‘linadi.",
+      "misol": "724: oxirgi ikki raqam 24, 24 / 4 — 6, demak 724 / 4 — 181. 1350: 50 ni 4 ga bo‘lsak qoldiq 2, bo‘linmaydi.",
+      "savol": "724 soni 4 ga bo‘linadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bog‘liqlik",
+      "matn": "4 ga bo‘linadigan har bir son 2 ga ham bo‘linadi. Lekin 2 ga bo‘linadigan son 4 ga bo‘linmasligi mumkin.",
+      "misol": "126 juft, lekin 26 / 4 qoldiqli, shuning uchun 126 faqat 2 ga bo‘linadi. 508 ikkalasiga ham bo‘linadi.",
+      "savol": "508 soni 4 ga bo‘linadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotiy misol",
+      "matn": "Narsalarni juftlab yoki to‘rttalab guruhlaganda alomat kerak: 316 ta bolani ikkitadan va to‘rttadan guruhlash mumkinmi?",
+      "misol": "316: oxiri 6, juft; oxirgi ikki raqam 16, 16 / 4 — 4, demak to‘rttadan 79 guruh bo‘ladi.",
+      "savol": "316 / 4 nechaga teng?",
+      "javob": "79",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Oxirgi raqami juft bo‘lsa — 2 ga bo‘linadi. Oxirgi ikki raqamidan hosil bo‘lgan son 4 ga bo‘linsa — butun son 4 ga bo‘linadi.",
+    "misollar": [
+     {
+      "shart": "316, 3571, 3478 sonlaridan qaysilari 2 ga bo‘linadi?",
+      "yechim": [
+       "316 oxiri 6 — juft.",
+       "3571 oxiri 1 — toq.",
+       "3478 oxiri 8 — juft."
+      ],
+      "javob": "316 va 3478"
+     },
+     {
+      "shart": "724, 1350, 508 sonlaridan qaysilari 4 ga bo‘linadi?",
+      "yechim": [
+       "724: 24 / 4 — 6, bo‘linadi.",
+       "1350: 50 ni 4 ga bo‘lsak qoldiq 2.",
+       "508: 08 / 4 — 2, bo‘linadi."
+      ],
+      "javob": "724 va 508"
+     },
+     {
+      "shart": "316 ni 2 ga va 4 ga bo‘ling.",
+      "yechim": [
+       "Oxiri 6 va 16 / 4 — ikkala songa bo‘linadi.",
+       "316 / 2 — 158.",
+       "316 / 4 — 79."
+      ],
+      "javob": "158 va 79"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Juft yoki toq",
+      "topshiriq": "Berilgan sonlarni juft va toqqa ajrating.",
+      "yechim": "Natijalar doskada tekshiriladi.",
+      "mahsulot": "sonlar kartochkasi"
+     },
+     {
+      "nom": "Oxirgi ikki raqam",
+      "topshiriq": "Sonlarning oxirgi ikki raqamini ajratib, 4 ga bo‘linishini tekshiring.",
+      "yechim": "724 — 24, 508 — 08.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Son tuzamiz",
+      "topshiriq": "2 ga bo‘linadigan, lekin 4 ga bo‘linmaydigan son tuzing.",
+      "yechim": "Masalan 126.",
+      "mahsulot": "yozuv varag‘i"
+     },
+     {
+      "nom": "Xato topamiz",
+      "topshiriq": "Do‘stingiz 1350 ni 4 ga bo‘linadi dedi. Xato qayerda?",
+      "yechim": "50 ni 4 ga bo‘lsak qoldiq 2, 1350 bo‘linmaydi.",
+      "mahsulot": "tushuntirish"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "316 / 2 nechaga teng?",
+      "javob": "158"
+     },
+     {
+      "shart": "316 / 4 nechaga teng?",
+      "javob": "79"
+     },
+     {
+      "shart": "724 / 4 nechaga teng?",
+      "javob": "181"
+     },
+     {
+      "shart": "508 / 4 nechaga teng?",
+      "javob": "127"
+     },
+     {
+      "shart": "2468 / 2 nechaga teng?",
+      "javob": "1234"
+     },
+     {
+      "shart": "1000 / 4 nechaga teng?",
+      "javob": "250"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "2 ga bo‘linsa 4 ga ham bo‘linadi deydi",
+      "sabab": "bog‘liqlikni teskari tushunadi",
+      "oldini_olish": "4 ga bo‘linsa 2 ga bo‘linadi, teskarisi shart emas"
+     },
+     {
+      "xato": "4 uchun faqat oxirgi raqamga qaraydi",
+      "sabab": "oxirgi ikki raqamni olmaydi",
+      "oldini_olish": "oxirgi ikkita raqamni ajratib olish"
+     },
+     {
+      "xato": "Toq sonni 2 ga bo‘linadi deydi",
+      "sabab": "juft va toqni adashtiradi",
+      "oldini_olish": "oxiri 0, 2, 4, 6, 8 bo‘lsa — juft"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "narsalarni juftlab guruhlash"
+     },
+     {
+      "fan": "Jismoniy tarbiya",
+      "boglanish": "jufti bilan mashq qilish"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "juft va toq raqamlar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Juft va toq o‘yini»",
+     "muammo": "Juft va toq sonlar bilan qanday o‘yin yasaymiz?",
+     "mahsulot": "juft-toq o‘yini",
+     "bosqichlar": [
+      "sonlarni tanlash",
+      "kartochka yasash",
+      "qoidalar yozish",
+      "sinab ko‘rish",
+      "o‘ynash"
+     ],
+     "guruh_vazifalari": [
+      "Son tanlang",
+      "Kartochka yasang",
+      "Sinang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sonlar to‘g‘ri",
+      "qoidalar ravshan",
+      "o‘yin qiziqarli",
+      "chiroyli",
+      "ishtirok bor"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Juftlar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-gulzor",
+       "matn": "316 ta gul 2 ga bo‘linadimi?",
+       "topshiriq": "316 / 2?",
+       "javob": "158",
+       "rasm": ""
+      },
+      {
+       "nom": "2-gulzor",
+       "matn": "316 ta gul 4 ga bo‘linadimi?",
+       "topshiriq": "316 / 4?",
+       "javob": "79",
+       "rasm": ""
+      },
+      {
+       "nom": "3-gulzor",
+       "matn": "724 ta daraxtni 4 qatorga.",
+       "topshiriq": "Har qatorda?",
+       "javob": "181",
+       "rasm": ""
+      },
+      {
+       "nom": "4-gulzor",
+       "matn": "508 ta olma 4 savatga.",
+       "topshiriq": "Har savatda?",
+       "javob": "127",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi alomat yordam berdi?",
+      "Qaysi son bo‘linmadi?",
+      "Nima uchun?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Juft son",
+      "tarif": "2 ga bo‘linadigan son"
+     },
+     {
+      "atama": "Toq son",
+      "tarif": "2 ga bo‘linmaydigan son"
+     },
+     {
+      "atama": "Alomat",
+      "tarif": "bo‘linishni bilish usuli"
+     },
+     {
+      "atama": "Oxirgi ikki raqam",
+      "tarif": "birlik va o‘nlik xonasi"
+     },
+     {
+      "atama": "Bo‘linish",
+      "tarif": "qoldiqsiz bo‘lish"
+     },
+     {
+      "atama": "Qoldiq",
+      "tarif": "bo‘lishdan ortgan qism"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Oxiri juft bo‘lsa, son 2 ga bo‘linadi",
+      "togri": true,
+      "izoh": "alomat"
+     },
+     {
+      "matn": "3571 soni 2 ga bo‘linadi",
+      "togri": false,
+      "izoh": "oxiri 1"
+     },
+     {
+      "matn": "724 soni 4 ga bo‘linadi",
+      "togri": true,
+      "izoh": "24 / 4 — 6"
+     },
+     {
+      "matn": "1350 soni 4 ga bo‘linadi",
+      "togri": false,
+      "izoh": "50 ni 4 ga bo‘lsak qoldiq 2"
+     },
+     {
+      "matn": "4 ga bo‘linadigan son 2 ga ham bo‘linadi",
+      "togri": true,
+      "izoh": "bog‘liqlik"
+     },
+     {
+      "matn": "126 soni 4 ga bo‘linadi",
+      "togri": false,
+      "izoh": "26 / 4 qoldiqli"
+     },
+     {
+      "matn": "508 soni 4 ga bo‘linadi",
+      "togri": true,
+      "izoh": "08 / 4 — 2"
+     },
+     {
+      "matn": "Toq son 2 ga bo‘linadi",
+      "togri": false,
+      "izoh": "bo‘linmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "2 ga bo‘linish alomati?",
+      "javob": "oxiri juft"
+     },
+     {
+      "savol": "4 ga bo‘linish alomati?",
+      "javob": "oxirgi ikki raqam 4 ga bo‘linadi"
+     },
+     {
+      "savol": "316 soni juftmi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "3571 soni juftmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "724 4 ga bo‘linadimi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "1350 4 ga bo‘linadimi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "316 / 4?",
+      "javob": "79"
+     },
+     {
+      "savol": "508 / 4?",
+      "javob": "127"
+     },
+     {
+      "savol": "4 ga bo‘linsa 2 ga ham?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Juft raqamlar?",
+      "javob": "0, 2, 4, 6, 8"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qara",
+      "matn": "Oxirgi raqamga qara.",
+      "savol": "316 ning oxiri?"
+     },
+     {
+      "nom": "Juftmi?",
+      "matn": "2 ga bo‘linadimi?",
+      "savol": "6 juftmi?"
+     },
+     {
+      "nom": "Ikki raqam",
+      "matn": "Oxirgi ikkitasini ol.",
+      "savol": "724 dan?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "4 ga bo‘l.",
+      "savol": "24 / 4?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun 4 ga bo‘linishda oxirgi ikki raqamga qaraymiz?",
+    "keys": {
+     "vaziyat": "316 ta bolani 2 yoki 4 tadan guruhlamoqchimiz.",
+     "savollar": [
+      "316 juftmi?",
+      "4 tadan guruhlash mumkinmi?"
+     ]
+    },
+    "tezis": "Juftga qara, ikkita raqamga qara",
+    "taqqoslash": {
+     "a": "2 ga bo‘linish",
+     "b": "4 ga bo‘linish",
+     "umumiy": [
+      "oxirgi raqamlarga qaraymiz",
+      "qoldiq bo‘lmaydi"
+     ],
+     "a_farq": [
+      "oxirgi bitta raqam",
+      "juft son"
+     ],
+     "b_farq": [
+      "oxirgi ikkita raqam",
+      "4 ga bo‘linadigan ikki xonali son"
+     ]
+    },
+    "klaster": {
+     "markaz": "2 va 4 ga bo‘linish",
+     "shoxlar": [
+      {
+       "nom": "2 ga",
+       "bandlar": [
+        "oxiri juft"
+       ]
+      },
+      {
+       "nom": "4 ga",
+       "bandlar": [
+        "oxirgi ikki raqam"
+       ]
+      },
+      {
+       "nom": "Bog‘liqlik",
+       "bandlar": [
+        "4 ga bo‘linsa 2 ga ham"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "juftlash",
+        "guruhlash"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men oxirimdan tanilaman: juft bo‘lsam, 2 ga bo‘linaman. Men kimman?",
+     "javob": "juft son"
+    },
+    "hikmat": "Juft — jufti bilan.",
+    "kalit_soz": "JUFT",
+    "xato_yechim": {
+     "shart": "1350 soni 4 ga bo‘linadimi?",
+     "xato": "ha",
+     "togri": "yo‘q",
+     "sabab": "oxirgi ikki raqam 50, 50 ni 4 ga bo‘lsak qoldiq 2"
+    },
+    "guruh_nomlari": [
+     "Juftchilar",
+     "Alomatchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Guruhlash o‘yini»",
+     "topshiriq": "Guruh sonlarni 2 va 4 ga bo‘linishga tekshiradi."
+    },
+    "vazifalar": {
+     "A": "316, 3571, 3478 sonlarini 2 ga bo‘linishiga tekshiring.",
+     "B": "724, 1350, 508 sonlarini 4 ga bo‘linishiga tekshiring.",
+     "C": "316 ni 2 ga va 4 ga bo‘ling."
+    },
+    "sinkveyn": [
+     "Juft",
+     "ikki, teng",
+     "juftlaydi, bo‘ladi, tenglaydi",
+     "Juft-juft",
+     "Son"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sonlarni tekshiradi.",
+     "qismlar": [
+      "1-guruh: 316",
+      "2-guruh: 724",
+      "3-guruh: 508",
+      "4-guruh: 1350"
+     ],
+     "yakun": "316, 724, 508 — 4 ga bo‘linadi; 1350 — faqat 2 ga bo‘linadi."
+    }
+   }
   }
  ]
 }
