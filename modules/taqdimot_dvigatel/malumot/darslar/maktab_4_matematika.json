@@ -17947,6 +17947,1381 @@
      "yakun": "Natijalar: jami 30; farq 8; farq 5; yarmi 15."
     }
    }
+  },
+  {
+   "mavzu": "Diagrammalar yordamida masalalar yechish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Diagrammadan ma’lumot olamiz",
+      "matn": "Diagramma masalaning shartini rasmda ko‘rsatadi. Avval sarlavhani o‘qiymiz, so‘ng har bir ustun nimani bildirishini aniqlaymiz.",
+      "misol": "Baholar: 5 — 8 ta, 4 — 12 ta, 3 — 6 ta, 2 — 4 ta.",
+      "savol": "Diagrammani o‘qishni nimadan boshlaymiz?",
+      "javob": "sarlavhadan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Jami topamiz",
+      "matn": "Hamma ustunlardagi sonlarni qo‘shsak, jami chiqadi.",
+      "misol": "8 + 12 + 6 + 4 — 30 o‘quvchi.",
+      "savol": "8 + 12 + 6 + 4 nechaga teng?",
+      "javob": "30",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Farqni topamiz",
+      "matn": "Ikki ustunni taqqoslash uchun katta sondan kichigini ayiramiz.",
+      "misol": "12 − 4 — 8. To‘rt baho olganlar ikki baho olganlardan 8 ta ko‘p.",
+      "savol": "12 − 4 nechaga teng?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikki ustunni qo‘shamiz",
+      "matn": "Ba’zan faqat ikkita ustunning yig‘indisi so‘raladi.",
+      "misol": "Besh va to‘rt baho olganlar: 8 + 12 — 20.",
+      "savol": "8 + 12 nechaga teng?",
+      "javob": "20",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshiramiz",
+      "matn": "Javob diagrammaga mos kelishini tekshiramiz. Qismlar yig‘indisi butunga teng bo‘lishi kerak.",
+      "misol": "20 + 6 + 4 — 30. To‘g‘ri.",
+      "savol": "20 + 6 + 4 nechaga teng?",
+      "javob": "30",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Diagrammadagi sonlarni o‘qi, kerakli amalni tanla: jami — qo‘shish, farq — ayirish. Javobni tekshir.",
+    "misollar": [
+     {
+      "shart": "Baholar: 5 — 8 ta, 4 — 12 ta, 3 — 6 ta, 2 — 4 ta. Sinfda necha o‘quvchi bor?",
+      "yechim": [
+       "Hamma ustunlarni qo‘shamiz.",
+       "8 + 12 + 6 + 4.",
+       "Javob 30 o‘quvchi."
+      ],
+      "javob": "30"
+     },
+     {
+      "shart": "To‘rt baho olganlar ikki baho olganlardan nechta ko‘p?",
+      "yechim": [
+       "To‘rt baho: 12, ikki baho: 4.",
+       "12 − 4.",
+       "Javob 8 ta."
+      ],
+      "javob": "8 ta"
+     },
+     {
+      "shart": "Besh va to‘rt baho olganlar jami nechta?",
+      "yechim": [
+       "8 + 12.",
+       "Javob 20 ta.",
+       "Tekshirish: 20 + 6 + 4 — 30."
+      ],
+      "javob": "20 ta"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Diagramma o‘qiymiz",
+      "topshiriq": "Berilgan diagrammadan uchta savolga javob toping.",
+      "yechim": "Javoblar tekshiriladi.",
+      "mahsulot": "diagramma varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Diagrammaga mos masala tuzing.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Diagramma chizamiz",
+      "topshiriq": "Masala shartiga ko‘ra ustunli diagramma chizing.",
+      "yechim": "Ustun balandligi sonni bildiradi.",
+      "mahsulot": "chizma varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Qismlar yig‘indisini butun bilan solishtiring.",
+      "yechim": "20 + 6 + 4 — 30.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "8 + 12 + 6 + 4 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "12 − 4 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "8 + 12 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "20 + 6 + 4 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "Eng baland ustun nimani bildiradi?",
+      "javob": "eng katta sonni"
+     },
+     {
+      "shart": "Diagramma sarlavhasi nima uchun kerak?",
+      "javob": "mavzuni bilish uchun"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Sarlavhani o‘qimaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "avval sarlavha"
+     },
+     {
+      "xato": "Ustunlarni adashtiradi",
+      "sabab": "yozuvlarga qaramaydi",
+      "oldini_olish": "har ustun yozuvini o‘qish"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "javobni solishtirmaydi",
+      "oldini_olish": "qismlar yig‘indisini butun bilan solishtirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "sinf so‘rovi natijalari"
+     },
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "kuzatuv diagrammasi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "jadvaldan diagramma"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sinf so‘rovi»",
+     "muammo": "Sinfda so‘rov o‘tkazib, natijani diagrammada qanday ko‘rsatamiz?",
+     "mahsulot": "so‘rov diagrammasi",
+     "bosqichlar": [
+      "savol tanlash",
+      "so‘rov o‘tkazish",
+      "jadval tuzish",
+      "diagramma chizish",
+      "xulosa"
+     ],
+     "guruh_vazifalari": [
+      "Savol tanlang",
+      "So‘rov o‘tkazing",
+      "Diagramma chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "savol aniq",
+      "sonlar to‘g‘ri",
+      "diagramma to‘g‘ri",
+      "chiroyli",
+      "xulosa mantiqli"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Diagramma ko‘prigi»",
+     "bekatlar": [
+      {
+       "nom": "1-ustun",
+       "matn": "Baholar 8, 12, 6, 4.",
+       "topshiriq": "Jami?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ustun",
+       "matn": "12 va 4.",
+       "topshiriq": "Farq?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ustun",
+       "matn": "8 va 12.",
+       "topshiriq": "Yig‘indi?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ustun",
+       "matn": "20, 6 va 4.",
+       "topshiriq": "Jami?",
+       "javob": "30",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi ustun eng baland?",
+      "Nimani qo‘shdingiz?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Diagramma",
+      "tarif": "ma’lumot rasmi"
+     },
+     {
+      "atama": "Ustun",
+      "tarif": "diagrammadagi to‘rtburchak"
+     },
+     {
+      "atama": "Sarlavha",
+      "tarif": "diagramma nomi"
+     },
+     {
+      "atama": "Jami",
+      "tarif": "hammasining yig‘indisi"
+     },
+     {
+      "atama": "Farq",
+      "tarif": "ikki sonning ayirmasi"
+     },
+     {
+      "atama": "Taqqoslash",
+      "tarif": "solishtirish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Jami topish uchun qo‘shamiz",
+      "togri": true,
+      "izoh": "yig‘indi"
+     },
+     {
+      "matn": "Farqni topish uchun qo‘shamiz",
+      "togri": false,
+      "izoh": "ayiramiz"
+     },
+     {
+      "matn": "8 + 12 + 6 + 4 — 30",
+      "togri": true,
+      "izoh": "jami"
+     },
+     {
+      "matn": "12 − 4 — 8",
+      "togri": true,
+      "izoh": "farq"
+     },
+     {
+      "matn": "Baland ustun kichik son",
+      "togri": false,
+      "izoh": "katta son"
+     },
+     {
+      "matn": "Sarlavha kerak",
+      "togri": true,
+      "izoh": "mavzu"
+     },
+     {
+      "matn": "Tekshirish shart emas",
+      "togri": false,
+      "izoh": "kerak"
+     },
+     {
+      "matn": "20 + 6 + 4 — 30",
+      "togri": true,
+      "izoh": "tekshirish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Diagramma nima?",
+      "javob": "ma’lumot rasmi"
+     },
+     {
+      "savol": "Jami qanday topiladi?",
+      "javob": "qo‘shiladi"
+     },
+     {
+      "savol": "Farq qanday topiladi?",
+      "javob": "ayiriladi"
+     },
+     {
+      "savol": "8 + 12 + 6 + 4?",
+      "javob": "30"
+     },
+     {
+      "savol": "12 − 4?",
+      "javob": "8"
+     },
+     {
+      "savol": "8 + 12?",
+      "javob": "20"
+     },
+     {
+      "savol": "Baland ustun?",
+      "javob": "katta son"
+     },
+     {
+      "savol": "Birinchi nimani o‘qiymiz?",
+      "javob": "sarlavhani"
+     },
+     {
+      "savol": "Tekshirish usuli?",
+      "javob": "qismlar yig‘indisi"
+     },
+     {
+      "savol": "Taqqoslash?",
+      "javob": "ayirish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Sarlavha",
+      "matn": "Sarlavhani o‘qi.",
+      "savol": "Nima haqida?"
+     },
+     {
+      "nom": "Ustun",
+      "matn": "Ustunni o‘qi.",
+      "savol": "Qaysi baland?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Amalni bajar.",
+      "savol": "8 + 12?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Yig‘indini tekshir.",
+      "savol": "20 + 6 + 4?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun masalani diagramma yordamida yechish qulay?",
+    "keys": {
+     "vaziyat": "Sinfda baholar diagrammasi chizilgan: 8, 12, 6 va 4 ta.",
+     "savollar": [
+      "Sinfda nechta o‘quvchi bor?",
+      "Qaysi baho eng ko‘p?"
+     ]
+    },
+    "tezis": "Rasmga qarab hisobla",
+    "taqqoslash": {
+     "a": "Jadval",
+     "b": "Diagramma",
+     "umumiy": [
+      "ma’lumotni ko‘rsatadi",
+      "sonlar bor"
+     ],
+     "a_farq": [
+      "sonlar qatori",
+      "o‘qish sekinroq"
+     ],
+     "b_farq": [
+      "rasm",
+      "tez taqqoslanadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Diagramma masalasi",
+     "shoxlar": [
+      {
+       "nom": "O‘qish",
+       "bandlar": [
+        "sarlavha",
+        "ustunlar"
+       ]
+      },
+      {
+       "nom": "Jami",
+       "bandlar": [
+        "qo‘shish"
+       ]
+      },
+      {
+       "nom": "Farq",
+       "bandlar": [
+        "ayirish"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "yig‘indi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ma’lumotni ustunlar bilan ko‘rsataman. Men kimman?",
+     "javob": "diagramma"
+    },
+    "hikmat": "Ko‘rgan — hisoblaydi.",
+    "kalit_soz": "DIAGRAMMA",
+    "xato_yechim": {
+     "shart": "Baholar 8, 12, 6, 4. Jami necha o‘quvchi?",
+     "xato": "26",
+     "togri": "30",
+     "sabab": "hamma ustunlar qo‘shiladi"
+    },
+    "guruh_nomlari": [
+     "Diagrammachilar",
+     "Hisobchilar",
+     "Chizmachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Diagramma bo‘yicha masala»",
+     "topshiriq": "Guruh diagrammadan masala tuzib, yechadi."
+    },
+    "vazifalar": {
+     "A": "Diagramma bo‘yicha jami o‘quvchilarni toping.",
+     "B": "To‘rt va ikki baho olganlar farqini toping.",
+     "C": "Besh va to‘rt baho olganlar yig‘indisini toping va tekshiring."
+    },
+    "sinkveyn": [
+     "Diagramma",
+     "rangli, aniq",
+     "ko‘rsatadi, taqqoslaydi, hisoblaydi",
+     "Rasm — so‘zdan aniq",
+     "Ustun"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh diagramma masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: jami",
+      "2-guruh: farq",
+      "3-guruh: yig‘indi",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 30; 8; 20; tekshirish 30."
+    }
+   }
+  },
+  {
+   "mavzu": "Yassi geometrik shakllar. Perimetr",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yassi shakllar",
+      "matn": "Yassi shakllar qog‘ozga chizilgan shakllardir: to‘g‘ri to‘rtburchak, kvadrat, uchburchak, doira. Ularning tomonlari va burchaklari bor.",
+      "misol": "To‘g‘ri to‘rtburchakning 4 ta tomoni va 4 ta to‘g‘ri burchagi bor.",
+      "savol": "To‘g‘ri to‘rtburchakda nechta tomon bor?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Perimetr nima?",
+      "matn": "Shaklning hamma tomonlari uzunliklari yig‘indisi perimetr deyiladi. Uni P harfi bilan belgilaymiz.",
+      "misol": "Uchburchak tomonlari 6, 8, 10: P — 6 + 8 + 10 — 24.",
+      "savol": "6 + 8 + 10 nechaga teng?",
+      "javob": "24",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri to‘rtburchak perimetri",
+      "matn": "To‘g‘ri to‘rtburchakda qarama-qarshi tomonlar teng. Perimetr — uzunlik va kenglik yig‘indisining ikki baravari.",
+      "misol": "Uzunlik 8, kenglik 5: P — (8 + 5) · 2 — 26.",
+      "savol": "(8 + 5) · 2 nechaga teng?",
+      "javob": "26",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kvadrat perimetri",
+      "matn": "Kvadratning 4 ta tomoni teng. Perimetr — tomon ko‘paytirilsin 4 ga.",
+      "misol": "Tomon 7: P — 7 · 4 — 28.",
+      "savol": "7 · 4 nechaga teng?",
+      "javob": "28",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tomonni topamiz",
+      "matn": "Perimetr va bir tomon ma’lum bo‘lsa, boshqa tomonni topish mumkin. Yarim perimetrdan ma’lum tomonni ayiramiz.",
+      "misol": "P — 30, uzunlik 9. Yarim perimetr 15, kenglik 15 − 9 — 6.",
+      "savol": "15 − 9 nechaga teng?",
+      "javob": "6",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Perimetr — hamma tomonlar yig‘indisi. To‘g‘ri to‘rtburchak: (a + b) · 2. Kvadrat: tomon ko‘paytirilsin 4 ga.",
+    "misollar": [
+     {
+      "shart": "Uchburchak tomonlari 6, 8 va 10 sm. Perimetrni toping.",
+      "yechim": [
+       "Hamma tomonlarni qo‘shamiz.",
+       "6 + 8 + 10.",
+       "Javob 24 sm."
+      ],
+      "javob": "24 sm"
+     },
+     {
+      "shart": "To‘g‘ri to‘rtburchak uzunligi 8 sm, kengligi 5 sm. Perimetri?",
+      "yechim": [
+       "Yarim perimetr: 8 + 5 — 13.",
+       "Perimetr: 13 · 2.",
+       "Javob 26 sm."
+      ],
+      "javob": "26 sm"
+     },
+     {
+      "shart": "Kvadrat tomoni 7 sm. Perimetri?",
+      "yechim": [
+       "Tomon ko‘paytirilsin 4 ga.",
+       "7 · 4.",
+       "Javob 28 sm."
+      ],
+      "javob": "28 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Shakllarni o‘lchaymiz",
+      "topshiriq": "Sinfdagi shakllarning tomonlarini o‘lchab, perimetrini toping.",
+      "yechim": "Natijalar jadvalga yoziladi.",
+      "mahsulot": "o‘lchov varag‘i"
+     },
+     {
+      "nom": "Ip bilan perimetr",
+      "topshiriq": "Ipni shakl tomonlariga qo‘yib, uzunligini o‘lchang.",
+      "yechim": "Ip uzunligi perimetrga teng.",
+      "mahsulot": "ip va chizg‘ich"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Perimetrga masala tuzing.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Perimetrni ikki usulda hisoblang.",
+      "yechim": "8 + 5 + 8 + 5 — 26 va (8 + 5) · 2 — 26.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "6 + 8 + 10 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "(8 + 5) · 2 nechaga teng?",
+      "javob": "26"
+     },
+     {
+      "shart": "7 · 4 nechaga teng?",
+      "javob": "28"
+     },
+     {
+      "shart": "(9 + 4) · 2 nechaga teng?",
+      "javob": "26"
+     },
+     {
+      "shart": "30 / 2 − 9 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "Kvadratda nechta teng tomon bor?",
+      "javob": "4"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Faqat ikki tomonni qo‘shadi",
+      "sabab": "qolgan tomonlarni unutadi",
+      "oldini_olish": "hamma tomonlarni qo‘shish"
+     },
+     {
+      "xato": "Perimetrni yuz bilan aralashtiradi",
+      "sabab": "ta’rifni bilmaydi",
+      "oldini_olish": "perimetr — tomonlar yig‘indisi"
+     },
+     {
+      "xato": "Birlikni yozmaydi",
+      "sabab": "sm ni unutadi",
+      "oldini_olish": "javobga birlik yozish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "bog‘ni o‘rab olish uchun to‘siq"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "ramka yasash"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "shakllarni chizish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening bog‘im»",
+     "muammo": "Bog‘imizni to‘siq bilan qanday o‘raymiz?",
+     "mahsulot": "bog‘ maketi",
+     "bosqichlar": [
+      "shakl tanlash",
+      "tomonlarni o‘lchash",
+      "perimetr hisoblash",
+      "maket yasash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Shakl tanlang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "maket chiroyli",
+      "birlik yozilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Shakllar shahri»",
+     "bekatlar": [
+      {
+       "nom": "Uchburchak maydoni",
+       "matn": "Tomonlar 6, 8, 10.",
+       "topshiriq": "Perimetr?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "To‘rtburchak ko‘chasi",
+       "matn": "8 va 5.",
+       "topshiriq": "Perimetr?",
+       "javob": "26",
+       "rasm": ""
+      },
+      {
+       "nom": "Kvadrat bog‘i",
+       "matn": "Tomon 7.",
+       "topshiriq": "Perimetr?",
+       "javob": "28",
+       "rasm": ""
+      },
+      {
+       "nom": "Noma’lum tomon",
+       "matn": "P — 30, uzunlik 9.",
+       "topshiriq": "Kenglik?",
+       "javob": "6",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi shaklni topdingiz?",
+      "Qaysi usulni tanladingiz?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Perimetr",
+      "tarif": "tomonlar yig‘indisi"
+     },
+     {
+      "atama": "Tomon",
+      "tarif": "shakl chizig‘i"
+     },
+     {
+      "atama": "Uzunlik",
+      "tarif": "katta tomon"
+     },
+     {
+      "atama": "Kenglik",
+      "tarif": "kichik tomon"
+     },
+     {
+      "atama": "Kvadrat",
+      "tarif": "4 tomoni teng shakl"
+     },
+     {
+      "atama": "Uchburchak",
+      "tarif": "uch tomonli shakl"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Perimetr — hamma tomonlar yig‘indisi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Kvadratda 3 ta tomon bor",
+      "togri": false,
+      "izoh": "4 ta"
+     },
+     {
+      "matn": "6 + 8 + 10 — 24",
+      "togri": true,
+      "izoh": "uchburchak"
+     },
+     {
+      "matn": "(8 + 5) · 2 — 26",
+      "togri": true,
+      "izoh": "to‘rtburchak"
+     },
+     {
+      "matn": "7 · 4 — 28",
+      "togri": true,
+      "izoh": "kvadrat"
+     },
+     {
+      "matn": "Perimetr — ichki qism",
+      "togri": false,
+      "izoh": "tomonlar yig‘indisi"
+     },
+     {
+      "matn": "30 / 2 − 9 — 6",
+      "togri": true,
+      "izoh": "kenglik"
+     },
+     {
+      "matn": "Birlikni yozish shart emas",
+      "togri": false,
+      "izoh": "yozish kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Perimetr nima?",
+      "javob": "tomonlar yig‘indisi"
+     },
+     {
+      "savol": "Kvadrat perimetri?",
+      "javob": "tomon ko‘paytirilsin 4 ga"
+     },
+     {
+      "savol": "To‘rtburchak perimetri?",
+      "javob": "(a + b) · 2"
+     },
+     {
+      "savol": "6 + 8 + 10?",
+      "javob": "24"
+     },
+     {
+      "savol": "(8 + 5) · 2?",
+      "javob": "26"
+     },
+     {
+      "savol": "7 · 4?",
+      "javob": "28"
+     },
+     {
+      "savol": "(9 + 4) · 2?",
+      "javob": "26"
+     },
+     {
+      "savol": "Yarim perimetr?",
+      "javob": "perimetrning yarmi"
+     },
+     {
+      "savol": "30 / 2?",
+      "javob": "15"
+     },
+     {
+      "savol": "Kvadratda tomonlar?",
+      "javob": "to‘rttasi teng"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘lcha",
+      "matn": "Tomonni o‘lcha.",
+      "savol": "Necha sm?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "Tomonlarni qo‘sh.",
+      "savol": "6 + 8 + 10?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Kvadrat uchun.",
+      "savol": "7 · 4?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Ikki usul.",
+      "savol": "26 chiqdimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bog‘ni o‘rash uchun perimetrni bilish kerak?",
+    "keys": {
+     "vaziyat": "Bog‘ uzunligi 8 m, kengligi 5 m. Uni to‘siq bilan o‘rash kerak.",
+     "savollar": [
+      "Necha metr to‘siq kerak?",
+      "Qaysi formuladan foydalanamiz?"
+     ]
+    },
+    "tezis": "Perimetr — o‘rab chiq",
+    "taqqoslash": {
+     "a": "To‘g‘ri to‘rtburchak",
+     "b": "Kvadrat",
+     "umumiy": [
+      "4 ta tomon",
+      "4 ta to‘g‘ri burchak"
+     ],
+     "a_farq": [
+      "qarama-qarshi tomonlar teng",
+      "(a + b) · 2"
+     ],
+     "b_farq": [
+      "hamma tomonlar teng",
+      "tomon · 4"
+     ]
+    },
+    "klaster": {
+     "markaz": "Perimetr",
+     "shoxlar": [
+      {
+       "nom": "Uchburchak",
+       "bandlar": [
+        "hamma tomonlar yig‘indisi"
+       ]
+      },
+      {
+       "nom": "To‘rtburchak",
+       "bandlar": [
+        "(a + b) · 2"
+       ]
+      },
+      {
+       "nom": "Kvadrat",
+       "bandlar": [
+        "tomon · 4"
+       ]
+      },
+      {
+       "nom": "Tomonni topish",
+       "bandlar": [
+        "yarim perimetr"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men shaklni o‘rab turgan chiziq uzunligiman. Men kimman?",
+     "javob": "perimetr"
+    },
+    "hikmat": "O‘lchab ol, qo‘shib ol.",
+    "kalit_soz": "PERIMETR",
+    "xato_yechim": {
+     "shart": "Uzunlik 8 sm, kenglik 5 sm. Perimetr?",
+     "xato": "13 sm",
+     "togri": "26 sm",
+     "sabab": "13 ni 2 ga ko‘paytirish kerak"
+    },
+    "guruh_nomlari": [
+     "O‘lchovchilar",
+     "Hisobchilar",
+     "Chizmachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Shakllar perimetri»",
+     "topshiriq": "Guruh shakllarning perimetrini o‘lchab hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Uchburchak tomonlari 6, 8, 10. Perimetrni toping.",
+     "B": "To‘rtburchak 8 va 5. Perimetrni toping.",
+     "C": "Kvadrat tomoni 7. Perimetri? P — 30, uzunlik 9 bo‘lsa, kenglik?"
+    },
+    "sinkveyn": [
+     "Perimetr",
+     "uzun, aniq",
+     "o‘raydi, o‘lchaydi, qo‘shadi",
+     "O‘lchab kes",
+     "Shakl"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh perimetr masalasini yechadi.",
+     "qismlar": [
+      "1-guruh: uchburchak",
+      "2-guruh: to‘rtburchak",
+      "3-guruh: kvadrat",
+      "4-guruh: noma’lum tomon"
+     ],
+     "yakun": "Natijalar: 24; 26; 28; 6."
+    }
+   }
+  },
+  {
+   "mavzu": "Shaklning yuzi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yuz nima?",
+      "matn": "Shakl egallagan tekislik qismi uning yuzi deyiladi. Yuzni kvadrat santimetr (kv. sm) bilan o‘lchaymiz.",
+      "misol": "1 kv. sm — tomoni 1 sm bo‘lgan kvadrat yuzi.",
+      "savol": "Yuz qanday birlikda o‘lchanadi?",
+      "javob": "kvadrat santimetrda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri to‘rtburchak yuzi",
+      "matn": "To‘g‘ri to‘rtburchak yuzi — uzunlik ko‘paytirilsin kenglikka.",
+      "misol": "Uzunlik 8, kenglik 5: S — 8 · 5 — 40 kv. sm.",
+      "savol": "8 · 5 nechaga teng?",
+      "javob": "40",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kvadrat yuzi",
+      "matn": "Kvadrat yuzi — tomon ko‘paytirilsin o‘ziga.",
+      "misol": "Tomon 7: S — 7 · 7 — 49 kv. sm.",
+      "savol": "7 · 7 nechaga teng?",
+      "javob": "49",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tomonni topamiz",
+      "matn": "Yuz va bir tomon ma’lum bo‘lsa, ikkinchi tomon — yuz bo‘linsin tomonga.",
+      "misol": "S — 60, uzunlik 12: kenglik 60 / 12 — 5.",
+      "savol": "60 / 12 nechaga teng?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yuz va perimetr",
+      "matn": "Yuz va perimetr boshqa-boshqa tushunchalar. Perimetr uzunlikni, yuz maydonni ko‘rsatadi.",
+      "misol": "12 va 3 tomonli to‘rtburchak: S — 36, P — 30.",
+      "savol": "12 · 3 nechaga teng?",
+      "javob": "36",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "To‘g‘ri to‘rtburchak yuzi — uzunlik ko‘paytirilsin kenglikka. Kvadrat yuzi — tomon ko‘paytirilsin o‘ziga. Birlik — kv. sm.",
+    "misollar": [
+     {
+      "shart": "To‘g‘ri to‘rtburchak uzunligi 8 sm, kengligi 5 sm. Yuzi?",
+      "yechim": [
+       "Yuz — uzunlik ko‘paytirilsin kenglikka.",
+       "8 · 5.",
+       "Javob 40 kv. sm."
+      ],
+      "javob": "40 kv. sm"
+     },
+     {
+      "shart": "Kvadrat tomoni 7 sm. Yuzi?",
+      "yechim": [
+       "Tomon ko‘paytirilsin o‘ziga.",
+       "7 · 7.",
+       "Javob 49 kv. sm."
+      ],
+      "javob": "49 kv. sm"
+     },
+     {
+      "shart": "To‘g‘ri to‘rtburchak yuzi 60 kv. sm, uzunligi 12 sm. Kengligi?",
+      "yechim": [
+       "Kenglik — yuz bo‘linsin uzunlikka.",
+       "60 / 12.",
+       "Javob 5 sm."
+      ],
+      "javob": "5 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Katakchalar bilan yuz",
+      "topshiriq": "Katakli qog‘ozda shakl yuzini kataklarni sanab toping.",
+      "yechim": "Natija formula bilan tekshiriladi.",
+      "mahsulot": "katakli qog‘oz"
+     },
+     {
+      "nom": "Yuzni hisoblaymiz",
+      "topshiriq": "Uchta to‘rtburchak yuzini hisoblang.",
+      "yechim": "Uzunlik ko‘paytirilsin kenglikka.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Yuz va perimetr",
+      "topshiriq": "Bitta shakl yuzi va perimetrini toping.",
+      "yechim": "S — 36, P — 30.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Yuzni teskari amal bilan tekshiring.",
+      "yechim": "40 / 8 — 5.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "8 · 5 nechaga teng?",
+      "javob": "40"
+     },
+     {
+      "shart": "7 · 7 nechaga teng?",
+      "javob": "49"
+     },
+     {
+      "shart": "60 / 12 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "12 · 3 nechaga teng?",
+      "javob": "36"
+     },
+     {
+      "shart": "2 · (12 + 3) nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "9 · 4 nechaga teng?",
+      "javob": "36"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yuzni qo‘shish bilan topadi",
+      "sabab": "perimetr bilan aralashtiradi",
+      "oldini_olish": "yuz — ko‘paytirish"
+     },
+     {
+      "xato": "Birlikni sm deb yozadi",
+      "sabab": "kv. sm ni unutadi",
+      "oldini_olish": "yuz — kvadrat santimetr"
+     },
+     {
+      "xato": "Kvadrat yuzini 4 ga ko‘paytiradi",
+      "sabab": "perimetr bilan aralashtiradi",
+      "oldini_olish": "tomon ko‘paytirilsin o‘ziga"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "xona poli yuzi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "plitka sarfini hisoblash"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "rasm yuzi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Xonam yuzi»",
+     "muammo": "O‘z xonamiz polining yuzini qanday topamiz?",
+     "mahsulot": "xona chizmasi",
+     "bosqichlar": [
+      "xonani o‘lchash",
+      "chizma chizish",
+      "yuzni hisoblash",
+      "plitka sonini topish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "O‘lchang",
+      "Chizma chizing",
+      "Yuzni toping",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "chizma to‘g‘ri",
+      "hisob to‘g‘ri",
+      "birlik yozilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Yuzlar shahri»",
+     "bekatlar": [
+      {
+       "nom": "To‘rtburchak maydon",
+       "matn": "8 va 5.",
+       "topshiriq": "Yuz?",
+       "javob": "40",
+       "rasm": ""
+      },
+      {
+       "nom": "Kvadrat maydon",
+       "matn": "Tomon 7.",
+       "topshiriq": "Yuz?",
+       "javob": "49",
+       "rasm": ""
+      },
+      {
+       "nom": "Noma’lum kenglik",
+       "matn": "S — 60, uzunlik 12.",
+       "topshiriq": "Kenglik?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "Ikki o‘lchov",
+       "matn": "12 va 3.",
+       "topshiriq": "Yuz?",
+       "javob": "36",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi amalni tanladingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yuz",
+      "tarif": "shakl egallagan tekislik"
+     },
+     {
+      "atama": "Kv. sm",
+      "tarif": "yuz birligi"
+     },
+     {
+      "atama": "Uzunlik",
+      "tarif": "katta tomon"
+     },
+     {
+      "atama": "Kenglik",
+      "tarif": "kichik tomon"
+     },
+     {
+      "atama": "Kvadrat",
+      "tarif": "teng tomonli shakl"
+     },
+     {
+      "atama": "Maydon",
+      "tarif": "yuzning boshqa nomi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Yuz — uzunlik ko‘paytirilsin kenglikka",
+      "togri": true,
+      "izoh": "8 · 5 — 40"
+     },
+     {
+      "matn": "Yuz kv. sm bilan o‘lchanadi",
+      "togri": true,
+      "izoh": "birlik"
+     },
+     {
+      "matn": "Kvadrat yuzi tomon ko‘paytirilsin 4 ga",
+      "togri": false,
+      "izoh": "o‘ziga"
+     },
+     {
+      "matn": "7 · 7 — 49",
+      "togri": true,
+      "izoh": "kvadrat"
+     },
+     {
+      "matn": "60 / 12 — 5",
+      "togri": true,
+      "izoh": "kenglik"
+     },
+     {
+      "matn": "Yuz va perimetr bir narsa",
+      "togri": false,
+      "izoh": "boshqa-boshqa"
+     },
+     {
+      "matn": "12 · 3 — 36",
+      "togri": true,
+      "izoh": "yuz"
+     },
+     {
+      "matn": "Yuz sm bilan o‘lchanadi",
+      "togri": false,
+      "izoh": "kv. sm"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yuz nima?",
+      "javob": "shakl egallagan tekislik"
+     },
+     {
+      "savol": "Yuz birligi?",
+      "javob": "kv. sm"
+     },
+     {
+      "savol": "To‘rtburchak yuzi?",
+      "javob": "uzunlik · kenglik"
+     },
+     {
+      "savol": "Kvadrat yuzi?",
+      "javob": "tomon · tomon"
+     },
+     {
+      "savol": "8 · 5?",
+      "javob": "40"
+     },
+     {
+      "savol": "7 · 7?",
+      "javob": "49"
+     },
+     {
+      "savol": "60 / 12?",
+      "javob": "5"
+     },
+     {
+      "savol": "12 · 3?",
+      "javob": "36"
+     },
+     {
+      "savol": "9 · 4?",
+      "javob": "36"
+     },
+     {
+      "savol": "Kenglik qanday topiladi?",
+      "javob": "yuz bo‘linsin uzunlikka"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Sana",
+      "matn": "Kataklarni sana.",
+      "savol": "Nechta katak?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Yuzni top.",
+      "savol": "8 · 5?"
+     },
+     {
+      "nom": "Birlik",
+      "matn": "Birlikni yoz.",
+      "savol": "kv. sm"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Bo‘lib tekshir.",
+      "savol": "40 / 8?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun xona polining yuzini bilish kerak?",
+    "keys": {
+     "vaziyat": "Xona uzunligi 8 m, kengligi 5 m. Polga plitka yotqizish kerak.",
+     "savollar": [
+      "Pol yuzi qancha?",
+      "Qaysi amalni tanlaymiz?"
+     ]
+    },
+    "tezis": "Yuz — ko‘paytma",
+    "taqqoslash": {
+     "a": "Perimetr",
+     "b": "Yuz",
+     "umumiy": [
+      "shakl o‘lchovi",
+      "tomonlar kerak"
+     ],
+     "a_farq": [
+      "tomonlar yig‘indisi",
+      "sm"
+     ],
+     "b_farq": [
+      "tomonlar ko‘paytmasi",
+      "kv. sm"
+     ]
+    },
+    "klaster": {
+     "markaz": "Shakl yuzi",
+     "shoxlar": [
+      {
+       "nom": "To‘rtburchak",
+       "bandlar": [
+        "uzunlik · kenglik"
+       ]
+      },
+      {
+       "nom": "Kvadrat",
+       "bandlar": [
+        "tomon · tomon"
+       ]
+      },
+      {
+       "nom": "Birlik",
+       "bandlar": [
+        "kv. sm"
+       ]
+      },
+      {
+       "nom": "Tomon",
+       "bandlar": [
+        "yuz bo‘linsin tomonga"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men shakl ichidagi joyni o‘lchayman. Men kimman?",
+     "javob": "yuz"
+    },
+    "hikmat": "Yuzni bil — joyni sana.",
+    "kalit_soz": "YUZ",
+    "xato_yechim": {
+     "shart": "Uzunlik 8 sm, kenglik 5 sm. Yuzi?",
+     "xato": "26 kv. sm",
+     "togri": "40 kv. sm",
+     "sabab": "yuz — 8 · 5, qo‘shish emas"
+    },
+    "guruh_nomlari": [
+     "Yuzchilar",
+     "Hisobchilar",
+     "Chizmachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yuzlar maydoni»",
+     "topshiriq": "Guruh shakllarning yuzini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "To‘rtburchak 8 va 5. Yuzini toping.",
+     "B": "Kvadrat tomoni 7. Yuzini toping.",
+     "C": "Yuz 60, uzunlik 12. Kenglikni toping."
+    },
+    "sinkveyn": [
+     "Yuz",
+     "katta, tekis",
+     "o‘lchanadi, hisoblanadi, sanaladi",
+     "Yuz — ko‘paytma",
+     "Maydon"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yuz masalasini yechadi.",
+     "qismlar": [
+      "1-guruh: to‘rtburchak",
+      "2-guruh: kvadrat",
+      "3-guruh: kenglik",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 40; 49; 5; 36."
+    }
+   }
   }
  ]
 }
