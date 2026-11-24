@@ -1396,6 +1396,1400 @@
      "yakun": "Natijalar: 1978; 60 millimetr; 6 santimetr."
     }
    }
+  },
+  {
+   "mavzu": "Barg",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Barg tuzilishi",
+      "matn": "Barg barg plastinkasi, band va ba’zan barg asosidan iborat. Plastinkada tomirlar — to‘r yoki parallel — joylashgan, ular suv va moddalarni o‘tkazadi hamda bargni mustahkamlaydi. Barg yuzasi epidermis bilan qoplangan, uning ustida kutikula himoyalaydi. Ichida fotosintez qiluvchi to‘qima — xloroplastli hujayralar bor.",
+      "misol": "Barg — quyosh paneli kabi.",
+      "savol": "Barg plastinkasida nima o‘tkazadi?",
+      "javob": "tomirlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Og‘izchalar",
+      "matn": "Bargning pastki epidermisida og‘izchalar (stomalar) ko‘p. Ularni ikki to‘siqchi hujayra ochib-yopadi. Og‘izchalar orqali karbonat angidrid kiradi, kislorod va suv bug‘i chiqadi. Suvning bug‘lanishi — transpiratsiya, u ildizdan suvni tortadi va bargni sovitadi. Issiq va quruq havoda og‘izchalar yopilib, suvni tejaydi.",
+      "misol": "Og‘izchalar — barg «nafas yo‘llari».",
+      "savol": "Gaz almashinuv qayerda bo‘ladi?",
+      "javob": "og‘izchalarda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Fotosintez va hisob",
+      "matn": "Fotosintez tenglamasi bo‘yicha 6 mol karbonat angidriddan 1 mol glyukoza hosil bo‘ladi. 1 mol karbonat angidrid 44 gramm, 1 mol glyukoza 180 gramm, demak 44 gramm karbonat angidriddan 180 / 6 — 30 gramm glyukoza. 132 gramm (3 mol) bo‘lsa, 3 · 30 — 90 gramm glyukoza chiqadi. 22 gramm bo‘lsa, 15 gramm.",
+      "misol": "Barg havodan uglerodni ushlaydi.",
+      "savol": "44 gramm karbonat angidriddan necha gramm glyukoza?",
+      "javob": "30",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Barg turlari va to‘kilishi",
+      "matn": "Barg oddiy (bitta plastinka: tut, olma) yoki murakkab (bir necha bargcha: yong‘oq, akatsiya) bo‘ladi. Barglar bandda ketma-ket, qarama-qarshi yoki xalqa bo‘lib joylashadi. Kuzda xlorofill parchalanib, sariq va qizil pigmentlar ko‘rinadi, barg to‘kiladi, bu qishga moslashuv: suv yo‘qotilmaydi.",
+      "misol": "Kuzgi rang — xlorofill ketgani.",
+      "savol": "Barg nima uchun to‘kiladi?",
+      "javob": "qishda suvni tejash uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘zgargan barglar",
+      "matn": "Barg o‘zgarishi mumkin: kaktusda tikan — suvni tejash, no‘xatda mo‘ylov — chirmashish, piyozda etdor barg — zaxira, yirtqich o‘simlikda tutuvchi barg. Barglar havoni tozalaydi, soya beradi. Shahar va ko‘chalarni ko‘kalamzorlashtirish havo sifatini yaxshilaydi.",
+      "misol": "Daraxt — shahar «o‘pkasi».",
+      "savol": "Kaktus tikani nima?",
+      "javob": "o‘zgargan barg",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Barg: plastinka, band, tomir. Og‘izchalar — gaz almashinuv. 44 gramm karbonat angidriddan 30 gramm glyukoza.",
+    "misollar": [
+     {
+      "shart": "44 gramm karbonat angidrid (1 mol) fotosintezda 30 gramm glyukoza beradi. 132 gramm?",
+      "yechim": [
+       "132 / 44 — 3 mol.",
+       "3 · 30.",
+       "Javob 90 gramm."
+      ],
+      "javob": "90 gramm"
+     },
+     {
+      "shart": "22 gramm karbonat angidrid (0,5 mol). Glyukoza?",
+      "yechim": [
+       "0,5 · 30.",
+       "Hisoblang.",
+       "Javob 15 gramm."
+      ],
+      "javob": "15 gramm"
+     },
+     {
+      "shart": "1 mol glyukoza 180 gramm, uni hosil qilish uchun 6 mol karbonat angidrid kerak. 1 mol karbonat angidriddan glyukoza?",
+      "yechim": [
+       "180 / 6.",
+       "Hisoblang.",
+       "Javob 30 gramm."
+      ],
+      "javob": "30 gramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Barg mikroskopda",
+      "topshiriq": "Barg epidermisida og‘izchalarni mikroskopda ko‘ring.",
+      "yechim": "To‘siqchi hujayralar.",
+      "mahsulot": "mikroskop, barg"
+     },
+     {
+      "nom": "Barg gerbariysi",
+      "topshiriq": "Turli barglarni yig‘ib, turini aniqlang.",
+      "yechim": "Oddiy, murakkab.",
+      "mahsulot": "daftar, barglar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Mol va massa.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Transpiratsiya tajribasi",
+      "topshiriq": "Bargli shoxni polietilen paketga solib, namni kuzating.",
+      "yechim": "Bug‘lanish.",
+      "mahsulot": "shox, paket"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "180 / 6 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "3 · 30 nechaga teng?",
+      "javob": "90"
+     },
+     {
+      "shart": "0,5 · 30 nechaga teng?",
+      "javob": "15"
+     },
+     {
+      "shart": "132 / 44 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "Suv bug‘lanishi nima deyiladi?",
+      "javob": "transpiratsiya"
+     },
+     {
+      "shart": "Gaz almashinuv organi?",
+      "javob": "og‘izcha"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Og‘izchalar bargning yuqori yuzida ko‘p deydi",
+      "sabab": "pastki yuzida ko‘p",
+      "oldini_olish": "suv tejaladi"
+     },
+     {
+      "xato": "Barg faqat soya beradi deydi",
+      "sabab": "fotosintez qiladi",
+      "oldini_olish": "oziqa yasaydi"
+     },
+     {
+      "xato": "Kaktus tikani poya deydi",
+      "sabab": "o‘zgargan barg",
+      "oldini_olish": "suvni tejaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "fotosintez tenglamasi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "bug‘lanish"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "ko‘kalamzorlashtirish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Barg — oziqa fabrikasi»",
+     "muammo": "Barg qanday ishlaydi?",
+     "mahsulot": "gerbariy va hisob",
+     "bosqichlar": [
+      "barg tuzilishini o‘rganish",
+      "gerbariy",
+      "transpiratsiya tajribasi",
+      "fotosintez hisobi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tuzilishni o‘rganing",
+      "Gerbariy tuzing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "gerbariy to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Barg ichida»",
+     "bekatlar": [
+      {
+       "nom": "1-xona",
+       "matn": "180 va 6.",
+       "topshiriq": "Glyukoza gramm?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-xona",
+       "matn": "132 gramm karbonat angidrid.",
+       "topshiriq": "Glyukoza gramm?",
+       "javob": "90",
+       "rasm": ""
+      },
+      {
+       "nom": "3-xona",
+       "matn": "22 gramm.",
+       "topshiriq": "Glyukoza gramm?",
+       "javob": "15",
+       "rasm": ""
+      },
+      {
+       "nom": "4-xona",
+       "matn": "Suv bug‘lanishi.",
+       "topshiriq": "Qanday ataladi?",
+       "javob": "transpiratsiya",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Molga o‘tdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Barg plastinkasi",
+      "tarif": "bargning yassi qismi"
+     },
+     {
+      "atama": "Og‘izcha",
+      "tarif": "gaz almashinuv teshikchasi"
+     },
+     {
+      "atama": "Transpiratsiya",
+      "tarif": "suvning bug‘lanishi"
+     },
+     {
+      "atama": "Kutikula",
+      "tarif": "himoya qatlami"
+     },
+     {
+      "atama": "Murakkab barg",
+      "tarif": "bir necha bargchali barg"
+     },
+     {
+      "atama": "Tomirlanish",
+      "tarif": "tomirlar joylashuvi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Og‘izchalar gaz almashtiradi",
+      "togri": true,
+      "izoh": "pastki epidermis"
+     },
+     {
+      "matn": "Barg fotosintez qiladi",
+      "togri": true,
+      "izoh": "xloroplast"
+     },
+     {
+      "matn": "Transpiratsiya — suv bug‘lanishi",
+      "togri": true,
+      "izoh": "bargni sovitadi"
+     },
+     {
+      "matn": "Kaktus tikani poya",
+      "togri": false,
+      "izoh": "o‘zgargan barg"
+     },
+     {
+      "matn": "180 / 6 — 30",
+      "togri": true,
+      "izoh": "gramm"
+     },
+     {
+      "matn": "Kuzda barg to‘kilishi qishga moslashuv",
+      "togri": true,
+      "izoh": "suvni tejaydi"
+     },
+     {
+      "matn": "Barg faqat soya beradi",
+      "togri": false,
+      "izoh": "oziqa yasaydi"
+     },
+     {
+      "matn": "3 · 30 — 90",
+      "togri": true,
+      "izoh": "gramm"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Barg qismlari?",
+      "javob": "plastinka, band"
+     },
+     {
+      "savol": "Og‘izcha?",
+      "javob": "gaz almashinuv"
+     },
+     {
+      "savol": "Transpiratsiya?",
+      "javob": "suv bug‘lanishi"
+     },
+     {
+      "savol": "Fotosintez qayerda?",
+      "javob": "bargda"
+     },
+     {
+      "savol": "Oddiy barg?",
+      "javob": "tut"
+     },
+     {
+      "savol": "Murakkab barg?",
+      "javob": "yong‘oq"
+     },
+     {
+      "savol": "180 / 6?",
+      "javob": "30"
+     },
+     {
+      "savol": "3 · 30?",
+      "javob": "90"
+     },
+     {
+      "savol": "Kaktus tikani?",
+      "javob": "o‘zgargan barg"
+     },
+     {
+      "savol": "Kuzda?",
+      "javob": "barg to‘kiladi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Bargni kuzat.",
+      "savol": "Tomirlari?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Massani top.",
+      "savol": "Mol · massa?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Oddiy va murakkab.",
+      "savol": "Bargcha soni?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Barg ahamiyati?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun issiq, quruq havoda og‘izchalar yopiladi?",
+    "keys": {
+     "vaziyat": "Yozning issiq kunida o‘simlik bargi osilib qoldi.",
+     "savollar": [
+      "Suv qayoqqa ketdi?",
+      "Og‘izcha nima qiladi?"
+     ]
+    },
+    "tezis": "Barg o‘simlik hayotining zavodi",
+    "taqqoslash": {
+     "a": "Oddiy barg",
+     "b": "Murakkab barg",
+     "umumiy": [
+      "barg turi",
+      "fotosintez qiladi"
+     ],
+     "a_farq": [
+      "bitta plastinka",
+      "tut, olma"
+     ],
+     "b_farq": [
+      "bir necha bargcha",
+      "yong‘oq, akatsiya"
+     ]
+    },
+    "klaster": {
+     "markaz": "Barg",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "plastinka",
+        "band",
+        "tomir"
+       ]
+      },
+      {
+       "nom": "Og‘izcha",
+       "bandlar": [
+        "gaz almashinuv",
+        "transpiratsiya"
+       ]
+      },
+      {
+       "nom": "Fotosintez",
+       "bandlar": [
+        "glyukoza",
+        "kislorod"
+       ]
+      },
+      {
+       "nom": "Moslashuv",
+       "bandlar": [
+        "tikan",
+        "mo‘ylov",
+        "to‘kilish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yashil, quyoshdan oziq yasayman va havodan nafas olaman. Men kimman?",
+     "javob": "barg"
+    },
+    "hikmat": "Barg quyoshni oziqaga aylantiradi.",
+    "kalit_soz": "BARG",
+    "xato_yechim": {
+     "shart": "Og‘izchalar qayerda ko‘p?",
+     "xato": "yuqori yuzada",
+     "togri": "pastki yuzada",
+     "sabab": "suv tejaladi"
+    },
+    "guruh_nomlari": [
+     "Bargchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Barg — oziqa fabrikasi»",
+     "topshiriq": "Guruh gerbariy tuzadi."
+    },
+    "vazifalar": {
+     "A": "132 gramm karbonat angidriddan glyukoza?",
+     "B": "22 gramm karbonat angidriddan glyukoza?",
+     "C": "1 mol karbonat angidriddan glyukoza?"
+    },
+    "sinkveyn": [
+     "Barg",
+     "yashil, yupqa",
+     "yasaydi, chiqaradi, sovitadi",
+     "Yashil zavod",
+     "Og‘izcha"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh bargni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: og‘izcha",
+      "3-guruh: fotosintez",
+      "4-guruh: moslashuv"
+     ],
+     "yakun": "Natijalar: 90; 15; 30 gramm."
+    }
+   }
+  },
+  {
+   "mavzu": "Gul va changlanish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Gul tuzilishi",
+      "matn": "Gul — o‘simlikning ko‘payish organi. U gul o‘rni, gulqo‘rg‘on, changchilar va urug‘chidan iborat. Gulqo‘rg‘on kosachabarg va tojbargdan tashkil topadi. Changchi — ip va chang xaltachasi. Urug‘chi — tuguncha, ustuncha va tumshuqcha. Tugunchada urug‘kurtak joylashgan.",
+      "misol": "Gul — meva va urug‘ boshlanishi.",
+      "savol": "Urug‘chi qanday qismlardan iborat?",
+      "javob": "tuguncha, ustuncha, tumshuqcha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Gul turlari",
+      "matn": "Gul ikki jinsli (changchi ham, urug‘chi ham bor: olma, olcha) yoki bir jinsli (faqat changchi yoki faqat urug‘chi: makkajo‘xori, tut) bo‘ladi. Bir uyli o‘simlikda ikkala jinsli gullar bitta o‘simlikda, ikki uyli o‘simlikda esa turli o‘simliklarda joylashadi. Gullar to‘p-gul ham hosil qiladi: boshoq, savat, soyabon.",
+      "misol": "Kungaboqarning «guli» aslida savat to‘pgul.",
+      "savol": "Ikki jinsli gulda nimalar bor?",
+      "javob": "changchi va urug‘chi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Changlanish",
+      "matn": "Changlanish — chang donachalarining changchidan urug‘chi tumshuqchasiga tushishi. O‘z-o‘zidan changlanish bir gulda, chetdan changlanish boshqa o‘simlik gulida bo‘ladi. Changlatuvchi vositalar: hasharotlar (asalari, kapalak), shamol (makkajo‘xori, qarag‘ay) va suv. Hasharot changlatadigan guli yorqin, hidli, nektarli bo‘ladi.",
+      "misol": "Asalari — meva hosili hamkori.",
+      "savol": "Makkajo‘xorini nima changlatadi?",
+      "javob": "shamol",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘sh urug‘lanish",
+      "matn": "Chang tumshuqchaga tushib, chang naychasi hosil qiladi, u tugunchaga o‘sib kiradi. Ikki spermiydan biri tuxum hujayra bilan qo‘shilib zigota hosil qiladi, ikkinchisi markaziy hujayra bilan qo‘shilib, oziq to‘qima (endosperm) beradi. Bu qo‘sh urug‘lanish, uni 1898-yilda S.G. Navashin kashf etgan. 2026 minus 1898 — 128 yil oldin.",
+      "misol": "Ikki marta urug‘lanish — gulli o‘simlik xususiyati.",
+      "savol": "Qo‘sh urug‘lanishni kim kashf etgan?",
+      "javob": "Navashin",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hosil va asalarichilik",
+      "matn": "Masalan, daraxtda 2000 ta gul bo‘lib, ularning 15 foizi mevaga aylansa, 2000 · 0,15 — 300 meva bo‘ladi (taxminiy misol). Changlanish yaxshi bo‘lsa, hosil ko‘p. Shuning uchun bog‘da asalari tutish, pestitsidni gullash vaqtida ishlatmaslik muhim. Asalarilar ko‘p ekinning changlanishiga yordam beradi.",
+      "misol": "Asalari yo‘q joyda hosil kam.",
+      "savol": "Hosilni nima oshiradi?",
+      "javob": "yaxshi changlanish",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Gul: gulqo‘rg‘on, changchi, urug‘chi. Changlanish: hasharot, shamol, suv. Qo‘sh urug‘lanish — Navashin 1898.",
+    "misollar": [
+     {
+      "shart": "Daraxtda 2000 gul, 15 foizi mevaga aylandi. Meva soni?",
+      "yechim": [
+       "15 foiz — 0,15.",
+       "2000 · 0,15.",
+       "Javob 300."
+      ],
+      "javob": "300"
+     },
+     {
+      "shart": "Daraxtda 800 gul, 25 foizi mevaga aylandi. Meva soni?",
+      "yechim": [
+       "800 · 0,25.",
+       "Hisoblang.",
+       "Javob 200."
+      ],
+      "javob": "200"
+     },
+     {
+      "shart": "Navashin kashfiyoti 1898-yilda. 2026-yilgacha necha yil?",
+      "yechim": [
+       "2026 minus 1898.",
+       "Hisoblang.",
+       "Javob 128."
+      ],
+      "javob": "128"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Gul kesimi",
+      "topshiriq": "Gulni qismlarga ajratib, daftarga yopishtiring.",
+      "yechim": "Changchi, urug‘chi.",
+      "mahsulot": "gul, lupa"
+     },
+     {
+      "nom": "Changlanish kuzatuvi",
+      "topshiriq": "Gulga qo‘nayotgan hasharotlarni sanang.",
+      "yechim": "Kuzatuv jadvali.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va yil.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Gul formulasi",
+      "topshiriq": "Bitta gul formulasini yozing.",
+      "yechim": "Qismlar soni.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2000 · 0,15 nechaga teng?",
+      "javob": "300"
+     },
+     {
+      "shart": "800 · 0,25 nechaga teng?",
+      "javob": "200"
+     },
+     {
+      "shart": "2026 minus 1898 nechaga teng?",
+      "javob": "128"
+     },
+     {
+      "shart": "Qo‘sh urug‘lanishni kim kashf etgan?",
+      "javob": "Navashin"
+     },
+     {
+      "shart": "Makkajo‘xori changlatuvchisi?",
+      "javob": "shamol"
+     },
+     {
+      "shart": "Urug‘chi qismlari soni?",
+      "javob": "3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Changlanish va urug‘lanish bir narsa deydi",
+      "sabab": "boshqa-boshqa jarayon",
+      "oldini_olish": "avval changlanish"
+     },
+     {
+      "xato": "Hamma gul hasharot bilan changlanadi deydi",
+      "sabab": "shamol va suv ham",
+      "oldini_olish": "makkajo‘xori shamolda"
+     },
+     {
+      "xato": "Qo‘sh urug‘lanish hayvonlarda deydi",
+      "sabab": "gulli o‘simliklarda",
+      "oldini_olish": "Navashin"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Ekologiya",
+      "boglanish": "asalari roli"
+     },
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "hosil"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Navashin kashfiyoti"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Gul va asalari»",
+     "muammo": "Gul qanday changlanadi va hosil beradi?",
+     "mahsulot": "kuzatuv hisoboti",
+     "bosqichlar": [
+      "gul kesimi",
+      "hasharot kuzatuvi",
+      "hosil hisobi",
+      "asalari roli",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Gulni o‘rganing",
+      "Kuzating",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "kuzatuv aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Gul bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-gul",
+       "matn": "2000 gul, 15 foiz.",
+       "topshiriq": "Meva?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "2-gul",
+       "matn": "800 gul, 25 foiz.",
+       "topshiriq": "Meva?",
+       "javob": "200",
+       "rasm": ""
+      },
+      {
+       "nom": "3-gul",
+       "matn": "1898 dan 2026 gacha.",
+       "topshiriq": "Yil?",
+       "javob": "128",
+       "rasm": ""
+      },
+      {
+       "nom": "4-gul",
+       "matn": "Changlatuvchilar.",
+       "topshiriq": "Qaysilar?",
+       "javob": "hasharot, shamol, suv",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Foizni topdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Changchi",
+      "tarif": "erkak ko‘payish qismi"
+     },
+     {
+      "atama": "Urug‘chi",
+      "tarif": "ayol ko‘payish qismi"
+     },
+     {
+      "atama": "Changlanish",
+      "tarif": "changning tumshuqchaga tushishi"
+     },
+     {
+      "atama": "To‘pgul",
+      "tarif": "gullar guruhi"
+     },
+     {
+      "atama": "Nektar",
+      "tarif": "gul shirasi"
+     },
+     {
+      "atama": "Endosperm",
+      "tarif": "oziq to‘qima"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Changchi chang xaltachasiga ega",
+      "togri": true,
+      "izoh": "ip va chang xalta"
+     },
+     {
+      "matn": "Urug‘chi tuguncha, ustuncha, tumshuqchadan iborat",
+      "togri": true,
+      "izoh": "uch qism"
+     },
+     {
+      "matn": "Hamma gul hasharot bilan changlanadi",
+      "togri": false,
+      "izoh": "shamol ham"
+     },
+     {
+      "matn": "2000 · 0,15 — 300",
+      "togri": true,
+      "izoh": "meva"
+     },
+     {
+      "matn": "Qo‘sh urug‘lanishni Navashin kashf etgan",
+      "togri": true,
+      "izoh": "1898"
+     },
+     {
+      "matn": "Changlanish va urug‘lanish bir xil",
+      "togri": false,
+      "izoh": "farqli"
+     },
+     {
+      "matn": "Makkajo‘xori shamolda changlanadi",
+      "togri": true,
+      "izoh": "shamol"
+     },
+     {
+      "matn": "Asalari hosilni oshirishga yordam beradi",
+      "togri": true,
+      "izoh": "changlatadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Gul?",
+      "javob": "ko‘payish organi"
+     },
+     {
+      "savol": "Changchi?",
+      "javob": "ip va chang xalta"
+     },
+     {
+      "savol": "Urug‘chi?",
+      "javob": "tuguncha, ustuncha, tumshuqcha"
+     },
+     {
+      "savol": "Changlanish?",
+      "javob": "chang tushishi"
+     },
+     {
+      "savol": "Urug‘lanish?",
+      "javob": "qo‘shilish"
+     },
+     {
+      "savol": "Navashin?",
+      "javob": "1898"
+     },
+     {
+      "savol": "2000 · 0,15?",
+      "javob": "300"
+     },
+     {
+      "savol": "800 · 0,25?",
+      "javob": "200"
+     },
+     {
+      "savol": "Shamol?",
+      "javob": "makkajo‘xori"
+     },
+     {
+      "savol": "Hasharot?",
+      "javob": "asalari"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Gulga qo‘ngan hasharotni kuzat.",
+      "savol": "Qaysi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Mevani top.",
+      "savol": "Gul · foiz?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Changlanish va urug‘lanish.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Asalari roli?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun hasharot changlatadigan gullar yorqin va hidli?",
+    "keys": {
+     "vaziyat": "Bog‘da gullash paytida asalari kam bo‘lgani uchun hosil kam bo‘ldi.",
+     "savollar": [
+      "Kim changlatadi?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Changlanish hosilning boshlanishi",
+    "taqqoslash": {
+     "a": "Changlanish",
+     "b": "Urug‘lanish",
+     "umumiy": [
+      "ko‘payish bosqichi",
+      "gulda kechadi"
+     ],
+     "a_farq": [
+      "chang tumshuqchaga tushadi",
+      "birinchi bosqich"
+     ],
+     "b_farq": [
+      "hujayralar qo‘shiladi",
+      "ikkinchi bosqich"
+     ]
+    },
+    "klaster": {
+     "markaz": "Gul va changlanish",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "gulqo‘rg‘on",
+        "changchi",
+        "urug‘chi"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "ikki jinsli",
+        "bir jinsli"
+       ]
+      },
+      {
+       "nom": "Changlanish",
+       "bandlar": [
+        "hasharot",
+        "shamol",
+        "suv"
+       ]
+      },
+      {
+       "nom": "Urug‘lanish",
+       "bandlar": [
+        "qo‘sh",
+        "Navashin"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men o‘simlikning ko‘payish organiman, asalari meni yaxshi ko‘radi. Men kimman?",
+     "javob": "gul"
+    },
+    "hikmat": "Gul meva boshlanishi.",
+    "kalit_soz": "GUL",
+    "xato_yechim": {
+     "shart": "Makkajo‘xorini nima changlatadi?",
+     "xato": "asalari",
+     "togri": "shamol",
+     "sabab": "guli mayda, nektarsiz"
+    },
+    "guruh_nomlari": [
+     "Gulchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Gul va asalari»",
+     "topshiriq": "Guruh hasharot kuzatuvini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "2000 gulning 15 foizi?",
+     "B": "800 gulning 25 foizi?",
+     "C": "Navashin kashfiyoti necha yil oldin?"
+    },
+    "sinkveyn": [
+     "Gul",
+     "go‘zal, hidli",
+     "ochiladi, changlanadi, meva beradi",
+     "Gul — hosil boshi",
+     "Asalari"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh gul va changlanishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: turlari",
+      "3-guruh: changlanish",
+      "4-guruh: urug‘lanish"
+     ],
+     "yakun": "Natijalar: 300; 200; 128."
+    }
+   }
+  },
+  {
+   "mavzu": "Meva va urug‘",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Meva nima",
+      "matn": "Meva — gul urug‘chisining tugunchasidan rivojlanadigan, urug‘ni o‘z ichiga olgan organ. Meva po‘sti urug‘ni himoya qiladi va tarqalishiga yordam beradi. Meva va urug‘ faqat yopiq urug‘li o‘simliklarda bo‘ladi. Urug‘lanishdan keyin tuguncha mevaga, urug‘kurtak urug‘ga aylanadi.",
+      "misol": "Olmaning urug‘i uning ichida.",
+      "savol": "Meva nimadan rivojlanadi?",
+      "javob": "tugunchadan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Meva turlari",
+      "matn": "Mevalar quruq va seryer (serbar) bo‘ladi. Quruq mevalar: ko‘sak (g‘o‘za, lola), dukkak (no‘xat, loviya), don (bug‘doy, makkajo‘xori), yong‘oq. Seryer mevalar: rezavor (uzum, pomidor), danakli (olcha, o‘rik, shaftoli), olmasimon (olma, nok). Mevaning turi uning tuzilishi va tarqalishiga bog‘liq.",
+      "misol": "G‘o‘za ko‘sagi — paxta mevasi.",
+      "savol": "G‘o‘za mevasi qaysi turga kiradi?",
+      "javob": "ko‘sak",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Urug‘ tuzilishi",
+      "matn": "Urug‘ urug‘ po‘sti va murtakdan iborat. Murtak — ildizcha, poyacha, kurtakcha va urug‘pallalardan tashkil topgan kichik o‘simlik. Zaxira modda urug‘pallada (loviya) yoki endospermda (bug‘doy, makkajo‘xori) saqlanadi. Ikki pallali o‘simlikning urug‘i ikki pallali, bir pallalinikida bitta palla bo‘ladi.",
+      "misol": "Urug‘ — kichik o‘simlik «chamadon»da.",
+      "savol": "Murtak nima?",
+      "javob": "urug‘dagi kichik o‘simlik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Urug‘ unishi va hisob",
+      "matn": "Urug‘ unishi uchun suv, havo va yetarli harorat kerak, yorug‘lik odatda shart emas. Unuvchanlik — unib chiqqan urug‘lar ulushi. 100 urug‘dan 85 tasi unsa, 85 / 100 — 0,85, ya’ni 85 foiz. 200 urug‘dan 170 tasi unsa, 170 / 200 — 0,85. 50 urug‘dan 45 tasi unsa, 45 / 50 — 0,9, ya’ni 90 foiz.",
+      "misol": "Ekishdan oldin unuvchanlikni tekshiring.",
+      "savol": "Urug‘ unishi uchun nima kerak?",
+      "javob": "suv, havo, issiqlik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Urug‘ va mevalar tarqalishi",
+      "matn": "Urug‘ va mevalar shamol (qoqio‘t, zarang), hayvon (yopishqoq tikanli mevalar, yeyilgan mevalar), suv (kokos) va o‘z-o‘zidan (no‘xat dukkagi yoriladi) tarqaladi. Tarqalish o‘simlikka yangi joylarni egallashga yordam beradi. Odam ham ko‘p o‘simlikni tarqatadi, ekin sifatida va tasodifan.",
+      "misol": "Qoqio‘t bo‘yni shamol bilan uchadi.",
+      "savol": "Qoqio‘t urug‘ini nima tarqatadi?",
+      "javob": "shamol",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Meva — tugunchadan. Turlari: ko‘sak, dukkak, don, rezavor, danakli, olmasimon. Urug‘ — po‘st va murtak. Unuvchanlik hisoblanadi.",
+    "misollar": [
+     {
+      "shart": "100 urug‘dan 85 tasi unib chiqdi. Unuvchanlik foizi?",
+      "yechim": [
+       "85 / 100.",
+       "0,85.",
+       "Javob 85 foiz."
+      ],
+      "javob": "85 foiz"
+     },
+     {
+      "shart": "200 urug‘dan 170 tasi unib chiqdi. Unuvchanlik foizi?",
+      "yechim": [
+       "170 / 200.",
+       "0,85.",
+       "Javob 85 foiz."
+      ],
+      "javob": "85 foiz"
+     },
+     {
+      "shart": "50 urug‘dan 45 tasi unib chiqdi. Unuvchanlik foizi?",
+      "yechim": [
+       "45 / 50.",
+       "0,9.",
+       "Javob 90 foiz."
+      ],
+      "javob": "90 foiz"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Urug‘ unishi",
+      "topshiriq": "Loviya urug‘ini nam paxtada undiring va kuzating.",
+      "yechim": "Kunlik o‘zgarish.",
+      "mahsulot": "loviya, paxta"
+     },
+     {
+      "nom": "Mevalarni tasniflash",
+      "topshiriq": "Mevalarni quruq va seryerga ajrating.",
+      "yechim": "Ko‘sak, dukkak, rezavor.",
+      "mahsulot": "mevalar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Unuvchanlik.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Tarqalish kuzatuvi",
+      "topshiriq": "Urug‘ tarqalish usullari jadvalini tuzing.",
+      "yechim": "Shamol, hayvon.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "85 / 100 nechaga teng?",
+      "javob": "0,85"
+     },
+     {
+      "shart": "170 / 200 nechaga teng?",
+      "javob": "0,85"
+     },
+     {
+      "shart": "45 / 50 nechaga teng?",
+      "javob": "0,9"
+     },
+     {
+      "shart": "G‘o‘za mevasi?",
+      "javob": "ko‘sak"
+     },
+     {
+      "shart": "Urug‘ning kichik o‘simligi?",
+      "javob": "murtak"
+     },
+     {
+      "shart": "No‘xat mevasi?",
+      "javob": "dukkak"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Meva faqat ovqatlanish uchun deydi",
+      "sabab": "urug‘ni himoya qiladi va tarqatadi",
+      "oldini_olish": "biologik vazifa"
+     },
+     {
+      "xato": "Urug‘ unishi uchun yorug‘lik shart deydi",
+      "sabab": "odatda shart emas",
+      "oldini_olish": "suv, havo, issiqlik"
+     },
+     {
+      "xato": "Murtak urug‘ po‘sti deydi",
+      "sabab": "kichik o‘simlik",
+      "oldini_olish": "ildizcha, poyacha"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "ekin ekish"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "urug‘ tarqalishi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Urug‘ — hayot kapsulasi»",
+     "muammo": "Urug‘ qanday unadi va mevalar qanday tarqaladi?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "mevalarni tasniflash",
+      "unish tajribasi",
+      "unuvchanlik hisobi",
+      "tarqalish jadvali",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tasniflang",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Meva bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-daraxt",
+       "matn": "100 urug‘dan 85.",
+       "topshiriq": "Foiz?",
+       "javob": "85",
+       "rasm": ""
+      },
+      {
+       "nom": "2-daraxt",
+       "matn": "200 urug‘dan 170.",
+       "topshiriq": "Foiz?",
+       "javob": "85",
+       "rasm": ""
+      },
+      {
+       "nom": "3-daraxt",
+       "matn": "50 urug‘dan 45.",
+       "topshiriq": "Foiz?",
+       "javob": "90",
+       "rasm": ""
+      },
+      {
+       "nom": "4-daraxt",
+       "matn": "G‘o‘za mevasi.",
+       "topshiriq": "Qaysi?",
+       "javob": "ko‘sak",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Meva",
+      "tarif": "tugunchadan hosil bo‘lgan organ"
+     },
+     {
+      "atama": "Urug‘",
+      "tarif": "murtakli ko‘payish organi"
+     },
+     {
+      "atama": "Murtak",
+      "tarif": "urug‘dagi kichik o‘simlik"
+     },
+     {
+      "atama": "Ko‘sak",
+      "tarif": "quruq meva turi"
+     },
+     {
+      "atama": "Unuvchanlik",
+      "tarif": "unib chiqqan urug‘lar ulushi"
+     },
+     {
+      "atama": "Danak",
+      "tarif": "qattiq urug‘ qobig‘i"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Meva tugunchadan rivojlanadi",
+      "togri": true,
+      "izoh": "urug‘lanishdan keyin"
+     },
+     {
+      "matn": "Urug‘ murtakka ega",
+      "togri": true,
+      "izoh": "kichik o‘simlik"
+     },
+     {
+      "matn": "G‘o‘za mevasi dukkak",
+      "togri": false,
+      "izoh": "ko‘sak"
+     },
+     {
+      "matn": "85 / 100 — 0,85",
+      "togri": true,
+      "izoh": "85 foiz"
+     },
+     {
+      "matn": "Urug‘ unishi uchun suv va havo kerak",
+      "togri": true,
+      "izoh": "va issiqlik"
+     },
+     {
+      "matn": "Urug‘ unishi uchun yorug‘lik shart",
+      "togri": false,
+      "izoh": "odatda shart emas"
+     },
+     {
+      "matn": "45 / 50 — 0,9",
+      "togri": true,
+      "izoh": "90 foiz"
+     },
+     {
+      "matn": "Qoqio‘t urug‘ini shamol tarqatadi",
+      "togri": true,
+      "izoh": "uchadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Meva?",
+      "javob": "tugunchadan rivojlanadi"
+     },
+     {
+      "savol": "Urug‘?",
+      "javob": "po‘st va murtak"
+     },
+     {
+      "savol": "Murtak?",
+      "javob": "kichik o‘simlik"
+     },
+     {
+      "savol": "Ko‘sak?",
+      "javob": "g‘o‘za"
+     },
+     {
+      "savol": "Dukkak?",
+      "javob": "no‘xat"
+     },
+     {
+      "savol": "Olmasimon?",
+      "javob": "olma, nok"
+     },
+     {
+      "savol": "Unish sharti?",
+      "javob": "suv, havo, issiqlik"
+     },
+     {
+      "savol": "85 / 100?",
+      "javob": "0,85"
+     },
+     {
+      "savol": "45 / 50?",
+      "javob": "0,9"
+     },
+     {
+      "savol": "Tarqalish?",
+      "javob": "shamol, hayvon, suv"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Unishni kuzat.",
+      "savol": "Qaysi kuni?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Unuvchanlikni top.",
+      "savol": "Unganlar / hammasi?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Quruq va seryer meva.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Urug‘ ahamiyati?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun urug‘ unuvchanligini ekishdan oldin tekshirish kerak?",
+    "keys": {
+     "vaziyat": "Dehqon 100 urug‘dan faqat 40 tasi unganini ko‘rdi.",
+     "savollar": [
+      "Hosil qanday bo‘ladi?",
+      "Nima qilish kerak edi?"
+     ]
+    },
+    "tezis": "Urug‘ — kelajak hosili",
+    "taqqoslash": {
+     "a": "Quruq meva",
+     "b": "Seryer meva",
+     "umumiy": [
+      "meva turi",
+      "urug‘ saqlaydi"
+     ],
+     "a_farq": [
+      "po‘sti quruq",
+      "ko‘sak, dukkak"
+     ],
+     "b_farq": [
+      "po‘sti etli",
+      "rezavor, danakli"
+     ]
+    },
+    "klaster": {
+     "markaz": "Meva va urug‘",
+     "shoxlar": [
+      {
+       "nom": "Meva turi",
+       "bandlar": [
+        "ko‘sak",
+        "dukkak",
+        "rezavor"
+       ]
+      },
+      {
+       "nom": "Urug‘",
+       "bandlar": [
+        "po‘st",
+        "murtak",
+        "palla"
+       ]
+      },
+      {
+       "nom": "Unish",
+       "bandlar": [
+        "suv",
+        "havo",
+        "issiqlik"
+       ]
+      },
+      {
+       "nom": "Tarqalish",
+       "bandlar": [
+        "shamol",
+        "hayvon",
+        "suv"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ichimda kichik o‘simlik saqlayman. Men kimman?",
+     "javob": "urug‘"
+    },
+    "hikmat": "Urug‘ — hayot kapsulasi.",
+    "kalit_soz": "URUG",
+    "xato_yechim": {
+     "shart": "G‘o‘za mevasi qanday?",
+     "xato": "dukkak",
+     "togri": "ko‘sak",
+     "sabab": "paxta ko‘sagi"
+    },
+    "guruh_nomlari": [
+     "Urug‘chilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Urug‘ — hayot kapsulasi»",
+     "topshiriq": "Guruh unish tajribasini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "100 urug‘dan 85 unsa?",
+     "B": "200 urug‘dan 170 unsa?",
+     "C": "50 urug‘dan 45 unsa?"
+    },
+    "sinkveyn": [
+     "Urug‘",
+     "kichik, kuchli",
+     "unadi, o‘sadi, ko‘payadi",
+     "Urug‘ — kelajak",
+     "Murtak"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh meva va urug‘ni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: meva turlari",
+      "2-guruh: urug‘ tuzilishi",
+      "3-guruh: unish",
+      "4-guruh: tarqalish"
+     ],
+     "yakun": "Natijalar: 85; 85; 90 foiz."
+    }
+   }
   }
  ]
 }
