@@ -9684,6 +9684,933 @@
      "yakun": "Natijalar: 14; 146; 30."
     }
    }
+  },
+  {
+   "mavzu": "Radioaktivlik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kashfiyot",
+      "matn": "1896-yilda fransuz fizigi Anri Bekkerel uran tuzlari yaqinidagi fotoplyonka tashqi nursiz ham qorayishini payqadi. Bu radioaktivlik — ba’zi atom yadrolarining o‘z-o‘zidan nur chiqarib, boshqa yadroga aylanishi. Keyinroq Mariya va Per Kyuri poloniy va radiyni kashf etdi.",
+      "misol": "Kyuri ikki marta Nobel mukofotini olgan.",
+      "savol": "Radioaktivlikni kim kashf etgan?",
+      "javob": "Bekkerel",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uch xil nur",
+      "matn": "Alfa-nur — geliy yadrolari (2 proton, 2 neytron), qog‘ozda to‘xtaydi. Beta-nur — tez elektronlar, alyuminiy plastinkada to‘xtaydi. Gamma-nur — qisqa to‘lqinli elektromagnit nur, uni qo‘rg‘oshin yoki qalin beton to‘xtatadi.",
+      "misol": "Gamma-nur eng o‘tkir.",
+      "savol": "Qaysi nur qog‘ozda to‘xtaydi?",
+      "javob": "alfa",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yemirilish qoidasi",
+      "matn": "Alfa-yemirilishda massa soni A 4 ga, zaryad soni Z 2 ga kamayadi. Beta-yemirilishda A o‘zgarmaydi, Z bittaga ortadi. Masalan, uran 238 alfa-yemirilsa, tori 234 hosil bo‘ladi (Z — 90).",
+      "misol": "Element boshqa elementga aylanadi.",
+      "savol": "Alfa-yemirilishda A necha birlikka kamayadi?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yarim yemirilish davri",
+      "matn": "Yarim yemirilish davri T — yadrolarning yarmi yemiriladigan vaqt. Har bir T dan keyin radioaktiv modda yarmicha qoladi. Uglerod 14 uchun T taxminan 5730 yil, yod 131 uchun taxminan 8 kun. Shu qoida bilan topilmalarning yoshi aniqlanadi.",
+      "misol": "Arxeologlar uglerod 14 bilan qadimiy yog‘ochning yoshini topadi.",
+      "savol": "T nimani bildiradi?",
+      "javob": "yarmi yemiriladigan vaqt",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xavfsizlik va qo‘llanish",
+      "matn": "Nurlanish tirik hujayralarni shikastlaydi. Himoya qoidasi: vaqtni kamaytir, masofani oshir, to‘siq qo‘y. Tibbiyotda radioaktiv moddalar tashxis va davolashda, sanoatda nuqson izlashda ishlatiladi. Tabiiy fon — doimiy mavjud va xavfsiz darajada.",
+      "misol": "Tibbiyotda radioaktiv izotoplar kasallikni aniqlaydi.",
+      "savol": "Himoyaning uch qoidasidan biri?",
+      "javob": "masofani oshirish",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "A kamayadi 4, Z kamayadi 2 (alfa). Beta: Z ortadi 1. Har bir T dan keyin modda yarmicha qoladi.",
+    "misollar": [
+     {
+      "shart": "Uran 238 alfa-yemirildi. Hosil bo‘lgan yadroda A va Z?",
+      "yechim": [
+       "A — 238 minus 4.",
+       "Z — 92 minus 2.",
+       "Javob A 234, Z 90."
+      ],
+      "javob": "A 234, Z 90"
+     },
+     {
+      "shart": "Modda 80 gramm, T — 8 kun. 24 kundan keyin necha gramm qoladi?",
+      "yechim": [
+       "24 / 8 — 3 ta davr.",
+       "80 / 2 / 2 / 2.",
+       "Javob 10 gramm."
+      ],
+      "javob": "10 gramm"
+     },
+     {
+      "shart": "Modda 64 birlik, 4 ta T o‘tdi. Qolgani?",
+      "yechim": [
+       "Har davrda yarmi.",
+       "64 / 2 / 2 / 2 / 2.",
+       "Javob 4 birlik."
+      ],
+      "javob": "4 birlik"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Yarmi qoladi",
+      "topshiriq": "Qog‘oz varag‘ini har safar yarmiga kesib, T ni modellashtiring.",
+      "yechim": "Har kesish — bir davr.",
+      "mahsulot": "qog‘oz, qaychi"
+     },
+     {
+      "nom": "Yemirilish zanjiri",
+      "topshiriq": "Alfa va beta yemirilishda A va Z ni hisoblang.",
+      "yechim": "A kamayadi 4.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Himoya plakati",
+      "topshiriq": "Nurlanishdan himoya qoidalari plakatini chizing.",
+      "yechim": "Vaqt, masofa, to‘siq.",
+      "mahsulot": "qog‘oz, flomaster"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Yarim yemirilish qoidasi.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "238 minus 4 nechaga teng?",
+      "javob": "234"
+     },
+     {
+      "shart": "92 minus 2 nechaga teng?",
+      "javob": "90"
+     },
+     {
+      "shart": "80 / 2 / 2 / 2 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "64 / 2 / 2 / 2 / 2 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "Radioaktivlikni kim kashf etgan?",
+      "javob": "Bekkerel"
+     },
+     {
+      "shart": "Qaysi nur eng o‘tkir?",
+      "javob": "gamma"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Alfa-nur elektronlar oqimi deydi",
+      "sabab": "geliy yadrolari",
+      "oldini_olish": "beta-nur elektronlar"
+     },
+     {
+      "xato": "T dan keyin modda butunlay yo‘qoladi deydi",
+      "sabab": "yarmi qoladi",
+      "oldini_olish": "har davrda yarmi"
+     },
+     {
+      "xato": "Beta-yemirilishda Z kamayadi deydi",
+      "sabab": "Z ortadi",
+      "oldini_olish": "A o‘zgarmaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "izotoplar bilan tashxis"
+     },
+     {
+      "fan": "Arxeologiya",
+      "boglanish": "uglerod 14"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "nurlanish nazorati"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yarmi qoladi»",
+     "muammo": "Radioaktiv moddalar qanday yemiriladi va undan qanday saqlanamiz?",
+     "mahsulot": "model va plakat",
+     "bosqichlar": [
+      "tarixni o‘rganish",
+      "yarim yemirilish modeli",
+      "hisoblash",
+      "himoya plakati",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tarixni o‘rganing",
+      "Model yasang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Kyuri laboratoriyasi»",
+     "bekatlar": [
+      {
+       "nom": "1-stol",
+       "matn": "U 238 alfa-yemirildi.",
+       "topshiriq": "A?",
+       "javob": "234",
+       "rasm": ""
+      },
+      {
+       "nom": "2-stol",
+       "matn": "U 238 alfa-yemirildi.",
+       "topshiriq": "Z?",
+       "javob": "90",
+       "rasm": ""
+      },
+      {
+       "nom": "3-stol",
+       "matn": "80 gramm, 3 ta T.",
+       "topshiriq": "Qolgani?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "4-stol",
+       "matn": "64 birlik, 4 ta T.",
+       "topshiriq": "Qolgani?",
+       "javob": "4",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Davrlarni sanadingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Radioaktivlik",
+      "tarif": "yadroning o‘z-o‘zidan nur chiqarishi"
+     },
+     {
+      "atama": "Alfa-nur",
+      "tarif": "geliy yadrolari oqimi"
+     },
+     {
+      "atama": "Beta-nur",
+      "tarif": "tez elektronlar oqimi"
+     },
+     {
+      "atama": "Gamma-nur",
+      "tarif": "qisqa to‘lqinli elektromagnit nur"
+     },
+     {
+      "atama": "Yarim yemirilish davri",
+      "tarif": "yarmi yemiriladigan vaqt"
+     },
+     {
+      "atama": "Izotop",
+      "tarif": "bir element, har xil massa"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Radioaktivlikni Bekkerel kashf etgan",
+      "togri": true,
+      "izoh": "1896"
+     },
+     {
+      "matn": "Alfa-nur qog‘ozdan o‘tadi",
+      "togri": false,
+      "izoh": "qog‘ozda to‘xtaydi"
+     },
+     {
+      "matn": "Alfa-yemirilishda A 4 ga kamayadi",
+      "togri": true,
+      "izoh": "geliy yadrosi"
+     },
+     {
+      "matn": "T dan keyin modda yarmicha qoladi",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "80 / 2 / 2 / 2 — 10",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Beta-yemirilishda Z kamayadi",
+      "togri": false,
+      "izoh": "ortadi"
+     },
+     {
+      "matn": "Gamma-nurni qo‘rg‘oshin to‘xtatadi",
+      "togri": true,
+      "izoh": "qalin to‘siq"
+     },
+     {
+      "matn": "Nurlanishdan masofa yordam bermaydi",
+      "togri": false,
+      "izoh": "masofa himoya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Radioaktivlik?",
+      "javob": "yadroning nurlanishi"
+     },
+     {
+      "savol": "Kim kashf etgan?",
+      "javob": "Bekkerel"
+     },
+     {
+      "savol": "Alfa?",
+      "javob": "geliy yadrolari"
+     },
+     {
+      "savol": "Beta?",
+      "javob": "elektronlar"
+     },
+     {
+      "savol": "Gamma?",
+      "javob": "elektromagnit nur"
+     },
+     {
+      "savol": "238 minus 4?",
+      "javob": "234"
+     },
+     {
+      "savol": "80 / 2 / 2 / 2?",
+      "javob": "10"
+     },
+     {
+      "savol": "T?",
+      "javob": "yarim yemirilish davri"
+     },
+     {
+      "savol": "Himoya?",
+      "javob": "vaqt, masofa, to‘siq"
+     },
+     {
+      "savol": "Uglerod 14?",
+      "javob": "yoshni aniqlaydi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Nur turini aniqla.",
+      "savol": "Qaysi to‘siq?"
+     },
+     {
+      "nom": "Yoz",
+      "matn": "Yemirilishni yoz.",
+      "savol": "A va Z?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Qolgan modda.",
+      "savol": "Necha T?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qanday himoya?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun radioaktiv moddaning yarmi bir davrda yemiriladi, hammasi emas?",
+    "keys": {
+     "vaziyat": "Arxeolog topilgan yog‘ochdagi uglerod 14 miqdorini o‘lchab, uning yoshini aniqladi.",
+     "savollar": [
+      "Nega yosh aniqlanadi?",
+      "T nimaga kerak?"
+     ]
+    },
+    "tezis": "Har bir T dan keyin yarmi qoladi",
+    "taqqoslash": {
+     "a": "Alfa-yemirilish",
+     "b": "Beta-yemirilish",
+     "umumiy": [
+      "yadro o‘zgaradi",
+      "yangi element hosil bo‘ladi"
+     ],
+     "a_farq": [
+      "A kamayadi 4",
+      "Z kamayadi 2"
+     ],
+     "b_farq": [
+      "A o‘zgarmaydi",
+      "Z ortadi 1"
+     ]
+    },
+    "klaster": {
+     "markaz": "Radioaktivlik",
+     "shoxlar": [
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "Bekkerel 1896",
+        "Kyuri"
+       ]
+      },
+      {
+       "nom": "Nurlar",
+       "bandlar": [
+        "alfa",
+        "beta",
+        "gamma"
+       ]
+      },
+      {
+       "nom": "Qoida",
+       "bandlar": [
+        "T",
+        "yarmi qoladi"
+       ]
+      },
+      {
+       "nom": "Himoya",
+       "bandlar": [
+        "vaqt",
+        "masofa",
+        "to‘siq"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yadro o‘z-o‘zidan nur chiqarishiman. Men kimman?",
+     "javob": "radioaktivlik"
+    },
+    "hikmat": "Yadro nur chiqarib o‘zgaradi.",
+    "kalit_soz": "YEMIRILISH",
+    "xato_yechim": {
+     "shart": "T o‘tgach modda qancha qoladi?",
+     "xato": "hammasi yo‘qoladi",
+     "togri": "yarmi qoladi",
+     "sabab": "T — yarmi yemiriladigan vaqt"
+    },
+    "guruh_nomlari": [
+     "Nurchilar",
+     "Hisobchilar",
+     "Tarixchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yarmi qoladi»",
+     "topshiriq": "Guruh yarim yemirilishni modellashtiradi."
+    },
+    "vazifalar": {
+     "A": "U 238 alfa-yemirilsa A va Z?",
+     "B": "80 gramm, T — 8 kun, 24 kunda?",
+     "C": "64 birlik, 4 ta T o‘tsa?"
+    },
+    "sinkveyn": [
+     "Nur",
+     "ko‘rinmas, kuchli",
+     "yemiriladi, chiqaradi, o‘zgaradi",
+     "Yadro nur chiqaradi",
+     "Atom"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh radioaktivlikni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tarix",
+      "2-guruh: nurlar",
+      "3-guruh: T",
+      "4-guruh: himoya"
+     ],
+     "yakun": "Natijalar: 234 va 90; 10; 4."
+    }
+   }
+  },
+  {
+   "mavzu": "Yadro energetikasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yadro bo‘linishi",
+      "matn": "1938-yilda nemis olimlari Otto Gan va Fritz Shtrassman uran yadrosining neytron ta’sirida bo‘linishini aniqladi. Bo‘linishda yadro ikki bo‘lakka ajraladi, 2–3 ta yangi neytron va katta energiya chiqadi. Bitta uran 235 yadrosi taxminan 200 megaelektronvolt energiya beradi.",
+      "misol": "Shu energiya yadro elektr stansiyalarining manbai.",
+      "savol": "Uran yadrosining bo‘linishini kim aniqladi?",
+      "javob": "Gan va Shtrassman",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Zanjir reaksiyasi",
+      "matn": "Bo‘linishda chiqqan neytronlar yangi yadrolarni bo‘ladi, reaksiya zanjir bo‘lib davom etadi. Agar har bir bo‘linishdan 3 neytron chiqsa va barchasi bo‘linishni davom ettirsa: 1, 3, 9, 27, 81. Boshqarilmasa bu portlashga olib keladi.",
+      "misol": "Atom bombasida zanjir boshqarilmaydi.",
+      "savol": "Zanjir reaksiyasi nima?",
+      "javob": "bo‘linishning o‘zi davom etishi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yadro reaktori",
+      "matn": "Reaktorda zanjir reaksiyasi boshqariladi: bor yoki kadmiy sterjenlar neytronlarni yutib, tezlikni sozlaydi. Ilk reaktorni 1942-yil 2-dekabrda Enriko Fermi Chikagoda ishga tushirdi. Dastlabki tarmoqqa ulangan atom elektr stansiyasi 1954-yilda Obninskda ishlay boshladi.",
+      "misol": "Sterjenlar tushsa reaktor to‘xtaydi.",
+      "savol": "Reaktorda neytronlarni nima yutadi?",
+      "javob": "boshqaruv sterjenlari",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Atom elektr stansiyasi",
+      "matn": "Reaktordagi issiqlik suvni bug‘ga aylantiradi, bug‘ turbinani aylantiradi, generator tok beradi. Bu issiqlik stansiyasidan faqat yoqilg‘i bilan farq qiladi. Kam yoqilg‘i sarflanadi va havoga karbonat angidrid chiqmaydi, lekin radioaktiv chiqindilar xavfsiz saqlanishi kerak.",
+      "misol": "Atom stansiyasi bug‘ turbinasi bilan ishlaydi.",
+      "savol": "Stansiyada turbinani nima aylantiradi?",
+      "javob": "bug‘",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xavfsizlik va tajriba",
+      "matn": "1986-yil 26-aprelda Chernobil, 2011-yilda Fukusimada avariyalar bo‘lgan. Ular xavfsizlik qoidalarini kuchaytirishga olib keldi. Hozir stansiyalarda ko‘p bosqichli himoya bor. O‘zbekistonda ham yadro fizikasi instituti va atom energetikasi rejalari mavjud.",
+      "misol": "Zamonaviy reaktorlar passiv himoyaga ega.",
+      "savol": "Chernobil avariyasi qaysi yili?",
+      "javob": "1986",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Bo‘linish: neytron + uran, energiya chiqadi. Zanjir reaksiyasi: 1, 3, 9, 27, 81. Reaktorda boshqariladi.",
+    "misollar": [
+     {
+      "shart": "Har bo‘linishdan 3 neytron, 4 avlod. Oxirgi avlodda nechta bo‘linish?",
+      "yechim": [
+       "3 · 3 · 3 · 3.",
+       "9 · 9.",
+       "Javob 81."
+      ],
+      "javob": "81"
+     },
+     {
+      "shart": "Stansiya issiqlik quvvati 3000 MVt, elektr quvvati 1000 MVt. FIK?",
+      "yechim": [
+       "FIK — 1000 / 3000.",
+       "0,33.",
+       "Javob taxminan 33 foiz."
+      ],
+      "javob": "33 foiz"
+     },
+     {
+      "shart": "Stansiya quvvati 1000000 kilovatt, 24 soat ishladi. Energiya?",
+      "yechim": [
+       "E — P · t.",
+       "1000000 · 24.",
+       "Javob 24000000 kilovatt-soat."
+      ],
+      "javob": "24000000 kilovatt-soat"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Zanjirni chizamiz",
+      "topshiriq": "Ketma-ket avlodlarda neytronlar zanjirini chizing.",
+      "yechim": "1, 3, 9, 27.",
+      "mahsulot": "qog‘oz, flomaster"
+     },
+     {
+      "nom": "Stansiya sxemasi",
+      "topshiriq": "Reaktordan generatorgacha sxemani chizing.",
+      "yechim": "Reaktor, bug‘, turbina, generator.",
+      "mahsulot": "qog‘oz"
+     },
+     {
+      "nom": "Domino modeli",
+      "topshiriq": "Domino toshlari bilan zanjir reaksiyasini ko‘rsating.",
+      "yechim": "Birini surish — hammasi tushadi.",
+      "mahsulot": "domino"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "FIK va energiya.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 · 3 · 3 · 3 nechaga teng?",
+      "javob": "81"
+     },
+     {
+      "shart": "1000 / 3000 taxminan nechaga teng?",
+      "javob": "0,33"
+     },
+     {
+      "shart": "1000000 · 24 nechaga teng?",
+      "javob": "24000000"
+     },
+     {
+      "shart": "Ilk reaktor yili?",
+      "javob": "1942"
+     },
+     {
+      "shart": "Obninsk stansiyasi yili?",
+      "javob": "1954"
+     },
+     {
+      "shart": "Chernobil yili?",
+      "javob": "1986"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Reaktor zanjir reaksiyasini boshqarmaydi deydi",
+      "sabab": "sterjenlar boshqaradi",
+      "oldini_olish": "neytronlarni yutadi"
+     },
+     {
+      "xato": "Atom stansiyasi turbinasiz ishlaydi deydi",
+      "sabab": "bug‘ turbinasi bor",
+      "oldini_olish": "generator tok beradi"
+     },
+     {
+      "xato": "Chiqindini saqlash shart emas deydi",
+      "sabab": "xavfsiz saqlash kerak",
+      "oldini_olish": "radioaktiv chiqindi xavfli"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Energetika",
+      "boglanish": "elektr ishlab chiqarish"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "chiqindilar"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Fermi va Obninsk"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Atom stansiyasi sxemasi»",
+     "muammo": "Atom stansiyasi qanday ishlaydi va nega xavfsizlik muhim?",
+     "mahsulot": "sxema va hisob",
+     "bosqichlar": [
+      "sxema chizish",
+      "zanjirni hisoblash",
+      "FIK ni topish",
+      "xavfsizlik qoidalari",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Sxema chizing",
+      "Hisoblang",
+      "Qoidalarni yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Atom stansiyasi»",
+     "bekatlar": [
+      {
+       "nom": "1-zal",
+       "matn": "3 neytron, 4 avlod.",
+       "topshiriq": "Bo‘linish?",
+       "javob": "81",
+       "rasm": ""
+      },
+      {
+       "nom": "2-zal",
+       "matn": "3000 MVt va 1000 MVt.",
+       "topshiriq": "FIK foiz?",
+       "javob": "33",
+       "rasm": ""
+      },
+      {
+       "nom": "3-zal",
+       "matn": "1000000 kilovatt, 24 soat.",
+       "topshiriq": "Energiya?",
+       "javob": "24000000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-zal",
+       "matn": "Ilk reaktor.",
+       "topshiriq": "Yil?",
+       "javob": "1942",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Bo‘linish",
+      "tarif": "yadroning bo‘laklarga ajralishi"
+     },
+     {
+      "atama": "Zanjir reaksiyasi",
+      "tarif": "bo‘linishning davom etishi"
+     },
+     {
+      "atama": "Reaktor",
+      "tarif": "boshqariladigan reaksiya qurilmasi"
+     },
+     {
+      "atama": "Sterjen",
+      "tarif": "neytron yutuvchi tayoq"
+     },
+     {
+      "atama": "FIK",
+      "tarif": "foydali ish koeffitsiyenti"
+     },
+     {
+      "atama": "Turbina",
+      "tarif": "bug‘ aylantiradigan qurilma"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Uran yadrosi neytron ta’sirida bo‘linadi",
+      "togri": true,
+      "izoh": "Gan va Shtrassman"
+     },
+     {
+      "matn": "Reaktorda zanjir reaksiyasi boshqarilmaydi",
+      "togri": false,
+      "izoh": "sterjenlar boshqaradi"
+     },
+     {
+      "matn": "3 · 3 · 3 · 3 — 81",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Fermi reaktori 1942-yilda ishga tushgan",
+      "togri": true,
+      "izoh": "Chikago"
+     },
+     {
+      "matn": "Atom stansiyasida bug‘ turbinani aylantiradi",
+      "togri": true,
+      "izoh": "generator tok beradi"
+     },
+     {
+      "matn": "Chernobil avariyasi 1996-yilda bo‘lgan",
+      "togri": false,
+      "izoh": "1986"
+     },
+     {
+      "matn": "Radioaktiv chiqindi xavfsiz saqlanishi kerak",
+      "togri": true,
+      "izoh": "himoya"
+     },
+     {
+      "matn": "Atom stansiyasi yoqilg‘isiz ishlaydi",
+      "togri": false,
+      "izoh": "uran kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Bo‘linish?",
+      "javob": "yadroning ajralishi"
+     },
+     {
+      "savol": "Zanjir?",
+      "javob": "bo‘linish davom etadi"
+     },
+     {
+      "savol": "Reaktor?",
+      "javob": "boshqariladigan zanjir"
+     },
+     {
+      "savol": "Sterjen?",
+      "javob": "neytron yutadi"
+     },
+     {
+      "savol": "3 · 3 · 3 · 3?",
+      "javob": "81"
+     },
+     {
+      "savol": "1000 / 3000?",
+      "javob": "0,33"
+     },
+     {
+      "savol": "1000000 · 24?",
+      "javob": "24000000"
+     },
+     {
+      "savol": "Fermi?",
+      "javob": "1942"
+     },
+     {
+      "savol": "Obninsk?",
+      "javob": "1954"
+     },
+     {
+      "savol": "Chernobil?",
+      "javob": "1986"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Stansiya sxemasini kuzat.",
+      "savol": "Qaysi bosqichlar?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Avlodlarni sana.",
+      "savol": "3 ning darajasi?"
+     },
+     {
+      "nom": "Top",
+      "matn": "FIK ni top.",
+      "savol": "Elektr / issiqlik?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Xavfsizlik nega muhim?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun atom stansiyasida zanjir reaksiyasi qat’iy boshqariladi?",
+    "keys": {
+     "vaziyat": "Reaktorda neytronlar soni ortib bormoqda, sterjenlar tushirildi.",
+     "savollar": [
+      "Sterjenlar nima qildi?",
+      "Boshqarilmasa nima bo‘ladi?"
+     ]
+    },
+    "tezis": "Zanjir reaksiyasi boshqariladi",
+    "taqqoslash": {
+     "a": "Issiqlik elektr stansiyasi",
+     "b": "Atom elektr stansiyasi",
+     "umumiy": [
+      "bug‘ turbinasi",
+      "generator"
+     ],
+     "a_farq": [
+      "ko‘mir yoki gaz yoqiladi",
+      "karbonat angidrid chiqadi"
+     ],
+     "b_farq": [
+      "uran bo‘linadi",
+      "radioaktiv chiqindi bor"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yadro energetikasi",
+     "shoxlar": [
+      {
+       "nom": "Bo‘linish",
+       "bandlar": [
+        "Gan 1938",
+        "neytron"
+       ]
+      },
+      {
+       "nom": "Reaktor",
+       "bandlar": [
+        "Fermi 1942",
+        "sterjenlar"
+       ]
+      },
+      {
+       "nom": "Stansiya",
+       "bandlar": [
+        "bug‘",
+        "turbina",
+        "generator"
+       ]
+      },
+      {
+       "nom": "Xavfsizlik",
+       "bandlar": [
+        "Chernobil 1986",
+        "himoya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men boshqariladigan zanjirda issiqlik beraman. Men kimman?",
+     "javob": "yadro reaktori"
+    },
+    "hikmat": "Yadro energiyasi boshqariladi.",
+    "kalit_soz": "REAKTOR",
+    "xato_yechim": {
+     "shart": "Zanjir boshqarilmasa nima bo‘ladi?",
+     "xato": "reaksiya o‘z-o‘zidan to‘xtaydi",
+     "togri": "reaksiya tez ortadi",
+     "sabab": "neytronlar ko‘payadi"
+    },
+    "guruh_nomlari": [
+     "Reaktorchilar",
+     "Hisobchilar",
+     "Xavfsizlik guruhi",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Atom stansiyasi sxemasi»",
+     "topshiriq": "Guruh stansiya sxemasini chizadi."
+    },
+    "vazifalar": {
+     "A": "3 neytron, 4 avlod bo‘lsa?",
+     "B": "3000 MVt va 1000 MVt bo‘lsa FIK?",
+     "C": "1000000 kilovatt, 24 soat bo‘lsa energiya?"
+    },
+    "sinkveyn": [
+     "Atom",
+     "kuchli, issiq",
+     "bo‘linadi, beradi, ishlaydi",
+     "Yadro energiya beradi",
+     "Reaktor"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yadro energetikasini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: bo‘linish",
+      "2-guruh: reaktor",
+      "3-guruh: stansiya",
+      "4-guruh: xavfsizlik"
+     ],
+     "yakun": "Natijalar: 81; 33 foiz; 24000000."
+    }
+   }
   }
  ]
 }
