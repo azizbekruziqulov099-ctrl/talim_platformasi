@@ -1394,6 +1394,1397 @@
      "yakun": "Natijalar: 22; 60; 10."
     }
    }
+  },
+  {
+   "mavzu": "Jahon xo‘jaligi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Jahon xo‘jaligi nima",
+      "matn": "Jahon xo‘jaligi — davlatlar iqtisodiyotining savdo, ishlab chiqarish va moliyaviy aloqalar orqali bog‘langan yagona tizimi. Tarmoqlari: qishloq xo‘jaligi, sanoat va xizmat ko‘rsatish. Zamonaviy dunyoda xizmatlar ulushi eng katta (taxminan yarmidan ko‘pi).",
+      "misol": "Davlatlar bir-biriga bog‘liq.",
+      "savol": "Jahon xo‘jaligi nima?",
+      "javob": "davlatlar iqtisodiyotining yagona tizimi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Iqtisodiy rivojlanish darajasi",
+      "matn": "Davlatlar rivojlangan (AQSh, Yaponiya, Germaniya), rivojlanayotgan (Hindiston, Braziliya) va kam rivojlangan (ba’zi Afrika davlatlari) guruhlarga bo‘linadi. Ko‘rsatkichlar: yalpi ichki mahsulot (YaIM), aholi jon boshiga daromad, ta’lim va sog‘liq darajasi.",
+      "misol": "YaIM — yil davomidagi mahsulot qiymati.",
+      "savol": "YaIM nima?",
+      "javob": "mamlakatda yil davomida ishlab chiqarilgan qiymat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Globallashuv",
+      "matn": "Globallashuv — davlatlar o‘rtasida savdo, kapital, axborot va odamlar oqimining kuchayishi. U bozorni kengaytiradi, texnologiyani tarqatadi, lekin raqobat va tengsizlikni ham keltirib chiqaradi. Transnatsional kompaniyalar bir necha mamlakatda faoliyat yuritadi.",
+      "misol": "Dunyo — bir bozor.",
+      "savol": "Globallashuv nima?",
+      "javob": "davlatlarning o‘zaro bog‘lanishi kuchayishi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, davlat YaIMsi 90 milliard dollar, aholisi 36 million bo‘lsa, jon boshiga 90000 / 36 — 2500 dollar (milliard va million bo‘yicha, taxminiy misol). Masalan, YaIMning 55 foizi xizmatlar bo‘lsa, 90 · 0,55 — 49,5 milliard dollar. Masalan, YaIM 4 foiz o‘ssa, 90 · 0,04 — 3,6 milliard dollar ko‘payadi.",
+      "misol": "Jon boshiga — YaIM / aholi.",
+      "savol": "Masalan, YaIM 90 mlrd, aholi 36 mln. Jon boshiga necha dollar?",
+      "javob": "2500",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Barqaror rivojlanish",
+      "matn": "Iqtisodiy o‘sish tabiatni va kelajak avlodni hisobga olishi kerak. Barqaror rivojlanish — bugungi ehtiyojni kelajakni xavf ostiga qo‘ymay qondirish. Yashil iqtisod, qayta ishlash va toza energiya shu yo‘lning bo‘lagi.",
+      "misol": "Bugun va ertaga uchun.",
+      "savol": "Barqaror rivojlanish nima?",
+      "javob": "kelajakni asragan holda rivojlanish",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Jahon xo‘jaligi: qishloq, sanoat, xizmat. YaIM. Jon boshiga — YaIM / aholi.",
+    "misollar": [
+     {
+      "shart": "Masalan, YaIM 90 milliard dollar, aholi 36 million. Jon boshiga necha dollar?",
+      "yechim": [
+       "90000 / 36.",
+       "Bo‘ling.",
+       "Javob 2500."
+      ],
+      "javob": "2500"
+     },
+     {
+      "shart": "Masalan, 90 milliardning 55 foizi xizmat. Necha milliard?",
+      "yechim": [
+       "55 foiz — 0,55.",
+       "90 · 0,55.",
+       "Javob 49,5."
+      ],
+      "javob": "49,5"
+     },
+     {
+      "shart": "Masalan, 90 milliard 4 foiz o‘ssa. Necha milliard ko‘payadi?",
+      "yechim": [
+       "4 foiz — 0,04.",
+       "90 · 0,04.",
+       "Javob 3,6."
+      ],
+      "javob": "3,6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Rivojlanish xaritasi",
+      "topshiriq": "Davlatlarni rivojlanish guruhlariga ajratib bo‘yang.",
+      "yechim": "Guruhlar.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Tarmoqlar doirasi",
+      "topshiriq": "Xo‘jalik tarmoqlari diagrammasini chizing.",
+      "yechim": "Ulushlar.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Bo‘lish va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Globallashuv o‘yini",
+      "topshiriq": "Mahsulot zanjirini mamlakatlar bo‘ylab tuzing.",
+      "yechim": "Bog‘liqlik.",
+      "mahsulot": "kartochkalar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "90000 / 36 nechaga teng?",
+      "javob": "2500"
+     },
+     {
+      "shart": "90 · 0,55 nechaga teng?",
+      "javob": "49,5"
+     },
+     {
+      "shart": "90 · 0,04 nechaga teng?",
+      "javob": "3,6"
+     },
+     {
+      "shart": "YaIM nima?",
+      "javob": "ishlab chiqarilgan qiymat"
+     },
+     {
+      "shart": "Rivojlangan davlat?",
+      "javob": "Yaponiya"
+     },
+     {
+      "shart": "Eng katta tarmoq?",
+      "javob": "xizmat"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Davlatlar bir-biriga bog‘liq emas deydi",
+      "sabab": "bog‘liq",
+      "oldini_olish": "savdo va moliya"
+     },
+     {
+      "xato": "Faqat sanoat muhim deydi",
+      "sabab": "xizmat ham katta ulushda",
+      "oldini_olish": "zamonaviy iqtisod"
+     },
+     {
+      "xato": "Iqtisod tabiatni hisobga olmaydi deydi",
+      "sabab": "hisobga olishi kerak",
+      "oldini_olish": "barqaror rivojlanish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Iqtisod",
+      "boglanish": "YaIM va daromad"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va bo‘lish"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "barqaror rivojlanish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Jahon xo‘jaligi xaritasi»",
+     "muammo": "Davlatlar iqtisodiy jihatdan qanday bog‘langan?",
+     "mahsulot": "iqtisod atlasi",
+     "bosqichlar": [
+      "xarita",
+      "diagramma",
+      "hisob",
+      "globallashuv zanjiri",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Jahon bozori»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "YaIM 90 mlrd, aholi 36 mln.",
+       "topshiriq": "Jon boshiga?",
+       "javob": "2500",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "90 mlrd, 55 foiz.",
+       "topshiriq": "Xizmat?",
+       "javob": "49,5",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "90 mlrd, 4 foiz.",
+       "topshiriq": "O‘sish?",
+       "javob": "3,6",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Eng katta ulush.",
+       "topshiriq": "Tarmoq?",
+       "javob": "xizmat",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Jahon xo‘jaligi",
+      "tarif": "iqtisodiyotlarning yagona tizimi"
+     },
+     {
+      "atama": "YaIM",
+      "tarif": "yalpi ichki mahsulot"
+     },
+     {
+      "atama": "Globallashuv",
+      "tarif": "o‘zaro bog‘lanish kuchayishi"
+     },
+     {
+      "atama": "Xizmat sohasi",
+      "tarif": "ishlab chiqarmaydigan xizmatlar"
+     },
+     {
+      "atama": "Transnatsional kompaniya",
+      "tarif": "ko‘p mamlakatdagi korxona"
+     },
+     {
+      "atama": "Barqaror rivojlanish",
+      "tarif": "kelajakni asrab o‘sish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "YaIM yil davomidagi qiymat",
+      "togri": true,
+      "izoh": "ko‘rsatkich"
+     },
+     {
+      "matn": "Davlatlar bog‘liq emas",
+      "togri": false,
+      "izoh": "bog‘liq"
+     },
+     {
+      "matn": "90000 / 36 — 2500",
+      "togri": true,
+      "izoh": "jon boshiga"
+     },
+     {
+      "matn": "Xizmat sohasi katta ulushga ega",
+      "togri": true,
+      "izoh": "zamonaviy"
+     },
+     {
+      "matn": "Tabiat hisobga olinmaydi",
+      "togri": false,
+      "izoh": "barqarorlik"
+     },
+     {
+      "matn": "Yaponiya rivojlangan davlat",
+      "togri": true,
+      "izoh": "guruh"
+     },
+     {
+      "matn": "90 · 0,04 — 3,6",
+      "togri": true,
+      "izoh": "o‘sish"
+     },
+     {
+      "matn": "Globallashuv bozorni kengaytiradi",
+      "togri": true,
+      "izoh": "savdo"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Jahon xo‘jaligi?",
+      "javob": "tizim"
+     },
+     {
+      "savol": "YaIM?",
+      "javob": "qiymat"
+     },
+     {
+      "savol": "Globallashuv?",
+      "javob": "bog‘lanish"
+     },
+     {
+      "savol": "Rivojlangan?",
+      "javob": "Yaponiya"
+     },
+     {
+      "savol": "Eng katta tarmoq?",
+      "javob": "xizmat"
+     },
+     {
+      "savol": "Barqarorlik?",
+      "javob": "kelajak"
+     },
+     {
+      "savol": "90000 / 36?",
+      "javob": "2500"
+     },
+     {
+      "savol": "90 · 0,55?",
+      "javob": "49,5"
+     },
+     {
+      "savol": "90 · 0,04?",
+      "javob": "3,6"
+     },
+     {
+      "savol": "Kompaniya?",
+      "javob": "transnatsional"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Tovar yorlig‘ini kuzat.",
+      "savol": "Qaysi davlat?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Jon boshiga YaIM.",
+      "savol": "Bo‘lish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ikki davlat.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Barqarorlik?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun dunyo davlatlari bir-biriga bog‘liq?",
+    "keys": {
+     "vaziyat": "Bir davlatdagi zavod to‘xtadi, boshqa mamlakatda mahsulot narxi oshdi.",
+     "savollar": [
+      "Nega shunday?",
+      "Nima qilish mumkin?"
+     ]
+    },
+    "tezis": "Dunyo — bog‘liq tizim",
+    "taqqoslash": {
+     "a": "Rivojlangan davlat",
+     "b": "Kam rivojlangan davlat",
+     "umumiy": [
+      "iqtisodi bor",
+      "savdo qiladi"
+     ],
+     "a_farq": [
+      "YaIM yuqori",
+      "xizmat ulushi katta"
+     ],
+     "b_farq": [
+      "daromad past",
+      "qishloq xo‘jaligi ulushi katta"
+     ]
+    },
+    "klaster": {
+     "markaz": "Jahon xo‘jaligi",
+     "shoxlar": [
+      {
+       "nom": "Tarmoq",
+       "bandlar": [
+        "qishloq",
+        "sanoat",
+        "xizmat"
+       ]
+      },
+      {
+       "nom": "Daraja",
+       "bandlar": [
+        "rivojlangan",
+        "rivojlanayotgan"
+       ]
+      },
+      {
+       "nom": "Globallashuv",
+       "bandlar": [
+        "savdo",
+        "kapital",
+        "axborot"
+       ]
+      },
+      {
+       "nom": "Barqarorlik",
+       "bandlar": [
+        "ekologiya",
+        "kelajak"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yil davomida ishlab chiqarilgan qiymatman. Men nimaman?",
+     "javob": "YaIM"
+    },
+    "hikmat": "Iqtisod — birgalikda.",
+    "kalit_soz": "XOJALIK",
+    "xato_yechim": {
+     "shart": "YaIM nima?",
+     "xato": "aholi soni",
+     "togri": "ishlab chiqarilgan qiymat",
+     "sabab": "iqtisodiy ko‘rsatkich"
+    },
+    "guruh_nomlari": [
+     "Iqtisodchilar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tahlilchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Jahon xo‘jaligi xaritasi»",
+     "topshiriq": "Guruh iqtisod atlasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "90 mlrd, 36 mln?",
+     "B": "90 mlrd, 55 foiz?",
+     "C": "90 mlrd, 4 foiz?"
+    },
+    "sinkveyn": [
+     "Iqtisod",
+     "murakkab, bog‘liq",
+     "ishlab chiqaradi, sotadi, almashadi",
+     "Dunyo tizimi",
+     "YaIM"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh jahon xo‘jaligini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tarmoqlar",
+      "2-guruh: daraja",
+      "3-guruh: globallashuv",
+      "4-guruh: barqarorlik"
+     ],
+     "yakun": "Natijalar: 2500; 49,5; 3,6."
+    }
+   }
+  },
+  {
+   "mavzu": "Jahon energetikasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Jahon energetikasi nima",
+      "matn": "Jahon energetikasi — dunyo bo‘yicha energiya ishlab chiqarish, taqsimlash va iste’mol qilish tizimi. Asosiy manbalar: neft, tabiiy gaz, ko‘mir, atom, suv, quyosh va shamol. Hozir energiyaning katta qismi hali ham qazilma yoqilg‘idan olinadi (taxminan to‘rtdan uch qismi).",
+      "misol": "Energiya — iqtisod asosi.",
+      "savol": "Asosiy energiya manbalari?",
+      "javob": "neft, gaz, ko‘mir va boshqalar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qazilma yoqilg‘i",
+      "matn": "Neft eng yirik zaxiralari Yaqin Sharq (Saudiya Arabistoni, Iroq), Rossiya, AQSh va Venesuelada. Gaz — Rossiya, Eron, Qatar va AQShda. Ko‘mir — Xitoy, Hindiston, AQSh va Indoneziyada. Bu manbalar tugaydi va havoni ifloslantiradi.",
+      "misol": "Neft — Yaqin Sharq.",
+      "savol": "Neft zaxirasi qayerda ko‘p?",
+      "javob": "Yaqin Sharqda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Muqobil energiya",
+      "matn": "Quyosh, shamol, suv, geotermal va atom energiyasi muqobil manbalardir. Daniya va Germaniya shamoldan, Xitoy quyoshdan, Norvegiya va Braziliya suvdan ko‘p foydalanadi. Atom energiyasi kam gaz chiqaradi, lekin chiqindisi xavfli bo‘lishi mumkin.",
+      "misol": "Toza energiya — kelajak.",
+      "savol": "Qaysi energiya tugamaydi?",
+      "javob": "quyosh va shamol",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, davlat 200 birlik energiya ishlatsa, 75 foizi qazilma yoqilg‘idan bo‘lsa, 200 · 0,75 — 150 birlik. Yangilanuvchi qismi 200 − 150 — 50 birlik. Masalan, yangilanuvchi ulush yiliga 2 birlik oshsa, 5 yilda 5 · 2 — 10 birlik oshadi, 50 + 10 — 60 birlik.",
+      "misol": "Ulush — jami · foiz.",
+      "savol": "Masalan, 200 birlikning 75 foizi qazilma. Necha birlik?",
+      "javob": "150",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tejash va xavfsizlik",
+      "matn": "Energiya tejash — eng arzon manba. Binolarni izolyatsiya qilish, samarali asboblar va jamoat transporti iste’molni kamaytiradi. Energetika avariyalari va ifloslanishning oldini olish uchun xavfsizlik qoidalari zarur.",
+      "misol": "Tejash — birinchi manba.",
+      "savol": "Eng arzon energiya nima?",
+      "javob": "tejalgan energiya",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Jahon energetikasi: qazilma, atom, yangilanuvchi manbalar. Ulush — jami · foiz.",
+    "misollar": [
+     {
+      "shart": "Masalan, 200 birlikning 75 foizi qazilma. Necha birlik?",
+      "yechim": [
+       "75 foiz — 0,75.",
+       "200 · 0,75.",
+       "Javob 150."
+      ],
+      "javob": "150"
+     },
+     {
+      "shart": "Masalan, 200 birlikdan 150 qazilma. Yangilanuvchi necha birlik?",
+      "yechim": [
+       "200 − 150.",
+       "Ayiring.",
+       "Javob 50."
+      ],
+      "javob": "50"
+     },
+     {
+      "shart": "Masalan, yiliga 2 birlik oshsa, 5 yilda necha birlik?",
+      "yechim": [
+       "5 · 2.",
+       "Hisoblang.",
+       "Javob 10."
+      ],
+      "javob": "10"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Resurs xaritasi",
+      "topshiriq": "Xaritada neft, gaz va ko‘mir hududlarini belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Manbalar diagrammasi",
+      "topshiriq": "Energiya manbalari ulushini chizing.",
+      "yechim": "Doira diagramma.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va ayirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Tejash aksiyasi",
+      "topshiriq": "Maktabda energiya tejash rejasini tuzing.",
+      "yechim": "Choralar.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "200 · 0,75 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "200 − 150 nechaga teng?",
+      "javob": "50"
+     },
+     {
+      "shart": "5 · 2 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "Neft zaxirasi ko‘p hudud?",
+      "javob": "Yaqin Sharq"
+     },
+     {
+      "shart": "Tugamaydigan energiya?",
+      "javob": "quyosh"
+     },
+     {
+      "shart": "Gaz yirik davlati?",
+      "javob": "Rossiya"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Energiya manbalari tugamaydi deydi",
+      "sabab": "qazilma yoqilg‘i tugaydi",
+      "oldini_olish": "tejash kerak"
+     },
+     {
+      "xato": "Quyosh energiyasi ifloslantiradi deydi",
+      "sabab": "toza",
+      "oldini_olish": "gaz chiqarmaydi"
+     },
+     {
+      "xato": "Energiya tejash foydasiz deydi",
+      "sabab": "eng arzon manba",
+      "oldini_olish": "iste’mol kamayadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "energiya turlari"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va ayirish"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "ifloslanish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Dunyo energiyasi»",
+     "muammo": "Dunyo energiyani qayerdan oladi?",
+     "mahsulot": "energiya atlasi",
+     "bosqichlar": [
+      "resurs xaritasi",
+      "diagramma",
+      "hisob",
+      "tejash rejasi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Energetika markazi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "200 birlik, 75 foiz.",
+       "topshiriq": "Qazilma?",
+       "javob": "150",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "200 va 150.",
+       "topshiriq": "Yangilanuvchi?",
+       "javob": "50",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "5 yil, 2 birlik.",
+       "topshiriq": "Oshish?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Tugamaydi.",
+       "topshiriq": "Nima?",
+       "javob": "quyosh",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Energetika",
+      "tarif": "energiya tizimi"
+     },
+     {
+      "atama": "Qazilma yoqilg‘i",
+      "tarif": "neft, gaz, ko‘mir"
+     },
+     {
+      "atama": "Muqobil energiya",
+      "tarif": "yangilanuvchi manba"
+     },
+     {
+      "atama": "Geotermal energiya",
+      "tarif": "yer issiqligi"
+     },
+     {
+      "atama": "Atom energetikasi",
+      "tarif": "yadro energiyasi"
+     },
+     {
+      "atama": "Energiya tejash",
+      "tarif": "sarfni kamaytirish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Neft tugaydigan resurs",
+      "togri": true,
+      "izoh": "qazilma"
+     },
+     {
+      "matn": "Quyosh energiyasi tugaydi",
+      "togri": false,
+      "izoh": "tugamaydi"
+     },
+     {
+      "matn": "200 · 0,75 — 150",
+      "togri": true,
+      "izoh": "birlik"
+     },
+     {
+      "matn": "Xitoy ko‘mir ko‘p ishlatadi",
+      "togri": true,
+      "izoh": "yirik iste’molchi"
+     },
+     {
+      "matn": "Tejash foydasiz",
+      "togri": false,
+      "izoh": "arzon manba"
+     },
+     {
+      "matn": "Shamol energiyasi toza",
+      "togri": true,
+      "izoh": "ekologiya"
+     },
+     {
+      "matn": "200 − 150 — 50",
+      "togri": true,
+      "izoh": "yangilanuvchi"
+     },
+     {
+      "matn": "Atom energiyasi muqobil manba",
+      "togri": true,
+      "izoh": "yadro"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Energetika?",
+      "javob": "tizim"
+     },
+     {
+      "savol": "Qazilma?",
+      "javob": "neft, gaz"
+     },
+     {
+      "savol": "Muqobil?",
+      "javob": "quyosh"
+     },
+     {
+      "savol": "Geotermal?",
+      "javob": "yer issiqligi"
+     },
+     {
+      "savol": "Neft hududi?",
+      "javob": "Yaqin Sharq"
+     },
+     {
+      "savol": "Tejash?",
+      "javob": "arzon"
+     },
+     {
+      "savol": "200 · 0,75?",
+      "javob": "150"
+     },
+     {
+      "savol": "200 − 150?",
+      "javob": "50"
+     },
+     {
+      "savol": "5 · 2?",
+      "javob": "10"
+     },
+     {
+      "savol": "Toza energiya?",
+      "javob": "shamol"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Elektr manbalarini kuzat.",
+      "savol": "Qaysi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Ulushni top.",
+      "savol": "Foiz?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Qazilma va quyosh.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Tejash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun dunyo muqobil energiyaga o‘tmoqda?",
+    "keys": {
+     "vaziyat": "Shaharda gaz narxi oshdi, quyosh panellari arzonlashdi.",
+     "savollar": [
+      "Nima qilish mumkin?",
+      "Nima foyda?"
+     ]
+    },
+    "tezis": "Energiya — kelajak tanlovi",
+    "taqqoslash": {
+     "a": "Qazilma yoqilg‘i",
+     "b": "Quyosh energiyasi",
+     "umumiy": [
+      "energiya beradi",
+      "elektr ishlab chiqaradi"
+     ],
+     "a_farq": [
+      "tugaydi",
+      "ifloslantiradi"
+     ],
+     "b_farq": [
+      "tugamaydi",
+      "toza"
+     ]
+    },
+    "klaster": {
+     "markaz": "Jahon energetikasi",
+     "shoxlar": [
+      {
+       "nom": "Qazilma",
+       "bandlar": [
+        "neft",
+        "gaz",
+        "ko‘mir"
+       ]
+      },
+      {
+       "nom": "Muqobil",
+       "bandlar": [
+        "quyosh",
+        "shamol",
+        "suv"
+       ]
+      },
+      {
+       "nom": "Atom",
+       "bandlar": [
+        "yadro",
+        "xavfsizlik"
+       ]
+      },
+      {
+       "nom": "Tejash",
+       "bandlar": [
+        "izolyatsiya",
+        "samarali asbob"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tugamaydigan toza energiya manbaiman va nurdan olinaman. Men nimaman?",
+     "javob": "quyosh"
+    },
+    "hikmat": "Energiya — asrab ishlat.",
+    "kalit_soz": "ENERGIYA",
+    "xato_yechim": {
+     "shart": "Qaysi energiya tugamaydi?",
+     "xato": "neft",
+     "togri": "quyosh",
+     "sabab": "yangilanuvchi"
+    },
+    "guruh_nomlari": [
+     "Energetiklar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Ekologlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Dunyo energiyasi»",
+     "topshiriq": "Guruh energiya atlasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "200 birlik, 75 foiz?",
+     "B": "200 va 150?",
+     "C": "5 yil, 2 birlik?"
+    },
+    "sinkveyn": [
+     "Energiya",
+     "kuchli, zarur",
+     "yoritadi, isitadi, harakatlantiradi",
+     "Hayot kuchi",
+     "Quyosh"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh jahon energetikasini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: qazilma",
+      "2-guruh: muqobil",
+      "3-guruh: atom",
+      "4-guruh: tejash"
+     ],
+     "yakun": "Natijalar: 150; 50; 10."
+    }
+   }
+  },
+  {
+   "mavzu": "Jahon qishloq xo‘jaligi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Jahon qishloq xo‘jaligi nima",
+      "matn": "Qishloq xo‘jaligi — o‘simlikchilik va chorvachilikni o‘z ichiga olgan oziq-ovqat va xomashyo ishlab chiqarish tarmog‘i. Dunyo aholisini oziq-ovqat bilan ta’minlash uchun u eng muhim tarmoqlardan biridir. Rivojlanayotgan davlatlarda ko‘p odam bu sohada band.",
+      "misol": "Oziq-ovqat — hayot asosi.",
+      "savol": "Qishloq xo‘jaligi nima beradi?",
+      "javob": "oziq-ovqat va xomashyo",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Asosiy ekinlar va hududlar",
+      "matn": "Bug‘doy — Xitoy, Hindiston, Rossiya, AQSh; sholi — Osiyo (Xitoy, Hindiston); makkajo‘xori — AQSh va Braziliya; paxta — Xitoy, Hindiston, AQSh, O‘zbekiston; kofe — Braziliya; choy — Hindiston va Xitoy. Ekin joyi iqlim, tuproq va sug‘orishga bog‘liq.",
+      "misol": "Iqlim ekinni belgilaydi.",
+      "savol": "Sholi qayerda ko‘p?",
+      "javob": "Osiyoda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chorvachilik turlari",
+      "matn": "Yaylov chorvachiligi — Avstraliya, Argentina, Markaziy Osiyo. Intensiv (ferma) chorvachiligi — Yevropa va AQSh. Baliq ovlash va akvakultura oziq-ovqatning muhim manbai. Chorvachilik go‘sht, sut, jun beradi.",
+      "misol": "Yaylov va ferma.",
+      "savol": "Fermada boqish qaysi turga kiradi?",
+      "javob": "intensiv chorvachilikka",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 300 million gektardan gektariga 3 tonna g‘alla olinsa, 300 · 3 — 900 million tonna (taxminiy misol). Masalan, aholi 8 milliard, kishiga yiliga 300 kilogramm g‘alla kerak bo‘lsa, 8 · 300 — 2400 milliard kilogramm, ya’ni 2400 million tonna. Masalan, hosil 5 foiz oshsa, 900 · 0,05 — 45 million tonna ko‘payadi.",
+      "misol": "Hosil — maydon · hosildorlik.",
+      "savol": "Masalan, 300 mln gektar, gektariga 3 tonna. Necha mln tonna?",
+      "javob": "900",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oziq-ovqat xavfsizligi",
+      "matn": "Oziq-ovqat xavfsizligi — hamma odam yetarli, sifatli oziq-ovqatga ega bo‘lishi. Qurg‘oqchilik, urush, iqlim o‘zgarishi va narx o‘sishi ochlik xavfini oshiradi. Yechim: zamonaviy texnologiya, suvni tejash, yo‘qotishni kamaytirish va adolatli savdo.",
+      "misol": "Hamma uchun yetarli ovqat.",
+      "savol": "Oziq-ovqat xavfsizligi nima?",
+      "javob": "hamma yetarli ovqatga ega bo‘lishi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Jahon qishloq xo‘jaligi: ekinlar, chorva, oziq-ovqat xavfsizligi. Hosil — maydon · hosildorlik.",
+    "misollar": [
+     {
+      "shart": "Masalan, 300 mln gektar, gektariga 3 tonna. Necha mln tonna?",
+      "yechim": [
+       "300 · 3.",
+       "Hisoblang.",
+       "Javob 900."
+      ],
+      "javob": "900"
+     },
+     {
+      "shart": "Masalan, 8 milliard kishi, har biriga 300 kg. Necha milliard kg?",
+      "yechim": [
+       "8 · 300.",
+       "Hisoblang.",
+       "Javob 2400."
+      ],
+      "javob": "2400"
+     },
+     {
+      "shart": "Masalan, 900 mln tonna 5 foiz oshsa. Necha mln tonna ko‘payadi?",
+      "yechim": [
+       "5 foiz — 0,05.",
+       "900 · 0,05.",
+       "Javob 45."
+      ],
+      "javob": "45"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ekinlar xaritasi",
+      "topshiriq": "Xaritada bug‘doy, sholi va paxta hududlarini belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Iqlim va ekin",
+      "topshiriq": "Iqlim mintaqasiga mos ekin jadvalini tuzing.",
+      "yechim": "Moslik.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Ovqat yo‘qotishi",
+      "topshiriq": "Uyda ovqat isrofini kamaytirish rejasini tuzing.",
+      "yechim": "Tejash.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "300 · 3 nechaga teng?",
+      "javob": "900"
+     },
+     {
+      "shart": "8 · 300 nechaga teng?",
+      "javob": "2400"
+     },
+     {
+      "shart": "900 · 0,05 nechaga teng?",
+      "javob": "45"
+     },
+     {
+      "shart": "Sholi qayerda ko‘p?",
+      "javob": "Osiyo"
+     },
+     {
+      "shart": "Kofe yirik yetishtiruvchi?",
+      "javob": "Braziliya"
+     },
+     {
+      "shart": "Intensiv chorvachilik joyi?",
+      "javob": "ferma"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ekin iqlimga bog‘liq emas deydi",
+      "sabab": "bog‘liq",
+      "oldini_olish": "issiqlik va namlik"
+     },
+     {
+      "xato": "Ovqat isrofi zararsiz deydi",
+      "sabab": "zararli",
+      "oldini_olish": "resurs yo‘qoladi"
+     },
+     {
+      "xato": "Ochlik muammosi yo‘q deydi",
+      "sabab": "bor",
+      "oldini_olish": "xavfsizlik kerak"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "o‘simlik va hayvon"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish va foiz"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "suv va tuproq"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Dunyo dasturxoni»",
+     "muammo": "Dunyo nima yeydi va qayerdan keladi?",
+     "mahsulot": "oziq-ovqat atlasi",
+     "bosqichlar": [
+      "ekinlar xaritasi",
+      "iqlim jadvali",
+      "hisob",
+      "isrofni kamaytirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Jadval tuzing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Jahon dalalari»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "300 mln gektar, 3 tonna.",
+       "topshiriq": "Mln tonna?",
+       "javob": "900",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "8 milliard, 300 kg.",
+       "topshiriq": "Milliard kg?",
+       "javob": "2400",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "900 mln, 5 foiz.",
+       "topshiriq": "Ko‘payish?",
+       "javob": "45",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Sholi hududi.",
+       "topshiriq": "Qaysi?",
+       "javob": "Osiyo",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Qishloq xo‘jaligi",
+      "tarif": "oziq-ovqat ishlab chiqarish"
+     },
+     {
+      "atama": "O‘simlikchilik",
+      "tarif": "ekin yetishtirish"
+     },
+     {
+      "atama": "Intensiv",
+      "tarif": "kuchaytirilgan usul"
+     },
+     {
+      "atama": "Akvakultura",
+      "tarif": "baliq boqish"
+     },
+     {
+      "atama": "Hosildorlik",
+      "tarif": "gektardan hosil"
+     },
+     {
+      "atama": "Oziq-ovqat xavfsizligi",
+      "tarif": "yetarli ovqat ta’minoti"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Sholi Osiyoda ko‘p yetishtiriladi",
+      "togri": true,
+      "izoh": "iqlim"
+     },
+     {
+      "matn": "Ekin iqlimga bog‘liq emas",
+      "togri": false,
+      "izoh": "bog‘liq"
+     },
+     {
+      "matn": "300 · 3 — 900",
+      "togri": true,
+      "izoh": "mln tonna"
+     },
+     {
+      "matn": "Braziliya kofe beradi",
+      "togri": true,
+      "izoh": "ekin"
+     },
+     {
+      "matn": "Ovqat isrofi zararsiz",
+      "togri": false,
+      "izoh": "zarar"
+     },
+     {
+      "matn": "Akvakultura baliq boqish",
+      "togri": true,
+      "izoh": "oziq"
+     },
+     {
+      "matn": "8 · 300 — 2400",
+      "togri": true,
+      "izoh": "milliard kg"
+     },
+     {
+      "matn": "Oziq-ovqat xavfsizligi muhim",
+      "togri": true,
+      "izoh": "ochlikka qarshi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qishloq xo‘jaligi?",
+      "javob": "oziq-ovqat"
+     },
+     {
+      "savol": "Sholi?",
+      "javob": "Osiyo"
+     },
+     {
+      "savol": "Kofe?",
+      "javob": "Braziliya"
+     },
+     {
+      "savol": "Intensiv?",
+      "javob": "ferma"
+     },
+     {
+      "savol": "Akvakultura?",
+      "javob": "baliq"
+     },
+     {
+      "savol": "Xavfsizlik?",
+      "javob": "yetarli ovqat"
+     },
+     {
+      "savol": "300 · 3?",
+      "javob": "900"
+     },
+     {
+      "savol": "8 · 300?",
+      "javob": "2400"
+     },
+     {
+      "savol": "900 · 0,05?",
+      "javob": "45"
+     },
+     {
+      "savol": "Isrof?",
+      "javob": "zarar"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Dasturxondagi ovqatni kuzat.",
+      "savol": "Qayerdan?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Hosilni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Yaylov va ferma.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Isrof?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun oziq-ovqat xavfsizligi butun dunyo uchun muhim?",
+    "keys": {
+     "vaziyat": "Qurg‘oqchilik tufayli bir hududda hosil kamaydi, ovqat narxi oshdi.",
+     "savollar": [
+      "Nima xavf?",
+      "Nima yordam beradi?"
+     ]
+    },
+    "tezis": "Ovqat — hayot",
+    "taqqoslash": {
+     "a": "Yaylov chorvachiligi",
+     "b": "Intensiv chorvachilik",
+     "umumiy": [
+      "go‘sht va sut beradi",
+      "yem kerak"
+     ],
+     "a_farq": [
+      "keng yaylov",
+      "kam xarajat"
+     ],
+     "b_farq": [
+      "ferma",
+      "mahsuldor"
+     ]
+    },
+    "klaster": {
+     "markaz": "Jahon qishloq xo‘jaligi",
+     "shoxlar": [
+      {
+       "nom": "Ekinlar",
+       "bandlar": [
+        "bug‘doy",
+        "sholi",
+        "paxta"
+       ]
+      },
+      {
+       "nom": "Chorva",
+       "bandlar": [
+        "yaylov",
+        "ferma"
+       ]
+      },
+      {
+       "nom": "Muammo",
+       "bandlar": [
+        "qurg‘oqchilik",
+        "ochlik"
+       ]
+      },
+      {
+       "nom": "Yechim",
+       "bandlar": [
+        "texnologiya",
+        "isrofni kamaytirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Osiyoda ko‘p yetishtiriladigan, suvli dalada o‘sadigan ekinman. Men nimaman?",
+     "javob": "sholi"
+    },
+    "hikmat": "Ovqatni asra.",
+    "kalit_soz": "OVQAT",
+    "xato_yechim": {
+     "shart": "Sholi qayerda ko‘p yetishtiriladi?",
+     "xato": "Yevropada",
+     "togri": "Osiyoda",
+     "sabab": "iqlim va suv"
+    },
+    "guruh_nomlari": [
+     "Dehqonlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Ekologlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Dunyo dasturxoni»",
+     "topshiriq": "Guruh oziq-ovqat atlasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "300 mln gektar, 3 tonna?",
+     "B": "8 milliard, 300 kg?",
+     "C": "900 mln, 5 foiz?"
+    },
+    "sinkveyn": [
+     "Ekin",
+     "unumdor, zarur",
+     "ekiladi, o‘sadi, yig‘iladi",
+     "Dasturxon asosi",
+     "Don"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh jahon qishloq xo‘jaligini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: ekinlar",
+      "2-guruh: chorva",
+      "3-guruh: muammo",
+      "4-guruh: yechim"
+     ],
+     "yakun": "Natijalar: 900; 2400; 45."
+    }
+   }
   }
  ]
 }
