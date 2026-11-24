@@ -4178,6 +4178,1398 @@
      "yakun": "Natijalar: 70; 1000; 400."
     }
    }
+  },
+  {
+   "mavzu": "Oziq-ovqat sanoati",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Oziq-ovqat sanoati nima",
+      "matn": "Oziq-ovqat sanoati qishloq xo‘jaligi xomashyosini iste’mol mahsulotiga aylantiradi: un, non, yog‘, shakar, konserva, sut va go‘sht mahsulotlari, sharbat va quritilgan meva. Bu tarmoq aholini oziq-ovqat bilan ta’minlaydi va ko‘p ish o‘rni yaratadi.",
+      "misol": "Xomashyo — oziq-ovqat.",
+      "savol": "Oziq-ovqat sanoati nima qiladi?",
+      "javob": "qishloq xomashyosini oziq-ovqatga aylantiradi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tarmoqlari",
+      "matn": "Asosiy tarmoqlar: un va non, o‘simlik yog‘i (paxta chigitidan), sut, go‘sht, meva-sabzavot konservasi, vino va sharbat, qand. Mahsulotlar xomashyo yetishtiriladigan joyga yaqin zavodlarda tayyorlanadi, chunki meva va sut tez buziladi.",
+      "misol": "Tez buziladigan mahsulot zavodi yaqin bo‘ladi.",
+      "savol": "Nima uchun zavod xomashyoga yaqin?",
+      "javob": "mahsulot tez buziladi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Markazlar",
+      "matn": "Meva-sabzavot qayta ishlash Samarqand, Toshkent, Farg‘ona vodiysi, Xorazm va Surxondaryoda rivojlangan. Yog‘-moy zavodlari paxtachilik hududlarida joylashgan. Quritilgan meva va sharbat eksport qilinadi.",
+      "misol": "Meva bor joyda konserva zavodi.",
+      "savol": "Yog‘ zavodi qayerda?",
+      "javob": "paxtachilik hududlarida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, zavod kuniga 50 tonna sharbat chiqarsa, 20 kunda 50 · 20 — 1000 tonna. Masalan, 5 kilogramm mevadan 1 kilogramm quritilgan meva olinsa, 2000 kilogramm mevadan 2000 / 5 — 400 kilogramm. Masalan, 1000 tonna mahsulotning 30 foizi eksport bo‘lsa, 1000 · 0,3 — 300 tonna (taxminiy misol).",
+      "misol": "Xomashyo / nisbat — mahsulot.",
+      "savol": "Masalan, 2000 kg mevadan har 5 kg ga 1 kg quruq meva. Necha kg?",
+      "javob": "400",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sifat va xavfsizlik",
+      "matn": "Oziq-ovqat zavodida tozalik va sifat nazorati eng muhim. Mahsulotda saqlash muddati yoziladi, muddati o‘tgan mahsulot yaroqsiz. Do‘konda yorliqni o‘qish sog‘lig‘imizni asraydi.",
+      "misol": "Yorliq va muddatni o‘qing.",
+      "savol": "Yorliqda nima yoziladi?",
+      "javob": "tarkib va saqlash muddati",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Oziq-ovqat sanoati: un, yog‘, sut, konserva, sharbat. Xomashyoga yaqin joylashadi. Nisbat bilan hisoblanadi.",
+    "misollar": [
+     {
+      "shart": "Masalan, kuniga 50 tonna sharbat, 20 kun. Jami necha tonna?",
+      "yechim": [
+       "50 · 20.",
+       "Hisoblang.",
+       "Javob 1000."
+      ],
+      "javob": "1000"
+     },
+     {
+      "shart": "Masalan, har 5 kg mevadan 1 kg quruq meva. 2000 kg dan necha kg?",
+      "yechim": [
+       "2000 / 5.",
+       "Bo‘ling.",
+       "Javob 400."
+      ],
+      "javob": "400"
+     },
+     {
+      "shart": "Masalan, 1000 tonnaning 30 foizi eksport. Necha tonna?",
+      "yechim": [
+       "30 foiz — 0,3.",
+       "1000 · 0,3.",
+       "Javob 300."
+      ],
+      "javob": "300"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Zavodlar xaritasi",
+      "topshiriq": "Xaritada meva va yog‘ zavodlarini belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Xomashyodan mahsulotgacha",
+      "topshiriq": "Zanjir chizmasini chizing.",
+      "yechim": "Meva, zavod, sharbat.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish, bo‘lish, foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Yorliq o‘qish",
+      "topshiriq": "Mahsulot yorlig‘ini o‘qib jadval tuzing.",
+      "yechim": "Muddat va tarkib.",
+      "mahsulot": "yorliqlar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "50 · 20 nechaga teng?",
+      "javob": "1000"
+     },
+     {
+      "shart": "2000 / 5 nechaga teng?",
+      "javob": "400"
+     },
+     {
+      "shart": "1000 · 0,3 nechaga teng?",
+      "javob": "300"
+     },
+     {
+      "shart": "Yog‘ nimadan olinadi?",
+      "javob": "chigit"
+     },
+     {
+      "shart": "Tez buziladigan mahsulot?",
+      "javob": "sut"
+     },
+     {
+      "shart": "Yorliqda nima bor?",
+      "javob": "muddat"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Zavod xomashyodan uzoq bo‘ladi deydi",
+      "sabab": "yaqin bo‘ladi",
+      "oldini_olish": "tez buziladi"
+     },
+     {
+      "xato": "Muddati o‘tgan mahsulot yaroqli deydi",
+      "sabab": "yaroqsiz",
+      "oldini_olish": "sog‘liqqa zarar"
+     },
+     {
+      "xato": "Yog‘ faqat zaytundan deydi",
+      "sabab": "chigitdan ham",
+      "oldini_olish": "paxta yog‘i"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "ovqat tarkibi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "nisbat va foiz"
+     },
+     {
+      "fan": "Salomatlik",
+      "boglanish": "sifatli ovqat"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Dalada dasturxongacha»",
+     "muammo": "Mahsulot dastavval qayerdan keladi?",
+     "mahsulot": "zanjir plakati",
+     "bosqichlar": [
+      "zanjir chizmasi",
+      "xarita",
+      "hisob",
+      "yorliq",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chizing",
+      "Belgilang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sharbat zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "Kuniga 50 tonna, 20 kun.",
+       "topshiriq": "Jami?",
+       "javob": "1000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "2000 kg meva, 5 ga 1.",
+       "topshiriq": "Quruq meva?",
+       "javob": "400",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "1000 tonna, 30 foiz.",
+       "topshiriq": "Eksport?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Yog‘ xomashyosi.",
+       "topshiriq": "Nima?",
+       "javob": "chigit",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Oziq-ovqat sanoati",
+      "tarif": "ovqat mahsuloti tarmog‘i"
+     },
+     {
+      "atama": "Konserva",
+      "tarif": "saqlanadigan qayta ishlangan mahsulot"
+     },
+     {
+      "atama": "Chigit",
+      "tarif": "paxta urug‘i"
+     },
+     {
+      "atama": "Sharbat",
+      "tarif": "mevadan olingan ichimlik"
+     },
+     {
+      "atama": "Saqlash muddati",
+      "tarif": "yaroqlilik davri"
+     },
+     {
+      "atama": "Sifat nazorati",
+      "tarif": "tekshirish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Yog‘ chigitdan olinadi",
+      "togri": true,
+      "izoh": "paxta yog‘i"
+     },
+     {
+      "matn": "Zavod xomashyodan uzoq",
+      "togri": false,
+      "izoh": "yaqin"
+     },
+     {
+      "matn": "50 · 20 — 1000",
+      "togri": true,
+      "izoh": "tonna"
+     },
+     {
+      "matn": "Muddati o‘tgan yaroqli",
+      "togri": false,
+      "izoh": "yaroqsiz"
+     },
+     {
+      "matn": "2000 / 5 — 400",
+      "togri": true,
+      "izoh": "kg"
+     },
+     {
+      "matn": "Quritilgan meva eksport",
+      "togri": true,
+      "izoh": "tovar"
+     },
+     {
+      "matn": "Yorliqni o‘qish foydali",
+      "togri": true,
+      "izoh": "salomatlik"
+     },
+     {
+      "matn": "Sut tez buziladi",
+      "togri": true,
+      "izoh": "yaqin zavod"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Oziq-ovqat sanoati?",
+      "javob": "ovqat tayyorlash"
+     },
+     {
+      "savol": "Yog‘?",
+      "javob": "chigit"
+     },
+     {
+      "savol": "Konserva?",
+      "javob": "saqlash"
+     },
+     {
+      "savol": "Sharbat?",
+      "javob": "mevadan"
+     },
+     {
+      "savol": "Zavod joyi?",
+      "javob": "xomashyoga yaqin"
+     },
+     {
+      "savol": "Yorliq?",
+      "javob": "muddat"
+     },
+     {
+      "savol": "50 · 20?",
+      "javob": "1000"
+     },
+     {
+      "savol": "2000 / 5?",
+      "javob": "400"
+     },
+     {
+      "savol": "1000 · 0,3?",
+      "javob": "300"
+     },
+     {
+      "savol": "Sifat?",
+      "javob": "nazorat"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Mahsulot yorlig‘ini kuzat.",
+      "savol": "Muddat?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Mahsulot miqdorini top.",
+      "savol": "Nisbat?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Yangi va konserva.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Sifat?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun oziq-ovqat zavodlari xomashyo yaqinida quriladi?",
+    "keys": {
+     "vaziyat": "Do‘konda muddati o‘tgan sut turibdi.",
+     "savollar": [
+      "Nima xavf?",
+      "Nima qilamiz?"
+     ]
+    },
+    "tezis": "Sifat — salomatlik",
+    "taqqoslash": {
+     "a": "Yangi meva",
+     "b": "Quritilgan meva",
+     "umumiy": [
+      "foydali",
+      "mevadan"
+     ],
+     "a_farq": [
+      "tez buziladi",
+      "suvli"
+     ],
+     "b_farq": [
+      "uzoq saqlanadi",
+      "eksport qilinadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Oziq-ovqat sanoati",
+     "shoxlar": [
+      {
+       "nom": "Un va non",
+       "bandlar": [
+        "bug‘doy",
+        "novvoyxona"
+       ]
+      },
+      {
+       "nom": "Yog‘",
+       "bandlar": [
+        "chigit",
+        "zavod"
+       ]
+      },
+      {
+       "nom": "Meva",
+       "bandlar": [
+        "konserva",
+        "sharbat",
+        "quruq meva"
+       ]
+      },
+      {
+       "nom": "Sifat",
+       "bandlar": [
+        "yorliq",
+        "muddat"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men chigitdan olinaman va ovqatga qo‘shilaman. Men nimaman?",
+     "javob": "yog‘"
+    },
+    "hikmat": "Sifatli ovqat — sog‘lom hayot.",
+    "kalit_soz": "OVQAT",
+    "xato_yechim": {
+     "shart": "Yog‘ nimadan olinadi?",
+     "xato": "bug‘doydan",
+     "togri": "chigitdan",
+     "sabab": "paxta yog‘i"
+    },
+    "guruh_nomlari": [
+     "Texnologlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Nazoratchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Dalada dasturxongacha»",
+     "topshiriq": "Guruh zanjir plakatini tuzadi."
+    },
+    "vazifalar": {
+     "A": "50 tonna, 20 kun?",
+     "B": "2000 kg, 5 ga 1?",
+     "C": "1000 tonna, 30 foiz?"
+    },
+    "sinkveyn": [
+     "Ovqat",
+     "foydali, mazali",
+     "to‘yintiradi, quvvat beradi, saqlanadi",
+     "Sifatli bo‘lsin",
+     "Non"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh oziq-ovqat sanoatini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: un",
+      "2-guruh: yog‘",
+      "3-guruh: meva",
+      "4-guruh: sifat"
+     ],
+     "yakun": "Natijalar: 1000; 400; 300."
+    }
+   }
+  },
+  {
+   "mavzu": "Qishloq xo‘jaligi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Qishloq xo‘jaligi nima",
+      "matn": "Qishloq xo‘jaligi — o‘simlik yetishtirish (dehqonchilik) va hayvon boqish (chorvachilik) tarmog‘i. U aholiga oziq-ovqat, sanoatga xomashyo beradi. O‘zbekistonda yer asosan sug‘orib ekiladi, chunki yog‘in kam.",
+      "misol": "Dehqonchilik va chorvachilik.",
+      "savol": "Qishloq xo‘jaligi nimalardan iborat?",
+      "javob": "dehqonchilik va chorvachilik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sug‘orma dehqonchilik",
+      "matn": "Ekinlar daryo suvi bilan sug‘oriladi: Amudaryo, Sirdaryo, Zarafshon, Qashqadaryo va Surxondaryo. Kanallar, nasoslar va tomchilatib sug‘orish suvni tejaydi. Ekin maydonlari vodiylar va vohalarda joylashgan: Farg‘ona, Zarafshon, Xorazm.",
+      "misol": "Suv — dehqon boyligi.",
+      "savol": "Ekin nima bilan sug‘oriladi?",
+      "javob": "daryo suvi bilan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Asosiy ekinlar",
+      "matn": "Paxta, g‘alla (bug‘doy), sabzavot, poliz, meva va uzum asosiy ekinlardir. Bug‘doy lalmi yerlarda ham sug‘orma yerlarda ekiladi. Ekinlarni almashtirib ekish tuproq unumdorligini saqlaydi.",
+      "misol": "Almashlab ekish tuproqni asraydi.",
+      "savol": "Almashlab ekish nima uchun?",
+      "javob": "tuproq unumdor qolishi uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 120 gektar yerdan gektariga 5 tonnadan bug‘doy olinsa, 120 · 5 — 600 tonna. Masalan, 600 tonnaning 25 foizi saqlansa, 600 · 0,25 — 150 tonna. Masalan, tomchilatib sug‘orish suvni 40 foiz tejasa, 1000 kub metr o‘rniga 1000 · 0,6 — 600 kub metr kerak (taxminiy misol).",
+      "misol": "Maydon · hosildorlik — hosil.",
+      "savol": "Masalan, 120 gektar, gektariga 5 tonna. Jami necha tonna?",
+      "javob": "600",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Suvni tejash va muhofaza",
+      "matn": "Suv — cheklangan boylik. Zamonaviy usullar: tomchilatib sug‘orish, lazerli tekislash, sho‘rni yuvish. Orol dengizi muammosi suvni noto‘g‘ri ishlatish oqibatini ko‘rsatdi, shuning uchun har tomchi qadrli.",
+      "misol": "Suvni tejash — burch.",
+      "savol": "Orol muammosi nimani o‘rgatadi?",
+      "javob": "suvni asrashni",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qishloq xo‘jaligi: dehqonchilik va chorvachilik. Sug‘orma yer. Hosil — maydon · hosildorlik.",
+    "misollar": [
+     {
+      "shart": "Masalan, 120 gektar, gektariga 5 tonna. Jami necha tonna?",
+      "yechim": [
+       "120 · 5.",
+       "Hisoblang.",
+       "Javob 600."
+      ],
+      "javob": "600"
+     },
+     {
+      "shart": "Masalan, 600 tonnaning 25 foizi saqlanadi. Necha tonna?",
+      "yechim": [
+       "25 foiz — 0,25.",
+       "600 · 0,25.",
+       "Javob 150."
+      ],
+      "javob": "150"
+     },
+     {
+      "shart": "Masalan, 1000 kub metr suvning 60 foizi kerak. Necha kub metr?",
+      "yechim": [
+       "60 foiz — 0,6.",
+       "1000 · 0,6.",
+       "Javob 600."
+      ],
+      "javob": "600"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Vohalar xaritasi",
+      "topshiriq": "Xaritada Farg‘ona, Zarafshon, Xorazm vohalarini belgilang.",
+      "yechim": "Ekin joylari.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Sug‘orish usullari",
+      "topshiriq": "Oddiy va tomchilatib usulni taqqoslang.",
+      "yechim": "Suv sarfi.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Ekin kalendari",
+      "topshiriq": "Ekin kalendari jadvalini tuzing.",
+      "yechim": "Fasllar.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "120 · 5 nechaga teng?",
+      "javob": "600"
+     },
+     {
+      "shart": "600 · 0,25 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "1000 · 0,6 nechaga teng?",
+      "javob": "600"
+     },
+     {
+      "shart": "Ekin nima bilan sug‘oriladi?",
+      "javob": "daryo suvi"
+     },
+     {
+      "shart": "Suvni tejaydigan usul?",
+      "javob": "tomchilatib"
+     },
+     {
+      "shart": "Tuproqni asraydigan usul?",
+      "javob": "almashlab ekish"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yog‘in ko‘p, sug‘orish kerak emas deydi",
+      "sabab": "yog‘in kam",
+      "oldini_olish": "sug‘orish zarur"
+     },
+     {
+      "xato": "Suv tugamaydi deydi",
+      "sabab": "cheklangan",
+      "oldini_olish": "tejash kerak"
+     },
+     {
+      "xato": "Bir ekin ketma-ket yaxshi deydi",
+      "sabab": "almashlab ekish yaxshi",
+      "oldini_olish": "tuproq unumdorligi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "o‘simlik"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish va foiz"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "suv va tuproq"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Suv va hosil»",
+     "muammo": "Suvni tejab ko‘p hosil qanday olinadi?",
+     "mahsulot": "tajriba plakati",
+     "bosqichlar": [
+      "xarita",
+      "sug‘orish usullari",
+      "hisob",
+      "tejash rejasi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Taqqoslang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Voha dalasi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "120 gektar, 5 tonna.",
+       "topshiriq": "Jami?",
+       "javob": "600",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "600 tonna, 25 foiz.",
+       "topshiriq": "Saqlanadi?",
+       "javob": "150",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "1000 kub metr, 60 foiz.",
+       "topshiriq": "Kerak?",
+       "javob": "600",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Suvni tejaydi.",
+       "topshiriq": "Usul?",
+       "javob": "tomchilatib",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Dehqonchilik",
+      "tarif": "ekin yetishtirish"
+     },
+     {
+      "atama": "Chorvachilik",
+      "tarif": "hayvon boqish"
+     },
+     {
+      "atama": "Sug‘orma yer",
+      "tarif": "suv bilan ekiladigan yer"
+     },
+     {
+      "atama": "Hosildorlik",
+      "tarif": "gektardan olingan hosil"
+     },
+     {
+      "atama": "Tomchilatib sug‘orish",
+      "tarif": "suvni tejaydigan usul"
+     },
+     {
+      "atama": "Almashlab ekish",
+      "tarif": "ekinni navbatlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Yer asosan sug‘orib ekiladi",
+      "togri": true,
+      "izoh": "yog‘in kam"
+     },
+     {
+      "matn": "Suv tugamaydi",
+      "togri": false,
+      "izoh": "cheklangan"
+     },
+     {
+      "matn": "120 · 5 — 600",
+      "togri": true,
+      "izoh": "tonna"
+     },
+     {
+      "matn": "Tomchilatib sug‘orish suvni tejaydi",
+      "togri": true,
+      "izoh": "usul"
+     },
+     {
+      "matn": "Almashlab ekish zararli",
+      "togri": false,
+      "izoh": "foydali"
+     },
+     {
+      "matn": "Farg‘ona ekin vohasi",
+      "togri": true,
+      "izoh": "vodiy"
+     },
+     {
+      "matn": "600 · 0,25 — 150",
+      "togri": true,
+      "izoh": "foiz"
+     },
+     {
+      "matn": "Orol muammosi saboq",
+      "togri": true,
+      "izoh": "suv"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Dehqonchilik?",
+      "javob": "ekin"
+     },
+     {
+      "savol": "Chorvachilik?",
+      "javob": "hayvon"
+     },
+     {
+      "savol": "Suv manbai?",
+      "javob": "daryo"
+     },
+     {
+      "savol": "Tejash usuli?",
+      "javob": "tomchilatib"
+     },
+     {
+      "savol": "Almashlab ekish?",
+      "javob": "navbatlash"
+     },
+     {
+      "savol": "Voha?",
+      "javob": "Farg‘ona"
+     },
+     {
+      "savol": "120 · 5?",
+      "javob": "600"
+     },
+     {
+      "savol": "600 · 0,25?",
+      "javob": "150"
+     },
+     {
+      "savol": "1000 · 0,6?",
+      "javob": "600"
+     },
+     {
+      "savol": "Suv?",
+      "javob": "cheklangan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Dala va sug‘orishni kuzat.",
+      "savol": "Qanday?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Hosilni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ikki usul.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Suv?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun O‘zbekistonda qishloq xo‘jaligi sug‘orishga tayanadi?",
+    "keys": {
+     "vaziyat": "Dalada suv kam, hosil kamayishi mumkin.",
+     "savollar": [
+      "Nima qilamiz?",
+      "Qaysi usul yordam beradi?"
+     ]
+    },
+    "tezis": "Har tomchi — hosil",
+    "taqqoslash": {
+     "a": "Oddiy sug‘orish",
+     "b": "Tomchilatib sug‘orish",
+     "umumiy": [
+      "ekinni sug‘oradi",
+      "suv kerak"
+     ],
+     "a_farq": [
+      "suv ko‘p sarflanadi",
+      "bug‘lanadi"
+     ],
+     "b_farq": [
+      "suv tejaladi",
+      "ildizga beriladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Qishloq xo‘jaligi",
+     "shoxlar": [
+      {
+       "nom": "Dehqonchilik",
+       "bandlar": [
+        "paxta",
+        "bug‘doy",
+        "sabzavot"
+       ]
+      },
+      {
+       "nom": "Chorvachilik",
+       "bandlar": [
+        "qoramol",
+        "qo‘y"
+       ]
+      },
+      {
+       "nom": "Suv",
+       "bandlar": [
+        "daryo",
+        "kanal",
+        "tomchilatib"
+       ]
+      },
+      {
+       "nom": "Tuproq",
+       "bandlar": [
+        "almashlab ekish",
+        "sho‘r yuvish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ekinning ildiziga suv beraman. Men qaysi usulman?",
+     "javob": "tomchilatib"
+    },
+    "hikmat": "Suv — hosil kaliti.",
+    "kalit_soz": "HOSIL",
+    "xato_yechim": {
+     "shart": "Ekin nima bilan sug‘oriladi?",
+     "xato": "yomg‘ir bilan",
+     "togri": "daryo suvi bilan",
+     "sabab": "yog‘in kam"
+    },
+    "guruh_nomlari": [
+     "Dehqonlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Suv va hosil»",
+     "topshiriq": "Guruh tajriba plakatini tuzadi."
+    },
+    "vazifalar": {
+     "A": "120 gektar, 5 tonna?",
+     "B": "600 tonna, 25 foiz?",
+     "C": "1000 kub metr, 60 foiz?"
+    },
+    "sinkveyn": [
+     "Dala",
+     "keng, unumdor",
+     "ekiladi, sug‘oriladi, hosil beradi",
+     "Dehqon mehnati",
+     "Hosil"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh qishloq xo‘jaligini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: dehqonchilik",
+      "2-guruh: chorvachilik",
+      "3-guruh: suv",
+      "4-guruh: tuproq"
+     ],
+     "yakun": "Natijalar: 600; 150; 600."
+    }
+   }
+  },
+  {
+   "mavzu": "Paxtachilik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Paxtachilik nima",
+      "matn": "Paxtachilik — paxta yetishtirish tarmog‘i. Paxta O‘zbekistonning tarixiy asosiy texnik ekini, uni «oq oltin» deyishadi. Paxta tolasi to‘qimachilikka, chigiti yog‘ va em-xashakka ishlatiladi.",
+      "misol": "Paxta — oq oltin.",
+      "savol": "Paxtadan nima olinadi?",
+      "javob": "tola va chigit",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qayerda yetishtiriladi",
+      "matn": "Paxta issiq iqlimni va sug‘orishni talab qiladi. Asosiy hududlar: Farg‘ona vodiysi, Qashqadaryo, Surxondaryo, Buxoro, Xorazm, Sirdaryo va Jizzax. Vegetatsiya davri ko‘p issiq kun talab qiladi.",
+      "misol": "Issiq iqlim va suv kerak.",
+      "savol": "Paxta qanday iqlim talab qiladi?",
+      "javob": "issiq iqlim",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yetishtirish bosqichlari",
+      "matn": "Bahorda yer haydaladi va chigit ekiladi. Yozda ekin sug‘oriladi, chopiq qilinadi va o‘g‘itlanadi. Kuzda hosil terib olinadi. Hozir terimda mashinalar ko‘p ishlatiladi, ayrim joyda qo‘lda ham teriladi.",
+      "misol": "Ekish, parvarish, terim.",
+      "savol": "Paxta qachon teriladi?",
+      "javob": "kuzda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 80 gektardan gektariga 3 tonna paxta olinsa, 80 · 3 — 240 tonna. Masalan, 1 tonna paxtadan 0,35 tonna tola chiqsa, 240 tonnadan 240 · 0,35 — 84 tonna tola. Masalan, 1 tonna paxta 8 million so‘m turadi deb faraz qilsak, 240 tonna 240 · 8 — 1920 million so‘m (taxminiy misol).",
+      "misol": "Maydon · hosildorlik — hosil.",
+      "savol": "Masalan, 80 gektar, gektariga 3 tonna. Jami necha tonna?",
+      "javob": "240",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Zamonaviy yondashuv",
+      "matn": "Klaster tizimida paxtani yetishtirishdan kiyimgacha bir tashkilot boshqaradi. Bu sifatni oshiradi va qiymat qo‘shadi. Suvni tejash, o‘g‘itni me’yorida berish va majburiy mehnatning bekor qilinishi sohani zamonaviylashtirmoqda.",
+      "misol": "Klaster — yaxlit zanjir.",
+      "savol": "Klaster nima?",
+      "javob": "yetishtirishdan tayyor mahsulotgacha zanjir",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Paxtachilik: ekish, parvarish, terim. Tola va chigit. Hosil — maydon · hosildorlik.",
+    "misollar": [
+     {
+      "shart": "Masalan, 80 gektar, gektariga 3 tonna. Jami necha tonna?",
+      "yechim": [
+       "80 · 3.",
+       "Hisoblang.",
+       "Javob 240."
+      ],
+      "javob": "240"
+     },
+     {
+      "shart": "Masalan, 240 tonna paxtadan 0,35 chiqish. Necha tonna tola?",
+      "yechim": [
+       "240 · 0,35.",
+       "Hisoblang.",
+       "Javob 84."
+      ],
+      "javob": "84"
+     },
+     {
+      "shart": "Masalan, 1 tonna 8 million, 240 tonna necha million?",
+      "yechim": [
+       "240 · 8.",
+       "Hisoblang.",
+       "Javob 1920."
+      ],
+      "javob": "1920"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Paxta hududlari",
+      "topshiriq": "Xaritada paxta hududlarini belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Yil davri",
+      "topshiriq": "Paxta yetishtirish bosqichlarini chizing.",
+      "yechim": "Bahor, yoz, kuz.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Klaster zanjiri",
+      "topshiriq": "Klaster zanjirini chizing.",
+      "yechim": "Dala, fabrika, kiyim.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "80 · 3 nechaga teng?",
+      "javob": "240"
+     },
+     {
+      "shart": "240 · 0,35 nechaga teng?",
+      "javob": "84"
+     },
+     {
+      "shart": "240 · 8 nechaga teng?",
+      "javob": "1920"
+     },
+     {
+      "shart": "Paxta qachon teriladi?",
+      "javob": "kuzda"
+     },
+     {
+      "shart": "Paxta laqabi?",
+      "javob": "oq oltin"
+     },
+     {
+      "shart": "Paxta urug‘i?",
+      "javob": "chigit"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Paxta sovuq iqlimda o‘sadi deydi",
+      "sabab": "issiq iqlimda",
+      "oldini_olish": "issiqlik kerak"
+     },
+     {
+      "xato": "Paxta sug‘orilmaydi deydi",
+      "sabab": "sug‘oriladi",
+      "oldini_olish": "suv kerak"
+     },
+     {
+      "xato": "Chigit keraksiz deydi",
+      "sabab": "yog‘ beradi",
+      "oldini_olish": "foydali"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "paxta o‘simligi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "qiymat zanjiri"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Oq oltin yo‘li»",
+     "muammo": "Paxta dalasidan kiyimgacha qanday boradi?",
+     "mahsulot": "zanjir plakati",
+     "bosqichlar": [
+      "xarita",
+      "bosqichlar",
+      "hisob",
+      "klaster",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Paxta dalasi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "80 gektar, 3 tonna.",
+       "topshiriq": "Jami?",
+       "javob": "240",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "240 tonna, 0,35.",
+       "topshiriq": "Tola?",
+       "javob": "84",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "240 tonna, 8 million.",
+       "topshiriq": "Million?",
+       "javob": "1920",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Paxta urug‘i.",
+       "topshiriq": "Nima?",
+       "javob": "chigit",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Paxtachilik",
+      "tarif": "paxta yetishtirish"
+     },
+     {
+      "atama": "Chigit",
+      "tarif": "paxta urug‘i"
+     },
+     {
+      "atama": "Tola",
+      "tarif": "paxtaning ip xomashyosi"
+     },
+     {
+      "atama": "Chopiq",
+      "tarif": "begona o‘tni yo‘qotish"
+     },
+     {
+      "atama": "Terim",
+      "tarif": "hosilni yig‘ish"
+     },
+     {
+      "atama": "Klaster",
+      "tarif": "yaxlit ishlab chiqarish zanjiri"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Paxta issiq iqlim talab qiladi",
+      "togri": true,
+      "izoh": "issiqlik"
+     },
+     {
+      "matn": "Paxta sovuqda o‘sadi",
+      "togri": false,
+      "izoh": "issiqda"
+     },
+     {
+      "matn": "80 · 3 — 240",
+      "togri": true,
+      "izoh": "tonna"
+     },
+     {
+      "matn": "Chigitdan yog‘ olinadi",
+      "togri": true,
+      "izoh": "foydali"
+     },
+     {
+      "matn": "Paxta sug‘orilmaydi",
+      "togri": false,
+      "izoh": "sug‘oriladi"
+     },
+     {
+      "matn": "Kuzda terim bo‘ladi",
+      "togri": true,
+      "izoh": "hosil"
+     },
+     {
+      "matn": "240 · 0,35 — 84",
+      "togri": true,
+      "izoh": "tola"
+     },
+     {
+      "matn": "Klaster sifatni oshiradi",
+      "togri": true,
+      "izoh": "zanjir"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Paxtachilik?",
+      "javob": "paxta yetishtirish"
+     },
+     {
+      "savol": "Oq oltin?",
+      "javob": "paxta"
+     },
+     {
+      "savol": "Chigit?",
+      "javob": "urug‘"
+     },
+     {
+      "savol": "Tola?",
+      "javob": "ip xomashyosi"
+     },
+     {
+      "savol": "Terim?",
+      "javob": "kuzda"
+     },
+     {
+      "savol": "Klaster?",
+      "javob": "zanjir"
+     },
+     {
+      "savol": "80 · 3?",
+      "javob": "240"
+     },
+     {
+      "savol": "240 · 0,35?",
+      "javob": "84"
+     },
+     {
+      "savol": "240 · 8?",
+      "javob": "1920"
+     },
+     {
+      "savol": "Iqlim?",
+      "javob": "issiq"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Paxta o‘simligini kuzat.",
+      "savol": "Qanday?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Hosilni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Qo‘l va mashina terimi.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Klaster?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun paxtani «oq oltin» deyishadi?",
+    "keys": {
+     "vaziyat": "Fermer paxta maydonini kengaytirmoqchi.",
+     "savollar": [
+      "Nima kerak?",
+      "Suvni qanday tejaydi?"
+     ]
+    },
+    "tezis": "Paxta — oq oltin",
+    "taqqoslash": {
+     "a": "Qo‘lda terim",
+     "b": "Mashinada terim",
+     "umumiy": [
+      "hosil yig‘iladi",
+      "kuzda bo‘ladi"
+     ],
+     "a_farq": [
+      "sekin",
+      "ko‘p ishchi"
+     ],
+     "b_farq": [
+      "tez",
+      "texnika"
+     ]
+    },
+    "klaster": {
+     "markaz": "Paxtachilik",
+     "shoxlar": [
+      {
+       "nom": "Mahsulot",
+       "bandlar": [
+        "tola",
+        "chigit"
+       ]
+      },
+      {
+       "nom": "Bosqich",
+       "bandlar": [
+        "ekish",
+        "parvarish",
+        "terim"
+       ]
+      },
+      {
+       "nom": "Hududlar",
+       "bandlar": [
+        "Farg‘ona",
+        "Qashqadaryo",
+        "Buxoro"
+       ]
+      },
+      {
+       "nom": "Klaster",
+       "bandlar": [
+        "dala",
+        "fabrika",
+        "eksport"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men paxtaning urug‘iman, yog‘ beraman. Men nimaman?",
+     "javob": "chigit"
+    },
+    "hikmat": "Paxta — mehnat mevasi.",
+    "kalit_soz": "PAXTA",
+    "xato_yechim": {
+     "shart": "Paxta qaysi iqlimni talab qiladi?",
+     "xato": "sovuq",
+     "togri": "issiq",
+     "sabab": "issiqsevar ekin"
+    },
+    "guruh_nomlari": [
+     "Paxtakorlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Oq oltin yo‘li»",
+     "topshiriq": "Guruh zanjir plakatini tuzadi."
+    },
+    "vazifalar": {
+     "A": "80 gektar, 3 tonna?",
+     "B": "240 tonna, 0,35?",
+     "C": "240 tonna, 8 million?"
+    },
+    "sinkveyn": [
+     "Paxta",
+     "oq, yumshoq",
+     "o‘sadi, ochiladi, teriladi",
+     "Oq oltin",
+     "Tola"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh paxtachilikni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: mahsulot",
+      "2-guruh: bosqichlar",
+      "3-guruh: hududlar",
+      "4-guruh: klaster"
+     ],
+     "yakun": "Natijalar: 240; 84; 1920."
+    }
+   }
   }
  ]
 }
