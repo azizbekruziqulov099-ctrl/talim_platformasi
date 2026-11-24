@@ -1388,6 +1388,1390 @@
      "yakun": "Natijalar: 5; 100 marta; 0,05."
     }
    }
+  },
+  {
+   "mavzu": "Reaksiya tezligi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tezlik nima",
+      "matn": "Reaksiya tezligi — vaqt birligida reagent konsentratsiyasining o‘zgarishi. Konsentratsiya mol/litr, vaqt sekund bo‘lsa, tezlik mol/(litr · sekund). Zang sekin hosil bo‘ladi, benzin yonishi esa juda tez. Tezlikni bilish sanoatda va oshxonada ham muhim.",
+      "misol": "Muzlatgichda ovqat sekinroq buziladi.",
+      "savol": "Tezlik nimaning o‘zgarishi?",
+      "javob": "konsentratsiyaning vaqt birligidagi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Konsentratsiya va sirt",
+      "matn": "Reagent konsentratsiyasi oshsa, zarralar ko‘proq to‘qnashadi va tezlik ortadi (1864-yilda Guldberg va Vaage massalar ta’siri qonunini bayon etgan). Qattiq moddani maydalasak, sirt kattalashadi, tezlik ham ortadi. Un changi havoda portlashi mumkin, chunki sirti juda katta.",
+      "misol": "Qand bo‘lagi qand kukunidan sekin eriydi.",
+      "savol": "Maydalash tezlikka qanday ta’sir qiladi?",
+      "javob": "oshiradi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Harorat qoidasi",
+      "matn": "Harorat 10 darajaga oshsa, tezlik taxminan 2–4 marta ortadi (Vant-Goff qoidasi). Bu son — harorat koeffitsiyenti. Masalan, koeffitsiyent 2 bo‘lsa, 30 darajaga oshirilganda tezlik 2 · 2 · 2 — 8 marta ortadi. Shuning uchun issiq suvda choy tez eriydi.",
+      "misol": "Qaynoq suvda shakar tez eriydi.",
+      "savol": "Harorat oshsa, tezlik nima bo‘ladi?",
+      "javob": "ortadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Katalizator",
+      "matn": "Katalizator reaksiyani tezlatadi, o‘zi sarf bo‘lmaydi. Vodorod peroksid parchalanishini marganets dioksidi tezlatadi. Tirik organizmda biologik katalizatorlar — fermentlar ishlaydi: so‘lak kraxmalni parchalaydi. Reaksiyani sekinlatuvchilar — ingibitorlar, ular oziq-ovqatni saqlashda ishlatiladi.",
+      "misol": "Avtomobil katalitik neytralizatori zaharli gazni tozalaydi.",
+      "savol": "Katalizator reaksiyada sarf bo‘ladimi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotda va sanoatda",
+      "matn": "Sanoatda tezlik haroratni, bosimni, katalizatorni tanlab boshqariladi. Xonada sovutgich ovqatni saqlaydi, dorixonada dorilar salqin joyda saqlanadi. Maydalangan ko‘mir tez yonadi. Yong‘in xavfsizligida changli muhit xavfli: changning tezligi yuqori.",
+      "misol": "Fermer urug‘ni sovuqda saqlaydi.",
+      "savol": "Sovutgich nima uchun ovqatni saqlaydi?",
+      "javob": "tezlikni kamaytiradi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tezlik — konsentratsiya o‘zgarishi / vaqt. Harorat 10 darajaga oshsa, 2–4 marta ortadi. Katalizator tezlatadi, sarf bo‘lmaydi.",
+    "misollar": [
+     {
+      "shart": "Konsentratsiya 30 sekundda 1,0 dan 0,4 mol/litrgacha kamaydi. Tezlik?",
+      "yechim": [
+       "Farq 1,0 minus 0,4 — 0,6.",
+       "0,6 / 30.",
+       "Javob 0,02 mol/(litr · sekund)."
+      ],
+      "javob": "0,02"
+     },
+     {
+      "shart": "Harorat koeffitsiyenti 2. Harorat 30 darajaga oshdi. Tezlik necha marta ortadi?",
+      "yechim": [
+       "30 daraja — 3 ta oraliq.",
+       "2 · 2 · 2.",
+       "Javob 8 marta."
+      ],
+      "javob": "8 marta"
+     },
+     {
+      "shart": "Reaksiya 80 sekundda tugaydi. Tezlik 4 marta oshsa, necha sekundda tugaydi?",
+      "yechim": [
+       "Vaqt teskari proporsional.",
+       "80 / 4.",
+       "Javob 20 sekund."
+      ],
+      "javob": "20 sekund"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qand tajribasi",
+      "topshiriq": "Qand bo‘lagi va kukunini issiq va sovuq suvda eriting.",
+      "yechim": "Vaqtni o‘lchang.",
+      "mahsulot": "sekundomer, stakan"
+     },
+     {
+      "nom": "Katalizator ko‘pigi",
+      "topshiriq": "Vodorod peroksidga marganets dioksidi qo‘shishni video orqali kuzating.",
+      "yechim": "Gaz tez ajraladi.",
+      "mahsulot": "video"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Tezlik formulasi.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Saqlash qoidalari",
+      "topshiriq": "Ovqatni saqlash usullari ro‘yxatini yozing.",
+      "yechim": "Sovuq, quruq.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "0,6 / 30 nechaga teng?",
+      "javob": "0,02"
+     },
+     {
+      "shart": "2 · 2 · 2 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "80 / 4 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "Maydalash tezlikni oshiradimi?",
+      "javob": "ha"
+     },
+     {
+      "shart": "Katalizator sarf bo‘ladimi?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "Fermentlar nima?",
+      "javob": "biologik katalizatorlar"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tezlik harorat bilan kamayadi deydi",
+      "sabab": "ortadi",
+      "oldini_olish": "10 daraja — 2–4 marta"
+     },
+     {
+      "xato": "Katalizator sarf bo‘ladi deydi",
+      "sabab": "sarf bo‘lmaydi",
+      "oldini_olish": "tezlatadi"
+     },
+     {
+      "xato": "Vaqt tezlik bilan to‘g‘ri proporsional deydi",
+      "sabab": "teskari",
+      "oldini_olish": "tezlik oshsa vaqt kamayadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "fermentlar"
+     },
+     {
+      "fan": "Oshxona",
+      "boglanish": "sovutgich"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "katalitik neytralizator"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tezlik tadqiqotchisi»",
+     "muammo": "Qaysi omillar reaksiya tezligini oshiradi?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "omillarni tanlash",
+      "tajriba o‘tkazish",
+      "vaqtni o‘lchash",
+      "tezlikni hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Omilni tanlang",
+      "Vaqtni o‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tezlik poygasi»",
+     "bekatlar": [
+      {
+       "nom": "1-start",
+       "matn": "0,6 mol/litr 30 sekundda.",
+       "topshiriq": "Tezlik?",
+       "javob": "0,02",
+       "rasm": ""
+      },
+      {
+       "nom": "2-start",
+       "matn": "Koeffitsiyent 2, 30 daraja.",
+       "topshiriq": "Necha marta?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "3-start",
+       "matn": "80 sekund, 4 marta tez.",
+       "topshiriq": "Yangi vaqt?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "4-start",
+       "matn": "Katalizator.",
+       "topshiriq": "Sarf bo‘ladimi?",
+       "javob": "yo‘q",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Reaksiya tezligi",
+      "tarif": "konsentratsiyaning vaqt birligidagi o‘zgarishi"
+     },
+     {
+      "atama": "Katalizator",
+      "tarif": "reaksiyani tezlatuvchi modda"
+     },
+     {
+      "atama": "Ingibitor",
+      "tarif": "reaksiyani sekinlatuvchi modda"
+     },
+     {
+      "atama": "Ferment",
+      "tarif": "biologik katalizator"
+     },
+     {
+      "atama": "Harorat koeffitsiyenti",
+      "tarif": "10 darajadagi ortish soni"
+     },
+     {
+      "atama": "Sirt",
+      "tarif": "reaksiya boradigan yuza"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Harorat oshsa tezlik ortadi",
+      "togri": true,
+      "izoh": "Vant-Goff"
+     },
+     {
+      "matn": "Katalizator sarf bo‘ladi",
+      "togri": false,
+      "izoh": "sarf bo‘lmaydi"
+     },
+     {
+      "matn": "Maydalash tezlikni oshiradi",
+      "togri": true,
+      "izoh": "sirt ortadi"
+     },
+     {
+      "matn": "0,6 / 30 — 0,02",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "2 · 2 · 2 — 8",
+      "togri": true,
+      "izoh": "30 daraja"
+     },
+     {
+      "matn": "Fermentlar biologik katalizator",
+      "togri": true,
+      "izoh": "organizmda"
+     },
+     {
+      "matn": "Tezlik oshsa vaqt oshadi",
+      "togri": false,
+      "izoh": "kamayadi"
+     },
+     {
+      "matn": "Sovutgich tezlikni oshiradi",
+      "togri": false,
+      "izoh": "kamaytiradi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tezlik?",
+      "javob": "konsentratsiya o‘zgarishi / vaqt"
+     },
+     {
+      "savol": "Omillar?",
+      "javob": "konsentratsiya, harorat, sirt, katalizator"
+     },
+     {
+      "savol": "Harorat qoidasi?",
+      "javob": "10 daraja — 2–4 marta"
+     },
+     {
+      "savol": "Katalizator?",
+      "javob": "tezlatadi"
+     },
+     {
+      "savol": "Ingibitor?",
+      "javob": "sekinlatadi"
+     },
+     {
+      "savol": "Ferment?",
+      "javob": "biologik katalizator"
+     },
+     {
+      "savol": "0,6 / 30?",
+      "javob": "0,02"
+     },
+     {
+      "savol": "2 · 2 · 2?",
+      "javob": "8"
+     },
+     {
+      "savol": "80 / 4?",
+      "javob": "20"
+     },
+     {
+      "savol": "Maydalash?",
+      "javob": "sirtni oshiradi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Reaksiyani kuzat.",
+      "savol": "Qaysi omil?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Vaqtni o‘lcha.",
+      "savol": "Necha sekund?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Tezlikni top.",
+      "savol": "Farq / vaqt?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qaysi omil kuchli?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun issiq suvda choy tez eriydi, sovuqda sekin?",
+    "keys": {
+     "vaziyat": "Bir xil qand bo‘lagi issiq suvda 30 sekundda, sovuq suvda 3 daqiqada eridi.",
+     "savollar": [
+      "Harorat tezlikka qanday ta’sir qildi?",
+      "Yana qaysi omillar bor?"
+     ]
+    },
+    "tezis": "Harorat 10 darajaga oshsa tezlik 2–4 marta ortadi",
+    "taqqoslash": {
+     "a": "Katalizator",
+     "b": "Ingibitor",
+     "umumiy": [
+      "reaksiyaga ta’sir qiladi",
+      "sarf bo‘lmaydi"
+     ],
+     "a_farq": [
+      "tezlatadi",
+      "ferment"
+     ],
+     "b_farq": [
+      "sekinlatadi",
+      "saqlashda ishlatiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Reaksiya tezligi",
+     "shoxlar": [
+      {
+       "nom": "Omillar",
+       "bandlar": [
+        "konsentratsiya",
+        "harorat",
+        "sirt"
+       ]
+      },
+      {
+       "nom": "Harorat qoidasi",
+       "bandlar": [
+        "10 daraja — 2–4 marta"
+       ]
+      },
+      {
+       "nom": "Katalizator",
+       "bandlar": [
+        "tezlatadi",
+        "ferment"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "sovutgich",
+        "chang portlashi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men reaksiyaning shoshilish darajasiman. Men kimman?",
+     "javob": "reaksiya tezligi"
+    },
+    "hikmat": "Tezlik omillarga bog‘liq.",
+    "kalit_soz": "TEZLIK",
+    "xato_yechim": {
+     "shart": "Harorat oshsa tezlik?",
+     "xato": "kamayadi",
+     "togri": "ortadi",
+     "sabab": "zarralar tez harakatlanadi"
+    },
+    "guruh_nomlari": [
+     "Tezlikchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tezlik tadqiqotchisi»",
+     "topshiriq": "Guruh omillarni sinaydi."
+    },
+    "vazifalar": {
+     "A": "30 sekundda 0,6 mol/litr kamaysa tezlik?",
+     "B": "Koeffitsiyent 2, 30 daraja?",
+     "C": "80 sekund, 4 marta tez?"
+    },
+    "sinkveyn": [
+     "Reaksiya",
+     "tez, sekin",
+     "ortadi, kamayadi, tezlashadi",
+     "Harorat tezlikni oshiradi",
+     "Katalizator"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh reaksiya tezligini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tezlik",
+      "2-guruh: konsentratsiya va sirt",
+      "3-guruh: harorat",
+      "4-guruh: katalizator"
+     ],
+     "yakun": "Natijalar: 0,02; 8; 20."
+    }
+   }
+  },
+  {
+   "mavzu": "Kimyoviy muvozanat",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Qaytar reaksiyalar",
+      "matn": "Ba’zi reaksiyalar ikki yo‘nalishda boradi — ular qaytar. To‘g‘ri reaksiya mahsulot hosil qiladi, teskarisi esa mahsulotni yana reagentga aylantiradi. Shu sabab reagentlar to‘liq sarf bo‘lmaydi. Qaytar reaksiya tenglamada ikki yo‘nalishli o‘q bilan yoziladi.",
+      "misol": "Ammiak sintezi qaytar reaksiya.",
+      "savol": "Qaytar reaksiya nima?",
+      "javob": "ikki yo‘nalishda boradigan reaksiya",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Muvozanat holati",
+      "matn": "Muvozanatda to‘g‘ri va teskari reaksiya tezliklari teng. Moddalar konsentratsiyasi o‘zgarmaydi, lekin reaksiya to‘xtamaydi — bu dinamik muvozanat. Xuddi harakatsiz eskalatorda bir xil tezlikda yuqoriga va pastga yurgan kabi: ko‘rinishda joyida, aslida harakatda.",
+      "misol": "Muvozanat — to‘xtash emas.",
+      "savol": "Muvozanatda tezliklar qanday?",
+      "javob": "teng",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Muvozanat konstantasi",
+      "matn": "A moddadan B hosil bo‘ladigan reaksiyada muvozanat konstantasi K — B konsentratsiyasining A konsentratsiyasiga nisbati. B 0,6, A 0,2 mol/litr bo‘lsa, K — 0,6 / 0,2 — 3. K katta bo‘lsa, muvozanat mahsulot tomonga siljigan. K haroratga bog‘liq, konsentratsiyaga emas.",
+      "misol": "K katta — mahsulot ko‘p.",
+      "savol": "K qanday topiladi (oddiy holda)?",
+      "javob": "mahsulot konsentratsiyasi / reagent konsentratsiyasi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Le Shatelye prinsipi",
+      "matn": "1884-yilda Anri Le Shatelye: muvozanatdagi sistemaga ta’sir qilinsa, muvozanat shu ta’sirni kamaytiradigan tomonga siljiydi. Reagent qo‘shilsa — mahsulot tomonga. Bosim oshsa — mollar soni kam tomonga. Qizdirilsa — issiqlik yutiladigan tomonga. Katalizator muvozanatni siljitmaydi, faqat tezlashtiradi.",
+      "misol": "Prinsip sanoat sharoitini tanlashga yordam beradi.",
+      "savol": "Le Shatelye prinsipi kimning ta’sirini ko‘rsatadi?",
+      "javob": "tashqi ta’sirni kamaytirishni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ammiak sintezi",
+      "matn": "Azot va vodoroddan ammiak: 1 mol azot va 3 mol vodorod — jami 4 mol gaz, 2 mol ammiak beradi. Bosim oshsa, mollar kam tomonga, ya’ni ammiakka siljiydi. Reaksiya issiqlik chiqaradi, shu sabab past harorat qulay, ammo tezlik past, shuning uchun taxminan 450 daraja va temir katalizator tanlangan. Bu Xaber-Bosh jarayoni.",
+      "misol": "Xaber-Bosh jarayoni o‘g‘it ishlab chiqarishni o‘zgartirdi.",
+      "savol": "Bosim oshsa ammiak sintezi qaysi tomonga siljiydi?",
+      "javob": "ammiak tomonga",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Muvozanatda to‘g‘ri va teskari tezliklar teng. K — mahsulot / reagent. Le Shatelye: ta’sirni kamaytiradigan tomonga siljiydi.",
+    "misollar": [
+     {
+      "shart": "Muvozanatda B 0,6, A 0,2 mol/litr. K?",
+      "yechim": [
+       "K — B / A.",
+       "0,6 / 0,2.",
+       "Javob 3."
+      ],
+      "javob": "3"
+     },
+     {
+      "shart": "Azot va vodoroddan ammiak: 4 mol gaz 2 mol gazga o‘tadi. Mollar necha marta kamayadi?",
+      "yechim": [
+       "4 dan 2 ga.",
+       "4 / 2.",
+       "Javob 2 marta."
+      ],
+      "javob": "2 marta"
+     },
+     {
+      "shart": "1 mol azotdan nazariy 34 gramm ammiak olinadi. Amalda 25,5 gramm olindi. Unum?",
+      "yechim": [
+       "25,5 / 34.",
+       "0,75.",
+       "Javob 75 foiz."
+      ],
+      "javob": "75 foiz"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Dinamik muvozanat modeli",
+      "topshiriq": "Ikki idish orasida suv o‘tkazish modelini yasang.",
+      "yechim": "Tezliklar teng.",
+      "mahsulot": "idish, stakan"
+     },
+     {
+      "nom": "Siljishni bashorat qilamiz",
+      "topshiriq": "Beshta ta’sir uchun siljish yo‘nalishini yozing.",
+      "yechim": "Le Shatelye.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "K va unum.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Xaber-Bosh sxemasi",
+      "topshiriq": "Ammiak sintezi sxemasini chizing.",
+      "yechim": "Bosim, harorat, katalizator.",
+      "mahsulot": "qog‘oz, flomaster"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "0,6 / 0,2 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "4 / 2 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "25,5 / 34 nechaga teng?",
+      "javob": "0,75"
+     },
+     {
+      "shart": "Le Shatelye prinsipi yili?",
+      "javob": "1884"
+     },
+     {
+      "shart": "Muvozanatda tezliklar?",
+      "javob": "teng"
+     },
+     {
+      "shart": "Katalizator muvozanatni siljitadimi?",
+      "javob": "yo‘q"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Muvozanatda reaksiya to‘xtaydi deydi",
+      "sabab": "dinamik, davom etadi",
+      "oldini_olish": "tezliklar teng"
+     },
+     {
+      "xato": "Katalizator muvozanatni siljitadi deydi",
+      "sabab": "faqat tezlatadi",
+      "oldini_olish": "siljitmaydi"
+     },
+     {
+      "xato": "K konsentratsiyaga bog‘liq deydi",
+      "sabab": "haroratga bog‘liq",
+      "oldini_olish": "konsentratsiya siljitadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "Xaber-Bosh jarayoni"
+     },
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "ammiak o‘g‘it"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "qonda muvozanat"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Muvozanat sirlari»",
+     "muammo": "Muvozanatni qanday siljitamiz?",
+     "mahsulot": "model va jadval",
+     "bosqichlar": [
+      "modelni yasash",
+      "ta’sirlarni tanlash",
+      "siljishni bashorat qilish",
+      "hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Model yasang",
+      "Ta’sir tanlang",
+      "Siljishni yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "bashorat to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Muvozanat ko‘prigi»",
+     "bekatlar": [
+      {
+       "nom": "1-ustun",
+       "matn": "B 0,6, A 0,2.",
+       "topshiriq": "K?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ustun",
+       "matn": "4 mol dan 2 mol.",
+       "topshiriq": "Necha marta?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ustun",
+       "matn": "34 va 25,5 gramm.",
+       "topshiriq": "Unum foiz?",
+       "javob": "75",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ustun",
+       "matn": "Muvozanatda tezliklar.",
+       "topshiriq": "Qanday?",
+       "javob": "teng",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Nisbatni to‘g‘ri yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Qaytar reaksiya",
+      "tarif": "ikki yo‘nalishda boradigan reaksiya"
+     },
+     {
+      "atama": "Muvozanat",
+      "tarif": "tezliklar teng bo‘lgan holat"
+     },
+     {
+      "atama": "Muvozanat konstantasi",
+      "tarif": "mahsulot va reagent nisbati"
+     },
+     {
+      "atama": "Le Shatelye prinsipi",
+      "tarif": "muvozanat siljish qoidasi"
+     },
+     {
+      "atama": "Unum",
+      "tarif": "amaliy va nazariy nisbat"
+     },
+     {
+      "atama": "Dinamik",
+      "tarif": "harakatdagi, to‘xtamagan"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Muvozanatda tezliklar teng",
+      "togri": true,
+      "izoh": "dinamik"
+     },
+     {
+      "matn": "Muvozanatda reaksiya to‘xtaydi",
+      "togri": false,
+      "izoh": "davom etadi"
+     },
+     {
+      "matn": "Katalizator muvozanatni siljitadi",
+      "togri": false,
+      "izoh": "faqat tezlatadi"
+     },
+     {
+      "matn": "0,6 / 0,2 — 3",
+      "togri": true,
+      "izoh": "K"
+     },
+     {
+      "matn": "Bosim oshsa mollar kam tomonga siljiydi",
+      "togri": true,
+      "izoh": "Le Shatelye"
+     },
+     {
+      "matn": "Ammiak sintezi qaytar reaksiya",
+      "togri": true,
+      "izoh": "Xaber-Bosh"
+     },
+     {
+      "matn": "K haroratga bog‘liq",
+      "togri": true,
+      "izoh": "konstanta"
+     },
+     {
+      "matn": "25,5 / 34 — 0,75",
+      "togri": true,
+      "izoh": "unum"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qaytar reaksiya?",
+      "javob": "ikki yo‘nalishli"
+     },
+     {
+      "savol": "Muvozanat?",
+      "javob": "tezliklar teng"
+     },
+     {
+      "savol": "Dinamik?",
+      "javob": "to‘xtamaydi"
+     },
+     {
+      "savol": "K?",
+      "javob": "mahsulot / reagent"
+     },
+     {
+      "savol": "Le Shatelye?",
+      "javob": "1884 prinsip"
+     },
+     {
+      "savol": "Bosim?",
+      "javob": "mol kam tomonga"
+     },
+     {
+      "savol": "Katalizator?",
+      "javob": "siljitmaydi"
+     },
+     {
+      "savol": "0,6 / 0,2?",
+      "javob": "3"
+     },
+     {
+      "savol": "25,5 / 34?",
+      "javob": "0,75"
+     },
+     {
+      "savol": "Xaber-Bosh?",
+      "javob": "ammiak sintezi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Sistemani kuzat.",
+      "savol": "Qaytarmi?"
+     },
+     {
+      "nom": "Yoz",
+      "matn": "Muvozanatni yoz.",
+      "savol": "Tezliklar teng?"
+     },
+     {
+      "nom": "Bashorat",
+      "matn": "Siljishni top.",
+      "savol": "Qaysi tomon?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qaysi sharoit qulay?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ammiak sintezida bosim yuqori bo‘lishi qulay?",
+    "keys": {
+     "vaziyat": "Sanoatda ammiak yuqori bosimda ishlab chiqariladi.",
+     "savollar": [
+      "Mollar soni qaysi tomonda kam?",
+      "Bosim qaysi tomonga siljitadi?"
+     ]
+    },
+    "tezis": "Muvozanatda to‘g‘ri va teskari tezliklar teng",
+    "taqqoslash": {
+     "a": "To‘g‘ri reaksiya",
+     "b": "Teskari reaksiya",
+     "umumiy": [
+      "bir sistemada boradi",
+      "muvozanatda tezligi teng"
+     ],
+     "a_farq": [
+      "mahsulot hosil qiladi"
+     ],
+     "b_farq": [
+      "reagent hosil qiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kimyoviy muvozanat",
+     "shoxlar": [
+      {
+       "nom": "Qaytar reaksiya",
+       "bandlar": [
+        "ikki yo‘nalish"
+       ]
+      },
+      {
+       "nom": "Muvozanat",
+       "bandlar": [
+        "tezliklar teng",
+        "dinamik"
+       ]
+      },
+      {
+       "nom": "K",
+       "bandlar": [
+        "mahsulot / reagent"
+       ]
+      },
+      {
+       "nom": "Le Shatelye",
+       "bandlar": [
+        "bosim",
+        "harorat",
+        "konsentratsiya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men reaksiyaning to‘xtamagan tengligiman. Men nimaman?",
+     "javob": "kimyoviy muvozanat"
+    },
+    "hikmat": "Ikki yo‘nalish teng.",
+    "kalit_soz": "MUVOZANAT",
+    "xato_yechim": {
+     "shart": "Muvozanatda reaksiya to‘xtaydimi?",
+     "xato": "ha, to‘xtaydi",
+     "togri": "yo‘q, davom etadi",
+     "sabab": "dinamik muvozanat"
+    },
+    "guruh_nomlari": [
+     "Muvozanatchilar",
+     "Hisobchilar",
+     "Modelchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Muvozanat sirlari»",
+     "topshiriq": "Guruh muvozanat modelini yasaydi."
+    },
+    "vazifalar": {
+     "A": "B 0,6, A 0,2 bo‘lsa K?",
+     "B": "4 mol dan 2 mol bo‘lsa?",
+     "C": "34 va 25,5 bo‘lsa unum?"
+    },
+    "sinkveyn": [
+     "Muvozanat",
+     "teng, harakatli",
+     "siljiydi, tenglashadi, o‘zgaradi",
+     "Tezliklar teng",
+     "Siljish"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh kimyoviy muvozanatni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: qaytar reaksiya",
+      "2-guruh: muvozanat",
+      "3-guruh: konstanta",
+      "4-guruh: Le Shatelye"
+     ],
+     "yakun": "Natijalar: 3; 2 marta; 75 foiz."
+    }
+   }
+  },
+  {
+   "mavzu": "Azot va uning birikmalari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Azot elementi",
+      "matn": "Azot — V guruh elementi, tartib raqami 7, qavatlari 2, 5. U havoning taxminan 78 foizini tashkil etadi. Azot molekulasida uchlangan bog‘ bor, shuning uchun u juda barqaror va kam faol. Azot rangsiz, hidsiz gaz. 1772-yilda Daniel Rezerford kashf etgan, Lavuazye uni «azot» — hayotsiz deb atagan.",
+      "misol": "Azot yonishni qo‘llab-quvvatlamaydi.",
+      "savol": "Havoda azot qancha?",
+      "javob": "taxminan 78 foiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xossalari",
+      "matn": "Suyuq azot minus 196 darajada qaynaydi, u sovitish uchun ishlatiladi: oziq-ovqat va biologik namunalar shu bilan saqlanadi. Odatiy sharoitda azot kam faol, ammo yuqori haroratda, masalan chaqmoq paytida, kislorod bilan birikadi. Shunda yomg‘ir suviga oz miqdorda azot oksidlari tushadi.",
+      "misol": "Chaqmoqdan keyin havo toza tuyuladi.",
+      "savol": "Suyuq azot nima uchun ishlatiladi?",
+      "javob": "sovitish uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oksidlanish darajalari",
+      "matn": "Azot birikmalarida minus 3 dan musbat 5 gacha oksidlanish darajasi namoyon etadi. Ammiakda minus 3, azot oksidida musbat 2, azot dioksidida musbat 4, nitrat kislotada musbat 5. Nitrat kislotada hisob: vodorod musbat 1, uchta kislorod minus 6, shuning uchun azot musbat 5.",
+      "misol": "Daraja — atomning shartli zaryadi.",
+      "savol": "Nitrat kislotada azot darajasi?",
+      "javob": "musbat 5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Muhim birikmalar",
+      "matn": "Ammiak — o‘tkir hidli gaz, o‘g‘it va dori ishlab chiqarishda ishlatiladi. Azot dioksidi — jigarrang zaharli gaz, kislotali yomg‘ir sababi. Nitrat kislota — kuchli kislota, molyar massasi 63. Nitratlar — tuzlari, ular o‘g‘it sifatida ishlatiladi. Portlovchi moddalarda ham azot birikmalari bor.",
+      "misol": "Nitrat kislotasi o‘g‘it va bo‘yoq uchun xomashyo.",
+      "savol": "Nitrat kislota molyar massasi?",
+      "javob": "63",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tabiatda aylanishi",
+      "matn": "Dukkakli o‘simliklar (loviya, beda) ildizlarida bakteriyalar havo azotini o‘simlik o‘zlashtiradigan shaklga aylantiradi. Hayvonlar o‘simlikdan oqsil oladi, o‘lgan organizmlar chirib azotni tuproqqa qaytaradi. Shu — azot aylanishi. Inson o‘g‘it qo‘shib aylanishni tezlashtiradi, ortiqchasi suvni ifloslaydi.",
+      "misol": "Beda ekilgan yer unumdor bo‘ladi.",
+      "savol": "Dukkaklilar azotni qanday o‘zlashtiradi?",
+      "javob": "ildiz bakteriyalari orqali",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Azot — V guruh, havoda 78 foiz. Uchlangan bog‘, kam faol. Nitrat kislota molyar massasi 63.",
+    "misollar": [
+     {
+      "shart": "Nitrat kislotada vodorod musbat 1, uchta kislorod minus 6. Azot darajasi?",
+      "yechim": [
+       "Yig‘indi nol.",
+       "Azot — 6 minus 1.",
+       "Javob musbat 5."
+      ],
+      "javob": "musbat 5"
+     },
+     {
+      "shart": "126 gramm nitrat kislota (M — 63) necha mol?",
+      "yechim": [
+       "n — m / M.",
+       "126 / 63.",
+       "Javob 2 mol."
+      ],
+      "javob": "2 mol"
+     },
+     {
+      "shart": "200 litr havoda azot (78 foiz). Azot hajmi?",
+      "yechim": [
+       "200 · 0,78.",
+       "Hisoblaymiz.",
+       "Javob 156 litr."
+      ],
+      "javob": "156 litr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Havo tarkibi",
+      "topshiriq": "Havo tarkibini doira diagrammada chizing.",
+      "yechim": "Azot 78 foiz.",
+      "mahsulot": "qog‘oz, flomaster"
+     },
+     {
+      "nom": "Azot aylanishi",
+      "topshiriq": "Aylanish sxemasini chizing.",
+      "yechim": "Havo, ildiz, o‘simlik, tuproq.",
+      "mahsulot": "qog‘oz"
+     },
+     {
+      "nom": "Oksidlanish darajalari",
+      "topshiriq": "Besh birikmada azot darajasini toping.",
+      "yechim": "Yig‘indi nol.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va mol.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "6 minus 1 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "126 / 63 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "200 · 0,78 nechaga teng?",
+      "javob": "156"
+     },
+     {
+      "shart": "Nitrat kislota molyar massasi?",
+      "javob": "63"
+     },
+     {
+      "shart": "Azot tartib raqami?",
+      "javob": "7"
+     },
+     {
+      "shart": "Havoda azot foizi?",
+      "javob": "78"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Azot yonishni qo‘llab-quvvatlaydi deydi",
+      "sabab": "qo‘llab-quvvatlamaydi",
+      "oldini_olish": "kam faol"
+     },
+     {
+      "xato": "Azot molekulasida ikkilangan bog‘ deydi",
+      "sabab": "uchlangan bog‘",
+      "oldini_olish": "mustahkam"
+     },
+     {
+      "xato": "Havoda azot 21 foiz deydi",
+      "sabab": "78 foiz",
+      "oldini_olish": "21 foiz — kislorod"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "dukkaklilar va azot"
+     },
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "o‘g‘itlar"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "kislotali yomg‘ir"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Azot aylanishi»",
+     "muammo": "Azot tabiatda qanday aylanadi?",
+     "mahsulot": "sxema va hisob",
+     "bosqichlar": [
+      "aylanishni o‘rganish",
+      "sxema chizish",
+      "birikmalarni solishtirish",
+      "hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Aylanishni o‘rganing",
+      "Sxema chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Azot dunyosi»",
+     "bekatlar": [
+      {
+       "nom": "1-zal",
+       "matn": "Nitrat kislotada H musbat 1, O3 minus 6.",
+       "topshiriq": "N darajasi?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "2-zal",
+       "matn": "126 gramm, M 63.",
+       "topshiriq": "Mol?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-zal",
+       "matn": "200 litr havo.",
+       "topshiriq": "Azot litr?",
+       "javob": "156",
+       "rasm": ""
+      },
+      {
+       "nom": "4-zal",
+       "matn": "Azot tartib raqami.",
+       "topshiriq": "Raqam?",
+       "javob": "7",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Yig‘indi nolmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Azot",
+      "tarif": "V guruh gazi"
+     },
+     {
+      "atama": "Ammiak",
+      "tarif": "o‘tkir hidli gaz"
+     },
+     {
+      "atama": "Nitrat kislota",
+      "tarif": "kuchli kislota"
+     },
+     {
+      "atama": "Nitrat",
+      "tarif": "nitrat kislota tuzi"
+     },
+     {
+      "atama": "Suyuq azot",
+      "tarif": "sovituvchi suyuqlik"
+     },
+     {
+      "atama": "Azot aylanishi",
+      "tarif": "tabiatdagi azot almashinuvi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Havoda azot 78 foiz",
+      "togri": true,
+      "izoh": "taxminan"
+     },
+     {
+      "matn": "Azot yonishni qo‘llab-quvvatlaydi",
+      "togri": false,
+      "izoh": "qo‘llab-quvvatlamaydi"
+     },
+     {
+      "matn": "Azot molekulasida uchlangan bog‘ bor",
+      "togri": true,
+      "izoh": "mustahkam"
+     },
+     {
+      "matn": "126 / 63 — 2",
+      "togri": true,
+      "izoh": "mol"
+     },
+     {
+      "matn": "Nitrat kislotada azot musbat 5",
+      "togri": true,
+      "izoh": "yig‘indi nol"
+     },
+     {
+      "matn": "200 · 0,78 — 156",
+      "togri": true,
+      "izoh": "hajm"
+     },
+     {
+      "matn": "Dukkaklilar azotni o‘zlashtiradi",
+      "togri": true,
+      "izoh": "bakteriyalar"
+     },
+     {
+      "matn": "Azot dioksidi rangsiz",
+      "togri": false,
+      "izoh": "jigarrang"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Azot?",
+      "javob": "V guruh gazi"
+     },
+     {
+      "savol": "Havoda?",
+      "javob": "78 foiz"
+     },
+     {
+      "savol": "Bog‘i?",
+      "javob": "uchlangan"
+     },
+     {
+      "savol": "Raqami?",
+      "javob": "7"
+     },
+     {
+      "savol": "Ammiak?",
+      "javob": "o‘tkir hidli gaz"
+     },
+     {
+      "savol": "Nitrat kislota M?",
+      "javob": "63"
+     },
+     {
+      "savol": "N darajasi HNO3?",
+      "javob": "musbat 5"
+     },
+     {
+      "savol": "126 / 63?",
+      "javob": "2"
+     },
+     {
+      "savol": "200 · 0,78?",
+      "javob": "156"
+     },
+     {
+      "savol": "Aylanish?",
+      "javob": "bakteriyalar orqali"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Havo tarkibini kuzat.",
+      "savol": "Azot qancha?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Darajani top.",
+      "savol": "Yig‘indi nol?"
+     },
+     {
+      "nom": "Chiz",
+      "matn": "Aylanishni chiz.",
+      "savol": "Nechta bosqich?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nega muhim?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun azot havoda ko‘p, ammo o‘simlik uni to‘g‘ridan-to‘g‘ri o‘zlashtira olmaydi?",
+    "keys": {
+     "vaziyat": "Beda o‘sgan dalada tuproq unumdor bo‘ladi.",
+     "savollar": [
+      "Beda ildizida nima bor?",
+      "Azot qanday o‘zlashtiriladi?"
+     ]
+    },
+    "tezis": "Azot kam faol, uchlangan bog‘li",
+    "taqqoslash": {
+     "a": "Ammiak",
+     "b": "Nitrat kislota",
+     "umumiy": [
+      "azot birikmasi",
+      "o‘g‘it xomashyosi"
+     ],
+     "a_farq": [
+      "gaz",
+      "azot minus 3"
+     ],
+     "b_farq": [
+      "suyuqlik",
+      "azot musbat 5"
+     ]
+    },
+    "klaster": {
+     "markaz": "Azot va uning birikmalari",
+     "shoxlar": [
+      {
+       "nom": "Element",
+       "bandlar": [
+        "V guruh",
+        "78 foiz havoda"
+       ]
+      },
+      {
+       "nom": "Birikmalar",
+       "bandlar": [
+        "ammiak",
+        "oksidlar",
+        "nitrat kislota"
+       ]
+      },
+      {
+       "nom": "Aylanish",
+       "bandlar": [
+        "dukkaklilar",
+        "tuproq"
+       ]
+      },
+      {
+       "nom": "Qo‘llanish",
+       "bandlar": [
+        "o‘g‘it",
+        "sovitish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men havoning to‘rtdan uch qismiman, ammo kam faolman. Men kimman?",
+     "javob": "azot"
+    },
+    "hikmat": "Azot havoda ko‘p.",
+    "kalit_soz": "AZOT",
+    "xato_yechim": {
+     "shart": "Havoda azot qancha?",
+     "xato": "21 foiz",
+     "togri": "taxminan 78 foiz",
+     "sabab": "21 foiz kislorod"
+    },
+    "guruh_nomlari": [
+     "Azotchilar",
+     "Hisobchilar",
+     "Ekologlar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Azot aylanishi»",
+     "topshiriq": "Guruh aylanish sxemasini chizadi."
+    },
+    "vazifalar": {
+     "A": "HNO3 da azot darajasi?",
+     "B": "126 gramm nitrat kislota necha mol?",
+     "C": "200 litr havoda azot?"
+    },
+    "sinkveyn": [
+     "Azot",
+     "ko‘p, kam faol",
+     "aylanadi, o‘zlashadi, sovitadi",
+     "Havo azotga boy",
+     "Havo"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh azotni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: element",
+      "2-guruh: xossa",
+      "3-guruh: birikmalar",
+      "4-guruh: aylanish"
+     ],
+     "yakun": "Natijalar: musbat 5; 2 mol; 156 litr."
+    }
+   }
   }
  ]
 }
