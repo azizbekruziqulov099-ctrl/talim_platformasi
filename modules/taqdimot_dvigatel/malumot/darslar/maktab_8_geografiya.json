@@ -1399,6 +1399,1398 @@
      "yakun": "Natijalar: 990; 240000; 24."
     }
    }
+  },
+  {
+   "mavzu": "Energetika",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Energetika nima",
+      "matn": "Energetika — energiya ishlab chiqarish, uzatish va ishlatish tarmog‘i. U butun iqtisodning asosi: zavod, shahar, maktab va uy energiyasiz ishlamaydi. Elektr energiyasi issiqlik, gidro va quyosh hamda shamol stansiyalarida ishlab chiqariladi. O‘zbekiston elektrining katta qismi tabiiy gazda ishlaydigan issiqlik stansiyalaridan olinadi.",
+      "misol": "Energiya — iqtisod yuragi.",
+      "savol": "Energetika nima?",
+      "javob": "energiya ishlab chiqarish va uzatish tarmog‘i",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Elektr stansiyalar turlari",
+      "matn": "Issiqlik elektr stansiyalari (IES) gaz, mazut yoki ko‘mir yoqib elektr beradi: Sirdaryo, Toshkent, Navoiy, Taxiatosh, Angren. Gidroelektr stansiyalari (GES) suv oqimidan foydalanadi: Chorvoq, Farhod, Xo‘jakent, Tuyamo‘yin. Quyosh va shamol stansiyalari tabiiy, toza energiya beradi: Navoiy, Samarqand, Buxoro va Qoraqalpog‘iston hududida quriladi. Elektr tarmoq orqali shaharlarga uzatiladi.",
+      "misol": "IES, GES, quyosh, shamol.",
+      "savol": "GES nima ishlatadi?",
+      "javob": "suv oqimi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yangilanuvchi energiya",
+      "matn": "Quyosh, shamol va suv energiyasi tugamaydi, havoni ifloslantirmaydi. O‘zbekistonda quyosh nuri yilda ko‘p kun yog‘adi, shamol esa Qoraqalpog‘iston va Navoiy tomonda kuchli. Shuning uchun quyosh panellari va shamol turbinalari tez quriladi. Maqsad — yangilanuvchi manbalar ulushini oshirish.",
+      "misol": "Quyosh va shamol — kelajak.",
+      "savol": "Qaysi energiya tugamaydi?",
+      "javob": "quyosh, shamol, suv",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, bitta quyosh stansiyasi 100 megavatt beradi. 3 ta stansiya 3 · 100 — 300 megavatt. 1 megavatt — 1000 kilovatt, shuning uchun 300 megavatt — 300 · 1000 — 300000 kilovatt. Energiya — quvvat ko‘paytirilgan vaqtga: masalan, 100 megavatt 10 soatda 100 · 10 — 1000 megavatt-soat beradi. Masalan, 80 milliard kilovatt-soatning 12 foizi yangilanuvchi bo‘lsa, 80 · 0,12 — 9,6 milliard kilovatt-soat (taxminiy misol).",
+      "misol": "Energiya — quvvat ko‘paytirilgan vaqtga.",
+      "savol": "Masalan, 100 megavatt 10 soat ishlasa, necha megavatt-soat?",
+      "javob": "1000 megavatt-soat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tejamkorlik",
+      "matn": "Energiyani tejash — iqtisod va tabiatni asrash. Svetodiod lampalar kam energiya sarflaydi. Uyni isitishda issiqlikni saqlash uchun deraza va devorlarni izolyatsiya qilish foydali. Ishlatilmayotgan asboblarni o‘chirish, suv va issiqlikni tejash — har kimning vazifasi.",
+      "misol": "Tejash — birinchi manba.",
+      "savol": "Energiyani qanday tejash mumkin?",
+      "javob": "kam sarflaydigan lampa va izolyatsiya bilan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Energetika: IES, GES, quyosh va shamol. Energiya — quvvat ko‘paytirilgan vaqtga. 1 megavatt — 1000 kilovatt.",
+    "misollar": [
+     {
+      "shart": "Masalan, har biri 100 megavatt beradigan 3 stansiya. Jami necha megavatt?",
+      "yechim": [
+       "3 · 100.",
+       "Ko‘paytiring.",
+       "Javob 300."
+      ],
+      "javob": "300"
+     },
+     {
+      "shart": "Masalan, 100 megavatt 10 soat ishlaydi. Necha megavatt-soat?",
+      "yechim": [
+       "Quvvat · vaqt.",
+       "100 · 10.",
+       "Javob 1000."
+      ],
+      "javob": "1000"
+     },
+     {
+      "shart": "Masalan, 80 milliard kilovatt-soatning 12 foizi yangilanuvchi. Necha milliard?",
+      "yechim": [
+       "12 foiz — 0,12.",
+       "80 · 0,12.",
+       "Javob 9,6."
+      ],
+      "javob": "9,6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Stansiyalar xaritasi",
+      "topshiriq": "Xaritada IES va GES joylarini belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Quyosh tajribasi",
+      "topshiriq": "Quyosh panelidagi lampani yorug‘likda yoqing.",
+      "yechim": "Quyosh — elektr.",
+      "mahsulot": "kichik panel, lampa"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Quvvat va vaqt.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Tejash rejasi",
+      "topshiriq": "Uyda energiya tejash rejasini tuzing.",
+      "yechim": "Choralar.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 · 100 nechaga teng?",
+      "javob": "300"
+     },
+     {
+      "shart": "100 · 10 nechaga teng?",
+      "javob": "1000"
+     },
+     {
+      "shart": "80 · 0,12 nechaga teng?",
+      "javob": "9,6"
+     },
+     {
+      "shart": "300 · 1000 nechaga teng?",
+      "javob": "300000"
+     },
+     {
+      "shart": "GES nima ishlatadi?",
+      "javob": "suv"
+     },
+     {
+      "shart": "Tugamaydigan energiya?",
+      "javob": "quyosh"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Elektr faqat gazdan olinadi deydi",
+      "sabab": "suv, quyosh, shamoldan ham",
+      "oldini_olish": "turli manba"
+     },
+     {
+      "xato": "Quyosh energiyasi ifloslantiradi deydi",
+      "sabab": "toza energiya",
+      "oldini_olish": "tutun yo‘q"
+     },
+     {
+      "xato": "Tejash kerak emas deydi",
+      "sabab": "tejash foydali",
+      "oldini_olish": "iqtisod va tabiat"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "quvvat va energiya"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish va foiz"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "toza energiya"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Energiya atlasi»",
+     "muammo": "O‘zbekiston energiyani qanday oladi?",
+     "mahsulot": "energiya atlasi",
+     "bosqichlar": [
+      "stansiyalar xaritasi",
+      "yangilanuvchi manbalar",
+      "tejash",
+      "hisob",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Hisoblang",
+      "Taqqoslang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Elektr stansiyalar»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "3 stansiya, har biri 100 megavatt.",
+       "topshiriq": "Jami?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "100 megavatt, 10 soat.",
+       "topshiriq": "Megavatt-soat?",
+       "javob": "1000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "80 milliard va 12 foiz.",
+       "topshiriq": "Milliard?",
+       "javob": "9,6",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Suv bilan ishlaydi.",
+       "topshiriq": "Qaysi stansiya?",
+       "javob": "GES",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Energetika",
+      "tarif": "energiya tarmog‘i"
+     },
+     {
+      "atama": "IES",
+      "tarif": "issiqlik elektr stansiyasi"
+     },
+     {
+      "atama": "GES",
+      "tarif": "gidroelektr stansiyasi"
+     },
+     {
+      "atama": "Megavatt",
+      "tarif": "million vatt quvvat"
+     },
+     {
+      "atama": "Yangilanuvchi energiya",
+      "tarif": "tugamaydigan manba"
+     },
+     {
+      "atama": "Elektr tarmog‘i",
+      "tarif": "elektr uzatish simlari"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "GES suv oqimi bilan ishlaydi",
+      "togri": true,
+      "izoh": "gidro"
+     },
+     {
+      "matn": "Quyosh energiyasi tugaydi",
+      "togri": false,
+      "izoh": "tugamaydi"
+     },
+     {
+      "matn": "3 · 100 — 300",
+      "togri": true,
+      "izoh": "megavatt"
+     },
+     {
+      "matn": "1 megavatt 1000 kilovatt",
+      "togri": true,
+      "izoh": "o‘lchov"
+     },
+     {
+      "matn": "Elektr faqat gazdan",
+      "togri": false,
+      "izoh": "boshqa manbalar ham"
+     },
+     {
+      "matn": "Svetodiod lampa kam sarflaydi",
+      "togri": true,
+      "izoh": "tejash"
+     },
+     {
+      "matn": "100 · 10 — 1000",
+      "togri": true,
+      "izoh": "megavatt-soat"
+     },
+     {
+      "matn": "Shamol energiyasi toza",
+      "togri": true,
+      "izoh": "ekologiya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Energetika?",
+      "javob": "energiya tarmog‘i"
+     },
+     {
+      "savol": "IES?",
+      "javob": "issiqlik stansiyasi"
+     },
+     {
+      "savol": "GES?",
+      "javob": "suv stansiyasi"
+     },
+     {
+      "savol": "Toza energiya?",
+      "javob": "quyosh"
+     },
+     {
+      "savol": "Sirdaryo?",
+      "javob": "IES"
+     },
+     {
+      "savol": "Chorvoq?",
+      "javob": "GES"
+     },
+     {
+      "savol": "3 · 100?",
+      "javob": "300"
+     },
+     {
+      "savol": "100 · 10?",
+      "javob": "1000"
+     },
+     {
+      "savol": "80 · 0,12?",
+      "javob": "9,6"
+     },
+     {
+      "savol": "Tejash?",
+      "javob": "foydali"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Elektr stansiyalarni kuzat.",
+      "savol": "Qaysi turi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Quvvatni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "IES va quyosh.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Tejash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun quyosh va shamol energiyasi kelajak energiyasi deyiladi?",
+    "keys": {
+     "vaziyat": "Maktabda kun bo‘yi chiroqlar va kompyuterlar o‘chirilmay yonib turibdi.",
+     "savollar": [
+      "Nima zarar?",
+      "Qanday tejaymiz?"
+     ]
+    },
+    "tezis": "Energiya — hayot kuchi",
+    "taqqoslash": {
+     "a": "IES",
+     "b": "Quyosh stansiyasi",
+     "umumiy": [
+      "elektr beradi",
+      "tarmoqqa ulanadi"
+     ],
+     "a_farq": [
+      "gaz yoqadi",
+      "tutun chiqaradi"
+     ],
+     "b_farq": [
+      "quyosh nuri",
+      "toza energiya"
+     ]
+    },
+    "klaster": {
+     "markaz": "Energetika",
+     "shoxlar": [
+      {
+       "nom": "Stansiyalar",
+       "bandlar": [
+        "IES",
+        "GES",
+        "quyosh",
+        "shamol"
+       ]
+      },
+      {
+       "nom": "Manbalar",
+       "bandlar": [
+        "gaz",
+        "suv",
+        "quyosh"
+       ]
+      },
+      {
+       "nom": "Tarmoq",
+       "bandlar": [
+        "uzatish",
+        "yuklama"
+       ]
+      },
+      {
+       "nom": "Tejash",
+       "bandlar": [
+        "lampa",
+        "izolyatsiya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men suv oqimi bilan elektr ishlab chiqaraman. Men nimaman?",
+     "javob": "GES"
+    },
+    "hikmat": "Energiya — taraqqiyot kuchi.",
+    "kalit_soz": "ENERGIYA",
+    "xato_yechim": {
+     "shart": "GES qaysi manbadan foydalanadi?",
+     "xato": "gaz",
+     "togri": "suv oqimi",
+     "sabab": "gidroenergiya"
+    },
+    "guruh_nomlari": [
+     "Energetiklar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Energiya atlasi»",
+     "topshiriq": "Guruh stansiyalar xaritasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "3 stansiya, 100 megavatt?",
+     "B": "100 megavatt, 10 soat?",
+     "C": "80 milliard, 12 foiz?"
+    },
+    "sinkveyn": [
+     "Energiya",
+     "kuchli, zarur",
+     "yoritadi, isitadi, ishlatadi",
+     "Iqtisod yuragi",
+     "Quvvat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh energetikani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: stansiyalar",
+      "2-guruh: manbalar",
+      "3-guruh: tarmoq",
+      "4-guruh: tejash"
+     ],
+     "yakun": "Natijalar: 300; 1000; 9,6."
+    }
+   }
+  },
+  {
+   "mavzu": "Yoqilg‘i sanoati",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yoqilg‘i sanoati nima",
+      "matn": "Yoqilg‘i sanoati neft, tabiiy gaz va ko‘mir qazib olish va qayta ishlashni o‘z ichiga oladi. Bu tarmoq mamlakat energiyasi va kimyo sanoati uchun xomashyo beradi. O‘zbekiston tabiiy gazga boy. Neft va gaz konlari asosan Qashqadaryo, Buxoro, Surxondaryo va Ustyurtda, ko‘mir esa Angrenda joylashgan.",
+      "misol": "Neft, gaz, ko‘mir — yoqilg‘i.",
+      "savol": "Yoqilg‘i sanoati nimani qazib oladi?",
+      "javob": "neft, gaz va ko‘mir",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Gaz sanoati",
+      "matn": "Tabiiy gaz eng muhim yoqilg‘i: uylarni isitadi, elektr stansiyalarida yoqiladi va kimyo uchun xomashyo bo‘ladi. Yirik konlar: Shurtan, Muborak, Gazli. Muborak va Shurtanda gazni tozalash va qayta ishlash zavodlari bor. Gaz quvurlar orqali shaharlarga va boshqa mamlakatlarga yuboriladi.",
+      "misol": "Gaz — asosiy yoqilg‘i.",
+      "savol": "Gaz qanday yetkaziladi?",
+      "javob": "quvurlar orqali",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Neft va ko‘mir",
+      "matn": "Neft Farg‘ona vodiysi, Buxoro va Qashqadaryoda qazib olinadi. Uni neftni qayta ishlash zavodlarida (Farg‘ona, Oltiariq, Buxoro) benzin, dizel va moyga ajratishadi. Ko‘mir Angren razrezida ochiq usulda qazib olinadi, u issiqlik stansiyalarida ishlatiladi. Neft va ko‘mir tugaydigan resurslar, shuning uchun ularni tejash kerak.",
+      "misol": "Neft va ko‘mir tugaydi.",
+      "savol": "Ko‘mir qayerda qazib olinadi?",
+      "javob": "Angrenda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, quduq kuniga 2 million kub metr gaz beradi. 30 kunda 2 · 30 — 60 million kub metr. Masalan, 1 tonna neftdan taxminan 0,3 tonna benzin olinsa, 5 tonna neftdan 5 · 0,3 — 1,5 tonna benzin (taxminiy misol). Masalan, ko‘mir zaxirasi 600 million tonna, yiliga 4 million tonna qazilsa, 600 / 4 — 150 yilga yetadi (taxminiy misol).",
+      "misol": "Zaxira / yillik qazish — necha yilga yetadi.",
+      "savol": "Masalan, zaxira 600 million, yiliga 4 million. Necha yilga yetadi?",
+      "javob": "150 yil",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Muhofaza va xavfsizlik",
+      "matn": "Yoqilg‘i qazib olish va qayta ishlash tabiatni ifloslantirishi, portlash va yong‘in xavfi bor. Shu sababli xavfsizlik qoidalari, tozalash qurilmalari va shamollatish zarur. Yoqilg‘ini tejash va muqobil energiyaga o‘tish — kelajak yo‘li. Gaz hididan sezilsa, olov yoqmaslik va xonani shamollatish kerak.",
+      "misol": "Xavfsizlik — birinchi qoida.",
+      "savol": "Gaz hidi sezilsa nima qilamiz?",
+      "javob": "olov yoqmay xonani shamollatamiz",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Yoqilg‘i sanoati: neft, gaz, ko‘mir. Gaz — Shurtan, Muborak. Ko‘mir — Angren. Zaxira / yillik qazish — yetish muddati.",
+    "misollar": [
+     {
+      "shart": "Masalan, quduq kuniga 2 million kub metr gaz beradi. 30 kunda necha million?",
+      "yechim": [
+       "2 · 30.",
+       "Hisoblang.",
+       "Javob 60 million."
+      ],
+      "javob": "60 million"
+     },
+     {
+      "shart": "Masalan, 1 tonna neftdan 0,3 tonna benzin. 5 tonnadan necha tonna?",
+      "yechim": [
+       "5 · 0,3.",
+       "Hisoblang.",
+       "Javob 1,5 tonna."
+      ],
+      "javob": "1,5 tonna"
+     },
+     {
+      "shart": "Masalan, zaxira 600 million tonna, yiliga 4 million. Necha yilga yetadi?",
+      "yechim": [
+       "600 / 4.",
+       "Bo‘ling.",
+       "Javob 150 yil."
+      ],
+      "javob": "150 yil"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Konlar xaritasi",
+      "topshiriq": "Xaritada neft, gaz va ko‘mir konlarini belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Neftni qayta ishlash",
+      "topshiriq": "Neftdan olinadigan mahsulotlar diagrammasini chizing.",
+      "yechim": "Benzin, dizel, moy.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va bo‘lish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Xavfsizlik qoidalari",
+      "topshiriq": "Gaz xavfsizligi plakatini chizing.",
+      "yechim": "Qoidalar.",
+      "mahsulot": "qog‘oz, bo‘yoq"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 30 nechaga teng?",
+      "javob": "60"
+     },
+     {
+      "shart": "5 · 0,3 nechaga teng?",
+      "javob": "1,5"
+     },
+     {
+      "shart": "600 / 4 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "Ko‘mir qayerda qaziladi?",
+      "javob": "Angren"
+     },
+     {
+      "shart": "Gaz koni nomi?",
+      "javob": "Shurtan"
+     },
+     {
+      "shart": "Neftdan nima olinadi?",
+      "javob": "benzin"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yoqilg‘i tugamaydi deydi",
+      "sabab": "tugaydigan resurs",
+      "oldini_olish": "tejash kerak"
+     },
+     {
+      "xato": "Gaz xavfsiz, qoida kerak emas deydi",
+      "sabab": "xavfsizlik zarur",
+      "oldini_olish": "portlash xavfi"
+     },
+     {
+      "xato": "Ko‘mir Farg‘onada qaziladi deydi",
+      "sabab": "Angrenda",
+      "oldini_olish": "ochiq razrez"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "yoqilg‘i va yonish"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "bo‘lish"
+     },
+     {
+      "fan": "Hayot xavfsizligi",
+      "boglanish": "gaz qoidalari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yoqilg‘i xaritasi»",
+     "muammo": "O‘zbekiston yoqilg‘i resurslari qayerda?",
+     "mahsulot": "resurs xaritasi",
+     "bosqichlar": [
+      "konlar xaritasi",
+      "qayta ishlash",
+      "xavfsizlik",
+      "hisob",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Hisoblang",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Gaz konidan zavodgacha»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "Kuniga 2 million, 30 kun.",
+       "topshiriq": "Million?",
+       "javob": "60",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "5 tonna neft, 0,3.",
+       "topshiriq": "Benzin?",
+       "javob": "1,5",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "600 million, yiliga 4 million.",
+       "topshiriq": "Yil?",
+       "javob": "150",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Ko‘mir koni.",
+       "topshiriq": "Qaysi?",
+       "javob": "Angren",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Neft",
+      "tarif": "suyuq yoqilg‘i xomashyosi"
+     },
+     {
+      "atama": "Tabiiy gaz",
+      "tarif": "gazsimon yoqilg‘i"
+     },
+     {
+      "atama": "Ko‘mir",
+      "tarif": "qattiq yoqilg‘i"
+     },
+     {
+      "atama": "Razrez",
+      "tarif": "ochiq kon"
+     },
+     {
+      "atama": "Quvur",
+      "tarif": "gaz va neft uzatish nayi"
+     },
+     {
+      "atama": "Zaxira",
+      "tarif": "konda mavjud miqdor"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Gaz O‘zbekistonning asosiy yoqilg‘isi",
+      "togri": true,
+      "izoh": "elektr va uy"
+     },
+     {
+      "matn": "Neft tugamaydi",
+      "togri": false,
+      "izoh": "tugaydi"
+     },
+     {
+      "matn": "2 · 30 — 60",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Ko‘mir Angrenda qaziladi",
+      "togri": true,
+      "izoh": "razrez"
+     },
+     {
+      "matn": "Gaz hidi sezilsa olov yoqiladi",
+      "togri": false,
+      "izoh": "shamollatish"
+     },
+     {
+      "matn": "600 / 4 — 150",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Neftdan benzin olinadi",
+      "togri": true,
+      "izoh": "qayta ishlash"
+     },
+     {
+      "matn": "Gaz quvur orqali yetkaziladi",
+      "togri": true,
+      "izoh": "uzatish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yoqilg‘i turlari?",
+      "javob": "neft, gaz, ko‘mir"
+     },
+     {
+      "savol": "Gaz koni?",
+      "javob": "Shurtan"
+     },
+     {
+      "savol": "Ko‘mir koni?",
+      "javob": "Angren"
+     },
+     {
+      "savol": "Neft zavodi?",
+      "javob": "Farg‘ona"
+     },
+     {
+      "savol": "Gaz uzatish?",
+      "javob": "quvur"
+     },
+     {
+      "savol": "Razrez?",
+      "javob": "ochiq kon"
+     },
+     {
+      "savol": "2 · 30?",
+      "javob": "60"
+     },
+     {
+      "savol": "5 · 0,3?",
+      "javob": "1,5"
+     },
+     {
+      "savol": "600 / 4?",
+      "javob": "150"
+     },
+     {
+      "savol": "Xavfsizlik?",
+      "javob": "shamollatish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Konlar xaritasini kuzat.",
+      "savol": "Qayerda?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yetish muddatini top.",
+      "savol": "Bo‘lish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Gaz va ko‘mir.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Tejash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun yoqilg‘i resurslarini tejash kerak?",
+    "keys": {
+     "vaziyat": "Uyda gaz hidi kelmoqda, bola gugurt yoqmoqchi.",
+     "savollar": [
+      "Nima xavf?",
+      "Nima qilamiz?"
+     ]
+    },
+    "tezis": "Yoqilg‘i — tugaydigan boylik",
+    "taqqoslash": {
+     "a": "Neft va gaz",
+     "b": "Ko‘mir",
+     "umumiy": [
+      "yoqilg‘i",
+      "tugaydi"
+     ],
+     "a_farq": [
+      "suyuq va gaz",
+      "quvurda uzatiladi"
+     ],
+     "b_farq": [
+      "qattiq",
+      "razrezdan olinadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yoqilg‘i sanoati",
+     "shoxlar": [
+      {
+       "nom": "Gaz",
+       "bandlar": [
+        "Shurtan",
+        "Muborak"
+       ]
+      },
+      {
+       "nom": "Neft",
+       "bandlar": [
+        "Farg‘ona",
+        "Buxoro"
+       ]
+      },
+      {
+       "nom": "Ko‘mir",
+       "bandlar": [
+        "Angren",
+        "razrez"
+       ]
+      },
+      {
+       "nom": "Xavfsizlik",
+       "bandlar": [
+        "shamollatish",
+        "qoidalar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Angrenda ochiq usulda qazilaman. Men nimaman?",
+     "javob": "ko‘mir"
+    },
+    "hikmat": "Yoqilg‘i — tejaladi.",
+    "kalit_soz": "YOQILGI",
+    "xato_yechim": {
+     "shart": "Ko‘mir qayerda qaziladi?",
+     "xato": "Farg‘onada",
+     "togri": "Angrenda",
+     "sabab": "Angren razrezi"
+    },
+    "guruh_nomlari": [
+     "Geologlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yoqilg‘i xaritasi»",
+     "topshiriq": "Guruh resurs xaritasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "2 million, 30 kun?",
+     "B": "5 tonna, 0,3?",
+     "C": "600 million, 4 million?"
+    },
+    "sinkveyn": [
+     "Yoqilg‘i",
+     "qimmatli, tugaydigan",
+     "yonadi, isitadi, harakatlantiradi",
+     "Energiya manbai",
+     "Gaz"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yoqilg‘i sanoatini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: gaz",
+      "2-guruh: neft",
+      "3-guruh: ko‘mir",
+      "4-guruh: xavfsizlik"
+     ],
+     "yakun": "Natijalar: 60; 1,5; 150."
+    }
+   }
+  },
+  {
+   "mavzu": "Metallurgiya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Metallurgiya nima",
+      "matn": "Metallurgiya — rudadan metall olish va uni qayta ishlash tarmog‘i. U qora va rangli metallurgiyaga bo‘linadi. Qora metallurgiya temir va po‘lat, rangli metallurgiya mis, oltin, rux va boshqa metallar beradi. Metall mashinasozlik, qurilish va elektronika uchun kerak.",
+      "misol": "Metall — sanoat asosi.",
+      "savol": "Metallurgiya nima?",
+      "javob": "rudadan metall olish tarmog‘i",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘zbekiston metallurgiyasi",
+      "matn": "Qora metallurgiya markazi — Bekobod (po‘lat, prokat). Rangli metallurgiya: Olmaliq kon-metallurgiya kombinati mis, rux va boshqa metallar beradi. Navoiy kon-metallurgiya kombinati va Zarafshon, Muruntov koni oltin qazib oladi. O‘zbekiston oltin zaxirasi bo‘yicha dunyoda yuqori o‘rinlarda. Metallar asosan Qizilqum, Chotqol-Qurama tog‘larida topilgan.",
+      "misol": "Olmaliq — mis, Navoiy — oltin.",
+      "savol": "Bekobod nima beradi?",
+      "javob": "po‘lat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Joylashuv va jarayon",
+      "matn": "Metallurgiya korxonalari ruda, energiya va suv bor joyda quriladi. Jarayon: ruda qazib olinadi, boyitiladi, eritiladi va metall quyiladi. Ruda tarkibida metall oz bo‘ladi, shuning uchun juda ko‘p ruda qayta ishlanadi. Jarayonda chiqindi va gaz hosil bo‘lgani uchun filtrlar zarur.",
+      "misol": "Ruda — boyitish — eritish.",
+      "savol": "Metall qanday olinadi?",
+      "javob": "ruda boyitilib eritiladi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1 tonna po‘lat uchun 1,5 tonna ruda kerak bo‘lsa, 20 tonna po‘latga 20 · 1,5 — 30 tonna ruda. Masalan, 1 tonna rudadan 3 gramm oltin olinsa, 2000 tonna rudadan 2000 · 3 — 6000 gramm, ya’ni 6 kilogramm oltin (taxminiy misol). Masalan, ruda tarkibida 1 foiz mis bo‘lsa, 500 tonna rudadan 500 · 0,01 — 5 tonna mis olinadi (taxminiy misol).",
+      "misol": "Ruda — metall chiqishi — kam.",
+      "savol": "Masalan, 1 tonna rudadan 3 gramm oltin. 2000 tonnadan necha kilogramm?",
+      "javob": "6 kilogramm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qayta ishlash va ekologiya",
+      "matn": "Eski metallni, ya’ni metall chiqindisini yig‘ib qayta eritish rudadan olishdan arzon va tabiat uchun foydali. Metall idish, qutilar va simlar qayta ishlanadi. Metallurgiya havo va suvni ifloslantirishi mumkin, shu sababli tozalash qurilmalari ishlatiladi. Metall chiqindisini topshirish tabiatga hissa qo‘shishdir.",
+      "misol": "Metall qayta ishlansa — tabiat asraladi.",
+      "savol": "Metall chiqindisi nima uchun yig‘iladi?",
+      "javob": "qayta eritish uchun",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Metallurgiya: ruda — metall. Bekobod — po‘lat, Olmaliq — mis, Navoiy — oltin. Metallni qayta ishlash foydali.",
+    "misollar": [
+     {
+      "shart": "Masalan, 1 tonna po‘lat uchun 1,5 tonna ruda. 20 tonna po‘latga necha tonna ruda?",
+      "yechim": [
+       "20 · 1,5.",
+       "Hisoblang.",
+       "Javob 30."
+      ],
+      "javob": "30"
+     },
+     {
+      "shart": "Masalan, 1 tonna rudadan 3 gramm oltin. 2000 tonnadan necha gramm?",
+      "yechim": [
+       "2000 · 3.",
+       "Hisoblang.",
+       "Javob 6000."
+      ],
+      "javob": "6000"
+     },
+     {
+      "shart": "Masalan, ruda tarkibida 1 foiz mis. 500 tonna rudadan necha tonna mis?",
+      "yechim": [
+       "1 foiz — 0,01.",
+       "500 · 0,01.",
+       "Javob 5."
+      ],
+      "javob": "5"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Metallurgiya xaritasi",
+      "topshiriq": "Xaritada Bekobod, Olmaliq va Navoiyni belgilang.",
+      "yechim": "Markazlar.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Rudadan metallgacha",
+      "topshiriq": "Jarayon chizmasini chizing.",
+      "yechim": "Qazish, boyitish, eritish.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Metall yig‘ish",
+      "topshiriq": "Metall chiqindisini yig‘ish aksiyasi rejasi.",
+      "yechim": "Qayta ishlash.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "20 · 1,5 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "2000 · 3 nechaga teng?",
+      "javob": "6000"
+     },
+     {
+      "shart": "500 · 0,01 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "6000 gramm necha kilogramm?",
+      "javob": "6"
+     },
+     {
+      "shart": "Olmaliq nima beradi?",
+      "javob": "mis"
+     },
+     {
+      "shart": "Navoiy nima beradi?",
+      "javob": "oltin"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Metall rudasiz olinadi deydi",
+      "sabab": "rudadan olinadi",
+      "oldini_olish": "qazish va eritish"
+     },
+     {
+      "xato": "Olmaliq oltin markazi deydi",
+      "sabab": "mis markazi",
+      "oldini_olish": "Navoiy — oltin"
+     },
+     {
+      "xato": "Metall chiqindisi keraksiz deydi",
+      "sabab": "qayta eritiladi",
+      "oldini_olish": "tabiatni asraydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "metallar xossalari"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va ko‘paytirish"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "qayta ishlash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Metall yo‘li»",
+     "muammo": "Ruda qanday metallga aylanadi?",
+     "mahsulot": "jarayon plakati",
+     "bosqichlar": [
+      "xarita",
+      "jarayon chizmasi",
+      "qayta ishlash",
+      "hisob",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Kon-metallurgiya kombinati»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "20 tonna po‘lat, 1,5.",
+       "topshiriq": "Tonna ruda?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "2000 tonna ruda, 3 gramm.",
+       "topshiriq": "Gramm oltin?",
+       "javob": "6000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "500 tonna, 1 foiz.",
+       "topshiriq": "Tonna mis?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Po‘lat markazi.",
+       "topshiriq": "Qaysi?",
+       "javob": "Bekobod",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Metallurgiya",
+      "tarif": "metall olish sanoati"
+     },
+     {
+      "atama": "Ruda",
+      "tarif": "metall bor tog‘ jinsi"
+     },
+     {
+      "atama": "Po‘lat",
+      "tarif": "temir va uglerod qotishmasi"
+     },
+     {
+      "atama": "Prokat",
+      "tarif": "metallni dumalab shakllash"
+     },
+     {
+      "atama": "Boyitish",
+      "tarif": "rudani tozalash"
+     },
+     {
+      "atama": "Qotishma",
+      "tarif": "bir necha metall aralashmasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Metall rudadan olinadi",
+      "togri": true,
+      "izoh": "metallurgiya"
+     },
+     {
+      "matn": "Olmaliq oltin markazi",
+      "togri": false,
+      "izoh": "mis markazi"
+     },
+     {
+      "matn": "20 · 1,5 — 30",
+      "togri": true,
+      "izoh": "ruda"
+     },
+     {
+      "matn": "Navoiyda oltin qazib olinadi",
+      "togri": true,
+      "izoh": "kombinat"
+     },
+     {
+      "matn": "Metall chiqindisi keraksiz",
+      "togri": false,
+      "izoh": "qayta eritiladi"
+     },
+     {
+      "matn": "Bekobodda po‘lat ishlab chiqariladi",
+      "togri": true,
+      "izoh": "qora metallurgiya"
+     },
+     {
+      "matn": "2000 · 3 — 6000",
+      "togri": true,
+      "izoh": "gramm"
+     },
+     {
+      "matn": "Filtr zarur",
+      "togri": true,
+      "izoh": "ifloslanish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Metallurgiya?",
+      "javob": "metall olish"
+     },
+     {
+      "savol": "Po‘lat?",
+      "javob": "Bekobod"
+     },
+     {
+      "savol": "Mis?",
+      "javob": "Olmaliq"
+     },
+     {
+      "savol": "Oltin?",
+      "javob": "Navoiy"
+     },
+     {
+      "savol": "Ruda?",
+      "javob": "tog‘ jinsi"
+     },
+     {
+      "savol": "Boyitish?",
+      "javob": "tozalash"
+     },
+     {
+      "savol": "20 · 1,5?",
+      "javob": "30"
+     },
+     {
+      "savol": "2000 · 3?",
+      "javob": "6000"
+     },
+     {
+      "savol": "500 · 0,01?",
+      "javob": "5"
+     },
+     {
+      "savol": "Qayta ishlash?",
+      "javob": "foydali"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Metall buyumlarni kuzat.",
+      "savol": "Qaysi metall?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Ruda miqdorini top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Qora va rangli.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qayta ishlash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun metall chiqindisini yig‘ib topshirish foydali?",
+    "keys": {
+     "vaziyat": "Hovlida eski metall idishlar va simlar yig‘ilib qolgan.",
+     "savollar": [
+      "Nima qilamiz?",
+      "Nima foyda?"
+     ]
+    },
+    "tezis": "Metall — sanoat suyagi",
+    "taqqoslash": {
+     "a": "Qora metallurgiya",
+     "b": "Rangli metallurgiya",
+     "umumiy": [
+      "metall beradi",
+      "ruda qayta ishlanadi"
+     ],
+     "a_farq": [
+      "temir va po‘lat",
+      "Bekobod"
+     ],
+     "b_farq": [
+      "mis, oltin, rux",
+      "Olmaliq, Navoiy"
+     ]
+    },
+    "klaster": {
+     "markaz": "Metallurgiya",
+     "shoxlar": [
+      {
+       "nom": "Qora",
+       "bandlar": [
+        "temir",
+        "po‘lat",
+        "Bekobod"
+       ]
+      },
+      {
+       "nom": "Rangli",
+       "bandlar": [
+        "mis",
+        "oltin",
+        "rux"
+       ]
+      },
+      {
+       "nom": "Jarayon",
+       "bandlar": [
+        "qazish",
+        "boyitish",
+        "eritish"
+       ]
+      },
+      {
+       "nom": "Ekologiya",
+       "bandlar": [
+        "filtr",
+        "qayta ishlash"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Bekobodda ishlab chiqariladigan temir qotishmasiman. Men nimaman?",
+     "javob": "po‘lat"
+    },
+    "hikmat": "Metall — qayta ishlansa, tabiat asraladi.",
+    "kalit_soz": "METALL",
+    "xato_yechim": {
+     "shart": "Olmaliq qaysi metallni beradi?",
+     "xato": "oltin",
+     "togri": "mis",
+     "sabab": "mis kombinati"
+    },
+    "guruh_nomlari": [
+     "Metallurglar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Metall yo‘li»",
+     "topshiriq": "Guruh jarayon plakatini tuzadi."
+    },
+    "vazifalar": {
+     "A": "20 tonna po‘lat, 1,5?",
+     "B": "2000 tonna, 3 gramm?",
+     "C": "500 tonna, 1 foiz?"
+    },
+    "sinkveyn": [
+     "Metall",
+     "qattiq, yaltiroq",
+     "eriydi, quyiladi, o‘tkazadi",
+     "Sanoat asosi",
+     "Ruda"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh metallurgiyani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: qora",
+      "2-guruh: rangli",
+      "3-guruh: jarayon",
+      "4-guruh: ekologiya"
+     ],
+     "yakun": "Natijalar: 30; 6000; 5."
+    }
+   }
   }
  ]
 }
