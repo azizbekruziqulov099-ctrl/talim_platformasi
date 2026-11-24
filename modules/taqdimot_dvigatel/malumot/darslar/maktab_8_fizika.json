@@ -6919,6 +6919,1391 @@
      "yakun": "Natijalar: 30; 2; 5."
     }
    }
+  },
+  {
+   "mavzu": "Elektr ishi va quvvati",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tokning ishi",
+      "matn": "Tok iste’molchida ish bajaradi: lampani yoqadi, motorni aylantiradi, choynakni isitadi. Tokning ishi kuchlanishga, tok kuchiga va vaqtga bog‘liq: A — U · I · t. Birligi — joul.",
+      "misol": "Choynak tok ishi hisobiga suvni isitadi.",
+      "savol": "Tok ishi qaysi birlikda o‘lchanadi?",
+      "javob": "joul",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Quvvat",
+      "matn": "Quvvat — ishning bajarilish tezligi: P — A / t. Tok uchun P — U · I. Birligi — vatt: 1 vatt — 1 sekundda 1 joul ish. Kilovatt — 1000 vatt.",
+      "misol": "Lampochka 100 vatt — har sekundda 100 joul sarflaydi.",
+      "savol": "Quvvat birligi nima?",
+      "javob": "vatt",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Elektr energiyasi hisobi",
+      "matn": "Uyda sarflangan energiya elektr schyotchigi bilan o‘lchanadi. Birligi — kilovatt-soat: 1 kilovatt-soat — 3600000 joul. Uni topish uchun quvvatni (kilovattda) vaqtga (soatda) ko‘paytiramiz.",
+      "misol": "100 vattli lampa 10 soat yonsa, 1 kilovatt-soat sarflaydi.",
+      "savol": "1 kilovatt-soat necha joul?",
+      "javob": "3600000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Joul va Lens qonuni",
+      "matn": "Tok o‘tganda o‘tkazgich isiydi. Ajralgan issiqlik miqdori Q — I · I · R · t. Qonunni 1841-yilda ingliz fizigi Joul va 1842-yilda rus fizigi Lens bir-biridan mustaqil kashf etgan.",
+      "misol": "Elektr plita spirali qizib turadi.",
+      "savol": "Tok o‘tganda o‘tkazgich nima bo‘ladi?",
+      "javob": "isiydi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Energiya tejash",
+      "matn": "Ishlatilmayotgan asbobni o‘chirish, tejamkor LED lampalardan foydalanish energiyani tejaydi. Elektr energiya hisobi oilaviy byudjetda ham, ekologiyada ham muhim.",
+      "misol": "LED lampa kam quvvat sarflab, yorqin yonadi.",
+      "savol": "Qaysi lampa tejamkor: LED yoki cho‘g‘lanma?",
+      "javob": "LED",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "A — U · I · t, P — U · I (vatt). 1 kilovatt-soat — 3600000 joul. Q — I · I · R · t (Joul va Lens qonuni).",
+    "misollar": [
+     {
+      "shart": "Kuchlanish 220 volt, tok 2 amper, vaqt 10 sekund. Tok ishi?",
+      "yechim": [
+       "A — U · I · t.",
+       "220 · 2 · 10.",
+       "Javob 4400 joul."
+      ],
+      "javob": "4400 joul"
+     },
+     {
+      "shart": "Kuchlanish 220 volt, tok 2 amper. Quvvat?",
+      "yechim": [
+       "P — U · I.",
+       "220 · 2.",
+       "Javob 440 vatt."
+      ],
+      "javob": "440 vatt"
+     },
+     {
+      "shart": "Tok 2 amper, qarshilik 10 om, vaqt 5 sekund. Ajralgan issiqlik?",
+      "yechim": [
+       "Q — I · I · R · t.",
+       "2 · 2 · 10 · 5.",
+       "Javob 200 joul."
+      ],
+      "javob": "200 joul"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Quvvatni o‘qiymiz",
+      "topshiriq": "Uydagi asboblarning quvvatini pasportdan yozib oling.",
+      "yechim": "Vatt va kilovatt.",
+      "mahsulot": "asboblar, daftar"
+     },
+     {
+      "nom": "Energiyani hisoblaymiz",
+      "topshiriq": "Asboblar bir kunda sarflagan kilovatt-soatni toping.",
+      "yechim": "Quvvat · vaqt.",
+      "mahsulot": "hisob jadvali"
+     },
+     {
+      "nom": "Tejash rejasi",
+      "topshiriq": "Energiya tejash bo‘yicha beshta qoida yozing.",
+      "yechim": "Keraksiz chiroqni o‘chirish.",
+      "mahsulot": "plakat"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "A — U · I · t.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "220 · 2 · 10 nechaga teng?",
+      "javob": "4400"
+     },
+     {
+      "shart": "220 · 2 nechaga teng?",
+      "javob": "440"
+     },
+     {
+      "shart": "2 · 2 · 10 · 5 nechaga teng?",
+      "javob": "200"
+     },
+     {
+      "shart": "Quvvat birligi?",
+      "javob": "vatt"
+     },
+     {
+      "shart": "Kilovatt necha vatt?",
+      "javob": "1000"
+     },
+     {
+      "shart": "1 kilovatt-soat necha joul?",
+      "javob": "3600000"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Quvvatni joulda o‘lchaydi",
+      "sabab": "quvvat vattda o‘lchanadi",
+      "oldini_olish": "birlik vatt"
+     },
+     {
+      "xato": "Ishni U · I deb hisoblaydi",
+      "sabab": "vaqtni unutadi",
+      "oldini_olish": "A — U · I · t"
+     },
+     {
+      "xato": "Kilovattni 100 vatt deydi",
+      "sabab": "1000 vatt",
+      "oldini_olish": "1 kilovatt — 1000 vatt"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "tejamkor lampalar"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "energiya tejash"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "oilaviy xarajatlar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tejamkor uy»",
+     "muammo": "Uyda elektr energiyani qanday tejaymiz?",
+     "mahsulot": "hisob-kitob jadvali",
+     "bosqichlar": [
+      "asboblar ro‘yxati",
+      "quvvatni yozish",
+      "kunlik energiyani hisoblash",
+      "tejash yo‘llari",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Ro‘yxat tuzing",
+      "Hisoblang",
+      "Yo‘llarni toping",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "ma’lumot to‘g‘ri",
+      "hisob to‘g‘ri",
+      "takliflar mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Energiya shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "220 volt, 2 amper, 10 sekund.",
+       "topshiriq": "A?",
+       "javob": "4400",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "220 volt, 2 amper.",
+       "topshiriq": "P?",
+       "javob": "440",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "2 amper, 10 om, 5 sekund.",
+       "topshiriq": "Q?",
+       "javob": "200",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "Quvvat birligi.",
+       "topshiriq": "Nima?",
+       "javob": "vatt",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tok ishi",
+      "tarif": "tokning bajargan ishi"
+     },
+     {
+      "atama": "Quvvat",
+      "tarif": "ishning bajarilish tezligi"
+     },
+     {
+      "atama": "Vatt",
+      "tarif": "quvvat birligi"
+     },
+     {
+      "atama": "Kilovatt-soat",
+      "tarif": "energiya hisobi birligi"
+     },
+     {
+      "atama": "Joul va Lens qonuni",
+      "tarif": "tokning issiqlik ta’siri qonuni"
+     },
+     {
+      "atama": "Schyotchik",
+      "tarif": "energiya sarfini o‘lchaydigan asbob"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "A — U · I · t",
+      "togri": true,
+      "izoh": "tok ishi"
+     },
+     {
+      "matn": "Quvvat joulda o‘lchanadi",
+      "togri": false,
+      "izoh": "vattda"
+     },
+     {
+      "matn": "P — U · I",
+      "togri": true,
+      "izoh": "quvvat"
+     },
+     {
+      "matn": "1 kilovatt — 100 vatt",
+      "togri": false,
+      "izoh": "1000 vatt"
+     },
+     {
+      "matn": "220 · 2 — 440",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Tok o‘tganda o‘tkazgich isiydi",
+      "togri": true,
+      "izoh": "Joul va Lens"
+     },
+     {
+      "matn": "LED lampa tejamkor",
+      "togri": true,
+      "izoh": "kam quvvat"
+     },
+     {
+      "matn": "1 kilovatt-soat — 3600000 joul",
+      "togri": true,
+      "izoh": "hisob"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tok ishi?",
+      "javob": "U · I · t"
+     },
+     {
+      "savol": "Quvvat?",
+      "javob": "U · I"
+     },
+     {
+      "savol": "Quvvat birligi?",
+      "javob": "vatt"
+     },
+     {
+      "savol": "Ish birligi?",
+      "javob": "joul"
+     },
+     {
+      "savol": "220 · 2?",
+      "javob": "440"
+     },
+     {
+      "savol": "220 · 2 · 10?",
+      "javob": "4400"
+     },
+     {
+      "savol": "Kilovatt?",
+      "javob": "1000 vatt"
+     },
+     {
+      "savol": "Kilovatt-soat?",
+      "javob": "3600000 joul"
+     },
+     {
+      "savol": "Issiqlik?",
+      "javob": "I · I · R · t"
+     },
+     {
+      "savol": "Tejamkor lampa?",
+      "javob": "LED"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "U, I, t?"
+     },
+     {
+      "nom": "Formula",
+      "matn": "Formulani tanla.",
+      "savol": "A yoki P?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Sonlarni qo‘y.",
+      "savol": "natija?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Birlikni tekshir.",
+      "savol": "joul yoki vatt?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tejamkor lampa kam energiya sarflab, bir xil yorug‘lik beradi?",
+    "keys": {
+     "vaziyat": "Uydagi choynak 220 voltda 2 amper tok iste’mol qiladi.",
+     "savollar": [
+      "Quvvati nechaga teng?",
+      "10 sekundda qancha ish bajaradi?"
+     ]
+    },
+    "tezis": "P — U · I",
+    "taqqoslash": {
+     "a": "Tok ishi",
+     "b": "Quvvat",
+     "umumiy": [
+      "tok bilan bog‘liq",
+      "U va I ga bog‘liq"
+     ],
+     "a_farq": [
+      "joul",
+      "vaqtga bog‘liq"
+     ],
+     "b_farq": [
+      "vatt",
+      "tezlikni bildiradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Elektr ishi va quvvati",
+     "shoxlar": [
+      {
+       "nom": "Ish",
+       "bandlar": [
+        "U · I · t",
+        "joul"
+       ]
+      },
+      {
+       "nom": "Quvvat",
+       "bandlar": [
+        "U · I",
+        "vatt"
+       ]
+      },
+      {
+       "nom": "Issiqlik",
+       "bandlar": [
+        "I · I · R · t"
+       ]
+      },
+      {
+       "nom": "Tejash",
+       "bandlar": [
+        "LED",
+        "o‘chirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ishning tezligiman, birligim vatt. Men kimman?",
+     "javob": "quvvat"
+    },
+    "hikmat": "Quvvat — ishning tezligi.",
+    "kalit_soz": "QUVVAT",
+    "xato_yechim": {
+     "shart": "U 220 volt, I 2 amper. P?",
+     "xato": "220 / 2",
+     "togri": "220 · 2 — 440 vatt",
+     "sabab": "P — U · I, ko‘paytiramiz"
+    },
+    "guruh_nomlari": [
+     "Quvvatchilar",
+     "Hisobchilar",
+     "Tejovchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Energiya auditorlari»",
+     "topshiriq": "Guruh uydagi energiya sarfini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "220 volt, 2 amper, 10 sekund bo‘lsa A?",
+     "B": "220 volt, 2 amper bo‘lsa P?",
+     "C": "2 amper, 10 om, 5 sekund bo‘lsa Q?"
+    },
+    "sinkveyn": [
+     "Quvvat",
+     "kuchli, tez",
+     "ishlaydi, isitadi, sarflaydi",
+     "Quvvat ishning tezligi",
+     "Vatt"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tok ishi va quvvatini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: ish",
+      "2-guruh: quvvat",
+      "3-guruh: issiqlik",
+      "4-guruh: tejash"
+     ],
+     "yakun": "Natijalar: 4400; 440; 200."
+    }
+   }
+  },
+  {
+   "mavzu": "Magnit hodisalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Magnit",
+      "matn": "Magnit temir, nikel va kobalt kabi jismlarni tortadi. Tabiiy magnit — magnit temirtosh. Sun’iy magnitlar po‘latdan yasaladi va uzoq vaqt magnitlik xossasini saqlaydi.",
+      "misol": "Magnit mixlarni tortib oladi.",
+      "savol": "Magnit qaysi metallarni tortadi?",
+      "javob": "temir, nikel, kobalt",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qutblar",
+      "matn": "Magnitning ikki qutbi bor: shimoliy (N) va janubiy (S). Bir xil qutblar itaradi, har xil qutblar tortadi. Magnitni sindirsak, har bir bo‘lak yana ikki qutbli magnit bo‘ladi — qutblarni ajratib bo‘lmaydi.",
+      "misol": "Ikki magnitning shimoliy qutblari bir-birini itaradi.",
+      "savol": "Bir xil qutblar nima qiladi?",
+      "javob": "itaradi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Magnit maydon",
+      "matn": "Magnit atrofida magnit maydon bor. Uni magnit chiziqlari bilan tasvirlaymiz: ular magnit tashqarisida shimoliy qutbdan chiqib, janubiy qutbga kiradi. Temir qipiqlari shu chiziqlar bo‘ylab joylashadi.",
+      "misol": "Qipiqlar magnit atrofida egri chiziqlar hosil qiladi.",
+      "savol": "Chiziqlar tashqarida qayerdan chiqadi?",
+      "javob": "shimoliy qutbdan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yer — katta magnit",
+      "matn": "Yer ham katta magnit. Kompas strelkasi Yerning magnit maydoni bo‘ylab joylashadi: bir uchi taxminan shimolni ko‘rsatadi. Yerning magnit maydoni quyosh zarralaridan himoya qiladi. Quyoshdagi portlashlar magnit bo‘ronlarga sabab bo‘ladi.",
+      "misol": "Sayyohlar kompas bilan yo‘l topadi.",
+      "savol": "Kompas nimani ko‘rsatadi?",
+      "javob": "shimol yo‘nalishini",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oersted tajribasi",
+      "matn": "1820-yilda daniyalik fizik Xans Kristian Oersted tok o‘tayotgan sim yonidagi magnit strelkaning burilishini kuzatdi. Demak, tok atrofida ham magnit maydon bor. Bu elektr va magnetizmning bog‘liqligini ko‘rsatdi.",
+      "misol": "Simdan tok o‘tganda strelka buriladi.",
+      "savol": "Oersted tajribasi qaysi yilda?",
+      "javob": "1820",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Magnit temir, nikel, kobaltni tortadi. Bir xil qutblar itaradi, har xillari tortadi. Tok atrofida magnit maydon bor (Oersted, 1820).",
+    "misollar": [
+     {
+      "shart": "Magnitni 3 bo‘lakka sindirdik. Nechta magnit hosil bo‘ladi?",
+      "yechim": [
+       "Har bo‘lak magnit.",
+       "3 ta.",
+       "Javob 3 ta."
+      ],
+      "javob": "3 ta"
+     },
+     {
+      "shart": "4 ta magnit bor. Jami nechta qutb bor?",
+      "yechim": [
+       "Har magnitda 2 qutb.",
+       "4 · 2.",
+       "Javob 8 ta."
+      ],
+      "javob": "8 ta"
+     },
+     {
+      "shart": "Oersted 1820-yilda, Joul 1841-yilda ish qildi. Necha yil farq?",
+      "yechim": [
+       "1841 ayiramiz 1820.",
+       "21.",
+       "Javob 21 yil."
+      ],
+      "javob": "21 yil"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qutblarni topamiz",
+      "topshiriq": "Ikki magnitni yaqinlashtirib, tortilish va itarilishni kuzating.",
+      "yechim": "Bir xil — itaradi.",
+      "mahsulot": "ikki magnit"
+     },
+     {
+      "nom": "Qipiqlar bilan chizamiz",
+      "topshiriq": "Magnit ustiga qog‘oz qo‘yib, temir qipiqlarini seping.",
+      "yechim": "Chiziqlar ko‘rinadi.",
+      "mahsulot": "qipiq, qog‘oz"
+     },
+     {
+      "nom": "Kompas yasaymiz",
+      "topshiriq": "Magnitlangan ignani suv ustiga qo‘yib, yo‘nalishni toping.",
+      "yechim": "Shimolga qaraydi.",
+      "mahsulot": "igna, suv"
+     },
+     {
+      "nom": "Oersted tajribasi",
+      "topshiriq": "O‘qituvchi bilan sim va strelkani kuzating.",
+      "yechim": "Tok bo‘lsa burilish bor.",
+      "mahsulot": "batareya, sim, strelka"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Magnitning nechta qutbi bor?",
+      "javob": "2"
+     },
+     {
+      "shart": "4 · 2 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "1841 ayiramiz 1820 nechaga teng?",
+      "javob": "21"
+     },
+     {
+      "shart": "Bir xil qutblar nima qiladi?",
+      "javob": "itaradi"
+     },
+     {
+      "shart": "Magnit chiziqlari tashqarida qayerga kiradi?",
+      "javob": "janubiy qutbga"
+     },
+     {
+      "shart": "Oersted qaysi yilda?",
+      "javob": "1820"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Magnitni sindirsak, qutblar ajraladi deydi",
+      "sabab": "har bo‘lak yana ikki qutbli",
+      "oldini_olish": "qutblarni ajratib bo‘lmaydi"
+     },
+     {
+      "xato": "Bir xil qutblar tortadi deydi",
+      "sabab": "itaradi",
+      "oldini_olish": "bir xil — itaradi"
+     },
+     {
+      "xato": "Magnit hamma metallni tortadi deydi",
+      "sabab": "faqat temir, nikel, kobalt",
+      "oldini_olish": "mis va alyuminiyni tortmaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "kompas va yo‘nalish"
+     },
+     {
+      "fan": "Astronomiya",
+      "boglanish": "magnit bo‘ronlar"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Oersted kashfiyoti"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening kompasim»",
+     "muammo": "Oddiy kompasni qanday yasaymiz?",
+     "mahsulot": "kompas modeli",
+     "bosqichlar": [
+      "igna magnitlash",
+      "suvga qo‘yish",
+      "yo‘nalishni tekshirish",
+      "xaritada sinash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Ignani magnitlang",
+      "Kompas yasang",
+      "Tekshiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "kompas ishlaydi",
+      "yo‘nalish to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Magnit tog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-qoya",
+       "matn": "Magnit 3 bo‘lakka sindi.",
+       "topshiriq": "Nechta magnit?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qoya",
+       "matn": "4 ta magnit.",
+       "topshiriq": "Nechta qutb?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qoya",
+       "matn": "Oersted 1820, Joul 1841.",
+       "topshiriq": "Farq necha yil?",
+       "javob": "21",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qoya",
+       "matn": "Bir xil qutblar.",
+       "topshiriq": "Nima qiladi?",
+       "javob": "itaradi",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qutblarni sanadingizmi?",
+      "Yilni tekshirdingizmi?",
+      "Xulosa nima?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Magnit",
+      "tarif": "temirni tortuvchi jism"
+     },
+     {
+      "atama": "Qutb",
+      "tarif": "magnitning kuchli uchi"
+     },
+     {
+      "atama": "Magnit maydon",
+      "tarif": "magnit atrofidagi maydon"
+     },
+     {
+      "atama": "Kompas",
+      "tarif": "yo‘nalish ko‘rsatgich"
+     },
+     {
+      "atama": "Magnit chizig‘i",
+      "tarif": "maydonni tasvirlovchi chiziq"
+     },
+     {
+      "atama": "Magnit bo‘roni",
+      "tarif": "Yer magnit maydonining buzilishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Magnit temirni tortadi",
+      "togri": true,
+      "izoh": "asosiy xossa"
+     },
+     {
+      "matn": "Bir xil qutblar tortadi",
+      "togri": false,
+      "izoh": "itaradi"
+     },
+     {
+      "matn": "Magnitning ikki qutbi bor",
+      "togri": true,
+      "izoh": "N va S"
+     },
+     {
+      "matn": "Magnitni sindirsak qutblar ajraladi",
+      "togri": false,
+      "izoh": "ajralmaydi"
+     },
+     {
+      "matn": "4 · 2 — 8",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Yer ham magnit",
+      "togri": true,
+      "izoh": "kompas shuni ko‘rsatadi"
+     },
+     {
+      "matn": "Oersted tajribasi 1820-yilda",
+      "togri": true,
+      "izoh": "tok va magnit"
+     },
+     {
+      "matn": "Magnit misni tortadi",
+      "togri": false,
+      "izoh": "tortmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Magnit nimani tortadi?",
+      "javob": "temir, nikel, kobalt"
+     },
+     {
+      "savol": "Qutblar?",
+      "javob": "shimoliy va janubiy"
+     },
+     {
+      "savol": "Bir xil qutblar?",
+      "javob": "itaradi"
+     },
+     {
+      "savol": "Har xil?",
+      "javob": "tortadi"
+     },
+     {
+      "savol": "Chiziqlar?",
+      "javob": "N dan S ga"
+     },
+     {
+      "savol": "Kompas?",
+      "javob": "shimolni ko‘rsatadi"
+     },
+     {
+      "savol": "4 · 2?",
+      "javob": "8"
+     },
+     {
+      "savol": "Oersted?",
+      "javob": "1820"
+     },
+     {
+      "savol": "Yer?",
+      "javob": "katta magnit"
+     },
+     {
+      "savol": "Tok atrofida?",
+      "javob": "magnit maydon"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Magnitlarni kuzat.",
+      "savol": "Tortadimi?"
+     },
+     {
+      "nom": "Chiz",
+      "matn": "Chiziqlarni chiz.",
+      "savol": "Yo‘nalishi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Qutblarni sana.",
+      "savol": "Nechta?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qutblar ajraladimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun kompas strelkasi doim bir tomonga qaraydi?",
+    "keys": {
+     "vaziyat": "Sayyoh o‘rmonda yo‘lini yo‘qotdi, qo‘lida kompas bor.",
+     "savollar": [
+      "Kompas nimani ko‘rsatadi?",
+      "Kompas nega ishlaydi?"
+     ]
+    },
+    "tezis": "Qutblar ajralmaydi",
+    "taqqoslash": {
+     "a": "Tabiiy magnit",
+     "b": "Sun’iy magnit",
+     "umumiy": [
+      "magnitlik xossasi",
+      "ikki qutbi bor"
+     ],
+     "a_farq": [
+      "tabiatda uchraydi",
+      "magnit temirtosh"
+     ],
+     "b_farq": [
+      "po‘latdan yasaladi",
+      "kuchliroq qilish mumkin"
+     ]
+    },
+    "klaster": {
+     "markaz": "Magnit hodisalar",
+     "shoxlar": [
+      {
+       "nom": "Qutblar",
+       "bandlar": [
+        "N",
+        "S"
+       ]
+      },
+      {
+       "nom": "Ta’sir",
+       "bandlar": [
+        "bir xil — itaradi",
+        "har xil — tortadi"
+       ]
+      },
+      {
+       "nom": "Yer",
+       "bandlar": [
+        "kompas",
+        "magnit bo‘ron"
+       ]
+      },
+      {
+       "nom": "Oersted",
+       "bandlar": [
+        "1820",
+        "tok va magnit"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men temirni tortaman, ikki qutbim bor. Men kimman?",
+     "javob": "magnit"
+    },
+    "hikmat": "Qutblarni ajratib bo‘lmaydi.",
+    "kalit_soz": "MAGNIT",
+    "xato_yechim": {
+     "shart": "Magnit 3 bo‘lakka sindi. Nechta magnit?",
+     "xato": "1 ta",
+     "togri": "3 ta",
+     "sabab": "har bo‘lak ikki qutbli magnit"
+    },
+    "guruh_nomlari": [
+     "Magnitchilar",
+     "Kompaschilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Magnit laboratoriyasi»",
+     "topshiriq": "Guruh magnit xossalarini o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "Magnit 3 bo‘lakka sinsa nechta magnit?",
+     "B": "4 ta magnitda nechta qutb?",
+     "C": "Kompas yasab, yo‘nalishni toping."
+    },
+    "sinkveyn": [
+     "Magnit",
+     "tortadi, itaradi",
+     "tortadi, buradi, yo‘naltiradi",
+     "Magnit temirni tortadi",
+     "Qutb"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh magnit hodisalarini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: qutblar",
+      "2-guruh: maydon",
+      "3-guruh: Yer",
+      "4-guruh: Oersted"
+     ],
+     "yakun": "Natijalar: 3; 8; 21."
+    }
+   }
+  },
+  {
+   "mavzu": "Elektromagnit",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "G‘altak",
+      "matn": "Izolyatsiyalangan simdan o‘ralgan g‘altakdan tok o‘tsa, u magnitga o‘xshab ishlaydi va magnit maydon hosil qiladi. Tok o‘chsa, magnitlik yo‘qoladi.",
+      "misol": "Tokli g‘altak mix va mayda temir buyumlarni tortadi.",
+      "savol": "Tok o‘chsa, g‘altak magniti nima bo‘ladi?",
+      "javob": "yo‘qoladi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Elektromagnit",
+      "matn": "G‘altak ichiga temir o‘zak kiritilsa, magnit maydon ancha kuchayadi. Shunday qurilma elektromagnit deyiladi. Birinchi elektromagnitni 1825-yilda ingliz muhandisi Uilyam Sterjen yasagan.",
+      "misol": "Temir o‘zakli g‘altak og‘ir mixlarni ko‘taradi.",
+      "savol": "O‘zak maydonni kuchaytiradimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kuchi nimaga bog‘liq",
+      "matn": "Elektromagnitning kuchi tok kuchi oshsa, o‘ramlar soni ko‘paysa va o‘zak qo‘yilsa ortadi. Taxminan magnitlash ta’siri tok kuchi bilan o‘ramlar soni ko‘paytmasiga proporsional.",
+      "misol": "Ko‘p o‘ramli g‘altak kuchliroq.",
+      "savol": "O‘ramlar soni oshsa, kuch qanday o‘zgaradi?",
+      "javob": "ortadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qutblarni aniqlash",
+      "matn": "G‘altakning qutblarini o‘ng qo‘l qoidasi bilan topamiz: o‘ng qo‘l to‘rt barmog‘ini g‘altakdagi tok yo‘nalishida tutsak, bosh barmoq shimoliy qutbni ko‘rsatadi. Tok yo‘nalishi o‘zgarsa, qutblar ham almashadi.",
+      "misol": "Batareyani teskari ulasak, qutblar almashadi.",
+      "savol": "Tok yo‘nalishi o‘zgarsa, qutblar nima bo‘ladi?",
+      "javob": "almashadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanilishi",
+      "matn": "Elektromagnit elektr qo‘ng‘iroqda, bo‘lak temir ko‘taruvchi kranda, relelarda, karnay va dinamiklarda, tibbiyotdagi MRT apparatlarida ishlatiladi. Uning afzalligi — uni istalgan paytda yoqib-o‘chirish mumkin.",
+      "misol": "Metall yig‘uvchi kran elektromagnit bilan ishlaydi.",
+      "savol": "Elektromagnitning afzalligi nima?",
+      "javob": "yoqib-o‘chirish mumkin",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tokli g‘altak magnit kabi ishlaydi. Temir o‘zak maydonni kuchaytiradi. Kuch tok kuchi va o‘ramlar soniga bog‘liq. Qutblar o‘ng qo‘l qoidasi bilan topiladi.",
+    "misollar": [
+     {
+      "shart": "Tok 2 amper, o‘ramlar soni 100. Tok kuchi bilan o‘ramlar soni ko‘paytmasi?",
+      "yechim": [
+       "I · N.",
+       "2 · 100.",
+       "Javob 200."
+      ],
+      "javob": "200"
+     },
+     {
+      "shart": "Tok 0,5 amper, o‘ramlar soni 400. Ko‘paytma?",
+      "yechim": [
+       "0,5 · 400.",
+       "200.",
+       "Javob 200 — birinchisi bilan bir xil ta’sir."
+      ],
+      "javob": "200"
+     },
+     {
+      "shart": "Tok 1,5 amper, o‘ramlar soni 300. Ko‘paytma?",
+      "yechim": [
+       "1,5 · 300.",
+       "450.",
+       "Javob 450."
+      ],
+      "javob": "450"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Elektromagnit yasaymiz",
+      "topshiriq": "Mixga izolyatsiyali sim o‘rab, batareyaga ulang.",
+      "yechim": "Mix mayda buyumlarni tortadi.",
+      "mahsulot": "mix, sim, batareya"
+     },
+     {
+      "nom": "O‘ramlarni o‘zgartiramiz",
+      "topshiriq": "O‘ramlar sonini ko‘paytirib, tortilgan buyumlar sonini sanang.",
+      "yechim": "O‘ram ko‘p — kuch katta.",
+      "mahsulot": "mix, ilgaklar"
+     },
+     {
+      "nom": "Qutblarni topamiz",
+      "topshiriq": "Kompas bilan qutblarni aniqlang.",
+      "yechim": "O‘ng qo‘l qoidasi.",
+      "mahsulot": "kompas"
+     },
+     {
+      "nom": "Qo‘llanishlar ro‘yxati",
+      "topshiriq": "Elektromagnit ishlatiladigan asboblarni yozing.",
+      "yechim": "Qo‘ng‘iroq, kran, dinamik.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 100 nechaga teng?",
+      "javob": "200"
+     },
+     {
+      "shart": "0,5 · 400 nechaga teng?",
+      "javob": "200"
+     },
+     {
+      "shart": "1,5 · 300 nechaga teng?",
+      "javob": "450"
+     },
+     {
+      "shart": "O‘zak maydonni nima qiladi?",
+      "javob": "kuchaytiradi"
+     },
+     {
+      "shart": "Qutblarni qaysi qoida bilan topamiz?",
+      "javob": "o‘ng qo‘l qoidasi"
+     },
+     {
+      "shart": "Birinchi elektromagnit qaysi yilda?",
+      "javob": "1825"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tok o‘chsa ham g‘altak magnit qoladi deydi",
+      "sabab": "magnitlik yo‘qoladi",
+      "oldini_olish": "tok yo‘q — magnit yo‘q"
+     },
+     {
+      "xato": "O‘zak maydonni susaytiradi deydi",
+      "sabab": "kuchaytiradi",
+      "oldini_olish": "temir o‘zak kuchaytiradi"
+     },
+     {
+      "xato": "Tok yo‘nalishi qutblarga ta’sir qilmaydi deydi",
+      "sabab": "qutblar almashadi",
+      "oldini_olish": "yo‘nalish o‘zgarsa qutb almashadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "kran va qo‘ng‘iroq"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "MRT apparati"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Sterjen kashfiyoti"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening elektromagnitim»",
+     "muammo": "Elektromagnitni qanday yasaymiz va kuchaytiramiz?",
+     "mahsulot": "elektromagnit modeli",
+     "bosqichlar": [
+      "materiallarni tayyorlash",
+      "g‘altak o‘rash",
+      "kuchini sinash",
+      "kuchaytirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Materiallarni tayyorlang",
+      "G‘altak o‘rang",
+      "Sinab ko‘ring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model ishlaydi",
+      "o‘lchov aniq",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Elektromagnit zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "2 amper, 100 o‘ram.",
+       "topshiriq": "I · N?",
+       "javob": "200",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "0,5 amper, 400 o‘ram.",
+       "topshiriq": "I · N?",
+       "javob": "200",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "1,5 amper, 300 o‘ram.",
+       "topshiriq": "I · N?",
+       "javob": "450",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sex",
+       "matn": "Tok o‘chdi.",
+       "topshiriq": "Magnitlik?",
+       "javob": "yo‘qoladi",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?",
+      "Xulosa nima?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "G‘altak",
+      "tarif": "simdan o‘ralgan spiral"
+     },
+     {
+      "atama": "Elektromagnit",
+      "tarif": "temir o‘zakli tokli g‘altak"
+     },
+     {
+      "atama": "O‘zak",
+      "tarif": "g‘altak ichidagi temir"
+     },
+     {
+      "atama": "O‘ram",
+      "tarif": "simning bitta halqasi"
+     },
+     {
+      "atama": "O‘ng qo‘l qoidasi",
+      "tarif": "qutblarni topish qoidasi"
+     },
+     {
+      "atama": "Rele",
+      "tarif": "elektromagnitli almashlab ulagich"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tokli g‘altak magnit kabi ishlaydi",
+      "togri": true,
+      "izoh": "magnit maydon hosil qiladi"
+     },
+     {
+      "matn": "Tok o‘chsa elektromagnit ishlayveradi",
+      "togri": false,
+      "izoh": "magnitlik yo‘qoladi"
+     },
+     {
+      "matn": "Temir o‘zak maydonni kuchaytiradi",
+      "togri": true,
+      "izoh": "elektromagnit"
+     },
+     {
+      "matn": "O‘ramlar ko‘paysa kuch kamayadi",
+      "togri": false,
+      "izoh": "ortadi"
+     },
+     {
+      "matn": "2 · 100 — 200",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Birinchi elektromagnit 1825-yilda",
+      "togri": true,
+      "izoh": "Sterjen"
+     },
+     {
+      "matn": "Tok yo‘nalishi o‘zgarsa qutblar almashadi",
+      "togri": true,
+      "izoh": "o‘ng qo‘l qoidasi"
+     },
+     {
+      "matn": "Kran elektromagnitdan foydalanadi",
+      "togri": true,
+      "izoh": "metall ko‘taradi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "G‘altak?",
+      "javob": "simdan o‘ralgan"
+     },
+     {
+      "savol": "Elektromagnit?",
+      "javob": "o‘zakli tokli g‘altak"
+     },
+     {
+      "savol": "O‘zak?",
+      "javob": "maydonni kuchaytiradi"
+     },
+     {
+      "savol": "Kuch nimaga bog‘liq?",
+      "javob": "tok va o‘ramlar soniga"
+     },
+     {
+      "savol": "2 · 100?",
+      "javob": "200"
+     },
+     {
+      "savol": "1,5 · 300?",
+      "javob": "450"
+     },
+     {
+      "savol": "Qutblar?",
+      "javob": "o‘ng qo‘l qoidasi"
+     },
+     {
+      "savol": "Tok o‘chsa?",
+      "javob": "magnitlik yo‘qoladi"
+     },
+     {
+      "savol": "Qaysi yil?",
+      "javob": "1825"
+     },
+     {
+      "savol": "Qo‘llanish?",
+      "javob": "kran, qo‘ng‘iroq"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘ra",
+      "matn": "G‘altakni o‘ra.",
+      "savol": "Nechta o‘ram?"
+     },
+     {
+      "nom": "Ula",
+      "matn": "Batareyaga ula.",
+      "savol": "Tortadimi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "I · N ni top.",
+      "savol": "Nechaga teng?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Kuch nimaga bog‘liq?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun kranda oddiy magnit emas, elektromagnit ishlatiladi?",
+    "keys": {
+     "vaziyat": "Metall yig‘ish punktida kran yuklarni tortib oladi va tashlaydi.",
+     "savollar": [
+      "Yukni qanday tashlaydi?",
+      "Nima uchun oddiy magnit bunga yaramaydi?"
+     ]
+    },
+    "tezis": "Elektromagnit — yoqib-o‘chiriladigan magnit",
+    "taqqoslash": {
+     "a": "Oddiy magnit",
+     "b": "Elektromagnit",
+     "umumiy": [
+      "temirni tortadi",
+      "magnit maydon hosil qiladi"
+     ],
+     "a_farq": [
+      "doim magnit",
+      "o‘chirib bo‘lmaydi"
+     ],
+     "b_farq": [
+      "tok bo‘lsagina magnit",
+      "kuchini rostlash mumkin"
+     ]
+    },
+    "klaster": {
+     "markaz": "Elektromagnit",
+     "shoxlar": [
+      {
+       "nom": "Tuzilishi",
+       "bandlar": [
+        "g‘altak",
+        "temir o‘zak"
+       ]
+      },
+      {
+       "nom": "Kuchi",
+       "bandlar": [
+        "tok kuchi",
+        "o‘ramlar soni"
+       ]
+      },
+      {
+       "nom": "Qutblar",
+       "bandlar": [
+        "o‘ng qo‘l qoidasi"
+       ]
+      },
+      {
+       "nom": "Qo‘llanishi",
+       "bandlar": [
+        "kran",
+        "qo‘ng‘iroq",
+        "MRT"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tok bo‘lsagina magnit bo‘laman. Men kimman?",
+     "javob": "elektromagnit"
+    },
+    "hikmat": "Tok bo‘lsa — magnit bor.",
+    "kalit_soz": "G‘ALTAK",
+    "xato_yechim": {
+     "shart": "Tok o‘chdi. G‘altak nima bo‘ladi?",
+     "xato": "magnit bo‘lib qoladi",
+     "togri": "magnitligini yo‘qotadi",
+     "sabab": "maydonni tok hosil qiladi"
+    },
+    "guruh_nomlari": [
+     "G‘altakchilar",
+     "Kuchaytiruvchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Elektromagnit ustaxonasi»",
+     "topshiriq": "Guruh elektromagnit yasab sinaydi."
+    },
+    "vazifalar": {
+     "A": "2 amper va 100 o‘ram uchun I · N ni toping.",
+     "B": "0,5 amper va 400 o‘ram uchun I · N ni toping.",
+     "C": "1,5 amper va 300 o‘ram uchun I · N ni toping."
+    },
+    "sinkveyn": [
+     "Magnit",
+     "kuchli, tokli",
+     "tortadi, o‘raydi, ko‘taradi",
+     "Tok magnit hosil qiladi",
+     "G‘altak"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh elektromagnitni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: g‘altak",
+      "2-guruh: o‘zak",
+      "3-guruh: qutblar",
+      "4-guruh: qo‘llanishi"
+     ],
+     "yakun": "Natijalar: 200; 200; 450."
+    }
+   }
   }
  ]
 }
