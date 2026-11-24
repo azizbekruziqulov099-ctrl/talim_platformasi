@@ -4176,6 +4176,1397 @@
      "yakun": "Natijalar: 114; 35; 105."
     }
    }
+  },
+  {
+   "mavzu": "Ayiruv sistemasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ayirish nima uchun kerak",
+      "matn": "Almashinuv natijasida tanada keraksiz va zaharli moddalar hosil bo‘ladi: karbonat angidrid, mochevina, ortiqcha suv va tuz. Ularni tashqariga chiqarish — ayirish. Buni buyraklar, o‘pka, teri va ichak bajaradi. Ayirish ichki muhit doimiyligini saqlaydi.",
+      "misol": "Chiqindi ketmasa, tana zaharlanadi.",
+      "savol": "Ayirishni qaysi a’zolar bajaradi?",
+      "javob": "buyrak, o‘pka, teri",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ayiruv sistemasi tuzilishi",
+      "matn": "Ayiruv sistemasi ikkita buyrak, ikkita siydik yo‘li, siydik pufagi va siydik chiqarish kanalidan iborat. Buyraklar loviya shaklida, bel sohasida joylashgan, har biri taxminan musht kattaligida. Siydik pufagi siydikni yig‘adi, kattalarda taxminan 300-500 millilitr hajmda to‘ladi.",
+      "misol": "Buyrak — tananing filtri.",
+      "savol": "Buyraklar nechta?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nefron va siydik hosil bo‘lishi",
+      "matn": "Buyrakning ishchi birligi — nefron, har bir buyrakda taxminan 1 million nefron bor, ya’ni ikkala buyrakda taxminan 2 million. Avval qon filtrlanib, kuniga taxminan 180 litr birlamchi siydik hosil bo‘ladi. So‘ng foydali moddalar va suv qonga qaytariladi, kuniga taxminan 1,5 litr ikkilamchi siydik chiqadi.",
+      "misol": "Birlamchi siydikning deyarli hammasi qayta so‘riladi.",
+      "savol": "Nefron nima?",
+      "javob": "buyrakning ishchi birligi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisob",
+      "matn": "Birlamchi siydik taxminan 180 litr, ikkilamchi taxminan 1,5 litr. Qayta so‘rilgan suv 180 minus 1,5 — 178,5 litr. Birlamchi siydik ikkilamchidan 180 / 1,5 — 120 marta ko‘p. Demak buyrak suvni juda tejaydi, deyarli hammasini qaytaradi.",
+      "misol": "Buyrak tejamkor ishlaydi.",
+      "savol": "Qayta so‘rilgan suv taxminan necha litr?",
+      "javob": "178,5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Buyrak salomatligi",
+      "matn": "Buyrakni asrash uchun: yetarli suv ichish, tuzni me’yorida iste’mol qilish, sovuqda issiq kiyinish, kam harakat bo‘lmaslik, siydikni uzoq ushlab turmaslik. Bel og‘rig‘i, shishlar yoki siydik rangi o‘zgarsa, shifokorga murojaat qilish kerak. Dori-darmonni o‘zboshimchalik bilan ichmang.",
+      "misol": "Suv ichish buyrakka yordam beradi.",
+      "savol": "Buyrakka nima foydali?",
+      "javob": "yetarli suv ichish",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Buyrak — ayirish a’zosi, nefron — birligi. Birlamchi siydik taxminan 180 litr, ikkilamchi 1,5 litr.",
+    "misollar": [
+     {
+      "shart": "Birlamchi siydik taxminan 180 litr, ikkilamchi 1,5 litr. Qayta so‘rilgan suv?",
+      "yechim": [
+       "180 minus 1,5.",
+       "Hisoblang.",
+       "Javob 178,5 litr."
+      ],
+      "javob": "178,5 litr"
+     },
+     {
+      "shart": "Birlamchi siydik 180 litr, ikkilamchi 1,5 litr. Necha marta ko‘p?",
+      "yechim": [
+       "180 / 1,5.",
+       "Hisoblang.",
+       "Javob 120 marta."
+      ],
+      "javob": "120 marta"
+     },
+     {
+      "shart": "Har buyrakda taxminan 1 million nefron. Ikki buyrakda?",
+      "yechim": [
+       "2 · 1.",
+       "Million hisobida.",
+       "Javob 2 million."
+      ],
+      "javob": "2 million"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Buyrak modeli",
+      "topshiriq": "Plastilindan buyrak va siydik yo‘llari modelini yasang.",
+      "yechim": "Buyrak, pufak.",
+      "mahsulot": "plastilin"
+     },
+     {
+      "nom": "Suv balansi",
+      "topshiriq": "Bir kunda ichgan suv miqdorini yozing.",
+      "yechim": "Kunlik kuzatuv.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Siydik hajmi.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Sog‘lom odatlar",
+      "topshiriq": "Buyrak uchun foydali odatlar plakatini tuzing.",
+      "yechim": "Suv, issiq kiyim.",
+      "mahsulot": "qog‘oz, flomaster"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "180 minus 1,5 nechaga teng?",
+      "javob": "178,5"
+     },
+     {
+      "shart": "180 / 1,5 nechaga teng?",
+      "javob": "120"
+     },
+     {
+      "shart": "2 · 1 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "Buyraklar soni?",
+      "javob": "2"
+     },
+     {
+      "shart": "Buyrakning ishchi birligi?",
+      "javob": "nefron"
+     },
+     {
+      "shart": "Siydikni yig‘uvchi a’zo?",
+      "javob": "siydik pufagi"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Faqat buyrak ayiradi deydi",
+      "sabab": "o‘pka va teri ham",
+      "oldini_olish": "karbonat angidrid va ter"
+     },
+     {
+      "xato": "Birlamchi siydik hammasi chiqib ketadi deydi",
+      "sabab": "deyarli hammasi qayta so‘riladi",
+      "oldini_olish": "1,5 litr chiqadi"
+     },
+     {
+      "xato": "Suv ichmaslik buyrakka foydali deydi",
+      "sabab": "zararli",
+      "oldini_olish": "suv kerak"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "mochevina"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "nisbat"
+     },
+     {
+      "fan": "Sog‘liq",
+      "boglanish": "suv ichish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Buyrak — tana filtri»",
+     "muammo": "Buyrak qanday ishlaydi va qanday asraladi?",
+     "mahsulot": "model va hisob",
+     "bosqichlar": [
+      "tuzilishni o‘rganish",
+      "model yasash",
+      "siydik hisobi",
+      "suv balansi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tuzilishni o‘rganing",
+      "Model yasang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Buyrak ichida»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "180 va 1,5.",
+       "topshiriq": "Qayta so‘rilgan?",
+       "javob": "178,5",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "180 va 1,5.",
+       "topshiriq": "Necha marta?",
+       "javob": "120",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "Har buyrakda 1 million.",
+       "topshiriq": "Ikki buyrakda?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "Buyrak soni.",
+       "topshiriq": "Nechta?",
+       "javob": "2",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘lishni bildingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ayirish",
+      "tarif": "keraksiz moddalarni chiqarish"
+     },
+     {
+      "atama": "Buyrak",
+      "tarif": "ayirish a’zosi"
+     },
+     {
+      "atama": "Nefron",
+      "tarif": "buyrakning ishchi birligi"
+     },
+     {
+      "atama": "Siydik pufagi",
+      "tarif": "siydik yig‘iladigan a’zo"
+     },
+     {
+      "atama": "Mochevina",
+      "tarif": "azotli chiqindi"
+     },
+     {
+      "atama": "Filtrlanish",
+      "tarif": "suyuqlikni sizib o‘tkazish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Buyrak ayirish a’zosi",
+      "togri": true,
+      "izoh": "qonni filtrlaydi"
+     },
+     {
+      "matn": "Faqat buyrak ayirish ishini bajaradi",
+      "togri": false,
+      "izoh": "o‘pka va teri ham"
+     },
+     {
+      "matn": "Nefron buyrakning ishchi birligi",
+      "togri": true,
+      "izoh": "million bor"
+     },
+     {
+      "matn": "Birlamchi siydik taxminan 180 litr",
+      "togri": true,
+      "izoh": "kuniga"
+     },
+     {
+      "matn": "180 minus 1,5 — 178,5",
+      "togri": true,
+      "izoh": "qayta so‘riladi"
+     },
+     {
+      "matn": "Ikki buyrak bor",
+      "togri": true,
+      "izoh": "ikkitadan"
+     },
+     {
+      "matn": "Suv ichmaslik buyrakka foydali",
+      "togri": false,
+      "izoh": "zararli"
+     },
+     {
+      "matn": "Siydik pufagi siydikni yig‘adi",
+      "togri": true,
+      "izoh": "saqlaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ayirish?",
+      "javob": "keraksiz moddalarni chiqarish"
+     },
+     {
+      "savol": "Buyrak soni?",
+      "javob": "2"
+     },
+     {
+      "savol": "Nefron?",
+      "javob": "ishchi birlik"
+     },
+     {
+      "savol": "Birlamchi siydik?",
+      "javob": "taxminan 180 litr"
+     },
+     {
+      "savol": "Ikkilamchi?",
+      "javob": "taxminan 1,5 litr"
+     },
+     {
+      "savol": "Pufak?",
+      "javob": "siydik yig‘adi"
+     },
+     {
+      "savol": "180 / 1,5?",
+      "javob": "120"
+     },
+     {
+      "savol": "180 minus 1,5?",
+      "javob": "178,5"
+     },
+     {
+      "savol": "Ayiruvchi a’zolar?",
+      "javob": "buyrak, o‘pka, teri"
+     },
+     {
+      "savol": "Foydali?",
+      "javob": "yetarli suv"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Suv balansini kuzat.",
+      "savol": "Qancha ichding?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Hajmni top.",
+      "savol": "Ayirma?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ikki siydikni solishtir.",
+      "savol": "Qancha marta?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Buyrakni asrash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun buyrak suvning deyarli hammasini qaytaradi?",
+    "keys": {
+     "vaziyat": "Birlamchi siydik 180 litr, chiqadigani 1,5 litr.",
+     "savollar": [
+      "Qolgan suv qayerga ketadi?",
+      "Nima uchun kerak?"
+     ]
+    },
+    "tezis": "Buyrak qonni tozalaydi va suvni tejaydi",
+    "taqqoslash": {
+     "a": "Buyrak",
+     "b": "Teri",
+     "umumiy": [
+      "ayirish a’zosi",
+      "suv chiqaradi"
+     ],
+     "a_farq": [
+      "siydik hosil qiladi",
+      "asosiy ayirish"
+     ],
+     "b_farq": [
+      "ter hosil qiladi",
+      "haroratni ham boshqaradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ayiruv sistemasi",
+     "shoxlar": [
+      {
+       "nom": "A’zolar",
+       "bandlar": [
+        "buyrak",
+        "siydik yo‘li",
+        "pufak"
+       ]
+      },
+      {
+       "nom": "Nefron",
+       "bandlar": [
+        "filtrlanish",
+        "qayta so‘rilish"
+       ]
+      },
+      {
+       "nom": "Siydik",
+       "bandlar": [
+        "180 litr",
+        "1,5 litr"
+       ]
+      },
+      {
+       "nom": "Salomatlik",
+       "bandlar": [
+        "suv",
+        "issiq kiyim"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qonni filtrlayman va siydik hosil qilaman. Men kimman?",
+     "javob": "buyrak"
+    },
+    "hikmat": "Buyrak tananing filtri.",
+    "kalit_soz": "BUYRAK",
+    "xato_yechim": {
+     "shart": "Birlamchi siydik hammasi chiqadimi?",
+     "xato": "ha, hammasi",
+     "togri": "yo‘q, deyarli hammasi qaytadi",
+     "sabab": "1,5 litr chiqadi"
+    },
+    "guruh_nomlari": [
+     "Buyrakchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Buyrak — tana filtri»",
+     "topshiriq": "Guruh buyrak modelini yasaydi."
+    },
+    "vazifalar": {
+     "A": "Qayta so‘rilgan suv?",
+     "B": "Necha marta ko‘p?",
+     "C": "Ikki buyrakdagi nefron?"
+    },
+    "sinkveyn": [
+     "Buyrak",
+     "loviyasimon, filtr",
+     "tozalaydi, ayiradi, tejaydi",
+     "Tana filtri",
+     "Siydik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ayiruv sistemasini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: a’zolar",
+      "2-guruh: nefron",
+      "3-guruh: siydik",
+      "4-guruh: salomatlik"
+     ],
+     "yakun": "Natijalar: 178,5 litr; 120 marta; 2 million."
+    }
+   }
+  },
+  {
+   "mavzu": "Teri",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Teri tuzilishi",
+      "matn": "Teri — tananing eng katta a’zosi. U uch qatlamdan iborat: epidermis (ustki), derma (haqiqiy teri) va teri osti yog‘ qatlami. Epidermis hujayralari doim yangilanadi, ustki o‘lik hujayralar to‘kiladi. Dermada qon tomirlar, nerv uchlari, ter va yog‘ bezlari, soch ildizlari joylashgan.",
+      "misol": "Teri tanani qoplab turadi.",
+      "savol": "Teri nechta qatlamdan iborat?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Terining vazifalari",
+      "matn": "Teri himoya qiladi: mikroblar, zarba va quyoshdan. U haroratni boshqaradi: issiqda terlab sovitadi, sovuqda tomirlar torayadi. Teri sezgi a’zosi: og‘riq, issiq, sovuq, tegishni sezadi. Ter orqali ba’zi chiqindilar chiqadi. Quyosh ta’sirida terida D vitamini hosil bo‘ladi.",
+      "misol": "Terlash — tana sovutgichi.",
+      "savol": "Teri qanday vazifa bajaradi?",
+      "javob": "himoya, harorat, sezgi, ayirish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yangilanish va hisob",
+      "matn": "Epidermis taxminan 4 hafta, ya’ni 4 · 7 — 28 kunda yangilanadi. Yilda taxminan 365 / 28 — 13 marta. Kattalar terisining yuzasi taxminan 1,5 kvadrat metr, ya’ni 1,5 · 10000 — 15000 kvadrat santimetr. Bu sonlar taxminiy va odamga qarab farq qiladi.",
+      "misol": "Teri butun umr yangilanib turadi.",
+      "savol": "Epidermis taxminan necha kunda yangilanadi?",
+      "javob": "28",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Pigment va quyosh",
+      "matn": "Teri rangi melanin pigmentiga bog‘liq. Quyosh nuri melanin hosil bo‘lishini oshiradi, teri qorayadi. Ortiqcha quyosh kuyish va teri kasalliklariga olib keladi. Quyoshda soyabon, bosh kiyim va quyoshdan saqlovchi krem foydali, ayniqsa tushki soatlarda.",
+      "misol": "Kuyish — terining ogohlantirishi.",
+      "savol": "Rangni qaysi pigment belgilaydi?",
+      "javob": "melanin",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Gigiena va kuyishda yordam",
+      "matn": "Terini toza tutish: kunlik yuvinish, toza kiyim, tirnoqni qirqish. Kuyganda kuygan joyni 10-20 daqiqa sovuq oqar suv ostida ushlang, yog‘ yoki tish pastasi surmang, kuchli kuyishda shifokorga boring. Terida chiqqan noma’lum dog‘ni shifokorga ko‘rsating.",
+      "misol": "Birinchi yordam: sovuq suv.",
+      "savol": "Kuyishda nima qilinadi?",
+      "javob": "sovuq suv ostida ushlanadi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Teri uch qatlam: epidermis, derma, yog‘ qatlami. Epidermis taxminan 28 kunda yangilanadi. Melanin teri rangini belgilaydi.",
+    "misollar": [
+     {
+      "shart": "Epidermis taxminan 4 haftada yangilanadi. Necha kun?",
+      "yechim": [
+       "4 · 7.",
+       "Hisoblang.",
+       "Javob 28."
+      ],
+      "javob": "28"
+     },
+     {
+      "shart": "Yilda taxminan 365 kun, yangilanish 28 kunda. Taxminan necha marta?",
+      "yechim": [
+       "365 / 28.",
+       "13 ga yaqin.",
+       "Javob taxminan 13."
+      ],
+      "javob": "taxminan 13"
+     },
+     {
+      "shart": "Teri yuzasi taxminan 1,5 kvadrat metr, bir kvadrat metr 10000 kvadrat santimetr. Yuza?",
+      "yechim": [
+       "1,5 · 10000.",
+       "Hisoblang.",
+       "Javob 15000 kvadrat santimetr."
+      ],
+      "javob": "15000 kvadrat santimetr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Teri qatlamlari",
+      "topshiriq": "Teri qatlamlarini rangli qalamda chizing.",
+      "yechim": "Epidermis, derma.",
+      "mahsulot": "qog‘oz, qalam"
+     },
+     {
+      "nom": "Sezgi tajribasi",
+      "topshiriq": "Ko‘zni yumib, turli narsani teging va aniqlang.",
+      "yechim": "Issiq, sovuq, g‘adir-budir.",
+      "mahsulot": "turli narsalar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Kun va yuza.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Quyosh qoidalari",
+      "topshiriq": "Quyoshdan saqlanish qoidalarini yozing.",
+      "yechim": "Bosh kiyim, krem.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "4 · 7 nechaga teng?",
+      "javob": "28"
+     },
+     {
+      "shart": "365 / 28 nechaga yaqin?",
+      "javob": "13"
+     },
+     {
+      "shart": "1,5 · 10000 nechaga teng?",
+      "javob": "15000"
+     },
+     {
+      "shart": "Teri qatlami soni?",
+      "javob": "3"
+     },
+     {
+      "shart": "Rang pigmenti?",
+      "javob": "melanin"
+     },
+     {
+      "shart": "Quyoshda terida qaysi vitamin hosil bo‘ladi?",
+      "javob": "D"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Teri faqat himoya qiladi deydi",
+      "sabab": "ko‘p vazifa bajaradi",
+      "oldini_olish": "harorat, sezgi, ayirish"
+     },
+     {
+      "xato": "Kuyganda yog‘ surtish kerak deydi",
+      "sabab": "sovuq suv kerak",
+      "oldini_olish": "yog‘ issiqni ushlaydi"
+     },
+     {
+      "xato": "Quyosh faqat foyda beradi deydi",
+      "sabab": "ortiqchasi zarar",
+      "oldini_olish": "kuyish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "issiqlik almashinuvi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "yuza"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "birinchi yordam"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Teri — himoya qalqoni»",
+     "muammo": "Teri qanday tuzilgan va qanday asraladi?",
+     "mahsulot": "plakat va tajriba",
+     "bosqichlar": [
+      "qatlamlarni chizish",
+      "sezgi tajribasi",
+      "hisoblash",
+      "quyosh qoidalari",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Qatlamlarni chizing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "chizma to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Teri qatlamlari»",
+     "bekatlar": [
+      {
+       "nom": "1-qavat",
+       "matn": "4 hafta.",
+       "topshiriq": "Necha kun?",
+       "javob": "28",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qavat",
+       "matn": "365 va 28.",
+       "topshiriq": "Taxminan necha marta?",
+       "javob": "13",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qavat",
+       "matn": "1,5 kvadrat metr.",
+       "topshiriq": "Kvadrat santimetr?",
+       "javob": "15000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qavat",
+       "matn": "Qatlam soni.",
+       "topshiriq": "Nechta?",
+       "javob": "3",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Epidermis",
+      "tarif": "terining ustki qatlami"
+     },
+     {
+      "atama": "Derma",
+      "tarif": "haqiqiy teri qatlami"
+     },
+     {
+      "atama": "Melanin",
+      "tarif": "teri pigmenti"
+     },
+     {
+      "atama": "Ter bezi",
+      "tarif": "ter ajratuvchi bez"
+     },
+     {
+      "atama": "Termoregulyatsiya",
+      "tarif": "haroratni boshqarish"
+     },
+     {
+      "atama": "Teri osti yog‘i",
+      "tarif": "issiqlik saqlovchi qatlam"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Teri uch qatlamdan iborat",
+      "togri": true,
+      "izoh": "epidermis, derma, yog‘ qatlami"
+     },
+     {
+      "matn": "Teri sezgi a’zosi",
+      "togri": true,
+      "izoh": "nerv uchlari"
+     },
+     {
+      "matn": "Kuyganda yog‘ surtish kerak",
+      "togri": false,
+      "izoh": "sovuq suv"
+     },
+     {
+      "matn": "Melanin teri rangini belgilaydi",
+      "togri": true,
+      "izoh": "pigment"
+     },
+     {
+      "matn": "4 · 7 — 28",
+      "togri": true,
+      "izoh": "kun"
+     },
+     {
+      "matn": "Terlash tanani sovitadi",
+      "togri": true,
+      "izoh": "harorat"
+     },
+     {
+      "matn": "Quyosh faqat foyda beradi",
+      "togri": false,
+      "izoh": "ortiqchasi zarar"
+     },
+     {
+      "matn": "Teri D vitamini hosil qilishda ishtirok etadi",
+      "togri": true,
+      "izoh": "quyosh nuri"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Teri qatlami?",
+      "javob": "3"
+     },
+     {
+      "savol": "Ustki qatlam?",
+      "javob": "epidermis"
+     },
+     {
+      "savol": "Pigment?",
+      "javob": "melanin"
+     },
+     {
+      "savol": "Vazifa?",
+      "javob": "himoya, harorat, sezgi"
+     },
+     {
+      "savol": "Yangilanish?",
+      "javob": "taxminan 28 kun"
+     },
+     {
+      "savol": "4 · 7?",
+      "javob": "28"
+     },
+     {
+      "savol": "365 / 28?",
+      "javob": "taxminan 13"
+     },
+     {
+      "savol": "1,5 · 10000?",
+      "javob": "15000"
+     },
+     {
+      "savol": "Kuyishda?",
+      "javob": "sovuq suv"
+     },
+     {
+      "savol": "Quyoshda?",
+      "javob": "D vitamini"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Teringni kuzat.",
+      "savol": "Qanday sezasan?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yuza va kunni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Qatlamlarni solishtir.",
+      "savol": "Qaysi vazifa?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qanday asraymiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun issiqda terlaymiz?",
+    "keys": {
+     "vaziyat": "Yugurgandan keyin yuzdan ter oqmoqda.",
+     "savollar": [
+      "Ter nima qiladi?",
+      "Tana nimaga sovuydi?"
+     ]
+    },
+    "tezis": "Teri himoya va sovutish vositasi",
+    "taqqoslash": {
+     "a": "Epidermis",
+     "b": "Derma",
+     "umumiy": [
+      "teri qatlami",
+      "himoya qiladi"
+     ],
+     "a_farq": [
+      "ustki, hujayrali",
+      "qon tomiri yo‘q"
+     ],
+     "b_farq": [
+      "ichki, qalin",
+      "qon tomir va bezlar bor"
+     ]
+    },
+    "klaster": {
+     "markaz": "Teri",
+     "shoxlar": [
+      {
+       "nom": "Qatlam",
+       "bandlar": [
+        "epidermis",
+        "derma",
+        "yog‘ qatlami"
+       ]
+      },
+      {
+       "nom": "Vazifa",
+       "bandlar": [
+        "himoya",
+        "sezgi",
+        "harorat"
+       ]
+      },
+      {
+       "nom": "Yangilanish",
+       "bandlar": [
+        "28 kun",
+        "13 marta"
+       ]
+      },
+      {
+       "nom": "Asrash",
+       "bandlar": [
+        "toza tutish",
+        "quyoshdan saqlanish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tananing eng katta a’zosiman va uni himoya qilaman. Men kimman?",
+     "javob": "teri"
+    },
+    "hikmat": "Teri tana qalqoni.",
+    "kalit_soz": "TERI",
+    "xato_yechim": {
+     "shart": "Kuygan joyga nima qilinadi?",
+     "xato": "yog‘ surtiladi",
+     "togri": "sovuq suv ushlanadi",
+     "sabab": "issiqni olib tashlaydi"
+    },
+    "guruh_nomlari": [
+     "Terichilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Teri — himoya qalqoni»",
+     "topshiriq": "Guruh teri qatlamlarini chizadi."
+    },
+    "vazifalar": {
+     "A": "Necha kunda yangilanadi?",
+     "B": "Yilda necha marta?",
+     "C": "Yuza kvadrat santimetr?"
+    },
+    "sinkveyn": [
+     "Teri",
+     "elastik, himoyali",
+     "yopadi, sezadi, sovutadi",
+     "Teri — qalqon",
+     "Ter"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh terini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: qatlamlar",
+      "2-guruh: vazifalar",
+      "3-guruh: hisob",
+      "4-guruh: gigiena"
+     ],
+     "yakun": "Natijalar: 28; taxminan 13; 15000."
+    }
+   }
+  },
+  {
+   "mavzu": "Endokrin sistema",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Gormonlar va bezlar",
+      "matn": "Endokrin (ichki sekretsiya) bezlari o‘z mahsulotini — gormonlarni — to‘g‘ridan to‘g‘ri qonga chiqaradi. Gormonlar oz miqdorda ham organizm ishini boshqaradi: o‘sish, almashinuv, rivojlanish. Tashqi sekretsiya bezlari (ter, tupurik) esa mahsulotini maxsus yo‘llar orqali chiqaradi.",
+      "misol": "Gormon — qon orqali yuboriladigan «xabar».",
+      "savol": "Gormonlar qayerga chiqariladi?",
+      "javob": "qonga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Asosiy bezlar",
+      "matn": "Asosiy endokrin bezlar: gipofiz (miyadagi bosh bez), qalqonsimon bez, me’da osti bezi (aralash), buyrak usti bezlari va jinsiy bezlar. Gipofiz boshqa bezlarni boshqaradi va o‘sish gormonini ajratadi. Hammasi birgalikda organizm funksiyasini muvofiqlashtiradi.",
+      "misol": "Gipofiz — bezlar «rahbari».",
+      "savol": "Bosh bez qaysi?",
+      "javob": "gipofiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qalqonsimon bez va yod",
+      "matn": "Qalqonsimon bez tiroksin gormonini ajratadi, u almashinuv tezligini boshqaradi. Tiroksin yasash uchun yod kerak. Yod yetishmasa, bez kattalashadi — buqoq. Shuning uchun yodlangan tuz ishlatiladi. Gormon ko‘p bo‘lsa, yurak tez uradi, kam bo‘lsa, uyquchanlik va sustlik paydo bo‘ladi.",
+      "misol": "Yodlangan tuz buqoqdan asraydi.",
+      "savol": "Buqoq nimadan?",
+      "javob": "yod yetishmasligidan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Insulin va qand",
+      "matn": "Me’da osti bezi insulin ajratadi, u qondagi glyukozani kamaytiradi. Insulin yetishmasa, qand diabeti paydo bo‘ladi. Och qoringa qondagi glyukoza taxminan 3,3 dan 5,5 mmol litrgacha bo‘ladi, farqi 5,5 minus 3,3 — 2,2. Insulinni 1921-yilda Kanadada Banting va Best topgan, bu 2026 minus 1921 — 105 yil oldin.",
+      "misol": "Insulin hayot qutqardi.",
+      "savol": "Insulin qanday ta’sir qiladi?",
+      "javob": "qand miqdorini kamaytiradi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Adrenalin va sog‘liq",
+      "matn": "Buyrak usti bezlari adrenalin ajratadi: xavf vaqtida yurak tez uradi, nafas tezlashadi, kuch to‘planadi. Endokrin buzilishlar o‘sishga, vaznga va kayfiyatga ta’sir qiladi. Sog‘lom ovqat, uyqu, harakat va stressdan saqlanish endokrin sistemani asraydi. Shubha bo‘lsa, endokrinolog shifokorga boring.",
+      "misol": "Adrenalin — «jang yoki qochish» gormoni.",
+      "savol": "Adrenalinni qaysi bez ajratadi?",
+      "javob": "buyrak usti bezi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Gormonlar qonga chiqadi. Gipofiz — bosh bez. Yod yetishmasa — buqoq. Insulin qandni kamaytiradi.",
+    "misollar": [
+     {
+      "shart": "Insulin 1921-yilda topilgan. 2026-yilgacha necha yil o‘tdi?",
+      "yechim": [
+       "2026 minus 1921.",
+       "Hisoblang.",
+       "Javob 105."
+      ],
+      "javob": "105"
+     },
+     {
+      "shart": "Qand me’yori 3,3 dan 5,5 gacha. Chegaralar farqi?",
+      "yechim": [
+       "5,5 minus 3,3.",
+       "Hisoblang.",
+       "Javob 2,2."
+      ],
+      "javob": "2,2"
+     },
+     {
+      "shart": "Asosiy bezlar: gipofiz, qalqonsimon, me’da osti, buyrak usti, jinsiy. Nechta?",
+      "yechim": [
+       "Sanang.",
+       "Beshta.",
+       "Javob 5."
+      ],
+      "javob": "5"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Bezlar sxemasi",
+      "topshiriq": "Bezlarning joylashuvini sxemada ko‘rsating.",
+      "yechim": "Gipofiz, qalqonsimon.",
+      "mahsulot": "qog‘oz, qalam"
+     },
+     {
+      "nom": "Yod tuzi",
+      "topshiriq": "Tuz qopidagi yodlanish belgisini toping.",
+      "yechim": "Yorliqni o‘qing.",
+      "mahsulot": "tuz qopi"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Yil va farq.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Sog‘lom odat",
+      "topshiriq": "Endokrin uchun foydali odatlar rejasi.",
+      "yechim": "Uyqu, harakat.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2026 minus 1921 nechaga teng?",
+      "javob": "105"
+     },
+     {
+      "shart": "5,5 minus 3,3 nechaga teng?",
+      "javob": "2,2"
+     },
+     {
+      "shart": "Asosiy bezlar soni?",
+      "javob": "5"
+     },
+     {
+      "shart": "Bosh bez?",
+      "javob": "gipofiz"
+     },
+     {
+      "shart": "Buqoq sababi?",
+      "javob": "yod yetishmasligi"
+     },
+     {
+      "shart": "Qandni kamaytiruvchi gormon?",
+      "javob": "insulin"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Gormonlar maxsus yo‘llar bilan chiqadi deydi",
+      "sabab": "to‘g‘ridan qonga chiqadi",
+      "oldini_olish": "ichki sekretsiya"
+     },
+     {
+      "xato": "Buqoq vitamin yetishmasligidan deydi",
+      "sabab": "yod yetishmasligidan",
+      "oldini_olish": "qalqonsimon bez"
+     },
+     {
+      "xato": "Insulin qandni oshiradi deydi",
+      "sabab": "kamaytiradi",
+      "oldini_olish": "diabetda yetishmaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "yod elementi"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "insulin kashfiyoti"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "diabet"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Gormonlar xabarchisi»",
+     "muammo": "Endokrin bezlar organizmni qanday boshqaradi?",
+     "mahsulot": "sxema va plakat",
+     "bosqichlar": [
+      "bezlarni o‘rganish",
+      "sxema chizish",
+      "hisoblash",
+      "yodli tuz kuzatuvi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Bezlarni o‘rganing",
+      "Sxema chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Gormon yo‘llari»",
+     "bekatlar": [
+      {
+       "nom": "1-bez",
+       "matn": "1921 dan 2026 gacha.",
+       "topshiriq": "Necha yil?",
+       "javob": "105",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bez",
+       "matn": "5,5 va 3,3.",
+       "topshiriq": "Farq?",
+       "javob": "2,2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bez",
+       "matn": "Asosiy bezlar.",
+       "topshiriq": "Nechta?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bez",
+       "matn": "Bosh bez.",
+       "topshiriq": "Qaysi?",
+       "javob": "gipofiz",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Gormon",
+      "tarif": "bezdan qonga chiqadigan boshqaruvchi modda"
+     },
+     {
+      "atama": "Gipofiz",
+      "tarif": "bosh bez"
+     },
+     {
+      "atama": "Tiroksin",
+      "tarif": "qalqonsimon bez gormoni"
+     },
+     {
+      "atama": "Insulin",
+      "tarif": "qandni kamaytiruvchi gormon"
+     },
+     {
+      "atama": "Adrenalin",
+      "tarif": "xavfda ajraladigan gormon"
+     },
+     {
+      "atama": "Buqoq",
+      "tarif": "yod yetishmasligi kasalligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Gormonlar qonga chiqariladi",
+      "togri": true,
+      "izoh": "ichki sekretsiya"
+     },
+     {
+      "matn": "Bosh bez gipofiz",
+      "togri": true,
+      "izoh": "miyada"
+     },
+     {
+      "matn": "Insulin qandni oshiradi",
+      "togri": false,
+      "izoh": "kamaytiradi"
+     },
+     {
+      "matn": "Buqoq yod yetishmasligidan",
+      "togri": true,
+      "izoh": "qalqonsimon bez"
+     },
+     {
+      "matn": "2026 minus 1921 — 105",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Adrenalinni buyrak usti bezi ajratadi",
+      "togri": true,
+      "izoh": "xavf gormoni"
+     },
+     {
+      "matn": "Ter bezi endokrin bez",
+      "togri": false,
+      "izoh": "tashqi sekretsiya"
+     },
+     {
+      "matn": "5,5 minus 3,3 — 2,2",
+      "togri": true,
+      "izoh": "farq"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Gormon?",
+      "javob": "qonga chiqadigan boshqaruvchi modda"
+     },
+     {
+      "savol": "Bosh bez?",
+      "javob": "gipofiz"
+     },
+     {
+      "savol": "Tiroksin?",
+      "javob": "qalqonsimon bez"
+     },
+     {
+      "savol": "Yod?",
+      "javob": "buqoqdan saqlaydi"
+     },
+     {
+      "savol": "Insulin?",
+      "javob": "qandni kamaytiradi"
+     },
+     {
+      "savol": "Adrenalin?",
+      "javob": "xavf gormoni"
+     },
+     {
+      "savol": "Bezlar soni?",
+      "javob": "5"
+     },
+     {
+      "savol": "2026 minus 1921?",
+      "javob": "105"
+     },
+     {
+      "savol": "5,5 minus 3,3?",
+      "javob": "2,2"
+     },
+     {
+      "savol": "Ichki sekretsiya?",
+      "javob": "qonga chiqarish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Tuz yorlig‘ini kuzat.",
+      "savol": "Yod bormi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Farq va yilni top.",
+      "savol": "Ayirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ichki va tashqi bez.",
+      "savol": "Qayerga chiqadi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qanday asraymiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun yodlangan tuz ishlatiladi?",
+    "keys": {
+     "vaziyat": "Tog‘li hududda yod kam, odamlarda buqoq ko‘p uchragan.",
+     "savollar": [
+      "Qaysi bez zarar ko‘radi?",
+      "Nima yordam beradi?"
+     ]
+    },
+    "tezis": "Gormonlar organizmni boshqaradi",
+    "taqqoslash": {
+     "a": "Ichki sekretsiya",
+     "b": "Tashqi sekretsiya",
+     "umumiy": [
+      "bez faoliyati",
+      "modda ajratadi"
+     ],
+     "a_farq": [
+      "qonga chiqadi",
+      "gormon"
+     ],
+     "b_farq": [
+      "yo‘llar orqali chiqadi",
+      "ter, tupurik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Endokrin sistema",
+     "shoxlar": [
+      {
+       "nom": "Bezlar",
+       "bandlar": [
+        "gipofiz",
+        "qalqonsimon",
+        "me’da osti"
+       ]
+      },
+      {
+       "nom": "Gormonlar",
+       "bandlar": [
+        "tiroksin",
+        "insulin",
+        "adrenalin"
+       ]
+      },
+      {
+       "nom": "Kasallik",
+       "bandlar": [
+        "buqoq",
+        "diabet"
+       ]
+      },
+      {
+       "nom": "Asrash",
+       "bandlar": [
+        "yodli tuz",
+        "sog‘lom ovqat"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qonga gormon chiqaraman va organizmni boshqaraman. Men kimman?",
+     "javob": "endokrin bez"
+    },
+    "hikmat": "Gormon qon orqali xabar beradi.",
+    "kalit_soz": "GORMON",
+    "xato_yechim": {
+     "shart": "Insulin qandni nima qiladi?",
+     "xato": "oshiradi",
+     "togri": "kamaytiradi",
+     "sabab": "diabetda yetishmaydi"
+    },
+    "guruh_nomlari": [
+     "Gormonchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Gormonlar xabarchisi»",
+     "topshiriq": "Guruh bezlar sxemasini chizadi."
+    },
+    "vazifalar": {
+     "A": "Insulin necha yil oldin?",
+     "B": "Qand chegarasi farqi?",
+     "C": "Asosiy bezlar soni?"
+    },
+    "sinkveyn": [
+     "Gormon",
+     "kichik, kuchli",
+     "boshqaradi, yuboradi, tartibga soladi",
+     "Qon orqali xabar",
+     "Insulin"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh endokrin sistemani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: bezlar",
+      "2-guruh: gormonlar",
+      "3-guruh: kasalliklar",
+      "4-guruh: asrash"
+     ],
+     "yakun": "Natijalar: 105; 2,2; 5."
+    }
+   }
   }
  ]
 }
