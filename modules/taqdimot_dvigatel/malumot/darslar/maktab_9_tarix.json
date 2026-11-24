@@ -4091,6 +4091,1369 @@
      "yakun": "Natijalar: 10; 20; 50."
     }
    }
+  },
+  {
+   "mavzu": "Sovuq urush",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sovuq urush nima",
+      "matn": "Sovuq urush — Ikkinchi jahon urushidan keyin SSSR va uning ittifoqchilari bilan AQSh va G‘arb davlatlari o‘rtasidagi uzoq davom etgan siyosiy, iqtisodiy va harbiy qarama-qarshilik. U to‘g‘ridan-to‘g‘ri jang bo‘lmagan, lekin qurollanish poygasi va o‘zaro ishonchsizlik bilan o‘tgan.",
+      "misol": "Ochiq jangsiz qarama-qarshilik.",
+      "savol": "Sovuq urush qaysi tomonlar o‘rtasida edi?",
+      "javob": "SSSR va G‘arb",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Harbiy ittifoqlar",
+      "matn": "1949 yilda G‘arb davlatlari NATO harbiy ittifoqini tuzdi. 1955 yilda SSSR boshchiligida Varshava shartnomasi tashkil topdi. Ikki tomon yadro qurolini to‘pladi, bu butun dunyo uchun xavf tug‘dirdi. Kosmik poyga ham shu davrda avj oldi.",
+      "misol": "NATO 1949, Varshava 1955.",
+      "savol": "NATO qaysi yili tuzildi?",
+      "javob": "1949 yilda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Berlin devori va tugash",
+      "matn": "1961 yilda Berlinda devor qurildi, u shaharni ikkiga bo‘ldi. 1989 yilda devor qulatildi, bu qarama-qarshilik tugayotganidan darak berdi. 1991 yilda SSSR tarqaldi va Sovuq urush tugadi. Ko‘p yangi mustaqil davlatlar, shu jumladan O‘zbekiston, dunyo xaritasida paydo bo‘ldi.",
+      "misol": "1961 devor, 1989 qulash, 1991 SSSR tarqaldi.",
+      "savol": "Berlin devori qachon qulatildi?",
+      "javob": "1989 yilda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1955 − 1949 — 6 yil. Masalan, 1989 − 1961 — 28 yil. Masalan, 1991 − 1989 — 2 yil.",
+      "misol": "Yillar farqi — ayirish.",
+      "savol": "Masalan, 1989 va 1961 orasida necha yil?",
+      "javob": "28",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Sovuq urush: NATO 1949, Varshava 1955, Berlin devori 1961 va 1989, SSSR tarqalishi 1991.",
+    "misollar": [
+     {
+      "shart": "Masalan, 1989 va 1961 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1989 − 1961.",
+       "Javob 28."
+      ],
+      "javob": "28"
+     },
+     {
+      "shart": "Masalan, 1955 va 1949 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1955 − 1949.",
+       "Javob 6."
+      ],
+      "javob": "6"
+     },
+     {
+      "shart": "Masalan, 1991 va 1989 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1991 − 1989.",
+       "Javob 2."
+      ],
+      "javob": "2"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ittifoqlar jadvali",
+      "topshiriq": "NATO va Varshava shartnomasini jadvalda solishtiring.",
+      "yechim": "Jadval.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Vaqt chizig‘i",
+      "topshiriq": "1949, 1955, 1961, 1989, 1991 yillarni joylang.",
+      "yechim": "Xronologiya.",
+      "mahsulot": "vaqt chizig‘i"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ayirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Devor hikoyasi",
+      "topshiriq": "Berlin devori haqida qisqa hikoya yozing.",
+      "yechim": "Hikoya.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1989 − 1961 nechaga teng?",
+      "javob": "28"
+     },
+     {
+      "shart": "1955 − 1949 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "1991 − 1989 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "NATO qaysi yili tuzildi?",
+      "javob": "1949"
+     },
+     {
+      "shart": "Varshava shartnomasi qaysi yili?",
+      "javob": "1955"
+     },
+     {
+      "shart": "SSSR qaysi yili tarqaldi?",
+      "javob": "1991"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Sovuq urush ochiq jang edi deydi",
+      "sabab": "ochiq jangsiz",
+      "oldini_olish": "qarama-qarshilik"
+     },
+     {
+      "xato": "Berlin devori 1949 yilda qurilgan deydi",
+      "sabab": "1961 yilda",
+      "oldini_olish": "1989 yilda qulagan"
+     },
+     {
+      "xato": "SSSR 1961 yilda tarqalgan deydi",
+      "sabab": "1991 yilda",
+      "oldini_olish": "Sovuq urush tugagan yil"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Siyosat",
+      "boglanish": "ittifoqlar"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "yillar farqi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "Berlin va Yevropa"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sovuq urush»",
+     "muammo": "Sovuq urush dunyoni qanday o‘zgartirdi?",
+     "mahsulot": "vaqt chizig‘i va jadval",
+     "bosqichlar": [
+      "vaqt chizig‘i",
+      "jadval",
+      "hisob",
+      "xulosa",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chizing",
+      "To‘ldiring",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xronologiya aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Berlin, 1961 yil»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "1989 va 1961.",
+       "topshiriq": "Necha yil?",
+       "javob": "28",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1955 va 1949.",
+       "topshiriq": "Necha yil?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "1991 va 1989.",
+       "topshiriq": "Necha yil?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "G‘arb harbiy ittifoqi.",
+       "topshiriq": "Qaysi?",
+       "javob": "NATO",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sovuq urush",
+      "tarif": "ochiq jangsiz qarama-qarshilik"
+     },
+     {
+      "atama": "NATO",
+      "tarif": "G‘arb harbiy ittifoqi"
+     },
+     {
+      "atama": "Varshava shartnomasi",
+      "tarif": "SSSR boshchiligidagi ittifoq"
+     },
+     {
+      "atama": "Qurollanish poygasi",
+      "tarif": "qurol to‘plash musobaqasi"
+     },
+     {
+      "atama": "Berlin devori",
+      "tarif": "shaharni bo‘lgan devor"
+     },
+     {
+      "atama": "Tarqalish",
+      "tarif": "davlat bo‘linib ketishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "NATO 1949 yilda tuzildi",
+      "togri": true,
+      "izoh": "G‘arb"
+     },
+     {
+      "matn": "Berlin devori 1991 yilda qurilgan",
+      "togri": false,
+      "izoh": "1961"
+     },
+     {
+      "matn": "1989 − 1961 — 28",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Varshava shartnomasi 1955 yilda tuzildi",
+      "togri": true,
+      "izoh": "SSSR"
+     },
+     {
+      "matn": "SSSR 1991 yilda tarqaldi",
+      "togri": true,
+      "izoh": "tugash"
+     },
+     {
+      "matn": "1991 − 1989 — 2",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Sovuq urush ochiq urush edi",
+      "togri": false,
+      "izoh": "jangsiz"
+     },
+     {
+      "matn": "Yadro qurol xavf tug‘dirdi",
+      "togri": true,
+      "izoh": "poyga"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sovuq urush?",
+      "javob": "qarama-qarshilik"
+     },
+     {
+      "savol": "NATO?",
+      "javob": "1949"
+     },
+     {
+      "savol": "Varshava?",
+      "javob": "1955"
+     },
+     {
+      "savol": "Devor?",
+      "javob": "1961"
+     },
+     {
+      "savol": "Qulash?",
+      "javob": "1989"
+     },
+     {
+      "savol": "SSSR?",
+      "javob": "1991 tarqaldi"
+     },
+     {
+      "savol": "1989 − 1961?",
+      "javob": "28"
+     },
+     {
+      "savol": "1955 − 1949?",
+      "javob": "6"
+     },
+     {
+      "savol": "1991 − 1989?",
+      "javob": "2"
+     },
+     {
+      "savol": "Xavf?",
+      "javob": "yadro qurol"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Yillar ketma-ketligini kuzat.",
+      "savol": "Tartib?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yillar farqini top.",
+      "savol": "Amal?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ikki ittifoqni solishtir.",
+      "savol": "Farq?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Natija?"
+     }
+    ],
+    "muammoli_savol": "Sovuq urush nima uchun hech qachon ochiq urushga aylanmadi?",
+    "keys": {
+     "vaziyat": "Ikki tomon ham yadro qurolga ega, jang boshlansa hamma zarar ko‘radi.",
+     "savollar": [
+      "Nima to‘xtatdi?",
+      "Tinchlik qanday saqlanadi?"
+     ]
+    },
+    "tezis": "Qurol emas, muloqot",
+    "taqqoslash": {
+     "a": "NATO",
+     "b": "Varshava shartnomasi",
+     "umumiy": [
+      "harbiy ittifoq",
+      "Sovuq urush"
+     ],
+     "a_farq": [
+      "1949",
+      "G‘arb"
+     ],
+     "b_farq": [
+      "1955",
+      "SSSR boshchiligida"
+     ]
+    },
+    "klaster": {
+     "markaz": "Sovuq urush",
+     "shoxlar": [
+      {
+       "nom": "Ittifoqlar",
+       "bandlar": [
+        "NATO 1949",
+        "Varshava 1955"
+       ]
+      },
+      {
+       "nom": "Devor",
+       "bandlar": [
+        "1961 qurildi",
+        "1989 qulatildi"
+       ]
+      },
+      {
+       "nom": "Xavf",
+       "bandlar": [
+        "yadro qurol",
+        "poyga"
+       ]
+      },
+      {
+       "nom": "Yakun",
+       "bandlar": [
+        "1991",
+        "SSSR tarqaldi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 1961 yilda qurilgan, 1989 yilda qulatilgan devorman. Men nimaman?",
+     "javob": "Berlin devori"
+    },
+    "hikmat": "Devorlar qulaydi, birdamlik qoladi.",
+    "kalit_soz": "DEVOR",
+    "xato_yechim": {
+     "shart": "SSSR qaysi yili tarqaldi?",
+     "xato": "1961",
+     "togri": "1991",
+     "sabab": "Sovuq urush shu yili tugadi"
+    },
+    "guruh_nomlari": [
+     "Tarixchilar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Jurnalistlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sovuq urush»",
+     "topshiriq": "Guruh vaqt chizig‘i va jadvalni tuzadi."
+    },
+    "vazifalar": {
+     "A": "1989 va 1961 farqi?",
+     "B": "1955 va 1949 farqi?",
+     "C": "1991 va 1989 farqi?"
+    },
+    "sinkveyn": [
+     "Sovuq urush",
+     "uzoq, taranglik",
+     "bo‘ldi, qurollandi, tugadi",
+     "Ishonchsizlik",
+     "Muloqot"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh Sovuq urushni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: ittifoqlar",
+      "2-guruh: devor",
+      "3-guruh: xavf",
+      "4-guruh: yakun"
+     ],
+     "yakun": "Natijalar: 28; 6; 2."
+    }
+   }
+  },
+  {
+   "mavzu": "Paxta yakkahokimligi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Paxta yakkahokimligi nima",
+      "matn": "Paxta yakkahokimligi — O‘zbekiston iqtisodining asosiy qismi paxta yetishtirishga bog‘lanib qolgan tizimi. Sovet davrida respublika SSSRning asosiy paxta yetkazib beruvchisiga aylandi. Ko‘p yer, suv va mehnat paxtaga ajratildi, boshqa ekinlar va sanoat orqada qoldi.",
+      "misol": "Iqtisodning bitta ekinga bog‘lanishi.",
+      "savol": "Yakkahokimlik nimaga bog‘langan edi?",
+      "javob": "paxta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oqibatlari",
+      "matn": "Paxta ko‘p suv talab qildi. Natijada Amudaryo va Sirdaryo suvi kamaydi va Orol dengizi qurib bordi. Ko‘p kimyoviy o‘g‘it va pestitsid ishlatildi, tuproq va suv ifloslandi, aholi salomatligiga ziyon yetdi. Maktab o‘quvchilari ham ko‘pincha paxta terishga jalb qilinar edi.",
+      "misol": "Orol qurishi va ifloslanish.",
+      "savol": "Qaysi dengiz qurib bordi?",
+      "javob": "Orol dengizi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Islohotlar",
+      "matn": "Mustaqillik yillarida paxtaga bog‘liqlik kamaytirildi, ekin turlari ko‘paytirildi va majburiy mehnat taqiqlandi. Suvni tejash, zamonaviy sug‘orish va Orol bo‘yida ekologik loyihalar yo‘lga qo‘yildi. Iqtisod xilma-xil bo‘ldi.",
+      "misol": "Ekin turlari va ekologik islohot.",
+      "savol": "Nima kamaytirildi?",
+      "javob": "paxtaga bog‘liqlik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1991 − 1960 — 31 yil. Masalan, har gektar yerdan 3 tonna paxta olinsa, 10 gektardan 10 · 3 — 30 tonna (taxminiy misol). Masalan, suv sarfi 8000 kub metr bo‘lib, 4 marta kamaytirilsa, 8000 / 4 — 2000 kub metr (taxminiy misol).",
+      "misol": "Bo‘lish va ko‘paytirish.",
+      "savol": "Masalan, 10 gektar, har biridan 3 tonna. Necha tonna?",
+      "javob": "30",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Paxta yakkahokimligi: bitta ekinga bog‘liqlik. Orol muammosi, ifloslanish, mustaqillikdan keyingi islohotlar.",
+    "misollar": [
+     {
+      "shart": "Masalan, 10 gektar, har biridan 3 tonna. Necha tonna?",
+      "yechim": [
+       "10 · 3.",
+       "Ko‘paytiring.",
+       "Javob 30."
+      ],
+      "javob": "30"
+     },
+     {
+      "shart": "Masalan, suv sarfi 8000 kub metr, 4 marta kamaysa?",
+      "yechim": [
+       "8000 / 4.",
+       "Bo‘ling.",
+       "Javob 2000."
+      ],
+      "javob": "2000"
+     },
+     {
+      "shart": "Masalan, 1991 va 1960 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1991 − 1960.",
+       "Javob 31."
+      ],
+      "javob": "31"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Orol xaritasi",
+      "topshiriq": "Orol dengizi va daryolarni xaritada belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Sabab-oqibat",
+      "topshiriq": "Paxta ko‘pligi va Orol qurishi zanjirini chizing.",
+      "yechim": "Zanjir.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va bo‘lish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Yechim",
+      "topshiriq": "Orolni asrash uchun uchta taklif yozing.",
+      "yechim": "Taklif.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "10 · 3 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "8000 / 4 nechaga teng?",
+      "javob": "2000"
+     },
+     {
+      "shart": "1991 − 1960 nechaga teng?",
+      "javob": "31"
+     },
+     {
+      "shart": "Qaysi dengiz qurib bordi?",
+      "javob": "Orol"
+     },
+     {
+      "shart": "Yakkahokimlik nimaga bog‘liq?",
+      "javob": "paxta"
+     },
+     {
+      "shart": "Suvni tejash yo‘li?",
+      "javob": "zamonaviy sug‘orish"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Paxta yakkahokimligi sanoatni rivojlantirdi deydi",
+      "sabab": "orqada qoldirdi",
+      "oldini_olish": "bir ekinga bog‘lanish"
+     },
+     {
+      "xato": "Orol dengizi to‘lib bordi deydi",
+      "sabab": "qurib bordi",
+      "oldini_olish": "daryo suvi kamaydi"
+     },
+     {
+      "xato": "Mustaqillikda ekin turlari kamaytirildi deydi",
+      "sabab": "ko‘paytirildi",
+      "oldini_olish": "bog‘liqlik kamaytirildi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Ekologiya",
+      "boglanish": "Orol muammosi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish va bo‘lish"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "ekin xilma-xilligi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Orolni asraymiz»",
+     "muammo": "Paxta yakkahokimligi Orolga qanday ta’sir qildi?",
+     "mahsulot": "xarita va zanjir",
+     "bosqichlar": [
+      "xarita",
+      "zanjir",
+      "hisob",
+      "taklif",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xronologiya aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Orol bo‘yida»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "10 gektar, 3 tonna.",
+       "topshiriq": "Necha tonna?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "8000 kub metr, 4 marta kam.",
+       "topshiriq": "Necha?",
+       "javob": "2000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "1991 va 1960.",
+       "topshiriq": "Necha yil?",
+       "javob": "31",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Qurib borayotgan dengiz.",
+       "topshiriq": "Qaysi?",
+       "javob": "Orol",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yakkahokimlik",
+      "tarif": "bitta ekinga bog‘lanib qolish"
+     },
+     {
+      "atama": "Orol",
+      "tarif": "qurib borayotgan dengiz"
+     },
+     {
+      "atama": "Pestitsid",
+      "tarif": "zararkunandaga qarshi kimyoviy vosita"
+     },
+     {
+      "atama": "Sug‘orish",
+      "tarif": "ekinga suv berish"
+     },
+     {
+      "atama": "Ekologiya",
+      "tarif": "tabiat va jonzot munosabati"
+     },
+     {
+      "atama": "Xilma-xillik",
+      "tarif": "turli ekinlar"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Paxta yakkahokimligi bir ekinga bog‘liq edi",
+      "togri": true,
+      "izoh": "paxta"
+     },
+     {
+      "matn": "Orol dengizi to‘lib bordi",
+      "togri": false,
+      "izoh": "qurib bordi"
+     },
+     {
+      "matn": "10 · 3 — 30",
+      "togri": true,
+      "izoh": "tonna"
+     },
+     {
+      "matn": "Kimyoviy o‘g‘it ifloslanishni kuchaytirdi",
+      "togri": true,
+      "izoh": "ekologiya"
+     },
+     {
+      "matn": "Mustaqillikda ekin turlari ko‘paytirildi",
+      "togri": true,
+      "izoh": "islohot"
+     },
+     {
+      "matn": "8000 / 4 — 2000",
+      "togri": true,
+      "izoh": "kub metr"
+     },
+     {
+      "matn": "Paxta kam suv talab qiladi",
+      "togri": false,
+      "izoh": "ko‘p suv"
+     },
+     {
+      "matn": "Suvni tejash zarur",
+      "togri": true,
+      "izoh": "yechim"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yakkahokimlik?",
+      "javob": "bir ekin"
+     },
+     {
+      "savol": "Ekin?",
+      "javob": "paxta"
+     },
+     {
+      "savol": "Suv?",
+      "javob": "ko‘p ketdi"
+     },
+     {
+      "savol": "Orol?",
+      "javob": "quridi"
+     },
+     {
+      "savol": "Ifloslanish?",
+      "javob": "o‘g‘it va pestitsid"
+     },
+     {
+      "savol": "Islohot?",
+      "javob": "xilma-xillik"
+     },
+     {
+      "savol": "10 · 3?",
+      "javob": "30"
+     },
+     {
+      "savol": "8000 / 4?",
+      "javob": "2000"
+     },
+     {
+      "savol": "1991 − 1960?",
+      "javob": "31"
+     },
+     {
+      "savol": "Yechim?",
+      "javob": "suvni tejash"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Orol xaritasini kuzat.",
+      "savol": "O‘zgarish?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Hosil va suvni hisobla.",
+      "savol": "Amal?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Oldin va hozir.",
+      "savol": "Farq?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Natija?"
+     }
+    ],
+    "muammoli_savol": "Paxta yakkahokimligi nima uchun xavfli bo‘ldi?",
+    "keys": {
+     "vaziyat": "Daryo suvi dalaga ketdi, dengiz quridi, baliqchilar ishsiz qoldi.",
+     "savollar": [
+      "Nima sabab?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Tabiatni asrash",
+    "taqqoslash": {
+     "a": "Yakkahokimlik davri",
+     "b": "Mustaqillik davri",
+     "umumiy": [
+      "O‘zbekiston",
+      "paxta"
+     ],
+     "a_farq": [
+      "majburiy mehnat",
+      "bir ekin"
+     ],
+     "b_farq": [
+      "xilma-xil ekin",
+      "suvni tejash"
+     ]
+    },
+    "klaster": {
+     "markaz": "Paxta yakkahokimligi",
+     "shoxlar": [
+      {
+       "nom": "Mohiyat",
+       "bandlar": [
+        "bir ekin",
+        "SSSR talabi"
+       ]
+      },
+      {
+       "nom": "Oqibat",
+       "bandlar": [
+        "Orol qurishi",
+        "ifloslanish"
+       ]
+      },
+      {
+       "nom": "Salomatlik",
+       "bandlar": [
+        "pestitsid",
+        "suv"
+       ]
+      },
+      {
+       "nom": "Islohot",
+       "bandlar": [
+        "xilma-xillik",
+        "sug‘orish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qurib borgan dengizman, paxta ko‘pligi sabab. Men nimaman?",
+     "javob": "Orol"
+    },
+    "hikmat": "Tabiatni asrash — kelajakni asrash.",
+    "kalit_soz": "OROL",
+    "xato_yechim": {
+     "shart": "Orol dengizi nega qurib bordi?",
+     "xato": "yomg‘ir ko‘p yog‘di",
+     "togri": "daryo suvi sug‘orishga ketdi",
+     "sabab": "paxta uchun suv ko‘p sarflandi"
+    },
+    "guruh_nomlari": [
+     "Ekologlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Jurnalistlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Orolni asraymiz»",
+     "topshiriq": "Guruh xarita va zanjirni tuzadi."
+    },
+    "vazifalar": {
+     "A": "10 gektar, 3 tonna?",
+     "B": "8000 kub metr, 4 marta kam?",
+     "C": "1991 va 1960 farqi?"
+    },
+    "sinkveyn": [
+     "Paxta",
+     "oq, qimmatli",
+     "ekildi, suv oldi, charchatdi",
+     "Orol dardi",
+     "Tabiat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yakkahokimlikni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: mohiyat",
+      "2-guruh: Orol",
+      "3-guruh: salomatlik",
+      "4-guruh: islohot"
+     ],
+     "yakun": "Natijalar: 30; 2000; 31."
+    }
+   }
+  },
+  {
+   "mavzu": "Mustaqillikka yo‘l",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Qayta qurish va uyg‘onish",
+      "matn": "1980-yillar oxirida SSSRda iqtisodiy qiyinchilik kuchaydi va siyosiy o‘zgarishlar boshlandi. Mahalliy xalqlarda milliy o‘zlikni anglash, til va tarixga qiziqish ortdi. 1989 yilda o‘zbek tiliga davlat tili maqomi berildi. Xalq o‘z huquqini talab qila boshladi.",
+      "misol": "Milliy uyg‘onish.",
+      "savol": "1989 yilda nimaga maqom berildi?",
+      "javob": "o‘zbek tiliga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mustaqillik e’loni",
+      "matn": "1991 yil 31 avgustda O‘zbekiston Respublikasi Oliy Kengashi mustaqillikni e’lon qildi. 1 sentyabr Mustaqillik kuni deb belgilandi. 1991 yil dekabrda Islom Karimov xalq ovozi bilan birinchi Prezident etib saylandi. SSSR 1991 yilda tarqaldi.",
+      "misol": "31 avgust 1991.",
+      "savol": "Mustaqillik qachon e’lon qilindi?",
+      "javob": "1991 yil 31 avgustda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Davlat qurilishi",
+      "matn": "1992 yil 8 dekabrda yangi Konstitutsiya qabul qilindi. Davlat ramzlari — bayroq, gerb va madhiya — tasdiqlandi. 1994 yilda milliy valyuta so‘m muomalaga kirdi. O‘zbekiston BMT va boshqa xalqaro tashkilotlarga a’zo bo‘ldi. Mustaqil taraqqiyot yo‘li boshlandi.",
+      "misol": "Konstitutsiya, ramzlar, so‘m.",
+      "savol": "Konstitutsiya qachon qabul qilindi?",
+      "javob": "1992 yil 8 dekabrda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1992 − 1991 — 1 yil. Masalan, 1994 − 1991 — 3 yil. Masalan, 2026 − 1991 — 35 yil.",
+      "misol": "Yillar farqi — ayirish.",
+      "savol": "Masalan, 2026 va 1991 orasida necha yil?",
+      "javob": "35",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Mustaqillikka yo‘l: 1989 til maqomi, 31 avgust 1991 mustaqillik, 1992 Konstitutsiya, 1994 so‘m.",
+    "misollar": [
+     {
+      "shart": "Masalan, 2026 va 1991 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "2026 − 1991.",
+       "Javob 35."
+      ],
+      "javob": "35"
+     },
+     {
+      "shart": "Masalan, 1994 va 1991 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1994 − 1991.",
+       "Javob 3."
+      ],
+      "javob": "3"
+     },
+     {
+      "shart": "Masalan, 1992 va 1991 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1992 − 1991.",
+       "Javob 1."
+      ],
+      "javob": "1"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Mustaqillik chizig‘i",
+      "topshiriq": "1989, 1991, 1992, 1994 yillarni vaqt chizig‘iga joylang.",
+      "yechim": "Xronologiya.",
+      "mahsulot": "vaqt chizig‘i"
+     },
+     {
+      "nom": "Davlat ramzlari",
+      "topshiriq": "Bayroq, gerb va madhiyani izohlang.",
+      "yechim": "Izoh.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ayirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Mening Vatanim",
+      "topshiriq": "Vatanga bag‘ishlab qisqa matn yozing.",
+      "yechim": "Yozuv.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2026 − 1991 nechaga teng?",
+      "javob": "35"
+     },
+     {
+      "shart": "1994 − 1991 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "1992 − 1991 nechaga teng?",
+      "javob": "1"
+     },
+     {
+      "shart": "Mustaqillik qaysi yili e’lon qilindi?",
+      "javob": "1991"
+     },
+     {
+      "shart": "Konstitutsiya qaysi yili qabul qilindi?",
+      "javob": "1992"
+     },
+     {
+      "shart": "Milliy valyuta qaysi yili kirdi?",
+      "javob": "1994"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Mustaqillik 1989 yilda e’lon qilingan deydi",
+      "sabab": "1991 yilda",
+      "oldini_olish": "1989 — til maqomi"
+     },
+     {
+      "xato": "Konstitutsiya 1991 yilda qabul qilingan deydi",
+      "sabab": "1992 yilda",
+      "oldini_olish": "8 dekabr"
+     },
+     {
+      "xato": "Milliy valyuta dollar edi deydi",
+      "sabab": "so‘m",
+      "oldini_olish": "1994 yilda kiritilgan"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Huquq",
+      "boglanish": "Konstitutsiya"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "yillar farqi"
+     },
+     {
+      "fan": "Tarbiya",
+      "boglanish": "Vatan sevgisi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mustaqillik yo‘li»",
+     "muammo": "O‘zbekiston mustaqillikka qanday erishdi?",
+     "mahsulot": "vaqt chizig‘i va ramzlar",
+     "bosqichlar": [
+      "vaqt chizig‘i",
+      "ramzlar",
+      "hisob",
+      "xulosa",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chizing",
+      "Izohlang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xronologiya aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «1991 yil 31 avgust»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "2026 va 1991.",
+       "topshiriq": "Necha yil?",
+       "javob": "35",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1994 va 1991.",
+       "topshiriq": "Necha yil?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "1992 va 1991.",
+       "topshiriq": "Necha yil?",
+       "javob": "1",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Mustaqillik kuni.",
+       "topshiriq": "Qaysi sana?",
+       "javob": "1 sentyabr",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Mustaqillik",
+      "tarif": "o‘z taqdirini o‘zi belgilash"
+     },
+     {
+      "atama": "Oliy Kengash",
+      "tarif": "o‘sha davrdagi oliy organ"
+     },
+     {
+      "atama": "Konstitutsiya",
+      "tarif": "asosiy qonun"
+     },
+     {
+      "atama": "Davlat ramzlari",
+      "tarif": "bayroq, gerb, madhiya"
+     },
+     {
+      "atama": "So‘m",
+      "tarif": "milliy valyuta"
+     },
+     {
+      "atama": "Prezident",
+      "tarif": "davlat boshlig‘i"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Mustaqillik 1991 yil 31 avgustda e’lon qilindi",
+      "togri": true,
+      "izoh": "Oliy Kengash"
+     },
+     {
+      "matn": "Konstitutsiya 1980 yilda qabul qilingan",
+      "togri": false,
+      "izoh": "1992"
+     },
+     {
+      "matn": "2026 − 1991 — 35",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "1 sentyabr — Mustaqillik kuni",
+      "togri": true,
+      "izoh": "bayram"
+     },
+     {
+      "matn": "So‘m 1994 yilda muomalaga kirdi",
+      "togri": true,
+      "izoh": "valyuta"
+     },
+     {
+      "matn": "1994 − 1991 — 3",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "1989 yilda o‘zbek tiliga davlat tili maqomi berildi",
+      "togri": true,
+      "izoh": "til"
+     },
+     {
+      "matn": "Mustaqillik e’lon qilinmagan",
+      "togri": false,
+      "izoh": "e’lon qilindi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Mustaqillik?",
+      "javob": "1991"
+     },
+     {
+      "savol": "Sana?",
+      "javob": "31 avgust"
+     },
+     {
+      "savol": "Bayram?",
+      "javob": "1 sentyabr"
+     },
+     {
+      "savol": "Til maqomi?",
+      "javob": "1989"
+     },
+     {
+      "savol": "Konstitutsiya?",
+      "javob": "1992"
+     },
+     {
+      "savol": "So‘m?",
+      "javob": "1994"
+     },
+     {
+      "savol": "2026 − 1991?",
+      "javob": "35"
+     },
+     {
+      "savol": "1994 − 1991?",
+      "javob": "3"
+     },
+     {
+      "savol": "1992 − 1991?",
+      "javob": "1"
+     },
+     {
+      "savol": "Ramzlar?",
+      "javob": "bayroq, gerb, madhiya"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Yillar ketma-ketligini kuzat.",
+      "savol": "Tartib?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yillar farqini top.",
+      "savol": "Amal?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Oldin va keyin.",
+      "savol": "Farq?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Natija?"
+     }
+    ],
+    "muammoli_savol": "Mustaqillik O‘zbekiston xalqiga nima berdi?",
+    "keys": {
+     "vaziyat": "Yangi davlat o‘z bayrog‘i, qonuni va valyutasiga ega bo‘ldi.",
+     "savollar": [
+      "Nima o‘zgardi?",
+      "Biz nima qilamiz?"
+     ]
+    },
+    "tezis": "Mustaqillik — qadr",
+    "taqqoslash": {
+     "a": "1991 yil",
+     "b": "1992 yil",
+     "umumiy": [
+      "mustaqillik",
+      "O‘zbekiston"
+     ],
+     "a_farq": [
+      "mustaqillik e’loni",
+      "31 avgust"
+     ],
+     "b_farq": [
+      "Konstitutsiya",
+      "8 dekabr"
+     ]
+    },
+    "klaster": {
+     "markaz": "Mustaqillikka yo‘l",
+     "shoxlar": [
+      {
+       "nom": "Tayyorgarlik",
+       "bandlar": [
+        "1989 til maqomi",
+        "milliy uyg‘onish"
+       ]
+      },
+      {
+       "nom": "E’lon",
+       "bandlar": [
+        "31 avgust 1991",
+        "1 sentyabr"
+       ]
+      },
+      {
+       "nom": "Qurilish",
+       "bandlar": [
+        "Konstitutsiya 1992",
+        "so‘m 1994"
+       ]
+      },
+      {
+       "nom": "Ramzlar",
+       "bandlar": [
+        "bayroq",
+        "gerb",
+        "madhiya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 1991 yil 31 avgustda e’lon qilinganman. Men nimaman?",
+     "javob": "mustaqillik"
+    },
+    "hikmat": "Mustaqillik — buyuk ne’mat, uni asrash bizning burchimiz.",
+    "kalit_soz": "VATAN",
+    "xato_yechim": {
+     "shart": "Mustaqillik qaysi yili e’lon qilingan?",
+     "xato": "1989",
+     "togri": "1991",
+     "sabab": "1991 yil 31 avgustda"
+    },
+    "guruh_nomlari": [
+     "Tarixchilar",
+     "Hisobchilar",
+     "Huquqshunoslar",
+     "Jurnalistlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mustaqillik yo‘li»",
+     "topshiriq": "Guruh vaqt chizig‘i va ramzlarni tuzadi."
+    },
+    "vazifalar": {
+     "A": "2026 va 1991 farqi?",
+     "B": "1994 va 1991 farqi?",
+     "C": "1992 va 1991 farqi?"
+    },
+    "sinkveyn": [
+     "Mustaqillik",
+     "aziz, qadrli",
+     "e’lon qilindi, qurdi, ulg‘aydi",
+     "Erkin Vatan",
+     "Bayroq"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh mustaqillik yo‘lini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tayyorgarlik",
+      "2-guruh: e’lon",
+      "3-guruh: davlat qurilishi",
+      "4-guruh: ramzlar"
+     ],
+     "yakun": "Natijalar: 35; 3; 1."
+    }
+   }
   }
  ]
 }
