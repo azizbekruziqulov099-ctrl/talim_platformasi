@@ -6941,6 +6941,471 @@
      "yakun": "Natijalar: 2,24 litr; 17,6 gramm; 72 foiz."
     }
    }
+  },
+  {
+   "mavzu": "Metallurgiya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Metallurgiya nima",
+      "matn": "Metallurgiya — rudadan metallarni ajratib olish va ularni qayta ishlash fani hamda sanoati. Tabiatda faol metallar birikmalar holida uchraydi, ularni qaytarish uchun kimyoviy reaksiya kerak. Ruda tarkibidagi kerakli mineraldan tashqari chiqit jins ham bor, uni boyitish bosqichida ajratadilar.",
+      "misol": "Ruda — metall olinadigan tog‘ jinsi.",
+      "savol": "Metallurgiya nimani o‘rganadi?",
+      "javob": "rudadan metall olishni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Usullar",
+      "matn": "Metallurgiya usullari uchta. Pirometallurgiya — yuqori haroratda qaytarish, masalan temir. Gidrometallurgiya — eritmada ajratish, masalan mis va oltin. Elektrometallurgiya — elektr toki bilan, masalan alyuminiy elektrolizi. Qaysi usul metallning faolligiga va rudaga bog‘liq.",
+      "misol": "Faol metallar elektroliz bilan olinadi.",
+      "savol": "Alyuminiy qaysi usul bilan olinadi?",
+      "javob": "elektroliz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Domna jarayoni",
+      "matn": "Temir domna pechida olinadi. Pechga ruda, koks va ohaktosh solinadi. Koks yonib is gazi hosil qiladi, is gazi temir oksidini qaytaradi: bir mol temir uch oksid va uch mol is gazidan ikki mol temir. Ohaktosh bo‘sh jinsni shlakka aylantiradi. Hosil bo‘lgan suyuq temir cho‘yan deyiladi.",
+      "misol": "Domna pechi balandligi bino qadar.",
+      "savol": "Domna pechiga nimalar solinadi?",
+      "javob": "ruda, koks, ohaktosh",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisob",
+      "matn": "Temir uch oksid molyar massasi 160, temir 56. 160 kilogramm oksiddan ikki kilomol, ya’ni 112 kilogramm temir olinadi. 16 gramm oksid 0,1 mol, u uchun 0,3 mol is gazi kerak, hajmi 0,3 · 22,4 — 6,72 litr. 80 tonna oksiddan 56 tonna temir chiqadi.",
+      "misol": "Ish hajmi ulushdan topiladi.",
+      "savol": "160 kilogramm oksiddan nechta kilogramm temir?",
+      "javob": "112",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Po‘lat va O‘zbekiston",
+      "matn": "Cho‘yandan ortiqcha uglerod yoqib, po‘lat olinadi: konvertor, marten yoki elektr pechda. O‘zbekistonda Bekobod metallurgiya zavodi po‘lat chiqaradi, Olmaliq kon-metallurgiya kombinati mis beradi, Navoiy kon-metallurgiya kombinati esa oltin oladi. Metallurgiya atrof-muhitga ta’sir qiladi, shuning uchun gaz va changni tozalash zarur.",
+      "misol": "Chang filtrlari havoni asraydi.",
+      "savol": "Cho‘yandan po‘lat qanday olinadi?",
+      "javob": "ortiqcha uglerodni yoqib",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Metallurgiya: ruda, qaytarish, elektroliz. Domna: ruda, koks, ohaktosh. 160 kilogramm oksiddan 112 kilogramm temir.",
+    "misollar": [
+     {
+      "shart": "160 kilogramm temir uch oksiddan (M — 160) ikki kilomol temir olinadi (Fe — 56). Temir massasi?",
+      "yechim": [
+       "n — 160 / 160 — 1 kilomol oksid.",
+       "Temir 2 kilomol.",
+       "m — 2 · 56 — 112 kilogramm."
+      ],
+      "javob": "112 kilogramm"
+     },
+     {
+      "shart": "16 gramm temir uch oksid qaytarilishi uchun 0,3 mol is gazi kerak. Hajmi (normal sharoit)?",
+      "yechim": [
+       "n oksid — 16 / 160 — 0,1 mol.",
+       "Is gazi 0,3 mol.",
+       "V — 0,3 · 22,4 — 6,72 litr."
+      ],
+      "javob": "6,72 litr"
+     },
+     {
+      "shart": "80 tonna temir uch oksiddan necha tonna temir olinadi?",
+      "yechim": [
+       "Temir ulushi 112 / 160 — 0,7.",
+       "80 · 0,7.",
+       "Javob 56 tonna."
+      ],
+      "javob": "56 tonna"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Usullar jadvali",
+      "topshiriq": "Uch usulning misollarini jadvalga yozing.",
+      "yechim": "Piro, gidro, elektro.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Domna sxemasi",
+      "topshiriq": "Domna pechi sxemasini chizing va qismlarini yozing.",
+      "yechim": "Ruda, koks, ohaktosh.",
+      "mahsulot": "qog‘oz, flomaster"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Mol va massa.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Ekologik reja",
+      "topshiriq": "Metallurgiyada havoni asrash choralarini yozing.",
+      "yechim": "Filtrlar.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "160 / 160 nechaga teng?",
+      "javob": "1"
+     },
+     {
+      "shart": "2 · 56 nechaga teng?",
+      "javob": "112"
+     },
+     {
+      "shart": "16 / 160 nechaga teng?",
+      "javob": "0,1"
+     },
+     {
+      "shart": "0,3 · 22,4 nechaga teng?",
+      "javob": "6,72"
+     },
+     {
+      "shart": "80 · 0,7 nechaga teng?",
+      "javob": "56"
+     },
+     {
+      "shart": "Alyuminiy usuli?",
+      "javob": "elektroliz"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Domnada temir elektroliz bilan olinadi deydi",
+      "sabab": "is gazi bilan qaytariladi",
+      "oldini_olish": "pirometallurgiya"
+     },
+     {
+      "xato": "Cho‘yan va po‘lat bir xil deydi",
+      "sabab": "uglerod miqdori farq qiladi",
+      "oldini_olish": "po‘latda kam"
+     },
+     {
+      "xato": "Metallurgiya atrof-muhitga ta’sir qilmaydi deydi",
+      "sabab": "ta’sir qiladi",
+      "oldini_olish": "gaz va chang chiqadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "yuqori harorat"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "chang va gaz tozalash"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "po‘lat va mis"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Rudadan metallgacha»",
+     "muammo": "Metall rudadan qanday olinadi?",
+     "mahsulot": "sxema va hisob",
+     "bosqichlar": [
+      "usullarni o‘rganish",
+      "domna sxemasi",
+      "hisoblash",
+      "ekologik reja",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Usullarni o‘rganing",
+      "Sxema chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Metallurgiya kombinati»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "160 kilogramm oksid.",
+       "topshiriq": "Temir kilogramm?",
+       "javob": "112",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "16 gramm oksid.",
+       "topshiriq": "Is gazi litr?",
+       "javob": "6,72",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "80 tonna oksid.",
+       "topshiriq": "Temir tonna?",
+       "javob": "56",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sex",
+       "matn": "Alyuminiy.",
+       "topshiriq": "Qaysi usul?",
+       "javob": "elektroliz",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Molga o‘tdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Metallurgiya",
+      "tarif": "rudadan metall olish"
+     },
+     {
+      "atama": "Ruda",
+      "tarif": "metalli tog‘ jinsi"
+     },
+     {
+      "atama": "Domna",
+      "tarif": "temir olinadigan pech"
+     },
+     {
+      "atama": "Koks",
+      "tarif": "ko‘mirdan olingan yoqilg‘i"
+     },
+     {
+      "atama": "Shlak",
+      "tarif": "bo‘sh jins va flyus mahsuloti"
+     },
+     {
+      "atama": "Qaytarish",
+      "tarif": "metallni oksiddan ajratish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Domnada ruda, koks va ohaktosh bor",
+      "togri": true,
+      "izoh": "uch xomashyo"
+     },
+     {
+      "matn": "Alyuminiy domnada olinadi",
+      "togri": false,
+      "izoh": "elektroliz"
+     },
+     {
+      "matn": "160 kilogramm oksiddan 112 kilogramm temir",
+      "togri": true,
+      "izoh": "2 · 56"
+     },
+     {
+      "matn": "Is gazi temirni qaytaradi",
+      "togri": true,
+      "izoh": "qaytaruvchi"
+     },
+     {
+      "matn": "Cho‘yan po‘latdan kam uglerodli",
+      "togri": false,
+      "izoh": "ko‘p uglerodli"
+     },
+     {
+      "matn": "Bekobod po‘lat chiqaradi",
+      "togri": true,
+      "izoh": "metallurgiya zavodi"
+     },
+     {
+      "matn": "0,3 · 22,4 — 6,72",
+      "togri": true,
+      "izoh": "litr"
+     },
+     {
+      "matn": "Metallurgiya ekologiyaga ta’sir qilmaydi",
+      "togri": false,
+      "izoh": "chang va gaz"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Metallurgiya?",
+      "javob": "rudadan metall olish"
+     },
+     {
+      "savol": "Usullar?",
+      "javob": "piro, gidro, elektro"
+     },
+     {
+      "savol": "Domna?",
+      "javob": "temir pechi"
+     },
+     {
+      "savol": "Qaytaruvchi?",
+      "javob": "is gazi"
+     },
+     {
+      "savol": "Shlak?",
+      "javob": "bo‘sh jins mahsuloti"
+     },
+     {
+      "savol": "Cho‘yan?",
+      "javob": "ko‘p uglerodli"
+     },
+     {
+      "savol": "Po‘lat?",
+      "javob": "kam uglerodli"
+     },
+     {
+      "savol": "2 · 56?",
+      "javob": "112"
+     },
+     {
+      "savol": "0,3 · 22,4?",
+      "javob": "6,72"
+     },
+     {
+      "savol": "Olmaliq?",
+      "javob": "mis"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Sxemani kuzat.",
+      "savol": "Qaysi xomashyo?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Massa va hajm.",
+      "savol": "n · M?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Usullarni solishtir.",
+      "savol": "Qaysi metall?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ekologiya?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun faol metallar elektroliz bilan olinadi?",
+    "keys": {
+     "vaziyat": "Alyuminiy oksidini koks bilan qaytarib bo‘lmaydi, tok kerak.",
+     "savollar": [
+      "Faol metall oksidi barqarorligi qanday?",
+      "Qaysi usul mos?"
+     ]
+    },
+    "tezis": "Usul metall faolligiga bog‘liq",
+    "taqqoslash": {
+     "a": "Pirometallurgiya",
+     "b": "Elektrometallurgiya",
+     "umumiy": [
+      "metall olish usuli",
+      "sanoatda ishlatiladi"
+     ],
+     "a_farq": [
+      "yuqori harorat",
+      "temir"
+     ],
+     "b_farq": [
+      "elektr toki",
+      "alyuminiy"
+     ]
+    },
+    "klaster": {
+     "markaz": "Metallurgiya",
+     "shoxlar": [
+      {
+       "nom": "Usullar",
+       "bandlar": [
+        "piro",
+        "gidro",
+        "elektro"
+       ]
+      },
+      {
+       "nom": "Domna",
+       "bandlar": [
+        "ruda",
+        "koks",
+        "ohaktosh"
+       ]
+      },
+      {
+       "nom": "Mahsulot",
+       "bandlar": [
+        "cho‘yan",
+        "po‘lat",
+        "shlak"
+       ]
+      },
+      {
+       "nom": "Ekologiya",
+       "bandlar": [
+        "gaz tozalash",
+        "chang filtri"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men rudadan metall olaman, domna pechi mening ishxonam. Men kimman?",
+     "javob": "metallurgiya"
+    },
+    "hikmat": "Ruda metallga aylanadi.",
+    "kalit_soz": "METALLURGIYA",
+    "xato_yechim": {
+     "shart": "Temir domnada nima bilan qaytariladi?",
+     "xato": "tok bilan",
+     "togri": "is gazi bilan",
+     "sabab": "pirometallurgiya"
+    },
+    "guruh_nomlari": [
+     "Metallurglar",
+     "Hisobchilar",
+     "Ekologlar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Rudadan metallgacha»",
+     "topshiriq": "Guruh domna sxemasini chizadi."
+    },
+    "vazifalar": {
+     "A": "160 kilogramm oksiddan temir?",
+     "B": "16 gramm oksid uchun is gazi?",
+     "C": "80 tonna oksiddan temir?"
+    },
+    "sinkveyn": [
+     "Metallurgiya",
+     "issiq, kuchli",
+     "eritadi, qaytaradi, quyadi",
+     "Ruda dan metall",
+     "Domna"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh metallurgiyani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: usullar",
+      "2-guruh: domna",
+      "3-guruh: hisob",
+      "4-guruh: ekologiya"
+     ],
+     "yakun": "Natijalar: 112 kilogramm; 6,72 litr; 56 tonna."
+    }
+   }
   }
  ]
 }
