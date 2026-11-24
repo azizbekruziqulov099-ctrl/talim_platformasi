@@ -1,0 +1,2735 @@
+{
+ "daraja": "maktab",
+ "sinf": "8",
+ "fan": "Tarix",
+ "muallif": "qo‘lda yozilgan, faktlar tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Sanoat inqilobi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sanoat inqilobi nima",
+      "matn": "Sanoat inqilobi — qo‘l mehnatidan mashina mehnatiga o‘tish davri. U XVIII asrning ikkinchi yarmida Angliyada boshlandi. Mashinalar ishni tezlashtirdi, fabrikalar paydo bo‘ldi, shaharlar o‘sdi. Tovarlar arzonlashdi, lekin ishchilar og‘ir sharoitda ishladi.",
+      "misol": "Qo‘l mehnatidan mashinaga o‘tish.",
+      "savol": "Sanoat inqilobi qaerda boshlandi?",
+      "javob": "Angliyada",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nima uchun Angliyada",
+      "matn": "Angliyada ko‘mir va temir koni ko‘p edi, mustamlakalardan xomashyo va bozor bor edi, savdo va bank rivojlangan edi. Bu omillar yangi mashinalar yaratish va ishlatishga qulay sharoit berdi. To‘qimachilik sanoati birinchi bo‘lib mashinalashdi.",
+      "misol": "Ko‘mir, temir, savdo va bozor.",
+      "savol": "Birinchi qaysi soha mashinalashdi?",
+      "javob": "to‘qimachilik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bug‘ mashinasi va transport",
+      "matn": "Bug‘ mashinasi (Jeyms Vatt takomillashtirgan) fabrikalarga quvvat berdi. Keyinchalik bug‘ bilan yuradigan paroxod va temir yo‘l poyezdi paydo bo‘ldi. Yuklar va odamlar ancha tez va uzoqqa tashila boshladi, bozorlar kengaydi.",
+      "misol": "Bug‘ kuchi — yangi davr.",
+      "savol": "Bug‘ mashinasini kim takomillashtirdi?",
+      "javob": "Jeyms Vatt",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1800 yil va 1850 yil orasida 1850 − 1800 — 50 yil o‘tadi. Masalan, qo‘lda bir kunda 4 metr mato to‘qilsa, mashina 20 metr to‘qisa, mashina 20 / 4 — 5 marta tez. Masalan, fabrikada 30 ishchi kuniga 8 soatdan ishlasa, hammasi 30 · 8 — 240 ishchi-soat.",
+      "misol": "Yillar farqi — ayirish.",
+      "savol": "Masalan, 1850 va 1800 orasida necha yil?",
+      "javob": "50",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Sanoat inqilobi: Angliyada boshlandi. Fabrika, bug‘ mashinasi, temir yo‘l. Yillar farqi va ko‘paytirish.",
+    "misollar": [
+     {
+      "shart": "Masalan, 1850 va 1800 yillar orasida necha yil o‘tadi?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1850 − 1800.",
+       "Javob 50."
+      ],
+      "javob": "50"
+     },
+     {
+      "shart": "Masalan, qo‘lda kuniga 4 metr, mashinada 20 metr mato. Necha marta tez?",
+      "yechim": [
+       "20 / 4.",
+       "Bo‘ling.",
+       "Javob 5."
+      ],
+      "javob": "5"
+     },
+     {
+      "shart": "Masalan, 30 ishchi 8 soatdan ishlaydi. Necha ishchi-soat?",
+      "yechim": [
+       "30 · 8.",
+       "Ko‘paytiring.",
+       "Javob 240."
+      ],
+      "javob": "240"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Xronologiya chizig‘i",
+      "topshiriq": "Sanoat inqilobi bosqichlarini vaqt chizig‘iga joylang.",
+      "yechim": "Ketma-ketlik.",
+      "mahsulot": "vaqt chizig‘i"
+     },
+     {
+      "nom": "Mashina va qo‘l mehnati",
+      "topshiriq": "Ikki usulni jadvalda solishtiring.",
+      "yechim": "Solishtirish.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ayirish va ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Fabrika kuni",
+      "topshiriq": "Ishchi kunini tasvirlab hikoya yozing.",
+      "yechim": "Hikoya.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1850 − 1800 nechaga teng?",
+      "javob": "50"
+     },
+     {
+      "shart": "20 / 4 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "30 · 8 nechaga teng?",
+      "javob": "240"
+     },
+     {
+      "shart": "Sanoat inqilobi qaerda boshlandi?",
+      "javob": "Angliyada"
+     },
+     {
+      "shart": "Qaysi soha birinchi mashinalashdi?",
+      "javob": "to‘qimachilik"
+     },
+     {
+      "shart": "Bug‘ mashinasini kim takomillashtirdi?",
+      "javob": "Jeyms Vatt"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Sanoat inqilobi Osiyoda boshlandi deydi",
+      "sabab": "Angliyada",
+      "oldini_olish": "XVIII asr ikkinchi yarmi"
+     },
+     {
+      "xato": "Mashinalar ishchilarga faqat yengillik berdi deydi",
+      "sabab": "og‘ir ham bo‘ldi",
+      "oldini_olish": "ish sharoiti og‘ir edi"
+     },
+     {
+      "xato": "Bug‘ mashinasi transportga ta’sir qilmadi deydi",
+      "sabab": "ta’sir qildi",
+      "oldini_olish": "paroxod va poyezd paydo bo‘ldi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "bug‘ mashinasi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ayirish va ko‘paytirish"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "ko‘mir va temir koni"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Fabrika va shahar»",
+     "muammo": "Sanoat inqilobi hayotni qanday o‘zgartirdi?",
+     "mahsulot": "vaqt chizig‘i va maket",
+     "bosqichlar": [
+      "vaqt chizig‘i",
+      "jadval",
+      "hisob",
+      "maket",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chizing",
+      "Solishtiring",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xronologiya aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Angliya fabrikasida»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "1850 va 1800 yillar.",
+       "topshiriq": "Necha yil?",
+       "javob": "50",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "4 metr va 20 metr.",
+       "topshiriq": "Necha marta?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "30 ishchi, 8 soat.",
+       "topshiriq": "Ishchi-soat?",
+       "javob": "240",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Sanoat inqilobi boshlangan mamlakat.",
+       "topshiriq": "Qaysi?",
+       "javob": "Angliya",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sanoat inqilobi",
+      "tarif": "qo‘l mehnatidan mashinaga o‘tish"
+     },
+     {
+      "atama": "Fabrika",
+      "tarif": "mashinali ishlab chiqarish korxonasi"
+     },
+     {
+      "atama": "Bug‘ mashinasi",
+      "tarif": "bug‘ kuchi bilan ishlovchi mashina"
+     },
+     {
+      "atama": "To‘qimachilik",
+      "tarif": "mato ishlab chiqarish sohasi"
+     },
+     {
+      "atama": "Ishchi",
+      "tarif": "ish haqi evaziga ishlovchi kishi"
+     },
+     {
+      "atama": "Xomashyo",
+      "tarif": "ishlab chiqarish uchun ashyo"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Sanoat inqilobi Angliyada boshlangan",
+      "togri": true,
+      "izoh": "XVIII asr"
+     },
+     {
+      "matn": "Bug‘ mashinasi transportga ta’sir qilmadi",
+      "togri": false,
+      "izoh": "ta’sir qildi"
+     },
+     {
+      "matn": "1850 − 1800 — 50",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "To‘qimachilik birinchi mashinalashdi",
+      "togri": true,
+      "izoh": "mato"
+     },
+     {
+      "matn": "Fabrikalarda ish sharoiti doim yengil edi",
+      "togri": false,
+      "izoh": "og‘ir edi"
+     },
+     {
+      "matn": "20 / 4 — 5",
+      "togri": true,
+      "izoh": "marta"
+     },
+     {
+      "matn": "30 · 8 — 240",
+      "togri": true,
+      "izoh": "ishchi-soat"
+     },
+     {
+      "matn": "Temir yo‘l bozorni kengaytirdi",
+      "togri": true,
+      "izoh": "tez tashish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sanoat inqilobi?",
+      "javob": "mashinaga o‘tish"
+     },
+     {
+      "savol": "Qaerda boshlandi?",
+      "javob": "Angliya"
+     },
+     {
+      "savol": "Birinchi soha?",
+      "javob": "to‘qimachilik"
+     },
+     {
+      "savol": "Bug‘ mashinasi?",
+      "javob": "Vatt"
+     },
+     {
+      "savol": "Transport?",
+      "javob": "poyezd, paroxod"
+     },
+     {
+      "savol": "Fabrika?",
+      "javob": "mashinali korxona"
+     },
+     {
+      "savol": "1850 − 1800?",
+      "javob": "50"
+     },
+     {
+      "savol": "20 / 4?",
+      "javob": "5"
+     },
+     {
+      "savol": "30 · 8?",
+      "javob": "240"
+     },
+     {
+      "savol": "Ishchilar?",
+      "javob": "og‘ir sharoit"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Mashina qanday ishni yengillashtirdi.",
+      "savol": "Foyda?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yillar va soatlarni top.",
+      "savol": "Amal?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Qo‘l va mashina mehnati.",
+      "savol": "Farq?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Natija?"
+     }
+    ],
+    "muammoli_savol": "Sanoat inqilobi nima uchun avval Angliyada boshlandi?",
+    "keys": {
+     "vaziyat": "Bir shaharchada qo‘lda ishlovchi ustalar mashinali fabrikaga raqobat qila olmay qoldi.",
+     "savollar": [
+      "Nima o‘zgardi?",
+      "Ustalar nima qilsin?"
+     ]
+    },
+    "tezis": "Mashina davri",
+    "taqqoslash": {
+     "a": "Qo‘l mehnati",
+     "b": "Mashina mehnati",
+     "umumiy": [
+      "tovar ishlab chiqaradi",
+      "inson ishtirokida"
+     ],
+     "a_farq": [
+      "sekin",
+      "usta qo‘lida"
+     ],
+     "b_farq": [
+      "tez",
+      "fabrikada"
+     ]
+    },
+    "klaster": {
+     "markaz": "Sanoat inqilobi",
+     "shoxlar": [
+      {
+       "nom": "Sabablar",
+       "bandlar": [
+        "ko‘mir",
+        "temir",
+        "bozor"
+       ]
+      },
+      {
+       "nom": "Yangiliklar",
+       "bandlar": [
+        "bug‘ mashinasi",
+        "to‘quv mashinasi"
+       ]
+      },
+      {
+       "nom": "Transport",
+       "bandlar": [
+        "poyezd",
+        "paroxod"
+       ]
+      },
+      {
+       "nom": "Oqibat",
+       "bandlar": [
+        "shaharlar o‘sdi",
+        "ishchilar sinfi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men bug‘ kuchi bilan ishlayman va fabrikalarga quvvat beraman. Men nimaman?",
+     "javob": "bug‘ mashinasi"
+    },
+    "hikmat": "Mashina ishni tezlatdi, hayotni o‘zgartirdi.",
+    "kalit_soz": "BUG",
+    "xato_yechim": {
+     "shart": "Sanoat inqilobi qaerda boshlandi?",
+     "xato": "Hindistonda",
+     "togri": "Angliyada",
+     "sabab": "XVIII asrning ikkinchi yarmida"
+    },
+    "guruh_nomlari": [
+     "Tarixchilar",
+     "Hisobchilar",
+     "Muhandislar",
+     "Jurnalistlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Fabrika va shahar»",
+     "topshiriq": "Guruh vaqt chizig‘i va maketni tuzadi."
+    },
+    "vazifalar": {
+     "A": "1850 va 1800 yillar farqi?",
+     "B": "20 metr va 4 metr nisbati?",
+     "C": "30 ishchi, 8 soat?"
+    },
+    "sinkveyn": [
+     "Sanoat",
+     "mashinali, tezkor",
+     "ishlab chiqaradi, o‘zgartiradi, shahar quradi",
+     "Yangi davr",
+     "Fabrika"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sanoat inqilobini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: sabablar",
+      "2-guruh: mashinalar",
+      "3-guruh: transport",
+      "4-guruh: oqibatlar"
+     ],
+     "yakun": "Natijalar: 50; 5; 240."
+    }
+   }
+  },
+  {
+   "mavzu": "Fransuz inqilobi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Inqilob sabablari",
+      "matn": "XVIII asr oxirida Fransiyada jamiyat uch toifaga bo‘lingan edi: ruhoniylar, zodagonlar va uchinchi toifa (dehqon, hunarmand, savdogar). Soliqning katta qismini uchinchi toifa to‘lardi, imtiyozlar esa birinchi ikki toifada edi. Davlat qarzga botgan, non qimmat edi.",
+      "misol": "Soliq adolatsizligi, qarz va ocharchilik.",
+      "savol": "Soliqni kim ko‘p to‘lardi?",
+      "javob": "uchinchi toifa",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "1789 yil: Bastiliya",
+      "matn": "1789 yilda inqilob boshlandi. Parij aholisi Bastiliya qamoqxonasini egalladi, bu inqilob ramzi bo‘ldi. Shu yili «Inson va fuqaro huquqlari deklaratsiyasi» qabul qilindi: odamlar erkin va huquqda teng tug‘iladi. 14 iyul hozir Fransiya milliy bayrami.",
+      "misol": "1789 — inqilob boshlandi.",
+      "savol": "Qaysi qamoqxona egallandi?",
+      "javob": "Bastiliya",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Inqilobning borishi",
+      "matn": "Inqilob davomida qirollik bekor qilindi va respublika e’lon qilindi. Qirol Lyudovik XVI hukm qilindi. Davr qattiq kurash va zo‘ravonlik bilan to‘ldi. Inqilob erkinlik, tenglik va birodarlik g‘oyalarini butun Yevropaga yoydi.",
+      "misol": "Respublika va yangi g‘oyalar.",
+      "savol": "Inqilob qaysi g‘oyalarni tarqatdi?",
+      "javob": "erkinlik, tenglik, birodarlik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1789 yildan 1815 yilgacha 1815 − 1789 — 26 yil. Masalan, 100 ta bochka sholidan 3 tasi uchinchi toifadan olinsa, 100 · 0,03 — 3. Masalan, 3 toifadan biri aholining 97 foizi bo‘lsa, 1000 kishidan 1000 · 0,97 — 970 kishi (taxminiy misol).",
+      "misol": "Yillar farqi — ayirish.",
+      "savol": "Masalan, 1815 va 1789 orasida necha yil?",
+      "javob": "26",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Fransuz inqilobi: 1789. Bastiliya, huquqlar deklaratsiyasi, erkinlik-tenglik-birodarlik.",
+    "misollar": [
+     {
+      "shart": "Masalan, 1815 va 1789 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1815 − 1789.",
+       "Javob 26."
+      ],
+      "javob": "26"
+     },
+     {
+      "shart": "Masalan, 1000 kishining 97 foizi uchinchi toifa. Necha kishi?",
+      "yechim": [
+       "97 foiz — 0,97.",
+       "1000 · 0,97.",
+       "Javob 970."
+      ],
+      "javob": "970"
+     },
+     {
+      "shart": "Masalan, 100 ning 3 foizi nechaga teng?",
+      "yechim": [
+       "3 foiz — 0,03.",
+       "100 · 0,03.",
+       "Javob 3."
+      ],
+      "javob": "3"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Uch toifa sxemasi",
+      "topshiriq": "Fransiya jamiyatining uch toifasini sxemada chizing.",
+      "yechim": "Tuzilma.",
+      "mahsulot": "sxema"
+     },
+     {
+      "nom": "Bastiliya tasviri",
+      "topshiriq": "Bastiliyaning egallanishini rasm yoki hikoya bilan bayon eting.",
+      "yechim": "Hikoya.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ayirish va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Deklaratsiya",
+      "topshiriq": "Huquqlar deklaratsiyasidan bir huquqni tanlab izohlang.",
+      "yechim": "Huquq.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1815 − 1789 nechaga teng?",
+      "javob": "26"
+     },
+     {
+      "shart": "1000 · 0,97 nechaga teng?",
+      "javob": "970"
+     },
+     {
+      "shart": "100 · 0,03 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "Qaysi qamoqxona egallandi?",
+      "javob": "Bastiliya"
+     },
+     {
+      "shart": "Inqilob qaysi yilda boshlandi?",
+      "javob": "1789"
+     },
+     {
+      "shart": "Inqilobning uch g‘oyasi?",
+      "javob": "erkinlik, tenglik, birodarlik"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Inqilobda soliqni birinchi toifa to‘lagan deydi",
+      "sabab": "uchinchi toifa",
+      "oldini_olish": "imtiyoz boshqalarda edi"
+     },
+     {
+      "xato": "Bastiliya Londonda joylashgan deydi",
+      "sabab": "Parijda",
+      "oldini_olish": "Fransiya poytaxti"
+     },
+     {
+      "xato": "Inqilob g‘oyalari faqat Fransiyada qoldi deydi",
+      "sabab": "yoyildi",
+      "oldini_olish": "Yevropaga tarqaldi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Huquq",
+      "boglanish": "inson huquqlari deklaratsiyasi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ayirish va foiz"
+     },
+     {
+      "fan": "Adabiyot",
+      "boglanish": "inqilob haqida asarlar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«1789 yil guvohi»",
+     "muammo": "Inqilob odamlar hayotini qanday o‘zgartirdi?",
+     "mahsulot": "gazeta sahifasi",
+     "bosqichlar": [
+      "sabablar",
+      "voqealar",
+      "hisob",
+      "gazeta",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Aniqlang",
+      "Yozing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "faktlar aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Parij, 1789 yil»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "1815 va 1789.",
+       "topshiriq": "Necha yil?",
+       "javob": "26",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1000 kishi, 97 foiz.",
+       "topshiriq": "Necha kishi?",
+       "javob": "970",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "Inqilob ramzi bo‘lgan qamoqxona.",
+       "topshiriq": "Qaysi?",
+       "javob": "Bastiliya",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Inqilob yili.",
+       "topshiriq": "Qaysi yil?",
+       "javob": "1789",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Inqilob",
+      "tarif": "tuzumning tub o‘zgarishi"
+     },
+     {
+      "atama": "Bastiliya",
+      "tarif": "Parijdagi qamoqxona-qal’a"
+     },
+     {
+      "atama": "Deklaratsiya",
+      "tarif": "huquqlar haqidagi rasmiy hujjat"
+     },
+     {
+      "atama": "Respublika",
+      "tarif": "saylangan hokimiyat shakli"
+     },
+     {
+      "atama": "Zodagon",
+      "tarif": "imtiyozli yuqori tabaqa"
+     },
+     {
+      "atama": "Uchinchi toifa",
+      "tarif": "oddiy xalq"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Inqilob 1789 yilda boshlandi",
+      "togri": true,
+      "izoh": "Fransiya"
+     },
+     {
+      "matn": "Bastiliya Rimda edi",
+      "togri": false,
+      "izoh": "Parijda"
+     },
+     {
+      "matn": "1815 − 1789 — 26",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Uchinchi toifa soliqni ko‘p to‘lagan",
+      "togri": true,
+      "izoh": "adolatsizlik"
+     },
+     {
+      "matn": "Inqilob qirollikni bekor qildi",
+      "togri": true,
+      "izoh": "respublika"
+     },
+     {
+      "matn": "1000 · 0,97 — 970",
+      "togri": true,
+      "izoh": "kishi"
+     },
+     {
+      "matn": "G‘oyalar Yevropaga yoyildi",
+      "togri": true,
+      "izoh": "ta’sir"
+     },
+     {
+      "matn": "Deklaratsiya huquqlar haqida emas edi",
+      "togri": false,
+      "izoh": "huquqlar haqida"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Inqilob yili?",
+      "javob": "1789"
+     },
+     {
+      "savol": "Ramz?",
+      "javob": "Bastiliya"
+     },
+     {
+      "savol": "Uch toifa?",
+      "javob": "ruhoniy, zodagon, xalq"
+     },
+     {
+      "savol": "Soliq?",
+      "javob": "uchinchi toifa"
+     },
+     {
+      "savol": "Deklaratsiya?",
+      "javob": "huquqlar"
+     },
+     {
+      "savol": "G‘oya?",
+      "javob": "erkinlik, tenglik"
+     },
+     {
+      "savol": "1815 − 1789?",
+      "javob": "26"
+     },
+     {
+      "savol": "1000 · 0,97?",
+      "javob": "970"
+     },
+     {
+      "savol": "100 · 0,03?",
+      "javob": "3"
+     },
+     {
+      "savol": "Natija?",
+      "javob": "respublika"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Toifalar tengsizligini kuzat.",
+      "savol": "Sabab?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yil va foizni top.",
+      "savol": "Amal?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Uch toifa.",
+      "savol": "Farq?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Natija?"
+     }
+    ],
+    "muammoli_savol": "Fransuz inqilobi nima uchun boshlandi?",
+    "keys": {
+     "vaziyat": "Bir qishloqda dehqon soliq to‘lay olmay, zodagon esa soliqdan ozod.",
+     "savollar": [
+      "Bu adolatlimi?",
+      "Nima o‘zgarishi kerak?"
+     ]
+    },
+    "tezis": "Erkinlik, tenglik, birodarlik",
+    "taqqoslash": {
+     "a": "Inqilobgacha",
+     "b": "Inqilobdan keyin",
+     "umumiy": [
+      "Fransiya",
+      "xalq hayoti"
+     ],
+     "a_farq": [
+      "imtiyozlar",
+      "qirol hokimiyati"
+     ],
+     "b_farq": [
+      "huquq tengligi",
+      "respublika"
+     ]
+    },
+    "klaster": {
+     "markaz": "Fransuz inqilobi",
+     "shoxlar": [
+      {
+       "nom": "Sabablar",
+       "bandlar": [
+        "soliq",
+        "qarz",
+        "non qimmat"
+       ]
+      },
+      {
+       "nom": "Voqealar",
+       "bandlar": [
+        "Bastiliya",
+        "deklaratsiya"
+       ]
+      },
+      {
+       "nom": "G‘oyalar",
+       "bandlar": [
+        "erkinlik",
+        "tenglik",
+        "birodarlik"
+       ]
+      },
+      {
+       "nom": "Oqibat",
+       "bandlar": [
+        "respublika",
+        "Yevropaga ta’sir"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Parijdagi qamoqxonaman, inqilob ramziman. Men nimaman?",
+     "javob": "Bastiliya"
+    },
+    "hikmat": "Erkin va teng huquqli bo‘lish orzusi.",
+    "kalit_soz": "ERK",
+    "xato_yechim": {
+     "shart": "Fransuz inqilobi qaysi yili boshlandi?",
+     "xato": "1815",
+     "togri": "1789",
+     "sabab": "Bastiliya shu yili egallandi"
+    },
+    "guruh_nomlari": [
+     "Tarixchilar",
+     "Hisobchilar",
+     "Jurnalistlar",
+     "Rassomlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«1789 yil guvohi»",
+     "topshiriq": "Guruh gazeta sahifasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "1815 va 1789 farqi?",
+     "B": "1000 kishining 97 foizi?",
+     "C": "100 ning 3 foizi?"
+    },
+    "sinkveyn": [
+     "Inqilob",
+     "qizg‘in, tarixiy",
+     "o‘zgartirdi, yoydi, kurashdi",
+     "Yangi tuzum",
+     "Bastiliya"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh inqilobni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: sabablar",
+      "2-guruh: Bastiliya",
+      "3-guruh: g‘oyalar",
+      "4-guruh: oqibatlar"
+     ],
+     "yakun": "Natijalar: 26; 970; 3."
+    }
+   }
+  },
+  {
+   "mavzu": "Napoleon urushlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Napoleon kim",
+      "matn": "Napoleon Bonapart — Fransiya sarkardasi, keyin hukmdori. U inqilobdan keyin hokimiyat tepasiga chiqdi va 1804 yilda o‘zini imperator deb e’lon qildi. U harbiy jihatdan mohir sarkarda edi, ko‘plab g‘alabalar qozondi, Yevropaning katta qismini egalladi.",
+      "misol": "Sarkarda va imperator.",
+      "savol": "Napoleon qachon imperator bo‘ldi?",
+      "javob": "1804 yilda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Urushlar va tartib",
+      "matn": "Napoleon boshqa davlatlar bilan ko‘p urush olib bordi. U Fransiyada yangi qonunlar to‘plamini (Fuqarolik kodeksi) kiritdi, u qonun oldida tenglik tamoyilini mustahkamladi. Urushlar Yevropa xaritasini o‘zgartirdi va xalqlarda milliy uyg‘onish hissini kuchaytirdi.",
+      "misol": "Kodeks va urushlar.",
+      "savol": "Napoleon qaysi qonunlar to‘plamini kiritdi?",
+      "javob": "Fuqarolik kodeksi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Rossiya yurishi va Vaterloo",
+      "matn": "1812 yilda Napoleon katta qo‘shin bilan Rossiyaga yurish qildi, lekin sovuq, ocharchilik va qarshilik tufayli qo‘shin juda qirilib ketdi. 1815 yilda Vaterloo jangida Napoleon mag‘lub bo‘ldi va surgun qilindi. Shu bilan uning hukmronligi tugadi.",
+      "misol": "1812 yurish, 1815 Vaterloo.",
+      "savol": "Napoleon qaysi jangda mag‘lub bo‘ldi?",
+      "javob": "Vaterloo",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1804 yildan 1815 yilgacha 1815 − 1804 — 11 yil. Masalan, 1789 yildan 1804 yilgacha 1804 − 1789 — 15 yil. Masalan, 600 ming kishilik qo‘shinning to‘rtdan biri 600 / 4 — 150 ming kishi (taxminiy misol).",
+      "misol": "Yillar farqi — ayirish.",
+      "savol": "Masalan, 1815 va 1804 orasida necha yil?",
+      "javob": "11",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Napoleon urushlari: 1804 imperator, 1812 Rossiya, 1815 Vaterloo. Yillar farqi.",
+    "misollar": [
+     {
+      "shart": "Masalan, 1815 va 1804 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1815 − 1804.",
+       "Javob 11."
+      ],
+      "javob": "11"
+     },
+     {
+      "shart": "Masalan, 1804 va 1789 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1804 − 1789.",
+       "Javob 15."
+      ],
+      "javob": "15"
+     },
+     {
+      "shart": "Masalan, 600 ming kishining to‘rtdan biri necha ming?",
+      "yechim": [
+       "To‘rtdan biri — 4 ga bo‘lish.",
+       "600 / 4.",
+       "Javob 150."
+      ],
+      "javob": "150"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Vaqt chizig‘i",
+      "topshiriq": "1789, 1804, 1812, 1815 yillarni vaqt chizig‘iga joylang.",
+      "yechim": "Xronologiya.",
+      "mahsulot": "vaqt chizig‘i"
+     },
+     {
+      "nom": "Napoleon portreti",
+      "topshiriq": "Napoleon haqida qisqa tavsif yozing.",
+      "yechim": "Tavsif.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ayirish va bo‘lish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Yevropa xaritasi",
+      "topshiriq": "Napoleon yurishlari yo‘nalishini xaritada ko‘rsating.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1815 − 1804 nechaga teng?",
+      "javob": "11"
+     },
+     {
+      "shart": "1804 − 1789 nechaga teng?",
+      "javob": "15"
+     },
+     {
+      "shart": "600 / 4 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "Napoleon qaysi yili imperator bo‘ldi?",
+      "javob": "1804"
+     },
+     {
+      "shart": "Napoleon qaysi jangda mag‘lub bo‘ldi?",
+      "javob": "Vaterloo"
+     },
+     {
+      "shart": "Qaysi qonunlar to‘plami kiritildi?",
+      "javob": "Fuqarolik kodeksi"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Napoleon 1789 yilda imperator bo‘lgan deydi",
+      "sabab": "1804 yilda",
+      "oldini_olish": "1789 inqilob yili"
+     },
+     {
+      "xato": "Vaterloo jangi 1812 yilda bo‘lgan deydi",
+      "sabab": "1815 yilda",
+      "oldini_olish": "Napoleon shu yili mag‘lub bo‘ldi"
+     },
+     {
+      "xato": "Napoleon urushlari Yevropaga ta’sir qilmadi deydi",
+      "sabab": "ta’sir qildi",
+      "oldini_olish": "xarita va g‘oyalar o‘zgardi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Huquq",
+      "boglanish": "Fuqarolik kodeksi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ayirish va bo‘lish"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "Yevropa xaritasi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Napoleon: g‘alaba va mag‘lubiyat»",
+     "muammo": "Napoleon taqdiri qanday o‘zgardi?",
+     "mahsulot": "vaqt chizig‘i va xarita",
+     "bosqichlar": [
+      "vaqt chizig‘i",
+      "xarita",
+      "hisob",
+      "xulosa",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chizing",
+      "Belgilang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xronologiya aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Napoleon izidan»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "1815 va 1804.",
+       "topshiriq": "Necha yil?",
+       "javob": "11",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1804 va 1789.",
+       "topshiriq": "Necha yil?",
+       "javob": "15",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "Napoleon mag‘lub bo‘lgan jang.",
+       "topshiriq": "Qaysi?",
+       "javob": "Vaterloo",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Imperator bo‘lgan yil.",
+       "topshiriq": "Qaysi?",
+       "javob": "1804",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Napoleon",
+      "tarif": "Fransiya sarkardasi va imperatori"
+     },
+     {
+      "atama": "Imperator",
+      "tarif": "imperiya hukmdori"
+     },
+     {
+      "atama": "Fuqarolik kodeksi",
+      "tarif": "qonunlar to‘plami"
+     },
+     {
+      "atama": "Vaterloo",
+      "tarif": "1815 yilgi hal qiluvchi jang"
+     },
+     {
+      "atama": "Surgun",
+      "tarif": "majburan boshqa joyga yuborish"
+     },
+     {
+      "atama": "Yurish",
+      "tarif": "qo‘shinning harbiy harakati"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Napoleon 1804 yilda imperator bo‘ldi",
+      "togri": true,
+      "izoh": "imperator"
+     },
+     {
+      "matn": "Vaterloo 1789 yilda bo‘lgan",
+      "togri": false,
+      "izoh": "1815"
+     },
+     {
+      "matn": "1815 − 1804 — 11",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Rossiya yurishi qo‘shinga og‘ir bo‘ldi",
+      "togri": true,
+      "izoh": "sovuq, ocharchilik"
+     },
+     {
+      "matn": "Fuqarolik kodeksi tenglikni mustahkamladi",
+      "togri": true,
+      "izoh": "qonun"
+     },
+     {
+      "matn": "600 / 4 — 150",
+      "togri": true,
+      "izoh": "ming"
+     },
+     {
+      "matn": "Napoleon urushlari xaritani o‘zgartirdi",
+      "togri": true,
+      "izoh": "Yevropa"
+     },
+     {
+      "matn": "Napoleon Vaterloda g‘alaba qozondi",
+      "togri": false,
+      "izoh": "mag‘lub bo‘ldi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Napoleon kim?",
+      "javob": "sarkarda"
+     },
+     {
+      "savol": "Imperator?",
+      "javob": "1804"
+     },
+     {
+      "savol": "Kodeks?",
+      "javob": "tenglik"
+     },
+     {
+      "savol": "Rossiya?",
+      "javob": "1812"
+     },
+     {
+      "savol": "Vaterloo?",
+      "javob": "1815"
+     },
+     {
+      "savol": "Natija?",
+      "javob": "surgun"
+     },
+     {
+      "savol": "1815 − 1804?",
+      "javob": "11"
+     },
+     {
+      "savol": "1804 − 1789?",
+      "javob": "15"
+     },
+     {
+      "savol": "600 / 4?",
+      "javob": "150"
+     },
+     {
+      "savol": "Ta’sir?",
+      "javob": "Yevropa xaritasi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Yillar ketma-ketligini kuzat.",
+      "savol": "Tartib?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yillar farqini top.",
+      "savol": "Amal?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "G‘alaba va mag‘lubiyat.",
+      "savol": "Sabab?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Natija?"
+     }
+    ],
+    "muammoli_savol": "Napoleon nima uchun Rossiya yurishida mag‘lub bo‘ldi?",
+    "keys": {
+     "vaziyat": "Qo‘shin uzoq yurishda oziq-ovqatsiz va qish sovug‘ida qoldi.",
+     "savollar": [
+      "Nima xavf?",
+      "Qanday qaror to‘g‘ri?"
+     ]
+    },
+    "tezis": "Sarkarda va davr",
+    "taqqoslash": {
+     "a": "1804 yil",
+     "b": "1815 yil",
+     "umumiy": [
+      "Napoleon",
+      "Fransiya"
+     ],
+     "a_farq": [
+      "imperator bo‘ldi",
+      "kuch cho‘qqisi"
+     ],
+     "b_farq": [
+      "Vaterloo",
+      "mag‘lubiyat"
+     ]
+    },
+    "klaster": {
+     "markaz": "Napoleon urushlari",
+     "shoxlar": [
+      {
+       "nom": "Napoleon",
+       "bandlar": [
+        "sarkarda",
+        "imperator"
+       ]
+      },
+      {
+       "nom": "Yurishlar",
+       "bandlar": [
+        "Yevropa",
+        "1812 Rossiya"
+       ]
+      },
+      {
+       "nom": "Qonun",
+       "bandlar": [
+        "Fuqarolik kodeksi",
+        "tenglik"
+       ]
+      },
+      {
+       "nom": "Yakun",
+       "bandlar": [
+        "Vaterloo 1815",
+        "surgun"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 1815 yilgi jangman, Napoleon shu yerda mag‘lub bo‘lgan. Men nimaman?",
+     "javob": "Vaterloo"
+    },
+    "hikmat": "G‘alaba ham, mag‘lubiyat ham tarixdan dars beradi.",
+    "kalit_soz": "JANG",
+    "xato_yechim": {
+     "shart": "Napoleon qaysi jangda mag‘lub bo‘ldi?",
+     "xato": "Bastiliya",
+     "togri": "Vaterloo",
+     "sabab": "1815 yilgi hal qiluvchi jang"
+    },
+    "guruh_nomlari": [
+     "Tarixchilar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Jurnalistlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Napoleon: g‘alaba va mag‘lubiyat»",
+     "topshiriq": "Guruh vaqt chizig‘i va xaritani tuzadi."
+    },
+    "vazifalar": {
+     "A": "1815 va 1804 farqi?",
+     "B": "1804 va 1789 farqi?",
+     "C": "600 ming ning to‘rtdan biri?"
+    },
+    "sinkveyn": [
+     "Napoleon",
+     "mohir, shuhratparast",
+     "bosib oldi, o‘zgartirdi, yutqazdi",
+     "Imperator",
+     "Vaterloo"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh Napoleon davrini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: Napoleon",
+      "2-guruh: yurishlar",
+      "3-guruh: qonun",
+      "4-guruh: Vaterloo"
+     ],
+     "yakun": "Natijalar: 11; 15; 150."
+    }
+   }
+  },
+  {
+   "mavzu": "AQSh tashkil topishi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "O‘n uch mustamlaka",
+      "matn": "Shimoliy Amerikaning sharqiy sohilida Angliyaning o‘n uchta mustamlakasi bor edi. Aholi Angliyadan, shuningdek boshqa joylardan kelgan edi. Angliya soliqlarni oshirdi va mustamlakachilar o‘z vakillarisiz soliq to‘lashga qarshi chiqdi. Norozilik kuchaydi.",
+      "misol": "13 mustamlaka — Angliya hukmida.",
+      "savol": "Nechta mustamlaka bor edi?",
+      "javob": "o‘n uchta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mustaqillik deklaratsiyasi",
+      "matn": "1776 yilda mustamlakalar Mustaqillik deklaratsiyasini qabul qildi. Unda barcha odamlar teng yaratilgani, hayot, erkinlik va baxtga intilish huquqi borligi yozilgan. Deklaratsiya Angliyadan ajralib chiqishni e’lon qildi. Mustaqillik uchun urush bir necha yil davom etdi.",
+      "misol": "1776 — mustaqillik e’lon qilindi.",
+      "savol": "Deklaratsiya qaysi yilda qabul qilindi?",
+      "javob": "1776",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Konstitutsiya va Vashington",
+      "matn": "Urushdan keyin yangi davlat qurildi. 1787 yilda AQSh Konstitutsiyasi qabul qilindi: hokimiyat qonun chiqaruvchi, ijro etuvchi va sud tarmoqlariga bo‘lindi. Jorj Vashington sarkarda bo‘lgan va 1789 yilda birinchi prezident etib saylandi.",
+      "misol": "Konstitutsiya va birinchi prezident.",
+      "savol": "Birinchi prezident kim?",
+      "javob": "Jorj Vashington",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1776 yildan 1787 yilgacha 1787 − 1776 — 11 yil. Masalan, 1789 − 1776 — 13 yil. Masalan, 13 mustamlakaning har birida 4 vakil bo‘lsa, hammasi 13 · 4 — 52 vakil (taxminiy misol).",
+      "misol": "Yillar farqi — ayirish.",
+      "savol": "Masalan, 1787 va 1776 orasida necha yil?",
+      "javob": "11",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "AQSh tashkil topishi: 13 mustamlaka, 1776 deklaratsiya, 1787 konstitutsiya, 1789 Vashington prezident.",
+    "misollar": [
+     {
+      "shart": "Masalan, 1787 va 1776 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1787 − 1776.",
+       "Javob 11."
+      ],
+      "javob": "11"
+     },
+     {
+      "shart": "Masalan, 1789 va 1776 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1789 − 1776.",
+       "Javob 13."
+      ],
+      "javob": "13"
+     },
+     {
+      "shart": "Masalan, 13 mustamlakaning har biridan 4 vakil. Hammasi necha?",
+      "yechim": [
+       "13 · 4.",
+       "Ko‘paytiring.",
+       "Javob 52."
+      ],
+      "javob": "52"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Mustamlakalar xaritasi",
+      "topshiriq": "Oʻn uch mustamlakani kontur xaritada belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Vaqt chizig‘i",
+      "topshiriq": "1776, 1787, 1789 yillarni vaqt chizig‘iga joylang.",
+      "yechim": "Xronologiya.",
+      "mahsulot": "vaqt chizig‘i"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ayirish va ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Deklaratsiya g‘oyasi",
+      "topshiriq": "Deklaratsiyadagi bir huquqni izohlang.",
+      "yechim": "Huquq.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1787 − 1776 nechaga teng?",
+      "javob": "11"
+     },
+     {
+      "shart": "1789 − 1776 nechaga teng?",
+      "javob": "13"
+     },
+     {
+      "shart": "13 · 4 nechaga teng?",
+      "javob": "52"
+     },
+     {
+      "shart": "Deklaratsiya qaysi yilda qabul qilindi?",
+      "javob": "1776"
+     },
+     {
+      "shart": "Birinchi prezident kim?",
+      "javob": "Jorj Vashington"
+     },
+     {
+      "shart": "Konstitutsiya qaysi yilda qabul qilindi?",
+      "javob": "1787"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Deklaratsiya 1787 yilda qabul qilingan deydi",
+      "sabab": "1776 yilda",
+      "oldini_olish": "mustaqillik e’loni"
+     },
+     {
+      "xato": "AQShning birinchi prezidenti Linkoln deydi",
+      "sabab": "Vashington",
+      "oldini_olish": "1789 yilda saylangan"
+     },
+     {
+      "xato": "Konstitutsiya hokimiyatni bo‘lmagan deydi",
+      "sabab": "bo‘lgan",
+      "oldini_olish": "uch tarmoq"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Huquq",
+      "boglanish": "Konstitutsiya va deklaratsiya"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ayirish va ko‘paytirish"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "Shimoliy Amerika sohili"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yangi davlat tug‘ildi»",
+     "muammo": "AQSh qanday tashkil topdi?",
+     "mahsulot": "vaqt chizig‘i va xarita",
+     "bosqichlar": [
+      "xarita",
+      "vaqt chizig‘i",
+      "hisob",
+      "xulosa",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Joylang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xronologiya aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Filadelfiya, 1776 yil»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "1787 va 1776.",
+       "topshiriq": "Necha yil?",
+       "javob": "11",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1789 va 1776.",
+       "topshiriq": "Necha yil?",
+       "javob": "13",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "13 mustamlaka, 4 vakildan.",
+       "topshiriq": "Hammasi?",
+       "javob": "52",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Mustaqillik yili.",
+       "topshiriq": "Qaysi?",
+       "javob": "1776",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Mustamlaka",
+      "tarif": "boshqa davlat hukmidagi hudud"
+     },
+     {
+      "atama": "Deklaratsiya",
+      "tarif": "rasmiy e’lon"
+     },
+     {
+      "atama": "Konstitutsiya",
+      "tarif": "asosiy qonun"
+     },
+     {
+      "atama": "Prezident",
+      "tarif": "davlat boshlig‘i"
+     },
+     {
+      "atama": "Mustaqillik",
+      "tarif": "o‘z erkiga ega bo‘lish"
+     },
+     {
+      "atama": "Soliq",
+      "tarif": "davlatga to‘lanadigan majburiy to‘lov"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Mustaqillik deklaratsiyasi 1776 yilda qabul qilindi",
+      "togri": true,
+      "izoh": "AQSh"
+     },
+     {
+      "matn": "Birinchi prezident Vashington emas",
+      "togri": false,
+      "izoh": "Vashington"
+     },
+     {
+      "matn": "1787 − 1776 — 11",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Mustamlakalar o‘n uchta edi",
+      "togri": true,
+      "izoh": "13"
+     },
+     {
+      "matn": "Konstitutsiya hokimiyatni uch tarmoqqa bo‘ldi",
+      "togri": true,
+      "izoh": "bo‘linish"
+     },
+     {
+      "matn": "13 · 4 — 52",
+      "togri": true,
+      "izoh": "vakil"
+     },
+     {
+      "matn": "Mustamlakachilar soliqqa qarshi chiqdi",
+      "togri": true,
+      "izoh": "norozilik"
+     },
+     {
+      "matn": "AQSh Angliyaning mustamlakasi bo‘lib qoldi",
+      "togri": false,
+      "izoh": "mustaqil bo‘ldi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Mustamlaka?",
+      "javob": "o‘n uch"
+     },
+     {
+      "savol": "Hukmdor?",
+      "javob": "Angliya"
+     },
+     {
+      "savol": "Deklaratsiya?",
+      "javob": "1776"
+     },
+     {
+      "savol": "Konstitutsiya?",
+      "javob": "1787"
+     },
+     {
+      "savol": "Prezident?",
+      "javob": "Vashington"
+     },
+     {
+      "savol": "Hokimiyat?",
+      "javob": "uch tarmoq"
+     },
+     {
+      "savol": "1787 − 1776?",
+      "javob": "11"
+     },
+     {
+      "savol": "1789 − 1776?",
+      "javob": "13"
+     },
+     {
+      "savol": "13 · 4?",
+      "javob": "52"
+     },
+     {
+      "savol": "Natija?",
+      "javob": "mustaqil davlat"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Soliq nima uchun norozilik keltirdi.",
+      "savol": "Sabab?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yillar farqini top.",
+      "savol": "Amal?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Deklaratsiya va Konstitutsiya.",
+      "savol": "Farq?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Natija?"
+     }
+    ],
+    "muammoli_savol": "AQSh nima uchun Angliyadan ajralib chiqdi?",
+    "keys": {
+     "vaziyat": "Mustamlakachilar o‘z vakillari yo‘q joyda belgilangan soliqni to‘lashni istamadi.",
+     "savollar": [
+      "Bu adolatlimi?",
+      "Qanday yo‘l tanlaysiz?"
+     ]
+    },
+    "tezis": "Mustaqillik yo‘li",
+    "taqqoslash": {
+     "a": "Deklaratsiya",
+     "b": "Konstitutsiya",
+     "umumiy": [
+      "AQSh",
+      "muhim hujjat"
+     ],
+     "a_farq": [
+      "1776",
+      "mustaqillik e’loni"
+     ],
+     "b_farq": [
+      "1787",
+      "davlat tuzilishi"
+     ]
+    },
+    "klaster": {
+     "markaz": "AQSh tashkil topishi",
+     "shoxlar": [
+      {
+       "nom": "Mustamlakalar",
+       "bandlar": [
+        "13 mustamlaka",
+        "Angliya hukmi"
+       ]
+      },
+      {
+       "nom": "Sabab",
+       "bandlar": [
+        "soliq",
+        "vakillik yo‘q"
+       ]
+      },
+      {
+       "nom": "Hujjatlar",
+       "bandlar": [
+        "Deklaratsiya 1776",
+        "Konstitutsiya 1787"
+       ]
+      },
+      {
+       "nom": "Rahbar",
+       "bandlar": [
+        "Vashington",
+        "prezident 1789"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 1776 yilda mustaqillikni e’lon qilganman. Men nimaman?",
+     "javob": "Deklaratsiya"
+    },
+    "hikmat": "Erkinlik uchun kurash yangi davlat yaratdi.",
+    "kalit_soz": "ERK",
+    "xato_yechim": {
+     "shart": "Mustaqillik deklaratsiyasi qaysi yilda qabul qilindi?",
+     "xato": "1789",
+     "togri": "1776",
+     "sabab": "mustamlakalar mustaqillikni e’lon qildi"
+    },
+    "guruh_nomlari": [
+     "Tarixchilar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Huquqshunoslar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yangi davlat tug‘ildi»",
+     "topshiriq": "Guruh vaqt chizig‘i va xaritani tuzadi."
+    },
+    "vazifalar": {
+     "A": "1787 va 1776 farqi?",
+     "B": "1789 va 1776 farqi?",
+     "C": "13 · 4?"
+    },
+    "sinkveyn": [
+     "AQSh",
+     "yosh, mustaqil",
+     "kurashdi, e’lon qildi, qurdi",
+     "Yangi davlat",
+     "Erkinlik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh AQSh tashkil topishini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: mustamlakalar",
+      "2-guruh: deklaratsiya",
+      "3-guruh: konstitutsiya",
+      "4-guruh: Vashington"
+     ],
+     "yakun": "Natijalar: 11; 13; 52."
+    }
+   }
+  },
+  {
+   "mavzu": "XIX asr Yevropasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Vena kongressi",
+      "matn": "Napoleon mag‘lub bo‘lgach, 1815 yilda Vena kongressi bo‘lib o‘tdi. G‘olib davlatlar Yevropa chegaralarini qayta belgiladi va eski tartibni tiklashga urindi. Biroq inqilob g‘oyalari — erkinlik va milliy birlik — xalqlar orasida tarqalib bo‘lgan edi.",
+      "misol": "1815 — Vena kongressi.",
+      "savol": "Vena kongressi qachon bo‘lgan?",
+      "javob": "1815 yilda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Milliy birlashuv harakatlari",
+      "matn": "XIX asrda Italiya va Germaniya mayda davlatlarga bo‘linib turardi. Xalqlar birlashishni istadi. Italiya qirolligi 1861 yilda e’lon qilindi, Germaniya imperiyasi 1871 yilda tashkil topdi. 1848 yilda Yevropaning ko‘p mamlakatlarida inqilobiy chiqishlar bo‘ldi.",
+      "misol": "Italiya va Germaniya birlashuvi.",
+      "savol": "Germaniya imperiyasi qachon tashkil topdi?",
+      "javob": "1871 yilda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sanoat va jamiyat",
+      "matn": "XIX asrda sanoat rivojlandi, temir yo‘llar qurildi, shaharlar o‘sdi. Ishchilar sinfi paydo bo‘ldi va ular o‘z huquqlari uchun uyushmalar tuzdi. Ta’lim va fan rivojlandi, parlamentlar kengaydi, ammo mamlakatlar o‘rtasida raqobat ham kuchaydi.",
+      "misol": "Sanoat, ishchilar, parlamentlar.",
+      "savol": "Kim yangi sinf bo‘ldi?",
+      "javob": "ishchilar sinfi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1815 yildan 1871 yilgacha 1871 − 1815 — 56 yil. Masalan, 1871 − 1861 — 10 yil. Masalan, XIX asr 1801 yildan 1900 yilgacha, ya’ni 100 yil davom etgan, 1900 − 1801 plyus 1 — 100.",
+      "misol": "Yillar farqi — ayirish.",
+      "savol": "Masalan, 1871 va 1861 orasida necha yil?",
+      "javob": "10",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "XIX asr Yevropasi: 1815 Vena kongressi, 1848 inqiloblar, 1861 Italiya, 1871 Germaniya.",
+    "misollar": [
+     {
+      "shart": "Masalan, 1871 va 1815 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1871 − 1815.",
+       "Javob 56."
+      ],
+      "javob": "56"
+     },
+     {
+      "shart": "Masalan, 1871 va 1861 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1871 − 1861.",
+       "Javob 10."
+      ],
+      "javob": "10"
+     },
+     {
+      "shart": "Masalan, 1848 va 1815 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1848 − 1815.",
+       "Javob 33."
+      ],
+      "javob": "33"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Yevropa xaritasi",
+      "topshiriq": "Italiya va Germaniyani kontur xaritada belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Vaqt chizig‘i",
+      "topshiriq": "1815, 1848, 1861, 1871 yillarni joylang.",
+      "yechim": "Xronologiya.",
+      "mahsulot": "vaqt chizig‘i"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ayirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Birlashuv sabablari",
+      "topshiriq": "Italiya yoki Germaniya birlashuvi sabablarini yozing.",
+      "yechim": "Sabab.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1871 − 1815 nechaga teng?",
+      "javob": "56"
+     },
+     {
+      "shart": "1871 − 1861 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "1848 − 1815 nechaga teng?",
+      "javob": "33"
+     },
+     {
+      "shart": "Vena kongressi qaysi yilda?",
+      "javob": "1815"
+     },
+     {
+      "shart": "Germaniya imperiyasi qaysi yilda tuzildi?",
+      "javob": "1871"
+     },
+     {
+      "shart": "Italiya qirolligi qaysi yilda e’lon qilindi?",
+      "javob": "1861"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Vena kongressi 1848 yilda bo‘lgan deydi",
+      "sabab": "1815 yilda",
+      "oldini_olish": "Napoleondan keyin"
+     },
+     {
+      "xato": "Germaniya 1861 yilda birlashgan deydi",
+      "sabab": "1871 yilda",
+      "oldini_olish": "Italiya 1861 yilda"
+     },
+     {
+      "xato": "XIX asrda ishchilar sinfi bo‘lmagan deydi",
+      "sabab": "paydo bo‘lgan",
+      "oldini_olish": "sanoat rivojlandi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Siyosat",
+      "boglanish": "milliy birlik"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "yillar farqi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "Italiya va Germaniya"
+     }
+    ],
+    "loyiha": {
+     "nom": "«XIX asr xaritasi»",
+     "muammo": "Yevropa XIX asrda qanday o‘zgardi?",
+     "mahsulot": "vaqt chizig‘i va xarita",
+     "bosqichlar": [
+      "xarita",
+      "vaqt chizig‘i",
+      "hisob",
+      "xulosa",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Joylang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xronologiya aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Vena, 1815 yil»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "1871 va 1815.",
+       "topshiriq": "Necha yil?",
+       "javob": "56",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1871 va 1861.",
+       "topshiriq": "Necha yil?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "1848 va 1815.",
+       "topshiriq": "Necha yil?",
+       "javob": "33",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Kongress yili.",
+       "topshiriq": "Qaysi?",
+       "javob": "1815",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kongress",
+      "tarif": "davlatlar vakillari yig‘ini"
+     },
+     {
+      "atama": "Birlashuv",
+      "tarif": "mayda qismlarning bitta davlatga qo‘shilishi"
+     },
+     {
+      "atama": "Inqilobiy chiqish",
+      "tarif": "tuzumni o‘zgartirishga urinish"
+     },
+     {
+      "atama": "Parlament",
+      "tarif": "qonun chiqaruvchi organ"
+     },
+     {
+      "atama": "Ishchilar sinfi",
+      "tarif": "fabrikada ishlovchilar"
+     },
+     {
+      "atama": "Imperiya",
+      "tarif": "keng hududli davlat"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Vena kongressi 1815 yilda bo‘lgan",
+      "togri": true,
+      "izoh": "Napoleondan keyin"
+     },
+     {
+      "matn": "Germaniya imperiyasi 1861 yilda tuzilgan",
+      "togri": false,
+      "izoh": "1871"
+     },
+     {
+      "matn": "1871 − 1815 — 56",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Italiya qirolligi 1861 yilda e’lon qilindi",
+      "togri": true,
+      "izoh": "birlashuv"
+     },
+     {
+      "matn": "1848 yilda inqilobiy chiqishlar bo‘lgan",
+      "togri": true,
+      "izoh": "Yevropa"
+     },
+     {
+      "matn": "1848 − 1815 — 33",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Ishchilar sinfi sanoat bilan paydo bo‘ldi",
+      "togri": true,
+      "izoh": "fabrika"
+     },
+     {
+      "matn": "Xalqlar birlashishni istamadi",
+      "togri": false,
+      "izoh": "istadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Vena kongressi?",
+      "javob": "1815"
+     },
+     {
+      "savol": "Maqsad?",
+      "javob": "eski tartib"
+     },
+     {
+      "savol": "Italiya?",
+      "javob": "1861"
+     },
+     {
+      "savol": "Germaniya?",
+      "javob": "1871"
+     },
+     {
+      "savol": "1848?",
+      "javob": "inqiloblar"
+     },
+     {
+      "savol": "Yangi sinf?",
+      "javob": "ishchilar"
+     },
+     {
+      "savol": "1871 − 1815?",
+      "javob": "56"
+     },
+     {
+      "savol": "1871 − 1861?",
+      "javob": "10"
+     },
+     {
+      "savol": "1848 − 1815?",
+      "javob": "33"
+     },
+     {
+      "savol": "G‘oya?",
+      "javob": "milliy birlik"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Xaritadagi o‘zgarishlarni kuzat.",
+      "savol": "Farq?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yillar farqini top.",
+      "savol": "Amal?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Italiya va Germaniya.",
+      "savol": "O‘xshashlik?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Natija?"
+     }
+    ],
+    "muammoli_savol": "Italiya va Germaniya nima uchun birlashishni istadi?",
+    "keys": {
+     "vaziyat": "Bir xalq mayda davlatlarga bo‘lingan, bojxona va qonunlar har xil.",
+     "savollar": [
+      "Qanday qiyinchilik?",
+      "Birlashuv nima beradi?"
+     ]
+    },
+    "tezis": "Birlashgan Yevropa xalqlari",
+    "taqqoslash": {
+     "a": "Italiya",
+     "b": "Germaniya",
+     "umumiy": [
+      "XIX asr",
+      "milliy birlashuv"
+     ],
+     "a_farq": [
+      "1861",
+      "qirollik"
+     ],
+     "b_farq": [
+      "1871",
+      "imperiya"
+     ]
+    },
+    "klaster": {
+     "markaz": "XIX asr Yevropasi",
+     "shoxlar": [
+      {
+       "nom": "Vena kongressi",
+       "bandlar": [
+        "1815",
+        "chegaralar"
+       ]
+      },
+      {
+       "nom": "Birlashuv",
+       "bandlar": [
+        "Italiya 1861",
+        "Germaniya 1871"
+       ]
+      },
+      {
+       "nom": "Inqiloblar",
+       "bandlar": [
+        "1848",
+        "erkinlik"
+       ]
+      },
+      {
+       "nom": "Sanoat",
+       "bandlar": [
+        "temir yo‘l",
+        "ishchilar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 1815 yilda Napoleondan keyin Yevropa chegaralarini belgilaganman. Men nimaman?",
+     "javob": "Vena kongressi"
+    },
+    "hikmat": "Xalqlar birlik va erkinlikni xohlaydi.",
+    "kalit_soz": "BIRLIK",
+    "xato_yechim": {
+     "shart": "Germaniya imperiyasi qaysi yilda tuzilgan?",
+     "xato": "1815",
+     "togri": "1871",
+     "sabab": "Germaniya 1871 yilda birlashgan"
+    },
+    "guruh_nomlari": [
+     "Tarixchilar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Jurnalistlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«XIX asr xaritasi»",
+     "topshiriq": "Guruh vaqt chizig‘i va xaritani tuzadi."
+    },
+    "vazifalar": {
+     "A": "1871 va 1815 farqi?",
+     "B": "1871 va 1861 farqi?",
+     "C": "1848 va 1815 farqi?"
+    },
+    "sinkveyn": [
+     "Yevropa",
+     "o‘zgaruvchan, qizg‘in",
+     "birlashdi, o‘sdi, kurashdi",
+     "Yangi chegara",
+     "Birlik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh XIX asr Yevropasini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: Vena kongressi",
+      "2-guruh: Italiya",
+      "3-guruh: Germaniya",
+      "4-guruh: sanoat"
+     ],
+     "yakun": "Natijalar: 56; 10; 33."
+    }
+   }
+  },
+  {
+   "mavzu": "Mustamlakachilik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Mustamlakachilik nima",
+      "matn": "Mustamlakachilik — kuchli davlatlarning boshqa hududlarni bosib olib, o‘z hukmiga bo‘ysundirishi. XIX asrda Yevropa davlatlari, ayniqsa Angliya va Fransiya, Osiyo va Afrikada ko‘p yerlarni egalladi. Maqsad — xomashyo, bozor va ta’sir.",
+      "misol": "Boshqa yerni bo‘ysundirish.",
+      "savol": "Mustamlakachilikdan maqsad nima?",
+      "javob": "xomashyo va bozor",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hindiston va Afrika",
+      "matn": "Angliya Hindistonda ta’sirini kuchaytirdi va 1858 yildan Hindiston bevosita Britaniya tojiga bo‘ysundi. Afrika XIX asr oxirida Yevropa davlatlari o‘rtasida bo‘lib olindi; Berlin konferensiyasi 1884–1885 yillarda o‘tdi. Mahalliy xalqlar o‘z yerlarini himoya qilish uchun qarshilik ko‘rsatdi.",
+      "misol": "Hindiston 1858; Berlin 1884.",
+      "savol": "Afrika qaysi konferensiyada bo‘lishildi?",
+      "javob": "Berlin konferensiyasi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oqibatlari",
+      "matn": "Mustamlakalar ko‘pincha xomashyo manbayiga aylandi, mahalliy hunarmandchilik zarar ko‘rdi, chegaralar xalqlarni inobatga olmay chizildi. Shu bilan birga temir yo‘l va ba’zi shaharlar qurildi. XX asrda xalqlar mustaqillik uchun kurash olib bordi.",
+      "misol": "Zarar va o‘zgarish.",
+      "savol": "Chegaralar nimani inobatga olmadi?",
+      "javob": "xalqlarni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1884 yildan 1885 yilgacha 1885 − 1884 — 1 yil. Masalan, 1858 yildan 1885 yilgacha 1885 − 1858 — 27 yil. Masalan, mustamlakadan 50 ming tonna paxta olinib, har tonna 3 birlik tushum bersa, 50 · 3 — 150 ming birlik (taxminiy misol).",
+      "misol": "Yillar farqi — ayirish.",
+      "savol": "Masalan, 1885 va 1858 orasida necha yil?",
+      "javob": "27",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Mustamlakachilik: boshqa yerni bo‘ysundirish. Hindiston 1858, Berlin 1884-1885. Xomashyo va bozor.",
+    "misollar": [
+     {
+      "shart": "Masalan, 1885 va 1858 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1885 − 1858.",
+       "Javob 27."
+      ],
+      "javob": "27"
+     },
+     {
+      "shart": "Masalan, 1885 va 1884 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1885 − 1884.",
+       "Javob 1."
+      ],
+      "javob": "1"
+     },
+     {
+      "shart": "Masalan, 50 ming tonna, har tonna 3 birlik. Necha ming birlik?",
+      "yechim": [
+       "50 · 3.",
+       "Ko‘paytiring.",
+       "Javob 150."
+      ],
+      "javob": "150"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Dunyo xaritasi",
+      "topshiriq": "Mustamlakachi davlatlar va mustamlakalarni xaritada belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Sabab va oqibat",
+      "topshiriq": "Mustamlakachilik sabab va oqibatlarini jadvalga yozing.",
+      "yechim": "Jadval.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ayirish va ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Qarshilik",
+      "topshiriq": "Xalqlar qarshiligi haqida qisqa hikoya yozing.",
+      "yechim": "Hikoya.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1885 − 1858 nechaga teng?",
+      "javob": "27"
+     },
+     {
+      "shart": "1885 − 1884 nechaga teng?",
+      "javob": "1"
+     },
+     {
+      "shart": "50 · 3 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "Berlin konferensiyasi qaysi yillarda?",
+      "javob": "1884–1885"
+     },
+     {
+      "shart": "Hindiston qaysi yildan Britaniya tojiga bo‘ysundi?",
+      "javob": "1858"
+     },
+     {
+      "shart": "Mustamlakachilikdan maqsad?",
+      "javob": "xomashyo va bozor"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Mustamlakachilik faqat savdo deydi",
+      "sabab": "bosib olish",
+      "oldini_olish": "hudud bo‘ysundirildi"
+     },
+     {
+      "xato": "Afrika Berlinda mustaqil bo‘lgan deydi",
+      "sabab": "bo‘lib olingan",
+      "oldini_olish": "1884–1885 yillar"
+     },
+     {
+      "xato": "Xalqlar qarshilik ko‘rsatmagan deydi",
+      "sabab": "ko‘rsatgan",
+      "oldini_olish": "yerni himoya qilgan"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Iqtisod",
+      "boglanish": "xomashyo va bozor"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ayirish va ko‘paytirish"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "Hindiston va Afrika"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mustamlaka xaritasi»",
+     "muammo": "Mustamlakachilik xalqlar hayotiga qanday ta’sir qildi?",
+     "mahsulot": "xarita va jadval",
+     "bosqichlar": [
+      "xarita",
+      "jadval",
+      "hisob",
+      "xulosa",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "To‘ldiring",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "faktlar aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Berlin konferensiyasi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "1885 va 1858.",
+       "topshiriq": "Necha yil?",
+       "javob": "27",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1885 va 1884.",
+       "topshiriq": "Necha yil?",
+       "javob": "1",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "50 ming tonna, 3 birlik.",
+       "topshiriq": "Necha ming?",
+       "javob": "150",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Afrika bo‘linishi konferensiyasi.",
+       "topshiriq": "Qaysi?",
+       "javob": "Berlin",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Mustamlaka",
+      "tarif": "bo‘ysundirilgan hudud"
+     },
+     {
+      "atama": "Mustamlakachilik",
+      "tarif": "boshqa yerlarni bosib olish siyosati"
+     },
+     {
+      "atama": "Xomashyo",
+      "tarif": "ishlab chiqarish uchun ashyo"
+     },
+     {
+      "atama": "Bozor",
+      "tarif": "tovar sotiladigan joy"
+     },
+     {
+      "atama": "Qarshilik",
+      "tarif": "bosqinga qarshi kurash"
+     },
+     {
+      "atama": "Mustaqillik",
+      "tarif": "o‘z erkiga ega bo‘lish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Mustamlakachilik boshqa yerlarni bo‘ysundirishdir",
+      "togri": true,
+      "izoh": "bosib olish"
+     },
+     {
+      "matn": "Berlin konferensiyasi 1700 yilda bo‘lgan",
+      "togri": false,
+      "izoh": "1884–1885"
+     },
+     {
+      "matn": "1885 − 1858 — 27",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Hindiston 1858 yildan Britaniya tojiga bo‘ysundi",
+      "togri": true,
+      "izoh": "Angliya"
+     },
+     {
+      "matn": "Mustamlakalar xomashyo manbayi bo‘ldi",
+      "togri": true,
+      "izoh": "iqtisod"
+     },
+     {
+      "matn": "50 · 3 — 150",
+      "togri": true,
+      "izoh": "ming"
+     },
+     {
+      "matn": "Xalqlar qarshilik ko‘rsatdi",
+      "togri": true,
+      "izoh": "himoya"
+     },
+     {
+      "matn": "Mustamlakachilik hamma uchun foyda bo‘ldi",
+      "togri": false,
+      "izoh": "zarar ham"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Mustamlakachilik?",
+      "javob": "bo‘ysundirish"
+     },
+     {
+      "savol": "Maqsad?",
+      "javob": "xomashyo"
+     },
+     {
+      "savol": "Hindiston?",
+      "javob": "1858"
+     },
+     {
+      "savol": "Berlin?",
+      "javob": "1884–1885"
+     },
+     {
+      "savol": "Qarshilik?",
+      "javob": "bor edi"
+     },
+     {
+      "savol": "Chegara?",
+      "javob": "xalqsiz chizilgan"
+     },
+     {
+      "savol": "1885 − 1858?",
+      "javob": "27"
+     },
+     {
+      "savol": "1885 − 1884?",
+      "javob": "1"
+     },
+     {
+      "savol": "50 · 3?",
+      "javob": "150"
+     },
+     {
+      "savol": "Keyin?",
+      "javob": "mustaqillik"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Xaritada mustamlakalarni kuzat.",
+      "savol": "Joylashuv?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yillar farqini top.",
+      "savol": "Amal?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Foyda va zarar.",
+      "savol": "Farq?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Natija?"
+     }
+    ],
+    "muammoli_savol": "Mustamlakachilik xalqlar hayotiga qanday ta’sir qildi?",
+    "keys": {
+     "vaziyat": "Bir mamlakat paxtasi arzon narxda chetga olib ketilib, o‘z hunarmandi ishsiz qoldi.",
+     "savollar": [
+      "Nima zarar?",
+      "Qanday yo‘l tanlash kerak?"
+     ]
+    },
+    "tezis": "Xalqlar va erk",
+    "taqqoslash": {
+     "a": "Hindiston",
+     "b": "Afrika",
+     "umumiy": [
+      "mustamlaka",
+      "Yevropa hukmi"
+     ],
+     "a_farq": [
+      "1858 Britaniya toji",
+      "Angliya"
+     ],
+     "b_farq": [
+      "Berlin 1884–1885",
+      "bir necha davlat"
+     ]
+    },
+    "klaster": {
+     "markaz": "Mustamlakachilik",
+     "shoxlar": [
+      {
+       "nom": "Maqsad",
+       "bandlar": [
+        "xomashyo",
+        "bozor"
+       ]
+      },
+      {
+       "nom": "Hududlar",
+       "bandlar": [
+        "Hindiston",
+        "Afrika"
+       ]
+      },
+      {
+       "nom": "Oqibat",
+       "bandlar": [
+        "zarar",
+        "temir yo‘l"
+       ]
+      },
+      {
+       "nom": "Javob",
+       "bandlar": [
+        "qarshilik",
+        "mustaqillik uchun kurash"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 1884–1885 yillarda Afrikani bo‘lishgan yig‘inman. Men nimaman?",
+     "javob": "Berlin konferensiyasi"
+    },
+    "hikmat": "Erkinlik hech qachon unutilmaydi.",
+    "kalit_soz": "ERK",
+    "xato_yechim": {
+     "shart": "Mustamlakachilikdan asosiy maqsad nima?",
+     "xato": "dam olish",
+     "togri": "xomashyo va bozor",
+     "sabab": "iqtisodiy manfaat"
+    },
+    "guruh_nomlari": [
+     "Tarixchilar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Jurnalistlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mustamlaka xaritasi»",
+     "topshiriq": "Guruh xarita va jadvalni tuzadi."
+    },
+    "vazifalar": {
+     "A": "1885 va 1858 farqi?",
+     "B": "1885 va 1884 farqi?",
+     "C": "50 ming tonna, 3 birlik?"
+    },
+    "sinkveyn": [
+     "Mustamlaka",
+     "og‘ir, bo‘ysundirilgan",
+     "olindi, bo‘lindi, kurashdi",
+     "Zulm",
+     "Erk"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh mustamlakachilikni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: maqsad",
+      "2-guruh: Hindiston",
+      "3-guruh: Afrika",
+      "4-guruh: oqibat"
+     ],
+     "yakun": "Natijalar: 27; 1; 150."
+    }
+   }
+  }
+ ]
+}
