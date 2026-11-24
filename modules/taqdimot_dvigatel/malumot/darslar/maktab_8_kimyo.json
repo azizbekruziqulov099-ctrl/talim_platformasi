@@ -4160,6 +4160,1388 @@
      "yakun": "Natijalar: 12; 2000; 1599."
     }
    }
+  },
+  {
+   "mavzu": "Oksidlanish-qaytarilish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Elektron almashinuvi",
+      "matn": "Ba’zi reaksiyalarda atomlar elektron beradi yoki oladi. Elektron bergan atom oksidlanadi, elektron olgan atom qaytariladi. Bu ikki jarayon doim birga ketadi: bir atom bergan elektronni boshqa atom oladi. Bunday reaksiyalar oksidlanish-qaytarilish deyiladi.",
+      "misol": "Yonish, zanglash, nafas olish — hammasi shunday.",
+      "savol": "Elektron bergan atom nima bo‘ladi?",
+      "javob": "oksidlanadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oksidlanish darajasi",
+      "matn": "Oksidlanish darajasi — atom zaryadi, agar bog‘lar to‘liq ion deb olinsa. Oddiy moddalarda (kislorod, temir, azot) u nolga teng. Birikmalarda vodorod odatda musbat bir, kislorod odatda minus ikki. Molekuladagi barcha darajalar yig‘indisi nolga teng.",
+      "misol": "Suvda vodorod musbat bir, kislorod minus ikki.",
+      "savol": "Oddiy moddada oksidlanish darajasi qancha?",
+      "javob": "nol",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qoida va misol",
+      "matn": "Magniy kislorodda yonganda magniy atomi ikkita elektron beradi: nol darajadan musbat ikkiga o‘tadi — oksidlanadi. Kislorod atomi ikkita elektron oladi: nol darajadan minus ikkiga o‘tadi — qaytariladi. Hosil bo‘ladi magniy oksid, u oq kukun.",
+      "misol": "Magniy yonganda ko‘zni qamashtiruvchi yorug‘lik beradi.",
+      "savol": "Magniy oksidlanishda necha elektron beradi?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oksidlovchi va qaytaruvchi",
+      "matn": "Elektron oluvchi modda oksidlovchi, elektron beruvchi modda qaytaruvchi. Kislorod, xlor — kuchli oksidlovchilar. Metallar — odatda qaytaruvchilar. Berilgan elektronlar soni olingan elektronlar soniga teng bo‘lishi shart.",
+      "misol": "Magniy — qaytaruvchi, kislorod — oksidlovchi.",
+      "savol": "Kislorod magniy bilan reaksiyada kim?",
+      "javob": "oksidlovchi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotdagi misollar",
+      "matn": "Temirning zanglashi, yonilg‘i yonishi, tirik organizmda nafas olish, batareyadagi tok, fotosintez — barchasi oksidlanish-qaytarilish. Organizmda oziq moddalar sekin oksidlanib, energiya beradi. Zanglashdan saqlanish uchun metallni bo‘yash, moylash yoki qoplash kerak.",
+      "misol": "Mashina ustiga bo‘yoq zanglashdan himoya qiladi.",
+      "savol": "Zanglash nima turdagi reaksiya?",
+      "javob": "oksidlanish-qaytarilish",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Elektron berish — oksidlanish. Elektron olish — qaytarilish. Molekulada darajalar yig‘indisi nol.",
+    "misollar": [
+     {
+      "shart": "Suvda vodorod musbat bir, kislorod minus ikki. Bitta suv molekulasida zaryadlar yig‘indisi?",
+      "yechim": [
+       "Ikkita vodorod: 2 · 1 — 2.",
+       "Kislorod minus 2.",
+       "Javob 0."
+      ],
+      "javob": "0"
+     },
+     {
+      "shart": "Karbonat angidridda kislorod minus ikki, ikkita atom. Uglerodning oksidlanish darajasi?",
+      "yechim": [
+       "Kislorodlar yig‘indisi minus 4.",
+       "Uglerod musbat 4 bo‘lishi kerak.",
+       "Javob musbat 4."
+      ],
+      "javob": "musbat 4"
+     },
+     {
+      "shart": "Har magniy atomi 2 elektron beradi. 3 atom necha elektron beradi?",
+      "yechim": [
+       "Har atomdan 2.",
+       "3 · 2.",
+       "Javob 6."
+      ],
+      "javob": "6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Elektron kartochkalari",
+      "topshiriq": "Magniy va kislorod uchun elektron berish-olishni kartochkalarda ko‘rsating.",
+      "yechim": "2 beradi, 2 oladi.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Darajalarni topamiz",
+      "topshiriq": "Beshta birikmada oksidlanish darajasini toping.",
+      "yechim": "Yig‘indi nol.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Zanglash tajribasi",
+      "topshiriq": "Ikki mixni biri quruq, biri nam joyga qo‘ying.",
+      "yechim": "Nam mix zanglaydi.",
+      "mahsulot": "mix, suv"
+     },
+     {
+      "nom": "Zanglashdan himoya",
+      "topshiriq": "Himoya usullarini yozing.",
+      "yechim": "Bo‘yoq, moy, qoplama.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 1 minus 2 nechaga teng?",
+      "javob": "0"
+     },
+     {
+      "shart": "2 · 2 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "3 · 2 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "Oddiy moddada daraja?",
+      "javob": "nol"
+     },
+     {
+      "shart": "Elektron olish nima?",
+      "javob": "qaytarilish"
+     },
+     {
+      "shart": "Elektron beruvchi?",
+      "javob": "qaytaruvchi"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Elektron bergan atom qaytariladi deydi",
+      "sabab": "oksidlanadi",
+      "oldini_olish": "berish — oksidlanish"
+     },
+     {
+      "xato": "Oksidlanish darajasi musbat bo‘lishi shart deydi",
+      "sabab": "nol yoki minus ham bo‘ladi",
+      "oldini_olish": "oddiy moddada nol"
+     },
+     {
+      "xato": "Bir atom elektron bersa, hech kim olmaydi deydi",
+      "sabab": "boshqasi oladi",
+      "oldini_olish": "ikki jarayon birga"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "nafas olish"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "batareyada tok"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "zanglashdan himoya"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Zang detektivi»",
+     "muammo": "Zanglash nega sodir bo‘ladi va qanday to‘xtatiladi?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "mixlarni tayyorlash",
+      "sharoitni tanlash",
+      "kuzatish",
+      "himoya usulini sinash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Mixlarni tayyorlang",
+      "Kuzating",
+      "Himoyani sinang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba aniq",
+      "kuzatish to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Elektron ko‘prigi»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘prik",
+       "matn": "Suvda zaryadlar yig‘indisi.",
+       "topshiriq": "Qancha?",
+       "javob": "0",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘prik",
+       "matn": "Karbonat angidridda kislorodlar minus 4.",
+       "topshiriq": "Uglerod daraja?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘prik",
+       "matn": "Har magniy 2 elektron, 3 atom.",
+       "topshiriq": "Jami?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘prik",
+       "matn": "Elektron berish.",
+       "topshiriq": "Nima deyiladi?",
+       "javob": "oksidlanish",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Yig‘indini tekshirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Oksidlanish",
+      "tarif": "elektron berish"
+     },
+     {
+      "atama": "Qaytarilish",
+      "tarif": "elektron olish"
+     },
+     {
+      "atama": "Oksidlovchi",
+      "tarif": "elektron oluvchi modda"
+     },
+     {
+      "atama": "Qaytaruvchi",
+      "tarif": "elektron beruvchi modda"
+     },
+     {
+      "atama": "Oksidlanish darajasi",
+      "tarif": "atomning shartli zaryadi"
+     },
+     {
+      "atama": "Zanglash",
+      "tarif": "temirning oksidlanishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Elektron berish — oksidlanish",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Oddiy moddada daraja musbat bir",
+      "togri": false,
+      "izoh": "nol"
+     },
+     {
+      "matn": "Molekulada darajalar yig‘indisi nol",
+      "togri": true,
+      "izoh": "neytral"
+     },
+     {
+      "matn": "Kislorod oksidlovchi bo‘la oladi",
+      "togri": true,
+      "izoh": "elektron oladi"
+     },
+     {
+      "matn": "3 · 2 — 6",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Zanglash oksidlanish-qaytarilish",
+      "togri": true,
+      "izoh": "temir oksidlanadi"
+     },
+     {
+      "matn": "Oksidlanish va qaytarilish alohida ketadi",
+      "togri": false,
+      "izoh": "birga ketadi"
+     },
+     {
+      "matn": "Magniy yonganda elektron oladi",
+      "togri": false,
+      "izoh": "beradi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Oksidlanish?",
+      "javob": "elektron berish"
+     },
+     {
+      "savol": "Qaytarilish?",
+      "javob": "elektron olish"
+     },
+     {
+      "savol": "Oksidlovchi?",
+      "javob": "elektron oluvchi"
+     },
+     {
+      "savol": "Qaytaruvchi?",
+      "javob": "elektron beruvchi"
+     },
+     {
+      "savol": "Oddiy modda?",
+      "javob": "daraja nol"
+     },
+     {
+      "savol": "Suvda H?",
+      "javob": "musbat bir"
+     },
+     {
+      "savol": "Suvda O?",
+      "javob": "minus ikki"
+     },
+     {
+      "savol": "2 · 2?",
+      "javob": "4"
+     },
+     {
+      "savol": "3 · 2?",
+      "javob": "6"
+     },
+     {
+      "savol": "Zanglash?",
+      "javob": "oksidlanish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Reaksiyani kuzat.",
+      "savol": "Nima o‘zgardi?"
+     },
+     {
+      "nom": "Aniqla",
+      "matn": "Darajalarni top.",
+      "savol": "Yig‘indi nol?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Elektronlarni sana.",
+      "savol": "Beradi va oladi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Kim oksidlovchi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun oksidlanish va qaytarilish doim birga sodir bo‘ladi?",
+    "keys": {
+     "vaziyat": "Magniy lenta yonib, oq kukunga aylandi.",
+     "savollar": [
+      "Magniy elektron berdimi yoki oldimi?",
+      "Kislorod-chi?"
+     ]
+    },
+    "tezis": "Oksidlanish va qaytarilish birga ketadi",
+    "taqqoslash": {
+     "a": "Oksidlovchi",
+     "b": "Qaytaruvchi",
+     "umumiy": [
+      "reaksiyada qatnashadi",
+      "elektron almashadi"
+     ],
+     "a_farq": [
+      "elektron oladi",
+      "qaytariladi"
+     ],
+     "b_farq": [
+      "elektron beradi",
+      "oksidlanadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Oksidlanish-qaytarilish",
+     "shoxlar": [
+      {
+       "nom": "Jarayon",
+       "bandlar": [
+        "berish",
+        "olish"
+       ]
+      },
+      {
+       "nom": "Daraja",
+       "bandlar": [
+        "oddiy modda nol",
+        "yig‘indi nol"
+       ]
+      },
+      {
+       "nom": "Rollar",
+       "bandlar": [
+        "oksidlovchi",
+        "qaytaruvchi"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "zanglash",
+        "nafas olish",
+        "batareya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men elektron berish va olish raqsiman. Men nimaman?",
+     "javob": "oksidlanish-qaytarilish"
+    },
+    "hikmat": "Elektron almashadi.",
+    "kalit_soz": "ELEKTRON",
+    "xato_yechim": {
+     "shart": "Elektron bergan atom nima bo‘ladi?",
+     "xato": "qaytariladi",
+     "togri": "oksidlanadi",
+     "sabab": "berish — oksidlanish"
+    },
+    "guruh_nomlari": [
+     "Oksidlovchilar",
+     "Qaytaruvchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Zang detektivi»",
+     "topshiriq": "Guruh zanglash tajribasini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "Suvda zaryadlar yig‘indisi?",
+     "B": "Karbonat angidridda uglerod darajasi?",
+     "C": "3 atom, har biri 2 elektron beradi, jami?"
+    },
+    "sinkveyn": [
+     "Reaksiya",
+     "elektronli, ikki tomonlama",
+     "beradi, oladi, almashadi",
+     "Elektron beriladi va olinadi",
+     "Zang"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh oksidlanish-qaytarilishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: elektronlar",
+      "2-guruh: darajalar",
+      "3-guruh: rollar",
+      "4-guruh: hayotda"
+     ],
+     "yakun": "Natijalar: 0; 4; 6."
+    }
+   }
+  },
+  {
+   "mavzu": "Mol tushunchasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sanash qiyin",
+      "matn": "Atomlar va molekulalar juda kichik, ularni bittalab sanab bo‘lmaydi. Shuning uchun kimyogarlar zarralarni guruh qilib sanaydi — mol bilan. Mol — modda miqdori birligi. Xuddi bir dona, bir juft, bir tuzin kabi, lekin ancha katta guruh.",
+      "misol": "Bir tuzin — 12 ta.",
+      "savol": "Mol nimani o‘lchaydi?",
+      "javob": "modda miqdorini",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Avogadro soni",
+      "matn": "Bir moldagi zarralar soni — Avogadro soni, 6,02 · 10 ning 23 darajasi. Bu raqam italyan olimi Amedeo Avogadro sharafiga atalgan, u 1811-yilda gazlar haqida gipoteza ilgari surgan. Har qanday moddaning bir molida shuncha zarra bor.",
+      "misol": "Bu son ulkan: 6 dan keyin 23 ta xona.",
+      "savol": "Bir moldagi zarralar soni?",
+      "javob": "6,02 · 10 ning 23 darajasi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Molyar massa",
+      "matn": "Molyar massa M — bir mol moddaning massasi, gramm/mol birligida. U son jihatdan nisbiy molekulyar massaga teng. Suv — 18, karbonat angidrid — 44, kislorod — 32, osh tuzi — 58,5, vodorod — 2. Nisbiy massa atom massalaridan yig‘iladi.",
+      "misol": "Suv: 2 · 1 plyus 16 — 18.",
+      "savol": "Suvning molyar massasi?",
+      "javob": "18 gramm/mol",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Formulalar",
+      "matn": "Modda miqdori n — m / M, bunda m — massa, M — molyar massa. Massa m — n · M. Zarralar soni N — n · 6,02 · 10 ning 23 darajasi. 36 gramm suv — 36 / 18 — 2 mol. 3 mol kislorod — 3 · 32 — 96 gramm.",
+      "misol": "Bitta formula ikki yo‘nalishda ishlaydi.",
+      "savol": "n formulasi?",
+      "javob": "m / M",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mol nima uchun kerak",
+      "matn": "Mol yordamida reaksiyada moddalarning massasini hisoblash mumkin. Dorixonada, oshxonada, zavodda moddalarning aniq miqdori mol orqali belgilanadi. Reaksiya tenglamasidagi koeffitsiyentlar mollar nisbatini ko‘rsatadi.",
+      "misol": "Retsept — kimyoviy reaksiyadek, miqdor muhim.",
+      "savol": "Tenglamadagi koeffitsiyent nimani bildiradi?",
+      "javob": "mollar nisbatini",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "n — m / M. m — n · M. Bir mol — 6,02 · 10 ning 23 darajasi zarra.",
+    "misollar": [
+     {
+      "shart": "36 gramm suv (M — 18). Necha mol?",
+      "yechim": [
+       "n — m / M.",
+       "36 / 18.",
+       "Javob 2 mol."
+      ],
+      "javob": "2 mol"
+     },
+     {
+      "shart": "3 mol kislorod (M — 32). Massasi?",
+      "yechim": [
+       "m — n · M.",
+       "3 · 32.",
+       "Javob 96 gramm."
+      ],
+      "javob": "96 gramm"
+     },
+     {
+      "shart": "2 mol suvda molekulalar soni (6,02 · 10 ning 23 darajasi bir molda)?",
+      "yechim": [
+       "N — n · 6,02.",
+       "2 · 6,02.",
+       "Javob 12,04 · 10 ning 23 darajasi."
+      ],
+      "javob": "12,04 · 10 ning 23 darajasi"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Molyar massalar jadvali",
+      "topshiriq": "Beshta moddaning molyar massasini hisoblang.",
+      "yechim": "Atom massalarini qo‘shing.",
+      "mahsulot": "davriy jadval"
+     },
+     {
+      "nom": "Tarozi bilan mol",
+      "topshiriq": "Bir mol osh tuzini (58,5 gramm) tortib ko‘ring.",
+      "yechim": "Bu bir mol.",
+      "mahsulot": "tarozi, tuz"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "n — m / M.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Tuzin va mol",
+      "topshiriq": "Tuzin va mol farqini chizib tushuntiring.",
+      "yechim": "Ikkalasi ham sanash birligi.",
+      "mahsulot": "qog‘oz"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "36 / 18 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "3 · 32 nechaga teng?",
+      "javob": "96"
+     },
+     {
+      "shart": "2 · 6,02 nechaga teng?",
+      "javob": "12,04"
+     },
+     {
+      "shart": "Suv molyar massasi?",
+      "javob": "18"
+     },
+     {
+      "shart": "Karbonat angidrid molyar massasi?",
+      "javob": "44"
+     },
+     {
+      "shart": "Avogadro soni nechanchi darajada?",
+      "javob": "23"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "n — M / m deydi",
+      "sabab": "n — m / M",
+      "oldini_olish": "massa molyar massaga bo‘linadi"
+     },
+     {
+      "xato": "Mol massa birligi deydi",
+      "sabab": "modda miqdori birligi",
+      "oldini_olish": "massa — gramm"
+     },
+     {
+      "xato": "Har moddaning bir molida zarra soni boshqa deydi",
+      "sabab": "hammasida bir xil",
+      "oldini_olish": "Avogadro soni"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Matematika",
+      "boglanish": "bo‘lish va ko‘paytirish"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "dori miqdori"
+     },
+     {
+      "fan": "Oshxona",
+      "boglanish": "retsept"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mol kalkulyatori»",
+     "muammo": "Mol va massa o‘rtasida qanday bog‘liqlik bor?",
+     "mahsulot": "jadval va hisob",
+     "bosqichlar": [
+      "moddalarni tanlash",
+      "molyar massani topish",
+      "mol hisoblash",
+      "tarozida tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Moddalarni tanlang",
+      "Molyar massani toping",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "birliklar to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Mol ombori»",
+     "bekatlar": [
+      {
+       "nom": "1-javon",
+       "matn": "36 gramm suv, M — 18.",
+       "topshiriq": "Mol?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "2-javon",
+       "matn": "3 mol kislorod.",
+       "topshiriq": "Massa?",
+       "javob": "96",
+       "rasm": ""
+      },
+      {
+       "nom": "3-javon",
+       "matn": "2 mol suv.",
+       "topshiriq": "Molekulalar 6,02 ning necha barobari?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "4-javon",
+       "matn": "Karbonat angidrid.",
+       "topshiriq": "M?",
+       "javob": "44",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Mol",
+      "tarif": "modda miqdori birligi"
+     },
+     {
+      "atama": "Avogadro soni",
+      "tarif": "bir moldagi zarralar soni"
+     },
+     {
+      "atama": "Molyar massa",
+      "tarif": "bir mol massasi"
+     },
+     {
+      "atama": "Modda miqdori",
+      "tarif": "mollarda ifodalangan miqdor"
+     },
+     {
+      "atama": "Nisbiy massa",
+      "tarif": "atom massalari yig‘indisi"
+     },
+     {
+      "atama": "Koeffitsiyent",
+      "tarif": "tenglamadagi mol soni"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Mol modda miqdori birligi",
+      "togri": true,
+      "izoh": "sanash birligi"
+     },
+     {
+      "matn": "Avogadro soni 6,02 · 10 ning 23 darajasi",
+      "togri": true,
+      "izoh": "bir moldagi zarra"
+     },
+     {
+      "matn": "Suv molyar massasi 18",
+      "togri": true,
+      "izoh": "2 plyus 16"
+     },
+     {
+      "matn": "n — M / m",
+      "togri": false,
+      "izoh": "m / M"
+     },
+     {
+      "matn": "36 / 18 — 2",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "3 · 32 — 96",
+      "togri": true,
+      "izoh": "massa"
+     },
+     {
+      "matn": "Har moddaning molida zarra soni turlicha",
+      "togri": false,
+      "izoh": "bir xil"
+     },
+     {
+      "matn": "Mol massa birligi",
+      "togri": false,
+      "izoh": "miqdor birligi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Mol?",
+      "javob": "modda miqdori birligi"
+     },
+     {
+      "savol": "Avogadro?",
+      "javob": "6,02 · 10 ning 23"
+     },
+     {
+      "savol": "M?",
+      "javob": "bir mol massasi"
+     },
+     {
+      "savol": "n?",
+      "javob": "m / M"
+     },
+     {
+      "savol": "m?",
+      "javob": "n · M"
+     },
+     {
+      "savol": "36 / 18?",
+      "javob": "2"
+     },
+     {
+      "savol": "3 · 32?",
+      "javob": "96"
+     },
+     {
+      "savol": "2 · 6,02?",
+      "javob": "12,04"
+     },
+     {
+      "savol": "Suv M?",
+      "javob": "18"
+     },
+     {
+      "savol": "CO2 M?",
+      "javob": "44"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Top",
+      "matn": "Molyar massani top.",
+      "savol": "Atomlarni qo‘sh?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "n ni top.",
+      "savol": "m / M?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Massani top.",
+      "savol": "n · M?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Bir moldagi zarra?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun kimyogarlar zarralarni bittalab emas, mol bilan sanaydi?",
+    "keys": {
+     "vaziyat": "Bir osh qoshiq suvda 10 ning 23 darajasiga yaqin molekula bor.",
+     "savollar": [
+      "Nega bittalab sanab bo‘lmaydi?",
+      "Mol qanday yordam beradi?"
+     ]
+    },
+    "tezis": "n — m / M",
+    "taqqoslash": {
+     "a": "Mol",
+     "b": "Tuzin",
+     "umumiy": [
+      "sanash birligi",
+      "bir xil son"
+     ],
+     "a_farq": [
+      "6,02 · 10 ning 23",
+      "zarralar uchun"
+     ],
+     "b_farq": [
+      "12 dona",
+      "kundalik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Mol tushunchasi",
+     "shoxlar": [
+      {
+       "nom": "Birlik",
+       "bandlar": [
+        "mol"
+       ]
+      },
+      {
+       "nom": "Avogadro",
+       "bandlar": [
+        "6,02 · 10 ning 23"
+       ]
+      },
+      {
+       "nom": "Massa",
+       "bandlar": [
+        "molyar massa"
+       ]
+      },
+      {
+       "nom": "Formulalar",
+       "bandlar": [
+        "n — m / M",
+        "m — n · M"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men zarralarning ulkan guruhiman, Avogadro sonini ifodalayman. Men nimaman?",
+     "javob": "mol"
+    },
+    "hikmat": "Mol — modda miqdori.",
+    "kalit_soz": "MOL",
+    "xato_yechim": {
+     "shart": "n formulasi?",
+     "xato": "M / m",
+     "togri": "m / M",
+     "sabab": "massa molyar massaga bo‘linadi"
+    },
+    "guruh_nomlari": [
+     "Molchilar",
+     "Hisobchilar",
+     "Tarozichilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mol kalkulyatori»",
+     "topshiriq": "Guruh mol va massani hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "36 gramm suv necha mol?",
+     "B": "3 mol kislorod necha gramm?",
+     "C": "2 mol suvda zarralar?"
+    },
+    "sinkveyn": [
+     "Mol",
+     "ulkan, kimyoviy",
+     "sanaydi, o‘lchaydi, hisoblaydi",
+     "Modda miqdori mol bilan",
+     "Zarra"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh mol tushunchasini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: birlik",
+      "2-guruh: Avogadro",
+      "3-guruh: molyar massa",
+      "4-guruh: formulalar"
+     ],
+     "yakun": "Natijalar: 2 mol; 96 gramm; 12,04 · 10 ning 23."
+    }
+   }
+  },
+  {
+   "mavzu": "Gazlar hajmi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Avogadro qonuni",
+      "matn": "1811-yilda Avogadro: bir xil harorat va bosimda teng hajmdagi gazlarda molekulalar soni teng. Gaz turi qanday bo‘lishidan qat’i nazar. Shuning uchun gaz miqdorini hajm bo‘yicha o‘lchash mumkin. Gaz molekulalari orasidagi masofa katta, o‘lchamidan ancha ortiq.",
+      "misol": "Bir litr vodorodda va bir litr kislorodda molekulalar soni teng.",
+      "savol": "Teng hajmdagi gazlarda nima teng?",
+      "javob": "molekulalar soni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Molyar hajm",
+      "matn": "Normal sharoitda (0 daraja Selsiy, 101,3 kilopaskal bosim) har qanday gazning bir moli 22,4 litr hajm egallaydi. Bu molyar hajm. U gaz turiga bog‘liq emas: bir mol vodorod ham, bir mol karbonat angidrid ham 22,4 litr.",
+      "misol": "Taxminan 22 litr — katta sumka hajmi.",
+      "savol": "Normal sharoitda 1 mol gaz hajmi?",
+      "javob": "22,4 litr",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Formulalar",
+      "matn": "Gaz hajmi V — n · 22,4. Modda miqdori n — V / 22,4. 2 mol gaz — 2 · 22,4 — 44,8 litr. 67,2 litr gaz — 67,2 / 22,4 — 3 mol. Massa hajmdan topiladi: avval mol, so‘ng m — n · M.",
+      "misol": "Hajm — mol — massa zanjiri.",
+      "savol": "Gaz hajmi formulasi?",
+      "javob": "n · 22,4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Gaz zichligi",
+      "matn": "Gazning normal sharoitda zichligi — M / 22,4 gramm/litr. Kislorod uchun 32 / 22,4 — taxminan 1,43 gramm/litr. Karbonat angidrid taxminan 1,96, vodorod taxminan 0,09. Karbonat angidrid havodan og‘ir, shuning uchun pastda yig‘iladi.",
+      "misol": "Karbonat angidrid pastlikda to‘planadi.",
+      "savol": "Qaysi gaz og‘irroq: kislorod yoki vodorod?",
+      "javob": "kislorod",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nisbiy zichlik",
+      "matn": "Bir gazning boshqasiga nisbiy zichligi D — M1 / M2. Karbonat angidridning vodorodga nisbiy zichligi 44 / 2 — 22. Havoning o‘rtacha molyar massasi taxminan 29, shu sabab 29 dan engil gazlar (vodorod, geliy) yuqoriga ko‘tariladi.",
+      "misol": "Geliyli sharlar shu sababli uchadi.",
+      "savol": "Karbonat angidridning vodorodga nisbiy zichligi?",
+      "javob": "22",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "V — n · 22,4. n — V / 22,4. D — M1 / M2. Normal sharoit: 0 daraja, 101,3 kilopaskal.",
+    "misollar": [
+     {
+      "shart": "2 mol gaz normal sharoitda hajmi?",
+      "yechim": [
+       "V — n · 22,4.",
+       "2 · 22,4.",
+       "Javob 44,8 litr."
+      ],
+      "javob": "44,8 litr"
+     },
+     {
+      "shart": "67,2 litr gaz necha mol?",
+      "yechim": [
+       "n — V / 22,4.",
+       "67,2 / 22,4.",
+       "Javob 3 mol."
+      ],
+      "javob": "3 mol"
+     },
+     {
+      "shart": "11,2 litr kislorod (M — 32) massasi?",
+      "yechim": [
+       "n — 11,2 / 22,4 — 0,5 mol.",
+       "m — 0,5 · 32.",
+       "Javob 16 gramm."
+      ],
+      "javob": "16 gramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Hajm va mol jadvali",
+      "topshiriq": "Besh hajm uchun mol sonini toping.",
+      "yechim": "22,4 ga bo‘ling.",
+      "mahsulot": "kalkulyator"
+     },
+     {
+      "nom": "Havo shari",
+      "topshiriq": "Shar to‘ldirib, havo va to‘ldirilgan gaz farqini muhokama qiling.",
+      "yechim": "Zichlik.",
+      "mahsulot": "shar"
+     },
+     {
+      "nom": "Gaz zichligi",
+      "topshiriq": "Uch gaz uchun M / 22,4 ni hisoblang.",
+      "yechim": "Kislorod, CO2, vodorod.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Nisbiy zichlik",
+      "topshiriq": "Uch gazning vodorodga nisbiy zichligini toping.",
+      "yechim": "M / 2.",
+      "mahsulot": "kalkulyator"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 22,4 nechaga teng?",
+      "javob": "44,8"
+     },
+     {
+      "shart": "67,2 / 22,4 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "0,5 · 32 nechaga teng?",
+      "javob": "16"
+     },
+     {
+      "shart": "44 / 2 nechaga teng?",
+      "javob": "22"
+     },
+     {
+      "shart": "Molyar hajm?",
+      "javob": "22,4"
+     },
+     {
+      "shart": "Havo molyar massasi taxminan?",
+      "javob": "29"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Molyar hajm gaz turiga bog‘liq deydi",
+      "sabab": "bog‘liq emas",
+      "oldini_olish": "hammasida 22,4 litr"
+     },
+     {
+      "xato": "Hajmni modda massasiga bo‘ladi",
+      "sabab": "22,4 ga bo‘lish kerak",
+      "oldini_olish": "n — V / 22,4"
+     },
+     {
+      "xato": "Karbonat angidrid havodan yengil deydi",
+      "sabab": "og‘ir",
+      "oldini_olish": "44 va 29"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "bosim va harorat"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "karbonat angidrid"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "geliyli sharlar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Gaz kalkulyatori»",
+     "muammo": "Gaz hajmi, mol va massa qanday bog‘langan?",
+     "mahsulot": "jadval va hisob",
+     "bosqichlar": [
+      "gazlarni tanlash",
+      "molni topish",
+      "hajmni hisoblash",
+      "zichlikni solishtirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Gazlarni tanlang",
+      "Molni toping",
+      "Hajmni hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "birliklar to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Gaz ombori»",
+     "bekatlar": [
+      {
+       "nom": "1-ballon",
+       "matn": "2 mol gaz.",
+       "topshiriq": "Hajm?",
+       "javob": "44,8",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ballon",
+       "matn": "67,2 litr gaz.",
+       "topshiriq": "Mol?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ballon",
+       "matn": "11,2 litr O2.",
+       "topshiriq": "Massa?",
+       "javob": "16",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ballon",
+       "matn": "CO2 vodorodga nisbatan.",
+       "topshiriq": "D?",
+       "javob": "22",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Molyar hajm",
+      "tarif": "bir mol gaz hajmi"
+     },
+     {
+      "atama": "Normal sharoit",
+      "tarif": "0 daraja va 101,3 kilopaskal"
+     },
+     {
+      "atama": "Avogadro qonuni",
+      "tarif": "teng hajmda teng molekula"
+     },
+     {
+      "atama": "Zichlik",
+      "tarif": "massa va hajm nisbati"
+     },
+     {
+      "atama": "Nisbiy zichlik",
+      "tarif": "ikki gaz zichligi nisbati"
+     },
+     {
+      "atama": "Gaz",
+      "tarif": "molekulalari uzoq turgan modda"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Normal sharoitda 1 mol gaz 22,4 litr",
+      "togri": true,
+      "izoh": "molyar hajm"
+     },
+     {
+      "matn": "Molyar hajm gaz turiga bog‘liq",
+      "togri": false,
+      "izoh": "bog‘liq emas"
+     },
+     {
+      "matn": "2 · 22,4 — 44,8",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "67,2 / 22,4 — 3",
+      "togri": true,
+      "izoh": "mol"
+     },
+     {
+      "matn": "Karbonat angidrid havodan og‘ir",
+      "togri": true,
+      "izoh": "44 va 29"
+     },
+     {
+      "matn": "Teng hajmda molekulalar soni teng",
+      "togri": true,
+      "izoh": "Avogadro qonuni"
+     },
+     {
+      "matn": "Vodorod havodan og‘ir",
+      "togri": false,
+      "izoh": "yengil"
+     },
+     {
+      "matn": "D — M1 / M2",
+      "togri": true,
+      "izoh": "nisbiy zichlik"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Molyar hajm?",
+      "javob": "22,4 litr"
+     },
+     {
+      "savol": "Normal sharoit?",
+      "javob": "0 daraja, 101,3 kilopaskal"
+     },
+     {
+      "savol": "Avogadro qonuni?",
+      "javob": "teng hajm — teng molekula"
+     },
+     {
+      "savol": "V?",
+      "javob": "n · 22,4"
+     },
+     {
+      "savol": "n?",
+      "javob": "V / 22,4"
+     },
+     {
+      "savol": "2 · 22,4?",
+      "javob": "44,8"
+     },
+     {
+      "savol": "67,2 / 22,4?",
+      "javob": "3"
+     },
+     {
+      "savol": "0,5 · 32?",
+      "javob": "16"
+     },
+     {
+      "savol": "44 / 2?",
+      "javob": "22"
+     },
+     {
+      "savol": "Havo M?",
+      "javob": "29"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Gazni kuzat.",
+      "savol": "Qaysi gaz?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Molni top.",
+      "savol": "V / 22,4?"
+     },
+     {
+      "nom": "Top",
+      "matn": "Massani top.",
+      "savol": "n · M?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Yengilmi yoki og‘ir?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun geliyli shar havoda ko‘tariladi?",
+    "keys": {
+     "vaziyat": "Geliyli shar yuqoriga uchadi, karbonat angidridli shar pastga tushadi.",
+     "savollar": [
+      "Geliy havodan engilmi?",
+      "Karbonat angidrid-chi?"
+     ]
+    },
+    "tezis": "V — n · 22,4",
+    "taqqoslash": {
+     "a": "Yengil gaz",
+     "b": "Og‘ir gaz",
+     "umumiy": [
+      "gaz holatda",
+      "molyar hajm 22,4"
+     ],
+     "a_farq": [
+      "M kichik",
+      "havodan engil"
+     ],
+     "b_farq": [
+      "M katta",
+      "havodan og‘ir"
+     ]
+    },
+    "klaster": {
+     "markaz": "Gazlar hajmi",
+     "shoxlar": [
+      {
+       "nom": "Qonun",
+       "bandlar": [
+        "Avogadro 1811"
+       ]
+      },
+      {
+       "nom": "Molyar hajm",
+       "bandlar": [
+        "22,4 litr"
+       ]
+      },
+      {
+       "nom": "Formulalar",
+       "bandlar": [
+        "V — n · 22,4",
+        "n — V / 22,4"
+       ]
+      },
+      {
+       "nom": "Zichlik",
+       "bandlar": [
+        "M / 22,4",
+        "D — M1 / M2"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men har qanday gazning bir molining hajmiman. Men nimaman?",
+     "javob": "molyar hajm"
+    },
+    "hikmat": "Bir mol — 22,4 litr.",
+    "kalit_soz": "GAZ",
+    "xato_yechim": {
+     "shart": "Karbonat angidrid havodan qanday?",
+     "xato": "yengil",
+     "togri": "og‘ir",
+     "sabab": "44 katta, 29"
+    },
+    "guruh_nomlari": [
+     "Gazchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Gaz kalkulyatori»",
+     "topshiriq": "Guruh gaz hajmini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "2 mol gaz hajmi?",
+     "B": "67,2 litr necha mol?",
+     "C": "11,2 litr kislorod massasi?"
+    },
+    "sinkveyn": [
+     "Gaz",
+     "yengil, ko‘rinmas",
+     "kengayadi, to‘ladi, uchadi",
+     "Bir mol 22,4 litr",
+     "Hajm"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh gazlar hajmini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: Avogadro",
+      "2-guruh: molyar hajm",
+      "3-guruh: hisoblar",
+      "4-guruh: zichlik"
+     ],
+     "yakun": "Natijalar: 44,8 litr; 3 mol; 16 gramm."
+    }
+   }
   }
  ]
 }
