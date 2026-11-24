@@ -4096,6 +4096,915 @@
      "yakun": "Natijalar: 17; 30; 200."
     }
    }
+  },
+  {
+   "mavzu": "XIX asr fan va texnika",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Fan va texnika yutuqlari",
+      "matn": "XIX asr fan va texnika asri bo‘ldi. Bug‘ mashinasi, temir yo‘l, paroxod sanoatni va savdoni o‘zgartirdi. Elektr hodisalari o‘rganildi, telegraf yaratildi. Kimyo va fizika tez rivojlandi. Yangi ixtirolar odamlar hayotini yengillashtirdi, dunyo yaqinlashdi.",
+      "misol": "Bug‘, elektr, telegraf.",
+      "savol": "XIX asr nima asri bo‘ldi?",
+      "javob": "fan va texnika",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mashhur kashfiyotlar",
+      "matn": "1859 yilda Charlz Darvin «Turlarning kelib chiqishi» asarini nashr etdi. 1869 yilda Dmitriy Mendeleyev kimyoviy elementlarning davriy jadvalini yaratdi. 1876 yilda Aleksandr Bell telefonni ixtiro qildi. 1879 yilda Tomas Edison elektr lampochkasini takomillashtirdi.",
+      "misol": "1859, 1869, 1876, 1879.",
+      "savol": "Davriy jadvalni kim yaratdi?",
+      "javob": "Mendeleyev",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oqibatlari",
+      "matn": "Yangi ixtirolar sanoatni jadallashtirdi, aloqani tezlashtirdi, tibbiyotni rivojlantirdi. Shu bilan birga ishchilar mehnati og‘irlashdi, mamlakatlar o‘rtasida raqobat kuchaydi. Fan butun insoniyat uchun foydali bo‘lishi kerakligi haqida bahslar bo‘ldi.",
+      "misol": "Foyda va muammo birga.",
+      "savol": "Ixtirolar aloqani qanday o‘zgartirdi?",
+      "javob": "tezlashtirdi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1869 yildan 1879 yilgacha 1879 − 1869 — 10 yil. Masalan, 1876 − 1859 — 17 yil. Masalan, 1879 − 1859 — 20 yil.",
+      "misol": "Yillar farqi — ayirish.",
+      "savol": "Masalan, 1879 va 1869 orasida necha yil?",
+      "javob": "10",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "XIX asr fan va texnika: 1859 Darvin, 1869 Mendeleyev, 1876 telefon, 1879 lampochka.",
+    "misollar": [
+     {
+      "shart": "Masalan, 1879 va 1869 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1879 − 1869.",
+       "Javob 10."
+      ],
+      "javob": "10"
+     },
+     {
+      "shart": "Masalan, 1876 va 1859 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1876 − 1859.",
+       "Javob 17."
+      ],
+      "javob": "17"
+     },
+     {
+      "shart": "Masalan, 1879 va 1859 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1879 − 1859.",
+       "Javob 20."
+      ],
+      "javob": "20"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ixtirolar vaqt chizig‘i",
+      "topshiriq": "1859, 1869, 1876, 1879 yillarni vaqt chizig‘iga joylang.",
+      "yechim": "Xronologiya.",
+      "mahsulot": "vaqt chizig‘i"
+     },
+     {
+      "nom": "Ixtirochi kartasi",
+      "topshiriq": "Bitta olim haqida kartochka tuzing.",
+      "yechim": "Tavsif.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ayirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Ixtiro foydasi",
+      "topshiriq": "Bitta ixtiro foydasi va zararini yozing.",
+      "yechim": "Taqqoslash.",
+      "mahsulot": "jadval"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1879 − 1869 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "1876 − 1859 nechaga teng?",
+      "javob": "17"
+     },
+     {
+      "shart": "1879 − 1859 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "Davriy jadvalni kim yaratdi?",
+      "javob": "Mendeleyev"
+     },
+     {
+      "shart": "Telefonni kim ixtiro qildi?",
+      "javob": "Bell"
+     },
+     {
+      "shart": "Turlarning kelib chiqishi muallifi?",
+      "javob": "Darvin"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Telefonni Edison ixtiro qilgan deydi",
+      "sabab": "Bell",
+      "oldini_olish": "1876 yil"
+     },
+     {
+      "xato": "Davriy jadval 1879 yilda yaratilgan deydi",
+      "sabab": "1869 yilda",
+      "oldini_olish": "Mendeleyev"
+     },
+     {
+      "xato": "XIX asrda fan rivojlanmagan deydi",
+      "sabab": "tez rivojlangan",
+      "oldini_olish": "ko‘p ixtiro"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "elektr va telefon"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "davriy jadval"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "Darvin ta’limoti"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ixtirolar asri»",
+     "muammo": "XIX asr ixtirolari hayotni qanday o‘zgartirdi?",
+     "mahsulot": "vaqt chizig‘i va plakat",
+     "bosqichlar": [
+      "vaqt chizig‘i",
+      "kartochka",
+      "hisob",
+      "plakat",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chizing",
+      "Yozing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xronologiya aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ixtirolar ko‘rgazmasi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "1879 va 1869.",
+       "topshiriq": "Necha yil?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1876 va 1859.",
+       "topshiriq": "Necha yil?",
+       "javob": "17",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "1879 va 1859.",
+       "topshiriq": "Necha yil?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Davriy jadval muallifi.",
+       "topshiriq": "Kim?",
+       "javob": "Mendeleyev",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ixtiro",
+      "tarif": "yangi qurilma yaratish"
+     },
+     {
+      "atama": "Kashfiyot",
+      "tarif": "yangi bilimni ochish"
+     },
+     {
+      "atama": "Telegraf",
+      "tarif": "elektr orqali xabar uzatish"
+     },
+     {
+      "atama": "Telefon",
+      "tarif": "ovoz uzatuvchi qurilma"
+     },
+     {
+      "atama": "Davriy jadval",
+      "tarif": "elementlar tartibi"
+     },
+     {
+      "atama": "Texnika",
+      "tarif": "mashina va asboblar"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Mendeleyev davriy jadval yaratdi",
+      "togri": true,
+      "izoh": "kimyo"
+     },
+     {
+      "matn": "Telefonni Darvin ixtiro qildi",
+      "togri": false,
+      "izoh": "Bell"
+     },
+     {
+      "matn": "1879 − 1869 — 10",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Darvin 1859 yilda kitob nashr etdi",
+      "togri": true,
+      "izoh": "1859"
+     },
+     {
+      "matn": "Edison lampochkani takomillashtirdi",
+      "togri": true,
+      "izoh": "1879"
+     },
+     {
+      "matn": "1876 − 1859 — 17",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "XIX asr ixtirolari aloqani tezlashtirdi",
+      "togri": true,
+      "izoh": "telegraf"
+     },
+     {
+      "matn": "XIX asrda hech narsa ixtiro qilinmagan",
+      "togri": false,
+      "izoh": "ko‘p ixtiro"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Asr?",
+      "javob": "fan va texnika"
+     },
+     {
+      "savol": "Darvin?",
+      "javob": "1859"
+     },
+     {
+      "savol": "Mendeleyev?",
+      "javob": "1869"
+     },
+     {
+      "savol": "Bell?",
+      "javob": "1876"
+     },
+     {
+      "savol": "Edison?",
+      "javob": "1879"
+     },
+     {
+      "savol": "Telegraf?",
+      "javob": "aloqa"
+     },
+     {
+      "savol": "1879 − 1869?",
+      "javob": "10"
+     },
+     {
+      "savol": "1876 − 1859?",
+      "javob": "17"
+     },
+     {
+      "savol": "1879 − 1859?",
+      "javob": "20"
+     },
+     {
+      "savol": "Oqibat?",
+      "javob": "tez rivojlanish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Ixtirolar yillarini kuzat.",
+      "savol": "Tartib?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yillar farqini top.",
+      "savol": "Amal?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ixtirolarni solishtir.",
+      "savol": "Farq?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Natija?"
+     }
+    ],
+    "muammoli_savol": "XIX asr ixtirolari hayotni qanday o‘zgartirdi?",
+    "keys": {
+     "vaziyat": "Shaharda birinchi telefon o‘rnatilib, xabar bir zumda yetib bordi.",
+     "savollar": [
+      "Nima o‘zgardi?",
+      "Qanday muammo bo‘lishi mumkin?"
+     ]
+    },
+    "tezis": "Ixtirolar asri",
+    "taqqoslash": {
+     "a": "Telefon",
+     "b": "Lampochka",
+     "umumiy": [
+      "XIX asr",
+      "yangi ixtiro"
+     ],
+     "a_farq": [
+      "Bell, 1876",
+      "aloqa"
+     ],
+     "b_farq": [
+      "Edison, 1879",
+      "yoritish"
+     ]
+    },
+    "klaster": {
+     "markaz": "XIX asr fan va texnika",
+     "shoxlar": [
+      {
+       "nom": "Transport",
+       "bandlar": [
+        "bug‘ mashinasi",
+        "temir yo‘l"
+       ]
+      },
+      {
+       "nom": "Aloqa",
+       "bandlar": [
+        "telegraf",
+        "telefon"
+       ]
+      },
+      {
+       "nom": "Fan",
+       "bandlar": [
+        "Darvin 1859",
+        "Mendeleyev 1869"
+       ]
+      },
+      {
+       "nom": "Yoritish",
+       "bandlar": [
+        "Edison 1879",
+        "elektr"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 1869 yilda elementlarni tartibga solganman. Men nimaman?",
+     "javob": "davriy jadval"
+    },
+    "hikmat": "Ilm odamlarga yorug‘lik beradi.",
+    "kalit_soz": "ILM",
+    "xato_yechim": {
+     "shart": "Telefonni kim ixtiro qilgan?",
+     "xato": "Darvin",
+     "togri": "Bell",
+     "sabab": "1876 yilda Aleksandr Bell ixtiro qildi"
+    },
+    "guruh_nomlari": [
+     "Tarixchilar",
+     "Hisobchilar",
+     "Ixtirochilar",
+     "Jurnalistlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ixtirolar asri»",
+     "topshiriq": "Guruh vaqt chizig‘i va plakatni tuzadi."
+    },
+    "vazifalar": {
+     "A": "1879 va 1869 farqi?",
+     "B": "1876 va 1859 farqi?",
+     "C": "1879 va 1859 farqi?"
+    },
+    "sinkveyn": [
+     "Ixtiro",
+     "yangi, foydali",
+     "o‘zgartirdi, tezlashtirdi, yoritdi",
+     "Yangi davr",
+     "Ilm"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ixtirolarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: transport",
+      "2-guruh: aloqa",
+      "3-guruh: fan",
+      "4-guruh: yoritish"
+     ],
+     "yakun": "Natijalar: 10; 17; 20."
+    }
+   }
+  },
+  {
+   "mavzu": "Turkistonda madaniyat",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Matbuot va ta’lim",
+      "matn": "1870 yilda Toshkentda «Turkiston viloyatining gazeti» nashr etila boshladi. Rus-tuzem maktablari ochildi, ammo ularda o‘qish cheklangan edi. Shu bilan birga an’anaviy maktab va madrasalar faoliyat yuritdi. Keyinchalik jadid maktablari paydo bo‘ldi.",
+      "misol": "1870 — gazeta.",
+      "savol": "Gazeta qaysi yilda chiqdi?",
+      "javob": "1870 yilda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Adabiyot va san’at",
+      "matn": "XIX asrda Turkistonda Muqimiy, Furqat, Zavqiy kabi shoirlar ijod qildi. Ular xalq hayoti, adolat va ma’rifat haqida yozdi. Me’morchilik, hunarmandchilik, musiqa va xalq og‘zaki ijodi an’analari davom etdi. Xalq milliy madaniyatini asrab qoldi.",
+      "misol": "Muqimiy, Furqat, Zavqiy.",
+      "savol": "Qaysi shoirlar ijod qildi?",
+      "javob": "Muqimiy, Furqat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Temir yo‘l va yangiliklar",
+      "matn": "XIX asr oxirida Turkistonda temir yo‘l qurildi: 1888 yilda yo‘l Samarqandga yetdi, 1899 yilda Toshkentga yetib bordi. Temir yo‘l savdoni jonlantirdi, yangi shaharcha va kasblar paydo bo‘ldi, shu bilan birga paxta xomashyosi ko‘proq chiqarildi.",
+      "misol": "1888 Samarqand; 1899 Toshkent.",
+      "savol": "Temir yo‘l Samarqandga qachon yetdi?",
+      "javob": "1888 yilda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1899 yildan 1888 yilgacha 1899 − 1888 — 11 yil. Masalan, 1888 − 1870 — 18 yil. Masalan, 1899 − 1870 — 29 yil.",
+      "misol": "Yillar farqi — ayirish.",
+      "savol": "Masalan, 1899 va 1888 orasida necha yil?",
+      "javob": "11",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Turkistonda madaniyat: 1870 gazeta, 1888 temir yo‘l Samarqandga, 1899 Toshkentga. Muqimiy, Furqat.",
+    "misollar": [
+     {
+      "shart": "Masalan, 1899 va 1888 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1899 − 1888.",
+       "Javob 11."
+      ],
+      "javob": "11"
+     },
+     {
+      "shart": "Masalan, 1888 va 1870 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1888 − 1870.",
+       "Javob 18."
+      ],
+      "javob": "18"
+     },
+     {
+      "shart": "Masalan, 1899 va 1870 yillar orasida necha yil?",
+      "yechim": [
+       "Katta yildan kichigini ayiring.",
+       "1899 − 1870.",
+       "Javob 29."
+      ],
+      "javob": "29"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Madaniyat jadvali",
+      "topshiriq": "Matbuot, ta’lim, adabiyotni jadvalga yozing.",
+      "yechim": "Jadval.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Vaqt chizig‘i",
+      "topshiriq": "1870, 1888, 1899 yillarni joylang.",
+      "yechim": "Xronologiya.",
+      "mahsulot": "vaqt chizig‘i"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ayirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Shoir tavsifi",
+      "topshiriq": "Bitta shoir haqida qisqa yozing.",
+      "yechim": "Tavsif.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1899 − 1888 nechaga teng?",
+      "javob": "11"
+     },
+     {
+      "shart": "1888 − 1870 nechaga teng?",
+      "javob": "18"
+     },
+     {
+      "shart": "1899 − 1870 nechaga teng?",
+      "javob": "29"
+     },
+     {
+      "shart": "Gazeta qaysi yili chiqdi?",
+      "javob": "1870"
+     },
+     {
+      "shart": "Temir yo‘l Toshkentga qaysi yili yetdi?",
+      "javob": "1899"
+     },
+     {
+      "shart": "Bir shoirni ayting.",
+      "javob": "Muqimiy"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Gazeta 1899 yilda chiqqan deydi",
+      "sabab": "1870 yilda",
+      "oldini_olish": "Turkiston viloyatining gazeti"
+     },
+     {
+      "xato": "Temir yo‘l Toshkentga 1888 yilda yetgan deydi",
+      "sabab": "1899 yilda",
+      "oldini_olish": "Samarqandga 1888"
+     },
+     {
+      "xato": "Xalq madaniyatini yo‘qotgan deydi",
+      "sabab": "asrab qolgan",
+      "oldini_olish": "an’analar davom etgan"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Adabiyot",
+      "boglanish": "Muqimiy va Furqat"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "yillar farqi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "temir yo‘l"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Turkiston madaniyati»",
+     "muammo": "XIX asr Turkiston madaniyati qanday edi?",
+     "mahsulot": "jadval va vaqt chizig‘i",
+     "bosqichlar": [
+      "jadval",
+      "vaqt chizig‘i",
+      "hisob",
+      "xulosa",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "To‘ldiring",
+      "Joylang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xronologiya aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Toshkent, 1870 yil»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "1899 va 1888.",
+       "topshiriq": "Necha yil?",
+       "javob": "11",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1888 va 1870.",
+       "topshiriq": "Necha yil?",
+       "javob": "18",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "1899 va 1870.",
+       "topshiriq": "Necha yil?",
+       "javob": "29",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Gazeta yili.",
+       "topshiriq": "Qaysi?",
+       "javob": "1870",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Matbuot",
+      "tarif": "gazeta va jurnallar"
+     },
+     {
+      "atama": "Madrasa",
+      "tarif": "an’anaviy oliy maktab"
+     },
+     {
+      "atama": "Shoir",
+      "tarif": "she’r yozuvchi"
+     },
+     {
+      "atama": "Me’morchilik",
+      "tarif": "bino qurish san’ati"
+     },
+     {
+      "atama": "Hunarmandchilik",
+      "tarif": "qo‘l kasbi"
+     },
+     {
+      "atama": "Temir yo‘l",
+      "tarif": "poyezd yo‘li"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Gazeta 1870 yilda chiqa boshladi",
+      "togri": true,
+      "izoh": "Toshkent"
+     },
+     {
+      "matn": "Temir yo‘l Toshkentga 1888 yilda yetdi",
+      "togri": false,
+      "izoh": "1899"
+     },
+     {
+      "matn": "1899 − 1888 — 11",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Muqimiy va Furqat shoir edi",
+      "togri": true,
+      "izoh": "adabiyot"
+     },
+     {
+      "matn": "Xalq milliy an’analarini asrab qoldi",
+      "togri": true,
+      "izoh": "madaniyat"
+     },
+     {
+      "matn": "1888 − 1870 — 18",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Temir yo‘l savdoni jonlantirdi",
+      "togri": true,
+      "izoh": "iqtisod"
+     },
+     {
+      "matn": "Turkistonda hech qanday maktab bo‘lmagan",
+      "togri": false,
+      "izoh": "bo‘lgan"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Gazeta?",
+      "javob": "1870"
+     },
+     {
+      "savol": "Samarqand?",
+      "javob": "1888"
+     },
+     {
+      "savol": "Toshkent?",
+      "javob": "1899"
+     },
+     {
+      "savol": "Shoirlar?",
+      "javob": "Muqimiy, Furqat"
+     },
+     {
+      "savol": "Maktab?",
+      "javob": "rus-tuzem"
+     },
+     {
+      "savol": "An’ana?",
+      "javob": "saqlandi"
+     },
+     {
+      "savol": "1899 − 1888?",
+      "javob": "11"
+     },
+     {
+      "savol": "1888 − 1870?",
+      "javob": "18"
+     },
+     {
+      "savol": "1899 − 1870?",
+      "javob": "29"
+     },
+     {
+      "savol": "Oqibat?",
+      "javob": "savdo jonlandi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Madaniyat belgilarini kuzat.",
+      "savol": "Tur?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yillar farqini top.",
+      "savol": "Amal?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Eski va yangi.",
+      "savol": "Farq?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Natija?"
+     }
+    ],
+    "muammoli_savol": "Turkiston xalqi bosqin sharoitida madaniyatini qanday asrab qoldi?",
+    "keys": {
+     "vaziyat": "Mahallada eski maktab bilan birga yangi gazeta o‘qiladigan bo‘ldi.",
+     "savollar": [
+      "Foydasi nima?",
+      "Nimani asrash kerak?"
+     ]
+    },
+    "tezis": "Madaniyat — xalq ruhi",
+    "taqqoslash": {
+     "a": "Eski an’ana",
+     "b": "Yangi vosita",
+     "umumiy": [
+      "Turkiston",
+      "madaniyat"
+     ],
+     "a_farq": [
+      "madrasa",
+      "hunarmandchilik"
+     ],
+     "b_farq": [
+      "gazeta",
+      "temir yo‘l"
+     ]
+    },
+    "klaster": {
+     "markaz": "Turkistonda madaniyat",
+     "shoxlar": [
+      {
+       "nom": "Matbuot",
+       "bandlar": [
+        "1870 gazeta",
+        "Toshkent"
+       ]
+      },
+      {
+       "nom": "Adabiyot",
+       "bandlar": [
+        "Muqimiy",
+        "Furqat",
+        "Zavqiy"
+       ]
+      },
+      {
+       "nom": "Ta’lim",
+       "bandlar": [
+        "rus-tuzem",
+        "madrasa"
+       ]
+      },
+      {
+       "nom": "Transport",
+       "bandlar": [
+        "1888 Samarqand",
+        "1899 Toshkent"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 1870 yilda Toshkentda chiqa boshlaganman. Men nimaman?",
+     "javob": "gazeta"
+    },
+    "hikmat": "Madaniyatini asragan xalq yo‘qolmaydi.",
+    "kalit_soz": "RUH",
+    "xato_yechim": {
+     "shart": "Temir yo‘l Samarqandga qachon yetdi?",
+     "xato": "1870",
+     "togri": "1888",
+     "sabab": "Toshkentga esa 1899 yilda yetdi"
+    },
+    "guruh_nomlari": [
+     "Tarixchilar",
+     "Adabiyotshunoslar",
+     "Hisobchilar",
+     "Jurnalistlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Turkiston madaniyati»",
+     "topshiriq": "Guruh jadval va vaqt chizig‘ini tuzadi."
+    },
+    "vazifalar": {
+     "A": "1899 va 1888 farqi?",
+     "B": "1888 va 1870 farqi?",
+     "C": "1899 va 1870 farqi?"
+    },
+    "sinkveyn": [
+     "Madaniyat",
+     "boy, tirik",
+     "asrandi, yozdi, o‘zgardi",
+     "Xalq ruhi",
+     "Meros"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh madaniyatni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: matbuot",
+      "2-guruh: adabiyot",
+      "3-guruh: ta’lim",
+      "4-guruh: transport"
+     ],
+     "yakun": "Natijalar: 11; 18; 29."
+    }
+   }
   }
  ]
 }
