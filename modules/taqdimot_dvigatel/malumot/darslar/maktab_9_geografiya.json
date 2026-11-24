@@ -5575,6 +5575,470 @@
      "yakun": "Natijalar: 42; 120; 30."
     }
    }
+  },
+  {
+   "mavzu": "Global muammolar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Global muammolar nima",
+      "matn": "Global muammolar — butun insoniyatga tegishli va faqat birgalikda hal qilinadigan muammolar. Ularga iqlim o‘zgarishi, ifloslanish, suv tanqisligi, ochlik, kambag‘allik, aholi o‘sishi, tinchlik va xavfsizlik, kasalliklar kiradi. Muammolar bir-biri bilan bog‘liq.",
+      "misol": "Birga hal qilinadigan muammolar.",
+      "savol": "Global muammo nima?",
+      "javob": "butun insoniyatga tegishli muammo",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Iqlim o‘zgarishi va ifloslanish",
+      "matn": "Qazilma yoqilg‘i yoqilganda issiqxona gazlari chiqadi va havo isiydi. Natijada muzliklar erib, dengiz sathi ko‘tarilishi, qurg‘oqchilik va to‘fonlar kuchayishi mumkin. Havo, suv va tuproq ifloslanishi inson salomatligiga zarar. Yechim: toza energiya, daraxt ekish, qayta ishlash.",
+      "misol": "Issiqxona gazlari — isish.",
+      "savol": "Isishga nima sabab?",
+      "javob": "issiqxona gazlari",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Suv, oziq-ovqat va kambag‘allik",
+      "matn": "Dunyoda juda ko‘p odam toza ichimlik suvidan foydalana olmaydi. Orol dengizi qurishi suvni noto‘g‘ri ishlatish oqibatidir. Ochlik va kambag‘allik ba’zi hududlarda hanuz saqlanmoqda. Yechim: suvni tejash, zamonaviy sug‘orish, ta’lim va adolatli savdo.",
+      "misol": "Suv — hayot manbai.",
+      "savol": "Orol muammosi nimani ko‘rsatadi?",
+      "javob": "suvni asrash zarurligini",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 8 milliard kishining 10 foizi suv tanqisligidan aziyat chekkan bo‘lsa, 8 · 0,1 — 0,8 milliard, ya’ni 800 million kishi (taxminiy misol). Masalan, ifloslanish 5 yilda 20 foiz kamaysa, 100 birlik 100 · 0,8 — 80 birlikka tushadi. Masalan, bitta daraxt yiliga taxminan 20 kg karbonat angidrid yutsa, 1000 daraxt 1000 · 20 — 20000 kg yutadi.",
+      "misol": "Foiz — qism / butun · 100.",
+      "savol": "Masalan, 8 milliardning 10 foizi. Necha million?",
+      "javob": "800",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Biz nima qila olamiz",
+      "matn": "Global muammolarni hal qilishda har kim hissa qo‘shadi: suv va elektrni tejash, chiqindini saralash, jamoat transportidan foydalanish, daraxt ekish. Davlatlar xalqaro kelishuvlar (masalan, iqlim bo‘yicha Parij kelishuvi) orqali hamkorlik qiladi. Kichik harakatlar yig‘ilib katta natija beradi.",
+      "misol": "Har kim hissa qo‘shadi.",
+      "savol": "Oddiy odam nima qila oladi?",
+      "javob": "tejash, saralash, daraxt ekish",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Global muammolar: iqlim, ifloslanish, suv, ochlik. Birgalikda hal qilinadi. Foiz hisobi.",
+    "misollar": [
+     {
+      "shart": "Masalan, 8 milliardning 10 foizi. Necha million kishi?",
+      "yechim": [
+       "10 foiz — 0,1.",
+       "8 · 0,1 — 0,8 milliard.",
+       "Javob 800."
+      ],
+      "javob": "800"
+     },
+     {
+      "shart": "Masalan, 100 birlik ifloslanish 20 foiz kamaysa. Necha birlik qoladi?",
+      "yechim": [
+       "100 · 0,8.",
+       "Hisoblang.",
+       "Javob 80."
+      ],
+      "javob": "80"
+     },
+     {
+      "shart": "Masalan, 1000 daraxt, har biri 20 kg yutsa. Necha kg?",
+      "yechim": [
+       "1000 · 20.",
+       "Hisoblang.",
+       "Javob 20000."
+      ],
+      "javob": "20000"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Muammolar xaritasi",
+      "topshiriq": "Xaritada qurg‘oqchilik, ifloslanish va muzlik erishi hududlarini belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Sabab-oqibat",
+      "topshiriq": "Iqlim o‘zgarishi sabab-oqibat zanjirini chizing.",
+      "yechim": "Zanjir.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Mening hissam",
+      "topshiriq": "Maktab uchun tejash va ekish rejasini tuzing.",
+      "yechim": "Harakat.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "8 · 0,1 nechaga teng?",
+      "javob": "0,8"
+     },
+     {
+      "shart": "100 · 0,8 nechaga teng?",
+      "javob": "80"
+     },
+     {
+      "shart": "1000 · 20 nechaga teng?",
+      "javob": "20000"
+     },
+     {
+      "shart": "Isishga sabab gazlar?",
+      "javob": "issiqxona"
+     },
+     {
+      "shart": "Orol nima uchun qurigan?",
+      "javob": "suv noto‘g‘ri ishlatilgani"
+     },
+     {
+      "shart": "Daraxt nimani yutadi?",
+      "javob": "karbonat angidrid"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Global muammolar bizga tegishli emas deydi",
+      "sabab": "hammaga tegishli",
+      "oldini_olish": "birga hal qilinadi"
+     },
+     {
+      "xato": "Daraxt ekish foydasiz deydi",
+      "sabab": "foydali",
+      "oldini_olish": "gaz yutadi, havo tozalanadi"
+     },
+     {
+      "xato": "Bitta odam hech narsa qila olmaydi deydi",
+      "sabab": "qila oladi",
+      "oldini_olish": "kichik harakatlar yig‘iladi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Ekologiya",
+      "boglanish": "issiqxona effekti"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va ko‘paytirish"
+     },
+     {
+      "fan": "Fuqarolik",
+      "boglanish": "hissa qo‘shish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yer uchun harakat»",
+     "muammo": "Global muammolarga qanday hissa qo‘shamiz?",
+     "mahsulot": "harakat plakati",
+     "bosqichlar": [
+      "xarita",
+      "sabab-oqibat",
+      "hisob",
+      "reja",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Yer planetasini asrash»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "8 milliard, 10 foiz.",
+       "topshiriq": "Million?",
+       "javob": "800",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "100 birlik, 20 foiz kamaydi.",
+       "topshiriq": "Qoladi?",
+       "javob": "80",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "1000 daraxt, 20 kg.",
+       "topshiriq": "Kg?",
+       "javob": "20000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Isituvchi gazlar.",
+       "topshiriq": "Qaysi?",
+       "javob": "issiqxona",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Global muammo",
+      "tarif": "butun dunyoga tegishli muammo"
+     },
+     {
+      "atama": "Issiqxona gazi",
+      "tarif": "havoni isituvchi gaz"
+     },
+     {
+      "atama": "Iqlim o‘zgarishi",
+      "tarif": "uzoq muddatli isish"
+     },
+     {
+      "atama": "Ifloslanish",
+      "tarif": "tabiatning zararlanishi"
+     },
+     {
+      "atama": "Barqaror rivojlanish",
+      "tarif": "kelajakni asrab o‘sish"
+     },
+     {
+      "atama": "Parij kelishuvi",
+      "tarif": "iqlim bo‘yicha xalqaro kelishuv"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Global muammolar hammaga tegishli",
+      "togri": true,
+      "izoh": "birga"
+     },
+     {
+      "matn": "Daraxt ekish foydasiz",
+      "togri": false,
+      "izoh": "foydali"
+     },
+     {
+      "matn": "8 · 0,1 — 0,8",
+      "togri": true,
+      "izoh": "milliard"
+     },
+     {
+      "matn": "Issiqxona gazlari havoni isitadi",
+      "togri": true,
+      "izoh": "sabab"
+     },
+     {
+      "matn": "Bir kishi hech narsa qila olmaydi",
+      "togri": false,
+      "izoh": "hissa bor"
+     },
+     {
+      "matn": "Orol muammosi suv bilan bog‘liq",
+      "togri": true,
+      "izoh": "suv"
+     },
+     {
+      "matn": "1000 · 20 — 20000",
+      "togri": true,
+      "izoh": "kg"
+     },
+     {
+      "matn": "Chiqindini saralash foydali",
+      "togri": true,
+      "izoh": "qayta ishlash"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Global muammo?",
+      "javob": "umumiy"
+     },
+     {
+      "savol": "Isish sababi?",
+      "javob": "issiqxona gazi"
+     },
+     {
+      "savol": "Orol?",
+      "javob": "suv muammosi"
+     },
+     {
+      "savol": "Yechim?",
+      "javob": "tejash"
+     },
+     {
+      "savol": "Daraxt?",
+      "javob": "gaz yutadi"
+     },
+     {
+      "savol": "Parij kelishuvi?",
+      "javob": "iqlim"
+     },
+     {
+      "savol": "8 · 0,1?",
+      "javob": "0,8"
+     },
+     {
+      "savol": "100 · 0,8?",
+      "javob": "80"
+     },
+     {
+      "savol": "1000 · 20?",
+      "javob": "20000"
+     },
+     {
+      "savol": "Hissa?",
+      "javob": "har kim"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Atrofdagi ifloslanishni kuzat.",
+      "savol": "Sabab?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Foizni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Sabab va oqibat.",
+      "savol": "Bog‘liqlik?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Hissa?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun global muammolarni davlatlar birgalikda hal qilishi kerak?",
+    "keys": {
+     "vaziyat": "Mahallada chiqindi saralanmaydi va suv isrof bo‘ladi.",
+     "savollar": [
+      "Nima zarar?",
+      "Nima qilamiz?"
+     ]
+    },
+    "tezis": "Yer — yagona uy",
+    "taqqoslash": {
+     "a": "Iqlim o‘zgarishi",
+     "b": "Suv tanqisligi",
+     "umumiy": [
+      "global muammo",
+      "hammaga ta’sir qiladi"
+     ],
+     "a_farq": [
+      "issiqxona gazlari",
+      "isish"
+     ],
+     "b_farq": [
+      "suv kamayishi",
+      "ichimlik suvi tanqis"
+     ]
+    },
+    "klaster": {
+     "markaz": "Global muammolar",
+     "shoxlar": [
+      {
+       "nom": "Iqlim",
+       "bandlar": [
+        "isish",
+        "muzlik erishi"
+       ]
+      },
+      {
+       "nom": "Ifloslanish",
+       "bandlar": [
+        "havo",
+        "suv",
+        "tuproq"
+       ]
+      },
+      {
+       "nom": "Resurs",
+       "bandlar": [
+        "suv",
+        "oziq-ovqat"
+       ]
+      },
+      {
+       "nom": "Yechim",
+       "bandlar": [
+        "tejash",
+        "daraxt",
+        "hamkorlik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men havoni isituvchi gazman. Men nimaman?",
+     "javob": "issiqxona gazi"
+    },
+    "hikmat": "Yerni asrasak, o‘zimizni asraymiz.",
+    "kalit_soz": "YER",
+    "xato_yechim": {
+     "shart": "Isishga qaysi gazlar sabab?",
+     "xato": "kislorod",
+     "togri": "issiqxona gazlari",
+     "sabab": "karbonat angidrid"
+    },
+    "guruh_nomlari": [
+     "Ekologlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Faollar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yer uchun harakat»",
+     "topshiriq": "Guruh harakat plakatini tuzadi."
+    },
+    "vazifalar": {
+     "A": "8 milliard, 10 foiz?",
+     "B": "100 birlik, 20 foiz?",
+     "C": "1000 daraxt, 20 kg?"
+    },
+    "sinkveyn": [
+     "Yer",
+     "yagona, kichik",
+     "yashatadi, isiydi, himoya talab qiladi",
+     "Bizning uy",
+     "Daraxt"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh global muammolarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: iqlim",
+      "2-guruh: ifloslanish",
+      "3-guruh: resurs",
+      "4-guruh: yechim"
+     ],
+     "yakun": "Natijalar: 800; 80; 20000."
+    }
+   }
   }
  ]
 }
