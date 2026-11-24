@@ -22082,6 +22082,1381 @@
      "yakun": "Natijalar: 599999; 358023; 589822; tekshirish 345678."
     }
    }
+  },
+  {
+   "mavzu": "Ikki xonaliga ko‘paytirish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ikki xonali songa ko‘paytirish",
+      "matn": "Ko‘p xonali sonni ikki xonali songa ko‘paytirganda, ikki xonali sonni o‘nlik va birlikka ajratamiz. Avval birlikka, keyin o‘nlikka ko‘paytiramiz.",
+      "misol": "234 · 12 — 234 · 2 + 234 · 10.",
+      "savol": "12 ni qanday ajratamiz?",
+      "javob": "2 va 10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birinchi qism",
+      "matn": "Avval ko‘paytuvchining birligiga ko‘paytiramiz.",
+      "misol": "234 · 2 — 468.",
+      "savol": "234 · 2 nechaga teng?",
+      "javob": "468",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikkinchi qism",
+      "matn": "Keyin o‘nligiga ko‘paytiramiz. 10 ga ko‘paytirganda songa bitta nol qo‘shiladi.",
+      "misol": "234 · 10 — 2340.",
+      "savol": "234 · 10 nechaga teng?",
+      "javob": "2340",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qismlarni qo‘shamiz",
+      "matn": "Ikkala natijani qo‘shamiz.",
+      "misol": "468 + 2340 — 2808. Demak 234 · 12 — 2808.",
+      "savol": "468 + 2340 nechaga teng?",
+      "javob": "2808",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshiramiz",
+      "matn": "Ko‘paytirishni bo‘lish bilan tekshiramiz: ko‘paytmani bir ko‘paytuvchiga bo‘lsak, ikkinchisi chiqadi.",
+      "misol": "2808 / 12 — 234.",
+      "savol": "2808 / 12 nechaga teng?",
+      "javob": "234",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ko‘paytuvchini o‘nlik va birlikka ajrat, har biriga ko‘paytir, natijalarni qo‘sh. Bo‘lish bilan tekshir.",
+    "misollar": [
+     {
+      "shart": "234 · 12 ni hisoblang.",
+      "yechim": [
+       "234 · 2 — 468.",
+       "234 · 10 — 2340.",
+       "468 + 2340 — 2808."
+      ],
+      "javob": "2808"
+     },
+     {
+      "shart": "345 · 23 ni hisoblang.",
+      "yechim": [
+       "345 · 3 — 1035.",
+       "345 · 20 — 6900.",
+       "1035 + 6900 — 7935."
+      ],
+      "javob": "7935"
+     },
+     {
+      "shart": "1204 · 15 ni hisoblang.",
+      "yechim": [
+       "1204 · 5 — 6020.",
+       "1204 · 10 — 12040.",
+       "6020 + 12040 — 18060."
+      ],
+      "javob": "18060"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qismlarga ajratamiz",
+      "topshiriq": "Uchta ko‘paytirishni qismlarga ajratib yeching.",
+      "yechim": "Birlik va o‘nlik alohida.",
+      "mahsulot": "misollar varag‘i"
+     },
+     {
+      "nom": "Xatoni topamiz",
+      "topshiriq": "Ikkinchi qismni bir xonaga surishni unutgan misolni toping.",
+      "yechim": "O‘nlikka ko‘paytirishda nol qo‘shiladi.",
+      "mahsulot": "xatolar varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Ikki xonaliga ko‘paytirishga masala tuzing.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Har javobni bo‘lish bilan tekshiring.",
+      "yechim": "2808 / 12 — 234.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "234 · 2 nechaga teng?",
+      "javob": "468"
+     },
+     {
+      "shart": "234 · 10 nechaga teng?",
+      "javob": "2340"
+     },
+     {
+      "shart": "234 · 12 nechaga teng?",
+      "javob": "2808"
+     },
+     {
+      "shart": "345 · 23 nechaga teng?",
+      "javob": "7935"
+     },
+     {
+      "shart": "1204 · 15 nechaga teng?",
+      "javob": "18060"
+     },
+     {
+      "shart": "2808 / 12 nechaga teng?",
+      "javob": "234"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "O‘nlikka ko‘paytirishda nol qo‘shmaydi",
+      "sabab": "xonani adashtiradi",
+      "oldini_olish": "10 ga ko‘paytirishda bitta nol"
+     },
+     {
+      "xato": "Qismlarni qo‘shmaydi",
+      "sabab": "birinchi natijani yozib to‘xtaydi",
+      "oldini_olish": "ikkala natijani qo‘shish"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "bo‘lish bilan tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "dona va narx hisobi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "ishlab chiqarish hisobi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "yo‘l uzunligi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ko‘paytirish kartochkalari»",
+     "muammo": "Ikki xonaliga ko‘paytirishni qanday o‘rgatamiz?",
+     "mahsulot": "kartochkalar",
+     "bosqichlar": [
+      "misollar tanlash",
+      "qismlarga ajratish",
+      "yechish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Misol tanlang",
+      "Ajrating",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "misollar to‘g‘ri",
+      "ajratish to‘g‘ri",
+      "javob to‘g‘ri",
+      "tekshirilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ko‘paytirish zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "234 · 12.",
+       "topshiriq": "Natija?",
+       "javob": "2808",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "345 · 23.",
+       "topshiriq": "Natija?",
+       "javob": "7935",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "1204 · 15.",
+       "topshiriq": "Natija?",
+       "javob": "18060",
+       "rasm": ""
+      },
+      {
+       "nom": "Tekshiruv sexi",
+       "matn": "2808 / 12.",
+       "topshiriq": "Natija?",
+       "javob": "234",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qanday ajratdingiz?",
+      "Nol qo‘shdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ko‘paytma",
+      "tarif": "ko‘paytirish natijasi"
+     },
+     {
+      "atama": "Ko‘paytuvchi",
+      "tarif": "ko‘paytiriladigan son"
+     },
+     {
+      "atama": "Birlik",
+      "tarif": "oxirgi raqam"
+     },
+     {
+      "atama": "O‘nlik",
+      "tarif": "oxirdan ikkinchi raqam"
+     },
+     {
+      "atama": "Qism",
+      "tarif": "ko‘paytmaning bir bo‘lagi"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "bo‘lish bilan aniqlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "234 · 12 — 2808",
+      "togri": true,
+      "izoh": "ko‘paytma"
+     },
+     {
+      "matn": "234 · 10 — 234",
+      "togri": false,
+      "izoh": "2340"
+     },
+     {
+      "matn": "345 · 23 — 7935",
+      "togri": true,
+      "izoh": "ko‘paytma"
+     },
+     {
+      "matn": "1204 · 15 — 18060",
+      "togri": true,
+      "izoh": "ko‘paytma"
+     },
+     {
+      "matn": "Qismlar qo‘shiladi",
+      "togri": true,
+      "izoh": "yig‘indi"
+     },
+     {
+      "matn": "Tekshirish shart emas",
+      "togri": false,
+      "izoh": "kerak"
+     },
+     {
+      "matn": "2808 / 12 — 234",
+      "togri": true,
+      "izoh": "tekshirish"
+     },
+     {
+      "matn": "10 ga ko‘paytirishda nol olib tashlanadi",
+      "togri": false,
+      "izoh": "qo‘shiladi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "12 ni qanday ajratamiz?",
+      "javob": "2 va 10"
+     },
+     {
+      "savol": "234 · 2?",
+      "javob": "468"
+     },
+     {
+      "savol": "234 · 10?",
+      "javob": "2340"
+     },
+     {
+      "savol": "234 · 12?",
+      "javob": "2808"
+     },
+     {
+      "savol": "345 · 23?",
+      "javob": "7935"
+     },
+     {
+      "savol": "1204 · 15?",
+      "javob": "18060"
+     },
+     {
+      "savol": "2808 / 12?",
+      "javob": "234"
+     },
+     {
+      "savol": "10 ga ko‘paytirishda?",
+      "javob": "bitta nol qo‘shiladi"
+     },
+     {
+      "savol": "Natijalar nima qilinadi?",
+      "javob": "qo‘shiladi"
+     },
+     {
+      "savol": "Qanday tekshiramiz?",
+      "javob": "bo‘lish bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ajrat",
+      "matn": "Ko‘paytuvchini ajrat.",
+      "savol": "12?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Birlikka ko‘paytir.",
+      "savol": "234 · 2?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "Qismlarni qo‘sh.",
+      "savol": "468 + 2340?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Bo‘lib tekshir.",
+      "savol": "2808 / 12?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ikki xonali songa ko‘paytirishda qismlarga ajratamiz?",
+    "keys": {
+     "vaziyat": "Bir qutida 234 ta qalam, 12 ta quti bor.",
+     "savollar": [
+      "Jami nechta qalam?",
+      "Qanday tekshiramiz?"
+     ]
+    },
+    "tezis": "Ajrat, ko‘paytir, qo‘sh",
+    "taqqoslash": {
+     "a": "Birlikka ko‘paytirish",
+     "b": "O‘nlikka ko‘paytirish",
+     "umumiy": [
+      "ko‘paytirish amali",
+      "qismlar"
+     ],
+     "a_farq": [
+      "oddiy natija",
+      "234 · 2"
+     ],
+     "b_farq": [
+      "nol qo‘shiladi",
+      "234 · 10"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ikki xonaliga ko‘paytirish",
+     "shoxlar": [
+      {
+       "nom": "Ajratish",
+       "bandlar": [
+        "o‘nlik va birlik"
+       ]
+      },
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "har qismga"
+       ]
+      },
+      {
+       "nom": "Qo‘shish",
+       "bandlar": [
+        "natijalarni"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "bo‘lish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ikki bosqichda ko‘paytiraman, keyin qo‘shaman. Men kimman?",
+     "javob": "ustun usuli"
+    },
+    "hikmat": "Ajrat — ko‘paytir — qo‘sh.",
+    "kalit_soz": "KOPAYTMA",
+    "xato_yechim": {
+     "shart": "234 · 12 ni hisoblang.",
+     "xato": "468 + 234 — 702",
+     "togri": "2808",
+     "sabab": "o‘nlikka ko‘paytirishda 234 · 10 — 2340"
+    },
+    "guruh_nomlari": [
+     "Ko‘paytiruvchilar",
+     "Qo‘shuvchilar",
+     "Tekshiruvchilar",
+     "Hisobchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ko‘paytirish zavodi»",
+     "topshiriq": "Guruh ko‘paytirish misollarini yechadi."
+    },
+    "vazifalar": {
+     "A": "234 · 12 ni hisoblang.",
+     "B": "345 · 23 ni hisoblang.",
+     "C": "1204 · 15 ni hisoblang va tekshiring."
+    },
+    "sinkveyn": [
+     "Ko‘paytma",
+     "katta, aniq",
+     "ajratadi, ko‘paytiradi, qo‘shadi",
+     "Qism — butun",
+     "Son"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ko‘paytirish misollarini yechadi.",
+     "qismlar": [
+      "1-guruh: 234 · 12",
+      "2-guruh: 345 · 23",
+      "3-guruh: 1204 · 15",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 2808; 7935; 18060; tekshirish 234."
+    }
+   }
+  },
+  {
+   "mavzu": "Ko‘p xonali songa bo‘lish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ko‘p xonali songa bo‘lish",
+      "matn": "Bo‘lishda bo‘linuvchini bo‘luvchiga bo‘lamiz. Bo‘linmani tanlab, bo‘luvchiga ko‘paytirib, bo‘linuvchidan ayiramiz.",
+      "misol": "7245 / 15 — 483.",
+      "savol": "7245 / 15 nechaga teng?",
+      "javob": "483",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bo‘linmani taxmin qilamiz",
+      "matn": "Avval bo‘linma qancha raqamli bo‘lishini taxmin qilamiz. 15 · 100 — 1500, 15 · 1000 — 15000. 7245 bu oraliqda, demak bo‘linma uch xonali.",
+      "misol": "Bo‘linma 100 va 1000 orasida.",
+      "savol": "7245 bo‘linma necha xonali bo‘ladi?",
+      "javob": "uch xonali",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qadam-baqadam",
+      "matn": "7245 dan 15 · 400 — 6000 ni ayiramiz, 1245 qoladi. 15 · 80 — 1200 ni ayiramiz, 45 qoladi. 15 · 3 — 45.",
+      "misol": "400 + 80 + 3 — 483.",
+      "savol": "400 + 80 + 3 nechaga teng?",
+      "javob": "483",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yana bir misol",
+      "matn": "9600 / 32 — 300, chunki 32 · 300 — 9600.",
+      "misol": "Tekshirish: 32 · 300 — 9600.",
+      "savol": "9600 / 32 nechaga teng?",
+      "javob": "300",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshiramiz",
+      "matn": "Bo‘lishni ko‘paytirish bilan tekshiramiz: bo‘linma ko‘paytirilsin bo‘luvchiga — bo‘linuvchi chiqadi.",
+      "misol": "15 · 483 — 7245.",
+      "savol": "15 · 483 nechaga teng?",
+      "javob": "7245",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Bo‘linmani qismlab top: bo‘luvchini qulay songa ko‘paytirib ayir. Ko‘paytirish bilan tekshir.",
+    "misollar": [
+     {
+      "shart": "7245 / 15 ni hisoblang.",
+      "yechim": [
+       "7245 − 6000 — 1245 (15 · 400).",
+       "1245 − 1200 — 45 (15 · 80), 45 / 15 — 3.",
+       "Javob 483."
+      ],
+      "javob": "483"
+     },
+     {
+      "shart": "9600 / 32 ni hisoblang.",
+      "yechim": [
+       "32 · 300 — 9600.",
+       "Qoldiq yo‘q.",
+       "Javob 300."
+      ],
+      "javob": "300"
+     },
+     {
+      "shart": "2808 / 12 ni hisoblang.",
+      "yechim": [
+       "12 · 200 — 2400, 408 qoladi.",
+       "12 · 34 — 408.",
+       "Javob 234."
+      ],
+      "javob": "234"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Taxmin qilamiz",
+      "topshiriq": "Bo‘linma necha xonali ekanini taxmin qiling.",
+      "yechim": "100 va 1000 orasida.",
+      "mahsulot": "misollar varag‘i"
+     },
+     {
+      "nom": "Qismlab bo‘lamiz",
+      "topshiriq": "Uchta bo‘lishni qismlab yeching.",
+      "yechim": "Qulay ko‘paytmani oling.",
+      "mahsulot": "misollar varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Har javobni ko‘paytirish bilan tekshiring.",
+      "yechim": "15 · 483 — 7245.",
+      "mahsulot": "tekshiruv varag‘i"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Bo‘lishga masala tuzing.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "7245 / 15 nechaga teng?",
+      "javob": "483"
+     },
+     {
+      "shart": "9600 / 32 nechaga teng?",
+      "javob": "300"
+     },
+     {
+      "shart": "2808 / 12 nechaga teng?",
+      "javob": "234"
+     },
+     {
+      "shart": "15 · 483 nechaga teng?",
+      "javob": "7245"
+     },
+     {
+      "shart": "32 · 300 nechaga teng?",
+      "javob": "9600"
+     },
+     {
+      "shart": "15 · 400 nechaga teng?",
+      "javob": "6000"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Bo‘linmani noto‘g‘ri taxmin qiladi",
+      "sabab": "oraliqni tekshirmaydi",
+      "oldini_olish": "100 va 1000 orasi"
+     },
+     {
+      "xato": "Qoldiqni e’tiborsiz qoldiradi",
+      "sabab": "ayirishni tugatmaydi",
+      "oldini_olish": "qoldiq bo‘luvchidan kichik"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "ko‘paytirish bilan tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "teng taqsimlash"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "mahsulotni qutilarga joylash"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "yo‘lni kunlarga bo‘lish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Bo‘lish usullari»",
+     "muammo": "Katta sonlarni bo‘lishni qanday tushuntiramiz?",
+     "mahsulot": "bo‘lish plakati",
+     "bosqichlar": [
+      "misollar tanlash",
+      "taxmin qilish",
+      "qismlab bo‘lish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Misol tanlang",
+      "Taxmin qiling",
+      "Bo‘ling",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "misollar to‘g‘ri",
+      "taxmin mantiqli",
+      "javob to‘g‘ri",
+      "tekshirilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bo‘lish bozori»",
+     "bekatlar": [
+      {
+       "nom": "1-rasta",
+       "matn": "7245 / 15.",
+       "topshiriq": "Natija?",
+       "javob": "483",
+       "rasm": ""
+      },
+      {
+       "nom": "2-rasta",
+       "matn": "9600 / 32.",
+       "topshiriq": "Natija?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "3-rasta",
+       "matn": "2808 / 12.",
+       "topshiriq": "Natija?",
+       "javob": "234",
+       "rasm": ""
+      },
+      {
+       "nom": "Tekshiruv",
+       "matn": "15 · 483.",
+       "topshiriq": "Natija?",
+       "javob": "7245",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qanday taxmin qildingiz?",
+      "Qoldiq qoldimi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Bo‘linuvchi",
+      "tarif": "bo‘linadigan son"
+     },
+     {
+      "atama": "Bo‘luvchi",
+      "tarif": "bo‘ladigan son"
+     },
+     {
+      "atama": "Bo‘linma",
+      "tarif": "bo‘lish natijasi"
+     },
+     {
+      "atama": "Qoldiq",
+      "tarif": "bo‘linmay qolgan qism"
+     },
+     {
+      "atama": "Taxmin",
+      "tarif": "oldindan baholash"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "ko‘paytirish bilan aniqlash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "7245 / 15 — 483",
+      "togri": true,
+      "izoh": "bo‘linma"
+     },
+     {
+      "matn": "9600 / 32 — 30",
+      "togri": false,
+      "izoh": "300"
+     },
+     {
+      "matn": "2808 / 12 — 234",
+      "togri": true,
+      "izoh": "bo‘linma"
+     },
+     {
+      "matn": "15 · 483 — 7245",
+      "togri": true,
+      "izoh": "tekshirish"
+     },
+     {
+      "matn": "Qoldiq bo‘luvchidan katta bo‘lmaydi",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "Bo‘lishni tekshirish shart emas",
+      "togri": false,
+      "izoh": "kerak"
+     },
+     {
+      "matn": "32 · 300 — 9600",
+      "togri": true,
+      "izoh": "tekshirish"
+     },
+     {
+      "matn": "Bo‘linma doim bo‘linuvchidan katta",
+      "togri": false,
+      "izoh": "kichik"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "7245 / 15?",
+      "javob": "483"
+     },
+     {
+      "savol": "9600 / 32?",
+      "javob": "300"
+     },
+     {
+      "savol": "2808 / 12?",
+      "javob": "234"
+     },
+     {
+      "savol": "15 · 483?",
+      "javob": "7245"
+     },
+     {
+      "savol": "32 · 300?",
+      "javob": "9600"
+     },
+     {
+      "savol": "Bo‘linma nima?",
+      "javob": "bo‘lish natijasi"
+     },
+     {
+      "savol": "Qoldiq qanday bo‘ladi?",
+      "javob": "bo‘luvchidan kichik"
+     },
+     {
+      "savol": "Qanday tekshiramiz?",
+      "javob": "ko‘paytirish bilan"
+     },
+     {
+      "savol": "15 · 400?",
+      "javob": "6000"
+     },
+     {
+      "savol": "Birinchi qadam?",
+      "javob": "taxmin qilish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Taxmin",
+      "matn": "Xonalarni taxmin qil.",
+      "savol": "Uch xonali?"
+     },
+     {
+      "nom": "Ayir",
+      "matn": "Qulay ko‘paytmani ayir.",
+      "savol": "7245 − 6000?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "Qoldiqni bo‘l.",
+      "savol": "45 / 15?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Ko‘paytirib tekshir.",
+      "savol": "15 · 483?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bo‘lishni ko‘paytirish bilan tekshiramiz?",
+    "keys": {
+     "vaziyat": "7245 ta olma 15 ta qutiga teng joylanadi.",
+     "savollar": [
+      "Har qutiga nechtadan?",
+      "Qanday tekshiramiz?"
+     ]
+    },
+    "tezis": "Taxmin qil, bo‘l, tekshir",
+    "taqqoslash": {
+     "a": "Bo‘lish",
+     "b": "Ko‘paytirish",
+     "umumiy": [
+      "teskari amallar",
+      "bir-birini tekshiradi"
+     ],
+     "a_farq": [
+      "bo‘linma topiladi",
+      "7245 / 15"
+     ],
+     "b_farq": [
+      "ko‘paytma topiladi",
+      "15 · 483"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ko‘p xonali songa bo‘lish",
+     "shoxlar": [
+      {
+       "nom": "Taxmin",
+       "bandlar": [
+        "xonalar soni"
+       ]
+      },
+      {
+       "nom": "Qismlab bo‘lish",
+       "bandlar": [
+        "qulay ko‘paytma"
+       ]
+      },
+      {
+       "nom": "Qoldiq",
+       "bandlar": [
+        "bo‘luvchidan kichik"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "ko‘paytirish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men bo‘linuvchini teng bo‘laklarga bo‘laman. Men kimman?",
+     "javob": "bo‘lish"
+    },
+    "hikmat": "Bo‘l va ko‘paytirib tekshir.",
+    "kalit_soz": "BOLISH",
+    "xato_yechim": {
+     "shart": "7245 / 15 ni hisoblang.",
+     "xato": "48",
+     "togri": "483",
+     "sabab": "bo‘linma uch xonali: 400 + 80 + 3"
+    },
+    "guruh_nomlari": [
+     "Bo‘luvchilar",
+     "Taxminchilar",
+     "Tekshiruvchilar",
+     "Hisobchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bo‘lish bozori»",
+     "topshiriq": "Guruh bo‘lish misollarini yechadi."
+    },
+    "vazifalar": {
+     "A": "7245 / 15 ni hisoblang.",
+     "B": "9600 / 32 ni hisoblang.",
+     "C": "2808 / 12 ni hisoblang va tekshiring."
+    },
+    "sinkveyn": [
+     "Bo‘lish",
+     "teng, aniq",
+     "bo‘ladi, taqsimlaydi, tekshiradi",
+     "Bo‘l va hukm qil",
+     "Son"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh bo‘lish misollarini yechadi.",
+     "qismlar": [
+      "1-guruh: 7245 / 15",
+      "2-guruh: 9600 / 32",
+      "3-guruh: 2808 / 12",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 483; 300; 234; tekshirish 7245."
+    }
+   }
+  },
+  {
+   "mavzu": "Kasrlarni taqqoslash",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kasr nima?",
+      "matn": "Butunning teng bo‘laklaridan birini yoki bir nechtasini kasr bilan yozamiz. Kasr surat va maxrajdan iborat.",
+      "misol": "Bir yarim: 1 / 2. Uch chorak: 3 / 4.",
+      "savol": "Kasrning pastki soni nima deyiladi?",
+      "javob": "maxraj",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Maxraji bir xil kasrlar",
+      "matn": "Maxraji bir xil kasrlarni taqqoslaganda surati katta kasr katta bo‘ladi.",
+      "misol": "5 / 8 katta, 3 / 8 kichik, chunki 5 > 3.",
+      "savol": "5 / 8 va 3 / 8 dan qaysi biri katta?",
+      "javob": "5 / 8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Surati bir xil kasrlar",
+      "matn": "Surati bir xil kasrlarni taqqoslaganda maxraji kichik kasr katta bo‘ladi. Chunki bo‘laklar kattaroq.",
+      "misol": "1 / 2 katta, 1 / 4 kichik, chunki 2 < 4.",
+      "savol": "1 / 2 va 1 / 4 dan qaysi biri katta?",
+      "javob": "1 / 2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birga taqqoslash",
+      "matn": "Surati maxrajidan kichik kasr birdan kichik. Surati maxrajiga teng kasr birga teng.",
+      "misol": "3 / 4 < 1, 4 / 4 — 1.",
+      "savol": "4 / 4 nechaga teng?",
+      "javob": "1",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Pitsa misoli",
+      "matn": "Pitsani 8 bo‘lakka bo‘lib 5 bo‘lagini yesak, 3 bo‘lagini yeganidan ko‘p yeymiz.",
+      "misol": "5 / 8 > 3 / 8.",
+      "savol": "Pitsaning 5 / 8 qismi 3 / 8 qismidan ko‘pmi?",
+      "javob": "ha",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Maxraji bir xil — surati katta kasr katta. Surati bir xil — maxraji kichik kasr katta.",
+    "misollar": [
+     {
+      "shart": "5 / 8 va 3 / 8 ni taqqoslang.",
+      "yechim": [
+       "Maxrajlar teng — 8.",
+       "Suratlar: 5 > 3.",
+       "Javob 5 / 8 > 3 / 8."
+      ],
+      "javob": "5 / 8 > 3 / 8"
+     },
+     {
+      "shart": "1 / 2 va 1 / 4 ni taqqoslang.",
+      "yechim": [
+       "Suratlar teng — 1.",
+       "Maxrajlar: 2 < 4.",
+       "Javob 1 / 2 > 1 / 4."
+      ],
+      "javob": "1 / 2 > 1 / 4"
+     },
+     {
+      "shart": "3 / 4 va 1 ni taqqoslang.",
+      "yechim": [
+       "Surat maxrajdan kichik.",
+       "4 / 4 — 1.",
+       "Javob 3 / 4 < 1."
+      ],
+      "javob": "3 / 4 < 1"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kasr chizamiz",
+      "topshiriq": "Doira yoki to‘rtburchakni bo‘laklab kasrlarni ko‘rsating.",
+      "yechim": "Bo‘laklar teng bo‘lsin.",
+      "mahsulot": "rasm varag‘i"
+     },
+     {
+      "nom": "Taqqoslaymiz",
+      "topshiriq": "Uch juft kasrni taqqoslang.",
+      "yechim": "Qoidani ayting.",
+      "mahsulot": "kasrlar varag‘i"
+     },
+     {
+      "nom": "Tartiblaymiz",
+      "topshiriq": "Kasrlarni kichikdan kattaga tartiblang.",
+      "yechim": "1 / 8, 3 / 8, 5 / 8.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Taqqoslashni rasm bilan tekshiring.",
+      "yechim": "Kattaroq bo‘lak ko‘proq joy egallaydi.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "5 / 8 va 3 / 8 dan qaysi biri katta?",
+      "javob": "5 / 8"
+     },
+     {
+      "shart": "1 / 2 va 1 / 4 dan qaysi biri katta?",
+      "javob": "1 / 2"
+     },
+     {
+      "shart": "4 / 4 nechaga teng?",
+      "javob": "1"
+     },
+     {
+      "shart": "3 / 4 birdan kattami?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "Kasr pastki soni nima?",
+      "javob": "maxraj"
+     },
+     {
+      "shart": "Kasr yuqori soni nima?",
+      "javob": "surat"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Maxraji katta kasrni katta deydi",
+      "sabab": "suratlar teng bo‘lganda adashadi",
+      "oldini_olish": "maxraji kichik katta"
+     },
+     {
+      "xato": "Suratni maxrajdan ajratib qaramaydi",
+      "sabab": "qoidani aralashtiradi",
+      "oldini_olish": "avval nima tengligini ko‘r"
+     },
+     {
+      "xato": "Rasm chizmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "rasm bilan tekshirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "pitsa va olma bo‘laklari"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "rasmni bo‘laklarga bo‘lish"
+     },
+     {
+      "fan": "Musiqa",
+      "boglanish": "nota cho‘zimlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kasrlar pitsasi»",
+     "muammo": "Kasrlarni pitsa bilan qanday ko‘rsatamiz?",
+     "mahsulot": "pitsa kasrlari",
+     "bosqichlar": [
+      "doira chizish",
+      "bo‘laklarga bo‘lish",
+      "kasr yozish",
+      "taqqoslash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Doira chizing",
+      "Bo‘laklang",
+      "Kasr yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "bo‘laklar teng",
+      "kasr to‘g‘ri",
+      "taqqoslash to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Kasrlar oshxonasi»",
+     "bekatlar": [
+      {
+       "nom": "Pitsa",
+       "matn": "5 / 8 va 3 / 8.",
+       "topshiriq": "Qaysi katta?",
+       "javob": "5 / 8",
+       "rasm": ""
+      },
+      {
+       "nom": "Olma",
+       "matn": "1 / 2 va 1 / 4.",
+       "topshiriq": "Qaysi katta?",
+       "javob": "1 / 2",
+       "rasm": ""
+      },
+      {
+       "nom": "Tort",
+       "matn": "4 / 4.",
+       "topshiriq": "Nechaga teng?",
+       "javob": "1",
+       "rasm": ""
+      },
+      {
+       "nom": "Non",
+       "matn": "3 / 4 va 1.",
+       "topshiriq": "Qaysi katta?",
+       "javob": "1",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Maxrajlarga qaradingizmi?",
+      "Suratlarga qaradingizmi?",
+      "Rasm chizdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kasr",
+      "tarif": "butunning bo‘lagi"
+     },
+     {
+      "atama": "Surat",
+      "tarif": "kasr yuqori soni"
+     },
+     {
+      "atama": "Maxraj",
+      "tarif": "kasr pastki soni"
+     },
+     {
+      "atama": "Taqqoslash",
+      "tarif": "katta-kichikni aniqlash"
+     },
+     {
+      "atama": "Bo‘lak",
+      "tarif": "butunning qismi"
+     },
+     {
+      "atama": "Butun",
+      "tarif": "to‘liq narsa"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Maxraji teng kasrlardan surati katta kasr katta",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "Surati teng kasrlardan maxraji katta kasr katta",
+      "togri": false,
+      "izoh": "maxraji kichik katta"
+     },
+     {
+      "matn": "5 / 8 > 3 / 8",
+      "togri": true,
+      "izoh": "5 > 3"
+     },
+     {
+      "matn": "1 / 2 > 1 / 4",
+      "togri": true,
+      "izoh": "2 < 4"
+     },
+     {
+      "matn": "4 / 4 — 1",
+      "togri": true,
+      "izoh": "butun"
+     },
+     {
+      "matn": "3 / 4 > 1",
+      "togri": false,
+      "izoh": "kichik"
+     },
+     {
+      "matn": "Maxraj yuqori son",
+      "togri": false,
+      "izoh": "pastki son"
+     },
+     {
+      "matn": "Rasm taqqoslashga yordam beradi",
+      "togri": true,
+      "izoh": "ko‘rinish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kasr nima?",
+      "javob": "butunning bo‘lagi"
+     },
+     {
+      "savol": "Maxraj qaysi?",
+      "javob": "pastki son"
+     },
+     {
+      "savol": "Surat qaysi?",
+      "javob": "yuqori son"
+     },
+     {
+      "savol": "5 / 8 va 3 / 8?",
+      "javob": "5 / 8 katta"
+     },
+     {
+      "savol": "1 / 2 va 1 / 4?",
+      "javob": "1 / 2 katta"
+     },
+     {
+      "savol": "4 / 4?",
+      "javob": "1"
+     },
+     {
+      "savol": "3 / 4 va 1?",
+      "javob": "3 / 4 kichik"
+     },
+     {
+      "savol": "Suratlar teng bo‘lsa?",
+      "javob": "maxraji kichik katta"
+     },
+     {
+      "savol": "Maxrajlar teng bo‘lsa?",
+      "javob": "surati katta katta"
+     },
+     {
+      "savol": "Qanday tekshiramiz?",
+      "javob": "rasm bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qara",
+      "matn": "Kasrni o‘qi.",
+      "savol": "Surat nima?"
+     },
+     {
+      "nom": "Solishtir",
+      "matn": "Qoidani tanla.",
+      "savol": "Nima teng?"
+     },
+     {
+      "nom": "Chiz",
+      "matn": "Rasm chiz.",
+      "savol": "Bo‘laklar?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Katta kasrni ayt.",
+      "savol": "Qaysi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun surati teng kasrlardan maxraji kichigi katta?",
+    "keys": {
+     "vaziyat": "Pitsa 8 bo‘lakka bo‘lingan. Ali 5 bo‘lak, Vali 3 bo‘lak yedi.",
+     "savollar": [
+      "Kim ko‘p yedi?",
+      "Kasr bilan yozing."
+     ]
+    },
+    "tezis": "Bo‘lak ko‘p — kasr katta",
+    "taqqoslash": {
+     "a": "Maxraji teng kasrlar",
+     "b": "Surati teng kasrlar",
+     "umumiy": [
+      "kasrlarni taqqoslash",
+      "qoidasi bor"
+     ],
+     "a_farq": [
+      "suratlarga qaraymiz",
+      "5 / 8 > 3 / 8"
+     ],
+     "b_farq": [
+      "maxrajlarga qaraymiz",
+      "1 / 2 > 1 / 4"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kasrlarni taqqoslash",
+     "shoxlar": [
+      {
+       "nom": "Kasr",
+       "bandlar": [
+        "surat",
+        "maxraj"
+       ]
+      },
+      {
+       "nom": "Maxraj teng",
+       "bandlar": [
+        "surati katta katta"
+       ]
+      },
+      {
+       "nom": "Surat teng",
+       "bandlar": [
+        "maxraji kichik katta"
+       ]
+      },
+      {
+       "nom": "Birga",
+       "bandlar": [
+        "4 / 4 — 1"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men butunning bo‘lagiman, suratim va maxrajim bor. Men kimman?",
+     "javob": "kasr"
+    },
+    "hikmat": "Bo‘lak ko‘p — kasr katta.",
+    "kalit_soz": "KASR",
+    "xato_yechim": {
+     "shart": "1 / 2 va 1 / 4 ni taqqoslang.",
+     "xato": "1 / 2 < 1 / 4",
+     "togri": "1 / 2 > 1 / 4",
+     "sabab": "suratlar teng, maxraji kichik kasr katta"
+    },
+    "guruh_nomlari": [
+     "Kasrchilar",
+     "Taqqoslovchilar",
+     "Chizmachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Kasrlar oshxonasi»",
+     "topshiriq": "Guruh kasrlarni pitsa bilan taqqoslaydi."
+    },
+    "vazifalar": {
+     "A": "5 / 8 va 3 / 8 ni taqqoslang.",
+     "B": "1 / 2 va 1 / 4 ni taqqoslang.",
+     "C": "3 / 4 va 1 ni taqqoslang va rasmda ko‘rsating."
+    },
+    "sinkveyn": [
+     "Kasr",
+     "bo‘lakli, teng",
+     "bo‘ladi, taqqoslanadi, chiziladi",
+     "Bo‘lak — butunning qismi",
+     "Pitsa"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh kasrlarni taqqoslaydi.",
+     "qismlar": [
+      "1-guruh: maxraji teng",
+      "2-guruh: surati teng",
+      "3-guruh: birga",
+      "4-guruh: rasm"
+     ],
+     "yakun": "Natijalar: 5 / 8; 1 / 2; 3 / 4 < 1; rasm tekshirdi."
+    }
+   }
   }
  ]
 }
