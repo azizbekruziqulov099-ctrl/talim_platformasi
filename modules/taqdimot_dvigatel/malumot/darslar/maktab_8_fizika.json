@@ -2762,6 +2762,1391 @@
      "yakun": "Natijalar: 1150000; 4600000; 100; 78."
     }
    }
+  },
+  {
+   "mavzu": "Issiqlik dvigatellari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Dvigatel nima",
+      "matn": "Yoqilg‘i yonganda ajralgan ichki energiyani mexanik ishga aylantiruvchi qurilma issiqlik dvigateli deyiladi. Avtomobil, traktor, teplovoz va bug‘ turbinasi shunday ishlaydi.",
+      "misol": "Mashina yoqilg‘i bilan yuradi.",
+      "savol": "Dvigatel qaysi energiyani ishga aylantiradi?",
+      "javob": "ichki energiyani",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘rt takt",
+      "matn": "Ichki yonuv dvigatelida to‘rt takt bo‘ladi: qabul qilish, siqish, ish yurishi va chiqarish. Faqat uchinchi taktda — ish yurishida — dvigatel foydali ish bajaradi, qolgan uch taktda esa maxovik inersiyasi porshenni siljitadi.",
+      "misol": "Benzinli dvigatelda sham uchqun beradi.",
+      "savol": "Taktlar nechta?",
+      "javob": "to‘rtta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ish yurishi",
+      "matn": "Siqilgan yoqilg‘i aralashmasi yonib, gaz kengayadi va porshenni itaradi. Shu paytda gazning ichki energiyasi kamayadi, ish esa bajariladi.",
+      "misol": "Porshen pastga siljiydi.",
+      "savol": "Ish qaysi taktda bajariladi?",
+      "javob": "ish yurishida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "FIK",
+      "matn": "Dvigatelning foydali ish koeffitsiyenti (FIK) foydali ishning yonishdan olingan issiqlik miqdoriga nisbatiga teng: FIK — A / Q1. Foizda ifodalash uchun 100 ga ko‘paytiriladi. FIK hamisha 100 foizdan kichik, chunki energiyaning bir qismi atrofga ketadi.",
+      "misol": "Q1 1000 joul, A 300 joul bo‘lsa, FIK 0,3 yoki 30 foiz.",
+      "savol": "300 / 1000 nechaga teng?",
+      "javob": "0,3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ekologiya",
+      "matn": "Dvigatellar zararli gaz chiqaradi va atrofni isitadi. Benzinli dvigatelning FIK taxminan 25 dan 30 foizgacha, dizelniki taxminan 35 dan 40 foizgacha. Elektromobil va gibrid mashinalar havoni kamroq ifloslantiradi.",
+      "misol": "Shaharlarda elektrobuslar ko‘paymoqda.",
+      "savol": "Dizelning FIK benzinlinikidan yuqorimi?",
+      "javob": "ha",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Dvigatel ichki energiyani ishga aylantiradi. To‘rt takt: qabul qilish, siqish, ish yurishi, chiqarish. FIK — A / Q1, hamisha 100 foizdan kichik.",
+    "misollar": [
+     {
+      "shart": "Dvigatel yoqilg‘idan 2000000 joul issiqlik oldi va 600000 joul foydali ish bajardi. FIK nechaga teng?",
+      "yechim": [
+       "FIK — A / Q1.",
+       "600000 / 2000000 — 0,3.",
+       "Javob 30 foiz."
+      ],
+      "javob": "30 foiz"
+     },
+     {
+      "shart": "Q1 400000 joul, A 100000 joul. FIK?",
+      "yechim": [
+       "100000 / 400000 — 0,25.",
+       "100 ga ko‘paytiramiz.",
+       "Javob 25 foiz."
+      ],
+      "javob": "25 foiz"
+     },
+     {
+      "shart": "FIK 40 foiz, Q1 5000 joul. Foydali ish nechaga teng?",
+      "yechim": [
+       "FIK — 0,4.",
+       "A — 0,4 · 5000.",
+       "Javob 2000 joul."
+      ],
+      "javob": "2000 joul"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Taktlarni sahnalashtiramiz",
+      "topshiriq": "To‘rt o‘quvchi to‘rt taktni harakat bilan ko‘rsatadi.",
+      "yechim": "Faqat uchinchi takt ish beradi.",
+      "mahsulot": "karton porshen"
+     },
+     {
+      "nom": "Modelni kuzatamiz",
+      "topshiriq": "Shprits va kichik quvur bilan siqilgan havo ta’sirini ko‘ring.",
+      "yechim": "Gaz kengayib, ish bajaradi.",
+      "mahsulot": "shprits"
+     },
+     {
+      "nom": "FIK ni hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "A / Q1.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Ekologiya xulosasi",
+      "topshiriq": "Zararni kamaytirish yo‘llarini yozing.",
+      "yechim": "Elektr transport, tejamkorlik.",
+      "mahsulot": "xulosa varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "600000 / 2000000 nechaga teng?",
+      "javob": "0,3"
+     },
+     {
+      "shart": "100000 / 400000 nechaga teng?",
+      "javob": "0,25"
+     },
+     {
+      "shart": "0,4 · 5000 nechaga teng?",
+      "javob": "2000"
+     },
+     {
+      "shart": "Takt soni nechta?",
+      "javob": "4"
+     },
+     {
+      "shart": "Foydali ish qaysi taktda?",
+      "javob": "ish yurishida"
+     },
+     {
+      "shart": "FIK 100 foizdan katta bo‘ladimi?",
+      "javob": "yo‘q"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "FIK 100 foizdan katta bo‘lishi mumkin deydi",
+      "sabab": "energiya atrofga ham ketadi",
+      "oldini_olish": "FIK doim 100 dan kichik"
+     },
+     {
+      "xato": "Barcha taktlarda ish bajariladi deydi",
+      "sabab": "faqat ish yurishida bajariladi",
+      "oldini_olish": "uchinchi takt"
+     },
+     {
+      "xato": "Foydali ish va issiqlik o‘rnini almashtiradi",
+      "sabab": "A ni Q1 ga bo‘lish kerak",
+      "oldini_olish": "FIK — A / Q1"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "avtomobil va traktor dvigateli"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "havoning ifloslanishi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "nisbat va foiz"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Toza dvigatel»",
+     "muammo": "Dvigatelning FIK ini qanday oshirish va zararini qanday kamaytirish mumkin?",
+     "mahsulot": "dvigatel maketi",
+     "bosqichlar": [
+      "maket yasash",
+      "taktlarni ko‘rsatish",
+      "FIK ni hisoblash",
+      "takliflar yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Maket yasang",
+      "Taktlarni ko‘rsating",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "maket to‘g‘ri",
+      "hisob to‘g‘ri",
+      "takliflar mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Dvigatel sexi»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "Q1 2000000 joul, A 600000 joul.",
+       "topshiriq": "FIK necha foiz?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "Q1 400000 joul, A 100000 joul.",
+       "topshiriq": "FIK necha foiz?",
+       "javob": "25",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "FIK 40 foiz, Q1 5000 joul.",
+       "topshiriq": "A necha joul?",
+       "javob": "2000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sex",
+       "matn": "Ichki yonuv dvigateli.",
+       "topshiriq": "Nechta takt?",
+       "javob": "4",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani qo‘lladingiz?",
+      "Foizga o‘tkazdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Issiqlik dvigateli",
+      "tarif": "yoqilg‘i energiyasini ishga aylantiruvchi qurilma"
+     },
+     {
+      "atama": "Takt",
+      "tarif": "dvigatel ishining bir bosqichi"
+     },
+     {
+      "atama": "Porshen",
+      "tarif": "silindr ichida siljuvchi detal"
+     },
+     {
+      "atama": "FIK",
+      "tarif": "foydali ishning sarflangan issiqlikka nisbati"
+     },
+     {
+      "atama": "Yoqilg‘i",
+      "tarif": "yonganda energiya beruvchi modda"
+     },
+     {
+      "atama": "Ish yurishi",
+      "tarif": "gaz kengayib ish bajaradigan takt"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Dvigatel ichki energiyani ishga aylantiradi",
+      "togri": true,
+      "izoh": "asosiy vazifa"
+     },
+     {
+      "matn": "FIK 100 foizdan katta bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "doim kichik"
+     },
+     {
+      "matn": "Ichki yonuv dvigateli to‘rt taktli",
+      "togri": true,
+      "izoh": "qabul, siqish, ish, chiqarish"
+     },
+     {
+      "matn": "Foydali ish qabul qilish taktida bajariladi",
+      "togri": false,
+      "izoh": "ish yurishida"
+     },
+     {
+      "matn": "600000 / 2000000 — 0,3",
+      "togri": true,
+      "izoh": "30 foiz"
+     },
+     {
+      "matn": "Dizelning FIK i odatda benzinlinikidan yuqori",
+      "togri": true,
+      "izoh": "siqish kuchli"
+     },
+     {
+      "matn": "Chiqarish taktida yangi aralashma kiradi",
+      "togri": false,
+      "izoh": "qabul qilishda kiradi"
+     },
+     {
+      "matn": "Dvigatel zararli gaz chiqarishi mumkin",
+      "togri": true,
+      "izoh": "ekologiya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Issiqlik dvigateli?",
+      "javob": "yoqilg‘i energiyasini ishga aylantiradi"
+     },
+     {
+      "savol": "Takt soni?",
+      "javob": "to‘rtta"
+     },
+     {
+      "savol": "Ish qaysi taktda?",
+      "javob": "ish yurishida"
+     },
+     {
+      "savol": "FIK formulasi?",
+      "javob": "A / Q1"
+     },
+     {
+      "savol": "FIK 100 dan?",
+      "javob": "kichik"
+     },
+     {
+      "savol": "600000 / 2000000?",
+      "javob": "0,3"
+     },
+     {
+      "savol": "0,3 foizda?",
+      "javob": "30 foiz"
+     },
+     {
+      "savol": "0,4 · 5000?",
+      "javob": "2000"
+     },
+     {
+      "savol": "Dizel FIK?",
+      "javob": "benzinlinikidan yuqori"
+     },
+     {
+      "savol": "Zarar?",
+      "javob": "zararli gaz"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "A va Q1?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "A ni Q1 ga bo‘l.",
+      "savol": "A / Q1?"
+     },
+     {
+      "nom": "Foizga o‘tkaz",
+      "matn": "100 ga ko‘paytir.",
+      "savol": "necha foiz?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Natija 100 dan kichikmi?",
+      "savol": "ha yoki yo‘q?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun dvigatelning FIK i hech qachon 100 foizga yetmaydi?",
+    "keys": {
+     "vaziyat": "Avtomobil dvigateli yonilg‘idan 2000000 joul issiqlik olib, 600000 joul ish bajardi.",
+     "savollar": [
+      "FIK nechaga teng?",
+      "Qolgan energiya qayerga ketdi?"
+     ]
+    },
+    "tezis": "FIK — A / Q1",
+    "taqqoslash": {
+     "a": "Benzinli dvigatel",
+     "b": "Dizel dvigatel",
+     "umumiy": [
+      "ichki yonuv",
+      "to‘rt taktli"
+     ],
+     "a_farq": [
+      "uchqun bilan yonadi",
+      "FIK pastroq"
+     ],
+     "b_farq": [
+      "siqishdan yonadi",
+      "FIK yuqoriroq"
+     ]
+    },
+    "klaster": {
+     "markaz": "Issiqlik dvigatellari",
+     "shoxlar": [
+      {
+       "nom": "Taktlar",
+       "bandlar": [
+        "qabul qilish",
+        "siqish",
+        "ish yurishi",
+        "chiqarish"
+       ]
+      },
+      {
+       "nom": "FIK",
+       "bandlar": [
+        "A / Q1",
+        "100 dan kichik"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "benzinli",
+        "dizel",
+        "bug‘ turbinasi"
+       ]
+      },
+      {
+       "nom": "Ekologiya",
+       "bandlar": [
+        "zararli gaz",
+        "elektr transport"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yoqilg‘i energiyasini ishga aylantiraman, to‘rt taktda ishlayman. Men kimman?",
+     "javob": "issiqlik dvigateli"
+    },
+    "hikmat": "Hamma energiya ham ishga aylanmaydi.",
+    "kalit_soz": "DVIGATEL",
+    "xato_yechim": {
+     "shart": "Q1 2000000 joul, A 600000 joul. FIK?",
+     "xato": "2000000 / 600000",
+     "togri": "600000 / 2000000 — 0,3 — 30 foiz",
+     "sabab": "FIK — A / Q1, katta songa bo‘lmaymiz"
+    },
+    "guruh_nomlari": [
+     "Takt guruhi",
+     "FIK guruhi",
+     "Ekolog guruhi",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Dvigatel ustaxonasi»",
+     "topshiriq": "Guruh dvigatel taktlari va FIK ni o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "Q1 2000000 joul, A 600000 joul bo‘lsa FIK?",
+     "B": "Q1 400000 joul, A 100000 joul bo‘lsa FIK?",
+     "C": "FIK 40 foiz, Q1 5000 joul bo‘lsa A?"
+    },
+    "sinkveyn": [
+     "Dvigatel",
+     "kuchli, issiq",
+     "yonadi, siqadi, harakatlantiradi",
+     "Energiya ishga aylanadi",
+     "Porshen"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh dvigatelning ishini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: taktlar",
+      "2-guruh: FIK hisobi",
+      "3-guruh: turlari",
+      "4-guruh: ekologiya"
+     ],
+     "yakun": "Natijalar: 30 foiz; 25 foiz; 2000 joul."
+    }
+   }
+  },
+  {
+   "mavzu": "Elektrlanish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Elektrlanish",
+      "matn": "Ba’zi jismlar bir-biriga ishqalanganda yengil jismlarni tortadigan bo‘lib qoladi. Bu hodisa elektrlanish deyiladi, bunday jism esa zaryadlangan jism deyiladi. Qadimgi yunonlar qahrabo (yunoncha elektron) ni junga ishqalab shuni kuzatgan, shuning uchun elektr nomi shundan olingan.",
+      "misol": "Taroq sochga ishqalansa, qog‘oz parchalarini tortadi.",
+      "savol": "Elektrlangan jism nimani tortadi?",
+      "javob": "yengil jismlarni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikki xil zaryad",
+      "matn": "Zaryad ikki xil: musbat va manfiy. Ipakka ishqalangan shisha tayoqcha musbat, junga ishqalangan ebonit tayoqcha manfiy zaryadlanadi. Bir xil ishorali zaryadlar bir-birini itaradi, har xil ishoralilar esa tortadi.",
+      "misol": "Ikki musbat zaryadlangan shar bir-birini itaradi.",
+      "savol": "Bir xil ishorali zaryadlar nima qiladi?",
+      "javob": "itaradi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Atom tuzilishi",
+      "matn": "Atomning markazida musbat zaryadli yadro, uning atrofida manfiy zaryadli elektronlar bor. Odatda atom neytral. Elektron ortiqcha bo‘lsa jism manfiy, kam bo‘lsa musbat zaryadlanadi. Ishqalanishda elektronlar bir jismdan ikkinchisiga o‘tadi.",
+      "misol": "Ebonit junga ishqalanganda elektron oladi.",
+      "savol": "Elektron ortiqcha bo‘lsa jism qanday zaryadlanadi?",
+      "javob": "manfiy",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Zaryad birligi va saqlanish",
+      "matn": "Zaryad q harfi bilan belgilanadi, birligi — kulon (C). Yopiq tizimda zaryadlarning algebraik yig‘indisi o‘zgarmaydi — bu zaryadning saqlanish qonuni. Bir xil ikki shar tegizilsa, umumiy zaryad ular orasida teng bo‘linadi.",
+      "misol": "6 musbat va 2 manfiy zaryad: yig‘indi 4, har bir sharda 2.",
+      "savol": "Zaryad birligi nima?",
+      "javob": "kulon",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘tkazgich va dielektrik",
+      "matn": "Zaryadlar erkin harakatlana oladigan jismlar o‘tkazgich (metall, tuzli suv), harakatlana olmaydiganlari dielektrik yoki izolyator (shisha, plastmassa, kauchuk) deyiladi. Zaryadni aniqlash uchun elektroskop ishlatiladi: zaryad bo‘lsa, varaqchalari itarishib ochiladi.",
+      "misol": "Elektr simining ustki qismi plastmassadan.",
+      "savol": "Elektroskop nimani ko‘rsatadi?",
+      "javob": "zaryad borligini",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Zaryad ikki xil: musbat va manfiy. Bir xil zaryadlar itaradi, har xillari tortadi. Birligi — kulon. Zaryadning algebraik yig‘indisi saqlanadi.",
+    "misollar": [
+     {
+      "shart": "Bir xil ikki shar: birida 6 mikrokulon musbat, ikkinchisida 2 mikrokulon manfiy zaryad. Tegizilsa, har birida qancha zaryad qoladi?",
+      "yechim": [
+       "Yig‘indi: 6 ayiramiz 2 — 4.",
+       "Teng bo‘lamiz: 4 / 2.",
+       "Javob 2 mikrokulon musbat."
+      ],
+      "javob": "2 mikrokulon musbat"
+     },
+     {
+      "shart": "Bir xil ikki shar: 8 va 4 mikrokulon musbat. Tegizilsa, har birida?",
+      "yechim": [
+       "Yig‘indi 8 qo‘shamiz 4 — 12.",
+       "12 / 2 — 6.",
+       "Javob 6 mikrokulon musbat."
+      ],
+      "javob": "6 mikrokulon musbat"
+     },
+     {
+      "shart": "Bir xil ikki shar: 10 mikrokulon manfiy va 2 mikrokulon musbat. Tegizilsa, har birida?",
+      "yechim": [
+       "Yig‘indi: 10 manfiy, 2 musbat — 8 manfiy.",
+       "8 / 2 — 4.",
+       "Javob 4 mikrokulon manfiy."
+      ],
+      "javob": "4 mikrokulon manfiy"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Taroq tajribasi",
+      "topshiriq": "Taroqni quruq sochga ishqalab, mayda qog‘oz parchalariga yaqinlashtiring.",
+      "yechim": "Elektrlangan taroq tortadi.",
+      "mahsulot": "taroq, qog‘oz"
+     },
+     {
+      "nom": "Ikki shar",
+      "topshiriq": "Ipga osilgan ikki zaryadlangan shar itarishishini kuzating.",
+      "yechim": "Bir xil zaryad itaradi.",
+      "mahsulot": "ip, ikki shar"
+     },
+     {
+      "nom": "Zaryad bo‘lishamiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Yig‘indini ikkiga bo‘l.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Xavfsizlik",
+      "topshiriq": "Statik elektr zararini kamaytirish yo‘llarini yozing.",
+      "yechim": "Yerga ulash.",
+      "mahsulot": "xulosa varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "6 ayiramiz 2 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "12 / 2 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "8 / 2 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "Zaryad birligi?",
+      "javob": "kulon"
+     },
+     {
+      "shart": "Ebonit junga ishqalansa qanday zaryadlanadi?",
+      "javob": "manfiy"
+     },
+     {
+      "shart": "Har xil zaryadlar nima qiladi?",
+      "javob": "tortadi"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Bir xil zaryadlar tortadi deydi",
+      "sabab": "bir xil zaryadlar itaradi",
+      "oldini_olish": "bir xil — itaradi, har xil — tortadi"
+     },
+     {
+      "xato": "Atomda musbat zaryadli zarra elektron deydi",
+      "sabab": "elektron manfiy",
+      "oldini_olish": "yadro musbat, elektron manfiy"
+     },
+     {
+      "xato": "Tegizilganda zaryad yo‘qoladi deydi",
+      "sabab": "zaryad saqlanadi",
+      "oldini_olish": "zaryad faqat qayta taqsimlanadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "chang tutuvchi filtrlar"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "kiyim ishqalanganda uchqun"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "atom tuzilishi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Statik elektr»",
+     "muammo": "Ishqalanishdan hosil bo‘lgan zaryadni qanday ko‘rsatamiz?",
+     "mahsulot": "tajriba daftari",
+     "bosqichlar": [
+      "tajriba tanlash",
+      "ishqalash",
+      "kuzatish",
+      "xulosa yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tajriba tanlang",
+      "Kuzating",
+      "Xulosa yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba to‘g‘ri",
+      "kuzatuv aniq",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Zaryadlar shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "6 mikrokulon musbat va 2 mikrokulon manfiy shar tegizildi.",
+       "topshiriq": "Har birida necha mikrokulon?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "8 va 4 mikrokulon musbat shar tegizildi.",
+       "topshiriq": "Har birida necha mikrokulon?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "10 manfiy va 2 musbat shar tegizildi.",
+       "topshiriq": "Har birida necha mikrokulon?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "Zaryad birligi.",
+       "topshiriq": "Nima?",
+       "javob": "kulon",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Yig‘indini topdingizmi?",
+      "Ikkiga bo‘ldingizmi?",
+      "Ishorani yozdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Elektrlanish",
+      "tarif": "jismning zaryad olishi"
+     },
+     {
+      "atama": "Zaryad",
+      "tarif": "elektr hodisalarini belgilovchi kattalik"
+     },
+     {
+      "atama": "Kulon",
+      "tarif": "zaryad birligi"
+     },
+     {
+      "atama": "O‘tkazgich",
+      "tarif": "zaryadni o‘tkazadigan jism"
+     },
+     {
+      "atama": "Dielektrik",
+      "tarif": "zaryadni o‘tkazmaydigan jism"
+     },
+     {
+      "atama": "Elektroskop",
+      "tarif": "zaryadni aniqlovchi asbob"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Zaryad ikki xil bo‘ladi",
+      "togri": true,
+      "izoh": "musbat va manfiy"
+     },
+     {
+      "matn": "Bir xil zaryadlar tortadi",
+      "togri": false,
+      "izoh": "itaradi"
+     },
+     {
+      "matn": "Elektron manfiy zaryadli",
+      "togri": true,
+      "izoh": "atom tarkibi"
+     },
+     {
+      "matn": "Zaryad tegizilganda yo‘qoladi",
+      "togri": false,
+      "izoh": "saqlanadi"
+     },
+     {
+      "matn": "12 / 2 — 6",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Metall o‘tkazgich",
+      "togri": true,
+      "izoh": "erkin zaryadlar"
+     },
+     {
+      "matn": "Shisha o‘tkazgichdir",
+      "togri": false,
+      "izoh": "dielektrik"
+     },
+     {
+      "matn": "Zaryad birligi kulon",
+      "togri": true,
+      "izoh": "C"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Elektrlanish?",
+      "javob": "jismning zaryad olishi"
+     },
+     {
+      "savol": "Zaryad turlari?",
+      "javob": "musbat va manfiy"
+     },
+     {
+      "savol": "Bir xil zaryadlar?",
+      "javob": "itaradi"
+     },
+     {
+      "savol": "Har xil?",
+      "javob": "tortadi"
+     },
+     {
+      "savol": "Elektron zaryadi?",
+      "javob": "manfiy"
+     },
+     {
+      "savol": "Birlik?",
+      "javob": "kulon"
+     },
+     {
+      "savol": "Saqlanish qonuni?",
+      "javob": "yig‘indi o‘zgarmaydi"
+     },
+     {
+      "savol": "O‘tkazgich misoli?",
+      "javob": "metall"
+     },
+     {
+      "savol": "Dielektrik misoli?",
+      "javob": "shisha"
+     },
+     {
+      "savol": "12 / 2?",
+      "javob": "6"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ishqala",
+      "matn": "Jismlarni ishqala.",
+      "savol": "Nima bo‘ldi?"
+     },
+     {
+      "nom": "Kuzat",
+      "matn": "Yengil jismlarni yaqinlashtir.",
+      "savol": "Tortadimi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Zaryadlarni qo‘sh va bo‘l.",
+      "savol": "Har birida necha?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Zaryad saqlandimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun quruq havoda sochni taraganda soch ko‘tariladi?",
+    "keys": {
+     "vaziyat": "Plastmassa taroq quruq sochga ishqalandi va qog‘oz parchalarini tortdi.",
+     "savollar": [
+      "Taroqda nima hosil bo‘ldi?",
+      "Elektronlar qayerga o‘tdi?"
+     ]
+    },
+    "tezis": "Zaryad saqlanadi",
+    "taqqoslash": {
+     "a": "O‘tkazgich",
+     "b": "Dielektrik",
+     "umumiy": [
+      "modda turlari",
+      "elektr hodisalarida qatnashadi"
+     ],
+     "a_farq": [
+      "erkin zaryadlari bor",
+      "metall"
+     ],
+     "b_farq": [
+      "erkin zaryadi yo‘q",
+      "shisha, kauchuk"
+     ]
+    },
+    "klaster": {
+     "markaz": "Elektrlanish",
+     "shoxlar": [
+      {
+       "nom": "Zaryad",
+       "bandlar": [
+        "musbat",
+        "manfiy"
+       ]
+      },
+      {
+       "nom": "Ta’sir",
+       "bandlar": [
+        "bir xil — itaradi",
+        "har xil — tortadi"
+       ]
+      },
+      {
+       "nom": "Atom",
+       "bandlar": [
+        "yadro musbat",
+        "elektron manfiy"
+       ]
+      },
+      {
+       "nom": "Qonun",
+       "bandlar": [
+        "zaryad saqlanadi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ishqalanishdan hosil bo‘laman va yengil jismlarni tortaman. Men kimman?",
+     "javob": "elektrlanish"
+    },
+    "hikmat": "Zaryad yo‘qolmaydi, faqat o‘tadi.",
+    "kalit_soz": "ZARYAD",
+    "xato_yechim": {
+     "shart": "6 mikrokulon musbat va 2 mikrokulon manfiy bir xil shar tegizildi. Har birida?",
+     "xato": "6 va 2 ning o‘rtachasi — 4 manfiy",
+     "togri": "yig‘indi 4, har birida 2 mikrokulon musbat",
+     "sabab": "ishorali qo‘shiladi, keyin ikkiga bo‘linadi"
+    },
+    "guruh_nomlari": [
+     "Zaryadchilar",
+     "Tajribachilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Statik elektr laboratoriyasi»",
+     "topshiriq": "Guruh elektrlanishni kuzatadi."
+    },
+    "vazifalar": {
+     "A": "6 musbat va 2 manfiy zaryadli sharlar tegizilsa, har birida?",
+     "B": "8 va 4 musbat zaryadli sharlar tegizilsa, har birida?",
+     "C": "Taroq tajribasini o‘tkazing va izohlang."
+    },
+    "sinkveyn": [
+     "Zaryad",
+     "musbat, manfiy",
+     "itaradi, tortadi, o‘tadi",
+     "Zaryad saqlanadi",
+     "Elektron"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh elektrlanishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tajriba",
+      "2-guruh: atom",
+      "3-guruh: hisob",
+      "4-guruh: o‘tkazgich va dielektrik"
+     ],
+     "yakun": "Natijalar: 2; 6; 4 mikrokulon."
+    }
+   }
+  },
+  {
+   "mavzu": "Elektr maydon",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Maydon tushunchasi",
+      "matn": "Zaryadlangan jism atrofida elektr maydon bo‘ladi. Bu maydon materiyaning alohida turi: biz uni ko‘rmaymiz, lekin boshqa zaryadga kuch bilan ta’sir qilishidan bilamiz. Zaryadlar bir-biriga maydon orqali ta’sir qiladi.",
+      "misol": "Zaryadlangan taroq qog‘ozni masofadan tortadi.",
+      "savol": "Zaryadlar bir-biriga nima orqali ta’sir qiladi?",
+      "javob": "maydon orqali",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kulon qonuni",
+      "matn": "Ikki nuqtaviy zaryad orasidagi kuch zaryadlar ko‘paytmasiga to‘g‘ri, masofa kvadratiga teskari proporsional. Masofa 2 marta ortsa, kuch 4 marta kamayadi, 3 marta ortsa — 9 marta kamayadi. Qonunni 1785-yilda fransuz fizigi Sharl Kulon aniqlagan.",
+      "misol": "Zaryadlarni uzoqlashtirsak, ularning ta’siri susayadi.",
+      "savol": "Masofa 2 marta ortsa, kuch necha marta kamayadi?",
+      "javob": "4 marta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kuch chiziqlari",
+      "matn": "Maydonni kuch chiziqlari bilan tasvirlaymiz. Ular musbat zaryaddan chiqib, manfiy zaryadga kiradi. Chiziqlar qalin joyda maydon kuchli, siyrak joyda kuchsiz bo‘ladi.",
+      "misol": "Yog‘och qipiqlari kuch chiziqlari bo‘ylab joylashadi.",
+      "savol": "Kuch chiziqlari qaysi zaryaddan chiqadi?",
+      "javob": "musbat zaryaddan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kuchlanganlik",
+      "matn": "Maydonning kuch tavsifi — kuchlanganlik E. Uni maydondagi sinov zaryadga ta’sir etuvchi kuchning shu zaryadga nisbati bilan topamiz: E — F / q. Birligi — nyuton / kulon.",
+      "misol": "F 12 nyuton, q 4 kulon bo‘lsa, E 3 nyuton / kulon.",
+      "savol": "12 / 4 nechaga teng?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanilishi",
+      "matn": "Elektr maydon changni tutuvchi filtrlarda, elektrostatik bo‘yashda va nusxa ko‘chirish mashinasida ishlatiladi. Momaqaldiroq bulutlar orasidagi kuchli maydon natijasi. Chaqmoqdan saqlanish uchun binolarga chaqmoqo‘tkazgich o‘rnatiladi.",
+      "misol": "Baland binolar ustida uchli chaqmoqo‘tkazgich turadi.",
+      "savol": "Chaqmoqdan nima saqlaydi?",
+      "javob": "chaqmoqo‘tkazgich",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Zaryad atrofida elektr maydon bo‘ladi. Kulon qonuni: masofa ortsa kuch kvadrat bo‘yicha kamayadi. Kuchlanganlik E — F / q. Kuch chiziqlari musbatdan manfiyga yo‘nalgan.",
+    "misollar": [
+     {
+      "shart": "Ikki zaryad orasidagi kuch 36 nyuton. Masofa 3 marta ortsa, kuch nechaga teng bo‘ladi?",
+      "yechim": [
+       "3 marta ortsa, kuch 9 marta kamayadi.",
+       "36 / 9.",
+       "Javob 4 nyuton."
+      ],
+      "javob": "4 nyuton"
+     },
+     {
+      "shart": "Ikki zaryad orasidagi kuch 8 nyuton. Masofa 2 marta kamaysa, kuch nechaga teng?",
+      "yechim": [
+       "2 marta kamaysa, kuch 4 marta ortadi.",
+       "8 · 4.",
+       "Javob 32 nyuton."
+      ],
+      "javob": "32 nyuton"
+     },
+     {
+      "shart": "Sinov zaryad 4 kulon, unga ta’sir etuvchi kuch 12 nyuton. Kuchlanganlik?",
+      "yechim": [
+       "E — F / q.",
+       "12 / 4.",
+       "Javob 3 nyuton / kulon."
+      ],
+      "javob": "3 nyuton / kulon"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Maydonni sezamiz",
+      "topshiriq": "Zaryadlangan taroqni yengil qog‘ozga yaqinlashtiring va masofani o‘zgartiring.",
+      "yechim": "Yaqin bo‘lsa kuchli tortadi.",
+      "mahsulot": "taroq, qog‘oz"
+     },
+     {
+      "nom": "Kuch chiziqlarini chizamiz",
+      "topshiriq": "Musbat va manfiy zaryad atrofida chiziqlarni chizing.",
+      "yechim": "Musbatdan manfiyga.",
+      "mahsulot": "katakli qog‘oz"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Kvadrat qonuniga e’tibor bering.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Chaqmoq xavfsizligi",
+      "topshiriq": "Momaqaldiroqda o‘zini tutish qoidalarini yozing.",
+      "yechim": "Daraxt tagida turmaslik.",
+      "mahsulot": "qoidalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "36 / 9 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "8 · 4 nechaga teng?",
+      "javob": "32"
+     },
+     {
+      "shart": "12 / 4 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "Masofa 2 marta ortsa kuch necha marta kamayadi?",
+      "javob": "4"
+     },
+     {
+      "shart": "Kuch chiziqlari qayerdan chiqadi?",
+      "javob": "musbat zaryaddan"
+     },
+     {
+      "shart": "Kulon qonuni qaysi yilda aniqlangan?",
+      "javob": "1785"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Masofa 2 marta ortsa kuch 2 marta kamayadi deydi",
+      "sabab": "masofa kvadratiga bog‘liq",
+      "oldini_olish": "4 marta kamayadi"
+     },
+     {
+      "xato": "Kuch chiziqlari manfiydan chiqadi deydi",
+      "sabab": "musbatdan chiqadi",
+      "oldini_olish": "musbatdan manfiyga"
+     },
+     {
+      "xato": "Kuchlanganlikni q / F deb hisoblaydi",
+      "sabab": "F ni q ga bo‘lish kerak",
+      "oldini_olish": "E — F / q"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "chang tutuvchi filtrlar"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "momaqaldiroq va chaqmoq"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "teskari proporsionallik"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Maydon va xavfsizlik»",
+     "muammo": "Chaqmoqdan qanday saqlanamiz va maydon qayerda ishlatiladi?",
+     "mahsulot": "maket va plakat",
+     "bosqichlar": [
+      "maket tayyorlash",
+      "kuch chiziqlarini chizish",
+      "hisoblash",
+      "qoidalar yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Maket tayyorlang",
+      "Chizma chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "maket to‘g‘ri",
+      "chizma aniq",
+      "hisob to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Maydon vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "1-tepalik",
+       "matn": "Kuch 36 nyuton, masofa 3 marta ortdi.",
+       "topshiriq": "Yangi kuch?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "2-tepalik",
+       "matn": "Kuch 8 nyuton, masofa 2 marta kamaydi.",
+       "topshiriq": "Yangi kuch?",
+       "javob": "32",
+       "rasm": ""
+      },
+      {
+       "nom": "3-tepalik",
+       "matn": "F 12 nyuton, q 4 kulon.",
+       "topshiriq": "E?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "4-tepalik",
+       "matn": "Kuch chiziqlari qayerdan chiqadi?",
+       "topshiriq": "Qaysi zaryaddan?",
+       "javob": "musbat",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Kvadrat qonunini qo‘lladingizmi?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Elektr maydon",
+      "tarif": "zaryad atrofidagi maydon"
+     },
+     {
+      "atama": "Kulon qonuni",
+      "tarif": "zaryadlar orasidagi kuch qonuni"
+     },
+     {
+      "atama": "Kuch chizig‘i",
+      "tarif": "maydonni tasvirlovchi chiziq"
+     },
+     {
+      "atama": "Kuchlanganlik",
+      "tarif": "maydonning kuch tavsifi"
+     },
+     {
+      "atama": "Nuqtaviy zaryad",
+      "tarif": "o‘lchami e’tiborga olinmaydigan zaryad"
+     },
+     {
+      "atama": "Chaqmoqo‘tkazgich",
+      "tarif": "binoni chaqmoqdan saqlovchi qurilma"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Zaryad atrofida elektr maydon bo‘ladi",
+      "togri": true,
+      "izoh": "asosiy tushuncha"
+     },
+     {
+      "matn": "Masofa 2 marta ortsa kuch 2 marta kamayadi",
+      "togri": false,
+      "izoh": "4 marta"
+     },
+     {
+      "matn": "Kuch chiziqlari musbat zaryaddan chiqadi",
+      "togri": true,
+      "izoh": "manfiyga kiradi"
+     },
+     {
+      "matn": "E — F / q",
+      "togri": true,
+      "izoh": "kuchlanganlik"
+     },
+     {
+      "matn": "36 / 9 — 4",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Chiziqlar qalin joyda maydon kuchsiz",
+      "togri": false,
+      "izoh": "kuchli"
+     },
+     {
+      "matn": "Kulon qonuni 1785-yilda aniqlangan",
+      "togri": true,
+      "izoh": "Sharl Kulon"
+     },
+     {
+      "matn": "Maydonni ko‘z bilan ko‘ramiz",
+      "togri": false,
+      "izoh": "kuchidan bilamiz"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Elektr maydon?",
+      "javob": "zaryad atrofidagi maydon"
+     },
+     {
+      "savol": "Kulon qonuni?",
+      "javob": "kuch masofa kvadratiga teskari"
+     },
+     {
+      "savol": "Masofa 2 marta ortsa?",
+      "javob": "kuch 4 marta kamayadi"
+     },
+     {
+      "savol": "Kuch chiziqlari?",
+      "javob": "musbatdan manfiyga"
+     },
+     {
+      "savol": "Kuchlanganlik?",
+      "javob": "F / q"
+     },
+     {
+      "savol": "12 / 4?",
+      "javob": "3"
+     },
+     {
+      "savol": "36 / 9?",
+      "javob": "4"
+     },
+     {
+      "savol": "8 · 4?",
+      "javob": "32"
+     },
+     {
+      "savol": "Qaysi yil?",
+      "javob": "1785"
+     },
+     {
+      "savol": "Chaqmoqdan saqlaydi?",
+      "javob": "chaqmoqo‘tkazgich"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Maydon ta’sirini kuzat.",
+      "savol": "Zaryad tortadimi?"
+     },
+     {
+      "nom": "Chiz",
+      "matn": "Kuch chiziqlarini chiz.",
+      "savol": "Yo‘nalishi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Kuchni top.",
+      "savol": "Kvadrat qonuni?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Masofa nimaga ta’sir qiladi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun chaqmoqo‘tkazgich uchli bo‘ladi va binoning eng tepasiga o‘rnatiladi?",
+    "keys": {
+     "vaziyat": "Momaqaldiroq paytida baland daraxt ostida turish xavfli.",
+     "savollar": [
+      "Nima uchun xavfli?",
+      "Qanday saqlanish kerak?"
+     ]
+    },
+    "tezis": "Masofa kvadrati qonuni",
+    "taqqoslash": {
+     "a": "Elektr maydon",
+     "b": "Gravitatsion maydon",
+     "umumiy": [
+      "jismlarga kuch bilan ta’sir qiladi",
+      "masofa ortsa susayadi"
+     ],
+     "a_farq": [
+      "zaryadga ta’sir qiladi",
+      "itaradi ham, tortadi ham"
+     ],
+     "b_farq": [
+      "massaga ta’sir qiladi",
+      "faqat tortadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Elektr maydon",
+     "shoxlar": [
+      {
+       "nom": "Kulon qonuni",
+       "bandlar": [
+        "masofa kvadratiga teskari"
+       ]
+      },
+      {
+       "nom": "Kuch chiziqlari",
+       "bandlar": [
+        "musbatdan manfiyga"
+       ]
+      },
+      {
+       "nom": "Kuchlanganlik",
+       "bandlar": [
+        "F / q"
+       ]
+      },
+      {
+       "nom": "Qo‘llanilishi",
+       "bandlar": [
+        "filtr",
+        "chaqmoqo‘tkazgich"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men zaryad atrofida bo‘laman va boshqa zaryadga kuch bilan ta’sir qilaman. Men kimman?",
+     "javob": "elektr maydon"
+    },
+    "hikmat": "Masofa ortsa, kuch kvadrat bo‘yicha kamayadi.",
+    "kalit_soz": "MAYDON",
+    "xato_yechim": {
+     "shart": "Masofa 3 marta ortdi. Kuch necha marta kamayadi?",
+     "xato": "3 marta",
+     "togri": "9 marta",
+     "sabab": "kuch masofa kvadratiga teskari"
+    },
+    "guruh_nomlari": [
+     "Maydonchilar",
+     "Hisobchilar",
+     "Chizmachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Maydon laboratoriyasi»",
+     "topshiriq": "Guruh elektr maydonni o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "Kuch 36 nyuton, masofa 3 marta ortsa kuch?",
+     "B": "Kuch 8 nyuton, masofa 2 marta kamaysa kuch?",
+     "C": "F 12 nyuton, q 4 kulon bo‘lsa E?"
+    },
+    "sinkveyn": [
+     "Maydon",
+     "ko‘rinmas, kuchli",
+     "tortadi, itaradi, ta’sir qiladi",
+     "Zaryad atrofida maydon bor",
+     "Kulon"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh elektr maydonni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: Kulon qonuni",
+      "2-guruh: kuch chiziqlari",
+      "3-guruh: kuchlanganlik",
+      "4-guruh: chaqmoq xavfsizligi"
+     ],
+     "yakun": "Natijalar: 4; 32; 3."
+    }
+   }
   }
  ]
 }
