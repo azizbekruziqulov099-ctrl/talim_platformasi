@@ -6972,6 +6972,1399 @@
      "yakun": "Natijalar: 2; 6; 30."
     }
    }
+  },
+  {
+   "mavzu": "Zamburug‘lar va lishayniklar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Zamburug‘lar tuzilishi",
+      "matn": "Zamburug‘lar alohida shohlik. Ularda xlorofill yo‘q, shuning uchun fotosintez qilmaydi va tayyor organik moddalar bilan oziqlanadi. Tanasi ingichka iplar — gifalardan iborat, gifalar to‘plami miseliy deyiladi. Hujayra devori xitindan iborat. Zamburug‘lar sporalar bilan ko‘payadi.",
+      "misol": "Zamburug‘ — o‘simlik ham, hayvon ham emas.",
+      "savol": "Zamburug‘ tanasi nimadan iborat?",
+      "javob": "gifalardan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Zamburug‘ turlari",
+      "matn": "Qalpoqchali zamburug‘lar (shampinyon, oq zamburug‘) mevatanasi qalpoqcha va oyoqchadan iborat. Mog‘or zamburug‘lari (mukor, penitsill) non va mevada o‘sadi. Xamirturush (achitqi) bir hujayrali, non va qimiz achitishda ishlatiladi. Parazit zamburug‘lar (zang, qorakuya) ekinlarga zarar yetkazadi. Ayrim qalpoqchali zamburug‘lar zaharli, tanimaganni yemaslik kerak.",
+      "misol": "Tanimagan zamburug‘ni yema.",
+      "savol": "Xamirturush nima uchun ishlatiladi?",
+      "javob": "xamirni achitish uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Lishayniklar",
+      "matn": "Lishayniklar zamburug‘ va suvo‘tning birgalikda yashashi (simbioz) natijasidir. Zamburug‘ suv va mineral tuz beradi, suvo‘t fotosintez qilib oziq beradi. Lishayniklar kalta (qobiq), butasimon va bargsimon bo‘ladi. Ular juda sekin o‘sadi, toshda va daraxt po‘stlog‘ida yashaydi. Havo ifloslangan joyda yo‘qoladi, shuning uchun toza havo ko‘rsatkichidir.",
+      "misol": "Lishayniklar — ikki organizm hamkorligi.",
+      "savol": "Lishayniklar nimaning ko‘rsatkichi?",
+      "javob": "havo tozaligining",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, xamirturush hujayrasi har 2 soatda ikki baravar ko‘payadi deylik. 6 soatda 3 marta ko‘payadi, 2 · 2 · 2 — 8 hujayra. 10 soatda 5 marta, 2 · 2 · 2 · 2 · 2 — 32 hujayra. Zamburug‘larda suv ko‘p: masalan, 500 gramm zamburug‘ning 90 foizi suv bo‘lsa, suv massasi 500 · 0,9 — 450 gramm (taxminiy misol).",
+      "misol": "Zamburug‘ suvga boy.",
+      "savol": "Masalan, 10 soatda xamirturush necha marta ikki baravar ko‘payadi?",
+      "javob": "5 marta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ahamiyati",
+      "matn": "Zamburug‘lar tabiatda chirituvchi sifatida organik qoldiqlarni parchalaydi. Penitsillin antibiotikini 1928-yilda A. Fleming penitsill mog‘oridan topgan, 2026 minus 1928 — 98 yil oldin. Zamburug‘lar non, pishloq va dorilar ishlab chiqarishda kerak. Lishayniklar bo‘yoq va ba’zi dorilarda ishlatiladi.",
+      "misol": "Fleming mog‘ordan antibiotik topdi.",
+      "savol": "Penitsillinni kim topgan?",
+      "javob": "Fleming",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Zamburug‘lar: xlorofill yo‘q, miseliy, spora. Lishayniklar: zamburug‘ va suvo‘t simbiozi, havo ko‘rsatkichi.",
+    "misollar": [
+     {
+      "shart": "Masalan, xamirturush har 2 soatda ikki baravar ko‘payadi. 6 soatda 1 hujayra necha hujayra bo‘ladi?",
+      "yechim": [
+       "6 soat — 3 marta.",
+       "2 · 2 · 2.",
+       "Javob 8."
+      ],
+      "javob": "8"
+     },
+     {
+      "shart": "Masalan, 10 soatda xamirturush 1 hujayradan necha hujayra bo‘ladi?",
+      "yechim": [
+       "5 marta ikki baravar.",
+       "2 · 2 · 2 · 2 · 2.",
+       "Javob 32."
+      ],
+      "javob": "32"
+     },
+     {
+      "shart": "Masalan, 500 gramm zamburug‘ning 90 foizi suv. Suv massasi?",
+      "yechim": [
+       "90 foiz — 0,9.",
+       "500 · 0,9.",
+       "Javob 450 gramm."
+      ],
+      "javob": "450 gramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Mog‘or kuzatuvi",
+      "topshiriq": "Nam nonni yopiq idishda saqlab, mog‘orni kuzating.",
+      "yechim": "Mog‘or rivoji.",
+      "mahsulot": "non, idish"
+     },
+     {
+      "nom": "Mikroskopda xamirturush",
+      "topshiriq": "Xamirturush tomchisini mikroskopda ko‘ring.",
+      "yechim": "Hujayralar.",
+      "mahsulot": "mikroskop"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Daraja va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Lishaynik izlash",
+      "topshiriq": "Daraxt po‘stlog‘ida lishayniklarni toping.",
+      "yechim": "Turi.",
+      "mahsulot": "lupa, daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 2 · 2 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "2 · 2 · 2 · 2 · 2 nechaga teng?",
+      "javob": "32"
+     },
+     {
+      "shart": "500 · 0,9 nechaga teng?",
+      "javob": "450"
+     },
+     {
+      "shart": "2026 minus 1928 nechaga teng?",
+      "javob": "98"
+     },
+     {
+      "shart": "Zamburug‘ tanasi nomi?",
+      "javob": "miseliy"
+     },
+     {
+      "shart": "Lishayniklar nimaning birikmasi?",
+      "javob": "zamburug‘ va suvo‘t"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Zamburug‘ o‘simlik deydi",
+      "sabab": "alohida shohlik",
+      "oldini_olish": "fotosintez qilmaydi"
+     },
+     {
+      "xato": "Zamburug‘larning hammasi yeyiladi deydi",
+      "sabab": "ayrimlari zaharli",
+      "oldini_olish": "tanimagan yemaslik"
+     },
+     {
+      "xato": "Lishayniklar bitta organizm deydi",
+      "sabab": "ikki organizm simbiozi",
+      "oldini_olish": "zamburug‘ va suvo‘t"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "penitsillin"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "havo ko‘rsatkichi"
+     },
+     {
+      "fan": "Oziq-ovqat",
+      "boglanish": "xamirturush"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Zamburug‘lar olami»",
+     "muammo": "Zamburug‘lar va lishayniklar nima uchun kerak?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "mog‘or kuzatuvi",
+      "xamirturush tajribasi",
+      "lishayniklar",
+      "hisob",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kuzating",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Zamburug‘ o‘rmoni»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "6 soatda xamirturush.",
+       "topshiriq": "Hujayra?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "10 soatda xamirturush.",
+       "topshiriq": "Hujayra?",
+       "javob": "32",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "500 gramm, 90 foiz suv.",
+       "topshiriq": "Suv gramm?",
+       "javob": "450",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Penitsillinni kim topgan?",
+       "topshiriq": "Kim?",
+       "javob": "Fleming",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Darajani hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Miseliy",
+      "tarif": "gifalar to‘plami"
+     },
+     {
+      "atama": "Gifa",
+      "tarif": "zamburug‘ ipi"
+     },
+     {
+      "atama": "Simbioz",
+      "tarif": "birgalikda yashash"
+     },
+     {
+      "atama": "Mog‘or",
+      "tarif": "mog‘or zamburug‘i"
+     },
+     {
+      "atama": "Xitin",
+      "tarif": "hujayra devori moddasi"
+     },
+     {
+      "atama": "Lishaynik",
+      "tarif": "zamburug‘ va suvo‘t"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Zamburug‘ fotosintez qiladi",
+      "togri": false,
+      "izoh": "xlorofill yo‘q"
+     },
+     {
+      "matn": "Zamburug‘ tanasi gifalardan",
+      "togri": true,
+      "izoh": "miseliy"
+     },
+     {
+      "matn": "Lishayniklar zamburug‘ va suvo‘t simbiozi",
+      "togri": true,
+      "izoh": "birga yashash"
+     },
+     {
+      "matn": "2 · 2 · 2 — 8",
+      "togri": true,
+      "izoh": "hujayra"
+     },
+     {
+      "matn": "Hamma zamburug‘ yeyiladi",
+      "togri": false,
+      "izoh": "zaharlilari bor"
+     },
+     {
+      "matn": "Penitsillinni Fleming topgan",
+      "togri": true,
+      "izoh": "1928"
+     },
+     {
+      "matn": "500 · 0,9 — 450",
+      "togri": true,
+      "izoh": "gramm"
+     },
+     {
+      "matn": "Lishayniklar toza havoni ko‘rsatadi",
+      "togri": true,
+      "izoh": "indikator"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Zamburug‘ shohligi?",
+      "javob": "alohida"
+     },
+     {
+      "savol": "Miseliy?",
+      "javob": "gifalar"
+     },
+     {
+      "savol": "Xamirturush?",
+      "javob": "achitqi"
+     },
+     {
+      "savol": "Penitsill?",
+      "javob": "mog‘or"
+     },
+     {
+      "savol": "Lishayniklar?",
+      "javob": "simbioz"
+     },
+     {
+      "savol": "Fleming?",
+      "javob": "penitsillin"
+     },
+     {
+      "savol": "2 · 2 · 2?",
+      "javob": "8"
+     },
+     {
+      "savol": "2026 minus 1928?",
+      "javob": "98"
+     },
+     {
+      "savol": "500 · 0,9?",
+      "javob": "450"
+     },
+     {
+      "savol": "Oziqlanish?",
+      "javob": "tayyor organik"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Mog‘orni kuzat.",
+      "savol": "Rangi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Hujayra sonini top.",
+      "savol": "Ikki baravar?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Zamburug‘ va o‘simlik.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ahamiyat?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun lishayniklar havo ifloslangan joyda yo‘qoladi?",
+    "keys": {
+     "vaziyat": "Shaharda daraxt po‘stlog‘ida lishayniklar yo‘qola boshladi.",
+     "savollar": [
+      "Sabab nima?",
+      "Nimani bildiradi?"
+     ]
+    },
+    "tezis": "Zamburug‘ — tabiat tozalovchisi",
+    "taqqoslash": {
+     "a": "Zamburug‘lar",
+     "b": "O‘simliklar",
+     "umumiy": [
+      "hujayrali organizm",
+      "tuproqda yashaydi"
+     ],
+     "a_farq": [
+      "fotosintez yo‘q",
+      "hujayra devori xitin"
+     ],
+     "b_farq": [
+      "fotosintez qiladi",
+      "hujayra devori kletchatka"
+     ]
+    },
+    "klaster": {
+     "markaz": "Zamburug‘lar va lishayniklar",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "gifa",
+        "miseliy",
+        "spora"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "qalpoqchali",
+        "mog‘or",
+        "xamirturush"
+       ]
+      },
+      {
+       "nom": "Lishayniklar",
+       "bandlar": [
+        "simbioz",
+        "indikator"
+       ]
+      },
+      {
+       "nom": "Ahamiyat",
+       "bandlar": [
+        "chirituvchi",
+        "penitsillin",
+        "non"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men fotosintez qilmayman, tanam iplardan iborat. Men kimman?",
+     "javob": "zamburug‘"
+    },
+    "hikmat": "Zamburug‘ — tabiat tozalovchisi.",
+    "kalit_soz": "ZAMBURUG",
+    "xato_yechim": {
+     "shart": "Zamburug‘ fotosintez qiladimi?",
+     "xato": "qiladi",
+     "togri": "qilmaydi",
+     "sabab": "xlorofill yo‘q"
+    },
+    "guruh_nomlari": [
+     "Zamburug‘chilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Zamburug‘lar olami»",
+     "topshiriq": "Guruh mog‘or kuzatuvini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "6 soatda xamirturush hujayrasi?",
+     "B": "10 soatda xamirturush hujayrasi?",
+     "C": "500 gramm zamburug‘da suv?"
+    },
+    "sinkveyn": [
+     "Zamburug‘",
+     "yumshoq, nam",
+     "o‘sadi, chiritadi, achitadi",
+     "Tabiat tozalovchisi",
+     "Miseliy"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh zamburug‘lar va lishayniklarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: turlari",
+      "3-guruh: lishayniklar",
+      "4-guruh: ahamiyat"
+     ],
+     "yakun": "Natijalar: 8; 32; 450."
+    }
+   }
+  },
+  {
+   "mavzu": "Bakteriyalar va viruslar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Bakteriyalar tuzilishi",
+      "matn": "Bakteriyalar — bir hujayrali organizmlar, ularda shakllangan yadro yo‘q (prokariotlar). Hujayrasi qobiq, sitoplazma va halqasimon DNKdan iborat. Shakli bo‘yicha kokklar (sharsimon), tayoqchalar, vibrionlar (vergulsimon) va spirillalar (buralgan). O‘lchami taxminan 1 mikrometr, ya’ni millimetrning mingdan biri.",
+      "misol": "Bakteriya — eng mayda hujayrali organizm.",
+      "savol": "Bakteriyalarda yadro bormi?",
+      "javob": "shakllangan yadro yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘payishi va hisob",
+      "matn": "Bakteriyalar ikkiga bo‘linib ko‘payadi. Qulay sharoitda taxminan 20 daqiqada bo‘linish mumkin. Masalan, 1 soatda 3 marta bo‘linsa, 2 · 2 · 2 — 8 bakteriya, 2 soatda 6 marta bo‘linsa, 2 · 2 · 2 · 2 · 2 · 2 — 64 bakteriya. Bir millimetrga taxminan 1000 bakteriya sig‘sa, 5 millimetrga 5 · 1000 — 5000 bakteriya sig‘adi.",
+      "misol": "Bo‘linish — juda tez ko‘payish.",
+      "savol": "Bakteriya qanday ko‘payadi?",
+      "javob": "ikkiga bo‘linib",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Foydali va zararli bakteriyalar",
+      "matn": "Foydali bakteriyalar: sut-kislota bakteriyalari qatiq va pishloq beradi; tuganak bakteriyalar azotni o‘zlashtiradi; ichakdagi bakteriyalar hazmga yordam beradi. Zararli bakteriyalar sil, vabo, angina kabi kasalliklarni keltirib chiqaradi. Chirituvchi bakteriyalar organik qoldiqlarni parchalaydi va tabiatda moddalar aylanishini ta’minlaydi.",
+      "misol": "Bakteriyalarning ko‘pi foydali.",
+      "savol": "Qatiq qaysi bakteriyalardan?",
+      "javob": "sut-kislota bakteriyalaridan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Viruslar",
+      "matn": "Viruslar hujayrasiz, juda mayda zarralar bo‘lib, oqsil qobiq va ichida nuklein kislotadan iborat. Ular faqat tirik hujayra ichida ko‘payadi, shuning uchun ularni tirik va jonsiz tabiat chegarasida deb hisoblashadi. Viruslar gripp, qizamiq, kovid kabi kasalliklarni keltiradi. O‘simliklar va bakteriyalar ham viruslar bilan kasallanadi.",
+      "misol": "Virus — tirik hujayrasiz ko‘paymaydi.",
+      "savol": "Virus qayerda ko‘payadi?",
+      "javob": "tirik hujayra ichida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Himoya",
+      "matn": "Antibiotiklar bakteriyalarga ta’sir qiladi, viruslarga esa ta’sir qilmaydi. Vaksinalar organizmni kasallikdan oldindan himoya qiladi. Qo‘lni sovunlab yuvish, toza ovqat va sifatli suv ko‘p kasalliklardan saqlaydi. Antibiotikni faqat shifokor buyurgandagina ichish kerak, aks holda bakteriyalar chidamli bo‘lib qoladi.",
+      "misol": "Vaksina — oldindan himoya.",
+      "savol": "Antibiotik viruslarga ta’sir qiladimi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Bakteriyalar: yadrosiz, bo‘linib ko‘payadi. Viruslar: hujayrasiz, hujayra ichida ko‘payadi. Antibiotik faqat bakteriyaga.",
+    "misollar": [
+     {
+      "shart": "Masalan, bakteriya 20 daqiqada bo‘linadi. 1 soatda 1 bakteriyadan nechta bo‘ladi?",
+      "yechim": [
+       "1 soat — 3 marta.",
+       "2 · 2 · 2.",
+       "Javob 8."
+      ],
+      "javob": "8"
+     },
+     {
+      "shart": "Masalan, 2 soatda 6 marta bo‘linsa, 1 bakteriyadan nechta bo‘ladi?",
+      "yechim": [
+       "2 · 2 · 2 · 2 · 2 · 2.",
+       "Hisoblang.",
+       "Javob 64."
+      ],
+      "javob": "64"
+     },
+     {
+      "shart": "Masalan, 1 millimetrga 1000 bakteriya sig‘adi. 5 millimetrga?",
+      "yechim": [
+       "5 · 1000.",
+       "Hisoblang.",
+       "Javob 5000."
+      ],
+      "javob": "5000"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qatiq tajribasi",
+      "topshiriq": "Qatiq tayyorlashda sut-kislota bakteriyalarini kuzating.",
+      "yechim": "Sutning qatiqqa aylanishi.",
+      "mahsulot": "sut, qatiq"
+     },
+     {
+      "nom": "Qo‘l yuvish",
+      "topshiriq": "Sovun bilan qo‘l yuvish qadamlarini chizing.",
+      "yechim": "Gigiyena.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Daraja.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Shakllar",
+      "topshiriq": "Bakteriya shakllarini chizing.",
+      "yechim": "Kokk, tayoqcha.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 2 · 2 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "2 · 2 · 2 · 2 · 2 · 2 nechaga teng?",
+      "javob": "64"
+     },
+     {
+      "shart": "5 · 1000 nechaga teng?",
+      "javob": "5000"
+     },
+     {
+      "shart": "Bakteriya shakllaridan biri?",
+      "javob": "kokk"
+     },
+     {
+      "shart": "Virus qayerda ko‘payadi?",
+      "javob": "hujayra ichida"
+     },
+     {
+      "shart": "Antibiotik kimga ta’sir qiladi?",
+      "javob": "bakteriyaga"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Bakteriyalarning hammasi zararli deydi",
+      "sabab": "ko‘pi foydali",
+      "oldini_olish": "qatiq, chirituvchi"
+     },
+     {
+      "xato": "Antibiotik virusga ta’sir qiladi deydi",
+      "sabab": "faqat bakteriyaga",
+      "oldini_olish": "gripp virusdan"
+     },
+     {
+      "xato": "Virus hujayrali organizm deydi",
+      "sabab": "hujayrasiz",
+      "oldini_olish": "oqsil va nuklein kislota"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "vaksina"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "nuklein kislota"
+     },
+     {
+      "fan": "Gigiyena",
+      "boglanish": "qo‘l yuvish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Bakteriyalar va viruslar»",
+     "muammo": "Mikroorganizmlar foydali va zararlimi?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "qatiq tajribasi",
+      "shakllar",
+      "ko‘payish hisobi",
+      "himoya choralari",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kuzating",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Mikroolam»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "1 soatda 3 bo‘linish.",
+       "topshiriq": "Bakteriya?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "2 soatda 6 bo‘linish.",
+       "topshiriq": "Bakteriya?",
+       "javob": "64",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "5 millimetr, millimetrga 1000.",
+       "topshiriq": "Bakteriya?",
+       "javob": "5000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Antibiotik.",
+       "topshiriq": "Kimga?",
+       "javob": "bakteriyaga",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Darajani hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Prokariot",
+      "tarif": "yadrosiz organizm"
+     },
+     {
+      "atama": "Kokk",
+      "tarif": "sharsimon bakteriya"
+     },
+     {
+      "atama": "Virus",
+      "tarif": "hujayrasiz zarra"
+     },
+     {
+      "atama": "Antibiotik",
+      "tarif": "bakteriyaga qarshi dori"
+     },
+     {
+      "atama": "Vaksina",
+      "tarif": "oldindan himoya vositasi"
+     },
+     {
+      "atama": "Mikroorganizm",
+      "tarif": "ko‘zga ko‘rinmas organizm"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Bakteriyalarda shakllangan yadro yo‘q",
+      "togri": true,
+      "izoh": "prokariot"
+     },
+     {
+      "matn": "Virus hujayrali organizm",
+      "togri": false,
+      "izoh": "hujayrasiz"
+     },
+     {
+      "matn": "Bakteriya bo‘linib ko‘payadi",
+      "togri": true,
+      "izoh": "ikkiga"
+     },
+     {
+      "matn": "2 · 2 · 2 — 8",
+      "togri": true,
+      "izoh": "bakteriya"
+     },
+     {
+      "matn": "Antibiotik virusga ta’sir qiladi",
+      "togri": false,
+      "izoh": "faqat bakteriyaga"
+     },
+     {
+      "matn": "Qatiq bakteriyalar yordamida tayyorlanadi",
+      "togri": true,
+      "izoh": "sut-kislota"
+     },
+     {
+      "matn": "5 · 1000 — 5000",
+      "togri": true,
+      "izoh": "bakteriya"
+     },
+     {
+      "matn": "Vaksina oldindan himoya qiladi",
+      "togri": true,
+      "izoh": "kasallikdan"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Bakteriya?",
+      "javob": "yadrosiz hujayra"
+     },
+     {
+      "savol": "Kokk?",
+      "javob": "sharsimon"
+     },
+     {
+      "savol": "Virus?",
+      "javob": "hujayrasiz"
+     },
+     {
+      "savol": "Vaksina?",
+      "javob": "himoya"
+     },
+     {
+      "savol": "Antibiotik?",
+      "javob": "bakteriyaga"
+     },
+     {
+      "savol": "Qatiq?",
+      "javob": "sut-kislota bakteriyasi"
+     },
+     {
+      "savol": "2 · 2 · 2?",
+      "javob": "8"
+     },
+     {
+      "savol": "2 · 2 · 2 · 2 · 2 · 2?",
+      "javob": "64"
+     },
+     {
+      "savol": "5 · 1000?",
+      "javob": "5000"
+     },
+     {
+      "savol": "Chirituvchi?",
+      "javob": "qoldiqni parchalaydi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Qatiqni kuzat.",
+      "savol": "Qanday?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Bakteriya sonini top.",
+      "savol": "Ikki baravar?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Bakteriya va virus.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Himoya?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun antibiotikni faqat shifokor buyurganda ichish kerak?",
+    "keys": {
+     "vaziyat": "Bola gripp bo‘ldi, qarindoshi antibiotik berishni maslahat berdi.",
+     "savollar": [
+      "Antibiotik gripp virusiga ta’sir qiladimi?",
+      "Kim maslahat berishi kerak?"
+     ]
+    },
+    "tezis": "Mikroblar — ko‘rinmas hamkor va dushman",
+    "taqqoslash": {
+     "a": "Bakteriyalar",
+     "b": "Viruslar",
+     "umumiy": [
+      "mikroskopik",
+      "kasallik qo‘zg‘atishi mumkin"
+     ],
+     "a_farq": [
+      "hujayrali",
+      "bo‘linib ko‘payadi"
+     ],
+     "b_farq": [
+      "hujayrasiz",
+      "hujayra ichida ko‘payadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Bakteriyalar va viruslar",
+     "shoxlar": [
+      {
+       "nom": "Bakteriya",
+       "bandlar": [
+        "prokariot",
+        "shakllar",
+        "bo‘linish"
+       ]
+      },
+      {
+       "nom": "Foydasi",
+       "bandlar": [
+        "qatiq",
+        "chirituvchi",
+        "azot"
+       ]
+      },
+      {
+       "nom": "Virus",
+       "bandlar": [
+        "hujayrasiz",
+        "gripp"
+       ]
+      },
+      {
+       "nom": "Himoya",
+       "bandlar": [
+        "vaksina",
+        "gigiyena"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men hujayrasizman, faqat tirik hujayrada ko‘payaman. Men kimman?",
+     "javob": "virus"
+    },
+    "hikmat": "Mikroolam — ko‘rinmas, ammo kuchli.",
+    "kalit_soz": "MIKROB",
+    "xato_yechim": {
+     "shart": "Antibiotik virusga ta’sir qiladimi?",
+     "xato": "ta’sir qiladi",
+     "togri": "ta’sir qilmaydi",
+     "sabab": "faqat bakteriyaga"
+    },
+    "guruh_nomlari": [
+     "Mikrobiologlar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bakteriyalar va viruslar»",
+     "topshiriq": "Guruh qatiq tajribasini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "1 soatda 3 bo‘linish?",
+     "B": "2 soatda 6 bo‘linish?",
+     "C": "5 millimetrda bakteriya?"
+    },
+    "sinkveyn": [
+     "Mikrob",
+     "mayda, tez",
+     "bo‘linadi, ko‘payadi, ta’sir qiladi",
+     "Ko‘rinmas olam",
+     "Virus"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh bakteriya va viruslarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: bakteriya",
+      "2-guruh: foydasi",
+      "3-guruh: virus",
+      "4-guruh: himoya"
+     ],
+     "yakun": "Natijalar: 8; 64; 5000."
+    }
+   }
+  },
+  {
+   "mavzu": "O‘simliklar ekologiyasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ekologik omillar",
+      "matn": "O‘simliklar ekologiyasi o‘simliklarning muhit bilan aloqasini o‘rganadi. Ekologik omillar uchga bo‘linadi: abiotik (yorug‘lik, harorat, suv, tuproq), biotik (boshqa tirik organizmlar) va antropogen (inson ta’siri). Har bir o‘simlik uchun omilning eng qulay darajasi bor.",
+      "misol": "Omil — o‘simlikka ta’sir qiluvchi kuch.",
+      "savol": "Abiotik omilga nima kiradi?",
+      "javob": "yorug‘lik, harorat, suv",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Suvga munosabati",
+      "matn": "Suvga munosabatiga ko‘ra o‘simliklar gidrofitlar (suvda o‘sadi: nilufar), mezofitlar (o‘rtacha namlik: olma, tol) va kserofitlar (quruqlikka chidamli: saksovul, tuyatikan) bo‘ladi. Kserofitlar suvni tejaydi: ildizi chuqur, bargi mayda yoki tikanga aylangan. Cho‘lda efemerlar (lolaqizg‘aldoq) bahorda tez gullaydi va urug‘ beradi.",
+      "misol": "Cho‘l o‘simligi suvni tejaydi.",
+      "savol": "Saksovul qaysi guruhga kiradi?",
+      "javob": "kserofitlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yorug‘lik va harorat",
+      "matn": "Yorug‘sevar o‘simliklar ochiq joyda (qarag‘ay, makkajo‘xori), soyasevar o‘simliklar soyada (paporotnik, binafsha) o‘sadi. Harorat o‘sish tezligiga ta’sir qiladi. Sovuqqa chidamlilar qishlaydi, issiqsevar o‘simliklar sovuqda nobud bo‘ladi. Qisqa kunli va uzun kunli o‘simliklar gullashi uchun kun uzunligi muhim.",
+      "misol": "Kun uzunligi gullashga ta’sir qiladi.",
+      "savol": "Paporotnik yorug‘sevarmi?",
+      "javob": "yo‘q, soyasevar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Zichlik va hisob",
+      "matn": "Zichlik — birlik maydondagi tup soni. Masalan, 200 kvadrat metrda 50 tup bo‘lsa, zichlik 50 / 200 — 0,25 tup/kvadrat metr. 400 kvadrat metrda 120 tup bo‘lsa, 120 / 400 — 0,3. 300 kvadrat metrda 90 tup bo‘lsa, 90 / 300 — 0,3. Masalan, cho‘lda yillik yog‘in 100 millimetr, tog‘ oldida 400 millimetr bo‘lsa, 400 / 100 — 4 baravar farq.",
+      "misol": "Zichlik — tup / maydon.",
+      "savol": "Zichlik qanday topiladi?",
+      "javob": "tup sonini maydonga bo‘lib",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Inson ta’siri va muhofaza",
+      "matn": "Inson o‘simliklar muhitiga ta’sir qiladi: o‘rmonni kesish, ortiqcha o‘tlatish, sug‘orish, ifloslantirish. Orol dengizining qurishi cho‘llashishni kuchaytirdi. Saksovul va boshqa cho‘l daraxtlarini ekish qumni mustahkamlaydi. Ekologik bilim o‘simliklarni asrash va hosilni oshirishga yordam beradi.",
+      "misol": "Ekologiya — kelajak uchun bilim.",
+      "savol": "Saksovul ekish nimaga yordam beradi?",
+      "javob": "qumni mustahkamlashga",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ekologik omillar: abiotik, biotik, antropogen. Gidrofit, mezofit, kserofit. Zichlik tup / maydon.",
+    "misollar": [
+     {
+      "shart": "Masalan, 200 kvadrat metrda 50 tup o‘sadi. Zichlik?",
+      "yechim": [
+       "50 / 200.",
+       "Hisoblang.",
+       "Javob 0,25."
+      ],
+      "javob": "0,25"
+     },
+     {
+      "shart": "Masalan, 400 kvadrat metrda 120 tup o‘sadi. Zichlik?",
+      "yechim": [
+       "120 / 400.",
+       "Hisoblang.",
+       "Javob 0,3."
+      ],
+      "javob": "0,3"
+     },
+     {
+      "shart": "Masalan, cho‘lda yog‘in 100 millimetr, tog‘ oldida 400 millimetr. Necha baravar?",
+      "yechim": [
+       "400 / 100.",
+       "Hisoblang.",
+       "Javob 4."
+      ],
+      "javob": "4"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Omillar jadvali",
+      "topshiriq": "Maktab hovlisidagi o‘simliklar uchun omillar jadvalini tuzing.",
+      "yechim": "Yorug‘lik, suv.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Zichlikni o‘lchash",
+      "topshiriq": "1 kvadrat metrda o‘simliklarni sanang.",
+      "yechim": "Tup / maydon.",
+      "mahsulot": "ramka, daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Bo‘lish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Moslashuv",
+      "topshiriq": "Kserofit moslashuvlarini chizing.",
+      "yechim": "Tikan, ildiz.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "50 / 200 nechaga teng?",
+      "javob": "0,25"
+     },
+     {
+      "shart": "120 / 400 nechaga teng?",
+      "javob": "0,3"
+     },
+     {
+      "shart": "400 / 100 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "Saksovul qaysi guruh?",
+      "javob": "kserofit"
+     },
+     {
+      "shart": "Suvda o‘sadigan o‘simlik guruhi?",
+      "javob": "gidrofit"
+     },
+     {
+      "shart": "Inson ta’siri qaysi omil?",
+      "javob": "antropogen"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Hamma o‘simlik bir xil suv talab qiladi deydi",
+      "sabab": "gidrofit, mezofit, kserofit bor",
+      "oldini_olish": "muhitga moslashgan"
+     },
+     {
+      "xato": "Yorug‘lik biotik omil deydi",
+      "sabab": "abiotik omil",
+      "oldini_olish": "jonsiz tabiat"
+     },
+     {
+      "xato": "Inson o‘simlikka ta’sir qilmaydi deydi",
+      "sabab": "antropogen omil",
+      "oldini_olish": "o‘rmon kesish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "iqlim"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "zichlik"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "cho‘llashish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«O‘simlik va muhit»",
+     "muammo": "Muhit omillari o‘simlikka qanday ta’sir qiladi?",
+     "mahsulot": "tadqiqot hisoboti",
+     "bosqichlar": [
+      "omillar jadvali",
+      "zichlik o‘lchash",
+      "moslashuvlar",
+      "muhofaza",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kuzating",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Cho‘l va tog‘»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "200 kvadrat metr, 50 tup.",
+       "topshiriq": "Zichlik?",
+       "javob": "0,25",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "400 kvadrat metr, 120 tup.",
+       "topshiriq": "Zichlik?",
+       "javob": "0,3",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "Yog‘in 100 va 400.",
+       "topshiriq": "Necha baravar?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Cho‘l o‘simligi.",
+       "topshiriq": "Guruhi?",
+       "javob": "kserofit",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ekologik omil",
+      "tarif": "muhit ta’sir qiluvchisi"
+     },
+     {
+      "atama": "Abiotik omil",
+      "tarif": "jonsiz tabiat omili"
+     },
+     {
+      "atama": "Kserofit",
+      "tarif": "quruqlikka chidamli o‘simlik"
+     },
+     {
+      "atama": "Gidrofit",
+      "tarif": "suvda o‘sadigan o‘simlik"
+     },
+     {
+      "atama": "Efemer",
+      "tarif": "tez gullovchi bahor o‘simligi"
+     },
+     {
+      "atama": "Zichlik",
+      "tarif": "birlik maydondagi tup soni"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Yorug‘lik abiotik omil",
+      "togri": true,
+      "izoh": "jonsiz tabiat"
+     },
+     {
+      "matn": "Saksovul kserofit",
+      "togri": true,
+      "izoh": "cho‘l daraxti"
+     },
+     {
+      "matn": "Nilufar kserofit",
+      "togri": false,
+      "izoh": "gidrofit"
+     },
+     {
+      "matn": "50 / 200 — 0,25",
+      "togri": true,
+      "izoh": "zichlik"
+     },
+     {
+      "matn": "Inson antropogen omil",
+      "togri": true,
+      "izoh": "ta’sir"
+     },
+     {
+      "matn": "Paporotnik yorug‘sevar",
+      "togri": false,
+      "izoh": "soyasevar"
+     },
+     {
+      "matn": "400 / 100 — 4",
+      "togri": true,
+      "izoh": "baravar"
+     },
+     {
+      "matn": "Efemerlar bahorda gullaydi",
+      "togri": true,
+      "izoh": "tez"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Abiotik omil?",
+      "javob": "yorug‘lik"
+     },
+     {
+      "savol": "Biotik omil?",
+      "javob": "organizmlar"
+     },
+     {
+      "savol": "Antropogen omil?",
+      "javob": "inson"
+     },
+     {
+      "savol": "Kserofit?",
+      "javob": "saksovul"
+     },
+     {
+      "savol": "Gidrofit?",
+      "javob": "nilufar"
+     },
+     {
+      "savol": "Efemer?",
+      "javob": "bahor"
+     },
+     {
+      "savol": "50 / 200?",
+      "javob": "0,25"
+     },
+     {
+      "savol": "120 / 400?",
+      "javob": "0,3"
+     },
+     {
+      "savol": "400 / 100?",
+      "javob": "4"
+     },
+     {
+      "savol": "Zichlik?",
+      "javob": "tup / maydon"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "O‘simlik muhitini kuzat.",
+      "savol": "Qaysi omil?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Zichlikni top.",
+      "savol": "Tup / maydon?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Kserofit va gidrofit.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Muhofaza?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun cho‘l o‘simliklarining ildizi chuqur ketadi?",
+    "keys": {
+     "vaziyat": "Dasht o‘tlari haddan ortiq o‘tlatilib, yer yalang‘och qoldi.",
+     "savollar": [
+      "Qaysi omil?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Muhit o‘simlik taqdirini belgilaydi",
+    "taqqoslash": {
+     "a": "Kserofitlar",
+     "b": "Gidrofitlar",
+     "umumiy": [
+      "o‘simlik",
+      "muhitga moslashgan"
+     ],
+     "a_farq": [
+      "quruqlikda",
+      "ildizi chuqur, bargi mayda"
+     ],
+     "b_farq": [
+      "suvda",
+      "barglari yupqa, suzuvchi"
+     ]
+    },
+    "klaster": {
+     "markaz": "O‘simliklar ekologiyasi",
+     "shoxlar": [
+      {
+       "nom": "Omillar",
+       "bandlar": [
+        "abiotik",
+        "biotik",
+        "antropogen"
+       ]
+      },
+      {
+       "nom": "Suv",
+       "bandlar": [
+        "gidrofit",
+        "mezofit",
+        "kserofit"
+       ]
+      },
+      {
+       "nom": "Yorug‘lik",
+       "bandlar": [
+        "yorug‘sevar",
+        "soyasevar"
+       ]
+      },
+      {
+       "nom": "Muhofaza",
+       "bandlar": [
+        "cho‘llashish",
+        "saksovul ekish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men cho‘lda yashayman, ildizim chuqur, suvni tejayman. Men kimman?",
+     "javob": "kserofit"
+    },
+    "hikmat": "O‘simlik — muhit farzandi.",
+    "kalit_soz": "EKOLOGIYA",
+    "xato_yechim": {
+     "shart": "Yorug‘lik qaysi omil?",
+     "xato": "biotik",
+     "togri": "abiotik",
+     "sabab": "jonsiz tabiat omili"
+    },
+    "guruh_nomlari": [
+     "Ekologlar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«O‘simlik va muhit»",
+     "topshiriq": "Guruh zichlikni o‘lchaydi."
+    },
+    "vazifalar": {
+     "A": "200 kvadrat metr, 50 tup?",
+     "B": "400 kvadrat metr, 120 tup?",
+     "C": "Yog‘in 100 va 400?"
+    },
+    "sinkveyn": [
+     "Ekologiya",
+     "keng, hayotiy",
+     "bog‘laydi, o‘rgatadi, asraydi",
+     "Muhit va hayot",
+     "Moslashuv"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh o‘simliklar ekologiyasini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: omillar",
+      "2-guruh: suv",
+      "3-guruh: yorug‘lik",
+      "4-guruh: muhofaza"
+     ],
+     "yakun": "Natijalar: 0,25; 0,3; 4."
+    }
+   }
   }
  ]
 }
