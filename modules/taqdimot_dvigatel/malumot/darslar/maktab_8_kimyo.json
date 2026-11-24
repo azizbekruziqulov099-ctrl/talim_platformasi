@@ -5542,6 +5542,1405 @@
      "yakun": "Natijalar: 44,8 litr; 3 mol; 16 gramm."
     }
    }
+  },
+  {
+   "mavzu": "Galogenlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yettinchi guruh",
+      "matn": "Galogenlar — davriy jadvalning VII asosiy guruhi: ftor, xlor, brom, yod. Ularning tashqi qavatida 7 ta elektron bor, shuning uchun bitta elektron olishga intiladi va valentligi bir. «Galogen» so‘zi «tuz hosil qiluvchi» ma’nosini beradi.",
+      "misol": "Osh tuzi — natriy xlorid, xlor ishtirokida hosil bo‘lgan.",
+      "savol": "Galogenlar tashqi qavatida nechta elektron bor?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Holat va rang",
+      "matn": "Ftor — och sariq gaz, xlor — sarg‘ish-yashil gaz, brom — qizil-qo‘ng‘ir suyuqlik, yod — binafsha-qora kristall. Tartib raqamlari: ftor 9, xlor 17, brom 35, yod 53. Atom massalari: 19, 35,5, 80, 127. Ular zaharli, ehtiyotkorlik bilan ishlatiladi.",
+      "misol": "Yod qizdirilganda binafsha bug‘ga aylanadi.",
+      "savol": "Qaysi galogen oddiy haroratda suyuq?",
+      "javob": "brom",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Faollik tartibi",
+      "matn": "Galogenlarning faolligi ftordan yodgacha kamayadi: ftor eng faol metallmas. Faolroq galogen kamfaolini tuzidan siqib chiqaradi: xlor natriy bromiddan bromni siqib chiqaradi. Ftorni 1886-yilda Anri Muassan ajratib olgan.",
+      "misol": "Xlor yod eritmasini rangsizlantirmaydi, aksincha yodni siqadi.",
+      "savol": "Eng faol galogen?",
+      "javob": "ftor",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birikmalar",
+      "matn": "Galogenlar vodorod bilan vodorod galogenidlar hosil qiladi. Vodorod xloridning suvdagi eritmasi — xlorid kislota, u me’da shirasida ham bor. Molyar massalar: vodorod xlorid — 1 plyus 35,5 — 36,5. Metallar bilan tuzlar: natriy xlorid, kaliy yodid.",
+      "misol": "Me’da shirasidagi xlorid kislota ovqatni hazm qiladi.",
+      "savol": "Xlorid kislotaning formulasi qaysi galogenda?",
+      "javob": "xlor",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotda",
+      "matn": "Xlor suvni zararsizlantiradi, yod — jarohat uchun antiseptik, yodlangan tuz bo‘qoq kasalligidan saqlaydi. Ftor tish pastasida tishni emal yemirilishidan himoya qiladi. Ammo xlor gazi zaharli, 1915-yilda urushda zaharlovchi qurol sifatida ishlatilgan, shu sabab undan ehtiyot bo‘lish kerak.",
+      "misol": "Hovuz suvi xlor bilan tozalanadi.",
+      "savol": "Yodlangan tuz nimadan saqlaydi?",
+      "javob": "bo‘qoqdan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tashqi qavatda 7 elektron. Faollik F, Cl, Br, I tartibida kamayadi. Xlor — gaz, brom — suyuqlik, yod — qattiq.",
+    "misollar": [
+     {
+      "shart": "Brom atomida 35 elektron, tashqi qavatda 7. Ichki qavatlarda nechta?",
+      "yechim": [
+       "35 minus 7.",
+       "Hisoblaymiz.",
+       "Javob 28."
+      ],
+      "javob": "28"
+     },
+     {
+      "shart": "Xlor gazi ikki atomli, atom massasi 35,5. Molyar massasi?",
+      "yechim": [
+       "2 · 35,5.",
+       "Hisoblaymiz.",
+       "Javob 71."
+      ],
+      "javob": "71"
+     },
+     {
+      "shart": "2 mol xlor gazi (M — 71). Massasi?",
+      "yechim": [
+       "m — n · M.",
+       "2 · 71.",
+       "Javob 142 gramm."
+      ],
+      "javob": "142 gramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Galogenlar kartasi",
+      "topshiriq": "To‘rt galogenning belgisi, rangi, holatini jadvalga yozing.",
+      "yechim": "F, Cl, Br, I.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Siqib chiqarish",
+      "topshiriq": "Faol galogen kamfaolni siqishini sxemada ko‘rsating.",
+      "yechim": "Faol — siqadi.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Yodni aniqlaymiz",
+      "topshiriq": "Kraxmal bilan yod eritmasi rangini kuzating.",
+      "yechim": "To‘q ko‘k rang.",
+      "mahsulot": "kraxmal, yod"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Molyar massa.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "35 minus 7 nechaga teng?",
+      "javob": "28"
+     },
+     {
+      "shart": "2 · 35,5 nechaga teng?",
+      "javob": "71"
+     },
+     {
+      "shart": "2 · 71 nechaga teng?",
+      "javob": "142"
+     },
+     {
+      "shart": "Tashqi qavatda elektronlar?",
+      "javob": "7"
+     },
+     {
+      "shart": "Eng faol galogen?",
+      "javob": "ftor"
+     },
+     {
+      "shart": "Suyuq galogen?",
+      "javob": "brom"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Galogenlar tashqi qavatida 1 elektron deydi",
+      "sabab": "7 ta elektron",
+      "oldini_olish": "VII guruh"
+     },
+     {
+      "xato": "Faollik yoddan ftorga kamayadi deydi",
+      "sabab": "ftordan yodga kamayadi",
+      "oldini_olish": "ftor eng faol"
+     },
+     {
+      "xato": "Xlor zararsiz gaz deydi",
+      "sabab": "zaharli",
+      "oldini_olish": "ehtiyotkorlik kerak"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "yod va antiseptik"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "suvni tozalash"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "ftor kashfiyoti"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Galogenlar xaritasi»",
+     "muammo": "Galogenlar tuzilishi va xossalari qanday?",
+     "mahsulot": "jadval va tajriba",
+     "bosqichlar": [
+      "galogenlarni o‘rganish",
+      "jadval tuzish",
+      "faollikni solishtirish",
+      "xavfsizlikni yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Galogenlarni o‘rganing",
+      "Jadval tuzing",
+      "Solishtiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "jadval to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Galogenlar oroli»",
+     "bekatlar": [
+      {
+       "nom": "1-qirg‘oq",
+       "matn": "Brom 35, tashqi 7.",
+       "topshiriq": "Ichki?",
+       "javob": "28",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qirg‘oq",
+       "matn": "Xlor atom massasi 35,5.",
+       "topshiriq": "Cl2 molyar massa?",
+       "javob": "71",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qirg‘oq",
+       "matn": "2 mol xlor.",
+       "topshiriq": "Massa?",
+       "javob": "142",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qirg‘oq",
+       "matn": "Eng faol galogen.",
+       "topshiriq": "Qaysi?",
+       "javob": "ftor",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Galogen",
+      "tarif": "VII guruh elementi"
+     },
+     {
+      "atama": "Ftor",
+      "tarif": "eng faol galogen"
+     },
+     {
+      "atama": "Xlor",
+      "tarif": "suvni zararsizlantiradi"
+     },
+     {
+      "atama": "Brom",
+      "tarif": "suyuq galogen"
+     },
+     {
+      "atama": "Yod",
+      "tarif": "qattiq galogen"
+     },
+     {
+      "atama": "Antiseptik",
+      "tarif": "mikrobga qarshi vosita"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Galogenlar VII guruhda",
+      "togri": true,
+      "izoh": "7 tashqi elektron"
+     },
+     {
+      "matn": "Brom oddiy haroratda gaz",
+      "togri": false,
+      "izoh": "suyuqlik"
+     },
+     {
+      "matn": "Ftor eng faol",
+      "togri": true,
+      "izoh": "faollik kamayadi"
+     },
+     {
+      "matn": "Xlor molyar massasi 71",
+      "togri": true,
+      "izoh": "2 · 35,5"
+     },
+     {
+      "matn": "35 minus 7 — 28",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Xlor zaharli",
+      "togri": true,
+      "izoh": "ehtiyotkorlik"
+     },
+     {
+      "matn": "Yod tashqi qavatida 1 elektron",
+      "togri": false,
+      "izoh": "7 ta"
+     },
+     {
+      "matn": "Yodlangan tuz bo‘qoqdan saqlaydi",
+      "togri": true,
+      "izoh": "tibbiyot"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Galogen?",
+      "javob": "VII guruh elementi"
+     },
+     {
+      "savol": "Tashqi elektronlar?",
+      "javob": "7"
+     },
+     {
+      "savol": "Valentlik?",
+      "javob": "bir"
+     },
+     {
+      "savol": "Faollik?",
+      "javob": "ftordan yodga kamayadi"
+     },
+     {
+      "savol": "Suyuq?",
+      "javob": "brom"
+     },
+     {
+      "savol": "Qattiq?",
+      "javob": "yod"
+     },
+     {
+      "savol": "35 minus 7?",
+      "javob": "28"
+     },
+     {
+      "savol": "2 · 35,5?",
+      "javob": "71"
+     },
+     {
+      "savol": "2 · 71?",
+      "javob": "142"
+     },
+     {
+      "savol": "Xlorid kislota?",
+      "javob": "HCl eritmasi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Galogenlar rangini kuzat.",
+      "savol": "Qaysi holat?"
+     },
+     {
+      "nom": "Solishtir",
+      "matn": "Faollikni solishtir.",
+      "savol": "Qaysi faol?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Molyar massani top.",
+      "savol": "2 · 35,5?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Xavfsizlik?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun galogenlar faolligi ftordan yodga kamayadi?",
+    "keys": {
+     "vaziyat": "Xlor suvi natriy bromid eritmasiga qo‘shilganda eritma qizg‘ish tusga kirdi.",
+     "savollar": [
+      "Qaysi galogen siqib chiqarildi?",
+      "Kim faolroq?"
+     ]
+    },
+    "tezis": "Tashqi qavatda 7 elektron",
+    "taqqoslash": {
+     "a": "Ftor",
+     "b": "Yod",
+     "umumiy": [
+      "galogen",
+      "tashqi qavatda 7 elektron"
+     ],
+     "a_farq": [
+      "gaz",
+      "eng faol"
+     ],
+     "b_farq": [
+      "qattiq",
+      "kam faol"
+     ]
+    },
+    "klaster": {
+     "markaz": "Galogenlar",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "F",
+        "Cl",
+        "Br",
+        "I"
+       ]
+      },
+      {
+       "nom": "Holat",
+       "bandlar": [
+        "gaz",
+        "suyuq",
+        "qattiq"
+       ]
+      },
+      {
+       "nom": "Faollik",
+       "bandlar": [
+        "ftordan yodga kamayadi"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "suv tozalash",
+        "yod",
+        "ftor pastada"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tuz hosil qiluvchi oila — to‘rt a’zom bor. Men kimman?",
+     "javob": "galogenlar"
+    },
+    "hikmat": "Galogenlar tuz tug‘adi.",
+    "kalit_soz": "GALOGEN",
+    "xato_yechim": {
+     "shart": "Eng faol galogen?",
+     "xato": "yod",
+     "togri": "ftor",
+     "sabab": "faollik ftordan yodga kamayadi"
+    },
+    "guruh_nomlari": [
+     "Galogenchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Galogenlar xaritasi»",
+     "topshiriq": "Guruh galogenlar jadvalini tuzadi."
+    },
+    "vazifalar": {
+     "A": "Brom ichki elektronlari?",
+     "B": "Cl2 molyar massasi?",
+     "C": "2 mol xlor massasi?"
+    },
+    "sinkveyn": [
+     "Galogen",
+     "faol, zaharli",
+     "tuzlaydi, tozalaydi, bo‘yaydi",
+     "Tuz hosil qiladi",
+     "Ftor"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh galogenlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: holat va rang",
+      "3-guruh: faollik",
+      "4-guruh: hayotda"
+     ],
+     "yakun": "Natijalar: 28; 71; 142."
+    }
+   }
+  },
+  {
+   "mavzu": "Ishqoriy metallar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Birinchi guruh",
+      "matn": "Ishqoriy metallar — I asosiy guruh: litiy, natriy, kaliy, rubidiy, seziy, fransiy. Tashqi qavatida bitta elektron bor, uni oson beradi va musbat bir zaryadli ion bo‘ladi. Tartib raqamlari: litiy 3, natriy 11, kaliy 19, rubidiy 37, seziy 55, fransiy 87.",
+      "misol": "Kaliy atomi 19 elektronli, ioni 18.",
+      "savol": "Tashqi qavatda nechta elektron?",
+      "javob": "1",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Fizik xossalar",
+      "matn": "Ular yumshoq, pichoq bilan kesiladi, yengil, yaltiroq, havoda tezda xiralashadi. Litiy, natriy va kaliy suvdan yengil, ular suvda suzadi. Litiy eng yengil metall. Seziy taxminan 28 darajada eriydi, shuning uchun issiq kunda suyuqlanishi mumkin.",
+      "misol": "Natriy tez qizib erib ketadi.",
+      "savol": "Qaysi metall eng yengil?",
+      "javob": "litiy",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Suv bilan reaksiya",
+      "matn": "Natriy suv bilan reaksiyaga kirishib, natriy gidroksid va vodorod hosil qiladi: ikki natriy atomi ikki suv molekulasi bilan ikkita natriy gidroksid va bitta vodorod molekulasi beradi. Reaksiya jadal, issiqlik ajraladi. Kaliy yanada tez, seziy esa portlab reaksiyaga kirishadi.",
+      "misol": "Faollik jadvalning pastiga qarab ortadi.",
+      "savol": "Natriy suv bilan nima hosil qiladi?",
+      "javob": "natriy gidroksid va vodorod",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Saqlash va xavfsizlik",
+      "matn": "Havo va namlik bilan tez reaksiyaga kirishgani uchun kerosinda saqlanadi. Qo‘l bilan ushlamang, suvga solmang — kuyish mumkin. Eritmasi — ishqor, u terini kuydiradi. Faqat o‘qituvchi nazoratida tajriba o‘tkaziladi.",
+      "misol": "Kerosin metallni havodan ajratadi.",
+      "savol": "Natriy nimada saqlanadi?",
+      "javob": "kerosinda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanish",
+      "matn": "Osh tuzi — natriy xlorid, kaliy o‘g‘itlari dehqonchilikda ishlatiladi: Qashqadaryodagi Dehqonobod kaliy zavodi shunday o‘g‘it beradi. Litiy batareyalari telefonlarda ishlaydi. Alanga rangi: litiy — qizil, natriy — sariq, kaliy — binafsha. Bayram otashinlarida shu ranglar bor.",
+      "misol": "Bayram otashinlari ranglari metallardan.",
+      "savol": "Natriy alangasi qanday rangda?",
+      "javob": "sariq",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tashqi qavatda 1 elektron. Faollik pastga ortadi. Kerosinda saqlanadi. Suv bilan ishqor va vodorod beradi.",
+    "misollar": [
+     {
+      "shart": "46 gramm natriy (2 mol, M — 23) suv bilan 1 mol vodorod beradi. Vodorod hajmi?",
+      "yechim": [
+       "1 mol gaz — 22,4 litr.",
+       "1 · 22,4.",
+       "Javob 22,4 litr."
+      ],
+      "javob": "22,4 litr"
+     },
+     {
+      "shart": "23 gramm natriy (1 mol) necha litr vodorod beradi (ikki mol natriydan bir mol vodorod)?",
+      "yechim": [
+       "Vodorod 0,5 mol.",
+       "0,5 · 22,4.",
+       "Javob 11,2 litr."
+      ],
+      "javob": "11,2 litr"
+     },
+     {
+      "shart": "Kaliy atomida 19 elektron. Ionida nechta?",
+      "yechim": [
+       "Bitta elektron beradi.",
+       "19 minus 1.",
+       "Javob 18."
+      ],
+      "javob": "18"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Alanga ranglari",
+      "topshiriq": "Tuzlarni alangaga tutib, rangni kuzating (o‘qituvchi nazoratida).",
+      "yechim": "Sariq — natriy.",
+      "mahsulot": "tuz, spirt lampa"
+     },
+     {
+      "nom": "Jadval tuzamiz",
+      "topshiriq": "Oltita metallning belgisi va raqamini yozing.",
+      "yechim": "3, 11, 19, 37, 55, 87.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Suvga solish videosi",
+      "topshiriq": "Videoda natriyning suv bilan reaksiyasini kuzating.",
+      "yechim": "Faqat video.",
+      "mahsulot": "video"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Mol va hajm.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1 · 22,4 nechaga teng?",
+      "javob": "22,4"
+     },
+     {
+      "shart": "0,5 · 22,4 nechaga teng?",
+      "javob": "11,2"
+     },
+     {
+      "shart": "19 minus 1 nechaga teng?",
+      "javob": "18"
+     },
+     {
+      "shart": "Eng yengil metall?",
+      "javob": "litiy"
+     },
+     {
+      "shart": "Natriy alangasi?",
+      "javob": "sariq"
+     },
+     {
+      "shart": "Qayerda saqlanadi?",
+      "javob": "kerosinda"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Natriy suvda cho‘kadi deydi",
+      "sabab": "suzadi",
+      "oldini_olish": "suvdan yengil"
+     },
+     {
+      "xato": "Natriyni qo‘l bilan ushlash mumkin deydi",
+      "sabab": "kuyish mumkin",
+      "oldini_olish": "ishqor hosil bo‘ladi"
+     },
+     {
+      "xato": "Kaliy ioni 19 elektronli deydi",
+      "sabab": "18 elektronli",
+      "oldini_olish": "bitta elektron berdi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "kaliy o‘g‘itlari"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "litiy batareyalari"
+     },
+     {
+      "fan": "San’at",
+      "boglanish": "otashin ranglari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ishqoriy metallar»",
+     "muammo": "Ishqoriy metallar faolligi nimaga bog‘liq?",
+     "mahsulot": "plakat va hisob",
+     "bosqichlar": [
+      "metallarni o‘rganish",
+      "jadval tuzish",
+      "hisoblash",
+      "xavfsizlik qoidalari",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Metallarni o‘rganing",
+      "Jadval tuzing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "jadval to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ishqor vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "1-qoya",
+       "matn": "46 gramm natriy.",
+       "topshiriq": "Vodorod litr?",
+       "javob": "22,4",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qoya",
+       "matn": "23 gramm natriy.",
+       "topshiriq": "Vodorod litr?",
+       "javob": "11,2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qoya",
+       "matn": "K 19 elektron.",
+       "topshiriq": "Ionda?",
+       "javob": "18",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qoya",
+       "matn": "Eng yengil metall.",
+       "topshiriq": "Qaysi?",
+       "javob": "litiy",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Molni topdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ishqoriy metall",
+      "tarif": "I guruh metali"
+     },
+     {
+      "atama": "Ishqor",
+      "tarif": "metall gidroksidi eritmasi"
+     },
+     {
+      "atama": "Kerosin",
+      "tarif": "saqlash suyuqligi"
+     },
+     {
+      "atama": "Alanga rangi",
+      "tarif": "metallni aniqlash belgisi"
+     },
+     {
+      "atama": "Gidroksid",
+      "tarif": "metall va gidroksil birikmasi"
+     },
+     {
+      "atama": "Faollik",
+      "tarif": "reaksiyaga kirishish xususiyati"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ishqoriy metallar I guruhda",
+      "togri": true,
+      "izoh": "1 elektron"
+     },
+     {
+      "matn": "Natriy suvda cho‘kadi",
+      "togri": false,
+      "izoh": "suzadi"
+     },
+     {
+      "matn": "Litiy eng yengil metall",
+      "togri": true,
+      "izoh": "zichlik kichik"
+     },
+     {
+      "matn": "Natriy kerosinda saqlanadi",
+      "togri": true,
+      "izoh": "havodan ajratiladi"
+     },
+     {
+      "matn": "19 minus 1 — 18",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Faollik pastga ortadi",
+      "togri": true,
+      "izoh": "seziy portlaydi"
+     },
+     {
+      "matn": "Natriy alangasi qizil",
+      "togri": false,
+      "izoh": "sariq"
+     },
+     {
+      "matn": "Natriy suvda tinch turadi",
+      "togri": false,
+      "izoh": "jadal reaksiya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ishqoriy metall?",
+      "javob": "I guruh metali"
+     },
+     {
+      "savol": "Tashqi elektron?",
+      "javob": "1"
+     },
+     {
+      "savol": "Eng yengil?",
+      "javob": "litiy"
+     },
+     {
+      "savol": "Saqlash?",
+      "javob": "kerosin"
+     },
+     {
+      "savol": "Natriy alangasi?",
+      "javob": "sariq"
+     },
+     {
+      "savol": "Kaliy alangasi?",
+      "javob": "binafsha"
+     },
+     {
+      "savol": "Suv bilan?",
+      "javob": "ishqor va vodorod"
+     },
+     {
+      "savol": "19 minus 1?",
+      "javob": "18"
+     },
+     {
+      "savol": "0,5 · 22,4?",
+      "javob": "11,2"
+     },
+     {
+      "savol": "Faollik?",
+      "javob": "pastga ortadi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Metall bo‘lagini kuzat.",
+      "savol": "Yumshoqmi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Mol va hajmni top.",
+      "savol": "22,4 bilan?"
+     },
+     {
+      "nom": "Aniqla",
+      "matn": "Alanga rangini yoz.",
+      "savol": "Qaysi metall?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nega kerosinda?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ishqoriy metallar kerosin ostida saqlanadi?",
+    "keys": {
+     "vaziyat": "Natriy bo‘lagi havoda tezda xiralashdi, suvga tushsa shovullaydi.",
+     "savollar": [
+      "Nega havoda xiralashadi?",
+      "Suvda nima hosil bo‘ladi?"
+     ]
+    },
+    "tezis": "Tashqi qavatda 1 elektron",
+    "taqqoslash": {
+     "a": "Litiy",
+     "b": "Seziy",
+     "umumiy": [
+      "ishqoriy metall",
+      "tashqi 1 elektron"
+     ],
+     "a_farq": [
+      "yengil, kam faol",
+      "qizil alanga"
+     ],
+     "b_farq": [
+      "og‘ir, juda faol",
+      "suvda portlaydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ishqoriy metallar",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "Li",
+        "Na",
+        "K",
+        "Rb",
+        "Cs",
+        "Fr"
+       ]
+      },
+      {
+       "nom": "Xossa",
+       "bandlar": [
+        "yumshoq",
+        "yengil"
+       ]
+      },
+      {
+       "nom": "Reaksiya",
+       "bandlar": [
+        "suv bilan ishqor"
+       ]
+      },
+      {
+       "nom": "Qo‘llanish",
+       "bandlar": [
+        "tuz",
+        "o‘g‘it",
+        "batareya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yumshoq, yengil va juda faol oilaman. Men kimman?",
+     "javob": "ishqoriy metallar"
+    },
+    "hikmat": "Tashqi qavatda bitta elektron.",
+    "kalit_soz": "ISHQOR",
+    "xato_yechim": {
+     "shart": "Natriy suvda cho‘kadimi?",
+     "xato": "ha, cho‘kadi",
+     "togri": "yo‘q, suzadi",
+     "sabab": "natriy suvdan yengil"
+    },
+    "guruh_nomlari": [
+     "Metallchilar",
+     "Hisobchilar",
+     "Xavfsizlik guruhi",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ishqoriy metallar»",
+     "topshiriq": "Guruh metallar jadvalini tuzadi."
+    },
+    "vazifalar": {
+     "A": "46 gramm natriydan vodorod?",
+     "B": "23 gramm natriydan vodorod?",
+     "C": "K ioni elektronlari?"
+    },
+    "sinkveyn": [
+     "Metall",
+     "yumshoq, yengil",
+     "reaksiyaga kirishadi, suzadi, yonadi",
+     "Suvda shovullaydi",
+     "Natriy"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ishqoriy metallarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: xossa",
+      "3-guruh: suv bilan reaksiya",
+      "4-guruh: qo‘llanish"
+     ],
+     "yakun": "Natijalar: 22,4 litr; 11,2 litr; 18."
+    }
+   }
+  },
+  {
+   "mavzu": "Inert gazlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "VIII guruh",
+      "matn": "Inert gazlar — VIII asosiy guruh: geliy, neon, argon, kripton, ksenon, radon. Ularning tashqi qavati to‘la: geliyda 2 ta, boshqalarida 8 ta elektron. Shuning uchun ular elektron bermaydi va olmaydi, odatda hech narsa bilan birikmaydi. Tartib raqamlari: 2, 10, 18, 36, 54, 86.",
+      "misol": "Argon: 2, 8, 8 — jami 18.",
+      "savol": "Inert gazlar tashqi qavatida nechta elektron (geliydan boshqasi)?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kashfiyot tarixi",
+      "matn": "Geliy 1868-yilda Quyosh spektridan topilgan, Yerda esa 1895-yilda ajratilgan — shuning uchun nomi grekcha «quyosh» so‘zidan. 1894-yilda Reley va Remzay argonni kashf etdi. Argon «dangasa» ma’nosida. Shundan keyin boshqa inert gazlar topildi.",
+      "misol": "Geliyni Quyoshda Yerdan oldin topishgan.",
+      "savol": "Geliy nomi nimadan kelib chiqqan?",
+      "javob": "Quyoshdan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Havoda va xossalarda",
+      "matn": "Havoda argon taxminan bir foizga yaqin, qolganlari juda oz. Ular rangsiz, hidsiz, zaharsiz gazlar. Geliy 4 gramm/mol, havoning molyar massasi 29, shuning uchun geliy havodan taxminan 7 marta yengil. Geliyning qaynash harorati minus 269 daraja, bu eng pasti.",
+      "misol": "Geliy eng yengil gazlardan biri.",
+      "savol": "Geliy havodan necha marta yengil (taxminan)?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanish",
+      "matn": "Neon reklama naychalarini qizg‘ish-to‘q sariq nur bilan yoritadi. Argon payvandlashda va lampochka ichida metallni oksidlanishdan saqlaydi. Geliy sharlarni ko‘taradi va tibbiyotda MRT magnitlarini sovitadi. Kripton va ksenon maxsus lampalarda ishlatiladi.",
+      "misol": "MRT apparati geliy bilan sovitiladi.",
+      "savol": "Argon nima uchun ishlatiladi?",
+      "javob": "oksidlanishdan saqlash uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mutlaq inertmi",
+      "matn": "Uzoq vaqt bu gazlar umuman birikma bermaydi, deb hisoblangan. 1962-yilda Nil Bartlett ksenon birikmasini oldi. Demak, og‘ir inert gazlar o‘ta qattiq sharoitda birikishi mumkin. Shu bilan «inert» emas, «kam faol» demoq to‘g‘riroq.",
+      "misol": "Fan har doim yangi kashfiyotga ochiq.",
+      "savol": "Ksenon birikmasi qaysi yili olindi?",
+      "javob": "1962",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tashqi qavat to‘la (2 yoki 8). Argon: 2, 8, 8. Geliy havodan taxminan 7 marta yengil.",
+    "misollar": [
+     {
+      "shart": "Argon qavatlari 2, 8, 8. Tartib raqami?",
+      "yechim": [
+       "2 plyus 8 plyus 8.",
+       "Hisoblaymiz.",
+       "Javob 18."
+      ],
+      "javob": "18"
+     },
+     {
+      "shart": "Havoning molyar massasi 29, geliyniki 4. Geliy necha marta yengil (butun songacha)?",
+      "yechim": [
+       "29 / 4.",
+       "7,25.",
+       "Javob taxminan 7."
+      ],
+      "javob": "7"
+     },
+     {
+      "shart": "Ksenon qavatlari 2, 8, 8, 18, 18. Tartib raqami?",
+      "yechim": [
+       "2 plyus 8 plyus 8 plyus 18 plyus 18.",
+       "Hisoblaymiz.",
+       "Javob 54."
+      ],
+      "javob": "54"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qavat sxemasi",
+      "topshiriq": "Geliy, neon, argon qavat sxemasini chizing.",
+      "yechim": "2; 2, 8; 2, 8, 8.",
+      "mahsulot": "qog‘oz, flomaster"
+     },
+     {
+      "nom": "Sharlar sinovi",
+      "topshiriq": "Havo bilan va nafas bilan to‘ldirilgan sharlarni solishtiring.",
+      "yechim": "Geliy ko‘taradi.",
+      "mahsulot": "sharlar"
+     },
+     {
+      "nom": "Qo‘llanish kartasi",
+      "topshiriq": "Har gaz uchun qo‘llanish yozing.",
+      "yechim": "Neon, argon, geliy.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Qavatlar yig‘indisi.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 plyus 8 plyus 8 nechaga teng?",
+      "javob": "18"
+     },
+     {
+      "shart": "29 / 4 butun songacha?",
+      "javob": "7"
+     },
+     {
+      "shart": "2 plyus 8 plyus 8 plyus 18 plyus 18?",
+      "javob": "54"
+     },
+     {
+      "shart": "Geliyda tashqi elektronlar?",
+      "javob": "2"
+     },
+     {
+      "shart": "Geliy kashf yili (Yerda)?",
+      "javob": "1895"
+     },
+     {
+      "shart": "Neon nuri rangi?",
+      "javob": "qizg‘ish-to‘q sariq"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Inert gazlar elektron beradi deydi",
+      "sabab": "bermaydi",
+      "oldini_olish": "qavat to‘la"
+     },
+     {
+      "xato": "Argon geliydan yengil deydi",
+      "sabab": "og‘ir",
+      "oldini_olish": "M 40 va 4"
+     },
+     {
+      "xato": "Inert gazlar hech qachon birikmaydi deydi",
+      "sabab": "ksenon birikmasi bor",
+      "oldini_olish": "1962-yil"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Astronomiya",
+      "boglanish": "geliy va Quyosh"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "MRT"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "payvandlash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Nur va gaz»",
+     "muammo": "Inert gazlar nima uchun kerak?",
+     "mahsulot": "plakat va hisob",
+     "bosqichlar": [
+      "gazlarni o‘rganish",
+      "qavat sxemasi",
+      "qo‘llanish jadvali",
+      "hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Gazlarni o‘rganing",
+      "Sxema chizing",
+      "Jadval tuzing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Neon ko‘chasi»",
+     "bekatlar": [
+      {
+       "nom": "1-chiroq",
+       "matn": "2, 8, 8.",
+       "topshiriq": "Raqam?",
+       "javob": "18",
+       "rasm": ""
+      },
+      {
+       "nom": "2-chiroq",
+       "matn": "29 va 4.",
+       "topshiriq": "Necha marta (butun)?",
+       "javob": "7",
+       "rasm": ""
+      },
+      {
+       "nom": "3-chiroq",
+       "matn": "2, 8, 8, 18, 18.",
+       "topshiriq": "Raqam?",
+       "javob": "54",
+       "rasm": ""
+      },
+      {
+       "nom": "4-chiroq",
+       "matn": "Geliy tashqi qavati.",
+       "topshiriq": "Elektron?",
+       "javob": "2",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Qo‘shdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Inert gaz",
+      "tarif": "tashqi qavati to‘la gaz"
+     },
+     {
+      "atama": "Geliy",
+      "tarif": "eng yengil inert gaz"
+     },
+     {
+      "atama": "Neon",
+      "tarif": "reklama nuri gazi"
+     },
+     {
+      "atama": "Argon",
+      "tarif": "payvandlash gazi"
+     },
+     {
+      "atama": "Ksenon",
+      "tarif": "og‘ir inert gaz"
+     },
+     {
+      "atama": "Radon",
+      "tarif": "radioaktiv inert gaz"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Inert gazlar VIII guruhda",
+      "togri": true,
+      "izoh": "tashqi qavat to‘la"
+     },
+     {
+      "matn": "Argon tashqi qavatida 18 elektron",
+      "togri": false,
+      "izoh": "8"
+     },
+     {
+      "matn": "Geliy havodan yengil",
+      "togri": true,
+      "izoh": "4 va 29"
+     },
+     {
+      "matn": "Neon reklamada ishlatiladi",
+      "togri": true,
+      "izoh": "nur beradi"
+     },
+     {
+      "matn": "2 plyus 8 plyus 8 — 18",
+      "togri": true,
+      "izoh": "argon"
+     },
+     {
+      "matn": "Ksenon birikmasi mavjud",
+      "togri": true,
+      "izoh": "1962"
+     },
+     {
+      "matn": "Inert gazlar elektron beradi",
+      "togri": false,
+      "izoh": "bermaydi"
+     },
+     {
+      "matn": "Argon payvandlashda ishlatiladi",
+      "togri": true,
+      "izoh": "himoya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Inert gaz?",
+      "javob": "tashqi qavati to‘la"
+     },
+     {
+      "savol": "Geliy tashqi?",
+      "javob": "2"
+     },
+     {
+      "savol": "Argon?",
+      "javob": "2, 8, 8"
+     },
+     {
+      "savol": "Raqami?",
+      "javob": "18"
+     },
+     {
+      "savol": "Kashf?",
+      "javob": "1894 argon"
+     },
+     {
+      "savol": "Geliy?",
+      "javob": "yengil gaz"
+     },
+     {
+      "savol": "Neon?",
+      "javob": "reklama"
+     },
+     {
+      "savol": "29 / 4?",
+      "javob": "taxminan 7"
+     },
+     {
+      "savol": "Ksenon?",
+      "javob": "54"
+     },
+     {
+      "savol": "1962?",
+      "javob": "ksenon birikmasi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Reklama chiroqlarini kuzat.",
+      "savol": "Qaysi gaz?"
+     },
+     {
+      "nom": "Chiz",
+      "matn": "Qavat sxemasini chiz.",
+      "savol": "Tashqi elektron?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Tartib raqamini top.",
+      "savol": "Qavatlar yig‘indisi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nega inert?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun inert gazlar boshqa moddalar bilan deyarli birikmaydi?",
+    "keys": {
+     "vaziyat": "Geliyli shar ko‘tariladi, argon esa lampochka ichini himoya qiladi.",
+     "savollar": [
+      "Nega geliy ko‘taradi?",
+      "Argon nimadan saqlaydi?"
+     ]
+    },
+    "tezis": "Tashqi qavat to‘la",
+    "taqqoslash": {
+     "a": "Geliy",
+     "b": "Argon",
+     "umumiy": [
+      "inert gaz",
+      "rangsiz, hidsiz"
+     ],
+     "a_farq": [
+      "tashqi qavatda 2",
+      "juda yengil"
+     ],
+     "b_farq": [
+      "tashqi qavatda 8",
+      "havodan og‘ir"
+     ]
+    },
+    "klaster": {
+     "markaz": "Inert gazlar",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "He",
+        "Ne",
+        "Ar",
+        "Kr",
+        "Xe",
+        "Rn"
+       ]
+      },
+      {
+       "nom": "Qavat",
+       "bandlar": [
+        "2",
+        "8"
+       ]
+      },
+      {
+       "nom": "Qo‘llanish",
+       "bandlar": [
+        "shar",
+        "reklama",
+        "payvand"
+       ]
+      },
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "geliy 1868",
+        "argon 1894",
+        "ksenon 1962"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tashqi qavatim to‘la, boshqalar bilan deyarli do‘st bo‘lmayman. Men kimman?",
+     "javob": "inert gaz"
+    },
+    "hikmat": "Qavat to‘la, bog‘ kerak emas.",
+    "kalit_soz": "INERT",
+    "xato_yechim": {
+     "shart": "Inert gazlar elektron beradimi?",
+     "xato": "ha, beradi",
+     "togri": "yo‘q, bermaydi",
+     "sabab": "tashqi qavat to‘la"
+    },
+    "guruh_nomlari": [
+     "Gazchilar",
+     "Hisobchilar",
+     "Chizuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Nur va gaz»",
+     "topshiriq": "Guruh inert gazlar plakatini chizadi."
+    },
+    "vazifalar": {
+     "A": "Argon raqami?",
+     "B": "Geliy havodan necha marta yengil?",
+     "C": "Ksenon raqami?"
+    },
+    "sinkveyn": [
+     "Gaz",
+     "yengil, nurli",
+     "yoritadi, ko‘taradi, himoyalaydi",
+     "Qavat to‘la",
+     "Geliy"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh inert gazlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: tarix",
+      "3-guruh: xossa",
+      "4-guruh: qo‘llanish"
+     ],
+     "yakun": "Natijalar: 18; 7; 54."
+    }
+   }
   }
  ]
 }
