@@ -1,0 +1,1399 @@
+{
+ "daraja": "maktab",
+ "sinf": "9",
+ "fan": "Geografiya",
+ "muallif": "qo‘lda yozilgan, faktlar tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Jahon siyosiy xaritasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Siyosiy xarita nima",
+      "matn": "Siyosiy xarita davlatlar chegarasini, poytaxtlarini va yirik shaharlarini ko‘rsatadi. Dunyoda 190 dan ortiq mustaqil davlat bor (taxminan). Davlat — o‘z hududi, aholisi va hukumatiga ega bo‘lgan siyosiy birlik. Chegaralar o‘zgarishi mumkin, shuning uchun xarita vaqti-vaqti bilan yangilanadi.",
+      "misol": "Xarita — davlatlar chegarasi.",
+      "savol": "Siyosiy xarita nimani ko‘rsatadi?",
+      "javob": "davlatlar chegarasi va poytaxtlarini",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Davlat shakllari",
+      "matn": "Boshqaruv shakliga ko‘ra davlatlar monarxiya (podsho yoki qirol) va respublikaga bo‘linadi. Tuzilishiga ko‘ra unitar (bir butun) va federativ (bir necha qismdan iborat) bo‘ladi. O‘zbekiston — unitar respublika. AQSh, Rossiya va Germaniya federativ davlatlar.",
+      "misol": "Respublika va monarxiya.",
+      "savol": "O‘zbekiston qanday davlat?",
+      "javob": "unitar respublika",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Maydon va aholi bo‘yicha yirik davlatlar",
+      "matn": "Maydoni bo‘yicha eng yirik davlat — Rossiya, so‘ng Kanada, Xitoy va AQSh. Aholisi bo‘yicha Hindiston, Xitoy, AQSh va Indoneziya oldinda. Eng kichik davlat — Vatikan. Yirik davlatlar iqtisod va siyosatda katta rol o‘ynaydi.",
+      "misol": "Rossiya — eng katta maydon.",
+      "savol": "Eng kichik davlat qaysi?",
+      "javob": "Vatikan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, davlat maydoni 450000 kvadrat kilometr, aholisi 36 million bo‘lsa, aholi zichligi 36000000 / 450000 — 80 kishi bir kvadrat kilometrga (taxminiy misol). Masalan, 190 davlatning 40 foizi Osiyo va Afrikada bo‘lsa, 190 · 0,4 — 76 davlat. Masalan, 3 materikda 12 dan davlat bo‘lsa, 3 · 12 — 36 davlat.",
+      "misol": "Zichlik — aholi / maydon.",
+      "savol": "Masalan, 450000 kv. km, 36 million aholi. Zichlik?",
+      "javob": "80",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xalqaro tashkilotlar",
+      "matn": "Davlatlar tinchlik va hamkorlik uchun xalqaro tashkilotlarga birlashadi: BMT, Mustaqil Davlatlar Hamdo‘stligi, Shanxay hamkorlik tashkiloti, Yevropa Ittifoqi. O‘zbekiston BMT a’zosi. Xalqaro munosabatlar muzokara va kelishuvga tayanadi.",
+      "misol": "Birgalikda — kuchli.",
+      "savol": "BMT nima uchun kerak?",
+      "javob": "tinchlik va hamkorlik uchun",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Siyosiy xarita: davlatlar, chegara, poytaxt. Zichlik — aholi / maydon. O‘zbekiston — unitar respublika.",
+    "misollar": [
+     {
+      "shart": "Masalan, 450000 kv. km maydonda 36 million aholi. Bir kv. km ga necha kishi?",
+      "yechim": [
+       "36000000 / 450000.",
+       "Bo‘ling.",
+       "Javob 80."
+      ],
+      "javob": "80"
+     },
+     {
+      "shart": "Masalan, 190 davlatning 40 foizi. Necha davlat?",
+      "yechim": [
+       "40 foiz — 0,4.",
+       "190 · 0,4.",
+       "Javob 76."
+      ],
+      "javob": "76"
+     },
+     {
+      "shart": "Masalan, 3 materikda 12 tadan davlat. Jami necha?",
+      "yechim": [
+       "3 · 12.",
+       "Hisoblang.",
+       "Javob 36."
+      ],
+      "javob": "36"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Siyosiy xarita",
+      "topshiriq": "Konturda davlat va poytaxtlarni belgilang.",
+      "yechim": "Chegara va poytaxt.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Davlat shakllari",
+      "topshiriq": "Davlatlarni monarxiya va respublikaga ajrating.",
+      "yechim": "Tasniflash.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Bo‘lish va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "BMT o‘yini",
+      "topshiriq": "Rolli o‘yin: davlat vakillari muzokarasi.",
+      "yechim": "Hamkorlik.",
+      "mahsulot": "bayroq kartochkalari"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "36000000 / 450000 nechaga teng?",
+      "javob": "80"
+     },
+     {
+      "shart": "190 · 0,4 nechaga teng?",
+      "javob": "76"
+     },
+     {
+      "shart": "3 · 12 nechaga teng?",
+      "javob": "36"
+     },
+     {
+      "shart": "Eng katta davlat?",
+      "javob": "Rossiya"
+     },
+     {
+      "shart": "Eng kichik davlat?",
+      "javob": "Vatikan"
+     },
+     {
+      "shart": "O‘zbekiston davlati?",
+      "javob": "respublika"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Davlat chegaralari doim bir xil deydi",
+      "sabab": "o‘zgarishi mumkin",
+      "oldini_olish": "xarita yangilanadi"
+     },
+     {
+      "xato": "O‘zbekiston federatsiya deydi",
+      "sabab": "unitar respublika",
+      "oldini_olish": "bir butun davlat"
+     },
+     {
+      "xato": "Xalqaro tashkilot kerak emas deydi",
+      "sabab": "kerak",
+      "oldini_olish": "tinchlik va hamkorlik"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "chegaralar o‘zgarishi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "zichlik va foiz"
+     },
+     {
+      "fan": "Huquq",
+      "boglanish": "davlat tuzilishi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Dunyo siyosiy xaritasi»",
+     "muammo": "Davlatlar qanday joylashgan?",
+     "mahsulot": "xarita albomi",
+     "bosqichlar": [
+      "kontur xarita",
+      "davlat shakllari",
+      "hisob",
+      "tashkilotlar",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Tasnif qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Xalqaro anjuman»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "450000 kv. km, 36 million.",
+       "topshiriq": "Zichlik?",
+       "javob": "80",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "190 davlat, 40 foiz.",
+       "topshiriq": "Necha?",
+       "javob": "76",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "3 materik, 12 tadan.",
+       "topshiriq": "Jami?",
+       "javob": "36",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Eng katta maydon.",
+       "topshiriq": "Qaysi?",
+       "javob": "Rossiya",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Davlat",
+      "tarif": "hudud, aholi va hukumatli birlik"
+     },
+     {
+      "atama": "Poytaxt",
+      "tarif": "davlat markaziy shahri"
+     },
+     {
+      "atama": "Respublika",
+      "tarif": "saylangan boshqaruv"
+     },
+     {
+      "atama": "Monarxiya",
+      "tarif": "podsho boshqaruvi"
+     },
+     {
+      "atama": "Federatsiya",
+      "tarif": "qismlardan iborat davlat"
+     },
+     {
+      "atama": "BMT",
+      "tarif": "Birlashgan Millatlar Tashkiloti"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "O‘zbekiston unitar respublika",
+      "togri": true,
+      "izoh": "bir butun"
+     },
+     {
+      "matn": "Eng katta davlat Kanada",
+      "togri": false,
+      "izoh": "Rossiya"
+     },
+     {
+      "matn": "3 · 12 — 36",
+      "togri": true,
+      "izoh": "davlat"
+     },
+     {
+      "matn": "Vatikan eng kichik davlat",
+      "togri": true,
+      "izoh": "Yevropa"
+     },
+     {
+      "matn": "Chegaralar o‘zgarmaydi",
+      "togri": false,
+      "izoh": "o‘zgarishi mumkin"
+     },
+     {
+      "matn": "BMT hamkorlik tashkiloti",
+      "togri": true,
+      "izoh": "xalqaro"
+     },
+     {
+      "matn": "190 · 0,4 — 76",
+      "togri": true,
+      "izoh": "foiz"
+     },
+     {
+      "matn": "AQSh federativ davlat",
+      "togri": true,
+      "izoh": "federatsiya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Davlat?",
+      "javob": "hudud va hukumat"
+     },
+     {
+      "savol": "Poytaxt?",
+      "javob": "markaz"
+     },
+     {
+      "savol": "Respublika?",
+      "javob": "saylanadi"
+     },
+     {
+      "savol": "Monarxiya?",
+      "javob": "podsho"
+     },
+     {
+      "savol": "Federatsiya?",
+      "javob": "qismlardan"
+     },
+     {
+      "savol": "Eng katta?",
+      "javob": "Rossiya"
+     },
+     {
+      "savol": "36000000 / 450000?",
+      "javob": "80"
+     },
+     {
+      "savol": "190 · 0,4?",
+      "javob": "76"
+     },
+     {
+      "savol": "3 · 12?",
+      "javob": "36"
+     },
+     {
+      "savol": "BMT?",
+      "javob": "tashkilot"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Siyosiy xaritani kuzat.",
+      "savol": "Chegara?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Zichlikni top.",
+      "savol": "Bo‘lish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Respublika va monarxiya.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Hamkorlik?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun davlatlar xalqaro tashkilotlarga birlashadi?",
+    "keys": {
+     "vaziyat": "Ikki qo‘shni davlat suv taqsimotida kelisha olmayapti.",
+     "savollar": [
+      "Nima qilish kerak?",
+      "Kim yordam beradi?"
+     ]
+    },
+    "tezis": "Dunyo — hamkorlik maydoni",
+    "taqqoslash": {
+     "a": "Unitar davlat",
+     "b": "Federativ davlat",
+     "umumiy": [
+      "davlat",
+      "hukumati bor"
+     ],
+     "a_farq": [
+      "bir butun",
+      "O‘zbekiston"
+     ],
+     "b_farq": [
+      "qismlardan iborat",
+      "AQSh"
+     ]
+    },
+    "klaster": {
+     "markaz": "Jahon siyosiy xaritasi",
+     "shoxlar": [
+      {
+       "nom": "Davlat",
+       "bandlar": [
+        "hudud",
+        "aholi",
+        "hukumat"
+       ]
+      },
+      {
+       "nom": "Shakl",
+       "bandlar": [
+        "respublika",
+        "monarxiya"
+       ]
+      },
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "unitar",
+        "federativ"
+       ]
+      },
+      {
+       "nom": "Tashkilot",
+       "bandlar": [
+        "BMT",
+        "SHHT"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men davlatning markaziy shahriman. Men nimaman?",
+     "javob": "poytaxt"
+    },
+    "hikmat": "Dunyo — birgalikda.",
+    "kalit_soz": "DUNYO",
+    "xato_yechim": {
+     "shart": "O‘zbekiston qanday davlat?",
+     "xato": "federativ",
+     "togri": "unitar",
+     "sabab": "bir butun"
+    },
+    "guruh_nomlari": [
+     "Diplomatlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tarjimonlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Dunyo siyosiy xaritasi»",
+     "topshiriq": "Guruh xarita albomini tuzadi."
+    },
+    "vazifalar": {
+     "A": "450000 kv. km, 36 million?",
+     "B": "190 davlat, 40 foiz?",
+     "C": "3 materik, 12 tadan?"
+    },
+    "sinkveyn": [
+     "Davlat",
+     "mustaqil, hududli",
+     "boshqaradi, himoyalaydi, birlashadi",
+     "Dunyo bo‘laklari",
+     "Poytaxt"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh siyosiy xaritani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: davlat",
+      "2-guruh: shakl",
+      "3-guruh: tuzilish",
+      "4-guruh: tashkilot"
+     ],
+     "yakun": "Natijalar: 80; 76; 36."
+    }
+   }
+  },
+  {
+   "mavzu": "Jahon aholisi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Jahon aholisi soni",
+      "matn": "Yer yuzida taxminan 8 milliard kishi yashaydi. Aholi so‘nggi yuz yilda juda tez ko‘paydi. Eng gavjum hududlar: Janubiy va Sharqiy Osiyo, Yevropa va Sharqiy Amerika. Cho‘l, tog‘ va sovuq o‘lkalarda aholi kam.",
+      "misol": "Taxminan 8 milliard kishi.",
+      "savol": "Dunyoda taxminan necha kishi bor?",
+      "javob": "8 milliard",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aholi harakati",
+      "matn": "Tug‘ilish va o‘lim farqi tabiiy o‘sishni beradi. Aholi o‘sishiga tug‘ilish, o‘lim, tibbiyot va turmush darajasi ta’sir qiladi. Ko‘p rivojlanayotgan davlatlarda o‘sish tez, ba’zi rivojlangan davlatlarda esa sekin yoki kamayadi. Migratsiya ko‘chib yurishdir.",
+      "misol": "Tug‘ilish − o‘lim — tabiiy o‘sish.",
+      "savol": "Tabiiy o‘sish nima?",
+      "javob": "tug‘ilish va o‘lim farqi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Zichlik va tuzilma",
+      "matn": "Aholi zichligi — bir kvadrat kilometrga to‘g‘ri keladigan kishi soni. Yosh tuzilmasi — bolalar, ishlovchilar va keksalar ulushi. Jins tuzilmasi — erkak va ayol nisbati. Dunyoda aholi zichligi yuqori davlatlar: Bangladesh, Hindiston, Niderlandiya.",
+      "misol": "Zichlik — kishi / kv. km.",
+      "savol": "Zichlik nima?",
+      "javob": "bir kv. km ga kishi soni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, aholi 2 foiz o‘ssa, 30 million aholi bir yilda 30 · 0,02 — 0,6 million, ya’ni 600000 ga ko‘payadi (taxminiy misol). Masalan, 1000 kishiga 20 ta bola tug‘ilsa va 8 kishi vafot etsa, tabiiy o‘sish 20 − 8 — 12 promille (taxminiy misol). Masalan, 120 million kishi 600000 kv. km da yashasa, zichlik 120 / 0,6 — 200 kishi (milliondan kv. km ga hisoblab).",
+      "misol": "O‘sish — tug‘ilish minus o‘lim.",
+      "savol": "Masalan, 20 tug‘ilish va 8 o‘lim. O‘sish?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Millat va din",
+      "matn": "Dunyoda minglab xalq va tillar bor. Eng ko‘p so‘zlashiladigan tillar: xitoy, ingliz, hind, ispan, arab. Dinlar: nasroniylik, islom, hinduizm, buddizm va boshqalar. Madaniy xilma-xillik dunyoning boyligi, o‘zaro hurmat esa tinchlik asosi.",
+      "misol": "Xilma-xillik — boylik.",
+      "savol": "Madaniy xilma-xillik nima?",
+      "javob": "turli xalq va madaniyatlar",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Jahon aholisi: taxminan 8 milliard. Tabiiy o‘sish — tug‘ilish minus o‘lim. Zichlik — kishi / kv. km.",
+    "misollar": [
+     {
+      "shart": "Masalan, 30 million aholi 2 foiz o‘ssa. Necha million ko‘payadi?",
+      "yechim": [
+       "2 foiz — 0,02.",
+       "30 · 0,02.",
+       "Javob 0,6."
+      ],
+      "javob": "0,6"
+     },
+     {
+      "shart": "Masalan, 20 tug‘ilish va 8 o‘lim. Tabiiy o‘sish?",
+      "yechim": [
+       "20 − 8.",
+       "Ayiring.",
+       "Javob 12."
+      ],
+      "javob": "12"
+     },
+     {
+      "shart": "Masalan, 120 million kishi, 0,6 million kv. km. Zichlik?",
+      "yechim": [
+       "120 / 0,6.",
+       "Bo‘ling.",
+       "Javob 200."
+      ],
+      "javob": "200"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Zichlik xaritasi",
+      "topshiriq": "Aholi zich va siyrak hududlarni belgilang.",
+      "yechim": "Zichlik.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Yosh piramidasi",
+      "topshiriq": "Ikki davlat yosh piramidasini chizing.",
+      "yechim": "Yosh tuzilmasi.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va ayirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Tillar va dinlar",
+      "topshiriq": "Dunyo tillari jadvalini tuzing.",
+      "yechim": "Xilma-xillik.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "30 · 0,02 nechaga teng?",
+      "javob": "0,6"
+     },
+     {
+      "shart": "20 − 8 nechaga teng?",
+      "javob": "12"
+     },
+     {
+      "shart": "120 / 0,6 nechaga teng?",
+      "javob": "200"
+     },
+     {
+      "shart": "Dunyo aholisi taxminan?",
+      "javob": "8 milliard"
+     },
+     {
+      "shart": "Zichlik yuqori davlat?",
+      "javob": "Bangladesh"
+     },
+     {
+      "shart": "Tabiiy o‘sish nima?",
+      "javob": "tug‘ilish minus o‘lim"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Aholi hamma joyda bir xil joylashgan deydi",
+      "sabab": "notekis",
+      "oldini_olish": "cho‘l va tog‘da kam"
+     },
+     {
+      "xato": "Tabiiy o‘sish — tug‘ilish deydi",
+      "sabab": "tug‘ilish minus o‘lim",
+      "oldini_olish": "farq"
+     },
+     {
+      "xato": "Xilma-xillik zarar deydi",
+      "sabab": "boylik",
+      "oldini_olish": "hurmat kerak"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va ayirish"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "aholi o‘sishi"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "inson"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Dunyo aholisi atlasi»",
+     "muammo": "Dunyoda odamlar qanday joylashgan?",
+     "mahsulot": "demografik atlas",
+     "bosqichlar": [
+      "zichlik xaritasi",
+      "yosh piramidasi",
+      "hisob",
+      "tillar",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Aholini ro‘yxatga olish»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "30 million, 2 foiz.",
+       "topshiriq": "Million?",
+       "javob": "0,6",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "20 tug‘ilish, 8 o‘lim.",
+       "topshiriq": "O‘sish?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "120 million, 0,6 million kv. km.",
+       "topshiriq": "Zichlik?",
+       "javob": "200",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Dunyo aholisi.",
+       "topshiriq": "Taxminan?",
+       "javob": "8 milliard",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Aholi zichligi",
+      "tarif": "kishi / kv. km"
+     },
+     {
+      "atama": "Tabiiy o‘sish",
+      "tarif": "tug‘ilish minus o‘lim"
+     },
+     {
+      "atama": "Migratsiya",
+      "tarif": "ko‘chib yurish"
+     },
+     {
+      "atama": "Demografiya",
+      "tarif": "aholi fani"
+     },
+     {
+      "atama": "Yosh tuzilmasi",
+      "tarif": "yosh guruhlari nisbati"
+     },
+     {
+      "atama": "Xilma-xillik",
+      "tarif": "turli madaniyatlar"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Dunyo aholisi taxminan 8 milliard",
+      "togri": true,
+      "izoh": "hozirgi son"
+     },
+     {
+      "matn": "Aholi hamma joyda teng",
+      "togri": false,
+      "izoh": "notekis"
+     },
+     {
+      "matn": "20 − 8 — 12",
+      "togri": true,
+      "izoh": "o‘sish"
+     },
+     {
+      "matn": "Migratsiya ko‘chib yurishdir",
+      "togri": true,
+      "izoh": "tushuncha"
+     },
+     {
+      "matn": "Zichlik kishi / kv. km",
+      "togri": true,
+      "izoh": "o‘lchov"
+     },
+     {
+      "matn": "Cho‘lda aholi zich",
+      "togri": false,
+      "izoh": "siyrak"
+     },
+     {
+      "matn": "30 · 0,02 — 0,6",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Xilma-xillik boylik",
+      "togri": true,
+      "izoh": "madaniyat"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Dunyo aholisi?",
+      "javob": "8 milliard"
+     },
+     {
+      "savol": "Tabiiy o‘sish?",
+      "javob": "tug‘ilish minus o‘lim"
+     },
+     {
+      "savol": "Zichlik?",
+      "javob": "kishi / kv. km"
+     },
+     {
+      "savol": "Migratsiya?",
+      "javob": "ko‘chish"
+     },
+     {
+      "savol": "Demografiya?",
+      "javob": "aholi fani"
+     },
+     {
+      "savol": "Siyrak joy?",
+      "javob": "cho‘l"
+     },
+     {
+      "savol": "30 · 0,02?",
+      "javob": "0,6"
+     },
+     {
+      "savol": "20 − 8?",
+      "javob": "12"
+     },
+     {
+      "savol": "120 / 0,6?",
+      "javob": "200"
+     },
+     {
+      "savol": "Xilma-xillik?",
+      "javob": "boylik"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Zichlik xaritasini kuzat.",
+      "savol": "Qayerda zich?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "O‘sishni top.",
+      "savol": "Ayirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ikki davlat.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Xilma-xillik?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun dunyoda aholi notekis joylashgan?",
+    "keys": {
+     "vaziyat": "Bir shaharga ko‘p odam ko‘chib kelmoqda.",
+     "savollar": [
+      "Nima muammo?",
+      "Nima yechim?"
+     ]
+    },
+    "tezis": "Aholi — mamlakat boyligi",
+    "taqqoslash": {
+     "a": "Zich hudud",
+     "b": "Siyrak hudud",
+     "umumiy": [
+      "aholi yashaydi",
+      "xaritada ko‘rinadi"
+     ],
+     "a_farq": [
+      "kishi ko‘p",
+      "qulay iqlim"
+     ],
+     "b_farq": [
+      "kishi kam",
+      "cho‘l va tog‘"
+     ]
+    },
+    "klaster": {
+     "markaz": "Jahon aholisi",
+     "shoxlar": [
+      {
+       "nom": "Soni",
+       "bandlar": [
+        "8 milliard",
+        "o‘sish"
+       ]
+      },
+      {
+       "nom": "Harakat",
+       "bandlar": [
+        "tug‘ilish",
+        "o‘lim",
+        "migratsiya"
+       ]
+      },
+      {
+       "nom": "Tuzilma",
+       "bandlar": [
+        "yosh",
+        "jins",
+        "zichlik"
+       ]
+      },
+      {
+       "nom": "Madaniyat",
+       "bandlar": [
+        "til",
+        "din",
+        "xalq"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men bir kv. km ga to‘g‘ri keladigan kishi sonini ko‘rsataman. Men nimaman?",
+     "javob": "zichlik"
+    },
+    "hikmat": "Aholi — hurmat va hamkorlik.",
+    "kalit_soz": "AHOLI",
+    "xato_yechim": {
+     "shart": "Tabiiy o‘sish nima?",
+     "xato": "ko‘chib yurish",
+     "togri": "tug‘ilish minus o‘lim",
+     "sabab": "demografik ko‘rsatkich"
+    },
+    "guruh_nomlari": [
+     "Demograflar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tahlilchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Dunyo aholisi atlasi»",
+     "topshiriq": "Guruh demografik atlas tuzadi."
+    },
+    "vazifalar": {
+     "A": "30 million, 2 foiz?",
+     "B": "20 tug‘ilish, 8 o‘lim?",
+     "C": "120 million, 0,6?"
+    },
+    "sinkveyn": [
+     "Aholi",
+     "ko‘p, xilma-xil",
+     "yashaydi, ko‘payadi, ko‘chadi",
+     "Dunyo odamlari",
+     "Inson"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh jahon aholisini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: soni",
+      "2-guruh: harakat",
+      "3-guruh: tuzilma",
+      "4-guruh: madaniyat"
+     ],
+     "yakun": "Natijalar: 0,6; 12; 200."
+    }
+   }
+  },
+  {
+   "mavzu": "Urbanizatsiya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Urbanizatsiya nima",
+      "matn": "Urbanizatsiya — shaharlar soni va hajmining o‘sishi, shahar aholisi ulushining ortishi. Hozir dunyo aholisining yarmidan ko‘pi shaharlarda yashaydi (taxminan). Shaharlar ish, ta’lim, tibbiyot va xizmat markazi bo‘lgani uchun odamlar ko‘chib keladi.",
+      "misol": "Shahar — o‘sish markazi.",
+      "savol": "Urbanizatsiya nima?",
+      "javob": "shaharlar va shahar aholisi o‘sishi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yirik shaharlar",
+      "matn": "Million shaharlar — aholisi million kishidan ortiq shaharlar. Megapolislar: Tokio, Dehli, Shanxay, San-Paulu, Mexiko. Yaqin shaharlar birlashib aglomeratsiya hosil qiladi. O‘zbekistonda Toshkent eng yirik shahar, so‘ng Samarqand va Namangan.",
+      "misol": "Megapolis — ulkan shahar.",
+      "savol": "O‘zbekistonning eng yirik shahri?",
+      "javob": "Toshkent",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Muammolar",
+      "matn": "Tez urbanizatsiya transport tiqilinchi, havo ifloslanishi, uy-joy tanqisligi va shovqinni keltirib chiqaradi. Qishloqda esa aholi kamayishi mumkin. Yechim: jamoat transporti, yashil hududlar, aqlli shahar rejalari, qishloqni rivojlantirish.",
+      "misol": "Shahar ham, qishloq ham kerak.",
+      "savol": "Urbanizatsiya muammosi?",
+      "javob": "tiqilinch va ifloslanish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, mamlakat aholisi 40 million, shahar aholisi 55 foiz bo‘lsa, shaharda 40 · 0,55 — 22 million kishi (taxminiy misol). Masalan, shahar aholisi 2 million, yiliga 3 foiz o‘ssa, 2 · 0,03 — 0,06 million, ya’ni 60000 kishi ko‘payadi. Masalan, 5 ta shaharning har birida 2 million kishi bo‘lsa, 5 · 2 — 10 million.",
+      "misol": "Shahar aholisi — jami · ulush.",
+      "savol": "Masalan, 40 million, 55 foiz shaharda. Necha million?",
+      "javob": "22",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aqlli va yashil shahar",
+      "matn": "Kelajak shahri aqlli transport, tejamkor energiya, bog‘lar va velosiped yo‘llariga ega. Yashil hududlar havoni tozalaydi va issiqlikni kamaytiradi. Har bir fuqaro shaharni toza tutishga hissa qo‘shadi.",
+      "misol": "Toza shahar — sog‘lom hayot.",
+      "savol": "Yashil hududlar nima beradi?",
+      "javob": "toza havo va salqinlik",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Urbanizatsiya: shaharlar o‘sishi. Megapolis. Shahar aholisi — jami · ulush.",
+    "misollar": [
+     {
+      "shart": "Masalan, 40 million aholining 55 foizi shaharda. Necha million?",
+      "yechim": [
+       "55 foiz — 0,55.",
+       "40 · 0,55.",
+       "Javob 22."
+      ],
+      "javob": "22"
+     },
+     {
+      "shart": "Masalan, 2 million aholi 3 foiz o‘ssa. Necha ming ko‘payadi?",
+      "yechim": [
+       "2 · 0,03 — 0,06 million.",
+       "Mingga o‘giring.",
+       "Javob 60."
+      ],
+      "javob": "60"
+     },
+     {
+      "shart": "Masalan, 5 shahar, har biri 2 million. Jami necha million?",
+      "yechim": [
+       "5 · 2.",
+       "Hisoblang.",
+       "Javob 10."
+      ],
+      "javob": "10"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Megapolislar xaritasi",
+      "topshiriq": "Xaritada yirik shaharlarni belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Shahar muammolari",
+      "topshiriq": "Muammo va yechim jadvalini tuzing.",
+      "yechim": "Tahlil.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Yashil shahar",
+      "topshiriq": "O‘z mahallangiz uchun yashil reja chizing.",
+      "yechim": "Loyiha.",
+      "mahsulot": "qog‘oz, bo‘yoq"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "40 · 0,55 nechaga teng?",
+      "javob": "22"
+     },
+     {
+      "shart": "5 · 2 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "2 · 0,03 nechaga teng?",
+      "javob": "0,06"
+     },
+     {
+      "shart": "Eng yirik shahar O‘zbekistonda?",
+      "javob": "Toshkent"
+     },
+     {
+      "shart": "Ulkan shahar nomi?",
+      "javob": "megapolis"
+     },
+     {
+      "shart": "Yashil hudud nima beradi?",
+      "javob": "toza havo"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Urbanizatsiya faqat foyda deydi",
+      "sabab": "muammolari ham bor",
+      "oldini_olish": "tiqilinch, ifloslanish"
+     },
+     {
+      "xato": "Qishloq kerak emas deydi",
+      "sabab": "kerak",
+      "oldini_olish": "oziq-ovqat beradi"
+     },
+     {
+      "xato": "Yashil hudud foydasiz deydi",
+      "sabab": "foydali",
+      "oldini_olish": "havoni tozalaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va ko‘paytirish"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "shahar havosi"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "ish o‘rinlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kelajak shahri»",
+     "muammo": "Qanday shahar qulay va toza?",
+     "mahsulot": "shahar maketi",
+     "bosqichlar": [
+      "xarita",
+      "muammolar",
+      "hisob",
+      "yashil reja",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Tahlil qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Megapolis ko‘chalari»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "40 million, 55 foiz.",
+       "topshiriq": "Million?",
+       "javob": "22",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "2 million, 3 foiz.",
+       "topshiriq": "Ming?",
+       "javob": "60",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "5 shahar, 2 million.",
+       "topshiriq": "Jami?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "O‘zbekiston markazi.",
+       "topshiriq": "Qaysi?",
+       "javob": "Toshkent",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Urbanizatsiya",
+      "tarif": "shaharlar o‘sishi"
+     },
+     {
+      "atama": "Megapolis",
+      "tarif": "ulkan shahar"
+     },
+     {
+      "atama": "Aglomeratsiya",
+      "tarif": "birlashgan shaharlar"
+     },
+     {
+      "atama": "Transport tiqilinchi",
+      "tarif": "yo‘ldagi to‘siq"
+     },
+     {
+      "atama": "Aqlli shahar",
+      "tarif": "texnologiyali shahar"
+     },
+     {
+      "atama": "Yashil hudud",
+      "tarif": "bog‘ va daraxtzor"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Toshkent O‘zbekistonning eng yirik shahri",
+      "togri": true,
+      "izoh": "poytaxt"
+     },
+     {
+      "matn": "Urbanizatsiyada muammo yo‘q",
+      "togri": false,
+      "izoh": "tiqilinch bor"
+     },
+     {
+      "matn": "40 · 0,55 — 22",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Megapolis ulkan shahar",
+      "togri": true,
+      "izoh": "Tokio"
+     },
+     {
+      "matn": "Yashil hudud foydasiz",
+      "togri": false,
+      "izoh": "foydali"
+     },
+     {
+      "matn": "5 · 2 — 10",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Qishloq kerak emas",
+      "togri": false,
+      "izoh": "kerak"
+     },
+     {
+      "matn": "Aqlli transport yordam beradi",
+      "togri": true,
+      "izoh": "tiqilinch"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Urbanizatsiya?",
+      "javob": "shahar o‘sishi"
+     },
+     {
+      "savol": "Megapolis?",
+      "javob": "ulkan shahar"
+     },
+     {
+      "savol": "Aglomeratsiya?",
+      "javob": "birlashish"
+     },
+     {
+      "savol": "Yirik shahar?",
+      "javob": "Toshkent"
+     },
+     {
+      "savol": "Muammo?",
+      "javob": "tiqilinch"
+     },
+     {
+      "savol": "Yechim?",
+      "javob": "yashil reja"
+     },
+     {
+      "savol": "40 · 0,55?",
+      "javob": "22"
+     },
+     {
+      "savol": "5 · 2?",
+      "javob": "10"
+     },
+     {
+      "savol": "2 · 0,03?",
+      "javob": "0,06"
+     },
+     {
+      "savol": "Bog‘?",
+      "javob": "toza havo"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Shahar ko‘chasini kuzat.",
+      "savol": "Muammo?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Shahar aholisini top.",
+      "savol": "Foiz?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Shahar va qishloq.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Yechim?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun odamlar shaharga ko‘chib keladi?",
+    "keys": {
+     "vaziyat": "Shaharda ko‘chalar tiqilib qoldi, havo iflos.",
+     "savollar": [
+      "Sabab nima?",
+      "Yechim nima?"
+     ]
+    },
+    "tezis": "Shahar — hamma uchun",
+    "taqqoslash": {
+     "a": "Shahar",
+     "b": "Qishloq",
+     "umumiy": [
+      "odamlar yashaydi",
+      "mahsulot kerak"
+     ],
+     "a_farq": [
+      "gavjum",
+      "xizmat ko‘p"
+     ],
+     "b_farq": [
+      "tinch",
+      "oziq-ovqat beradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Urbanizatsiya",
+     "shoxlar": [
+      {
+       "nom": "Sabab",
+       "bandlar": [
+        "ish",
+        "ta’lim",
+        "xizmat"
+       ]
+      },
+      {
+       "nom": "Shaharlar",
+       "bandlar": [
+        "megapolis",
+        "aglomeratsiya"
+       ]
+      },
+      {
+       "nom": "Muammo",
+       "bandlar": [
+        "tiqilinch",
+        "ifloslanish"
+       ]
+      },
+      {
+       "nom": "Yechim",
+       "bandlar": [
+        "yashil hudud",
+        "aqlli transport"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ulkan shaharman, aholim million kishidan ko‘p. Men nimaman?",
+     "javob": "megapolis"
+    },
+    "hikmat": "Toza shahar — sog‘lom hayot.",
+    "kalit_soz": "SHAHAR",
+    "xato_yechim": {
+     "shart": "O‘zbekistonning eng yirik shahri qaysi?",
+     "xato": "Samarqand",
+     "togri": "Toshkent",
+     "sabab": "poytaxt"
+    },
+    "guruh_nomlari": [
+     "Shaharsozlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Ekologlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Kelajak shahri»",
+     "topshiriq": "Guruh shahar maketini tuzadi."
+    },
+    "vazifalar": {
+     "A": "40 million, 55 foiz?",
+     "B": "2 million, 3 foiz?",
+     "C": "5 shahar, 2 million?"
+    },
+    "sinkveyn": [
+     "Shahar",
+     "gavjum, zamonaviy",
+     "o‘sadi, yangilanadi, band",
+     "Hayot markazi",
+     "Ko‘cha"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh urbanizatsiyani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: sabab",
+      "2-guruh: shaharlar",
+      "3-guruh: muammo",
+      "4-guruh: yechim"
+     ],
+     "yakun": "Natijalar: 22; 60; 10."
+    }
+   }
+  }
+ ]
+}
