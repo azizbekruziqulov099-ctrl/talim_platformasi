@@ -1384,6 +1384,1384 @@
      "yakun": "Natija: issiqlik uch xil yo‘l bilan issiqdan sovuqqa uzatiladi."
     }
    }
+  },
+  {
+   "mavzu": "Issiqlik miqdori",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Isitish uchun issiqlik",
+      "matn": "Jismni isitish uchun unga issiqlik beramiz. Berilgan yoki olingan ichki energiya miqdori issiqlik miqdori deyiladi. Uni Q harfi bilan belgilaymiz, birligi — joul (J).",
+      "misol": "Suvni isitish uchun gaz yoqamiz.",
+      "savol": "Issiqlik miqdori qaysi harf bilan belgilanadi?",
+      "javob": "Q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nimalarga bog‘liq",
+      "matn": "Issiqlik miqdori uch narsaga bog‘liq: modda turiga, massaga va haroratning o‘zgarishiga. Massa katta bo‘lsa, ko‘p issiqlik kerak. Harorat ko‘proq o‘zgarsa, ko‘p issiqlik kerak.",
+      "misol": "Katta qozonni isitish ko‘proq vaqt oladi.",
+      "savol": "Massa katta bo‘lsa, issiqlik miqdori qanday?",
+      "javob": "ko‘proq kerak",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Solishtirma issiqlik sig‘imi",
+      "matn": "1 kg moddani 1 daraja isitish uchun kerak bo‘lgan issiqlik miqdori solishtirma issiqlik sig‘imi deyiladi. Uni c harfi bilan belgilaymiz. Suv uchun taxminan 4200 joul.",
+      "misol": "Suvning c — 4200 joul (1 kg, 1 daraja uchun).",
+      "savol": "Suvning solishtirma issiqlik sig‘imi taxminan nechaga teng?",
+      "javob": "4200",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Formula",
+      "matn": "Isitishda: Q — c · m · (t2 − t1). Bu yerda m — massa (kg), t1 — boshlang‘ich, t2 — oxirgi harorat.",
+      "misol": "2 kg suv 20 dan 70 gacha: Q — 4200 · 2 · 50 — 420000 joul.",
+      "savol": "70 − 20 nechaga teng?",
+      "javob": "50",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sovishda",
+      "matn": "Jism sovisa, issiqlik beradi. Bergan issiqlik miqdori ham shu formula bilan topiladi: c · m · (t1 − t2).",
+      "misol": "Suv sovugan sari atrofni isitadi.",
+      "savol": "Sovigan jism issiqlikni oladimi yoki beradimi?",
+      "javob": "beradi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Q — c · m · (t2 − t1). c — solishtirma issiqlik sig‘imi, m — massa, t — harorat. Suv uchun c taxminan 4200 joul.",
+    "misollar": [
+     {
+      "shart": "2 kg suvni 20 darajadan 70 darajagacha isitish uchun issiqlik miqdori? (c — 4200)",
+      "yechim": [
+       "t2 − t1 — 70 − 20 — 50.",
+       "Q — 4200 · 2 · 50.",
+       "Javob 420000 joul."
+      ],
+      "javob": "420000 joul"
+     },
+     {
+      "shart": "1 kg suv 10 daraja isisa, qancha issiqlik oladi?",
+      "yechim": [
+       "Q — 4200 · 1 · 10.",
+       "42000.",
+       "Javob 42000 joul."
+      ],
+      "javob": "42000 joul"
+     },
+     {
+      "shart": "0,5 kg suv 20 dan 100 gacha isisa, qancha issiqlik kerak?",
+      "yechim": [
+       "100 − 20 — 80.",
+       "Q — 4200 · 0,5 · 80.",
+       "Javob 168000 joul."
+      ],
+      "javob": "168000 joul"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Suv isitamiz",
+      "topshiriq": "Bir xil massali suvni turli vaqt isitib, haroratni o‘lchang.",
+      "yechim": "Vaqt va harorat bog‘liq.",
+      "mahsulot": "termometr, idish"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani Q formulasi bilan yeching.",
+      "yechim": "c · m · farq.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Moddalarni solishtiramiz",
+      "topshiriq": "Suv va qumni bir xil isitib, qaysi tez isishini kuzating.",
+      "yechim": "Suvning sig‘imi katta.",
+      "mahsulot": "suv, qum"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Javobni teskari hisob bilan tekshiring.",
+      "yechim": "420000 / 4200 / 2 — 50.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "70 − 20 nechaga teng?",
+      "javob": "50"
+     },
+     {
+      "shart": "4200 · 2 · 50 nechaga teng?",
+      "javob": "420000"
+     },
+     {
+      "shart": "4200 · 1 · 10 nechaga teng?",
+      "javob": "42000"
+     },
+     {
+      "shart": "Issiqlik miqdori birligi?",
+      "javob": "joul"
+     },
+     {
+      "shart": "Suv c taxminan?",
+      "javob": "4200"
+     },
+     {
+      "shart": "Issiqlik miqdori belgisi?",
+      "javob": "Q"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Haroratni massa bilan aralashtiradi",
+      "sabab": "kattaliklarni farqlamaydi",
+      "oldini_olish": "m — kg, t — daraja"
+     },
+     {
+      "xato": "Haroratning o‘zgarishi o‘rniga oxirgisini oladi",
+      "sabab": "t2 − t1 ni unutadi",
+      "oldini_olish": "farqni hisobla"
+     },
+     {
+      "xato": "Birlikni yozmaydi",
+      "sabab": "joulni unutadi",
+      "oldini_olish": "javobga joul yoz"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "ovqat pishirish"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "isitish tizimlari"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "dengiz iqlimi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Issiqlik hisobi»",
+     "muammo": "Uy isitish uchun kerak issiqlikni qanday hisoblaymiz?",
+     "mahsulot": "hisob daftari",
+     "bosqichlar": [
+      "masala tanlash",
+      "ma’lumot yig‘ish",
+      "formula bilan hisoblash",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Masala tanlang",
+      "Ma’lumot yig‘ing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "ma’lumot to‘g‘ri",
+      "hisob to‘g‘ri",
+      "birlik yozilgan",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Issiqlik hisobi shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "2 kg suv 20 dan 70 gacha.",
+       "topshiriq": "Q?",
+       "javob": "420000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "1 kg suv 10 daraja isidi.",
+       "topshiriq": "Q?",
+       "javob": "42000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "0,5 kg suv 20 dan 100 gacha.",
+       "topshiriq": "Q?",
+       "javob": "168000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "Issiqlik birligi.",
+       "topshiriq": "Nima?",
+       "javob": "joul",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Farqni hisobladingizmi?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Issiqlik miqdori",
+      "tarif": "uzatilgan ichki energiya"
+     },
+     {
+      "atama": "Solishtirma issiqlik sig‘imi",
+      "tarif": "1 kg ni 1 daraja isitish issiqligi"
+     },
+     {
+      "atama": "Massa",
+      "tarif": "moddaning miqdori"
+     },
+     {
+      "atama": "Harorat farqi",
+      "tarif": "oxirgi va boshlang‘ich ayirma"
+     },
+     {
+      "atama": "Joul",
+      "tarif": "issiqlik birligi"
+     },
+     {
+      "atama": "Kilogramm",
+      "tarif": "massa birligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Q — c · m · (t2 − t1)",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Suv c taxminan 42 joul",
+      "togri": false,
+      "izoh": "4200"
+     },
+     {
+      "matn": "4200 · 2 · 50 — 420000",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Massa kattalashsa, Q kamayadi",
+      "togri": false,
+      "izoh": "ortadi"
+     },
+     {
+      "matn": "Sovigan jism issiqlik beradi",
+      "togri": true,
+      "izoh": "energiya chiqadi"
+     },
+     {
+      "matn": "Issiqlik miqdori joulda o‘lchanadi",
+      "togri": true,
+      "izoh": "J"
+     },
+     {
+      "matn": "Haroratni farqsiz olamiz",
+      "togri": false,
+      "izoh": "farq kerak"
+     },
+     {
+      "matn": "Suvning sig‘imi qumnikidan katta",
+      "togri": true,
+      "izoh": "sekin isiydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Q nima?",
+      "javob": "issiqlik miqdori"
+     },
+     {
+      "savol": "c nima?",
+      "javob": "solishtirma issiqlik sig‘imi"
+     },
+     {
+      "savol": "Suv c?",
+      "javob": "4200"
+     },
+     {
+      "savol": "Formula?",
+      "javob": "c · m · farq"
+     },
+     {
+      "savol": "70 − 20?",
+      "javob": "50"
+     },
+     {
+      "savol": "4200 · 2 · 50?",
+      "javob": "420000"
+     },
+     {
+      "savol": "4200 · 1 · 10?",
+      "javob": "42000"
+     },
+     {
+      "savol": "Birlik?",
+      "javob": "joul"
+     },
+     {
+      "savol": "Sovisa?",
+      "javob": "issiqlik beradi"
+     },
+     {
+      "savol": "Massa ortsa?",
+      "javob": "Q ortadi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "c, m, t?"
+     },
+     {
+      "nom": "Farq",
+      "matn": "Haroratni ayir.",
+      "savol": "70 − 20?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Formulani qo‘lla.",
+      "savol": "4200 · 2 · 50?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Birlikni tekshir.",
+      "savol": "joul?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun dengiz qirg‘oqlarida iqlim yumshoq?",
+    "keys": {
+     "vaziyat": "2 kg suvni 20 darajadan 70 darajagacha isitmoqchisiz.",
+     "savollar": [
+      "Qancha issiqlik kerak?",
+      "Qaysi formulani qo‘llaysiz?"
+     ]
+    },
+    "tezis": "Q — c · m · farq",
+    "taqqoslash": {
+     "a": "Suv",
+     "b": "Qum",
+     "umumiy": [
+      "isitiladi",
+      "issiqlik oladi"
+     ],
+     "a_farq": [
+      "c katta",
+      "sekin isiydi"
+     ],
+     "b_farq": [
+      "c kichik",
+      "tez isiydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Issiqlik miqdori",
+     "shoxlar": [
+      {
+       "nom": "Belgi",
+       "bandlar": [
+        "Q",
+        "joul"
+       ]
+      },
+      {
+       "nom": "c",
+       "bandlar": [
+        "solishtirma sig‘im",
+        "suv 4200"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "c · m · farq"
+       ]
+      },
+      {
+       "nom": "Sovish",
+       "bandlar": [
+        "issiqlik beradi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men jismni isitish uchun kerak energiyaman. Men kimman?",
+     "javob": "issiqlik miqdori"
+    },
+    "hikmat": "Ko‘p massa — ko‘p issiqlik.",
+    "kalit_soz": "ISSIQLIK",
+    "xato_yechim": {
+     "shart": "2 kg suv 20 dan 70 gacha. Q?",
+     "xato": "4200 · 2 · 70",
+     "togri": "4200 · 2 · 50 — 420000 joul",
+     "sabab": "harorat farqi 70 − 20 — 50"
+    },
+    "guruh_nomlari": [
+     "Issiqlikchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Issiqlik hisobi»",
+     "topshiriq": "Guruh issiqlik miqdorini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "2 kg suv 20 dan 70 gacha isisa Q?",
+     "B": "1 kg suv 10 daraja isisa Q?",
+     "C": "0,5 kg suv 20 dan 100 gacha isisa Q?"
+    },
+    "sinkveyn": [
+     "Issiqlik",
+     "issiq, joulli",
+     "isitadi, beradi, oladi",
+     "Issiqlik — energiya",
+     "Joul"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh issiqlik miqdorini hisoblaydi.",
+     "qismlar": [
+      "1-guruh: 2 kg",
+      "2-guruh: 1 kg",
+      "3-guruh: 0,5 kg",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 420000; 42000; 168000 joul."
+    }
+   }
+  },
+  {
+   "mavzu": "Erish va qotish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Agregat holatlar",
+      "matn": "Modda uch holatda bo‘ladi: qattiq, suyuq va gaz. Holat o‘zgarganda molekulalarning joylashishi o‘zgaradi, modda o‘zgarmaydi.",
+      "misol": "Muz, suv va bug‘ — bitta modda, uch holat.",
+      "savol": "Modda nechta holatda bo‘ladi?",
+      "javob": "uchta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Erish",
+      "matn": "Qattiq jismning suyuqqa aylanishi erish deyiladi. Erish uchun issiqlik kerak. Erish bir aniq haroratda boshlanadi. Muz 0 darajada eriydi.",
+      "misol": "Qo‘rg‘oshin 327 darajada eriydi.",
+      "savol": "Muz necha darajada eriydi?",
+      "javob": "0 darajada",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qotish",
+      "matn": "Suyuqlikning qattiq holatga o‘tishi qotish (kristallanish) deyiladi. Qotishda issiqlik ajraladi. Qotish harorati erish harorati bilan bir xil.",
+      "misol": "Suv 0 darajada muzlaydi.",
+      "savol": "Qotishda issiqlik ajraladimi yoki yutiladimi?",
+      "javob": "ajraladi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Solishtirma erish issiqligi",
+      "matn": "1 kg qattiq moddani erish haroratida to‘liq eritish uchun kerak issiqlik solishtirma erish issiqligi deyiladi. Muz uchun taxminan 340000 joul. Formula: Q — λ · m.",
+      "misol": "2 kg muz: Q — 340000 · 2 — 680000 joul.",
+      "savol": "340000 · 2 nechaga teng?",
+      "javob": "680000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Erish vaqtida harorat",
+      "matn": "Erish davomida harorat o‘zgarmaydi. Berilgan issiqlik molekulalar orasidagi bog‘larni uzishga sarflanadi. Shuning uchun muz-suv aralashmasi 0 daraja turadi.",
+      "misol": "Muz erib bitgach, suv isiy boshlaydi.",
+      "savol": "Erish davomida harorat o‘zgaradimi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Erish — qattiq dan suyuqqa, issiqlik yutiladi. Qotish — suyuq dan qattiqqa, issiqlik ajraladi. Erish davomida harorat o‘zgarmaydi. Q — λ · m.",
+    "misollar": [
+     {
+      "shart": "2 kg muzni 0 darajada eritish uchun issiqlik? (λ — 340000)",
+      "yechim": [
+       "Q — λ · m.",
+       "340000 · 2.",
+       "Javob 680000 joul."
+      ],
+      "javob": "680000 joul"
+     },
+     {
+      "shart": "0,5 kg muzni eritish uchun issiqlik?",
+      "yechim": [
+       "Q — 340000 · 0,5.",
+       "170000.",
+       "Javob 170000 joul."
+      ],
+      "javob": "170000 joul"
+     },
+     {
+      "shart": "Muz erish davomida harorati qanday?",
+      "yechim": [
+       "Issiqlik bog‘larni uzadi.",
+       "Harorat o‘zgarmaydi.",
+       "Javob: 0 daraja."
+      ],
+      "javob": "0 daraja"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Muz eritamiz",
+      "topshiriq": "Muzni idishda isitib, haroratni har daqiqa o‘lchang.",
+      "yechim": "Erishda harorat doimiy.",
+      "mahsulot": "muz, termometr"
+     },
+     {
+      "nom": "Grafik chizamiz",
+      "topshiriq": "Harorat o‘zgarishi grafigini chizing.",
+      "yechim": "Tekis qism — erish.",
+      "mahsulot": "katakli qog‘oz"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "λ · m.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Xulosa",
+      "topshiriq": "Erish va qotishni solishtiring.",
+      "yechim": "Yutiladi va ajraladi.",
+      "mahsulot": "jadval varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "340000 · 2 nechaga teng?",
+      "javob": "680000"
+     },
+     {
+      "shart": "340000 · 0,5 nechaga teng?",
+      "javob": "170000"
+     },
+     {
+      "shart": "Muz necha darajada eriydi?",
+      "javob": "0"
+     },
+     {
+      "shart": "Erishda issiqlik?",
+      "javob": "yutiladi"
+     },
+     {
+      "shart": "Qotishda issiqlik?",
+      "javob": "ajraladi"
+     },
+     {
+      "shart": "Modda holatlari soni?",
+      "javob": "3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Erishda harorat oshadi deydi",
+      "sabab": "bog‘larni uzishga sarflanadi",
+      "oldini_olish": "harorat doimiy"
+     },
+     {
+      "xato": "Qotishda issiqlik yutiladi deydi",
+      "sabab": "ajraladi",
+      "oldini_olish": "qotish — issiqlik beradi"
+     },
+     {
+      "xato": "Holat o‘zgarsa modda o‘zgaradi deydi",
+      "sabab": "modda bir xil",
+      "oldini_olish": "faqat holat o‘zgaradi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "muzliklar erishi"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "muzqaymoq eriydi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "metall quyish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Muz va issiqlik»",
+     "muammo": "Muz erishini qanday kuzatamiz?",
+     "mahsulot": "kuzatuv daftari",
+     "bosqichlar": [
+      "muz tayyorlash",
+      "isitish",
+      "haroratni o‘lchash",
+      "grafik chizish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Muz tayyorlang",
+      "O‘lchang",
+      "Grafik chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "grafik to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Muz saroyi»",
+     "bekatlar": [
+      {
+       "nom": "1-zal",
+       "matn": "2 kg muz.",
+       "topshiriq": "Q?",
+       "javob": "680000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-zal",
+       "matn": "0,5 kg muz.",
+       "topshiriq": "Q?",
+       "javob": "170000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-zal",
+       "matn": "Muz eriydi.",
+       "topshiriq": "Harorat?",
+       "javob": "0",
+       "rasm": ""
+      },
+      {
+       "nom": "4-zal",
+       "matn": "Suv muzlaydi.",
+       "topshiriq": "Issiqlik?",
+       "javob": "ajraladi",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi holat o‘zgardi?",
+      "Harorat qanday?",
+      "Xulosa nima?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Erish",
+      "tarif": "qattiq dan suyuqqa o‘tish"
+     },
+     {
+      "atama": "Qotish",
+      "tarif": "suyuq dan qattiqqa o‘tish"
+     },
+     {
+      "atama": "Erish harorati",
+      "tarif": "erish boshlanadigan harorat"
+     },
+     {
+      "atama": "Agregat holat",
+      "tarif": "qattiq, suyuq yoki gaz"
+     },
+     {
+      "atama": "Solishtirma erish issiqligi",
+      "tarif": "1 kg ni eritish issiqligi"
+     },
+     {
+      "atama": "Kristallanish",
+      "tarif": "qotishning boshqa nomi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Erishda issiqlik yutiladi",
+      "togri": true,
+      "izoh": "energiya kerak"
+     },
+     {
+      "matn": "Qotishda issiqlik yutiladi",
+      "togri": false,
+      "izoh": "ajraladi"
+     },
+     {
+      "matn": "Muz 0 darajada eriydi",
+      "togri": true,
+      "izoh": "erish harorati"
+     },
+     {
+      "matn": "Erish vaqtida harorat ortadi",
+      "togri": false,
+      "izoh": "doimiy"
+     },
+     {
+      "matn": "340000 · 2 — 680000",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Modda uch holatda bo‘ladi",
+      "togri": true,
+      "izoh": "agregat"
+     },
+     {
+      "matn": "Erish harorati va qotish harorati bir xil",
+      "togri": true,
+      "izoh": "bir modda"
+     },
+     {
+      "matn": "Holat o‘zgarsa modda boshqa bo‘ladi",
+      "togri": false,
+      "izoh": "bir xil"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Erish?",
+      "javob": "qattiq dan suyuqqa"
+     },
+     {
+      "savol": "Qotish?",
+      "javob": "suyuq dan qattiqqa"
+     },
+     {
+      "savol": "Muz erish harorati?",
+      "javob": "0 daraja"
+     },
+     {
+      "savol": "Erishda issiqlik?",
+      "javob": "yutiladi"
+     },
+     {
+      "savol": "Qotishda?",
+      "javob": "ajraladi"
+     },
+     {
+      "savol": "λ muz?",
+      "javob": "340000 joul"
+     },
+     {
+      "savol": "Formula?",
+      "javob": "λ · m"
+     },
+     {
+      "savol": "340000 · 2?",
+      "javob": "680000"
+     },
+     {
+      "savol": "Erishda harorat?",
+      "javob": "o‘zgarmaydi"
+     },
+     {
+      "savol": "Holatlar?",
+      "javob": "uchta"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Muzni kuzat.",
+      "savol": "Nima bo‘ldi?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Haroratni o‘lcha.",
+      "savol": "Necha daraja?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Q ni top.",
+      "savol": "λ · m?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Harorat doimiymi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun erishda harorat o‘zgarmaydi?",
+    "keys": {
+     "vaziyat": "Idishda muz va suv aralashmasi turibdi. Uni isitamiz.",
+     "savollar": [
+      "Harorat qanday o‘zgaradi?",
+      "Issiqlik nimaga sarflanadi?"
+     ]
+    },
+    "tezis": "Erishda harorat turadi",
+    "taqqoslash": {
+     "a": "Erish",
+     "b": "Qotish",
+     "umumiy": [
+      "holat o‘zgarishi",
+      "harorat doimiy"
+     ],
+     "a_farq": [
+      "issiqlik yutiladi",
+      "qattiq dan suyuqqa"
+     ],
+     "b_farq": [
+      "issiqlik ajraladi",
+      "suyuq dan qattiqqa"
+     ]
+    },
+    "klaster": {
+     "markaz": "Erish va qotish",
+     "shoxlar": [
+      {
+       "nom": "Erish",
+       "bandlar": [
+        "issiqlik yutiladi"
+       ]
+      },
+      {
+       "nom": "Qotish",
+       "bandlar": [
+        "issiqlik ajraladi"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "λ · m"
+       ]
+      },
+      {
+       "nom": "Harorat",
+       "bandlar": [
+        "doimiy"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qattiqni suyuqqa aylantiraman va issiqlik yutaman. Men kimman?",
+     "javob": "erish"
+    },
+    "hikmat": "Erish — issiqlik yutish.",
+    "kalit_soz": "ERISH",
+    "xato_yechim": {
+     "shart": "Erishda muz harorati nima bo‘ladi?",
+     "xato": "ortadi",
+     "togri": "0 darajada turadi",
+     "sabab": "issiqlik bog‘larni uzishga ketadi"
+    },
+    "guruh_nomlari": [
+     "Erishchilar",
+     "Muzchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Muz laboratoriyasi»",
+     "topshiriq": "Guruh muz erishini kuzatadi."
+    },
+    "vazifalar": {
+     "A": "2 kg muzni eritish uchun Q?",
+     "B": "0,5 kg muz uchun Q?",
+     "C": "Erish grafigini chizing."
+    },
+    "sinkveyn": [
+     "Erish",
+     "muz, issiq",
+     "eriydi, yutadi, o‘tadi",
+     "Muz eriydi, suv bo‘ladi",
+     "Holat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh erish va qotishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: erish",
+      "2-guruh: qotish",
+      "3-guruh: hisob",
+      "4-guruh: grafik"
+     ],
+     "yakun": "Natijalar: 680000; 170000; harorat doimiy."
+    }
+   }
+  },
+  {
+   "mavzu": "Bug‘lanish va qaynash",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Bug‘lanish",
+      "matn": "Suyuqlikning gazga aylanishi bug‘lanish deyiladi. Bug‘lanish har qanday haroratda, faqat suyuqlik yuzasidan kechadi. Ho‘l kiyim quriydi — bu bug‘lanish.",
+      "misol": "Ko‘lmak qurib qoladi.",
+      "savol": "Bug‘lanish suyuqlikning qayerida kechadi?",
+      "javob": "yuzasida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tezligiga ta’sir",
+      "matn": "Bug‘lanish tezligi harorat yuqori bo‘lsa, yuza katta bo‘lsa, shamol bo‘lsa va modda turiga qarab oshadi. Spirt suvdan tez bug‘lanadi.",
+      "misol": "Ko‘ylak quyoshda va shamolda tez quriydi.",
+      "savol": "Issiq havoda bug‘lanish tezmi yoki sekinmi?",
+      "javob": "tez",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qaynash",
+      "matn": "Suyuqlikning butun hajmida bug‘ pufakchalari hosil bo‘lib, gazga aylanishi qaynash deyiladi. Qaynash aniq haroratda kechadi. Suv normal bosimda 100 darajada qaynaydi, spirt — 78 darajada.",
+      "misol": "Choynak qaynaganda pufakchalar ko‘tariladi.",
+      "savol": "Suv normal bosimda necha darajada qaynaydi?",
+      "javob": "100 darajada",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Solishtirma bug‘ hosil qilish issiqligi",
+      "matn": "1 kg suyuqlikni qaynash haroratida bug‘ga aylantirish uchun kerak issiqlik solishtirma bug‘ hosil qilish issiqligi deyiladi. Suv uchun taxminan 2300000 joul. Formula: Q — L · m.",
+      "misol": "0,5 kg suv: Q — 2300000 · 0,5 — 1150000 joul.",
+      "savol": "2300000 · 0,5 nechaga teng?",
+      "javob": "1150000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bosim va qaynash",
+      "matn": "Bosim kamaysa, qaynash harorati pasayadi. Baland tog‘da suv 100 darajadan past haroratda qaynaydi. Shuning uchun u yerda ovqat sekin pishadi.",
+      "misol": "Bosim qozonida suv 100 dan yuqori haroratda qaynaydi.",
+      "savol": "Tog‘da suv qaynash harorati qanday?",
+      "javob": "pastroq",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Bug‘lanish — har haroratda, yuzadan. Qaynash — aniq haroratda, butun hajmda. Q — L · m. Bosim kamaysa qaynash harorati pasayadi.",
+    "misollar": [
+     {
+      "shart": "0,5 kg suvni 100 darajada bug‘ga aylantirish uchun issiqlik? (L — 2300000)",
+      "yechim": [
+       "Q — L · m.",
+       "2300000 · 0,5.",
+       "Javob 1150000 joul."
+      ],
+      "javob": "1150000 joul"
+     },
+     {
+      "shart": "2 kg suv uchun issiqlik?",
+      "yechim": [
+       "2300000 · 2.",
+       "4600000.",
+       "Javob 4600000 joul."
+      ],
+      "javob": "4600000 joul"
+     },
+     {
+      "shart": "Nima uchun ho‘l kiyim shamolda tez quriydi?",
+      "yechim": [
+       "Shamol bug‘ni olib ketadi.",
+       "Bug‘lanish tezlashadi.",
+       "Javob: bug‘lanish tezlashadi."
+      ],
+      "javob": "bug‘lanish tezlashadi"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Bug‘lanish tajribasi",
+      "topshiriq": "Bir xil suvni keng va tor idishga quying, bir kunda kuzating.",
+      "yechim": "Yuza katta — tez.",
+      "mahsulot": "ikki idish"
+     },
+     {
+      "nom": "Qaynashni kuzatamiz",
+      "topshiriq": "Suvning qaynashini ko‘rib, haroratni o‘lchang.",
+      "yechim": "100 darajada turadi.",
+      "mahsulot": "choynak, termometr"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani L · m bilan yeching.",
+      "yechim": "Birlikni yozing.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Solishtiramiz",
+      "topshiriq": "Bug‘lanish va qaynashni jadvalga yozing.",
+      "yechim": "Farqlarini ayting.",
+      "mahsulot": "jadval varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2300000 · 0,5 nechaga teng?",
+      "javob": "1150000"
+     },
+     {
+      "shart": "2300000 · 2 nechaga teng?",
+      "javob": "4600000"
+     },
+     {
+      "shart": "Suv necha darajada qaynaydi?",
+      "javob": "100"
+     },
+     {
+      "shart": "Spirt necha darajada qaynaydi?",
+      "javob": "78"
+     },
+     {
+      "shart": "Bug‘lanish qayerda kechadi?",
+      "javob": "yuzasida"
+     },
+     {
+      "shart": "Qaynash qayerda kechadi?",
+      "javob": "butun hajmda"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Bug‘lanishni faqat qaynaganda bo‘ladi deydi",
+      "sabab": "har haroratda bo‘ladi",
+      "oldini_olish": "har qanday haroratda"
+     },
+     {
+      "xato": "Qaynash faqat yuzadan deydi",
+      "sabab": "butun hajmda",
+      "oldini_olish": "hajmda pufakchalar"
+     },
+     {
+      "xato": "Tog‘da suv 100 da qaynaydi deydi",
+      "sabab": "bosim past",
+      "oldini_olish": "past haroratda qaynaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "yog‘in yog‘ish aylanishi"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "kiyim quritish"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "bug‘ mashinasi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Suv aylanishi»",
+     "muammo": "Suvning bug‘lanib yog‘in bo‘lishini qanday ko‘rsatamiz?",
+     "mahsulot": "suv aylanishi maketi",
+     "bosqichlar": [
+      "maket yasash",
+      "isitish",
+      "kuzatish",
+      "chizma chizish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Maket yasang",
+      "Isiting",
+      "Kuzating",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "maket to‘g‘ri",
+      "kuzatuv aniq",
+      "chizma to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bug‘ vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "1-qoya",
+       "matn": "0,5 kg suv, L — 2300000.",
+       "topshiriq": "Q?",
+       "javob": "1150000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qoya",
+       "matn": "2 kg suv.",
+       "topshiriq": "Q?",
+       "javob": "4600000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qoya",
+       "matn": "Suv qaynashi.",
+       "topshiriq": "Necha daraja?",
+       "javob": "100",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qoya",
+       "matn": "Spirt qaynashi.",
+       "topshiriq": "Necha daraja?",
+       "javob": "78",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi jarayon edi?",
+      "Harorat nechaga teng edi?",
+      "Xulosa nima?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Bug‘lanish",
+      "tarif": "suyuqlik yuzasidan gazga o‘tish"
+     },
+     {
+      "atama": "Qaynash",
+      "tarif": "butun hajmda bug‘ hosil bo‘lishi"
+     },
+     {
+      "atama": "Bug‘",
+      "tarif": "gaz holatidagi modda"
+     },
+     {
+      "atama": "Qaynash harorati",
+      "tarif": "qaynash kechadigan harorat"
+     },
+     {
+      "atama": "Solishtirma bug‘ hosil qilish issiqligi",
+      "tarif": "1 kg ni bug‘ga aylantirish issiqligi"
+     },
+     {
+      "atama": "Kondensatsiya",
+      "tarif": "bug‘ning suyuqlikka aylanishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Bug‘lanish har haroratda kechadi",
+      "togri": true,
+      "izoh": "yuzadan"
+     },
+     {
+      "matn": "Qaynash faqat yuzadan kechadi",
+      "togri": false,
+      "izoh": "butun hajmda"
+     },
+     {
+      "matn": "Suv normal bosimda 100 darajada qaynaydi",
+      "togri": true,
+      "izoh": "qaynash harorati"
+     },
+     {
+      "matn": "Spirt suvdan sekin bug‘lanadi",
+      "togri": false,
+      "izoh": "tezroq"
+     },
+     {
+      "matn": "2300000 · 0,5 — 1150000",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Tog‘da suv 100 da qaynaydi",
+      "togri": false,
+      "izoh": "pastroq"
+     },
+     {
+      "matn": "Shamol bug‘lanishni tezlashtiradi",
+      "togri": true,
+      "izoh": "bug‘ ketadi"
+     },
+     {
+      "matn": "Qaynashda pufakchalar hosil bo‘ladi",
+      "togri": true,
+      "izoh": "bug‘ pufakchalari"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Bug‘lanish?",
+      "javob": "suyuqlikning gazga o‘tishi"
+     },
+     {
+      "savol": "Qaynash?",
+      "javob": "hajmda bug‘ hosil bo‘lishi"
+     },
+     {
+      "savol": "Suv qaynash harorati?",
+      "javob": "100"
+     },
+     {
+      "savol": "Spirt?",
+      "javob": "78"
+     },
+     {
+      "savol": "L suv?",
+      "javob": "2300000"
+     },
+     {
+      "savol": "Formula?",
+      "javob": "L · m"
+     },
+     {
+      "savol": "2300000 · 0,5?",
+      "javob": "1150000"
+     },
+     {
+      "savol": "Tog‘da?",
+      "javob": "past haroratda qaynaydi"
+     },
+     {
+      "savol": "Shamol?",
+      "javob": "bug‘lanishni tezlatadi"
+     },
+     {
+      "savol": "Kondensatsiya?",
+      "javob": "bug‘ning suyuqlikka o‘tishi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Hodisani kuzat.",
+      "savol": "Bug‘lanishmi?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Haroratni o‘lcha.",
+      "savol": "Necha daraja?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Q ni top.",
+      "savol": "L · m?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Farqi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun baland tog‘da ovqat sekin pishadi?",
+    "keys": {
+     "vaziyat": "Tog‘da choynak 100 darajadan past haroratda qaynadi.",
+     "savollar": [
+      "Nima uchun?",
+      "Ovqat qanday pishadi?"
+     ]
+    },
+    "tezis": "Qaynash bosimga bog‘liq",
+    "taqqoslash": {
+     "a": "Bug‘lanish",
+     "b": "Qaynash",
+     "umumiy": [
+      "suyuqlik gazga o‘tadi",
+      "issiqlik yutiladi"
+     ],
+     "a_farq": [
+      "har haroratda",
+      "yuzadan"
+     ],
+     "b_farq": [
+      "aniq haroratda",
+      "butun hajmda"
+     ]
+    },
+    "klaster": {
+     "markaz": "Bug‘lanish va qaynash",
+     "shoxlar": [
+      {
+       "nom": "Bug‘lanish",
+       "bandlar": [
+        "yuza",
+        "har harorat"
+       ]
+      },
+      {
+       "nom": "Qaynash",
+       "bandlar": [
+        "hajm",
+        "100 daraja"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "L · m"
+       ]
+      },
+      {
+       "nom": "Bosim",
+       "bandlar": [
+        "kamaysa harorat past"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men suyuqlikning yuzasidan har haroratda gazga aylanishman. Men kimman?",
+     "javob": "bug‘lanish"
+    },
+    "hikmat": "Bosim kamaysa, tezroq qaynaydi.",
+    "kalit_soz": "BUG",
+    "xato_yechim": {
+     "shart": "Bug‘lanish qayerda kechadi?",
+     "xato": "butun hajmda",
+     "togri": "faqat yuzada",
+     "sabab": "qaynash — hajmda, bug‘lanish — yuzada"
+    },
+    "guruh_nomlari": [
+     "Bug‘chilar",
+     "Qaynashchilar",
+     "Hisobchilar",
+     "Tajribachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bug‘ laboratoriyasi»",
+     "topshiriq": "Guruh bug‘lanish va qaynashni kuzatadi."
+    },
+    "vazifalar": {
+     "A": "0,5 kg suv uchun Q ni toping.",
+     "B": "2 kg suv uchun Q ni toping.",
+     "C": "Bug‘lanish tezligiga ta’sir qiluvchilarni tajribada ko‘rsating."
+    },
+    "sinkveyn": [
+     "Bug‘",
+     "yengil, issiq",
+     "ko‘tariladi, qaynaydi, uchadi",
+     "Suv aylanadi",
+     "Pufak"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh bug‘lanish va qaynashni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: bug‘lanish",
+      "2-guruh: qaynash",
+      "3-guruh: hisob",
+      "4-guruh: bosim"
+     ],
+     "yakun": "Natijalar: 1150000; 4600000; 100; 78."
+    }
+   }
   }
  ]
 }
