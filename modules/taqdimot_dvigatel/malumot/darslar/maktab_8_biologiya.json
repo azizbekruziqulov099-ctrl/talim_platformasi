@@ -1395,6 +1395,1396 @@
      "yakun": "Natijalar: 184; 24; 24."
     }
    }
+  },
+  {
+   "mavzu": "Qon va qon aylanish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Qon tarkibi",
+      "matn": "Qon — suyuq biriktiruvchi to‘qima. Uning taxminan 55 foizi plazma (suyuq qism), 45 foizi shaklli elementlar: eritrotsit, leykotsit va trombotsit. Kattalarda qon hajmi taxminan 5 litr. Plazmaning asosiy qismi suv, unda oqsil, shakar va tuzlar erigan.",
+      "misol": "Qon tomirlar orqali butun tanani aylanadi.",
+      "savol": "Qonning suyuq qismi nima?",
+      "javob": "plazma",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qon hujayralari",
+      "matn": "Eritrotsitlar gemoglobin saqlaydi va kislorodni tashiydi, ular qizil rang beradi. Leykotsitlar mikroblarga qarshi kurashadi, ya’ni himoya vazifasini bajaradi. Trombotsitlar qon ivishini ta’minlaydi, jarohatni yopadi. Hujayralar suyak ko‘migida hosil bo‘ladi.",
+      "misol": "Eritrotsit — kislorod tashuvchi «yuk mashinasi».",
+      "savol": "Kislorodni qaysi hujayra tashiydi?",
+      "javob": "eritrotsit",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qon tomirlari",
+      "matn": "Qon uch xil tomirdan oqadi. Arteriyalar qonni yurakdan a’zolarga olib boradi, devori qalin. Venalar qonni yurakka qaytaradi, ichida qopqoqlari bor. Kapillyarlar eng ingichka tomirlar, ularning devori yupqa, shu yerda qon va hujayralar o‘rtasida modda almashinadi.",
+      "misol": "Pulsni arteriyada sezamiz.",
+      "savol": "Qonni yurakka nima qaytaradi?",
+      "javob": "vena",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qon aylanish doiralari",
+      "matn": "Qon ikki doira bo‘ylab aylanadi. Katta doira chap qorinchadan boshlanib, butun tanani aylanib, o‘ng bo‘lmachada tugaydi, a’zolarga kislorod beradi. Kichik doira o‘ng qorinchadan boshlanib o‘pkadan o‘tadi va chap bo‘lmachaga qaytadi, qon kislorodga boyiydi. Qon aylanishni 1628-yilda Uilyam Garvey tasvirlagan.",
+      "misol": "Ikki doira — «sakkiz» shakliga o‘xshash yo‘l.",
+      "savol": "Kichik doira qayerdan o‘tadi?",
+      "javob": "o‘pkadan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qon guruhlari va donorlik",
+      "matn": "Qon to‘rt guruhga bo‘linadi: birinchi, ikkinchi, uchinchi va to‘rtinchi (ABO tizimi). Qon quyishda guruh mos kelishi shart. Donorlik — o‘z qonini kasallarga ixtiyoriy berish, hayot qutqaradi. Donor qonini sog‘lom odam, tibbiy ko‘rikdan keyin topshiradi.",
+      "misol": "Donorlik — ezgu ish.",
+      "savol": "Qon guruhlari nechta?",
+      "javob": "4",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qon: plazma taxminan 55 foiz, shaklli elementlar 45 foiz. Eritrotsit kislorod, leykotsit himoya, trombotsit ivish.",
+    "misollar": [
+     {
+      "shart": "Qon hajmi taxminan 5 litr, plazma 55 foiz. Plazma hajmi?",
+      "yechim": [
+       "55 foiz — 0,55.",
+       "5 · 0,55.",
+       "Javob 2,75 litr."
+      ],
+      "javob": "2,75 litr"
+     },
+     {
+      "shart": "Qon hajmi 5 litr, shaklli elementlar 45 foiz. Ularning hajmi?",
+      "yechim": [
+       "45 foiz — 0,45.",
+       "5 · 0,45.",
+       "Javob 2,25 litr."
+      ],
+      "javob": "2,25 litr"
+     },
+     {
+      "shart": "Qon hajmi taxminan 4 litr, plazma 55 foiz. Plazma hajmi?",
+      "yechim": [
+       "4 · 0,55.",
+       "Hisoblang.",
+       "Javob 2,2 litr."
+      ],
+      "javob": "2,2 litr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qon tarkibi diagrammasi",
+      "topshiriq": "Doira diagrammada plazma va hujayralarni ko‘rsating.",
+      "yechim": "55 va 45.",
+      "mahsulot": "qog‘oz, flomaster"
+     },
+     {
+      "nom": "Pulsni sezish",
+      "topshiriq": "Bilak arteriyasidan pulsni toping.",
+      "yechim": "Urishni sanang.",
+      "mahsulot": "soat"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va hajm.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Ikki doira sxemasi",
+      "topshiriq": "Katta va kichik doirani chizing.",
+      "yechim": "Yo‘nalish.",
+      "mahsulot": "qog‘oz, rangli qalam"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "5 · 0,55 nechaga teng?",
+      "javob": "2,75"
+     },
+     {
+      "shart": "5 · 0,45 nechaga teng?",
+      "javob": "2,25"
+     },
+     {
+      "shart": "4 · 0,55 nechaga teng?",
+      "javob": "2,2"
+     },
+     {
+      "shart": "Qon guruhlari soni?",
+      "javob": "4"
+     },
+     {
+      "shart": "Qon aylanish doiralari soni?",
+      "javob": "2"
+     },
+     {
+      "shart": "Kislorod tashuvchi hujayra?",
+      "javob": "eritrotsit"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Venalar qonni yurakdan olib boradi deydi",
+      "sabab": "yurakka qaytaradi",
+      "oldini_olish": "arteriya yurakdan"
+     },
+     {
+      "xato": "Trombotsit kislorod tashiydi deydi",
+      "sabab": "qon ivishini ta’minlaydi",
+      "oldini_olish": "kislorodni eritrotsit"
+     },
+     {
+      "xato": "Qon bitta doirada oqadi deydi",
+      "sabab": "ikki doira bor",
+      "oldini_olish": "katta va kichik"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "gemoglobin va temir"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "donorlik"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Qon sayohati»",
+     "muammo": "Qon tanada qanday yo‘l bosadi?",
+     "mahsulot": "sxema va plakat",
+     "bosqichlar": [
+      "tarkibni o‘rganish",
+      "doiralarni chizish",
+      "foiz hisobi",
+      "puls kuzatuvi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tarkibni o‘rganing",
+      "Sxema chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qon daryosi»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "5 litr qon, 55 foiz plazma.",
+       "topshiriq": "Plazma litr?",
+       "javob": "2,75",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "5 litr qon, 45 foiz hujayra.",
+       "topshiriq": "Hujayra litr?",
+       "javob": "2,25",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "4 litr qon.",
+       "topshiriq": "Plazma litr?",
+       "javob": "2,2",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "Qon doiralari.",
+       "topshiriq": "Nechta?",
+       "javob": "2",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Foizni topdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Plazma",
+      "tarif": "qonning suyuq qismi"
+     },
+     {
+      "atama": "Eritrotsit",
+      "tarif": "kislorod tashuvchi hujayra"
+     },
+     {
+      "atama": "Leykotsit",
+      "tarif": "himoya hujayrasi"
+     },
+     {
+      "atama": "Trombotsit",
+      "tarif": "qon ivitish hujayrasi"
+     },
+     {
+      "atama": "Arteriya",
+      "tarif": "yurakdan olib boruvchi tomir"
+     },
+     {
+      "atama": "Kapillyar",
+      "tarif": "eng ingichka tomir"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Eritrotsit kislorod tashiydi",
+      "togri": true,
+      "izoh": "gemoglobin"
+     },
+     {
+      "matn": "Leykotsit himoya qiladi",
+      "togri": true,
+      "izoh": "mikroblarga qarshi"
+     },
+     {
+      "matn": "Venalar qonni yurakdan olib boradi",
+      "togri": false,
+      "izoh": "yurakka qaytaradi"
+     },
+     {
+      "matn": "Qon aylanish ikki doirada",
+      "togri": true,
+      "izoh": "katta va kichik"
+     },
+     {
+      "matn": "Qon guruhlari to‘rtta",
+      "togri": true,
+      "izoh": "ABO"
+     },
+     {
+      "matn": "Trombotsit kislorod tashiydi",
+      "togri": false,
+      "izoh": "ivitadi"
+     },
+     {
+      "matn": "5 · 0,55 — 2,75",
+      "togri": true,
+      "izoh": "litr"
+     },
+     {
+      "matn": "Qon plazmasi asosan suv",
+      "togri": true,
+      "izoh": "oqsil va tuz erigan"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qon?",
+      "javob": "suyuq biriktiruvchi to‘qima"
+     },
+     {
+      "savol": "Plazma ulushi?",
+      "javob": "taxminan 55 foiz"
+     },
+     {
+      "savol": "Eritrotsit?",
+      "javob": "kislorod tashiydi"
+     },
+     {
+      "savol": "Leykotsit?",
+      "javob": "himoya qiladi"
+     },
+     {
+      "savol": "Trombotsit?",
+      "javob": "qon ivishi"
+     },
+     {
+      "savol": "Arteriya?",
+      "javob": "yurakdan"
+     },
+     {
+      "savol": "Vena?",
+      "javob": "yurakka"
+     },
+     {
+      "savol": "5 · 0,55?",
+      "javob": "2,75"
+     },
+     {
+      "savol": "Doiralar?",
+      "javob": "katta va kichik"
+     },
+     {
+      "savol": "Guruhlar?",
+      "javob": "4"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Pulsni kuzat.",
+      "savol": "Qancha?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Hajmni top.",
+      "savol": "Qon · foiz?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Tomirlarni solishtir.",
+      "savol": "Qaysi yo‘nalish?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qon vazifasi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun qon kislorodni hujayralarga yetkazishi shart?",
+    "keys": {
+     "vaziyat": "Balandlikda kislorod kam, odam tez charchaydi.",
+     "savollar": [
+      "Eritrotsit nima qiladi?",
+      "Nega charchaydi?"
+     ]
+    },
+    "tezis": "Qon tanani oziqlantiradi va himoya qiladi",
+    "taqqoslash": {
+     "a": "Arteriya",
+     "b": "Vena",
+     "umumiy": [
+      "qon tomiri",
+      "qon oqadi"
+     ],
+     "a_farq": [
+      "yurakdan",
+      "devori qalin"
+     ],
+     "b_farq": [
+      "yurakka",
+      "qopqoqlari bor"
+     ]
+    },
+    "klaster": {
+     "markaz": "Qon va qon aylanish",
+     "shoxlar": [
+      {
+       "nom": "Tarkib",
+       "bandlar": [
+        "plazma",
+        "shaklli elementlar"
+       ]
+      },
+      {
+       "nom": "Hujayralar",
+       "bandlar": [
+        "eritrotsit",
+        "leykotsit",
+        "trombotsit"
+       ]
+      },
+      {
+       "nom": "Tomirlar",
+       "bandlar": [
+        "arteriya",
+        "vena",
+        "kapillyar"
+       ]
+      },
+      {
+       "nom": "Doira",
+       "bandlar": [
+        "katta",
+        "kichik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qizil rangli, kislorod tashiyman. Men kimman?",
+     "javob": "eritrotsit"
+    },
+    "hikmat": "Qon hayot daryosi.",
+    "kalit_soz": "QON",
+    "xato_yechim": {
+     "shart": "Qonni yurakka qaytaruvchi tomir?",
+     "xato": "arteriya",
+     "togri": "vena",
+     "sabab": "arteriya yurakdan olib boradi"
+    },
+    "guruh_nomlari": [
+     "Qonchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qon sayohati»",
+     "topshiriq": "Guruh qon doiralarini chizadi."
+    },
+    "vazifalar": {
+     "A": "5 litr qonda plazma?",
+     "B": "5 litr qonda hujayralar?",
+     "C": "4 litr qonda plazma?"
+    },
+    "sinkveyn": [
+     "Qon",
+     "qizil, suyuq",
+     "oqadi, tashiydi, himoya qiladi",
+     "Qon — hayot",
+     "Tomir"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh qon va tomirlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tarkib",
+      "2-guruh: hujayralar",
+      "3-guruh: tomirlar",
+      "4-guruh: doiralar"
+     ],
+     "yakun": "Natijalar: 2,75; 2,25; 2,2 litr."
+    }
+   }
+  },
+  {
+   "mavzu": "Yurak ishi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yurak tuzilishi",
+      "matn": "Yurak — mushakli a’zo, kattalarda taxminan 300 gramm. U to‘rt kamerali: ikkita bo‘lmacha va ikkita qorincha. O‘ng yarmida venoz qon, chap yarmida kislorodli qon oqadi. Bo‘lmacha va qorinchalar orasida qopqoqlar bor, ular qonning orqaga qaytishiga yo‘l qo‘ymaydi.",
+      "misol": "Yurak mushti kattaligida.",
+      "savol": "Yurakda nechta kamera bor?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yurak sikli",
+      "matn": "Bir yurak urishi — yurak sikli. Avval bo‘lmachalar 0,1 sekund qisqaradi, so‘ng qorinchalar 0,3 sekund qisqaradi, keyin 0,4 sekund umumiy dam. Sikl uzunligi 0,1 plyus 0,3 plyus 0,4 — 0,8 sekund. Demak daqiqada 60 / 0,8 — 75 marta uradi.",
+      "misol": "Yurak dam olib ishlaydi.",
+      "savol": "Sikl necha sekund?",
+      "javob": "0,8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Puls va qon haydash",
+      "matn": "Puls — arteriya devorining yurak urishi bilan tebranishi. Tinch holatda kattalarda daqiqada taxminan 60 dan 80 gacha. Yurak har urishda taxminan 70 millilitr qon haydaydi. 70 urish va 70 millilitr bo‘lsa, daqiqada 70 · 70 — 4900 millilitr, ya’ni taxminan 4,9 litr.",
+      "misol": "Qon hajmi daqiqada butun tanani aylanadi.",
+      "savol": "Pulsni qayerda sezamiz?",
+      "javob": "arteriyada",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yurakni boshqarish",
+      "matn": "Yurak o‘zi ritmik ishlaydi, nerv va gormonlar uni boshqaradi. Mashqda, hayajonda urish tezlashadi, uyquda sekinlashadi. Muntazam mashq yurak mushagini mustahkamlaydi: sportchilarning tinch pulsi pastroq bo‘ladi, chunki yurak har urishda ko‘proq qon haydaydi.",
+      "misol": "Yurak mashq bilan kuchayadi.",
+      "savol": "Mashqda yurak urishi qanday o‘zgaradi?",
+      "javob": "tezlashadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yurak salomatligi",
+      "matn": "Yurakni asrash uchun: harakat qilish, tuzni va yog‘li ovqatni cheklash, chekmaslik, yetarli uxlash va stressdan saqlanish. Ko‘krakda kuchli og‘riq bo‘lsa, darhol shifokor yoki tez yordam chaqiriladi. Muntazam tibbiy ko‘rik muhim.",
+      "misol": "Sog‘lom ovqat — sog‘lom yurak.",
+      "savol": "Yurakka nima zarar?",
+      "javob": "chekish",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Yurak 4 kamerali. Sikl 0,8 sekund, daqiqada 75 urish. Bir urishda taxminan 70 millilitr.",
+    "misollar": [
+     {
+      "shart": "Bir urishda taxminan 70 millilitr, daqiqada 70 urish. Daqiqada haydaladigan qon?",
+      "yechim": [
+       "70 · 70.",
+       "4900.",
+       "Javob 4900 millilitr."
+      ],
+      "javob": "4900 millilitr"
+     },
+     {
+      "shart": "Bir urishda 70 millilitr, daqiqada 60 urish. Daqiqada qon?",
+      "yechim": [
+       "60 · 70.",
+       "4200.",
+       "Javob 4200 millilitr."
+      ],
+      "javob": "4200 millilitr"
+     },
+     {
+      "shart": "Bir urishda 70 millilitr, daqiqada 80 urish. Daqiqada qon?",
+      "yechim": [
+       "80 · 70.",
+       "5600.",
+       "Javob 5600 millilitr."
+      ],
+      "javob": "5600 millilitr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Puls o‘lchash",
+      "topshiriq": "Tinch va mashqdan keyingi pulsni o‘lchang.",
+      "yechim": "Daqiqada nechta.",
+      "mahsulot": "soat"
+     },
+     {
+      "nom": "Yurak modeli",
+      "topshiriq": "Yurak kameralarini rangli chizing.",
+      "yechim": "Bo‘lmacha, qorincha.",
+      "mahsulot": "qog‘oz, qalam"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Hajm va sikl.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Sog‘lom odatlar",
+      "topshiriq": "Yurak uchun foydali odatlar ro‘yxatini tuzing.",
+      "yechim": "Harakat, uyqu.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "70 · 70 nechaga teng?",
+      "javob": "4900"
+     },
+     {
+      "shart": "60 · 70 nechaga teng?",
+      "javob": "4200"
+     },
+     {
+      "shart": "80 · 70 nechaga teng?",
+      "javob": "5600"
+     },
+     {
+      "shart": "0,1 plyus 0,3 plyus 0,4 nechaga teng?",
+      "javob": "0,8"
+     },
+     {
+      "shart": "60 / 0,8 nechaga teng?",
+      "javob": "75"
+     },
+     {
+      "shart": "Yurak kameralari soni?",
+      "javob": "4"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yurak ikki kamerali deydi",
+      "sabab": "to‘rt kamerali",
+      "oldini_olish": "ikki bo‘lmacha, ikki qorincha"
+     },
+     {
+      "xato": "Mashqda yurak sekinlashadi deydi",
+      "sabab": "tezlashadi",
+      "oldini_olish": "ko‘proq kislorod kerak"
+     },
+     {
+      "xato": "Qopqoqlar qonni orqaga qaytaradi deydi",
+      "sabab": "qaytarmaydi",
+      "oldini_olish": "bir yo‘nalishda oqadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "nasos"
+     },
+     {
+      "fan": "Sport",
+      "boglanish": "puls"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yurak — nasos»",
+     "muammo": "Yurak qanday ishlaydi va qanday asraladi?",
+     "mahsulot": "model va hisob",
+     "bosqichlar": [
+      "yurak modeli",
+      "puls o‘lchash",
+      "hajm hisobi",
+      "sog‘lom odatlar",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Model yasang",
+      "Pulsni o‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Yurak ichida»",
+     "bekatlar": [
+      {
+       "nom": "1-kamera",
+       "matn": "70 urish, 70 millilitr.",
+       "topshiriq": "Qon millilitr?",
+       "javob": "4900",
+       "rasm": ""
+      },
+      {
+       "nom": "2-kamera",
+       "matn": "60 urish.",
+       "topshiriq": "Qon millilitr?",
+       "javob": "4200",
+       "rasm": ""
+      },
+      {
+       "nom": "3-kamera",
+       "matn": "80 urish.",
+       "topshiriq": "Qon millilitr?",
+       "javob": "5600",
+       "rasm": ""
+      },
+      {
+       "nom": "4-kamera",
+       "matn": "Kameralar soni.",
+       "topshiriq": "Qancha?",
+       "javob": "4",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yurak",
+      "tarif": "qon haydovchi a’zo"
+     },
+     {
+      "atama": "Bo‘lmacha",
+      "tarif": "qon qabul qiluvchi kamera"
+     },
+     {
+      "atama": "Qorincha",
+      "tarif": "qon haydovchi kamera"
+     },
+     {
+      "atama": "Qopqoq",
+      "tarif": "qon yo‘nalishini boshqaradi"
+     },
+     {
+      "atama": "Puls",
+      "tarif": "arteriya tebranishi"
+     },
+     {
+      "atama": "Yurak sikli",
+      "tarif": "bir urish davri"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Yurak to‘rt kamerali",
+      "togri": true,
+      "izoh": "ikki bo‘lmacha, ikki qorincha"
+     },
+     {
+      "matn": "Sikl 0,8 sekund",
+      "togri": true,
+      "izoh": "0,1 plyus 0,3 plyus 0,4"
+     },
+     {
+      "matn": "Mashqda yurak sekinlashadi",
+      "togri": false,
+      "izoh": "tezlashadi"
+     },
+     {
+      "matn": "Puls arteriyada sezilib turadi",
+      "togri": true,
+      "izoh": "tebranish"
+     },
+     {
+      "matn": "70 · 70 — 4900",
+      "togri": true,
+      "izoh": "millilitr"
+     },
+     {
+      "matn": "Qopqoqlar orqaga oqimni to‘xtatadi",
+      "togri": true,
+      "izoh": "bir yo‘nalish"
+     },
+     {
+      "matn": "Chekish yurakka foydali",
+      "togri": false,
+      "izoh": "zararli"
+     },
+     {
+      "matn": "Sportchi pulsi odatda pastroq",
+      "togri": true,
+      "izoh": "yurak kuchli"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kameralar?",
+      "javob": "4"
+     },
+     {
+      "savol": "Sikl?",
+      "javob": "0,8 sekund"
+     },
+     {
+      "savol": "Urish daqiqada?",
+      "javob": "taxminan 75"
+     },
+     {
+      "savol": "Bir urishda?",
+      "javob": "taxminan 70 millilitr"
+     },
+     {
+      "savol": "Puls?",
+      "javob": "arteriya tebranishi"
+     },
+     {
+      "savol": "Qopqoq?",
+      "javob": "qon yo‘nalishi"
+     },
+     {
+      "savol": "70 · 70?",
+      "javob": "4900"
+     },
+     {
+      "savol": "60 / 0,8?",
+      "javob": "75"
+     },
+     {
+      "savol": "Mashqda?",
+      "javob": "tezlashadi"
+     },
+     {
+      "savol": "Zarar?",
+      "javob": "chekish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Pulsni kuzat.",
+      "savol": "Tinch va mashqda?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Qon hajmini top.",
+      "savol": "Urish · hajm?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Sportchi va oddiy.",
+      "savol": "Qaysi pasti?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Yurakni asrash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun sportchining tinch pulsi pastroq?",
+    "keys": {
+     "vaziyat": "Sportchi yurak urishi daqiqada 55, oddiy o‘quvchida 75.",
+     "savollar": [
+      "Yurak qanday kuchli?",
+      "Har urishda nima ko‘p?"
+     ]
+    },
+    "tezis": "Mashq yurakni mustahkamlaydi",
+    "taqqoslash": {
+     "a": "Bo‘lmacha",
+     "b": "Qorincha",
+     "umumiy": [
+      "yurak kamerasi",
+      "qisqaradi"
+     ],
+     "a_farq": [
+      "qon qabul qiladi",
+      "devori yupqa"
+     ],
+     "b_farq": [
+      "qon haydaydi",
+      "devori qalin"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yurak ishi",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "4 kamera",
+        "qopqoq"
+       ]
+      },
+      {
+       "nom": "Sikl",
+       "bandlar": [
+        "0,1",
+        "0,3",
+        "0,4"
+       ]
+      },
+      {
+       "nom": "Puls",
+       "bandlar": [
+        "60 dan 80",
+        "arteriya"
+       ]
+      },
+      {
+       "nom": "Salomatlik",
+       "bandlar": [
+        "mashq",
+        "chekmaslik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men mushakliman, to‘rt kameram bor va butun umr urib turaman. Men kimman?",
+     "javob": "yurak"
+    },
+    "hikmat": "Yurak charchamaydi.",
+    "kalit_soz": "YURAK",
+    "xato_yechim": {
+     "shart": "Mashqda yurak qanday uradi?",
+     "xato": "sekinlashadi",
+     "togri": "tezlashadi",
+     "sabab": "kislorod ko‘p kerak"
+    },
+    "guruh_nomlari": [
+     "Yurakchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yurak — nasos»",
+     "topshiriq": "Guruh puls tajribasini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "70 urishda qon?",
+     "B": "60 urishda qon?",
+     "C": "80 urishda qon?"
+    },
+    "sinkveyn": [
+     "Yurak",
+     "kuchli, mushakli",
+     "uradi, haydaydi, ishlaydi",
+     "Yurak — nasos",
+     "Puls"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yurakni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: sikl",
+      "3-guruh: puls",
+      "4-guruh: salomatlik"
+     ],
+     "yakun": "Natijalar: 4900; 4200; 5600 millilitr."
+    }
+   }
+  },
+  {
+   "mavzu": "Nafas olish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nafas yo‘llari",
+      "matn": "Havo burun bo‘shlig‘idan o‘tib, isiydi, namlanadi va changdan tozalanadi. So‘ng hiqildoq, kekirdak va bronxlardan o‘tib, o‘pkaga kiradi. O‘pkada bronxlar mayda tarmoqlanib, alveolalar bilan tugaydi. Burun orqali nafas olish foydali, chunki u filtr vazifasini bajaradi.",
+      "misol": "Burun — tabiiy filtr.",
+      "savol": "Havo avval qayerdan o‘tadi?",
+      "javob": "burun bo‘shlig‘idan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘pka va gaz almashinuvi",
+      "matn": "O‘pka — yuz millionlab mayda pufakchalardan, ya’ni alveolalardan tuzilgan. Alveola devori yupqa, uni kapillyarlar o‘rab olgan. Shu yerda kislorod qonga o‘tadi, karbonat angidrid qondan havoga chiqadi. Gaz almashinuvi diffuziya bilan sodir bo‘ladi.",
+      "misol": "Alveolalar o‘pkani katta yuzali qiladi.",
+      "savol": "Gaz almashinuvi qayerda bo‘ladi?",
+      "javob": "alveolalarda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nafas olish mexanizmi",
+      "matn": "Nafas olishda diafragma va qovurg‘alar oralig‘i mushaklari qisqaradi, ko‘krak qafasi kengayadi, havo o‘pkaga kiradi. Nafas chiqarishda mushaklar bo‘shashadi, havo chiqadi. Tinch holatda bir nafasda taxminan 500 millilitr havo almashadi. Daqiqada taxminan 16 marta nafas olinadi: 16 · 500 — 8000 millilitr, ya’ni 8 litr.",
+      "misol": "Diafragma — asosiy nafas mushagi.",
+      "savol": "Asosiy nafas mushagi?",
+      "javob": "diafragma",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Havo tarkibi",
+      "matn": "Atmosfera havosida taxminan 21 foiz kislorod bor. Chiqarilgan havoda kislorod taxminan 16 foiz, karbonat angidrid esa taxminan 4 foiz. Demak tananing kislorod olib, karbonat angidrid chiqarishi nafas orqali bilinadi. Yopiq, shamollatilmagan xonada kislorod kamayadi, shuning uchun xonani tez-tez shamollatish kerak.",
+      "misol": "Sinfni tanaffusda shamollating.",
+      "savol": "Havoda taxminan qancha kislorod bor?",
+      "javob": "21 foiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nafas sog‘lig‘i",
+      "matn": "Nafas sistemasini asrash uchun: chekmaslik, toza havoda yurish, burun orqali nafas olish, nafas mashqlari va sovuqdan saqlanish. Chekish o‘pkani zaharlaydi va xavfli kasalliklarga olib keladi. Yo‘tal va nafas qisilishi uzoq davom etsa, shifokorga murojaat qilish kerak.",
+      "misol": "Toza havo — eng yaxshi dori.",
+      "savol": "Nafasga nima zarar?",
+      "javob": "chekish",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Nafas: burun, hiqildoq, kekirdak, bronx, o‘pka. Daqiqada 16 nafas, bir nafasda 500 millilitr.",
+    "misollar": [
+     {
+      "shart": "Bir nafasda 500 millilitr, daqiqada 16 nafas. Daqiqada almashgan havo?",
+      "yechim": [
+       "16 · 500.",
+       "8000.",
+       "Javob 8000 millilitr."
+      ],
+      "javob": "8000 millilitr"
+     },
+     {
+      "shart": "Bir nafasda 500 millilitr, daqiqada 18 nafas. Daqiqada havo?",
+      "yechim": [
+       "18 · 500.",
+       "9000.",
+       "Javob 9000 millilitr."
+      ],
+      "javob": "9000 millilitr"
+     },
+     {
+      "shart": "Bir nafasda 500 millilitr, daqiqada 20 nafas. Daqiqada havo?",
+      "yechim": [
+       "20 · 500.",
+       "10000.",
+       "Javob 10000 millilitr."
+      ],
+      "javob": "10000 millilitr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Nafas sanash",
+      "topshiriq": "Bir daqiqada nafas sonini sanang.",
+      "yechim": "Tinch holatda.",
+      "mahsulot": "soat"
+     },
+     {
+      "nom": "O‘pka modeli",
+      "topshiriq": "Shisha va sharcha bilan o‘pka modelini yasang.",
+      "yechim": "Diafragma harakati.",
+      "mahsulot": "shisha, sharcha"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Hajm.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Shamollatish rejasi",
+      "topshiriq": "Sinfni shamollatish jadvalini tuzing.",
+      "yechim": "Tanaffuslar.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "16 · 500 nechaga teng?",
+      "javob": "8000"
+     },
+     {
+      "shart": "18 · 500 nechaga teng?",
+      "javob": "9000"
+     },
+     {
+      "shart": "20 · 500 nechaga teng?",
+      "javob": "10000"
+     },
+     {
+      "shart": "Havoda kislorod taxminan qancha foiz?",
+      "javob": "21"
+     },
+     {
+      "shart": "Asosiy nafas mushagi?",
+      "javob": "diafragma"
+     },
+     {
+      "shart": "Gaz almashinuvi qayerda?",
+      "javob": "alveolada"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Gaz almashinuvi bronxda bo‘ladi deydi",
+      "sabab": "alveolada",
+      "oldini_olish": "yupqa devor"
+     },
+     {
+      "xato": "Burun orqali nafas olish zarar deydi",
+      "sabab": "foydali",
+      "oldini_olish": "filtr va isitish"
+     },
+     {
+      "xato": "Chiqarilgan havoda kislorod yo‘q deydi",
+      "sabab": "taxminan 16 foiz bor",
+      "oldini_olish": "hammasi sarflanmaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "kislorod va karbonat angidrid"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "bosim va hajm"
+     },
+     {
+      "fan": "Sog‘liq",
+      "boglanish": "chekishning zarari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Nafas olish sirlari»",
+     "muammo": "Havo o‘pkada qanday yo‘l bosadi?",
+     "mahsulot": "model va hisob",
+     "bosqichlar": [
+      "yo‘llarni o‘rganish",
+      "o‘pka modeli",
+      "hajm hisobi",
+      "shamollatish rejasi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Yo‘llarni o‘rganing",
+      "Model yasang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «O‘pka bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-yo‘lak",
+       "matn": "16 nafas, 500 millilitr.",
+       "topshiriq": "Havo millilitr?",
+       "javob": "8000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-yo‘lak",
+       "matn": "18 nafas.",
+       "topshiriq": "Havo millilitr?",
+       "javob": "9000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-yo‘lak",
+       "matn": "20 nafas.",
+       "topshiriq": "Havo millilitr?",
+       "javob": "10000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-yo‘lak",
+       "matn": "Havoda kislorod.",
+       "topshiriq": "Taxminan foiz?",
+       "javob": "21",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Alveola",
+      "tarif": "o‘pka pufakchasi"
+     },
+     {
+      "atama": "Diafragma",
+      "tarif": "asosiy nafas mushagi"
+     },
+     {
+      "atama": "Bronx",
+      "tarif": "o‘pkaga kiruvchi yo‘l"
+     },
+     {
+      "atama": "Kekirdak",
+      "tarif": "hiqildoqdan keyingi nay"
+     },
+     {
+      "atama": "Diffuziya",
+      "tarif": "gazning tarqalishi"
+     },
+     {
+      "atama": "Gaz almashinuvi",
+      "tarif": "kislorod va karbonat angidrid almashinuvi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Alveolada gaz almashinuvi bo‘ladi",
+      "togri": true,
+      "izoh": "yupqa devor"
+     },
+     {
+      "matn": "Havo burunda isiydi",
+      "togri": true,
+      "izoh": "filtr"
+     },
+     {
+      "matn": "Chekish o‘pkaga foydali",
+      "togri": false,
+      "izoh": "zararli"
+     },
+     {
+      "matn": "Asosiy nafas mushagi diafragma",
+      "togri": true,
+      "izoh": "ko‘krak kengayadi"
+     },
+     {
+      "matn": "16 · 500 — 8000",
+      "togri": true,
+      "izoh": "millilitr"
+     },
+     {
+      "matn": "Atmosfera havosida taxminan 21 foiz kislorod",
+      "togri": true,
+      "izoh": "tarkib"
+     },
+     {
+      "matn": "Chiqarilgan havoda kislorod yo‘q",
+      "togri": false,
+      "izoh": "taxminan 16 foiz"
+     },
+     {
+      "matn": "Xonani shamollatish kerak",
+      "togri": true,
+      "izoh": "kislorod kamayadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Nafas yo‘li?",
+      "javob": "burun, hiqildoq, kekirdak, bronx"
+     },
+     {
+      "savol": "Alveola?",
+      "javob": "o‘pka pufakchasi"
+     },
+     {
+      "savol": "Gaz almashinuvi?",
+      "javob": "alveolada"
+     },
+     {
+      "savol": "Diafragma?",
+      "javob": "nafas mushagi"
+     },
+     {
+      "savol": "Bir nafasda?",
+      "javob": "taxminan 500 millilitr"
+     },
+     {
+      "savol": "16 · 500?",
+      "javob": "8000"
+     },
+     {
+      "savol": "Kislorod havoda?",
+      "javob": "taxminan 21 foiz"
+     },
+     {
+      "savol": "Chiqarilganda?",
+      "javob": "taxminan 16 foiz"
+     },
+     {
+      "savol": "Zarar?",
+      "javob": "chekish"
+     },
+     {
+      "savol": "Foydali?",
+      "javob": "burundan nafas"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Nafas sonini kuzat.",
+      "savol": "Daqiqada nechta?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Havo hajmini top.",
+      "savol": "Nafas · hajm?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Kirgan va chiqqan havo.",
+      "savol": "Kislorod?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qanday asraymiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun yopiq xonani shamollatish kerak?",
+    "keys": {
+     "vaziyat": "Sinfda ko‘p o‘quvchi bor, deraza yopiq, bosh og‘riy boshladi.",
+     "savollar": [
+      "Havo tarkibi qanday o‘zgardi?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Toza havo salomatlik kafolati",
+    "taqqoslash": {
+     "a": "Nafas olish",
+     "b": "Nafas chiqarish",
+     "umumiy": [
+      "nafas bosqichi",
+      "mushaklar ishlaydi"
+     ],
+     "a_farq": [
+      "diafragma qisqaradi",
+      "havo kiradi"
+     ],
+     "b_farq": [
+      "mushaklar bo‘shashadi",
+      "havo chiqadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Nafas olish",
+     "shoxlar": [
+      {
+       "nom": "Yo‘llar",
+       "bandlar": [
+        "burun",
+        "kekirdak",
+        "bronx"
+       ]
+      },
+      {
+       "nom": "O‘pka",
+       "bandlar": [
+        "alveola",
+        "kapillyar"
+       ]
+      },
+      {
+       "nom": "Mexanizm",
+       "bandlar": [
+        "diafragma",
+        "ko‘krak qafasi"
+       ]
+      },
+      {
+       "nom": "Salomatlik",
+       "bandlar": [
+        "toza havo",
+        "chekmaslik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men havoni o‘pkaga olaman va kislorodni qonga beraman. Men kimman?",
+     "javob": "nafas olish"
+    },
+    "hikmat": "Nafas hayot belgisi.",
+    "kalit_soz": "NAFAS",
+    "xato_yechim": {
+     "shart": "Gaz almashinuvi qayerda bo‘ladi?",
+     "xato": "bronxda",
+     "togri": "alveolada",
+     "sabab": "devori yupqa"
+    },
+    "guruh_nomlari": [
+     "Nafaschilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Nafas olish sirlari»",
+     "topshiriq": "Guruh o‘pka modelini yasaydi."
+    },
+    "vazifalar": {
+     "A": "16 nafasda havo?",
+     "B": "18 nafasda havo?",
+     "C": "20 nafasda havo?"
+    },
+    "sinkveyn": [
+     "Nafas",
+     "tez, chuqur",
+     "kiradi, chiqadi, almashadi",
+     "Kislorod hayot",
+     "O‘pka"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh nafas olishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: yo‘llar",
+      "2-guruh: o‘pka",
+      "3-guruh: mexanizm",
+      "4-guruh: salomatlik"
+     ],
+     "yakun": "Natijalar: 8000; 9000; 10000 millilitr."
+    }
+   }
   }
  ]
 }
