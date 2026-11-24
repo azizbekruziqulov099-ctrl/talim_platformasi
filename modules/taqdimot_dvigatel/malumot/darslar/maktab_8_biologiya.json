@@ -2785,6 +2785,1397 @@
      "yakun": "Natijalar: 8000; 9000; 10000 millilitr."
     }
    }
+  },
+  {
+   "mavzu": "Ovqat hazm qilish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Hazm yo‘li",
+      "matn": "Oziqa og‘iz bo‘shlig‘idan boshlanib, halqum, qizilo‘ngach, oshqozon, ingichka va yo‘g‘on ichak orqali o‘tadi. Hazm bezlari — tupurik bezlari, jigar va me’da osti bezi — hazm shiralarini ajratadi. Hazm — murakkab oziqani qonga so‘riladigan oddiy moddalarga aylantirish.",
+      "misol": "Hazm yo‘li uzun nay kabi.",
+      "savol": "Hazm qayerdan boshlanadi?",
+      "javob": "og‘iz bo‘shlig‘idan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Og‘iz bo‘shlig‘i va tishlar",
+      "matn": "Og‘izda oziqa tish bilan maydalanadi, tupurik bilan namlanadi. Tupurikdagi amilaza fermenti kraxmalni parchalay boshlaydi. Kattalarda 32 ta doimiy tish bor: 8 kesuvchi, 4 qoziq, 8 kichik oziq va 12 katta oziq tish. Sut tishlar 20 ta: 8 plyus 4 plyus 8.",
+      "misol": "Non uzoq chaynalsa, shirin ta’m seziladi.",
+      "savol": "Doimiy tishlar nechta?",
+      "javob": "32",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oshqozon",
+      "matn": "Oshqozonda oziqa 3 soat atrofida qoladi. Me’da shirasida xlorid kislota va pepsin fermenti bor, pepsin oqsilni parchalaydi. Kislota mikroblarni o‘ldiradi. Oshqozon devorini shilimshiq himoya qiladi. Oshqozon hajmi kattalarda taxminan 1,5 litr atrofida cho‘ziladi.",
+      "misol": "Oshqozon oziqani aralashtiradi va kislotada ishlaydi.",
+      "savol": "Oqsilni oshqozonda nima parchalaydi?",
+      "javob": "pepsin",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ingichka ichak",
+      "matn": "Ingichka ichak uzunligi taxminan 5-6 metr. Bu yerda jigar o‘ti yog‘ni emulsiyalaydi, me’da osti bezi shirasi oqsil, yog‘ va uglevodni parchalaydi. Ichak devorida ko‘plab vorsinkalar bor, ular so‘rilish yuzasini oshiradi. Oziqa moddalarning asosiy qismi shu yerda qonga so‘riladi.",
+      "misol": "Vorsinkalar ichakni «baxmal» qiladi.",
+      "savol": "Moddalar asosan qayerda so‘riladi?",
+      "javob": "ingichka ichakda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yo‘g‘on ichak va gigiena",
+      "matn": "Yo‘g‘on ichakda suv so‘riladi, hazm bo‘lmagan qoldiq tashqariga chiqariladi. Hazmni asrash uchun: qo‘lni yuvish, meva-sabzavotni yuvib iste’mol qilish, ovqatni vaqtida va yaxshi chaynab yeyish, yog‘li va chala pishgan ovqatdan saqlanish, tishni kuniga ikki marta tozalash zarur.",
+      "misol": "Yuvilmagan qo‘l — kasallik yo‘li.",
+      "savol": "Yo‘g‘on ichakda nima so‘riladi?",
+      "javob": "suv",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Hazm: og‘iz, qizilo‘ngach, oshqozon, ichak. Kattalarda 32 tish. Pepsin oqsilni, amilaza kraxmalni parchalaydi.",
+    "misollar": [
+     {
+      "shart": "Doimiy tishlar: 8 kesuvchi, 4 qoziq, 8 kichik oziq, 12 katta oziq. Jami?",
+      "yechim": [
+       "8 plyus 4.",
+       "12 plyus 8 plyus 12.",
+       "Javob 32."
+      ],
+      "javob": "32"
+     },
+     {
+      "shart": "Sut tishlar: 8 kesuvchi, 4 qoziq, 8 kichik oziq. Jami?",
+      "yechim": [
+       "8 plyus 4.",
+       "12 plyus 8.",
+       "Javob 20."
+      ],
+      "javob": "20"
+     },
+     {
+      "shart": "Doimiy tishlar 32, sut tishlar 20. Farqi?",
+      "yechim": [
+       "32 minus 20.",
+       "Hisoblang.",
+       "Javob 12."
+      ],
+      "javob": "12"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tish formulasi",
+      "topshiriq": "Tish turlarini sanab, jadvalga yozing.",
+      "yechim": "8, 4, 8, 12.",
+      "mahsulot": "daftar, ko‘zgu"
+     },
+     {
+      "nom": "Kraxmal tajribasi",
+      "topshiriq": "Nonni uzoq chaynab, ta’mni kuzating.",
+      "yechim": "Shirin bo‘ladimi.",
+      "mahsulot": "non"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Tishlar soni.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Gigiena qoidalari",
+      "topshiriq": "Hazm gigiyenasi plakatini chizing.",
+      "yechim": "Qo‘lni yuvish.",
+      "mahsulot": "qog‘oz, flomaster"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "8 plyus 4 plyus 8 plyus 12 nechaga teng?",
+      "javob": "32"
+     },
+     {
+      "shart": "8 plyus 4 plyus 8 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "32 minus 20 nechaga teng?",
+      "javob": "12"
+     },
+     {
+      "shart": "Oqsilni oshqozonda nima parchalaydi?",
+      "javob": "pepsin"
+     },
+     {
+      "shart": "Kraxmalni nima parchalaydi?",
+      "javob": "amilaza"
+     },
+     {
+      "shart": "Suv qayerda so‘riladi?",
+      "javob": "yo‘g‘on ichakda"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Hazm faqat oshqozonda bo‘ladi deydi",
+      "sabab": "og‘izdan boshlanadi",
+      "oldini_olish": "tupurik amilazasi"
+     },
+     {
+      "xato": "Moddalar asosan yo‘g‘on ichakda so‘riladi deydi",
+      "sabab": "ingichka ichakda",
+      "oldini_olish": "vorsinkalar"
+     },
+     {
+      "xato": "Qo‘lni yuvish shart emas deydi",
+      "sabab": "shart",
+      "oldini_olish": "kasallik oldini oladi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "fermentlar va kislota"
+     },
+     {
+      "fan": "Sog‘liq",
+      "boglanish": "gigiena"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "qo‘shish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Hazm yo‘li bo‘ylab»",
+     "muammo": "Oziqa tanada qanday yo‘l bosadi?",
+     "mahsulot": "sxema va tajriba",
+     "bosqichlar": [
+      "yo‘lni chizish",
+      "tish formulasi",
+      "kraxmal tajribasi",
+      "gigiena plakati",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Yo‘lni chizing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Oziqa sayohati»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "8, 4, 8, 12.",
+       "topshiriq": "Doimiy tish?",
+       "javob": "32",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "8, 4, 8.",
+       "topshiriq": "Sut tish?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "32 va 20.",
+       "topshiriq": "Farqi?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "Oqsil fermenti.",
+       "topshiriq": "Qaysi?",
+       "javob": "pepsin",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Sanadingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Hazm",
+      "tarif": "oziqani oddiy moddalarga aylantirish"
+     },
+     {
+      "atama": "Ferment",
+      "tarif": "kimyoviy reaksiyani tezlatuvchi oqsil"
+     },
+     {
+      "atama": "Amilaza",
+      "tarif": "kraxmalni parchalovchi ferment"
+     },
+     {
+      "atama": "Pepsin",
+      "tarif": "oqsilni parchalovchi ferment"
+     },
+     {
+      "atama": "Vorsinka",
+      "tarif": "ichak so‘rish o‘simtasi"
+     },
+     {
+      "atama": "O‘t",
+      "tarif": "jigar ajratadigan suyuqlik"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Hazm og‘izdan boshlanadi",
+      "togri": true,
+      "izoh": "tupurik"
+     },
+     {
+      "matn": "Kattalarda 32 tish bor",
+      "togri": true,
+      "izoh": "doimiy tishlar"
+     },
+     {
+      "matn": "Pepsin kraxmalni parchalaydi",
+      "togri": false,
+      "izoh": "oqsilni"
+     },
+     {
+      "matn": "Asosiy so‘rilish ingichka ichakda",
+      "togri": true,
+      "izoh": "vorsinkalar"
+     },
+     {
+      "matn": "Sut tishlar 20 ta",
+      "togri": true,
+      "izoh": "8 plyus 4 plyus 8"
+     },
+     {
+      "matn": "Yo‘g‘on ichakda suv so‘riladi",
+      "togri": true,
+      "izoh": "qoldiq chiqadi"
+     },
+     {
+      "matn": "Qo‘lni yuvish shart emas",
+      "togri": false,
+      "izoh": "gigiena"
+     },
+     {
+      "matn": "32 minus 20 — 12",
+      "togri": true,
+      "izoh": "farq"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Hazm?",
+      "javob": "oziqani oddiy moddalarga aylantirish"
+     },
+     {
+      "savol": "Tish?",
+      "javob": "doimiy 32"
+     },
+     {
+      "savol": "Sut tish?",
+      "javob": "20"
+     },
+     {
+      "savol": "Amilaza?",
+      "javob": "kraxmalni parchalaydi"
+     },
+     {
+      "savol": "Pepsin?",
+      "javob": "oqsilni parchalaydi"
+     },
+     {
+      "savol": "O‘t?",
+      "javob": "yog‘ni emulsiyalaydi"
+     },
+     {
+      "savol": "So‘rilish?",
+      "javob": "ingichka ichak"
+     },
+     {
+      "savol": "Yo‘g‘on ichak?",
+      "javob": "suv so‘riladi"
+     },
+     {
+      "savol": "32 minus 20?",
+      "javob": "12"
+     },
+     {
+      "savol": "Gigiena?",
+      "javob": "qo‘l yuvish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Tishlaringni kuzat.",
+      "savol": "Qancha tish?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Tish sonini top.",
+      "savol": "Qo‘shish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Sut va doimiy.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Gigiena?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ovqatni yaxshi chaynash kerak?",
+    "keys": {
+     "vaziyat": "O‘quvchi shoshib, chaynamay ovqat yedi va qorni og‘ridi.",
+     "savollar": [
+      "Og‘izda nima bo‘ladi?",
+      "Oshqozonga yuk qanday?"
+     ]
+    },
+    "tezis": "Hazm og‘izdan boshlanadi",
+    "taqqoslash": {
+     "a": "Amilaza",
+     "b": "Pepsin",
+     "umumiy": [
+      "ferment",
+      "hazmda ishtirok etadi"
+     ],
+     "a_farq": [
+      "tupurikda",
+      "kraxmalni parchalaydi"
+     ],
+     "b_farq": [
+      "oshqozonda",
+      "oqsilni parchalaydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ovqat hazm qilish",
+     "shoxlar": [
+      {
+       "nom": "Og‘iz",
+       "bandlar": [
+        "tish",
+        "tupurik"
+       ]
+      },
+      {
+       "nom": "Oshqozon",
+       "bandlar": [
+        "kislota",
+        "pepsin"
+       ]
+      },
+      {
+       "nom": "Ichak",
+       "bandlar": [
+        "so‘rilish",
+        "vorsinka"
+       ]
+      },
+      {
+       "nom": "Bezlar",
+       "bandlar": [
+        "jigar",
+        "me’da osti"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men oziqani oddiy moddalarga aylantiraman. Men kimman?",
+     "javob": "hazm"
+    },
+    "hikmat": "Hazm og‘izdan boshlanadi.",
+    "kalit_soz": "HAZM",
+    "xato_yechim": {
+     "shart": "Pepsin nimani parchalaydi?",
+     "xato": "kraxmalni",
+     "togri": "oqsilni",
+     "sabab": "kraxmalni amilaza"
+    },
+    "guruh_nomlari": [
+     "Hazmchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Hazm yo‘li bo‘ylab»",
+     "topshiriq": "Guruh hazm yo‘li sxemasini chizadi."
+    },
+    "vazifalar": {
+     "A": "Doimiy tishlar soni?",
+     "B": "Sut tishlar soni?",
+     "C": "Tishlar farqi?"
+    },
+    "sinkveyn": [
+     "Hazm",
+     "uzun, murakkab",
+     "maydalaydi, parchalaydi, so‘riladi",
+     "Oziqa yo‘li",
+     "Tish"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh hazmni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: og‘iz",
+      "2-guruh: oshqozon",
+      "3-guruh: ichak",
+      "4-guruh: gigiena"
+     ],
+     "yakun": "Natijalar: 32; 20; 12."
+    }
+   }
+  },
+  {
+   "mavzu": "Moddalar almashinuvi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Moddalar almashinuvi nima",
+      "matn": "Moddalar almashinuvi — organizmda oziqa moddalarning kirishi, o‘zgarishi va chiqarilishi jarayoni. U ikki qismdan iborat. Assimilyatsiya (plastik almashinuv) — oddiy moddalardan murakkab modda yasash, tana o‘sadi va yangilanadi. Dissimilyatsiya (energetik almashinuv) — moddalarni parchalab, energiya ajratish.",
+      "misol": "Qurilish va yoqilg‘i kabi ikki yo‘nalish.",
+      "savol": "Energiya ajraladigan jarayon?",
+      "javob": "dissimilyatsiya",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oqsil, yog‘, uglevod",
+      "matn": "Oqsillar qurilish materiali, tana hujayralarini yasaydi. Uglevodlar asosiy energiya manbai, non, guruch, mevada ko‘p. Yog‘lar energiya zaxirasi va issiqlik saqlaydi. Taxminan 1 gramm uglevod 4 kilokaloriya, 1 gramm oqsil 4, 1 gramm yog‘ 9 kilokaloriya energiya beradi.",
+      "misol": "Yog‘ eng ko‘p energiya beradi.",
+      "savol": "Qaysi modda gramm boshiga eng ko‘p energiya beradi?",
+      "javob": "yog‘",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Energiya hisobi",
+      "matn": "Masalan, ovqatda 50 gramm uglevod bo‘lsa, 50 · 4 — 200 kilokaloriya. 20 gramm yog‘ 20 · 9 — 180 kilokaloriya. 30 gramm oqsil 30 · 4 — 120 kilokaloriya. Jami 200 plyus 180 plyus 120 — 500 kilokaloriya. Bu taxminiy hisob, aniq qiymat mahsulotga bog‘liq.",
+      "misol": "Mahsulot yorlig‘ida tarkib yozilgan.",
+      "savol": "50 gramm uglevod necha kilokaloriya beradi?",
+      "javob": "200",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ratsion va suv",
+      "matn": "To‘g‘ri ovqatlanish ratsioni oqsil, yog‘, uglevod, vitamin, mineral va suvni o‘z ichiga olishi kerak. Sutkalik energiya talabi yoshga va faollikka qarab o‘zgaradi, o‘spirinlarda taxminan 2000 dan 2500 kilokaloriyagacha. Ortiqcha ovqat semirishga, kam ovqat holsizlikka olib keladi. Suv almashinuvning muhim qismi.",
+      "misol": "Bir xil ovqat emas, xilma-xil ovqat kerak.",
+      "savol": "Ratsion nima?",
+      "javob": "ovqat tarkibi va miqdori",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Almashinuvga ta’sir",
+      "matn": "Almashinuv tezligi yoshga, harakatga va haroratga bog‘liq. Harakat qilsangiz energiya ko‘p sarflanadi. Uyqu va dam olish ham zarur. Fast-fud va shirin ichimlik ko‘p iste’mol qilinsa, ortiqcha energiya yog‘ ko‘rinishida to‘planadi. Sport va xilma-xil ovqat almashinuvni muvozanatda tutadi.",
+      "misol": "Harakat — energiyani yoqadi.",
+      "savol": "Almashinuv nimaga bog‘liq?",
+      "javob": "yosh va harakat",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Assimilyatsiya — yasash, dissimilyatsiya — parchalash. 1 gramm uglevod 4, oqsil 4, yog‘ 9 kilokaloriya.",
+    "misollar": [
+     {
+      "shart": "50 gramm uglevod, 1 gramm 4 kilokaloriya. Energiya?",
+      "yechim": [
+       "50 · 4.",
+       "200.",
+       "Javob 200 kilokaloriya."
+      ],
+      "javob": "200 kilokaloriya"
+     },
+     {
+      "shart": "20 gramm yog‘, 1 gramm 9 kilokaloriya. Energiya?",
+      "yechim": [
+       "20 · 9.",
+       "180.",
+       "Javob 180 kilokaloriya."
+      ],
+      "javob": "180 kilokaloriya"
+     },
+     {
+      "shart": "200, 180 va 120 kilokaloriya jami?",
+      "yechim": [
+       "200 plyus 180.",
+       "380 plyus 120.",
+       "Javob 500."
+      ],
+      "javob": "500"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Mahsulot yorlig‘i",
+      "topshiriq": "Mahsulot yorlig‘idagi oqsil, yog‘, uglevodni o‘qing.",
+      "yechim": "Tarkib.",
+      "mahsulot": "yorliq"
+     },
+     {
+      "nom": "Energiya jadvali",
+      "topshiriq": "Bir kunlik ovqat energiyasini hisoblang.",
+      "yechim": "Gramm · kkal.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Energiya.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Ratsion rejasi",
+      "topshiriq": "Bir kunlik sog‘lom ovqat rejasini tuzing.",
+      "yechim": "Xilma-xillik.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "50 · 4 nechaga teng?",
+      "javob": "200"
+     },
+     {
+      "shart": "20 · 9 nechaga teng?",
+      "javob": "180"
+     },
+     {
+      "shart": "30 · 4 nechaga teng?",
+      "javob": "120"
+     },
+     {
+      "shart": "200 plyus 180 plyus 120 nechaga teng?",
+      "javob": "500"
+     },
+     {
+      "shart": "1 gramm yog‘ necha kilokaloriya?",
+      "javob": "9"
+     },
+     {
+      "shart": "Qurilish materiali modda?",
+      "javob": "oqsil"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yog‘ energiya bermaydi deydi",
+      "sabab": "eng ko‘p beradi",
+      "oldini_olish": "9 kilokaloriya"
+     },
+     {
+      "xato": "Faqat uglevod yeyish yetarli deydi",
+      "sabab": "xilma-xil ovqat kerak",
+      "oldini_olish": "oqsil va vitamin ham"
+     },
+     {
+      "xato": "Harakat almashinuvga ta’sir qilmaydi deydi",
+      "sabab": "ta’sir qiladi",
+      "oldini_olish": "energiya sarflanadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "oksidlanish"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish"
+     },
+     {
+      "fan": "Sport",
+      "boglanish": "energiya sarfi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Energiya hisobi»",
+     "muammo": "Ovqat qancha energiya beradi?",
+     "mahsulot": "jadval va reja",
+     "bosqichlar": [
+      "yorliqni o‘qish",
+      "energiya hisobi",
+      "ratsion tuzish",
+      "harakat rejasi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Yorliqni o‘qing",
+      "Hisoblang",
+      "Ratsion tuzing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "jadval to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Energiya zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "50 gramm uglevod.",
+       "topshiriq": "Kilokaloriya?",
+       "javob": "200",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "20 gramm yog‘.",
+       "topshiriq": "Kilokaloriya?",
+       "javob": "180",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "30 gramm oqsil.",
+       "topshiriq": "Kilokaloriya?",
+       "javob": "120",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sex",
+       "matn": "Jami.",
+       "topshiriq": "Kilokaloriya?",
+       "javob": "500",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Almashinuv",
+      "tarif": "moddalar va energiya aylanishi"
+     },
+     {
+      "atama": "Assimilyatsiya",
+      "tarif": "murakkab modda yasash"
+     },
+     {
+      "atama": "Dissimilyatsiya",
+      "tarif": "parchalab energiya olish"
+     },
+     {
+      "atama": "Ratsion",
+      "tarif": "ovqat tarkibi va miqdori"
+     },
+     {
+      "atama": "Uglevod",
+      "tarif": "asosiy energiya manbai"
+     },
+     {
+      "atama": "Kilokaloriya",
+      "tarif": "energiya birligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Dissimilyatsiyada energiya ajraladi",
+      "togri": true,
+      "izoh": "parchalanish"
+     },
+     {
+      "matn": "Yog‘ eng kam energiya beradi",
+      "togri": false,
+      "izoh": "eng ko‘p"
+     },
+     {
+      "matn": "Uglevod 1 grammi taxminan 4 kilokaloriya",
+      "togri": true,
+      "izoh": "energiya"
+     },
+     {
+      "matn": "Oqsil qurilish materiali",
+      "togri": true,
+      "izoh": "hujayra yasaydi"
+     },
+     {
+      "matn": "200 plyus 180 plyus 120 — 500",
+      "togri": true,
+      "izoh": "jami"
+     },
+     {
+      "matn": "Ratsion xilma-xil bo‘lishi kerak",
+      "togri": true,
+      "izoh": "oqsil, yog‘, uglevod"
+     },
+     {
+      "matn": "Harakat energiya sarfiga ta’sir qilmaydi",
+      "togri": false,
+      "izoh": "ta’sir qiladi"
+     },
+     {
+      "matn": "Assimilyatsiyada modda yasaladi",
+      "togri": true,
+      "izoh": "plastik"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Almashinuv?",
+      "javob": "moddalar va energiya aylanishi"
+     },
+     {
+      "savol": "Assimilyatsiya?",
+      "javob": "yasash"
+     },
+     {
+      "savol": "Dissimilyatsiya?",
+      "javob": "parchalash"
+     },
+     {
+      "savol": "Uglevod?",
+      "javob": "energiya manbai"
+     },
+     {
+      "savol": "Oqsil?",
+      "javob": "qurilish"
+     },
+     {
+      "savol": "Yog‘?",
+      "javob": "9 kilokaloriya"
+     },
+     {
+      "savol": "50 · 4?",
+      "javob": "200"
+     },
+     {
+      "savol": "20 · 9?",
+      "javob": "180"
+     },
+     {
+      "savol": "Jami?",
+      "javob": "500"
+     },
+     {
+      "savol": "Ratsion?",
+      "javob": "xilma-xil ovqat"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Yorliqni kuzat.",
+      "savol": "Qancha gramm?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Energiyani top.",
+      "savol": "Gramm · kkal?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Uch moddani solishtir.",
+      "savol": "Qaysi ko‘p?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ratsion?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ovqat xilma-xil bo‘lishi kerak?",
+    "keys": {
+     "vaziyat": "O‘quvchi faqat shirinlik yeb, tez charchayapti.",
+     "savollar": [
+      "Qaysi moddalar yetishmaydi?",
+      "Qanday tuzatamiz?"
+     ]
+    },
+    "tezis": "Almashinuv muvozanatda bo‘lishi kerak",
+    "taqqoslash": {
+     "a": "Assimilyatsiya",
+     "b": "Dissimilyatsiya",
+     "umumiy": [
+      "almashinuv qismi",
+      "doim kechadi"
+     ],
+     "a_farq": [
+      "modda yasaladi",
+      "energiya sarflanadi"
+     ],
+     "b_farq": [
+      "modda parchalanadi",
+      "energiya ajraladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Moddalar almashinuvi",
+     "shoxlar": [
+      {
+       "nom": "Ikki qism",
+       "bandlar": [
+        "assimilyatsiya",
+        "dissimilyatsiya"
+       ]
+      },
+      {
+       "nom": "Moddalar",
+       "bandlar": [
+        "oqsil",
+        "yog‘",
+        "uglevod"
+       ]
+      },
+      {
+       "nom": "Energiya",
+       "bandlar": [
+        "4",
+        "9",
+        "4"
+       ]
+      },
+      {
+       "nom": "Ratsion",
+       "bandlar": [
+        "xilma-xillik",
+        "suv"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men organizmda modda va energiyani aylantiraman. Men kimman?",
+     "javob": "almashinuv"
+    },
+    "hikmat": "Almashinuv hayot asosi.",
+    "kalit_soz": "ENERGIYA",
+    "xato_yechim": {
+     "shart": "Qaysi modda eng ko‘p energiya beradi?",
+     "xato": "uglevod",
+     "togri": "yog‘",
+     "sabab": "9 kilokaloriya"
+    },
+    "guruh_nomlari": [
+     "Almashinuvchilar",
+     "Hisobchilar",
+     "Ratsionchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Energiya hisobi»",
+     "topshiriq": "Guruh bir kunlik ratsion tuzadi."
+    },
+    "vazifalar": {
+     "A": "50 gramm uglevod energiyasi?",
+     "B": "20 gramm yog‘ energiyasi?",
+     "C": "Jami energiya?"
+    },
+    "sinkveyn": [
+     "Almashinuv",
+     "doimiy, murakkab",
+     "yasaydi, parchalaydi, energiya beradi",
+     "Energiya manbai",
+     "Ovqat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh almashinuvni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: ikki qism",
+      "2-guruh: moddalar",
+      "3-guruh: energiya",
+      "4-guruh: ratsion"
+     ],
+     "yakun": "Natijalar: 200; 180; 500."
+    }
+   }
+  },
+  {
+   "mavzu": "Vitaminlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Vitaminlar nima",
+      "matn": "Vitaminlar — organizmga oz miqdorda zarur organik moddalar. Ular energiya bermaydi, lekin almashinuvni boshqaradi. Ko‘pchiligini tanamiz o‘zi yasay olmaydi, shuning uchun ovqat bilan olinadi. «Vitamin» so‘zini 1912-yilda polyak olimi Kazimir Funk taklif qilgan. Bugun 2026-yildan hisoblasa, bu 114 yil oldin.",
+      "misol": "Oz miqdor, katta ta’sir.",
+      "savol": "Vitamin so‘zini kim taklif qilgan?",
+      "javob": "Kazimir Funk",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Eruvchanlikka ko‘ra turlari",
+      "matn": "Vitaminlar ikki guruhga bo‘linadi. Yog‘da eriydiganlar: A, D, E, K — to‘rt vitamin, ular tanada zaxiralanadi. Suvda eriydiganlar: B guruhi va C vitamini, ular zaxiralanmaydi va har kuni olinishi kerak. Yog‘da eriydigan vitaminlar yog‘li ovqat bilan yaxshi so‘riladi.",
+      "misol": "Sabzi yog‘ bilan A vitamini beradi.",
+      "savol": "Yog‘da eriydigan vitaminlar?",
+      "javob": "A, D, E, K",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Asosiy vitaminlar",
+      "matn": "A vitamini ko‘rish uchun muhim, sabzi va jigarda bor, yetishmasa tungi ko‘rlik bo‘ladi. C vitamini limon, na’matak, qoraqatda, shamollashdan himoya qiladi, yetishmasa tsinga paydo bo‘ladi. D vitamini suyakka kerak, quyosh nuri ta’sirida terida hosil bo‘ladi, yetishmasa bolalarda raxit rivojlanadi. B1 vitamini nerv uchun kerak. K vitamini qon ivishida ishtirok etadi.",
+      "misol": "Quyosh — D vitamini manbai.",
+      "savol": "Raxit qaysi vitamin yetishmasligidan?",
+      "javob": "D",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisob misollari",
+      "matn": "Mevalar va sabzavotlar sog‘liq uchun muhim: kuniga kamida 5 porsiya tavsiya etiladi. Haftada 5 · 7 — 35 porsiya. Agar quyoshda kuniga 15 daqiqa yursangiz, haftada 15 · 7 — 105 daqiqa bo‘ladi. Bu D vitamini hosil bo‘lishiga yordam beradi, lekin kuchli quyoshdan terini himoya qiling.",
+      "misol": "Kuniga 5 porsiya — oson qoida.",
+      "savol": "Kuniga necha porsiya mevasabzavot tavsiya etiladi?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Gipovitaminoz va saqlanish",
+      "matn": "Vitamin yetishmasligi gipovitaminoz, umuman bo‘lmasligi avitaminoz deyiladi. Bahorda gipovitaminoz ko‘p uchraydi. Vitaminlarni saqlash uchun mevasabzavotni uzoq qaynatmaslik, yangi iste’mol qilish, to‘g‘ri saqlash kerak. Dori vitaminlarini shifokor maslahatisiz ko‘p ichish zararli bo‘lishi mumkin.",
+      "misol": "Xilma-xil ovqat — eng yaxshi vitamin manbai.",
+      "savol": "Vitamin yetishmasligi nima deyiladi?",
+      "javob": "gipovitaminoz",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Vitaminlar: A, D, E, K yog‘da, B va C suvda eriydi. Funk 1912. Kuniga 5 porsiya meva-sabzavot.",
+    "misollar": [
+     {
+      "shart": "Funk 1912-yilda «vitamin» so‘zini taklif qilgan. 2026-yilgacha necha yil o‘tdi?",
+      "yechim": [
+       "2026 minus 1912.",
+       "Hisoblang.",
+       "Javob 114."
+      ],
+      "javob": "114"
+     },
+     {
+      "shart": "Kuniga 5 porsiya mevasabzavot, haftada nechta porsiya?",
+      "yechim": [
+       "5 · 7.",
+       "Hisoblang.",
+       "Javob 35."
+      ],
+      "javob": "35"
+     },
+     {
+      "shart": "Quyoshda kuniga 15 daqiqa, haftada necha daqiqa?",
+      "yechim": [
+       "15 · 7.",
+       "Hisoblang.",
+       "Javob 105."
+      ],
+      "javob": "105"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Vitaminlar jadvali",
+      "topshiriq": "Vitaminlar, manbalar va vazifalarni jadvalga yozing.",
+      "yechim": "A, C, D.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Haftalik reja",
+      "topshiriq": "Haftalik meva-sabzavot rejasini tuzing.",
+      "yechim": "Kuniga 5 porsiya.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Yil va porsiya.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Sabzi tajribasi",
+      "topshiriq": "Sabzi va yog‘li ovqatni solishtiring.",
+      "yechim": "A vitamini.",
+      "mahsulot": "sabzi"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2026 minus 1912 nechaga teng?",
+      "javob": "114"
+     },
+     {
+      "shart": "5 · 7 nechaga teng?",
+      "javob": "35"
+     },
+     {
+      "shart": "15 · 7 nechaga teng?",
+      "javob": "105"
+     },
+     {
+      "shart": "Yog‘da eriydigan vitaminlar soni?",
+      "javob": "4"
+     },
+     {
+      "shart": "Raxit qaysi vitamin yetishmasligidan?",
+      "javob": "D"
+     },
+     {
+      "shart": "Qon ivishi vitamini?",
+      "javob": "K"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Vitamin energiya beradi deydi",
+      "sabab": "energiya bermaydi",
+      "oldini_olish": "almashinuvni boshqaradi"
+     },
+     {
+      "xato": "C vitamini yog‘da eriydi deydi",
+      "sabab": "suvda eriydi",
+      "oldini_olish": "har kuni olish kerak"
+     },
+     {
+      "xato": "Ko‘p vitamin dori ichish doim foydali deydi",
+      "sabab": "ortiqchasi zarar",
+      "oldini_olish": "shifokor maslahati"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "eruvchanlik"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Funk kashfiyoti"
+     },
+     {
+      "fan": "Sog‘liq",
+      "boglanish": "xilma-xil ovqat"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Vitamin dunyosi»",
+     "muammo": "Vitaminlar qayerdan olinadi va nima uchun kerak?",
+     "mahsulot": "jadval va plakat",
+     "bosqichlar": [
+      "vitaminlarni o‘rganish",
+      "jadval tuzish",
+      "haftalik reja",
+      "hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Vitaminlarni o‘rganing",
+      "Jadval tuzing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "jadval to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Vitamin bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-daraxt",
+       "matn": "1912 dan 2026 gacha.",
+       "topshiriq": "Necha yil?",
+       "javob": "114",
+       "rasm": ""
+      },
+      {
+       "nom": "2-daraxt",
+       "matn": "5 porsiya, 7 kun.",
+       "topshiriq": "Jami?",
+       "javob": "35",
+       "rasm": ""
+      },
+      {
+       "nom": "3-daraxt",
+       "matn": "15 daqiqa, 7 kun.",
+       "topshiriq": "Jami daqiqa?",
+       "javob": "105",
+       "rasm": ""
+      },
+      {
+       "nom": "4-daraxt",
+       "matn": "A, D, E, K.",
+       "topshiriq": "Nechta?",
+       "javob": "4",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Vitamin",
+      "tarif": "oz miqdorda zarur organik modda"
+     },
+     {
+      "atama": "Gipovitaminoz",
+      "tarif": "vitamin yetishmasligi"
+     },
+     {
+      "atama": "Avitaminoz",
+      "tarif": "vitamin umuman yo‘qligi"
+     },
+     {
+      "atama": "Raxit",
+      "tarif": "D vitamini yetishmasligi kasalligi"
+     },
+     {
+      "atama": "Tsinga",
+      "tarif": "C vitamini yetishmasligi"
+     },
+     {
+      "atama": "Provitamin",
+      "tarif": "vitaminga aylanuvchi modda"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Vitamin energiya bermaydi",
+      "togri": true,
+      "izoh": "almashinuvni boshqaradi"
+     },
+     {
+      "matn": "A, D, E, K yog‘da eriydi",
+      "togri": true,
+      "izoh": "zaxiralanadi"
+     },
+     {
+      "matn": "C vitamini yog‘da eriydi",
+      "togri": false,
+      "izoh": "suvda"
+     },
+     {
+      "matn": "Raxit D vitamini yetishmasligidan",
+      "togri": true,
+      "izoh": "suyak"
+     },
+     {
+      "matn": "2026 minus 1912 — 114",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Kuniga 5 porsiya tavsiya etiladi",
+      "togri": true,
+      "izoh": "mevasabzavot"
+     },
+     {
+      "matn": "Dori vitaminlarini cheksiz ichish mumkin",
+      "togri": false,
+      "izoh": "ortiqchasi zarar"
+     },
+     {
+      "matn": "5 · 7 — 35",
+      "togri": true,
+      "izoh": "porsiya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Vitamin?",
+      "javob": "oz miqdorda zarur modda"
+     },
+     {
+      "savol": "Funk?",
+      "javob": "1912"
+     },
+     {
+      "savol": "Yog‘da eriydi?",
+      "javob": "A, D, E, K"
+     },
+     {
+      "savol": "Suvda eriydi?",
+      "javob": "B va C"
+     },
+     {
+      "savol": "A vitamini?",
+      "javob": "ko‘rish"
+     },
+     {
+      "savol": "C vitamini?",
+      "javob": "shamollashdan himoya"
+     },
+     {
+      "savol": "D vitamini?",
+      "javob": "suyak"
+     },
+     {
+      "savol": "K vitamini?",
+      "javob": "qon ivishi"
+     },
+     {
+      "savol": "5 · 7?",
+      "javob": "35"
+     },
+     {
+      "savol": "Yetishmasligi?",
+      "javob": "gipovitaminoz"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Yorliqni kuzat.",
+      "savol": "Qaysi vitamin?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Porsiyalarni top.",
+      "savol": "5 · 7?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ikki guruhni solishtir.",
+      "savol": "Eruvchanlik?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qanday olamiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun suvda eriydigan vitaminlar har kuni olinishi kerak?",
+    "keys": {
+     "vaziyat": "Bahorda o‘quvchi tez charchayapti, mevasabzavot kam yeyapti.",
+     "savollar": [
+      "Qaysi vitaminlar yetishmaydi?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Xilma-xil ovqat — vitamin manbai",
+    "taqqoslash": {
+     "a": "Yog‘da eriydigan",
+     "b": "Suvda eriydigan",
+     "umumiy": [
+      "vitaminlar",
+      "ovqat bilan olinadi"
+     ],
+     "a_farq": [
+      "A, D, E, K",
+      "zaxiralanadi"
+     ],
+     "b_farq": [
+      "B va C",
+      "zaxiralanmaydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Vitaminlar",
+     "shoxlar": [
+      {
+       "nom": "Yog‘da eriydi",
+       "bandlar": [
+        "A",
+        "D",
+        "E",
+        "K"
+       ]
+      },
+      {
+       "nom": "Suvda eriydi",
+       "bandlar": [
+        "B",
+        "C"
+       ]
+      },
+      {
+       "nom": "Vazifa",
+       "bandlar": [
+        "ko‘rish",
+        "suyak",
+        "ivish"
+       ]
+      },
+      {
+       "nom": "Kasallik",
+       "bandlar": [
+        "raxit",
+        "tsinga"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men oz miqdorda kerakman, lekin almashinuvni boshqaraman. Men kimman?",
+     "javob": "vitamin"
+    },
+    "hikmat": "Vitamin hayot kuchi.",
+    "kalit_soz": "VITAMIN",
+    "xato_yechim": {
+     "shart": "C vitamini nimada eriydi?",
+     "xato": "yog‘da",
+     "togri": "suvda",
+     "sabab": "har kuni olinadi"
+    },
+    "guruh_nomlari": [
+     "Vitaminchilar",
+     "Hisobchilar",
+     "Ratsionchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Vitamin dunyosi»",
+     "topshiriq": "Guruh vitamin jadvalini tuzadi."
+    },
+    "vazifalar": {
+     "A": "2026 minus 1912?",
+     "B": "Haftada porsiya?",
+     "C": "Haftada quyosh daqiqasi?"
+    },
+    "sinkveyn": [
+     "Vitamin",
+     "kichik, kuchli",
+     "himoya qiladi, boshqaradi, yordam beradi",
+     "Vitamin — salomatlik",
+     "Limon"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh vitaminlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: eruvchanlik",
+      "2-guruh: A va C",
+      "3-guruh: D va K",
+      "4-guruh: ovqat rejasi"
+     ],
+     "yakun": "Natijalar: 114; 35; 105."
+    }
+   }
   }
  ]
 }
