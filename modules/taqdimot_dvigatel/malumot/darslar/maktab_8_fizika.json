@@ -8304,6 +8304,1392 @@
      "yakun": "Natijalar: 200; 200; 450."
     }
    }
+  },
+  {
+   "mavzu": "Elektr dvigatel",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Dvigatel nima",
+      "matn": "Elektr dvigatel elektr energiyasini mexanik energiyaga aylantiradi. U ventilyator, kir yuvish mashinasi, elektromobil, lift va stanoklarda ishlaydi.",
+      "misol": "Ventilyator pardalari elektr dvigatel bilan aylanadi.",
+      "savol": "Elektr dvigatel qaysi energiyani mexanik energiyaga aylantiradi?",
+      "javob": "elektr energiyasini",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ishlash asosi",
+      "matn": "Magnit maydonda turgan tokli o‘tkazgichga kuch ta’sir qiladi (Amper kuchi). Tokli ramka magnit qutblari orasida shu kuch ta’sirida buriladi. Kuch yo‘nalishini chap qo‘l qoidasi bilan topamiz.",
+      "misol": "Tokli sim magnit maydonda siljiydi.",
+      "savol": "Magnit maydonda tokli o‘tkazgichga nima ta’sir qiladi?",
+      "javob": "kuch",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tuzilishi",
+      "matn": "Dvigatelning qo‘zg‘almas qismi — stator (magnit maydon hosil qiladi), aylanuvchi qismi — rotor (o‘ramli qism). Kollektor va cho‘tkalar ramkadagi tok yo‘nalishini har yarim aylanishda o‘zgartirib, aylanishni davom ettiradi.",
+      "misol": "Rotor stator ichida aylanadi.",
+      "savol": "Aylanuvchi qism nima deyiladi?",
+      "javob": "rotor",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tarixi",
+      "matn": "Birinchi amaliy elektr dvigatelni 1834-yilda fizik va muhandis Moritz Yakobi yasadi. 1838-yilda u dvigatelli qayiqni Neva daryosida sinab ko‘rdi. Hozir elektr dvigatellar sanoatning asosiy yuritmasidir.",
+      "misol": "Hozir elektromobillar elektr dvigatel bilan yuradi.",
+      "savol": "Yakobi qaysi yili dvigatel yasagan?",
+      "javob": "1834",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Afzalliklari",
+      "matn": "Elektr dvigatelning FIK i taxminan 90 foizga yetadi, issiqlik dvigatelinikidan ancha yuqori. U zararli gaz chiqarmaydi, ixcham va shovqini kam. Kamchiligi — energiyani akkumulyatorda saqlash qiyinligi.",
+      "misol": "Elektrobus shaharni tozalaydi.",
+      "savol": "Elektr dvigatel havoni ifloslantiradimi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Elektr dvigatel elektr energiyasini mexanik energiyaga aylantiradi. Magnit maydonda tokli ramkaga kuch ta’sir qiladi. Stator qo‘zg‘almas, rotor aylanuvchi.",
+    "misollar": [
+     {
+      "shart": "Dvigatel 220 volt va 5 amper iste’mol qiladi. Quvvati? (P — U · I)",
+      "yechim": [
+       "P — U · I.",
+       "220 · 5.",
+       "Javob 1100 vatt."
+      ],
+      "javob": "1100 vatt"
+     },
+     {
+      "shart": "Iste’mol quvvati 1000 vatt, FIK 90 foiz. Foydali quvvat?",
+      "yechim": [
+       "FIK — 0,9.",
+       "1000 · 0,9.",
+       "Javob 900 vatt."
+      ],
+      "javob": "900 vatt"
+     },
+     {
+      "shart": "Dvigatel quvvati 1,1 kilovatt, 2 soat ishladi. Sarflangan energiya?",
+      "yechim": [
+       "Quvvat · vaqt.",
+       "1,1 · 2.",
+       "Javob 2,2 kilovatt-soat."
+      ],
+      "javob": "2,2 kilovatt-soat"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Oddiy dvigatel yasaymiz",
+      "topshiriq": "Batareya, magnit va misdan o‘ralgan ramkadan oddiy dvigatel yig‘ing.",
+      "yechim": "Ramka aylanadi.",
+      "mahsulot": "batareya, magnit, mis sim"
+     },
+     {
+      "nom": "Qismlarni topamiz",
+      "topshiriq": "Dvigatel rasmida stator va rotorni belgilang.",
+      "yechim": "Rotor aylanadi.",
+      "mahsulot": "rasm"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "P — U · I.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Solishtiramiz",
+      "topshiriq": "Elektr va issiqlik dvigatelini jadvalga yozing.",
+      "yechim": "FIK va ekologiya.",
+      "mahsulot": "jadval varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "220 · 5 nechaga teng?",
+      "javob": "1100"
+     },
+     {
+      "shart": "1000 · 0,9 nechaga teng?",
+      "javob": "900"
+     },
+     {
+      "shart": "1,1 · 2 nechaga teng?",
+      "javob": "2,2"
+     },
+     {
+      "shart": "Aylanuvchi qism?",
+      "javob": "rotor"
+     },
+     {
+      "shart": "Qo‘zg‘almas qism?",
+      "javob": "stator"
+     },
+     {
+      "shart": "Yakobi qaysi yili dvigatel yasagan?",
+      "javob": "1834"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Dvigatel mexanik energiyani elektrga aylantiradi deydi",
+      "sabab": "teskarisi",
+      "oldini_olish": "elektrni mexanikaga aylantiradi"
+     },
+     {
+      "xato": "Rotor qo‘zg‘almas deydi",
+      "sabab": "rotor aylanadi",
+      "oldini_olish": "qo‘zg‘almas qism — stator"
+     },
+     {
+      "xato": "FIK 100 foizdan katta deydi",
+      "sabab": "doim kichik",
+      "oldini_olish": "FIK 90 foizga yetadi, 100 dan kichik"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "elektromobillar"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "toza transport"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Yakobi qayig‘i"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening dvigatelim»",
+     "muammo": "Oddiy elektr dvigatelni qanday yasaymiz?",
+     "mahsulot": "dvigatel modeli",
+     "bosqichlar": [
+      "materiallarni tayyorlash",
+      "ramka o‘rash",
+      "yig‘ish",
+      "sinash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Materiallarni tayyorlang",
+      "Yig‘ing",
+      "Sinab ko‘ring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model ishlaydi",
+      "tuzilishi to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Dvigatel zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "220 volt, 5 amper.",
+       "topshiriq": "P?",
+       "javob": "1100",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "1000 vatt, FIK 90 foiz.",
+       "topshiriq": "Foydali quvvat?",
+       "javob": "900",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "1,1 kilovatt, 2 soat.",
+       "topshiriq": "Energiya?",
+       "javob": "2,2",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sex",
+       "matn": "Aylanuvchi qism.",
+       "topshiriq": "Nima?",
+       "javob": "rotor",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Elektr dvigatel",
+      "tarif": "elektr energiyani mexanikaga aylantiradi"
+     },
+     {
+      "atama": "Stator",
+      "tarif": "qo‘zg‘almas qism"
+     },
+     {
+      "atama": "Rotor",
+      "tarif": "aylanuvchi qism"
+     },
+     {
+      "atama": "Kollektor",
+      "tarif": "tok yo‘nalishini almashtiruvchi qism"
+     },
+     {
+      "atama": "Amper kuchi",
+      "tarif": "magnit maydonning tokka ta’siri"
+     },
+     {
+      "atama": "FIK",
+      "tarif": "foydali ish nisbati"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Dvigatel elektr energiyani mexanikaga aylantiradi",
+      "togri": true,
+      "izoh": "asosiy vazifa"
+     },
+     {
+      "matn": "Rotor qo‘zg‘almas qism",
+      "togri": false,
+      "izoh": "aylanadi"
+     },
+     {
+      "matn": "Magnit maydon tokli o‘tkazgichga kuch bilan ta’sir qiladi",
+      "togri": true,
+      "izoh": "Amper kuchi"
+     },
+     {
+      "matn": "Elektr dvigatel zararli gaz chiqaradi",
+      "togri": false,
+      "izoh": "chiqarmaydi"
+     },
+     {
+      "matn": "220 · 5 — 1100",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Yakobi 1834-yilda dvigatel yasagan",
+      "togri": true,
+      "izoh": "tarix"
+     },
+     {
+      "matn": "Elektr dvigatelning FIK i issiqlikniknikidan yuqori",
+      "togri": true,
+      "izoh": "90 foizga yetadi"
+     },
+     {
+      "matn": "FIK 100 foizdan katta bo‘lishi mumkin",
+      "togri": false,
+      "izoh": "doim kichik"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Dvigatel?",
+      "javob": "elektrni mexanikaga aylantiradi"
+     },
+     {
+      "savol": "Stator?",
+      "javob": "qo‘zg‘almas qism"
+     },
+     {
+      "savol": "Rotor?",
+      "javob": "aylanuvchi qism"
+     },
+     {
+      "savol": "Kuch qoidasi?",
+      "javob": "chap qo‘l qoidasi"
+     },
+     {
+      "savol": "220 · 5?",
+      "javob": "1100"
+     },
+     {
+      "savol": "1000 · 0,9?",
+      "javob": "900"
+     },
+     {
+      "savol": "Yakobi?",
+      "javob": "1834"
+     },
+     {
+      "savol": "FIK?",
+      "javob": "90 foizga yaqin"
+     },
+     {
+      "savol": "Kollektor?",
+      "javob": "tok yo‘nalishini almashtiradi"
+     },
+     {
+      "savol": "Ekologiya?",
+      "javob": "gaz chiqarmaydi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Dvigatelni kuzat.",
+      "savol": "Nima aylanadi?"
+     },
+     {
+      "nom": "Belgila",
+      "matn": "Qismlarni belgila.",
+      "savol": "Stator, rotor?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Quvvatni top.",
+      "savol": "U · I?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Afzalligi nima?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun elektromobillar havoni kam ifloslantiradi?",
+    "keys": {
+     "vaziyat": "Dvigatel 220 voltda 5 amper tok iste’mol qilmoqda.",
+     "savollar": [
+      "Quvvati nechaga teng?",
+      "FIK 90 foiz bo‘lsa foydali quvvat qancha?"
+     ]
+    },
+    "tezis": "Elektr — mexanika",
+    "taqqoslash": {
+     "a": "Elektr dvigatel",
+     "b": "Issiqlik dvigateli",
+     "umumiy": [
+      "ishga aylantiradi",
+      "mashinalarni harakatlantiradi"
+     ],
+     "a_farq": [
+      "FIK yuqori",
+      "gaz chiqarmaydi"
+     ],
+     "b_farq": [
+      "FIK past",
+      "zararli gaz chiqaradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Elektr dvigatel",
+     "shoxlar": [
+      {
+       "nom": "Asos",
+       "bandlar": [
+        "Amper kuchi",
+        "magnit maydon"
+       ]
+      },
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "stator",
+        "rotor",
+        "kollektor"
+       ]
+      },
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "Yakobi",
+        "1834"
+       ]
+      },
+      {
+       "nom": "Afzallik",
+       "bandlar": [
+        "FIK yuqori",
+        "toza"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men elektrni harakatga aylantiraman. Men kimman?",
+     "javob": "elektr dvigatel"
+    },
+    "hikmat": "Elektr toza, harakat tez.",
+    "kalit_soz": "ROTOR",
+    "xato_yechim": {
+     "shart": "Dvigatelning aylanuvchi qismi qaysi?",
+     "xato": "stator",
+     "togri": "rotor",
+     "sabab": "stator qo‘zg‘almas"
+    },
+    "guruh_nomlari": [
+     "Statorchilar",
+     "Rotorchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Dvigatel ustaxonasi»",
+     "topshiriq": "Guruh elektr dvigatelni o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "220 volt, 5 amper bo‘lsa P?",
+     "B": "1000 vatt, FIK 90 foiz bo‘lsa foydali quvvat?",
+     "C": "1,1 kilovatt, 2 soat bo‘lsa energiya?"
+    },
+    "sinkveyn": [
+     "Dvigatel",
+     "aylanadi, kuchli",
+     "aylantiradi, harakatlantiradi, ishlaydi",
+     "Elektr harakatga aylanadi",
+     "Rotor"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh elektr dvigatelni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: ishlash asosi",
+      "2-guruh: tuzilishi",
+      "3-guruh: hisob",
+      "4-guruh: ekologiya"
+     ],
+     "yakun": "Natijalar: 1100; 900; 2,2."
+    }
+   }
+  },
+  {
+   "mavzu": "Yorug‘lik hodisalari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yorug‘lik manbalari",
+      "matn": "Yorug‘lik beruvchi jismlar manba deyiladi. Tabiiy manbalar — Quyosh, yulduzlar, chaqmoq. Sun’iy manbalar — lampa, sham, LED. Oy o‘zi yorug‘lik chiqarmaydi, u Quyosh nurini qaytaradi.",
+      "misol": "Oy kechasi Quyosh nuri bilan yaltiraydi.",
+      "savol": "Oy yorug‘lik manbaimi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nur to‘g‘ri chiziqda",
+      "matn": "Bir jinsli muhitda yorug‘lik to‘g‘ri chiziq bo‘ylab tarqaladi. Yorug‘lik nuri — shu chiziq. Shuning uchun to‘siq ortida soya hosil bo‘ladi.",
+      "misol": "Daraxt tagida soya bor.",
+      "savol": "Yorug‘lik qanday chiziq bo‘ylab tarqaladi?",
+      "javob": "to‘g‘ri chiziq",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Soya va yarim soya",
+      "matn": "Nuqtaviy manba to‘siqdan to‘la soya beradi. Kattaroq manba to‘la soyadan tashqari yarim soya ham hosil qiladi. Soya o‘lchami manbaga yaqin-uzoqligiga bog‘liq.",
+      "misol": "Qo‘l soyasi chiroqqa yaqinlashsa kattalashadi.",
+      "savol": "Kattaroq manba soyadan tashqari yana nimani hosil qiladi?",
+      "javob": "yarim soya",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yorug‘lik tezligi",
+      "matn": "Yorug‘likning vakuumdagi tezligi taxminan soniyasiga 300000 km. Quyoshdan Yergacha nur taxminan 8 daqiqada, Oydan Yergacha taxminan 1,3 soniyada yetib keladi. Tabiatda bundan tez narsa yo‘q.",
+      "misol": "Quyosh hozir yo‘qolsa, biz buni 8 daqiqadan keyin bilamiz.",
+      "savol": "Quyoshdan nur taxminan necha daqiqada keladi?",
+      "javob": "8 daqiqada",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tutilishlar",
+      "matn": "Oy Yer va Quyosh orasidan o‘tsa, Quyosh tutiladi. Yer Quyosh va Oy orasida bo‘lsa, Oy tutiladi. Bu hodisalarning ikkalasi ham yorug‘likning to‘g‘ri chiziqli tarqalishiga misol.",
+      "misol": "Quyosh tutilishida kunduzi qorong‘ilashadi.",
+      "savol": "Quyosh tutilishida Oy qayerda bo‘ladi?",
+      "javob": "Yer va Quyosh orasida",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Yorug‘lik to‘g‘ri chiziq bo‘ylab tarqaladi. Tezligi soniyasiga 300000 km. Soya va tutilishlar shundan kelib chiqadi.",
+    "misollar": [
+     {
+      "shart": "Quyoshdan Yergacha 150000000 km. Nur necha soniyada keladi? (soniyasiga 300000 km)",
+      "yechim": [
+       "Vaqt — masofa / tezlik.",
+       "150000000 / 300000.",
+       "Javob 500 soniya."
+      ],
+      "javob": "500 soniya"
+     },
+     {
+      "shart": "Oydan Yergacha 384000 km. Nur necha soniyada keladi?",
+      "yechim": [
+       "384000 / 300000.",
+       "1,28.",
+       "Javob taxminan 1,3 soniya."
+      ],
+      "javob": "taxminan 1,3 soniya"
+     },
+     {
+      "shart": "Nur 10 soniyada qancha masofani bosib o‘tadi?",
+      "yechim": [
+       "Masofa — tezlik · vaqt.",
+       "300000 · 10.",
+       "Javob 3000000 km."
+      ],
+      "javob": "3000000 km"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Soya o‘ynaymiz",
+      "topshiriq": "Chiroq oldida qo‘lingiz bilan soya hosil qiling va masofani o‘zgartiring.",
+      "yechim": "Yaqin — soya katta.",
+      "mahsulot": "chiroq, devor"
+     },
+     {
+      "nom": "Teshikli kamera",
+      "topshiriq": "Igna teshikli qutidan oddiy kamera yasang.",
+      "yechim": "Tasvir teskari.",
+      "mahsulot": "quti, qog‘oz"
+     },
+     {
+      "nom": "Tutilish modeli",
+      "topshiriq": "Shar va chiroq bilan Quyosh va Oy tutilishini ko‘rsating.",
+      "yechim": "Joylashuv muhim.",
+      "mahsulot": "shar, chiroq"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Masofa / tezlik.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "150000000 / 300000 nechaga teng?",
+      "javob": "500"
+     },
+     {
+      "shart": "300000 · 10 nechaga teng?",
+      "javob": "3000000"
+     },
+     {
+      "shart": "384000 / 300000 taxminan nechaga teng?",
+      "javob": "1,3"
+     },
+     {
+      "shart": "Yorug‘lik qanday tarqaladi?",
+      "javob": "to‘g‘ri chiziq bo‘ylab"
+     },
+     {
+      "shart": "Soya nima uchun hosil bo‘ladi?",
+      "javob": "nur to‘siqdan o‘tmaydi"
+     },
+     {
+      "shart": "Oy manbami?",
+      "javob": "yo‘q"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Oy o‘zi yorug‘lik chiqaradi deydi",
+      "sabab": "Quyosh nurini qaytaradi",
+      "oldini_olish": "Oy manba emas"
+     },
+     {
+      "xato": "Yorug‘lik egri chiziq bo‘ylab tarqaladi deydi",
+      "sabab": "to‘g‘ri chiziq bo‘ylab",
+      "oldini_olish": "bir jinsli muhitda to‘g‘ri"
+     },
+     {
+      "xato": "Quyosh nuri bir zumda yetib keladi deydi",
+      "sabab": "taxminan 8 daqiqada",
+      "oldini_olish": "tezlik chekli"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Astronomiya",
+      "boglanish": "Quyosh va Oy tutilishi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "kun va tun"
+     },
+     {
+      "fan": "San’at",
+      "boglanish": "soya va yorug‘lik"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Soya teatri»",
+     "muammo": "Soyalar bilan sahna ko‘rinishini qanday yaratamiz?",
+     "mahsulot": "soya teatri",
+     "bosqichlar": [
+      "qahramonlar kesish",
+      "yoritish",
+      "ssenariy yozish",
+      "namoyish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Qahramonlar kesing",
+      "Yoriting",
+      "Ssenariy yozing",
+      "Namoyish qiling"
+     ],
+     "mezonlar": [
+      "soya aniq",
+      "ssenariy qiziqarli",
+      "fizika to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Yorug‘lik yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "Quyoshdan Yergacha 150000000 km.",
+       "topshiriq": "Necha soniya?",
+       "javob": "500",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "Nur 10 soniyada.",
+       "topshiriq": "Necha km?",
+       "javob": "3000000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "Oy manbami?",
+       "topshiriq": "Ha yoki yo‘q?",
+       "javob": "yo‘q",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "Yorug‘lik qanday tarqaladi?",
+       "topshiriq": "Qanday?",
+       "javob": "to‘g‘ri chiziq",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Formulani qo‘lladingizmi?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yorug‘lik manbai",
+      "tarif": "yorug‘lik chiqaruvchi jism"
+     },
+     {
+      "atama": "Nur",
+      "tarif": "yorug‘lik tarqalish chizig‘i"
+     },
+     {
+      "atama": "Soya",
+      "tarif": "yorug‘lik tushmaydigan joy"
+     },
+     {
+      "atama": "Yarim soya",
+      "tarif": "qisman yoritilgan joy"
+     },
+     {
+      "atama": "Yorug‘lik tezligi",
+      "tarif": "soniyasiga 300000 km"
+     },
+     {
+      "atama": "Tutilish",
+      "tarif": "Quyosh yoki Oyning to‘silishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Yorug‘lik to‘g‘ri chiziq bo‘ylab tarqaladi",
+      "togri": true,
+      "izoh": "bir jinsli muhitda"
+     },
+     {
+      "matn": "Oy o‘zi nur chiqaradi",
+      "togri": false,
+      "izoh": "qaytaradi"
+     },
+     {
+      "matn": "Yorug‘likning tezligi soniyasiga taxminan 300000 km",
+      "togri": true,
+      "izoh": "vakuumda"
+     },
+     {
+      "matn": "Quyosh nuri bir zumda yetib keladi",
+      "togri": false,
+      "izoh": "8 daqiqada"
+     },
+     {
+      "matn": "150000000 / 300000 — 500",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Quyosh tutilishida Oy Yer va Quyosh orasida",
+      "togri": true,
+      "izoh": "tutilish"
+     },
+     {
+      "matn": "Yarim soya nuqtaviy manbadan hosil bo‘ladi",
+      "togri": false,
+      "izoh": "kattaroq manbadan"
+     },
+     {
+      "matn": "Soya nur to‘g‘ri yo‘lda tarqalishidan hosil bo‘ladi",
+      "togri": true,
+      "izoh": "to‘siq ortida"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Manba misoli?",
+      "javob": "Quyosh"
+     },
+     {
+      "savol": "Oy manbami?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "Nur?",
+      "javob": "to‘g‘ri chiziq"
+     },
+     {
+      "savol": "Soya?",
+      "javob": "nur tushmaydigan joy"
+     },
+     {
+      "savol": "Tezlik?",
+      "javob": "300000 km soniyasiga"
+     },
+     {
+      "savol": "150000000 / 300000?",
+      "javob": "500"
+     },
+     {
+      "savol": "300000 · 10?",
+      "javob": "3000000"
+     },
+     {
+      "savol": "Quyosh nuri?",
+      "javob": "taxminan 8 daqiqada"
+     },
+     {
+      "savol": "Quyosh tutilishi?",
+      "javob": "Oy oraliqda"
+     },
+     {
+      "savol": "Oy tutilishi?",
+      "javob": "Yer oraliqda"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Soyani kuzat.",
+      "savol": "Qayerda katta?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Masofani o‘lcha.",
+      "savol": "Necha santimetr?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Vaqtni top.",
+      "savol": "Masofa / tezlik?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nur qanday tarqaladi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun Quyosh tutilishi faqat Yerning ayrim joylarida ko‘rinadi?",
+    "keys": {
+     "vaziyat": "Chiroq oldiga qo‘l qo‘yilganda devorda soya paydo bo‘ldi.",
+     "savollar": [
+      "Soya nega hosil bo‘ldi?",
+      "Qo‘l chiroqqa yaqinlashsa soya qanday bo‘ladi?"
+     ]
+    },
+    "tezis": "Nur to‘g‘ri yo‘ldan yuradi",
+    "taqqoslash": {
+     "a": "Soya",
+     "b": "Yarim soya",
+     "umumiy": [
+      "to‘siq ortida hosil bo‘ladi",
+      "yorug‘lik kam"
+     ],
+     "a_farq": [
+      "nur umuman tushmaydi",
+      "to‘q"
+     ],
+     "b_farq": [
+      "nurning bir qismi tushadi",
+      "och"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yorug‘lik hodisalari",
+     "shoxlar": [
+      {
+       "nom": "Manbalar",
+       "bandlar": [
+        "tabiiy",
+        "sun’iy"
+       ]
+      },
+      {
+       "nom": "Tarqalish",
+       "bandlar": [
+        "to‘g‘ri chiziq",
+        "soya"
+       ]
+      },
+      {
+       "nom": "Tezlik",
+       "bandlar": [
+        "300000 km soniyasiga"
+       ]
+      },
+      {
+       "nom": "Tutilish",
+       "bandlar": [
+        "Quyosh",
+        "Oy"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men to‘g‘ri chiziq bo‘ylab yuraman, tezligim soniyasiga 300000 km. Men kimman?",
+     "javob": "yorug‘lik"
+    },
+    "hikmat": "Yorug‘lik to‘g‘ri yo‘ldan yuradi.",
+    "kalit_soz": "YORUG",
+    "xato_yechim": {
+     "shart": "Oy qanday manba?",
+     "xato": "o‘zi yorug‘lik beradi",
+     "togri": "manba emas, nurni qaytaradi",
+     "sabab": "Oy Quyosh nurini qaytaradi"
+    },
+    "guruh_nomlari": [
+     "Soyachilar",
+     "Nurchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yorug‘lik laboratoriyasi»",
+     "topshiriq": "Guruh nur va soyani o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "Quyoshdan Yergacha nur vaqtini toping.",
+     "B": "10 soniyada nur masofasini toping.",
+     "C": "Soya tajribasini o‘tkazing."
+    },
+    "sinkveyn": [
+     "Yorug‘lik",
+     "tez, ravshan",
+     "yoritadi, yuradi, tushadi",
+     "Nur to‘g‘ri yuradi",
+     "Soya"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yorug‘lik hodisalarini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: manbalar",
+      "2-guruh: soya",
+      "3-guruh: tezlik",
+      "4-guruh: tutilish"
+     ],
+     "yakun": "Natijalar: 500; 3000000; 1,3."
+    }
+   }
+  },
+  {
+   "mavzu": "Yorug‘likning qaytishi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Qaytish hodisasi",
+      "matn": "Yorug‘lik ikki muhit chegarasiga tushganda qisman orqaga qaytadi. Silliq sirt (ko‘zgu) nurni tartibli qaytaradi, shu sababli unda tasvir ko‘rinadi.",
+      "misol": "Suv yuzasida daraxt aksi ko‘rinadi.",
+      "savol": "Ko‘zgu nurni qanday qaytaradi?",
+      "javob": "tartibli",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qaytish qonuni",
+      "matn": "Tushish burchagi qaytish burchagiga teng. Tushgan nur, qaytgan nur va sirtga o‘tkazilgan perpendikulyar (normal) bir tekislikda yotadi. Burchaklar normaldan o‘lchanadi.",
+      "misol": "30 daraja bilan tushgan nur 30 daraja bilan qaytadi.",
+      "savol": "Tushish va qaytish burchaklari qanday?",
+      "javob": "teng",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yassi ko‘zgu",
+      "matn": "Yassi ko‘zguda jismning tasviri ko‘zgu ortida, jism ko‘zgudan qancha uzoq bo‘lsa, shuncha uzoqlikda hosil bo‘ladi. Tasvir jism bilan bir xil kattalikda, mavhum (nurlar kesishmaydi) va o‘ng-chap tomonlari almashgan bo‘ladi.",
+      "misol": "Ko‘zguda o‘ng qo‘l chap bo‘lib ko‘rinadi.",
+      "savol": "Yassi ko‘zgudagi tasvir jismdan katta bo‘ladimi?",
+      "javob": "yo‘q, bir xil",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tarqoq qaytish",
+      "matn": "Notekis, g‘adir-budur sirt nurni turli tomonga sochadi — bu tarqoq qaytish. Shu sababli devor, qog‘oz, kiyim har tomondan ko‘rinadi. Ko‘zgu tasviri esa faqat silliq sirtda hosil bo‘ladi.",
+      "misol": "Qog‘ozda aks ko‘rinmaydi.",
+      "savol": "Qog‘oz nurni qanday qaytaradi?",
+      "javob": "tarqoq",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanilishi",
+      "matn": "Ko‘zgular avtomobil oynasida, periskopda, teleskopda, fonarda va tibbiyotda ishlatiladi. Yo‘l belgilaridagi qaytargichlar tunda mashina nurini qaytarib, xavfsizlikni oshiradi.",
+      "misol": "Velosiped qaytargichi tunda yaltiraydi.",
+      "savol": "Qaytargich tunda nima beradi?",
+      "javob": "xavfsizlik",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qaytish qonuni: tushish burchagi teng qaytish burchagiga. Yassi ko‘zgu tasviri mavhum, jism bilan bir xil kattalikda, ko‘zgu ortida.",
+    "misollar": [
+     {
+      "shart": "Nur normalga nisbatan 30 daraja bilan tushdi. Qaytish burchagi?",
+      "yechim": [
+       "Qaytish burchagi tushish burchagiga teng.",
+       "30.",
+       "Javob 30 daraja."
+      ],
+      "javob": "30 daraja"
+     },
+     {
+      "shart": "Tushish burchagi 40 daraja. Tushgan va qaytgan nurlar orasidagi burchak?",
+      "yechim": [
+       "Qaytish burchagi 40.",
+       "40 + 40.",
+       "Javob 80 daraja."
+      ],
+      "javob": "80 daraja"
+     },
+     {
+      "shart": "Jism yassi ko‘zgudan 2 metr uzoqda. Jism bilan tasvir orasidagi masofa?",
+      "yechim": [
+       "Tasvir ko‘zgu ortida 2 metrda.",
+       "2 + 2.",
+       "Javob 4 metr."
+      ],
+      "javob": "4 metr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Nurni qaytaramiz",
+      "topshiriq": "Fonarning nurini ko‘zguga tushirib, burchaklarni o‘lchang.",
+      "yechim": "Burchaklar teng.",
+      "mahsulot": "fonar, ko‘zgu, transportir"
+     },
+     {
+      "nom": "Tasvirni kuzatamiz",
+      "topshiriq": "Ko‘zgu oldida jism qo‘yib, tasvir masofasini o‘lchang.",
+      "yechim": "Masofa teng.",
+      "mahsulot": "ko‘zgu, jism"
+     },
+     {
+      "nom": "Periskop yasaymiz",
+      "topshiriq": "Ikki ko‘zgudan periskop yasang.",
+      "yechim": "Burchak 45 daraja.",
+      "mahsulot": "karton, ko‘zgu"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Burchaklar teng.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "40 + 40 nechaga teng?",
+      "javob": "80"
+     },
+     {
+      "shart": "2 + 2 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "90 ayiramiz 60 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "Tushish burchagi nimaga teng?",
+      "javob": "qaytish burchagiga"
+     },
+     {
+      "shart": "Yassi ko‘zguda tasvir qanday?",
+      "javob": "mavhum"
+     },
+     {
+      "shart": "Burchaklar nimadan o‘lchanadi?",
+      "javob": "normaldan"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Burchaklarni sirtdan o‘lchaydi",
+      "sabab": "normaldan o‘lchanadi",
+      "oldini_olish": "perpendikulyardan"
+     },
+     {
+      "xato": "Tasvir ko‘zgu oldida hosil bo‘ladi deydi",
+      "sabab": "ko‘zgu ortida",
+      "oldini_olish": "mavhum tasvir ortda"
+     },
+     {
+      "xato": "Qog‘oz ko‘zgudek qaytaradi deydi",
+      "sabab": "tarqoq qaytaradi",
+      "oldini_olish": "g‘adir-budur sirt sochadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "San’at",
+      "boglanish": "aks va rangtasvir"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "periskop va teleskop"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "yo‘l qaytargichlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ko‘zgu sirlari»",
+     "muammo": "Ko‘zgular bilan qanday optik o‘yinchoq yasaymiz?",
+     "mahsulot": "kaleydoskop",
+     "bosqichlar": [
+      "materiallarni tayyorlash",
+      "ko‘zgularni joylash",
+      "sinash",
+      "xulosa yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Materiallarni tayyorlang",
+      "Ko‘zgularni joylang",
+      "Sinab ko‘ring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model ishlaydi",
+      "burchaklar to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ko‘zgular saroyi»",
+     "bekatlar": [
+      {
+       "nom": "1-zal",
+       "matn": "Tushish burchagi 30 daraja.",
+       "topshiriq": "Qaytish?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-zal",
+       "matn": "Tushish burchagi 40 daraja.",
+       "topshiriq": "Nurlar orasidagi burchak?",
+       "javob": "80",
+       "rasm": ""
+      },
+      {
+       "nom": "3-zal",
+       "matn": "Jism ko‘zgudan 2 metr uzoqda.",
+       "topshiriq": "Jism va tasvir orasidagi masofa?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "4-zal",
+       "matn": "Notekis sirt.",
+       "topshiriq": "Qaytish turi?",
+       "javob": "tarqoq",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Burchakni normaldan o‘lchadingizmi?",
+      "Tekshirdingizmi?",
+      "Xulosa nima?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Qaytish",
+      "tarif": "nurning orqaga qaytishi"
+     },
+     {
+      "atama": "Normal",
+      "tarif": "sirtga o‘tkazilgan perpendikulyar"
+     },
+     {
+      "atama": "Tushish burchagi",
+      "tarif": "tushgan nur va normal orasidagi burchak"
+     },
+     {
+      "atama": "Qaytish burchagi",
+      "tarif": "qaytgan nur va normal orasidagi burchak"
+     },
+     {
+      "atama": "Mavhum tasvir",
+      "tarif": "nurlar kesishmaydigan tasvir"
+     },
+     {
+      "atama": "Periskop",
+      "tarif": "ko‘zgulardan iborat kuzatish asbobi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tushish burchagi qaytish burchagiga teng",
+      "togri": true,
+      "izoh": "qaytish qonuni"
+     },
+     {
+      "matn": "Burchaklar sirtdan o‘lchanadi",
+      "togri": false,
+      "izoh": "normaldan"
+     },
+     {
+      "matn": "Yassi ko‘zgu tasviri mavhum",
+      "togri": true,
+      "izoh": "nurlar kesishmaydi"
+     },
+     {
+      "matn": "Tasvir ko‘zgu oldida hosil bo‘ladi",
+      "togri": false,
+      "izoh": "ortida"
+     },
+     {
+      "matn": "2 + 2 — 4",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Qog‘oz nurni tarqoq qaytaradi",
+      "togri": true,
+      "izoh": "g‘adir-budur"
+     },
+     {
+      "matn": "Yassi ko‘zgu tasviri jismdan katta",
+      "togri": false,
+      "izoh": "bir xil"
+     },
+     {
+      "matn": "Qaytargichlar tunda xavfsizlikni oshiradi",
+      "togri": true,
+      "izoh": "nur qaytaradi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qaytish qonuni?",
+      "javob": "tushish burchagi qaytishga teng"
+     },
+     {
+      "savol": "Burchak nimadan?",
+      "javob": "normaldan"
+     },
+     {
+      "savol": "Yassi ko‘zgu tasviri?",
+      "javob": "mavhum"
+     },
+     {
+      "savol": "Tasvir qayerda?",
+      "javob": "ko‘zgu ortida"
+     },
+     {
+      "savol": "Kattaligi?",
+      "javob": "bir xil"
+     },
+     {
+      "savol": "Tarqoq qaytish?",
+      "javob": "g‘adir-budur sirtda"
+     },
+     {
+      "savol": "40 + 40?",
+      "javob": "80"
+     },
+     {
+      "savol": "2 + 2?",
+      "javob": "4"
+     },
+     {
+      "savol": "Periskop?",
+      "javob": "ko‘zgu asbobi"
+     },
+     {
+      "savol": "Qaytargich?",
+      "javob": "xavfsizlik"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Chiz",
+      "matn": "Normalni chiz.",
+      "savol": "Perpendikulyarmi?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Burchakni o‘lcha.",
+      "savol": "Tushish?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Qaytishni top.",
+      "savol": "Tushishga tengmi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qonun to‘g‘rimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun biz qog‘ozni ko‘ramiz, lekin unda o‘z tasvirimizni ko‘rmaymiz?",
+    "keys": {
+     "vaziyat": "Ko‘zgu oldida turgan bola uning ortidagi tasvirini ko‘rmoqda.",
+     "savollar": [
+      "Tasvir qayerda hosil bo‘ladi?",
+      "Bola ko‘zgudan 2 metr uzoqda bo‘lsa, tasvirdan qancha uzoqda?"
+     ]
+    },
+    "tezis": "Tushish burchagi teng qaytish burchagiga",
+    "taqqoslash": {
+     "a": "Ko‘zguli qaytish",
+     "b": "Tarqoq qaytish",
+     "umumiy": [
+      "nur qaytadi",
+      "qaytish qonuniga bo‘ysunadi"
+     ],
+     "a_farq": [
+      "silliq sirt",
+      "tasvir hosil bo‘ladi"
+     ],
+     "b_farq": [
+      "g‘adir-budur sirt",
+      "tasvir yo‘q"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yorug‘likning qaytishi",
+     "shoxlar": [
+      {
+       "nom": "Qonun",
+       "bandlar": [
+        "tushish — qaytish",
+        "normal"
+       ]
+      },
+      {
+       "nom": "Yassi ko‘zgu",
+       "bandlar": [
+        "mavhum",
+        "bir xil kattalik"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "ko‘zguli",
+        "tarqoq"
+       ]
+      },
+      {
+       "nom": "Qo‘llanish",
+       "bandlar": [
+        "periskop",
+        "qaytargich"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tushgan nurni orqaga yo‘naltiraman, burchaklarim teng. Men kimman?",
+     "javob": "yorug‘likning qaytishi"
+    },
+    "hikmat": "Tushish va qaytish burchagi teng.",
+    "kalit_soz": "KO‘ZGU",
+    "xato_yechim": {
+     "shart": "Tushish burchagi 40 daraja. Nurlar orasidagi burchak?",
+     "xato": "40 daraja",
+     "togri": "40 + 40 — 80 daraja",
+     "sabab": "nurlar orasida ikkala burchak bor"
+    },
+    "guruh_nomlari": [
+     "Ko‘zguchilar",
+     "Burchakchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ko‘zgu laboratoriyasi»",
+     "topshiriq": "Guruh qaytish qonunini tekshiradi."
+    },
+    "vazifalar": {
+     "A": "Tushish burchagi 30 daraja bo‘lsa qaytish?",
+     "B": "Tushish burchagi 40 daraja bo‘lsa nurlar orasidagi burchak?",
+     "C": "Jism 2 metrda bo‘lsa, jism bilan tasvir orasidagi masofa?"
+    },
+    "sinkveyn": [
+     "Ko‘zgu",
+     "silliq, yaltiroq",
+     "qaytaradi, ko‘rsatadi, buradi",
+     "Nur qaytadi",
+     "Aks"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yorug‘lik qaytishini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: qonun",
+      "2-guruh: yassi ko‘zgu",
+      "3-guruh: tarqoq qaytish",
+      "4-guruh: qo‘llanish"
+     ],
+     "yakun": "Natijalar: 30; 80; 4."
+    }
+   }
   }
  ]
 }
