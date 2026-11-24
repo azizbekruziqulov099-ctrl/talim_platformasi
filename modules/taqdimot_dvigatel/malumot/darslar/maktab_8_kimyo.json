@@ -1390,6 +1390,1391 @@
      "yakun": "Natijalar: 20; 20; 35,5."
     }
    }
+  },
+  {
+   "mavzu": "Elektron qavatlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Qavatlar nima",
+      "matn": "Atomda elektronlar yadro atrofida qavatlarda joylashadi. Qavat — energiya sathi. Yadroga yaqin qavatdagi elektron kuchli tortiladi, uzoq qavatdagi esa kuchsizroq. Qavatlar soni davr raqamiga teng.",
+      "misol": "Natriy uchinchi davrda, shuning uchun uch qavat.",
+      "savol": "Qavatlar soni nimaga teng?",
+      "javob": "davr raqamiga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sig‘im qoidasi",
+      "matn": "Qavatda ko‘pi bilan 2 · n · n elektron bo‘ladi, bunda n — qavat raqami. Birinchi qavatda 2, ikkinchida 8, uchinchida 18, to‘rtinchida 32 elektron sig‘adi. Tashqi qavatda esa 8 tadan ko‘p bo‘lmaydi (birinchi qavatda — 2).",
+      "misol": "Uchinchi qavat: 2 · 3 · 3 — 18.",
+      "savol": "Ikkinchi qavatga nechta elektron sig‘adi?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Joylashish tartibi",
+      "matn": "Elektronlar avval yadroga yaqin qavatni to‘ldiradi. Natriyda 11 elektron: 2, 8, 1. Xlorda 17 elektron: 2, 8, 7. Kaltsiyda 20 elektron: 2, 8, 8, 2. Oxirgi son — tashqi qavatdagi elektronlar.",
+      "misol": "Tashqi qavat elektronlari kimyoviy xossani belgilaydi.",
+      "savol": "Xlorda tashqi qavatda nechta elektron?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Barqaror qavat",
+      "matn": "Tashqi qavatda 8 ta elektron (geliyda 2 ta) bo‘lsa, atom barqaror. Inert gazlar — neon, argon — shunday. Boshqa atomlar elektron berib, olib yoki ulashib shu holatga intiladi. Bu oktet qoidasi.",
+      "misol": "Neon: 2, 8. Argon: 2, 8, 8.",
+      "savol": "Qaysi gazlar barqaror qavatli?",
+      "javob": "inert gazlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Guruh va qavat",
+      "matn": "Asosiy guruhlarda guruh raqami tashqi elektronlar soniga teng. Natriy — 1, magniy — 2, alyuminiy — 3, oltingugurt — 6, xlor — 7. Shu sabab bir guruh elementlari o‘xshash. Davr raqami qavatlar sonini ko‘rsatadi.",
+      "misol": "Oltingugurt: 2, 8, 6.",
+      "savol": "Magniy tashqi qavatida nechta elektron?",
+      "javob": "2",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qavatdagi elektronlar: 2 · n · n. Tashqi qavatda 8 gacha. Davr raqami — qavatlar soni, guruh raqami — tashqi elektronlar.",
+    "misollar": [
+     {
+      "shart": "Uchinchi qavatga nechta elektron sig‘adi?",
+      "yechim": [
+       "2 · n · n, n — 3.",
+       "2 · 3 · 3.",
+       "Javob 18."
+      ],
+      "javob": "18"
+     },
+     {
+      "shart": "Xlor atomida 17 elektron. Ikki qavat to‘ldi (2 va 8). Tashqi qavatda nechta?",
+      "yechim": [
+       "17 minus 2 minus 8.",
+       "17 minus 10.",
+       "Javob 7."
+      ],
+      "javob": "7"
+     },
+     {
+      "shart": "Kaltsiy 20 elektronli, dastlabki uch qavatda 2, 8, 8. Tashqi qavatda nechta?",
+      "yechim": [
+       "20 minus 18.",
+       "Hisoblaymiz.",
+       "Javob 2."
+      ],
+      "javob": "2"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qavat sxemasi",
+      "topshiriq": "Natriy, xlor, argon uchun qavat sxemasini chizing.",
+      "yechim": "2, 8, 1; 2, 8, 7; 2, 8, 8.",
+      "mahsulot": "qog‘oz, flomaster"
+     },
+     {
+      "nom": "Elektron o‘yini",
+      "topshiriq": "Kartochka-elektronlarni qavatlarga joylang.",
+      "yechim": "2, 8, 18 sig‘im.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uch element uchun tashqi elektronlarni toping.",
+      "yechim": "Jami minus ichki.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Jadval bo‘yicha",
+      "topshiriq": "Guruh va davr bo‘yicha qavat sxemasini yozing.",
+      "yechim": "Guruh — tashqi.",
+      "mahsulot": "davriy jadval"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 3 · 3 nechaga teng?",
+      "javob": "18"
+     },
+     {
+      "shart": "17 minus 10 nechaga teng?",
+      "javob": "7"
+     },
+     {
+      "shart": "20 minus 18 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "Ikkinchi qavat sig‘imi?",
+      "javob": "8"
+     },
+     {
+      "shart": "Tashqi qavatda ko‘pi bilan nechta elektron?",
+      "javob": "8"
+     },
+     {
+      "shart": "Qavatlar soni nimaga teng?",
+      "javob": "davr raqamiga"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Birinchi qavatga 8 elektron sig‘adi deydi",
+      "sabab": "2 ta sig‘adi",
+      "oldini_olish": "2 · 1 · 1"
+     },
+     {
+      "xato": "Qavatlar soni guruh raqami deydi",
+      "sabab": "davr raqami",
+      "oldini_olish": "guruh — tashqi elektron"
+     },
+     {
+      "xato": "Tashqi qavatda 18 elektron bo‘ladi deydi",
+      "sabab": "8 tadan ko‘p emas",
+      "oldini_olish": "oktet qoidasi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "energiya sathlari"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "kvadrat va ko‘paytma"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "neon va lazer"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Qavat konstruktori»",
+     "muammo": "Elektron qavatlarni qanday modellaymiz?",
+     "mahsulot": "model va jadval",
+     "bosqichlar": [
+      "qavat sig‘imini hisoblash",
+      "elementlarni tanlash",
+      "sxema chizish",
+      "modelni yig‘ish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Sig‘imni hisoblang",
+      "Sxema chizing",
+      "Model yig‘ing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qavatlar minorasi»",
+     "bekatlar": [
+      {
+       "nom": "1-qavat",
+       "matn": "Uchinchi qavat sig‘imi.",
+       "topshiriq": "Nechta?",
+       "javob": "18",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qavat",
+       "matn": "Xlor: 17, ichki 10.",
+       "topshiriq": "Tashqi?",
+       "javob": "7",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qavat",
+       "matn": "Kaltsiy: 20, ichki 18.",
+       "topshiriq": "Tashqi?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qavat",
+       "matn": "Ikkinchi qavat sig‘imi.",
+       "topshiriq": "Nechta?",
+       "javob": "8",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Elektron qavat",
+      "tarif": "energiya sathi"
+     },
+     {
+      "atama": "Sig‘im",
+      "tarif": "qavatdagi eng ko‘p elektron"
+     },
+     {
+      "atama": "Tashqi qavat",
+      "tarif": "oxirgi qavat"
+     },
+     {
+      "atama": "Oktet",
+      "tarif": "tashqi qavatda sakkizta elektron"
+     },
+     {
+      "atama": "Valent elektron",
+      "tarif": "tashqi qavat elektroni"
+     },
+     {
+      "atama": "Inert gaz",
+      "tarif": "barqaror tashqi qavatli gaz"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qavatlar soni davr raqamiga teng",
+      "togri": true,
+      "izoh": "natriy uch qavat"
+     },
+     {
+      "matn": "Birinchi qavatga 8 elektron sig‘adi",
+      "togri": false,
+      "izoh": "2 ta"
+     },
+     {
+      "matn": "Uchinchi qavat sig‘imi 18",
+      "togri": true,
+      "izoh": "2 · 3 · 3"
+     },
+     {
+      "matn": "Xlorda tashqi elektronlar 7 ta",
+      "togri": true,
+      "izoh": "2, 8, 7"
+     },
+     {
+      "matn": "20 minus 18 — 2",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Tashqi qavatda 8 gacha elektron bo‘ladi",
+      "togri": true,
+      "izoh": "oktet"
+     },
+     {
+      "matn": "Argon barqaror qavatli",
+      "togri": true,
+      "izoh": "2, 8, 8"
+     },
+     {
+      "matn": "Guruh raqami qavatlar sonini bildiradi",
+      "togri": false,
+      "izoh": "tashqi elektronlarni"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qavat?",
+      "javob": "energiya sathi"
+     },
+     {
+      "savol": "Sig‘im?",
+      "javob": "2 · n · n"
+     },
+     {
+      "savol": "2 · 3 · 3?",
+      "javob": "18"
+     },
+     {
+      "savol": "Natriy?",
+      "javob": "2, 8, 1"
+     },
+     {
+      "savol": "Xlor?",
+      "javob": "2, 8, 7"
+     },
+     {
+      "savol": "Kaltsiy?",
+      "javob": "2, 8, 8, 2"
+     },
+     {
+      "savol": "17 minus 10?",
+      "javob": "7"
+     },
+     {
+      "savol": "Oktet?",
+      "javob": "tashqi qavatda 8"
+     },
+     {
+      "savol": "Qavatlar soni?",
+      "javob": "davr raqami"
+     },
+     {
+      "savol": "Tashqi elektronlar?",
+      "javob": "guruh raqami"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Elementni jadvaldan top.",
+      "savol": "Davr va guruh?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Elektronlarni joyla.",
+      "savol": "2, 8, ...?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Yig‘indini tekshir.",
+      "savol": "Tartib raqami?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Barqarormi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun argon boshqa atomlar bilan deyarli birikmaydi?",
+    "keys": {
+     "vaziyat": "Natriyda tashqi qavatda 1 ta elektron, argonda 8 ta.",
+     "savollar": [
+      "Qaysi atom faolroq?",
+      "Nega argon barqaror?"
+     ]
+    },
+    "tezis": "Qavat sig‘imi 2 · n · n",
+    "taqqoslash": {
+     "a": "Davr raqami",
+     "b": "Guruh raqami",
+     "umumiy": [
+      "jadvaldan topiladi",
+      "tuzilishni ko‘rsatadi"
+     ],
+     "a_farq": [
+      "qavatlar soni",
+      "gorizontal qator"
+     ],
+     "b_farq": [
+      "tashqi elektronlar",
+      "vertikal ustun"
+     ]
+    },
+    "klaster": {
+     "markaz": "Elektron qavatlar",
+     "shoxlar": [
+      {
+       "nom": "Sig‘im",
+       "bandlar": [
+        "2",
+        "8",
+        "18",
+        "32"
+       ]
+      },
+      {
+       "nom": "Tartib",
+       "bandlar": [
+        "yaqindan uzoqqa"
+       ]
+      },
+      {
+       "nom": "Tashqi qavat",
+       "bandlar": [
+        "oktet",
+        "valent"
+       ]
+      },
+      {
+       "nom": "Misollar",
+       "bandlar": [
+        "Na 2, 8, 1",
+        "Cl 2, 8, 7"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men energiya sathiman va elektronlarni saqlayman. Men kimman?",
+     "javob": "elektron qavat"
+    },
+    "hikmat": "Qavat elektron joyi.",
+    "kalit_soz": "QAVAT",
+    "xato_yechim": {
+     "shart": "Birinchi qavat sig‘imi?",
+     "xato": "8",
+     "togri": "2",
+     "sabab": "2 · 1 · 1"
+    },
+    "guruh_nomlari": [
+     "Qavatchilar",
+     "Hisobchilar",
+     "Chizuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qavat konstruktori»",
+     "topshiriq": "Guruh qavat sxemalarini chizadi."
+    },
+    "vazifalar": {
+     "A": "Uchinchi qavat sig‘imi?",
+     "B": "Xlor tashqi elektronlari?",
+     "C": "Kaltsiy tashqi elektronlari?"
+    },
+    "sinkveyn": [
+     "Qavat",
+     "ichki, tashqi",
+     "to‘ladi, joylashadi, tortiladi",
+     "Elektron qavatda",
+     "Sath"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh elektron qavatlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: sig‘im",
+      "2-guruh: tartib",
+      "3-guruh: tashqi qavat",
+      "4-guruh: oktet"
+     ],
+     "yakun": "Natijalar: 18; 7; 2."
+    }
+   }
+  },
+  {
+   "mavzu": "Kimyoviy bog‘lanish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nega atomlar birikadi",
+      "matn": "Yolg‘iz atomlarning ko‘pchiligi beqaror: ularning tashqi qavati to‘lmagan. Birikib, atomlar tashqi qavatini 8 elektronli (vodorodda 2) qiladi va energiyasi kamayadi. Shunday birikish — kimyoviy bog‘lanish.",
+      "misol": "Faqat inert gazlar yakka atom holida uchraydi.",
+      "savol": "Atomlar nima uchun birikadi?",
+      "javob": "barqaror qavatga erishish uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uch tur",
+      "matn": "Kimyoviy bog‘lanish uch xil: kovalent (umumiy elektron juft), ion (elektron o‘tishi va ionlarning tortilishi), metall (erkin elektronlar). Qaysi tur ekanini elementlar tabiati belgilaydi. Metall va metallmas — odatda ion, ikki metallmas — kovalent, ikki metall — metall bog‘.",
+      "misol": "Osh tuzi — ion, suv — kovalent, mis — metall bog‘.",
+      "savol": "Osh tuzida qaysi bog‘ bor?",
+      "javob": "ion",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Elektrmanfiylik",
+      "matn": "Elektrmanfiylik — atomning umumiy elektronlarni tortish qobiliyati. Yaxlitlangan qiymatlar: ftor 4,0, kislorod 3,5, azot 3,0, xlor 3,0, uglerod 2,5, vodorod 2,1, natriy 0,9. Ftor eng elektrmanfiy. Davrda chapdan o‘ngga oshadi, guruhda yuqoridan pastga kamayadi.",
+      "misol": "Elektrmanfiylik atomlarning elektron «kuchi».",
+      "savol": "Eng elektrmanfiy element?",
+      "javob": "ftor",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Farq bo‘yicha aniqlash",
+      "matn": "Ikki atom elektrmanfiyligi farqiga qaraymiz. Farq 0 bo‘lsa — qutbsiz kovalent. Farq 0 dan 1,7 gacha bo‘lsa — qutbli kovalent. Farq 1,7 dan katta bo‘lsa — ion bog‘. Masalan, natriy xlorda farq 3,0 minus 0,9 — 2,1, ya’ni ion.",
+      "misol": "Xlor-xlor: farq 0 — qutbsiz.",
+      "savol": "Farq 2,1 bo‘lsa, bog‘ turi?",
+      "javob": "ion",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bog‘ xossani belgilaydi",
+      "matn": "Bog‘ turi modda xossasini belgilaydi. Ion moddalar qattiq, erish harorati yuqori, eritmasi tok o‘tkazadi. Kovalent molekulali moddalar odatda past haroratda eriydi yoki bug‘lanadi. Metallar tok va issiqlikni yaxshi o‘tkazadi.",
+      "misol": "Shakar kovalent, osh tuzidan yumshoq eriydi.",
+      "savol": "Qaysi moddaning eritmasi tok o‘tkazadi?",
+      "javob": "ion moddaning",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Farq 0 — qutbsiz kovalent. 0 dan 1,7 gacha — qutbli. 1,7 dan katta — ion. Metall bog‘ — erkin elektronlar.",
+    "misollar": [
+     {
+      "shart": "Natriy 0,9, xlor 3,0. Elektrmanfiylik farqi va bog‘ turi?",
+      "yechim": [
+       "3,0 minus 0,9.",
+       "2,1 — 1,7 dan katta.",
+       "Javob 2,1, ion bog‘."
+      ],
+      "javob": "2,1, ion bog‘"
+     },
+     {
+      "shart": "Vodorod 2,1, xlor 3,0. Farq va bog‘ turi?",
+      "yechim": [
+       "3,0 minus 2,1.",
+       "0,9 — 0 va 1,7 orasida.",
+       "Javob 0,9, qutbli kovalent."
+      ],
+      "javob": "0,9, qutbli kovalent"
+     },
+     {
+      "shart": "Vodorod 2,1, kislorod 3,5. Farq?",
+      "yechim": [
+       "3,5 minus 2,1.",
+       "Hisoblaymiz.",
+       "Javob 1,4, qutbli kovalent."
+      ],
+      "javob": "1,4, qutbli kovalent"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Bog‘ turini topamiz",
+      "topshiriq": "Beshta juft uchun farqni hisoblang.",
+      "yechim": "0, 1,7 chegaralar.",
+      "mahsulot": "jadval, kalkulyator"
+     },
+     {
+      "nom": "Modda xossalari",
+      "topshiriq": "Tuz, shakar, mis xossalarini solishtiring.",
+      "yechim": "Eruvchanlik, tok.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Elektr o‘tkazuvchanlik",
+      "topshiriq": "Tuz va shakar eritmalarini chiroq bilan sinang.",
+      "yechim": "Tuz tok o‘tkazadi.",
+      "mahsulot": "stakan, chiroq, batareya"
+     },
+     {
+      "nom": "Elektrmanfiylik xaritasi",
+      "topshiriq": "Jadvalni elektrmanfiylikka qarab bo‘yang.",
+      "yechim": "Ftor eng yuqori.",
+      "mahsulot": "jadval, rangli qalam"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3,0 minus 0,9 nechaga teng?",
+      "javob": "2,1"
+     },
+     {
+      "shart": "3,0 minus 2,1 nechaga teng?",
+      "javob": "0,9"
+     },
+     {
+      "shart": "3,5 minus 2,1 nechaga teng?",
+      "javob": "1,4"
+     },
+     {
+      "shart": "Eng elektrmanfiy element?",
+      "javob": "ftor"
+     },
+     {
+      "shart": "Farq 0 bo‘lsa bog‘ turi?",
+      "javob": "qutbsiz kovalent"
+     },
+     {
+      "shart": "Farq 1,7 dan katta bo‘lsa?",
+      "javob": "ion"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Natriy xlorda bog‘ kovalent deydi",
+      "sabab": "ion bog‘",
+      "oldini_olish": "farq 2,1, 1,7 dan katta"
+     },
+     {
+      "xato": "Farqni qo‘shib hisoblaydi",
+      "sabab": "ayiriladi",
+      "oldini_olish": "katta minus kichik"
+     },
+     {
+      "xato": "Metall bog‘da umumiy juft bor deydi",
+      "sabab": "erkin elektronlar bor",
+      "oldini_olish": "metall bog‘ boshqacha"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "elektr toki o‘tkazuvchanligi"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "elektrolit eritmalar"
+     },
+     {
+      "fan": "Oshxona",
+      "boglanish": "tuz va shakar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Bog‘ detektivi»",
+     "muammo": "Moddadagi bog‘ turini qanday aniqlaymiz?",
+     "mahsulot": "jadval va tajriba",
+     "bosqichlar": [
+      "juftlarni tanlash",
+      "farqni hisoblash",
+      "turini aniqlash",
+      "tajriba bilan tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Juftlarni tanlang",
+      "Farqni hisoblang",
+      "Tajriba qiling",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "tur to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bog‘lar shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "Na 0,9 va Cl 3,0.",
+       "topshiriq": "Farq?",
+       "javob": "2,1",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "H 2,1 va Cl 3,0.",
+       "topshiriq": "Farq?",
+       "javob": "0,9",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "H 2,1 va O 3,5.",
+       "topshiriq": "Farq?",
+       "javob": "1,4",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "Eng elektrmanfiy.",
+       "topshiriq": "Qaysi?",
+       "javob": "ftor",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kimyoviy bog‘lanish",
+      "tarif": "atomlarning birikishi"
+     },
+     {
+      "atama": "Kovalent bog‘",
+      "tarif": "umumiy elektron juft"
+     },
+     {
+      "atama": "Ion bog‘",
+      "tarif": "ionlarning tortilishi"
+     },
+     {
+      "atama": "Metall bog‘",
+      "tarif": "erkin elektronlar bilan bog‘"
+     },
+     {
+      "atama": "Elektrmanfiylik",
+      "tarif": "elektron tortish qobiliyati"
+     },
+     {
+      "atama": "Qutbli bog‘",
+      "tarif": "elektronlar bir tomonga siljigan bog‘"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Atomlar barqaror qavat uchun birikadi",
+      "togri": true,
+      "izoh": "energiya kamayadi"
+     },
+     {
+      "matn": "Osh tuzida kovalent bog‘ bor",
+      "togri": false,
+      "izoh": "ion bog‘"
+     },
+     {
+      "matn": "Farq 1,7 dan katta bo‘lsa ion bog‘",
+      "togri": true,
+      "izoh": "chegara"
+     },
+     {
+      "matn": "Ftor eng elektrmanfiy",
+      "togri": true,
+      "izoh": "4,0"
+     },
+     {
+      "matn": "3,0 minus 0,9 — 2,1",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Farq 0 bo‘lsa qutbsiz kovalent",
+      "togri": true,
+      "izoh": "xlor-xlor"
+     },
+     {
+      "matn": "Metall bog‘da erkin elektronlar bor",
+      "togri": true,
+      "izoh": "tok o‘tkazadi"
+     },
+     {
+      "matn": "Ion modda eritmasi tok o‘tkazmaydi",
+      "togri": false,
+      "izoh": "o‘tkazadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Bog‘lanish?",
+      "javob": "atomlar birikishi"
+     },
+     {
+      "savol": "Turlari?",
+      "javob": "kovalent, ion, metall"
+     },
+     {
+      "savol": "Elektrmanfiylik?",
+      "javob": "elektron tortish"
+     },
+     {
+      "savol": "Eng katta?",
+      "javob": "ftor"
+     },
+     {
+      "savol": "Ion chegarasi?",
+      "javob": "1,7 dan katta"
+     },
+     {
+      "savol": "3,0 minus 0,9?",
+      "javob": "2,1"
+     },
+     {
+      "savol": "3,0 minus 2,1?",
+      "javob": "0,9"
+     },
+     {
+      "savol": "3,5 minus 2,1?",
+      "javob": "1,4"
+     },
+     {
+      "savol": "Farq 0?",
+      "javob": "qutbsiz kovalent"
+     },
+     {
+      "savol": "Tuz?",
+      "javob": "ion"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Juftni tanla.",
+      "savol": "Qaysi elementlar?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Farqni top.",
+      "savol": "Katta minus kichik?"
+     },
+     {
+      "nom": "Aniqla",
+      "matn": "Bog‘ turini yoz.",
+      "savol": "Chegara?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Xossasi qanday?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun osh tuzining eritmasi tok o‘tkazadi, shakarniki o‘tkazmaydi?",
+    "keys": {
+     "vaziyat": "Tuz eritmasiga ulangan chiroq yondi, shakar eritmasidagisi yonmadi.",
+     "savollar": [
+      "Tuzda qanday bog‘?",
+      "Shakarda qanday bog‘?"
+     ]
+    },
+    "tezis": "Farq 1,7 dan katta — ion",
+    "taqqoslash": {
+     "a": "Ion bog‘",
+     "b": "Kovalent bog‘",
+     "umumiy": [
+      "kimyoviy bog‘lanish",
+      "qavatni barqaror qiladi"
+     ],
+     "a_farq": [
+      "elektron o‘tadi",
+      "metall va metallmas"
+     ],
+     "b_farq": [
+      "umumiy juft",
+      "ikki metallmas"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kimyoviy bog‘lanish",
+     "shoxlar": [
+      {
+       "nom": "Sabab",
+       "bandlar": [
+        "barqaror qavat"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "kovalent",
+        "ion",
+        "metall"
+       ]
+      },
+      {
+       "nom": "Aniqlash",
+       "bandlar": [
+        "elektrmanfiylik farqi"
+       ]
+      },
+      {
+       "nom": "Xossa",
+       "bandlar": [
+        "tok",
+        "erish harorati"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men atomlarni ushlab turuvchi kuchman. Men kimman?",
+     "javob": "kimyoviy bog‘lanish"
+    },
+    "hikmat": "Bog‘ atomlarni bog‘laydi.",
+    "kalit_soz": "BOG‘",
+    "xato_yechim": {
+     "shart": "Na va Cl orasidagi bog‘?",
+     "xato": "kovalent",
+     "togri": "ion",
+     "sabab": "farq 2,1, 1,7 dan katta"
+    },
+    "guruh_nomlari": [
+     "Bog‘chilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bog‘ detektivi»",
+     "topshiriq": "Guruh bog‘ turlarini aniqlaydi."
+    },
+    "vazifalar": {
+     "A": "Na 0,9 va Cl 3,0 farqi?",
+     "B": "H 2,1 va Cl 3,0 farqi?",
+     "C": "H 2,1 va O 3,5 farqi?"
+    },
+    "sinkveyn": [
+     "Bog‘",
+     "kuchli, kimyoviy",
+     "bog‘laydi, ushlaydi, tortadi",
+     "Atomlar bog‘lanadi",
+     "Birikma"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh kimyoviy bog‘lanishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: sabab",
+      "2-guruh: turlari",
+      "3-guruh: aniqlash",
+      "4-guruh: xossalar"
+     ],
+     "yakun": "Natijalar: 2,1; 0,9; 1,4."
+    }
+   }
+  },
+  {
+   "mavzu": "Kovalent bog‘",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Umumiy elektron juft",
+      "matn": "Kovalent bog‘ — atomlar tashqi elektronlarini ulashib, umumiy elektron juft hosil qilishi. Har bir atom shu juftni o‘ziniki deb hisoblab, tashqi qavatini to‘ldiradi. Bu bog‘ odatda ikki metallmas atom orasida bo‘ladi.",
+      "misol": "Vodorod molekulasida bitta umumiy juft bor.",
+      "savol": "Kovalent bog‘ qanday hosil bo‘ladi?",
+      "javob": "umumiy elektron juft bilan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oddiy, ikkilangan, uchlangan",
+      "matn": "Bitta umumiy juft — oddiy bog‘ (vodorod, xlor). Ikkita juft — ikkilangan bog‘ (kislorod). Uchta juft — uchlangan bog‘ (azot). Juftlar ko‘p bo‘lsa, bog‘ mustahkam va qisqa. Azot molekulasi juda mustahkam, shu sabab havoda azot kam faol.",
+      "misol": "Havoning katta qismi — faol bo‘lmagan azot.",
+      "savol": "Azot molekulasida nechta umumiy juft bor?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Valentlik",
+      "matn": "Metallmaslarning valentligi — 8 minus guruh raqami. Kislorod (VI guruh) — 2, azot (V) — 3, uglerod (IV) — 4, xlor (VII) — 1. Shuning uchun suvda kislorod ikkita vodorod bilan, ammiakda azot uchta vodorod bilan, metanda uglerod to‘rtta vodorod bilan bog‘lanadi.",
+      "misol": "Valentlik — hosil qilinadigan bog‘lar soni.",
+      "savol": "Kislorod valentligi qancha?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qutbli va qutbsiz",
+      "matn": "Bir xil atomlar (vodorod, xlor, kislorod, azot molekulalari) orasida elektron juft o‘rtada turadi — qutbsiz bog‘. Turli atomlar orasida juft elektrmanfiyroq atom tomon siljiydi — qutbli bog‘. Suvda juft kislorodga siljigan, shu sabab kislorod qisman manfiy.",
+      "misol": "Vodorod xlorid — qutbli molekula.",
+      "savol": "Xlor molekulasida bog‘ qanday?",
+      "javob": "qutbsiz kovalent",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Moddalar xossasi",
+      "matn": "Molekulali kovalent moddalar odatda past haroratda eriydi va bug‘lanadi (suv, spirt, kislorod). Ular tok o‘tkazmaydi. Olmos va kvarts esa atomli kristall: ularda har bir atom kovalent bog‘lar bilan ulangan, shu sabab juda qattiq va yuqori haroratda eriydi.",
+      "misol": "Olmos eng qattiq tabiiy moddalardan biri.",
+      "savol": "Olmosda qanday bog‘ bor?",
+      "javob": "kovalent",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Kovalent bog‘ — umumiy elektron juft. Valentlik — 8 minus guruh raqami. Bir xil atom — qutbsiz, turli — qutbli.",
+    "misollar": [
+     {
+      "shart": "Azot V guruhda. Valentligi?",
+      "yechim": [
+       "8 minus guruh raqami.",
+       "8 minus 5.",
+       "Javob 3."
+      ],
+      "javob": "3"
+     },
+     {
+      "shart": "Kislorod VI guruhda. Valentligi?",
+      "yechim": [
+       "8 minus 6.",
+       "Hisoblaymiz.",
+       "Javob 2."
+      ],
+      "javob": "2"
+     },
+     {
+      "shart": "Metan molekulasida 4 ta bog‘ bor. Ikkita metan molekulasida nechta bog‘?",
+      "yechim": [
+       "Bir molekulada 4.",
+       "2 · 4.",
+       "Javob 8."
+      ],
+      "javob": "8"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Molekula modellari",
+      "topshiriq": "Plastilin va cho‘plardan suv va metan modeli yasang.",
+      "yechim": "Bog‘lar soni valentlikka teng.",
+      "mahsulot": "plastilin, cho‘p"
+     },
+     {
+      "nom": "Juftlarni chizamiz",
+      "topshiriq": "Vodorod, kislorod, azot uchun juftlarni chizing.",
+      "yechim": "1, 2, 3 juft.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Valentlikni topamiz",
+      "topshiriq": "Beshta element valentligini toping.",
+      "yechim": "8 minus guruh.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Qutbli yoki qutbsiz",
+      "topshiriq": "Uchta molekulani tasniflang.",
+      "yechim": "Bir xil yoki turli atom.",
+      "mahsulot": "jadval"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "8 minus 5 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "8 minus 6 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "2 · 4 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "Azotda umumiy juftlar soni?",
+      "javob": "3"
+     },
+     {
+      "shart": "Kislorodda umumiy juftlar soni?",
+      "javob": "2"
+     },
+     {
+      "shart": "Uglerod valentligi?",
+      "javob": "4"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Kovalent bog‘da elektron to‘liq o‘tadi deydi",
+      "sabab": "elektronlar ulashiladi",
+      "oldini_olish": "umumiy juft"
+     },
+     {
+      "xato": "Azot valentligi 5 deydi",
+      "sabab": "valentligi 3",
+      "oldini_olish": "8 minus 5"
+     },
+     {
+      "xato": "Olmos ion bog‘li deydi",
+      "sabab": "kovalent bog‘li",
+      "oldini_olish": "atomli kristall"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "gazlar va suyuqliklar"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "suv molekulasi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "olmos va kesish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Molekula ustaxonasi»",
+     "muammo": "Molekulalarni qanday modellaymiz?",
+     "mahsulot": "modellar",
+     "bosqichlar": [
+      "valentlikni topish",
+      "bog‘lar sonini aniqlash",
+      "modelni yasash",
+      "xossani izohlash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Valentlikni toping",
+      "Model yasang",
+      "Xossani izohlang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Molekulalar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-gul",
+       "matn": "Azot V guruh.",
+       "topshiriq": "Valentlik?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "2-gul",
+       "matn": "Kislorod VI guruh.",
+       "topshiriq": "Valentlik?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-gul",
+       "matn": "2 ta metan, 4 bog‘dan.",
+       "topshiriq": "Jami bog‘?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "4-gul",
+       "matn": "Azot molekulasi.",
+       "topshiriq": "Juftlar?",
+       "javob": "3",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kovalent bog‘",
+      "tarif": "umumiy elektron juft bog‘i"
+     },
+     {
+      "atama": "Oddiy bog‘",
+      "tarif": "bitta umumiy juft"
+     },
+     {
+      "atama": "Ikkilangan bog‘",
+      "tarif": "ikkita umumiy juft"
+     },
+     {
+      "atama": "Uchlangan bog‘",
+      "tarif": "uchta umumiy juft"
+     },
+     {
+      "atama": "Valentlik",
+      "tarif": "hosil qilinadigan bog‘lar soni"
+     },
+     {
+      "atama": "Molekula",
+      "tarif": "atomlarning kichik guruhi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Kovalent bog‘ umumiy elektron juft bilan hosil bo‘ladi",
+      "togri": true,
+      "izoh": "ulashish"
+     },
+     {
+      "matn": "Azot molekulasida ikkita juft bor",
+      "togri": false,
+      "izoh": "uchta"
+     },
+     {
+      "matn": "Kislorod valentligi 2",
+      "togri": true,
+      "izoh": "8 minus 6"
+     },
+     {
+      "matn": "Xlor molekulasida bog‘ qutbli",
+      "togri": false,
+      "izoh": "qutbsiz"
+     },
+     {
+      "matn": "8 minus 5 — 3",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Olmosda kovalent bog‘ bor",
+      "togri": true,
+      "izoh": "atomli kristall"
+     },
+     {
+      "matn": "Metan molekulasida 4 ta bog‘ bor",
+      "togri": true,
+      "izoh": "uglerod valentligi 4"
+     },
+     {
+      "matn": "Molekulali moddalar tok o‘tkazadi",
+      "togri": false,
+      "izoh": "odatda o‘tkazmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kovalent bog‘?",
+      "javob": "umumiy juft"
+     },
+     {
+      "savol": "Oddiy?",
+      "javob": "bitta juft"
+     },
+     {
+      "savol": "Ikkilangan?",
+      "javob": "ikkita juft"
+     },
+     {
+      "savol": "Uchlangan?",
+      "javob": "uchta juft"
+     },
+     {
+      "savol": "Valentlik?",
+      "javob": "8 minus guruh"
+     },
+     {
+      "savol": "Azot?",
+      "javob": "3"
+     },
+     {
+      "savol": "Kislorod?",
+      "javob": "2"
+     },
+     {
+      "savol": "8 minus 5?",
+      "javob": "3"
+     },
+     {
+      "savol": "2 · 4?",
+      "javob": "8"
+     },
+     {
+      "savol": "Qutbsiz?",
+      "javob": "bir xil atom"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Molekulani kuzat.",
+      "savol": "Qaysi atomlar?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Valentlikni top.",
+      "savol": "8 minus guruh?"
+     },
+     {
+      "nom": "Chiz",
+      "matn": "Bog‘larni chiz.",
+      "savol": "Nechta juft?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qutbli yoki qutbsiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun azot havoda juda barqaror va kam faol?",
+    "keys": {
+     "vaziyat": "Havo azotga boy, ammo azot deyarli reaksiyaga kirishmaydi.",
+     "savollar": [
+      "Azotda nechta juft bor?",
+      "Nega mustahkam?"
+     ]
+    },
+    "tezis": "Valentlik — 8 minus guruh raqami",
+    "taqqoslash": {
+     "a": "Qutbli kovalent bog‘",
+     "b": "Qutbsiz kovalent bog‘",
+     "umumiy": [
+      "umumiy juft bor",
+      "ikki metallmas"
+     ],
+     "a_farq": [
+      "turli atomlar",
+      "juft siljigan"
+     ],
+     "b_farq": [
+      "bir xil atomlar",
+      "juft o‘rtada"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kovalent bog‘",
+     "shoxlar": [
+      {
+       "nom": "Hosil bo‘lishi",
+       "bandlar": [
+        "umumiy juft"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "oddiy",
+        "ikkilangan",
+        "uchlangan"
+       ]
+      },
+      {
+       "nom": "Valentlik",
+       "bandlar": [
+        "8 minus guruh"
+       ]
+      },
+      {
+       "nom": "Qutblilik",
+       "bandlar": [
+        "qutbli",
+        "qutbsiz"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ikki atomning umumiy elektron juftiman. Men kimman?",
+     "javob": "kovalent bog‘"
+    },
+    "hikmat": "Atomlar elektronni ulashadi.",
+    "kalit_soz": "JUFT",
+    "xato_yechim": {
+     "shart": "Azot valentligi?",
+     "xato": "5",
+     "togri": "3",
+     "sabab": "8 minus 5"
+    },
+    "guruh_nomlari": [
+     "Molekulachilar",
+     "Hisobchilar",
+     "Modelchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Molekula ustaxonasi»",
+     "topshiriq": "Guruh molekula modellarini yasaydi."
+    },
+    "vazifalar": {
+     "A": "Azot valentligi?",
+     "B": "Kislorod valentligi?",
+     "C": "Ikkita metanda bog‘lar?"
+    },
+    "sinkveyn": [
+     "Bog‘",
+     "umumiy, mustahkam",
+     "ulashadi, bog‘laydi, hosil qiladi",
+     "Atomlar juft ulashadi",
+     "Molekula"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh kovalent bog‘ni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: juft",
+      "2-guruh: turlari",
+      "3-guruh: valentlik",
+      "4-guruh: xossalar"
+     ],
+     "yakun": "Natijalar: 3; 2; 8."
+    }
+   }
   }
  ]
 }
