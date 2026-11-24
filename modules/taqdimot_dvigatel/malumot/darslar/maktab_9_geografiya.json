@@ -2785,6 +2785,1399 @@
      "yakun": "Natijalar: 900; 2400; 45."
     }
    }
+  },
+  {
+   "mavzu": "Jahon transporti",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Jahon transporti nima",
+      "matn": "Jahon transporti — dunyo bo‘yicha yuk va yo‘lovchi tashish tizimi. Turlari: dengiz, temir yo‘l, avtomobil, havo, daryo va quvur transporti. Transport mamlakatlar va qit’alarni bog‘laydi hamda jahon savdosining asosi hisoblanadi.",
+      "misol": "Transport — dunyo tomirlari.",
+      "savol": "Transport nima qiladi?",
+      "javob": "yuk va yo‘lovchi tashiydi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Dengiz va havo transporti",
+      "matn": "Dengiz transporti eng ko‘p yukni, ayniqsa xalqaro savdo yuklarini, arzon tashiydi. Yirik portlar: Shanxay, Singapur, Rotterdam. Panama va Suvaysh kanallari yo‘lni qisqartiradi. Havo transporti tez, lekin qimmat; u yo‘lovchi va qimmatbaho yuk uchun qulay.",
+      "misol": "Dengiz — arzon, havo — tez.",
+      "savol": "Qaysi transport arzon yuk tashiydi?",
+      "javob": "dengiz transporti",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Quruqlik va quvur transporti",
+      "matn": "Temir yo‘l og‘ir yukni quruqlikda uzoq masofaga tashiydi: Transsibir magistrali, Xitoy-Yevropa yo‘llari. Avtomobil transporti eshikdan eshikka yetkazadi. Quvurlar neft va gazni uzatadi. O‘zbekiston Markaziy Osiyo orqali Yevropa va Osiyoni bog‘lovchi yo‘llarda joylashgan.",
+      "misol": "Temir yo‘l — og‘ir yuk.",
+      "savol": "Neft va gaz nima bilan uzatiladi?",
+      "javob": "quvur",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, kema soatiga 30 km tezlikda 5 sutkada, ya’ni 120 soatda 30 · 120 — 3600 km yuradi. Masalan, 3600 km yo‘lni 90 km/soat poyezdda 3600 / 90 — 40 soatda bosib o‘tadi. Masalan, 1 konteynerda 20 tonna yuk bo‘lsa, 500 konteynerda 500 · 20 — 10000 tonna.",
+      "misol": "Yo‘l — tezlik · vaqt.",
+      "savol": "Masalan, soatiga 30 km, 120 soat. Necha km?",
+      "javob": "3600",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ekologiya va kelajak",
+      "matn": "Transport havoni ifloslantiradi va issiqxona gazlari chiqaradi. Elektr transport, tezyurar poyezdlar, yashil yoqilg‘i va jamoat transporti ifloslanishni kamaytiradi. Kelajakda avtonom va aqlli transport tizimlari rivojlanadi.",
+      "misol": "Toza transport — sog‘lom dunyo.",
+      "savol": "Ifloslanishni nima kamaytiradi?",
+      "javob": "elektr va jamoat transporti",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Jahon transporti: dengiz, temir yo‘l, havo, quvur. Yo‘l — tezlik · vaqt. Vaqt — yo‘l / tezlik.",
+    "misollar": [
+     {
+      "shart": "Masalan, tezlik 30 km/soat, 120 soat. Necha km?",
+      "yechim": [
+       "30 · 120.",
+       "Hisoblang.",
+       "Javob 3600."
+      ],
+      "javob": "3600"
+     },
+     {
+      "shart": "Masalan, 3600 km, tezlik 90 km/soat. Necha soat?",
+      "yechim": [
+       "3600 / 90.",
+       "Bo‘ling.",
+       "Javob 40."
+      ],
+      "javob": "40"
+     },
+     {
+      "shart": "Masalan, 500 konteyner, har birida 20 tonna. Jami necha tonna?",
+      "yechim": [
+       "500 · 20.",
+       "Hisoblang.",
+       "Javob 10000."
+      ],
+      "javob": "10000"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Yo‘llar xaritasi",
+      "topshiriq": "Xaritada yirik port va magistrallarni belgilang.",
+      "yechim": "Tarmoq.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Transport tanlash",
+      "topshiriq": "Yuk turiga mos transportni tanlang.",
+      "yechim": "Tezlik va narx.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va bo‘lish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Yashil yo‘l",
+      "topshiriq": "Toza transport rejasi tuzing.",
+      "yechim": "Ekologiya.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "30 · 120 nechaga teng?",
+      "javob": "3600"
+     },
+     {
+      "shart": "3600 / 90 nechaga teng?",
+      "javob": "40"
+     },
+     {
+      "shart": "500 · 20 nechaga teng?",
+      "javob": "10000"
+     },
+     {
+      "shart": "Eng arzon yuk tashuvchi?",
+      "javob": "dengiz"
+     },
+     {
+      "shart": "Neft nima bilan uzatiladi?",
+      "javob": "quvur"
+     },
+     {
+      "shart": "Yirik port?",
+      "javob": "Singapur"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Havo transporti eng arzon deydi",
+      "sabab": "qimmat",
+      "oldini_olish": "dengiz arzon"
+     },
+     {
+      "xato": "Quvur yo‘lovchi tashiydi deydi",
+      "sabab": "neft va gaz uzatadi",
+      "oldini_olish": "yuk transporti"
+     },
+     {
+      "xato": "Transport ifloslantirmaydi deydi",
+      "sabab": "ifloslantiradi",
+      "oldini_olish": "gaz chiqaradi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "tezlik"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "yo‘l va vaqt"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "ifloslanish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Dunyo yo‘llari»",
+     "muammo": "Yuk dunyo bo‘ylab qanday boradi?",
+     "mahsulot": "transport atlasi",
+     "bosqichlar": [
+      "xarita",
+      "tanlash jadvali",
+      "hisob",
+      "yashil yo‘l",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Tanlang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Port va aeroport»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "30 km/soat, 120 soat.",
+       "topshiriq": "Km?",
+       "javob": "3600",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "3600 km, 90 km/soat.",
+       "topshiriq": "Soat?",
+       "javob": "40",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "500 konteyner, 20 tonna.",
+       "topshiriq": "Tonna?",
+       "javob": "10000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Arzon yuk tashish.",
+       "topshiriq": "Qaysi?",
+       "javob": "dengiz",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Transport",
+      "tarif": "tashish tizimi"
+     },
+     {
+      "atama": "Port",
+      "tarif": "kemalar to‘xtash joyi"
+     },
+     {
+      "atama": "Konteyner",
+      "tarif": "yuk qutisi"
+     },
+     {
+      "atama": "Magistral",
+      "tarif": "asosiy yo‘l"
+     },
+     {
+      "atama": "Kanal",
+      "tarif": "sun’iy suv yo‘li"
+     },
+     {
+      "atama": "Quvur transporti",
+      "tarif": "neft va gaz uzatish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Dengiz transporti arzon",
+      "togri": true,
+      "izoh": "ko‘p yuk"
+     },
+     {
+      "matn": "Havo transporti eng arzon",
+      "togri": false,
+      "izoh": "qimmat"
+     },
+     {
+      "matn": "30 · 120 — 3600",
+      "togri": true,
+      "izoh": "km"
+     },
+     {
+      "matn": "Quvur gaz uzatadi",
+      "togri": true,
+      "izoh": "transport turi"
+     },
+     {
+      "matn": "Transport havoni ifloslantirmaydi",
+      "togri": false,
+      "izoh": "ifloslantiradi"
+     },
+     {
+      "matn": "Singapur yirik port",
+      "togri": true,
+      "izoh": "port"
+     },
+     {
+      "matn": "3600 / 90 — 40",
+      "togri": true,
+      "izoh": "soat"
+     },
+     {
+      "matn": "Suvaysh kanali yo‘lni qisqartiradi",
+      "togri": true,
+      "izoh": "kanal"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Transport?",
+      "javob": "tashish"
+     },
+     {
+      "savol": "Dengiz?",
+      "javob": "arzon"
+     },
+     {
+      "savol": "Havo?",
+      "javob": "tez"
+     },
+     {
+      "savol": "Quvur?",
+      "javob": "neft, gaz"
+     },
+     {
+      "savol": "Konteyner?",
+      "javob": "yuk qutisi"
+     },
+     {
+      "savol": "Port?",
+      "javob": "kema joyi"
+     },
+     {
+      "savol": "30 · 120?",
+      "javob": "3600"
+     },
+     {
+      "savol": "3600 / 90?",
+      "javob": "40"
+     },
+     {
+      "savol": "500 · 20?",
+      "javob": "10000"
+     },
+     {
+      "savol": "Toza transport?",
+      "javob": "elektr"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Yuk yo‘nalishini kuzat.",
+      "savol": "Qaysi transport?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yo‘lni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Dengiz va havo.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ekologiya?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun xalqaro yuklarning ko‘pi dengiz transportida tashiladi?",
+    "keys": {
+     "vaziyat": "Shoshilinch dori-darmon va katta qurilish yuklari yuborilishi kerak.",
+     "savollar": [
+      "Qaysi transport?",
+      "Nima uchun?"
+     ]
+    },
+    "tezis": "Transport — bog‘lovchi",
+    "taqqoslash": {
+     "a": "Dengiz transporti",
+     "b": "Havo transporti",
+     "umumiy": [
+      "yuk tashiydi",
+      "xalqaro"
+     ],
+     "a_farq": [
+      "arzon",
+      "sekin"
+     ],
+     "b_farq": [
+      "tez",
+      "qimmat"
+     ]
+    },
+    "klaster": {
+     "markaz": "Jahon transporti",
+     "shoxlar": [
+      {
+       "nom": "Dengiz",
+       "bandlar": [
+        "port",
+        "kanal",
+        "konteyner"
+       ]
+      },
+      {
+       "nom": "Quruqlik",
+       "bandlar": [
+        "temir yo‘l",
+        "avtomobil"
+       ]
+      },
+      {
+       "nom": "Havo va quvur",
+       "bandlar": [
+        "aeroport",
+        "neft quvuri"
+       ]
+      },
+      {
+       "nom": "Ekologiya",
+       "bandlar": [
+        "elektr",
+        "jamoat transporti"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men neft va gazni uzataman. Men qaysi transportman?",
+     "javob": "quvur"
+    },
+    "hikmat": "Yo‘l — bog‘laydi.",
+    "kalit_soz": "YOL",
+    "xato_yechim": {
+     "shart": "Qaysi transport arzon yuk tashiydi?",
+     "xato": "havo",
+     "togri": "dengiz",
+     "sabab": "ko‘p yuk sig‘adi"
+    },
+    "guruh_nomlari": [
+     "Kapitanlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Logistlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Dunyo yo‘llari»",
+     "topshiriq": "Guruh transport atlasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "30 km/soat, 120 soat?",
+     "B": "3600 km, 90 km/soat?",
+     "C": "500 konteyner, 20 tonna?"
+    },
+    "sinkveyn": [
+     "Transport",
+     "tez, zarur",
+     "tashiydi, bog‘laydi, yetkazadi",
+     "Dunyo tomiri",
+     "Kema"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh jahon transportini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: dengiz",
+      "2-guruh: quruqlik",
+      "3-guruh: havo va quvur",
+      "4-guruh: ekologiya"
+     ],
+     "yakun": "Natijalar: 3600; 40; 10000."
+    }
+   }
+  },
+  {
+   "mavzu": "Xalqaro savdo",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Xalqaro savdo nima",
+      "matn": "Xalqaro savdo — davlatlar o‘rtasida tovar va xizmat almashinuvi. Davlat nimani yaxshi ishlab chiqarsa, shuni sotadi, yetishmaydiganini sotib oladi. Bu mehnat taqsimoti va ixtisoslashuvga asoslanadi.",
+      "misol": "Ayirboshlash — foyda.",
+      "savol": "Xalqaro savdo nima?",
+      "javob": "davlatlar o‘rtasida tovar almashinuvi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yirik savdo davlatlari",
+      "matn": "Dunyo savdosida Xitoy, AQSh, Germaniya, Yaponiya va Niderlandiya yirik o‘rin egallaydi. Neft eksporti — Saudiya Arabistoni, Rossiya; mashina — Germaniya, Yaponiya; elektronika — Xitoy, Janubiy Koreya; paxta — AQSh, Braziliya, Hindiston.",
+      "misol": "Xitoy — katta eksportchi.",
+      "savol": "Elektronika kimdan ko‘p?",
+      "javob": "Xitoy va Janubiy Koreyadan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Savdo tashkilotlari va to‘siqlar",
+      "matn": "Jahon savdo tashkiloti (JST) savdo qoidalarini belgilaydi. Bojxona bojlari va kvotalar savdoni cheklashi mumkin. Erkin savdo zonalari va hududiy kelishuvlar (masalan, Yevropa Ittifoqi) savdoni yengillashtiradi.",
+      "misol": "Boj — to‘siq, kelishuv — ko‘prik.",
+      "savol": "JST nima qiladi?",
+      "javob": "savdo qoidalarini belgilaydi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, eksport 120, import 100 birlik bo‘lsa, savdo balansi 120 − 100 — 20 birlik ijobiy. Masalan, tovar narxi 200 dollar, boj 15 foiz bo‘lsa, boj 200 · 0,15 — 30 dollar, jami 230 dollar. Masalan, 8 davlat o‘zaro savdo qilsa, har ikkisi orasida bitta aloqa: 8 · 7 / 2 — 28 aloqa (taxminiy misol).",
+      "misol": "Balans — eksport minus import.",
+      "savol": "Masalan, 200 dollar tovarga 15 foiz boj. Necha dollar?",
+      "javob": "30",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Adolatli savdo va sifat",
+      "matn": "Adolatli savdo kichik ishlab chiqaruvchiga munosib narx beradi. Iste’molchi sifat va xavfsizlik standartlariga e’tibor berishi kerak. Elektron tijorat (onlayn savdo) chegara bilmay tarqalmoqda.",
+      "misol": "Adolat — barqaror savdo.",
+      "savol": "Onlayn savdo nima?",
+      "javob": "internet orqali savdo",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Xalqaro savdo: eksport, import, boj, JST. Balans — eksport minus import.",
+    "misollar": [
+     {
+      "shart": "Masalan, 200 dollar tovarga 15 foiz boj. Necha dollar?",
+      "yechim": [
+       "15 foiz — 0,15.",
+       "200 · 0,15.",
+       "Javob 30."
+      ],
+      "javob": "30"
+     },
+     {
+      "shart": "Masalan, eksport 120, import 100. Balans necha?",
+      "yechim": [
+       "120 − 100.",
+       "Ayiring.",
+       "Javob 20."
+      ],
+      "javob": "20"
+     },
+     {
+      "shart": "Masalan, 8 davlat o‘zaro. Necha aloqa?",
+      "yechim": [
+       "8 · 7 / 2.",
+       "Hisoblang.",
+       "Javob 28."
+      ],
+      "javob": "28"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Savdo xaritasi",
+      "topshiriq": "Xaritada yirik savdo davlatlarini belgilang.",
+      "yechim": "Yo‘nalishlar.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Mahsulot ixtisosligi",
+      "topshiriq": "Davlat va asosiy eksport mahsulotini moslang.",
+      "yechim": "Moslash.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va ayirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Bozor o‘yini",
+      "topshiriq": "Rolli o‘yin: davlatlar savdosi.",
+      "yechim": "Muzokara.",
+      "mahsulot": "tovar kartochkalari"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "200 · 0,15 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "120 − 100 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "8 · 7 / 2 nechaga teng?",
+      "javob": "28"
+     },
+     {
+      "shart": "Savdo qoidalari tashkiloti?",
+      "javob": "JST"
+     },
+     {
+      "shart": "Elektronika yirik eksportchisi?",
+      "javob": "Xitoy"
+     },
+     {
+      "shart": "Bojxona to‘lovi nomi?",
+      "javob": "boj"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Hamma davlat hamma narsani ishlab chiqaradi deydi",
+      "sabab": "ixtisoslashadi",
+      "oldini_olish": "mehnat taqsimoti"
+     },
+     {
+      "xato": "Boj savdoni yengillashtiradi deydi",
+      "sabab": "cheklashi mumkin",
+      "oldini_olish": "narxni oshiradi"
+     },
+     {
+      "xato": "Onlayn savdo faqat ichkarida deydi",
+      "sabab": "xalqaro ham",
+      "oldini_olish": "internet orqali"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Iqtisod",
+      "boglanish": "savdo balansi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va ayirish"
+     },
+     {
+      "fan": "Axborot texnologiyalari",
+      "boglanish": "elektron tijorat"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Dunyo bozori»",
+     "muammo": "Davlatlar bir-biriga nima sotadi?",
+     "mahsulot": "bozor atlasi",
+     "bosqichlar": [
+      "xarita",
+      "ixtisoslik",
+      "hisob",
+      "o‘yin",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Moslang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Jahon yarmarkasi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "200 dollar, 15 foiz boj.",
+       "topshiriq": "Boj?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "Eksport 120, import 100.",
+       "topshiriq": "Balans?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "8 davlat.",
+       "topshiriq": "Aloqa?",
+       "javob": "28",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Savdo qoidalari.",
+       "topshiriq": "Tashkilot?",
+       "javob": "JST",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Xalqaro savdo",
+      "tarif": "davlatlar savdosi"
+     },
+     {
+      "atama": "Boj",
+      "tarif": "bojxona to‘lovi"
+     },
+     {
+      "atama": "JST",
+      "tarif": "Jahon savdo tashkiloti"
+     },
+     {
+      "atama": "Kvota",
+      "tarif": "tovar miqdori chegarasi"
+     },
+     {
+      "atama": "Ixtisoslashuv",
+      "tarif": "bir turga yo‘nalish"
+     },
+     {
+      "atama": "Elektron tijorat",
+      "tarif": "onlayn savdo"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "JST savdo qoidalarini belgilaydi",
+      "togri": true,
+      "izoh": "tashkilot"
+     },
+     {
+      "matn": "Boj savdoni yengillashtiradi",
+      "togri": false,
+      "izoh": "cheklaydi"
+     },
+     {
+      "matn": "200 · 0,15 — 30",
+      "togri": true,
+      "izoh": "dollar"
+     },
+     {
+      "matn": "Xitoy yirik eksportchi",
+      "togri": true,
+      "izoh": "savdo"
+     },
+     {
+      "matn": "Hamma davlat hamma narsa ishlab chiqaradi",
+      "togri": false,
+      "izoh": "ixtisoslashuv"
+     },
+     {
+      "matn": "120 − 100 — 20",
+      "togri": true,
+      "izoh": "balans"
+     },
+     {
+      "matn": "Onlayn savdo xalqaro bo‘la oladi",
+      "togri": true,
+      "izoh": "internet"
+     },
+     {
+      "matn": "Adolatli savdo muhim",
+      "togri": true,
+      "izoh": "ishlab chiqaruvchi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Xalqaro savdo?",
+      "javob": "almashinuv"
+     },
+     {
+      "savol": "Boj?",
+      "javob": "to‘lov"
+     },
+     {
+      "savol": "JST?",
+      "javob": "qoida"
+     },
+     {
+      "savol": "Kvota?",
+      "javob": "chegara"
+     },
+     {
+      "savol": "Ixtisoslashuv?",
+      "javob": "yo‘nalish"
+     },
+     {
+      "savol": "Onlayn savdo?",
+      "javob": "internet"
+     },
+     {
+      "savol": "200 · 0,15?",
+      "javob": "30"
+     },
+     {
+      "savol": "120 − 100?",
+      "javob": "20"
+     },
+     {
+      "savol": "8 · 7 / 2?",
+      "javob": "28"
+     },
+     {
+      "savol": "Elektronika?",
+      "javob": "Xitoy"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Tovar yorlig‘ini kuzat.",
+      "savol": "Qayerniki?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Bojni top.",
+      "savol": "Foiz?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Eksport va import.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Adolat?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun davlatlar bir-biri bilan savdo qiladi?",
+    "keys": {
+     "vaziyat": "Davlat yangi boj joriy qildi, chet el tovari qimmatlashdi.",
+     "savollar": [
+      "Kimga ta’sir qiladi?",
+      "Nima o‘zgaradi?"
+     ]
+    },
+    "tezis": "Savdo — hamkorlik",
+    "taqqoslash": {
+     "a": "Erkin savdo",
+     "b": "Himoya (boj) siyosati",
+     "umumiy": [
+      "savdo qoidasi",
+      "davlat siyosati"
+     ],
+     "a_farq": [
+      "boj kam",
+      "tovar arzon"
+     ],
+     "b_farq": [
+      "boj ko‘p",
+      "ichki ishlab chiqarishni himoya"
+     ]
+    },
+    "klaster": {
+     "markaz": "Xalqaro savdo",
+     "shoxlar": [
+      {
+       "nom": "Hamkorlar",
+       "bandlar": [
+        "Xitoy",
+        "AQSh",
+        "Germaniya"
+       ]
+      },
+      {
+       "nom": "Tovar",
+       "bandlar": [
+        "neft",
+        "mashina",
+        "elektronika"
+       ]
+      },
+      {
+       "nom": "Qoidalar",
+       "bandlar": [
+        "JST",
+        "boj",
+        "kvota"
+       ]
+      },
+      {
+       "nom": "Yangi shakl",
+       "bandlar": [
+        "onlayn savdo",
+        "adolatli savdo"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men savdo qoidalarini belgilovchi xalqaro tashkilotman. Men nimaman?",
+     "javob": "JST"
+    },
+    "hikmat": "Savdo — ko‘prik.",
+    "kalit_soz": "SAVDO",
+    "xato_yechim": {
+     "shart": "Boj nima?",
+     "xato": "kema yo‘li",
+     "togri": "bojxona to‘lovi",
+     "sabab": "tovar narxiga qo‘shiladi"
+    },
+    "guruh_nomlari": [
+     "Savdogarlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Bojxonachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Dunyo bozori»",
+     "topshiriq": "Guruh bozor atlasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "200 dollar, 15 foiz?",
+     "B": "120 va 100?",
+     "C": "8 davlat?"
+    },
+    "sinkveyn": [
+     "Savdo",
+     "foydali, global",
+     "sotadi, olib keladi, almashadi",
+     "Davlatlar ko‘prigi",
+     "Boj"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh xalqaro savdoni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: hamkorlar",
+      "2-guruh: tovar",
+      "3-guruh: qoidalar",
+      "4-guruh: yangi shakl"
+     ],
+     "yakun": "Natijalar: 30; 20; 28."
+    }
+   }
+  },
+  {
+   "mavzu": "Yevropa mamlakatlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yevropa umumiy ma’lumot",
+      "matn": "Yevropa Osiyo bilan birga Yevrosiyo materigini tashkil qiladi. Uning iqlimi mo‘tadil, qirg‘oq chizig‘i uzun, aholisi zich. Mintaqalar: G‘arbiy, Shimoliy, Janubiy, Sharqiy va Markaziy Yevropa. Aksariyat davlatlar iqtisodiy rivojlangan.",
+      "misol": "Yevropa — zich aholi, rivojlangan iqtisod.",
+      "savol": "Yevropa qaysi materikning qismi?",
+      "javob": "Yevrosiyo",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yirik davlatlar",
+      "matn": "Germaniya — eng yirik iqtisod, Fransiya — qishloq xo‘jaligi va turizm, Buyuk Britaniya — moliya va xizmat, Italiya — moda va mashinasozlik, Ispaniya — turizm. Shimoliy davlatlar (Shvetsiya, Norvegiya, Finlyandiya) yuqori turmush darajasi bilan mashhur. Poytaxtlar: Berlin, Parij, London, Rim, Madrid.",
+      "misol": "Berlin, Parij, London, Rim.",
+      "savol": "Germaniya poytaxti?",
+      "javob": "Berlin",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yevropa Ittifoqi",
+      "matn": "Yevropa Ittifoqi (YeI) — bir necha o‘nlab davlatlarning siyosiy va iqtisodiy birlashmasi. Umumiy bozor, erkin harakat va ko‘p davlatda yagona valyuta — yevro. Ittifoq tinchlik, savdo va hamkorlikni rivojlantiradi.",
+      "misol": "Yagona bozor, yevro.",
+      "savol": "Ko‘p davlatda yagona valyuta?",
+      "javob": "yevro",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, davlat aholisi 80 million, maydoni 360000 kv. km bo‘lsa, zichlik 80000000 / 360000 — taxminan 222 kishi. Masalan, YeI aholisi 450 million, shundan 20 foizi bitta davlatda bo‘lsa, 450 · 0,2 — 90 million. Masalan, 1 yevro 13500 so‘m bo‘lsa, 4 yevro 4 · 13500 — 54000 so‘m (taxminiy misol).",
+      "misol": "Zichlik — aholi / maydon.",
+      "savol": "Masalan, 450 million aholining 20 foizi. Necha million?",
+      "javob": "90",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Madaniyat va sayohat",
+      "matn": "Yevropa madaniy meros bilan boy: Parij Luvri, Rim Kolizeyi, Afina Akropoli, London Big-Beni. Mintaqada ko‘p tillar, bayramlar va san’at yo‘nalishlari mavjud. Turizm ko‘p davlatlar uchun asosiy daromad manbai.",
+      "misol": "Madaniyat va tarix — boylik.",
+      "savol": "Kolizey qayerda?",
+      "javob": "Rimda",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Yevropa: mo‘tadil iqlim, zich aholi. Berlin, Parij, London, Rim. YeI va yevro.",
+    "misollar": [
+     {
+      "shart": "Masalan, 450 million aholining 20 foizi bitta davlatda. Necha million?",
+      "yechim": [
+       "20 foiz — 0,2.",
+       "450 · 0,2.",
+       "Javob 90."
+      ],
+      "javob": "90"
+     },
+     {
+      "shart": "Masalan, 1 yevro 13500 so‘m. 4 yevro necha so‘m?",
+      "yechim": [
+       "4 · 13500.",
+       "Hisoblang.",
+       "Javob 54000."
+      ],
+      "javob": "54000"
+     },
+     {
+      "shart": "Masalan, 3 davlatda 15 million aholidan. Jami necha million?",
+      "yechim": [
+       "3 · 15.",
+       "Hisoblang.",
+       "Javob 45."
+      ],
+      "javob": "45"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Yevropa xaritasi",
+      "topshiriq": "Konturda davlat va poytaxtlarni belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Poytaxtlar o‘yini",
+      "topshiriq": "Davlat va poytaxtni moslang.",
+      "yechim": "Moslash.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Madaniy yo‘l",
+      "topshiriq": "Yevropa madaniy marshrutini tuzing.",
+      "yechim": "Obidalar.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "450 · 0,2 nechaga teng?",
+      "javob": "90"
+     },
+     {
+      "shart": "4 · 13500 nechaga teng?",
+      "javob": "54000"
+     },
+     {
+      "shart": "3 · 15 nechaga teng?",
+      "javob": "45"
+     },
+     {
+      "shart": "Germaniya poytaxti?",
+      "javob": "Berlin"
+     },
+     {
+      "shart": "Fransiya poytaxti?",
+      "javob": "Parij"
+     },
+     {
+      "shart": "YeI valyutasi?",
+      "javob": "yevro"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yevropa alohida materik deydi",
+      "sabab": "Yevrosiyoning bir qismi",
+      "oldini_olish": "Osiyo bilan birga"
+     },
+     {
+      "xato": "Yevropada hamma bitta tilda deydi",
+      "sabab": "ko‘p tillar",
+      "oldini_olish": "madaniy xilma-xillik"
+     },
+     {
+      "xato": "YeI davlatlar birlashmasi emas deydi",
+      "sabab": "birlashma",
+      "oldini_olish": "umumiy bozor"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "madaniy meros"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va zichlik"
+     },
+     {
+      "fan": "Adabiyot",
+      "boglanish": "Yevropa madaniyati"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yevropa bo‘ylab»",
+     "muammo": "Yevropa davlatlari qanday joylashgan?",
+     "mahsulot": "Yevropa albomi",
+     "bosqichlar": [
+      "xarita",
+      "poytaxtlar",
+      "hisob",
+      "madaniy yo‘l",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Moslang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Yevropa poytaxtlari»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "450 million, 20 foiz.",
+       "topshiriq": "Million?",
+       "javob": "90",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "4 yevro, 13500 so‘m.",
+       "topshiriq": "So‘m?",
+       "javob": "54000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "3 davlat, 15 million.",
+       "topshiriq": "Jami?",
+       "javob": "45",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Germaniya poytaxti.",
+       "topshiriq": "Qaysi?",
+       "javob": "Berlin",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yevropa",
+      "tarif": "Yevrosiyo g‘arbiy qismi"
+     },
+     {
+      "atama": "Yevropa Ittifoqi",
+      "tarif": "davlatlar birlashmasi"
+     },
+     {
+      "atama": "Yevro",
+      "tarif": "ko‘p davlat valyutasi"
+     },
+     {
+      "atama": "Poytaxt",
+      "tarif": "davlat markazi"
+     },
+     {
+      "atama": "Mo‘tadil iqlim",
+      "tarif": "yumshoq iqlim"
+     },
+     {
+      "atama": "Madaniy meros",
+      "tarif": "tarixiy boylik"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Berlin Germaniya poytaxti",
+      "togri": true,
+      "izoh": "poytaxt"
+     },
+     {
+      "matn": "Yevropa alohida materik",
+      "togri": false,
+      "izoh": "Yevrosiyo"
+     },
+     {
+      "matn": "450 · 0,2 — 90",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Yevro YeI valyutasi",
+      "togri": true,
+      "izoh": "valyuta"
+     },
+     {
+      "matn": "Yevropada hamma bir tilda",
+      "togri": false,
+      "izoh": "ko‘p til"
+     },
+     {
+      "matn": "Parij Fransiya poytaxti",
+      "togri": true,
+      "izoh": "poytaxt"
+     },
+     {
+      "matn": "3 · 15 — 45",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Kolizey Rimda",
+      "togri": true,
+      "izoh": "obida"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yevropa?",
+      "javob": "Yevrosiyo qismi"
+     },
+     {
+      "savol": "Germaniya?",
+      "javob": "Berlin"
+     },
+     {
+      "savol": "Fransiya?",
+      "javob": "Parij"
+     },
+     {
+      "savol": "Britaniya?",
+      "javob": "London"
+     },
+     {
+      "savol": "Italiya?",
+      "javob": "Rim"
+     },
+     {
+      "savol": "YeI?",
+      "javob": "birlashma"
+     },
+     {
+      "savol": "450 · 0,2?",
+      "javob": "90"
+     },
+     {
+      "savol": "4 · 13500?",
+      "javob": "54000"
+     },
+     {
+      "savol": "3 · 15?",
+      "javob": "45"
+     },
+     {
+      "savol": "Valyuta?",
+      "javob": "yevro"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Yevropa xaritasini kuzat.",
+      "savol": "Qayerda?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Aholi ulushini top.",
+      "savol": "Foiz?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Shimol va janub.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Madaniyat?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun Yevropa iqtisodiy va madaniy jihatdan muhim mintaqa?",
+    "keys": {
+     "vaziyat": "Siz Yevropa bo‘ylab 3 shaharga sayohat rejalashtirmoqdasiz.",
+     "savollar": [
+      "Qaysi shaharlar?",
+      "Qanday transport?"
+     ]
+    },
+    "tezis": "Yevropa — tarix va hamkorlik",
+    "taqqoslash": {
+     "a": "Shimoliy Yevropa",
+     "b": "Janubiy Yevropa",
+     "umumiy": [
+      "Yevropada joylashgan",
+      "rivojlangan"
+     ],
+     "a_farq": [
+      "sovuqroq",
+      "Shvetsiya, Norvegiya"
+     ],
+     "b_farq": [
+      "issiqroq",
+      "Italiya, Ispaniya"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yevropa mamlakatlari",
+     "shoxlar": [
+      {
+       "nom": "Davlatlar",
+       "bandlar": [
+        "Germaniya",
+        "Fransiya",
+        "Italiya"
+       ]
+      },
+      {
+       "nom": "Poytaxtlar",
+       "bandlar": [
+        "Berlin",
+        "Parij",
+        "Rim"
+       ]
+      },
+      {
+       "nom": "YeI",
+       "bandlar": [
+        "yevro",
+        "umumiy bozor"
+       ]
+      },
+      {
+       "nom": "Madaniyat",
+       "bandlar": [
+        "Luvr",
+        "Kolizey",
+        "Akropol"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Fransiya poytaxtiman. Men nimaman?",
+     "javob": "Parij"
+    },
+    "hikmat": "Yevropa — bilim va hurmat.",
+    "kalit_soz": "YEVROPA",
+    "xato_yechim": {
+     "shart": "Italiya poytaxti qaysi?",
+     "xato": "Madrid",
+     "togri": "Rim",
+     "sabab": "Kolizey shahri"
+    },
+    "guruh_nomlari": [
+     "Sayyohlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tarixchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yevropa bo‘ylab»",
+     "topshiriq": "Guruh Yevropa albomini tuzadi."
+    },
+    "vazifalar": {
+     "A": "450 million, 20 foiz?",
+     "B": "4 yevro, 13500?",
+     "C": "3 davlat, 15 million?"
+    },
+    "sinkveyn": [
+     "Yevropa",
+     "qadimiy, zich",
+     "birlashadi, savdo qiladi, sayohat qildiradi",
+     "Madaniyat beshigi",
+     "Yevro"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh Yevropani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: davlatlar",
+      "2-guruh: poytaxtlar",
+      "3-guruh: YeI",
+      "4-guruh: madaniyat"
+     ],
+     "yakun": "Natijalar: 90; 54000; 45."
+    }
+   }
   }
  ]
 }
