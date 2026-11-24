@@ -4147,6 +4147,1395 @@
      "yakun": "Natijalar: 4; 32; 3."
     }
    }
+  },
+  {
+   "mavzu": "Elektr toki",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tok nima",
+      "matn": "Zaryadlangan zarralarning tartibli harakati elektr toki deyiladi. Metallarda tokni erkin elektronlar hosil qiladi, tuz va kislota eritmalarida esa ionlar.",
+      "misol": "Lampochka yonganda simda elektronlar oqadi.",
+      "savol": "Metallarda tokni qaysi zarralar hosil qiladi?",
+      "javob": "erkin elektronlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tok hosil bo‘lish sharti",
+      "matn": "Tok bo‘lishi uchun ikki shart kerak: erkin zaryadlangan zarralar va ularni harakatga keltiruvchi elektr maydon. Maydonni tok manbai hosil qiladi.",
+      "misol": "Batareya simdagi elektronlarni haydaydi.",
+      "savol": "Tok uchun nechta shart kerak?",
+      "javob": "ikkita",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tok manbalari",
+      "matn": "Galvanik element va akkumulyator kimyoviy energiyani, generator mexanik energiyani, quyosh batareyasi yorug‘lik energiyasini elektr energiyaga aylantiradi. Birinchi galvanik elementni 1800-yilda italiyalik Alessandro Volta yasagan.",
+      "misol": "Telefon akkumulyatori kimyoviy energiya beradi.",
+      "savol": "Generator qaysi energiyani elektr energiyaga aylantiradi?",
+      "javob": "mexanik energiyani",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tokning ta’siri",
+      "matn": "Tok issiqlik (cho‘g‘lanma lampa, choynak), kimyoviy (metallarni qoplash) va magnit (elektromagnit) ta’sir ko‘rsatadi. Tokning borligini shu ta’sirlardan bilamiz.",
+      "misol": "Dazmol isiydi — issiqlik ta’siri.",
+      "savol": "Dazmol tokning qaysi ta’siriga asoslangan?",
+      "javob": "issiqlik ta’siriga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tok yo‘nalishi",
+      "matn": "Tok yo‘nalishi deb shartli ravishda manbaning musbat qutbidan manfiy qutbiga qarab yo‘nalish olingan. Metallarda elektronlar esa aksincha, manfiy qutbdan musbatga harakatlanadi.",
+      "misol": "Batareyada musbat qutb «plyus» bilan belgilanadi.",
+      "savol": "Shartli yo‘nalishda tok qaysi qutbdan chiqadi?",
+      "javob": "musbat qutbdan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Elektr toki — zaryadlangan zarralarning tartibli harakati. Shart: erkin zaryadlar va elektr maydon. Ta’sirlari: issiqlik, kimyoviy, magnit.",
+    "misollar": [
+     {
+      "shart": "Simdan 4 sekundda 12 kulon zaryad o‘tdi. Tok kuchi? (I — q / t)",
+      "yechim": [
+       "I — q / t.",
+       "12 / 4.",
+       "Javob 3 amper."
+      ],
+      "javob": "3 amper"
+     },
+     {
+      "shart": "5 sekundda 30 kulon o‘tsa, tok kuchi?",
+      "yechim": [
+       "30 / 5.",
+       "6.",
+       "Javob 6 amper."
+      ],
+      "javob": "6 amper"
+     },
+     {
+      "shart": "Tok kuchi 2 amper, vaqt 10 sekund. O‘tgan zaryad? (q — I · t)",
+      "yechim": [
+       "q — I · t.",
+       "2 · 10.",
+       "Javob 20 kulon."
+      ],
+      "javob": "20 kulon"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tokni kuzatamiz",
+      "topshiriq": "Batareya, lampochka va simdan oddiy zanjir yig‘ing.",
+      "yechim": "Lampochka yonadi.",
+      "mahsulot": "batareya, lampa, sim"
+     },
+     {
+      "nom": "Ta’sirlarni topamiz",
+      "topshiriq": "Hayotdagi tok ta’sirlariga misollar toping.",
+      "yechim": "Issiqlik, magnit, kimyoviy.",
+      "mahsulot": "misollar jadvali"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "I — q / t.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Xavfsizlik qoidalari",
+      "topshiriq": "Elektr xavfsizligi qoidalarini yozing.",
+      "yechim": "Ho‘l qo‘l bilan tegmaslik.",
+      "mahsulot": "qoidalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "12 / 4 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "30 / 5 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "2 · 10 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "Tok kuchi birligi?",
+      "javob": "amper"
+     },
+     {
+      "shart": "Metallarda tokni nima hosil qiladi?",
+      "javob": "erkin elektronlar"
+     },
+     {
+      "shart": "Tok ta’sirlari nechta asosiy?",
+      "javob": "3"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tok — zaryadlarning tartibsiz harakati deydi",
+      "sabab": "tok tartibli harakat",
+      "oldini_olish": "tartibli harakat"
+     },
+     {
+      "xato": "Metallarda tokni musbat zaryadlar hosil qiladi deydi",
+      "sabab": "erkin elektronlar hosil qiladi",
+      "oldini_olish": "elektronlar"
+     },
+     {
+      "xato": "Tok kuchini q · t deb hisoblaydi",
+      "sabab": "q ni t ga bo‘lish kerak",
+      "oldini_olish": "I — q / t"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "akkumulyator va generator"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "eritmalarda ionlar"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "elektr xavfsizligi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening batareyam»",
+     "muammo": "Limon yoki kartoshkadan tok manbai yasash mumkinmi?",
+     "mahsulot": "tajriba daftari",
+     "bosqichlar": [
+      "tajriba tayyorlash",
+      "element yasash",
+      "o‘lchash",
+      "xulosa yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tajriba tayyorlang",
+      "Element yasang",
+      "O‘lchang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba to‘g‘ri",
+      "o‘lchov aniq",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tok shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "4 sekundda 12 kulon.",
+       "topshiriq": "I?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "5 sekundda 30 kulon.",
+       "topshiriq": "I?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "2 amper, 10 sekund.",
+       "topshiriq": "q?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "Tok kuchi birligi.",
+       "topshiriq": "Nima?",
+       "javob": "amper",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Elektr toki",
+      "tarif": "zaryadlarning tartibli harakati"
+     },
+     {
+      "atama": "Tok manbai",
+      "tarif": "elektr maydon hosil qiluvchi qurilma"
+     },
+     {
+      "atama": "Erkin elektron",
+      "tarif": "metallda harakatlana oladigan elektron"
+     },
+     {
+      "atama": "Ion",
+      "tarif": "zaryadlangan atom yoki molekula"
+     },
+     {
+      "atama": "Tok kuchi",
+      "tarif": "bir sekunddagi zaryad miqdori"
+     },
+     {
+      "atama": "Amper",
+      "tarif": "tok kuchi birligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tok — zaryadlarning tartibli harakati",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Metallarda tokni ionlar hosil qiladi",
+      "togri": false,
+      "izoh": "erkin elektronlar"
+     },
+     {
+      "matn": "Tok uchun elektr maydon kerak",
+      "togri": true,
+      "izoh": "manba hosil qiladi"
+     },
+     {
+      "matn": "Generator mexanik energiyani elektrga aylantiradi",
+      "togri": true,
+      "izoh": "manba"
+     },
+     {
+      "matn": "12 / 4 — 3",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Tok yo‘nalishi manfiy qutbdan musbatga qarab olinadi",
+      "togri": false,
+      "izoh": "musbatdan manfiyga"
+     },
+     {
+      "matn": "Dazmol tokning issiqlik ta’siriga asoslangan",
+      "togri": true,
+      "izoh": "isiydi"
+     },
+     {
+      "matn": "Tok kuchi birligi volt",
+      "togri": false,
+      "izoh": "amper"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Elektr toki?",
+      "javob": "tartibli harakat"
+     },
+     {
+      "savol": "Metallda zarra?",
+      "javob": "erkin elektron"
+     },
+     {
+      "savol": "Shartlar?",
+      "javob": "erkin zaryad va maydon"
+     },
+     {
+      "savol": "Manba misoli?",
+      "javob": "akkumulyator"
+     },
+     {
+      "savol": "Birlik?",
+      "javob": "amper"
+     },
+     {
+      "savol": "Formula?",
+      "javob": "q / t"
+     },
+     {
+      "savol": "12 / 4?",
+      "javob": "3"
+     },
+     {
+      "savol": "2 · 10?",
+      "javob": "20"
+     },
+     {
+      "savol": "Ta’sirlar?",
+      "javob": "issiqlik, kimyoviy, magnit"
+     },
+     {
+      "savol": "Volta?",
+      "javob": "1800-yil"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "q va t?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "q ni t ga bo‘l.",
+      "savol": "q / t?"
+     },
+     {
+      "nom": "Yoz",
+      "matn": "Birlikni yoz.",
+      "savol": "amper?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Natijani tekshir.",
+      "savol": "I · t — q?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ho‘l qo‘l bilan elektr asboblariga tegish xavfli?",
+    "keys": {
+     "vaziyat": "Simdan 4 sekundda 12 kulon zaryad o‘tdi.",
+     "savollar": [
+      "Tok kuchi nechaga teng?",
+      "Qaysi formulani qo‘lladingiz?"
+     ]
+    },
+    "tezis": "I — q / t",
+    "taqqoslash": {
+     "a": "Metallarda tok",
+     "b": "Eritmalarda tok",
+     "umumiy": [
+      "zaryadlar tartibli harakat qiladi",
+      "tok hosil bo‘ladi"
+     ],
+     "a_farq": [
+      "erkin elektronlar",
+      "kimyoviy o‘zgarish yo‘q"
+     ],
+     "b_farq": [
+      "ionlar",
+      "moddalar ajraladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Elektr toki",
+     "shoxlar": [
+      {
+       "nom": "Shart",
+       "bandlar": [
+        "erkin zaryad",
+        "elektr maydon"
+       ]
+      },
+      {
+       "nom": "Manba",
+       "bandlar": [
+        "akkumulyator",
+        "generator"
+       ]
+      },
+      {
+       "nom": "Ta’sir",
+       "bandlar": [
+        "issiqlik",
+        "kimyoviy",
+        "magnit"
+       ]
+      },
+      {
+       "nom": "Tok kuchi",
+       "bandlar": [
+        "q / t",
+        "amper"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men zaryadlarning tartibli harakatiman. Men kimman?",
+     "javob": "elektr toki"
+    },
+    "hikmat": "Tok bor joyda ehtiyot bo‘l.",
+    "kalit_soz": "TOK",
+    "xato_yechim": {
+     "shart": "5 sekundda 30 kulon. I?",
+     "xato": "30 · 5",
+     "togri": "30 / 5 — 6 amper",
+     "sabab": "I — q / t, ko‘paytirmaymiz"
+    },
+    "guruh_nomlari": [
+     "Tokchilar",
+     "Manbachilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tok laboratoriyasi»",
+     "topshiriq": "Guruh tok hosil bo‘lishini o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "4 sekundda 12 kulon o‘tsa I?",
+     "B": "5 sekundda 30 kulon o‘tsa I?",
+     "C": "2 amper, 10 sekundda o‘tgan zaryad?"
+    },
+    "sinkveyn": [
+     "Tok",
+     "tez, ko‘rinmas",
+     "oqadi, isitadi, yoqadi",
+     "Elektronlar oqadi",
+     "Amper"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tokni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tok sharti",
+      "2-guruh: manbalar",
+      "3-guruh: ta’sirlar",
+      "4-guruh: hisob"
+     ],
+     "yakun": "Natijalar: 3; 6; 20."
+    }
+   }
+  },
+  {
+   "mavzu": "Elektr zanjiri",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Zanjir tarkibi",
+      "matn": "Elektr zanjiri tok manbai, iste’molchi (lampa, motor), kalit va ularni tutashtiruvchi simlardan iborat. Zanjirda tok bo‘lishi uchun u yopiq bo‘lishi kerak.",
+      "misol": "Chiroq, kalit, batareya va simlar — oddiy zanjir.",
+      "savol": "Zanjirda tok bo‘lishi uchun u qanday bo‘lishi kerak?",
+      "javob": "yopiq",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ochiq va yopiq",
+      "matn": "Kalit ochilsa zanjir uziladi va tok to‘xtaydi, yopilsa tok yana oqadi. Shuning uchun chiroqni yoqib-o‘chiramiz.",
+      "misol": "Xonadagi chiroq tugmasi — kalit.",
+      "savol": "Kalit ochilsa tok nima bo‘ladi?",
+      "javob": "to‘xtaydi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sxema belgilari",
+      "matn": "Zanjirni chizma — sxema bilan tasvirlaymiz. Har bir qurilmaning shartli belgisi bor: manba, lampa, kalit, rezistor, ampermetr, voltmetr. Sxema zanjirni tez va aniq o‘qishga yordam beradi.",
+      "misol": "Muhandislar sxema bo‘yicha asboblarni yig‘adi.",
+      "savol": "Zanjirning chizmasi nima deyiladi?",
+      "javob": "sxema",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘lchash asboblari",
+      "matn": "Tok kuchini ampermetr o‘lchaydi va u zanjirga ketma-ket ulanadi. Kuchlanishni voltmetr o‘lchaydi va u iste’molchiga parallel ulanadi.",
+      "misol": "Ampermetr zanjir ichida turadi.",
+      "savol": "Ampermetr zanjirga qanday ulanadi?",
+      "javob": "ketma-ket",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qisqa tutashuv",
+      "matn": "Agar tok iste’molchini aylanib, to‘g‘ridan to‘g‘ri manba qutblari orasida o‘tsa, qisqa tutashuv yuz beradi. Tok juda kuchayadi, simlar qizib, yong‘in chiqishi mumkin. Himoya uchun saqlagichlar (predoxranitel) o‘rnatiladi.",
+      "misol": "Saqlagich kuyib, zanjirni uzadi.",
+      "savol": "Qisqa tutashuvdan nima himoya qiladi?",
+      "javob": "saqlagich",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Zanjir: manba, iste’molchi, kalit, simlar. Yopiq zanjirda tok bor. Ampermetr ketma-ket, voltmetr parallel ulanadi.",
+    "misollar": [
+     {
+      "shart": "Lampochkadan 0,5 amper tok 60 sekund o‘tdi. O‘tgan zaryad? (q — I · t)",
+      "yechim": [
+       "q — I · t.",
+       "0,5 · 60.",
+       "Javob 30 kulon."
+      ],
+      "javob": "30 kulon"
+     },
+     {
+      "shart": "Ampermetr 2 amperni ko‘rsatdi, vaqt 10 sekund. Zaryad?",
+      "yechim": [
+       "2 · 10.",
+       "20.",
+       "Javob 20 kulon."
+      ],
+      "javob": "20 kulon"
+     },
+     {
+      "shart": "Zanjirda manba, 2 lampa, 1 kalit bor. Nechta qurilma (simlarsiz)?",
+      "yechim": [
+       "1 qo‘shamiz 2 qo‘shamiz 1.",
+       "4.",
+       "Javob 4 ta."
+      ],
+      "javob": "4 ta"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Zanjir yig‘amiz",
+      "topshiriq": "Batareya, lampa, kalit va simdan zanjir yig‘ing.",
+      "yechim": "Kalit yopilsa lampa yonadi.",
+      "mahsulot": "batareya, lampa, kalit"
+     },
+     {
+      "nom": "Sxema chizamiz",
+      "topshiriq": "Yig‘gan zanjiringiz sxemasini chizing.",
+      "yechim": "Belgilardan foydalaning.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Ochamiz va yopamiz",
+      "topshiriq": "Kalitni ochib-yopib, lampani kuzating.",
+      "yechim": "Uzilsa tok yo‘q.",
+      "mahsulot": "yig‘ilgan zanjir"
+     },
+     {
+      "nom": "Xavfsizlik",
+      "topshiriq": "Qisqa tutashuv xavfi haqida xulosa yozing.",
+      "yechim": "Saqlagich kerak.",
+      "mahsulot": "xulosa varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "0,5 · 60 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "2 · 10 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "1 + 2 + 1 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "Ampermetr qanday ulanadi?",
+      "javob": "ketma-ket"
+     },
+     {
+      "shart": "Voltmetr qanday ulanadi?",
+      "javob": "parallel"
+     },
+     {
+      "shart": "Tok uchun zanjir qanday bo‘lishi kerak?",
+      "javob": "yopiq"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ochiq zanjirda ham tok bor deydi",
+      "sabab": "ochiq zanjirda tok to‘xtaydi",
+      "oldini_olish": "yopiq bo‘lishi kerak"
+     },
+     {
+      "xato": "Voltmetrni ketma-ket ulaydi",
+      "sabab": "voltmetr parallel ulanadi",
+      "oldini_olish": "iste’molchiga parallel"
+     },
+     {
+      "xato": "Qisqa tutashuv xavfsiz deydi",
+      "sabab": "tok juda kuchayadi",
+      "oldini_olish": "yong‘in xavfi bor"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "elektr sxemalari"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "chiroq tugmasi"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "sxemalar va belgilar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening zanjirim»",
+     "muammo": "Chiroq va kalitli zanjirni qanday yig‘amiz va chizamiz?",
+     "mahsulot": "zanjir maketi",
+     "bosqichlar": [
+      "asboblarni tanlash",
+      "zanjir yig‘ish",
+      "sxema chizish",
+      "sinash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Asboblarni tanlang",
+      "Zanjir yig‘ing",
+      "Sxema chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "zanjir ishlaydi",
+      "sxema to‘g‘ri",
+      "xavfsizlik saqlangan",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Zanjir fabrikasi»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "0,5 amper, 60 sekund.",
+       "topshiriq": "q?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "2 amper, 10 sekund.",
+       "topshiriq": "q?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "Voltmetr qanday ulanadi?",
+       "topshiriq": "Qanday?",
+       "javob": "parallel",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sex",
+       "matn": "Ampermetr qanday ulanadi?",
+       "topshiriq": "Qanday?",
+       "javob": "ketma-ket",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi asbob qayerda?",
+      "Zanjir yopiqmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Elektr zanjiri",
+      "tarif": "tok yo‘li"
+     },
+     {
+      "atama": "Kalit",
+      "tarif": "zanjirni ochib-yopuvchi qurilma"
+     },
+     {
+      "atama": "Iste’molchi",
+      "tarif": "elektr energiyasini sarflovchi qurilma"
+     },
+     {
+      "atama": "Sxema",
+      "tarif": "zanjirning shartli chizmasi"
+     },
+     {
+      "atama": "Ampermetr",
+      "tarif": "tok kuchi o‘lchagich"
+     },
+     {
+      "atama": "Voltmetr",
+      "tarif": "kuchlanish o‘lchagich"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tok uchun zanjir yopiq bo‘lishi kerak",
+      "togri": true,
+      "izoh": "uzilsa tok yo‘q"
+     },
+     {
+      "matn": "Ampermetr parallel ulanadi",
+      "togri": false,
+      "izoh": "ketma-ket"
+     },
+     {
+      "matn": "Voltmetr parallel ulanadi",
+      "togri": true,
+      "izoh": "kuchlanish"
+     },
+     {
+      "matn": "Kalit ochilsa tok oqadi",
+      "togri": false,
+      "izoh": "to‘xtaydi"
+     },
+     {
+      "matn": "0,5 · 60 — 30",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Sxema — zanjirning chizmasi",
+      "togri": true,
+      "izoh": "belgilar bilan"
+     },
+     {
+      "matn": "Qisqa tutashuv foydali",
+      "togri": false,
+      "izoh": "xavfli"
+     },
+     {
+      "matn": "Saqlagich zanjirni uzib himoya qiladi",
+      "togri": true,
+      "izoh": "kuyadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Zanjir tarkibi?",
+      "javob": "manba, iste’molchi, kalit, simlar"
+     },
+     {
+      "savol": "Yopiq zanjir?",
+      "javob": "tok oqadi"
+     },
+     {
+      "savol": "Kalit ochilsa?",
+      "javob": "tok to‘xtaydi"
+     },
+     {
+      "savol": "Sxema?",
+      "javob": "shartli chizma"
+     },
+     {
+      "savol": "Ampermetr?",
+      "javob": "ketma-ket"
+     },
+     {
+      "savol": "Voltmetr?",
+      "javob": "parallel"
+     },
+     {
+      "savol": "0,5 · 60?",
+      "javob": "30"
+     },
+     {
+      "savol": "2 · 10?",
+      "javob": "20"
+     },
+     {
+      "savol": "Qisqa tutashuv?",
+      "javob": "xavfli"
+     },
+     {
+      "savol": "Himoya?",
+      "javob": "saqlagich"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yig‘",
+      "matn": "Zanjir yig‘.",
+      "savol": "Yonadimi?"
+     },
+     {
+      "nom": "Chiz",
+      "matn": "Sxema chiz.",
+      "savol": "Belgilar to‘g‘rimi?"
+     },
+     {
+      "nom": "Ula",
+      "matn": "Asbobni ula.",
+      "savol": "Ketma-ketmi, parallelmi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Zanjir yopiqmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun qisqa tutashuv yong‘inga olib kelishi mumkin?",
+    "keys": {
+     "vaziyat": "Chiroq kalit bosilganda yonmayapti.",
+     "savollar": [
+      "Zanjirda nima uzilgan bo‘lishi mumkin?",
+      "Qanday tekshirasiz?"
+     ]
+    },
+    "tezis": "Yopiq zanjirda tok bor",
+    "taqqoslash": {
+     "a": "Ampermetr",
+     "b": "Voltmetr",
+     "umumiy": [
+      "o‘lchash asbobi",
+      "zanjirga ulanadi"
+     ],
+     "a_farq": [
+      "tok kuchini o‘lchaydi",
+      "ketma-ket ulanadi"
+     ],
+     "b_farq": [
+      "kuchlanishni o‘lchaydi",
+      "parallel ulanadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Elektr zanjiri",
+     "shoxlar": [
+      {
+       "nom": "Tarkib",
+       "bandlar": [
+        "manba",
+        "iste’molchi",
+        "kalit",
+        "simlar"
+       ]
+      },
+      {
+       "nom": "Holat",
+       "bandlar": [
+        "ochiq",
+        "yopiq"
+       ]
+      },
+      {
+       "nom": "Asboblar",
+       "bandlar": [
+        "ampermetr",
+        "voltmetr"
+       ]
+      },
+      {
+       "nom": "Xavf",
+       "bandlar": [
+        "qisqa tutashuv",
+        "saqlagich"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men manba, iste’molchi, kalit va simlardan iboratman. Men kimman?",
+     "javob": "elektr zanjiri"
+    },
+    "hikmat": "Zanjir uzilsa, tok to‘xtaydi.",
+    "kalit_soz": "ZANJIR",
+    "xato_yechim": {
+     "shart": "Voltmetr zanjirga qanday ulanadi?",
+     "xato": "ketma-ket",
+     "togri": "iste’molchiga parallel",
+     "sabab": "ketma-ket ulanadigani ampermetr"
+    },
+    "guruh_nomlari": [
+     "Zanjirchilar",
+     "Sxemachilar",
+     "Asbobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Zanjir ustaxonasi»",
+     "topshiriq": "Guruh zanjir yig‘ib, sxema chizadi."
+    },
+    "vazifalar": {
+     "A": "Zanjir yig‘ib, lampani yoqing.",
+     "B": "Sxemasini shartli belgilar bilan chizing.",
+     "C": "0,5 amper, 60 sekundda zaryadni toping."
+    },
+    "sinkveyn": [
+     "Zanjir",
+     "yopiq, uzun",
+     "yonadi, o‘chadi, ulanadi",
+     "Tok yopiq yo‘lda oqadi",
+     "Kalit"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh zanjirni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tarkib",
+      "2-guruh: sxema",
+      "3-guruh: asboblar",
+      "4-guruh: xavfsizlik"
+     ],
+     "yakun": "Natijalar: 30; 20; 4."
+    }
+   }
+  },
+  {
+   "mavzu": "Tok kuchi va kuchlanish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tok kuchi",
+      "matn": "Tok kuchi bir sekundda o‘tkazgichning ko‘ndalang kesimidan o‘tgan zaryad miqdoriga teng: I — q / t. Birligi — amper (A). 1 amper — 1 sekundda 1 kulon zaryad o‘tishi. Birlik fransuz olimi Andre Mari Amper nomi bilan atalgan.",
+      "misol": "3 amper — har sekundda 3 kulon.",
+      "savol": "6 / 2 nechaga teng?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kuchlanish",
+      "matn": "Tok manbai zaryadni ko‘chirishda ish bajaradi. Kuchlanish — shu ishning ko‘chgan zaryadga nisbati: U — A / q. Birligi — volt (V). 1 volt — 1 kulon zaryadni ko‘chirishda 1 joul ish.",
+      "misol": "Batareya kuchlanishi 1,5 volt.",
+      "savol": "Kuchlanish birligi nima?",
+      "javob": "volt",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tipik qiymatlar",
+      "matn": "Qo‘l fonarining batareyasi taxminan 1,5 volt, avtomobil akkumulyatori 12 volt, uy rozetkasi O‘zbekistonda 220 volt. Qanchalik katta kuchlanish, shunchalik xavfliroq.",
+      "misol": "Rozetka bilan ehtiyot bo‘lish kerak.",
+      "savol": "Uy rozetkasi kuchlanishi necha volt?",
+      "javob": "220",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘lchash",
+      "matn": "Tok kuchini ampermetr bilan zanjirga ketma-ket ulab, kuchlanishni voltmetr bilan iste’molchiga parallel ulab o‘lchaymiz. Asbobning ko‘rsatkichini o‘qishdan oldin shkala bo‘linma bahosini aniqlaymiz.",
+      "misol": "Voltmetr lampa uchlariga ulanadi.",
+      "savol": "Voltmetr qanday ulanadi?",
+      "javob": "parallel",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bog‘lanish",
+      "matn": "Zanjirda kuchlanish katta bo‘lsa, tok kuchi ham katta bo‘ladi. Bu bog‘lanishni keyingi mavzuda Om qonuni orqali o‘rganamiz. Milliampermetr kichik toklarni, kilovoltmetr katta kuchlanishlarni o‘lchaydi.",
+      "misol": "Kuchli batareyada lampa yorqinroq yonadi.",
+      "savol": "Kuchlanish oshsa, tok kuchi qanday o‘zgaradi?",
+      "javob": "ortadi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "I — q / t, birligi amper. U — A / q, birligi volt. Ampermetr ketma-ket, voltmetr parallel ulanadi.",
+    "misollar": [
+     {
+      "shart": "Ko‘chirilgan zaryad 10 kulon, bajarilgan ish 60 joul. Kuchlanish? (U — A / q)",
+      "yechim": [
+       "U — A / q.",
+       "60 / 10.",
+       "Javob 6 volt."
+      ],
+      "javob": "6 volt"
+     },
+     {
+      "shart": "5 kulon zaryadni ko‘chirishda 1100 joul ish bajarildi. Kuchlanish?",
+      "yechim": [
+       "1100 / 5.",
+       "220.",
+       "Javob 220 volt."
+      ],
+      "javob": "220 volt"
+     },
+     {
+      "shart": "Kuchlanish 4,5 volt, zaryad 20 kulon. Bajarilgan ish? (A — U · q)",
+      "yechim": [
+       "A — U · q.",
+       "4,5 · 20.",
+       "Javob 90 joul."
+      ],
+      "javob": "90 joul"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Batareyani o‘lchaymiz",
+      "topshiriq": "Voltmetr bilan turli batareyalar kuchlanishini o‘lchang.",
+      "yechim": "Qiymatlarni jadvalga yozing.",
+      "mahsulot": "voltmetr, batareyalar"
+     },
+     {
+      "nom": "Tok kuchini o‘lchaymiz",
+      "topshiriq": "Ampermetrni ketma-ket ulab, lampadan o‘tgan tokni o‘lchang.",
+      "yechim": "Ketma-ket ulang.",
+      "mahsulot": "ampermetr, lampa"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "A / q va q / t.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Xavfsizlik qoidalari",
+      "topshiriq": "Yuqori kuchlanishda ehtiyot choralarini yozing.",
+      "yechim": "Rozetkaga begona narsa tiqmaslik.",
+      "mahsulot": "qoidalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "60 / 10 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "1100 / 5 nechaga teng?",
+      "javob": "220"
+     },
+     {
+      "shart": "4,5 · 20 nechaga teng?",
+      "javob": "90"
+     },
+     {
+      "shart": "Kuchlanish birligi?",
+      "javob": "volt"
+     },
+     {
+      "shart": "Tok kuchi birligi?",
+      "javob": "amper"
+     },
+     {
+      "shart": "Rozetka kuchlanishi necha volt?",
+      "javob": "220"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Kuchlanishni amperda o‘lchaydi",
+      "sabab": "kuchlanish voltda o‘lchanadi",
+      "oldini_olish": "birlik volt"
+     },
+     {
+      "xato": "Voltmetrni ketma-ket ulaydi",
+      "sabab": "voltmetr parallel ulanadi",
+      "oldini_olish": "iste’molchiga parallel"
+     },
+     {
+      "xato": "U ni q / A deb hisoblaydi",
+      "sabab": "ishni zaryadga bo‘lish kerak",
+      "oldini_olish": "U — A / q"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "batareyalar va akkumulyatorlar"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "rozetka va xavfsizlik"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "bo‘lish va ko‘paytirish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kuchlanish xaritasi»",
+     "muammo": "Uydagi qurilmalarning kuchlanishini qanday aniqlaymiz?",
+     "mahsulot": "jadval va plakat",
+     "bosqichlar": [
+      "qurilmalarni tanlash",
+      "pasportdan o‘qish",
+      "jadval tuzish",
+      "xavfsizlik qoidalari",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Qurilmalarni tanlang",
+      "Ma’lumot yig‘ing",
+      "Jadval tuzing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "ma’lumot to‘g‘ri",
+      "jadval aniq",
+      "qoidalar mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Volt vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "1-tepalik",
+       "matn": "A 60 joul, q 10 kulon.",
+       "topshiriq": "U?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "2-tepalik",
+       "matn": "A 1100 joul, q 5 kulon.",
+       "topshiriq": "U?",
+       "javob": "220",
+       "rasm": ""
+      },
+      {
+       "nom": "3-tepalik",
+       "matn": "U 4,5 volt, q 20 kulon.",
+       "topshiriq": "A?",
+       "javob": "90",
+       "rasm": ""
+      },
+      {
+       "nom": "4-tepalik",
+       "matn": "Rozetka kuchlanishi.",
+       "topshiriq": "Necha volt?",
+       "javob": "220",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tok kuchi",
+      "tarif": "sekundda o‘tgan zaryad"
+     },
+     {
+      "atama": "Kuchlanish",
+      "tarif": "ishning zaryadga nisbati"
+     },
+     {
+      "atama": "Amper",
+      "tarif": "tok kuchi birligi"
+     },
+     {
+      "atama": "Volt",
+      "tarif": "kuchlanish birligi"
+     },
+     {
+      "atama": "Ampermetr",
+      "tarif": "tok kuchini o‘lchaydi"
+     },
+     {
+      "atama": "Voltmetr",
+      "tarif": "kuchlanishni o‘lchaydi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "I — q / t",
+      "togri": true,
+      "izoh": "tok kuchi"
+     },
+     {
+      "matn": "Kuchlanish amperda o‘lchanadi",
+      "togri": false,
+      "izoh": "voltda"
+     },
+     {
+      "matn": "U — A / q",
+      "togri": true,
+      "izoh": "kuchlanish"
+     },
+     {
+      "matn": "Voltmetr ketma-ket ulanadi",
+      "togri": false,
+      "izoh": "parallel"
+     },
+     {
+      "matn": "60 / 10 — 6",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Uy rozetkasi 220 volt",
+      "togri": true,
+      "izoh": "O‘zbekiston"
+     },
+     {
+      "matn": "1 volt — 1 joul / 1 kulon",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Ampermetr parallel ulanadi",
+      "togri": false,
+      "izoh": "ketma-ket"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tok kuchi formulasi?",
+      "javob": "q / t"
+     },
+     {
+      "savol": "Kuchlanish formulasi?",
+      "javob": "A / q"
+     },
+     {
+      "savol": "Tok kuchi birligi?",
+      "javob": "amper"
+     },
+     {
+      "savol": "Kuchlanish birligi?",
+      "javob": "volt"
+     },
+     {
+      "savol": "60 / 10?",
+      "javob": "6"
+     },
+     {
+      "savol": "1100 / 5?",
+      "javob": "220"
+     },
+     {
+      "savol": "4,5 · 20?",
+      "javob": "90"
+     },
+     {
+      "savol": "Ampermetr?",
+      "javob": "ketma-ket"
+     },
+     {
+      "savol": "Voltmetr?",
+      "javob": "parallel"
+     },
+     {
+      "savol": "Rozetka?",
+      "javob": "220 volt"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "A va q?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "A ni q ga bo‘l.",
+      "savol": "A / q?"
+     },
+     {
+      "nom": "Birlik",
+      "matn": "Birlikni yoz.",
+      "savol": "volt?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari hisob qil.",
+      "savol": "U · q — A?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun rozetka kuchlanishi batareyaniki kabi xavfsiz emas?",
+    "keys": {
+     "vaziyat": "Batareya 5 kulon zaryadni ko‘chirishda 1100 joul ish bajardi.",
+     "savollar": [
+      "Kuchlanish nechaga teng?",
+      "Bu qaysi tarmoq kuchlanishiga to‘g‘ri keladi?"
+     ]
+    },
+    "tezis": "U — A / q",
+    "taqqoslash": {
+     "a": "Tok kuchi",
+     "b": "Kuchlanish",
+     "umumiy": [
+      "zanjir kattaliklari",
+      "o‘lchanadi"
+     ],
+     "a_farq": [
+      "amper",
+      "ampermetr, ketma-ket"
+     ],
+     "b_farq": [
+      "volt",
+      "voltmetr, parallel"
+     ]
+    },
+    "klaster": {
+     "markaz": "Tok kuchi va kuchlanish",
+     "shoxlar": [
+      {
+       "nom": "Tok kuchi",
+       "bandlar": [
+        "q / t",
+        "amper"
+       ]
+      },
+      {
+       "nom": "Kuchlanish",
+       "bandlar": [
+        "A / q",
+        "volt"
+       ]
+      },
+      {
+       "nom": "Asboblar",
+       "bandlar": [
+        "ampermetr",
+        "voltmetr"
+       ]
+      },
+      {
+       "nom": "Qiymatlar",
+       "bandlar": [
+        "1,5 volt",
+        "220 volt"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ishning zaryadga nisbatiman, birligim volt. Men kimman?",
+     "javob": "kuchlanish"
+    },
+    "hikmat": "Kuchlanish — ish va zaryad nisbati.",
+    "kalit_soz": "KUCHLANISH",
+    "xato_yechim": {
+     "shart": "A 60 joul, q 10 kulon. U?",
+     "xato": "60 · 10",
+     "togri": "60 / 10 — 6 volt",
+     "sabab": "U — A / q, ishni zaryadga bo‘lamiz"
+    },
+    "guruh_nomlari": [
+     "Amperchilar",
+     "Voltchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tok va kuchlanish laboratoriyasi»",
+     "topshiriq": "Guruh tok kuchi va kuchlanishni o‘lchaydi."
+    },
+    "vazifalar": {
+     "A": "A 60 joul, q 10 kulon bo‘lsa U?",
+     "B": "A 1100 joul, q 5 kulon bo‘lsa U?",
+     "C": "U 4,5 volt, q 20 kulon bo‘lsa A?"
+    },
+    "sinkveyn": [
+     "Volt",
+     "kuchli, tok",
+     "ko‘chiradi, o‘lchaydi, beradi",
+     "Kuchlanish ish bajaradi",
+     "Amper"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tok kuchi va kuchlanishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tok kuchi",
+      "2-guruh: kuchlanish",
+      "3-guruh: asboblar",
+      "4-guruh: xavfsizlik"
+     ],
+     "yakun": "Natijalar: 6; 220; 90."
+    }
+   }
   }
  ]
 }
