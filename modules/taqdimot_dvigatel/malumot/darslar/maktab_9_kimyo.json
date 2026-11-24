@@ -2772,6 +2772,1394 @@
      "yakun": "Natijalar: musbat 5; 2 mol; 156 litr."
     }
    }
+  },
+  {
+   "mavzu": "Ammiak",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ammiak nima",
+      "matn": "Ammiak — azot va vodorodning birikmasi, molekulasida bitta azot va uchta vodorod atomi bor. Molyar massasi 17. Rangsiz, o‘tkir hidli gaz, havodan yengil: 17 / 29 — taxminan 0,59. Vodorodga nisbatan zichligi 17 / 2 — 8,5. Zaharli, uni nafas bilan ko‘p olish xavfli.",
+      "misol": "Nashatir spirti — ammiakning suvli eritmasi.",
+      "savol": "Ammiak molyar massasi?",
+      "javob": "17",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Suvda erishi",
+      "matn": "Ammiak suvda juda yaxshi eriydi: bir hajm suvda taxminan 700 hajm gaz eriydi. Eritmasi kuchsiz asos, lakmusni ko‘k qiladi. Ammiak «favvora» tajribasida shisha ichidagi ammiak suv tortib, favvora hosil qiladi. Eritma — «ammiakli suv», u o‘g‘it sifatida ham, tozalash vositasi sifatida ham ishlatiladi.",
+      "misol": "Favvora tajribasi ammiakning ajoyib eruvchanligini ko‘rsatadi.",
+      "savol": "Ammiak suvda qanday eriydi?",
+      "javob": "juda yaxshi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kislotalar bilan reaksiya",
+      "matn": "Ammiak kislotalar bilan ammoniy tuzlarini hosil qiladi. Ammiak va xlorid kislota bug‘lari uchrashsa, oq tutun — ammoniy xlorid hosil bo‘ladi. Ammoniy tuzlari o‘g‘it sifatida muhim: ammoniy nitrat, ammoniy sulfat. Qizdirilganda ular parchalanadi.",
+      "misol": "Ikki ochiq idishdan oq tutun chiqadi.",
+      "savol": "Ammiak kislota bilan nima hosil qiladi?",
+      "javob": "ammoniy tuzi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Olinishi",
+      "matn": "Laboratoriyada ammoniy xloridni so‘ndirilgan ohak bilan qizdirib olinadi: ikki mol ammoniy xloriddan ikki mol ammiak chiqadi. Sanoatda azot va vodoroddan Xaber-Bosh jarayoni bilan sintez qilinadi: bosim yuqori, harorat taxminan 450 daraja, katalizator temir. Ammiak yig‘iladigan idish teskari ushlanadi, chunki gaz yengil.",
+      "misol": "Yengil gaz yuqoriga ko‘tariladi.",
+      "savol": "Laboratoriyada ammiak qanday olinadi?",
+      "javob": "ammoniy xloridni ohak bilan qizdirib",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanishi va xavfsizlik",
+      "matn": "Ammiak o‘g‘it, nitrat kislota va dori ishlab chiqarishda xomashyo. Suyuq ammiak sovutgichlarda ishlatiladi. Hidi o‘tkir bo‘lgani uchun, kerak bo‘lsa, ogohlantiradi. Tajribada nafas yo‘llari va ko‘zni himoyalang, xonani shamollating, nashatir spirtini ehtiyotkorlik bilan hidlang.",
+      "misol": "Qo‘lni yuvish va ko‘zni himoyalash zarur.",
+      "savol": "Ammiak nimaga xomashyo?",
+      "javob": "o‘g‘it va nitrat kislotaga",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ammiak M — 17, havodan yengil, suvda juda yaxshi eriydi. Kislota bilan ammoniy tuzi beradi.",
+    "misollar": [
+     {
+      "shart": "5,6 litr ammiak (normal sharoit, M — 17). Massasi?",
+      "yechim": [
+       "n — 5,6 / 22,4 — 0,25 mol.",
+       "m — 0,25 · 17.",
+       "Javob 4,25 gramm."
+      ],
+      "javob": "4,25 gramm"
+     },
+     {
+      "shart": "Ammiakning vodorodga nisbiy zichligi (M — 17, vodorod M — 2)?",
+      "yechim": [
+       "D — M1 / M2.",
+       "17 / 2.",
+       "Javob 8,5."
+      ],
+      "javob": "8,5"
+     },
+     {
+      "shart": "107 gramm ammoniy xlorid (M — 53,5) ohak bilan qizdirildi, ikki mol ammoniy xloriddan ikki mol ammiak chiqadi. Ammiak hajmi?",
+      "yechim": [
+       "n — 107 / 53,5 — 2 mol.",
+       "Ammiak ham 2 mol.",
+       "V — 2 · 22,4 — 44,8 litr."
+      ],
+      "javob": "44,8 litr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Favvora tajribasi",
+      "topshiriq": "Videoda ammiak favvorasini kuzating.",
+      "yechim": "Suvga qanday tortiladi.",
+      "mahsulot": "video"
+     },
+     {
+      "nom": "Oq tutun",
+      "topshiriq": "Ammiak va xlorid kislota bug‘lari uchrashuvini videoda kuzating.",
+      "yechim": "Oq tutun.",
+      "mahsulot": "video"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Mol va hajm.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Xavfsizlik plakati",
+      "topshiriq": "Ammiak bilan ishlash qoidalarini chizing.",
+      "yechim": "Himoya va shamollatish.",
+      "mahsulot": "qog‘oz, flomaster"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "5,6 / 22,4 nechaga teng?",
+      "javob": "0,25"
+     },
+     {
+      "shart": "0,25 · 17 nechaga teng?",
+      "javob": "4,25"
+     },
+     {
+      "shart": "17 / 2 nechaga teng?",
+      "javob": "8,5"
+     },
+     {
+      "shart": "2 · 22,4 nechaga teng?",
+      "javob": "44,8"
+     },
+     {
+      "shart": "107 / 53,5 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "Ammiak molyar massasi?",
+      "javob": "17"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ammiak havodan og‘ir deydi",
+      "sabab": "yengil",
+      "oldini_olish": "17 va 29"
+     },
+     {
+      "xato": "Ammiak suvda yomon eriydi deydi",
+      "sabab": "juda yaxshi eriydi",
+      "oldini_olish": "favvora tajribasi"
+     },
+     {
+      "xato": "Ammiak hidsiz deydi",
+      "sabab": "o‘tkir hidli",
+      "oldini_olish": "ehtiyotkorlik kerak"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "azotli o‘g‘it"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "sovutgich"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "nashatir spirti"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ammiak sirlari»",
+     "muammo": "Ammiak qanday xossalarga ega va nima uchun kerak?",
+     "mahsulot": "plakat va hisob",
+     "bosqichlar": [
+      "xossalarni o‘rganish",
+      "videoni kuzatish",
+      "hisoblash",
+      "xavfsizlik qoidalari",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Xossalarni o‘rganing",
+      "Hisoblang",
+      "Qoidalarni yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xossalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ammiak zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "5,6 litr ammiak.",
+       "topshiriq": "Massa gramm?",
+       "javob": "4,25",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "M 17 va 2.",
+       "topshiriq": "Nisbiy zichlik?",
+       "javob": "8,5",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "107 gramm ammoniy xlorid.",
+       "topshiriq": "Ammiak litr?",
+       "javob": "44,8",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sex",
+       "matn": "Ammiak molyar massasi.",
+       "topshiriq": "Qancha?",
+       "javob": "17",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Molga o‘tdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ammiak",
+      "tarif": "azotning vodorodli birikmasi"
+     },
+     {
+      "atama": "Nashatir spirti",
+      "tarif": "ammiakning suvli eritmasi"
+     },
+     {
+      "atama": "Ammoniy tuzi",
+      "tarif": "ammiak va kislota mahsuloti"
+     },
+     {
+      "atama": "Xaber-Bosh jarayoni",
+      "tarif": "sanoat sintezi"
+     },
+     {
+      "atama": "Favvora tajribasi",
+      "tarif": "ammiak eruvchanligi ko‘rsatkichi"
+     },
+     {
+      "atama": "Nisbiy zichlik",
+      "tarif": "ikki gaz zichligi nisbati"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ammiak havodan yengil",
+      "togri": true,
+      "izoh": "17 va 29"
+     },
+     {
+      "matn": "Ammiak suvda yomon eriydi",
+      "togri": false,
+      "izoh": "juda yaxshi"
+     },
+     {
+      "matn": "Ammiak molyar massasi 17",
+      "togri": true,
+      "izoh": "14 plyus 3"
+     },
+     {
+      "matn": "Eritma kuchsiz asos",
+      "togri": true,
+      "izoh": "lakmus ko‘k"
+     },
+     {
+      "matn": "0,25 · 17 — 4,25",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Ammiak kislota bilan ammoniy tuzi beradi",
+      "togri": true,
+      "izoh": "oq tutun"
+     },
+     {
+      "matn": "Sanoatda ammiak katalizatorsiz olinadi",
+      "togri": false,
+      "izoh": "temir katalizator"
+     },
+     {
+      "matn": "107 / 53,5 — 2",
+      "togri": true,
+      "izoh": "mol"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ammiak?",
+      "javob": "azot va vodorod birikmasi"
+     },
+     {
+      "savol": "M?",
+      "javob": "17"
+     },
+     {
+      "savol": "Hidi?",
+      "javob": "o‘tkir"
+     },
+     {
+      "savol": "Suvda?",
+      "javob": "juda yaxshi eriydi"
+     },
+     {
+      "savol": "Eritma?",
+      "javob": "kuchsiz asos"
+     },
+     {
+      "savol": "Kislota bilan?",
+      "javob": "ammoniy tuzi"
+     },
+     {
+      "savol": "5,6 / 22,4?",
+      "javob": "0,25"
+     },
+     {
+      "savol": "17 / 2?",
+      "javob": "8,5"
+     },
+     {
+      "savol": "107 / 53,5?",
+      "javob": "2"
+     },
+     {
+      "savol": "Sintez?",
+      "javob": "Xaber-Bosh"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Gaz xossalarini kuzat.",
+      "savol": "Hidi, rangi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Mol va massani top.",
+      "savol": "n · M?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Zichlikni solishtir.",
+      "savol": "Havodan yengilmi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Xavfsizlik?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ammiak yig‘iladigan idish teskari ushlanadi?",
+    "keys": {
+     "vaziyat": "Laboratoriyada ammiak yengil gaz bo‘lgani uchun idish tubi tepada.",
+     "savollar": [
+      "Ammiak havodan yengilmi?",
+      "Nega idish teskari?"
+     ]
+    },
+    "tezis": "Ammiak M — 17, yengil, yaxshi eriydi",
+    "taqqoslash": {
+     "a": "Ammiak",
+     "b": "Ammoniy tuzi",
+     "umumiy": [
+      "azot birikmasi",
+      "o‘g‘itda ishlatiladi"
+     ],
+     "a_farq": [
+      "gaz",
+      "o‘tkir hid"
+     ],
+     "b_farq": [
+      "qattiq tuz",
+      "hidsiz"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ammiak",
+     "shoxlar": [
+      {
+       "nom": "Xossa",
+       "bandlar": [
+        "gaz",
+        "o‘tkir hid",
+        "yengil"
+       ]
+      },
+      {
+       "nom": "Erishi",
+       "bandlar": [
+        "700 hajm",
+        "favvora"
+       ]
+      },
+      {
+       "nom": "Reaksiya",
+       "bandlar": [
+        "kislota",
+        "ammoniy tuzi"
+       ]
+      },
+      {
+       "nom": "Olinishi",
+       "bandlar": [
+        "laboratoriya",
+        "Xaber-Bosh"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men o‘tkir hidli, suvda yaxshi eriydigan yengil gazman. Men kimman?",
+     "javob": "ammiak"
+    },
+    "hikmat": "Ammiak yengil gaz.",
+    "kalit_soz": "AMMIAK",
+    "xato_yechim": {
+     "shart": "Ammiak suvda eriydimi?",
+     "xato": "yomon eriydi",
+     "togri": "juda yaxshi eriydi",
+     "sabab": "700 hajm"
+    },
+    "guruh_nomlari": [
+     "Ammiakchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ammiak sirlari»",
+     "topshiriq": "Guruh ammiak xossalarini o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "5,6 litr ammiak massasi?",
+     "B": "Vodorodga nisbiy zichligi?",
+     "C": "107 gramm NH4Cl dan ammiak?"
+    },
+    "sinkveyn": [
+     "Ammiak",
+     "o‘tkir, yengil",
+     "eriydi, hidlanadi, bog‘lanadi",
+     "Suvda yaxshi eriydi",
+     "Nashatir"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ammiakni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: xossalar",
+      "2-guruh: erishi",
+      "3-guruh: reaksiyalar",
+      "4-guruh: olinishi"
+     ],
+     "yakun": "Natijalar: 4,25 gramm; 8,5; 44,8 litr."
+    }
+   }
+  },
+  {
+   "mavzu": "Fosfor",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Fosfor elementi",
+      "matn": "Fosfor — V guruh elementi, tartib raqami 15, qavatlari 2, 8, 5, atom massasi 31. 1669-yilda Gamburglik Xennig Brand uni siydikdan ajratib olgan. «Fosfor» — grekcha «yorug‘lik tashuvchi», chunki qorong‘uda yaltiraydi. Tabiatda erkin holda uchramaydi, fosfatlar tarkibida bo‘ladi.",
+      "misol": "Qorong‘uda oq fosfor yashil nur sochadi.",
+      "savol": "Fosfor kashfiyoti qaysi yilda?",
+      "javob": "1669",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Allotropik shakllar",
+      "matn": "Fosforning bir necha shakli bor. Oq fosfor — yumshoq, zaharli, havoda o‘z-o‘zidan yonadi, shuning uchun suv ostida saqlanadi. Qizil fosfor — kukun, zaharsizroq, barqaror. Qora fosfor — eng barqaror, tok o‘tkazadi. Bir elementning turli shakllari — allotropik shakllar.",
+      "misol": "Gugurt qutisining yon tomonida qizil fosfor bor.",
+      "savol": "Qaysi fosfor suv ostida saqlanadi?",
+      "javob": "oq",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yonishi va oksid",
+      "matn": "Fosfor kislorodda yorqin yonib, fosfor oksid hosil qiladi: to‘rt atom fosfor va besh molekula kislorod ikki molekula fosfor oksid beradi. Fosfor oksid molyar massasi 2 · 31 plyus 5 · 16 — 142. U suv bilan fosfat kislota (M — 98) hosil qiladi. Fosfat kislota o‘g‘it va ichimlik ishlab chiqarishda ishlatiladi.",
+      "misol": "Fosfat kislota gazlangan ichimliklarda ham bor.",
+      "savol": "Fosfor oksid molyar massasi?",
+      "javob": "142",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tirik tabiatda",
+      "matn": "Fosfor DNK va RNK, shuningdek, energiya tashuvchi ATF molekulasi tarkibida. Suyak va tishlarda kaltsiy fosfat bor: uning formulasi bo‘yicha fosfor massa ulushi 62 / 310 — 0,2, ya’ni 20 foiz. Fosforsiz hujayra hayot kechirmaydi. Fosforga boy ovqat — baliq, sut, yong‘oq.",
+      "misol": "Suyaklarni mustahkam qiladi.",
+      "savol": "Fosfor suyakda qaysi birikma tarkibida?",
+      "javob": "kaltsiy fosfat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sanoat va ekologiya",
+      "matn": "O‘zbekistonda Qizilqumda fosforit konlari bor, ulardan fosforli o‘g‘it olinadi. Ortiqcha fosfat daryo va ko‘llarga tushsa, suv o‘tlari haddan ortiq ko‘payadi, suv ifloslanadi — bu evtrofikatsiya. Shuning uchun o‘g‘itni me’yorida ishlatish kerak.",
+      "misol": "Suv gullashi — evtrofikatsiya belgisi.",
+      "savol": "Evtrofikatsiya sababi?",
+      "javob": "ortiqcha fosfat",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Fosfor — V guruh, raqami 15. Oq, qizil, qora shakl. Fosfor oksid M — 142. Hayot uchun zarur.",
+    "misollar": [
+     {
+      "shart": "Fosfor oksid (ikki fosfor, besh kislorod): molyar massa?",
+      "yechim": [
+       "2 · 31 plyus 5 · 16.",
+       "62 plyus 80.",
+       "Javob 142."
+      ],
+      "javob": "142"
+     },
+     {
+      "shart": "31 gramm fosfor (1 mol) yonadi, 4 mol fosfordan 2 mol oksid. Oksid massasi?",
+      "yechim": [
+       "1 mol fosfordan 0,5 mol oksid.",
+       "0,5 · 142.",
+       "Javob 71 gramm."
+      ],
+      "javob": "71 gramm"
+     },
+     {
+      "shart": "Kaltsiy fosfat molyar massasi 310, tarkibida 62 fosfor. Ulush?",
+      "yechim": [
+       "62 / 310.",
+       "0,2.",
+       "Javob 20 foiz."
+      ],
+      "javob": "20 foiz"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Gugurt tajribasi",
+      "topshiriq": "Gugurt qutisi yon tomonini kuzating.",
+      "yechim": "Qizil fosfor.",
+      "mahsulot": "gugurt qutisi"
+     },
+     {
+      "nom": "Allotroplar jadvali",
+      "topshiriq": "Uch shaklning xossalarini jadvalga yozing.",
+      "yechim": "Oq, qizil, qora.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Molyar massa va ulush.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Ovqatdagi fosfor",
+      "topshiriq": "Fosforga boy ovqatlar ro‘yxatini tuzing.",
+      "yechim": "Baliq, sut, yong‘oq.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "62 plyus 80 nechaga teng?",
+      "javob": "142"
+     },
+     {
+      "shart": "0,5 · 142 nechaga teng?",
+      "javob": "71"
+     },
+     {
+      "shart": "62 / 310 nechaga teng?",
+      "javob": "0,2"
+     },
+     {
+      "shart": "Fosfor tartib raqami?",
+      "javob": "15"
+     },
+     {
+      "shart": "Brand yili?",
+      "javob": "1669"
+     },
+     {
+      "shart": "Oq fosfor qayerda saqlanadi?",
+      "javob": "suv ostida"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Oq fosfor havoda barqaror deydi",
+      "sabab": "o‘z-o‘zidan yonadi",
+      "oldini_olish": "suv ostida saqlanadi"
+     },
+     {
+      "xato": "Fosfor tabiatda erkin holda uchraydi deydi",
+      "sabab": "birikmalarda uchraydi",
+      "oldini_olish": "fosfatlar"
+     },
+     {
+      "xato": "Fosfor tirik organizmga kerak emas deydi",
+      "sabab": "zarur",
+      "oldini_olish": "DNK va suyak"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "DNK va ATF"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "suv gullashi"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "kimyogar Brand"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Fosfor sirlari»",
+     "muammo": "Fosfor hayotda qanday rol o‘ynaydi?",
+     "mahsulot": "plakat va hisob",
+     "bosqichlar": [
+      "shakllarni o‘rganish",
+      "birikmalarni solishtirish",
+      "hisoblash",
+      "ekologik xavfni yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Shakllarni o‘rganing",
+      "Hisoblang",
+      "Xavfni yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xossalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Fosfor shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-uy",
+       "matn": "2 fosfor, 5 kislorod.",
+       "topshiriq": "M?",
+       "javob": "142",
+       "rasm": ""
+      },
+      {
+       "nom": "2-uy",
+       "matn": "31 gramm fosfor.",
+       "topshiriq": "Oksid gramm?",
+       "javob": "71",
+       "rasm": ""
+      },
+      {
+       "nom": "3-uy",
+       "matn": "62 va 310.",
+       "topshiriq": "Ulush foiz?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "4-uy",
+       "matn": "Brand yili.",
+       "topshiriq": "Yil?",
+       "javob": "1669",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Fosfor",
+      "tarif": "V guruh elementi"
+     },
+     {
+      "atama": "Allotropiya",
+      "tarif": "bir element turli shakllari"
+     },
+     {
+      "atama": "Fosfat",
+      "tarif": "fosfat kislota tuzi"
+     },
+     {
+      "atama": "ATF",
+      "tarif": "energiya tashuvchi molekula"
+     },
+     {
+      "atama": "Fosforit",
+      "tarif": "fosfatli tog‘ jinsi"
+     },
+     {
+      "atama": "Evtrofikatsiya",
+      "tarif": "suv gullashi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Oq fosfor suv ostida saqlanadi",
+      "togri": true,
+      "izoh": "havoda yonadi"
+     },
+     {
+      "matn": "Fosfor tabiatda erkin holda uchraydi",
+      "togri": false,
+      "izoh": "birikmalarda"
+     },
+     {
+      "matn": "Fosfor tartib raqami 15",
+      "togri": true,
+      "izoh": "V guruh"
+     },
+     {
+      "matn": "Fosfor oksid molyar massasi 142",
+      "togri": true,
+      "izoh": "62 plyus 80"
+     },
+     {
+      "matn": "62 / 310 — 0,2",
+      "togri": true,
+      "izoh": "ulush"
+     },
+     {
+      "matn": "Fosfor DNK tarkibida bor",
+      "togri": true,
+      "izoh": "hayot uchun"
+     },
+     {
+      "matn": "Qizil fosfor oq fosfordan zaharliroq",
+      "togri": false,
+      "izoh": "zaharsizroq"
+     },
+     {
+      "matn": "Ortiqcha fosfat suvni ifloslantiradi",
+      "togri": true,
+      "izoh": "evtrofikatsiya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Fosfor?",
+      "javob": "V guruh elementi"
+     },
+     {
+      "savol": "Raqami?",
+      "javob": "15"
+     },
+     {
+      "savol": "Kashf?",
+      "javob": "1669"
+     },
+     {
+      "savol": "Shakllari?",
+      "javob": "oq, qizil, qora"
+     },
+     {
+      "savol": "Oq fosfor?",
+      "javob": "suv ostida"
+     },
+     {
+      "savol": "Oksid M?",
+      "javob": "142"
+     },
+     {
+      "savol": "62 plyus 80?",
+      "javob": "142"
+     },
+     {
+      "savol": "0,5 · 142?",
+      "javob": "71"
+     },
+     {
+      "savol": "62 / 310?",
+      "javob": "0,2"
+     },
+     {
+      "savol": "Qayerda?",
+      "javob": "DNK, suyak"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Gugurt qutisini kuzat.",
+      "savol": "Qizil fosfor?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Molyar massani top.",
+      "savol": "Atomlarni qo‘sh?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Shakllarni solishtir.",
+      "savol": "Qaysi zaharli?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nega muhim?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun oq fosfor suv ostida saqlanadi?",
+    "keys": {
+     "vaziyat": "Oq fosfor bo‘lagi havoda o‘z-o‘zidan yonib ketdi.",
+     "savollar": [
+      "Qaysi shakli xavfliroq?",
+      "Qanday saqlanadi?"
+     ]
+    },
+    "tezis": "Fosfor — V guruh, hayot uchun zarur",
+    "taqqoslash": {
+     "a": "Oq fosfor",
+     "b": "Qizil fosfor",
+     "umumiy": [
+      "fosforning shakli",
+      "yonadi"
+     ],
+     "a_farq": [
+      "zaharli",
+      "suv ostida saqlanadi"
+     ],
+     "b_farq": [
+      "zaharsizroq",
+      "gugurtda ishlatiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Fosfor",
+     "shoxlar": [
+      {
+       "nom": "Element",
+       "bandlar": [
+        "V guruh",
+        "raqam 15"
+       ]
+      },
+      {
+       "nom": "Shakllari",
+       "bandlar": [
+        "oq",
+        "qizil",
+        "qora"
+       ]
+      },
+      {
+       "nom": "Birikmalar",
+       "bandlar": [
+        "fosfor oksid",
+        "fosfat kislota"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "DNK",
+        "suyak",
+        "ATF"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qorong‘uda yaltiraydigan, hayot uchun zarur elementman. Men kimman?",
+     "javob": "fosfor"
+    },
+    "hikmat": "Fosfor yorug‘lik tashuvchi.",
+    "kalit_soz": "FOSFOR",
+    "xato_yechim": {
+     "shart": "Qaysi fosfor suv ostida saqlanadi?",
+     "xato": "qizil",
+     "togri": "oq",
+     "sabab": "oq fosfor havoda yonadi"
+    },
+    "guruh_nomlari": [
+     "Fosforchilar",
+     "Hisobchilar",
+     "Ekologlar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Fosfor sirlari»",
+     "topshiriq": "Guruh fosfor shakllarini solishtiradi."
+    },
+    "vazifalar": {
+     "A": "Fosfor oksid M?",
+     "B": "31 gramm fosfordan oksid?",
+     "C": "Fosfor ulushi kaltsiy fosfatda?"
+    },
+    "sinkveyn": [
+     "Fosfor",
+     "yorqin, zaharli",
+     "yonadi, yaltiraydi, saqlanadi",
+     "Fosfor hayot manbai",
+     "Gugurt"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh fosforni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: element",
+      "2-guruh: shakllar",
+      "3-guruh: oksid",
+      "4-guruh: hayotdagi roli"
+     ],
+     "yakun": "Natijalar: 142; 71 gramm; 20 foiz."
+    }
+   }
+  },
+  {
+   "mavzu": "Mineral o‘g‘itlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nima uchun o‘g‘it",
+      "matn": "Ekin o‘sish uchun tuproqdan oziq elementlarni oladi. Hosil bilan birga bu elementlar olib chiqiladi, shuning uchun tuproqqa o‘g‘it solinadi. Asosiy elementlar — azot, fosfor, kaliy. Mineral o‘g‘itlar — sanoatda olinadigan noorganik tuzlar, organik o‘g‘itlar esa go‘ng, kompost.",
+      "misol": "Paxta va bug‘doy ham oziq oladi.",
+      "savol": "Asosiy oziq elementlar qaysilar?",
+      "javob": "azot, fosfor, kaliy",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Azotli o‘g‘itlar",
+      "matn": "Azot o‘simlikning o‘sishi va yashil rangi uchun kerak. Ammiakli selitra (ammoniy nitrat) molyar massasi 80, unda azot ulushi 28 / 80 — 0,35, ya’ni 35 foiz. Karbamid (mochevina) molyar massasi 60, azot ulushi 28 / 60, ya’ni taxminan 47 foiz. Karbamid eng ko‘p azot bergani uchun keng ishlatiladi.",
+      "misol": "Ko‘m-ko‘k barg — azot yetarliligi belgisi.",
+      "savol": "Karbamidda azot ulushi taxminan qancha?",
+      "javob": "47 foiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Fosforli o‘g‘itlar",
+      "matn": "Fosfor ildiz rivoji va gullash uchun kerak. Superfosfat va ammofos fosforli o‘g‘itlar, ular fosforitdan olinadi. Samarqand kimyo zavodi shunday o‘g‘itlar ishlab chiqaradi. Fosfor yetishmasa, barglar to‘q yashil-binafsha tusga kirishi mumkin.",
+      "misol": "Fosforsiz urug‘ yaxshi shakllanmaydi.",
+      "savol": "Fosfor o‘simlikning qaysi qismi uchun muhim?",
+      "javob": "ildiz va gullash uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kaliyli o‘g‘itlar",
+      "matn": "Kaliy mevaning shirinligi, sovuqqa va kasallikka chidamlilik uchun kerak. Kaliy xlorid molyar massasi 74,5, kaliy ulushi 39 / 74,5 — taxminan 52 foiz. Qashqadaryodagi Dehqonobod zavodi kaliyli o‘g‘it beradi. Kaliy yetishmasa, barg chetlari sarg‘ayadi.",
+      "misol": "Kaliy mevani shirin qiladi.",
+      "savol": "Kaliy nimaga kerak?",
+      "javob": "chidamlilik va shirinlik uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Me’yor va ekologiya",
+      "matn": "Murakkab o‘g‘it NPK — uchala elementni saqlaydi. O‘g‘itni me’yorida, to‘g‘ri vaqtda solish kerak. Ortiqcha azot nitratlar sifatida suv va mahsulotga o‘tadi, ortiqcha fosfat suvni ifloslantiradi. Tuproq tahlili asosida o‘g‘it tanlash va organik o‘g‘it bilan almashtirib turish foydali.",
+      "misol": "Me’yordan oshiq o‘g‘it zarar beradi.",
+      "savol": "Murakkab o‘g‘it qaysi elementlarni saqlaydi?",
+      "javob": "azot, fosfor, kaliy",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "NPK — azot, fosfor, kaliy. Ammoniy nitrat M — 80 (azot 35 foiz). Karbamid M — 60. Me’yor muhim.",
+    "misollar": [
+     {
+      "shart": "Ammoniy nitratda azot massasi 28, molyar massa 80. Ulush?",
+      "yechim": [
+       "28 / 80.",
+       "0,35.",
+       "Javob 35 foiz."
+      ],
+      "javob": "35 foiz"
+     },
+     {
+      "shart": "60 kilogramm karbamid (azot massasi 28, M — 60). Azot massasi?",
+      "yechim": [
+       "Ulush 28 / 60.",
+       "60 · 28 / 60.",
+       "Javob 28 kilogramm."
+      ],
+      "javob": "28 kilogramm"
+     },
+     {
+      "shart": "149 kilogramm kaliy xlorid (M — 74,5, K — 39). Kaliy massasi?",
+      "yechim": [
+       "149 / 74,5 — 2.",
+       "2 · 39.",
+       "Javob 78 kilogramm."
+      ],
+      "javob": "78 kilogramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tuproq tahlili",
+      "topshiriq": "Tuproq namunasining pH ini o‘lchang.",
+      "yechim": "Kislotali yoki ishqoriy.",
+      "mahsulot": "tuproq, indikator"
+     },
+     {
+      "nom": "O‘g‘it yorlig‘i",
+      "topshiriq": "O‘g‘it qopidagi N, P, K raqamlarini o‘qing.",
+      "yechim": "Tarkib foizlari.",
+      "mahsulot": "o‘g‘it qopi"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ulush va massa.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "O‘simlik tajribasi",
+      "topshiriq": "Ikki ko‘chatni biri o‘g‘itli, biri o‘g‘itsiz o‘stiring.",
+      "yechim": "Taqqoslang.",
+      "mahsulot": "ko‘chat, o‘g‘it"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "28 / 80 nechaga teng?",
+      "javob": "0,35"
+     },
+     {
+      "shart": "60 · 28 / 60 nechaga teng?",
+      "javob": "28"
+     },
+     {
+      "shart": "149 / 74,5 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "2 · 39 nechaga teng?",
+      "javob": "78"
+     },
+     {
+      "shart": "Ammoniy nitrat molyar massasi?",
+      "javob": "80"
+     },
+     {
+      "shart": "NPK nimani bildiradi?",
+      "javob": "azot, fosfor, kaliy"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "O‘g‘it qancha ko‘p bo‘lsa shuncha yaxshi deydi",
+      "sabab": "me’yor muhim",
+      "oldini_olish": "ortiqchasi zarar"
+     },
+     {
+      "xato": "Karbamidda azot 35 foiz deydi",
+      "sabab": "taxminan 47 foiz",
+      "oldini_olish": "ammoniy nitratda 35"
+     },
+     {
+      "xato": "Kaliy ildiz rivoji uchun deydi",
+      "sabab": "chidamlilik va shirinlik",
+      "oldini_olish": "ildiz — fosfor"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "o‘simlik oziqlanishi"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "suv ifloslanishi"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "hosil va xarajat"
+     }
+    ],
+    "loyiha": {
+     "nom": "«O‘g‘it laboratoriyasi»",
+     "muammo": "O‘g‘itlar hosilga qanday ta’sir qiladi?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "o‘g‘itlarni o‘rganish",
+      "ko‘chat tajribasi",
+      "azot ulushini hisoblash",
+      "natijani solishtirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "O‘g‘itlarni o‘rganing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Dala va o‘g‘it»",
+     "bekatlar": [
+      {
+       "nom": "1-maydon",
+       "matn": "28 va 80.",
+       "topshiriq": "Azot foiz?",
+       "javob": "35",
+       "rasm": ""
+      },
+      {
+       "nom": "2-maydon",
+       "matn": "60 kilogramm karbamid.",
+       "topshiriq": "Azot kilogramm?",
+       "javob": "28",
+       "rasm": ""
+      },
+      {
+       "nom": "3-maydon",
+       "matn": "149 kilogramm KCl.",
+       "topshiriq": "Kaliy kilogramm?",
+       "javob": "78",
+       "rasm": ""
+      },
+      {
+       "nom": "4-maydon",
+       "matn": "NPK.",
+       "topshiriq": "Nechta element?",
+       "javob": "3",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ulushni topdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Mineral o‘g‘it",
+      "tarif": "sanoatda olingan oziq tuzi"
+     },
+     {
+      "atama": "NPK",
+      "tarif": "azot, fosfor, kaliy"
+     },
+     {
+      "atama": "Karbamid",
+      "tarif": "azotga boy o‘g‘it"
+     },
+     {
+      "atama": "Superfosfat",
+      "tarif": "fosforli o‘g‘it"
+     },
+     {
+      "atama": "Kaliy xlorid",
+      "tarif": "kaliyli o‘g‘it"
+     },
+     {
+      "atama": "Me’yor",
+      "tarif": "to‘g‘ri miqdor"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "NPK azot, fosfor, kaliyni bildiradi",
+      "togri": true,
+      "izoh": "murakkab o‘g‘it"
+     },
+     {
+      "matn": "Ortiqcha o‘g‘it foydali",
+      "togri": false,
+      "izoh": "zarar"
+     },
+     {
+      "matn": "Ammoniy nitratda azot 35 foiz",
+      "togri": true,
+      "izoh": "28 / 80"
+     },
+     {
+      "matn": "Karbamid molyar massasi 60",
+      "togri": true,
+      "izoh": "azot ulushi taxminan 47 foiz"
+     },
+     {
+      "matn": "149 / 74,5 — 2",
+      "togri": true,
+      "izoh": "mol"
+     },
+     {
+      "matn": "Kaliy chidamlilik uchun kerak",
+      "togri": true,
+      "izoh": "mevaga ta’sir"
+     },
+     {
+      "matn": "Fosfor ildiz uchun kerak",
+      "togri": true,
+      "izoh": "gullash"
+     },
+     {
+      "matn": "O‘g‘it faqat organik bo‘ladi",
+      "togri": false,
+      "izoh": "mineral ham bor"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Mineral o‘g‘it?",
+      "javob": "noorganik oziq tuzi"
+     },
+     {
+      "savol": "NPK?",
+      "javob": "azot, fosfor, kaliy"
+     },
+     {
+      "savol": "Azot?",
+      "javob": "o‘sish va yashil rang"
+     },
+     {
+      "savol": "Fosfor?",
+      "javob": "ildiz va gullash"
+     },
+     {
+      "savol": "Kaliy?",
+      "javob": "chidamlilik va shirinlik"
+     },
+     {
+      "savol": "Ammoniy nitrat?",
+      "javob": "35 foiz azot"
+     },
+     {
+      "savol": "28 / 80?",
+      "javob": "0,35"
+     },
+     {
+      "savol": "2 · 39?",
+      "javob": "78"
+     },
+     {
+      "savol": "Me’yor?",
+      "javob": "ortiqchasi zarar"
+     },
+     {
+      "savol": "Karbamid?",
+      "javob": "47 foiz azot"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Ko‘chat rangini kuzat.",
+      "savol": "Qaysi element yetishmaydi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Ulushni top.",
+      "savol": "Qism / butun?"
+     },
+     {
+      "nom": "Tanla",
+      "matn": "O‘g‘itni tanla.",
+      "savol": "Qaysi kerak?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Me’yor nega muhim?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun o‘g‘itni me’yorida solish kerak?",
+    "keys": {
+     "vaziyat": "Dehqon ko‘p o‘g‘it solsa hosil oshadi, deb o‘ylaydi.",
+     "savollar": [
+      "Ortiqcha azot qayerga o‘tadi?",
+      "Suvga qanday ta’sir qiladi?"
+     ]
+    },
+    "tezis": "O‘g‘it me’yorida solinadi",
+    "taqqoslash": {
+     "a": "Mineral o‘g‘it",
+     "b": "Organik o‘g‘it",
+     "umumiy": [
+      "tuproqni boyitadi",
+      "hosilni oshiradi"
+     ],
+     "a_farq": [
+      "sanoatda olinadi",
+      "tez ta’sir qiladi"
+     ],
+     "b_farq": [
+      "go‘ng, kompost",
+      "sekin ta’sir qiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Mineral o‘g‘itlar",
+     "shoxlar": [
+      {
+       "nom": "Azotli",
+       "bandlar": [
+        "ammoniy nitrat",
+        "karbamid"
+       ]
+      },
+      {
+       "nom": "Fosforli",
+       "bandlar": [
+        "superfosfat",
+        "ammofos"
+       ]
+      },
+      {
+       "nom": "Kaliyli",
+       "bandlar": [
+        "kaliy xlorid"
+       ]
+      },
+      {
+       "nom": "Ekologiya",
+       "bandlar": [
+        "me’yor",
+        "NPK"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men uchta element — N, P, K ning ustaxonasiman. Men kimman?",
+     "javob": "mineral o‘g‘it"
+    },
+    "hikmat": "O‘g‘it tuproqni boyitadi.",
+    "kalit_soz": "NPK",
+    "xato_yechim": {
+     "shart": "O‘g‘it ko‘p bo‘lsa yaxshimi?",
+     "xato": "ha, doim yaxshi",
+     "togri": "yo‘q, me’yor kerak",
+     "sabab": "ortiqchasi suvni ifloslantiradi"
+    },
+    "guruh_nomlari": [
+     "O‘g‘itchilar",
+     "Hisobchilar",
+     "Dehqonlar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«O‘g‘it laboratoriyasi»",
+     "topshiriq": "Guruh ko‘chat tajribasini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "Ammoniy nitratda azot ulushi?",
+     "B": "60 kilogramm karbamid azoti?",
+     "C": "149 kilogramm KCl kaliyi?"
+    },
+    "sinkveyn": [
+     "O‘g‘it",
+     "mineral, tuz",
+     "boyitadi, oziqlantiradi, oshiradi",
+     "Hosil oziqdan",
+     "Dala"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh mineral o‘g‘itlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: azotli",
+      "2-guruh: fosforli",
+      "3-guruh: kaliyli",
+      "4-guruh: me’yor va ekologiya"
+     ],
+     "yakun": "Natijalar: 35 foiz; 28 kilogramm; 78 kilogramm."
+    }
+   }
   }
  ]
 }
