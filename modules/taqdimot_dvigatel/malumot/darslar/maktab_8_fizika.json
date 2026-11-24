@@ -1,0 +1,1389 @@
+{
+ "daraja": "maktab",
+ "sinf": "8",
+ "fan": "Fizika",
+ "muallif": "qo‘lda yozilgan, faktlar tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Issiqlik harakati",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Modda zarralardan iborat",
+      "matn": "Hamma modda juda mayda zarralardan — molekula va atomlardan tuzilgan. Zarralar orasida bo‘shliqlar bor. Zarralar to‘xtovsiz va tartibsiz harakatda bo‘ladi.",
+      "misol": "Suvga bir tomchi siyoh tomizsak, u o‘z-o‘zidan butun suvga tarqaladi.",
+      "savol": "Moddalar nimadan tuzilgan?",
+      "javob": "molekula va atomlardan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Diffuziya",
+      "matn": "Bir modda zarralarining ikkinchi modda zarralari orasiga o‘z-o‘zidan kirib borishi diffuziya deyiladi. Gazlarda eng tez, suyuqliklarda sekinroq, qattiq jismlarda juda sekin kechadi.",
+      "misol": "Oshxonadagi hid xonaga tarqaladi — bu gazda diffuziya.",
+      "savol": "Diffuziya qaysi holatda eng tez kechadi?",
+      "javob": "gazlarda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Broun harakati",
+      "matn": "1827-yilda ingliz botanigi Robert Broun suvdagi gul changlarining tartibsiz harakatini mikroskopda kuzatdi. Changlarni suv molekulalari har tomondan turtib turadi. Bu molekulalar harakatining isboti.",
+      "misol": "Chang zarrachasi zig‘zag chizadi.",
+      "savol": "Broun harakatini kim kuzatgan?",
+      "javob": "Robert Broun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Harorat va tezlik",
+      "matn": "Harorat qancha yuqori bo‘lsa, molekulalar shuncha tez harakatlanadi. Shuning uchun issiq suvda diffuziya tezroq bo‘ladi. Harorat — molekulalar o‘rtacha tezligining o‘lchovi.",
+      "misol": "Choy issiq suvda sovuq suvdagidan tezroq rangga kiradi.",
+      "savol": "Issiq suvda diffuziya tezmi yoki sekinmi?",
+      "javob": "tezroq",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Issiqlik harakati",
+      "matn": "Molekulalarning to‘xtovsiz tartibsiz harakati issiqlik harakati deyiladi. Uning tezligi haroratga bog‘liq. Mutlaq nolda harakat deyarli to‘xtaydi.",
+      "misol": "Suv 0 darajada muzlaydi, 100 darajada qaynaydi.",
+      "savol": "Suv necha darajada qaynaydi?",
+      "javob": "100 darajada",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Hamma modda zarralardan iborat. Zarralar to‘xtovsiz va tartibsiz harakatlanadi. Harorat oshsa, harakat tezlashadi.",
+    "misollar": [
+     {
+      "shart": "Siyoh issiq suvda tez, sovuq suvda sekin tarqaldi. Nima uchun?",
+      "yechim": [
+       "Issiq suvda molekulalar tezroq harakatlanadi.",
+       "Shuning uchun diffuziya tezroq bo‘ladi.",
+       "Javob: harorat yuqori — harakat tez."
+      ],
+      "javob": "issiq suvda molekulalar tez harakatlanadi"
+     },
+     {
+      "shart": "Hid xonaga qanday tarqaladi?",
+      "yechim": [
+       "Hid zarralari gaz molekulalari orasiga kiradi.",
+       "Molekulalar tartibsiz harakatlanadi.",
+       "Javob: diffuziya orqali."
+      ],
+      "javob": "diffuziya orqali"
+     },
+     {
+      "shart": "Suvning qaynash va muzlash haroratlari orasidagi farq?",
+      "yechim": [
+       "Qaynash 100, muzlash 0.",
+       "100 − 0.",
+       "Javob 100 daraja."
+      ],
+      "javob": "100 daraja"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Siyoh tajribasi",
+      "topshiriq": "Ikki stakanga issiq va sovuq suv quyib, siyoh tomizing.",
+      "yechim": "Qaysi birida tez tarqaldi?",
+      "mahsulot": "stakan, siyoh, suv"
+     },
+     {
+      "nom": "Hid tajribasi",
+      "topshiriq": "Xonaning bir burchagiga hidli narsa qo‘yib, hid qachon sezilishini kuzating.",
+      "yechim": "Hid tarqalish vaqtini yozing.",
+      "mahsulot": "hidli narsa va soat"
+     },
+     {
+      "nom": "Molekula o‘yini",
+      "topshiriq": "Bolalar molekula bo‘lib, tartibsiz harakatlansin.",
+      "yechim": "Harorat oshsa, harakat tezlashadi.",
+      "mahsulot": "bo‘sh joy"
+     },
+     {
+      "nom": "Xulosa",
+      "topshiriq": "Kuzatuvlarni jadvalga yozib, xulosa chiqaring.",
+      "yechim": "Harorat va tezlik bog‘liq.",
+      "mahsulot": "jadval varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Suv necha darajada qaynaydi?",
+      "javob": "100"
+     },
+     {
+      "shart": "Suv necha darajada muzlaydi?",
+      "javob": "0"
+     },
+     {
+      "shart": "Diffuziya nima?",
+      "javob": "moddalarning aralashishi"
+     },
+     {
+      "shart": "Broun harakatini kim kuzatgan?",
+      "javob": "Robert Broun"
+     },
+     {
+      "shart": "Qaysi holatda diffuziya eng tez?",
+      "javob": "gazda"
+     },
+     {
+      "shart": "Harorat oshsa, molekula tezligi nima bo‘ladi?",
+      "javob": "ortadi"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Molekulalar sovuqda to‘xtaydi deydi",
+      "sabab": "harakat to‘xtamaydi",
+      "oldini_olish": "faqat sekinlashadi"
+     },
+     {
+      "xato": "Diffuziyani faqat gazda deydi",
+      "sabab": "suyuqlikda ham bor",
+      "oldini_olish": "suyuqlik va qattiq jismda ham"
+     },
+     {
+      "xato": "Broun harakatini chang o‘zi harakat qiladi deydi",
+      "sabab": "molekulalar turtadi",
+      "oldini_olish": "molekulalar turtishi sabab"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "hidning tarqalishi va nafas olish"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "eritmalarning aralashishi"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "choy damlash va hid tarqalishi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ko‘rinmas harakat»",
+     "muammo": "Molekulalar harakatini tajriba bilan qanday ko‘rsatamiz?",
+     "mahsulot": "tajriba daftari va video",
+     "bosqichlar": [
+      "tajriba tanlash",
+      "tajriba o‘tkazish",
+      "kuzatish",
+      "xulosa yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tajriba tanlang",
+      "O‘tkazing",
+      "Kuzating",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba to‘g‘ri",
+      "kuzatuv aniq",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Molekulalar olami»",
+     "bekatlar": [
+      {
+       "nom": "1-zal",
+       "matn": "Siyoh issiq suvda tez tarqaldi.",
+       "topshiriq": "Nima uchun?",
+       "javob": "harorat yuqori",
+       "rasm": ""
+      },
+      {
+       "nom": "2-zal",
+       "matn": "Hid xonaga tarqaldi.",
+       "topshiriq": "Qanday hodisa?",
+       "javob": "diffuziya",
+       "rasm": ""
+      },
+      {
+       "nom": "3-zal",
+       "matn": "Chang zig‘zag chizadi.",
+       "topshiriq": "Qanday harakat?",
+       "javob": "Broun harakati",
+       "rasm": ""
+      },
+      {
+       "nom": "4-zal",
+       "matn": "Suv qaynashi.",
+       "topshiriq": "Necha daraja?",
+       "javob": "100",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi hodisa kuzatildi?",
+      "Harorat nimaga ta’sir qildi?",
+      "Xulosa nima?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Molekula",
+      "tarif": "moddaning mayda zarrasi"
+     },
+     {
+      "atama": "Diffuziya",
+      "tarif": "moddalarning o‘z-o‘zidan aralashishi"
+     },
+     {
+      "atama": "Broun harakati",
+      "tarif": "mayda zarralarning tartibsiz harakati"
+     },
+     {
+      "atama": "Harorat",
+      "tarif": "issiqlik darajasi"
+     },
+     {
+      "atama": "Issiqlik harakati",
+      "tarif": "molekulalarning tartibsiz harakati"
+     },
+     {
+      "atama": "Atom",
+      "tarif": "kimyoviy elementning eng kichik zarrasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Modda molekulalardan tuzilgan",
+      "togri": true,
+      "izoh": "zarralar"
+     },
+     {
+      "matn": "Molekulalar to‘xtab turadi",
+      "togri": false,
+      "izoh": "harakatda"
+     },
+     {
+      "matn": "Diffuziya gazlarda eng tez",
+      "togri": true,
+      "izoh": "zarralar erkin"
+     },
+     {
+      "matn": "Issiq suvda diffuziya sekinroq",
+      "togri": false,
+      "izoh": "tezroq"
+     },
+     {
+      "matn": "Broun harakatini Robert Broun kuzatgan",
+      "togri": true,
+      "izoh": "1827-yil"
+     },
+     {
+      "matn": "Suv 100 darajada qaynaydi",
+      "togri": true,
+      "izoh": "normal bosimda"
+     },
+     {
+      "matn": "Harorat molekulalar tezligiga bog‘liq emas",
+      "togri": false,
+      "izoh": "bog‘liq"
+     },
+     {
+      "matn": "Molekulalar tartibsiz harakatlanadi",
+      "togri": true,
+      "izoh": "issiqlik harakati"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Modda nimadan tuzilgan?",
+      "javob": "molekula va atomlardan"
+     },
+     {
+      "savol": "Diffuziya nima?",
+      "javob": "moddalarning o‘z-o‘zidan aralashishi"
+     },
+     {
+      "savol": "Broun harakatini kim kuzatgan?",
+      "javob": "Robert Broun"
+     },
+     {
+      "savol": "Qaysi yilda?",
+      "javob": "1827"
+     },
+     {
+      "savol": "Harorat oshsa?",
+      "javob": "tezlik ortadi"
+     },
+     {
+      "savol": "Diffuziya eng tez qayerda?",
+      "javob": "gazda"
+     },
+     {
+      "savol": "Issiqlik harakati?",
+      "javob": "molekulalarning tartibsiz harakati"
+     },
+     {
+      "savol": "Suv qaynaydi?",
+      "javob": "100 darajada"
+     },
+     {
+      "savol": "Suv muzlaydi?",
+      "javob": "0 darajada"
+     },
+     {
+      "savol": "Hid qanday tarqaladi?",
+      "javob": "diffuziya bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Hodisani kuzat.",
+      "savol": "Nima bo‘ldi?"
+     },
+     {
+      "nom": "Taxmin",
+      "matn": "Sababni ayt.",
+      "savol": "Nega?"
+     },
+     {
+      "nom": "Sinash",
+      "matn": "Tajriba qil.",
+      "savol": "Issiq va sovuq?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Harorat?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun issiq suvda siyoh tezroq tarqaladi?",
+    "keys": {
+     "vaziyat": "Ikki stakanda issiq va sovuq suv bor. Ikkalasiga bir tomchi siyoh tomizildi.",
+     "savollar": [
+      "Qaysi birida siyoh tez tarqaladi?",
+      "Nima uchun?"
+     ]
+    },
+    "tezis": "Harorat — harakat o‘lchovi",
+    "taqqoslash": {
+     "a": "Issiq suv",
+     "b": "Sovuq suv",
+     "umumiy": [
+      "suv molekulalari bor",
+      "diffuziya kechadi"
+     ],
+     "a_farq": [
+      "molekulalar tez",
+      "diffuziya tez"
+     ],
+     "b_farq": [
+      "molekulalar sekin",
+      "diffuziya sekin"
+     ]
+    },
+    "klaster": {
+     "markaz": "Issiqlik harakati",
+     "shoxlar": [
+      {
+       "nom": "Molekulalar",
+       "bandlar": [
+        "mayda zarralar",
+        "bo‘shliq bor"
+       ]
+      },
+      {
+       "nom": "Diffuziya",
+       "bandlar": [
+        "aralashish",
+        "gazda tez"
+       ]
+      },
+      {
+       "nom": "Broun harakati",
+       "bandlar": [
+        "1827",
+        "chang"
+       ]
+      },
+      {
+       "nom": "Harorat",
+       "bandlar": [
+        "tezlik o‘lchovi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ko‘rinmayman, lekin hamma narsa mendan iborat va harakatdaman. Men kimman?",
+     "javob": "molekula"
+    },
+    "hikmat": "Ko‘rinmas harakat — katta hodisalar sababi.",
+    "kalit_soz": "MOLEKULA",
+    "xato_yechim": {
+     "shart": "Issiq suvda siyoh nega tezroq tarqaladi?",
+     "xato": "siyoh engil bo‘ladi",
+     "togri": "molekulalar tezroq harakatlanadi",
+     "sabab": "harorat yuqori — molekula tezligi katta"
+    },
+    "guruh_nomlari": [
+     "Molekulachilar",
+     "Diffuziyachilar",
+     "Kuzatuvchilar",
+     "Tajribachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Molekula laboratoriyasi»",
+     "topshiriq": "Guruh siyoh va hid tajribalarini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "Issiq va sovuq suvga siyoh tomizib kuzating.",
+     "B": "Hid tarqalish tajribasini o‘tkazing.",
+     "C": "Broun harakati haqida qisqa ma’ruza tayyorlang."
+    },
+    "sinkveyn": [
+     "Molekula",
+     "mayda, harakatchan",
+     "tebranadi, uchadi, aralashadi",
+     "Kichik zarra — katta olam",
+     "Atom"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh molekulyar harakatni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: diffuziya",
+      "2-guruh: Broun harakati",
+      "3-guruh: harorat",
+      "4-guruh: xulosa"
+     ],
+     "yakun": "Natija: harorat oshsa, molekulalar harakati tezlashadi."
+    }
+   }
+  },
+  {
+   "mavzu": "Ichki energiya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Energiya nima?",
+      "matn": "Energiya — jismning ish bajara olish qobiliyati. Energiya turlari: kinetik (harakat) va potensial (holat). Birligi — joul (J).",
+      "misol": "Harakatdagi koptok kinetik energiyaga ega.",
+      "savol": "Energiya birligi nima?",
+      "javob": "joul",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ichki energiya",
+      "matn": "Jismni tashkil qilgan hamma molekulalarning kinetik va potensial energiyalari yig‘indisi ichki energiya deyiladi. Uni U harfi bilan belgilaymiz.",
+      "misol": "Issiq choyning ichki energiyasi sovuq choynikidan katta.",
+      "savol": "Ichki energiya qaysi harf bilan belgilanadi?",
+      "javob": "U",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Haroratga bog‘liqligi",
+      "matn": "Harorat oshsa, molekulalar tezlashadi, kinetik energiya ortadi. Demak, ichki energiya ham ortadi. Harorat pasaysa, ichki energiya kamayadi.",
+      "misol": "Issiq suv sovugan sari ichki energiyasi kamayadi.",
+      "savol": "Harorat oshsa, ichki energiya nima bo‘ladi?",
+      "javob": "ortadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ichki energiyani o‘zgartirish",
+      "matn": "Ichki energiyani ikki usulda o‘zgartirish mumkin: ish bajarish va issiqlik uzatish. Qo‘lni ishqalasak, qo‘l isiydi — ish bajardik. Qo‘lni issiq batareyaga qo‘ysak, qo‘l isiydi — issiqlik uzatdik.",
+      "misol": "Bolg‘a bilan urilgan mix qiziydi.",
+      "savol": "Ichki energiyani nechta usulda o‘zgartiramiz?",
+      "javob": "ikkita",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Issiqlik miqdori",
+      "matn": "Issiqlik uzatishda jism olgan yoki bergan ichki energiya miqdori issiqlik miqdori deyiladi. Birligi ham joul. Issiq jism issiqlik beradi, sovuq jism oladi.",
+      "misol": "Issiq choy sovuq ko‘zani isitadi.",
+      "savol": "Issiqlik miqdori birligi nima?",
+      "javob": "joul",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ichki energiya — molekulalar kinetik va potensial energiyalari yig‘indisi. U harorat oshsa ortadi. O‘zgartirish: ish bajarish va issiqlik uzatish.",
+    "misollar": [
+     {
+      "shart": "Ikki chinni piyola: birida 90 darajali, ikkinchisida 30 darajali choy. Qaysining ichki energiyasi katta?",
+      "yechim": [
+       "Harorat yuqori — molekulalar tez.",
+       "90 > 30.",
+       "Javob: 90 darajalisiniki."
+      ],
+      "javob": "90 darajali choyniki"
+     },
+     {
+      "shart": "Qo‘lni ishqalaganda qo‘l isiydi. Qaysi usul?",
+      "yechim": [
+       "Ish bajaramiz.",
+       "Mexanik ish ichki energiyaga aylanadi.",
+       "Javob: ish bajarish."
+      ],
+      "javob": "ish bajarish"
+     },
+     {
+      "shart": "Issiq suv va sovuq suv aralashsa, issiq suv nima qiladi?",
+      "yechim": [
+       "Issiqlik beradi.",
+       "Ichki energiyasi kamayadi.",
+       "Javob: sovuydi."
+      ],
+      "javob": "sovuydi"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qo‘l ishqalash",
+      "topshiriq": "Qo‘llarni ishqalab, haroratni sezing.",
+      "yechim": "Ish ichki energiyani oshiradi.",
+      "mahsulot": "qo‘llar"
+     },
+     {
+      "nom": "Issiq va sovuq",
+      "topshiriq": "Issiq va sovuq suvni aralashtirib, haroratni o‘lchang.",
+      "yechim": "Issiqlik uzatilishini kuzating.",
+      "mahsulot": "termometr"
+     },
+     {
+      "nom": "Mix qizishi",
+      "topshiriq": "Mixni bolg‘a bilan urib, qizishini sezing.",
+      "yechim": "Ish issiqlikka aylanadi.",
+      "mahsulot": "mix va bolg‘a"
+     },
+     {
+      "nom": "Xulosa",
+      "topshiriq": "Ikki usulni jadvalga yozing.",
+      "yechim": "Ish va issiqlik uzatish.",
+      "mahsulot": "jadval varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Energiya birligi?",
+      "javob": "joul"
+     },
+     {
+      "shart": "Ichki energiya belgisi?",
+      "javob": "U"
+     },
+     {
+      "shart": "Harorat oshsa ichki energiya?",
+      "javob": "ortadi"
+     },
+     {
+      "shart": "Ichki energiyani o‘zgartirish usullari soni?",
+      "javob": "2"
+     },
+     {
+      "shart": "Ishqalash qaysi usul?",
+      "javob": "ish bajarish"
+     },
+     {
+      "shart": "Issiqlik miqdori birligi?",
+      "javob": "joul"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ichki energiya faqat issiq jismda bor deydi",
+      "sabab": "hamma jismda bor",
+      "oldini_olish": "sovuq jismda ham bor"
+     },
+     {
+      "xato": "Ichki energiyani harorat bilan aralashtiradi",
+      "sabab": "ikkalasi boshqa tushuncha",
+      "oldini_olish": "harorat — o‘lchov, energiya — yig‘indi"
+     },
+     {
+      "xato": "Ishqalashni issiqlik uzatish deydi",
+      "sabab": "bu ish bajarish",
+      "oldini_olish": "ishqalash — ish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "dvigatel va issiqlik"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "qo‘lni isitish"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "tana issiqligi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Issiqlik o‘zgarishlari»",
+     "muammo": "Ichki energiya o‘zgarishini qanday ko‘rsatamiz?",
+     "mahsulot": "tajriba daftari",
+     "bosqichlar": [
+      "tajriba tanlash",
+      "o‘lchash",
+      "jadval tuzish",
+      "xulosa yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tajriba tanlang",
+      "O‘lchang",
+      "Jadval tuzing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov to‘g‘ri",
+      "jadval aniq",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Energiya zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "Qo‘l ishqalandi.",
+       "topshiriq": "Qaysi usul?",
+       "javob": "ish bajarish",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "Issiq suv sovudi.",
+       "topshiriq": "Ichki energiya?",
+       "javob": "kamaydi",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "Joul nimaning birligi?",
+       "topshiriq": "Javob?",
+       "javob": "energiya",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sex",
+       "matn": "Mix urildi va qizidi.",
+       "topshiriq": "Qaysi usul?",
+       "javob": "ish bajarish",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi usul ishladi?",
+      "Harorat qanday o‘zgardi?",
+      "Xulosa nima?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Energiya",
+      "tarif": "ish bajara olish qobiliyati"
+     },
+     {
+      "atama": "Kinetik energiya",
+      "tarif": "harakat energiyasi"
+     },
+     {
+      "atama": "Potensial energiya",
+      "tarif": "holat energiyasi"
+     },
+     {
+      "atama": "Ichki energiya",
+      "tarif": "molekulalar energiyalari yig‘indisi"
+     },
+     {
+      "atama": "Joul",
+      "tarif": "energiya birligi"
+     },
+     {
+      "atama": "Issiqlik miqdori",
+      "tarif": "uzatilgan ichki energiya"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ichki energiya molekulalar energiyalari yig‘indisi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Harorat oshsa ichki energiya kamayadi",
+      "togri": false,
+      "izoh": "ortadi"
+     },
+     {
+      "matn": "Energiya birligi joul",
+      "togri": true,
+      "izoh": "J"
+     },
+     {
+      "matn": "Ichki energiyani ikki usulda o‘zgartirish mumkin",
+      "togri": true,
+      "izoh": "ish va issiqlik"
+     },
+     {
+      "matn": "Ishqalash issiqlik uzatishdir",
+      "togri": false,
+      "izoh": "ish bajarish"
+     },
+     {
+      "matn": "Issiq jism issiqlik beradi",
+      "togri": true,
+      "izoh": "sovuq oladi"
+     },
+     {
+      "matn": "Sovuq jismda ichki energiya yo‘q",
+      "togri": false,
+      "izoh": "bor"
+     },
+     {
+      "matn": "Issiqlik miqdori joulda o‘lchanadi",
+      "togri": true,
+      "izoh": "J"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Energiya?",
+      "javob": "ish bajara olish qobiliyati"
+     },
+     {
+      "savol": "Birligi?",
+      "javob": "joul"
+     },
+     {
+      "savol": "Ichki energiya belgisi?",
+      "javob": "U"
+     },
+     {
+      "savol": "Harorat oshsa?",
+      "javob": "ichki energiya ortadi"
+     },
+     {
+      "savol": "Usullar soni?",
+      "javob": "ikkita"
+     },
+     {
+      "savol": "Ishqalash?",
+      "javob": "ish bajarish"
+     },
+     {
+      "savol": "Issiq batareya?",
+      "javob": "issiqlik uzatish"
+     },
+     {
+      "savol": "Issiq jism?",
+      "javob": "issiqlik beradi"
+     },
+     {
+      "savol": "Sovuq jism?",
+      "javob": "issiqlik oladi"
+     },
+     {
+      "savol": "Issiqlik miqdori birligi?",
+      "javob": "joul"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘lcha",
+      "matn": "Haroratni o‘lcha.",
+      "savol": "Necha daraja?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ikki jismni solishtir.",
+      "savol": "Qaysi issiq?"
+     },
+     {
+      "nom": "Usul",
+      "matn": "Usulni aniqla.",
+      "savol": "Ish yoki issiqlikmi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Energiya o‘zgardimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun qo‘lni ishqalasak, qo‘l isiydi?",
+    "keys": {
+     "vaziyat": "Sovuq kunda qo‘llaringiz muzladi.",
+     "savollar": [
+      "Qo‘lni qanday isitamiz?",
+      "Qaysi usullar ichki energiyani oshiradi?"
+     ]
+    },
+    "tezis": "Ish va issiqlik — ikki yo‘l",
+    "taqqoslash": {
+     "a": "Ish bajarish",
+     "b": "Issiqlik uzatish",
+     "umumiy": [
+      "ichki energiyani o‘zgartiradi",
+      "joulda o‘lchanadi"
+     ],
+     "a_farq": [
+      "ishqalash, urish",
+      "mexanik"
+     ],
+     "b_farq": [
+      "isitish, sovitish",
+      "issiq jismdan sovuqqa"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ichki energiya",
+     "shoxlar": [
+      {
+       "nom": "Ta’rif",
+       "bandlar": [
+        "kinetik + potensial"
+       ]
+      },
+      {
+       "nom": "Harorat",
+       "bandlar": [
+        "oshsa ortadi"
+       ]
+      },
+      {
+       "nom": "Usullar",
+       "bandlar": [
+        "ish",
+        "issiqlik uzatish"
+       ]
+      },
+      {
+       "nom": "Birlik",
+       "bandlar": [
+        "joul"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men har bir jismda borman, harorat oshsa kattalashaman. Men kimman?",
+     "javob": "ichki energiya"
+    },
+    "hikmat": "Issiq jism — energiyaga boy.",
+    "kalit_soz": "ENERGIYA",
+    "xato_yechim": {
+     "shart": "Qo‘l ishqalanganda isishi qaysi usul?",
+     "xato": "issiqlik uzatish",
+     "togri": "ish bajarish",
+     "sabab": "mexanik ish ichki energiyaga aylanadi"
+    },
+    "guruh_nomlari": [
+     "Energiyachilar",
+     "Ishchilar",
+     "Issiqchilar",
+     "Tajribachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Energiya laboratoriyasi»",
+     "topshiriq": "Guruh ikki usulni tajribada ko‘rsatadi."
+    },
+    "vazifalar": {
+     "A": "Qo‘l ishqalash tajribasini o‘tkazing.",
+     "B": "Issiq va sovuq suvni aralashtirib o‘lchang.",
+     "C": "Mix urish tajribasini tushuntiring."
+    },
+    "sinkveyn": [
+     "Energiya",
+     "kuch, issiq",
+     "oshadi, kamayadi, o‘tadi",
+     "Energiya yo‘qolmaydi",
+     "Joul"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ichki energiya bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: ta’rif",
+      "2-guruh: harorat",
+      "3-guruh: ish",
+      "4-guruh: issiqlik uzatish"
+     ],
+     "yakun": "Natija: ichki energiyani ish va issiqlik uzatish bilan o‘zgartiramiz."
+    }
+   }
+  },
+  {
+   "mavzu": "Issiqlik uzatish turlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Uch tur",
+      "matn": "Issiqlik uzatishning uch turi bor: issiqlik o‘tkazuvchanlik, konveksiya va nurlanish. Issiqlik doim issiq jismdan sovuq jismga o‘tadi.",
+      "misol": "Choyga botirilgan qoshiq ushlagichi qiziydi.",
+      "savol": "Issiqlik uzatishning nechta turi bor?",
+      "javob": "uchta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Issiqlik o‘tkazuvchanlik",
+      "matn": "Issiqlik jism ichida molekulalarning to‘qnashuvi orqali o‘tadi. Metallar issiqlikni yaxshi o‘tkazadi. Yog‘och, plastmassa, havo — yomon o‘tkazadi.",
+      "misol": "Metall qoshiq tez qiziydi, yog‘och qoshiq sekin.",
+      "savol": "Qaysi modda issiqlikni yaxshi o‘tkazadi?",
+      "javob": "metall",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Konveksiya",
+      "matn": "Suyuqlik va gazlarda issiqlik oqim bilan uzatiladi. Isigan qatlam yengillashib ko‘tariladi, sovuq qatlam pastga tushadi. Bu konveksiya deyiladi.",
+      "misol": "Isitgich yonida havo ko‘tariladi.",
+      "savol": "Konveksiya qaysi moddalarda bo‘ladi?",
+      "javob": "suyuqlik va gazda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nurlanish",
+      "matn": "Issiqlik nurlar bilan ham uzatiladi. Quyoshdan Yerga issiqlik bo‘shliq orqali nurlanish bilan keladi. Qora jismlar issiqlikni ko‘proq yutadi.",
+      "misol": "Quyosh nuri Yerga taxminan 8 daqiqada yetib keladi.",
+      "savol": "Quyosh issiqligi Yerga qanday uzatiladi?",
+      "javob": "nurlanish bilan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Termos",
+      "matn": "Termos issiqlik uzatishning uch turini ham kamaytiradi: ichida havosiz bo‘shliq, yaltiroq devor va tiqin bor. Shuning uchun choy uzoq issiq turadi.",
+      "misol": "Termos issiqni ham, sovuqni ham saqlaydi.",
+      "savol": "Termos qanday saqlaydi?",
+      "javob": "uch turini kamaytirib",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Issiqlik uzatish: o‘tkazuvchanlik (qattiq jism), konveksiya (suyuqlik, gaz), nurlanish (bo‘shliq orqali). Issiqlik issiqdan sovuqqa o‘tadi.",
+    "misollar": [
+     {
+      "shart": "Metall qoshiq choyda tez qiziydi. Qaysi tur?",
+      "yechim": [
+       "Qoshiq qattiq jism.",
+       "Molekulalar to‘qnashadi.",
+       "Javob: issiqlik o‘tkazuvchanlik."
+      ],
+      "javob": "issiqlik o‘tkazuvchanlik"
+     },
+     {
+      "shart": "Isitgich yonida havo nega ko‘tariladi?",
+      "yechim": [
+       "Havo isiydi va yengillashadi.",
+       "Sovuq havo pastga tushadi.",
+       "Javob: konveksiya."
+      ],
+      "javob": "konveksiya"
+     },
+     {
+      "shart": "Quyosh Yerni qanday isitadi?",
+      "yechim": [
+       "Oradagi bo‘shliqda modda yo‘q.",
+       "Issiqlik nur bilan keladi.",
+       "Javob: nurlanish."
+      ],
+      "javob": "nurlanish"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qoshiqlar",
+      "topshiriq": "Metall va yog‘och qoshiqni issiq suvga solib, qizishini solishtiring.",
+      "yechim": "Qaysi tez qizidi?",
+      "mahsulot": "qoshiqlar, issiq suv"
+     },
+     {
+      "nom": "Konveksiya",
+      "topshiriq": "Suvga siyoh kristallchasini solib, oqimni kuzating.",
+      "yechim": "Isigan suv ko‘tariladi.",
+      "mahsulot": "idish va suv"
+     },
+     {
+      "nom": "Qora va oq",
+      "topshiriq": "Qora va oq qog‘ozni quyoshda qoldirib, haroratni solishtiring.",
+      "yechim": "Qora ko‘proq isiydi.",
+      "mahsulot": "qog‘ozlar"
+     },
+     {
+      "nom": "Termos yasaymiz",
+      "topshiriq": "Bankani qatlamlar bilan o‘rab, issiqni saqlashni sinang.",
+      "yechim": "Issiqlik uzatish kamayadi.",
+      "mahsulot": "banka va material"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "Issiqlik uzatish turlari soni?",
+      "javob": "3"
+     },
+     {
+      "shart": "Metall issiqlikni qanday o‘tkazadi?",
+      "javob": "yaxshi"
+     },
+     {
+      "shart": "Konveksiya qaysi moddalarda bo‘ladi?",
+      "javob": "suyuqlik va gaz"
+     },
+     {
+      "shart": "Quyosh issiqligi qanday keladi?",
+      "javob": "nurlanish bilan"
+     },
+     {
+      "shart": "Qora jism issiqlikni nima qiladi?",
+      "javob": "ko‘proq yutadi"
+     },
+     {
+      "shart": "Issiqlik qayoqqa o‘tadi?",
+      "javob": "issiqdan sovuqqa"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Konveksiyani qattiq jismda deydi",
+      "sabab": "qattiq jismda oqim yo‘q",
+      "oldini_olish": "suyuqlik va gazda"
+     },
+     {
+      "xato": "Nurlanishni modda kerak deydi",
+      "sabab": "bo‘shliqda ham bor",
+      "oldini_olish": "bo‘shliq orqali ham o‘tadi"
+     },
+     {
+      "xato": "Issiqlik sovuqdan issiqqa o‘tadi deydi",
+      "sabab": "teskari",
+      "oldini_olish": "issiqdan sovuqqa"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "radiator va issiqxona"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "dengiz va quruqlik shamollari"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "hayvonlar junining issiqni saqlashi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Termos yasaymiz»",
+     "muammo": "Issiqni saqlaydigan idishni qanday yasaymiz?",
+     "mahsulot": "termos maketi",
+     "bosqichlar": [
+      "materiallar tanlash",
+      "idish yasash",
+      "haroratni o‘lchash",
+      "taqqoslash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Material tanlang",
+      "Yasang",
+      "O‘lchang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "material mos",
+      "o‘lchov aniq",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Issiqlik yo‘llari»",
+     "bekatlar": [
+      {
+       "nom": "1-yo‘l",
+       "matn": "Metall qoshiq qizishi.",
+       "topshiriq": "Qaysi tur?",
+       "javob": "o‘tkazuvchanlik",
+       "rasm": ""
+      },
+      {
+       "nom": "2-yo‘l",
+       "matn": "Isitgichdan havo ko‘tarilishi.",
+       "topshiriq": "Qaysi tur?",
+       "javob": "konveksiya",
+       "rasm": ""
+      },
+      {
+       "nom": "3-yo‘l",
+       "matn": "Quyosh isitishi.",
+       "topshiriq": "Qaysi tur?",
+       "javob": "nurlanish",
+       "rasm": ""
+      },
+      {
+       "nom": "4-yo‘l",
+       "matn": "Termos issiq saqlashi.",
+       "topshiriq": "Nechta tur kamayadi?",
+       "javob": "3",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi turni aniqladingiz?",
+      "Qanday modda bor edi?",
+      "Xulosa nima?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Issiqlik o‘tkazuvchanlik",
+      "tarif": "molekulalar to‘qnashuvi bilan uzatish"
+     },
+     {
+      "atama": "Konveksiya",
+      "tarif": "oqim bilan issiqlik uzatish"
+     },
+     {
+      "atama": "Nurlanish",
+      "tarif": "nurlar bilan issiqlik uzatish"
+     },
+     {
+      "atama": "Termos",
+      "tarif": "issiqni saqlovchi idish"
+     },
+     {
+      "atama": "Yaxshi o‘tkazgich",
+      "tarif": "issiqni tez o‘tkazuvchi modda"
+     },
+     {
+      "atama": "Issiqlik izolyatori",
+      "tarif": "issiqni yomon o‘tkazuvchi modda"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Issiqlik uzatishning uch turi bor",
+      "togri": true,
+      "izoh": "tur"
+     },
+     {
+      "matn": "Metall issiqlikni yomon o‘tkazadi",
+      "togri": false,
+      "izoh": "yaxshi"
+     },
+     {
+      "matn": "Konveksiya suyuqlikda bo‘ladi",
+      "togri": true,
+      "izoh": "oqim"
+     },
+     {
+      "matn": "Nurlanish uchun modda shart",
+      "togri": false,
+      "izoh": "bo‘shliqda ham"
+     },
+     {
+      "matn": "Quyosh issiqligi nurlanish bilan keladi",
+      "togri": true,
+      "izoh": "bo‘shliq"
+     },
+     {
+      "matn": "Issiqlik sovuqdan issiqqa o‘tadi",
+      "togri": false,
+      "izoh": "issiqdan sovuqqa"
+     },
+     {
+      "matn": "Termos issiqlik uzatishni kamaytiradi",
+      "togri": true,
+      "izoh": "izolyatsiya"
+     },
+     {
+      "matn": "Qora jism issiqni ko‘proq yutadi",
+      "togri": true,
+      "izoh": "nurlanish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Turlar soni?",
+      "javob": "uchta"
+     },
+     {
+      "savol": "Qattiq jismda?",
+      "javob": "o‘tkazuvchanlik"
+     },
+     {
+      "savol": "Suyuqlikda?",
+      "javob": "konveksiya"
+     },
+     {
+      "savol": "Bo‘shliqda?",
+      "javob": "nurlanish"
+     },
+     {
+      "savol": "Metall?",
+      "javob": "yaxshi o‘tkazadi"
+     },
+     {
+      "savol": "Yog‘och?",
+      "javob": "yomon o‘tkazadi"
+     },
+     {
+      "savol": "Isigan havo?",
+      "javob": "ko‘tariladi"
+     },
+     {
+      "savol": "Quyosh?",
+      "javob": "nurlanish bilan"
+     },
+     {
+      "savol": "Termos?",
+      "javob": "issiqni saqlaydi"
+     },
+     {
+      "savol": "Issiqlik yo‘nalishi?",
+      "javob": "issiqdan sovuqqa"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qara",
+      "matn": "Hodisani qara.",
+      "savol": "Qaysi modda?"
+     },
+     {
+      "nom": "Aniqla",
+      "matn": "Turini aniqla.",
+      "savol": "Qaysi tur?"
+     },
+     {
+      "nom": "Tushuntir",
+      "matn": "Sababini ayt.",
+      "savol": "Nega?"
+     },
+     {
+      "nom": "Qo‘lla",
+      "matn": "Hayotda ishlat.",
+      "savol": "Termos?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun termos issiq choyni uzoq issiq saqlaydi?",
+    "keys": {
+     "vaziyat": "Qishda issiq choyni termosda olib yurasiz.",
+     "savollar": [
+      "Termos qaysi turlarni kamaytiradi?",
+      "Nima uchun yaltiroq devor bor?"
+     ]
+    },
+    "tezis": "Uch yo‘l — bitta maqsad",
+    "taqqoslash": {
+     "a": "Konveksiya",
+     "b": "Nurlanish",
+     "umumiy": [
+      "issiqlik uzatish turi",
+      "issiqdan sovuqqa"
+     ],
+     "a_farq": [
+      "suyuqlik va gaz",
+      "oqim bilan"
+     ],
+     "b_farq": [
+      "bo‘shliqda ham",
+      "nur bilan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Issiqlik uzatish",
+     "shoxlar": [
+      {
+       "nom": "O‘tkazuvchanlik",
+       "bandlar": [
+        "qattiq jism",
+        "metall"
+       ]
+      },
+      {
+       "nom": "Konveksiya",
+       "bandlar": [
+        "suyuqlik",
+        "gaz"
+       ]
+      },
+      {
+       "nom": "Nurlanish",
+       "bandlar": [
+        "bo‘shliq",
+        "Quyosh"
+       ]
+      },
+      {
+       "nom": "Termos",
+       "bandlar": [
+        "hammasini kamaytiradi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men issiqlikni uch yo‘l bilan tarqataman. Men kimman?",
+     "javob": "issiqlik uzatish"
+    },
+    "hikmat": "Issiq sovuqqa o‘tadi.",
+    "kalit_soz": "ISSIQLIK",
+    "xato_yechim": {
+     "shart": "Isitgich yonida havo nega ko‘tariladi?",
+     "xato": "o‘tkazuvchanlik",
+     "togri": "konveksiya",
+     "sabab": "havo oqim bilan issiqlik tashiydi"
+    },
+    "guruh_nomlari": [
+     "Issiqlikchilar",
+     "Konveksiyachilar",
+     "Nurchilar",
+     "Tajribachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Issiqlik yo‘llari»",
+     "topshiriq": "Guruh uch turni tajribada ko‘rsatadi."
+    },
+    "vazifalar": {
+     "A": "Metall va yog‘och qoshiq tajribasini o‘tkazing.",
+     "B": "Suvda konveksiya oqimini kuzating.",
+     "C": "Qora va oq qog‘ozni quyoshda solishtiring."
+    },
+    "sinkveyn": [
+     "Issiqlik",
+     "issiq, tarqaluvchi",
+     "o‘tadi, oqadi, nurlanadi",
+     "Issiq sovuqqa o‘tadi",
+     "Quyosh"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh issiqlik uzatish turlarini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: o‘tkazuvchanlik",
+      "2-guruh: konveksiya",
+      "3-guruh: nurlanish",
+      "4-guruh: termos"
+     ],
+     "yakun": "Natija: issiqlik uch xil yo‘l bilan issiqdan sovuqqa uzatiladi."
+    }
+   }
+  }
+ ]
+}
