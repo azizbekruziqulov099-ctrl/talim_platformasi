@@ -6916,6 +6916,1388 @@
      "yakun": "Natijalar: 0,01; 2; 2."
     }
    }
+  },
+  {
+   "mavzu": "O‘zgaruvchan tok",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tok yo‘nalishini o‘zgartiradi",
+      "matn": "O‘zgaruvchan tok — kattaligi va yo‘nalishi vaqt o‘tishi bilan davriy o‘zgaradigan elektr toki. Uni aylanayotgan ramkada elektromagnit induksiya hosil qiladi. Uyimizdagi rozetkada aynan shunday tok bor.",
+      "misol": "Rozetkadagi tok sekundiga 50 marta to‘liq tebranadi.",
+      "savol": "Rozetkada qanday tok bor?",
+      "javob": "o‘zgaruvchan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chastota va davr",
+      "matn": "O‘zgaruvchan tok chastotasi n — sekunddagi to‘liq tebranishlar soni. Birligi — gerts. O‘zbekistonda sanoat chastotasi 50 gerts. Davr T — 1 / n, ya’ni 50 gertsda davr 0,02 sekund.",
+      "misol": "Chiroq sekundiga 100 marta miltillaydi, ammo ko‘z sezmaydi.",
+      "savol": "Sanoat chastotasi qancha?",
+      "javob": "50 gerts",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Amplituda va ta’sir etuvchi qiymat",
+      "matn": "Kuchlanish eng katta qiymati — amplituda Um. Lekin asboblar ta’sir etuvchi (effektiv) qiymatni ko‘rsatadi: U — Um / 1,41. Rozetkadagi 220 volt aynan ta’sir etuvchi qiymat, amplituda esa taxminan 310 volt.",
+      "misol": "Voltmetr ta’sir etuvchi qiymatni o‘lchaydi.",
+      "savol": "Voltmetr qaysi qiymatni ko‘rsatadi?",
+      "javob": "ta’sir etuvchi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘g‘ri tok bilan farqi",
+      "matn": "To‘g‘ri tok bir yo‘nalishda oqadi (batareya). O‘zgaruvchan tok yo‘nalishini almashtiradi. Uni transformator yordamida oson o‘zgartirish mumkin, shuning uchun elektr stansiyalari aynan o‘zgaruvchan tok beradi.",
+      "misol": "Telefon zaryadlagichi o‘zgaruvchan tokni to‘g‘ri tokka aylantiradi.",
+      "savol": "Qaysi tokni transformator o‘zgartiradi?",
+      "javob": "o‘zgaruvchan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xavfsizlik",
+      "matn": "220 volt kuchlanish hayot uchun xavfli. Ho‘l qo‘l bilan rozetkaga tegmang, shikastlangan simni ishlatmang, asbobni ulashdan oldin uni o‘chiring. Yerga ulash va avtomat o‘chirgich himoya vazifasini bajaradi.",
+      "misol": "Avtomat o‘chirgich tok oshsa zanjirni uzadi.",
+      "savol": "Ho‘l qo‘l bilan rozetkaga tegish mumkinmi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Chastota 50 gerts, T — 1 / n. U — Um / 1,41. Voltmetr ta’sir etuvchi qiymatni ko‘rsatadi.",
+    "misollar": [
+     {
+      "shart": "n — 50 gerts. Davr T?",
+      "yechim": [
+       "T — 1 / n.",
+       "1 / 50.",
+       "Javob 0,02 sekund."
+      ],
+      "javob": "0,02 sekund"
+     },
+     {
+      "shart": "Amplituda Um — 141 volt. Ta’sir etuvchi kuchlanish?",
+      "yechim": [
+       "U — Um / 1,41.",
+       "141 / 1,41.",
+       "Javob 100 volt."
+      ],
+      "javob": "100 volt"
+     },
+     {
+      "shart": "Ta’sir etuvchi U — 220 volt. Amplituda?",
+      "yechim": [
+       "Um — U · 1,41.",
+       "220 · 1,41.",
+       "Javob taxminan 310 volt."
+      ],
+      "javob": "taxminan 310 volt"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Rozetka belgilari",
+      "topshiriq": "Uydagi asboblar yorlig‘ida kuchlanish va chastotani toping.",
+      "yechim": "220 volt, 50 gerts.",
+      "mahsulot": "asbob yorlig‘i"
+     },
+     {
+      "nom": "Davrni hisoblaymiz",
+      "topshiriq": "Turli chastotalar uchun davrni toping.",
+      "yechim": "T — 1 / n.",
+      "mahsulot": "kalkulyator"
+     },
+     {
+      "nom": "Amplitudani topamiz",
+      "topshiriq": "Uchta kuchlanish uchun amplituda hisoblang.",
+      "yechim": "Um — U · 1,41.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Xavfsizlik plakati",
+      "topshiriq": "Elektr xavfsizligi qoidalari plakatini chizing.",
+      "yechim": "Beshta qoida yozing.",
+      "mahsulot": "qog‘oz, flomaster"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1 / 50 nechaga teng?",
+      "javob": "0,02"
+     },
+     {
+      "shart": "141 / 1,41 nechaga teng?",
+      "javob": "100"
+     },
+     {
+      "shart": "220 · 1,41 nechaga teng?",
+      "javob": "310,2"
+     },
+     {
+      "shart": "Sanoat chastotasi (gerts)?",
+      "javob": "50"
+     },
+     {
+      "shart": "Voltmetr qaysi qiymatni o‘lchaydi?",
+      "javob": "ta’sir etuvchi"
+     },
+     {
+      "shart": "Chastota birligi?",
+      "javob": "gerts"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "220 volt amplituda deydi",
+      "sabab": "bu ta’sir etuvchi qiymat",
+      "oldini_olish": "amplituda taxminan 310 volt"
+     },
+     {
+      "xato": "Davrni n · 1 deb hisoblaydi",
+      "sabab": "T — 1 / n",
+      "oldini_olish": "bo‘lish kerak"
+     },
+     {
+      "xato": "Batareya tokini o‘zgaruvchan deydi",
+      "sabab": "u to‘g‘ri tok",
+      "oldini_olish": "yo‘nalish o‘zgarmaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "rozetka va generator"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "davriy funksiyalar"
+     },
+     {
+      "fan": "Xavfsizlik",
+      "boglanish": "elektr bilan ehtiyotkorlik"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Elektr xavfsizligi»",
+     "muammo": "Uyda elektrdan xavfsiz foydalanish qoidalari qanday?",
+     "mahsulot": "plakat va hisob",
+     "bosqichlar": [
+      "asboblarni o‘rganish",
+      "qoidalar yozish",
+      "hisoblash",
+      "plakat chizish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Asboblarni o‘rganing",
+      "Qoidalarni yozing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "qoidalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Elektr stansiyasi»",
+     "bekatlar": [
+      {
+       "nom": "1-zal",
+       "matn": "n — 50 gerts.",
+       "topshiriq": "T?",
+       "javob": "0,02",
+       "rasm": ""
+      },
+      {
+       "nom": "2-zal",
+       "matn": "Um — 141 volt.",
+       "topshiriq": "U?",
+       "javob": "100",
+       "rasm": ""
+      },
+      {
+       "nom": "3-zal",
+       "matn": "U — 220 volt.",
+       "topshiriq": "Um taxminan?",
+       "javob": "310",
+       "rasm": ""
+      },
+      {
+       "nom": "4-zal",
+       "matn": "Sanoat chastotasi.",
+       "topshiriq": "Gerts?",
+       "javob": "50",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "O‘zgaruvchan tok",
+      "tarif": "yo‘nalishi davriy o‘zgaradigan tok"
+     },
+     {
+      "atama": "Chastota",
+      "tarif": "sekunddagi tebranishlar soni"
+     },
+     {
+      "atama": "Davr",
+      "tarif": "bir tebranish vaqti"
+     },
+     {
+      "atama": "Amplituda",
+      "tarif": "eng katta qiymat"
+     },
+     {
+      "atama": "Ta’sir etuvchi qiymat",
+      "tarif": "asboblar ko‘rsatadigan qiymat"
+     },
+     {
+      "atama": "Gerts",
+      "tarif": "chastota birligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Rozetkada o‘zgaruvchan tok bor",
+      "togri": true,
+      "izoh": "220 volt, 50 gerts"
+     },
+     {
+      "matn": "Sanoat chastotasi 100 gerts",
+      "togri": false,
+      "izoh": "50 gerts"
+     },
+     {
+      "matn": "T — 1 / n",
+      "togri": true,
+      "izoh": "davr formulasi"
+     },
+     {
+      "matn": "Voltmetr amplitudani ko‘rsatadi",
+      "togri": false,
+      "izoh": "ta’sir etuvchi qiymat"
+     },
+     {
+      "matn": "141 / 1,41 — 100",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Ho‘l qo‘l bilan rozetkaga tegish xavfsiz",
+      "togri": false,
+      "izoh": "xavfli"
+     },
+     {
+      "matn": "Generator induksiyaga asoslangan",
+      "togri": true,
+      "izoh": "tok hosil qiladi"
+     },
+     {
+      "matn": "Batareya o‘zgaruvchan tok beradi",
+      "togri": false,
+      "izoh": "to‘g‘ri tok"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "O‘zgaruvchan tok?",
+      "javob": "yo‘nalishi o‘zgaradi"
+     },
+     {
+      "savol": "Sanoat chastotasi?",
+      "javob": "50 gerts"
+     },
+     {
+      "savol": "Davr?",
+      "javob": "1 / n"
+     },
+     {
+      "savol": "1 / 50?",
+      "javob": "0,02"
+     },
+     {
+      "savol": "Amplituda?",
+      "javob": "eng katta qiymat"
+     },
+     {
+      "savol": "U formulasi?",
+      "javob": "Um / 1,41"
+     },
+     {
+      "savol": "141 / 1,41?",
+      "javob": "100"
+     },
+     {
+      "savol": "220 · 1,41?",
+      "javob": "310,2"
+     },
+     {
+      "savol": "Voltmetr?",
+      "javob": "ta’sir etuvchi qiymat"
+     },
+     {
+      "savol": "Rozetka kuchlanishi?",
+      "javob": "220 volt"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Asbob yorlig‘ini kuzat.",
+      "savol": "Qanday kuchlanish?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Chastotani yoz.",
+      "savol": "Necha gerts?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Davrni top.",
+      "savol": "1 / n?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qaysi tok bor?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun uyimizda o‘zgaruvchan tok ishlatiladi, to‘g‘ri tok emas?",
+    "keys": {
+     "vaziyat": "Rozetkadagi chiroq sekundiga 100 marta miltillaydi, lekin ko‘z buni sezmaydi.",
+     "savollar": [
+      "Nima uchun miltillashni sezmaymiz?",
+      "Davr qancha?"
+     ]
+    },
+    "tezis": "T — 1 / n",
+    "taqqoslash": {
+     "a": "To‘g‘ri tok",
+     "b": "O‘zgaruvchan tok",
+     "umumiy": [
+      "elektr toki",
+      "asboblarni ishlatadi"
+     ],
+     "a_farq": [
+      "yo‘nalish o‘zgarmaydi",
+      "batareya beradi"
+     ],
+     "b_farq": [
+      "yo‘nalish davriy o‘zgaradi",
+      "generator beradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "O‘zgaruvchan tok",
+     "shoxlar": [
+      {
+       "nom": "Kattaliklar",
+       "bandlar": [
+        "n",
+        "T",
+        "Um"
+       ]
+      },
+      {
+       "nom": "Qiymatlar",
+       "bandlar": [
+        "220 volt",
+        "50 gerts"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "T — 1 / n",
+        "U — Um / 1,41"
+       ]
+      },
+      {
+       "nom": "Xavfsizlik",
+       "bandlar": [
+        "yerga ulash",
+        "avtomat"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yo‘nalishimni sekundiga yuz marta almashtiraman. Men kimman?",
+     "javob": "o‘zgaruvchan tok"
+    },
+    "hikmat": "Rozetkada tok tebranadi.",
+    "kalit_soz": "O‘ZGARUVCHAN",
+    "xato_yechim": {
+     "shart": "Voltmetr 220 volt ko‘rsatdi. Bu qaysi qiymat?",
+     "xato": "amplituda",
+     "togri": "ta’sir etuvchi qiymat",
+     "sabab": "voltmetr shuni o‘lchaydi"
+    },
+    "guruh_nomlari": [
+     "Tokchilar",
+     "Hisobchilar",
+     "Xavfsizlik guruhi",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Elektr xavfsizligi»",
+     "topshiriq": "Guruh plakat tayyorlaydi."
+    },
+    "vazifalar": {
+     "A": "n — 50 bo‘lsa T?",
+     "B": "Um — 141 bo‘lsa U?",
+     "C": "U — 220 bo‘lsa Um?"
+    },
+    "sinkveyn": [
+     "Tok",
+     "o‘zgaruvchan, xavfli",
+     "tebranadi, oqadi, uzatadi",
+     "Rozetkada 50 gerts",
+     "Elektr"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh o‘zgaruvchan tokni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: chastota",
+      "2-guruh: davr",
+      "3-guruh: amplituda",
+      "4-guruh: xavfsizlik"
+     ],
+     "yakun": "Natijalar: 0,02; 100; 310."
+    }
+   }
+  },
+  {
+   "mavzu": "Transformator",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Transformator nima",
+      "matn": "Transformator — o‘zgaruvchan tok kuchlanishini oshiradigan yoki kamaytiradigan qurilma. U temir o‘zakka o‘ralgan ikki chulg‘amdan iborat: birlamchi (N1 o‘ramli) va ikkilamchi (N2 o‘ramli). Ishlashi elektromagnit induksiyaga asoslangan.",
+      "misol": "Telefon zaryadlagichida kichik transformator bor.",
+      "savol": "Transformator nimani o‘zgartiradi?",
+      "javob": "kuchlanishni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ishlash prinsipi",
+      "matn": "Birlamchi chulg‘amdagi o‘zgaruvchan tok o‘zakda o‘zgaruvchan magnit oqimi hosil qiladi. Bu oqim ikkilamchi chulg‘amda induksiya EYuK uyg‘otadi. To‘g‘ri tokda oqim o‘zgarmaydi, shuning uchun transformator ishlamaydi.",
+      "misol": "Batareyaga ulangan transformator kuchlanish bermaydi.",
+      "savol": "To‘g‘ri tokda transformator ishlaydimi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Transformatsiya koeffitsiyenti",
+      "matn": "Ideal transformatorda U1 / U2 — N1 / N2. Ikkilamchi o‘ram kam bo‘lsa, kuchlanish pasayadi (pasaytiruvchi), ko‘p bo‘lsa, ortadi (oshiruvchi). Bu nisbat transformatsiya koeffitsiyenti k deyiladi.",
+      "misol": "k katta bo‘lsa, kuchlanish ko‘p marta kamayadi.",
+      "savol": "U1 / U2 nimaga teng?",
+      "javob": "N1 / N2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tok va quvvat",
+      "matn": "Ideal transformatorda quvvat o‘zgarmaydi: U1 · I1 — U2 · I2. Kuchlanish necha marta oshsa, tok shuncha marta kamayadi. Haqiqiy transformatorda isish tufayli bir oz yo‘qotish bo‘ladi, FIK 95 dan 99 foizgacha.",
+      "misol": "Katta transformator isiganida moy bilan sovitiladi.",
+      "savol": "Kuchlanish oshsa, tok nima bo‘ladi?",
+      "javob": "kamayadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tarixi va qo‘llanishi",
+      "matn": "1885-yilda Vengriyaning Ganz zavodi muhandislari zamonaviy yopiq o‘zakli transformatorni yaratdi. Hozir u elektr stansiyalarida, shahar podstansiyalarida, zaryadlagichlarda ishlatiladi. Uning yordamida kuchlanish yuzlab kilovoltgacha oshiriladi.",
+      "misol": "Podstansiya shaharga kuchlanishni pasaytirib beradi.",
+      "savol": "Qaysi yilda zamonaviy transformator yaratildi?",
+      "javob": "1885",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "U1 / U2 — N1 / N2. U1 · I1 — U2 · I2. O‘zgaruvchan tokda ishlaydi.",
+    "misollar": [
+     {
+      "shart": "N1 — 1000, N2 — 100, U1 — 220 volt. U2?",
+      "yechim": [
+       "U2 — U1 · N2 / N1.",
+       "220 · 100 / 1000.",
+       "Javob 22 volt."
+      ],
+      "javob": "22 volt"
+     },
+     {
+      "shart": "U1 — 220 volt, U2 — 11 volt. Transformatsiya koeffitsiyenti?",
+      "yechim": [
+       "k — U1 / U2.",
+       "220 / 11.",
+       "Javob 20."
+      ],
+      "javob": "20"
+     },
+     {
+      "shart": "Ikkilamchi quvvat 44 vatt, U1 — 220 volt (ideal). I1?",
+      "yechim": [
+       "I1 — P / U1.",
+       "44 / 220.",
+       "Javob 0,2 amper."
+      ],
+      "javob": "0,2 amper"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Transformatorni ko‘ramiz",
+      "topshiriq": "Eski zaryadlagichni ochmasdan yorlig‘ini o‘qing.",
+      "yechim": "Kirish 220 volt, chiqish kam.",
+      "mahsulot": "zaryadlagich"
+     },
+     {
+      "nom": "Model o‘ramlar",
+      "topshiriq": "Ikki g‘altak va temir o‘zakdan model yasang.",
+      "yechim": "Magnit oqimi o‘tadi.",
+      "mahsulot": "g‘altak, o‘zak"
+     },
+     {
+      "nom": "Nisbatni hisoblaymiz",
+      "topshiriq": "N1, N2 va U1 berilgan, U2 ni toping.",
+      "yechim": "U2 — U1 · N2 / N1.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Tarix lavhasi",
+      "topshiriq": "Transformator tarixini bir varaqda chizing.",
+      "yechim": "1885-yil.",
+      "mahsulot": "qog‘oz, flomaster"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "220 · 100 / 1000 nechaga teng?",
+      "javob": "22"
+     },
+     {
+      "shart": "220 / 11 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "44 / 220 nechaga teng?",
+      "javob": "0,2"
+     },
+     {
+      "shart": "Transformator qaysi tokda ishlaydi?",
+      "javob": "o‘zgaruvchan"
+     },
+     {
+      "shart": "Zamonaviy transformator yili?",
+      "javob": "1885"
+     },
+     {
+      "shart": "Ideal transformatorda nima saqlanadi?",
+      "javob": "quvvat"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Transformator to‘g‘ri tokda ishlaydi deydi",
+      "sabab": "magnit oqimi o‘zgarmaydi",
+      "oldini_olish": "o‘zgaruvchan tok kerak"
+     },
+     {
+      "xato": "U1 / U2 — N2 / N1 deydi",
+      "sabab": "U1 / U2 — N1 / N2",
+      "oldini_olish": "o‘ramlar nisbati"
+     },
+     {
+      "xato": "Kuchlanish oshsa tok ham oshadi deydi",
+      "sabab": "tok kamayadi",
+      "oldini_olish": "quvvat o‘zgarmaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "podstansiya"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "nisbat va proporsiya"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "1885-yilgi kashfiyot"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Transformator modeli»",
+     "muammo": "Transformator kuchlanishni qanday o‘zgartiradi?",
+     "mahsulot": "model va hisob",
+     "bosqichlar": [
+      "g‘altaklarni tayyorlash",
+      "o‘ramlarni sanash",
+      "hisoblash",
+      "natijani tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "G‘altak tayyorlang",
+      "O‘ramlarni sanang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Podstansiya»",
+     "bekatlar": [
+      {
+       "nom": "1-qurilma",
+       "matn": "N1 — 1000, N2 — 100, U1 — 220.",
+       "topshiriq": "U2?",
+       "javob": "22",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qurilma",
+       "matn": "U1 — 220, U2 — 11.",
+       "topshiriq": "k?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qurilma",
+       "matn": "P — 44, U1 — 220.",
+       "topshiriq": "I1?",
+       "javob": "0,2",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qurilma",
+       "matn": "Zamonaviy transformator yili.",
+       "topshiriq": "Yil?",
+       "javob": "1885",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Nisbatni to‘g‘ri yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Transformator",
+      "tarif": "kuchlanishni o‘zgartiruvchi qurilma"
+     },
+     {
+      "atama": "Birlamchi chulg‘am",
+      "tarif": "tok beriladigan o‘ramlar"
+     },
+     {
+      "atama": "Ikkilamchi chulg‘am",
+      "tarif": "tok olinadigan o‘ramlar"
+     },
+     {
+      "atama": "O‘zak",
+      "tarif": "magnit oqimini o‘tkazuvchi temir"
+     },
+     {
+      "atama": "Koeffitsiyent",
+      "tarif": "o‘ramlar nisbati"
+     },
+     {
+      "atama": "FIK",
+      "tarif": "foydali ish koeffitsiyenti"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Transformator o‘zgaruvchan tokda ishlaydi",
+      "togri": true,
+      "izoh": "oqim o‘zgaradi"
+     },
+     {
+      "matn": "To‘g‘ri tokda ham ishlaydi",
+      "togri": false,
+      "izoh": "ishlamaydi"
+     },
+     {
+      "matn": "U1 / U2 — N1 / N2",
+      "togri": true,
+      "izoh": "ideal transformator"
+     },
+     {
+      "matn": "Kuchlanish oshsa tok oshadi",
+      "togri": false,
+      "izoh": "tok kamayadi"
+     },
+     {
+      "matn": "220 · 100 / 1000 — 22",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Ideal transformatorda quvvat saqlanadi",
+      "togri": true,
+      "izoh": "kirish va chiqish teng"
+     },
+     {
+      "matn": "Zamonaviy transformator 1885-yilda yaratilgan",
+      "togri": true,
+      "izoh": "Ganz zavodi"
+     },
+     {
+      "matn": "Transformator magnit oqimisiz ishlaydi",
+      "togri": false,
+      "izoh": "induksiyaga asoslangan"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Transformator?",
+      "javob": "kuchlanishni o‘zgartiradi"
+     },
+     {
+      "savol": "Chulg‘amlar?",
+      "javob": "birlamchi va ikkilamchi"
+     },
+     {
+      "savol": "Qaysi tokda?",
+      "javob": "o‘zgaruvchan"
+     },
+     {
+      "savol": "Formula?",
+      "javob": "U1 / U2 — N1 / N2"
+     },
+     {
+      "savol": "220 · 100 / 1000?",
+      "javob": "22"
+     },
+     {
+      "savol": "220 / 11?",
+      "javob": "20"
+     },
+     {
+      "savol": "44 / 220?",
+      "javob": "0,2"
+     },
+     {
+      "savol": "Quvvat?",
+      "javob": "saqlanadi"
+     },
+     {
+      "savol": "Yil?",
+      "javob": "1885"
+     },
+     {
+      "savol": "FIK?",
+      "javob": "95 dan 99 foizgacha"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Transformator yorlig‘ini kuzat.",
+      "savol": "Kirish va chiqish?"
+     },
+     {
+      "nom": "Sana",
+      "matn": "O‘ramlarni sana.",
+      "savol": "N1 va N2?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "U2 ni top.",
+      "savol": "U1 · N2 / N1?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Oshdimi yoki kamaydimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun transformator to‘g‘ri tokda kuchlanishni o‘zgartirmaydi?",
+    "keys": {
+     "vaziyat": "Zaryadlagich 220 voltni bir necha voltga tushiradi.",
+     "savollar": [
+      "Qaysi chulg‘amda o‘ram ko‘p?",
+      "Tok qanday o‘zgaradi?"
+     ]
+    },
+    "tezis": "U1 / U2 — N1 / N2",
+    "taqqoslash": {
+     "a": "Pasaytiruvchi transformator",
+     "b": "Oshiruvchi transformator",
+     "umumiy": [
+      "ikki chulg‘am",
+      "o‘zgaruvchan tokda ishlaydi"
+     ],
+     "a_farq": [
+      "N2 kam",
+      "kuchlanish pasayadi"
+     ],
+     "b_farq": [
+      "N2 ko‘p",
+      "kuchlanish oshadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Transformator",
+     "shoxlar": [
+      {
+       "nom": "Tuzilishi",
+       "bandlar": [
+        "o‘zak",
+        "ikki chulg‘am"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "U1 / U2 — N1 / N2"
+       ]
+      },
+      {
+       "nom": "Quvvat",
+       "bandlar": [
+        "U1 · I1 — U2 · I2"
+       ]
+      },
+      {
+       "nom": "Qo‘llanish",
+       "bandlar": [
+        "podstansiya",
+        "zaryadlagich"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men kuchlanishni o‘zgartiraman, quvvatni emas. Men kimman?",
+     "javob": "transformator"
+    },
+    "hikmat": "Transformator o‘ramlar nisbatiga tayanadi.",
+    "kalit_soz": "TRANSFORMATOR",
+    "xato_yechim": {
+     "shart": "U1 oshsa, I1 qanday o‘zgaradi?",
+     "xato": "oshadi",
+     "togri": "kamayadi",
+     "sabab": "quvvat o‘zgarmaydi"
+    },
+    "guruh_nomlari": [
+     "Transformatorchilar",
+     "Hisobchilar",
+     "Modelchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Transformator laboratoriyasi»",
+     "topshiriq": "Guruh o‘ramlar nisbatini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "N1 — 1000, N2 — 100, U1 — 220 bo‘lsa U2?",
+     "B": "U1 — 220, U2 — 11 bo‘lsa k?",
+     "C": "P — 44, U1 — 220 bo‘lsa I1?"
+    },
+    "sinkveyn": [
+     "Transformator",
+     "temirli, o‘ramli",
+     "o‘zgartiradi, oshiradi, pasaytiradi",
+     "Kuchlanish o‘zgaradi",
+     "Podstansiya"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh transformatorni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilishi",
+      "2-guruh: nisbat",
+      "3-guruh: quvvat",
+      "4-guruh: qo‘llanish"
+     ],
+     "yakun": "Natijalar: 22; 20; 0,2."
+    }
+   }
+  },
+  {
+   "mavzu": "Elektr energiyani uzatish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yo‘lning muammosi",
+      "matn": "Elektr stansiyasi iste’molchidan yuzlab kilometr uzoqda bo‘lishi mumkin. Simlarda qarshilik bor, tok o‘tganda ular qiziydi va energiyaning bir qismi issiqlikka aylanadi. Maqsad — yo‘qotishni kamaytirish.",
+      "misol": "Uzun simda energiyaning bir qismi yo‘lda yo‘qoladi.",
+      "savol": "Simlarda energiya nimaga aylanadi?",
+      "javob": "issiqlikka",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Joul-Lens qonuni",
+      "matn": "Simda ajraladigan issiqlik Q — I kvadrat · R · t. Quvvat yo‘qotilishi P yo‘q — I kvadrat · R. Demak, yo‘qotish tok kvadratiga to‘g‘ri proporsional: tokni 10 marta kamaytirsak, yo‘qotish 100 marta kamayadi.",
+      "misol": "Tok ikki baravar kamaysa, yo‘qotish to‘rt baravar kamayadi.",
+      "savol": "Yo‘qotish tokning qanday darajasiga bog‘liq?",
+      "javob": "kvadratiga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kuchlanishni oshirish",
+      "matn": "Quvvat P — U · I. P ni o‘zgartirmay, kuchlanishni oshirsak, tok kamayadi. Shuning uchun stansiyada transformator kuchlanishni oshiradi, so‘ng uzatiladi. Uzoq liniyalarda 110, 220 va 500 kilovolt ishlatiladi.",
+      "misol": "Yuqori kuchlanishli liniya yo‘g‘on simsiz uzoqqa yetkazadi.",
+      "savol": "Uzatishda kuchlanish nega oshiriladi?",
+      "javob": "tok kamayishi uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tarmoq sxemasi",
+      "matn": "Generator — oshiruvchi transformator — yuqori kuchlanishli liniya — pasaytiruvchi podstansiya — iste’molchi. Shaharda kuchlanish bosqichma-bosqich 220 voltgacha pasaytiriladi. Barcha bosqichlar yagona energiya tizimini tashkil etadi.",
+      "misol": "Uyimizga elektr bir necha transformator orqali keladi.",
+      "savol": "Iste’molchiga kuchlanish qaysi qurilmada pasayadi?",
+      "javob": "podstansiyada",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tarixiy tajriba",
+      "matn": "1891-yilda Germaniyada Laufen va Frankfurt orasida taxminan 175 kilometr uzunlikdagi liniyada uch fazali tok uzatilib, uzoq masofaga energiya yetkazish mumkinligi isbotlandi. Bu tajriba zamonaviy elektr tarmoqlariga yo‘l ochdi.",
+      "misol": "Bu tajriba o‘zgaruvchan tok afzalligini ko‘rsatdi.",
+      "savol": "Laufen–Frankfurt tajribasi qaysi yilda?",
+      "javob": "1891",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "P — U · I. P yo‘q — I kvadrat · R. Kuchlanish oshsa, tok kamayadi, yo‘qotish keskin kamayadi.",
+    "misollar": [
+     {
+      "shart": "P — 100000 vatt, U — 10000 volt. Tok I?",
+      "yechim": [
+       "I — P / U.",
+       "100000 / 10000.",
+       "Javob 10 amper."
+      ],
+      "javob": "10 amper"
+     },
+     {
+      "shart": "I — 10 amper, R — 5 om. Yo‘qotish quvvati?",
+      "yechim": [
+       "P yo‘q — I kvadrat · R.",
+       "10 · 10 · 5.",
+       "Javob 500 vatt."
+      ],
+      "javob": "500 vatt"
+     },
+     {
+      "shart": "Kuchlanish 10 marta oshirildi. Yo‘qotish necha marta kamayadi?",
+      "yechim": [
+       "Tok 10 marta kamayadi.",
+       "Yo‘qotish tok kvadratiga bog‘liq: 10 · 10.",
+       "Javob 100 marta."
+      ],
+      "javob": "100 marta"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tarmoq sxemasi",
+      "topshiriq": "Generatordan uygacha sxemani chizing.",
+      "yechim": "Beshta bosqich.",
+      "mahsulot": "qog‘oz, flomaster"
+     },
+     {
+      "nom": "Yo‘qotishni hisoblaymiz",
+      "topshiriq": "Turli toklar uchun I kvadrat · R ni toping.",
+      "yechim": "R — 5 om.",
+      "mahsulot": "kalkulyator"
+     },
+     {
+      "nom": "Podstansiyani izlaymiz",
+      "topshiriq": "Mahallangizdagi podstansiyani kuzating.",
+      "yechim": "Xavfsiz masofadan.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Taqqoslash",
+      "topshiriq": "1000 volt va 10000 voltda yo‘qotishni solishtiring.",
+      "yechim": "100 marta farq.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "100000 / 10000 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "10 · 10 · 5 nechaga teng?",
+      "javob": "500"
+     },
+     {
+      "shart": "10 · 10 nechaga teng?",
+      "javob": "100"
+     },
+     {
+      "shart": "Yo‘qotish tokning nechanchi darajasiga bog‘liq?",
+      "javob": "ikkinchi"
+     },
+     {
+      "shart": "Laufen–Frankfurt yili?",
+      "javob": "1891"
+     },
+     {
+      "shart": "Uzatishda kuchlanish oshadimi?",
+      "javob": "ha"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Uzatishda tokni oshiradi deydi",
+      "sabab": "kuchlanish oshiriladi",
+      "oldini_olish": "tok kamayishi uchun"
+     },
+     {
+      "xato": "Yo‘qotish tokka teng proporsional deydi",
+      "sabab": "tok kvadratiga",
+      "oldini_olish": "10 marta kam tok — 100 marta kam yo‘qotish"
+     },
+     {
+      "xato": "Quvvatni U / I deb hisoblaydi",
+      "sabab": "P — U · I",
+      "oldini_olish": "ko‘paytiriladi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Energetika",
+      "boglanish": "elektr tarmoqlari"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "kvadrat bog‘liqlik"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "energiyani tejash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Energiya yo‘qotilishi»",
+     "muammo": "Uzatishda yo‘qotishni qanday kamaytiramiz?",
+     "mahsulot": "hisob va sxema",
+     "bosqichlar": [
+      "sxema chizish",
+      "tokni hisoblash",
+      "yo‘qotishni hisoblash",
+      "natijani solishtirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Sxema chizing",
+      "Tokni hisoblang",
+      "Yo‘qotishni hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Katta tarmoq»",
+     "bekatlar": [
+      {
+       "nom": "1-ustun",
+       "matn": "P — 100000, U — 10000.",
+       "topshiriq": "I?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ustun",
+       "matn": "I — 10, R — 5.",
+       "topshiriq": "P yo‘q?",
+       "javob": "500",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ustun",
+       "matn": "Kuchlanish 10 marta oshdi.",
+       "topshiriq": "Yo‘qotish necha marta kam?",
+       "javob": "100",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ustun",
+       "matn": "Laufen–Frankfurt.",
+       "topshiriq": "Yil?",
+       "javob": "1891",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Liniya",
+      "tarif": "elektr uzatish simlari"
+     },
+     {
+      "atama": "Podstansiya",
+      "tarif": "kuchlanishni o‘zgartiruvchi joy"
+     },
+     {
+      "atama": "Yo‘qotish",
+      "tarif": "issiqlikka sarf bo‘lgan energiya"
+     },
+     {
+      "atama": "Quvvat",
+      "tarif": "bir soniyadagi energiya"
+     },
+     {
+      "atama": "Kilovolt",
+      "tarif": "ming volt"
+     },
+     {
+      "atama": "Energiya tizimi",
+      "tarif": "tarmoqlar majmuasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Uzatishda kuchlanish oshiriladi",
+      "togri": true,
+      "izoh": "tok kamayadi"
+     },
+     {
+      "matn": "Tok oshsa yo‘qotish kamayadi",
+      "togri": false,
+      "izoh": "oshadi"
+     },
+     {
+      "matn": "P — U · I",
+      "togri": true,
+      "izoh": "quvvat"
+     },
+     {
+      "matn": "Yo‘qotish tok kvadratiga bog‘liq",
+      "togri": true,
+      "izoh": "Joul-Lens"
+     },
+     {
+      "matn": "100000 / 10000 — 10",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Podstansiya kuchlanishni pasaytiradi",
+      "togri": true,
+      "izoh": "iste’molchi uchun"
+     },
+     {
+      "matn": "Laufen–Frankfurt tajribasi 1891-yilda bo‘lgan",
+      "togri": true,
+      "izoh": "175 kilometr"
+     },
+     {
+      "matn": "Simlar qizimaydi",
+      "togri": false,
+      "izoh": "qarshilik bor"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yo‘qotish nima?",
+      "javob": "issiqlikka sarf"
+     },
+     {
+      "savol": "Formula?",
+      "javob": "I kvadrat · R"
+     },
+     {
+      "savol": "Nega kuchlanish oshadi?",
+      "javob": "tok kamayadi"
+     },
+     {
+      "savol": "P?",
+      "javob": "U · I"
+     },
+     {
+      "savol": "100000 / 10000?",
+      "javob": "10"
+     },
+     {
+      "savol": "10 · 10 · 5?",
+      "javob": "500"
+     },
+     {
+      "savol": "10 · 10?",
+      "javob": "100"
+     },
+     {
+      "savol": "Podstansiya?",
+      "javob": "kuchlanishni pasaytiradi"
+     },
+     {
+      "savol": "Yil?",
+      "javob": "1891"
+     },
+     {
+      "savol": "Liniya kuchlanishi?",
+      "javob": "110, 220, 500 kilovolt"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Chiz",
+      "matn": "Sxemani chiz.",
+      "savol": "Nechta bosqich?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Tokni top.",
+      "savol": "P / U?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Yo‘qotishni top.",
+      "savol": "I kvadrat · R?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nega kuchlanish oshadi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun elektr energiya yuqori kuchlanishda uzatiladi?",
+    "keys": {
+     "vaziyat": "Stansiya shahardan yuzlab kilometr uzoqda, simlar qiziydi va energiya yo‘qoladi.",
+     "savollar": [
+      "Yo‘qotishni qanday kamaytiramiz?",
+      "Tok qanday o‘zgaradi?"
+     ]
+    },
+    "tezis": "P yo‘q — I kvadrat · R",
+    "taqqoslash": {
+     "a": "Past kuchlanishda uzatish",
+     "b": "Yuqori kuchlanishda uzatish",
+     "umumiy": [
+      "bir xil quvvat",
+      "simlar orqali"
+     ],
+     "a_farq": [
+      "tok katta",
+      "yo‘qotish katta"
+     ],
+     "b_farq": [
+      "tok kichik",
+      "yo‘qotish kam"
+     ]
+    },
+    "klaster": {
+     "markaz": "Elektr energiyani uzatish",
+     "shoxlar": [
+      {
+       "nom": "Muammo",
+       "bandlar": [
+        "simlar qiziydi"
+       ]
+      },
+      {
+       "nom": "Qonun",
+       "bandlar": [
+        "I kvadrat · R"
+       ]
+      },
+      {
+       "nom": "Yechim",
+       "bandlar": [
+        "kuchlanishni oshirish"
+       ]
+      },
+      {
+       "nom": "Tarmoq",
+       "bandlar": [
+        "transformator",
+        "podstansiya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tok kvadratiga bog‘liq yo‘qotishman. Men nimaman?",
+     "javob": "issiqlik yo‘qotishi"
+    },
+    "hikmat": "Kuchlanish oshsa, tok kamayadi.",
+    "kalit_soz": "TARMOQ",
+    "xato_yechim": {
+     "shart": "Kuchlanish 10 marta oshsa, yo‘qotish necha marta kamayadi?",
+     "xato": "10 marta",
+     "togri": "100 marta",
+     "sabab": "yo‘qotish tok kvadratiga bog‘liq"
+    },
+    "guruh_nomlari": [
+     "Energetiklar",
+     "Hisobchilar",
+     "Sxemachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Energiya yo‘qotilishi»",
+     "topshiriq": "Guruh yo‘qotishlarni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "P — 100000, U — 10000 bo‘lsa I?",
+     "B": "I — 10, R — 5 bo‘lsa P yo‘q?",
+     "C": "Kuchlanish 10 marta oshsa yo‘qotish?"
+    },
+    "sinkveyn": [
+     "Tarmoq",
+     "uzun, kuchli",
+     "uzatadi, qiziydi, yo‘qoladi",
+     "Tok kamaysa yo‘qotish kamayadi",
+     "Energiya"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh energiya uzatishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: muammo",
+      "2-guruh: qonun",
+      "3-guruh: yechim",
+      "4-guruh: tarmoq sxemasi"
+     ],
+     "yakun": "Natijalar: 10; 500; 100."
+    }
+   }
   }
  ]
 }
