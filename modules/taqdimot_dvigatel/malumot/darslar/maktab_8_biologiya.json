@@ -6958,6 +6958,1396 @@
      "yakun": "Natijalar: 1020; 1700; 680 metr."
     }
    }
+  },
+  {
+   "mavzu": "Ko‘rish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ko‘z tuzilishi",
+      "matn": "Ko‘z olmasi bir necha qismdan iborat. Shox parda — tiniq old qism. Rangdor parda ko‘zga rang beradi, uning markazidagi teshik — qorachiq, u yorug‘likka qarab torayadi yoki kengayadi. Gavhar — linza kabi nurni sindiradi. Shishasimon tana ko‘z ichini to‘ldiradi. Orqa devorda to‘r parda joylashgan.",
+      "misol": "Ko‘z — tabiiy fotoapparat.",
+      "savol": "Ko‘zga rang beruvchi qism?",
+      "javob": "rangdor parda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘r parda va tasvir",
+      "matn": "To‘r pardada yorug‘likni sezuvchi hujayralar bor: tayoqchalar va kolbachalar. Tayoqchalar qorong‘ida va oq-qora ko‘rishni ta’minlaydi, taxminan 120 million. Kolbachalar rangni va yorqin yorug‘likda ko‘rishni ta’minlaydi, taxminan 6 million. Tayoqcha kolbachadan taxminan 120 / 6 — 20 marta ko‘p. Signal ko‘rish nervi orqali miyaga boradi.",
+      "misol": "Qorong‘ida hamma narsa kulrang ko‘rinadi.",
+      "savol": "Rangni qaysi hujayralar sezadi?",
+      "javob": "kolbachalar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘rish nuqsonlari",
+      "matn": "Yaqindan ko‘rlik (miopiya) — uzoqdagi narsa xira, tasvir to‘r pardadan oldin hosil bo‘ladi, botiq linzali ko‘zoynak bilan tuzatiladi. Uzoqdan ko‘rlik (gipermetropiya) — yaqindagi narsa xira, qavariq linza kerak. Daltonizm — ranglarni ajratolmaslik. Ko‘rish nuqsoni shifokor tekshiruvidan so‘ng aniqlanadi.",
+      "misol": "Ko‘zoynak — ko‘zning yordamchisi.",
+      "savol": "Miopiya qanday ko‘rish nuqsoni?",
+      "javob": "uzoqni xira ko‘rish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘z gigiyenasi",
+      "matn": "Ko‘zni asrash uchun: kitobni 30-35 santimetr masofada o‘qish, yaxshi yoritish, yotib o‘qimaslik, ekran qarshisida tanaffus qilish. 20-20-20 qoidasi: har 20 daqiqada, 20 soniya, taxminan 6 metr uzoqqa qarang. Masalan 3 soat ekranda o‘tirsangiz, 180 / 20 — 9 marta tanaffus kerak.",
+      "misol": "Ekran oldida ko‘zni dam oldiring.",
+      "savol": "20-20-20 qoidasi nimaga kerak?",
+      "javob": "ko‘zni dam oldirish uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Jarohat va birinchi yordam",
+      "matn": "Ko‘zga chang yoki begona narsa tushsa, ishqalamang, toza suv bilan yuving. Kimyoviy modda tushsa, ko‘p suv bilan uzoq chayib, darhol shifokorga boring. Quyoshga bevosita qaramang, quyoshdan saqlovchi ko‘zoynak taqing. Sport vaqtida himoya ko‘zoynagi foydali.",
+      "misol": "Ko‘zni ishqalamang!",
+      "savol": "Ko‘zga chang tushsa nima qilinadi?",
+      "javob": "toza suv bilan yuviladi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ko‘z: shox parda, qorachiq, gavhar, to‘r parda. Tayoqcha 120 million, kolbacha 6 million. 20-20-20 qoidasi.",
+    "misollar": [
+     {
+      "shart": "Tayoqchalar taxminan 120 million, kolbachalar 6 million. Necha marta ko‘p?",
+      "yechim": [
+       "120 / 6.",
+       "Hisoblang.",
+       "Javob 20."
+      ],
+      "javob": "20"
+     },
+     {
+      "shart": "Ekran qarshisida 180 daqiqa, har 20 daqiqada tanaffus. Necha marta?",
+      "yechim": [
+       "180 / 20.",
+       "Hisoblang.",
+       "Javob 9."
+      ],
+      "javob": "9"
+     },
+     {
+      "shart": "Tayoqcha 120 million, kolbacha 6 million. Jami?",
+      "yechim": [
+       "120 plyus 6.",
+       "Hisoblang.",
+       "Javob 126 million."
+      ],
+      "javob": "126 million"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ko‘z modeli",
+      "topshiriq": "Ko‘z olmasining qismlarini chizib belgilang.",
+      "yechim": "Gavhar, to‘r parda.",
+      "mahsulot": "qog‘oz, qalam"
+     },
+     {
+      "nom": "Qorachiq tajribasi",
+      "topshiriq": "Do‘stning qorachig‘ini yorug‘da va soyada kuzating.",
+      "yechim": "Kengayish va torayish.",
+      "mahsulot": "chiroq"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Nisbat va yig‘indi.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Ko‘z mashqlari",
+      "topshiriq": "Ko‘zni dam oldiruvchi mashqlar ro‘yxatini tuzing.",
+      "yechim": "20-20-20.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "120 / 6 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "180 / 20 nechaga teng?",
+      "javob": "9"
+     },
+     {
+      "shart": "120 plyus 6 nechaga teng?",
+      "javob": "126"
+     },
+     {
+      "shart": "Rangni sezuvchi hujayra?",
+      "javob": "kolbacha"
+     },
+     {
+      "shart": "Qorong‘ida ko‘rishni ta’minlovchi hujayra?",
+      "javob": "tayoqcha"
+     },
+     {
+      "shart": "Tasvir qayerda hosil bo‘ladi?",
+      "javob": "to‘r pardada"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qorachiq yorug‘likda kengayadi deydi",
+      "sabab": "toraydi",
+      "oldini_olish": "ko‘zni asraydi"
+     },
+     {
+      "xato": "Ko‘zga chang tushsa ishqalash kerak deydi",
+      "sabab": "yuvish kerak",
+      "oldini_olish": "ishqalash zarar"
+     },
+     {
+      "xato": "Tayoqcha rangni sezadi deydi",
+      "sabab": "kolbacha sezadi",
+      "oldini_olish": "tayoqcha qorong‘ida"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "linza va nur"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "fotoapparat"
+     },
+     {
+      "fan": "Sog‘liq",
+      "boglanish": "ekran vaqti"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ko‘z — tabiiy kamera»",
+     "muammo": "Ko‘z qanday ko‘radi va qanday asraladi?",
+     "mahsulot": "model va hisob",
+     "bosqichlar": [
+      "ko‘z modeli",
+      "qorachiq tajribasi",
+      "hisoblash",
+      "gigiyena qoidalari",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Model chizing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ko‘z ichida»",
+     "bekatlar": [
+      {
+       "nom": "1-qism",
+       "matn": "120 va 6 million.",
+       "topshiriq": "Necha marta?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qism",
+       "matn": "180 daqiqa, 20 daqiqada.",
+       "topshiriq": "Tanaffus?",
+       "javob": "9",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qism",
+       "matn": "120 va 6.",
+       "topshiriq": "Jami million?",
+       "javob": "126",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qism",
+       "matn": "Rang hujayrasi.",
+       "topshiriq": "Qaysi?",
+       "javob": "kolbacha",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Shox parda",
+      "tarif": "ko‘zning tiniq old qismi"
+     },
+     {
+      "atama": "Qorachiq",
+      "tarif": "rangdor pardadagi teshik"
+     },
+     {
+      "atama": "Gavhar",
+      "tarif": "ko‘z linzasi"
+     },
+     {
+      "atama": "To‘r parda",
+      "tarif": "yorug‘lik sezuvchi qavat"
+     },
+     {
+      "atama": "Tayoqcha",
+      "tarif": "qorong‘ida ko‘ruvchi hujayra"
+     },
+     {
+      "atama": "Kolbacha",
+      "tarif": "rang sezuvchi hujayra"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tasvir to‘r pardada hosil bo‘ladi",
+      "togri": true,
+      "izoh": "yorug‘likni sezadi"
+     },
+     {
+      "matn": "Kolbacha rangni sezadi",
+      "togri": true,
+      "izoh": "yorqin yorug‘likda"
+     },
+     {
+      "matn": "Qorachiq yorug‘likda kengayadi",
+      "togri": false,
+      "izoh": "toraydi"
+     },
+     {
+      "matn": "120 / 6 — 20",
+      "togri": true,
+      "izoh": "marta"
+     },
+     {
+      "matn": "Ko‘zga chang tushsa ishqalash kerak",
+      "togri": false,
+      "izoh": "yuvish"
+     },
+     {
+      "matn": "Miopiyada botiq linza kerak",
+      "togri": true,
+      "izoh": "ko‘zoynak"
+     },
+     {
+      "matn": "20-20-20 qoidasi ko‘zni dam oldiradi",
+      "togri": true,
+      "izoh": "tanaffus"
+     },
+     {
+      "matn": "180 / 20 — 9",
+      "togri": true,
+      "izoh": "marta"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ko‘z qismlari?",
+      "javob": "shox parda, qorachiq, gavhar"
+     },
+     {
+      "savol": "To‘r parda?",
+      "javob": "yorug‘lik sezadi"
+     },
+     {
+      "savol": "Tayoqcha?",
+      "javob": "qorong‘ida"
+     },
+     {
+      "savol": "Kolbacha?",
+      "javob": "rangni sezadi"
+     },
+     {
+      "savol": "Miopiya?",
+      "javob": "uzoqni xira ko‘rish"
+     },
+     {
+      "savol": "Daltonizm?",
+      "javob": "rang ajratmaslik"
+     },
+     {
+      "savol": "120 / 6?",
+      "javob": "20"
+     },
+     {
+      "savol": "180 / 20?",
+      "javob": "9"
+     },
+     {
+      "savol": "Kitob masofasi?",
+      "javob": "30-35 santimetr"
+     },
+     {
+      "savol": "Chang tushsa?",
+      "javob": "suvda yuvish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Qorachiqni kuzat.",
+      "savol": "Yorug‘da?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Nisbatni top.",
+      "savol": "Bo‘lish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Tayoqcha va kolbacha.",
+      "savol": "Vazifasi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ko‘zni asrash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun qorong‘ida ranglar kulrang ko‘rinadi?",
+    "keys": {
+     "vaziyat": "Kechqurun xonada chiroq o‘chirilganda ranglar yo‘qoldi.",
+     "savollar": [
+      "Qaysi hujayralar ishlayapti?",
+      "Nima uchun rang yo‘q?"
+     ]
+    },
+    "tezis": "Ko‘zni asrash — hayot sifati",
+    "taqqoslash": {
+     "a": "Tayoqcha",
+     "b": "Kolbacha",
+     "umumiy": [
+      "to‘r parda hujayrasi",
+      "yorug‘likni sezadi"
+     ],
+     "a_farq": [
+      "qorong‘ida ishlaydi",
+      "taxminan 120 million"
+     ],
+     "b_farq": [
+      "rangni sezadi",
+      "taxminan 6 million"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ko‘rish",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "shox parda",
+        "gavhar",
+        "to‘r parda"
+       ]
+      },
+      {
+       "nom": "Hujayralar",
+       "bandlar": [
+        "tayoqcha",
+        "kolbacha"
+       ]
+      },
+      {
+       "nom": "Nuqson",
+       "bandlar": [
+        "miopiya",
+        "daltonizm"
+       ]
+      },
+      {
+       "nom": "Gigiyena",
+       "bandlar": [
+        "30-35 santimetr",
+        "20-20-20"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yorug‘likni sezib, miyaga tasvir yuboraman. Men kimman?",
+     "javob": "ko‘z"
+    },
+    "hikmat": "Ko‘z olamni ko‘rsatadi.",
+    "kalit_soz": "KOZ",
+    "xato_yechim": {
+     "shart": "Rangni qaysi hujayra sezadi?",
+     "xato": "tayoqcha",
+     "togri": "kolbacha",
+     "sabab": "tayoqcha qorong‘ida"
+    },
+    "guruh_nomlari": [
+     "Ko‘zchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ko‘z — tabiiy kamera»",
+     "topshiriq": "Guruh ko‘z modelini chizadi."
+    },
+    "vazifalar": {
+     "A": "Tayoqcha kolbachadan necha marta ko‘p?",
+     "B": "180 daqiqada tanaffuslar?",
+     "C": "Hujayralar jami?"
+    },
+    "sinkveyn": [
+     "Ko‘z",
+     "tiniq, nozik",
+     "ko‘radi, sezadi, qabul qiladi",
+     "Ko‘z — deraza",
+     "Gavhar"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ko‘rishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: hujayralar",
+      "3-guruh: nuqsonlar",
+      "4-guruh: gigiyena"
+     ],
+     "yakun": "Natijalar: 20; 9; 126."
+    }
+   }
+  },
+  {
+   "mavzu": "Eshitish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Quloq tuzilishi",
+      "matn": "Quloq uch qismdan iborat: tashqi, o‘rta va ichki quloq. Tashqi quloq — quloq suprasi, eshitish yo‘li va nog‘ora parda. O‘rta quloqda uchta eshitish suyakchasi bor: bolg‘acha, sandon va uzangi. Ichki quloqda chig‘anoq (eshitish) va yarim doira kanallar (muvozanat) joylashgan.",
+      "misol": "Quloq — murakkab mikrofon.",
+      "savol": "Quloq necha qismdan iborat?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tovush yo‘li",
+      "matn": "Tovush to‘lqini quloq suprasiga tushib, eshitish yo‘li orqali nog‘ora pardani tebratadi. Tebranish uch suyakcha orqali kuchayib, ichki quloq chig‘anog‘iga boradi. U yerdagi retseptorlar tebranishni nerv signaliga aylantiradi, signal eshitish nervi orqali miyaga boradi. O‘rta quloqda uchta suyakcha, ikki quloqda 3 · 2 — 6 ta.",
+      "misol": "Suyakchalar tebranishni kuchaytiradi.",
+      "savol": "Eshitish suyakchalari nechta?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Eshitish diapazoni",
+      "matn": "Odam taxminan 20 gersdan 20000 gersgacha tovushni eshitadi. Diapazon kengligi 20000 minus 20 — 19980 gers. Yuqori chegara 20000 / 20 — 1000 marta kattaroq. Bolalar yuqori tovushlarni yaxshi eshitadi, yosh o‘tgan sari yuqori chastotalarni eshitish susayadi. Bu tabiiy jarayon.",
+      "misol": "Itlar bizdan yuqori tovushni eshitadi.",
+      "savol": "Odam eng past nechta gers eshitadi?",
+      "javob": "taxminan 20",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Muvozanat va shovqin",
+      "matn": "Yarim doira kanallardagi suyuqlik bosh holatini sezadi, muvozanatni saqlashga yordam beradi. Shovqin eshitishga zarar qiladi: taxminan 85 desibeldan yuqori tovushga uzoq ta’sir xavfli, baland musiqa quloqchinda 100 desibelga yetishi mumkin. Shovqinli joyda quloq himoyasi yoki ovozni pasaytirish kerak.",
+      "misol": "Quloqchinda ovozni o‘rtacha qo‘ying.",
+      "savol": "Nima eshitishga zarar qiladi?",
+      "javob": "uzoq baland shovqin",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Quloq gigiyenasi",
+      "matn": "Quloqni toza tutish: tashqi quloqni yumshoq mato bilan artish, o‘tkir narsa va paxtali cho‘pni chuqur tiqmaslik. Quloq og‘rig‘i, oqish yoki eshitish pasayishi bo‘lsa, LOR shifokoriga boring. Shamollashni davolang, chunki u o‘rta quloqqa o‘tishi mumkin. Suvga sho‘ng‘ishda quloqni asrang.",
+      "misol": "Quloqni tozalash — ehtiyotkor ish.",
+      "savol": "Quloq og‘risa kimga boriladi?",
+      "javob": "LOR shifokoriga",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Quloq: tashqi, o‘rta, ichki. 3 suyakcha. Eshitish taxminan 20 dan 20000 gersgacha. Baland shovqin zararli.",
+    "misollar": [
+     {
+      "shart": "Eshitish diapazoni 20 dan 20000 gersgacha. Kenglik?",
+      "yechim": [
+       "20000 minus 20.",
+       "Hisoblang.",
+       "Javob 19980 gers."
+      ],
+      "javob": "19980 gers"
+     },
+     {
+      "shart": "Yuqori chegara 20000, quyi chegara 20. Necha marta katta?",
+      "yechim": [
+       "20000 / 20.",
+       "Hisoblang.",
+       "Javob 1000 marta."
+      ],
+      "javob": "1000 marta"
+     },
+     {
+      "shart": "Har quloqda 3 suyakcha. Ikki quloqda?",
+      "yechim": [
+       "3 · 2.",
+       "Hisoblang.",
+       "Javob 6."
+      ],
+      "javob": "6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Quloq modeli",
+      "topshiriq": "Quloq qismlarini chizing va belgilang.",
+      "yechim": "Tashqi, o‘rta, ichki.",
+      "mahsulot": "qog‘oz, qalam"
+     },
+     {
+      "nom": "Tebranish tajribasi",
+      "topshiriq": "Chizg‘ichni stolga bosib, tebranishini tovush bilan kuzating.",
+      "yechim": "Tovush manbai.",
+      "mahsulot": "chizg‘ich"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Gers hisobi.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Shovqin kuzatuvi",
+      "topshiriq": "Maktabdagi shovqin joylarni xaritaga tushiring.",
+      "yechim": "Qayer baland.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "20000 minus 20 nechaga teng?",
+      "javob": "19980"
+     },
+     {
+      "shart": "20000 / 20 nechaga teng?",
+      "javob": "1000"
+     },
+     {
+      "shart": "3 · 2 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "Quloq qismlari soni?",
+      "javob": "3"
+     },
+     {
+      "shart": "Eshitish suyakchasi soni?",
+      "javob": "3"
+     },
+     {
+      "shart": "Muvozanat qayerda?",
+      "javob": "yarim doira kanallar"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Quloq ikki qismdan iborat deydi",
+      "sabab": "uch qismdan",
+      "oldini_olish": "tashqi, o‘rta, ichki"
+     },
+     {
+      "xato": "Paxtali cho‘pni chuqur tiqish yaxshi deydi",
+      "sabab": "zarar",
+      "oldini_olish": "nog‘ora parda shikastlanadi"
+     },
+     {
+      "xato": "Baland musiqa eshitishga zararsiz deydi",
+      "sabab": "zararli",
+      "oldini_olish": "uzoq vaqt baland"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "tovush va tebranish"
+     },
+     {
+      "fan": "Musiqa",
+      "boglanish": "chastota"
+     },
+     {
+      "fan": "Xavfsizlik",
+      "boglanish": "shovqin"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Quloq va tovush»",
+     "muammo": "Biz qanday eshitamiz va quloqni qanday asraymiz?",
+     "mahsulot": "model va hisob",
+     "bosqichlar": [
+      "quloq modeli",
+      "tebranish tajribasi",
+      "gers hisobi",
+      "shovqin xaritasi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Model chizing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Quloq yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-qism",
+       "matn": "20 va 20000.",
+       "topshiriq": "Kenglik?",
+       "javob": "19980",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qism",
+       "matn": "20000 va 20.",
+       "topshiriq": "Necha marta?",
+       "javob": "1000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qism",
+       "matn": "3 suyakcha, 2 quloq.",
+       "topshiriq": "Jami?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qism",
+       "matn": "Quloq qismlari.",
+       "topshiriq": "Nechta?",
+       "javob": "3",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Nog‘ora parda",
+      "tarif": "tashqi va o‘rta quloq chegarasi"
+     },
+     {
+      "atama": "Chig‘anoq",
+      "tarif": "ichki quloqdagi eshitish qismi"
+     },
+     {
+      "atama": "Bolg‘acha",
+      "tarif": "eshitish suyakchasi"
+     },
+     {
+      "atama": "Sandon",
+      "tarif": "eshitish suyakchasi"
+     },
+     {
+      "atama": "Uzangi",
+      "tarif": "eshitish suyakchasi"
+     },
+     {
+      "atama": "Gers",
+      "tarif": "chastota birligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Quloq uch qismdan iborat",
+      "togri": true,
+      "izoh": "tashqi, o‘rta, ichki"
+     },
+     {
+      "matn": "Uchta eshitish suyakchasi bor",
+      "togri": true,
+      "izoh": "bolg‘acha, sandon, uzangi"
+     },
+     {
+      "matn": "Baland shovqin quloqqa zararsiz",
+      "togri": false,
+      "izoh": "zarar"
+     },
+     {
+      "matn": "20000 minus 20 — 19980",
+      "togri": true,
+      "izoh": "gers"
+     },
+     {
+      "matn": "Muvozanat yarim doira kanallarda",
+      "togri": true,
+      "izoh": "ichki quloq"
+     },
+     {
+      "matn": "Quloqni o‘tkir narsa bilan tozalash kerak",
+      "togri": false,
+      "izoh": "xavfli"
+     },
+     {
+      "matn": "Chig‘anoqda eshitish retseptorlari bor",
+      "togri": true,
+      "izoh": "ichki quloq"
+     },
+     {
+      "matn": "3 · 2 — 6",
+      "togri": true,
+      "izoh": "suyakcha"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Quloq qismlari?",
+      "javob": "tashqi, o‘rta, ichki"
+     },
+     {
+      "savol": "Suyakchalar?",
+      "javob": "bolg‘acha, sandon, uzangi"
+     },
+     {
+      "savol": "Chig‘anoq?",
+      "javob": "eshitish"
+     },
+     {
+      "savol": "Kanallar?",
+      "javob": "muvozanat"
+     },
+     {
+      "savol": "Diapazon?",
+      "javob": "20 dan 20000 gersgacha"
+     },
+     {
+      "savol": "20000 minus 20?",
+      "javob": "19980"
+     },
+     {
+      "savol": "20000 / 20?",
+      "javob": "1000"
+     },
+     {
+      "savol": "3 · 2?",
+      "javob": "6"
+     },
+     {
+      "savol": "Zarar?",
+      "javob": "baland shovqin"
+     },
+     {
+      "savol": "Og‘risa?",
+      "javob": "LOR shifokori"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Tebranishni kuzat.",
+      "savol": "Tovush bormi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Kenglikni top.",
+      "savol": "Ayirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Qismlarni solishtir.",
+      "savol": "Vazifasi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Quloqni asrash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun quloqchinda ovozni baland qo‘ymaslik kerak?",
+    "keys": {
+     "vaziyat": "O‘quvchi ertalabdan kechgacha quloqchinda juda baland musiqa tinglaydi.",
+     "savollar": [
+      "Eshitishga nima bo‘ladi?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Eshitishni asrang",
+    "taqqoslash": {
+     "a": "O‘rta quloq",
+     "b": "Ichki quloq",
+     "umumiy": [
+      "quloq qismi",
+      "tovushni uzatadi"
+     ],
+     "a_farq": [
+      "3 suyakcha",
+      "tebranishni kuchaytiradi"
+     ],
+     "b_farq": [
+      "chig‘anoq",
+      "signal hosil qiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Eshitish",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "tashqi",
+        "o‘rta",
+        "ichki"
+       ]
+      },
+      {
+       "nom": "Yo‘l",
+       "bandlar": [
+        "nog‘ora parda",
+        "suyakchalar",
+        "chig‘anoq"
+       ]
+      },
+      {
+       "nom": "Diapazon",
+       "bandlar": [
+        "20 gers",
+        "20000 gers"
+       ]
+      },
+      {
+       "nom": "Asrash",
+       "bandlar": [
+        "shovqindan saqlanish",
+        "toza tutish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tovushni tebranishdan signalga aylantiraman. Men kimman?",
+     "javob": "quloq"
+    },
+    "hikmat": "Quloq tovushni miyaga olib boradi.",
+    "kalit_soz": "QULOQ",
+    "xato_yechim": {
+     "shart": "Muvozanatni qayer saqlaydi?",
+     "xato": "nog‘ora parda",
+     "togri": "yarim doira kanallar",
+     "sabab": "ichki quloq suyuqligi"
+    },
+    "guruh_nomlari": [
+     "Quloqchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Quloq va tovush»",
+     "topshiriq": "Guruh quloq modelini yasaydi."
+    },
+    "vazifalar": {
+     "A": "Diapazon kengligi?",
+     "B": "Chegara nisbati?",
+     "C": "Ikki quloqda suyakcha?"
+    },
+    "sinkveyn": [
+     "Quloq",
+     "nozik, sezgir",
+     "eshitadi, uzatadi, saqlaydi",
+     "Tovush yo‘li",
+     "Chig‘anoq"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh eshitishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: tovush yo‘li",
+      "3-guruh: diapazon",
+      "4-guruh: gigiyena"
+     ],
+     "yakun": "Natijalar: 19980; 1000; 6."
+    }
+   }
+  },
+  {
+   "mavzu": "Immunitet",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Immunitet nima",
+      "matn": "Immunitet — organizmning kasallik qo‘zg‘atuvchilariga (bakteriya, virus) va begona moddalarga qarshi himoyasi. Tug‘ma immunitet tug‘ilgandan bor: teri, shilliq parda, tupurik, oshqozon kislotasi. Orttirilgan immunitet kasallikdan keyin yoki emlashdan keyin hosil bo‘ladi va aniq mikrobga qarshi qaratilgan.",
+      "misol": "Immunitet — tananing qo‘riqchi armiyasi.",
+      "savol": "Immunitet nima?",
+      "javob": "organizmning himoyasi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Immun hujayralari",
+      "matn": "Immunitetda leykotsitlar asosiy ishtirokchi. Fagotsitlar mikroblarni yutib hazm qiladi: bu fagotsitoz hodisasini I.I. Mechnikov kashf etgan va u 1908-yilda Nobel mukofotini olgan. Limfotsitlar antitelo hosil qiladi. Antitelo — begona modda, ya’ni antigenga qarshi oqsil. Immun organlar: suyak ko‘migi, timus, taloq, limfa tugunlari.",
+      "misol": "Fagotsit — tozalovchi hujayra.",
+      "savol": "Fagotsitozni kim kashf etgan?",
+      "javob": "Mechnikov",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Emlash",
+      "matn": "Emlash — zaiflashtirilgan yoki o‘ldirilgan mikrob (vaksina) yuborib, immunitetni oldindan tayyorlash. Birinchi vaksinani chechak uchun 1796-yilda Edvard Jenner qo‘llagan. 2026 minus 1796 — 230 yil oldin. Lui Paster 1885-yilda quturishga qarshi vaksina qo‘llagan: 1885 minus 1796 — 89 yil keyin. 1980-yilda JSST chechak yo‘q qilinganini e’lon qilgan, bu 1980 minus 1796 — 184 yilga to‘g‘ri keladi.",
+      "misol": "Emlash — kasallikdan oldin himoya.",
+      "savol": "Birinchi vaksinani kim qo‘llagan?",
+      "javob": "Jenner",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Emlash kalendari va xavfsizlik",
+      "matn": "Bolalar uchun milliy emlash kalendari bor: tug‘ilgandan boshlab jadval bo‘yicha emlanadi. Emlash qizamiq, ko‘kyo‘tal, difteriya, poliomielit kabi kasalliklardan asraydi. Emlash tarqalishini kamaytirib, emlanmagan odamlarni ham himoya qiladi. Vaksina shifokor nazoratida va ruxsat etilgan holda qo‘llanadi.",
+      "misol": "Jadvalga amal qilish muhim.",
+      "savol": "Emlash kimlarni himoya qiladi?",
+      "javob": "emlanganlarni va atrofdagilarni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Immunitetni mustahkamlash",
+      "matn": "Immunitetni mustahkamlash: sog‘lom ovqat va vitaminlar, yetarli uyqu, harakat, chiniqish, qo‘lni yuvish, stressdan saqlanish, chekmaslik. Allergiya — immunitetning zararsiz moddaga haddan ortiq reaksiyasi. Immunitetni «ko‘tarish» deb reklama qilingan dorilarni shifokor maslahatisiz ichmang.",
+      "misol": "Sog‘lom turmush — eng yaxshi immunitet.",
+      "savol": "Allergiya nima?",
+      "javob": "immunitetning haddan ortiq reaksiyasi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Immunitet tug‘ma va orttirilgan. Mechnikov fagotsitoz, 1908 Nobel. Jenner 1796. Emlash himoya qiladi.",
+    "misollar": [
+     {
+      "shart": "Jenner vaksinani 1796-yilda qo‘llagan. 2026-yilgacha necha yil?",
+      "yechim": [
+       "2026 minus 1796.",
+       "Hisoblang.",
+       "Javob 230."
+      ],
+      "javob": "230"
+     },
+     {
+      "shart": "Mechnikov 1908-yilda Nobel olgan. 2026-yilgacha necha yil?",
+      "yechim": [
+       "2026 minus 1908.",
+       "Hisoblang.",
+       "Javob 118."
+      ],
+      "javob": "118"
+     },
+     {
+      "shart": "Paster 1885, Jenner 1796. Oradagi farq?",
+      "yechim": [
+       "1885 minus 1796.",
+       "Hisoblang.",
+       "Javob 89."
+      ],
+      "javob": "89"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Immun hujayralar",
+      "topshiriq": "Leykotsit, fagotsit va limfotsitni chizing.",
+      "yechim": "Vazifasi.",
+      "mahsulot": "qog‘oz, qalam"
+     },
+     {
+      "nom": "Emlash kalendari",
+      "topshiriq": "Emlash kalendarini o‘rganib, jadval chizing.",
+      "yechim": "Yoshi va kasallik.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Yil farqi.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Gigiena tajribasi",
+      "topshiriq": "Qo‘lni yuvishdan oldin va keyin sirtni solishtiring (mikroblar shartli).",
+      "yechim": "Gigiena.",
+      "mahsulot": "sovun, suv"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2026 minus 1796 nechaga teng?",
+      "javob": "230"
+     },
+     {
+      "shart": "2026 minus 1908 nechaga teng?",
+      "javob": "118"
+     },
+     {
+      "shart": "1885 minus 1796 nechaga teng?",
+      "javob": "89"
+     },
+     {
+      "shart": "1980 minus 1796 nechaga teng?",
+      "javob": "184"
+     },
+     {
+      "shart": "Fagotsitoz kashfiyotchisi?",
+      "javob": "Mechnikov"
+     },
+     {
+      "shart": "Antitelo hosil qiluvchi hujayra?",
+      "javob": "limfotsit"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Immunitet faqat tug‘ma deydi",
+      "sabab": "orttirilgan ham bor",
+      "oldini_olish": "emlash"
+     },
+     {
+      "xato": "Emlash kasallik beradi deydi",
+      "sabab": "himoya qiladi",
+      "oldini_olish": "vaksina immunitet tayyorlaydi"
+     },
+     {
+      "xato": "Qo‘lni yuvish immunitetga aloqasiz deydi",
+      "sabab": "kasallikdan asraydi",
+      "oldini_olish": "mikrob kamayadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Jenner va Paster"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "vaksina tarkibi"
+     },
+     {
+      "fan": "Sog‘liq",
+      "boglanish": "emlash kalendari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Immunitet qo‘riqchilari»",
+     "muammo": "Organizm kasallikka qarshi qanday kurashadi?",
+     "mahsulot": "plakat va jadval",
+     "bosqichlar": [
+      "hujayralarni o‘rganish",
+      "emlash kalendari",
+      "yil hisobi",
+      "gigiena qoidalari",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Hujayralarni o‘rganing",
+      "Jadval tuzing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "jadval to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Immunitet qal’asi»",
+     "bekatlar": [
+      {
+       "nom": "1-burj",
+       "matn": "1796 dan 2026 gacha.",
+       "topshiriq": "Necha yil?",
+       "javob": "230",
+       "rasm": ""
+      },
+      {
+       "nom": "2-burj",
+       "matn": "1908 dan 2026 gacha.",
+       "topshiriq": "Necha yil?",
+       "javob": "118",
+       "rasm": ""
+      },
+      {
+       "nom": "3-burj",
+       "matn": "1796 va 1885.",
+       "topshiriq": "Farq?",
+       "javob": "89",
+       "rasm": ""
+      },
+      {
+       "nom": "4-burj",
+       "matn": "1796 va 1980.",
+       "topshiriq": "Farq?",
+       "javob": "184",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Immunitet",
+      "tarif": "organizm himoyasi"
+     },
+     {
+      "atama": "Antigen",
+      "tarif": "begona modda"
+     },
+     {
+      "atama": "Antitelo",
+      "tarif": "himoya oqsili"
+     },
+     {
+      "atama": "Fagotsitoz",
+      "tarif": "hujayraning mikrobni yutishi"
+     },
+     {
+      "atama": "Vaksina",
+      "tarif": "emlash preparati"
+     },
+     {
+      "atama": "Allergiya",
+      "tarif": "immunitetning ortiqcha reaksiyasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Immunitet organizm himoyasi",
+      "togri": true,
+      "izoh": "mikroblarga qarshi"
+     },
+     {
+      "matn": "Fagotsitozni Mechnikov kashf etgan",
+      "togri": true,
+      "izoh": "Nobel 1908"
+     },
+     {
+      "matn": "Emlash kasallik beradi",
+      "togri": false,
+      "izoh": "himoya qiladi"
+     },
+     {
+      "matn": "Limfotsit antitelo hosil qiladi",
+      "togri": true,
+      "izoh": "oqsil"
+     },
+     {
+      "matn": "2026 minus 1796 — 230",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Jenner chechakka qarshi vaksina qo‘llagan",
+      "togri": true,
+      "izoh": "1796"
+     },
+     {
+      "matn": "Qo‘lni yuvish kasallikdan asraydi",
+      "togri": true,
+      "izoh": "gigiena"
+     },
+     {
+      "matn": "Immunitet faqat tug‘ma",
+      "togri": false,
+      "izoh": "orttirilgan ham"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Immunitet?",
+      "javob": "organizm himoyasi"
+     },
+     {
+      "savol": "Turlari?",
+      "javob": "tug‘ma va orttirilgan"
+     },
+     {
+      "savol": "Fagotsitoz?",
+      "javob": "mikrobni yutish"
+     },
+     {
+      "savol": "Mechnikov?",
+      "javob": "Nobel 1908"
+     },
+     {
+      "savol": "Antitelo?",
+      "javob": "himoya oqsili"
+     },
+     {
+      "savol": "Jenner?",
+      "javob": "1796"
+     },
+     {
+      "savol": "Paster?",
+      "javob": "1885"
+     },
+     {
+      "savol": "2026 minus 1796?",
+      "javob": "230"
+     },
+     {
+      "savol": "1885 minus 1796?",
+      "javob": "89"
+     },
+     {
+      "savol": "Allergiya?",
+      "javob": "ortiqcha reaksiya"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Gigiena tajribasini kuzat.",
+      "savol": "Qanday farq?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yil farqini top.",
+      "savol": "Ayirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ikki immunitetni solishtir.",
+      "savol": "Qaysi tug‘ma?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qanday mustahkamlaymiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun emlash kasallikdan oldin foydali?",
+    "keys": {
+     "vaziyat": "Emlangan bolalar kasallikka kam chalinadi.",
+     "savollar": [
+      "Vaksina nima qiladi?",
+      "Immunitet nimani eslab qoladi?"
+     ]
+    },
+    "tezis": "Emlash immunitetni tayyorlaydi",
+    "taqqoslash": {
+     "a": "Tug‘ma immunitet",
+     "b": "Orttirilgan immunitet",
+     "umumiy": [
+      "himoya turi",
+      "mikrobga qarshi"
+     ],
+     "a_farq": [
+      "tug‘ilgandan bor",
+      "umumiy himoya"
+     ],
+     "b_farq": [
+      "emlash yoki kasallikdan keyin",
+      "aniq mikrobga qarshi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Immunitet",
+     "shoxlar": [
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "tug‘ma",
+        "orttirilgan"
+       ]
+      },
+      {
+       "nom": "Hujayralar",
+       "bandlar": [
+        "fagotsit",
+        "limfotsit"
+       ]
+      },
+      {
+       "nom": "Emlash",
+       "bandlar": [
+        "Jenner 1796",
+        "Paster 1885"
+       ]
+      },
+      {
+       "nom": "Mustahkamlash",
+       "bandlar": [
+        "ovqat",
+        "uyqu",
+        "gigiyena"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tananing qo‘riqchi armiyasiman. Men kimman?",
+     "javob": "immunitet"
+    },
+    "hikmat": "Immunitet tana qalqoni.",
+    "kalit_soz": "IMMUNITET",
+    "xato_yechim": {
+     "shart": "Fagotsitozni kim kashf etgan?",
+     "xato": "Paster",
+     "togri": "Mechnikov",
+     "sabab": "Nobel 1908"
+    },
+    "guruh_nomlari": [
+     "Immunchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Immunitet qo‘riqchilari»",
+     "topshiriq": "Guruh emlash jadvalini tuzadi."
+    },
+    "vazifalar": {
+     "A": "Jenner necha yil oldin?",
+     "B": "Mechnikov Nobeli necha yil oldin?",
+     "C": "Paster va Jenner farqi?"
+    },
+    "sinkveyn": [
+     "Immunitet",
+     "kuchli, qo‘riqchi",
+     "himoya qiladi, eslab qoladi, kurashadi",
+     "Emlash — himoya",
+     "Vaksina"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh immunitetni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: turlari",
+      "2-guruh: hujayralar",
+      "3-guruh: emlash",
+      "4-guruh: mustahkamlash"
+     ],
+     "yakun": "Natijalar: 230; 118; 89."
+    }
+   }
   }
  ]
 }
