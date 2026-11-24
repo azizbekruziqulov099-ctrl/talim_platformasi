@@ -2791,6 +2791,1393 @@
      "yakun": "Natijalar: 30; 6000; 5."
     }
    }
+  },
+  {
+   "mavzu": "Mashinasozlik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Mashinasozlik nima",
+      "matn": "Mashinasozlik — mashina, uskuna va qurilmalar ishlab chiqaradigan sanoat tarmog‘i. U metallurgiya mahsulotidan foydalanadi va butun iqtisodni texnika bilan ta’minlaydi. O‘zbekistonda avtomobil, traktor, qishloq xo‘jaligi texnikasi, samolyot va elektrotexnika ishlab chiqariladi.",
+      "misol": "Mashinasozlik — texnika yaratadi.",
+      "savol": "Mashinasozlik nima qiladi?",
+      "javob": "mashina va uskuna ishlab chiqaradi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Markazlar",
+      "matn": "Avtomobil sanoati Asaka (Andijon) va Pomda (Toshkent viloyati) joylashgan. Toshkentda samolyotsozlik, qishloq xo‘jaligi mashinalari va elektrotexnika zavodlari bor. Chirchiq qishloq xo‘jaligi mashinalari bilan mashhur. Mashinasozlik korxonalari malakali ishchi va transport yo‘llari bor joyda quriladi.",
+      "misol": "Asaka — avtomobil, Toshkent — texnika.",
+      "savol": "Avtomobil zavodi qayerda?",
+      "javob": "Asakada",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Joylashuv omillari",
+      "matn": "Mashinasozlik zavodlari metall, energiya, ishchi kuchi va bozor yaqin joyda quriladi. Shuning uchun u katta shaharlar va transport tugunlari atrofida to‘planadi. Ko‘p detal boshqa zavodlarda tayyorlanadi, so‘ng bir joyda yig‘iladi.",
+      "misol": "Detal tayyorlanadi, so‘ng yig‘iladi.",
+      "savol": "Detallar qayerda yig‘iladi?",
+      "javob": "bitta yig‘uv zavodida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, zavod kuniga 400 ta avtomobil yig‘sa, 25 kunda 400 · 25 — 10000 ta. Masalan, bitta avtomobilga 3 ta detal guruhi kerak bo‘lsa, 10000 ta avtomobilga 10000 · 3 — 30000 guruh. Masalan, 2400 ta mashinaning 15 foizi eksport qilinsa, 2400 · 0,15 — 360 ta (taxminiy misol).",
+      "misol": "Kunlik soni · kunlar — jami.",
+      "savol": "Masalan, kuniga 400, 25 kunda nechta?",
+      "javob": "10000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kelajak",
+      "matn": "Zamonaviy mashinasozlik avtomatlashtirish, robotlar va elektromobillarga o‘tmoqda. Bu ish unumdorligini oshiradi va chiqindini kamaytiradi. Shuning uchun muhandis va texnik kasblari kerak.",
+      "misol": "Robot va elektromobil — kelajak.",
+      "savol": "Kelajakda nimalar kerak?",
+      "javob": "muhandis va texniklar",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Mashinasozlik: avtomobil, texnika, uskuna. Asaka — avtomobil. Jami — kunlik son · kunlar.",
+    "misollar": [
+     {
+      "shart": "Masalan, kuniga 400 avtomobil, 25 kun. Jami nechta?",
+      "yechim": [
+       "400 · 25.",
+       "Hisoblang.",
+       "Javob 10000."
+      ],
+      "javob": "10000"
+     },
+     {
+      "shart": "Masalan, 10000 avtomobilga 3 guruhdan. Jami necha guruh?",
+      "yechim": [
+       "10000 · 3.",
+       "Hisoblang.",
+       "Javob 30000."
+      ],
+      "javob": "30000"
+     },
+     {
+      "shart": "Masalan, 2400 mashinaning 15 foizi eksport. Nechta?",
+      "yechim": [
+       "15 foiz — 0,15.",
+       "2400 · 0,15.",
+       "Javob 360."
+      ],
+      "javob": "360"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Zavodlar xaritasi",
+      "topshiriq": "Xaritada Asaka va Toshkentni belgilang.",
+      "yechim": "Markazlar.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Yig‘uv chizmasi",
+      "topshiriq": "Avtomobil yig‘ilish bosqichlarini chizing.",
+      "yechim": "Detaldan mashinagacha.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Kasblar",
+      "topshiriq": "Mashinasozlik kasblari ro‘yxatini tuzing.",
+      "yechim": "Muhandis, texnik.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "400 · 25 nechaga teng?",
+      "javob": "10000"
+     },
+     {
+      "shart": "10000 · 3 nechaga teng?",
+      "javob": "30000"
+     },
+     {
+      "shart": "2400 · 0,15 nechaga teng?",
+      "javob": "360"
+     },
+     {
+      "shart": "Avtomobil zavodi qayerda?",
+      "javob": "Asaka"
+     },
+     {
+      "shart": "Chirchiq nima bilan mashhur?",
+      "javob": "qishloq texnikasi"
+     },
+     {
+      "shart": "Detal yig‘iladigan joy?",
+      "javob": "zavod"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Mashinasozlik metallsiz bo‘ladi deydi",
+      "sabab": "metall kerak",
+      "oldini_olish": "metallurgiya mahsuloti"
+     },
+     {
+      "xato": "Avtomobil faqat Toshkentda deydi",
+      "sabab": "Asaka va Pomda",
+      "oldini_olish": "bir necha markaz"
+     },
+     {
+      "xato": "Robot kerak emas deydi",
+      "sabab": "avtomatlashtirish foydali",
+      "oldini_olish": "unumdorlik oshadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "mexanika"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va ko‘paytirish"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "yig‘ish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mashina yo‘li»",
+     "muammo": "Avtomobil qanday yig‘iladi?",
+     "mahsulot": "yig‘uv plakati",
+     "bosqichlar": [
+      "xarita",
+      "yig‘uv chizmasi",
+      "hisob",
+      "kasblar",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Avtomobil zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "Kuniga 400, 25 kun.",
+       "topshiriq": "Jami?",
+       "javob": "10000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "10000 ta, 3 guruhdan.",
+       "topshiriq": "Guruh?",
+       "javob": "30000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "2400 ta, 15 foiz.",
+       "topshiriq": "Eksport?",
+       "javob": "360",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Avtomobil markazi.",
+       "topshiriq": "Qaysi?",
+       "javob": "Asaka",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Mashinasozlik",
+      "tarif": "mashina yasash sanoati"
+     },
+     {
+      "atama": "Detal",
+      "tarif": "mashina qismi"
+     },
+     {
+      "atama": "Yig‘uv",
+      "tarif": "detallarni birlashtirish"
+     },
+     {
+      "atama": "Eksport",
+      "tarif": "chet elga sotish"
+     },
+     {
+      "atama": "Avtomatlashtirish",
+      "tarif": "ishni mashinaga topshirish"
+     },
+     {
+      "atama": "Muhandis",
+      "tarif": "texnika mutaxassisi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Asakada avtomobil yig‘iladi",
+      "togri": true,
+      "izoh": "Andijon"
+     },
+     {
+      "matn": "Mashinasozlik metallsiz",
+      "togri": false,
+      "izoh": "metall kerak"
+     },
+     {
+      "matn": "400 · 25 — 10000",
+      "togri": true,
+      "izoh": "jami"
+     },
+     {
+      "matn": "Detallar yig‘iladi",
+      "togri": true,
+      "izoh": "zavod"
+     },
+     {
+      "matn": "Robot foydasiz",
+      "togri": false,
+      "izoh": "unumdorlik"
+     },
+     {
+      "matn": "Chirchiq texnika markazi",
+      "togri": true,
+      "izoh": "qishloq texnikasi"
+     },
+     {
+      "matn": "2400 · 0,15 — 360",
+      "togri": true,
+      "izoh": "foiz"
+     },
+     {
+      "matn": "Muhandis kerak",
+      "togri": true,
+      "izoh": "kasb"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Mashinasozlik?",
+      "javob": "mashina yasash"
+     },
+     {
+      "savol": "Avtomobil?",
+      "javob": "Asaka"
+     },
+     {
+      "savol": "Detal?",
+      "javob": "qism"
+     },
+     {
+      "savol": "Yig‘uv?",
+      "javob": "birlashtirish"
+     },
+     {
+      "savol": "Eksport?",
+      "javob": "sotish"
+     },
+     {
+      "savol": "Robot?",
+      "javob": "avtomat"
+     },
+     {
+      "savol": "400 · 25?",
+      "javob": "10000"
+     },
+     {
+      "savol": "10000 · 3?",
+      "javob": "30000"
+     },
+     {
+      "savol": "2400 · 0,15?",
+      "javob": "360"
+     },
+     {
+      "savol": "Kasb?",
+      "javob": "muhandis"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Atrofdagi mashinalarni kuzat.",
+      "savol": "Kim yasagan?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Jami sonni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Qo‘lda va avtomat.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Kasb?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun mashinasozlik sanoatning yuragi deyiladi?",
+    "keys": {
+     "vaziyat": "Zavodda yangi robot ishga tushirildi.",
+     "savollar": [
+      "Nima foyda?",
+      "Qanday kasb kerak?"
+     ]
+    },
+    "tezis": "Mashina — aql mahsuli",
+    "taqqoslash": {
+     "a": "Qo‘lda yig‘ish",
+     "b": "Avtomat yig‘ish",
+     "umumiy": [
+      "mashina yig‘iladi",
+      "detal kerak"
+     ],
+     "a_farq": [
+      "sekin",
+      "ko‘p ishchi"
+     ],
+     "b_farq": [
+      "tez",
+      "robot"
+     ]
+    },
+    "klaster": {
+     "markaz": "Mashinasozlik",
+     "shoxlar": [
+      {
+       "nom": "Avtomobil",
+       "bandlar": [
+        "Asaka",
+        "Pomda"
+       ]
+      },
+      {
+       "nom": "Texnika",
+       "bandlar": [
+        "Chirchiq",
+        "Toshkent"
+       ]
+      },
+      {
+       "nom": "Omillar",
+       "bandlar": [
+        "metall",
+        "ishchi",
+        "yo‘l"
+       ]
+      },
+      {
+       "nom": "Kelajak",
+       "bandlar": [
+        "robot",
+        "elektromobil"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Asakada yig‘ilaman. Men nimaman?",
+     "javob": "avtomobil"
+    },
+    "hikmat": "Texnika — taraqqiyot.",
+    "kalit_soz": "MASHINA",
+    "xato_yechim": {
+     "shart": "Avtomobil zavodi qayerda?",
+     "xato": "Termiz",
+     "togri": "Asaka",
+     "sabab": "Andijon viloyati"
+    },
+    "guruh_nomlari": [
+     "Muhandislar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mashina yo‘li»",
+     "topshiriq": "Guruh yig‘uv plakatini tuzadi."
+    },
+    "vazifalar": {
+     "A": "400 ta, 25 kun?",
+     "B": "10000 ta, 3 guruh?",
+     "C": "2400 ta, 15 foiz?"
+    },
+    "sinkveyn": [
+     "Mashina",
+     "kuchli, aniq",
+     "ishlaydi, tashiydi, yasaydi",
+     "Texnika yaratadi",
+     "Zavod"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh mashinasozlikni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: avtomobil",
+      "2-guruh: texnika",
+      "3-guruh: omillar",
+      "4-guruh: kelajak"
+     ],
+     "yakun": "Natijalar: 10000; 30000; 360."
+    }
+   }
+  },
+  {
+   "mavzu": "Kimyo sanoati",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kimyo sanoati nima",
+      "matn": "Kimyo sanoati xomashyoni kimyoviy usulda qayta ishlab, o‘g‘it, plastmassa, kislota va boshqa mahsulot ishlab chiqaradi. Xomashyo — tabiiy gaz, neft, tuz va minerallar. O‘zbekistonda mineral o‘g‘itlar, soda va plastmassa ishlab chiqariladi.",
+      "misol": "Kimyo — xomashyodan yangi modda.",
+      "savol": "Kimyo sanoati nima beradi?",
+      "javob": "o‘g‘it, plastmassa, kislota",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Markazlar",
+      "matn": "Chirchiq, Farg‘ona, Navoiy, Olmaliq, Samarqand va Qo‘ng‘irot yirik kimyo markazlaridir. Chirchiq, Farg‘ona va Navoiyda azotli o‘g‘it, Samarqandda fosforli o‘g‘it, Qo‘ng‘irotda soda ishlab chiqariladi. Shurtanda gaz-kimyo majmuasi plastmassa beradi.",
+      "misol": "Chirchiq, Farg‘ona, Navoiy — o‘g‘it.",
+      "savol": "Soda qayerda?",
+      "javob": "Qo‘ng‘irotda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Joylashuv va xavfsizlik",
+      "matn": "Kimyo korxonalari xomashyo va energiya bor joyda quriladi. Ular havo va suvni ifloslantirishi mumkin, shuning uchun aholi punktlaridan uzoqda, filtrlar bilan ishlaydi. Kimyoviy moddalar bilan ehtiyot bo‘lib ishlash kerak.",
+      "misol": "Xavfsizlik va tozalash zarur.",
+      "savol": "Nima uchun filtr kerak?",
+      "javob": "ifloslanishni kamaytirish uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, zavod kuniga 300 tonna o‘g‘it chiqarsa, 30 kunda 300 · 30 — 9000 tonna. Masalan, 1 gektarga 0,2 tonna o‘g‘it kerak bo‘lsa, 9000 tonna 9000 / 0,2 — 45000 gektarga yetadi. Masalan, 500 tonna mahsulotning 8 foizi chiqindi bo‘lsa, 500 · 0,08 — 40 tonna (taxminiy misol).",
+      "misol": "Jami / me’yor — maydon.",
+      "savol": "Masalan, 9000 tonna, gektariga 0,2. Necha gektar?",
+      "javob": "45000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ekologik mas’uliyat",
+      "matn": "O‘g‘itni me’yorida ishlatish tuproq va suvni asraydi. Ortiqcha o‘g‘it suvni ifloslantiradi. Plastmassa chiqindisini yig‘ib qayta ishlash tabiatga zarar kamaytiradi.",
+      "misol": "Me’yor — tabiat himoyasi.",
+      "savol": "O‘g‘it nega me’yorida?",
+      "javob": "suv va tuproq ifloslanmasligi uchun",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Kimyo sanoati: o‘g‘it, soda, plastmassa. Chirchiq, Navoiy — azotli o‘g‘it. Maydon — jami / me’yor.",
+    "misollar": [
+     {
+      "shart": "Masalan, kuniga 300 tonna o‘g‘it, 30 kun. Jami necha tonna?",
+      "yechim": [
+       "300 · 30.",
+       "Hisoblang.",
+       "Javob 9000."
+      ],
+      "javob": "9000"
+     },
+     {
+      "shart": "Masalan, 9000 tonna, gektariga 0,2 tonna. Necha gektar?",
+      "yechim": [
+       "9000 / 0,2.",
+       "Bo‘ling.",
+       "Javob 45000."
+      ],
+      "javob": "45000"
+     },
+     {
+      "shart": "Masalan, 500 tonnaning 8 foizi chiqindi. Necha tonna?",
+      "yechim": [
+       "8 foiz — 0,08.",
+       "500 · 0,08.",
+       "Javob 40."
+      ],
+      "javob": "40"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kimyo xaritasi",
+      "topshiriq": "Xaritada kimyo markazlarini belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Mahsulotlar",
+      "topshiriq": "Kimyo mahsulotlari jadvalini tuzing.",
+      "yechim": "O‘g‘it, soda, plastmassa.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va bo‘lish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Ekologiya",
+      "topshiriq": "Plastmassa yig‘ish aksiyasi rejasi.",
+      "yechim": "Qayta ishlash.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "300 · 30 nechaga teng?",
+      "javob": "9000"
+     },
+     {
+      "shart": "9000 / 0,2 nechaga teng?",
+      "javob": "45000"
+     },
+     {
+      "shart": "500 · 0,08 nechaga teng?",
+      "javob": "40"
+     },
+     {
+      "shart": "Soda qayerda?",
+      "javob": "Qo‘ng‘irot"
+     },
+     {
+      "shart": "Fosforli o‘g‘it qayerda?",
+      "javob": "Samarqand"
+     },
+     {
+      "shart": "Plastmassa majmuasi?",
+      "javob": "Shurtan"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Kimyo sanoati zararsiz deydi",
+      "sabab": "ifloslantirishi mumkin",
+      "oldini_olish": "filtr kerak"
+     },
+     {
+      "xato": "O‘g‘it ko‘p bo‘lsa yaxshi deydi",
+      "sabab": "me’yorida",
+      "oldini_olish": "ortiqchasi zarar"
+     },
+     {
+      "xato": "Soda Chirchiqda deydi",
+      "sabab": "Qo‘ng‘irotda",
+      "oldini_olish": "soda zavodi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "moddalar"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "bo‘lish va foiz"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "ifloslanish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kimyo xaritasi»",
+     "muammo": "O‘zbekiston kimyo markazlari qayerda?",
+     "mahsulot": "kimyo atlasi",
+     "bosqichlar": [
+      "xarita",
+      "mahsulotlar",
+      "hisob",
+      "ekologiya",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Jadval tuzing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «O‘g‘it zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "Kuniga 300 tonna, 30 kun.",
+       "topshiriq": "Jami?",
+       "javob": "9000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "9000 tonna, 0,2 me’yor.",
+       "topshiriq": "Gektar?",
+       "javob": "45000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "500 tonna, 8 foiz.",
+       "topshiriq": "Chiqindi?",
+       "javob": "40",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Soda markazi.",
+       "topshiriq": "Qaysi?",
+       "javob": "Qo‘ng‘irot",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kimyo sanoati",
+      "tarif": "kimyoviy mahsulot tarmog‘i"
+     },
+     {
+      "atama": "O‘g‘it",
+      "tarif": "o‘simlik oziqasi"
+     },
+     {
+      "atama": "Soda",
+      "tarif": "kimyoviy tuz"
+     },
+     {
+      "atama": "Plastmassa",
+      "tarif": "sun’iy material"
+     },
+     {
+      "atama": "Xomashyo",
+      "tarif": "ishlov beriladigan material"
+     },
+     {
+      "atama": "Me’yor",
+      "tarif": "belgilangan miqdor"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Soda Qo‘ng‘irotda ishlab chiqariladi",
+      "togri": true,
+      "izoh": "soda zavodi"
+     },
+     {
+      "matn": "Kimyo hech ifloslantirmaydi",
+      "togri": false,
+      "izoh": "filtr kerak"
+     },
+     {
+      "matn": "300 · 30 — 9000",
+      "togri": true,
+      "izoh": "tonna"
+     },
+     {
+      "matn": "O‘g‘it o‘simlikka oziq",
+      "togri": true,
+      "izoh": "qishloq xo‘jaligi"
+     },
+     {
+      "matn": "Ortiqcha o‘g‘it foydali",
+      "togri": false,
+      "izoh": "zarar"
+     },
+     {
+      "matn": "Shurtanda plastmassa",
+      "togri": true,
+      "izoh": "gaz-kimyo"
+     },
+     {
+      "matn": "9000 / 0,2 — 45000",
+      "togri": true,
+      "izoh": "gektar"
+     },
+     {
+      "matn": "Plastmassa qayta ishlanadi",
+      "togri": true,
+      "izoh": "ekologiya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kimyo sanoati?",
+      "javob": "o‘g‘it, soda"
+     },
+     {
+      "savol": "Soda?",
+      "javob": "Qo‘ng‘irot"
+     },
+     {
+      "savol": "Fosforli o‘g‘it?",
+      "javob": "Samarqand"
+     },
+     {
+      "savol": "Azotli o‘g‘it?",
+      "javob": "Chirchiq"
+     },
+     {
+      "savol": "Plastmassa?",
+      "javob": "Shurtan"
+     },
+     {
+      "savol": "Xomashyo?",
+      "javob": "gaz, tuz"
+     },
+     {
+      "savol": "300 · 30?",
+      "javob": "9000"
+     },
+     {
+      "savol": "9000 / 0,2?",
+      "javob": "45000"
+     },
+     {
+      "savol": "500 · 0,08?",
+      "javob": "40"
+     },
+     {
+      "savol": "Me’yor?",
+      "javob": "kerakli miqdor"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Kimyo mahsulotlarini kuzat.",
+      "savol": "Qaysi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Maydonni top.",
+      "savol": "Bo‘lish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Azotli va fosforli.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ekologiya?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun o‘g‘itni me’yorida ishlatish kerak?",
+    "keys": {
+     "vaziyat": "Dehqon ekinga me’yoridan ko‘p o‘g‘it solmoqchi.",
+     "savollar": [
+      "Nima zarar?",
+      "Nima maslahat?"
+     ]
+    },
+    "tezis": "Kimyo — hayot ichida",
+    "taqqoslash": {
+     "a": "Azotli o‘g‘it",
+     "b": "Fosforli o‘g‘it",
+     "umumiy": [
+      "o‘simlik oziqasi",
+      "kimyo zavodida"
+     ],
+     "a_farq": [
+      "Chirchiq, Navoiy",
+      "azot"
+     ],
+     "b_farq": [
+      "Samarqand",
+      "fosfor"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kimyo sanoati",
+     "shoxlar": [
+      {
+       "nom": "O‘g‘it",
+       "bandlar": [
+        "azotli",
+        "fosforli"
+       ]
+      },
+      {
+       "nom": "Soda",
+       "bandlar": [
+        "Qo‘ng‘irot"
+       ]
+      },
+      {
+       "nom": "Plastmassa",
+       "bandlar": [
+        "Shurtan"
+       ]
+      },
+      {
+       "nom": "Ekologiya",
+       "bandlar": [
+        "filtr",
+        "me’yor"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Qo‘ng‘irotda ishlab chiqarilaman. Men nimaman?",
+     "javob": "soda"
+    },
+    "hikmat": "Kimyo — me’yorda foyda.",
+    "kalit_soz": "KIMYO",
+    "xato_yechim": {
+     "shart": "Soda qayerda ishlab chiqariladi?",
+     "xato": "Chirchiqda",
+     "togri": "Qo‘ng‘irotda",
+     "sabab": "soda zavodi"
+    },
+    "guruh_nomlari": [
+     "Kimyogarlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Kimyo xaritasi»",
+     "topshiriq": "Guruh kimyo atlasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "300 tonna, 30 kun?",
+     "B": "9000 tonna, 0,2?",
+     "C": "500 tonna, 8 foiz?"
+    },
+    "sinkveyn": [
+     "Kimyo",
+     "foydali, ehtiyot talab",
+     "aralashadi, o‘zgaradi, hosil qiladi",
+     "Yangi modda",
+     "O‘g‘it"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh kimyo sanoatini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: o‘g‘it",
+      "2-guruh: soda",
+      "3-guruh: plastmassa",
+      "4-guruh: ekologiya"
+     ],
+     "yakun": "Natijalar: 9000; 45000; 40."
+    }
+   }
+  },
+  {
+   "mavzu": "Yengil sanoat",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yengil sanoat nima",
+      "matn": "Yengil sanoat iste’mol mollari ishlab chiqaradi: ip, mato, kiyim, trikotaj, poyabzal va gilam. Asosiy xomashyo — paxta, ipak, jun va teri. O‘zbekiston paxta yetishtirgani uchun to‘qimachilik sanoati rivojlangan.",
+      "misol": "Paxta — mato — kiyim.",
+      "savol": "Yengil sanoat nima beradi?",
+      "javob": "ip, mato, kiyim, poyabzal",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘qimachilik markazlari",
+      "matn": "Paxta tolasi ipga, ip matoga, mato kiyimga aylanadi. To‘qimachilik Toshkent, Farg‘ona, Namangan, Andijon, Samarqand, Buxoro va Qashqadaryoda rivojlangan. Margilonda ipak, Buxoroda gilam va zardo‘zlik an’anaviy hunarlardir.",
+      "misol": "Margilon — ipak, Buxoro — gilam.",
+      "savol": "Ipak qayerda mashhur?",
+      "javob": "Margilonda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Joylashuv",
+      "matn": "Yengil sanoat xomashyo (paxta) va ishchi kuchi bor joyda quriladi. U ko‘p ish o‘rni yaratadi, ayniqsa ayollar uchun. Tayyor mahsulotning katta qismi eksport qilinadi.",
+      "misol": "Ish o‘rni va eksport.",
+      "savol": "Nima uchun ish o‘rni ko‘p?",
+      "javob": "ko‘p ishchi kerak",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1 tonna paxtadan taxminan 0,35 tonna tola olinsa, 200 tonna paxtadan 200 · 0,35 — 70 tonna tola. Masalan, 1 ta ko‘ylakka 2 metr mato ketsa, 500 ta ko‘ylakka 500 · 2 — 1000 metr mato. Masalan, 1000 ta mahsulotning 40 foizi eksport bo‘lsa, 1000 · 0,4 — 400 ta (taxminiy misol).",
+      "misol": "Xomashyo · chiqish — mahsulot.",
+      "savol": "Masalan, 200 tonna paxta, chiqish 0,35. Necha tonna tola?",
+      "javob": "70",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hunar va brend",
+      "matn": "An’anaviy hunar bilan zamonaviy dizayn birlashsa, mahalliy brend dunyoga chiqadi. Sifatli mato, qulay narx va chiroyli dizayn eksportni oshiradi. Chiqindi matoni qayta ishlash ham foydali.",
+      "misol": "Hunar plyus dizayn — brend.",
+      "savol": "Brend nimadan tug‘iladi?",
+      "javob": "hunar va dizayndan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Yengil sanoat: paxta — tola — mato — kiyim. Margilon — ipak. Mahsulot — xomashyo · chiqish.",
+    "misollar": [
+     {
+      "shart": "Masalan, 200 tonna paxta, chiqish 0,35. Necha tonna tola?",
+      "yechim": [
+       "200 · 0,35.",
+       "Hisoblang.",
+       "Javob 70."
+      ],
+      "javob": "70"
+     },
+     {
+      "shart": "Masalan, 500 ko‘ylakka 2 metrdan. Necha metr mato?",
+      "yechim": [
+       "500 · 2.",
+       "Hisoblang.",
+       "Javob 1000."
+      ],
+      "javob": "1000"
+     },
+     {
+      "shart": "Masalan, 1000 mahsulotning 40 foizi eksport. Nechta?",
+      "yechim": [
+       "40 foiz — 0,4.",
+       "1000 · 0,4.",
+       "Javob 400."
+      ],
+      "javob": "400"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Paxtadan kiyimgacha",
+      "topshiriq": "Zanjir chizmasini chizing.",
+      "yechim": "Paxta, ip, mato, kiyim.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hunarlar xaritasi",
+      "topshiriq": "Xaritada Margilon va Buxoroni belgilang.",
+      "yechim": "Hunarlar.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Brend loyihasi",
+      "topshiriq": "O‘z kiyim brendingizni chizing.",
+      "yechim": "Dizayn.",
+      "mahsulot": "qog‘oz, bo‘yoq"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "200 · 0,35 nechaga teng?",
+      "javob": "70"
+     },
+     {
+      "shart": "500 · 2 nechaga teng?",
+      "javob": "1000"
+     },
+     {
+      "shart": "1000 · 0,4 nechaga teng?",
+      "javob": "400"
+     },
+     {
+      "shart": "Ipak qayerda mashhur?",
+      "javob": "Margilon"
+     },
+     {
+      "shart": "Gilam qayerda mashhur?",
+      "javob": "Buxoro"
+     },
+     {
+      "shart": "Asosiy xomashyo?",
+      "javob": "paxta"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yengil sanoat metalldan deydi",
+      "sabab": "paxta va ipakdan",
+      "oldini_olish": "to‘qimachilik"
+     },
+     {
+      "xato": "Ipak Buxoroda deydi",
+      "sabab": "Margilonda",
+      "oldini_olish": "ipak hunari"
+     },
+     {
+      "xato": "Brend kerak emas deydi",
+      "sabab": "brend eksportni oshiradi",
+      "oldini_olish": "qiymat"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "to‘qish"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va ko‘paytirish"
+     },
+     {
+      "fan": "San’at",
+      "boglanish": "dizayn"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Paxtadan brendgacha»",
+     "muammo": "Paxta qanday kiyimga aylanadi?",
+     "mahsulot": "zanjir plakati",
+     "bosqichlar": [
+      "zanjir chizmasi",
+      "xarita",
+      "hisob",
+      "brend",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chizing",
+      "Belgilang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «To‘qimachilik fabrikasi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "200 tonna paxta, 0,35.",
+       "topshiriq": "Tola?",
+       "javob": "70",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "500 ko‘ylak, 2 metr.",
+       "topshiriq": "Mato?",
+       "javob": "1000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "1000 mahsulot, 40 foiz.",
+       "topshiriq": "Eksport?",
+       "javob": "400",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Ipak markazi.",
+       "topshiriq": "Qaysi?",
+       "javob": "Margilon",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yengil sanoat",
+      "tarif": "iste’mol mollari tarmog‘i"
+     },
+     {
+      "atama": "To‘qimachilik",
+      "tarif": "ip va mato ishlab chiqarish"
+     },
+     {
+      "atama": "Trikotaj",
+      "tarif": "to‘qilgan kiyim"
+     },
+     {
+      "atama": "Tola",
+      "tarif": "paxtadan olingan ip xomashyosi"
+     },
+     {
+      "atama": "Zardo‘zlik",
+      "tarif": "oltin ip bilan tikish"
+     },
+     {
+      "atama": "Brend",
+      "tarif": "mahsulot nomi va obro‘si"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Margilon ipak markazi",
+      "togri": true,
+      "izoh": "an’anaviy hunar"
+     },
+     {
+      "matn": "Yengil sanoat metall ishlatadi",
+      "togri": false,
+      "izoh": "paxta, ipak"
+     },
+     {
+      "matn": "200 · 0,35 — 70",
+      "togri": true,
+      "izoh": "tola"
+     },
+     {
+      "matn": "Paxta xomashyo",
+      "togri": true,
+      "izoh": "to‘qimachilik"
+     },
+     {
+      "matn": "Brend foydasiz",
+      "togri": false,
+      "izoh": "eksport"
+     },
+     {
+      "matn": "Buxoro gilami mashhur",
+      "togri": true,
+      "izoh": "hunar"
+     },
+     {
+      "matn": "500 · 2 — 1000",
+      "togri": true,
+      "izoh": "metr"
+     },
+     {
+      "matn": "Ko‘p ish o‘rni yaratadi",
+      "togri": true,
+      "izoh": "ishchi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yengil sanoat?",
+      "javob": "mato, kiyim"
+     },
+     {
+      "savol": "Xomashyo?",
+      "javob": "paxta"
+     },
+     {
+      "savol": "Ipak?",
+      "javob": "Margilon"
+     },
+     {
+      "savol": "Gilam?",
+      "javob": "Buxoro"
+     },
+     {
+      "savol": "Tola?",
+      "javob": "paxtadan"
+     },
+     {
+      "savol": "Brend?",
+      "javob": "obro‘"
+     },
+     {
+      "savol": "200 · 0,35?",
+      "javob": "70"
+     },
+     {
+      "savol": "500 · 2?",
+      "javob": "1000"
+     },
+     {
+      "savol": "1000 · 0,4?",
+      "javob": "400"
+     },
+     {
+      "savol": "Eksport?",
+      "javob": "chet elga sotish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Kiyim yorlig‘ini kuzat.",
+      "savol": "Qayerda tikilgan?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Mato miqdorini top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Qo‘l va fabrika.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Brend?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun paxta O‘zbekiston yengil sanoati uchun muhim?",
+    "keys": {
+     "vaziyat": "Siz kiyim brendi ochmoqchisiz.",
+     "savollar": [
+      "Nima kerak?",
+      "Qayerga sotasiz?"
+     ]
+    },
+    "tezis": "Paxta — oq oltin",
+    "taqqoslash": {
+     "a": "Qo‘l hunari",
+     "b": "Fabrika",
+     "umumiy": [
+      "mahsulot yasaydi",
+      "xomashyo kerak"
+     ],
+     "a_farq": [
+      "sekin",
+      "noyob"
+     ],
+     "b_farq": [
+      "tez",
+      "ko‘p"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yengil sanoat",
+     "shoxlar": [
+      {
+       "nom": "Xomashyo",
+       "bandlar": [
+        "paxta",
+        "ipak",
+        "jun"
+       ]
+      },
+      {
+       "nom": "Mahsulot",
+       "bandlar": [
+        "ip",
+        "mato",
+        "kiyim"
+       ]
+      },
+      {
+       "nom": "Hunar",
+       "bandlar": [
+        "Margilon",
+        "Buxoro"
+       ]
+      },
+      {
+       "nom": "Brend",
+       "bandlar": [
+        "dizayn",
+        "eksport"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men paxtadan olinaman va matoga aylanaman. Men nimaman?",
+     "javob": "ip"
+    },
+    "hikmat": "Hunar va dizayn — brend.",
+    "kalit_soz": "PAXTA",
+    "xato_yechim": {
+     "shart": "Ipak qayerda mashhur?",
+     "xato": "Buxoroda",
+     "togri": "Margilonda",
+     "sabab": "ipak hunari"
+    },
+    "guruh_nomlari": [
+     "To‘quvchilar",
+     "Hisobchilar",
+     "Dizaynerlar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Paxtadan brendgacha»",
+     "topshiriq": "Guruh zanjir plakatini tuzadi."
+    },
+    "vazifalar": {
+     "A": "200 tonna, 0,35?",
+     "B": "500 ko‘ylak, 2 metr?",
+     "C": "1000 ta, 40 foiz?"
+    },
+    "sinkveyn": [
+     "Mato",
+     "yumshoq, rangli",
+     "to‘qiladi, tikiladi, kiyiladi",
+     "Paxtadan tayyorlanadi",
+     "Kiyim"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yengil sanoatni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: xomashyo",
+      "2-guruh: mahsulot",
+      "3-guruh: hunar",
+      "4-guruh: brend"
+     ],
+     "yakun": "Natijalar: 70; 1000; 400."
+    }
+   }
   }
  ]
 }
