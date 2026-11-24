@@ -28964,6 +28964,1385 @@
      "yakun": "Natijalar: 55; 135; 120; 90."
     }
    }
+  },
+  {
+   "mavzu": "Uchburchak turlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Uchburchak nima?",
+      "matn": "Uchta tomoni va uchta burchagi bor shakl uchburchak deyiladi. Uning uchta uchi bor.",
+      "misol": "Uchburchak tomonlari: 6, 8, 10.",
+      "savol": "Uchburchakning nechta tomoni bor?",
+      "javob": "uchta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tomonlariga ko‘ra",
+      "matn": "Uch tomoni teng uchburchak — teng tomonli. Ikki tomoni teng — teng yonli. Hamma tomoni har xil — har tomonli.",
+      "misol": "5, 5, 5 — teng tomonli. 6, 6, 4 — teng yonli. 3, 4, 5 — har tomonli.",
+      "savol": "5, 5, 5 tomonli uchburchak qanday?",
+      "javob": "teng tomonli",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchaklariga ko‘ra",
+      "matn": "Hamma burchagi o‘tkir bo‘lsa — o‘tkir burchakli. Bitta burchagi 90 daraja bo‘lsa — to‘g‘ri burchakli. Bitta burchagi o‘tmas bo‘lsa — o‘tmas burchakli.",
+      "misol": "90, 35, 55 — to‘g‘ri burchakli uchburchak.",
+      "savol": "Bitta burchagi 90 daraja bo‘lsa, qanday uchburchak?",
+      "javob": "to‘g‘ri burchakli",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchaklar yig‘indisi",
+      "matn": "Uchburchak burchaklari yig‘indisi har doim 180 daraja.",
+      "misol": "90 + 35 + 55 — 180.",
+      "savol": "90 + 35 + 55 nechaga teng?",
+      "javob": "180",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Perimetr",
+      "matn": "Uchburchak perimetri — uchala tomon yig‘indisi.",
+      "misol": "Teng yonli: 6 + 6 + 4 — 16. Teng tomonli: 5 · 3 — 15.",
+      "savol": "6 + 6 + 4 nechaga teng?",
+      "javob": "16",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tomonlariga ko‘ra: teng tomonli, teng yonli, har tomonli. Burchaklariga ko‘ra: o‘tkir, to‘g‘ri, o‘tmas burchakli. Burchaklar yig‘indisi — 180.",
+    "misollar": [
+     {
+      "shart": "Tomonlari 6, 6 va 4 bo‘lgan uchburchak turi va perimetri?",
+      "yechim": [
+       "Ikki tomoni teng — teng yonli.",
+       "Perimetr: 6 + 6 + 4.",
+       "Javob: teng yonli, 16."
+      ],
+      "javob": "teng yonli, 16"
+     },
+     {
+      "shart": "Ikki burchagi 90 va 35 daraja. Uchinchisi?",
+      "yechim": [
+       "Yig‘indi 180.",
+       "180 − 90 — 90, 90 − 35.",
+       "Javob 55 daraja."
+      ],
+      "javob": "55 daraja"
+     },
+     {
+      "shart": "Tomoni 5 bo‘lgan teng tomonli uchburchak perimetri?",
+      "yechim": [
+       "Uch tomon teng.",
+       "5 · 3.",
+       "Javob 15."
+      ],
+      "javob": "15"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Uchburchak yasaymiz",
+      "topshiriq": "Cho‘plardan turli uchburchaklar yasang.",
+      "yechim": "Tomonlarini taqqoslang.",
+      "mahsulot": "cho‘plar"
+     },
+     {
+      "nom": "Burchak kesamiz",
+      "topshiriq": "Uchburchak burchaklarini yirtib, yoyiq burchakka yig‘ing.",
+      "yechim": "Yig‘indi 180.",
+      "mahsulot": "qog‘oz"
+     },
+     {
+      "nom": "Turini aniqlaymiz",
+      "topshiriq": "Uchta uchburchak turini toping.",
+      "yechim": "Tomon va burchakka qarang.",
+      "mahsulot": "shakllar varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Perimetrni ikki usulda hisoblang.",
+      "yechim": "5 · 3 — 15.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "6 + 6 + 4 nechaga teng?",
+      "javob": "16"
+     },
+     {
+      "shart": "5 · 3 nechaga teng?",
+      "javob": "15"
+     },
+     {
+      "shart": "90 + 35 + 55 nechaga teng?",
+      "javob": "180"
+     },
+     {
+      "shart": "180 − 90 − 35 nechaga teng?",
+      "javob": "55"
+     },
+     {
+      "shart": "Uch tomoni teng uchburchak?",
+      "javob": "teng tomonli"
+     },
+     {
+      "shart": "Burchaklar yig‘indisi?",
+      "javob": "180"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Burchaklar yig‘indisini 360 deydi",
+      "sabab": "to‘rtburchak bilan aralashtiradi",
+      "oldini_olish": "uchburchakda 180"
+     },
+     {
+      "xato": "Teng yonlini teng tomonli deydi",
+      "sabab": "tomonlarni sanamaydi",
+      "oldini_olish": "teng yonli — ikki tomon teng"
+     },
+     {
+      "xato": "Perimetr o‘rniga yuz topadi",
+      "sabab": "tushunchani aralashtiradi",
+      "oldini_olish": "perimetr — tomonlar yig‘indisi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "tom va ko‘prik shakli"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "mustahkam konstruksiya"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "uchburchakli naqsh"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Uchburchaklar albomi»",
+     "muammo": "Uchburchak turlari albomini qanday yasaymiz?",
+     "mahsulot": "uchburchaklar albomi",
+     "bosqichlar": [
+      "uchburchaklar chizish",
+      "tomonlarini o‘lchash",
+      "turini aniqlash",
+      "burchagini o‘lchash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chizing",
+      "O‘lchang",
+      "Turini aniqlang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "turi to‘g‘ri",
+      "hisob to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Uchburchaklar o‘lkasi»",
+     "bekatlar": [
+      {
+       "nom": "1-tog‘",
+       "matn": "6, 6, 4.",
+       "topshiriq": "Perimetr?",
+       "javob": "16",
+       "rasm": ""
+      },
+      {
+       "nom": "2-tog‘",
+       "matn": "Tomoni 5, teng tomonli.",
+       "topshiriq": "Perimetr?",
+       "javob": "15",
+       "rasm": ""
+      },
+      {
+       "nom": "3-tog‘",
+       "matn": "90 va 35.",
+       "topshiriq": "Uchinchi burchak?",
+       "javob": "55",
+       "rasm": ""
+      },
+      {
+       "nom": "4-tog‘",
+       "matn": "Burchaklar yig‘indisi.",
+       "topshiriq": "Necha daraja?",
+       "javob": "180",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Tomonlarni solishtirdingizmi?",
+      "Burchakni o‘lchadingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Uchburchak",
+      "tarif": "uch tomonli shakl"
+     },
+     {
+      "atama": "Teng tomonli",
+      "tarif": "uch tomoni teng"
+     },
+     {
+      "atama": "Teng yonli",
+      "tarif": "ikki tomoni teng"
+     },
+     {
+      "atama": "Har tomonli",
+      "tarif": "hamma tomoni har xil"
+     },
+     {
+      "atama": "To‘g‘ri burchakli",
+      "tarif": "bir burchagi 90"
+     },
+     {
+      "atama": "Perimetr",
+      "tarif": "tomonlar yig‘indisi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Uchburchak burchaklari yig‘indisi 180",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "Teng tomonli uchburchakda ikki tomon teng",
+      "togri": false,
+      "izoh": "uchtasi teng"
+     },
+     {
+      "matn": "6 + 6 + 4 — 16",
+      "togri": true,
+      "izoh": "perimetr"
+     },
+     {
+      "matn": "5 · 3 — 15",
+      "togri": true,
+      "izoh": "teng tomonli"
+     },
+     {
+      "matn": "90 daraja burchak o‘tkir",
+      "togri": false,
+      "izoh": "to‘g‘ri"
+     },
+     {
+      "matn": "180 − 90 − 35 — 55",
+      "togri": true,
+      "izoh": "uchinchi burchak"
+     },
+     {
+      "matn": "Uchburchakning 4 ta tomoni bor",
+      "togri": false,
+      "izoh": "uchta"
+     },
+     {
+      "matn": "To‘g‘ri burchakli uchburchakda 90 daraja burchak bor",
+      "togri": true,
+      "izoh": "ta’rif"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Uchburchakda nechta tomon?",
+      "javob": "uchta"
+     },
+     {
+      "savol": "Burchaklar yig‘indisi?",
+      "javob": "180"
+     },
+     {
+      "savol": "Uch tomoni teng?",
+      "javob": "teng tomonli"
+     },
+     {
+      "savol": "Ikki tomoni teng?",
+      "javob": "teng yonli"
+     },
+     {
+      "savol": "Bir burchagi 90?",
+      "javob": "to‘g‘ri burchakli"
+     },
+     {
+      "savol": "6 + 6 + 4?",
+      "javob": "16"
+     },
+     {
+      "savol": "5 · 3?",
+      "javob": "15"
+     },
+     {
+      "savol": "180 − 90 − 35?",
+      "javob": "55"
+     },
+     {
+      "savol": "Perimetr nima?",
+      "javob": "tomonlar yig‘indisi"
+     },
+     {
+      "savol": "Hamma tomoni har xil?",
+      "javob": "har tomonli"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Sana",
+      "matn": "Tomonlarni sana.",
+      "savol": "Nechta?"
+     },
+     {
+      "nom": "Solishtir",
+      "matn": "Tomonlarni solishtir.",
+      "savol": "Teng?"
+     },
+     {
+      "nom": "Tur",
+      "matn": "Turini ayt.",
+      "savol": "Qaysi?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Burchaklarni qo‘sh.",
+      "savol": "180 chiqdimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun uchburchak burchaklari yig‘indisi doim 180?",
+    "keys": {
+     "vaziyat": "Uchburchakning ikki burchagi 90 va 35 daraja.",
+     "savollar": [
+      "Uchinchi burchak qancha?",
+      "Qanday uchburchak?"
+     ]
+    },
+    "tezis": "Uch tomon, uch burchak",
+    "taqqoslash": {
+     "a": "Teng tomonli",
+     "b": "Teng yonli",
+     "umumiy": [
+      "uchburchak turi",
+      "tomonlari teng"
+     ],
+     "a_farq": [
+      "uch tomon teng",
+      "5, 5, 5"
+     ],
+     "b_farq": [
+      "ikki tomon teng",
+      "6, 6, 4"
+     ]
+    },
+    "klaster": {
+     "markaz": "Uchburchak turlari",
+     "shoxlar": [
+      {
+       "nom": "Tomoniga ko‘ra",
+       "bandlar": [
+        "teng tomonli",
+        "teng yonli",
+        "har tomonli"
+       ]
+      },
+      {
+       "nom": "Burchagiga ko‘ra",
+       "bandlar": [
+        "o‘tkir",
+        "to‘g‘ri",
+        "o‘tmas"
+       ]
+      },
+      {
+       "nom": "Yig‘indi",
+       "bandlar": [
+        "180 daraja"
+       ]
+      },
+      {
+       "nom": "Perimetr",
+       "bandlar": [
+        "tomonlar yig‘indisi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men uch tomonli, uch burchakliman. Men kimman?",
+     "javob": "uchburchak"
+    },
+    "hikmat": "Uch burchak — 180 daraja.",
+    "kalit_soz": "UCHBURCHAK",
+    "xato_yechim": {
+     "shart": "Burchaklari 90 va 35. Uchinchisi?",
+     "xato": "125",
+     "togri": "55",
+     "sabab": "yig‘indi 180: 180 − 90 − 35"
+    },
+    "guruh_nomlari": [
+     "Uchburchakchilar",
+     "Burchakchilar",
+     "Perimetrchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Uchburchaklar o‘lkasi»",
+     "topshiriq": "Guruh uchburchak turlarini aniqlaydi."
+    },
+    "vazifalar": {
+     "A": "6, 6, 4 uchburchakning turi va perimetrini toping.",
+     "B": "90 va 35 bo‘lsa, uchinchi burchakni toping.",
+     "C": "Tomoni 5 teng tomonli uchburchak perimetrini toping."
+    },
+    "sinkveyn": [
+     "Uchburchak",
+     "uchli, mustahkam",
+     "chiziladi, o‘lchanadi, ajratiladi",
+     "Uch tomon — kuch",
+     "Burchak"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh uchburchak turlari bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: tomonlariga ko‘ra",
+      "2-guruh: burchaklariga ko‘ra",
+      "3-guruh: burchak yig‘indisi",
+      "4-guruh: perimetr"
+     ],
+     "yakun": "Natijalar: teng yonli, 16; 55; 15; 180."
+    }
+   }
+  },
+  {
+   "mavzu": "Ko‘pburchaklar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ko‘pburchak nima?",
+      "matn": "Uch yoki undan ko‘p tomonli yopiq siniq chiziq bilan chegaralangan shakl ko‘pburchak deyiladi. Tomonlari ko‘p bo‘lsa, burchaklari ham shuncha.",
+      "misol": "Uchburchak — 3 tomon. Beshburchak — 5 tomon.",
+      "savol": "Beshburchakning nechta tomoni bor?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nomlari",
+      "matn": "Ko‘pburchak nomi tomonlar soniga qarab beriladi: uchburchak, to‘rtburchak, beshburchak, oltiburchak, sakkizburchak.",
+      "misol": "6 tomon — oltiburchak. 8 tomon — sakkizburchak.",
+      "savol": "6 tomonli shakl qanday ataladi?",
+      "javob": "oltiburchak",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Muntazam ko‘pburchak",
+      "matn": "Hamma tomonlari va burchaklari teng ko‘pburchak muntazam deyiladi. Kvadrat va teng tomonli uchburchak muntazam.",
+      "misol": "Muntazam oltiburchak: 6 ta teng tomon.",
+      "savol": "Kvadrat muntazammi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Perimetr",
+      "matn": "Ko‘pburchak perimetri — hamma tomonlar yig‘indisi. Muntazam bo‘lsa, tomon ko‘paytirilsin tomonlar soniga.",
+      "misol": "Tomoni 4 bo‘lgan muntazam oltiburchak: 4 · 6 — 24.",
+      "savol": "4 · 6 nechaga teng?",
+      "javob": "24",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotda",
+      "matn": "Ko‘pburchaklar ko‘p uchraydi: asalari uyasi oltiburchak, to‘xtash belgisi sakkizburchak.",
+      "misol": "Sakkizburchak, tomoni 3: 3 · 8 — 24.",
+      "savol": "3 · 8 nechaga teng?",
+      "javob": "24",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ko‘pburchak nomi tomonlar soniga qarab beriladi. Muntazam ko‘pburchak perimetri — tomon ko‘paytirilsin tomonlar soniga.",
+    "misollar": [
+     {
+      "shart": "Tomoni 4 bo‘lgan muntazam oltiburchak perimetri?",
+      "yechim": [
+       "Tomonlar soni 6.",
+       "4 · 6.",
+       "Javob 24."
+      ],
+      "javob": "24"
+     },
+     {
+      "shart": "Tomoni 3 bo‘lgan muntazam sakkizburchak perimetri?",
+      "yechim": [
+       "Tomonlar soni 8.",
+       "3 · 8.",
+       "Javob 24."
+      ],
+      "javob": "24"
+     },
+     {
+      "shart": "Beshburchakda tomonlar 6 sm, 5 sm, 7 sm, 4 sm va 8 sm. Perimetri?",
+      "yechim": [
+       "6 + 5 + 7 + 4 + 8.",
+       "Yig‘indi 30.",
+       "Javob 30 sm."
+      ],
+      "javob": "30 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Shakllarni yasaymiz",
+      "topshiriq": "Cho‘plardan turli ko‘pburchak yasang.",
+      "yechim": "Tomonlarini sanang.",
+      "mahsulot": "cho‘plar"
+     },
+     {
+      "nom": "Nomini topamiz",
+      "topshiriq": "Berilgan shakllarning nomini ayting.",
+      "yechim": "Tomonlarni sanang.",
+      "mahsulot": "shakllar varag‘i"
+     },
+     {
+      "nom": "Perimetr hisoblaymiz",
+      "topshiriq": "Uchta ko‘pburchak perimetrini toping.",
+      "yechim": "Tomonlarni qo‘shing.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Muntazam shakl perimetrini ikki usulda toping.",
+      "yechim": "Qo‘shish va ko‘paytirish.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "4 · 6 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "3 · 8 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "6 + 5 + 7 + 4 + 8 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "5 tomonli shakl nomi?",
+      "javob": "beshburchak"
+     },
+     {
+      "shart": "8 tomonli shakl nomi?",
+      "javob": "sakkizburchak"
+     },
+     {
+      "shart": "Kvadrat nechta tomonli?",
+      "javob": "4"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tomonlarni noto‘g‘ri sanaydi",
+      "sabab": "birini ikki marta sanaydi",
+      "oldini_olish": "belgi qo‘yib sanash"
+     },
+     {
+      "xato": "Muntazam bo‘lmasa ham ko‘paytiradi",
+      "sabab": "tomonlar teng deb o‘ylaydi",
+      "oldini_olish": "tomonlarni qo‘shish"
+     },
+     {
+      "xato": "Nomini adashtiradi",
+      "sabab": "tomon soniga qaramaydi",
+      "oldini_olish": "nom — tomon soni"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tabiat",
+      "boglanish": "asalari uyasi oltiburchak"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "yo‘l belgilari"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "naqshlar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ko‘pburchaklar naqshi»",
+     "muammo": "Ko‘pburchaklardan naqsh qanday yasaymiz?",
+     "mahsulot": "ko‘pburchak naqshi",
+     "bosqichlar": [
+      "shakllar tanlash",
+      "chizish",
+      "tomonlarini o‘lchash",
+      "perimetrini hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Shakl tanlang",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "shakllar to‘g‘ri",
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "naqsh chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ko‘pburchaklar shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "Muntazam oltiburchak, tomoni 4.",
+       "topshiriq": "Perimetr?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "Muntazam sakkizburchak, tomoni 3.",
+       "topshiriq": "Perimetr?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "6, 5, 7, 4, 8.",
+       "topshiriq": "Perimetr?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "Beshta tomon.",
+       "topshiriq": "Nomi?",
+       "javob": "beshburchak",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Tomonlarni sanadingizmi?",
+      "Teng edimi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ko‘pburchak",
+      "tarif": "ko‘p tomonli yopiq shakl"
+     },
+     {
+      "atama": "Muntazam",
+      "tarif": "tomon va burchaklari teng"
+     },
+     {
+      "atama": "Beshburchak",
+      "tarif": "5 tomonli shakl"
+     },
+     {
+      "atama": "Oltiburchak",
+      "tarif": "6 tomonli shakl"
+     },
+     {
+      "atama": "Sakkizburchak",
+      "tarif": "8 tomonli shakl"
+     },
+     {
+      "atama": "Perimetr",
+      "tarif": "tomonlar yig‘indisi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Beshburchakda 5 ta tomon bor",
+      "togri": true,
+      "izoh": "nomi"
+     },
+     {
+      "matn": "Oltiburchakda 5 ta tomon bor",
+      "togri": false,
+      "izoh": "6"
+     },
+     {
+      "matn": "4 · 6 — 24",
+      "togri": true,
+      "izoh": "perimetr"
+     },
+     {
+      "matn": "3 · 8 — 24",
+      "togri": true,
+      "izoh": "perimetr"
+     },
+     {
+      "matn": "Kvadrat muntazam ko‘pburchak",
+      "togri": true,
+      "izoh": "teng tomonli"
+     },
+     {
+      "matn": "6 + 5 + 7 + 4 + 8 — 28",
+      "togri": false,
+      "izoh": "30"
+     },
+     {
+      "matn": "Ko‘pburchak nomi tomonlar soniga bog‘liq",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "Sakkizburchakda 6 ta tomon bor",
+      "togri": false,
+      "izoh": "8"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Beshburchak?",
+      "javob": "5 tomon"
+     },
+     {
+      "savol": "Oltiburchak?",
+      "javob": "6 tomon"
+     },
+     {
+      "savol": "Sakkizburchak?",
+      "javob": "8 tomon"
+     },
+     {
+      "savol": "Muntazam nima?",
+      "javob": "tomon va burchaklari teng"
+     },
+     {
+      "savol": "4 · 6?",
+      "javob": "24"
+     },
+     {
+      "savol": "3 · 8?",
+      "javob": "24"
+     },
+     {
+      "savol": "6 + 5 + 7 + 4 + 8?",
+      "javob": "30"
+     },
+     {
+      "savol": "Perimetr nima?",
+      "javob": "tomonlar yig‘indisi"
+     },
+     {
+      "savol": "Kvadrat muntazammi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Asalari uyasi qanday shakl?",
+      "javob": "oltiburchak"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Sana",
+      "matn": "Tomonlarni sana.",
+      "savol": "Nechta?"
+     },
+     {
+      "nom": "Nomla",
+      "matn": "Nomini ayt.",
+      "savol": "Qaysi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Perimetrni top.",
+      "savol": "4 · 6?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Qo‘shib tekshir.",
+      "savol": "4+4+4+4+4+4?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun asalari uyasi oltiburchak shaklida?",
+    "keys": {
+     "vaziyat": "Asalari uyasi muntazam oltiburchak, tomoni 4 mm.",
+     "savollar": [
+      "Perimetri qancha?",
+      "Nechta tomoni bor?"
+     ]
+    },
+    "tezis": "Tomon sanasang — nom tayyor",
+    "taqqoslash": {
+     "a": "Muntazam ko‘pburchak",
+     "b": "Oddiy ko‘pburchak",
+     "umumiy": [
+      "tomonlari bor",
+      "yopiq shakl"
+     ],
+     "a_farq": [
+      "hamma tomon teng",
+      "tomon · soni"
+     ],
+     "b_farq": [
+      "tomonlar har xil",
+      "qo‘shish"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ko‘pburchaklar",
+     "shoxlar": [
+      {
+       "nom": "Nomi",
+       "bandlar": [
+        "tomonlar soni"
+       ]
+      },
+      {
+       "nom": "Muntazam",
+       "bandlar": [
+        "teng tomonlar"
+       ]
+      },
+      {
+       "nom": "Perimetr",
+       "bandlar": [
+        "yig‘indi"
+       ]
+      },
+      {
+       "nom": "Hayotda",
+       "bandlar": [
+        "asalari uyasi",
+        "belgi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ko‘p tomonli yopiq shakliman. Men kimman?",
+     "javob": "ko‘pburchak"
+    },
+    "hikmat": "Tomon sana — nomini bil.",
+    "kalit_soz": "KOPBURCHAK",
+    "xato_yechim": {
+     "shart": "Muntazam oltiburchak, tomoni 4. Perimetr?",
+     "xato": "4 + 6 — 10",
+     "togri": "24",
+     "sabab": "tomon ko‘paytirilsin tomonlar soniga: 4 · 6"
+    },
+    "guruh_nomlari": [
+     "Ko‘pburchakchilar",
+     "Nomchilar",
+     "Perimetrchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ko‘pburchaklar shahri»",
+     "topshiriq": "Guruh ko‘pburchaklarni nomlab, perimetrini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Muntazam oltiburchak perimetri (tomoni 4).",
+     "B": "Muntazam sakkizburchak perimetri (tomoni 3).",
+     "C": "6, 5, 7, 4, 8 tomonli beshburchak perimetri."
+    },
+    "sinkveyn": [
+     "Ko‘pburchak",
+     "ko‘p tomonli, yopiq",
+     "chiziladi, sanaladi, nomlanadi",
+     "Tomon — nom",
+     "Shakl"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ko‘pburchaklar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: nomlar",
+      "2-guruh: muntazam",
+      "3-guruh: perimetr",
+      "4-guruh: hayotda"
+     ],
+     "yakun": "Natijalar: 24; 24; 30; beshburchak."
+    }
+   }
+  },
+  {
+   "mavzu": "Tenglamalar yechish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tenglama nima?",
+      "matn": "Noma’lum son qatnashgan tenglik tenglama deyiladi. Noma’lumni x harfi bilan belgilaymiz. Tenglamani yechish — x ning qiymatini topish.",
+      "misol": "x + 15 teng 40.",
+      "savol": "Tenglamada noma’lum qaysi harf?",
+      "javob": "x",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘shishli tenglama",
+      "matn": "Noma’lum qo‘shiluvchini topish uchun yig‘indidan ma’lum qo‘shiluvchini ayiramiz.",
+      "misol": "x + 15 teng 40: x — 40 − 15 — 25.",
+      "savol": "40 − 15 nechaga teng?",
+      "javob": "25",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ayirishli tenglama",
+      "matn": "Noma’lum kamayuvchini topish uchun ayirmaga ayriluvchini qo‘shamiz.",
+      "misol": "x − 8 teng 12: x — 12 + 8 — 20.",
+      "savol": "12 + 8 nechaga teng?",
+      "javob": "20",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirishli va bo‘lishli",
+      "matn": "Noma’lum ko‘paytuvchini topish uchun ko‘paytmani ma’lum ko‘paytuvchiga bo‘lamiz. Noma’lum bo‘luvchini topish uchun bo‘linuvchini bo‘linmaga bo‘lamiz.",
+      "misol": "3 · x teng 27: x — 9. 48 / x teng 6: x — 8.",
+      "savol": "27 / 3 nechaga teng?",
+      "javob": "9",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekshiramiz",
+      "matn": "Topilgan x ni tenglamaga qo‘yib tekshiramiz. Ikki tomon teng bo‘lishi kerak.",
+      "misol": "25 + 15 — 40. To‘g‘ri.",
+      "savol": "25 + 15 nechaga teng?",
+      "javob": "40",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Noma’lum qo‘shiluvchi: yig‘indi − ma’lum. Noma’lum kamayuvchi: ayirma + ayriluvchi. Noma’lum ko‘paytuvchi: ko‘paytma / ma’lum. Tekshir.",
+    "misollar": [
+     {
+      "shart": "x + 15 teng 40 ni yeching.",
+      "yechim": [
+       "x — 40 − 15.",
+       "x teng 25.",
+       "Tekshirish: 25 + 15 — 40."
+      ],
+      "javob": "25"
+     },
+     {
+      "shart": "x − 8 teng 12 ni yeching.",
+      "yechim": [
+       "x — 12 + 8.",
+       "x teng 20.",
+       "Tekshirish: 20 − 8 — 12."
+      ],
+      "javob": "20"
+     },
+     {
+      "shart": "3 · x teng 27 ni yeching.",
+      "yechim": [
+       "x — 27 / 3.",
+       "x teng 9.",
+       "Tekshirish: 3 · 9 — 27."
+      ],
+      "javob": "9"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tenglama yechamiz",
+      "topshiriq": "Uchta tenglamani yeching.",
+      "yechim": "Qoidani ayting.",
+      "mahsulot": "tenglamalar varag‘i"
+     },
+     {
+      "nom": "Tarozi o‘yini",
+      "topshiriq": "Tarozi pallasida noma’lum og‘irlikni toping.",
+      "yechim": "Ikki pallani tenglang.",
+      "mahsulot": "tarozi"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Tenglamaga mos masala tuzing.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Har javobni qo‘yib tekshiring.",
+      "yechim": "25 + 15 — 40.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "40 − 15 nechaga teng?",
+      "javob": "25"
+     },
+     {
+      "shart": "12 + 8 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "27 / 3 nechaga teng?",
+      "javob": "9"
+     },
+     {
+      "shart": "48 / 6 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "25 + 15 nechaga teng?",
+      "javob": "40"
+     },
+     {
+      "shart": "3 · 9 nechaga teng?",
+      "javob": "27"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qo‘shiluvchini topishda qo‘shadi",
+      "sabab": "amalni adashtiradi",
+      "oldini_olish": "yig‘indidan ayiriladi"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "x ni qo‘yib tekshirish"
+     },
+     {
+      "xato": "Bo‘luvchini ko‘paytma deb oladi",
+      "sabab": "qoidani aralashtiradi",
+      "oldini_olish": "bo‘linuvchini bo‘linmaga bo‘lish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "noma’lumni topish"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "o‘zgaruvchi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "noma’lum massa"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tenglamalar tarozisi»",
+     "muammo": "Tenglamalarni tarozi bilan qanday ko‘rsatamiz?",
+     "mahsulot": "tarozi plakati",
+     "bosqichlar": [
+      "tenglama tanlash",
+      "tarozi chizish",
+      "yechish",
+      "tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tenglama tanlang",
+      "Tarozi chizing",
+      "Yeching",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tenglama to‘g‘ri",
+      "tarozi aniq",
+      "yechim to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Noma’lum o‘lkasi»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "x + 15 teng 40.",
+       "topshiriq": "x?",
+       "javob": "25",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "x − 8 teng 12.",
+       "topshiriq": "x?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "3 · x teng 27.",
+       "topshiriq": "x?",
+       "javob": "9",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "48 / x teng 6.",
+       "topshiriq": "x?",
+       "javob": "8",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani qo‘lladingiz?",
+      "Tekshirdingizmi?",
+      "Qaysi qiyin edi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tenglama",
+      "tarif": "noma’lumli tenglik"
+     },
+     {
+      "atama": "Noma’lum",
+      "tarif": "topiladigan son"
+     },
+     {
+      "atama": "Yechim",
+      "tarif": "x ning qiymati"
+     },
+     {
+      "atama": "Tekshirish",
+      "tarif": "x ni qo‘yib aniqlash"
+     },
+     {
+      "atama": "Teskari amal",
+      "tarif": "qarama-qarshi amal"
+     },
+     {
+      "atama": "Tenglik",
+      "tarif": "ikki tomon teng"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "x + 15 teng 40 da x teng 25",
+      "togri": true,
+      "izoh": "40 − 15"
+     },
+     {
+      "matn": "x − 8 teng 12 da x teng 4",
+      "togri": false,
+      "izoh": "20"
+     },
+     {
+      "matn": "3 · x teng 27 da x teng 9",
+      "togri": true,
+      "izoh": "27 / 3"
+     },
+     {
+      "matn": "48 / x teng 6 da x teng 8",
+      "togri": true,
+      "izoh": "48 / 6"
+     },
+     {
+      "matn": "Qo‘shiluvchini yig‘indiga qo‘shib topamiz",
+      "togri": false,
+      "izoh": "ayiramiz"
+     },
+     {
+      "matn": "Tekshirish shart emas",
+      "togri": false,
+      "izoh": "kerak"
+     },
+     {
+      "matn": "25 + 15 — 40",
+      "togri": true,
+      "izoh": "tekshirish"
+     },
+     {
+      "matn": "Noma’lum x bilan belgilanadi",
+      "togri": true,
+      "izoh": "odatda"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tenglama nima?",
+      "javob": "noma’lumli tenglik"
+     },
+     {
+      "savol": "Noma’lum qo‘shiluvchi?",
+      "javob": "yig‘indidan ayiramiz"
+     },
+     {
+      "savol": "Noma’lum kamayuvchi?",
+      "javob": "ayirmaga ayriluvchini qo‘shamiz"
+     },
+     {
+      "savol": "Noma’lum ko‘paytuvchi?",
+      "javob": "ko‘paytmani bo‘lamiz"
+     },
+     {
+      "savol": "40 − 15?",
+      "javob": "25"
+     },
+     {
+      "savol": "12 + 8?",
+      "javob": "20"
+     },
+     {
+      "savol": "27 / 3?",
+      "javob": "9"
+     },
+     {
+      "savol": "48 / 6?",
+      "javob": "8"
+     },
+     {
+      "savol": "Yechim nima?",
+      "javob": "x ning qiymati"
+     },
+     {
+      "savol": "Tekshirish usuli?",
+      "javob": "x ni qo‘yish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qara",
+      "matn": "Noma’lumni top.",
+      "savol": "Qaysi harf?"
+     },
+     {
+      "nom": "Tanla",
+      "matn": "Amalni tanla.",
+      "savol": "Ayirishmi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "x ni top.",
+      "savol": "40 − 15?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "x ni qo‘y.",
+      "savol": "25 + 15?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tenglamani yechgach, tekshiramiz?",
+    "keys": {
+     "vaziyat": "Sizda noma’lum son bor: unga 15 qo‘shsak 40 bo‘ladi.",
+     "savollar": [
+      "Tenglamani yozing.",
+      "Noma’lum son nechta?"
+     ]
+    },
+    "tezis": "Teskari amal bilan top",
+    "taqqoslash": {
+     "a": "Qo‘shishli tenglama",
+     "b": "Ko‘paytirishli tenglama",
+     "umumiy": [
+      "noma’lum x bor",
+      "teskari amal ishlatiladi"
+     ],
+     "a_farq": [
+      "ayirish",
+      "x + 15"
+     ],
+     "b_farq": [
+      "bo‘lish",
+      "3 · x"
+     ]
+    },
+    "klaster": {
+     "markaz": "Tenglamalar",
+     "shoxlar": [
+      {
+       "nom": "Qo‘shiluvchi",
+       "bandlar": [
+        "yig‘indi − ma’lum"
+       ]
+      },
+      {
+       "nom": "Kamayuvchi",
+       "bandlar": [
+        "ayirma + ayriluvchi"
+       ]
+      },
+      {
+       "nom": "Ko‘paytuvchi",
+       "bandlar": [
+        "ko‘paytma / ma’lum"
+       ]
+      },
+      {
+       "nom": "Tekshirish",
+       "bandlar": [
+        "x ni qo‘yish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yashirinman, topsangiz tenglik to‘g‘ri. Men kimman?",
+     "javob": "noma’lum x"
+    },
+    "hikmat": "Teskari amal — kalit.",
+    "kalit_soz": "TENGLAMA",
+    "xato_yechim": {
+     "shart": "x + 15 teng 40 ni yeching.",
+     "xato": "x teng 55",
+     "togri": "x teng 25",
+     "sabab": "yig‘indidan ayirish kerak: 40 − 15"
+    },
+    "guruh_nomlari": [
+     "Tenglamachilar",
+     "Noma’lumchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Noma’lum izlash»",
+     "topshiriq": "Guruh tenglamalarni yechib, tekshiradi."
+    },
+    "vazifalar": {
+     "A": "x + 15 teng 40 va x − 8 teng 12 ni yeching.",
+     "B": "3 · x teng 27 ni yeching.",
+     "C": "48 / x teng 6 ni yeching va tekshiring."
+    },
+    "sinkveyn": [
+     "Tenglama",
+     "noma’lumli, tengli",
+     "yechiladi, topiladi, tekshiriladi",
+     "Noma’lum x",
+     "Tenglik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tenglamalar yechadi.",
+     "qismlar": [
+      "1-guruh: qo‘shish",
+      "2-guruh: ayirish",
+      "3-guruh: ko‘paytirish",
+      "4-guruh: bo‘lish"
+     ],
+     "yakun": "Natijalar: 25; 20; 9; 8."
+    }
+   }
   }
  ]
 }
