@@ -8365,6 +8365,934 @@
      "yakun": "Natijalar: 0,25; 0,3; 4."
     }
    }
+  },
+  {
+   "mavzu": "O‘zbekiston florasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Flora nima",
+      "matn": "Flora — biror hududda o‘sadigan barcha o‘simlik turlarining yig‘indisi. O‘zbekiston florasi boy: yuqori o‘simliklarning taxminan 4500 turi o‘sadi. Buning sababi relyefning xilma-xilligi: cho‘llar, adirlar, tog‘lar, o‘rmonlar va suv bo‘ylari. Har bir mintaqada o‘ziga xos o‘simliklar guruhi shakllangan.",
+      "misol": "Flora — hududdagi o‘simlik turlari majmuasi.",
+      "savol": "Flora nima?",
+      "javob": "hududdagi barcha o‘simlik turlari",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vertikal mintaqalar",
+      "matn": "Tog‘larda balandlik ortgan sari o‘simliklar o‘zgaradi. Cho‘lda saksovul, qandim va efemerlar o‘sadi. Adirlarda bahorda lola, lolaqizg‘aldoq va o‘tlar qoplaydi. Tog‘ mintaqasida yong‘oq, olma, pista va archa o‘rmonlari uchraydi. Yuqori alp o‘tloqlarida past bo‘yli o‘tlar o‘sadi. Bu qonuniyat vertikal mintaqalilik deyiladi.",
+      "misol": "Balandlik ortsa, o‘simlik qoplami o‘zgaradi.",
+      "savol": "Adirlarda bahorda qaysi o‘simliklar ko‘p?",
+      "javob": "lola va efemerlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Endemik va noyob turlar",
+      "matn": "Faqat bir hududda o‘sadigan tur endemik deyiladi. O‘zbekiston florasida endemiklar taxminan 10 foizni tashkil qiladi, ya’ni masalan 4500 turning 450 tasi. Tog‘ yong‘og‘i va pista o‘rmonlari noyob hisoblanadi. Yo‘qolish xavfi ostidagi turlar Qizil kitobga kiritiladi.",
+      "misol": "Endemik — faqat shu yerda o‘sadi.",
+      "savol": "Endemik tur nima?",
+      "javob": "faqat bir hududda o‘sadigan tur",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, florada 4500 tur bor va ularning 10 foizi endemik bo‘lsa, endemiklar 4500 · 0,1 — 450 tur. Masalan, tog‘da har 100 metr balandlikda harorat taxminan 0,6 daraja pasaysa, 1000 metrga ko‘tarilganda 1000 / 100 — 10 marta pasayadi, ya’ni 10 · 0,6 — 6 daraja. Masalan, 3000 metrga ko‘tarilganda harorat taxminan 30 · 0,6 — 18 darajaga pasayadi (taxminiy misol).",
+      "misol": "Balandlik oshsa, harorat pasayadi.",
+      "savol": "Masalan, 4500 turning 10 foizi necha tur?",
+      "javob": "450 tur",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Foydali o‘simliklar",
+      "matn": "Flora xalq uchun katta boylik: dorivor o‘simliklar (na’matak, atirgul, isiriq), oziq-ovqat (yong‘oq, pista, olma), yem-xashak va bo‘yoq o‘simliklari. Madaniy mevalarning ko‘pi, masalan olma va o‘rik, Markaziy Osiyoda yovvoyi holda o‘sadigan ajdodlardan kelib chiqqan. Shuning uchun yovvoyi florani asrash — kelajak seleksiyasi uchun zarur.",
+      "misol": "Yovvoyi flora — genetik xazina.",
+      "savol": "Olma qayerdagi yovvoyi ajdoddan kelib chiqqan?",
+      "javob": "Markaziy Osiyo tog‘laridan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Flora: hududdagi o‘simlik turlari. Vertikal mintaqalilik, endemiklar, Qizil kitob.",
+    "misollar": [
+     {
+      "shart": "Masalan, florada 4500 tur bor, 10 foizi endemik. Endemik turlar soni?",
+      "yechim": [
+       "10 foiz — 0,1.",
+       "4500 · 0,1.",
+       "Javob 450."
+      ],
+      "javob": "450"
+     },
+     {
+      "shart": "Masalan, har 100 metrda harorat taxminan 0,6 daraja pasayadi. 1000 metrda necha daraja pasayadi?",
+      "yechim": [
+       "1000 / 100 — 10 marta.",
+       "10 · 0,6.",
+       "Javob 6 daraja."
+      ],
+      "javob": "6 daraja"
+     },
+     {
+      "shart": "Masalan, flora 4500 tur, shundan 300 tur dorivor. Dorivorlar ulushi qancha foiz?",
+      "yechim": [
+       "300 / 4500.",
+       "Taxminan 0,067.",
+       "Javob taxminan 6,7 foiz."
+      ],
+      "javob": "taxminan 6,7 foiz"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Vertikal mintaqa chizmasi",
+      "topshiriq": "Tog‘ yonbag‘ri chizmasini chizib, mintaqalarni to‘ldiring.",
+      "yechim": "Cho‘ldan alp o‘tloqqacha.",
+      "mahsulot": "daftar, rangli qalam"
+     },
+     {
+      "nom": "Gerbariy",
+      "topshiriq": "Maktab atrofidagi 5 ta o‘simlikni terib gerbariy tuzing.",
+      "yechim": "Nomi va turi.",
+      "mahsulot": "gazeta, daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va bo‘lish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Qizil kitob",
+      "topshiriq": "Qizil kitobdagi bitta o‘simlik haqida axborot tayyorlang.",
+      "yechim": "Nega xavf ostida?",
+      "mahsulot": "axborot varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "4500 · 0,1 nechaga teng?",
+      "javob": "450"
+     },
+     {
+      "shart": "1000 / 100 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "10 · 0,6 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "300 / 4500 taxminan nechaga teng (soddalashtirib)?",
+      "javob": "0,067"
+     },
+     {
+      "shart": "Faqat bir hududda o‘sadigan tur?",
+      "javob": "endemik"
+     },
+     {
+      "shart": "Balandlik bilan o‘simlik o‘zgarishi?",
+      "javob": "vertikal mintaqalilik"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Flora faqat daraxtlardan iborat deydi",
+      "sabab": "barcha o‘simlik turlari",
+      "oldini_olish": "o‘t, buta, daraxt"
+     },
+     {
+      "xato": "Endemik tur hamma joyda o‘sadi deydi",
+      "sabab": "faqat bir hududda",
+      "oldini_olish": "chegaralangan areal"
+     },
+     {
+      "xato": "O‘zbekistonda faqat cho‘l o‘simligi bor deydi",
+      "sabab": "tog‘, adir, o‘rmon ham bor",
+      "oldini_olish": "turli mintaqalar"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "relyef va iqlim"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va nisbat"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Buyuk ipak yo‘li va meva madaniyati"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Flora atlasi»",
+     "muammo": "O‘zbekiston florasi nima uchun boy?",
+     "mahsulot": "flora atlasi",
+     "bosqichlar": [
+      "mintaqalar chizmasi",
+      "gerbariy",
+      "endemiklar",
+      "hisob",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kuzating",
+      "Yig‘ing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "axborot aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Cho‘ldan tog‘gacha»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "4500 tur, 10 foiz endemik.",
+       "topshiriq": "Endemik soni?",
+       "javob": "450",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1000 metr ko‘tarilish, har 100 metrda 0,6 daraja.",
+       "topshiriq": "Harorat pasayishi?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "Cho‘lning daraxti.",
+       "topshiriq": "Qaysi?",
+       "javob": "saksovul",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Tog‘ yong‘oq o‘rmoni.",
+       "topshiriq": "Qaysi mintaqa?",
+       "javob": "tog‘",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Foizni hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Flora",
+      "tarif": "hududdagi o‘simlik turlari"
+     },
+     {
+      "atama": "Endemik",
+      "tarif": "faqat shu hududda o‘sadigan tur"
+     },
+     {
+      "atama": "Efemer",
+      "tarif": "bahorda tez gullovchi o‘simlik"
+     },
+     {
+      "atama": "Vertikal mintaqalilik",
+      "tarif": "balandlik bilan o‘zgarish"
+     },
+     {
+      "atama": "Qizil kitob",
+      "tarif": "xavf ostidagi turlar ro‘yxati"
+     },
+     {
+      "atama": "Areal",
+      "tarif": "tur tarqalgan hudud"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Flora hududdagi o‘simlik turlari majmuasi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Endemik tur hamma yerda o‘sadi",
+      "togri": false,
+      "izoh": "bir hududda"
+     },
+     {
+      "matn": "Saksovul cho‘l daraxti",
+      "togri": true,
+      "izoh": "kserofit"
+     },
+     {
+      "matn": "4500 · 0,1 — 450",
+      "togri": true,
+      "izoh": "endemik"
+     },
+     {
+      "matn": "Tog‘da balandlik oshsa harorat ko‘tariladi",
+      "togri": false,
+      "izoh": "pasayadi"
+     },
+     {
+      "matn": "Olma Markaziy Osiyoda yovvoyi o‘sadi",
+      "togri": true,
+      "izoh": "ajdod"
+     },
+     {
+      "matn": "1000 / 100 — 10",
+      "togri": true,
+      "izoh": "marta"
+     },
+     {
+      "matn": "Qizil kitob xavf ostidagi turlarni qayd etadi",
+      "togri": true,
+      "izoh": "himoya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Flora?",
+      "javob": "turlar majmuasi"
+     },
+     {
+      "savol": "Endemik?",
+      "javob": "bir hududda"
+     },
+     {
+      "savol": "Cho‘l daraxti?",
+      "javob": "saksovul"
+     },
+     {
+      "savol": "Bahor o‘simligi?",
+      "javob": "efemer"
+     },
+     {
+      "savol": "Tog‘ o‘rmoni?",
+      "javob": "yong‘oq"
+     },
+     {
+      "savol": "Qizil kitob?",
+      "javob": "xavf ostidagi"
+     },
+     {
+      "savol": "4500 · 0,1?",
+      "javob": "450"
+     },
+     {
+      "savol": "1000 / 100?",
+      "javob": "10"
+     },
+     {
+      "savol": "10 · 0,6?",
+      "javob": "6"
+     },
+     {
+      "savol": "Mintaqalilik?",
+      "javob": "vertikal"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Atrofdagi o‘simliklarni kuzat.",
+      "savol": "Qaysi guruh?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Endemik sonini top.",
+      "savol": "Foiz?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Cho‘l va tog‘ o‘simligi.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Asrash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tog‘da balandlik oshgan sari o‘simlik qoplami o‘zgaradi?",
+    "keys": {
+     "vaziyat": "Tog‘ yonbag‘rida lolalar kam qola boshladi, bolalar ularni ko‘plab uzmoqda.",
+     "savollar": [
+      "Nima xavf?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Flora — O‘zbekiston boyligi",
+    "taqqoslash": {
+     "a": "Cho‘l florasi",
+     "b": "Tog‘ florasi",
+     "umumiy": [
+      "o‘simliklar",
+      "muhitga moslashgan"
+     ],
+     "a_farq": [
+      "saksovul, qandim",
+      "suvni tejaydi"
+     ],
+     "b_farq": [
+      "yong‘oq, archa, pista",
+      "salqin va nam"
+     ]
+    },
+    "klaster": {
+     "markaz": "O‘zbekiston florasi",
+     "shoxlar": [
+      {
+       "nom": "Mintaqalar",
+       "bandlar": [
+        "cho‘l",
+        "adir",
+        "tog‘",
+        "alp o‘tloq"
+       ]
+      },
+      {
+       "nom": "Endemiklar",
+       "bandlar": [
+        "noyob",
+        "areal"
+       ]
+      },
+      {
+       "nom": "Foydali turlar",
+       "bandlar": [
+        "dorivor",
+        "meva",
+        "yem-xashak"
+       ]
+      },
+      {
+       "nom": "Muhofaza",
+       "bandlar": [
+        "Qizil kitob",
+        "qo‘riqxona"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men bahorda tez gullab, yozda quriyman. Men kimman?",
+     "javob": "efemer"
+    },
+    "hikmat": "Flora — xalq boyligi.",
+    "kalit_soz": "FLORA",
+    "xato_yechim": {
+     "shart": "Endemik tur qayerda o‘sadi?",
+     "xato": "hamma joyda",
+     "togri": "faqat bir hududda",
+     "sabab": "areali cheklangan"
+    },
+    "guruh_nomlari": [
+     "Botaniklar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Flora atlasi»",
+     "topshiriq": "Guruh gerbariy tuzadi."
+    },
+    "vazifalar": {
+     "A": "4500 turning 10 foizi?",
+     "B": "1000 metrda harorat pasayishi?",
+     "C": "10 · 0,6?"
+    },
+    "sinkveyn": [
+     "Flora",
+     "boy, xilma-xil",
+     "o‘sadi, gullaydi, asraydi",
+     "Xalq boyligi",
+     "Endemik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh O‘zbekiston florasini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: mintaqalar",
+      "2-guruh: endemiklar",
+      "3-guruh: foydali turlar",
+      "4-guruh: muhofaza"
+     ],
+     "yakun": "Natijalar: 450; 6; 6."
+    }
+   }
+  },
+  {
+   "mavzu": "O‘simliklarni muhofaza qilish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nega muhofaza kerak",
+      "matn": "O‘simliklar kislorod beradi, tuproqni eroziyadan saqlaydi, hayvonlarga oziq va boshpana bo‘ladi. Ularning yo‘qolishi butun ekotizimni buzadi. Xavf sabablari: o‘rmonni kesish, haddan ortiq o‘tlatish, gullarni ko‘plab uzish, yong‘in, cho‘llashish va ifloslanish. Orol dengizi qurishi ham o‘simlik qoplamini o‘zgartirdi.",
+      "misol": "O‘simlik yo‘qolsa, ekotizim buziladi.",
+      "savol": "O‘simliklar yo‘qolishining bir sababi?",
+      "javob": "o‘rmon kesish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qizil kitob",
+      "matn": "Qizil kitob — noyob va yo‘qolish xavfi ostidagi tur va hayvonlar ro‘yxati. O‘zbekiston Qizil kitobiga o‘simliklarning taxminan 300 turi kiritilgan (aniq son nashrga qarab o‘zgaradi). Kitobga kiritilgan turni uzish, kesish, sotish qonun bilan taqiqlanadi. Qizil kitob muntazam yangilanadi.",
+      "misol": "Qizil kitob — himoya ro‘yxati.",
+      "savol": "Qizil kitobga qaysi turlar kiritiladi?",
+      "javob": "yo‘qolish xavfi ostidagi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘riqxona va bog‘lar",
+      "matn": "Qo‘riqxonalarda tabiat to‘liq himoyalanadi. O‘zbekistonda Zarafshon, Zomin, Chotqol, Hisor, Qizilqum, Nurota va boshqa qo‘riqxonalar bor. Milliy bog‘lar va buyurtmaxonalar ham tabiatni asraydi. Botanika bog‘larida noyob o‘simliklar ko‘paytiriladi. Urug‘ banklari urug‘larni kelajak uchun saqlaydi.",
+      "misol": "Qo‘riqxona — tabiat himoyasi.",
+      "savol": "Zomin nima?",
+      "javob": "qo‘riqxona va milliy bog‘",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 200 gektar o‘rmonning 15 foizi kesilsa, kesilgan maydon 200 · 0,15 — 30 gektar, qolgani 200 minus 30 — 170 gektar. Masalan, har yili 40 gektarga saksovul ekilsa, 5 yilda 40 · 5 — 200 gektar. Masalan, 1 gektarga 500 ta ko‘chat ekilsa, 30 gektarga 500 · 30 — 15000 ko‘chat kerak (taxminiy misol).",
+      "misol": "Ekish yo‘qotishni qoplaydi.",
+      "savol": "Masalan, 200 gektarning 15 foizi necha gektar?",
+      "javob": "30 gektar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Biz nima qila olamiz",
+      "matn": "Daraxt ekish, gullarni uzmaslik, o‘rmonda olov yoqmaslik, axlatni tashlamaslik, suvni tejash — bularning hammasi yordam beradi. Maktabda ekologik to‘garak va ko‘kalamzorlashtirish ishlari foydali. O‘zbekistonda «Yashil makon» loyihasi doirasida har yili millionlab ko‘chat ekiladi. Har kimning hissasi muhim.",
+      "misol": "Kichik ish — katta natija.",
+      "savol": "Daraxt ekish nimaga yordam beradi?",
+      "javob": "havoni tozalaydi va tuproqni asraydi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Muhofaza: Qizil kitob, qo‘riqxonalar, ko‘kalamzorlashtirish, gullarni uzmaslik.",
+    "misollar": [
+     {
+      "shart": "Masalan, 200 gektar o‘rmonning 15 foizi kesildi. Necha gektar kesildi?",
+      "yechim": [
+       "15 foiz — 0,15.",
+       "200 · 0,15.",
+       "Javob 30 gektar."
+      ],
+      "javob": "30 gektar"
+     },
+     {
+      "shart": "Masalan, har yili 40 gektarga saksovul ekiladi. 5 yilda necha gektar?",
+      "yechim": [
+       "40 · 5.",
+       "Hisoblang.",
+       "Javob 200 gektar."
+      ],
+      "javob": "200 gektar"
+     },
+     {
+      "shart": "Masalan, 1 gektarga 500 ko‘chat kerak. 30 gektarga necha ko‘chat?",
+      "yechim": [
+       "500 · 30.",
+       "Hisoblang.",
+       "Javob 15000."
+      ],
+      "javob": "15000"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ekologik reklama",
+      "topshiriq": "O‘simliklarni asrash haqida plakat chizing.",
+      "yechim": "Chaqiriq.",
+      "mahsulot": "qog‘oz, bo‘yoq"
+     },
+     {
+      "nom": "Ko‘chat ekish rejasi",
+      "topshiriq": "Maktab hovlisi uchun ko‘chat ekish rejasini tuzing.",
+      "yechim": "Joy va son.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Qizil kitob kartochkasi",
+      "topshiriq": "Bitta noyob o‘simlik kartochkasini tayyorlang.",
+      "yechim": "Nega noyob?",
+      "mahsulot": "karton"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "200 · 0,15 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "200 minus 30 nechaga teng?",
+      "javob": "170"
+     },
+     {
+      "shart": "40 · 5 nechaga teng?",
+      "javob": "200"
+     },
+     {
+      "shart": "500 · 30 nechaga teng?",
+      "javob": "15000"
+     },
+     {
+      "shart": "Noyob turlar ro‘yxati nomi?",
+      "javob": "Qizil kitob"
+     },
+     {
+      "shart": "Tabiat to‘liq himoyalangan hudud?",
+      "javob": "qo‘riqxona"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Gul uzish zarari yo‘q deydi",
+      "sabab": "ko‘p uzilsa tur yo‘qoladi",
+      "oldini_olish": "urug‘ qolmaydi"
+     },
+     {
+      "xato": "Qizil kitob faqat hayvonlar uchun deydi",
+      "sabab": "o‘simlik ham kiradi",
+      "oldini_olish": "ro‘yxat bor"
+     },
+     {
+      "xato": "Bitta odam hech narsa o‘zgartirmaydi deydi",
+      "sabab": "har kim hissa qo‘shadi",
+      "oldini_olish": "ko‘chat ekish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "cho‘llashish"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz"
+     },
+     {
+      "fan": "Huquq",
+      "boglanish": "tabiat himoyasi qonuni"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yashil maktab»",
+     "muammo": "O‘simliklarni qanday asrash mumkin?",
+     "mahsulot": "ekologik loyiha",
+     "bosqichlar": [
+      "plakat",
+      "ko‘chat rejasi",
+      "Qizil kitob kartochkasi",
+      "hisob",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Rejalang",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "reja aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qo‘riqxona»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "200 gektar, 15 foiz kesildi.",
+       "topshiriq": "Kesilgan gektar?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "Yiliga 40 gektar, 5 yil.",
+       "topshiriq": "Jami gektar?",
+       "javob": "200",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "1 gektarga 500, 30 gektar.",
+       "topshiriq": "Ko‘chat?",
+       "javob": "15000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Noyob turlar ro‘yxati.",
+       "topshiriq": "Nomi?",
+       "javob": "Qizil kitob",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Foizni hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Qizil kitob",
+      "tarif": "xavf ostidagi turlar ro‘yxati"
+     },
+     {
+      "atama": "Qo‘riqxona",
+      "tarif": "to‘liq himoyalangan hudud"
+     },
+     {
+      "atama": "Eroziya",
+      "tarif": "tuproqning yemirilishi"
+     },
+     {
+      "atama": "Cho‘llashish",
+      "tarif": "yerning cho‘lga aylanishi"
+     },
+     {
+      "atama": "Ko‘kalamzorlashtirish",
+      "tarif": "daraxt va gul ekish"
+     },
+     {
+      "atama": "Urug‘ banki",
+      "tarif": "urug‘ saqlash joyi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qizil kitob xavf ostidagi turlar ro‘yxati",
+      "togri": true,
+      "izoh": "himoya"
+     },
+     {
+      "matn": "Qo‘riqxonada daraxt kesish mumkin",
+      "togri": false,
+      "izoh": "taqiqlangan"
+     },
+     {
+      "matn": "200 · 0,15 — 30",
+      "togri": true,
+      "izoh": "gektar"
+     },
+     {
+      "matn": "O‘simliklar tuproqni eroziyadan saqlaydi",
+      "togri": true,
+      "izoh": "ildiz"
+     },
+     {
+      "matn": "Qizil kitob faqat hayvonlar uchun",
+      "togri": false,
+      "izoh": "o‘simlik ham"
+     },
+     {
+      "matn": "500 · 30 — 15000",
+      "togri": true,
+      "izoh": "ko‘chat"
+     },
+     {
+      "matn": "Gullarni ko‘plab uzish zararsiz",
+      "togri": false,
+      "izoh": "tur kamayadi"
+     },
+     {
+      "matn": "Urug‘ banki urug‘ saqlaydi",
+      "togri": true,
+      "izoh": "kelajak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qizil kitob?",
+      "javob": "noyob turlar"
+     },
+     {
+      "savol": "Qo‘riqxona?",
+      "javob": "himoya"
+     },
+     {
+      "savol": "Eroziya?",
+      "javob": "yemirilish"
+     },
+     {
+      "savol": "Cho‘llashish?",
+      "javob": "cho‘lga aylanish"
+     },
+     {
+      "savol": "Urug‘ banki?",
+      "javob": "saqlash"
+     },
+     {
+      "savol": "Zarafshon?",
+      "javob": "qo‘riqxona"
+     },
+     {
+      "savol": "200 · 0,15?",
+      "javob": "30"
+     },
+     {
+      "savol": "40 · 5?",
+      "javob": "200"
+     },
+     {
+      "savol": "500 · 30?",
+      "javob": "15000"
+     },
+     {
+      "savol": "Biz nima qilamiz?",
+      "javob": "daraxt ekamiz"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Maktab hovlisini kuzat.",
+      "savol": "Nima kam?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Ko‘chat sonini top.",
+      "savol": "Gektar?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Qo‘riqxona va bog‘.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nima qilamiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun noyob o‘simliklarni uzish taqiqlanadi?",
+    "keys": {
+     "vaziyat": "Bahorda adirda bolalar lolalarni ildizi bilan uzib, guldasta qilmoqda.",
+     "savollar": [
+      "Nima zarar?",
+      "Qanday to‘xtatamiz?"
+     ]
+    },
+    "tezis": "Tabiatni asrash — kelajakni asrash",
+    "taqqoslash": {
+     "a": "Qo‘riqxona",
+     "b": "Botanika bog‘i",
+     "umumiy": [
+      "o‘simliklarni asraydi",
+      "ilmiy ish olib boriladi"
+     ],
+     "a_farq": [
+      "tabiiy holat",
+      "kirish cheklangan"
+     ],
+     "b_farq": [
+      "odamlar ko‘ra oladi",
+      "o‘simliklar ko‘paytiriladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "O‘simliklarni muhofaza qilish",
+     "shoxlar": [
+      {
+       "nom": "Xavflar",
+       "bandlar": [
+        "kesish",
+        "o‘tlatish",
+        "cho‘llashish"
+       ]
+      },
+      {
+       "nom": "Himoya",
+       "bandlar": [
+        "Qizil kitob",
+        "qo‘riqxona"
+       ]
+      },
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "botanika bog‘i",
+        "urug‘ banki"
+       ]
+      },
+      {
+       "nom": "Harakat",
+       "bandlar": [
+        "ko‘chat ekish",
+        "gul uzmaslik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men noyob turlarni ro‘yxatga olaman. Men nima?",
+     "javob": "Qizil kitob"
+    },
+    "hikmat": "Bitta ko‘chat — bitta umid.",
+    "kalit_soz": "MUHOFAZA",
+    "xato_yechim": {
+     "shart": "Qizil kitobdagi gulni uzish mumkinmi?",
+     "xato": "mumkin",
+     "togri": "mumkin emas",
+     "sabab": "qonun bilan taqiqlangan"
+    },
+    "guruh_nomlari": [
+     "Himoyachilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yashil maktab»",
+     "topshiriq": "Guruh ko‘chat ekish rejasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "200 gektarning 15 foizi?",
+     "B": "40 gektar, 5 yil?",
+     "C": "500 ko‘chat, 30 gektar?"
+    },
+    "sinkveyn": [
+     "Muhofaza",
+     "muhim, zarur",
+     "asraydi, ekadi, saqlaydi",
+     "Kelajak himoyasi",
+     "Ko‘chat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh o‘simliklar muhofazasini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: xavflar",
+      "2-guruh: himoya",
+      "3-guruh: ko‘paytirish",
+      "4-guruh: harakat"
+     ],
+     "yakun": "Natijalar: 30; 200; 15000."
+    }
+   }
   }
  ]
 }
