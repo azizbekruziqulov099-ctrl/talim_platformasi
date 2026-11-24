@@ -24833,6 +24833,1384 @@
      "yakun": "Natijalar: 0,7 va 0,03; 0,7 > 0,5; 0,5 va 0,75."
     }
    }
+  },
+  {
+   "mavzu": "Yuz birliklari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yuz birliklari",
+      "matn": "Yuz kvadrat birliklarda o‘lchanadi: kvadrat millimetr (kv. mm), kvadrat santimetr (kv. sm), kvadrat detsimetr (kv. dm), kvadrat metr (kv. m). Har biri tomoni mos uzunlik birligiga teng kvadratning yuzi.",
+      "misol": "1 kv. sm — tomoni 1 sm kvadrat yuzi.",
+      "savol": "1 kv. sm qanday kvadrat yuzi?",
+      "javob": "tomoni 1 sm",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kv. dm va kv. sm",
+      "matn": "1 dm — 10 sm. Tomoni 10 sm kvadrat yuzi 10 · 10 — 100 kv. sm. Demak 1 kv. dm — 100 kv. sm.",
+      "misol": "10 · 10 — 100.",
+      "savol": "10 · 10 nechaga teng?",
+      "javob": "100",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kv. m va kv. dm",
+      "matn": "1 m — 10 dm. Tomoni 10 dm kvadrat yuzi 100 kv. dm. Demak 1 kv. m — 100 kv. dm — 10000 kv. sm.",
+      "misol": "100 · 100 — 10000.",
+      "savol": "1 kv. m necha kv. dm?",
+      "javob": "100",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Almashtiramiz",
+      "matn": "Katta birlikdan kichigiga o‘tishda 100 ga ko‘paytiramiz, kichigidan kattasiga o‘tishda 100 ga bo‘lamiz.",
+      "misol": "5 kv. dm — 500 kv. sm. 300 kv. sm — 3 kv. dm.",
+      "savol": "5 · 100 nechaga teng?",
+      "javob": "500",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotda",
+      "matn": "Daftar varag‘i yuzi kv. sm bilan, xona poli kv. m bilan o‘lchanadi. Mos birlikni tanlash muhim.",
+      "misol": "Stol usti — kv. dm yoki kv. m.",
+      "savol": "Xona poli qaysi birlikda o‘lchanadi?",
+      "javob": "kv. m",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qo‘shni yuz birliklari orasida 100 marta farq bor: 1 kv. dm — 100 kv. sm, 1 kv. m — 100 kv. dm. Kattadan kichikka — ko‘paytir, kichikdan kattaga — bo‘l.",
+    "misollar": [
+     {
+      "shart": "5 kv. dm necha kv. sm?",
+      "yechim": [
+       "1 kv. dm — 100 kv. sm.",
+       "5 · 100.",
+       "Javob 500 kv. sm."
+      ],
+      "javob": "500 kv. sm"
+     },
+     {
+      "shart": "300 kv. sm necha kv. dm?",
+      "yechim": [
+       "100 kv. sm — 1 kv. dm.",
+       "300 / 100.",
+       "Javob 3 kv. dm."
+      ],
+      "javob": "3 kv. dm"
+     },
+     {
+      "shart": "2 kv. m necha kv. sm?",
+      "yechim": [
+       "1 kv. m — 10000 kv. sm.",
+       "2 · 10000.",
+       "Javob 20000 kv. sm."
+      ],
+      "javob": "20000 kv. sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kvadrat yasaymiz",
+      "topshiriq": "Qog‘ozdan tomoni 10 sm kvadrat kesing.",
+      "yechim": "Uning yuzi 1 kv. dm.",
+      "mahsulot": "qog‘oz va chizg‘ich"
+     },
+     {
+      "nom": "Katakchalar",
+      "topshiriq": "1 kv. dm ichiga nechta kv. sm sig‘ishini sanang.",
+      "yechim": "Javob 100.",
+      "mahsulot": "katakli qog‘oz"
+     },
+     {
+      "nom": "Almashtiramiz",
+      "topshiriq": "Uchta yuzni boshqa birlikka o‘tkazing.",
+      "yechim": "100 ga ko‘paytiring yoki bo‘ling.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Javoblarni teskari amal bilan tekshiring.",
+      "yechim": "500 / 100 — 5.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "10 · 10 nechaga teng?",
+      "javob": "100"
+     },
+     {
+      "shart": "5 · 100 nechaga teng?",
+      "javob": "500"
+     },
+     {
+      "shart": "300 / 100 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "2 · 10000 nechaga teng?",
+      "javob": "20000"
+     },
+     {
+      "shart": "1 kv. dm necha kv. sm?",
+      "javob": "100"
+     },
+     {
+      "shart": "1 kv. m necha kv. dm?",
+      "javob": "100"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "1 kv. dm ni 10 kv. sm deb oladi",
+      "sabab": "uzunlik bilan yuzni aralashtiradi",
+      "oldini_olish": "1 kv. dm — 100 kv. sm"
+     },
+     {
+      "xato": "Yo‘nalishni adashtiradi",
+      "sabab": "kattadan kichikka bo‘ladi",
+      "oldini_olish": "kattadan kichikka ko‘paytiramiz"
+     },
+     {
+      "xato": "Birlikni yozmaydi",
+      "sabab": "kv. ni unutadi",
+      "oldini_olish": "yuz — kv. birlik"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "xona va hovli yuzi"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "rasm yuzi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "matoni o‘lchash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yuz birliklari jadvali»",
+     "muammo": "Yuz birliklari jadvalini qanday yasaymiz?",
+     "mahsulot": "yuz jadvali",
+     "bosqichlar": [
+      "kvadratlar kesish",
+      "yuzini hisoblash",
+      "jadval chizish",
+      "almashtirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kesing",
+      "Hisoblang",
+      "Jadval chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "jadval to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Yuz o‘lkasi»",
+     "bekatlar": [
+      {
+       "nom": "1-zal",
+       "matn": "5 kv. dm.",
+       "topshiriq": "Necha kv. sm?",
+       "javob": "500",
+       "rasm": ""
+      },
+      {
+       "nom": "2-zal",
+       "matn": "300 kv. sm.",
+       "topshiriq": "Necha kv. dm?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "3-zal",
+       "matn": "2 kv. m.",
+       "topshiriq": "Necha kv. sm?",
+       "javob": "20000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-zal",
+       "matn": "1 kv. dm.",
+       "topshiriq": "Necha kv. sm?",
+       "javob": "100",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi amalni tanladingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Yuz",
+      "tarif": "shakl egallagan joy"
+     },
+     {
+      "atama": "Kv. sm",
+      "tarif": "tomoni 1 sm kvadrat yuzi"
+     },
+     {
+      "atama": "Kv. dm",
+      "tarif": "tomoni 1 dm kvadrat yuzi"
+     },
+     {
+      "atama": "Kv. m",
+      "tarif": "tomoni 1 m kvadrat yuzi"
+     },
+     {
+      "atama": "Almashtirish",
+      "tarif": "birlikdan birlikka o‘tish"
+     },
+     {
+      "atama": "Kvadrat birlik",
+      "tarif": "yuz o‘lchov birligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "1 kv. dm — 100 kv. sm",
+      "togri": true,
+      "izoh": "10 · 10"
+     },
+     {
+      "matn": "1 kv. dm — 10 kv. sm",
+      "togri": false,
+      "izoh": "100 kv. sm"
+     },
+     {
+      "matn": "1 kv. m — 100 kv. dm",
+      "togri": true,
+      "izoh": "10 · 10"
+     },
+     {
+      "matn": "5 kv. dm — 500 kv. sm",
+      "togri": true,
+      "izoh": "5 · 100"
+     },
+     {
+      "matn": "300 kv. sm — 30 kv. dm",
+      "togri": false,
+      "izoh": "3 kv. dm"
+     },
+     {
+      "matn": "Xona poli kv. m bilan o‘lchanadi",
+      "togri": true,
+      "izoh": "mos birlik"
+     },
+     {
+      "matn": "1 kv. m — 10000 kv. sm",
+      "togri": true,
+      "izoh": "100 · 100"
+     },
+     {
+      "matn": "Yuz sm bilan o‘lchanadi",
+      "togri": false,
+      "izoh": "kv. sm"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "1 kv. dm?",
+      "javob": "100 kv. sm"
+     },
+     {
+      "savol": "1 kv. m?",
+      "javob": "100 kv. dm"
+     },
+     {
+      "savol": "1 kv. m necha kv. sm?",
+      "javob": "10000"
+     },
+     {
+      "savol": "5 kv. dm?",
+      "javob": "500 kv. sm"
+     },
+     {
+      "savol": "300 kv. sm?",
+      "javob": "3 kv. dm"
+     },
+     {
+      "savol": "2 kv. m?",
+      "javob": "20000 kv. sm"
+     },
+     {
+      "savol": "Kattadan kichikka?",
+      "javob": "ko‘paytiramiz"
+     },
+     {
+      "savol": "Kichikdan kattaga?",
+      "javob": "bo‘lamiz"
+     },
+     {
+      "savol": "Poldan yuz birligi?",
+      "javob": "kv. m"
+     },
+     {
+      "savol": "10 · 10?",
+      "javob": "100"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Birlik",
+      "matn": "Birlikni tanla.",
+      "savol": "kv. dm?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "100 ga ko‘paytir.",
+      "savol": "5 · 100?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "100 ga bo‘l.",
+      "savol": "300 / 100?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari amal.",
+      "savol": "500 / 100?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun qo‘shni yuz birliklari orasida 100 marta farq bor?",
+    "keys": {
+     "vaziyat": "Stol usti yuzi 5 kv. dm. Uni kv. sm da bilmoqchisiz.",
+     "savollar": [
+      "Necha kv. sm?",
+      "Qaysi amalni bajaramiz?"
+     ]
+    },
+    "tezis": "Yuzda — yuz marta",
+    "taqqoslash": {
+     "a": "Uzunlik birliklari",
+     "b": "Yuz birliklari",
+     "umumiy": [
+      "o‘lchov birliklari",
+      "almashtiriladi"
+     ],
+     "a_farq": [
+      "10 marta farq",
+      "sm, dm, m"
+     ],
+     "b_farq": [
+      "100 marta farq",
+      "kv. sm, kv. dm, kv. m"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yuz birliklari",
+     "shoxlar": [
+      {
+       "nom": "Kv. sm",
+       "bandlar": [
+        "kichik"
+       ]
+      },
+      {
+       "nom": "Kv. dm",
+       "bandlar": [
+        "100 kv. sm"
+       ]
+      },
+      {
+       "nom": "Kv. m",
+       "bandlar": [
+        "100 kv. dm"
+       ]
+      },
+      {
+       "nom": "Almashtirish",
+       "bandlar": [
+        "100 ga ko‘paytir yoki bo‘l"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men 100 kv. sm ga tengman. Men kimman?",
+     "javob": "kvadrat detsimetr"
+    },
+    "hikmat": "Yuzda yuz marta.",
+    "kalit_soz": "YUZ",
+    "xato_yechim": {
+     "shart": "5 kv. dm necha kv. sm?",
+     "xato": "50 kv. sm",
+     "togri": "500 kv. sm",
+     "sabab": "1 kv. dm — 100 kv. sm"
+    },
+    "guruh_nomlari": [
+     "Yuzchilar",
+     "O‘lchovchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yuz almashtirish»",
+     "topshiriq": "Guruh yuz birliklarini almashtiradi."
+    },
+    "vazifalar": {
+     "A": "5 kv. dm necha kv. sm?",
+     "B": "300 kv. sm necha kv. dm?",
+     "C": "2 kv. m necha kv. sm? Tekshiring."
+    },
+    "sinkveyn": [
+     "Yuz",
+     "katta, tekis",
+     "o‘lchanadi, almashtiriladi, hisoblanadi",
+     "Yuzda yuz marta",
+     "Kvadrat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yuz birliklarini almashtiradi.",
+     "qismlar": [
+      "1-guruh: kv. dm — kv. sm",
+      "2-guruh: kv. sm — kv. dm",
+      "3-guruh: kv. m — kv. sm",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 500; 3; 20000; tekshirdik."
+    }
+   }
+  },
+  {
+   "mavzu": "Hajm (kub)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Hajm nima?",
+      "matn": "Jism egallagan joy uning hajmi deyiladi. Hajm kub birliklarda o‘lchanadi: kub santimetr (kub sm), kub detsimetr (kub dm), kub metr (kub m).",
+      "misol": "1 kub sm — qirrasi 1 sm bo‘lgan kub hajmi.",
+      "savol": "Hajm qanday birliklarda o‘lchanadi?",
+      "javob": "kub birliklarda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kub",
+      "matn": "Kub — hamma qirralari teng jism. Uning 6 ta yog‘i kvadrat. Kub hajmi — qirra uch marta ko‘paytirilgan.",
+      "misol": "Qirrasi 3 sm kub hajmi: 3 · 3 · 3 — 27 kub sm.",
+      "savol": "3 · 3 · 3 nechaga teng?",
+      "javob": "27",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kub dm va kub sm",
+      "matn": "1 dm — 10 sm. Qirrasi 10 sm kub hajmi 10 · 10 · 10 — 1000 kub sm. Demak 1 kub dm — 1000 kub sm.",
+      "misol": "10 · 10 · 10 — 1000.",
+      "savol": "10 · 10 · 10 nechaga teng?",
+      "javob": "1000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Litr",
+      "matn": "1 kub dm sig‘imi 1 litr deyiladi. Suv, sut va boshqa suyuqliklar litrda o‘lchanadi.",
+      "misol": "1 litr — 1 kub dm — 1000 kub sm.",
+      "savol": "1 litr necha kub sm?",
+      "javob": "1000",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Almashtiramiz",
+      "matn": "Kub dm dan kub sm ga o‘tishda 1000 ga ko‘paytiramiz. Kub sm dan kub dm ga o‘tishda 1000 ga bo‘lamiz.",
+      "misol": "2 kub dm — 2000 kub sm. 5000 kub sm — 5 kub dm.",
+      "savol": "2 · 1000 nechaga teng?",
+      "javob": "2000",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Kub hajmi — qirra · qirra · qirra. 1 kub dm — 1000 kub sm — 1 litr. Qo‘shni kub birliklar orasida 1000 marta farq bor.",
+    "misollar": [
+     {
+      "shart": "Qirrasi 3 sm kub hajmi?",
+      "yechim": [
+       "3 · 3 · 3.",
+       "9 · 3.",
+       "Javob 27 kub sm."
+      ],
+      "javob": "27 kub sm"
+     },
+     {
+      "shart": "2 kub dm necha kub sm?",
+      "yechim": [
+       "1 kub dm — 1000 kub sm.",
+       "2 · 1000.",
+       "Javob 2000 kub sm."
+      ],
+      "javob": "2000 kub sm"
+     },
+     {
+      "shart": "5000 kub sm necha kub dm?",
+      "yechim": [
+       "1000 kub sm — 1 kub dm.",
+       "5000 / 1000.",
+       "Javob 5 kub dm."
+      ],
+      "javob": "5 kub dm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kub yasaymiz",
+      "topshiriq": "Qirrasi 3 sm kubni kichik kubiklardan yasang.",
+      "yechim": "27 ta kubik kerak.",
+      "mahsulot": "kubiklar"
+     },
+     {
+      "nom": "Suv o‘lchaymiz",
+      "topshiriq": "1 litrli idishga 1 kub dm sig‘ishini ko‘ring.",
+      "yechim": "1 litr — 1 kub dm.",
+      "mahsulot": "idish va suv"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta kub hajmini toping.",
+      "yechim": "Qirra uch marta ko‘paytiriladi.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Javoblarni bo‘lish bilan tekshiring.",
+      "yechim": "5000 / 1000 — 5.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 · 3 · 3 nechaga teng?",
+      "javob": "27"
+     },
+     {
+      "shart": "10 · 10 · 10 nechaga teng?",
+      "javob": "1000"
+     },
+     {
+      "shart": "2 · 1000 nechaga teng?",
+      "javob": "2000"
+     },
+     {
+      "shart": "5000 / 1000 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "1 litr necha kub dm?",
+      "javob": "1"
+     },
+     {
+      "shart": "1 kub dm necha kub sm?",
+      "javob": "1000"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Kub hajmini 3 ga ko‘paytiradi",
+      "sabab": "qirrani uch marta ko‘paytirmaydi",
+      "oldini_olish": "qirra · qirra · qirra"
+     },
+     {
+      "xato": "1 kub dm ni 100 kub sm deydi",
+      "sabab": "yuz bilan aralashtiradi",
+      "oldini_olish": "1 kub dm — 1000 kub sm"
+     },
+     {
+      "xato": "Birlikni yozmaydi",
+      "sabab": "kub ni unutadi",
+      "oldini_olish": "hajm — kub birlik"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "suv idishi hajmi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "jism hajmini o‘lchash"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "quti sig‘imi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kubiklar shahri»",
+     "muammo": "Kubiklardan shahar qurib, hajmini qanday hisoblaymiz?",
+     "mahsulot": "kubiklar shahri",
+     "bosqichlar": [
+      "kubiklar tayyorlash",
+      "bino qurish",
+      "hajmini hisoblash",
+      "litrga aylantirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kubik tayyorlang",
+      "Bino quring",
+      "Hajmni toping",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "kubiklar teng",
+      "hisob to‘g‘ri",
+      "birlik to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Hajmlar ombori»",
+     "bekatlar": [
+      {
+       "nom": "1-ombor",
+       "matn": "Qirrasi 3 sm kub.",
+       "topshiriq": "Hajmi?",
+       "javob": "27",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ombor",
+       "matn": "2 kub dm.",
+       "topshiriq": "Necha kub sm?",
+       "javob": "2000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ombor",
+       "matn": "5000 kub sm.",
+       "topshiriq": "Necha kub dm?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ombor",
+       "matn": "1 litr.",
+       "topshiriq": "Necha kub sm?",
+       "javob": "1000",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qirrani necha marta ko‘paytirdingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Hajm",
+      "tarif": "jism egallagan joy"
+     },
+     {
+      "atama": "Kub",
+      "tarif": "hamma qirralari teng jism"
+     },
+     {
+      "atama": "Qirra",
+      "tarif": "kub tomoni"
+     },
+     {
+      "atama": "Kub sm",
+      "tarif": "qirrasi 1 sm kub hajmi"
+     },
+     {
+      "atama": "Kub dm",
+      "tarif": "qirrasi 1 dm kub hajmi"
+     },
+     {
+      "atama": "Litr",
+      "tarif": "1 kub dm sig‘im"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Kub hajmi — qirra uch marta ko‘paytiriladi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "3 · 3 · 3 — 9",
+      "togri": false,
+      "izoh": "27"
+     },
+     {
+      "matn": "1 kub dm — 1000 kub sm",
+      "togri": true,
+      "izoh": "10 · 10 · 10"
+     },
+     {
+      "matn": "1 litr — 1 kub dm",
+      "togri": true,
+      "izoh": "sig‘im"
+     },
+     {
+      "matn": "2 kub dm — 200 kub sm",
+      "togri": false,
+      "izoh": "2000"
+     },
+     {
+      "matn": "5000 kub sm — 5 kub dm",
+      "togri": true,
+      "izoh": "5000 / 1000"
+     },
+     {
+      "matn": "Hajm kv. birlikda o‘lchanadi",
+      "togri": false,
+      "izoh": "kub"
+     },
+     {
+      "matn": "Kubning 6 ta yog‘i bor",
+      "togri": true,
+      "izoh": "kvadratlar"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Hajm nima?",
+      "javob": "jism egallagan joy"
+     },
+     {
+      "savol": "Kub hajmi?",
+      "javob": "qirra · qirra · qirra"
+     },
+     {
+      "savol": "3 · 3 · 3?",
+      "javob": "27"
+     },
+     {
+      "savol": "1 kub dm?",
+      "javob": "1000 kub sm"
+     },
+     {
+      "savol": "1 litr?",
+      "javob": "1 kub dm"
+     },
+     {
+      "savol": "2 kub dm?",
+      "javob": "2000 kub sm"
+     },
+     {
+      "savol": "5000 kub sm?",
+      "javob": "5 kub dm"
+     },
+     {
+      "savol": "Kubning nechta yog‘i bor?",
+      "javob": "6"
+     },
+     {
+      "savol": "Hajm birligi?",
+      "javob": "kub birlik"
+     },
+     {
+      "savol": "10 · 10 · 10?",
+      "javob": "1000"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qirra",
+      "matn": "Qirrani o‘lcha.",
+      "savol": "3 sm?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Uch marta ko‘paytir.",
+      "savol": "3 · 3 · 3?"
+     },
+     {
+      "nom": "Birlik",
+      "matn": "Birlikni yoz.",
+      "savol": "kub sm"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Bo‘lib tekshir.",
+      "savol": "5000 / 1000?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun hajm kub birliklarda o‘lchanadi?",
+    "keys": {
+     "vaziyat": "Qirrasi 3 sm bo‘lgan kub shaklidagi qutiga nechta kubik sig‘adi?",
+     "savollar": [
+      "Hajmi qancha?",
+      "Qaysi amalni bajaramiz?"
+     ]
+    },
+    "tezis": "Uch o‘lcham — hajm",
+    "taqqoslash": {
+     "a": "Yuz",
+     "b": "Hajm",
+     "umumiy": [
+      "jism o‘lchovi",
+      "ko‘paytirish bilan topiladi"
+     ],
+     "a_farq": [
+      "ikki o‘lcham",
+      "kv. birlik"
+     ],
+     "b_farq": [
+      "uch o‘lcham",
+      "kub birlik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Hajm",
+     "shoxlar": [
+      {
+       "nom": "Kub",
+       "bandlar": [
+        "qirra · qirra · qirra"
+       ]
+      },
+      {
+       "nom": "Birliklar",
+       "bandlar": [
+        "kub sm",
+        "kub dm",
+        "kub m"
+       ]
+      },
+      {
+       "nom": "Litr",
+       "bandlar": [
+        "1 kub dm"
+       ]
+      },
+      {
+       "nom": "Almashtirish",
+       "bandlar": [
+        "1000 ga ko‘paytir yoki bo‘l"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men jism egallagan joyman. Men kimman?",
+     "javob": "hajm"
+    },
+    "hikmat": "Uch marta ko‘paytir — hajm.",
+    "kalit_soz": "HAJM",
+    "xato_yechim": {
+     "shart": "Qirrasi 3 sm kub hajmi?",
+     "xato": "9 kub sm",
+     "togri": "27 kub sm",
+     "sabab": "qirra uch marta ko‘paytiriladi"
+    },
+    "guruh_nomlari": [
+     "Hajmchilar",
+     "Kubchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Hajmlar ombori»",
+     "topshiriq": "Guruh kublar hajmini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "Qirrasi 3 sm kub hajmini toping.",
+     "B": "2 kub dm necha kub sm?",
+     "C": "5000 kub sm necha kub dm? Tekshiring."
+    },
+    "sinkveyn": [
+     "Hajm",
+     "katta, to‘la",
+     "o‘lchanadi, sig‘adi, to‘ldiradi",
+     "Uch o‘lcham",
+     "Kub"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh hajm bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: kub hajmi",
+      "2-guruh: kub dm — kub sm",
+      "3-guruh: kub sm — kub dm",
+      "4-guruh: litr"
+     ],
+     "yakun": "Natijalar: 27; 2000; 5; 1000."
+    }
+   }
+  },
+  {
+   "mavzu": "To‘g‘ri burchakli parallelepiped",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Parallelepiped nima?",
+      "matn": "Hamma yog‘i to‘g‘ri to‘rtburchak bo‘lgan jism to‘g‘ri burchakli parallelepiped deyiladi. Gugurt qutisi, g‘isht, kitob shunday shaklda.",
+      "misol": "Uning 6 ta yog‘i, 12 ta qirrasi, 8 ta uchi bor.",
+      "savol": "Parallelepipedning nechta yog‘i bor?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘lchamlari",
+      "matn": "Parallelepipedning uchta o‘lchami bor: uzunlik, kenglik va balandlik.",
+      "misol": "Uzunlik 4, kenglik 3, balandlik 5.",
+      "savol": "O‘lchamlari nechta?",
+      "javob": "uchta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hajmi",
+      "matn": "Parallelepiped hajmi — uzunlik, kenglik va balandlikning ko‘paytmasi.",
+      "misol": "4 · 3 · 5 — 60 kub sm.",
+      "savol": "4 · 3 · 5 nechaga teng?",
+      "javob": "60",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sirti",
+      "matn": "To‘liq sirt yuzi — oltita yog‘ yuzlari yig‘indisi: 2 · (uzunlik · kenglik + uzunlik · balandlik + kenglik · balandlik).",
+      "misol": "4 · 3 — 12, 4 · 5 — 20, 3 · 5 — 15. Sirt: 2 · 47 — 94 kv. sm.",
+      "savol": "12 + 20 + 15 nechaga teng?",
+      "javob": "47",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Balandlikni topamiz",
+      "matn": "Hajm va ikki o‘lcham ma’lum bo‘lsa, uchinchisi — hajm bo‘linsin ikki o‘lcham ko‘paytmasiga.",
+      "misol": "V — 60, uzunlik 4, kenglik 3: balandlik 60 / 12 — 5.",
+      "savol": "60 / 12 nechaga teng?",
+      "javob": "5",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Hajm — uzunlik · kenglik · balandlik. Sirt — 2 · (ab + ac + bc). Noma’lum o‘lcham — hajm bo‘linsin qolgan ikkitasiga.",
+    "misollar": [
+     {
+      "shart": "4, 3 va 5 sm o‘lchamli parallelepiped hajmi?",
+      "yechim": [
+       "4 · 3 — 12.",
+       "12 · 5.",
+       "Javob 60 kub sm."
+      ],
+      "javob": "60 kub sm"
+     },
+     {
+      "shart": "Shu parallelepipedning to‘liq sirt yuzi?",
+      "yechim": [
+       "4 · 3 — 12, 4 · 5 — 20, 3 · 5 — 15.",
+       "12 + 20 + 15 — 47.",
+       "47 · 2 — 94. Javob 94 kv. sm."
+      ],
+      "javob": "94 kv. sm"
+     },
+     {
+      "shart": "Hajmi 60, uzunligi 4, kengligi 3. Balandligi?",
+      "yechim": [
+       "4 · 3 — 12.",
+       "60 / 12.",
+       "Javob 5 sm."
+      ],
+      "javob": "5 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Gugurt qutisi",
+      "topshiriq": "Gugurt qutisi o‘lchamlarini o‘lchab, hajmini toping.",
+      "yechim": "Uch o‘lchamni ko‘paytiring.",
+      "mahsulot": "quti va chizg‘ich"
+     },
+     {
+      "nom": "Yoyilma",
+      "topshiriq": "Qutini yoyib, yoqlarni sanang.",
+      "yechim": "Oltita to‘g‘ri to‘rtburchak.",
+      "mahsulot": "quti va qaychi"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta parallelepiped hajmini toping.",
+      "yechim": "a · b · c.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Balandlikni bo‘lish bilan tekshiring.",
+      "yechim": "60 / 12 — 5.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "4 · 3 · 5 nechaga teng?",
+      "javob": "60"
+     },
+     {
+      "shart": "12 + 20 + 15 nechaga teng?",
+      "javob": "47"
+     },
+     {
+      "shart": "2 · 47 nechaga teng?",
+      "javob": "94"
+     },
+     {
+      "shart": "60 / 12 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "Parallelepipedning nechta qirrasi bor?",
+      "javob": "12"
+     },
+     {
+      "shart": "Parallelepipedning nechta uchi bor?",
+      "javob": "8"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Hajmni qo‘shish bilan topadi",
+      "sabab": "yuz bilan aralashtiradi",
+      "oldini_olish": "hajm — ko‘paytma"
+     },
+     {
+      "xato": "Sirtni ikkiga ko‘paytirmaydi",
+      "sabab": "yoqlar juft ekanini unutadi",
+      "oldini_olish": "2 · (ab + ac + bc)"
+     },
+     {
+      "xato": "Birlikni yozmaydi",
+      "sabab": "kub yoki kv. ni unutadi",
+      "oldini_olish": "hajm — kub, sirt — kv."
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "quti va g‘isht"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "idish sig‘imi"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "karton quti yasash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening qutim»",
+     "muammo": "O‘z qutimizni yasab, hajmini qanday hisoblaymiz?",
+     "mahsulot": "karton quti",
+     "bosqichlar": [
+      "o‘lchamlarni tanlash",
+      "yoyilma chizish",
+      "quti yasash",
+      "hajmini hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "O‘lcham tanlang",
+      "Yoyilma chizing",
+      "Quti yasang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchamlar aniq",
+      "yoyilma to‘g‘ri",
+      "hisob to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qutilar zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-quti",
+       "matn": "4, 3 va 5 sm.",
+       "topshiriq": "Hajmi?",
+       "javob": "60",
+       "rasm": ""
+      },
+      {
+       "nom": "2-quti",
+       "matn": "12 + 20 + 15.",
+       "topshiriq": "Yig‘indi?",
+       "javob": "47",
+       "rasm": ""
+      },
+      {
+       "nom": "3-quti",
+       "matn": "2 · 47.",
+       "topshiriq": "Sirt?",
+       "javob": "94",
+       "rasm": ""
+      },
+      {
+       "nom": "4-quti",
+       "matn": "V — 60, 4 va 3.",
+       "topshiriq": "Balandlik?",
+       "javob": "5",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Uch o‘lchamni ko‘paytirdingizmi?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Parallelepiped",
+      "tarif": "to‘g‘ri to‘rtburchak yoqli jism"
+     },
+     {
+      "atama": "Yoq",
+      "tarif": "jism sirtining bir qismi"
+     },
+     {
+      "atama": "Qirra",
+      "tarif": "ikki yoq kesishgan chiziq"
+     },
+     {
+      "atama": "Uch",
+      "tarif": "qirralar kesishgan nuqta"
+     },
+     {
+      "atama": "Balandlik",
+      "tarif": "uchinchi o‘lcham"
+     },
+     {
+      "atama": "Sirt",
+      "tarif": "hamma yoqlar yuzi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Parallelepipedning 6 ta yog‘i bor",
+      "togri": true,
+      "izoh": "yoqlar"
+     },
+     {
+      "matn": "Parallelepipedning 8 ta qirrasi bor",
+      "togri": false,
+      "izoh": "12"
+     },
+     {
+      "matn": "4 · 3 · 5 — 60",
+      "togri": true,
+      "izoh": "hajm"
+     },
+     {
+      "matn": "Sirt — 2 · (ab + ac + bc)",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Hajm — uch o‘lcham yig‘indisi",
+      "togri": false,
+      "izoh": "ko‘paytma"
+     },
+     {
+      "matn": "60 / 12 — 5",
+      "togri": true,
+      "izoh": "balandlik"
+     },
+     {
+      "matn": "Parallelepipedning 8 ta uchi bor",
+      "togri": true,
+      "izoh": "uchlar"
+     },
+     {
+      "matn": "Hajm kv. birlikda o‘lchanadi",
+      "togri": false,
+      "izoh": "kub"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Parallelepipedning yoqlari?",
+      "javob": "6"
+     },
+     {
+      "savol": "Qirralari?",
+      "javob": "12"
+     },
+     {
+      "savol": "Uchlari?",
+      "javob": "8"
+     },
+     {
+      "savol": "O‘lchamlari?",
+      "javob": "uzunlik, kenglik, balandlik"
+     },
+     {
+      "savol": "Hajm formulasi?",
+      "javob": "a · b · c"
+     },
+     {
+      "savol": "4 · 3 · 5?",
+      "javob": "60"
+     },
+     {
+      "savol": "Sirt?",
+      "javob": "94 kv. sm"
+     },
+     {
+      "savol": "12 + 20 + 15?",
+      "javob": "47"
+     },
+     {
+      "savol": "60 / 12?",
+      "javob": "5"
+     },
+     {
+      "savol": "Hajm birligi?",
+      "javob": "kub birlik"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘lcha",
+      "matn": "Uch o‘lchamni o‘lcha.",
+      "savol": "4, 3, 5?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Hajmni top.",
+      "savol": "4 · 3 · 5?"
+     },
+     {
+      "nom": "Sirt",
+      "matn": "Yoqlarni qo‘sh.",
+      "savol": "47 · 2?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Bo‘lib tekshir.",
+      "savol": "60 / 12?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun parallelepiped hajmini uch o‘lcham ko‘paytmasi bilan topamiz?",
+    "keys": {
+     "vaziyat": "Quti uzunligi 4 sm, kengligi 3 sm, balandligi 5 sm.",
+     "savollar": [
+      "Hajmi qancha?",
+      "Sirt yuzi qancha?"
+     ]
+    },
+    "tezis": "Uzunlik, kenglik, balandlik",
+    "taqqoslash": {
+     "a": "Kub",
+     "b": "Parallelepiped",
+     "umumiy": [
+      "hajmi bor",
+      "6 ta yog‘i bor"
+     ],
+     "a_farq": [
+      "qirralari teng",
+      "qirra · qirra · qirra"
+     ],
+     "b_farq": [
+      "o‘lchamlari har xil",
+      "a · b · c"
+     ]
+    },
+    "klaster": {
+     "markaz": "Parallelepiped",
+     "shoxlar": [
+      {
+       "nom": "Elementlar",
+       "bandlar": [
+        "6 yoq",
+        "12 qirra",
+        "8 uch"
+       ]
+      },
+      {
+       "nom": "Hajm",
+       "bandlar": [
+        "a · b · c"
+       ]
+      },
+      {
+       "nom": "Sirt",
+       "bandlar": [
+        "2 · (ab + ac + bc)"
+       ]
+      },
+      {
+       "nom": "Balandlik",
+       "bandlar": [
+        "hajm / (ab)"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men gugurt qutisi shaklidaman. Men kimman?",
+     "javob": "parallelepiped"
+    },
+    "hikmat": "Uch o‘lcham — bir hajm.",
+    "kalit_soz": "QUTI",
+    "xato_yechim": {
+     "shart": "4, 3 va 5 sm li parallelepiped hajmi?",
+     "xato": "12 kub sm",
+     "togri": "60 kub sm",
+     "sabab": "uchala o‘lcham ko‘paytiriladi"
+    },
+    "guruh_nomlari": [
+     "Qutichilar",
+     "Hajmchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qutilar zavodi»",
+     "topshiriq": "Guruh qutilarning hajmi va sirtini hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "4, 3 va 5 sm parallelepiped hajmini toping.",
+     "B": "Shu parallelepiped sirt yuzini toping.",
+     "C": "V — 60, 4 va 3 bo‘lsa, balandlikni toping."
+    },
+    "sinkveyn": [
+     "Parallelepiped",
+     "to‘g‘ri, uch o‘lchamli",
+     "o‘lchanadi, hisoblanadi, yasaladi",
+     "Uch o‘lcham",
+     "Quti"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh parallelepiped bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: hajm",
+      "2-guruh: sirt",
+      "3-guruh: balandlik",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 60; 94; 5; tekshirdik."
+    }
+   }
   }
  ]
 }
