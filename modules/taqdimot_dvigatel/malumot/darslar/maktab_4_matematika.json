@@ -27585,6 +27585,1385 @@
      "yakun": "Natijalar: 8; 15; 5; tekshirdik."
     }
    }
+  },
+  {
+   "mavzu": "Diagramma va grafik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Grafik nima?",
+      "matn": "Grafik — o‘zgarishni chiziq bilan ko‘rsatadigan rasm. Unda ikki o‘q bor: tik o‘qda kattalik, yotiq o‘qda vaqt.",
+      "misol": "Haftalik harorat grafigi: dushanba 12, seshanba 15, chorshanba 18, payshanba 14 daraja.",
+      "savol": "Grafikda nechta o‘q bor?",
+      "javob": "ikkita",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Grafikni o‘qiymiz",
+      "matn": "Nuqta qayerda baland bo‘lsa, kattalik shuncha katta. Chiziq ko‘tarilsa — o‘sish, tushsa — kamayish.",
+      "misol": "12 dan 15 ga, 18 ga — o‘sish. 18 dan 14 ga — kamayish.",
+      "savol": "Chiziq ko‘tarilsa nima bo‘ladi?",
+      "javob": "o‘sish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Eng katta va farq",
+      "matn": "Eng baland nuqta — eng katta qiymat. Ikki nuqta farqi — ayirma.",
+      "misol": "Eng issiq kun — chorshanba, 18. 18 − 12 — 6.",
+      "savol": "18 − 12 nechaga teng?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Diagramma va grafik",
+      "matn": "Diagramma qiymatlarni taqqoslaydi. Grafik vaqt bo‘yicha o‘zgarishni ko‘rsatadi.",
+      "misol": "Baholarni taqqoslash — diagramma. Harorat o‘zgarishi — grafik.",
+      "savol": "Harorat o‘zgarishi uchun qaysi biri mos?",
+      "javob": "grafik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yig‘indi",
+      "matn": "Grafik qiymatlarini qo‘shib, jami topish mumkin.",
+      "misol": "12 + 15 + 18 + 14 — 59.",
+      "savol": "12 + 15 + 18 + 14 nechaga teng?",
+      "javob": "59",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Grafik — vaqt bo‘yicha o‘zgarish. Chiziq ko‘tarilsa — o‘sish, tushsa — kamayish. Eng baland nuqta — eng katta qiymat.",
+    "misollar": [
+     {
+      "shart": "Harorat 12, 15, 18, 14. Eng issiq va eng sovuq kun farqi?",
+      "yechim": [
+       "Eng katta 18, eng kichik 12.",
+       "18 − 12.",
+       "Javob 6 daraja."
+      ],
+      "javob": "6 daraja"
+     },
+     {
+      "shart": "Qaysi kunlar orasida harorat kamaydi?",
+      "yechim": [
+       "15 dan 18 ga — o‘sish.",
+       "18 dan 14 ga — kamayish.",
+       "Javob chorshanba va payshanba orasida."
+      ],
+      "javob": "chorshanba va payshanba orasida"
+     },
+     {
+      "shart": "To‘rt kun haroratlari yig‘indisi?",
+      "yechim": [
+       "12 + 15 — 27.",
+       "27 + 18 + 14.",
+       "Javob 59."
+      ],
+      "javob": "59"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Grafik chizamiz",
+      "topshiriq": "Haftalik haroratni grafikda ko‘rsating.",
+      "yechim": "Nuqtalarni chiziq bilan ulang.",
+      "mahsulot": "katakli qog‘oz"
+     },
+     {
+      "nom": "Grafik o‘qiymiz",
+      "topshiriq": "Berilgan grafik bo‘yicha savollarga javob bering.",
+      "yechim": "O‘sish va kamayishni toping.",
+      "mahsulot": "savollar varag‘i"
+     },
+     {
+      "nom": "Tanlaymiz",
+      "topshiriq": "Ma’lumotga diagramma yoki grafik tanlang.",
+      "yechim": "Taqqoslash yoki o‘zgarish.",
+      "mahsulot": "ma’lumotlar kartochkasi"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Javoblarni grafik bilan solishtiring.",
+      "yechim": "Eng baland nuqta 18.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "18 − 12 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "12 + 15 + 18 + 14 nechaga teng?",
+      "javob": "59"
+     },
+     {
+      "shart": "Chiziq tushsa nima bo‘ladi?",
+      "javob": "kamayish"
+     },
+     {
+      "shart": "Eng baland nuqta nimani bildiradi?",
+      "javob": "eng katta qiymatni"
+     },
+     {
+      "shart": "Vaqt o‘zgarishi uchun nima mos?",
+      "javob": "grafik"
+     },
+     {
+      "shart": "Taqqoslash uchun nima mos?",
+      "javob": "diagramma"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Grafikni diagramma bilan aralashtiradi",
+      "sabab": "ikkalasini bir deb o‘ylaydi",
+      "oldini_olish": "grafik — o‘zgarish"
+     },
+     {
+      "xato": "O‘qlarni o‘qimaydi",
+      "sabab": "yozuvlarga qaramaydi",
+      "oldini_olish": "avval o‘qlarni o‘qish"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "javobni grafik bilan solishtirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tabiatshunoslik",
+      "boglanish": "ob-havo kuzatuvi"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "narx o‘zgarishi"
+     },
+     {
+      "fan": "Sport",
+      "boglanish": "natija o‘zgarishi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ob-havo grafigi»",
+     "muammo": "Bir haftalik ob-havo grafigini qanday chizamiz?",
+     "mahsulot": "ob-havo grafigi",
+     "bosqichlar": [
+      "harorat o‘lchash",
+      "jadval tuzish",
+      "grafik chizish",
+      "xulosa yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Haroratni o‘lchang",
+      "Jadval tuzing",
+      "Grafik chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov to‘g‘ri",
+      "grafik to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Grafiklar vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "1-tepalik",
+       "matn": "Harorat 12, 15, 18, 14.",
+       "topshiriq": "Eng katta?",
+       "javob": "18",
+       "rasm": ""
+      },
+      {
+       "nom": "2-tepalik",
+       "matn": "18 va 12.",
+       "topshiriq": "Farq?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "3-tepalik",
+       "matn": "12 + 15 + 18 + 14.",
+       "topshiriq": "Yig‘indi?",
+       "javob": "59",
+       "rasm": ""
+      },
+      {
+       "nom": "4-tepalik",
+       "matn": "18 dan 14 ga o‘tish.",
+       "topshiriq": "Nima bo‘ldi?",
+       "javob": "kamayish",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "O‘qlarni o‘qidingizmi?",
+      "Chiziq qayoqqa ketdi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Grafik",
+      "tarif": "o‘zgarishni ko‘rsatuvchi chiziq"
+     },
+     {
+      "atama": "Diagramma",
+      "tarif": "qiymatlar rasmi"
+     },
+     {
+      "atama": "O‘q",
+      "tarif": "grafik asosiy chizig‘i"
+     },
+     {
+      "atama": "O‘sish",
+      "tarif": "qiymat ortishi"
+     },
+     {
+      "atama": "Kamayish",
+      "tarif": "qiymat tushishi"
+     },
+     {
+      "atama": "Nuqta",
+      "tarif": "grafik belgisi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Grafik o‘zgarishni ko‘rsatadi",
+      "togri": true,
+      "izoh": "vaqt bo‘yicha"
+     },
+     {
+      "matn": "Chiziq ko‘tarilsa kamayish",
+      "togri": false,
+      "izoh": "o‘sish"
+     },
+     {
+      "matn": "Eng baland nuqta eng katta qiymat",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "18 − 12 — 6",
+      "togri": true,
+      "izoh": "farq"
+     },
+     {
+      "matn": "12 + 15 + 18 + 14 — 49",
+      "togri": false,
+      "izoh": "59"
+     },
+     {
+      "matn": "Diagramma taqqoslaydi",
+      "togri": true,
+      "izoh": "vazifa"
+     },
+     {
+      "matn": "Grafikda ikkita o‘q bor",
+      "togri": true,
+      "izoh": "tik va yotiq"
+     },
+     {
+      "matn": "O‘qlarni o‘qish shart emas",
+      "togri": false,
+      "izoh": "kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Grafik nima?",
+      "javob": "o‘zgarish chizig‘i"
+     },
+     {
+      "savol": "O‘qlar?",
+      "javob": "ikkita"
+     },
+     {
+      "savol": "Chiziq ko‘tarilsa?",
+      "javob": "o‘sish"
+     },
+     {
+      "savol": "Chiziq tushsa?",
+      "javob": "kamayish"
+     },
+     {
+      "savol": "Eng baland nuqta?",
+      "javob": "eng katta qiymat"
+     },
+     {
+      "savol": "18 − 12?",
+      "javob": "6"
+     },
+     {
+      "savol": "12 + 15 + 18 + 14?",
+      "javob": "59"
+     },
+     {
+      "savol": "Taqqoslash?",
+      "javob": "diagramma"
+     },
+     {
+      "savol": "O‘zgarish?",
+      "javob": "grafik"
+     },
+     {
+      "savol": "Birinchi nimani o‘qiymiz?",
+      "javob": "o‘qlarni"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘qi",
+      "matn": "O‘qlarni o‘qi.",
+      "savol": "Nima ko‘rsatilgan?"
+     },
+     {
+      "nom": "Top",
+      "matn": "Eng baland nuqtani top.",
+      "savol": "Qaysi kun?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Farqni top.",
+      "savol": "18 − 12?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Grafik bilan solishtir.",
+      "savol": "To‘g‘rimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun o‘zgarishni grafikda ko‘rsatish qulay?",
+    "keys": {
+     "vaziyat": "To‘rt kun harorat grafigi chizilgan: 12, 15, 18 va 14 daraja.",
+     "savollar": [
+      "Eng issiq kun qaysi?",
+      "Qachon kamaydi?"
+     ]
+    },
+    "tezis": "Chiziq o‘zgarishni aytadi",
+    "taqqoslash": {
+     "a": "Diagramma",
+     "b": "Grafik",
+     "umumiy": [
+      "ma’lumot rasmi",
+      "sonlar bor"
+     ],
+     "a_farq": [
+      "taqqoslaydi",
+      "ustunlar"
+     ],
+     "b_farq": [
+      "o‘zgarishni ko‘rsatadi",
+      "chiziq"
+     ]
+    },
+    "klaster": {
+     "markaz": "Grafik",
+     "shoxlar": [
+      {
+       "nom": "O‘qlar",
+       "bandlar": [
+        "tik",
+        "yotiq"
+       ]
+      },
+      {
+       "nom": "O‘sish",
+       "bandlar": [
+        "chiziq ko‘tariladi"
+       ]
+      },
+      {
+       "nom": "Kamayish",
+       "bandlar": [
+        "chiziq tushadi"
+       ]
+      },
+      {
+       "nom": "Hisob",
+       "bandlar": [
+        "farq",
+        "yig‘indi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men vaqt bo‘yicha o‘zgarishni chiziq bilan ko‘rsataman. Men kimman?",
+     "javob": "grafik"
+    },
+    "hikmat": "Chiziq — o‘zgarish xabari.",
+    "kalit_soz": "GRAFIK",
+    "xato_yechim": {
+     "shart": "Harorat 12 va 18. Farq?",
+     "xato": "30",
+     "togri": "6",
+     "sabab": "farqni topishda ayiramiz"
+    },
+    "guruh_nomlari": [
+     "Grafikchilar",
+     "Diagrammachilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ob-havo markazi»",
+     "topshiriq": "Guruh grafik chizib, o‘qiydi."
+    },
+    "vazifalar": {
+     "A": "Harorat grafigini chizing.",
+     "B": "Eng issiq va eng sovuq kun farqini toping.",
+     "C": "Yig‘indini toping va tekshiring."
+    },
+    "sinkveyn": [
+     "Grafik",
+     "chiziqli, aniq",
+     "o‘sadi, kamayadi, ko‘rsatadi",
+     "Chiziq — xabar",
+     "Nuqta"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh grafik bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: chizish",
+      "2-guruh: o‘qish",
+      "3-guruh: farq",
+      "4-guruh: yig‘indi"
+     ],
+     "yakun": "Natijalar: grafik; chorshanba; 6; 59."
+    }
+   }
+  },
+  {
+   "mavzu": "Koordinatalar (shaxmat taxtasi)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Joyni aniqlaymiz",
+      "matn": "Shaxmat taxtasida har bir katakning o‘z nomi bor: harf va raqam. Harf — ustun, raqam — qator. Shunday qilib katakni aniq topamiz.",
+      "misol": "a1 — a ustun, 1-qator.",
+      "savol": "Katak nomi nimadan iborat?",
+      "javob": "harf va raqamdan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Koordinata tekisligi",
+      "matn": "Matematikada nuqta ikki son bilan beriladi: birinchisi yotiq o‘q bo‘yicha, ikkinchisi tik o‘q bo‘yicha. Ular koordinatalar deyiladi.",
+      "misol": "A(3; 4) — 3 ta o‘ngga, 4 ta yuqoriga.",
+      "savol": "A(3; 4) da birinchi son nimani bildiradi?",
+      "javob": "o‘ngga qadamlar sonini",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nuqtani topamiz",
+      "matn": "Koordinatani topish uchun boshlang‘ich nuqtadan birinchi songa o‘ngga, ikkinchi songa yuqoriga yuramiz.",
+      "misol": "(3; 4): 3 ta o‘ngga, so‘ng 4 ta yuqoriga.",
+      "savol": "(3; 4) da necha qadam yuqoriga?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sonlarni yozamiz",
+      "matn": "Koordinatalar tartibi muhim. (3; 4) va (4; 3) har xil nuqtalar.",
+      "misol": "(3; 4) ≠ (4; 3).",
+      "savol": "(3; 4) va (4; 3) bir xil nuqtami?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qadamlar farqi",
+      "matn": "Ikki nuqta orasidagi farqni koordinatalar ayirmasi bilan topamiz.",
+      "misol": "(1; 2) dan (4; 2) ga: 4 − 1 — 3 qadam.",
+      "savol": "4 − 1 nechaga teng?",
+      "javob": "3",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Nuqta koordinatalari (x; y): x — o‘ngga, y — yuqoriga. Tartibi muhim.",
+    "misollar": [
+     {
+      "shart": "A(3; 4) nuqtani qanday topamiz?",
+      "yechim": [
+       "Boshlang‘ichdan 3 ta o‘ngga.",
+       "So‘ng 4 ta yuqoriga.",
+       "Javob: shu nuqta A."
+      ],
+      "javob": "3 o‘ngga, 4 yuqoriga"
+     },
+     {
+      "shart": "(1; 2) dan (4; 2) gacha necha qadam?",
+      "yechim": [
+       "Ikkinchi son bir xil — 2.",
+       "Birinchi sonlar farqi: 4 − 1.",
+       "Javob 3 qadam."
+      ],
+      "javob": "3 qadam"
+     },
+     {
+      "shart": "(3; 4) va (4; 3) bir xilmi?",
+      "yechim": [
+       "Tartibni tekshiramiz.",
+       "3 va 4 almashgan.",
+       "Javob: yo‘q, har xil nuqtalar."
+      ],
+      "javob": "yo‘q"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Shaxmat o‘yini",
+      "topshiriq": "Katak nomini ayting va toping.",
+      "yechim": "Harf va raqamni juftlang.",
+      "mahsulot": "shaxmat taxtasi"
+     },
+     {
+      "nom": "Nuqta qo‘yamiz",
+      "topshiriq": "Berilgan koordinatalar bo‘yicha nuqtalarni belgilang.",
+      "yechim": "Avval o‘ngga, keyin yuqoriga.",
+      "mahsulot": "katakli qog‘oz"
+     },
+     {
+      "nom": "Rasm chizamiz",
+      "topshiriq": "Nuqtalarni ketma-ket ulab rasm hosil qiling.",
+      "yechim": "Koordinatalarni to‘g‘ri yozing.",
+      "mahsulot": "katakli qog‘oz"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Nuqtalarning o‘rnini koordinatalar bo‘yicha tekshiring.",
+      "yechim": "(3; 4) ≠ (4; 3).",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "4 − 1 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "(3; 4) da birinchi son nimani bildiradi?",
+      "javob": "o‘ngga qadam"
+     },
+     {
+      "shart": "(3; 4) da ikkinchi son nimani bildiradi?",
+      "javob": "yuqoriga qadam"
+     },
+     {
+      "shart": "Katak nomi nimadan iborat?",
+      "javob": "harf va raqam"
+     },
+     {
+      "shart": "(3; 4) va (4; 3) bir xilmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "a1 da a nimani bildiradi?",
+      "javob": "ustun"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Koordinatalar tartibini almashtiradi",
+      "sabab": "birinchi va ikkinchini adashtiradi",
+      "oldini_olish": "avval o‘ngga, keyin yuqoriga"
+     },
+     {
+      "xato": "Nolini topmaydi",
+      "sabab": "boshlang‘ich nuqtani unutadi",
+      "oldini_olish": "boshlang‘ich nuqta (0; 0)"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "nuqtani qayta topish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "xaritada joy aniqlash"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "ekranda piksel joylashuvi"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "kinoteatrda joy raqami"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Xazina xaritasi»",
+     "muammo": "Xazina xaritasini koordinatalar bilan qanday yasaymiz?",
+     "mahsulot": "xazina xaritasi",
+     "bosqichlar": [
+      "katakli xarita chizish",
+      "xazina joyini tanlash",
+      "koordinatalarni yozish",
+      "do‘stga topshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Xarita chizing",
+      "Joyni tanlang",
+      "Koordinatani yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "koordinatalar to‘g‘ri",
+      "topshiriq mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Shaxmat shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-katak",
+       "matn": "(3; 4).",
+       "topshiriq": "Necha qadam o‘ngga?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "2-katak",
+       "matn": "(3; 4).",
+       "topshiriq": "Necha qadam yuqoriga?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "3-katak",
+       "matn": "(1; 2) dan (4; 2) gacha.",
+       "topshiriq": "Necha qadam?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "4-katak",
+       "matn": "(3; 4) va (4; 3).",
+       "topshiriq": "Bir xilmi?",
+       "javob": "yo‘q",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi sondan boshladingiz?",
+      "Tartib to‘g‘rimi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Koordinata",
+      "tarif": "nuqta joyini ko‘rsatuvchi son"
+     },
+     {
+      "atama": "Ustun",
+      "tarif": "tik qator"
+     },
+     {
+      "atama": "Qator",
+      "tarif": "yotiq qator"
+     },
+     {
+      "atama": "Boshlang‘ich nuqta",
+      "tarif": "(0; 0)"
+     },
+     {
+      "atama": "Yotiq o‘q",
+      "tarif": "o‘ngga yo‘nalish"
+     },
+     {
+      "atama": "Tik o‘q",
+      "tarif": "yuqoriga yo‘nalish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "(3; 4) — 3 ta o‘ngga, 4 ta yuqoriga",
+      "togri": true,
+      "izoh": "koordinata"
+     },
+     {
+      "matn": "(3; 4) va (4; 3) bir xil",
+      "togri": false,
+      "izoh": "har xil"
+     },
+     {
+      "matn": "Koordinatalar ikki sondan iborat",
+      "togri": true,
+      "izoh": "juft"
+     },
+     {
+      "matn": "4 − 1 — 3",
+      "togri": true,
+      "izoh": "farq"
+     },
+     {
+      "matn": "Birinchi son yuqoriga qadam",
+      "togri": false,
+      "izoh": "o‘ngga"
+     },
+     {
+      "matn": "Shaxmat katagi harf va raqam bilan nomlanadi",
+      "togri": true,
+      "izoh": "a1"
+     },
+     {
+      "matn": "Tartib ahamiyatsiz",
+      "togri": false,
+      "izoh": "muhim"
+     },
+     {
+      "matn": "Boshlang‘ich nuqta (0; 0)",
+      "togri": true,
+      "izoh": "boshlanish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Koordinata nima?",
+      "javob": "nuqta joyi"
+     },
+     {
+      "savol": "(3; 4) da birinchi son?",
+      "javob": "o‘ngga qadam"
+     },
+     {
+      "savol": "(3; 4) da ikkinchi son?",
+      "javob": "yuqoriga qadam"
+     },
+     {
+      "savol": "Katak nomi?",
+      "javob": "harf va raqam"
+     },
+     {
+      "savol": "(3; 4) va (4; 3)?",
+      "javob": "har xil"
+     },
+     {
+      "savol": "4 − 1?",
+      "javob": "3"
+     },
+     {
+      "savol": "Boshlang‘ich nuqta?",
+      "javob": "(0; 0)"
+     },
+     {
+      "savol": "a1 da a?",
+      "javob": "ustun"
+     },
+     {
+      "savol": "Tartib muhimmi?",
+      "javob": "ha"
+     },
+     {
+      "savol": "Yotiq o‘q?",
+      "javob": "o‘ngga yo‘nalish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Boshla",
+      "matn": "(0; 0) dan boshla.",
+      "savol": "Qayerdan?"
+     },
+     {
+      "nom": "O‘ngga",
+      "matn": "Birinchi songa yur.",
+      "savol": "3 qadam?"
+     },
+     {
+      "nom": "Yuqoriga",
+      "matn": "Ikkinchi songa yur.",
+      "savol": "4 qadam?"
+     },
+     {
+      "nom": "Belgila",
+      "matn": "Nuqta qo‘y.",
+      "savol": "Topdingmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun koordinatalar tartibi muhim?",
+    "keys": {
+     "vaziyat": "Xaritada xazina (3; 4) nuqtada yashiringan.",
+     "savollar": [
+      "Qanday topamiz?",
+      "(4; 3) bilan bir xilmi?"
+     ]
+    },
+    "tezis": "Avval o‘ngga, keyin yuqoriga",
+    "taqqoslash": {
+     "a": "Shaxmat katagi",
+     "b": "Koordinata nuqtasi",
+     "umumiy": [
+      "joyni aniqlaydi",
+      "ikkita belgi bor"
+     ],
+     "a_farq": [
+      "harf va raqam",
+      "a1"
+     ],
+     "b_farq": [
+      "ikki son",
+      "(3; 4)"
+     ]
+    },
+    "klaster": {
+     "markaz": "Koordinatalar",
+     "shoxlar": [
+      {
+       "nom": "Shaxmat",
+       "bandlar": [
+        "harf",
+        "raqam"
+       ]
+      },
+      {
+       "nom": "Tekislik",
+       "bandlar": [
+        "yotiq o‘q",
+        "tik o‘q"
+       ]
+      },
+      {
+       "nom": "Nuqta",
+       "bandlar": [
+        "(x; y)"
+       ]
+      },
+      {
+       "nom": "Tartib",
+       "bandlar": [
+        "avval x, keyin y"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men nuqtaning joyini ikki son bilan aytaman. Men kimman?",
+     "javob": "koordinatalar"
+    },
+    "hikmat": "Avval o‘ngga, keyin yuqoriga.",
+    "kalit_soz": "NUQTA",
+    "xato_yechim": {
+     "shart": "(3; 4) nuqtani toping.",
+     "xato": "4 o‘ngga, 3 yuqoriga",
+     "togri": "3 o‘ngga, 4 yuqoriga",
+     "sabab": "birinchi son o‘ngga qadam"
+    },
+    "guruh_nomlari": [
+     "Koordinatachilar",
+     "Xaritachilar",
+     "Shaxmatchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Xazina xaritasi»",
+     "topshiriq": "Guruh xazinani koordinatalar bilan topadi."
+    },
+    "vazifalar": {
+     "A": "(3; 4) nuqtani toping.",
+     "B": "(1; 2) dan (4; 2) gacha qadamlarni sanang.",
+     "C": "(3; 4) va (4; 3) ni solishtiring."
+    },
+    "sinkveyn": [
+     "Koordinata",
+     "aniq, joyli",
+     "ko‘rsatadi, topadi, belgilaydi",
+     "Joyni son aytadi",
+     "Nuqta"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh koordinatalar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: shaxmat",
+      "2-guruh: nuqta topish",
+      "3-guruh: qadam sanash",
+      "4-guruh: tartib"
+     ],
+     "yakun": "Natijalar: 3 o‘ngga, 4 yuqoriga; 3 qadam; har xil nuqtalar."
+    }
+   }
+  },
+  {
+   "mavzu": "Burchakni o‘lchash (transportir)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Burchak nima?",
+      "matn": "Bir nuqtadan chiqqan ikki nur burchakni hosil qiladi. Nuqta — uchi, nurlar — tomonlari.",
+      "misol": "Doskaning burchagi — to‘g‘ri burchak.",
+      "savol": "Burchak nechta nurdan hosil bo‘ladi?",
+      "javob": "ikkita",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Transportir",
+      "matn": "Burchakni transportir bilan o‘lchaymiz. Uni burchak uchiga va bir tomoniga to‘g‘rilab qo‘yamiz. Burchak daraja bilan o‘lchanadi.",
+      "misol": "To‘g‘ri burchak — 90 daraja.",
+      "savol": "To‘g‘ri burchak necha daraja?",
+      "javob": "90",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchak turlari",
+      "matn": "90 darajadan kichik burchak — o‘tkir. 90 daraja — to‘g‘ri. 90 dan katta, 180 dan kichik — o‘tmas. 180 daraja — yoyiq.",
+      "misol": "35 daraja — o‘tkir. 135 daraja — o‘tmas.",
+      "savol": "35 daraja qanday burchak?",
+      "javob": "o‘tkir",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblaymiz",
+      "matn": "Burchaklarni qo‘shish va ayirish mumkin. To‘g‘ri burchak 90, yoyiq burchak 180.",
+      "misol": "90 − 35 — 55. 180 − 60 — 120. 90 + 45 — 135.",
+      "savol": "90 − 35 nechaga teng?",
+      "javob": "55",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qanday o‘lchaymiz",
+      "matn": "Transportir markazi burchak uchida, nolinchi chiziq tomonda bo‘lishi kerak. Ikkinchi tomon ko‘rsatgan raqamni o‘qiymiz.",
+      "misol": "Ikkinchi tomon 55 ni ko‘rsatsa, burchak 55 daraja.",
+      "savol": "Transportir markazi qayerda turadi?",
+      "javob": "burchak uchida",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Burchak daraja bilan o‘lchanadi: o‘tkir — 90 dan kichik, to‘g‘ri — 90, o‘tmas — 90 dan katta, yoyiq — 180.",
+    "misollar": [
+     {
+      "shart": "Burchak 35 daraja. Qanday burchak?",
+      "yechim": [
+       "35 < 90.",
+       "90 dan kichik.",
+       "Javob: o‘tkir."
+      ],
+      "javob": "o‘tkir"
+     },
+     {
+      "shart": "90 daraja burchakka 45 daraja qo‘shsak?",
+      "yechim": [
+       "90 + 45.",
+       "135.",
+       "Javob 135 daraja, o‘tmas."
+      ],
+      "javob": "135 daraja"
+     },
+     {
+      "shart": "Yoyiq burchakdan 60 daraja ayirsak?",
+      "yechim": [
+       "180 − 60.",
+       "120.",
+       "Javob 120 daraja."
+      ],
+      "javob": "120 daraja"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Burchak yasaymiz",
+      "topshiriq": "Qog‘ozni buklab to‘g‘ri burchak hosil qiling.",
+      "yechim": "90 daraja.",
+      "mahsulot": "qog‘oz"
+     },
+     {
+      "nom": "O‘lchaymiz",
+      "topshiriq": "Transportir bilan uchta burchakni o‘lchang.",
+      "yechim": "Markaz uchda.",
+      "mahsulot": "transportir"
+     },
+     {
+      "nom": "Turini topamiz",
+      "topshiriq": "Burchaklarni o‘tkir, to‘g‘ri, o‘tmasga ajrating.",
+      "yechim": "90 bilan solishtiring.",
+      "mahsulot": "burchaklar varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "O‘lchovni to‘g‘ri burchak bilan solishtiring.",
+      "yechim": "90 daraja.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "90 − 35 nechaga teng?",
+      "javob": "55"
+     },
+     {
+      "shart": "90 + 45 nechaga teng?",
+      "javob": "135"
+     },
+     {
+      "shart": "180 − 60 nechaga teng?",
+      "javob": "120"
+     },
+     {
+      "shart": "To‘g‘ri burchak necha daraja?",
+      "javob": "90"
+     },
+     {
+      "shart": "Yoyiq burchak necha daraja?",
+      "javob": "180"
+     },
+     {
+      "shart": "35 daraja qanday burchak?",
+      "javob": "o‘tkir"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Noto‘g‘ri shkalani o‘qiydi",
+      "sabab": "ikkita raqam qatoridan adashadi",
+      "oldini_olish": "nolinchi chiziqdan boshlash"
+     },
+     {
+      "xato": "Markazni uchga qo‘ymaydi",
+      "sabab": "transportirni noto‘g‘ri qo‘yadi",
+      "oldini_olish": "markaz burchak uchida"
+     },
+     {
+      "xato": "Burchak turini adashtiradi",
+      "sabab": "90 bilan solishtirmaydi",
+      "oldini_olish": "90 bilan solishtirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "eshik ochilish burchagi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "chizmada burchak"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "naqshdagi burchaklar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Burchaklar ko‘rgazmasi»",
+     "muammo": "Burchaklar ko‘rgazmasini qanday yasaymiz?",
+     "mahsulot": "burchaklar ko‘rgazmasi",
+     "bosqichlar": [
+      "burchaklar yasash",
+      "transportir bilan o‘lchash",
+      "turini aniqlash",
+      "plakat yasash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Burchak yasang",
+      "O‘lchang",
+      "Turini aniqlang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "turi to‘g‘ri",
+      "plakat chiroyli",
+      "daraja yozilgan",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Burchaklar ko‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-qirg‘oq",
+       "matn": "90 − 35.",
+       "topshiriq": "Daraja?",
+       "javob": "55",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qirg‘oq",
+       "matn": "90 + 45.",
+       "topshiriq": "Daraja?",
+       "javob": "135",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qirg‘oq",
+       "matn": "180 − 60.",
+       "topshiriq": "Daraja?",
+       "javob": "120",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qirg‘oq",
+       "matn": "To‘g‘ri burchak.",
+       "topshiriq": "Necha daraja?",
+       "javob": "90",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi burchak o‘tkir?",
+      "Qaysi o‘tmas?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Burchak",
+      "tarif": "bir nuqtadan chiqqan ikki nur"
+     },
+     {
+      "atama": "Transportir",
+      "tarif": "burchak o‘lchagich"
+     },
+     {
+      "atama": "Daraja",
+      "tarif": "burchak birligi"
+     },
+     {
+      "atama": "O‘tkir",
+      "tarif": "90 dan kichik"
+     },
+     {
+      "atama": "O‘tmas",
+      "tarif": "90 dan katta, 180 dan kichik"
+     },
+     {
+      "atama": "Yoyiq",
+      "tarif": "180 daraja"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "To‘g‘ri burchak 90 daraja",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "35 daraja — o‘tmas burchak",
+      "togri": false,
+      "izoh": "o‘tkir"
+     },
+     {
+      "matn": "135 daraja — o‘tmas",
+      "togri": true,
+      "izoh": "90 dan katta"
+     },
+     {
+      "matn": "Yoyiq burchak 180 daraja",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "90 − 35 — 65",
+      "togri": false,
+      "izoh": "55"
+     },
+     {
+      "matn": "Transportir markazi uchda turadi",
+      "togri": true,
+      "izoh": "qoida"
+     },
+     {
+      "matn": "180 − 60 — 120",
+      "togri": true,
+      "izoh": "farq"
+     },
+     {
+      "matn": "Burchak sm bilan o‘lchanadi",
+      "togri": false,
+      "izoh": "daraja"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "To‘g‘ri burchak?",
+      "javob": "90 daraja"
+     },
+     {
+      "savol": "Yoyiq burchak?",
+      "javob": "180 daraja"
+     },
+     {
+      "savol": "O‘tkir burchak?",
+      "javob": "90 dan kichik"
+     },
+     {
+      "savol": "O‘tmas burchak?",
+      "javob": "90 dan katta"
+     },
+     {
+      "savol": "90 − 35?",
+      "javob": "55"
+     },
+     {
+      "savol": "90 + 45?",
+      "javob": "135"
+     },
+     {
+      "savol": "180 − 60?",
+      "javob": "120"
+     },
+     {
+      "savol": "Burchak birligi?",
+      "javob": "daraja"
+     },
+     {
+      "savol": "Transportir nima?",
+      "javob": "burchak o‘lchagich"
+     },
+     {
+      "savol": "Markaz qayerda?",
+      "javob": "burchak uchida"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qo‘y",
+      "matn": "Transportirni qo‘y.",
+      "savol": "Markaz uchda?"
+     },
+     {
+      "nom": "O‘qi",
+      "matn": "Raqamni o‘qi.",
+      "savol": "Nechta?"
+     },
+     {
+      "nom": "Solishtir",
+      "matn": "90 bilan solishtir.",
+      "savol": "Kichikmi?"
+     },
+     {
+      "nom": "Tur",
+      "matn": "Turini ayt.",
+      "savol": "O‘tkirmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun burchakni transportir bilan o‘lchaymiz?",
+    "keys": {
+     "vaziyat": "Eshik 135 daraja ochildi.",
+     "savollar": [
+      "Qanday burchak?",
+      "To‘g‘ri burchakdan qancha katta?"
+     ]
+    },
+    "tezis": "Daraja — burchak o‘lchovi",
+    "taqqoslash": {
+     "a": "O‘tkir burchak",
+     "b": "O‘tmas burchak",
+     "umumiy": [
+      "burchak turlari",
+      "daraja bilan o‘lchanadi"
+     ],
+     "a_farq": [
+      "90 dan kichik",
+      "35"
+     ],
+     "b_farq": [
+      "90 dan katta",
+      "135"
+     ]
+    },
+    "klaster": {
+     "markaz": "Burchak",
+     "shoxlar": [
+      {
+       "nom": "Transportir",
+       "bandlar": [
+        "markaz uchda",
+        "nol tomonda"
+       ]
+      },
+      {
+       "nom": "O‘tkir",
+       "bandlar": [
+        "< 90"
+       ]
+      },
+      {
+       "nom": "To‘g‘ri",
+       "bandlar": [
+        "90"
+       ]
+      },
+      {
+       "nom": "O‘tmas",
+       "bandlar": [
+        "> 90"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men burchakni daraja bilan o‘lchayman. Men kimman?",
+     "javob": "transportir"
+    },
+    "hikmat": "Uchda markaz — aniq o‘lchov.",
+    "kalit_soz": "BURCHAK",
+    "xato_yechim": {
+     "shart": "35 daraja qanday burchak?",
+     "xato": "o‘tmas",
+     "togri": "o‘tkir",
+     "sabab": "35 < 90"
+    },
+    "guruh_nomlari": [
+     "Burchakchilar",
+     "O‘lchovchilar",
+     "Transportirchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Burchaklar ko‘rgazmasi»",
+     "topshiriq": "Guruh burchaklarni o‘lchab, turini aniqlaydi."
+    },
+    "vazifalar": {
+     "A": "35 daraja qanday burchak?",
+     "B": "90 + 45 nechaga teng? Qanday burchak?",
+     "C": "180 − 60 nechaga teng? Tekshiring."
+    },
+    "sinkveyn": [
+     "Burchak",
+     "o‘tkir, to‘g‘ri",
+     "o‘lchanadi, chiziladi, solishtiriladi",
+     "Burchak — o‘lchov",
+     "Daraja"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh burchaklar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: o‘tkir",
+      "2-guruh: to‘g‘ri",
+      "3-guruh: o‘tmas",
+      "4-guruh: yoyiq"
+     ],
+     "yakun": "Natijalar: 55; 135; 120; 90."
+    }
+   }
   }
  ]
 }
