@@ -4184,6 +4184,1401 @@
      "yakun": "Natijalar: 1500; 150; 200."
     }
    }
+  },
+  {
+   "mavzu": "Ochiq urug‘lilar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ochiq urug‘lilar xususiyati",
+      "matn": "Ochiq urug‘lilar — urug‘i ochiq holda qubba (shox-shabba) tangachalarida yotadigan o‘simliklar. Ularda gul va meva yo‘q. Urug‘kurtak tugunchada emas, balki tangacha ustida joylashadi. Ko‘pchiligi daraxt va butalar: qarag‘ay, archa, qoraqarag‘ay, sarv. Ular urug‘ bilan ko‘payadi, shuning uchun sporali qirqquloqlardan ustun turadi.",
+      "misol": "Qubba — ochiq urug‘lilar «mevasi».",
+      "savol": "Ochiq urug‘lilarda gul bormi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qarag‘ay tuzilishi",
+      "matn": "Qarag‘ayning bargi ignasimon, ular ikkitadan boylam bo‘lib o‘sadi. Igna qalin kutikula bilan qoplangan, suvni tejaydi va qishda ham to‘kilmaydi. Poyasida smola yo‘llari bor, smola yarani yopadi va hasharotlardan himoya qiladi. Ildizi chuqur ketadi, ko‘pincha zamburug‘ bilan hamkorlik qiladi.",
+      "misol": "Igna — suv tejovchi barg.",
+      "savol": "Qarag‘ay ignasi nechtadan boylam?",
+      "javob": "ikkitadan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘payishi",
+      "matn": "Qarag‘ayda erkak va urg‘ochi qubbalar alohida. Chang shamol bilan tarqaladi, shuning uchun changi ko‘p va yengil. Changlanishdan keyin urug‘ yetilishi bir necha oy yoki yil davom etadi. Urug‘ qanotchali, shamol bilan uzoqqa uchadi. Ochiq urug‘lilarda urug‘lanish suvga bog‘liq emas.",
+      "misol": "Shamol — qarag‘ay changlatuvchisi.",
+      "savol": "Qarag‘ayni nima changlatadi?",
+      "javob": "shamol",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblash misollari",
+      "matn": "Qarag‘ayning 3 boylamida 3 · 2 — 6 igna, 150 boylamida 150 · 2 — 300 igna bor. Masalan, bitta qubbada 100 ta urug‘ bo‘lsa, 40 qubbada 100 · 40 — 4000 urug‘ bo‘ladi (taxminiy misol). Daraxt kesimidagi yillik halqalar yoshni ko‘rsatadi: 85 halqa — 85 yosh, 2026 minus 85 — 1941-yilda ko‘kargan.",
+      "misol": "Halqa — daraxt yoshi daftari.",
+      "savol": "Yillik halqa nimani bildiradi?",
+      "javob": "daraxt yoshini",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ahamiyati va muhofazasi",
+      "matn": "Ignabargli o‘rmonlar havoni tozalaydi, yog‘ochi qurilish va qog‘ozga, smolasi kanifol va skipidarga ketadi. O‘zbekistonda tog‘larda archa o‘rmonlari bor, ular suv saqlaydi va tuproq yuvilishining oldini oladi. Archalar sekin o‘sadi, shuning uchun kesish cheklanadi va muhofaza qilinadi.",
+      "misol": "Archa — tog‘ qo‘riqchisi.",
+      "savol": "O‘zbekistonda tog‘da qaysi daraxt o‘sadi?",
+      "javob": "archa",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ochiq urug‘lilar: gul va meva yo‘q, urug‘ tangachada ochiq. Igna bargli, shamolda changlanadi, smola yo‘llari bor.",
+    "misollar": [
+     {
+      "shart": "Qarag‘ay 150 boylam, har birida 2 igna. Igna soni?",
+      "yechim": [
+       "150 · 2.",
+       "Hisoblang.",
+       "Javob 300."
+      ],
+      "javob": "300"
+     },
+     {
+      "shart": "Masalan, 1 qubbada 100 urug‘, 40 qubba. Urug‘ soni?",
+      "yechim": [
+       "100 · 40.",
+       "Hisoblang.",
+       "Javob 4000."
+      ],
+      "javob": "4000"
+     },
+     {
+      "shart": "Daraxt kesimida 85 halqa bor. 2026-yilda ko‘kargan yili?",
+      "yechim": [
+       "2026 minus 85.",
+       "Hisoblang.",
+       "Javob 1941."
+      ],
+      "javob": "1941"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Qubba kuzatuvi",
+      "topshiriq": "Qarag‘ay qubbasini ko‘rib, tangachalarni sanang.",
+      "yechim": "Tangacha va urug‘.",
+      "mahsulot": "qubba, lupa"
+     },
+     {
+      "nom": "Igna tajribasi",
+      "topshiriq": "Igna va oddiy bargni quritib taqqoslang.",
+      "yechim": "Kutikula.",
+      "mahsulot": "igna, barg"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va ayirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Halqalar",
+      "topshiriq": "Daraxt kesimi rasmidan yoshni toping.",
+      "yechim": "Halqalarni sanash.",
+      "mahsulot": "rasm"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "150 · 2 nechaga teng?",
+      "javob": "300"
+     },
+     {
+      "shart": "100 · 40 nechaga teng?",
+      "javob": "4000"
+     },
+     {
+      "shart": "2026 minus 85 nechaga teng?",
+      "javob": "1941"
+     },
+     {
+      "shart": "3 · 2 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "Ochiq urug‘lilar misoli?",
+      "javob": "qarag‘ay"
+     },
+     {
+      "shart": "Qubba tangachasida nima bor?",
+      "javob": "urug‘"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qarag‘ayda gul bor deydi",
+      "sabab": "gul va meva yo‘q",
+      "oldini_olish": "qubba bor"
+     },
+     {
+      "xato": "Igna to‘kilib ketadi deydi",
+      "sabab": "qishda ham saqlanadi",
+      "oldini_olish": "qalin kutikula"
+     },
+     {
+      "xato": "Qarag‘ayni hasharot changlatadi deydi",
+      "sabab": "shamol changlatadi",
+      "oldini_olish": "chang yengil"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "tog‘ o‘rmoni"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "smola"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "yog‘och qurilishi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ignabargli o‘rmon»",
+     "muammo": "Ochiq urug‘lilar qanday yashaydi?",
+     "mahsulot": "kuzatuv hisoboti",
+     "bosqichlar": [
+      "qubba kuzatuvi",
+      "igna tajribasi",
+      "halqa hisobi",
+      "muhofaza",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kuzating",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "kuzatuv aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Archa o‘rmoni»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "150 boylam, 2 igna.",
+       "topshiriq": "Igna?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "100 urug‘, 40 qubba.",
+       "topshiriq": "Urug‘?",
+       "javob": "4000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "85 halqa, 2026-yil.",
+       "topshiriq": "Qaysi yil?",
+       "javob": "1941",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Chang tashuvchi.",
+       "topshiriq": "Nima?",
+       "javob": "shamol",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Qubba",
+      "tarif": "urug‘li tangachalar to‘plami"
+     },
+     {
+      "atama": "Igna",
+      "tarif": "ignasimon barg"
+     },
+     {
+      "atama": "Smola",
+      "tarif": "himoya suyuqligi"
+     },
+     {
+      "atama": "Kutikula",
+      "tarif": "himoya qatlami"
+     },
+     {
+      "atama": "Boylam",
+      "tarif": "bir joyda o‘sgan ignalar"
+     },
+     {
+      "atama": "Archa",
+      "tarif": "tog‘ ignabargli daraxti"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qarag‘ayda gul yo‘q",
+      "togri": true,
+      "izoh": "qubba bor"
+     },
+     {
+      "matn": "Urug‘ tangachada ochiq yotadi",
+      "togri": true,
+      "izoh": "tugunchada emas"
+     },
+     {
+      "matn": "Qarag‘ayni hasharot changlatadi",
+      "togri": false,
+      "izoh": "shamol"
+     },
+     {
+      "matn": "150 · 2 — 300",
+      "togri": true,
+      "izoh": "igna"
+     },
+     {
+      "matn": "2026 minus 85 — 1941",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Qarag‘ay mevasi olma",
+      "togri": false,
+      "izoh": "meva yo‘q"
+     },
+     {
+      "matn": "Smola yarani yopadi",
+      "togri": true,
+      "izoh": "himoya"
+     },
+     {
+      "matn": "Archa tog‘da o‘sadi",
+      "togri": true,
+      "izoh": "O‘zbekistonda"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qubba?",
+      "javob": "urug‘li tangachalar"
+     },
+     {
+      "savol": "Igna?",
+      "javob": "bargi"
+     },
+     {
+      "savol": "Smola?",
+      "javob": "himoya"
+     },
+     {
+      "savol": "Changlatuvchi?",
+      "javob": "shamol"
+     },
+     {
+      "savol": "Gul bormi?",
+      "javob": "yo‘q"
+     },
+     {
+      "savol": "150 · 2?",
+      "javob": "300"
+     },
+     {
+      "savol": "100 · 40?",
+      "javob": "4000"
+     },
+     {
+      "savol": "2026 minus 85?",
+      "javob": "1941"
+     },
+     {
+      "savol": "Halqa?",
+      "javob": "yosh"
+     },
+     {
+      "savol": "Archa?",
+      "javob": "tog‘ daraxti"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Qubbani kuzat.",
+      "savol": "Tangacha soni?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Ignani top.",
+      "savol": "Boylam · 2?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Qarag‘ay va qirqquloq.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ahamiyat?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ignabargli daraxtlar qishda ham yashil turadi?",
+    "keys": {
+     "vaziyat": "Tog‘da archa o‘rmoni kesilib, yomg‘irdan keyin sel keldi.",
+     "savollar": [
+      "Sabab nima?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Ignabargli o‘rmon — tog‘ qo‘rg‘oni",
+    "taqqoslash": {
+     "a": "Qirqquloqlar",
+     "b": "Ochiq urug‘lilar",
+     "umumiy": [
+      "quruqlik o‘simligi",
+      "ildiz bor"
+     ],
+     "a_farq": [
+      "spora bilan ko‘payadi",
+      "urug‘ yo‘q"
+     ],
+     "b_farq": [
+      "urug‘ bilan ko‘payadi",
+      "qubba bor"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ochiq urug‘lilar",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "igna",
+        "smola",
+        "qubba"
+       ]
+      },
+      {
+       "nom": "Ko‘payish",
+       "bandlar": [
+        "shamol",
+        "urug‘"
+       ]
+      },
+      {
+       "nom": "Vakillar",
+       "bandlar": [
+        "qarag‘ay",
+        "archa",
+        "sarv"
+       ]
+      },
+      {
+       "nom": "Ahamiyat",
+       "bandlar": [
+        "yog‘och",
+        "smola",
+        "suv saqlash"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qishda ham yashilman, ignam bor, urug‘im qubbada. Men kimman?",
+     "javob": "qarag‘ay"
+    },
+    "hikmat": "Igna barg ham tejamkor.",
+    "kalit_soz": "QARAGAY",
+    "xato_yechim": {
+     "shart": "Qarag‘ay mevasi qanday?",
+     "xato": "olma",
+     "togri": "meva yo‘q, qubba bor",
+     "sabab": "ochiq urug‘li"
+    },
+    "guruh_nomlari": [
+     "Qarag‘aychilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ignabargli o‘rmon»",
+     "topshiriq": "Guruh qubba kuzatuvini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "150 boylamda igna?",
+     "B": "40 qubbada urug‘?",
+     "C": "85 halqali daraxt yili?"
+    },
+    "sinkveyn": [
+     "Qarag‘ay",
+     "yashil, balandboy",
+     "o‘sadi, changlaydi, saqlaydi",
+     "Doim yashil",
+     "Qubba"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ochiq urug‘lilarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: ko‘payish",
+      "3-guruh: vakillar",
+      "4-guruh: muhofaza"
+     ],
+     "yakun": "Natijalar: 300; 4000; 1941."
+    }
+   }
+  },
+  {
+   "mavzu": "Yopiq urug‘lilar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yopiq urug‘lilar xususiyati",
+      "matn": "Yopiq urug‘lilar (gulli o‘simliklar) — gul va meva hosil qiladigan o‘simliklar. Urug‘kurtak tugunchada yopiq joylashadi, urug‘lanishdan keyin tuguncha mevaga aylanadi. Mevaning vazifasi urug‘ni himoya qilish va tarqatish. Ularda qo‘sh urug‘lanish bo‘ladi va endosperm hosil bo‘ladi.",
+      "misol": "Gul va meva — ularning belgisi.",
+      "savol": "Yopiq urug‘lilarda urug‘kurtak qayerda?",
+      "javob": "tugunchada",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Eng ko‘p tarqalgan guruh",
+      "matn": "Yopiq urug‘lilar o‘simliklar orasida eng ko‘p turga ega: taxminan 300 ming tur, ochiq urug‘lilar esa taxminan 1000 tur. Demak, taxminan 300000 / 1000 — 300 baravar ko‘p. Ular o‘rmon, dasht, cho‘l va suvda ham o‘sadi. Bu keng tarqalish ularning moslashuvchanligini bildiradi.",
+      "misol": "Gulli o‘simliklar hamma joyda.",
+      "savol": "Qaysi guruh eng ko‘p turli?",
+      "javob": "yopiq urug‘lilar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayot shakllari",
+      "matn": "Yopiq urug‘lilar daraxt (olma, tol), buta (na’matak), o‘t (bug‘doy, lolaqizg‘aldoq) bo‘ladi. Ular bir yillik (bug‘doy, no‘xat), ikki yillik (sabzi, lavlagi) va ko‘p yillik (beda, olma) bo‘lishi mumkin. Hayot davomiyligi ularning ekologik moslashuvidir.",
+      "misol": "Bir yillik — bir mavsumda hayot.",
+      "savol": "Sabzi necha yillik?",
+      "javob": "ikki yillik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Moslashuvlari",
+      "matn": "Gulli o‘simliklar hasharotlar, shamol va hayvonlar yordamida changlanadi va urug‘ tarqatadi. Gul rangi va hidi changlatuvchini jalb qiladi, mevaning ta’mi hayvonni jalb qiladi. Barglari fotosintezga moslashgan, tomirlari suv va moddalarni o‘tkazadi. Bu moslashuvlar ularni quruqlikda hukmron qilgan.",
+      "misol": "Gul — reklama, meva — sovg‘a.",
+      "savol": "Gul rangi nimaga kerak?",
+      "javob": "changlatuvchini jalb qilish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Inson uchun ahamiyati",
+      "matn": "Don (bug‘doy, sholi, makkajo‘xori), sabzavot, meva, paxta, dorivor o‘simliklar — barchasi yopiq urug‘lilardan. Dunyo oziq-ovqatining asosiy qismi shu guruhdan olinadi. O‘zbekistonda paxta, bug‘doy, uzum, o‘rik va anor yetishtiriladi.",
+      "misol": "Dasturxonning asosi — gulli o‘simliklar.",
+      "savol": "Paxta qaysi guruhdan?",
+      "javob": "yopiq urug‘lilardan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Yopiq urug‘lilar: gul va meva. Urug‘kurtak tugunchada. Taxminan 300 ming tur, ochiq urug‘lilardan taxminan 300 baravar ko‘p.",
+    "misollar": [
+     {
+      "shart": "Taxminan 300000 tur yopiq, taxminan 1000 tur ochiq urug‘li. Necha baravar?",
+      "yechim": [
+       "300000 / 1000.",
+       "Hisoblang.",
+       "Javob 300."
+      ],
+      "javob": "300"
+     },
+     {
+      "shart": "Masalan, bog‘da 12 olma daraxti, har birida 10 ta mevali novda. Jami novda?",
+      "yechim": [
+       "12 · 10.",
+       "Hisoblang.",
+       "Javob 120."
+      ],
+      "javob": "120"
+     },
+     {
+      "shart": "Masalan, dalada 25 ta no‘xat dukkagi, har birida 6 ta urug‘. Urug‘ soni?",
+      "yechim": [
+       "25 · 6.",
+       "Hisoblang.",
+       "Javob 150."
+      ],
+      "javob": "150"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Gulli o‘simliklar",
+      "topshiriq": "Maktab hovlisidagi 10 ta o‘simlikni gulli yoki gulsizga ajrating.",
+      "yechim": "Gul bor-yo‘q.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Meva tahlili",
+      "topshiriq": "Mevani kesib, urug‘ joyini aniqlang.",
+      "yechim": "Tuguncha.",
+      "mahsulot": "meva, pichoq"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Bo‘lish va ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Hayot davomiyligi",
+      "topshiriq": "Bir, ikki va ko‘p yillik o‘simliklar jadvalini tuzing.",
+      "yechim": "Misollar.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "300000 / 1000 nechaga teng?",
+      "javob": "300"
+     },
+     {
+      "shart": "12 · 10 nechaga teng?",
+      "javob": "120"
+     },
+     {
+      "shart": "25 · 6 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "Sabzi necha yillik?",
+      "javob": "ikki yillik"
+     },
+     {
+      "shart": "Meva nimadan rivojlanadi?",
+      "javob": "tugunchadan"
+     },
+     {
+      "shart": "Paxta qaysi guruhdan?",
+      "javob": "yopiq urug‘lilar"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yopiq urug‘lilarda meva yo‘q deydi",
+      "sabab": "meva bor",
+      "oldini_olish": "tugunchadan"
+     },
+     {
+      "xato": "Hamma gulli o‘simlik daraxt deydi",
+      "sabab": "o‘t va buta ham",
+      "oldini_olish": "turli shakl"
+     },
+     {
+      "xato": "Gul faqat chiroy uchun deydi",
+      "sabab": "ko‘payish organi",
+      "oldini_olish": "meva va urug‘ boshi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "ekinlar"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "bo‘lish"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "paxta va bug‘doy"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Gulli o‘simliklar olami»",
+     "muammo": "Nima uchun yopiq urug‘lilar eng ko‘p?",
+     "mahsulot": "tasniflash hisoboti",
+     "bosqichlar": [
+      "gulli o‘simliklar tasnifi",
+      "meva tahlili",
+      "tur hisobi",
+      "ahamiyati",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tasniflang",
+      "Tahlil qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tasnif aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Gulli bog‘»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "300000 va 1000 tur.",
+       "topshiriq": "Necha baravar?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "12 daraxt, 10 novda.",
+       "topshiriq": "Jami?",
+       "javob": "120",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "25 dukkak, 6 urug‘.",
+       "topshiriq": "Urug‘?",
+       "javob": "150",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Sabzi.",
+       "topshiriq": "Necha yillik?",
+       "javob": "ikki yillik",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Gul",
+      "tarif": "ko‘payish organi"
+     },
+     {
+      "atama": "Meva",
+      "tarif": "urug‘ saqlovchi organ"
+     },
+     {
+      "atama": "Tuguncha",
+      "tarif": "urug‘kurtak joyi"
+     },
+     {
+      "atama": "Endosperm",
+      "tarif": "oziq to‘qima"
+     },
+     {
+      "atama": "Bir yillik",
+      "tarif": "bir mavsumda yashaydigan"
+     },
+     {
+      "atama": "Ko‘p yillik",
+      "tarif": "yillar davomida yashaydigan"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Yopiq urug‘lilarda gul bor",
+      "togri": true,
+      "izoh": "meva ham"
+     },
+     {
+      "matn": "Urug‘kurtak tugunchada joylashgan",
+      "togri": true,
+      "izoh": "yopiq"
+     },
+     {
+      "matn": "Yopiq urug‘lilar eng kam turli",
+      "togri": false,
+      "izoh": "eng ko‘p"
+     },
+     {
+      "matn": "300000 / 1000 — 300",
+      "togri": true,
+      "izoh": "baravar"
+     },
+     {
+      "matn": "Sabzi ikki yillik",
+      "togri": true,
+      "izoh": "ikkinchi yili gullaydi"
+     },
+     {
+      "matn": "Hamma yopiq urug‘lilar daraxt",
+      "togri": false,
+      "izoh": "o‘t, buta ham"
+     },
+     {
+      "matn": "Paxta gulli o‘simlik",
+      "togri": true,
+      "izoh": "yopiq urug‘li"
+     },
+     {
+      "matn": "25 · 6 — 150",
+      "togri": true,
+      "izoh": "urug‘"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yopiq urug‘lilar belgisi?",
+      "javob": "gul va meva"
+     },
+     {
+      "savol": "Urug‘kurtak?",
+      "javob": "tugunchada"
+     },
+     {
+      "savol": "Meva?",
+      "javob": "tugunchadan"
+     },
+     {
+      "savol": "Eng ko‘p guruh?",
+      "javob": "yopiq urug‘lilar"
+     },
+     {
+      "savol": "Sabzi?",
+      "javob": "ikki yillik"
+     },
+     {
+      "savol": "Bug‘doy?",
+      "javob": "bir yillik"
+     },
+     {
+      "savol": "300000 / 1000?",
+      "javob": "300"
+     },
+     {
+      "savol": "12 · 10?",
+      "javob": "120"
+     },
+     {
+      "savol": "25 · 6?",
+      "javob": "150"
+     },
+     {
+      "savol": "Endosperm?",
+      "javob": "oziq to‘qima"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Gulli o‘simlikni kuzat.",
+      "savol": "Meva bormi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Baravarni top.",
+      "savol": "Bo‘lish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ochiq va yopiq urug‘lilar.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ahamiyat?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun gulli o‘simliklar quruqlikda hukmron?",
+    "keys": {
+     "vaziyat": "Bog‘da meva bog‘lamadi, chunki gullash vaqtida asalari bo‘lmadi.",
+     "savollar": [
+      "Sabab nima?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Gul va meva — muvaffaqiyat kaliti",
+    "taqqoslash": {
+     "a": "Ochiq urug‘lilar",
+     "b": "Yopiq urug‘lilar",
+     "umumiy": [
+      "urug‘li o‘simlik",
+      "quruqlikda yashaydi"
+     ],
+     "a_farq": [
+      "gul va meva yo‘q",
+      "taxminan 1000 tur"
+     ],
+     "b_farq": [
+      "gul va meva bor",
+      "taxminan 300 ming tur"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yopiq urug‘lilar",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "gul",
+        "meva",
+        "tuguncha"
+       ]
+      },
+      {
+       "nom": "Ko‘payish",
+       "bandlar": [
+        "qo‘sh urug‘lanish",
+        "changlanish"
+       ]
+      },
+      {
+       "nom": "Hayot shakli",
+       "bandlar": [
+        "daraxt",
+        "buta",
+        "o‘t"
+       ]
+      },
+      {
+       "nom": "Ahamiyat",
+       "bandlar": [
+        "oziq",
+        "paxta",
+        "dori"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men gul ochaman va meva beraman, urug‘im tugunchada. Men kimman?",
+     "javob": "yopiq urug‘li"
+    },
+    "hikmat": "Gul — hayot boshlanishi.",
+    "kalit_soz": "YOPIQ",
+    "xato_yechim": {
+     "shart": "Qaysi guruh eng ko‘p turli?",
+     "xato": "ochiq urug‘lilar",
+     "togri": "yopiq urug‘lilar",
+     "sabab": "taxminan 300 ming tur"
+    },
+    "guruh_nomlari": [
+     "Gulchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Gulli o‘simliklar olami»",
+     "topshiriq": "Guruh o‘simliklarni tasniflaydi."
+    },
+    "vazifalar": {
+     "A": "300000 / 1000?",
+     "B": "12 · 10?",
+     "C": "25 · 6?"
+    },
+    "sinkveyn": [
+     "Gulli",
+     "rang-barang, serhosil",
+     "gullaydi, meva beradi, oziqlantiradi",
+     "Gul — hosil",
+     "Meva"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yopiq urug‘lilarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: belgilari",
+      "2-guruh: turlar soni",
+      "3-guruh: hayot shakli",
+      "4-guruh: ahamiyat"
+     ],
+     "yakun": "Natijalar: 300; 120; 150."
+    }
+   }
+  },
+  {
+   "mavzu": "Ikki pallalilar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ikki pallalilar belgilari",
+      "matn": "Ikki pallalilar — yopiq urug‘lilarning katta sinfi. Urug‘ida ikkita urug‘palla bor. Ildizi o‘q ildiz, bargi to‘r tomirli, poyasida kambiy bo‘lgani uchun qalinlashib o‘sadi. Gulning qismlari ko‘pincha 4 yoki 5 ta bo‘ladi. Bu belgilar ularni bir pallalilardan ajratadi.",
+      "misol": "Ikki palla — ikki «birinchi barg».",
+      "savol": "Ikki pallalilarda urug‘palla nechta?",
+      "javob": "ikkita",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ra’nodoshlar",
+      "matn": "Ra’nodoshlar oilasiga olma, nok, o‘rik, olcha, atirgul, na’matak kiradi. Gulida 5 ta kosachabarg va 5 ta tojbarg bor, changchilari ko‘p. Mevasi olmasimon, danakli yoki yong‘oqcha. Bu oila O‘zbekiston bog‘dorchiligi uchun muhim.",
+      "misol": "O‘rik va olma — qarindosh.",
+      "savol": "Olma qaysi oilaga kiradi?",
+      "javob": "ra’nodoshlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Dukkakdoshlar",
+      "matn": "Dukkakdoshlar oilasiga no‘xat, loviya, beda, soya kiradi. Mevasi dukkak. Ildizida tuganak bakteriyalar yashaydi, ular havo azotini o‘zlashtirib, tuproqni boyitadi. Shuning uchun dukkakli o‘simliklar almashlab ekishda foydali. Ular oqsilga boy.",
+      "misol": "Dukkak — tuproq boyituvchisi.",
+      "savol": "Tuganak bakteriyalar nima qiladi?",
+      "javob": "havo azotini o‘zlashtiradi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ituzumdoshlar va butguldoshlar",
+      "matn": "Ituzumdoshlar: pomidor, kartoshka, baqlajon, qalampir. Butguldoshlar: karam, turp, shved. Butguldoshlarda 4 ta kosachabarg va 4 ta tojbarg bor, gul xoch shaklida. Ularda gullar tuzilishi oilani aniqlashga yordam beradi. Hisob: 3 ta gulda 5 kosachabarg va 5 tojbarg bo‘lsa, 3 · 10 — 30 barg.",
+      "misol": "Gul tuzilishi — oila belgisi.",
+      "savol": "Karam qaysi oilaga kiradi?",
+      "javob": "butguldoshlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ahamiyati",
+      "matn": "Ikki pallalilar sabzavot, meva, yog‘li va tolali ekinlarni beradi. Paxta tola, kungaboqar yog‘, qand lavlagi shakar, dukkak oqsil manbai. Daraxt turlari yog‘och va soya beradi. Ularni o‘rganish dehqonchilik va selektsiya uchun asos.",
+      "misol": "Dasturxonning yarmi — ikki pallalilar.",
+      "savol": "Kungaboqar nima beradi?",
+      "javob": "yog‘",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ikki pallalilar: ikkita urug‘palla, o‘q ildiz, to‘r tomirli barg, kambiy. Oilalar: ra’nodoshlar, dukkakdoshlar, ituzumdoshlar, butguldoshlar.",
+    "misollar": [
+     {
+      "shart": "Ra’nodosh gulida 5 kosachabarg va 5 tojbarg. 3 ta gulda jami?",
+      "yechim": [
+       "5 va 5 — 10.",
+       "3 · 10.",
+       "Javob 30."
+      ],
+      "javob": "30"
+     },
+     {
+      "shart": "Masalan, 25 ta no‘xat dukkagida 6 tadan urug‘. Jami urug‘?",
+      "yechim": [
+       "25 · 6.",
+       "Hisoblang.",
+       "Javob 150."
+      ],
+      "javob": "150"
+     },
+     {
+      "shart": "Butguldosh gulida 4 kosachabarg va 4 tojbarg. 5 ta gulda jami?",
+      "yechim": [
+       "4 va 4 — 8.",
+       "5 · 8.",
+       "Javob 40."
+      ],
+      "javob": "40"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Urug‘ pallalari",
+      "topshiriq": "Loviya urug‘ini ochib, ikkita pallani ko‘ring.",
+      "yechim": "Murtak.",
+      "mahsulot": "loviya"
+     },
+     {
+      "nom": "Barg tomirlari",
+      "topshiriq": "Ikki pallali o‘simlik bargidagi to‘r tomirni chizing.",
+      "yechim": "To‘r tomir.",
+      "mahsulot": "barg, daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Oilalar jadvali",
+      "topshiriq": "Ra’nodosh, dukkakdosh va butguldoshlarni taqqoslang.",
+      "yechim": "Gul formulasi.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 · 10 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "25 · 6 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "5 · 8 nechaga teng?",
+      "javob": "40"
+     },
+     {
+      "shart": "Olma qaysi oila?",
+      "javob": "ra’nodoshlar"
+     },
+     {
+      "shart": "Pomidor qaysi oila?",
+      "javob": "ituzumdoshlar"
+     },
+     {
+      "shart": "Karam qaysi oila?",
+      "javob": "butguldoshlar"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ikki pallalilarda barg parallel tomirli deydi",
+      "sabab": "to‘r tomirli",
+      "oldini_olish": "bir pallalilarda parallel"
+     },
+     {
+      "xato": "Ikki pallalilarning ildizi popuk deydi",
+      "sabab": "o‘q ildiz",
+      "oldini_olish": "popuk — bir pallalilarda"
+     },
+     {
+      "xato": "Dukkakdoshlar tuproqni kambag‘allashtiradi deydi",
+      "sabab": "boyitadi",
+      "oldini_olish": "azot yig‘adi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "almashlab ekish"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "azot"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ikki pallalilar oilalari»",
+     "muammo": "Oilalarni gul tuzilishidan qanday ajratamiz?",
+     "mahsulot": "oilalar jadvali",
+     "bosqichlar": [
+      "urug‘ pallalari",
+      "barg tomiri",
+      "gul formulasi",
+      "oilalar",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kuzating",
+      "Chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "kuzatuv aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Oilalar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "3 ra’nodosh guli.",
+       "topshiriq": "Barg?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "25 dukkak, 6 urug‘.",
+       "topshiriq": "Urug‘?",
+       "javob": "150",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "5 butguldosh guli.",
+       "topshiriq": "Barg?",
+       "javob": "40",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Olma oilasi.",
+       "topshiriq": "Qaysi?",
+       "javob": "ra’nodoshlar",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Qismlarni sanadingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Urug‘palla",
+      "tarif": "urug‘dagi birinchi barg"
+     },
+     {
+      "atama": "O‘q ildiz",
+      "tarif": "asosiy ildiz"
+     },
+     {
+      "atama": "Kambiy",
+      "tarif": "qalinlashtiruvchi to‘qima"
+     },
+     {
+      "atama": "To‘r tomir",
+      "tarif": "tarmoqlangan tomir"
+     },
+     {
+      "atama": "Dukkak",
+      "tarif": "no‘xat mevasi"
+     },
+     {
+      "atama": "Oila",
+      "tarif": "yaqin turlar guruhi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ikki pallalilarda ikkita urug‘palla bor",
+      "togri": true,
+      "izoh": "ikkita"
+     },
+     {
+      "matn": "Ikki pallalilarda barg to‘r tomirli",
+      "togri": true,
+      "izoh": "ko‘pincha"
+     },
+     {
+      "matn": "Ikki pallalilarning ildizi popuk",
+      "togri": false,
+      "izoh": "o‘q ildiz"
+     },
+     {
+      "matn": "Olma ra’nodoshlar oilasida",
+      "togri": true,
+      "izoh": "5 tojbarg"
+     },
+     {
+      "matn": "Dukkakdoshlar tuproqni boyitadi",
+      "togri": true,
+      "izoh": "azot"
+     },
+     {
+      "matn": "3 · 10 — 30",
+      "togri": true,
+      "izoh": "barg"
+     },
+     {
+      "matn": "Karam ituzumdoshlar oilasiga kiradi",
+      "togri": false,
+      "izoh": "butguldoshlar"
+     },
+     {
+      "matn": "25 · 6 — 150",
+      "togri": true,
+      "izoh": "urug‘"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Urug‘palla soni?",
+      "javob": "ikkita"
+     },
+     {
+      "savol": "Ildiz turi?",
+      "javob": "o‘q ildiz"
+     },
+     {
+      "savol": "Barg tomiri?",
+      "javob": "to‘r"
+     },
+     {
+      "savol": "Olma?",
+      "javob": "ra’nodoshlar"
+     },
+     {
+      "savol": "No‘xat?",
+      "javob": "dukkakdoshlar"
+     },
+     {
+      "savol": "Pomidor?",
+      "javob": "ituzumdoshlar"
+     },
+     {
+      "savol": "3 · 10?",
+      "javob": "30"
+     },
+     {
+      "savol": "5 · 8?",
+      "javob": "40"
+     },
+     {
+      "savol": "Tuganak bakteriya?",
+      "javob": "azot"
+     },
+     {
+      "savol": "Butguldosh tojbargi?",
+      "javob": "4 ta"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Urug‘ni kuzat.",
+      "savol": "Pallalar soni?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Barglarni top.",
+      "savol": "Gul · qism?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ikki va bir pallali.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ahamiyat?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun dukkakli o‘simliklarni almashlab ekishda ekadi?",
+    "keys": {
+     "vaziyat": "Dalada ketma-ket bir ekin ekilib, tuproq kambag‘allashdi.",
+     "savollar": [
+      "Nima ekish kerak?",
+      "Nima uchun?"
+     ]
+    },
+    "tezis": "Oila — gul tuzilishida",
+    "taqqoslash": {
+     "a": "Ikki pallalilar",
+     "b": "Bir pallalilar",
+     "umumiy": [
+      "yopiq urug‘li",
+      "gul va meva bor"
+     ],
+     "a_farq": [
+      "ikki palla, to‘r tomir",
+      "o‘q ildiz"
+     ],
+     "b_farq": [
+      "bitta palla, parallel tomir",
+      "popuk ildiz"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ikki pallalilar",
+     "shoxlar": [
+      {
+       "nom": "Belgilari",
+       "bandlar": [
+        "ikki palla",
+        "o‘q ildiz",
+        "to‘r tomir"
+       ]
+      },
+      {
+       "nom": "Ra’nodoshlar",
+       "bandlar": [
+        "olma",
+        "o‘rik",
+        "atirgul"
+       ]
+      },
+      {
+       "nom": "Dukkakdoshlar",
+       "bandlar": [
+        "no‘xat",
+        "beda",
+        "azot"
+       ]
+      },
+      {
+       "nom": "Boshqalar",
+       "bandlar": [
+        "ituzumdoshlar",
+        "butguldoshlar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ikkita urug‘pallam bor, bargim to‘r tomirli. Men kimman?",
+     "javob": "ikki pallali o‘simlik"
+    },
+    "hikmat": "Ikki palla — ikki dastlabki barg.",
+    "kalit_soz": "IKKIPALLA",
+    "xato_yechim": {
+     "shart": "Ikki pallalilarda ildiz turi?",
+     "xato": "popuk",
+     "togri": "o‘q ildiz",
+     "sabab": "popuk — bir pallalilarda"
+    },
+    "guruh_nomlari": [
+     "Oilachilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ikki pallalilar oilalari»",
+     "topshiriq": "Guruh oilalar jadvalini tuzadi."
+    },
+    "vazifalar": {
+     "A": "3 ta ra’nodosh guli bargi?",
+     "B": "25 dukkakda urug‘?",
+     "C": "5 butguldosh guli bargi?"
+    },
+    "sinkveyn": [
+     "Ikki pallali",
+     "xilma-xil, foydali",
+     "o‘sadi, gullaydi, oziqlantiradi",
+     "Katta sinf",
+     "Oila"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ikki pallalilarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: belgilari",
+      "2-guruh: ra’nodoshlar",
+      "3-guruh: dukkakdoshlar",
+      "4-guruh: boshqa oilalar"
+     ],
+     "yakun": "Natijalar: 30; 150; 40."
+    }
+   }
   }
  ]
 }
