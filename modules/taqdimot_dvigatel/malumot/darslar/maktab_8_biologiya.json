@@ -1,0 +1,1400 @@
+{
+ "daraja": "maktab",
+ "sinf": "8",
+ "fan": "Biologiya",
+ "muallif": "qo‘lda yozilgan, faktlar tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Odam organizmi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tana tuzilish darajalari",
+      "matn": "Odam tanasi darajalar bo‘yicha tuzilgan: hujayra, to‘qima, a’zo, a’zolar sistemasi va butun organizm. Hujayralar o‘xshash vazifali to‘qimani, to‘qimalar esa a’zoni hosil qiladi. Masalan, yurak — a’zo, u qon aylanish sistemasiga kiradi. Hammasi birgalikda yagona organizm sifatida ishlaydi.",
+      "misol": "Cho‘p-g‘ishtdan uy qurilgandek, hujayradan tana quriladi.",
+      "savol": "Eng kichik tirik birlik nima?",
+      "javob": "hujayra",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hujayra tuzilishi",
+      "matn": "Hujayrada tashqi parda, sitoplazma va yadro bor. Parda moddalarni o‘tkazadi va himoya qiladi. Yadro irsiy axborotni saqlaydi. Mitoxondriyalar oziqadan energiya ajratadi, shuning uchun ularni hujayraning «energiya stansiyasi» deyiladi. Ribosomalar oqsil yasaydi.",
+      "misol": "Mushak hujayralarida mitoxondriya ko‘p, chunki ular ko‘p energiya sarflaydi.",
+      "savol": "Irsiy axborot hujayraning qayerida?",
+      "javob": "yadroda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "A’zolar sistemalari",
+      "matn": "Asosiy sistemalar: tayanch-harakat, qon aylanish, nafas, hazm, ayiruv, nerv, endokrin va ko‘payish. Sistemalar o‘zaro bog‘liq: nafas sistemasi kislorod beradi, qon aylanish uni hamma hujayraga yetkazadi, hazm sistemasi oziqa beradi. Birining buzilishi boshqasiga ta’sir qiladi.",
+      "misol": "Jamoa o‘yinida har kim o‘z rolida, lekin g‘alaba umumiy.",
+      "savol": "Kislorodni hujayralarga nima yetkazadi?",
+      "javob": "qon aylanish sistemasi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Gomeostaz",
+      "matn": "Organizm ichki muhit doimiyligini saqlaydi: tana harorati taxminan 36,6 daraja atrofida turadi, qondagi shakar miqdori ham muayyan chegarada bo‘ladi. Bu xossa gomeostaz deyiladi. Uni nerv va endokrin sistemalar boshqaradi. Issiqda terlash tanani sovitadi, sovuqda titrash isitadi.",
+      "misol": "Termostat xonani doim bir haroratda ushlaydi.",
+      "savol": "Gomeostaz nima?",
+      "javob": "ichki muhit doimiyligi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Suv va tana",
+      "matn": "Kattalar tanasining taxminan 60 foizi suvdan iborat. Suv moddalarni eritadi, tashiydi va haroratni boshqaradi. Shuning uchun kuniga yetarli suv ichish kerak, ayniqsa issiqda va jismoniy mashqdan keyin. Suv yetishmasa, charchoq va bosh og‘rig‘i paydo bo‘lishi mumkin.",
+      "misol": "Terlaganda yo‘qotilgan suvni to‘ldiring.",
+      "savol": "Tananing qancha qismi suv?",
+      "javob": "taxminan 60 foiz",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Hujayra, to‘qima, a’zo, sistema, organizm. Gomeostaz — ichki muhit doimiyligi. Tana taxminan 60 foiz suv.",
+    "misollar": [
+     {
+      "shart": "Tana massasi 70 kilogramm bo‘lgan kattalarda suv taxminan 60 foiz. Suv massasi?",
+      "yechim": [
+       "60 foiz — 0,6.",
+       "70 · 0,6.",
+       "Javob 42 kilogramm."
+      ],
+      "javob": "42 kilogramm"
+     },
+     {
+      "shart": "Tana massasi 50 kilogramm, suv taxminan 60 foiz. Suv massasi?",
+      "yechim": [
+       "50 · 0,6.",
+       "30.",
+       "Javob 30 kilogramm."
+      ],
+      "javob": "30 kilogramm"
+     },
+     {
+      "shart": "Tana massasi 45 kilogramm, suv taxminan 60 foiz. Suv massasi?",
+      "yechim": [
+       "45 · 0,6.",
+       "27.",
+       "Javob 27 kilogramm."
+      ],
+      "javob": "27 kilogramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Hujayra modeli",
+      "topshiriq": "Plastilindan hujayra modelini yasang.",
+      "yechim": "Parda, yadro, mitoxondriya.",
+      "mahsulot": "plastilin"
+     },
+     {
+      "nom": "Sistemalar jadvali",
+      "topshiriq": "Sistemalar va ularning a’zolarini yozing.",
+      "yechim": "Vazifasi.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "O‘z tanangizdagi suv massasini hisoblang.",
+      "yechim": "Massa · 0,6.",
+      "mahsulot": "kalkulyator"
+     },
+     {
+      "nom": "Gomeostaz kuzatuvi",
+      "topshiriq": "Mashqdan oldin va keyin tomir urishini o‘lchang.",
+      "yechim": "Qanday o‘zgardi.",
+      "mahsulot": "soat"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "70 · 0,6 nechaga teng?",
+      "javob": "42"
+     },
+     {
+      "shart": "50 · 0,6 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "45 · 0,6 nechaga teng?",
+      "javob": "27"
+     },
+     {
+      "shart": "Tana harorati taxminan necha daraja?",
+      "javob": "36,6"
+     },
+     {
+      "shart": "Energiya stansiyasi nima?",
+      "javob": "mitoxondriya"
+     },
+     {
+      "shart": "Tananing suv ulushi?",
+      "javob": "60 foiz"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Hujayrada yadro yo‘q deydi",
+      "sabab": "yadro bor",
+      "oldini_olish": "irsiy axborotni saqlaydi"
+     },
+     {
+      "xato": "Sistemalar bir-biriga bog‘liq emas deydi",
+      "sabab": "o‘zaro bog‘liq",
+      "oldini_olish": "birgalikda ishlaydi"
+     },
+     {
+      "xato": "Suv tanada kam ahamiyatli deydi",
+      "sabab": "juda muhim",
+      "oldini_olish": "tananing taxminan 60 foizi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "suv va moddalar"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "harorat"
+     },
+     {
+      "fan": "Sog‘liq",
+      "boglanish": "suv ichish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tanamiz sirlari»",
+     "muammo": "Organizm qanday darajalardan tuzilgan?",
+     "mahsulot": "plakat va model",
+     "bosqichlar": [
+      "hujayra modeli",
+      "sistemalar jadvali",
+      "suv hisobi",
+      "gomeostaz kuzatuvi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Model yasang",
+      "Jadval tuzing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tana ichida»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "70 kilogramm tana.",
+       "topshiriq": "Suv kilogramm?",
+       "javob": "42",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "50 kilogramm tana.",
+       "topshiriq": "Suv kilogramm?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "45 kilogramm tana.",
+       "topshiriq": "Suv kilogramm?",
+       "javob": "27",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "Tana harorati.",
+       "topshiriq": "Taxminan daraja?",
+       "javob": "36,6",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Foizni topdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Hujayra",
+      "tarif": "tirik organizm birligi"
+     },
+     {
+      "atama": "To‘qima",
+      "tarif": "o‘xshash hujayralar guruhi"
+     },
+     {
+      "atama": "A’zo",
+      "tarif": "bir vazifa bajaruvchi to‘qimalar"
+     },
+     {
+      "atama": "Sistema",
+      "tarif": "a’zolar guruhi"
+     },
+     {
+      "atama": "Gomeostaz",
+      "tarif": "ichki muhit doimiyligi"
+     },
+     {
+      "atama": "Mitoxondriya",
+      "tarif": "energiya beruvchi organoid"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Hujayra tirik organizmning birligi",
+      "togri": true,
+      "izoh": "eng kichik tirik birlik"
+     },
+     {
+      "matn": "Yadro irsiy axborotni saqlaydi",
+      "togri": true,
+      "izoh": "boshqaruv markazi"
+     },
+     {
+      "matn": "Tana taxminan 60 foiz suv",
+      "togri": true,
+      "izoh": "kattalarda"
+     },
+     {
+      "matn": "A’zolar sistemalari bir-biriga bog‘liq emas",
+      "togri": false,
+      "izoh": "bog‘liq"
+     },
+     {
+      "matn": "Tana harorati taxminan 36,6 daraja",
+      "togri": true,
+      "izoh": "gomeostaz"
+     },
+     {
+      "matn": "Mitoxondriya energiya beradi",
+      "togri": true,
+      "izoh": "energiya stansiyasi"
+     },
+     {
+      "matn": "Hujayrada yadro yo‘q",
+      "togri": false,
+      "izoh": "bor"
+     },
+     {
+      "matn": "70 · 0,6 — 42",
+      "togri": true,
+      "izoh": "kilogramm"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Eng kichik birlik?",
+      "javob": "hujayra"
+     },
+     {
+      "savol": "Yadro vazifasi?",
+      "javob": "irsiy axborot"
+     },
+     {
+      "savol": "Mitoxondriya?",
+      "javob": "energiya"
+     },
+     {
+      "savol": "A’zo?",
+      "javob": "to‘qimalar majmui"
+     },
+     {
+      "savol": "Sistema?",
+      "javob": "a’zolar guruhi"
+     },
+     {
+      "savol": "Gomeostaz?",
+      "javob": "ichki muhit doimiyligi"
+     },
+     {
+      "savol": "Tana suvi?",
+      "javob": "taxminan 60 foiz"
+     },
+     {
+      "savol": "70 · 0,6?",
+      "javob": "42"
+     },
+     {
+      "savol": "Tana harorati?",
+      "javob": "36,6"
+     },
+     {
+      "savol": "Daraja tartibi?",
+      "javob": "hujayra, to‘qima, a’zo, sistema"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Tomir urishini kuzat.",
+      "savol": "Mashqdan keyin?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Suv massasini top.",
+      "savol": "Massa · 0,6?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Sistemalarni solishtir.",
+      "savol": "Qaysi vazifa?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nega bog‘liq?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun organizm sistemalari birgalikda ishlashi kerak?",
+    "keys": {
+     "vaziyat": "Yugurgandan keyin yurak tez uradi, nafas olish tezlashadi, ter chiqadi.",
+     "savollar": [
+      "Qaysi sistemalar ishlayapti?",
+      "Nima uchun?"
+     ]
+    },
+    "tezis": "Organizm yagona butun",
+    "taqqoslash": {
+     "a": "Hujayra",
+     "b": "To‘qima",
+     "umumiy": [
+      "tananing qismi",
+      "tirik"
+     ],
+     "a_farq": [
+      "eng kichik birlik",
+      "yadroli"
+     ],
+     "b_farq": [
+      "hujayralar guruhi",
+      "bir vazifa"
+     ]
+    },
+    "klaster": {
+     "markaz": "Odam organizmi",
+     "shoxlar": [
+      {
+       "nom": "Daraja",
+       "bandlar": [
+        "hujayra",
+        "to‘qima",
+        "a’zo"
+       ]
+      },
+      {
+       "nom": "Sistema",
+       "bandlar": [
+        "nafas",
+        "hazm",
+        "qon aylanish"
+       ]
+      },
+      {
+       "nom": "Hujayra",
+       "bandlar": [
+        "yadro",
+        "parda",
+        "mitoxondriya"
+       ]
+      },
+      {
+       "nom": "Muhit",
+       "bandlar": [
+        "gomeostaz",
+        "suv"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tanamning eng kichik tirik birligiman. Men kimman?",
+     "javob": "hujayra"
+    },
+    "hikmat": "Tana hujayradan quriladi.",
+    "kalit_soz": "HUJAYRA",
+    "xato_yechim": {
+     "shart": "Tananing necha foizi suv?",
+     "xato": "10 foiz",
+     "togri": "taxminan 60 foiz",
+     "sabab": "kattalarda"
+    },
+    "guruh_nomlari": [
+     "Hujayrachilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tanamiz sirlari»",
+     "topshiriq": "Guruh hujayra modelini yasaydi."
+    },
+    "vazifalar": {
+     "A": "70 kilogramm tanada suv?",
+     "B": "50 kilogramm tanada suv?",
+     "C": "45 kilogramm tanada suv?"
+    },
+    "sinkveyn": [
+     "Organizm",
+     "tirik, yagona",
+     "ishlaydi, o‘sadi, moslashadi",
+     "Hujayradan tana",
+     "Hayot"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh organizm darajalarini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: hujayra",
+      "2-guruh: to‘qima",
+      "3-guruh: a’zo",
+      "4-guruh: sistema"
+     ],
+     "yakun": "Natijalar: 42; 30; 27 kilogramm."
+    }
+   }
+  },
+  {
+   "mavzu": "To‘qimalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "To‘qima nima",
+      "matn": "To‘qima — tuzilishi va vazifasi o‘xshash hujayralar va ular orasidagi moddalar majmui. Odam tanasida to‘rt asosiy to‘qima bor: epiteliy, biriktiruvchi, mushak va nerv to‘qimasi. Har birining vazifasi alohida, lekin ular birga a’zolarni hosil qiladi.",
+      "misol": "To‘rt to‘qima — tananing to‘rt tayanchi.",
+      "savol": "Asosiy to‘qima turlari nechta?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Epiteliy to‘qimasi",
+      "matn": "Epiteliy tana yuzasi va ichki a’zolar devorini qoplaydi. U himoya qiladi, modda so‘radi, bezlarda esa shira ajratadi. Teri ustki qatlami va ichak devori epiteliydan. Epiteliy hujayralari tez yangilanadi, shuning uchun jarohat tez bitadi.",
+      "misol": "Terining ustki qatlami har kuni yangilanadi.",
+      "savol": "Epiteliy qayerni qoplaydi?",
+      "javob": "tana va a’zolar yuzasini",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Biriktiruvchi to‘qima",
+      "matn": "Biriktiruvchi to‘qima a’zolarni bog‘laydi, tayanch va oziq vazifasini bajaradi. Unga suyak, tog‘ay, paylar, yog‘ to‘qimasi va qon kiradi. Qon — suyuq biriktiruvchi to‘qima: plazma va qon hujayralaridan iborat. Odam qoni massasi tana massasining taxminan 7 foizi.",
+      "misol": "Qon ham to‘qima, faqat suyuq.",
+      "savol": "Qon qaysi to‘qimaga kiradi?",
+      "javob": "biriktiruvchi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mushak to‘qimasi",
+      "matn": "Mushak to‘qimasining uch turi bor: skelet (ko‘ndalang-targ‘il), silliq va yurak mushagi. Skelet mushaklari ixtiyoriy qisqaradi, ular harakatni ta’minlaydi. Silliq mushak ichki a’zolar devorida, ixtiyorsiz ishlaydi. Yurak mushagi charchamasdan butun umr uradi.",
+      "misol": "Qo‘lni xohlaganda siltaysiz, lekin yurakni to‘xtata olmaysiz.",
+      "savol": "Mushak turlari nechta?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nerv to‘qimasi",
+      "matn": "Nerv to‘qimasi neyronlardan iborat. Neyron tanasi va o‘simtalardan tuzilgan, signalni elektr impulsi ko‘rinishida uzatadi. Miya, orqa miya va nervlar shu to‘qimadan. U organizmni boshqaradi va tashqi ta’sirlarga javob beradi.",
+      "misol": "Tezkor aloqa nerv orqali.",
+      "savol": "Nerv to‘qimasining hujayrasi?",
+      "javob": "neyron",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "To‘rt to‘qima: epiteliy, biriktiruvchi, mushak, nerv. Mushak 3 turdan iborat. Qon massasi taxminan 7 foiz.",
+    "misollar": [
+     {
+      "shart": "Tana massasi 70 kilogramm. Qon taxminan 7 foiz. Qon massasi?",
+      "yechim": [
+       "7 foiz — 0,07.",
+       "70 · 0,07.",
+       "Javob 4,9 kilogramm."
+      ],
+      "javob": "4,9 kilogramm"
+     },
+     {
+      "shart": "Tana massasi 60 kilogramm. Qon taxminan 7 foiz. Qon massasi?",
+      "yechim": [
+       "60 · 0,07.",
+       "4,2.",
+       "Javob 4,2 kilogramm."
+      ],
+      "javob": "4,2 kilogramm"
+     },
+     {
+      "shart": "Tana massasi 50 kilogramm. Qon taxminan 7 foiz. Qon massasi?",
+      "yechim": [
+       "50 · 0,07.",
+       "3,5.",
+       "Javob 3,5 kilogramm."
+      ],
+      "javob": "3,5 kilogramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "To‘qimalar jadvali",
+      "topshiriq": "To‘rt to‘qimani vazifasi bilan jadvalga yozing.",
+      "yechim": "Misollar.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Mikroskop kuzatuvi",
+      "topshiriq": "Tayyor preparatda to‘qimani ko‘ring.",
+      "yechim": "Hujayra shakli.",
+      "mahsulot": "mikroskop"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va massa.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Mushak tajribasi",
+      "topshiriq": "Qo‘lni qisib-yozib, mushakni sezing.",
+      "yechim": "Qaysi mushak.",
+      "mahsulot": "o‘zingiz"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "70 · 0,07 nechaga teng?",
+      "javob": "4,9"
+     },
+     {
+      "shart": "60 · 0,07 nechaga teng?",
+      "javob": "4,2"
+     },
+     {
+      "shart": "50 · 0,07 nechaga teng?",
+      "javob": "3,5"
+     },
+     {
+      "shart": "Asosiy to‘qimalar soni?",
+      "javob": "4"
+     },
+     {
+      "shart": "Mushak turlari soni?",
+      "javob": "3"
+     },
+     {
+      "shart": "Nerv hujayrasi?",
+      "javob": "neyron"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qon to‘qima emas deydi",
+      "sabab": "suyuq biriktiruvchi to‘qima",
+      "oldini_olish": "plazma va hujayralar"
+     },
+     {
+      "xato": "Yurak mushagi ixtiyoriy deydi",
+      "sabab": "ixtiyorsiz",
+      "oldini_olish": "o‘zi uradi"
+     },
+     {
+      "xato": "To‘qima faqat bitta turdan iborat deydi",
+      "sabab": "to‘rt turdan iborat",
+      "oldini_olish": "epiteliy, biriktiruvchi, mushak, nerv"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "qon tahlili"
+     },
+     {
+      "fan": "Sport",
+      "boglanish": "mushaklar"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz"
+     }
+    ],
+    "loyiha": {
+     "nom": "«To‘qimalar olami»",
+     "muammo": "To‘rt to‘qimaning vazifasi qanday?",
+     "mahsulot": "jadval va plakat",
+     "bosqichlar": [
+      "to‘qimalarni o‘rganish",
+      "mikroskop kuzatuvi",
+      "foiz hisobi",
+      "model yasash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "To‘qimalarni o‘rganing",
+      "Kuzating",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tasnif to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «To‘qimalar shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "70 kilogramm tana.",
+       "topshiriq": "Qon kilogramm?",
+       "javob": "4,9",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "60 kilogramm tana.",
+       "topshiriq": "Qon kilogramm?",
+       "javob": "4,2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "50 kilogramm tana.",
+       "topshiriq": "Qon kilogramm?",
+       "javob": "3,5",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "To‘qima turlari.",
+       "topshiriq": "Nechta?",
+       "javob": "4",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Foizni topdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Epiteliy",
+      "tarif": "qoplovchi to‘qima"
+     },
+     {
+      "atama": "Biriktiruvchi to‘qima",
+      "tarif": "bog‘lovchi, tayanch to‘qima"
+     },
+     {
+      "atama": "Mushak to‘qimasi",
+      "tarif": "qisqaruvchi to‘qima"
+     },
+     {
+      "atama": "Nerv to‘qimasi",
+      "tarif": "impuls o‘tkazuvchi to‘qima"
+     },
+     {
+      "atama": "Neyron",
+      "tarif": "nerv hujayrasi"
+     },
+     {
+      "atama": "Plazma",
+      "tarif": "qonning suyuq qismi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "To‘rt asosiy to‘qima bor",
+      "togri": true,
+      "izoh": "epiteliy, biriktiruvchi, mushak, nerv"
+     },
+     {
+      "matn": "Qon suyuq biriktiruvchi to‘qima",
+      "togri": true,
+      "izoh": "plazma bor"
+     },
+     {
+      "matn": "Yurak mushagi ixtiyoriy",
+      "togri": false,
+      "izoh": "ixtiyorsiz"
+     },
+     {
+      "matn": "Neyron nerv hujayrasi",
+      "togri": true,
+      "izoh": "impuls o‘tkazadi"
+     },
+     {
+      "matn": "Mushak uch turli",
+      "togri": true,
+      "izoh": "skelet, silliq, yurak"
+     },
+     {
+      "matn": "Epiteliy faqat ichda",
+      "togri": false,
+      "izoh": "tashqarida ham"
+     },
+     {
+      "matn": "Qon massasi taxminan 7 foiz",
+      "togri": true,
+      "izoh": "tana massasidan"
+     },
+     {
+      "matn": "70 · 0,07 — 4,9",
+      "togri": true,
+      "izoh": "kilogramm"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "To‘qima?",
+      "javob": "o‘xshash hujayralar guruhi"
+     },
+     {
+      "savol": "Turlari?",
+      "javob": "epiteliy, biriktiruvchi, mushak, nerv"
+     },
+     {
+      "savol": "Epiteliy?",
+      "javob": "qoplovchi"
+     },
+     {
+      "savol": "Qon?",
+      "javob": "biriktiruvchi to‘qima"
+     },
+     {
+      "savol": "Mushak turlari?",
+      "javob": "skelet, silliq, yurak"
+     },
+     {
+      "savol": "Neyron?",
+      "javob": "nerv hujayrasi"
+     },
+     {
+      "savol": "70 · 0,07?",
+      "javob": "4,9"
+     },
+     {
+      "savol": "50 · 0,07?",
+      "javob": "3,5"
+     },
+     {
+      "savol": "Yurak mushagi?",
+      "javob": "ixtiyorsiz"
+     },
+     {
+      "savol": "Nerv vazifasi?",
+      "javob": "boshqarish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Preparatni kuzat.",
+      "savol": "Hujayra shakli?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Qon massasini top.",
+      "savol": "Massa · 0,07?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Mushak turlarini solishtir.",
+      "savol": "Ixtiyoriymi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qaysi to‘qima kerak?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun yurak mushagi skelet mushagidan farq qiladi?",
+    "keys": {
+     "vaziyat": "Qo‘lni xohlasangiz qimirlatasiz, lekin yurak o‘zi uradi.",
+     "savollar": [
+      "Qaysi mushak ixtiyoriy?",
+      "Yurak qanday ishlaydi?"
+     ]
+    },
+    "tezis": "Har to‘qimaning vazifasi alohida",
+    "taqqoslash": {
+     "a": "Skelet mushagi",
+     "b": "Silliq mushak",
+     "umumiy": [
+      "mushak to‘qimasi",
+      "qisqaradi"
+     ],
+     "a_farq": [
+      "ixtiyoriy",
+      "ko‘ndalang-targ‘il"
+     ],
+     "b_farq": [
+      "ixtiyorsiz",
+      "ichki a’zolarda"
+     ]
+    },
+    "klaster": {
+     "markaz": "To‘qimalar",
+     "shoxlar": [
+      {
+       "nom": "Epiteliy",
+       "bandlar": [
+        "teri",
+        "ichak devori"
+       ]
+      },
+      {
+       "nom": "Biriktiruvchi",
+       "bandlar": [
+        "suyak",
+        "qon",
+        "yog‘"
+       ]
+      },
+      {
+       "nom": "Mushak",
+       "bandlar": [
+        "skelet",
+        "silliq",
+        "yurak"
+       ]
+      },
+      {
+       "nom": "Nerv",
+       "bandlar": [
+        "neyron",
+        "miya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qoplayman, bog‘layman, qisqaraman va boshqaraman. Men kimman?",
+     "javob": "to‘qima"
+    },
+    "hikmat": "To‘qima — hujayralar jamoasi.",
+    "kalit_soz": "TOQIMA",
+    "xato_yechim": {
+     "shart": "Qon qaysi to‘qima?",
+     "xato": "mushak to‘qimasi",
+     "togri": "biriktiruvchi to‘qima",
+     "sabab": "plazma va hujayralar"
+    },
+    "guruh_nomlari": [
+     "Epiteliychilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«To‘qimalar olami»",
+     "topshiriq": "Guruh to‘qimalarni tasnif qiladi."
+    },
+    "vazifalar": {
+     "A": "70 kilogramm tanada qon?",
+     "B": "60 kilogramm tanada qon?",
+     "C": "50 kilogramm tanada qon?"
+    },
+    "sinkveyn": [
+     "To‘qima",
+     "jonli, bog‘liq",
+     "qoplaydi, bog‘laydi, qisqaradi",
+     "To‘rt to‘qima",
+     "Qon"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh to‘rt to‘qimani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: epiteliy",
+      "2-guruh: biriktiruvchi",
+      "3-guruh: mushak",
+      "4-guruh: nerv"
+     ],
+     "yakun": "Natijalar: 4,9; 4,2; 3,5 kilogramm."
+    }
+   }
+  },
+  {
+   "mavzu": "Tayanch-harakat sistemasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Skelet va uning vazifasi",
+      "matn": "Tayanch-harakat sistemasi suyaklar, bo‘g‘imlar va mushaklardan iborat. Skelet tanaga shakl beradi, ichki a’zolarni himoya qiladi (bosh suyagi miyani, qovurg‘alar yurak va o‘pkani), mushaklar bilan birga harakatni ta’minlaydi. Suyaklar kaltsiy va fosfor jamg‘aradi, suyak ko‘migi qon hujayralari hosil qiladi.",
+      "misol": "Skelet binoning karkasiga o‘xshaydi.",
+      "savol": "Skelet vazifalaridan biri?",
+      "javob": "himoya",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Suyaklar soni",
+      "matn": "Kattalar skeletida 206 ta suyak bor. Bosh suyagida 22 ta suyak (8 ta miya va 14 ta yuz qismi). Bosh suyagidan boshqa suyaklar 206 minus 22 — 184 ta. Chaqaloqda suyaklar ko‘proq, chunki ba’zilari keyin qo‘shilib ketadi.",
+      "misol": "Chaqaloqlar suyagi yumshoq va ko‘p.",
+      "savol": "Kattalarda nechta suyak bor?",
+      "javob": "206",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Umurtqa pog‘onasi va qovurg‘a",
+      "matn": "Umurtqa pog‘onasi bo‘yin (7), ko‘krak (12), bel (5) umurtqalari, dumg‘aza va dum qismlaridan iborat. Erkin harakatchan umurtqalar 7 plyus 12 plyus 5 — 24 ta. Qovurg‘alar 12 juft, ya’ni 24 ta. Pog‘ona S shaklida egilgan, bu yuklamani yumshatadi.",
+      "misol": "Noto‘g‘ri o‘tirish pog‘onani egadi.",
+      "savol": "Qovurg‘alar necha juft?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Suyak tarkibi va turlari",
+      "matn": "Suyak organik (ossein) va mineral (kaltsiy tuzlari) moddalardan iborat. Organik modda egiluvchanlik, mineral modda mustahkamlik beradi. Bolalarda organik modda ko‘p, suyak egiluvchan, shuning uchun noto‘g‘ri o‘tirish qad-qomatni buzadi. Suyak turlari: naysimon, yassi, g‘ovak va aralash.",
+      "misol": "Sut va quyosh suyakni mustahkam qiladi.",
+      "savol": "Suyakka mustahkamlik beruvchi modda?",
+      "javob": "mineral",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mushaklar va birinchi yordam",
+      "matn": "Odamda 600 dan ortiq skelet mushagi bor. Mushaklar paylar orqali suyakka birikib, bo‘g‘imni harakatlantiradi. Mashq mushakni mustahkamlaydi. Suyak sinsa, a’zoni qimirlatmay, taxta bilan mahkamlab, shifokorga olib borish kerak. Qad-qomatni to‘g‘ri tutish va kaltsiyga boy ovqat suyakni asraydi.",
+      "misol": "Sinish: qimirlatmang, mahkamlang, yordam chaqiring.",
+      "savol": "Mushak suyakka nima orqali birikadi?",
+      "javob": "pay orqali",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Skelet 206 suyak, bosh 22. Umurtqa 7, 12, 5 — 24 erkin. Qovurg‘a 12 juft.",
+    "misollar": [
+     {
+      "shart": "Skeletda 206 suyak, bosh suyagida 22 ta. Boshdan boshqa suyaklar?",
+      "yechim": [
+       "206 minus 22.",
+       "Hisoblang.",
+       "Javob 184."
+      ],
+      "javob": "184"
+     },
+     {
+      "shart": "Bo‘yin 7, ko‘krak 12, bel 5 umurtqa. Jami erkin umurtqa?",
+      "yechim": [
+       "7 plyus 12.",
+       "19 plyus 5.",
+       "Javob 24."
+      ],
+      "javob": "24"
+     },
+     {
+      "shart": "Qovurg‘alar 12 juft. Jami qovurg‘a?",
+      "yechim": [
+       "12 · 2.",
+       "Juft ikkitadan.",
+       "Javob 24."
+      ],
+      "javob": "24"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Skelet modeli",
+      "topshiriq": "Karton skelet yasab, suyaklarni belgilang.",
+      "yechim": "Bosh, umurtqa, qovurg‘a.",
+      "mahsulot": "karton, qaychi"
+     },
+     {
+      "nom": "Qad-qomat tekshiruvi",
+      "topshiriq": "Devorga suyanib, qad-qomatni tekshiring.",
+      "yechim": "To‘g‘rimi.",
+      "mahsulot": "devor"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Suyaklar soni.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Birinchi yordam",
+      "topshiriq": "Suyak sinishida yordamni mashq qiling.",
+      "yechim": "Mahkamlash.",
+      "mahsulot": "bint, taxta"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "206 minus 22 nechaga teng?",
+      "javob": "184"
+     },
+     {
+      "shart": "7 plyus 12 plyus 5 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "12 · 2 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "Bosh suyagida nechta suyak?",
+      "javob": "22"
+     },
+     {
+      "shart": "Kattalarda suyaklar soni?",
+      "javob": "206"
+     },
+     {
+      "shart": "Mushak suyakka nima bilan?",
+      "javob": "pay"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Skeletda 100 suyak bor deydi",
+      "sabab": "206 ta",
+      "oldini_olish": "kattalarda"
+     },
+     {
+      "xato": "Suyak faqat mineraldan deydi",
+      "sabab": "organik va mineral",
+      "oldini_olish": "ossein ham bor"
+     },
+     {
+      "xato": "Sinishda a’zoni qimirlatish kerak deydi",
+      "sabab": "qimirlatmaslik kerak",
+      "oldini_olish": "mahkamlash"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "birinchi yordam"
+     },
+     {
+      "fan": "Sport",
+      "boglanish": "mushaklar"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "tayanch va richag"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Skelet — tana karkasi»",
+     "muammo": "Skelet qanday tuzilgan va qanday asraladi?",
+     "mahsulot": "model va plakat",
+     "bosqichlar": [
+      "skelet modeli",
+      "suyaklarni sanash",
+      "hisoblash",
+      "qad-qomat tekshiruvi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Model yasang",
+      "Hisoblang",
+      "Tekshiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Skelet muzeyi»",
+     "bekatlar": [
+      {
+       "nom": "1-zal",
+       "matn": "206 va 22.",
+       "topshiriq": "Boshdan boshqa suyak?",
+       "javob": "184",
+       "rasm": ""
+      },
+      {
+       "nom": "2-zal",
+       "matn": "7, 12, 5.",
+       "topshiriq": "Erkin umurtqa?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "3-zal",
+       "matn": "12 juft qovurg‘a.",
+       "topshiriq": "Jami qovurg‘a?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "4-zal",
+       "matn": "Kattalar skeleti.",
+       "topshiriq": "Suyak soni?",
+       "javob": "206",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Sanadingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Skelet",
+      "tarif": "suyaklar majmui"
+     },
+     {
+      "atama": "Bo‘g‘im",
+      "tarif": "suyaklar birikkan joy"
+     },
+     {
+      "atama": "Pay",
+      "tarif": "mushakni suyakka biriktiradi"
+     },
+     {
+      "atama": "Ossein",
+      "tarif": "suyakning organik moddasi"
+     },
+     {
+      "atama": "Qad-qomat",
+      "tarif": "tananing tik holati"
+     },
+     {
+      "atama": "Umurtqa",
+      "tarif": "pog‘ona suyagi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Kattalarda 206 suyak bor",
+      "togri": true,
+      "izoh": "skelet"
+     },
+     {
+      "matn": "Bosh suyagida 22 ta suyak",
+      "togri": true,
+      "izoh": "8 plyus 14"
+     },
+     {
+      "matn": "Suyak faqat mineral moddadan",
+      "togri": false,
+      "izoh": "organik ham"
+     },
+     {
+      "matn": "Qovurg‘alar 12 juft",
+      "togri": true,
+      "izoh": "24 ta"
+     },
+     {
+      "matn": "Sinishda a’zoni qimirlatish kerak",
+      "togri": false,
+      "izoh": "qimirlatmang"
+     },
+     {
+      "matn": "Mushak pay orqali suyakka birikadi",
+      "togri": true,
+      "izoh": "harakat"
+     },
+     {
+      "matn": "7 plyus 12 plyus 5 — 24",
+      "togri": true,
+      "izoh": "erkin umurtqa"
+     },
+     {
+      "matn": "Bolalar suyagi egiluvchan",
+      "togri": true,
+      "izoh": "organik modda ko‘p"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Skelet vazifasi?",
+      "javob": "tayanch, himoya, harakat"
+     },
+     {
+      "savol": "Suyak soni?",
+      "javob": "206"
+     },
+     {
+      "savol": "Bosh suyagi?",
+      "javob": "22 ta"
+     },
+     {
+      "savol": "Erkin umurtqa?",
+      "javob": "24"
+     },
+     {
+      "savol": "Qovurg‘a?",
+      "javob": "12 juft"
+     },
+     {
+      "savol": "Suyak tarkibi?",
+      "javob": "organik va mineral"
+     },
+     {
+      "savol": "206 minus 22?",
+      "javob": "184"
+     },
+     {
+      "savol": "12 · 2?",
+      "javob": "24"
+     },
+     {
+      "savol": "Mushak birikishi?",
+      "javob": "pay"
+     },
+     {
+      "savol": "Sinishda?",
+      "javob": "qimirlatmaslik"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Qad-qomatni kuzat.",
+      "savol": "To‘g‘rimi?"
+     },
+     {
+      "nom": "Sana",
+      "matn": "Suyaklarni sana.",
+      "savol": "Qancha?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Suyak turlarini solishtir.",
+      "savol": "Qaysi shakl?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qanday asraymiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bolalar qad-qomatiga alohida e’tibor kerak?",
+    "keys": {
+     "vaziyat": "Maktab sumkasi og‘ir va bola bir yelkaga osib yuribdi.",
+     "savollar": [
+      "Pog‘ona nima bo‘ladi?",
+      "Qanday to‘g‘ri ko‘tarish kerak?"
+     ]
+    },
+    "tezis": "Suyaklar egiluvchan, qad-qomatni asrang",
+    "taqqoslash": {
+     "a": "Naysimon suyak",
+     "b": "Yassi suyak",
+     "umumiy": [
+      "suyak turi",
+      "skeletga kiradi"
+     ],
+     "a_farq": [
+      "uzun, ichi kovak",
+      "qo‘l va oyoqda"
+     ],
+     "b_farq": [
+      "keng, yassi",
+      "kurak va bosh suyagida"
+     ]
+    },
+    "klaster": {
+     "markaz": "Tayanch-harakat sistemasi",
+     "shoxlar": [
+      {
+       "nom": "Skelet",
+       "bandlar": [
+        "206 suyak",
+        "bosh 22"
+       ]
+      },
+      {
+       "nom": "Umurtqa",
+       "bandlar": [
+        "7",
+        "12",
+        "5"
+       ]
+      },
+      {
+       "nom": "Mushak",
+       "bandlar": [
+        "600 dan ortiq",
+        "pay"
+       ]
+      },
+      {
+       "nom": "Himoya",
+       "bandlar": [
+        "qad-qomat",
+        "birinchi yordam"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tananing karkasiman va ichki a’zolarni himoya qilaman. Men kimman?",
+     "javob": "skelet"
+    },
+    "hikmat": "Skelet tanani ushlab turadi.",
+    "kalit_soz": "SKELET",
+    "xato_yechim": {
+     "shart": "Kattalarda nechta suyak?",
+     "xato": "100 ta",
+     "togri": "206 ta",
+     "sabab": "skeletdagi hisob"
+    },
+    "guruh_nomlari": [
+     "Skeletchilar",
+     "Hisobchilar",
+     "Qad-qomatchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Skelet — tana karkasi»",
+     "topshiriq": "Guruh skelet modelini yasaydi."
+    },
+    "vazifalar": {
+     "A": "Boshdan boshqa suyaklar?",
+     "B": "Erkin umurtqalar?",
+     "C": "Jami qovurg‘a?"
+    },
+    "sinkveyn": [
+     "Skelet",
+     "qattiq, mustahkam",
+     "tutadi, himoya qiladi, harakatlantiradi",
+     "Tana tayanchi",
+     "Suyak"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tayanch-harakat sistemasini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: skelet",
+      "2-guruh: umurtqa",
+      "3-guruh: mushak",
+      "4-guruh: himoya"
+     ],
+     "yakun": "Natijalar: 184; 24; 24."
+    }
+   }
+  }
+ ]
+}
