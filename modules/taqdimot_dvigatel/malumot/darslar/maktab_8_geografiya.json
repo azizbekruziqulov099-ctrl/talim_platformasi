@@ -5570,6 +5570,1395 @@
      "yakun": "Natijalar: 240; 84; 1920."
     }
    }
+  },
+  {
+   "mavzu": "Bog‘dorchilik va uzumchilik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Bog‘dorchilik nima",
+      "matn": "Bog‘dorchilik — mevali daraxtlar yetishtirish, uzumchilik esa uzum yetishtirish tarmog‘idir. O‘zbekistonda issiq va quyoshli iqlim sabab olma, o‘rik, shaftoli, gilos, anor, anjir va uzumning mazali navlari yetishtiriladi.",
+      "misol": "Quyosh — shirin meva.",
+      "savol": "Uzumchilik nima?",
+      "javob": "uzum yetishtirish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hududlar",
+      "matn": "Mevachilik Farg‘ona vodiysi, Samarqand, Toshkent, Namangan va Surxondaryoda rivojlangan. Uzumchilik Samarqand, Buxoro, Xorazm va Farg‘onada keng. Shahrisabz va Surxondaryo shirin anor, anjir va hurmoga mashhur.",
+      "misol": "Samarqand — uzum, olma.",
+      "savol": "Uzum qayerda ko‘p?",
+      "javob": "Samarqand va Buxoroda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qayta ishlash va eksport",
+      "matn": "Meva-sabzavotning katta qismi quritiladi, konservalanadi yoki sharbat qilinadi. Mevalar sovutkichli omborlarda uzoq saqlanadi. Quritilgan uzum — mayiz, o‘rik — quritilgan o‘rik, urug‘li o‘rik — turshak sifatida eksport qilinadi.",
+      "misol": "Quritish — saqlash.",
+      "savol": "Quritilgan uzum nima deyiladi?",
+      "javob": "mayiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 50 gektar uzumzordan gektariga 12 tonna uzum olinsa, 50 · 12 — 600 tonna. Masalan, 4 kilogramm uzumdan 1 kilogramm mayiz chiqsa, 600 tonna, ya’ni 600000 kilogramm uzumdan 600000 / 4 — 150000 kilogramm mayiz (taxminiy misol). Masalan, 600 tonnaning 20 foizi sharbatga ketsa, 600 · 0,2 — 120 tonna.",
+      "misol": "Maydon · hosildorlik — hosil.",
+      "savol": "Masalan, 50 gektar, gektariga 12 tonna. Jami necha tonna?",
+      "javob": "600",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bog‘ parvarishi",
+      "matn": "Daraxtlarni kuzda va erta bahorda butash, o‘g‘itlash, zararkunandalarga qarshi kurashish va o‘z vaqtida sug‘orish hosilni oshiradi. Yangi bog‘lar tomchilatib sug‘orish bilan suvni tejaydi. Daraxt ekish havoni ham tozalaydi.",
+      "misol": "Parvarish — mo‘l hosil.",
+      "savol": "Daraxtni qachon butaymiz?",
+      "javob": "kuzda yoki erta bahorda",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Bog‘dorchilik va uzumchilik: meva va uzum. Mayiz — quritilgan uzum. Hosil — maydon · hosildorlik.",
+    "misollar": [
+     {
+      "shart": "Masalan, 50 gektar, gektariga 12 tonna uzum. Jami necha tonna?",
+      "yechim": [
+       "50 · 12.",
+       "Hisoblang.",
+       "Javob 600."
+      ],
+      "javob": "600"
+     },
+     {
+      "shart": "Masalan, 600 tonnaning 20 foizi sharbatga. Necha tonna?",
+      "yechim": [
+       "20 foiz — 0,2.",
+       "600 · 0,2.",
+       "Javob 120."
+      ],
+      "javob": "120"
+     },
+     {
+      "shart": "Masalan, 4 kg uzumdan 1 kg mayiz. 2000 kg uzumdan necha kg?",
+      "yechim": [
+       "2000 / 4.",
+       "Bo‘ling.",
+       "Javob 500."
+      ],
+      "javob": "500"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Meva xaritasi",
+      "topshiriq": "Xaritada meva va uzum hududlarini belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Quritish tajribasi",
+      "topshiriq": "Uzumni quritib, massa o‘zgarishini o‘lchang.",
+      "yechim": "Mayiz hosil bo‘lishi.",
+      "mahsulot": "uzum, tarozi"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va bo‘lish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Bog‘ rejasi",
+      "topshiriq": "Maktab bog‘i rejasini chizing.",
+      "yechim": "Daraxt turlari.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "50 · 12 nechaga teng?",
+      "javob": "600"
+     },
+     {
+      "shart": "600 · 0,2 nechaga teng?",
+      "javob": "120"
+     },
+     {
+      "shart": "2000 / 4 nechaga teng?",
+      "javob": "500"
+     },
+     {
+      "shart": "Quritilgan uzum nomi?",
+      "javob": "mayiz"
+     },
+     {
+      "shart": "Uzum qayerda ko‘p?",
+      "javob": "Samarqand"
+     },
+     {
+      "shart": "Saqlash usuli?",
+      "javob": "quritish"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Meva faqat sovuqda o‘sadi deydi",
+      "sabab": "issiq va quyoshli iqlimda",
+      "oldini_olish": "O‘zbekiston iqlimi"
+     },
+     {
+      "xato": "Bog‘ni parvarishlash shart emas deydi",
+      "sabab": "parvarish hosilni oshiradi",
+      "oldini_olish": "butash, sug‘orish"
+     },
+     {
+      "xato": "Quritilgan meva foydasiz deydi",
+      "sabab": "foydali va saqlanadi",
+      "oldini_olish": "eksport mahsuloti"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "o‘simlik"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish va foiz"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "daraxt va havo"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mevali bog‘»",
+     "muammo": "Bog‘dan dasturxongacha qanday boradi?",
+     "mahsulot": "bog‘ plakati",
+     "bosqichlar": [
+      "xarita",
+      "quritish tajribasi",
+      "hisob",
+      "parvarish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Uzumzor va bog‘»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "50 gektar, 12 tonna.",
+       "topshiriq": "Jami?",
+       "javob": "600",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "600 tonna, 20 foiz sharbat.",
+       "topshiriq": "Tonna?",
+       "javob": "120",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "2000 kg, 4 ga 1.",
+       "topshiriq": "Mayiz kg?",
+       "javob": "500",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Quritilgan uzum.",
+       "topshiriq": "Nomi?",
+       "javob": "mayiz",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Bog‘dorchilik",
+      "tarif": "mevali daraxt yetishtirish"
+     },
+     {
+      "atama": "Uzumchilik",
+      "tarif": "uzum yetishtirish"
+     },
+     {
+      "atama": "Mayiz",
+      "tarif": "quritilgan uzum"
+     },
+     {
+      "atama": "Turshak",
+      "tarif": "quritilgan urug‘li o‘rik"
+     },
+     {
+      "atama": "Butash",
+      "tarif": "shoxlarni kesish"
+     },
+     {
+      "atama": "Konserva",
+      "tarif": "saqlanadigan mahsulot"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Samarqandda uzumchilik rivojlangan",
+      "togri": true,
+      "izoh": "iqlim"
+     },
+     {
+      "matn": "Meva sovuqda o‘sadi",
+      "togri": false,
+      "izoh": "issiqda"
+     },
+     {
+      "matn": "50 · 12 — 600",
+      "togri": true,
+      "izoh": "tonna"
+     },
+     {
+      "matn": "Mayiz quritilgan uzum",
+      "togri": true,
+      "izoh": "mahsulot"
+     },
+     {
+      "matn": "Bog‘ parvarishsiz ham hosil beradi",
+      "togri": false,
+      "izoh": "parvarish kerak"
+     },
+     {
+      "matn": "Shahrisabz anori mashhur",
+      "togri": true,
+      "izoh": "anor"
+     },
+     {
+      "matn": "2000 / 4 — 500",
+      "togri": true,
+      "izoh": "kg"
+     },
+     {
+      "matn": "Daraxt havoni tozalaydi",
+      "togri": true,
+      "izoh": "ekologiya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Bog‘dorchilik?",
+      "javob": "mevachilik"
+     },
+     {
+      "savol": "Uzumchilik?",
+      "javob": "uzum"
+     },
+     {
+      "savol": "Mayiz?",
+      "javob": "quritilgan uzum"
+     },
+     {
+      "savol": "Turshak?",
+      "javob": "quritilgan o‘rik"
+     },
+     {
+      "savol": "Mevachilik joyi?",
+      "javob": "Farg‘ona"
+     },
+     {
+      "savol": "Butash?",
+      "javob": "shox kesish"
+     },
+     {
+      "savol": "50 · 12?",
+      "javob": "600"
+     },
+     {
+      "savol": "600 · 0,2?",
+      "javob": "120"
+     },
+     {
+      "savol": "2000 / 4?",
+      "javob": "500"
+     },
+     {
+      "savol": "Parvarish?",
+      "javob": "hosilni oshiradi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Bog‘dagi daraxtlarni kuzat.",
+      "savol": "Qanday?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Hosilni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Yangi va quritilgan.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Parvarish?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun O‘zbekiston iqlimi bog‘dorchilik va uzumchilik uchun qulay?",
+    "keys": {
+     "vaziyat": "Bog‘da mevalar yetilgan, lekin saqlash joyi yo‘q.",
+     "savollar": [
+      "Nima qilamiz?",
+      "Qanday saqlaymiz?"
+     ]
+    },
+    "tezis": "Bog‘ — hosil boyligi",
+    "taqqoslash": {
+     "a": "Yangi uzum",
+     "b": "Mayiz",
+     "umumiy": [
+      "uzumdan olinadi",
+      "foydali"
+     ],
+     "a_farq": [
+      "tez buziladi",
+      "suvli"
+     ],
+     "b_farq": [
+      "uzoq saqlanadi",
+      "quritilgan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Bog‘dorchilik va uzumchilik",
+     "shoxlar": [
+      {
+       "nom": "Meva",
+       "bandlar": [
+        "olma",
+        "o‘rik",
+        "anor"
+       ]
+      },
+      {
+       "nom": "Uzum",
+       "bandlar": [
+        "Samarqand",
+        "Buxoro"
+       ]
+      },
+      {
+       "nom": "Qayta ishlash",
+       "bandlar": [
+        "quritish",
+        "sharbat",
+        "konserva"
+       ]
+      },
+      {
+       "nom": "Parvarish",
+       "bandlar": [
+        "butash",
+        "sug‘orish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men quritilgan uzumman. Men nimaman?",
+     "javob": "mayiz"
+    },
+    "hikmat": "Bog‘ — mo‘l hosil.",
+    "kalit_soz": "BOG",
+    "xato_yechim": {
+     "shart": "Quritilgan uzum nima deyiladi?",
+     "xato": "turshak",
+     "togri": "mayiz",
+     "sabab": "uzumdan olinadi"
+    },
+    "guruh_nomlari": [
+     "Bog‘bonlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mevali bog‘»",
+     "topshiriq": "Guruh bog‘ plakatini tuzadi."
+    },
+    "vazifalar": {
+     "A": "50 gektar, 12 tonna?",
+     "B": "600 tonna, 20 foiz?",
+     "C": "2000 kg, 4 ga 1?"
+    },
+    "sinkveyn": [
+     "Meva",
+     "shirin, foydali",
+     "pishadi, uziladi, quritiladi",
+     "Bog‘ ne’mati",
+     "Uzum"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh bog‘dorchilikni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: meva",
+      "2-guruh: uzum",
+      "3-guruh: qayta ishlash",
+      "4-guruh: parvarish"
+     ],
+     "yakun": "Natijalar: 600; 120; 500."
+    }
+   }
+  },
+  {
+   "mavzu": "Chorvachilik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Chorvachilik nima",
+      "matn": "Chorvachilik — uy hayvonlari boqish tarmog‘i. U go‘sht, sut, jun, teri va tuxum beradi. Asosiy tarmoqlari: qoramolchilik, qo‘ychilik va echkichilik, parrandachilik, ipakchilik, asalarichilik va baliqchilik.",
+      "misol": "Chorva — oziq va xomashyo.",
+      "savol": "Chorvachilik nima beradi?",
+      "javob": "go‘sht, sut, jun, teri",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hududlar",
+      "matn": "Qoramolchilik sug‘orma dehqonchilik hududlarida, qo‘ychilik va qorako‘lchilik cho‘l va yarim cho‘llarda (Qizilqum, Qarshi cho‘li, Ustyurt) rivojlangan. Tog‘ yonbag‘irlarida yaylov chorvachiligi bor. Ipakchilik Farg‘ona vodiysi va Samarqandda mashhur.",
+      "misol": "Cho‘lda qo‘y, vodiyda qoramol.",
+      "savol": "Qorako‘lchilik qayerda?",
+      "javob": "cho‘l va yarim cho‘llarda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yaylovlar va yem-xashak",
+      "matn": "Yaylovlar bahorda yashil bo‘ladi, yozda tog‘ yaylovlariga chiqariladi, qishda ombor yem-xashagi beriladi. Yem uchun beda, makkajo‘xori va somon ekiladi. Yaylovni me’yoridan ortiq boqish tuproqni emiradi.",
+      "misol": "Yaylovni asrash kerak.",
+      "savol": "Qishda mollarga nima beriladi?",
+      "javob": "ombor yem-xashagi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, fermada 120 ta sigir, har biri kuniga 15 litr sut bersa, 120 · 15 — 1800 litr. 30 kunda 1800 · 30 — 54000 litr. Masalan, bitta qo‘yga kuniga 2 kilogramm yem kerak bo‘lsa, 500 ta qo‘yga 500 · 2 — 1000 kilogramm (taxminiy misol).",
+      "misol": "Soni · me’yor — jami.",
+      "savol": "Masalan, 120 sigir, kuniga 15 litr. Jami necha litr?",
+      "javob": "1800",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Veterinariya va sifat",
+      "matn": "Hayvon sog‘lom bo‘lsa, sifatli mahsulot beradi. Emlash, toza suv, yem va sanitariya muhim. Kasal hayvon go‘shti va suti ishlatilmaydi. Veterinar vrach chorvani nazorat qiladi.",
+      "misol": "Sog‘lom chorva — sifatli mahsulot.",
+      "savol": "Hayvonni nima asraydi?",
+      "javob": "emlash va parvarish",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Chorvachilik: go‘sht, sut, jun. Qorako‘l — cho‘lda. Jami — soni · me’yor.",
+    "misollar": [
+     {
+      "shart": "Masalan, 120 sigir, kuniga 15 litr. Jami necha litr?",
+      "yechim": [
+       "120 · 15.",
+       "Hisoblang.",
+       "Javob 1800."
+      ],
+      "javob": "1800"
+     },
+     {
+      "shart": "Masalan, kuniga 1800 litr, 30 kun. Necha litr?",
+      "yechim": [
+       "1800 · 30.",
+       "Hisoblang.",
+       "Javob 54000."
+      ],
+      "javob": "54000"
+     },
+     {
+      "shart": "Masalan, 500 qo‘y, kuniga 2 kg yem. Necha kg?",
+      "yechim": [
+       "500 · 2.",
+       "Hisoblang.",
+       "Javob 1000."
+      ],
+      "javob": "1000"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Chorva xaritasi",
+      "topshiriq": "Xaritada chorvachilik hududlarini belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Yaylov aylanishi",
+      "topshiriq": "Fasllar bo‘yicha yaylov chizmasini chizing.",
+      "yechim": "Bahor, yoz, qish.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Mahsulotlar",
+      "topshiriq": "Chorvachilik mahsulotlari jadvalini tuzing.",
+      "yechim": "Go‘sht, sut, jun.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "120 · 15 nechaga teng?",
+      "javob": "1800"
+     },
+     {
+      "shart": "1800 · 30 nechaga teng?",
+      "javob": "54000"
+     },
+     {
+      "shart": "500 · 2 nechaga teng?",
+      "javob": "1000"
+     },
+     {
+      "shart": "Qorako‘lchilik qayerda?",
+      "javob": "cho‘lda"
+     },
+     {
+      "shart": "Sut beradigan hayvon?",
+      "javob": "sigir"
+     },
+     {
+      "shart": "Ipak beradigan?",
+      "javob": "ipak qurti"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Chorva faqat go‘sht beradi deydi",
+      "sabab": "sut, jun, teri ham",
+      "oldini_olish": "ko‘p mahsulot"
+     },
+     {
+      "xato": "Yaylov cheksiz deydi",
+      "sabab": "cheklangan",
+      "oldini_olish": "ortiqcha boqish emiradi"
+     },
+     {
+      "xato": "Veterinar kerak emas deydi",
+      "sabab": "kerak",
+      "oldini_olish": "kasallikdan saqlaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "hayvonlar"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "yaylov"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Fermadan dasturxongacha»",
+     "muammo": "Sut va go‘sht qanday yetib keladi?",
+     "mahsulot": "ferma plakati",
+     "bosqichlar": [
+      "xarita",
+      "mahsulotlar",
+      "hisob",
+      "yaylov",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Jadval tuzing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sut fermasi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "120 sigir, 15 litr.",
+       "topshiriq": "Kunlik?",
+       "javob": "1800",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1800 litr, 30 kun.",
+       "topshiriq": "Oylik?",
+       "javob": "54000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "500 qo‘y, 2 kg.",
+       "topshiriq": "Yem?",
+       "javob": "1000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Cho‘lda boqiladi.",
+       "topshiriq": "Qaysi tur?",
+       "javob": "qorako‘l",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Chorvachilik",
+      "tarif": "uy hayvonlari boqish"
+     },
+     {
+      "atama": "Qorako‘lchilik",
+      "tarif": "qorako‘l qo‘y boqish"
+     },
+     {
+      "atama": "Yaylov",
+      "tarif": "mol boqiladigan o‘tloq"
+     },
+     {
+      "atama": "Yem-xashak",
+      "tarif": "mol oziqasi"
+     },
+     {
+      "atama": "Ipakchilik",
+      "tarif": "ipak qurti boqish"
+     },
+     {
+      "atama": "Veterinar",
+      "tarif": "hayvon shifokori"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qo‘ychilik cho‘lda rivojlangan",
+      "togri": true,
+      "izoh": "yaylov"
+     },
+     {
+      "matn": "Chorva faqat go‘sht beradi",
+      "togri": false,
+      "izoh": "sut va jun ham"
+     },
+     {
+      "matn": "120 · 15 — 1800",
+      "togri": true,
+      "izoh": "litr"
+     },
+     {
+      "matn": "Yaylov cheksiz",
+      "togri": false,
+      "izoh": "cheklangan"
+     },
+     {
+      "matn": "Emlash hayvonni asraydi",
+      "togri": true,
+      "izoh": "veterinariya"
+     },
+     {
+      "matn": "Ipakchilik Farg‘onada",
+      "togri": true,
+      "izoh": "ipak"
+     },
+     {
+      "matn": "500 · 2 — 1000",
+      "togri": true,
+      "izoh": "kg"
+     },
+     {
+      "matn": "Kasal hayvon suti ishlatiladi",
+      "togri": false,
+      "izoh": "xavfli"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Chorvachilik?",
+      "javob": "hayvon boqish"
+     },
+     {
+      "savol": "Qorako‘l?",
+      "javob": "cho‘lda"
+     },
+     {
+      "savol": "Yaylov?",
+      "javob": "o‘tloq"
+     },
+     {
+      "savol": "Yem?",
+      "javob": "beda"
+     },
+     {
+      "savol": "Ipakchilik?",
+      "javob": "ipak qurti"
+     },
+     {
+      "savol": "Veterinar?",
+      "javob": "shifokor"
+     },
+     {
+      "savol": "120 · 15?",
+      "javob": "1800"
+     },
+     {
+      "savol": "1800 · 30?",
+      "javob": "54000"
+     },
+     {
+      "savol": "500 · 2?",
+      "javob": "1000"
+     },
+     {
+      "savol": "Sut?",
+      "javob": "sigirdan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Ferma hayvonlarini kuzat.",
+      "savol": "Nima beradi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Jami mahsulotni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Cho‘l va vodiy.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Yaylov?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun yaylovni me’yorida boqish kerak?",
+    "keys": {
+     "vaziyat": "Yaylovda mollar juda ko‘p, o‘t kamayib ketdi.",
+     "savollar": [
+      "Nima xavf?",
+      "Nima qilamiz?"
+     ]
+    },
+    "tezis": "Chorva — boylik",
+    "taqqoslash": {
+     "a": "Qoramolchilik",
+     "b": "Qo‘ychilik",
+     "umumiy": [
+      "go‘sht beradi",
+      "yem kerak"
+     ],
+     "a_farq": [
+      "sut ko‘p",
+      "vodiyda"
+     ],
+     "b_farq": [
+      "jun va qorako‘l",
+      "cho‘lda"
+     ]
+    },
+    "klaster": {
+     "markaz": "Chorvachilik",
+     "shoxlar": [
+      {
+       "nom": "Qoramol",
+       "bandlar": [
+        "sut",
+        "go‘sht"
+       ]
+      },
+      {
+       "nom": "Qo‘y",
+       "bandlar": [
+        "jun",
+        "qorako‘l"
+       ]
+      },
+      {
+       "nom": "Ipak",
+       "bandlar": [
+        "ipak qurti",
+        "Farg‘ona"
+       ]
+      },
+      {
+       "nom": "Yaylov",
+       "bandlar": [
+        "bahor",
+        "yoz",
+        "yem"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men cho‘lda boqilaman va qorako‘l beraman. Men nimaman?",
+     "javob": "qo‘y"
+    },
+    "hikmat": "Chorva — sog‘lom bo‘lsin.",
+    "kalit_soz": "CHORVA",
+    "xato_yechim": {
+     "shart": "Qorako‘lchilik qayerda rivojlangan?",
+     "xato": "vodiyda",
+     "togri": "cho‘lda",
+     "sabab": "yaylov"
+    },
+    "guruh_nomlari": [
+     "Chorvadorlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Veterinarlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Fermadan dasturxongacha»",
+     "topshiriq": "Guruh ferma plakatini tuzadi."
+    },
+    "vazifalar": {
+     "A": "120 sigir, 15 litr?",
+     "B": "1800 litr, 30 kun?",
+     "C": "500 qo‘y, 2 kg?"
+    },
+    "sinkveyn": [
+     "Chorva",
+     "sog‘lom, foydali",
+     "o‘tlaydi, sut beradi, o‘sadi",
+     "Qishloq boyligi",
+     "Sigir"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh chorvachilikni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: qoramol",
+      "2-guruh: qo‘y",
+      "3-guruh: ipak",
+      "4-guruh: yaylov"
+     ],
+     "yakun": "Natijalar: 1800; 54000; 1000."
+    }
+   }
+  },
+  {
+   "mavzu": "Transport",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Transport nima",
+      "matn": "Transport — yuk va yo‘lovchilarni tashish tarmog‘i. U xo‘jalik tarmoqlarini bir-biriga bog‘laydi. Turlari: temir yo‘l, avtomobil, havo, quvur va daryo transporti. O‘zbekistonda eng ko‘p yuk avtomobil va temir yo‘lda tashiladi.",
+      "misol": "Transport — iqtisod tomirlari.",
+      "savol": "Transport nima qiladi?",
+      "javob": "yuk va yo‘lovchi tashiydi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Temir yo‘l va avtomobil",
+      "matn": "Temir yo‘llar Toshkentdan Samarqand, Buxoro, Qarshi, Termiz va Andijonga boradi. «Afrosiyob» tezyurar poyezdi Toshkent va Samarqand orasini tez bosib o‘tadi. Avtomobil yo‘llari qishloq va shaharlarni bog‘laydi, Toshkent va Termiz yo‘nalishi muhim.",
+      "misol": "Afrosiyob — tezyurar poyezd.",
+      "savol": "Tezyurar poyezd nomi?",
+      "javob": "Afrosiyob",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Havo, quvur va metro",
+      "matn": "Havo transporti — uzoq masofalarga tez. Toshkent, Samarqand, Buxoro, Urganch aeroportlari xalqaro. Quvur transporti gaz va neftni uzatadi. Toshkent metrosi — Markaziy Osiyoda dastlabkilardan biri, uning bekatlari naqshinkor.",
+      "misol": "Metro — shahar transporti.",
+      "savol": "Gazni nima uzatadi?",
+      "javob": "quvur",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, poyezd soatiga 160 kilometr tezlikda 3 soat yursa, 160 · 3 — 480 kilometr. Masalan, 480 kilometrni 120 kilometr/soat tezlikda 480 / 120 — 4 soatda bosib o‘tadi. Masalan, 1 tonna yukni tashishga 40 ming so‘m ketsa, 50 tonna uchun 50 · 40 — 2000 ming so‘m (taxminiy misol).",
+      "misol": "Yo‘l — tezlik · vaqt.",
+      "savol": "Masalan, soatiga 160 km, 3 soat. Necha km?",
+      "javob": "480",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xavfsizlik va ekologiya",
+      "matn": "Yo‘lda qoidaga rioya qilish, kamar taqish va yaya o‘tish joylarida ehtiyot bo‘lish hayotni asraydi. Transport havoni ifloslantiradi, shuning uchun elektr transport, metro va velosiped foydali.",
+      "misol": "Qoida — xavfsizlik.",
+      "savol": "Havoni nima ifloslantiradi?",
+      "javob": "chiqindi gazlar",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Transport: temir yo‘l, avtomobil, havo, quvur. Yo‘l — tezlik · vaqt. Vaqt — yo‘l / tezlik.",
+    "misollar": [
+     {
+      "shart": "Masalan, tezlik 160 km/soat, 3 soat. Necha km?",
+      "yechim": [
+       "160 · 3.",
+       "Hisoblang.",
+       "Javob 480."
+      ],
+      "javob": "480"
+     },
+     {
+      "shart": "Masalan, 480 km, tezlik 120 km/soat. Necha soat?",
+      "yechim": [
+       "480 / 120.",
+       "Bo‘ling.",
+       "Javob 4."
+      ],
+      "javob": "4"
+     },
+     {
+      "shart": "Masalan, 1 tonnaga 40 ming so‘m. 50 tonnaga necha ming?",
+      "yechim": [
+       "50 · 40.",
+       "Hisoblang.",
+       "Javob 2000."
+      ],
+      "javob": "2000"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Yo‘llar xaritasi",
+      "topshiriq": "Xaritada temir yo‘l va aeroportlarni belgilang.",
+      "yechim": "Tarmoq.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Tezlik tajribasi",
+      "topshiriq": "Yo‘l, vaqt va tezlikni o‘lchang.",
+      "yechim": "Tezlik formulasi.",
+      "mahsulot": "sekundomer, metr"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va bo‘lish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Yo‘l qoidalari",
+      "topshiriq": "Yo‘l belgilari plakatini chizing.",
+      "yechim": "Xavfsizlik.",
+      "mahsulot": "qog‘oz, bo‘yoq"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "160 · 3 nechaga teng?",
+      "javob": "480"
+     },
+     {
+      "shart": "480 / 120 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "50 · 40 nechaga teng?",
+      "javob": "2000"
+     },
+     {
+      "shart": "Tezyurar poyezd?",
+      "javob": "Afrosiyob"
+     },
+     {
+      "shart": "Gazni nima uzatadi?",
+      "javob": "quvur"
+     },
+     {
+      "shart": "Shahar yer osti transporti?",
+      "javob": "metro"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Transport faqat yo‘lovchi tashiydi deydi",
+      "sabab": "yuk ham tashiydi",
+      "oldini_olish": "iqtisod uchun"
+     },
+     {
+      "xato": "Yo‘l qoidasi kerak emas deydi",
+      "sabab": "kerak",
+      "oldini_olish": "xavfsizlik"
+     },
+     {
+      "xato": "Transport havoni ifloslantirmaydi deydi",
+      "sabab": "ifloslantiradi",
+      "oldini_olish": "chiqindi gaz"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "tezlik va harakat"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "yo‘l, vaqt, tezlik"
+     },
+     {
+      "fan": "Hayot xavfsizligi",
+      "boglanish": "yo‘l qoidalari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yo‘llar xaritasi»",
+     "muammo": "O‘zbekiston transport tarmog‘i qanday?",
+     "mahsulot": "transport atlasi",
+     "bosqichlar": [
+      "xarita",
+      "tezlik tajribasi",
+      "hisob",
+      "qoidalar",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Temir yo‘l vokzali»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "160 km/soat, 3 soat.",
+       "topshiriq": "Km?",
+       "javob": "480",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "480 km, 120 km/soat.",
+       "topshiriq": "Soat?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "50 tonna, 40 ming.",
+       "topshiriq": "Ming?",
+       "javob": "2000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Tezyurar poyezd.",
+       "topshiriq": "Nomi?",
+       "javob": "Afrosiyob",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Transport",
+      "tarif": "yuk va yo‘lovchi tashish"
+     },
+     {
+      "atama": "Temir yo‘l",
+      "tarif": "poyezd yo‘li"
+     },
+     {
+      "atama": "Aeroport",
+      "tarif": "samolyot qo‘nish joyi"
+     },
+     {
+      "atama": "Metro",
+      "tarif": "yer osti poyezdi"
+     },
+     {
+      "atama": "Quvur transporti",
+      "tarif": "gaz va neft uzatish"
+     },
+     {
+      "atama": "Tezlik",
+      "tarif": "vaqt birligidagi yo‘l"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Afrosiyob tezyurar poyezd",
+      "togri": true,
+      "izoh": "temir yo‘l"
+     },
+     {
+      "matn": "Gaz poyezdda tashiladi",
+      "togri": false,
+      "izoh": "quvur"
+     },
+     {
+      "matn": "160 · 3 — 480",
+      "togri": true,
+      "izoh": "km"
+     },
+     {
+      "matn": "Metro yer osti transporti",
+      "togri": true,
+      "izoh": "shahar"
+     },
+     {
+      "matn": "Yo‘l qoidasi kerak emas",
+      "togri": false,
+      "izoh": "xavfsizlik"
+     },
+     {
+      "matn": "Aeroport havo transporti uchun",
+      "togri": true,
+      "izoh": "samolyot"
+     },
+     {
+      "matn": "480 / 120 — 4",
+      "togri": true,
+      "izoh": "soat"
+     },
+     {
+      "matn": "Transport havoni ifloslantirishi mumkin",
+      "togri": true,
+      "izoh": "ekologiya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Transport?",
+      "javob": "tashish"
+     },
+     {
+      "savol": "Tezyurar poyezd?",
+      "javob": "Afrosiyob"
+     },
+     {
+      "savol": "Gaz uzatish?",
+      "javob": "quvur"
+     },
+     {
+      "savol": "Metro?",
+      "javob": "yer osti"
+     },
+     {
+      "savol": "Aeroport?",
+      "javob": "samolyot"
+     },
+     {
+      "savol": "Qoida?",
+      "javob": "xavfsizlik"
+     },
+     {
+      "savol": "160 · 3?",
+      "javob": "480"
+     },
+     {
+      "savol": "480 / 120?",
+      "javob": "4"
+     },
+     {
+      "savol": "50 · 40?",
+      "javob": "2000"
+     },
+     {
+      "savol": "Tezlik?",
+      "javob": "yo‘l / vaqt"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Yo‘ldagi transportni kuzat.",
+      "savol": "Qaysi tur?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yo‘lni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Poyezd va avtobus.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Xavfsizlik?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun transport iqtisodning tomirlari deyiladi?",
+    "keys": {
+     "vaziyat": "Piyoda yo‘lni qizil chiroqda kesib o‘tmoqchisiz.",
+     "savollar": [
+      "Nima xavf?",
+      "Qanday o‘tamiz?"
+     ]
+    },
+    "tezis": "Yo‘l — xavfsiz bo‘lsin",
+    "taqqoslash": {
+     "a": "Temir yo‘l",
+     "b": "Avtomobil yo‘li",
+     "umumiy": [
+      "yuk tashiydi",
+      "yo‘l kerak"
+     ],
+     "a_farq": [
+      "poyezd",
+      "tezyurar"
+     ],
+     "b_farq": [
+      "avtomobil",
+      "eshikdan eshikka"
+     ]
+    },
+    "klaster": {
+     "markaz": "Transport",
+     "shoxlar": [
+      {
+       "nom": "Temir yo‘l",
+       "bandlar": [
+        "Afrosiyob",
+        "poyezd"
+       ]
+      },
+      {
+       "nom": "Avtomobil",
+       "bandlar": [
+        "yo‘l",
+        "yuk"
+       ]
+      },
+      {
+       "nom": "Havo va quvur",
+       "bandlar": [
+        "aeroport",
+        "gaz quvuri"
+       ]
+      },
+      {
+       "nom": "Xavfsizlik",
+       "bandlar": [
+        "qoida",
+        "kamar"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Toshkent va Samarqandni tez bog‘layman. Men nimaman?",
+     "javob": "Afrosiyob"
+    },
+    "hikmat": "Transport — bog‘lovchi.",
+    "kalit_soz": "YOL",
+    "xato_yechim": {
+     "shart": "Gazni nima uzatadi?",
+     "xato": "poyezd",
+     "togri": "quvur",
+     "sabab": "quvur transporti"
+    },
+    "guruh_nomlari": [
+     "Mashinistlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Nazoratchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Yo‘llar xaritasi»",
+     "topshiriq": "Guruh transport atlasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "160 km/soat, 3 soat?",
+     "B": "480 km, 120 km/soat?",
+     "C": "50 tonna, 40 ming?"
+    },
+    "sinkveyn": [
+     "Transport",
+     "tez, zarur",
+     "tashiydi, bog‘laydi, harakatlanadi",
+     "Iqtisod tomiri",
+     "Poyezd"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh transportni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: temir yo‘l",
+      "2-guruh: avtomobil",
+      "3-guruh: havo va quvur",
+      "4-guruh: xavfsizlik"
+     ],
+     "yakun": "Natijalar: 480; 4; 2000."
+    }
+   }
   }
  ]
 }
