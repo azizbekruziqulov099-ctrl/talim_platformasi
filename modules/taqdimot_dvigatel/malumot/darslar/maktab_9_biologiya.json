@@ -1,0 +1,1401 @@
+{
+ "daraja": "maktab",
+ "sinf": "9",
+ "fan": "Biologiya",
+ "muallif": "qo‘lda yozilgan, faktlar tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "O‘simliklar tuzilishi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "O‘simlik hujayrasi",
+      "matn": "O‘simlik hujayrasi hayvon hujayrasidan farq qiladi. Uning sellyulozali qattiq devori, yashil plastidlari — xloroplastlari va katta vakuolasi bor. Xloroplastlarda xlorofill pigmenti joylashgan, u yorug‘lik energiyasini yutadi. Yadro irsiy axborotni saqlaydi, sitoplazma esa hujayra ichini to‘ldiradi. Hujayrani birinchi marta 1665-yilda Robert Guk ko‘rgan.",
+      "misol": "Hujayra devori o‘simlikka shakl beradi.",
+      "savol": "Qaysi organoid fotosintez bajaradi?",
+      "javob": "xloroplast",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘simlik to‘qimalari",
+      "matn": "O‘simlikda bir necha to‘qima bor. Qoplovchi to‘qima himoya qiladi. Asosiy to‘qima fotosintez va modda zaxirasini bajaradi. Mexanik to‘qima tayanch beradi. O‘tkazuvchi to‘qima — ksilema suv va mineral tuzlarni yuqoriga, floema organik moddalarni pastga o‘tkazadi. Hosil qiluvchi to‘qima — meristema, u bo‘linib o‘sishni ta’minlaydi.",
+      "misol": "Ksilema — suv uchun, floema — shakar uchun.",
+      "savol": "Suvni qaysi to‘qima o‘tkazadi?",
+      "javob": "ksilema",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vegetativ va generativ organlar",
+      "matn": "O‘simlik organlari ikki guruhga bo‘linadi. Vegetativ organlar — ildiz, poya va barg, ular oziqlanish va o‘sishni ta’minlaydi. Generativ organlar — gul, meva va urug‘, ular ko‘payishda ishtirok etadi. Hamma organlar bir-biri bilan bog‘liq: ildiz suv beradi, barg oziqa tayyorlaydi, poya ularni bog‘laydi.",
+      "misol": "Organlar o‘zaro jamoa kabi ishlaydi.",
+      "savol": "Gul qaysi organlar guruhiga kiradi?",
+      "javob": "generativ",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Fotosintez va hisob",
+      "matn": "Fotosintezda karbonat angidrid va suvdan yorug‘likda glyukoza va kislorod hosil bo‘ladi. 6 mol karbonat angidrid (6 · 44 — 264 gramm) va 6 mol suv (6 · 18 — 108 gramm) 1 mol glyukoza (M — 180) va 6 mol kislorod (6 · 32 — 192 gramm) beradi. Massa saqlanadi: 264 plyus 108 — 372, 180 plyus 192 — 372.",
+      "misol": "Barg — oziqa fabrikasi.",
+      "savol": "Fotosintez mahsuloti?",
+      "javob": "glyukoza va kislorod",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘simlikning ahamiyati",
+      "matn": "O‘simliklar kislorod chiqaradi, oziq-ovqat, xomashyo va dori beradi, tuproqni eroziyadan saqlaydi va iqlimni tartibga soladi. Ular ekotizimning birinchi bo‘g‘ini — produsentlar, chunki noorganik moddalardan organik modda yaratadi. O‘simliksiz hayvon va inson yashay olmaydi.",
+      "misol": "Daraxt ekish — kelajak uchun sarmoya.",
+      "savol": "Produsent kim?",
+      "javob": "o‘simlik",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Xloroplast, vakuola, sellyuloza devor. To‘qimalar: qoplovchi, asosiy, mexanik, o‘tkazuvchi, hosil qiluvchi. Glyukoza M — 180.",
+    "misollar": [
+     {
+      "shart": "Glyukoza (6 uglerod, 12 vodorod, 6 kislorod): 6 · 12 plyus 12 · 1 plyus 6 · 16. Molyar massa?",
+      "yechim": [
+       "72 plyus 12 plyus 96.",
+       "Qo‘shing.",
+       "Javob 180."
+      ],
+      "javob": "180"
+     },
+     {
+      "shart": "1 mol glyukoza hosil bo‘lganda 6 mol kislorod chiqadi (kislorod molekulasi M — 32). Kislorod massasi?",
+      "yechim": [
+       "6 · 32.",
+       "Hisoblang.",
+       "Javob 192 gramm."
+      ],
+      "javob": "192 gramm"
+     },
+     {
+      "shart": "90 gramm glyukoza (0,5 mol) hosil bo‘lishida kislorod massasi (1 mol glyukozaga 192 gramm)?",
+      "yechim": [
+       "0,5 · 192.",
+       "Hisoblang.",
+       "Javob 96 gramm."
+      ],
+      "javob": "96 gramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Hujayra preparati",
+      "topshiriq": "Piyoz po‘stini mikroskopda ko‘ring.",
+      "yechim": "Hujayra devori.",
+      "mahsulot": "mikroskop, piyoz"
+     },
+     {
+      "nom": "To‘qimalar jadvali",
+      "topshiriq": "To‘qimalar va vazifalarini jadvalga yozing.",
+      "yechim": "Besh to‘qima.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Mol va massa.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Organlar sxemasi",
+      "topshiriq": "O‘simlik organlarini chizib belgilang.",
+      "yechim": "Vegetativ va generativ.",
+      "mahsulot": "qog‘oz, qalam"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "72 plyus 12 plyus 96 nechaga teng?",
+      "javob": "180"
+     },
+     {
+      "shart": "6 · 32 nechaga teng?",
+      "javob": "192"
+     },
+     {
+      "shart": "0,5 · 192 nechaga teng?",
+      "javob": "96"
+     },
+     {
+      "shart": "264 plyus 108 nechaga teng?",
+      "javob": "372"
+     },
+     {
+      "shart": "Hujayrani qaysi yili Guk ko‘rgan?",
+      "javob": "1665"
+     },
+     {
+      "shart": "Ksilema nimani o‘tkazadi?",
+      "javob": "suv"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "O‘simlik hujayrasida devor yo‘q deydi",
+      "sabab": "sellyulozali devor bor",
+      "oldini_olish": "shakl beradi"
+     },
+     {
+      "xato": "Floema suvni yuqoriga o‘tkazadi deydi",
+      "sabab": "organik moddani pastga",
+      "oldini_olish": "suvni ksilema"
+     },
+     {
+      "xato": "Ildiz generativ organ deydi",
+      "sabab": "vegetativ organ",
+      "oldini_olish": "gul generativ"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "glyukoza"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "yorug‘lik energiyasi"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "kislorod manbai"
+     }
+    ],
+    "loyiha": {
+     "nom": "«O‘simlik — yashil zavod»",
+     "muammo": "O‘simlik qanday tuzilgan va nima qiladi?",
+     "mahsulot": "model va hisob",
+     "bosqichlar": [
+      "hujayrani o‘rganish",
+      "to‘qimalar jadvali",
+      "fotosintez hisobi",
+      "organlar sxemasi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Hujayrani o‘rganing",
+      "Jadval tuzing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "jadval to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Yashil hujayra»",
+     "bekatlar": [
+      {
+       "nom": "1-xona",
+       "matn": "Glyukoza formulasi.",
+       "topshiriq": "M qancha?",
+       "javob": "180",
+       "rasm": ""
+      },
+      {
+       "nom": "2-xona",
+       "matn": "6 mol kislorod.",
+       "topshiriq": "Gramm?",
+       "javob": "192",
+       "rasm": ""
+      },
+      {
+       "nom": "3-xona",
+       "matn": "0,5 mol glyukoza.",
+       "topshiriq": "Kislorod gramm?",
+       "javob": "96",
+       "rasm": ""
+      },
+      {
+       "nom": "4-xona",
+       "matn": "Massa saqlanishi.",
+       "topshiriq": "Jami gramm?",
+       "javob": "372",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Molga o‘tdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Xloroplast",
+      "tarif": "fotosintez organoidi"
+     },
+     {
+      "atama": "Xlorofill",
+      "tarif": "yashil pigment"
+     },
+     {
+      "atama": "Vakuola",
+      "tarif": "hujayra shirasi bo‘shlig‘i"
+     },
+     {
+      "atama": "Ksilema",
+      "tarif": "suv o‘tkazuvchi to‘qima"
+     },
+     {
+      "atama": "Floema",
+      "tarif": "organik modda o‘tkazuvchi to‘qima"
+     },
+     {
+      "atama": "Meristema",
+      "tarif": "bo‘linuvchi to‘qima"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Xloroplast fotosintez qiladi",
+      "togri": true,
+      "izoh": "xlorofill"
+     },
+     {
+      "matn": "O‘simlik hujayrasida sellyuloza devor bor",
+      "togri": true,
+      "izoh": "qattiq devor"
+     },
+     {
+      "matn": "Floema suvni yuqoriga o‘tkazadi",
+      "togri": false,
+      "izoh": "ksilema"
+     },
+     {
+      "matn": "Glyukoza molyar massasi 180",
+      "togri": true,
+      "izoh": "72 plyus 12 plyus 96"
+     },
+     {
+      "matn": "Ildiz generativ organ",
+      "togri": false,
+      "izoh": "vegetativ"
+     },
+     {
+      "matn": "Meristema bo‘linib o‘sadi",
+      "togri": true,
+      "izoh": "hosil qiluvchi"
+     },
+     {
+      "matn": "6 · 32 — 192",
+      "togri": true,
+      "izoh": "kislorod"
+     },
+     {
+      "matn": "O‘simlik produsent",
+      "togri": true,
+      "izoh": "organik modda yaratadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Xloroplast?",
+      "javob": "fotosintez"
+     },
+     {
+      "savol": "Xlorofill?",
+      "javob": "yashil pigment"
+     },
+     {
+      "savol": "Ksilema?",
+      "javob": "suv o‘tkazadi"
+     },
+     {
+      "savol": "Floema?",
+      "javob": "shakar o‘tkazadi"
+     },
+     {
+      "savol": "Meristema?",
+      "javob": "o‘sish to‘qimasi"
+     },
+     {
+      "savol": "Vegetativ organ?",
+      "javob": "ildiz, poya, barg"
+     },
+     {
+      "savol": "Generativ organ?",
+      "javob": "gul, meva, urug‘"
+     },
+     {
+      "savol": "Glyukoza M?",
+      "javob": "180"
+     },
+     {
+      "savol": "6 · 32?",
+      "javob": "192"
+     },
+     {
+      "savol": "Guk?",
+      "javob": "1665"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Hujayrani kuzat.",
+      "savol": "Devor bormi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Massani top.",
+      "savol": "Mol · M?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ksilema va floema.",
+      "savol": "Yo‘nalish?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "O‘simlik ahamiyati?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun o‘simlik ekotizimning birinchi bo‘g‘ini hisoblanadi?",
+    "keys": {
+     "vaziyat": "O‘rmonda o‘simlik yo‘q bo‘lsa, hayvonlar oziqsiz qoladi.",
+     "savollar": [
+      "Organik moddani kim yaratadi?",
+      "Kislorod qayerdan?"
+     ]
+    },
+    "tezis": "O‘simlik hayot manbai",
+    "taqqoslash": {
+     "a": "Ksilema",
+     "b": "Floema",
+     "umumiy": [
+      "o‘tkazuvchi to‘qima",
+      "poyada joylashgan"
+     ],
+     "a_farq": [
+      "suv va tuz",
+      "yuqoriga"
+     ],
+     "b_farq": [
+      "organik modda",
+      "pastga"
+     ]
+    },
+    "klaster": {
+     "markaz": "O‘simliklar tuzilishi",
+     "shoxlar": [
+      {
+       "nom": "Hujayra",
+       "bandlar": [
+        "devor",
+        "xloroplast",
+        "vakuola"
+       ]
+      },
+      {
+       "nom": "To‘qima",
+       "bandlar": [
+        "qoplovchi",
+        "asosiy",
+        "o‘tkazuvchi"
+       ]
+      },
+      {
+       "nom": "Organ",
+       "bandlar": [
+        "vegetativ",
+        "generativ"
+       ]
+      },
+      {
+       "nom": "Fotosintez",
+       "bandlar": [
+        "glyukoza",
+        "kislorod"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yashil, quyoshdan oziq yasayman. Men kimman?",
+     "javob": "o‘simlik"
+    },
+    "hikmat": "Yashil barg — oziqa fabrikasi.",
+    "kalit_soz": "FOTOSINTEZ",
+    "xato_yechim": {
+     "shart": "Suvni qaysi to‘qima o‘tkazadi?",
+     "xato": "floema",
+     "togri": "ksilema",
+     "sabab": "floema organik modda"
+    },
+    "guruh_nomlari": [
+     "Yashilchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«O‘simlik — yashil zavod»",
+     "topshiriq": "Guruh o‘simlik hujayrasini chizadi."
+    },
+    "vazifalar": {
+     "A": "Glyukoza M?",
+     "B": "6 mol kislorod?",
+     "C": "0,5 mol glyukozada kislorod?"
+    },
+    "sinkveyn": [
+     "O‘simlik",
+     "yashil, jonli",
+     "o‘sadi, yasaydi, chiqaradi",
+     "Yashil hayot",
+     "Barg"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh o‘simlik tuzilishini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: hujayra",
+      "2-guruh: to‘qima",
+      "3-guruh: organ",
+      "4-guruh: fotosintez"
+     ],
+     "yakun": "Natijalar: 180; 192; 96."
+    }
+   }
+  },
+  {
+   "mavzu": "Ildiz",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ildizning vazifasi",
+      "matn": "Ildiz o‘simlikni tuproqqa mustahkamlaydi, tuproqdan suv va mineral tuzlarni so‘radi, ba’zan zaxira modda to‘playdi. Ildiz yer ostida o‘sadi, yorug‘likdan qochadi. Ildiz tizimi qancha keng bo‘lsa, o‘simlik shuncha barqaror va suvga boy bo‘ladi.",
+      "misol": "Ildiz — o‘simlikning langari.",
+      "savol": "Ildiz qanday vazifa bajaradi?",
+      "javob": "mustahkamlaydi va suv so‘radi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ildiz turlari",
+      "matn": "Ildizlar uch xil: asosiy, qo‘shimcha va yon ildiz. Ildiz tizimi ikki turli: o‘q ildizli (ikki pallalilarda, masalan, sabzi, lavlagi, g‘o‘za) — bitta yo‘g‘on asosiy ildiz bor; popuk ildizli (bir pallalilarda, masalan, bug‘doy, makkajo‘xori) — ko‘p mayda ildizlar bir xil qalinlikda.",
+      "misol": "G‘o‘zaning o‘q ildizi chuqurga ketadi.",
+      "savol": "Bug‘doy ildizi qanday?",
+      "javob": "popuk",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ildiz zonalari",
+      "matn": "Yosh ildizda to‘rt zona bor: bo‘linish zonasi (hujayralar ko‘payadi), cho‘zilish zonasi (o‘sadi), so‘rish zonasi (ildiz tuklari suv so‘radi) va o‘tkazish zonasi. Uchida ildiz qopqoqchasi himoya qiladi. Ildiz tuklari so‘rilish yuzasini juda kattalashtiradi, ular tez nobud bo‘ladi va yangisi hosil bo‘ladi.",
+      "misol": "Ildiz tuki — suv so‘ruvchi mikro nay.",
+      "savol": "Suvni qaysi zona so‘radi?",
+      "javob": "so‘rish zonasi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Suv va tuz so‘rilishi",
+      "matn": "Ildiz tuki hujayrasida shira konsentratsiyasi tuproq eritmasidan yuqori bo‘lsa, suv hujayraga kiradi — bu osmos. Tuz haddan ortiq bo‘lsa, suv chiqib ketadi, o‘simlik so‘liydi. Shuning uchun sho‘r tuproqda ekin o‘smaydi. Ildiz o‘sishi misolida, agar kuniga 1,5 santimetr o‘ssa, 14 kunda 1,5 · 14 — 21 santimetr bo‘ladi.",
+      "misol": "Ortiqcha tuz o‘simlikka zarar.",
+      "savol": "Suv hujayraga qaysi hodisa bilan kiradi?",
+      "javob": "osmos",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘zgargan ildizlar",
+      "matn": "Ba’zi o‘simliklarda ildiz zaxira vazifasini bajaradi: sabzi, lavlagi, turp — ildizmeva. Ildizdan yangi o‘simlik ham chiqishi mumkin (ildiz bachki). Dukkaklilar ildizida tuganak bakteriyalar yashaydi, ular havo azotini o‘zlashtirib, tuproqni boyitadi. Ildizni asrash uchun tuproqni qattiq zichlamaslik va ortiqcha sug‘ormaslik kerak.",
+      "misol": "Dukkaklilar tuproqni boyitadi.",
+      "savol": "Ildizmeva misoli?",
+      "javob": "sabzi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ildiz mustahkamlaydi va suv so‘radi. O‘q ildiz va popuk ildiz. So‘rish zonasi — ildiz tuklari. Suv osmos bilan kiradi.",
+    "misollar": [
+     {
+      "shart": "Ildiz kuniga 1,5 santimetr o‘sadi. 14 kunda?",
+      "yechim": [
+       "1,5 · 14.",
+       "Hisoblang.",
+       "Javob 21 santimetr."
+      ],
+      "javob": "21 santimetr"
+     },
+     {
+      "shart": "Ildiz kuniga 0,5 santimetr o‘sadi. 30 kunda?",
+      "yechim": [
+       "0,5 · 30.",
+       "Hisoblang.",
+       "Javob 15 santimetr."
+      ],
+      "javob": "15 santimetr"
+     },
+     {
+      "shart": "Ildiz kuniga 2 santimetr o‘sadi. 10 kunda?",
+      "yechim": [
+       "2 · 10.",
+       "Hisoblang.",
+       "Javob 20 santimetr."
+      ],
+      "javob": "20 santimetr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ildiz tajribasi",
+      "topshiriq": "Loviya urug‘ini undirib, ildiz o‘sishini o‘lchang.",
+      "yechim": "Har kuni o‘lchash.",
+      "mahsulot": "urug‘, paxta, chizg‘ich"
+     },
+     {
+      "nom": "Ildiz turlari",
+      "topshiriq": "O‘q va popuk ildizni chizing.",
+      "yechim": "Sabzi va bug‘doy.",
+      "mahsulot": "qog‘oz, qalam"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "O‘sish tezligi.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Osmos tajribasi",
+      "topshiriq": "Kartoshkani tuzli va toza suvga solib kuzating.",
+      "yechim": "Qaysi so‘lidi.",
+      "mahsulot": "kartoshka, tuz"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1,5 · 14 nechaga teng?",
+      "javob": "21"
+     },
+     {
+      "shart": "0,5 · 30 nechaga teng?",
+      "javob": "15"
+     },
+     {
+      "shart": "2 · 10 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "Ildiz zonalari soni?",
+      "javob": "4"
+     },
+     {
+      "shart": "Suv kirish hodisasi?",
+      "javob": "osmos"
+     },
+     {
+      "shart": "Sabzi qaysi ildiz?",
+      "javob": "ildizmeva"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ildiz faqat o‘simlikni ushlab turadi deydi",
+      "sabab": "suv ham so‘radi",
+      "oldini_olish": "ildiz tuklari"
+     },
+     {
+      "xato": "Ildiz tuki barg ustida bo‘ladi deydi",
+      "sabab": "ildizda bo‘ladi",
+      "oldini_olish": "so‘rish zonasi"
+     },
+     {
+      "xato": "Ko‘p tuz o‘simlikka foydali deydi",
+      "sabab": "zararli",
+      "oldini_olish": "so‘ladi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "eritma konsentratsiyasi"
+     },
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "sug‘orish"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "tezlik"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ildiz sirlari»",
+     "muammo": "Ildiz qanday o‘sadi va suv so‘radi?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "ildiz turlarini o‘rganish",
+      "o‘sish tajribasi",
+      "hisoblash",
+      "osmos tajribasi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Turlarni o‘rganing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Yer ostida»",
+     "bekatlar": [
+      {
+       "nom": "1-qatlam",
+       "matn": "Kuniga 1,5 santimetr, 14 kun.",
+       "topshiriq": "Santimetr?",
+       "javob": "21",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qatlam",
+       "matn": "Kuniga 0,5 santimetr, 30 kun.",
+       "topshiriq": "Santimetr?",
+       "javob": "15",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qatlam",
+       "matn": "Kuniga 2 santimetr, 10 kun.",
+       "topshiriq": "Santimetr?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qatlam",
+       "matn": "Zonalar.",
+       "topshiriq": "Nechta?",
+       "javob": "4",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ildiz tuki",
+      "tarif": "suv so‘ruvchi hujayra o‘simtasi"
+     },
+     {
+      "atama": "Ildiz qopqoqchasi",
+      "tarif": "uchini himoyalovchi qism"
+     },
+     {
+      "atama": "O‘q ildiz",
+      "tarif": "bitta asosiy yo‘g‘on ildiz"
+     },
+     {
+      "atama": "Popuk ildiz",
+      "tarif": "ko‘p mayda ildizlar"
+     },
+     {
+      "atama": "Osmos",
+      "tarif": "suvning hujayraga kirishi"
+     },
+     {
+      "atama": "Ildizmeva",
+      "tarif": "zaxiralovchi ildiz"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ildiz suv so‘radi",
+      "togri": true,
+      "izoh": "ildiz tuklari"
+     },
+     {
+      "matn": "Bug‘doy popuk ildizli",
+      "togri": true,
+      "izoh": "bir pallali"
+     },
+     {
+      "matn": "Ildiz tuki barg ustida",
+      "togri": false,
+      "izoh": "ildizda"
+     },
+     {
+      "matn": "1,5 · 14 — 21",
+      "togri": true,
+      "izoh": "santimetr"
+     },
+     {
+      "matn": "Ildiz zonalari to‘rtta",
+      "togri": true,
+      "izoh": "bo‘linish, cho‘zilish, so‘rish, o‘tkazish"
+     },
+     {
+      "matn": "Ortiqcha tuz o‘simlikka foydali",
+      "togri": false,
+      "izoh": "zarar"
+     },
+     {
+      "matn": "Dukkakli ildizida tuganak bakteriya bor",
+      "togri": true,
+      "izoh": "azot"
+     },
+     {
+      "matn": "Sabzi ildizmeva",
+      "togri": true,
+      "izoh": "zaxira"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ildiz vazifasi?",
+      "javob": "mustahkamlash, suv so‘rish"
+     },
+     {
+      "savol": "O‘q ildiz?",
+      "javob": "sabzi, g‘o‘za"
+     },
+     {
+      "savol": "Popuk ildiz?",
+      "javob": "bug‘doy"
+     },
+     {
+      "savol": "Zonalar?",
+      "javob": "4"
+     },
+     {
+      "savol": "So‘rish zonasi?",
+      "javob": "ildiz tuklari"
+     },
+     {
+      "savol": "Osmos?",
+      "javob": "suv kirishi"
+     },
+     {
+      "savol": "1,5 · 14?",
+      "javob": "21"
+     },
+     {
+      "savol": "0,5 · 30?",
+      "javob": "15"
+     },
+     {
+      "savol": "Tuganak bakteriya?",
+      "javob": "azotni o‘zlashtiradi"
+     },
+     {
+      "savol": "Ildizmeva?",
+      "javob": "sabzi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Ildiz o‘sishini kuzat.",
+      "savol": "Kunlik o‘lcham?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Uzunlikni top.",
+      "savol": "Tezlik · kun?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "O‘q va popuk.",
+      "savol": "Qaysi o‘simlikda?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ildizni asrash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun sho‘r tuproqda ko‘p o‘simlik o‘smaydi?",
+    "keys": {
+     "vaziyat": "Sho‘rlangan yerga ekilgan ko‘chat so‘lib qoldi.",
+     "savollar": [
+      "Suv qayoqqa ketadi?",
+      "Ildiz nima qiladi?"
+     ]
+    },
+    "tezis": "Ildiz o‘simlik hayotining asosi",
+    "taqqoslash": {
+     "a": "O‘q ildiz",
+     "b": "Popuk ildiz",
+     "umumiy": [
+      "ildiz tizimi",
+      "suv so‘radi"
+     ],
+     "a_farq": [
+      "bitta asosiy",
+      "ikki pallalilarda"
+     ],
+     "b_farq": [
+      "ko‘p mayda",
+      "bir pallalilarda"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ildiz",
+     "shoxlar": [
+      {
+       "nom": "Vazifa",
+       "bandlar": [
+        "mustahkamlash",
+        "suv so‘rish"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "o‘q",
+        "popuk"
+       ]
+      },
+      {
+       "nom": "Zonalar",
+       "bandlar": [
+        "bo‘linish",
+        "cho‘zilish",
+        "so‘rish",
+        "o‘tkazish"
+       ]
+      },
+      {
+       "nom": "O‘zgarish",
+       "bandlar": [
+        "ildizmeva",
+        "tuganak"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yer ostida suv so‘rayman va o‘simlikni ushlab turaman. Men kimman?",
+     "javob": "ildiz"
+    },
+    "hikmat": "Ildiz o‘simlikning langari.",
+    "kalit_soz": "ILDIZ",
+    "xato_yechim": {
+     "shart": "Bug‘doy ildizi qanday?",
+     "xato": "o‘q ildiz",
+     "togri": "popuk ildiz",
+     "sabab": "bir pallali"
+    },
+    "guruh_nomlari": [
+     "Ildizchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ildiz sirlari»",
+     "topshiriq": "Guruh ildiz tajribasini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "14 kunda uzunlik?",
+     "B": "30 kunda uzunlik?",
+     "C": "10 kunda uzunlik?"
+    },
+    "sinkveyn": [
+     "Ildiz",
+     "yer osti, kuchli",
+     "so‘radi, ushlaydi, zaxiralaydi",
+     "Langar",
+     "Tuk"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ildizni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: turlari",
+      "2-guruh: zonalar",
+      "3-guruh: osmos",
+      "4-guruh: o‘zgarishlar"
+     ],
+     "yakun": "Natijalar: 21; 15; 20 santimetr."
+    }
+   }
+  },
+  {
+   "mavzu": "Poya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Poyaning vazifalari",
+      "matn": "Poya o‘simlikning o‘q organi: barg, gul va mevani tutib turadi, ildiz bilan barg o‘rtasida suv va oziq moddalarni o‘tkazadi, ba’zan zaxira to‘playdi. Poya tuzilishiga ko‘ra tik, chirmashuvchi, o‘rmalovchi bo‘lishi mumkin. O‘tsimon, buta va daraxt shakllari bor.",
+      "misol": "Poya — o‘simlik «magistrali».",
+      "savol": "Poya qanday vazifa bajaradi?",
+      "javob": "tayanch va o‘tkazish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yog‘ochli poya tuzilishi",
+      "matn": "Daraxt poyasida tashqaridan ichkariga: po‘stloq (po‘kak va lub), kambiy, yog‘och va o‘zak joylashgan. Lub orqali organik moddalar pastga tushadi (floema). Yog‘och orqali suv va tuzlar yuqoriga chiqadi (ksilema). Kambiy — bo‘linuvchi qatlam, poyani yo‘g‘onlashtiradi.",
+      "misol": "Kambiy — o‘sish zonasi.",
+      "savol": "Poyani yo‘g‘onlashtiruvchi qatlam?",
+      "javob": "kambiy",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yillik halqalar",
+      "matn": "Kesilgan daraxt tanasida yillik halqalar ko‘rinadi. Kambiy bahorda keng, och rangli, yozda tor, to‘q rangli yog‘och hosil qiladi, shu tufayli har yili bitta halqa paydo bo‘ladi. Halqalarni sanab yoshni bilish mumkin: 48 halqa bo‘lsa, daraxt 48 yoshda, 2026 minus 48 — 1978-yilda ko‘kargan. Halqa qalinligi iqlim va suvga bog‘liq.",
+      "misol": "Halqalar daraxt yilnomasi.",
+      "savol": "Bitta halqa qancha vaqt hosil bo‘ladi?",
+      "javob": "bir yil",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Poyaning hisob-kitobi",
+      "matn": "Misol uchun, daraxt har yili o‘rtacha 2 millimetr qalinlashsa, 30 yilda 2 · 30 — 60 millimetr, ya’ni 6 santimetr qo‘shiladi. Bu taxminiy qiymat, turga va sharoitga qarab farq qiladi. Qurg‘oqchil yilda halqa tor, yomg‘irli yilda keng bo‘ladi.",
+      "misol": "Halqa ob-havo haqida ham aytadi.",
+      "savol": "Qurg‘oqchil yilda halqa qanday?",
+      "javob": "tor",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘zgargan poyalar",
+      "matn": "Poya ba’zan o‘zgaradi. Kartoshka tuganagi — yer osti poyasi, zaxira kraxmal to‘playdi. Piyozbosh — qisqargan poya va etdor barglar. Ildizpoya (masalan, qamish, achchiqmiya) yer ostida o‘sib ko‘payadi. Mo‘ylov (uzum, no‘xat) — chirmashish uchun. Kartoshka ildiz emas, poya ekanini ko‘zchalardan bilamiz.",
+      "misol": "Kartoshka — yer osti poyasi.",
+      "savol": "Kartoshka tuganagi nima?",
+      "javob": "o‘zgargan poya",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Poya: tayanch va o‘tkazish. Daraxt: po‘stloq, kambiy, yog‘och, o‘zak. Bir halqa — bir yil.",
+    "misollar": [
+     {
+      "shart": "Daraxt kesimida 48 halqa bor. Yoshi? Qaysi yilda ko‘kargan (2026 minus 48)?",
+      "yechim": [
+       "Har halqa bir yil.",
+       "2026 minus 48.",
+       "Javob 1978."
+      ],
+      "javob": "1978"
+     },
+     {
+      "shart": "Daraxt yiliga 2 millimetr qalinlashadi. 30 yilda?",
+      "yechim": [
+       "2 · 30.",
+       "Hisoblang.",
+       "Javob 60 millimetr."
+      ],
+      "javob": "60 millimetr"
+     },
+     {
+      "shart": "60 millimetr necha santimetr (10 millimetr — 1 santimetr)?",
+      "yechim": [
+       "60 / 10.",
+       "Hisoblang.",
+       "Javob 6 santimetr."
+      ],
+      "javob": "6 santimetr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Halqalarni sanash",
+      "topshiriq": "Kesilgan shox rasmida halqalarni sanang.",
+      "yechim": "Yoshi.",
+      "mahsulot": "rasm yoki kesim"
+     },
+     {
+      "nom": "Poya kesimi",
+      "topshiriq": "Poya tuzilishini chizing.",
+      "yechim": "Po‘stloq, kambiy, yog‘och.",
+      "mahsulot": "qog‘oz, qalam"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Yosh va qalinlik.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Kartoshka kuzatuvi",
+      "topshiriq": "Kartoshkada ko‘zchalarni kuzating.",
+      "yechim": "Poya belgisi.",
+      "mahsulot": "kartoshka"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2026 minus 48 nechaga teng?",
+      "javob": "1978"
+     },
+     {
+      "shart": "2 · 30 nechaga teng?",
+      "javob": "60"
+     },
+     {
+      "shart": "60 / 10 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "Bitta halqa necha yil?",
+      "javob": "1"
+     },
+     {
+      "shart": "Yo‘g‘onlashtiruvchi qatlam?",
+      "javob": "kambiy"
+     },
+     {
+      "shart": "Kartoshka qaysi organ?",
+      "javob": "poya"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Kartoshka ildiz deydi",
+      "sabab": "poya",
+      "oldini_olish": "ko‘zchalari bor"
+     },
+     {
+      "xato": "Halqa bir oyda hosil bo‘ladi deydi",
+      "sabab": "bir yilda",
+      "oldini_olish": "yillik halqa"
+     },
+     {
+      "xato": "Poya faqat tayanch deydi",
+      "sabab": "o‘tkazadi ham",
+      "oldini_olish": "ksilema va floema"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "daraxt yilnomasi"
+     },
+     {
+      "fan": "Iqlimshunoslik",
+      "boglanish": "qurg‘oqchilik"
+     },
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "kartoshka"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Daraxt yilnomasi»",
+     "muammo": "Poya qanday tuzilgan va halqalar nima deydi?",
+     "mahsulot": "sxema va hisob",
+     "bosqichlar": [
+      "poya kesimi",
+      "halqalarni sanash",
+      "hisoblash",
+      "o‘zgargan poyalar",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kesimni chizing",
+      "Halqalarni sanang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Daraxt ichida»",
+     "bekatlar": [
+      {
+       "nom": "1-qatlam",
+       "matn": "48 halqa.",
+       "topshiriq": "Qaysi yil ko‘kargan?",
+       "javob": "1978",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qatlam",
+       "matn": "2 millimetr, 30 yil.",
+       "topshiriq": "Millimetr?",
+       "javob": "60",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qatlam",
+       "matn": "60 millimetr.",
+       "topshiriq": "Santimetr?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qatlam",
+       "matn": "Bir halqa.",
+       "topshiriq": "Necha yil?",
+       "javob": "1",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Po‘stloq",
+      "tarif": "poyaning tashqi qatlami"
+     },
+     {
+      "atama": "Kambiy",
+      "tarif": "bo‘linuvchi qatlam"
+     },
+     {
+      "atama": "Yog‘och",
+      "tarif": "ksilemali qatlam"
+     },
+     {
+      "atama": "O‘zak",
+      "tarif": "poya markazi"
+     },
+     {
+      "atama": "Yillik halqa",
+      "tarif": "bir yillik o‘sish izi"
+     },
+     {
+      "atama": "Tuganak",
+      "tarif": "o‘zgargan yer osti poya"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Poya suv va moddalarni o‘tkazadi",
+      "togri": true,
+      "izoh": "tayanch ham"
+     },
+     {
+      "matn": "Kambiy poyani yo‘g‘onlashtiradi",
+      "togri": true,
+      "izoh": "bo‘linadi"
+     },
+     {
+      "matn": "Bitta halqa bir oyda hosil bo‘ladi",
+      "togri": false,
+      "izoh": "bir yilda"
+     },
+     {
+      "matn": "Kartoshka tuganagi poya",
+      "togri": true,
+      "izoh": "o‘zgargan"
+     },
+     {
+      "matn": "2 · 30 — 60",
+      "togri": true,
+      "izoh": "millimetr"
+     },
+     {
+      "matn": "Qurg‘oqchil yilda halqa tor",
+      "togri": true,
+      "izoh": "o‘sish sekin"
+     },
+     {
+      "matn": "Kartoshka ildiz",
+      "togri": false,
+      "izoh": "poya"
+     },
+     {
+      "matn": "2026 minus 48 — 1978",
+      "togri": true,
+      "izoh": "yil"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Poya?",
+      "javob": "o‘q organ"
+     },
+     {
+      "savol": "Kambiy?",
+      "javob": "yo‘g‘onlashtiradi"
+     },
+     {
+      "savol": "Lub?",
+      "javob": "organik modda o‘tkazadi"
+     },
+     {
+      "savol": "Yog‘och?",
+      "javob": "suv o‘tkazadi"
+     },
+     {
+      "savol": "Halqa?",
+      "javob": "bir yil"
+     },
+     {
+      "savol": "Kartoshka?",
+      "javob": "yer osti poya"
+     },
+     {
+      "savol": "Piyozbosh?",
+      "javob": "o‘zgargan poya"
+     },
+     {
+      "savol": "2 · 30?",
+      "javob": "60"
+     },
+     {
+      "savol": "60 / 10?",
+      "javob": "6"
+     },
+     {
+      "savol": "Mo‘ylov?",
+      "javob": "chirmashish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Halqalarni kuzat.",
+      "savol": "Qalin yoki ingichka?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yoshni top.",
+      "savol": "Halqa soni?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Tik va chirmashuvchi.",
+      "savol": "Qanday ushlaydi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Poya ahamiyati?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun yillik halqalar daraxtning yoshini va ob-havoni ko‘rsatadi?",
+    "keys": {
+     "vaziyat": "Kesilgan daraxtda bir yili halqa juda tor ekan.",
+     "savollar": [
+      "O‘sha yil qanday bo‘lgan?",
+      "Kambiy qanday ishlagan?"
+     ]
+    },
+    "tezis": "Poya — o‘simlik yilnomasi",
+    "taqqoslash": {
+     "a": "Po‘stloq",
+     "b": "Yog‘och",
+     "umumiy": [
+      "poya qatlami",
+      "o‘tkazadi"
+     ],
+     "a_farq": [
+      "tashqi",
+      "lub organik modda"
+     ],
+     "b_farq": [
+      "ichki",
+      "suv va tuz"
+     ]
+    },
+    "klaster": {
+     "markaz": "Poya",
+     "shoxlar": [
+      {
+       "nom": "Vazifa",
+       "bandlar": [
+        "tayanch",
+        "o‘tkazish"
+       ]
+      },
+      {
+       "nom": "Qatlam",
+       "bandlar": [
+        "po‘stloq",
+        "kambiy",
+        "yog‘och",
+        "o‘zak"
+       ]
+      },
+      {
+       "nom": "Halqa",
+       "bandlar": [
+        "yillik",
+        "yosh"
+       ]
+      },
+      {
+       "nom": "O‘zgarish",
+       "bandlar": [
+        "tuganak",
+        "piyozbosh",
+        "ildizpoya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men barg va gulni ko‘tarib turaman, yillik halqalarim yoshimni aytadi. Men kimman?",
+     "javob": "poya"
+    },
+    "hikmat": "Poya — o‘simlik o‘qi.",
+    "kalit_soz": "POYA",
+    "xato_yechim": {
+     "shart": "Kartoshka tuganagi qaysi organ?",
+     "xato": "ildiz",
+     "togri": "poya",
+     "sabab": "ko‘zchalari bor"
+    },
+    "guruh_nomlari": [
+     "Poyachilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Daraxt yilnomasi»",
+     "topshiriq": "Guruh halqalarni sanaydi."
+    },
+    "vazifalar": {
+     "A": "48 halqali daraxt qaysi yil ko‘kargan?",
+     "B": "30 yilda qalinlik millimetr?",
+     "C": "60 millimetr necha santimetr?"
+    },
+    "sinkveyn": [
+     "Poya",
+     "tik, kuchli",
+     "tutadi, o‘tkazadi, o‘sadi",
+     "Daraxt tanasi",
+     "Halqa"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh poyani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: vazifa",
+      "2-guruh: tuzilish",
+      "3-guruh: halqalar",
+      "4-guruh: o‘zgargan poya"
+     ],
+     "yakun": "Natijalar: 1978; 60 millimetr; 6 santimetr."
+    }
+   }
+  }
+ ]
+}
