@@ -31717,6 +31717,464 @@
      "yakun": "Natijalar: 700; 300; 1200; tekshirdik."
     }
    }
+  },
+  {
+   "mavzu": "Masshtab",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Masshtab nima?",
+      "matn": "Haqiqiy narsani qog‘ozda kichraytirib chizamiz. Masshtab chizmadagi o‘lcham haqiqiy o‘lchamdan necha marta kichik ekanini ko‘rsatadi.",
+      "misol": "Xaritada 1 sm — haqiqatda 5 km.",
+      "savol": "Masshtab nimani ko‘rsatadi?",
+      "javob": "kichraytirish darajasini",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xaritada va haqiqatda",
+      "matn": "Masshtab 1 sm — 5 km bo‘lsa, xaritadagi 4 sm haqiqatda 4 · 5 — 20 km.",
+      "misol": "4 · 5 — 20.",
+      "savol": "4 · 5 nechaga teng?",
+      "javob": "20",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Teskari hisob",
+      "matn": "Haqiqiy masofani xaritaga o‘tkazish uchun masshtabga bo‘lamiz. 60 km — 60 / 5 — 12 sm.",
+      "misol": "60 / 5 — 12.",
+      "savol": "60 / 5 nechaga teng?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xona rejasi",
+      "matn": "Masshtab 1 sm — 50 sm bo‘lsa, uzunligi 4 m xona rejada 400 / 50 — 8 sm bo‘ladi.",
+      "misol": "4 m — 400 sm. 400 / 50 — 8.",
+      "savol": "400 / 50 nechaga teng?",
+      "javob": "8",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Rejadan haqiqiyga",
+      "matn": "Rejadagi 3 sm haqiqatda 3 · 50 — 150 sm, ya’ni 1 m 50 sm.",
+      "misol": "3 · 50 — 150.",
+      "savol": "3 · 50 nechaga teng?",
+      "javob": "150",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Xaritadan haqiqatga — masshtabga ko‘paytir. Haqiqatdan xaritaga — masshtabga bo‘l. Birliklarni bir xil qil.",
+    "misollar": [
+     {
+      "shart": "Masshtab 1 sm — 5 km. Xaritada 4 sm. Haqiqiy masofa?",
+      "yechim": [
+       "Masshtabga ko‘paytiramiz.",
+       "4 · 5.",
+       "Javob 20 km."
+      ],
+      "javob": "20 km"
+     },
+     {
+      "shart": "Haqiqiy masofa 60 km. Xaritada necha sm?",
+      "yechim": [
+       "Masshtabga bo‘lamiz.",
+       "60 / 5.",
+       "Javob 12 sm."
+      ],
+      "javob": "12 sm"
+     },
+     {
+      "shart": "Masshtab 1 sm — 50 sm. Uzunligi 4 m xona rejada necha sm?",
+      "yechim": [
+       "4 m — 400 sm.",
+       "400 / 50.",
+       "Javob 8 sm."
+      ],
+      "javob": "8 sm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sinf rejasi",
+      "topshiriq": "Sinfingizni masshtabda chizing.",
+      "yechim": "O‘lchovlarni masshtabga bo‘ling.",
+      "mahsulot": "chizg‘ich va qog‘oz"
+     },
+     {
+      "nom": "Xaritada masofa",
+      "topshiriq": "Xaritada ikki shahar orasini o‘lchab, haqiqiy masofani toping.",
+      "yechim": "Masshtabga ko‘paytiring.",
+      "mahsulot": "xarita"
+     },
+     {
+      "nom": "Masala tuzamiz",
+      "topshiriq": "Masshtabga masala tuzing.",
+      "yechim": "Boshqa guruh yechadi.",
+      "mahsulot": "masala varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Teskari hisob bilan tekshiring.",
+      "yechim": "20 / 5 — 4.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "4 · 5 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "60 / 5 nechaga teng?",
+      "javob": "12"
+     },
+     {
+      "shart": "400 / 50 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "3 · 50 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "20 / 5 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "4 m necha sm?",
+      "javob": "400"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Birliklarni aralashtiradi",
+      "sabab": "m va sm ni adashtiradi",
+      "oldini_olish": "avval birlikni tenglash"
+     },
+     {
+      "xato": "Ko‘paytirish o‘rniga bo‘ladi",
+      "sabab": "yo‘nalishni adashtiradi",
+      "oldini_olish": "xaritadan haqiqatga — ko‘paytirish"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "teskari amal"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "xarita masshtabi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "chizma va maket"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "kichraytirib chizish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening xaritam»",
+     "muammo": "Mahallamiz xaritasini masshtabda qanday chizamiz?",
+     "mahsulot": "mahalla xaritasi",
+     "bosqichlar": [
+      "o‘lchash",
+      "masshtab tanlash",
+      "xarita chizish",
+      "masofalarni hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "O‘lchang",
+      "Masshtab tanlang",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "masshtab to‘g‘ri",
+      "xarita chiroyli",
+      "hisob to‘g‘ri",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Xarita o‘lkasi»",
+     "bekatlar": [
+      {
+       "nom": "1-yo‘l",
+       "matn": "1 sm — 5 km, 4 sm.",
+       "topshiriq": "Masofa?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "2-yo‘l",
+       "matn": "60 km, 1 sm — 5 km.",
+       "topshiriq": "Necha sm?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "3-yo‘l",
+       "matn": "4 m xona, 1 sm — 50 sm.",
+       "topshiriq": "Necha sm?",
+       "javob": "8",
+       "rasm": ""
+      },
+      {
+       "nom": "4-yo‘l",
+       "matn": "3 sm, 1 sm — 50 sm.",
+       "topshiriq": "Haqiqiy sm?",
+       "javob": "150",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Birliklar bir xilmi?",
+      "Ko‘paytirdingizmi yoki bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Masshtab",
+      "tarif": "kichraytirish darajasi"
+     },
+     {
+      "atama": "Xarita",
+      "tarif": "yerning kichraytirilgan rasmi"
+     },
+     {
+      "atama": "Reja",
+      "tarif": "xona yoki joy chizmasi"
+     },
+     {
+      "atama": "Haqiqiy o‘lcham",
+      "tarif": "tabiatdagi o‘lcham"
+     },
+     {
+      "atama": "Chizma",
+      "tarif": "o‘lchamli rasm"
+     },
+     {
+      "atama": "Birlik",
+      "tarif": "o‘lchov belgisi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Masshtab kichraytirish darajasini ko‘rsatadi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Xaritadan haqiqatga bo‘lamiz",
+      "togri": false,
+      "izoh": "ko‘paytiramiz"
+     },
+     {
+      "matn": "4 · 5 — 20",
+      "togri": true,
+      "izoh": "masofa"
+     },
+     {
+      "matn": "60 / 5 — 12",
+      "togri": true,
+      "izoh": "xaritada"
+     },
+     {
+      "matn": "4 m — 40 sm",
+      "togri": false,
+      "izoh": "400 sm"
+     },
+     {
+      "matn": "400 / 50 — 8",
+      "togri": true,
+      "izoh": "reja"
+     },
+     {
+      "matn": "3 · 50 — 150",
+      "togri": true,
+      "izoh": "haqiqiy"
+     },
+     {
+      "matn": "Birlikni tenglash shart emas",
+      "togri": false,
+      "izoh": "kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Masshtab nima?",
+      "javob": "kichraytirish darajasi"
+     },
+     {
+      "savol": "Xaritadan haqiqatga?",
+      "javob": "ko‘paytiramiz"
+     },
+     {
+      "savol": "Haqiqatdan xaritaga?",
+      "javob": "bo‘lamiz"
+     },
+     {
+      "savol": "4 · 5?",
+      "javob": "20"
+     },
+     {
+      "savol": "60 / 5?",
+      "javob": "12"
+     },
+     {
+      "savol": "400 / 50?",
+      "javob": "8"
+     },
+     {
+      "savol": "3 · 50?",
+      "javob": "150"
+     },
+     {
+      "savol": "4 m necha sm?",
+      "javob": "400"
+     },
+     {
+      "savol": "Birlik bir xilmi?",
+      "javob": "ha, tenglash kerak"
+     },
+     {
+      "savol": "Qanday tekshiramiz?",
+      "javob": "teskari amal bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘lcha",
+      "matn": "Chizmada o‘lcha.",
+      "savol": "Necha sm?"
+     },
+     {
+      "nom": "Birlik",
+      "matn": "Birlikni tenglash.",
+      "savol": "m va sm?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Ko‘paytir yoki bo‘l.",
+      "savol": "4 · 5?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari amal.",
+      "savol": "20 / 5?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun kattaning rasmini masshtabda kichraytirib chizamiz?",
+    "keys": {
+     "vaziyat": "Xaritada ikki shahar orasi 4 sm, masshtab 1 sm — 5 km.",
+     "savollar": [
+      "Haqiqiy masofa qancha?",
+      "Qaysi amalni bajaramiz?"
+     ]
+    },
+    "tezis": "Kichrayt, o‘lcha, hisobla",
+    "taqqoslash": {
+     "a": "Xaritadan haqiqatga",
+     "b": "Haqiqatdan xaritaga",
+     "umumiy": [
+      "masshtab ishlatiladi",
+      "birlik tenglanadi"
+     ],
+     "a_farq": [
+      "ko‘paytiramiz",
+      "4 · 5"
+     ],
+     "b_farq": [
+      "bo‘lamiz",
+      "60 / 5"
+     ]
+    },
+    "klaster": {
+     "markaz": "Masshtab",
+     "shoxlar": [
+      {
+       "nom": "Ma’no",
+       "bandlar": [
+        "kichraytirish darajasi"
+       ]
+      },
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "xaritadan haqiqatga"
+       ]
+      },
+      {
+       "nom": "Bo‘lish",
+       "bandlar": [
+        "haqiqatdan xaritaga"
+       ]
+      },
+      {
+       "nom": "Birlik",
+       "bandlar": [
+        "bir xil qilish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men kattani qog‘ozga sig‘dirishga yordam beraman. Men kimman?",
+     "javob": "masshtab"
+    },
+    "hikmat": "Masshtab — katta dunyo kichik qog‘ozda.",
+    "kalit_soz": "MASSHTAB",
+    "xato_yechim": {
+     "shart": "1 sm — 5 km, xaritada 4 sm. Haqiqiy masofa?",
+     "xato": "4 / 5",
+     "togri": "20 km",
+     "sabab": "xaritadan haqiqatga ko‘paytiramiz"
+    },
+    "guruh_nomlari": [
+     "Masshtabchilar",
+     "Xaritachilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Xarita o‘lkasi»",
+     "topshiriq": "Guruh masshtab masalalarini yechadi."
+    },
+    "vazifalar": {
+     "A": "1 sm — 5 km. Xaritada 4 sm bo‘lsa, haqiqiy masofa?",
+     "B": "60 km xaritada necha sm?",
+     "C": "4 m xonani 1 sm — 50 sm masshtabda chizing."
+    },
+    "sinkveyn": [
+     "Masshtab",
+     "kichik, aniq",
+     "kichraytiradi, o‘lchaydi, hisoblaydi",
+     "Katta — kichik rasmda",
+     "Xarita"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh masshtab masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: xaritadan haqiqatga",
+      "2-guruh: haqiqatdan xaritaga",
+      "3-guruh: xona rejasi",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 20 km; 12 sm; 8 sm; tekshirdik."
+    }
+   }
   }
  ]
 }
