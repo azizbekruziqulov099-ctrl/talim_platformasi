@@ -1,0 +1,1404 @@
+{
+ "daraja": "maktab",
+ "sinf": "8",
+ "fan": "Geografiya",
+ "muallif": "qo‘lda yozilgan, faktlar tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Aholi va mehnat resurslari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "O‘zbekiston aholisi",
+      "matn": "O‘zbekiston Markaziy Osiyoda eng ko‘p aholili davlat: aholisi taxminan 37 million kishi. Aholi tez o‘sib bormoqda, chunki tug‘ilish o‘limdan ancha ko‘p. Aholi yoshi bo‘yicha yosh: bolalar va yoshlar ko‘pchilikni tashkil qiladi. Bu mamlakat uchun katta imkoniyat, lekin ish o‘rinlari va maktablar ko‘p bo‘lishini ham talab qiladi.",
+      "misol": "Aholi — mamlakatning eng katta boyligi.",
+      "savol": "O‘zbekiston aholisi taxminan qancha?",
+      "javob": "taxminan 37 million",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aholi zichligi va joylashuvi",
+      "matn": "Aholi zichligi — 1 kvadrat kilometrga to‘g‘ri keladigan kishi soni. Uni aholi sonini maydonga bo‘lib topamiz. O‘zbekiston bo‘yicha o‘rtacha zichlik taxminan 80 kishi, lekin aholi notekis joylashgan. Farg‘ona vodiysi, Toshkent va Zarafshon vohalarida zichlik juda yuqori, Qizilqum va Ustyurtda esa juda past, chunki suv kam.",
+      "misol": "Suv bor joyda aholi zich.",
+      "savol": "Aholi zichligi qanday topiladi?",
+      "javob": "aholi sonini maydonga bo‘lib",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tabiiy o‘sish",
+      "matn": "Tabiiy o‘sish — tug‘ilish va o‘lim farqi. Odatda 1000 kishiga hisoblanadi. Masalan, 1000 kishiga 24 tug‘ilish va 5 o‘lim to‘g‘ri kelsa, tabiiy o‘sish 24 minus 5 — 19 kishi. Bu ko‘rsatkich foizda: 19 / 1000 — 0,019, ya’ni 1,9 foiz. Aholi o‘sishiga migratsiya, ya’ni ko‘chib kelish va ketish ham ta’sir qiladi.",
+      "misol": "Tabiiy o‘sish — tug‘ilish minus o‘lim.",
+      "savol": "Tabiiy o‘sish nima?",
+      "javob": "tug‘ilish va o‘lim farqi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mehnat resurslari",
+      "matn": "Mehnat resurslari — mehnatga layoqatli yoshdagi aholi: ular ishlay oladi va xo‘jalikni yuritadi. Masalan, aholining 60 foizi mehnatga layoqatli bo‘lsa, 36 million aholidan 36 · 0,6 — 21,6 million kishi mehnat resursi (taxminiy misol). Mehnat resurslari sanoat, qishloq xo‘jaligi, xizmat ko‘rsatish va ta’limda band. Ish o‘rni yaratish davlat siyosatining muhim vazifasi.",
+      "misol": "Mehnat resursi — iqtisod kuchi.",
+      "savol": "Mehnat resurslari kimlar?",
+      "javob": "mehnatga layoqatli yoshdagi aholi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Millat va til",
+      "matn": "O‘zbekistonda 130 dan ortiq millat va elat vakillari yashaydi, ularning ko‘pchiligini o‘zbeklar tashkil qiladi. Davlat tili — o‘zbek tili. Qoraqalpog‘istonda qoraqalpoq tili ham davlat tili hisoblanadi. Millatlar do‘stligi va hurmati O‘zbekiston kuchining asosi.",
+      "misol": "Ko‘p millatli, bir yurt.",
+      "savol": "Davlat tili qaysi?",
+      "javob": "o‘zbek tili",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Aholi zichligi: son / maydon. Tabiiy o‘sish: tug‘ilish minus o‘lim. Mehnat resurslari: mehnatga layoqatli aholi.",
+    "misollar": [
+     {
+      "shart": "Masalan, viloyat aholisi 3 million, maydoni 30 ming kvadrat kilometr. Zichlik qancha?",
+      "yechim": [
+       "3 000 000 / 30 000.",
+       "Bo‘ling.",
+       "Javob 100 kishi."
+      ],
+      "javob": "100 kishi"
+     },
+     {
+      "shart": "Masalan, 1000 kishiga 24 tug‘ilish va 5 o‘lim to‘g‘ri keladi. Tabiiy o‘sish 1000 kishiga necha kishi?",
+      "yechim": [
+       "24 minus 5.",
+       "Ayiring.",
+       "Javob 19."
+      ],
+      "javob": "19"
+     },
+     {
+      "shart": "Masalan, 36 million aholining 60 foizi mehnatga layoqatli. Necha million?",
+      "yechim": [
+       "60 foiz — 0,6.",
+       "36 · 0,6.",
+       "Javob 21,6 million."
+      ],
+      "javob": "21,6 million"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Zichlik xaritasi",
+      "topshiriq": "Viloyatlar zichligini hisoblab, konturli xaritaga bo‘yang.",
+      "yechim": "Zich va siyrak hududlar.",
+      "mahsulot": "kontur xarita, qalam"
+     },
+     {
+      "nom": "Aholi piramidasi",
+      "topshiriq": "Yosh bo‘yicha aholi diagrammasini chizing.",
+      "yechim": "Yosh guruhlari.",
+      "mahsulot": "daftar, rangli qalam"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Bo‘lish va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Millatlar kartochkasi",
+      "topshiriq": "Bitta xalq madaniyati haqida kartochka tayyorlang.",
+      "yechim": "An’ana va til.",
+      "mahsulot": "karton"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 000 000 / 30 000 nechaga teng?",
+      "javob": "100"
+     },
+     {
+      "shart": "24 minus 5 nechaga teng?",
+      "javob": "19"
+     },
+     {
+      "shart": "36 · 0,6 nechaga teng?",
+      "javob": "21,6"
+     },
+     {
+      "shart": "19 / 1000 nechaga teng?",
+      "javob": "0,019"
+     },
+     {
+      "shart": "Aholi eng zich hudud?",
+      "javob": "Farg‘ona vodiysi"
+     },
+     {
+      "shart": "Davlat tili qaysi?",
+      "javob": "o‘zbek tili"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Aholi hamma joyda bir xil joylashgan deydi",
+      "sabab": "notekis joylashgan",
+      "oldini_olish": "suv va sharoit"
+     },
+     {
+      "xato": "Zichlik aholi sonining o‘zi deydi",
+      "sabab": "son bo‘lingan maydon",
+      "oldini_olish": "kvadrat kilometr"
+     },
+     {
+      "xato": "Mehnat resursi hamma aholi deydi",
+      "sabab": "layoqatli yoshdagilar",
+      "oldini_olish": "bolalar va qariyalar kirmaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Matematika",
+      "boglanish": "bo‘lish va foiz"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "xalqlar tarixi"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "ish o‘rinlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Aholi atlasi»",
+     "muammo": "O‘zbekiston aholisi qanday joylashgan?",
+     "mahsulot": "xarita-atlas",
+     "bosqichlar": [
+      "zichlik xaritasi",
+      "aholi piramidasi",
+      "millatlar",
+      "hisob",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Hisoblang",
+      "Chizing",
+      "Taqqoslang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "xarita aniq",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Aholi xaritasi bo‘ylab»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "3 million aholi, 30 ming kvadrat kilometr.",
+       "topshiriq": "Zichlik?",
+       "javob": "100",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1000 kishiga 24 tug‘ilish, 5 o‘lim.",
+       "topshiriq": "O‘sish?",
+       "javob": "19",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "36 million, 60 foiz.",
+       "topshiriq": "Million?",
+       "javob": "21,6",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Zich vodiy.",
+       "topshiriq": "Qaysi?",
+       "javob": "Farg‘ona",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Aholi zichligi",
+      "tarif": "kvadrat kilometrdagi kishi soni"
+     },
+     {
+      "atama": "Tabiiy o‘sish",
+      "tarif": "tug‘ilish va o‘lim farqi"
+     },
+     {
+      "atama": "Migratsiya",
+      "tarif": "aholining ko‘chishi"
+     },
+     {
+      "atama": "Mehnat resurslari",
+      "tarif": "mehnatga layoqatli aholi"
+     },
+     {
+      "atama": "Demografiya",
+      "tarif": "aholi haqidagi fan"
+     },
+     {
+      "atama": "Voha",
+      "tarif": "suvli yashash hududi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Aholi zichligi son bo‘lingan maydon",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Qizilqumda zichlik yuqori",
+      "togri": false,
+      "izoh": "suv kam"
+     },
+     {
+      "matn": "24 minus 5 — 19",
+      "togri": true,
+      "izoh": "tabiiy o‘sish"
+     },
+     {
+      "matn": "Mehnat resursi hamma aholi",
+      "togri": false,
+      "izoh": "layoqatli yosh"
+     },
+     {
+      "matn": "Farg‘ona vodiysi zich joylashgan",
+      "togri": true,
+      "izoh": "suv va yer"
+     },
+     {
+      "matn": "36 · 0,6 — 21,6",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "O‘zbekiston bir millatli",
+      "togri": false,
+      "izoh": "130 dan ortiq millat"
+     },
+     {
+      "matn": "Davlat tili o‘zbek tili",
+      "togri": true,
+      "izoh": "qonun"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Zichlik?",
+      "javob": "son / maydon"
+     },
+     {
+      "savol": "Tabiiy o‘sish?",
+      "javob": "tug‘ilish minus o‘lim"
+     },
+     {
+      "savol": "Migratsiya?",
+      "javob": "ko‘chish"
+     },
+     {
+      "savol": "Mehnat resurslari?",
+      "javob": "layoqatli aholi"
+     },
+     {
+      "savol": "Zich hudud?",
+      "javob": "Farg‘ona vodiysi"
+     },
+     {
+      "savol": "Siyrak hudud?",
+      "javob": "Qizilqum"
+     },
+     {
+      "savol": "3 000 000 / 30 000?",
+      "javob": "100"
+     },
+     {
+      "savol": "24 minus 5?",
+      "javob": "19"
+     },
+     {
+      "savol": "36 · 0,6?",
+      "javob": "21,6"
+     },
+     {
+      "savol": "Davlat tili?",
+      "javob": "o‘zbek tili"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Xaritada zichlikni kuzat.",
+      "savol": "Qayerda zich?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Zichlikni top.",
+      "savol": "Son / maydon?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Vodiy va cho‘l.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Sabab?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun aholi O‘zbekistonda notekis joylashgan?",
+    "keys": {
+     "vaziyat": "Yangi cho‘l hududiga ko‘chib borgan oilalar ish va suv topa olmayapti.",
+     "savollar": [
+      "Nima yetishmaydi?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Aholi — mamlakat boyligi",
+    "taqqoslash": {
+     "a": "Zich hudud",
+     "b": "Siyrak hudud",
+     "umumiy": [
+      "O‘zbekiston hududi",
+      "inson yashaydi"
+     ],
+     "a_farq": [
+      "suv ko‘p",
+      "shahar va qishloq ko‘p"
+     ],
+     "b_farq": [
+      "suv kam",
+      "aholi kam"
+     ]
+    },
+    "klaster": {
+     "markaz": "Aholi va mehnat resurslari",
+     "shoxlar": [
+      {
+       "nom": "Aholi soni",
+       "bandlar": [
+        "o‘sish",
+        "yosh tarkibi"
+       ]
+      },
+      {
+       "nom": "Joylashuv",
+       "bandlar": [
+        "zichlik",
+        "vohalar",
+        "cho‘llar"
+       ]
+      },
+      {
+       "nom": "Mehnat",
+       "bandlar": [
+        "layoqatli yosh",
+        "ish o‘rinlari"
+       ]
+      },
+      {
+       "nom": "Millatlar",
+       "bandlar": [
+        "o‘zbek tili",
+        "do‘stlik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men kvadrat kilometrdagi kishilar sonini ko‘rsataman. Men nimaman?",
+     "javob": "aholi zichligi"
+    },
+    "hikmat": "Aholi — davlat kuchi.",
+    "kalit_soz": "AHOLI",
+    "xato_yechim": {
+     "shart": "Aholi zichligi qanday topiladi?",
+     "xato": "maydonni songa bo‘lib",
+     "togri": "sonni maydonga bo‘lib",
+     "sabab": "kvadrat kilometrga kishi"
+    },
+    "guruh_nomlari": [
+     "Demograflar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Aholi atlasi»",
+     "topshiriq": "Guruh zichlik xaritasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "3 million va 30 ming kvadrat kilometr?",
+     "B": "24 tug‘ilish va 5 o‘lim?",
+     "C": "36 million va 60 foiz?"
+    },
+    "sinkveyn": [
+     "Aholi",
+     "ko‘p, yosh",
+     "o‘sadi, ishlaydi, yashaydi",
+     "Davlat boyligi",
+     "Zichlik"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh aholini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: soni",
+      "2-guruh: joylashuvi",
+      "3-guruh: mehnat resurslari",
+      "4-guruh: millatlar"
+     ],
+     "yakun": "Natijalar: 100; 19; 21,6."
+    }
+   }
+  },
+  {
+   "mavzu": "Shahar va qishloqlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Shahar va qishloq farqi",
+      "matn": "Shaharlar sanoat, savdo, ta’lim va madaniyat markazlari. Qishloqlarda asosan qishloq xo‘jaligi bilan shug‘ullanishadi. Shahar aholisi ulushiga urbanizatsiya deyiladi. O‘zbekistonda shahar va qishloq aholisi taxminan teng, shahar aholisi ulushi taxminan yarmini tashkil qiladi.",
+      "misol": "Shahar — markaz, qishloq — oziq manbai.",
+      "savol": "Urbanizatsiya nima?",
+      "javob": "shaharlar ulushi va ahamiyatining ortishi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ma’muriy bo‘linish",
+      "matn": "O‘zbekiston 12 viloyat, Qoraqalpog‘iston Respublikasi va Toshkent shahridan iborat. Poytaxt — Toshkent, aholisi taxminan 3 million, u Markaziy Osiyoning eng yirik shaharlaridan biri. Boshqa yirik shaharlar: Samarqand, Namangan, Andijon, Buxoro, Farg‘ona, Qarshi, Nukus. Viloyatlar tumanlarga, tumanlar shahar va qishloqlarga bo‘linadi.",
+      "misol": "12 viloyat, 1 respublika, 1 poytaxt.",
+      "savol": "Poytaxt qaysi shahar?",
+      "javob": "Toshkent",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qadimiy va yangi shaharlar",
+      "matn": "Samarqand, Buxoro va Xiva ming yillik tarixga ega shaharlar, ular Buyuk ipak yo‘lida joylashgan. Samarqand taxminan 2750 yillik shahar deb hisoblanadi. Yangi shaharlar, masalan Navoiy, Olmaliq, Angren, Bekobod, sanoat rivojlanishi bilan o‘sdi. Zamonaviy shaharlar yangi, ko‘kalamzor va qulay bo‘lib rivojlanmoqda.",
+      "misol": "Tarix va zamon bir shaharda.",
+      "savol": "Qaysi shaharlar Ipak yo‘lida?",
+      "javob": "Samarqand, Buxoro, Xiva",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 37 million aholining 51 foizi shaharda yashasa, shahar aholisi 37 · 0,51 — 18,87 million, taxminan 18,9 million (taxminiy misol). Masalan, viloyatda 2 million aholidan 800 ming kishi shaharda yashasa, shahar ulushi 800 000 / 2 000 000 — 0,4, ya’ni 40 foiz. Masalan, 12 viloyat, 1 respublika va 1 shahar — jami 12 plyus 1 plyus 1 — 14 ma’muriy birlik.",
+      "misol": "Ulush — qism bo‘lingan butun.",
+      "savol": "Masalan, 2 million aholidan 800 ming shaharda. Shahar ulushi?",
+      "javob": "0,4 yoki 40 foiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qishloqlar va hayot",
+      "matn": "Qishloq aholisi paxta, g‘alla, sabzavot, meva va chorvachilik bilan shug‘ullanadi. Qishloqlarda mahalla, fermer xo‘jaligi va tomorqa muhim. Hozir qishloqlarda yo‘l, suv, internet va ta’lim yaxshilanmoqda. Shahar va qishloq o‘zaro bog‘liq: qishloq oziq beradi, shahar mahsulot va xizmat beradi.",
+      "misol": "Shahar va qishloq birgalikda kuchli.",
+      "savol": "Qishloq nima beradi?",
+      "javob": "oziq-ovqat va xomashyo",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Urbanizatsiya: shahar ulushi ortishi. 12 viloyat, Qoraqalpog‘iston, Toshkent shahri. Samarqand, Buxoro, Xiva — Ipak yo‘li.",
+    "misollar": [
+     {
+      "shart": "Masalan, 37 million aholining 51 foizi shaharda. Shahar aholisi taxminan necha million?",
+      "yechim": [
+       "51 foiz — 0,51.",
+       "37 · 0,51.",
+       "Javob taxminan 18,9 million."
+      ],
+      "javob": "taxminan 18,9 million"
+     },
+     {
+      "shart": "Masalan, 2 million aholidan 800 ming shaharda. Shahar ulushi necha foiz?",
+      "yechim": [
+       "800 000 / 2 000 000.",
+       "Bo‘ling.",
+       "Javob 40 foiz."
+      ],
+      "javob": "40 foiz"
+     },
+     {
+      "shart": "Masalan, 12 viloyat, 1 respublika va 1 shahar. Jami ma’muriy birlik?",
+      "yechim": [
+       "12 plyus 1.",
+       "Yana 1 plyus.",
+       "Javob 14."
+      ],
+      "javob": "14"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ma’muriy xarita",
+      "topshiriq": "Konturli xaritada viloyat markazlarini belgilang.",
+      "yechim": "12 viloyat va markazlar.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Shahar pasporti",
+      "topshiriq": "Bitta shahar haqida pasport tayyorlang.",
+      "yechim": "Tarix va sanoat.",
+      "mahsulot": "karton, qalam"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va qo‘shish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Shahar va qishloq",
+      "topshiriq": "Ikki turni taqqoslang.",
+      "yechim": "Farq va aloqa.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "37 · 0,51 taxminan nechaga teng?",
+      "javob": "18,9"
+     },
+     {
+      "shart": "800 000 / 2 000 000 nechaga teng?",
+      "javob": "0,4"
+     },
+     {
+      "shart": "12 plyus 1 plyus 1 nechaga teng?",
+      "javob": "14"
+     },
+     {
+      "shart": "40 foiz nechaga teng (o‘nli kasr)?",
+      "javob": "0,4"
+     },
+     {
+      "shart": "Poytaxt qaysi?",
+      "javob": "Toshkent"
+     },
+     {
+      "shart": "Ipak yo‘lidagi shaharlardan biri?",
+      "javob": "Samarqand"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Hamma aholi shaharda deydi",
+      "sabab": "taxminan yarmi shaharda",
+      "oldini_olish": "qolgani qishloqda"
+     },
+     {
+      "xato": "Qishloqlar kerak emas deydi",
+      "sabab": "oziq-ovqat qishloqdan",
+      "oldini_olish": "xomashyo"
+     },
+     {
+      "xato": "Poytaxt Samarqand deydi",
+      "sabab": "poytaxt Toshkent",
+      "oldini_olish": "Samarqand tarixiy shahar"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Buyuk ipak yo‘li"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ulush va foiz"
+     },
+     {
+      "fan": "Iqtisodiyot",
+      "boglanish": "sanoat markazlari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening shahrim»",
+     "muammo": "Shahar va qishloq qanday rivojlanmoqda?",
+     "mahsulot": "shahar pasporti",
+     "bosqichlar": [
+      "xarita",
+      "shahar pasporti",
+      "qishloq hayoti",
+      "hisob",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Izlang",
+      "Hisoblang",
+      "Chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "axborot aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Shaharlar bo‘ylab»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "37 million, 51 foiz shaharda.",
+       "topshiriq": "Million?",
+       "javob": "18,9",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "2 million, 800 ming shaharda.",
+       "topshiriq": "Ulush?",
+       "javob": "0,4",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "12 viloyat, 1 respublika, 1 shahar.",
+       "topshiriq": "Jami?",
+       "javob": "14",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Poytaxt.",
+       "topshiriq": "Qaysi?",
+       "javob": "Toshkent",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Foizni hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Urbanizatsiya",
+      "tarif": "shaharlar ulushi ortishi"
+     },
+     {
+      "atama": "Poytaxt",
+      "tarif": "davlat bosh shahri"
+     },
+     {
+      "atama": "Viloyat",
+      "tarif": "yirik ma’muriy birlik"
+     },
+     {
+      "atama": "Tuman",
+      "tarif": "viloyat qismi"
+     },
+     {
+      "atama": "Mahalla",
+      "tarif": "qo‘shni oilalar jamoasi"
+     },
+     {
+      "atama": "Agglomeratsiya",
+      "tarif": "bir-biriga bog‘liq shaharlar guruhi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "O‘zbekistonda 12 viloyat bor",
+      "togri": true,
+      "izoh": "va Qoraqalpog‘iston"
+     },
+     {
+      "matn": "Poytaxt Buxoro",
+      "togri": false,
+      "izoh": "Toshkent"
+     },
+     {
+      "matn": "37 · 0,51 — taxminan 18,9",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Samarqand Ipak yo‘lida joylashgan",
+      "togri": true,
+      "izoh": "tarixiy"
+     },
+     {
+      "matn": "Qishloq oziq-ovqat beradi",
+      "togri": true,
+      "izoh": "qishloq xo‘jaligi"
+     },
+     {
+      "matn": "Hamma aholi qishloqda yashaydi",
+      "togri": false,
+      "izoh": "taxminan yarmi shaharda"
+     },
+     {
+      "matn": "12 plyus 1 plyus 1 — 14",
+      "togri": true,
+      "izoh": "birlik"
+     },
+     {
+      "matn": "Urbanizatsiya shahar ulushi ortishi",
+      "togri": true,
+      "izoh": "ta’rif"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Poytaxt?",
+      "javob": "Toshkent"
+     },
+     {
+      "savol": "Viloyatlar soni?",
+      "javob": "12"
+     },
+     {
+      "savol": "Ipak yo‘li shahri?",
+      "javob": "Buxoro"
+     },
+     {
+      "savol": "Urbanizatsiya?",
+      "javob": "shahar ulushi"
+     },
+     {
+      "savol": "Samarqand?",
+      "javob": "qadimiy shahar"
+     },
+     {
+      "savol": "Qishloq?",
+      "javob": "oziq beradi"
+     },
+     {
+      "savol": "37 · 0,51?",
+      "javob": "18,9"
+     },
+     {
+      "savol": "800 000 / 2 000 000?",
+      "javob": "0,4"
+     },
+     {
+      "savol": "12 plyus 1 plyus 1?",
+      "javob": "14"
+     },
+     {
+      "savol": "Tuman?",
+      "javob": "viloyat qismi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Xaritada shaharlarni kuzat.",
+      "savol": "Qayerda ko‘p?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Shahar ulushini top.",
+      "savol": "Foiz?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Shahar va qishloq.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Bog‘liqlik?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun shahar va qishloq bir-birisiz yashay olmaydi?",
+    "keys": {
+     "vaziyat": "Qishloq yoshlari ish izlab shaharga ketmoqda, qishloqda ishchi kamaymoqda.",
+     "savollar": [
+      "Sabab nima?",
+      "Qishloqni qanday rivojlantiramiz?"
+     ]
+    },
+    "tezis": "Shahar va qishloq — bir tana",
+    "taqqoslash": {
+     "a": "Shahar",
+     "b": "Qishloq",
+     "umumiy": [
+      "aholi yashaydi",
+      "mamlakat rivoji uchun kerak"
+     ],
+     "a_farq": [
+      "sanoat va xizmat",
+      "aholi zich"
+     ],
+     "b_farq": [
+      "qishloq xo‘jaligi",
+      "yer ko‘p, aholi siyrak"
+     ]
+    },
+    "klaster": {
+     "markaz": "Shahar va qishloqlar",
+     "shoxlar": [
+      {
+       "nom": "Shaharlar",
+       "bandlar": [
+        "Toshkent",
+        "Samarqand",
+        "Buxoro"
+       ]
+      },
+      {
+       "nom": "Ma’muriy bo‘linish",
+       "bandlar": [
+        "12 viloyat",
+        "Qoraqalpog‘iston",
+        "tumanlar"
+       ]
+      },
+      {
+       "nom": "Qishloq",
+       "bandlar": [
+        "dehqon",
+        "mahalla",
+        "tomorqa"
+       ]
+      },
+      {
+       "nom": "Rivoj",
+       "bandlar": [
+        "yo‘l",
+        "internet",
+        "ta’lim"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Markaziy Osiyoning yirik shahri, O‘zbekiston poytaxtiman. Men kimman?",
+     "javob": "Toshkent"
+    },
+    "hikmat": "Shahar va qishloq — bir yurt.",
+    "kalit_soz": "SHAHAR",
+    "xato_yechim": {
+     "shart": "O‘zbekistonning poytaxti qaysi shahar?",
+     "xato": "Samarqand",
+     "togri": "Toshkent",
+     "sabab": "bosh shahar"
+    },
+    "guruh_nomlari": [
+     "Shaharchilar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mening shahrim»",
+     "topshiriq": "Guruh shahar pasportini tuzadi."
+    },
+    "vazifalar": {
+     "A": "37 million va 51 foiz?",
+     "B": "2 million va 800 ming?",
+     "C": "12, 1 va 1 jami?"
+    },
+    "sinkveyn": [
+     "Shahar",
+     "katta, gavjum",
+     "o‘sadi, ishlaydi, yaratadi",
+     "Hayot markazi",
+     "Toshkent"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh shahar va qishloqlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: shaharlar",
+      "2-guruh: ma’muriy bo‘linish",
+      "3-guruh: qishloq",
+      "4-guruh: rivojlanish"
+     ],
+     "yakun": "Natijalar: 18,9; 0,4; 14."
+    }
+   }
+  },
+  {
+   "mavzu": "Sanoat",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sanoat nima",
+      "matn": "Sanoat — xomashyoni qayta ishlab, tayyor mahsulot ishlab chiqaruvchi tarmoq. Sanoatning asosiy tarmoqlari: yoqilg‘i-energetika, metallurgiya, mashinasozlik, kimyo, yengil va oziq-ovqat sanoati. Sanoat mamlakat daromadi va ish o‘rinlarining katta qismini beradi. Eng yirik sanoat markazlari: Toshkent, Olmaliq, Navoiy, Farg‘ona, Angren, Chirchiq.",
+      "misol": "Sanoat — xomashyodan mahsulot.",
+      "savol": "Sanoat nima qiladi?",
+      "javob": "xomashyodan tayyor mahsulot ishlab chiqaradi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Joylashuv omillari",
+      "matn": "Korxona joylashuviga ta’sir qiluvchi omillar: xomashyo, energiya, ishchi kuchi, transport va iste’molchi bozori. Masalan, paxta tozalash zavodi paxta ekiladigan joyda quriladi, chunki paxta og‘ir va tashish qimmat. Metallurgiya zavodlari rudaga va energiyaga yaqin quriladi. Mashinasozlik esa malakali ishchi bor shaharlarda rivojlanadi.",
+      "misol": "Zavod xomashyoga yoki bozorga yaqin.",
+      "savol": "Paxta tozalash zavodi qayerda quriladi?",
+      "javob": "paxta ekiladigan joyda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tarmoq va hududlar",
+      "matn": "Yoqilg‘i-energetika: gaz, neft, ko‘mir, elektr (Angren ko‘miri, Qashqadaryo gazi). Metallurgiya: Olmaliq (mis), Navoiy (oltin), Bekobod (po‘lat). Mashinasozlik: avtomobil (Asaka), qishloq xo‘jalik texnikasi. Kimyo: Chirchiq, Farg‘ona va Navoiy (o‘g‘it va plastmassa). Yengil va oziq-ovqat sanoati: paxta, ipak, meva va sabzavotni qayta ishlash deyarli hamma viloyatda.",
+      "misol": "Har bir hududning o‘z sanoati bor.",
+      "savol": "Olmaliq qaysi sanoat markazi?",
+      "javob": "metallurgiya (mis)",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, 1 tonna paxtadan taxminan 330 kilogramm tola olinadi deylik. 3 million tonna paxtadan 3 000 000 · 0,33 — taxminan 990 ming tonna tola (taxminiy misol). Masalan, zavod kuniga 800 mahsulot ishlab chiqarsa, yilda 300 ish kunida 800 · 300 — 240 ming dona. Masalan, korxona 3 smenada kuniga 8 soatdan ishlasa, sutkasiga 3 · 8 — 24 soat ishlaydi.",
+      "misol": "Yillik ishlab chiqarish — kunlik soni ko‘paytirilgan ish kunlariga.",
+      "savol": "Masalan, kuniga 800 dona, yilda 300 kun. Yillik ishlab chiqarish?",
+      "javob": "240000 dona",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sanoat va ekologiya",
+      "matn": "Sanoat havo va suvni ifloslantirishi mumkin. Shuning uchun zavodlarda tozalash filtrlari, chiqindini qayta ishlash va toza energiya (quyosh, shamol) joriy qilinadi. Maqsad — sanoatni rivojlantirish va tabiatni asrash. Yashil iqtisod kelajak yo‘li.",
+      "misol": "Sanoat va tabiat — hamkor.",
+      "savol": "Sanoat tabiatni qanday asrashi mumkin?",
+      "javob": "filtr va toza energiya bilan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Sanoat tarmoqlari: yoqilg‘i-energetika, metallurgiya, mashinasozlik, kimyo, yengil, oziq-ovqat. Joylashuv omillari: xomashyo, energiya, ishchi, transport, bozor.",
+    "misollar": [
+     {
+      "shart": "Masalan, 1 tonna paxtadan 0,33 tonna tola. 3 million tonna paxtadan taxminan necha ming tonna tola?",
+      "yechim": [
+       "3 000 000 · 0,33.",
+       "Hisoblang.",
+       "Javob 990 ming tonna."
+      ],
+      "javob": "990 ming tonna"
+     },
+     {
+      "shart": "Masalan, zavod kuniga 800 dona, yilda 300 kun. Yillik ishlab chiqarish?",
+      "yechim": [
+       "800 · 300.",
+       "Hisoblang.",
+       "Javob 240000."
+      ],
+      "javob": "240000"
+     },
+     {
+      "shart": "Masalan, korxona 3 smenada 8 soatdan ishlaydi. Sutkasiga necha soat?",
+      "yechim": [
+       "3 · 8.",
+       "Hisoblang.",
+       "Javob 24 soat."
+      ],
+      "javob": "24 soat"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sanoat xaritasi",
+      "topshiriq": "Konturli xaritada sanoat markazlarini belgilang.",
+      "yechim": "Tarmoq belgilari.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Joylashuv o‘yini",
+      "topshiriq": "Zavod uchun eng qulay joyni omillar bo‘yicha tanlang.",
+      "yechim": "Xomashyo va bozor.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Yashil zavod",
+      "topshiriq": "Zavodni tabiatga zararsiz qilish loyihasini chizing.",
+      "yechim": "Filtr va quyosh paneli.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 000 000 · 0,33 taxminan nechaga teng?",
+      "javob": "990000"
+     },
+     {
+      "shart": "800 · 300 nechaga teng?",
+      "javob": "240000"
+     },
+     {
+      "shart": "3 · 8 nechaga teng?",
+      "javob": "24"
+     },
+     {
+      "shart": "Olmaliq qaysi sanoat?",
+      "javob": "metallurgiya"
+     },
+     {
+      "shart": "Oltin qaysi shaharda qazib olinadi?",
+      "javob": "Navoiy"
+     },
+     {
+      "shart": "Chirchiq qaysi sanoat?",
+      "javob": "kimyo"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Sanoat faqat zavoddan iborat deydi",
+      "sabab": "ko‘p tarmoqli",
+      "oldini_olish": "energetika, kimyo, yengil"
+     },
+     {
+      "xato": "Zavod xohlagan joyda quriladi deydi",
+      "sabab": "omillarga bog‘liq",
+      "oldini_olish": "xomashyo, bozor"
+     },
+     {
+      "xato": "Sanoat tabiatga zarar qilmaydi deydi",
+      "sabab": "ifloslantirishi mumkin",
+      "oldini_olish": "filtr kerak"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "mis va o‘g‘it ishlab chiqarish"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "ifloslanish va himoya"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sanoat atlasi»",
+     "muammo": "O‘zbekiston sanoati qayerda rivojlangan?",
+     "mahsulot": "sanoat atlasi",
+     "bosqichlar": [
+      "xarita",
+      "tarmoqlar",
+      "joylashuv omillari",
+      "hisob",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Hisoblang",
+      "Taqqoslang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sanoat markazlari»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "3 million tonna paxta, 0,33.",
+       "topshiriq": "Ming tonna tola?",
+       "javob": "990",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "Kuniga 800, 300 kun.",
+       "topshiriq": "Yillik?",
+       "javob": "240000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "3 smena, 8 soat.",
+       "topshiriq": "Soat?",
+       "javob": "24",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Mis qayerda?",
+       "topshiriq": "Qaysi?",
+       "javob": "Olmaliq",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sanoat",
+      "tarif": "ishlab chiqarish tarmog‘i"
+     },
+     {
+      "atama": "Xomashyo",
+      "tarif": "ishlov beriladigan material"
+     },
+     {
+      "atama": "Metallurgiya",
+      "tarif": "metall ishlab chiqarish"
+     },
+     {
+      "atama": "Mashinasozlik",
+      "tarif": "mashina yasash"
+     },
+     {
+      "atama": "Smena",
+      "tarif": "ish vaqti bo‘limi"
+     },
+     {
+      "atama": "Energetika",
+      "tarif": "energiya ishlab chiqarish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Sanoat xomashyoni qayta ishlaydi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Olmaliq oltin markazi",
+      "togri": false,
+      "izoh": "mis markazi"
+     },
+     {
+      "matn": "Navoiyda oltin qazib olinadi",
+      "togri": true,
+      "izoh": "metallurgiya"
+     },
+     {
+      "matn": "800 · 300 — 240000",
+      "togri": true,
+      "izoh": "yillik"
+     },
+     {
+      "matn": "Zavodlar tabiatga zarar qilmaydi",
+      "togri": false,
+      "izoh": "ifloslantirishi mumkin"
+     },
+     {
+      "matn": "Asakada avtomobil yig‘iladi",
+      "togri": true,
+      "izoh": "mashinasozlik"
+     },
+     {
+      "matn": "3 · 8 — 24",
+      "togri": true,
+      "izoh": "soat"
+     },
+     {
+      "matn": "Quyosh energiyasi toza energiya",
+      "togri": true,
+      "izoh": "ekologiya"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sanoat?",
+      "javob": "qayta ishlash"
+     },
+     {
+      "savol": "Mis?",
+      "javob": "Olmaliq"
+     },
+     {
+      "savol": "Oltin?",
+      "javob": "Navoiy"
+     },
+     {
+      "savol": "Avtomobil?",
+      "javob": "Asaka"
+     },
+     {
+      "savol": "Kimyo?",
+      "javob": "Chirchiq"
+     },
+     {
+      "savol": "Ko‘mir?",
+      "javob": "Angren"
+     },
+     {
+      "savol": "800 · 300?",
+      "javob": "240000"
+     },
+     {
+      "savol": "3 · 8?",
+      "javob": "24"
+     },
+     {
+      "savol": "3 000 000 · 0,33?",
+      "javob": "990000"
+     },
+     {
+      "savol": "Toza energiya?",
+      "javob": "quyosh"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Sanoat xaritasini kuzat.",
+      "savol": "Qayerda zich?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Ishlab chiqarishni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Tarmoqlarni taqqosla.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ekologiya?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun zavod xomashyo yaqinida quriladi?",
+    "keys": {
+     "vaziyat": "Zavod daryoga chiqindi tashlamoqda, baliq kamaymoqda.",
+     "savollar": [
+      "Nima zarar?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Sanoat — iqtisod kuchi",
+    "taqqoslash": {
+     "a": "Og‘ir sanoat",
+     "b": "Yengil sanoat",
+     "umumiy": [
+      "ishlab chiqaradi",
+      "ish o‘rni beradi"
+     ],
+     "a_farq": [
+      "metall, mashina, kimyo",
+      "katta zavodlar"
+     ],
+     "b_farq": [
+      "to‘qimachilik, kiyim",
+      "iste’molchi mahsuloti"
+     ]
+    },
+    "klaster": {
+     "markaz": "Sanoat",
+     "shoxlar": [
+      {
+       "nom": "Tarmoqlar",
+       "bandlar": [
+        "energetika",
+        "metallurgiya",
+        "mashinasozlik",
+        "kimyo"
+       ]
+      },
+      {
+       "nom": "Omillar",
+       "bandlar": [
+        "xomashyo",
+        "energiya",
+        "ishchi",
+        "bozor"
+       ]
+      },
+      {
+       "nom": "Markazlar",
+       "bandlar": [
+        "Olmaliq",
+        "Navoiy",
+        "Asaka"
+       ]
+      },
+      {
+       "nom": "Ekologiya",
+       "bandlar": [
+        "filtr",
+        "toza energiya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men xomashyoni mahsulotga aylantiraman. Men nimaman?",
+     "javob": "sanoat"
+    },
+    "hikmat": "Sanoat — taraqqiyot yo‘li.",
+    "kalit_soz": "SANOAT",
+    "xato_yechim": {
+     "shart": "Olmaliq qaysi tarmoq markazi?",
+     "xato": "oltin",
+     "togri": "mis (metallurgiya)",
+     "sabab": "mis kombinati"
+    },
+    "guruh_nomlari": [
+     "Sanoatchilar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sanoat atlasi»",
+     "topshiriq": "Guruh joylashuv omillarini tahlil qiladi."
+    },
+    "vazifalar": {
+     "A": "3 million tonna paxta, 0,33?",
+     "B": "800 dona, 300 kun?",
+     "C": "3 smena, 8 soat?"
+    },
+    "sinkveyn": [
+     "Sanoat",
+     "katta, zamonaviy",
+     "ishlab chiqaradi, yaratadi, o‘stiradi",
+     "Iqtisod kuchi",
+     "Xomashyo"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sanoatni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tarmoqlar",
+      "2-guruh: omillar",
+      "3-guruh: markazlar",
+      "4-guruh: ekologiya"
+     ],
+     "yakun": "Natijalar: 990; 240000; 24."
+    }
+   }
+  }
+ ]
+}
