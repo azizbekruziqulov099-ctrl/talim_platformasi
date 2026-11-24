@@ -5579,6 +5579,1399 @@
      "yakun": "Natijalar: 30; 150; 40."
     }
    }
+  },
+  {
+   "mavzu": "Bir pallalilar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Bir pallalilar belgilari",
+      "matn": "Bir pallalilar — yopiq urug‘lilarning ikkinchi katta sinfi. Urug‘ida bitta urug‘palla bor. Ildizi popuk ildiz, bargi odatda parallel yoki yoysimon tomirli, poyasida kambiy yo‘q, shuning uchun poya qalinlashmaydi. Gulning qismlari odatda 3 yoki 3 ning karrali sonida bo‘ladi.",
+      "misol": "Bir palla, popuk ildiz, parallel tomir.",
+      "savol": "Bir pallalilarda urug‘palla nechta?",
+      "javob": "bitta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Boshoqdoshlar oilasi",
+      "matn": "Boshoqdoshlarga bug‘doy, arpa, sholi, makkajo‘xori, javdar va yantoq kiradi. Poyasi poxol: bo‘g‘imli va ichi kovak. Bargi uzun, qini poyani o‘rab turadi. Guli mayda, shamol bilan changlanadi, to‘pguli boshoq yoki so‘ta. Mevasi don. Dunyo oziq-ovqatining ko‘p qismi shu oiladan olinadi.",
+      "misol": "Non — boshoqdoshlar sovg‘asi.",
+      "savol": "Bug‘doy qaysi oilaga kiradi?",
+      "javob": "boshoqdoshlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Liliyadoshlar va piyozdoshlar",
+      "matn": "Liliyadoshlarga lola, boychechak va suvsar kiradi. Gulida 3 ta kosachabarg va 3 ta tojbarg bor, jami 6 ta gulqo‘rg‘on barg. Piyozdoshlarga piyoz va sarimsoq kiradi, ularning zaxira moddasi piyozboshda to‘planadi. Bu o‘simliklarning ko‘pchiligi bahorda tez gullaydi va yozda piyozboshida dam oladi.",
+      "misol": "Lola gulida 6 ta gulqo‘rg‘on barg bor.",
+      "savol": "Lola gulida nechta gulqo‘rg‘on barg bor?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Don hosili hisobi",
+      "matn": "Masalan, bitta bug‘doy boshog‘ida 40 ta don bo‘lsa, 6 boshoqda 6 · 40 — 240 don bo‘ladi (taxminiy misol). Bitta tup bug‘doy tuplanib 5 ta poya bersa, 200 tupdan 200 · 5 — 1000 poya chiqadi. 12 ta lola guli bo‘lsa, ularda 12 · 6 — 72 ta gulqo‘rg‘on barg bor.",
+      "misol": "Tuplanish — hosil ko‘paytiradi.",
+      "savol": "Tuplanish nima?",
+      "javob": "bir tupdan bir nechta poya chiqishi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ahamiyati",
+      "matn": "Bir pallalilar dunyo don ekinlarining asosi: bug‘doy, sholi, makkajo‘xori. Ulardan non, yorma, un, kraxmal va hayvon yemi olinadi. Ba’zilari manzarali (lola, nargis), ba’zilari sabzavot (piyoz, sarimsoq). O‘zbekistonda bug‘doy, sholi va makkajo‘xori keng ekiladi.",
+      "misol": "Don — hayot manbai.",
+      "savol": "Sholidan nima olinadi?",
+      "javob": "guruch",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Bir pallalilar: bitta urug‘palla, popuk ildiz, parallel tomirli barg, kambiy yo‘q. Boshoqdoshlar: poxol poya, don meva.",
+    "misollar": [
+     {
+      "shart": "Masalan, bitta boshoqda 40 don. 6 boshoqda necha don?",
+      "yechim": [
+       "6 · 40.",
+       "Hisoblang.",
+       "Javob 240."
+      ],
+      "javob": "240"
+     },
+     {
+      "shart": "Masalan, bitta tup 5 ta poya beradi. 200 tupda necha poya?",
+      "yechim": [
+       "200 · 5.",
+       "Hisoblang.",
+       "Javob 1000."
+      ],
+      "javob": "1000"
+     },
+     {
+      "shart": "Lola gulida 6 ta gulqo‘rg‘on barg. 12 ta gulda?",
+      "yechim": [
+       "12 · 6.",
+       "Hisoblang.",
+       "Javob 72."
+      ],
+      "javob": "72"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Urug‘ tahlili",
+      "topshiriq": "Makkajo‘xori donini ko‘rib, bitta pallani toping.",
+      "yechim": "Murtak va endosperm.",
+      "mahsulot": "makkajo‘xori"
+     },
+     {
+      "nom": "Barg tomirlari",
+      "topshiriq": "Bug‘doy bargidagi parallel tomirlarni chizing.",
+      "yechim": "Parallel tomir.",
+      "mahsulot": "barg, daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Oilalar jadvali",
+      "topshiriq": "Boshoqdoshlar va liliyadoshlarni taqqoslang.",
+      "yechim": "Gul va meva.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "6 · 40 nechaga teng?",
+      "javob": "240"
+     },
+     {
+      "shart": "200 · 5 nechaga teng?",
+      "javob": "1000"
+     },
+     {
+      "shart": "12 · 6 nechaga teng?",
+      "javob": "72"
+     },
+     {
+      "shart": "Bir pallalilarda ildiz turi?",
+      "javob": "popuk ildiz"
+     },
+     {
+      "shart": "Boshoqdoshlar mevasi?",
+      "javob": "don"
+     },
+     {
+      "shart": "Boshoqdoshlar poyasi nomi?",
+      "javob": "poxol"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Bir pallalilarda barg to‘r tomirli deydi",
+      "sabab": "parallel tomirli",
+      "oldini_olish": "to‘r tomir — ikki pallalilarda"
+     },
+     {
+      "xato": "Bug‘doy ikki pallali deydi",
+      "sabab": "bir pallali",
+      "oldini_olish": "bitta urug‘palla"
+     },
+     {
+      "xato": "Boshoqdoshlar hasharot bilan changlanadi deydi",
+      "sabab": "shamol bilan",
+      "oldini_olish": "guli mayda"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "don ekinlari"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "non va don"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Don — hayot»",
+     "muammo": "Bir pallali don ekinlari qanday o‘sadi?",
+     "mahsulot": "kuzatuv hisoboti",
+     "bosqichlar": [
+      "urug‘ tahlili",
+      "unish kuzatuvi",
+      "hosil hisobi",
+      "oilalar",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kuzating",
+      "Tahlil qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "kuzatuv aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bug‘doy dalasi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "6 boshoq, 40 don.",
+       "topshiriq": "Don?",
+       "javob": "240",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "200 tup, 5 poya.",
+       "topshiriq": "Poya?",
+       "javob": "1000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "12 lola, 6 barg.",
+       "topshiriq": "Barg?",
+       "javob": "72",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Mevasi don.",
+       "topshiriq": "Qaysi oila?",
+       "javob": "boshoqdoshlar",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Popuk ildiz",
+      "tarif": "bir xil ingichka ildizlar"
+     },
+     {
+      "atama": "Poxol",
+      "tarif": "boshoqdoshlar poyasi"
+     },
+     {
+      "atama": "Boshoq",
+      "tarif": "to‘pgul turi"
+     },
+     {
+      "atama": "Don",
+      "tarif": "boshoqdoshlar mevasi"
+     },
+     {
+      "atama": "Tuplanish",
+      "tarif": "tupdan bir nechta poya"
+     },
+     {
+      "atama": "Piyozboshi",
+      "tarif": "zaxira modda joyi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Bir pallalilarda urug‘palla bitta",
+      "togri": true,
+      "izoh": "bitta"
+     },
+     {
+      "matn": "Bir pallalilarda ildiz popuk",
+      "togri": true,
+      "izoh": "ingichka"
+     },
+     {
+      "matn": "Bir pallalilarda barg to‘r tomirli",
+      "togri": false,
+      "izoh": "parallel tomirli"
+     },
+     {
+      "matn": "6 · 40 — 240",
+      "togri": true,
+      "izoh": "don"
+     },
+     {
+      "matn": "Bug‘doy boshoqdoshlar oilasidan",
+      "togri": true,
+      "izoh": "don ekini"
+     },
+     {
+      "matn": "Boshoqdoshlar hasharot bilan changlanadi",
+      "togri": false,
+      "izoh": "shamol"
+     },
+     {
+      "matn": "Lola gulida 6 gulqo‘rg‘on barg bor",
+      "togri": true,
+      "izoh": "3 va 3"
+     },
+     {
+      "matn": "12 · 6 — 72",
+      "togri": true,
+      "izoh": "barg"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Urug‘palla soni?",
+      "javob": "bitta"
+     },
+     {
+      "savol": "Ildiz?",
+      "javob": "popuk"
+     },
+     {
+      "savol": "Barg tomiri?",
+      "javob": "parallel"
+     },
+     {
+      "savol": "Poxol?",
+      "javob": "bo‘g‘imli poya"
+     },
+     {
+      "savol": "Boshoqdosh?",
+      "javob": "bug‘doy"
+     },
+     {
+      "savol": "Liliyadosh?",
+      "javob": "lola"
+     },
+     {
+      "savol": "6 · 40?",
+      "javob": "240"
+     },
+     {
+      "savol": "200 · 5?",
+      "javob": "1000"
+     },
+     {
+      "savol": "12 · 6?",
+      "javob": "72"
+     },
+     {
+      "savol": "Meva?",
+      "javob": "don"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Bug‘doy bargini kuzat.",
+      "savol": "Tomir turi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Donni top.",
+      "savol": "Boshoq · don?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ikki va bir pallali.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ahamiyat?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bir pallalilar poyasi qalinlashmaydi?",
+    "keys": {
+     "vaziyat": "Dehqon bug‘doy ekdi, ammo tuplanish kam bo‘ldi.",
+     "savollar": [
+      "Hosil qanday bo‘ladi?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Non — bir pallalilar in’omi",
+    "taqqoslash": {
+     "a": "Ikki pallalilar",
+     "b": "Bir pallalilar",
+     "umumiy": [
+      "yopiq urug‘li",
+      "gul va meva bor"
+     ],
+     "a_farq": [
+      "ikki palla",
+      "to‘r tomir, o‘q ildiz"
+     ],
+     "b_farq": [
+      "bitta palla",
+      "parallel tomir, popuk ildiz"
+     ]
+    },
+    "klaster": {
+     "markaz": "Bir pallalilar",
+     "shoxlar": [
+      {
+       "nom": "Belgilari",
+       "bandlar": [
+        "bitta palla",
+        "popuk ildiz",
+        "parallel tomir"
+       ]
+      },
+      {
+       "nom": "Boshoqdoshlar",
+       "bandlar": [
+        "bug‘doy",
+        "sholi",
+        "makkajo‘xori"
+       ]
+      },
+      {
+       "nom": "Liliyadoshlar",
+       "bandlar": [
+        "lola",
+        "6 barg"
+       ]
+      },
+      {
+       "nom": "Ahamiyat",
+       "bandlar": [
+        "non",
+        "yorma",
+        "yem"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men bitta pallali, parallel tomirliman, mevam don. Men kimman?",
+     "javob": "bug‘doy"
+    },
+    "hikmat": "Boshoq — hosil belgisi.",
+    "kalit_soz": "BIRPALLA",
+    "xato_yechim": {
+     "shart": "Bug‘doy bargi qanday tomirli?",
+     "xato": "to‘r tomirli",
+     "togri": "parallel tomirli",
+     "sabab": "bir pallali"
+    },
+    "guruh_nomlari": [
+     "Boshoqchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Don — hayot»",
+     "topshiriq": "Guruh unish kuzatuvini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "6 boshoq, 40 don?",
+     "B": "200 tup, 5 poya?",
+     "C": "12 lola, 6 barg?"
+    },
+    "sinkveyn": [
+     "Bug‘doy",
+     "oltin, boshoqli",
+     "o‘sadi, tuplanadi, don beradi",
+     "Oltin boshoq",
+     "Don"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh bir pallalilarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: belgilari",
+      "2-guruh: boshoqdoshlar",
+      "3-guruh: liliyadoshlar",
+      "4-guruh: ahamiyat"
+     ],
+     "yakun": "Natijalar: 240; 1000; 72."
+    }
+   }
+  },
+  {
+   "mavzu": "Madaniy o‘simliklar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Yovvoyi va madaniy",
+      "matn": "Madaniy o‘simliklar — inson ekib, parvarish qilib o‘stiradigan o‘simliklar. Ular yovvoyi ajdodlaridan odam tanlashi (seleksiyasi) natijasida kelib chiqqan. Dehqonchilik taxminan 10 ming yil oldin boshlangan. Madaniy o‘simliklar yirik meva va urug‘ beradi, ammo yovvoyilar kabi chidamli emas.",
+      "misol": "Madaniy o‘simlik — odam bilan hamkorlik natijasi.",
+      "savol": "Madaniy o‘simlik qanday kelib chiqqan?",
+      "javob": "yovvoyi ajdoddan seleksiya bilan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Madaniy o‘simlik guruhlari",
+      "matn": "Madaniy o‘simliklar guruhlari: don ekinlari (bug‘doy, sholi), texnik ekinlar (paxta, kungaboqar), sabzavotlar (pomidor, sabzi), mevalar (olma, uzum), yem-xashak (beda, makkajo‘xori) va manzarali o‘simliklar. O‘zbekistonda paxta, bug‘doy, uzum, o‘rik, anor va qovun asosiy ekinlardir.",
+      "misol": "Paxta — «oq oltin».",
+      "savol": "Paxta qaysi guruh ekini?",
+      "javob": "texnik ekin",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vavilov markazlari",
+      "matn": "Rus olimi N.I. Vavilov (1887–1943) madaniy o‘simliklar kelib chiqqan sakkizta markazni aniqladi. Markazlarning biri Markaziy Osiyo bo‘lib, bu yerda bug‘doy, no‘xat, sabzi, piyoz, olma va boshqalarning ajdodlari uchraydi. Markazlar ekinlarning genetik xilma-xilligini saqlaydi.",
+      "misol": "Vavilov — ekinlar «xaritasi»ni tuzgan.",
+      "savol": "Vavilov nechta markaz aniqlagan?",
+      "javob": "sakkizta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hosildorlik hisobi",
+      "matn": "Hosildorlik — bir gektar yerdan olingan hosil. Masalan, 3 gektardan 90 sentner bug‘doy olinsa, 90 / 3 — 30 sentner. 25 gektardan 750 sentner paxta olinsa, 750 / 25 — 30 sentner. 6 gektardan 240 sentner olinsa, 240 / 6 — 40 sentner. 1 sentner 100 kilogramm, shuning uchun 30 sentner — 3000 kilogramm.",
+      "misol": "Hosildorlik — hosil / maydon.",
+      "savol": "Hosildorlik qanday topiladi?",
+      "javob": "hosilni maydonga bo‘lib",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Seleksiya va parvarish",
+      "matn": "Seleksiya — yangi nav va hosildor o‘simliklar yaratish. Nav chidamlilik, hosil va ta’mi bo‘yicha tanlanadi. Parvarish: sug‘orish, o‘g‘itlash, begona o‘tlarni yo‘qotish, almashlab ekish, kasalliklardan himoya. O‘zbekistonda suvni tejovchi tomchilatib sug‘orish ko‘paymoqda.",
+      "misol": "Yaxshi parvarish — yaxshi hosil.",
+      "savol": "Almashlab ekish nima uchun kerak?",
+      "javob": "tuproq unumdorligini saqlash",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Madaniy o‘simliklar: seleksiya natijasi. Guruhlar: don, texnik, sabzavot, meva, yem. Hosildorlik hosil bo‘linsin maydonga.",
+    "misollar": [
+     {
+      "shart": "Masalan, 3 gektardan 90 sentner bug‘doy olindi. Hosildorlik?",
+      "yechim": [
+       "90 / 3.",
+       "Hisoblang.",
+       "Javob 30 sentner."
+      ],
+      "javob": "30 sentner"
+     },
+     {
+      "shart": "Masalan, 25 gektardan 750 sentner paxta olindi. Hosildorlik?",
+      "yechim": [
+       "750 / 25.",
+       "Hisoblang.",
+       "Javob 30 sentner."
+      ],
+      "javob": "30 sentner"
+     },
+     {
+      "shart": "30 sentner necha kilogramm? 1 sentner 100 kilogramm.",
+      "yechim": [
+       "30 · 100.",
+       "Hisoblang.",
+       "Javob 3000 kilogramm."
+      ],
+      "javob": "3000 kilogramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ekinlarni guruhlash",
+      "topshiriq": "Ekinlarni don, texnik, sabzavot, mevaga ajrating.",
+      "yechim": "Guruhlash jadvali.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hosildorlik",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Bo‘lish va ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Vavilov xaritasi",
+      "topshiriq": "Markazlarni xaritada belgilang.",
+      "yechim": "Markaziy Osiyo.",
+      "mahsulot": "xarita"
+     },
+     {
+      "nom": "Nav tanlash",
+      "topshiriq": "Ikki navni hosil bo‘yicha taqqoslang.",
+      "yechim": "Hisob.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "90 / 3 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "750 / 25 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "240 / 6 nechaga teng?",
+      "javob": "40"
+     },
+     {
+      "shart": "30 · 100 nechaga teng?",
+      "javob": "3000"
+     },
+     {
+      "shart": "Paxta qaysi guruh ekini?",
+      "javob": "texnik"
+     },
+     {
+      "shart": "Vavilov nechta markaz topgan?",
+      "javob": "sakkizta"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Madaniy o‘simlik tabiatda o‘z-o‘zidan paydo bo‘lgan deydi",
+      "sabab": "seleksiya natijasida",
+      "oldini_olish": "odam tanlagan"
+     },
+     {
+      "xato": "Paxta oziq-ovqat ekini deydi",
+      "sabab": "texnik ekin",
+      "oldini_olish": "tolasi uchun"
+     },
+     {
+      "xato": "Hosildorlik hosilning o‘zi deydi",
+      "sabab": "hosil / maydon",
+      "oldini_olish": "gektarga nisbat"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "ekinlar"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "bo‘lish"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "paxta"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Madaniy o‘simliklar atlasi»",
+     "muammo": "Ekinlar qayerdan kelgan?",
+     "mahsulot": "atlas va hisob",
+     "bosqichlar": [
+      "ekinlarni guruhlash",
+      "Vavilov xaritasi",
+      "hosildorlik hisobi",
+      "O‘zbekiston ekinlari",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Guruhlang",
+      "Xarita tuzing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "guruhlash to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Dehqon dalasi»",
+     "bekatlar": [
+      {
+       "nom": "1-dala",
+       "matn": "3 gektar, 90 sentner.",
+       "topshiriq": "Hosildorlik?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-dala",
+       "matn": "25 gektar, 750 sentner.",
+       "topshiriq": "Hosildorlik?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "3-dala",
+       "matn": "6 gektar, 240 sentner.",
+       "topshiriq": "Hosildorlik?",
+       "javob": "40",
+       "rasm": ""
+      },
+      {
+       "nom": "4-dala",
+       "matn": "Paxta.",
+       "topshiriq": "Qaysi ekin?",
+       "javob": "texnik",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Seleksiya",
+      "tarif": "yangi nav yaratish"
+     },
+     {
+      "atama": "Nav",
+      "tarif": "tanlangan o‘simlik shakli"
+     },
+     {
+      "atama": "Texnik ekin",
+      "tarif": "xomashyo beruvchi ekin"
+     },
+     {
+      "atama": "Hosildorlik",
+      "tarif": "gektardan olingan hosil"
+     },
+     {
+      "atama": "Almashlab ekish",
+      "tarif": "ekinlarni navbatlash"
+     },
+     {
+      "atama": "Yem-xashak",
+      "tarif": "hayvon yemi ekini"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Madaniy o‘simliklar seleksiya natijasi",
+      "togri": true,
+      "izoh": "odam tanlagan"
+     },
+     {
+      "matn": "Paxta texnik ekin",
+      "togri": true,
+      "izoh": "tola"
+     },
+     {
+      "matn": "Dehqonchilik 100 yil oldin boshlangan",
+      "togri": false,
+      "izoh": "taxminan 10 ming yil oldin"
+     },
+     {
+      "matn": "90 / 3 — 30",
+      "togri": true,
+      "izoh": "sentner"
+     },
+     {
+      "matn": "Vavilov sakkizta markaz aniqlagan",
+      "togri": true,
+      "izoh": "genetik"
+     },
+     {
+      "matn": "Almashlab ekish tuproqni toliqtiradi",
+      "togri": false,
+      "izoh": "unumdorlikni saqlaydi"
+     },
+     {
+      "matn": "30 sentner — 3000 kilogramm",
+      "togri": true,
+      "izoh": "100 ga ko‘paytirish"
+     },
+     {
+      "matn": "Hosildorlik hosil / maydon",
+      "togri": true,
+      "izoh": "gektarga"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Madaniy o‘simlik?",
+      "javob": "odam o‘stirgan"
+     },
+     {
+      "savol": "Seleksiya?",
+      "javob": "nav yaratish"
+     },
+     {
+      "savol": "Texnik ekin?",
+      "javob": "paxta"
+     },
+     {
+      "savol": "Don ekini?",
+      "javob": "bug‘doy"
+     },
+     {
+      "savol": "Yem ekini?",
+      "javob": "beda"
+     },
+     {
+      "savol": "Vavilov?",
+      "javob": "markazlar"
+     },
+     {
+      "savol": "90 / 3?",
+      "javob": "30"
+     },
+     {
+      "savol": "750 / 25?",
+      "javob": "30"
+     },
+     {
+      "savol": "30 · 100?",
+      "javob": "3000"
+     },
+     {
+      "savol": "Sentner?",
+      "javob": "100 kilogramm"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Ekinni kuzat.",
+      "savol": "Qaysi guruh?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Hosildorlikni top.",
+      "savol": "Hosil / maydon?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Yovvoyi va madaniy.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ahamiyat?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun odam yovvoyi o‘simliklarni madaniylashtirgan?",
+    "keys": {
+     "vaziyat": "Fermer bir yerga yillar davomida faqat paxta ekdi, hosil kamaydi.",
+     "savollar": [
+      "Sabab nima?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Madaniy o‘simlik — odam mehnati mevasi",
+    "taqqoslash": {
+     "a": "Yovvoyi o‘simlik",
+     "b": "Madaniy o‘simlik",
+     "umumiy": [
+      "o‘simlik",
+      "urug‘ beradi"
+     ],
+     "a_farq": [
+      "tabiatda o‘sadi",
+      "chidamli, hosili kam"
+     ],
+     "b_farq": [
+      "odam ekadi",
+      "hosili yuqori"
+     ]
+    },
+    "klaster": {
+     "markaz": "Madaniy o‘simliklar",
+     "shoxlar": [
+      {
+       "nom": "Guruhlar",
+       "bandlar": [
+        "don",
+        "texnik",
+        "sabzavot",
+        "meva"
+       ]
+      },
+      {
+       "nom": "Kelib chiqishi",
+       "bandlar": [
+        "seleksiya",
+        "Vavilov markazlari"
+       ]
+      },
+      {
+       "nom": "Hisob",
+       "bandlar": [
+        "hosildorlik",
+        "sentner"
+       ]
+      },
+      {
+       "nom": "Parvarish",
+       "bandlar": [
+        "sug‘orish",
+        "almashlab ekish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Meni odam tanlagan, men yovvoyi ajdoddan kelib chiqqanman. Men kimman?",
+     "javob": "madaniy o‘simlik"
+    },
+    "hikmat": "Ekin — odam va tabiat hamkorligi.",
+    "kalit_soz": "MADANIY",
+    "xato_yechim": {
+     "shart": "Paxta qaysi ekin?",
+     "xato": "don ekini",
+     "togri": "texnik ekin",
+     "sabab": "tola beradi"
+    },
+    "guruh_nomlari": [
+     "Ekinchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Madaniy o‘simliklar atlasi»",
+     "topshiriq": "Guruh ekinlar atlasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "3 gektar, 90 sentner?",
+     "B": "25 gektar, 750 sentner?",
+     "C": "6 gektar, 240 sentner?"
+    },
+    "sinkveyn": [
+     "Ekin",
+     "foydali, ekilgan",
+     "o‘sadi, hosil beradi, boqadi",
+     "Dala ziynati",
+     "Hosil"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh madaniy o‘simliklarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: kelib chiqishi",
+      "2-guruh: guruhlar",
+      "3-guruh: hosildorlik",
+      "4-guruh: parvarish"
+     ],
+     "yakun": "Natijalar: 30; 30; 40."
+    }
+   }
+  },
+  {
+   "mavzu": "Dorivor o‘simliklar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Dorivor o‘simliklar nima",
+      "matn": "Dorivor o‘simliklar tarkibida davolash xususiyatiga ega biologik faol moddalar bor. Ularga moychechak, na’matak, yalpiz, tog‘rayhon, isiriq va boshqalar kiradi. Ayrim dori vositalari shu o‘simliklardan olinadi. Ular faqat shifokor maslahatiga ko‘ra ishlatiladi, chunki ba’zilari zaharli bo‘lishi mumkin.",
+      "misol": "Dorivor o‘simlik — tabiat dorixonasi.",
+      "savol": "Dorivor o‘simliklar nima uchun kerak?",
+      "javob": "davolash moddalari uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ma’lum turlar",
+      "matn": "Moychechak gullari yallig‘lanishga qarshi damlama uchun ishlatiladi. Na’matak mevasi C vitaminiga boy. Yalpiz va tog‘rayhon choy sifatida ichiladi. Isiriq O‘zbekistonda an’anaviy xalq tabobatida tilga olinadi. Har bir o‘simlikni faqat to‘g‘ri aniqlab, bilimdon odam maslahatiga ko‘ra qo‘llash kerak.",
+      "misol": "Aniq tanimagan o‘simlikni yig‘ma.",
+      "savol": "Na’matak nimaga boy?",
+      "javob": "C vitaminiga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ibn Sino va tabobat",
+      "matn": "Abu Ali ibn Sino «Tib qonunlari» asarida yuzlab dorivor o‘simliklarni tasvirlagan. Bu kitob asrlar davomida Sharq va Yevropa tibbiyotida asosiy qo‘llanma bo‘lgan. Ibn Sino bilimlari zamonaviy farmakologiyaga ham ta’sir qilgan.",
+      "misol": "Ibn Sino — tabobat ustasi.",
+      "savol": "«Tib qonunlari» muallifi?",
+      "javob": "Ibn Sino",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yig‘ish va saqlash",
+      "matn": "Dorivor o‘simlik qismi to‘g‘ri vaqtda yig‘iladi: barg va o‘t — gullashdan oldin yoki gullash boshida, gul — to‘la ochilganda, ildiz — kuzda, meva — pishganda. Quritish soyada, havo aylanadigan joyda bo‘ladi. Quritilganda massa kamayadi. Masalan, 10 kilogramm yangi o‘t 5 baravar yengillashsa, quruq massa 10 / 5 — 2 kilogramm; 30 kilogramm esa 30 / 5 — 6 kilogramm (taxminiy misol).",
+      "misol": "Quritish — massa kamayishi.",
+      "savol": "Dorivor o‘t qayerda quritiladi?",
+      "javob": "soyada",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tabiatni asrash",
+      "matn": "Yovvoyi dorivor o‘simliklarni haddan ortiq yig‘ish ularning yo‘qolishiga olib keladi. Yig‘ishda o‘simlikning bir qismi joyida qoldiriladi. Masalan, 60 tupli maydonda yarmi — 30 tupi yig‘ilsa, qolgan 30 tup o‘sishda davom etadi. Muhofaza qilinadigan turlar Qizil kitobga kiritiladi va ularni yig‘ish taqiqlanadi. Dorivor o‘simliklar maxsus plantatsiyalarda ham ekiladi.",
+      "misol": "Yig‘ganda qoldir.",
+      "savol": "Yig‘ishda nima qoldiriladi?",
+      "javob": "o‘simlikning bir qismi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Dorivor o‘simliklar: biologik faol moddalar. Faqat shifokor maslahatiga ko‘ra. Yig‘ish vaqti va quritish muhim. Tabiiy zaxirani asrash.",
+    "misollar": [
+     {
+      "shart": "Masalan, 10 kilogramm yangi o‘t quritilganda 5 baravar yengillashadi. Quruq massa?",
+      "yechim": [
+       "10 / 5.",
+       "Hisoblang.",
+       "Javob 2 kilogramm."
+      ],
+      "javob": "2 kilogramm"
+     },
+     {
+      "shart": "Masalan, 30 kilogramm yangi o‘t 5 baravar yengillashadi. Quruq massa?",
+      "yechim": [
+       "30 / 5.",
+       "Hisoblang.",
+       "Javob 6 kilogramm."
+      ],
+      "javob": "6 kilogramm"
+     },
+     {
+      "shart": "Masalan, 60 tupdan yarmi yig‘ildi. Joyida qolgan tup?",
+      "yechim": [
+       "60 / 2.",
+       "Hisoblang.",
+       "Javob 30."
+      ],
+      "javob": "30"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Gerbariy",
+      "topshiriq": "Dorivor o‘simlik gerbariysini tuzing.",
+      "yechim": "Nomi va qismi.",
+      "mahsulot": "gerbariy"
+     },
+     {
+      "nom": "Quritish tajribasi",
+      "topshiriq": "Yangi bargni tortib, quritib qayta tortib ko‘ring.",
+      "yechim": "Massa farqi.",
+      "mahsulot": "barg, tarozi"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Bo‘lish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Qizil kitob",
+      "topshiriq": "Muhofaza qilinadigan bir dorivor tur haqida ma’lumot toping.",
+      "yechim": "Qaysi tur?",
+      "mahsulot": "kitob, internet"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "10 / 5 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "30 / 5 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "60 / 2 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "Na’matak nimaga boy?",
+      "javob": "C vitaminiga"
+     },
+     {
+      "shart": "«Tib qonunlari» muallifi?",
+      "javob": "Ibn Sino"
+     },
+     {
+      "shart": "Dorivor o‘t qayerda quritiladi?",
+      "javob": "soyada"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Dorivor o‘simlik hammaga zararsiz deydi",
+      "sabab": "ba’zilari zaharli",
+      "oldini_olish": "shifokor maslahati"
+     },
+     {
+      "xato": "Hamma o‘simlikni butunlay yulib olish mumkin deydi",
+      "sabab": "bir qismi qoldiriladi",
+      "oldini_olish": "tabiiy zaxira"
+     },
+     {
+      "xato": "Quritishni quyoshda to‘g‘ridan-to‘g‘ri qilish kerak deydi",
+      "sabab": "soyada quritiladi",
+      "oldini_olish": "moddalar saqlanadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Ibn Sino"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "faol moddalar"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "Qizil kitob"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tabiat dorixonasi»",
+     "muammo": "Dorivor o‘simliklar qanday yig‘iladi va asraladi?",
+     "mahsulot": "gerbariy va hisob",
+     "bosqichlar": [
+      "gerbariy",
+      "quritish tajribasi",
+      "massa hisobi",
+      "Qizil kitob",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Gerbariy tuzing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "gerbariy to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Dorivor o‘tlar vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "10 kilogramm, 5 baravar.",
+       "topshiriq": "Quruq massa?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "30 kilogramm, 5 baravar.",
+       "topshiriq": "Quruq massa?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "60 tupdan yarmi.",
+       "topshiriq": "Qolgan tup?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Quritish joyi.",
+       "topshiriq": "Qayerda?",
+       "javob": "soyada",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Dorivor o‘simlik",
+      "tarif": "davolash moddali o‘simlik"
+     },
+     {
+      "atama": "Damlama",
+      "tarif": "o‘simlikdan tayyorlangan suyuqlik"
+     },
+     {
+      "atama": "Gerbariy",
+      "tarif": "quritilgan o‘simliklar to‘plami"
+     },
+     {
+      "atama": "Qizil kitob",
+      "tarif": "muhofaza qilinadigan turlar ro‘yxati"
+     },
+     {
+      "atama": "Biologik faol modda",
+      "tarif": "organizmga ta’sir qiluvchi modda"
+     },
+     {
+      "atama": "Plantatsiya",
+      "tarif": "ekiladigan katta maydon"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Dorivor o‘simlikni shifokor maslahatiga ko‘ra ishlatish kerak",
+      "togri": true,
+      "izoh": "xavfsizlik"
+     },
+     {
+      "matn": "Na’matak C vitaminiga boy",
+      "togri": true,
+      "izoh": "meva"
+     },
+     {
+      "matn": "Hamma dorivor o‘simlik zararsiz",
+      "togri": false,
+      "izoh": "zaharlilari bor"
+     },
+     {
+      "matn": "10 / 5 — 2",
+      "togri": true,
+      "izoh": "kilogramm"
+     },
+     {
+      "matn": "Ibn Sino «Tib qonunlari»ni yozgan",
+      "togri": true,
+      "izoh": "tabobat"
+     },
+     {
+      "matn": "Dorivor o‘tni quyoshda kuydirib quritish kerak",
+      "togri": false,
+      "izoh": "soyada"
+     },
+     {
+      "matn": "60 / 2 — 30",
+      "togri": true,
+      "izoh": "tup"
+     },
+     {
+      "matn": "Qizil kitobdagi turni yig‘ish mumkin",
+      "togri": false,
+      "izoh": "taqiqlanadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Dorivor o‘simlik?",
+      "javob": "faol moddali"
+     },
+     {
+      "savol": "Moychechak?",
+      "javob": "damlama"
+     },
+     {
+      "savol": "Na’matak?",
+      "javob": "C vitamini"
+     },
+     {
+      "savol": "Ibn Sino?",
+      "javob": "Tib qonunlari"
+     },
+     {
+      "savol": "Quritish?",
+      "javob": "soyada"
+     },
+     {
+      "savol": "Qizil kitob?",
+      "javob": "muhofaza"
+     },
+     {
+      "savol": "10 / 5?",
+      "javob": "2"
+     },
+     {
+      "savol": "30 / 5?",
+      "javob": "6"
+     },
+     {
+      "savol": "60 / 2?",
+      "javob": "30"
+     },
+     {
+      "savol": "Gerbariy?",
+      "javob": "quritilgan o‘simliklar"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Gerbariyni kuzat.",
+      "savol": "Qaysi qism?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Massani top.",
+      "savol": "Massa / baravar?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Yovvoyi va ekilgan.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Muhofaza?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun yovvoyi dorivor o‘simliklarni butunlay yulib olish xavfli?",
+    "keys": {
+     "vaziyat": "Tog‘da bir dorivor o‘simlik juda ko‘p yig‘ilib, kamayib ketdi.",
+     "savollar": [
+      "Sabab nima?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Tabiat dorixonasi — asrash mas’uliyati",
+    "taqqoslash": {
+     "a": "Yovvoyi dorivor o‘simlik",
+     "b": "Ekilgan dorivor o‘simlik",
+     "umumiy": [
+      "dorivor",
+      "faol modda"
+     ],
+     "a_farq": [
+      "tabiatda o‘sadi",
+      "yo‘qolish xavfi"
+     ],
+     "b_farq": [
+      "plantatsiyada ekiladi",
+      "nazorat bilan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Dorivor o‘simliklar",
+     "shoxlar": [
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "moychechak",
+        "na’matak",
+        "yalpiz"
+       ]
+      },
+      {
+       "nom": "Yig‘ish",
+       "bandlar": [
+        "vaqti",
+        "quritish",
+        "saqlash"
+       ]
+      },
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "Ibn Sino",
+        "Tib qonunlari"
+       ]
+      },
+      {
+       "nom": "Muhofaza",
+       "bandlar": [
+        "Qizil kitob",
+        "plantatsiya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men o‘tman, tarkibimda faol modda bor, damlama bo‘laman. Men kimman?",
+     "javob": "dorivor o‘simlik"
+    },
+    "hikmat": "Tabiat dorixonasi — asrash kerak.",
+    "kalit_soz": "DORIVOR",
+    "xato_yechim": {
+     "shart": "Dorivor o‘tni qayerda quritiladi?",
+     "xato": "quyoshda",
+     "togri": "soyada",
+     "sabab": "moddalar saqlanadi"
+    },
+    "guruh_nomlari": [
+     "Tabobatchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tabiat dorixonasi»",
+     "topshiriq": "Guruh gerbariy tuzadi."
+    },
+    "vazifalar": {
+     "A": "10 kilogramm, 5 baravar?",
+     "B": "30 kilogramm, 5 baravar?",
+     "C": "60 tupdan yarmi?"
+    },
+    "sinkveyn": [
+     "Dorivor",
+     "xushbo‘y, foydali",
+     "o‘sadi, davolaydi, asraladi",
+     "Tabiat dorixonasi",
+     "Gerbariy"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh dorivor o‘simliklarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: turlari",
+      "2-guruh: yig‘ish",
+      "3-guruh: tarix",
+      "4-guruh: muhofaza"
+     ],
+     "yakun": "Natijalar: 2; 6; 30."
+    }
+   }
   }
  ]
 }
