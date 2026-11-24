@@ -2790,6 +2790,1400 @@
      "yakun": "Natijalar: 85; 85; 90 foiz."
     }
    }
+  },
+  {
+   "mavzu": "Suvo‘tlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Suvo‘tlar tanasi",
+      "matn": "Suvo‘tlar — suvda yashaydigan, fotosintez qiluvchi pastki o‘simliklar. Ularda ildiz, poya va barg yo‘q, tanasi tallom (talom) deb ataladi. Bir hujayrali (xlorella, xlamidomonada) va ko‘p hujayrali (spirogira, laminariya) turlari bor. Hujayrasida xloroplast bor, shuning uchun ular fotosintez qiladi.",
+      "misol": "Suvo‘t — suv ostidagi yashil zavod.",
+      "savol": "Suvo‘tlar tanasi nima deyiladi?",
+      "javob": "tallom",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Suvo‘t bo‘limlari",
+      "matn": "Suvo‘tlar rangiga ko‘ra yashil, qo‘ng‘ir va qizil bo‘limlarga bo‘linadi. Yashil suvo‘tlar (xlorella, spirogira) sayoz va chuchuk suvda yashaydi. Qo‘ng‘ir suvo‘tlar (laminariya) dengizda o‘sadi. Qizil suvo‘tlar dengizning chuqurroq joylarida uchraydi, chunki ular kam yorug‘likni ushlay oladi.",
+      "misol": "Rang — pigment belgisi.",
+      "savol": "Laminariya qaysi bo‘limga kiradi?",
+      "javob": "qo‘ng‘ir suvo‘tlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘payishi va hisob",
+      "matn": "Suvo‘tlar vegetativ (tallom bo‘laklari), jinssiz (sporalar) va jinsiy yo‘l bilan ko‘payadi. Bir hujayrali suvo‘t ikkiga bo‘linadi. Masalan, 1 hujayra 5 marta ketma-ket bo‘linsa, 2 · 2 · 2 · 2 · 2 — 32 hujayra bo‘ladi. Agar 1 litr suvda 3000 hujayra bo‘lsa, 5 litrda 3000 · 5 — 15000 hujayra bo‘ladi (taxminiy misol).",
+      "misol": "Bo‘linish — suvo‘t tez ko‘payishi sababi.",
+      "savol": "1 hujayra 5 marta bo‘linsa necha hujayra?",
+      "javob": "32",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tabiatdagi roli",
+      "matn": "Suvo‘tlar suv havzalarida kislorod chiqaradi va baliq hamda boshqa jonzotlarga oziq bo‘ladi. Taxminan Yerdagi kislorodning katta qismi suvo‘tlar va suv o‘simliklari hisobiga hosil bo‘ladi. Ammo suv juda boyib ketsa, suvo‘tlar haddan tashqari ko‘payib, suvning «gullashi» boshlanadi, kislorod kamayadi va baliqlar nobud bo‘ladi.",
+      "misol": "Suvning «gullashi» — xavfli hodisa.",
+      "savol": "Suv «gullashi» sababi?",
+      "javob": "suvo‘tlarning haddan ortiq ko‘payishi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Inson uchun ahamiyati",
+      "matn": "Laminariya (dengiz karami) yodga boy, oziq-ovqat sifatida ishlatiladi. Suvo‘tlardan agar-agar, alginatlar olinadi, ular oziq-ovqat va tibbiyotda kerak. Xlorella oqsilga boy oziq va o‘g‘it sifatida o‘rganiladi. Suvo‘tlar suvni tozalash tizimlarida ham qo‘llanadi.",
+      "misol": "Dengiz karami — yod manbai.",
+      "savol": "Laminariya nimaga boy?",
+      "javob": "yodga",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Suvo‘tlar: tallom, ildiz-poya-barg yo‘q. Bo‘limlar: yashil, qo‘ng‘ir, qizil. Hujayra bo‘linishi: har bo‘linishda ikki baravar.",
+    "misollar": [
+     {
+      "shart": "1 hujayra ketma-ket 5 marta ikkiga bo‘linadi. Hujayra soni?",
+      "yechim": [
+       "2 · 2 · 2 · 2 · 2.",
+       "Hisoblang.",
+       "Javob 32."
+      ],
+      "javob": "32"
+     },
+     {
+      "shart": "Masalan, 1 litr suvda 3000 xlorella hujayrasi bor. 5 litrda?",
+      "yechim": [
+       "3000 · 5.",
+       "Hisoblang.",
+       "Javob 15000."
+      ],
+      "javob": "15000"
+     },
+     {
+      "shart": "1 hujayra 4 marta ketma-ket bo‘linsa necha hujayra bo‘ladi?",
+      "yechim": [
+       "2 · 2 · 2 · 2.",
+       "Hisoblang.",
+       "Javob 16."
+      ],
+      "javob": "16"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Mikroskopda suvo‘t",
+      "topshiriq": "Hovuz suvidan tomchini mikroskopda ko‘ring.",
+      "yechim": "Yashil hujayralar.",
+      "mahsulot": "mikroskop, suv"
+     },
+     {
+      "nom": "Spirogira kuzatuvi",
+      "topshiriq": "Spirogira ipini ko‘rib, xloroplastni chizing.",
+      "yechim": "Spiral xloroplast.",
+      "mahsulot": "mikroskop, daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Bo‘linish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Bo‘limlar jadvali",
+      "topshiriq": "Yashil, qo‘ng‘ir va qizil suvo‘tlarni taqqoslang.",
+      "yechim": "Yashash joyi.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 2 · 2 · 2 · 2 nechaga teng?",
+      "javob": "32"
+     },
+     {
+      "shart": "3000 · 5 nechaga teng?",
+      "javob": "15000"
+     },
+     {
+      "shart": "2 · 2 · 2 · 2 nechaga teng?",
+      "javob": "16"
+     },
+     {
+      "shart": "Suvo‘t tanasi nomi?",
+      "javob": "tallom"
+     },
+     {
+      "shart": "Laminariya qaysi rangda?",
+      "javob": "qo‘ng‘ir"
+     },
+     {
+      "shart": "Bir hujayrali yashil suvo‘t?",
+      "javob": "xlorella"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Suvo‘tlarda ildiz bor deydi",
+      "sabab": "ildiz, poya, barg yo‘q",
+      "oldini_olish": "tallom bor"
+     },
+     {
+      "xato": "Suvo‘t hayvon deydi",
+      "sabab": "o‘simlik",
+      "oldini_olish": "fotosintez qiladi"
+     },
+     {
+      "xato": "Suvning gullashi foydali deydi",
+      "sabab": "xavfli",
+      "oldini_olish": "kislorod kamayadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "yod"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "suv gullashi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ikki baravar ko‘payish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Suvo‘tlar olami»",
+     "muammo": "Suvo‘tlar qanday tuzilgan va nima uchun kerak?",
+     "mahsulot": "mikroskop hisoboti",
+     "bosqichlar": [
+      "suvo‘t kuzatuvi",
+      "bo‘limlar jadvali",
+      "ko‘payish hisobi",
+      "ahamiyati",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kuzating",
+      "Taqqoslang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "kuzatuv aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Suv osti bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "5 marta bo‘linish.",
+       "topshiriq": "Hujayra?",
+       "javob": "32",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1 litrda 3000, 5 litr.",
+       "topshiriq": "Hujayra?",
+       "javob": "15000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "4 marta bo‘linish.",
+       "topshiriq": "Hujayra?",
+       "javob": "16",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Suvo‘t tanasi.",
+       "topshiriq": "Nomi?",
+       "javob": "tallom",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Darajaga o‘tdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tallom",
+      "tarif": "suvo‘t tanasi"
+     },
+     {
+      "atama": "Xlorella",
+      "tarif": "bir hujayrali yashil suvo‘t"
+     },
+     {
+      "atama": "Spirogira",
+      "tarif": "ipsimon yashil suvo‘t"
+     },
+     {
+      "atama": "Laminariya",
+      "tarif": "qo‘ng‘ir dengiz suvo‘ti"
+     },
+     {
+      "atama": "Spora",
+      "tarif": "jinssiz ko‘payish hujayrasi"
+     },
+     {
+      "atama": "Pigment",
+      "tarif": "rang beruvchi modda"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Suvo‘tlarda ildiz yo‘q",
+      "togri": true,
+      "izoh": "tallom"
+     },
+     {
+      "matn": "Laminariya qo‘ng‘ir suvo‘t",
+      "togri": true,
+      "izoh": "dengizda"
+     },
+     {
+      "matn": "Suvo‘t fotosintez qiladi",
+      "togri": true,
+      "izoh": "xloroplast"
+     },
+     {
+      "matn": "Suvo‘t hayvon",
+      "togri": false,
+      "izoh": "o‘simlik"
+     },
+     {
+      "matn": "2 · 2 · 2 · 2 · 2 — 32",
+      "togri": true,
+      "izoh": "hujayra"
+     },
+     {
+      "matn": "Suv gullashi foydali",
+      "togri": false,
+      "izoh": "xavfli"
+     },
+     {
+      "matn": "Dengiz karami yodga boy",
+      "togri": true,
+      "izoh": "laminariya"
+     },
+     {
+      "matn": "3000 · 5 — 15000",
+      "togri": true,
+      "izoh": "hujayra"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tallom?",
+      "javob": "suvo‘t tanasi"
+     },
+     {
+      "savol": "Xlorella?",
+      "javob": "bir hujayrali"
+     },
+     {
+      "savol": "Spirogira?",
+      "javob": "ipsimon"
+     },
+     {
+      "savol": "Laminariya?",
+      "javob": "qo‘ng‘ir"
+     },
+     {
+      "savol": "Bo‘limlar?",
+      "javob": "yashil, qo‘ng‘ir, qizil"
+     },
+     {
+      "savol": "Suv gullashi?",
+      "javob": "ko‘p ko‘payish"
+     },
+     {
+      "savol": "2 · 2 · 2 · 2 · 2?",
+      "javob": "32"
+     },
+     {
+      "savol": "3000 · 5?",
+      "javob": "15000"
+     },
+     {
+      "savol": "Yod manbai?",
+      "javob": "dengiz karami"
+     },
+     {
+      "savol": "Xloroplast vazifasi?",
+      "javob": "fotosintez"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Suvo‘tni kuzat.",
+      "savol": "Rangi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Hujayra sonini top.",
+      "savol": "Ikki baravar?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Yashil va qo‘ng‘ir.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ahamiyati?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun suv haddan tashqari boyib ketganda baliqlar nobud bo‘ladi?",
+    "keys": {
+     "vaziyat": "Hovuz suvi yashil bo‘lib, baliqlar halok bo‘la boshladi.",
+     "savollar": [
+      "Sabab nima?",
+      "Nima qilish kerak?"
+     ]
+    },
+    "tezis": "Suvo‘tlar suv hayotining asosi",
+    "taqqoslash": {
+     "a": "Yashil suvo‘t",
+     "b": "Qo‘ng‘ir suvo‘t",
+     "umumiy": [
+      "suvda yashaydi",
+      "fotosintez qiladi"
+     ],
+     "a_farq": [
+      "chuchuk suv",
+      "xlorella, spirogira"
+     ],
+     "b_farq": [
+      "dengiz",
+      "laminariya"
+     ]
+    },
+    "klaster": {
+     "markaz": "Suvo‘tlar",
+     "shoxlar": [
+      {
+       "nom": "Tana",
+       "bandlar": [
+        "tallom",
+        "xloroplast"
+       ]
+      },
+      {
+       "nom": "Bo‘limlar",
+       "bandlar": [
+        "yashil",
+        "qo‘ng‘ir",
+        "qizil"
+       ]
+      },
+      {
+       "nom": "Ko‘payish",
+       "bandlar": [
+        "bo‘linish",
+        "spora"
+       ]
+      },
+      {
+       "nom": "Ahamiyat",
+       "bandlar": [
+        "kislorod",
+        "oziq",
+        "yod"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men suvda yashayman, ildizim ham bargim yo‘q, ammo yashilman. Men kimman?",
+     "javob": "suvo‘t"
+    },
+    "hikmat": "Suvo‘t suvdagi o‘rmon.",
+    "kalit_soz": "SUVOT",
+    "xato_yechim": {
+     "shart": "Suvo‘tlarda ildiz bormi?",
+     "xato": "bor",
+     "togri": "yo‘q, tallom bor",
+     "sabab": "pastki o‘simlik"
+    },
+    "guruh_nomlari": [
+     "Suvo‘tchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Suvo‘tlar olami»",
+     "topshiriq": "Guruh mikroskop kuzatuvini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "5 marta bo‘linishdan keyin hujayra?",
+     "B": "5 litrda 3000 · 5?",
+     "C": "4 marta bo‘linishdan keyin hujayra?"
+    },
+    "sinkveyn": [
+     "Suvo‘t",
+     "yashil, nozik",
+     "yashaydi, bo‘linadi, kislorod beradi",
+     "Suv o‘rmoni",
+     "Tallom"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh suvo‘tlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: bo‘limlar",
+      "3-guruh: ko‘payish",
+      "4-guruh: ahamiyat"
+     ],
+     "yakun": "Natijalar: 32; 15000; 16."
+    }
+   }
+  },
+  {
+   "mavzu": "Moxlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Moxlar tuzilishi",
+      "matn": "Moxlar — quruqlikka chiqqan, ammo nam joyni yoqtiradigan pastki o‘simliklar. Ularning haqiqiy ildizi yo‘q, ildizsimon rizoidlar bilan tuproqqa yopishadi. Ba’zi moxlar (kuku zig‘ir) poya va bargsimon qismlarga ega, boshqalari (marxansiya) yassi tallomli. O‘tkazuvchi to‘qimasi taraqqiy etmagan, shuning uchun moxlar past bo‘yli.",
+      "misol": "Mox — kichkina yashil gilam.",
+      "savol": "Moxlar tuproqqa nima bilan yopishadi?",
+      "javob": "rizoidlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayot sikli",
+      "matn": "Moxlarda gametofit (jinsiy bo‘g‘in) ustun turadi, sporofit esa unga bog‘liq. Kuku zig‘irda ayrim o‘simliklar erkak, ayrimlari urg‘ochi. Urug‘lanish uchun suv kerak, chunki spermatozoid suvda suzadi. Zigotadan sporofit — sporali quti o‘sib chiqadi, sporalar tarqalib, yangi mox beradi.",
+      "misol": "Mox ko‘payishi uchun suv shart.",
+      "savol": "Moxlarda qaysi bo‘g‘in ustun?",
+      "javob": "gametofit",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sfagnum va torf",
+      "matn": "Sfagnum (oq mox) botqoqlarda o‘sadi va o‘z quruq massasidan taxminan 20 baravar ko‘p suv shimadi. Masalan, 50 gramm quruq sfagnum taxminan 50 · 20 — 1000 gramm suv; 200 gramm esa 4000 gramm; 500 gramm (0,5 kilogramm) esa 10000 gramm (10 kilogramm) suv shimadi. Sfagnum o‘lib, botqoqda torfga aylanadi.",
+      "misol": "Sfagnum — tabiiy shimgich.",
+      "savol": "Sfagnum nimaga aylanadi?",
+      "javob": "torfga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mox va torfdan foydalanish",
+      "matn": "Torf yoqilg‘i, o‘g‘it va issiqxona tuprog‘i uchun ishlatiladi. Sfagnum ilgari bog‘lov materiali sifatida ham qo‘llangan, chunki suv shimadi va mikrob o‘sishini sekinlatadi. Moxlar suvni ushlab, tuproq yuvilishini kamaytiradi. Shuning uchun torfli botqoqlarni asrash muhim.",
+      "misol": "Botqoq — suv zaxirasi.",
+      "savol": "Torf nima uchun ishlatiladi?",
+      "javob": "yoqilg‘i va o‘g‘it",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Moxlar indikator sifatida",
+      "matn": "Moxlar havo ifloslanishiga sezgir, shuning uchun toza havo ko‘rsatkichi bo‘la oladi. Shaharda ifloslangan joyda moxlar kam yoki yo‘q. Ular toshli joylarda ham birinchi o‘rnashadi va tuproq hosil bo‘lishiga yordam beradi. O‘zbekistonda moxlar asosan nam tog‘ yon bag‘irlarida uchraydi.",
+      "misol": "Mox — havo tozaligi o‘lchovi.",
+      "savol": "Moxlar nimaning ko‘rsatkichi?",
+      "javob": "havo tozaligining",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Moxlar: ildiz yo‘q, rizoid bor. Gametofit ustun. Sfagnum quruq massadan taxminan 20 baravar ko‘p suv shimadi, torfga aylanadi.",
+    "misollar": [
+     {
+      "shart": "Masalan, 50 gramm quruq sfagnum o‘z massasidan 20 baravar ko‘p suv shimadi. Suv massasi?",
+      "yechim": [
+       "50 · 20.",
+       "Hisoblang.",
+       "Javob 1000 gramm."
+      ],
+      "javob": "1000 gramm"
+     },
+     {
+      "shart": "Masalan, 200 gramm sfagnum 20 baravar suv shimadi. Suv massasi?",
+      "yechim": [
+       "200 · 20.",
+       "Hisoblang.",
+       "Javob 4000 gramm."
+      ],
+      "javob": "4000 gramm"
+     },
+     {
+      "shart": "Masalan, 0,5 kilogramm sfagnum 20 baravar suv shimadi. Suv necha kilogramm?",
+      "yechim": [
+       "500 · 20 — 10000 gramm.",
+       "Kilogrammga o‘ting.",
+       "Javob 10 kilogramm."
+      ],
+      "javob": "10 kilogramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Mox kuzatuvi",
+      "topshiriq": "Moxni lupa bilan ko‘rib, rizoidlarni toping.",
+      "yechim": "Rizoid va poya.",
+      "mahsulot": "mox, lupa"
+     },
+     {
+      "nom": "Shimish tajribasi",
+      "topshiriq": "Quruq moxning massasini o‘lchab, suvga solib qayta o‘lchang.",
+      "yechim": "Massa farqi.",
+      "mahsulot": "mox, tarozi, suv"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Massa va ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Hayot sikli sxemasi",
+      "topshiriq": "Mox hayot siklini strelkalar bilan chizing.",
+      "yechim": "Gametofit, sporofit.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "50 · 20 nechaga teng?",
+      "javob": "1000"
+     },
+     {
+      "shart": "200 · 20 nechaga teng?",
+      "javob": "4000"
+     },
+     {
+      "shart": "500 · 20 nechaga teng?",
+      "javob": "10000"
+     },
+     {
+      "shart": "10000 gramm necha kilogramm?",
+      "javob": "10"
+     },
+     {
+      "shart": "Mox ildizi o‘rnini nima bosadi?",
+      "javob": "rizoid"
+     },
+     {
+      "shart": "Botqoqda mox nimaga aylanadi?",
+      "javob": "torf"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Moxlarda haqiqiy ildiz bor deydi",
+      "sabab": "rizoidlar bor",
+      "oldini_olish": "ildiz yo‘q"
+     },
+     {
+      "xato": "Moxlar urug‘ bilan ko‘payadi deydi",
+      "sabab": "sporalar bilan",
+      "oldini_olish": "urug‘ yo‘q"
+     },
+     {
+      "xato": "Torf tez hosil bo‘ladi deydi",
+      "sabab": "juda sekin",
+      "oldini_olish": "ming yillar"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Ekologiya",
+      "boglanish": "botqoq"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "yoqilg‘i"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "massa hisobi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mox — tabiiy shimgich»",
+     "muammo": "Mox qancha suv shimadi?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "mox kuzatuvi",
+      "shimish tajribasi",
+      "massa hisobi",
+      "torf ahamiyati",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kuzating",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Nam o‘rmon»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "50 gramm sfagnum, 20 baravar.",
+       "topshiriq": "Suv gramm?",
+       "javob": "1000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "200 gramm sfagnum.",
+       "topshiriq": "Suv gramm?",
+       "javob": "4000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "0,5 kilogramm sfagnum.",
+       "topshiriq": "Suv kilogramm?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Mox ildiz o‘rniga.",
+       "topshiriq": "Qaysi?",
+       "javob": "rizoid",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Birlikni almashtirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Rizoid",
+      "tarif": "ildizsimon o‘simta"
+     },
+     {
+      "atama": "Gametofit",
+      "tarif": "jinsiy bo‘g‘in"
+     },
+     {
+      "atama": "Sporofit",
+      "tarif": "jinssiz bo‘g‘in"
+     },
+     {
+      "atama": "Sfagnum",
+      "tarif": "botqoq mox"
+     },
+     {
+      "atama": "Torf",
+      "tarif": "moxlardan hosil bo‘lgan yoqilg‘i"
+     },
+     {
+      "atama": "Kuku zig‘ir",
+      "tarif": "keng tarqalgan mox"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Moxlarda haqiqiy ildiz yo‘q",
+      "togri": true,
+      "izoh": "rizoid"
+     },
+     {
+      "matn": "Mox sporalar bilan ko‘payadi",
+      "togri": true,
+      "izoh": "urug‘ yo‘q"
+     },
+     {
+      "matn": "Moxlarda sporofit ustun",
+      "togri": false,
+      "izoh": "gametofit ustun"
+     },
+     {
+      "matn": "50 · 20 — 1000",
+      "togri": true,
+      "izoh": "gramm"
+     },
+     {
+      "matn": "Sfagnum torfga aylanadi",
+      "togri": true,
+      "izoh": "botqoqda"
+     },
+     {
+      "matn": "Mox urug‘ beradi",
+      "togri": false,
+      "izoh": "spora beradi"
+     },
+     {
+      "matn": "Moxlar havo tozaligi ko‘rsatkichi",
+      "togri": true,
+      "izoh": "sezgir"
+     },
+     {
+      "matn": "500 · 20 — 10000",
+      "togri": true,
+      "izoh": "gramm"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Rizoid?",
+      "javob": "ildizsimon o‘simta"
+     },
+     {
+      "savol": "Gametofit?",
+      "javob": "ustun bo‘g‘in"
+     },
+     {
+      "savol": "Sporofit?",
+      "javob": "sporali quti"
+     },
+     {
+      "savol": "Sfagnum?",
+      "javob": "oq mox"
+     },
+     {
+      "savol": "Torf?",
+      "javob": "yoqilg‘i"
+     },
+     {
+      "savol": "Mox ko‘payishi?",
+      "javob": "spora"
+     },
+     {
+      "savol": "50 · 20?",
+      "javob": "1000"
+     },
+     {
+      "savol": "200 · 20?",
+      "javob": "4000"
+     },
+     {
+      "savol": "10000 gramm?",
+      "javob": "10 kilogramm"
+     },
+     {
+      "savol": "Mox qayerda o‘sadi?",
+      "javob": "nam joyda"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Moxni kuzat.",
+      "savol": "Rizoidlari?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Suv massasini top.",
+      "savol": "Mox · 20?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Suvo‘t va mox.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Torf ahamiyati?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun moxlar past bo‘yli?",
+    "keys": {
+     "vaziyat": "Botqoq quritilib, torf qatlami yo‘qola boshladi.",
+     "savollar": [
+      "Nima yo‘qoladi?",
+      "Suv holati qanday o‘zgaradi?"
+     ]
+    },
+    "tezis": "Mox — suv saqlovchisi",
+    "taqqoslash": {
+     "a": "Suvo‘tlar",
+     "b": "Moxlar",
+     "umumiy": [
+      "pastki o‘simlik",
+      "ildiz yo‘q"
+     ],
+     "a_farq": [
+      "suvda yashaydi",
+      "tallom"
+     ],
+     "b_farq": [
+      "nam quruqlikda",
+      "rizoid, poya"
+     ]
+    },
+    "klaster": {
+     "markaz": "Moxlar",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "rizoid",
+        "poya",
+        "bargcha"
+       ]
+      },
+      {
+       "nom": "Ko‘payish",
+       "bandlar": [
+        "gametofit",
+        "sporofit",
+        "spora"
+       ]
+      },
+      {
+       "nom": "Sfagnum",
+       "bandlar": [
+        "suv shimadi",
+        "torf"
+       ]
+      },
+      {
+       "nom": "Ahamiyat",
+       "bandlar": [
+        "yoqilg‘i",
+        "suv saqlash",
+        "indikator"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men nam joyda o‘sadigan yashil gilamman, ildizim yo‘q. Men kimman?",
+     "javob": "mox"
+    },
+    "hikmat": "Mox — o‘rmon shimgichi.",
+    "kalit_soz": "MOX",
+    "xato_yechim": {
+     "shart": "Moxlar nima bilan ko‘payadi?",
+     "xato": "urug‘",
+     "togri": "spora",
+     "sabab": "urug‘li o‘simlik emas"
+    },
+    "guruh_nomlari": [
+     "Moxchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mox — tabiiy shimgich»",
+     "topshiriq": "Guruh shimish tajribasini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "50 gramm sfagnum suvi?",
+     "B": "200 gramm sfagnum suvi?",
+     "C": "0,5 kilogramm sfagnum suvi, kilogrammda?"
+    },
+    "sinkveyn": [
+     "Mox",
+     "yumshoq, nam",
+     "o‘sadi, shimadi, saqlaydi",
+     "Mox — shimgich",
+     "Torf"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh moxlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: ko‘payish",
+      "3-guruh: sfagnum",
+      "4-guruh: ahamiyat"
+     ],
+     "yakun": "Natijalar: 1000; 4000; 10."
+    }
+   }
+  },
+  {
+   "mavzu": "Qirqquloqlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Qirqquloqlar tuzilishi",
+      "matn": "Qirqquloqlar — ildiz, poya (ildizpoya) va barglarga ega bo‘lgan sporali o‘simliklar. Ularda o‘tkazuvchi to‘qima taraqqiy etgan, shuning uchun moxlardan balandroq. Ularning katta bargi vayya deb ataladi, u ildizpoyadan o‘sib chiqadi. Qirqquloq, qirqbo‘g‘im va plaunlar shu guruhga kiradi.",
+      "misol": "Qirqquloq — o‘tkazuvchi to‘qimali spora o‘simligi.",
+      "savol": "Qirqquloq bargi nima deyiladi?",
+      "javob": "vayya",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘payishi",
+      "matn": "Qirqquloq bargining orqasida sporali to‘plamlar — sorus joylashgan. Sporalar yetilib to‘kiladi va nam tuproqda o‘simtaga (gametofit) aylanadi. O‘simtada jinsiy hujayralar hosil bo‘ladi, urug‘lanish suvda o‘tadi, zigotadan yangi qirqquloq (sporofit) o‘sadi. Qirqquloqlarda sporofit ustun turadi.",
+      "misol": "Spora — urug‘ emas.",
+      "savol": "Qirqquloqlarda qaysi bo‘g‘in ustun?",
+      "javob": "sporofit",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Spora hisobi",
+      "matn": "Masalan, bitta sorusda 50 sporangiy bor deylik, 30 sorus bo‘lsa, 50 · 30 — 1500 sporangiy bo‘ladi (taxminiy misol). Agar 1500 sporadan 10 foizi unsa, 1500 · 0,1 — 150 ta o‘simta chiqadi. Bitta bargda 40 sorus, 5 bargda 40 · 5 — 200 sorus.",
+      "misol": "Qirqquloq ko‘p spora sochadi.",
+      "savol": "10 foiz — qaysi kasr?",
+      "javob": "0,1",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qirqquloqlar tarixi",
+      "matn": "Qirqquloqsimonlar taxminan 300 million yil oldin, ko‘mir davrida keng o‘rmonlar hosil qilgan. Ularning qoldiqlari ko‘mirga aylangan. Hozir ham qirqquloqlar nam o‘rmon va soyali joylarda o‘sadi. O‘zbekistonda tog‘li nam joylarda qirqquloq va qirqbo‘g‘imlar uchraydi.",
+      "misol": "Ko‘mir — qadimgi qirqquloq o‘rmonlari izi.",
+      "savol": "Qirqquloq qoldig‘i nimaga aylangan?",
+      "javob": "ko‘mirga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qirqbo‘g‘im va plaun",
+      "matn": "Qirqbo‘g‘imning poyasi bo‘g‘imli, sporalari boshoqda joylashadi, u kremniyga boy bo‘lgani uchun dag‘al. Plaun poyasi o‘rmalovchi, sporalari boshoqchada yetiladi. Qirqbo‘g‘imning ayrim turlari dorivor, ammo ayrimlari yaylovda zararli o‘t hisoblanadi.",
+      "misol": "Qirqbo‘g‘im — «bo‘g‘imli o‘t».",
+      "savol": "Qirqbo‘g‘im poyasi qanday?",
+      "javob": "bo‘g‘imli",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Qirqquloqlar: ildizpoya, vayya, sorus. Sporofit ustun. Ko‘mir davrida keng o‘rmonlar hosil qilgan.",
+    "misollar": [
+     {
+      "shart": "Masalan, har bir sorusda 50 sporangiy, 30 sorus bor. Sporangiy soni?",
+      "yechim": [
+       "50 · 30.",
+       "Hisoblang.",
+       "Javob 1500."
+      ],
+      "javob": "1500"
+     },
+     {
+      "shart": "Masalan, 1500 sporadan 10 foizi unadi. Nechta o‘simta?",
+      "yechim": [
+       "10 foiz — 0,1.",
+       "1500 · 0,1.",
+       "Javob 150."
+      ],
+      "javob": "150"
+     },
+     {
+      "shart": "Bitta bargda 40 sorus. 5 bargda?",
+      "yechim": [
+       "40 · 5.",
+       "Hisoblang.",
+       "Javob 200."
+      ],
+      "javob": "200"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Gerbariy",
+      "topshiriq": "Qirqquloq vayyasini gerbariyga joylang.",
+      "yechim": "Sorus.",
+      "mahsulot": "vayya, daftar"
+     },
+     {
+      "nom": "Sorusni ko‘rish",
+      "topshiriq": "Barg orqasidagi sorusni lupa bilan ko‘ring.",
+      "yechim": "Qora dog‘lar.",
+      "mahsulot": "lupa"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Taqqoslash",
+      "topshiriq": "Mox va qirqquloqni taqqoslang.",
+      "yechim": "Ildiz, o‘tkazuvchi to‘qima.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "50 · 30 nechaga teng?",
+      "javob": "1500"
+     },
+     {
+      "shart": "1500 · 0,1 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "40 · 5 nechaga teng?",
+      "javob": "200"
+     },
+     {
+      "shart": "Qirqquloq bargi nomi?",
+      "javob": "vayya"
+     },
+     {
+      "shart": "Sporali to‘plam nomi?",
+      "javob": "sorus"
+     },
+     {
+      "shart": "Qirqquloqlarda ustun bo‘g‘in?",
+      "javob": "sporofit"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qirqquloq urug‘ bilan ko‘payadi deydi",
+      "sabab": "sporalar bilan",
+      "oldini_olish": "urug‘ yo‘q"
+     },
+     {
+      "xato": "Qirqquloqda ildiz yo‘q deydi",
+      "sabab": "ildizpoya va ildiz bor",
+      "oldini_olish": "o‘tkazuvchi to‘qima"
+     },
+     {
+      "xato": "Qirqquloq faqat hozir o‘sadi deydi",
+      "sabab": "300 million yil oldin ham",
+      "oldini_olish": "ko‘mir davri"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geologiya",
+      "boglanish": "ko‘mir"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytirish"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "nam o‘rmon"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Qirqquloq sirlari»",
+     "muammo": "Qirqquloq qanday ko‘payadi?",
+     "mahsulot": "gerbariy va hisob",
+     "bosqichlar": [
+      "gerbariy",
+      "sorusni kuzatish",
+      "spora hisobi",
+      "tarix",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Gerbariy qiling",
+      "Kuzating",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "gerbariy to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qadimgi o‘rmon»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "50 sporangiy, 30 sorus.",
+       "topshiriq": "Jami?",
+       "javob": "1500",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1500 sporaning 10 foizi.",
+       "topshiriq": "O‘simta?",
+       "javob": "150",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "40 sorus, 5 barg.",
+       "topshiriq": "Jami?",
+       "javob": "200",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Sporali to‘plam.",
+       "topshiriq": "Nomi?",
+       "javob": "sorus",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Foizni kasrga o‘tkazdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Vayya",
+      "tarif": "qirqquloq bargi"
+     },
+     {
+      "atama": "Sorus",
+      "tarif": "sporangiylar to‘plami"
+     },
+     {
+      "atama": "Ildizpoya",
+      "tarif": "yer ostidagi poya"
+     },
+     {
+      "atama": "Sporangiy",
+      "tarif": "spora xaltachasi"
+     },
+     {
+      "atama": "O‘simta",
+      "tarif": "spora unib chiqqan bo‘g‘in"
+     },
+     {
+      "atama": "Plaun",
+      "tarif": "o‘rmalovchi sporali o‘simlik"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qirqquloqning ildizpoyasi bor",
+      "togri": true,
+      "izoh": "yer ostida"
+     },
+     {
+      "matn": "Qirqquloq urug‘ beradi",
+      "togri": false,
+      "izoh": "spora beradi"
+     },
+     {
+      "matn": "Sorus bargning orqasida joylashgan",
+      "togri": true,
+      "izoh": "sporali to‘plam"
+     },
+     {
+      "matn": "50 · 30 — 1500",
+      "togri": true,
+      "izoh": "sporangiy"
+     },
+     {
+      "matn": "Ko‘mir qadimgi qirqquloqlardan hosil bo‘lgan",
+      "togri": true,
+      "izoh": "qisman"
+     },
+     {
+      "matn": "Qirqquloqda gametofit ustun",
+      "togri": false,
+      "izoh": "sporofit ustun"
+     },
+     {
+      "matn": "1500 · 0,1 — 150",
+      "togri": true,
+      "izoh": "o‘simta"
+     },
+     {
+      "matn": "Qirqbo‘g‘im poyasi bo‘g‘imli",
+      "togri": true,
+      "izoh": "kremniyli"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Vayya?",
+      "javob": "qirqquloq bargi"
+     },
+     {
+      "savol": "Sorus?",
+      "javob": "sporangiylar"
+     },
+     {
+      "savol": "Ildizpoya?",
+      "javob": "yer osti poya"
+     },
+     {
+      "savol": "Spora?",
+      "javob": "ko‘payish hujayrasi"
+     },
+     {
+      "savol": "Plaun?",
+      "javob": "o‘rmalovchi"
+     },
+     {
+      "savol": "Qirqbo‘g‘im?",
+      "javob": "bo‘g‘imli poya"
+     },
+     {
+      "savol": "50 · 30?",
+      "javob": "1500"
+     },
+     {
+      "savol": "1500 · 0,1?",
+      "javob": "150"
+     },
+     {
+      "savol": "40 · 5?",
+      "javob": "200"
+     },
+     {
+      "savol": "Ustun bo‘g‘in?",
+      "javob": "sporofit"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Vayyani kuzat.",
+      "savol": "Sorus qayerda?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Soruslar sonini top.",
+      "savol": "Barg · sorus?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Mox va qirqquloq.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Tarixiy ahamiyat?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun qirqquloqlar moxlardan balandroq o‘sadi?",
+    "keys": {
+     "vaziyat": "Kon ochilganda ko‘mir qatlamida qirqquloq izlari topildi.",
+     "savollar": [
+      "Bu nimani bildiradi?",
+      "Qachon yashagan?"
+     ]
+    },
+    "tezis": "Qirqquloq — qadimgi o‘rmon merosi",
+    "taqqoslash": {
+     "a": "Moxlar",
+     "b": "Qirqquloqlar",
+     "umumiy": [
+      "sporali o‘simlik",
+      "nam joyda o‘sadi"
+     ],
+     "a_farq": [
+      "ildiz yo‘q, rizoid",
+      "gametofit ustun"
+     ],
+     "b_farq": [
+      "ildizpoya, ildiz bor",
+      "sporofit ustun"
+     ]
+    },
+    "klaster": {
+     "markaz": "Qirqquloqlar",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "ildizpoya",
+        "vayya",
+        "o‘tkazuvchi to‘qima"
+       ]
+      },
+      {
+       "nom": "Ko‘payish",
+       "bandlar": [
+        "sorus",
+        "spora",
+        "o‘simta"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "qirqquloq",
+        "qirqbo‘g‘im",
+        "plaun"
+       ]
+      },
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "ko‘mir davri",
+        "ko‘mir"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men urug‘ bermayman, bargimning orqasida sporalar bor. Men kimman?",
+     "javob": "qirqquloq"
+    },
+    "hikmat": "Qirqquloq qadimdan kelgan.",
+    "kalit_soz": "QIRQQULOQ",
+    "xato_yechim": {
+     "shart": "Qirqquloq nima bilan ko‘payadi?",
+     "xato": "urug‘",
+     "togri": "spora",
+     "sabab": "urug‘li o‘simlik emas"
+    },
+    "guruh_nomlari": [
+     "Qirqquloqchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qirqquloq sirlari»",
+     "topshiriq": "Guruh gerbariy tuzadi."
+    },
+    "vazifalar": {
+     "A": "50 · 30 sporangiy?",
+     "B": "1500 sporaning 10 foizi?",
+     "C": "5 bargda 40 sorus?"
+    },
+    "sinkveyn": [
+     "Qirqquloq",
+     "ko‘hna, yashil",
+     "o‘sadi, sochadi, saqlanadi",
+     "Qadimgi o‘rmon",
+     "Vayya"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh qirqquloqlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: ko‘payish",
+      "3-guruh: turlari",
+      "4-guruh: tarix"
+     ],
+     "yakun": "Natijalar: 1500; 150; 200."
+    }
+   }
   }
  ]
 }
