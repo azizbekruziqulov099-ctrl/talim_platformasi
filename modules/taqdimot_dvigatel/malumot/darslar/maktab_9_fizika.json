@@ -8298,6 +8298,1392 @@
      "yakun": "Natijalar: 10; 500; 100."
     }
    }
+  },
+  {
+   "mavzu": "Elektromagnit to‘lqinlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "To‘lqin nima",
+      "matn": "Elektromagnit to‘lqin — fazoda tarqaladigan o‘zgaruvchan elektr va magnit maydonlar. U tarqalishi uchun muhit kerak emas, vakuumda ham yuradi. Quyosh nuri bizgacha shunday yetib keladi.",
+      "misol": "Quyosh nuri bo‘sh fazodan o‘tadi.",
+      "savol": "Elektromagnit to‘lqin vakuumda tarqaladimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Maksvell va Gerts",
+      "matn": "1865-yilda Jeyms Maksvell elektromagnit to‘lqinlar mavjudligini nazariy bashorat qildi. 1887-yilda nemis fizigi Geynrix Gerts ularni tajribada hosil qilib aniqladi. Gerts sharafiga chastota birligi gerts deb ataladi.",
+      "misol": "Nazariya avval, tajriba keyin keldi.",
+      "savol": "To‘lqinlarni tajribada kim aniqladi?",
+      "javob": "Gerts",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tezlik va uzunlik",
+      "matn": "Vakuumda elektromagnit to‘lqin tezligi c — soniyasiga 300000 km, ya’ni 300000000 metr/sekund. To‘lqin uzunligi λ — c / n. Chastota katta bo‘lsa, to‘lqin uzunligi kichik bo‘ladi.",
+      "misol": "Yorug‘lik Oydan Yergacha taxminan 1,28 sekundda yetadi.",
+      "savol": "λ formulasi?",
+      "javob": "c / n",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Spektr",
+      "matn": "Chastota oshib borish tartibida: radioto‘lqinlar, mikroto‘lqinlar, infraqizil nur, ko‘rinadigan yorug‘lik, ultrabinafsha, rentgen nurlari, gamma nurlar. Ko‘rinadigan yorug‘lik taxminan 400 dan 700 nanometrgacha. Hammasi bir xil tabiatli, faqat chastotasi farq qiladi.",
+      "misol": "Pult infraqizil nur bilan ishlaydi.",
+      "savol": "Qaysi nur ko‘zga ko‘rinadi?",
+      "javob": "yorug‘lik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanishi va xavfi",
+      "matn": "Mikroto‘lqinli pech, Wi-Fi, rentgen, tibbiyot, aloqa — barchasi shu to‘lqinlarga asoslangan. Ultrabinafsha nur ortiqcha bo‘lsa teriga zarar, rentgen va gamma nur ehtiyotkorlik talab qiladi. Quyoshda ko‘p turmaslik kerak.",
+      "misol": "Quyoshdan himoya kremi ultrabinafshadan saqlaydi.",
+      "savol": "Qaysi nur ortiqcha kuyishga olib keladi?",
+      "javob": "ultrabinafsha",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "c — 300000000 metr/sekund. λ — c / n. Chastota oshsa, uzunlik kamayadi. Vakuumda ham tarqaladi.",
+    "misollar": [
+     {
+      "shart": "n — 3000000 gerts. To‘lqin uzunligi?",
+      "yechim": [
+       "λ — c / n.",
+       "300000000 / 3000000.",
+       "Javob 100 metr."
+      ],
+      "javob": "100 metr"
+     },
+     {
+      "shart": "n — 15000000 gerts. To‘lqin uzunligi?",
+      "yechim": [
+       "λ — c / n.",
+       "300000000 / 15000000.",
+       "Javob 20 metr."
+      ],
+      "javob": "20 metr"
+     },
+     {
+      "shart": "Oygacha masofa 384000 km, tezlik soniyasiga 300000 km. Vaqt?",
+      "yechim": [
+       "t — s / c.",
+       "384000 / 300000.",
+       "Javob 1,28 sekund."
+      ],
+      "javob": "1,28 sekund"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Spektr zanjiri",
+      "topshiriq": "Yetti turdagi nurni chastota tartibida chizing.",
+      "yechim": "Radiodan gammagacha.",
+      "mahsulot": "qog‘oz, flomaster"
+     },
+     {
+      "nom": "Pult sinovi",
+      "topshiriq": "Telefon kamerasi bilan pult nurini ko‘ring.",
+      "yechim": "Infraqizil nur binafsha ko‘rinadi.",
+      "mahsulot": "pult, telefon"
+     },
+     {
+      "nom": "Uzunlikni hisoblaymiz",
+      "topshiriq": "Uch chastota uchun λ ni toping.",
+      "yechim": "λ — c / n.",
+      "mahsulot": "kalkulyator"
+     },
+     {
+      "nom": "Quyosh xavfsizligi",
+      "topshiriq": "Quyoshdan saqlanish qoidalarini yozing.",
+      "yechim": "Beshta qoida.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "300000000 / 3000000 nechaga teng?",
+      "javob": "100"
+     },
+     {
+      "shart": "300000000 / 15000000 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "384000 / 300000 nechaga teng?",
+      "javob": "1,28"
+     },
+     {
+      "shart": "Yorug‘lik tezligi (metr/sekund)?",
+      "javob": "300000000"
+     },
+     {
+      "shart": "To‘lqinni tajribada kim aniqladi?",
+      "javob": "Gerts"
+     },
+     {
+      "shart": "Maksvell bashorati yili?",
+      "javob": "1865"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Elektromagnit to‘lqin muhitsiz yurmaydi deydi",
+      "sabab": "vakuumda ham yuradi",
+      "oldini_olish": "Quyosh nuri misol"
+     },
+     {
+      "xato": "λ — c · n deb hisoblaydi",
+      "sabab": "λ — c / n",
+      "oldini_olish": "bo‘lish kerak"
+     },
+     {
+      "xato": "Rentgen nuri tovush to‘lqini deydi",
+      "sabab": "elektromagnit to‘lqin",
+      "oldini_olish": "tovush mexanik"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "rentgen"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "Wi-Fi va aloqa"
+     },
+     {
+      "fan": "Astronomiya",
+      "boglanish": "yorug‘lik tezligi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Nurlar olami»",
+     "muammo": "Elektromagnit spektr qanday tuzilgan va nima uchun kerak?",
+     "mahsulot": "spektr plakati",
+     "bosqichlar": [
+      "turlarini o‘rganish",
+      "chastotani joylash",
+      "uzunlikni hisoblash",
+      "qo‘llanishini yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Turlarni o‘rganing",
+      "Hisoblang",
+      "Plakat chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tartib to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Nurlar vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "1-darvoza",
+       "matn": "n — 3000000.",
+       "topshiriq": "λ?",
+       "javob": "100",
+       "rasm": ""
+      },
+      {
+       "nom": "2-darvoza",
+       "matn": "n — 15000000.",
+       "topshiriq": "λ?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "3-darvoza",
+       "matn": "Oygacha 384000 km.",
+       "topshiriq": "Vaqt?",
+       "javob": "1,28",
+       "rasm": ""
+      },
+      {
+       "nom": "4-darvoza",
+       "matn": "Gerts tajribasi yili.",
+       "topshiriq": "Yil?",
+       "javob": "1887",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Elektromagnit to‘lqin",
+      "tarif": "maydonlarning tarqalishi"
+     },
+     {
+      "atama": "Chastota",
+      "tarif": "sekunddagi tebranishlar soni"
+     },
+     {
+      "atama": "To‘lqin uzunligi",
+      "tarif": "bir davrdagi masofa"
+     },
+     {
+      "atama": "Spektr",
+      "tarif": "to‘lqinlar tartibi"
+     },
+     {
+      "atama": "Infraqizil nur",
+      "tarif": "issiqlik nuri"
+     },
+     {
+      "atama": "Rentgen nuri",
+      "tarif": "tibbiyotda ishlatiladi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Elektromagnit to‘lqin vakuumda tarqaladi",
+      "togri": true,
+      "izoh": "muhit kerak emas"
+     },
+     {
+      "matn": "Tovush ham elektromagnit to‘lqin",
+      "togri": false,
+      "izoh": "mexanik to‘lqin"
+     },
+     {
+      "matn": "λ — c / n",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Gerts to‘lqinlarni 1887-yilda aniqlagan",
+      "togri": true,
+      "izoh": "tajriba"
+     },
+     {
+      "matn": "300000000 / 3000000 — 100",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Chastota oshsa uzunlik oshadi",
+      "togri": false,
+      "izoh": "kamayadi"
+     },
+     {
+      "matn": "Rentgen elektromagnit to‘lqin",
+      "togri": true,
+      "izoh": "yuqori chastota"
+     },
+     {
+      "matn": "Ultrabinafsha zararsiz",
+      "togri": false,
+      "izoh": "ortiqchasi zarar"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "To‘lqin?",
+      "javob": "maydonlar tarqalishi"
+     },
+     {
+      "savol": "Vakuumda?",
+      "javob": "tarqaladi"
+     },
+     {
+      "savol": "c?",
+      "javob": "300000000 metr/sekund"
+     },
+     {
+      "savol": "Formula?",
+      "javob": "c / n"
+     },
+     {
+      "savol": "300000000 / 3000000?",
+      "javob": "100"
+     },
+     {
+      "savol": "300000000 / 15000000?",
+      "javob": "20"
+     },
+     {
+      "savol": "Maksvell?",
+      "javob": "1865 bashorat"
+     },
+     {
+      "savol": "Gerts?",
+      "javob": "1887 tajriba"
+     },
+     {
+      "savol": "Ko‘rinadigan nur?",
+      "javob": "400 dan 700 nanometr"
+     },
+     {
+      "savol": "Pult?",
+      "javob": "infraqizil nur"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Nur manbasini kuzat.",
+      "savol": "Qaysi turdagi?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Chastotani yoz.",
+      "savol": "Necha gerts?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "λ ni top.",
+      "savol": "c / n?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Muhit kerakmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun Quyosh nuri vakuum orqali bizgacha yetib keladi?",
+    "keys": {
+     "vaziyat": "Quyosh nuri bo‘sh fazodan o‘tib Yerga yetadi.",
+     "savollar": [
+      "Yorug‘lik qaysi turdagi to‘lqin?",
+      "Muhit kerakmi?"
+     ]
+    },
+    "tezis": "λ — c / n",
+    "taqqoslash": {
+     "a": "Mexanik to‘lqin",
+     "b": "Elektromagnit to‘lqin",
+     "umumiy": [
+      "energiya uzatadi",
+      "chastotasi bor"
+     ],
+     "a_farq": [
+      "muhit kerak",
+      "tovush, suv"
+     ],
+     "b_farq": [
+      "vakuumda ham",
+      "yorug‘lik, radio"
+     ]
+    },
+    "klaster": {
+     "markaz": "Elektromagnit to‘lqinlar",
+     "shoxlar": [
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "Maksvell 1865",
+        "Gerts 1887"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "λ — c / n"
+       ]
+      },
+      {
+       "nom": "Spektr",
+       "bandlar": [
+        "radio",
+        "yorug‘lik",
+        "rentgen"
+       ]
+      },
+      {
+       "nom": "Qo‘llanish",
+       "bandlar": [
+        "aloqa",
+        "tibbiyot"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men vakuumda ham yuraman va yorug‘lik tezligidaman. Men kimman?",
+     "javob": "elektromagnit to‘lqin"
+    },
+    "hikmat": "Maydonlar tarqaladi.",
+    "kalit_soz": "SPEKTR",
+    "xato_yechim": {
+     "shart": "n oshsa λ qanday o‘zgaradi?",
+     "xato": "oshadi",
+     "togri": "kamayadi",
+     "sabab": "λ — c / n"
+    },
+    "guruh_nomlari": [
+     "Nurchilar",
+     "Hisobchilar",
+     "Spektrchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Nurlar olami»",
+     "topshiriq": "Guruh spektr plakatini chizadi."
+    },
+    "vazifalar": {
+     "A": "n — 3000000 bo‘lsa λ?",
+     "B": "n — 15000000 bo‘lsa λ?",
+     "C": "384000 km uchun vaqt?"
+    },
+    "sinkveyn": [
+     "Nur",
+     "ko‘rinmas, tez",
+     "tarqaladi, uzatadi, yuradi",
+     "Yorug‘lik to‘lqin",
+     "Spektr"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh elektromagnit to‘lqinlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tarix",
+      "2-guruh: tezlik va uzunlik",
+      "3-guruh: spektr",
+      "4-guruh: qo‘llanish"
+     ],
+     "yakun": "Natijalar: 100; 20; 1,28."
+    }
+   }
+  },
+  {
+   "mavzu": "Radioaloqa",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Radioaloqa nima",
+      "matn": "Radioaloqa — axborotni elektromagnit to‘lqinlar yordamida masofaga uzatish. Uzatuvchi qurilma antenna orqali to‘lqin chiqaradi, qabul qiluvchi antenna uni ushlaydi. Simlar kerak emas.",
+      "misol": "Radioeshittirish uzoq shaharlardan eshitiladi.",
+      "savol": "Radioaloqada axborot nima orqali uzatiladi?",
+      "javob": "elektromagnit to‘lqin",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tarixi",
+      "matn": "1895-yil 7-mayda rus olimi Aleksandr Popov radio qabul qilgichni namoyish etdi. 1896-yilda Gulyelmo Markoni o‘z qurilmasiga patent oldi. 1901-yilda Markoni Atlantika okeani orqali signal uzatdi.",
+      "misol": "Dastlab Morze kodi bilan signal uzatilgan.",
+      "savol": "Atlantika orqali signal qaysi yili uzatildi?",
+      "javob": "1901",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Modulyatsiya",
+      "matn": "Tovush chastotasi past, uni bevosita uzoqqa uzatib bo‘lmaydi. Shuning uchun yuqori chastotali tashuvchi to‘lqinga axborot «yuklanadi» — bu modulyatsiya. Amplituda modulyatsiyasi (AM) va chastota modulyatsiyasi (FM) mavjud.",
+      "misol": "FM radio tovushni toza uzatadi.",
+      "savol": "Axborotni tashuvchiga yuklash nima deyiladi?",
+      "javob": "modulyatsiya",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Radiolokatsiya",
+      "matn": "Radar to‘lqin yuborib, uning qaytishini kutadi. Masofa s — c · t / 2, chunki to‘lqin borib-qaytadi. Aviatsiya, ob-havo va yo‘l nazoratida ishlatiladi. Sezgir qurilma samolyot joyini aniqlaydi.",
+      "misol": "Aeroportda radar samolyotlarni kuzatadi.",
+      "savol": "Radar masofasi formulasi?",
+      "javob": "c · t / 2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Zamonaviy aloqa",
+      "matn": "Mobil telefon, Wi-Fi, bluetooth, sun’iy yo‘ldosh aloqasi, GPS — hammasi radioto‘lqinlarga asoslangan. Wi-Fi odatda 2,4 gigagerts chastotada ishlaydi. Har bir xizmatga alohida chastota diapazoni ajratilgan.",
+      "misol": "GPS yo‘ldoshlardan signal oladi.",
+      "savol": "GPS nimadan signal oladi?",
+      "javob": "yo‘ldoshlardan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Axborot elektromagnit to‘lqin bilan uzatiladi. Radar: s — c · t / 2. λ — c / n.",
+    "misollar": [
+     {
+      "shart": "Radar signali 0,002 sekundda qaytdi. Nishongacha masofa?",
+      "yechim": [
+       "s — c · t / 2.",
+       "300000000 · 0,002 / 2.",
+       "Javob 300000 metr, ya’ni 300 km."
+      ],
+      "javob": "300 km"
+     },
+     {
+      "shart": "FM radio n — 100000000 gerts. To‘lqin uzunligi?",
+      "yechim": [
+       "λ — c / n.",
+       "300000000 / 100000000.",
+       "Javob 3 metr."
+      ],
+      "javob": "3 metr"
+     },
+     {
+      "shart": "Wi-Fi n — 2400000000 gerts. To‘lqin uzunligi?",
+      "yechim": [
+       "λ — c / n.",
+       "300000000 / 2400000000.",
+       "Javob 0,125 metr."
+      ],
+      "javob": "0,125 metr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Antennani kuzatamiz",
+      "topshiriq": "Uydagi antenna va yo‘ldosh tarelkasini toping.",
+      "yechim": "Kim nimani qabul qiladi?",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Ip telefoni va radio",
+      "topshiriq": "Ikkalasining farqini yozing.",
+      "yechim": "Sim bor yoki yo‘q.",
+      "mahsulot": "qog‘oz"
+     },
+     {
+      "nom": "Radar masofasi",
+      "topshiriq": "Uch vaqt uchun masofani hisoblang.",
+      "yechim": "s — c · t / 2.",
+      "mahsulot": "kalkulyator"
+     },
+     {
+      "nom": "Aloqa tarixi",
+      "topshiriq": "Popovdan Markonigacha vaqt chizig‘ini chizing.",
+      "yechim": "1895, 1896, 1901.",
+      "mahsulot": "qog‘oz, flomaster"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "300000000 · 0,002 / 2 metr — necha km?",
+      "javob": "300"
+     },
+     {
+      "shart": "300000000 / 100000000 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "300000000 / 2400000000 nechaga teng?",
+      "javob": "0,125"
+     },
+     {
+      "shart": "Radio qabul qilgich namoyishi yili?",
+      "javob": "1895"
+     },
+     {
+      "shart": "Axborotni yuklash nima?",
+      "javob": "modulyatsiya"
+     },
+     {
+      "shart": "Radar formulasida nega ikkiga bo‘linadi?",
+      "javob": "borib-qaytadi"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Radar masofasini c · t deb oladi",
+      "sabab": "to‘lqin borib-qaytadi",
+      "oldini_olish": "ikkiga bo‘l"
+     },
+     {
+      "xato": "Tovushni to‘g‘ridan-to‘g‘ri radio bilan uzatadi deydi",
+      "sabab": "modulyatsiya kerak",
+      "oldini_olish": "tashuvchi to‘lqin"
+     },
+     {
+      "xato": "Radioaloqa simsiz emas deydi",
+      "sabab": "simsiz aloqa",
+      "oldini_olish": "antenna bilan"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "Wi-Fi va GPS"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Popov va Markoni"
+     },
+     {
+      "fan": "Aviatsiya",
+      "boglanish": "radar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Radioaloqa tarixi»",
+     "muammo": "Aloqa vositalari qanday rivojlangan?",
+     "mahsulot": "vaqt chizig‘i",
+     "bosqichlar": [
+      "tarixni o‘rganish",
+      "vaqt chizig‘i",
+      "hisoblash",
+      "qo‘llanishni yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tarixni o‘rganing",
+      "Chiziq chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sanalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Radiostansiya»",
+     "bekatlar": [
+      {
+       "nom": "1-minora",
+       "matn": "Signal 0,002 sekundda qaytdi.",
+       "topshiriq": "Masofa km?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "2-minora",
+       "matn": "n — 100000000.",
+       "topshiriq": "λ?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "3-minora",
+       "matn": "Wi-Fi 2400000000.",
+       "topshiriq": "λ?",
+       "javob": "0,125",
+       "rasm": ""
+      },
+      {
+       "nom": "4-minora",
+       "matn": "Popov yili.",
+       "topshiriq": "Yil?",
+       "javob": "1895",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Ikkiga bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Radioaloqa",
+      "tarif": "to‘lqin bilan axborot uzatish"
+     },
+     {
+      "atama": "Antenna",
+      "tarif": "to‘lqin chiqaruvchi va qabul qiluvchi"
+     },
+     {
+      "atama": "Modulyatsiya",
+      "tarif": "axborotni tashuvchiga yuklash"
+     },
+     {
+      "atama": "Radar",
+      "tarif": "to‘lqin qaytishi bilan masofa"
+     },
+     {
+      "atama": "Tashuvchi to‘lqin",
+      "tarif": "yuqori chastotali to‘lqin"
+     },
+     {
+      "atama": "Gigagerts",
+      "tarif": "milliard gerts"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Radioaloqa elektromagnit to‘lqinlardan foydalanadi",
+      "togri": true,
+      "izoh": "simsiz"
+     },
+     {
+      "matn": "Radio tovush to‘lqini bilan uzatadi",
+      "togri": false,
+      "izoh": "elektromagnit"
+     },
+     {
+      "matn": "Radar s — c · t / 2",
+      "togri": true,
+      "izoh": "borib-qaytadi"
+     },
+     {
+      "matn": "Popov 1895-yilda namoyish etgan",
+      "togri": true,
+      "izoh": "7-may"
+     },
+     {
+      "matn": "300000000 / 100000000 — 3",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Modulyatsiya axborotni yuklaydi",
+      "togri": true,
+      "izoh": "tashuvchiga"
+     },
+     {
+      "matn": "GPS yo‘ldoshlardan signal oladi",
+      "togri": true,
+      "izoh": "navigatsiya"
+     },
+     {
+      "matn": "Wi-Fi tovush bilan ishlaydi",
+      "togri": false,
+      "izoh": "radioto‘lqin"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Radioaloqa?",
+      "javob": "simsiz uzatish"
+     },
+     {
+      "savol": "Antenna?",
+      "javob": "to‘lqin chiqaradi va oladi"
+     },
+     {
+      "savol": "Modulyatsiya?",
+      "javob": "yuklash"
+     },
+     {
+      "savol": "Radar?",
+      "javob": "masofa o‘lchaydi"
+     },
+     {
+      "savol": "s formulasi?",
+      "javob": "c · t / 2"
+     },
+     {
+      "savol": "300000000 / 100000000?",
+      "javob": "3"
+     },
+     {
+      "savol": "Wi-Fi λ?",
+      "javob": "0,125"
+     },
+     {
+      "savol": "Popov?",
+      "javob": "1895"
+     },
+     {
+      "savol": "Markoni?",
+      "javob": "1901 Atlantika"
+     },
+     {
+      "savol": "GPS?",
+      "javob": "yo‘ldosh"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Antennani kuzat.",
+      "savol": "Nima qabul qiladi?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Vaqtni yoz.",
+      "savol": "Necha sekund?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Masofani top.",
+      "savol": "c · t / 2?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nega ikkiga bo‘ldik?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun radar masofasi ikkiga bo‘linadi?",
+    "keys": {
+     "vaziyat": "Radar signali nishonga borib 0,002 sekundda qaytdi.",
+     "savollar": [
+      "Signal necha marta masofani bosdi?",
+      "Haqiqiy masofa qancha?"
+     ]
+    },
+    "tezis": "s — c · t / 2",
+    "taqqoslash": {
+     "a": "Simli aloqa",
+     "b": "Radioaloqa",
+     "umumiy": [
+      "axborot uzatadi",
+      "signal ishlatadi"
+     ],
+     "a_farq": [
+      "sim kerak",
+      "tok orqali"
+     ],
+     "b_farq": [
+      "simsiz",
+      "elektromagnit to‘lqin"
+     ]
+    },
+    "klaster": {
+     "markaz": "Radioaloqa",
+     "shoxlar": [
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "Popov 1895",
+        "Markoni 1901"
+       ]
+      },
+      {
+       "nom": "Texnika",
+       "bandlar": [
+        "antenna",
+        "modulyatsiya"
+       ]
+      },
+      {
+       "nom": "Radar",
+       "bandlar": [
+        "c · t / 2"
+       ]
+      },
+      {
+       "nom": "Hozir",
+       "bandlar": [
+        "Wi-Fi",
+        "GPS",
+        "mobil"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men simsiz axborot tashiyman va antennada yashayman. Men kimman?",
+     "javob": "radioaloqa"
+    },
+    "hikmat": "Axborot havo orqali uzatiladi.",
+    "kalit_soz": "ANTENNA",
+    "xato_yechim": {
+     "shart": "Radar 0,002 sekund. Masofa?",
+     "xato": "c · t",
+     "togri": "c · t / 2",
+     "sabab": "to‘lqin borib-qaytadi"
+    },
+    "guruh_nomlari": [
+     "Radistlar",
+     "Hisobchilar",
+     "Tarixchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Radioaloqa tarixi»",
+     "topshiriq": "Guruh vaqt chizig‘ini tayyorlaydi."
+    },
+    "vazifalar": {
+     "A": "Radar 0,002 sekund bo‘lsa masofa?",
+     "B": "n — 100000000 bo‘lsa λ?",
+     "C": "Wi-Fi 2400000000 bo‘lsa λ?"
+    },
+    "sinkveyn": [
+     "Radio",
+     "simsiz, tez",
+     "uzatadi, qabul qiladi, yuboradi",
+     "Antenna orqali signal",
+     "To‘lqin"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh radioaloqani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tarix",
+      "2-guruh: modulyatsiya",
+      "3-guruh: radar",
+      "4-guruh: zamonaviy aloqa"
+     ],
+     "yakun": "Natijalar: 300 km; 3 metr; 0,125 metr."
+    }
+   }
+  },
+  {
+   "mavzu": "Atom tuzilishi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Atom haqida g‘oyalar",
+      "matn": "Qadimgi yunon faylasufi Demokrit atomni bo‘linmas zarra deb atagan. 1903-yilda Jozef Tomson elektronni kashf etib, atomni musbat zaryadli «pishirilgan non» ichidagi elektronlar deb tasvirladi. Keyin tajribalar bu modelni o‘zgartirdi.",
+      "misol": "Atom endi bo‘linmas deb hisoblanmaydi.",
+      "savol": "Atomni qadimda kim bo‘linmas degan?",
+      "javob": "Demokrit",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Rezerford tajribasi",
+      "matn": "1911-yilda Ernest Rezerford alfa-zarralarni yupqa oltin folgaga yo‘naltirdi. Ko‘pchilik zarra o‘tdi, ba’zilari qaytdi. Demak, atom markazida kichik, og‘ir musbat yadro bor, atomning asosiy qismi bo‘sh. Bu yadroviy model.",
+      "misol": "Quyoshga o‘xshab, yadro markazda, elektronlar atrofida.",
+      "savol": "Yadroviy model qaysi yili?",
+      "javob": "1911",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yadro tarkibi",
+      "matn": "Yadro protonlar (musbat) va neytronlardan iborat. Neytronni 1932-yilda Chedvik kashf etgan. Protonlar soni Z — zaryad soni, massa soni A — Z va neytronlar soni N yig‘indisi. Demak, N — A minus Z.",
+      "misol": "Uglerod 12 da 6 proton va 6 neytron.",
+      "savol": "Neytron zaryadi qanday?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Elektronlar va o‘lcham",
+      "matn": "Neytral atomda elektronlar soni protonlar soniga teng. Atom o‘lchami taxminan 10 ning minus 10 darajasi metr, yadro esa taxminan 10 ning minus 15 darajasi metr. Yadro atomdan taxminan 100000 marta kichik, lekin massaning deyarli hammasi unda.",
+      "misol": "Stadion markazidagi no‘xat — yadro.",
+      "savol": "Massaning asosiy qismi qayerda?",
+      "javob": "yadroda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bor modeli",
+      "matn": "1913-yilda Nils Bor elektronlar yadro atrofida ma’lum orbitalarda harakatlanishini taklif qildi. Elektron orbitadan orbitaga o‘tganda nur chiqaradi yoki yutadi. Shunday qilib atomlarning chiziqli spektri tushuntirildi.",
+      "misol": "Neon reklamalari atomlar nurlanishiga misol.",
+      "savol": "Orbitalar modelini kim taklif qilgan?",
+      "javob": "Bor",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "N — A minus Z. Neytral atomda elektron soni — Z. Yadro markazda, massaning deyarli hammasi unda.",
+    "misollar": [
+     {
+      "shart": "Alyuminiy: A — 27, Z — 13. Neytronlar soni?",
+      "yechim": [
+       "N — A minus Z.",
+       "27 minus 13.",
+       "Javob 14."
+      ],
+      "javob": "14"
+     },
+     {
+      "shart": "Uran: A — 238, Z — 92. Neytronlar soni?",
+      "yechim": [
+       "N — A minus Z.",
+       "238 minus 92.",
+       "Javob 146."
+      ],
+      "javob": "146"
+     },
+     {
+      "shart": "Temir: A — 56, Z — 26. Neytronlar soni?",
+      "yechim": [
+       "N — A minus Z.",
+       "56 minus 26.",
+       "Javob 30."
+      ],
+      "javob": "30"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Atom modeli",
+      "topshiriq": "Plastilindan yadro va elektronlar modelini yasang.",
+      "yechim": "Yadro kichik bo‘lsin.",
+      "mahsulot": "plastilin"
+     },
+     {
+      "nom": "Tarix chizig‘i",
+      "topshiriq": "Demokritdan Borgacha vaqt chizig‘ini chizing.",
+      "yechim": "1903, 1911, 1913.",
+      "mahsulot": "qog‘oz, flomaster"
+     },
+     {
+      "nom": "Zarralarni sanaymiz",
+      "topshiriq": "Uchta element uchun N ni toping.",
+      "yechim": "N — A minus Z.",
+      "mahsulot": "kalkulyator"
+     },
+     {
+      "nom": "Davriy jadval",
+      "topshiriq": "Davriy jadvaldan Z ni toping.",
+      "yechim": "Tartib raqami.",
+      "mahsulot": "jadval"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "27 minus 13 nechaga teng?",
+      "javob": "14"
+     },
+     {
+      "shart": "238 minus 92 nechaga teng?",
+      "javob": "146"
+     },
+     {
+      "shart": "56 minus 26 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "Yadroviy model yili?",
+      "javob": "1911"
+     },
+     {
+      "shart": "Neytron zaryadi?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "Elektronlar soni nimaga teng?",
+      "javob": "protonlar soniga"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Atomni bo‘linmas deydi",
+      "sabab": "atom bo‘linadi",
+      "oldini_olish": "yadro va elektronlar bor"
+     },
+     {
+      "xato": "N — A qo‘shish Z deydi",
+      "sabab": "N — A minus Z",
+      "oldini_olish": "ayriladi"
+     },
+     {
+      "xato": "Neytron musbat zaryadli deydi",
+      "sabab": "neytral",
+      "oldini_olish": "proton musbat"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Kimyo",
+      "boglanish": "davriy jadval"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Rezerford va Bor"
+     },
+     {
+      "fan": "Astronomiya",
+      "boglanish": "yulduzlar tarkibi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Atom modeli»",
+     "muammo": "Atom tuzilishi tushunchalari qanday rivojlangan?",
+     "mahsulot": "model va vaqt chizig‘i",
+     "bosqichlar": [
+      "tarixni o‘rganish",
+      "model yasash",
+      "zarralarni sanash",
+      "taqdim tayyorlash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tarixni o‘rganing",
+      "Model yasang",
+      "Sanang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Atom ichida»",
+     "bekatlar": [
+      {
+       "nom": "1-qavat",
+       "matn": "Al: A — 27, Z — 13.",
+       "topshiriq": "N?",
+       "javob": "14",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qavat",
+       "matn": "U: A — 238, Z — 92.",
+       "topshiriq": "N?",
+       "javob": "146",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qavat",
+       "matn": "Fe: A — 56, Z — 26.",
+       "topshiriq": "N?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qavat",
+       "matn": "Rezerford yili.",
+       "topshiriq": "Yil?",
+       "javob": "1911",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Atom",
+      "tarif": "kimyoviy element zarrasi"
+     },
+     {
+      "atama": "Yadro",
+      "tarif": "atom markazi"
+     },
+     {
+      "atama": "Proton",
+      "tarif": "musbat zarra"
+     },
+     {
+      "atama": "Neytron",
+      "tarif": "neytral zarra"
+     },
+     {
+      "atama": "Elektron",
+      "tarif": "manfiy zarra"
+     },
+     {
+      "atama": "Massa soni",
+      "tarif": "protonlar va neytronlar yig‘indisi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Atom markazida yadro bor",
+      "togri": true,
+      "izoh": "Rezerford"
+     },
+     {
+      "matn": "Atom bo‘linmas zarra",
+      "togri": false,
+      "izoh": "bo‘linadi"
+     },
+     {
+      "matn": "N — A minus Z",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Neytron musbat zaryadli",
+      "togri": false,
+      "izoh": "neytral"
+     },
+     {
+      "matn": "27 minus 13 — 14",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Massa asosan yadroda",
+      "togri": true,
+      "izoh": "yadro og‘ir"
+     },
+     {
+      "matn": "Bor orbitalar modelini taklif etgan",
+      "togri": true,
+      "izoh": "1913"
+     },
+     {
+      "matn": "Yadro atomdan katta",
+      "togri": false,
+      "izoh": "ancha kichik"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Atom?",
+      "javob": "yadro va elektronlar"
+     },
+     {
+      "savol": "Yadro?",
+      "javob": "proton va neytron"
+     },
+     {
+      "savol": "Proton?",
+      "javob": "musbat"
+     },
+     {
+      "savol": "Neytron?",
+      "javob": "neytral"
+     },
+     {
+      "savol": "Formula?",
+      "javob": "A minus Z"
+     },
+     {
+      "savol": "27 minus 13?",
+      "javob": "14"
+     },
+     {
+      "savol": "238 minus 92?",
+      "javob": "146"
+     },
+     {
+      "savol": "56 minus 26?",
+      "javob": "30"
+     },
+     {
+      "savol": "Rezerford?",
+      "javob": "1911 yadro"
+     },
+     {
+      "savol": "Bor?",
+      "javob": "1913 orbitalar"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Davriy jadvalni kuzat.",
+      "savol": "Z qancha?"
+     },
+     {
+      "nom": "O‘qi",
+      "matn": "A ni yoz.",
+      "savol": "Massa soni?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "N ni top.",
+      "savol": "A minus Z?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Elektron necha?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun atomning deyarli butun massasi yadroda to‘plangan?",
+    "keys": {
+     "vaziyat": "Alfa-zarralar oltin folgadan o‘tdi, ayrimlari orqaga qaytdi.",
+     "savollar": [
+      "Nima uchun ba’zilari qaytdi?",
+      "Atom ichi qanday?"
+     ]
+    },
+    "tezis": "N — A minus Z",
+    "taqqoslash": {
+     "a": "Tomson modeli",
+     "b": "Rezerford modeli",
+     "umumiy": [
+      "atom modeli",
+      "elektronlar bor"
+     ],
+     "a_farq": [
+      "musbat zaryadli non",
+      "yadro yo‘q"
+     ],
+     "b_farq": [
+      "markazda yadro",
+      "atrofda elektronlar"
+     ]
+    },
+    "klaster": {
+     "markaz": "Atom tuzilishi",
+     "shoxlar": [
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "Tomson 1903",
+        "Rezerford 1911",
+        "Bor 1913"
+       ]
+      },
+      {
+       "nom": "Yadro",
+       "bandlar": [
+        "proton",
+        "neytron"
+       ]
+      },
+      {
+       "nom": "Elektron",
+       "bandlar": [
+        "manfiy",
+        "orbitalar"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "N — A minus Z"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men atom markazidaman, massa menda. Men kimman?",
+     "javob": "yadro"
+    },
+    "hikmat": "Yadro atomning markazi.",
+    "kalit_soz": "YADRO",
+    "xato_yechim": {
+     "shart": "A — 27, Z — 13. N?",
+     "xato": "27 va 13 qo‘shiladi",
+     "togri": "27 minus 13 — 14",
+     "sabab": "N — A minus Z"
+    },
+    "guruh_nomlari": [
+     "Atomchilar",
+     "Hisobchilar",
+     "Modelchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Atom laboratoriyasi»",
+     "topshiriq": "Guruh atom modelini yasaydi."
+    },
+    "vazifalar": {
+     "A": "A — 27, Z — 13 bo‘lsa N?",
+     "B": "A — 238, Z — 92 bo‘lsa N?",
+     "C": "A — 56, Z — 26 bo‘lsa N?"
+    },
+    "sinkveyn": [
+     "Atom",
+     "kichik, bo‘linadi",
+     "yadro, aylanadi, tortadi",
+     "Markazda yadro",
+     "Zarra"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh atom tuzilishini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tarix",
+      "2-guruh: yadro",
+      "3-guruh: elektronlar",
+      "4-guruh: hisoblar"
+     ],
+     "yakun": "Natijalar: 14; 146; 30."
+    }
+   }
   }
  ]
 }
