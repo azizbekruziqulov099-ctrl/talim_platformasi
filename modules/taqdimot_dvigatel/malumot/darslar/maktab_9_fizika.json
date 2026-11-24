@@ -1,0 +1,1389 @@
+{
+ "daraja": "maktab",
+ "sinf": "9",
+ "fan": "Fizika",
+ "muallif": "qo‘lda yozilgan, faktlar tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Kinematika",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Mexanik harakat",
+      "matn": "Jismning boshqa jismlarga nisbatan vaqt o‘tishi bilan o‘rnining o‘zgarishi mexanik harakat deyiladi. Harakatni o‘rganuvchi bo‘lim kinematika deb ataladi. Kinematika harakat sabablarini emas, uning qanday kechishini tasvirlaydi.",
+      "misol": "Avtobus bekatga nisbatan harakatlanadi.",
+      "savol": "Kinematika nimani o‘rganadi?",
+      "javob": "harakatning qanday kechishini",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sanoq sistemasi",
+      "matn": "Harakatni tasvirlash uchun sanoq jismi, koordinata o‘qlari va soat kerak. Ular birgalikda sanoq sistemasi deyiladi. Harakat nisbiy: poyezddagi yo‘lovchi o‘rindiqqa nisbatan tinch, yerga nisbatan harakatda.",
+      "misol": "Yo‘lovchi poyezdda tinch o‘tiradi.",
+      "savol": "Harakat nimaga nisbatan tasvirlanadi?",
+      "javob": "sanoq jismiga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Traektoriya, yo‘l, ko‘chish",
+      "matn": "Jism chizgan chiziq traektoriya deyiladi. Traektoriya uzunligi — yo‘l. Boshlang‘ich va oxirgi nuqtalarni tutashtiruvchi yo‘nalgan kesma — ko‘chish. Yo‘l skalyar, ko‘chish vektor kattalik.",
+      "misol": "Aylana bo‘ylab bir aylanishda yo‘l bor, ko‘chish nol.",
+      "savol": "Boshlang‘ich va oxirgi nuqtani tutashtiruvchi kesma nima?",
+      "javob": "ko‘chish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekis harakat tezligi",
+      "matn": "Teng vaqt oralig‘ida teng yo‘l bosib o‘tiladigan harakat tekis harakat deyiladi. Tezlik v — s / t. Birligi — metr / sekund. Soatiga 72 km — sekundiga 20 metr (3,6 ga bo‘linadi).",
+      "misol": "Avtomobil bir tekis yuradi.",
+      "savol": "Tezlik formulasi qanday?",
+      "javob": "s / t",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "O‘rtacha tezlik",
+      "matn": "Notekis harakatda butun yo‘lni butun vaqtga bo‘lib, o‘rtacha tezlikni topamiz. U har bir qismdagi tezliklarning oddiy o‘rtachasi emas. Spidometr esa ayni paytdagi tezlikni ko‘rsatadi.",
+      "misol": "Yo‘lda to‘xtashlar o‘rtacha tezlikni kamaytiradi.",
+      "savol": "O‘rtacha tezlik qanday topiladi?",
+      "javob": "butun yo‘l / butun vaqt",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tekis harakat: v — s / t. O‘rtacha tezlik — butun yo‘l / butun vaqt. Harakat nisbiy, sanoq sistemasi kerak.",
+    "misollar": [
+     {
+      "shart": "Avtomobil 2 soatda 120 km yo‘l yurdi. Tezligi?",
+      "yechim": [
+       "v — s / t.",
+       "120 / 2.",
+       "Javob soatiga 60 km."
+      ],
+      "javob": "soatiga 60 km"
+     },
+     {
+      "shart": "Jism 1 soatda 60 km, keyingi 2 soatda 90 km yurdi. O‘rtacha tezlik?",
+      "yechim": [
+       "Butun yo‘l 60 + 90 — 150.",
+       "Butun vaqt 1 + 2 — 3.",
+       "150 / 3 — 50. Javob soatiga 50 km."
+      ],
+      "javob": "soatiga 50 km"
+     },
+     {
+      "shart": "Jism avval 3 metr sharqqa, so‘ng 4 metr shimolga yurdi. Ko‘chish moduli?",
+      "yechim": [
+       "Yo‘l 3 + 4 — 7.",
+       "Ko‘chish — gipotenuza: 3 · 3 + 4 · 4 — 25.",
+       "Javob 5 metr."
+      ],
+      "javob": "5 metr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Yo‘lni o‘lchaymiz",
+      "topshiriq": "Sinfda bir tekis yurib, vaqt va yo‘lni o‘lchang.",
+      "yechim": "v — s / t.",
+      "mahsulot": "metr, sekundomer"
+     },
+     {
+      "nom": "Ko‘chish va yo‘l",
+      "topshiriq": "Maktab hovlisida yo‘l va ko‘chishni solishtiring.",
+      "yechim": "Ko‘chish qisqa.",
+      "mahsulot": "o‘lchov lentasi"
+     },
+     {
+      "nom": "Nisbiylikni tushuntiramiz",
+      "topshiriq": "Poyezd va yo‘lovchi misolida harakat nisbiyligini ko‘rsating.",
+      "yechim": "Sanoq jismi muhim.",
+      "mahsulot": "rasm"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Birlikni yozing.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "120 / 2 nechaga teng?",
+      "javob": "60"
+     },
+     {
+      "shart": "150 / 3 nechaga teng?",
+      "javob": "50"
+     },
+     {
+      "shart": "3 · 3 + 4 · 4 nechaga teng?",
+      "javob": "25"
+     },
+     {
+      "shart": "Tezlik formulasi?",
+      "javob": "s / t"
+     },
+     {
+      "shart": "Traektoriya uzunligi nima?",
+      "javob": "yo‘l"
+     },
+     {
+      "shart": "Soatiga 72 km necha metr/sekund?",
+      "javob": "20"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "O‘rtacha tezlikni tezliklar o‘rtachasi deydi",
+      "sabab": "butun yo‘l butun vaqtga bo‘linadi",
+      "oldini_olish": "jami yo‘l / jami vaqt"
+     },
+     {
+      "xato": "Ko‘chishni yo‘l bilan aralashtiradi",
+      "sabab": "ko‘chish — to‘g‘ri kesma",
+      "oldini_olish": "yo‘l — traektoriya uzunligi"
+     },
+     {
+      "xato": "Harakat mutlaq deydi",
+      "sabab": "harakat nisbiy",
+      "oldini_olish": "sanoq jismi kerak"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geografiya",
+      "boglanish": "yo‘l va masofa"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "Pifagor teoremasi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "spidometr"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yo‘l daftari»",
+     "muammo": "Maktabdan uygacha yo‘lni qanday o‘lchab, tezlikni hisoblaymiz?",
+     "mahsulot": "yo‘l hisobi",
+     "bosqichlar": [
+      "yo‘lni belgilash",
+      "vaqtni o‘lchash",
+      "tezlikni hisoblash",
+      "xaritada ko‘rsatish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Yo‘lni belgilang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "xarita aniq",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Harakat yo‘llari»",
+     "bekatlar": [
+      {
+       "nom": "1-yo‘l",
+       "matn": "120 km, 2 soat.",
+       "topshiriq": "Tezlik (soatiga km)?",
+       "javob": "60",
+       "rasm": ""
+      },
+      {
+       "nom": "2-yo‘l",
+       "matn": "60 km 1 soatda, 90 km 2 soatda.",
+       "topshiriq": "O‘rtacha tezlik?",
+       "javob": "50",
+       "rasm": ""
+      },
+      {
+       "nom": "3-yo‘l",
+       "matn": "3 metr sharq, 4 metr shimol.",
+       "topshiriq": "Ko‘chish moduli?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "4-yo‘l",
+       "matn": "Soatiga 72 km.",
+       "topshiriq": "Sekundiga necha metr?",
+       "javob": "20",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Formulani qo‘lladingizmi?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kinematika",
+      "tarif": "harakatni tasvirlovchi bo‘lim"
+     },
+     {
+      "atama": "Sanoq sistemasi",
+      "tarif": "jism, o‘qlar va soat"
+     },
+     {
+      "atama": "Traektoriya",
+      "tarif": "jism chizgan chiziq"
+     },
+     {
+      "atama": "Yo‘l",
+      "tarif": "traektoriya uzunligi"
+     },
+     {
+      "atama": "Ko‘chish",
+      "tarif": "boshidan oxirigacha yo‘nalgan kesma"
+     },
+     {
+      "atama": "Tezlik",
+      "tarif": "yo‘lning vaqtga nisbati"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Harakat nisbiy",
+      "togri": true,
+      "izoh": "sanoq jismiga bog‘liq"
+     },
+     {
+      "matn": "Ko‘chish va yo‘l har doim teng",
+      "togri": false,
+      "izoh": "farq qilishi mumkin"
+     },
+     {
+      "matn": "v — s / t",
+      "togri": true,
+      "izoh": "tekis harakat"
+     },
+     {
+      "matn": "O‘rtacha tezlik tezliklarning oddiy o‘rtachasi",
+      "togri": false,
+      "izoh": "yo‘l / vaqt"
+     },
+     {
+      "matn": "120 / 2 — 60",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Aylana bo‘ylab to‘liq aylanishda ko‘chish nol",
+      "togri": true,
+      "izoh": "boshiga qaytadi"
+     },
+     {
+      "matn": "Ko‘chish skalyar kattalik",
+      "togri": false,
+      "izoh": "vektor"
+     },
+     {
+      "matn": "Soatiga 72 km — sekundiga 20 metr",
+      "togri": true,
+      "izoh": "3,6 ga bo‘lish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kinematika?",
+      "javob": "harakatni tasvirlaydi"
+     },
+     {
+      "savol": "Sanoq sistemasi?",
+      "javob": "jism, o‘qlar, soat"
+     },
+     {
+      "savol": "Traektoriya?",
+      "javob": "harakat chizig‘i"
+     },
+     {
+      "savol": "Yo‘l?",
+      "javob": "traektoriya uzunligi"
+     },
+     {
+      "savol": "Ko‘chish?",
+      "javob": "yo‘nalgan kesma"
+     },
+     {
+      "savol": "Tezlik?",
+      "javob": "s / t"
+     },
+     {
+      "savol": "120 / 2?",
+      "javob": "60"
+     },
+     {
+      "savol": "150 / 3?",
+      "javob": "50"
+     },
+     {
+      "savol": "Pifagor?",
+      "javob": "3, 4, 5"
+     },
+     {
+      "savol": "Nisbiylik?",
+      "javob": "sanoq jismiga bog‘liq"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Tanla",
+      "matn": "Sanoq jismini tanla.",
+      "savol": "Nimaga nisbatan?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Yo‘l va vaqtni o‘lcha.",
+      "savol": "s va t?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Tezlikni top.",
+      "savol": "s / t?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ko‘chish nimaga teng?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun poyezddagi yo‘lovchi o‘rindiqqa nisbatan tinch, yerga nisbatan esa harakatda?",
+    "keys": {
+     "vaziyat": "Avtomobil 2 soatda 120 km yo‘l yurdi.",
+     "savollar": [
+      "Tezligi qancha?",
+      "Yo‘lda to‘xtagan bo‘lsa tezlik qanday o‘zgaradi?"
+     ]
+    },
+    "tezis": "v — s / t",
+    "taqqoslash": {
+     "a": "Yo‘l",
+     "b": "Ko‘chish",
+     "umumiy": [
+      "uzunlik birligida o‘lchanadi",
+      "harakatni tasvirlaydi"
+     ],
+     "a_farq": [
+      "skalyar",
+      "traektoriya uzunligi"
+     ],
+     "b_farq": [
+      "vektor",
+      "boshi va oxirini tutashtiradi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kinematika",
+     "shoxlar": [
+      {
+       "nom": "Tushunchalar",
+       "bandlar": [
+        "sanoq sistemasi",
+        "traektoriya"
+       ]
+      },
+      {
+       "nom": "Kattaliklar",
+       "bandlar": [
+        "yo‘l",
+        "ko‘chish",
+        "tezlik"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "v — s / t"
+       ]
+      },
+      {
+       "nom": "O‘rtacha tezlik",
+       "bandlar": [
+        "jami yo‘l / jami vaqt"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men harakatni sabablarisiz tasvirlovchi bo‘limman. Men kimman?",
+     "javob": "kinematika"
+    },
+    "hikmat": "Harakat nisbiy.",
+    "kalit_soz": "TEZLIK",
+    "xato_yechim": {
+     "shart": "60 km 1 soatda, 90 km 2 soatda. O‘rtacha tezlik?",
+     "xato": "(60 + 45) / 2",
+     "togri": "150 / 3 — 50 km soatiga",
+     "sabab": "butun yo‘l butun vaqtga bo‘linadi"
+    },
+    "guruh_nomlari": [
+     "Yo‘lchilar",
+     "Tezlikchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Kinematika laboratoriyasi»",
+     "topshiriq": "Guruh yo‘l va tezlikni o‘lchaydi."
+    },
+    "vazifalar": {
+     "A": "120 km, 2 soat bo‘lsa tezlik?",
+     "B": "O‘rtacha tezlikni toping.",
+     "C": "3 metr sharqqa, 4 metr shimolga yurgan jism ko‘chishini toping."
+    },
+    "sinkveyn": [
+     "Harakat",
+     "tez, nisbiy",
+     "yuradi, o‘zgaradi, ketadi",
+     "Harakat sanoq jismiga bog‘liq",
+     "Yo‘l"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh kinematika asoslarini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: sanoq sistemasi",
+      "2-guruh: yo‘l va ko‘chish",
+      "3-guruh: tezlik",
+      "4-guruh: o‘rtacha tezlik"
+     ],
+     "yakun": "Natijalar: 60; 50; 5."
+    }
+   }
+  },
+  {
+   "mavzu": "Tekis tezlanuvchan harakat",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tezlanish",
+      "matn": "Tezlik vaqt o‘tishi bilan o‘zgaradigan harakatda tezlanish paydo bo‘ladi. Tezlanish a — tezlik o‘zgarishining shu o‘zgarish vaqtiga nisbati: a — (v − v0) / t. Birligi — metr / sekund kvadrat.",
+      "misol": "Start olayotgan mashina tezlashadi.",
+      "savol": "Tezlanish birligi?",
+      "javob": "metr / sekund kvadrat",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tekis tezlanuvchan harakat",
+      "matn": "Tezlanish o‘zgarmas bo‘lgan harakat tekis tezlanuvchan harakat deyiladi. Har sekundda tezlik bir xil miqdorda ortadi yoki kamayadi. Tezlanish manfiy bo‘lsa, jism sekinlashadi (tormozlanadi).",
+      "misol": "Poyezd tormozlanayotganda a manfiy.",
+      "savol": "Tormozlanishda tezlanish ishorasi qanday?",
+      "javob": "manfiy",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tezlik formulasi",
+      "matn": "Tekis tezlanuvchan harakatda oxirgi tezlik v — v0 + a · t. Bunda v0 — boshlang‘ich tezlik. Jism tinch holatdan boshlasa, v0 nolga teng.",
+      "misol": "Tinchlikdan olgan jism: v — a · t.",
+      "savol": "Tinchlikdan boshlanganda v0 nechaga teng?",
+      "javob": "nol",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yo‘l formulasi",
+      "matn": "Bosib o‘tilgan yo‘l s — v0 · t + a · t · t / 2. Tinchlikdan boshlangan harakatda s — a · t · t / 2. Yo‘l vaqt kvadratiga proporsional: vaqt 2 marta oshsa, yo‘l 4 marta oshadi.",
+      "misol": "Vaqt ikki baravar — yo‘l to‘rt baravar.",
+      "savol": "Vaqt 2 marta oshsa yo‘l necha marta oshadi?",
+      "javob": "4 marta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Grafiklar",
+      "matn": "Tezlik grafigi to‘g‘ri chiziq: tezlanuvchi harakatda yuqoriga, tormozlanishda pastga yo‘nalgan. Grafik ostidagi yuza bosib o‘tilgan yo‘lga teng. Grafik qiyaligi tezlanishni bildiradi.",
+      "misol": "Tik grafik — katta tezlanish.",
+      "savol": "Grafik ostidagi yuza nimaga teng?",
+      "javob": "yo‘lga",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "a — (v − v0) / t. v — v0 + a · t. s — v0 · t + a · t · t / 2.",
+    "misollar": [
+     {
+      "shart": "Tinchlikdan a — 2 metr / sekund kvadrat bilan 5 sekund. Tezlik va yo‘l?",
+      "yechim": [
+       "v — 2 · 5 — 10.",
+       "s — 2 · 25 / 2 — 25.",
+       "Javob v — 10 metr/sekund, s — 25 metr."
+      ],
+      "javob": "10 metr/sekund va 25 metr"
+     },
+     {
+      "shart": "v0 — 10, a — 3, t — 4. Tezlik va yo‘l?",
+      "yechim": [
+       "v — 10 + 3 · 4 — 22.",
+       "s — 10 · 4 + 3 · 16 / 2 — 40 + 24 — 64.",
+       "Javob 22 metr/sekund va 64 metr."
+      ],
+      "javob": "22 metr/sekund va 64 metr"
+     },
+     {
+      "shart": "Tormozlanishda v0 — 20, a manfiy 4. To‘xtagunicha yo‘l?",
+      "yechim": [
+       "To‘xtash vaqti: 20 / 4 — 5 sekund.",
+       "s — 20 · 5 − 4 · 25 / 2 — 100 − 50.",
+       "Javob 50 metr."
+      ],
+      "javob": "50 metr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tezlanishni o‘lchaymiz",
+      "topshiriq": "Qiya tekislikda sharcha dumalatib, vaqt va yo‘lni o‘lchang.",
+      "yechim": "Yo‘l vaqt kvadratiga bog‘liq.",
+      "mahsulot": "tarnov, sharcha"
+     },
+     {
+      "nom": "Grafik chizamiz",
+      "topshiriq": "v — v0 + a · t bo‘yicha grafik chizing.",
+      "yechim": "To‘g‘ri chiziq.",
+      "mahsulot": "katakli qog‘oz"
+     },
+     {
+      "nom": "Tormozlanish",
+      "topshiriq": "Tormoz yo‘lini hisoblang.",
+      "yechim": "a manfiy.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Formulani tanlang.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 5 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "10 + 3 · 4 nechaga teng?",
+      "javob": "22"
+     },
+     {
+      "shart": "20 · 5 − 4 · 25 / 2 nechaga teng?",
+      "javob": "50"
+     },
+     {
+      "shart": "Tezlanish birligi?",
+      "javob": "metr / sekund kvadrat"
+     },
+     {
+      "shart": "Tormozlanishda a ishorasi?",
+      "javob": "manfiy"
+     },
+     {
+      "shart": "Vaqt 2 marta oshsa yo‘l?",
+      "javob": "4 marta"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tormozlanishda a musbat deydi",
+      "sabab": "tezlik kamayadi, a manfiy",
+      "oldini_olish": "ishorani tekshir"
+     },
+     {
+      "xato": "Yo‘l vaqtga to‘g‘ri proporsional deydi",
+      "sabab": "kvadratga proporsional",
+      "oldini_olish": "t kvadrat"
+     },
+     {
+      "xato": "Tezlik formulasida v0 ni unutadi",
+      "sabab": "boshlang‘ich tezlik kerak",
+      "oldini_olish": "v — v0 + a · t"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "avtomobil tormoz yo‘li"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "to‘g‘ri chiziqli grafik"
+     },
+     {
+      "fan": "Sport",
+      "boglanish": "sprinter start"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tormoz yo‘li»",
+     "muammo": "Tezlik oshsa, tormoz yo‘li qanday o‘zgaradi?",
+     "mahsulot": "hisob va grafik",
+     "bosqichlar": [
+      "ma’lumot yig‘ish",
+      "hisoblash",
+      "grafik chizish",
+      "xavfsizlik qoidalari",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Ma’lumot yig‘ing",
+      "Hisoblang",
+      "Grafik chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "grafik aniq",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tezlanish shosse»",
+     "bekatlar": [
+      {
+       "nom": "1-km",
+       "matn": "Tinchlikdan a — 2, t — 5.",
+       "topshiriq": "v?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "2-km",
+       "matn": "Tinchlikdan a — 2, t — 5.",
+       "topshiriq": "s?",
+       "javob": "25",
+       "rasm": ""
+      },
+      {
+       "nom": "3-km",
+       "matn": "v0 — 10, a — 3, t — 4.",
+       "topshiriq": "v?",
+       "javob": "22",
+       "rasm": ""
+      },
+      {
+       "nom": "4-km",
+       "matn": "v0 — 20, a manfiy 4, to‘xtaguncha.",
+       "topshiriq": "s?",
+       "javob": "50",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Formulani to‘g‘ri tanladingizmi?",
+      "Ishorani yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tezlanish",
+      "tarif": "tezlik o‘zgarish tezligi"
+     },
+     {
+      "atama": "Tekis tezlanuvchan harakat",
+      "tarif": "tezlanishi o‘zgarmas harakat"
+     },
+     {
+      "atama": "Boshlang‘ich tezlik",
+      "tarif": "harakat boshidagi tezlik"
+     },
+     {
+      "atama": "Tormozlanish",
+      "tarif": "tezlikning kamayishi"
+     },
+     {
+      "atama": "Grafik",
+      "tarif": "bog‘lanishning chizmasi"
+     },
+     {
+      "atama": "Qiyalik",
+      "tarif": "grafikning ko‘tarilish darajasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "v — v0 + a · t",
+      "togri": true,
+      "izoh": "tezlik formulasi"
+     },
+     {
+      "matn": "Tormozlanishda a musbat",
+      "togri": false,
+      "izoh": "manfiy"
+     },
+     {
+      "matn": "Tinchlikdan boshlanganda v0 nolga teng",
+      "togri": true,
+      "izoh": "boshlang‘ich holat"
+     },
+     {
+      "matn": "Yo‘l vaqtga to‘g‘ri proporsional",
+      "togri": false,
+      "izoh": "kvadratga"
+     },
+     {
+      "matn": "2 · 5 — 10",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Tezlik grafigi ostidagi yuza yo‘lga teng",
+      "togri": true,
+      "izoh": "geometrik ma’no"
+     },
+     {
+      "matn": "Tezlanish birligi metr / sekund",
+      "togri": false,
+      "izoh": "metr / sekund kvadrat"
+     },
+     {
+      "matn": "Vaqt ikki baravar bo‘lsa yo‘l to‘rt baravar",
+      "togri": true,
+      "izoh": "kvadrat"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tezlanish?",
+      "javob": "(v − v0) / t"
+     },
+     {
+      "savol": "Birlik?",
+      "javob": "metr / sekund kvadrat"
+     },
+     {
+      "savol": "Tezlik formulasi?",
+      "javob": "v0 + a · t"
+     },
+     {
+      "savol": "Yo‘l formulasi?",
+      "javob": "v0 · t + a · t · t / 2"
+     },
+     {
+      "savol": "Tormozda a?",
+      "javob": "manfiy"
+     },
+     {
+      "savol": "2 · 5?",
+      "javob": "10"
+     },
+     {
+      "savol": "10 + 3 · 4?",
+      "javob": "22"
+     },
+     {
+      "savol": "Grafik yuzasi?",
+      "javob": "yo‘l"
+     },
+     {
+      "savol": "Qiyalik?",
+      "javob": "tezlanish"
+     },
+     {
+      "savol": "Vaqt 2 marta?",
+      "javob": "yo‘l 4 marta"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "v0, a, t ni yoz.",
+      "savol": "Qaysilari bor?"
+     },
+     {
+      "nom": "Tanla",
+      "matn": "Formulani tanla.",
+      "savol": "v yoki s?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Sonlarni qo‘y.",
+      "savol": "natija?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Ishorani tekshir.",
+      "savol": "a musbatmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tormoz yo‘li tezlik oshgan sari keskin uzayadi?",
+    "keys": {
+     "vaziyat": "Mashina tinchlikdan 2 metr / sekund kvadrat tezlanish bilan 5 sekund yurdi.",
+     "savollar": [
+      "Oxirgi tezlik qancha?",
+      "Qancha yo‘l bosdi?"
+     ]
+    },
+    "tezis": "v — v0 + a · t",
+    "taqqoslash": {
+     "a": "Tezlanuvchi harakat",
+     "b": "Tormozlanuvchi harakat",
+     "umumiy": [
+      "a o‘zgarmas",
+      "tezlik o‘zgaradi"
+     ],
+     "a_farq": [
+      "tezlik ortadi",
+      "a musbat"
+     ],
+     "b_farq": [
+      "tezlik kamayadi",
+      "a manfiy"
+     ]
+    },
+    "klaster": {
+     "markaz": "Tekis tezlanuvchan harakat",
+     "shoxlar": [
+      {
+       "nom": "Tezlanish",
+       "bandlar": [
+        "(v − v0) / t"
+       ]
+      },
+      {
+       "nom": "Tezlik",
+       "bandlar": [
+        "v0 + a · t"
+       ]
+      },
+      {
+       "nom": "Yo‘l",
+       "bandlar": [
+        "v0 · t + a · t · t / 2"
+       ]
+      },
+      {
+       "nom": "Grafik",
+       "bandlar": [
+        "to‘g‘ri chiziq",
+        "yuza — yo‘l"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tezlik o‘zgarish tezligiman. Men kimman?",
+     "javob": "tezlanish"
+    },
+    "hikmat": "Tezlanish o‘zgarmas — tezlik tekis o‘zgaradi.",
+    "kalit_soz": "TEZLANISH",
+    "xato_yechim": {
+     "shart": "Tinchlikdan a — 2, t — 5. Yo‘l?",
+     "xato": "2 · 5 — 10",
+     "togri": "2 · 25 / 2 — 25 metr",
+     "sabab": "yo‘l formulasida t kvadrat va 2 ga bo‘lish bor"
+    },
+    "guruh_nomlari": [
+     "Tezlanishchilar",
+     "Grafikchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tezlanish laboratoriyasi»",
+     "topshiriq": "Guruh tezlanishni o‘lchaydi."
+    },
+    "vazifalar": {
+     "A": "a — 2, t — 5, tinchlikdan: v va s?",
+     "B": "v0 — 10, a — 3, t — 4: v va s?",
+     "C": "v0 — 20, a manfiy 4: to‘xtash yo‘li?"
+    },
+    "sinkveyn": [
+     "Tezlanish",
+     "tez, o‘zgaruvchan",
+     "oshadi, kamayadi, boshlanadi",
+     "Tezlik tekis o‘zgaradi",
+     "Start"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tezlanuvchan harakatni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tezlanish",
+      "2-guruh: tezlik",
+      "3-guruh: yo‘l",
+      "4-guruh: grafik"
+     ],
+     "yakun": "Natijalar: 10 va 25; 22 va 64; 50."
+    }
+   }
+  },
+  {
+   "mavzu": "Erkin tushish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Erkin tushish",
+      "matn": "Faqat Yerning tortishi ta’sirida, havo qarshiligisiz tushish erkin tushish deyiladi. Erkin tushishda jismlar tekis tezlanuvchan harakat qiladi. Tezlanish barcha jismlar uchun bir xil.",
+      "misol": "Vakuumda tosh va patning tushishi bir xil.",
+      "savol": "Erkin tushishda qaysi kuch ta’sir qiladi?",
+      "javob": "og‘irlik kuchi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "g qiymati",
+      "matn": "Erkin tushish tezlanishi g Yer sirtida taxminan 9,8 metr / sekund kvadrat. Masalalarda ko‘pincha 10 deb olamiz. U jism massasiga bog‘liq emas. Qutbda g sal katta, ekvatorda sal kichik.",
+      "misol": "g — 10 desak hisoblash oson.",
+      "savol": "Masalalarda g ko‘pincha nechaga teng olinadi?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Galiley tajribasi",
+      "matn": "Qadimda Aristotel og‘ir jism tezroq tushadi degan. XVII asr boshlarida Galileo Galiley bu fikrni tajribada rad etdi: havo qarshiligi bo‘lmasa, hamma jism bir xil tushadi. 1971-yilda Apollon 15 astronavti Oyda bolg‘a va patni tashlab, buni ko‘rsatgan.",
+      "misol": "Oyda bolg‘a va par bir vaqtda tushgan.",
+      "savol": "Havo bo‘lmasa, og‘ir va yengil jism qanday tushadi?",
+      "javob": "bir vaqtda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Formulalar",
+      "matn": "Tinchlikdan tushishda: v — g · t, h — g · t · t / 2. Yuqoriga otilgan jism uchun tezlik kamayadi va eng yuqori nuqtada nol bo‘ladi, so‘ng tushadi. Ko‘tarilish va tushish vaqti teng.",
+      "misol": "Tosh yuqoriga otilib, qaytib tushadi.",
+      "savol": "Eng yuqori nuqtada tezlik nechaga teng?",
+      "javob": "nol",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Havo qarshiligi",
+      "matn": "Real sharoitda havo qarshiligi bor, shu sababli par toshdan sekin tushadi. Parashyut shu qarshilikdan foydalanadi: yuza katta bo‘lsa, qarshilik katta va tushish sekin bo‘ladi.",
+      "misol": "Parashyutchi sekin tushadi.",
+      "savol": "Parashyut nimadan foydalanadi?",
+      "javob": "havo qarshiligidan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "v — g · t, h — g · t · t / 2, g taxminan 9,8 (masalada 10). Erkin tushish — tekis tezlanuvchan harakat.",
+    "misollar": [
+     {
+      "shart": "Tinchlikdan 3 sekund tushdi (g — 10). Tezlik va balandlik?",
+      "yechim": [
+       "v — 10 · 3 — 30.",
+       "h — 10 · 9 / 2 — 45.",
+       "Javob 30 metr/sekund va 45 metr."
+      ],
+      "javob": "30 metr/sekund va 45 metr"
+     },
+     {
+      "shart": "80 metr balandlikdan tushdi (g — 10). Necha sekund?",
+      "yechim": [
+       "h — 5 · t · t, 80 — 5 · t · t.",
+       "t · t — 16.",
+       "Javob 4 sekund."
+      ],
+      "javob": "4 sekund"
+     },
+     {
+      "shart": "2 sekund tushgan jism tezligi va yo‘li (g — 10)?",
+      "yechim": [
+       "v — 10 · 2 — 20.",
+       "h — 10 · 4 / 2 — 20.",
+       "Javob 20 metr/sekund va 20 metr."
+      ],
+      "javob": "20 metr/sekund va 20 metr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ikki jism",
+      "topshiriq": "Qog‘oz va toshni bir vaqtda tashlab, so‘ng qog‘ozni g‘ijimlab takrorlang.",
+      "yechim": "Qarshilik farq beradi.",
+      "mahsulot": "qog‘oz, tosh"
+     },
+     {
+      "nom": "Reaksiya vaqti",
+      "topshiriq": "Do‘stingiz tushirgan chizg‘ichni ushlab, reaksiya vaqtini toping.",
+      "yechim": "h — g · t · t / 2.",
+      "mahsulot": "chizg‘ich"
+     },
+     {
+      "nom": "Parashyut yasaymiz",
+      "topshiriq": "Salfetkadan kichik parashyut yasab, tushish vaqtini o‘lchang.",
+      "yechim": "Yuza katta — sekin.",
+      "mahsulot": "salfetka, ip"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "g — 10 oling.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "10 · 3 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "10 · 9 / 2 nechaga teng?",
+      "javob": "45"
+     },
+     {
+      "shart": "5 · t · t — 80 bo‘lsa t?",
+      "javob": "4"
+     },
+     {
+      "shart": "g taxminan nechaga teng?",
+      "javob": "9,8"
+     },
+     {
+      "shart": "Eng yuqori nuqtada tezlik?",
+      "javob": "nol"
+     },
+     {
+      "shart": "Parashyut nimadan foydalanadi?",
+      "javob": "havo qarshiligidan"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Og‘ir jism tezroq tushadi deydi",
+      "sabab": "vakuumda bir xil",
+      "oldini_olish": "g massaga bog‘liq emas"
+     },
+     {
+      "xato": "g — 98 deb oladi",
+      "sabab": "g taxminan 9,8",
+      "oldini_olish": "10 gacha yaxlitlanadi"
+     },
+     {
+      "xato": "Balandlikni g · t deb hisoblaydi",
+      "sabab": "g · t tezlik",
+      "oldini_olish": "h — g · t · t / 2"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Astronomiya",
+      "boglanish": "Oyda tushish"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Galiley tajribasi"
+     },
+     {
+      "fan": "Sport",
+      "boglanish": "parashyutchilik"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tushish tajribasi»",
+     "muammo": "Turli jismlar tushishini qanday tekshiramiz?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "jismlar tanlash",
+      "vaqtni o‘lchash",
+      "g ni hisoblash",
+      "qarshilikni solishtirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Jismlarni tanlang",
+      "O‘lchang",
+      "g ni toping",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Galiley minorasi»",
+     "bekatlar": [
+      {
+       "nom": "1-qavat",
+       "matn": "3 sekund tushdi.",
+       "topshiriq": "Tezlik?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qavat",
+       "matn": "3 sekund tushdi.",
+       "topshiriq": "Balandlik?",
+       "javob": "45",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qavat",
+       "matn": "80 metrdan tushdi.",
+       "topshiriq": "Vaqt (sekund)?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qavat",
+       "matn": "Eng yuqori nuqta.",
+       "topshiriq": "Tezlik?",
+       "javob": "0",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "g ni qo‘ydingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Erkin tushish",
+      "tarif": "faqat tortish kuchi ta’sirida tushish"
+     },
+     {
+      "atama": "g",
+      "tarif": "erkin tushish tezlanishi"
+     },
+     {
+      "atama": "Vakuum",
+      "tarif": "havosiz bo‘shliq"
+     },
+     {
+      "atama": "Havo qarshiligi",
+      "tarif": "havoning harakatga to‘sig‘i"
+     },
+     {
+      "atama": "Parashyut",
+      "tarif": "tushishni sekinlashtiruvchi qurilma"
+     },
+     {
+      "atama": "Galiley",
+      "tarif": "tajribani asoslagan olim"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "g taxminan 9,8",
+      "togri": true,
+      "izoh": "Yer sirtida"
+     },
+     {
+      "matn": "Og‘ir jism vakuumda tezroq tushadi",
+      "togri": false,
+      "izoh": "bir xil"
+     },
+     {
+      "matn": "v — g · t",
+      "togri": true,
+      "izoh": "tinchlikdan"
+     },
+     {
+      "matn": "h — g · t",
+      "togri": false,
+      "izoh": "g · t · t / 2"
+     },
+     {
+      "matn": "10 · 3 — 30",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Eng yuqori nuqtada tezlik nol",
+      "togri": true,
+      "izoh": "yuqoriga otish"
+     },
+     {
+      "matn": "Parashyut havo qarshiligidan foydalanadi",
+      "togri": true,
+      "izoh": "yuza katta"
+     },
+     {
+      "matn": "Apollon 15 Oyda tajriba o‘tkazgan",
+      "togri": true,
+      "izoh": "1971-yil"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Erkin tushish?",
+      "javob": "faqat og‘irlik kuchida"
+     },
+     {
+      "savol": "g?",
+      "javob": "9,8"
+     },
+     {
+      "savol": "Masalada g?",
+      "javob": "10"
+     },
+     {
+      "savol": "Tezlik?",
+      "javob": "g · t"
+     },
+     {
+      "savol": "Balandlik?",
+      "javob": "g · t · t / 2"
+     },
+     {
+      "savol": "10 · 3?",
+      "javob": "30"
+     },
+     {
+      "savol": "10 · 9 / 2?",
+      "javob": "45"
+     },
+     {
+      "savol": "Eng yuqori nuqta?",
+      "javob": "tezlik nol"
+     },
+     {
+      "savol": "Galiley?",
+      "javob": "tajriba o‘tkazgan"
+     },
+     {
+      "savol": "Parashyut?",
+      "javob": "qarshilikdan foydalanadi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Tashla",
+      "matn": "Jismni tashla.",
+      "savol": "Qaysi tezroq?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Vaqtni o‘lcha.",
+      "savol": "Necha sekund?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "h yoki v ni top.",
+      "savol": "Formula?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "g massaga bog‘liqmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun havosiz joyda tosh va par bir vaqtda tushadi?",
+    "keys": {
+     "vaziyat": "Tosh 3 sekund erkin tushdi.",
+     "savollar": [
+      "Oxirgi tezlik qancha?",
+      "Qancha balandlikdan tushdi?"
+     ]
+    },
+    "tezis": "g massaga bog‘liq emas",
+    "taqqoslash": {
+     "a": "Vakuumda tushish",
+     "b": "Havoda tushish",
+     "umumiy": [
+      "og‘irlik kuchi ta’sir qiladi",
+      "tezlanish bor"
+     ],
+     "a_farq": [
+      "hamma jism bir xil",
+      "erkin tushish"
+     ],
+     "b_farq": [
+      "qarshilik bor",
+      "par sekin tushadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Erkin tushish",
+     "shoxlar": [
+      {
+       "nom": "Tezlanish",
+       "bandlar": [
+        "g — 9,8",
+        "masalada 10"
+       ]
+      },
+      {
+       "nom": "Formulalar",
+       "bandlar": [
+        "v — g · t",
+        "h — g · t · t / 2"
+       ]
+      },
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "Galiley",
+        "Apollon 15"
+       ]
+      },
+      {
+       "nom": "Qarshilik",
+       "bandlar": [
+        "parashyut"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men og‘irlik kuchi ostida tushaman, tezlanishim 9,8. Men kimman?",
+     "javob": "erkin tushish"
+    },
+    "hikmat": "Vakuumda hamma jism bir xil tushadi.",
+    "kalit_soz": "TUSHISH",
+    "xato_yechim": {
+     "shart": "80 metrdan tushish vaqti (g — 10)?",
+     "xato": "80 / 10 — 8",
+     "togri": "5 · t · t — 80, t — 4 sekund",
+     "sabab": "h — g · t · t / 2 formulasidan"
+    },
+    "guruh_nomlari": [
+     "Galileychilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tushish laboratoriyasi»",
+     "topshiriq": "Guruh erkin tushishni kuzatadi."
+    },
+    "vazifalar": {
+     "A": "3 sekund tushgan jism v va h (g — 10)?",
+     "B": "80 metrdan tushish vaqti?",
+     "C": "2 sekund tushgan jism v va h?"
+    },
+    "sinkveyn": [
+     "Tushish",
+     "tez, og‘ir",
+     "tushadi, tezlashadi, urilishadi",
+     "Hamma jism bir xil tushadi",
+     "Parashyut"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh erkin tushishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: g",
+      "2-guruh: formulalar",
+      "3-guruh: tarix",
+      "4-guruh: havo qarshiligi"
+     ],
+     "yakun": "Natijalar: 30 va 45; 4; 20 va 20."
+    }
+   }
+  }
+ ]
+}
