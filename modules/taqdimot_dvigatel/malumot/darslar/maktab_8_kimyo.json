@@ -2775,6 +2775,1391 @@
      "yakun": "Natijalar: 3; 2; 8."
     }
    }
+  },
+  {
+   "mavzu": "Ion bog‘",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Elektron o‘tishi",
+      "matn": "Ion bog‘ metall va metallmas atomlar orasida hosil bo‘ladi. Metall atomi tashqi elektronini beradi va musbat ion bo‘ladi, metallmas atomi uni oladi va manfiy ion bo‘ladi. Qarama-qarshi zaryadli ionlar bir-birini tortadi — bu ion bog‘.",
+      "misol": "Natriy elektron beradi, xlor oladi.",
+      "savol": "Ion bog‘ qaysi atomlar orasida?",
+      "javob": "metall va metallmas",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Natriy xlorid",
+      "matn": "Natriy atomida 11 elektron (2, 8, 1). Tashqi bitta elektronini bersa, 10 elektronli natriy ioni qoladi, uning qavati neon kabi barqaror. Xlor atomida 17 elektron (2, 8, 7), bittasini olsa, 18 elektronli xlor ioni bo‘ladi, argonga o‘xshash. Ular tortishib osh tuzini hosil qiladi.",
+      "misol": "Osh tuzi har kuni dasturxonda.",
+      "savol": "Natriy ionida nechta elektron qoladi?",
+      "javob": "10",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ion zaryadi va formula",
+      "matn": "Metall ioni zaryadi odatda guruh raqamiga teng: natriy — bir, magniy — ikki, alyuminiy — uch. Metallmas ioni zaryadi — 8 minus guruh raqami: xlor — bir, kislorod — ikki. Birikma neytral bo‘lishi kerak: musbat va manfiy zaryadlar yig‘indisi nolga teng.",
+      "misol": "Alyuminiy oksidida 2 ta alyuminiy va 3 ta kislorod.",
+      "savol": "Birikma umumiy zaryadi qancha?",
+      "javob": "nol",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ion moddalar xossasi",
+      "matn": "Ion moddalar qattiq kristall, mo‘rt, erish harorati yuqori: osh tuzi taxminan 801 daraja Selsiyda eriydi. Qattiq holda tok o‘tkazmaydi, chunki ionlar qimirlamaydi. Eritma yoki suyuqlanmada ionlar harakatlanadi va tok o‘tkazadi.",
+      "misol": "Tuz eritmasi tok o‘tkazadi.",
+      "savol": "Tuz qaysi holatda tok o‘tkazadi?",
+      "javob": "eritmada",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tabiat va hayot",
+      "matn": "Ion birikmalar tabiatda ko‘p: osh tuzi, ohaktosh, gips. Dengiz suvida natriy va xlor ionlari erigan. Odam tanasida natriy va kaliy ionlari asab impulslarini uzatadi. Shuning uchun suv-tuz muvozanati muhim.",
+      "misol": "Sport ichimliklari tuz ionlarini to‘ldiradi.",
+      "savol": "Tanada ionlar nima uchun kerak?",
+      "javob": "asab impulslari uchun",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Metall elektron beradi, metallmas oladi. Birikma neytral. Ion kristall qattiq, tuz eritmasi tok o‘tkazadi.",
+    "misollar": [
+     {
+      "shart": "Magniy ioni zaryadi ikki. Xlor ioni zaryadi bir. Bitta magniyga nechta xlor kerak?",
+      "yechim": [
+       "Musbat zaryad ikki.",
+       "Har xlor bir manfiy beradi.",
+       "Javob 2 ta xlor."
+      ],
+      "javob": "2"
+     },
+     {
+      "shart": "Alyuminiy ioni zaryadi uch, kislorod ioni ikki. Eng kichik umumiy zaryad nechaga teng?",
+      "yechim": [
+       "3 va 2 ning eng kichik umumiy karrali.",
+       "6.",
+       "Javob 6, ya’ni 2 alyuminiy va 3 kislorod."
+      ],
+      "javob": "6"
+     },
+     {
+      "shart": "Oltingugurt atomida 16 elektron. U ikkita elektron olsa, ionda nechta bo‘ladi?",
+      "yechim": [
+       "16 plyus 2.",
+       "Hisoblaymiz.",
+       "Javob 18."
+      ],
+      "javob": "18"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Elektron o‘tishi",
+      "topshiriq": "Natriy va xlor modelida elektron o‘tishini ko‘rsating.",
+      "yechim": "Bitta elektron o‘tadi.",
+      "mahsulot": "rangli sharlar"
+     },
+     {
+      "nom": "Formula tuzamiz",
+      "topshiriq": "Besh juft ion uchun birikma tuzing.",
+      "yechim": "Zaryadlar yig‘indisi nol.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Tok o‘tkazuvchanlik",
+      "topshiriq": "Tuz, tuz eritmasi va shakar eritmasini sinang.",
+      "yechim": "Tuz eritmasi chiroqni yondiradi.",
+      "mahsulot": "stakan, chiroq, batareya"
+     },
+     {
+      "nom": "Ionlarni sanaymiz",
+      "topshiriq": "Uch ion uchun elektronlar sonini toping.",
+      "yechim": "Beradi yoki oladi.",
+      "mahsulot": "kalkulyator"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "12 minus 2 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "16 plyus 2 nechaga teng?",
+      "javob": "18"
+     },
+     {
+      "shart": "17 plyus 1 nechaga teng?",
+      "javob": "18"
+     },
+     {
+      "shart": "11 minus 1 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "Birikmaning umumiy zaryadi?",
+      "javob": "nol"
+     },
+     {
+      "shart": "Osh tuzi taxminan necha darajada eriydi?",
+      "javob": "801"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ion bog‘da elektronlar ulashiladi deydi",
+      "sabab": "elektron o‘tadi",
+      "oldini_olish": "ulashish — kovalent"
+     },
+     {
+      "xato": "Qattiq tuz tok o‘tkazadi deydi",
+      "sabab": "o‘tkazmaydi",
+      "oldini_olish": "ionlar qimirlamaydi"
+     },
+     {
+      "xato": "Natriy ioni 11 elektronli deydi",
+      "sabab": "10 elektronli",
+      "oldini_olish": "bitta elektron berdi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "tanada tuz muvozanati"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "dengiz tuzi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "elektr toki"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tuz sirlari»",
+     "muammo": "Ion bog‘li moddalar qanday xossalarga ega?",
+     "mahsulot": "tajriba va hisob",
+     "bosqichlar": [
+      "ionlarni sanash",
+      "formula tuzish",
+      "tajriba qilish",
+      "natijani izohlash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Ionlarni sanang",
+      "Formula tuzing",
+      "Tajriba qiling",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "tajriba aniq",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tuz koni»",
+     "bekatlar": [
+      {
+       "nom": "1-zal",
+       "matn": "Mg ikki, Cl bir.",
+       "topshiriq": "Nechta Cl?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "2-zal",
+       "matn": "Al uch, O ikki.",
+       "topshiriq": "Umumiy zaryad?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "3-zal",
+       "matn": "S 16 elektron, ikkitasini oldi.",
+       "topshiriq": "Elektronlar?",
+       "javob": "18",
+       "rasm": ""
+      },
+      {
+       "nom": "4-zal",
+       "matn": "Na ioni.",
+       "topshiriq": "Elektronlar?",
+       "javob": "10",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Zaryadni tekshirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ion",
+      "tarif": "zaryadlangan atom"
+     },
+     {
+      "atama": "Ion bog‘",
+      "tarif": "qarama-qarshi ionlarning tortilishi"
+     },
+     {
+      "atama": "Katyon",
+      "tarif": "musbat ion"
+     },
+     {
+      "atama": "Anion",
+      "tarif": "manfiy ion"
+     },
+     {
+      "atama": "Kristall",
+      "tarif": "tartibli joylashgan zarralar"
+     },
+     {
+      "atama": "Suyuqlanma",
+      "tarif": "erigan modda"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ion bog‘da elektron o‘tadi",
+      "togri": true,
+      "izoh": "metalldan metallmasga"
+     },
+     {
+      "matn": "Ion bog‘ ikki metallmas orasida bo‘ladi",
+      "togri": false,
+      "izoh": "metall va metallmas"
+     },
+     {
+      "matn": "Natriy ioni 10 elektronli",
+      "togri": true,
+      "izoh": "11 minus 1"
+     },
+     {
+      "matn": "Birikma umumiy zaryadi nol",
+      "togri": true,
+      "izoh": "neytral"
+     },
+     {
+      "matn": "16 plyus 2 — 18",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Qattiq tuz tok o‘tkazadi",
+      "togri": false,
+      "izoh": "o‘tkazmaydi"
+     },
+     {
+      "matn": "Tuz eritmasi tok o‘tkazadi",
+      "togri": true,
+      "izoh": "ionlar harakatlanadi"
+     },
+     {
+      "matn": "Ion kristall mo‘rt",
+      "togri": true,
+      "izoh": "yuqori erish harorati"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ion bog‘?",
+      "javob": "ionlar tortishishi"
+     },
+     {
+      "savol": "Elektron?",
+      "javob": "metalldan metallmasga"
+     },
+     {
+      "savol": "Katyon?",
+      "javob": "musbat ion"
+     },
+     {
+      "savol": "Anion?",
+      "javob": "manfiy ion"
+     },
+     {
+      "savol": "Na ioni?",
+      "javob": "10 elektron"
+     },
+     {
+      "savol": "Cl ioni?",
+      "javob": "18 elektron"
+     },
+     {
+      "savol": "12 minus 2?",
+      "javob": "10"
+     },
+     {
+      "savol": "16 plyus 2?",
+      "javob": "18"
+     },
+     {
+      "savol": "Tuz eriydi?",
+      "javob": "801 darajada"
+     },
+     {
+      "savol": "Eritma?",
+      "javob": "tok o‘tkazadi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Kristallni kuzat.",
+      "savol": "Qanday shakl?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Ion zaryadini top.",
+      "savol": "Guruh raqami?"
+     },
+     {
+      "nom": "Tuz",
+      "matn": "Formulani tuz.",
+      "savol": "Yig‘indi nol?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Tok o‘tadimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun qattiq tuz tok o‘tkazmaydi, eritmasi o‘tkazadi?",
+    "keys": {
+     "vaziyat": "Quruq tuzga ulangan chiroq yonmadi, tuz eritmasiga ulangani yondi.",
+     "savollar": [
+      "Qaysi holatda ionlar harakatlanadi?",
+      "Tok nima orqali o‘tadi?"
+     ]
+    },
+    "tezis": "Birikma neytral",
+    "taqqoslash": {
+     "a": "Metall atomi",
+     "b": "Metallmas atomi",
+     "umumiy": [
+      "ion bog‘da qatnashadi",
+      "qavatni barqaror qiladi"
+     ],
+     "a_farq": [
+      "elektron beradi",
+      "musbat ion"
+     ],
+     "b_farq": [
+      "elektron oladi",
+      "manfiy ion"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ion bog‘",
+     "shoxlar": [
+      {
+       "nom": "Hosil bo‘lishi",
+       "bandlar": [
+        "elektron o‘tadi"
+       ]
+      },
+      {
+       "nom": "Ionlar",
+       "bandlar": [
+        "katyon",
+        "anion"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "zaryad nol"
+       ]
+      },
+      {
+       "nom": "Xossa",
+       "bandlar": [
+        "qattiq",
+        "eritma tok o‘tkazadi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qarama-qarshi zaryadlarning tortishiman. Men kimman?",
+     "javob": "ion bog‘"
+    },
+    "hikmat": "Elektron metalldan metallmasga o‘tadi.",
+    "kalit_soz": "ION",
+    "xato_yechim": {
+     "shart": "Na ioni nechta elektronli?",
+     "xato": "11",
+     "togri": "10",
+     "sabab": "bitta elektron berdi"
+    },
+    "guruh_nomlari": [
+     "Ionchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tuz sirlari»",
+     "topshiriq": "Guruh tuz xossalarini sinaydi."
+    },
+    "vazifalar": {
+     "A": "Mg ikki, Cl bir bo‘lsa Cl soni?",
+     "B": "Al uch, O ikki bo‘lsa umumiy zaryad?",
+     "C": "S ioni elektronlari?"
+    },
+    "sinkveyn": [
+     "Ion",
+     "zaryadli, tortuvchi",
+     "beradi, oladi, tortadi",
+     "Elektron o‘tadi",
+     "Tuz"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ion bog‘ni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: o‘tish",
+      "2-guruh: zaryad",
+      "3-guruh: formula",
+      "4-guruh: xossa"
+     ],
+     "yakun": "Natijalar: 2; 6; 18."
+    }
+   }
+  },
+  {
+   "mavzu": "Metall bog‘",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Elektron dengizi",
+      "matn": "Metall atomlari tashqi elektronlarini oson beradi. Bu elektronlar bitta atomga bog‘lanmay, butun bo‘lak bo‘ylab erkin harakatlanadi. Musbat ionlar tartibli joylashadi, ular orasida erkin elektronlar «dengizi» bor. Shu — metall bog‘.",
+      "misol": "Elektronlar ionlarni yopishtiruvchi yelimdek.",
+      "savol": "Metall bog‘da elektronlar qanday?",
+      "javob": "erkin",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tok va issiqlik",
+      "matn": "Erkin elektronlar tok o‘tkazadi: kuchlanish berilsa, elektronlar bir yo‘nalishda oqadi. Ular issiqlikni ham tez uzatadi. Eng yaxshi o‘tkazgichlar: kumush, mis, oltin, alyuminiy. Shuning uchun elektr simlari mis yoki alyuminiydan.",
+      "misol": "Qaynoq choyga solingan metall qoshiq tez qiziydi.",
+      "savol": "Simlar qaysi metalldan qilinadi?",
+      "javob": "mis yoki alyuminiy",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Cho‘ziluvchanlik va yaltiroqlik",
+      "matn": "Metallni urganda ionlar qatlami siljiydi, ammo erkin elektronlar uni ushlab turadi, shu sabab metall sinmaydi, cho‘ziladi va yassilanadi. Erkin elektronlar nurni qaytaradi, shuning uchun metallar yaltiroq. Ion kristall esa urilsa, parchalanadi.",
+      "misol": "Oltin eng cho‘ziluvchan metallardan biri.",
+      "savol": "Metall nega yaltiroq?",
+      "javob": "erkin elektronlar nurni qaytaradi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Erish harorati",
+      "matn": "Metallarning erish harorati juda xilma-xil. Seziy taxminan 28 darajada, natriy taxminan 98 darajada eriydi, temir — taxminan 1538, volfram — taxminan 3422 daraja. Simob esa oddiy haroratda suyuq. Volfram eng qiyin eriydigan metall, shuning uchun lampa tolasi shundan.",
+      "misol": "Cho‘g‘lanma lampa tolasi volframdan.",
+      "savol": "Eng qiyin eriydigan metall?",
+      "javob": "volfram",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qotishmalar",
+      "matn": "Qotishma — ikki va undan ortiq moddaning aralashmasi. Bronza — mis va qalay, jez — mis va rux, po‘lat — temir va uglerod. Qotishma sof metalldan mustahkamroq yoki qattiqroq bo‘ladi. O‘zbekistonda Olmaliq kombinati mis ishlab chiqaradi.",
+      "misol": "Qo‘ng‘iroqlar bronzadan quyiladi.",
+      "savol": "Po‘lat nimadan iborat?",
+      "javob": "temir va uglerod",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Erkin elektronlar — tok, issiqlik, yaltiroqlik, cho‘ziluvchanlik. Volfram eng qiyin eriydi (3422 daraja).",
+    "misollar": [
+     {
+      "shart": "Alyuminiy atomi uch elektron beradi. 5 atomdan nechta erkin elektron?",
+      "yechim": [
+       "Har atomdan 3.",
+       "5 · 3.",
+       "Javob 15."
+      ],
+      "javob": "15"
+     },
+     {
+      "shart": "Magniy atomi ikki elektron beradi. 10 atomdan nechta erkin elektron?",
+      "yechim": [
+       "Har atomdan 2.",
+       "10 · 2.",
+       "Javob 20."
+      ],
+      "javob": "20"
+     },
+     {
+      "shart": "Volfram 3422, temir 1538 darajada eriydi. Farqi?",
+      "yechim": [
+       "3422 minus 1538.",
+       "Hisoblaymiz.",
+       "Javob 1884 daraja."
+      ],
+      "javob": "1884"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Metallarni sinaymiz",
+      "topshiriq": "Mis, alyuminiy, temir bo‘laklarini tok va issiqlik bo‘yicha sinang.",
+      "yechim": "Zanjirga ulang.",
+      "mahsulot": "batareya, chiroq, sim"
+     },
+     {
+      "nom": "Qotishma jadvali",
+      "topshiriq": "Bronza, jez, po‘lat tarkibini yozing.",
+      "yechim": "Tarkib va qo‘llanish.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Elektron dengizi modeli",
+      "topshiriq": "Sharchalar bilan metall modelini yasang.",
+      "yechim": "Ionlar va elektronlar.",
+      "mahsulot": "sharchalar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Erkin elektronlar soni.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "5 · 3 nechaga teng?",
+      "javob": "15"
+     },
+     {
+      "shart": "10 · 2 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "3422 minus 1538 nechaga teng?",
+      "javob": "1884"
+     },
+     {
+      "shart": "Eng yaxshi o‘tkazgich metall?",
+      "javob": "kumush"
+     },
+     {
+      "shart": "Suyuq metall?",
+      "javob": "simob"
+     },
+     {
+      "shart": "Bronza nimadan?",
+      "javob": "mis va qalay"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Metall bog‘da elektronlar bog‘langan deydi",
+      "sabab": "erkin harakatlanadi",
+      "oldini_olish": "elektron dengizi"
+     },
+     {
+      "xato": "Metall urilsa parchalanadi deydi",
+      "sabab": "cho‘ziladi",
+      "oldini_olish": "qatlamlar siljiydi"
+     },
+     {
+      "xato": "Po‘lat sof temir deydi",
+      "sabab": "temir va uglerod qotishmasi",
+      "oldini_olish": "qotishma"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "elektr o‘tkazuvchanlik"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "qotishmalar"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "Olmaliq mis koni"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Metall laboratoriyasi»",
+     "muammo": "Metallarning xossalarini qanday sinaymiz?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "metallarni tanlash",
+      "tok va issiqlikni sinash",
+      "qotishmani o‘rganish",
+      "natijani solishtirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Metallarni tanlang",
+      "Sinang",
+      "Solishtiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Metall ustaxonasi»",
+     "bekatlar": [
+      {
+       "nom": "1-dastgoh",
+       "matn": "Al uch elektron, 5 atom.",
+       "topshiriq": "Elektronlar?",
+       "javob": "15",
+       "rasm": ""
+      },
+      {
+       "nom": "2-dastgoh",
+       "matn": "Mg ikki elektron, 10 atom.",
+       "topshiriq": "Elektronlar?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "3-dastgoh",
+       "matn": "3422 minus 1538.",
+       "topshiriq": "Farq?",
+       "javob": "1884",
+       "rasm": ""
+      },
+      {
+       "nom": "4-dastgoh",
+       "matn": "Eng qiyin eriydigan.",
+       "topshiriq": "Qaysi?",
+       "javob": "volfram",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Metall bog‘",
+      "tarif": "ionlar va erkin elektronlar bog‘i"
+     },
+     {
+      "atama": "Erkin elektron",
+      "tarif": "atomga bog‘lanmagan elektron"
+     },
+     {
+      "atama": "Qotishma",
+      "tarif": "metallar aralashmasi"
+     },
+     {
+      "atama": "Bronza",
+      "tarif": "mis va qalay"
+     },
+     {
+      "atama": "Jez",
+      "tarif": "mis va rux"
+     },
+     {
+      "atama": "Po‘lat",
+      "tarif": "temir va uglerod"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Metall bog‘da erkin elektronlar bor",
+      "togri": true,
+      "izoh": "elektron dengizi"
+     },
+     {
+      "matn": "Metallar tok o‘tkazmaydi",
+      "togri": false,
+      "izoh": "o‘tkazadi"
+     },
+     {
+      "matn": "Volfram eng qiyin eriydi",
+      "togri": true,
+      "izoh": "3422 daraja"
+     },
+     {
+      "matn": "Simob oddiy haroratda qattiq",
+      "togri": false,
+      "izoh": "suyuq"
+     },
+     {
+      "matn": "5 · 3 — 15",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Po‘lat temir va uglerod qotishmasi",
+      "togri": true,
+      "izoh": "tarkib"
+     },
+     {
+      "matn": "Metall urilsa cho‘ziladi",
+      "togri": true,
+      "izoh": "qatlamlar siljiydi"
+     },
+     {
+      "matn": "Jez mis va qalaydan",
+      "togri": false,
+      "izoh": "mis va rux"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Metall bog‘?",
+      "javob": "ionlar va erkin elektronlar"
+     },
+     {
+      "savol": "Erkin elektron?",
+      "javob": "harakatlanuvchi"
+     },
+     {
+      "savol": "Tok?",
+      "javob": "elektron oqimi"
+     },
+     {
+      "savol": "Yaltiroq?",
+      "javob": "nurni qaytaradi"
+     },
+     {
+      "savol": "Eng qiyin eriydi?",
+      "javob": "volfram"
+     },
+     {
+      "savol": "5 · 3?",
+      "javob": "15"
+     },
+     {
+      "savol": "10 · 2?",
+      "javob": "20"
+     },
+     {
+      "savol": "3422 minus 1538?",
+      "javob": "1884"
+     },
+     {
+      "savol": "Bronza?",
+      "javob": "mis va qalay"
+     },
+     {
+      "savol": "Po‘lat?",
+      "javob": "temir va uglerod"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Metall bo‘lagini kuzat.",
+      "savol": "Yaltiroqmi?"
+     },
+     {
+      "nom": "Sina",
+      "matn": "Tokni sina.",
+      "savol": "Chiroq yondimi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Elektronlarni top.",
+      "savol": "Atom · elektron?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nima uchun o‘tkazadi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun metallar tok o‘tkazadi, ion kristallar qattiq holda o‘tkazmaydi?",
+    "keys": {
+     "vaziyat": "Mis sim chiroqni yondiradi, tuz kristali yondirmaydi.",
+     "savollar": [
+      "Misda erkin elektron bormi?",
+      "Tuzda-chi?"
+     ]
+    },
+    "tezis": "Erkin elektronlar tok olib yuradi",
+    "taqqoslash": {
+     "a": "Metall bog‘",
+     "b": "Ion bog‘",
+     "umumiy": [
+      "kimyoviy bog‘lanish",
+      "kristall hosil qiladi"
+     ],
+     "a_farq": [
+      "erkin elektronlar",
+      "plastik"
+     ],
+     "b_farq": [
+      "ionlar tortishadi",
+      "mo‘rt"
+     ]
+    },
+    "klaster": {
+     "markaz": "Metall bog‘",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "ionlar",
+        "erkin elektronlar"
+       ]
+      },
+      {
+       "nom": "Xossalar",
+       "bandlar": [
+        "tok",
+        "issiqlik",
+        "yaltiroq"
+       ]
+      },
+      {
+       "nom": "Erish",
+       "bandlar": [
+        "seziy 28",
+        "volfram 3422"
+       ]
+      },
+      {
+       "nom": "Qotishmalar",
+       "bandlar": [
+        "bronza",
+        "jez",
+        "po‘lat"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men elektron dengizida suzuvchi ionlarning bog‘iman. Men kimman?",
+     "javob": "metall bog‘"
+    },
+    "hikmat": "Elektronlar erkin yuradi.",
+    "kalit_soz": "METALL",
+    "xato_yechim": {
+     "shart": "Nega metall urilsa sinmaydi?",
+     "xato": "ionlar qotib turadi",
+     "togri": "qatlamlar siljiydi, elektronlar ushlab turadi",
+     "sabab": "erkin elektronlar"
+    },
+    "guruh_nomlari": [
+     "Metallchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Metall laboratoriyasi»",
+     "topshiriq": "Guruh metallarni sinaydi."
+    },
+    "vazifalar": {
+     "A": "Al uch elektron, 5 atom?",
+     "B": "Mg ikki elektron, 10 atom?",
+     "C": "3422 minus 1538?"
+    },
+    "sinkveyn": [
+     "Metall",
+     "yaltiroq, qattiq",
+     "o‘tkazadi, cho‘ziladi, qiziydi",
+     "Erkin elektronlar oqadi",
+     "Tok"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh metall bog‘ni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: tok va issiqlik",
+      "3-guruh: erish harorati",
+      "4-guruh: qotishmalar"
+     ],
+     "yakun": "Natijalar: 15; 20; 1884."
+    }
+   }
+  },
+  {
+   "mavzu": "Kristall panjaralar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kristall nima",
+      "matn": "Kristall — zarralari qat’iy tartibda takrorlanib joylashgan qattiq jism. Zarralar o‘rnini tasvirlovchi tartibli to‘r — kristall panjara, uning tugunlarida atomlar, ionlar yoki molekulalar turadi. Panjara turi moddaning xossasini belgilaydi.",
+      "misol": "Qor parchasi — kristall.",
+      "savol": "Panjara tugunlarida nima turadi?",
+      "javob": "zarralar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘rt tur",
+      "matn": "Ion panjara — tugunlarida ionlar (osh tuzi). Atom panjara — atomlar kovalent bog‘lar bilan (olmos, kvarts). Molekulyar panjara — molekulalar (muz, yod, quruq muz). Metall panjara — metall ionlari va erkin elektronlar (mis, temir).",
+      "misol": "Har tur o‘z xossasi bilan ajraladi.",
+      "savol": "Olmos qaysi panjarali?",
+      "javob": "atom",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Atom panjara",
+      "matn": "Olmosda har bir uglerod atomi to‘rtta qo‘shnisi bilan kovalent bog‘langan. Butun kristall — bitta katta molekula. Shuning uchun olmos juda qattiq, erish harorati juda yuqori, tok o‘tkazmaydi. Kvarts ham shunday, u 1713 darajada eriydi. Grafit esa qatlamli, tok o‘tkazadi.",
+      "misol": "Olmos va grafit — ikkalasi ham uglerod.",
+      "savol": "Olmosda uglerod nechta qo‘shni bilan bog‘langan?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Molekulyar panjara",
+      "matn": "Molekulalar orasidagi kuchlar kuchsiz, shu sabab molekulyar kristallar yumshoq, oson eriydi va bug‘lanadi. Yod 114 darajada eriydi va qizdirilganda bug‘ga aylanib, yengil uchuvchan bo‘ladi. Muz 0 darajada eriydi. Bunday moddalar tok o‘tkazmaydi.",
+      "misol": "Naftalin va quruq muz ham molekulyar.",
+      "savol": "Molekulyar kristallar qanday?",
+      "javob": "yumshoq, oson eriydi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xossani oldindan aytish",
+      "matn": "Panjara turini bilsak, xossani aytish mumkin. Ion — qattiq, mo‘rt, eritmada tok. Atom — juda qattiq, yuqori erish. Molekulyar — yumshoq, past erish. Metall — tok o‘tkazadi, plastik. Bunday bilim yangi materiallar yaratishda foydali.",
+      "misol": "Texnologiyada materiallar xossasiga qarab tanlanadi.",
+      "savol": "Qaysi panjara eng qattiq moddalarni beradi?",
+      "javob": "atom panjara",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ion, atom, molekulyar, metall panjara. Olmos — atom (4 bog‘). Molekulyar kristallar yumshoq, oson eriydi.",
+    "misollar": [
+     {
+      "shart": "Olmosda har atomning 4 bog‘i bor. 6 atomda jami nechta bog‘ (har bog‘ ikki atom uchun umumiy)?",
+      "yechim": [
+       "6 · 4 — 24.",
+       "Har bog‘ ikki marta sanaldi, 24 / 2.",
+       "Javob 12."
+      ],
+      "javob": "12"
+     },
+     {
+      "shart": "Tuz kristalida 1000 ta natriy ioni va shuncha xlor ioni. Jami ionlar?",
+      "yechim": [
+       "1000 plyus 1000.",
+       "2 · 1000.",
+       "Javob 2000."
+      ],
+      "javob": "2000"
+     },
+     {
+      "shart": "Kvarts 1713, yod 114 darajada eriydi. Farqi?",
+      "yechim": [
+       "1713 minus 114.",
+       "Hisoblaymiz.",
+       "Javob 1599 daraja."
+      ],
+      "javob": "1599"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Panjara modeli",
+      "topshiriq": "Tuz va olmos panjarasi modelini plastilin va cho‘pdan yasang.",
+      "yechim": "Ion va atom panjara.",
+      "mahsulot": "plastilin, cho‘p"
+     },
+     {
+      "nom": "Moddalarni tasniflaymiz",
+      "topshiriq": "Beshta moddani panjara turiga ajrating.",
+      "yechim": "Tuz, olmos, muz, mis, yod.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Qor parchasi",
+      "topshiriq": "Qor parchasi shaklini chizing.",
+      "yechim": "Olti burchak simmetriya.",
+      "mahsulot": "qog‘oz, flomaster"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Bog‘lar va ionlar.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "6 · 4 / 2 nechaga teng?",
+      "javob": "12"
+     },
+     {
+      "shart": "1000 plyus 1000 nechaga teng?",
+      "javob": "2000"
+     },
+     {
+      "shart": "1713 minus 114 nechaga teng?",
+      "javob": "1599"
+     },
+     {
+      "shart": "Olmos qaysi panjarali?",
+      "javob": "atom"
+     },
+     {
+      "shart": "Muz qaysi panjarali?",
+      "javob": "molekulyar"
+     },
+     {
+      "shart": "Tuz qaysi panjarali?",
+      "javob": "ion"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Olmos molekulyar deydi",
+      "sabab": "atom panjarali",
+      "oldini_olish": "katta kovalent to‘r"
+     },
+     {
+      "xato": "Molekulyar kristall qattiq va qiyin eriydi deydi",
+      "sabab": "yumshoq, oson eriydi",
+      "oldini_olish": "kuchsiz kuchlar"
+     },
+     {
+      "xato": "Bog‘larni ikki marta sanamaydi",
+      "sabab": "har bog‘ ikki atomga tegishli",
+      "oldini_olish": "ikkiga bo‘l"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "qattiq jismlar"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "yangi materiallar"
+     },
+     {
+      "fan": "Geologiya",
+      "boglanish": "minerallar va kristallar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kristall galereyasi»",
+     "muammo": "Kristallarning turlari va xossalari qanday?",
+     "mahsulot": "galereya va hisob",
+     "bosqichlar": [
+      "kristallarni tanlash",
+      "turini aniqlash",
+      "model yasash",
+      "xossani izohlash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kristallarni tanlang",
+      "Turini aniqlang",
+      "Model yasang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tur to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Kristall g‘ori»",
+     "bekatlar": [
+      {
+       "nom": "1-g‘or",
+       "matn": "6 atom, har biri 4 bog‘.",
+       "topshiriq": "Bog‘lar?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "2-g‘or",
+       "matn": "1000 Na va 1000 Cl.",
+       "topshiriq": "Ionlar?",
+       "javob": "2000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-g‘or",
+       "matn": "1713 va 114.",
+       "topshiriq": "Farq?",
+       "javob": "1599",
+       "rasm": ""
+      },
+      {
+       "nom": "4-g‘or",
+       "matn": "Olmos.",
+       "topshiriq": "Panjara?",
+       "javob": "atom",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ikkiga bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kristall",
+      "tarif": "tartibli zarrali qattiq jism"
+     },
+     {
+      "atama": "Panjara",
+      "tarif": "zarralar joylashuvi sxemasi"
+     },
+     {
+      "atama": "Tugun",
+      "tarif": "panjaradagi zarra o‘rni"
+     },
+     {
+      "atama": "Ion panjara",
+      "tarif": "tugunlarda ionlar"
+     },
+     {
+      "atama": "Atom panjara",
+      "tarif": "tugunlarda atomlar"
+     },
+     {
+      "atama": "Molekulyar panjara",
+      "tarif": "tugunlarda molekulalar"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Kristall tartibli tuzilgan",
+      "togri": true,
+      "izoh": "panjara"
+     },
+     {
+      "matn": "Olmos molekulyar panjarali",
+      "togri": false,
+      "izoh": "atom"
+     },
+     {
+      "matn": "Muz molekulyar panjarali",
+      "togri": true,
+      "izoh": "yumshoq"
+     },
+     {
+      "matn": "Tuz atom panjarali",
+      "togri": false,
+      "izoh": "ion"
+     },
+     {
+      "matn": "6 · 4 / 2 — 12",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Atom panjarali moddalar qattiq",
+      "togri": true,
+      "izoh": "kovalent to‘r"
+     },
+     {
+      "matn": "Molekulyar kristall oson eriydi",
+      "togri": true,
+      "izoh": "kuchsiz kuch"
+     },
+     {
+      "matn": "Metall panjarada erkin elektronlar bor",
+      "togri": true,
+      "izoh": "tok o‘tkazadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kristall?",
+      "javob": "tartibli qattiq jism"
+     },
+     {
+      "savol": "Panjara?",
+      "javob": "zarralar to‘ri"
+     },
+     {
+      "savol": "Turlari?",
+      "javob": "ion, atom, molekulyar, metall"
+     },
+     {
+      "savol": "Olmos?",
+      "javob": "atom"
+     },
+     {
+      "savol": "Muz?",
+      "javob": "molekulyar"
+     },
+     {
+      "savol": "Tuz?",
+      "javob": "ion"
+     },
+     {
+      "savol": "Mis?",
+      "javob": "metall"
+     },
+     {
+      "savol": "6 · 4 / 2?",
+      "javob": "12"
+     },
+     {
+      "savol": "1000 plyus 1000?",
+      "javob": "2000"
+     },
+     {
+      "savol": "1713 minus 114?",
+      "javob": "1599"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Kristallni kuzat.",
+      "savol": "Qanday shakl?"
+     },
+     {
+      "nom": "Aniqla",
+      "matn": "Panjara turini top.",
+      "savol": "Tugunlarda nima?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Bog‘larni sana.",
+      "savol": "Ikkiga bo‘lding?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Xossasi qanday?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun olmos juda qattiq, muz esa yumshoq va oson eriydi?",
+    "keys": {
+     "vaziyat": "Olmos shishani kesadi, muz esa qo‘lda eriydi.",
+     "savollar": [
+      "Olmosda qanday bog‘?",
+      "Muzda zarralar orasidagi kuch qanday?"
+     ]
+    },
+    "tezis": "Panjara turi xossani belgilaydi",
+    "taqqoslash": {
+     "a": "Atom panjara",
+     "b": "Molekulyar panjara",
+     "umumiy": [
+      "kristall tuzilma",
+      "tok o‘tkazmaydi"
+     ],
+     "a_farq": [
+      "juda qattiq",
+      "erish yuqori"
+     ],
+     "b_farq": [
+      "yumshoq",
+      "oson eriydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kristall panjaralar",
+     "shoxlar": [
+      {
+       "nom": "Ion",
+       "bandlar": [
+        "tuz"
+       ]
+      },
+      {
+       "nom": "Atom",
+       "bandlar": [
+        "olmos",
+        "kvarts"
+       ]
+      },
+      {
+       "nom": "Molekulyar",
+       "bandlar": [
+        "muz",
+        "yod"
+       ]
+      },
+      {
+       "nom": "Metall",
+       "bandlar": [
+        "mis",
+        "temir"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men zarralar tartibli joylashgan to‘rman. Men kimman?",
+     "javob": "kristall panjara"
+    },
+    "hikmat": "Tartib xossani belgilaydi.",
+    "kalit_soz": "PANJARA",
+    "xato_yechim": {
+     "shart": "Olmos qaysi panjarali?",
+     "xato": "molekulyar",
+     "togri": "atom",
+     "sabab": "kovalent bog‘lar to‘ri"
+    },
+    "guruh_nomlari": [
+     "Panjarachilar",
+     "Hisobchilar",
+     "Modelchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Kristall galereyasi»",
+     "topshiriq": "Guruh kristall modellarini yasaydi."
+    },
+    "vazifalar": {
+     "A": "6 atom, 4 bog‘dan, bog‘lar?",
+     "B": "1000 Na va 1000 Cl, ionlar?",
+     "C": "1713 minus 114?"
+    },
+    "sinkveyn": [
+     "Kristall",
+     "tartibli, qattiq",
+     "joylashgan, tortilgan, yaltiraydi",
+     "Zarralar tartibda",
+     "Panjara"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh kristall panjaralarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: ion",
+      "2-guruh: atom",
+      "3-guruh: molekulyar",
+      "4-guruh: metall"
+     ],
+     "yakun": "Natijalar: 12; 2000; 1599."
+    }
+   }
   }
  ]
 }
