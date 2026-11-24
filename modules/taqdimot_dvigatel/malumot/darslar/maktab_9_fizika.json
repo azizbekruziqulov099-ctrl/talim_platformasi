@@ -1384,6 +1384,1386 @@
      "yakun": "Natijalar: 30 va 45; 4; 20 va 20."
     }
    }
+  },
+  {
+   "mavzu": "Aylana bo‘ylab harakat",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Egri chiziqli harakat",
+      "matn": "Aylana bo‘ylab harakat egri chiziqli harakatning eng sodda ko‘rinishi. Tezlik moduli o‘zgarmasa ham, uning yo‘nalishi doim o‘zgaradi, shuning uchun bunday harakat tezlanishli bo‘ladi. Tezlik har bir nuqtada aylanaga urinma bo‘ylab yo‘nalgan.",
+      "misol": "Karusel aylanayotganda tezlik yo‘nalishi o‘zgaradi.",
+      "savol": "Tezlik aylanaga nisbatan qanday yo‘nalgan?",
+      "javob": "urinma bo‘ylab",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Davr va chastota",
+      "matn": "Bir to‘liq aylanish vaqti — davr T (sekund). Bir sekunddagi aylanishlar soni — chastota n (gerts). Ular teskari: n — 1 / T, T — 1 / n. Davr 0,5 sekund bo‘lsa, chastota 2 gerts.",
+      "misol": "Soat sekund mili 60 sekundda bir aylanadi.",
+      "savol": "Chastota va davr qanday bog‘langan?",
+      "javob": "teskari",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Chiziqli tezlik",
+      "matn": "Aylana uzunligi 2 · π · R. Bir davrda shuncha yo‘l bosiladi, shuning uchun chiziqli tezlik v — 2 · π · R / T. Bu yerda π taxminan 3,14. Radius katta bo‘lsa, bir xil davrda tezlik katta bo‘ladi.",
+      "misol": "Karuselning chetidagi bola markazdagidan tez harakatlanadi.",
+      "savol": "Aylana uzunligi formulasi?",
+      "javob": "2 · π · R",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Burchak tezlik",
+      "matn": "Burchak tezlik ω — burilish burchagining vaqtga nisbati. Bir davrda burilish 2 · π radian, shuning uchun ω — 2 · π / T. Chiziqli va burchak tezlik bog‘liq: v — ω · R.",
+      "misol": "Mil uchi markazdan uzoq, shuning uchun tez yuradi.",
+      "savol": "ω formulasi?",
+      "javob": "2 · π / T",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Markazga intilma tezlanish",
+      "matn": "Aylana bo‘ylab tekis harakatda tezlanish markazga yo‘nalgan: a — v · v / R, ya’ni ω · ω · R. U tezlik yo‘nalishini o‘zgartiradi. Unga markazga intilma kuch sabab bo‘ladi: F — m · a.",
+      "misol": "Burilishda mashina tashqariga og‘adi.",
+      "savol": "Markazga intilma tezlanish qayoqqa yo‘nalgan?",
+      "javob": "aylana markaziga",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "T — 1 / n. v — 2 · π · R / T. ω — 2 · π / T. a — v · v / R.",
+    "misollar": [
+     {
+      "shart": "Radius 2 metr, davr 4 sekund (π — 3,14). Chiziqli tezlik?",
+      "yechim": [
+       "v — 2 · π · R / T.",
+       "2 · 3,14 · 2 / 4 — 3,14.",
+       "Javob 3,14 metr/sekund."
+      ],
+      "javob": "3,14 metr/sekund"
+     },
+     {
+      "shart": "Davr 0,5 sekund. Chastota?",
+      "yechim": [
+       "n — 1 / T.",
+       "1 / 0,5.",
+       "Javob 2 gerts."
+      ],
+      "javob": "2 gerts"
+     },
+     {
+      "shart": "v — 10 metr/sekund, R — 5 metr. Markazga intilma tezlanish?",
+      "yechim": [
+       "a — v · v / R.",
+       "100 / 5.",
+       "Javob 20 metr / sekund kvadrat."
+      ],
+      "javob": "20 metr / sekund kvadrat"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Aylantirib o‘lchaymiz",
+      "topshiriq": "Ipga bog‘langan yukni aylantirib, 10 aylanish vaqtini o‘lchang.",
+      "yechim": "T — vaqt / 10.",
+      "mahsulot": "ip, yuk, sekundomer"
+     },
+     {
+      "nom": "Radius va tezlik",
+      "topshiriq": "Radius o‘zgarganda tezlikni solishtiring.",
+      "yechim": "R katta — v katta.",
+      "mahsulot": "ip, chizg‘ich"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "π — 3,14 oling.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Hayotdagi misollar",
+      "topshiriq": "Aylana bo‘ylab harakat misollarini yozing.",
+      "yechim": "Karusel, g‘ildirak.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 3,14 · 2 / 4 nechaga teng?",
+      "javob": "3,14"
+     },
+     {
+      "shart": "1 / 0,5 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "100 / 5 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "Tezlik aylanaga qanday yo‘nalgan?",
+      "javob": "urinma bo‘ylab"
+     },
+     {
+      "shart": "n va T qanday bog‘langan?",
+      "javob": "teskari"
+     },
+     {
+      "shart": "Aylana uzunligi?",
+      "javob": "2 · π · R"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tezlanish yo‘q deydi, chunki moduli o‘zgarmaydi",
+      "sabab": "yo‘nalishi o‘zgaradi",
+      "oldini_olish": "markazga intilma tezlanish bor"
+     },
+     {
+      "xato": "Tezlanish urinma bo‘ylab deydi",
+      "sabab": "markazga yo‘nalgan",
+      "oldini_olish": "markazga intilma"
+     },
+     {
+      "xato": "Chastotani davrga teng deydi",
+      "sabab": "teskari kattalik",
+      "oldini_olish": "n — 1 / T"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "g‘ildirak va turbina"
+     },
+     {
+      "fan": "Astronomiya",
+      "boglanish": "sayyoralar orbitasi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "aylana uzunligi va π"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Karusel fizikasi»",
+     "muammo": "Karusel yoki g‘ildirak harakatini qanday o‘rganamiz?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "modelni tanlash",
+      "davrni o‘lchash",
+      "tezlikni hisoblash",
+      "tezlanishni topish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Modelni tanlang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Aylana yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-qism",
+       "matn": "R — 2, T — 4, π — 3,14.",
+       "topshiriq": "v?",
+       "javob": "3,14",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qism",
+       "matn": "T — 0,5 sekund.",
+       "topshiriq": "Chastota?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qism",
+       "matn": "v — 10, R — 5.",
+       "topshiriq": "a?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qism",
+       "matn": "Tezlik yo‘nalishi.",
+       "topshiriq": "Qanday?",
+       "javob": "urinma",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Davr",
+      "tarif": "bir aylanish vaqti"
+     },
+     {
+      "atama": "Chastota",
+      "tarif": "bir sekunddagi aylanishlar soni"
+     },
+     {
+      "atama": "Chiziqli tezlik",
+      "tarif": "yo‘lning vaqtga nisbati"
+     },
+     {
+      "atama": "Burchak tezlik",
+      "tarif": "burilish burchagining vaqtga nisbati"
+     },
+     {
+      "atama": "Markazga intilma tezlanish",
+      "tarif": "markazga yo‘nalgan tezlanish"
+     },
+     {
+      "atama": "Radian",
+      "tarif": "burchak birligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Aylana bo‘ylab harakatda tezlik yo‘nalishi o‘zgaradi",
+      "togri": true,
+      "izoh": "tezlanish bor"
+     },
+     {
+      "matn": "n — T",
+      "togri": false,
+      "izoh": "n — 1 / T"
+     },
+     {
+      "matn": "v — 2 · π · R / T",
+      "togri": true,
+      "izoh": "chiziqli tezlik"
+     },
+     {
+      "matn": "Markazga intilma tezlanish urinma bo‘ylab",
+      "togri": false,
+      "izoh": "markazga"
+     },
+     {
+      "matn": "100 / 5 — 20",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Radius katta bo‘lsa, bir xil davrda tezlik katta",
+      "togri": true,
+      "izoh": "uzunroq yo‘l"
+     },
+     {
+      "matn": "v — ω · R",
+      "togri": true,
+      "izoh": "bog‘lanish"
+     },
+     {
+      "matn": "π taxminan 3,14",
+      "togri": true,
+      "izoh": "doimiy"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Davr?",
+      "javob": "bir aylanish vaqti"
+     },
+     {
+      "savol": "Chastota?",
+      "javob": "aylanishlar soni"
+     },
+     {
+      "savol": "n va T?",
+      "javob": "teskari"
+     },
+     {
+      "savol": "v formulasi?",
+      "javob": "2 · π · R / T"
+     },
+     {
+      "savol": "ω formulasi?",
+      "javob": "2 · π / T"
+     },
+     {
+      "savol": "a formulasi?",
+      "javob": "v · v / R"
+     },
+     {
+      "savol": "1 / 0,5?",
+      "javob": "2"
+     },
+     {
+      "savol": "100 / 5?",
+      "javob": "20"
+     },
+     {
+      "savol": "Tezlik yo‘nalishi?",
+      "javob": "urinma"
+     },
+     {
+      "savol": "Tezlanish yo‘nalishi?",
+      "javob": "markazga"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘lcha",
+      "matn": "Davrni o‘lcha.",
+      "savol": "T?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Tezlikni top.",
+      "savol": "2 · π · R / T?"
+     },
+     {
+      "nom": "Topish",
+      "matn": "Tezlanishni top.",
+      "savol": "v · v / R?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Yo‘nalish nima bo‘ldi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tekis aylanayotgan jism tezlanishga ega?",
+    "keys": {
+     "vaziyat": "Karusel 4 sekundda bir aylanadi, radiusi 2 metr.",
+     "savollar": [
+      "Chetdagi bola tezligi qancha?",
+      "Tezlanish qayoqqa yo‘nalgan?"
+     ]
+    },
+    "tezis": "v — 2 · π · R / T",
+    "taqqoslash": {
+     "a": "Chiziqli tezlik",
+     "b": "Burchak tezlik",
+     "umumiy": [
+      "aylana bo‘ylab harakatni tasvirlaydi",
+      "davrga bog‘liq"
+     ],
+     "a_farq": [
+      "metr/sekund",
+      "radiusga bog‘liq"
+     ],
+     "b_farq": [
+      "radian/sekund",
+      "radiusga bog‘liq emas"
+     ]
+    },
+    "klaster": {
+     "markaz": "Aylana bo‘ylab harakat",
+     "shoxlar": [
+      {
+       "nom": "Davr, chastota",
+       "bandlar": [
+        "T",
+        "n — 1 / T"
+       ]
+      },
+      {
+       "nom": "Tezlik",
+       "bandlar": [
+        "chiziqli",
+        "burchak"
+       ]
+      },
+      {
+       "nom": "Tezlanish",
+       "bandlar": [
+        "markazga yo‘nalgan"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "v · v / R"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tezlik yo‘nalishini o‘zgartiraman va markazga qarayman. Men kimman?",
+     "javob": "markazga intilma tezlanish"
+    },
+    "hikmat": "Aylana tezlik yo‘nalishini buradi.",
+    "kalit_soz": "AYLANA",
+    "xato_yechim": {
+     "shart": "v — 10, R — 5. a?",
+     "xato": "10 / 5 — 2",
+     "togri": "100 / 5 — 20",
+     "sabab": "a — v · v / R, tezlik kvadratga ko‘tariladi"
+    },
+    "guruh_nomlari": [
+     "Davrchilar",
+     "Tezlikchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Aylana laboratoriyasi»",
+     "topshiriq": "Guruh aylana bo‘ylab harakatni o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "R — 2, T — 4 bo‘lsa v (π — 3,14)?",
+     "B": "T — 0,5 bo‘lsa chastota?",
+     "C": "v — 10, R — 5 bo‘lsa a?"
+    },
+    "sinkveyn": [
+     "Aylana",
+     "yumaloq, tez",
+     "aylanadi, buriladi, yuradi",
+     "Tezlik yo‘nalishi o‘zgaradi",
+     "Davr"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh aylana bo‘ylab harakatni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: davr va chastota",
+      "2-guruh: tezlik",
+      "3-guruh: tezlanish",
+      "4-guruh: hayotiy misollar"
+     ],
+     "yakun": "Natijalar: 3,14; 2; 20."
+    }
+   }
+  },
+  {
+   "mavzu": "Nyuton qonunlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nyuton kitobi",
+      "matn": "Isaak Nyuton 1687-yilda «Tabiiy falsafaning matematik asoslari» kitobida mexanikaning uch qonunini bayon qildi. Bu qonunlar klassik mexanikaning asosi bo‘lib, tabiatda harakatni tushuntiradi.",
+      "misol": "Nyuton qonunlari bilan mashinalar, kosmik kemalar hisoblanadi.",
+      "savol": "Nyuton kitobi qaysi yilda?",
+      "javob": "1687",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birinchi qonun",
+      "matn": "Inersiya qonuni: jismga boshqa jismlar ta’sir qilmasa yoki ta’sirlar o‘zaro muvozanatlashsa, jism tinch yoki to‘g‘ri chiziqli tekis harakatda qoladi. Jismning shu xossasi inersiya deyiladi.",
+      "misol": "Avtobus keskin tormozlansa, yo‘lovchilar oldinga og‘adi.",
+      "savol": "Inersiya nima?",
+      "javob": "tezlikni saqlash xossasi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikkinchi qonun",
+      "matn": "Jism tezlanishi unga ta’sir qiluvchi teng ta’sir etuvchi kuchga to‘g‘ri, massasiga teskari proporsional: a — F / m, ya’ni F — m · a. Kuch birligi — nyuton: 1 nyuton — 1 kg massaga 1 metr / sekund kvadrat tezlanish beradigan kuch.",
+      "misol": "Yengil aravachani itarish oson.",
+      "savol": "F ni qanday topamiz?",
+      "javob": "m · a",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uchinchi qonun",
+      "matn": "Ikki jism bir-biriga modul jihatidan teng, yo‘nalishi qarama-qarshi kuchlar bilan ta’sir qiladi: F12 — manfiy F21. Bu kuchlar turli jismlarga qo‘yilgan, shuning uchun bir-birini muvozanatlamaydi.",
+      "misol": "Raketa gazni orqaga itaradi, gaz raketani oldinga.",
+      "savol": "Ta’sir va aks ta’sir kuchlari qanday?",
+      "javob": "teng va qarama-qarshi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanilishi",
+      "matn": "Xavfsizlik kamari birinchi qonun asosida inersiyadan saqlaydi. Avtomobilning tezlanishini ikkinchi qonun bilan hisoblaymiz. Suzish va raketa harakati uchinchi qonunga asoslangan. Kuchlar vektor, shuning uchun ularni qo‘shishda yo‘nalish hisobga olinadi.",
+      "misol": "Kamar to‘qnashuvda inson hayotini saqlaydi.",
+      "savol": "Kamar qaysi hodisadan saqlaydi?",
+      "javob": "inersiyadan",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "1: inersiya. 2: F — m · a. 3: ta’sir va aks ta’sir teng, qarama-qarshi. Kuch birligi — nyuton.",
+    "misollar": [
+     {
+      "shart": "m — 2 kg, a — 3 metr / sekund kvadrat. Kuch?",
+      "yechim": [
+       "F — m · a.",
+       "2 · 3.",
+       "Javob 6 nyuton."
+      ],
+      "javob": "6 nyuton"
+     },
+     {
+      "shart": "F — 20 nyuton, m — 5 kg. Tezlanish?",
+      "yechim": [
+       "a — F / m.",
+       "20 / 5.",
+       "Javob 4 metr / sekund kvadrat."
+      ],
+      "javob": "4 metr / sekund kvadrat"
+     },
+     {
+      "shart": "Avtomobil massasi 1000 kg, tezlanishi 2 metr / sekund kvadrat. Kuch?",
+      "yechim": [
+       "F — m · a.",
+       "1000 · 2.",
+       "Javob 2000 nyuton."
+      ],
+      "javob": "2000 nyuton"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Inersiyani sinaymiz",
+      "topshiriq": "Stakan ostidagi qog‘ozni tez tortib, tanga qanday qolishini kuzating.",
+      "yechim": "Tanga joyida qoladi.",
+      "mahsulot": "stakan, qog‘oz, tanga"
+     },
+     {
+      "nom": "Kuch va massa",
+      "topshiriq": "Turli massali aravachani bir xil kuch bilan itaring.",
+      "yechim": "Massa katta — a kichik.",
+      "mahsulot": "aravacha, yuklar"
+     },
+     {
+      "nom": "Aks ta’sir",
+      "topshiriq": "Konkida yoki rolikda devorni itarib, nima bo‘lishini ko‘ring.",
+      "yechim": "Siz orqaga ketasiz.",
+      "mahsulot": "roliklar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "F — m · a.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 3 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "20 / 5 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "1000 · 2 nechaga teng?",
+      "javob": "2000"
+     },
+     {
+      "shart": "Kuch birligi?",
+      "javob": "nyuton"
+     },
+     {
+      "shart": "Birinchi qonun nomi?",
+      "javob": "inersiya qonuni"
+     },
+     {
+      "shart": "Nyuton kitobi yili?",
+      "javob": "1687"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Kuch bo‘lmasa jism albatta to‘xtaydi deydi",
+      "sabab": "tekis harakatda qoladi",
+      "oldini_olish": "inersiya qonuni"
+     },
+     {
+      "xato": "Ta’sir va aks ta’sir muvozanatlashadi deydi",
+      "sabab": "turli jismlarga qo‘yilgan",
+      "oldini_olish": "bir-birini bekor qilmaydi"
+     },
+     {
+      "xato": "a — m / F deb hisoblaydi",
+      "sabab": "a — F / m",
+      "oldini_olish": "kuch massaga bo‘linadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "xavfsizlik kamari"
+     },
+     {
+      "fan": "Astronomiya",
+      "boglanish": "raketa uchishi"
+     },
+     {
+      "fan": "Sport",
+      "boglanish": "to‘p tepish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Xavfsiz yo‘l»",
+     "muammo": "Nyuton qonunlari bilan yo‘l xavfsizligini qanday tushuntiramiz?",
+     "mahsulot": "xavfsizlik plakati",
+     "bosqichlar": [
+      "misollar yig‘ish",
+      "tajriba o‘tkazish",
+      "hisoblash",
+      "qoidalar yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Misollar yig‘ing",
+      "Tajriba o‘tkazing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "fizika to‘g‘ri",
+      "hisob to‘g‘ri",
+      "qoidalar mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Nyuton bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-daraxt",
+       "matn": "m — 2, a — 3.",
+       "topshiriq": "F?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "2-daraxt",
+       "matn": "F — 20, m — 5.",
+       "topshiriq": "a?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "3-daraxt",
+       "matn": "m — 1000, a — 2.",
+       "topshiriq": "F?",
+       "javob": "2000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-daraxt",
+       "matn": "Kuch birligi.",
+       "topshiriq": "Nima?",
+       "javob": "nyuton",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qonunni qo‘lladingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Inersiya",
+      "tarif": "tezlikni saqlash xossasi"
+     },
+     {
+      "atama": "Kuch",
+      "tarif": "ta’sirning o‘lchovi"
+     },
+     {
+      "atama": "Massa",
+      "tarif": "inertlik o‘lchovi"
+     },
+     {
+      "atama": "Nyuton",
+      "tarif": "kuch birligi"
+     },
+     {
+      "atama": "Teng ta’sir etuvchi",
+      "tarif": "barcha kuchlarning vektor yig‘indisi"
+     },
+     {
+      "atama": "Aks ta’sir",
+      "tarif": "javob kuch"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Kuch bo‘lmasa jism tekis harakatda qolishi mumkin",
+      "togri": true,
+      "izoh": "inersiya"
+     },
+     {
+      "matn": "F — m / a",
+      "togri": false,
+      "izoh": "F — m · a"
+     },
+     {
+      "matn": "Ta’sir va aks ta’sir kuchlari teng",
+      "togri": true,
+      "izoh": "uchinchi qonun"
+     },
+     {
+      "matn": "Ta’sir va aks ta’sir kuchlari bir jismga qo‘yilgan",
+      "togri": false,
+      "izoh": "turli jismlarga"
+     },
+     {
+      "matn": "2 · 3 — 6",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Massa katta bo‘lsa, bir xil kuchda tezlanish kichik",
+      "togri": true,
+      "izoh": "a — F / m"
+     },
+     {
+      "matn": "Nyuton qonunlari 1687-yilda e’lon qilingan",
+      "togri": true,
+      "izoh": "tarix"
+     },
+     {
+      "matn": "Kuch skalyar kattalik",
+      "togri": false,
+      "izoh": "vektor"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "1-qonun?",
+      "javob": "inersiya"
+     },
+     {
+      "savol": "2-qonun?",
+      "javob": "F — m · a"
+     },
+     {
+      "savol": "3-qonun?",
+      "javob": "ta’sir — aks ta’sir"
+     },
+     {
+      "savol": "Kuch birligi?",
+      "javob": "nyuton"
+     },
+     {
+      "savol": "2 · 3?",
+      "javob": "6"
+     },
+     {
+      "savol": "20 / 5?",
+      "javob": "4"
+     },
+     {
+      "savol": "1000 · 2?",
+      "javob": "2000"
+     },
+     {
+      "savol": "Inersiya?",
+      "javob": "tezlikni saqlash"
+     },
+     {
+      "savol": "Kuch?",
+      "javob": "vektor"
+     },
+     {
+      "savol": "Kamar?",
+      "javob": "inersiyadan saqlaydi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Aniqla",
+      "matn": "Qaysi qonun?",
+      "savol": "1, 2 yoki 3?"
+     },
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "m va a?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "F ni top.",
+      "savol": "m · a?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Kuch yo‘nalishi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun avtobus tormozlanganda yo‘lovchilar oldinga og‘adi?",
+    "keys": {
+     "vaziyat": "Massasi 1000 kg avtomobil 2 metr / sekund kvadrat tezlanish bilan yurmoqda.",
+     "savollar": [
+      "Unga qanday kuch ta’sir qiladi?",
+      "Massa 2 baravar ko‘p bo‘lsa tezlanish qanday?"
+     ]
+    },
+    "tezis": "F — m · a",
+    "taqqoslash": {
+     "a": "Massa",
+     "b": "Og‘irlik",
+     "umumiy": [
+      "jismga bog‘liq",
+      "kilogramm yoki nyutonda"
+     ],
+     "a_farq": [
+      "inertlik o‘lchovi",
+      "kilogramm"
+     ],
+     "b_farq": [
+      "tayanchga bosim kuchi",
+      "nyuton"
+     ]
+    },
+    "klaster": {
+     "markaz": "Nyuton qonunlari",
+     "shoxlar": [
+      {
+       "nom": "1-qonun",
+       "bandlar": [
+        "inersiya"
+       ]
+      },
+      {
+       "nom": "2-qonun",
+       "bandlar": [
+        "F — m · a"
+       ]
+      },
+      {
+       "nom": "3-qonun",
+       "bandlar": [
+        "ta’sir va aks ta’sir"
+       ]
+      },
+      {
+       "nom": "Kuch",
+       "bandlar": [
+        "nyuton",
+        "vektor"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men kuch, massa va tezlanishni bog‘layman. Men kimman?",
+     "javob": "Nyutonning ikkinchi qonuni"
+    },
+    "hikmat": "Kuch katta — tezlanish katta.",
+    "kalit_soz": "KUCH",
+    "xato_yechim": {
+     "shart": "m — 2, a — 3. F?",
+     "xato": "2 / 3",
+     "togri": "2 · 3 — 6 nyuton",
+     "sabab": "F — m · a, ko‘paytiramiz"
+    },
+    "guruh_nomlari": [
+     "Inersiyachilar",
+     "Kuchchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Nyuton laboratoriyasi»",
+     "topshiriq": "Guruh uch qonunni tajribada ko‘rsatadi."
+    },
+    "vazifalar": {
+     "A": "m — 2, a — 3 bo‘lsa F?",
+     "B": "F — 20, m — 5 bo‘lsa a?",
+     "C": "m — 1000, a — 2 bo‘lsa F?"
+    },
+    "sinkveyn": [
+     "Kuch",
+     "ko‘rinmas, kuchli",
+     "itaradi, tortadi, tezlashtiradi",
+     "Kuch tezlanish beradi",
+     "Massa"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh Nyuton qonunlarini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: inersiya",
+      "2-guruh: F — m · a",
+      "3-guruh: aks ta’sir",
+      "4-guruh: qo‘llanish"
+     ],
+     "yakun": "Natijalar: 6; 4; 2000."
+    }
+   }
+  },
+  {
+   "mavzu": "Butun olam tortishish qonuni",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tortishish",
+      "matn": "Massaga ega har qanday ikki jism bir-birini tortadi. Bu tortishish kuchi universal, ya’ni olamning hamma joyida ta’sir qiladi. Olma yerga tushishi ham, Oy Yer atrofida aylanishi ham shu kuch tufayli.",
+      "misol": "Olma daraxtdan yerga tushadi.",
+      "savol": "Tortishish kuchi qaysi jismlar orasida bor?",
+      "javob": "massaga ega hamma jismlar orasida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qonun",
+      "matn": "Butun olam tortishish qonuni 1687-yilda Nyuton tomonidan ta’riflangan: ikki jism orasidagi tortishish kuchi massalar ko‘paytmasiga to‘g‘ri, orasidagi masofa kvadratiga teskari proporsional: F — G · m1 · m2 / (R · R).",
+      "misol": "Masofa ortsa, tortishish susayadi.",
+      "savol": "Kuch masofa kvadratiga qanday bog‘liq?",
+      "javob": "teskari proporsional",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Gravitatsion doimiy",
+      "matn": "G — gravitatsion doimiy, uning qiymati taxminan 6,67 · 10 ning minus 11 darajasi (SI birliklarida). Uni birinchi marta 1798-yilda ingliz fizigi Genri Kavendish burama tarozida o‘lchagan. G juda kichik, shuning uchun kundalik jismlar orasidagi tortishishni sezmaymiz.",
+      "misol": "Ikki odam orasida tortishish juda kichik.",
+      "savol": "G ni birinchi bo‘lib kim o‘lchagan?",
+      "javob": "Kavendish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Og‘irlik kuchi",
+      "matn": "Yer sirtida jismga ta’sir qiluvchi tortishish — og‘irlik kuchi: F — m · g, g taxminan 9,8. Balandlik ortsa, Yer markazigacha masofa ortadi, g kamayadi. Oyda g taxminan Yerdagining oltidan biri, shuning uchun u yerda jism yengil.",
+      "misol": "Astronavt Oyda yengil sakraydi.",
+      "savol": "Oyda og‘irlik Yerdagidan kattami?",
+      "javob": "yo‘q, kichik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanish",
+      "matn": "Qonun yordamida sayyoralar, yo‘ldoshlar harakati, dengiz suvining qalqishi va qaytishi tushuntiriladi. Suv ko‘tarilishi Oyning tortishidan. Neptun sayyorasi ham avval hisoblanib, keyin teleskopda topilgan.",
+      "misol": "Dengizda suv kuniga ikki marta ko‘tariladi.",
+      "savol": "Suv ko‘tarilishiga nima sabab?",
+      "javob": "Oyning tortishi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "F — G · m1 · m2 / (R · R). Masofa 2 marta ortsa kuch 4 marta kamayadi. Og‘irlik kuchi F — m · g.",
+    "misollar": [
+     {
+      "shart": "Kuch 80 nyuton. Masofa 2 marta ortsa kuch nechaga teng?",
+      "yechim": [
+       "2 marta ortsa, kuch 4 marta kamayadi.",
+       "80 / 4.",
+       "Javob 20 nyuton."
+      ],
+      "javob": "20 nyuton"
+     },
+     {
+      "shart": "Kuch 10 nyuton. Ikkala massa 2 marta ortsa kuch?",
+      "yechim": [
+       "Ko‘paytma 4 marta ortadi.",
+       "10 · 4.",
+       "Javob 40 nyuton."
+      ],
+      "javob": "40 nyuton"
+     },
+     {
+      "shart": "Massasi 50 kg odamning og‘irlik kuchi (g — 10)?",
+      "yechim": [
+       "F — m · g.",
+       "50 · 10.",
+       "Javob 500 nyuton."
+      ],
+      "javob": "500 nyuton"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Og‘irlikni o‘lchaymiz",
+      "topshiriq": "Dinamometr bilan jismlarning og‘irligini o‘lchang.",
+      "yechim": "F — m · g.",
+      "mahsulot": "dinamometr, yuklar"
+     },
+     {
+      "nom": "Masofa va kuch",
+      "topshiriq": "Masofa 2 va 3 marta ortganda kuchni hisoblang.",
+      "yechim": "Kvadrat qonuni.",
+      "mahsulot": "hisob varag‘i"
+     },
+     {
+      "nom": "Sayyoralarda og‘irlik",
+      "topshiriq": "Boshqa sayyoralarda o‘z og‘irligingizni hisoblang.",
+      "yechim": "g sayyoraga bog‘liq.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Kvadratni unutmang.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "80 / 4 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "10 · 4 nechaga teng?",
+      "javob": "40"
+     },
+     {
+      "shart": "50 · 10 nechaga teng?",
+      "javob": "500"
+     },
+     {
+      "shart": "Masofa 2 marta ortsa kuch necha marta kamayadi?",
+      "javob": "4"
+     },
+     {
+      "shart": "Qonunni kim yaratgan?",
+      "javob": "Nyuton"
+     },
+     {
+      "shart": "G ni kim o‘lchagan?",
+      "javob": "Kavendish"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Masofa ortsa kuch 2 marta kamayadi deydi",
+      "sabab": "masofa kvadratiga teskari",
+      "oldini_olish": "4 marta kamayadi"
+     },
+     {
+      "xato": "G ni g bilan aralashtiradi",
+      "sabab": "G — doimiy, g — tezlanish",
+      "oldini_olish": "ikki xil kattalik"
+     },
+     {
+      "xato": "Oyda og‘irlik Yerdagidek deydi",
+      "sabab": "taxminan olti marta kichik",
+      "oldini_olish": "g Oyda kichik"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Astronomiya",
+      "boglanish": "sayyoralar harakati"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "suv qalqishi"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Nyuton va Kavendish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Boshqa sayyorada»",
+     "muammo": "Boshqa sayyoralarda o‘z og‘irligimizni qanday hisoblaymiz?",
+     "mahsulot": "sayyoralar jadvali",
+     "bosqichlar": [
+      "ma’lumot yig‘ish",
+      "g ni yozish",
+      "og‘irlikni hisoblash",
+      "jadval chizish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Ma’lumot yig‘ing",
+      "Hisoblang",
+      "Jadval chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "ma’lumot to‘g‘ri",
+      "hisob to‘g‘ri",
+      "jadval aniq",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Gravitatsiya galaktikasi»",
+     "bekatlar": [
+      {
+       "nom": "1-sayyora",
+       "matn": "Kuch 80, masofa 2 marta ortdi.",
+       "topshiriq": "Yangi kuch?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sayyora",
+       "matn": "Kuch 10, massalar 2 marta ortdi.",
+       "topshiriq": "Yangi kuch?",
+       "javob": "40",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sayyora",
+       "matn": "m — 50, g — 10.",
+       "topshiriq": "Og‘irlik?",
+       "javob": "500",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sayyora",
+       "matn": "Qonunni kim yaratgan?",
+       "topshiriq": "Kim?",
+       "javob": "Nyuton",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Kvadratni hisobladingizmi?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tortishish",
+      "tarif": "massali jismlarning o‘zaro tortilishi"
+     },
+     {
+      "atama": "Gravitatsiya",
+      "tarif": "tortishishning boshqa nomi"
+     },
+     {
+      "atama": "G",
+      "tarif": "gravitatsion doimiy"
+     },
+     {
+      "atama": "g",
+      "tarif": "erkin tushish tezlanishi"
+     },
+     {
+      "atama": "Og‘irlik kuchi",
+      "tarif": "Yerning tortish kuchi"
+     },
+     {
+      "atama": "Universal",
+      "tarif": "hamma joyda amal qiluvchi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Massali har qanday jismlar bir-birini tortadi",
+      "togri": true,
+      "izoh": "universal"
+     },
+     {
+      "matn": "Masofa ortsa kuch masofaga teskari",
+      "togri": false,
+      "izoh": "kvadratiga teskari"
+     },
+     {
+      "matn": "Kuch massalar ko‘paytmasiga to‘g‘ri proporsional",
+      "togri": true,
+      "izoh": "qonun"
+     },
+     {
+      "matn": "G va g bir xil kattalik",
+      "togri": false,
+      "izoh": "turli"
+     },
+     {
+      "matn": "50 · 10 — 500",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Oyda g Yerdagidan kichik",
+      "togri": true,
+      "izoh": "taxminan oltidan bir"
+     },
+     {
+      "matn": "Qonun 1687-yilda e’lon qilingan",
+      "togri": true,
+      "izoh": "Nyuton"
+     },
+     {
+      "matn": "Kavendish G ni 1798-yilda o‘lchagan",
+      "togri": true,
+      "izoh": "burama tarozi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tortishish?",
+      "javob": "massali jismlar orasida"
+     },
+     {
+      "savol": "Qonun formulasi?",
+      "javob": "G · m1 · m2 / R kvadrat"
+     },
+     {
+      "savol": "Masofa 2 marta?",
+      "javob": "kuch 4 marta kamayadi"
+     },
+     {
+      "savol": "Og‘irlik?",
+      "javob": "m · g"
+     },
+     {
+      "savol": "g?",
+      "javob": "9,8"
+     },
+     {
+      "savol": "50 · 10?",
+      "javob": "500"
+     },
+     {
+      "savol": "80 / 4?",
+      "javob": "20"
+     },
+     {
+      "savol": "Kavendish?",
+      "javob": "G ni o‘lchagan"
+     },
+     {
+      "savol": "Oy?",
+      "javob": "g kichik"
+     },
+     {
+      "savol": "Suv qalqishi?",
+      "javob": "Oy tortishi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "m va R?"
+     },
+     {
+      "nom": "Tanla",
+      "matn": "Formulani tanla.",
+      "savol": "F — G · m · m / R · R?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Natijani top.",
+      "savol": "kuch?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Masofa nimaga ta’sir qiladi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun Oyda astronavt Yerdagidan yengil sakraydi?",
+    "keys": {
+     "vaziyat": "Massasi 50 kg odam Yer sirtida turibdi.",
+     "savollar": [
+      "Og‘irlik kuchi nechaga teng?",
+      "Oyda bu kuch qanday bo‘ladi?"
+     ]
+    },
+    "tezis": "Masofa kvadrati qonuni",
+    "taqqoslash": {
+     "a": "Tortishish kuchi",
+     "b": "Og‘irlik kuchi",
+     "umumiy": [
+      "kuch birligi nyuton",
+      "Yerga bog‘liq"
+     ],
+     "a_farq": [
+      "ikki jism orasida",
+      "G · m1 · m2 / R kvadrat"
+     ],
+     "b_farq": [
+      "Yer sirtida",
+      "m · g"
+     ]
+    },
+    "klaster": {
+     "markaz": "Butun olam tortishish qonuni",
+     "shoxlar": [
+      {
+       "nom": "Qonun",
+       "bandlar": [
+        "massalar ko‘paytmasi",
+        "masofa kvadrati"
+       ]
+      },
+      {
+       "nom": "G",
+       "bandlar": [
+        "doimiy",
+        "Kavendish"
+       ]
+      },
+      {
+       "nom": "Og‘irlik",
+       "bandlar": [
+        "m · g"
+       ]
+      },
+      {
+       "nom": "Natijalar",
+       "bandlar": [
+        "sayyoralar",
+        "suv qalqishi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men massali jismlarni bir-biriga tortaman. Men kimman?",
+     "javob": "tortishish kuchi"
+    },
+    "hikmat": "Tortishish olamni bog‘laydi.",
+    "kalit_soz": "TORTISHISH",
+    "xato_yechim": {
+     "shart": "Masofa 2 marta ortdi, kuch 80. Yangi kuch?",
+     "xato": "80 / 2 — 40",
+     "togri": "80 / 4 — 20 nyuton",
+     "sabab": "kuch masofa kvadratiga teskari"
+    },
+    "guruh_nomlari": [
+     "Gravitatsiyachilar",
+     "Sayyorachilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Gravitatsiya laboratoriyasi»",
+     "topshiriq": "Guruh tortishish qonunini o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "Kuch 80, masofa 2 marta ortsa kuch?",
+     "B": "Kuch 10, ikkala massa 2 marta ortsa kuch?",
+     "C": "50 kg odamning og‘irlik kuchi?"
+    },
+    "sinkveyn": [
+     "Tortishish",
+     "ko‘rinmas, kuchli",
+     "tortadi, ushlaydi, aylantiradi",
+     "Hamma jism bir-birini tortadi",
+     "Nyuton"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh butun olam tortishish qonunini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: qonun",
+      "2-guruh: G va g",
+      "3-guruh: og‘irlik",
+      "4-guruh: sayyoralar"
+     ],
+     "yakun": "Natijalar: 20; 40; 500."
+    }
+   }
   }
  ]
 }
