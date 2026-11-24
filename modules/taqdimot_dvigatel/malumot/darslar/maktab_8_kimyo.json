@@ -1,0 +1,1395 @@
+{
+ "daraja": "maktab",
+ "sinf": "8",
+ "fan": "Kimyo",
+ "muallif": "qo‘lda yozilgan, faktlar tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Davriy qonun",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tartib izlagan olim",
+      "matn": "XIX asrda 60 dan ortiq element ma’lum edi, ammo ular tartibsiz edi. 1869-yilda rus kimyogari Dmitriy Mendeleyev elementlarni atom massasi o‘sib borish tartibida joylab, xossalari davriy takrorlanishini payqadi. Shu Davriy qonunning boshlanishi.",
+      "misol": "Mendeleyev har bir elementni alohida kartochkaga yozib terib chiqqan.",
+      "savol": "Davriy qonunni kim kashf etgan?",
+      "javob": "Mendeleyev",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bashorat qudrati",
+      "matn": "Mendeleyev jadvalda bo‘sh joylar qoldirib, hali topilmagan elementlarni bashorat qildi. U ekasilitsiy deb atagan elementning atom massasi taxminan 72, rangi kulrang ekanini aytdi. 1886-yilda nemis kimyogari Vinkler germaniyni topdi, uning atom massasi 72,6 bo‘lib chiqdi.",
+      "misol": "Galliy 1875-yilda, skandiy 1879-yilda topildi.",
+      "savol": "Germaniyni kim topdi?",
+      "javob": "Vinkler",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Zamonaviy ta’rif",
+      "matn": "1913-yilda Mozli elementning xossalari atom massasiga emas, yadro zaryadiga bog‘liqligini ko‘rsatdi. Shuning uchun hozirgi Davriy qonun: elementlar xossalari ularning yadro zaryadiga, ya’ni tartib raqamiga davriy bog‘liq. Tartib raqami — yadrodagi protonlar soni.",
+      "misol": "Argon va kaliyda massa tartibi buzilar edi, tartib raqami hal qildi.",
+      "savol": "Xossalar nimaga davriy bog‘liq?",
+      "javob": "yadro zaryadiga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Davrlar va guruhlar",
+      "matn": "Gorizontal qatorlar — davrlar, vertikal ustunlar — guruhlar. Davrlar 7 ta. Davrlardagi elementlar soni: 2, 8, 8, 18, 18, 32. Bir guruh elementlari o‘xshash xossalarga ega, masalan, litiy, natriy va kaliy.",
+      "misol": "Uchinchi davr natriydan argongacha.",
+      "savol": "Birinchi davrda nechta element bor?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qonun nima uchun muhim",
+      "matn": "Davriy qonun kimyoni tartibga soldi: element xossasini jadvaldagi o‘rniga qarab bashorat qilish mumkin. Hozir 118 ta element ma’lum. Yangi elementlar laboratoriyada sintez qilinadi va jadvalga qo‘shiladi.",
+      "misol": "2016-yilda 113, 115, 117 va 118-elementlar nomlari tasdiqlangan.",
+      "savol": "Hozir nechta element ma’lum?",
+      "javob": "118",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Xossalar tartib raqamiga davriy bog‘liq. 7 davr. Davrlardagi elementlar soni: 2, 8, 8, 18, 18, 32.",
+    "misollar": [
+     {
+      "shart": "Neon tartib raqami 10, uchinchi davrda 8 ta element. Uchinchi davr oxirgi elementi (argon) raqami?",
+      "yechim": [
+       "Natriy 11 dan boshlanadi.",
+       "10 va 8 ni qo‘shamiz.",
+       "Javob 18."
+      ],
+      "javob": "18"
+     },
+     {
+      "shart": "Birinchi uch davrda nechta element bor?",
+      "yechim": [
+       "Davrlar: 2, 8, 8.",
+       "2 va 8 va 8 ni qo‘shamiz.",
+       "Javob 18."
+      ],
+      "javob": "18"
+     },
+     {
+      "shart": "Mendeleyev ekasilitsiy massasini 72 degan, germaniy esa 72,6. Farqi?",
+      "yechim": [
+       "72,6 dan 72 ni ayiramiz.",
+       "72,6 minus 72.",
+       "Javob 0,6."
+      ],
+      "javob": "0,6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kartochka o‘yini",
+      "topshiriq": "Elementlar kartochkalarini tartib raqami bo‘yicha terib chiqing.",
+      "yechim": "Davr va guruhni toping.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Bashorat jadvali",
+      "topshiriq": "Mendeleyev bashoratini haqiqiy qiymat bilan solishtiring.",
+      "yechim": "72 va 72,6.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Davrlarni sanaymiz",
+      "topshiriq": "Davrlar bo‘yicha elementlar sonini yig‘ing.",
+      "yechim": "2, 8, 8, 18, 18, 32.",
+      "mahsulot": "kalkulyator"
+     },
+     {
+      "nom": "Tarix chizig‘i",
+      "topshiriq": "1869, 1875, 1886, 1913 sanalarini chizing.",
+      "yechim": "Har sanaga voqea yozing.",
+      "mahsulot": "qog‘oz, flomaster"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "10 va 8 yig‘indisi?",
+      "javob": "18"
+     },
+     {
+      "shart": "2 va 8 va 8 yig‘indisi?",
+      "javob": "18"
+     },
+     {
+      "shart": "72,6 minus 72 nechaga teng?",
+      "javob": "0,6"
+     },
+     {
+      "shart": "Davriy qonun yili?",
+      "javob": "1869"
+     },
+     {
+      "shart": "Davrlar soni?",
+      "javob": "7"
+     },
+     {
+      "shart": "Hozir nechta element ma’lum?",
+      "javob": "118"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Xossalar atom massasiga bog‘liq deydi",
+      "sabab": "yadro zaryadiga bog‘liq",
+      "oldini_olish": "tartib raqamiga qara"
+     },
+     {
+      "xato": "Birinchi davrda 8 ta element bor deydi",
+      "sabab": "2 ta element",
+      "oldini_olish": "vodorod va geliy"
+     },
+     {
+      "xato": "Mendeleyev barcha elementlarni topgan deydi",
+      "sabab": "bashorat qilgan",
+      "oldini_olish": "ko‘pini keyin topishdi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Mendeleyev va XIX asr"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ketma-ketlik va yig‘indi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "atom yadrosi zaryadi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mendeleyev kartochkalari»",
+     "muammo": "Elementlarni qanday tartiblash mumkin?",
+     "mahsulot": "kartochkalar va jadval",
+     "bosqichlar": [
+      "kartochka tayyorlash",
+      "tartiblash",
+      "o‘xshashlarni topish",
+      "bashorat qilish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kartochka tayyorlang",
+      "Tartiblang",
+      "O‘xshashlarni toping",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tartib to‘g‘ri",
+      "bashorat mantiqli",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Mendeleyev ustaxonasi»",
+     "bekatlar": [
+      {
+       "nom": "1-javon",
+       "matn": "10 va 8 ni qo‘shing.",
+       "topshiriq": "Argon raqami?",
+       "javob": "18",
+       "rasm": ""
+      },
+      {
+       "nom": "2-javon",
+       "matn": "Birinchi uch davr.",
+       "topshiriq": "Elementlar soni?",
+       "javob": "18",
+       "rasm": ""
+      },
+      {
+       "nom": "3-javon",
+       "matn": "72,6 minus 72.",
+       "topshiriq": "Farq?",
+       "javob": "0,6",
+       "rasm": ""
+      },
+      {
+       "nom": "4-javon",
+       "matn": "Davriy qonun.",
+       "topshiriq": "Yil?",
+       "javob": "1869",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Yig‘indini tekshirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Davriy qonun",
+      "tarif": "xossalar tartib raqamiga davriy bog‘liq"
+     },
+     {
+      "atama": "Davr",
+      "tarif": "jadvalning gorizontal qatori"
+     },
+     {
+      "atama": "Guruh",
+      "tarif": "jadvalning vertikal ustuni"
+     },
+     {
+      "atama": "Tartib raqami",
+      "tarif": "yadrodagi protonlar soni"
+     },
+     {
+      "atama": "Bashorat",
+      "tarif": "hali topilmagan element xossasi"
+     },
+     {
+      "atama": "Element",
+      "tarif": "bir xil yadro zaryadli atomlar turi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Davriy qonunni Mendeleyev kashf etgan",
+      "togri": true,
+      "izoh": "1869"
+     },
+     {
+      "matn": "Xossalar faqat massaga bog‘liq",
+      "togri": false,
+      "izoh": "yadro zaryadiga"
+     },
+     {
+      "matn": "Davrlar soni 7",
+      "togri": true,
+      "izoh": "gorizontal qatorlar"
+     },
+     {
+      "matn": "Birinchi davrda 8 ta element bor",
+      "togri": false,
+      "izoh": "2 ta"
+     },
+     {
+      "matn": "2 va 8 va 8 — 18",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Germaniyni Vinkler topgan",
+      "togri": true,
+      "izoh": "1886"
+     },
+     {
+      "matn": "Tartib raqami protonlar soniga teng",
+      "togri": true,
+      "izoh": "yadro zaryadi"
+     },
+     {
+      "matn": "Hozir 118 ta element ma’lum",
+      "togri": true,
+      "izoh": "sintez qilinganlar bilan"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Davriy qonun?",
+      "javob": "xossalar tartib raqamiga bog‘liq"
+     },
+     {
+      "savol": "Kim kashf etgan?",
+      "javob": "Mendeleyev"
+     },
+     {
+      "savol": "Yil?",
+      "javob": "1869"
+     },
+     {
+      "savol": "Davr?",
+      "javob": "gorizontal qator"
+     },
+     {
+      "savol": "Guruh?",
+      "javob": "vertikal ustun"
+     },
+     {
+      "savol": "Davrlar soni?",
+      "javob": "7"
+     },
+     {
+      "savol": "10 va 8?",
+      "javob": "18"
+     },
+     {
+      "savol": "72,6 minus 72?",
+      "javob": "0,6"
+     },
+     {
+      "savol": "Mozli?",
+      "javob": "1913 yadro zaryadi"
+     },
+     {
+      "savol": "Elementlar soni?",
+      "javob": "118"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Jadvalni kuzat.",
+      "savol": "Qanday tartib?"
+     },
+     {
+      "nom": "Sana",
+      "matn": "Davrlarni sana.",
+      "savol": "Nechta element?"
+     },
+     {
+      "nom": "Solishtir",
+      "matn": "Bashorat va haqiqat.",
+      "savol": "Farq qancha?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Bashorat nimaga kerak?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun Mendeleyev jadvalda bo‘sh joylar qoldirgan?",
+    "keys": {
+     "vaziyat": "Jadvalda ma’lum elementlar orasida o‘rni to‘lmagan katak bor.",
+     "savollar": [
+      "Bu katakka qanday element mos?",
+      "Mendeleyev nima qilgan?"
+     ]
+    },
+    "tezis": "Xossalar tartib raqamiga davriy bog‘liq",
+    "taqqoslash": {
+     "a": "Mendeleyev tartibi",
+     "b": "Zamonaviy tartib",
+     "umumiy": [
+      "davriy jadval",
+      "xossalar takrorlanadi"
+     ],
+     "a_farq": [
+      "atom massasi bo‘yicha",
+      "1869"
+     ],
+     "b_farq": [
+      "tartib raqami bo‘yicha",
+      "Mozli 1913"
+     ]
+    },
+    "klaster": {
+     "markaz": "Davriy qonun",
+     "shoxlar": [
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "Mendeleyev 1869",
+        "Mozli 1913"
+       ]
+      },
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "7 davr",
+        "guruhlar"
+       ]
+      },
+      {
+       "nom": "Bashorat",
+       "bandlar": [
+        "germaniy",
+        "galliy",
+        "skandiy"
+       ]
+      },
+      {
+       "nom": "Hozir",
+       "bandlar": [
+        "118 element"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men xossalarning takrorlanishiman va jadvalning asosiman. Men kimman?",
+     "javob": "davriy qonun"
+    },
+    "hikmat": "Xossalar davriy takrorlanadi.",
+    "kalit_soz": "MENDELEYEV",
+    "xato_yechim": {
+     "shart": "Xossalar nimaga davriy bog‘liq?",
+     "xato": "atom massasiga",
+     "togri": "yadro zaryadiga",
+     "sabab": "tartib raqami protonlar soni"
+    },
+    "guruh_nomlari": [
+     "Mendeleyevchilar",
+     "Hisobchilar",
+     "Tarixchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mendeleyev kartochkalari»",
+     "topshiriq": "Guruh elementlarni tartiblaydi."
+    },
+    "vazifalar": {
+     "A": "10 va 8 bo‘lsa oxirgi raqam?",
+     "B": "Birinchi uch davrda nechta element?",
+     "C": "72,6 minus 72 qancha?"
+    },
+    "sinkveyn": [
+     "Qonun",
+     "davriy, aniq",
+     "tartiblaydi, bashorat qiladi, takrorlanadi",
+     "Xossalar davriy takrorlanadi",
+     "Jadval"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh Davriy qonunni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tarix",
+      "2-guruh: bashorat",
+      "3-guruh: zamonaviy ta’rif",
+      "4-guruh: davrlar"
+     ],
+     "yakun": "Natijalar: 18; 18; 0,6."
+    }
+   }
+  },
+  {
+   "mavzu": "Davriy jadval",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Jadval tuzilishi",
+      "matn": "Davriy jadvalda 7 davr va 18 guruh bor. Guruhlar asosiy (A) va qo‘shimcha (B) kenja guruhlarga bo‘linadi. Har bir katakda belgi, nomi, tartib raqami va atom massasi yoziladi. Masalan, natriy — belgisi Na, tartib raqami 11.",
+      "misol": "Jadvalni o‘qish — xaritani o‘qishdek.",
+      "savol": "Jadvalda nechta davr bor?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kichik va katta davrlar",
+      "matn": "1, 2, 3-davrlar kichik, 4 dan 7 gacha davrlar katta. Uchinchi davr natriydan argongacha 8 ta element. To‘rtinchi davr kaliydan kriptongacha 18 ta element. Birinchi to‘rt davrda jami 2 plyus 8 plyus 8 plyus 18, ya’ni 36 element.",
+      "misol": "Kripton — to‘rtinchi davr oxirgi elementi, raqami 36.",
+      "savol": "To‘rtinchi davrda nechta element?",
+      "javob": "18",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Guruh raqami nimani bildiradi",
+      "matn": "Asosiy guruhlarda guruh raqami tashqi qavatdagi elektronlar soniga teng. Natriy birinchi guruhda — 1 ta tashqi elektron, magniy ikkinchi guruhda — 2 ta, xlor yettinchi guruhda — 7 ta. Shu sabab bir guruh elementlari o‘xshash.",
+      "misol": "Metallar jadvalning chap, metallmaslar o‘ng tomonida.",
+      "savol": "Xlor tashqi qavatida nechta elektron bor?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Davr va guruhda qonuniyat",
+      "matn": "Davr bo‘ylab chapdan o‘ngga metallik xossa kamayadi, metallmaslik oshadi. Guruhda yuqoridan pastga metallik oshadi. Eng faol metall jadvalning pastki chap burchagida (fransiy, seziy), eng faol metallmas — yuqori o‘ngda (ftor).",
+      "misol": "Ftor eng faol metallmas.",
+      "savol": "Eng faol metallmas qaysi?",
+      "javob": "ftor",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Jadvaldan foydalanish",
+      "matn": "Jadvalga qarab element tuzilishini aytish mumkin: tartib raqami — protonlar soni, davr raqami — elektron qavatlar soni, guruh raqami — tashqi elektronlar. Atom massasidan neytronlar sonini topamiz: neytronlar — massa minus tartib raqami.",
+      "misol": "Xlor 35 massali: 35 minus 17 — 18 neytron.",
+      "savol": "Davr raqami nimani bildiradi?",
+      "javob": "elektron qavatlar sonini",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Davr raqami — qavatlar soni. Guruh raqami — tashqi elektronlar. Neytronlar — massa minus tartib raqami.",
+    "misollar": [
+     {
+      "shart": "Birinchi to‘rt davrda jami nechta element?",
+      "yechim": [
+       "Davrlar: 2, 8, 8, 18.",
+       "2 va 8 va 8 va 18.",
+       "Javob 36."
+      ],
+      "javob": "36"
+     },
+     {
+      "shart": "Xlor: tartib raqami 17, massa soni 35. Neytronlar soni?",
+      "yechim": [
+       "Neytronlar — massa minus tartib raqami.",
+       "35 minus 17.",
+       "Javob 18."
+      ],
+      "javob": "18"
+     },
+     {
+      "shart": "Hammasi 118 ta element, uran 92-element. Uran keyin nechta element?",
+      "yechim": [
+       "118 minus 92.",
+       "Hisoblaymiz.",
+       "Javob 26."
+      ],
+      "javob": "26"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Katak kartasi",
+      "topshiriq": "Besh element uchun belgi, raqam, davr, guruhni yozing.",
+      "yechim": "Na, Mg, Cl, K, Ca.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Rang jadvali",
+      "topshiriq": "Metallar va metallmaslarni boshqa rangda bo‘yang.",
+      "yechim": "Chap va o‘ng tomon.",
+      "mahsulot": "rangli qalam"
+     },
+     {
+      "nom": "Neytronlarni topamiz",
+      "topshiriq": "Uch element uchun neytronlarni hisoblang.",
+      "yechim": "Massa minus raqam.",
+      "mahsulot": "kalkulyator"
+     },
+     {
+      "nom": "Jadval o‘yini",
+      "topshiriq": "Do‘stingiz elementni aytadi, siz davr va guruhni toping.",
+      "yechim": "Tezlikka.",
+      "mahsulot": "jadval"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 va 8 va 8 va 18 yig‘indisi?",
+      "javob": "36"
+     },
+     {
+      "shart": "35 minus 17 nechaga teng?",
+      "javob": "18"
+     },
+     {
+      "shart": "118 minus 92 nechaga teng?",
+      "javob": "26"
+     },
+     {
+      "shart": "Davrlar soni?",
+      "javob": "7"
+     },
+     {
+      "shart": "Guruhlar soni?",
+      "javob": "18"
+     },
+     {
+      "shart": "Eng faol metallmas?",
+      "javob": "ftor"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Davr raqami tashqi elektronlar soni deydi",
+      "sabab": "qavatlar soni",
+      "oldini_olish": "guruh raqami tashqi elektronlar"
+     },
+     {
+      "xato": "Neytronlar soni massa plyus raqam deydi",
+      "sabab": "massa minus raqam",
+      "oldini_olish": "ayiriladi"
+     },
+     {
+      "xato": "Davr bo‘ylab metallik oshadi deydi",
+      "sabab": "kamayadi",
+      "oldini_olish": "chapdan o‘ngga metallmaslik oshadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Matematika",
+      "boglanish": "ketma-ket yig‘indi"
+     },
+     {
+      "fan": "Geografiya",
+      "boglanish": "mineral va metallar"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "metallar va qotishmalar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Jadval xaritasi»",
+     "muammo": "Davriy jadvalni qanday o‘qiymiz?",
+     "mahsulot": "jadval va kartalar",
+     "bosqichlar": [
+      "katakni o‘qish",
+      "davr va guruh topish",
+      "metall va metallmas",
+      "hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Katakni o‘qing",
+      "Davr va guruhni toping",
+      "Rang bering",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘qish to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Jadval shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "Birinchi to‘rt davr.",
+       "topshiriq": "Elementlar soni?",
+       "javob": "36",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "Xlor: massa 35, raqam 17.",
+       "topshiriq": "Neytronlar?",
+       "javob": "18",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "118 va 92.",
+       "topshiriq": "Qolgani?",
+       "javob": "26",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "Eng faol metallmas.",
+       "topshiriq": "Qaysi?",
+       "javob": "ftor",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Davriy jadval",
+      "tarif": "elementlar tizimli joylashuvi"
+     },
+     {
+      "atama": "Kenja guruh",
+      "tarif": "A va B guruhlar"
+     },
+     {
+      "atama": "Kichik davr",
+      "tarif": "1, 2, 3-davrlar"
+     },
+     {
+      "atama": "Katta davr",
+      "tarif": "4 dan 7 gacha"
+     },
+     {
+      "atama": "Metallik",
+      "tarif": "elektron berish xossasi"
+     },
+     {
+      "atama": "Metallmaslik",
+      "tarif": "elektron biriktirish xossasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Jadvalda 7 davr bor",
+      "togri": true,
+      "izoh": "gorizontal qatorlar"
+     },
+     {
+      "matn": "Guruh raqami qavatlar sonini bildiradi",
+      "togri": false,
+      "izoh": "tashqi elektronlar"
+     },
+     {
+      "matn": "Neytronlar — massa minus raqam",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Birinchi to‘rt davrda 36 element bor",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Davr bo‘ylab metallik oshadi",
+      "togri": false,
+      "izoh": "kamayadi"
+     },
+     {
+      "matn": "Ftor eng faol metallmas",
+      "togri": true,
+      "izoh": "yuqori o‘ng"
+     },
+     {
+      "matn": "Xlor yettinchi guruhda",
+      "togri": true,
+      "izoh": "7 tashqi elektron"
+     },
+     {
+      "matn": "Hamma davrlar bir xil uzunlikda",
+      "togri": false,
+      "izoh": "turlicha"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Davrlar?",
+      "javob": "7 ta"
+     },
+     {
+      "savol": "Guruhlar?",
+      "javob": "18 ta"
+     },
+     {
+      "savol": "Davr raqami?",
+      "javob": "qavatlar soni"
+     },
+     {
+      "savol": "Guruh raqami?",
+      "javob": "tashqi elektronlar"
+     },
+     {
+      "savol": "Neytronlar?",
+      "javob": "massa minus raqam"
+     },
+     {
+      "savol": "2 va 8 va 8 va 18?",
+      "javob": "36"
+     },
+     {
+      "savol": "35 minus 17?",
+      "javob": "18"
+     },
+     {
+      "savol": "118 minus 92?",
+      "javob": "26"
+     },
+     {
+      "savol": "Eng faol metall?",
+      "javob": "pastki chap burchak"
+     },
+     {
+      "savol": "Eng faol metallmas?",
+      "javob": "ftor"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Katakni kuzat.",
+      "savol": "Belgi va raqam?"
+     },
+     {
+      "nom": "Top",
+      "matn": "Davr va guruhni top.",
+      "savol": "Qaysi o‘rin?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Neytronlarni top.",
+      "savol": "Massa minus raqam?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Metallmi yoki yo‘qmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun bir guruh elementlari o‘xshash xossalarga ega?",
+    "keys": {
+     "vaziyat": "Litiy, natriy va kaliy suv bilan faol reaksiyaga kirishadi.",
+     "savollar": [
+      "Ular qaysi guruhda?",
+      "Tashqi elektronlar soni nechta?"
+     ]
+    },
+    "tezis": "Davr — qavatlar, guruh — tashqi elektronlar",
+    "taqqoslash": {
+     "a": "Davr",
+     "b": "Guruh",
+     "umumiy": [
+      "jadval qismlari",
+      "elementlar guruhi"
+     ],
+     "a_farq": [
+      "gorizontal qator",
+      "qavatlar soni bir xil"
+     ],
+     "b_farq": [
+      "vertikal ustun",
+      "tashqi elektronlar bir xil"
+     ]
+    },
+    "klaster": {
+     "markaz": "Davriy jadval",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "7 davr",
+        "18 guruh"
+       ]
+      },
+      {
+       "nom": "Davrlar",
+       "bandlar": [
+        "kichik 1 dan 3",
+        "katta 4 dan 7"
+       ]
+      },
+      {
+       "nom": "Guruh",
+       "bandlar": [
+        "tashqi elektronlar"
+       ]
+      },
+      {
+       "nom": "Qonuniyat",
+       "bandlar": [
+        "metallik kamayadi",
+        "ftor faol"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men elementlar xaritasiman, davrlar va guruhlarim bor. Men kimman?",
+     "javob": "davriy jadval"
+    },
+    "hikmat": "Jadval xossalarni ko‘rsatadi.",
+    "kalit_soz": "JADVAL",
+    "xato_yechim": {
+     "shart": "Xlor tashqi elektronlari soni?",
+     "xato": "3 (uchinchi davr)",
+     "togri": "7",
+     "sabab": "guruh raqami 7"
+    },
+    "guruh_nomlari": [
+     "Jadvalchilar",
+     "Hisobchilar",
+     "Rangchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Jadval xaritasi»",
+     "topshiriq": "Guruh jadvalni bo‘yaydi."
+    },
+    "vazifalar": {
+     "A": "Birinchi to‘rt davrda nechta element?",
+     "B": "Xlor: massa 35, raqam 17, neytronlar?",
+     "C": "118 minus 92 qancha?"
+    },
+    "sinkveyn": [
+     "Jadval",
+     "rangli, tartibli",
+     "joylashadi, ko‘rsatadi, bog‘laydi",
+     "Elementlar tartibli",
+     "Davr"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh Davriy jadvalni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: davrlar",
+      "3-guruh: guruhlar",
+      "4-guruh: qonuniyatlar"
+     ],
+     "yakun": "Natijalar: 36; 18; 26."
+    }
+   }
+  },
+  {
+   "mavzu": "Atom tuzilishi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Atom — yadro va elektronlar",
+      "matn": "Atom markazida musbat zaryadli yadro bor, uning atrofida manfiy zaryadli elektronlar harakatlanadi. Yadro protonlar va neytronlardan iborat. Proton musbat, elektron manfiy, neytron zaryadsiz. Neytral atomda protonlar va elektronlar soni teng.",
+      "misol": "Atomning deyarli butun massasi yadroda.",
+      "savol": "Neytron zaryadi qanday?",
+      "javob": "zaryadsiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tartib va massa raqami",
+      "matn": "Tartib raqami Z — protonlar soni. Massa soni A — protonlar va neytronlar yig‘indisi. Neytronlar soni N — A minus Z. Masalan, natriy 23: Z — 11, A — 23, N — 12, elektronlar 11.",
+      "misol": "Davriy jadvaldagi raqam — protonlar soni.",
+      "savol": "Massa soni nimadan iborat?",
+      "javob": "protonlar va neytronlar yig‘indisi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Izotoplar",
+      "matn": "Protonlar soni bir xil, neytronlar soni har xil atomlar izotoplar deyiladi. Xlorning ikkita tabiiy izotopi bor: massa soni 35 va 37. Kimyoviy xossalari bir xil, chunki elektronlari bir xil.",
+      "misol": "Vodorodning ham 3 izotopi bor.",
+      "savol": "Izotoplarda nima farq qiladi?",
+      "javob": "neytronlar soni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Atomning o‘rtacha massasi",
+      "matn": "Jadvaldagi atom massasi — izotoplar massalarining tabiatdagi ulushga ko‘ra o‘rtachasi. Agar xlor 35 ning ulushi 3 / 4, xlor 37 ning ulushi 1 / 4 desak: 35 · 3 / 4 plyus 37 · 1 / 4 — 35,5. Haqiqiy qiymat ham 35,45 ga yaqin.",
+      "misol": "Shu sabab jadvalda xlor massasi 35,5 ga yaqin.",
+      "savol": "Jadvaldagi massa nimani bildiradi?",
+      "javob": "izotoplarning o‘rtachasi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ionlar",
+      "matn": "Atom elektron yo‘qotsa musbat ion, elektron biriktirsa manfiy ion bo‘ladi. Yadro zaryadi o‘zgarmaydi. Natriy atomi 11 ta elektronli, natriy ioni esa 10 ta elektronli. Xlor atomi 17, xlor ioni 18 elektronli.",
+      "misol": "Osh tuzi — natriy va xlor ionlaridan tuzilgan.",
+      "savol": "Natriy elektron yo‘qotsa, qanday ion bo‘ladi?",
+      "javob": "musbat",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "N — A minus Z. Neytral atomda protonlar va elektronlar teng. Izotoplar neytronlari bilan farq qiladi.",
+    "misollar": [
+     {
+      "shart": "Kaltsiy 40, tartib raqami 20. Neytronlar soni?",
+      "yechim": [
+       "N — A minus Z.",
+       "40 minus 20.",
+       "Javob 20."
+      ],
+      "javob": "20"
+     },
+     {
+      "shart": "Xlor 37, tartib raqami 17. Neytronlar soni?",
+      "yechim": [
+       "N — A minus Z.",
+       "37 minus 17.",
+       "Javob 20."
+      ],
+      "javob": "20"
+     },
+     {
+      "shart": "Izotoplar ulushi 3 / 4 va 1 / 4, massalari 35 va 37. O‘rtacha massa?",
+      "yechim": [
+       "35 · 3 / 4 plyus 37 · 1 / 4.",
+       "26,25 plyus 9,25.",
+       "Javob 35,5."
+      ],
+      "javob": "35,5"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Atom modeli",
+      "topshiriq": "Plastilindan natriy atomi modelini yasang.",
+      "yechim": "11 proton, 12 neytron, 11 elektron.",
+      "mahsulot": "plastilin"
+     },
+     {
+      "nom": "Izotoplar jadvali",
+      "topshiriq": "Xlor izotoplarini solishtiring.",
+      "yechim": "35 va 37.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Neytronlarni topamiz",
+      "topshiriq": "Uch element uchun N ni toping.",
+      "yechim": "A minus Z.",
+      "mahsulot": "kalkulyator"
+     },
+     {
+      "nom": "Ion belgisi",
+      "topshiriq": "Natriy va xlor ionlaridagi elektronlarni sanang.",
+      "yechim": "10 va 18.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "40 minus 20 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "37 minus 17 nechaga teng?",
+      "javob": "20"
+     },
+     {
+      "shart": "26,25 plyus 9,25 nechaga teng?",
+      "javob": "35,5"
+     },
+     {
+      "shart": "Natriy ionida elektronlar soni?",
+      "javob": "10"
+     },
+     {
+      "shart": "Proton zaryadi?",
+      "javob": "musbat"
+     },
+     {
+      "shart": "Izotoplarda nima farq qiladi?",
+      "javob": "neytronlar"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Izotoplarda protonlar soni har xil deydi",
+      "sabab": "protonlar bir xil",
+      "oldini_olish": "neytronlar farq qiladi"
+     },
+     {
+      "xato": "N — A plyus Z deydi",
+      "sabab": "N — A minus Z",
+      "oldini_olish": "ayiriladi"
+     },
+     {
+      "xato": "Musbat ion elektron biriktirgan deydi",
+      "sabab": "elektron yo‘qotgan",
+      "oldini_olish": "yadro zaryadi o‘zgarmaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "yadro va elektron"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "o‘rtacha qiymat"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "izotoplar bilan tashxis"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Atom konstruktori»",
+     "muammo": "Atomni qanday yig‘amiz va ionga aylantiramiz?",
+     "mahsulot": "model va jadval",
+     "bosqichlar": [
+      "zarralarni sanash",
+      "model yasash",
+      "izotoplarni solishtirish",
+      "ionni ko‘rsatish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Zarralarni sanang",
+      "Model yasang",
+      "Ionni ko‘rsating",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Atom ichiga sayohat»",
+     "bekatlar": [
+      {
+       "nom": "1-qavat",
+       "matn": "Ca: A — 40, Z — 20.",
+       "topshiriq": "N?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qavat",
+       "matn": "Cl: A — 37, Z — 17.",
+       "topshiriq": "N?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qavat",
+       "matn": "Xlor izotoplari 35 va 37, ulush 3 / 4 va 1 / 4.",
+       "topshiriq": "O‘rtacha massa?",
+       "javob": "35,5",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qavat",
+       "matn": "Natriy ioni.",
+       "topshiriq": "Elektronlar?",
+       "javob": "10",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Proton",
+      "tarif": "yadrodagi musbat zarra"
+     },
+     {
+      "atama": "Neytron",
+      "tarif": "yadrodagi zaryadsiz zarra"
+     },
+     {
+      "atama": "Elektron",
+      "tarif": "manfiy zarra"
+     },
+     {
+      "atama": "Izotop",
+      "tarif": "neytronlari boshqa atom"
+     },
+     {
+      "atama": "Massa soni",
+      "tarif": "protonlar va neytronlar yig‘indisi"
+     },
+     {
+      "atama": "Ion",
+      "tarif": "zaryadlangan atom"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Atom markazida yadro bor",
+      "togri": true,
+      "izoh": "proton va neytron"
+     },
+     {
+      "matn": "Neytron musbat zaryadli",
+      "togri": false,
+      "izoh": "zaryadsiz"
+     },
+     {
+      "matn": "N — A minus Z",
+      "togri": true,
+      "izoh": "formula"
+     },
+     {
+      "matn": "Izotoplarda protonlar farq qiladi",
+      "togri": false,
+      "izoh": "neytronlar farq qiladi"
+     },
+     {
+      "matn": "40 minus 20 — 20",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Natriy ioni 10 ta elektronli",
+      "togri": true,
+      "izoh": "musbat ion"
+     },
+     {
+      "matn": "Xlorning ikkita izotopi bor",
+      "togri": true,
+      "izoh": "35 va 37"
+     },
+     {
+      "matn": "Jadvaldagi massa o‘rtacha qiymat",
+      "togri": true,
+      "izoh": "izotoplar bo‘yicha"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Atom?",
+      "javob": "yadro va elektronlar"
+     },
+     {
+      "savol": "Yadro?",
+      "javob": "proton va neytron"
+     },
+     {
+      "savol": "Z?",
+      "javob": "protonlar soni"
+     },
+     {
+      "savol": "A?",
+      "javob": "massa soni"
+     },
+     {
+      "savol": "N?",
+      "javob": "A minus Z"
+     },
+     {
+      "savol": "40 minus 20?",
+      "javob": "20"
+     },
+     {
+      "savol": "37 minus 17?",
+      "javob": "20"
+     },
+     {
+      "savol": "Izotop?",
+      "javob": "neytronlari farqli"
+     },
+     {
+      "savol": "Natriy ioni?",
+      "javob": "10 elektron"
+     },
+     {
+      "savol": "O‘rtacha massa?",
+      "javob": "35,5"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Katakdan Z ni o‘qi.",
+      "savol": "Protonlar necha?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "N ni top.",
+      "savol": "A minus Z?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Izotoplarni solishtir.",
+      "savol": "Nima farq?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ion nima?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun izotoplarning kimyoviy xossalari bir xil?",
+    "keys": {
+     "vaziyat": "Xlorning ikkita izotopi bor, lekin ular bir xil reaksiyaga kirishadi.",
+     "savollar": [
+      "Nimasi bir xil?",
+      "Nimasi farq qiladi?"
+     ]
+    },
+    "tezis": "N — A minus Z",
+    "taqqoslash": {
+     "a": "Atom",
+     "b": "Ion",
+     "umumiy": [
+      "yadro bor",
+      "protonlar bir xil"
+     ],
+     "a_farq": [
+      "neytral",
+      "protonlar va elektronlar teng"
+     ],
+     "b_farq": [
+      "zaryadlangan",
+      "elektronlar soni boshqa"
+     ]
+    },
+    "klaster": {
+     "markaz": "Atom tuzilishi",
+     "shoxlar": [
+      {
+       "nom": "Zarralar",
+       "bandlar": [
+        "proton",
+        "neytron",
+        "elektron"
+       ]
+      },
+      {
+       "nom": "Raqamlar",
+       "bandlar": [
+        "Z",
+        "A",
+        "N"
+       ]
+      },
+      {
+       "nom": "Izotoplar",
+       "bandlar": [
+        "xlor 35",
+        "xlor 37"
+       ]
+      },
+      {
+       "nom": "Ionlar",
+       "bandlar": [
+        "musbat",
+        "manfiy"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yadro va elektronlardan tuzilganman. Men kimman?",
+     "javob": "atom"
+    },
+    "hikmat": "Atom — yadro va elektronlar.",
+    "kalit_soz": "ATOM",
+    "xato_yechim": {
+     "shart": "Xlor 37: Z — 17. N?",
+     "xato": "37 plyus 17",
+     "togri": "37 minus 17 — 20",
+     "sabab": "N — A minus Z"
+    },
+    "guruh_nomlari": [
+     "Atomchilar",
+     "Hisobchilar",
+     "Modelchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Atom konstruktori»",
+     "topshiriq": "Guruh atom modelini yasaydi."
+    },
+    "vazifalar": {
+     "A": "Ca: A — 40, Z — 20 bo‘lsa N?",
+     "B": "Cl: A — 37, Z — 17 bo‘lsa N?",
+     "C": "35 va 37, ulush 3 / 4 va 1 / 4 bo‘lsa massa?"
+    },
+    "sinkveyn": [
+     "Atom",
+     "kichik, neytral",
+     "tuzilgan, harakatlanadi, bog‘lanadi",
+     "Markazda yadro",
+     "Zarra"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh atom tuzilishini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: zarralar",
+      "2-guruh: Z, A, N",
+      "3-guruh: izotoplar",
+      "4-guruh: ionlar"
+     ],
+     "yakun": "Natijalar: 20; 20; 35,5."
+    }
+   }
+  }
+ ]
+}
