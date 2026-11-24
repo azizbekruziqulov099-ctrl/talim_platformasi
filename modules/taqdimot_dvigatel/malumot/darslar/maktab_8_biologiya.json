@@ -5567,6 +5567,1397 @@
      "yakun": "Natijalar: 105; 2,2; 5."
     }
    }
+  },
+  {
+   "mavzu": "Nerv sistemasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nerv sistemasining vazifasi",
+      "matn": "Nerv sistemasi organizm a’zolari ishini boshqaradi va ularni bir-biri bilan hamda tashqi muhit bilan bog‘laydi. U tashqi va ichki ta’sirlarni qabul qiladi, tahlil qiladi va javob beradi. Nerv sistemasi markaziy va periferik qismlarga bo‘linadi. Markaziy qism — bosh miya va orqa miya, periferik qism — nervlar.",
+      "misol": "Nerv sistemasi — tananing «kompyuter tarmog‘i».",
+      "savol": "Markaziy nerv sistemasiga nimalar kiradi?",
+      "javob": "bosh miya va orqa miya",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Neyron",
+      "matn": "Nerv to‘qimasining asosiy hujayrasi — neyron. U tana, kalta o‘simtalar (dendritlar) va uzun o‘simta (akson)dan iborat. Dendritlar signalni qabul qiladi, akson uni uzatadi. Neyronlar o‘zaro sinapslar orqali bog‘lanadi. Impuls taxminan sekundiga 100 metr tezlikda o‘tishi mumkin.",
+      "misol": "Impuls elektr signali kabi yuguradi.",
+      "savol": "Signalni neyronning qaysi o‘simtasi uzatadi?",
+      "javob": "akson",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Refleks va refleks yoyi",
+      "matn": "Refleks — nerv sistemasi orqali amalga oshadigan, ta’sirga javob reaksiyasi. Refleks yoyi besh bo‘g‘indan iborat: retseptor, sezuvchi neyron, nerv markazi, harakatlantiruvchi neyron va ishchi a’zo. Qo‘l issiq narsaga tegsa, uni tez tortib olish — refleks, u orqa miya orqali o‘tadi.",
+      "misol": "Refleks fikrlashdan oldin ishlaydi.",
+      "savol": "Refleks yoyi necha bo‘g‘in?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Bosh miya va orqa miya",
+      "matn": "Bosh miya katta yarim sharlar, miyacha, uzunchoq, o‘rta va oraliq miyadan iborat. Katta yarim sharlar fikrlash, xotira, nutqni boshqaradi. Miyacha muvozanatni, uzunchoq miya nafas va yurakni nazorat qiladi. Orqa miya 31 juft nerv chiqaradi, bosh miyadan 12 juft nerv chiqadi. Ularning jami 12 plyus 31 — 43 juft.",
+      "misol": "Orqa miya — miya va tana orasidagi yo‘l.",
+      "savol": "Bosh miyadan nechta juft nerv chiqadi?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nerv sistemasini asrash",
+      "matn": "Nerv sistemasini asrash uchun: yetarli uxlash, harakat qilish, xilma-xil ovqat, stressdan saqlanish, spirtli ichimlik va chekishdan voz kechish. Bosh jarohati xavfli, velosiped va skuterda dubulg‘a kiyish zarur. Doimiy bosh og‘rig‘i yoki hushdan ketish bo‘lsa, shifokorga murojaat qilish kerak.",
+      "misol": "Dubulg‘a — miya himoyachisi.",
+      "savol": "Boshni nima himoya qiladi?",
+      "javob": "dubulg‘a",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Nerv sistemasi: markaziy (bosh miya, orqa miya) va periferik. Neyron: tana, dendrit, akson. Refleks yoyi 5 bo‘g‘in.",
+    "misollar": [
+     {
+      "shart": "Impuls sekundiga taxminan 100 metr tezlikda yuguradi. 2 metrni qancha vaqtda o‘tadi?",
+      "yechim": [
+       "t — masofa / tezlik.",
+       "2 / 100.",
+       "Javob 0,02 sekund."
+      ],
+      "javob": "0,02 sekund"
+     },
+     {
+      "shart": "Impuls 100 metr sekundiga. 5 metrni qancha vaqtda o‘tadi?",
+      "yechim": [
+       "5 / 100.",
+       "Hisoblang.",
+       "Javob 0,05 sekund."
+      ],
+      "javob": "0,05 sekund"
+     },
+     {
+      "shart": "Bosh miyadan 12 juft, orqa miyadan 31 juft nerv chiqadi. Jami?",
+      "yechim": [
+       "12 plyus 31.",
+       "Hisoblang.",
+       "Javob 43 juft."
+      ],
+      "javob": "43 juft"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Neyron modeli",
+      "topshiriq": "Plastilin va simdan neyron modelini yasang.",
+      "yechim": "Tana, dendrit, akson.",
+      "mahsulot": "plastilin, sim"
+     },
+     {
+      "nom": "Refleks tajribasi",
+      "topshiriq": "Do‘stingizning tizza refleksini tekshiring (ehtiyotkorlik bilan).",
+      "yechim": "Javobni kuzating.",
+      "mahsulot": "juft bo‘lib"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Vaqt va juft.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Miya bo‘limlari",
+      "topshiriq": "Bosh miya bo‘limlarini chizib belgilang.",
+      "yechim": "Beshta bo‘lim.",
+      "mahsulot": "qog‘oz, qalam"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 / 100 nechaga teng?",
+      "javob": "0,02"
+     },
+     {
+      "shart": "5 / 100 nechaga teng?",
+      "javob": "0,05"
+     },
+     {
+      "shart": "12 plyus 31 nechaga teng?",
+      "javob": "43"
+     },
+     {
+      "shart": "Refleks yoyi bo‘g‘ini soni?",
+      "javob": "5"
+     },
+     {
+      "shart": "Nerv hujayrasi?",
+      "javob": "neyron"
+     },
+     {
+      "shart": "Muvozanatni miyaning qaysi qismi boshqaradi?",
+      "javob": "miyacha"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Nerv sistemasi faqat bosh miyadan iborat deydi",
+      "sabab": "orqa miya va nervlar ham bor",
+      "oldini_olish": "markaziy va periferik"
+     },
+     {
+      "xato": "Refleks faqat bosh miyada deydi",
+      "sabab": "ko‘pi orqa miyada",
+      "oldini_olish": "tez javob"
+     },
+     {
+      "xato": "Akson signalni qabul qiladi deydi",
+      "sabab": "uzatadi",
+      "oldini_olish": "dendrit qabul qiladi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "tezlik va vaqt"
+     },
+     {
+      "fan": "Sport",
+      "boglanish": "reaksiya tezligi"
+     },
+     {
+      "fan": "Xavfsizlik",
+      "boglanish": "dubulg‘a"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Miya va nervlar»",
+     "muammo": "Nerv sistemasi qanday boshqaradi?",
+     "mahsulot": "model va hisob",
+     "bosqichlar": [
+      "neyron modeli",
+      "refleks yoyi",
+      "hisoblash",
+      "sog‘lom odatlar",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Model yasang",
+      "Yoyni chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Neyron yo‘llari»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "2 metr, 100 metr sekundiga.",
+       "topshiriq": "Vaqt?",
+       "javob": "0,02",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "5 metr.",
+       "topshiriq": "Vaqt?",
+       "javob": "0,05",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "12 va 31 juft.",
+       "topshiriq": "Jami?",
+       "javob": "43",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "Refleks yoyi.",
+       "topshiriq": "Bo‘g‘in?",
+       "javob": "5",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Bo‘ldingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Neyron",
+      "tarif": "nerv hujayrasi"
+     },
+     {
+      "atama": "Akson",
+      "tarif": "uzun o‘simta"
+     },
+     {
+      "atama": "Dendrit",
+      "tarif": "qisqa o‘simta"
+     },
+     {
+      "atama": "Sinaps",
+      "tarif": "neyronlar orasidagi bog‘lanish"
+     },
+     {
+      "atama": "Refleks",
+      "tarif": "ta’sirga nerv javobi"
+     },
+     {
+      "atama": "Retseptor",
+      "tarif": "ta’sirni sezuvchi uch"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Markaziy qism: bosh va orqa miya",
+      "togri": true,
+      "izoh": "markaz"
+     },
+     {
+      "matn": "Akson signalni uzatadi",
+      "togri": true,
+      "izoh": "uzun o‘simta"
+     },
+     {
+      "matn": "Refleks yoyi 3 bo‘g‘inli",
+      "togri": false,
+      "izoh": "5 bo‘g‘in"
+     },
+     {
+      "matn": "Miyacha muvozanatni boshqaradi",
+      "togri": true,
+      "izoh": "harakat uyg‘unligi"
+     },
+     {
+      "matn": "12 plyus 31 — 43",
+      "togri": true,
+      "izoh": "juft nerv"
+     },
+     {
+      "matn": "Orqa miya refleks markazi bo‘la oladi",
+      "togri": true,
+      "izoh": "tez javob"
+     },
+     {
+      "matn": "Dubulg‘a kiyish shart emas",
+      "togri": false,
+      "izoh": "miyani asraydi"
+     },
+     {
+      "matn": "2 / 100 — 0,02",
+      "togri": true,
+      "izoh": "sekund"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Neyron?",
+      "javob": "nerv hujayrasi"
+     },
+     {
+      "savol": "Akson?",
+      "javob": "uzatadi"
+     },
+     {
+      "savol": "Dendrit?",
+      "javob": "qabul qiladi"
+     },
+     {
+      "savol": "Refleks?",
+      "javob": "ta’sirga javob"
+     },
+     {
+      "savol": "Bo‘g‘in?",
+      "javob": "5"
+     },
+     {
+      "savol": "Markaziy?",
+      "javob": "bosh va orqa miya"
+     },
+     {
+      "savol": "Bosh miya nervi?",
+      "javob": "12 juft"
+     },
+     {
+      "savol": "Orqa miya nervi?",
+      "javob": "31 juft"
+     },
+     {
+      "savol": "2 / 100?",
+      "javob": "0,02"
+     },
+     {
+      "savol": "Miyacha?",
+      "javob": "muvozanat"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Refleksni kuzat.",
+      "savol": "Javob tez edimi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Vaqtni top.",
+      "savol": "Masofa / tezlik?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Akson va dendritni solishtir.",
+      "savol": "Qaysi uzatadi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qanday asraymiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun issiq narsadan qo‘lni o‘ylamasdan tortib olamiz?",
+    "keys": {
+     "vaziyat": "Choynakka tegib ketib, qo‘lingiz darhol tortildi.",
+     "savollar": [
+      "Signal qayerdan o‘tdi?",
+      "Nima uchun tez?"
+     ]
+    },
+    "tezis": "Refleks tezkor himoya",
+    "taqqoslash": {
+     "a": "Markaziy nerv sistemasi",
+     "b": "Periferik nerv sistemasi",
+     "umumiy": [
+      "nerv sistemasi qismi",
+      "signal o‘tkazadi"
+     ],
+     "a_farq": [
+      "bosh va orqa miya",
+      "boshqaradi"
+     ],
+     "b_farq": [
+      "nervlar",
+      "markazni a’zo bilan bog‘laydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Nerv sistemasi",
+     "shoxlar": [
+      {
+       "nom": "Qismlar",
+       "bandlar": [
+        "markaziy",
+        "periferik"
+       ]
+      },
+      {
+       "nom": "Neyron",
+       "bandlar": [
+        "tana",
+        "dendrit",
+        "akson"
+       ]
+      },
+      {
+       "nom": "Refleks",
+       "bandlar": [
+        "5 bo‘g‘in",
+        "orqa miya"
+       ]
+      },
+      {
+       "nom": "Miya",
+       "bandlar": [
+        "katta yarim shar",
+        "miyacha"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tanani boshqaraman va signal tashiyman. Men kimman?",
+     "javob": "nerv sistemasi"
+    },
+    "hikmat": "Nerv — tezkor aloqa.",
+    "kalit_soz": "NEYRON",
+    "xato_yechim": {
+     "shart": "Signalni qabul qiladigan o‘simta?",
+     "xato": "akson",
+     "togri": "dendrit",
+     "sabab": "akson uzatadi"
+    },
+    "guruh_nomlari": [
+     "Nervchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Miya va nervlar»",
+     "topshiriq": "Guruh neyron modelini yasaydi."
+    },
+    "vazifalar": {
+     "A": "2 metrda impuls vaqti?",
+     "B": "5 metrda impuls vaqti?",
+     "C": "Jami nervlar juftligi?"
+    },
+    "sinkveyn": [
+     "Nerv",
+     "tez, ingichka",
+     "boshqaradi, uzatadi, sezadi",
+     "Tezkor aloqa",
+     "Miya"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh nerv sistemasini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: qismlar",
+      "2-guruh: neyron",
+      "3-guruh: refleks",
+      "4-guruh: asrash"
+     ],
+     "yakun": "Natijalar: 0,02; 0,05; 43."
+    }
+   }
+  },
+  {
+   "mavzu": "Oliy nerv faoliyati",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Oliy nerv faoliyati nima",
+      "matn": "Oliy nerv faoliyati — bosh miya katta yarim sharlari po‘stlog‘ining faoliyati: o‘rganish, xotira, fikrlash, nutq, hissiyot. U organizmni muhitga murakkab moslashtiradi. Bu fanni rus olimlari I.M. Sechenov va I.P. Pavlov rivojlantirgan. Sechenovning «Bosh miya reflekslari» asari 1863-yilda yozilgan.",
+      "misol": "Fikr — ham miyaning reflektor ishi.",
+      "savol": "Oliy nerv faoliyati qayerda bajariladi?",
+      "javob": "bosh miya po‘stlog‘ida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Shartsiz va shartli reflekslar",
+      "matn": "Shartsiz reflekslar tug‘ma, irsiy, doimiy: emish, ko‘z qisish, so‘lak ajralishi. Shartli reflekslar hayot davomida orttiriladi, shartli signal bilan bog‘lanadi. I.P. Pavlov itlarda tajriba qilib, qo‘ng‘iroq tovushi ovqat bilan bog‘lansa, tovushning o‘ziga so‘lak ajralishini ko‘rsatgan.",
+      "misol": "Soat bo‘yicha ovqatlanishga o‘rganish — shartli refleks.",
+      "savol": "Qaysi refleks tug‘ma?",
+      "javob": "shartsiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Pavlov va tarix",
+      "matn": "Ivan Petrovich Pavlov 1849-yilda tug‘ilib, 1936-yilda vafot etgan: umri 1936 minus 1849 — 87 yil. U hazm fiziologiyasi bo‘yicha ishlari uchun 1904-yilda Nobel mukofotini olgan. Sechenov asari 2026 minus 1863 — 163 yil oldin yozilgan. Ularning g‘oyalari o‘rganish va xulq-atvorni tushunishga asos bo‘ldi.",
+      "misol": "Nobel — fandagi eng mashhur mukofot.",
+      "savol": "Pavlov Nobel mukofotini qaysi yili olgan?",
+      "javob": "1904",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xotira, diqqat, nutq",
+      "matn": "Xotira ma’lumotni qabul qilish, saqlash va qayta esga tushirishdir. Diqqat kerakli narsaga e’tibor qaratishdir. Odam nutqi — ikkinchi signal sistemasi: so‘z signal vazifasini bajaradi. Takrorlash, ma’noni tushunish va uxlash xotirani mustahkamlaydi. Mashqlar diqqatni oshiradi.",
+      "misol": "So‘z ham ta’sir qiladi, ham o‘rgatadi.",
+      "savol": "Xotira nima?",
+      "javob": "ma’lumotni saqlash va esga tushirish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uyqu va charchoq",
+      "matn": "Uyqu — miyaning dam olish va xotirani mustahkamlash holati. O‘quvchilarga kuniga taxminan 8 dan 10 soatgacha uyqu tavsiya etiladi. Masalan, kuniga 9 soat uxlasangiz, haftada 9 · 7 — 63 soat. Uyqu yetishmasa, diqqat pasayadi, xotira yomonlashadi. Kechqurun telefon ekranini ko‘p tomosha qilish uyquni buzadi.",
+      "misol": "Yaxshi uyqu — yaxshi o‘qish.",
+      "savol": "Uyqu miya uchun nima qiladi?",
+      "javob": "dam beradi va xotirani mustahkamlaydi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Shartsiz refleks tug‘ma, shartli orttirilgan. Pavlov: umr 87 yil, Nobel 1904. Uyqu taxminan 8 dan 10 soat.",
+    "misollar": [
+     {
+      "shart": "Pavlov 1849-yilda tug‘ilib, 1936-yilda vafot etgan. Necha yil yashagan?",
+      "yechim": [
+       "1936 minus 1849.",
+       "Hisoblang.",
+       "Javob 87."
+      ],
+      "javob": "87"
+     },
+     {
+      "shart": "Sechenov asari 1863-yilda yozilgan. 2026-yilgacha necha yil?",
+      "yechim": [
+       "2026 minus 1863.",
+       "Hisoblang.",
+       "Javob 163."
+      ],
+      "javob": "163"
+     },
+     {
+      "shart": "Kuniga 9 soat uyqu. Haftada necha soat?",
+      "yechim": [
+       "9 · 7.",
+       "Hisoblang.",
+       "Javob 63."
+      ],
+      "javob": "63"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Reflekslar jadvali",
+      "topshiriq": "Shartsiz va shartli reflekslarga misollar yozing.",
+      "yechim": "Tug‘ma va orttirilgan.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Xotira o‘yini",
+      "topshiriq": "10 so‘zni 1 daqiqa o‘qib, yozishga urinib ko‘ring.",
+      "yechim": "Nechtasi esda qoldi.",
+      "mahsulot": "so‘zlar ro‘yxati"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Yil va soat.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Uyqu kundaligi",
+      "topshiriq": "Bir hafta uyqu soatlarini yozing.",
+      "yechim": "Kuzatuv.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1936 minus 1849 nechaga teng?",
+      "javob": "87"
+     },
+     {
+      "shart": "2026 minus 1863 nechaga teng?",
+      "javob": "163"
+     },
+     {
+      "shart": "9 · 7 nechaga teng?",
+      "javob": "63"
+     },
+     {
+      "shart": "Pavlov Nobel yili?",
+      "javob": "1904"
+     },
+     {
+      "shart": "Tug‘ma refleks?",
+      "javob": "shartsiz"
+     },
+     {
+      "shart": "Odam nutqi qaysi signal sistemasi?",
+      "javob": "ikkinchi"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Shartli refleks tug‘ma deydi",
+      "sabab": "orttirilgan",
+      "oldini_olish": "hayot davomida"
+     },
+     {
+      "xato": "Uyqu keraksiz vaqt deydi",
+      "sabab": "miyaga zarur",
+      "oldini_olish": "xotirani mustahkamlaydi"
+     },
+     {
+      "xato": "Pavlov Nobelni fizika uchun olgan deydi",
+      "sabab": "hazm fiziologiyasi uchun",
+      "oldini_olish": "1904"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Pavlov va Sechenov"
+     },
+     {
+      "fan": "Psixologiya",
+      "boglanish": "xotira"
+     },
+     {
+      "fan": "Sog‘liq",
+      "boglanish": "uyqu"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Miya va o‘rganish»",
+     "muammo": "Biz qanday o‘rganamiz va eslab qolamiz?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "reflekslarni tasniflash",
+      "xotira o‘yini",
+      "yil hisobi",
+      "uyqu kundaligi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tasniflang",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tasnif to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Pavlov laboratoriyasi»",
+     "bekatlar": [
+      {
+       "nom": "1-xona",
+       "matn": "1849 va 1936.",
+       "topshiriq": "Necha yil?",
+       "javob": "87",
+       "rasm": ""
+      },
+      {
+       "nom": "2-xona",
+       "matn": "1863 dan 2026 gacha.",
+       "topshiriq": "Necha yil?",
+       "javob": "163",
+       "rasm": ""
+      },
+      {
+       "nom": "3-xona",
+       "matn": "9 soat, 7 kun.",
+       "topshiriq": "Jami soat?",
+       "javob": "63",
+       "rasm": ""
+      },
+      {
+       "nom": "4-xona",
+       "matn": "Nobel yili.",
+       "topshiriq": "Qaysi yil?",
+       "javob": "1904",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Shartsiz refleks",
+      "tarif": "tug‘ma refleks"
+     },
+     {
+      "atama": "Shartli refleks",
+      "tarif": "orttirilgan refleks"
+     },
+     {
+      "atama": "Xotira",
+      "tarif": "ma’lumotni saqlash"
+     },
+     {
+      "atama": "Diqqat",
+      "tarif": "e’tiborni qaratish"
+     },
+     {
+      "atama": "Uyqu",
+      "tarif": "miya dam olishi"
+     },
+     {
+      "atama": "Ikkinchi signal sistemasi",
+      "tarif": "nutq va so‘z"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Shartsiz refleks tug‘ma",
+      "togri": true,
+      "izoh": "irsiy"
+     },
+     {
+      "matn": "Shartli refleks tug‘ma",
+      "togri": false,
+      "izoh": "orttirilgan"
+     },
+     {
+      "matn": "Pavlov 1904 Nobel oldi",
+      "togri": true,
+      "izoh": "hazm fiziologiyasi"
+     },
+     {
+      "matn": "1936 minus 1849 — 87",
+      "togri": true,
+      "izoh": "yil"
+     },
+     {
+      "matn": "Uyqu xotirani mustahkamlaydi",
+      "togri": true,
+      "izoh": "miya dam oladi"
+     },
+     {
+      "matn": "Nutq ikkinchi signal sistemasi",
+      "togri": true,
+      "izoh": "so‘z signal"
+     },
+     {
+      "matn": "Uyqu keraksiz vaqt",
+      "togri": false,
+      "izoh": "zarur"
+     },
+     {
+      "matn": "9 · 7 — 63",
+      "togri": true,
+      "izoh": "soat"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Oliy nerv faoliyati?",
+      "javob": "po‘stloq faoliyati"
+     },
+     {
+      "savol": "Shartsiz?",
+      "javob": "tug‘ma"
+     },
+     {
+      "savol": "Shartli?",
+      "javob": "orttirilgan"
+     },
+     {
+      "savol": "Pavlov?",
+      "javob": "Nobel 1904"
+     },
+     {
+      "savol": "Sechenov?",
+      "javob": "1863"
+     },
+     {
+      "savol": "Xotira?",
+      "javob": "saqlash va esga tushirish"
+     },
+     {
+      "savol": "Uyqu?",
+      "javob": "taxminan 8 dan 10 soat"
+     },
+     {
+      "savol": "1936 minus 1849?",
+      "javob": "87"
+     },
+     {
+      "savol": "9 · 7?",
+      "javob": "63"
+     },
+     {
+      "savol": "Nutq?",
+      "javob": "ikkinchi signal sistemasi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Xotira o‘yinini kuzat.",
+      "savol": "Nechta esda?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Yil va soatni top.",
+      "savol": "Ayirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ikki refleksni solishtir.",
+      "savol": "Tug‘maligi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Uyqu zarurmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun yaxshi uyqu o‘qishga yordam beradi?",
+    "keys": {
+     "vaziyat": "Imtihondan oldingi kecha uxlamay tayyorlangan o‘quvchi charchagan.",
+     "savollar": [
+      "Xotira nima bo‘ladi?",
+      "Nima qilish kerak edi?"
+     ]
+    },
+    "tezis": "Uyqu miyani tiklaydi",
+    "taqqoslash": {
+     "a": "Shartsiz refleks",
+     "b": "Shartli refleks",
+     "umumiy": [
+      "refleks",
+      "nerv sistemasi orqali"
+     ],
+     "a_farq": [
+      "tug‘ma",
+      "doimiy"
+     ],
+     "b_farq": [
+      "orttirilgan",
+      "o‘zgaruvchan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Oliy nerv faoliyati",
+     "shoxlar": [
+      {
+       "nom": "Reflekslar",
+       "bandlar": [
+        "shartsiz",
+        "shartli"
+       ]
+      },
+      {
+       "nom": "Olimlar",
+       "bandlar": [
+        "Sechenov",
+        "Pavlov"
+       ]
+      },
+      {
+       "nom": "Jarayonlar",
+       "bandlar": [
+        "xotira",
+        "diqqat",
+        "nutq"
+       ]
+      },
+      {
+       "nom": "Uyqu",
+       "bandlar": [
+        "8 dan 10 soat",
+        "dam"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men miya po‘stlog‘ining o‘rganish va fikrlash faoliyatiman. Men kimman?",
+     "javob": "oliy nerv faoliyati"
+    },
+    "hikmat": "Miya o‘rganadi va eslab qoladi.",
+    "kalit_soz": "PAVLOV",
+    "xato_yechim": {
+     "shart": "Shartli refleks qanday?",
+     "xato": "tug‘ma",
+     "togri": "orttirilgan",
+     "sabab": "hayot davomida hosil bo‘ladi"
+    },
+    "guruh_nomlari": [
+     "Oliy nervchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Miya va o‘rganish»",
+     "topshiriq": "Guruh xotira o‘yinini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "Pavlov necha yil yashagan?",
+     "B": "Sechenov asari necha yil oldin?",
+     "C": "Haftada uyqu soati?"
+    },
+    "sinkveyn": [
+     "Miya",
+     "o‘rganadi, eslaydi",
+     "fikrlaydi, saqlaydi, hal qiladi",
+     "Xotira — boylik",
+     "Uyqu"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh oliy nerv faoliyatini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: reflekslar",
+      "2-guruh: olimlar",
+      "3-guruh: xotira",
+      "4-guruh: uyqu"
+     ],
+     "yakun": "Natijalar: 87; 163; 63."
+    }
+   }
+  },
+  {
+   "mavzu": "Sezgi organlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Analizator tushunchasi",
+      "matn": "Sezgi organlari tashqi muhitdan ma’lumot oladi. Har bir analizator uch qismdan iborat: retseptor (ta’sirni sezuvchi), o‘tkazuvchi nerv yo‘li va miyadagi markaz. Sezgi miyada yuzaga keladi: ko‘z yorug‘likni qabul qiladi, lekin tasvirni miya hosil qiladi.",
+      "misol": "Ko‘z oladi, miya ko‘radi.",
+      "savol": "Analizator necha qismdan iborat?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Beshta sezgi",
+      "matn": "Odamda besh asosiy sezgi bor: ko‘rish, eshitish, hid bilish, ta’m bilish va teri sezgisi (tegish, og‘riq, harorat). Har birining retseptori alohida joylashgan: ko‘zda to‘r parda, quloqda ichki quloq, burunda hid retseptorlari, tilda ta’m so‘rg‘ichlari, teridagi nerv uchlari.",
+      "misol": "Beshta kanal — beshta xabar.",
+      "savol": "Asosiy sezgilar nechta?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hid va ta’m",
+      "matn": "Hid retseptorlari burun bo‘shlig‘ining yuqori qismida. Hid ko‘pincha eslash bilan bog‘liq. Ta’m retseptorlari tilda: besh asosiy ta’m bor — shirin, nordon, sho‘r, achchiq va umami. Hid bilmasa, ta’m ham yaxshi sezilmaydi: burni bitgan odamda ovqat ta’msiz tuyuladi. Ta’m va hid zararli ovqatdan ogohlantiradi.",
+      "misol": "Burni bitganda ta’m yo‘qoladi.",
+      "savol": "Besh asosiy ta’mdan biri?",
+      "javob": "shirin",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Teri sezgisi va tovush hisobi",
+      "matn": "Teridagi retseptorlar bosim, og‘riq, issiq va sovuqni sezadi. Barmoq uchi eng sezgir joylardan. Sezgi organlari misolida: chaqmoq ko‘rinib, momaqaldiroq 3 sekunddan keyin eshitilsa, tovush sekundiga taxminan 340 metr yursa, masofa 3 · 340 — 1020 metr. Yorug‘lik deyarli bir zumda yetib keladi, shuning uchun chaqmoq oldin ko‘rinadi.",
+      "misol": "Chaqmoqdan keyin sanash — masofani topish.",
+      "savol": "Chaqmoq oldin ko‘rinadi nima uchun?",
+      "javob": "yorug‘lik tezroq yetadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sezgi organlarini asrash",
+      "matn": "Sezgi organlarini asrash uchun: ko‘zni yaxshi yorug‘likda ishlatish, quloqqa baland ovozli musiqa bermaslik, burun va terini toza tutish, o‘tkir narsa bilan quloq va burunni tozalamaslik. Muammo sezilsa, shifokorga murojaat qiling. Nogironligi bor odamlarning boshqa sezgilari ko‘pincha kuchliroq rivojlanadi, ularga hurmat bilan yondashing.",
+      "misol": "Sezgi organlari — tananing derazalari.",
+      "savol": "Quloqni nima zararlaydi?",
+      "javob": "baland ovoz",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Analizator: retseptor, nerv yo‘li, markaz. Besh sezgi. Tovush sekundiga taxminan 340 metr.",
+    "misollar": [
+     {
+      "shart": "Tovush sekundiga taxminan 340 metr. Chaqmoqdan 3 sekund keyin momaqaldiroq eshitildi. Masofa?",
+      "yechim": [
+       "s — tezlik · vaqt.",
+       "340 · 3.",
+       "Javob 1020 metr."
+      ],
+      "javob": "1020 metr"
+     },
+     {
+      "shart": "Chaqmoqdan 5 sekund keyin momaqaldiroq eshitildi. Masofa?",
+      "yechim": [
+       "340 · 5.",
+       "Hisoblang.",
+       "Javob 1700 metr."
+      ],
+      "javob": "1700 metr"
+     },
+     {
+      "shart": "Chaqmoqdan 2 sekund keyin momaqaldiroq eshitildi. Masofa?",
+      "yechim": [
+       "340 · 2.",
+       "Hisoblang.",
+       "Javob 680 metr."
+      ],
+      "javob": "680 metr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ta’m tajribasi",
+      "topshiriq": "Ko‘zni yumib, shirin, sho‘r, nordon ta’mni aniqlang.",
+      "yechim": "Til qismlari.",
+      "mahsulot": "tuz, shakar, limon"
+     },
+     {
+      "nom": "Hid tajribasi",
+      "topshiriq": "Burunni berkitib, ta’mni aniqlang.",
+      "yechim": "Hid va ta’m.",
+      "mahsulot": "olma, piyoz"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Tovush masofasi.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Sezgi jadvali",
+      "topshiriq": "Besh sezgi va retseptorlarini jadvalga yozing.",
+      "yechim": "Retseptor joyi.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "340 · 3 nechaga teng?",
+      "javob": "1020"
+     },
+     {
+      "shart": "340 · 5 nechaga teng?",
+      "javob": "1700"
+     },
+     {
+      "shart": "340 · 2 nechaga teng?",
+      "javob": "680"
+     },
+     {
+      "shart": "Analizator qismlari soni?",
+      "javob": "3"
+     },
+     {
+      "shart": "Asosiy sezgilar soni?",
+      "javob": "5"
+     },
+     {
+      "shart": "Asosiy ta’mlar soni?",
+      "javob": "5"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Ko‘z tasvirni hosil qiladi deydi",
+      "sabab": "tasvirni miya hosil qiladi",
+      "oldini_olish": "ko‘z qabul qiladi"
+     },
+     {
+      "xato": "Ta’m faqat tilda deydi",
+      "sabab": "hid ham ta’sir qiladi",
+      "oldini_olish": "burni bitganda ta’m yo‘qoladi"
+     },
+     {
+      "xato": "Baland ovoz quloqqa zarar qilmaydi deydi",
+      "sabab": "zarar qiladi",
+      "oldini_olish": "eshitish pasayadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "tovush tezligi"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "hid moddalari"
+     },
+     {
+      "fan": "Xavfsizlik",
+      "boglanish": "quloqni asrash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Besh sezgi»",
+     "muammo": "Sezgi organlari qanday ishlaydi?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "analizatorni o‘rganish",
+      "ta’m va hid tajribasi",
+      "tovush hisobi",
+      "sezgi jadvali",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Analizatorni o‘rganing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sezgi shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "3 sekund.",
+       "topshiriq": "Masofa metr?",
+       "javob": "1020",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "5 sekund.",
+       "topshiriq": "Masofa metr?",
+       "javob": "1700",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "2 sekund.",
+       "topshiriq": "Masofa metr?",
+       "javob": "680",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "Asosiy sezgilar.",
+       "topshiriq": "Nechta?",
+       "javob": "5",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Analizator",
+      "tarif": "sezgini hosil qiluvchi tizim"
+     },
+     {
+      "atama": "Retseptor",
+      "tarif": "ta’sirni sezuvchi uch"
+     },
+     {
+      "atama": "Sezgi",
+      "tarif": "miyada hosil bo‘ladigan his"
+     },
+     {
+      "atama": "Ta’m so‘rg‘ichi",
+      "tarif": "til retseptori"
+     },
+     {
+      "atama": "Hid retseptori",
+      "tarif": "burundagi sezuvchi hujayra"
+     },
+     {
+      "atama": "Umami",
+      "tarif": "go‘shtli ta’m"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Analizator uch qismdan iborat",
+      "togri": true,
+      "izoh": "retseptor, yo‘l, markaz"
+     },
+     {
+      "matn": "Asosiy sezgilar beshta",
+      "togri": true,
+      "izoh": "ko‘rish, eshitish, hid, ta’m, teri"
+     },
+     {
+      "matn": "Tasvirni ko‘z hosil qiladi",
+      "togri": false,
+      "izoh": "miya"
+     },
+     {
+      "matn": "340 · 3 — 1020",
+      "togri": true,
+      "izoh": "metr"
+     },
+     {
+      "matn": "Hid ta’mga ta’sir qiladi",
+      "togri": true,
+      "izoh": "burni bitganda"
+     },
+     {
+      "matn": "Baland ovoz quloqqa zararsiz",
+      "togri": false,
+      "izoh": "zarar"
+     },
+     {
+      "matn": "Besh asosiy ta’m bor",
+      "togri": true,
+      "izoh": "shirin, nordon, sho‘r, achchiq, umami"
+     },
+     {
+      "matn": "Yorug‘lik tovushdan tez",
+      "togri": true,
+      "izoh": "chaqmoq oldin"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Analizator?",
+      "javob": "retseptor, yo‘l, markaz"
+     },
+     {
+      "savol": "Retseptor?",
+      "javob": "sezuvchi uch"
+     },
+     {
+      "savol": "Sezgilar?",
+      "javob": "5"
+     },
+     {
+      "savol": "Ta’mlar?",
+      "javob": "5"
+     },
+     {
+      "savol": "Hid retseptori?",
+      "javob": "burunda"
+     },
+     {
+      "savol": "Ta’m retseptori?",
+      "javob": "tilda"
+     },
+     {
+      "savol": "340 · 3?",
+      "javob": "1020"
+     },
+     {
+      "savol": "340 · 5?",
+      "javob": "1700"
+     },
+     {
+      "savol": "Tasvirni kim hosil qiladi?",
+      "javob": "miya"
+     },
+     {
+      "savol": "Chaqmoq oldin?",
+      "javob": "yorug‘lik tez"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Hid va ta’mni kuzat.",
+      "savol": "Burunsiz farqi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Masofani top.",
+      "savol": "340 · vaqt?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Ikki sezgini solishtir.",
+      "savol": "Retseptor?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qanday asraymiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun chaqmoq momaqaldiroqdan oldin ko‘rinadi?",
+    "keys": {
+     "vaziyat": "Chaqmoq yaltirab, 4 sekunddan keyin gumburlagan ovoz eshitildi.",
+     "savollar": [
+      "Qaysi biri tez keldi?",
+      "Masofa qancha?"
+     ]
+    },
+    "tezis": "Sezgilar bizga olamni ochadi",
+    "taqqoslash": {
+     "a": "Hid sezgisi",
+     "b": "Ta’m sezgisi",
+     "umumiy": [
+      "sezgi",
+      "kimyoviy retseptor"
+     ],
+     "a_farq": [
+      "burunda",
+      "uzoqdan sezadi"
+     ],
+     "b_farq": [
+      "tilda",
+      "ovqatda sezadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Sezgi organlari",
+     "shoxlar": [
+      {
+       "nom": "Analizator",
+       "bandlar": [
+        "retseptor",
+        "yo‘l",
+        "markaz"
+       ]
+      },
+      {
+       "nom": "Sezgilar",
+       "bandlar": [
+        "ko‘rish",
+        "eshitish",
+        "hid"
+       ]
+      },
+      {
+       "nom": "Ta’m",
+       "bandlar": [
+        "shirin",
+        "sho‘r",
+        "nordon"
+       ]
+      },
+      {
+       "nom": "Asrash",
+       "bandlar": [
+        "yorug‘lik",
+        "past ovoz"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men dunyoni sezish uchun beshta eshikman. Men kimman?",
+     "javob": "sezgi organlari"
+    },
+    "hikmat": "Sezgi — olam bilan aloqa.",
+    "kalit_soz": "SEZGI",
+    "xato_yechim": {
+     "shart": "Tasvirni kim hosil qiladi?",
+     "xato": "ko‘z",
+     "togri": "miya",
+     "sabab": "ko‘z faqat qabul qiladi"
+    },
+    "guruh_nomlari": [
+     "Sezgichilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Besh sezgi»",
+     "topshiriq": "Guruh ta’m va hid tajribasini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "3 sekundda masofa?",
+     "B": "5 sekundda masofa?",
+     "C": "2 sekundda masofa?"
+    },
+    "sinkveyn": [
+     "Sezgi",
+     "tez, nozik",
+     "ko‘radi, eshitadi, sezadi",
+     "Besh sezgi",
+     "Burun"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sezgi organlarini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: analizator",
+      "2-guruh: hid va ta’m",
+      "3-guruh: teri",
+      "4-guruh: asrash"
+     ],
+     "yakun": "Natijalar: 1020; 1700; 680 metr."
+    }
+   }
   }
  ]
 }
