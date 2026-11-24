@@ -5554,6 +5554,1393 @@
      "yakun": "Natijalar: 2,24 litr; 1,12 litr; 11,2 litr."
     }
    }
+  },
+  {
+   "mavzu": "Metallarning korroziyasi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Korroziya nima",
+      "matn": "Korroziya — metallning atrof-muhit ta’sirida asta-sekin yemirilishi. Eng tanish misol — temirning zanglashi. Zang — temir oksidi va suvning aralashmasi, g‘ovak va mo‘rt, shuning uchun metallni himoya qilmaydi, ichkariga yemirilish davom etaveradi.",
+      "misol": "Yomg‘irda qolgan eski panjara zanglaydi.",
+      "savol": "Temirning yemirilishi nima deyiladi?",
+      "javob": "korroziya",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Zanglash sharti",
+      "matn": "Temir zanglashi uchun kislorod va namlik birga bo‘lishi kerak. Quruq havoda va qaynatilgan suvda (kislorodsiz) mix deyarli zanglamaydi. Tuz eritmasi jarayonni tezlatadi, shuning uchun dengiz bo‘yidagi kemalar tezroq zanglaydi. Tajriba uchta probirkada: nam, quruq va qaynatilgan suvli — faqat birinchisi zanglaydi.",
+      "misol": "Qishda yo‘lga sepilgan tuz mashinani tez zanglatadi.",
+      "savol": "Zanglash uchun nima kerak?",
+      "javob": "kislorod va namlik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Temir oksidi hisobi",
+      "matn": "Zang asosan temir uch oksid bo‘lib, uning molyar massasi 2 · 56 plyus 3 · 16 — 160. Temir ulushi 112 / 160 — 0,7, ya’ni 70 foiz. Demak, zanglashda metall massasi oksidga o‘tib, jism og‘irlashadi. 28 gramm temir (0,5 mol) zanglasa, 0,25 mol oksid, ya’ni 40 gramm hosil bo‘ladi.",
+      "misol": "Zanglagan mix yangisidan og‘irroq.",
+      "savol": "Temir uch oksid molyar massasi?",
+      "javob": "160",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Himoya usullari",
+      "matn": "Himoya usullari: bo‘yash va moylash, boshqa metall bilan qoplash (rux, xrom, nikel), zanglamaydigan qotishma (xrom va nikelli po‘lat) yasash va protektor — temirga ulangan faolroq metall (rux, magniy) oldin yemiriladi. Shuning uchun kema korpusiga rux plastinkalar mahkamlanadi.",
+      "misol": "Rux temirni o‘zini qurbon qilib asraydi.",
+      "savol": "Protektor qanday metall?",
+      "javob": "temirdan faolroq",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Korroziyaning zarari",
+      "matn": "Korroziya ko‘priklar, quvurlar va mashinalarga katta zarar yetkazadi. Shuning uchun metall buyumni to‘g‘ri saqlash, bo‘yash va yangilab turish iqtisod hamda xavfsizlik uchun muhim. Zanglagan metall chiqindisini qayta ishlash ham foydali.",
+      "misol": "Zanglagan quvur suv oqishiga sabab bo‘ladi.",
+      "savol": "Korroziyadan qanday saqlanamiz?",
+      "javob": "bo‘yash, qoplash, protektor",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Zanglash uchun kislorod va namlik kerak. Temir uch oksid M — 160, temir ulushi 70 foiz.",
+    "misollar": [
+     {
+      "shart": "Temir uch oksid (ikki temir, uch kislorod, Fe — 56, O — 16) molyar massasi?",
+      "yechim": [
+       "2 · 56 plyus 3 · 16.",
+       "112 plyus 48.",
+       "Javob 160."
+      ],
+      "javob": "160"
+     },
+     {
+      "shart": "Temir uch oksidda temir massa ulushi?",
+      "yechim": [
+       "112 / 160.",
+       "0,7.",
+       "Javob 70 foiz."
+      ],
+      "javob": "70 foiz"
+     },
+     {
+      "shart": "28 gramm temir zanglab, 0,25 mol temir uch oksid (M — 160) hosil qildi. Oksid massasi?",
+      "yechim": [
+       "m — n · M.",
+       "0,25 · 160.",
+       "Javob 40 gramm."
+      ],
+      "javob": "40 gramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Uch probirka tajribasi",
+      "topshiriq": "Nam, quruq va qaynatilgan suvli probirkaga mix soling.",
+      "yechim": "Qaysi mix zanglaydi.",
+      "mahsulot": "uch probirka, mix"
+     },
+     {
+      "nom": "Himoya sinovi",
+      "topshiriq": "Bo‘yalgan va bo‘yalmagan mixni namda sinang.",
+      "yechim": "Taqqoslang.",
+      "mahsulot": "mix, bo‘yoq"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Molyar massa va ulush.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Himoya rejasi",
+      "topshiriq": "Maktab panjarasini himoya qilish rejasini tuzing.",
+      "yechim": "Bo‘yash jadvali.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "112 plyus 48 nechaga teng?",
+      "javob": "160"
+     },
+     {
+      "shart": "112 / 160 nechaga teng?",
+      "javob": "0,7"
+     },
+     {
+      "shart": "0,25 · 160 nechaga teng?",
+      "javob": "40"
+     },
+     {
+      "shart": "28 / 56 nechaga teng?",
+      "javob": "0,5"
+     },
+     {
+      "shart": "Zanglash uchun nima kerak?",
+      "javob": "kislorod va namlik"
+     },
+     {
+      "shart": "Protektor qaysi metall?",
+      "javob": "faolroq"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Quruq havoda temir tez zanglaydi deydi",
+      "sabab": "deyarli zanglamaydi",
+      "oldini_olish": "namlik kerak"
+     },
+     {
+      "xato": "Zang metallni himoya qiladi deydi",
+      "sabab": "himoya qilmaydi",
+      "oldini_olish": "g‘ovak va mo‘rt"
+     },
+     {
+      "xato": "Tuz zanglashni sekinlashtiradi deydi",
+      "sabab": "tezlashtiradi",
+      "oldini_olish": "dengiz bo‘yi kemalar"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "himoya qoplamalari"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "yemirilish zarari"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "chiqindini qayta ishlash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Zangga qarshi»",
+     "muammo": "Metallar nima uchun zanglaydi va qanday saqlanadi?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "uch probirka tajribasi",
+      "himoya sinovi",
+      "hisoblash",
+      "himoya rejasi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tajriba qiling",
+      "Natijani yozing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Zanglagan ko‘prik»",
+     "bekatlar": [
+      {
+       "nom": "1-ustun",
+       "matn": "Ikki temir, uch kislorod.",
+       "topshiriq": "M qancha?",
+       "javob": "160",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ustun",
+       "matn": "112 va 160.",
+       "topshiriq": "Temir ulushi foiz?",
+       "javob": "70",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ustun",
+       "matn": "0,25 mol oksid.",
+       "topshiriq": "Massa gramm?",
+       "javob": "40",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ustun",
+       "matn": "Zanglash sharti.",
+       "topshiriq": "Nechta shart?",
+       "javob": "2",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Korroziya",
+      "tarif": "metallning yemirilishi"
+     },
+     {
+      "atama": "Zang",
+      "tarif": "temir oksidi"
+     },
+     {
+      "atama": "Protektor",
+      "tarif": "faolroq himoya metall"
+     },
+     {
+      "atama": "Qoplama",
+      "tarif": "himoya metall qatlami"
+     },
+     {
+      "atama": "Zanglamaydigan po‘lat",
+      "tarif": "xromli qotishma"
+     },
+     {
+      "atama": "Namlik",
+      "tarif": "suv bug‘i yoki suv"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Zanglash uchun kislorod va namlik kerak",
+      "togri": true,
+      "izoh": "ikkalasi birga"
+     },
+     {
+      "matn": "Zang temirni himoya qiladi",
+      "togri": false,
+      "izoh": "g‘ovak"
+     },
+     {
+      "matn": "Temir uch oksid M — 160",
+      "togri": true,
+      "izoh": "112 plyus 48"
+     },
+     {
+      "matn": "Temir ulushi oksidda 70 foiz",
+      "togri": true,
+      "izoh": "112 / 160"
+     },
+     {
+      "matn": "Tuz zanglashni sekinlashtiradi",
+      "togri": false,
+      "izoh": "tezlashtiradi"
+     },
+     {
+      "matn": "Rux protektor bo‘la oladi",
+      "togri": true,
+      "izoh": "temirdan faol"
+     },
+     {
+      "matn": "Qaynatilgan suvda mix tez zanglaydi",
+      "togri": false,
+      "izoh": "kislorod yo‘q"
+     },
+     {
+      "matn": "0,25 · 160 — 40",
+      "togri": true,
+      "izoh": "gramm"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Korroziya?",
+      "javob": "metallning yemirilishi"
+     },
+     {
+      "savol": "Zang?",
+      "javob": "temir oksidi"
+     },
+     {
+      "savol": "Sharti?",
+      "javob": "kislorod va namlik"
+     },
+     {
+      "savol": "Tezlatuvchi?",
+      "javob": "tuz"
+     },
+     {
+      "savol": "Oksid M?",
+      "javob": "160"
+     },
+     {
+      "savol": "Temir ulushi?",
+      "javob": "70 foiz"
+     },
+     {
+      "savol": "112 / 160?",
+      "javob": "0,7"
+     },
+     {
+      "savol": "0,25 · 160?",
+      "javob": "40"
+     },
+     {
+      "savol": "Protektor?",
+      "javob": "faolroq metall"
+     },
+     {
+      "savol": "Himoya?",
+      "javob": "bo‘yash, qoplash"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Probirkalarni kuzat.",
+      "savol": "Qaysi mix zanglagan?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Ulushni top.",
+      "savol": "Qism / butun?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Himoya usullari.",
+      "savol": "Qaysi yaxshi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qanday saqlaymiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun dengiz bo‘yida metall tezroq zanglaydi?",
+    "keys": {
+     "vaziyat": "Dengiz bo‘yidagi kema korpusi tez yemirilmoqda.",
+     "savollar": [
+      "Tuz nimaga ta’sir qiladi?",
+      "Qanday himoya qilamiz?"
+     ]
+    },
+    "tezis": "Zanglash uchun kislorod va namlik zarur",
+    "taqqoslash": {
+     "a": "Bo‘yash",
+     "b": "Protektor",
+     "umumiy": [
+      "korroziyadan himoya",
+      "metallni asraydi"
+     ],
+     "a_farq": [
+      "sirtni yopadi",
+      "oddiy usul"
+     ],
+     "b_farq": [
+      "faol metall ulanadi",
+      "kemada ishlatiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Korroziya",
+     "shoxlar": [
+      {
+       "nom": "Sharti",
+       "bandlar": [
+        "kislorod",
+        "namlik"
+       ]
+      },
+      {
+       "nom": "Tezlatuvchi",
+       "bandlar": [
+        "tuz",
+        "kislota"
+       ]
+      },
+      {
+       "nom": "Zang",
+       "bandlar": [
+        "temir oksidi",
+        "g‘ovak"
+       ]
+      },
+      {
+       "nom": "Himoya",
+       "bandlar": [
+        "bo‘yash",
+        "qoplash",
+        "protektor"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men metallni asta-sekin yemiraman, kislorod va namlik meni yaxshi ko‘radi. Men kimman?",
+     "javob": "korroziya"
+    },
+    "hikmat": "Zang metallni yeb ketadi.",
+    "kalit_soz": "ZANG",
+    "xato_yechim": {
+     "shart": "Zang temirni himoya qiladimi?",
+     "xato": "ha, himoya qiladi",
+     "togri": "yo‘q, himoya qilmaydi",
+     "sabab": "g‘ovak va mo‘rt"
+    },
+    "guruh_nomlari": [
+     "Zangchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Himoyachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Zangga qarshi»",
+     "topshiriq": "Guruh mixlar tajribasini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "Temir uch oksid M?",
+     "B": "Temir ulushi oksidda?",
+     "C": "0,25 mol oksid massasi?"
+    },
+    "sinkveyn": [
+     "Zang",
+     "g‘ovak, mo‘rt",
+     "yemiradi, yutadi, tarqaladi",
+     "Namda zanglaydi",
+     "Mix"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh korroziyani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: shartlar",
+      "2-guruh: zang",
+      "3-guruh: hisob",
+      "4-guruh: himoya"
+     ],
+     "yakun": "Natijalar: 160; 70 foiz; 40 gramm."
+    }
+   }
+  },
+  {
+   "mavzu": "Alyuminiy",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Alyuminiy elementi",
+      "matn": "Alyuminiy — III guruh elementi, tartib raqami 13, qavatlari 2, 8, 3, atom massasi 27. Yer po‘stlog‘ida metallar orasida eng ko‘p tarqalgan. Kumushrang, yengil, yumshoq metall: temirdan taxminan 3 marta yengil. Tok va issiqlikni yaxshi o‘tkazadi.",
+      "misol": "Alyuminiy folga uyda har kuni ishlatiladi.",
+      "savol": "Alyuminiy tartib raqami?",
+      "javob": "13",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Oksid pardasi",
+      "matn": "Alyuminiy faol metall, lekin havoda uning yuzasida yupqa, mustahkam oksid pardasi hosil bo‘ladi va ichkarini himoya qiladi. Shuning uchun alyuminiy buyumlar zanglamaydi. Alyuminiy oksid molyar massasi 2 · 27 plyus 3 · 16 — 102. Alyuminiy ulushi 54 / 102 — taxminan 53 foiz.",
+      "misol": "Folga yuzasi oksid bilan himoyalangan.",
+      "savol": "Alyuminiy oksid molyar massasi?",
+      "javob": "102",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kimyoviy xossalari",
+      "matn": "Alyuminiy kislotalar bilan reaksiyaga kirishib vodorod chiqaradi: ikki mol alyuminiydan uch mol vodorod. 5,4 gramm alyuminiy (M — 27) bu 0,2 mol, vodorod 0,3 mol, ya’ni 0,3 · 22,4 — 6,72 litr. Alyuminiy oksid va gidroksid ham kislota, ham ishqor bilan reaksiyaga kirishadi — bunday xossa amfoterlik.",
+      "misol": "Amfoter — ikki yoqlama xossa.",
+      "savol": "5,4 gramm alyuminiydan necha litr vodorod?",
+      "javob": "6,72",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Olinishi",
+      "matn": "Alyuminiy rudasi — boksit. Undan oksid ajratiladi, so‘ng eritilgan holda elektroliz qilinadi: 1886-yilda Hall va Eru bu usulni mustaqil ixtiro qilgan. Elektroliz juda ko‘p elektr energiya talab qiladi, shuning uchun alyuminiyni qayta ishlash qimmatbaho energiyani tejaydi. 102 kilogramm oksiddan 54 kilogramm alyuminiy olinadi.",
+      "misol": "Bankani qayta ishlash energiyani ko‘p tejaydi.",
+      "savol": "Alyuminiy rudasi?",
+      "javob": "boksit",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanishi",
+      "matn": "Alyuminiy samolyot va avtomobil qismlarida, qadoqlashda (folga, banka), sim va idishlarda ishlatiladi. Duralyuminiy — alyuminiy qotishmasi, yengil va mustahkam, aviatsiyada qo‘llanadi. Alyuminiy idishda nordon ovqat saqlash tavsiya qilinmaydi.",
+      "misol": "Duralyuminiy samolyot qanotida.",
+      "savol": "Duralyuminiy nima?",
+      "javob": "alyuminiy qotishmasi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Alyuminiy — raqami 13, M — 27, oksid pardasi himoya qiladi. Oksid M — 102.",
+    "misollar": [
+     {
+      "shart": "Alyuminiy oksid (ikki alyuminiy, uch kislorod) molyar massasi?",
+      "yechim": [
+       "2 · 27 plyus 3 · 16.",
+       "54 plyus 48.",
+       "Javob 102."
+      ],
+      "javob": "102"
+     },
+     {
+      "shart": "5,4 gramm alyuminiy kislota bilan reaksiyaga kirishdi, ikki mol alyuminiydan uch mol vodorod. Vodorod hajmi?",
+      "yechim": [
+       "n — 5,4 / 27 — 0,2 mol.",
+       "Vodorod 0,3 mol.",
+       "V — 0,3 · 22,4 — 6,72 litr."
+      ],
+      "javob": "6,72 litr"
+     },
+     {
+      "shart": "Alyuminiy oksidda alyuminiy massa ulushi?",
+      "yechim": [
+       "54 / 102.",
+       "Taxminan 0,53.",
+       "Javob 53 foiz."
+      ],
+      "javob": "53 foiz"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Folga tajribasi",
+      "topshiriq": "Folgani egib, yuzasini kuzating.",
+      "yechim": "Oksid pardasi.",
+      "mahsulot": "alyuminiy folga"
+     },
+     {
+      "nom": "Metallarni taqqoslash",
+      "topshiriq": "Alyuminiy va temir bo‘lagi og‘irligini solishtiring.",
+      "yechim": "Zichlik.",
+      "mahsulot": "ikki bo‘lak, tarozi"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Mol va ulush.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Qayta ishlash",
+      "topshiriq": "Banka yig‘ish rejasini tuzing.",
+      "yechim": "Qayerga topshiriladi.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "54 plyus 48 nechaga teng?",
+      "javob": "102"
+     },
+     {
+      "shart": "5,4 / 27 nechaga teng?",
+      "javob": "0,2"
+     },
+     {
+      "shart": "0,3 · 22,4 nechaga teng?",
+      "javob": "6,72"
+     },
+     {
+      "shart": "54 / 102 nechaga yaqin?",
+      "javob": "0,53"
+     },
+     {
+      "shart": "Alyuminiy tartib raqami?",
+      "javob": "13"
+     },
+     {
+      "shart": "Alyuminiy rudasi?",
+      "javob": "boksit"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Alyuminiy faol emas, shuning uchun zanglamaydi deydi",
+      "sabab": "faol, oksid pardasi himoya qiladi",
+      "oldini_olish": "parda ichkarini asraydi"
+     },
+     {
+      "xato": "Alyuminiy temirdan og‘ir deydi",
+      "sabab": "yengilroq",
+      "oldini_olish": "taxminan 3 marta"
+     },
+     {
+      "xato": "Alyuminiy faqat kislota bilan reaksiyaga kirishadi deydi",
+      "sabab": "ishqor bilan ham",
+      "oldini_olish": "amfoter xossa"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Aviatsiya",
+      "boglanish": "duralyuminiy"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "bankani qayta ishlash"
+     },
+     {
+      "fan": "Energetika",
+      "boglanish": "elektroliz"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Alyuminiy sirlari»",
+     "muammo": "Alyuminiy nima uchun zanglamaydi va qayerda kerak?",
+     "mahsulot": "plakat va hisob",
+     "bosqichlar": [
+      "xossalarni o‘rganish",
+      "folga tajribasi",
+      "hisoblash",
+      "qayta ishlash rejasi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Xossalarni o‘rganing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xossalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Alyuminiy zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "Ikki alyuminiy, uch kislorod.",
+       "topshiriq": "M qancha?",
+       "javob": "102",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "5,4 gramm alyuminiy.",
+       "topshiriq": "Vodorod litr?",
+       "javob": "6,72",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "54 va 102.",
+       "topshiriq": "Ulush foiz?",
+       "javob": "53",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sex",
+       "matn": "Tartib raqami.",
+       "topshiriq": "Qancha?",
+       "javob": "13",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Molga o‘tdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Alyuminiy",
+      "tarif": "yengil III guruh metalli"
+     },
+     {
+      "atama": "Boksit",
+      "tarif": "alyuminiy rudasi"
+     },
+     {
+      "atama": "Oksid pardasi",
+      "tarif": "himoya qatlami"
+     },
+     {
+      "atama": "Amfoterlik",
+      "tarif": "kislota va ishqor xossasi"
+     },
+     {
+      "atama": "Duralyuminiy",
+      "tarif": "alyuminiy qotishmasi"
+     },
+     {
+      "atama": "Elektroliz",
+      "tarif": "tok bilan parchalash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Alyuminiy oksid pardasi bilan himoyalangan",
+      "togri": true,
+      "izoh": "zanglamaydi"
+     },
+     {
+      "matn": "Alyuminiy temirdan og‘ir",
+      "togri": false,
+      "izoh": "yengilroq"
+     },
+     {
+      "matn": "Alyuminiy oksid M — 102",
+      "togri": true,
+      "izoh": "54 plyus 48"
+     },
+     {
+      "matn": "Boksit alyuminiy rudasi",
+      "togri": true,
+      "izoh": "xomashyo"
+     },
+     {
+      "matn": "5,4 gramm alyuminiydan 6,72 litr vodorod",
+      "togri": true,
+      "izoh": "0,3 mol"
+     },
+     {
+      "matn": "Alyuminiy ishqor bilan reaksiyaga kirishmaydi",
+      "togri": false,
+      "izoh": "amfoter"
+     },
+     {
+      "matn": "Alyuminiy elektroliz bilan olinadi",
+      "togri": true,
+      "izoh": "Hall va Eru"
+     },
+     {
+      "matn": "Alyuminiy ulushi oksidda taxminan 53 foiz",
+      "togri": true,
+      "izoh": "54 / 102"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Alyuminiy raqami?",
+      "javob": "13"
+     },
+     {
+      "savol": "M?",
+      "javob": "27"
+     },
+     {
+      "savol": "Ruda?",
+      "javob": "boksit"
+     },
+     {
+      "savol": "Usul?",
+      "javob": "elektroliz"
+     },
+     {
+      "savol": "Oksid M?",
+      "javob": "102"
+     },
+     {
+      "savol": "Parda?",
+      "javob": "oksid himoyasi"
+     },
+     {
+      "savol": "5,4 / 27?",
+      "javob": "0,2"
+     },
+     {
+      "savol": "0,3 · 22,4?",
+      "javob": "6,72"
+     },
+     {
+      "savol": "54 / 102?",
+      "javob": "0,53"
+     },
+     {
+      "savol": "Qotishma?",
+      "javob": "duralyuminiy"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Folga yuzasini kuzat.",
+      "savol": "Yaltiraydimi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Mol va hajmni top.",
+      "savol": "n · 22,4?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Zichlikni solishtir.",
+      "savol": "Qaysi yengil?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qayta ishlash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun alyuminiy faol bo‘lsa-da, zanglamaydi?",
+    "keys": {
+     "vaziyat": "Alyuminiy idish yillar o‘tsa ham yemirilmaydi.",
+     "savollar": [
+      "Yuzada nima hosil bo‘ladi?",
+      "U nimani himoya qiladi?"
+     ]
+    },
+    "tezis": "Oksid pardasi alyuminiyni asraydi",
+    "taqqoslash": {
+     "a": "Alyuminiy",
+     "b": "Temir",
+     "umumiy": [
+      "metall",
+      "qurilishda ishlatiladi"
+     ],
+     "a_farq": [
+      "yengil",
+      "oksid pardasi bor"
+     ],
+     "b_farq": [
+      "og‘irroq",
+      "zanglaydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Alyuminiy",
+     "shoxlar": [
+      {
+       "nom": "Xossa",
+       "bandlar": [
+        "yengil",
+        "tok o‘tkazadi"
+       ]
+      },
+      {
+       "nom": "Himoya",
+       "bandlar": [
+        "oksid pardasi"
+       ]
+      },
+      {
+       "nom": "Olinishi",
+       "bandlar": [
+        "boksit",
+        "elektroliz"
+       ]
+      },
+      {
+       "nom": "Qo‘llanish",
+       "bandlar": [
+        "folga",
+        "samolyot",
+        "banka"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yengil, kumushrang metallman va oksid pardam meni asraydi. Men kimman?",
+     "javob": "alyuminiy"
+    },
+    "hikmat": "Alyuminiy yengil metall.",
+    "kalit_soz": "ALYUMINIY",
+    "xato_yechim": {
+     "shart": "Alyuminiy temirdan og‘irmi?",
+     "xato": "ha, og‘irroq",
+     "togri": "yo‘q, taxminan 3 marta yengil",
+     "sabab": "zichligi kichik"
+    },
+    "guruh_nomlari": [
+     "Alyuminiychilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Alyuminiy sirlari»",
+     "topshiriq": "Guruh folga va banka tajribasini o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "Alyuminiy oksid M?",
+     "B": "5,4 gramm alyuminiydan vodorod?",
+     "C": "Alyuminiy ulushi oksidda?"
+    },
+    "sinkveyn": [
+     "Alyuminiy",
+     "yengil, yaltiroq",
+     "o‘tkazadi, himoyalanadi, qoplanadi",
+     "Yengil metall",
+     "Folga"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh alyuminiyni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: xossalar",
+      "2-guruh: oksid pardasi",
+      "3-guruh: olinishi",
+      "4-guruh: qo‘llanish"
+     ],
+     "yakun": "Natijalar: 102; 6,72 litr; 53 foiz."
+    }
+   }
+  },
+  {
+   "mavzu": "Temir",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Temir elementi",
+      "matn": "Temir — VIII guruh yon guruhchasi elementi, tartib raqami 26, atom massasi 56. Yer po‘stlog‘ida alyuminiydan keyin eng ko‘p tarqalgan metall. Kumushrang-kulrang, magnitga tortiladi, bolg‘alanadi. Temir birikmalarida ko‘pincha ikki va uch valentli bo‘ladi.",
+      "misol": "Magnit temirni tortadi.",
+      "savol": "Temir tartib raqami?",
+      "javob": "26",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Rudalar",
+      "matn": "Temirning asosiy rudalari: magnetit, gematit, limonit va pirit. Gematit temir uch oksid, uning molyar massasi 160, temir ulushi 70 foiz. Magnetit — temir uch oksid va ikki oksid aralashmasi, molyar massasi 232, temir ulushi 168 / 232 — taxminan 72 foiz. Rudadan temir domna pechida olinadi.",
+      "misol": "Magnetit tabiiy magnit xossasiga ega.",
+      "savol": "Gematitda temir ulushi?",
+      "javob": "70 foiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kimyoviy xossalari",
+      "matn": "Temir kislotalar bilan vodorod chiqaradi: 5,6 gramm temir (M — 56) bu 0,1 mol, vodorod 0,1 mol, ya’ni 2,24 litr. Oltingugurt bilan qizdirilganda temir sulfid hosil bo‘ladi: 11,2 gramm temir 0,2 mol, temir sulfid molyar massasi 88, demak 17,6 gramm. Namda temir zanglaydi.",
+      "misol": "Temir kukuni va oltingugurt qizdirilganda yonadi.",
+      "savol": "Temir sulfid molyar massasi?",
+      "javob": "88",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Cho‘yan va po‘lat",
+      "matn": "Cho‘yan va po‘lat — temirning uglerodli qotishmalari. Cho‘yanda uglerod 2 foizdan ko‘p, u mo‘rt, quyma uchun yaxshi. Po‘latda uglerod 2 foizgacha, u mustahkam va egiluvchan. Maxsus po‘latga xrom va nikel qo‘shilsa, zanglamaydigan po‘lat olinadi.",
+      "misol": "Pichoq va ko‘prik po‘latdan.",
+      "savol": "Po‘latda uglerod qancha?",
+      "javob": "2 foizgacha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotdagi roli",
+      "matn": "Temir qon gemoglobinida bor va kislorodni tashiydi. Temir yetishmasa, kamqonlik bo‘lishi mumkin. Go‘sht, jigar, dukkaklilar temirga boy. Texnikada temir va po‘lat eng ko‘p ishlatiladigan materiallar.",
+      "misol": "Gemoglobin qonga qizil rang beradi.",
+      "savol": "Temir qonda nima qiladi?",
+      "javob": "kislorodni tashiydi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Temir — raqami 26, M — 56. Gematit 70 foiz temir. Po‘latda uglerod 2 foizgacha.",
+    "misollar": [
+     {
+      "shart": "5,6 gramm temir kislota bilan reaksiyaga kirishdi, bir mol temirdan bir mol vodorod. Vodorod hajmi?",
+      "yechim": [
+       "n — 5,6 / 56 — 0,1 mol.",
+       "Vodorod 0,1 mol.",
+       "V — 0,1 · 22,4 — 2,24 litr."
+      ],
+      "javob": "2,24 litr"
+     },
+     {
+      "shart": "11,2 gramm temir oltingugurt bilan reaksiyaga kirishdi. Temir sulfid (M — 88), bir mol temirdan bir mol sulfid. Massasi?",
+      "yechim": [
+       "n — 11,2 / 56 — 0,2 mol.",
+       "Sulfid ham 0,2 mol.",
+       "m — 0,2 · 88 — 17,6 gramm."
+      ],
+      "javob": "17,6 gramm"
+     },
+     {
+      "shart": "Magnetitda (M — 232) temir massasi 168. Ulushi?",
+      "yechim": [
+       "168 / 232.",
+       "Taxminan 0,72.",
+       "Javob 72 foiz."
+      ],
+      "javob": "72 foiz"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Magnit tajribasi",
+      "topshiriq": "Magnit bilan temir kukunini ajrating.",
+      "yechim": "Temir tortiladi.",
+      "mahsulot": "magnit, aralashma"
+     },
+     {
+      "nom": "Temir va kislota",
+      "topshiriq": "Temir qirindisini kislotaga soling.",
+      "yechim": "Gaz chiqadimi.",
+      "mahsulot": "temir, kislota"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Mol, massa, ulush.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Qotishmalar jadvali",
+      "topshiriq": "Cho‘yan va po‘latni solishtiring.",
+      "yechim": "Uglerod miqdori.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "5,6 / 56 nechaga teng?",
+      "javob": "0,1"
+     },
+     {
+      "shart": "0,1 · 22,4 nechaga teng?",
+      "javob": "2,24"
+     },
+     {
+      "shart": "11,2 / 56 nechaga teng?",
+      "javob": "0,2"
+     },
+     {
+      "shart": "0,2 · 88 nechaga teng?",
+      "javob": "17,6"
+     },
+     {
+      "shart": "168 / 232 nechaga yaqin?",
+      "javob": "0,72"
+     },
+     {
+      "shart": "Temir tartib raqami?",
+      "javob": "26"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Cho‘yan po‘latdan egiluvchan deydi",
+      "sabab": "mo‘rt",
+      "oldini_olish": "uglerodi ko‘p"
+     },
+     {
+      "xato": "Temir magnitga tortilmaydi deydi",
+      "sabab": "tortiladi",
+      "oldini_olish": "magnit xossa bor"
+     },
+     {
+      "xato": "Temir qonda kerak emas deydi",
+      "sabab": "gemoglobinda zarur",
+      "oldini_olish": "kislorod tashiydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "gemoglobin"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "po‘lat qotishmalari"
+     },
+     {
+      "fan": "Geologiya",
+      "boglanish": "temir rudalari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Temir asri»",
+     "muammo": "Temir nima uchun inson hayotida muhim?",
+     "mahsulot": "plakat va hisob",
+     "bosqichlar": [
+      "xossalarni o‘rganish",
+      "magnit tajribasi",
+      "hisoblash",
+      "qotishmalar jadvali",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Xossalarni o‘rganing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xossalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Temir koni»",
+     "bekatlar": [
+      {
+       "nom": "1-shaxta",
+       "matn": "5,6 gramm temir.",
+       "topshiriq": "Vodorod litr?",
+       "javob": "2,24",
+       "rasm": ""
+      },
+      {
+       "nom": "2-shaxta",
+       "matn": "11,2 gramm temir.",
+       "topshiriq": "Sulfid gramm?",
+       "javob": "17,6",
+       "rasm": ""
+      },
+      {
+       "nom": "3-shaxta",
+       "matn": "168 va 232.",
+       "topshiriq": "Ulush foiz?",
+       "javob": "72",
+       "rasm": ""
+      },
+      {
+       "nom": "4-shaxta",
+       "matn": "Tartib raqami.",
+       "topshiriq": "Qancha?",
+       "javob": "26",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Molga o‘tdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Temir",
+      "tarif": "VIII guruh yon guruhcha metalli"
+     },
+     {
+      "atama": "Magnetit",
+      "tarif": "temir rudasi"
+     },
+     {
+      "atama": "Cho‘yan",
+      "tarif": "uglerodi 2 foizdan ko‘p qotishma"
+     },
+     {
+      "atama": "Po‘lat",
+      "tarif": "uglerodi 2 foizgacha qotishma"
+     },
+     {
+      "atama": "Gemoglobin",
+      "tarif": "kislorod tashuvchi oqsil"
+     },
+     {
+      "atama": "Domna",
+      "tarif": "temir olinadigan pech"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Temir magnitga tortiladi",
+      "togri": true,
+      "izoh": "magnit xossa"
+     },
+     {
+      "matn": "Cho‘yan egiluvchan",
+      "togri": false,
+      "izoh": "mo‘rt"
+     },
+     {
+      "matn": "Gematitda temir 70 foiz",
+      "togri": true,
+      "izoh": "112 / 160"
+     },
+     {
+      "matn": "Temir sulfid M — 88",
+      "togri": true,
+      "izoh": "56 plyus 32"
+     },
+     {
+      "matn": "5,6 gramm temirdan 2,24 litr vodorod",
+      "togri": true,
+      "izoh": "0,1 mol"
+     },
+     {
+      "matn": "Po‘latda uglerod 2 foizgacha",
+      "togri": true,
+      "izoh": "qotishma"
+     },
+     {
+      "matn": "Temir qonda yo‘q",
+      "togri": false,
+      "izoh": "gemoglobinda"
+     },
+     {
+      "matn": "11,2 gramm temirdan 17,6 gramm sulfid",
+      "togri": true,
+      "izoh": "0,2 mol"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Temir raqami?",
+      "javob": "26"
+     },
+     {
+      "savol": "M?",
+      "javob": "56"
+     },
+     {
+      "savol": "Ruda?",
+      "javob": "magnetit, gematit"
+     },
+     {
+      "savol": "Cho‘yan?",
+      "javob": "mo‘rt qotishma"
+     },
+     {
+      "savol": "Po‘lat?",
+      "javob": "mustahkam qotishma"
+     },
+     {
+      "savol": "Qonda?",
+      "javob": "gemoglobin"
+     },
+     {
+      "savol": "5,6 / 56?",
+      "javob": "0,1"
+     },
+     {
+      "savol": "0,2 · 88?",
+      "javob": "17,6"
+     },
+     {
+      "savol": "168 / 232?",
+      "javob": "0,72"
+     },
+     {
+      "savol": "Pech?",
+      "javob": "domna"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Magnitni sinab ko‘r.",
+      "savol": "Temir tortiladimi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Mol va massa.",
+      "savol": "n · M?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Cho‘yan va po‘lat.",
+      "savol": "Uglerod?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Temirning roli?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun po‘lat cho‘yandan mustahkam va egiluvchan?",
+    "keys": {
+     "vaziyat": "Ko‘prik po‘latdan, lekin eski quyma panjara cho‘yandan va tez sinadi.",
+     "savollar": [
+      "Qaysi qotishmada uglerod kam?",
+      "Nega bu muhim?"
+     ]
+    },
+    "tezis": "Uglerod miqdori qotishma xossasini belgilaydi",
+    "taqqoslash": {
+     "a": "Cho‘yan",
+     "b": "Po‘lat",
+     "umumiy": [
+      "temir qotishmasi",
+      "uglerod bor"
+     ],
+     "a_farq": [
+      "uglerod 2 foizdan ko‘p",
+      "mo‘rt"
+     ],
+     "b_farq": [
+      "uglerod 2 foizgacha",
+      "egiluvchan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Temir",
+     "shoxlar": [
+      {
+       "nom": "Element",
+       "bandlar": [
+        "raqam 26",
+        "M — 56"
+       ]
+      },
+      {
+       "nom": "Ruda",
+       "bandlar": [
+        "magnetit",
+        "gematit"
+       ]
+      },
+      {
+       "nom": "Qotishma",
+       "bandlar": [
+        "cho‘yan",
+        "po‘lat"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "gemoglobin",
+        "texnika"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men magnitga tortilaman, qonda kislorod tashiyman. Men kimman?",
+     "javob": "temir"
+    },
+    "hikmat": "Temir inson hamrohi.",
+    "kalit_soz": "TEMIR",
+    "xato_yechim": {
+     "shart": "Cho‘yan egiluvchanmi?",
+     "xato": "ha, egiluvchan",
+     "togri": "yo‘q, mo‘rt",
+     "sabab": "uglerod ko‘p"
+    },
+    "guruh_nomlari": [
+     "Temirchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Temir asri»",
+     "topshiriq": "Guruh temir xossalarini o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "5,6 gramm temirdan vodorod?",
+     "B": "11,2 gramm temirdan sulfid?",
+     "C": "Magnetitda temir ulushi?"
+    },
+    "sinkveyn": [
+     "Temir",
+     "kulrang, magnit",
+     "tortiladi, zanglaydi, bolg‘alanadi",
+     "Temir va po‘lat",
+     "Magnit"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh temirni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: xossalar",
+      "2-guruh: rudalar",
+      "3-guruh: qotishmalar",
+      "4-guruh: hayotdagi roli"
+     ],
+     "yakun": "Natijalar: 2,24 litr; 17,6 gramm; 72 foiz."
+    }
+   }
   }
  ]
 }
