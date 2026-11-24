@@ -23457,6 +23457,1382 @@
      "yakun": "Natijalar: 5 / 8; 1 / 2; 3 / 4 < 1; rasm tekshirdi."
     }
    }
+  },
+  {
+   "mavzu": "Teng kasrlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Teng kasrlar nima?",
+      "matn": "Ko‘rinishi boshqa, lekin qiymati bir xil kasrlar teng kasrlar deyiladi. Pitsaning yarmi 2 / 4 ham, 4 / 8 ham bo‘ladi.",
+      "misol": "1 / 2 va 2 / 4 — bir xil qism.",
+      "savol": "1 / 2 va 2 / 4 bir xil qismmi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kengaytirish",
+      "matn": "Kasrning surat va maxrajini bir xil songa ko‘paytirsak, kasr qiymati o‘zgarmaydi.",
+      "misol": "1 / 2: suratni ham, maxrajni ham 2 ga ko‘paytiramiz — 2 / 4.",
+      "savol": "1 ni 2 ga ko‘paytirsak nechta bo‘ladi?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yana kengaytiramiz",
+      "matn": "1 / 2 ni 4 ga kengaytirsak 4 / 8 chiqadi. 3 / 4 ni 2 ga kengaytirsak 6 / 8 chiqadi.",
+      "misol": "1 / 2 — 2 / 4 — 4 / 8. 3 / 4 — 6 / 8.",
+      "savol": "3 · 2 nechaga teng?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qisqartirish",
+      "matn": "Surat va maxrajni bir xil songa bo‘lsak, kasr qiymati o‘zgarmaydi. Bu qisqartirish deyiladi.",
+      "misol": "6 / 8: ikkalasini 2 ga bo‘lamiz — 3 / 4.",
+      "savol": "6 / 2 nechaga teng?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Taqqoslashda foydalanamiz",
+      "matn": "Maxrajlari har xil kasrlarni taqqoslash uchun bittasini kengaytirib, maxrajlarni tenglaymiz.",
+      "misol": "1 / 2 va 3 / 8: 1 / 2 — 4 / 8. 4 / 8 > 3 / 8, demak 1 / 2 > 3 / 8.",
+      "savol": "1 / 2 qanday kasrga teng (maxraji 8)?",
+      "javob": "4 / 8",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Surat va maxrajni bir xil songa ko‘paytirsak (kengaytirish) yoki bo‘lsak (qisqartirish), kasr qiymati o‘zgarmaydi.",
+    "misollar": [
+     {
+      "shart": "1 / 2 ni maxraji 8 bo‘lgan kasrga aylantiring.",
+      "yechim": [
+       "8 / 2 — 4, shuning uchun 4 ga ko‘paytiramiz.",
+       "1 · 4 — 4, 2 · 4 — 8.",
+       "Javob 4 / 8."
+      ],
+      "javob": "4 / 8"
+     },
+     {
+      "shart": "6 / 8 ni qisqartiring.",
+      "yechim": [
+       "Ikkalasi 2 ga bo‘linadi.",
+       "6 / 2 — 3, 8 / 2 — 4.",
+       "Javob 3 / 4."
+      ],
+      "javob": "3 / 4"
+     },
+     {
+      "shart": "1 / 2 va 3 / 8 ni taqqoslang.",
+      "yechim": [
+       "1 / 2 — 4 / 8.",
+       "4 / 8 va 3 / 8: 4 > 3.",
+       "Javob 1 / 2 > 3 / 8."
+      ],
+      "javob": "1 / 2 > 3 / 8"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Pitsa bilan",
+      "topshiriq": "Qog‘ozdan doirani 2, 4 va 8 bo‘lakka bo‘lib, yarmini ko‘rsating.",
+      "yechim": "Yarmi har safar teng.",
+      "mahsulot": "qog‘oz va qaychi"
+     },
+     {
+      "nom": "Kengaytiramiz",
+      "topshiriq": "Uchta kasrni 2 ga kengaytiring.",
+      "yechim": "Surat va maxrajni ko‘paytiring.",
+      "mahsulot": "kasrlar varag‘i"
+     },
+     {
+      "nom": "Qisqartiramiz",
+      "topshiriq": "Uchta kasrni qisqartiring.",
+      "yechim": "Umumiy bo‘luvchini toping.",
+      "mahsulot": "kasrlar varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Teng kasrlarni rasm bilan tekshiring.",
+      "yechim": "Bo‘yalgan qism teng.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1 · 2 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "2 · 2 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "3 · 2 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "6 / 2 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "8 / 2 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "1 / 2 ni maxraji 8 bo‘lgan kasr?",
+      "javob": "4 / 8"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Faqat maxrajni ko‘paytiradi",
+      "sabab": "suratni unutadi",
+      "oldini_olish": "ikkalasini ko‘paytirish"
+     },
+     {
+      "xato": "Surat va maxrajga turli son qo‘shadi",
+      "sabab": "ko‘paytirish o‘rniga qo‘shadi",
+      "oldini_olish": "ko‘paytirish yoki bo‘lish"
+     },
+     {
+      "xato": "Qisqartirishda faqat suratni bo‘ladi",
+      "sabab": "maxrajni unutadi",
+      "oldini_olish": "ikkalasini bo‘lish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "pitsa va non bo‘laklari"
+     },
+     {
+      "fan": "Musiqa",
+      "boglanish": "nota cho‘zimlari"
+     },
+     {
+      "fan": "Tasviriy san’at",
+      "boglanish": "rasmni bo‘laklash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Teng kasrlar devori»",
+     "muammo": "Teng kasrlarni devor rasmida qanday ko‘rsatamiz?",
+     "mahsulot": "kasrlar devori",
+     "bosqichlar": [
+      "g‘isht chizish",
+      "bo‘laklash",
+      "teng kasrlarni topish",
+      "bo‘yash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chizing",
+      "Bo‘laklang",
+      "Teng kasrni toping",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "bo‘laklar teng",
+      "kasrlar to‘g‘ri",
+      "bo‘yash chiroyli",
+      "devor tartibli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Kasrlar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-gul",
+       "matn": "1 / 2 ni 2 ga kengaytiring.",
+       "topshiriq": "Natija?",
+       "javob": "2 / 4",
+       "rasm": ""
+      },
+      {
+       "nom": "2-gul",
+       "matn": "1 / 2 ni 4 ga kengaytiring.",
+       "topshiriq": "Natija?",
+       "javob": "4 / 8",
+       "rasm": ""
+      },
+      {
+       "nom": "3-gul",
+       "matn": "6 / 8 ni 2 ga qisqartiring.",
+       "topshiriq": "Natija?",
+       "javob": "3 / 4",
+       "rasm": ""
+      },
+      {
+       "nom": "4-gul",
+       "matn": "3 / 4 ni 2 ga kengaytiring.",
+       "topshiriq": "Natija?",
+       "javob": "6 / 8",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Ikkalasini ko‘paytirdingizmi?",
+      "Rasm bilan tekshirdingizmi?",
+      "Qaysi usul oson?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Teng kasrlar",
+      "tarif": "qiymati bir xil kasrlar"
+     },
+     {
+      "atama": "Kengaytirish",
+      "tarif": "surat va maxrajni ko‘paytirish"
+     },
+     {
+      "atama": "Qisqartirish",
+      "tarif": "surat va maxrajni bo‘lish"
+     },
+     {
+      "atama": "Surat",
+      "tarif": "kasr yuqori soni"
+     },
+     {
+      "atama": "Maxraj",
+      "tarif": "kasr pastki soni"
+     },
+     {
+      "atama": "Umumiy maxraj",
+      "tarif": "bir xil maxraj"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "1 / 2 va 2 / 4 teng",
+      "togri": true,
+      "izoh": "bir xil qism"
+     },
+     {
+      "matn": "1 / 2 va 1 / 4 teng",
+      "togri": false,
+      "izoh": "1 / 2 katta"
+     },
+     {
+      "matn": "1 / 2 — 4 / 8",
+      "togri": true,
+      "izoh": "kengaytirish"
+     },
+     {
+      "matn": "6 / 8 — 3 / 4",
+      "togri": true,
+      "izoh": "qisqartirish"
+     },
+     {
+      "matn": "Faqat maxrajni ko‘paytirsak kasr o‘zgarmaydi",
+      "togri": false,
+      "izoh": "ikkalasini"
+     },
+     {
+      "matn": "3 / 4 — 6 / 8",
+      "togri": true,
+      "izoh": "2 ga kengaytirish"
+     },
+     {
+      "matn": "1 / 2 > 3 / 8",
+      "togri": true,
+      "izoh": "4 / 8 > 3 / 8"
+     },
+     {
+      "matn": "Qisqartirish qiymatni o‘zgartiradi",
+      "togri": false,
+      "izoh": "o‘zgarmaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Teng kasr nima?",
+      "javob": "qiymati bir xil kasr"
+     },
+     {
+      "savol": "Kengaytirish?",
+      "javob": "surat va maxrajni ko‘paytirish"
+     },
+     {
+      "savol": "Qisqartirish?",
+      "javob": "surat va maxrajni bo‘lish"
+     },
+     {
+      "savol": "1 / 2 ni 4 ga kengaytirsak?",
+      "javob": "4 / 8"
+     },
+     {
+      "savol": "6 / 8 ni qisqartirsak?",
+      "javob": "3 / 4"
+     },
+     {
+      "savol": "3 / 4 ni 2 ga kengaytirsak?",
+      "javob": "6 / 8"
+     },
+     {
+      "savol": "1 / 2 ni 2 ga kengaytirsak?",
+      "javob": "2 / 4"
+     },
+     {
+      "savol": "3 · 2?",
+      "javob": "6"
+     },
+     {
+      "savol": "6 / 2?",
+      "javob": "3"
+     },
+     {
+      "savol": "Qiymat o‘zgaradimi?",
+      "javob": "yo‘q"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qara",
+      "matn": "Kasrni o‘qi.",
+      "savol": "Surat va maxraj?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Ikkalasini ko‘paytir.",
+      "savol": "1 · 2?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "Qisqartir.",
+      "savol": "6 / 2?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Rasm chiz.",
+      "savol": "Bo‘yalgan qism teng?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun surat va maxrajni bir xil songa ko‘paytirsak kasr qiymati o‘zgarmaydi?",
+    "keys": {
+     "vaziyat": "Ali pitsaning 1 / 2 qismini, Vali 3 / 8 qismini yedi.",
+     "savollar": [
+      "Kim ko‘p yedi?",
+      "Qaysi kasrni kengaytirdingiz?"
+     ]
+    },
+    "tezis": "Bir xil qism — har xil kasr",
+    "taqqoslash": {
+     "a": "Kengaytirish",
+     "b": "Qisqartirish",
+     "umumiy": [
+      "teng kasr hosil bo‘ladi",
+      "qiymat o‘zgarmaydi"
+     ],
+     "a_farq": [
+      "ko‘paytiramiz",
+      "maxraj kattalashadi"
+     ],
+     "b_farq": [
+      "bo‘lamiz",
+      "maxraj kichrayadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Teng kasrlar",
+     "shoxlar": [
+      {
+       "nom": "Kengaytirish",
+       "bandlar": [
+        "ikkalasini ko‘paytirish"
+       ]
+      },
+      {
+       "nom": "Qisqartirish",
+       "bandlar": [
+        "ikkalasini bo‘lish"
+       ]
+      },
+      {
+       "nom": "Taqqoslash",
+       "bandlar": [
+        "maxrajni tenglash"
+       ]
+      },
+      {
+       "nom": "Rasm",
+       "bandlar": [
+        "teng qism"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Ko‘rinishim boshqa, qiymatim bir xil. Men kimman?",
+     "javob": "teng kasr"
+    },
+    "hikmat": "Ikkalasiga bir xil amal.",
+    "kalit_soz": "TENG",
+    "xato_yechim": {
+     "shart": "1 / 2 ni maxraji 4 bo‘lgan kasrga aylantiring.",
+     "xato": "1 / 4",
+     "togri": "2 / 4",
+     "sabab": "suratni ham 2 ga ko‘paytirish kerak"
+    },
+    "guruh_nomlari": [
+     "Kasrchilar",
+     "Kengaytiruvchilar",
+     "Qisqartiruvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Teng kasrlar»",
+     "topshiriq": "Guruh teng kasrlarni topadi."
+    },
+    "vazifalar": {
+     "A": "1 / 2 ni maxraji 8 bo‘lgan kasrga aylantiring.",
+     "B": "6 / 8 ni qisqartiring.",
+     "C": "1 / 2 va 3 / 8 ni taqqoslang."
+    },
+    "sinkveyn": [
+     "Kasr",
+     "teng, qisqa",
+     "kengayadi, qisqaradi, tenglashadi",
+     "Teng qism",
+     "Bo‘lak"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh teng kasrlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: kengaytirish",
+      "2-guruh: qisqartirish",
+      "3-guruh: taqqoslash",
+      "4-guruh: rasm"
+     ],
+     "yakun": "Natijalar: 4 / 8; 3 / 4; 1 / 2 > 3 / 8; rasm tekshirdi."
+    }
+   }
+  },
+  {
+   "mavzu": "Aralash son",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Aralash son nima?",
+      "matn": "Butun qism va kasr qismdan iborat son aralash son deyiladi. Masalan, bir butun va chorak: 1 va 1 / 4.",
+      "misol": "2 ta butun pitsa va yana yarim pitsa — 2 va 1 / 2.",
+      "savol": "Aralash son nimalardan iborat?",
+      "javob": "butun va kasr qismdan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Noto‘g‘ri kasr",
+      "matn": "Surati maxrajidan katta yoki teng kasr noto‘g‘ri kasr deyiladi. U butundan katta yoki butunga teng.",
+      "misol": "7 / 4 — noto‘g‘ri kasr.",
+      "savol": "7 / 4 butundan kattami?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Butun qismini ajratamiz",
+      "matn": "Noto‘g‘ri kasrni aralash songa aylantirish uchun suratni maxrajga bo‘lamiz. Bo‘linma — butun qism, qoldiq — kasr surati.",
+      "misol": "7 / 4: 7 / 4 — 1, qoldiq 3. Demak 1 va 3 / 4.",
+      "savol": "7 sonida 4 necha marta bor?",
+      "javob": "1",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yana misol",
+      "matn": "11 / 3: 11 / 3 — 3, qoldiq 2. Demak 3 va 2 / 3.",
+      "misol": "3 · 3 + 2 — 11.",
+      "savol": "3 · 3 + 2 nechaga teng?",
+      "javob": "11",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Teskari aylantirish",
+      "matn": "Aralash sonni noto‘g‘ri kasrga aylantirish uchun butun qismini maxrajga ko‘paytirib, suratga qo‘shamiz.",
+      "misol": "1 va 3 / 4: 1 · 4 + 3 — 7, javob 7 / 4.",
+      "savol": "1 · 4 + 3 nechaga teng?",
+      "javob": "7",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Noto‘g‘ri kasr — surat maxrajdan katta yoki teng. Aralash songa aylantirish: suratni maxrajga bo‘l. Teskarisi: butun · maxraj + surat.",
+    "misollar": [
+     {
+      "shart": "7 / 4 ni aralash songa aylantiring.",
+      "yechim": [
+       "7 ni 4 ga bo‘lamiz: 1, qoldiq 3.",
+       "Maxraj o‘sha — 4.",
+       "Javob 1 va 3 / 4."
+      ],
+      "javob": "1 va 3 / 4"
+     },
+     {
+      "shart": "11 / 3 ni aralash songa aylantiring.",
+      "yechim": [
+       "11 ni 3 ga bo‘lamiz: 3, qoldiq 2.",
+       "Maxraj 3.",
+       "Javob 3 va 2 / 3."
+      ],
+      "javob": "3 va 2 / 3"
+     },
+     {
+      "shart": "1 va 3 / 4 ni noto‘g‘ri kasrga aylantiring.",
+      "yechim": [
+       "1 · 4 — 4.",
+       "4 + 3 — 7.",
+       "Javob 7 / 4."
+      ],
+      "javob": "7 / 4"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Pitsalar",
+      "topshiriq": "Bir necha pitsani bo‘laklarga bo‘lib, aralash sonni ko‘rsating.",
+      "yechim": "Butun va bo‘lak.",
+      "mahsulot": "qog‘oz doiralar"
+     },
+     {
+      "nom": "Aylantiramiz",
+      "topshiriq": "Uchta noto‘g‘ri kasrni aralash songa aylantiring.",
+      "yechim": "Suratni maxrajga bo‘ling.",
+      "mahsulot": "kasrlar varag‘i"
+     },
+     {
+      "nom": "Teskari",
+      "topshiriq": "Uchta aralash sonni noto‘g‘ri kasrga aylantiring.",
+      "yechim": "Butun · maxraj + surat.",
+      "mahsulot": "kasrlar varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Aylantirishni teskari amal bilan tekshiring.",
+      "yechim": "3 · 3 + 2 — 11.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "11 / 3 — nechta butun?",
+      "javob": "3"
+     },
+     {
+      "shart": "11 / 3 da qoldiq nechta?",
+      "javob": "2"
+     },
+     {
+      "shart": "3 · 3 + 2 nechaga teng?",
+      "javob": "11"
+     },
+     {
+      "shart": "1 · 4 + 3 nechaga teng?",
+      "javob": "7"
+     },
+     {
+      "shart": "7 / 4 aralash son ko‘rinishi?",
+      "javob": "1 va 3 / 4"
+     },
+     {
+      "shart": "4 / 4 nechaga teng?",
+      "javob": "1"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Qoldiqni unutadi",
+      "sabab": "faqat bo‘linmani yozadi",
+      "oldini_olish": "qoldiq — kasr surati"
+     },
+     {
+      "xato": "Maxrajni o‘zgartiradi",
+      "sabab": "aylantirishda maxrajni adashtiradi",
+      "oldini_olish": "maxraj o‘zgarmaydi"
+     },
+     {
+      "xato": "Butun qismini maxrajga ko‘paytirmaydi",
+      "sabab": "teskari aylantirishda adashadi",
+      "oldini_olish": "butun · maxraj + surat"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "yarim va butun non"
+     },
+     {
+      "fan": "Oshxona",
+      "boglanish": "retseptdagi miqdorlar"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "uzunlikni o‘lchash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Aralash sonlar nonvoyxonasi»",
+     "muammo": "Nonlarni aralash son bilan qanday hisoblaymiz?",
+     "mahsulot": "nonvoyxona jadvali",
+     "bosqichlar": [
+      "nonlarni chizish",
+      "bo‘laklash",
+      "aralash son yozish",
+      "noto‘g‘ri kasrga aylantirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chizing",
+      "Bo‘laklang",
+      "Aralash son yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "bo‘laklar to‘g‘ri",
+      "aralash son to‘g‘ri",
+      "aylantirish to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Nonvoyxona»",
+     "bekatlar": [
+      {
+       "nom": "1-peshtaxta",
+       "matn": "7 / 4 ni aralash son qiling.",
+       "topshiriq": "Natija?",
+       "javob": "1 va 3 / 4",
+       "rasm": ""
+      },
+      {
+       "nom": "2-peshtaxta",
+       "matn": "11 / 3 ni aralash son qiling.",
+       "topshiriq": "Natija?",
+       "javob": "3 va 2 / 3",
+       "rasm": ""
+      },
+      {
+       "nom": "3-peshtaxta",
+       "matn": "1 va 3 / 4 ni kasrga aylantiring.",
+       "topshiriq": "Natija?",
+       "javob": "7 / 4",
+       "rasm": ""
+      },
+      {
+       "nom": "4-peshtaxta",
+       "matn": "4 / 4 nechaga teng?",
+       "topshiriq": "Natija?",
+       "javob": "1",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Bo‘lib ko‘rdingizmi?",
+      "Qoldiqni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Aralash son",
+      "tarif": "butun va kasr qismli son"
+     },
+     {
+      "atama": "Noto‘g‘ri kasr",
+      "tarif": "surati maxrajdan katta kasr"
+     },
+     {
+      "atama": "Butun qism",
+      "tarif": "bo‘linma"
+     },
+     {
+      "atama": "Kasr qism",
+      "tarif": "qoldiq / maxraj"
+     },
+     {
+      "atama": "Qoldiq",
+      "tarif": "bo‘linmay qolgan qism"
+     },
+     {
+      "atama": "Aylantirish",
+      "tarif": "boshqa ko‘rinishga o‘tkazish"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Aralash son butun va kasr qismdan iborat",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "7 / 4 — 1 va 3 / 4",
+      "togri": true,
+      "izoh": "aylantirish"
+     },
+     {
+      "matn": "11 / 3 — 3 va 1 / 3",
+      "togri": false,
+      "izoh": "3 va 2 / 3"
+     },
+     {
+      "matn": "1 · 4 + 3 — 7",
+      "togri": true,
+      "izoh": "teskari"
+     },
+     {
+      "matn": "Maxraj aylantirishda o‘zgaradi",
+      "togri": false,
+      "izoh": "o‘zgarmaydi"
+     },
+     {
+      "matn": "3 · 3 + 2 — 11",
+      "togri": true,
+      "izoh": "tekshirish"
+     },
+     {
+      "matn": "Noto‘g‘ri kasr butundan kichik",
+      "togri": false,
+      "izoh": "katta yoki teng"
+     },
+     {
+      "matn": "4 / 4 — 1",
+      "togri": true,
+      "izoh": "butun"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Aralash son nima?",
+      "javob": "butun va kasr qismli son"
+     },
+     {
+      "savol": "Noto‘g‘ri kasr?",
+      "javob": "surati maxrajdan katta yoki teng"
+     },
+     {
+      "savol": "7 / 4?",
+      "javob": "1 va 3 / 4"
+     },
+     {
+      "savol": "11 / 3?",
+      "javob": "3 va 2 / 3"
+     },
+     {
+      "savol": "1 va 3 / 4?",
+      "javob": "7 / 4"
+     },
+     {
+      "savol": "3 · 3 + 2?",
+      "javob": "11"
+     },
+     {
+      "savol": "1 · 4 + 3?",
+      "javob": "7"
+     },
+     {
+      "savol": "Qoldiq nima bo‘ladi?",
+      "javob": "kasr surati"
+     },
+     {
+      "savol": "Maxraj?",
+      "javob": "o‘zgarmaydi"
+     },
+     {
+      "savol": "4 / 4?",
+      "javob": "1"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Bo‘l",
+      "matn": "Suratni maxrajga bo‘l.",
+      "savol": "7 / 4?"
+     },
+     {
+      "nom": "Qoldiq",
+      "matn": "Qoldiqni top.",
+      "savol": "3?"
+     },
+     {
+      "nom": "Yoz",
+      "matn": "Aralash son yoz.",
+      "savol": "1 va 3 / 4?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari aylantir.",
+      "savol": "1 · 4 + 3?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun noto‘g‘ri kasrni aralash son ko‘rinishida yozamiz?",
+    "keys": {
+     "vaziyat": "Oshpaz 7 ta chorak bo‘lak non pishirdi.",
+     "savollar": [
+      "Necha butun non?",
+      "Aralash son bilan yozing."
+     ]
+    },
+    "tezis": "Butun va bo‘lak birga",
+    "taqqoslash": {
+     "a": "Noto‘g‘ri kasr",
+     "b": "Aralash son",
+     "umumiy": [
+      "bir xil qiymat",
+      "kasr bilan bog‘liq"
+     ],
+     "a_farq": [
+      "7 / 4",
+      "bitta kasr"
+     ],
+     "b_farq": [
+      "1 va 3 / 4",
+      "butun va kasr"
+     ]
+    },
+    "klaster": {
+     "markaz": "Aralash son",
+     "shoxlar": [
+      {
+       "nom": "Butun qism",
+       "bandlar": [
+        "bo‘linma"
+       ]
+      },
+      {
+       "nom": "Kasr qism",
+       "bandlar": [
+        "qoldiq / maxraj"
+       ]
+      },
+      {
+       "nom": "Aylantirish",
+       "bandlar": [
+        "bo‘lish"
+       ]
+      },
+      {
+       "nom": "Teskari",
+       "bandlar": [
+        "butun · maxraj + surat"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men butun va bo‘lakdan iboratman. Men kimman?",
+     "javob": "aralash son"
+    },
+    "hikmat": "Butun va bo‘lak — aralash son.",
+    "kalit_soz": "ARALASH",
+    "xato_yechim": {
+     "shart": "7 / 4 ni aralash songa aylantiring.",
+     "xato": "1 va 7 / 4",
+     "togri": "1 va 3 / 4",
+     "sabab": "qoldiq kasr surati bo‘ladi: 7 − 4 — 3"
+    },
+    "guruh_nomlari": [
+     "Aralashchilar",
+     "Bo‘luvchilar",
+     "Aylantiruvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Aralash son nonvoyxonasi»",
+     "topshiriq": "Guruh nonlarni aralash son bilan hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "7 / 4 ni aralash songa aylantiring.",
+     "B": "11 / 3 ni aralash songa aylantiring.",
+     "C": "1 va 3 / 4 ni noto‘g‘ri kasrga aylantiring va tekshiring."
+    },
+    "sinkveyn": [
+     "Aralash son",
+     "butun, bo‘lakli",
+     "bo‘ladi, aylantiriladi, yoziladi",
+     "Butun va bo‘lak",
+     "Non"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh aralash sonlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 7 / 4",
+      "2-guruh: 11 / 3",
+      "3-guruh: teskari",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 1 va 3 / 4; 3 va 2 / 3; 7 / 4; tekshirish 11."
+    }
+   }
+  },
+  {
+   "mavzu": "O‘nli kasr bilan tanishish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "O‘nli kasr nima?",
+      "matn": "Maxraji 10, 100, 1000 bo‘lgan kasrni vergul bilan yozish mumkin. Bunday kasr o‘nli kasr deyiladi.",
+      "misol": "7 / 10 — 0,7.",
+      "savol": "7 / 10 o‘nli kasrda qanday yoziladi?",
+      "javob": "0,7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Vergulning vazifasi",
+      "matn": "Vergul butun qismni kasr qismdan ajratadi. Verguldan oldin butun qism, keyin o‘ndan bir, yuzdan bir va hokazo.",
+      "misol": "2,5 — ikki butun, o‘ndan besh.",
+      "savol": "2,5 da verguldan keyingi raqam nechta?",
+      "javob": "5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mashhur kasrlar",
+      "matn": "1 / 2 — 0,5, 1 / 4 — 0,25, 3 / 4 — 0,75 va 1 / 10 — 0,1.",
+      "misol": "Yarim — 0,5. Chorak — 0,25.",
+      "savol": "1 / 2 o‘nli kasrda nechaga teng?",
+      "javob": "0,5",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Taqqoslaymiz",
+      "matn": "O‘nli kasrlarni taqqoslaganda avval butun qismni, keyin o‘ndan birni solishtiramiz.",
+      "misol": "0,7 > 0,5, chunki 7 > 5.",
+      "savol": "0,7 va 0,5 dan qaysi biri katta?",
+      "javob": "0,7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotda",
+      "matn": "O‘nli kasrlar pul, uzunlik va og‘irlikda ishlatiladi. 1,5 kg — bir yarim kilogramm.",
+      "misol": "1,5 kg — 1 kg va 500 g.",
+      "savol": "1,5 kg necha kg va g?",
+      "javob": "1 kg 500 g",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "O‘nli kasr — vergul bilan yoziladigan kasr. Verguldan keyingi birinchi raqam — o‘ndan bir. 0,5 — 1 / 2.",
+    "misollar": [
+     {
+      "shart": "7 / 10 va 3 / 100 ni o‘nli kasrda yozing.",
+      "yechim": [
+       "7 / 10 — 0,7.",
+       "3 / 100 — 0,03.",
+       "Javob 0,7 va 0,03."
+      ],
+      "javob": "0,7 va 0,03"
+     },
+     {
+      "shart": "0,7 va 0,5 ni taqqoslang.",
+      "yechim": [
+       "Butun qismlar teng — 0.",
+       "O‘ndan birlar: 7 > 5.",
+       "Javob 0,7 > 0,5."
+      ],
+      "javob": "0,7 > 0,5"
+     },
+     {
+      "shart": "1 / 2 va 3 / 4 ni o‘nli kasrda yozing.",
+      "yechim": [
+       "1 / 2 — 0,5.",
+       "3 / 4 — 0,75.",
+       "Javob 0,5 va 0,75."
+      ],
+      "javob": "0,5 va 0,75"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Metrni bo‘laklaymiz",
+      "topshiriq": "Chizg‘ichda 1 dm — 0,1 m ekanini ko‘rsating.",
+      "yechim": "10 dm — 1 m.",
+      "mahsulot": "chizg‘ich"
+     },
+     {
+      "nom": "Yozamiz",
+      "topshiriq": "Uchta oddiy kasrni o‘nli kasrda yozing.",
+      "yechim": "Maxraji 10 bo‘lsa vergul.",
+      "mahsulot": "kasrlar varag‘i"
+     },
+     {
+      "nom": "Taqqoslaymiz",
+      "topshiriq": "Uch juft o‘nli kasrni taqqoslang.",
+      "yechim": "Butun qismdan boshlang.",
+      "mahsulot": "sonlar varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Javoblarni rasm bilan tekshiring.",
+      "yechim": "0,5 — yarmi.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "7 / 10 o‘nli kasrda?",
+      "javob": "0,7"
+     },
+     {
+      "shart": "1 / 2 o‘nli kasrda?",
+      "javob": "0,5"
+     },
+     {
+      "shart": "3 / 4 o‘nli kasrda?",
+      "javob": "0,75"
+     },
+     {
+      "shart": "1 / 4 o‘nli kasrda?",
+      "javob": "0,25"
+     },
+     {
+      "shart": "0,7 va 0,5 dan qaysi biri katta?",
+      "javob": "0,7"
+     },
+     {
+      "shart": "3 / 100 o‘nli kasrda?",
+      "javob": "0,03"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Vergulni noto‘g‘ri qo‘yadi",
+      "sabab": "xonalarni adashtiradi",
+      "oldini_olish": "verguldan keyin o‘ndan bir"
+     },
+     {
+      "xato": "0,25 ni 0,5 dan katta deydi",
+      "sabab": "raqamlar sonini ko‘radi",
+      "oldini_olish": "o‘ndan birlarni solishtirish"
+     },
+     {
+      "xato": "Nolni yozmaydi",
+      "sabab": "3 / 100 ni 0,3 yozadi",
+      "oldini_olish": "0,03 — yuzdan uch"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "pul va uzunlik"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "o‘lchov natijalari"
+     },
+     {
+      "fan": "Informatika",
+      "boglanish": "kalkulyator"
+     }
+    ],
+    "loyiha": {
+     "nom": "«O‘nli kasrlar chizg‘ichi»",
+     "muammo": "O‘nli kasrlarni chizg‘ichda qanday ko‘rsatamiz?",
+     "mahsulot": "o‘nli kasr chizg‘ichi",
+     "bosqichlar": [
+      "chizg‘ich yasash",
+      "10 bo‘lakka bo‘lish",
+      "o‘nli kasr yozish",
+      "taqqoslash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Chizg‘ich yasang",
+      "Bo‘laklang",
+      "O‘nli kasr yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "bo‘laklar teng",
+      "kasrlar to‘g‘ri",
+      "vergul to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «O‘nli kasrlar o‘lkasi»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "7 / 10.",
+       "topshiriq": "O‘nli kasr?",
+       "javob": "0,7",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "1 / 2.",
+       "topshiriq": "O‘nli kasr?",
+       "javob": "0,5",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "3 / 4.",
+       "topshiriq": "O‘nli kasr?",
+       "javob": "0,75",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "0,7 va 0,5.",
+       "topshiriq": "Qaysi katta?",
+       "javob": "0,7",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Vergulni qayerga qo‘ydingiz?",
+      "Qaysi kasr katta?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "O‘nli kasr",
+      "tarif": "vergulli kasr"
+     },
+     {
+      "atama": "Vergul",
+      "tarif": "butun va kasr ajratgichi"
+     },
+     {
+      "atama": "O‘ndan bir",
+      "tarif": "verguldan keyingi birinchi xona"
+     },
+     {
+      "atama": "Yuzdan bir",
+      "tarif": "ikkinchi xona"
+     },
+     {
+      "atama": "Butun qism",
+      "tarif": "verguldan oldingi qism"
+     },
+     {
+      "atama": "Kasr qism",
+      "tarif": "verguldan keyingi qism"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "7 / 10 — 0,7",
+      "togri": true,
+      "izoh": "o‘nli kasr"
+     },
+     {
+      "matn": "1 / 2 — 0,2",
+      "togri": false,
+      "izoh": "0,5"
+     },
+     {
+      "matn": "3 / 4 — 0,75",
+      "togri": true,
+      "izoh": "o‘nli kasr"
+     },
+     {
+      "matn": "0,7 > 0,5",
+      "togri": true,
+      "izoh": "7 > 5"
+     },
+     {
+      "matn": "3 / 100 — 0,3",
+      "togri": false,
+      "izoh": "0,03"
+     },
+     {
+      "matn": "Vergul butun va kasr qismni ajratadi",
+      "togri": true,
+      "izoh": "vazifa"
+     },
+     {
+      "matn": "1 / 4 — 0,25",
+      "togri": true,
+      "izoh": "o‘nli kasr"
+     },
+     {
+      "matn": "O‘nli kasr pulda ishlatilmaydi",
+      "togri": false,
+      "izoh": "ishlatiladi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "O‘nli kasr nima?",
+      "javob": "vergulli kasr"
+     },
+     {
+      "savol": "7 / 10?",
+      "javob": "0,7"
+     },
+     {
+      "savol": "1 / 2?",
+      "javob": "0,5"
+     },
+     {
+      "savol": "3 / 4?",
+      "javob": "0,75"
+     },
+     {
+      "savol": "1 / 4?",
+      "javob": "0,25"
+     },
+     {
+      "savol": "3 / 100?",
+      "javob": "0,03"
+     },
+     {
+      "savol": "0,7 va 0,5?",
+      "javob": "0,7 katta"
+     },
+     {
+      "savol": "Vergul nima qiladi?",
+      "javob": "butun va kasrni ajratadi"
+     },
+     {
+      "savol": "1,5 kg?",
+      "javob": "1 kg 500 g"
+     },
+     {
+      "savol": "Verguldan keyingi birinchi xona?",
+      "javob": "o‘ndan bir"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "O‘qi",
+      "matn": "O‘nli kasrni o‘qi.",
+      "savol": "0,7?"
+     },
+     {
+      "nom": "Yoz",
+      "matn": "Oddiy kasrni yoz.",
+      "savol": "7 / 10?"
+     },
+     {
+      "nom": "Solishtir",
+      "matn": "Taqqosla.",
+      "savol": "0,7 va 0,5?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Rasm chiz.",
+      "savol": "Yarmi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun o‘nli kasr pul va o‘lchovda qulay?",
+    "keys": {
+     "vaziyat": "Do‘konda 1 kg olma 7 / 10 kg qadoqlarda sotiladi.",
+     "savollar": [
+      "O‘nli kasrda yozing.",
+      "Qaysi qadoq og‘ir: 0,7 yoki 0,5 kg?"
+     ]
+    },
+    "tezis": "Vergul — o‘nli kasrning belgisi",
+    "taqqoslash": {
+     "a": "Oddiy kasr",
+     "b": "O‘nli kasr",
+     "umumiy": [
+      "butunning bo‘lagi",
+      "bir xil qiymat"
+     ],
+     "a_farq": [
+      "7 / 10",
+      "surat va maxraj"
+     ],
+     "b_farq": [
+      "0,7",
+      "vergul"
+     ]
+    },
+    "klaster": {
+     "markaz": "O‘nli kasr",
+     "shoxlar": [
+      {
+       "nom": "Vergul",
+       "bandlar": [
+        "butun va kasr"
+       ]
+      },
+      {
+       "nom": "O‘ndan bir",
+       "bandlar": [
+        "0,1"
+       ]
+      },
+      {
+       "nom": "Mashhur",
+       "bandlar": [
+        "0,5",
+        "0,25",
+        "0,75"
+       ]
+      },
+      {
+       "nom": "Taqqoslash",
+       "bandlar": [
+        "butun, keyin o‘ndan bir"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men kasrman, lekin vergul bilan yozilaman. Men kimman?",
+     "javob": "o‘nli kasr"
+    },
+    "hikmat": "Vergul — kasr belgisi.",
+    "kalit_soz": "VERGUL",
+    "xato_yechim": {
+     "shart": "3 / 100 ni o‘nli kasrda yozing.",
+     "xato": "0,3",
+     "togri": "0,03",
+     "sabab": "yuzdan uch — ikkinchi xonada"
+    },
+    "guruh_nomlari": [
+     "O‘nli kasrchilar",
+     "Vergulchilar",
+     "Taqqoslovchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«O‘nli kasrlar»",
+     "topshiriq": "Guruh o‘nli kasrlarni yozib, taqqoslaydi."
+    },
+    "vazifalar": {
+     "A": "7 / 10 va 3 / 100 ni o‘nli kasrda yozing.",
+     "B": "0,7 va 0,5 ni taqqoslang.",
+     "C": "1 / 2 va 3 / 4 ni o‘nli kasrda yozing."
+    },
+    "sinkveyn": [
+     "O‘nli kasr",
+     "kichik, aniq",
+     "yoziladi, o‘qiladi, taqqoslanadi",
+     "Vergul — ko‘prik",
+     "Vergul"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh o‘nli kasrlar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: yozish",
+      "2-guruh: taqqoslash",
+      "3-guruh: mashhur kasrlar",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 0,7 va 0,03; 0,7 > 0,5; 0,5 va 0,75."
+    }
+   }
   }
  ]
 }
