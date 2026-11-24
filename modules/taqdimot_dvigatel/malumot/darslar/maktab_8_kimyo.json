@@ -6941,6 +6941,465 @@
      "yakun": "Natijalar: 18; 7; 54."
     }
    }
+  },
+  {
+   "mavzu": "Kimyoviy hisoblashlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Hisob nima uchun kerak",
+      "matn": "Kimyoda moddalarning aniq miqdori muhim: dori tayyorlashda, o‘g‘it aralashtirishda, zavodda mahsulot chiqarishda. Ortiqcha olingan modda isrof bo‘ladi, kam olinsa reaksiya to‘liq bormaydi. Shuning uchun hisoblash kimyogarning asosiy ko‘nikmasi.",
+      "misol": "Retseptdagi miqdor buzilsa, taom ham buziladi.",
+      "savol": "Hisob nima uchun kerak?",
+      "javob": "aniq miqdor uchun",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Massa ulushi",
+      "matn": "Elementning birikmadagi massa ulushi — shu element massasining birikma massasiga nisbati. Ohaktosh (kaltsiy karbonat) molyar massasi 40 plyus 12 plyus 3 · 16 — 100. Kaltsiy massasi 40, ulushi 40 / 100 — 0,4, ya’ni 40 foiz. Suvda vodorod 2 / 18 — taxminan 11 foiz.",
+      "misol": "Ohaktoshning 40 foizi — kaltsiy.",
+      "savol": "Ohaktoshda kaltsiy ulushi?",
+      "javob": "40 foiz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Eritma konsentratsiyasi",
+      "matn": "Eritmadagi erigan modda ulushi — erigan modda massasini eritma massasiga bo‘lish. Eritma massasi — erituvchi plyus erigan modda. 20 gramm tuz va 180 gramm suv aralashtirilsa, eritma 200 gramm, ulushi 20 / 200 — 0,1, ya’ni 10 foiz.",
+      "misol": "Dorixonadagi 5 foizli yod eritmasi shu hisob bilan tayyorlanadi.",
+      "savol": "Eritma massasi nimadan iborat?",
+      "javob": "erituvchi va erigan moddadan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Reaksiya bo‘yicha hisob",
+      "matn": "Reaksiya tenglamasidagi koeffitsiyentlar mollar nisbatini beradi. Algoritm: tenglama yoz, ma’lum moddaning molini top, nisbat bo‘yicha noma’lum modda molini top, so‘ng massa yoki hajmni hisobla. Masalan, vodorod yonishi: ikki mol vodorod ikki mol suv beradi.",
+      "misol": "Koeffitsiyent — bu mol soni.",
+      "savol": "Hisobning birinchi qadami nima?",
+      "javob": "tenglama yozish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Namuna masala",
+      "matn": "6 gramm vodorod yondi. Mol — 6 / 2 — 3. Tenglamada vodorod va suv nisbati bir-bir, demak 3 mol suv. Suv massasi — 3 · 18 — 54 gramm. Ohaktosh 100 gramm qizdirilsa, 1 mol kaltsiy oksid (56 gramm) va 1 mol karbonat angidrid (22,4 litr) hosil bo‘ladi.",
+      "misol": "Hisobni har doim molga o‘tkazib bajar.",
+      "savol": "6 gramm vodoroddan necha gramm suv hosil bo‘ladi?",
+      "javob": "54",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "n — m / M. Ulush — qism / butun. Tenglamadagi koeffitsiyent — mol nisbati. Algoritm: tenglama, mol, nisbat, javob.",
+    "misollar": [
+     {
+      "shart": "20 gramm tuz 180 gramm suvda eritildi. Tuz ulushi (foizda)?",
+      "yechim": [
+       "Eritma 20 plyus 180 — 200 gramm.",
+       "20 / 200 — 0,1.",
+       "Javob 10 foiz."
+      ],
+      "javob": "10 foiz"
+     },
+     {
+      "shart": "200 gramm ohaktosh (M — 100) parchalandi. Kaltsiy oksid (M — 56) massasi?",
+      "yechim": [
+       "n — 200 / 100 — 2 mol.",
+       "Oksid ham 2 mol.",
+       "m — 2 · 56 — 112 gramm."
+      ],
+      "javob": "112 gramm"
+     },
+     {
+      "shart": "6 gramm vodorod (M — 2) yondi. Suv (M — 18) massasi?",
+      "yechim": [
+       "n — 6 / 2 — 3 mol.",
+       "Suv ham 3 mol.",
+       "m — 3 · 18 — 54 gramm."
+      ],
+      "javob": "54 gramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Massa ulushi jadvali",
+      "topshiriq": "Beshta birikmada element ulushini hisoblang.",
+      "yechim": "Qism / butun.",
+      "mahsulot": "kalkulyator, jadval"
+     },
+     {
+      "nom": "Eritma tayyorlash",
+      "topshiriq": "20 gramm tuz va 180 gramm suvdan eritma tayyorlang.",
+      "yechim": "Tarozida tortib oling.",
+      "mahsulot": "tarozi, stakan"
+     },
+     {
+      "nom": "Algoritm kartasi",
+      "topshiriq": "To‘rt qadamli algoritmni kartochkaga yozing.",
+      "yechim": "Tenglama, mol, nisbat, javob.",
+      "mahsulot": "karton"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Mol orqali.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "20 / 200 nechaga teng?",
+      "javob": "0,1"
+     },
+     {
+      "shart": "2 · 56 nechaga teng?",
+      "javob": "112"
+     },
+     {
+      "shart": "3 · 18 nechaga teng?",
+      "javob": "54"
+     },
+     {
+      "shart": "6 / 2 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "40 / 100 nechaga teng?",
+      "javob": "0,4"
+     },
+     {
+      "shart": "Ohaktosh molyar massasi?",
+      "javob": "100"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Eritma massasini faqat suv massasi deydi",
+      "sabab": "suv plyus tuz",
+      "oldini_olish": "ikkalasi qo‘shiladi"
+     },
+     {
+      "xato": "Massani to‘g‘ridan-to‘g‘ri tenglamaga qo‘yadi",
+      "sabab": "avval molga o‘tkazish kerak",
+      "oldini_olish": "n — m / M"
+     },
+     {
+      "xato": "Koeffitsiyentni massalar nisbati deydi",
+      "sabab": "mollar nisbati",
+      "oldini_olish": "molga o‘tkaz"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Dorixona",
+      "boglanish": "eritmalar tayyorlash"
+     },
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "o‘g‘it miqdori"
+     },
+     {
+      "fan": "Oshxona",
+      "boglanish": "tuz eritmasi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kimyogar hisobchi»",
+     "muammo": "Eritma va reaksiya hisoblarini qanday bajaramiz?",
+     "mahsulot": "hisob daftari va tajriba",
+     "bosqichlar": [
+      "masalalarni tanlash",
+      "algoritm bo‘yicha yechish",
+      "eritma tayyorlash",
+      "natijani tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Masala tanlang",
+      "Yeching",
+      "Eritma tayyorlang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "hisob to‘g‘ri",
+      "birliklar to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Hisob ustaxonasi»",
+     "bekatlar": [
+      {
+       "nom": "1-stol",
+       "matn": "20 gramm tuz, 180 gramm suv.",
+       "topshiriq": "Ulush foiz?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "2-stol",
+       "matn": "200 gramm ohaktosh.",
+       "topshiriq": "Oksid massasi?",
+       "javob": "112",
+       "rasm": ""
+      },
+      {
+       "nom": "3-stol",
+       "matn": "6 gramm vodorod.",
+       "topshiriq": "Suv massasi?",
+       "javob": "54",
+       "rasm": ""
+      },
+      {
+       "nom": "4-stol",
+       "matn": "Ohaktoshda kaltsiy.",
+       "topshiriq": "Ulush foiz?",
+       "javob": "40",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qadamdan boshladingiz?",
+      "Molga o‘tdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Massa ulushi",
+      "tarif": "qism massasining butunga nisbati"
+     },
+     {
+      "atama": "Eritma",
+      "tarif": "erituvchi va erigan modda"
+     },
+     {
+      "atama": "Konsentratsiya",
+      "tarif": "erigan modda ulushi"
+     },
+     {
+      "atama": "Stexiometriya",
+      "tarif": "reaksiya miqdoriy nisbatlari"
+     },
+     {
+      "atama": "Koeffitsiyent",
+      "tarif": "tenglamadagi mol soni"
+     },
+     {
+      "atama": "Algoritm",
+      "tarif": "ketma-ket qadamlar"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Eritma massasi erituvchi plyus erigan modda",
+      "togri": true,
+      "izoh": "yig‘indi"
+     },
+     {
+      "matn": "Massani to‘g‘ridan-to‘g‘ri tenglamaga qo‘yish mumkin",
+      "togri": false,
+      "izoh": "mol kerak"
+     },
+     {
+      "matn": "Ohaktoshda kaltsiy 40 foiz",
+      "togri": true,
+      "izoh": "40 / 100"
+     },
+     {
+      "matn": "6 / 2 — 3",
+      "togri": true,
+      "izoh": "mol"
+     },
+     {
+      "matn": "3 · 18 — 54",
+      "togri": true,
+      "izoh": "massa"
+     },
+     {
+      "matn": "Koeffitsiyent mollar nisbatini bildiradi",
+      "togri": true,
+      "izoh": "tenglama"
+     },
+     {
+      "matn": "20 / 200 — 0,2",
+      "togri": false,
+      "izoh": "0,1"
+     },
+     {
+      "matn": "Hisob birinchi qadami tenglama yozish",
+      "togri": true,
+      "izoh": "algoritm"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Massa ulushi?",
+      "javob": "qism / butun"
+     },
+     {
+      "savol": "Eritma?",
+      "javob": "erituvchi plyus modda"
+     },
+     {
+      "savol": "20 / 200?",
+      "javob": "0,1"
+     },
+     {
+      "savol": "Algoritm?",
+      "javob": "tenglama, mol, nisbat, javob"
+     },
+     {
+      "savol": "n?",
+      "javob": "m / M"
+     },
+     {
+      "savol": "6 / 2?",
+      "javob": "3"
+     },
+     {
+      "savol": "3 · 18?",
+      "javob": "54"
+     },
+     {
+      "savol": "2 · 56?",
+      "javob": "112"
+     },
+     {
+      "savol": "Koeffitsiyent?",
+      "javob": "mol nisbati"
+     },
+     {
+      "savol": "40 / 100?",
+      "javob": "0,4"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Tenglamani yoz.",
+      "savol": "Koeffitsiyentlar?"
+     },
+     {
+      "nom": "Mol",
+      "matn": "Molni top.",
+      "savol": "m / M?"
+     },
+     {
+      "nom": "Nisbat",
+      "matn": "Noma’lum molni top.",
+      "savol": "Koeffitsiyent nisbati?"
+     },
+     {
+      "nom": "Javob",
+      "matn": "Massani yoz.",
+      "savol": "n · M?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun reaksiya hisobida avval massani molga aylantiramiz?",
+    "keys": {
+     "vaziyat": "6 gramm vodorod yonganda qancha suv hosil bo‘lishini bilish kerak.",
+     "savollar": [
+      "Vodorod necha mol?",
+      "Suv necha mol va necha gramm?"
+     ]
+    },
+    "tezis": "Tenglama, mol, nisbat, javob",
+    "taqqoslash": {
+     "a": "Massa ulushi",
+     "b": "Eritma ulushi",
+     "umumiy": [
+      "qism / butun",
+      "foizda ifodalanadi"
+     ],
+     "a_farq": [
+      "birikmada element",
+      "formuladan"
+     ],
+     "b_farq": [
+      "eritmada modda",
+      "massalardan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kimyoviy hisoblashlar",
+     "shoxlar": [
+      {
+       "nom": "Massa ulushi",
+       "bandlar": [
+        "qism / butun"
+       ]
+      },
+      {
+       "nom": "Eritma",
+       "bandlar": [
+        "erituvchi plyus modda"
+       ]
+      },
+      {
+       "nom": "Reaksiya",
+       "bandlar": [
+        "tenglama",
+        "mol nisbati"
+       ]
+      },
+      {
+       "nom": "Algoritm",
+       "bandlar": [
+        "4 qadam"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men kimyogarning aniq hisobiman. Men nimaman?",
+     "javob": "kimyoviy hisoblash"
+    },
+    "hikmat": "Hisob mol orqali.",
+    "kalit_soz": "HISOB",
+    "xato_yechim": {
+     "shart": "6 gramm vodoroddan suv massasi?",
+     "xato": "6 · 18",
+     "togri": "6 / 2 — 3 mol, 3 · 18 — 54 gramm",
+     "sabab": "avval molga o‘tkaziladi"
+    },
+    "guruh_nomlari": [
+     "Hisobchilar",
+     "Eritmachilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Kimyogar hisobchi»",
+     "topshiriq": "Guruh masalalar daftarini tuzadi."
+    },
+    "vazifalar": {
+     "A": "20 gramm tuz, 180 gramm suv bo‘lsa ulush?",
+     "B": "200 gramm ohaktosh bo‘lsa oksid?",
+     "C": "6 gramm vodorod bo‘lsa suv?"
+    },
+    "sinkveyn": [
+     "Hisob",
+     "aniq, ketma-ket",
+     "o‘lchaydi, qo‘shadi, tekshiradi",
+     "Mol orqali hisoblanadi",
+     "Massa"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh kimyoviy hisoblashni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: massa ulushi",
+      "2-guruh: eritma",
+      "3-guruh: reaksiya",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 10 foiz; 112 gramm; 54 gramm."
+    }
+   }
   }
  ]
 }
