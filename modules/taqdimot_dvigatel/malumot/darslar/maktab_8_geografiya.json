@@ -6959,6 +6959,935 @@
      "yakun": "Natijalar: 480; 4; 2000."
     }
    }
+  },
+  {
+   "mavzu": "Tashqi iqtisodiy aloqalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tashqi iqtisodiy aloqalar nima",
+      "matn": "Tashqi iqtisodiy aloqalar — mamlakatning boshqa davlatlar bilan savdo, investitsiya va mehnat almashinuvi. Mamlakatdan chiqarilgan tovar eksport, olib kirilgan tovar import deyiladi. Eksport va import farqi savdo balansini ko‘rsatadi.",
+      "misol": "Eksport — sotish, import — olib kirish.",
+      "savol": "Eksport nima?",
+      "javob": "chet elga sotish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Eksport va import",
+      "matn": "O‘zbekiston oltin, paxta tolasi, gaz, to‘qimachilik mahsuloti, meva-sabzavot, kimyo mahsuloti va xizmatlarni eksport qiladi. Mashina-uskuna, texnika, dori-darmon va ba’zi oziq-ovqatni import qiladi. Asosiy savdo hamkorlari: Xitoy, Rossiya, Qozog‘iston, Turkiya va boshqa davlatlar.",
+      "misol": "Hamkorlar: Xitoy, Rossiya, Qozog‘iston.",
+      "savol": "Import nima?",
+      "javob": "chet eldan olib kirish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Investitsiya va hamkorlik",
+      "matn": "Xorijiy investitsiya yangi zavod, yo‘l va texnologiya olib keladi. O‘zbekiston xalqaro tashkilotlar va mintaqaviy hamkorlikda qatnashadi. Erkin iqtisodiy zonalar va bojxona yengilliklari sarmoyani jalb qiladi. Savdo yo‘llari Buyuk ipak yo‘li an’anasini davom ettiradi.",
+      "misol": "Sarmoya — yangi zavod.",
+      "savol": "Investitsiya nima beradi?",
+      "javob": "yangi zavod va texnologiya",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, eksport 18 milliard, import 24 milliard dollar bo‘lsa, savdo balansi 18 − 24 — minus 6 milliard dollar (taxminiy misol). Masalan, 5 million dollarlik tovarning 40 foizi Xitoyga ketsa, 5 · 0,4 — 2 million dollar. Masalan, 1 dollar 12000 so‘m desak, 3 dollar 3 · 12000 — 36000 so‘m (taxminiy misol).",
+      "misol": "Balans — eksport minus import.",
+      "savol": "Masalan, 5 million dollarning 40 foizi. Necha million?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Raqobat va sifat",
+      "matn": "Tashqi bozorda raqobat kuchli, shuning uchun sifat, narx va yetkazish muddati muhim. Tayyor mahsulot xomashyodan qimmat turadi, shu sabab qayta ishlangan mahsulotni eksport qilish foydali. Bu ish o‘rni va daromadni oshiradi.",
+      "misol": "Tayyor mahsulot — foyda.",
+      "savol": "Nima qimmatroq: xomashyo yoki tayyor mahsulot?",
+      "javob": "tayyor mahsulot",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tashqi iqtisodiy aloqalar: eksport, import, investitsiya. Balans — eksport minus import. Hamkorlar: Xitoy, Rossiya, Qozog‘iston.",
+    "misollar": [
+     {
+      "shart": "Masalan, 5 million dollarning 40 foizi Xitoyga. Necha million dollar?",
+      "yechim": [
+       "40 foiz — 0,4.",
+       "5 · 0,4.",
+       "Javob 2."
+      ],
+      "javob": "2"
+     },
+     {
+      "shart": "Masalan, 1 dollar 12000 so‘m. 3 dollar necha so‘m?",
+      "yechim": [
+       "3 · 12000.",
+       "Hisoblang.",
+       "Javob 36000."
+      ],
+      "javob": "36000"
+     },
+     {
+      "shart": "Masalan, eksport 18, import 24 milliard. Qaysi biri ko‘p, farqi necha?",
+      "yechim": [
+       "24 minus 18.",
+       "Ayiring.",
+       "Javob 6."
+      ],
+      "javob": "6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Hamkorlar xaritasi",
+      "topshiriq": "Xaritada savdo hamkorlarini belgilang.",
+      "yechim": "Yo‘nalishlar.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Eksport-import jadvali",
+      "topshiriq": "Tovarlarni eksport va importga ajrating.",
+      "yechim": "Tasniflash.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Savdo o‘yini",
+      "topshiriq": "Rolli o‘yin: sotuvchi va xaridor.",
+      "yechim": "Savdo muzokarasi.",
+      "mahsulot": "tovar kartochkalari"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "5 · 0,4 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "3 · 12000 nechaga teng?",
+      "javob": "36000"
+     },
+     {
+      "shart": "24 − 18 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "Chet elga sotish nima?",
+      "javob": "eksport"
+     },
+     {
+      "shart": "Olib kirish nima?",
+      "javob": "import"
+     },
+     {
+      "shart": "Hamkor davlat?",
+      "javob": "Xitoy"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Eksport — olib kirish deydi",
+      "sabab": "chet elga sotish",
+      "oldini_olish": "import bu olib kirish"
+     },
+     {
+      "xato": "Xomashyo qimmatroq deydi",
+      "sabab": "tayyor mahsulot qimmatroq",
+      "oldini_olish": "qo‘shilgan qiymat"
+     },
+     {
+      "xato": "Tashqi savdo kerak emas deydi",
+      "sabab": "kerak",
+      "oldini_olish": "bozor va texnologiya"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Iqtisod",
+      "boglanish": "savdo balansi"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va ayirish"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Buyuk ipak yo‘li"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Eksport xaritasi»",
+     "muammo": "O‘zbekiston nimani kimga sotadi?",
+     "mahsulot": "savdo atlasi",
+     "bosqichlar": [
+      "xarita",
+      "jadval",
+      "hisob",
+      "o‘yin",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Tasnif qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bojxona va port»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "5 million, 40 foiz.",
+       "topshiriq": "Million?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "3 dollar, 12000 so‘m.",
+       "topshiriq": "So‘m?",
+       "javob": "36000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "24 milliard va 18 milliard.",
+       "topshiriq": "Farq?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Chet elga sotiladi.",
+       "topshiriq": "Nima?",
+       "javob": "eksport",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Eksport",
+      "tarif": "chet elga sotish"
+     },
+     {
+      "atama": "Import",
+      "tarif": "chet eldan olib kirish"
+     },
+     {
+      "atama": "Investitsiya",
+      "tarif": "sarmoya"
+     },
+     {
+      "atama": "Savdo balansi",
+      "tarif": "eksport va import farqi"
+     },
+     {
+      "atama": "Bojxona",
+      "tarif": "chegara nazorati"
+     },
+     {
+      "atama": "Hamkor",
+      "tarif": "birga ishlovchi davlat"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Eksport chet elga sotishdir",
+      "togri": true,
+      "izoh": "tovar"
+     },
+     {
+      "matn": "Import chet elga sotishdir",
+      "togri": false,
+      "izoh": "olib kirish"
+     },
+     {
+      "matn": "5 · 0,4 — 2",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Xitoy savdo hamkori",
+      "togri": true,
+      "izoh": "hamkor"
+     },
+     {
+      "matn": "Tashqi savdo kerak emas",
+      "togri": false,
+      "izoh": "kerak"
+     },
+     {
+      "matn": "Investitsiya zavod keltiradi",
+      "togri": true,
+      "izoh": "sarmoya"
+     },
+     {
+      "matn": "3 · 12000 — 36000",
+      "togri": true,
+      "izoh": "so‘m"
+     },
+     {
+      "matn": "Tayyor mahsulot qimmatroq",
+      "togri": true,
+      "izoh": "foyda"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Eksport?",
+      "javob": "sotish"
+     },
+     {
+      "savol": "Import?",
+      "javob": "olib kirish"
+     },
+     {
+      "savol": "Investitsiya?",
+      "javob": "sarmoya"
+     },
+     {
+      "savol": "Balans?",
+      "javob": "farq"
+     },
+     {
+      "savol": "Bojxona?",
+      "javob": "chegara"
+     },
+     {
+      "savol": "Hamkor?",
+      "javob": "Xitoy"
+     },
+     {
+      "savol": "5 · 0,4?",
+      "javob": "2"
+     },
+     {
+      "savol": "3 · 12000?",
+      "javob": "36000"
+     },
+     {
+      "savol": "24 − 18?",
+      "javob": "6"
+     },
+     {
+      "savol": "Tayyor mahsulot?",
+      "javob": "qimmat"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Do‘kondagi tovarlarni kuzat.",
+      "savol": "Qayerniki?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Savdo balansini top.",
+      "savol": "Ayirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Xomashyo va tayyor.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Foyda?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tayyor mahsulotni eksport qilish foydaliroq?",
+    "keys": {
+     "vaziyat": "Fermer paxtani xomashyo sifatida sotmoqchi, fabrika esa mato taklif qilmoqda.",
+     "savollar": [
+      "Qaysi biri foydali?",
+      "Nima uchun?"
+     ]
+    },
+    "tezis": "Savdo — ko‘prik",
+    "taqqoslash": {
+     "a": "Eksport",
+     "b": "Import",
+     "umumiy": [
+      "tashqi savdo",
+      "bojxonadan o‘tadi"
+     ],
+     "a_farq": [
+      "chet elga ketadi",
+      "valyuta keladi"
+     ],
+     "b_farq": [
+      "chet eldan keladi",
+      "valyuta ketadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Tashqi iqtisodiy aloqalar",
+     "shoxlar": [
+      {
+       "nom": "Eksport",
+       "bandlar": [
+        "oltin",
+        "paxta tolasi",
+        "gaz"
+       ]
+      },
+      {
+       "nom": "Import",
+       "bandlar": [
+        "mashina",
+        "dori"
+       ]
+      },
+      {
+       "nom": "Hamkorlar",
+       "bandlar": [
+        "Xitoy",
+        "Rossiya",
+        "Qozog‘iston"
+       ]
+      },
+      {
+       "nom": "Sarmoya",
+       "bandlar": [
+        "zavod",
+        "texnologiya"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men chet elga sotiladigan tovarman. Men nimaman?",
+     "javob": "eksport"
+    },
+    "hikmat": "Savdo — hamkorlik.",
+    "kalit_soz": "SAVDO",
+    "xato_yechim": {
+     "shart": "Import nima?",
+     "xato": "chet elga sotish",
+     "togri": "chet eldan olib kirish",
+     "sabab": "eksportning teskarisi"
+    },
+    "guruh_nomlari": [
+     "Savdogarlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Bojxonachilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Eksport xaritasi»",
+     "topshiriq": "Guruh savdo atlasini tuzadi."
+    },
+    "vazifalar": {
+     "A": "5 million, 40 foiz?",
+     "B": "3 dollar, 12000?",
+     "C": "24 va 18 milliard?"
+    },
+    "sinkveyn": [
+     "Savdo",
+     "foydali, ochiq",
+     "sotadi, olib keladi, almashadi",
+     "Davlatlar ko‘prigi",
+     "Eksport"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tashqi savdoni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: eksport",
+      "2-guruh: import",
+      "3-guruh: hamkorlar",
+      "4-guruh: sarmoya"
+     ],
+     "yakun": "Natijalar: 2; 36000; 6."
+    }
+   }
+  },
+  {
+   "mavzu": "Turizm",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Turizm nima",
+      "matn": "Turizm — dam olish, tanishish, davolanish yoki bilim olish uchun sayohat qilish. U xizmat ko‘rsatish tarmog‘i bo‘lib, mehmonxona, transport, ovqatlanish va gidlik xizmatlarini birlashtiradi. Turizm ish o‘rni va valyuta daromadi beradi.",
+      "misol": "Turizm — sayohat va xizmat.",
+      "savol": "Turizm nima?",
+      "javob": "sayohat qilish va xizmat tarmog‘i",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Turizm markazlari",
+      "matn": "Samarqand, Buxoro, Xiva va Shahrisabz tarixiy obidalari bilan mashhur: Registon, Ark, Ichan qal’a, Oqsaroy. Toshkent — yirik markaz. Chimyon, Amirsoy va Zomin tog‘ turizmiga, Orol bo‘yi va Qizilqum esa ekoturizmga mos. Buyuk ipak yo‘li bo‘yidagi shaharlar sayyohlarni jalb qiladi.",
+      "misol": "Samarqand, Buxoro, Xiva — tarix.",
+      "savol": "Registon qayerda?",
+      "javob": "Samarqandda",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Turizm turlari",
+      "matn": "Madaniy-tarixiy, tog‘ va chang‘i, ekologik, ziyorat, gastronomik, davolanish va tadbirkorlik turizmi bor. O‘zbek oshxonasi, hunarmandchilik va bayramlar ham sayyohlarni qiziqtiradi. Zamonaviy turizmda onlayn bron va elektron viza qulaylik yaratadi.",
+      "misol": "Har sayyohga o‘z yo‘nalishi.",
+      "savol": "Amirsoy qaysi turizmga mos?",
+      "javob": "tog‘ va chang‘i turizmiga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, bir yilda 6 million sayyoh kelsa, har biri o‘rtacha 800 dollar sarflasa, 6 · 800 — 4800 million dollar (taxminiy misol). Masalan, mehmonxonada 40 ta xona, kuniga 70 foizi band bo‘lsa, 40 · 0,7 — 28 ta xona band. Masalan, bir kecha 50 dollar bo‘lsa, 3 kechaga 3 · 50 — 150 dollar.",
+      "misol": "Soni · sarf — daromad.",
+      "savol": "Masalan, 40 xonaning 70 foizi band. Nechta xona?",
+      "javob": "28",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mas’uliyatli turizm",
+      "matn": "Sayyoh tarixiy obidani asrashi, axlat tashlamasligi va mahalliy urf-odatni hurmat qilishi kerak. Tabiat sayohatida o‘rmon va suvni ifloslantirmaslik, yong‘in chiqarmaslik lozim. Mas’uliyatli turizm kelajak avlod uchun tabiat va madaniyatni saqlaydi.",
+      "misol": "Asra va hurmat qil.",
+      "savol": "Sayyoh nimaga rioya qiladi?",
+      "javob": "tabiat va obidani asrashga",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Turizm: tarix, tog‘, ekologiya. Samarqand, Buxoro, Xiva. Daromad — soni · sarf.",
+    "misollar": [
+     {
+      "shart": "Masalan, 6 million sayyoh, har biri 800 dollar. Necha million dollar?",
+      "yechim": [
+       "6 · 800.",
+       "Hisoblang.",
+       "Javob 4800."
+      ],
+      "javob": "4800"
+     },
+     {
+      "shart": "Masalan, 40 xonaning 70 foizi band. Nechta xona?",
+      "yechim": [
+       "70 foiz — 0,7.",
+       "40 · 0,7.",
+       "Javob 28."
+      ],
+      "javob": "28"
+     },
+     {
+      "shart": "Masalan, bir kecha 50 dollar, 3 kecha. Necha dollar?",
+      "yechim": [
+       "3 · 50.",
+       "Hisoblang.",
+       "Javob 150."
+      ],
+      "javob": "150"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Turizm xaritasi",
+      "topshiriq": "Xaritada turistik shaharlarni belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Sayohat marshruti",
+      "topshiriq": "Samarqand-Buxoro-Xiva marshrutini tuzing.",
+      "yechim": "Yo‘nalish.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ko‘paytirish va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Gid o‘yini",
+      "topshiriq": "Bir joyni sayyohlarga tanishtiring.",
+      "yechim": "Nutq.",
+      "mahsulot": "rasmlar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "6 · 800 nechaga teng?",
+      "javob": "4800"
+     },
+     {
+      "shart": "40 · 0,7 nechaga teng?",
+      "javob": "28"
+     },
+     {
+      "shart": "3 · 50 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "Registon qayerda?",
+      "javob": "Samarqand"
+     },
+     {
+      "shart": "Ichan qal’a qayerda?",
+      "javob": "Xiva"
+     },
+     {
+      "shart": "Chang‘i kurorti?",
+      "javob": "Amirsoy"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Turizm faqat tarixiy joylarda deydi",
+      "sabab": "tog‘ va tabiatda ham",
+      "oldini_olish": "turlari ko‘p"
+     },
+     {
+      "xato": "Axlat tashlash mumkin deydi",
+      "sabab": "mumkin emas",
+      "oldini_olish": "tabiatni asrash"
+     },
+     {
+      "xato": "Turizm daromad bermaydi deydi",
+      "sabab": "valyuta va ish o‘rni beradi",
+      "oldini_olish": "iqtisod"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "obidalar"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "foiz va ko‘paytirish"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "tabiatni asrash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sayohat marshruti»",
+     "muammo": "Chet ellik do‘stingizga O‘zbekistonni qanday ko‘rsatasiz?",
+     "mahsulot": "marshrut plakati",
+     "bosqichlar": [
+      "xarita",
+      "marshrut",
+      "hisob",
+      "gid nutqi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Marshrut tuzing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Samarqanddan Xivagacha»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "6 million, 800 dollar.",
+       "topshiriq": "Million?",
+       "javob": "4800",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "40 xona, 70 foiz.",
+       "topshiriq": "Band?",
+       "javob": "28",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "3 kecha, 50 dollar.",
+       "topshiriq": "Dollar?",
+       "javob": "150",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Registon.",
+       "topshiriq": "Qayerda?",
+       "javob": "Samarqand",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Turizm",
+      "tarif": "sayohat tarmog‘i"
+     },
+     {
+      "atama": "Sayyoh",
+      "tarif": "sayohat qiluvchi"
+     },
+     {
+      "atama": "Gid",
+      "tarif": "yo‘l boshlovchi"
+     },
+     {
+      "atama": "Ekoturizm",
+      "tarif": "tabiat turizmi"
+     },
+     {
+      "atama": "Marshrut",
+      "tarif": "sayohat yo‘li"
+     },
+     {
+      "atama": "Mehmonxona",
+      "tarif": "turar joy"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Registon Samarqandda",
+      "togri": true,
+      "izoh": "obida"
+     },
+     {
+      "matn": "Turizm daromad bermaydi",
+      "togri": false,
+      "izoh": "daromad beradi"
+     },
+     {
+      "matn": "6 · 800 — 4800",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Amirsoy chang‘i kurorti",
+      "togri": true,
+      "izoh": "tog‘"
+     },
+     {
+      "matn": "Axlat tashlash mumkin",
+      "togri": false,
+      "izoh": "mumkin emas"
+     },
+     {
+      "matn": "Ichan qal’a Xivada",
+      "togri": true,
+      "izoh": "obida"
+     },
+     {
+      "matn": "40 · 0,7 — 28",
+      "togri": true,
+      "izoh": "xona"
+     },
+     {
+      "matn": "Mas’uliyatli turizm kerak",
+      "togri": true,
+      "izoh": "asrash"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Turizm?",
+      "javob": "sayohat"
+     },
+     {
+      "savol": "Registon?",
+      "javob": "Samarqand"
+     },
+     {
+      "savol": "Ichan qal’a?",
+      "javob": "Xiva"
+     },
+     {
+      "savol": "Ark?",
+      "javob": "Buxoro"
+     },
+     {
+      "savol": "Amirsoy?",
+      "javob": "chang‘i"
+     },
+     {
+      "savol": "Gid?",
+      "javob": "yo‘l boshlovchi"
+     },
+     {
+      "savol": "6 · 800?",
+      "javob": "4800"
+     },
+     {
+      "savol": "40 · 0,7?",
+      "javob": "28"
+     },
+     {
+      "savol": "3 · 50?",
+      "javob": "150"
+     },
+     {
+      "savol": "Axlat?",
+      "javob": "tashlama"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Turistik rasmlarni kuzat.",
+      "savol": "Qayer?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Daromadni top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Shahar va tog‘.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Asrash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun turizm mamlakat iqtisodiga foyda keltiradi?",
+    "keys": {
+     "vaziyat": "Tarixiy obida yonida sayyohlar axlat tashlamoqda.",
+     "savollar": [
+      "Nima zarar?",
+      "Nima qilamiz?"
+     ]
+    },
+    "tezis": "Sayohat — bilim va hurmat",
+    "taqqoslash": {
+     "a": "Madaniy turizm",
+     "b": "Ekoturizm",
+     "umumiy": [
+      "sayohat",
+      "gid kerak"
+     ],
+     "a_farq": [
+      "obidalar",
+      "shaharlarda"
+     ],
+     "b_farq": [
+      "tabiat",
+      "tog‘ va cho‘lda"
+     ]
+    },
+    "klaster": {
+     "markaz": "Turizm",
+     "shoxlar": [
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "Samarqand",
+        "Buxoro",
+        "Xiva"
+       ]
+      },
+      {
+       "nom": "Tabiat",
+       "bandlar": [
+        "Chimyon",
+        "Amirsoy",
+        "Zomin"
+       ]
+      },
+      {
+       "nom": "Xizmat",
+       "bandlar": [
+        "mehmonxona",
+        "gid",
+        "transport"
+       ]
+      },
+      {
+       "nom": "Mas’uliyat",
+       "bandlar": [
+        "asrash",
+        "hurmat"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Samarqanddagi mashhur maydonman. Men nimaman?",
+     "javob": "Registon"
+    },
+    "hikmat": "Sayohat — asrab o‘rganish.",
+    "kalit_soz": "SAYOHAT",
+    "xato_yechim": {
+     "shart": "Ichan qal’a qayerda?",
+     "xato": "Buxoroda",
+     "togri": "Xivada",
+     "sabab": "Xiva qal’asi"
+    },
+    "guruh_nomlari": [
+     "Gidlar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Mehmondorlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sayohat marshruti»",
+     "topshiriq": "Guruh marshrut plakatini tuzadi."
+    },
+    "vazifalar": {
+     "A": "6 million, 800 dollar?",
+     "B": "40 xona, 70 foiz?",
+     "C": "3 kecha, 50 dollar?"
+    },
+    "sinkveyn": [
+     "Sayohat",
+     "qiziqarli, foydali",
+     "ko‘radi, o‘rganadi, dam oladi",
+     "Dunyoni kashf et",
+     "Gid"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh turizmni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tarix",
+      "2-guruh: tabiat",
+      "3-guruh: xizmat",
+      "4-guruh: mas’uliyat"
+     ],
+     "yakun": "Natijalar: 4800; 28; 150."
+    }
+   }
   }
  ]
 }
