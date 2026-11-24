@@ -8348,6 +8348,931 @@
      "yakun": "Natijalar: 230; 118; 89."
     }
    }
+  },
+  {
+   "mavzu": "Ko‘payish va rivojlanish",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ko‘payish nima uchun kerak",
+      "matn": "Ko‘payish — tirik organizmlarning o‘z naslini qoldirish xususiyati. U turning davomiyligini ta’minlaydi. Odam jinsiy yo‘l bilan ko‘payadi: ikki ota-onaning jinsiy hujayralari qo‘shilib, yangi organizm boshlanadi. Ko‘payish a’zolari ko‘payish sistemasini tashkil qiladi.",
+      "misol": "Ko‘payish hayot davomiyligi.",
+      "savol": "Odam qanday yo‘l bilan ko‘payadi?",
+      "javob": "jinsiy yo‘l bilan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Jinsiy hujayralar",
+      "matn": "Erkak jinsiy hujayrasi — spermatozoid, ayol jinsiy hujayrasi — tuxum hujayra. Odam tana hujayralarida 46 ta xromosoma (23 juft) bor. Jinsiy hujayralarda esa yarmi, ya’ni 23 ta xromosoma bo‘ladi. Ikki hujayra qo‘shilganda 23 plyus 23 — 46 xromosoma tiklanadi. Jins xromosomalar bilan belgilanadi.",
+      "misol": "Har ota-onadan teng yarmi meros bo‘ladi.",
+      "savol": "Jinsiy hujayrada nechta xromosoma bor?",
+      "javob": "23",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Urug‘lanish va homila",
+      "matn": "Spermatozoid tuxum hujayra bilan qo‘shilishi urug‘lanish, hosil bo‘lgan hujayra — zigota. Zigota bo‘linib ko‘payadi: 2, 4, 8, 16 va 32 hujayra. Beshta ketma-ket bo‘linishdan so‘ng 2 · 2 · 2 · 2 · 2 — 32 hujayra bo‘ladi. Embrion ona organizmida rivojlanadi. Homiladorlik taxminan 40 hafta, ya’ni 40 · 7 — 280 kun davom etadi.",
+      "misol": "Bir hujayradan butun inson boshlanadi.",
+      "savol": "Urug‘langan hujayra nima deyiladi?",
+      "javob": "zigota",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Postnatal rivojlanish",
+      "matn": "Tug‘ilgandan keyingi rivojlanish bosqichlari: chaqaloqlik, bolalik, o‘smirlik, yetuklik va keksalik. O‘smirlik davrida organizmda tez o‘zgarishlar kechadi, gormonlar ishi kuchayadi, bo‘y tez o‘sadi. Bu tabiiy jarayon, kayfiyat o‘zgarishlari ham uchrashi mumkin. Ishonchli kattalar va shifokor bilan maslahatlashish foydali.",
+      "misol": "O‘smirlik — o‘tish davri.",
+      "savol": "Tug‘ilgandan keyingi bosqichlardan biri?",
+      "javob": "o‘smirlik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘payish salomatligi",
+      "matn": "Ko‘payish salomatligini asrash uchun gigiena, sog‘lom ovqat, harakat, chekish va spirtli ichimlikdan voz kechish zarur. Homilador ayol shifokor nazoratida bo‘ladi, sog‘lom ovqatlanadi va zararli moddalardan saqlanadi. Savollar paydo bo‘lsa, ota-ona, o‘qituvchi yoki shifokorga murojaat qiling; ishonchsiz manbaga tayanmang.",
+      "misol": "Ishonchli manba — shifokor va ota-ona.",
+      "savol": "Salomatlik uchun nima zararli?",
+      "javob": "chekish va spirtli ichimlik",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Jinsiy hujayralarda 23 xromosoma, tana hujayrasida 46. Zigota bo‘linadi. Homiladorlik taxminan 40 hafta.",
+    "misollar": [
+     {
+      "shart": "Jinsiy hujayralarda 23 xromosoma. Ikki hujayra qo‘shilganda jami?",
+      "yechim": [
+       "23 plyus 23.",
+       "Hisoblang.",
+       "Javob 46."
+      ],
+      "javob": "46"
+     },
+     {
+      "shart": "Homiladorlik taxminan 40 hafta. Necha kun?",
+      "yechim": [
+       "40 · 7.",
+       "Hisoblang.",
+       "Javob 280."
+      ],
+      "javob": "280"
+     },
+     {
+      "shart": "Zigota 5 marta ketma-ket ikkiga bo‘linsa, nechta hujayra?",
+      "yechim": [
+       "2 · 2 · 2 · 2 · 2.",
+       "Hisoblang.",
+       "Javob 32."
+      ],
+      "javob": "32"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Xromosomalar jadvali",
+      "topshiriq": "Tana va jinsiy hujayradagi xromosoma sonini jadvalga yozing.",
+      "yechim": "46 va 23.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Bo‘linish sxemasi",
+      "topshiriq": "Zigota bo‘linishini bosqichma-bosqich chizing.",
+      "yechim": "2, 4, 8, 16, 32.",
+      "mahsulot": "qog‘oz, qalam"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Xromosoma va kun.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Rivojlanish bosqichlari",
+      "topshiriq": "Hayot bosqichlari xronologiyasini tuzing.",
+      "yechim": "Chaqaloqdan keksalikkacha.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "23 plyus 23 nechaga teng?",
+      "javob": "46"
+     },
+     {
+      "shart": "40 · 7 nechaga teng?",
+      "javob": "280"
+     },
+     {
+      "shart": "2 · 2 · 2 · 2 · 2 nechaga teng?",
+      "javob": "32"
+     },
+     {
+      "shart": "Tana hujayrasida xromosoma?",
+      "javob": "46"
+     },
+     {
+      "shart": "Urug‘langan hujayra?",
+      "javob": "zigota"
+     },
+     {
+      "shart": "Jinsiy hujayrada xromosoma?",
+      "javob": "23"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Jinsiy hujayrada 46 xromosoma bor deydi",
+      "sabab": "23 ta",
+      "oldini_olish": "yarmi"
+     },
+     {
+      "xato": "Zigota bo‘linmaydi deydi",
+      "sabab": "bo‘linib ko‘payadi",
+      "oldini_olish": "embrion hosil bo‘ladi"
+     },
+     {
+      "xato": "Savollarni noma’lum manbadan bilib olish yaxshi deydi",
+      "sabab": "ishonchli kattalar va shifokor",
+      "oldini_olish": "to‘g‘ri ma’lumot"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Genetika",
+      "boglanish": "xromosomalar"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ikkilanish"
+     },
+     {
+      "fan": "Sog‘liq",
+      "boglanish": "o‘sish davri"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Hayot boshlanishi»",
+     "muammo": "Organizm bir hujayradan qanday rivojlanadi?",
+     "mahsulot": "sxema va hisob",
+     "bosqichlar": [
+      "xromosomalar jadvali",
+      "bo‘linish sxemasi",
+      "hisoblash",
+      "bosqichlar xronologiyasi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Jadval tuzing",
+      "Sxema chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Hayot yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-bosqich",
+       "matn": "23 va 23.",
+       "topshiriq": "Jami xromosoma?",
+       "javob": "46",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bosqich",
+       "matn": "40 hafta.",
+       "topshiriq": "Necha kun?",
+       "javob": "280",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bosqich",
+       "matn": "5 marta ikkilanish.",
+       "topshiriq": "Hujayra?",
+       "javob": "32",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bosqich",
+       "matn": "Zigota.",
+       "topshiriq": "Qaysi hujayra?",
+       "javob": "urug‘langan",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ko‘payish",
+      "tarif": "nasl qoldirish"
+     },
+     {
+      "atama": "Spermatozoid",
+      "tarif": "erkak jinsiy hujayrasi"
+     },
+     {
+      "atama": "Tuxum hujayra",
+      "tarif": "ayol jinsiy hujayrasi"
+     },
+     {
+      "atama": "Zigota",
+      "tarif": "urug‘langan hujayra"
+     },
+     {
+      "atama": "Xromosoma",
+      "tarif": "irsiy axborot tashuvchi"
+     },
+     {
+      "atama": "Embrion",
+      "tarif": "dastlabki rivojlanish bosqichi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Odam jinsiy yo‘l bilan ko‘payadi",
+      "togri": true,
+      "izoh": "ikki jinsiy hujayra"
+     },
+     {
+      "matn": "Jinsiy hujayrada 23 xromosoma bor",
+      "togri": true,
+      "izoh": "yarmi"
+     },
+     {
+      "matn": "Zigota bo‘linmaydi",
+      "togri": false,
+      "izoh": "bo‘linadi"
+     },
+     {
+      "matn": "23 plyus 23 — 46",
+      "togri": true,
+      "izoh": "tana hujayrasi"
+     },
+     {
+      "matn": "40 · 7 — 280",
+      "togri": true,
+      "izoh": "kun"
+     },
+     {
+      "matn": "O‘smirlik tabiiy o‘tish davri",
+      "togri": true,
+      "izoh": "o‘sish"
+     },
+     {
+      "matn": "Chekish ko‘payish salomatligiga foydali",
+      "togri": false,
+      "izoh": "zararli"
+     },
+     {
+      "matn": "2 · 2 · 2 · 2 · 2 — 32",
+      "togri": true,
+      "izoh": "hujayra"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ko‘payish?",
+      "javob": "nasl qoldirish"
+     },
+     {
+      "savol": "Spermatozoid?",
+      "javob": "erkak hujayra"
+     },
+     {
+      "savol": "Tuxum hujayra?",
+      "javob": "ayol hujayra"
+     },
+     {
+      "savol": "Zigota?",
+      "javob": "urug‘langan hujayra"
+     },
+     {
+      "savol": "Xromosoma?",
+      "javob": "irsiy axborot"
+     },
+     {
+      "savol": "Tana hujayrasi?",
+      "javob": "46"
+     },
+     {
+      "savol": "Jinsiy hujayra?",
+      "javob": "23"
+     },
+     {
+      "savol": "40 · 7?",
+      "javob": "280"
+     },
+     {
+      "savol": "2 · 2 · 2 · 2 · 2?",
+      "javob": "32"
+     },
+     {
+      "savol": "Yordam?",
+      "javob": "ishonchli kattalar"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Sxemani kuzat.",
+      "savol": "Bo‘linish?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Xromosomalarni top.",
+      "savol": "Qo‘shish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Tana va jinsiy hujayra.",
+      "savol": "Xromosoma?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Salomatlik?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun jinsiy hujayralarda xromosomalar yarim bo‘ladi?",
+    "keys": {
+     "vaziyat": "Har ota-onadan 23 ta xromosoma meros o‘tadi.",
+     "savollar": [
+      "Yangi organizmda nechta bo‘ladi?",
+      "Nima uchun yarim?"
+     ]
+    },
+    "tezis": "Yangi hayot ikki hujayradan boshlanadi",
+    "taqqoslash": {
+     "a": "Spermatozoid",
+     "b": "Tuxum hujayra",
+     "umumiy": [
+      "jinsiy hujayra",
+      "23 xromosoma"
+     ],
+     "a_farq": [
+      "erkak",
+      "harakatchan"
+     ],
+     "b_farq": [
+      "ayol",
+      "yirik, harakatsiz"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ko‘payish va rivojlanish",
+     "shoxlar": [
+      {
+       "nom": "Hujayralar",
+       "bandlar": [
+        "spermatozoid",
+        "tuxum hujayra"
+       ]
+      },
+      {
+       "nom": "Xromosoma",
+       "bandlar": [
+        "46",
+        "23"
+       ]
+      },
+      {
+       "nom": "Rivojlanish",
+       "bandlar": [
+        "zigota",
+        "embrion",
+        "40 hafta"
+       ]
+      },
+      {
+       "nom": "Salomatlik",
+       "bandlar": [
+        "gigiyena",
+        "shifokor"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ikki jinsiy hujayra qo‘shilishidan hosil bo‘laman. Men kimman?",
+     "javob": "zigota"
+    },
+    "hikmat": "Bir hujayradan inson boshlanadi.",
+    "kalit_soz": "ZIGOTA",
+    "xato_yechim": {
+     "shart": "Jinsiy hujayrada nechta xromosoma?",
+     "xato": "46",
+     "togri": "23",
+     "sabab": "yarmi"
+    },
+    "guruh_nomlari": [
+     "Rivojlanishchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Hayot boshlanishi»",
+     "topshiriq": "Guruh bo‘linish sxemasini chizadi."
+    },
+    "vazifalar": {
+     "A": "Qo‘shilgandan keyin xromosoma?",
+     "B": "Homiladorlik necha kun?",
+     "C": "5 bo‘linishdan keyin hujayra?"
+    },
+    "sinkveyn": [
+     "Hayot",
+     "yangi, ajoyib",
+     "boshlanadi, o‘sadi, rivojlanadi",
+     "Bir hujayradan inson",
+     "Zigota"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ko‘payishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: hujayralar",
+      "2-guruh: xromosomalar",
+      "3-guruh: rivojlanish",
+      "4-guruh: salomatlik"
+     ],
+     "yakun": "Natijalar: 46; 280; 32."
+    }
+   }
+  },
+  {
+   "mavzu": "Sog‘lom turmush tarzi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Salomatlik nima",
+      "matn": "Salomatlik — faqat kasallikning yo‘qligi emas, balki jismoniy, ruhiy va ijtimoiy farovonlik holati. Sog‘lom turmush tarzi — salomatlikni asrovchi odatlar majmui: to‘g‘ri ovqatlanish, harakat, uyqu, gigiena, zararli odatlardan voz kechish va ijobiy munosabat. Odatlar bolalikdan shakllanadi.",
+      "misol": "Odat — ikkinchi tabiat.",
+      "savol": "Sog‘lom turmush tarzi nima?",
+      "javob": "salomatlikni asrovchi odatlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Harakat va kun tartibi",
+      "matn": "Jahon sog‘liqni saqlash tashkiloti 6 dan 17 yoshgacha bolalarga kuniga kamida 60 daqiqa o‘rtacha va kuchli jismoniy faollikni tavsiya qiladi. Haftada 60 · 7 — 420 daqiqa, ya’ni 7 soat. Maktab, dars tayyorlash, dam olish va uyqu o‘rtasida muvozanat bo‘lishi kerak. Kun tartibi vaqtni to‘g‘ri taqsimlashga yordam beradi.",
+      "misol": "Harakat — kayfiyat va miya uchun ham foydali.",
+      "savol": "Bolalar uchun kunlik faollik?",
+      "javob": "kamida 60 daqiqa",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uyqu va ekran",
+      "matn": "O‘quvchilarga taxminan 8 dan 10 soat uyqu kerak. Agar 9 soat uxlasangiz, kunning 24 minus 9 — 15 soati uyg‘oq vaqt. Ekran vaqtini cheklash zarur: kuniga 2 soat bo‘lsa, haftada 2 · 7 — 14 soat. Uyqudan oldin ekran uyquni buzadi, shuning uchun yotishdan bir soat oldin ekranni o‘chiring.",
+      "misol": "Uyqu — eng arzon dori.",
+      "savol": "Uyqudan oldin nima qilmaslik kerak?",
+      "javob": "ekranga qaramaslik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Zararli odatlar",
+      "matn": "Chekish, spirtli ichimlik, nasha va giyohvand moddalar miyaga, o‘pka va yurakka katta zarar yetkazadi, tobelikka olib keladi. Tengdoshlar bosimi bo‘lsa, aniq «yo‘q» deyishni o‘rganing, ishonchli kattalarga murojaat qiling. Zararli odatlardan boshlamaslik osonroq, tashlash esa qiyinroq. Yordam so‘rash — kuchsizlik emas, jasorat.",
+      "misol": "Aniq «yo‘q» — himoya.",
+      "savol": "Zararli odatlarga nima kiradi?",
+      "javob": "chekish, spirtli ichimlik, giyohvand moddalar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ruhiy salomatlik va jamiyat",
+      "matn": "Ruhiy salomatlik jismoniy salomatlik kabi muhim: do‘stlik, oila, hobbi, stressni boshqarish, kerak bo‘lsa, mutaxassisga murojaat. Sog‘lom turmush tarzi atrof-muhitga ham bog‘liq: toza havo, toza suv, chiqindini saralash. Jamoaviy sport va ko‘ngilli ishlar ham salomatlikka foyda beradi.",
+      "misol": "Yaxshi do‘st — yaxshi dori.",
+      "savol": "Ruhiy salomatlikka nima yordam beradi?",
+      "javob": "do‘stlik, hobbi, dam olish",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Sog‘lom turmush: ovqat, harakat 60 daqiqa, uyqu 8-10 soat, gigiena, zararli odatsiz.",
+    "misollar": [
+     {
+      "shart": "Kuniga 60 daqiqa harakat. Haftada necha daqiqa?",
+      "yechim": [
+       "60 · 7.",
+       "Hisoblang.",
+       "Javob 420 daqiqa."
+      ],
+      "javob": "420 daqiqa"
+     },
+     {
+      "shart": "Kuniga 9 soat uyqu. Uyg‘oq vaqt?",
+      "yechim": [
+       "24 minus 9.",
+       "Hisoblang.",
+       "Javob 15 soat."
+      ],
+      "javob": "15 soat"
+     },
+     {
+      "shart": "Kuniga 2 soat ekran. Haftada necha soat?",
+      "yechim": [
+       "2 · 7.",
+       "Hisoblang.",
+       "Javob 14 soat."
+      ],
+      "javob": "14 soat"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kun tartibi",
+      "topshiriq": "O‘z kun tartibingizni soatlar bo‘yicha tuzing.",
+      "yechim": "Uyqu, dars, harakat.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Haftalik faollik",
+      "topshiriq": "Bir haftalik harakatni yozing.",
+      "yechim": "Kuniga 60 daqiqa.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Daqiqa va soat.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "«Yo‘q» deyish",
+      "topshiriq": "Zararli taklifga «yo‘q» deyish rol o‘yini.",
+      "yechim": "Aniq javob.",
+      "mahsulot": "juft bo‘lib"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "60 · 7 nechaga teng?",
+      "javob": "420"
+     },
+     {
+      "shart": "24 minus 9 nechaga teng?",
+      "javob": "15"
+     },
+     {
+      "shart": "2 · 7 nechaga teng?",
+      "javob": "14"
+     },
+     {
+      "shart": "Kunlik faollik daqiqasi?",
+      "javob": "60"
+     },
+     {
+      "shart": "Uyqu soati taxminan?",
+      "javob": "8 dan 10"
+     },
+     {
+      "shart": "Ekran bilan uyquni nima buzadi?",
+      "javob": "ekran"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Salomatlik faqat kasallikning yo‘qligi deydi",
+      "sabab": "jismoniy, ruhiy, ijtimoiy farovonlik",
+      "oldini_olish": "keng tushuncha"
+     },
+     {
+      "xato": "Zararli odatni bir marta sinab ko‘rish zararsiz deydi",
+      "sabab": "tobe qilishi mumkin",
+      "oldini_olish": "boshlamaslik yaxshi"
+     },
+     {
+      "xato": "Ruhiy salomatlik muhim emas deydi",
+      "sabab": "juda muhim",
+      "oldini_olish": "jismoniy kabi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Sport",
+      "boglanish": "jismoniy tarbiya"
+     },
+     {
+      "fan": "Psixologiya",
+      "boglanish": "ruhiy salomatlik"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "toza muhit"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sog‘lom men»",
+     "muammo": "Sog‘lom turmush tarzi qanday bo‘ladi?",
+     "mahsulot": "reja va plakat",
+     "bosqichlar": [
+      "kun tartibi",
+      "faollik kundaligi",
+      "hisoblash",
+      "zararli odatlarga qarshi rol o‘yini",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Kun tartibi tuzing",
+      "Hisoblang",
+      "Rol o‘yini o‘ynang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "reja to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sog‘lom shahar»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "60 daqiqa, 7 kun.",
+       "topshiriq": "Jami daqiqa?",
+       "javob": "420",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "9 soat uyqu.",
+       "topshiriq": "Uyg‘oq soat?",
+       "javob": "15",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "2 soat, 7 kun.",
+       "topshiriq": "Ekran soati?",
+       "javob": "14",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "Kunlik faollik.",
+       "topshiriq": "Daqiqa?",
+       "javob": "60",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Salomatlik",
+      "tarif": "to‘liq farovonlik holati"
+     },
+     {
+      "atama": "Kun tartibi",
+      "tarif": "vaqt taqsimoti"
+     },
+     {
+      "atama": "Faollik",
+      "tarif": "jismoniy harakat"
+     },
+     {
+      "atama": "Tobelik",
+      "tarif": "zararli odatga bog‘lanish"
+     },
+     {
+      "atama": "Chiniqish",
+      "tarif": "organizmni mustahkamlash"
+     },
+     {
+      "atama": "Ruhiy salomatlik",
+      "tarif": "ichki muvozanat"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Salomatlik jismoniy, ruhiy va ijtimoiy farovonlik",
+      "togri": true,
+      "izoh": "keng tushuncha"
+     },
+     {
+      "matn": "Kuniga 60 daqiqa harakat tavsiya etiladi",
+      "togri": true,
+      "izoh": "6 dan 17 yosh"
+     },
+     {
+      "matn": "Chekish zararsiz",
+      "togri": false,
+      "izoh": "zararli"
+     },
+     {
+      "matn": "60 · 7 — 420",
+      "togri": true,
+      "izoh": "daqiqa"
+     },
+     {
+      "matn": "Uyqu 8 dan 10 soat kerak",
+      "togri": true,
+      "izoh": "o‘quvchilarga"
+     },
+     {
+      "matn": "Ruhiy salomatlik muhim emas",
+      "togri": false,
+      "izoh": "muhim"
+     },
+     {
+      "matn": "24 minus 9 — 15",
+      "togri": true,
+      "izoh": "soat"
+     },
+     {
+      "matn": "Yordam so‘rash jasorat",
+      "togri": true,
+      "izoh": "ishonchli kattalar"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Salomatlik?",
+      "javob": "to‘liq farovonlik"
+     },
+     {
+      "savol": "Faollik?",
+      "javob": "kuniga 60 daqiqa"
+     },
+     {
+      "savol": "Uyqu?",
+      "javob": "8 dan 10 soat"
+     },
+     {
+      "savol": "Ekran?",
+      "javob": "cheklanadi"
+     },
+     {
+      "savol": "Zararli?",
+      "javob": "chekish, spirtli ichimlik"
+     },
+     {
+      "savol": "Tengdosh bosimi?",
+      "javob": "aniq yo‘q deyish"
+     },
+     {
+      "savol": "60 · 7?",
+      "javob": "420"
+     },
+     {
+      "savol": "24 minus 9?",
+      "javob": "15"
+     },
+     {
+      "savol": "2 · 7?",
+      "javob": "14"
+     },
+     {
+      "savol": "Ruhiy salomatlik?",
+      "javob": "muhim"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Kun tartibini kuzat.",
+      "savol": "Muvozanat bormi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Soat va daqiqani top.",
+      "savol": "Ko‘paytirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Foydali va zararli odat.",
+      "savol": "Qaysi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Reja?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun sog‘lom odatlarni bolalikdan shakllantirish kerak?",
+    "keys": {
+     "vaziyat": "Do‘stlaringiz kechasi gacha ekranga qaraydi, siz esa vaqtida yotasiz.",
+     "savollar": [
+      "Kim yaxshi dam oladi?",
+      "Odat nimaga olib keladi?"
+     ]
+    },
+    "tezis": "Sog‘lom odat — salomatlik kaliti",
+    "taqqoslash": {
+     "a": "Foydali odat",
+     "b": "Zararli odat",
+     "umumiy": [
+      "odat",
+      "bolalikda shakllanadi"
+     ],
+     "a_farq": [
+      "salomatlikni asraydi",
+      "harakat, uyqu"
+     ],
+     "b_farq": [
+      "tobe qiladi",
+      "chekish, spirtli ichimlik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Sog‘lom turmush tarzi",
+     "shoxlar": [
+      {
+       "nom": "Harakat",
+       "bandlar": [
+        "60 daqiqa",
+        "sport"
+       ]
+      },
+      {
+       "nom": "Uyqu",
+       "bandlar": [
+        "8 dan 10 soat",
+        "ekranni o‘chirish"
+       ]
+      },
+      {
+       "nom": "Ovqat",
+       "bandlar": [
+        "xilma-xil",
+        "vitamin"
+       ]
+      },
+      {
+       "nom": "Zararli odat",
+       "bandlar": [
+        "chekish",
+        "spirtli ichimlik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men harakat, uyqu va to‘g‘ri ovqatdan iboratman. Men kimman?",
+     "javob": "sog‘lom turmush tarzi"
+    },
+    "hikmat": "Salomatlik — eng katta boylik.",
+    "kalit_soz": "SALOMATLIK",
+    "xato_yechim": {
+     "shart": "Zararli odatni bir marta sinab ko‘rish zararsizmi?",
+     "xato": "ha, zararsiz",
+     "togri": "yo‘q, tobe qilishi mumkin",
+     "sabab": "boshlamaslik osonroq"
+    },
+    "guruh_nomlari": [
+     "Sog‘lomchilar",
+     "Hisobchilar",
+     "Kuzatuvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Sog‘lom men»",
+     "topshiriq": "Guruh kun tartibini tuzadi."
+    },
+    "vazifalar": {
+     "A": "Haftada harakat daqiqasi?",
+     "B": "Uyg‘oq soat?",
+     "C": "Haftada ekran soati?"
+    },
+    "sinkveyn": [
+     "Salomatlik",
+     "kuchli, quvnoq",
+     "harakat qiladi, uxlaydi, yeydi",
+     "Sog‘lom — baxtli",
+     "Sport"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sog‘lom turmush tarzini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: harakat",
+      "2-guruh: uyqu",
+      "3-guruh: ovqat",
+      "4-guruh: zararli odatlar"
+     ],
+     "yakun": "Natijalar: 420; 15; 14."
+    }
+   }
   }
  ]
 }
