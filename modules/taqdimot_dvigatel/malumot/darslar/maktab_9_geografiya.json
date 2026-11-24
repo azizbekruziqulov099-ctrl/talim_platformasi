@@ -4178,6 +4178,1403 @@
      "yakun": "Natijalar: 90; 54000; 45."
     }
    }
+  },
+  {
+   "mavzu": "Osiyo mamlakatlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Osiyo umumiy ma’lumot",
+      "matn": "Osiyo — dunyodagi eng katta va eng ko‘p aholili qit’a. Unda dunyo aholisining yarmidan ko‘pi yashaydi (taxminan). Mintaqalari: Sharqiy, Janubiy, Janubi-Sharqiy, Markaziy, G‘arbiy va Shimoliy Osiyo. Tabiati juda xilma-xil: Himolay tog‘lari, Gobi cho‘li, Sibir tayg‘asi, musson o‘rmonlari.",
+      "misol": "Osiyo — eng katta qit’a.",
+      "savol": "Eng katta qit’a?",
+      "javob": "Osiyo",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yirik davlatlar",
+      "matn": "Xitoy va Hindiston aholisi bo‘yicha eng yirik davlatlar. Yaponiya va Janubiy Koreya yuqori texnologiyali iqtisodga ega. Saudiya Arabistoni va Eron neft-gaz bilan mashhur. Poytaxtlar: Pekin, Nyu-Dehli, Tokio, Seul, Ar-Riyod, Tehron.",
+      "misol": "Xitoy, Hindiston — aholi ko‘p.",
+      "savol": "Yaponiya poytaxti?",
+      "javob": "Tokio",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Markaziy Osiyo",
+      "matn": "Markaziy Osiyo — O‘zbekiston, Qozog‘iston, Qirg‘iziston, Tojikiston va Turkmaniston. Mintaqa Buyuk ipak yo‘lining markazida joylashgan, neft, gaz, ruda va qishloq xo‘jaligi bilan boy. Davlatlar suv, transport va savdoda hamkorlik qiladi.",
+      "misol": "Beshta qo‘shni davlat.",
+      "savol": "Markaziy Osiyoda nechta davlat?",
+      "javob": "beshta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, davlat aholisi 1400 million, dunyo aholisi 8000 million bo‘lsa, ulushi 1400 / 8000 — 0,175, ya’ni 17,5 foiz (taxminiy misol). Masalan, Osiyo maydoni 44 million kv. km, Yevropa 10 million kv. km bo‘lsa, farqi 44 − 10 — 34 million. Masalan, 5 davlat, har birida 30 million aholi bo‘lsa, 5 · 30 — 150 million.",
+      "misol": "Ulush — qism / butun.",
+      "savol": "Masalan, 44 va 10 million kv. km. Farqi?",
+      "javob": "34",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Osiyoning iqtisodiy o‘sishi",
+      "matn": "Osiyo davlatlari tez rivojlanmoqda: ishlab chiqarish, elektronika va xizmatlar o‘smoqda. Rivojlanish bilan birga shahar ifloslanishi va tengsizlik muammolari ham bor. Ta’lim va texnologiya o‘sishning asosi.",
+      "misol": "Ta’lim — o‘sish kaliti.",
+      "savol": "O‘sishning asosi nima?",
+      "javob": "ta’lim va texnologiya",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Osiyo: eng katta qit’a, aholi ko‘p. Xitoy, Hindiston, Yaponiya. Markaziy Osiyo — beshta davlat.",
+    "misollar": [
+     {
+      "shart": "Masalan, Osiyo 44 million kv. km, Yevropa 10 million. Farqi necha million?",
+      "yechim": [
+       "44 − 10.",
+       "Ayiring.",
+       "Javob 34."
+      ],
+      "javob": "34"
+     },
+     {
+      "shart": "Masalan, 5 davlat, har birida 30 million aholi. Jami necha million?",
+      "yechim": [
+       "5 · 30.",
+       "Hisoblang.",
+       "Javob 150."
+      ],
+      "javob": "150"
+     },
+     {
+      "shart": "Masalan, 1400 va 8000 million. Ulush necha foiz? (1400 / 8000 · 100)",
+      "yechim": [
+       "1400 / 8000 — 0,175.",
+       "Foizga o‘giring.",
+       "Javob 17,5."
+      ],
+      "javob": "17,5"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Osiyo xaritasi",
+      "topshiriq": "Konturda davlat va poytaxtlarni belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Mintaqalar",
+      "topshiriq": "Osiyo mintaqalarini turli rangda bo‘yang.",
+      "yechim": "Mintaqalash.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ayirish va ulush.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Markaziy Osiyo",
+      "topshiriq": "Beshta davlat va poytaxtlar jadvalini tuzing.",
+      "yechim": "Qo‘shnilar.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "44 − 10 nechaga teng?",
+      "javob": "34"
+     },
+     {
+      "shart": "5 · 30 nechaga teng?",
+      "javob": "150"
+     },
+     {
+      "shart": "1400 / 8000 nechaga teng?",
+      "javob": "0,175"
+     },
+     {
+      "shart": "Eng katta qit’a?",
+      "javob": "Osiyo"
+     },
+     {
+      "shart": "Yaponiya poytaxti?",
+      "javob": "Tokio"
+     },
+     {
+      "shart": "Markaziy Osiyoda nechta davlat?",
+      "javob": "5"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Osiyo eng kichik qit’a deydi",
+      "sabab": "eng katta",
+      "oldini_olish": "maydon va aholi"
+     },
+     {
+      "xato": "Osiyo tabiati bir xil deydi",
+      "sabab": "juda xilma-xil",
+      "oldini_olish": "tog‘, cho‘l, tayga"
+     },
+     {
+      "xato": "Markaziy Osiyoda 3 davlat deydi",
+      "sabab": "beshta",
+      "oldini_olish": "O‘zbekiston va qo‘shnilar"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Buyuk ipak yo‘li"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ayirish va ulush"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "o‘sish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Osiyo albomi»",
+     "muammo": "Osiyo mintaqalari va davlatlari qanday?",
+     "mahsulot": "Osiyo albomi",
+     "bosqichlar": [
+      "xarita",
+      "mintaqalar",
+      "hisob",
+      "Markaziy Osiyo",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Bo‘yang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Osiyo bo‘ylab»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "Osiyo 44, Yevropa 10.",
+       "topshiriq": "Farq?",
+       "javob": "34",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "5 davlat, 30 million.",
+       "topshiriq": "Jami?",
+       "javob": "150",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "Qit’a hajmi.",
+       "topshiriq": "Eng katta?",
+       "javob": "Osiyo",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Yaponiya markazi.",
+       "topshiriq": "Qaysi?",
+       "javob": "Tokio",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Osiyo",
+      "tarif": "eng katta qit’a"
+     },
+     {
+      "atama": "Mintaqa",
+      "tarif": "qit’aning qismi"
+     },
+     {
+      "atama": "Poytaxt",
+      "tarif": "davlat markazi"
+     },
+     {
+      "atama": "Musson",
+      "tarif": "mavsumiy shamol"
+     },
+     {
+      "atama": "Ipak yo‘li",
+      "tarif": "qadimgi savdo yo‘li"
+     },
+     {
+      "atama": "Texnologik iqtisod",
+      "tarif": "yuqori texnologiyali xo‘jalik"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Osiyo eng katta qit’a",
+      "togri": true,
+      "izoh": "maydon"
+     },
+     {
+      "matn": "Osiyo eng kichik qit’a",
+      "togri": false,
+      "izoh": "eng katta"
+     },
+     {
+      "matn": "44 − 10 — 34",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Tokio Yaponiya poytaxti",
+      "togri": true,
+      "izoh": "poytaxt"
+     },
+     {
+      "matn": "Markaziy Osiyoda 3 davlat",
+      "togri": false,
+      "izoh": "beshta"
+     },
+     {
+      "matn": "Xitoy aholisi ko‘p",
+      "togri": true,
+      "izoh": "yirik davlat"
+     },
+     {
+      "matn": "5 · 30 — 150",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Osiyo tabiati xilma-xil",
+      "togri": true,
+      "izoh": "tog‘ va cho‘l"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Osiyo?",
+      "javob": "eng katta qit’a"
+     },
+     {
+      "savol": "Yirik davlat?",
+      "javob": "Xitoy"
+     },
+     {
+      "savol": "Yaponiya?",
+      "javob": "Tokio"
+     },
+     {
+      "savol": "Hindiston?",
+      "javob": "Nyu-Dehli"
+     },
+     {
+      "savol": "Markaziy Osiyo?",
+      "javob": "5 davlat"
+     },
+     {
+      "savol": "Ipak yo‘li?",
+      "javob": "savdo"
+     },
+     {
+      "savol": "44 − 10?",
+      "javob": "34"
+     },
+     {
+      "savol": "5 · 30?",
+      "javob": "150"
+     },
+     {
+      "savol": "1400 / 8000?",
+      "javob": "0,175"
+     },
+     {
+      "savol": "Tabiat?",
+      "javob": "xilma-xil"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Osiyo xaritasini kuzat.",
+      "savol": "Qayerda?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Farqni top.",
+      "savol": "Ayirish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Sharq va G‘arb.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ta’lim?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun Osiyo dunyoda alohida o‘rin egallaydi?",
+    "keys": {
+     "vaziyat": "Do‘stingiz Osiyo bo‘ylab sayohat rejalashtirmoqda.",
+     "savollar": [
+      "Qaysi mintaqa?",
+      "Qanday tabiat?"
+     ]
+    },
+    "tezis": "Osiyo — xilma-xillik qit’asi",
+    "taqqoslash": {
+     "a": "Sharqiy Osiyo",
+     "b": "Markaziy Osiyo",
+     "umumiy": [
+      "Osiyoda joylashgan",
+      "tarixiy boy"
+     ],
+     "a_farq": [
+      "Xitoy, Yaponiya",
+      "texnologik iqtisod"
+     ],
+     "b_farq": [
+      "O‘zbekiston va qo‘shnilar",
+      "ipak yo‘li markazi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Osiyo mamlakatlari",
+     "shoxlar": [
+      {
+       "nom": "Mintaqalar",
+       "bandlar": [
+        "Sharqiy",
+        "Janubiy",
+        "Markaziy"
+       ]
+      },
+      {
+       "nom": "Yirik davlat",
+       "bandlar": [
+        "Xitoy",
+        "Hindiston",
+        "Yaponiya"
+       ]
+      },
+      {
+       "nom": "Tabiat",
+       "bandlar": [
+        "Himolay",
+        "Gobi",
+        "tayga"
+       ]
+      },
+      {
+       "nom": "Markaziy Osiyo",
+       "bandlar": [
+        "O‘zbekiston",
+        "Qozog‘iston",
+        "beshta davlat"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men dunyodagi eng katta qit’aman. Men nimaman?",
+     "javob": "Osiyo"
+    },
+    "hikmat": "Osiyo — bilim va hamkorlik.",
+    "kalit_soz": "OSIYO",
+    "xato_yechim": {
+     "shart": "Yaponiya poytaxti qaysi?",
+     "xato": "Seul",
+     "togri": "Tokio",
+     "sabab": "Yaponiya markazi"
+    },
+    "guruh_nomlari": [
+     "Sayohatchilar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Tarixchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Osiyo albomi»",
+     "topshiriq": "Guruh Osiyo albomini tuzadi."
+    },
+    "vazifalar": {
+     "A": "44 va 10 million?",
+     "B": "5 davlat, 30 million?",
+     "C": "1400 va 8000?"
+    },
+    "sinkveyn": [
+     "Osiyo",
+     "katta, qadimiy",
+     "kengayadi, rivojlanadi, birlashtiradi",
+     "Ipak yo‘li zamini",
+     "Qit’a"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh Osiyoni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: mintaqalar",
+      "2-guruh: davlatlar",
+      "3-guruh: tabiat",
+      "4-guruh: Markaziy Osiyo"
+     ],
+     "yakun": "Natijalar: 34; 150; 17,5."
+    }
+   }
+  },
+  {
+   "mavzu": "Afrika mamlakatlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Afrika umumiy ma’lumot",
+      "matn": "Afrika — Osiyodan keyingi ikkinchi yirik qit’a. Ekvator uni deyarli o‘rtasidan kesib o‘tadi. Tabiati: Sahroi Kabir cho‘li, Nil daryosi, Kongo tropik o‘rmonlari, Kilimanjaro tog‘i, savannalar. Aholisi tez o‘smoqda, yosh aholi ulushi katta.",
+      "misol": "Afrika — ikkinchi yirik qit’a.",
+      "savol": "Afrikani ekvator kesadimi?",
+      "javob": "ha, deyarli o‘rtasidan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Mintaqalar va davlatlar",
+      "matn": "Shimoliy Afrika: Misr, Jazoir, Marokash, Liviya. G‘arbiy: Nigeriya, Gana, Senegal. Sharqiy: Efiopiya, Keniya, Tanzaniya. Janubiy: Janubiy Afrika Respublikasi, Namibiya. Nigeriya aholisi bo‘yicha, Efiopiya va Misr ham yirik davlatlardan.",
+      "misol": "Misr, Nigeriya, Keniya, JAR.",
+      "savol": "Afrikada aholisi eng ko‘p davlat?",
+      "javob": "Nigeriya",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Resurslar va xo‘jalik",
+      "matn": "Afrika oltin, olmos, mis, neft va boksitga boy. Keniya choy va kofe, Gana kakao, Janubiy Afrika oltin va mashinasozlik bilan mashhur. Ko‘p davlatlarda qishloq xo‘jaligi asosiy band soha. Muammolar: qurg‘oqchilik, kambag‘allik, sog‘liqni saqlash tanqisligi.",
+      "misol": "Boy resurs, qiyin sharoit.",
+      "savol": "Kakao qaysi davlatda ko‘p?",
+      "javob": "Ganada",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, Afrika aholisi 1400 million, dunyoniki 8000 million bo‘lsa, ulushi 1400 / 8000 — 0,175, ya’ni 17,5 foiz (taxminiy misol). Masalan, 54 davlatning 20 foizi sohilsiz bo‘lsa, 54 · 0,2 — taxminan 11 davlat. Masalan, 2 foiz yillik o‘sishda 200 million aholi 200 · 0,02 — 4 million ko‘payadi.",
+      "misol": "Ulush — qism / butun.",
+      "savol": "Masalan, 200 million aholi 2 foiz o‘ssa. Necha million?",
+      "javob": "4",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Madaniyat va kelajak",
+      "matn": "Afrika ko‘plab xalq, til va an’analarga ega. Musiqa, raqs va hunarmandchilik mashhur. Ta’lim, tibbiyot va infratuzilmaga sarmoya yosh avlod uchun imkoniyat yaratadi. Quyosh energiyasi katta salohiyatga ega.",
+      "misol": "Yosh aholi — imkoniyat.",
+      "savol": "Afrika uchun qaysi energiya salohiyatli?",
+      "javob": "quyosh energiyasi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Afrika: ikkinchi yirik qit’a, ekvator o‘rtadan o‘tadi. Boy resurslar, yosh aholi.",
+    "misollar": [
+     {
+      "shart": "Masalan, 200 million aholi 2 foiz o‘ssa. Necha million ko‘payadi?",
+      "yechim": [
+       "2 foiz — 0,02.",
+       "200 · 0,02.",
+       "Javob 4."
+      ],
+      "javob": "4"
+     },
+     {
+      "shart": "Masalan, 1400 va 8000 million. Ulush necha foiz?",
+      "yechim": [
+       "1400 / 8000.",
+       "Foizga o‘giring.",
+       "Javob 17,5."
+      ],
+      "javob": "17,5"
+     },
+     {
+      "shart": "Masalan, 4 mintaqada 12 davlatdan. Jami nechta?",
+      "yechim": [
+       "4 · 12.",
+       "Hisoblang.",
+       "Javob 48."
+      ],
+      "javob": "48"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Afrika xaritasi",
+      "topshiriq": "Konturda cho‘l, daryo va davlatlarni belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Mintaqalar",
+      "topshiriq": "Afrika mintaqalarini bo‘yang.",
+      "yechim": "Mintaqalash.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Foiz va ko‘paytirish.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Resurslar",
+      "topshiriq": "Davlat va resurs jadvalini tuzing.",
+      "yechim": "Moslash.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "200 · 0,02 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "1400 / 8000 nechaga teng?",
+      "javob": "0,175"
+     },
+     {
+      "shart": "4 · 12 nechaga teng?",
+      "javob": "48"
+     },
+     {
+      "shart": "Afrikadagi buyuk cho‘l?",
+      "javob": "Sahroi Kabir"
+     },
+     {
+      "shart": "Eng uzun daryo?",
+      "javob": "Nil"
+     },
+     {
+      "shart": "Aholisi eng ko‘p davlat?",
+      "javob": "Nigeriya"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Afrikada cho‘l yo‘q deydi",
+      "sabab": "Sahroi Kabir bor",
+      "oldini_olish": "yirik cho‘l"
+     },
+     {
+      "xato": "Afrika resursga kambag‘al deydi",
+      "sabab": "boy",
+      "oldini_olish": "oltin, olmos, mis"
+     },
+     {
+      "xato": "Afrika bir davlat deydi",
+      "sabab": "ko‘p davlat",
+      "oldini_olish": "54 ga yaqin"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Qadimgi Misr"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ulush va foiz"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "tropik o‘rmon"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Afrika atlasi»",
+     "muammo": "Afrika tabiati, davlatlari va xalqlari qanday?",
+     "mahsulot": "Afrika albomi",
+     "bosqichlar": [
+      "xarita",
+      "mintaqalar",
+      "hisob",
+      "resurslar",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Bo‘yang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Nil bo‘ylab»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "200 million, 2 foiz.",
+       "topshiriq": "Million?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "1400 va 8000.",
+       "topshiriq": "Foiz?",
+       "javob": "17,5",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "4 mintaqa, 12 davlat.",
+       "topshiriq": "Jami?",
+       "javob": "48",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Eng uzun daryo.",
+       "topshiriq": "Qaysi?",
+       "javob": "Nil",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Afrika",
+      "tarif": "ikkinchi yirik qit’a"
+     },
+     {
+      "atama": "Sahroi Kabir",
+      "tarif": "eng katta issiq cho‘l"
+     },
+     {
+      "atama": "Savanna",
+      "tarif": "ochiq o‘tloq mintaqasi"
+     },
+     {
+      "atama": "Ekvator",
+      "tarif": "Yerni teng bo‘luvchi chiziq"
+     },
+     {
+      "atama": "Olmos",
+      "tarif": "qimmatbaho tosh"
+     },
+     {
+      "atama": "Kakao",
+      "tarif": "shokolad xomashyosi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Nil Afrikadagi daryo",
+      "togri": true,
+      "izoh": "uzun daryo"
+     },
+     {
+      "matn": "Afrikada cho‘l yo‘q",
+      "togri": false,
+      "izoh": "Sahroi Kabir"
+     },
+     {
+      "matn": "200 · 0,02 — 4",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Nigeriya aholisi ko‘p",
+      "togri": true,
+      "izoh": "davlat"
+     },
+     {
+      "matn": "Afrika resursga kambag‘al",
+      "togri": false,
+      "izoh": "boy"
+     },
+     {
+      "matn": "Gana kakao beradi",
+      "togri": true,
+      "izoh": "xo‘jalik"
+     },
+     {
+      "matn": "4 · 12 — 48",
+      "togri": true,
+      "izoh": "davlat"
+     },
+     {
+      "matn": "Quyosh energiyasi salohiyatli",
+      "togri": true,
+      "izoh": "iqlim"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Afrika?",
+      "javob": "ikkinchi qit’a"
+     },
+     {
+      "savol": "Cho‘l?",
+      "javob": "Sahroi Kabir"
+     },
+     {
+      "savol": "Daryo?",
+      "javob": "Nil"
+     },
+     {
+      "savol": "Tog‘?",
+      "javob": "Kilimanjaro"
+     },
+     {
+      "savol": "Yirik davlat?",
+      "javob": "Nigeriya"
+     },
+     {
+      "savol": "Resurs?",
+      "javob": "oltin, olmos"
+     },
+     {
+      "savol": "200 · 0,02?",
+      "javob": "4"
+     },
+     {
+      "savol": "1400 / 8000?",
+      "javob": "0,175"
+     },
+     {
+      "savol": "4 · 12?",
+      "javob": "48"
+     },
+     {
+      "savol": "Energiya?",
+      "javob": "quyosh"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Afrika xaritasini kuzat.",
+      "savol": "Qayerda?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "O‘sishni top.",
+      "savol": "Foiz?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Shimol va janub.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Imkoniyat?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun Afrika kelajak uchun katta imkoniyatlar qit’asi?",
+    "keys": {
+     "vaziyat": "Afrikaning bir hududida qurg‘oqchilik bo‘lib, hosil kamaydi.",
+     "savollar": [
+      "Nima qilish mumkin?",
+      "Kim yordam beradi?"
+     ]
+    },
+    "tezis": "Afrika — imkoniyatlar qit’asi",
+    "taqqoslash": {
+     "a": "Shimoliy Afrika",
+     "b": "Markaziy Afrika",
+     "umumiy": [
+      "Afrikada joylashgan",
+      "xalqlari ko‘p"
+     ],
+     "a_farq": [
+      "Sahro cho‘li",
+      "quruq iqlim"
+     ],
+     "b_farq": [
+      "tropik o‘rmon",
+      "nam iqlim"
+     ]
+    },
+    "klaster": {
+     "markaz": "Afrika mamlakatlari",
+     "shoxlar": [
+      {
+       "nom": "Tabiat",
+       "bandlar": [
+        "Sahro",
+        "Nil",
+        "Kilimanjaro"
+       ]
+      },
+      {
+       "nom": "Davlatlar",
+       "bandlar": [
+        "Misr",
+        "Nigeriya",
+        "Keniya"
+       ]
+      },
+      {
+       "nom": "Resurslar",
+       "bandlar": [
+        "oltin",
+        "olmos",
+        "kakao"
+       ]
+      },
+      {
+       "nom": "Kelajak",
+       "bandlar": [
+        "ta’lim",
+        "quyosh energiyasi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Afrikadagi eng uzun daryoman. Men nimaman?",
+     "javob": "Nil"
+    },
+    "hikmat": "Afrika — hurmat va yordam.",
+    "kalit_soz": "AFRIKA",
+    "xato_yechim": {
+     "shart": "Afrikadagi buyuk cho‘l qaysi?",
+     "xato": "Gobi",
+     "togri": "Sahroi Kabir",
+     "sabab": "Shimoliy Afrika"
+    },
+    "guruh_nomlari": [
+     "Sayohatchilar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Ekologlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Afrika atlasi»",
+     "topshiriq": "Guruh Afrika albomini tuzadi."
+    },
+    "vazifalar": {
+     "A": "200 million, 2 foiz?",
+     "B": "1400 va 8000?",
+     "C": "4 mintaqa, 12 davlat?"
+    },
+    "sinkveyn": [
+     "Afrika",
+     "keng, xilma-xil",
+     "qaynaydi, o‘sadi, boyiydi",
+     "Ekvator qit’asi",
+     "Nil"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh Afrikani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tabiat",
+      "2-guruh: davlatlar",
+      "3-guruh: resurslar",
+      "4-guruh: kelajak"
+     ],
+     "yakun": "Natijalar: 4; 17,5; 48."
+    }
+   }
+  },
+  {
+   "mavzu": "Amerika mamlakatlari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Amerika umumiy ma’lumot",
+      "matn": "Amerika ikki qit’adan iborat: Shimoliy va Janubiy Amerika, ular Panama bo‘yni orqali bog‘langan. G‘arbda Tinch, sharqda Atlantika okeani joylashgan. Tabiati: And va Kordilyera tog‘lari, Amazonka daryosi, Buyuk ko‘llar, Missisipi, preriyalar, pampa.",
+      "misol": "Ikki Amerika — bir yarimshar.",
+      "savol": "Amerika nechta qit’adan iborat?",
+      "javob": "ikkita",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Shimoliy Amerika",
+      "matn": "Shimoliy Amerikada AQSh, Kanada va Meksika yirik davlatlar. AQSh jahon iqtisodida yetakchi, poytaxti Vashington. Kanada maydoni bo‘yicha dunyoda ikkinchi, poytaxti Ottava. Meksikaning poytaxti Mexiko. Mintaqada ko‘p xalqlar yashaydi.",
+      "misol": "AQSh, Kanada, Meksika.",
+      "savol": "Kanada poytaxti?",
+      "javob": "Ottava",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Janubiy Amerika",
+      "matn": "Janubiy Amerikada Braziliya eng yirik, poytaxti Braziliya. Argentina, Peru, Chili, Kolumbiya ham muhim. Amazonka o‘rmoni «Yer o‘pkasi» deyiladi, And tog‘lari uzun tizma. Braziliya kofe, Peru mis va Chili mis bilan mashhur.",
+      "misol": "Braziliya, Argentina, Peru, Chili.",
+      "savol": "Amazonka nima bilan mashhur?",
+      "javob": "tropik o‘rmon va yirik daryo",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hisoblar",
+      "matn": "Masalan, Shimoliy Amerika maydoni 24 million kv. km, Janubiy Amerika 18 million kv. km bo‘lsa, jami 24 va 18 — 42 million kv. km (taxminiy misol). Masalan, 3 davlatning har birida 40 million aholi bo‘lsa, 3 · 40 — 120 million. Masalan, 120 million aholining 25 foizi shaharda bo‘lsa, 120 · 0,25 — 30 million.",
+      "misol": "Qismlar yig‘indisi — butun.",
+      "savol": "Masalan, 24 va 18 million kv. km. Jami necha million?",
+      "javob": "42",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Madaniyat va muhofaza",
+      "matn": "Amerikada ko‘p madaniyat qorishgan: mahalliy hindular, evropaliklar, afrikaliklar. Maya, Aztek va Inka tsivilizatsiyalari tarixda mashhur. Amazonka o‘rmonlarini kesish iqlimga zarar yetkazadi, shuning uchun o‘rmonni asrash muhim.",
+      "misol": "O‘rmon — dunyo o‘pkasi.",
+      "savol": "O‘rmonni nima uchun asraymiz?",
+      "javob": "iqlim va tirik tabiat uchun",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Amerika: Shimoliy va Janubiy. AQSh, Kanada, Braziliya. Amazonka — o‘rmon va daryo.",
+    "misollar": [
+     {
+      "shart": "Masalan, 24 va 18 million kv. km. Jami necha million?",
+      "yechim": [
+       "24 va 18 ni qo‘shing.",
+       "Hisoblang.",
+       "Javob 42."
+      ],
+      "javob": "42"
+     },
+     {
+      "shart": "Masalan, 3 davlat, har birida 40 million aholi. Jami necha million?",
+      "yechim": [
+       "3 · 40.",
+       "Hisoblang.",
+       "Javob 120."
+      ],
+      "javob": "120"
+     },
+     {
+      "shart": "Masalan, 120 million aholining 25 foizi shaharda. Necha million?",
+      "yechim": [
+       "25 foiz — 0,25.",
+       "120 · 0,25.",
+       "Javob 30."
+      ],
+      "javob": "30"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Amerika xaritasi",
+      "topshiriq": "Konturda qit’a, davlat va poytaxtlarni belgilang.",
+      "yechim": "Joylashuv.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Tabiat va tarmoq",
+      "topshiriq": "Tog‘, daryo va o‘rmonlarni xaritada ko‘rsating.",
+      "yechim": "Relyef.",
+      "mahsulot": "kontur xarita"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Qo‘shish va foiz.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Madaniyat",
+      "topshiriq": "Maya, Aztek va Inka haqida jadval tuzing.",
+      "yechim": "Tarix.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "24 va 18 yig‘indisi?",
+      "javob": "42"
+     },
+     {
+      "shart": "3 · 40 nechaga teng?",
+      "javob": "120"
+     },
+     {
+      "shart": "120 · 0,25 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "Kanada poytaxti?",
+      "javob": "Ottava"
+     },
+     {
+      "shart": "Eng yirik Janubiy Amerika davlati?",
+      "javob": "Braziliya"
+     },
+     {
+      "shart": "Yer o‘pkasi?",
+      "javob": "Amazonka o‘rmoni"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Amerika bitta qit’a deydi",
+      "sabab": "ikki qit’a",
+      "oldini_olish": "Shimoliy va Janubiy"
+     },
+     {
+      "xato": "AQSh poytaxti Nyu-York deydi",
+      "sabab": "Vashington",
+      "oldini_olish": "siyosiy markaz"
+     },
+     {
+      "xato": "O‘rmon kesish zararsiz deydi",
+      "sabab": "iqlimga zarar",
+      "oldini_olish": "Amazonka muhim"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Maya, Aztek, Inka"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "qo‘shish va foiz"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "Amazonka o‘rmoni"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Amerika bo‘ylab»",
+     "muammo": "Amerikaning tabiati va davlatlari qanday?",
+     "mahsulot": "Amerika albomi",
+     "bosqichlar": [
+      "xarita",
+      "tabiat",
+      "hisob",
+      "madaniyat",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Belgilang",
+      "Ko‘rsating",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xarita aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Amazonka bo‘ylab»",
+     "bekatlar": [
+      {
+       "nom": "1-joy",
+       "matn": "24 va 18 million kv. km.",
+       "topshiriq": "Jami?",
+       "javob": "42",
+       "rasm": ""
+      },
+      {
+       "nom": "2-joy",
+       "matn": "3 davlat, 40 million.",
+       "topshiriq": "Jami?",
+       "javob": "120",
+       "rasm": ""
+      },
+      {
+       "nom": "3-joy",
+       "matn": "120 million, 25 foiz.",
+       "topshiriq": "Million?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "4-joy",
+       "matn": "Kanada markazi.",
+       "topshiriq": "Poytaxt?",
+       "javob": "Ottava",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Amerika",
+      "tarif": "Shimoliy va Janubiy qit’alar"
+     },
+     {
+      "atama": "Amazonka",
+      "tarif": "yirik daryo va o‘rmon"
+     },
+     {
+      "atama": "And",
+      "tarif": "uzun tog‘ tizmasi"
+     },
+     {
+      "atama": "Panama bo‘yni",
+      "tarif": "ikki qit’a bog‘lovchisi"
+     },
+     {
+      "atama": "Preriya",
+      "tarif": "Shimoliy Amerika dashti"
+     },
+     {
+      "atama": "Pampa",
+      "tarif": "Janubiy Amerika dashti"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Amerika ikki qit’adan iborat",
+      "togri": true,
+      "izoh": "Shimoliy va Janubiy"
+     },
+     {
+      "matn": "AQSh poytaxti Nyu-York",
+      "togri": false,
+      "izoh": "Vashington"
+     },
+     {
+      "matn": "24 va 18 yig‘indisi 42",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Ottava Kanada poytaxti",
+      "togri": true,
+      "izoh": "poytaxt"
+     },
+     {
+      "matn": "O‘rmon kesish zararsiz",
+      "togri": false,
+      "izoh": "zarar"
+     },
+     {
+      "matn": "Braziliya Janubiy Amerikada",
+      "togri": true,
+      "izoh": "yirik davlat"
+     },
+     {
+      "matn": "3 · 40 — 120",
+      "togri": true,
+      "izoh": "million"
+     },
+     {
+      "matn": "Amazonka tropik o‘rmoni muhim",
+      "togri": true,
+      "izoh": "iqlim"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Amerika?",
+      "javob": "ikki qit’a"
+     },
+     {
+      "savol": "AQSh poytaxti?",
+      "javob": "Vashington"
+     },
+     {
+      "savol": "Kanada poytaxti?",
+      "javob": "Ottava"
+     },
+     {
+      "savol": "Yirik Janubiy davlat?",
+      "javob": "Braziliya"
+     },
+     {
+      "savol": "Tog‘?",
+      "javob": "And"
+     },
+     {
+      "savol": "O‘rmon?",
+      "javob": "Amazonka"
+     },
+     {
+      "savol": "3 · 40?",
+      "javob": "120"
+     },
+     {
+      "savol": "120 · 0,25?",
+      "javob": "30"
+     },
+     {
+      "savol": "24 va 18?",
+      "javob": "42"
+     },
+     {
+      "savol": "Madaniyat?",
+      "javob": "Maya, Inka"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Amerika xaritasini kuzat.",
+      "savol": "Qayerda?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Maydonni top.",
+      "savol": "Qo‘shish?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Shimol va janub.",
+      "savol": "Farqi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "O‘rmon?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun Amazonka o‘rmonini asrash butun dunyo uchun muhim?",
+    "keys": {
+     "vaziyat": "Amazonka o‘rmoni kesilmoqda, hayvonlar yashash joyini yo‘qotmoqda.",
+     "savollar": [
+      "Nima zarar?",
+      "Nima qilamiz?"
+     ]
+    },
+    "tezis": "Amerika — tabiat va tarix",
+    "taqqoslash": {
+     "a": "Shimoliy Amerika",
+     "b": "Janubiy Amerika",
+     "umumiy": [
+      "Amerikaning qismi",
+      "okeanlar bilan o‘ralgan"
+     ],
+     "a_farq": [
+      "AQSh, Kanada",
+      "preriya"
+     ],
+     "b_farq": [
+      "Braziliya, Peru",
+      "Amazonka va And"
+     ]
+    },
+    "klaster": {
+     "markaz": "Amerika mamlakatlari",
+     "shoxlar": [
+      {
+       "nom": "Shimoliy",
+       "bandlar": [
+        "AQSh",
+        "Kanada",
+        "Meksika"
+       ]
+      },
+      {
+       "nom": "Janubiy",
+       "bandlar": [
+        "Braziliya",
+        "Argentina",
+        "Peru"
+       ]
+      },
+      {
+       "nom": "Tabiat",
+       "bandlar": [
+        "And",
+        "Amazonka",
+        "preriya"
+       ]
+      },
+      {
+       "nom": "Madaniyat",
+       "bandlar": [
+        "Maya",
+        "Aztek",
+        "Inka"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men «Yer o‘pkasi» deb ataladigan o‘rmonman. Men nimaman?",
+     "javob": "Amazonka"
+    },
+    "hikmat": "Amerika — tabiatni asra.",
+    "kalit_soz": "AMERIKA",
+    "xato_yechim": {
+     "shart": "AQSh poytaxti qaysi?",
+     "xato": "Nyu-York",
+     "togri": "Vashington",
+     "sabab": "siyosiy markaz"
+    },
+    "guruh_nomlari": [
+     "Sayohatchilar",
+     "Hisobchilar",
+     "Kartograflar",
+     "Ekologlar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Amerika bo‘ylab»",
+     "topshiriq": "Guruh Amerika albomini tuzadi."
+    },
+    "vazifalar": {
+     "A": "24 va 18 million?",
+     "B": "3 davlat, 40 million?",
+     "C": "120 million, 25 foiz?"
+    },
+    "sinkveyn": [
+     "Amerika",
+     "keng, boy",
+     "cho‘zilgan, qorishgan, rivojlangan",
+     "Yangi dunyo",
+     "Okean"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh Amerikani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: Shimoliy",
+      "2-guruh: Janubiy",
+      "3-guruh: tabiat",
+      "4-guruh: madaniyat"
+     ],
+     "yakun": "Natijalar: 42; 120; 30."
+    }
+   }
   }
  ]
 }
