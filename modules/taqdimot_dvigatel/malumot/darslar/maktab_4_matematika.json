@@ -30343,6 +30343,1380 @@
      "yakun": "Natijalar: 25; 20; 9; 8."
     }
    }
+  },
+  {
+   "mavzu": "Harflar bilan ifodalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Harf — son o‘rnida",
+      "matn": "Matematikada son o‘rniga harf yozish mumkin. Harf turli qiymat qabul qiladi. Shuning uchun u o‘zgaruvchi deyiladi.",
+      "misol": "a harfi 5 ga, 8 ga yoki 100 ga teng bo‘lishi mumkin.",
+      "savol": "Harf nimani almashtiradi?",
+      "javob": "sonni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ifodaga qo‘yamiz",
+      "matn": "Harfli ifodaning qiymatini topish uchun harf o‘rniga sonni qo‘yamiz.",
+      "misol": "3 · a + 2, a teng 5 bo‘lsa: 3 · 5 + 2 — 17.",
+      "savol": "3 · 5 + 2 nechaga teng?",
+      "javob": "17",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ikki harf",
+      "matn": "Ifodada ikkita harf bo‘lishi mumkin. Ikkalasiga son qo‘yamiz.",
+      "misol": "a · b, a teng 4, b teng 3: 4 · 3 — 12.",
+      "savol": "4 · 3 nechaga teng?",
+      "javob": "12",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Formulalar",
+      "matn": "Harflar yordamida qoidani qisqa yozamiz. Masalan, to‘g‘ri to‘rtburchak perimetri: 2 · (a + b).",
+      "misol": "a teng 8, b teng 5: 2 · (8 + 5) — 26.",
+      "savol": "2 · (8 + 5) nechaga teng?",
+      "javob": "26",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qisqa yozuv",
+      "matn": "a + a + a ni 3 · a deb qisqa yozamiz.",
+      "misol": "a teng 4 bo‘lsa, 3 · 4 — 12 va 4 + 4 + 4 — 12.",
+      "savol": "4 + 4 + 4 nechaga teng?",
+      "javob": "12",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Harfli ifodaning qiymatini topish uchun harf o‘rniga sonni qo‘yamiz va hisoblaymiz.",
+    "misollar": [
+     {
+      "shart": "3 · a + 2 ifodaning qiymati, a teng 5.",
+      "yechim": [
+       "a o‘rniga 5.",
+       "3 · 5 + 2 — 15 + 2.",
+       "Javob 17."
+      ],
+      "javob": "17"
+     },
+     {
+      "shart": "2 · (a + b), a teng 8, b teng 5.",
+      "yechim": [
+       "Qavs ichi: 8 + 5 — 13.",
+       "13 · 2.",
+       "Javob 26."
+      ],
+      "javob": "26"
+     },
+     {
+      "shart": "10 − c, c teng 3.",
+      "yechim": [
+       "c o‘rniga 3.",
+       "10 − 3.",
+       "Javob 7."
+      ],
+      "javob": "7"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Harf o‘yini",
+      "topshiriq": "Kartochkadagi harf o‘rniga son qo‘yib hisoblang.",
+      "yechim": "Natijalarni yozing.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Formula yozamiz",
+      "topshiriq": "Kvadrat perimetri uchun harfli formula yozing.",
+      "yechim": "Tomon a bo‘lsin.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Jadval to‘ldiramiz",
+      "topshiriq": "a ning turli qiymatlarida ifoda qiymatini toping.",
+      "yechim": "Har safar sonni qo‘ying.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "a + a + a bilan 3 · a ni solishtiring.",
+      "yechim": "Natija bir xil.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 · 5 + 2 nechaga teng?",
+      "javob": "17"
+     },
+     {
+      "shart": "4 · 3 nechaga teng?",
+      "javob": "12"
+     },
+     {
+      "shart": "2 · (8 + 5) nechaga teng?",
+      "javob": "26"
+     },
+     {
+      "shart": "10 − 3 nechaga teng?",
+      "javob": "7"
+     },
+     {
+      "shart": "4 + 4 + 4 nechaga teng?",
+      "javob": "12"
+     },
+     {
+      "shart": "Harf nimani almashtiradi?",
+      "javob": "sonni"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Harfni son bilan yonma-yon yozadi",
+      "sabab": "ko‘paytirishni unutadi",
+      "oldini_olish": "3 · a — ko‘paytirish"
+     },
+     {
+      "xato": "Qavsni e’tiborsiz qoldiradi",
+      "sabab": "tartibni buzadi",
+      "oldini_olish": "avval qavs ichi"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "qayta o‘rniga qo‘yish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Informatika",
+      "boglanish": "dasturdagi o‘zgaruvchi"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "formulalardagi harflar"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "umumiy qoida yozish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Formulalar kitobi»",
+     "muammo": "Harfli formulalar kitobini qanday yasaymiz?",
+     "mahsulot": "formulalar kitobi",
+     "bosqichlar": [
+      "formulalar tanlash",
+      "harf yozish",
+      "son qo‘yib hisoblash",
+      "rasm chizish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Formula tanlang",
+      "Harf yozing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "formula to‘g‘ri",
+      "hisob to‘g‘ri",
+      "rasm mos",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Harflar shahri»",
+     "bekatlar": [
+      {
+       "nom": "A-ko‘cha",
+       "matn": "3 · a + 2, a teng 5.",
+       "topshiriq": "Qiymati?",
+       "javob": "17",
+       "rasm": ""
+      },
+      {
+       "nom": "B-ko‘cha",
+       "matn": "a · b, a teng 4, b teng 3.",
+       "topshiriq": "Qiymati?",
+       "javob": "12",
+       "rasm": ""
+      },
+      {
+       "nom": "D-ko‘cha",
+       "matn": "2 · (a + b), a teng 8, b teng 5.",
+       "topshiriq": "Qiymati?",
+       "javob": "26",
+       "rasm": ""
+      },
+      {
+       "nom": "E-ko‘cha",
+       "matn": "10 − c, c teng 3.",
+       "topshiriq": "Qiymati?",
+       "javob": "7",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Harf o‘rniga son qo‘ydingizmi?",
+      "Qavsni hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Harfli ifoda",
+      "tarif": "harf va sonlardan tuzilgan ifoda"
+     },
+     {
+      "atama": "O‘zgaruvchi",
+      "tarif": "qiymati o‘zgaradigan harf"
+     },
+     {
+      "atama": "Qiymat",
+      "tarif": "hisob natijasi"
+     },
+     {
+      "atama": "Formula",
+      "tarif": "harflar bilan yozilgan qoida"
+     },
+     {
+      "atama": "Qavs",
+      "tarif": "amal tartibini belgilovchi belgi"
+     },
+     {
+      "atama": "Perimetr",
+      "tarif": "tomonlar yig‘indisi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Harf son o‘rnida yoziladi",
+      "togri": true,
+      "izoh": "o‘zgaruvchi"
+     },
+     {
+      "matn": "3 · 5 + 2 — 16",
+      "togri": false,
+      "izoh": "17"
+     },
+     {
+      "matn": "4 · 3 — 12",
+      "togri": true,
+      "izoh": "a · b"
+     },
+     {
+      "matn": "2 · (8 + 5) — 26",
+      "togri": true,
+      "izoh": "perimetr"
+     },
+     {
+      "matn": "a + a + a — 3 · a",
+      "togri": true,
+      "izoh": "qisqa yozuv"
+     },
+     {
+      "matn": "10 − 3 — 6",
+      "togri": false,
+      "izoh": "7"
+     },
+     {
+      "matn": "Harfga faqat bitta son mos",
+      "togri": false,
+      "izoh": "turli son"
+     },
+     {
+      "matn": "Qavs ichi avval hisoblanadi",
+      "togri": true,
+      "izoh": "qoida"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Harf nimani bildiradi?",
+      "javob": "sonni"
+     },
+     {
+      "savol": "3 · 5 + 2?",
+      "javob": "17"
+     },
+     {
+      "savol": "4 · 3?",
+      "javob": "12"
+     },
+     {
+      "savol": "2 · (8 + 5)?",
+      "javob": "26"
+     },
+     {
+      "savol": "10 − 3?",
+      "javob": "7"
+     },
+     {
+      "savol": "a + a + a?",
+      "javob": "3 · a"
+     },
+     {
+      "savol": "O‘zgaruvchi nima?",
+      "javob": "qiymati o‘zgaradigan harf"
+     },
+     {
+      "savol": "Qiymatni qanday topamiz?",
+      "javob": "harf o‘rniga son qo‘yamiz"
+     },
+     {
+      "savol": "Formula nima?",
+      "javob": "harfli qoida"
+     },
+     {
+      "savol": "Qavs ichi?",
+      "javob": "avval hisoblanadi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Qo‘y",
+      "matn": "Harf o‘rniga son qo‘y.",
+      "savol": "a teng 5?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Amallarni bajar.",
+      "savol": "3 · 5 + 2?"
+     },
+     {
+      "nom": "Qavs",
+      "matn": "Avval qavs.",
+      "savol": "8 + 5?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Qayta hisobla.",
+      "savol": "17 chiqdimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun harflar bilan qoidalarni yozamiz?",
+    "keys": {
+     "vaziyat": "To‘g‘ri to‘rtburchak perimetri formulasi 2 · (a + b).",
+     "savollar": [
+      "a teng 8, b teng 5 bo‘lsa, perimetr?",
+      "Formulaning foydasi nima?"
+     ]
+    },
+    "tezis": "Harf — son o‘rnida",
+    "taqqoslash": {
+     "a": "Son",
+     "b": "Harf",
+     "umumiy": [
+      "ifodada qatnashadi",
+      "qiymat bildiradi"
+     ],
+     "a_farq": [
+      "bitta qiymat",
+      "5"
+     ],
+     "b_farq": [
+      "turli qiymat",
+      "a"
+     ]
+    },
+    "klaster": {
+     "markaz": "Harfli ifodalar",
+     "shoxlar": [
+      {
+       "nom": "O‘zgaruvchi",
+       "bandlar": [
+        "harf"
+       ]
+      },
+      {
+       "nom": "Qiymat",
+       "bandlar": [
+        "son qo‘yish"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "2 · (a + b)"
+       ]
+      },
+      {
+       "nom": "Qisqa yozuv",
+       "bandlar": [
+        "a + a + a — 3 · a"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men sonning o‘rnida turaman, qiymatim o‘zgaradi. Men kimman?",
+     "javob": "o‘zgaruvchi harf"
+    },
+    "hikmat": "Harf — son niqobi.",
+    "kalit_soz": "HARF",
+    "xato_yechim": {
+     "shart": "3 · a + 2, a teng 5. Qiymati?",
+     "xato": "352",
+     "togri": "17",
+     "sabab": "3 · a — ko‘paytirish: 3 · 5 — 15"
+    },
+    "guruh_nomlari": [
+     "Harfchilar",
+     "Formulachilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Harflar shahri»",
+     "topshiriq": "Guruh harfli ifodalarni hisoblaydi."
+    },
+    "vazifalar": {
+     "A": "3 · a + 2, a teng 5.",
+     "B": "2 · (a + b), a teng 8, b teng 5.",
+     "C": "10 − c, c teng 3. Tekshiring."
+    },
+    "sinkveyn": [
+     "Harf",
+     "qisqa, o‘zgaruvchan",
+     "almashtiradi, yozadi, hisoblaydi",
+     "Harf — son niqobi",
+     "Formula"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh harfli ifodalar bilan ishlaydi.",
+     "qismlar": [
+      "1-guruh: 3 · a + 2",
+      "2-guruh: a · b",
+      "3-guruh: 2 · (a + b)",
+      "4-guruh: 10 − c"
+     ],
+     "yakun": "Natijalar: 17; 12; 26; 7."
+    }
+   }
+  },
+  {
+   "mavzu": "Mantiqiy-kombinatorik masalalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Kombinatorika nima?",
+      "matn": "Narsalardan turli birikmalar tuzishni kombinatorika o‘rgatadi. Nechta variant bo‘lishini sanaymiz.",
+      "misol": "3 ta shim va 2 ta ko‘ylakdan nechta kiyim to‘plami?",
+      "savol": "Kombinatorika nimani sanaydi?",
+      "javob": "variantlar sonini",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘paytirish qoidasi",
+      "matn": "Birinchi tanlovda 3 variant, ikkinchisida 2 variant bo‘lsa, jami 3 · 2 — 6 variant.",
+      "misol": "3 · 2 — 6 to‘plam.",
+      "savol": "3 · 2 nechaga teng?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Daraxt usuli",
+      "matn": "Variantlarni shoxlanuvchi daraxt ko‘rinishida chizib sanash mumkin. Har shox — bitta tanlov.",
+      "misol": "Har shimga 2 ko‘ylak: 3 · 2 — 6.",
+      "savol": "Har shimga nechta ko‘ylak mos?",
+      "javob": "2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tartiblash",
+      "matn": "3 ta bolani qatorga necha usulda qo‘yish mumkin? Birinchi o‘ringa 3 ta, ikkinchiga 2 ta, uchinchiga 1 ta tanlov.",
+      "misol": "3 · 2 · 1 — 6 usul.",
+      "savol": "3 · 2 · 1 nechaga teng?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Raqamlardan sonlar",
+      "matn": "1, 2, 3 raqamlaridan takrorlamasdan ikki xonali sonlar: 12, 13, 21, 23, 31, 32 — oltita.",
+      "misol": "3 · 2 — 6.",
+      "savol": "Nechta ikki xonali son hosil bo‘ladi?",
+      "javob": "6",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Variantlar soni — tanlovlar ko‘paytmasi. Daraxt chizib yoki jadval tuzib tekshirish mumkin.",
+    "misollar": [
+     {
+      "shart": "3 ta shim va 2 ta ko‘ylakdan necha to‘plam?",
+      "yechim": [
+       "Shim — 3 variant, ko‘ylak — 2.",
+       "3 · 2.",
+       "Javob 6."
+      ],
+      "javob": "6"
+     },
+     {
+      "shart": "3 ta bolani qatorga necha usulda qo‘yamiz?",
+      "yechim": [
+       "Birinchiga 3, ikkinchiga 2, uchinchiga 1.",
+       "3 · 2 · 1.",
+       "Javob 6."
+      ],
+      "javob": "6"
+     },
+     {
+      "shart": "1, 2, 3 raqamlaridan takrorsiz ikki xonali sonlar nechta?",
+      "yechim": [
+       "Birinchi raqam — 3 tanlov.",
+       "Ikkinchi — 2 tanlov.",
+       "3 · 2 — 6."
+      ],
+      "javob": "6"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Kiyim to‘plamlari",
+      "topshiriq": "Kartochkalardan turli to‘plamlarni tuzing.",
+      "yechim": "Daraxt chizing.",
+      "mahsulot": "kartochkalar"
+     },
+     {
+      "nom": "Qatorga turamiz",
+      "topshiriq": "Uch bola turli tartibda tursin.",
+      "yechim": "Barcha usullarni yozing.",
+      "mahsulot": "bolalar"
+     },
+     {
+      "nom": "Sonlar yasaymiz",
+      "topshiriq": "1, 2, 3 raqamlaridan sonlar yozing.",
+      "yechim": "Takrorlamang.",
+      "mahsulot": "raqam kartochkalari"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Ro‘yxat va ko‘paytirishni solishtiring.",
+      "yechim": "6 va 6.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "3 · 2 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "3 · 2 · 1 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "4 · 3 nechaga teng?",
+      "javob": "12"
+     },
+     {
+      "shart": "2 · 2 · 2 nechaga teng?",
+      "javob": "8"
+     },
+     {
+      "shart": "3 shim, 2 ko‘ylak. Nechta to‘plam?",
+      "javob": "6"
+     },
+     {
+      "shart": "Kombinatorika nimani sanaydi?",
+      "javob": "variantlarni"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Variantlarni qo‘shadi",
+      "sabab": "ko‘paytirish o‘rniga qo‘shadi",
+      "oldini_olish": "tanlovlarni ko‘paytirish"
+     },
+     {
+      "xato": "Birini ikki marta sanaydi",
+      "sabab": "ro‘yxatni tartibsiz yozadi",
+      "oldini_olish": "tartib bilan yozish"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "ro‘yxat bilan solishtirish"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Informatika",
+      "boglanish": "parol variantlari"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "kiyim va ovqat tanlash"
+     },
+     {
+      "fan": "Sport",
+      "boglanish": "jamoalar tuzish"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Variantlar daraxti»",
+     "muammo": "Variantlar daraxtini qanday chizamiz?",
+     "mahsulot": "variantlar daraxti",
+     "bosqichlar": [
+      "masala tanlash",
+      "daraxt chizish",
+      "variantlarni sanash",
+      "ko‘paytirish bilan tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Masala tanlang",
+      "Daraxt chizing",
+      "Sanang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "daraxt to‘g‘ri",
+      "sanash to‘g‘ri",
+      "tekshirilgan",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Variantlar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-gul",
+       "matn": "3 shim, 2 ko‘ylak.",
+       "topshiriq": "To‘plam?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "2-gul",
+       "matn": "3 bola qatorda.",
+       "topshiriq": "Usullar?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "3-gul",
+       "matn": "1, 2, 3 raqamlaridan ikki xonali sonlar.",
+       "topshiriq": "Nechta?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "4-gul",
+       "matn": "4 shim, 3 ko‘ylak.",
+       "topshiriq": "To‘plam?",
+       "javob": "12",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Daraxt chizdingizmi?",
+      "Ko‘paytirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Kombinatorika",
+      "tarif": "variantlarni sanash"
+     },
+     {
+      "atama": "Variant",
+      "tarif": "bitta imkoniyat"
+     },
+     {
+      "atama": "Daraxt",
+      "tarif": "variantlar chizmasi"
+     },
+     {
+      "atama": "Tanlov",
+      "tarif": "bitta tanlash"
+     },
+     {
+      "atama": "To‘plam",
+      "tarif": "birga olingan narsalar"
+     },
+     {
+      "atama": "Tartib",
+      "tarif": "joylashish ketma-ketligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "3 shim va 2 ko‘ylakdan 6 to‘plam",
+      "togri": true,
+      "izoh": "3 · 2"
+     },
+     {
+      "matn": "3 + 2 — 5 to‘plam",
+      "togri": false,
+      "izoh": "ko‘paytiramiz"
+     },
+     {
+      "matn": "3 bola 6 usulda turadi",
+      "togri": true,
+      "izoh": "3 · 2 · 1"
+     },
+     {
+      "matn": "1, 2, 3 dan 6 ta ikki xonali son",
+      "togri": true,
+      "izoh": "3 · 2"
+     },
+     {
+      "matn": "4 · 3 — 10",
+      "togri": false,
+      "izoh": "12"
+     },
+     {
+      "matn": "Daraxt variantlarni ko‘rsatadi",
+      "togri": true,
+      "izoh": "chizma"
+     },
+     {
+      "matn": "Variantlar soni tanlovlar yig‘indisi",
+      "togri": false,
+      "izoh": "ko‘paytmasi"
+     },
+     {
+      "matn": "2 · 2 · 2 — 8",
+      "togri": true,
+      "izoh": "variantlar"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Kombinatorika?",
+      "javob": "variantlarni sanash"
+     },
+     {
+      "savol": "3 · 2?",
+      "javob": "6"
+     },
+     {
+      "savol": "3 · 2 · 1?",
+      "javob": "6"
+     },
+     {
+      "savol": "4 · 3?",
+      "javob": "12"
+     },
+     {
+      "savol": "2 · 2 · 2?",
+      "javob": "8"
+     },
+     {
+      "savol": "Variantlar soni?",
+      "javob": "tanlovlar ko‘paytmasi"
+     },
+     {
+      "savol": "Daraxt nima uchun?",
+      "javob": "variantlarni ko‘rsatish"
+     },
+     {
+      "savol": "3 bola nechta usulda?",
+      "javob": "6"
+     },
+     {
+      "savol": "3 shim, 2 ko‘ylak?",
+      "javob": "6"
+     },
+     {
+      "savol": "Qanday tekshiramiz?",
+      "javob": "ro‘yxat bilan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Chiz",
+      "matn": "Daraxt chiz.",
+      "savol": "Nechta shox?"
+     },
+     {
+      "nom": "Sana",
+      "matn": "Variantlarni sana.",
+      "savol": "Nechta?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "Tanlovlarni ko‘paytir.",
+      "savol": "3 · 2?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Ro‘yxat bilan solishtir.",
+      "savol": "6?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun variantlar sonini ko‘paytirish bilan topamiz?",
+    "keys": {
+     "vaziyat": "Sizda 3 ta shim va 2 ta ko‘ylak bor.",
+     "savollar": [
+      "Nechta kiyim to‘plami bor?",
+      "Daraxt qanday chiziladi?"
+     ]
+    },
+    "tezis": "Tanlovlarni ko‘paytir",
+    "taqqoslash": {
+     "a": "Qo‘shish",
+     "b": "Ko‘paytirish",
+     "umumiy": [
+      "sonlar bilan amal",
+      "variant sanaydi"
+     ],
+     "a_farq": [
+      "tanlovlar alohida",
+      "3 + 2"
+     ],
+     "b_farq": [
+      "tanlovlar birga",
+      "3 · 2"
+     ]
+    },
+    "klaster": {
+     "markaz": "Kombinatorika",
+     "shoxlar": [
+      {
+       "nom": "Variant",
+       "bandlar": [
+        "imkoniyat"
+       ]
+      },
+      {
+       "nom": "Ko‘paytirish",
+       "bandlar": [
+        "tanlovlar ko‘paytmasi"
+       ]
+      },
+      {
+       "nom": "Daraxt",
+       "bandlar": [
+        "chizma"
+       ]
+      },
+      {
+       "nom": "Tartib",
+       "bandlar": [
+        "3 · 2 · 1"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men variantlarni sanayman. Men kimman?",
+     "javob": "kombinatorika"
+    },
+    "hikmat": "Tanla, ko‘paytir, sana.",
+    "kalit_soz": "VARIANT",
+    "xato_yechim": {
+     "shart": "3 shim va 2 ko‘ylak. Nechta to‘plam?",
+     "xato": "5",
+     "togri": "6",
+     "sabab": "tanlovlar ko‘paytiriladi: 3 · 2"
+    },
+    "guruh_nomlari": [
+     "Variantchilar",
+     "Daraxtchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Variantlar bog‘i»",
+     "topshiriq": "Guruh variantlarni sanaydi."
+    },
+    "vazifalar": {
+     "A": "3 shim va 2 ko‘ylakdan nechta to‘plam?",
+     "B": "3 bolani qatorga necha usulda qo‘yamiz?",
+     "C": "1, 2, 3 raqamlaridan ikki xonali sonlar nechta?"
+    },
+    "sinkveyn": [
+     "Variant",
+     "ko‘p, turli",
+     "sanaladi, tanlanadi, tuziladi",
+     "Tanla va sana",
+     "Daraxt"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh variantlarni sanaydi.",
+     "qismlar": [
+      "1-guruh: kiyim",
+      "2-guruh: qatorga turish",
+      "3-guruh: sonlar",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 6; 6; 6; tekshirdik."
+    }
+   }
+  },
+  {
+   "mavzu": "Hayotiy masalalar (budjet)",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Budjet nima?",
+      "matn": "Budjet — oilaning yoki o‘zimizning daromad va xarajatlar rejasi. Daromad — kelgan pul, xarajat — sarflangan pul.",
+      "misol": "Oylik 1000 so‘m. Xarajatlar: oziq-ovqat 450, transport 150, o‘qish 100.",
+      "savol": "Daromad nima?",
+      "javob": "kelgan pul",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Xarajatlar yig‘indisi",
+      "matn": "Hamma xarajatni qo‘shsak, jami xarajat chiqadi.",
+      "misol": "450 + 150 + 100 — 700 so‘m.",
+      "savol": "450 + 150 + 100 nechaga teng?",
+      "javob": "700",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qoldiq",
+      "matn": "Qoldiq — daromaddan xarajatni ayirmasi.",
+      "misol": "1000 − 700 — 300 so‘m.",
+      "savol": "1000 − 700 nechaga teng?",
+      "javob": "300",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Jamg‘arma",
+      "matn": "Qoldiq pulni jamg‘arsak, bir necha oyda katta summa yig‘iladi.",
+      "misol": "Har oy 300 so‘m: 4 oyda 300 · 4 — 1200 so‘m.",
+      "savol": "300 · 4 nechaga teng?",
+      "javob": "1200",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Reja tuzamiz",
+      "matn": "Avval kerakli xarajatlar, keyin jamg‘arma, so‘ng ixtiyoriy xarajatlar uchun pul ajratamiz.",
+      "misol": "Kerakli xarajatlarga ustuvorlik beramiz.",
+      "savol": "Qaysi xarajat muhimroq: oziq-ovqat yoki o‘yinchoq?",
+      "javob": "oziq-ovqat",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Budjet: daromad − xarajat — qoldiq. Qoldiqni jamg‘arish mumkin. Avval muhim xarajatlarni rejalashtir.",
+    "misollar": [
+     {
+      "shart": "Oylik 1000. Xarajat: 450, 150 va 100. Jami xarajat?",
+      "yechim": [
+       "450 + 150 — 600.",
+       "600 + 100.",
+       "Javob 700."
+      ],
+      "javob": "700"
+     },
+     {
+      "shart": "Qancha pul qoladi?",
+      "yechim": [
+       "Daromad 1000, xarajat 700.",
+       "1000 − 700.",
+       "Javob 300."
+      ],
+      "javob": "300"
+     },
+     {
+      "shart": "Har oy 300 jamg‘arilsa, 4 oyda qancha bo‘ladi?",
+      "yechim": [
+       "300 · 4.",
+       "1200.",
+       "Javob 1200."
+      ],
+      "javob": "1200"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Oila budjeti",
+      "topshiriq": "Sodda oylik budjet jadvalini tuzing.",
+      "yechim": "Daromad va xarajatni yozing.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Do‘kon o‘yini",
+      "topshiriq": "Berilgan pulga kerakli narsalarni tanlang.",
+      "yechim": "Qoldiqni hisoblang.",
+      "mahsulot": "narxlar ro‘yxati"
+     },
+     {
+      "nom": "Jamg‘arma rejasi",
+      "topshiriq": "Maqsadga necha oyda yetishni hisoblang.",
+      "yechim": "Maqsadni oylik jamg‘armaga bo‘ling.",
+      "mahsulot": "reja varag‘i"
+     },
+     {
+      "nom": "Tekshiruv",
+      "topshiriq": "Daromadni xarajat va qoldiq yig‘indisi bilan solishtiring.",
+      "yechim": "700 + 300 — 1000.",
+      "mahsulot": "tekshiruv varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "450 + 150 + 100 nechaga teng?",
+      "javob": "700"
+     },
+     {
+      "shart": "1000 − 700 nechaga teng?",
+      "javob": "300"
+     },
+     {
+      "shart": "300 · 4 nechaga teng?",
+      "javob": "1200"
+     },
+     {
+      "shart": "700 + 300 nechaga teng?",
+      "javob": "1000"
+     },
+     {
+      "shart": "1200 / 4 nechaga teng?",
+      "javob": "300"
+     },
+     {
+      "shart": "Daromad nima?",
+      "javob": "kelgan pul"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Xarajatni daromadga qo‘shadi",
+      "sabab": "ayirishni unutadi",
+      "oldini_olish": "daromad − xarajat"
+     },
+     {
+      "xato": "Qoldiqni xarajat deb oladi",
+      "sabab": "tushunchani aralashtiradi",
+      "oldini_olish": "qoldiq — qolgan pul"
+     },
+     {
+      "xato": "Tekshirmaydi",
+      "sabab": "shoshiladi",
+      "oldini_olish": "xarajat + qoldiq — daromad"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Hayot",
+      "boglanish": "oila xarajatlari"
+     },
+     {
+      "fan": "Iqtisod",
+      "boglanish": "daromad va xarajat"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "hisob-kitob ilovasi"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening budjetim»",
+     "muammo": "O‘z kichik budjetimizni qanday tuzamiz?",
+     "mahsulot": "budjet jadvali",
+     "bosqichlar": [
+      "daromadni yozish",
+      "xarajatlarni yozish",
+      "qoldiqni hisoblash",
+      "jamg‘arma rejasi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Daromadni yozing",
+      "Xarajatlarni yozing",
+      "Qoldiqni hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "raqamlar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "reja mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Bank shaharchasi»",
+     "bekatlar": [
+      {
+       "nom": "1-oyna",
+       "matn": "450 + 150 + 100.",
+       "topshiriq": "Xarajat?",
+       "javob": "700",
+       "rasm": ""
+      },
+      {
+       "nom": "2-oyna",
+       "matn": "1000 − 700.",
+       "topshiriq": "Qoldiq?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "3-oyna",
+       "matn": "Har oy 300, 4 oy.",
+       "topshiriq": "Jamg‘arma?",
+       "javob": "1200",
+       "rasm": ""
+      },
+      {
+       "nom": "4-oyna",
+       "matn": "700 + 300.",
+       "topshiriq": "Daromad?",
+       "javob": "1000",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi amalni tanladingiz?",
+      "Qoldiq qancha?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Budjet",
+      "tarif": "daromad va xarajat rejasi"
+     },
+     {
+      "atama": "Daromad",
+      "tarif": "kelgan pul"
+     },
+     {
+      "atama": "Xarajat",
+      "tarif": "sarflangan pul"
+     },
+     {
+      "atama": "Qoldiq",
+      "tarif": "ortib qolgan pul"
+     },
+     {
+      "atama": "Jamg‘arma",
+      "tarif": "yig‘ilgan pul"
+     },
+     {
+      "atama": "Reja",
+      "tarif": "oldindan belgilash"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Qoldiq — daromad − xarajat",
+      "togri": true,
+      "izoh": "1000 − 700"
+     },
+     {
+      "matn": "450 + 150 + 100 — 600",
+      "togri": false,
+      "izoh": "700"
+     },
+     {
+      "matn": "300 · 4 — 1200",
+      "togri": true,
+      "izoh": "jamg‘arma"
+     },
+     {
+      "matn": "700 + 300 — 1000",
+      "togri": true,
+      "izoh": "tekshirish"
+     },
+     {
+      "matn": "Daromad xarajatni bildiradi",
+      "togri": false,
+      "izoh": "kelgan pul"
+     },
+     {
+      "matn": "Budjet reja",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "1200 / 4 — 300",
+      "togri": true,
+      "izoh": "oylik jamg‘arma"
+     },
+     {
+      "matn": "Tekshirish shart emas",
+      "togri": false,
+      "izoh": "kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Budjet nima?",
+      "javob": "daromad va xarajat rejasi"
+     },
+     {
+      "savol": "Daromad?",
+      "javob": "kelgan pul"
+     },
+     {
+      "savol": "Xarajat?",
+      "javob": "sarflangan pul"
+     },
+     {
+      "savol": "Qoldiq?",
+      "javob": "daromad − xarajat"
+     },
+     {
+      "savol": "450 + 150 + 100?",
+      "javob": "700"
+     },
+     {
+      "savol": "1000 − 700?",
+      "javob": "300"
+     },
+     {
+      "savol": "300 · 4?",
+      "javob": "1200"
+     },
+     {
+      "savol": "1200 / 4?",
+      "javob": "300"
+     },
+     {
+      "savol": "700 + 300?",
+      "javob": "1000"
+     },
+     {
+      "savol": "Avval qaysi xarajat?",
+      "javob": "muhimi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Daromadni yoz.",
+      "savol": "1000?"
+     },
+     {
+      "nom": "Qo‘sh",
+      "matn": "Xarajatlarni qo‘sh.",
+      "savol": "450 + 150 + 100?"
+     },
+     {
+      "nom": "Ayir",
+      "matn": "Qoldiqni top.",
+      "savol": "1000 − 700?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Yig‘indini tekshir.",
+      "savol": "700 + 300?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun pulni oldindan rejalashtiramiz?",
+    "keys": {
+     "vaziyat": "Oylik 1000 so‘m. Xarajatlar: 450, 150, 100 so‘m.",
+     "savollar": [
+      "Qancha pul qoladi?",
+      "4 oyda qancha jamg‘ariladi?"
+     ]
+    },
+    "tezis": "Reja — pul hamyoni",
+    "taqqoslash": {
+     "a": "Daromad",
+     "b": "Xarajat",
+     "umumiy": [
+      "pul bilan bog‘liq",
+      "budjetda yoziladi"
+     ],
+     "a_farq": [
+      "kelgan pul",
+      "1000"
+     ],
+     "b_farq": [
+      "sarflangan pul",
+      "700"
+     ]
+    },
+    "klaster": {
+     "markaz": "Budjet",
+     "shoxlar": [
+      {
+       "nom": "Daromad",
+       "bandlar": [
+        "kelgan pul"
+       ]
+      },
+      {
+       "nom": "Xarajat",
+       "bandlar": [
+        "sarflangan pul"
+       ]
+      },
+      {
+       "nom": "Qoldiq",
+       "bandlar": [
+        "daromad − xarajat"
+       ]
+      },
+      {
+       "nom": "Jamg‘arma",
+       "bandlar": [
+        "yig‘ish"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men daromad va xarajatlar rejasiman. Men kimman?",
+     "javob": "budjet"
+    },
+    "hikmat": "Reja bilan pul oshar.",
+    "kalit_soz": "BUDJET",
+    "xato_yechim": {
+     "shart": "Daromad 1000, xarajat 700. Qoldiq?",
+     "xato": "1700",
+     "togri": "300",
+     "sabab": "qoldiq — daromad − xarajat"
+    },
+    "guruh_nomlari": [
+     "Budjetchilar",
+     "Hisobchilar",
+     "Jamg‘armachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Bank shaharchasi»",
+     "topshiriq": "Guruh budjet masalalarini yechadi."
+    },
+    "vazifalar": {
+     "A": "Xarajat 450, 150 va 100. Jami?",
+     "B": "Daromad 1000. Qoldiq qancha?",
+     "C": "Har oy 300, 4 oyda qancha? Tekshiring."
+    },
+    "sinkveyn": [
+     "Budjet",
+     "rejali, tejamkor",
+     "kiradi, chiqadi, qoladi",
+     "Tejamkor — boy",
+     "Pul"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh budjet masalalarini yechadi.",
+     "qismlar": [
+      "1-guruh: xarajat",
+      "2-guruh: qoldiq",
+      "3-guruh: jamg‘arma",
+      "4-guruh: tekshirish"
+     ],
+     "yakun": "Natijalar: 700; 300; 1200; tekshirdik."
+    }
+   }
   }
  ]
 }
