@@ -1,0 +1,1393 @@
+{
+ "daraja": "maktab",
+ "sinf": "9",
+ "fan": "Kimyo",
+ "muallif": "qo‘lda yozilgan, faktlar tekshirilgan",
+ "mavzular": [
+  {
+   "mavzu": "Elektrolitik dissotsiatsiya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tok o‘tkazuvchi eritmalar",
+      "matn": "Osh tuzi eritmasi tok o‘tkazadi, shakar eritmasi esa o‘tkazmaydi. Eritmada yoki suyuqlanmada tok o‘tkazadigan moddalar — elektrolitlar: kislotalar, asoslar, tuzlar. Tok o‘tkazmaydiganlari — noelektrolitlar: shakar, spirt. Tok erkin ionlar bilan o‘tadi.",
+      "misol": "Chiroqli qurilmada tuz eritmasi chiroqni yondiradi.",
+      "savol": "Tok eritmada nima orqali o‘tadi?",
+      "javob": "ionlar orqali",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Arrenius nazariyasi",
+      "matn": "1887-yilda shved olimi Svante Arrenius elektrolitik dissotsiatsiya nazariyasini ilgari surdi: elektrolit suvda erib, ionlarga ajraladi. Bu uchun u 1903-yilda Nobel mukofotini oldi. Ionlar elektr tokisiz ham eritmada bor, tok ularni faqat harakatga keltiradi.",
+      "misol": "Ionlar tok bergandan oldin ham eritmada bo‘ladi.",
+      "savol": "Dissotsiatsiya nazariyasini kim ilgari surgan?",
+      "javob": "Arrenius",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qutbli suv molekulasi",
+      "matn": "Suv molekulasi qutbli: kislorod tomoni qisman manfiy, vodorod tomoni qisman musbat. Suv molekulalari kristall yoki molekula atrofini o‘rab, uni ionlarga tortib ajratadi. Natriy xlorid natriy ioniga va xlor ioniga ajraladi. Zaryadlar yig‘indisi doimo saqlanadi.",
+      "misol": "Suv — ajoyib erituvchi.",
+      "savol": "Suv molekulasi qanday?",
+      "javob": "qutbli",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kislota, asos, tuz",
+      "matn": "Kislota ajralganda musbat vodorod ionlari hosil bo‘ladi, shu sabab nordon ta’m va indikator rangi o‘zgaradi. Asos ajralganda gidroksid ionlari hosil bo‘ladi. Tuz esa metall ionlari va kislota qoldig‘i ionlariga ajraladi. Masalan, kaltsiy xlorid bitta kaltsiy ioni va ikkita xlor ioniga ajraladi.",
+      "misol": "Limon nordon, chunki unda kislota bor.",
+      "savol": "Kislota ajralganda qaysi ion hosil bo‘ladi?",
+      "javob": "vodorod ioni",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kuchli va kuchsiz elektrolit",
+      "matn": "Dissotsiatsiya darajasi — ajralgan molekulalar sonining umumiy soniga nisbati. Kuchli elektrolitlar deyarli to‘liq ajraladi: xlorid kislota, natriy gidroksid, tuzlar. Kuchsiz elektrolitlar qisman ajraladi: sirka kislota, ammiak suvi, karbonat kislota. Ajralish darajasi 50 molekuladan 5 tasi ajralsa — 0,1.",
+      "misol": "Sirka kislota kuchsiz, shuning uchun ovqatda ishlatiladi.",
+      "savol": "Kuchli elektrolitga misol?",
+      "javob": "xlorid kislota",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Elektrolit eritmada ionlarga ajraladi. Dissotsiatsiya darajasi — ajralgan soni / umumiy soni. Zaryadlar yig‘indisi nol.",
+    "misollar": [
+     {
+      "shart": "Kaltsiy xlorid molekulasi 1 kaltsiy ioni va 2 xlor ioni beradi. 10 molekuladan nechta ion?",
+      "yechim": [
+       "Bitta molekuladan 3 ion.",
+       "10 · 3.",
+       "Javob 30."
+      ],
+      "javob": "30"
+     },
+     {
+      "shart": "50 molekuladan 5 tasi ajraldi. Dissotsiatsiya darajasi?",
+      "yechim": [
+       "5 / 50.",
+       "Hisoblaymiz.",
+       "Javob 0,1."
+      ],
+      "javob": "0,1"
+     },
+     {
+      "shart": "Alyuminiy sulfat molekulasi 2 alyuminiy ioni va 3 sulfat ioni beradi. 3 molekuladan nechta ion?",
+      "yechim": [
+       "Bitta molekuladan 5 ion.",
+       "3 · 5.",
+       "Javob 15."
+      ],
+      "javob": "15"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Elektr o‘tkazuvchanlik sinovi",
+      "topshiriq": "Tuz, shakar, limon kislotasi eritmalarini chiroq bilan sinang.",
+      "yechim": "Tuz va kislota yondiradi.",
+      "mahsulot": "stakan, chiroq, batareya"
+     },
+     {
+      "nom": "Ion sxemasi",
+      "topshiriq": "Besh moddaning ionlarga ajralishini sxemada chizing.",
+      "yechim": "Zaryadlarni tekshiring.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Darajani hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Ajralgan / umumiy.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Tarix lavhasi",
+      "topshiriq": "Arrenius hayotidan qisqa lavha tayyorlang.",
+      "yechim": "1887, 1903.",
+      "mahsulot": "qog‘oz"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "10 · 3 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "5 / 50 nechaga teng?",
+      "javob": "0,1"
+     },
+     {
+      "shart": "3 · 5 nechaga teng?",
+      "javob": "15"
+     },
+     {
+      "shart": "Nazariya yili?",
+      "javob": "1887"
+     },
+     {
+      "shart": "Nobel mukofoti yili?",
+      "javob": "1903"
+     },
+     {
+      "shart": "Shakar elektrolitmi?",
+      "javob": "yo‘q"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Tok o‘tganda ionlar paydo bo‘ladi deydi",
+      "sabab": "ionlar oldindan bor",
+      "oldini_olish": "tok ularni harakatlantiradi"
+     },
+     {
+      "xato": "Barcha elektrolitlar to‘liq ajraladi deydi",
+      "sabab": "kuchsizlari qisman",
+      "oldini_olish": "sirka kislota"
+     },
+     {
+      "xato": "Shakar eritmasi tok o‘tkazadi deydi",
+      "sabab": "o‘tkazmaydi",
+      "oldini_olish": "noelektrolit"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "tanada elektrolitlar"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "elektr toki"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "tuz eritmalari"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Ionlar olami»",
+     "muammo": "Qaysi eritmalar tok o‘tkazadi va nima uchun?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "eritmalar tayyorlash",
+      "chiroq bilan sinash",
+      "ionlarni yozish",
+      "darajani hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Eritma tayyorlang",
+      "Sinang",
+      "Ionlarni yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba aniq",
+      "ionlar to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ionlar bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-yo‘lak",
+       "matn": "10 kaltsiy xlorid molekulasi.",
+       "topshiriq": "Ionlar?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-yo‘lak",
+       "matn": "50 dan 5 ajraldi.",
+       "topshiriq": "Daraja?",
+       "javob": "0,1",
+       "rasm": ""
+      },
+      {
+       "nom": "3-yo‘lak",
+       "matn": "3 alyuminiy sulfat molekulasi.",
+       "topshiriq": "Ionlar?",
+       "javob": "15",
+       "rasm": ""
+      },
+      {
+       "nom": "4-yo‘lak",
+       "matn": "Nazariya yili.",
+       "topshiriq": "Yil?",
+       "javob": "1887",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ionlarni sanadingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Elektrolit",
+      "tarif": "eritmada tok o‘tkazuvchi modda"
+     },
+     {
+      "atama": "Noelektrolit",
+      "tarif": "tok o‘tkazmaydigan modda"
+     },
+     {
+      "atama": "Dissotsiatsiya",
+      "tarif": "ionlarga ajralish"
+     },
+     {
+      "atama": "Ion",
+      "tarif": "zaryadlangan zarra"
+     },
+     {
+      "atama": "Dissotsiatsiya darajasi",
+      "tarif": "ajralgan ulush"
+     },
+     {
+      "atama": "Indikator",
+      "tarif": "muhitni ko‘rsatuvchi modda"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tuz eritmasi tok o‘tkazadi",
+      "togri": true,
+      "izoh": "ionlar bor"
+     },
+     {
+      "matn": "Shakar eritmasi tok o‘tkazadi",
+      "togri": false,
+      "izoh": "noelektrolit"
+     },
+     {
+      "matn": "Arrenius nazariyasi 1887-yilda",
+      "togri": true,
+      "izoh": "Nobel 1903"
+     },
+     {
+      "matn": "Ionlar tok bilan paydo bo‘ladi",
+      "togri": false,
+      "izoh": "oldindan bor"
+     },
+     {
+      "matn": "10 · 3 — 30",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Kislota ajralganda vodorod ioni hosil bo‘ladi",
+      "togri": true,
+      "izoh": "nordon"
+     },
+     {
+      "matn": "Suv molekulasi qutbsiz",
+      "togri": false,
+      "izoh": "qutbli"
+     },
+     {
+      "matn": "5 / 50 — 0,1",
+      "togri": true,
+      "izoh": "daraja"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Elektrolit?",
+      "javob": "tok o‘tkazuvchi"
+     },
+     {
+      "savol": "Noelektrolit?",
+      "javob": "tok o‘tkazmaydi"
+     },
+     {
+      "savol": "Dissotsiatsiya?",
+      "javob": "ionlarga ajralish"
+     },
+     {
+      "savol": "Kim?",
+      "javob": "Arrenius"
+     },
+     {
+      "savol": "Yil?",
+      "javob": "1887"
+     },
+     {
+      "savol": "Kislota ioni?",
+      "javob": "vodorod ioni"
+     },
+     {
+      "savol": "Daraja?",
+      "javob": "ajralgan / umumiy"
+     },
+     {
+      "savol": "10 · 3?",
+      "javob": "30"
+     },
+     {
+      "savol": "5 / 50?",
+      "javob": "0,1"
+     },
+     {
+      "savol": "Kuchsiz?",
+      "javob": "sirka kislota"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Chiroqni kuzat.",
+      "savol": "Yondimi?"
+     },
+     {
+      "nom": "Yoz",
+      "matn": "Ionlarni yoz.",
+      "savol": "Zaryadlar?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Ionlar sonini top.",
+      "savol": "Molekula · ion?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nega o‘tkazadi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun tuz eritmasi tok o‘tkazadi, shakar eritmasi o‘tkazmaydi?",
+    "keys": {
+     "vaziyat": "Tuz eritmasiga ulangan chiroq yondi, shakar eritmasidagi yonmadi.",
+     "savollar": [
+      "Tuz eritmada nimaga ajraldi?",
+      "Shakar-chi?"
+     ]
+    },
+    "tezis": "Elektrolit eritmada ionlarga ajraladi",
+    "taqqoslash": {
+     "a": "Kuchli elektrolit",
+     "b": "Kuchsiz elektrolit",
+     "umumiy": [
+      "eritmada ajraladi",
+      "tok o‘tkazadi"
+     ],
+     "a_farq": [
+      "deyarli to‘liq ajraladi",
+      "xlorid kislota"
+     ],
+     "b_farq": [
+      "qisman ajraladi",
+      "sirka kislota"
+     ]
+    },
+    "klaster": {
+     "markaz": "Elektrolitik dissotsiatsiya",
+     "shoxlar": [
+      {
+       "nom": "Elektrolit",
+       "bandlar": [
+        "kislota",
+        "asos",
+        "tuz"
+       ]
+      },
+      {
+       "nom": "Nazariya",
+       "bandlar": [
+        "Arrenius 1887"
+       ]
+      },
+      {
+       "nom": "Daraja",
+       "bandlar": [
+        "ajralgan / umumiy"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "kuchli",
+        "kuchsiz"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men eritmada ionlarga ajralishman. Men kimman?",
+     "javob": "dissotsiatsiya"
+    },
+    "hikmat": "Ionlar tok tashiydi.",
+    "kalit_soz": "ION",
+    "xato_yechim": {
+     "shart": "Ionlar qachon paydo bo‘ladi?",
+     "xato": "tok o‘tganda",
+     "togri": "modda suvda erganda",
+     "sabab": "ionlar oldindan bor"
+    },
+    "guruh_nomlari": [
+     "Ionchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ionlar olami»",
+     "topshiriq": "Guruh eritmalarni sinaydi."
+    },
+    "vazifalar": {
+     "A": "10 kaltsiy xlorid molekulasi ionlari?",
+     "B": "50 dan 5 ajralsa daraja?",
+     "C": "3 alyuminiy sulfat ionlari?"
+    },
+    "sinkveyn": [
+     "Ion",
+     "zaryadli, erkin",
+     "ajraladi, o‘tkazadi, tortiladi",
+     "Suvda ionlar",
+     "Elektrolit"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh dissotsiatsiyani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: elektrolitlar",
+      "2-guruh: nazariya",
+      "3-guruh: ionlar",
+      "4-guruh: daraja"
+     ],
+     "yakun": "Natijalar: 30; 0,1; 15."
+    }
+   }
+  },
+  {
+   "mavzu": "Ion almashinish reaksiyalari",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ionlar almashadi",
+      "matn": "Ion almashinish reaksiyasida eritmadagi ikki elektrolit o‘z ionlarini almashadi. Reaksiya amalda oxirigacha boradi, agar cho‘kma, gaz yoki suv kabi kuchsiz elektrolit hosil bo‘lsa. Aks holda ionlar eritmada aralashib qoladi, o‘zgarish ko‘rinmaydi.",
+      "misol": "Cho‘kma — eritmada ko‘rinadigan qattiq zarralar.",
+      "savol": "Reaksiya qachon oxirigacha boradi?",
+      "javob": "cho‘kma, gaz yoki suv hosil bo‘lsa",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Cho‘kma hosil bo‘lishi",
+      "matn": "Natriy xlorid eritmasi kumush nitrat eritmasi bilan aralashganda oq pishloqsimon kumush xlorid cho‘kadi. Bariy sulfat ham oq cho‘kma. Mis gidroksid — zangori, temir uch gidroksid — qizg‘ish-qo‘ng‘ir cho‘kma. Eruvchanlik jadvali qaysi modda cho‘kishini ko‘rsatadi.",
+      "misol": "Kumush xlorid — xloridning sifat reaksiyasi.",
+      "savol": "Kumush xlorid rangi?",
+      "javob": "oq",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Gaz ajralishi",
+      "matn": "Soda eritmasiga xlorid kislota qo‘shilsa, qaynab ko‘piklanadi: karbonat angidrid gazi ajraladi. Natriy karbonat va kislota natriy xlorid, suv va karbonat angidrid hosil qiladi. Pishirish sodasi va sirka aralashmasida ham shunday.",
+      "misol": "Xamir bo‘kishi shu gaz hisobiga.",
+      "savol": "Soda kislota bilan qaysi gaz beradi?",
+      "javob": "karbonat angidrid",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Neytrallanish",
+      "matn": "Kislota va asos suv hosil qilib reaksiyaga kirishadi. Qisqa ion tenglamasi: vodorod ioni gidroksid ioni bilan birikib, suv beradi. 1 mol natriy gidroksid (40 gramm) 1 mol xlorid kislotani (36,5 gramm) neytrallaydi. Me’dadagi ortiqcha kislota antatsid dori bilan shunday kamaytiriladi.",
+      "misol": "Chaqayotgan hasharot nishidagi kislota ishqor bilan susayadi.",
+      "savol": "Neytrallanishda nima hosil bo‘ladi?",
+      "javob": "suv va tuz",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ion tenglamalari",
+      "matn": "Ion tenglama uch xil yoziladi: molekulyar, to‘liq ion, qisqa ion. To‘liq ion tenglamada elektrolitlar ionlarga ajratiladi, cho‘kma, gaz, suv esa ajratilmaydi. Ikki tomonda bir xil ionlar (tomoshabin ionlar) chiqarib tashlanadi, qisqa tenglama qoladi.",
+      "misol": "Qisqa tenglama reaksiya mohiyatini ko‘rsatadi.",
+      "savol": "Qaysi ionlar qisqa tenglamaga kirmaydi?",
+      "javob": "tomoshabin ionlar",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Reaksiya oxirigacha boradi: cho‘kma, gaz yoki suv hosil bo‘lsa. Qisqa ion tenglamada tomoshabin ionlar yo‘q.",
+    "misollar": [
+     {
+      "shart": "0,2 mol natriy xlorid kumush nitrat bilan to‘liq reaksiyaga kirdi (M kumush xlorid — 143,5). Cho‘kma massasi?",
+      "yechim": [
+       "Cho‘kma ham 0,2 mol.",
+       "0,2 · 143,5.",
+       "Javob 28,7 gramm."
+      ],
+      "javob": "28,7 gramm"
+     },
+     {
+      "shart": "10,6 gramm natriy karbonat (M — 106) kislota bilan reaksiyaga kirdi. Karbonat angidrid hajmi (normal sharoit)?",
+      "yechim": [
+       "n — 10,6 / 106 — 0,1 mol.",
+       "V — 0,1 · 22,4.",
+       "Javob 2,24 litr."
+      ],
+      "javob": "2,24 litr"
+     },
+     {
+      "shart": "40 gramm natriy gidroksid (1 mol) necha mol xlorid kislotani neytrallaydi?",
+      "yechim": [
+       "Nisbat bir-bir.",
+       "Natriy gidroksid 1 mol.",
+       "Javob 1 mol."
+      ],
+      "javob": "1 mol"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Cho‘kma tajribasi",
+      "topshiriq": "Tuz va kumush nitrat (o‘qituvchi nazoratida) eritmalarini aralashtiring.",
+      "yechim": "Oq cho‘kma.",
+      "mahsulot": "probirka"
+     },
+     {
+      "nom": "Soda va sirka",
+      "topshiriq": "Soda va sirkani aralashtirib, gaz ajralishini kuzating.",
+      "yechim": "Ko‘pik.",
+      "mahsulot": "soda, sirka"
+     },
+     {
+      "nom": "Qisqa tenglama",
+      "topshiriq": "Uch reaksiya uchun qisqa ion tenglama yozing.",
+      "yechim": "Tomoshabinlarni o‘chiring.",
+      "mahsulot": "daftar"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Mol orqali.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "0,2 · 143,5 nechaga teng?",
+      "javob": "28,7"
+     },
+     {
+      "shart": "10,6 / 106 nechaga teng?",
+      "javob": "0,1"
+     },
+     {
+      "shart": "0,1 · 22,4 nechaga teng?",
+      "javob": "2,24"
+     },
+     {
+      "shart": "Kumush xlorid molyar massasi?",
+      "javob": "143,5"
+     },
+     {
+      "shart": "Xloridning sifat reaksiyasi cho‘kmasi rangi?",
+      "javob": "oq"
+     },
+     {
+      "shart": "Neytrallanishda hosil bo‘ladi?",
+      "javob": "suv"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Hamma almashinish reaksiyasi oxirigacha boradi deydi",
+      "sabab": "cho‘kma, gaz yoki suv kerak",
+      "oldini_olish": "aks holda aralashma"
+     },
+     {
+      "xato": "Qisqa tenglamaga tomoshabinlarni ham yozadi",
+      "sabab": "ularni o‘chirish kerak",
+      "oldini_olish": "o‘zgarmaydigan ionlar"
+     },
+     {
+      "xato": "Cho‘kmani ionlarga ajratib yozadi",
+      "sabab": "ajratilmaydi",
+      "oldini_olish": "cho‘kma qattiq"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "antatsid dorilar"
+     },
+     {
+      "fan": "Oshxona",
+      "boglanish": "soda va sirka"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "suv tozalash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Reaksiya sirlari»",
+     "muammo": "Qaysi aralashmalarda ion reaksiyasi boradi?",
+     "mahsulot": "tajriba jadvali",
+     "bosqichlar": [
+      "eritmalarni tanlash",
+      "aralashtirish",
+      "natijani yozish",
+      "ion tenglamasi yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Eritmalarni tanlang",
+      "Aralashtiring",
+      "Tenglama yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba aniq",
+      "tenglama to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Probirkalar shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-probirka",
+       "matn": "0,2 mol NaCl, M(AgCl) 143,5.",
+       "topshiriq": "Cho‘kma gramm?",
+       "javob": "28,7",
+       "rasm": ""
+      },
+      {
+       "nom": "2-probirka",
+       "matn": "10,6 gramm soda, M 106.",
+       "topshiriq": "CO2 litr?",
+       "javob": "2,24",
+       "rasm": ""
+      },
+      {
+       "nom": "3-probirka",
+       "matn": "40 gramm NaOH.",
+       "topshiriq": "HCl mol?",
+       "javob": "1",
+       "rasm": ""
+      },
+      {
+       "nom": "4-probirka",
+       "matn": "Xlorid sifat reaksiyasi.",
+       "topshiriq": "Cho‘kma rangi?",
+       "javob": "oq",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qadamdan boshladingiz?",
+      "Molga o‘tdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ion almashinish",
+      "tarif": "elektrolitlarning ion almashishi"
+     },
+     {
+      "atama": "Cho‘kma",
+      "tarif": "erimaydigan qattiq modda"
+     },
+     {
+      "atama": "Neytrallanish",
+      "tarif": "kislota va asos reaksiyasi"
+     },
+     {
+      "atama": "Qisqa ion tenglama",
+      "tarif": "tomoshabinsiz tenglama"
+     },
+     {
+      "atama": "Tomoshabin ion",
+      "tarif": "o‘zgarmaydigan ion"
+     },
+     {
+      "atama": "Sifat reaksiyasi",
+      "tarif": "ionni aniqlovchi reaksiya"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Cho‘kma hosil bo‘lsa reaksiya oxirigacha boradi",
+      "togri": true,
+      "izoh": "shart"
+     },
+     {
+      "matn": "Kumush xlorid sariq cho‘kma",
+      "togri": false,
+      "izoh": "oq"
+     },
+     {
+      "matn": "Soda kislota bilan karbonat angidrid beradi",
+      "togri": true,
+      "izoh": "gaz"
+     },
+     {
+      "matn": "Neytrallanishda suv hosil bo‘ladi",
+      "togri": true,
+      "izoh": "kislota va asos"
+     },
+     {
+      "matn": "0,2 · 143,5 — 28,7",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Cho‘kma ionlarga ajratib yoziladi",
+      "togri": false,
+      "izoh": "ajratilmaydi"
+     },
+     {
+      "matn": "Tomoshabin ionlar qisqa tenglamaga kiradi",
+      "togri": false,
+      "izoh": "chiqariladi"
+     },
+     {
+      "matn": "10,6 / 106 — 0,1",
+      "togri": true,
+      "izoh": "mol"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ion almashinish?",
+      "javob": "ionlar o‘rni almashadi"
+     },
+     {
+      "savol": "Shart?",
+      "javob": "cho‘kma, gaz, suv"
+     },
+     {
+      "savol": "Cho‘kma?",
+      "javob": "oq AgCl"
+     },
+     {
+      "savol": "Gaz?",
+      "javob": "CO2"
+     },
+     {
+      "savol": "Neytrallanish?",
+      "javob": "kislota va asos"
+     },
+     {
+      "savol": "Tomoshabin?",
+      "javob": "o‘zgarmaydigan ion"
+     },
+     {
+      "savol": "0,2 · 143,5?",
+      "javob": "28,7"
+     },
+     {
+      "savol": "10,6 / 106?",
+      "javob": "0,1"
+     },
+     {
+      "savol": "0,1 · 22,4?",
+      "javob": "2,24"
+     },
+     {
+      "savol": "Sifat reaksiya?",
+      "javob": "ionni aniqlaydi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Aralashmani kuzat.",
+      "savol": "Cho‘kma, gaz?"
+     },
+     {
+      "nom": "Yoz",
+      "matn": "Tenglamani yoz.",
+      "savol": "Ionlar?"
+     },
+     {
+      "nom": "Qisqartir",
+      "matn": "Tomoshabinni o‘chir.",
+      "savol": "Qisqa tenglama?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nega boradi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun ba’zi eritmalar aralashganda reaksiya ko‘rinmaydi?",
+    "keys": {
+     "vaziyat": "Natriy xlorid va kaliy nitrat eritmalarini aralashtirganda hech narsa ko‘rinmadi.",
+     "savollar": [
+      "Cho‘kma bormi?",
+      "Gaz yoki suv hosil bo‘ldimi?"
+     ]
+    },
+    "tezis": "Cho‘kma, gaz yoki suv hosil bo‘lsa reaksiya boradi",
+    "taqqoslash": {
+     "a": "To‘liq ion tenglama",
+     "b": "Qisqa ion tenglama",
+     "umumiy": [
+      "reaksiyani ifodalaydi",
+      "ionlar bilan yoziladi"
+     ],
+     "a_farq": [
+      "barcha ionlar",
+      "tomoshabinlar bor"
+     ],
+     "b_farq": [
+      "faqat qatnashuvchi ionlar",
+      "tomoshabinsiz"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ion almashinish reaksiyalari",
+     "shoxlar": [
+      {
+       "nom": "Shart",
+       "bandlar": [
+        "cho‘kma",
+        "gaz",
+        "suv"
+       ]
+      },
+      {
+       "nom": "Cho‘kmalar",
+       "bandlar": [
+        "AgCl oq",
+        "mis gidroksid zangori"
+       ]
+      },
+      {
+       "nom": "Neytrallanish",
+       "bandlar": [
+        "kislota plyus asos"
+       ]
+      },
+      {
+       "nom": "Tenglama",
+       "bandlar": [
+        "to‘liq",
+        "qisqa"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ionlarning o‘rin almashish raqsiman. Men nimaman?",
+     "javob": "ion almashinish reaksiyasi"
+    },
+    "hikmat": "Ionlar o‘rin almashadi.",
+    "kalit_soz": "CHO‘KMA",
+    "xato_yechim": {
+     "shart": "Reaksiya qachon oxirigacha boradi?",
+     "xato": "har doim",
+     "togri": "cho‘kma, gaz yoki suv hosil bo‘lsa",
+     "sabab": "ionlar aralashib qolmaydi"
+    },
+    "guruh_nomlari": [
+     "Cho‘kmachilar",
+     "Tenglamachilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Reaksiya sirlari»",
+     "topshiriq": "Guruh tajribalarni o‘tkazadi."
+    },
+    "vazifalar": {
+     "A": "0,2 mol NaCl dan cho‘kma?",
+     "B": "10,6 gramm sodadan CO2 hajmi?",
+     "C": "40 gramm NaOH neytrallaydigan HCl?"
+    },
+    "sinkveyn": [
+     "Reaksiya",
+     "ionli, tez",
+     "almashadi, cho‘kadi, ko‘piklanadi",
+     "Ionlar o‘rin almashadi",
+     "Cho‘kma"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ion almashinish reaksiyalarini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: cho‘kma",
+      "2-guruh: gaz",
+      "3-guruh: neytrallanish",
+      "4-guruh: ion tenglama"
+     ],
+     "yakun": "Natijalar: 28,7 gramm; 2,24 litr; 1 mol."
+    }
+   }
+  },
+  {
+   "mavzu": "Gidroliz",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tuz va suv",
+      "matn": "Gidroliz — tuzning suv bilan almashinish reaksiyasi, natijada kuchsiz elektrolit hosil bo‘ladi. Grekcha «gidro» — suv, «liz» — parchalanish. Hamma tuz gidrolizga uchramaydi: faqat kuchsiz kislota yoki kuchsiz asosdan hosil bo‘lgan tuzlar.",
+      "misol": "Suvga tushgan soda eritmasi ilmoqdek silliq.",
+      "savol": "Gidroliz nima?",
+      "javob": "tuzning suv bilan reaksiyasi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘rt xil tuz",
+      "matn": "Kuchli kislota va kuchli asosdan hosil bo‘lgan tuz (natriy xlorid) gidrolizlanmaydi, muhit neytral, pH 7. Kuchsiz kislota va kuchli asosdan (soda, natriy karbonat) — muhit ishqoriy, pH 7 dan katta. Kuchli kislota va kuchsiz asosdan (mis sulfat, ammoniy xlorid) — muhit kislotali, pH 7 dan kichik.",
+      "misol": "Mis sulfat eritmasi kislotali.",
+      "savol": "Soda eritmasi muhiti qanday?",
+      "javob": "ishqoriy",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "pH shkalasi",
+      "matn": "pH — muhit ko‘rsatkichi. pH 7 — neytral, 7 dan kichik — kislotali, 7 dan katta — ishqoriy. Shkala 0 dan 14 gacha. Har bir pH birligida vodorod ionlari konsentratsiyasi 10 marta o‘zgaradi. pH 3 va pH 5 farqi — 100 marta. pH va pOH yig‘indisi 14.",
+      "misol": "Me’da shirasi pH taxminan 2.",
+      "savol": "Neytral muhitda pH qancha?",
+      "javob": "7",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kuchsiz juft",
+      "matn": "Agar tuz kuchsiz kislota va kuchsiz asosdan hosil bo‘lgan bo‘lsa, gidroliz ko‘pincha oxirigacha boradi, masalan, alyuminiy sulfid suvda butunlay parchalanadi. Shuning uchun bunday tuzlar suvli eritmadan olinmaydi. Haroratni oshirish gidrolizni kuchaytiradi.",
+      "misol": "Issiq suvda gidroliz kuchliroq.",
+      "savol": "Gidrolizni nima kuchaytiradi?",
+      "javob": "haroratni oshirish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotda gidroliz",
+      "matn": "Sovun eritmasi ishqoriy muhitga ega — shu sabab terini quritadi. Kir yuvuvchi soda yog‘ni tozalaydi. Dehqonchilikda tuproq pH ni bilish muhim: ba’zi o‘simliklar kislotali, ba’zilari ishqoriy tuproqni yoqtiradi. Oshqozonda ovqat hazmida ham gidroliz bor.",
+      "misol": "Tuproq pH sinalib, o‘g‘it tanlanadi.",
+      "savol": "Sovun eritmasi muhiti qanday?",
+      "javob": "ishqoriy",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Kuchsiz kislota yoki asosdan hosil bo‘lgan tuzlar gidrolizlanadi. pH 7 — neytral. pH plyus pOH — 14.",
+    "misollar": [
+     {
+      "shart": "Eritmaning pH — 9. pOH qancha?",
+      "yechim": [
+       "pH plyus pOH — 14.",
+       "14 minus 9.",
+       "Javob 5."
+      ],
+      "javob": "5"
+     },
+     {
+      "shart": "pH 3 eritmada vodorod ionlari pH 5 ga qaraganda necha marta ko‘p?",
+      "yechim": [
+       "Har birlikda 10 marta.",
+       "Ikki birlik — 10 · 10.",
+       "Javob 100 marta."
+      ],
+      "javob": "100 marta"
+     },
+     {
+      "shart": "200 ta zarradan 10 tasi gidrolizlandi. Gidroliz darajasi?",
+      "yechim": [
+       "10 / 200.",
+       "Hisoblaymiz.",
+       "Javob 0,05."
+      ],
+      "javob": "0,05"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "pH sinovi",
+      "topshiriq": "Indikator qog‘ozi bilan limon, sovun, suv pH ini aniqlang.",
+      "yechim": "Rang shkalasi.",
+      "mahsulot": "indikator, stakan"
+     },
+     {
+      "nom": "Tuzlarni tasniflaymiz",
+      "topshiriq": "Beshta tuz muhitini bashorat qiling.",
+      "yechim": "Kuchli/kuchsiz.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "pH va daraja.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Tuproq pH",
+      "topshiriq": "Tuproq namunasi pH ini aniqlang.",
+      "yechim": "Kislotali yoki ishqoriy.",
+      "mahsulot": "tuproq, indikator"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "14 minus 9 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "10 · 10 nechaga teng?",
+      "javob": "100"
+     },
+     {
+      "shart": "10 / 200 nechaga teng?",
+      "javob": "0,05"
+     },
+     {
+      "shart": "Neytral pH?",
+      "javob": "7"
+     },
+     {
+      "shart": "Soda muhiti?",
+      "javob": "ishqoriy"
+     },
+     {
+      "shart": "Mis sulfat muhiti?",
+      "javob": "kislotali"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Natriy xlorid gidrolizlanadi deydi",
+      "sabab": "gidrolizlanmaydi",
+      "oldini_olish": "kuchli kislota va asos"
+     },
+     {
+      "xato": "pH 7 dan katta bo‘lsa kislotali deydi",
+      "sabab": "ishqoriy",
+      "oldini_olish": "7 dan katta"
+     },
+     {
+      "xato": "Haroratni oshirsa gidroliz kamayadi deydi",
+      "sabab": "kuchayadi",
+      "oldini_olish": "issiq suvda ko‘proq"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Qishloq xo‘jaligi",
+      "boglanish": "tuproq pH"
+     },
+     {
+      "fan": "Maishiy",
+      "boglanish": "sovun va soda"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "me’da pH"
+     }
+    ],
+    "loyiha": {
+     "nom": "«pH detektivi»",
+     "muammo": "Maishiy moddalarning pH qanday?",
+     "mahsulot": "jadval va tajriba",
+     "bosqichlar": [
+      "moddalarni tanlash",
+      "pH o‘lchash",
+      "muhitni aniqlash",
+      "tuz turini izohlash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Moddalarni tanlang",
+      "pH o‘lchang",
+      "Izohlang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "izoh to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «pH ko‘chasi»",
+     "bekatlar": [
+      {
+       "nom": "1-do‘kon",
+       "matn": "pH 9.",
+       "topshiriq": "pOH?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "2-do‘kon",
+       "matn": "pH 3 va 5.",
+       "topshiriq": "Necha marta?",
+       "javob": "100",
+       "rasm": ""
+      },
+      {
+       "nom": "3-do‘kon",
+       "matn": "200 dan 10.",
+       "topshiriq": "Daraja?",
+       "javob": "0,05",
+       "rasm": ""
+      },
+      {
+       "nom": "4-do‘kon",
+       "matn": "Soda eritmasi.",
+       "topshiriq": "Muhit?",
+       "javob": "ishqoriy",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "14 dan ayirdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Gidroliz",
+      "tarif": "tuzning suv bilan reaksiyasi"
+     },
+     {
+      "atama": "pH",
+      "tarif": "muhit ko‘rsatkichi"
+     },
+     {
+      "atama": "Neytral muhit",
+      "tarif": "pH 7"
+     },
+     {
+      "atama": "Kislotali muhit",
+      "tarif": "pH 7 dan kichik"
+     },
+     {
+      "atama": "Ishqoriy muhit",
+      "tarif": "pH 7 dan katta"
+     },
+     {
+      "atama": "Indikator",
+      "tarif": "muhit rangini ko‘rsatuvchi modda"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Gidroliz tuzning suv bilan reaksiyasi",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Natriy xlorid gidrolizlanadi",
+      "togri": false,
+      "izoh": "kuchli juft"
+     },
+     {
+      "matn": "Soda eritmasi ishqoriy",
+      "togri": true,
+      "izoh": "kuchsiz kislota"
+     },
+     {
+      "matn": "Neytral muhitda pH 7",
+      "togri": true,
+      "izoh": "shkala"
+     },
+     {
+      "matn": "14 minus 9 — 5",
+      "togri": true,
+      "izoh": "pOH"
+     },
+     {
+      "matn": "pH 3 va pH 5 farqi 100 marta",
+      "togri": true,
+      "izoh": "10 · 10"
+     },
+     {
+      "matn": "Harorat oshsa gidroliz kamayadi",
+      "togri": false,
+      "izoh": "kuchayadi"
+     },
+     {
+      "matn": "Mis sulfat eritmasi ishqoriy",
+      "togri": false,
+      "izoh": "kislotali"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Gidroliz?",
+      "javob": "tuz va suv reaksiyasi"
+     },
+     {
+      "savol": "Neytral?",
+      "javob": "pH 7"
+     },
+     {
+      "savol": "Soda?",
+      "javob": "ishqoriy"
+     },
+     {
+      "savol": "Mis sulfat?",
+      "javob": "kislotali"
+     },
+     {
+      "savol": "pH shkalasi?",
+      "javob": "0 dan 14 gacha"
+     },
+     {
+      "savol": "pH plyus pOH?",
+      "javob": "14"
+     },
+     {
+      "savol": "14 minus 9?",
+      "javob": "5"
+     },
+     {
+      "savol": "10 · 10?",
+      "javob": "100"
+     },
+     {
+      "savol": "10 / 200?",
+      "javob": "0,05"
+     },
+     {
+      "savol": "Harorat?",
+      "javob": "gidrolizni kuchaytiradi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Indikator rangini kuzat.",
+      "savol": "Qaysi rang?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "pH ni o‘lcha.",
+      "savol": "7 dan katta?"
+     },
+     {
+      "nom": "Aniqla",
+      "matn": "Tuz turini top.",
+      "savol": "Kuchli yoki kuchsiz?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Muhit qanday?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun soda eritmasi sovundek silliq va ishqoriy?",
+    "keys": {
+     "vaziyat": "Soda eritmasiga tushirilgan lakmus ko‘k rangga o‘tdi.",
+     "savollar": [
+      "Muhit qanday?",
+      "Nega ishqoriy?"
+     ]
+    },
+    "tezis": "pH plyus pOH — 14",
+    "taqqoslash": {
+     "a": "Soda eritmasi",
+     "b": "Mis sulfat eritmasi",
+     "umumiy": [
+      "tuz eritmasi",
+      "gidrolizlanadi"
+     ],
+     "a_farq": [
+      "ishqoriy muhit",
+      "pH 7 dan katta"
+     ],
+     "b_farq": [
+      "kislotali muhit",
+      "pH 7 dan kichik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Gidroliz",
+     "shoxlar": [
+      {
+       "nom": "Ta’rif",
+       "bandlar": [
+        "tuz plyus suv"
+       ]
+      },
+      {
+       "nom": "Tuzlar",
+       "bandlar": [
+        "neytral",
+        "ishqoriy",
+        "kislotali"
+       ]
+      },
+      {
+       "nom": "pH",
+       "bandlar": [
+        "0 dan 14",
+        "7 neytral"
+       ]
+      },
+      {
+       "nom": "Hayot",
+       "bandlar": [
+        "sovun",
+        "tuproq"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tuz va suvning uchrashuvidagi parchalanishman. Men kimman?",
+     "javob": "gidroliz"
+    },
+    "hikmat": "Suv tuzni parchalaydi.",
+    "kalit_soz": "GIDROLIZ",
+    "xato_yechim": {
+     "shart": "Soda eritmasi muhiti?",
+     "xato": "kislotali",
+     "togri": "ishqoriy",
+     "sabab": "kuchsiz kislota, kuchli asos"
+    },
+    "guruh_nomlari": [
+     "Gidrolizchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«pH detektivi»",
+     "topshiriq": "Guruh pH o‘lchaydi."
+    },
+    "vazifalar": {
+     "A": "pH 9 bo‘lsa pOH?",
+     "B": "pH 3 va 5 farqi?",
+     "C": "200 dan 10 gidrolizlansa daraja?"
+    },
+    "sinkveyn": [
+     "Tuz",
+     "suvli, faol",
+     "parchalanadi, o‘zgaradi, ishqorlanadi",
+     "Suv tuzni o‘zgartiradi",
+     "pH"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh gidrolizni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: ta’rif",
+      "2-guruh: tuz turlari",
+      "3-guruh: pH",
+      "4-guruh: hayotda"
+     ],
+     "yakun": "Natijalar: 5; 100 marta; 0,05."
+    }
+   }
+  }
+ ]
+}
