@@ -9690,6 +9690,1394 @@
      "yakun": "Natijalar: 30; 80; 4."
     }
    }
+  },
+  {
+   "mavzu": "Yorug‘likning sinishi",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sinish hodisasi",
+      "matn": "Yorug‘lik bir shaffof muhitdan boshqasiga o‘tganda, chegarada yo‘nalishini o‘zgartiradi. Bu hodisa yorug‘likning sinishi deyiladi. Sababi — turli muhitlarda yorug‘lik tezligi har xil.",
+      "misol": "Suvga tushirilgan qalam singandek ko‘rinadi.",
+      "savol": "Sinish nima?",
+      "javob": "nurning yo‘nalishini o‘zgartirishi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qoidalar",
+      "matn": "Havodan suvga yoki shishaga o‘tganda nur normalga yaqinlashadi, ya’ni sinish burchagi tushish burchagidan kichik bo‘ladi. Suvdan havoga o‘tganda esa normaldan uzoqlashadi. Tik tushgan nur sinmaydi.",
+      "misol": "Basseyn tubi yuzaroq ko‘rinadi.",
+      "savol": "Havodan suvga o‘tganda nur normalga nisbatan qanday buriladi?",
+      "javob": "yaqinlashadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sinish ko‘rsatkichi",
+      "matn": "Muhitning sinish ko‘rsatkichi n — yorug‘likning vakuumdagi tezligining shu muhitdagi tezligiga nisbati: n — c / v. Suv uchun taxminan 1,33, shisha uchun taxminan 1,5, olmos uchun taxminan 2,4. Ko‘rsatkich katta bo‘lsa, muhit optik zichroq.",
+      "misol": "Olmos juda yaltiroq, chunki n katta.",
+      "savol": "n qaysi nisbatdan topiladi?",
+      "javob": "c / v",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘la ichki qaytish",
+      "matn": "Yorug‘lik zichroq muhitdan siyrakroqqa o‘tayotib, burchak katta bo‘lsa, butunlay qaytadi. Suv uchun bu burchak taxminan 49 daraja. Optik tolalar, internet kabellari shu hodisaga asoslangan.",
+      "misol": "Optik tola yorug‘likni egilgan yo‘ldan ham olib o‘tadi.",
+      "savol": "Optik tola qaysi hodisaga asoslangan?",
+      "javob": "to‘la ichki qaytish",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kamalak",
+      "matn": "Oq nur shisha prizmadan o‘tganda yetti rangga ajraladi. Buni 1666-yil atrofida Isaak Nyuton ko‘rsatgan. Kamalak ham yomg‘ir tomchilarida nurning sinishi va ajralishidan hosil bo‘ladi.",
+      "misol": "Yomg‘irdan keyin Quyosh qarshisida kamalak ko‘rinadi.",
+      "savol": "Prizma oq nurni nechta rangga ajratadi?",
+      "javob": "yettita",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Nur muhit chegarasida sinadi. Sinish ko‘rsatkichi n — c / v. Havodan suvga — normalga yaqinlashadi. To‘la ichki qaytish optik tolada qo‘llanadi.",
+    "misollar": [
+     {
+      "shart": "Suvda yorug‘lik tezligi soniyasiga 225000 km, vakuumda 300000 km. n? (n — c / v)",
+      "yechim": [
+       "n — c / v.",
+       "300000 / 225000.",
+       "Javob taxminan 1,33."
+      ],
+      "javob": "taxminan 1,33"
+     },
+     {
+      "shart": "Shishaning sinish ko‘rsatkichi 1,5. Undagi tezlik? (v — c / n)",
+      "yechim": [
+       "v — 300000 / 1,5.",
+       "200000.",
+       "Javob soniyasiga 200000 km."
+      ],
+      "javob": "soniyasiga 200000 km"
+     },
+     {
+      "shart": "Muhitning n — 2 bo‘lsa, undagi tezlik?",
+      "yechim": [
+       "300000 / 2.",
+       "150000.",
+       "Javob soniyasiga 150000 km."
+      ],
+      "javob": "soniyasiga 150000 km"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Singan qalam",
+      "topshiriq": "Stakan suviga qalam tushirib, yon tomondan kuzating.",
+      "yechim": "Qalam singandek.",
+      "mahsulot": "stakan, qalam"
+     },
+     {
+      "nom": "Tanga tajribasi",
+      "topshiriq": "Bo‘sh piyola tubiga tanga qo‘ying va suv quying.",
+      "yechim": "Tanga ko‘tarilib ko‘rinadi.",
+      "mahsulot": "piyola, tanga, suv"
+     },
+     {
+      "nom": "Kamalak yasaymiz",
+      "topshiriq": "Suv to‘la idish va ko‘zgu bilan spektr hosil qiling.",
+      "yechim": "Rang ajraladi.",
+      "mahsulot": "idish, ko‘zgu"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "n — c / v.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "300000 / 225000 taxminan nechaga teng?",
+      "javob": "1,33"
+     },
+     {
+      "shart": "300000 / 1,5 nechaga teng?",
+      "javob": "200000"
+     },
+     {
+      "shart": "300000 / 2 nechaga teng?",
+      "javob": "150000"
+     },
+     {
+      "shart": "Havodan suvga o‘tganda nur qanday buriladi?",
+      "javob": "normalga yaqinlashadi"
+     },
+     {
+      "shart": "Prizma nechta rang beradi?",
+      "javob": "7"
+     },
+     {
+      "shart": "Optik tola qaysi hodisaga asoslangan?",
+      "javob": "to‘la ichki qaytish"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Nur suvga o‘tganda normaldan uzoqlashadi deydi",
+      "sabab": "yaqinlashadi",
+      "oldini_olish": "suvga o‘tsa sinish burchagi kichik"
+     },
+     {
+      "xato": "Sinish ko‘rsatkichini v / c deb hisoblaydi",
+      "sabab": "c ni v ga bo‘lish kerak",
+      "oldini_olish": "n — c / v"
+     },
+     {
+      "xato": "Tik tushgan nur ham sinadi deydi",
+      "sabab": "sinmaydi",
+      "oldini_olish": "yo‘nalishi o‘zgarmaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "baliq va suv usti ko‘rinishi"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "optik tola va internet"
+     },
+     {
+      "fan": "Astronomiya",
+      "boglanish": "atmosfera va yorug‘lik"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Nur sinishi»",
+     "muammo": "Sinishni qanday kuzatamiz va tushuntiramiz?",
+     "mahsulot": "tajribalar albomi",
+     "bosqichlar": [
+      "tajribalar tanlash",
+      "kuzatish",
+      "chizmalar chizish",
+      "tushuntirish yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tajriba tanlang",
+      "Kuzating",
+      "Chizma chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba to‘g‘ri",
+      "chizma aniq",
+      "tushuntirish mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Nur yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "Suvda tezlik 225000, vakuumda 300000.",
+       "topshiriq": "n?",
+       "javob": "1,33",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "Shisha n 1,5.",
+       "topshiriq": "Tezlik?",
+       "javob": "200000",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "n — 2.",
+       "topshiriq": "Tezlik?",
+       "javob": "150000",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "Prizma oq nurni?",
+       "topshiriq": "Nechta rang?",
+       "javob": "7",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Formulani qo‘lladingizmi?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sinish",
+      "tarif": "nurning chegarada yo‘nalishini o‘zgartirishi"
+     },
+     {
+      "atama": "Sinish ko‘rsatkichi",
+      "tarif": "muhitning optik xususiyati"
+     },
+     {
+      "atama": "Prizma",
+      "tarif": "uch yoqli shaffof jism"
+     },
+     {
+      "atama": "Spektr",
+      "tarif": "nurning rang bo‘yicha ajralishi"
+     },
+     {
+      "atama": "Optik tola",
+      "tarif": "yorug‘lik o‘tkazuvchi tola"
+     },
+     {
+      "atama": "To‘la ichki qaytish",
+      "tarif": "nurning chegaradan butunlay qaytishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Nur muhit chegarasida yo‘nalishini o‘zgartiradi",
+      "togri": true,
+      "izoh": "sinish"
+     },
+     {
+      "matn": "Havodan suvga nur normaldan uzoqlashadi",
+      "togri": false,
+      "izoh": "yaqinlashadi"
+     },
+     {
+      "matn": "n — c / v",
+      "togri": true,
+      "izoh": "ko‘rsatkich"
+     },
+     {
+      "matn": "Prizma oq nurni ranglarga ajratadi",
+      "togri": true,
+      "izoh": "spektr"
+     },
+     {
+      "matn": "300000 / 2 — 150000",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Tik tushgan nur sinadi",
+      "togri": false,
+      "izoh": "sinmaydi"
+     },
+     {
+      "matn": "Optik tola to‘la ichki qaytishga asoslangan",
+      "togri": true,
+      "izoh": "yorug‘lik o‘tkazadi"
+     },
+     {
+      "matn": "Olmosning sinish ko‘rsatkichi suvnikidan kichik",
+      "togri": false,
+      "izoh": "katta"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Sinish?",
+      "javob": "nur yo‘nalishini o‘zgartiradi"
+     },
+     {
+      "savol": "Sababi?",
+      "javob": "tezlik farqi"
+     },
+     {
+      "savol": "n formulasi?",
+      "javob": "c / v"
+     },
+     {
+      "savol": "Suv n?",
+      "javob": "1,33"
+     },
+     {
+      "savol": "Shisha n?",
+      "javob": "1,5"
+     },
+     {
+      "savol": "Havodan suvga?",
+      "javob": "normalga yaqinlashadi"
+     },
+     {
+      "savol": "300000 / 2?",
+      "javob": "150000"
+     },
+     {
+      "savol": "Prizma?",
+      "javob": "yetti rang"
+     },
+     {
+      "savol": "Nyuton?",
+      "javob": "spektrni ko‘rsatgan"
+     },
+     {
+      "savol": "Tola?",
+      "javob": "to‘la ichki qaytish"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Singan qalamni kuzat.",
+      "savol": "Nima ko‘rinadi?"
+     },
+     {
+      "nom": "Chiz",
+      "matn": "Nur yo‘lini chiz.",
+      "savol": "Burchaklar?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "n ni top.",
+      "savol": "c / v?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nur qayoqqa buriladi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun basseyn tubi haqiqatdagidan sayozroq ko‘rinadi?",
+    "keys": {
+     "vaziyat": "Stakan ichidagi qalam suv sirtida singandek ko‘rinmoqda.",
+     "savollar": [
+      "Nima uchun shunday ko‘rinadi?",
+      "Qalam haqiqatan singanmi?"
+     ]
+    },
+    "tezis": "n — c / v",
+    "taqqoslash": {
+     "a": "Suv",
+     "b": "Olmos",
+     "umumiy": [
+      "shaffof muhit",
+      "nurni sindiradi"
+     ],
+     "a_farq": [
+      "n taxminan 1,33",
+      "tezlik katta"
+     ],
+     "b_farq": [
+      "n taxminan 2,4",
+      "tezlik kichik"
+     ]
+    },
+    "klaster": {
+     "markaz": "Yorug‘likning sinishi",
+     "shoxlar": [
+      {
+       "nom": "Sinish",
+       "bandlar": [
+        "chegarada burilish",
+        "tezlik farqi"
+       ]
+      },
+      {
+       "nom": "Ko‘rsatkich",
+       "bandlar": [
+        "c / v",
+        "suv 1,33"
+       ]
+      },
+      {
+       "nom": "Hodisalar",
+       "bandlar": [
+        "kamalak",
+        "singan qalam"
+       ]
+      },
+      {
+       "nom": "Qo‘llanish",
+       "bandlar": [
+        "prizma",
+        "optik tola"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men nurning muhit chegarasida yo‘nalishini o‘zgartirishiman. Men kimman?",
+     "javob": "sinish"
+    },
+    "hikmat": "Muhit o‘zgarsa, nur yo‘li o‘zgaradi.",
+    "kalit_soz": "SINISH",
+    "xato_yechim": {
+     "shart": "Havodan suvga o‘tgan nur qanday buriladi?",
+     "xato": "normaldan uzoqlashadi",
+     "togri": "normalga yaqinlashadi",
+     "sabab": "suvda tezlik kichik"
+    },
+    "guruh_nomlari": [
+     "Sinishchilar",
+     "Prizmachilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Nur laboratoriyasi»",
+     "topshiriq": "Guruh sinishni tajribada ko‘rsatadi."
+    },
+    "vazifalar": {
+     "A": "Suvda tezlik 225000 bo‘lsa n?",
+     "B": "n 1,5 bo‘lsa tezlik?",
+     "C": "n — 2 bo‘lsa tezlik?"
+    },
+    "sinkveyn": [
+     "Sinish",
+     "egri, rangli",
+     "buradi, sindiradi, ajratadi",
+     "Nur muhitda buriladi",
+     "Prizma"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh sinishni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tajriba",
+      "2-guruh: ko‘rsatkich",
+      "3-guruh: kamalak",
+      "4-guruh: optik tola"
+     ],
+     "yakun": "Natijalar: 1,33; 200000; 150000."
+    }
+   }
+  },
+  {
+   "mavzu": "Linzalar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Linza nima",
+      "matn": "Linza — ikki sferik sirt bilan chegaralangan shaffof jism. Yig‘uvchi linza o‘rtasi qalin, chetlari yupqa; sochuvchi linza esa o‘rtasi yupqa, chetlari qalin bo‘ladi.",
+      "misol": "Lupa — yig‘uvchi linza.",
+      "savol": "Lupa qaysi linza?",
+      "javob": "yig‘uvchi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Fokus",
+      "matn": "Yig‘uvchi linzaga bosh optik o‘qqa parallel tushgan nurlar sinib, bir nuqtada — fokusda — to‘planadi. Linza markazidan fokusgacha masofa fokus masofasi F deyiladi. Sochuvchi linza nurlarni sochib yuboradi.",
+      "misol": "Lupa bilan Quyosh nurini bir nuqtaga to‘plash mumkin.",
+      "savol": "Fokus nima?",
+      "javob": "nurlar to‘planadigan nuqta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Optik kuch",
+      "matn": "Linzaning optik kuchi D fokus masofasiga teskari: D — 1 / F. Birligi — dioptriya. F 0,5 metr bo‘lsa, D 2 dioptriya. Sochuvchi linzaning optik kuchi manfiy hisoblanadi.",
+      "misol": "Qisqa fokusli linza kuchliroq nur sindiradi.",
+      "savol": "D formulasi qanday?",
+      "javob": "1 / F",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tasvirlar",
+      "matn": "Yig‘uvchi linza jism fokusdan uzoqda bo‘lsa, haqiqiy va teskari tasvir beradi. Jism fokus ichida bo‘lsa, mavhum, to‘g‘ri va kattalashgan tasvir beradi — lupa shunday ishlaydi. Sochuvchi linza doim mavhum, kichraygan tasvir beradi.",
+      "misol": "Fotoapparat teskari tasvir hosil qiladi.",
+      "savol": "Lupa qanday tasvir beradi?",
+      "javob": "kattalashgan mavhum",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanilishi",
+      "matn": "Linzalar ko‘zoynak, fotoapparat, proyektor, mikroskop va teleskopda ishlatiladi. Mikroskopni 17-asrda Antoni van Levenguk takomillashtirib, mayda jonzotlarni ko‘rgan.",
+      "misol": "Teleskop uzoq yulduzlarni yaqin ko‘rsatadi.",
+      "savol": "Mikroskopda nimani ko‘ramiz?",
+      "javob": "mayda jismlarni",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Yig‘uvchi linza nurlarni fokusda to‘playdi. D — 1 / F (dioptriya). Sochuvchi linza nurlarni sochadi, D manfiy.",
+    "misollar": [
+     {
+      "shart": "Linza fokus masofasi 0,5 metr. Optik kuchi?",
+      "yechim": [
+       "D — 1 / F.",
+       "1 / 0,5.",
+       "Javob 2 dioptriya."
+      ],
+      "javob": "2 dioptriya"
+     },
+     {
+      "shart": "Fokus masofasi 0,25 metr. Optik kuchi?",
+      "yechim": [
+       "1 / 0,25.",
+       "4.",
+       "Javob 4 dioptriya."
+      ],
+      "javob": "4 dioptriya"
+     },
+     {
+      "shart": "Optik kuchi 5 dioptriya. Fokus masofasi?",
+      "yechim": [
+       "F — 1 / D.",
+       "1 / 5.",
+       "Javob 0,2 metr."
+      ],
+      "javob": "0,2 metr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Lupa bilan yoqamiz",
+      "topshiriq": "Lupa bilan Quyosh nurini qog‘ozga to‘plang (ehtiyot bo‘ling!).",
+      "yechim": "Fokus — eng yorqin nuqta.",
+      "mahsulot": "lupa, qog‘oz"
+     },
+     {
+      "nom": "Fokusni o‘lchaymiz",
+      "topshiriq": "Lupadan fokusgacha masofani o‘lchang.",
+      "yechim": "Chizg‘ich kerak.",
+      "mahsulot": "lupa, chizg‘ich"
+     },
+     {
+      "nom": "Tasvir olamiz",
+      "topshiriq": "Linza yordamida shamning tasvirini ekranda hosil qiling.",
+      "yechim": "Tasvir teskari.",
+      "mahsulot": "linza, sham, ekran"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "D — 1 / F.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1 / 0,5 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "1 / 0,25 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "1 / 5 nechaga teng?",
+      "javob": "0,2"
+     },
+     {
+      "shart": "Optik kuch birligi?",
+      "javob": "dioptriya"
+     },
+     {
+      "shart": "Lupa qaysi linza?",
+      "javob": "yig‘uvchi"
+     },
+     {
+      "shart": "Sochuvchi linza optik kuchi?",
+      "javob": "manfiy"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Optik kuchni F deb hisoblaydi",
+      "sabab": "D — 1 / F",
+      "oldini_olish": "teskari kattalik"
+     },
+     {
+      "xato": "Sochuvchi linza nurni to‘playdi deydi",
+      "sabab": "sochadi",
+      "oldini_olish": "yig‘uvchi to‘playdi"
+     },
+     {
+      "xato": "Optik kuchni metrda o‘lchaydi",
+      "sabab": "dioptriyada o‘lchanadi",
+      "oldini_olish": "birlik dioptriya"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "fotoapparat va proyektor"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "ko‘zoynak"
+     },
+     {
+      "fan": "Astronomiya",
+      "boglanish": "teleskop"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mening teleskopim»",
+     "muammo": "Linzalardan oddiy optik asbob qanday yasaymiz?",
+     "mahsulot": "optik asbob",
+     "bosqichlar": [
+      "linzalar tanlash",
+      "quvur yasash",
+      "fokusni sozlash",
+      "sinash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Linza tanlang",
+      "Yig‘ing",
+      "Sozlang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "asbob ishlaydi",
+      "tasvir ravshan",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Optika muzeyi»",
+     "bekatlar": [
+      {
+       "nom": "1-zal",
+       "matn": "F — 0,5 metr.",
+       "topshiriq": "D?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "2-zal",
+       "matn": "F — 0,25 metr.",
+       "topshiriq": "D?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "3-zal",
+       "matn": "D — 5 dioptriya.",
+       "topshiriq": "F metrda?",
+       "javob": "0,2",
+       "rasm": ""
+      },
+      {
+       "nom": "4-zal",
+       "matn": "Lupa linzasi.",
+       "topshiriq": "Qaysi turdagi?",
+       "javob": "yig‘uvchi",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Linza",
+      "tarif": "ikki sirt bilan chegaralangan shaffof jism"
+     },
+     {
+      "atama": "Fokus",
+      "tarif": "nurlar to‘planadigan nuqta"
+     },
+     {
+      "atama": "Fokus masofasi",
+      "tarif": "linzadan fokusgacha masofa"
+     },
+     {
+      "atama": "Optik kuch",
+      "tarif": "fokus masofasiga teskari kattalik"
+     },
+     {
+      "atama": "Dioptriya",
+      "tarif": "optik kuch birligi"
+     },
+     {
+      "atama": "Lupa",
+      "tarif": "kattalashtiruvchi yig‘uvchi linza"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Yig‘uvchi linza nurlarni to‘playdi",
+      "togri": true,
+      "izoh": "fokusda"
+     },
+     {
+      "matn": "Sochuvchi linza nurlarni to‘playdi",
+      "togri": false,
+      "izoh": "sochadi"
+     },
+     {
+      "matn": "D — 1 / F",
+      "togri": true,
+      "izoh": "optik kuch"
+     },
+     {
+      "matn": "Optik kuch metrda o‘lchanadi",
+      "togri": false,
+      "izoh": "dioptriyada"
+     },
+     {
+      "matn": "1 / 0,5 — 2",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Lupa yig‘uvchi linza",
+      "togri": true,
+      "izoh": "kattalashtiradi"
+     },
+     {
+      "matn": "Sochuvchi linza haqiqiy tasvir beradi",
+      "togri": false,
+      "izoh": "mavhum"
+     },
+     {
+      "matn": "Fotoapparat teskari tasvir hosil qiladi",
+      "togri": true,
+      "izoh": "haqiqiy tasvir"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Linza?",
+      "javob": "shaffof sferik jism"
+     },
+     {
+      "savol": "Fokus?",
+      "javob": "nurlar to‘planadigan nuqta"
+     },
+     {
+      "savol": "D formulasi?",
+      "javob": "1 / F"
+     },
+     {
+      "savol": "Birlik?",
+      "javob": "dioptriya"
+     },
+     {
+      "savol": "1 / 0,5?",
+      "javob": "2"
+     },
+     {
+      "savol": "1 / 0,25?",
+      "javob": "4"
+     },
+     {
+      "savol": "1 / 5?",
+      "javob": "0,2"
+     },
+     {
+      "savol": "Lupa?",
+      "javob": "yig‘uvchi linza"
+     },
+     {
+      "savol": "Sochuvchi?",
+      "javob": "mavhum kichraygan tasvir"
+     },
+     {
+      "savol": "Levenguk?",
+      "javob": "mikroskop"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "F?"
+     },
+     {
+      "nom": "Formula",
+      "matn": "D ni top.",
+      "savol": "1 / F?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Sonni qo‘y.",
+      "savol": "natija?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Birlikni tekshir.",
+      "savol": "dioptriya?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun lupa kichik narsalarni kattalashtirib ko‘rsatadi?",
+    "keys": {
+     "vaziyat": "Lupa yordamida Quyosh nuri qog‘ozda yorqin nuqtaga to‘plandi.",
+     "savollar": [
+      "Bu nuqta nima deyiladi?",
+      "Nima uchun qog‘oz kuyishi mumkin?"
+     ]
+    },
+    "tezis": "D — 1 / F",
+    "taqqoslash": {
+     "a": "Yig‘uvchi linza",
+     "b": "Sochuvchi linza",
+     "umumiy": [
+      "nurni sindiradi",
+      "optik kuchi bor"
+     ],
+     "a_farq": [
+      "o‘rtasi qalin",
+      "nurlarni to‘playdi"
+     ],
+     "b_farq": [
+      "o‘rtasi yupqa",
+      "nurlarni sochadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Linzalar",
+     "shoxlar": [
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "yig‘uvchi",
+        "sochuvchi"
+       ]
+      },
+      {
+       "nom": "Fokus",
+       "bandlar": [
+        "fokus masofasi F"
+       ]
+      },
+      {
+       "nom": "Optik kuch",
+       "bandlar": [
+        "1 / F",
+        "dioptriya"
+       ]
+      },
+      {
+       "nom": "Asboblar",
+       "bandlar": [
+        "lupa",
+        "mikroskop",
+        "teleskop"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men nurlarni to‘playman yoki sochaman, optik kuchim dioptriyada. Men kimman?",
+     "javob": "linza"
+    },
+    "hikmat": "Fokus kichik — kuch katta.",
+    "kalit_soz": "LINZA",
+    "xato_yechim": {
+     "shart": "F 0,5 metr. D?",
+     "xato": "0,5",
+     "togri": "1 / 0,5 — 2 dioptriya",
+     "sabab": "D — 1 / F"
+    },
+    "guruh_nomlari": [
+     "Linzachilar",
+     "Fokuschilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Optika laboratoriyasi»",
+     "topshiriq": "Guruh linza xossalarini o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "F 0,5 metr bo‘lsa D?",
+     "B": "F 0,25 metr bo‘lsa D?",
+     "C": "D 5 dioptriya bo‘lsa F?"
+    },
+    "sinkveyn": [
+     "Linza",
+     "shaffof, silliq",
+     "to‘playdi, sochadi, kattalashtiradi",
+     "Linza nurni sindiradi",
+     "Fokus"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh linzalarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: turlari",
+      "2-guruh: fokus",
+      "3-guruh: tasvir",
+      "4-guruh: asboblar"
+     ],
+     "yakun": "Natijalar: 2; 4; 0,2."
+    }
+   }
+  },
+  {
+   "mavzu": "Ko‘z va ko‘zoynak",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ko‘z tuzilishi",
+      "matn": "Ko‘zning asosiy qismlari: shox parda, qorachiq, rangdor parda, gavhar (tabiiy linza), shishasimon tana va to‘r parda. Qorachiq yorug‘lik miqdorini rostlaydi, to‘r pardada esa ko‘ruvchi hujayralar joylashgan.",
+      "misol": "Yorug‘da qorachiq kichrayadi.",
+      "savol": "Ko‘zdagi tabiiy linza nima deyiladi?",
+      "javob": "gavhar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tasvir hosil bo‘lishi",
+      "matn": "Gavhar jismning haqiqiy, kichraygan va teskari tasvirini to‘r pardada hosil qiladi. Tasvirni ko‘rish nervi orqali miyaga uzatamiz, miya uni to‘g‘ri holatga keltiradi. Ko‘z uzoq va yaqinni ko‘rish uchun gavhar egriligini o‘zgartiradi — bu akkomodatsiya.",
+      "misol": "Yaqindagi kitobga qaraganda gavhar qalinlashadi.",
+      "savol": "To‘r pardadagi tasvir qanday?",
+      "javob": "teskari",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yaqinni ko‘ra olmaslik",
+      "matn": "Uzoqni yaxshi ko‘rib, yaqinni yomon ko‘rish — uzoqdan ko‘rarlik. Tasvir to‘r parda orqasida hosil bo‘ladi. Tuzatish uchun yig‘uvchi (qavariq) linzali ko‘zoynak taqiladi. Optik kuchi musbat.",
+      "misol": "Keksalar o‘qish uchun ko‘zoynak taqadi.",
+      "savol": "Uzoqdan ko‘rarlikda qanday linza kerak?",
+      "javob": "yig‘uvchi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uzoqni ko‘ra olmaslik",
+      "matn": "Yaqinni yaxshi ko‘rib, uzoqni xira ko‘rish — yaqindan ko‘rarlik. Tasvir to‘r parda oldida hosil bo‘ladi. Tuzatish uchun sochuvchi (botiq) linzali ko‘zoynak taqiladi. Optik kuchi manfiy.",
+      "misol": "Maktab doskasini ko‘rolmagan bolaga ko‘zoynak kerak.",
+      "savol": "Yaqindan ko‘rarlikda qanday linza kerak?",
+      "javob": "sochuvchi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ko‘zni asrash",
+      "matn": "Normal ko‘zning eng qulay ko‘rish masofasi taxminan 25 santimetr. Ko‘zni asrash uchun yetarli yorug‘likda o‘qish, ekran oldida tanaffus qilish, tez-tez ko‘z mashqlari bajarish va yilda bir marta ko‘rikdan o‘tish kerak.",
+      "misol": "Telefonga uzoq tikilish ko‘zni charchatadi.",
+      "savol": "Qulay ko‘rish masofasi necha santimetr?",
+      "javob": "25",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ko‘z gavhari tasvirni to‘r pardada hosil qiladi. Uzoqdan ko‘rarlikda — yig‘uvchi, yaqindan ko‘rarlikda — sochuvchi linza. D — 1 / F.",
+    "misollar": [
+     {
+      "shart": "Yig‘uvchi ko‘zoynak linzasining fokus masofasi 0,5 metr. Optik kuchi?",
+      "yechim": [
+       "D — 1 / F.",
+       "1 / 0,5.",
+       "Javob musbat 2 dioptriya."
+      ],
+      "javob": "musbat 2 dioptriya"
+     },
+     {
+      "shart": "Sochuvchi linza fokus masofasi 0,25 metr. Optik kuchi?",
+      "yechim": [
+       "1 / 0,25 — 4.",
+       "Sochuvchi, demak manfiy.",
+       "Javob manfiy 4 dioptriya."
+      ],
+      "javob": "manfiy 4 dioptriya"
+     },
+     {
+      "shart": "Ko‘zoynak optik kuchi 2,5 dioptriya. Fokus masofasi?",
+      "yechim": [
+       "F — 1 / D.",
+       "1 / 2,5.",
+       "Javob 0,4 metr."
+      ],
+      "javob": "0,4 metr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ko‘z modelini yasaymiz",
+      "topshiriq": "Linza va ekran bilan ko‘z modelini yig‘ing.",
+      "yechim": "Tasvir teskari.",
+      "mahsulot": "linza, ekran"
+     },
+     {
+      "nom": "Qorachiqni kuzatamiz",
+      "topshiriq": "Yorug‘da va qorong‘uda do‘stingiz qorachig‘ini kuzating.",
+      "yechim": "Yorug‘da kichrayadi.",
+      "mahsulot": "chiroq"
+     },
+     {
+      "nom": "Ko‘rishni tekshiramiz",
+      "topshiriq": "Ko‘rish jadvali bilan uzoqdan ko‘rishni sinang.",
+      "yechim": "Natijani yozing.",
+      "mahsulot": "jadval"
+     },
+     {
+      "nom": "Ko‘z gigienasi",
+      "topshiriq": "Ko‘zni asrash qoidalarini yozing.",
+      "yechim": "Tanaffus muhim.",
+      "mahsulot": "plakat"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1 / 0,5 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "1 / 0,25 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "1 / 2,5 nechaga teng?",
+      "javob": "0,4"
+     },
+     {
+      "shart": "Ko‘zdagi tabiiy linza?",
+      "javob": "gavhar"
+     },
+     {
+      "shart": "Yaqindan ko‘rarlikda qanday linza?",
+      "javob": "sochuvchi"
+     },
+     {
+      "shart": "Qulay ko‘rish masofasi necha santimetr?",
+      "javob": "25"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yaqindan ko‘rarlikda yig‘uvchi linza kerak deydi",
+      "sabab": "sochuvchi kerak",
+      "oldini_olish": "tasvir to‘r parda oldida"
+     },
+     {
+      "xato": "To‘r pardada tasvir to‘g‘ri deydi",
+      "sabab": "teskari",
+      "oldini_olish": "miya to‘g‘rilaydi"
+     },
+     {
+      "xato": "Gavhar rangdor pardadir deydi",
+      "sabab": "gavhar — linza",
+      "oldini_olish": "rangdor parda boshqa qism"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Biologiya",
+      "boglanish": "ko‘z tuzilishi"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "ko‘rish tuzatish"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "ekran bilan ishlash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sog‘lom ko‘z»",
+     "muammo": "Ko‘zni qanday asraymiz va ko‘rishni qanday tekshiramiz?",
+     "mahsulot": "plakat va modeli",
+     "bosqichlar": [
+      "tuzilishni o‘rganish",
+      "model yasash",
+      "qoidalar yozish",
+      "mashqlar tuzish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tuzilishni o‘rganing",
+      "Model yasang",
+      "Qoidalar yozing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tuzilish to‘g‘ri",
+      "qoidalar mantiqli",
+      "mashqlar foydali",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Ko‘z va nur»",
+     "bekatlar": [
+      {
+       "nom": "1-bekat",
+       "matn": "Yig‘uvchi linza F — 0,5 metr.",
+       "topshiriq": "D?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "2-bekat",
+       "matn": "Sochuvchi linza F — 0,25 metr.",
+       "topshiriq": "D (modul)?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "3-bekat",
+       "matn": "D — 2,5 dioptriya.",
+       "topshiriq": "F metrda?",
+       "javob": "0,4",
+       "rasm": ""
+      },
+      {
+       "nom": "4-bekat",
+       "matn": "Ko‘zning tabiiy linzasi.",
+       "topshiriq": "Nima?",
+       "javob": "gavhar",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Linza turini aniqladingizmi?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Gavhar",
+      "tarif": "ko‘zning tabiiy linzasi"
+     },
+     {
+      "atama": "To‘r parda",
+      "tarif": "ko‘ruvchi hujayralar qatlami"
+     },
+     {
+      "atama": "Qorachiq",
+      "tarif": "nur kiradigan teshik"
+     },
+     {
+      "atama": "Akkomodatsiya",
+      "tarif": "gavhar egriligining o‘zgarishi"
+     },
+     {
+      "atama": "Uzoqdan ko‘rarlik",
+      "tarif": "yaqinni ko‘ra olmaslik"
+     },
+     {
+      "atama": "Yaqindan ko‘rarlik",
+      "tarif": "uzoqni ko‘ra olmaslik"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ko‘zdagi tabiiy linza gavhar",
+      "togri": true,
+      "izoh": "tuzilish"
+     },
+     {
+      "matn": "To‘r pardadagi tasvir to‘g‘ri",
+      "togri": false,
+      "izoh": "teskari"
+     },
+     {
+      "matn": "Yaqindan ko‘rarlikda sochuvchi linza kerak",
+      "togri": true,
+      "izoh": "tasvir oldinga"
+     },
+     {
+      "matn": "Uzoqdan ko‘rarlikda sochuvchi linza kerak",
+      "togri": false,
+      "izoh": "yig‘uvchi"
+     },
+     {
+      "matn": "1 / 0,5 — 2",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Qorachiq yorug‘likni rostlaydi",
+      "togri": true,
+      "izoh": "kichrayadi va kattalashadi"
+     },
+     {
+      "matn": "Qulay ko‘rish masofasi 25 santimetr",
+      "togri": true,
+      "izoh": "me’yor"
+     },
+     {
+      "matn": "Ekran ko‘zni charchatmaydi",
+      "togri": false,
+      "izoh": "tanaffus kerak"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Gavhar?",
+      "javob": "ko‘zning linzasi"
+     },
+     {
+      "savol": "To‘r parda?",
+      "javob": "tasvir hosil bo‘ladigan joy"
+     },
+     {
+      "savol": "Tasvir?",
+      "javob": "teskari va kichraygan"
+     },
+     {
+      "savol": "Akkomodatsiya?",
+      "javob": "egrilikni o‘zgartirish"
+     },
+     {
+      "savol": "Uzoqdan ko‘rarlik?",
+      "javob": "yig‘uvchi linza"
+     },
+     {
+      "savol": "Yaqindan ko‘rarlik?",
+      "javob": "sochuvchi linza"
+     },
+     {
+      "savol": "1 / 0,5?",
+      "javob": "2"
+     },
+     {
+      "savol": "1 / 2,5?",
+      "javob": "0,4"
+     },
+     {
+      "savol": "Qulay masofa?",
+      "javob": "25 santimetr"
+     },
+     {
+      "savol": "Asrash?",
+      "javob": "tanaffus va mashq"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Qorachiqni kuzat.",
+      "savol": "Qanday o‘zgardi?"
+     },
+     {
+      "nom": "Aniqla",
+      "matn": "Ko‘rish turini aniqla.",
+      "savol": "Qaysi linza?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "D ni top.",
+      "savol": "1 / F?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Ko‘zni qanday asraymiz?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun uzoq vaqt telefonga tikilish ko‘zni charchatadi?",
+    "keys": {
+     "vaziyat": "Bola doskani xira ko‘rib, yaqindagi kitobni yaxshi o‘qiydi.",
+     "savollar": [
+      "Bu qaysi ko‘rish turi?",
+      "Qaysi linzali ko‘zoynak kerak?"
+     ]
+    },
+    "tezis": "Ko‘zni asra",
+    "taqqoslash": {
+     "a": "Uzoqdan ko‘rarlik",
+     "b": "Yaqindan ko‘rarlik",
+     "umumiy": [
+      "ko‘rish kamchiligi",
+      "ko‘zoynak bilan tuzatiladi"
+     ],
+     "a_farq": [
+      "tasvir to‘r parda orqasida",
+      "yig‘uvchi linza"
+     ],
+     "b_farq": [
+      "tasvir to‘r parda oldida",
+      "sochuvchi linza"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ko‘z va ko‘zoynak",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "gavhar",
+        "to‘r parda",
+        "qorachiq"
+       ]
+      },
+      {
+       "nom": "Tasvir",
+       "bandlar": [
+        "haqiqiy",
+        "teskari",
+        "kichraygan"
+       ]
+      },
+      {
+       "nom": "Kamchilik",
+       "bandlar": [
+        "uzoqdan ko‘rarlik",
+        "yaqindan ko‘rarlik"
+       ]
+      },
+      {
+       "nom": "Asrash",
+       "bandlar": [
+        "yorug‘lik",
+        "tanaffus"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ko‘zdagi tabiiy linzaman. Men kimman?",
+     "javob": "gavhar"
+    },
+    "hikmat": "Ko‘z — eng qimmat boylik.",
+    "kalit_soz": "KO‘Z",
+    "xato_yechim": {
+     "shart": "Yaqindan ko‘rarlikda qanday ko‘zoynak kerak?",
+     "xato": "yig‘uvchi",
+     "togri": "sochuvchi",
+     "sabab": "tasvir to‘r parda oldida, uni orqaga surish kerak"
+    },
+    "guruh_nomlari": [
+     "Ko‘zchilar",
+     "Linzachilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Ko‘z klinikasi»",
+     "topshiriq": "Guruh ko‘rish kamchiliklarini o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "F 0,5 metr yig‘uvchi linza uchun D?",
+     "B": "F 0,25 metr sochuvchi linza uchun D?",
+     "C": "D 2,5 dioptriya bo‘lsa F?"
+    },
+    "sinkveyn": [
+     "Ko‘z",
+     "yorqin, ko‘ruvchi",
+     "ko‘radi, yig‘adi, o‘zgartiradi",
+     "Ko‘z tasvirni to‘r pardada oladi",
+     "Gavhar"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ko‘z va ko‘zoynakni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: tasvir",
+      "3-guruh: kamchiliklar",
+      "4-guruh: asrash"
+     ],
+     "yakun": "Natijalar: 2; 4; 0,4."
+    }
+   }
   }
  ]
 }
