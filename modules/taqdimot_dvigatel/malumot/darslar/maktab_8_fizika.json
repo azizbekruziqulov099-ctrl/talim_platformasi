@@ -5536,6 +5536,1389 @@
      "yakun": "Natijalar: 6; 220; 90."
     }
    }
+  },
+  {
+   "mavzu": "Om qonuni",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tok va kuchlanish bog‘lanishi",
+      "matn": "Tajriba shuni ko‘rsatadiki, o‘tkazgich uchlaridagi kuchlanish ortsa, undagi tok kuchi ham shuncha marta ortadi. Kuchlanish 2 marta oshsa, tok ham 2 marta oshadi.",
+      "misol": "Batareya sonini ko‘paytirsak, lampa yorqinroq yonadi.",
+      "savol": "Kuchlanish 2 marta oshsa, tok necha marta oshadi?",
+      "javob": "2 marta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Om qonuni",
+      "matn": "Zanjir qismi uchun Om qonuni: tok kuchi kuchlanishga to‘g‘ri, qarshilikka teskari proporsional. Formula: I — U / R. Qonunni 1827-yilda nemis fizigi Georg Om kashf etgan.",
+      "misol": "U 12 volt, R 4 om bo‘lsa, I 3 amper.",
+      "savol": "12 / 4 nechaga teng?",
+      "javob": "3",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qarshilik",
+      "matn": "Qarshilik R o‘tkazgichning tokka qarshilik qilish xususiyatini ko‘rsatadi. Birligi — om. 1 om — uchlaridagi kuchlanish 1 volt bo‘lganda 1 amper tok o‘tadigan o‘tkazgichning qarshiligi.",
+      "misol": "Qarshilik katta bo‘lsa, tok kichik bo‘ladi.",
+      "savol": "Qarshilik birligi nima?",
+      "javob": "om",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Formulaning boshqa ko‘rinishlari",
+      "matn": "I — U / R dan kuchlanishni U — I · R, qarshilikni esa R — U / I deb topamiz. Uchburchak usuli yordam beradi: yopib qo‘ygan harf qolganlaridan topiladi.",
+      "misol": "U 6 volt, I 2 amper bo‘lsa, R 3 om.",
+      "savol": "Kuchlanishni qanday topamiz?",
+      "javob": "I · R",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Volt-amper tavsifi",
+      "matn": "Tok kuchining kuchlanishga bog‘lanish grafigi to‘g‘ri chiziq bo‘ladi. Chiziq qanchalik tik bo‘lsa, qarshilik shunchalik kichik.",
+      "misol": "Grafik koordinata boshidan o‘tadi.",
+      "savol": "Grafik qanday chiziq?",
+      "javob": "to‘g‘ri chiziq",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Om qonuni: I — U / R. U — I · R, R — U / I. Tok kuchi kuchlanishga to‘g‘ri, qarshilikka teskari proporsional.",
+    "misollar": [
+     {
+      "shart": "Kuchlanish 12 volt, qarshilik 4 om. Tok kuchi?",
+      "yechim": [
+       "I — U / R.",
+       "12 / 4.",
+       "Javob 3 amper."
+      ],
+      "javob": "3 amper"
+     },
+     {
+      "shart": "Kuchlanish 220 volt, qarshilik 110 om. Tok kuchi?",
+      "yechim": [
+       "220 / 110.",
+       "2.",
+       "Javob 2 amper."
+      ],
+      "javob": "2 amper"
+     },
+     {
+      "shart": "Tok kuchi 0,5 amper, qarshilik 20 om. Kuchlanish?",
+      "yechim": [
+       "U — I · R.",
+       "0,5 · 20.",
+       "Javob 10 volt."
+      ],
+      "javob": "10 volt"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Bog‘lanishni o‘lchaymiz",
+      "topshiriq": "Turli kuchlanishda tok kuchini o‘lchab, jadval tuzing.",
+      "yechim": "Kuchlanish ortsa tok ortadi.",
+      "mahsulot": "ampermetr, voltmetr"
+     },
+     {
+      "nom": "Grafik chizamiz",
+      "topshiriq": "Jadval bo‘yicha tok va kuchlanish grafigini chizing.",
+      "yechim": "To‘g‘ri chiziq chiqadi.",
+      "mahsulot": "katakli qog‘oz"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Uchburchak usulini qo‘llang.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Qarshilikni topamiz",
+      "topshiriq": "O‘lchagan U va I dan R ni hisoblang.",
+      "yechim": "R — U / I.",
+      "mahsulot": "hisob varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "12 / 4 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "220 / 110 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "0,5 · 20 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "Qarshilik birligi?",
+      "javob": "om"
+     },
+     {
+      "shart": "Om qonuni formulasi?",
+      "javob": "I — U / R"
+     },
+     {
+      "shart": "Georg Om qaysi yili qonunni kashf etgan?",
+      "javob": "1827"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Kuchlanishni I / R deb hisoblaydi",
+      "sabab": "I ni R ga ko‘paytirish kerak",
+      "oldini_olish": "U — I · R"
+     },
+     {
+      "xato": "Qarshilik oshsa tok ham oshadi deydi",
+      "sabab": "teskari proporsional",
+      "oldini_olish": "qarshilik oshsa tok kamayadi"
+     },
+     {
+      "xato": "Qarshilikni amperda o‘lchaydi",
+      "sabab": "birligi om",
+      "oldini_olish": "R — om"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Matematika",
+      "boglanish": "to‘g‘ri va teskari proporsionallik"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "elektr asboblari hisobi"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "xavfsizlik va saqlagichlar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Om qonunini tekshiramiz»",
+     "muammo": "Tok va kuchlanish bog‘lanishini qanday tasdiqlaymiz?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "zanjir yig‘ish",
+      "o‘lchash",
+      "jadval tuzish",
+      "grafik chizish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Zanjir yig‘ing",
+      "O‘lchang",
+      "Grafik chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "grafik to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Om shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "U 12 volt, R 4 om.",
+       "topshiriq": "I?",
+       "javob": "3",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "U 220 volt, R 110 om.",
+       "topshiriq": "I?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "I 0,5 amper, R 20 om.",
+       "topshiriq": "U?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "Qarshilik birligi.",
+       "topshiriq": "Nima?",
+       "javob": "om",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Om qonuni",
+      "tarif": "tok, kuchlanish va qarshilik bog‘lanishi"
+     },
+     {
+      "atama": "Qarshilik",
+      "tarif": "o‘tkazgichning tokka qarshiligi"
+     },
+     {
+      "atama": "Om",
+      "tarif": "qarshilik birligi"
+     },
+     {
+      "atama": "Proporsionallik",
+      "tarif": "kattaliklarning bir xil nisbatda o‘zgarishi"
+     },
+     {
+      "atama": "Volt-amper tavsifi",
+      "tarif": "I ning U ga bog‘lanish grafigi"
+     },
+     {
+      "atama": "Kuchlanish",
+      "tarif": "ishning zaryadga nisbati"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "I — U / R",
+      "togri": true,
+      "izoh": "Om qonuni"
+     },
+     {
+      "matn": "Qarshilik oshsa tok oshadi",
+      "togri": false,
+      "izoh": "kamayadi"
+     },
+     {
+      "matn": "U — I · R",
+      "togri": true,
+      "izoh": "kuchlanish"
+     },
+     {
+      "matn": "Qarshilik birligi amper",
+      "togri": false,
+      "izoh": "om"
+     },
+     {
+      "matn": "12 / 4 — 3",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Om qonuni 1827-yilda kashf etilgan",
+      "togri": true,
+      "izoh": "Georg Om"
+     },
+     {
+      "matn": "I va U grafigi to‘g‘ri chiziq",
+      "togri": true,
+      "izoh": "proporsional"
+     },
+     {
+      "matn": "Tok kuchi kuchlanishga teskari",
+      "togri": false,
+      "izoh": "to‘g‘ri proporsional"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Om qonuni?",
+      "javob": "I — U / R"
+     },
+     {
+      "savol": "Kuchlanish?",
+      "javob": "I · R"
+     },
+     {
+      "savol": "Qarshilik?",
+      "javob": "U / I"
+     },
+     {
+      "savol": "Birlik?",
+      "javob": "om"
+     },
+     {
+      "savol": "12 / 4?",
+      "javob": "3"
+     },
+     {
+      "savol": "220 / 110?",
+      "javob": "2"
+     },
+     {
+      "savol": "0,5 · 20?",
+      "javob": "10"
+     },
+     {
+      "savol": "Grafik?",
+      "javob": "to‘g‘ri chiziq"
+     },
+     {
+      "savol": "Kim kashf etgan?",
+      "javob": "Georg Om"
+     },
+     {
+      "savol": "Qaysi yil?",
+      "javob": "1827"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "U va R?"
+     },
+     {
+      "nom": "Formula",
+      "matn": "Formulani tanla.",
+      "savol": "I — U / R?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Sonlarni qo‘y.",
+      "savol": "U / R?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Teskari hisob qil.",
+      "savol": "I · R — U?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun qarshilik oshsa, tok kamayadi?",
+    "keys": {
+     "vaziyat": "Zanjirga 12 volt kuchlanish berilgan, qarshilik 4 om.",
+     "savollar": [
+      "Tok kuchi nechaga teng?",
+      "Qarshilik 2 marta oshsa tok nima bo‘ladi?"
+     ]
+    },
+    "tezis": "I — U / R",
+    "taqqoslash": {
+     "a": "Kuchlanish",
+     "b": "Qarshilik",
+     "umumiy": [
+      "tokka ta’sir qiladi",
+      "Om qonunida qatnashadi"
+     ],
+     "a_farq": [
+      "oshsa tok oshadi",
+      "birligi volt"
+     ],
+     "b_farq": [
+      "oshsa tok kamayadi",
+      "birligi om"
+     ]
+    },
+    "klaster": {
+     "markaz": "Om qonuni",
+     "shoxlar": [
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "I — U / R"
+       ]
+      },
+      {
+       "nom": "Boshqa ko‘rinish",
+       "bandlar": [
+        "U — I · R",
+        "R — U / I"
+       ]
+      },
+      {
+       "nom": "Birliklar",
+       "bandlar": [
+        "amper",
+        "volt",
+        "om"
+       ]
+      },
+      {
+       "nom": "Grafik",
+       "bandlar": [
+        "to‘g‘ri chiziq"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men tok, kuchlanish va qarshilik orasidagi bog‘lanishman. Men kimman?",
+     "javob": "Om qonuni"
+    },
+    "hikmat": "Kuchlanish oshsa, tok oshadi.",
+    "kalit_soz": "QONUN",
+    "xato_yechim": {
+     "shart": "U 12 volt, R 4 om. I?",
+     "xato": "12 · 4",
+     "togri": "12 / 4 — 3 amper",
+     "sabab": "I — U / R, bo‘lamiz"
+    },
+    "guruh_nomlari": [
+     "Omchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Om laboratoriyasi»",
+     "topshiriq": "Guruh Om qonunini tekshiradi."
+    },
+    "vazifalar": {
+     "A": "U 12 volt, R 4 om bo‘lsa I?",
+     "B": "U 220 volt, R 110 om bo‘lsa I?",
+     "C": "I 0,5 amper, R 20 om bo‘lsa U?"
+    },
+    "sinkveyn": [
+     "Om",
+     "to‘g‘ri, aniq",
+     "o‘lchaydi, hisoblaydi, bog‘laydi",
+     "Tok kuchlanishga bog‘liq",
+     "Qonun"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh Om qonunini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tajriba",
+      "2-guruh: formula",
+      "3-guruh: grafik",
+      "4-guruh: masalalar"
+     ],
+     "yakun": "Natijalar: 3; 2; 10."
+    }
+   }
+  },
+  {
+   "mavzu": "Qarshilik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Nima uchun qarshilik bor",
+      "matn": "Metallda harakatlanayotgan elektronlar kristall panjara ionlari bilan to‘qnashadi. Shu sababli o‘tkazgich tokka qarshilik ko‘rsatadi va isiydi.",
+      "misol": "Cho‘g‘lanma lampa spirali tok o‘tganda qiziydi.",
+      "savol": "Elektronlar nima bilan to‘qnashadi?",
+      "javob": "ionlar bilan",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Nimalarga bog‘liq",
+      "matn": "Qarshilik o‘tkazgichning uzunligiga to‘g‘ri, ko‘ndalang kesim yuziga teskari proporsional va modda turiga bog‘liq: R — ρ · l / S. Bu yerda ρ — solishtirma qarshilik.",
+      "misol": "Uzun va ingichka sim katta qarshilik beradi.",
+      "savol": "Sim uzunroq bo‘lsa, qarshilik qanday?",
+      "javob": "kattaroq",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Solishtirma qarshilik",
+      "matn": "Solishtirma qarshilik 1 metr uzunlikdagi, kesimi 1 kvadrat millimetr o‘tkazgichning qarshiligi. Mis uchun taxminan 0,017, alyuminiy uchun 0,028, nixrom uchun 1,1 om · kvadrat millimetr / metr. Elektr simlari misdan yasaladi, isitgich spirallari nixromdan.",
+      "misol": "Mis yaxshi o‘tkazgich, nixrom esa qarshiligi katta.",
+      "savol": "Qaysi biri yaxshiroq o‘tkazadi: mis yoki nixrom?",
+      "javob": "mis",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Haroratning ta’siri",
+      "matn": "Metallarda harorat oshsa, qarshilik ham ortadi. Shuning uchun cho‘g‘langan lampa spirali sovuq holatdagidan ancha katta qarshilikka ega. 1911-yilda Kamerlingh-Onnes simobni juda past haroratgacha sovitib, qarshiligi yo‘qolishini — o‘ta o‘tkazuvchanlikni kashf etdi.",
+      "misol": "Lampa yonish payti kuchli tok oladi.",
+      "savol": "Metall isisa qarshilik nima bo‘ladi?",
+      "javob": "ortadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Reostat",
+      "matn": "Qarshiligini o‘zgartirish mumkin bo‘lgan asbob reostat deyiladi. Uning sirpanuvchi kontakti simning ishlaydigan uzunligini o‘zgartiradi. Reostat yordamida tok kuchini rostlaymiz.",
+      "misol": "Radioning ovoz rostlagichi shunday ishlaydi.",
+      "savol": "Reostat nimani o‘zgartiradi?",
+      "javob": "qarshilikni",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "R — ρ · l / S. Qarshilik uzunlikka to‘g‘ri, yuzaga teskari proporsional. Harorat oshsa metallning qarshiligi ortadi.",
+    "misollar": [
+     {
+      "shart": "Mis sim: uzunligi 100 metr, kesimi 2 kvadrat millimetr, ρ — 0,017. Qarshilik?",
+      "yechim": [
+       "R — ρ · l / S.",
+       "0,017 · 100 / 2.",
+       "Javob 0,85 om."
+      ],
+      "javob": "0,85 om"
+     },
+     {
+      "shart": "Nixrom sim: l — 10 metr, S — 0,5 kvadrat millimetr, ρ — 1,1. Qarshilik?",
+      "yechim": [
+       "1,1 · 10 / 0,5.",
+       "11 / 0,5.",
+       "Javob 22 om."
+      ],
+      "javob": "22 om"
+     },
+     {
+      "shart": "Alyuminiy sim: l — 50 metr, S — 1,4 kvadrat millimetr, ρ — 0,028. Qarshilik?",
+      "yechim": [
+       "0,028 · 50 / 1,4.",
+       "1,4 / 1,4.",
+       "Javob 1 om."
+      ],
+      "javob": "1 om"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Uzunlikni o‘zgartiramiz",
+      "topshiriq": "Turli uzunlikdagi nixrom simning qarshiligini o‘lchang.",
+      "yechim": "Uzun sim — katta R.",
+      "mahsulot": "nixrom sim, ommetr"
+     },
+     {
+      "nom": "Kesimni o‘zgartiramiz",
+      "topshiriq": "Ingichka va yo‘g‘on simni solishtiring.",
+      "yechim": "Yo‘g‘on sim — kichik R.",
+      "mahsulot": "ikki xil sim"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "ρ · l / S.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Reostat yasaymiz",
+      "topshiriq": "Grafit o‘zakdan sodda reostat yasang.",
+      "yechim": "Sirpanuvchi kontakt kerak.",
+      "mahsulot": "qalam o‘zagi, sim"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "0,017 · 100 / 2 nechaga teng?",
+      "javob": "0,85"
+     },
+     {
+      "shart": "1,1 · 10 / 0,5 nechaga teng?",
+      "javob": "22"
+     },
+     {
+      "shart": "0,028 · 50 / 1,4 nechaga teng?",
+      "javob": "1"
+     },
+     {
+      "shart": "Qarshilik formulasi?",
+      "javob": "ρ · l / S"
+     },
+     {
+      "shart": "Reostat nimani rostlaydi?",
+      "javob": "tok kuchini"
+     },
+     {
+      "shart": "Isitgich spirali qaysi metalldan?",
+      "javob": "nixrom"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yo‘g‘on simning qarshiligi katta deydi",
+      "sabab": "yuza katta bo‘lsa R kichik",
+      "oldini_olish": "kesim oshsa R kamayadi"
+     },
+     {
+      "xato": "Qarshilik uzunlikka teskari deydi",
+      "sabab": "uzunlikka to‘g‘ri proporsional",
+      "oldini_olish": "uzun sim — katta R"
+     },
+     {
+      "xato": "Isisa metall qarshiligi kamayadi deydi",
+      "sabab": "oshadi",
+      "oldini_olish": "harorat oshsa R ortadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "elektr simlari va isitgichlar"
+     },
+     {
+      "fan": "Kimyo",
+      "boglanish": "metallar xossalari"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "to‘g‘ri va teskari proporsionallik"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Sim tanlash»",
+     "muammo": "Uyga qanday kesimli sim tanlash kerak?",
+     "mahsulot": "hisob daftari",
+     "bosqichlar": [
+      "ma’lumot yig‘ish",
+      "qarshilikni hisoblash",
+      "materialni tanlash",
+      "xulosa",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Ma’lumot yig‘ing",
+      "Hisoblang",
+      "Material tanlang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "ma’lumot to‘g‘ri",
+      "hisob to‘g‘ri",
+      "tanlov asosli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Qarshilik vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "1-qoya",
+       "matn": "Mis, 100 m, 2 kv. mm, ρ 0,017.",
+       "topshiriq": "R?",
+       "javob": "0,85",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qoya",
+       "matn": "Nixrom, 10 m, 0,5 kv. mm, ρ 1,1.",
+       "topshiriq": "R?",
+       "javob": "22",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qoya",
+       "matn": "Alyuminiy, 50 m, 1,4 kv. mm, ρ 0,028.",
+       "topshiriq": "R?",
+       "javob": "1",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qoya",
+       "matn": "Qarshilikni rostlovchi asbob.",
+       "topshiriq": "Nima?",
+       "javob": "reostat",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Formulani qo‘lladingizmi?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Qarshilik",
+      "tarif": "o‘tkazgichning tokka qarshiligi"
+     },
+     {
+      "atama": "Solishtirma qarshilik",
+      "tarif": "birlik o‘lchamli o‘tkazgich qarshiligi"
+     },
+     {
+      "atama": "Reostat",
+      "tarif": "qarshiligi o‘zgaruvchan asbob"
+     },
+     {
+      "atama": "Nixrom",
+      "tarif": "qarshiligi katta qotishma"
+     },
+     {
+      "atama": "O‘ta o‘tkazuvchanlik",
+      "tarif": "qarshilikning yo‘qolishi"
+     },
+     {
+      "atama": "Kesim yuzi",
+      "tarif": "simning ko‘ndalang kesimi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "R — ρ · l / S",
+      "togri": true,
+      "izoh": "qarshilik formulasi"
+     },
+     {
+      "matn": "Sim uzunroq bo‘lsa qarshilik kichik",
+      "togri": false,
+      "izoh": "katta"
+     },
+     {
+      "matn": "Yo‘g‘on simning qarshiligi kichik",
+      "togri": true,
+      "izoh": "yuza katta"
+     },
+     {
+      "matn": "Metall isisa qarshilik kamayadi",
+      "togri": false,
+      "izoh": "ortadi"
+     },
+     {
+      "matn": "0,017 · 100 / 2 — 0,85",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Mis yaxshi o‘tkazgich",
+      "togri": true,
+      "izoh": "ρ kichik"
+     },
+     {
+      "matn": "Reostat qarshilikni o‘zgartiradi",
+      "togri": true,
+      "izoh": "tokni rostlaydi"
+     },
+     {
+      "matn": "Nixromning ρ — 0,017",
+      "togri": false,
+      "izoh": "1,1"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Qarshilik formulasi?",
+      "javob": "ρ · l / S"
+     },
+     {
+      "savol": "Uzunlik oshsa?",
+      "javob": "R oshadi"
+     },
+     {
+      "savol": "Yuza oshsa?",
+      "javob": "R kamayadi"
+     },
+     {
+      "savol": "Mis ρ?",
+      "javob": "0,017"
+     },
+     {
+      "savol": "Nixrom ρ?",
+      "javob": "1,1"
+     },
+     {
+      "savol": "0,017 · 100 / 2?",
+      "javob": "0,85"
+     },
+     {
+      "savol": "1,1 · 10 / 0,5?",
+      "javob": "22"
+     },
+     {
+      "savol": "Harorat oshsa?",
+      "javob": "R oshadi"
+     },
+     {
+      "savol": "Reostat?",
+      "javob": "qarshilikni rostlaydi"
+     },
+     {
+      "savol": "Qaysi yil?",
+      "javob": "1911"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "ρ, l, S?"
+     },
+     {
+      "nom": "Ko‘paytir",
+      "matn": "ρ ni l ga ko‘paytir.",
+      "savol": "ρ · l?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "S ga bo‘l.",
+      "savol": "ρ · l / S?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Birlikni tekshir.",
+      "savol": "om?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun elektr simlari misdan, isitgich spirallari nixromdan yasaladi?",
+    "keys": {
+     "vaziyat": "100 metr mis sim kesimi 2 kvadrat millimetr.",
+     "savollar": [
+      "Qarshilik nechaga teng?",
+      "Simni ingichka qilsak nima bo‘ladi?"
+     ]
+    },
+    "tezis": "R — ρ · l / S",
+    "taqqoslash": {
+     "a": "Mis",
+     "b": "Nixrom",
+     "umumiy": [
+      "metall",
+      "tok o‘tkazadi"
+     ],
+     "a_farq": [
+      "ρ kichik",
+      "uzatish simlari"
+     ],
+     "b_farq": [
+      "ρ katta",
+      "isitgich spirali"
+     ]
+    },
+    "klaster": {
+     "markaz": "Qarshilik",
+     "shoxlar": [
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "ρ · l / S"
+       ]
+      },
+      {
+       "nom": "Bog‘liqlik",
+       "bandlar": [
+        "uzunlik",
+        "kesim",
+        "modda",
+        "harorat"
+       ]
+      },
+      {
+       "nom": "Reostat",
+       "bandlar": [
+        "tokni rostlaydi"
+       ]
+      },
+      {
+       "nom": "Birlik",
+       "bandlar": [
+        "om"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men o‘tkazgichning tokka qarshiligiman. Men kimman?",
+     "javob": "qarshilik"
+    },
+    "hikmat": "Uzun va ingichka sim — katta qarshilik.",
+    "kalit_soz": "OM",
+    "xato_yechim": {
+     "shart": "Yo‘g‘on simning qarshiligi qanday?",
+     "xato": "katta",
+     "togri": "kichik",
+     "sabab": "R kesim yuziga teskari proporsional"
+    },
+    "guruh_nomlari": [
+     "Mischilar",
+     "Nixromchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qarshilik ustaxonasi»",
+     "topshiriq": "Guruh simlar qarshiligini o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "Mis simning qarshiligini toping.",
+     "B": "Nixrom simning qarshiligini toping.",
+     "C": "Alyuminiy simning qarshiligini toping."
+    },
+    "sinkveyn": [
+     "Qarshilik",
+     "katta, issiq",
+     "to‘sadi, isitadi, kamaytiradi",
+     "Sim tokka qarshilik qiladi",
+     "Om"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh qarshilikni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: sabab",
+      "2-guruh: formula",
+      "3-guruh: materiallar",
+      "4-guruh: reostat"
+     ],
+     "yakun": "Natijalar: 0,85; 22; 1 om."
+    }
+   }
+  },
+  {
+   "mavzu": "Ketma-ket va parallel ulash",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Ketma-ket ulash",
+      "matn": "Iste’molchilar bir-biriga uchma-uch ulansa, ketma-ket ulash deyiladi. Hamma joyda tok kuchi bir xil: I — I1 — I2. Umumiy kuchlanish qismlar yig‘indisiga teng: U — U1 + U2. Umumiy qarshilik: R — R1 + R2.",
+      "misol": "Yangi yil gulchambari ketma-ket ulangan.",
+      "savol": "Ketma-ket ulashda tok kuchi qanday?",
+      "javob": "hamma joyda bir xil",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Ketma-ket ulashning kamchiligi",
+      "matn": "Ketma-ket ulashda bitta iste’molchi o‘chsa, butun zanjir uziladi. Shuning uchun uylarda iste’molchilar ketma-ket ulanmaydi.",
+      "misol": "Gulchambardagi bitta lampa kuysa, hammasi o‘chadi.",
+      "savol": "Bitta lampa kuysa, ketma-ket zanjirda nima bo‘ladi?",
+      "javob": "hammasi o‘chadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Parallel ulash",
+      "matn": "Iste’molchilarning boshlari bir nuqtaga, oxirlari boshqa nuqtaga ulansa, parallel ulash deyiladi. Hamma iste’molchida kuchlanish bir xil: U — U1 — U2. Umumiy tok qismlar yig‘indisiga teng: I — I1 + I2.",
+      "misol": "Uydagi rozetkalar parallel ulangan.",
+      "savol": "Parallel ulashda kuchlanish qanday?",
+      "javob": "bir xil",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Parallel ulashda qarshilik",
+      "matn": "Parallel ulashda umumiy qarshilik quyidagicha topiladi: 1 / R — 1 / R1 + 1 / R2. Ikki iste’molchi uchun R — R1 · R2 / (R1 + R2). Umumiy qarshilik eng kichik qarshilikdan ham kichik bo‘ladi.",
+      "misol": "6 va 3 om parallel bo‘lsa, umumiy 2 om.",
+      "savol": "Parallel ulashda umumiy qarshilik kichikmi yoki kattami?",
+      "javob": "kichik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Amaliy qo‘llanish",
+      "matn": "Uyda iste’molchilar parallel ulanadi: har biriga 220 volt tushadi va bittasi o‘chsa, qolganlari ishlayveradi. Saqlagich esa umumiy zanjirga ketma-ket ulanadi. Hisoblashda zanjirni qismlarga bo‘lib, ketma-ket va parallel qismlarni alohida yechamiz.",
+      "misol": "Xonadonda chiroq va dazmol bir vaqtda ishlaydi.",
+      "savol": "Uyda iste’molchilar qanday ulanadi?",
+      "javob": "parallel",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ketma-ket: I bir xil, U — U1 + U2, R — R1 + R2. Parallel: U bir xil, I — I1 + I2, 1 / R — 1 / R1 + 1 / R2.",
+    "misollar": [
+     {
+      "shart": "Ketma-ket ulangan 10 va 20 om. Umumiy qarshilik?",
+      "yechim": [
+       "R — R1 + R2.",
+       "10 + 20.",
+       "Javob 30 om."
+      ],
+      "javob": "30 om"
+     },
+     {
+      "shart": "Parallel ulangan 6 va 3 om. Umumiy qarshilik?",
+      "yechim": [
+       "R — R1 · R2 / (R1 + R2).",
+       "18 / 9.",
+       "Javob 2 om."
+      ],
+      "javob": "2 om"
+     },
+     {
+      "shart": "Parallel ulangan 6 va 4 om, kuchlanish 12 volt. Umumiy tok kuchi?",
+      "yechim": [
+       "I1 — 12 / 6 — 2.",
+       "I2 — 12 / 4 — 3.",
+       "I — 2 + 3 — 5 amper."
+      ],
+      "javob": "5 amper"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Ketma-ket zanjir",
+      "topshiriq": "Ikki lampani ketma-ket ulab, tok va kuchlanishni o‘lchang.",
+      "yechim": "Tok hamma joyda bir xil.",
+      "mahsulot": "lampalar, batareya"
+     },
+     {
+      "nom": "Parallel zanjir",
+      "topshiriq": "Ikki lampani parallel ulab, birini uzing.",
+      "yechim": "Ikkinchisi yonaveradi.",
+      "mahsulot": "lampalar, batareya"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Formulalarni solishtiring.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Uyni loyihalaymiz",
+      "topshiriq": "Xona zanjirini sxemada chizing.",
+      "yechim": "Parallel ulang.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "10 + 20 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "18 / 9 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "12 / 6 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "12 / 4 nechaga teng?",
+      "javob": "3"
+     },
+     {
+      "shart": "Uyda iste’molchilar qanday ulanadi?",
+      "javob": "parallel"
+     },
+     {
+      "shart": "Ketma-ket ulashda tok kuchi qanday?",
+      "javob": "bir xil"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Parallel ulashda qarshiliklar qo‘shiladi deydi",
+      "sabab": "ketma-ketda qo‘shiladi",
+      "oldini_olish": "parallelda 1 / R qo‘shiladi"
+     },
+     {
+      "xato": "Parallel ulashda tok hamma joyda bir xil deydi",
+      "sabab": "kuchlanish bir xil",
+      "oldini_olish": "tok qismlarga bo‘linadi"
+     },
+     {
+      "xato": "Ketma-ketda kuchlanish bir xil deydi",
+      "sabab": "tok kuchi bir xil",
+      "oldini_olish": "kuchlanish qo‘shiladi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "uyning elektr tarmog‘i"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "kasrlar va qo‘shish"
+     },
+     {
+      "fan": "Hayot",
+      "boglanish": "gulchambar va rozetkalar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Uy zanjiri»",
+     "muammo": "Xonaning elektr zanjirini qanday loyihalaymiz?",
+     "mahsulot": "zanjir sxemasi",
+     "bosqichlar": [
+      "iste’molchilarni tanlash",
+      "sxema chizish",
+      "qarshilikni hisoblash",
+      "xavfsizlikni tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Iste’molchilarni tanlang",
+      "Sxema chizing",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "sxema to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xavfsizlik saqlangan",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Zanjir shaharchasi»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "Ketma-ket 10 va 20 om.",
+       "topshiriq": "R?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "Parallel 6 va 3 om.",
+       "topshiriq": "R?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "Parallel 6 va 4 om, 12 volt.",
+       "topshiriq": "I?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "Uyda ulanish turi.",
+       "topshiriq": "Qanday?",
+       "javob": "parallel",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi ulash edi?",
+      "Qaysi formulani oldingiz?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Ketma-ket ulash",
+      "tarif": "iste’molchilar uchma-uch ulanadi"
+     },
+     {
+      "atama": "Parallel ulash",
+      "tarif": "iste’molchilarning boshlari va oxirlari birga ulanadi"
+     },
+     {
+      "atama": "Umumiy qarshilik",
+      "tarif": "butun zanjirning ekvivalent qarshiligi"
+     },
+     {
+      "atama": "Tarmoqlanish",
+      "tarif": "tokning qismlarga bo‘linishi"
+     },
+     {
+      "atama": "Saqlagich",
+      "tarif": "zanjirni himoya qiluvchi qurilma"
+     },
+     {
+      "atama": "Ekvivalent qarshilik",
+      "tarif": "almashtiruvchi qarshilik"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ketma-ket ulashda R — R1 + R2",
+      "togri": true,
+      "izoh": "qarshiliklar qo‘shiladi"
+     },
+     {
+      "matn": "Parallel ulashda tok hamma joyda bir xil",
+      "togri": false,
+      "izoh": "kuchlanish bir xil"
+     },
+     {
+      "matn": "Parallel ulashda kuchlanish bir xil",
+      "togri": true,
+      "izoh": "220 volt"
+     },
+     {
+      "matn": "Ketma-ketda bitta lampa kuysa hammasi o‘chadi",
+      "togri": true,
+      "izoh": "zanjir uziladi"
+     },
+     {
+      "matn": "10 + 20 — 30",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Uyda iste’molchilar ketma-ket ulanadi",
+      "togri": false,
+      "izoh": "parallel"
+     },
+     {
+      "matn": "Parallelda umumiy R eng kichikdan ham kichik",
+      "togri": true,
+      "izoh": "yo‘llar ko‘p"
+     },
+     {
+      "matn": "Parallelda I — I1 + I2",
+      "togri": true,
+      "izoh": "tarmoqlanish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Ketma-ket R?",
+      "javob": "R1 + R2"
+     },
+     {
+      "savol": "Parallel U?",
+      "javob": "bir xil"
+     },
+     {
+      "savol": "Ketma-ket I?",
+      "javob": "bir xil"
+     },
+     {
+      "savol": "Parallel I?",
+      "javob": "I1 + I2"
+     },
+     {
+      "savol": "10 + 20?",
+      "javob": "30"
+     },
+     {
+      "savol": "18 / 9?",
+      "javob": "2"
+     },
+     {
+      "savol": "12 / 6?",
+      "javob": "2"
+     },
+     {
+      "savol": "Uyda?",
+      "javob": "parallel"
+     },
+     {
+      "savol": "Ketma-ket kamchiligi?",
+      "javob": "bittasi o‘chsa hammasi o‘chadi"
+     },
+     {
+      "savol": "Saqlagich?",
+      "javob": "umumiy zanjirga ketma-ket"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Chiz",
+      "matn": "Sxemani chiz.",
+      "savol": "Ketma-ketmi, parallelmi?"
+     },
+     {
+      "nom": "Tanla",
+      "matn": "Formulani tanla.",
+      "savol": "Qaysi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Qarshilikni top.",
+      "savol": "R?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Tokni tekshir.",
+      "savol": "U / R?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun uylarda iste’molchilar parallel ulanadi?",
+    "keys": {
+     "vaziyat": "Gulchambardagi bitta lampa kuyganda hammasi o‘chdi.",
+     "savollar": [
+      "Ular qanday ulangan?",
+      "Uni qanday tuzatish mumkin?"
+     ]
+    },
+    "tezis": "Parallelda kuchlanish bir xil",
+    "taqqoslash": {
+     "a": "Ketma-ket ulash",
+     "b": "Parallel ulash",
+     "umumiy": [
+      "ulash usullari",
+      "zanjirda ishlatiladi"
+     ],
+     "a_farq": [
+      "tok bir xil",
+      "R qo‘shiladi"
+     ],
+     "b_farq": [
+      "kuchlanish bir xil",
+      "I qo‘shiladi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Ketma-ket va parallel ulash",
+     "shoxlar": [
+      {
+       "nom": "Ketma-ket",
+       "bandlar": [
+        "I bir xil",
+        "R — R1 + R2"
+       ]
+      },
+      {
+       "nom": "Parallel",
+       "bandlar": [
+        "U bir xil",
+        "I — I1 + I2"
+       ]
+      },
+      {
+       "nom": "Uyda",
+       "bandlar": [
+        "parallel",
+        "220 volt"
+       ]
+      },
+      {
+       "nom": "Himoya",
+       "bandlar": [
+        "saqlagich"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men uydagi rozetkalar ulanishimanman, hammada kuchlanish bir xil. Men kimman?",
+     "javob": "parallel ulash"
+    },
+    "hikmat": "Parallelda hamma iste’molchi to‘liq kuchlanish oladi.",
+    "kalit_soz": "ULASH",
+    "xato_yechim": {
+     "shart": "6 va 3 om parallel. R?",
+     "xato": "6 + 3 — 9",
+     "togri": "6 · 3 / 9 — 2 om",
+     "sabab": "parallelda qarshiliklar qo‘shilmaydi"
+    },
+    "guruh_nomlari": [
+     "Ketma-ketchilar",
+     "Parallelchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Zanjir muhandislari»",
+     "topshiriq": "Guruh ulash usullarini solishtiradi."
+    },
+    "vazifalar": {
+     "A": "10 va 20 om ketma-ket bo‘lsa R?",
+     "B": "6 va 3 om parallel bo‘lsa R?",
+     "C": "6 va 4 om parallel, 12 volt bo‘lsa I?"
+    },
+    "sinkveyn": [
+     "Ulash",
+     "ketma-ket, parallel",
+     "ulaydi, bo‘ladi, tarqaladi",
+     "Tok yo‘llarga bo‘linadi",
+     "Sxema"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh ulash usullarini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: ketma-ket",
+      "2-guruh: parallel",
+      "3-guruh: hisob",
+      "4-guruh: uy zanjiri"
+     ],
+     "yakun": "Natijalar: 30; 2; 5."
+    }
+   }
   }
  ]
 }
