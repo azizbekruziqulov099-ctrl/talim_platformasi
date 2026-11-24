@@ -4160,6 +4160,1400 @@
      "yakun": "Natijalar: 35 foiz; 28 kilogramm; 78 kilogramm."
     }
    }
+  },
+  {
+   "mavzu": "Uglerod va kremniy",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "IV guruh elementlari",
+      "matn": "Uglerod va kremniy — IV guruh elementlari, tashqi qavatida to‘rt elektron bor. Uglerodning tartib raqami 6, qavatlari 2, 4. Kremniyning tartib raqami 14, qavatlari 2, 8, 4. Uglerod barcha organik moddalar asosi, kremniy esa yer po‘stlog‘ida kisloroddan keyin ikkinchi o‘rinda turadi.",
+      "misol": "Qum va tosh asosan kremniy birikmalaridan iborat.",
+      "savol": "Uglerodning tartib raqami?",
+      "javob": "6",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uglerodning allotroplari",
+      "matn": "Uglerodning uchta mashhur shakli bor: olmos, grafit va fulleren. Olmos — eng qattiq modda, tiniq, tok o‘tkazmaydi. Grafit — yumshoq, qora, tok o‘tkazadi, qalam o‘zagida ishlatiladi. Fulleren — futbol to‘piga o‘xshash molekula. Hammasi bir elementdan, lekin atomlar joylashuvi boshqacha.",
+      "misol": "Olmos va grafit bir elementdan, xossalari esa butunlay boshqa.",
+      "savol": "Qaysi shakl tok o‘tkazadi?",
+      "javob": "grafit",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uglerod oksidlari",
+      "matn": "Uglerod yonganda karbonat angidrid hosil bo‘ladi, molyar massasi 12 plyus 32 — 44. Kislorod yetishmasa is gazi chiqadi, u zaharli, hidsiz va rangsiz. Karbonat angidridda uglerod ulushi 12 / 44 — taxminan 27 foiz. Is gazi qonda kislorod o‘rnini egallaydi, shuning uchun pechni shamollatish shart.",
+      "misol": "Yopiq xonada ko‘mir yoqish xavfli.",
+      "savol": "Karbonat angidrid molyar massasi?",
+      "javob": "44",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kaltsiy karbonat",
+      "matn": "Bo‘r, ohaktosh va marmar — kaltsiy karbonat, molyar massasi 40 plyus 12 plyus 48 — 100. Qizdirilganda so‘ndirilmagan ohak va karbonat angidridga parchalanadi. Bir mol, ya’ni 100 gramm kaltsiy karbonatdan 1 mol gaz, normal sharoitda 22,4 litr chiqadi. Kislota ta’sirida ham gaz ajraladi.",
+      "misol": "Choynak qatqog‘i ham asosan shu tuz.",
+      "savol": "Kaltsiy karbonat molyar massasi?",
+      "javob": "100",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kremniy va uning oksidi",
+      "matn": "Kremniy oksidi — qum, kvars, molyar massasi 28 plyus 32 — 60. Kremniy ulushi 28 / 60 — taxminan 47 foiz. Sof kremniy — yarimo‘tkazgich: undan mikrochip va quyosh panellari yasaladi. Kremniy oksidi suvda erimaydi va kislotalar bilan deyarli reaksiyaga kirishmaydi.",
+      "misol": "Telefon chipi qumdan olingan kremniydan.",
+      "savol": "Kremniy oksidi molyar massasi?",
+      "javob": "60",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Uglerod M — 12, kremniy 28. Karbonat angidrid M — 44, kaltsiy karbonat 100, kremniy oksidi 60.",
+    "misollar": [
+     {
+      "shart": "44 gramm karbonat angidrid (M — 44) normal sharoitda necha litr?",
+      "yechim": [
+       "n — 44 / 44 — 1 mol.",
+       "V — 1 · 22,4.",
+       "Javob 22,4 litr."
+      ],
+      "javob": "22,4 litr"
+     },
+     {
+      "shart": "100 gramm kaltsiy karbonat qizdirilsa, 1 mol karbonat angidrid chiqadi. Hajmi?",
+      "yechim": [
+       "n — 100 / 100 — 1 mol.",
+       "Gaz ham 1 mol.",
+       "Javob 22,4 litr."
+      ],
+      "javob": "22,4 litr"
+     },
+     {
+      "shart": "12 gramm uglerod to‘liq yonsa, necha gramm karbonat angidrid hosil bo‘ladi?",
+      "yechim": [
+       "n — 12 / 12 — 1 mol.",
+       "Gaz ham 1 mol.",
+       "m — 1 · 44 — 44 gramm."
+      ],
+      "javob": "44 gramm"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Olmos va grafit",
+      "topshiriq": "Rasmda ikki shaklning kristall tuzilishini taqqoslang.",
+      "yechim": "Atomlar joylashuvi.",
+      "mahsulot": "rasm"
+     },
+     {
+      "nom": "Ohak suvi tajribasi",
+      "topshiriq": "Ohak suviga gaz yuboring, loyqalanishini kuzating.",
+      "yechim": "Karbonat angidrid belgisi.",
+      "mahsulot": "ohak suvi, nay"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Mol, hajm, massa.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Xavfsizlik plakati",
+      "topshiriq": "Is gazidan saqlanish qoidalarini chizing.",
+      "yechim": "Shamollatish.",
+      "mahsulot": "qog‘oz, flomaster"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "12 plyus 32 nechaga teng?",
+      "javob": "44"
+     },
+     {
+      "shart": "1 · 22,4 nechaga teng?",
+      "javob": "22,4"
+     },
+     {
+      "shart": "40 plyus 12 plyus 48 nechaga teng?",
+      "javob": "100"
+     },
+     {
+      "shart": "28 plyus 32 nechaga teng?",
+      "javob": "60"
+     },
+     {
+      "shart": "12 / 12 nechaga teng?",
+      "javob": "1"
+     },
+     {
+      "shart": "Kremniy tartib raqami?",
+      "javob": "14"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Olmos va grafit har xil element deydi",
+      "sabab": "bir element, uglerod",
+      "oldini_olish": "allotroplar"
+     },
+     {
+      "xato": "Is gazi hidli deydi",
+      "sabab": "hidsiz, rangsiz",
+      "oldini_olish": "shuning uchun xavfli"
+     },
+     {
+      "xato": "Kremniy oksidi suvda yaxshi eriydi deydi",
+      "sabab": "erimaydi",
+      "oldini_olish": "qum suvda erimaydi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "kremniy chip"
+     },
+     {
+      "fan": "Xavfsizlik",
+      "boglanish": "is gazi"
+     },
+     {
+      "fan": "Geologiya",
+      "boglanish": "ohaktosh va qum"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Uglerod olami»",
+     "muammo": "Uglerod qanday shakllarda uchraydi va nima uchun muhim?",
+     "mahsulot": "plakat va hisob",
+     "bosqichlar": [
+      "allotroplarni o‘rganish",
+      "ohak suvi tajribasi",
+      "hisoblash",
+      "xavfsizlik qoidalari",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Shakllarni o‘rganing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xossalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Uglerod shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ko‘cha",
+       "matn": "44 gramm karbonat angidrid.",
+       "topshiriq": "Hajm litr?",
+       "javob": "22,4",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ko‘cha",
+       "matn": "100 gramm kaltsiy karbonat.",
+       "topshiriq": "Gaz litr?",
+       "javob": "22,4",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ko‘cha",
+       "matn": "12 gramm uglerod yondi.",
+       "topshiriq": "Gaz gramm?",
+       "javob": "44",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ko‘cha",
+       "matn": "Kremniy oksidi.",
+       "topshiriq": "M qancha?",
+       "javob": "60",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Molga o‘tdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Allotropiya",
+      "tarif": "bir element turli shakllari"
+     },
+     {
+      "atama": "Olmos",
+      "tarif": "eng qattiq uglerod shakli"
+     },
+     {
+      "atama": "Grafit",
+      "tarif": "tok o‘tkazuvchi uglerod"
+     },
+     {
+      "atama": "Is gazi",
+      "tarif": "zaharli uglerod oksidi"
+     },
+     {
+      "atama": "Yarimo‘tkazgich",
+      "tarif": "tokni shartli o‘tkazuvchi modda"
+     },
+     {
+      "atama": "Kvars",
+      "tarif": "kristall kremniy oksidi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Grafit tok o‘tkazadi",
+      "togri": true,
+      "izoh": "yumshoq, qora"
+     },
+     {
+      "matn": "Olmos va grafit har xil element",
+      "togri": false,
+      "izoh": "ikkalasi uglerod"
+     },
+     {
+      "matn": "Karbonat angidrid molyar massasi 44",
+      "togri": true,
+      "izoh": "12 plyus 32"
+     },
+     {
+      "matn": "Is gazi hidli",
+      "togri": false,
+      "izoh": "hidsiz"
+     },
+     {
+      "matn": "100 gramm kaltsiy karbonatdan 22,4 litr gaz",
+      "togri": true,
+      "izoh": "1 mol"
+     },
+     {
+      "matn": "Kremniy yarimo‘tkazgich",
+      "togri": true,
+      "izoh": "chip"
+     },
+     {
+      "matn": "Kremniy oksidi suvda yaxshi eriydi",
+      "togri": false,
+      "izoh": "erimaydi"
+     },
+     {
+      "matn": "12 gramm uglerod yonsa 44 gramm gaz",
+      "togri": true,
+      "izoh": "1 mol"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Uglerod raqami?",
+      "javob": "6"
+     },
+     {
+      "savol": "Kremniy raqami?",
+      "javob": "14"
+     },
+     {
+      "savol": "Allotroplar?",
+      "javob": "olmos, grafit, fulleren"
+     },
+     {
+      "savol": "Eng qattiq?",
+      "javob": "olmos"
+     },
+     {
+      "savol": "CO2 M?",
+      "javob": "44"
+     },
+     {
+      "savol": "Is gazi?",
+      "javob": "zaharli, hidsiz"
+     },
+     {
+      "savol": "Ohaktosh M?",
+      "javob": "100"
+     },
+     {
+      "savol": "1 · 22,4?",
+      "javob": "22,4"
+     },
+     {
+      "savol": "Qum M?",
+      "javob": "60"
+     },
+     {
+      "savol": "Kremniy ishlatilishi?",
+      "javob": "chip, quyosh paneli"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Ohak suvi o‘zgarishini kuzat.",
+      "savol": "Loyqalandimi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Mol va hajmni top.",
+      "savol": "n · 22,4?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Olmos va grafit.",
+      "savol": "Nega xossasi boshqa?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Xavfsizlik?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun olmos va grafit bir elementdan, lekin xossalari boshqa?",
+    "keys": {
+     "vaziyat": "Qalam o‘zagi ham, taqinchoq toshi ham uglerod, lekin biri yumshoq, biri juda qattiq.",
+     "savollar": [
+      "Nima farq qiladi?",
+      "Qaysi biri tok o‘tkazadi?"
+     ]
+    },
+    "tezis": "Atomlar joylashuvi xossani belgilaydi",
+    "taqqoslash": {
+     "a": "Olmos",
+     "b": "Grafit",
+     "umumiy": [
+      "uglerod shakli",
+      "yonadi"
+     ],
+     "a_farq": [
+      "juda qattiq",
+      "tok o‘tkazmaydi"
+     ],
+     "b_farq": [
+      "yumshoq",
+      "tok o‘tkazadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Uglerod va kremniy",
+     "shoxlar": [
+      {
+       "nom": "Uglerod",
+       "bandlar": [
+        "olmos",
+        "grafit",
+        "fulleren"
+       ]
+      },
+      {
+       "nom": "Oksidlar",
+       "bandlar": [
+        "karbonat angidrid",
+        "is gazi"
+       ]
+      },
+      {
+       "nom": "Karbonat",
+       "bandlar": [
+        "bo‘r",
+        "ohaktosh",
+        "marmar"
+       ]
+      },
+      {
+       "nom": "Kremniy",
+       "bandlar": [
+        "qum",
+        "chip",
+        "quyosh paneli"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men bir element, lekin ham eng qattiq, ham eng yumshoq moddaman. Men kimman?",
+     "javob": "uglerod"
+    },
+    "hikmat": "Atomlar tartibi xossani beradi.",
+    "kalit_soz": "UGLEROD",
+    "xato_yechim": {
+     "shart": "Is gazi hidlimi?",
+     "xato": "o‘tkir hidli",
+     "togri": "hidsiz va rangsiz",
+     "sabab": "shuning uchun xavfli"
+    },
+    "guruh_nomlari": [
+     "Uglerodchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Uglerod olami»",
+     "topshiriq": "Guruh uglerod shakllarini solishtiradi."
+    },
+    "vazifalar": {
+     "A": "44 gramm CO2 hajmi?",
+     "B": "100 gramm CaCO3 dan gaz?",
+     "C": "12 gramm uglerod yonishidan gaz massasi?"
+    },
+    "sinkveyn": [
+     "Uglerod",
+     "qattiq, yumshoq",
+     "yonadi, tok o‘tkazadi, yaltiraydi",
+     "Uglerod hayot asosi",
+     "Olmos"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh uglerod va kremniyni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: allotroplar",
+      "2-guruh: oksidlar",
+      "3-guruh: karbonatlar",
+      "4-guruh: kremniy"
+     ],
+     "yakun": "Natijalar: 22,4 litr; 22,4 litr; 44 gramm."
+    }
+   }
+  },
+  {
+   "mavzu": "Shisha va sement",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Silikat sanoati",
+      "matn": "Silikatlar — kremniy oksidi asosidagi birikmalar. Silikat sanoati shisha, sement, g‘isht va chinni ishlab chiqaradi. Xomashyosi — qum, gil, ohaktosh. Bu mahsulotlar qurilish va uy-ro‘zg‘orda har kuni ishlatiladi.",
+      "misol": "Uyingizdagi deraza, g‘isht va idish silikatdan.",
+      "savol": "Silikat sanoati nima ishlab chiqaradi?",
+      "javob": "shisha, sement, g‘isht",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Shisha qanday olinadi",
+      "matn": "Oddiy shisha uchun qum, soda va ohaktosh aralashtirilib, taxminan 1500 daraja haroratda eritiladi. Natijada natriy silikat va kaltsiy silikat aralashmasi hosil bo‘ladi. Natriy silikat molyar massasi 2 · 23 plyus 28 plyus 48 — 122. Shisha kristall emas, qotib qolgan eritma — amorf modda.",
+      "misol": "Shisha aniq erish nuqtasiga ega emas, asta-sekin yumshaydi.",
+      "savol": "Shisha uchun qanday xomashyo kerak?",
+      "javob": "qum, soda, ohaktosh",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Shisha turlari",
+      "matn": "Oddiy shisha derazada, idishda ishlatiladi. Kvars shishasi issiqqa chidamli. Rangli shisha oksid qo‘shib olinadi. Optik shisha linzalar uchun. Shishani qayta ishlash yengil: u minglab marta eritilib yana ishlatilishi mumkin va tabiatni asraydi.",
+      "misol": "Shisha idishni chiqitga tashlamang, topshiring.",
+      "savol": "Shisha nima uchun qayta ishlanadi?",
+      "javob": "tabiatni asraydi, qayta ishlatiladi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Sement",
+      "matn": "Sement ohaktosh va gilni 1450 daraja atrofida kuydirib, kukun qilib maydalab olinadi. Kaltsiy karbonat parchalanib so‘ndirilmagan ohak hosil qiladi: 100 kilogramm ohaktoshdan 56 kilogramm ohak chiqadi, chunki ohak molyar massasi 40 plyus 16 — 56. Sement suv bilan aralashib qotadi, bunga qotish deyiladi. O‘zbekistonda Quvasoy va boshqa shaharlarda sement zavodlari bor.",
+      "misol": "Sement qurilishning «noni».",
+      "savol": "100 kilogramm ohaktoshdan necha kilogramm ohak chiqadi?",
+      "javob": "56",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Beton",
+      "matn": "Beton — sement, qum, shag‘al va suv aralashmasi. Qotganda toshday mustahkam bo‘ladi. Po‘lat sim bilan mustahkamlansa, temir-beton hosil bo‘ladi: u binolar, ko‘priklar va yo‘llarda ishlatiladi. Sement ishlab chiqarish ko‘p karbonat angidrid chiqaradi, shuning uchun uni tejab ishlatish muhim.",
+      "misol": "Temir-beton ham cho‘zilishga, ham siqilishga chidaydi.",
+      "savol": "Beton tarkibi?",
+      "javob": "sement, qum, shag‘al, suv",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Shisha — qum, soda, ohaktosh. Sement — ohaktosh va gil. Beton — sement, qum, shag‘al, suv.",
+    "misollar": [
+     {
+      "shart": "Natriy silikat (ikki natriy, kremniy, uch kislorod) molyar massasi?",
+      "yechim": [
+       "2 · 23 plyus 28 plyus 3 · 16.",
+       "46 plyus 28 plyus 48.",
+       "Javob 122."
+      ],
+      "javob": "122"
+     },
+     {
+      "shart": "100 kilogramm kaltsiy karbonatdan (M — 100) ohak (M — 56) necha kilogramm chiqadi?",
+      "yechim": [
+       "n — 1 kilomol.",
+       "Ohak ham 1 kilomol.",
+       "m — 56 kilogramm."
+      ],
+      "javob": "56 kilogramm"
+     },
+     {
+      "shart": "Kremniy oksidida (M — 60) kremniy ulushi qancha, kremniy massasi 28?",
+      "yechim": [
+       "28 / 60.",
+       "Taxminan 0,47.",
+       "Javob 47 foiz."
+      ],
+      "javob": "47 foiz"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Shisha kuzatuvi",
+      "topshiriq": "Shisha bo‘lagining qirrasini kuzating.",
+      "yechim": "Amorf tuzilish.",
+      "mahsulot": "shisha bo‘lagi"
+     },
+     {
+      "nom": "Sement qotishi",
+      "topshiriq": "Sement va suvni aralashtirib, qotishini kuzating.",
+      "yechim": "Vaqt va holat.",
+      "mahsulot": "sement, suv, qolip"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Molyar massa va ulush.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Qayta ishlash",
+      "topshiriq": "Shisha chiqindini saralash rejasini tuzing.",
+      "yechim": "Qayerga topshiriladi.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "46 plyus 28 plyus 48 nechaga teng?",
+      "javob": "122"
+     },
+     {
+      "shart": "40 plyus 16 nechaga teng?",
+      "javob": "56"
+     },
+     {
+      "shart": "28 / 60 nechaga yaqin?",
+      "javob": "0,47"
+     },
+     {
+      "shart": "100 kilogramm ohaktoshdan ohak?",
+      "javob": "56"
+     },
+     {
+      "shart": "Beton qaysi 4 moddadan?",
+      "javob": "sement, qum, shag‘al, suv"
+     },
+     {
+      "shart": "Shisha tuzilishi?",
+      "javob": "amorf"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Shisha kristall modda deydi",
+      "sabab": "amorf",
+      "oldini_olish": "aniq erish nuqtasi yo‘q"
+     },
+     {
+      "xato": "Sement qum bilan suvdan iborat deydi",
+      "sabab": "ohaktosh va gildan",
+      "oldini_olish": "qum betonga qo‘shiladi"
+     },
+     {
+      "xato": "Shishani qayta ishlab bo‘lmaydi deydi",
+      "sabab": "bo‘ladi",
+      "oldini_olish": "ko‘p marta eritiladi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Qurilish",
+      "boglanish": "beton va temir-beton"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "shishani qayta ishlash"
+     },
+     {
+      "fan": "Fizika",
+      "boglanish": "shisha va yorug‘lik"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Qurilish kimyosi»",
+     "muammo": "Shisha va sement qanday olinadi va qanday ishlatiladi?",
+     "mahsulot": "plakat va tajriba",
+     "bosqichlar": [
+      "xomashyoni o‘rganish",
+      "sement qotishi tajribasi",
+      "hisoblash",
+      "qayta ishlash rejasi",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Xomashyoni o‘rganing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xossalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Sement zavodi»",
+     "bekatlar": [
+      {
+       "nom": "1-sex",
+       "matn": "Natriy silikat.",
+       "topshiriq": "M qancha?",
+       "javob": "122",
+       "rasm": ""
+      },
+      {
+       "nom": "2-sex",
+       "matn": "100 kilogramm ohaktosh.",
+       "topshiriq": "Ohak kilogramm?",
+       "javob": "56",
+       "rasm": ""
+      },
+      {
+       "nom": "3-sex",
+       "matn": "28 va 60.",
+       "topshiriq": "Kremniy ulushi foiz?",
+       "javob": "47",
+       "rasm": ""
+      },
+      {
+       "nom": "4-sex",
+       "matn": "Beton.",
+       "topshiriq": "Nechta tarkibiy qism?",
+       "javob": "4",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Ulushni topdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Silikat",
+      "tarif": "kremniy oksidi asosidagi modda"
+     },
+     {
+      "atama": "Amorf",
+      "tarif": "tartibsiz tuzilishli modda"
+     },
+     {
+      "atama": "Sement",
+      "tarif": "ohaktosh va gil kuydirmasi"
+     },
+     {
+      "atama": "Beton",
+      "tarif": "sement, qum, shag‘al aralashmasi"
+     },
+     {
+      "atama": "Temir-beton",
+      "tarif": "po‘lat bilan mustahkamlangan beton"
+     },
+     {
+      "atama": "Qotish",
+      "tarif": "sementning suv bilan qotishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Shisha amorf modda",
+      "togri": true,
+      "izoh": "kristall emas"
+     },
+     {
+      "matn": "Sement ohaktosh va gildan olinadi",
+      "togri": true,
+      "izoh": "kuydiriladi"
+     },
+     {
+      "matn": "Natriy silikat M — 122",
+      "togri": true,
+      "izoh": "46 plyus 28 plyus 48"
+     },
+     {
+      "matn": "Shishani qayta ishlab bo‘lmaydi",
+      "togri": false,
+      "izoh": "bo‘ladi"
+     },
+     {
+      "matn": "Beton tarkibida shag‘al bor",
+      "togri": true,
+      "izoh": "mustahkamlik"
+     },
+     {
+      "matn": "100 kilogramm ohaktoshdan 56 kilogramm ohak",
+      "togri": true,
+      "izoh": "M — 56"
+     },
+     {
+      "matn": "Kremniy ulushi qumda 47 foiz",
+      "togri": true,
+      "izoh": "28 / 60"
+     },
+     {
+      "matn": "Temir-beton po‘latsiz",
+      "togri": false,
+      "izoh": "po‘lat sim bor"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Silikat?",
+      "javob": "kremniy asosidagi birikma"
+     },
+     {
+      "savol": "Shisha xomashyosi?",
+      "javob": "qum, soda, ohaktosh"
+     },
+     {
+      "savol": "Shisha turi?",
+      "javob": "amorf"
+     },
+     {
+      "savol": "Sement xomashyosi?",
+      "javob": "ohaktosh va gil"
+     },
+     {
+      "savol": "Beton?",
+      "javob": "sement, qum, shag‘al, suv"
+     },
+     {
+      "savol": "Temir-beton?",
+      "javob": "po‘latli beton"
+     },
+     {
+      "savol": "46 plyus 28 plyus 48?",
+      "javob": "122"
+     },
+     {
+      "savol": "40 plyus 16?",
+      "javob": "56"
+     },
+     {
+      "savol": "28 / 60?",
+      "javob": "0,47"
+     },
+     {
+      "savol": "Qayta ishlash?",
+      "javob": "tabiatni asraydi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Sement qotishini kuzat.",
+      "savol": "Qancha vaqtda?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Molyar massani top.",
+      "savol": "Atomlarni qo‘sh?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Shisha va kristall.",
+      "savol": "Tuzilishi?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qayta ishlash?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun sement ishlab chiqarish ekologiyaga ta’sir qiladi?",
+    "keys": {
+     "vaziyat": "Sement zavodi ko‘p karbonat angidrid chiqaradi.",
+     "savollar": [
+      "Gaz qayerdan chiqadi?",
+      "Qanday kamaytirish mumkin?"
+     ]
+    },
+    "tezis": "Shisha va sement silikat mahsuloti",
+    "taqqoslash": {
+     "a": "Shisha",
+     "b": "Sement",
+     "umumiy": [
+      "silikat mahsuloti",
+      "qurilishda ishlatiladi"
+     ],
+     "a_farq": [
+      "amorf, tiniq",
+      "qum, soda, ohaktosh"
+     ],
+     "b_farq": [
+      "kukun, qotadi",
+      "ohaktosh va gil"
+     ]
+    },
+    "klaster": {
+     "markaz": "Silikat sanoati",
+     "shoxlar": [
+      {
+       "nom": "Shisha",
+       "bandlar": [
+        "qum",
+        "soda",
+        "ohaktosh"
+       ]
+      },
+      {
+       "nom": "Sement",
+       "bandlar": [
+        "ohaktosh",
+        "gil",
+        "kuydirish"
+       ]
+      },
+      {
+       "nom": "Beton",
+       "bandlar": [
+        "sement",
+        "shag‘al",
+        "suv"
+       ]
+      },
+      {
+       "nom": "Ekologiya",
+       "bandlar": [
+        "qayta ishlash",
+        "tejash"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men qum, soda va ohaktoshdan eritib olinaman, tiniq va amorfman. Men kimman?",
+     "javob": "shisha"
+    },
+    "hikmat": "Shisha qumdan tug‘iladi.",
+    "kalit_soz": "SEMENT",
+    "xato_yechim": {
+     "shart": "Shisha kristallmi?",
+     "xato": "ha, kristall",
+     "togri": "yo‘q, amorf",
+     "sabab": "aniq erish nuqtasi yo‘q"
+    },
+    "guruh_nomlari": [
+     "Shishachilar",
+     "Hisobchilar",
+     "Quruvchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Qurilish kimyosi»",
+     "topshiriq": "Guruh sement qotishini o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "Natriy silikat M?",
+     "B": "100 kilogramm ohaktoshdan ohak?",
+     "C": "Qumda kremniy ulushi?"
+    },
+    "sinkveyn": [
+     "Shisha",
+     "tiniq, amorf",
+     "eritiladi, quyiladi, qayta ishlanadi",
+     "Qumdan shisha",
+     "Deraza"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh silikat mahsulotlarini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: shisha",
+      "2-guruh: sement",
+      "3-guruh: beton",
+      "4-guruh: ekologiya"
+     ],
+     "yakun": "Natijalar: 122; 56 kilogramm; 47 foiz."
+    }
+   }
+  },
+  {
+   "mavzu": "Metallar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Metallar tabiatda",
+      "matn": "Elementlarning ko‘pchiligi metall. Ular davriy jadvalning chap va pastki qismida joylashgan. Metall atomlari tashqi qavatdagi elektronlarni oson beradi va musbat ion hosil qiladi. Tabiatda ba’zilari sof holda (oltin, kumush), ko‘pchiligi birikmalarda uchraydi.",
+      "misol": "Oltin sof holda topiladi.",
+      "savol": "Metall atomlari elektronni oson nima qiladi?",
+      "javob": "beradi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Metall bog‘lanish",
+      "matn": "Metallarda ionlar kristall panjarada, elektronlar esa umumiy, erkin harakatlanadi. Bu bog‘lanish metall bog‘lanish deyiladi. Erkin elektronlar tufayli metallar tok va issiqlikni yaxshi o‘tkazadi, yaltiraydi, bolg‘alanadi va cho‘ziladi. Eng yaxshi tok o‘tkazuvchi metall — kumush, keyin mis.",
+      "misol": "Mis simlar tok uchun ishlatiladi.",
+      "savol": "Metallar tokni nima tufayli o‘tkazadi?",
+      "javob": "erkin elektronlar",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aktivlik qatori",
+      "matn": "Metallarning kimyoviy faolligi aktivlik qatorida joylashgan: kaliy, natriy, kaltsiy, magniy, alyuminiy, rux, temir, qo‘rg‘oshin, vodorod, mis, kumush, oltin. Chapdagi metall o‘ngdagisini tuzidan siqib chiqaradi. Vodoroddan oldingi metall kislotadan vodorodni siqib chiqaradi. Natriy suv bilan shiddatli reaksiyaga kirishadi, shuning uchun u kerosin ostida saqlanadi.",
+      "misol": "Mis kislotadan vodorod chiqarmaydi.",
+      "savol": "Natriy qayerda saqlanadi?",
+      "javob": "kerosin ostida",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Reaksiyalar va hisob",
+      "matn": "Rux kislota bilan reaksiyada vodorod chiqaradi: bir mol ruxdan bir mol vodorod. Rux molyar massasi 65, 6,5 gramm rux — 0,1 mol, vodorod hajmi 0,1 · 22,4 — 2,24 litr. Natriy suv bilan: ikki mol natriydan bir mol vodorod, 2,3 gramm natriy (M — 23) bu 0,1 mol, vodorod 0,05 mol, ya’ni 1,12 litr.",
+      "misol": "Vodorod yonuvchi gaz, ehtiyot bo‘ling.",
+      "savol": "Rux molyar massasi?",
+      "javob": "65",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Metallarning ahamiyati",
+      "matn": "Metallar texnika, qurilish va elektronikaning asosi. Qotishmalar — po‘lat, cho‘yan, bronza va jez — sof metalldan mustahkam. Metallarni tejash va chiqindini qayta ishlash tabiatni asraydi. Tanadagi temir, kaltsiy, kaliy kabi metallar ham hayot uchun zarur.",
+      "misol": "Qon tarkibida temir bor.",
+      "savol": "Qotishma nima?",
+      "javob": "metallarning aralashmasi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Metallar — elektron beradigan, tok o‘tkazadigan elementlar. Aktivlik qatori reaksiyani belgilaydi.",
+    "misollar": [
+     {
+      "shart": "6,5 gramm rux (M — 65) kislota bilan reaksiyaga kirishdi. Bir mol ruxdan bir mol vodorod. Vodorod hajmi?",
+      "yechim": [
+       "n — 6,5 / 65 — 0,1 mol.",
+       "Vodorod ham 0,1 mol.",
+       "V — 0,1 · 22,4 — 2,24 litr."
+      ],
+      "javob": "2,24 litr"
+     },
+     {
+      "shart": "2,3 gramm natriy (M — 23) suv bilan. Ikki mol natriydan bir mol vodorod. Vodorod hajmi?",
+      "yechim": [
+       "n — 2,3 / 23 — 0,1 mol.",
+       "Vodorod 0,05 mol.",
+       "V — 0,05 · 22,4 — 1,12 litr."
+      ],
+      "javob": "1,12 litr"
+     },
+     {
+      "shart": "12 gramm magniy (M — 24) kislota bilan. Bir mol magniydan bir mol vodorod. Vodorod hajmi?",
+      "yechim": [
+       "n — 12 / 24 — 0,5 mol.",
+       "Vodorod ham 0,5 mol.",
+       "V — 0,5 · 22,4 — 11,2 litr."
+      ],
+      "javob": "11,2 litr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Elektr o‘tkazuvchanlik",
+      "topshiriq": "Turli metallarning tok o‘tkazuvchanligini taqqoslang.",
+      "yechim": "Mis, alyuminiy, temir.",
+      "mahsulot": "batareya, lampochka, sim"
+     },
+     {
+      "nom": "Aktivlik tajribasi",
+      "topshiriq": "Rux va mis bo‘lagini kislotaga soling.",
+      "yechim": "Qaysi biri gaz chiqaradi.",
+      "mahsulot": "rux, mis, kislota"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Mol va hajm.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Qotishmalar jadvali",
+      "topshiriq": "Po‘lat, bronza, jez tarkibini jadvalga yozing.",
+      "yechim": "Ishlatilishi.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "6,5 / 65 nechaga teng?",
+      "javob": "0,1"
+     },
+     {
+      "shart": "0,1 · 22,4 nechaga teng?",
+      "javob": "2,24"
+     },
+     {
+      "shart": "2,3 / 23 nechaga teng?",
+      "javob": "0,1"
+     },
+     {
+      "shart": "0,05 · 22,4 nechaga teng?",
+      "javob": "1,12"
+     },
+     {
+      "shart": "12 / 24 nechaga teng?",
+      "javob": "0,5"
+     },
+     {
+      "shart": "0,5 · 22,4 nechaga teng?",
+      "javob": "11,2"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Mis kislotadan vodorod siqib chiqaradi deydi",
+      "sabab": "chiqarmaydi",
+      "oldini_olish": "vodoroddan keyin turadi"
+     },
+     {
+      "xato": "Metallar tokni o‘tkazmaydi deydi",
+      "sabab": "yaxshi o‘tkazadi",
+      "oldini_olish": "erkin elektronlar"
+     },
+     {
+      "xato": "Natriy suvda saqlanadi deydi",
+      "sabab": "kerosin ostida",
+      "oldini_olish": "suv bilan shiddatli reaksiya"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Fizika",
+      "boglanish": "elektr o‘tkazuvchanlik"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "qondagi temir"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "qotishmalar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Metallar dunyosi»",
+     "muammo": "Metallar qanday xossalarga ega va qanday ishlatiladi?",
+     "mahsulot": "plakat va tajriba",
+     "bosqichlar": [
+      "xossalarni o‘rganish",
+      "aktivlik tajribasi",
+      "hisoblash",
+      "qotishmalar jadvali",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Xossalarni o‘rganing",
+      "Tajriba qiling",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "xossalar to‘g‘ri",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Metallar shahri»",
+     "bekatlar": [
+      {
+       "nom": "1-ustaxona",
+       "matn": "6,5 gramm rux.",
+       "topshiriq": "Vodorod litr?",
+       "javob": "2,24",
+       "rasm": ""
+      },
+      {
+       "nom": "2-ustaxona",
+       "matn": "2,3 gramm natriy.",
+       "topshiriq": "Vodorod litr?",
+       "javob": "1,12",
+       "rasm": ""
+      },
+      {
+       "nom": "3-ustaxona",
+       "matn": "12 gramm magniy.",
+       "topshiriq": "Vodorod litr?",
+       "javob": "11,2",
+       "rasm": ""
+      },
+      {
+       "nom": "4-ustaxona",
+       "matn": "Eng yaxshi tok o‘tkazuvchi.",
+       "topshiriq": "Qaysi metall?",
+       "javob": "kumush",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi qoidani oldingiz?",
+      "Molga o‘tdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Metall",
+      "tarif": "elektron beruvchi element"
+     },
+     {
+      "atama": "Metall bog‘lanish",
+      "tarif": "erkin elektronli bog‘lanish"
+     },
+     {
+      "atama": "Aktivlik qatori",
+      "tarif": "metallar faollik tartibi"
+     },
+     {
+      "atama": "Qotishma",
+      "tarif": "metallar aralashmasi"
+     },
+     {
+      "atama": "Po‘lat",
+      "tarif": "temir va uglerod qotishmasi"
+     },
+     {
+      "atama": "Bolg‘alanuvchanlik",
+      "tarif": "yupqa tekislanish xususiyati"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Metallar tokni yaxshi o‘tkazadi",
+      "togri": true,
+      "izoh": "erkin elektronlar"
+     },
+     {
+      "matn": "Mis kislotadan vodorod chiqaradi",
+      "togri": false,
+      "izoh": "chiqarmaydi"
+     },
+     {
+      "matn": "Natriy kerosin ostida saqlanadi",
+      "togri": true,
+      "izoh": "faol metall"
+     },
+     {
+      "matn": "6,5 gramm ruxdan 2,24 litr vodorod",
+      "togri": true,
+      "izoh": "0,1 mol"
+     },
+     {
+      "matn": "Eng yaxshi o‘tkazgich kumush",
+      "togri": true,
+      "izoh": "keyin mis"
+     },
+     {
+      "matn": "12 gramm magniydan 11,2 litr vodorod",
+      "togri": true,
+      "izoh": "0,5 mol"
+     },
+     {
+      "matn": "Po‘lat sof metall",
+      "togri": false,
+      "izoh": "qotishma"
+     },
+     {
+      "matn": "Oltin sof holda uchraydi",
+      "togri": true,
+      "izoh": "inert metall"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Metall?",
+      "javob": "elektron beruvchi element"
+     },
+     {
+      "savol": "Bog‘lanish?",
+      "javob": "metall bog‘lanish"
+     },
+     {
+      "savol": "Tok o‘tkazuvchi?",
+      "javob": "erkin elektron"
+     },
+     {
+      "savol": "Eng yaxshi o‘tkazgich?",
+      "javob": "kumush"
+     },
+     {
+      "savol": "Natriy saqlanishi?",
+      "javob": "kerosin ostida"
+     },
+     {
+      "savol": "Rux M?",
+      "javob": "65"
+     },
+     {
+      "savol": "6,5 / 65?",
+      "javob": "0,1"
+     },
+     {
+      "savol": "0,1 · 22,4?",
+      "javob": "2,24"
+     },
+     {
+      "savol": "12 / 24?",
+      "javob": "0,5"
+     },
+     {
+      "savol": "Qotishma?",
+      "javob": "metallar aralashmasi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Metall bo‘lagini kuzat.",
+      "savol": "Yaltiraydimi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Mol va hajm.",
+      "savol": "n · 22,4?"
+     },
+     {
+      "nom": "Taqqosla",
+      "matn": "Aktivlikni solishtir.",
+      "savol": "Qaysi faol?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qayerda kerak?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun natriy kerosin ostida saqlanadi?",
+    "keys": {
+     "vaziyat": "Laboratoriyada natriy bo‘lagi kerosinli idishda turibdi.",
+     "savollar": [
+      "Suv bilan nima bo‘ladi?",
+      "Nega havoda emas?"
+     ]
+    },
+    "tezis": "Metall tuzilishi xossasini belgilaydi",
+    "taqqoslash": {
+     "a": "Natriy",
+     "b": "Mis",
+     "umumiy": [
+      "metall",
+      "tok o‘tkazadi"
+     ],
+     "a_farq": [
+      "juda faol",
+      "suv bilan reaksiya"
+     ],
+     "b_farq": [
+      "kam faol",
+      "kislotadan vodorod chiqarmaydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Metallar",
+     "shoxlar": [
+      {
+       "nom": "Tuzilish",
+       "bandlar": [
+        "metall bog‘lanish",
+        "erkin elektron"
+       ]
+      },
+      {
+       "nom": "Xossa",
+       "bandlar": [
+        "tok",
+        "issiqlik",
+        "yaltiroq"
+       ]
+      },
+      {
+       "nom": "Faollik",
+       "bandlar": [
+        "aktivlik qatori",
+        "vodorod"
+       ]
+      },
+      {
+       "nom": "Qotishma",
+       "bandlar": [
+        "po‘lat",
+        "bronza",
+        "jez"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men erkin elektronlari bilan tokni o‘tkazaman va yaltirayman. Men kimman?",
+     "javob": "metall"
+    },
+    "hikmat": "Metall — elektron beruvchi.",
+    "kalit_soz": "METALL",
+    "xato_yechim": {
+     "shart": "Mis kislotadan vodorod chiqaradimi?",
+     "xato": "ha, chiqaradi",
+     "togri": "yo‘q, chiqarmaydi",
+     "sabab": "vodoroddan keyin turadi"
+    },
+    "guruh_nomlari": [
+     "Metallchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Metallar dunyosi»",
+     "topshiriq": "Guruh metallar aktivligini o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "6,5 gramm ruxdan vodorod?",
+     "B": "2,3 gramm natriydan vodorod?",
+     "C": "12 gramm magniydan vodorod?"
+    },
+    "sinkveyn": [
+     "Metall",
+     "yaltiroq, qattiq",
+     "o‘tkazadi, cho‘ziladi, bolg‘alanadi",
+     "Metall texnika asosi",
+     "Mis"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh metallarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tuzilish",
+      "2-guruh: xossalar",
+      "3-guruh: aktivlik",
+      "4-guruh: qotishmalar"
+     ],
+     "yakun": "Natijalar: 2,24 litr; 1,12 litr; 11,2 litr."
+    }
+   }
   }
  ]
 }
