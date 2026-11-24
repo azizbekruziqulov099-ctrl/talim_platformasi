@@ -4147,6 +4147,1390 @@
      "yakun": "Natijalar: 2; 2; 5."
     }
    }
+  },
+  {
+   "mavzu": "Energiyaning saqlanish qonuni",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Energiya turlari",
+      "matn": "Energiya — jismning ish bajara olish qobiliyati. Mexanikada ikki turi bor: kinetik (harakat) energiya va potensial (holat) energiya. Kinetik energiya Ek — m · v · v / 2, yerdan h balandlikdagi jismning potensial energiyasi Ep — m · g · h. Birligi — joul.",
+      "misol": "Uchib kelayotgan to‘pda kinetik energiya bor.",
+      "savol": "Kinetik energiya formulasi?",
+      "javob": "m · v · v / 2",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘la mexanik energiya",
+      "matn": "Jismning kinetik va potensial energiyalari yig‘indisi to‘la mexanik energiya deyiladi: E — Ek + Ep. Jism pastga tushganda potensial energiya kinetikka aylanadi, yuqoriga ko‘tarilganda esa kinetik energiya potensialga aylanadi.",
+      "misol": "Tepadan tushayotgan chana tezlashadi.",
+      "savol": "To‘la energiya nimaning yig‘indisi?",
+      "javob": "Ek va Ep",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Saqlanish qonuni",
+      "matn": "Ishqalanish va qarshilik bo‘lmagan yopiq sistemada to‘la mexanik energiya o‘zgarmaydi. Energiya yo‘qolmaydi va yo‘qdan paydo bo‘lmaydi, faqat bir turdan boshqasiga o‘tadi. XIX asr o‘rtalarida bu qonunni Mayer, Joul va Gelmgols umumlashtirdi.",
+      "misol": "Mayatnik tebranganda energiya aylanib turadi.",
+      "savol": "Energiya yo‘qolishi mumkinmi?",
+      "javob": "yo‘q, o‘tadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Erkin tushish va energiya",
+      "matn": "Balandlikdan tushayotgan jism uchun m · g · h — m · v · v / 2 (yerga tushish paytida). Massa qisqaradi, shuning uchun tezlik massaga bog‘liq emas: v — kvadrat ildiz ostida 2 · g · h. Balandlik 4 marta oshsa, tezlik 2 marta oshadi.",
+      "misol": "Baland ko‘prikdan tushgan tosh tezroq uriladi.",
+      "savol": "Tushish tezligi massaga bog‘liqmi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Energiya va ishqalanish",
+      "matn": "Haqiqiy sharoitda ishqalanish bor, shuning uchun mexanik energiyaning bir qismi issiqlikka aylanadi. Mexanik energiya kamayadi, lekin barcha turdagi energiyaning umumiy yig‘indisi saqlanadi. Shuning uchun abadiy dvigatel yasab bo‘lmaydi.",
+      "misol": "Velosiped tormozlanganda g‘ildirak isiydi.",
+      "savol": "Ishqalanishda mexanik energiya nimaga aylanadi?",
+      "javob": "issiqlikka",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Ek — m · v · v / 2, Ep — m · g · h. Ishqalanishsiz Ek + Ep o‘zgarmaydi. Energiya yo‘qolmaydi, bir turdan boshqasiga o‘tadi.",
+    "misollar": [
+     {
+      "shart": "m — 2 kg, h — 5 metr, g — 10. Potensial energiya?",
+      "yechim": [
+       "Ep — m · g · h.",
+       "2 · 10 · 5.",
+       "Javob 100 joul."
+      ],
+      "javob": "100 joul"
+     },
+     {
+      "shart": "m — 2 kg, v — 10 metr/sekund. Kinetik energiya?",
+      "yechim": [
+       "Ek — m · v · v / 2.",
+       "2 · 100 / 2.",
+       "Javob 100 joul."
+      ],
+      "javob": "100 joul"
+     },
+     {
+      "shart": "20 metr balandlikdan tushgan jism yerga urilish tezligi (g — 10)?",
+      "yechim": [
+       "m · g · h — m · v · v / 2.",
+       "v · v — 2 · 10 · 20 — 400.",
+       "Javob 20 metr/sekund."
+      ],
+      "javob": "20 metr/sekund"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Energiya aylanishi",
+      "topshiriq": "Sharchani nishab bo‘ylab dumalatib, balandlik va tezlikni solishtiring.",
+      "yechim": "Balandlik — tezlik.",
+      "mahsulot": "tarnov, sharcha"
+     },
+     {
+      "nom": "Sakrash tajribasi",
+      "topshiriq": "To‘pni turli balandlikdan tashlab, qaytish balandligini o‘lchang.",
+      "yechim": "Energiya kamayadi.",
+      "mahsulot": "to‘p, chizg‘ich"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Birlikni yozing.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Energiyani tejaymiz",
+      "topshiriq": "Energiyani tejash yo‘llarini yozing.",
+      "yechim": "Ishqalanishni kamaytirish.",
+      "mahsulot": "daftar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 10 · 5 nechaga teng?",
+      "javob": "100"
+     },
+     {
+      "shart": "2 · 100 / 2 nechaga teng?",
+      "javob": "100"
+     },
+     {
+      "shart": "2 · 10 · 20 nechaga teng?",
+      "javob": "400"
+     },
+     {
+      "shart": "Kinetik energiya formulasi?",
+      "javob": "m · v · v / 2"
+     },
+     {
+      "shart": "Potensial energiya formulasi?",
+      "javob": "m · g · h"
+     },
+     {
+      "shart": "Energiya birligi?",
+      "javob": "joul"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Energiya yo‘qoladi deydi",
+      "sabab": "bir turdan boshqasiga o‘tadi",
+      "oldini_olish": "umumiy yig‘indi saqlanadi"
+     },
+     {
+      "xato": "Ek ni m · v / 2 deb hisoblaydi",
+      "sabab": "tezlik kvadrat",
+      "oldini_olish": "m · v · v / 2"
+     },
+     {
+      "xato": "Tushish tezligi massaga bog‘liq deydi",
+      "sabab": "massa qisqaradi",
+      "oldini_olish": "faqat h va g"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "GES va to‘g‘onlar"
+     },
+     {
+      "fan": "Sport",
+      "boglanish": "baland sakrash"
+     },
+     {
+      "fan": "Ekologiya",
+      "boglanish": "energiyani tejash"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Energiya sayohati»",
+     "muammo": "Energiya turlari qanday o‘zgarishini qanday ko‘rsatamiz?",
+     "mahsulot": "energiya modeli",
+     "bosqichlar": [
+      "model tanlash",
+      "balandlikni o‘lchash",
+      "tezlikni hisoblash",
+      "energiyani solishtirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Model tanlang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Energiya tog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-qiya",
+       "matn": "m — 2, h — 5, g — 10.",
+       "topshiriq": "Ep?",
+       "javob": "100",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qiya",
+       "matn": "m — 2, v — 10.",
+       "topshiriq": "Ek?",
+       "javob": "100",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qiya",
+       "matn": "h — 20, g — 10.",
+       "topshiriq": "Tezlik?",
+       "javob": "20",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qiya",
+       "matn": "Energiya birligi.",
+       "topshiriq": "Nima?",
+       "javob": "joul",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Energiya",
+      "tarif": "ish bajarish qobiliyati"
+     },
+     {
+      "atama": "Kinetik energiya",
+      "tarif": "harakat energiyasi"
+     },
+     {
+      "atama": "Potensial energiya",
+      "tarif": "holat energiyasi"
+     },
+     {
+      "atama": "To‘la mexanik energiya",
+      "tarif": "Ek va Ep yig‘indisi"
+     },
+     {
+      "atama": "Saqlanish qonuni",
+      "tarif": "energiya o‘zgarmasligi"
+     },
+     {
+      "atama": "Joul",
+      "tarif": "energiya birligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Ek — m · v · v / 2",
+      "togri": true,
+      "izoh": "kinetik energiya"
+     },
+     {
+      "matn": "Energiya yo‘qolishi mumkin",
+      "togri": false,
+      "izoh": "o‘tadi"
+     },
+     {
+      "matn": "Ep — m · g · h",
+      "togri": true,
+      "izoh": "potensial energiya"
+     },
+     {
+      "matn": "Tushish tezligi massaga bog‘liq",
+      "togri": false,
+      "izoh": "bog‘liq emas"
+     },
+     {
+      "matn": "2 · 10 · 5 — 100",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Ishqalanishda mexanik energiya issiqlikka aylanadi",
+      "togri": true,
+      "izoh": "umumiy saqlanadi"
+     },
+     {
+      "matn": "Abadiy dvigatel yasash mumkin",
+      "togri": false,
+      "izoh": "energiya saqlanadi"
+     },
+     {
+      "matn": "Energiya birligi joul",
+      "togri": true,
+      "izoh": "J"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Energiya?",
+      "javob": "ish bajarish qobiliyati"
+     },
+     {
+      "savol": "Ek?",
+      "javob": "m · v · v / 2"
+     },
+     {
+      "savol": "Ep?",
+      "javob": "m · g · h"
+     },
+     {
+      "savol": "To‘la energiya?",
+      "javob": "Ek + Ep"
+     },
+     {
+      "savol": "Qonun?",
+      "javob": "energiya saqlanadi"
+     },
+     {
+      "savol": "2 · 10 · 5?",
+      "javob": "100"
+     },
+     {
+      "savol": "2 · 100 / 2?",
+      "javob": "100"
+     },
+     {
+      "savol": "Tezlik?",
+      "javob": "20"
+     },
+     {
+      "savol": "Ishqalanish?",
+      "javob": "issiqlik"
+     },
+     {
+      "savol": "Birlik?",
+      "javob": "joul"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "m, v, h?"
+     },
+     {
+      "nom": "Tanla",
+      "matn": "Formulani tanla.",
+      "savol": "Ek yoki Ep?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Sonlarni qo‘y.",
+      "savol": "natija?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Birlikni tekshir.",
+      "savol": "joul?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun abadiy dvigatel yasab bo‘lmaydi?",
+    "keys": {
+     "vaziyat": "2 kg jism 5 metr balandlikda turibdi.",
+     "savollar": [
+      "Potensial energiyasi qancha?",
+      "Yerga tushganda qaysi energiyaga aylanadi?"
+     ]
+    },
+    "tezis": "Energiya saqlanadi",
+    "taqqoslash": {
+     "a": "Kinetik energiya",
+     "b": "Potensial energiya",
+     "umumiy": [
+      "mexanik energiya",
+      "joulda o‘lchanadi"
+     ],
+     "a_farq": [
+      "harakat tufayli",
+      "m · v · v / 2"
+     ],
+     "b_farq": [
+      "holat tufayli",
+      "m · g · h"
+     ]
+    },
+    "klaster": {
+     "markaz": "Energiyaning saqlanish qonuni",
+     "shoxlar": [
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "kinetik",
+        "potensial"
+       ]
+      },
+      {
+       "nom": "Formulalar",
+       "bandlar": [
+        "m · v · v / 2",
+        "m · g · h"
+       ]
+      },
+      {
+       "nom": "Qonun",
+       "bandlar": [
+        "Ek + Ep saqlanadi"
+       ]
+      },
+      {
+       "nom": "Ishqalanish",
+       "bandlar": [
+        "issiqlikka aylanadi"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men yo‘qolmayman, faqat shaklimni o‘zgartiraman. Men kimman?",
+     "javob": "energiya"
+    },
+    "hikmat": "Energiya yo‘qolmaydi.",
+    "kalit_soz": "ENERGIYA",
+    "xato_yechim": {
+     "shart": "Ishqalanishda energiya yo‘qoladimi?",
+     "xato": "ha, yo‘qoladi",
+     "togri": "issiqlikka aylanadi",
+     "sabab": "umumiy energiya saqlanadi"
+    },
+    "guruh_nomlari": [
+     "Energiyachilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Energiya laboratoriyasi»",
+     "topshiriq": "Guruh energiya aylanishini o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "m — 2, h — 5 bo‘lsa Ep (g — 10)?",
+     "B": "m — 2, v — 10 bo‘lsa Ek?",
+     "C": "h — 20 dan tushish tezligi (g — 10)?"
+    },
+    "sinkveyn": [
+     "Energiya",
+     "tez, kuchli",
+     "aylanadi, saqlanadi, o‘tadi",
+     "Energiya saqlanadi",
+     "Joul"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh energiya qonunini o‘rganadi.",
+     "qismlar": [
+      "1-guruh: Ek va Ep",
+      "2-guruh: to‘la energiya",
+      "3-guruh: tushish",
+      "4-guruh: ishqalanish"
+     ],
+     "yakun": "Natijalar: 100; 100; 20."
+    }
+   }
+  },
+  {
+   "mavzu": "Mexanik tebranishlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tebranish nima",
+      "matn": "Vaqt o‘tishi bilan ma’lum oraliqda takrorlanadigan harakat tebranish deyiladi. Misollar: soat mayatnigi, belanchak, gitara simi. Tebranuvchi jism muvozanat vaziyati atrofida harakat qiladi.",
+      "misol": "Belanchak oldinga-orqaga tebranadi.",
+      "savol": "Tebranishda jism qayerda atrofida harakat qiladi?",
+      "javob": "muvozanat vaziyati",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kattaliklar",
+      "matn": "Amplituda A — muvozanat vaziyatidan eng katta chetlanish. Davr T — bir to‘liq tebranish vaqti. Chastota n — bir sekunddagi tebranishlar soni. Ular teskari: n — 1 / T. Chastota birligi — gerts.",
+      "misol": "Davr 0,5 sekund bo‘lsa, chastota 2 gerts.",
+      "savol": "n va T qanday bog‘langan?",
+      "javob": "teskari",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Erkin va majburiy",
+      "matn": "Faqat boshlang‘ich turtkidan keyin, tashqi ta’sirsiz bo‘ladigan tebranish erkin tebranish deyiladi. Tashqi davriy kuch ta’sirida bo‘ladigani majburiy tebranish. Ishqalanish tufayli erkin tebranishlar so‘nadi, ya’ni amplituda kamayadi.",
+      "misol": "Itarilgan belanchak sekin to‘xtaydi.",
+      "savol": "Erkin tebranish sekin nima bo‘ladi?",
+      "javob": "so‘nadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Rezonans",
+      "matn": "Tashqi kuch chastotasi jismning o‘z chastotasiga yaqin bo‘lsa, amplituda keskin ortadi — bu rezonans. Belanchakni o‘z ritmida itarsak, u baland ko‘tariladi. Rezonans foydali (musiqa asboblari) ham, xavfli (bino, ko‘priklar) ham bo‘lishi mumkin.",
+      "misol": "Askarlar ko‘prikda qadamni bosmay yuradi.",
+      "savol": "Rezonans nima?",
+      "javob": "amplituda keskin ortishi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Prujinali mayatnik",
+      "matn": "Prujinaga osilgan yuk — prujinali mayatnik. Uning davri T — 2 · π · kvadrat ildiz ostida m / k. Bunda m — massa, k — prujina bikrligi. Massa katta bo‘lsa, davr katta; prujina bikr bo‘lsa, davr kichik.",
+      "misol": "Mashina amortizatorida prujina bor.",
+      "savol": "Massa oshsa davr qanday o‘zgaradi?",
+      "javob": "ortadi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "T — 1 / n. Amplituda, davr, chastota. Rezonansda amplituda keskin ortadi. Prujinali mayatnik: T — 2 · π · kvadrat ildiz ostida m / k.",
+    "misollar": [
+     {
+      "shart": "20 tebranish 10 sekundda bo‘ldi. Davr va chastota?",
+      "yechim": [
+       "T — 10 / 20 — 0,5.",
+       "n — 1 / 0,5 — 2.",
+       "Javob T — 0,5 sekund, n — 2 gerts."
+      ],
+      "javob": "0,5 sekund va 2 gerts"
+     },
+     {
+      "shart": "Chastota 5 gerts. 1 daqiqada nechta tebranish?",
+      "yechim": [
+       "1 daqiqa — 60 sekund.",
+       "5 · 60.",
+       "Javob 300."
+      ],
+      "javob": "300 ta"
+     },
+     {
+      "shart": "m — 1 kg, k — 100 nyuton/metr, π — 3,14. Davr?",
+      "yechim": [
+       "T — 2 · π · kvadrat ildiz ostida m / k.",
+       "2 · 3,14 · 0,1.",
+       "Javob 0,628 sekund."
+      ],
+      "javob": "0,628 sekund"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Prujinali mayatnik",
+      "topshiriq": "Prujinaga yuk osib, 10 tebranish vaqtini o‘lchang.",
+      "yechim": "T — vaqt / 10.",
+      "mahsulot": "prujina, yuk, sekundomer"
+     },
+     {
+      "nom": "Massa va davr",
+      "topshiriq": "Yukni og‘irroq qilib, davrni solishtiring.",
+      "yechim": "Massa oshsa davr ortadi.",
+      "mahsulot": "prujina, yuklar"
+     },
+     {
+      "nom": "Rezonansni sinaymiz",
+      "topshiriq": "Belanchak yoki ipga osilgan yukni ritm bilan turting.",
+      "yechim": "Amplituda ortadi.",
+      "mahsulot": "ip, yuk"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "T — 1 / n.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "10 / 20 nechaga teng?",
+      "javob": "0,5"
+     },
+     {
+      "shart": "1 / 0,5 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "5 · 60 nechaga teng?",
+      "javob": "300"
+     },
+     {
+      "shart": "n va T qanday bog‘langan?",
+      "javob": "teskari"
+     },
+     {
+      "shart": "Chastota birligi?",
+      "javob": "gerts"
+     },
+     {
+      "shart": "Tebranishning eng katta chetlanishi?",
+      "javob": "amplituda"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Davr va chastota bir xil deydi",
+      "sabab": "teskari kattaliklar",
+      "oldini_olish": "n — 1 / T"
+     },
+     {
+      "xato": "Erkin tebranish so‘nmaydi deydi",
+      "sabab": "ishqalanishda so‘nadi",
+      "oldini_olish": "amplituda kamayadi"
+     },
+     {
+      "xato": "Rezonans doim zararli deydi",
+      "sabab": "foydali bo‘lishi ham mumkin",
+      "oldini_olish": "musiqa asboblari"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Musiqa",
+      "boglanish": "torli asboblar"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "amortizator"
+     },
+     {
+      "fan": "Qurilish",
+      "boglanish": "binolar va rezonans"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tebranish laboratoriyasi»",
+     "muammo": "Tebranishning davriga nimalar ta’sir qiladi?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "prujina tanlash",
+      "davrni o‘lchash",
+      "massani o‘zgartirish",
+      "grafik chizish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Prujina tanlang",
+      "O‘lchang",
+      "Grafik chizing",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "grafik to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tebranish bog‘i»",
+     "bekatlar": [
+      {
+       "nom": "1-belanchak",
+       "matn": "20 tebranish 10 sekundda.",
+       "topshiriq": "Davr?",
+       "javob": "0,5",
+       "rasm": ""
+      },
+      {
+       "nom": "2-belanchak",
+       "matn": "Davr 0,5 sekund.",
+       "topshiriq": "Chastota?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-belanchak",
+       "matn": "5 gerts, 60 sekund.",
+       "topshiriq": "Tebranishlar soni?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "4-belanchak",
+       "matn": "Eng katta chetlanish.",
+       "topshiriq": "Nima?",
+       "javob": "amplituda",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tebranish",
+      "tarif": "takrorlanuvchi harakat"
+     },
+     {
+      "atama": "Amplituda",
+      "tarif": "eng katta chetlanish"
+     },
+     {
+      "atama": "Davr",
+      "tarif": "bir tebranish vaqti"
+     },
+     {
+      "atama": "Chastota",
+      "tarif": "sekunddagi tebranishlar soni"
+     },
+     {
+      "atama": "Rezonans",
+      "tarif": "amplituda keskin ortishi"
+     },
+     {
+      "atama": "So‘nish",
+      "tarif": "amplituda kamayishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tebranish muvozanat atrofida bo‘ladi",
+      "togri": true,
+      "izoh": "takrorlanadi"
+     },
+     {
+      "matn": "Davr va chastota bir xil kattalik",
+      "togri": false,
+      "izoh": "teskari"
+     },
+     {
+      "matn": "n — 1 / T",
+      "togri": true,
+      "izoh": "bog‘lanish"
+     },
+     {
+      "matn": "Erkin tebranish so‘nmaydi",
+      "togri": false,
+      "izoh": "so‘nadi"
+     },
+     {
+      "matn": "5 · 60 — 300",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Rezonansda amplituda keskin ortadi",
+      "togri": true,
+      "izoh": "chastota mos"
+     },
+     {
+      "matn": "Chastota birligi gerts",
+      "togri": true,
+      "izoh": "1 / sekund"
+     },
+     {
+      "matn": "Massa oshsa davr kamayadi",
+      "togri": false,
+      "izoh": "ortadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tebranish?",
+      "javob": "takrorlanuvchi harakat"
+     },
+     {
+      "savol": "Amplituda?",
+      "javob": "eng katta chetlanish"
+     },
+     {
+      "savol": "Davr?",
+      "javob": "bir tebranish vaqti"
+     },
+     {
+      "savol": "Chastota?",
+      "javob": "sekunddagi soni"
+     },
+     {
+      "savol": "n va T?",
+      "javob": "teskari"
+     },
+     {
+      "savol": "Rezonans?",
+      "javob": "amplituda ortishi"
+     },
+     {
+      "savol": "10 / 20?",
+      "javob": "0,5"
+     },
+     {
+      "savol": "1 / 0,5?",
+      "javob": "2"
+     },
+     {
+      "savol": "5 · 60?",
+      "javob": "300"
+     },
+     {
+      "savol": "So‘nish?",
+      "javob": "ishqalanishdan"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Tebranishni kuzat.",
+      "savol": "Qayerga qaytadi?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Vaqtni o‘lcha.",
+      "savol": "20 tebranish?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "T va n ni top.",
+      "savol": "1 / T?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nima ta’sir qiladi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun belanchakni o‘z ritmida itarsak, u baland ko‘tariladi?",
+    "keys": {
+     "vaziyat": "20 tebranish 10 sekundda bajarildi.",
+     "savollar": [
+      "Davr nechaga teng?",
+      "Chastota nechaga teng?"
+     ]
+    },
+    "tezis": "n — 1 / T",
+    "taqqoslash": {
+     "a": "Erkin tebranish",
+     "b": "Majburiy tebranish",
+     "umumiy": [
+      "takrorlanuvchi harakat",
+      "davri bor"
+     ],
+     "a_farq": [
+      "turtkidan keyin",
+      "so‘nadi"
+     ],
+     "b_farq": [
+      "tashqi kuch ta’sirida",
+      "so‘nmaydi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Mexanik tebranishlar",
+     "shoxlar": [
+      {
+       "nom": "Kattaliklar",
+       "bandlar": [
+        "amplituda",
+        "davr",
+        "chastota"
+       ]
+      },
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "erkin",
+        "majburiy"
+       ]
+      },
+      {
+       "nom": "Rezonans",
+       "bandlar": [
+        "amplituda keskin ortadi"
+       ]
+      },
+      {
+       "nom": "Mayatnik",
+       "bandlar": [
+        "prujinali"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men muvozanat atrofida takrorlanuvchi harakatman. Men kimman?",
+     "javob": "tebranish"
+    },
+    "hikmat": "Ritm mos — rezonans.",
+    "kalit_soz": "TEBRANISH",
+    "xato_yechim": {
+     "shart": "Davr 0,5 sekund. Chastota?",
+     "xato": "0,5",
+     "togri": "1 / 0,5 — 2 gerts",
+     "sabab": "n — 1 / T, teskari kattalik"
+    },
+    "guruh_nomlari": [
+     "Tebranishchilar",
+     "Rezonanschilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tebranish laboratoriyasi»",
+     "topshiriq": "Guruh tebranishlarni o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "20 tebranish 10 sekundda bo‘lsa T va n?",
+     "B": "5 gerts bo‘lsa 1 daqiqada tebranish soni?",
+     "C": "m — 1, k — 100 bo‘lsa T?"
+    },
+    "sinkveyn": [
+     "Tebranish",
+     "takror, ritmli",
+     "tebranadi, qaytadi, so‘nadi",
+     "Muvozanat atrofida harakat",
+     "Davr"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tebranishlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: kattaliklar",
+      "2-guruh: turlari",
+      "3-guruh: rezonans",
+      "4-guruh: prujinali mayatnik"
+     ],
+     "yakun": "Natijalar: 0,5 va 2; 300; 0,628."
+    }
+   }
+  },
+  {
+   "mavzu": "Mayatnik",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Matematik mayatnik",
+      "matn": "Uzun ingichka ipga osilgan kichik og‘ir yuk matematik mayatnik deyiladi. Uni muvozanat vaziyatidan chiqarib qo‘yib yuborsak, u tebranadi. Ip massasi va yukning o‘lchami juda kichik deb olinadi.",
+      "misol": "Devor soatining mayatnigi.",
+      "savol": "Matematik mayatnik nimadan iborat?",
+      "javob": "ipga osilgan yuk",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Davr formulasi",
+      "matn": "Kichik burchaklarda mayatnik davri T — 2 · π · kvadrat ildiz ostida l / g. Bu yerda l — ip uzunligi, g — erkin tushish tezlanishi. Davr massaga va amplitudaga (kichik bo‘lsa) bog‘liq emas.",
+      "misol": "Soat mayatnigi bir tekis yuradi.",
+      "savol": "Davr massaga bog‘liqmi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Galiley kashfiyoti",
+      "matn": "Rivoyatga ko‘ra, yosh Galiley Piza soborida osilgan chiroqning tebranishini o‘z pulsi bilan o‘lchab, davr amplitudaga deyarli bog‘liq emasligini payqagan. Keyinchalik mayatnikli soatni Xristian Gyuygens 1656-yilda yaratdi.",
+      "misol": "Mayatnikli soatlar aniq vaqt ko‘rsatadi.",
+      "savol": "Mayatnikli soatni kim yaratgan?",
+      "javob": "Gyuygens",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Uzunlik va davr",
+      "matn": "Uzunlik 4 marta oshsa, davr 2 marta oshadi, chunki davr uzunlikning kvadrat ildiziga proporsional. 1 metrli mayatnikning davri Yer sirtida taxminan 2 sekund. Shu usul bilan g ni o‘lchash mumkin: g — 4 · π · π · l / (T · T).",
+      "misol": "Uzun arqonli belanchak sekinroq tebranadi.",
+      "savol": "Uzunlik 4 marta oshsa davr necha marta oshadi?",
+      "javob": "2 marta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanishi",
+      "matn": "Mayatnik soatlar, metronom (musiqa ritmi), seysmograf (yer qimirlashi o‘lchagich) va Yerning joyiga qarab g ni aniqlashda ishlatiladi. Fuko mayatnigi 1851-yilda Yer aylanishini ko‘rsatgan.",
+      "misol": "Metronom ritmni belgilaydi.",
+      "savol": "Fuko mayatnigi nimani ko‘rsatgan?",
+      "javob": "Yerning aylanishini",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "T — 2 · π · kvadrat ildiz ostida l / g. Davr massaga bog‘liq emas. Uzunlik 4 marta oshsa davr 2 marta oshadi.",
+    "misollar": [
+     {
+      "shart": "l — 1 metr, g — 9,8, π — 3,14. Davr taxminan?",
+      "yechim": [
+       "l / g — 1 / 9,8 — 0,102.",
+       "Ildiz taxminan 0,32.",
+       "Javob taxminan 2 sekund."
+      ],
+      "javob": "taxminan 2 sekund"
+     },
+     {
+      "shart": "l — 0,25 metr. Davr taxminan? (g — 9,8)",
+      "yechim": [
+       "0,25 / 9,8 — 0,0255.",
+       "Ildiz taxminan 0,16. 6,28 · 0,16.",
+       "Javob taxminan 1 sekund."
+      ],
+      "javob": "taxminan 1 sekund"
+     },
+     {
+      "shart": "Davr 2 sekund edi, uzunlik 4 marta oshdi. Yangi davr?",
+      "yechim": [
+       "4 marta oshsa davr 2 marta oshadi.",
+       "2 · 2.",
+       "Javob 4 sekund."
+      ],
+      "javob": "4 sekund"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Mayatnik yasaymiz",
+      "topshiriq": "Ipga yuk osib, 10 tebranish vaqtini o‘lchang.",
+      "yechim": "T — vaqt / 10.",
+      "mahsulot": "ip, yuk, sekundomer"
+     },
+     {
+      "nom": "Uzunlikni o‘zgartiramiz",
+      "topshiriq": "Ip uzunligini 4 marta oshirib, davrni solishtiring.",
+      "yechim": "2 marta oshadi.",
+      "mahsulot": "ip, yuk"
+     },
+     {
+      "nom": "Massani o‘zgartiramiz",
+      "topshiriq": "Yuk massasini o‘zgartirib, davrni tekshiring.",
+      "yechim": "Davr o‘zgarmaydi.",
+      "mahsulot": "turli yuklar"
+     },
+     {
+      "nom": "g ni o‘lchaymiz",
+      "topshiriq": "Davr va uzunlikdan g ni hisoblang.",
+      "yechim": "g — 4 · π · π · l / (T · T).",
+      "mahsulot": "hisob varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "0,25 / 9,8 taxminan nechaga teng?",
+      "javob": "0,0255"
+     },
+     {
+      "shart": "2 · 2 nechaga teng?",
+      "javob": "4"
+     },
+     {
+      "shart": "10 / 20 nechaga teng?",
+      "javob": "0,5"
+     },
+     {
+      "shart": "Davr massaga bog‘liqmi?",
+      "javob": "yo‘q"
+     },
+     {
+      "shart": "Mayatnikli soatni kim yaratgan?",
+      "javob": "Gyuygens"
+     },
+     {
+      "shart": "1 metrli mayatnik davri taxminan?",
+      "javob": "2 sekund"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Davr massaga bog‘liq deydi",
+      "sabab": "bog‘liq emas",
+      "oldini_olish": "faqat l va g"
+     },
+     {
+      "xato": "Uzunlik 4 marta oshsa davr 4 marta oshadi deydi",
+      "sabab": "2 marta oshadi",
+      "oldini_olish": "kvadrat ildiz"
+     },
+     {
+      "xato": "Mayatnik davrini amplitudaga to‘g‘ri deydi",
+      "sabab": "kichik amplitudada bog‘liq emas",
+      "oldini_olish": "izoxronlik"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Tarix",
+      "boglanish": "Galiley va Gyuygens"
+     },
+     {
+      "fan": "Musiqa",
+      "boglanish": "metronom"
+     },
+     {
+      "fan": "Geologiya",
+      "boglanish": "seysmograf"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Mayatnik soat»",
+     "muammo": "Mayatnikdan soat yasab bo‘ladimi?",
+     "mahsulot": "mayatnik modeli",
+     "bosqichlar": [
+      "uzunlik tanlash",
+      "davrni o‘lchash",
+      "soatni sozlash",
+      "xatoni tekshirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Uzunlik tanlang",
+      "O‘lchang",
+      "Sozlang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "soat ishlaydi",
+      "davr aniq",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Mayatnik zali»",
+     "bekatlar": [
+      {
+       "nom": "1-soat",
+       "matn": "l — 1 metr.",
+       "topshiriq": "Davr (sekund)?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "2-soat",
+       "matn": "l — 0,25 metr.",
+       "topshiriq": "Davr (sekund)?",
+       "javob": "1",
+       "rasm": ""
+      },
+      {
+       "nom": "3-soat",
+       "matn": "Davr 2, uzunlik 4 marta oshdi.",
+       "topshiriq": "Yangi davr?",
+       "javob": "4",
+       "rasm": ""
+      },
+      {
+       "nom": "4-soat",
+       "matn": "Mayatnikli soat.",
+       "topshiriq": "Kim yaratgan?",
+       "javob": "Gyuygens",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Matematik mayatnik",
+      "tarif": "ipga osilgan nuqtaviy yuk"
+     },
+     {
+      "atama": "Davr",
+      "tarif": "bir tebranish vaqti"
+     },
+     {
+      "atama": "Uzunlik",
+      "tarif": "ip uzunligi l"
+     },
+     {
+      "atama": "Metronom",
+      "tarif": "ritm o‘lchagich"
+     },
+     {
+      "atama": "Seysmograf",
+      "tarif": "yer qimirlashi o‘lchagich"
+     },
+     {
+      "atama": "Fuko mayatnigi",
+      "tarif": "Yer aylanishini ko‘rsatuvchi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Mayatnik davri massaga bog‘liq emas",
+      "togri": true,
+      "izoh": "l va g"
+     },
+     {
+      "matn": "Uzunlik 4 marta oshsa davr 4 marta oshadi",
+      "togri": false,
+      "izoh": "2 marta"
+     },
+     {
+      "matn": "1 metrli mayatnik davri taxminan 2 sekund",
+      "togri": true,
+      "izoh": "Yerda"
+     },
+     {
+      "matn": "Mayatnik soatni Galiley yaratgan",
+      "togri": false,
+      "izoh": "Gyuygens"
+     },
+     {
+      "matn": "2 · 2 — 4",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Fuko mayatnigi Yer aylanishini ko‘rsatadi",
+      "togri": true,
+      "izoh": "1851"
+     },
+     {
+      "matn": "Davr g ga bog‘liq",
+      "togri": true,
+      "izoh": "formulada"
+     },
+     {
+      "matn": "Mayatnik musiqa ritmida ishlatilmaydi",
+      "togri": false,
+      "izoh": "metronom"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Matematik mayatnik?",
+      "javob": "ipga osilgan yuk"
+     },
+     {
+      "savol": "Davr formulasi?",
+      "javob": "2 · π · ildiz l / g"
+     },
+     {
+      "savol": "Massa?",
+      "javob": "bog‘liq emas"
+     },
+     {
+      "savol": "l 4 marta?",
+      "javob": "davr 2 marta"
+     },
+     {
+      "savol": "1 metr?",
+      "javob": "taxminan 2 sekund"
+     },
+     {
+      "savol": "Gyuygens?",
+      "javob": "mayatnikli soat"
+     },
+     {
+      "savol": "Galiley?",
+      "javob": "tebranish kuzatdi"
+     },
+     {
+      "savol": "Fuko?",
+      "javob": "Yer aylanishi"
+     },
+     {
+      "savol": "Metronom?",
+      "javob": "ritm"
+     },
+     {
+      "savol": "2 · 2?",
+      "javob": "4"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "l va g?"
+     },
+     {
+      "nom": "Bo‘l",
+      "matn": "l ni g ga bo‘l.",
+      "savol": "l / g?"
+     },
+     {
+      "nom": "Ildiz",
+      "matn": "Ildiz ol.",
+      "savol": "natija?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Birlikni tekshir.",
+      "savol": "sekund?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun metronom va devor soatlarida mayatnik ishlatiladi?",
+    "keys": {
+     "vaziyat": "1 metr uzunlikdagi mayatnik tebranmoqda.",
+     "savollar": [
+      "Davri taxminan qancha?",
+      "Uzunlik 4 marta oshsa davr nima bo‘ladi?"
+     ]
+    },
+    "tezis": "Davr uzunlikka bog‘liq",
+    "taqqoslash": {
+     "a": "Matematik mayatnik",
+     "b": "Prujinali mayatnik",
+     "umumiy": [
+      "tebranish",
+      "davri bor"
+     ],
+     "a_farq": [
+      "ipga osilgan",
+      "davr l va g ga bog‘liq"
+     ],
+     "b_farq": [
+      "prujinaga osilgan",
+      "davr m va k ga bog‘liq"
+     ]
+    },
+    "klaster": {
+     "markaz": "Mayatnik",
+     "shoxlar": [
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "2 · π · ildiz l / g"
+       ]
+      },
+      {
+       "nom": "Bog‘liqlik",
+       "bandlar": [
+        "uzunlik",
+        "g"
+       ]
+      },
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "Galiley",
+        "Gyuygens",
+        "Fuko"
+       ]
+      },
+      {
+       "nom": "Qo‘llanish",
+       "bandlar": [
+        "soat",
+        "metronom",
+        "seysmograf"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men ipga osilib tebranaman, davrim massaga bog‘liq emas. Men kimman?",
+     "javob": "matematik mayatnik"
+    },
+    "hikmat": "Uzunroq ip — sekinroq tebranish.",
+    "kalit_soz": "MAYATNIK",
+    "xato_yechim": {
+     "shart": "Uzunlik 4 marta oshdi. Davr necha marta oshadi?",
+     "xato": "4 marta",
+     "togri": "2 marta",
+     "sabab": "davr uzunlikning kvadrat ildiziga bog‘liq"
+    },
+    "guruh_nomlari": [
+     "Mayatnikchilar",
+     "Soatchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Mayatnik ustaxonasi»",
+     "topshiriq": "Guruh mayatnik davrini o‘lchaydi."
+    },
+    "vazifalar": {
+     "A": "l — 1 metr bo‘lsa davr?",
+     "B": "l — 0,25 metr bo‘lsa davr?",
+     "C": "Uzunlik 4 marta oshsa davr?"
+    },
+    "sinkveyn": [
+     "Mayatnik",
+     "ritmli, uzun",
+     "tebranadi, o‘lchaydi, yuradi",
+     "Davr uzunlikka bog‘liq",
+     "Soat"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh mayatnikni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: formula",
+      "2-guruh: tajriba",
+      "3-guruh: tarix",
+      "4-guruh: qo‘llanish"
+     ],
+     "yakun": "Natijalar: 2; 1; 4 sekund."
+    }
+   }
   }
  ]
 }
