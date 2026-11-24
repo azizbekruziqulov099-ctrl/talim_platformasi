@@ -2764,6 +2764,1389 @@
      "yakun": "Natijalar: 20; 40; 500."
     }
    }
+  },
+  {
+   "mavzu": "Sun’iy yo‘ldoshlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Sun’iy yo‘ldosh nima",
+      "matn": "Sun’iy yo‘ldosh — odamlar yasab, Yer atrofidagi orbitaga chiqargan kosmik apparat. U Yerning tortishish kuchi ta’sirida orbita bo‘ylab aylanadi va doim erkin tushish holatida bo‘ladi, lekin Yerga tushmaydi, chunki gorizontal tezligi katta.",
+      "misol": "Aloqa va navigatsiya yo‘ldoshlari Yer atrofida aylanadi.",
+      "savol": "Yo‘ldosh nima uchun Yerga tushmaydi?",
+      "javob": "gorizontal tezligi katta",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birinchi yo‘ldosh",
+      "matn": "Birinchi sun’iy yo‘ldosh «Sputnik-1» 1957-yil 4-oktyabrda uchirilgan. 1961-yil 12-aprelda Yuriy Gagarin «Vostok-1» kemasida Yer atrofida uchib, birinchi kosmonavt bo‘ldi. Shu voqealar kosmik davrni boshlab berdi.",
+      "misol": "Gagarin kosmosga birinchi chiqqan odam.",
+      "savol": "Birinchi yo‘ldosh qaysi yili uchirilgan?",
+      "javob": "1957",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Birinchi kosmik tezlik",
+      "matn": "Jism Yer sirti yaqinida aylana orbitada harakatlanishi uchun kerak bo‘lgan tezlik birinchi kosmik tezlik deyiladi: v — kvadrat ildiz ostida g · R. Yer uchun u taxminan soniyasiga 7,9 km. Shu tezlikda markazga intilma tezlanish g ga teng.",
+      "misol": "Soniyasiga 7,9 km — soatiga 28000 km dan ortiq.",
+      "savol": "Birinchi kosmik tezlik taxminan qancha?",
+      "javob": "soniyasiga 7,9 km",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Boshqa kosmik tezliklar",
+      "matn": "Ikkinchi kosmik tezlik taxminan soniyasiga 11,2 km — jism Yer tortishidan qutulib, boshqa sayyoralarga yo‘l oladi. Uchinchisi taxminan 16,7 km — Quyosh sistemasidan chiqish uchun. Orbita balandligi ortgan sari yo‘ldoshning tezligi kamayadi, davri ortadi.",
+      "misol": "Oyga uchish uchun tezlik ikkinchisidan sal kam yetadi.",
+      "savol": "Yer tortishidan qutulish tezligi?",
+      "javob": "ikkinchi kosmik tezlik",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Yo‘ldoshlar vazifasi",
+      "matn": "Yo‘ldoshlar aloqa, televideniye, navigatsiya (GPS), ob-havo kuzatuvi, Yerni suratga olish va ilmiy tadqiqot uchun xizmat qiladi. Geostatsionar orbitada (balandligi taxminan 35786 km) yo‘ldosh davri 24 soat, u Yerdagi bir nuqta ustida osilgandek turadi.",
+      "misol": "Sun’iy yo‘ldosh antennasi doim bir tomonga qaratilgan.",
+      "savol": "Geostatsionar yo‘ldosh davri qancha?",
+      "javob": "24 soat",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Birinchi kosmik tezlik taxminan soniyasiga 7,9 km. Ikkinchisi — 11,2 km. Yo‘ldosh erkin tushadi, lekin gorizontal tezligi tufayli aylanadi.",
+    "misollar": [
+     {
+      "shart": "g — 10, R — 6400000 metr. Birinchi kosmik tezlik? (v — ildiz ostida g · R)",
+      "yechim": [
+       "g · R — 10 · 6400000 — 64000000.",
+       "Ildiz ostidan 64000000 — 8000.",
+       "Javob 8000 metr/sekund."
+      ],
+      "javob": "8000 metr/sekund"
+     },
+     {
+      "shart": "Yo‘ldosh orbitani 90 daqiqada aylanadi. Sutkada necha marta?",
+      "yechim": [
+       "Sutka — 24 · 60 — 1440 daqiqa.",
+       "1440 / 90.",
+       "Javob 16 marta."
+      ],
+      "javob": "16 marta"
+     },
+     {
+      "shart": "Ikkinchi kosmik tezlik 11,2, birinchisi 7,9. Necha marta katta?",
+      "yechim": [
+       "11,2 / 7,9.",
+       "Taxminan 1,4.",
+       "Javob taxminan 1,4 marta."
+      ],
+      "javob": "taxminan 1,4 marta"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Orbita modeli",
+      "topshiriq": "Ipga bog‘langan sharni aylantirib, yo‘ldosh orbitasini modellashtiring.",
+      "yechim": "Tezlik oshsa ip tarang.",
+      "mahsulot": "ip, shar"
+     },
+     {
+      "nom": "Tezliklar jadvali",
+      "topshiriq": "Uchta kosmik tezlikni jadvalga yozing.",
+      "yechim": "7,9; 11,2; 16,7.",
+      "mahsulot": "jadval varag‘i"
+     },
+     {
+      "nom": "Yo‘ldosh topamiz",
+      "topshiriq": "Ilovada ko‘rinadigan yo‘ldoshlarni kuzating.",
+      "yechim": "Kechqurun ko‘rinadi.",
+      "mahsulot": "telefon"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "Birlikni yozing.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "1440 / 90 nechaga teng?",
+      "javob": "16"
+     },
+     {
+      "shart": "24 · 60 nechaga teng?",
+      "javob": "1440"
+     },
+     {
+      "shart": "11,2 / 7,9 taxminan nechaga teng?",
+      "javob": "1,4"
+     },
+     {
+      "shart": "Birinchi yo‘ldosh yili?",
+      "javob": "1957"
+     },
+     {
+      "shart": "Gagarin uchgan yil?",
+      "javob": "1961"
+     },
+     {
+      "shart": "Birinchi kosmik tezlik?",
+      "javob": "7,9"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Yo‘ldosh tortishishsiz aylanadi deydi",
+      "sabab": "tortishish ta’sirida aylanadi",
+      "oldini_olish": "tortishish markazga intilma kuch"
+     },
+     {
+      "xato": "Orbita balandroq bo‘lsa tezlik ortadi deydi",
+      "sabab": "tezlik kamayadi",
+      "oldini_olish": "davr ortadi"
+     },
+     {
+      "xato": "Yo‘ldosh Yerga tushmaydi, chunki og‘irlik yo‘q deydi",
+      "sabab": "gorizontal tezligi katta",
+      "oldini_olish": "doim tushadi, lekin chetga"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Astronomiya",
+      "boglanish": "orbitalar"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "aloqa va GPS"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "kosmik davr"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Kosmik yo‘ldosh»",
+     "muammo": "Yo‘ldoshlarning hayotimizdagi o‘rnini qanday ko‘rsatamiz?",
+     "mahsulot": "yo‘ldosh modeli",
+     "bosqichlar": [
+      "yo‘ldosh turlarini o‘rganish",
+      "model yasash",
+      "tezlikni hisoblash",
+      "afzalliklarini yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Turlarini o‘rganing",
+      "Model yasang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "ma’lumot to‘g‘ri",
+      "model aniq",
+      "hisob to‘g‘ri",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Orbita yo‘li»",
+     "bekatlar": [
+      {
+       "nom": "1-orbita",
+       "matn": "g — 10, R — 6400000.",
+       "topshiriq": "Tezlik (metr/sekund)?",
+       "javob": "8000",
+       "rasm": ""
+      },
+      {
+       "nom": "2-orbita",
+       "matn": "Davr 90 daqiqa.",
+       "topshiriq": "Sutkada necha marta?",
+       "javob": "16",
+       "rasm": ""
+      },
+      {
+       "nom": "3-orbita",
+       "matn": "Birinchi yo‘ldosh.",
+       "topshiriq": "Qaysi yili?",
+       "javob": "1957",
+       "rasm": ""
+      },
+      {
+       "nom": "4-orbita",
+       "matn": "Gagarin.",
+       "topshiriq": "Qaysi yili?",
+       "javob": "1961",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Formulani qo‘lladingizmi?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Sun’iy yo‘ldosh",
+      "tarif": "Yer atrofida aylanuvchi apparat"
+     },
+     {
+      "atama": "Orbita",
+      "tarif": "yo‘ldosh harakat yo‘li"
+     },
+     {
+      "atama": "Kosmik tezlik",
+      "tarif": "kosmik harakat uchun zarur tezlik"
+     },
+     {
+      "atama": "Geostatsionar orbita",
+      "tarif": "davri 24 soat bo‘lgan orbita"
+     },
+     {
+      "atama": "Navigatsiya",
+      "tarif": "joyni aniqlash tizimi"
+     },
+     {
+      "atama": "Kosmonavt",
+      "tarif": "kosmosga uchuvchi odam"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Birinchi yo‘ldosh 1957-yilda uchirilgan",
+      "togri": true,
+      "izoh": "Sputnik-1"
+     },
+     {
+      "matn": "Yo‘ldosh tortishishsiz aylanadi",
+      "togri": false,
+      "izoh": "tortishish bor"
+     },
+     {
+      "matn": "Birinchi kosmik tezlik taxminan 7,9 km soniyasiga",
+      "togri": true,
+      "izoh": "Yer uchun"
+     },
+     {
+      "matn": "Gagarin 1971-yilda uchgan",
+      "togri": false,
+      "izoh": "1961"
+     },
+     {
+      "matn": "1440 / 90 — 16",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Geostatsionar yo‘ldosh davri 24 soat",
+      "togri": true,
+      "izoh": "Yerga nisbatan tinch"
+     },
+     {
+      "matn": "Orbita balandroq bo‘lsa tezlik kamayadi",
+      "togri": true,
+      "izoh": "davr ortadi"
+     },
+     {
+      "matn": "Ikkinchi kosmik tezlik 11,2 km soniyasiga",
+      "togri": true,
+      "izoh": "Yerdan qutulish"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Yo‘ldosh?",
+      "javob": "orbitadagi apparat"
+     },
+     {
+      "savol": "Birinchi yo‘ldosh?",
+      "javob": "Sputnik-1"
+     },
+     {
+      "savol": "Yil?",
+      "javob": "1957"
+     },
+     {
+      "savol": "Gagarin yili?",
+      "javob": "1961"
+     },
+     {
+      "savol": "Birinchi tezlik?",
+      "javob": "7,9"
+     },
+     {
+      "savol": "Ikkinchi tezlik?",
+      "javob": "11,2"
+     },
+     {
+      "savol": "Uchinchi?",
+      "javob": "16,7"
+     },
+     {
+      "savol": "1440 / 90?",
+      "javob": "16"
+     },
+     {
+      "savol": "Geostatsionar davr?",
+      "javob": "24 soat"
+     },
+     {
+      "savol": "Nega tushmaydi?",
+      "javob": "gorizontal tezligi katta"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "g va R?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "g · R ni top.",
+      "savol": "natija?"
+     },
+     {
+      "nom": "Ildiz",
+      "matn": "Ildiz ol.",
+      "savol": "8000?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Tezlik nima?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun yo‘ldoshdagi kosmonavtlar vaznsizlikni his qiladi?",
+    "keys": {
+     "vaziyat": "Yo‘ldosh 90 daqiqada Yerni bir marta aylanadi.",
+     "savollar": [
+      "Sutkada nechta aylanish?",
+      "Balandroq orbitada davr qanday?"
+     ]
+    },
+    "tezis": "Yo‘ldosh doim tushadi, lekin chetga",
+    "taqqoslash": {
+     "a": "Past orbita",
+     "b": "Geostatsionar orbita",
+     "umumiy": [
+      "Yer atrofida aylanish",
+      "tortishish ta’sirida"
+     ],
+     "a_farq": [
+      "davr taxminan 90 daqiqa",
+      "tezlik katta"
+     ],
+     "b_farq": [
+      "davr 24 soat",
+      "balandligi taxminan 35786 km"
+     ]
+    },
+    "klaster": {
+     "markaz": "Sun’iy yo‘ldoshlar",
+     "shoxlar": [
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "1957 Sputnik-1",
+        "1961 Gagarin"
+       ]
+      },
+      {
+       "nom": "Tezliklar",
+       "bandlar": [
+        "7,9",
+        "11,2",
+        "16,7"
+       ]
+      },
+      {
+       "nom": "Orbita",
+       "bandlar": [
+        "past",
+        "geostatsionar"
+       ]
+      },
+      {
+       "nom": "Vazifa",
+       "bandlar": [
+        "aloqa",
+        "navigatsiya",
+        "ob-havo"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men Yer atrofida aylanuvchi sun’iy apparatman. Men kimman?",
+     "javob": "sun’iy yo‘ldosh"
+    },
+    "hikmat": "Yo‘ldosh — tinimsiz erkin tushish.",
+    "kalit_soz": "ORBITA",
+    "xato_yechim": {
+     "shart": "Yo‘ldosh nega Yerga tushmaydi?",
+     "xato": "tortishish yo‘q",
+     "togri": "gorizontal tezligi katta",
+     "sabab": "tortishish bor, u tushishni egri chiziqli qiladi"
+    },
+    "guruh_nomlari": [
+     "Orbitachilar",
+     "Tezlikchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Kosmik markaz»",
+     "topshiriq": "Guruh yo‘ldosh harakatini o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "g — 10, R — 6400000 bo‘lsa birinchi kosmik tezlik?",
+     "B": "Davr 90 daqiqa bo‘lsa sutkada necha aylanish?",
+     "C": "Ikkinchi va birinchi kosmik tezlik nisbati?"
+    },
+    "sinkveyn": [
+     "Yo‘ldosh",
+     "uzoq, tez",
+     "aylanadi, kuzatadi, uzatadi",
+     "Yer atrofida orbita",
+     "Kosmos"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh yo‘ldoshlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tarix",
+      "2-guruh: tezliklar",
+      "3-guruh: orbitalar",
+      "4-guruh: vazifalar"
+     ],
+     "yakun": "Natijalar: 8000; 16; 1,4."
+    }
+   }
+  },
+  {
+   "mavzu": "Impuls",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Impuls tushunchasi",
+      "matn": "Jism massasi va tezligining ko‘paytmasi jismning impulsi (harakat miqdori) deyiladi: p — m · v. Birligi — kg · metr / sekund. Impuls vektor kattalik, yo‘nalishi tezlik bilan bir xil.",
+      "misol": "Tez uchayotgan og‘ir to‘pni to‘xtatish qiyin.",
+      "savol": "Impuls formulasi qanday?",
+      "javob": "m · v",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Kuch impulsi",
+      "matn": "Kuch va uning ta’sir vaqtining ko‘paytmasi kuch impulsi deyiladi: F · t. Nyutonning ikkinchi qonuniga ko‘ra, kuch impulsi jism impulsining o‘zgarishiga teng: F · t — m · v2 − m · v1.",
+      "misol": "Futbolchi to‘pni tepganda unga impuls beradi.",
+      "savol": "Kuch impulsi nimaga teng?",
+      "javob": "impulsning o‘zgarishiga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Saqlanish qonuni",
+      "matn": "Yopiq sistemada jismlar impulslarining vektor yig‘indisi o‘zgarmaydi. Ikki jism to‘qnashganda: m1 · v1 + m2 · v2 — o‘zgarmas. Yopiq sistema — tashqi kuchlar ta’sir qilmaydigan yoki ular muvozanatlashgan sistema.",
+      "misol": "Bilyard sharlari to‘qnashganda impuls saqlanadi.",
+      "savol": "Impuls qaysi sistemada saqlanadi?",
+      "javob": "yopiq sistemada",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘qnashuvlar",
+      "matn": "Elastik to‘qnashuvda jismlar alohida harakatlanadi va mexanik energiya ham saqlanadi. Noelastik to‘qnashuvda jismlar birga harakatlanadi: m1 · v1 + m2 · v2 — (m1 + m2) · v. Impuls ikkala holda ham saqlanadi.",
+      "misol": "Vagonlar bir-biriga ulanib ketadi.",
+      "savol": "Noelastik to‘qnashuvda jismlar qanday harakatlanadi?",
+      "javob": "birga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Hayotda impuls",
+      "matn": "Impuls o‘zgarishi o‘zgarmas bo‘lsa, ta’sir vaqti uzayganda kuch kamayadi. Shuning uchun xavfsizlik yostig‘i, yumshoq tushish matlari va qo‘l bilan to‘pni yumshoq ushlash kuchni kamaytiradi.",
+      "misol": "Sakragan sportchi tizzasini bukib tushadi.",
+      "savol": "Ta’sir vaqti uzaysa, kuch qanday?",
+      "javob": "kamayadi",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "p — m · v. F · t — m · v2 − m · v1. Yopiq sistemada m1 · v1 + m2 · v2 saqlanadi.",
+    "misollar": [
+     {
+      "shart": "Massasi 2 kg jism 5 metr/sekund tezlik bilan. Impulsi?",
+      "yechim": [
+       "p — m · v.",
+       "2 · 5.",
+       "Javob 10 kg · metr / sekund."
+      ],
+      "javob": "10 kg · metr / sekund"
+     },
+     {
+      "shart": "2 kg, 3 metr/sekund jism tinch turgan 1 kg jismga urilib, birga harakatlandi. Umumiy tezlik?",
+      "yechim": [
+       "2 · 3 + 1 · 0 — 6.",
+       "(2 + 1) · v — 6, v — 6 / 3.",
+       "Javob 2 metr/sekund."
+      ],
+      "javob": "2 metr/sekund"
+     },
+     {
+      "shart": "Kuch 10 nyuton 3 sekund ta’sir qildi. Impuls o‘zgarishi?",
+      "yechim": [
+       "F · t.",
+       "10 · 3.",
+       "Javob 30 kg · metr / sekund."
+      ],
+      "javob": "30 kg · metr / sekund"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Sharlar to‘qnashuvi",
+      "topshiriq": "Ikki sharni dumalatib to‘qnashtiring va natijani kuzating.",
+      "yechim": "Impuls saqlanadi.",
+      "mahsulot": "sharlar, tarnov"
+     },
+     {
+      "nom": "Yumshoq tushish",
+      "topshiriq": "Tuxumni qattiq va yumshoq yuzaga tushirib solishtiring.",
+      "yechim": "Vaqt uzaysa kuch kamayadi.",
+      "mahsulot": "tuxum, mato"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "p — m · v.",
+      "mahsulot": "masalalar varag‘i"
+     },
+     {
+      "nom": "Saqlanish qonuni",
+      "topshiriq": "Ikki aravachaning ajralishida impulsni tekshiring.",
+      "yechim": "Yig‘indi nol.",
+      "mahsulot": "aravachalar"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 5 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "6 / 3 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "10 · 3 nechaga teng?",
+      "javob": "30"
+     },
+     {
+      "shart": "Impuls formulasi?",
+      "javob": "m · v"
+     },
+     {
+      "shart": "Impuls birligi?",
+      "javob": "kg · metr / sekund"
+     },
+     {
+      "shart": "Impuls qaysi sistemada saqlanadi?",
+      "javob": "yopiq"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Impuls skalyar deydi",
+      "sabab": "vektor kattalik",
+      "oldini_olish": "yo‘nalishi bor"
+     },
+     {
+      "xato": "Impulsni m / v deb hisoblaydi",
+      "sabab": "m · v",
+      "oldini_olish": "ko‘paytma"
+     },
+     {
+      "xato": "Noelastik to‘qnashuvda impuls yo‘qoladi deydi",
+      "sabab": "saqlanadi",
+      "oldini_olish": "energiya yo‘qoladi, impuls emas"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Sport",
+      "boglanish": "to‘p tepish va tushish"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "xavfsizlik yostig‘i"
+     },
+     {
+      "fan": "Matematika",
+      "boglanish": "ko‘paytma va tenglama"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Yumshoq tushish»",
+     "muammo": "Zarbani qanday kamaytiramiz?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "materiallarni tanlash",
+      "tushirish",
+      "natijani solishtirish",
+      "xulosa yozish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Materiallarni tanlang",
+      "Tushiring",
+      "Solishtiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "tajriba to‘g‘ri",
+      "natija aniq",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Impuls maydoni»",
+     "bekatlar": [
+      {
+       "nom": "1-zona",
+       "matn": "m — 2, v — 5.",
+       "topshiriq": "p?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "2-zona",
+       "matn": "2 kg, 3 metr/sekund va 1 kg tinch; birga.",
+       "topshiriq": "v?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-zona",
+       "matn": "F — 10, t — 3.",
+       "topshiriq": "Impuls o‘zgarishi?",
+       "javob": "30",
+       "rasm": ""
+      },
+      {
+       "nom": "4-zona",
+       "matn": "Noelastik to‘qnashuv.",
+       "topshiriq": "Qanday harakat?",
+       "javob": "birga",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Impuls",
+      "tarif": "massa va tezlik ko‘paytmasi"
+     },
+     {
+      "atama": "Kuch impulsi",
+      "tarif": "kuch va vaqt ko‘paytmasi"
+     },
+     {
+      "atama": "Yopiq sistema",
+      "tarif": "tashqi kuchsiz sistema"
+     },
+     {
+      "atama": "Elastik to‘qnashuv",
+      "tarif": "alohida harakat qiluvchi to‘qnashuv"
+     },
+     {
+      "atama": "Noelastik to‘qnashuv",
+      "tarif": "birga harakat qiluvchi to‘qnashuv"
+     },
+     {
+      "atama": "Saqlanish qonuni",
+      "tarif": "kattalikning o‘zgarmasligi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "p — m · v",
+      "togri": true,
+      "izoh": "impuls"
+     },
+     {
+      "matn": "Impuls skalyar kattalik",
+      "togri": false,
+      "izoh": "vektor"
+     },
+     {
+      "matn": "Yopiq sistemada impuls saqlanadi",
+      "togri": true,
+      "izoh": "qonun"
+     },
+     {
+      "matn": "Noelastik to‘qnashuvda impuls yo‘qoladi",
+      "togri": false,
+      "izoh": "saqlanadi"
+     },
+     {
+      "matn": "2 · 5 — 10",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Ta’sir vaqti uzaysa kuch kamayadi",
+      "togri": true,
+      "izoh": "yostiq"
+     },
+     {
+      "matn": "Kuch impulsi F · t",
+      "togri": true,
+      "izoh": "ta’rif"
+     },
+     {
+      "matn": "Impuls birligi nyuton",
+      "togri": false,
+      "izoh": "kg · metr / sekund"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Impuls?",
+      "javob": "m · v"
+     },
+     {
+      "savol": "Birlik?",
+      "javob": "kg · metr / sekund"
+     },
+     {
+      "savol": "Kuch impulsi?",
+      "javob": "F · t"
+     },
+     {
+      "savol": "Saqlanish?",
+      "javob": "yopiq sistemada"
+     },
+     {
+      "savol": "Noelastik?",
+      "javob": "birga harakat"
+     },
+     {
+      "savol": "2 · 5?",
+      "javob": "10"
+     },
+     {
+      "savol": "6 / 3?",
+      "javob": "2"
+     },
+     {
+      "savol": "10 · 3?",
+      "javob": "30"
+     },
+     {
+      "savol": "Yostiq?",
+      "javob": "vaqtni uzaytiradi"
+     },
+     {
+      "savol": "Impuls vektormi?",
+      "javob": "ha"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "m va v?"
+     },
+     {
+      "nom": "Tanla",
+      "matn": "Formulani tanla.",
+      "savol": "p yoki F · t?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Natijani top.",
+      "savol": "impuls?"
+     },
+     {
+      "nom": "Tekshir",
+      "matn": "Yig‘indini tekshir.",
+      "savol": "saqlandimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun sakraganda tizzani bukib tushish xavfsiz?",
+    "keys": {
+     "vaziyat": "2 kg jism 3 metr/sekund tezlik bilan tinch turgan 1 kg jismga urildi va ular birga harakatlandi.",
+     "savollar": [
+      "Umumiy tezlik qancha?",
+      "Qaysi kattalik saqlandi?"
+     ]
+    },
+    "tezis": "Impuls saqlanadi",
+    "taqqoslash": {
+     "a": "Elastik to‘qnashuv",
+     "b": "Noelastik to‘qnashuv",
+     "umumiy": [
+      "impuls saqlanadi",
+      "jismlar o‘zaro ta’sirlashadi"
+     ],
+     "a_farq": [
+      "jismlar ajraladi",
+      "mexanik energiya saqlanadi"
+     ],
+     "b_farq": [
+      "jismlar birga harakatlanadi",
+      "energiyaning bir qismi issiqlikka"
+     ]
+    },
+    "klaster": {
+     "markaz": "Impuls",
+     "shoxlar": [
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "p — m · v"
+       ]
+      },
+      {
+       "nom": "Kuch impulsi",
+       "bandlar": [
+        "F · t"
+       ]
+      },
+      {
+       "nom": "Qonun",
+       "bandlar": [
+        "yopiq sistemada saqlanadi"
+       ]
+      },
+      {
+       "nom": "To‘qnashuv",
+       "bandlar": [
+        "elastik",
+        "noelastik"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men massa va tezlik ko‘paytmasiman. Men kimman?",
+     "javob": "impuls"
+    },
+    "hikmat": "Impuls yo‘qolmaydi, o‘tadi.",
+    "kalit_soz": "IMPULS",
+    "xato_yechim": {
+     "shart": "m — 2, v — 5. p?",
+     "xato": "2 + 5",
+     "togri": "2 · 5 — 10",
+     "sabab": "impuls ko‘paytma, qo‘shish emas"
+    },
+    "guruh_nomlari": [
+     "Impulschilar",
+     "To‘qnashuvchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Impuls laboratoriyasi»",
+     "topshiriq": "Guruh impuls saqlanishini tekshiradi."
+    },
+    "vazifalar": {
+     "A": "m — 2, v — 5 bo‘lsa p?",
+     "B": "2 kg va tinch turgan 1 kg jism to‘qnashuvida umumiy tezlik?",
+     "C": "F — 10, t — 3 bo‘lsa impuls o‘zgarishi?"
+    },
+    "sinkveyn": [
+     "Impuls",
+     "og‘ir, tez",
+     "uriladi, uzatadi, saqlanadi",
+     "Impuls saqlanadi",
+     "Zarba"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh impulsni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: formula",
+      "2-guruh: kuch impulsi",
+      "3-guruh: saqlanish",
+      "4-guruh: to‘qnashuv"
+     ],
+     "yakun": "Natijalar: 10; 2; 30."
+    }
+   }
+  },
+  {
+   "mavzu": "Reaktiv harakat",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Reaktiv harakat",
+      "matn": "Jismdan uning bir qismi ma’lum tezlik bilan ajralib chiqsa, qolgan qismi qarama-qarshi tomonga harakatlanadi. Bu reaktiv harakat. U impulsning saqlanish qonuniga asoslangan. Puflangan, so‘ng qo‘yib yuborilgan shar shunday uchadi.",
+      "misol": "Shar havo chiqarib, orqaga qarama-qarshi uchadi.",
+      "savol": "Reaktiv harakat qaysi qonunga asoslangan?",
+      "javob": "impulsning saqlanishi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qonun",
+      "matn": "Boshida tinch turgan sistemada umumiy impuls nol. Gaz massasi m va tezligi u orqaga ketsa, qolgan massa M tezligi v oldinga: 0 — M · v − m · u, ya’ni v — m · u / M. Gaz tezroq yoki ko‘proq chiqsa, raketa tezroq uchadi.",
+      "misol": "Miltiq o‘q otganda orqaga tepadi.",
+      "savol": "Gaz ko‘proq chiqsa, raketa tezligi qanday?",
+      "javob": "ortadi",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Raketa",
+      "matn": "Raketa yoqilg‘i yonishidan hosil bo‘lgan gazni orqaga katta tezlik bilan chiqarib, oldinga harakatlanadi. U havosiz kosmosda ham harakatlana oladi, chunki gaz havoga emas, raketaning o‘ziga ta’sir qiladi. Raketa massasi yoqilg‘i sarfi bilan kamayadi.",
+      "misol": "Kosmik kema vakuumda uchadi.",
+      "savol": "Raketa vakuumda uchadimi?",
+      "javob": "ha",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tarix",
+      "matn": "Konstantin Siolkovskiy 1903-yilda raketa harakati nazariyasini yaratdi va ko‘p bosqichli raketa g‘oyasini ilgari surdi. Sergey Korolyov rahbarligida 1957-yilda birinchi yo‘ldosh, 1961-yilda Gagarin uchgan raketa yaratildi. Bosqichlar ishlab bo‘lgach tashlanadi, massa kamayadi va tezlik oshadi.",
+      "misol": "Ko‘p bosqichli raketa kosmosga yetib boradi.",
+      "savol": "Ko‘p bosqichli raketa g‘oyasi kimniki?",
+      "javob": "Siolkovskiy",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tabiatda va texnikada",
+      "matn": "Kalmar va sakkizoyoq suvni itarib chiqarib, reaktiv harakatlanadi. Reaktiv samolyot dvigateli ham havoni siqib, gaz oqimini orqaga chiqaradi. Bayram otashbozligidagi raketalar ham shu qonunga bo‘ysunadi.",
+      "misol": "Kalmar suvni otib sakraydi.",
+      "savol": "Qaysi dengiz hayvoni reaktiv harakatlanadi?",
+      "javob": "kalmar",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Reaktiv harakat impulsning saqlanishiga asoslangan: v — m · u / M. Raketa vakuumda ham uchadi.",
+    "misollar": [
+     {
+      "shart": "Miltiq 4 kg, o‘q 0,01 kg 800 metr/sekund tezlikda. Miltiq orqaga tezligi?",
+      "yechim": [
+       "v — m · u / M.",
+       "0,01 · 800 / 4.",
+       "Javob 2 metr/sekund."
+      ],
+      "javob": "2 metr/sekund"
+     },
+     {
+      "shart": "Qayiq massasi 80 kg, bola 40 kg 4 metr/sekund bilan qirg‘oqqa sakradi. Qayiq tezligi?",
+      "yechim": [
+       "v — 40 · 4 / 80.",
+       "160 / 80.",
+       "Javob 2 metr/sekund."
+      ],
+      "javob": "2 metr/sekund"
+     },
+     {
+      "shart": "Raketaning qolgan massasi 100 kg, 1 kg gaz 500 metr/sekund bilan chiqdi. Raketa tezligi?",
+      "yechim": [
+       "v — m · u / M.",
+       "1 · 500 / 100.",
+       "Javob 5 metr/sekund."
+      ],
+      "javob": "5 metr/sekund"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Shar-raketa",
+      "topshiriq": "Puflangan sharni ipga o‘tkazib, havosini chiqarib, harakatini kuzating.",
+      "yechim": "Shar orqaga qarama-qarshi uchadi.",
+      "mahsulot": "shar, ip"
+     },
+     {
+      "nom": "Suv raketasi",
+      "topshiriq": "Plastik shishadan suv raketa yasab uchiring.",
+      "yechim": "Ehtiyot bo‘ling.",
+      "mahsulot": "shisha, nasos"
+     },
+     {
+      "nom": "Qayiq tajribasi",
+      "topshiriq": "Aravachadan yukni otib, aravacha harakatini kuzating.",
+      "yechim": "Impuls saqlanadi.",
+      "mahsulot": "aravacha, yuk"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "v — m · u / M.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "0,01 · 800 / 4 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "40 · 4 / 80 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "1 · 500 / 100 nechaga teng?",
+      "javob": "5"
+     },
+     {
+      "shart": "Reaktiv harakat qaysi qonunga asoslangan?",
+      "javob": "impulsning saqlanishi"
+     },
+     {
+      "shart": "Ko‘p bosqichli raketa g‘oyasi kimniki?",
+      "javob": "Siolkovskiy"
+     },
+     {
+      "shart": "Raketa vakuumda uchadimi?",
+      "javob": "ha"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Raketa havoni itarib uchadi deydi",
+      "sabab": "gazni orqaga chiqarib uchadi",
+      "oldini_olish": "vakuumda ham uchadi"
+     },
+     {
+      "xato": "Gaz tezligini hisobga olmaydi",
+      "sabab": "v — m · u / M da u bor",
+      "oldini_olish": "tezlik muhim"
+     },
+     {
+      "xato": "Miltiq tepishi sababsiz deydi",
+      "sabab": "impulsning saqlanishi",
+      "oldini_olish": "o‘q impulsi tufayli"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Astronomiya",
+      "boglanish": "kosmik raketalar"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "kalmar harakati"
+     },
+     {
+      "fan": "Texnologiya",
+      "boglanish": "reaktiv dvigatel"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Raketa yasaymiz»",
+     "muammo": "Oddiy raketa modelini qanday yasaymiz va tushuntiramiz?",
+     "mahsulot": "raketa modeli",
+     "bosqichlar": [
+      "model loyihalash",
+      "yasash",
+      "uchirish",
+      "tahlil qilish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Loyihalang",
+      "Yasang",
+      "Uchiring",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model uchadi",
+      "tushuntirish to‘g‘ri",
+      "xavfsizlik saqlangan",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Raketa poligoni»",
+     "bekatlar": [
+      {
+       "nom": "1-start",
+       "matn": "Miltiq 4 kg, o‘q 0,01 kg, 800 metr/sekund.",
+       "topshiriq": "Tepish tezligi?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "2-start",
+       "matn": "Qayiq 80 kg, bola 40 kg, 4 metr/sekund.",
+       "topshiriq": "Qayiq tezligi?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-start",
+       "matn": "M — 100, m — 1, u — 500.",
+       "topshiriq": "v?",
+       "javob": "5",
+       "rasm": ""
+      },
+      {
+       "nom": "4-start",
+       "matn": "Siolkovskiy qaysi yili?",
+       "topshiriq": "Yil?",
+       "javob": "1903",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Reaktiv harakat",
+      "tarif": "qism ajralishidan hosil harakat"
+     },
+     {
+      "atama": "Raketa",
+      "tarif": "gaz oqimi bilan uchuvchi apparat"
+     },
+     {
+      "atama": "Yoqilg‘i",
+      "tarif": "yonib gaz hosil qiluvchi modda"
+     },
+     {
+      "atama": "Bosqich",
+      "tarif": "raketaning ajraladigan qismi"
+     },
+     {
+      "atama": "Siolkovskiy",
+      "tarif": "raketa nazariyasi asoschisi"
+     },
+     {
+      "atama": "Gaz oqimi",
+      "tarif": "orqaga chiqayotgan gaz"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Reaktiv harakat impulsning saqlanishiga asoslangan",
+      "togri": true,
+      "izoh": "qonun"
+     },
+     {
+      "matn": "Raketa vakuumda uchmaydi",
+      "togri": false,
+      "izoh": "uchadi"
+     },
+     {
+      "matn": "v — m · u / M",
+      "togri": true,
+      "izoh": "reaktiv tezlik"
+     },
+     {
+      "matn": "Gaz ko‘p chiqsa raketa sekinlashadi",
+      "togri": false,
+      "izoh": "tezlashadi"
+     },
+     {
+      "matn": "1 · 500 / 100 — 5",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Kalmar reaktiv harakatlanadi",
+      "togri": true,
+      "izoh": "suv otadi"
+     },
+     {
+      "matn": "Siolkovskiy 1903-yilda nazariya yaratgan",
+      "togri": true,
+      "izoh": "tarix"
+     },
+     {
+      "matn": "Ko‘p bosqichli raketa massani kamaytiradi",
+      "togri": true,
+      "izoh": "bosqich tashlanadi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Reaktiv harakat?",
+      "javob": "qism ajralib qolgani harakatlanadi"
+     },
+     {
+      "savol": "Asos?",
+      "javob": "impulsning saqlanishi"
+     },
+     {
+      "savol": "Formula?",
+      "javob": "m · u / M"
+     },
+     {
+      "savol": "Raketa vakuumda?",
+      "javob": "uchadi"
+     },
+     {
+      "savol": "Siolkovskiy?",
+      "javob": "1903"
+     },
+     {
+      "savol": "Korolyov?",
+      "javob": "raketa rahbari"
+     },
+     {
+      "savol": "0,01 · 800 / 4?",
+      "javob": "2"
+     },
+     {
+      "savol": "1 · 500 / 100?",
+      "javob": "5"
+     },
+     {
+      "savol": "Kalmar?",
+      "javob": "reaktiv"
+     },
+     {
+      "savol": "Bosqichlar?",
+      "javob": "tashlanadi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Yoz",
+      "matn": "Berilganlarni yoz.",
+      "savol": "M, m, u?"
+     },
+     {
+      "nom": "Formula",
+      "matn": "Formulani tanla.",
+      "savol": "m · u / M?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Tezlikni top.",
+      "savol": "v?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Qonun nima?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun raketa havosiz kosmosda ham uchadi?",
+    "keys": {
+     "vaziyat": "Miltiqdan o‘q otildi va miltiq orqaga tepdi.",
+     "savollar": [
+      "Tepish tezligi qancha?",
+      "Qaysi qonun?"
+     ]
+    },
+    "tezis": "Impuls saqlanadi",
+    "taqqoslash": {
+     "a": "Raketa",
+     "b": "Reaktiv samolyot",
+     "umumiy": [
+      "reaktiv harakat",
+      "gaz oqimi orqaga"
+     ],
+     "a_farq": [
+      "vakuumda uchadi",
+      "yoqilg‘i va oksidlovchi olib yuradi"
+     ],
+     "b_farq": [
+      "havo kerak",
+      "havodagi kislorodni ishlatadi"
+     ]
+    },
+    "klaster": {
+     "markaz": "Reaktiv harakat",
+     "shoxlar": [
+      {
+       "nom": "Asos",
+       "bandlar": [
+        "impulsning saqlanishi"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "v — m · u / M"
+       ]
+      },
+      {
+       "nom": "Raketa",
+       "bandlar": [
+        "gaz oqimi",
+        "vakuumda uchadi"
+       ]
+      },
+      {
+       "nom": "Tarix",
+       "bandlar": [
+        "Siolkovskiy 1903",
+        "Korolyov"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men gazni orqaga otib, oldinga uchaman. Men kimman?",
+     "javob": "raketa"
+    },
+    "hikmat": "Orqaga otib — oldinga uchadi.",
+    "kalit_soz": "RAKETA",
+    "xato_yechim": {
+     "shart": "Raketa nima bilan uchadi?",
+     "xato": "havoni itaradi",
+     "togri": "gazni orqaga chiqaradi",
+     "sabab": "vakuumda havo yo‘q, impuls saqlanadi"
+    },
+    "guruh_nomlari": [
+     "Raketachilar",
+     "Reaktivchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Raketa konstruktorlari»",
+     "topshiriq": "Guruh reaktiv harakatni o‘rganadi."
+    },
+    "vazifalar": {
+     "A": "Miltiq tepishini hisoblang.",
+     "B": "Qayiq tezligini hisoblang.",
+     "C": "Raketa tezligini hisoblang."
+    },
+    "sinkveyn": [
+     "Raketa",
+     "uzun, tez",
+     "uchadi, otadi, ko‘tariladi",
+     "Gaz orqaga, raketa oldinga",
+     "Impuls"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh reaktiv harakatni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: qonun",
+      "2-guruh: raketa",
+      "3-guruh: tarix",
+      "4-guruh: tabiat va texnika"
+     ],
+     "yakun": "Natijalar: 2; 2; 5."
+    }
+   }
   }
  ]
 }
