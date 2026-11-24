@@ -5531,6 +5531,1391 @@
      "yakun": "Natijalar: 2; 1; 4 sekund."
     }
    }
+  },
+  {
+   "mavzu": "Mexanik to‘lqinlar",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "To‘lqin nima",
+      "matn": "Muhitda tebranishlarning tarqalishi mexanik to‘lqin deyiladi. To‘lqin energiyani uzatadi, lekin modda to‘lqin bilan birga ko‘chmaydi. Suvga tushgan toshdan halqalar tarqaladi, ammo suv zarralari joyida tebranadi.",
+      "misol": "Suvdagi halqalar kengayib boradi.",
+      "savol": "To‘lqin nimani uzatadi?",
+      "javob": "energiyani",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘lqin turlari",
+      "matn": "Tebranish yo‘nalishi to‘lqin tarqalishiga tik bo‘lsa — ko‘ndalang to‘lqin (suv sirti, arqon). Tebranish tarqalish yo‘nalishi bo‘ylab bo‘lsa — bo‘ylama to‘lqin (tovush, prujina). Ko‘ndalang to‘lqin faqat qattiq jism va suyuqlik sirtida bo‘ladi, bo‘ylama hamma muhitda.",
+      "misol": "Arqonni silkitsak, ko‘ndalang to‘lqin yuradi.",
+      "savol": "Tovush qanday to‘lqin?",
+      "javob": "bo‘ylama",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "To‘lqin uzunligi",
+      "matn": "To‘lqin uzunligi λ — bir davrda to‘lqin bosib o‘tgan masofa, ya’ni bir xil fazadagi yaqin ikki nuqta orasidagi masofa. Birligi — metr. Kichik chastotada to‘lqin uzunligi katta bo‘ladi.",
+      "misol": "Dengizdagi to‘lqinlar tepasi orasidagi masofa.",
+      "savol": "To‘lqin uzunligi qanday birlikda?",
+      "javob": "metr",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tezlik formulasi",
+      "matn": "To‘lqin tezligi v — λ · n, bunda n — chastota. Davr orqali: v — λ / T. To‘lqin tezligini muhit belgilaydi, chastotani esa manba. Bir muhitda chastota oshsa, uzunlik kamayadi.",
+      "misol": "Suvda va havoda tezlik har xil.",
+      "savol": "v formulasi?",
+      "javob": "λ · n",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Zilzila to‘lqinlari",
+      "matn": "Yer qimirlaganda seysmik to‘lqinlar tarqaladi. Bo‘ylama P-to‘lqinlar tezroq, ko‘ndalang S-to‘lqinlar sekinroq. Seysmograf ularni qayd qiladi. Ularning kelish vaqti farqidan epitsentrgacha masofa aniqlanadi.",
+      "misol": "Zilzila haqida ogohlantirishlar tizimi mavjud.",
+      "savol": "Qaysi to‘lqin tezroq: P yoki S?",
+      "javob": "P",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "v — λ · n, v — λ / T. To‘lqin energiya uzatadi, modda ko‘chmaydi. Ko‘ndalang va bo‘ylama to‘lqinlar.",
+    "misollar": [
+     {
+      "shart": "λ — 2 metr, n — 5 gerts. To‘lqin tezligi?",
+      "yechim": [
+       "v — λ · n.",
+       "2 · 5.",
+       "Javob 10 metr/sekund."
+      ],
+      "javob": "10 metr/sekund"
+     },
+     {
+      "shart": "v — 340 metr/sekund, n — 170 gerts. To‘lqin uzunligi?",
+      "yechim": [
+       "λ — v / n.",
+       "340 / 170.",
+       "Javob 2 metr."
+      ],
+      "javob": "2 metr"
+     },
+     {
+      "shart": "T — 0,5 sekund, λ — 3 metr. Tezlik?",
+      "yechim": [
+       "v — λ / T.",
+       "3 / 0,5.",
+       "Javob 6 metr/sekund."
+      ],
+      "javob": "6 metr/sekund"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Arqonda to‘lqin",
+      "topshiriq": "Uzun arqonni silkitib, ko‘ndalang to‘lqin hosil qiling.",
+      "yechim": "Tebranish va tarqalish tik.",
+      "mahsulot": "arqon"
+     },
+     {
+      "nom": "Prujinada to‘lqin",
+      "topshiriq": "Yumshoq prujinani siqib qo‘yib yuboring.",
+      "yechim": "Bo‘ylama to‘lqin.",
+      "mahsulot": "prujina"
+     },
+     {
+      "nom": "Suv to‘lqini",
+      "topshiriq": "Tog‘ora suviga tomchi tushirib, halqalarni kuzating.",
+      "yechim": "Suv ko‘chmaydi.",
+      "mahsulot": "tog‘ora, suv"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "v — λ · n.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "2 · 5 nechaga teng?",
+      "javob": "10"
+     },
+     {
+      "shart": "340 / 170 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "3 / 0,5 nechaga teng?",
+      "javob": "6"
+     },
+     {
+      "shart": "To‘lqin nimani uzatadi?",
+      "javob": "energiyani"
+     },
+     {
+      "shart": "Tovush qanday to‘lqin?",
+      "javob": "bo‘ylama"
+     },
+     {
+      "shart": "λ birligi?",
+      "javob": "metr"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "To‘lqin moddani ko‘chiradi deydi",
+      "sabab": "energiyani uzatadi",
+      "oldini_olish": "zarralar joyida tebranadi"
+     },
+     {
+      "xato": "v — λ / n deb hisoblaydi",
+      "sabab": "v — λ · n",
+      "oldini_olish": "ko‘paytiriladi"
+     },
+     {
+      "xato": "Ko‘ndalang to‘lqin hamma muhitda bo‘ladi deydi",
+      "sabab": "gazda bo‘lmaydi",
+      "oldini_olish": "qattiq jism va suyuqlik sirtida"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Geologiya",
+      "boglanish": "zilzila to‘lqinlari"
+     },
+     {
+      "fan": "Okeanografiya",
+      "boglanish": "dengiz to‘lqinlari"
+     },
+     {
+      "fan": "Musiqa",
+      "boglanish": "torli asboblar"
+     }
+    ],
+    "loyiha": {
+     "nom": "«To‘lqin laboratoriyasi»",
+     "muammo": "To‘lqinlarni qanday kuzatamiz va o‘lchaymiz?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "tajriba tanlash",
+      "to‘lqin hosil qilish",
+      "o‘lchash",
+      "tezlikni hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tajriba tanlang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «To‘lqin sohili»",
+     "bekatlar": [
+      {
+       "nom": "1-qirg‘oq",
+       "matn": "λ — 2, n — 5.",
+       "topshiriq": "v?",
+       "javob": "10",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qirg‘oq",
+       "matn": "v — 340, n — 170.",
+       "topshiriq": "λ?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qirg‘oq",
+       "matn": "T — 0,5, λ — 3.",
+       "topshiriq": "v?",
+       "javob": "6",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qirg‘oq",
+       "matn": "Tovush to‘lqini.",
+       "topshiriq": "Qaysi turdagi?",
+       "javob": "bo‘ylama",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "To‘lqin",
+      "tarif": "tebranishning muhitda tarqalishi"
+     },
+     {
+      "atama": "To‘lqin uzunligi",
+      "tarif": "bir davrda bosib o‘tilgan masofa"
+     },
+     {
+      "atama": "Ko‘ndalang to‘lqin",
+      "tarif": "tebranish tarqalishga tik"
+     },
+     {
+      "atama": "Bo‘ylama to‘lqin",
+      "tarif": "tebranish tarqalish bo‘ylab"
+     },
+     {
+      "atama": "Seysmik to‘lqin",
+      "tarif": "zilzila to‘lqini"
+     },
+     {
+      "atama": "Epitsentr",
+      "tarif": "zilzila markazining yerdagi nuqtasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "To‘lqin energiyani uzatadi",
+      "togri": true,
+      "izoh": "modda ko‘chmaydi"
+     },
+     {
+      "matn": "To‘lqin moddani ko‘chiradi",
+      "togri": false,
+      "izoh": "ko‘chirmaydi"
+     },
+     {
+      "matn": "v — λ · n",
+      "togri": true,
+      "izoh": "tezlik formulasi"
+     },
+     {
+      "matn": "Tovush ko‘ndalang to‘lqin",
+      "togri": false,
+      "izoh": "bo‘ylama"
+     },
+     {
+      "matn": "2 · 5 — 10",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "P-to‘lqin S dan tezroq",
+      "togri": true,
+      "izoh": "seysmika"
+     },
+     {
+      "matn": "To‘lqin uzunligi birligi metr",
+      "togri": true,
+      "izoh": "uzunlik"
+     },
+     {
+      "matn": "Chastotani muhit belgilaydi",
+      "togri": false,
+      "izoh": "manba belgilaydi"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "To‘lqin?",
+      "javob": "tebranish tarqalishi"
+     },
+     {
+      "savol": "Nimani uzatadi?",
+      "javob": "energiyani"
+     },
+     {
+      "savol": "Ko‘ndalang?",
+      "javob": "tik tebranish"
+     },
+     {
+      "savol": "Bo‘ylama?",
+      "javob": "bo‘ylab tebranish"
+     },
+     {
+      "savol": "v formulasi?",
+      "javob": "λ · n"
+     },
+     {
+      "savol": "2 · 5?",
+      "javob": "10"
+     },
+     {
+      "savol": "340 / 170?",
+      "javob": "2"
+     },
+     {
+      "savol": "3 / 0,5?",
+      "javob": "6"
+     },
+     {
+      "savol": "Seysmograf?",
+      "javob": "zilzila qayd etadi"
+     },
+     {
+      "savol": "P va S?",
+      "javob": "P tezroq"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "To‘lqinni kuzat.",
+      "savol": "Qanday tarqaladi?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "λ va n ni o‘lcha.",
+      "savol": "Qiymatlar?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Tezlikni top.",
+      "savol": "λ · n?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nimani uzatdi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun suvdagi to‘lqin suvni emas, energiyani uzatadi?",
+    "keys": {
+     "vaziyat": "Suvga tosh tushdi va halqalar tarqaldi, suvdagi barg joyida tebranmoqda.",
+     "savollar": [
+      "Barg nega siljimadi?",
+      "To‘lqin nimani uzatdi?"
+     ]
+    },
+    "tezis": "v — λ · n",
+    "taqqoslash": {
+     "a": "Ko‘ndalang to‘lqin",
+     "b": "Bo‘ylama to‘lqin",
+     "umumiy": [
+      "mexanik to‘lqin",
+      "energiya uzatadi"
+     ],
+     "a_farq": [
+      "tebranish tarqalishga tik",
+      "suv sirti, arqon"
+     ],
+     "b_farq": [
+      "tebranish tarqalish bo‘ylab",
+      "tovush"
+     ]
+    },
+    "klaster": {
+     "markaz": "Mexanik to‘lqinlar",
+     "shoxlar": [
+      {
+       "nom": "Turlari",
+       "bandlar": [
+        "ko‘ndalang",
+        "bo‘ylama"
+       ]
+      },
+      {
+       "nom": "Kattaliklar",
+       "bandlar": [
+        "λ",
+        "n",
+        "T"
+       ]
+      },
+      {
+       "nom": "Formula",
+       "bandlar": [
+        "v — λ · n"
+       ]
+      },
+      {
+       "nom": "Misol",
+       "bandlar": [
+        "suv",
+        "tovush",
+        "zilzila"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men energiyani uzataman, moddani emas. Men kimman?",
+     "javob": "to‘lqin"
+    },
+    "hikmat": "To‘lqin energiya olib yuradi.",
+    "kalit_soz": "TO‘LQIN",
+    "xato_yechim": {
+     "shart": "To‘lqin nimani uzatadi?",
+     "xato": "moddani",
+     "togri": "energiyani",
+     "sabab": "zarralar joyida tebranadi"
+    },
+    "guruh_nomlari": [
+     "To‘lqinchilar",
+     "Hisobchilar",
+     "Tajribachilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«To‘lqin laboratoriyasi»",
+     "topshiriq": "Guruh to‘lqinlarni kuzatadi."
+    },
+    "vazifalar": {
+     "A": "λ — 2, n — 5 bo‘lsa v?",
+     "B": "v — 340, n — 170 bo‘lsa λ?",
+     "C": "T — 0,5, λ — 3 bo‘lsa v?"
+    },
+    "sinkveyn": [
+     "To‘lqin",
+     "kengayuvchi, uzun",
+     "yuradi, uzatadi, tarqaladi",
+     "Energiya yuradi",
+     "Halqa"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh to‘lqinlarni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: turlari",
+      "2-guruh: λ va n",
+      "3-guruh: tezlik",
+      "4-guruh: zilzila"
+     ],
+     "yakun": "Natijalar: 10; 2; 6."
+    }
+   }
+  },
+  {
+   "mavzu": "Tovush",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Tovush manbai",
+      "matn": "Tovush — muhitda tarqaladigan bo‘ylama mexanik to‘lqin. Uni tebranuvchi jism hosil qiladi: gitara simi, dinamik, ovoz paychalari. Tovush tarqalishi uchun muhit kerak, vakuumda tovush yo‘q.",
+      "misol": "Kosmosda tovush eshitilmaydi.",
+      "savol": "Tovush vakuumda tarqaladimi?",
+      "javob": "yo‘q",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tezligi",
+      "matn": "Tovush tezligi muhitga bog‘liq: havoda taxminan 340 metr/sekund, suvda taxminan 1500, po‘latda taxminan 5000. Qattiq jismda tezroq, gazda sekinroq. Harorat oshsa, havoda tezlik ham ortadi.",
+      "misol": "Chaqmoq oldin ko‘rinadi, guldurak keyin eshitiladi.",
+      "savol": "Tovush havoda taxminan qancha tezlikda?",
+      "javob": "340 metr/sekund",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Eshitish diapazoni",
+      "matn": "Inson qulog‘i taxminan 20 dan 20000 gertsgacha chastotani eshitadi. 20 gertsdan past — infratovush, 20000 dan yuqori — ultratovush. Ultratovushni yarasha va delfin ishlatadi, tibbiyotda UZI shunga asoslangan.",
+      "misol": "UZI qorin ichini tasvirlaydi.",
+      "savol": "Ultratovush chastotasi qancha?",
+      "javob": "20000 gertsdan yuqori",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Tovush xossalari",
+      "matn": "Balandlik chastotaga bog‘liq: chastota katta — tovush yuqori. Kuchlilik (baland-pastligi) amplitudaga bog‘liq. Tembr — tovushning o‘ziga xos rangi. Shu sababli piano va skripkani bir xil notada ham farqlaymiz.",
+      "misol": "Ovoz tembridan do‘stimizni tanimiz.",
+      "savol": "Tovush balandligi nimaga bog‘liq?",
+      "javob": "chastotaga",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Aks sado va exolot",
+      "matn": "Tovush to‘siqdan qaytadi — aks sado. Uni alohida eshitish uchun to‘siq kamida 17 metrda bo‘lishi kerak. Exolot (sonar) suv ichida ultratovush yuborib, qaytish vaqtidan chuqurlikni topadi: h — v · t / 2.",
+      "misol": "Kemalar sonar yordamida suv tubini o‘lchaydi.",
+      "savol": "Exolot nimani o‘lchaydi?",
+      "javob": "chuqurlikni",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Tovush — bo‘ylama to‘lqin, havoda taxminan 340 metr/sekund. Eshitish 20 dan 20000 gertsgacha. Aks sado: h — v · t / 2.",
+    "misollar": [
+     {
+      "shart": "Chaqmoq ko‘rindi, 3 sekunddan keyin guldurak eshitildi (340 metr/sekund). Masofa?",
+      "yechim": [
+       "s — v · t.",
+       "340 · 3.",
+       "Javob 1020 metr."
+      ],
+      "javob": "1020 metr"
+     },
+     {
+      "shart": "Exolot signali 0,4 sekundda qaytdi, suvda 1500 metr/sekund. Chuqurlik?",
+      "yechim": [
+       "h — v · t / 2.",
+       "1500 · 0,4 / 2.",
+       "Javob 300 metr."
+      ],
+      "javob": "300 metr"
+     },
+     {
+      "shart": "Aks sado 2 sekundda eshitildi. To‘siqqacha masofa (340 metr/sekund)?",
+      "yechim": [
+       "Tovush borib-qaytdi: 340 · 2 — 680.",
+       "680 / 2.",
+       "Javob 340 metr."
+      ],
+      "javob": "340 metr"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Tebranishni his etamiz",
+      "topshiriq": "Linakni qo‘l bilan chertib, tebranishni ko‘ring va eshiting.",
+      "yechim": "Tebranish — tovush.",
+      "mahsulot": "chizg‘ich"
+     },
+     {
+      "nom": "Ip telefoni",
+      "topshiriq": "Ikki stakan va ipdan telefon yasang.",
+      "yechim": "Tovush ip orqali o‘tadi.",
+      "mahsulot": "stakan, ip"
+     },
+     {
+      "nom": "Aks sadoni o‘lchaymiz",
+      "topshiriq": "Katta binodan aks sado vaqtini o‘lchang.",
+      "yechim": "Masofani hisoblang.",
+      "mahsulot": "sekundomer"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "s — v · t.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "340 · 3 nechaga teng?",
+      "javob": "1020"
+     },
+     {
+      "shart": "1500 · 0,4 / 2 nechaga teng?",
+      "javob": "300"
+     },
+     {
+      "shart": "340 · 2 / 2 nechaga teng?",
+      "javob": "340"
+     },
+     {
+      "shart": "Havoda tovush tezligi?",
+      "javob": "340"
+     },
+     {
+      "shart": "Eshitish pastki chegarasi (gerts)?",
+      "javob": "20"
+     },
+     {
+      "shart": "Tovush vakuumda?",
+      "javob": "tarqalmaydi"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Kosmosda tovush eshitiladi deydi",
+      "sabab": "vakuumda tovush yo‘q",
+      "oldini_olish": "muhit kerak"
+     },
+     {
+      "xato": "Aks sado masofasini bir yo‘l deb oladi",
+      "sabab": "borib-qaytadi",
+      "oldini_olish": "ikkiga bo‘l"
+     },
+     {
+      "xato": "Balandlik amplitudaga bog‘liq deydi",
+      "sabab": "chastotaga bog‘liq",
+      "oldini_olish": "kuchlilik amplitudaga"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Musiqa",
+      "boglanish": "nota va tembr"
+     },
+     {
+      "fan": "Tibbiyot",
+      "boglanish": "UZI"
+     },
+     {
+      "fan": "Biologiya",
+      "boglanish": "yarasha va delfin"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Tovush sirlari»",
+     "muammo": "Tovush tezligi va aks sadoni qanday o‘lchaymiz?",
+     "mahsulot": "tajriba hisoboti",
+     "bosqichlar": [
+      "tajriba tanlash",
+      "vaqtni o‘lchash",
+      "masofani hisoblash",
+      "natijani solishtirish",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "Tajriba tanlang",
+      "O‘lchang",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "o‘lchov aniq",
+      "hisob to‘g‘ri",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Tovush vodiysi»",
+     "bekatlar": [
+      {
+       "nom": "1-qoya",
+       "matn": "Guldurak 3 sekundda, 340 metr/sekund.",
+       "topshiriq": "Masofa?",
+       "javob": "1020",
+       "rasm": ""
+      },
+      {
+       "nom": "2-qoya",
+       "matn": "Exolot 0,4 sekund, 1500.",
+       "topshiriq": "Chuqurlik?",
+       "javob": "300",
+       "rasm": ""
+      },
+      {
+       "nom": "3-qoya",
+       "matn": "Aks sado 2 sekundda.",
+       "topshiriq": "Masofa?",
+       "javob": "340",
+       "rasm": ""
+      },
+      {
+       "nom": "4-qoya",
+       "matn": "Eshitish pastki chegarasi.",
+       "topshiriq": "Gerts?",
+       "javob": "20",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Borib-qaytishni hisobladingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Tovush",
+      "tarif": "bo‘ylama mexanik to‘lqin"
+     },
+     {
+      "atama": "Chastota",
+      "tarif": "sekunddagi tebranishlar soni"
+     },
+     {
+      "atama": "Ultratovush",
+      "tarif": "20000 gertsdan yuqori"
+     },
+     {
+      "atama": "Infratovush",
+      "tarif": "20 gertsdan past"
+     },
+     {
+      "atama": "Tembr",
+      "tarif": "tovush rangi"
+     },
+     {
+      "atama": "Aks sado",
+      "tarif": "tovushning qaytishi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Tovush bo‘ylama to‘lqin",
+      "togri": true,
+      "izoh": "tarqalish bo‘ylab"
+     },
+     {
+      "matn": "Tovush vakuumda tarqaladi",
+      "togri": false,
+      "izoh": "muhit kerak"
+     },
+     {
+      "matn": "Havoda tovush taxminan 340 metr/sekund",
+      "togri": true,
+      "izoh": "tezlik"
+     },
+     {
+      "matn": "Qattiq jismda tovush sekinroq",
+      "togri": false,
+      "izoh": "tezroq"
+     },
+     {
+      "matn": "340 · 3 — 1020",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Ultratovush 20000 gertsdan yuqori",
+      "togri": true,
+      "izoh": "yarasha"
+     },
+     {
+      "matn": "Tovush balandligi chastotaga bog‘liq",
+      "togri": true,
+      "izoh": "chastota"
+     },
+     {
+      "matn": "Exolot ultratovushdan foydalanadi",
+      "togri": true,
+      "izoh": "chuqurlik"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Tovush?",
+      "javob": "bo‘ylama to‘lqin"
+     },
+     {
+      "savol": "Vakuumda?",
+      "javob": "tarqalmaydi"
+     },
+     {
+      "savol": "Havoda tezlik?",
+      "javob": "340"
+     },
+     {
+      "savol": "Suvda?",
+      "javob": "1500"
+     },
+     {
+      "savol": "Eshitish?",
+      "javob": "20 dan 20000 gerts"
+     },
+     {
+      "savol": "Ultratovush?",
+      "javob": "20000 dan yuqori"
+     },
+     {
+      "savol": "Aks sado?",
+      "javob": "qaytgan tovush"
+     },
+     {
+      "savol": "340 · 3?",
+      "javob": "1020"
+     },
+     {
+      "savol": "Tembr?",
+      "javob": "tovush rangi"
+     },
+     {
+      "savol": "Exolot?",
+      "javob": "chuqurlik o‘lchaydi"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Kuzat",
+      "matn": "Tovushni kuzat.",
+      "savol": "Manbasi nima?"
+     },
+     {
+      "nom": "O‘lcha",
+      "matn": "Vaqtni o‘lcha.",
+      "savol": "Necha sekund?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "Masofani top.",
+      "savol": "v · t?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Borib-qaytdimi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun chaqmoqni oldin ko‘ramiz, guldurakni keyin eshitamiz?",
+    "keys": {
+     "vaziyat": "Chaqmoq ko‘rindi, 3 sekunddan keyin guldurak eshitildi.",
+     "savollar": [
+      "Chaqmoq qancha uzoqda?",
+      "Nima uchun kechikdi?"
+     ]
+    },
+    "tezis": "Tovush muhitda tarqaladi",
+    "taqqoslash": {
+     "a": "Tovush",
+     "b": "Yorug‘lik",
+     "umumiy": [
+      "to‘lqin",
+      "energiya uzatadi"
+     ],
+     "a_farq": [
+      "mexanik, muhit kerak",
+      "taxminan 340 metr/sekund"
+     ],
+     "b_farq": [
+      "elektromagnit, vakuumda ham",
+      "soniyasiga 300000 km"
+     ]
+    },
+    "klaster": {
+     "markaz": "Tovush",
+     "shoxlar": [
+      {
+       "nom": "Tabiati",
+       "bandlar": [
+        "bo‘ylama to‘lqin"
+       ]
+      },
+      {
+       "nom": "Tezlik",
+       "bandlar": [
+        "havoda 340",
+        "suvda 1500"
+       ]
+      },
+      {
+       "nom": "Diapazon",
+       "bandlar": [
+        "20 gerts",
+        "20000 gerts"
+       ]
+      },
+      {
+       "nom": "Qo‘llanish",
+       "bandlar": [
+        "exolot",
+        "UZI"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men muhitda tarqaladigan bo‘ylama to‘lqinman, vakuumda yo‘qman. Men kimman?",
+     "javob": "tovush"
+    },
+    "hikmat": "Tovush uchun muhit kerak.",
+    "kalit_soz": "TOVUSH",
+    "xato_yechim": {
+     "shart": "Aks sado 2 sekundda. Masofa?",
+     "xato": "340 · 2 — 680",
+     "togri": "680 / 2 — 340 metr",
+     "sabab": "tovush borib va qaytdi"
+    },
+    "guruh_nomlari": [
+     "Tovushchilar",
+     "Aks sadochilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Tovush laboratoriyasi»",
+     "topshiriq": "Guruh tovush tezligini o‘lchaydi."
+    },
+    "vazifalar": {
+     "A": "3 sekund kechikish bo‘lsa masofa?",
+     "B": "Exolot 0,4 sekund bo‘lsa chuqurlik?",
+     "C": "Aks sado 2 sekund bo‘lsa masofa?"
+    },
+    "sinkveyn": [
+     "Tovush",
+     "yoqimli, baland",
+     "eshitiladi, yangraydi, qaytadi",
+     "Tovush tebranishdan",
+     "Aks sado"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh tovushni o‘rganadi.",
+     "qismlar": [
+      "1-guruh: manba",
+      "2-guruh: tezlik",
+      "3-guruh: xossalar",
+      "4-guruh: aks sado va exolot"
+     ],
+     "yakun": "Natijalar: 1020; 300; 340 metr."
+    }
+   }
+  },
+  {
+   "mavzu": "Elektromagnit induksiya",
+   "masalliq": {
+    "bayon": [
+     {
+      "sarlavha": "Faradey kashfiyoti",
+      "matn": "1831-yilda ingliz fizigi Maykl Faradey elektromagnit induksiya hodisasini kashf etdi: o‘tkazgich berk konturdan o‘tuvchi magnit maydon o‘zgarganda, konturda elektr toki paydo bo‘ladi. Bu tok induksion tok deyiladi.",
+      "misol": "Magnitni g‘altak ichiga kiritsak, galvanometr strelkasi buriladi.",
+      "savol": "Elektromagnit induksiyani kim kashf etgan?",
+      "javob": "Faradey",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Magnit oqimi",
+      "matn": "Kontur orqali o‘tuvchi magnit oqimi Φ — B · S (maydon konturga tik bo‘lganda). B — magnit induksiya (birligi tesla), S — kontur yuzi. Birligi — veber. Magnit oqimi o‘zgarsa, induksion tok paydo bo‘ladi.",
+      "misol": "B — 0,5 tesla, S — 0,02 kvadrat metr bo‘lsa, Φ — 0,01 veber.",
+      "savol": "Magnit oqimi birligi?",
+      "javob": "veber",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Induksiya EYuK",
+      "matn": "Induksiya EYuK magnit oqimi o‘zgarish tezligiga teng: E — ΔΦ / Δt. Oqim tez o‘zgarsa, EYuK katta bo‘ladi. Zanjirdagi tok Om qonuni bilan topiladi: I — E / R.",
+      "misol": "Magnitni tez surish katta tok beradi.",
+      "savol": "Induksiya EYuK qanday topiladi?",
+      "javob": "ΔΦ / Δt",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Lens qoidasi",
+      "matn": "Induksion tokning yo‘nalishi shunday bo‘ladiki, uning magnit maydoni o‘zini hosil qilgan o‘zgarishga qarshilik qiladi. Bu Lens qoidasi (1834-yil). U energiyaning saqlanishi bilan bog‘liq.",
+      "misol": "Magnit g‘altakka kirsa, uni itaradi.",
+      "savol": "Lens qoidasi qaysi yilda?",
+      "javob": "1834",
+      "rasm": ""
+     },
+     {
+      "sarlavha": "Qo‘llanilishi",
+      "matn": "Elektr generatorlari (GES, IES), transformatorlar, induksion plitalar, simsiz zaryadlash, kartani o‘qish — barchasi induksiyaga asoslangan. Faradey kashfiyoti tufayli elektr energiyasi shaharlarga yetkaziladi.",
+      "misol": "Telefon simsiz zaryadlagichi induksiyadan ishlaydi.",
+      "savol": "Generator qaysi hodisaga asoslangan?",
+      "javob": "elektromagnit induksiyaga",
+      "rasm": ""
+     }
+    ],
+    "asosiy_qoida": "Magnit oqimi o‘zgarsa, induksion tok paydo bo‘ladi. Φ — B · S. E — ΔΦ / Δt. I — E / R. Lens qoidasi — o‘zgarishga qarshilik.",
+    "misollar": [
+     {
+      "shart": "B — 0,5 tesla, S — 0,02 kvadrat metr. Magnit oqimi?",
+      "yechim": [
+       "Φ — B · S.",
+       "0,5 · 0,02.",
+       "Javob 0,01 veber."
+      ],
+      "javob": "0,01 veber"
+     },
+     {
+      "shart": "Magnit oqimi 0,4 veberga o‘zgardi, vaqt 0,2 sekund. Induksiya EYuK?",
+      "yechim": [
+       "E — ΔΦ / Δt.",
+       "0,4 / 0,2.",
+       "Javob 2 volt."
+      ],
+      "javob": "2 volt"
+     },
+     {
+      "shart": "EYuK — 6 volt, qarshilik 3 om. Tok?",
+      "yechim": [
+       "I — E / R.",
+       "6 / 3.",
+       "Javob 2 amper."
+      ],
+      "javob": "2 amper"
+     }
+    ],
+    "guruh_topshiriqlari": [
+     {
+      "nom": "Faradey tajribasi",
+      "topshiriq": "G‘altakni galvanometrga ulab, ichiga magnit kiriting va chiqaring.",
+      "yechim": "Strelka buriladi.",
+      "mahsulot": "g‘altak, magnit, galvanometr"
+     },
+     {
+      "nom": "Tezlikni o‘zgartiramiz",
+      "topshiriq": "Magnitni sekin va tez surib, tokni solishtiring.",
+      "yechim": "Tez — katta tok.",
+      "mahsulot": "g‘altak, magnit"
+     },
+     {
+      "nom": "Dinamo",
+      "topshiriq": "Velosiped dinamosi qanday ishlashini kuzating.",
+      "yechim": "Aylanish — tok.",
+      "mahsulot": "dinamo"
+     },
+     {
+      "nom": "Hisoblaymiz",
+      "topshiriq": "Uchta masalani yeching.",
+      "yechim": "E — ΔΦ / Δt.",
+      "mahsulot": "masalalar varag‘i"
+     }
+    ],
+    "mashqlar": [
+     {
+      "shart": "0,5 · 0,02 nechaga teng?",
+      "javob": "0,01"
+     },
+     {
+      "shart": "0,4 / 0,2 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "6 / 3 nechaga teng?",
+      "javob": "2"
+     },
+     {
+      "shart": "Magnit oqimi birligi?",
+      "javob": "veber"
+     },
+     {
+      "shart": "Faradey qaysi yili kashf etgan?",
+      "javob": "1831"
+     },
+     {
+      "shart": "Oqim o‘zgarmasa tok bormi?",
+      "javob": "yo‘q"
+     }
+    ],
+    "qiyinchiliklar": [
+     {
+      "xato": "Magnit tinch tursa ham tok paydo bo‘ladi deydi",
+      "sabab": "oqim o‘zgarishi kerak",
+      "oldini_olish": "harakat yoki o‘zgarish"
+     },
+     {
+      "xato": "EYuK ni Φ / Δt deb hisoblaydi",
+      "sabab": "ΔΦ / Δt",
+      "oldini_olish": "o‘zgarish olinadi"
+     },
+     {
+      "xato": "Lens qoidasi o‘zgarishni kuchaytiradi deydi",
+      "sabab": "qarshilik qiladi",
+      "oldini_olish": "energiya saqlanadi"
+     }
+    ],
+    "fanlararo": [
+     {
+      "fan": "Texnologiya",
+      "boglanish": "generator va transformator"
+     },
+     {
+      "fan": "Tarix",
+      "boglanish": "Faradey va Lens"
+     },
+     {
+      "fan": "Energetika",
+      "boglanish": "GES"
+     }
+    ],
+    "loyiha": {
+     "nom": "«Induksiya modeli»",
+     "muammo": "Elektromagnit induksiyani qanday ko‘rsatamiz?",
+     "mahsulot": "tajriba modeli",
+     "bosqichlar": [
+      "g‘altak o‘rash",
+      "magnit tanlash",
+      "tokni qayd etish",
+      "hisoblash",
+      "taqdimot"
+     ],
+     "guruh_vazifalari": [
+      "G‘altak o‘rang",
+      "Tokni qayd eting",
+      "Hisoblang",
+      "Taqdim eting"
+     ],
+     "mezonlar": [
+      "model ishlaydi",
+      "o‘lchov aniq",
+      "xulosa mantiqli",
+      "chiroyli",
+      "taqdimot ravshan"
+     ]
+    },
+    "ekskursiya": {
+     "joy": "virtual sayohat: «Faradey laboratoriyasi»",
+     "bekatlar": [
+      {
+       "nom": "1-stol",
+       "matn": "B — 0,5, S — 0,02.",
+       "topshiriq": "Φ?",
+       "javob": "0,01",
+       "rasm": ""
+      },
+      {
+       "nom": "2-stol",
+       "matn": "ΔΦ — 0,4, Δt — 0,2.",
+       "topshiriq": "E?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "3-stol",
+       "matn": "E — 6, R — 3.",
+       "topshiriq": "I?",
+       "javob": "2",
+       "rasm": ""
+      },
+      {
+       "nom": "4-stol",
+       "matn": "Faradey kashfiyoti.",
+       "topshiriq": "Yil?",
+       "javob": "1831",
+       "rasm": ""
+      }
+     ],
+     "xavfsizlik": [
+      "kattalar bilan yuring",
+      "yo‘lga chiqmang",
+      "asboblarni ehtiyot qiling"
+     ],
+     "kundalik": [
+      "Qaysi formulani oldingiz?",
+      "Birlikni yozdingizmi?",
+      "Tekshirdingizmi?"
+     ]
+    },
+    "atamalar": [
+     {
+      "atama": "Elektromagnit induksiya",
+      "tarif": "oqim o‘zgarganda tok paydo bo‘lishi"
+     },
+     {
+      "atama": "Magnit oqimi",
+      "tarif": "B va S ko‘paytmasi"
+     },
+     {
+      "atama": "Induksion tok",
+      "tarif": "oqim o‘zgarishidan paydo bo‘lgan tok"
+     },
+     {
+      "atama": "Veber",
+      "tarif": "magnit oqimi birligi"
+     },
+     {
+      "atama": "Tesla",
+      "tarif": "magnit induksiya birligi"
+     },
+     {
+      "atama": "Lens qoidasi",
+      "tarif": "induksion tok yo‘nalish qoidasi"
+     }
+    ],
+    "bayonotlar": [
+     {
+      "matn": "Magnit oqimi o‘zgarsa tok paydo bo‘ladi",
+      "togri": true,
+      "izoh": "induksiya"
+     },
+     {
+      "matn": "Faradey 1731-yilda kashf etgan",
+      "togri": false,
+      "izoh": "1831"
+     },
+     {
+      "matn": "Φ — B · S",
+      "togri": true,
+      "izoh": "magnit oqimi"
+     },
+     {
+      "matn": "Oqim o‘zgarmasa ham tok bo‘ladi",
+      "togri": false,
+      "izoh": "o‘zgarish kerak"
+     },
+     {
+      "matn": "0,4 / 0,2 — 2",
+      "togri": true,
+      "izoh": "hisob"
+     },
+     {
+      "matn": "Lens qoidasi energiya saqlanishi bilan bog‘liq",
+      "togri": true,
+      "izoh": "qarshilik"
+     },
+     {
+      "matn": "Generator induksiyaga asoslangan",
+      "togri": true,
+      "izoh": "tok hosil qiladi"
+     },
+     {
+      "matn": "Magnit oqimi birligi tesla",
+      "togri": false,
+      "izoh": "veber"
+     }
+    ],
+    "savollar": [
+     {
+      "savol": "Induksiya?",
+      "javob": "oqim o‘zgarsa tok"
+     },
+     {
+      "savol": "Kim kashf etgan?",
+      "javob": "Faradey"
+     },
+     {
+      "savol": "Yil?",
+      "javob": "1831"
+     },
+     {
+      "savol": "Oqim?",
+      "javob": "B · S"
+     },
+     {
+      "savol": "Oqim birligi?",
+      "javob": "veber"
+     },
+     {
+      "savol": "EYuK?",
+      "javob": "ΔΦ / Δt"
+     },
+     {
+      "savol": "0,4 / 0,2?",
+      "javob": "2"
+     },
+     {
+      "savol": "6 / 3?",
+      "javob": "2"
+     },
+     {
+      "savol": "Lens?",
+      "javob": "qarshilik qoidasi"
+     },
+     {
+      "savol": "Qo‘llanish?",
+      "javob": "generator"
+     }
+    ],
+    "qismlar": [
+     {
+      "nom": "Ula",
+      "matn": "Zanjirni ula.",
+      "savol": "Galvanometr bormi?"
+     },
+     {
+      "nom": "Surish",
+      "matn": "Magnitni sur.",
+      "savol": "Strelka buriladimi?"
+     },
+     {
+      "nom": "Hisobla",
+      "matn": "EYuK ni top.",
+      "savol": "ΔΦ / Δt?"
+     },
+     {
+      "nom": "Xulosa",
+      "matn": "Xulosa yoz.",
+      "savol": "Nima o‘zgardi?"
+     }
+    ],
+    "muammoli_savol": "Nima uchun magnit g‘altak ichida tinch tursa, tok paydo bo‘lmaydi?",
+    "keys": {
+     "vaziyat": "Magnit g‘altak ichiga kiritilganda galvanometr strelkasi burildi.",
+     "savollar": [
+      "Nima uchun tok paydo bo‘ldi?",
+      "Magnit to‘xtasa nima bo‘ladi?"
+     ]
+    },
+    "tezis": "E — ΔΦ / Δt",
+    "taqqoslash": {
+     "a": "Generator",
+     "b": "Transformator",
+     "umumiy": [
+      "induksiyaga asoslangan",
+      "elektr energiyada ishlatiladi"
+     ],
+     "a_farq": [
+      "tok hosil qiladi",
+      "mexanik energiyadan"
+     ],
+     "b_farq": [
+      "kuchlanishni o‘zgartiradi",
+      "o‘zgaruvchan tok bilan"
+     ]
+    },
+    "klaster": {
+     "markaz": "Elektromagnit induksiya",
+     "shoxlar": [
+      {
+       "nom": "Hodisa",
+       "bandlar": [
+        "oqim o‘zgarsa tok",
+        "Faradey 1831"
+       ]
+      },
+      {
+       "nom": "Oqim",
+       "bandlar": [
+        "B · S",
+        "veber"
+       ]
+      },
+      {
+       "nom": "EYuK",
+       "bandlar": [
+        "ΔΦ / Δt"
+       ]
+      },
+      {
+       "nom": "Qo‘llanish",
+       "bandlar": [
+        "generator",
+        "transformator"
+       ]
+      }
+     ]
+    },
+    "topishmoq": {
+     "matn": "Men oqim o‘zgarganda tok hosil qilaman. Men kimman?",
+     "javob": "elektromagnit induksiya"
+    },
+    "hikmat": "Oqim o‘zgarsa — tok paydo bo‘ladi.",
+    "kalit_soz": "FARADEY",
+    "xato_yechim": {
+     "shart": "ΔΦ — 0,4, Δt — 0,2. E?",
+     "xato": "0,4 · 0,2",
+     "togri": "0,4 / 0,2 — 2 volt",
+     "sabab": "E — ΔΦ / Δt, bo‘lamiz"
+    },
+    "guruh_nomlari": [
+     "Faradeychilar",
+     "Generatorchilar",
+     "Hisobchilar",
+     "Tekshiruvchilar"
+    ],
+    "hayotiy_topshiriq": {
+     "nom": "«Induksiya laboratoriyasi»",
+     "topshiriq": "Guruh induksiyani tajribada ko‘rsatadi."
+    },
+    "vazifalar": {
+     "A": "B — 0,5, S — 0,02 bo‘lsa Φ?",
+     "B": "ΔΦ — 0,4, Δt — 0,2 bo‘lsa E?",
+     "C": "E — 6, R — 3 bo‘lsa I?"
+    },
+    "sinkveyn": [
+     "Induksiya",
+     "magnitli, tokli",
+     "o‘zgaradi, hosil qiladi, aylanadi",
+     "Oqim o‘zgarsa tok paydo bo‘ladi",
+     "Faradey"
+    ],
+    "jamoaviy_masala": {
+     "shart": "To‘rt guruh elektromagnit induksiyani o‘rganadi.",
+     "qismlar": [
+      "1-guruh: tajriba",
+      "2-guruh: magnit oqimi",
+      "3-guruh: EYuK",
+      "4-guruh: qo‘llanish"
+     ],
+     "yakun": "Natijalar: 0,01; 2; 2."
+    }
+   }
   }
  ]
 }
