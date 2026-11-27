@@ -81,6 +81,20 @@ class Dvigatel:
         from .kutubxona_ai import Kutubxona
         self.kutub = Kutubxona(self)
         self._yozuvchi_tekshirildi = False
+        # Tezlik: dars (369 ta JSON) va rasm reestri (12 ming yozuv) birinchi so'rovda ~2–3 soniya yuklanardi —
+        # har ishchi protsess ishga tushishi bilan ularni orqa fonda oldindan yuklaymiz.
+        threading.Thread(target=self._isit, name="taqdimot-isit", daemon=True).start()
+
+    def _isit(self):
+        if os.getenv("PYTEST_CURRENT_TEST"):
+            return
+        try:
+            from . import darslar
+            darslar.royxat()
+            rasmlar.papka_reestri()
+            rasmlar.papkadan_qidir("kasr", 1)
+        except Exception:
+            pass
 
     # ------------------------------------------------------------ umumiy
     def migrate(self):
