@@ -44,34 +44,35 @@ class Kursor:
 
 def test_sovga_50_va_bir_marta():
     c = Kursor()
-    assert kapul.hamyon(c, 7) == 50
-    assert kapul.hamyon(c, 7) == 50
-    assert len(c.j) == 1 and c.j[0][1] == 50
+    assert kapul.hamyon(c, 7) == 10
+    assert kapul.hamyon(c, 7) == 10
+    assert len(c.j) == 1 and c.j[0][1] == 10
 
 
 def test_yechish_va_yetmasa_402():
     c = Kursor()
-    assert kapul.yech(c, 1, 30, "ppt", "a") == 20
+    assert kapul.yech(c, 1, 3, "ppt", "a") == 7
     with pytest.raises(HTTPException) as e:
-        kapul.yech(c, 1, 21, "ochiq_dars", "b")
-    assert e.value.status_code == 402 and c.h[1] == 20
+        kapul.yech(c, 1, 8, "ochiq_dars", "b")
+    assert e.value.status_code == 402 and c.h[1] == 7
 
 
 def test_qaytarish_bir_marta_va_yechilmaganga_yoq():
     c = Kursor()
-    kapul.yech(c, 1, 10, "ochiq_dars", "x")
-    kapul.qaytar(c, 1, 10, "ochiq_dars", "x")
-    kapul.qaytar(c, 1, 10, "ochiq_dars", "x")
-    assert c.h[1] == 50
-    kapul.qaytar(c, 1, 10, "ppt", "yoq")
-    assert c.h[1] == 50
+    kapul.yech(c, 1, 1, "ochiq_dars", "x")
+    kapul.qaytar(c, 1, 1, "ochiq_dars", "x")
+    kapul.qaytar(c, 1, 1, "ochiq_dars", "x")
+    assert c.h[1] == 10
+    kapul.qaytar(c, 1, 1, "ppt", "yoq")
+    assert c.h[1] == 10
 
 
 def test_qosh_takrorlanmaydi():
     c = Kursor()
-    assert kapul.qosh(c, 2, 51, "tolov", "t1") == 101
-    assert kapul.qosh(c, 2, 51, "tolov", "t1") == 101
+    assert kapul.qosh(c, 2, 51, "tolov", "t1") == 61
+    assert kapul.qosh(c, 2, 51, "tolov", "t1") == 61
 
 
 def test_narx():
-    assert kapul.SOM == 1000 and kapul.NARX == {"ppt_slayd": 1, "ochiq_dars": 10}
+    assert kapul.SOM == 1000 and kapul.NARX == {"ppt_10_slayd": 1, "ochiq_dars": 1}
+    assert [kapul.ppt_narx(n) for n in (5, 10, 11, 20, 40)] == [1, 1, 2, 2, 4]

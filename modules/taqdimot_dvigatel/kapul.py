@@ -1,7 +1,7 @@
 """KAPUL — platformaning ichki hisob birligi (o'qituvchi hamyoni).
 
-1 kapul = 1000 so'm. Yangi hamyon ochilganda 50 kapul sovg'a beriladi.
-Narxlar: PPT — 1 slayd = 1 kapul; ochiq dars (AI) — 10 kapul.
+1 kapul = 1000 so'm. Yangi hamyon ochilganda 10 kapul sovg'a beriladi.
+Narxlar: PPT — 10 slayd = 1 kapul (yuqoriga yaxlitlanadi); ochiq dars (AI) — 1 kapul.
 
 Hamma amal bitta tranzaksiyada (kursor orqali) bajariladi:
   yech()   — balans yetarli bo'lsagina ayiradi (UPDATE ... WHERE balans >= n), jurnalga yozadi;
@@ -14,8 +14,14 @@ from __future__ import annotations
 from fastapi import HTTPException
 
 SOM = 1000                 # 1 kapul = 1000 so'm
-SOVGA = 50                 # yangi hamyonga beriladigan kapul
-NARX = {"ppt_slayd": 1, "ochiq_dars": 10}
+SOVGA = 10                 # yangi hamyonga beriladigan kapul
+SLAYD_KAPULGA = 10        # 1 kapul = 10 slayd (yuqoriga yaxlitlanadi)
+NARX = {"ppt_10_slayd": 1, "ochiq_dars": 1}
+
+
+def ppt_narx(slayd_soni):
+    n = max(1, int(slayd_soni or 0))
+    return -(-n // SLAYD_KAPULGA) * NARX["ppt_10_slayd"]
 
 NO_STORE = {"Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff"}
 

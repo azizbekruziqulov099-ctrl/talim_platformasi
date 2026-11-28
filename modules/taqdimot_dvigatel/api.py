@@ -247,8 +247,8 @@ class Dvigatel:
                 if cur.fetchone()["n"] >= AI_KUNLIK:
                     fail(f"Bugungi AI limiti tugadi ({AI_KUNLIK} ta). Ertaga yoki Excel shablon orqali davom eting.", 429)
             ish = uuid.uuid4().hex
-            if not admin and not sorov["faqat_reja"]:   # PPT: 1 slayd = 1 kapul (reja tuzish bepul)
-                sorov["kapul"] = max(1, int(sorov["sozlama"].get("slayd_soni") or 0)) * kapul.NARX["ppt_slayd"]
+            if not admin and not sorov["faqat_reja"]:   # PPT: 10 slayd = 1 kapul (reja tuzish bepul)
+                sorov["kapul"] = kapul.ppt_narx(sorov["sozlama"].get("slayd_soni"))
                 kapul.yech(cur, uid, sorov["kapul"], "ppt", ish)
             cur.execute("INSERT INTO taqdimot_dvigatel_ishlar(id, owner_id, sorov) VALUES(%s,%s,%s)", (ish, uid, json.dumps(sorov, ensure_ascii=False)))
         self.pool.submit(self._ai_ish, ish, sorov)
