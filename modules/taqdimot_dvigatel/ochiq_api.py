@@ -124,6 +124,10 @@ class OchiqDars:
                 if cur.fetchone()["n"] >= AI_KUNLIK:
                     self.fail(f"Bugungi AI limiti tugadi ({AI_KUNLIK} ta). «Tezkor» rejimdan foydalaning.", 429)
             ish = uuid.uuid4().hex
+            if not admin:                      # ochiq dars (AI) = 10 kapul
+                from . import kapul
+                yozuv["kapul"] = kapul.NARX["ochiq_dars"]
+                kapul.yech(cur, uid, yozuv["kapul"], "ochiq_dars", ish)
             cur.execute("INSERT INTO taqdimot_dvigatel_ishlar(id, owner_id, sorov, ochirildi) VALUES(%s,%s,%s,true)",
                         (ish, uid, json.dumps(yozuv, ensure_ascii=False)))
         self.D.pool.submit(self._ai_ish, ish, s, miya)
@@ -144,7 +148,12 @@ class OchiqDars:
         except Exception as exc:
             try:
                 with self.D.ps.db() as cur:
-                    cur.execute("UPDATE taqdimot_dvigatel_ishlar SET holat='xato', xato=%s, tugadi=now() WHERE id=%s", (str(exc)[:300], ish))
+                    cur.execute("UPDATE taqdimot_dvigatel_ishlar SET holat='xato', xato=%s, tugadi=now() WHERE id=%s "
+                                "RETURNING owner_id, COALESCE((sorov->>'kapul')::int, 0) AS kapul", (str(exc)[:300], ish))
+                    r = cur.fetchone()
+                    if r and r["kapul"]:
+                        from . import kapul
+                        kapul.qaytar(cur, r["owner_id"], r["kapul"], "ochiq_dars", ish)
             except Exception:
                 pass
 

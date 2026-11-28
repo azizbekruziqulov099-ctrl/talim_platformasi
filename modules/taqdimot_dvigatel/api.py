@@ -22,6 +22,8 @@ from starlette.concurrency import run_in_threadpool
 
 from . import ai, excel, kutubxona, rasmlar, sozlamalar, sxema, uslub, yasash, zaxira
 
+from . import kapul
+
 PREFIX = "/api/taqdimot-dvigatel"
 NO_STORE = {"Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff"}
 MAX_JSON = 1024 * 1024
@@ -56,7 +58,7 @@ CREATE TABLE IF NOT EXISTS taqdimot_rasmlar (
     yukladi BIGINT,
     vaqt TIMESTAMPTZ NOT NULL DEFAULT now()
 );
-"""
+""" + kapul.SCHEMA
 UVKOD = re.compile(r"^[a-z_]{2,20}\.[a-z_]{2,20}\.[0-2]$")
 
 
@@ -245,6 +247,9 @@ class Dvigatel:
                 if cur.fetchone()["n"] >= AI_KUNLIK:
                     fail(f"Bugungi AI limiti tugadi ({AI_KUNLIK} ta). Ertaga yoki Excel shablon orqali davom eting.", 429)
             ish = uuid.uuid4().hex
+            if not admin and not sorov["faqat_reja"]:   # PPT: 1 slayd = 1 kapul (reja tuzish bepul)
+                sorov["kapul"] = max(1, int(sorov["sozlama"].get("slayd_soni") or 0)) * kapul.NARX["ppt_slayd"]
+                kapul.yech(cur, uid, sorov["kapul"], "ppt", ish)
             cur.execute("INSERT INTO taqdimot_dvigatel_ishlar(id, owner_id, sorov) VALUES(%s,%s,%s)", (ish, uid, json.dumps(sorov, ensure_ascii=False)))
         self.pool.submit(self._ai_ish, ish, sorov)
         return {"ish": ish, "holat": "navbatda"}
@@ -289,7 +294,10 @@ class Dvigatel:
                 pass
             try:
                 with self.ps.db() as cur:
-                    cur.execute("UPDATE taqdimot_dvigatel_ishlar SET holat='xato', xato=%s, tugadi=now() WHERE id=%s", (xato, ish))
+                    cur.execute("UPDATE taqdimot_dvigatel_ishlar SET holat='xato', xato=%s, tugadi=now() WHERE id=%s RETURNING owner_id", (xato, ish))
+                    r = cur.fetchone()
+                    if r and sorov.get("kapul"):
+                        kapul.qaytar(cur, r["owner_id"], sorov["kapul"], "ppt", ish)
             except Exception:
                 pass
 
@@ -596,6 +604,13 @@ def register_taqdimot_dvigatel(app, platform):
         uid = await run_in_threadpool(D.actor, authorization)
         body = await _json(request, 64 * 1024)
         return await run_in_threadpool(D.ai_boshla, uid, body)
+
+    @app.get(PREFIX + "/kapul")
+    def kapul_holat(authorization: str | None = Header(None)):
+        uid = D.actor(authorization)
+        with D.ps.db() as cur:
+            out = kapul.holat(cur, uid)
+        return Response(json.dumps(out, ensure_ascii=False), media_type="application/json", headers=NO_STORE)
 
     @app.get(PREFIX + "/ai/{ish}")
     def ai_holat(ish: str, authorization: str | None = Header(None)):
