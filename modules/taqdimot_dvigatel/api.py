@@ -22,7 +22,7 @@ from starlette.concurrency import run_in_threadpool
 
 from . import ai, excel, kutubxona, rasmlar, sozlamalar, sxema, uslub, yasash, zaxira
 
-from . import kapul
+from . import kapul, kapul_tolov
 
 PREFIX = "/api/taqdimot-dvigatel"
 NO_STORE = {"Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff"}
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS taqdimot_rasmlar (
     yukladi BIGINT,
     vaqt TIMESTAMPTZ NOT NULL DEFAULT now()
 );
-""" + kapul.SCHEMA
+""" + kapul.SCHEMA + kapul_tolov.SCHEMA
 UVKOD = re.compile(r"^[a-z_]{2,20}\.[a-z_]{2,20}\.[0-2]$")
 
 
@@ -248,7 +248,7 @@ class Dvigatel:
                     fail(f"Bugungi AI limiti tugadi ({AI_KUNLIK} ta). Ertaga yoki Excel shablon orqali davom eting.", 429)
             ish = uuid.uuid4().hex
             if not admin and not sorov["faqat_reja"]:   # PPT: 10 slayd = 1 kapul (reja tuzish bepul)
-                sorov["kapul"] = kapul.ppt_narx(sorov["sozlama"].get("slayd_soni"))
+                sorov["kapul"] = kapul.ppt_narx(sorov["sozlama"].get("slayd_soni"), cur)
                 kapul.yech(cur, uid, sorov["kapul"], "ppt", ish)
             cur.execute("INSERT INTO taqdimot_dvigatel_ishlar(id, owner_id, sorov) VALUES(%s,%s,%s)", (ish, uid, json.dumps(sorov, ensure_ascii=False)))
         self.pool.submit(self._ai_ish, ish, sorov)
@@ -524,6 +524,7 @@ async def _json(request: Request, limit=MAX_JSON):
 
 def register_taqdimot_dvigatel(app, platform):
     D = Dvigatel(platform)
+    kapul_tolov.register(app, D, NO_STORE, fail, _json)
 
     @app.get(PREFIX + "/uslublar")
     def uslublar(authorization: str | None = Header(None)):

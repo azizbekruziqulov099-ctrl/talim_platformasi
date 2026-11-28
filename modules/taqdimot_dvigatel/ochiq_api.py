@@ -126,7 +126,7 @@ class OchiqDars:
             ish = uuid.uuid4().hex
             if not admin:                      # ochiq dars (AI) = 10 kapul
                 from . import kapul
-                yozuv["kapul"] = kapul.NARX["ochiq_dars"]
+                yozuv["kapul"] = kapul.narx(cur, "ochiq_dars")
                 kapul.yech(cur, uid, yozuv["kapul"], "ochiq_dars", ish)
             cur.execute("INSERT INTO taqdimot_dvigatel_ishlar(id, owner_id, sorov, ochirildi) VALUES(%s,%s,%s,true)",
                         (ish, uid, json.dumps(yozuv, ensure_ascii=False)))

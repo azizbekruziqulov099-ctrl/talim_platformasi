@@ -19,13 +19,59 @@ SLAYD_KAPULGA = 10        # 1 kapul = 10 slayd (yuqoriga yaxlitlanadi)
 NARX = {"ppt_10_slayd": 1, "ochiq_dars": 1}
 
 
-def ppt_narx(slayd_soni):
+# Admin o'zgartira oladigan sozlamalar: kalit -> (standart qiymat, izoh). Qiymatlar bazada (kapul_sozlama) saqlanadi.
+SOZLAMA = {
+    "som": (SOM, "1 kapul necha so'm"),
+    "sovga": (SOVGA, "Yangi hisobga beriladigan sovg'a kapul"),
+    "ppt_10_slayd": (1, "PPT: har 10 slayd uchun kapul (yuqoriga yaxlitlanadi)"),
+    "ochiq_dars": (1, "Ochiq dars (AI) uchun kapul"),
+    "buyurtma_daqiqa": (30, "To'lov buyurtmasi necha daqiqa kutadi"),
+    "karta_raqam": ("", "To'lov qabul qilinadigan karta raqami"),
+    "karta_egasi": ("", "Karta egasining ismi"),
+}
+_KESH = {"t": 0.0, "d": {}}
+
+
+def sozlama(cur=None, yangila=False):
+    """Sozlamalar lug'ati (standart + bazadagi). 20 soniya keshlanadi; baza yo'q bo'lsa — standart."""
+    import time
+    if cur is not None and (yangila or time.time() - _KESH["t"] > 20):
+        try:
+            cur.execute("SELECT kalit, qiymat FROM kapul_sozlama")
+            _KESH["d"] = {r["kalit"]: r["qiymat"] for r in cur.fetchall()}
+            _KESH["t"] = time.time()
+        except Exception:
+            pass
+    out = {}
+    for k, (std, _) in SOZLAMA.items():
+        v = _KESH["d"].get(k)
+        if isinstance(std, int):
+            try:
+                v = int(v)
+            except (TypeError, ValueError):
+                v = std
+        elif v is None:
+            v = std
+        out[k] = v
+    return out
+
+
+def narx(cur, kalit):
+    return int(sozlama(cur)[kalit])
+
+
+def ppt_narx(slayd_soni, cur=None):
     n = max(1, int(slayd_soni or 0))
-    return -(-n // SLAYD_KAPULGA) * NARX["ppt_10_slayd"]
+    return -(-n // SLAYD_KAPULGA) * narx(cur, "ppt_10_slayd")
 
 NO_STORE = {"Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff"}
 
 SCHEMA = """
+CREATE TABLE IF NOT EXISTS kapul_sozlama (
+    kalit TEXT PRIMARY KEY,
+    qiymat TEXT NOT NULL,
+    yangilandi TIMESTAMPTZ NOT NULL DEFAULT now()
+);
 CREATE TABLE IF NOT EXISTS kapul_hamyon (
     owner_id BIGINT PRIMARY KEY,
     balans INT NOT NULL DEFAULT 0 CHECK (balans >= 0),
@@ -56,11 +102,12 @@ def hamyon(cur, uid):
     r = cur.fetchone()
     if r:
         return int(r["balans"])
+    sovga = narx(cur, "sovga")
     cur.execute("INSERT INTO kapul_hamyon(owner_id, balans) VALUES(%s,%s) ON CONFLICT (owner_id) DO NOTHING RETURNING balans",
-                (uid, SOVGA))
+                (uid, sovga))
     r = cur.fetchone()
     if r:
-        _yoz(cur, uid, SOVGA, "sovga", "start", SOVGA)
+        _yoz(cur, uid, sovga, "sovga", "start", sovga)
         return int(r["balans"])
     cur.execute("SELECT balans FROM kapul_hamyon WHERE owner_id=%s", (uid,))
     return int(cur.fetchone()["balans"])
@@ -76,7 +123,7 @@ def yech(cur, uid, n, sabab, ref):
     r = cur.fetchone()
     if not r:
         raise HTTPException(status_code=402, headers=NO_STORE,
-                            detail=f"Kapul yetarli emas: kerak {n}, hisobingizda {bor}. 1 kapul = {SOM} so'm.")
+                            detail=f"Kapul yetarli emas: kerak {n}, hisobingizda {bor}. 1 kapul = {narx(cur, 'som')} so'm.")
     _yoz(cur, uid, -n, sabab, ref, int(r["balans"]))
     return int(r["balans"])
 
@@ -120,4 +167,4 @@ def holat(cur, uid, jurnal=20):
                 (uid, max(1, min(100, int(jurnal)))))
     rows = [{"delta": int(r["delta"]), "sabab": r["sabab"], "balans": int(r["balans_keyin"]),
              "vaqt": r["vaqt"].isoformat() if r["vaqt"] else None} for r in cur.fetchall()]
-    return {"balans": b, "som": b * SOM, "kapul_som": SOM, "narx": NARX, "jurnal": rows}
+    return {"balans": b, "som": b * narx(cur, "som"), "kapul_som": narx(cur, "som"), "narx": {"ppt_10_slayd": narx(cur, "ppt_10_slayd"), "ochiq_dars": narx(cur, "ochiq_dars")}, "jurnal": rows}

@@ -76,3 +76,11 @@ def test_qosh_takrorlanmaydi():
 def test_narx():
     assert kapul.SOM == 1000 and kapul.NARX == {"ppt_10_slayd": 1, "ochiq_dars": 1}
     assert [kapul.ppt_narx(n) for n in (5, 10, 11, 20, 40)] == [1, 1, 2, 2, 4]
+
+
+def test_sms_summalari():
+    from modules.taqdimot_dvigatel import kapul_tolov as T
+    assert T.summalar("Humo: Popolnenie +49 758.00 UZS Balans: 1 234 567.00 UZS")[:2] == [49758, 1234567]
+    assert T.summalar("Kirim 50,575.50 so'm")[0] == 50575
+    assert T.summalar("") == []
+    assert T.CHIQIM.search("Spisanie 12 000.00 UZS") and not T.CHIQIM.search("Popolnenie 12 000.00 UZS")
